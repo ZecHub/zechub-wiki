@@ -9,7 +9,6 @@ export const ImagePrev = (props: HTMLProps<HTMLImageElement>) => (
       height={400} 
       width={600} 
       layout="responsive"
-      loading="lazy"
     />
   )
 
@@ -20,7 +19,7 @@ export const LinkComponent = (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.
 )
 
 export const PreComponent = (props: HTMLProps<HTMLPreElement>): JSX.Element => (
-    <pre {...props}>{props.children}</pre>
+    <pre {...props} >{props.children}</pre>
 )
 
 export const EmComponent = (props: HTMLProps<HTMLSpanElement>): JSX.Element => (

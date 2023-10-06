@@ -18,6 +18,8 @@
     "autoprefixer": "10.4.15",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
+    "flowbite": "^1.8.1",
+    "flowbite-react": "^0.6.4",
     "next": "13.4.19",
     "next-mdx-remote": "^4.4.1",
     "octokit": "^3.1.0",

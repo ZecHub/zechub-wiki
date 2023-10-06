@@ -1,30 +1,88 @@
-import {BsDiscord as Discord} from 'react-icons/bs'
-import {RiTwitterXFill as Twitter, RiGithubFill as Github} from "react-icons/ri";
+import { BsDiscord as Discord } from 'react-icons/bs'
+import { RiTwitterXFill as Twitter, RiGithubFill as Github } from "react-icons/ri";
 
-export const navigation = [
-    {
+export const navigations = [
+  {
     name: "Use ZEC",
-    path: "site/usingzcash",
+    links: [
+      {
+        subName: 'Using Zec',
+        path: "site/usingzcash/usingzec"
+      },
+      {
+        subName: 'Wallets',
+        path: "site/usingzcash/wallets"
+      },
+      {
+        subName: 'Non Custodials',
+        path: "site/usingzcash/noncustodial"
+      }
+    ]
   },
   {
     name: "Ecosystem",
-    path: "site/zcashcommunity",
+    links: [
+      {
+        subName: 'Zcash Comunity',
+        path: "site/zcashcommunity/zcashcomunity"
+      },
+      {
+        subName: 'Zcash Security',
+        path: "site/zcashcommunity/zcashecosystemsecurity"
+      },
+      {
+        subName: 'Development Fund',
+        path: "site/zcashcommunity/developmentfund"
+      }
+    ],
   },
   {
     name: "Organizations",
-    path: "site/zcashbasics",
-  },
-  {
-    name: "Social Media",
-    path: "site/zcashsocialmedia",
+    links: [
+      {
+        subName: 'ECC',
+        path: "site/shieldedlabs"
+      },
+      {
+        subName: 'Zcash Fundation',
+        path: "site/zcashfundation"
+      },
+      {
+        subName: 'ZCG',
+        path: "site/zcashcomunitygrants"
+      }
+    ]
   },
   {
     name: "Guides",
-    path: "site/guides",
+    links: [
+      {
+        subName: 'Zgo Payment',
+        path: "site/guides/zgopayments",
+      },
+      {
+        subName: 'Namada Protocol',
+        path: "site/guides/namadaProtocol"
+      },
+      {
+        subName: 'Full Nodes',
+        path: "site/guides/fullnodes"
+      }
+    ]
   },
   {
     name: "Glossary & FAQs",
-    path: "site/glossaryandzcashfaqs",
+    links: [
+      {
+        subName: 'Faqs',
+        path: "site/glossaryandzcashfaqs/faqs",
+      },
+      {
+        subName: 'Zcash Library',
+        path: "site/guides/zcashlibrary"
+      }
+    ]
+
   },
 ];
 
@@ -69,5 +127,23 @@ export const socialMedia = [
   {
     name: 'Store',
     link: 'https://zechub.store/'
+  }
+]
+
+export const cardsConfig = [
+  {
+    title: 'Zechub Wiki',
+    content: 'ZEC is a digital currency that is based on the Zcash blockchain.',
+    url: 'site/usingzcash/usingzec.md'
+  },
+  {
+    title: 'Intro to Zcash Wallets',
+    content: 'Wallets allow you to receive and spend Zcash. Some also support encrypted memos. Only you should have access to your wallet.',
+    url: 'site/usingzcash/wallets.md'
+  },
+  {
+    title: 'Zcash Resources',
+    content: 'There are a number of resources that help users understand Zcash.',
+    url: 'site/starthere/zcashresources.md'
   }
 ]

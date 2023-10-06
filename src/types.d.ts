@@ -1,6 +1,6 @@
 export interface Links {
   name: string;
-  path: string;
+  path: string
 }
 
 export interface MenuExp {
@@ -9,6 +9,7 @@ export interface MenuExp {
 
 export interface Classes {
   classes: string;
+  menuExp: boolean;
 }
 
 export interface Socials {
@@ -17,4 +18,9 @@ export interface Socials {
 
 export interface Path{
     path: string
+}
+
+export interface Sublinks{
+  name: string
+  path: string
 }

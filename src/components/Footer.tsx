@@ -1,38 +1,53 @@
+
+import Logo from "./ui/Logo";
+import SocialIcons from "./ui/SocialIcons";
+
 const Footer = () => {
   return (
-    <footer className="rounded-lg shadow m-4 bg-gray-300">
-      <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2023{" "}
-          <a href="" className="hover:underline">
-            Zechub™
-          </a>
-          . All Rights Reserved.
-        </span>
-        <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-          <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">
-              About
+
+    <div className=" w-full border-t-4 border-slate-500 dark:border-slate-100 mt-3 md:py-5">
+      <footer className="rounded-lg shadow bg-[#1984c7] md:flex md:items-center md:flex-col py-3 text-white">
+        <div className="flex justify-center items-center">
+          <Logo />
+        </div>
+        <div className="flex w-full mx-auto max-w-screen-xl justify-center items-center p-4 md:flex-col md:items-center md:justify-between">
+          <span className="text-sm  sm:text-center">
+            © 2023{" "}
+            <a href="" className="hover:underline">
+              Zechub™
             </a>
-          </li>
-          <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
-              Privacy Policy
-            </a>
-          </li>
-          <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
-              Licensing
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
-    </footer>
+            . All Rights Reserved.
+          </span>
+          <ul className="flex flex-wrap items-center mt-3 text-sm font-medium sm:mt-0">
+            <li>
+              <a href="#" className="mr-4 hover:underline md:mr-6 ">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#" className="mr-4 hover:underline md:mr-6">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="#" className="mr-4 hover:underline md:mr-6">
+                Licensing
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <SocialIcons newTab={true} />
+        </div>
+
+
+      </footer>
+    </div>
   );
 };
 
