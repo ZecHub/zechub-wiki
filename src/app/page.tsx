@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Hero from '@/components/Hero'
 import Cards from '@/components/ui/Cards'
+import ContentSections from '@/components/ContentSections';
 import { cardsConfig } from "@/config";
 
 export default async function Home() {
@@ -30,13 +31,15 @@ export default async function Home() {
         </div>
 
         <div className='w-full h-14 my-6 bg-[#1984c7]'> </div>
-        <div className="p-5 flex flex-col space-y-7 md:flex-row md:space-x-11 items-center justify-center">
+        <div className="p-5 flex flex-col space-y-7 md:flex-row md:space-x-11 items-center justify-center mb-4">
           {
             cardsConfig.map((items) => (
               <Cards key={items.title} paraph={items.content} title={items.title} url={items.url} />
             ))
           }
         </div>
+
+        <ContentSections />
       </div>
     </main>
   );
