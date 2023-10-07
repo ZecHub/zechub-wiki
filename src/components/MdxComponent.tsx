@@ -1,16 +1,15 @@
 import remarkGfm from "remark-gfm";
 import rehypePrism from 'rehype-prism-plus';
 import {
-  MDXRemoteSerializeResult,
   compileMDX,
 } from "next-mdx-remote/rsc";
 import { MdxComponents } from "./ConfigComponent";
 
-type MdxContentProps = {
-  source: MDXRemoteSerializeResult;
+type ContentSource = {
+  source: string
 };
 
-const MdxComponent = async ({ source }: MdxContentProps) => {
+const MdxComponent = async ({ source }: ContentSource) => {
   const { content, frontmatter } = await compileMDX<{ title: string }>({
     source: source,
     options: {

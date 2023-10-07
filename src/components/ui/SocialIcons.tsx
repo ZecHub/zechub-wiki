@@ -11,7 +11,7 @@ const SocialIcons = (newTab: Socials) => {
           <Link
             key={index}
             href={url}
-            className=" hover:text-brand-ui-primary"
+            className=" hover:text-brand-ui-primary hover:scale-100"
             target={newTab ? "_blank" : "_self"}
           >
             <Icon size={25} icon={icon} className="" />
