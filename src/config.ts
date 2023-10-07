@@ -7,15 +7,15 @@ export const navigations = [
     links: [
       {
         subName: 'Using Zec',
-        path: "site/usingzcash/usingzec"
+        path: "/site/usingzcash/usingzec"
       },
       {
         subName: 'Wallets',
-        path: "site/usingzcash/wallets"
+        path: "/site/usingzcash/wallets"
       },
       {
         subName: 'Non Custodials',
-        path: "site/usingzcash/noncustodial"
+        path: "/site/usingzcash/noncustodial"
       }
     ]
   },
@@ -24,15 +24,15 @@ export const navigations = [
     links: [
       {
         subName: 'Zcash Comunity',
-        path: "site/zcashcommunity/zcashcomunity"
+        path: "/site/zcashcommunity/zcashcomunity"
       },
       {
         subName: 'Zcash Security',
-        path: "site/zcashcommunity/zcashecosystemsecurity"
+        path: "/site/zcashcommunity/zcashecosystemsecurity"
       },
       {
         subName: 'Development Fund',
-        path: "site/zcashcommunity/developmentfund"
+        path: "/site/zcashcommunity/developmentfund"
       }
     ],
   },
@@ -41,15 +41,15 @@ export const navigations = [
     links: [
       {
         subName: 'ECC',
-        path: "site/shieldedlabs"
+        path: "/site/shieldedlabs"
       },
       {
         subName: 'Zcash Fundation',
-        path: "site/zcashfundation"
+        path: "/site/zcashfundation"
       },
       {
         subName: 'ZCG',
-        path: "site/zcashcomunitygrants"
+        path: "/site/zcashcomunitygrants"
       }
     ]
   },
@@ -58,15 +58,15 @@ export const navigations = [
     links: [
       {
         subName: 'Zgo Payment',
-        path: "site/guides/zgopayments",
+        path: "/site/guides/zgopayments",
       },
       {
         subName: 'Namada Protocol',
-        path: "site/guides/namadaProtocol"
+        path: "/site/guides/namadaProtocol"
       },
       {
         subName: 'Full Nodes',
-        path: "site/guides/fullnodes"
+        path: "/site/guides/fullnodes"
       }
     ]
   },
@@ -75,11 +75,11 @@ export const navigations = [
     links: [
       {
         subName: 'Faqs',
-        path: "site/glossaryandzcashfaqs/faqs",
+        path: "/site/glossaryandzcashfaqs/faqs",
       },
       {
         subName: 'Zcash Library',
-        path: "site/guides/zcashlibrary"
+        path: "/site/guides/zcashlibrary"
       }
     ]
 
@@ -134,16 +134,16 @@ export const cardsConfig = [
   {
     title: 'Zechub Wiki',
     content: 'ZEC is a digital currency that is based on the Zcash blockchain.',
-    url: 'site/usingzcash/usingzec.md'
+    url: 'site/usingzcash/usingzec'
   },
   {
     title: 'Intro to Zcash Wallets',
     content: 'Wallets allow you to receive and spend Zcash. Some also support encrypted memos. Only you should have access to your wallet.',
-    url: 'site/usingzcash/wallets.md'
+    url: 'site/usingzcash/wallets'
   },
   {
     title: 'Zcash Resources',
     content: 'There are a number of resources that help users understand Zcash.',
-    url: 'site/starthere/zcashresources.md'
+    url: 'site/starthere/zcashresources'
   }
 ]
