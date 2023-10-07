@@ -62,7 +62,7 @@ export const navigations = [
       },
       {
         subName: 'Namada Protocol',
-        path: "/site/guides/namadaProtocol"
+        path: "/site/guides/NamadaProtocol"
       },
       {
         subName: 'Full Nodes',

@@ -7,11 +7,11 @@ interface props {
     url: string
 }
 
-const Cards = ({title, paraph, url}: props ) => (
+const Cards = ({ title, paraph, url }: props) => (
     <>
         <div className="max-w-sm md:w-1/5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:-translate-y-6">
             <Link href="#">
-                <Image className="rounded-t-lg " src="/card-image.webp" alt="" width={400} height={100}/>
+                <Image className="rounded-t-lg " src="/card-image.webp" alt="" width={400} height={100} />
             </Link>
             <div className="p-5">
                 <Link href={url}>
