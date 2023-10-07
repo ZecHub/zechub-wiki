@@ -14,7 +14,7 @@ export const navigations = [
         path: "/site/usingzcash/wallets"
       },
       {
-        subName: 'Non Custodials',
+        subName: 'Non-Custodials Exchanges',
         path: "/site/usingzcash/noncustodial"
       }
     ]
@@ -23,7 +23,7 @@ export const navigations = [
     name: "Ecosystem",
     links: [
       {
-        subName: 'Zcash Comunity',
+        subName: 'Zcash Community',
         path: "/site/zcashcommunity/zcashcommunity"
       },
       {
@@ -71,10 +71,10 @@ export const navigations = [
     ]
   },
   {
-    name: "Glossary & FAQs",
+    name: `Glossary & FAQ's`,
     links: [
       {
-        subName: 'Faqs',
+        subName: `Faq's`,
         path: "/site/glossaryandzcashfaqs/faqs",
       },
       {
