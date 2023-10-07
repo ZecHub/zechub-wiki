@@ -24,7 +24,7 @@ export const navigations = [
     links: [
       {
         subName: 'Zcash Comunity',
-        path: "/site/zcashcommunity/zcashcomunity"
+        path: "/site/zcashcommunity/zcashcommunity"
       },
       {
         subName: 'Zcash Security',

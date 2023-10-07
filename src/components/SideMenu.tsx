@@ -5,16 +5,19 @@ import { Icon } from './ui/Icon'
 
 
 interface MenuProps {
+  folder: string
   roots: string[]
 }
 
-const SideMenu = ({ roots }: MenuProps) => {
+const SideMenu = ({ folder, roots }: MenuProps) => {
 
   const links = roots.map((item) => item.slice(0, -3))
 
+  const name = folder[0].toUpperCase() + folder.slice(1);
+
   return (
     <div className="flex flex-col sticky top-0 py-4 items-center justify-start w-full px-3">
-      <h1 className="text-2xl font-bold mb-4">In this Folder: </h1>
+      <h1 className="text-2xl font-bold mb-4"> {name} Folder: </h1>
       <div>
         <ul>
           {
