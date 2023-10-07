@@ -26,8 +26,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 />
             </div>
 
-            <div className={`flex flex-col space-y-5 ${roots.length > 0 ? 'md:flex-row md:space-x-5' : 'md:flex-col'} h-auto p-5`}>
-                {roots.length > 0 && (
+            <div className={`flex flex-col space-y-5 ${roots && roots.length > 0 ? 'md:flex-row md:space-x-5' : 'md:flex-col'} h-auto p-5`}>
+                {(roots && roots.length > 0) && (
                     <div className='w-auto md:w-1/2  relative'>
                         <SideMenu roots={roots} />
                     </div>

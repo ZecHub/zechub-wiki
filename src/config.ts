@@ -41,15 +41,15 @@ export const navigations = [
     links: [
       {
         subName: 'ECC',
-        path: "/site/shieldedlabs"
+        path: "/site/zcashbasics/shieldedlabs"
       },
       {
         subName: 'Zcash Fundation',
-        path: "/site/zcashfundation"
+        path: "/site/zcashbasics/zcashfoundation"
       },
       {
         subName: 'ZCG',
-        path: "/site/zcashcomunitygrants"
+        path: "/site/zcashbasics/zcashcommunitygrants."
       }
     ]
   },

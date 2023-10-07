@@ -1,7 +1,10 @@
 'use client'
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
+
+  const router = useRouter()
   return (
     <div className="w-full  mb-3">
       <div className=" w-full mx-auto flex flex-col px-3 py-16 items-center md:flex-row justify-center rounded-lg bg-[#1984c7]">
@@ -10,7 +13,7 @@ const Hero = () => {
             Learn all about Zcash network
           </h1>
           <div className="flex justify-center mx-auto">
-            <button className="hover:bg-slate-300 transition duration-400 bg-white border-2 text-gray-800 font-bold rounded-full  py-4 px-8">
+            <button onClick={() => router.push('/site/zcashcommunity/zcashcomunity')} className="hover:bg-slate-300 transition duration-400 bg-white border-2 text-gray-800 font-bold rounded-full  py-4 px-8">
               Start Here
             </button>
           </div>
