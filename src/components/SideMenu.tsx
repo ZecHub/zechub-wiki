@@ -27,7 +27,7 @@ const SideMenu = ({ roots }: MenuProps) => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium truncate">
-                        {item}
+                        {item ? item.substring(item.lastIndexOf("/") + 1) : ''}
                       </p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold ">
