@@ -17,7 +17,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
 
   return (
     <div className="flex flex-col sticky top-0 py-4 items-center justify-start w-full px-3">
-      <h1 className="text-2xl font-bold mb-4"> {name} Folder: </h1>
+      <h1 className="text-2xl font-bold mb-4"> {name}: </h1>
       <div>
         <ul>
           {
