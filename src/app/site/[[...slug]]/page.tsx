@@ -1,8 +1,15 @@
 
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import MdxComponent from '@/components/MdxComponent'
 import { getFileContent, getRoot } from '@/helpers'
 import SideMenu from '@/components/SideMenu'
+
+const MdxComponent = dynamic(
+    () => import('@/components/MdxComponent'),
+    {
+      loading: () => <p>Loading...</p>,
+    }
+  )
 
 export default async function Page({ params }: { params: { slug: string } }) {
 
@@ -16,13 +23,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
     const roots = await getRoot(urlRoot)
     return (
         <main>
-            <div className='flex justify-center w-full  mb-5 bg-[#1984c7] rounded py-4'>
+            <div className='flex justify-center w-full  mb-5 bg-transparent rounded py-4'>
                 <Image
                     className="md:w-auto w-5/6 mb-5 object-cover "
-                    alt="hero"
+                    alt="wiki-banner"
                     width={800}
                     height={50}
-                    src={"/hero.png"}
+                    src={"/wiki-banner.avif"}
                 />
             </div>
 

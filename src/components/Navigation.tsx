@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import Link from "next/link";
 import Logo from "./ui/Logo";
 import {Dropdown} from 'flowbite-react'
@@ -19,13 +19,21 @@ import type { MenuExp, Classes } from "@/types";
 
 const NavLinks = ( {classes, menuExp}: Classes ) => {
   const router = useRouter()
+
   return (
     <div className={`flex ${menuExp ? 'flex-col' : 'flex-row'} ${classes}`}>
       {
         navigations.map((item) => (
           <Dropdown className="flex flex-row" key={item.name} label={item.name} color="inherit" trigger={menuExp ? 'click': 'hover'}>
             {item.links.map((link) => (
-              <Dropdown.Item type="button" key={link.path} onClick={() => router.push(link.path)}>{link.subName}</Dropdown.Item>
+              <Dropdown.Item 
+                type="button" 
+                key={link.path}
+                href={link.path}
+                onClick={() => router.prefetch(link.path)}
+                >
+                  {link.subName}
+              </Dropdown.Item>
             ))}
           </Dropdown>
         ))
