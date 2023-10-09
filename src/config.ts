@@ -49,7 +49,7 @@ export const navigations = [
       },
       {
         subName: 'ZCG',
-        path: "/site/zcashbasics/zcashcommunitygrants."
+        path: "/site/zcashbasics/zcashcommunitygrants"
       }
     ]
   },
