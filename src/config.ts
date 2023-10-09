@@ -79,7 +79,7 @@ export const navigations = [
       },
       {
         subName: 'Zcash Library',
-        path: "/site/guides/zcashlibrary"
+        path: "/site/glossaryandzcashfaqs/zcashlibrary"
       }
     ]
 
