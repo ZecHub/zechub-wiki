@@ -12,7 +12,7 @@ const MdxComponent = dynamic(
   )
 
 export default async function Page({ params }: { params: { slug: string } }) {
-
+  
     const { slug } = params
     const url = `/site/${slug[0]}/${slug[1]}.md`
 
@@ -33,17 +33,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 />
             </div>
 
-            <div className={`flex flex-col space-y-5 ${roots && roots.length > 0 ? 'md:flex-row md:space-x-5' : 'md:flex-col'} h-auto p-5`}>
+            <div className={`flex flex-col space-y-5 ${roots && roots.length > 0 ? 'md:flex-row md:space-x-5' : 'md:flex-col'} h-auto w-full p-5`}>
                 {(roots && roots.length > 0) && (
-                    <div className='w-auto md:w-1/2  relative'>
+                    <div className='w-auto md:w-1/4  relative'>
                         <SideMenu folder={slug[0]} roots={roots} />
                     </div>
                 )
 
                 }
-                <div className='h-auto w-auto border-t-2 md:border-l-2 px-3'>
+                <section className='h-auto w-auto border-t-2 md:border-l-2 px-3'>
                     <MdxComponent source={content} />
-                </div>
+                </section>
 
             </div>
 

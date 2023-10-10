@@ -3,7 +3,9 @@ import Link from 'next/link';
 import Hero from '@/components/Hero'
 import Cards from '@/components/ui/Cards'
 import ContentSections from '@/components/ContentSections';
-import { cardsConfig } from "@/config";
+import { cardsConfig } from "@/configs/config";
+import MembersDao from '@/components/MembersDao';
+import { daoMembers } from '@/configs/membersDao';
 
 export default async function Home() {
 
@@ -38,7 +40,19 @@ export default async function Home() {
             ))
           }
         </div>
+        <section id='members' className=' mt-4'>
+          <h1 className='text-3xl font-bold text-center my-5 '>DAO Members</h1>
+          <div className='w-full grid grid-cols-2 space-x-2 md:grid-cols-4 md:gap-5 justify-items-center  mt-4 p-2'>
 
+            {
+              daoMembers.map((e) => (
+                <div key={e.name} className="flex justify-center space-y-4 w-auto md:w-80 space-x-3 md:space-y-2 ">
+                  <MembersDao imgUrl={e.imgUrl} description={e.description} name={e.name} linkName={e.linkName} urlLink={e.urlLink} />
+                </div>
+              ))
+            }
+          </div>
+        </section>
         <ContentSections />
       </div>
     </main>

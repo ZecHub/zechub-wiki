@@ -14,7 +14,7 @@ import {
   MdOutlineDarkMode as DarkIcon,
   MdLightMode as LightIcon,
 } from "react-icons/md";
-import { navigations } from "@/config";
+import { navigations } from "@/configs/config";
 import type { MenuExp, Classes } from "@/types";
 
 const NavLinks = ( {classes, menuExp}: Classes ) => {

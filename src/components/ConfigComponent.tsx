@@ -46,37 +46,37 @@ export const LiComponent = (props: HTMLProps<HTMLLIElement>): JSX.Element => (
 )
 
 export const H1Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h1 className="text-xl font-bold my-4" {...props}>
+    <h1 className="text-5xl font-bold my-4" {...props}>
       {props.children}
     </h1>
 )
 
 export const H2Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h2 className="text-lg font-bold my-4" {...props}>
+    <h2 className="text-4xl font-bold my-4" {...props}>
       {props.children}
     </h2>
   )
 
  export const H3Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h3 className="font-bold my-4" {...props}>
+    <h3 className="text-3xl font-bold my-4" {...props}>
       {props.children}
     </h3>
   )
 
  export const H4Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h4 className="font-bold my-4" {...props}>
+    <h4 className="text-2xl text-lg font-bold my-4" {...props}>
       {props.children}
     </h4>
   )
 
  export const H5Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h5 className="font-bold my-4" {...props}>
+    <h5 className="text-xl font-bold my-4" {...props}>
       {props.children}
     </h5>
   )
 
  export const H6Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h6 className="font-bold my-4" {...props}>
+    <h6 className="text-lg font-bold my-4" {...props}>
       {props.children}
     </h6>
   )
