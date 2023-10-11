@@ -25,7 +25,7 @@ export const daoMembers = [
         urlLink: '#'
     },
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1653839722920263680/MITKY3lx_200x200.jpg',
+        imgUrl: 'https://sea2.discourse-cdn.com/zcash/user_avatar/forum.zcashcommunity.com/dismad/120/18432_2.png',
         name: 'Ian Sagstetter',
         description: `Ian is the Community & Marketing Lead at Espresso Systems, a research grant recipient from the Zcash Foundation
         minor grants program, and an advisor at ZecHub. He created ZecHub, while working at Electric Coin Company, to
@@ -53,7 +53,7 @@ export const daoMembers = [
         urlLink: 'https://twitter.com/michae2xl'
     },
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1346525514329169922/v-Zo4av-_200x200.jpg',
+        imgUrl: 'https://sea2.discourse-cdn.com/zcash/user_avatar/forum.zcashcommunity.com/dismad/120/18432_2.png',
         name: 'Jay',
         description: `Privacy, Cryptography and Encryption.`,
         linkName:'Contact',

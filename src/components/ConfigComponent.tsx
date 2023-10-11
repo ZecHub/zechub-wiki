@@ -8,6 +8,7 @@ export const ImagePrev = (props: HTMLProps<HTMLImageElement>) => {
   <Image 
       src={props.src?.startsWith('/') ? 'https://github.com/ZecHub/zechub/tree/main' + props.src : props.src || ''} 
       alt={props.alt || 'Image for wiki docs'} 
+      className={`${props.width} ${props.height}`}
       height={400} 
       width={600} 
       layout="responsive"
