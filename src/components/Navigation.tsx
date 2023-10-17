@@ -24,12 +24,13 @@ const NavLinks = ( {classes, menuExp}: Classes ) => {
     <div className={`flex ${menuExp ? 'flex-col' : 'flex-row'} ${classes}`}>
       {
         navigations.map((item) => (
-          <Dropdown className="flex flex-row" key={item.name} label={item.name} color="inherit" trigger={menuExp ? 'click': 'hover'}>
+          <Dropdown className="flex flex-row font-medium" key={item.name} label={item.name} color="inherit" trigger={menuExp ? 'click': 'hover'}>
             {item.links.map((link) => (
               <Dropdown.Item 
                 type="button" 
                 key={link.path}
                 href={link.path}
+
                 onClick={() => router.prefetch(link.path)}
                 >
                   {link.subName}

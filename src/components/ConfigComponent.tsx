@@ -90,10 +90,52 @@ export const H2Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element =
 export const StrongComponent = (props: HTMLProps<HTMLHtmlElement>): JSX.Element => (
   <strong className="font-bold">{props.children}</strong>
 )
+
+export const TableComponent = (props: HTMLProps<HTMLTableElement>): JSX.Element => (
+  <table className="table-fixed">
+    {props.children}
+  </table>
+)
+
+export const TheadComponent = (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
+  <thead >
+    {props.children}
+  </thead>
+)
+
+export const TrComponent = (props: HTMLProps<HTMLTableRowElement>): JSX.Element => (
+  <tr className="p-3 py-3 border-2">
+    {props.children}
+  </tr>
+)
+
+export const TBodyComponent = (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
+  <tbody className="p-3 ">
+    {props.children}
+  </tbody>
+)
+
+export const ThComponent = (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
+  <th>
+    {props.children}
+  </th>
+)
+export const TdComponent = (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
+  <td className="p-3">
+    {props.children}
+  </td>
+)
+
  export const MdxComponents = {
     a: LinkComponent,
     br: (): JSX.Element => <br/>,
     hr: (): JSX.Element => <hr />,
+    table: TableComponent,
+    thread: TheadComponent,
+    tr: TrComponent,
+    th: ThComponent,
+    td: TdComponent,
+    tbody: TBodyComponent,
     pre: PreComponent,
     em: EmComponent,
     img: ImagePrev,

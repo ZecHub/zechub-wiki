@@ -1,7 +1,7 @@
 
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { getFileContent, getRoot } from '@/helpers'
+import { getFileContent, getRoot } from '@/lib/authAndFetch'
 import SideMenu from '@/components/SideMenu'
 
 const MdxComponent = dynamic(
@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
             <div className={`flex flex-col space-y-5 ${roots && roots.length > 0 ? 'md:flex-row md:space-x-5' : 'md:flex-col'} h-auto w-full p-5`}>
                 {(roots && roots.length > 0) && (
-                    <div className='w-auto md:w-1/4  relative'>
+                    <div className='w-auto md:w-2/5  relative'>
                         <SideMenu folder={slug[0]} roots={roots} />
                     </div>
                 )
