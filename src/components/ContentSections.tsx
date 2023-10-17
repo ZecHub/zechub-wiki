@@ -13,7 +13,7 @@ const ContentSections = () => {
                     </div>
 
                     <div className="flex flex-col w-auto md:w-2/4 items-center justify-center text-white font-bold">
-                        <h1 className="text-3xl mb-4 w-full">What is Zcash?</h1>
+                        <h1 className="text-3xl text-center mb-4 w-full">What is Zcash?</h1>
                         <p className="text-center w-full mb-5">
                             It is an open-source, blockchain ledger that features a sophisticated zero-knowledge proving system. It specializes in offering a higher standard of privacy through its proving system preserving confidentiality of transaction metadata. At its core, Zcash is private data ownership that is permissionlessly transferred when transactions are made.
                         </p>
