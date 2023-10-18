@@ -1,6 +1,6 @@
 import { Octokit } from "octokit"
 
-const { GITHUB_TOKEN, OWNER, REPO } = process.env
+const { GITHUB_TOKEN, OWNER, REPO, BRANCH } = process.env
 
 const authUser = GITHUB_TOKEN
 
@@ -9,6 +9,7 @@ const repo = REPO || ''
 
 const octokit = new Octokit({
   auth: authUser,
+  previews: ["mercy-preview"]
 });
 
 export async function getFileContent(path: string) {
@@ -17,6 +18,10 @@ export async function getFileContent(path: string) {
       owner: owner,
       repo: repo,
       path: path,
+      ref: BRANCH,
+      mediaType: {
+        previews: ["symmetra"],
+      }
     })
 
     // @ts-ignore
@@ -32,12 +37,15 @@ export async function getRoot(path: string) {
       owner: owner,
       repo: repo,
       path: path,
+      ref: BRANCH,
+      mediaType: {
+        previews: ["symmetra"],
+      }
     })
 
     const data = res.data
     const elements = getFiles(data)
     const items = elements.filter((item: string) => item.endsWith(".md"))
-
     return items
 
   } catch (error) {

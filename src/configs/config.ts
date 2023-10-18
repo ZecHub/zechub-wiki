@@ -15,7 +15,7 @@ export const navigations = [
       },
       {
         subName: 'Non-Custodial Exchanges',
-        path: "/site/usingzcash/noncustodial"
+        path: "/site/usingzcash/Non-Custodial Exchanges"
       }
     ]
   },

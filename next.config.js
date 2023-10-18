@@ -3,7 +3,7 @@
 // next.config.js
 
 const withMDX = require("@next/mdx")({
-  extension: /\.mdx?$/,
+  extension: [/\.mdx?$/, /\.md?$/],
   options: {
     // If you use remark-gfm, you'll need to use next.config.mjs
     // as the package is ESM only

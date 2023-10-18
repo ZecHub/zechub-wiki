@@ -16,11 +16,13 @@ export const ImagePrev = (props: HTMLProps<HTMLImageElement>) => {
     />
   )}
 
-export const LinkComponent = (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.Element => (
-    <Link href={props.href || ""} target="_blank" className="text-blue-700">
-      {props.children}{" "}
-    </Link>
-)
+export const LinkComponent = (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.Element => {
+    
+    return(
+      <Link href={props.href || ""} target={props.href?.startsWith('/site') ? '' : "_blank"} className="text-blue-700">
+        {props.children}{" "}
+      </Link>
+)}
 
 export const PreComponent = (props: HTMLProps<HTMLPreElement>): JSX.Element => (
     <pre {...props} >{props.children}</pre>
