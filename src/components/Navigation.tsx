@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect, MouseEvent } from "react";
 import Link from "next/link";
 import Logo from "./ui/Logo";
-import {Dropdown} from 'flowbite-react'
+import { Dropdown } from 'flowbite-react'
 import SocialIcons from "./ui/SocialIcons";
 import { Icon } from "./ui/Icon";
 import {
@@ -17,23 +17,21 @@ import {
 import { navigations } from "@/configs/config";
 import type { MenuExp, Classes } from "@/types";
 
-const NavLinks = ( {classes, menuExp}: Classes ) => {
+const NavLinks = ({ classes, menuExp }: Classes) => {
   const router = useRouter()
 
   return (
     <div className={`flex ${menuExp ? 'flex-col' : 'flex-row'} ${classes}`}>
       {
         navigations.map((item) => (
-          <Dropdown className="flex flex-row font-medium" key={item.name} label={item.name} color="inherit" trigger={menuExp ? 'click': 'hover'}>
+          <Dropdown className="flex flex-row font-medium" key={item.name} label={item.name} color="inherit" trigger={menuExp ? 'click' : 'hover'}>
             {item.links.map((link) => (
-              <Dropdown.Item 
-                type="button" 
+              <Dropdown.Item
+                type="button"
                 key={link.path}
-                href={link.path}
-
-                onClick={() => router.prefetch(link.path)}
-                >
-                  {link.subName}
+                onClick={() => { router.push(link.path) }}
+              >
+                {link.subName}
               </Dropdown.Item>
             ))}
           </Dropdown>
@@ -52,7 +50,7 @@ const MobileNav = ({ menuExpanded }: MenuExp) => {
           } shadow flex-col p-6 absolute top-20 px-8 w-full ml-11 rounded-xl transition duration-200`}
       >
         <ul className="list-none flex items-start flex-1 flex-col">
-          <NavLinks classes="font-bold" menuExp={menuExpanded}/>
+          <NavLinks classes="font-bold" menuExp={menuExpanded} />
         </ul>
 
         <div className="flex flex-1 p-2 top-10 justify-start items-start mt-3">

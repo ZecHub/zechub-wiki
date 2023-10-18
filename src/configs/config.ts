@@ -134,16 +134,19 @@ export const cardsConfig = [
   {
     title: 'Zechub Wiki',
     content: 'ZEC is a digital currency that is based on the Zcash blockchain.',
-    url: 'site/usingzcash/usingzec'
+    url: 'site/usingzcash/usingzec',
+    image: '/LearnZcash.png'
   },
   {
     title: 'Intro to Zcash Wallets',
     content: 'Wallets allow you to receive and spend Zcash. Some also support encrypted memos. Only you should have access to your wallet.',
-    url: 'site/usingzcash/wallets'
+    url: 'site/usingzcash/wallets',
+    image: '/zwallets.png'
   },
   {
     title: 'Zcash Resources',
     content: 'There are a number of resources that help users understand Zcash.',
-    url: 'site/starthere/zcashresources'
+    url: 'site/starthere/zcashresources',
+    image: '/guides.png'
   }
 ]

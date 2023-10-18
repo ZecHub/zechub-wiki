@@ -18,7 +18,7 @@ export default async function Home() {
 
       <div className="flex flex-col">
         <section id='presentation'>
-          <div className="w-full flex  items-center justify-center">
+          <div className="w-full flex  items-center justify-center py-5">
 
             <div className="flex flex-col items-center justify-center p-3 mt-6 shadow">
               <h1 className="text-4xl font-bold mb-3">Welcome to ZecHub</h1>
@@ -42,7 +42,7 @@ export default async function Home() {
           <div className="p-5 flex flex-col space-y-7 md:flex-row md:space-x-11 items-center justify-center mb-4">
             {
               cardsConfig.map((items) => (
-                <Cards key={items.title} paraph={items.content} title={items.title} url={items.url} />
+                <Cards key={items.title} paraph={items.content} title={items.title} url={items.url} image={items.image} />
               ))
             }
           </div>
