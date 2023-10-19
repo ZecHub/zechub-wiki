@@ -8,8 +8,7 @@ const owner = OWNER || ''
 const repo = REPO || ''
 
 const octokit = new Octokit({
-  auth: authUser,
-  previews: ["mercy-preview"]
+  auth: authUser
 });
 
 export async function getFileContent(path: string) {
@@ -18,10 +17,7 @@ export async function getFileContent(path: string) {
       owner: owner,
       repo: repo,
       path: path,
-      ref: BRANCH,
-      mediaType: {
-        previews: ["symmetra"],
-      }
+      ref: BRANCH
     })
 
     // @ts-ignore
@@ -37,10 +33,7 @@ export async function getRoot(path: string) {
       owner: owner,
       repo: repo,
       path: path,
-      ref: BRANCH,
-      mediaType: {
-        previews: ["symmetra"],
-      }
+      ref: BRANCH
     })
 
     const data = res.data
@@ -54,7 +47,7 @@ export async function getRoot(path: string) {
 }
 
 
-const getFiles = (data: any) => {
+const getFiles = (data: any ) => {
   const items = data.filter((e: any) => e.path).map((element: any) => element.path)
   return items
 }

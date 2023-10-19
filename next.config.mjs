@@ -7,9 +7,10 @@ const nextConfig = {}
  
 const withMDX = createMDX({
   options: {
-    extension: [/\.mdx?$/, /\.md?$/],
+    extension: [/\.mdx?$/, /\.md?$/ ],
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypePlugins],
+
     // If you use `MDXProvider`, uncomment the following line.
     // providerImportSource: "@mdx-js/react",
   },

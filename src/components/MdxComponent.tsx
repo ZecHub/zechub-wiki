@@ -12,14 +12,14 @@ type ContentSource = {
 const MdxComponent = async ({ source }: ContentSource) => {
   const { content, frontmatter } = await compileMDX<{ title: string }>({
     source: source,
-    /* options: {
+     options: {
       parseFrontmatter: true,
-     // mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypePrism]},
-    }, */
+      mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypePrism], mdExtensions: ['.md']},
+    }, 
     components: MdxComponents,
   });
  
-  return <div>{content}</div>;
+  return <div className="px-3">{content}</div>;
 };
 
 export default MdxComponent;
