@@ -36,15 +36,15 @@ export default async function Home() {
 
           </div>
         </section>
-  
+
 
         <section id='cardLinks'>
           <div className="p-5 flex flex-col space-y-7 md:flex-row md:space-x-11 items-center justify-center mb-4">
             {
-              cardsConfig.map((items) => (
+              cardsConfig && (cardsConfig.map((items) => (
                 <Cards key={items.title} paraph={items.content} title={items.title} url={items.url} image={items.image} />
               ))
-            }
+              )}
           </div>
         </section>
 
@@ -57,11 +57,11 @@ export default async function Home() {
           <div className='w-full grid grid-cols-1 space-x-2 md:grid-cols-3 md:gap-4 justify-items-center  mt-4 p-2'>
 
             {
-              daoMembers.map((e) => (
+              daoMembers && ( daoMembers.map((e) => (
                 <div key={e.name} className="flex justify-center space-y-4 w-full space-x-3 md:space-y-2 ">
                   <MemberCards imgUrl={e.imgUrl} description={e.description} name={e.name} linkName={e.linkName} urlLink={e.urlLink} />
                 </div>
-              ))
+              )))
             }
           </div>
         </section>

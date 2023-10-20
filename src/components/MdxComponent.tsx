@@ -19,7 +19,14 @@ const MdxComponent = async ({ source }: ContentSource) => {
     components: MdxComponents,
   });
  
-  return <div className="px-3">{content}</div>;
+  return (
+    content ? (
+      <div className="px-3">{content}</div>
+    ) :
+    (
+      <p className="text-center text-2xl">{source}</p>
+    )
+  );
 };
 
 export default MdxComponent;

@@ -11,7 +11,7 @@ interface props {
 const Cards = ({ title, paraph, url, image }: props) => (
     <>
         <div className="max-w-sm md:w-1/5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:-translate-y-6">
-            <Link href="#">
+            <Link href={url}>
                 <Image className="rounded-t-lg " src={image} alt="" width={400} height={100} />
             </Link>
             <div className="p-5">
