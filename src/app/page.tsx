@@ -37,7 +37,6 @@ export default async function Home() {
           </div>
         </section>
 
-
         <section id='cardLinks'>
           <div className="p-5 flex flex-col space-y-7 md:flex-row md:space-x-11 items-center justify-center mb-4">
             {

@@ -24,15 +24,15 @@ export const navigations = [
     links: [
       {
         subName: 'Zcash Community',
-        path: "/site/zcashcommunity/Community_Links"
+        path: "/site/Zcash_Community/Community_Links"
       },
       {
         subName: 'Zcash Security',
-        path: "/site/zcashcommunity/Zcash_Ecosystem_Security"
+        path: "/site/Zcash_Community/Zcash_Ecosystem_Security"
       },
       {
         subName: 'Development Fund',
-        path: "/site/zcashcommunity/Zcon_Archive"
+        path: "/site/Zcash_Community/Zcon_Archive"
       }
     ],
   },
@@ -41,15 +41,15 @@ export const navigations = [
     links: [
       {
         subName: 'ECC',
-        path: "/site/zcashbasics/shieldedlabs"
+        path: "/site/Zcash_Organizations/Shielded_Labs"
       },
       {
         subName: 'Zcash Fundation',
-        path: "/site/zcashbasics/zcashfoundation"
+        path: "/site/Zcash_Organizations/Zcash_Foundation"
       },
       {
         subName: 'ZCG',
-        path: "/site/zcashbasics/zcashcommunitygrants"
+        path: "/site/Zcash_Organizations/Zcash_Community_Grants"
       }
     ]
   },
@@ -75,11 +75,11 @@ export const navigations = [
     links: [
       {
         subName: `FAQ's`,
-        path: "/site/glossaryandzcashfaqs/Faqs",
+        path: "/site/Glossary_&_FAQ's/Faqs",
       },
       {
         subName: 'Zcash Library',
-        path: "/site/glossaryandzcashfaqs/Zcash_Library"
+        path: "/site/Glossary_&_FAQ's/Zcash_Library"
       }
     ]
 

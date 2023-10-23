@@ -20,7 +20,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     const urlRoot = `/site/${slug[0]}`
     const roots = await getRoot(urlRoot)
-    
+
     return (
         <main>
             <div className='flex justify-center w-full  mb-5 bg-transparent rounded py-4'>
@@ -33,7 +33,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 />
             </div>
 
-            <div className={`flex flex-col space-y-5 ${roots && roots.length > 0 ? 'md:flex-row md:space-x-5' : 'md:flex-col'} h-auto w-full p-5`}>
+            <div id="content" className={`flex flex-col space-y-5 ${roots && roots.length > 0 ? 'md:flex-row md:space-x-5' : 'md:flex-col'} h-auto w-full p-5`}>
                 {(roots && roots.length > 0) && (
                     <div className='w-auto md:w-2/5  relative'>
                         <SideMenu folder={slug[0]} roots={roots} />
@@ -51,12 +51,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
 }
 
 
-const getDynamicRoute = (slug: string) => {
+const getDynamicRoute = (slug: string): string => {
     let uri = "/site"
-    for(let i = 0 ; i < slug.length ; i ++){
+    for (let i = 0; i < slug.length; i++) {
         uri += "/" + slug[i]
-        if(i === slug.length - 1) uri += '.md'
-        
+        if (i === slug.length - 1) uri += '.md'
     }
     return uri;
 }
