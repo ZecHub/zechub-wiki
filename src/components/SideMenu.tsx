@@ -50,7 +50,9 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
 }
 
 const getName = (item: string) => {
-  return item.substring(item.lastIndexOf("/") + 1)
+  const newItem = item.substring(item.lastIndexOf("/") + 1)
+  return newItem.split('_').join(" ")
 }
+
 
 export default SideMenu

@@ -13,14 +13,14 @@ const MdxComponent = dynamic(
 export default async function Page({ params }: { params: { slug: string } }) {
 
     const { slug } = params
-    const url = `/site/${slug[0]}/${slug[1]}.md`
+    const url = getDynamicRoute(slug)
 
     const markdown = await getFileContent(url)
     const content = markdown ? markdown : 'No Data or Wrong file'
 
     const urlRoot = `/site/${slug[0]}`
     const roots = await getRoot(urlRoot)
-
+    
     return (
         <main>
             <div className='flex justify-center w-full  mb-5 bg-transparent rounded py-4'>
@@ -50,3 +50,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
     )
 }
 
+
+const getDynamicRoute = (slug: string) => {
+    let uri = "/site"
+    for(let i = 0 ; i < slug.length ; i ++){
+        uri += "/" + slug[i]
+        if(i === slug.length - 1) uri += '.md'
+        
+    }
+    return uri;
+}

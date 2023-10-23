@@ -22,7 +22,7 @@ const nextConfig = {
   // Optionally, add any other Next.js config below
   reactStrictMode: true,
   images: {
-    domains: ['github.com', 'i.ibb.co', 'user-images.githubusercontent.com', 'cdn.discordapp.com', 'prozcash.ru', 'i.seadn.io', 'sea2.discourse-cdn.com', 'pbs.twimg.com', 'free2z.cash'],
+    domains: ['github.com', 'i.ibb.co', 'user-images.githubusercontent.com', 'cdn.discordapp.com', 'prozcash.ru', 'i.seadn.io', 'sea2.discourse-cdn.com', 'pbs.twimg.com', 'free2z.cash', 'images.app.goo.gl'],
   },
 };
 

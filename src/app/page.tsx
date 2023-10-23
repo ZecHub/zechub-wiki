@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Hero from '@/components/Hero'
 import Cards from '@/components/ui/Cards'
 import ContentSections from '@/components/ContentSections';
-import { cardsConfig } from "@/configs/config";
+import { cardsConfig } from "@/configs/cardsConfig";
 import MemberCards from '@/components/ui/MemberCards';
 import { daoMembers } from '@/configs/membersDao';
 
@@ -29,7 +29,7 @@ export default async function Home() {
               </div>
               <div className="flex justify-center mx-auto">
                 <Link type='button' href={'/site/usingzcash/usingzec'} className=" md:hover:scale-110 border-[#1984c7] transition duration-400  border-4 font-bold rounded-full  py-4 px-8">
-                  Explore ZecHub
+                  Explore Zcash
                 </Link>
               </div>
             </div>

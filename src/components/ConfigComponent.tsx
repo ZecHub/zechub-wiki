@@ -1,23 +1,24 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import { HTMLProps } from "react";
+
 
 export const ImagePrev = (props: HTMLProps<HTMLImageElement>) => {
   if(props.src?.startsWith('/')) props.src = 'https://github.com/ZecHub/zechub/tree/main' + props.src
   return (
   <Image 
       src={props.src?.startsWith('/') ? 'https://github.com/ZecHub/zechub/tree/main' + props.src : props.src || ''} 
-      alt={props.alt || 'Image for wiki docs'} 
-      className={`${props.width} ${props.height}`}
-      height={400} 
-      width={600} 
+      alt={props.alt || 'Image for wiki docs'}
+      height={200} 
+      width={300} 
       layout="responsive"
       loading="lazy"
     />
   )}
 
 export const LinkComponent = (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.Element => {
-    
+
     return(
       <Link href={props.href || ""} target={props.href?.startsWith('/site') ? '' : "_blank"} className="text-blue-700">
         {props.children}{" "}

@@ -38,9 +38,8 @@ export async function getRoot(path: string) {
 
     const data = res.data
     const elements = getFiles(data)
-    const items = elements.filter((item: string) => item.endsWith(".md"))
-    return items
-
+    return elements.filter((item: string) => item.endsWith(".md"))
+ 
   } catch (error) {
     console.log(error);
   }
