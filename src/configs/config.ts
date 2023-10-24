@@ -7,15 +7,15 @@ export const navigations = [
     links: [
       {
         subName: 'Using ZEC',
-        path: "/site/usingzcash/Using_ZEC"
+        path: "/site/Using_Zcash/Using_ZEC"
       },
       {
         subName: 'Wallets',
-        path: "/site/usingzcash/Wallets"
+        path: "/site/Using_Zcash/Wallets"
       },
       {
         subName: 'Non-Custodial Exchanges',
-        path: "/site/usingzcash/Non-Custodial_Exchanges"
+        path: "/site/Using_Zcash/Non-Custodial_Exchanges"
       }
     ]
   },

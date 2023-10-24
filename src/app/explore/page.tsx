@@ -1,4 +1,4 @@
-import Explorer from "@/components/Explorer";
+import Explorer from "@/components/explorer/Explorer";
 
 const Explore = () => {
     return (
