@@ -75,11 +75,11 @@ export const navigations = [
     links: [
       {
         subName: `FAQ's`,
-        path: "/site/Glossary_&_FAQ's/Faqs",
+        path: "/site/Glossary_and_FAQs/FAQ",
       },
       {
         subName: 'Zcash Library',
-        path: "/site/Glossary_&_FAQ's/Zcash_Library"
+        path: "/site/Glossary_and_FAQs/Zcash_Library"
       }
     ]
 

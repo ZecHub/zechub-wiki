@@ -28,7 +28,7 @@ export default async function Home() {
                 </p>
               </div>
               <div className="flex justify-center mx-auto">
-                <Link type='button' href={'/site/usingzcash/usingzec'} className=" md:hover:scale-110 border-[#1984c7] transition duration-400  border-4 font-bold rounded-full  py-4 px-8">
+                <Link type='button' href={'/explore'} className=" md:hover:scale-110 border-[#1984c7] transition duration-400  border-4 font-bold rounded-full  py-4 px-8">
                   Explore Zcash
                 </Link>
               </div>

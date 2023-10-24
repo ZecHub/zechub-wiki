@@ -1,4 +1,5 @@
 import { Octokit } from "octokit"
+import { getFiles } from "@/lib/helpers"
 
 const { GITHUB_TOKEN, OWNER, REPO, BRANCH } = process.env
 
@@ -45,9 +46,6 @@ export async function getRoot(path: string) {
   }
 }
 
-const getFiles = (data: any ) => {
-  const items = data.filter((e: any) => e.path).map((element: any) => element.path)
-  return items
-}
+
 
 

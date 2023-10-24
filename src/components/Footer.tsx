@@ -1,4 +1,4 @@
-
+import Link from "next/link";
 import Logo from "./ui/Logo";
 import SocialIcons from "./ui/SocialIcons";
 
@@ -11,13 +11,6 @@ const Footer = () => {
           <Logo />
         </div>
         <div className="flex w-full mx-auto max-w-screen-xl justify-center items-center p-4 md:flex-col md:items-center md:justify-between">
-          <span className="text-sm  sm:text-center">
-            © 2023{" "}
-            <a href="" className="hover:underline">
-              Zechub™
-            </a>
-            . All Rights Reserved.
-          </span>
           <ul className="flex flex-wrap items-center mt-3 text-sm font-medium sm:mt-0">
             <li>
               <a href="#" className="mr-4 hover:underline md:mr-6 ">
@@ -41,11 +34,19 @@ const Footer = () => {
             </li>
           </ul>
         </div>
+        <span className="text-sm  sm:text-center">
+          © 2023{" "}
+          <a href="" className="hover:underline">
+            Zechub™
+          </a>
+          . All Rights Reserved.
+        </span>
+        <div className="mb-2">
+          <p className="text-center">Made by <Link href={'https://github.com/ManyRios'} target="_blank"><span className="color-blue font-bold hover:scale-125">Manuel Rios</span></Link></p>
+        </div>
         <div className="w-full flex justify-center items-center">
           <SocialIcons newTab={true} />
         </div>
-
-
       </footer>
     </div>
   );

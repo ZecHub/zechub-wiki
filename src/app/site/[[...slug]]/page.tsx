@@ -1,12 +1,13 @@
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { getFileContent, getRoot } from '@/lib/authAndFetch'
+import { getDynamicRoute } from '@/lib/helpers'
 import SideMenu from '@/components/SideMenu'
 
 const MdxComponent = dynamic(
     () => import('@/components/MdxComponent'),
     {
-        loading: () => <p className='text-center text-2xl'>Loading...</p>,
+        loading: () => <span className='text-center text-3xl'>Loading...</span>,
     }
 )
 
@@ -51,11 +52,4 @@ export default async function Page({ params }: { params: { slug: string } }) {
 }
 
 
-const getDynamicRoute = (slug: string): string => {
-    let uri = "/site"
-    for (let i = 0; i < slug.length; i++) {
-        uri += "/" + slug[i]
-        if (i === slug.length - 1) uri += '.md'
-    }
-    return uri;
-}
+

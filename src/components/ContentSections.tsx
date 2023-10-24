@@ -35,7 +35,7 @@ const ContentSections = () => {
                             Privacy is necessary for business. It protects you from discrimination and gives you the freedom to express yourself. Privacy gives you the power to choose what you feel comfortable sharing and is the basis of a free society. Zcash has led regulatory efforts to recognise the importance of privacy-preserving technologies hosting industry events and communicating with policy makers.
                         </p>
                         <div className="flex flex-row space-x-4 mt-4">
-                            <Link href={'Privacy_Tools/Tor_&_I2P'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white border-blue-300 border-2 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <Link href={'/site/Privacy_Tools/Tor_&_I2P'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white border-blue-300 border-2 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Learn More
                             </Link>
                         </div>
