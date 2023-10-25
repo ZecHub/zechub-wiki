@@ -1,8 +1,11 @@
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import Image from 'next/image'
 import { getFileContent, getRoot } from '@/lib/authAndFetch'
 import { getDynamicRoute } from '@/lib/helpers'
 import SideMenu from '@/components/SideMenu'
+import { Icon } from '@/components/ui/Icon'
+import { BiRightArrowAlt as Arrow } from 'react-icons/bi'
 
 const MdxComponent = dynamic(
     () => import('@/components/MdxComponent'),
@@ -32,6 +35,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     height={50}
                     src={"/wiki-banner.avif"}
                 />
+            </div>
+
+            <div className='flex justify-center md:justify-end'>
+                <Link href="/explore" className='inline-flex rounded-full border-4  font-bold p-4 hover:bg-[#1984c7]' >
+                    Explore more 
+                    <Icon size={'medium'} icon={Arrow} />
+                </Link>
+                
             </div>
 
             <div id="content" className={`flex flex-col space-y-5 ${roots && roots.length > 0 ? 'md:flex-row md:space-x-5' : 'md:flex-col'} h-auto w-full p-5`}>

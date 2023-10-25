@@ -18,7 +18,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
     const fold = getName(name)
 
     const router = useRouter()
-
+  
   return (
     <div className="flex flex-col sticky top-0 py-4 items-center justify-start w-full px-3">
       <h1 className="text-4xl font-bold mb-4"> {fold}: </h1>
@@ -27,13 +27,13 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
           {
             root.map((item, i) => (
               <li key={i} className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}>
-                <div onClick={() => router.push(`/${item}#content`)} >
+                <div onClick={() => router.push( `/${item}#content`)}  >
                   <div className={`flex items-center space-x-4`}>
                     <div className="flex-shrink-0">
                       <Icon icon={FileIcon} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate">
+                      <p className="text-sm font-medium ">
                         {item ? getName(item) : ''}
                       </p>
                     </div>

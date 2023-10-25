@@ -1,14 +1,19 @@
+import { getSiteFolders, getRoot } from "@/lib/authAndFetch";
+import { getFolders, firstFileForFolders } from "@/lib/helpers";
 import Explorer from "@/components/explorer/Explorer";
 
-const Explore = () => {
+const Explore = async () => {
+
+    const roots = await getSiteFolders('/site')
+    const folders = getFolders(roots)
+    
+    const files = await firstFileForFolders(folders)
+
     return (
-      <div >
-          <h1 className="text-3xl my-5 text-center">Explore ZecHub</h1>
-          <div className="flex flex-row md:flex-col">
-            <Explorer />
-          </div>
-      </div>
+        <main className="">
+           <Explorer roots={folders} files={files} />
+        </main>
     )
-  }
-  
-  export default Explore;
+}
+
+export default Explore;

@@ -1,13 +1,20 @@
-'use client'
 import { useState, useEffect } from "react";
-import { getRoot } from "@/lib/authAndFetch";
+import ListExplorer from "./ListExplorer";
 
-const Explorer = async () => {
-const folders = await getRoot('/site')
- console.log(folders)
+interface Props{
+  roots: string[]
+  files: string[]
+}
+
+const Explorer = ({roots, files}: Props) => {
+
+  
   return (
-    <div >
+    <div className="flex w-full justify-items-center items-center flex-col h-auto">
         <h1 className="text-3xl my-5 text-center">Explore Zcash</h1>
+        <div className="flex flex-col w-full items-center justify-items-center">
+          <ListExplorer root={roots} files={files}/>
+        </div>
     </div>
   )
 }

@@ -46,6 +46,23 @@ export async function getRoot(path: string) {
   }
 }
 
+export async function getSiteFolders(path: string){
+  try {
+    const res = await octokit.rest.repos.getContent({
+      owner: owner,
+      repo: repo,
+      path: path,
+      ref: BRANCH
+    })
+
+    const data = res.data
+    const elements = getFiles(data)
+    return elements
+ 
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 
 
