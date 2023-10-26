@@ -23,17 +23,17 @@ export const navigations = [
     name: "Ecosystem",
     links: [
       {
-        subName: 'Zcash Community',
-        path: "/site/Zcash_Community/Community_Links"
-      },
-      {
         subName: 'Zcash Security',
         path: "/site/Zcash_Community/Zcash_Ecosystem_Security"
       },
       {
-        subName: 'Development Fund',
-        path: "/site/Zcash_Community/Zcon_Archive"
-      }
+        subName: 'Community Links',
+        path: "/site/Zcash_Community/Community_Links"
+      },
+      {
+        subName: 'Zcash Global Ambassadors',
+        path: "/site/Zcash_Community/Zcash_Global_Ambassadors"
+      },
     ],
   },
   {

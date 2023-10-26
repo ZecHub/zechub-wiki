@@ -1,21 +1,45 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { Icon } from '../ui/Icon'
+import Image from 'next/image'
 import { getName } from '@/lib/helpers'
-import {TiFolderOpen as Folder} from 'react-icons/ti'
+import { Icon } from '../ui/Icon'
+import { TiFolderOpen as Folder } from 'react-icons/ti'
 import { BiRightArrowAlt as Arrow } from 'react-icons/bi'
 
-interface Props{
-    root: string[]
-    files: string[]
+interface Props {
+    image: string
+    name: string
+    description: string
+    url: string
 }
 
-const ListExplorer = ({root, files}: Props) => {
+const CardsExplorer = ({ image, name, description, url, ...props }: Props) => {
     const router = useRouter()
 
-    const fileUrl = files.map((item) => item.slice(0, -3))
     return (
-        <div className='flex justify-items-center items-center px-4 rounded-lg  shadow w-100'>
+      
+            <div  className='w-4/6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 hover:cursor-pointer hover:scale-110'>
+                <div onClick={() => router.push(url)}>
+                <Image className="rounded-t-lg w- " src={image} alt='cardImage' width={1000} height={50} />
+                <div className="p-5">
+                    <div >
+                        <h5 className="mb-2 text-2xl font-bold tracking-tight dark:text-white">{getName(name)}</h5>
+                    </div>
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p>
+
+                </div>
+                </div>
+                
+            </div>
+     
+
+    )
+}
+
+export default CardsExplorer
+
+
+{/* <div className='flex justify-items-center items-center px-4 rounded-lg  shadow w-100'>
             <ul>
                 {
                     root.map((item, i) => (
@@ -39,8 +63,4 @@ const ListExplorer = ({root, files}: Props) => {
                     ))
                 }
             </ul>
-        </div>
-    )
-}
-
-export default ListExplorer
+        </div> */}

@@ -1,20 +1,20 @@
-import { useState, useEffect } from "react";
 import ListExplorer from "./ListExplorer";
+import { exploreFolders } from "@/constants/exploreFolders";
 
-interface Props{
-  roots: string[]
-  files: string[]
-}
+const Explorer = () => {
 
-const Explorer = ({roots, files}: Props) => {
-
-  
   return (
     <div className="flex w-full justify-items-center items-center flex-col h-auto">
-        <h1 className="text-3xl my-5 text-center">Explore Zcash</h1>
-        <div className="flex flex-col w-full items-center justify-items-center">
-          <ListExplorer root={roots} files={files}/>
-        </div>
+      <h1 className="text-3xl my-5 font-bold text-center">Explore Zcash</h1>
+      <div className="w-full grid grid-cols-1 space-x-2 space-y-2 md:grid-cols-2 md:gap-3 justify-items-center  mt-4 p-2 ">
+        {exploreFolders && (
+          exploreFolders.map(({ img, description, name, url }, i) => (
+            <ListExplorer  key={name} image={img} description={description} name={name} url={url} />
+          ))
+        )
+
+        }
+      </div>
     </div>
   )
 }

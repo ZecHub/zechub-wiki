@@ -3,9 +3,9 @@ import Link from 'next/link';
 import Hero from '@/components/Hero'
 import Cards from '@/components/ui/Cards'
 import ContentSections from '@/components/ContentSections';
-import { cardsConfig } from "@/configs/cardsConfig";
+import { cardsConfig } from "@/constants/cardsConfig";
 import MemberCards from '@/components/ui/MemberCards';
-import { daoMembers } from '@/configs/membersDao';
+import { daoMembers } from '@/constants/membersDao';
 
 export default async function Home() {
 

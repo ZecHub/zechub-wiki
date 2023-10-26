@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Icon } from "./Icon";
-import { socialNav } from "@/configs/config";
+import { socialNav } from "@/constants/navigation";
 import type { Socials } from "@/types";
 
 const SocialIcons = (newTab: Socials) => {
