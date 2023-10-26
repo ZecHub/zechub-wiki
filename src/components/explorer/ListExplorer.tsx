@@ -18,7 +18,7 @@ const CardsExplorer = ({ image, name, description, url, ...props }: Props) => {
 
     return (
       
-            <div  className='w-4/6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 hover:cursor-pointer hover:scale-110'>
+            <div  className='w-4/6 border border-gray-200 rounded-lg shadow dark:border-gray-700 hover:bg-gray-100 hover:cursor-pointer hover:scale-110'>
                 <div onClick={() => router.push(url)}>
                 <Image className="rounded-t-lg w- " src={image} alt='cardImage' width={1000} height={50} />
                 <div className="p-5">
