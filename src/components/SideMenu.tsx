@@ -4,6 +4,7 @@ import { BiRightArrowAlt as Arrow } from 'react-icons/bi'
 import { FiFile as FileIcon } from 'react-icons/fi'
 import { Icon } from './ui/Icon'
 import { getName } from '@/lib/helpers'
+import { matchIcons } from '@/constants/Icons'
 
 interface MenuProps {
   folder: string
@@ -16,7 +17,6 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
    
     const name = folder[0].toUpperCase() + folder.slice(1);
     const fold = getName(name)
-
     const router = useRouter()
   
   return (
@@ -25,12 +25,14 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
       <div>
         <ul>
           {
-            root.map((item, i) => (
+            root.map((item, i) => { 
+            const myIcon = matchIcons(fold, getName(item))
+            return  (
               <li key={i} className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}>
                 <div onClick={() => router.push( `/${item}#content`)}  >
                   <div className={`flex items-center space-x-4`}>
                     <div className="flex-shrink-0">
-                      <Icon icon={FileIcon} />
+                      <Icon icon={myIcon != 'Nothing' ? myIcon : FileIcon} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium ">
@@ -43,7 +45,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                   </div>
                 </div>
               </li>
-            ))
+            )})
           }
         </ul>
       </div>

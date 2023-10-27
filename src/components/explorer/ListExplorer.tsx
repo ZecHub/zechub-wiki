@@ -2,9 +2,6 @@
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { getName } from '@/lib/helpers'
-import { Icon } from '../ui/Icon'
-import { TiFolderOpen as Folder } from 'react-icons/ti'
-import { BiRightArrowAlt as Arrow } from 'react-icons/bi'
 
 interface Props {
     image: string
@@ -37,30 +34,3 @@ const CardsExplorer = ({ image, name, description, url, ...props }: Props) => {
 }
 
 export default CardsExplorer
-
-
-{/* <div className='flex justify-items-center items-center px-4 rounded-lg  shadow w-100'>
-            <ul>
-                {
-                    root.map((item, i) => (
-                        <li key={i} className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}>
-                            <div onClick={() => router.push(`${fileUrl[i + 1]}#content`)}  >
-                                <div className={`flex items-center space-x-4`}>
-                                    <div className="flex-shrink-0">
-                                        <Icon icon={Folder} />
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                        <p className="text-sm font-medium ">
-                                            {item ? getName(item) : ''}
-                                        </p>
-                                    </div>
-                                    <div className="inline-flex items-center text-base font-semibold ">
-                                        <Icon icon={Arrow} />
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    ))
-                }
-            </ul>
-        </div> */}
