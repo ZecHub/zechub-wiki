@@ -113,7 +113,7 @@ const iconsForMenu: IconsFor = {
     'Research': {
         'Social Media Data Collection': RiArticleLine,
     },
-    'Glossary and FAQs': {
+    "Glossary & FAQ's": {
         'Zcash Library': HiOutlineBuildingLibrary,
         'FAQ': FaQuestion,
         'gallery': FcGallery
