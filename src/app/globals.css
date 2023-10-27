@@ -4,23 +4,23 @@
 
 
 .path {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
     animation: dash 4s linear infinite;
   }
   
   .sine {
     animation: moveRight 4s ease infinite;
     z-index: 0;
-   height:0.75rem;
-   width: 6rem;
+   height:0.45rem;
+   width: 4rem;
   }
   
   @keyframes moveRight {
     0%, 100% {
         transform: translateX(-300%);
         height:0.75rem;
-        width: 6rem;
+        width: 4rem;
       
     }
     25% {
@@ -32,7 +32,7 @@
     50% {
         transform: translateX(300%);
         height:0.75rem;
-        width: 6rem;
+        width: 4rem;
        
     }
     75% {
