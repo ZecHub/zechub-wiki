@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Hero from '@/components/Hero'
 import Cards from '@/components/ui/Cards'
 import ContentSections from '@/components/ContentSections';
+import AnimationHome from '@/components/ui/AnimationHome';
 import { cardsConfig } from "@/constants/cardsConfig";
 import MemberCards from '@/components/ui/MemberCards';
 import { daoMembers } from '@/constants/membersDao';
@@ -19,8 +20,8 @@ export default async function Home() {
       <div className="flex flex-col">
         <section id='presentation'>
           <div className="w-full flex  items-center justify-center py-5">
-
             <div className="flex flex-col items-center justify-center p-3 mt-6 shadow">
+            <AnimationHome />
               <h1 className="text-4xl font-bold mb-3">Welcome to ZecHub</h1>
               <div className="flex items-center justify-center p-4 ">
                 <p className="text-lg font-bold text-center">
