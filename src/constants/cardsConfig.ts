@@ -15,6 +15,6 @@ export const cardsConfig = [
       title: 'Zcash Resources',
       content: 'There are a number of resources that help users understand Zcash.',
       url: 'site/guides/Using_ZEC_Privately',
-      image: '/guides.png'
+      image: '/GuidesZ.png'
     }
   ]
