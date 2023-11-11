@@ -1,6 +1,6 @@
 export const exploreFolders = [ 
     {
-        img: '/getZec.png',
+        img: '/Start-02.png',
         description: '',
         name: 'Start_Here',
         url: '/site/Start_Here/Developer_Resources',
