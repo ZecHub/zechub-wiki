@@ -12,7 +12,7 @@ export const exploreFolders = [
         url: '/site/tutorials/Buy_ZEC_in_Gemini',
     },
     {
-        img: '/getZec.png',
+        img: '/Using_Zcash-07.png',
         description: '',
         name: 'Using_Zcash',
         url: '/site/Using_Zcash/Buying_ZEC',
