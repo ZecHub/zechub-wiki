@@ -48,12 +48,6 @@ export const exploreFolders = [
         url: '/site/ZFAV_Club/AV_Club_Background',
     },
     {
-        img: '/getZec.png',
-        description: '',
-        name: 'Zcash_Social_Media',
-        url: '/site/Zcash_Social_Media/Podcasts',
-    },
-    {
         img: '/PrivacyTools.png',
         description: '',
         name: 'Privacy_Tools',
