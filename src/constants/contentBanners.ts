@@ -9,7 +9,7 @@ export const contentBanners = [
     },
     {
         name: "Using_Zcash",
-        url: "/BannerUsingZcash.png"
+        url: '/BannerUsingZcash.png'
     },
     {
         name: "Guides" ,
