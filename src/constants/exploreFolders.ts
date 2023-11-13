@@ -6,7 +6,7 @@ export const exploreFolders = [
         url: '/site/Start_Here/Developer_Resources',
     },
     {
-        img: '/getZec.png',
+        img: '/Tutorials.png',
         description: '',
         name: 'Tutorials',
         url: '/site/tutorials/Buy_ZEC_in_Gemini',
