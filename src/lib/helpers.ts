@@ -1,4 +1,5 @@
 import { getRoot } from "./authAndFetch"
+import { contentBanners } from "@/constants/contentBanners"
 
 export const getName = (item: string) => {
     const newItem = item.substring(item.lastIndexOf("/") + 1)
@@ -36,4 +37,13 @@ export const firstFileForFolders = async (folders: string[]) => {
         files.push(res[0])
     }
     return files
+}
+
+export const getBanner = (name: string) => {
+  contentBanners.forEach(element => {
+    if(element.name === name){
+        return element.url
+    }
+  });
+  return '/wiki-banner.avif'
 }

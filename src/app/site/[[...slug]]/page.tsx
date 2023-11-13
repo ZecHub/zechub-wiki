@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getFileContent, getRoot } from '@/lib/authAndFetch'
-import { getDynamicRoute } from '@/lib/helpers'
+import { getDynamicRoute, getBanner, getName } from '@/lib/helpers'
 import SideMenu from '@/components/SideMenu'
 import { Icon } from '@/components/ui/Icon'
 import { BiRightArrowAlt as Arrow } from 'react-icons/bi'
@@ -25,6 +25,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
     const urlRoot = `/site/${slug[0]}`
     const roots = await getRoot(urlRoot)
 
+    const imgUrl = getBanner(slug[0])
+
     return (
         <main>
             <div className='flex justify-center w-full  mb-5 bg-transparent rounded py-4'>
@@ -33,7 +35,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     alt="wiki-banner"
                     width={800}
                     height={50}
-                    src={"/wiki-banner.avif"}
+                    src={imgUrl}
                 />
             </div>
 
