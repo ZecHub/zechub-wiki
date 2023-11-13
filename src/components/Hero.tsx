@@ -14,7 +14,7 @@ const Hero = () => {
             alt="hero"
             width={800}
             height={50}
-            src={"/hero.png"}
+            src={"/Banner_Prancheta_1.png"}
           />
       </div>
     </div>
