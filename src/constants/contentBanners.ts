@@ -29,7 +29,7 @@ export const contentBanners = [
     },
     {
         name: "ZFAV_Club", 
-        url: '/wiki-banner.avif'
+        url: '/ZFAVbanner.avif'
     },
     {
         name: "Privacy_Tools", 
