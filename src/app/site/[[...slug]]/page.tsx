@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <main>
             <div className='flex justify-center w-full  mb-5 bg-transparent rounded py-4'>
                 <Image
-                    className="md:w-auto w-5/6 mb-5 object-cover "
+                    className="w-full mb-5 object-cover "
                     alt="wiki-banner"
                     width={800}
                     height={50}
