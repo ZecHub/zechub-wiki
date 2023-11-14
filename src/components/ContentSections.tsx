@@ -41,7 +41,7 @@ const ContentSections = () => {
                         </div>
                     </div>
                     <div className="flex justify-center w-auto md:w-2/4 ">
-                        <Image className="" src={'/privacyisnormal.jpg'} alt="" width={700} height={90} />
+                        <Image className="" src={'/privacyisnormal.jpg'} alt="" width={700} height={70} />
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto bg-cyan-400 rounded-md p-5">
