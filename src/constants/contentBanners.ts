@@ -12,7 +12,7 @@ export const contentBanners = [
         url: '/content-banners/usingzcash.png'
     },
     {
-        name: "Guides" ,
+        name: "Guides",
         url: '/wiki-banner.avif'
     },
     {
