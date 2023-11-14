@@ -13,7 +13,7 @@ export const contentBanners = [
     },
     {
         name: "Guides" ,
-        url: "/wiki-banner.avif"
+        url: '/wiki-banner.avif'
     },
     {
         name: "Zcash_Tech",
@@ -32,16 +32,20 @@ export const contentBanners = [
         url: '/wiki-banner.avif'
     },
     {
-        name: "Privacy_Tools", url: '/wiki-banner.avif'
+        name: "Privacy_Tools", 
+        url: '/wiki-banner.avif'
     },
     {
-        name: "Research", url: '/wiki-banner.avif'
+        name: "Research", 
+        url: '/wiki-banner.avif'
     },
     {
-        name: "Glossary_and_FAQs", url: '/wiki-banner.avif'
+        name: "Glossary_and_FAQs", 
+        url: '/wiki-banner.avif'
     },
     {
-        name: "Contribute", url: '/wiki-banner.avif'
+        name: "Contribute", 
+        url: '/wiki-banner.avif'
     }
 
 ]
