@@ -4,7 +4,7 @@ export const contentBanners = [
         url: '/wiki-banner.avif'
     },
     {
-        name: "Tutorials",
+        name: "tutorials",
         url: '/wiki-banner.avif'
     },
     {
