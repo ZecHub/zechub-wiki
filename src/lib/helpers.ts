@@ -40,10 +40,10 @@ export const firstFileForFolders = async (folders: string[]) => {
 }
 
 export const getBanner = (name: string) => {
-  contentBanners.forEach(element => {
-    if(element.name === name){
-        return element.url
+   for(let i = 0; i <= contentBanners.length ; i++){
+        if(contentBanners[i].name === name){
+            return contentBanners[i].url
+        }
     }
-  });
-  return '/wiki-banner.avif'
+   return ''
 }
