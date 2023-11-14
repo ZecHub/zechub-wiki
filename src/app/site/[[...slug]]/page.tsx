@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     alt="wiki-banner"
                     width={800}
                     height={50}
-                    src={imgUrl}
+                    src={imgUrl != '' ? imgUrl : '/wiki-banner.avif'}
                 />
             </div>
 
