@@ -9,7 +9,7 @@ const ContentSections = () => {
             <div className="flex  space-y-4 flex-col w-full mt-5">
                 <div className="flex flex-col space-y-4 md:flex-row  h-screen w-auto bg-yellow-400 rounded-md p-5">
                     <div className="flex items-center justify-center w-auto md:w-2/4">
-                        <Image className="" src={'/card-image.webp'} alt="" width={500} height={100} />
+                        <Image className="" src={'/Zcashcard.png'} alt="" width={500} height={100} />
                     </div>
 
                     <div className="flex flex-col w-auto md:w-2/4 items-center justify-center text-white font-bold">
