@@ -54,19 +54,19 @@ export const exploreFolders = [
         url: '/site/Privacy_Tools/2FA_Hardware_Devices',
     },
     {
-        img: '/getZec.png',
+        img: '/Research-10.png',
         description: '',
         name: 'Research',
         url: '/site/Research/Social_Media_Data_Collection',
     },
     {
-        img: '/getZec.png',
+        img: '/FAQ-12.png',
         description: '',
         name: `Glossary_and_FAQs`,
         url: '/site/Glossary_and_FAQs/FAQ',
     },
     {
-        img: '/getZec.png',
+        img: '/Contribute-13.png',
         description: '',
         name: 'Contribute',
         url: '/site/contribute/Help_build_ZecHub',
