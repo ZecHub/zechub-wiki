@@ -44,7 +44,7 @@ export const contentBanners = [
         url: '/wiki-banner.avif'
     },
     {
-        name: "Contribute", 
+        name: "contribute", 
         url: '/wiki-banner.avif'
     }
 
