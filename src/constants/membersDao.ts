@@ -52,6 +52,13 @@ export const daoMembers = [
         urlLink: 'https://twitter.com/michae2xl'
     },
     {
+        imgUrl: 'https://pbs.twimg.com/profile_images/1699907348993626112/KRH0sBXD_400x400.jpg',
+        name: 'Decentralistdan',
+        description: 'ᙇecosystem relations @ZcashFoundation',
+        linkName:'Twitter',
+        urlLink: 'https://twitter.com/decentralistdan'
+    },
+    {
         imgUrl: 'https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png',
         name: 'Jay',
         description: `Privacy, Cryptography and Encryption.`,
@@ -72,6 +79,13 @@ export const daoMembers = [
         community on Telegram and YouTube channel, Editor of zcashesp.com/blog and Contributor of ZecHub.`,
         linkName:'Telegram',
         urlLink: 'https://t.me/Edicksonjga'
+    },
+    {
+        imgUrl: 'https://pbs.twimg.com/profile_images/1137756616474988546/bFJ6fcud_400x400.jpg',
+        name: 'Olek',
+        description: `Front-end developer, privacy advocate, cryptocurrency enthusiast and community manager',
+        linkName:'Twitter',
+        urlLink: 'https://twitter.com/an_Olek'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1568361509104803840/KFrdM4OY_200x200.jpg',
