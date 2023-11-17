@@ -44,7 +44,7 @@ export const daoMembers = [
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1703030858771279872/1onKu0vX_400x400.jpg',
         name: 'Roosevelt Gordones',
-        description: `Zcast Podcast, Educator & Media Production.`,
+        description: `Zcast Podcast en Español, Educator & Media Production.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/gordonesTV'
     },
