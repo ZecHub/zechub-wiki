@@ -83,21 +83,20 @@ export const daoMembers = [
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1137756616474988546/bFJ6fcud_400x400.jpg',
         name: 'Olek',
-        description: `Front-end developer, privacy advocate, cryptocurrency enthusiast and community manager',
+        description: 'Front-end developer, privacy advocate, cryptocurrency enthusiast and community manager',
         linkName:'Twitter',
         urlLink: 'https://twitter.com/an_Olek'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1568361509104803840/KFrdM4OY_200x200.jpg',
         name: 'Mine',
-        description: `I'm a diagrammer, graphic and packaging designer. My interest in blockchain, NFTs and cryptocurrencies started
+        description: `I am a diagrammer, graphic and packaging designer. My interest in blockchain, NFTs and cryptocurrencies started
         just three years ago. In May 2022 Iogy and I became the design team for Zcash Brasil, and since then I've been
         working on growing Zcash in Brazil, be it with my design and ideas or networking at events or making events
         happen. My goal now is to continue growing the Zcash community and the ecosystem that surrounds it by helping
-        with
-        my work.`,
+        withmy work.`,
         linkName:'Twitter',
-        urlLink: 'https://twitter.com/taminevg/'
+        urlLink: 'https://twitter.com/taminevg'
     },
 
 ]
