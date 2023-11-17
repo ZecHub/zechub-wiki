@@ -8,16 +8,15 @@ export const daoMembers = [
         urlLink: 'https://twitter.com/zksquirrel'
     },
     {
-        imgUrl: 'https://i.seadn.io/gcs/files/b7d75113578335f503d620166f459b4a.png',
-        name: 'tokidoki',
-        description: `Tokidoki is the community manager of ZecHub. He is a software engineer from Indonesia who also teaches
-        programming and has mentored hundreds of junior developers at a coding bootcamp.`,
+        imgUrl: 'https://i.ibb.co/kQk5sG7/image-2023-11-17-170857858.png',
+        name: 'Tecnopapapi',
+        description: 'Father, Journalist, Blogger and Podcaster from Venezuela. I like to learn and reach others about computers, smartphones and crypto as a financial alternative',
         linkName:'Twitter',
-        urlLink: 'https://twitter.com/luckytokidoki'
+        urlLink: 'https://twitter.com/tecnopapapi'
     },
     {
         imgUrl: 'https://sea2.discourse-cdn.com/zcash/user_avatar/forum.zcashcommunity.com/dismad/120/18432_2.png',
-        name: 'dismad',
+        name: 'Dismad',
         description: `Education, Skateboarding, Mathematics, Computer Science, Ornithology, Meteorology, Music, Automotive,
         Supercross, Cryptocurrencies`,
         linkName:'Zcash',
@@ -97,6 +96,14 @@ export const daoMembers = [
         withmy work.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/taminevg'
+    },
+    {
+        imgUrl: 'https://i.seadn.io/gcs/files/b7d75113578335f503d620166f459b4a.png',
+        name: 'Tokidoki',
+        description: `Tokidoki is the community manager of ZecHub. He is a software engineer from Indonesia who also teaches
+        programming and has mentored hundreds of junior developers at a coding bootcamp.`,
+        linkName:'Twitter',
+        urlLink: 'https://twitter.com/luckytokidoki'
     },
 
 ]
