@@ -41,12 +41,12 @@ const ContentSections = () => {
                         </div>
                     </div>
                     <div className="flex justify-center w-auto md:w-2/4 ">
-                        <Image className="" src={'/privacyisnormal.jpg'} alt="" width={700} height={60} />
+                        <Image className="" src={'/privacyisnormal.jpg'} alt="" width={700} height={50} />
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto bg-cyan-400 rounded-md p-5">
                     <div className="flex justify-center w-auto md:w-2/4 ">
-                        <Image className="" src={'/ZSACard.png'} alt="" width={500} height={100} />
+                        <Image className="" src={'/ZSACard.png'} alt="" width={500} height={60} />
                     </div>
                     <div className="flex flex-col w-auto md:w-2/4 items-center justify-center text-white font-bold">
                         <h1 className="text-3xl mb-4">Zcash Shielded Assets</h1>
