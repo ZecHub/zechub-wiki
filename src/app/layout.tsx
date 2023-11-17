@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'ZecHub Wiki',
-  description: 'Learn all about ZCash',
+  description: 'An open source education hub for Zcash',
 }
 
 export default function RootLayout({
