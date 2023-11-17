@@ -2,8 +2,7 @@ export const daoMembers = [
     {
         imgUrl: 'https://cdn.discordapp.com/attachments/860525418008674327/1097564830912745512/oUtBo9xl_400x400.jpeg',
         name: 'zksquirrel',
-        description: `As a Core Contributor on ZecHub and Community Note Taker for Zcash Arborist, I am passionate about communication
-        technology and network security. With my expertise in these areas, I am dedicated to contributing to the growth
+        description: `Core Contributor on ZecHub and Community Note Taker for Zcash Arborist'
         and development of the Zcash ecosystem.`,
         linkName: 'Twitter',
         urlLink: 'https://twitter.com/zksquirrel'
@@ -22,10 +21,10 @@ export const daoMembers = [
         description: `Education, Skateboarding, Mathematics, Computer Science, Ornithology, Meteorology, Music, Automotive,
         Supercross, Cryptocurrencies`,
         linkName:'Zcash',
-        urlLink: '#'
+        urlLink: 'https://zcashblockexplorer.com/ua/u1zhgy24tweexhjcsstya5qqzrus4cgv0amasfv5jp6f3p3qvw265rugn8ref5djg472l5s382mwuffremffr7se6xjlh5exagwg2d6frs'
     },
     {
-        imgUrl: 'https://sea2.discourse-cdn.com/zcash/user_avatar/forum.zcashcommunity.com/dismad/120/18432_2.png',
+        imgUrl: 'https://i.ibb.co/zZrTrwX/QC0l-YWHY-400x400.jpg',
         name: 'Ian Sagstetter',
         description: `Ian is the Community & Marketing Lead at Espresso Systems, a research grant recipient from the Zcash Foundation
         minor grants program, and an advisor at ZecHub. He created ZecHub, while working at Electric Coin Company, to
@@ -53,7 +52,7 @@ export const daoMembers = [
         urlLink: 'https://twitter.com/michae2xl'
     },
     {
-        imgUrl: 'https://sea2.discourse-cdn.com/zcash/user_avatar/forum.zcashcommunity.com/dismad/120/18432_2.png',
+        imgUrl: 'https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png',
         name: 'Jay',
         description: `Privacy, Cryptography and Encryption.`,
         linkName:'Contact',
@@ -64,7 +63,7 @@ export const daoMembers = [
         name: 'vito',
         description: `Data Security Analyst & Community Manager at Zcash Brasil.`,
         linkName:'Twitter',
-        urlLink: '#'
+        urlLink: 'https://twitter.com/vitozkp'
     },
     {
         imgUrl: 'https://free2z.cash/uploadz/public/Edicksonjga/IMG_20230415_142522_715.jpg',
