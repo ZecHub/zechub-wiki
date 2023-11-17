@@ -42,6 +42,13 @@ export const daoMembers = [
         urlLink: 'https://twitter.com/RuZcash'
     },
     {
+        imgUrl: 'https://pbs.twimg.com/profile_images/1703030858771279872/1onKu0vX_400x400.jpg',
+        name: 'Roosevelt Gordones',
+        description: `Zcast Podcast, Educator & Media Production.`,
+        linkName:'Twitter',
+        urlLink: 'https://twitter.com/gordonesTV'
+    },
+    {
         imgUrl: 'https://pbs.twimg.com/profile_images/1560452481829818368/c6XtZG6i_200x200.jpg',
         name: 'Michae2xl',
         description: `1 year+ as Zcash Brazil ambassador, Software Engineer & Product Owner, known as Michae2xl on social media, has
@@ -56,6 +63,20 @@ export const daoMembers = [
         description: 'ᙇecosystem relations @ZcashFoundation',
         linkName:'Twitter',
         urlLink: 'https://twitter.com/decentralistdan'
+    },
+    {
+        imgUrl: 'https://pbs.twimg.com/profile_images/1528027327921201152/ra7kpu96_400x400.jpg',
+        name: 'Jason McGee',
+        description: `Member of Zcash Community Grants Committe and Founder of Shielded Labs.`,
+        linkName:'Twitter',
+        urlLink: 'https://twitter.com/aquietinvestor'
+    },
+    {
+        imgUrl: 'https://pbs.twimg.com/profile_images/1634614829607538694/7_mFB6_T_400x400.jpg',
+        name: 'Chidi',
+        description: `Zcash Nigeria Global Ambassador.`,
+        linkName:'Twitter',
+        urlLink: 'https://twitter.com/ZcashNigeria'
     },
     {
         imgUrl: 'https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png',
