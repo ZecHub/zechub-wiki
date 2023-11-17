@@ -1,7 +1,7 @@
 export const contentBanners = [
     {
         name: "Start_Here", 
-        url: '/wiki-banner.avif'
+        url: '/content-banners/bannerstarthere.png'
     },
     {
         name: "tutorials",
@@ -33,7 +33,7 @@ export const contentBanners = [
     },
     {
         name: "Privacy_Tools", 
-        url: '/wiki-banner.avif'
+        url: '/content-banners/bannerPrivacyTools.png'
     },
     {
         name: "Research", 
