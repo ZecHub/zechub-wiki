@@ -3,7 +3,7 @@ export const exploreFolders = [
         img: '/Start-02.png',
         description: '',
         name: 'Start_Here',
-        url: '/site/Start_Here/Developer_Resources',
+        url: '/site/Start_Here/New_User_Guide',
     },
     {
         img: '/Tutorials.png',
@@ -21,13 +21,13 @@ export const exploreFolders = [
         img: '/Guides.png',
         description: '',
         name: 'Guides',
-        url: '/site/guides/Free2z_Live',
+        url: '/site/guides/Raspberry_Pi_4_Full_Node',
     },
     {
         img: '/Tech-05.png',
         description: '',
         name: 'Zcash_Tech',
-        url: '/site/Zcash_Tech/Blockchain_Explorers',
+        url: '/site/Zcash_Tech/zk_SNARKS',
     },
     {
         img: '/Organizations-08.png',
@@ -39,7 +39,7 @@ export const exploreFolders = [
         img: '/Community.png',
         description: '',
         name: 'Zcash_Community',
-        url: '/site/Zcash_Community/Arborist_Calls',
+        url: '/site/Zcash_Community/Community_Links',
     },
     {
         img: '/ZFAV.png',
