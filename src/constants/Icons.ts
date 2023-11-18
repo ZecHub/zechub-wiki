@@ -93,7 +93,7 @@ const iconsForMenu: IconsFor = {
         'Zcash Media': Play,
         'Zcon Archive': PresentationChar,
     },
-        'ZFAV Club': {
+    'ZFAV Club': {
         'AV Club Background': LiaHorseHeadSolid,
         'Guides for Creators': Resources,
         'Youtube Channel': Youtube,
