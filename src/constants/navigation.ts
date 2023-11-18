@@ -7,7 +7,7 @@ export const navigations = [
     links: [
       {
         subName: 'Using ZEC',
-        path: "/site/Using_Zcash/Using_ZEC"
+        path: "/site/Using_Zcash/Transactions"
       },
       {
         subName: 'Wallets',
@@ -40,8 +40,8 @@ export const navigations = [
     name: "Organizations",
     links: [
       {
-        subName: 'ECC',
-        path: "/site/Zcash_Organizations/Shielded_Labs"
+        subName: 'Electric Coin Company',
+        path: "/site/Zcash_Organizations/Electric_Coin_Company"
       },
       {
         subName: 'Zcash Fundation',
@@ -57,7 +57,7 @@ export const navigations = [
     name: "Guides",
     links: [
       {
-        subName: 'Zgo Payment',
+        subName: 'Zgo Payment Processor',
         path: "/site/guides/Zgo_Payment_Processor",
       },
       {
