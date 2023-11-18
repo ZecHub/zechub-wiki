@@ -2,7 +2,7 @@ export const cardsConfig = [
     {
       title: 'Start Here',
       content: 'Find out what Zcash is and ZEC use cases',
-      url: 'site/Start_Here/Developer_Resources',
+      url: 'site/Start_Here/New_User_Guide',
       image: '/LearnZcash.png'
     },
     {
@@ -13,7 +13,7 @@ export const cardsConfig = [
     },
     {
       title: 'Zcash Resources',
-      content: 'There are a number of guides that help users understand Zcash.',
+      content: 'Here are guides that help users understand Zcash Full Nodes, zk-SNARKs and more',
       url: 'site/guides/Using_ZEC_Privately',
       image: '/GuidesZ.png'
     }
