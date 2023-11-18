@@ -1,4 +1,4 @@
-import {SiZcash as Zcash, SiWikipedia as Wikipedia, SiYoutube as Youtube, SiXdadevelopers as Dadeveloper, SiRaspberrypi as RaspBerry, SiApplepodcasts as ApplePodcasts, SiTorbrowser as TorBrowser }  from 'react-icons/si'
+import {SiZcash as Zcash, SiWikipedia as Wikipedia, SiYoutube as Youtube, SiXdadevelopers as Dadeveloper, SiRaspberrypi as RaspBerry, SiApplepodcasts as ApplePodcasts, SiTorbrowser as TorBrowser, SiOpenvpn as Openvpn }  from 'react-icons/si'
 import {PiShootingStarThin as ShootingStar, PiCircuitryLight as Circuitry, PiNumberCircleZeroThin as NumberCircle, PiSnowflakeThin as SnowFlake, PiLinkSimpleBold as LinkSimpleBold, PiPresentationChartLight as PresentationChar, PiSpotifyLogo as Spotify, PiComputerTower as ComputerTower } from 'react-icons/pi'
 import {RiSecurePaymentLine as SecurePayment, RiMailSendFill as MailSend, RiExchangeFundsFill as ExchangeFunds, RiLiveFill as Live, RiNftFill as NftFill, RiMessengerLine as MessengerLine, RiArticleLine } from 'react-icons/ri'
 import {GrResources as Resources, GrCircleInformation as CircleInfo } from 'react-icons/gr'
@@ -6,7 +6,7 @@ import {TbBinaryTree2 as BinaryTree, TbTopologyRing as TopologyRing, TbCurrencyD
 import {SlGraph as Graph } from 'react-icons/sl'
 import {FaWallet as Wallet, FaFaucet as Faucet, FaListAlt as ListAlt, FaEthereum as Ethereum, FaQuestion, FaSyncAlt as Syncing} from 'react-icons/fa'
 import {FcCurrencyExchange as CurrencyExchange, FcGallery, FcGlobe as Globe } from 'react-icons/fc'
-import {BsFillArrowUpRightCircleFill as ArrowUp, BsShieldShaded as ShieldShaded, BsQrCode as QrCode, BsPlay as Play, BsNewspaper as Newspaper } from 'react-icons/bs'
+import {BsFillArrowUpRightCircleFill as ArrowUp, BsShieldShaded as ShieldShaded, BsQrCode as QrCode, BsPlay as Play, BsNewspaper as Newspaper, BsBrowserFirefox as Browserfirefox } from 'react-icons/bs'
 import {MdOutlinePrivacyTip as PrivacyTip, MdOutlinePointOfSale as PointOfSale, MdRadar as Radar, MdTipsAndUpdates as TipsAndUpdates, MdSettings as Settings, MdOutlineEnhancedEncryption as OutlineEnchanceEncryption } from 'react-icons/md'
 import {LiaServerSolid as ServerSolid, LiaLinkSolid as LinkSolid } from 'react-icons/lia'
 import {BiLogoGraphql as LogoGraph, BiLock as Lock, BiCheckShield as CheckShield } from 'react-icons/bi'
@@ -117,7 +117,9 @@ const iconsForMenu: IconsFor = {
         'Namada Protocol': HexagonLetterN,
         'PGP Encryption': OutlineEnchanceEncryption,
         'Secure Messengers': MessengerLine,
-        'Tor and I2P': TorBrowser
+        'Tor and I2P': TorBrowser,
+        'VPN and DVPN': Openvpn,
+        'Web Browsers': Browserfirefox,
     },
     'Research': {
         'Social Media Data Collection': RiArticleLine,
