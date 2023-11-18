@@ -75,7 +75,7 @@ const iconsForMenu: IconsFor = {
         'FROST': SnowFlake,
         'Viewing Keys': FileKey,
         'Zcash Shielded Assets': DollarZimbabwean,
-        'Lightwallet Nodes': ComputerTower.
+        'Lightwallet Nodes': ComputerTower
     },
     'Zcash Organizations': {
         'Electric Coin Company': Radar,
