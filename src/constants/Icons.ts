@@ -4,7 +4,7 @@ import {RiSecurePaymentLine as SecurePayment, RiMailSendFill as MailSend, RiExch
 import {GrResources as Resources, GrCircleInformation as CircleInfo } from 'react-icons/gr'
 import {TbBinaryTree2 as BinaryTree, TbTopologyRing as TopologyRing, TbCurrencyDollarZimbabwean as DollarZimbabwean,  Tb2Fa as Fa2, TbHexagonLetterN as HexagonLetterN, TbHexagonLetterZ as HexagonLetterZ} from 'react-icons/tb'
 import {SlGraph as Graph } from 'react-icons/sl'
-import {FaWallet as Wallet, FaFaucet as Faucet, FaListAlt as ListAlt, FaEthereum as Ethereum, FaQuestion, FaSyncAlt as Syncing} from 'react-icons/fa'
+import {FaWallet as Wallet, FaFaucet as Faucet, FaListAlt as ListAlt, FaEthereum as Ethereum, FaQuestion, FaSyncAlt} from 'react-icons/fa'
 import {FcCurrencyExchange as CurrencyExchange, FcGallery, FcGlobe as Globe } from 'react-icons/fc'
 import {BsFillArrowUpRightCircleFill as ArrowUp, BsShieldShaded as ShieldShaded, BsQrCode as QrCode, BsPlay as Play, BsNewspaper as Newspaper, BsBrowserFirefox as Browserfirefox } from 'react-icons/bs'
 import {MdOutlinePrivacyTip as PrivacyTip, MdOutlinePointOfSale as PointOfSale, MdRadar as Radar, MdTipsAndUpdates as TipsAndUpdates, MdSettings as Settings, MdOutlineEnhancedEncryption as OutlineEnchanceEncryption } from 'react-icons/md'
@@ -55,7 +55,7 @@ const iconsForMenu: IconsFor = {
         'Faucets': Faucet,
         'Non-Custodial Exchanges': ExchangeFunds,
         'DEX List': ListAlt,
-        'Zcash Wallet Syncing': Syncing,
+        'Zcash Wallet Syncing': FaSyncAlt
     },
     'Guides': {
         'Using ZEC Privately': PrivacyTip,
