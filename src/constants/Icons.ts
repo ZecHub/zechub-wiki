@@ -1,4 +1,4 @@
-import {SiZcash as Zcash, SiWikipedia as Wikipedia, SiYoutube as Youtube, SiXdadevelopers as Dadeveloper, SiRaspberrypi as RaspBerry, SiApplepodcasts as ApplePodcasts, SiTorbrowser as TorBrowser, SiOpenvpn as Openvpn }  from 'react-icons/si'
+import {SiZcash as Zcash, SiWikipedia as Wikipedia, SiYoutube as Youtube, SiXdadevelopers as Dadeveloper, SiRaspberrypi as RaspBerry, SiApplepodcasts as ApplePodcasts, SiTorbrowser as TorBrowser, SiOpenvpn as Openvpn, SiZebratechnologies as Zebratechnologies }  from 'react-icons/si'
 import {PiShootingStarThin as ShootingStar, PiCircuitryLight as Circuitry, PiNumberCircleZeroThin as NumberCircle, PiSnowflakeThin as SnowFlake, PiLinkSimpleBold as LinkSimpleBold, PiPresentationChartLight as PresentationChar, PiSpotifyLogo as Spotify, PiComputerTower as ComputerTower } from 'react-icons/pi'
 import {RiSecurePaymentLine as SecurePayment, RiMailSendFill as MailSend, RiExchangeFundsFill as ExchangeFunds, RiLiveFill as Live, RiNftFill as NftFill, RiMessengerLine as MessengerLine, RiArticleLine } from 'react-icons/ri'
 import {GrResources as Resources, GrCircleInformation as CircleInfo } from 'react-icons/gr'
@@ -62,6 +62,7 @@ const iconsForMenu: IconsFor = {
         'Visualizing Zcash Addresses': QrCode,
         'Full Nodes': ServerSolid,
         'Raspberry Pi 4 Full Node': RaspBerry,
+        'Raspberry pi 4 Zebra Node': Zebratechnologies,
         'Using ZEC in DeFi': Ethereum,
         'Free2z Live': Live,
         'Zgo Payment Processor': PointOfSale,
