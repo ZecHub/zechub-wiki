@@ -7,9 +7,9 @@ const ContentSections = () => {
     return (
         <section>
             <div className="flex  space-y-4 flex-col w-full mt-5">
-                <div className="flex flex-col space-y-4 md:flex-row  h-screen w-auto bg-yellow-400 rounded-md p-5">
+                <div className="flex flex-col space-y-4 md:flex-row  h-screen w-auto bg-[#E4A100] rounded-md p-5">
                     <div className="flex items-center justify-center w-auto md:w-2/4">
-                        <Image className="" src={'/Zcashcard.png'} alt="" width={500} />
+                        <Image className="" src={'/Zcashcard.png'} alt="" width={500} height={50} />
                     </div>
 
                     <div className="flex flex-col w-auto md:w-2/4 items-center justify-center text-white font-bold">
@@ -41,12 +41,12 @@ const ContentSections = () => {
                         </div>
                     </div>
                     <div className="flex justify-center w-auto md:w-2/4 ">
-                        <Image className="" src={'/privacyisnormal.jpg'} alt="" width={700} />
+                        <Image className=" w-50 h-auto" src={'/privacyisnormal.jpg'} alt="" width={600} height={50} />
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto bg-cyan-400 rounded-md p-5">
+                <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-full bg-cyan-400 rounded-md p-5">
                     <div className="flex justify-center w-auto md:w-2/4">
-                      <Image src={'/ZSACard.png'} alt="" width={500} />
+                      <Image src={'/ZSACard.png'} alt="" width={700} height={50} />
                      </div>
                     <div className="flex flex-col w-auto md:w-2/4 items-center justify-center text-white font-bold">
                         <h1 className="text-3xl mb-4">Zcash Shielded Assets</h1>
