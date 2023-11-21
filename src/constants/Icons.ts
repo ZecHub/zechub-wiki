@@ -15,6 +15,8 @@ import {GiCheckedShield as CheckedShield, GiBorderedShield as BordererShield, Gi
 import {LuFileKey as FileKey,LuTrees as Trees } from 'react-icons/lu'
 import {IoBuildOutline as BuildOutline, IoConstructOutline } from 'react-icons/io5'
 import {IoIosMicrophone as IosMicrophone} from 'react-icons/io'
+import { GrBlog as Blog } from "react-icons/gr"
+import { FaMagnifyingGlassChart as MagnifyingGlassChart } from "react-icons/fa6"
 import {CiStreamOn as StreamOn} from 'react-icons/ci' 
 import {HiOutlineBuildingLibrary} from 'react-icons/hi2'
 import { LiaHorseHeadSolid } from "react-icons/lia";
@@ -71,6 +73,7 @@ const iconsForMenu: IconsFor = {
         'ZK Shielded Asset Platforms': Paragraph,
     },
     'Zcash Tech': {
+        'Blockchain Explorers': MagnifyingGlassChart,
         'zk SNARKS': Circuitry,
         'Halo': NumberCircle,
         'FROST': SnowFlake,
@@ -86,6 +89,7 @@ const iconsForMenu: IconsFor = {
     },
     'Zcash Community': {
         'Community Links': LinkSimpleBold,
+        'Community Blogs': Blog,
         'Zcash Global Ambassadors': Globe,
         'Community Projects': BuildOutline,
         'Arborist Calls': Trees,
