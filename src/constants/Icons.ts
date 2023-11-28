@@ -1,7 +1,7 @@
 import {SiZcash as Zcash, SiWikipedia as Wikipedia, SiYoutube as Youtube, SiXdadevelopers as Dadeveloper, SiRaspberrypi as RaspBerry, SiApplepodcasts as ApplePodcasts, SiTorbrowser as TorBrowser, SiOpenvpn as Openvpn, SiZebratechnologies as Zebratechnologies }  from 'react-icons/si'
 import {PiShootingStarThin as ShootingStar, PiCircuitryLight as Circuitry, PiNumberCircleZeroThin as NumberCircle, PiSnowflakeThin as SnowFlake, PiLinkSimpleBold as LinkSimpleBold, PiPresentationChartLight as PresentationChar, PiSpotifyLogo as Spotify, PiComputerTower as ComputerTower } from 'react-icons/pi'
 import {RiSecurePaymentLine as SecurePayment, RiMailSendFill as MailSend, RiExchangeFundsFill as ExchangeFunds, RiLiveFill as Live, RiNftFill as NftFill, RiMessengerLine as MessengerLine, RiArticleLine } from 'react-icons/ri'
-import {GrResources as Resources, GrCircleInformation as CircleInfo } from 'react-icons/gr'
+import {GrResources as Resources, GrCircleInformation as CircleInfo, GrGroup as Group } from 'react-icons/gr'
 import {TbBinaryTree2 as BinaryTree, TbTopologyRing as TopologyRing, TbCurrencyDollarZimbabwean as DollarZimbabwean,  Tb2Fa as Fa2, TbHexagonLetterN as HexagonLetterN, TbHexagonLetterZ as HexagonLetterZ} from 'react-icons/tb'
 import {SlGraph as Graph } from 'react-icons/sl'
 import {FaWallet as Wallet, FaFaucet as Faucet, FaListAlt as ListAlt, FaEthereum as Ethereum, FaQuestion, FaSyncAlt} from 'react-icons/fa'
@@ -91,6 +91,7 @@ const iconsForMenu: IconsFor = {
         'Community Links': LinkSimpleBold,
         'Community Blogs': Blog,
         'Zcash Global Ambassadors': Globe,
+        'ZCAP': Group,
         'Community Projects': BuildOutline,
         'Arborist Calls': Trees,
         'Cypherpunk Zero NFT': NftFill,
