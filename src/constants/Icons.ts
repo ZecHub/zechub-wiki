@@ -7,10 +7,10 @@ import {SlGraph as Graph } from 'react-icons/sl'
 import {FaWallet as Wallet, FaFaucet as Faucet, FaListAlt as ListAlt, FaEthereum as Ethereum, FaQuestion, FaSyncAlt} from 'react-icons/fa'
 import {FcCurrencyExchange as CurrencyExchange, FcGallery, FcGlobe as Globe } from 'react-icons/fc'
 import {BsFillArrowUpRightCircleFill as ArrowUp, BsShieldShaded as ShieldShaded, BsQrCode as QrCode, BsPlay as Play, BsNewspaper as Newspaper, BsBrowserFirefox as Browserfirefox } from 'react-icons/bs'
-import {MdOutlinePrivacyTip as PrivacyTip, MdOutlinePointOfSale as PointOfSale, MdRadar as Radar, MdTipsAndUpdates as TipsAndUpdates, MdSettings as Settings, MdOutlineEnhancedEncryption as OutlineEnchanceEncryption } from 'react-icons/md'
+import {MdOutlinePrivacyTip as PrivacyTip, MdOutlinePointOfSale as PointOfSale, MdRadar as Radar, MdTipsAndUpdates as TipsAndUpdates, MdSettings as Settings, MdOutlineEnhancedEncryption as OutlineEnchanceEncryption, MdOutlineLiveHelp as LiveHelp } from 'react-icons/md'
 import {LiaServerSolid as ServerSolid, LiaLinkSolid as LinkSolid } from 'react-icons/lia'
 import {BiLogoGraphql as LogoGraph, BiLock as Lock, BiCheckShield as CheckShield } from 'react-icons/bi'
-import {ImParagraphLeft as Paragraph, ImPodcast as Podcast } from 'react-icons/im'
+import {ImParagraphLeft as Paragraph, ImPodcast as Podcast, ImNewspaper as Newspaper } from 'react-icons/im'
 import {GiCheckedShield as CheckedShield, GiBorderedShield as BordererShield, GiSpellBook as SpellBook, GiMeshBall} from 'react-icons/gi'
 import {LuFileKey as FileKey,LuTrees as Trees } from 'react-icons/lu'
 import {IoBuildOutline as BuildOutline, IoConstructOutline } from 'react-icons/io5'
@@ -138,6 +138,8 @@ const iconsForMenu: IconsFor = {
     'Contribute': {
         'Help build ZecHub': IoConstructOutline,
         'ZecHub DAO': GiMeshBall
+        'Contributing Guide': LiveHelp
+        'ZecWeekly Newsletter': Newspaper
     }
 }
 
