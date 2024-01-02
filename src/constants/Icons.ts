@@ -137,8 +137,8 @@ const iconsForMenu: IconsFor = {
     },
     'Contribute': {
         'Help build ZecHub': IoConstructOutline,
-        'ZecHub DAO': GiMeshBall
-        'Contributing Guide': LiveHelp
+        'ZecHub DAO': GiMeshBall,
+        'Contributing Guide': LiveHelp,
         'ZecWeekly Newsletter': Newspaper
     }
 }
