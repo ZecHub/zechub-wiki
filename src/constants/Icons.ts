@@ -107,7 +107,6 @@ const iconsForMenu: IconsFor = {
     'Zcash Social Media': {
         'Podcasts': IosMicrophone,
         'Social Media Links': LinkSolid,
-        'ZecWeekly Newsletter': Newspaper,
         'pgp for crypto podcast': Podcast,
         'The Zcash Podcast': Zcash,
         'Shielded Transaction Podcast': CheckShield,
