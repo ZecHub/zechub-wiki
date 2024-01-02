@@ -10,7 +10,7 @@ import {BsFillArrowUpRightCircleFill as ArrowUp, BsShieldShaded as ShieldShaded,
 import {MdOutlinePrivacyTip as PrivacyTip, MdOutlinePointOfSale as PointOfSale, MdRadar as Radar, MdTipsAndUpdates as TipsAndUpdates, MdSettings as Settings, MdOutlineEnhancedEncryption as OutlineEnchanceEncryption, MdOutlineLiveHelp as LiveHelp } from 'react-icons/md'
 import {LiaServerSolid as ServerSolid, LiaLinkSolid as LinkSolid } from 'react-icons/lia'
 import {BiLogoGraphql as LogoGraph, BiLock as Lock, BiCheckShield as CheckShield } from 'react-icons/bi'
-import {ImParagraphLeft as Paragraph, ImPodcast as Podcast, ImNewspaper as Newspaper } from 'react-icons/im'
+import {ImParagraphLeft as Paragraph, ImPodcast as Podcast } from 'react-icons/im'
 import {GiCheckedShield as CheckedShield, GiBorderedShield as BordererShield, GiSpellBook as SpellBook, GiMeshBall} from 'react-icons/gi'
 import {LuFileKey as FileKey,LuTrees as Trees } from 'react-icons/lu'
 import {IoBuildOutline as BuildOutline, IoConstructOutline } from 'react-icons/io5'
