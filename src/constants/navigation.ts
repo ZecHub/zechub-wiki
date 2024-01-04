@@ -23,8 +23,8 @@ export const navigations = [
     name: "Ecosystem",
     links: [
       {
-        subName: 'Zcash Security',
-        path: "/site/Zcash_Community/Zcash_Ecosystem_Security"
+        subName: 'Arborist Calls',
+        path: "/site/Zcash_Community/Arborist_Calls"
       },
       {
         subName: 'Community Links',
@@ -44,11 +44,11 @@ export const navigations = [
         path: "/site/Zcash_Organizations/Electric_Coin_Company"
       },
       {
-        subName: 'Zcash Fundation',
+        subName: 'Zcash Foundation',
         path: "/site/Zcash_Organizations/Zcash_Foundation"
       },
       {
-        subName: 'ZCG',
+        subName: 'Zcash Commnuity Grants',
         path: "/site/Zcash_Organizations/Zcash_Community_Grants"
       }
     ]
