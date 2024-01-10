@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     const markdown = await getFileContent(url)
     const content = markdown ? markdown : 'No Data or Wrong file'
 
-    const urlRoot = `/site/${slug[0]}`
+    const urlRoot = `/${slug[0]}`
     const roots = await getRoot(urlRoot)
 
     const imgUrl = getBanner(slug[0])
