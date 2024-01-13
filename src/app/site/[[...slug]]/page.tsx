@@ -15,19 +15,18 @@ const MdxComponent = dynamic(
 )
 
 export default async function Page({ params }: { params: { slug: string } }) {
+  const { slug } = params;
 
-    const { slug } = params
-    const url = getDynamicRoute(slug)
+  // Construct the URL without the /site/ segment
+  const url = getDynamicRoute(slug);
+  const markdown = await getFileContent(url);
+  const content = markdown ? markdown : 'No Data or Wrong file';
 
-    const markdown = await getFileContent(url)
-    const content = markdown ? markdown : 'No Data or Wrong file'
+  const roots = await getRoot(slug[0]);
+  const imgUrl = getBanner(slug[0]);
 
-    const urlRoot = `/site/${slug[0]}`
-    const roots = await getRoot(urlRoot)
-
-    const imgUrl = getBanner(slug[0])
-
-    return (
+  return (
+      
         <main>
             <div className='flex justify-center w-full  mb-5 bg-transparent rounded py-4'>
                 <Image
