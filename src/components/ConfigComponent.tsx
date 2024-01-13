@@ -17,14 +17,12 @@ export const ImagePrev = (props: HTMLProps<HTMLImageElement>) => {
     />
   )}
 
-export const LinkComponent = (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {
-  // Remove the "/site/" segment from the href
-  const cleanHref = props.href ? props.href.replace(/^\/site\//, '/') : '';
+export const LinkComponent = (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.Element => {
 
-  return (
-    <Link href={cleanHref} target={cleanHref.startsWith('/') ? '_blank' : ''} className="text-blue-700">
-      {props.children}{" "}
-    </Link>
+    return(
+      <Link href={props.href || ""} target={props.href?.startsWith('/site') ? '' : "_blank"} className="text-blue-700">
+        {props.children}{" "}
+      </Link>
 )}
 
 export const PreComponent = (props: HTMLProps<HTMLPreElement>): JSX.Element => (
