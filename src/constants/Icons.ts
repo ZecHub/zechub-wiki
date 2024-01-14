@@ -41,6 +41,7 @@ const iconsForMenu: IconsFor = {
         'Using This Wiki': Wikipedia
     },
     'Tutorials': {
+        'Full Node Tutorials': Youtube,
         'z2z Tutorial': Youtube,
         'Wallet Tutorials': Youtube,
         'Buy ZEC in Gemini': Youtube,
@@ -49,6 +50,7 @@ const iconsForMenu: IconsFor = {
         'Spedn Demo': Youtube
     },
     'Using Zcash': {
+        'Blockchain Explorers': MagnifyingGlassChart,
         'Wallets': Wallet,
         'Buying ZEC': CurrencyExchange,
         'Transactions': ArrowUp,
@@ -70,10 +72,9 @@ const iconsForMenu: IconsFor = {
         'Zgo Payment Processor': PointOfSale,
         'Zero-Knowledge vs Decoys': TopologyRing,
         'Visualizing the Zcash Network': LogoGraph,
-        'ZK Shielded Asset Platforms': Paragraph,
+        
     },
     'Zcash Tech': {
-        'Blockchain Explorers': MagnifyingGlassChart,
         'zk SNARKS': Circuitry,
         'Halo': NumberCircle,
         'FROST': SnowFlake,
@@ -128,6 +129,7 @@ const iconsForMenu: IconsFor = {
     },
     'Research': {
         'Social Media Data Collection': RiArticleLine,
+        'ZK Shielded Asset Platforms': Paragraph,
     },
     "Glossary & FAQ's": {
         'Zcash Library': HiOutlineBuildingLibrary,
