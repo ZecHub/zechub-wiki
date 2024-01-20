@@ -55,6 +55,10 @@ Don't forget to self-review to speed up the review process :zap:
 
 When you're finished with the changes, [create a pull request](https://github.com/zechub/zechub-wiki/pulls), also known as a PR. You can include your unified address (UA) in the PR so we can send you a tip!
 
+## License
+
+This project is licensed under the MIT License. By submitting a pull request, you agree to license your contribution under the terms of the [MIT License](/LICENSE).
+
 ### To Finish
 
 Please do not hesitate to get started contributing to one of the industry's most respected protocols. This is a great way to get involved with Zcash. If you have any questions about contributing, please let us know on [Discord](#join-the-conversation).
