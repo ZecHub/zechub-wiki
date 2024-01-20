@@ -27,26 +27,22 @@ Welcome to ZecHub, an open-source education hub for Zcash! This Next.js project 
 
 ## Getting Started
 
+Requirement:
+
+1. [Yarn (classic)](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable)
+
 To set up the development environment, follow these steps:
 
 1. Install the project dependencies:
 
 ```bash
-npm install
-# or
 yarn install
-# or
-pnpm install
 ```
 
 2. Run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the ZecHub Wiki in action. You can start editing the page by modifying the files within the `src/app` directory. The page will auto-update as you make changes.
