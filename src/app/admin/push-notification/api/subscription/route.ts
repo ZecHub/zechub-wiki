@@ -1,8 +1,8 @@
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
 
+import { getSession, withApiAuthRequired } from '@auth0/nextjs-auth0';
 import { headers } from 'next/headers';
-
-import { getServerSessionConfig } from '@/lib/auth';
+import { NextResponse } from 'next/server';
 
 const mongo = {
   mongodbClient,
@@ -10,10 +10,13 @@ const mongo = {
   collectionName: 'webpushSubscribers',
 };
 
-export async function GET(req: Request) {
-  const session = await getServerSessionConfig();
+export const GET = withApiAuthRequired(async function pushNotificationApiRoute(
+  req
+) {
+  const res = new NextResponse();
+  const { user }: any = await getSession(req, res); // TODO: check for user.role === 'admin'
 
-  if (!session) {
+  if (!user) {
     return new Response('', {
       status: 401,
       statusText: 'You must be logged in.',
@@ -46,20 +49,31 @@ export async function GET(req: Request) {
   } finally {
     // mongo.mongodbClient.close();
   }
-}
+});
 
-export async function POST(req: Request, res: Response) {
+export const POST = withApiAuthRequired(async function pushNotificationApiRoute(
+  req
+) {
+  const res = new NextResponse();
+  const { user }: any = await getSession(req, res); // TODO: check for user.role === 'admin'
+
+  if (!user) {
+    return new Response('', {
+      status: 401,
+      statusText: 'Unauthorized',
+    });
+  }
+
   try {
     const doc = await req.json();
-    if (doc !== undefined) {
-      const webpushSubscribers = mongo.db.collection(mongo.collectionName);
-      await webpushSubscribers.insertOne(doc);
 
-      return new Response('', {
-        status: 200,
-        statusText: 'Ok',
-      });
-    }
+    const webpushSubscribers = mongo.db.collection(mongo.collectionName);
+    await webpushSubscribers.insertOne(doc);
+
+    return new Response('', {
+      status: 200,
+      statusText: 'Ok',
+    });
   } catch (err) {
     return new Response('', {
       status: 500,
@@ -68,34 +82,43 @@ export async function POST(req: Request, res: Response) {
   } finally {
     // mongo.mongodbClient.close();
   }
-}
+});
 
-export async function DELETE(req: Request, res: Response) {
-  try {
-    //   const formData = await req.formData();
-    const query = await req.json();
-    console.log(query);
+export const DELETE = withApiAuthRequired(
+  async function pushNotificationApiRoute(req) {
+    const res = new NextResponse();
+    const { user }: any = await getSession(req, res); // TODO: check for user.role === 'admin'
 
-    const webpushSubscribers = mongo.db.collection(mongo.collectionName);
-    const result = await webpushSubscribers.deleteOne({ _id: query.id });
-    /* Print a message that indicates whether the operation deleted a
-    document */
-    if (result.deletedCount === 1) {
-      console.log('Successfully deleted one document.');
-    } else {
-      console.log('No documents matched the query. Deleted 0 documents.');
+    if (user.role != 'admin') {
+      return new Response('', {
+        status: 401,
+        statusText: 'Unauthorized',
+      });
     }
 
-    return new Response('', {
-      status: 200,
-      statusText: 'Ok',
-    });
-  } catch (err) {
-    return new Response('', {
-      status: 301,
-      statusText: 'Faild to delete',
-    });
-  } finally {
-    // mongo.mongodbClient.close();
+    try {
+      const query = await req.json();
+
+      const webpushSubscribers = mongo.db.collection(mongo.collectionName);
+      const result = await webpushSubscribers.deleteOne({ _id: query.id });
+
+      if (result.deletedCount === 1) {
+        console.log('Successfully deleted one document.');
+      } else {
+        console.log('No documents matched the query. Deleted 0 documents.');
+      }
+
+      return new Response('', {
+        status: 200,
+        statusText: 'Ok',
+      });
+    } catch (err) {
+      return new Response('', {
+        status: 301,
+        statusText: 'Faild to delete',
+      });
+    } finally {
+      // mongo.mongodbClient.close();
+    }
   }
-}
+);

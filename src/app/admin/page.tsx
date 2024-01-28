@@ -1,4 +1,4 @@
-import { AdminComp } from '@/components/AdminComp';
+import { AdminComp } from '@/components/Admin/AdminComp';
 import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 export default withPageAuthRequired(
