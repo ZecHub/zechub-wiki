@@ -1,5 +1,5 @@
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
-import { sendNotifications } from '@/lib/push-notification/helpers';
+import { sendNotifications } from '../../_helpers';
 
 const mongo = {
   mongodbClient,
@@ -9,14 +9,18 @@ const mongo = {
 
 export async function POST(req: Request, res: Response) {
   try {
+    const payload = req.json();
+
+    // fetch from deb
     const webpushSubscribers = mongo.db.collection(mongo.collectionName);
     const cursor = webpushSubscribers.find({});
 
     const result = await cursor.toArray();
+    // close connection
     cursor.close();
 
     if (result.length > 0) {
-      await sendNotifications([...result]);
+      await sendNotifications({ payload, subscribers: result as any });
 
       return new Response('', {
         status: 200,
