@@ -2,7 +2,7 @@
 
 import { PUSH_NOTIFICATION_API } from '@/config';
 import { wordWrap } from '@/lib/helpers';
-import { sendNotifications } from '@/lib/push-notification/helpers';
+import { sendNotifications } from '@/lib/push-notification/pushHelpers';
 import { useCallback, useState } from 'react';
 import { Modal } from '../../ui/Modal';
 import { Spinner } from '../../ui/spinner/Spinner';
@@ -79,7 +79,7 @@ export function ListOfSubscribers() {
   return (
     <>
       <section id='subscribers' className='mt-4 subscribers'>
-        <h3 className='text-3xl font-bold my-12 text-left'>
+        <h3 className='text-2xl font-bold my-12 text-left'>
           List of subscribers
         </h3>
 

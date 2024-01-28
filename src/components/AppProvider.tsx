@@ -5,7 +5,9 @@ import React, { useEffect, useState } from 'react';
 import {
   registerServiceWorker,
   subscribeToPushNotification,
-} from '../lib/push-notification/helpers';
+} from '../lib/push-notification/pushHelpers';
+import Image from 'next/image';
+
 type AppProviderProps = {
   children: React.ReactNode;
 };
@@ -15,7 +17,8 @@ type AppProviderProps = {
  * @param props React.ReactNode
  */
 export function AppProvider(props: AppProviderProps) {
-  const [notificationPermission, setNotificationPermission] = useState(false);
+  const [notificationPermission, setNotificationPermission] =
+    useState<NotificationPermission>();
 
   const { user, error, isLoading } = useUser();
 
@@ -28,7 +31,7 @@ export function AppProvider(props: AppProviderProps) {
 
   useEffect(() => {
     registerServiceWorker();
-  }, [notificationPermission]);
+  }, [notificationPermission, isLoading]);
 
   const getProfile = () => {
     if (isLoading) return <div>Loading...</div>;
@@ -36,9 +39,15 @@ export function AppProvider(props: AppProviderProps) {
 
     if (user) {
       return (
-        <div style={{ padding: '12px' }}>
-          <img src={user.picture!} alt={user.name!} />
-          <h2>{user.name}</h2>
+        <div style={{ padding: '12px', display:'flex', gap: '12px', alignItems: 'center' }}>
+          <Image
+            width={40}
+            height={40}
+            src={user.picture!}
+            alt={user.name!}
+            style={{ borderRadius: '50%', fontWeight: 700 }}
+          />
+          <h2>{user.email}</h2>
         </div>
       );
     }
@@ -57,22 +66,23 @@ export function AppProvider(props: AppProviderProps) {
       navigator.serviceWorker.ready.then((reg) => {
         reg.showNotification('ZecHub Notification', {
           body: 'This is a notification from your ZecHub!',
-          icon: '../lib/push-notification/icon/zechubLogo.jpg',
+          icon: 'https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png',
+          image: 'https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png',
         });
       });
     } else if (Notification.permission !== 'denied') {
       Notification.requestPermission().then((permission) => {
         if (permission === 'granted') {
-          setNotificationPermission(true);
+          setNotificationPermission(permission);
           handleShowNotification();
         }
       });
     }
   };
 
-  return (
-    <>
-      <div>
+  const handleAuthDisplay = () => {
+    return (
+      <div style={{ margin: '16px 0' }}>
         {user && user.name && getProfile()}
 
         {user && user.name ? (
@@ -91,16 +101,40 @@ export function AppProvider(props: AppProviderProps) {
           </a>
         )}
         <br />
-        <button
-          onClick={handleShowNotification}
-          style={{
-            backgroundColor: notificationPermission ? 'green' : 'red',
-            padding: '12px',
-          }}
-        >
-          Show Notification
-        </button>
       </div>
+    );
+  };
+
+  const subscriptionButtons = () => {
+    return notificationPermission === 'granted' ? (
+      <button
+        onClick={handleShowNotification}
+        style={{
+          backgroundColor: 'red',
+          padding: '12px',
+          color: '#ffffff',
+        }}
+      >
+        Unsubscribe Notifications
+      </button>
+    ) : (
+      <button
+        onClick={handleShowNotification}
+        style={{
+          backgroundColor: 'green',
+          padding: '12px',
+          color: '#ffffff',
+        }}
+      >
+        Subscribe Notifications
+      </button>
+    );
+  };
+
+  return (
+    <>
+      {handleAuthDisplay()}
+      {subscriptionButtons()}
       {props.children}
     </>
   );

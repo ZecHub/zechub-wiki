@@ -16,6 +16,7 @@ const GITHUB_SECRET = process.env.GITHUB_SECRET;
 const PUSH_NOTIFICATION_API = {
   url: {
     subscription: '/admin/push-notification/api/subscription',
+    subscriptionWelcomeMsgs: '/admin/push-notification/api/subscription/welcome-message',
     notify: {
       one: '/admin/push-notification/api/notify/one',
       all: '/admin/push-notification/api/notify/all',
