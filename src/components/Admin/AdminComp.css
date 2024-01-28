@@ -1,3 +1,10 @@
+.row {
+    display: flex;
+    gap: 24px;
+    direction: row;
+}
+
+
 .admin {
     display: flex;
     flex-direction: column;
@@ -20,6 +27,7 @@ p {
 
 .admin .intro h1 {
     font-weight: 700;
+    font-size: 40px;
 }
 
 .admin .card {
