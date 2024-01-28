@@ -1,11 +1,11 @@
 'use client';
 
+import { useUser } from '@auth0/nextjs-auth0/client';
 import React, { useEffect, useState } from 'react';
 import {
   registerServiceWorker,
   subscribeToPushNotification,
 } from '../lib/push-notification/helpers';
-
 type AppProviderProps = {
   children: React.ReactNode;
 };
@@ -16,6 +16,8 @@ type AppProviderProps = {
  */
 export function AppProvider(props: AppProviderProps) {
   const [notificationPermission, setNotificationPermission] = useState(false);
+
+  const { user, error, isLoading } = useUser();
 
   useEffect(() => {
     navigator.serviceWorker.addEventListener('message', (e) => {
@@ -28,6 +30,19 @@ export function AppProvider(props: AppProviderProps) {
     registerServiceWorker();
   }, [notificationPermission]);
 
+  const getProfile = () => {
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>{error.message}</div>;
+
+    if (user) {
+      return (
+        <div style={{ padding: '12px' }}>
+          <img src={user.picture!} alt={user.name!} />
+          <h2>{user.name}</h2>
+        </div>
+      );
+    }
+  };
   /**
    * This function activates the push notification
    */
@@ -57,18 +72,31 @@ export function AppProvider(props: AppProviderProps) {
 
   return (
     <>
-      {/* {permission && (
-        <div className='static'>
-          <button onClick={async () => await initPushNotification()}>
-            Subscribe to the latest events
-          </button>
-        </div>
-      )} */}
       <div>
+        {user && user.name && getProfile()}
+
+        {user && user.name ? (
+          <a
+            href='/api/auth/logout'
+            style={{ backgroundColor: 'gray', padding: '12px' }}
+          >
+            Logout
+          </a>
+        ) : (
+          <a
+            href='/api/auth/login'
+            style={{ backgroundColor: 'green', padding: '12px' }}
+          >
+            Login
+          </a>
+        )}
         <br />
         <button
           onClick={handleShowNotification}
-          style={{ backgroundColor: notificationPermission ? 'green' : 'red' }}
+          style={{
+            backgroundColor: notificationPermission ? 'green' : 'red',
+            padding: '12px',
+          }}
         >
           Show Notification
         </button>
