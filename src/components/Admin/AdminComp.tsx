@@ -5,7 +5,7 @@ import { UserProfile } from '@auth0/nextjs-auth0/client';
 import Link from 'next/link';
 
 type AdminCompProps = {
-  user: UserProfile | undefined;
+  user?: UserProfile | undefined;
 };
 
 export const AdminComp = (props: AdminCompProps) => {
