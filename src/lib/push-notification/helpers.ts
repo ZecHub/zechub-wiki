@@ -1,4 +1,4 @@
-import { WEB_PUSH_VAPID_PUBLIC_KEY } from '@/config';
+import { PUSH_NOTIFICATION_API, WEB_PUSH_VAPID_PUBLIC_KEY } from '@/config';
 
 /**
  * Thi registers the service worker
@@ -38,70 +38,74 @@ export const subscribeToPushNotification = async () => {
       applicationServerKey: urlB64ToUint8Array(WEB_PUSH_VAPID_PUBLIC_KEY),
     });
 
-    console.log('Push subscription:', JSON.stringify(subscription));
-
     // Send the subscription to your server for future use
-    // Example: Send subscription to your backend
-    // axios.post('/api/subscribe', { subscription });
+    await sendToServer({
+      url: PUSH_NOTIFICATION_API.url.subscription,
+      subscribers: subscription,
+      payload: {},
+    });
   } catch (error) {
     console.error('Error subscribing to push notifications:', error);
+    throw error;
   }
 };
 
- 
-// export async function sendNotifications(subscribers: any[]) {
-//   // Create notification content
-//   const notification = JSON.stringify({
-//     title: 'Hello, Notification',
-//     options: {
-//       body: `ID: ${Math.floor(Math.random() * 100)}`,
-//     },
-//   });
+type NotificationTypes = {
+  payload: Record<string, any>;
+  subscribers: Record<string, any> | Record<string, any>[];
+};
+type SendToServerTypes = {
+  url: string;
+} & NotificationTypes;
 
-//   try {
-//     // send push message to client in the subscribers array
-//     subscribers.forEach(async (sub) => {
-//       const endpoint = String(sub.endpoint);
-//       const id = endpoint.substring(endpoint.length - 8, endpoint.length);
+async function sendToServer(args: SendToServerTypes) {
+  try {
+    await fetch(args.url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ payload: args.payload, sub: args.subscribers }),
+    });
+  } catch (err) {
+    throw err;
+  }
+}
 
-//       const res = await webpush.sendNotification(sub, notification, {
-//         TTL: 1000,
-//         vapidDetails: {
-//           subject: `mailto:${WEB_PUSH_VAPID_SUBJECT}`,
-//           publicKey: WEB_PUSH_VAPID_PUBLIC_KEY,
-//           privateKey: WEB_PUSH_VAPID_PRIVATE_KEY,
-//         },
-//       });
+export async function sendNotifications(
+  subscribers: Record<string, any> | Record<string, any>[],
+  payload: Record<string, any>
+) {
+  await sendToServer({
+    url: PUSH_NOTIFICATION_API.url.notify.one,
+    payload,
+    subscribers,
+  });
+}
 
-//       console.log(`Endpoint ID: ${id}`);
-//       console.log(`Result: ${res.statusCode}`);
-//     });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
+export async function sendNotificationToOne(
+  subscribers: Record<string, any> | Record<string, any>[],
+  payload: Record<string, any>
+) {
 
-// export function sendSubToSever(sub: PushSubscription, serverURL: string) {
-//   return fetch('serverURL', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(sub),
-//   })
-//     .then((res) => {
-//       if (!res.ok) {
-//         throw new Error('Post not successful...');
-//       }
+  await sendToServer({
+    url: PUSH_NOTIFICATION_API.url.notify.one,
+    payload,
+    subscribers,
+  });
+}
 
-//       return res.json();
-//     })
-//     .then((d) => {
-//       if (!(d.data && d.data.success)) {
-//         throw new Error('No response!');
-//       }
-//     });
-// }
+export async function sendNotificationToAll({
+  subscribers,
+  payload,
+}: NotificationTypes) {
+
+  sendToServer({
+    url: PUSH_NOTIFICATION_API.url.notify.all,
+    payload,
+    subscribers,
+  });
+}
 
 /**
  * This function check is a window client is the currently focus (active)
