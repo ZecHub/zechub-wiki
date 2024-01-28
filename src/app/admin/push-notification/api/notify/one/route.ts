@@ -1,6 +1,6 @@
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
 import { ObjectId } from 'mongodb';
-import { sendNotifications } from '../../_helpers';
+import { sendNotifications } from '../../apiHelpers';
 
 const mongo = {
   mongodbClient,
@@ -32,6 +32,7 @@ export async function POST(req: Request, res: Response) {
       _id: id,
     });
     const res = await cursor.toArray();
+
     const updateResult = await webpushSubscribers.updateOne(
       { _id: id },
       {
@@ -47,8 +48,6 @@ export async function POST(req: Request, res: Response) {
         payload: body.payload,
         subscribers: [res[0].sub],
       });
-
-      // cursor.close();
     }
 
     return new Response('', {

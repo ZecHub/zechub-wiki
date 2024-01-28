@@ -1,5 +1,5 @@
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
-import { sendNotifications } from '../../_helpers';
+import { sendNotifications } from '../../apiHelpers';
 
 const mongo = {
   mongodbClient,
