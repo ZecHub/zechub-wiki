@@ -31,31 +31,30 @@ tr:nth-child(even) {
     display: flex;
     justify-content: center;
     align-content: center;
-    /* color: #444444; */
-    color: rgb(38, 55, 131)
+    color: rgb(38, 55, 131);
+    margin-top: 48px;
 }
 
 .subscribers .notify-btn {
-
-    border-radius: 8px;
+    border-radius: 4px;
     background-color: rgb(76, 127, 110);
     color: white;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .subscribers button {
-    border: 1px solid #c4c4c4;
-    border-radius: 8px;
-    padding: 2px 8px;
+    background-color: #d1d1d1;
+    min-width: 200px;
+    border-radius: 4px;
 }
 
 .subscribers button:hover {
-    background-color: #d1d1d1;
+    background-color: #bab8b8;
 }
 
 .subscribers-header {
     display: flex;
-    justify-content: space-between;
+    gap: 32px;
 }
 
 .tooltip {
