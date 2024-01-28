@@ -83,7 +83,7 @@ export function ListOfSubscribers() {
           List of subscribers
         </h3>
 
-        <div className='subscribers-header  mx-auto mb-8 '>
+        <div className='subscribers-header'>
           <button onClick={handleGetListOfSubscriber}>Get Subscribers</button>
           <input
             type='text'
@@ -92,7 +92,7 @@ export function ListOfSubscribers() {
           />
           {subscribers.length > 0 && (
             <button
-              className='notify-btn'
+              className=' notify-btn'
               onClick={() => {
                 setNotifyAll(true);
               }}
@@ -104,7 +104,7 @@ export function ListOfSubscribers() {
 
         {isLoading ? (
           <div className='loading'>
-            <Spinner style={{ width: '64px', height: '64px' }} />
+            <Spinner style={{ width: '32px', height: '32px' }} />
           </div>
         ) : (
           subscribers &&
