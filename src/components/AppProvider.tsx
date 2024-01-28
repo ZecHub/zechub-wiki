@@ -1,12 +1,13 @@
 'use client';
 
+import { getSubscriberWelcomeMessage } from '@/app/actions';
 import { useUser } from '@auth0/nextjs-auth0/client';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import {
   registerServiceWorker,
   subscribeToPushNotification,
 } from '../lib/push-notification/pushHelpers';
-import Image from 'next/image';
 
 type AppProviderProps = {
   children: React.ReactNode;
@@ -39,7 +40,14 @@ export function AppProvider(props: AppProviderProps) {
 
     if (user) {
       return (
-        <div style={{ padding: '12px', display:'flex', gap: '12px', alignItems: 'center' }}>
+        <div
+          style={{
+            padding: '12px',
+            display: 'flex',
+            gap: '12px',
+            alignItems: 'center',
+          }}
+        >
           <Image
             width={40}
             height={40}
@@ -55,21 +63,24 @@ export function AppProvider(props: AppProviderProps) {
   /**
    * This function activates the push notification
    */
-  const handleShowNotification = () => {
+  const handleShowNotification = async () => {
     if (!('Notification' in window)) {
       throw new Error('No support for Notification API');
     }
 
     if (Notification.permission === 'granted') {
       subscribeToPushNotification();
+      const { data } = await getSubscriberWelcomeMessage();
 
-      navigator.serviceWorker.ready.then((reg) => {
-        reg.showNotification('ZecHub Notification', {
-          body: 'This is a notification from your ZecHub!',
-          icon: 'https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png',
-          image: 'https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png',
+      if (Array.isArray(data)) {
+        navigator.serviceWorker.ready.then((reg) => {
+          reg.showNotification(data[0].title, {
+            body: data[0].body, // 'This is a notification from your ZecHub!',
+            icon: data[0].icon, // 'https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png',
+            image: data[0].image, // 'https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png',
+          });
         });
-      });
+      }
     } else if (Notification.permission !== 'denied') {
       Notification.requestPermission().then((permission) => {
         if (permission === 'granted') {
