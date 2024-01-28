@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export const WelcomeMessage = () => {
+export const SubscriberWelcomeMessage = () => {
   const [form, setForm] = useState();
   const [subscribersWelcomMsg, setSubscribersWelcomMsg] = useState<any[]>([]);
 
