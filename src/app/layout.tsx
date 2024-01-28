@@ -1,18 +1,18 @@
-import './globals.css'
+import './globals.css';
 
+import { Footer, Navigation } from '@/components';
+import { AppProvider } from '@/components/AppProvider';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { Navigation, Footer } from '@/components'
-import { AppProvider } from '@/components/AppProvider'
-
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'ZecHub Wiki',
   description: 'An open source education hub for Zcash',
-  icons: 'https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png'
-}
+  icons: 'https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png',
+};
 
 export default function RootLayout({
   children,
@@ -24,11 +24,13 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.className} px-12`}>
-        <AppProvider>
-          <Navigation />
-          {children}
-          <Footer />
-        </AppProvider>
+        <UserProvider>
+          <AppProvider>
+            <Navigation />
+            <div style={{ margin: '48px 0' }}>{children}</div>
+            <Footer />
+          </AppProvider>
+        </UserProvider>
       </body>
     </html>
   );
