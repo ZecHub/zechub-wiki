@@ -10,8 +10,7 @@ export const registerServiceWorker = () => {
     throw new Error('No support for service worker');
   }
 
-  navigator.serviceWorker
-    .register('sw.js')
+  navigator.serviceWorker.register('./sw.js')
     .then((swReg) => {
       console.log('Service Worker registered with scope: ', swReg.scope);
     })

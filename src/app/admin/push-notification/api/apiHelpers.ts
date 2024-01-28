@@ -41,8 +41,7 @@ export const sendNotifications = async ({
       return res.statusCode;
     });
   } catch (err) {
-    // console.log(`Endpoint ID: ${id}`);
-    console.log(`Error: ${err} `);
+    console.log(`Error 101: ${err} `);
     throw err;
   }
 };
