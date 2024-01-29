@@ -16,7 +16,10 @@ const GITHUB_SECRET = process.env.GITHUB_SECRET;
 const PUSH_NOTIFICATION_API = {
   url: {
     subscription: '/admin/push-notification/api/subscription',
-    subscriptionWelcomeMsgs: '/admin/push-notification/api/subscription/welcome-message',
+    removeSubscription:
+      '/admin/push-notification/api/subscription/remove-unsubscription',
+    subscriptionWelcomeMsgs:
+      '/admin/push-notification/api/subscription/welcome-message',
     notify: {
       one: '/admin/push-notification/api/notify/one',
       all: '/admin/push-notification/api/notify/all',
@@ -24,7 +27,9 @@ const PUSH_NOTIFICATION_API = {
   },
 };
 
+const NOTIFICATION_PERMISSION = 'zechub-wiki-notification-permission';
 export {
+  NOTIFICATION_PERMISSION,
   GITHUB_ID,
   GITHUB_SECRET,
   MONGO_DB_CONNECTION_STRING_DEV,

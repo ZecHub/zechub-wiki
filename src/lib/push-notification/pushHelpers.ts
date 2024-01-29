@@ -1,4 +1,5 @@
 import { PUSH_NOTIFICATION_API, WEB_PUSH_VAPID_PUBLIC_KEY } from '@/config';
+import { logger } from '../helpers';
 
 /**
  * Thi registers the service worker
@@ -10,7 +11,8 @@ export const registerServiceWorker = () => {
     throw new Error('No support for service worker');
   }
 
-  navigator.serviceWorker.register('./sw.js')
+  navigator.serviceWorker
+    .register('./sw.js')
     .then((swReg) => {
       console.log('Service Worker registered with scope: ', swReg.scope);
     })
@@ -24,9 +26,9 @@ export const requestPermissionForNotification = async () => {
 
   if (permission !== 'granted') {
     throw new Error('Notification permission not granted');
-  } else {
-    return permission;
   }
+ 
+  return permission;
 };
 
 export const subscribeToPushNotification = async () => {
@@ -39,6 +41,7 @@ export const subscribeToPushNotification = async () => {
 
     // Send the subscription to your server for future use
     await sendToServer({
+      method: 'POST',
       url: PUSH_NOTIFICATION_API.url.subscription,
       subscribers: subscription,
       payload: {},
@@ -49,18 +52,49 @@ export const subscribeToPushNotification = async () => {
   }
 };
 
+export const unsubscribeToPushNotification = async () => {
+  try {
+    const registration = await navigator.serviceWorker.getRegistration();
+    const sub = await registration?.pushManager.getSubscription();
+    console.log('unsubscribeToPushNotification1...', sub);
+
+    // if (sub?.endpoint) {
+    //   console.log('unsubscribeToPushNotification2...');
+    //   // Send the subscription to your server to delete client from db
+    //   await sendToServer({
+    //     url: PUSH_NOTIFICATION_API.url.removeSubscription,
+    //     method: 'DELETE',
+    //     payload: { endpoint: sub?.endpoint },
+    //   });
+
+    //   // unsubscribe client
+    //   await sub.unsubscribe();
+    // }
+  } catch (err) {
+    logger({
+      description: 'Error unsubscribing from push notifications:',
+      data: err,
+      type: 'error',
+    });
+    throw err;
+  }
+};
+
 type NotificationTypes = {
   payload: Record<string, any>;
-  subscribers: Record<string, any> | Record<string, any>[];
+  subscribers?: Record<string, any> | Record<string, any>[];
 };
 type SendToServerTypes = {
   url: string;
+  method: 'POST' | 'GET' | 'UPDATE' | 'OPTION' | 'DELETE';
 } & NotificationTypes;
 
 async function sendToServer(args: SendToServerTypes) {
   try {
+    console.log('unsubscribe sendToServer...', args);
+
     await fetch(args.url, {
-      method: 'POST',
+      method: args.method,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -76,6 +110,7 @@ export async function sendNotifications(
   payload: Record<string, any>
 ) {
   await sendToServer({
+    method: 'POST',
     url: PUSH_NOTIFICATION_API.url.notify.one,
     payload,
     subscribers,
@@ -86,8 +121,8 @@ export async function sendNotificationToOne(
   subscribers: Record<string, any> | Record<string, any>[],
   payload: Record<string, any>
 ) {
-
   await sendToServer({
+    method: 'POST',
     url: PUSH_NOTIFICATION_API.url.notify.one,
     payload,
     subscribers,
@@ -98,8 +133,8 @@ export async function sendNotificationToAll({
   subscribers,
   payload,
 }: NotificationTypes) {
-
   sendToServer({
+    method: 'POST',
     url: PUSH_NOTIFICATION_API.url.notify.all,
     payload,
     subscribers,

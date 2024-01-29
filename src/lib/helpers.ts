@@ -54,7 +54,6 @@ export const getBanner = (name: string) => {
  * @returns The wrapped sentence
  */
 export const wordWrap = (txt: string, wrapAfter: number) => {
-
   if (txt.trim().length > wrapAfter) {
     return txt.slice(0, wrapAfter) + '...';
   }
@@ -64,7 +63,8 @@ export const wordWrap = (txt: string, wrapAfter: number) => {
 
 type LoggerType = {
   description: string;
-  err: any;
+  data: any;
+  type: 'error' | 'log' | 'warn' | 'debug';
 };
 /**
  * This function logs error
@@ -72,7 +72,20 @@ type LoggerType = {
  */
 export const logger = (args: LoggerType) => {
   if (process.env.NODE_ENV != 'production') {
-    console.error(`${args.description}: `, args.err);
+    switch (args.type) {
+      case 'debug':
+        console.debug(`${args.description}: `, args.data);
+        break;
+      case 'error':
+        console.error(`${args.description}: `, args.data);
+        break;
+      case 'warn':
+        console.warn(`${args.description}: `, args.data);
+        break;
+      default:
+        console.log(`${args.description}: `, args.data);
+        break;
+    }
   } else {
     // TODO: set up ErrorService
   }
