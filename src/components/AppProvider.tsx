@@ -1,13 +1,20 @@
 'use client';
 
 import { getSubscriberWelcomeMessage } from '@/app/actions';
+import { NOTIFICATION_PERMISSION } from '@/config';
+import { logger } from '@/lib/helpers';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import {
   registerServiceWorker,
+  requestPermissionForNotification,
   subscribeToPushNotification,
+  unsubscribeToPushNotification,
 } from '../lib/push-notification/pushHelpers';
+
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type AppProviderProps = {
   children: React.ReactNode;
@@ -19,20 +26,36 @@ type AppProviderProps = {
  */
 export function AppProvider(props: AppProviderProps) {
   const [notificationPermission, setNotificationPermission] =
-    useState<NotificationPermission>();
+    useState<NotificationPermission>('default');
 
   const { user, error, isLoading } = useUser();
 
   useEffect(() => {
-    navigator.serviceWorker.addEventListener('message', (e) => {
-      // handle the notification
-      console.log('Notification received: ', e.data);
+    const notificationPermission = localStorage.getItem(
+      NOTIFICATION_PERMISSION
+    );
+
+    if (notificationPermission === 'granted') {
+      setNotificationPermission(notificationPermission);
+    }
+
+    logger({
+      description: 'notificationPermission: ',
+      data: notificationPermission,
+      type: 'log',
     });
-  });
+  }, []);
 
   useEffect(() => {
-    registerServiceWorker();
-  }, [notificationPermission, isLoading]);
+    navigator.serviceWorker.addEventListener('message', (e) => {
+      // handle the notification
+      logger({
+        description: 'Notification received',
+        data: e.data,
+        type: 'log',
+      });
+    });
+  });
 
   const getProfile = () => {
     if (isLoading) return <div>Loading...</div>;
@@ -60,34 +83,70 @@ export function AppProvider(props: AppProviderProps) {
       );
     }
   };
+
   /**
    * This function activates the push notification
    */
-  const handleShowNotification = async () => {
+  const handleSubscribePushNotification = async () => {
     if (!('Notification' in window)) {
-      throw new Error('No support for Notification API');
+      toast.info('No support for Notification API!', {
+        position: 'bottom-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        pauseOnHover: true,
+        progress: undefined,
+        theme: 'colored',
+        transition: Bounce,
+      });
     }
 
-    if (Notification.permission === 'granted') {
-      subscribeToPushNotification();
+    const notificationPermission = localStorage.getItem(
+      NOTIFICATION_PERMISSION
+    );
+
+    if (notificationPermission === 'granted') {
+      registerServiceWorker();
+      await subscribeToPushNotification();
+
       const { data } = await getSubscriberWelcomeMessage();
 
       if (Array.isArray(data)) {
         navigator.serviceWorker.ready.then((reg) => {
           reg.showNotification(data[0].title, {
-            body: data[0].body, // 'This is a notification from your ZecHub!',
-            icon: data[0].icon, // 'https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png',
-            image: data[0].image, // 'https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png',
+            body: data[0].body,
+            icon: data[0].icon,
+            image: data[0].image,
           });
         });
       }
-    } else if (Notification.permission !== 'denied') {
-      Notification.requestPermission().then((permission) => {
+    } else if (notificationPermission != 'denied') {
+      try {
+        const permission = await requestPermissionForNotification();
         if (permission === 'granted') {
+          localStorage.setItem(NOTIFICATION_PERMISSION, permission);
           setNotificationPermission(permission);
-          handleShowNotification();
+          await handleSubscribePushNotification();
         }
-      });
+      } catch (err: any) {
+        logger({
+          description: 'Push Permission not granted!',
+          data: err,
+          type: 'error',
+        });
+      }
+    }
+  };
+
+  const handleUnsubscribePushNotification = async () => {
+    await unsubscribeToPushNotification();
+
+    // unregister serviceWorker
+    const swReg = await navigator.serviceWorker.getRegistration();
+    if (swReg?.active?.state === 'activated') {
+      await swReg.unregister();
+
+      localStorage.removeItem(NOTIFICATION_PERMISSION);
+      setNotificationPermission('default');
     }
   };
 
@@ -117,9 +176,14 @@ export function AppProvider(props: AppProviderProps) {
   };
 
   const subscriptionButtons = () => {
+    console.log(
+      'notificationPermission === granted',
+      notificationPermission === 'granted'
+    );
+
     return notificationPermission === 'granted' ? (
       <button
-        onClick={handleShowNotification}
+        onClick={handleUnsubscribePushNotification}
         style={{
           backgroundColor: 'red',
           padding: '12px',
@@ -130,7 +194,7 @@ export function AppProvider(props: AppProviderProps) {
       </button>
     ) : (
       <button
-        onClick={handleShowNotification}
+        onClick={async () => handleSubscribePushNotification()}
         style={{
           backgroundColor: 'green',
           padding: '12px',
@@ -147,6 +211,19 @@ export function AppProvider(props: AppProviderProps) {
       {handleAuthDisplay()}
       {subscriptionButtons()}
       {props.children}
+      <ToastContainer
+        position='bottom-center'
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={'colored'}
+        transition={Bounce}
+      />
     </>
   );
 }
