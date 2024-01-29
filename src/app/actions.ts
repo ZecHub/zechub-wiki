@@ -20,7 +20,6 @@ export type SubscriberWelcomeMessageType = {
 export async function handlerCreateSubscriberWelcomeMessage(
   formData: FormData
 ) {
- 
   const schema = z.object({
     title: z.string().min(5),
     body: z.string().min(10),
@@ -35,7 +34,6 @@ export async function handlerCreateSubscriberWelcomeMessage(
     image: formData.get('image'),
   });
 
-
   try {
     const webpushSubscribers = mongo.db.collection(mongo.collectionName);
     const res = await webpushSubscribers.insertOne(d);
@@ -47,7 +45,11 @@ export async function handlerCreateSubscriberWelcomeMessage(
       },
     };
   } catch (err) {
-    logger({ description: 'handlerCreateSubscriberWelcomeMessage', err });
+    logger({
+      description: 'handlerCreateSubscriberWelcomeMessage',
+      data: err,
+      type: 'error',
+    });
     return { data: 'Failed to save data.' };
   }
 }
@@ -75,7 +77,11 @@ export async function getSubscriberWelcomeMessage(): Promise<{
       data: parseData,
     };
   } catch (err) {
-    logger({ description: 'getSubscriberWelcomeMessage', err });
+    logger({
+      description: 'getSubscriberWelcomeMessage',
+      data: err,
+      type: 'error',
+    });
     return { data: 'Failed to fetch data.' };
   }
 }

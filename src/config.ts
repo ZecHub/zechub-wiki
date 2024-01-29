@@ -17,7 +17,7 @@ const PUSH_NOTIFICATION_API = {
   url: {
     subscription: '/admin/push-notification/api/subscription',
     removeSubscription:
-      '/admin/push-notification/api/subscription/remove-unsubscription',
+      '/admin/push-notification/api/remove-subscription',
     subscriptionWelcomeMsgs:
       '/admin/push-notification/api/subscription/welcome-message',
     notify: {

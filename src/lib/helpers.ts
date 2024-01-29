@@ -84,7 +84,6 @@ export const logger = (args: LoggerType) => {
         break;
       default:
         console.log(`${args.description}: `, args.data);
-        break;
     }
   } else {
     // TODO: set up ErrorService

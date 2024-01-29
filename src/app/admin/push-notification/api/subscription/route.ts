@@ -51,27 +51,15 @@ export const GET = withApiAuthRequired(async function pushNotificationApiRoute(
   }
 });
 
-export const POST = withApiAuthRequired(async function pushNotificationApiRoute(
-  req
-) {
-  const res = new NextResponse();
-  const { user }: any = await getSession(req, res); // TODO: check for user.role === 'admin'
-
-  if (!user) {
-    return new Response('', {
-      status: 401,
-      statusText: 'Unauthorized',
-    });
-  }
-
+export async function POST(req: Request) {
   try {
-    const doc = await req.json();
+    const data = await req.json();
 
     const webpushSubscribers = mongo.db.collection(mongo.collectionName);
-    await webpushSubscribers.insertOne(doc);
+    const doc = await webpushSubscribers.insertOne(data);
 
-    return new Response('', {
-      status: 200,
+    return new Response(String(doc.acknowledged), {
+      status: 201,
       statusText: 'Ok',
     });
   } catch (err) {
@@ -79,46 +67,5 @@ export const POST = withApiAuthRequired(async function pushNotificationApiRoute(
       status: 500,
       statusText: 'Faild to save',
     });
-  } finally {
-    // mongo.mongodbClient.close();
   }
-});
-
-export const DELETE = withApiAuthRequired(
-  async function pushNotificationApiRoute(req) {
-    const res = new NextResponse();
-    const { user }: any = await getSession(req, res); // TODO: check for user.role === 'admin'
-
-    if (user.role != 'admin') {
-      return new Response('', {
-        status: 401,
-        statusText: 'Unauthorized',
-      });
-    }
-
-    try {
-      const query = await req.json();
-
-      const webpushSubscribers = mongo.db.collection(mongo.collectionName);
-      const result = await webpushSubscribers.deleteOne({ _id: query.id });
-
-      if (result.deletedCount === 1) {
-        console.log('Successfully deleted one document.');
-      } else {
-        console.log('No documents matched the query. Deleted 0 documents.');
-      }
-
-      return new Response('', {
-        status: 200,
-        statusText: 'Ok',
-      });
-    } catch (err) {
-      return new Response('', {
-        status: 301,
-        statusText: 'Faild to delete',
-      });
-    } finally {
-      // mongo.mongodbClient.close();
-    }
-  }
-);
+}

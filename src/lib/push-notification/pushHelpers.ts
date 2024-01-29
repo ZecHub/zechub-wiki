@@ -8,17 +8,29 @@ import { logger } from '../helpers';
  */
 export const registerServiceWorker = () => {
   if (!('serviceWorker' in navigator)) {
-    throw new Error('No support for service worker');
+    throw Error('No support for service worker');
   }
 
-  navigator.serviceWorker
-    .register('./sw.js')
-    .then((swReg) => {
-      console.log('Service Worker registered with scope: ', swReg.scope);
-    })
-    .catch((err) => {
-      console.log('Service Worker registration failed:', err);
+  // return navigator.serviceWorker
+  //   .register('./sw.js', {
+  //     scope: './', // TODO: come back to this and remove scope
+  //   })
+  //   .then((swReg) => {
+  //     console.log('Service Worker registered with scope: ', swReg.scope);
+  //     return swReg;
+  //   })
+  // .catch((err) => {
+  // });
+
+  try {
+    const swReg = navigator.serviceWorker.register('./sw.js', {
+      scope: './',
     });
+    return swReg;
+  } catch (err) {
+    console.log('Service Worker registration failed:', err);
+    throw err;
+  }
 };
 
 export const requestPermissionForNotification = async () => {
@@ -27,7 +39,7 @@ export const requestPermissionForNotification = async () => {
   if (permission !== 'granted') {
     throw new Error('Notification permission not granted');
   }
- 
+
   return permission;
 };
 
@@ -47,29 +59,32 @@ export const subscribeToPushNotification = async () => {
       payload: {},
     });
   } catch (error) {
-    console.error('Error subscribing to push notifications:', error);
     throw error;
   }
 };
 
-export const unsubscribeToPushNotification = async () => {
+export const unsubscribeToPushNotification = async (): Promise<{
+  sub: PushSubscription | null | undefined;
+  response: Response;
+  swRegistration: ServiceWorkerRegistration | undefined;
+}> => {
   try {
-    const registration = await navigator.serviceWorker.getRegistration();
-    const sub = await registration?.pushManager.getSubscription();
-    console.log('unsubscribeToPushNotification1...', sub);
+    const swRegistration = await navigator.serviceWorker.getRegistration();
+    const sub = await swRegistration?.pushManager.getSubscription();
+    logger({ description: 'subscription: ', data: sub, type: 'log' });
 
-    // if (sub?.endpoint) {
-    //   console.log('unsubscribeToPushNotification2...');
-    //   // Send the subscription to your server to delete client from db
-    //   await sendToServer({
-    //     url: PUSH_NOTIFICATION_API.url.removeSubscription,
-    //     method: 'DELETE',
-    //     payload: { endpoint: sub?.endpoint },
-    //   });
+    let response: Response = {} as any;
 
-    //   // unsubscribe client
-    //   await sub.unsubscribe();
-    // }
+    if (sub?.endpoint) {
+      // Send the subscription to your server to delete client from db
+      response = await sendToServer({
+        url: PUSH_NOTIFICATION_API.url.removeSubscription,
+        method: 'DELETE',
+        payload: { endpoint: sub?.endpoint },
+      });
+    }
+
+    return { sub, response, swRegistration };
   } catch (err) {
     logger({
       description: 'Error unsubscribing from push notifications:',
@@ -89,17 +104,18 @@ type SendToServerTypes = {
   method: 'POST' | 'GET' | 'UPDATE' | 'OPTION' | 'DELETE';
 } & NotificationTypes;
 
-async function sendToServer(args: SendToServerTypes) {
+export async function sendToServer(args: SendToServerTypes) {
   try {
-    console.log('unsubscribe sendToServer...', args);
-
-    await fetch(args.url, {
+    logger({ description: 'sendToServer...', data: args, type: 'log' });
+    const res = await fetch(args.url, {
       method: args.method,
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ payload: args.payload, sub: args.subscribers }),
     });
+
+    return res;
   } catch (err) {
     throw err;
   }
