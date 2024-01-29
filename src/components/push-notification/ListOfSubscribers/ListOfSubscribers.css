@@ -57,6 +57,13 @@ tr:nth-child(even) {
     gap: 32px;
 }
 
+.no-subscribers{
+    color: #8a8787;
+    font-size: 20px;
+    padding: 24px 0;
+    margin: 48px 0;
+    text-align: center;
+}
 .tooltip {
     position: relative;
     display: inline-block;
