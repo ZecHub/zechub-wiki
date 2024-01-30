@@ -1,5 +1,6 @@
 import { PUSH_NOTIFICATION_API, WEB_PUSH_VAPID_PUBLIC_KEY } from '@/config';
 import { logger } from '../helpers';
+import { Subscriber } from '@/components/push-notification/ListOfSubscribers/ListOfSubscribers';
 
 /**
  * Thi registers the service worker
@@ -23,13 +24,13 @@ export const registerServiceWorker = () => {
   // });
 
   try {
-    const swReg = navigator.serviceWorker.register('./sw.js', {
-      scope: './',
+    const swReg = navigator.serviceWorker.register('/sw.js', {
+      scope: '/',
     });
     return swReg;
   } catch (err) {
-    console.log('Service Worker registration failed:', err);
-    throw err;
+    console.error('Service Worker registration failed:', err);
+    // throw err;
   }
 };
 
@@ -122,7 +123,7 @@ export async function sendToServer(args: SendToServerTypes) {
 }
 
 export async function sendNotifications(
-  subscribers: Record<string, any> | Record<string, any>[],
+  subscribers: Subscriber[] | Subscriber,
   payload: Record<string, any>
 ) {
   await sendToServer({
@@ -204,27 +205,6 @@ export async function sendNotificationToAll({
 //   reg.waiting.postMessage('skip-waiting');
 // };
 
-// notify?.addEventListener('click', (e) => {
-//   console.log(e);
-// });
-// notify?.addEventListener('show', (e) => {
-//   console.log(e);
-// });
-// notify?.addEventListener('close', (e) => {
-//   console.log(e);
-// });
-// notify?.addEventListener('error', (e) => {
-//   console.log(e);
-// });
-
-// self.addEventListener('push', (e) => {
-//   if (e.data) {
-//     console.log('has data');
-//   }
-
-//   const p = self.registration.show('hello worl');
-//   e.waitUntil(p);
-// });
 
 /* Utility functions. */
 

@@ -53,13 +53,43 @@ export const getBanner = (name: string) => {
  * @param wrapAfter The number of characters to start
  * @returns The wrapped sentence
  */
-export const wordWrap = (txt: string, wrapAfter: number) => {
+const wordWrap = (txt: string, wrapAfter: number) => {
   if (txt.trim().length > wrapAfter) {
     return txt.slice(0, wrapAfter) + '...';
   }
 
   return txt;
 };
+
+/**
+ * String formating functions
+ */
+export const formatString = {
+  wordWrap,
+  removeUnderScore: (str: string) => {
+    if (!str.includes('_')) {
+      return str.toUpperCase()
+    } else {
+      return str.split('_').join(' ').toUpperCase()
+    }
+  },
+
+  titleCase: (str: string) => {
+    return str.slice(0, 1).toUpperCase() + str.slice(1)
+  },
+  truncate: (str: string, startAt: 'left' | 'middle' | 'right', numOfLetter: number) => {
+    // TODO: finish this up
+
+    if (startAt == 'left') {
+      str = '.'.repeat(numOfLetter) + str.slice(numOfLetter)
+    } else if (startAt == 'middle') {
+      str = str.slice(0, numOfLetter) + '.'.repeat(5) + str.slice(str.length - numOfLetter)
+    } else if (startAt == 'right') {
+      str = str.slice(0, numOfLetter) + str.slice(numOfLetter) + '.'.repeat(numOfLetter)
+    }
+    return str
+  },
+}
 
 type LoggerType = {
   description: string;
