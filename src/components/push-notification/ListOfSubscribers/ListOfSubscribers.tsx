@@ -5,9 +5,10 @@ import { formatString } from '@/lib/helpers';
 import { sendNotifications } from '@/lib/push-notification/pushHelpers';
 import { useCallback, useState } from 'react';
 import { Modal } from '../../ui/Modal';
-import { Spinner } from '../../ui/spinner/Spinner';
+import { Spinner } from 'flowbite-react';
 import { SendNotificationForm } from '../send-notification-form/SendNotificationForm';
 import './ListOfSubscribers.css';
+import { NotificationIcon } from '@/components/ui/NotificationIcon';
 
 export type Subscriber = {
   id: string;
@@ -119,11 +120,11 @@ export function ListOfSubscribers() {
 
         {isLoading ? (
           <div className='loading'>
-            <Spinner style={{ width: '32px', height: '32px' }} />
+            <Spinner aria-label='Default status example' />
           </div>
         ) : subscribers && subscribers.length > 0 ? (
           <div style={{ overflowX: 'auto' }}>
-            <table className=' my-16 mx-auto border-spacing-1 border border-slate-500'>
+            <table className='my-16 mx-auto border-spacing-1 border border-slate-500'>
               <thead
                 style={{
                   backgroundColor: '#c1c1c1',
@@ -155,10 +156,14 @@ export function ListOfSubscribers() {
                       </td>
                       <td
                         className='h-1 p-3 m-3 border-spacing-8 cursor-pointer'
-                        onClick={() => handleNotifyOne(sub)}
+                        // onClick={() => handleNotifyOne(sub)}
                       >
                         <span className='tooltip'>
-                          {'🔔'}
+                          <NotificationIcon
+                            fillColor='#666'
+                            path=' M17.1 12.6v-1.8A5.4 5.4 0 0 0 13 5.6V3a1 1 0 0 0-2 0v2.4a5.4 5.4 0 0 0-4 5.5v1.8c0 2.4-1.9 3-1.9 4.2 0 .6 0 1.2.5 1.2h13c.5 0 .5-.6.5-1.2 0-1.2-1.9-1.8-1.9-4.2ZM8.8 19a3.5 3.5 0 0 0 6.4 0H8.8Z'
+                            handleOnClick={() => handleNotifyOne(sub)}
+                          />
                           <span className='tooltiptext'>Notify this user</span>
                         </span>
                       </td>
