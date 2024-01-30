@@ -11,8 +11,8 @@ const MONGO_DB_CONNECTION_STRING_DEV =
 const MONGO_DB_CONNECTION_STRING_PROD =
   process.env.MONGO_DB_CONNECTION_STRING_PROD || '';
 
-const GITHUB_APP_CLIENT_ID = process.env.GITHUB_ID || '';
-const GITHUB_APP_CLIENT_SECRET = process.env.GITHUB_SECRET || '';
+const GITHUB_ID = process.env.GITHUB_ID || '';
+const GITHUB_SECRET = process.env.GITHUB_SECRET || '';
 const NEXTAUTH_URL =
   process.env.NODE_ENV !== 'production'
     ? process.env.NEXTAUTH_URL_DEV
@@ -35,8 +35,8 @@ const PUSH_NOTIFICATION_API = {
 const NOTIFICATION_PERMISSION = 'zechub-wiki-notification-permission';
 export {
   NEXTAUTH_URL,
-  GITHUB_APP_CLIENT_ID,
-  GITHUB_APP_CLIENT_SECRET,
+  GITHUB_ID,
+  GITHUB_SECRET,
   MONGO_DB_CONNECTION_STRING_DEV,
   MONGO_DB_CONNECTION_STRING_PROD,
   NEXTAUTH_SECRET,

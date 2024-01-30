@@ -1,5 +1,5 @@
 import { NextAuthOptions } from "next-auth";
-import { NEXTAUTH_SECRET, GITHUB_APP_CLIENT_ID, GITHUB_APP_CLIENT_SECRET } from "./config";
+import { NEXTAUTH_SECRET, GITHUB_ID, GITHUB_SECRET } from "./config";
 import GithubProvider from 'next-auth/providers/github';
 
 export const authOptions: NextAuthOptions = {
@@ -7,8 +7,8 @@ export const authOptions: NextAuthOptions = {
   callbacks: {},
   providers: [
     GithubProvider({
-      clientId: GITHUB_APP_CLIENT_ID,
-      clientSecret: GITHUB_APP_CLIENT_SECRET,
+      clientId: GITHUB_ID,
+      clientSecret: GITHUB_SECRET,
     }),
   ],
 };
