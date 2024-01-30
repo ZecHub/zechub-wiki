@@ -6,8 +6,7 @@ import {
 } from '@/app/actions';
 import { NOTIFICATION_PERMISSION } from '@/config';
 import { logger } from '@/lib/helpers';
-import { useUser } from '@auth0/nextjs-auth0/client';
-
+import { SessionProvider } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import {
   registerServiceWorker,
@@ -32,8 +31,6 @@ type AppProviderProps = {
 export function AppProvider(props: AppProviderProps) {
   const [notificationPermission, setNotificationPermission] =
     useState<NotificationPermission>('default');
-
-
 
   useEffect(() => {
     const notifyPermission = localStorage.getItem(NOTIFICATION_PERMISSION);
@@ -139,8 +136,6 @@ export function AppProvider(props: AppProviderProps) {
     }
   };
 
-
-
   const subscriptionButtons = () => {
     return (
       <div
@@ -153,7 +148,9 @@ export function AppProvider(props: AppProviderProps) {
         }}
       >
         {notificationPermission === 'granted' ? (
-          <div className='flex gap-2'>
+          <div
+            className='flex gap-2'
+          >
             <Tooltip content=' Unsubscribe Notifications' placement='left'>
               <NotificationIcon
                 fillColor='red'
@@ -180,8 +177,7 @@ export function AppProvider(props: AppProviderProps) {
   };
 
   return (
-    <>
-      {/* {handleAuthDisplay()} */}
+    <SessionProvider>
       {subscriptionButtons()}
       {props.children}
       <ToastContainer
@@ -197,6 +193,6 @@ export function AppProvider(props: AppProviderProps) {
         theme={'colored'}
         transition={Bounce}
       />
-    </>
+    </SessionProvider>
   );
 }

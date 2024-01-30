@@ -1,10 +1,16 @@
 import { AdminComp } from '@/components/Admin/AdminComp';
-import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '../api/auth/[...nextauth]/route';
 
-export default withPageAuthRequired(
-  async function AdminPage() {
-    const { user }:any = await getSession();
-    return <AdminComp user={user} />;
-  },
-  { returnTo: '/admin' }
-);
+export default async function AdminPage() {
+
+  const session = await getServerSession(authOptions); // TODO: check for user.role === 'admin'
+
+  if (!session) {
+    return new Response('', {
+      status: 401,
+      statusText: 'You must be logged in.',
+    });
+  }
+  return <AdminComp />;
+}

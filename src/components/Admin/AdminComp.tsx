@@ -1,16 +1,10 @@
 'use client';
 
-import { UserProfile } from '@auth0/nextjs-auth0/client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import './AdminComp.css';
 
-type AdminCompProps = {
-  user?: UserProfile | undefined;
-};
-
-export const AdminComp = (props: AdminCompProps) => {
-
+export const AdminComp = () => {
   return (
     <>
       <div className='admin'>

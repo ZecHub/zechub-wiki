@@ -1,8 +1,8 @@
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
+import { getServerSession } from 'next-auth/next';
 
-import { getSession, withApiAuthRequired } from '@auth0/nextjs-auth0';
 import { headers } from 'next/headers';
-import { NextResponse } from 'next/server';
 
 const mongo = {
   mongodbClient,
@@ -10,13 +10,10 @@ const mongo = {
   collectionName: 'webpushSubscribers',
 };
 
-export const GET = withApiAuthRequired(async function pushNotificationApiRoute(
-  req
-) {
-  const res = new NextResponse();
-  const { user }: any = await getSession(req, res); // TODO: check for user.role === 'admin'
+export async function GET(req: Request, res: Response) {
+  const session = await getServerSession(authOptions); // TODO: check for user.role === 'admin'
 
-  if (!user) {
+  if (!session) {
     return new Response('', {
       status: 401,
       statusText: 'You must be logged in.',
@@ -49,18 +46,18 @@ export const GET = withApiAuthRequired(async function pushNotificationApiRoute(
   } finally {
     // mongo.mongodbClient.close();
   }
-});
+}
 
 export async function POST(req: Request) {
   try {
     const data = await req.json();
 
     const webpushSubscribers = mongo.db.collection(mongo.collectionName);
-    const parseedData={
+    const parsedData = {
       ...data,
-      payload:[]
-    }
-    const doc = await webpushSubscribers.insertOne(parseedData);
+      payload: [],
+    };
+    const doc = await webpushSubscribers.insertOne(parsedData);
 
     return new Response(String(doc.acknowledged), {
       status: 201,

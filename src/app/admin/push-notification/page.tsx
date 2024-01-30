@@ -1,15 +1,20 @@
 import { ListOfSubscribers } from '@/components/push-notification/ListOfSubscribers/ListOfSubscribers';
 import { SubscriberWelcomeMessage } from '@/components/push-notification/welcome-message/SubscriberWelcomeMessage';
-import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { getSession } from 'next-auth/react';
 
-export default withPageAuthRequired(
-  async function PushNotificationPage() {
-    return (
-      <>
-        <SubscriberWelcomeMessage />
-        <ListOfSubscribers />;
-      </>
-    );
-  },
-  { returnTo: '/admin/push-notification' }
-);
+export default async function PushNotificationPage() {
+  const session = getSession();
+
+  return (
+    <div style={{ display: 'flex', maxWidth: '720px', margin: 'auto', flexDirection: 'column' }}>
+      {!session ? (
+        <p>You do not hanve authorization to view</p>
+      ) : (
+        <>
+          <SubscriberWelcomeMessage />
+          <ListOfSubscribers />;
+        </>
+      )}
+    </div>
+  );
+}

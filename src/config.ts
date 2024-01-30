@@ -3,6 +3,7 @@ const WEB_PUSH_VAPID_PUBLIC_KEY =
   process.env.NEXT_PUBLIC_WEB_PUSH_VAPID_PUBLIC_KEY || '';
 const WEB_PUSH_VAPID_PRIVATE_KEY = process.env.WEB_PUSH_VAPID_PRIVATE_KEY || '';
 const WEB_PUSH_VAPID_SUBJECT = process.env.WEB_PUSH_VAPID_SUBJECT || '';
+const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET || '';
 
 // MONGO_DB
 const MONGO_DB_CONNECTION_STRING_DEV =
@@ -10,14 +11,18 @@ const MONGO_DB_CONNECTION_STRING_DEV =
 const MONGO_DB_CONNECTION_STRING_PROD =
   process.env.MONGO_DB_CONNECTION_STRING_PROD || '';
 
-const GITHUB_ID = process.env.GITHUB_ID;
-const GITHUB_SECRET = process.env.GITHUB_SECRET;
+const GITHUB_APP_CLIENT_ID = process.env.GITHUB_ID || '';
+const GITHUB_APP_CLIENT_SECRET = process.env.GITHUB_SECRET || '';
+const NEXTAUTH_URL =
+  process.env.NODE_ENV !== 'production'
+    ? process.env.NEXTAUTH_URL_DEV
+    : process.env.NEXTAUTH_URL_PROD;
+
 // PUSH NOTIFICATION
 const PUSH_NOTIFICATION_API = {
   url: {
     subscription: '/admin/push-notification/api/subscription',
-    removeSubscription:
-      '/admin/push-notification/api/remove-subscription',
+    removeSubscription: '/admin/push-notification/api/remove-subscription',
     subscriptionWelcomeMsgs:
       '/admin/push-notification/api/subscription/welcome-message',
     notify: {
@@ -29,11 +34,13 @@ const PUSH_NOTIFICATION_API = {
 
 const NOTIFICATION_PERMISSION = 'zechub-wiki-notification-permission';
 export {
-  NOTIFICATION_PERMISSION,
-  GITHUB_ID,
-  GITHUB_SECRET,
+  NEXTAUTH_URL,
+  GITHUB_APP_CLIENT_ID,
+  GITHUB_APP_CLIENT_SECRET,
   MONGO_DB_CONNECTION_STRING_DEV,
   MONGO_DB_CONNECTION_STRING_PROD,
+  NEXTAUTH_SECRET,
+  NOTIFICATION_PERMISSION,
   PUSH_NOTIFICATION_API,
   WEB_PUSH_VAPID_PRIVATE_KEY,
   WEB_PUSH_VAPID_PUBLIC_KEY,

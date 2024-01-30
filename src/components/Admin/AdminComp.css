@@ -4,14 +4,13 @@
     direction: row;
 }
 
-
 .admin {
     display: flex;
     flex-direction: column;
     align-content: center;
-    justify-content: center;
     gap: 48px;
     max-width: 780px;
+    min-height: 500px;
     margin: auto;
 }
 

@@ -1,9 +1,6 @@
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
 import { logger } from '@/lib/helpers';
 
-import { withApiAuthRequired } from '@auth0/nextjs-auth0';
-import { NextResponse } from 'next/server';
-
 const mongo = {
   mongodbClient,
   db: mongodbClient.db('zechub-wiki'),
@@ -11,7 +8,6 @@ const mongo = {
 };
 
 export async function DELETE(req: Request) {
-
   const query = await req.json();
   logger({ description: 'delete endpoint', data: query.payload, type: 'log' });
   try {
