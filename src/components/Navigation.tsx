@@ -1,23 +1,23 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { useState, useEffect, MouseEvent } from 'react';
-import Link from 'next/link';
-import Logo from './ui/Logo';
+import { navigations } from '@/constants/navigation';
+import type { Classes, MenuExp } from '@/types';
+import { useUser } from '@auth0/nextjs-auth0/client';
 import { Dropdown } from 'flowbite-react';
-import SocialIcons from './ui/SocialIcons';
-import { Icon } from './ui/Icon';
 import Image from 'next/image';
-import {
-  RiMenuLine as MenuIcon,
-  RiCloseFill as CloseIcon,
-} from 'react-icons/ri';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import {
   MdOutlineDarkMode as DarkIcon,
   MdLightMode as LightIcon,
 } from 'react-icons/md';
-import { navigations } from '@/constants/navigation';
-import type { MenuExp, Classes } from '@/types';
-import { useUser } from '@auth0/nextjs-auth0/client';
+import {
+  RiCloseFill as CloseIcon,
+  RiMenuLine as MenuIcon,
+} from 'react-icons/ri';
+import { Icon } from './ui/Icon';
+import Logo from './ui/Logo';
+import SocialIcons from './ui/SocialIcons';
 
 const AuthDisplay = () => {
   const { user, error, isLoading } = useUser();
@@ -49,7 +49,7 @@ const AuthDisplay = () => {
       ) : (
         <a href='/api/auth/login'>Login</a>
       )}
-      <br />
+      <a href='/api/auth/login'>Login</a>
     </div>
   );
 };
@@ -166,9 +166,9 @@ const Navigation = () => {
           />
         </div>
         <div className='hidden md:flex p-5 w-auto md:w-40 justify-end'>
-          <div style={{display: 'flex', gap: '12px', alignItems: 'center'}}>
-          <SocialIcons newTab={false} />
-          <AuthDisplay />
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <SocialIcons newTab={false} />
+            <AuthDisplay />
           </div>
         </div>
         <div className=' w-auto md:hidden hover:cursor-pointer p-5'>
