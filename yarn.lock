@@ -702,6 +702,11 @@
   resolved "https://registry.npmjs.org/@types/scheduler/-/scheduler-0.16.3.tgz"
   integrity sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==
 
+"@types/serviceworker@^0.0.82":
+  version "0.0.82"
+  resolved "https://registry.yarnpkg.com/@types/serviceworker/-/serviceworker-0.0.82.tgz#d46dd1a0b4be7c9dd0f4b201ccec59c42124e38c"
+  integrity sha512-JkHWXMbqUd8sAA8yUxEjabRqgm6yn/rjOY2VZeifryu72e/hbQW2MLsvpZvu8vwhkls8AGczw3U2MVKdnayqng==
+
 "@types/unist@*", "@types/unist@^2", "@types/unist@^2.0.0":
   version "2.0.10"
   resolved "https://registry.npmjs.org/@types/unist/-/unist-2.0.10.tgz"

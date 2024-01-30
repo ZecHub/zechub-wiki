@@ -45,6 +45,7 @@
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "@types/react-icons": "^3.0.0",
+    "@types/serviceworker": "^0.0.82",
     "@types/web-push": "^3.6.3"
   }
 }

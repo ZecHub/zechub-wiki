@@ -24,3 +24,5 @@ export interface Sublinks{
   name: string
   path: string
 }
+
+export declare var self: ServiceWorkerGlobalScope;
