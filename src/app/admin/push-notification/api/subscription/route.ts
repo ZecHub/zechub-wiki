@@ -56,7 +56,11 @@ export async function POST(req: Request) {
     const data = await req.json();
 
     const webpushSubscribers = mongo.db.collection(mongo.collectionName);
-    const doc = await webpushSubscribers.insertOne(data);
+    const parseedData={
+      ...data,
+      payload:[]
+    }
+    const doc = await webpushSubscribers.insertOne(parseedData);
 
     return new Response(String(doc.acknowledged), {
       status: 201,
