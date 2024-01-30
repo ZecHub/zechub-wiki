@@ -1,6 +1,6 @@
+import { authOptions } from '@/auth.config';
 import { AdminComp } from '@/components/Admin/AdminComp';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../api/auth/[...nextauth]/route';
 
 export default async function AdminPage() {
 

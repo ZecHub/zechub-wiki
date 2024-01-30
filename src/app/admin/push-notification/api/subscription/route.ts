@@ -1,4 +1,4 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/auth.config';
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
 import { getServerSession } from 'next-auth/next';
 

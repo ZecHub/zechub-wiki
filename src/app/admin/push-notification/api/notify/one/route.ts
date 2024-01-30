@@ -1,10 +1,10 @@
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
 import { logger } from '@/lib/helpers';
 
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { ObjectId } from 'mongodb';
 import { getServerSession } from 'next-auth/next';
 import { sendNotifications } from '../../apiHelpers';
+import { authOptions } from '@/auth.config';
 
 const mongo = {
   mongodbClient,
