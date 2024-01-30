@@ -1,7 +1,7 @@
 'use client';
 
 import { PUSH_NOTIFICATION_API } from '@/config';
-import { wordWrap } from '@/lib/helpers';
+import { formatString } from '@/lib/helpers';
 import { sendNotifications } from '@/lib/push-notification/pushHelpers';
 import { useCallback, useState } from 'react';
 import { Modal } from '../../ui/Modal';
@@ -9,7 +9,7 @@ import { Spinner } from '../../ui/spinner/Spinner';
 import { SendNotificationForm } from '../send-notification-form/SendNotificationForm';
 import './ListOfSubscribers.css';
 
-type Subscribers = {
+export type Subscriber = {
   id: string;
   endpoint: string;
   expirationTime: string | undefined;
@@ -21,8 +21,8 @@ type Subscribers = {
 };
 
 export function ListOfSubscribers() {
-  const [subscribers, setSubscribers] = useState<Subscribers[]>([]);
-  const [subscriber, setSubscriber] = useState<Subscribers>();
+  const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
+  const [subscriber, setSubscriber] = useState<Subscriber>();
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -64,14 +64,20 @@ export function ListOfSubscribers() {
     setIsOpen(false);
   };
 
-  const handleNotifyOne = (subscriber: any) => {
+  const handleNotifyOne = (subscriber: Subscriber) => {
     handleOnOpen();
 
     setSubscriber(subscriber);
   };
 
+  const handleNotifyAll = () => {
+    handleOnOpen();
+
+    setNotifyAll(true);
+  };
+
   const handleSendNotifications = async (
-    subscriber: string | any[],
+    subscribers: Subscriber[],
     payload: any
   ) => {
     try {
@@ -96,7 +102,7 @@ export function ListOfSubscribers() {
         </h3>
 
         <div className='subscribers-header'>
-          <button onClick={handleGetListOfSubscriber}>Get Subscribers</button>
+          <button onClick={handleGetListOfSubscriber}>Get Subscriber</button>
           <input
             type='text'
             onChange={handleFilterOnChange}
@@ -105,12 +111,7 @@ export function ListOfSubscribers() {
             className='searchForm'
           />
           {subscribers.length > 0 && (
-            <button
-              className=' notify-btn'
-              onClick={() => {
-                setNotifyAll(true);
-              }}
-            >
+            <button className=' notify-btn' onClick={handleNotifyAll}>
               Notify all subscribers
             </button>
           )}
@@ -144,10 +145,10 @@ export function ListOfSubscribers() {
                       className='shadow-sm hover:bg-gray-200 border-gray-500'
                     >
                       <td className='h-1 p-3 m-3 border-spacing-8'>
-                        {wordWrap(sub.id, 10)}
+                        {formatString.wordWrap(sub.id, 10)}
                       </td>
                       <td className='h-1 p-3 m-3 border-spacing-8'>
-                        {wordWrap(sub.endpoint, 50)}
+                        {formatString.wordWrap(sub.endpoint, 50)}
                       </td>
                       <td className='h-1 p-3 m-3 border-spacing-8'>
                         {sub.expirationTime || 'Not available'}

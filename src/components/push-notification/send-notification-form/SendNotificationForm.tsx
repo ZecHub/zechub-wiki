@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import './SendNotificationForm.css';
+import { NOTIFICATION_PERMISSION } from '@/config';
+import { toast } from 'react-toastify';
+import { formatString } from '@/lib/helpers';
+import { Subscriber } from '../ListOfSubscribers/ListOfSubscribers';
 
 type FormStateData = {
   title?: string;
@@ -9,7 +13,7 @@ type FormStateData = {
 
 type SendNotificationProps = {
   handleSendNotifications: (
-    subscribers: any | any[],
+    subscribers: Subscriber[],
     payload: any
   ) => Promise<void>;
   subscribers: any[];
@@ -17,6 +21,8 @@ type SendNotificationProps = {
 };
 export function SendNotificationForm(props: SendNotificationProps) {
   const [formFields, setFormFields] = useState<FormStateData>({});
+  const [notificationPermission, setNotificationPermission] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const handleChange = (
     e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -31,15 +37,31 @@ export function SendNotificationForm(props: SendNotificationProps) {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // 1. check if serviceWorker/push notification is active
+    const notifyPermission = localStorage.getItem(NOTIFICATION_PERMISSION);
+    if (!notifyPermission) {
+      toast.info(
+        'You need to enable Notification API in order to use this feature.'
+      );
+      setNotificationPermission(true);
+      return;
+    }
+
+    Object.keys(formFields).forEach((k, i) => {
+      formFields[k] = formatString.titleCase(Object.values(formFields)[i]);
+    });
+
     try {
+      setIsSending(true);
       const res = await props.handleSendNotifications(
         props.subscribers,
         formFields
       );
-      console.log('handleFormSubmit: ', res);
 
       handleFormReset(e);
+      setIsSending(false);
     } catch (err) {
+      setIsSending(false);
       throw err;
     }
   };
@@ -57,6 +79,15 @@ export function SendNotificationForm(props: SendNotificationProps) {
     props.onClose();
   };
 
+  const handleEnableNotification = () => {
+    // call handleShowNotification function
+    console.log('called now');
+    const notifyPermission = localStorage.getItem(NOTIFICATION_PERMISSION);
+    if (notifyPermission) {
+    }
+    setNotificationPermission(!notificationPermission);
+  };
+
   return (
     <>
       <section className=''>
@@ -67,9 +98,6 @@ export function SendNotificationForm(props: SendNotificationProps) {
           className='sendNotificationForm'
         >
           <div className='header'>
-            <span onClick={props.onClose} className=''>
-              x
-            </span>
             <h3>Send a notification</h3>
           </div>
 
@@ -82,6 +110,7 @@ export function SendNotificationForm(props: SendNotificationProps) {
               placeholder='Enter title'
               onChange={handleChange}
               required
+              disabled={isSending}
             />
           </label>
 
@@ -95,12 +124,15 @@ export function SendNotificationForm(props: SendNotificationProps) {
               placeholder='Enter body content'
               onChange={handleChange}
               required
+              disabled={isSending}
             />
           </label>
           <br />
 
           <div className='flex space-x-10'>
-            <button type='submit'>Send</button>
+            <button type='submit' disabled={isSending}>
+              {isSending ? 'Sending...' : 'Send'}
+            </button>
             <button
               type='button'
               onClick={handleFormReset}
@@ -108,6 +140,15 @@ export function SendNotificationForm(props: SendNotificationProps) {
             >
               Cancel
             </button>
+            {notificationPermission ? (
+              <button
+                type='button'
+                onClick={handleEnableNotification}
+                className='cancelbtn'
+              >
+                Enable Notification
+              </button>
+            ) : null}
           </div>
         </form>
       </section>
