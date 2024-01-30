@@ -158,54 +158,6 @@ export async function sendNotificationToAll({
   });
 }
 
-/**
- * This function check is a window client is the currently focus (active)
- * window the user is on
- * @returns boolean
- */
-// export function windowIsFocused(clients: Window[]): Promise<boolean> {
-//   return clients
-//     .matchAll({ type: 'window', includeUncontrolled: true })
-//     .then((winClients) => {
-//       let isFocused = false;
-
-//       for (let i = 0; i < winClients.length; i++) {
-//         const winClient = winClients[i];
-//         if (winClient.focused) {
-//           isFocused = true;
-//           break;
-//         }
-//       }
-
-//       return isFocused;
-//     });
-// }
-
-/**
- * Exception Rule of `Sending Notification`
- * The one scenario where you don't have to show a notification is when the user has your site open and focused.
- */
-// function sendNotificationWhenNotActiveWindow() {
-//   const p = windowIsFocused(self).then((isFocused) => {
-//     if (isFocused) {
-//       console.log('Window is already focused; no need to show notification');
-//       return;
-//     }
-
-//     // if not
-//     return self.registration.showNotification('Had to show a notification.');
-//   });
-// }
-
-// const skipWait = async () => {
-//   const reg = await navigator.serviceWorker.getRegistration();
-
-//   if (!reg || !reg.waiting) return;
-
-//   reg.waiting.postMessage('skip-waiting');
-// };
-
-
 /* Utility functions. */
 
 // Convert a base64 string to Uint8Array.
