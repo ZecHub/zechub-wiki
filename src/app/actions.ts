@@ -2,9 +2,7 @@
 
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
 import { revalidatePath } from 'next/cache';
-import path from 'path';
 import { z } from 'zod';
-import {promises as fs} from 'fs';
 
 const mongo = {
   mongodbClient,

@@ -1,4 +1,3 @@
-import { logger } from '@/lib/helpers';
 import React, { ErrorInfo, ReactNode } from 'react';
 
 type Props = {
@@ -22,7 +21,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(err: Error, errInfo: ErrorInfo): void {
-    logger({ description: 'componentDidCatch', data: errInfo, type:'error' });
+    console.log({ description: 'componentDidCatch', data: errInfo, type:'error' });
   }
 
   render(): ReactNode {

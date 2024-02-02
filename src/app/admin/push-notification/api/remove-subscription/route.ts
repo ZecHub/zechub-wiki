@@ -1,5 +1,5 @@
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
-import { logger } from '@/lib/helpers';
+ 
 
 const mongo = {
   mongodbClient,
@@ -9,7 +9,7 @@ const mongo = {
 
 export async function DELETE(req: Request) {
   const query = await req.json();
-  logger({ description: 'delete endpoint', data: query.payload, type: 'log' });
+
   try {
     const webpushSubscribers = mongo.db.collection(mongo.collectionName);
     const result = await webpushSubscribers.deleteOne({

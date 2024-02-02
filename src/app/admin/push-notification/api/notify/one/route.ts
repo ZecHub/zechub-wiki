@@ -1,5 +1,4 @@
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
-import { logger } from '@/lib/helpers';
 
 import { ObjectId } from 'mongodb';
 import { getServerSession } from 'next-auth/next';
@@ -67,10 +66,9 @@ export async function POST(req: Request, res: Response) {
     });
   } catch (err: any) {
     if (err.message.includes('MongoServerError')) {
-      logger({
+      console.error({
         description: 'MongoServerError',
         data: err.message,
-        type: 'error',
       });
       return new Response('', {
         status: 301,
