@@ -36,7 +36,7 @@ const Footer = () => {
         </div>
         <span className="text-sm  sm:text-center">
           © 2023{" "}
-          <a href="" className="hover:underline">
+          <a href="null" className="hover:underline">
             Zechub™
           </a>
           . All Rights Reserved.
