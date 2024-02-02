@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import { BiRightArrowAlt as Arrow } from 'react-icons/bi'
 import { FiFile as FileIcon } from 'react-icons/fi'
 import { Icon } from './ui/Icon'
-import { getName } from '@/lib/helpers'
+import { getName, transformGithubFilePathToWikiLink } from '@/lib/helpers'
 import { matchIcons } from '@/constants/Icons'
 
 interface MenuProps {
@@ -14,7 +14,7 @@ interface MenuProps {
 const SideMenu = ({ folder, roots }: MenuProps) => {
 
     const root = roots.map((item) => item.slice(0, -3))
-   
+    
     const name = folder[0].toUpperCase() + folder.slice(1);
     const fold = getName(name)
     const router = useRouter()
@@ -29,7 +29,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
             const myIcon = matchIcons(fold, getName(item))
             return  (
               <li key={i} className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}>
-                <div onClick={() => router.push( `/${item}#content`)}  >
+                <div onClick={() => router.push(`/${transformGithubFilePathToWikiLink(item)}#content`)}  >
                   <div className={`flex items-center space-x-4`}>
                     <div className="flex-shrink-0">
                       <Icon icon={myIcon != 'Nothing' ? myIcon : FileIcon} />
