@@ -8,16 +8,18 @@ import { cardsConfig } from '@/constants/cardsConfig';
 import { daoMembers } from '@/constants/membersDao';
 import { promises as fs } from 'fs';
 import Link from 'next/link';
-
+import path from 'path';
 
 export default async function Home() {
-  const file = await fs.readFile(
-    process.cwd() + '/src/app/notification-content/data.json',
-    'utf8'
+  const p = path.join(
+    process.cwd(),
+    'public',
+    'notification-content/data.json'
   );
+  const file = await fs.readFile(p, 'utf8');
 
   const text = `ZecHub is the community driven education hub for the Zcash cryptocurrency (ZEC). Zcash is a digital currency providing censorship resistant, secure & private payments. The Zcash Blockchain utilises highly advanced 'verifiable' zk-snarks that do not require Trusted Setup following the NU5 network upgrade in 2022.`;
-  
+
   return (
     <main className='flex flex-col mx-auto '>
       <section id='notification-banner'>
