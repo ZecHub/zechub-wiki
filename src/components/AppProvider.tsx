@@ -5,7 +5,6 @@ import {
   getSubscriberWelcomeMessage,
 } from '@/app/actions';
 import { NOTIFICATION_PERMISSION } from '@/config';
-import { logger } from '@/lib/helpers';
 import { SessionProvider } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import {
@@ -16,7 +15,7 @@ import {
 } from '../lib/push-notification/pushHelpers';
 
 import { Tooltip } from 'flowbite-react';
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { NotificationIcon } from './ui/NotificationIcon';
 
@@ -39,21 +38,15 @@ export function AppProvider(props: AppProviderProps) {
       setNotificationPermission(notifyPermission);
     }
 
-    logger({
+    console.log({
       description: 'notificationPermission: ',
       data: notificationPermission,
-      type: 'log',
     });
   }, [notificationPermission]);
 
   useEffect(() => {
     navigator.serviceWorker.addEventListener('message', (e) => {
       // handle the notification
-      logger({
-        description: 'Notification received',
-        data: e.data,
-        type: 'log',
-      });
     });
   });
 
@@ -101,10 +94,9 @@ export function AppProvider(props: AppProviderProps) {
           setNotificationPermission(permission);
         }
       } catch (err: any) {
-        logger({
+        console.error({
           description: 'Push Permission not granted!',
-          data: err,
-          type: 'error',
+          err,
         });
       }
     }
@@ -127,10 +119,9 @@ export function AppProvider(props: AppProviderProps) {
         toast.success("You've have unsubscribed!");
       }
     } catch (err: any) {
-      logger({
+      console.error({
         description: 'Failed to unsubscribe to Push Notification!',
         data: err.message,
-        type: 'error',
       });
       toast.error('Failed to unsubscribe!');
     }
@@ -148,9 +139,7 @@ export function AppProvider(props: AppProviderProps) {
         }}
       >
         {notificationPermission === 'granted' ? (
-          <div
-            className='flex gap-2'
-          >
+          <div className='flex gap-2'>
             <Tooltip content=' Unsubscribe Notifications' placement='left'>
               <NotificationIcon
                 fillColor='red'
@@ -180,19 +169,6 @@ export function AppProvider(props: AppProviderProps) {
     <SessionProvider>
       {subscriptionButtons()}
       {props.children}
-      <ToastContainer
-        position='bottom-center'
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme={'colored'}
-        transition={Bounce}
-      />
     </SessionProvider>
   );
 }

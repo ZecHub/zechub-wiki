@@ -1,5 +1,4 @@
 import { PUSH_NOTIFICATION_API, WEB_PUSH_VAPID_PUBLIC_KEY } from '@/config';
-import { logger } from '../helpers';
 import { Subscriber } from '@/components/push-notification/ListOfSubscribers/ListOfSubscribers';
 
 /**
@@ -72,7 +71,7 @@ export const unsubscribeToPushNotification = async (): Promise<{
   try {
     const swRegistration = await navigator.serviceWorker.getRegistration();
     const sub = await swRegistration?.pushManager.getSubscription();
-    logger({ description: 'subscription: ', data: sub, type: 'log' });
+    console.log({ description: 'subscription: ', data: sub, type: 'log' });
 
     let response: Response = {} as any;
 
@@ -87,7 +86,7 @@ export const unsubscribeToPushNotification = async (): Promise<{
 
     return { sub, response, swRegistration };
   } catch (err) {
-    logger({
+    console.log({
       description: 'Error unsubscribing from push notifications:',
       data: err,
       type: 'error',
@@ -107,7 +106,7 @@ type SendToServerTypes = {
 
 export async function sendToServer(args: SendToServerTypes) {
   try {
-    logger({ description: 'sendToServer...', data: args, type: 'log' });
+    console.log({ description: 'sendToServer...', data: args, type: 'log' });
     const res = await fetch(args.url, {
       method: args.method,
       headers: {
