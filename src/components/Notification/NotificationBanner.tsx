@@ -49,7 +49,7 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
           )
         : undefined,
       position: 'top-right',
-      autoClose: 10000,
+      autoClose: 8000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
