@@ -17,7 +17,7 @@ import {
 import { Icon } from './ui/Icon';
 import Logo from './ui/Logo';
 import SocialIcons from './ui/SocialIcons';
-import { AuthDisplay } from './ui/AccountDisplay/AccountDisplay';
+import { AuthDisplay } from './AccountDisplay/AccountDisplay';
 
 const NavLinks = ({ classes, menuExp }: Classes) => {
   const router = useRouter();
@@ -65,7 +65,7 @@ const MobileNav = ({ menuExpanded }: MenuExp) => {
         <div className='flex flex-1 p-2 top-10 justify-start items-start my-3'>
           <SocialIcons newTab={true} />
         </div>
-        <AuthDisplay />
+        <AuthDisplay style={{display: 'flex', flexDirection: 'row',  gap: '12px'}} />
       </div>
     </div>
   );
@@ -123,7 +123,7 @@ const Navigation = () => {
         </div>
 
         <div style={{ display: 'flex', gap: '52px', alignItems: 'center' }}>
-          <div className='flex  w-auto md:w-1/4 p-5 md:justify-end'>
+          <div className='flex  w-auto md:w-1/4 p-5 md:justify-end mr-6'>
             <Icon
               size={25}
               icon={dark ? LightIcon : DarkIcon}
@@ -131,9 +131,16 @@ const Navigation = () => {
               onClick={() => setDark(!dark)}
             />
           </div>
-          <div className='hidden md:flex p-5 w-auto md:w-40 justify-end'>
+          <div className='hidden md:flex p-5 w-auto md:w-40 justify-end gap-6'>
             <SocialIcons newTab={false} />
-            <AuthDisplay style={{marginLeft: '6px'}} />
+            <AuthDisplay
+              style={{
+                marginLeft: '6px',
+                display: 'flex',
+                flexDirection: 'row',
+                gap: '16px',
+              }}
+            />
           </div>
         </div>
         <div className=' w-auto md:hidden hover:cursor-pointer p-5'>
