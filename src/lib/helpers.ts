@@ -90,32 +90,3 @@ export const formatString = {
     return str
   },
 }
-
-type LoggerType = {
-  description: string;
-  data: any;
-  type: 'error' | 'log' | 'warn' | 'debug';
-};
-/**
- * This function logs error
- * @param args
- */
-export const logger = (args: LoggerType) => {
-  if (process.env.NODE_ENV != 'production') {
-    switch (args.type) {
-      case 'debug':
-        console.debug(`${args.description}: `, args.data);
-        break;
-      case 'error':
-        console.error(`${args.description}: `, args.data);
-        break;
-      case 'warn':
-        console.warn(`${args.description}: `, args.data);
-        break;
-      default:
-        console.log(`${args.description}: `, args.data);
-    }
-  } else {
-    // TODO: set up ErrorService
-  }
-};

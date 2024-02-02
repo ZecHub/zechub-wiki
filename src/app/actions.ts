@@ -1,9 +1,10 @@
 'use server';
 
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
-import { logger } from '@/lib/helpers';
 import { revalidatePath } from 'next/cache';
+import path from 'path';
 import { z } from 'zod';
+import {promises as fs} from 'fs';
 
 const mongo = {
   mongodbClient,
@@ -45,10 +46,9 @@ export async function handlerCreateSubscriberWelcomeMessage(
       },
     };
   } catch (err) {
-    logger({
+    console.error({
       description: 'handlerCreateSubscriberWelcomeMessage',
       data: err,
-      type: 'error',
     });
     return { data: 'Failed to save data.' };
   }
@@ -77,10 +77,9 @@ export async function getSubscriberWelcomeMessage(): Promise<{
       data: parseData,
     };
   } catch (err) {
-    logger({
+    console.error({
       description: 'getSubscriberWelcomeMessage',
       data: err,
-      type: 'error',
     });
     return { data: 'Failed to fetch data.' };
   }
