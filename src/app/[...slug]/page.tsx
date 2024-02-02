@@ -18,10 +18,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     const { slug } = params
     const url = getDynamicRoute(slug)
-
     const markdown = await getFileContent(url)
-    const content = markdown ? markdown : 'No Data or Wrong file'
 
+    const content = markdown ? markdown : 'No Data or Wrong file'
     const urlRoot = `/site/${slug[0]}`
     const roots = await getRoot(urlRoot)
 
