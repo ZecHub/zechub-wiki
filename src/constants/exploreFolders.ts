@@ -1,74 +1,74 @@
-export const exploreFolders = [ 
+export const exploreFolders = [
     {
         img: '/Start-02.png',
         description: '',
         name: 'Start_Here',
-        url: '/site/Start_Here/New_User_Guide',
+        url: '/start-here/new-user-guide'
     },
     {
         img: '/Tutorials.png',
         description: '',
         name: 'Tutorials',
-        url: '/site/tutorials/Buy_ZEC_in_Gemini',
+        url: '/tutorials/buy-zec-in-gemini'
     },
     {
         img: '/Using_Zcash-07.png',
         description: '',
         name: 'Using_Zcash',
-        url: '/site/Using_Zcash/Buying_ZEC',
+        url: '/using-zcash/buying-zec'
     },
     {
         img: '/Guides.png',
         description: '',
         name: 'Guides',
-        url: '/site/guides/Raspberry_Pi_4_Full_Node',
+        url: '/guides/raspberry-pi-4-full-node'
     },
     {
         img: '/Tech-05.png',
         description: '',
         name: 'Zcash_Tech',
-        url: '/site/Zcash_Tech/zk_SNARKS',
+        url: '/zcash-tech/zk-snarks'
     },
     {
         img: '/Organizations-08.png',
         description: '',
         name: 'Zcash_Organizations',
-        url: '/site/Zcash_Organizations/Electric_Coin_Company',
+        url: '/zcash-organizations/electric-coin-company'
     },
     {
         img: '/Community.png',
         description: '',
         name: 'Zcash_Community',
-        url: '/site/Zcash_Community/Community_Links',
+        url: '/zcash-community/community-links'
     },
     {
         img: '/ZFAV.png',
         description: '',
         name: 'ZFAV_Club',
-        url: '/site/ZFAV_Club/AV_Club_Background',
+        url: '/zfav-club/av-club-background'
     },
     {
         img: '/PrivacyTools.png',
         description: '',
         name: 'Privacy_Tools',
-        url: '/site/Privacy_Tools/2FA_Hardware_Devices',
+        url: '/privacy-tools/2fa-hardware-devices'
     },
     {
         img: '/Research-10.png',
         description: '',
         name: 'Research',
-        url: '/site/Research/Social_Media_Data_Collection',
+        url: '/research/social-media-data-collection'
     },
     {
         img: '/FAQ-12.png',
         description: '',
-        name: `Glossary_and_FAQs`,
-        url: '/site/Glossary_and_FAQs/FAQ',
+        name: 'Glossary_and_FAQs',
+        url: '/glossary-and-faqs/faq'
     },
     {
         img: '/Contribute-13.png',
         description: '',
         name: 'Contribute',
-        url: '/site/contribute/Help_build_ZecHub',
-    },
+        url: '/contribute/help-build-zechub'
+    }
 ]

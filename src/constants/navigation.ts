@@ -3,86 +3,86 @@ import { RiTwitterXFill as Twitter, RiGithubFill as Github } from "react-icons/r
 
 export const navigations = [
   {
-    name: "Use ZEC",
+    name: 'Use ZEC',
     links: [
-      {
+      { 
         subName: 'Using ZEC',
-        path: "/site/Using_Zcash/Transactions"
+        path: '/using-zcash/transactions'
       },
       {
         subName: 'Wallets',
-        path: "/site/Using_Zcash/Wallets"
+        path: '/using-zcash/wallets'
       },
       {
         subName: 'Non-Custodial Exchanges',
-        path: "/site/Using_Zcash/Non-Custodial_Exchanges"
+        path: '/using-zcash/non-custodial-exchanges'
       }
     ]
   },
   {
-    name: "Ecosystem",
+    name: 'Ecosystem',
     links: [
       {
         subName: 'Arborist Calls',
-        path: "/site/Zcash_Community/Arborist_Calls"
+        path: '/zcash-community/arborist-calls'
       },
       {
         subName: 'Community Links',
-        path: "/site/Zcash_Community/Community_Links"
+        path: '/zcash-community/community-links'
       },
       {
         subName: 'Zcash Global Ambassadors',
-        path: "/site/Zcash_Community/Zcash_Global_Ambassadors"
+        path: '/zcash-community/zcash-global-ambassadors'
       },
     ],
   },
   {
-    name: "Organizations",
+    name: 'Organizations',
     links: [
       {
         subName: 'Electric Coin Company',
-        path: "/site/Zcash_Organizations/Electric_Coin_Company"
+        path: '/zcash-organizations/electric-coin-company'
       },
       {
         subName: 'Zcash Foundation',
-        path: "/site/Zcash_Organizations/Zcash_Foundation"
+        path: '/zcash-organizations/zcash-foundation'
       },
       {
         subName: 'Zcash Commnuity Grants',
-        path: "/site/Zcash_Organizations/Zcash_Community_Grants"
+        path: '/zcash-organizations/zcash-community-grants'
       }
     ]
   },
   {
-    name: "Guides",
+    name: 'Guides',
     links: [
       {
         subName: 'Zgo Payment Processor',
-        path: "/site/guides/Zgo_Payment_Processor",
+        path: '/guides/zgo-payment-processor'
       },
       {
         subName: 'Free2z',
-        path: "/site/guides/Free2z_Live"
+        path: '/guides/free2z-live'
       },
       {
         subName: 'Full Nodes',
-        path: "/site/guides/Full_Nodes"
+        path: '/guides/full-nodes'
       }
     ]
   },
   {
-    name: `Glossary & FAQ's`,
+    name: "Glossary & FAQ's",
     links: [
       {
-        subName: `FAQ's`,
-        path: "/site/Glossary_and_FAQs/FAQ",
+        subName: "FAQ's",
+        path: '/glossary-and-faqs/faq'
       },
       {
         subName: 'Zcash Library',
-        path: "/site/Glossary_and_FAQs/Zcash_Library"
+        path: '/glossary-and-faqs/zcash-library'
       }
     ]
-
+    
   },
 ];
 

@@ -1,5 +1,5 @@
 import { Octokit } from "octokit"
-import { getFiles } from "@/lib/helpers"
+import { getFiles, transformUri } from "@/lib/helpers"
 
 const { GITHUB_TOKEN, OWNER, REPO, BRANCH } = process.env
 
@@ -33,7 +33,7 @@ export async function getRoot(path: string) {
     const res = await octokit.rest.repos.getContent({
       owner: owner,
       repo: repo,
-      path: path,
+      path: transformUri(path).replace('/Site', '/site'),
       ref: BRANCH
     })
 
