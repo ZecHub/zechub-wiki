@@ -55,8 +55,8 @@ const SignOutIcon = (props: SVGProps) => {
         x2='303.567'
         y2='261.771'
         stroke='white'
-        stroke-width='31'
-        stroke-linecap='round'
+        strokeWidth='31'
+        strokeLinecap='round'
       />
     </svg>
   );
