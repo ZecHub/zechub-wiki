@@ -37,7 +37,11 @@ export const firstFileForFolders = async (folders: string[]) => {
 };
 
 export const getBanner = (name: string) => {
+  console.log('slug: ', name);
   for (let i = 0; i <= contentBanners.length; i++) {
+    if (contentBanners[i] && contentBanners[i].name === undefined) {
+      break;
+    }
     if (contentBanners[i].name === transformUri(name)) {
       return contentBanners[i].url;
     }

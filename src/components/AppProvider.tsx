@@ -37,11 +37,6 @@ export function AppProvider(props: AppProviderProps) {
     if (notifyPermission === 'granted') {
       setNotificationPermission(notifyPermission);
     }
-
-    console.log({
-      description: 'notificationPermission: ',
-      data: notificationPermission,
-    });
   }, [notificationPermission]);
 
   useEffect(() => {
@@ -94,10 +89,7 @@ export function AppProvider(props: AppProviderProps) {
           setNotificationPermission(permission);
         }
       } catch (err: any) {
-        console.error({
-          description: 'Push Permission not granted!',
-          err,
-        });
+        console.error('Push Permission not granted!', err);
       }
     }
   };
