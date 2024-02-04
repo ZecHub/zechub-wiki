@@ -9,8 +9,8 @@ export type Post = {
   description: string;
   image_src: string;
   link: string;
-  link_name: string;
-};
+  send_btn_label: string;
+}
 
 type NotificationBannerProps = {
   post: Post;
@@ -19,6 +19,7 @@ type NotificationBannerProps = {
 const customId = 'custom-id-to-prevent-duplicate';
 
 export const NotificationBanner = (props: NotificationBannerProps) => {
+  
   useEffect(() => {
     displayToast();
   }, [props.post.title]);
@@ -29,7 +30,7 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
         <h1>{props.post.title}</h1>
         <p>{props.post.description}</p>
         <a href={props.post.link} target='_blank' className='btn'>
-          {props.post.link_name}
+          {props.post.send_btn_label}
         </a>
       </div>
     );
