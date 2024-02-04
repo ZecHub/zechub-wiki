@@ -9,14 +9,14 @@
     flex-direction: column;
     align-content: center;
     gap: 48px;
-    max-width: 780px;
-    min-height: 500px;
+    min-width: 780px;
     margin: auto;
 }
 
 .admin .intro {
     display: flex;
     flex-direction: column;
+    margin-bottom: 24px;
 }
 
 .admin .intro h1,
@@ -29,16 +29,25 @@ p {
     font-size: 40px;
 }
 
+
+
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 16px;
+}
+
 .admin .card {
     border: 1px solid grey;
     border-radius: 8px;
     box-shadow: 1px 1px gray;
     padding: 12px;
     max-width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
 }
 
 .admin .card:hover {
-    box-shadow: 1px 1.5px rgb(123, 121, 121);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .admin .card .btn {
