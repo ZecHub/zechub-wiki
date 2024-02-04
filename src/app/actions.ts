@@ -1,8 +1,15 @@
 'use server';
 
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
+import { promises as fs } from 'fs';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
+
+const schema = z.object({
+  email: z.string({
+    invalid_type_error: 'Invalid Email',
+  }),
+});
 
 const mongo = {
   mongodbClient,
@@ -16,6 +23,7 @@ export type SubscriberWelcomeMessageType = {
   icon: string;
   image: string;
 };
+
 export async function handlerCreateSubscriberWelcomeMessage(
   formData: FormData
 ) {
@@ -75,10 +83,28 @@ export async function getSubscriberWelcomeMessage(): Promise<{
       data: parseData,
     };
   } catch (err) {
-    console.error({
-      description: 'getSubscriberWelcomeMessage',
-      data: err,
-    });
+    console.error('getSubscriberWelcomeMessage', err);
     return { data: 'Failed to fetch data.' };
+  }
+}
+
+const filePathForBannerMessage =
+  process.cwd() + '/public/notification-data/data.json';
+
+export async function saveBannerMessage(formData: any) {
+  try {
+    await fs.writeFile(filePathForBannerMessage, JSON.stringify(formData));
+  } catch (err: any) {
+    throw Error(err.message);
+  }
+}
+
+export async function getBannerMessage() {
+  try {
+    return await fs.readFile(filePathForBannerMessage, {
+      encoding: 'utf-8',
+    });
+  } catch (err: any) {
+    throw Error(err.message);
   }
 }
