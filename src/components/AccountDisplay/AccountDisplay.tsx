@@ -1,6 +1,7 @@
 import { Spinner, Tooltip } from 'flowbite-react';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
+import SignIn from '../sign-in';
 import './AccountDisplay.css';
 
 type SVGProps = {
@@ -69,7 +70,7 @@ type AuthDisplayProps = {
 export const AuthDisplay = ({ style }: AuthDisplayProps) => {
   const { data: session, status } = useSession();
 
-  if (status === 'loading') return <Spinner />;
+  if (status === 'loading') return ;
 
   return (
     <div className='account-display' style={style}>
@@ -90,9 +91,7 @@ export const AuthDisplay = ({ style }: AuthDisplayProps) => {
           </Tooltip>
         </button>
       ) : (
-        <button onClick={() => signIn('github')} style={{ minWidth: '60px' }}>
-          Sign in
-        </button>
+        <SignIn provider={'github'} style={{ width: '80px' }} />
       )}
     </div>
   );
