@@ -2,14 +2,18 @@
 
 import Link from 'next/link';
 import './AdminComp.css';
+import { useSession } from 'next-auth/react';
 
 export const AdminComp = () => {
+  const { data, status, update } = useSession();
+
   return (
-  <div className=' min-h-screen'>
+    <div className=' min-h-screen'>
       <div className='admin'>
         <div className='intro'>
           <h1>Admin Page</h1>
           <p>Acess to all Admin modules</p>
+          <p>Welcome, {data?.user?.email} </p>
         </div>
       </div>
 
