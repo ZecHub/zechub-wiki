@@ -100,7 +100,7 @@ const Navigation = () => {
 
   return (
     <div
-      className={`flex w-full md:h-30 border-b-4 border-slate-500 dark:border-slate-100 mb-3 md:py-5 md:mx-auto ${
+      className={`flex w-full md:h-32 border-b-4 border-slate-500 dark:border-slate-100 mb-3 md:py-5 md:mx-auto ${
         menuExpanded ? 'mb-[120%]' : ''
       }`}
     >
@@ -123,7 +123,7 @@ const Navigation = () => {
         </div>
 
         <div style={{ display: 'flex', gap: '52px', alignItems: 'center' }}>
-          <div className='flex  w-auto md:w-1/4 p-5 md:justify-end mr-6'>
+          <div className='flex  w-auto md:w-1/4 p-5 md:justify-end mr-12'>
             <Icon
               size={25}
               icon={dark ? LightIcon : DarkIcon}
@@ -135,7 +135,6 @@ const Navigation = () => {
             <SocialIcons newTab={false} />
             <AuthDisplay
               style={{
-                marginLeft: '6px',
                 display: 'flex',
                 flexDirection: 'row',
                 gap: '16px',
