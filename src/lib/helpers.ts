@@ -40,9 +40,9 @@ export const getBanner = (name: string) => {
   console.log('slug: ', name);
   for (let i = 0; i <= contentBanners.length; i++) {
     if (contentBanners[i] && contentBanners[i].name === undefined) {
-      break;
+      continue;
     }
-    if (contentBanners[i].name === transformUri(name)) {
+    if (contentBanners[i]['name'] != undefined && contentBanners[i].name === transformUri(name)) {
       return contentBanners[i].url;
     }
   }
