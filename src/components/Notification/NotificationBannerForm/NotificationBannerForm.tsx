@@ -2,33 +2,54 @@
 
 import { getBannerMessage, saveBannerMessage } from '@/app/actions';
 import { formatString } from '@/lib/helpers';
+import { Card, Spinner } from 'flowbite-react';
 import { useEffect, useState } from 'react';
-import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import { ZodError, z } from 'zod';
 
 type NotificationBannerFormProps = {
   formAction: (data: FormData) => void;
 };
 
-export type FormStateData = {
+export type FormDataType = {
   title?: string;
   description?: string;
-  image_src?: string;
   link?: string;
   send_btn_label?: string;
   [index: string]: any;
 };
 
+const FormSchema = z.object({
+  title: z.string().min(2, { message: 'Must be two or more characters long' }),
+  description: z
+    .string()
+    .min(2, { message: 'Must be two or more characters long' }),
+  link: z.string().min(5).url({ message: 'Must be a valid url ' }),
+  send_btn_label: z
+    .string()
+    .min(2, { message: 'Must be two or more characters long' }),
+});
+
 export function NotificationBannerForm(props: NotificationBannerFormProps) {
-  const [formFields, setFormFields] = useState<FormStateData>({});
+  const [formFields, setFormFields] = useState<FormDataType>({});
   const [isSending, setIsSending] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
-  const [data, setData] = useState<FormStateData>();
+  const [data, setData] = useState<FormDataType>();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormDataType>();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsFetching(true);
         const d = await getBannerMessage();
+
         setData(JSON.parse(d));
         setIsFetching(false);
       } catch (err) {
@@ -39,219 +60,247 @@ export function NotificationBannerForm(props: NotificationBannerFormProps) {
     fetchData();
   }, [isSending]);
 
-  const handleChange = (
-    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void => {
-    e.preventDefault();
-
-    const target = e.currentTarget;
-    const name = target.name;
-    const value = target.value;
-    setFormFields((formFields) => ({ ...formFields, [name]: value }));
-  };
-
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const schema = z.object({
-      title: z.string().min(2),
-      description: z.string().min(2),
-      image_src: z.string(),
-      link: z.string().min(5),
-      send_btn_label: z.string().min(2),
-    });
-
-    const validatedFields = schema.parse(formFields);
-
-    Object.keys(formFields).forEach((k, i) => {
-      formFields[k] = formatString.titleCase(Object.values(formFields)[i]);
-    });
-
+  const onSubmit = async (data: any) => {
     try {
       setIsSending(true);
-      await saveBannerMessage(validatedFields);
+      const clonedValidatedFields = Object.create(FormSchema.parse(data));
+      const encodedPairs = [];
 
-      handleFormReset(e);
+      for (let key in clonedValidatedFields) {
+        const encodedKey = encodeURIComponent(key);
+        const encodedValue = encodeURIComponent(clonedValidatedFields[key]);
+        encodedPairs.push(
+          `${encodedKey.toLowerCase()}=${encodedValue.toLowerCase()}`
+        );
+      }
+
+      await saveBannerMessage(encodedPairs.join('&'));
       setIsSending(false);
-    } catch (err) {
+      handleFormReset();
+    } catch (err: any) {
       setIsSending(false);
-      throw err;
+
+      if (err instanceof ZodError) {
+        console.error(err);
+        toast.error(ErrorToast(err), {
+          closeButton: true,
+          position: 'bottom-center',
+        });
+      } else {
+        toast.error('Failed submitting data', {
+          closeButton: true,
+          position: 'bottom-center',
+        });
+      }
     }
   };
 
-  const handleFormReset = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const newFormData: any = {};
-
-    for (let key in formFields) {
-      newFormData[key] = '';
-    }
-
-    setFormFields(newFormData);
-    // props.onClose();
+  const ErrorToast = (err: any) => {
+    return (
+      <ul className='mb-4'>
+        {err?.errors?.map((e: any, i: number) => (
+          <li key={i} className='mb-4'>
+            <p>
+              Code:{' '}
+              <span className='text-gray-700 text-sm font-bold'>
+                {formatString.removeUnderscore(e.code)}
+              </span>
+            </p>
+            <p>
+              Message:{' '}
+              <span className='text-gray-700 text-sm font-bold'>
+                {e.message}
+              </span>
+            </p>
+            <p>
+              Path:{' '}
+              <span className='text-gray-700 text-sm font-bold'>
+                {e.path[i]}
+              </span>
+            </p>
+            <p>
+              Validation:{' '}
+              <span className='text-gray-700 text-sm font-bold'>
+                {e.validation}
+              </span>
+            </p>
+          </li>
+        ))}
+      </ul>
+    );
   };
 
-  const handleParseData = () => {
+  const handleFormReset = () => {
+    reset();
+  };
+
+  const handleParsedData = () => {
     if (data != undefined) {
       return (
-        <div className='my-4 p-4 border rounded-md shadow-md'>
-          <p className='text-xl font-semibold mb-2'>Title: {data.title}</p>
-          <p className='text-gray-600 mb-2'>Description: {data.description}</p>
-          <p className='text-gray-600 mb-2'>
-            Link:
-            <a href={data.link}></a>
+        <div>
+          <p className='text-xl mb-2'>
+            Title:
+            <span className='font-semibold'>{data.title}</span>
           </p>
           <p className='text-gray-600 mb-2'>
-            Send button label: {data.send_btn_label}
+            Description:
+            <span className='font-semibold '> {data.description}</span>
+          </p>
+          <p className='text-gray-600 mb-2'>
+            Link:
+            <span className='font-semibold '>
+              <a href={data.link}> {formatString.wordWrap(data?.link!, 8)}</a>
+            </span>
+          </p>
+          <p className='text-gray-600 mb-2'>
+            Button Label:
+            <span className='font-semibold'> {data.send_btn_label}</span>
           </p>
         </div>
       );
     } else {
-      return (
-        <div className='my-4 p-4 border rounded-md shadow-md'>
-          <p className='text-xl font-semibold mb-2'>No info found!</p>
-        </div>
-      );
+      return <p className='text-xl font-semibold mb-2'>No info found!</p>;
     }
   };
+
   return (
-    <div className='bg-gray-100 min-h-screen flex '>
-      <div className='bg-white max-w-md p-8 rounded-md shadow-md'>
-        {/* <!-- Form Title --> */}
-        <h2 className='text-2xl font-semibold mb-4'>Simple Form</h2>
+    <>
+      <div className='max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl'>
+        <div className='md:flex gap-8'>
+          <div className='"flex flex-wrap mx-auto '>
+            <Card className='max-w-sm'>
+              <form
+                className='flex flex-col gap-4'
+                onSubmit={handleSubmit(onSubmit)}
+                id='notificationForm'
+              >
+                <div className='mb-4'>
+                  <label
+                    htmlFor='title'
+                    className='block text-gray-700 text-sm font-bold mb-2'
+                  >
+                    Title
+                  </label>
+                  <input
+                    type='text'
+                    id='title'
+                    placeholder='Enter title'
+                    className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text'
+                    disabled={isSending}
+                    {...register('title', { required: 'Title is required.' })}
+                    aria-invalid={errors.title ? 'true' : 'false'}
+                  />
+                  {errors.title?.message && (
+                    <p role='alert' style={{ color: 'red' }}>
+                      {errors.title?.message}
+                    </p>
+                  )}
+                </div>
 
-        {/* <!-- Form Inputs --> */}
-        <form
-          id='notificationForm'
-          name='notificationForm'
-          onSubmit={handleFormSubmit}
-        >
-          {/* <!-- Input 1: Title --> */}
-          <div className='mb-4'>
-            <label
-              htmlFor='title'
-              className='block text-gray-700 text-sm font-bold mb-2'
-            >
-              Title
-            </label>
-            <input
-              type='text'
-              id='title'
-              name='title'
-              placeholder='title'
-              className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
-              value={formFields.title}
-              onChange={handleChange}
-              required
-              disabled={isSending}
-            />
-          </div>
-          {/* <!-- Input 2: Description --> */}
-          <div className='mb-4'>
-            <label
-              htmlFor='description'
-              className='block text-gray-700 text-sm font-bold mb-2'
-            >
-              Description
-            </label>
-            <input
-              type='text'
-              id='description'
-              name='description'
-              placeholder='description'
-              className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
-              value={formFields.description}
-              onChange={handleChange}
-              required
-              disabled={isSending}
-            />
-          </div>
-          {/* <!-- Input 3: Image src --> */}
-          <div className='mb-4'>
-            <label
-              htmlFor='image_src'
-              className='block text-gray-700 text-sm font-bold mb-2'
-            >
-              Image Src
-            </label>
-            <input
-              type='text'
-              id='image_src'
-              name='image_src'
-              placeholder='Link to image'
-              className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
-              value={formFields.image_src}
-              onChange={handleChange}
-              required
-              disabled={isSending}
-            />
-          </div>
-          {/* <!-- Input 4: Link --> */}
-          <div className='mb-4'>
-            <label
-              htmlFor='link'
-              className='block text-gray-700 text-sm font-bold mb-2'
-            >
-              Url link for redirect
-            </label>
-            <input
-              type='text'
-              id='link'
-              name='link'
-              placeholder='Link for redirect'
-              className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
-              value={formFields.link}
-              onChange={handleChange}
-              required
-              disabled={isSending}
-            />
+                <div className='mb-4'>
+                  <label
+                    htmlFor='description'
+                    className='block text-gray-700 text-sm font-bold mb-2'
+                  >
+                    Description
+                  </label>
+                  <input
+                    type='text'
+                    id='description'
+                    placeholder='Enter description'
+                    disabled={isSending}
+                    className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
+                    {...register('description', {
+                      required: 'Description is required',
+                    })}
+                    aria-invalid={errors.description ? 'true' : 'false'}
+                  />
+                  {errors.description?.message && (
+                    <p role='alert' style={{ color: 'red' }}>
+                      {errors.description?.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className='mb-4'>
+                  <label
+                    htmlFor='link'
+                    className='block text-gray-700 text-sm font-bold mb-2'
+                  >
+                    Url link for redirect
+                  </label>
+                  <input
+                    type='text'
+                    id='link'
+                    placeholder='Enter link for redirect'
+                    disabled={isSending}
+                    className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
+                    {...register('link', {
+                      required: 'Link is required',
+                    })}
+                    aria-invalid={errors.link ? 'true' : 'false'}
+                  />
+                  {errors.link?.message && (
+                    <p role='alert' style={{ color: 'red' }}>
+                      {errors.link?.message}
+                    </p>
+                  )}
+                </div>
+                <div className='mb-4'>
+                  <label
+                    htmlFor='send_btn_label'
+                    className='block text-gray-700 text-sm font-bold mb-2'
+                  >
+                    Send button label
+                  </label>
+                  <input
+                    type='text'
+                    id='send_btn_label'
+                    placeholder='Enter label name of the button'
+                    disabled={isSending}
+                    className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
+                    {...register('send_btn_label', {
+                      required: 'Button label is required',
+                    })}
+                    aria-invalid={errors.send_btn_label ? 'true' : 'false'}
+                  />
+                  {errors.send_btn_label?.message && (
+                    <p role='alert' style={{ color: 'red' }}>
+                      {errors.send_btn_label?.message}
+                    </p>
+                  )}
+                </div>
+                <div className='flex space-x-10'>
+                  {/* <!-- Submit Button --> */}
+                  <button
+                    type='submit'
+                    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                    disabled={isSending}
+                  >
+                    {isSending ? 'Sending...' : 'Send'}
+                  </button>
+                  <button
+                    onClick={handleFormReset}
+                    type='submit'
+                    className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                    disabled={isSending}
+                  >
+                    Reset
+                  </button>
+                </div>
+              </form>
+            </Card>
           </div>
 
-          {/* <!-- Input 5: send_btn_label --> */}
-          <div className='mb-4'>
-            <label
-              htmlFor='send_btn_label'
-              className='block text-gray-700 text-sm font-bold mb-2'
-            >
-              Send button label
-            </label>
-            <input
-              type='text'
-              id='send_btn_label'
-              name='send_btn_label'
-              placeholder='Label name of the button'
-              className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
-              value={formFields.send_btn_label}
-              onChange={handleChange}
-              required
-              disabled={isSending}
-            />
+          <div className='p-8 mx-auto'>
+            <div className='tracking-wide text-sm text-gray-500 font-semibold mb-8'>
+              Current Notification Banner info:
+            </div>
+            {isFetching ? <Spinner /> : handleParsedData()}
           </div>
-
-          <div className='flex space-x-10'>
-            {/* <!-- Submit Button --> */}
-            <button
-              className='bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600'
-              disabled={isSending}
-            >
-              {isSending ? 'Sending...' : 'Send'}
-            </button>
-            <button
-              className='bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600'
-              type='button'
-              onClick={handleFormReset}
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
-
-      <div className='p-12'>
-        <h2>Current Notification Banner info:</h2>
-        {isFetching ? <p>Loading....</p> : handleParseData()}
-      </div>
-    </div>
+      <ToastContainer />
+    </>
   );
 }
