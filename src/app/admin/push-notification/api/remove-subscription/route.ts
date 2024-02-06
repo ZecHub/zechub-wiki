@@ -1,4 +1,6 @@
+import { authOptions } from '@/auth.config';
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
+import { getServerSession } from 'next-auth';
  
 
 const mongo = {
@@ -7,7 +9,17 @@ const mongo = {
   collectionName: 'webpushSubscribers',
 };
 
+
 export async function DELETE(req: Request) {
+    const session = await getServerSession(authOptions); // TODO: check for user.role === 'admin'
+
+    if (!session) {
+      return new Response('', {
+        status: 401,
+        statusText: 'You must be logged in.',
+      });
+    }
+
   const query = await req.json();
 
   try {
