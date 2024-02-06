@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { FadeInAnimation } from './FadeInAnimation'
 
 interface props {
     title: string
@@ -9,8 +10,8 @@ interface props {
 }
 
 const Cards = ({ title, paraph, url, image }: props) => (
-    <>
-        <div className="max-w-sm md:w-1/5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:-translate-y-6">
+    <div className="max-w-sm md:w-1/5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:-translate-y-6">
+        <FadeInAnimation>
             <Link href={url}>
                 <Image className="rounded-t-lg " src={image} alt="" width={400} height={100} />
             </Link>
@@ -26,8 +27,8 @@ const Cards = ({ title, paraph, url, image }: props) => (
                     </svg>
                 </Link>
             </div>
-        </div>
-    </>
+        </FadeInAnimation>
+    </div>
 )
 
 export default Cards
