@@ -9,7 +9,7 @@ export default async function BannerNotificationPage() {
   return (
     <>
       <Authentication session={session}>
-        <NotificationBannerForm formAction={saveBannerMessage} />;
+        <NotificationBannerForm formAction={saveBannerMessage} />
       </Authentication>
     </>
   );
