@@ -20,6 +20,7 @@
     "express-session": "^1.18.0",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.4",
+    "framer-motion": "^11.0.3",
     "mongodb": "6.3",
     "next": "13.4.19",
     "next-auth": "^4.24.5",
