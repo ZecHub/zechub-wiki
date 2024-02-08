@@ -1,4 +1,6 @@
+import { authOptions } from '@/auth.config';
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
+import { getServerSession } from 'next-auth';
 import { sendNotifications } from '../../apiHelpers';
 
 const mongo = {
@@ -8,6 +10,13 @@ const mongo = {
 };
 
 export async function POST(req: Request, res: Response) {
+  const session = await getServerSession(authOptions); // TODO: check for user.role === 'admin'
+
+  if (!session) {
+    return new Response('', {
+      status: 401,
+    });
+  }
   try {
     const payload = req.json();
 

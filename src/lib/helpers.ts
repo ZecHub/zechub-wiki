@@ -40,9 +40,12 @@ export const getBanner = (name: string) => {
   console.log('slug: ', name);
   for (let i = 0; i <= contentBanners.length; i++) {
     if (contentBanners[i] && contentBanners[i].name === undefined) {
-      break;
+      continue;
     }
-    if (contentBanners[i].name === transformUri(name)) {
+    if (
+      contentBanners[i]['name'] != undefined &&
+      contentBanners[i].name === transformUri(name)
+    ) {
       return contentBanners[i].url;
     }
   }
@@ -124,7 +127,21 @@ export const formatString = {
   titleCase: (txt: string) => {
     return txt[0].toUpperCase() + txt.slice(1);
   },
-  wordWrap: (txt: string, length: number) => {
-    return txt.slice(0, length);
+  removeUnderscore: (str: string) => {
+    return str.split('_').join(' ');
+  },
+  /**
+   * The function wrap a sentence at particular length of characters
+   * @param txt The sentence body
+   * @param wrapAfter The number of characters to start
+   * @returns The wrapped sentence
+   */
+  wordWrap: (txt: string, wrapAfter: number) => {
+    txt = txt.trim();
+    if (txt.length > wrapAfter) {
+      return txt.slice(0, wrapAfter) + '...';
+    }
+
+    return txt;
   },
 };

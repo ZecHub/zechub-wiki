@@ -1,5 +1,5 @@
-import { PUSH_NOTIFICATION_API, WEB_PUSH_VAPID_PUBLIC_KEY } from '@/config';
 import { Subscriber } from '@/components/push-notification/ListOfSubscribers/ListOfSubscribers';
+import { PUSH_NOTIFICATION_API, WEB_PUSH_VAPID_PUBLIC_KEY } from '@/config';
 
 /**
  * Thi registers the service worker
@@ -96,7 +96,7 @@ export const unsubscribeToPushNotification = async (): Promise<{
 };
 
 type NotificationTypes = {
-  payload: Record<string, any>;
+  payload: Record<string, any> | string[];
   subscribers?: Record<string, any> | Record<string, any>[];
 };
 type SendToServerTypes = {
@@ -106,13 +106,21 @@ type SendToServerTypes = {
 
 export async function sendToServer(args: SendToServerTypes) {
   try {
-    console.log({ description: 'sendToServer...', data: args, type: 'log' });
+    const decodePayload = decodeURIComponent(args.payload as any);
+    const parsedPayload = decodePayload.split('^');
+    const obj: any = {};
+
+    for (let i = 0; i < parsedPayload.length; i++) {
+      const [key, value] = parsedPayload[i].split('=');
+      obj[key] = value;
+    }
+
     const res = await fetch(args.url, {
       method: args.method,
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ payload: args.payload, sub: args.subscribers }),
+      body: JSON.stringify({ payload: obj, sub: args.subscribers }),
     });
 
     return res;
@@ -125,7 +133,7 @@ export async function sendNotifications(
   subscribers: Subscriber[] | Subscriber,
   payload: Record<string, any>
 ) {
-  await sendToServer({
+  return await sendToServer({
     method: 'POST',
     url: PUSH_NOTIFICATION_API.url.notify.one,
     payload,

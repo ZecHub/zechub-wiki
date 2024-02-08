@@ -40,32 +40,21 @@ textarea {
     padding-bottom: 48px;
 }
 
-.sub-messages p span {
-    font-size: 20px;
-
-}
-
 em {
     font-size: 18px;
     color: gray;
 }
 
 .btn {
-    max-width: 200px;
+    max-width: 100px;
     border: none;
     color: white;
-    padding: 12px 24px;
+    padding: 6px 12px;
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
 }
 
 .cancel {
-
     background-color: #ef5b5b;
-}
-
-.send {
-
-    background-color: #04AA6D;
 }

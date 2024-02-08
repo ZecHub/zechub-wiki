@@ -1,7 +1,9 @@
 'use server';
 
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
+import { formatString } from '@/lib/helpers';
 import { promises as fs } from 'fs';
+import { ObjectId } from 'mongodb';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
@@ -18,15 +20,14 @@ const mongo = {
 };
 
 export type SubscriberWelcomeMessageType = {
+  id: string;
   title: string;
   body: string;
-  icon: string;
-  image: string;
+  icon?: string;
+  image?: string;
 };
 
-export async function handlerCreateSubscriberWelcomeMessage(
-  formData: FormData
-) {
+export async function handlerCreateSubscriberWelcomeMessage(formData: any) {
   const schema = z.object({
     title: z.string().min(5),
     body: z.string().min(10),
@@ -34,14 +35,27 @@ export async function handlerCreateSubscriberWelcomeMessage(
     image: z.string(),
   });
 
-  const d = schema.parse({
-    title: formData.get('title'),
-    body: formData.get('body'),
-    icon: formData.get('icon'),
-    image: formData.get('image'),
-  });
-
   try {
+    const d = schema.parse({
+      title: formData.get('title'),
+      body: formData.get('body'),
+      icon: formData.get('icon'),
+      image: formData.get('image'),
+    });
+
+    // const obj: Record<string, any> = {};
+
+    // const decodedArr = decodeURIComponent(formData).split('&');
+
+    // for (let i = 0; i < decodedArr.length; i++) {
+    //   const [key, value] = decodedArr[i].split('=');
+    //   if (value.startsWith('https' || 'http')) {
+    //     obj[key] = value;
+    //   } else {
+    //     obj[key] = formatString.titleCase(value);
+    //   }
+    // }
+
     const webpushSubscribers = mongo.db.collection(mongo.collectionName);
     const res = await webpushSubscribers.insertOne(d);
 
@@ -52,10 +66,38 @@ export async function handlerCreateSubscriberWelcomeMessage(
       },
     };
   } catch (err) {
-    console.error({
-      description: 'handlerCreateSubscriberWelcomeMessage',
-      data: err,
-    });
+    console.error('handlerCreateSubscriberWelcomeMessage', err);
+    return { data: 'Failed to save data.' };
+  }
+}
+
+export async function handlerUpdateSubscriberWelcomeMessage(data: any) {
+  try {
+    const parserdData = decodeURIComponent(data).split('Z');
+    const doc: any = {};
+
+    for (let i = 0; i < parserdData.length; i++) {
+      const [key, value] = parserdData[i].split('=');
+      doc[key] = value;
+    }
+
+    const webpushSubscribers = mongo.db.collection(mongo.collectionName);
+    const docId = doc.id;
+
+    delete doc.id;
+    const res = await webpushSubscribers.updateOne(
+      { _id: new ObjectId(docId) },
+      { $set: doc }
+    );
+
+    // revalidatePath('/');
+    return {
+      data: {
+        modifiedCount: JSON.stringify(res.modifiedCount),
+      },
+    };
+  } catch (err) {
+    console.error('handlerCreateSubscriberWelcomeMessage', err);
     return { data: 'Failed to save data.' };
   }
 }
@@ -71,8 +113,8 @@ export async function getSubscriberWelcomeMessage(): Promise<{
 
     const parseData: SubscriberWelcomeMessageType[] = data.map((d) => {
       return {
-        title: d.title,
-        body: d.body,
+        title: formatString.titleCase(d.title),
+        body: formatString.titleCase(d.body),
         id: d._id.toString(),
         icon: d.icon,
         image: d.image,
@@ -93,7 +135,19 @@ const filePathForBannerMessage =
 
 export async function saveBannerMessage(formData: any) {
   try {
-    await fs.writeFile(filePathForBannerMessage, JSON.stringify(formData));
+    const obj: Record<string, any> = {};
+    const decodedArr = decodeURIComponent(formData).split('&');
+
+    for (let i = 0; i < decodedArr.length; i++) {
+      const [key, value] = decodedArr[i].split('=');
+      if (value.startsWith('https' || 'http')) {
+        obj[key] = value;
+      } else {
+        obj[key] = formatString.titleCase(value);
+      }
+    }
+
+    await fs.writeFile(filePathForBannerMessage, JSON.stringify(obj));
   } catch (err: any) {
     throw Error(err.message);
   }

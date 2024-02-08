@@ -1,191 +1,111 @@
 'use client';
 
-import './SubscriberWelcomeMessage.css';
-
 import {
   SubscriberWelcomeMessageType,
   getSubscriberWelcomeMessage,
-  handlerCreateSubscriberWelcomeMessage,
 } from '@/app/actions';
-import { ErrorBoundary } from '@/components/ErrorBoundary/ErrorBoundary';
-import Image from 'next/image';
+import { Modal, Spinner } from 'flowbite-react';
 import { useEffect, useState } from 'react';
-import { experimental_useFormStatus as useFormStatus } from 'react-dom';
+import { EditMessage } from './EditMessage';
+import './SubscriberWelcomeMessage.css';
 
 export const SubscriberWelcomeMessage = () => {
   const [subscribersWelcomMsg, setSubscribersWelcomMsg] = useState<
     SubscriberWelcomeMessageType[]
   >([]);
   const [showForm, setShowForm] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const { pending } = useFormStatus();
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     getMessages();
-  }, [isSubmitting]);
-
-  const handleFormData = async (formData: FormData) => {
-    setIsSubmitting(true);
-
-    const { data } = await handlerCreateSubscriberWelcomeMessage(formData);
-    if (data !== undefined && typeof data !== 'string') {
-      setIsSubmitting(false);
-      setShowForm(false);
-    }
-  };
+  }, [openModal, isSubmitting]);
 
   const getMessages = async () => {
-    const { data } = await getSubscriberWelcomeMessage();
-    const d = data as SubscriberWelcomeMessageType[];
-    setSubscribersWelcomMsg([...d]);
+    try {
+      setIsLoading(true);
+      const { data } = await getSubscriberWelcomeMessage();
+      const d = data as SubscriberWelcomeMessageType[];
+      if (d) {
+        setSubscribersWelcomMsg([...d]);
+        setIsLoading(false);
+      }
+    } catch (err) {
+      console.error(err);
+      setIsLoading(false);
+    }
   };
 
   return (
     <>
-      <h3 className='text-2xl font-bold my-12 text-left'>
-        Subscribers welcome message
+      <h3 className='text-xl font-bold my-2 text-left text-slate-600'>
+        Subscribers message
       </h3>
 
-      {subscribersWelcomMsg && subscribersWelcomMsg.length > 0 ? (
-        <div className='sub-messages'>
+      {isLoading ? (
+        <Spinner style={{ alignSelf: 'center' }} className='pt-24' />
+      ) : null}
+
+      {!isLoading && subscribersWelcomMsg?.length > 0 ? (
+        <div className=' text-sm text-left sub-messages md:text-base'>
           {subscribersWelcomMsg.map((msg, i) => (
             <div
               key={i}
               style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}
             >
               <p>
-                Title: <span>{msg.title}</span>{' '}
+                <span className='font-bold'>Title:</span> {msg.title}
               </p>
               <p>
-                Body: <span>{msg.body}</span>{' '}
-              </p>
-              <p style={{ display: 'flex', flexDirection: 'row', gap: '12px' }}>
-                Image:{' '}
-                <span>
-                  <Image
-                    width={30}
-                    height={30}
-                    alt={msg.title}
-                    src={msg.image}
-                  />{' '}
-                </span>
-              </p>
-              <p style={{ display: 'flex', flexDirection: 'row', gap: '12px' }}>
-                Icon:{' '}
-                <span>
-                  <Image
-                    width={30}
-                    height={30}
-                    alt={msg.title}
-                    src={msg.icon}
-                  />{' '}
-                </span>
+                <span className='font-bold'>Body:</span> {msg.body}
               </p>
             </div>
           ))}
-          <div className=''>
-            <button
-              className='btn send'
-              type='submit'
-              onClick={() => setShowForm(!showForm)}
-            >
-              Edit Messge
-            </button>
-          </div>
+
+          <button
+            className='btn bg-teal-600 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
+            Edit
+          </button>
         </div>
       ) : (
-        <>
-          {!showForm && (
-            <div className='sub-messages'>
-              <em>No default message set yet!</em>
-              <button
-                className='btn send'
-                type='submit'
-                onClick={() => setShowForm(!showForm)}
-              >
-                Create
-              </button>
-            </div>
-          )}
-
-          {showForm && (
-            <ErrorBoundary
-              fallback={
-                <p style={{ fontWeight: 400, fontSize: '22px', color: '#333' }}>
-                  There was an error while submitting the form...
-                </p>
-              }
-            >
-              <div className='form'>
-                <h4>Personalise a default message for Push Subscribers </h4>
-                <form action={handleFormData}>
-                  <label htmlFor='title'>
-                    <input
-                      className='input'
-                      type='text'
-                      name='title'
-                      id='title'
-                      placeholder='Enter title'
-                      disabled={pending}
-                    />
-                  </label>
-                  <label htmlFor='icon'>
-                    <input
-                      className='input'
-                      type='text'
-                      name='icon'
-                      id='icon'
-                      placeholder='Enter url for icon to use'
-                      disabled={pending}
-                    />
-                  </label>
-                  <label htmlFor='image'>
-                    <input
-                      className='input'
-                      type='text'
-                      name='image'
-                      id='image'
-                      placeholder='Enter url for image to use'
-                      disabled={pending}
-                    />
-                  </label>
-                  <label htmlFor='description'>
-                    <textarea
-                      name='body'
-                      id='body'
-                      cols={30}
-                      rows={10}
-                      maxLength={200}
-                      placeholder='Enter a description'
-                      disabled={pending}
-                    ></textarea>
-                  </label>
-
-                  <div style={{ display: 'flex', gap: '24px' }}>
-                    <button
-                      className='btn send'
-                      type='submit'
-                      disabled={pending}
-                    >
-                      {isSubmitting ? 'Submitting...' : 'Submit'}
-                    </button>
-                    {showForm && (
-                      <button
-                        className='btn cancel'
-                        type='submit'
-                        onClick={() => setShowForm(!showForm)}
-                      >
-                        Cancel
-                      </button>
-                    )}
-                  </div>
-                </form>
-              </div>
-            </ErrorBoundary>
-          )}
-        </>
+        <div className='text-center space-x-8 my-4 '>
+          <em className='sm:text-sm'>No default message set yet!</em>
+          <button
+            className='btn send'
+            type='submit'
+            onClick={() => setShowForm(false)}
+          >
+            Create
+          </button>
+        </div>
       )}
+
+      <Modal
+        className='sm:pt-28'
+        show={openModal}
+        onClose={() => setOpenModal(false)}
+        dismissible
+      >
+        <Modal.Header>Edit Message</Modal.Header>
+        <Modal.Body>
+          <div className='space-y-6'>
+            <EditMessage
+              setOpenModal={setOpenModal}
+              subscribersWelcomMsg={subscribersWelcomMsg}
+              showForm={showForm}
+              isSubmitting={isSubmitting}
+              setIsSubmitting={setIsSubmitting}
+              setShowForm={setShowForm}
+            />
+          </div>
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
+      </Modal>
     </>
   );
 };
