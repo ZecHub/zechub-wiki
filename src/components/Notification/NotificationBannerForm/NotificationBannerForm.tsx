@@ -137,8 +137,8 @@ export function NotificationBannerForm(props: NotificationBannerFormProps) {
   const handleParsedData = () => {
     if (data != undefined) {
       return (
-        <div>
-          <p className='text-xl mb-2'>
+        <>
+          <p className='text-gray-600 mb-2'>
             Title:
             <span className='font-semibold'>{data.title}</span>
           </p>
@@ -149,17 +149,17 @@ export function NotificationBannerForm(props: NotificationBannerFormProps) {
           <p className='text-gray-600 mb-2'>
             Link:
             <span className='font-semibold '>
-              <a href={data.link}> {formatString.wordWrap(data?.link!, 8)}</a>
+              <a href={data.link}> {formatString.wordWrap(data?.link!, 18)}</a>
             </span>
           </p>
           <p className='text-gray-600 mb-2'>
             Button Label:
             <span className='font-semibold'> {data.send_btn_label}</span>
           </p>
-        </div>
+        </>
       );
     } else {
-      return <p className='text-xl font-semibold mb-2'>No info found!</p>;
+      return <p className='text-gray-600 font-semibold mb-2'>No info found!</p>;
     }
   };
 
@@ -168,12 +168,15 @@ export function NotificationBannerForm(props: NotificationBannerFormProps) {
       <div className='max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl'>
         <div className='md:flex gap-8'>
           <div className='"flex flex-wrap mx-auto '>
-            <Card className='max-w-sm'>
+            <Card className='max-w-sm   text-gray-700'>
               <form
                 className='flex flex-col gap-4'
                 onSubmit={handleSubmit(onSubmit)}
                 id='notificationForm'
               >
+                <div className='tracking-wide text-sm text-gray-500 font-semibold mb-8'>
+                  Create a new Notification Banner content:
+                </div>
                 <div className='mb-4'>
                   <label
                     htmlFor='title'
@@ -296,7 +299,17 @@ export function NotificationBannerForm(props: NotificationBannerFormProps) {
             <div className='tracking-wide text-sm text-gray-500 font-semibold mb-8'>
               Current Notification Banner info:
             </div>
-            {isFetching ? <Spinner /> : handleParsedData()}
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignContent: 'center',
+                color: 'rgb(38, 55, 131)',
+                marginTop: '48px',
+              }}
+            >
+              {isFetching ? <Spinner /> : handleParsedData()}
+            </div>
           </div>
         </div>
       </div>
