@@ -15,7 +15,7 @@ import {
 } from '../lib/push-notification/pushHelpers';
 
 import { Tooltip } from 'flowbite-react';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { NotificationIcon } from './ui/NotificationIcon';
 
@@ -111,10 +111,7 @@ export function AppProvider(props: AppProviderProps) {
         toast.success("You've have unsubscribed!");
       }
     } catch (err: any) {
-      console.error({
-        description: 'Failed to unsubscribe to Push Notification!',
-        data: err.message,
-      });
+      console.error('Failed to unsubscribe to Push Notification!', err.message);
       toast.error('Failed to unsubscribe!');
     }
   };
@@ -161,6 +158,7 @@ export function AppProvider(props: AppProviderProps) {
     <SessionProvider>
       {subscriptionButtons()}
       {props.children}
+      <ToastContainer />
     </SessionProvider>
   );
 }
