@@ -1,35 +1,30 @@
 'use client';
 
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import './AdminComp.css';
-import { useSession } from 'next-auth/react';
 
 export const AdminComp = () => {
-  const { data, status, update } = useSession();
+  const { data } = useSession();
 
   return (
-    <div className=' min-h-screen'>
-      <div className='admin'>
-        <div className='intro'>
-          <h1>Admin Page</h1>
-          <p>Acess to all Admin modules</p>
-          <p>Welcome, {data?.user?.email} </p>
+    <div className='h-screen'>
+      <div className='flex items-center justify-center py-8 bg-gray-700 text-white mb-24'>
+        <div className='text-center'>
+          <h1 className='text-4xl font-bold mb-4'>Welcome to Admin Page</h1>
+          <p className='text-lg'>Acess to all Admin modules</p>
+          <p className='text-base'>Welcome, {data?.user?.email}</p>
         </div>
       </div>
 
-      <div className='flex flex-wrap justify-center mb-24'>
-        <div className='bg-white max-w-md mx-2 my-4 shadow-md rounded-md overflow-hidden'>
-          {/* <!-- Card Content --> */}
+      <div className='flex flex-col md:flex-row mx-auto'>
+        <div className='bg-gray-200 p-4 m-2 md:w-1/2'>
           <div className='p-6'>
-            {/* <!-- Card Title --> */}
             <h2 className='text-xl font-semibold text-gray-800 mb-2'>
               Push Notification
             </h2>
 
-            {/* <!-- Card Description --> */}
             <p className='text-gray-600'>Access list of Subscribers</p>
-
-            {/* <!-- Card Button --> */}
             <div className='mt-4'>
               <Link
                 href={'/admin/push-notification'}
@@ -41,18 +36,14 @@ export const AdminComp = () => {
           </div>
         </div>
 
-        <div className='bg-white max-w-md mx-2 my-4 shadow-md rounded-md overflow-hidden'>
-          {/* <!-- Card Content --> */}
+        <div className='bg-gray-200 p-4 m-2 md:w-1/2'>
           <div className='p-6'>
-            {/* <!-- Card Title --> */}
             <h2 className='text-xl font-semibold text-gray-800 mb-2'>
               Banner Notification
             </h2>
 
-            {/* <!-- Card Description --> */}
             <p className='text-gray-600'>Banner Message</p>
 
-            {/* <!-- Card Button --> */}
             <div className='mt-4'>
               <Link
                 href={'/admin/banner-notification'}
