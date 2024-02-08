@@ -1,9 +1,15 @@
-import { useState } from 'react';
-import './SendNotificationForm.css';
 import { NOTIFICATION_PERMISSION } from '@/config';
+import { sendNotifications } from '@/lib/push-notification/pushHelpers';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { formatString } from '@/lib/helpers';
-import { Subscriber } from '../ListOfSubscribers/ListOfSubscribers';
+import { z, ZodError } from 'zod';
+import './SendNotificationForm.css';
+
+export const zodSchema = z.object({
+  title: z.string().min(2, { message: 'Must be two or more characters long' }),
+  body: z.string().min(10, { message: 'Must be two or more characters long' }),
+});
 
 type FormStateData = {
   title?: string;
@@ -12,71 +18,78 @@ type FormStateData = {
 };
 
 type SendNotificationProps = {
-  handleSendNotifications: (
-    subscribers: Subscriber[],
-    payload: any
-  ) => Promise<void>;
   subscribers: any[];
-  onClose: () => void;
+  handleOnCloseModal: () => void;
 };
+
 export function SendNotificationForm(props: SendNotificationProps) {
-  const [formFields, setFormFields] = useState<FormStateData>({});
   const [notificationPermission, setNotificationPermission] = useState(false);
   const [isSending, setIsSending] = useState(false);
 
-  const handleChange = (
-    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void => {
-    const target = e.currentTarget;
-    const name = target.name;
-    const value = target.value;
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-    setFormFields((formFields) => ({ ...formFields, [name]: value }));
+  const handleFormReset = () => {
+    reset();
   };
 
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handleOnSubmit = async (data: any) => {
     // 1. check if serviceWorker/push notification is active
     const notifyPermission = localStorage.getItem(NOTIFICATION_PERMISSION);
     if (!notifyPermission) {
-      toast.info(
-        'You need to enable Notification API in order to use this feature.'
+      toast.warn(
+        'You need to enable Notification API in order to use this feature.',
+        {
+          position: 'bottom-center',
+        }
       );
       setNotificationPermission(true);
       return;
     }
 
-    Object.keys(formFields).forEach((k, i) => {
-      formFields[k] = formatString.titleCase(Object.values(formFields)[i]);
-    });
-
     try {
       setIsSending(true);
-      const res = await props.handleSendNotifications(
+      const validatedformData = zodSchema.parse(data);
+      const clonedValidatedFields = Object.create(validatedformData);
+      const encodedPairs = [];
+
+      for (let key in clonedValidatedFields) {
+        const encodedKey = encodeURIComponent(key);
+        const encodedValue = encodeURIComponent(clonedValidatedFields[key]);
+
+        encodedPairs.push(
+          `${encodedKey.toLowerCase().trim()}=${encodedValue
+            .toLowerCase()
+            .trim()}`
+        );
+      }
+
+      const res = await sendNotifications(
         props.subscribers,
-        formFields
+        encodedPairs.join('^') as any
       );
 
-      handleFormReset(e);
+      if (res.ok) {
+        setIsSending(false);
+        handleFormReset();
+        props.handleOnCloseModal();
+      }
+    } catch (err: any) {
       setIsSending(false);
-    } catch (err) {
-      setIsSending(false);
-      throw err;
+
+      if (err instanceof ZodError) {
+        console.error(err);
+      } else {
+        toast.error('Failed submitting data', {
+          closeButton: true,
+          position: 'bottom-center',
+        });
+      }
     }
-  };
-
-  const handleFormReset = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const newFormData: any = {};
-
-    for (let key in formFields) {
-      newFormData[key] = '';
-    }
-
-    setFormFields(newFormData);
-    props.onClose();
   };
 
   const handleEnableNotification = () => {
@@ -89,69 +102,80 @@ export function SendNotificationForm(props: SendNotificationProps) {
   };
 
   return (
-    <>
-      <section className=''>
-        <form
-          onSubmit={handleFormSubmit}
-          id='sendNotificationForm'
-          name='sendNotificationForm'
-          className='sendNotificationForm'
-        >
-          <div className='header'>
-            <h3>Send a notification</h3>
-          </div>
-
-          <label htmlFor='title'>
-            <input
-              type='text'
-              id='title'
-              name='title'
-              value={formFields.title}
-              placeholder='Enter title'
-              onChange={handleChange}
-              required
-              disabled={isSending}
-            />
+    <section className='flex flex-wrap mx-auto text-base text-gray-500 dark:text-gray-400'>
+      <form
+        className='flex flex-col gap-4 w-full'
+        onSubmit={handleSubmit(handleOnSubmit)}
+      >
+        <div className='mb-4'>
+          <label
+            htmlFor='title'
+            className='block text-gray-700 text-sm font-bold mb-2'
+          >
+            Title
           </label>
-
-          <br />
-          <label htmlFor='body'>
-            <textarea
-              cols={40}
-              id='body'
-              name='body'
-              value={formFields.body}
-              placeholder='Enter body content'
-              onChange={handleChange}
-              required
-              disabled={isSending}
-            />
+          <input
+            type='text'
+            id='title'
+            placeholder='Enter title'
+            className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
+            disabled={isSending}
+            {...register('title', {
+              required: 'Title is required.',
+            })}
+            aria-invalid={errors.title ? 'true' : 'false'}
+          />
+          {errors.title?.message && (
+            <p role='alert' style={{ color: 'red' }}>
+              {errors.title?.message.toString()}
+            </p>
+          )}
+        </div>
+        <div className='mb-4'>
+          <label
+            htmlFor='description'
+            className='block text-gray-700 text-sm font-bold mb-2'
+          >
+            Description
           </label>
-          <br />
+          <textarea
+            id='body'
+            placeholder='Enter description'
+            disabled={isSending}
+            className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
+            {...register('body', {
+              required: 'Description is required',
+            })}
+            aria-invalid={errors.body ? 'true' : 'false'}
+          />
+          {errors.body?.message && (
+            <p role='alert' style={{ color: 'red' }}>
+              {errors.body?.message.toString()}
+            </p>
+          )}
+        </div>
 
-          <div className='flex space-x-10'>
-            <button type='submit' disabled={isSending}>
-              {isSending ? 'Sending...' : 'Send'}
-            </button>
-            <button
-              type='button'
-              onClick={handleFormReset}
-              className='cancelbtn'
-            >
-              Cancel
-            </button>
-            {notificationPermission ? (
-              <button
-                type='button'
-                onClick={handleEnableNotification}
-                className='cancelbtn'
-              >
-                Enable Notification
-              </button>
-            ) : null}
-          </div>
-        </form>
-      </section>
-    </>
+        <div className='flex space-x-10'>
+          {/* <!-- Submit Button --> */}
+          <button
+            type='submit'
+            className='bg-teal-600 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            disabled={isSending}
+          >
+            {isSending ? 'Sending...' : 'Send'}
+          </button>
+          <button
+            className='bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            disabled={isSending}
+            onClick={(e) => {
+              e.preventDefault();
+              handleFormReset();
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </section>
   );
 }
