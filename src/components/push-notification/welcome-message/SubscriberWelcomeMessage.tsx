@@ -64,7 +64,7 @@ export const SubscriberWelcomeMessage = () => {
           ))}
 
           <button
-            className='btn send'
+            className='btn bg-teal-600 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
             onClick={() => {
               setOpenModal(true);
             }}
@@ -73,8 +73,8 @@ export const SubscriberWelcomeMessage = () => {
           </button>
         </div>
       ) : (
-        <div className='text-center space-x-8 my-8 '>
-          <em>No default message set yet!</em>
+        <div className='text-center space-x-8 my-4 '>
+          <em className='sm:text-sm'>No default message set yet!</em>
           <button
             className='btn send'
             type='submit'
