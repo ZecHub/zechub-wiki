@@ -18,6 +18,7 @@ import { Icon } from './ui/Icon';
 import Logo from './ui/Logo';
 import SocialIcons from './ui/SocialIcons';
 import { AuthDisplay } from './AccountDisplay/AccountDisplay';
+import DonationBtn from '@/components/DonationBtn';
 
 const NavLinks = ({ classes, menuExp }: Classes) => {
   const router = useRouter();
@@ -26,15 +27,15 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
     <div className={`flex ${menuExp ? 'flex-col' : 'flex-row'} ${classes}`}>
       {navigations.map((item) => (
         <Dropdown
-          className='flex flex-row font-medium'
+          className="flex flex-row font-medium"
           key={item.name}
           label={item.name}
-          color='inherit'
+          color="inherit"
           trigger={menuExp ? 'click' : 'hover'}
         >
           {item.links.map((link) => (
             <Dropdown.Item
-              type='button'
+              type="button"
               key={link.path}
               onClick={() => {
                 router.push(link.path);
@@ -51,21 +52,23 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
 
 const MobileNav = ({ menuExpanded }: MenuExp) => {
   return (
-    <div className='absolute flex flex-col w-11/12 h-auto justify-center z-10'>
+    <div className="absolute flex flex-col w-11/12 h-auto justify-center z-10">
       {/* Menu */}
       <div
         className={`${
           !menuExpanded ? 'hidden' : 'flex'
         } shadow flex-col p-6 absolute top-20 px-8 w-full ml-11 rounded-xl transition duration-200`}
       >
-        <ul className='list-none flex items-start flex-1 flex-col'>
-          <NavLinks classes='font-bold' menuExp={menuExpanded} />
+        <ul className="list-none flex items-start flex-1 flex-col">
+          <NavLinks classes="font-bold" menuExp={menuExpanded} />
         </ul>
 
-        <div className='flex flex-1 p-2 top-10 justify-start items-start my-3'>
+        <div className="flex flex-1 p-2 top-10 justify-start items-start my-3">
           <SocialIcons newTab={true} />
         </div>
-        <AuthDisplay style={{display: 'flex', flexDirection: 'row',  gap: '12px'}} />
+        <AuthDisplay
+          style={{ display: 'flex', flexDirection: 'row', gap: '12px' }}
+        />
       </div>
     </div>
   );
@@ -87,12 +90,12 @@ const Navigation = () => {
     ];
     if (html && dark) {
       activeClassesHtml.forEach((activeClass) =>
-        html.classList.add(activeClass)
+        html.classList.add(activeClass),
       );
       activeBody.forEach((activeClass) => body.classList.add(activeClass));
     } else if (html.classList.contains(activeClassesHtml[0])) {
       activeClassesHtml.forEach((activeClass) =>
-        html.classList.remove(activeClass)
+        html.classList.remove(activeClass),
       );
       activeBody.forEach((activeClass) => body.classList.remove(activeClass));
     }
@@ -104,15 +107,15 @@ const Navigation = () => {
         menuExpanded ? 'mb-[120%]' : ''
       }`}
     >
-      <div className='w-50 md:w-28 h-full p-2 flex flex-wrap md:space-x-2'>
-        <Link href={'/'} className='hover:cursor-pointer'>
+      <div className="w-50 md:w-28 h-full p-2 flex flex-wrap md:space-x-2">
+        <Link href={'/'} className="hover:cursor-pointer">
           <Logo />
         </Link>
       </div>
 
-      <nav className='flex flex-wrap w-full sm:justify-end space-x-7 md:space-x-11'>
+      <nav className="flex flex-wrap w-full sm:justify-end space-x-7 md:space-x-11">
         {menuExpanded && (
-          <div className='flex justify-center'>
+          <div className="flex justify-center">
             <MobileNav menuExpanded={menuExpanded} />
           </div>
         )}
@@ -123,28 +126,32 @@ const Navigation = () => {
         </div>
 
         <div style={{ display: 'flex', gap: '52px', alignItems: 'center' }}>
-          <div className='flex  w-auto md:w-1/4 p-5 md:justify-end mr-12'>
+          <div className="flex  w-auto md:w-1/4 p-5 md:justify-end mr-12">
             <Icon
               size={25}
               icon={dark ? LightIcon : DarkIcon}
-              className='hover:cursor-pointer'
+              className="hover:cursor-pointer"
               onClick={() => setDark(!dark)}
             />
           </div>
-          <div className='hidden md:flex p-5 w-auto md:w-40 justify-end gap-6'>
+          <div
+            className="hidden md:flex p-2 w-auto md:w-40 justify-end gap-6"
+            style={{ display: 'flex', alignItems: 'center' }}
+          >
             <SocialIcons newTab={false} />
-            <AuthDisplay
+            <DonationBtn />
+            {/* <AuthDisplay
               style={{
                 display: 'flex',
                 flexDirection: 'row',
                 gap: '16px',
               }}
-            />
+            /> */}
           </div>
         </div>
-        <div className=' w-auto md:hidden hover:cursor-pointer p-5'>
+        <div className=" w-auto md:hidden hover:cursor-pointer p-5">
           <Icon
-            className='transition duration-500'
+            className="transition duration-500"
             size={25}
             icon={menuExpanded ? CloseIcon : MenuIcon}
             onClick={() => setMenuExpanded(!menuExpanded)}
