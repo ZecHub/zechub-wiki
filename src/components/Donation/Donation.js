@@ -29,7 +29,7 @@ const generateDonationLink = () => {
   const formattedAmount = parseFloat(donationAmount).toFixed(4); // Format amount to four decimal places to match your example
   const zcashAddress = 'zcash:u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89';
   const zcashDonationLink = `${zcashAddress}?amount=${formattedAmount}&memo=${encodeURIComponent(memo)}`;
-  return `Zcash Donation Link: ${zcashDonationLink}`;
+  return `${zcashDonationLink}`;
 };
 
   return (
