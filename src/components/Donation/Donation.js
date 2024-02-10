@@ -35,7 +35,7 @@ const generateDonationLink = () => {
   return (
     <div className='donation-container'>
       <div className='zcash-image'>
-        <img src="../../../../Zcashcard.png" alt="Zcash Donation" />
+        <img src="../../../../donate.gif" alt="Zcash Donation" />
       </div>
       <div className='donation-slider'>
         <div className='donation-header'>
