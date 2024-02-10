@@ -25,18 +25,24 @@ const DonationComp = () => {
     setDonationAmount(event.target.value); // Synchronize donation amount with memo
   };
 
-const generateDonationLink = () => {
-  const formattedAmount = parseFloat(donationAmount).toFixed(4); // Format amount to four decimal places to match your example
-  const zcashAddress = 'zcash:u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89';
-  const zcashDonationLink = `${zcashAddress}?amount=${formattedAmount}&memo=${encodeURIComponent(memo)}`;
-  return `${zcashDonationLink}`;
-};
+  const generateDonationLink = () => {
+    const formattedAmount = parseFloat(donationAmount).toFixed(4); // Format amount to four decimal places
+    const zcashAddress = 'zcash:u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89'; // Replace 'your_zcash_address_here' with your actual Zcash address
+    const zcashDonationLink = `${zcashAddress}?amount=${formattedAmount}&memo=${encodeURIComponent(memo)}`;
+    return `${zcashDonationLink}`;
+  };
 
   return (
     <div className='donation-container'>
       <div className='zcash-image'>
         <img src="../../../../donate.gif" alt="Zcash Donation" />
       </div>
+
+      {/* QR Code block moved above the slider */}
+      <div style={{ width: '300px', margin: '0 auto' }}> {/* Adjust the width and centering as needed */}
+        <QRCode value={generateDonationLink()} size={280} /> {/* Adjust the size as needed */}
+      </div>
+
       <div className='donation-slider'>
         <div className='donation-header'>
           <h1>Donate Now</h1>
@@ -77,15 +83,9 @@ const generateDonationLink = () => {
             />
           </div>
         </div>
-
-        <br />
-        <div style={{ width: '300px' }}> {/* Adjust the width as needed */}
-          <QRCode value={generateDonationLink()} size={280} /> {/* Adjust the size as needed */}
-        </div>
       </div>
     </div>
   );
 };
 
 export default DonationComp;
-
