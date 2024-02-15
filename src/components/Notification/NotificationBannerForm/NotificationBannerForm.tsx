@@ -87,6 +87,7 @@ export function NotificationBannerForm(props: NotificationBannerFormProps) {
           position: 'bottom-center',
         });
       } else {
+        console.error(err);
         toast.error('Failed submitting data', {
           closeButton: true,
           position: 'bottom-center',

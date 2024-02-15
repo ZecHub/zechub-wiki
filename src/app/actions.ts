@@ -149,6 +149,7 @@ export async function saveBannerMessage(formData: any) {
 
     await fs.writeFile(filePathForBannerMessage, JSON.stringify(obj));
   } catch (err: any) {
+    console.error(err)
     throw Error(err.message);
   }
 }
