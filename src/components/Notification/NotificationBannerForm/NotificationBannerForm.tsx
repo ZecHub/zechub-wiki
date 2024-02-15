@@ -2,7 +2,7 @@
 
 import { getBannerMessage, saveBannerMessage } from '@/app/actions';
 import { formatString } from '@/lib/helpers';
-import { Card, Spinner } from 'flowbite-react';
+import { Spinner } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
@@ -131,184 +131,185 @@ export function NotificationBannerForm(props: NotificationBannerFormProps) {
   };
 
   const handleFormReset = () => {
+    console.log('clicked...');
     reset();
   };
 
   const handleParsedData = () => {
     if (data != undefined) {
       return (
-        <>
-          <p className='text-gray-600 mb-2'>
+        <div className='flex flex-col flex-wrap justify-items-start gap-2 text-gray-600'>
+          <p>
             Title:
-            <span className='font-semibold'>{data.title}</span>
+            <span className='font-semibold'> {data.title}</span>
           </p>
-          <p className='text-gray-600 mb-2'>
+          <p>
             Description:
             <span className='font-semibold '> {data.description}</span>
           </p>
-          <p className='text-gray-600 mb-2'>
-            Link:
-            <span className='font-semibold '>
-              <a href={data.link}> {formatString.wordWrap(data?.link!, 18)}</a>
+          <p>
+            Link:{' '}
+            <span className='font-semibold text-wrap'>
+              <a href={data.link} target='_blank'>
+                {formatString.wordWrap(data?.link!, 24)}
+              </a>
             </span>
           </p>
-          <p className='text-gray-600 mb-2'>
+          <p>
             Button Label:
             <span className='font-semibold'> {data.send_btn_label}</span>
           </p>
-        </>
+        </div>
       );
     } else {
-      return <p className='text-gray-600 font-semibold mb-2'>No info found!</p>;
+      return <p className='text-gray-600 mt-4'>No info found!</p>;
     }
   };
 
   return (
     <>
-      <div className='max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl'>
-        <div className='md:flex gap-8'>
-          <div className='"flex flex-wrap mx-auto '>
-            <Card className='max-w-sm   text-gray-700'>
-              <form
-                className='flex flex-col gap-4'
-                onSubmit={handleSubmit(onSubmit)}
-                id='notificationForm'
-              >
-                <div className='tracking-wide text-sm text-gray-500 font-semibold mb-8'>
-                  Create a new Notification Banner content:
-                </div>
-                <div className='mb-4'>
-                  <label
-                    htmlFor='title'
-                    className='block text-gray-700 text-sm font-bold mb-2'
-                  >
-                    Title
-                  </label>
-                  <input
-                    type='text'
-                    id='title'
-                    placeholder='Enter title'
-                    className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text'
-                    disabled={isSending}
-                    {...register('title', { required: 'Title is required.' })}
-                    aria-invalid={errors.title ? 'true' : 'false'}
-                  />
-                  {errors.title?.message && (
-                    <p role='alert' style={{ color: 'red' }}>
-                      {errors.title?.message}
-                    </p>
-                  )}
-                </div>
+      <div className='lg:md:container lg:mx-auto'>
+        <div className='sm:flex-col-reverse flex flex-col md:flex-row mx-auto'>
+          <div className='bg-gray-200 p-4 m-2 md:w-1/2'>
+            <div className='p-6'>
+              <h2 className='text-xl font-semibold text-gray-800 mb-2'>
+                Create content
+              </h2>
+              <div className='mt-12'>
+                <form
+                  className='flex flex-col gap-4'
+                  onSubmit={handleSubmit(onSubmit)}
+                  id='notificationForm'
+                >
+                  <div className='mb-4'>
+                    <label
+                      htmlFor='title'
+                      className='block text-gray-700 text-sm font-bold mb-2'
+                    >
+                      Title
+                    </label>
+                    <input
+                      type='text'
+                      id='title'
+                      placeholder='Enter title'
+                      className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text'
+                      disabled={isSending}
+                      {...register('title', { required: 'Title is required.' })}
+                      aria-invalid={errors.title ? 'true' : 'false'}
+                    />
+                    {errors.title?.message && (
+                      <p role='alert' style={{ color: 'red' }}>
+                        {errors.title?.message}
+                      </p>
+                    )}
+                  </div>
 
-                <div className='mb-4'>
-                  <label
-                    htmlFor='description'
-                    className='block text-gray-700 text-sm font-bold mb-2'
-                  >
-                    Description
-                  </label>
-                  <input
-                    type='text'
-                    id='description'
-                    placeholder='Enter description'
-                    disabled={isSending}
-                    className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
-                    {...register('description', {
-                      required: 'Description is required',
-                    })}
-                    aria-invalid={errors.description ? 'true' : 'false'}
-                  />
-                  {errors.description?.message && (
-                    <p role='alert' style={{ color: 'red' }}>
-                      {errors.description?.message}
-                    </p>
-                  )}
-                </div>
+                  <div className='mb-4'>
+                    <label
+                      htmlFor='description'
+                      className='block text-gray-700 text-sm font-bold mb-2'
+                    >
+                      Description
+                    </label>
+                    <textarea
+                      id='description'
+                      placeholder='Enter description'
+                      disabled={isSending}
+                      className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
+                      {...register('description', {
+                        required: 'Description is required',
+                      })}
+                      aria-invalid={errors.description ? 'true' : 'false'}
+                    />
+                    {errors.description?.message && (
+                      <p role='alert' style={{ color: 'red' }}>
+                        {errors.description?.message}
+                      </p>
+                    )}
+                  </div>
 
-                <div className='mb-4'>
-                  <label
-                    htmlFor='link'
-                    className='block text-gray-700 text-sm font-bold mb-2'
-                  >
-                    Url link for redirect
-                  </label>
-                  <input
-                    type='text'
-                    id='link'
-                    placeholder='Enter link for redirect'
-                    disabled={isSending}
-                    className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
-                    {...register('link', {
-                      required: 'Link is required',
-                    })}
-                    aria-invalid={errors.link ? 'true' : 'false'}
-                  />
-                  {errors.link?.message && (
-                    <p role='alert' style={{ color: 'red' }}>
-                      {errors.link?.message}
-                    </p>
-                  )}
-                </div>
-                <div className='mb-4'>
-                  <label
-                    htmlFor='send_btn_label'
-                    className='block text-gray-700 text-sm font-bold mb-2'
-                  >
-                    Send button label
-                  </label>
-                  <input
-                    type='text'
-                    id='send_btn_label'
-                    placeholder='Enter label name of the button'
-                    disabled={isSending}
-                    className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
-                    {...register('send_btn_label', {
-                      required: 'Button label is required',
-                    })}
-                    aria-invalid={errors.send_btn_label ? 'true' : 'false'}
-                  />
-                  {errors.send_btn_label?.message && (
-                    <p role='alert' style={{ color: 'red' }}>
-                      {errors.send_btn_label?.message}
-                    </p>
-                  )}
-                </div>
-                <div className='flex space-x-10'>
-                  {/* <!-- Submit Button --> */}
-                  <button
-                    type='submit'
-                    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                    disabled={isSending}
-                  >
-                    {isSending ? 'Sending...' : 'Send'}
-                  </button>
-                  <button
-                    onClick={handleFormReset}
-                    type='submit'
-                    className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                    disabled={isSending}
-                  >
-                    Reset
-                  </button>
-                </div>
-              </form>
-            </Card>
+                  <div className='mb-4'>
+                    <label
+                      htmlFor='link'
+                      className='block text-gray-700 text-sm font-bold mb-2'
+                    >
+                      Url link for redirect
+                    </label>
+                    <input
+                      type='text'
+                      id='link'
+                      placeholder='Enter link for redirect'
+                      disabled={isSending}
+                      className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
+                      {...register('link', {
+                        required: 'Link is required',
+                      })}
+                      aria-invalid={errors.link ? 'true' : 'false'}
+                    />
+                    {errors.link?.message && (
+                      <p role='alert' style={{ color: 'red' }}>
+                        {errors.link?.message}
+                      </p>
+                    )}
+                  </div>
+                  <div className='mb-4'>
+                    <label
+                      htmlFor='send_btn_label'
+                      className='block text-gray-700 text-sm font-bold mb-2'
+                    >
+                      Button label
+                    </label>
+                    <input
+                      type='text'
+                      id='send_btn_label'
+                      placeholder='Enter label name of the button'
+                      disabled={isSending}
+                      className='w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500'
+                      {...register('send_btn_label', {
+                        required: 'Button label is required',
+                      })}
+                      aria-invalid={errors.send_btn_label ? 'true' : 'false'}
+                    />
+                    {errors.send_btn_label?.message && (
+                      <p role='alert' style={{ color: 'red' }}>
+                        {errors.send_btn_label?.message}
+                      </p>
+                    )}
+                  </div>
+                  <div className='flex space-x-10'>
+                    {/* <!-- Submit Button --> */}
+                    <button
+                      type='submit'
+                      className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                      disabled={isSending}
+                    >
+                      {isSending ? 'Sending...' : 'Send'}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
 
-          <div className='p-8 mx-auto'>
-            <div className='tracking-wide text-sm text-gray-500 font-semibold mb-8'>
-              Current Notification Banner info:
-            </div>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignContent: 'center',
-                color: 'rgb(38, 55, 131)',
-                marginTop: '48px',
-              }}
-            >
-              {isFetching ? <Spinner /> : handleParsedData()}
+          <div className='bg-gray-200 p-4 m-2 md:w-1/2'>
+            <div className='p-6'>
+              <h2 className='text-xl font-semibold text-gray-800 mb-2'>
+                Current Notification Banner info
+              </h2>
+              <div className='mt-12'>
+                {isFetching ? (
+                  <Spinner
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignContent: 'center',
+                      marginTop: '48px',
+                    }}
+                  />
+                ) : (
+                  handleParsedData()
+                )}
+              </div>
             </div>
           </div>
         </div>
