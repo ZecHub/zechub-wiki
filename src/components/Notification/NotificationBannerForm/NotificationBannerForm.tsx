@@ -1,6 +1,6 @@
 'use client';
 
-import { getBannerMessage, saveBannerMessage } from '@/app/actions';
+import { BannerMessageType, getBannerMessage, saveBannerMessage } from '@/app/actions';
 import { formatString } from '@/lib/helpers';
 import { Spinner } from 'flowbite-react';
 import { useEffect, useState } from 'react';
@@ -32,10 +32,11 @@ const FormSchema = z.object({
 });
 
 export function NotificationBannerForm(props: NotificationBannerFormProps) {
-  const [formFields, setFormFields] = useState<FormDataType>({});
   const [isSending, setIsSending] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
-  const [data, setData] = useState<FormDataType>();
+  const [toastifyBannerInfo, setToastifyBannerInfo] = useState<
+    BannerMessageType[] | string
+  >();
 
   const {
     register,
@@ -48,9 +49,9 @@ export function NotificationBannerForm(props: NotificationBannerFormProps) {
     const fetchData = async () => {
       try {
         setIsFetching(true);
-        const d = await getBannerMessage();
-
-        setData(JSON.parse(d));
+        const { data } = await getBannerMessage();
+     
+        setToastifyBannerInfo(data);
         setIsFetching(false);
       } catch (err) {
         setIsFetching(false);
@@ -132,34 +133,41 @@ export function NotificationBannerForm(props: NotificationBannerFormProps) {
   };
 
   const handleFormReset = () => {
-    console.log('clicked...');
-    reset();
+    reset(); 
   };
 
   const handleParsedData = () => {
-    if (data != undefined) {
+    
+    if (Array.isArray(toastifyBannerInfo) && toastifyBannerInfo?.length > 0) {
       return (
         <div className='flex flex-col flex-wrap justify-items-start gap-2 text-gray-600'>
-          <p>
-            Title:
-            <span className='font-semibold'> {data.title}</span>
-          </p>
-          <p>
-            Description:
-            <span className='font-semibold '> {data.description}</span>
-          </p>
-          <p>
-            Link:{' '}
-            <span className='font-semibold text-wrap'>
-              <a href={data.link} target='_blank'>
-                {formatString.wordWrap(data?.link!, 24)}
-              </a>
-            </span>
-          </p>
-          <p>
-            Button Label:
-            <span className='font-semibold'> {data.send_btn_label}</span>
-          </p>
+          <ul>
+            {toastifyBannerInfo.map((d, i) => (
+              <li key={i}>
+                <p>
+                  Title:
+                  <span className='font-semibold'> {d.title}</span>
+                </p>
+
+                <p>
+                  Description:
+                  <span className='font-semibold '> {d.description}</span>
+                </p>
+                <p>
+                  Link:{' '}
+                  <span className='font-semibold text-wrap'>
+                    <a href={d.urlRedirectLink} target='_blank'>
+                      {formatString.wordWrap(d?.urlRedirectLink!, 24)}
+                    </a>
+                  </span>
+                </p>
+                <p>
+                  Button Label:
+                  <span className='font-semibold'> {d.buttonLable}</span>
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
       );
     } else {
