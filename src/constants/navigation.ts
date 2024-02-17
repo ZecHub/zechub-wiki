@@ -3,7 +3,7 @@ import { RiTwitterXFill as Twitter, RiGithubFill as Github } from "react-icons/r
 
 export const navigations = [
   {
-    name: 'Use ZEC',
+    name: 'Use Zcash',
     links: [
       { 
         subName: 'Using ZEC',
@@ -14,8 +14,20 @@ export const navigations = [
         path: '/using-zcash/wallets'
       },
       {
-        subName: 'Non-Custodial Exchanges',
+        subName: 'Exchanges',
         path: '/using-zcash/non-custodial-exchanges'
+      }
+      {
+        subName: 'Block Explorers',
+        path: '/using-zcash/blockchain-explorers'
+      }
+      {
+        subName: 'Shielded Pools',
+        path: '/using-zcash/shielded-pools'
+      }
+      {
+        subName: 'Transactions',
+        path: '/using-zcash/transactions'
       }
     ]
   },
@@ -31,8 +43,20 @@ export const navigations = [
         path: '/zcash-community/community-links'
       },
       {
+        subName: 'Community Projects',
+        path: '/zcash-community/community-projects'
+      },
+      {
         subName: 'Zcash Global Ambassadors',
         path: '/zcash-community/zcash-global-ambassadors'
+      },
+      {
+        subName: 'ZCAP',
+        path: '/zcash-community/zcap'
+      },
+      {
+        subName: 'Zcon Archive',
+        path: '/zcash-community/zcap'
       },
     ],
   },
@@ -51,6 +75,10 @@ export const navigations = [
         subName: 'Zcash Commnuity Grants',
         path: '/zcash-organizations/zcash-community-grants'
       }
+      {
+        subName: 'Shielded Labs',
+        path: '/zcash-organizations/shielded-labs'
+      }
     ]
   },
   {
@@ -61,12 +89,28 @@ export const navigations = [
         path: '/guides/zgo-payment-processor'
       },
       {
-        subName: 'Free2z',
+        subName: 'Full Nodes',
+        path: '/guides/full-nodes'
+      },
+      {
+        subName: 'Free2z Livestreaming',
         path: '/guides/free2z-live'
       },
       {
-        subName: 'Full Nodes',
-        path: '/guides/full-nodes'
+        subName: 'Raspberry Pi Zcashd Node',
+        path: '/guides/raspberry-pi-4-full-node'
+      },
+      {
+        subName: 'Raspberry Pi Zebra Node',
+        path: '/guides/raspberry-pi-4-zebra-node'
+      },
+      {
+        subName: 'Visualizing Zcash Addresses',
+        path: '/guides/visualizing-zcash-addresses'
+      },
+      {
+        subName: 'Zero Knowledge vs Decoy Systems',
+        path: '/guides/zero-knowledge-vs-decoys'
       }
     ]
   },
