@@ -15,26 +15,31 @@ const ContentSections = () => {
                         </FadeInAnimation>
                     </div>
 
-                    <div className="flex flex-col w-auto md:w-2/4 items-center justify-center font-bold">
-                       <FadeInAnimation>
-                        <h1 className="text-3xl text-center mb-4 w-full">What is Zcash?</h1>
-                        </FadeInAnimation>
-           <FadeInAnimation>
-            <p className="text-center w-full mb-5">
+                   <div className="flex flex-col w-auto md:w-2/4 items-center justify-center font-bold">
+    <FadeInAnimation>
+        <h1 className="text-3xl text-center mb-4 w-full">What is Zcash?</h1>
+    </FadeInAnimation>
+    <FadeInAnimation>
+        <p className="text-center w-full mb-5">
             It is an open-source, blockchain ledger that features a sophisticated zero-knowledge proving system. It specializes in offering a higher standard of privacy through its proving system preserving confidentiality of transaction metadata. At its core, Zcash is private data ownership that is permissionlessly transferred when transactions are made.
-         </p>
-           </FadeInAnimation>
-              <FadeInAnimation className="w-full">
-                <div className="flex flex-col md:flex-row space-y-4 space-x-4 mt-4 w-full">
-                  <Link href={'/start-here/what-is-zec-and-zcash'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-               What is Zcash?
-               </Link>
-                <Link href={'/zcash-tech/blockchain-explorers'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-blue-400 border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        </p>
+    </FadeInAnimation>
+    <FadeInAnimation className="w-full">
+        <div className="flex flex-col md:flex-row space-y-4 space-x-4 mt-4 w-full">
+            <Link href={'/start-here/what-is-zec-and-zcash'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                What is Zcash?
+            </Link>
+        </div>
+    </FadeInAnimation>
+    <FadeInAnimation className="w-full">
+        <div className="flex flex-col md:flex-row space-y-4 space-x-4 mt-4 w-full">
+            <Link href={'/zcash-tech/blockchain-explorers'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-blue-400 border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Zcash Technology
-               </Link>
-            </div>
-         </FadeInAnimation>
-         </div>
+            </Link>
+        </div>
+    </FadeInAnimation>
+</div>
+
 </div>
 <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto border-2 border-black/50 rounded-md p-5">
 
