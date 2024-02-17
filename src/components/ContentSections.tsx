@@ -8,14 +8,14 @@ const ContentSections = () => {
     return (
         <section>
             <div className="flex  space-y-4 flex-col w-full mt-5">
-                <div className="flex flex-col space-y-4 md:flex-row  h-screen w-auto bg-[#E4A100] rounded-md p-5">
-                    <div className="flex items-center justify-center w-auto md:w-2/4">
+                <div className="flex flex-col space-y-4 md:flex-row min-h-screen w-auto border-2 border-[#E4A100]/50 rounded-md p-5">
+                    <div className="flex flex-1 items-center justify-center w-auto md:w-2/4">
                         <FadeInAnimation>
                           <Image className="" src={'/Zcashcard.png'} alt="" width={500} height={50} />
                         </FadeInAnimation>
                     </div>
 
-                    <div className="flex flex-col w-auto md:w-2/4 items-center justify-center text-white font-bold">
+                    <div className="flex flex-col w-auto md:w-2/4 items-center justify-center font-bold">
                         <FadeInAnimation>
                             <h1 className="text-3xl text-center mb-4 w-full">What is Zcash?</h1>
                         </FadeInAnimation>
@@ -29,16 +29,16 @@ const ContentSections = () => {
                                 <Link href={'/start-here/what-is-zec-and-zcash'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     What is Zcash?
                                 </Link>
-                                <Link href={'/zcash-tech/blockchain-explorers'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white border-blue-300 border-2 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <Link href={'/zcash-tech/blockchain-explorers'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-blue-400 border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Zcash Technology
                                 </Link>
                             </div>
                         </FadeInAnimation>
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto bg-black rounded-md p-5">
+                <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto border-2 border-black/50 rounded-md p-5">
 
-                    <div className="flex flex-col w-auto md:w-2/4  items-center justify-center text-white font-bold">
+                    <div className="flex flex-col w-auto md:w-2/4  items-center justify-center font-bold">
                         <FadeInAnimation>
                             <h1 className="text-3xl mb-4">Privacy is Normal</h1>
                         </FadeInAnimation>
@@ -49,25 +49,25 @@ const ContentSections = () => {
                         </FadeInAnimation>
                         <FadeInAnimation>
                             <div className="flex flex-row space-x-4 mt-4">
-                                <Link href={'https://pgpforcrypto.org'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white border-blue-300 border-2 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <Link href={'https://pgpforcrypto.org'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center  border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Learn More
                                 </Link>
                             </div>
                         </FadeInAnimation>
                     </div>
-                    <div className="flex justify-center w-auto md:w-2/4 ">
+                    <div className="flex justify-center items-center w-auto md:w-2/4 ">
                         <FadeInAnimation>
-                            <Image className=" w-50 h-auto" src={'/privacyisnormal.jpg'} alt="" width={600} height={50} />
+                            <Image className=" w-50 h-auto" src={'/ZecPages_Banner.gif'} alt="" width={500} height={50} />
                         </FadeInAnimation>
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-full bg-cyan-400 rounded-md p-5">
-                    <div className="flex justify-center w-auto md:w-2/4">
+                <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-full border-cyan-400/50 border-2 rounded-md p-5">
+                    <div className="flex justify-center items-center w-auto md:w-2/4">
                         <FadeInAnimation>
-                            <Image src={'/ZSACard.png'} alt="" width={700} height={50} />
+                            <Image src={'/Free2z_Banner.gif'} alt="" width={500} height={50} />
                         </FadeInAnimation>
                      </div>
-                    <div className="flex flex-col w-auto md:w-2/4 items-center justify-center text-white font-bold">
+                    <div className="flex flex-col w-auto md:w-2/4 items-center justify-center font-bold">
                         <FadeInAnimation>
                             <h1 className="text-3xl mb-4">Zcash Shielded Assets</h1>
                         </FadeInAnimation>
