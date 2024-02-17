@@ -29,7 +29,16 @@ const DonationComp = () => {
     const formattedAmount = parseFloat(donationAmount).toFixed(4); // Format amount to four decimal places
     const zcashAddress = 'zcash:u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89'; // Replace 'your_zcash_address_here' with your actual Zcash address
     const zcashDonationLink = `${zcashAddress}?amount=${formattedAmount}&memo=${encodeURIComponent(memo)}`;
-    return `${zcashDonationLink}`;
+    return zcashDonationLink;
+  };
+
+  const copyToClipboard = () => {
+    const donationLink = generateDonationLink();
+    navigator.clipboard.writeText(donationLink).then(() => {
+      alert('Donation link copied to clipboard!'); // Optional: Provide feedback to the user that the link has been copied.
+    }, (err) => {
+      console.error('Could not copy text: ', err); // Optional: Provide error feedback.
+    });
   };
 
   return (
@@ -38,9 +47,9 @@ const DonationComp = () => {
         <img src="../../../../donate.gif" alt="Zcash Donation" />
       </div>
 
-      {/* QR Code block moved above the slider */}
-      <div style={{ width: '300px', margin: '0 auto' }}> {/* Adjust the width and centering as needed */}
+      <div style={{ width: '300px', margin: '20px auto' }}> {/* Adjust the width and margin as needed */}
         <QRCode value={generateDonationLink()} size={280} /> {/* Adjust the size as needed */}
+        <button onClick={copyToClipboard} style={{ marginTop: '10px' }}>Copy Donation Link</button> {/* Button for copying the link */}
       </div>
 
       <div className='donation-slider'>
@@ -68,7 +77,7 @@ const DonationComp = () => {
           <div className='amount-buttons'>
             {predefinedAmounts.map((amount, index) => (
               <button key={index} onClick={() => handleSelectAmount(amount)}>
-                {amount} ZEC
+                {amount} 
               </button>
             ))}
           </div>
