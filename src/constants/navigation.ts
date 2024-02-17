@@ -16,15 +16,15 @@ export const navigations = [
       {
         subName: 'Exchanges',
         path: '/using-zcash/non-custodial-exchanges'
-      }
+      },
       {
         subName: 'Block Explorers',
         path: '/using-zcash/blockchain-explorers'
-      }
+      },
       {
         subName: 'Shielded Pools',
         path: '/using-zcash/shielded-pools'
-      }
+      },
       {
         subName: 'Transactions',
         path: '/using-zcash/transactions'
@@ -57,8 +57,8 @@ export const navigations = [
       {
         subName: 'Zcon Archive',
         path: '/zcash-community/zcap'
-      },
-    ],
+      }
+    ]
   },
   {
     name: 'Organizations',
@@ -74,7 +74,7 @@ export const navigations = [
       {
         subName: 'Zcash Commnuity Grants',
         path: '/zcash-organizations/zcash-community-grants'
-      }
+      },
       {
         subName: 'Shielded Labs',
         path: '/zcash-organizations/shielded-labs'
