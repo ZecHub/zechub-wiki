@@ -129,10 +129,11 @@ const filePathForBannerMessage =
   process.cwd() + '/public/notification-data/data.json';
 
 export type BannerMessageType = {
+  id: string;
   title: string;
   description: string;
   urlRedirectLink: string;
-  buttonLable: string;
+  buttonLabel: string;
 };
 
 export async function saveBannerMessage(formData: any) {
@@ -142,7 +143,7 @@ export async function saveBannerMessage(formData: any) {
     urlRedirectLink: z
       .string()
       .url({ message: 'URL field must start with https or http' }),
-    buttonLable: z.string(),
+    buttonLabel: z.string(),
   });
 
   try {
@@ -163,8 +164,8 @@ export async function saveBannerMessage(formData: any) {
     const parsedData = schema.parse({
       title: obj['title'],
       description: obj['description'],
-      urlRedirectLink: obj['link'],
-      buttonLable: obj['send_btn_label'],
+      urlRedirectLink: obj['urlRedirectLink'],
+      buttonLabel: obj['buttonLabel'],
     });
 
     const toastBannerInfo = mongo.db.collection(
@@ -195,20 +196,83 @@ export async function getBannerMessage() {
     if (data.length > 0) {
       bannerMsg = data.map((d) => {
         return {
-          // id: d._id.toString(),
+          id: d._id.toString(),
           title: formatString.titleCase(d.title),
           description: formatString.titleCase(d.description),
           urlRedirectLink: d.urlRedirectLink,
-          buttonLable: d.buttonLable,
+          buttonLabel: d.buttonLabel,
         };
       });
     }
 
     return {
       data: bannerMsg,
+      error: '',
     };
   } catch (err) {
     console.error('getSubscriberWelcomeMessage', err);
-    return { data: 'Failed to fetch data.' };
+    return { data: [], error: 'Failed to fetch data.' };
+  }
+}
+
+export async function updateBannerMessage(docId: string, data: any) {
+  const schema = z.object({
+    title: z.string().min(5),
+    description: z.string().min(10),
+    urlRedirectLink: z
+      .string()
+      .url({ message: 'URL field must start with https or http' }),
+    buttonLabel: z.string(),
+  });
+
+  try {
+    const parserdData = decodeURIComponent(data);
+    const doc: any = {};
+
+    for (let key of Object.keys(JSON.parse(parserdData))) {
+      doc[key] = JSON.parse(parserdData)[key];
+    }
+
+    const parsedData = schema.parse({
+      title: doc['title'],
+      description: doc['description'],
+      urlRedirectLink: doc['urlRedirectLink'],
+      buttonLabel: doc['buttonLabel'],
+    });
+
+    const toastBannerInfo = mongo.db.collection(
+      mongo.collectionName.toastBannerInfo
+    );
+
+    const res = await toastBannerInfo.updateOne(
+      { _id: new ObjectId(docId) },
+      { $set: parsedData }
+    );
+
+    return {
+      data: {
+        modifiedCount: res,
+      },
+    };
+  } catch (err: any) {
+    console.error(err);
+    return { data: 'Failed to delete data.' };
+  }
+}
+
+export async function deleteBannerMessage(docId: string) {
+  try {
+    const toastBannerInfo = mongo.db.collection(
+      mongo.collectionName.toastBannerInfo
+    );
+
+    const res = await toastBannerInfo.deleteOne({ _id: new ObjectId(docId) });
+
+    return {
+      data: res.acknowledged,
+    };
+  } catch (err: any) {
+    console.error(err);
+    return { data: 'Failed to delete data.' };
   }
 }
