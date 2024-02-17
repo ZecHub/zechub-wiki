@@ -32,18 +32,14 @@ const DonationComp = () => {
     return zcashDonationLink;
   };
 
-  const copyToClipboard = () => {
+  const copyAndOpenWallet = () => {
     const donationLink = generateDonationLink();
     navigator.clipboard.writeText(donationLink).then(() => {
-      alert('Donation link copied to clipboard!'); // Optional: Provide feedback to the user that the link has been copied.
+      alert('Zcash address copied to clipboard!'); // Optional: Provide feedback to the user that the link has been copied.
+      window.location.href = donationLink; // Attempt to open the link with the default wallet application
     }, (err) => {
       console.error('Could not copy text: ', err); // Optional: Provide error feedback.
     });
-  };
-
-  const handleDonateClick = () => {
-    const donationLink = generateDonationLink();
-    window.location.href = donationLink; // Attempt to open the link with the default wallet application
   };
 
   return (
@@ -52,10 +48,9 @@ const DonationComp = () => {
         <img src="../../../../donate.gif" alt="Zcash Donation" />
       </div>
 
-      <div style={{ width: '300px', margin: '20px auto', textAlign: 'center' }}> {/* Adjust the width, margin, and alignment as needed */}
-        <QRCode value={generateDonationLink()} size={280} /> {/* Adjust the size as needed */}
-        <button onClick={copyToClipboard} style={{ marginTop: '10px', marginRight: '5px' }}>Copy Donation Link</button> {/* Button for copying the link */}
-        <button onClick={handleDonateClick} style={{ marginTop: '10px' }}>Open Wallet</button> {/* Button for opening the wallet */}
+      <div style={{ width: '300px', margin: '20px auto', textAlign: 'center' }}>
+        <QRCode value={generateDonationLink()} size={280} />
+        <button onClick={copyAndOpenWallet} style={{ marginTop: '10px' }}>Copy & Open Wallet</button>
       </div>
 
       <div className='donation-slider'>
@@ -77,13 +72,13 @@ const DonationComp = () => {
           </div>
 
           <div className='amount'>
-            <p>Amount: {donationAmount} ZEC</p>
+            <p>Amount: {donationAmount} </p>
           </div>
 
           <div className='amount-buttons'>
             {predefinedAmounts.map((amount, index) => (
               <button key={index} onClick={() => handleSelectAmount(amount)}>
-                {amount} 
+                {amount} ZEC
               </button>
             ))}
           </div>
