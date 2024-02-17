@@ -41,15 +41,21 @@ const DonationComp = () => {
     });
   };
 
+  const handleDonateClick = () => {
+    const donationLink = generateDonationLink();
+    window.location.href = donationLink; // Attempt to open the link with the default wallet application
+  };
+
   return (
     <div className='donation-container'>
       <div className='zcash-image'>
         <img src="../../../../donate.gif" alt="Zcash Donation" />
       </div>
 
-      <div style={{ width: '300px', margin: '20px auto' }}> {/* Adjust the width and margin as needed */}
+      <div style={{ width: '300px', margin: '20px auto', textAlign: 'center' }}> {/* Adjust the width, margin, and alignment as needed */}
         <QRCode value={generateDonationLink()} size={280} /> {/* Adjust the size as needed */}
-        <button onClick={copyToClipboard} style={{ marginTop: '10px' }}>Copy Donation Link</button> {/* Button for copying the link */}
+        <button onClick={copyToClipboard} style={{ marginTop: '10px', marginRight: '5px' }}>Copy Donation Link</button> {/* Button for copying the link */}
+        <button onClick={handleDonateClick} style={{ marginTop: '10px' }}>Open Wallet</button> {/* Button for opening the wallet */}
       </div>
 
       <div className='donation-slider'>
