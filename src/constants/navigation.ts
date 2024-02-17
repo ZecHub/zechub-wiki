@@ -6,8 +6,8 @@ export const navigations = [
     name: 'Use Zcash',
     links: [
       { 
-        subName: 'Using ZEC',
-        path: '/using-zcash/transactions'
+        subName: 'Buying ZEC',
+        path: '/using-zcash/buying-zec'
       },
       {
         subName: 'Wallets',
