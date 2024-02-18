@@ -1,21 +1,29 @@
-'use client'
+'use client';
 import ContentSections from '@/components/ContentSections';
 import Hero from '@/components/Hero';
-import { NotificationBanner } from '@/components/Notification/NotificationBanner';
+import {
+  NotificationBanner,
+  NotificationBannerProps,
+} from '@/components/Notification/NotificationBanner';
 import AnimationHome from '@/components/ui/AnimationHome';
 import Cards from '@/components/ui/Cards';
+import { FadeInAnimation } from '@/components/ui/FadeInAnimation';
 import MemberCards from '@/components/ui/MemberCards';
 import { cardsConfig } from '@/constants/cardsConfig';
 import { daoMembers } from '@/constants/membersDao';
 import Link from 'next/link';
-import { FadeInAnimation } from '@/components/ui/FadeInAnimation';
 
+type HomeProps = {
+  text: string;
+} & NotificationBannerProps;
 
-const Home = ({ bannerPost, text }: { bannerPost: string; text: string }) => {
+const Home = ({ bannerMsg, text }: HomeProps) => {
   return (
     <main className='flex flex-col mx-auto'>
       <section id='notification-banner'>
-        <NotificationBanner post={JSON.parse(bannerPost)} />
+        {bannerMsg.data.length > 0 ? (
+          <NotificationBanner bannerMsg={bannerMsg} />
+        ) : null}
       </section>
       <section id='hero'>
         <FadeInAnimation>
@@ -59,13 +67,13 @@ const Home = ({ bannerPost, text }: { bannerPost: string; text: string }) => {
           <div className='p-5 flex flex-col space-y-7 md:flex-row md:space-x-11 items-center justify-center mb-4'>
             {cardsConfig &&
               cardsConfig.map((items) => (
-                  <Cards
-                    key={items.title}
-                    paraph={items.content}
-                    title={items.title}
-                    url={items.url}
-                    image={items.image}
-                  />
+                <Cards
+                  key={items.title}
+                  paraph={items.content}
+                  title={items.title}
+                  url={items.url}
+                  image={items.image}
+                />
               ))}
           </div>
         </section>
@@ -76,15 +84,15 @@ const Home = ({ bannerPost, text }: { bannerPost: string; text: string }) => {
 
         <section id='members' className=' mt-4'>
           <FadeInAnimation>
-            <h1 className='text-3xl font-bold text-center my-5 '>DAO Members</h1>
+            <h1 className='text-3xl font-bold text-center my-5 '>
+              DAO Members
+            </h1>
           </FadeInAnimation>
           <div className='w-full grid grid-cols-1 space-x-2 md:grid-cols-3 md:gap-4 justify-items-center  mt-4 p-2'>
             {daoMembers &&
               daoMembers.map((e) => (
                 <FadeInAnimation key={e.name}>
-                  <div
-                    className='flex justify-center space-y-4 w-full space-x-3 md:space-y-2 '
-                  >
+                  <div className='flex justify-center space-y-4 w-full space-x-3 md:space-y-2 '>
                     <MemberCards
                       imgUrl={e.imgUrl}
                       description={e.description}
