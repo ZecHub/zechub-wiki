@@ -116,7 +116,12 @@ export function AppProvider(props: AppProviderProps) {
     }
   };
 
-  const subscriptionButtons = () => {
+  /**
+   * @dev Push Subscription that triggers the permission
+   * for sending a user Push Notification
+   * @returns React.ReactNode
+   */
+  const handleSubscriptionButtons = () => {
     return (
       <div
         className='notification'
@@ -156,7 +161,7 @@ export function AppProvider(props: AppProviderProps) {
 
   return (
     <SessionProvider>
-      {subscriptionButtons()}
+      {/* {handleSubscriptionButtons()} */}
       {props.children}
       <ToastContainer />
     </SessionProvider>
