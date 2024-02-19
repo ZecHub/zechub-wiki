@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     alt="wiki-banner"
                     width={800}
                     height={50}
-                    src={imgUrl != '' ? imgUrl : '/wiki-banner.avif'}
+                    src={imgUrl != undefined ? imgUrl : '/wiki-banner.avif'}
                 />
             </div>
 
@@ -63,6 +63,3 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </main>
     )
 }
-
-
-
