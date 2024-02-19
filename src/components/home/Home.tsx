@@ -1,10 +1,7 @@
 'use client';
 import ContentSections from '@/components/ContentSections';
 import Hero from '@/components/Hero';
-import {
-  NotificationBanner,
-  NotificationBannerProps,
-} from '@/components/Notification/NotificationBanner';
+import { NotificationBanner } from '@/components/Notification/NotificationBanner';
 import AnimationHome from '@/components/ui/AnimationHome';
 import Cards from '@/components/ui/Cards';
 import { FadeInAnimation } from '@/components/ui/FadeInAnimation';
@@ -15,15 +12,13 @@ import Link from 'next/link';
 
 type HomeProps = {
   text: string;
-} & NotificationBannerProps;
+};
 
-const Home = ({ bannerMsg, text }: HomeProps) => {
+const Home = ({ text }: HomeProps) => {
   return (
     <main className='flex flex-col mx-auto'>
       <section id='notification-banner'>
-        {/* {bannerMsg.data.length > 0 ? (
-          ) : null} */}
-        <NotificationBanner bannerMsg={bannerMsg} />
+        <NotificationBanner />
       </section>
       <section id='hero'>
         <FadeInAnimation>
