@@ -25,10 +25,10 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
 
   return (
     <div className={`flex ${menuExp ? 'flex-col' : 'flex-row'} ${classes}`}>
-      {navigations.map((item) => (
+      {navigations.map((item, i) => (
         <Dropdown
           className="flex flex-row font-medium"
-          key={item.name}
+          key={item.name+i}
           label={item.name}
           color="inherit"
           trigger={menuExp ? 'click' : 'hover'}
