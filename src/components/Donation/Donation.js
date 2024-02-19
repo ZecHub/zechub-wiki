@@ -29,7 +29,17 @@ const DonationComp = () => {
     const formattedAmount = parseFloat(donationAmount).toFixed(4); // Format amount to four decimal places
     const zcashAddress = 'zcash:u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89'; // Replace 'your_zcash_address_here' with your actual Zcash address
     const zcashDonationLink = `${zcashAddress}?amount=${formattedAmount}&memo=${encodeURIComponent(memo)}`;
-    return `${zcashDonationLink}`;
+    return zcashDonationLink;
+  };
+
+  const copyAndOpenWallet = () => {
+    const donationLink = generateDonationLink();
+    navigator.clipboard.writeText(donationLink).then(() => {
+      alert('Zcash address copied to clipboard!'); // Optional: Provide feedback to the user that the link has been copied.
+      window.location.href = donationLink; // Attempt to open the link with the default wallet application
+    }, (err) => {
+      console.error('Could not copy text: ', err); // Optional: Provide error feedback.
+    });
   };
 
   return (
@@ -38,9 +48,9 @@ const DonationComp = () => {
         <img src="../../../../donate.gif" alt="Zcash Donation" />
       </div>
 
-      {/* QR Code block moved above the slider */}
-      <div style={{ width: '300px', margin: '0 auto' }}> {/* Adjust the width and centering as needed */}
-        <QRCode value={generateDonationLink()} size={280} /> {/* Adjust the size as needed */}
+      <div style={{ width: '300px', margin: '20px auto', textAlign: 'center' }}>
+        <QRCode value={generateDonationLink()} size={280} />
+        <button onClick={copyAndOpenWallet} style={{ marginTop: '10px' }}>Copy & Open Wallet</button>
       </div>
 
       <div className='donation-slider'>
@@ -62,7 +72,7 @@ const DonationComp = () => {
           </div>
 
           <div className='amount'>
-            <p>Amount: {donationAmount} ZEC</p>
+            <p>Amount: {donationAmount} </p>
           </div>
 
           <div className='amount-buttons'>
