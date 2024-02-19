@@ -15,9 +15,8 @@ export const NotificationBanner = () => {
         const res = await fetch(
           '/site/toastify-banner-notification/banner-notification.json'
         );
-        const data: BannerMessageType[] = await res.json();
-        console.log('data: ', data[0]);
-        setData(data[0]);
+        const data: BannerMessageType = await res.json();
+        setData(data);
       } catch (err: any) {
         console.error(err.message);
         toast.error(
