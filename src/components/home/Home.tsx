@@ -21,9 +21,9 @@ const Home = ({ bannerMsg, text }: HomeProps) => {
   return (
     <main className='flex flex-col mx-auto'>
       <section id='notification-banner'>
-        {bannerMsg.data.length > 0 ? (
-          <NotificationBanner bannerMsg={bannerMsg} />
-        ) : null}
+        {/* {bannerMsg.data.length > 0 ? (
+          ) : null} */}
+        <NotificationBanner bannerMsg={bannerMsg} />
       </section>
       <section id='hero'>
         <FadeInAnimation>

@@ -1,6 +1,7 @@
 'use client';
 import { BannerMessageType } from '@/app/actions';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { IoReturnUpBackSharp } from 'react-icons/io5';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import './NotificationBanner.css';
 
@@ -24,13 +25,12 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
           '/site/toastify-banner-notification/banner-notification.json'
         );
         const data = await res.json();
-        console.log('data: ', data);
         setData(data);
-      } catch (err) {
+      } catch (err: any) {
         console.error(err);
         toast.error(
           <div className='notification-banner'>
-            <p>{'Error fetching data...'}</p>
+            <p>{`Error fetching data...`}</p>
           </div>,
           {
             position: 'top-right',
