@@ -1,6 +1,6 @@
 'use client';
 import { BannerMessageType } from '@/app/actions';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import './NotificationBanner.css';
 
@@ -19,12 +19,12 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
 
   const [data, setData] = useState<BannerMessageType>();
 
+
   useEffect(() => {
-    displayToast();
-    async function remoteMdxPage() {
+    async function getData() {
       try {
         const res = await fetch(
-          'site/toastify-banner-notification/banner-notification.json'
+          '/site/toastify-banner-notification/banner-notification.json'
         );
         const data = await res.json();
         setData(data);
@@ -32,11 +32,9 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
         console.error(err);
       }
     }
-    remoteMdxPage();
-  });
+    getData();
 
-  const displayToast = useCallback(() => {
-    toast(
+    const displayToast = toast(
       <div className='notification-banner'>
         <h1>{data?.title}</h1>
         <p>{data?.description}</p>
@@ -58,12 +56,7 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
         className: 'toast-message',
       }
     );
-  }, [
-    data?.buttonLabel,
-    data?.description,
-    data?.title,
-    data?.urlRedirectLink,
-  ]);
+  }, [data?.title, data?.buttonLabel, data?.description, data?.urlRedirectLink]);
 
   return (
     <>
