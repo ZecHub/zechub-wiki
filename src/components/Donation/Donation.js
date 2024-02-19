@@ -2,6 +2,7 @@
 import './donation.css';
 import React, { useState } from 'react';
 import QRCode from 'qrcode.react';
+import Image from 'next/image';
 
 const DonationComp = () => {
   const [donationAmount, setDonationAmount] = useState(1); // Default donation amount in ZEC
@@ -45,29 +46,36 @@ const DonationComp = () => {
   return (
     <div className='donation-container'>
       <div className='zcash-image'>
-        <img src="../../../../donate.gif" alt="Zcash Donation" />
+        <Image src='../../../../donate.gif' alt='Zcash Donation' />
       </div>
 
       <div style={{ width: '300px', margin: '20px auto', textAlign: 'center' }}>
         <QRCode value={generateDonationLink()} size={280} />
-        <button onClick={copyAndOpenWallet} style={{ marginTop: '10px' }}>Copy & Open Wallet</button>
+        <button onClick={copyAndOpenWallet} style={{ marginTop: '10px' }}>
+          Copy & Open Wallet
+        </button>
       </div>
 
       <div className='donation-slider'>
         <div className='donation-header'>
           <h1>Donate Now</h1>
-          <p>The goal of ZecHub is to provide an educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash & Privacy technology ecosystems.</p>
-          
+          <p>
+            The goal of ZecHub is to provide an educational platform where
+            community members can work together on creating, validating, and
+            promoting content that supports the Zcash & Privacy technology
+            ecosystems.
+          </p>
+
           <div className='input-range'>
             <label>Choose your donation amount (ZEC):</label>
             <input
-              type="range"
-              min="0.25"
-              max="5"
-              step="0.05"
+              type='range'
+              min='0.25'
+              max='5'
+              step='0.05'
               value={donationAmount}
               onChange={handleChangeAmount}
-              className="slider"
+              className='slider'
             />
           </div>
 
@@ -82,13 +90,13 @@ const DonationComp = () => {
               </button>
             ))}
           </div>
-          
+
           <div className='input-number'>
             <label>Enter Amount (ZEC):</label>
             <input
-              type="number"
+              type='number'
               value={memo}
-              placeholder="Enter Amount in ZEC"
+              placeholder='Enter Amount in ZEC'
               onChange={handleChangeMemo}
             />
           </div>

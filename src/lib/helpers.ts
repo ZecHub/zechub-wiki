@@ -37,19 +37,19 @@ export const firstFileForFolders = async (folders: string[]) => {
 };
 
 export const getBanner = (name: string) => {
-  console.log('slug: ', name);
+
+  let uri;
   for (let i = 0; i <= contentBanners.length; i++) {
-    if (contentBanners[i] && contentBanners[i].name === undefined) {
-      continue;
+    if (contentBanners[i]?.name === undefined) {
+      uri = '';
     }
-    if (
-      contentBanners[i]['name'] != undefined &&
-      contentBanners[i].name === transformUri(name)
-    ) {
-      return contentBanners[i].url;
+
+    if (contentBanners[i]?.name === transformUri(name)) {
+      uri = contentBanners[i].url;
     }
   }
-  return '';
+
+  return uri;
 };
 
 const uppercaseWords = [

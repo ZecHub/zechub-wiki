@@ -17,7 +17,7 @@ export const AdminComp = () => {
         </div>
       </div>
 
-      <div className='flex flex-col md:flex-row mx-auto'>
+      <div className='lg:container flex flex-col md:flex-row mx-auto'>
         <div className='bg-gray-200 p-4 m-2 md:w-1/2'>
           <div className='p-6'>
             <h2 className='text-xl font-semibold text-gray-800 mb-2'>

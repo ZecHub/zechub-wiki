@@ -1,71 +1,82 @@
 'use client';
-import Image from 'next/image';
-import { useEffect } from 'react';
+import { BannerMessageType } from '@/app/actions';
+import { formatString } from '@/lib/helpers';
+import { useEffect, useState } from 'react';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import './NotificationBanner.css';
 
-export type Post = {
-  title: string;
-  description: string;
-  image_src: string;
-  link: string;
-  send_btn_label: string;
-}
+const toastId = 'custom-id-to-prevent-duplicate';
+export const NotificationBanner = () => {
+  const [data, setData] = useState<BannerMessageType>();
 
-type NotificationBannerProps = {
-  post: Post;
-};
-
-const customId = 'custom-id-to-prevent-duplicate';
-
-export const NotificationBanner = (props: NotificationBannerProps) => {
-  
   useEffect(() => {
-    displayToast();
-  }, [props.post.title]);
+    async function getData() {
+      try {
+        const res = await fetch(
+          '/site/toastify-banner-notification/banner-notification.json'
+        );
+        const data: BannerMessageType = await res.json();
+        setData(data);
+      } catch (err: any) {
+        console.error(err.message);
+        toast.error(
+          <div className='notification-banner'>
+            <p>{`Error fetching data...`}</p>
+          </div>,
+          {
+            position: 'top-right',
+            autoClose: 8000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            transition: Slide,
+            toastId: 'custom-error-id-to-prevent-duplicate',
+            progressClassName: 'toast-progress-bar',
+            className: 'toast-message',
+          }
+        );
+      }
+    }
+    getData();
 
-  const Read = () => {
-    return (
+    toast(
       <div className='notification-banner'>
-        <h1>{props.post.title}</h1>
-        <p>{props.post.description}</p>
-        <a href={props.post.link} target='_blank' className='btn'>
-          {props.post.send_btn_label}
-        </a>
-      </div>
+        {data?.title && (
+          <>
+            <h1>{formatString.titleCase(data?.title!)}</h1>
+            <p>{formatString.titleCase(data?.description!)}</p>
+            <a href={data?.urlRedirectLink} target='_blank' className='btn'>
+              {formatString.titleCase(data?.buttonLabel!)}
+            </a>
+          </>
+        )}
+      </div>,
+      {
+        position: 'top-right',
+        autoClose: 8000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        transition: Slide,
+        toastId: toastId,
+        progressClassName: 'toast-progress-bar',
+        className: 'toast-message',
+      }
     );
-  };
-
-  const displayToast = () => {
-    toast(<Read />, {
-      icon: props.post?.image_src
-        ? () => (
-            <Image
-              width={40}
-              height={40}
-              src={props.post.image_src}
-              alt={props.post.title}
-              className='img'
-            />
-          )
-        : undefined,
-      position: 'top-right',
-      autoClose: 8000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      transition: Slide,
-      toastId: customId,
-      progressClassName: 'toast-progress-bar',
-      className: 'toast-message',
-    });
-  };
+  }, [
+    data?.buttonLabel,
+    data?.description,
+    data?.title,
+    data?.urlRedirectLink,
+  ]);
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer containerId={toastId} />
     </>
   );
 };

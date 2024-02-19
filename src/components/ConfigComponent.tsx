@@ -21,7 +21,8 @@ export const ImagePrev = (props: HTMLProps<HTMLImageElement>) => {
 export const LinkComponent = (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.Element => {
 
     return(
-      <Link href={props.href?.startsWith('/site') ? transformGithubFilePathToWikiLink(props.href) : props.href || ''} target={props.href?.startsWith('/site') ? '' : "_blank"} className="text-blue-700">
+
+      <Link href={props.href?.startsWith('/site') ? transformGithubFilePathToWikiLink(props.href) : props.href!} target={props.href?.startsWith('/site') ? '' : "_blank"} className="text-blue-700">
         {props.children}{" "}
       </Link>
 )}
