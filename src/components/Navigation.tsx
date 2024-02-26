@@ -1,37 +1,37 @@
-'use client';
-import { navigations } from '@/constants/navigation';
-import type { Classes, MenuExp } from '@/types';
-import { Dropdown } from 'flowbite-react';
+"use client";
+import { navigations } from "@/constants/navigation";
+import type { Classes, MenuExp } from "@/types";
+import { Dropdown } from "flowbite-react";
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   MdOutlineDarkMode as DarkIcon,
   MdLightMode as LightIcon,
-} from 'react-icons/md';
+} from "react-icons/md";
 import {
   RiCloseFill as CloseIcon,
   RiMenuLine as MenuIcon,
-} from 'react-icons/ri';
-import { Icon } from './ui/Icon';
-import Logo from './ui/Logo';
-import SocialIcons from './ui/SocialIcons';
-import { AuthDisplay } from './AccountDisplay/AccountDisplay';
-import DonationBtn from '@/components/DonationBtn';
+} from "react-icons/ri";
+import { Icon } from "./ui/Icon";
+import Logo from "./ui/Logo";
+import SocialIcons from "./ui/SocialIcons";
+import { AuthDisplay } from "./AccountDisplay/AccountDisplay";
+import DonationBtn from "@/components/DonationBtn";
 
 const NavLinks = ({ classes, menuExp }: Classes) => {
   const router = useRouter();
 
   return (
-    <div className={`flex ${menuExp ? 'flex-col' : 'flex-row'} ${classes}`}>
+    <div className={`flex ${menuExp ? "flex-col" : "flex-row"} ${classes}`}>
       {navigations.map((item, i) => (
         <Dropdown
           className="flex flex-row font-medium"
-          key={item.name+i}
+          key={item.name + i}
           label={item.name}
           color="inherit"
-          trigger={menuExp ? 'click' : 'hover'}
+          trigger={menuExp ? "click" : "hover"}
         >
           {item.links.map((link) => (
             <Dropdown.Item
@@ -46,6 +46,14 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
           ))}
         </Dropdown>
       ))}
+      <button
+        className="flex flex-row font-medium p-2 top-10"
+        onClick={() => {
+          router.push("./dao");
+        }}
+      >
+        DAO
+      </button>
     </div>
   );
 };
@@ -56,7 +64,7 @@ const MobileNav = ({ menuExpanded }: MenuExp) => {
       {/* Menu */}
       <div
         className={`${
-          !menuExpanded ? 'hidden' : 'flex'
+          !menuExpanded ? "hidden" : "flex"
         } shadow flex-col p-6 absolute top-20 px-8 w-full ml-11 rounded-xl transition duration-200`}
       >
         <ul className="list-none flex items-start flex-1 flex-col">
@@ -67,7 +75,7 @@ const MobileNav = ({ menuExpanded }: MenuExp) => {
           <SocialIcons newTab={true} />
         </div>
         <AuthDisplay
-          style={{ display: 'flex', flexDirection: 'row', gap: '12px' }}
+          style={{ display: "flex", flexDirection: "row", gap: "12px" }}
         />
       </div>
     </div>
@@ -79,23 +87,23 @@ const Navigation = () => {
   const [menuExpanded, setMenuExpanded] = useState(false);
 
   useEffect(() => {
-    const html: HTMLElement = document.querySelector('html')!;
-    const body: HTMLBodyElement = document.querySelector('body')!;
-    const activeClassesHtml = ['dark'];
+    const html: HTMLElement = document.querySelector("html")!;
+    const body: HTMLBodyElement = document.querySelector("body")!;
+    const activeClassesHtml = ["dark"];
     const activeBody = [
-      'bg-slate-900',
-      'text-white',
-      'transition',
-      'duration-500',
+      "bg-slate-900",
+      "text-white",
+      "transition",
+      "duration-500",
     ];
     if (html && dark) {
       activeClassesHtml.forEach((activeClass) =>
-        html.classList.add(activeClass),
+        html.classList.add(activeClass)
       );
       activeBody.forEach((activeClass) => body.classList.add(activeClass));
     } else if (html.classList.contains(activeClassesHtml[0])) {
       activeClassesHtml.forEach((activeClass) =>
-        html.classList.remove(activeClass),
+        html.classList.remove(activeClass)
       );
       activeBody.forEach((activeClass) => body.classList.remove(activeClass));
     }
@@ -104,11 +112,11 @@ const Navigation = () => {
   return (
     <div
       className={`flex w-full md:h-32 border-b-4 border-slate-500 dark:border-slate-100 mb-3 md:py-5 md:mx-auto ${
-        menuExpanded ? 'mb-[120%]' : ''
+        menuExpanded ? "mb-[120%]" : ""
       }`}
     >
       <div className="w-50 md:w-28 h-full p-2 flex flex-wrap md:space-x-2">
-        <Link href={'/'} className="hover:cursor-pointer">
+        <Link href={"/"} className="hover:cursor-pointer">
           <Logo />
         </Link>
       </div>
@@ -122,10 +130,10 @@ const Navigation = () => {
         <div
           className={`flex flex-wrap space-between font-bold text-base items-center hidden md:flex`}
         >
-          <NavLinks classes={''} menuExp={menuExpanded} />
+          <NavLinks classes={""} menuExp={menuExpanded} />
         </div>
 
-        <div style={{ display: 'flex', gap: '52px', alignItems: 'center' }}>
+        <div style={{ display: "flex", gap: "52px", alignItems: "center" }}>
           <div className="flex  w-auto md:w-1/4 p-5 md:justify-end mr-12">
             <Icon
               size={25}
@@ -136,7 +144,7 @@ const Navigation = () => {
           </div>
           <div
             className="hidden md:flex p-2 w-auto md:w-40 justify-end gap-6"
-            style={{ display: 'flex', alignItems: 'center' }}
+            style={{ display: "flex", alignItems: "center" }}
           >
             <SocialIcons newTab={false} />
             <DonationBtn />
