@@ -3,6 +3,7 @@ import './donation.css';
 import React, { useState } from 'react';
 import QRCode from 'qrcode.react';
 import Image from 'next/image';
+import donateGif from '../../../public/donate.gif';
 
 const DonationComp = () => {
   const [donationAmount, setDonationAmount] = useState(1); // Default donation amount in ZEC
@@ -46,7 +47,7 @@ const DonationComp = () => {
   return (
     <div className='donation-container'>
       <div className='zcash-image'>
-        <Image src='../../../../donate.gif' alt='Zcash Donation' />
+        <Image src={donateGif} alt='Zcash Donation' />
       </div>
 
       <div style={{ width: '300px', margin: '20px auto', textAlign: 'center' }}>

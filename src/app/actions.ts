@@ -129,7 +129,7 @@ const filePathForBannerMessage =
   process.cwd() + '/public/notification-data/data.json';
 
 export type BannerMessageType = {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   urlRedirectLink: string;

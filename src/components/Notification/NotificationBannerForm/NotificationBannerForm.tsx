@@ -188,7 +188,7 @@ export function NotificationBannerForm(props: NotificationBannerFormProps) {
                   <button
                     className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
                     onClick={() => {
-                      handleDeleteInfo(d.id);
+                      handleDeleteInfo(d.id!);
                     }}
                   >
                     Delete
@@ -408,7 +408,7 @@ const EditForm = (props: EditFormProps) => {
       const encodeData = encodeURIComponent(JSON.stringify(data)).split('Z');
       setIsUpdating(true);
 
-      await updateBannerMessage(id, encodeData);
+      await updateBannerMessage(id!, encodeData);
 
       setIsUpdating(false);
       props.getAndUpdateBannerMsg();
