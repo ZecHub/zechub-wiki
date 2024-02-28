@@ -72,12 +72,7 @@ export const NotificationBanner = () => {
         className: 'toast-message',
       }
     );
-  }, [
-    data?.buttonLabel,
-    data?.description,
-    data?.title,
-    data?.urlRedirectLink,
-  ]);
+  },);
 
   return (
     <>
