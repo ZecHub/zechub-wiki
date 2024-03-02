@@ -15,9 +15,9 @@ type HomeProps = {
 const Home = ({ text }: HomeProps) => {
   return (
     <main className="flex flex-col mx-auto">
-      // <section id="notification-banner">
-       <NotificationBanner />
-      </section>
+      {/* <section id="notification-banner">
+        <NotificationBanner />
+      </section> */}
       <section id="hero">
         <FadeInAnimation>
           <Hero />
