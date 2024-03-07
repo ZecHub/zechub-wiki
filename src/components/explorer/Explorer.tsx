@@ -8,7 +8,7 @@ const Explorer = () => {
       <div className="w-full grid grid-cols-1 space-x-4 space-y-2 md:grid-cols-3 md:gap-3 justify-items-center mt-4 p-2">
         {exploreFolders &&
           exploreFolders.map(({ img, description, name, url }, i) => (
-            <ListExplorer key={name} image={img} description={description} name={name} url={url} />
+            <ListExplorer key={name+i} image={img} description={description} name={name} url={url} />
           ))}
       </div>
     </div>
