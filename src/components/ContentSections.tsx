@@ -8,7 +8,7 @@ const ContentSections = () => {
     return (
         <section>
             <div className="flex  space-y-4 flex-col w-full mt-5">
-                <div className="flex flex-col space-y-4 md:flex-row min-h-screen w-auto border-2 border-[#E4A100]/50 rounded-md p-5">
+                <div className="flex flex-col space-y-4 md:flex-row min-h-screen w-auto border-2 border-[#E4A100]/50 rounded-md p-5" >
                     <div className="flex flex-1 items-center justify-center w-auto md:w-2/4">
                         <FadeInAnimation>
                           <Image className="" src={'/Zcashcard.png'} alt="" width={500} height={50} />
@@ -36,7 +36,7 @@ const ContentSections = () => {
                         </FadeInAnimation>
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto border-2 border-black/50 rounded-md p-5">
+                <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto border-2 border-black/50 rounded-md p-5" style={{ height: "30rem" }}>
 
                     <div className="flex flex-col w-auto md:w-2/4  items-center justify-center font-bold">
                         <FadeInAnimation>
@@ -61,7 +61,7 @@ const ContentSections = () => {
                         </FadeInAnimation>
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-full border-cyan-400/50 border-2 rounded-md p-5">
+                <div className="flex flex-col md:flex-row space-y-4 h-96 my-4 w-full border-cyan-400/50 border-2 rounded-md p-5" style={{ height: "30rem" }}>
                     <div className="flex justify-center items-center w-auto md:w-2/4">
                         <FadeInAnimation>
                             <Image src={'/Free2z_Banner.gif'} alt="" width={500} height={50} />

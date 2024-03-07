@@ -14,7 +14,7 @@ const SocialIcons = (newTab: Socials) => {
             className=" hover:text-brand-ui-primary hover:scale-125"
             target={newTab ? "_blank" : "_self"}
           >
-            <Icon size={25} icon={icon} className="" />
+            <Icon  icon={icon} className="md:w-6 w-4 h-4 md:h-6" />
           </Link>
         );
       })}

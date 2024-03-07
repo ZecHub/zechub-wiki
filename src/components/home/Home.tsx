@@ -15,9 +15,9 @@ type HomeProps = {
 const Home = ({ text }: HomeProps) => {
   return (
     <main className="flex flex-col mx-auto">
-      {/* <section id="notification-banner">
+      <section id="notification-banner">
         <NotificationBanner />
-      </section> */}
+      </section>
       <section id="hero">
         <FadeInAnimation>
           <Hero />
@@ -33,7 +33,7 @@ const Home = ({ text }: HomeProps) => {
                   <AnimationHome />
                 </FadeInAnimation>
                 <FadeInAnimation>
-                  <h1 className="text-4xl font-bold mb-3">Welcome to ZecHub</h1>
+                  <h1 className="text-4xl text-center font-bold mb-3">Welcome to ZecHub</h1>
                 </FadeInAnimation>
                 <div className="flex items-center justify-center p-4 ">
                   <FadeInAnimation>

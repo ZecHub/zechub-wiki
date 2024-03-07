@@ -22,12 +22,12 @@ export default function RootLayout({
 
   return (
     <html lang='en'>
-      <body className={`${inter.className} px-12`}>
-          {/* <AppProvider> */}
+      <body className={`${inter.className} px-6`}>
+          <AppProvider>
             <Navigation />
             <div style={{ margin: '48px 0' }}>{children}</div>
             <Footer />
-          {/* </AppProvider> */}
+          </AppProvider>
       </body>
     </html>
   );

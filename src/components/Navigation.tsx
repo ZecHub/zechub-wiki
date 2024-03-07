@@ -2,6 +2,14 @@
 import { navigations } from "@/constants/navigation";
 import type { Classes, MenuExp } from "@/types";
 import { Dropdown } from "flowbite-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../components/ui/Sheet"
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -24,7 +32,7 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
   const router = useRouter();
 
   return (
-    <div className={`flex ${menuExp ? "flex-col" : "flex-row"} ${classes}`}>
+    <div className={`flex  ${classes}`}>
       {navigations.map((item, i) => (
         <Dropdown
           className="flex flex-row font-medium"
@@ -60,15 +68,17 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
 
 const MobileNav = ({ menuExpanded }: MenuExp) => {
   return (
-    <div className="absolute flex flex-col w-11/12 h-auto justify-center z-10">
+    <div className=" flex flex-col w-11/12 h-auto justify-center z-10">
       {/* Menu */}
       <div
         className={`${
-          !menuExpanded ? "hidden" : "flex"
-        } shadow flex-col p-6 absolute top-20 px-8 w-full ml-11 rounded-xl transition duration-200`}
+         "flex"
+        }  flex-col p-6 absolute top-20 px-8 w-full ml-11 rounded-xl transition duration-200`}
       >
+
         <ul className="list-none flex items-start flex-1 flex-col">
-          <NavLinks classes="font-bold" menuExp={menuExpanded} />
+
+          <NavLinks classes="flex-col font-bold" menuExp={menuExpanded} />
         </ul>
 
         <div className="flex flex-1 p-2 top-10 justify-start items-start my-3">
@@ -115,38 +125,38 @@ const Navigation = () => {
         menuExpanded ? "mb-[120%]" : ""
       }`}
     >
-      <div className="w-50 md:w-28 h-full p-2 flex flex-wrap md:space-x-2">
+      <div className="w-52 md:w-28 min-h-[100px] p-2 flex flex-wrap md:space-x-2">
         <Link href={"/"} className="hover:cursor-pointer">
           <Logo />
         </Link>
       </div>
 
       <nav className="flex flex-wrap w-full sm:justify-end space-x-7 md:space-x-11">
-        {menuExpanded && (
-          <div className="flex justify-center">
-            <MobileNav menuExpanded={menuExpanded} />
-          </div>
-        )}
+        {/*{menuExpanded && (*/}
+        {/*  <div className="flex justify-center">*/}
+        {/*    <MobileNav menuExpanded={menuExpanded} />*/}
+        {/*  </div>*/}
+        {/*)}*/}
         <div
           className={`flex flex-wrap space-between font-bold text-base items-center hidden md:flex`}
         >
           <NavLinks classes={""} menuExp={menuExpanded} />
         </div>
 
-        <div style={{ display: "flex", gap: "52px", alignItems: "center" }}>
-          <div className="flex  w-auto md:w-1/4 p-5 md:justify-end mr-12">
+        <div className={"flex items-center md:gap-14"} >
+          <div className="flex  w-auto md:w-1/4 md:p-5 md:justify-end md:mr-12">
             <Icon
-              size={25}
+
               icon={dark ? LightIcon : DarkIcon}
-              className="hover:cursor-pointer"
+              className="hover:cursor-pointer md:h-6 md:w-6 h-4 w-4"
               onClick={() => setDark(!dark)}
             />
           </div>
           <div
-            className="hidden md:flex p-2 w-auto md:w-40 justify-end gap-6"
+            className="hidden md:flex p-2 w-auto md:w-40 justify-end sm:gap-6"
             style={{ display: "flex", alignItems: "center" }}
           >
-            <SocialIcons newTab={false} />
+            {/* <SocialIcons newTab={false} /> */}
             <DonationBtn />
             {/* <AuthDisplay
               style={{
@@ -157,14 +167,22 @@ const Navigation = () => {
             /> */}
           </div>
         </div>
-        <div className=" w-auto md:hidden hover:cursor-pointer p-5">
-          <Icon
-            className="transition duration-500"
-            size={25}
-            icon={menuExpanded ? CloseIcon : MenuIcon}
-            onClick={() => setMenuExpanded(!menuExpanded)}
-          />
-        </div>
+        <Sheet>
+          <SheetTrigger>
+            <div className=" w-auto md:hidden hover:cursor-pointer p-5">
+              <Icon
+                  className="transition duration-500"
+                  size={25}
+                  icon={MenuIcon}
+                  // onClick={() => setMenuExpanded(!menuExpanded)}
+              />
+            </div>
+          </SheetTrigger>
+          <SheetContent side={"left"} className={"bg-white"}>
+           <MobileNav menuExpanded={menuExpanded}/>
+          </SheetContent>
+        </Sheet>
+
       </nav>
     </div>
   );

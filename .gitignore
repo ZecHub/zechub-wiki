@@ -2,6 +2,8 @@
 .gitignore
 .env
 .gitpod.yml
+.idea
+/.idea
 # dependencies
 /node_modules
 /.pnp
@@ -28,10 +30,15 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.pnpm-debug.log*
+
+# local env files
+.env
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
+next-env.d.ts
 next-env.d.ts
