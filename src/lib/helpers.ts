@@ -38,18 +38,19 @@ export const firstFileForFolders = async (folders: string[]) => {
 
 export const getBanner = (name: string) => {
 
-  let uri;
+  let uri='';
   for (let i = 0; i <= contentBanners.length; i++) {
     if (contentBanners[i]?.name === undefined) {
       uri = '';
     }
 
-    if (contentBanners[i]?.name === transformUri(name)) {
-      uri = contentBanners[i].url;
+    if (contentBanners[i]?.name == transformUri(name)) {
+      // uri = contentBanners[i].url;
+      return contentBanners[i].url; // replace uri assignment with `return` to break the loop search on first find
     }
   }
 
-  return uri;
+  // return uri; // commented out to avoid uri being replaced by ''
 };
 
 const uppercaseWords = [
