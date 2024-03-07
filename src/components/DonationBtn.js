@@ -7,7 +7,7 @@ const DonationBtn = () => {
   };
   return (
     <div className='nav-donate-btn'>
-        <button onClick={handleClick} style={{width: "100px", background:"#1984c7", height: "40px", fontWeight: "600", borderRadius: "0.4rem"}}>Donate</button>
+        <button onClick={handleClick}  className={"px-4 py-2 text-sm md:text-lg"} style={{ background:"#1984c7",  fontWeight: "600", borderRadius: "0.4rem"}}>Donate</button>
     </div>
   )
 }
