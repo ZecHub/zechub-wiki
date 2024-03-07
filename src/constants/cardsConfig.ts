@@ -8,7 +8,7 @@ export const cardsConfig = [
     {
       title: 'Pick a Wallet',
       content: 'Wallets allow you to receive and spend Zcash privately. Some also support encrypted memos',
-      url: 'using-zcash/wallets',
+      url: 'wallets',
       image: '/zwallets.png'
     },
     {
