@@ -44,7 +44,7 @@ export const NotificationBanner = () => {
       //   );
       // }
     }
-    getData();
+    // getData();
 
     toast(
       <div className='notification-banner'>

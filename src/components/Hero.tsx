@@ -6,16 +6,16 @@ const Hero = () => {
 
   const router = useRouter()
   return (
-    <div className="w-full  mb-3">
-      <div className=" w-full mx-auto items-center md:flex-row justify-center rounded-lg ">
-      
+    <div className='w-full  mb-3'>
+      <div className=' w-full mx-auto items-center md:flex-row justify-center rounded-lg '>
         <Image
-            className="w-full  mb-5 object-cover"
-            alt="hero"
-            width={800}
-            height={50}
-            src={"/BannerPrancheta.png"}
-          />
+          className='w-full  mb-5 object-cover'
+          alt='hero'
+          width={800}
+          height={50}
+          priority
+          src={'/BannerPrancheta.png'}
+        />
       </div>
     </div>
   );
