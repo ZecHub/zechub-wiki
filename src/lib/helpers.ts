@@ -45,10 +45,6 @@ export const getBanner = (name: string) => {
     }
 
     if (contentBanners[i]?.name == transformUri(name)) {
-      console.log(
-        'contentBanners[i]?.name == transformUri(name): ',
-        contentBanners[i]?.name == transformUri(name)
-      );
       // uri = contentBanners[i].url;
       return contentBanners[i].url; // replace uri assignment with `return` to break the loop search on first find
     }
