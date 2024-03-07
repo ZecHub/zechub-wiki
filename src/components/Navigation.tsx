@@ -17,7 +17,7 @@ import {
 import { Icon } from "./ui/Icon";
 import Logo from "./ui/Logo";
 import SocialIcons from "./ui/SocialIcons";
-import { AuthDisplay } from "./AccountDisplay/AccountDisplay";
+// import { AuthDisplay } from "./AccountDisplay/AccountDisplay";
 import DonationBtn from "@/components/DonationBtn";
 
 const NavLinks = ({ classes, menuExp }: Classes) => {
@@ -74,9 +74,9 @@ const MobileNav = ({ menuExpanded }: MenuExp) => {
         <div className="flex flex-1 p-2 top-10 justify-start items-start my-3">
           <SocialIcons newTab={true} />
         </div>
-        <AuthDisplay
+        {/* <AuthDisplay
           style={{ display: "flex", flexDirection: "row", gap: "12px" }}
-        />
+        /> */}
       </div>
     </div>
   );
