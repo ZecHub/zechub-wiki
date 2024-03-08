@@ -14,7 +14,7 @@ export const navigations = [
       },
       {
         subName: "Wallets",
-        path: "/using-zcash/wallets",
+        path: "/wallets",
       },
       {
         subName: "Exchanges",
@@ -90,10 +90,6 @@ export const navigations = [
       {
         subName: "Zgo Payment Processor",
         path: "/guides/zgo-payment-processor",
-      },
-      {
-        subName: "Full Nodes",
-        path: "/guides/full-nodes",
       },
       {
         subName: "Free2z Livestreaming",
