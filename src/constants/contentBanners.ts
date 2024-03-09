@@ -41,7 +41,7 @@ export const contentBanners = [
     },
     {
         name: "Glossary_and_FAQs", 
-        url: '/wiki-banner.avif'
+        url: '/content-banners/bannerglossary.png'
     },
     {
         name: "contribute", 
