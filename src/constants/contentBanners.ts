@@ -17,15 +17,15 @@ export const contentBanners = [
     },
     {
         name: "Zcash_Tech",
-        url: "/wiki-banner.avif"
+        url: '/content-banners/bannertech.png'
     },
     {
         name: "Zcash_Organizations",
-        url: '/wiki-banner.avif'
+        url: '/content-banners/bannerorgs.png'
     },
     {
         name: "Zcash_Community",
-        url: '/wiki-banner.avif'
+        url: '/content-banners/bannerecosystem.png'
     },
     {
         name: "ZFAV_Club", 
