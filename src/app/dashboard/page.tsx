@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+const ShieldedPoolChart = dynamic(() => import('../../components/ShieldedPoolChart'), { ssr: false });
 
 async function getData() {
   const response = await fetch('https://zcashblockexplorer.com/api/v1/blockchain-info');
@@ -67,6 +68,8 @@ export default async function DashboardPage() {
   const blockchainInfo: BlockchainInfo = await getData()
   return (
     <div>
+      <h2 className="font-bold mt-8">Shielded Supply</h2>
+      <ShieldedPoolChart />
       <h2 className="font-bold mt-8">Pools</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {blockchainInfo.valuePools.map((valuePool, index) => (

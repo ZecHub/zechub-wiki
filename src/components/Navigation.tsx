@@ -62,6 +62,14 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
       >
         DAO
       </button>
+      <button
+        className="flex flex-row font-medium p-2 top-10"
+        onClick={() => {
+          router.push("./dashboard");
+        }}
+      >
+        Dashboard
+      </button>
     </div>
   );
 };
