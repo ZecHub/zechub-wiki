@@ -2,7 +2,7 @@ export const daoMembers = [
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1756041822973882368/oax4ppkd_400x400.jpg',
         name: 'zerodartz',
-        description: ``,
+        description: `Meme and media creator, ZFAV club contributor, nerd who loves new technology and Shielding everything.`,
         linkName: 'Twitter',
         urlLink: 'https://twitter.com/zerodartz'
     },
