@@ -1,5 +1,12 @@
 export const daoMembers = [
     {
+        imgUrl: 'https://pbs.twimg.com/profile_images/1756041822973882368/oax4ppkd_400x400.jpg',
+        name: 'zerodartz',
+        description: ``,
+        linkName: 'Twitter',
+        urlLink: 'https://twitter.com/zerodartz'
+    },
+    {
         imgUrl: 'https://cdn.discordapp.com/attachments/860525418008674327/1097564830912745512/oUtBo9xl_400x400.jpeg',
         name: 'zksquirrel',
         description: `Core Contributor on ZecHub and Community Note Taker for Zcash Arborist'
