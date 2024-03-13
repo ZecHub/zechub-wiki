@@ -232,7 +232,7 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
     if (chartData.length === 0 || isLoading) {
       return (
         <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
-          <p><i>Loading historic shielding data...</i></p>
+          <p><i>Loading historic shielded pool data...</i></p>
         </div>
       );
     }
@@ -350,9 +350,9 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
               top={tooltipTop - 12}
               left={tooltipLeft + 12}
               style={tooltipStyles}
-              aria-label="Tooltip for shielded value at this point in time with value in USD"
+              aria-label="Tooltip for shielded value at this point in time"
             >
-              {`$${getShieldedValue(tooltipData)}`}
+              {getShieldedValue(tooltipData)}
             </TooltipWithBounds>
             <Tooltip
               top={innerHeight + margin.top - 14}
