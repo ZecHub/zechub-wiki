@@ -10,15 +10,35 @@ import { localPoint } from '@visx/event';
 import { LinearGradient } from '@visx/gradient';
 import { max, extent, bisector } from '@visx/vendor/d3-array';
 import { timeFormat } from '@visx/vendor/d3-time-format';
-
 /**
- * Type of values from the shielded pool over time. Each datum is amount shielded at a given date.
+ * Type of values from the shielded pool over time. Each datum is amount 
+ * shielded at a given date.
  */
 type ShieldedAmountDatum = {
   close: string;
   supply: number;
 };
 
+/**
+ * URL for the json file of historic shielding data. This file is hosted in the 
+ * ZecHub wiki repo.
+ * 
+ * The data is in the form of an array of objects, each with a `close` date and
+ * `supply` amount.
+ * 
+ * For example:
+ * {
+ *     "close": "01/01/1970",
+ *     "supply": 0
+ * }
+ * 
+ * In the long run, we should find a way of caching this computation and storing
+ * in database, and ideally in memory for performance reasons. Also, this could
+ * cause COORS issues. 
+ * 
+ * @see "zechub-wiki/public/data/shielded_supply.json"
+ * 
+ */
 const SHIELDED_DATA_URL = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json';
 
 /**
@@ -44,9 +64,7 @@ const tooltipStyles = {
   color: 'white',
 };
 
-/**
- * Date format from data, i.e. "01/01/1970"
- */
+/** Date format from data, i.e. "01/01/1970" */
 const formatDate = timeFormat("%b %d, '%y");
 
 /**
@@ -54,34 +72,32 @@ const formatDate = timeFormat("%b %d, '%y");
  * @param d datum for measurement of shielded amount
  * @returns Date object
  */
-const getDate = (d: ShieldedAmountDatum) => new Date(d.close);
+const getDate = (d: ShieldedAmountDatum): Date => new Date(d.close);
 
 /**
  * Returns the shielded amount from datum
  * @param d 
  * @returns number
  */
-const getShieldedValue = (d: ShieldedAmountDatum) => d.supply;
+const getShieldedValue = (d: ShieldedAmountDatum): number => d.supply;
+
+/** Bisector for date */
+const bisectDate 
+  = bisector<ShieldedAmountDatum, Date>((d)  => new Date(d.close)).left;
 
 /**
- * Bisector for date
- */
-const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close)).left;
-
-/**
- * Default width for the chart. It will render 1000px wide, although if this happens that means there an error with the 
- * `userRef` hook below.
+ * Default width for the chart. It will render 1000px wide, although if this 
+ * happens that means there an error with the `userRef` hook below.
  */
 const DEFAULT_WIDTH = 1000;
 
-/**
- * Default height for the chart. It will render 500px tall.
- */
+/* Default height for the chart. It will render 500px tall. */
 const DEFAULT_HEIGHT = 500;
 
 /**
- * Props to override default layout, all of which are optional. By default, the visualization will take up the entire width
- * of the parent container, and the height will be 500px.
+ * Props to override default layout, all of which are optional. By default, the
+ * visualization will take up the entire width  of the parent container, and the
+ * height will be 500px.
  */
 export type AreaProps = {
   providedWidth?: number;
@@ -92,6 +108,11 @@ export type AreaProps = {
 /**
  * Area line chart for shielded pool over time
  * @param props can be used to override height, width, and margin
+ * 
+ * Inspired by example from visx documentation: https://visx.dev/examples/gallery?group=Area&show=AreaClosed
+ * 
+ * @returns Area chart for shielded pool over time
+ * 
  */
 export default withTooltip<AreaProps, ShieldedAmountDatum>(
   ({
@@ -105,19 +126,16 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
     tooltipLeft = 0,
   }: AreaProps & WithTooltipProvidedProps<ShieldedAmountDatum>) => {
     
-    /**
-     * State for chart data loaded from server
-     */
-    const [chartData, setChartData] = useState([] as Array<ShieldedAmountDatum>);
+    /* State for chart data loaded from server */
+    const [chartData, setChartData] 
+      = useState([] as Array<ShieldedAmountDatum>);
 
-    /**
-     * Loading state for chart data in progress
-     */
+    const yMax = useMemo(() => max(chartData, getShieldedValue) || 0, [chartData]);
+
+    /* Loading state for chart data in progres */
     const [isLoading, setIsLoading] = useState(false);
 
-    /**
-     * Error state for chart data
-     */
+    /* Error state for chart data */
     const [error, setError] = useState(null);
 
     // Make sure data is only fetched once on initial render
@@ -126,15 +144,12 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
       if (chartData.length > 0) return;
 
       setIsLoading(true);
+
       fetchShieldedSupplyData()
-        .then((data) => {
-          setChartData(data);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          setError(error);
-          setIsLoading(false);
-        });
+        .then((data) => setChartData(data))
+        .catch((error) =>  setError(error))
+        .finally(() => setIsLoading(false));
+
     }, [
       chartData,
       isLoading,
@@ -190,8 +205,8 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
     );
 
     /**
-     * Handle tooltop behavior on hover. The user should see the date and shielded value corresponding to the 
-     * point hovered over.
+     * Handle tooltop behavior on hover. The user should see the date and 
+     * shielded value corresponding to the point hovered over.
      */
     const handleTooltip = useCallback(
       (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
@@ -212,12 +227,12 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
       },
       [showTooltip, shieldedValueScale, dateScale, chartData],
     );
-
+    
     // Render loading message when loading
     if (chartData.length === 0 || isLoading) {
       return (
         <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
-          <p>Loading historic shielding data...</p>
+          <p><i>Loading historic shielding data...</i></p>
         </div>
       );
     }
@@ -226,7 +241,7 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
     if (error) {
       return (
         <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
-          <p>Error loading historic shielding data</p>
+          <p><i>Error loading historic shielding data</i></p>
         </div>
       );
     }
@@ -237,6 +252,8 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
       <div ref={ref} style={{ width: '100%', minWidth: '100%', minHeight: '500px' }}>
         <svg width={width} height={height}>
           <rect
+            aria-label="background"
+            role="background"
             x={0}
             y={0}
             width={width}
@@ -252,8 +269,9 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
             width={innerWidth}
             strokeDasharray="1,3"
             stroke={accentColor}
-            strokeOpacity={0}
+            strokeOpacity={0.25}
             pointerEvents="none"
+            aria-label="Rows of chart"
           />
           <GridColumns
             top={margin.top}
@@ -261,8 +279,9 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
             height={innerHeight}
             strokeDasharray="1,3"
             stroke={accentColor}
-            strokeOpacity={0.2}
+            strokeOpacity={0.25}
             pointerEvents="none"
+            aria-label="Columns of chart"
           />
           <AreaClosed<ShieldedAmountDatum>
             data={chartData}
@@ -273,6 +292,7 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
             stroke="url(#area-gradient)"
             fill="url(#area-gradient)"
             curve={curveMonotoneX}
+            aria-label="Area under line of the chart"
           />
           <Bar
             x={margin.left}
@@ -285,6 +305,7 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
             onTouchMove={handleTooltip}
             onMouseMove={handleTooltip}
             onMouseLeave={() => hideTooltip()}
+            aria-label="Shielded pooling over time"
           />
           {tooltipData && (
             <g>
@@ -295,17 +316,19 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
                 strokeWidth={2}
                 pointerEvents="none"
                 strokeDasharray="5,2"
+                aria-label="Line for tooltip of mouse on x axis"
               />
               <circle
                 cx={tooltipLeft}
                 cy={tooltipTop + 1}
                 r={4}
                 fill="black"
-                fillOpacity={0.1}
+                fillOpacity={0.25}
                 stroke="black"
-                strokeOpacity={0.1}
+                strokeOpacity={0.25}
                 strokeWidth={2}
                 pointerEvents="none"
+                aria-label="Point showing shielding on the y-axis for this point on the x-axis"
               />
               <circle
                 cx={tooltipLeft}
@@ -315,6 +338,7 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
                 stroke="white"
                 strokeWidth={2}
                 pointerEvents="none"
+                aria-label="Accent color for point showing shielding on the y-axis for this point on the x-axis"
               />
             </g>
           )}
@@ -326,6 +350,7 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
               top={tooltipTop - 12}
               left={tooltipLeft + 12}
               style={tooltipStyles}
+              aria-label="Tooltip for shielded value at this point in time with value in USD"
             >
               {`$${getShieldedValue(tooltipData)}`}
             </TooltipWithBounds>
