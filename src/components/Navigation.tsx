@@ -9,7 +9,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../components/ui/Sheet"
+} from "../components/ui/Sheet";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -55,7 +55,7 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
         </Dropdown>
       ))}
       <button
-        className="flex flex-row font-medium p-2 top-10"
+        className="flex flex-row font-medium p-2 border-2 border-light-blue-500 rounded-md"
         onClick={() => {
           router.push("./dao");
         }}
@@ -63,7 +63,7 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
         DAO
       </button>
       <button
-        className="flex flex-row font-medium p-2 top-10"
+        className="flex flex-row font-medium p-2 border-2 border-light-blue-500 rounded-md"
         onClick={() => {
           router.push("./dashboard");
         }}
@@ -77,24 +77,16 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
 const MobileNav = ({ menuExpanded }: MenuExp) => {
   return (
     <div className=" flex flex-col w-11/12 h-auto justify-center z-10">
-      {/* Menu */}
       <div
-        className={`${
-         "flex"
-        }  flex-col p-6 absolute top-20 px-8 w-full ml-11 rounded-xl transition duration-200`}
+        className={`flex flex-col p-6 absolute top-20 px-8 w-full ml-11 rounded-xl transition duration-200`}
       >
-
         <ul className="list-none flex items-start flex-1 flex-col">
-
           <NavLinks classes="flex-col font-bold" menuExp={menuExpanded} />
         </ul>
 
         <div className="flex flex-1 p-2 top-10 justify-start items-start my-3">
           <SocialIcons newTab={true} />
         </div>
-        {/* <AuthDisplay
-          style={{ display: "flex", flexDirection: "row", gap: "12px" }}
-        /> */}
       </div>
     </div>
   );
@@ -108,12 +100,7 @@ const Navigation = () => {
     const html: HTMLElement = document.querySelector("html")!;
     const body: HTMLBodyElement = document.querySelector("body")!;
     const activeClassesHtml = ["dark"];
-    const activeBody = [
-      "bg-slate-900",
-      "text-white",
-      "transition",
-      "duration-500",
-    ];
+    const activeBody = ["bg-slate-900", "text-white", "transition", "duration-500"];
     if (html && dark) {
       activeClassesHtml.forEach((activeClass) =>
         html.classList.add(activeClass)
@@ -140,21 +127,15 @@ const Navigation = () => {
       </div>
 
       <nav className="flex flex-wrap w-full sm:justify-end space-x-7 md:space-x-11">
-        {/*{menuExpanded && (*/}
-        {/*  <div className="flex justify-center">*/}
-        {/*    <MobileNav menuExpanded={menuExpanded} />*/}
-        {/*  </div>*/}
-        {/*)}*/}
         <div
           className={`flex flex-wrap space-between font-bold text-base items-center hidden md:flex`}
         >
           <NavLinks classes={""} menuExp={menuExpanded} />
         </div>
 
-        <div className={"flex items-center md:gap-14"} >
+        <div className={"flex items-center md:gap-14"}>
           <div className="flex  w-auto md:w-1/4 md:p-5 md:justify-end md:mr-12">
             <Icon
-
               icon={dark ? LightIcon : DarkIcon}
               className="hover:cursor-pointer md:h-6 md:w-6 h-4 w-4"
               onClick={() => setDark(!dark)}
@@ -164,30 +145,21 @@ const Navigation = () => {
             className="hidden md:flex p-2 w-auto md:w-40 justify-end sm:gap-6"
             style={{ display: "flex", alignItems: "center" }}
           >
-            {/* <SocialIcons newTab={false} /> */}
             <DonationBtn />
-            {/* <AuthDisplay
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                gap: '16px',
-              }}
-            /> */}
           </div>
         </div>
         <Sheet>
           <SheetTrigger>
             <div className=" w-auto md:hidden hover:cursor-pointer p-5">
               <Icon
-                  className="transition duration-500"
-                  size={25}
-                  icon={MenuIcon}
-                  // onClick={() => setMenuExpanded(!menuExpanded)}
+                className="transition duration-500"
+                size={25}
+                icon={MenuIcon}
               />
             </div>
           </SheetTrigger>
           <SheetContent side={"left"} className={"bg-white"}>
-           <MobileNav menuExpanded={menuExpanded}/>
+            <MobileNav menuExpanded={menuExpanded}/>
           </SheetContent>
         </Sheet>
 
