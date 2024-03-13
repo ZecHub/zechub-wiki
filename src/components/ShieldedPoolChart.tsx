@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useCallback, useState, useLayoutEffect, useEffect } from 'react';
+import React, { useMemo, useCallback, useState, useLayoutEffect, useEffect, UseRef } from 'react';
 import { AreaClosed, Line, Bar } from '@visx/shape';
 import { curveMonotoneX } from '@visx/curve';
 import { GridRows, GridColumns } from '@visx/grid';
@@ -160,7 +160,7 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
     /**
      * Reference to child, which will fill all space available horizontally
      */
-    const ref = React.useRef(null);
+    const ref = useRef<HTMLDivElement>(null);
 
 
     // State for width and height so that they update as browser size changes
