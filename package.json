@@ -41,7 +41,6 @@
     "next-mdx-remote": "^4.4.1",
     "octokit": "^3.1.0",
     "postcss": "8.4.29",
-    "prettier": "^3.2.5",
     "qrcode": "^1.5.3",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
@@ -68,6 +67,7 @@
     "@types/react-dom": "18.2.7",
     "@types/react-icons": "^3.0.0",
     "@types/serviceworker": "^0.0.82",
-    "@types/web-push": "^3.6.3"
+    "@types/web-push": "^3.6.3",
+    "eslint-config-prettier": "^9.1.0"
   }
 }

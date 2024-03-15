@@ -2,8 +2,8 @@
 import { FadeInAnimation } from "@/components/ui/FadeInAnimation";
 import MemberCards from "@/components/ui/MemberCards";
 import { daoMembers } from "@/constants/membersDao";
-import React from "react";
-const Donation = () => {
+
+const DaoMembers = () => {
   return (
     <main>
       <FadeInAnimation>
@@ -29,4 +29,4 @@ const Donation = () => {
   );
 };
 
-export default Donation;
+export default DaoMembers;

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState, useEffect, ChangeEvent, useRef } from "react"
+import { useState, ChangeEvent, useRef } from "react"
 import { SearchInput } from "./SearchInput";
 import { searcher } from "@/constants/searcher";
 import { Dialog, Transition } from '@headlessui/react';
@@ -7,14 +7,9 @@ import { motion } from "framer-motion";
 import { IoMdClose as closeIcon } from "react-icons/io";
 import { MdArrowForward as ArrowIcon } from "react-icons/md";
 import { Icon } from "../ui/Icon";
+import { SearchBarProps } from "@/types";
 
-
-interface Props {
-  openSearch: boolean;
-  setOpenSearch: (e: boolean) => void;
-}
-
-const SearchBar = ({ openSearch, setOpenSearch }: Props) => {
+const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
   const [searchInput, setSearchInput] = useState('')
   const observerRef = useRef<HTMLDivElement>(null);
   const [searchResults, setSearchResults] = useState<any[]>([]);

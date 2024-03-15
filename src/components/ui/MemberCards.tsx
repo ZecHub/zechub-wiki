@@ -21,11 +21,13 @@ const MemberCards = ({
   const [isOpen, setIsOpen] = useState(false);
   const [shortDecription, setShortDescription] = useState(description);
   const shouldShowReadMore = description.length >= 37;
+
   useEffect(() => {
     if (description.length >= 37) {
       setShortDescription(description.slice(0, 32) + "...");
     }
-  }, []);
+  }, [description]);
+
   return (
     <>
       <div className=" border m-2.5 p-5 rounded-lg shadow-lg dark:bg-gray-800">
