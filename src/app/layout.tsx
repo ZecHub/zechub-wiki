@@ -1,5 +1,4 @@
 import './globals.css';
-
 import { Footer, Navigation } from '@/components';
 import { AppProvider } from '@/components/AppProvider';
 import type { Metadata } from 'next';

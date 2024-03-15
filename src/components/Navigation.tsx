@@ -29,9 +29,8 @@ import SocialIcons from "./ui/SocialIcons";
 import DonationBtn from "@/components/DonationBtn";
 import SearchBar from "./SearchBar";
 
-const NavLinks = ({ classes, menuExp }: Classes) => {
+const NavLinks = ({ classes, menuExp, setMenuExpanded }: Classes) => {
   const router = useRouter();
-
   return (
     <div className={`flex  ${classes}`}>
       {navigations.map((item, i) => (
@@ -47,6 +46,7 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
               type="button"
               key={link.path}
               onClick={() => {
+                menuExp && setMenuExpanded(false)
                 router.push(link.path);
               }}
             >
@@ -60,7 +60,7 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
         <button
           className="flex flex-row font-medium p-2 border-2 border-light-blue-500 rounded-md hover:curspr-pointer hover:bg-[#1984c7] hover:text-white dark:hover:white dark:hover:text-black"
           onClick={() => {
-            router.push("./dao");
+            router.push("/dao");
           }}
         >
           DAO
@@ -68,7 +68,7 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
         <button
           className="flex flex-row font-medium p-2 border-2 border-light-blue-500 rounded-md hover:curspr-pointer hover:bg-[#1984c7] hover:text-white dark:hover:white dark:hover:text-black"
           onClick={() => {
-            router.push("./dashboard");
+            router.push("/dashboard");
           }}
         >
           Dashboard
@@ -79,14 +79,14 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
   );
 };
 
-const MobileNav = ({ menuExpanded }: MenuExp) => {
+const MobileNav = ({ menuExp, setMenuExpanded }: MenuExp) => {
   return (
     <div className=" flex flex-col w-11/12 h-auto justify-center z-10">
       <div
         className={`flex flex-col p-6 absolute top-20 px-8 w-full ml-11 rounded-xl transition duration-200`}
       >
         <ul className="list-none flex items-start flex-1 flex-col">
-          <NavLinks classes="flex-col font-bold" menuExp={menuExpanded} />
+          <NavLinks classes="flex-col font-bold" menuExp={menuExp} setMenuExpanded={setMenuExpanded}/>
         </ul>
 
         <div className="flex flex-1 p-2 top-10 justify-start items-start my-3">
@@ -135,7 +135,7 @@ const Navigation = () => {
         <div
           className={`flex flex-wrap space-between font-bold text-base items-center hidden md:flex`}
         >
-          <NavLinks classes={""} menuExp={menuExpanded} />
+          <NavLinks classes={""} menuExp={menuExpanded} setMenuExpanded={setMenuExpanded} />
         </div>
 
         <div className={"flex items-center md:gap-14"}>
@@ -170,7 +170,7 @@ const Navigation = () => {
             </div>
           </SheetTrigger>
           <SheetContent side={"left"} className={"bg-white"}>
-            <MobileNav menuExpanded={menuExpanded} />
+            <MobileNav menuExp={menuExpanded} setMenuExpanded={setMenuExpanded} />
           </SheetContent>
         </Sheet>
 
