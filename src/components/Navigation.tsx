@@ -1,4 +1,7 @@
 "use client";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { navigations } from "@/constants/navigation";
 import type { Classes, MenuExp } from "@/types";
 import { Dropdown } from "flowbite-react";
@@ -10,10 +13,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../components/ui/Sheet";
-
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import {
   MdOutlineDarkMode as DarkIcon,
   MdLightMode as LightIcon,
@@ -22,11 +21,13 @@ import {
   RiCloseFill as CloseIcon,
   RiMenuLine as MenuIcon,
 } from "react-icons/ri";
+import { IoSearch as SearchIcon } from "react-icons/io5";
 import { Icon } from "./ui/Icon";
 import Logo from "./ui/Logo";
 import SocialIcons from "./ui/SocialIcons";
 // import { AuthDisplay } from "./AccountDisplay/AccountDisplay";
 import DonationBtn from "@/components/DonationBtn";
+import SearchBar from "./SearchBar";
 
 const NavLinks = ({ classes, menuExp }: Classes) => {
   const router = useRouter();
@@ -54,22 +55,26 @@ const NavLinks = ({ classes, menuExp }: Classes) => {
           ))}
         </Dropdown>
       ))}
-      <button
-        className="flex flex-row font-medium p-2 border-2 border-light-blue-500 rounded-md"
-        onClick={() => {
-          router.push("./dao");
-        }}
-      >
-        DAO
-      </button>
-      <button
-        className="flex flex-row font-medium p-2 border-2 border-light-blue-500 rounded-md"
-        onClick={() => {
-          router.push("./dashboard");
-        }}
-      >
-        Dashboard
-      </button>
+
+      <div className="flex md:flex-row flex-col md:space-x-3 md:ml-3">
+        <button
+          className="flex flex-row font-medium p-2 border-2 border-light-blue-500 rounded-md hover:curspr-pointer hover:bg-[#1984c7] hover:text-white dark:hover:white dark:hover:text-black"
+          onClick={() => {
+            router.push("./dao");
+          }}
+        >
+          DAO
+        </button>
+        <button
+          className="flex flex-row font-medium p-2 border-2 border-light-blue-500 rounded-md hover:curspr-pointer hover:bg-[#1984c7] hover:text-white dark:hover:white dark:hover:text-black"
+          onClick={() => {
+            router.push("./dashboard");
+          }}
+        >
+          Dashboard
+        </button>
+      </div>
+
     </div>
   );
 };
@@ -95,6 +100,7 @@ const MobileNav = ({ menuExpanded }: MenuExp) => {
 const Navigation = () => {
   const [dark, setDark] = useState(false);
   const [menuExpanded, setMenuExpanded] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false)
 
   useEffect(() => {
     const html: HTMLElement = document.querySelector("html")!;
@@ -116,9 +122,8 @@ const Navigation = () => {
 
   return (
     <div
-      className={`flex w-full md:h-32 border-b-4 border-slate-500 dark:border-slate-100 mb-3 md:py-5 md:mx-auto ${
-        menuExpanded ? "mb-[120%]" : ""
-      }`}
+      className={`flex w-full md:h-32 border-b-4 border-slate-500 dark:border-slate-100 mb-3 md:py-5 md:mx-auto ${menuExpanded ? "mb-[120%]" : ""
+        }`}
     >
       <div className="w-52 md:w-28 min-h-[100px] p-2 flex flex-wrap md:space-x-2">
         <Link href={"/"} className="hover:cursor-pointer">
@@ -134,12 +139,18 @@ const Navigation = () => {
         </div>
 
         <div className={"flex items-center md:gap-14"}>
-          <div className="flex  w-auto md:w-1/4 md:p-5 md:justify-end md:mr-12">
+          <div className="flex w-auto md:w-1/4 md:p-5 md:justify-end md:mr-12 space-x-5">
             <Icon
               icon={dark ? LightIcon : DarkIcon}
               className="hover:cursor-pointer md:h-6 md:w-6 h-4 w-4"
               onClick={() => setDark(!dark)}
             />
+            <Icon
+              icon={SearchIcon}
+              className="hover:cursor-pointer md:h-6 md:w-6 h-4 w-4 "
+              onClick={() => setOpenSearch(true)}
+            />
+            <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
           </div>
           <div
             className="hidden md:flex p-2 w-auto md:w-40 justify-end sm:gap-6"
@@ -159,7 +170,7 @@ const Navigation = () => {
             </div>
           </SheetTrigger>
           <SheetContent side={"left"} className={"bg-white"}>
-            <MobileNav menuExpanded={menuExpanded}/>
+            <MobileNav menuExpanded={menuExpanded} />
           </SheetContent>
         </Sheet>
 
