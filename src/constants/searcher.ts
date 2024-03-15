@@ -65,6 +65,6 @@ export const searcher: Searcher[] = [
     { name: 'Help Build ZecHub', desc: "If you're a member of the Zcash community, and want to contribute building ZecHub, there a few things that are super helpful.", url: '/contribute/help-build-zechub' },
     { name: 'ZecHub DAO', desc: 'The ZecHub DAO currently consists of...', url: '/contribute/zechub-dao' },
     { name: 'ZecWeekly Newsletter', desc: 'ZecWeekly is a newsletter that goes out every Friday morning.', url: '/contribute/zecweekly-newsletter' },
-    { name: 'Dashboard', desc: 'Check the charts for ZEC', url: './dashboard' },
-    { name: 'DAO', desc: 'Check the DAO members', url: './dao' }
+    { name: 'Dashboard', desc: 'Check the charts for ZEC', url: '/dashboard' },
+    { name: 'DAO', desc: 'Check the DAO members', url: '/dao' }
 ]
