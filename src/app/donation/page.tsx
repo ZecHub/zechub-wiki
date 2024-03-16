@@ -1,5 +1,5 @@
 import React from 'react'
-import DonationComp from "@/components/Donation/Donation.js"
+import DonationComp from "@/components/Donation/Donation"
 const Donation = () => {
     return (
         <main>

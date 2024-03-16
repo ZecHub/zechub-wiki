@@ -1,6 +1,6 @@
 'use client';
 import './donation.css';
-import React, { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import QRCode from 'qrcode.react';
 import Image from 'next/image';
 import donateGif from '../../../public/donate.gif';
@@ -11,24 +11,24 @@ const DonationComp = () => {
 
   const predefinedAmounts = [0.25, 0.5, 1.0, 2.5, 5];
 
-  const handleSelectAmount = (amount) => {
-    setDonationAmount(amount);
+  const handleSelectAmount = (amount: string) => {
+    setDonationAmount(parseFloat(amount));
     setMemo(''); // Clear memo when a predefined amount is selected
   };
 
-  const handleChangeAmount = (event) => {
+  const handleChangeAmount = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setDonationAmount(value);
+    setDonationAmount(parseFloat(value));
     setMemo(value); // Synchronize memo with donation amount
   };
 
-  const handleChangeMemo = (event) => {
+  const handleChangeMemo = (event: ChangeEvent<HTMLInputElement>) => {
     setMemo(event.target.value);
-    setDonationAmount(event.target.value); // Synchronize donation amount with memo
+    setDonationAmount(parseFloat(event.target.value)); // Synchronize donation amount with memo
   };
 
   const generateDonationLink = () => {
-    const formattedAmount = parseFloat(donationAmount).toFixed(4); // Format amount to four decimal places
+    const formattedAmount = parseFloat(donationAmount.toString()).toFixed(4); // Format amount to four decimal places
     const zcashAddress = 'zcash:u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89'; // Replace 'your_zcash_address_here' with your actual Zcash address
     const zcashDonationLink = `${zcashAddress}?amount=${formattedAmount}&memo=${encodeURIComponent(memo)}`;
     return zcashDonationLink;
@@ -86,7 +86,7 @@ const DonationComp = () => {
 
           <div className='amount-buttons'>
             {predefinedAmounts.map((amount, index) => (
-              <button key={index} onClick={() => handleSelectAmount(amount)}>
+              <button key={index} onClick={() => handleSelectAmount(amount.toString())}>
                 {amount} ZEC
               </button>
             ))}
