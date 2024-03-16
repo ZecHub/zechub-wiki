@@ -1,9 +1,11 @@
-import React from 'react'
+import { useRouter } from 'next/navigation';
 import '@/components/Donation/donation.css';
+
 const DonationBtn = () => {
-    
+  
+    const router = useRouter()
     const handleClick = () => {
-    window.location.href = "/donation";
+    router.push("/donation");
   };
   return (
     <div className='nav-donate-btn'>

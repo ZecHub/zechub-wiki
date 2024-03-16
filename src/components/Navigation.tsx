@@ -26,7 +26,7 @@ import { Icon } from "./ui/Icon";
 import Logo from "./ui/Logo";
 import SocialIcons from "./ui/SocialIcons";
 // import { AuthDisplay } from "./AccountDisplay/AccountDisplay";
-import DonationBtn from "@/components/DonationBtn";
+import DonationBtn from "@/components/ui/DonationBtn";
 import SearchBar from "./SearchBar";
 
 const NavLinks = ({ classes, menuExp }: Classes) => {
