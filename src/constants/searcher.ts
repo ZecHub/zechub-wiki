@@ -1,9 +1,4 @@
-
-interface Searcher {
-    name: string
-    desc: string
-    url: string
-}
+import { Searcher } from "@/types"
 
 export const searcher: Searcher[] = [
     { name: 'Developer Resources', desc: 'Broad Overview of how Blockchains & Zcash works', url: '/start-here/developer-resources' },

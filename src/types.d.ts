@@ -35,4 +35,10 @@ export interface SearchBarProps {
   setOpenSearch: (e: boolean) => void;
 }
 
+export interface Searcher {
+  name: string
+  desc: string
+  url: string
+}
+
 export declare var self: ServiceWorkerGlobalScope;
