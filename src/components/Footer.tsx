@@ -36,7 +36,7 @@ const Footer = () => {
         </div>
         <div className="flex justify-center flex-col">
           <span className="text-sm  sm:text-center">
-            © 2023{" "}
+            © 2024{" "}
             <a href="null" className="hover:underline">
               Zechub™
             </a>
@@ -55,10 +55,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-/* 
-
-
-
-
-*/
