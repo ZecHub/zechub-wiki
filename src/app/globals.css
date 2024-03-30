@@ -53,7 +53,7 @@
     grid-column: 1 / -1; 
   }
   .wallet-item .text-justify {
-    text-align: initial;
+    text-align: left;
   }
   .wallet-item img {
     margin: auto;

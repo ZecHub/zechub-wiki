@@ -16,12 +16,15 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
   const root = roots.map((item) => item.slice(0, -3))
   
   const name = folder[0].toUpperCase() + folder.slice(1);
+  console.log(folder);
   const fold = getName(name)
   const router = useRouter()
 
   return (
     <div className="flex flex-col sticky top-0 py-4 items-center justify-start w-full px-3">
+      
       <h1 className="text-4xl font-bold mb-4"> {fold}: </h1>
+
       <div>
         <ul>
           {

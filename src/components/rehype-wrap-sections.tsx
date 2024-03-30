@@ -9,17 +9,28 @@ const rehypeWrapSections = () => {
 
     const flushSection = () => {
       if (sectionChildren.length > 0) {
-        //console.log("Debug sectionChildren", JSON.stringify(sectionChildren, null, 2));
         if(foundFirstHr == false ){
           newChildren.push(h('div.wallet-header', {class:'col-12'},sectionChildren));
           foundFirstHr = true;
-        } else {     
+        } else { 
+          const walletLink = sectionChildren[1].attributes[0].value
+          const walletLogo = sectionChildren[1].children[0].attributes[0].value
+          const walletTitle = sectionChildren[3].children[0].children[0]
+          const walletDescription = sectionChildren[3].children
+          walletDescription.shift()
+
           newChildren.push(
             h('div.wallet-item', 
               {class:'w-full h-full inline-block p-2 hover:-translate-y-3', href:sectionChildren[1].attributes[0].value}, 
               h('div',
                 {class:'h-full border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5'},
-                sectionChildren
+                [
+                  h('h5', {class:'text-xl text-center my-4 font-bold text-blue-700 dark:text-blue-400'}, walletTitle),
+                  h('a', {href: walletLink}, 
+                    h('img', {src:walletLogo})
+                  ),
+                  walletDescription
+                ]
               )
             )
           );
