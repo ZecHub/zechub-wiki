@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .path {
     stroke-dasharray: 50;
     stroke-dashoffset: 50;
@@ -47,4 +46,15 @@
     to {
         stroke-dashoffset: 0;
     }
+  }
+
+  .wallet-header{
+    width: 100%;
+    grid-column: 1 / -1; 
+  }
+  .wallet-item .text-justify {
+    text-align: left;
+  }
+  .wallet-item img {
+    margin: auto;
   }
