@@ -17,7 +17,7 @@ const MdxComponentWallet = dynamic(
 export default async function Page({ params }: { params: { slug: string } }) {
     
     const { slug } = params
-    const url = `/site/Using_Zcash/Wallets/${slug[0]}.md`
+    const url = `/site/Using_Zcash/Wallets/Desktop_Wallets.md`
 
     const markdown = await getFileContent(url)
 
