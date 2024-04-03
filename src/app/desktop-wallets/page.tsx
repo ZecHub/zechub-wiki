@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return (
       
         <main>
-            <div className='flex justify-center w-full  mb-5 bg-transparent rounded py-4'>
+            <div className='flex justify-center w-full  mb-5 bg-transparent rounded pb-4'>
                 <Image
                     className="w-full mb-5 object-cover "
                     alt="wiki-banner"
