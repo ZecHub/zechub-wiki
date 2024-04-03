@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { BiRightArrowAlt as Arrow } from "react-icons/bi";
 import { BiSolidWallet as Wallet } from "react-icons/bi";
 import { FiFile as FileIcon } from "react-icons/fi";
@@ -35,12 +36,8 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                 key={i}
                 className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
               >
-                <div
-                  onClick={() =>
-                    router.push(
-                      `/${transformGithubFilePathToWikiLink(item)}#content`
-                    )
-                  }
+                <Link
+                  href={`/${transformGithubFilePathToWikiLink(item)}#content`}
                 >
                   <div className={`flex items-center space-x-4`}>
                     <div className="flex-shrink-0">
@@ -55,7 +52,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                       <Icon icon={Arrow} />
                     </div>
                   </div>
-                </div>
+                </Link>
               </li>
             );
           })}
