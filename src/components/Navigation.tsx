@@ -169,7 +169,7 @@ const Navigation = () => {
               />
             </div>
           </SheetTrigger>
-          <SheetContent side={"left"} className={"bg-white"}>
+          <SheetContent side={"left"} className={"bg-white dark:bg-slate-900"}>
             <MobileNav
               menuExp={menuExpanded}
               setMenuExpanded={setMenuExpanded}
