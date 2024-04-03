@@ -117,7 +117,7 @@ const Navigation = () => {
 
   return (
     <div
-      className={`flex w-full border-b-1 md:mx-auto sticky top-0 bg-white z-40  ${
+      className={`flex w-full border-b-1 md:mx-auto sticky top-0 bg-white dark:bg-slate-900 z-40  ${
         menuExpanded ? "mb-[120%]" : ""
       }`}
     >
