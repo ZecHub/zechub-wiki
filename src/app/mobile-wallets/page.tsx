@@ -41,7 +41,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </div>
 
             <div className='flex justify-center md:justify-end'>
-                <Link href="/explore" className='inline-flex rounded-full border-4  font-bold p-4 hover:bg-[#1984c7]' >
+                <Link href="/explore" className='flex items-center rounded-full border-4  font-bold p-4 hover:bg-[#1984c7]' >
                     Explore more 
                     <Icon size={'medium'} icon={Arrow} />
                 </Link>
