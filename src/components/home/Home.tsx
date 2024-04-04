@@ -37,7 +37,7 @@ const Home = ({ text }: HomeProps) => {
                 </FadeInAnimation>
                 <div className="flex items-center justify-center p-4 ">
                   <FadeInAnimation>
-                    <p className="text-lg font-bold text-center">{text}</p>
+                    <p className="text-lg text-center">{text}</p>
                   </FadeInAnimation>
                 </div>
                 <div className="flex justify-center mx-auto">
@@ -45,7 +45,7 @@ const Home = ({ text }: HomeProps) => {
                     <Link
                       type="button"
                       href={"/explore"}
-                      className=" md:hover:scale-110 border-[#1984c7] transition duration-400  border-4 font-bold rounded-full  py-4 px-8"
+                      className=" md:hover:scale-110 border-[#1984c7] transition duration-400  border-4 font-bold rounded-full  py-4 px-8 color-[#1984c7]"
                     >
                       Explore Zcash
                     </Link>

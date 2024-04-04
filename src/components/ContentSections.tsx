@@ -15,9 +15,9 @@ const ContentSections = () => {
                         </FadeInAnimation>
                     </div>
 
-                    <div className="flex flex-col w-auto md:w-2/4 items-center justify-center font-bold">
+                    <div className="flex flex-col w-auto md:w-2/4 items-center justify-center">
                         <FadeInAnimation>
-                            <h1 className="text-3xl text-center mb-4 w-full">What is Zcash?</h1>
+                            <h1 className="text-3xl text-center mb-4 w-full font-semibold">What is Zcash?</h1>
                         </FadeInAnimation>
                         <FadeInAnimation>
                             <p className="text-center w-full mb-5">
@@ -25,10 +25,11 @@ const ContentSections = () => {
                             </p>
                         </FadeInAnimation>
                         <FadeInAnimation className="w-full">
-                            <div className="flex flex-col md:flex-row space-y-4 space-x-4 mt-4 w-full">
-                                <Link href={'/start-here/what-is-zec-and-zcash'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <div className="flex flex-col md:flex-row mt-4 w-full">
+                                <Link href={'/start-here/what-is-zec-and-zcash'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-bold text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     What is Zcash?
                                 </Link>
+                                &nbsp;
                                 <Link href={'/zcash-tech/zk-snarks'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-blue-400 border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Zcash Technology
                                 </Link>
@@ -38,9 +39,9 @@ const ContentSections = () => {
                 </div>
                 <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto border-2 border-black/50 rounded-md p-5" style={{ height: "30rem" }}>
 
-                    <div className="flex flex-col w-auto md:w-2/4  items-center justify-center font-bold">
+                    <div className="flex flex-col w-auto md:w-2/4  items-center justify-center">
                         <FadeInAnimation>
-                            <h1 className="text-3xl mb-4">ZECPages</h1>
+                            <h1 className="text-3xl mb-4 font-semibold">ZECPages</h1>
                         </FadeInAnimation>
                         <FadeInAnimation>
                             <p className="text-center mb-5">
@@ -49,7 +50,7 @@ const ContentSections = () => {
                         </FadeInAnimation>
                         <FadeInAnimation>
                             <div className="flex flex-row space-x-4 mt-4">
-                                <Link href={'https://zecpages.com'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center  border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <Link href={'https://zecpages.com'} className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center  border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     ZECPages
                                 </Link>
                             </div>
@@ -67,12 +68,12 @@ const ContentSections = () => {
                             <Image src={'/Free2z_Banner.gif'} alt="" width={500} height={50} />
                         </FadeInAnimation>
                      </div>
-                    <div className="flex flex-col w-auto md:w-2/4 items-center justify-center font-bold">
+                    <div className="flex flex-col w-auto md:w-2/4 items-center justify-center">
                         <FadeInAnimation>
-                            <h1 className="text-3xl mb-4">Free2Z</h1>
+                            <h1 className="text-3xl mb-4 font-semibold">Free2Z</h1>
                         </FadeInAnimation>
                         <FadeInAnimation>
-                            <p className="text-center font-bold mb-5">
+                            <p className="text-center mb-5">
                               Free2Z is a social platform powered by Zcash. With peer-to-peer donations, a revenue sharing program, advanced creative tools and a massive online global community.
                             </p>
                         </FadeInAnimation>

@@ -5,7 +5,7 @@ import SocialIcons from "./ui/SocialIcons";
 const Footer = () => {
   return (
 
-    <div className=" w-full border-t-4 border-slate-500 dark:border-slate-100 mt-3 md:py-5">
+    <div className=" w-full border-slate-500 dark:border-slate-100 mt-3 md:py-5">
       <footer className="rounded-lg shadow bg-[#1984c7] md:flex md:items-center md:flex-col py-3 text-white">
         <div className="flex justify-center items-center">
           <Logo />

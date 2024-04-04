@@ -141,16 +141,16 @@ const Navigation = () => {
         <div className={"flex items-center ms-auto"}>
           <div className="flex w-auto md:p-5 md:justify-end space-x-5">
             <Icon
-              icon={dark ? LightIcon : DarkIcon}
-              className="hover:cursor-pointer h-5 w-5"
-              onClick={() => setDark(!dark)}
-            />
-            <Icon
               icon={SearchIcon}
               className="hover:cursor-pointer h-5 w-5"
               onClick={() => setOpenSearch(true)}
             />
             <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
+            <Icon
+              icon={dark ? LightIcon : DarkIcon}
+              className="hover:cursor-pointer h-5 w-5"
+              onClick={() => setDark(!dark)}
+            />
           </div>
           <div
             className="hidden md:flex p-2 w-auto justify-end sm:gap-6"
