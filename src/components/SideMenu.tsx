@@ -44,12 +44,12 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                   color: "white",
                 }}
               >
-                Explore more
+                Explore
                 <Icon size={"medium"} icon={Arrow} />
               </Link>
             </div>
       <div
-        className={`flex flex-col sticky shrink-0 top-0 py-4 items-center justify-start w-full px-3 order-3 md:order-2 ${
+        className={`flex flex-col shrink-0 top-0 py-4 items-center justify-start w-full px-3 order-3 md:order-2 ${
           isMenuOpen ? "block mt-7" : "hidden md:block"
         }`}
       >
