@@ -39,14 +39,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 />
             </div>
 
-            <div className='flex justify-center md:justify-end'>
-                <Link href="/explore" className='flex items-center rounded-full border-4  font-bold p-4 hover:bg-[#1984c7]' >
-                    Explore more 
-                    <Icon size={'medium'} icon={Arrow} />
-                </Link>
-                
-            </div>
-
             <div id="content" className={`flex flex-col space-y-5 ${roots && roots.length > 0 ? 'md:flex-row md:space-x-5' : 'md:flex-col'} h-auto w-full p-5`}>
                 {(roots && roots.length > 0) && (
                     <div className='w-auto md:w-2/5  relative'>

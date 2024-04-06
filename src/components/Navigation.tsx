@@ -29,8 +29,12 @@ import SocialIcons from "./ui/SocialIcons";
 import DonationBtn from "@/components/ui/DonationBtn";
 import SearchBar from "./SearchBar";
 
-const NavLinks = ({ classes, menuExp, setMenuExpanded }: Classes) => {
+const NavLinks = ({ classes, menuExp, setMenuExpanded, closeMenu }: Classes & { closeMenu: () => void }) => {
   const router = useRouter();
+  const handleLinkClick = () => {
+    // Close the menu
+    closeMenu();
+  };
   return (
     <div className={`flex  ${classes}`}>
       {navigations.map((item, i) => (
@@ -43,7 +47,7 @@ const NavLinks = ({ classes, menuExp, setMenuExpanded }: Classes) => {
           style={{fontWeight:"400"}}
         >
           {item.links.map((link) => (
-            <Dropdown.Item key={link.path}>
+            <Dropdown.Item key={link.path} onClick={handleLinkClick}>
               <Link href={link.path}>{link.subName}</Link>
             </Dropdown.Item>
           ))}
@@ -52,12 +56,12 @@ const NavLinks = ({ classes, menuExp, setMenuExpanded }: Classes) => {
 
       <div className="flex md:flex-row flex-col md:space-x-3 md:ml-3">
         {/* DAO Link */}
-        <Link href="/dao" className="flex flex-row font-normal md:ml-3 p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black">
+        <Link href="/dao" onClick={handleLinkClick} className="flex flex-row font-normal md:ml-3 p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black">
             DAO
         </Link>
 
         {/* Dashboard Link */}
-        <Link href="/dashboard" className="flex flex-row font-normal md:ml-3 p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black">
+        <Link href="/dashboard" onClick={handleLinkClick} className="flex flex-row font-normal md:ml-3 p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black">
             Dashboard    
         </Link>
       </div>
@@ -65,17 +69,18 @@ const NavLinks = ({ classes, menuExp, setMenuExpanded }: Classes) => {
   );
 };
 
-const MobileNav = ({ menuExp, setMenuExpanded }: MenuExp) => {
+const MobileNav = ({ menuExp, setMenuExpanded, closeMenu }: MenuExp & { closeMenu: () => void }) => {
   return (
-    <div className=" flex flex-col w-11/12 h-auto justify-center z-10">
+    <div className="relative flex flex-col w-11/12 h-auto justify-center z-10">
       <div
-        className={`flex flex-col p-6 absolute top-20 px-8 w-full ml-11 rounded-xl transition duration-200`}
+        className={`flex flex-col p-6 absolute top-20 px-8 w-full rounded-xl transition duration-200`}
       >
         <ul className="list-none flex items-start flex-1 flex-col">
           <NavLinks
             classes="flex-col font-bold"
             menuExp={menuExp}
             setMenuExpanded={setMenuExpanded}
+            closeMenu={closeMenu}
           />
         </ul>
 
@@ -91,6 +96,7 @@ const Navigation = () => {
   const [dark, setDark] = useState(false);
   const [menuExpanded, setMenuExpanded] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const html: HTMLElement = document.querySelector("html")!;
@@ -134,7 +140,10 @@ const Navigation = () => {
           <NavLinks
             classes={""}
             menuExp={menuExpanded}
-            setMenuExpanded={setMenuExpanded}
+            setMenuExpanded={setMenuExpanded} 
+            closeMenu={function (): void {
+              setMenuExpanded(false)
+            } }         
           />
         </div>
 
@@ -159,7 +168,7 @@ const Navigation = () => {
             <DonationBtn />
           </div>
         </div>
-        <Sheet>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="mobile-trigger">
             <div className=" w-auto md:hidden hover:cursor-pointer p-5">
               <Icon
@@ -173,6 +182,7 @@ const Navigation = () => {
             <MobileNav
               menuExp={menuExpanded}
               setMenuExpanded={setMenuExpanded}
+              closeMenu={() => setIsOpen(false)}
             />
           </SheetContent>
         </Sheet>
