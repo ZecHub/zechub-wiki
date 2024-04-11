@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic';
 const ShieldedPoolChart = dynamic(() => import('../../components/ShieldedPoolChart'), { ssr: false });
 
-
 async function getData() {
   const response = await fetch('https://zcashblockexplorer.com/api/v1/blockchain-info');
   const data = await response.json();

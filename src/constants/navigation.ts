@@ -101,7 +101,7 @@ export const navigations = [
       },
       {
         subName: "Raspberry Pi Zebra Node",
-        path: "/guides/raspberry-pi-4-zebra-node",
+        path: "https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5",
       },
       {
         subName: "Visualizing Zcash Addresses",
