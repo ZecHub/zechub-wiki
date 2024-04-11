@@ -1,0 +1,144 @@
+.donation-container {
+    display: flex;
+    gap: 3rem;
+}
+
+.zcash-image{
+    flex-basis: 50%;
+}
+
+.donation-slider{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+}
+
+.donation-header {
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+.donation-header h1 {
+    position: relative;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 2rem;
+    margin-bottom: 2rem;
+}
+.donation-header p {
+    color: #374151;
+    font-size: 1rem;
+    max-width: 1000px;
+}
+
+
+.input-range {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+.amount {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: #22D3EE;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.input-number {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+label {
+    font-weight: 600;
+}
+
+.slider {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 10px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+
+/* CSS for predefined value buttons */
+/* CSS for predefined value buttons */
+.amount-buttons {
+    display: flex;
+    justify-content: space-between; /* Equal spacing between buttons */
+    margin-bottom: 1rem; /* Adjust as needed */
+  }
+  
+  .amount-buttons button {
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    background-color: #22D3EE; /* Background color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  .amount-buttons button:hover {
+    background-color: #0ea5c0; /* Darker background color on hover */
+  }
+  
+  /* Media queries for mobile responsiveness */
+  @media screen and (max-width: 768px) {
+    /* Adjust layout for smaller screens */
+    .donation-container {
+      flex-direction: column;
+    }
+  
+    .zcash-image,
+    .donation-slider {
+      flex-basis: auto;
+      width: 100%;
+    }
+  
+    .amount-buttons {
+      flex-direction: row;
+      align-items: center;
+    }
+  
+    .amount-buttons button {
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  .nav-donate-btn {
+
+  }
+  .nav-donate-btn button {
+    border: none;
+  }
+  .nav-donate-btn button:hover {
+    transform: scale(1.05);
+    transition: all 0.4s;
+  }
