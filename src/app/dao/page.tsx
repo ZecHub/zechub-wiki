@@ -2,6 +2,25 @@
 import { FadeInAnimation } from "@/components/ui/FadeInAnimation";
 import MemberCards from "@/components/ui/MemberCards";
 import { daoMembers } from "@/constants/membersDao";
+// import  Metadata from 'next';
+
+
+// interface Metadata {
+//   title: string;
+//   description: string;
+//   icons?: string; 
+//   ogTitle?: string;
+//   ogDescription?: string;
+//   ogImage?: string;
+// }
+
+// export const metadata: Metadata = {
+//   title: 'Hello',
+//   description: 'An open source education hub for Zcash',
+//   ogTitle: 'Hello',
+//   ogDescription: 'An open source education hub for Zcash',
+//   ogImage: 'https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png',
+// };
 
 const DaoMembers = () => {
   return (
