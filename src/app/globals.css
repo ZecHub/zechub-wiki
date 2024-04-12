@@ -6,6 +6,26 @@ body {
   background: #fff9f9;
 }
 
+.shielded-pools img {
+  max-width: 40%;
+  float: left;
+  margin: 7px 30px 7px 0;
+}
+
+.shielded-pools img::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media screen and (max-width: 767px){
+  .shielded-pools img {
+    max-width: 100%;
+    float: none;
+    margin: 0 auto;
+  }
+}
+
 .mobile-trigger{
   margin: 0!important;
 }

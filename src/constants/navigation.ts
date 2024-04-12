@@ -2,6 +2,7 @@ import { BsDiscord as Discord } from "react-icons/bs";
 import {
   RiTwitterXFill as Twitter,
   RiGithubFill as Github,
+  RiYoutubeFill as Youtube,
 } from "react-icons/ri";
 
 export const navigations = [
@@ -136,6 +137,11 @@ export const socialNav = [
     icon: Discord,
   },
   {
+    name: "Youtube",
+    url: "https://www.youtube.com/channel/UC3-KM00kjCUheRzO5cq3PAA",
+    icon: Youtube,
+  },
+  {
     name: "Twitter",
     url: "https://twitter.com/zechub",
     icon: Twitter,
@@ -145,6 +151,7 @@ export const socialNav = [
     url: "https://github.com/ZecHub/zechub",
     icon: Github,
   },
+  
 ];
 export const socialMedia = [
   {
