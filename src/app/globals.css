@@ -5,7 +5,19 @@
 body {
   background: #fff9f9;
 }
-
+.podcast-list li{
+  padding-left: 15px;
+}
+.podcast-list li a {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-content: center;
+  align-items: center;
+  --tw-text-opacity: 1;
+  color: rgb(26 86 219 / var(--tw-text-opacity));
+}
 .shielded-pools img {
   max-width: 40%;
   float: left;

@@ -59,6 +59,10 @@ export const navigations = [
         path: "/zcash-community/zcap",
       },
       {
+        subName: "Zcash Podcasts",
+        path: "/zcash-community/zcash-podcasts",
+      },
+      {
         subName: "Zcon Archive",
         path: "/zcash-community/zcap",
       },

@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     </div>
                 )}
 
-                <section className='h-auto w-auto border-t-2 md:border-l-2 px-3'>
+                <section className='h-auto w-full border-t-2 md:border-l-2 px-3'>
                     <div>
                         <MdxComponent source={content} />
                     </div>
