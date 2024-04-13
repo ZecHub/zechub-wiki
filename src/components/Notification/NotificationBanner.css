@@ -1,0 +1,32 @@
+.notification-banner {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.notification-banner h1 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.notification-banner p {
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.notification-banner .btn {
+    font-size: 14px;
+    padding: 12px 0;
+}
+
+.toast-progress-bar{
+    border: 3px solid rgb(244, 183, 40);
+}
+
+.toast-message {
+    background: rgba(12, 12, 12, 0.9);
+    color: #ffffff;
+    font-size: 20px;
+}
