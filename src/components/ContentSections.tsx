@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FadeInAnimation } from './ui/FadeInAnimation';
-import DEXListing from './DEXListing';
 
 const ContentSections = () => {
   return (
@@ -134,12 +133,6 @@ const ContentSections = () => {
           </div>
         </div>
       </section>
-
-      {process.env.NEXT_PUBLIC_DEXListing && (
-        <section id='dex-listing'>
-          <DEXListing />
-        </section>
-      )}
     </>
   );
 };
