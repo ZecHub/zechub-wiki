@@ -1,9 +1,9 @@
-import Cards from '../ui/Cards';
+'use client'
+
+import Image from 'next/image';
+import Link from 'next/link';
 import { FadeInAnimation } from '../ui/FadeInAnimation';
 import './DexListing.css';
-import Link from 'next/link';
-import Image from 'next/image';
-import { dexListingConfig } from '@/constants/dex-listing';
 
 type DEXDetails = {
   title: string;
@@ -11,29 +11,6 @@ type DEXDetails = {
   image: string;
   description: string;
   [index: string]: any;
-};
-
-type DEXListProps = {
-  listing?: DEXDetails[];
-};
-export const DEXListing = (props: DEXListProps) => {
-  const dexListing = props?.listing ? props.listing : dexListingConfig;
-
-  const dexList = dexListing.map((itm, i) => (
-    <DEXListingCards
-      image={itm.image}
-      description={itm.description}
-      title={itm.title}
-      url={itm.url}
-      key={i}
-    />
-  ));
-
-  return (
-    <div className='py-10 flex flex-col  md:flex-row md:space-x-11 justify-center sm:items-center'>
-      {dexList}
-    </div>
-  );
 };
 
 export const DEXListingCards = ({
