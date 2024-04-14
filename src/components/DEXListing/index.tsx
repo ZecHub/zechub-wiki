@@ -1,3 +1,3 @@
-import { DEXListing } from './DEXListing';
+import { DEXListingCards } from './DEXListing';
 
-export default DEXListing;
+export default DEXListingCards;
