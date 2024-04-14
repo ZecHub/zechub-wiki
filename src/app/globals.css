@@ -5,6 +5,38 @@
 body {
   background: #fff9f9;
 }
+.podcast-list li{
+  padding-left: 15px;
+}
+.podcast-list li a {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-content: center;
+  align-items: center;
+  --tw-text-opacity: 1;
+  color: rgb(26 86 219 / var(--tw-text-opacity));
+}
+.shielded-pools img {
+  max-width: 40%;
+  float: left;
+  margin: 7px 30px 7px 0;
+}
+
+.shielded-pools img::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media screen and (max-width: 767px){
+  .shielded-pools img {
+    max-width: 100%;
+    float: none;
+    margin: 0 auto;
+  }
+}
 
 .mobile-trigger{
   margin: 0!important;
