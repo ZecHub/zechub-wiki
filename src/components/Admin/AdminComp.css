@@ -1,0 +1,89 @@
+.row {
+    display: flex;
+    gap: 24px;
+    direction: row;
+}
+
+.admin {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 48px;
+    min-width: 780px;
+    margin: auto;
+}
+
+.admin .intro {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.admin .intro h1,
+p {
+    align-self: center;
+}
+
+.admin .intro h1 {
+    font-weight: 700;
+    font-size: 40px;
+}
+
+
+
+/* Add some padding inside the card container */
+.container {
+    padding: 2px 16px;
+}
+
+.admin .card {
+    border: 1px solid grey;
+    border-radius: 8px;
+    box-shadow: 1px 1px gray;
+    padding: 12px;
+    max-width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.admin .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.admin .card .btn {
+    border: 1px solid rgb(81, 154, 218);
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: 400;
+
+}
+
+.admin .card h3 {
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.cover {
+    display: flex;
+    direction: row;
+    align-content: center;
+    justify-content: center;
+    margin: 12px 0;
+    gap: 20px
+}
+
+.left {
+    font-size: 24px;
+    color: #000;
+}
+
+.right {
+    display: inline-block;
+    gap: 24px;
+    direction: column;
+}
+
+.right p {
+    color: #3d3d3d;
+    margin-bottom: 12px;
+}

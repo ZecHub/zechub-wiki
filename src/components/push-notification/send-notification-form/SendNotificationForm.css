@@ -1,0 +1,72 @@
+.sendNotificationForm {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 100px auto;
+    justify-content: center;
+    color: #666;
+}
+
+.sendNotificationForm h3 {
+    font-size: 24px;
+    margin: 12px 0;
+}
+
+
+.sendNotificationForm form {
+    border: 3px solid #f1f1f1;
+}
+.sendNotificationForm .close {
+    /* font-size: 24px; */
+}
+
+.sendNotificationForm input[type=text],
+input[type=password],
+input[type=textarea],textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.sendNotificationForm button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+}
+
+.sendNotificationForm button:hover {
+    opacity: 0.8;
+}
+
+.sendNotificationForm .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.sendNotificationForm .container {
+    padding: 16px;
+}
+
+.sendNotificationForm span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    .sendNotificationForm span.psw {
+        display: block;
+        float: none;
+    }
+
+    .sendNotificationForm .cancelbtn {
+        width: 100%;
+    }
+}
