@@ -22,13 +22,17 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.className} px-6`}>
-        <div className="container mx-auto">
+        <div className='container mx-auto min-h-screen flex flex-col'>
           <AppProvider>
-            <Navigation />
-            <div style={{ margin: '0 0 48px 0' }}>{children}</div>
-            <Footer />
+            <div className='flex flex-col justify-between flex-grow'>
+              <div>
+                <Navigation />
+                <div style={{ margin: '0 0 48px 0' }}>{children}</div>
+              </div>
+              <Footer />
+            </div>
           </AppProvider>
-          </div>
+        </div>
       </body>
     </html>
   );
