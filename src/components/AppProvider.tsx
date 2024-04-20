@@ -47,13 +47,13 @@ export function AppProvider(props: AppProviderProps) {
 
   const showNotification = (data: string | SubscriberWelcomeMessageType[]) => {
     if (Array.isArray(data)) {
-      navigator.serviceWorker.ready.then(async (reg) => {
-        await reg.showNotification(data[0].title, {
-          body: data[0].body,
-          icon: data[0].icon,
-          image: data[0].image,
-        });
-      });
+      // navigator.serviceWorker.ready.then(async (reg) => {
+        // await reg.showNotification(data[0].title, {
+        //   body: data[0].body,
+        //   icon: data[0].icon,
+        //   image: data[0].image,
+        // });
+      // });
     }
   };
 
