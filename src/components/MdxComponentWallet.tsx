@@ -26,7 +26,7 @@ const MdxComponentWallet = async ({ source }: ContentSource) => {
   });
   return (
     content ? (
-      <div className="px-3 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">{content}</div>
+      <div className="flex">{content}</div>
     ) :
     (
       <p className="text-center text-2xl">{source}</p>

@@ -5,6 +5,20 @@
 body {
   background: #fff9f9;
 }
+.wallet-tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+.wallet-tag-item {
+  background: #ededed;
+  padding: .2rem .5rem;
+  margin: .2rem;
+  border-radius: .3rem;
+  font-size: 90%;
+}
 .podcast-list li{
   padding-left: 15px;
 }

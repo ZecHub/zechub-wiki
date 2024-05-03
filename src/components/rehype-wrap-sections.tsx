@@ -1,56 +1,162 @@
-
-import { h } from 'hastscript';
+import { h } from "hastscript";
 
 const rehypeWrapSections = () => {
-  return (tree: { children: any[]; }) => {
+  return (tree: { children: any[] }) => {
     let newChildren: any[] = [];
     let sectionChildren: any[] = [];
-    let foundFirstHr = false; // Flag to track the first <hr>
+    let filterNodeHTML: any[] = [];
+
+    let devicesFilterHTML: any[] = [];
+    let poolsFilterHTML: any[] = [];
+    let featuresFilterHTML: any[] = [];
+
+    let devicesFilter: string[] = [];
+    let poolsFilter: string[] = [];
+    let featuresFilter: string[] = [];
+
+    const createToggle = (element: string) => {
+      return [
+        h(
+          "label",
+          { class: "filter-item--label", for: "filter-item--input-" + element },
+          element
+        ),
+        h("input", {
+          class: "filter-item--input",
+          id: "filter-item--input-" + element,
+          type: "checkbox",
+        }),
+      ];
+    };
 
     const flushSection = () => {
       if (sectionChildren.length > 0) {
-        if(foundFirstHr == false ){
-          newChildren.push(h('div.wallet-header', {class:'col-12'},sectionChildren));
-          foundFirstHr = true;
-        } else { 
-          const walletLink = sectionChildren[1].attributes[0].value
-          const walletLogo = sectionChildren[1].children[0].attributes[0].value
-          const walletTitle = sectionChildren[3].children[0].children[0]
-          const walletDescription = sectionChildren[3].children
-          walletDescription.shift()
+        const walletLink = sectionChildren[0].children[0].properties.href;
+        const walletLogo = sectionChildren[1].children[0].properties.src;
+        const walletTitle = sectionChildren[0].children[0].children[0].value;
+        const walletDevices =
+          sectionChildren[2].children[1].children[0].value.split(/\s*\:\s*/)[1];
 
-          newChildren.push(
-            h('div.wallet-item', 
-              {class:'w-full h-full inline-block p-2 hover:-translate-y-3', href:sectionChildren[1].attributes[0].value}, 
-              h('div',
-                {class:'h-full border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5'},
-                [
-                  h('h5', {class:'text-xl text-center my-4 font-bold text-blue-700 dark:text-blue-400'}, walletTitle),
-                  h('a', {href: walletLink}, 
-                    h('img', {src:walletLogo})
-                  ),
-                  walletDescription
-                ]
-              )
-            )
+        let walletDevicesHTML: any[] = [];
+        walletDevices.split(/\s*\|\s*/).forEach((element: string) => {
+          walletDevicesHTML.push(
+            h("div", { class: "wallet-tag-item" }, element)
           );
-        }
-        
+
+          if (devicesFilter.indexOf(element) === -1) {
+            devicesFilter.push(element);
+            devicesFilterHTML.push(
+              h("div", { class: "filter-item" }, createToggle(element))
+            );
+          }
+        });
+
+        const walletPools =
+          sectionChildren[2].children[3].children[0].value.split(/\s*\:\s*/)[1];
+        let walletPoolsHTML: any[] = [];
+        walletPools.split(/\s*\|\s*/).forEach((element: string) => {
+          walletPoolsHTML.push(h("div", { class: "wallet-tag-item" }, element));
+
+          if (poolsFilter.indexOf(element) === -1) {
+            poolsFilter.push(element);
+            poolsFilterHTML.push(
+              h("div", { class: "filter-item" }, createToggle(element))
+            );
+          }
+        });
+
+        const walletFeatures =
+          sectionChildren[2].children[5].children[0].value.split(/\s*\:\s*/)[1];
+        let walletFeaturesHTML: any[] = [];
+        walletFeatures.split(/\s*\|\s*/).forEach((element: string) => {
+          walletFeaturesHTML.push(
+            h("div", { class: "wallet-tag-item" }, element)
+          );
+          if (featuresFilter.indexOf(element) === -1) {
+            featuresFilter.push(element);
+            featuresFilterHTML.push(
+              h("div", { class: "filter-item" }, createToggle(element))
+            );
+          }
+        });
+
+        newChildren.push(
+          h(
+            "div.wallet-item", { class: "w-full h-full inline-block p-2" },
+            h(
+              "div",
+              {
+                class:
+                  "h-full border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5",
+              },
+              [
+                h("a", { href: walletLink }, h("img", { src: walletLogo })),
+                h(
+                  "h5",
+                  {
+                    class:
+                      "text-xl text-center my-4 font-bold text-blue-700 dark:text-blue-400",
+                  },
+                  walletTitle
+                ),
+                h("div", { class: "wallet-meta" }, [
+                  h(
+                    "div",
+                    { class: "wallet-tag tag-devices" },
+                    walletDevicesHTML
+                  ),
+                  h("div", { class: "wallet-tag tag-pools" }, walletPoolsHTML),
+                  h(
+                    "div",
+                    { class: "wallet-tag tag-features" },
+                    walletFeaturesHTML
+                  ),
+                ]),
+              ]
+            )
+          )
+        );
+
         sectionChildren = [];
       }
     };
 
-    tree.children.forEach((node: { tagName?: string; }) => {
-      if (node.tagName === 'hr') {
+    tree.children.forEach((node: { tagName?: string }) => {
+      if (node.tagName === "hr") {
         flushSection();
       } else {
-        sectionChildren.push(node);
+        if (node.tagName) {
+          sectionChildren.push(node);
+        }
       }
     });
 
     flushSection();
+    filterNodeHTML.push(
+      h("div", { class: "w-full" }, [
+        h("form", { id: "filter-wallets", action: "/submit" }, [
+          h("h3", "Filters"),
+          h("h5", "Devices"),
+          devicesFilterHTML,
+          h("h5", "Pools"),
+          poolsFilterHTML,
+          h("h5", "Features"),
+          featuresFilterHTML,
+        ]),
+      ])
+    );
 
-    tree.children = newChildren;
+    tree.children = [
+      h("div", { class: "wallet-filter " }, filterNodeHTML),
+      h(
+        "div",
+        {
+          class:
+            "flex-auto px-3 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+        },
+        newChildren
+      ),
+    ];
   };
 };
 
