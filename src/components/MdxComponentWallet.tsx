@@ -24,6 +24,7 @@ const MdxComponentWallet = async ({ source }: ContentSource) => {
     }, 
     components: MdxComponents,
   });
+  
   return (
     content ? (
       <div className="flex">{content}</div>

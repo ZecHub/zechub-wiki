@@ -1,11 +1,7 @@
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
 import Image from 'next/image'
 import { getFileContent, getRoot } from '@/lib/authAndFetch'
-import { getDynamicRoute, getBanner, getName } from '@/lib/helpers'
-import SideMenu from '@/components/SideMenu'
-import { Icon } from '@/components/ui/Icon'
-import { BiRightArrowAlt as Arrow } from 'react-icons/bi'
+import { getBanner } from '@/lib/helpers'
 
 const MdxComponentWallet = dynamic(
     () => import('@/components/MdxComponentWallet'),
@@ -26,6 +22,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
     const roots = await getRoot(urlRoot)
 
     const imgUrl = getBanner(`using-zcash`)
+
+    const targetClass = 'filter-item--input'
 
     return (
       

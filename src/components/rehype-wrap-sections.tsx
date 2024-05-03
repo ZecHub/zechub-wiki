@@ -14,23 +14,31 @@ const rehypeWrapSections = () => {
     let poolsFilter: string[] = [];
     let featuresFilter: string[] = [];
 
+    
+
     const createToggle = (element: string) => {
       return [
         h(
           "label",
-          { class: "filter-item--label", for: "filter-item--input-" + element },
+          { class: "filter-item--label", for: "filter-item--input-" + removeSpecialChars(element) },
           element
         ),
         h("input", {
           class: "filter-item--input",
-          id: "filter-item--input-" + element,
+          id: "filter-item--input-" + removeSpecialChars(element),
           type: "checkbox",
         }),
       ];
     };
 
+    const removeSpecialChars = (str: string) => {
+      const allowedChars = new Set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
+      return str.split('').filter(char => allowedChars.has(char)).join('');
+    }
+
     const flushSection = () => {
       if (sectionChildren.length > 0) {
+        let itemClasses: string = '';
         const walletLink = sectionChildren[0].children[0].properties.href;
         const walletLogo = sectionChildren[1].children[0].properties.src;
         const walletTitle = sectionChildren[0].children[0].children[0].value;
@@ -42,6 +50,8 @@ const rehypeWrapSections = () => {
           walletDevicesHTML.push(
             h("div", { class: "wallet-tag-item" }, element)
           );
+
+          itemClasses += ' tag-' + removeSpecialChars(element);
 
           if (devicesFilter.indexOf(element) === -1) {
             devicesFilter.push(element);
@@ -56,6 +66,8 @@ const rehypeWrapSections = () => {
         let walletPoolsHTML: any[] = [];
         walletPools.split(/\s*\|\s*/).forEach((element: string) => {
           walletPoolsHTML.push(h("div", { class: "wallet-tag-item" }, element));
+
+          itemClasses += ' tag-' + removeSpecialChars(element);
 
           if (poolsFilter.indexOf(element) === -1) {
             poolsFilter.push(element);
@@ -72,6 +84,9 @@ const rehypeWrapSections = () => {
           walletFeaturesHTML.push(
             h("div", { class: "wallet-tag-item" }, element)
           );
+
+          itemClasses += ' tag-' + removeSpecialChars(element);
+
           if (featuresFilter.indexOf(element) === -1) {
             featuresFilter.push(element);
             featuresFilterHTML.push(
@@ -82,13 +97,8 @@ const rehypeWrapSections = () => {
 
         newChildren.push(
           h(
-            "div.wallet-item", { class: "w-full h-full inline-block p-2" },
-            h(
-              "div",
-              {
-                class:
-                  "h-full border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5",
-              },
+            "div.wallet-item", { class: "w-full h-full inline-block p-2"+itemClasses },
+            h("div",{class:"h-full border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5"},
               [
                 h("a", { href: walletLink }, h("img", { src: walletLogo })),
                 h(
