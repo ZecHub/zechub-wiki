@@ -91,9 +91,9 @@ export default async function DashboardPage() {
         ))}
       </div>
       <div className="mt-8">
+        <Button href="https://3xpl.com/zcash/address/sprout-pool" text="Sprout Pool" />
         <Button href="https://3xpl.com/zcash/address/sapling-pool" text="Sapling Pool" />
         <Button href="https://3xpl.com/zcash/address/orchard-pool" text="Orchard Pool" />
-        <Button href="https://3xpl.com/zcash/address/sprout-pool" text="Sprout Pool" />
       </div>
       <div className="mt-8">
       <h1>Metrics</h1>
