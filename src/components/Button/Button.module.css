@@ -15,19 +15,19 @@
   }
   
   .button[href*="sapling-pool"] {
-    background-color: rgba(255, 255, 0, 0.2); /* Yellow with 20% transparency */
+    background-color: rgba(255, 177, 0, 0.2); /* Yellow with 20% transparency */
   }
   
   .button[href*="orchard-pool"] {
-    background-color: rgba(0, 0, 255, 0.2); /* Blue with 20% transparency */
+    background-color: rgba(0, 163, 255, 0.2); /* Blue with 20% transparency */
   }
   
   .button:hover {
-    background-color: rgba(255, 255, 0, 0.5); /* Yellow with 50% transparency */
+    background-color: rgba(255, 177, 0, 0.5); /* Yellow with 50% transparency */
   }
   
   .button:hover[href*="orchard-pool"] {
-    background-color: rgba(0, 0, 255, 0.5); /* Blue with 50% transparency */
+    background-color: rgba(0, 163, 255, 0.5); /* Blue with 50% transparency */
   }
   
   .button:hover[href*="sprout-pool"] {
