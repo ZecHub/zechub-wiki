@@ -1,0 +1,22 @@
+#progress-box {
+    height: 25px;
+    border: 2px solid #909090;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+#progress {
+    height: 100%;
+    border-radius: 10px;
+    background-color: #F4B728;
+    width: 0;
+}
+
+#progress-label {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%);
+}

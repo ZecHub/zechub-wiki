@@ -1,3 +1,4 @@
+import HalvingMeter from '@/components/HalvingMeter';
 import dynamic from 'next/dynamic';
 import Button from '@/components/Button/Button'; 
 const ShieldedPoolChart = dynamic(() => import('../../components/ShieldedPoolChart'), { ssr: false });
@@ -70,6 +71,7 @@ export default async function DashboardPage() {
     <div>
       <h2 className="font-bold mt-8">Shielded Supply (ZEC)</h2>
       <ShieldedPoolChart />
+      <HalvingMeter/>
       <h2 className="font-bold mt-8">Pools</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {blockchainInfo.valuePools.map((valuePool, index) => (
