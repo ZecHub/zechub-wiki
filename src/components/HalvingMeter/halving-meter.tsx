@@ -3,21 +3,7 @@
 import { useEffect, useState } from 'react';
 import './halving-meter.css';
 
-const api = [
-  'https://api.blockchair.com/zcash/stats',
-  'https://corsproxy.io/?' +
-    encodeURIComponent('https://zcashblockexplorer.com/api/v1/blockchain-info'),
-];
-
-const previousHalvingBlock = 1046400;
-const nextHalvingBlock = 2726400;
-const maxSupply = 21000000;
-const blockReward = 3.125;
-const blocksPerDay = 1152;
-const blocksPerYear = blocksPerDay * 365;
-const yearlyZec = blocksPerYear * blockReward;
-const dailyZec = blocksPerDay * blockReward;
-const inflationRate = (yearlyZec / maxSupply) * 100;
+const api = ['https://api.blockchair.com/zcash/stats'];
 
 function fetchData(url: any) {
   return new Promise((resolve, reject) => {
@@ -42,77 +28,82 @@ function fetchData(url: any) {
 }
 
 export const HalvingMeter = () => {
-  const [halvingDate, setHalvingDate] = useState('');
+  const [halvingDate, setHalvingDate] = useState(0);
   const [currentBlock, setCurrentBlock] = useState(0);
-  const [blocksPerDay, setBlockPerDay] = useState(1152);
+  const [blocksToHalving, setBlocksToHalving] = useState(0);
+  const [countDownDate, setCountDownDate] = useState(0);
 
   const [days, setDays] = useState('');
   const [hours, setHours] = useState('');
   const [minutes, setMinutes] = useState('');
   const [seconds, setSeconds] = useState('');
 
+  const previousHalvingBlock = 1046400;
+  const nextHalvingBlock = 2726400;
+
+  //Halving progress data
+  const totalBlocks = nextHalvingBlock - previousHalvingBlock;
+  const completedBlocks = currentBlock - previousHalvingBlock;
+  const progressPercent = (completedBlocks / totalBlocks) * 100;
+
   useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        const apiData = await Promise.all(api.map((url) => fetchData(url)));
+
+        const z_stats: any = apiData[0];
+
+        setCurrentBlock(z_stats.data.blocks);
+        setBlocksToHalving(nextHalvingBlock - z_stats.data.blocks);
+
+        const secsToHalving = (nextHalvingBlock - z_stats.data.blocks) * 75;
+        const cntDownDate = new Date().getTime() + secsToHalving * 1000;
+        setCountDownDate(cntDownDate);
+        setHalvingDate(cntDownDate);
+      } catch (err) {
+        console.log('An error occurred:', err);
+      }
+    };
+
     fetchAllData();
-    //   return () => {};
-  }, [currentBlock, halvingDate]);
+    timer();
+  }, [currentBlock]);
 
-  async function fetchAllData() {
-    try {
-      const apiData = await Promise.all(api.map((url) => fetchData(url)));
+  const timer = () => {
+    const now = new Date().getTime();
 
-      const bhr = apiData[0];
-      const zbe = apiData[1];
+    if (countDownDate) {
+      const distance = countDownDate - now;
 
-      // currentBlock = bhr.data.blocks;
-      // blocksToHalving = nextHalvingBlock - currentBlock;
-      // secsToHalving = blocksToHalving * 75;
-      // countDownDate = new Date().getTime() + secsToHalving * 1000;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+        .toString()
+        .padStart(2, '0');
+      setDays(days);
 
-      // innHTML.innHalvingDate.innerHTML = new Date(countDownDate).toDateString();
-      // innHTML.innToHalving.innerHTML = blocksToHalving.toLocaleString('en-US');
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      )
+        .toString()
+        .padStart(2, '0');
+      setHours(hours);
 
-      // function timer() {
-      //   const now = new Date().getTime();
-      //   const distance = countDownDate - now;
-      //   const days = Math.floor(distance / (1000 * 60 * 60 * 24))
-      //     .toString()
-      //     .padStart(2, '0');
-      //   const hours = Math.floor(
-      //     (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      //   )
-      //     .toString()
-      //     .padStart(2, '0');
-      //   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-      //     .toString()
-      //     .padStart(2, '0');
-      //   const seconds = Math.floor((distance % (1000 * 60)) / 1000)
-      //     .toString()
-      //     .padStart(2, '0');
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        .toString()
+        .padStart(2, '0');
+      setMinutes(minutes);
 
-      //   innHTML.innTimer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s to go`;
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+        .toString()
+        .padStart(2, '0');
+      setSeconds(seconds);
 
-      //   if (distance > 0) {
-      //     requestAnimationFrame(timer);
-      //   } else {
-      //     alert('Reach @Olek97 on telegram to update the countdown.');
-      //   }
-      // }
-      // timer();
-
-      //Halving progress data
-      const totalBlocks = nextHalvingBlock - previousHalvingBlock;
-      const completedBlocks = currentBlock - previousHalvingBlock;
-      const progressPercent = (completedBlocks / totalBlocks) * 100;
-
-      // Progress bar
-      // progress.style.width = progressPercent + '%';
-
-      // Percentage
-      // document.querySelector('#progress-label').innerHTML = progressPercent.toFixed(2) + '%';
-    } catch (error) {
-      console.log('An error occurred:', error);
+      if (distance > 0) {
+        requestAnimationFrame(timer);
+      } else {
+        alert('Count down failed to update.');
+      }
     }
-  }
+  };
 
   return (
     <div className='flex flex-col my-12  space-y-4 border-2  border-blue-300 p-4'>
@@ -124,17 +115,17 @@ export const HalvingMeter = () => {
           </h2>
           <div className='pt-2'>
             <div>
-              <span>{halvingDate}</span>
+              <span>{new Date(halvingDate).toDateString()}</span>
             </div>
           </div>
         </div>
         <div className='shadow-lg p-4 rounded-md'>
           <h2 className='font-bold capitalize text-lg text-blue-500  py-2'>
-            Blocks To Halving
+            Blocks Until Halving
           </h2>
           <div className='pt-2'>
             <div>
-              {/* <span>{blocksToHalving.toLocaleString('en-US')}</span> */}
+              <span>{blocksToHalving.toLocaleString('en-US')}</span>
             </div>
           </div>
         </div>
@@ -145,14 +136,16 @@ export const HalvingMeter = () => {
         <div id='progress-box'>
           <div
             id='progress'
-            // style={{ width: `${progressPercent.toFixed(2)}%` }}
+            style={{ width: `${progressPercent.toFixed(2)}%` }}
           ></div>
           <span id='progress-label' className='font-bold'>
-            {/* {progressPercent.toFixed(2) + '%'} */}
+            {progressPercent.toFixed(2) + '%'}
           </span>
         </div>
-        <h2 id='txt-timer'>
-          {`${days}d ${hours}h ${minutes}m ${seconds}s to go`}
+        <h2 id='txt-timer' className='flex justify-center text-xl font-bold'>
+          {`${days || 0}d ${hours || 0}h ${minutes || 0}m ${
+            seconds || 0
+          }s to go!`}
         </h2>
       </div>
     </div>
