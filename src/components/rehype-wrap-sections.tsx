@@ -14,9 +14,8 @@ const rehypeWrapSections = () => {
     let poolsFilter: string[] = [];
     let featuresFilter: string[] = [];
 
-    
-
     const createToggle = (element: string) => {
+
       return [
         h(
           "label",
@@ -24,7 +23,7 @@ const rehypeWrapSections = () => {
           element
         ),
         h("input", {
-          class: "filter-item--input",
+          class: "filter-item--input",     
           id: "filter-item--input-" + removeSpecialChars(element),
           type: "checkbox",
         }),
@@ -142,6 +141,15 @@ const rehypeWrapSections = () => {
     });
 
     flushSection();
+
+    devicesFilterHTML.forEach((node) => {
+      if (node.tagName === 'div') {
+        const { properties, children } = node;
+        node.properties = { ...properties, onClick: `window.handleClick()` };
+        node.children = children;
+      }
+    });
+
     filterNodeHTML.push(
       h("div", { class: "w-full" }, [
         h("form", { id: "filter-wallets", action: "/submit" }, [
