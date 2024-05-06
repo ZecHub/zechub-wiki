@@ -20,7 +20,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const imgUrl = getBanner(`using-zcash`)
 
   const walletsParsed = parseMarkdown(content);
-  console.log("Parsed Wallets:", walletsParsed); // Check parsed markdown output
+  // console.log("Parsed Wallets:", walletsParsed); // Check parsed markdown output
 
   return (
     
