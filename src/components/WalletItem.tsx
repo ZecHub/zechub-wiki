@@ -46,7 +46,7 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Visit website 
+                Open 
                 <Icon
                     icon={OpenNew}
                     className="inline-block ms-2"

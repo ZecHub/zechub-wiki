@@ -7,7 +7,7 @@ interface Wallet {
   title: string;
   url: string;
   imageUrl: string;
-  devices: string;
+  devices: string[];
   pools: string[];
   features: string[];
 }
@@ -29,9 +29,9 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     const featuresSet = new Set<string>();
 
     allWallets.forEach((wallet) => {
-      devicesSet.add(wallet.devices.trim());
-      wallet.pools.forEach((pool) => poolsSet.add(pool));
-      wallet.features.forEach((feature) => featuresSet.add(feature));
+      wallet.devices.forEach((device) => devicesSet.add(device.trim()));
+      wallet.pools.forEach((pool) => poolsSet.add(pool.trim()));
+      wallet.features.forEach((feature) => featuresSet.add(feature.trim()));
     });
 
     setFilters({
@@ -53,7 +53,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   const filteredWallets = allWallets.filter((wallet) =>
     activeFilters.every((filter) => {
       const [category, value] = filter.split(":");
-      if (category === "Devices") return wallet.devices.trim() === value;
+      if (category === "Devices") return wallet.devices.includes(value);
       if (category === "Pools") return wallet.pools.includes(value);
       if (category === "Features") return wallet.features.includes(value);
       return false;
@@ -79,7 +79,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               link={wallet.url}
               logo={wallet.imageUrl}
               tags={[
-                { category: "Devices", values: [wallet.devices.trim()] },
+                { category: "Devices", values: [...wallet.devices] },
                 { category: "Pools", values: [...wallet.pools] },
                 { category: "Features", values: [...wallet.features] },
               ]}
