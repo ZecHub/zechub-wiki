@@ -138,7 +138,7 @@ export const HalvingMeter = () => {
             id='progress'
             style={{ width: `${progressPercent.toFixed(2)}%` }}
           ></div>
-          <span id='progress-label' className='font-bold'>
+          <span id='progress-label' className='font-bold text-white'>
             {progressPercent.toFixed(2) + '%'}
           </span>
         </div>
