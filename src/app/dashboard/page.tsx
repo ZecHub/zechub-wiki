@@ -1,4 +1,6 @@
+import HalvingMeter from '@/components/HalvingMeter';
 import dynamic from 'next/dynamic';
+import Button from '@/components/Button/Button'; 
 const ShieldedPoolChart = dynamic(() => import('../../components/ShieldedPoolChart'), { ssr: false });
 
 async function getData() {
@@ -63,13 +65,13 @@ interface BlockchainInfo {
   verificationprogress: number;
 }
 
-
 export default async function DashboardPage() {
-  const blockchainInfo: BlockchainInfo = await getData()
+  const blockchainInfo: BlockchainInfo = await getData();
   return (
     <div>
       <h2 className="font-bold mt-8">Shielded Supply (ZEC)</h2>
       <ShieldedPoolChart />
+      <HalvingMeter/>
       <h2 className="font-bold mt-8">Pools</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {blockchainInfo.valuePools.map((valuePool, index) => (
@@ -87,6 +89,11 @@ export default async function DashboardPage() {
             </div>
           </div>
         ))}
+      </div>
+      <div className="mt-8">
+        <Button href="https://3xpl.com/zcash/address/sprout-pool" text="Sprout Pool" />
+        <Button href="https://3xpl.com/zcash/address/sapling-pool" text="Sapling Pool" />
+        <Button href="https://3xpl.com/zcash/address/orchard-pool" text="Orchard Pool" />
       </div>
       <div className="mt-8">
       <h1>Metrics</h1>
