@@ -17,7 +17,7 @@ const FilterToggle: React.FC<FilterToggleProps> = ({
   toggleFilter,
 }) => {
   return (
-    <div class="pb-6">
+    <div className="pb-6">
       {Object.entries(filters).map(([category, values]) => (
         <div key={category}>
           <h4 className="text-xl font-bold mt-6 mb-3">{category}</h4>
