@@ -3,6 +3,7 @@ import React from "react";
 import { Icon } from "@/components/ui/Icon";
 import { MdDevices, MdPool, MdChecklist, MdOpenInNew as OpenNew } from "react-icons/md";
 import Link from "next/link";
+import Image from "next/image";
 
 interface WalletItemProps {
   title: string;
@@ -32,7 +33,7 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags }) => {
           rel="noopener noreferrer"
           className="col-span-12 row-span-1 md:col-span-6 md:row-span-2 bg-gray-100 dark:bg-gray-200 p-2 h-full flex items-center"
         >
-          <img className="w-full" src={logo} alt={`${title} Logo`} />
+          <Image className="w-full" src={logo} alt={`${title} Logo`} />
         </a>
         <div className="col-span-12 row-span-1 md:col-span-6">
           <div className="wallet-meta">

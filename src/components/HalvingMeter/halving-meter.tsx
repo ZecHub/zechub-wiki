@@ -106,7 +106,10 @@ export const HalvingMeter = () => {
   };
 
   return (
-    <div className='flex flex-col my-12  space-y-4 border-2  border-blue-300 p-4'>
+    <div
+      className='flex flex-col my-8 space-y-4 border-2 border-blue-200 p-4'
+      id='halving-meter'
+    >
       <h2 className='font-bold'>Halving Meter</h2>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
         <div className='shadow-lg p-4 rounded-md'>
