@@ -2,7 +2,7 @@ export const daoMembers = [
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1786133418280980480/4TW1Z3Ye_400x400.jpg',
         name: 'Lowo88',
-        description: `Secret Maxi, Leonine DAO launched and managed 4 DAOs',
+        description: 'Secret Maxi, Leonine DAO launched and managed four DAOs.',
         linkName: 'Twitter',
         urlLink: 'https://twitter.com/LadaleLowo'
     },
