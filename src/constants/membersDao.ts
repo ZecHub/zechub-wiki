@@ -1,12 +1,5 @@
 export const daoMembers = [
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1756041822973882368/oax4ppkd_400x400.jpg',
-        name: 'zerodartz',
-        description: `Meme and media creator, ZFAV club contributor, nerd who loves new technology and Shielding everything`,
-        linkName: 'Twitter',
-        urlLink: 'https://twitter.com/zerodartz'
-    },
-    {
         imgUrl: 'https://pbs.twimg.com/profile_images/1786133418280980480/4TW1Z3Ye_400x400.jpg',
         name: 'Lowo88',
         description: `Secret Maxi, Leonine DAO launched and managed 4 DAOs',
@@ -14,9 +7,16 @@ export const daoMembers = [
         urlLink: 'https://twitter.com/LadaleLowo'
     },
     {
+        imgUrl: 'https://pbs.twimg.com/profile_images/1756041822973882368/oax4ppkd_400x400.jpg',
+        name: 'zerodartz',
+        description: `Meme and media creator, ZFAV club contributor, nerd who loves new technology and Shielding everything`,
+        linkName: 'Twitter',
+        urlLink: 'https://twitter.com/zerodartz'
+    },
+    {
         imgUrl: 'https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png',
         name: 'zksquirrel',
-        description: `Core Contributor on ZecHub and Community Note Taker for Zcash Arborist'
+        description: `Core Contributor on ZecHub and Community Note Taker for Zcash Arborist
         and development of the Zcash ecosystem.`,
         linkName: 'Twitter',
         urlLink: 'https://twitter.com/zksquirrel'
