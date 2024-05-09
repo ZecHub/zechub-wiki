@@ -14,7 +14,7 @@ export const daoMembers = [
         urlLink: 'https://twitter.com/zerodartz'
     },
     {
-        imgUrl: 'https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png',
+        imgUrl: 'https://i.ibb.co/rbMZ67Y/profile.jpg',
         name: 'zksquirrel',
         description: `Core Contributor on ZecHub and Community Note Taker for Zcash Arborist
         and development of the Zcash ecosystem.`,
