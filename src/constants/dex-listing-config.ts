@@ -32,7 +32,7 @@ export const dexListingConfig = [
     description:
       'Trade Cryptocurrency Anonymously. Fast. Safe. No Bureaucracy. Prepaid Debit Cards available.',
     url: 'https://trocador.app/',
-    image: '/Trocodor.jpg',
+    image: '/Trocodor.png',
   },
   {
     title: 'DCRDEX',
@@ -53,13 +53,13 @@ export const dexListingConfig = [
     description:
       'Your Keys - your Crypto! Decentralized Wallet trusted by 5M+ users! DeFi Web3.',
     url: 'https://app.atomicdex.io/#/dex',
-    image: '/AtomicWallet.png',
+    image: '/AtomicWallet.jpg',
   },
   {
     title: 'Fixed Float',
     description:
       'Instant, fully automatic cryptocurrency exchange with Lightning Network.',
-    url: '',
+    url: 'https://ff.io',
     image: '/FixedFloat.jpg',
   },
   {
