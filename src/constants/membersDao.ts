@@ -37,15 +37,6 @@ export const daoMembers = [
         urlLink: 'https://zcashblockexplorer.com/ua/u1zhgy24tweexhjcsstya5qqzrus4cgv0amasfv5jp6f3p3qvw265rugn8ref5djg472l5s382mwuffremffr7se6xjlh5exagwg2d6frs'
     },
     {
-        imgUrl: 'https://i.ibb.co/zZrTrwX/QC0l-YWHY-400x400.jpg',
-        name: 'Ian Sagstetter',
-        description: `Ian is the Community & Marketing Lead at Espresso Systems, a research grant recipient from the Zcash Foundation
-        minor grants program, and an advisor at ZecHub. He created ZecHub, while working at Electric Coin Company, to
-        ensure there was an open environment for people who wanted to contribute to Zcash and earn ZEC.`,
-        linkName:'Twitter',
-        urlLink: 'https://twitter.com/iansagstette'
-    },
-    {
         imgUrl: 'https://prozcash.ru/wp-content/uploads/2023/04/serdcze.jpeg',
         name: 'RuZcash',
         description: `I'm the creator of prozcash.ru website, which I fill with translations into Russian of press releases from
@@ -113,13 +104,6 @@ export const daoMembers = [
         community on Telegram and YouTube channel, Editor of zcashesp.com/blog and Contributor of ZecHub.`,
         linkName:'Telegram',
         urlLink: 'https://t.me/Edicksonjga'
-    },
-    {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1137756616474988546/bFJ6fcud_400x400.jpg',
-        name: 'Olek',
-        description: 'Front-end developer, privacy advocate, cryptocurrency enthusiast and community manager',
-        linkName:'Twitter',
-        urlLink: 'https://twitter.com/an_Olek'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1568361509104803840/KFrdM4OY_200x200.jpg',
