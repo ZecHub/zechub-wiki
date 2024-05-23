@@ -59,7 +59,7 @@ const iconsForMenu: IconsFor = {
         'Shielded Pools': ShieldShaded,
         'Faucets': Faucet,
         'Non-Custodial Exchanges': ExchangeFunds,
-        'Recovering Funds': LifeRing
+        'Recovering Funds': LifeRing,
         'Custodial Exchanges': ListAlt,
         'Zcash Wallet Syncing': FaSyncAlt
     },
