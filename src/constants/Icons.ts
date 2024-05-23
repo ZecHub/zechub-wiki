@@ -20,7 +20,8 @@ import { FaMagnifyingGlassChart as MagnifyingGlassChart } from "react-icons/fa6"
 import {CiStreamOn as StreamOn} from 'react-icons/ci' 
 import {HiOutlineBuildingLibrary} from 'react-icons/hi2'
 import { LiaHorseHeadSolid } from "react-icons/lia";
-
+import { FaLifeRing as LifeRing } from "react-icons/fa";
+import { GrDocumentZip } from "react-icons/gr";
 
 interface IconsFor {
     [key: string]: {
@@ -58,7 +59,8 @@ const iconsForMenu: IconsFor = {
         'Shielded Pools': ShieldShaded,
         'Faucets': Faucet,
         'Non-Custodial Exchanges': ExchangeFunds,
-        'DEX List': ListAlt,
+        'Recovering Funds': LifeRing
+        'Custodial Exchanges': ListAlt,
         'Zcash Wallet Syncing': FaSyncAlt
     },
     'Guides': {
@@ -72,6 +74,7 @@ const iconsForMenu: IconsFor = {
         'Zgo Payment Processor': PointOfSale,
         'Zero-Knowledge vs Decoys': TopologyRing,
         'Visualizing the Zcash Network': LogoGraph,
+        'Zcash Improvement Proposals': GrDocumentZip,
         
     },
     'Zcash Tech': {
