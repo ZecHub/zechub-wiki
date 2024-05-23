@@ -8,47 +8,26 @@ const DaoMembers = () => {
     <main>
       <FadeInAnimation>
         <h1 className='text-4xl my-12 font-semibold flex justify-center'>
-          What is a DAO?
+          ZecHub DAO
         </h1>
 
         <p className='text-xl text-center text-slate-600 mb-12'>
-          A DAO (Decentralized Autonomous Organization) is an organization
-          represented by rules encoded as a transparent computer program,
-          controlled by the organization members, and not influenced by a
-          central government. As the rules are embedded into the code, no
-          managers are needed, thus removing any bureaucracy or hierarchy
-          hurdles.
+         ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:
+         Privacy is a human right
+         Education should be open-source and accessible worldwide
+         Community members have a right to earn ZEC privately
+
+          ZecHub DAO is comprised of likeminded individuals located around the world with the common goal of effectively guiding Zcash and Privacy Technology education. 
         </p>
       </FadeInAnimation>
 
-      <FadeInAnimation>
-        <h3 className='text-3xl mb-4 font-semibold'>
-          DAOs need the following elements for being fully functional:
-        </h3>
-
-        <ul className='text-base text-slate-600 mb-12 list-disc px-4'>
-          <li>A set of rules to which will operate.</li>
-          <li>
-            Funding like tokens that the organization can spend to reward
-            certain activities to their members.
-          </li>
-          <li>Provide voting rights for establishing the operation rules.</li>
-          <li>
-            A well and secure structure that allows every member to configure
-            the organization.
-          </li>
-        </ul>
-      </FadeInAnimation>
-      <FadeInAnimation>
         <h3 className='text-3xl mb-4 font-semibold'>
           What makes ZecHub unique?
         </h3>
 
         <p className='text-base text-slate-600 mb-12'>
           ZecHub is one of the first public DAO&apos;s in Zcash&apos;s history.
-          A unique aspect of the DAO is that its funds are held primarily in a
-          Shielded Zcash address, compared to most DAO&apos;s that live on
-          Ethereum.
+          Its funds are held primarily in a Shielded Zcash address, compared to most DAO&apos;s that live EVM chains such as Ethereum.
         </p>
       </FadeInAnimation>
       <FadeInAnimation>
