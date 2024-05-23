@@ -21,15 +21,16 @@ const DaoMembers = () => {
         </p>
       </FadeInAnimation>
 
-        <h3 className='text-3xl mb-4 font-semibold'>
-          What makes ZecHub unique?
-        </h3>
+<FadeInAnimation>
+  <h3 className='text-3xl mb-4 font-semibold'>
+    What makes ZecHub unique?
+  </h3>
 
-        <p className='text-base text-slate-600 mb-12'>
-          ZecHub is one of the first public DAO&apos;s in Zcash&apos;s history.
-          Its funds are held primarily in a Shielded Zcash address, compared to most DAO&apos;s that live EVM chains such as Ethereum.
-        </p>
-      </FadeInAnimation>
+  <p className='text-base text-slate-600 mb-12'>
+    ZecHub is one of the first public DAO&apos;s in Zcash&apos;s history.
+    Its funds are held primarily in a Shielded Zcash address, compared to most DAO&apos;s that live EVM chains such as Ethereum.
+  </p>
+</FadeInAnimation>
       <FadeInAnimation>
         <h3 className='text-3xl mb-4 font-semibold'>Governance</h3>
 
