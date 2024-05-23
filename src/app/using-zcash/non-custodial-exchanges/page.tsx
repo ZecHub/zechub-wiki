@@ -16,7 +16,7 @@ const DEXListingPage = () => {
             title={itm.title}
             url={itm.url}
             key={itm.title + '_' + Math.random() / i}
-            ctaLabel='Read More'
+            // Removed ctaLabel prop
           />
         ))}
       </div>
