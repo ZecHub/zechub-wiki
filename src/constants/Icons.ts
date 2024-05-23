@@ -22,6 +22,7 @@ import {HiOutlineBuildingLibrary} from 'react-icons/hi2'
 import { LiaHorseHeadSolid } from "react-icons/lia";
 import { FaLifeRing as LifeRing } from "react-icons/fa";
 import { GrDocumentZip } from "react-icons/gr";
+import { MdOutlinePayments } from "react-icons/md";
 
 interface IconsFor {
     [key: string]: {
@@ -59,6 +60,7 @@ const iconsForMenu: IconsFor = {
         'Shielded Pools': ShieldShaded,
         'Faucets': Faucet,
         'Non-Custodial Exchanges': ExchangeFunds,
+        'Payment Request URIs': MdOutlinePayments,
         'Recovering Funds': LifeRing,
         'Custodial Exchanges': ListAlt,
         'Zcash Wallet Syncing': FaSyncAlt
