@@ -71,5 +71,6 @@ export const searcher: Searcher[] = [
     { name: 'ZecHub DAO', desc: 'The ZecHub DAO currently consists of...', url: '/contribute/zechub-dao' },
     { name: 'ZecWeekly Newsletter', desc: 'ZecWeekly is a newsletter that goes out every Friday morning.', url: '/contribute/zecweekly-newsletter' },
     { name: 'Dashboard', desc: 'Check the charts for ZEC', url: '/dashboard' },
-    { name: 'DAO', desc: 'Check the DAO members', url: '/dao' }
+    { name: 'DAO', desc: 'List of ZecHub DAO members', url: '/dao' }
+    { name: 'Recovering Funds', desc: 'Learn how to recover funds from seed phrase or private key', url: '/using-zcash/recovering-funds' }
 ]
