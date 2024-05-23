@@ -27,4 +27,46 @@ export const dexListingConfig = [
     url: 'https://flyp.me/en/#/',
     image: '/flyp.me.png',
   },
+  {
+    title: 'Trocodor',
+    description:
+      'Trade Cryptocurrency Anonymously. Fast. Safe. No Bureaucracy. Prepaid Debit Cards available.',
+    url: 'https://trocador.app/',
+    image: '/Trocodor.jpg',
+  },
+  {
+    title: 'DCRDEX',
+    description:
+      'Trade crypto peer to peer. No trading fees. No KYC. Decentralised Exchange built by Decred Project.',
+    url: 'https://dex.decred.org/',
+    image: '/DCRDEX.jpg',
+  },
+  {
+    title: 'Changenow',
+    description: 
+      'Limitless WEB 3 Crypto Exchange – Simple, Fast, Custody-free.',
+    url: 'https://changenow.io/?from=usdterc20&to=zec',
+    image: '/Changenow.png',
+  },
+  {
+    title: 'Atomic Wallet',
+    description:
+      'Your Keys - your Crypto! Decentralized Wallet trusted by 5M+ users! DeFi Web3.',
+    url: 'https://app.atomicdex.io/#/dex',
+    image: '/AtomicWallet.png',
+  },
+  {
+    title: 'Fixed Float',
+    description:
+      'Instant, fully automatic cryptocurrency exchange with Lightning Network.',
+    url: '',
+    image: '/FixedFloat.jpg',
+  },
+  {
+    title: 'Xchange',
+    description:
+      'Anonymous Cryptocurrency Exchange, cheap, reliable, AlwaysOnTime and without any registration. Dedicated Tor mirror available.',
+    url: 'https://xchange.me/',
+    image: '/xchange.png',
+  },
 ];
