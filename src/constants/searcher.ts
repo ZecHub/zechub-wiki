@@ -27,7 +27,7 @@ export const searcher: Searcher[] = [
     { name: 'Using ZEC, privately', desc: 'As it currently stands, there are two addresses and transaction types in Zcash, shielded and transparent.', url: '/guides/using-zec-privately' },
     { name: 'Zcash in DeFi', desc: 'Zcash users are capable of leveraging Ethereum smart contracts and wider DeFi applications...', url: '/guides/using-zec-in-defi' },
     { name: 'Visualizing Zcash Addresses', desc: `If you're learning about Zcash for the first time you will immediately.`, url: '/guides/visualizing-zcash-addresses' },
-    { name: 'ZIPs', desc: 'One of the most intriguing aspects of Decentralized Autonomous Organizations...', url: '/guides/zcash-improvement-proposals' },
+    { name: 'Zcash Improvement Proposals', desc: 'One of the most intriguing aspects of Decentralized Autonomous Organizations...', url: '/guides/zcash-improvement-proposals' },
     { name: 'Zero Knowledge vs Decoy', desc: 'Certain crypto projects have gained recognition for their privacy-centric approaches.', url: '/guides/zero-knowledge-vs-decoys' },
     { name: 'Zgo Payment Processor', desc: 'Even though Payment processors are known for their services to facilitate transactions...', url: '/guides/zgo-payment-processor' },
     { name: 'FROST', desc: 'Flexible Round-Optimized Schnorr Threshold Signatures', url: '/zcash-tech/frost' },
@@ -71,6 +71,6 @@ export const searcher: Searcher[] = [
     { name: 'ZecHub DAO', desc: 'The ZecHub DAO currently consists of...', url: '/contribute/zechub-dao' },
     { name: 'ZecWeekly Newsletter', desc: 'ZecWeekly is a newsletter that goes out every Friday morning.', url: '/contribute/zecweekly-newsletter' },
     { name: 'Dashboard', desc: 'Check the charts for ZEC', url: '/dashboard' },
-    { name: 'DAO', desc: 'List of ZecHub DAO members', url: '/dao' }
+    { name: 'DAO', desc: 'List of ZecHub DAO members', url: '/dao' },
     { name: 'Recovering Funds', desc: 'Learn how to recover funds from seed phrase or private key', url: '/using-zcash/recovering-funds' }
 ]
