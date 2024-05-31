@@ -49,13 +49,6 @@ export const dexListingConfig = [
     image: '/Changenow.png',
   },
   {
-    title: 'Atomic Wallet',
-    description:
-      'Your Keys - your Crypto! Decentralized Wallet trusted by 5M+ users! DeFi Web3.',
-    url: 'https://app.atomicdex.io/#/dex',
-    image: '/AtomicWallet.jpg',
-  },
-  {
     title: 'Fixed Float',
     description:
       'Instant, fully automatic cryptocurrency exchange with Lightning Network.',
