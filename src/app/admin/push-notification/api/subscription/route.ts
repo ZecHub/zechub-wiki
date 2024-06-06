@@ -1,3 +1,4 @@
+/*
 import { authOptions } from '@/auth.config';
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
 import { getServerSession } from 'next-auth/next';
@@ -70,3 +71,4 @@ export async function POST(req: Request) {
     });
   }
 }
+*/
