@@ -1,3 +1,4 @@
+/*
 import {
   MONGO_DB_CONNECTION_STRING_DEV,
   MONGO_DB_CONNECTION_STRING_PROD,
@@ -12,3 +13,4 @@ const connectionString =
 
 export const mongodbClient = new MongoClient(connectionString);
 export const mongodbClientPromise = clientPromise;
+*/
