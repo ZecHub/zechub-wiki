@@ -71,7 +71,7 @@ export default async function DashboardPage() {
                 Blocks
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.blocks.toLocaleString()}
+                {blockchainInfo.blocks?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -79,7 +79,7 @@ export default async function DashboardPage() {
                 Transactions
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.transactions.toLocaleString()}
+                {blockchainInfo.transactions?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -87,7 +87,7 @@ export default async function DashboardPage() {
                 Outputs
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.outputs.toLocaleString()}
+                {blockchainInfo.outputs?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -95,7 +95,7 @@ export default async function DashboardPage() {
                 Circulation
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {(blockchainInfo.circulation / 1e8).toLocaleString()} ZEC
+                {(blockchainInfo.circulation / 1e8)?.toLocaleString() ?? 'N/A'} ZEC
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -103,7 +103,7 @@ export default async function DashboardPage() {
                 Blocks (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.blocks_24h.toLocaleString()}
+                {blockchainInfo.blocks_24h?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -111,7 +111,7 @@ export default async function DashboardPage() {
                 Transactions (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.transactions_24h.toLocaleString()}
+                {blockchainInfo.transactions_24h?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -119,7 +119,7 @@ export default async function DashboardPage() {
                 Difficulty
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.difficulty.toLocaleString()}
+                {blockchainInfo.difficulty?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -127,7 +127,7 @@ export default async function DashboardPage() {
                 Volume (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {(blockchainInfo.volume_24h / 1e8).toLocaleString()} ZEC
+                {(blockchainInfo.volume_24h / 1e8)?.toLocaleString() ?? 'N/A'} ZEC
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -135,7 +135,7 @@ export default async function DashboardPage() {
                 Mempool Transactions
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.mempool_transactions.toLocaleString()}
+                {blockchainInfo.mempool_transactions?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -143,7 +143,7 @@ export default async function DashboardPage() {
                 Average Transaction Fee (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.average_transaction_fee_24h.toLocaleString()} sat
+                {blockchainInfo.average_transaction_fee_24h?.toLocaleString() ?? 'N/A'} sat
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -151,8 +151,8 @@ export default async function DashboardPage() {
                 Largest Transaction (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                <a href={`https://3xpl.com/zcash/transaction/${blockchainInfo.largest_transaction_24h.hash}`} className='text-blue-500 underline'>
-                  {blockchainInfo.largest_transaction_24h.hash}
+                <a href={`https://3xpl.com/zcash/transaction/${blockchainInfo.largest_transaction_24h?.hash}`} className='text-blue-500 underline'>
+                  {blockchainInfo.largest_transaction_24h?.hash ?? 'N/A'}
                 </a>
               </td>
             </tr>
@@ -161,7 +161,7 @@ export default async function DashboardPage() {
                 Nodes
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.nodes.toLocaleString()}
+                {blockchainInfo.nodes?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -169,7 +169,7 @@ export default async function DashboardPage() {
                 Hashrate (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.hashrate_24h}
+                {blockchainInfo.hashrate_24h ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -177,7 +177,7 @@ export default async function DashboardPage() {
                 Inflation (USD, 24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                ${blockchainInfo.inflation_usd_24h.toLocaleString()}
+                ${blockchainInfo.inflation_usd_24h?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -185,7 +185,7 @@ export default async function DashboardPage() {
                 Average Transaction Fee (USD, 24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                ${blockchainInfo.average_transaction_fee_usd_24h.toFixed(2)}
+                ${blockchainInfo.average_transaction_fee_usd_24h?.toFixed(2) ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -193,7 +193,7 @@ export default async function DashboardPage() {
                 Market Price (USD)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                ${blockchainInfo.market_price_usd.toLocaleString()}
+                ${blockchainInfo.market_price_usd?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -201,7 +201,7 @@ export default async function DashboardPage() {
                 Market Price (BTC)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.market_price_btc}
+                {blockchainInfo.market_price_btc ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -209,7 +209,7 @@ export default async function DashboardPage() {
                 Market Price Change (24h %)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.market_price_usd_change_24h_percentage}%
+                {blockchainInfo.market_price_usd_change_24h_percentage?.toFixed(2) ?? 'N/A'}%
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -217,7 +217,7 @@ export default async function DashboardPage() {
                 Market Cap (USD)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                ${blockchainInfo.market_cap_usd.toLocaleString()}
+                ${blockchainInfo.market_cap_usd?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -225,7 +225,7 @@ export default async function DashboardPage() {
                 Market Dominance (%)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.market_dominance_percentage.toFixed(2)}%
+                {blockchainInfo.market_dominance_percentage?.toFixed(2) ?? 'N/A'}%
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -233,7 +233,7 @@ export default async function DashboardPage() {
                 Next Retarget Time Estimate
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.next_retarget_time_estimate}
+                {blockchainInfo.next_retarget_time_estimate ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -241,7 +241,7 @@ export default async function DashboardPage() {
                 Next Difficulty Estimate
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.next_difficulty_estimate.toLocaleString()}
+                {blockchainInfo.next_difficulty_estimate?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -249,7 +249,7 @@ export default async function DashboardPage() {
                 Hodling Addresses
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.hodling_addresses.toLocaleString()}
+                {blockchainInfo.hodling_addresses?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
           </tbody>
