@@ -8,7 +8,7 @@ const ShieldedPoolChart = dynamic(
 
 async function getData() {
   const response = await fetch(
-    'https://api.blockchair.com/zcash/stats'
+    'https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ'
   );
   const data = await response.json();
 
