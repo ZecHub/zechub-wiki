@@ -1,9 +1,10 @@
 import Button from '@/components/Button/Button';
 import HalvingMeter from '@/components/HalvingMeter';
 import dynamic from 'next/dynamic';
+
 const ShieldedPoolChart = dynamic(
   () => import('../../components/ShieldedPoolChart'),
-  { ssr: false }
+  { ssr: true } // Enable SSR
 );
 
 async function getData() {
@@ -52,9 +53,14 @@ export default async function DashboardPage() {
       <h2 className='font-bold mt-8 mb-4'>Shielded Supply (ZEC)</h2>
       <ShieldedPoolChart />
       <HalvingMeter />
-      <div className='border-2 border-blue-200 p-4' id='metrics'>
+      <div className="mt-8">
+        <Button href="https://3xpl.com/zcash/address/sapling-pool" text="Sapling Pool" />
+        <Button href="https://3xpl.com/zcash/address/orchard-pool" text="Orchard Pool" />
+        <Button href="https://3xpl.com/zcash/address/sprout-pool" text="Sprout Pool" />
+      </div>
+      <div className='mt-8'>
         <h2 className='font-bold my-2'>Metrics</h2>
-        <table className='border-collapse  w-full rounded-lg first:tr'>
+        <table className='border-collapse w-full rounded-lg first:tr'>
           <thead>
             <tr className='p-0 lg:p-4 hidden lg:table-row'>
               <th className='lg:border border-blue-300 text-left px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0 bg-blue-100 text-gray-500'>
