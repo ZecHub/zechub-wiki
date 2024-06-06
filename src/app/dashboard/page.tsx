@@ -68,6 +68,22 @@ export default async function DashboardPage() {
           <tbody>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
+                Market Price (USD)
+              </td>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
+                ${blockchainInfo.market_price_usd?.toLocaleString() ?? 'N/A'}
+              </td>
+            </tr>
+            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
+                Market Price Change (24h %)
+              </td>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
+                {blockchainInfo.market_price_usd_change_24h_percentage?.toFixed(2) ?? 'N/A'}%
+              </td>
+            </tr>
+            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
                 Blocks
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
@@ -190,58 +206,10 @@ export default async function DashboardPage() {
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Market Price (USD)
-              </td>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                ${blockchainInfo.market_price_usd?.toLocaleString() ?? 'N/A'}
-              </td>
-            </tr>
-            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Market Price (BTC)
-              </td>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.market_price_btc ?? 'N/A'}
-              </td>
-            </tr>
-            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Market Price Change (24h %)
-              </td>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.market_price_usd_change_24h_percentage?.toFixed(2) ?? 'N/A'}%
-              </td>
-            </tr>
-            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
                 Market Cap (USD)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
                 ${blockchainInfo.market_cap_usd?.toLocaleString() ?? 'N/A'}
-              </td>
-            </tr>
-            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Market Dominance (%)
-              </td>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.market_dominance_percentage?.toFixed(2) ?? 'N/A'}%
-              </td>
-            </tr>
-            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Next Retarget Time Estimate
-              </td>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.next_retarget_time_estimate ?? 'N/A'}
-              </td>
-            </tr>
-            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Next Difficulty Estimate
-              </td>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.next_difficulty_estimate?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
