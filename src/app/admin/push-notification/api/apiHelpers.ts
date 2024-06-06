@@ -1,3 +1,4 @@
+/*
 import {
   WEB_PUSH_VAPID_PRIVATE_KEY,
   WEB_PUSH_VAPID_PUBLIC_KEY,
@@ -45,3 +46,5 @@ export const sendNotifications = async ({
     throw err;
   }
 };
+*/
+
