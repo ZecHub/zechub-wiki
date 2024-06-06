@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import WalletItem from "@/components/WalletItem";
 import FilterToggle from "@/components/FilterToggle";
+import { likesData } from "@/lib/wallet-likes";
 
 interface Wallet {
   title: string;
@@ -11,6 +12,7 @@ interface Wallet {
   pools: string[];
   features: string[];
 }
+
 interface Props {
   allWallets: Wallet[];
 }
@@ -22,6 +24,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     Pools: new Set<string>(),
     Features: new Set<string>(),
   });
+  const [likes, setLikes] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {
     const devicesSet = new Set<string>();
@@ -39,6 +42,13 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       Pools: poolsSet,
       Features: featuresSet,
     });
+
+    const initialLikes: { [key: string]: number } = likesData;
+    allWallets.forEach((wallet) => {
+      if (!initialLikes[wallet.title])
+        initialLikes[wallet.title] = 0; // Initialize likes to zero
+    });
+    setLikes(initialLikes);
   }, [allWallets]);
 
   function toggleFilter(filterCategory: string, filterValue: string) {
@@ -49,6 +59,32 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         : [...prev, filterKey]
     );
   }
+
+  const handleLike = async (walletTitle: string) => {
+    try {
+      const response = await fetch("/api/wallet-likes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title: walletTitle }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Received message:", data);
+        // Update likes state only if the API call was successful
+        setLikes((prevLikes) => ({
+          ...prevLikes,
+          [walletTitle]: prevLikes[walletTitle] + 1,
+        }));
+      } else {
+        console.error("Failed to update likes");
+      }
+    } catch (error) {
+      console.error("Error updating likes:", error);
+    }
+  };
 
   const filteredWallets = allWallets.filter((wallet) =>
     activeFilters.every((filter) => {
@@ -83,6 +119,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                 { category: "Pools", values: [...wallet.pools] },
                 { category: "Features", values: [...wallet.features] },
               ]}
+              likes={likes[wallet.title]}
+              onLike={() => handleLike(wallet.title)}
             />
           ))}
         </div>

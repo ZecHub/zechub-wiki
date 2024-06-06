@@ -1,3 +1,4 @@
+"use client";
 // components/WalletItem.tsx
 import React from "react";
 import { Icon } from "@/components/ui/Icon";
@@ -10,6 +11,8 @@ interface WalletItemProps {
   link: string;
   logo: string;
   tags: Tag[];
+  likes: number;
+  onLike: () => void;
 }
 
 interface Tag {
@@ -23,7 +26,7 @@ const categoryIcons = {
   Pools: MdPool,
   Features: MdChecklist,
 };
-const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags }) => {
+const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes, onLike }) => {
   return (
     <div className="wallet-item h-full flex flex-col gap-4 items-start border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5">
       <div className="col-span-12 grid grid-cols-12 gap-4 items-start h-full">
@@ -33,7 +36,7 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags }) => {
           rel="noopener noreferrer"
           className="col-span-12 row-span-1 md:col-span-6 md:row-span-2 bg-gray-100 dark:bg-gray-200 p-2 h-full flex items-center"
         >
-          <Image className="w-full" src={logo} alt={`${title} Logo`} />
+          <Image className="w-full" width={200} height={200} src={logo} alt={`${title} Logo`} />
         </a>
         <div className="col-span-12 row-span-1 md:col-span-6">
           <div className="wallet-meta">
@@ -78,6 +81,10 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags }) => {
             ))}
           </div>
         </div>
+      </div>
+      <div className="wallet-likes mt-4">
+        <button onClick={onLike} className="like-button text-blue-500">Like</button>
+        <span className="likes-count ml-2">{likes} {likes === 1 ? "Like" : "Likes"}</span>
       </div>
     </div>
   );
