@@ -1,3 +1,4 @@
+/*
 import { authOptions } from '@/auth.config';
 import { AdminComp } from '@/components/Admin/AdminComp';
 import { Authentication } from '@/components/Authentication';
@@ -12,3 +13,4 @@ export default async function AdminPage() {
     </Authentication>
   );
 }
+*/
