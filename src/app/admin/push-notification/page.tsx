@@ -1,3 +1,4 @@
+/*
 import { authOptions } from '@/auth.config';
 import { Authentication } from '@/components/Authentication';
 import { ListOfSubscribers } from '@/components/push-notification/ListOfSubscribers/ListOfSubscribers';
@@ -24,3 +25,4 @@ export default async function PushNotificationPage() {
     </div>
   );
 }
+*/
