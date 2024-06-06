@@ -1,3 +1,4 @@
+/*
 //import { getBannerMessage } from './actions';
 import HomePage from "@/components/home/Home";
 import  Metadata from 'next';
@@ -28,3 +29,4 @@ export default async function Home() {
 
   return <HomePage text={text} />;
 }
+*/
