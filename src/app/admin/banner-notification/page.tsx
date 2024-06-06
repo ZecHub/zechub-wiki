@@ -1,3 +1,4 @@
+/*
 import { saveBannerMessage } from '@/app/actions';
 import { authOptions } from '@/auth.config';
 import { Authentication } from '@/components/Authentication';
@@ -22,3 +23,4 @@ export default async function BannerNotificationPage() {
     </>
   );
 }
+*/
