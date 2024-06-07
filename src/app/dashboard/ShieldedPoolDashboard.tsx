@@ -15,6 +15,13 @@ const sproutUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/pub
 const saplingUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json';
 const orchardUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json';
 
+const poolColors = {
+  sprout: 'purple',
+  sapling: 'orange',
+  orchard: 'limegreen',
+  default: '#1984c7', // Default color
+};
+
 interface BlockchainInfo {
   blocks: number;
   transactions: number;
@@ -76,6 +83,11 @@ const ShieldedPoolDashboard = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(`Selected pool: ${selectedPool}`);
+    console.log(`Data URL: ${getDataUrl()}`);
+  }, [selectedPool]);
+
   if (!blockchainInfo) {
     return <div>Loading...</div>;
   }
@@ -83,7 +95,7 @@ const ShieldedPoolDashboard = () => {
   return (
     <div>
       <h2 className='font-bold mt-8 mb-4'>Shielded Supply (ZEC)</h2>
-      <ShieldedPoolChart dataUrl={getDataUrl()} />
+      <ShieldedPoolChart dataUrl={getDataUrl()} color={poolColors[selectedPool]} />
       <div className="mt-8 flex space-x-4">
         <Button onClick={() => setSelectedPool('sprout')} text="Sprout Pool" />
         <Button onClick={() => setSelectedPool('sapling')} text="Sapling Pool" />
