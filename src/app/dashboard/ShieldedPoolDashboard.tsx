@@ -1,4 +1,3 @@
-// src/app/dashboard/ShieldedPoolDashboard.tsx
 "use client";
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
@@ -14,13 +13,6 @@ const defaultUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/pu
 const sproutUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json';
 const saplingUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json';
 const orchardUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json';
-
-const poolColors = {
-  sprout: 'purple',
-  sapling: 'orange',
-  orchard: 'limegreen',
-  default: '#1984c7', // Default color
-};
 
 interface BlockchainInfo {
   blocks: number;
@@ -83,19 +75,14 @@ const ShieldedPoolDashboard = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(`Selected pool: ${selectedPool}`);
-    console.log(`Data URL: ${getDataUrl()}`);
-  }, [selectedPool]);
-
   if (!blockchainInfo) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <h2 className='font-bold mt-8 mb-4'>Shielded Supply (ZEC)</h2>
-      <ShieldedPoolChart dataUrl={getDataUrl()} color={poolColors[selectedPool]} />
+      <h2 className='font-bold mt-8 mb-4'>Supply Chart (ZEC)</h2>
+      <ShieldedPoolChart dataUrl={getDataUrl()} />
       <div className="mt-8 flex space-x-4">
         <Button onClick={() => setSelectedPool('sprout')} text="Sprout Pool" />
         <Button onClick={() => setSelectedPool('sapling')} text="Sapling Pool" />
