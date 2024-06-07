@@ -117,20 +117,17 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     const [isLoading, setIsLoading] = useState(false);
 
     /* Error state for chart data */
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<Error | null>(null);
 
-    // Make sure data is only fetched once on initial render
+    // Fetch data whenever dataUrl changes
     useEffect(() => {
-      if (isLoading) return;
-      if (chartData.length > 0) return;
-
       setIsLoading(true);
 
       fetchShieldedSupplyData(dataUrl)
         .then((data) => setChartData(data))
         .catch((error) => setError(error))
         .finally(() => setIsLoading(false));
-    }, [dataUrl, chartData, isLoading, error]);
+    }, [dataUrl]);
 
     /**
      * Reference to child, which will fill all space available horizontally
@@ -215,7 +212,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     if (error) {
       return (
         <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
-          <p><i>Error loading historic shielding data</i></p>
+          <p><i>Error loading historic shielding data: {error.message}</i></p>
         </div>
       );
     }
