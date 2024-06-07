@@ -1,11 +1,17 @@
 import Button from '@/components/Button/Button';
 import HalvingMeter from '@/components/HalvingMeter';
 import dynamic from 'next/dynamic';
+import { useState, useEffect } from 'react';
 
 const ShieldedPoolChart = dynamic(
   () => import('../../components/ShieldedPoolChart'),
   { ssr: true } // Enable SSR
 );
+
+const defaultUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json';
+const sproutUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json';
+const saplingUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json';
+const orchardUrl = 'https://github.com/ZecHub/zechub-wiki/blob/main/public/data/orchard_supply.json';
 
 async function getData() {
   const response = await fetch(
@@ -46,18 +52,42 @@ interface BlockchainInfo {
   hodling_addresses: number;
 }
 
-export default async function DashboardPage() {
-  const blockchainInfo: BlockchainInfo = await getData();
+export default function DashboardPage() {
+  const [selectedPool, setSelectedPool] = useState('default');
+  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
+
+  useEffect(() => {
+    getData().then(data => setBlockchainInfo(data));
+  }, []);
+
+  const getDataUrl = () => {
+    switch (selectedPool) {
+      case 'sprout':
+        return sproutUrl;
+      case 'sapling':
+        return saplingUrl;
+      case 'orchard':
+        return orchardUrl;
+      case 'default':
+      default:
+        return defaultUrl;
+    }
+  };
+
+  if (!blockchainInfo) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <h2 className='font-bold mt-8 mb-4'>Shielded Supply (ZEC)</h2>
-      <ShieldedPoolChart />
-      <HalvingMeter />
+      <ShieldedPoolChart dataUrl={getDataUrl()} />
       <div className="mt-8">
-        <Button href="https://3xpl.com/zcash/address/sapling-pool" text="Sapling Pool" />
-        <Button href="https://3xpl.com/zcash/address/orchard-pool" text="Orchard Pool" />
-        <Button href="https://3xpl.com/zcash/address/sprout-pool" text="Sprout Pool" />
+        <Button onClick={() => setSelectedPool('sprout')} text="Sprout Pool" />
+        <Button onClick={() => setSelectedPool('sapling')} text="Sapling Pool" />
+        <Button onClick={() => setSelectedPool('orchard')} text="Orchard Pool" />
       </div>
+      <HalvingMeter />
       <div className='mt-8'>
         <h2 className='font-bold my-2'>Metrics</h2>
         <table className='border-collapse w-full rounded-lg first:tr'>
