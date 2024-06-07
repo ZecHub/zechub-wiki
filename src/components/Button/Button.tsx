@@ -1,29 +1,25 @@
-import dynamic from 'next/dynamic';
 import React from 'react';
-import styles from './Button.module.css';
 
 interface ButtonProps {
-  href: string;
+  onClick?: () => void;
+  href?: string;
   text: string;
 }
 
-const DynamicButton: React.FC<ButtonProps> = ({ href, text }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, href, text }) => {
+  if (href) {
+    return (
+      <a href={href} className="btn" target="_blank" rel="noopener noreferrer">
+        {text}
+      </a>
+    );
+  }
+
   return (
-    <a
-      href={href}
-      className={`${styles.button} ${
-        text == 'Sprout Pool' ? 'hover:text-slate-200' : 'hover:text-black'
-      } font-bold `}
-      target='_blank'
-      rel='external'
-    >
+    <button onClick={onClick} className="btn">
       {text}
-    </a>
+    </button>
   );
 };
-
-const Button = dynamic(() => Promise.resolve(DynamicButton), {
-  ssr: false,
-});
 
 export default Button;
