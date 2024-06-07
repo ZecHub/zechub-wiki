@@ -1,3 +1,4 @@
+/*
 'use server';
 
 import { mongodbClient } from '@/lib/db-connectors/mongo-db';
@@ -276,3 +277,4 @@ export async function deleteBannerMessage(docId: string) {
     return { data: 'Failed to delete data.' };
   }
 }
+*/

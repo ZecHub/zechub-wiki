@@ -1,6 +1,5 @@
 import './globals.css';
 import { Footer, Navigation } from '@/components';
-import { AppProvider } from '@/components/AppProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -23,17 +22,16 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${inter.className} px-6`}>
         <div className='container mx-auto min-h-screen flex flex-col'>
-          <AppProvider>
-            <div className='flex flex-col justify-between flex-grow'>
-              <div>
-                <Navigation />
-                <div style={{ margin: '0 0 48px 0' }}>{children}</div>
-              </div>
-              <Footer />
+          <div className='flex flex-col justify-between flex-grow'>
+            <div>
+              <Navigation />
+              <div style={{ margin: '0 0 48px 0' }}>{children}</div>
             </div>
-          </AppProvider>
+            <Footer />
+          </div>
         </div>
       </body>
     </html>
   );
 }
+

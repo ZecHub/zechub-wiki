@@ -1,73 +1,49 @@
 import Button from '@/components/Button/Button';
 import HalvingMeter from '@/components/HalvingMeter';
 import dynamic from 'next/dynamic';
+
 const ShieldedPoolChart = dynamic(
   () => import('../../components/ShieldedPoolChart'),
-  { ssr: false }
+  { ssr: true } // Enable SSR
 );
 
 async function getData() {
   const response = await fetch(
-    'https://zcashblockexplorer.com/api/v1/blockchain-info'
+    'https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ'
   );
   const data = await response.json();
 
-  return data as BlockchainInfo;
+  return data.data as BlockchainInfo;
 }
 
 interface BlockchainInfo {
-  bestblockhash: string;
   blocks: number;
-  build: string;
-  chain: string;
-  chainSupply: {
-    chainValue: number;
-    chainValueZat: number;
-    monitored: boolean;
-  };
-  chainwork: string;
-  commitments: number;
-  consensus: {
-    chaintip: string;
-    nextblock: string;
-  };
+  transactions: number;
+  outputs: number;
+  circulation: number;
+  blocks_24h: number;
+  transactions_24h: number;
   difficulty: number;
-  estimatedheight: number;
-  headers: number;
-  initial_block_download_complete: boolean;
-  pruned: boolean;
-  size_on_disk: number;
-  softforks: {
-    enforce: {
-      found: number;
-      required: number;
-      status: boolean;
-      window: number;
-    };
-    id: string;
-    reject: {
-      found: number;
-      required: number;
-      status: boolean;
-      window: number;
-    };
-    version: number;
-  }[];
-  upgrades: {
-    [key: string]: {
-      activationheight: number;
-      info: string;
-      name: string;
-      status: string;
-    };
+  volume_24h: number;
+  mempool_transactions: number;
+  average_transaction_fee_24h: number;
+  largest_transaction_24h: {
+    hash: string;
+    value_usd: number;
   };
-  valuePools: {
-    chainValue: number;
-    chainValueZat: number;
-    id: string;
-    monitored: boolean;
-  }[];
-  verificationprogress: number;
+  nodes: number;
+  hashrate_24h: string;
+  inflation_usd_24h: number;
+  average_transaction_fee_usd_24h: number;
+  market_price_usd: number;
+  market_price_btc: number;
+  market_price_usd_change_24h_percentage: number;
+  market_cap_usd: number;
+  market_dominance_percentage: number;
+  next_retarget_time_estimate: string;
+  next_difficulty_estimate: number;
+  countdowns: any[];
+  hodling_addresses: number;
 }
 
 export default async function DashboardPage() {
@@ -77,47 +53,14 @@ export default async function DashboardPage() {
       <h2 className='font-bold mt-8 mb-4'>Shielded Supply (ZEC)</h2>
       <ShieldedPoolChart />
       <HalvingMeter />
-      <div className='border-2 border-blue-200 p-4' id='pools'>
-        <h2 className='font-bold mt-2'>Pools</h2>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
-          {blockchainInfo.valuePools.map((valuePool, index) => (
-            <div key={index} className='shadow-lg p-4 rounded-md'>
-              <h2 className='font-bold capitalize text-lg text-blue-500  py-2'>
-                {valuePool.id} Pool
-              </h2>
-              <div className='pt-2'>
-                <div>
-                  <span className='text-sm text-gray-500 pr-2'>
-                    Chain Value:
-                  </span>
-                  <span>{valuePool.chainValue.toLocaleString()} ZEC</span>
-                </div>
-                <div>
-                  <span className='text-sm text-gray-500 pr-2'>Monitored:</span>
-                  <span>{valuePool.monitored ? 'Yes' : 'No'}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className='mt-8'>
-          <Button
-            href='https://3xpl.com/zcash/address/sprout-pool'
-            text='Sprout Pool'
-          />
-          <Button
-            href='https://3xpl.com/zcash/address/sapling-pool'
-            text='Sapling Pool'
-          />
-          <Button
-            href='https://3xpl.com/zcash/address/orchard-pool'
-            text='Orchard Pool'
-          />
-        </div>
+      <div className="mt-8">
+        <Button href="https://3xpl.com/zcash/address/sapling-pool" text="Sapling Pool" />
+        <Button href="https://3xpl.com/zcash/address/orchard-pool" text="Orchard Pool" />
+        <Button href="https://3xpl.com/zcash/address/sprout-pool" text="Sprout Pool" />
       </div>
-      <div className='border-2 border-slate-200 p-4 mt-8' id='metrics'>
+      <div className='mt-8'>
         <h2 className='font-bold my-2'>Metrics</h2>
-        <table className='border-collapse  w-full rounded-lg first:tr'>
+        <table className='border-collapse w-full rounded-lg first:tr'>
           <thead>
             <tr className='p-0 lg:p-4 hidden lg:table-row'>
               <th className='lg:border border-blue-300 text-left px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0 bg-blue-100 text-gray-500'>
@@ -131,10 +74,18 @@ export default async function DashboardPage() {
           <tbody>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Best Block Hash
+                Market Price (USD)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.bestblockhash}
+                ${blockchainInfo.market_price_usd?.toLocaleString() ?? 'N/A'}
+              </td>
+            </tr>
+            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
+                Market Price Change (24h %)
+              </td>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
+                {blockchainInfo.market_price_usd_change_24h_percentage?.toFixed(2) ?? 'N/A'}%
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -142,79 +93,47 @@ export default async function DashboardPage() {
                 Blocks
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.blocks.toLocaleString()}
+                {blockchainInfo.blocks?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Build
+                Transactions
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.build}
+                {blockchainInfo.transactions?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Chain
+                Outputs
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.chain}
+                {blockchainInfo.outputs?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Chain Supply
+                Circulation
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.chainSupply.chainValue.toLocaleString()} ZEC
+                {(blockchainInfo.circulation / 1e8)?.toLocaleString() ?? 'N/A'} ZEC
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Chain Supply Zat
+                Blocks (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.chainSupply.chainValueZat.toLocaleString()}
+                {blockchainInfo.blocks_24h?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Monitored
+                Transactions (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.chainSupply.monitored ? 'Yes' : 'No'}
-              </td>
-            </tr>
-            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Chainwork
-              </td>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.chainwork}
-              </td>
-            </tr>
-            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Commitments
-              </td>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.commitments.toLocaleString()}
-              </td>
-            </tr>
-            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Chaintip
-              </td>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.consensus.chaintip}
-              </td>
-            </tr>
-            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Next Block
-              </td>
-              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.consensus.nextblock}
+                {blockchainInfo.transactions_24h?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
@@ -222,56 +141,89 @@ export default async function DashboardPage() {
                 Difficulty
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.difficulty.toLocaleString()}
+                {blockchainInfo.difficulty?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Estimated Height
+                Volume (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.estimatedheight.toLocaleString()}
+                {(blockchainInfo.volume_24h / 1e8)?.toLocaleString() ?? 'N/A'} ZEC
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Headers
+                Mempool Transactions
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.headers.toLocaleString()}
+                {blockchainInfo.mempool_transactions?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Initial Block Download Complete
+                Average Transaction Fee (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.initial_block_download_complete ? 'Yes' : 'No'}
+                {blockchainInfo.average_transaction_fee_24h?.toLocaleString() ?? 'N/A'} sat
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Pruned
+                Largest Transaction (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.pruned ? 'Yes' : 'No'}
+                <a href={`https://3xpl.com/zcash/transaction/${blockchainInfo.largest_transaction_24h?.hash}`} className='text-blue-500 underline'>
+                  {blockchainInfo.largest_transaction_24h?.hash ?? 'N/A'}
+                </a>
               </td>
             </tr>
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Size on Disk
+                Nodes
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {blockchainInfo.size_on_disk.toLocaleString()}
+                {blockchainInfo.nodes?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
-
             <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
-                Verification Progress
+                Hashrate (24h)
               </td>
               <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
-                {(blockchainInfo.verificationprogress * 100).toFixed(6)}%
+                {blockchainInfo.hashrate_24h ?? 'N/A'}
+              </td>
+            </tr>
+            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
+                Inflation (USD, 24h)
+              </td>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
+                ${blockchainInfo.inflation_usd_24h?.toLocaleString() ?? 'N/A'}
+              </td>
+            </tr>
+            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
+                Average Transaction Fee (USD, 24h)
+              </td>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
+                ${blockchainInfo.average_transaction_fee_usd_24h?.toFixed(2) ?? 'N/A'}
+              </td>
+            </tr>
+            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
+                Market Cap (USD)
+              </td>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
+                ${blockchainInfo.market_cap_usd?.toLocaleString() ?? 'N/A'}
+              </td>
+            </tr>
+            <tr className='p-0 lg:p-4 flex flex-col lg:table-row'>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500'>
+                Hodling Addresses
+              </td>
+              <td className='lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0'>
+                {blockchainInfo.hodling_addresses?.toLocaleString() ?? 'N/A'}
               </td>
             </tr>
           </tbody>

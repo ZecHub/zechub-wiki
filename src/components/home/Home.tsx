@@ -1,7 +1,6 @@
 "use client";
 import ContentSections from "@/components/ContentSections";
 import Hero from "@/components/Hero";
-import { NotificationBanner } from "@/components/Notification/NotificationBanner";
 import AnimationHome from "@/components/ui/AnimationHome";
 import Cards from "@/components/ui/Cards";
 import { FadeInAnimation } from "@/components/ui/FadeInAnimation";
@@ -15,9 +14,6 @@ type HomeProps = {
 const Home = ({ text }: HomeProps) => {
   return (
     <main className="flex flex-col mx-auto">
-      {/* <section id="notification-banner">
-        <NotificationBanner />
-      </section> */}
       <section id="hero">
         <FadeInAnimation>
           <Hero />
@@ -26,7 +22,7 @@ const Home = ({ text }: HomeProps) => {
 
       <div className="flex flex-col">
         <section id="presentation">
-          <div className="w-full flex  items-center justify-center py-5">
+          <div className="w-full flex items-center justify-center py-5">
             <FadeInAnimation>
               <div className="flex flex-col items-center justify-center p-3 mt-6 shadow">
                 <FadeInAnimation>
@@ -35,7 +31,7 @@ const Home = ({ text }: HomeProps) => {
                 <FadeInAnimation>
                   <h1 className="text-4xl text-center font-bold mb-3">Welcome to ZecHub</h1>
                 </FadeInAnimation>
-                <div className="flex items-center justify-center p-4 ">
+                <div className="flex items-center justify-center p-4">
                   <FadeInAnimation>
                     <p className="text-lg text-center">{text}</p>
                   </FadeInAnimation>
@@ -45,7 +41,7 @@ const Home = ({ text }: HomeProps) => {
                     <Link
                       type="button"
                       href={"/explore"}
-                      className=" md:hover:scale-110 border-[#1984c7] transition duration-400  border-4 font-bold rounded-full  py-4 px-8 color-[#1984c7]"
+                      className=" md:hover:scale-110 border-[#1984c7] transition duration-400 border-4 font-bold rounded-full py-4 px-8 color-[#1984c7]"
                     >
                       Explore Zcash
                     </Link>

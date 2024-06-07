@@ -1,8 +1,6 @@
-import { getBannerMessage } from './actions';
 import HomePage from "@/components/home/Home";
-import  Metadata from 'next';
 
-
+// Define Metadata interface locally
 interface Metadata {
   title: string;
   description: string;
@@ -12,6 +10,7 @@ interface Metadata {
   ogImage?: string;
 }
 
+// Define metadata object
 export const metadata: Metadata = {
   title: 'Welcome to ZecHub',
   description: 'An open source education hub for Zcash',
@@ -20,10 +19,7 @@ export const metadata: Metadata = {
   ogImage: 'public/BannerPrancheta.png',
 };
 
-
-export default async function Home() {
-  // const bannerMsg = await getBannerMessage();
-
+export default function Home() {
   const text = `ZecHub is the community driven education hub for the Zcash cryptocurrency (ZEC). Zcash is a digital currency providing censorship resistant, secure & private payments. The Zcash Blockchain utilises highly advanced 'verifiable' zk-snarks that do not require Trusted Setup following the NU5 network upgrade in 2022.`;
 
   return <HomePage text={text} />;
