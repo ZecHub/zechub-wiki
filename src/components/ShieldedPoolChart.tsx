@@ -10,6 +10,7 @@ import { localPoint } from '@visx/event';
 import { LinearGradient } from '@visx/gradient';
 import { max, extent, bisector } from '@visx/vendor/d3-array';
 import { timeFormat } from '@visx/vendor/d3-time-format';
+
 /**
  * Type of values from the shielded pool over time. Each datum is amount 
  * shielded at a given date.
@@ -19,38 +20,19 @@ type ShieldedAmountDatum = {
   supply: number;
 };
 
-/**
- * URL for the json file of historic shielding data. This file is hosted in the 
- * ZecHub wiki repo.
- * 
- * The data is in the form of an array of objects, each with a `close` date and
- * `supply` amount.
- * 
- * For example:
- * {
- *     "close": "01/01/1970",
- *     "supply": 0
- * }
- * 
- * In the long run, we should find a way of caching this computation and storing
- * in database, and ideally in memory for performance reasons. Also, this could
- * cause COORS issues. 
- * 
- * @see "zechub-wiki/public/data/shielded_supply.json"
- * 
- */
-const SHIELDED_DATA_URL = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json';
+interface ShieldedPoolChartProps {
+  dataUrl: string;
+}
 
 /**
  * Loads the historic shielded pool data from a public json file in Github repo
  * @returns Promise of shielded pool data
  */
-async function fetchShieldedSupplyData(): Promise<Array<ShieldedAmountDatum>> {
-  const response = await fetch(SHIELDED_DATA_URL);
-  if (!response.ok)  throw new Error(`HTTP error! status: ${response.status}`);
+async function fetchShieldedSupplyData(url: string): Promise<Array<ShieldedAmountDatum>> {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
 }
-
 
 // Color scheme for chart and tooltip
 export const background = '#1984c7';
@@ -82,8 +64,7 @@ const getDate = (d: ShieldedAmountDatum): Date => new Date(d.close);
 const getShieldedValue = (d: ShieldedAmountDatum): number => d.supply;
 
 /** Bisector for date */
-const bisectDate 
-  = bisector<ShieldedAmountDatum, Date>((d)  => new Date(d.close)).left;
+const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close)).left;
 
 /**
  * Default width for the chart. It will render 1000px wide, although if this 
@@ -114,8 +95,9 @@ export type AreaProps = {
  * @returns Area chart for shielded pool over time
  * 
  */
-export default withTooltip<AreaProps, ShieldedAmountDatum>(
+const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, ShieldedAmountDatum>(
   ({
+    dataUrl,
     providedWidth = DEFAULT_WIDTH,
     providedHeight = DEFAULT_HEIGHT,
     margin = { top: 0, right: 0, bottom: 0, left: 0 },
@@ -124,15 +106,14 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
     tooltipData,
     tooltipTop = 0,
     tooltipLeft = 0,
-  }: AreaProps & WithTooltipProvidedProps<ShieldedAmountDatum>) => {
+  }: AreaProps & WithTooltipProvidedProps<ShieldedAmountDatum> & ShieldedPoolChartProps) => {
     
     /* State for chart data loaded from server */
-    const [chartData, setChartData] 
-      = useState([] as Array<ShieldedAmountDatum>);
+    const [chartData, setChartData] = useState([] as Array<ShieldedAmountDatum>);
 
     const yMax = useMemo(() => max(chartData, getShieldedValue) || 0, [chartData]);
 
-    /* Loading state for chart data in progres */
+    /* Loading state for chart data in progress */
     const [isLoading, setIsLoading] = useState(false);
 
     /* Error state for chart data */
@@ -145,23 +126,16 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
 
       setIsLoading(true);
 
-      fetchShieldedSupplyData()
+      fetchShieldedSupplyData(dataUrl)
         .then((data) => setChartData(data))
-        .catch((error) =>  setError(error))
+        .catch((error) => setError(error))
         .finally(() => setIsLoading(false));
+    }, [dataUrl, chartData, isLoading, error]);
 
-    }, [
-      chartData,
-      isLoading,
-      error,
-    ]);
-
-    
     /**
      * Reference to child, which will fill all space available horizontally
      */
     const ref = useRef<HTMLDivElement>(null);
-
 
     // State for width and height so that they update as browser size changes
     const [width, setWidth] = useState(providedWidth);
@@ -205,7 +179,7 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
     );
 
     /**
-     * Handle tooltop behavior on hover. The user should see the date and 
+     * Handle tooltip behavior on hover. The user should see the date and 
      * shielded value corresponding to the point hovered over.
      */
     const handleTooltip = useCallback(
@@ -227,7 +201,7 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
       },
       [showTooltip, shieldedValueScale, dateScale, chartData],
     );
-    
+
     // Render loading message when loading
     if (chartData.length === 0 || isLoading) {
       return (
@@ -237,7 +211,7 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
       );
     }
 
-    // Render error message if error laoding data
+    // Render error message if error loading data
     if (error) {
       return (
         <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
@@ -248,7 +222,7 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
 
     // Render the chart by default
     return (
-      // Make sure container fills width of patent
+      // Make sure container fills width of parent
       <div ref={ref} style={{ width: '100%', minWidth: '100%', minHeight: '500px' }}>
         <svg width={width} height={height}>
           <rect
@@ -372,3 +346,5 @@ export default withTooltip<AreaProps, ShieldedAmountDatum>(
     );
   },
 );
+
+export default ShieldedPoolChart;
