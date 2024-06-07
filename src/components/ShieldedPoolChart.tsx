@@ -22,7 +22,6 @@ type ShieldedAmountDatum = {
 
 interface ShieldedPoolChartProps {
   dataUrl: string;
-  color: string;
 }
 
 /**
@@ -35,13 +34,17 @@ async function fetchShieldedSupplyData(url: string): Promise<Array<ShieldedAmoun
   return await response.json();
 }
 
-// Default color scheme for tooltip
-const tooltipStyles = (color: string) => ({
+// Color scheme for chart and tooltip
+export const background = '#1984c7';
+export const background2 = 'rgb(34, 211, 238)';
+export const accentColor = '#edffea';
+export const accentColorDark = 'rgb(107, 114, 128)';
+const tooltipStyles = {
   ...defaultStyles,
-  background: color,
+  background,
   border: '1px solid white',
   color: 'white',
-});
+};
 
 /** Date format from data, i.e. "01/01/1970" */
 const formatDate = timeFormat("%b %d, '%y");
@@ -95,7 +98,6 @@ export type AreaProps = {
 const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, ShieldedAmountDatum>(
   ({
     dataUrl,
-    color,
     providedWidth = DEFAULT_WIDTH,
     providedHeight = DEFAULT_HEIGHT,
     margin = { top: 0, right: 0, bottom: 0, left: 0 },
@@ -117,14 +119,12 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     /* Error state for chart data */
     const [error, setError] = useState<Error | null>(null);
 
-    // Fetch data when dataUrl changes
+    // Fetch data whenever dataUrl changes
     useEffect(() => {
       setIsLoading(true);
+
       fetchShieldedSupplyData(dataUrl)
-        .then((data) => {
-          setChartData(data);
-          setError(null);
-        })
+        .then((data) => setChartData(data))
         .catch((error) => setError(error))
         .finally(() => setIsLoading(false));
     }, [dataUrl]);
@@ -200,7 +200,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     );
 
     // Render loading message when loading
-    if (isLoading) {
+    if (chartData.length === 0 || isLoading) {
       return (
         <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
           <p><i>Loading historic shielded pool data...</i></p>
@@ -229,17 +229,17 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             y={0}
             width={width}
             height={height}
-            fill={`url(#area-background-gradient-${color})`}
+            fill="url(#area-background-gradient)"
             rx={14}
           />
-          <LinearGradient id={`area-background-gradient-${color}`} from={color} to={color} />
-          <LinearGradient id={`area-gradient-${color}`} from={color} to={color} toOpacity={0.1} />
+          <LinearGradient id="area-background-gradient" from={background} to={background2} />
+          <LinearGradient id="area-gradient" from={accentColor} to={accentColor} toOpacity={0.1} />
           <GridRows
             left={margin.left}
             scale={shieldedValueScale}
             width={innerWidth}
             strokeDasharray="1,3"
-            stroke={color}
+            stroke={accentColor}
             strokeOpacity={0.25}
             pointerEvents="none"
             aria-label="Rows of chart"
@@ -249,7 +249,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             scale={dateScale}
             height={innerHeight}
             strokeDasharray="1,3"
-            stroke={color}
+            stroke={accentColor}
             strokeOpacity={0.25}
             pointerEvents="none"
             aria-label="Columns of chart"
@@ -260,8 +260,8 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             y={(d) => shieldedValueScale(getShieldedValue(d)) ?? 0}
             yScale={shieldedValueScale}
             strokeWidth={1}
-            stroke={`url(#area-gradient-${color})`}
-            fill={`url(#area-gradient-${color})`}
+            stroke="url(#area-gradient)"
+            fill="url(#area-gradient)"
             curve={curveMonotoneX}
             aria-label="Area under line of the chart"
           />
@@ -320,7 +320,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
               key={Math.random()}
               top={tooltipTop - 12}
               left={tooltipLeft + 12}
-              style={tooltipStyles(color)}
+              style={tooltipStyles}
               aria-label="Tooltip for shielded value at this point in time"
             >
               {getShieldedValue(tooltipData)}
