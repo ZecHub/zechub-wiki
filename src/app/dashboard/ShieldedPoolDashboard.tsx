@@ -5,14 +5,14 @@ import Button from '@/components/Button/Button';
 import HalvingMeter from '@/components/HalvingMeter';
 
 const ShieldedPoolChart = dynamic(
-  () => import('./ShieldedPoolChart'),
+  () => import('../../components/ShieldedPoolChart'),
   { ssr: true } // Enable SSR
 );
 
 const defaultUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json';
-const sproutUrl = 'https://path/to/sprout/data.json';
-const saplingUrl = 'https://path/to/sapling/data.json';
-const orchardUrl = 'https://path/to/orchard/data.json';
+const sproutUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json';
+const saplingUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json';
+const orchardUrl = 'https://github.com/ZecHub/zechub-wiki/blob/main/public/data/orchard_supply.json';
 
 interface BlockchainInfo {
   blocks: number;
