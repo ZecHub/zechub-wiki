@@ -81,7 +81,7 @@ const ShieldedPoolDashboard = () => {
 
   return (
     <div>
-      <h2 className='font-bold mt-8 mb-4'>Supply Chart (ZEC)</h2>
+      <h2 className='font-bold mt-8 mb-4'>Shielded Supply Chart (ZEC)</h2>
       <ShieldedPoolChart dataUrl={getDataUrl()} />
       <div className="mt-8 flex space-x-4">
         <Button onClick={() => setSelectedPool('sprout')} text="Sprout Pool" />
