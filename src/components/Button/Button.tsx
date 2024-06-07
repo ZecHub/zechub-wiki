@@ -1,22 +1,22 @@
 import React from 'react';
 
 interface ButtonProps {
-  onClick?: () => void;
   href?: string;
   text: string;
+  onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, href, text }) => {
+const Button: React.FC<ButtonProps> = ({ href, text, onClick }) => {
   if (href) {
     return (
-      <a href={href} className="btn" target="_blank" rel="noopener noreferrer">
+      <a href={href} className="button-class">
         {text}
       </a>
     );
   }
 
   return (
-    <button onClick={onClick} className="btn">
+    <button onClick={onClick} className="button-class">
       {text}
     </button>
   );
