@@ -1,3 +1,4 @@
+// src/app/dashboard/ShieldedPoolDashboard.tsx
 "use client";
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
@@ -12,7 +13,7 @@ const ShieldedPoolChart = dynamic(
 const defaultUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json';
 const sproutUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json';
 const saplingUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json';
-const orchardUrl = 'https://github.com/ZecHub/zechub-wiki/blob/main/public/data/orchard_supply.json';
+const orchardUrl = 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json';
 
 interface BlockchainInfo {
   blocks: number;
