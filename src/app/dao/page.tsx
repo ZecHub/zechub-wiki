@@ -50,18 +50,18 @@ const DaoMembers = () => {
       <div className='my-12'>
         <h3 className='text-3xl mb-4 font-semibold text-center'>DAO Members</h3>
 
-        <div className='w-full grid grid-cols-1 space-x-2 md:grid-cols-3 md:gap-4 justify-items-center mt-4 p-2'>
+        <div className='w-full grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center mt-4 p-2'>
           {daoMembers &&
             daoMembers.map((e) => (
               <FadeInAnimation key={e.name}>
-                <div className='flex justify-center space-y-4 w-full space-x-3 md:space-y-2'>
+                <div className='w-full flex justify-center'>
                   <MemberCards
                     imgUrl={e.imgUrl}
                     description={e.description}
                     name={e.name}
                     linkName={e.linkName}
                     urlLink={e.urlLink}
-                    zcashAddress={e.zcashAddress} 
+                    zcashAddress={e.zcashAddress}
                   />
                 </div>
               </FadeInAnimation>
