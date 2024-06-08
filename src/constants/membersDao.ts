@@ -5,7 +5,7 @@ export const daoMembers = [
         description: 'Secret Maxi, Leonine DAO launched and managed four DAOs.',
         linkName: 'Twitter',
         urlLink: 'https://twitter.com/LadaleLowo',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1756041822973882368/oax4ppkd_400x400.jpg',
@@ -13,7 +13,7 @@ export const daoMembers = [
         description: `Meme and media creator, ZFAV club contributor, nerd who loves new technology and Shielding everything`,
         linkName: 'Twitter',
         urlLink: 'https://twitter.com/zerodartz',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://i.ibb.co/rbMZ67Y/profile.jpg',
@@ -22,7 +22,7 @@ export const daoMembers = [
         and development of the Zcash ecosystem.`,
         linkName: 'Twitter',
         urlLink: 'https://twitter.com/zksquirrel',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://i.ibb.co/kQk5sG7/image-2023-11-17-170857858.png',
@@ -30,7 +30,7 @@ export const daoMembers = [
         description: 'Father, Journalist, Blogger and Podcaster from Venezuela. I like to learn and reach others about computers, smartphones and crypto as a financial alternative',
         linkName:'Twitter',
         urlLink: 'https://twitter.com/tecnopapapi',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://sea2.discourse-cdn.com/zcash/user_avatar/forum.zcashcommunity.com/dismad/120/18432_2.png',
@@ -39,7 +39,7 @@ export const daoMembers = [
         Supercross, Cryptocurrencies`,
         linkName:'Zcash',
         urlLink: 'https://zcashblockexplorer.com/ua/u1zhgy24tweexhjcsstya5qqzrus4cgv0amasfv5jp6f3p3qvw265rugn8ref5djg472l5s382mwuffremffr7se6xjlh5exagwg2d6frs',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://prozcash.ru/wp-content/uploads/2023/04/serdcze.jpeg',
@@ -50,7 +50,7 @@ export const daoMembers = [
         about Zcash.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/RuZcash',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1703030858771279872/1onKu0vX_400x400.jpg',
@@ -58,7 +58,7 @@ export const daoMembers = [
         description: `Zcast Podcast en Español, Educator & Media Production.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/gordonesTV',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1560452481829818368/c6XtZG6i_200x200.jpg',
@@ -68,7 +68,7 @@ export const daoMembers = [
         years, and built an NFT index, good expertise as a leader to building communities.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/michae2xl',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1699907348993626112/KRH0sBXD_400x400.jpg',
@@ -76,7 +76,7 @@ export const daoMembers = [
         description: 'ᙇecosystem relations @ZcashFoundation',
         linkName:'Twitter',
         urlLink: 'https://twitter.com/decentralistdan',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1528027327921201152/ra7kpu96_400x400.jpg',
@@ -84,7 +84,7 @@ export const daoMembers = [
         description: `Member of Zcash Community Grants Committe and Founder of Shielded Labs.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/aquietinvestor',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1634614829607538694/7_mFB6_T_400x400.jpg',
@@ -92,7 +92,7 @@ export const daoMembers = [
         description: `Zcash Nigeria Global Ambassador.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/ZcashNigeria',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png',
@@ -100,7 +100,7 @@ export const daoMembers = [
         description: `Privacy, Cryptography and Encryption.`,
         linkName:'Contact',
         urlLink: '#',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1560475487004250112/GoLrrEim_400x400.jpg',
@@ -108,7 +108,7 @@ export const daoMembers = [
         description: `Data Security Analyst & Community Manager at Zcash Brasil.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/vitozkp',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://free2z.cash/uploadz/public/Edicksonjga/IMG_20230415_142522_715.jpg',
@@ -117,7 +117,7 @@ export const daoMembers = [
         community on Telegram and YouTube channel, Editor of zcashesp.com/blog and Contributor of ZecHub.`,
         linkName:'Telegram',
         urlLink: 'https://t.me/Edicksonjga',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1568361509104803840/KFrdM4OY_200x200.jpg',
@@ -129,7 +129,7 @@ export const daoMembers = [
         withmy work.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/taminevg',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
     {
         imgUrl: 'https://i.seadn.io/gcs/files/b7d75113578335f503d620166f459b4a.png',
@@ -138,7 +138,7 @@ export const daoMembers = [
         programming and has mentored hundreds of junior developers at a coding bootcamp.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/luckytokidoki',
-        zcashAddress: ''
+        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
     },
 
 ]
