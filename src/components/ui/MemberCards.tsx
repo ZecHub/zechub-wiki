@@ -40,9 +40,9 @@ const MemberCards = ({
   };
 
   return (
-    <div className="card-container m-4">
-      <div className={`card border p-5 rounded-lg shadow-lg dark:bg-gray-800 ${isFlipped ? 'flipped' : ''}`}>
-        <div className="card-front flex flex-col items-center justify-center">
+    <div className="card-container">
+      <div className={`card ${isFlipped ? 'flipped' : ''}`}>
+        <div className="card-front flex flex-col items-center justify-center p-5 border rounded-lg shadow-lg dark:bg-gray-800">
           <Image
             className="w-32 h-32 my-3 rounded-full shadow-lg"
             src={imgUrl ? imgUrl : ""}
