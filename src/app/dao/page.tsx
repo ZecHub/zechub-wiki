@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import { FadeInAnimation } from '@/components/ui/FadeInAnimation';
 import MemberCards from '@/components/ui/MemberCards';
 import { daoMembers } from '@/constants/membersDao';
@@ -115,7 +116,6 @@ const DaoMembers = () => {
           <li>
             <a
               target='_blank'
-```javascript
               className='text-blue-500 active:text-blue-700 hover:text-blue-600'
               href='https://www.forbes.com/sites/cathyhackl/2021/06/01/what-are-daos-and-why-you-should-pay-attention/?sh=3d34fb2c7305'
             >
