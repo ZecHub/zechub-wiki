@@ -40,9 +40,8 @@ const MemberCards = ({
   };
 
   return (
-    <div className="card-container m-4">
-      <div className={`card p-5 border rounded-lg shadow-lg dark:bg-gray-800 ${isFlipped ? 'flipped' : ''}`}>
-        <div className="card-front flex flex-col items-center justify-center">
+      <div className={`border m-2.5 p-5 rounded-lg shadow-lg dark:bg-gray-800`}>
+        <div className="flex flex-col items-center justify-center">
           <Image
             className="w-50 h-50 my-3 rounded-full shadow-lg"
             src={imgUrl ? imgUrl : ""}
@@ -69,7 +68,7 @@ const MemberCards = ({
 
             {isOpen && <p className="text-gray-600 mt-2">{description}</p>}
           </div>
-          <div className="mt-4 w-full inherit justify-center text-center items-center md:mt-6">
+          <div className="mt-4 w-full inherit justify-center text-center items-center md:mt-6 space-x-2">
             <Link
               href={urlLink}
               target="_blank"
@@ -111,7 +110,7 @@ const MemberCards = ({
           </button>
         </div>
       </div>
-    </div>
+
   );
 };
 
