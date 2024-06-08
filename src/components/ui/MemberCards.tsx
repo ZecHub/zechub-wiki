@@ -36,7 +36,7 @@ const MemberCards = ({
     const encodedMemo = base64UrlEncode(message);
     const uri = `zcash:${zcashAddress}?amount=0.01&memo=${encodedMemo}`;
     window.location.href = uri;
-    setIsFlipped(false); // Flip back after generating the payment URI
+    setIsFlipped(false); 
   };
 
   return (
@@ -117,7 +117,7 @@ const MemberCards = ({
 
 export default MemberCards;
 
-function base64UrlEncode(str) {
+function base64UrlEncode(str: string) { 
   return btoa(str)
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
