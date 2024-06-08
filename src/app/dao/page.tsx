@@ -61,7 +61,7 @@ const DaoMembers = () => {
                     name={e.name}
                     linkName={e.linkName}
                     urlLink={e.urlLink}
-                    zcashAddress={e.zcashAddress} // Pass the correct prop
+                    zcashAddress={e.zcashAddress} 
                   />
                 </div>
               </FadeInAnimation>
