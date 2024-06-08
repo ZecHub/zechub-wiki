@@ -127,6 +127,7 @@ body {
   perspective: 1000px;
   max-width: 300px;
   width: 100%;
+  margin: 16px;
 }
 
 .card {
@@ -156,6 +157,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  justify-items: center;
 }
 
 .wallet-header {
