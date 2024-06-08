@@ -9,7 +9,7 @@ interface DaoProps {
   description: string;
   linkName: string;
   urlLink: string;
-  zcashAddress: string; // Add this property
+  zcashAddress: string;
 }
 
 const MemberCards = ({
@@ -18,7 +18,7 @@ const MemberCards = ({
   description,
   linkName,
   urlLink,
-  zcashAddress, // Destructure this property
+  zcashAddress,
 }: DaoProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [shortDescription, setShortDescription] = useState(description);
@@ -88,7 +88,7 @@ const MemberCards = ({
         <div className="card-back p-5 dark:bg-gray-800 relative">
           <textarea
             className="w-full p-2 border rounded-lg"
-            rows="4"
+            rows={4} // Ensure this is a number
             placeholder="Type your message..."
             maxLength={512}
             value={message}
