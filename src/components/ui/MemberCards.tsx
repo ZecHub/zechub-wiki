@@ -9,7 +9,7 @@ interface DaoProps {
   description: string;
   linkName: string;
   urlLink: string;
-  messageLink: string;
+  zcashAddress: string; // Add this property
 }
 
 const MemberCards = ({
@@ -18,7 +18,7 @@ const MemberCards = ({
   description,
   linkName,
   urlLink,
-  messageLink,
+  zcashAddress, // Destructure this property
 }: DaoProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [shortDescription, setShortDescription] = useState(description);
@@ -31,6 +31,13 @@ const MemberCards = ({
       setShortDescription(description.slice(0, 32) + "...");
     }
   }, [description]);
+
+  const handleSend = () => {
+    const encodedMemo = base64UrlEncode(message);
+    const uri = `zcash:${zcashAddress}?amount=0.01&memo=${encodedMemo}`;
+    window.location.href = uri;
+    setIsFlipped(false); // Flip back after generating the payment URI
+  };
 
   return (
     <div className="card-container m-2.5">
@@ -78,19 +85,20 @@ const MemberCards = ({
             </button>
           </div>
         </div>
-        <div className="card-back p-5 dark:bg-gray-800">
+        <div className="card-back p-5 dark:bg-gray-800 relative">
           <textarea
             className="w-full p-2 border rounded-lg"
             rows="4"
             placeholder="Type your message..."
+            maxLength={512}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
+          <div className="absolute bottom-2 right-2 text-gray-500">
+            {message.length}/512
+          </div>
           <button
-            onClick={() => {
-              // Handle the send message logic here
-              setIsFlipped(false); // Flip back after sending the message
-            }}
+            onClick={handleSend}
             className="mt-4 inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 hover:scale-110 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
           >
             Send
@@ -108,3 +116,10 @@ const MemberCards = ({
 };
 
 export default MemberCards;
+
+function base64UrlEncode(str) {
+  return btoa(str)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+}
