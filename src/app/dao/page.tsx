@@ -50,20 +50,18 @@ const DaoMembers = () => {
       <div className='my-12'>
         <h3 className='text-3xl mb-4 font-semibold text-center'>DAO Members</h3>
 
-        <div className='w-full grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center mt-4 p-2'>
+        <div className='grid-container'>
           {daoMembers &&
             daoMembers.map((e) => (
               <FadeInAnimation key={e.name}>
-                <div className='w-full flex justify-center'>
-                  <MemberCards
-                    imgUrl={e.imgUrl}
-                    description={e.description}
-                    name={e.name}
-                    linkName={e.linkName}
-                    urlLink={e.urlLink}
-                    zcashAddress={e.zcashAddress}
-                  />
-                </div>
+                <MemberCards
+                  imgUrl={e.imgUrl}
+                  description={e.description}
+                  name={e.name}
+                  linkName={e.linkName}
+                  urlLink={e.urlLink}
+                  zcashAddress={e.zcashAddress}
+                />
               </FadeInAnimation>
             ))}
         </div>
@@ -117,6 +115,7 @@ const DaoMembers = () => {
           <li>
             <a
               target='_blank'
+```javascript
               className='text-blue-500 active:text-blue-700 hover:text-blue-600'
               href='https://www.forbes.com/sites/cathyhackl/2021/06/01/what-are-daos-and-why-you-should-pay-attention/?sh=3d34fb2c7305'
             >
