@@ -5,6 +5,7 @@
 body {
   background: #fff9f9;
 }
+
 .wallet-tag {
   display: flex;
   flex-direction: row;
@@ -12,15 +13,18 @@ body {
   max-width: 100%;
   flex-wrap: wrap;
 }
+
 .wallet-tag-item {
   padding: .2rem .5rem;
   margin: .2rem;
   border-radius: .3rem;
   font-size: 80%;
 }
-.podcast-list li{
+
+.podcast-list li {
   padding-left: 15px;
 }
+
 .podcast-list li a {
   display: inline-flex;
   flex-direction: row;
@@ -31,6 +35,7 @@ body {
   --tw-text-opacity: 1;
   color: rgb(26 86 219 / var(--tw-text-opacity));
 }
+
 .shielded-pools img {
   max-width: 40%;
   float: left;
@@ -43,7 +48,7 @@ body {
   display: table;
 }
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 767px) {
   .shielded-pools img {
     max-width: 100%;
     float: none;
@@ -51,8 +56,8 @@ body {
   }
 }
 
-.mobile-trigger{
-  margin: 0!important;
+.mobile-trigger {
+  margin: 0 !important;
 }
 
 @media (min-width: 300px) {
@@ -60,18 +65,22 @@ body {
     max-width: none;
   }
 }
+
 @media (min-width: 1440px) {
   .container {
     max-width: 1504px;
   }
 }
+
 .border-b-1 {
   border-bottom-width: 1px;
   border-color: rgba(0, 0, 0, 0.1);
 }
-.dark .border-b-1{
+
+.dark .border-b-1 {
   border-color: rgba(255, 255, 255, 0.1);
 }
+
 .path {
   stroke-dasharray: 50;
   stroke-dashoffset: 50;
@@ -86,8 +95,7 @@ body {
 }
 
 @keyframes moveRight {
-  0%,
-  100% {
+  0%, 100% {
     transform: translateX(-300%);
     height: 0.75rem;
     width: 4rem;
@@ -117,11 +125,12 @@ body {
 
 .card-container {
   perspective: 1000px;
+  max-width: 300px;
+  width: 100%;
 }
 
 .card {
   width: 100%;
-  height: 100%;
   transition: transform 0.6s;
   transform-style: preserve-3d;
   position: relative;
@@ -153,9 +162,11 @@ body {
   width: 100%;
   grid-column: 1 / -1;
 }
+
 .wallet-item .text-justify {
   text-align: left;
 }
+
 .wallet-item img {
   margin: auto;
 }
