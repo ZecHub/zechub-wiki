@@ -139,7 +139,7 @@ body {
 }
 
 .card-flipped {
-  transform: rotateY(90deg);
+  transform: rotateY(180deg);
 }
 
 .card,
@@ -149,7 +149,7 @@ body {
 }
 
 .card-back {
-  transform: rotateY(90deg);
+  transform: rotateY(180deg);
   flex-direction: column;
   justify-content: center;
   align-items: center;
