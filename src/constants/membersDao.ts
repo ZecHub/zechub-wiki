@@ -19,6 +19,14 @@ export const daoMembers = [
         zcashAddress: 'u1xut04cg3v0a5zqpud5l5nrkx8x4847q2fg38jzw8840aqj6e6gzj6m4paae906h88dsehymz5m28lrdfgwcvkymhqpfk0hlmjx2gef08q3rty9ljvnvxv9fevggegzqeql63dl220kpwe4n60kzwz87eq7mj8ppsuhqhvdzhdp00dymfgrc05e73ljwagn6ct5t33nrel0n7gxftv29'
     },
     {
+        imgUrl: 'https://pbs.twimg.com/profile_images/1754288028732870656/sOWHjU3i_400x400.jpg',
+        name: 'Yoditar',
+        description: 'SpacesHost | Blogger | Crypto community builder: @zcashesp and @libredotorg | Ambassador @Vivaldi_es | Privacy activist',
+        linkName: 'Twitter',
+        urlLink: 'https://twitter.com/YoditarX',
+        zcashAddress: '#'
+    },
+    {
         imgUrl: 'https://pbs.twimg.com/profile_images/1756041822973882368/oax4ppkd_400x400.jpg',
         name: 'zerodartz',
         description: `Meme and media creator, ZFAV club contributor, nerd who loves new technology and Shielding everything`,
