@@ -2,7 +2,7 @@
 // components/WalletItem.tsx
 import React from "react";
 import { Icon } from "@/components/ui/Icon";
-import { MdDevices, MdPool, MdChecklist, MdOpenInNew as OpenNew } from "react-icons/md";
+import { MdDevices, MdPool, MdChecklist, MdOpenInNew as OpenNew, MdThumbUp as Like, MdThumbDown as Dislike } from "react-icons/md";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -13,6 +13,7 @@ interface WalletItemProps {
   tags: Tag[];
   likes: number;
   onLike: () => void;
+  onDislike: () => void;
 }
 
 interface Tag {
@@ -26,7 +27,7 @@ const categoryIcons = {
   Pools: MdPool,
   Features: MdChecklist,
 };
-const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes, onLike }) => {
+const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes, onLike, onDislike }) => {
   return (
     <div className="wallet-item h-full flex flex-col gap-4 items-start border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5">
       <div className="col-span-12 grid grid-cols-12 gap-4 items-start h-full">
@@ -82,9 +83,28 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes,
           </div>
         </div>
       </div>
-      <div className="wallet-likes mt-4">
-        <button onClick={onLike} className="like-button text-blue-500">Like</button>
-        <span className="likes-count ml-2">{likes} {likes === 1 ? "Like" : "Likes"}</span>
+      <hr className="w-full"/>
+      <div className="wallet-likes w-full flex">
+        <div className="likes-count flex-grow">
+          <span className="text-gray-400">Rating:</span> {likes}
+        </div>
+        <div>
+          
+          <button onClick={onLike} className="like-button text-blue-500 mr-4">
+            <Icon
+                icon={Like}
+                className="inline-block h-5 w-5 ms-2"
+                size="small"
+              />
+          </button>
+          <button onClick={onDislike} className="like-button text-blue-500">
+            <Icon
+                icon={Dislike}
+                className="inline-block h-5 w-5 ms-2"
+                size="small"
+              />
+          </button>
+        </div>
       </div>
     </div>
   );

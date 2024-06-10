@@ -67,7 +67,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title: walletTitle }),
+        body: JSON.stringify({ title: walletTitle, delta:1 }),
       });
   
       if (response.ok) {
@@ -77,6 +77,32 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         setLikes((prevLikes) => ({
           ...prevLikes,
           [walletTitle]: prevLikes[walletTitle] + 1,
+        }));
+      } else {
+        console.error("Failed to update likes");
+      }
+    } catch (error) {
+      console.error("Error updating likes:", error);
+    }
+  };
+
+  const handleDislike = async (walletTitle: string) => {
+    try {
+      const response = await fetch("/api/wallet-likes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title: walletTitle, delta:-1 }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Received message:", data);
+        // Update likes state only if the API call was successful
+        setLikes((prevLikes) => ({
+          ...prevLikes,
+          [walletTitle]: prevLikes[walletTitle] - 1,
         }));
       } else {
         console.error("Failed to update likes");
@@ -121,6 +147,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               ]}
               likes={likes[wallet.title]}
               onLike={() => handleLike(wallet.title)}
+              onDislike={() => handleDislike(wallet.title)}
             />
           ))}
         </div>
