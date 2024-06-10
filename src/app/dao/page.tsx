@@ -1,9 +1,10 @@
 'use client';
+import React from 'react';
 import { FadeInAnimation } from '@/components/ui/FadeInAnimation';
 import MemberCards from '@/components/ui/MemberCards';
 import { daoMembers } from '@/constants/membersDao';
 
-const DaoMembers = () => {
+const DaoMembers: React.FC = () => {
   return (
     <main>
       <FadeInAnimation>
@@ -12,25 +13,25 @@ const DaoMembers = () => {
         </h1>
 
         <p className='text-xl text-center text-slate-600 mb-12'>
-         ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:
-         Privacy is a human right
-         Education should be open-source and accessible worldwide
-         Community members have a right to earn ZEC privately
-
+          ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:
+          Privacy is a human right
+          Education should be open-source and accessible worldwide
+          Community members have a right to earn ZEC privately
           ZecHub DAO is comprised of likeminded individuals located around the world with the common goal of effectively guiding Zcash and Privacy Technology education. 
         </p>
       </FadeInAnimation>
 
-<FadeInAnimation>
-  <h3 className='text-3xl mb-4 font-semibold'>
-    What makes ZecHub unique?
-  </h3>
+      <FadeInAnimation>
+        <h3 className='text-3xl mb-4 font-semibold'>
+          What makes ZecHub unique?
+        </h3>
 
-  <p className='text-base text-slate-600 mb-12'>
-    ZecHub is one of the first public DAO&apos;s in Zcash&apos;s history.
-    Its funds are held primarily in a Shielded Zcash address, compared to most DAO&apos;s that live EVM chains such as Ethereum.
-  </p>
-</FadeInAnimation>
+        <p className='text-base text-slate-600 mb-12'>
+          ZecHub is one of the first public DAO&apos;s in Zcash&apos;s history.
+          Its funds are held primarily in a Shielded Zcash address, compared to most DAO&apos;s that live EVM chains such as Ethereum.
+        </p>
+      </FadeInAnimation>
+
       <FadeInAnimation>
         <h3 className='text-3xl mb-4 font-semibold'>Governance</h3>
 
@@ -50,19 +51,18 @@ const DaoMembers = () => {
       <div className='my-12'>
         <h3 className='text-3xl mb-4 font-semibold text-center'>DAO Members</h3>
 
-        <div className='w-full grid grid-cols-1 space-x-2 md:grid-cols-3 md:gap-4 justify-items-center  mt-4 p-2'>
+        <div className='grid-container'>
           {daoMembers &&
-            daoMembers.map((e) => (
-              <FadeInAnimation key={e.name}>
-                <div className='flex justify-center space-y-4 w-full space-x-3 md:space-y-2 '>
-                  <MemberCards
-                    imgUrl={e.imgUrl}
-                    description={e.description}
-                    name={e.name}
-                    linkName={e.linkName}
-                    urlLink={e.urlLink}
-                  />
-                </div>
+            daoMembers.map((member) => (
+              <FadeInAnimation key={member.name}>
+                <MemberCards
+                  imgUrl={member.imgUrl}
+                  description={member.description}
+                  name={member.name}
+                  linkName={member.linkName}
+                  urlLink={member.urlLink}
+                  zcashAddress={member.zcashAddress}
+                />
               </FadeInAnimation>
             ))}
         </div>
@@ -91,6 +91,7 @@ const DaoMembers = () => {
           </li>
         </ul>
       </FadeInAnimation>
+
       <div>
         <h3 className='text-3xl mb-4 font-semibold'>Sources</h3>
         <ul className='text-base text-slate-600 mb-12 list-disc px-4'>
