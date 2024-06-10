@@ -5,32 +5,32 @@ import { FadeInAnimation } from '@/components/ui/FadeInAnimation';
 import MemberCards from '@/components/ui/MemberCards';
 import { daoMembers } from '@/constants/membersDao';
 import logo from '/public/DAOlogo.png';
-import daoLogo from '/public/daodao.jpg'; 
-import ethLogo from '/public/snapshot.jpg'; 
+import daoLogo from '/public/daodao.jpg';
+import ethLogo from '/public/snapshot.jpg';
 
 const DaoMembers: React.FC = () => {
   return (
     <main>
       <FadeInAnimation>
         <div className="flex items-center justify-center my-12">
-          <Image 
-            src={logo} 
-            alt="ZecHub Logo" 
-            width={100} 
-            height={100} 
+          <Image
+            src={logo}
+            alt="ZecHub Logo"
+            width={100}
+            height={100}
             className="mr-4"
           />
           <h1 className='text-4xl font-semibold'>
             ZecHub DAO
           </h1>
         </div>
-        
+
         <p className='text-xl text-center text-slate-600 mb-12'>
           ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:
           Privacy is a human right
           Education should be open-source and accessible worldwide
           Community members have a right to earn ZEC privately
-          ZecHub DAO is comprised of likeminded individuals located around the world with the common goal of effectively guiding Zcash and Privacy Technology education. 
+          ZecHub DAO is comprised of likeminded individuals located around the world with the common goal of effectively guiding Zcash and Privacy Technology education.
         </p>
       </FadeInAnimation>
 
@@ -59,23 +59,31 @@ const DaoMembers: React.FC = () => {
           </a>.
         </p>
 
-        <div className='flex justify-center space-x-4 mb-12'>
-          <a href='https://daodao.zone/dao/juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y/proposals' target='_blank'>
-            <Image 
-              src={daoLogo} 
-              alt="DAODAO" 
-              width={80} 
-              height={80}
-            />
-          </a>
-          <a href='https://snapshot.org/#/zechubdao.eth' target='_blank'>
-            <Image 
-              src={ethLogo} 
-              alt="Ethereum DAO" 
-              width={80} 
-              height={80} 
-            />
-          </a>
+        <div className='flex justify-center items-center text-center space-x-4 mb-12'>
+          <div>
+            <a href='https://daodao.zone/dao/juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y/proposals' target='_blank'>
+              <Image
+                className='rounded-full border-4 border-slate-400 dark:border-black hover:scale-125'
+                src={daoLogo}
+                alt="DAODAO"
+                width={80}
+                height={80}
+              />
+            </a>
+            <h1 className='font-bold'>DAO DAO</h1>
+          </div>
+          <div>
+            <a href='https://snapshot.org/#/zechubdao.eth' target='_blank'>
+              <Image
+                className='rounded-full border-4 border-slate-400 dark:border-black hover:scale-125'
+                src={ethLogo}
+                alt="Ethereum DAO"
+                width={80}
+                height={80}
+              />
+            </a>
+            <h1  className='font-bold'> SnapShot</h1>
+          </div>
         </div>
       </FadeInAnimation>
 
