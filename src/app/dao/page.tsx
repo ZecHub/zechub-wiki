@@ -5,7 +5,7 @@ import { FadeInAnimation } from '@/components/ui/FadeInAnimation';
 import MemberCards from '@/components/ui/MemberCards';
 import { daoMembers } from '@/constants/membersDao';
 import logo from '/public/DAOlogo.png';
-import daoLogo from '/public/daodao.png'; 
+import daoLogo from '/public/daodao.jpg'; 
 import ethLogo from '/public/snapshot.jpg'; 
 
 const DaoMembers: React.FC = () => {
