@@ -64,8 +64,8 @@ const DaoMembers: React.FC = () => {
             <Image 
               src={daoLogo} 
               alt="DAODAO" 
-              width={300} 
-              height={700}
+              width={80} 
+              height={80}
             />
           </a>
           <a href='https://snapshot.org/#/zechubdao.eth' target='_blank'>
