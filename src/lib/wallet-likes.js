@@ -1,5 +1,5 @@
 const likesData = {
-  "Zashi": 10
+  "Zashi": 0
 };
 
 module.exports = { likesData };

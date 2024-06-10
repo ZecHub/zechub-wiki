@@ -25,6 +25,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     Features: new Set<string>(),
   });
   const [likes, setLikes] = useState<{ [key: string]: number }>({});
+  const [error, setError] = useState<{ [key: string]: string }>({});
+  const [success, setSuccess] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     const devicesSet = new Set<string>();
@@ -61,6 +63,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   }
 
   const handleLike = async (walletTitle: string) => {
+    setSuccess({});
+    setError({}); // Reset error before attempting to like
     try {
       const response = await fetch("/api/wallet-likes", {
         method: "POST",
@@ -78,15 +82,18 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           ...prevLikes,
           [walletTitle]: prevLikes[walletTitle] + 1,
         }));
+        setSuccess({ [walletTitle]: "We saved your review!" });
       } else {
-        console.error("Failed to update likes");
+        setError({ [walletTitle]: "You reviewed this in the past." });
       }
     } catch (error) {
-      console.error("Error updating likes:", error);
+      setError({ [walletTitle]: "Error updating rating: "+error });
     }
   };
 
   const handleDislike = async (walletTitle: string) => {
+    setSuccess({});
+    setError({}); // Reset error before attempting to dislike
     try {
       const response = await fetch("/api/wallet-likes", {
         method: "POST",
@@ -104,11 +111,12 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           ...prevLikes,
           [walletTitle]: prevLikes[walletTitle] - 1,
         }));
+        setSuccess({ [walletTitle]: "We saved your review!" });
       } else {
-        console.error("Failed to update likes");
+        setError({[walletTitle]: "You reviewed this in the past."});
       }
     } catch (error) {
-      console.error("Error updating likes:", error);
+      setError({[walletTitle]: "Error updating rating: "+error});
     }
   };
 
@@ -122,6 +130,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     })
   );
 
+  const sortedWallets = filteredWallets.sort((a, b) => likes[b.title] - likes[a.title]);
+
   return (
     <div className="flex flex-col md:flex-row">
       <div className="wallet-filter w-auto md:w-1/5 relative">
@@ -134,7 +144,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       </div>
       <section className="h-auto w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-          {filteredWallets.map((wallet) => (
+          {sortedWallets.map((wallet) => (
             <WalletItem
               key={wallet.title}
               title={wallet.title}
@@ -148,6 +158,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               likes={likes[wallet.title]}
               onLike={() => handleLike(wallet.title)}
               onDislike={() => handleDislike(wallet.title)}
+              error={error[wallet.title]}
+              success={success[wallet.title]}
             />
           ))}
         </div>
