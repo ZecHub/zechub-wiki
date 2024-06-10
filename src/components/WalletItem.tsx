@@ -89,15 +89,14 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes,
           <span className="text-gray-400">Rating:</span> {likes}
         </div>
         <div>
-          
-          <button onClick={onLike} className="like-button text-blue-500 mr-4">
+          <button onClick={onLike} className="like-button mr-4 text-gray-600 hover:text-blue-500">
             <Icon
                 icon={Like}
                 className="inline-block h-5 w-5 ms-2"
                 size="small"
               />
           </button>
-          <button onClick={onDislike} className="like-button text-blue-500">
+          <button onClick={onDislike} className="like-button text-gray-600 hover:text-blue-500">
             <Icon
                 icon={Dislike}
                 className="inline-block h-5 w-5 ms-2"
