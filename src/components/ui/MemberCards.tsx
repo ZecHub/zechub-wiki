@@ -1,138 +1,133 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import { FadeInAnimation } from '@/components/ui/FadeInAnimation';
-import MemberCards from '@/components/ui/MemberCards';
-import { daoMembers } from '@/constants/membersDao';
-import logo from '/public/DAOlogo.png'; 
-import daoLogo from 'public/daodao.png'; 
-import ethLogo from 'public/snapshot.jpg'; 
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
-const DaoMembers: React.FC = () => {
+interface DaoProps {
+  imgUrl: string;
+  name: string;
+  description: string;
+  linkName: string;
+  urlLink: string;
+  zcashAddress: string;
+}
+
+const MemberCards = ({
+  imgUrl,
+  name,
+  description,
+  linkName,
+  urlLink,
+  zcashAddress,
+}: DaoProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [shortDescription, setShortDescription] = useState(description);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [message, setMessage] = useState('');
+  const shouldShowReadMore = description.length >= 37;
+
+  useEffect(() => {
+    if (description.length >= 37) {
+      setShortDescription(description.slice(0, 32) + "...");
+    }
+  }, [description]);
+
+  const handleSend = () => {
+    const encodedMemo = base64UrlEncode(message);
+    const uri = `zcash:${zcashAddress}?amount=0.01&memo=${encodedMemo}`;
+    window.location.href = uri;
+    handleFlip()
+  };
+
+  const handleFlip = () => {
+    setIsFlipped(!isFlipped)
+  }
+
   return (
-    <main>
-      <FadeInAnimation>
-        <div className="flex items-center justify-center my-12">
-          <Image 
-            src={logo} 
-            alt="ZecHub Logo" 
-            width={50} 
-            height={50} 
-            className="mr-4"
+    <div className={`card ${isFlipped ? 'card-flipped' : ''}`} >
+      <div className={` border m-2.5 p-5 rounded-lg shadow-lg dark:bg-gray-800`}>
+        <div className={`${isFlipped ? 'hidden' : ''} flex flex-col items-center justify-center`}>
+          <Image
+            className="w-50 h-50 my-3 rounded-full shadow-lg"
+            src={imgUrl ? imgUrl : ""}
+            alt={`${name} profile image`}
+            width={200}
+            height={200}
+            loading="lazy"
           />
-          <h1 className='text-4xl font-semibold'>
-            ZecHub DAO
-          </h1>
+          <h5 className="text-xl my-4 font-bold text-gray-900 dark:text-white">
+            {name}
+          </h5>
+          <div className="p-4 text-center ">
+            <p className={`text-gray-600 dark:text-white ${isOpen ? "hidden" : "line-clamp-3"}`}>
+              {shortDescription}
+            </p>
+            {shouldShowReadMore && (
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-blue-500 mt-2 focus:outline-none"
+              >
+                <span>{isOpen ? "Read Less" : "Read More"}</span>
+              </button>
+            )}
+
+            {isOpen && <p className="text-gray-600 mt-2 dark:text-white">{description}</p>}
+          </div>
+          <div className="mt-4 w-full inherit justify-center text-center items-center md:mt-6 space-x-2">
+            <Link
+              href={urlLink}
+              target="_blank"
+              className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 hover:scale-110 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              {linkName}
+            </Link>
+            <button
+              onClick={handleFlip}
+              className="inline-flex items-center w-1/2 justify-center px-4 py-2 mt-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 hover:scale-110 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Message
+            </button>
+          </div>
         </div>
-        
-        <p className='text-xl text-center text-slate-600 mb-12'>
-          ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:
-          Privacy is a human right
-          Education should be open-source and accessible worldwide
-          Community members have a right to earn ZEC privately
-          ZecHub DAO is comprised of likeminded individuals located around the world with the common goal of effectively guiding Zcash and Privacy Technology education. 
-        </p>
-      </FadeInAnimation>
-
-      <FadeInAnimation>
-        <h3 className='text-3xl mb-4 font-semibold'>
-          What makes ZecHub unique?
-        </h3>
-
-        <p className='text-base text-slate-600 mb-12'>
-          ZecHub is one of the first public DAO&apos;s in Zcash&apos;s history.
-          Its funds are held primarily in a Shielded Zcash address, compared to most DAO&apos;s that live EVM chains such as Ethereum.
-        </p>
-      </FadeInAnimation>
-
-      <FadeInAnimation>
-        <h3 className='text-3xl mb-4 font-semibold'>Governance</h3>
-
-        <p className='text-base text-slate-600 mb-12'>
-          All DAO proposals are public and can be viewed{' '}
-          <a href='https://vote.zechub.xyz/'>here</a>. Anyone can create a
-          proposal to vote on. In an effort to support community transparency,
-          the ZecHubDAO will post all governance proposals in the Zcash
-          Community Forum{' '}
-          <a href='https://forum.zcashcommunity.com/t/zechub-governance-updates/43674'>
-            ZecHub Governance thread
-          </a>.
-        </p>
-
-        <div className='flex justify-center space-x-4 mb-12'>
-          <a href='https://daodao.zone/dao/juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y/proposals' target='_blank'>
-            <Image 
-              src={daoLogo} 
-              alt="DAODAO" 
-              width={50} // Adjust size as needed
-              height={50} // Adjust size as needed
-            />
-          </a>
-          <a href='https://snapshot.org/#/zechubdao.eth' target='_blank'>
-            <Image 
-              src={ethLogo} 
-              alt="Ethereum DAO" 
-              width={50} 
-              height={50} 
-            />
-          </a>
-        </div>
-      </FadeInAnimation>
-
-      <div className='my-12'>
-        <h3 className='text-3xl mb-4 font-semibold text-center'>DAO Members</h3>
-
-        <div className='grid-container'>
-          {daoMembers &&
-            daoMembers.map((e) => (
-              <FadeInAnimation key={e.name}>
-                <MemberCards
-                  imgUrl={e.imgUrl}
-                  description={e.description}
-                  name={e.name}
-                  linkName={e.linkName}
-                  urlLink={e.urlLink}
-                  zcashAddress={e.zcashAddress}
-                />
-              </FadeInAnimation>
-            ))}
+        <div className={`card-back ${!isFlipped ? 'hidden' : 'h-100'} p-5 dark:bg-gray-800`}>
+          <h1 className="text-lg mb-3">Message to {name}</h1>
+          <textarea
+            className="w-full p-2 border rounded-lg dark:text-black font-bold"
+            rows={4}
+            placeholder="Type your message..."
+            maxLength={512}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          <div className="absolute bottom-2 right-2 text-gray-500">
+            {message.length}/512
+          </div>
+          <button
+            onClick={handleSend}
+            className="mt-4 mr-3 inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 hover:scale-110 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Send
+          </button>
+          <button
+            onClick={() => {
+              handleFlip()
+              setMessage('')
+            }}
+            className="mt-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 hover:scale-110 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          >
+            Cancel 
+          </button>
         </div>
       </div>
-
-      <div>
-        <h3 className='text-3xl mb-4 font-semibold'>Sources</h3>
-        <ul className='text-base text-slate-600 mb-12 list-disc px-4'>
-          <li>
-            <a
-              target='_blank'
-              className='text-blue-500 active:text-blue-700 hover:text-blue-600'
-              href='https://twitter.com/ZecHub/status/1569827000218537984'
-            >
-              https://twitter.com/ZecHub/status/1569827000218537984?s=20&t=v6h3n3P7o7LMbnAG-O8Kug
-            </a>
-          </li>
-          <li>
-            <a
-              target='_blank'
-              className='text-blue-500 active:text-blue-700 hover:text-blue-600'
-              href='https://forum.zcashcommunity.com/t/zechub-rfi/42778/17'
-            >
-              https://forum.zcashcommunity.com/t/zechub-rfi/42778/17
-            </a>
-          </li>
-          <li>
-            <a
-              target='_blank'
-              className='text-blue-500 active:text-blue-700 hover:text-blue-600'
-              href='https://www.forbes.com/sites/cathyhackl/2021/06/01/what-are-daos-and-why-you-should-pay-attention/?sh=3d34fb2c7305'
-            >
-              https://www.forbes.com/sites/cathyhackl/2021/06/01/what-are-daos-and-why-you-should-pay-attention/?sh=3d34fb2c7305
-            </a>
-          </li>
-        </ul>
-      </div>
-    </main>
+    </div>
   );
 };
 
-export default DaoMembers;
+export default MemberCards;
+
+function base64UrlEncode(str: string) {
+  return btoa(str)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+}
