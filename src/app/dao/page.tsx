@@ -16,8 +16,8 @@ const DaoMembers: React.FC = () => {
           <Image 
             src={logo} 
             alt="ZecHub Logo" 
-            width={200} 
-            height={200} 
+            width={100} 
+            height={100} 
             className="mr-4"
           />
           <h1 className='text-4xl font-semibold'>
@@ -72,8 +72,8 @@ const DaoMembers: React.FC = () => {
             <Image 
               src={ethLogo} 
               alt="Ethereum DAO" 
-              width={50} 
-              height={50} 
+              width={80} 
+              height={80} 
             />
           </a>
         </div>
