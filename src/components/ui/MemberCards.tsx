@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { FadeInAnimation } from '@/components/ui/FadeInAnimation';
 import MemberCards from '@/components/ui/MemberCards';
 import { daoMembers } from '@/constants/membersDao';
-import logo from '@/public/DAOlogo.png'; 
+import logo from '/public/DAOlogo.png'; 
 import daoLogo from 'public/daodao.png'; 
 import ethLogo from 'public/snapshot.jpg'; 
 
