@@ -24,7 +24,7 @@ export const daoMembers = [
         description: 'SpacesHost | Blogger | Crypto community builder: @zcashesp and @libredotorg | Ambassador @Vivaldi_es | Privacy activist',
         linkName: 'Twitter',
         urlLink: 'https://twitter.com/YoditarX',
-        zcashAddress: '#'
+        zcashAddress: 'u1lfhzhek3mt09pyjfthvfvlp2d0epat35ucwajl5uayw6q4ekjq3j9gcrelakntx0zpjqc5j37rg7p9c0jphedvx2pf2sl4j0whl8de8unzld9qndacw89z5zeqem55q2qjfprr3z4welw04dxgggr7etklj25prpspkuy59ayt7q5gu29lndvnjwdghqv5pd2a4lytjwmrtskhk95hn'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1756041822973882368/oax4ppkd_400x400.jpg',
