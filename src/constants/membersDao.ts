@@ -97,7 +97,7 @@ export const daoMembers = [
         years, and built an NFT index, good expertise as a leader to building communities.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/michae2xl',
-        zcashAddress: 'x'
+        zcashAddress: 'u1h5pajxdsa0zfm747v0rs82z45y2z2nqmsxyqku2fpkfryple9r5m6660h00hql8nffljunq7mz2d0auemxm83pjy8ptpyurxnncedftvf0z3xwcff2efslz2stzdenpzzvv25n5fql2uxn4k8cffdeya3ugkf0s6d55ar9z0jawpqzmz9jyg7x7zvssu9d26lxkswp657uq2cwkc45n'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1699907348993626112/KRH0sBXD_400x400.jpg',
