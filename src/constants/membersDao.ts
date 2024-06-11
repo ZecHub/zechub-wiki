@@ -121,7 +121,7 @@ export const daoMembers = [
         description: `Zcash Nigeria Global Ambassador.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/ZcashNigeria',
-        zcashAddress: '#'
+        zcashAddress: 'zs1wrydakfyjclqp7h42tjnrulu7wrvwxqr4ey8hh299z0j4j3kxs23u29lxdt0cs9l3xddcg2qtjf'
     },
     {
         imgUrl: 'https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png',
