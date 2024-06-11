@@ -128,8 +128,8 @@ export const daoMembers = [
         name: 'Jay',
         description: `Privacy, Cryptography and Encryption.`,
         linkName:'Contact',
-        urlLink: '#',
-        zcashAddress: '#'
+        urlLink: 'https://t.me/Zcash_Community',
+        zcashAddress: 'u14fv86hd6eqehj7w40xw5wen47qp2muk4ulk7660ty8z7wuv6k5cg9tqhnp8p8qjltzw6a4v4nscltzar5q2k75vrxsq65fda459kc79r'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1560475487004250112/GoLrrEim_400x400.jpg',
