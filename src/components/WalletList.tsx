@@ -45,7 +45,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         Features: featuresSet,
       });
 
-      let initialLikes = {};
+      
+      let initialLikes: { [key: string]: number } = {};
       try {
         const response = await fetch("/api/wallet-likes", {
           method: "POST",
