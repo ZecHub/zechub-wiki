@@ -62,7 +62,7 @@ export const daoMembers = [
         programming and has mentored hundreds of junior developers at a coding bootcamp.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/luckytokidoki',
-        zcashAddress: '#'
+        zcashAddress: 'u19fwcakcfyep82fyp0vhh0j6p6enr4dgtx5kpprls5zxxts5vact8pffeyh53j3ujf49yj670x972hcuq3tssuzpt47aezw7dfnttkpaxte6vdnwq9w20w843ukqrdvd5dn4q9wrnp9gmxfqj8jys7yzpyc542l4my5q3qwseacxymwwsw7dens2fts3ecgtjzvdjhc69u6v9sczq9tz'
     },
     {
         imgUrl: 'https://i.ibb.co/kQk5sG7/image-2023-11-17-170857858.png',
