@@ -1,8 +1,7 @@
-"use client";
+"use client"
 import React, { useState, useEffect } from "react";
 import WalletItem from "@/components/WalletItem";
 import FilterToggle from "@/components/FilterToggle";
-import { likesData } from "@/lib/wallet-likes";
 
 interface Wallet {
   title: string;
@@ -29,28 +28,51 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   const [success, setSuccess] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
-    const devicesSet = new Set<string>();
-    const poolsSet = new Set<string>();
-    const featuresSet = new Set<string>();
+    const fetchLikes = async () => {
+      const devicesSet = new Set<string>();
+      const poolsSet = new Set<string>();
+      const featuresSet = new Set<string>();
 
-    allWallets.forEach((wallet) => {
-      wallet.devices.forEach((device) => devicesSet.add(device.trim()));
-      wallet.pools.forEach((pool) => poolsSet.add(pool.trim()));
-      wallet.features.forEach((feature) => featuresSet.add(feature.trim()));
-    });
+      allWallets.forEach((wallet) => {
+        wallet.devices.forEach((device) => devicesSet.add(device.trim()));
+        wallet.pools.forEach((pool) => poolsSet.add(pool.trim()));
+        wallet.features.forEach((feature) => featuresSet.add(feature.trim()));
+      });
 
-    setFilters({
-      Devices: devicesSet,
-      Pools: poolsSet,
-      Features: featuresSet,
-    });
+      setFilters({
+        Devices: devicesSet,
+        Pools: poolsSet,
+        Features: featuresSet,
+      });
 
-    const initialLikes: { [key: string]: number } = likesData;
-    allWallets.forEach((wallet) => {
-      if (!initialLikes[wallet.title])
-        initialLikes[wallet.title] = 0; // Initialize likes to zero
-    });
-    setLikes(initialLikes);
+      
+      let initialLikes: { [key: string]: number } = {};
+      try {
+        const response = await fetch("/api/wallet-likes", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title: "", delta: 0 }),
+        });
+
+        if (response.ok) {
+          initialLikes = await response.json();
+        } else {
+          console.log("You reviewed this in the past.");
+        }
+      } catch (error) {
+        console.log("Error getting likes: " + error);
+      }
+
+      allWallets.forEach((wallet) => {
+        if (!initialLikes[wallet.title])
+          initialLikes[wallet.title] = 0; // Initialize likes to zero
+      });
+      setLikes(initialLikes);
+    };
+
+    fetchLikes();
   }, [allWallets]);
 
   function toggleFilter(filterCategory: string, filterValue: string) {
@@ -71,9 +93,9 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title: walletTitle, delta:1 }),
+        body: JSON.stringify({ title: walletTitle, delta: 1 }),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         console.log("Received message:", data);
@@ -87,7 +109,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         setError({ [walletTitle]: "You reviewed this in the past." });
       }
     } catch (error) {
-      setError({ [walletTitle]: "Error updating rating: "+error });
+      setError({ [walletTitle]: "Error updating rating: " + error });
     }
   };
 
@@ -100,9 +122,9 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title: walletTitle, delta:-1 }),
+        body: JSON.stringify({ title: walletTitle, delta: -1 }),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         console.log("Received message:", data);
@@ -113,10 +135,10 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         }));
         setSuccess({ [walletTitle]: "We saved your review!" });
       } else {
-        setError({[walletTitle]: "You reviewed this in the past."});
+        setError({ [walletTitle]: "You reviewed this in the past." });
       }
     } catch (error) {
-      setError({[walletTitle]: "Error updating rating: "+error});
+      setError({ [walletTitle]: "Error updating rating: " + error });
     }
   };
 
