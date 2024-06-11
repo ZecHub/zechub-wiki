@@ -105,7 +105,7 @@ export const daoMembers = [
         description: 'ᙇecosystem relations @ZcashFoundation',
         linkName:'Twitter',
         urlLink: 'https://twitter.com/decentralistdan',
-        zcashAddress: 'x'
+        zcashAddress: 'u1kgwgt0suhaymfn99ffelnsy8afl74g6p3cw9p20xmcmqhvyv023h0y5wgweqdhzju2l0v705m7jx8q4hxp53tskmwstcc6sdm0rdqc455v4jdnxnlvflzmwzzceneqld8xnhzjv0gqqgpgnajlav0w9eqrmwks2pdap6pgj8m5hjkcn40g3dmnz24azshesaf0lkke67szxzsgdv0wd'
     },
     {
         imgUrl: 'https://pbs.twimg.com/profile_images/1528027327921201152/ra7kpu96_400x400.jpg',
