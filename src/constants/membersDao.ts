@@ -8,7 +8,7 @@ export const daoMembers = [
         about Zcash.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/RuZcash',
-        zcashAddress: '#'
+        zcashAddress: 'u16fhxurw4ufagvax85qfxsz2xy2g7670g9k5nlszrgqs4fa4whtzutpsj7zkl8exqmx0gm5ag9jq2382avqed7jm0dgsw3tcghcepv2e8snglwzq6jawt43a6d4ppcxt0mu2cxh43t66t8xwy3jtuaqau5kxtk2dxwcrmg7qgpah8af9puu4mggg5unyy69vpfeg83hkezxpnjrjxeya'
     },
     {
         imgUrl: 'https://i.ibb.co/q5p0YPr/lowo.jpg',
@@ -53,7 +53,7 @@ export const daoMembers = [
         withmy work.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/taminevg',
-        zcashAddress: '#'
+        zcashAddress: 'u1dqfmplyjqma4r66m22xrh6tsm3t3wmvcqpu0f3u4kvp6v7wm0es5rh2g4dm040g89jnm0g4dsvs2hfltxqct39ktg3mj6flxnjfs2h0ludjjljce0ptm0ctntv7a2tjlk2n73tf72s5z5ydesqx2mh5k6xex5nn43f4ugagv24xkmw8jldudm78yqhd5ymlqeyx8gu6jzq7k55m6ypf'
     },
     {
         imgUrl: 'https://i.seadn.io/gcs/files/b7d75113578335f503d620166f459b4a.png',
