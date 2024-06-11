@@ -137,7 +137,7 @@ export const daoMembers = [
         description: `Data Security Analyst & Community Manager at Zcash Brasil.`,
         linkName:'Twitter',
         urlLink: 'https://twitter.com/vitozkp',
-        zcashAddress: '#'
+        zcashAddress: 'u180u97nhpxtysv0xg2xgyxtxumcmvdengtl3yfelz23fpu2v2gh7nnpvvpq385ahrlm8snxhpscegsjkef4xmmwxw5xhpzuagwqz6kuuup2c02gmszhc7mxck3cn63zltr0tfjcpenlhe6wqtsnk6rrhxf53gvqkwcmrtnl9e9znhvck8y60p2kznrv6p8huyhjsa0zhn4lpgjg3v2h0'
     },
     {
         imgUrl: 'https://i.ibb.co/rbMZ67Y/profile.jpg',
