@@ -36,7 +36,7 @@ const DaoMembers: React.FC = () => {
         <h3 className="text-3xl mb-4 font-semibold">What makes ZecHub unique?</h3>
 
         <p className="text-base text-slate-600 mb-12">
-          ZecHub is the first Zcash ecosystem DAO. Its funds are held primarily within the Zcash shielded pool. Global Ambassadors, Community Grants members and community experts form a group that decides the direction of Zcash education. The DAO also allows any group to create SubDAO's which are able to form projects and create proposals or request Retroactive Compensation via the DAO DAO module.
+          ZecHub is the first Zcash ecosystem DAO. Its funds are held primarily within the Zcash shielded pool. Global Ambassadors, Community Grants members and community experts form a group that decides the direction of Zcash education. The DAO also allows any group to create SubDAO&apos;s which are able to form projects and create proposals or request Retroactive Compensation via the DAO DAO module.
         </p>
       </FadeInAnimation>
 
