@@ -40,8 +40,7 @@ const DaoMembers: React.FC = () => {
         </h3>
 
         <p className='text-base text-slate-600 mb-12'>
-          ZecHub is one of the first public DAO&apos;s in Zcash&apos;s history.
-          Its funds are held primarily in a Shielded Zcash address, compared to most DAO&apos;s that live EVM chains such as Ethereum.
+          ZecHub is the first Zcash ecosystem DAO. Its funds are held primarily within the Zcash shielded pool. Global Ambassadors, Community Grants members and community experts form a group that decides the direction of Zcash education. The DAO also allows any group to create SubDAO's which are able to form projects and create proposals or request Retroactive Compensation via the DAO DAO module. 
         </p>
       </FadeInAnimation>
 
@@ -49,13 +48,7 @@ const DaoMembers: React.FC = () => {
         <h3 className='text-3xl mb-4 font-semibold'>Governance</h3>
 
         <p className='text-base text-slate-600 mb-12'>
-          All DAO proposals are public and can be viewed{' '}
-          <a href='https://vote.zechub.xyz/'>here</a>. Anyone can create a
-          proposal to vote on. In an effort to support community transparency,
-          the ZecHubDAO will post all governance proposals in the Zcash
-          Community Forum{' '}
-          <a href='https://forum.zcashcommunity.com/t/zechub-governance-updates/43674'>
-            ZecHub Governance thread
+          All DAO proposals are public and can be viewed using the DAO DAO or Snapshot buttons. Anyone can create a proposal to vote on. In an effort to support community transparency, ZecHub DAO will post all governance proposals in the Zcash Community Forum ZecHub Governance thread.
           </a>.
         </p>
 
@@ -82,7 +75,7 @@ const DaoMembers: React.FC = () => {
                 height={80}
               />
             </a>
-            <h1  className='font-bold'> SnapShot</h1>
+            <h1  className='font-bold'> Snapshot</h1>
           </div>
         </div>
       </FadeInAnimation>
