@@ -22,6 +22,7 @@ type ShieldedAmountDatum = {
 
 interface ShieldedPoolChartProps {
   dataUrl: string;
+  color : string;
 }
 
 /**
@@ -98,6 +99,7 @@ export type AreaProps = {
 const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, ShieldedAmountDatum>(
   ({
     dataUrl,
+    color,
     providedWidth = DEFAULT_WIDTH,
     providedHeight = DEFAULT_HEIGHT,
     margin = { top: 0, right: 0, bottom: 0, left: 0 },
@@ -229,7 +231,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             y={0}
             width={width}
             height={height}
-            fill="url(#area-background-gradient)"
+            fill={color}
             rx={14}
           />
           <LinearGradient id="area-background-gradient" from={background} to={background2} />
