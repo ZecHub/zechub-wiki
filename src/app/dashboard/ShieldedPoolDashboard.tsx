@@ -69,7 +69,7 @@ async function getSupplyData(url: string): Promise<SupplyData[]> {
 }
 
 const ShieldedPoolDashboard = () => {
-  const [selectedPools, setSelectedPools] = useState<string[]>(["default"]);
+  const [selectedPools, setSelectedPools] = useState<string[]>([]);
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
     null
   );
@@ -93,19 +93,11 @@ const ShieldedPoolDashboard = () => {
   };
 
   const getCombinedData = () => {
-    const combinedData: { sprout?: SupplyData[]; sapling?: SupplyData[]; orchard?: SupplyData[] } = {};
-
-    if (selectedPools.includes("sprout") && sproutSupply) {
-      combinedData.sprout = sproutSupply;
-    }
-    if (selectedPools.includes("sapling") && saplingSupply) {
-      combinedData.sapling = saplingSupply;
-    }
-    if (selectedPools.includes("orchard") && orchardSupply) {
-      combinedData.orchard = orchardSupply;
-    }
-
-    return combinedData;
+    return {
+      sprout: selectedPools.includes("sprout") ? sproutSupply : undefined,
+      sapling: selectedPools.includes("sapling") ? saplingSupply : undefined,
+      orchard: selectedPools.includes("orchard") ? orchardSupply : undefined,
+    };
   };
 
   if (!blockchainInfo) {
