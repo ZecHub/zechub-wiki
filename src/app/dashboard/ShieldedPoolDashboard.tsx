@@ -133,7 +133,7 @@ const ShieldedPoolDashboard = () => {
           <div className="flex flex-col items-center">
             <Button
               onClick={() => setSelectedPool("default")}
-              text="Default"
+              text="Total Shielded"
               className={`rounded-[0.4rem] py-2 px-4 text-white ${
                 selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
               }`}
