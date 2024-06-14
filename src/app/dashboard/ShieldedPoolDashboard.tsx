@@ -73,50 +73,16 @@ const ShieldedPoolDashboard = () => {
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
     null
   );
-  const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
-  const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
-  const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
+  const [sproutSupply, setSproutSupply] = useState<SupplyData[] | null>(null);
+  const [saplingSupply, setSaplingSupply] = useState<SupplyData[] | null>(null);
+  const [orchardSupply, setOrchardSupply] = useState<SupplyData[] | null>(null);
 
   useEffect(() => {
     getBlockchainData().then((data) => setBlockchainInfo(data));
-    getSupplyData(sproutUrl).then((data) =>
-      setSproutSupply(data[data.length - 1])
-    );
-    getSupplyData(saplingUrl).then((data) =>
-      setSaplingSupply(data[data.length - 1])
-    );
-    getSupplyData(orchardUrl).then((data) =>
-      setOrchardSupply(data[data.length - 1])
-    );
+    getSupplyData(sproutUrl).then(setSproutSupply);
+    getSupplyData(saplingUrl).then(setSaplingSupply);
+    getSupplyData(orchardUrl).then(setOrchardSupply);
   }, []);
-
-  const getDataUrl = (pool: string) => {
-    switch (pool) {
-      case "sprout":
-        return sproutUrl;
-      case "sapling":
-        return saplingUrl;
-      case "orchard":
-        return orchardUrl;
-      case "default":
-      default:
-        return defaultUrl;
-    }
-  };
-
-  const getDataColor = (pool: string) => {
-    switch (pool) {
-      case "sprout":
-        return "#A020F0";
-      case "sapling":
-        return "#FFA500";
-      case "orchard":
-        return "#32CD32";
-      case "url(#area-background-gradient)":
-      default:
-        return "url(#area-background-gradient)";
-    }
-  };
 
   const togglePoolSelection = (pool: string) => {
     setSelectedPools((prevSelectedPools) =>
@@ -126,6 +92,22 @@ const ShieldedPoolDashboard = () => {
     );
   };
 
+  const getCombinedData = () => {
+    const combinedData: { sprout?: SupplyData[]; sapling?: SupplyData[]; orchard?: SupplyData[] } = {};
+
+    if (selectedPools.includes("sprout") && sproutSupply) {
+      combinedData.sprout = sproutSupply;
+    }
+    if (selectedPools.includes("sapling") && saplingSupply) {
+      combinedData.sapling = saplingSupply;
+    }
+    if (selectedPools.includes("orchard") && orchardSupply) {
+      combinedData.orchard = orchardSupply;
+    }
+
+    return combinedData;
+  };
+
   if (!blockchainInfo) {
     return <div>Loading...</div>;
   }
@@ -133,14 +115,8 @@ const ShieldedPoolDashboard = () => {
   return (
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
-      <div className="border p-3 rounded-lg">
-        {selectedPools.map((pool) => (
-          <ShieldedPoolChart
-            key={pool}
-            dataUrl={getDataUrl(pool)}
-            color={getDataColor(pool)}
-          />
-        ))}
+      <div className="border p-3 rounded-lg bg-white">
+        <ShieldedPoolChart data={getCombinedData()} />
       </div>
       <div className="mt-8 flex flex-col items-center">
         <div className="flex justify-center space-x-4">
@@ -166,8 +142,8 @@ const ShieldedPoolDashboard = () => {
               }`}
             />
             <span className="text-sm text-gray-600">
-              {sproutSupply
-                ? `${sproutSupply.supply.toLocaleString()} ZEC`
+              {sproutSupply && sproutSupply.length > 0
+                ? `${sproutSupply[sproutSupply.length - 1].supply.toLocaleString()} ZEC`
                 : "Loading..."}
             </span>
           </div>
@@ -182,8 +158,8 @@ const ShieldedPoolDashboard = () => {
               }`}
             />
             <span className="text-sm text-gray-600">
-              {saplingSupply
-                ? `${saplingSupply.supply.toLocaleString()} ZEC`
+              {saplingSupply && saplingSupply.length > 0
+                ? `${saplingSupply[saplingSupply.length - 1].supply.toLocaleString()} ZEC`
                 : "Loading..."}
             </span>
           </div>
@@ -198,8 +174,8 @@ const ShieldedPoolDashboard = () => {
               }`}
             />
             <span className="text-sm text-gray-600">
-              {orchardSupply
-                ? `${orchardSupply.supply.toLocaleString()} ZEC`
+              {orchardSupply && orchardSupply.length > 0
+                ? `${orchardSupply[orchardSupply.length - 1].supply.toLocaleString()} ZEC`
                 : "Loading..."}
             </span>
           </div>
