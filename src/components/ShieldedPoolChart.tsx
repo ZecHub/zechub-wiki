@@ -201,6 +201,11 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       [showTooltip, shieldedValueScale, dateScale, chartData],
     );
 
+    // Function to format number with commas
+    const formatNumber = (number: number) => {
+      return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(number);
+    };
+
     // Render loading message when loading
     if (chartData.length === 0 || isLoading) {
       return (
@@ -325,7 +330,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
               style={tooltipStyles}
               aria-label="Tooltip for shielded value at this point in time"
             >
-              {getShieldedValue(tooltipData)}
+              {formatNumber(getShieldedValue(tooltipData))}
             </TooltipWithBounds>
             <Tooltip
               top={innerHeight + margin.top - 14}
