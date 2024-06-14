@@ -73,9 +73,9 @@ const ShieldedPoolDashboard = () => {
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
     null
   );
-  const [sproutSupply, setSproutSupply] = useState<SupplyData[] | null>(null);
-  const [saplingSupply, setSaplingSupply] = useState<SupplyData[] | null>(null);
-  const [orchardSupply, setOrchardSupply] = useState<SupplyData[] | null>(null);
+  const [sproutSupply, setSproutSupply] = useState<SupplyData[] | undefined>(undefined);
+  const [saplingSupply, setSaplingSupply] = useState<SupplyData[] | undefined>(undefined);
+  const [orchardSupply, setOrchardSupply] = useState<SupplyData[] | undefined>(undefined);
 
   useEffect(() => {
     getBlockchainData().then((data) => setBlockchainInfo(data));
