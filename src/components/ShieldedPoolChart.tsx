@@ -13,7 +13,9 @@ import { timeFormat } from '@visx/vendor/d3-time-format';
 
 type ShieldedAmountDatum = {
   close: string;
-  supply: number;
+  sprout?: number;
+  sapling?: number;
+  orchard?: number;
 };
 
 interface ShieldedPoolChartProps {
@@ -44,7 +46,7 @@ const tooltipStyles = {
 const formatDate = timeFormat("%b %d, '%y");
 
 const getDate = (d: ShieldedAmountDatum): Date => new Date(d.close);
-const getShieldedValue = (d: ShieldedAmountDatum): number => d.supply;
+const getShieldedValue = (d: ShieldedAmountDatum): number => d.sprout ?? d.sapling ?? d.orchard ?? 0;
 const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close)).left;
 
 const DEFAULT_WIDTH = 1000;
@@ -85,7 +87,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       }));
     }, [data]);
 
-    const yMax = useMemo(() => max(combinedData, (d) => Math.max(d.sprout, d.sapling, d.orchard)) || 0, [combinedData]);
+    const yMax = useMemo(() => max(combinedData, (d) => Math.max(d.sprout ?? 0, d.sapling ?? 0, d.orchard ?? 0)) || 0, [combinedData]);
 
     const ref = useRef<HTMLDivElement>(null);
     const [width, setWidth] = useState(providedWidth);
@@ -123,7 +125,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
         const { x } = localPoint(event) || { x: 0 };
         const x0 = dateScale.invert(x);
-        const index = bisectDate(combinedData as ShieldedAmountDatum[], x0, 1);
+        const index = bisectDate(combinedData, x0, 1);
         const d0 = combinedData[index - 1];
         const d1 = combinedData[index];
         let d = d0;
@@ -133,7 +135,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
         showTooltip({
           tooltipData: d,
           tooltipLeft: x,
-          tooltipTop: shieldedValueScale(Math.max(d.sprout, d.sapling, d.orchard)),
+          tooltipTop: shieldedValueScale(Math.max(d.sprout ?? 0, d.sapling ?? 0, d.orchard ?? 0)),
         });
       },
       [showTooltip, shieldedValueScale, dateScale, combinedData],
@@ -176,7 +178,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             <AreaClosed<ShieldedAmountDatum>
               data={combinedData}
               x={(d) => dateScale(new Date(d.close)) ?? 0}
-              y={(d) => shieldedValueScale(d.sprout) ?? 0}
+              y={(d) => shieldedValueScale(d.sprout ?? 0) ?? 0}
               yScale={shieldedValueScale}
               strokeWidth={1}
               stroke="#A020F0"
@@ -189,7 +191,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             <AreaClosed<ShieldedAmountDatum>
               data={combinedData}
               x={(d) => dateScale(new Date(d.close)) ?? 0}
-              y={(d) => shieldedValueScale(d.sapling) ?? 0}
+              y={(d) => shieldedValueScale(d.sapling ?? 0) ?? 0}
               yScale={shieldedValueScale}
               strokeWidth={1}
               stroke="#FFA500"
@@ -202,7 +204,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             <AreaClosed<ShieldedAmountDatum>
               data={combinedData}
               x={(d) => dateScale(new Date(d.close)) ?? 0}
-              y={(d) => shieldedValueScale(d.orchard) ?? 0}
+              y={(d) => shieldedValueScale(d.orchard ?? 0) ?? 0}
               yScale={shieldedValueScale}
               strokeWidth={1}
               stroke="#32CD32"
@@ -269,11 +271,11 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
               style={tooltipStyles}
               aria-label="Tooltip for shielded value at this point in time"
             >
-              {`Sprout: ${tooltipData.sprout.toLocaleString()} ZEC`}
+              {`Sprout: ${tooltipData.sprout?.toLocaleString() ?? 0} ZEC`}
               <br />
-              {`Sapling: ${tooltipData.sapling.toLocaleString()} ZEC`}
+              {`Sapling: ${tooltipData.sapling?.toLocaleString() ?? 0} ZEC`}
               <br />
-              {`Orchard: ${tooltipData.orchard.toLocaleString()} ZEC`}
+              {`Orchard: ${tooltipData.orchard?.toLocaleString() ?? 0} ZEC`}
             </TooltipWithBounds>
             <Tooltip
               top={innerHeight + margin.top - 14}
