@@ -19,17 +19,17 @@ type ShieldedAmountDatum = {
 };
 
 interface ShieldedPoolChartProps {
-  data: {
-    sprout?: ShieldedAmountDatum[];
-    sapling?: ShieldedAmountDatum[];
-    orchard?: ShieldedAmountDatum[];
-  };
+  data: ShieldedAmountDatum[];
 }
 
-const fetchShieldedSupplyData = async (url: string): Promise<Array<ShieldedAmountDatum>> => {
+const fetchShieldedSupplyData = async (url: string): Promise<ShieldedAmountDatum[]> => {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-  return await response.json();
+  const data = await response.json();
+  return data.map((item: { close: string; supply: number }) => ({
+    close: item.close,
+    supply: item.supply,
+  }));
 };
 
 export const background = '#1984c7';
@@ -47,7 +47,7 @@ const formatDate = timeFormat("%b %d, '%y");
 
 const getDate = (d: ShieldedAmountDatum): Date => new Date(d.close);
 const getShieldedValue = (d: ShieldedAmountDatum): number => d.sprout ?? d.sapling ?? d.orchard ?? 0;
-const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close)).left;
+const bisectorDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close)).left;
 
 const DEFAULT_WIDTH = 1000;
 const DEFAULT_HEIGHT = 500;
@@ -71,23 +71,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     tooltipLeft = 0,
   }: AreaProps & WithTooltipProvidedProps<ShieldedAmountDatum> & ShieldedPoolChartProps) => {
     
-    const combinedData = useMemo(() => {
-      const dates = new Set<string>();
-      data.sprout?.forEach((d) => dates.add(d.close));
-      data.sapling?.forEach((d) => dates.add(d.close));
-      data.orchard?.forEach((d) => dates.add(d.close));
-      
-      const sortedDates = Array.from(dates).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-
-      return sortedDates.map((date) => ({
-        close: date,
-        sprout: data.sprout?.find((d) => d.close === date)?.supply ?? 0,
-        sapling: data.sapling?.find((d) => d.close === date)?.supply ?? 0,
-        orchard: data.orchard?.find((d) => d.close === date)?.supply ?? 0,
-      }));
-    }, [data]);
-
-    const yMax = useMemo(() => max(combinedData, (d) => Math.max(d.sprout ?? 0, d.sapling ?? 0, d.orchard ?? 0)) || 0, [combinedData]);
+    const yMax = useMemo(() => max(data, (d) => Math.max(d.sprout ?? 0, d.sapling ?? 0, d.orchard ?? 0)) || 0, [data]);
 
     const ref = useRef<HTMLDivElement>(null);
     const [width, setWidth] = useState(providedWidth);
@@ -106,9 +90,9 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       () =>
         scaleTime({
           range: [margin.left, innerWidth + margin.left],
-          domain: extent(combinedData, (d) => new Date(d.close)) as [Date, Date],
+          domain: extent(data, (d) => new Date(d.close)) as [Date, Date],
         }),
-      [combinedData, innerWidth, margin.left],
+      [data, innerWidth, margin.left],
     );
 
     const shieldedValueScale = useMemo(
@@ -125,9 +109,9 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
         const { x } = localPoint(event) || { x: 0 };
         const x0 = dateScale.invert(x);
-        const index = bisectDate(combinedData, x0, 1);
-        const d0 = combinedData[index - 1];
-        const d1 = combinedData[index];
+        const index = bisectorDate(data, x0, 1);
+        const d0 = data[index - 1];
+        const d1 = data[index];
         let d = d0;
         if (d1 && new Date(d1.close)) {
           d = x0.valueOf() - new Date(d0.close).valueOf() > new Date(d1.close).valueOf() - x0.valueOf() ? d1 : d0;
@@ -138,7 +122,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
           tooltipTop: shieldedValueScale(Math.max(d.sprout ?? 0, d.sapling ?? 0, d.orchard ?? 0)),
         });
       },
-      [showTooltip, shieldedValueScale, dateScale, combinedData],
+      [showTooltip, shieldedValueScale, dateScale, data],
     );
 
     return (
@@ -174,45 +158,39 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             pointerEvents="none"
             aria-label="Columns of chart"
           />
-          {data.sprout && (
-            <AreaClosed<ShieldedAmountDatum>
-              data={combinedData}
-              x={(d) => dateScale(new Date(d.close)) ?? 0}
-              y={(d) => shieldedValueScale(d.sprout ?? 0) ?? 0}
-              yScale={shieldedValueScale}
-              strokeWidth={1}
-              stroke="#A020F0"
-              fill="#A020F0"
-              curve={curveMonotoneX}
-              aria-label="Sprout pool area"
-            />
-          )}
-          {data.sapling && (
-            <AreaClosed<ShieldedAmountDatum>
-              data={combinedData}
-              x={(d) => dateScale(new Date(d.close)) ?? 0}
-              y={(d) => shieldedValueScale(d.sapling ?? 0) ?? 0}
-              yScale={shieldedValueScale}
-              strokeWidth={1}
-              stroke="#FFA500"
-              fill="#FFA500"
-              curve={curveMonotoneX}
-              aria-label="Sapling pool area"
-            />
-          )}
-          {data.orchard && (
-            <AreaClosed<ShieldedAmountDatum>
-              data={combinedData}
-              x={(d) => dateScale(new Date(d.close)) ?? 0}
-              y={(d) => shieldedValueScale(d.orchard ?? 0) ?? 0}
-              yScale={shieldedValueScale}
-              strokeWidth={1}
-              stroke="#32CD32"
-              fill="#32CD32"
-              curve={curveMonotoneX}
-              aria-label="Orchard pool area"
-            />
-          )}
+          <AreaClosed<ShieldedAmountDatum>
+            data={data}
+            x={(d) => dateScale(new Date(d.close)) ?? 0}
+            y={(d) => shieldedValueScale(d.sprout ?? 0) ?? 0}
+            yScale={shieldedValueScale}
+            strokeWidth={1}
+            stroke="#A020F0"
+            fill="url(#sprout-gradient)"
+            curve={curveMonotoneX}
+            aria-label="Sprout pool area"
+          />
+          <AreaClosed<ShieldedAmountDatum>
+            data={data}
+            x={(d) => dateScale(new Date(d.close)) ?? 0}
+            y={(d) => shieldedValueScale(d.sapling ?? 0) ?? 0}
+            yScale={shieldedValueScale}
+            strokeWidth={1}
+            stroke="#FFA500"
+            fill="url(#sapling-gradient)"
+            curve={curveMonotoneX}
+            aria-label="Sapling pool area"
+          />
+          <AreaClosed<ShieldedAmountDatum>
+            data={data}
+            x={(d) => dateScale(new Date(d.close)) ?? 0}
+            y={(d) => shieldedValueScale(d.orchard ?? 0) ?? 0}
+            yScale={shieldedValueScale}
+            strokeWidth={1}
+            stroke="#32CD32"
+            fill="url(#orchard-gradient)"
+            curve={curveMonotoneX}
+            aria-label="Orchard pool area"
+          />
           <Bar
             x={margin.left}
             y={margin.top}
