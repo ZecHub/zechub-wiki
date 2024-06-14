@@ -48,71 +48,51 @@ interface BlockchainInfo {
   hodling_addresses: number;
 }
 
-interface SupplyData {
-  close: string;
-  supply: number;
-}
-
-interface ShieldedAmountDatum {
-  close: string;
-  sprout?: number;
-  sapling?: number;
-  orchard?: number;
-}
-
-async function getBlockchainData() {
+async function getData() {
   const response = await fetch(
     "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
   );
   const data = await response.json();
+
   return data.data as BlockchainInfo;
 }
 
-async function getSupplyData(url: string): Promise<SupplyData[]> {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-  const data = await response.json();
-  return data as SupplyData[];
-}
-
 const ShieldedPoolDashboard = () => {
-  const [selectedPools, setSelectedPools] = useState<string[]>([]);
+  const [selectedPool, setSelectedPool] = useState("default");
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
     null
   );
-  const [sproutSupply, setSproutSupply] = useState<SupplyData[] | undefined>(undefined);
-  const [saplingSupply, setSaplingSupply] = useState<SupplyData[] | undefined>(undefined);
-  const [orchardSupply, setOrchardSupply] = useState<SupplyData[] | undefined>(undefined);
 
   useEffect(() => {
-    getBlockchainData().then((data) => setBlockchainInfo(data));
-    getSupplyData(sproutUrl).then(setSproutSupply);
-    getSupplyData(saplingUrl).then(setSaplingSupply);
-    getSupplyData(orchardUrl).then(setOrchardSupply);
+    getData().then((data) => setBlockchainInfo(data));
   }, []);
 
-  const togglePoolSelection = (pool: string) => {
-    setSelectedPools((prevSelectedPools) =>
-      prevSelectedPools.includes(pool)
-        ? prevSelectedPools.filter((p) => p !== pool)
-        : [...prevSelectedPools, pool]
-    );
+  const getDataUrl = () => {
+    switch (selectedPool) {
+      case "sprout":
+        return sproutUrl;
+      case "sapling":
+        return saplingUrl;
+      case "orchard":
+        return orchardUrl;
+      case "default":
+      default:
+        return defaultUrl;
+    }
   };
 
-  const getCombinedData = () => {
-    const dates = new Set<string>();
-    sproutSupply?.forEach((d) => dates.add(d.close));
-    saplingSupply?.forEach((d) => dates.add(d.close));
-    orchardSupply?.forEach((d) => dates.add(d.close));
-    
-    const sortedDates = Array.from(dates).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-
-    return sortedDates.map((date) => ({
-      close: date,
-      sprout: sproutSupply?.find((d) => d.close === date)?.supply ?? 0,
-      sapling: saplingSupply?.find((d) => d.close === date)?.supply ?? 0,
-      orchard: orchardSupply?.find((d) => d.close === date)?.supply ?? 0,
-    }));
+  const getDataColor = () => {
+    switch (selectedPool) {
+      case "sprout":
+        return "#A020F0";
+      case "sapling":
+        return "#FFA500";
+      case "orchard":
+        return "#32CD32";
+      case "url(#area-background-gradient)":
+      default:
+        return "url(#area-background-gradient)";
+    }
   };
 
   if (!blockchainInfo) {
@@ -122,71 +102,24 @@ const ShieldedPoolDashboard = () => {
   return (
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
-      <div className="border p-3 rounded-lg bg-white">
-        <ShieldedPoolChart data={getCombinedData()} />
+      <div className="border p-3 rounded-lg">
+      <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
       </div>
-      <div className="mt-8 flex flex-col items-center">
-        <div className="flex justify-center space-x-4">
-          <div className="flex flex-col items-center">
-            <Button
-              onClick={() => togglePoolSelection("default")}
-              text="Default"
-              className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                selectedPools.includes("default")
-                  ? "bg-[#1984c7]"
-                  : "bg-gray-400"
-              }`}
-            />
-          </div>
-          <div className="flex flex-col items-center">
-            <Button
-              onClick={() => togglePoolSelection("sprout")}
-              text="Sprout Pool"
-              className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                selectedPools.includes("sprout")
-                  ? "bg-[#1984c7]"
-                  : "bg-gray-400"
-              }`}
-            />
-            <span className="text-sm text-gray-600">
-              {sproutSupply && sproutSupply.length > 0
-                ? `${sproutSupply[sproutSupply.length - 1].supply.toLocaleString()} ZEC`
-                : "Loading..."}
-            </span>
-          </div>
-          <div className="flex flex-col items-center">
-            <Button
-              onClick={() => togglePoolSelection("sapling")}
-              text="Sapling Pool"
-              className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                selectedPools.includes("sapling")
-                  ? "bg-[#1984c7]"
-                  : "bg-gray-400"
-              }`}
-            />
-            <span className="text-sm text-gray-600">
-              {saplingSupply && saplingSupply.length > 0
-                ? `${saplingSupply[saplingSupply.length - 1].supply.toLocaleString()} ZEC`
-                : "Loading..."}
-            </span>
-          </div>
-          <div className="flex flex-col items-center">
-            <Button
-              onClick={() => togglePoolSelection("orchard")}
-              text="Orchard Pool"
-              className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                selectedPools.includes("orchard")
-                  ? "bg-[#1984c7]"
-                  : "bg-gray-400"
-              }`}
-            />
-            <span className="text-sm text-gray-600">
-              {orchardSupply && orchardSupply.length > 0
-                ? `${orchardSupply[orchardSupply.length - 1].supply.toLocaleString()} ZEC`
-                : "Loading..."}
-            </span>
-          </div>
-        </div>
+      <div className="mt-8 flex space-x-4">
+        <Button
+          onClick={() => setSelectedPool("default")}
+          text="Default"
+          className="bg-[#1984c7] rounded-[0.4rem] py-2 px-4 text-white"
+        />
+        <Button onClick={() => setSelectedPool("sprout")} text="Sprout Pool" />
+        <Button
+          onClick={() => setSelectedPool("sapling")}
+          text="Sapling Pool"
+        />
+        <Button
+          onClick={() => setSelectedPool("orchard")}
+          text="Orchard Pool"
+        />
       </div>
       <HalvingMeter />
       <div className="mt-8">
