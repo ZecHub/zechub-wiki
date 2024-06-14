@@ -48,7 +48,12 @@ interface BlockchainInfo {
   hodling_addresses: number;
 }
 
-async function getData() {
+interface SupplyData {
+  timestamp: string;
+  supply: number;
+}
+
+async function getBlockchainData() {
   const response = await fetch(
     "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
   );
@@ -57,18 +62,36 @@ async function getData() {
   return data.data as BlockchainInfo;
 }
 
+async function getSupplyData(url: string): Promise<SupplyData[]> {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data as SupplyData[];
+}
+
 const ShieldedPoolDashboard = () => {
-  const [selectedPool, setSelectedPool] = useState("default");
+  const [selectedPools, setSelectedPools] = useState<string[]>(["default"]);
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
     null
   );
+  const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
+  const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
+  const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
 
   useEffect(() => {
-    getData().then((data) => setBlockchainInfo(data));
+    getBlockchainData().then((data) => setBlockchainInfo(data));
+    getSupplyData(sproutUrl).then((data) =>
+      setSproutSupply(data[data.length - 1])
+    );
+    getSupplyData(saplingUrl).then((data) =>
+      setSaplingSupply(data[data.length - 1])
+    );
+    getSupplyData(orchardUrl).then((data) =>
+      setOrchardSupply(data[data.length - 1])
+    );
   }, []);
 
-  const getDataUrl = () => {
-    switch (selectedPool) {
+  const getDataUrl = (pool: string) => {
+    switch (pool) {
       case "sprout":
         return sproutUrl;
       case "sapling":
@@ -81,8 +104,8 @@ const ShieldedPoolDashboard = () => {
     }
   };
 
-  const getDataColor = () => {
-    switch (selectedPool) {
+  const getDataColor = (pool: string) => {
+    switch (pool) {
       case "sprout":
         return "#A020F0";
       case "sapling":
@@ -95,6 +118,14 @@ const ShieldedPoolDashboard = () => {
     }
   };
 
+  const togglePoolSelection = (pool: string) => {
+    setSelectedPools((prevSelectedPools) =>
+      prevSelectedPools.includes(pool)
+        ? prevSelectedPools.filter((p) => p !== pool)
+        : [...prevSelectedPools, pool]
+    );
+  };
+
   if (!blockchainInfo) {
     return <div>Loading...</div>;
   }
@@ -103,23 +134,76 @@ const ShieldedPoolDashboard = () => {
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
       <div className="border p-3 rounded-lg">
-      <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+        {selectedPools.map((pool) => (
+          <ShieldedPoolChart
+            key={pool}
+            dataUrl={getDataUrl(pool)}
+            color={getDataColor(pool)}
+          />
+        ))}
       </div>
-      <div className="mt-8 flex space-x-4">
-        <Button
-          onClick={() => setSelectedPool("default")}
-          text="Default"
-          className="bg-[#1984c7] rounded-[0.4rem] py-2 px-4 text-white"
-        />
-        <Button onClick={() => setSelectedPool("sprout")} text="Sprout Pool" />
-        <Button
-          onClick={() => setSelectedPool("sapling")}
-          text="Sapling Pool"
-        />
-        <Button
-          onClick={() => setSelectedPool("orchard")}
-          text="Orchard Pool"
-        />
+      <div className="mt-8 flex flex-col items-center">
+        <div className="flex justify-center space-x-4">
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => togglePoolSelection("default")}
+              text="Default"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPools.includes("default")
+                  ? "bg-[#1984c7]"
+                  : "bg-gray-400"
+              }`}
+            />
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => togglePoolSelection("sprout")}
+              text="Sprout Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPools.includes("sprout")
+                  ? "bg-[#1984c7]"
+                  : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {sproutSupply
+                ? `${sproutSupply.supply.toLocaleString()} ZEC`
+                : "Loading..."}
+            </span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => togglePoolSelection("sapling")}
+              text="Sapling Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPools.includes("sapling")
+                  ? "bg-[#1984c7]"
+                  : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {saplingSupply
+                ? `${saplingSupply.supply.toLocaleString()} ZEC`
+                : "Loading..."}
+            </span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => togglePoolSelection("orchard")}
+              text="Orchard Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPools.includes("orchard")
+                  ? "bg-[#1984c7]"
+                  : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {orchardSupply
+                ? `${orchardSupply.supply.toLocaleString()} ZEC`
+                : "Loading..."}
+            </span>
+          </div>
+        </div>
       </div>
       <HalvingMeter />
       <div className="mt-8">
