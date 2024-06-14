@@ -11,31 +11,25 @@ import { LinearGradient } from '@visx/gradient';
 import { max, extent, bisector } from '@visx/vendor/d3-array';
 import { timeFormat } from '@visx/vendor/d3-time-format';
 
-/**
- * Type of values from the shielded pool over time. Each datum is amount 
- * shielded at a given date.
- */
 type ShieldedAmountDatum = {
   close: string;
   supply: number;
 };
 
 interface ShieldedPoolChartProps {
-  dataUrl: string;
-  color : string;
+  data: {
+    sprout?: ShieldedAmountDatum[];
+    sapling?: ShieldedAmountDatum[];
+    orchard?: ShieldedAmountDatum[];
+  };
 }
 
-/**
- * Loads the historic shielded pool data from a public json file in Github repo
- * @returns Promise of shielded pool data
- */
-async function fetchShieldedSupplyData(url: string): Promise<Array<ShieldedAmountDatum>> {
+const fetchShieldedSupplyData = async (url: string): Promise<Array<ShieldedAmountDatum>> => {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
-}
+};
 
-// Color scheme for chart and tooltip
 export const background = '#1984c7';
 export const background2 = 'rgb(34, 211, 238)';
 export const accentColor = '#edffea';
@@ -47,59 +41,24 @@ const tooltipStyles = {
   color: 'white',
 };
 
-/** Date format from data, i.e. "01/01/1970" */
 const formatDate = timeFormat("%b %d, '%y");
 
-/**
- * Native `Date` object from datum
- * @param d datum for measurement of shielded amount
- * @returns Date object
- */
 const getDate = (d: ShieldedAmountDatum): Date => new Date(d.close);
-
-/**
- * Returns the shielded amount from datum
- * @param d 
- * @returns number
- */
 const getShieldedValue = (d: ShieldedAmountDatum): number => d.supply;
-
-/** Bisector for date */
 const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close)).left;
 
-/**
- * Default width for the chart. It will render 1000px wide, although if this 
- * happens that means there an error with the `userRef` hook below.
- */
 const DEFAULT_WIDTH = 1000;
-
-/* Default height for the chart. It will render 500px tall. */
 const DEFAULT_HEIGHT = 500;
 
-/**
- * Props to override default layout, all of which are optional. By default, the
- * visualization will take up the entire width  of the parent container, and the
- * height will be 500px.
- */
 export type AreaProps = {
   providedWidth?: number;
   providedHeight?: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
-/**
- * Area line chart for shielded pool over time
- * @param props can be used to override height, width, and margin
- * 
- * Inspired by example from visx documentation: https://visx.dev/examples/gallery?group=Area&show=AreaClosed
- * 
- * @returns Area chart for shielded pool over time
- * 
- */
 const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, ShieldedAmountDatum>(
   ({
-    dataUrl,
-    color,
+    data,
     providedWidth = DEFAULT_WIDTH,
     providedHeight = DEFAULT_HEIGHT,
     margin = { top: 0, right: 0, bottom: 0, left: 0 },
@@ -110,118 +69,77 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     tooltipLeft = 0,
   }: AreaProps & WithTooltipProvidedProps<ShieldedAmountDatum> & ShieldedPoolChartProps) => {
     
-    /* State for chart data loaded from server */
-    const [chartData, setChartData] = useState([] as Array<ShieldedAmountDatum>);
+    const combinedData = useMemo(() => {
+      const dates = new Set<string>();
+      data.sprout?.forEach((d) => dates.add(d.close));
+      data.sapling?.forEach((d) => dates.add(d.close));
+      data.orchard?.forEach((d) => dates.add(d.close));
+      
+      const sortedDates = Array.from(dates).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 
-    const yMax = useMemo(() => max(chartData, getShieldedValue) || 0, [chartData]);
+      return sortedDates.map((date) => ({
+        close: date,
+        sprout: data.sprout?.find((d) => d.close === date)?.supply ?? 0,
+        sapling: data.sapling?.find((d) => d.close === date)?.supply ?? 0,
+        orchard: data.orchard?.find((d) => d.close === date)?.supply ?? 0,
+      }));
+    }, [data]);
 
-    /* Loading state for chart data in progress */
-    const [isLoading, setIsLoading] = useState(false);
+    const yMax = useMemo(() => max(combinedData, (d) => Math.max(d.sprout, d.sapling, d.orchard)) || 0, [combinedData]);
 
-    /* Error state for chart data */
-    const [error, setError] = useState<Error | null>(null);
-
-    // Fetch data whenever dataUrl changes
-    useEffect(() => {
-      setIsLoading(true);
-
-      fetchShieldedSupplyData(dataUrl)
-        .then((data) => setChartData(data))
-        .catch((error) => setError(error))
-        .finally(() => setIsLoading(false));
-    }, [dataUrl]);
-
-    /**
-     * Reference to child, which will fill all space available horizontally
-     */
     const ref = useRef<HTMLDivElement>(null);
-
-    // State for width and height so that they update as browser size changes
     const [width, setWidth] = useState(providedWidth);
     const [height, setHeight] = useState(providedHeight);
-
-    // Compute inner height and width based upon margin
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    // Update width and height on resize
     useLayoutEffect(() => {
       if (ref.current) {
-        setWidth(ref?.current?.clientWidth || providedWidth);
-        setHeight(ref?.current?.clientHeight || providedHeight);
+        setWidth(ref.current.clientWidth || providedWidth);
+        setHeight(ref.current.clientHeight || providedHeight);
       }
     });
 
-    /**
-     * Scale for date on x-axis
-     */
     const dateScale = useMemo(
       () =>
         scaleTime({
           range: [margin.left, innerWidth + margin.left],
-          domain: extent(chartData, getDate) as [Date, Date],
+          domain: extent(combinedData, (d) => new Date(d.close)) as [Date, Date],
         }),
-      [chartData, innerWidth, margin.left],
+      [combinedData, innerWidth, margin.left],
     );
 
-    /**
-     * Scale for shielded amount on y-axis
-     */
     const shieldedValueScale = useMemo(
       () =>
         scaleLinear({
           range: [innerHeight + margin.top, margin.top],
-          domain: [0, (max(chartData, getShieldedValue) || 0) + innerHeight / 3],
+          domain: [0, yMax + innerHeight / 3],
           nice: true,
         }),
-      [margin.top, innerHeight, chartData],
+      [margin.top, innerHeight, yMax],
     );
 
-    /**
-     * Handle tooltip behavior on hover. The user should see the date and 
-     * shielded value corresponding to the point hovered over.
-     */
     const handleTooltip = useCallback(
       (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
         const { x } = localPoint(event) || { x: 0 };
         const x0 = dateScale.invert(x);
-        const index = bisectDate(chartData, x0, 1);
-        const d0 = chartData[index - 1];
-        const d1 = chartData[index];
+        const index = bisectDate(combinedData, x0, 1);
+        const d0 = combinedData[index - 1];
+        const d1 = combinedData[index];
         let d = d0;
-        if (d1 && getDate(d1)) {
-          d = x0.valueOf() - getDate(d0).valueOf() > getDate(d1).valueOf() - x0.valueOf() ? d1 : d0;
+        if (d1 && new Date(d1.close)) {
+          d = x0.valueOf() - new Date(d0.close).valueOf() > new Date(d1.close).valueOf() - x0.valueOf() ? d1 : d0;
         }
         showTooltip({
           tooltipData: d,
           tooltipLeft: x,
-          tooltipTop: shieldedValueScale(getShieldedValue(d)),
+          tooltipTop: shieldedValueScale(Math.max(d.sprout, d.sapling, d.orchard)),
         });
       },
-      [showTooltip, shieldedValueScale, dateScale, chartData],
+      [showTooltip, shieldedValueScale, dateScale, combinedData],
     );
 
-    // Render loading message when loading
-    if (chartData.length === 0 || isLoading) {
-      return (
-        <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
-          <p><i>Loading historic shielded pool data...</i></p>
-        </div>
-      );
-    }
-
-    // Render error message if error loading data
-    if (error) {
-      return (
-        <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
-          <p><i>Error loading historic shielding data: {error.message}</i></p>
-        </div>
-      );
-    }
-
-    // Render the chart by default
     return (
-      // Make sure container fills width of parent
       <div ref={ref} style={{ width: '100%', minWidth: '100%', minHeight: '500px' }}>
         <svg width={width} height={height}>
           <rect
@@ -231,11 +149,9 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             y={0}
             width={width}
             height={height}
-            fill={color}
+            fill="white"
             rx={14}
           />
-          <LinearGradient id="area-background-gradient" from={background} to={background2} />
-          <LinearGradient id="area-gradient" from={accentColor} to={accentColor} toOpacity={0.1} />
           <GridRows
             left={margin.left}
             scale={shieldedValueScale}
@@ -256,17 +172,45 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             pointerEvents="none"
             aria-label="Columns of chart"
           />
-          <AreaClosed<ShieldedAmountDatum>
-            data={chartData}
-            x={(d) => dateScale(getDate(d)) ?? 0}
-            y={(d) => shieldedValueScale(getShieldedValue(d)) ?? 0}
-            yScale={shieldedValueScale}
-            strokeWidth={1}
-            stroke="url(#area-gradient)"
-            fill="url(#area-gradient)"
-            curve={curveMonotoneX}
-            aria-label="Area under line of the chart"
-          />
+          {data.sprout && (
+            <AreaClosed<ShieldedAmountDatum>
+              data={combinedData}
+              x={(d) => dateScale(new Date(d.close)) ?? 0}
+              y={(d) => shieldedValueScale(d.sprout) ?? 0}
+              yScale={shieldedValueScale}
+              strokeWidth={1}
+              stroke="#A020F0"
+              fill="#A020F0"
+              curve={curveMonotoneX}
+              aria-label="Sprout pool area"
+            />
+          )}
+          {data.sapling && (
+            <AreaClosed<ShieldedAmountDatum>
+              data={combinedData}
+              x={(d) => dateScale(new Date(d.close)) ?? 0}
+              y={(d) => shieldedValueScale(d.sapling) ?? 0}
+              yScale={shieldedValueScale}
+              strokeWidth={1}
+              stroke="#FFA500"
+              fill="#FFA500"
+              curve={curveMonotoneX}
+              aria-label="Sapling pool area"
+            />
+          )}
+          {data.orchard && (
+            <AreaClosed<ShieldedAmountDatum>
+              data={combinedData}
+              x={(d) => dateScale(new Date(d.close)) ?? 0}
+              y={(d) => shieldedValueScale(d.orchard) ?? 0}
+              yScale={shieldedValueScale}
+              strokeWidth={1}
+              stroke="#32CD32"
+              fill="#32CD32"
+              curve={curveMonotoneX}
+              aria-label="Orchard pool area"
+            />
+          )}
           <Bar
             x={margin.left}
             y={margin.top}
@@ -325,7 +269,11 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
               style={tooltipStyles}
               aria-label="Tooltip for shielded value at this point in time"
             >
-              {getShieldedValue(tooltipData)}
+              {`Sprout: ${tooltipData.sprout} ZEC`}
+              <br />
+              {`Sapling: ${tooltipData.sapling} ZEC`}
+              <br />
+              {`Orchard: ${tooltipData.orchard} ZEC`}
             </TooltipWithBounds>
             <Tooltip
               top={innerHeight + margin.top - 14}
@@ -337,7 +285,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
                 transform: 'translateX(-50%)',
               }}
             >
-              {formatDate(getDate(tooltipData))}
+              {formatDate(new Date(tooltipData.close))}
             </Tooltip>
           </div>
         )}
