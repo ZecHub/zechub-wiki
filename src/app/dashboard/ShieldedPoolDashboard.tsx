@@ -49,13 +49,15 @@ interface BlockchainInfo {
 }
 
 interface SupplyData {
-  timestamp: string;
+  close: string;
   supply: number;
 }
 
 interface ShieldedAmountDatum {
   close: string;
-  supply: number;
+  sprout?: number;
+  sapling?: number;
+  orchard?: number;
 }
 
 async function getBlockchainData() {
@@ -63,37 +65,30 @@ async function getBlockchainData() {
     "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
   );
   const data = await response.json();
-
   return data.data as BlockchainInfo;
 }
 
 async function getSupplyData(url: string): Promise<SupplyData[]> {
   const response = await fetch(url);
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   const data = await response.json();
   return data as SupplyData[];
 }
-
-const transformSupplyData = (data: SupplyData[]): ShieldedAmountDatum[] => {
-  return data.map((item) => ({
-    close: item.timestamp,
-    supply: item.supply,
-  }));
-};
 
 const ShieldedPoolDashboard = () => {
   const [selectedPools, setSelectedPools] = useState<string[]>([]);
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
     null
   );
-  const [sproutSupply, setSproutSupply] = useState<ShieldedAmountDatum[] | undefined>(undefined);
-  const [saplingSupply, setSaplingSupply] = useState<ShieldedAmountDatum[] | undefined>(undefined);
-  const [orchardSupply, setOrchardSupply] = useState<ShieldedAmountDatum[] | undefined>(undefined);
+  const [sproutSupply, setSproutSupply] = useState<SupplyData[] | undefined>(undefined);
+  const [saplingSupply, setSaplingSupply] = useState<SupplyData[] | undefined>(undefined);
+  const [orchardSupply, setOrchardSupply] = useState<SupplyData[] | undefined>(undefined);
 
   useEffect(() => {
     getBlockchainData().then((data) => setBlockchainInfo(data));
-    getSupplyData(sproutUrl).then((data) => setSproutSupply(transformSupplyData(data)));
-    getSupplyData(saplingUrl).then((data) => setSaplingSupply(transformSupplyData(data)));
-    getSupplyData(orchardUrl).then((data) => setOrchardSupply(transformSupplyData(data)));
+    getSupplyData(sproutUrl).then(setSproutSupply);
+    getSupplyData(saplingUrl).then(setSaplingSupply);
+    getSupplyData(orchardUrl).then(setOrchardSupply);
   }, []);
 
   const togglePoolSelection = (pool: string) => {
@@ -105,11 +100,19 @@ const ShieldedPoolDashboard = () => {
   };
 
   const getCombinedData = () => {
-    return {
-      sprout: selectedPools.includes("sprout") ? sproutSupply : undefined,
-      sapling: selectedPools.includes("sapling") ? saplingSupply : undefined,
-      orchard: selectedPools.includes("orchard") ? orchardSupply : undefined,
-    };
+    const dates = new Set<string>();
+    sproutSupply?.forEach((d) => dates.add(d.close));
+    saplingSupply?.forEach((d) => dates.add(d.close));
+    orchardSupply?.forEach((d) => dates.add(d.close));
+    
+    const sortedDates = Array.from(dates).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+
+    return sortedDates.map((date) => ({
+      close: date,
+      sprout: sproutSupply?.find((d) => d.close === date)?.supply ?? 0,
+      sapling: saplingSupply?.find((d) => d.close === date)?.supply ?? 0,
+      orchard: orchardSupply?.find((d) => d.close === date)?.supply ?? 0,
+    }));
   };
 
   if (!blockchainInfo) {
