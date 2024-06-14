@@ -123,7 +123,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
         const { x } = localPoint(event) || { x: 0 };
         const x0 = dateScale.invert(x);
-        const index = bisectDate(combinedData, x0, 1);
+        const index = bisectDate(combinedData as ShieldedAmountDatum[], x0, 1);
         const d0 = combinedData[index - 1];
         const d1 = combinedData[index];
         let d = d0;
@@ -269,11 +269,11 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
               style={tooltipStyles}
               aria-label="Tooltip for shielded value at this point in time"
             >
-              {`Sprout: ${tooltipData.sprout} ZEC`}
+              {`Sprout: ${tooltipData.sprout.toLocaleString()} ZEC`}
               <br />
-              {`Sapling: ${tooltipData.sapling} ZEC`}
+              {`Sapling: ${tooltipData.sapling.toLocaleString()} ZEC`}
               <br />
-              {`Orchard: ${tooltipData.orchard} ZEC`}
+              {`Orchard: ${tooltipData.orchard.toLocaleString()} ZEC`}
             </TooltipWithBounds>
             <Tooltip
               top={innerHeight + margin.top - 14}
