@@ -53,6 +53,11 @@ interface SupplyData {
   supply: number;
 }
 
+interface ShieldedAmountDatum {
+  close: string;
+  supply: number;
+}
+
 async function getBlockchainData() {
   const response = await fetch(
     "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
@@ -68,20 +73,27 @@ async function getSupplyData(url: string): Promise<SupplyData[]> {
   return data as SupplyData[];
 }
 
+const transformSupplyData = (data: SupplyData[]): ShieldedAmountDatum[] => {
+  return data.map((item) => ({
+    close: item.timestamp,
+    supply: item.supply,
+  }));
+};
+
 const ShieldedPoolDashboard = () => {
   const [selectedPools, setSelectedPools] = useState<string[]>([]);
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
     null
   );
-  const [sproutSupply, setSproutSupply] = useState<SupplyData[] | undefined>(undefined);
-  const [saplingSupply, setSaplingSupply] = useState<SupplyData[] | undefined>(undefined);
-  const [orchardSupply, setOrchardSupply] = useState<SupplyData[] | undefined>(undefined);
+  const [sproutSupply, setSproutSupply] = useState<ShieldedAmountDatum[] | undefined>(undefined);
+  const [saplingSupply, setSaplingSupply] = useState<ShieldedAmountDatum[] | undefined>(undefined);
+  const [orchardSupply, setOrchardSupply] = useState<ShieldedAmountDatum[] | undefined>(undefined);
 
   useEffect(() => {
     getBlockchainData().then((data) => setBlockchainInfo(data));
-    getSupplyData(sproutUrl).then(setSproutSupply);
-    getSupplyData(saplingUrl).then(setSaplingSupply);
-    getSupplyData(orchardUrl).then(setOrchardSupply);
+    getSupplyData(sproutUrl).then((data) => setSproutSupply(transformSupplyData(data)));
+    getSupplyData(saplingUrl).then((data) => setSaplingSupply(transformSupplyData(data)));
+    getSupplyData(orchardUrl).then((data) => setOrchardSupply(transformSupplyData(data)));
   }, []);
 
   const togglePoolSelection = (pool: string) => {
