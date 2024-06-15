@@ -320,6 +320,26 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
               />
             </g>
           )}
+          <text
+            x={width - 60}
+            y={height - 10}
+            textAnchor="end"
+            fontSize={14}
+            fill={accentColor}
+            opacity={0.8}
+            aria-label="Watermark"
+          >
+            DASHBOARD
+          </text>
+          <image
+            x={width - 60}
+            y={height - 50}
+            width="40"
+            height="40"
+            href="https://i.ibb.co/PxhXnTn/Zec-Hub-Blue-and-White-Logo.webp"
+            opacity={0.8}
+            aria-label="Watermark logo"
+          />
         </svg>
         {tooltipData && (
           <div>
