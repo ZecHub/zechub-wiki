@@ -204,7 +204,13 @@ const ShieldedPoolDashboard = () => {
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
                 Market Price Change (24h %)
               </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
+              <td
+                className={`lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0 ${
+                  blockchainInfo.market_price_usd_change_24h_percentage > 0
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >
                 {blockchainInfo.market_price_usd_change_24h_percentage?.toFixed(
                   2
                 ) ?? "N/A"}
@@ -213,26 +219,10 @@ const ShieldedPoolDashboard = () => {
             </tr>
             <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Blocks
+                Block Height
               </td>
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
                 {blockchainInfo.blocks?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Transactions
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.transactions?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Outputs
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.outputs?.toLocaleString() ?? "N/A"}
               </td>
             </tr>
             <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
