@@ -329,14 +329,14 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             opacity={0.8}
             aria-label="Watermark"
           >
-            DASHBOARD
+           ZECHUB DASHBOARD
           </text>
           <image
             x={width - 60}
             y={height - 50}
             width="40"
             height="40"
-            href="https://i.ibb.co/PxhXnTn/Zec-Hub-Blue-and-White-Logo.webp"
+            href=""
             opacity={0.8}
             aria-label="Watermark logo"
           />
