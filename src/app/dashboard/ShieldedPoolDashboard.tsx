@@ -49,7 +49,7 @@ interface BlockchainInfo {
 }
 
 interface SupplyData {
-  timestamp: string;
+  close: string;
   supply: number;
 }
 
@@ -80,27 +80,28 @@ const ShieldedPoolDashboard = () => {
 
   useEffect(() => {
     getBlockchainData().then((data) => setBlockchainInfo(data));
-    
-    getSupplyData(sproutUrl).then((data) => {
-      setSproutSupply(data[data.length - 1]);
-      if (selectedPool === "sprout") setLastUpdated(data[data.length - 1].timestamp);
-    });
-    
-    getSupplyData(saplingUrl).then((data) => {
-      setSaplingSupply(data[data.length - 1]);
-      if (selectedPool === "sapling") setLastUpdated(data[data.length - 1].timestamp);
-    });
-    
-    getSupplyData(orchardUrl).then((data) => {
-      setOrchardSupply(data[data.length - 1]);
-      if (selectedPool === "orchard") setLastUpdated(data[data.length - 1].timestamp);
-    });
   }, []);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getSupplyData(getDataUrl());
-      setLastUpdated(data[data.length - 1].timestamp);
+      const url = getDataUrl();
+      const data = await getSupplyData(url);
+      const lastData = data[data.length - 1];
+      setLastUpdated(lastData.close);
+      
+      switch (selectedPool) {
+        case "sprout":
+          setSproutSupply(lastData);
+          break;
+        case "sapling":
+          setSaplingSupply(lastData);
+          break;
+        case "orchard":
+          setOrchardSupply(lastData);
+          break;
+        default:
+          break;
+      }
     };
     fetchData();
   }, [selectedPool]);
@@ -140,11 +141,9 @@ const ShieldedPoolDashboard = () => {
   return (
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
-      <div className="border p-3 rounded-lg">
-        <div className="relative">
-          <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
-        </div>
-        <div className="text-right mt-1">
+      <div className="border p-3 rounded-lg relative">
+        <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+        <div className="absolute bottom-0 right-0 p-2">
           <span className="text-sm text-gray-500">
             Last updated: {lastUpdated ? new Date(lastUpdated).toLocaleString() : "Loading..."}
           </span>
