@@ -76,19 +76,31 @@ const ShieldedPoolDashboard = () => {
   const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
 
   useEffect(() => {
     getBlockchainData().then((data) => setBlockchainInfo(data));
-    getSupplyData(sproutUrl).then((data) =>
-      setSproutSupply(data[data.length - 1])
-    );
-    getSupplyData(saplingUrl).then((data) =>
-      setSaplingSupply(data[data.length - 1])
-    );
-    getSupplyData(orchardUrl).then((data) =>
-      setOrchardSupply(data[data.length - 1])
-    );
+    getSupplyData(sproutUrl).then((data) => {
+      setSproutSupply(data[data.length - 1]);
+      if (selectedPool === "sprout") setLastUpdated(data[data.length - 1].timestamp);
+    });
+    getSupplyData(saplingUrl).then((data) => {
+      setSaplingSupply(data[data.length - 1]);
+      if (selectedPool === "sapling") setLastUpdated(data[data.length - 1].timestamp);
+    });
+    getSupplyData(orchardUrl).then((data) => {
+      setOrchardSupply(data[data.length - 1]);
+      if (selectedPool === "orchard") setLastUpdated(data[data.length - 1].timestamp);
+    });
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getSupplyData(getDataUrl());
+      setLastUpdated(data[data.length - 1].timestamp);
+    };
+    fetchData();
+  }, [selectedPool]);
 
   const getDataUrl = () => {
     switch (selectedPool) {
@@ -125,8 +137,11 @@ const ShieldedPoolDashboard = () => {
   return (
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
-      <div className="border p-3 rounded-lg">
+      <div className="border p-3 rounded-lg relative">
         <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+        <span className="absolute bottom-0 right-0 p-2 text-sm text-gray-500">
+          Last updated: {lastUpdated ? new Date(lastUpdated).toLocaleString() : "Loading..."}
+        </span>
       </div>
       <div className="mt-8 flex flex-col items-center">
         <div className="flex justify-center space-x-4">
