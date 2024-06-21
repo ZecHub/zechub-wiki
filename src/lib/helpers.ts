@@ -1,6 +1,41 @@
 import { contentBanners } from '@/constants/contentBanners';
 import { getRoot } from './authAndFetch';
 
+type MetadataOpts = {
+  title?: string,
+  description?: string,
+  image?: string,
+  url?: string
+}
+
+export const genMetadata = ({ title, description, image, url }: MetadataOpts) => {
+  const defaultImage = '/previews/default-banner.jpg';
+  const defaultUrl = 'https://zechub.wiki';
+  const defaultTitle = 'ZecHub Wiki';
+  const defaultDescription = 'The goal of ZecHub is to provide an educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash & Privacy technology ecosystems.'
+
+  return {
+    metadataBase: new URL("https://zechub.wiki"),
+    title: title || defaultTitle,
+    description: description || defaultDescription,
+    openGraph: {
+      title: title,
+      description: description || defaultDescription,
+      images: image || defaultImage,
+      siteName: "ZecHub Wiki",
+      type: "website",
+      url: url || defaultUrl
+    },
+    twitter: {
+      title: title || defaultTitle,
+      card: "summary_large_image",
+      description: description || defaultDescription,
+      image: image || defaultImage,
+      url: url || defaultUrl
+    }
+  };
+};
+
 export const getName = (item: string) => {
   const newItem = transformUri(item.substring(item.lastIndexOf('/') + 1), true);
   const newFolder = newItem.split('_').join(' ');
@@ -38,7 +73,7 @@ export const firstFileForFolders = async (folders: string[]) => {
 
 export const getBanner = (name: string) => {
 
-  let uri='';
+  let uri = '';
   for (let i = 0; i <= contentBanners.length; i++) {
     if (contentBanners[i]?.name === undefined) {
       uri = '';
