@@ -1,5 +1,12 @@
 import { Card } from '@/components/Card/Card';
 import { blockchainExplorers } from '@/constants/blockchainExplorers';
+import { genMetadata } from '@/lib/helpers';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = genMetadata({
+  title: "Blockchain Explorers",
+  url: "https://zechub.wiki/using-zcash/blockchain-explorers"
+})
 
 const BlockchainExplorers = () => {
   return (
