@@ -1,58 +1,70 @@
-<div style="text-align: center;">
-    <img src="https://i.ibb.co/Gv7Jd8Q/Zec-Hub-blue-globe.png" alt="Logo" style="width: 70px; height: auto;">
-    <h3>
-        <em>
-            An open-source education hub for <a href="https://z.cash/" target="_blank">Zcash</a>
-        </em>
-    </h3>
-    <p>
-        <a href="https://follow.zechub.org/" target="_blank">
-            <img src="https://img.shields.io/twitter/follow/zechub?style=social&label=Follow">
-        </a>
-    </p>
-<p>
-    <a href="https://chat.zechub.org/" target="_blank">
-        <img src="https://img.shields.io/discord/978714252934258779?style=social&label=Discord">
-    </a>
-    <a href="https://youtube.com/@zechub" target="_blank">
-        <img src="https://img.shields.io/youtube/channel/views/UC3-KM00kjCUheRzO5cq3PAA?style=social&label=Subscribe">
-    </a>
-</p>
+# Getting Started with Create React App
 
-</div>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# ZecHub Wiki
+## Available Scripts
 
-Welcome to ZecHub, an open-source education hub for Zcash! This Next.js project is designed to provide a platform for educational content related to Zcash and privacy. If you're new to ZecHub or Next.js, this guide will help you get started.
+In the project directory, you can run:
 
-## Getting Started
+### `npm start`
 
-Requirement:
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-1. [Yarn (classic)](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable)
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-To set up the development environment, follow these steps:
+### `npm test`
 
-1. Install the project dependencies:
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```bash
-yarn install
-```
+### `npm run build`
 
-2. Run the development server:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-```bash
-yarn dev
-```
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the ZecHub Wiki in action. You can start editing the page by modifying the files within the `src/app` directory. The page will auto-update as you make changes.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Learn More
 
-Check out [nextjs.org](http://nextjs.org) to learn more about Next.js.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To deepen your understanding of ZecHub, visit the deployed app at [zechub.wiki](http://zechub.wiki).
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-## Contribute
+### Code Splitting
 
-ZecHub wiki is open-source and welcomes your contribution. Read our **[contributing guide](/CONTRIBUTING.md)** for more details on how.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

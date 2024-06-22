@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.line__chart{
+  margin: 2rem 1rem 2rem;
+  padding: 2rem 0.75rem 1rem;
+  background: rgb(79,161,202);
+  background: linear-gradient(0deg, rgba(79,161,202,0.6) 0%, rgba(79,161,202,0.4) 50%, rgba(79,161,202,0.2) 100%);
+  border-radius: 2rem;
+}
+
+
