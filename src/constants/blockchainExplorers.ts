@@ -26,7 +26,7 @@ export const blockchainExplorers = [
   {
     title: 'Zcash Block Explorer',
     description: 'No tracker #Zcash Block Explore',
-    url: 'https://zcashblockexplorer.com/',
+    url: 'https://mainnet.zcashexplorer.app/',
     features: ['No tracker', 'mainnet', 'testnet'],
     thumbnailImage: '/explorer/zcashblockexplorer.png',
   },
