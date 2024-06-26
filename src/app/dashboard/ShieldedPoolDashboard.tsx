@@ -62,6 +62,15 @@ async function getBlockchainData() {
   return data.data as BlockchainInfo;
 }
 
+async function getCirculationData() {
+  const response = await fetch(
+    "https://mainnet.zcashexplorer.app/api/v1/blockchain-info"
+  );
+  const data = await response.json();
+
+  return data.circulation;
+}
+
 async function getSupplyData(url: string): Promise<SupplyData[]> {
   const response = await fetch(url);
   const data = await response.json();
@@ -73,6 +82,7 @@ const ShieldedPoolDashboard = () => {
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
     null
   );
+  const [circulation, setCirculation] = useState<number | null>(null);
   const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
@@ -80,7 +90,8 @@ const ShieldedPoolDashboard = () => {
 
   useEffect(() => {
     getBlockchainData().then((data) => setBlockchainInfo(data));
-    
+    getCirculationData().then((data) => setCirculation(data));
+
     getSupplyData(sproutUrl).then((data) => {
       setSproutSupply(data[data.length - 1]);
       if (selectedPool === "sprout") setLastUpdated(data[data.length - 1].timestamp);
@@ -252,7 +263,7 @@ const ShieldedPoolDashboard = () => {
                 Circulation
               </td>
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {(blockchainInfo.circulation / 1e8)?.toLocaleString() ?? "N/A"}{" "}
+                {(circulation / 1e8)?.toLocaleString() ?? "N/A"}{" "}
                 ZEC
               </td>
             </tr>
