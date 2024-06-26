@@ -18,11 +18,15 @@ const saplingUrl =
 const orchardUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
 
+const apiUrl =
+  "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
+const blockchainInfoUrl = "https://mainnet.zcashexplorer.app/api/v1/blockchain-info";
+
 interface BlockchainInfo {
   blocks: number;
   transactions: number;
   outputs: number;
-  circulation: number;
+  circulation: number | null;
   blocks_24h: number;
   transactions_24h: number;
   difficulty: number;
@@ -62,19 +66,22 @@ async function getBlockchainData() {
   return data.data as BlockchainInfo;
 }
 
-async function getCirculationData() {
-  const response = await fetch(
-    "https://mainnet.zcashexplorer.app/api/v1/blockchain-info"
-  );
+async function getBlockchainInfo() {
+  const response = await fetch(blockchainInfoUrl);
   const data = await response.json();
-
-  return data.circulation;
+  return data.chainSupply.chainValue;
 }
 
 async function getSupplyData(url: string): Promise<SupplyData[]> {
   const response = await fetch(url);
   const data = await response.json();
   return data as SupplyData[];
+}
+
+async function getLastUpdatedDate(): Promise<string> {
+  const response = await fetch(apiUrl);
+  const data = await response.json();
+  return data[0].commit.committer.date;
 }
 
 const ShieldedPoolDashboard = () => {
@@ -90,22 +97,15 @@ const ShieldedPoolDashboard = () => {
 
   useEffect(() => {
     getBlockchainData().then((data) => setBlockchainInfo(data));
-    getCirculationData().then((data) => setCirculation(data));
+    getBlockchainInfo().then((data) => setCirculation(data));
 
-    getSupplyData(sproutUrl).then((data) => {
-      setSproutSupply(data[data.length - 1]);
-      if (selectedPool === "sprout") setLastUpdated(data[data.length - 1].timestamp);
-    });
+    getLastUpdatedDate().then((date) => setLastUpdated(date));
     
-    getSupplyData(saplingUrl).then((data) => {
-      setSaplingSupply(data[data.length - 1]);
-      if (selectedPool === "sapling") setLastUpdated(data[data.length - 1].timestamp);
-    });
+    getSupplyData(sproutUrl).then((data) => setSproutSupply(data[data.length - 1]));
     
-    getSupplyData(orchardUrl).then((data) => {
-      setOrchardSupply(data[data.length - 1]);
-      if (selectedPool === "orchard") setLastUpdated(data[data.length - 1].timestamp);
-    });
+    getSupplyData(saplingUrl).then((data) => setSaplingSupply(data[data.length - 1]));
+    
+    getSupplyData(orchardUrl).then((data) => setOrchardSupply(data[data.length - 1]));
   }, []);
 
   useEffect(() => {
@@ -263,8 +263,7 @@ const ShieldedPoolDashboard = () => {
                 Circulation
               </td>
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {(circulation / 1e8)?.toLocaleString() ?? "N/A"}{" "}
-                ZEC
+                {circulation !== null ? `${(circulation / 1e8).toLocaleString()}` : "N/A"} ZEC
               </td>
             </tr>
             <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
