@@ -99,7 +99,7 @@ const ShieldedPoolDashboard = () => {
     getBlockchainData().then((data) => setBlockchainInfo(data));
     getBlockchainInfo().then((data) => setCirculation(data));
 
-    getLastUpdatedDate().then((date) => setLastUpdated(date));
+    getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
     
     getSupplyData(sproutUrl).then((data) => setSproutSupply(data[data.length - 1]));
     
@@ -111,7 +111,7 @@ const ShieldedPoolDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getSupplyData(getDataUrl());
-      setLastUpdated(data[data.length - 1].timestamp);
+      setLastUpdated(data[data.length - 1].timestamp.split("T")[0]);
     };
     fetchData();
   }, [selectedPool]);
@@ -157,7 +157,7 @@ const ShieldedPoolDashboard = () => {
         </div>
         <div className="text-right mt-1">
           <span className="text-sm text-gray-500">
-            Last updated: {lastUpdated ? new Date(lastUpdated).toLocaleString() : "Loading..."}
+            Last updated: {lastUpdated ? new Date(lastUpdated).toLocaleDateString() : "Loading..."}
           </span>
         </div>
       </div>
