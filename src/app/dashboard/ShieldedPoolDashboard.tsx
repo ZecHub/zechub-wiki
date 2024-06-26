@@ -263,7 +263,7 @@ const ShieldedPoolDashboard = () => {
                 Circulation
               </td>
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {circulation !== null ? `${(circulation / 1e8).toLocaleString()}` : "N/A"} ZEC
+                {circulation !== null ? `${circulation.toLocaleString()}` : "N/A"} ZEC
               </td>
             </tr>
             <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
