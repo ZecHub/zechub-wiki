@@ -3,7 +3,7 @@ export const daoMembers = [
         imgUrl: 'https://zeal.center/system/accounts/avatars/109/304/356/632/808/494/original/d29374a89ef5cc4b.png',
         name: 'Wizard',
         description: `I am the admin of Zeal Center, a Mastodon and Mobilizon instance created for the Zcash community`,
-        linkName:'Twitter',
+        linkName:'Mastodon',
         urlLink: 'https://blog.zeal.center',
         zcashAddress: 'u1tpz82axhqjm5hz54l3jkuv5djvqkfhga0mptactcx6mue0ajy9pwe65zyncd6k9xazmc9m5cu6je55lxshkplutk7guxmd67ygzpm8h86nwj2efr5mq3rrfrycmdyspp3jhqq2vnw4ydvyzfscwep0lxurng6suudg3jql4nmkwlgt5ea2356a9tcknen606hp74t2nf72vyc30la53'
     },
