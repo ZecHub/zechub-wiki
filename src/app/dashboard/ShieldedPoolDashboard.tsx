@@ -1,8 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import Button from "@/components/Button/Button";
 import HalvingMeter from "@/components/HalvingMeter";
+import Tools from "@/components/tools";
+import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
 const ShieldedPoolChart = dynamic(
   () => import("../../components/ShieldedPoolChart"),
@@ -20,7 +22,8 @@ const orchardUrl =
 
 const apiUrl =
   "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
-const blockchainInfoUrl = "https://mainnet.zcashexplorer.app/api/v1/blockchain-info";
+const blockchainInfoUrl =
+  "https://mainnet.zcashexplorer.app/api/v1/blockchain-info";
 
 interface BlockchainInfo {
   blocks: number;
@@ -95,17 +98,25 @@ const ShieldedPoolDashboard = () => {
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
 
+  const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
+
   useEffect(() => {
     getBlockchainData().then((data) => setBlockchainInfo(data));
     getBlockchainInfo().then((data) => setCirculation(data));
 
     getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
-    
-    getSupplyData(sproutUrl).then((data) => setSproutSupply(data[data.length - 1]));
-    
-    getSupplyData(saplingUrl).then((data) => setSaplingSupply(data[data.length - 1]));
-    
-    getSupplyData(orchardUrl).then((data) => setOrchardSupply(data[data.length - 1]));
+
+    getSupplyData(sproutUrl).then((data) =>
+      setSproutSupply(data[data.length - 1])
+    );
+
+    getSupplyData(saplingUrl).then((data) =>
+      setSaplingSupply(data[data.length - 1])
+    );
+
+    getSupplyData(orchardUrl).then((data) =>
+      setOrchardSupply(data[data.length - 1])
+    );
   }, []);
 
   useEffect(() => {
@@ -152,13 +163,30 @@ const ShieldedPoolDashboard = () => {
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
       <div className="border p-3 rounded-lg">
+        <Tools />
         <div className="relative">
-          <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+          <div ref={divChartRef}>
+            <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+          </div>
         </div>
-        <div className="text-right mt-1">
-          <span className="text-sm text-gray-500">
-            Last updated: {lastUpdated ? new Date(lastUpdated).toLocaleDateString() : "Loading..."}
+        <div className="flex justify-end gap-12 text-right mt-4 text-sm text-gray-500">
+          <span className="px-3 py-2">
+            Last updated:{" "}
+            {lastUpdated
+              ? new Date(lastUpdated).toLocaleDateString()
+              : "Loading..."}
           </span>
+          <Button
+            text="Export (PNG)"
+            className="px-3 py-2 border text-white border-slate-300 rounded-md shadow-sm bg-[#1984c7]"
+            onClick={() =>
+              handleSaveToPng(selectedPool, {
+                sproutSupply,
+                saplingSupply,
+                orchardSupply,
+              })
+            }
+          />
         </div>
       </div>
       <div className="mt-8 flex flex-col items-center">
@@ -181,7 +209,9 @@ const ShieldedPoolDashboard = () => {
               }`}
             />
             <span className="text-sm text-gray-600">
-              {sproutSupply ? `${sproutSupply.supply.toLocaleString()} ZEC` : "Loading..."}
+              {sproutSupply
+                ? `${sproutSupply.supply.toLocaleString()} ZEC`
+                : "Loading..."}
             </span>
           </div>
           <div className="flex flex-col items-center">
@@ -193,7 +223,9 @@ const ShieldedPoolDashboard = () => {
               }`}
             />
             <span className="text-sm text-gray-600">
-              {saplingSupply ? `${saplingSupply.supply.toLocaleString()} ZEC` : "Loading..."}
+              {saplingSupply
+                ? `${saplingSupply.supply.toLocaleString()} ZEC`
+                : "Loading..."}
             </span>
           </div>
           <div className="flex flex-col items-center">
@@ -205,7 +237,9 @@ const ShieldedPoolDashboard = () => {
               }`}
             />
             <span className="text-sm text-gray-600">
-              {orchardSupply ? `${orchardSupply.supply.toLocaleString()} ZEC` : "Loading..."}
+              {orchardSupply
+                ? `${orchardSupply.supply.toLocaleString()} ZEC`
+                : "Loading..."}
             </span>
           </div>
         </div>
@@ -263,7 +297,10 @@ const ShieldedPoolDashboard = () => {
                 Circulation
               </td>
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {circulation !== null ? `${circulation.toLocaleString()}` : "N/A"} ZEC
+                {circulation !== null
+                  ? `${circulation.toLocaleString()}`
+                  : "N/A"}{" "}
+                ZEC
               </td>
             </tr>
             <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
