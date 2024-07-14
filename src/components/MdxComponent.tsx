@@ -24,7 +24,7 @@ const MdxComponent = async ({ source }: ContentSource) => {
       <div className="px-3">{content}</div>
     ) :
     (
-      <p className="text-center text-2xl">{source}</p>
+      <p className="text-center text-2xl">{}</p>
     )
   );
 };

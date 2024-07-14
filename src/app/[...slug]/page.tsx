@@ -41,16 +41,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
             <div id="content" className={`flex flex-col space-y-5 ${roots && roots.length > 0 ? 'md:flex-row md:space-x-5' : 'md:flex-col'} h-auto w-full p-5`}>
                 {(roots && roots.length > 0) && (
-                    <div className='w-auto md:w-2/5  relative'>
+                    <div className='relative'>
                         <SideMenu folder={slug[0]} roots={roots} />
                     </div>
                 )}
 
-                <section className='h-auto w-full border-t-2 md:border-l-2 px-3'>
+                {/* <section className='h-auto w-full border-t-2 md:border-l-2 px-3'>
                     <div>
                         <MdxComponent source={content} />
                     </div>
-                </section>
+                </section> */}
             </div>
         </main>
     )
