@@ -201,6 +201,11 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       [showTooltip, shieldedValueScale, dateScale, chartData],
     );
 
+    // Function to format number with commas
+    const formatNumber = (number: number) => {
+      return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(number);
+    };
+
     // Render loading message when loading
     if (chartData.length === 0 || isLoading) {
       return (
@@ -315,6 +320,26 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
               />
             </g>
           )}
+          <text
+            x={width - 60}
+            y={height - 10}
+            textAnchor="end"
+            fontSize={14}
+            fill={accentColor}
+            opacity={0.8}
+            aria-label="Watermark"
+          >
+           ZECHUB DASHBOARD
+          </text>
+          <image
+            x={width - 60}
+            y={height - 50}
+            width="40"
+            height="40"
+            href=""
+            opacity={0.8}
+            aria-label="Watermark logo"
+          />
         </svg>
         {tooltipData && (
           <div>
@@ -325,7 +350,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
               style={tooltipStyles}
               aria-label="Tooltip for shielded value at this point in time"
             >
-              {getShieldedValue(tooltipData)}
+              {formatNumber(getShieldedValue(tooltipData))}
             </TooltipWithBounds>
             <Tooltip
               top={innerHeight + margin.top - 14}

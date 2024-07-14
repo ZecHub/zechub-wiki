@@ -2,10 +2,17 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getFileContent, getRoot } from '@/lib/authAndFetch'
-import { getDynamicRoute, getBanner, getName } from '@/lib/helpers'
+import { getDynamicRoute, getBanner, getName, genMetadata } from '@/lib/helpers'
 import SideMenu from '@/components/SideMenu'
 import { Icon } from '@/components/ui/Icon'
 import { BiRightArrowAlt as Arrow } from 'react-icons/bi'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = genMetadata({
+    title: "Donate now",
+    url: "https://zechub.wiki/donation"
+})
+
 
 const MdxComponent = dynamic(
     () => import('@/components/MdxComponent'),
@@ -27,7 +34,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     const imgUrl = getBanner(slug[0])
 
     return (
-      
+
         <main>
             <div className='flex justify-center w-full  mb-5 bg-transparent rounded pb-4'>
                 <Image

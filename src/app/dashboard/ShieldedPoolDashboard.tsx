@@ -1,8 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import Button from "@/components/Button/Button";
 import HalvingMeter from "@/components/HalvingMeter";
+import Tools from "@/components/tools";
+import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
 const ShieldedPoolChart = dynamic(
   () => import("../../components/ShieldedPoolChart"),
@@ -18,11 +20,16 @@ const saplingUrl =
 const orchardUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
 
+const apiUrl =
+  "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
+const blockchainInfoUrl =
+  "https://mainnet.zcashexplorer.app/api/v1/blockchain-info";
+
 interface BlockchainInfo {
   blocks: number;
   transactions: number;
   outputs: number;
-  circulation: number;
+  circulation: number | null;
   blocks_24h: number;
   transactions_24h: number;
   difficulty: number;
@@ -48,7 +55,12 @@ interface BlockchainInfo {
   hodling_addresses: number;
 }
 
-async function getData() {
+interface SupplyData {
+  timestamp: string;
+  supply: number;
+}
+
+async function getBlockchainData() {
   const response = await fetch(
     "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
   );
@@ -57,15 +69,63 @@ async function getData() {
   return data.data as BlockchainInfo;
 }
 
+async function getBlockchainInfo() {
+  const response = await fetch(blockchainInfoUrl);
+  const data = await response.json();
+  return data.chainSupply.chainValue;
+}
+
+async function getSupplyData(url: string): Promise<SupplyData[]> {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data as SupplyData[];
+}
+
+async function getLastUpdatedDate(): Promise<string> {
+  const response = await fetch(apiUrl);
+  const data = await response.json();
+  return data[0].commit.committer.date;
+}
+
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
     null
   );
+  const [circulation, setCirculation] = useState<number | null>(null);
+  const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
+  const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
+  const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+
+  const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
   useEffect(() => {
-    getData().then((data) => setBlockchainInfo(data));
+    getBlockchainData().then((data) => setBlockchainInfo(data));
+    getBlockchainInfo().then((data) => setCirculation(data));
+
+    getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
+
+    getSupplyData(sproutUrl).then((data) =>
+      setSproutSupply(data[data.length - 1])
+    );
+
+    getSupplyData(saplingUrl).then((data) =>
+      setSaplingSupply(data[data.length - 1])
+    );
+
+    getSupplyData(orchardUrl).then((data) =>
+      setOrchardSupply(data[data.length - 1])
+    );
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getSupplyData(getDataUrl());
+      setLastUpdated(data[data.length - 1].timestamp.split("T")[0]);
+    };
+    fetchData();
+  }, [selectedPool]);
 
   const getDataUrl = () => {
     switch (selectedPool) {
@@ -102,23 +162,86 @@ const ShieldedPoolDashboard = () => {
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
       <div className="border p-3 rounded-lg">
-      <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+        <Tools />
+        <div className="relative">
+          <div ref={divChartRef}>
+            <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+          </div>
+        </div>
+        <div className="flex justify-end gap-12 text-right mt-4 text-sm text-gray-500">
+          <span className="px-3 py-2">
+            Last updated:{" "}
+            {lastUpdated
+              ? new Date(lastUpdated).toLocaleDateString()
+              : "Loading..."}
+          </span>
+          <Button
+            text="Export (PNG)"
+            className="px-3 py-2 border text-white border-slate-300 rounded-md shadow-sm bg-[#1984c7]"
+            onClick={() =>
+              handleSaveToPng(selectedPool, {
+                sproutSupply,
+                saplingSupply,
+                orchardSupply,
+              })
+            }
+          />
+        </div>
       </div>
-      <div className="mt-8 flex space-x-4">
-        <Button
-          onClick={() => setSelectedPool("default")}
-          text="Default"
-          className="bg-[#1984c7] rounded-[0.4rem] py-2 px-4 text-white"
-        />
-        <Button onClick={() => setSelectedPool("sprout")} text="Sprout Pool" />
-        <Button
-          onClick={() => setSelectedPool("sapling")}
-          text="Sapling Pool"
-        />
-        <Button
-          onClick={() => setSelectedPool("orchard")}
-          text="Orchard Pool"
-        />
+      <div className="mt-8 flex flex-col items-center">
+        <div className="flex justify-center space-x-4">
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("default")}
+              text="Total Shielded"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("sprout")}
+              text="Sprout Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "sprout" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {sproutSupply
+                ? `${sproutSupply.supply.toLocaleString()} ZEC`
+                : "Loading..."}
+            </span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("sapling")}
+              text="Sapling Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "sapling" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {saplingSupply
+                ? `${saplingSupply.supply.toLocaleString()} ZEC`
+                : "Loading..."}
+            </span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("orchard")}
+              text="Orchard Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "orchard" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {orchardSupply
+                ? `${orchardSupply.supply.toLocaleString()} ZEC`
+                : "Loading..."}
+            </span>
+          </div>
+        </div>
       </div>
       <HalvingMeter />
       <div className="mt-8">
@@ -147,7 +270,13 @@ const ShieldedPoolDashboard = () => {
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
                 Market Price Change (24h %)
               </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
+              <td
+                className={`lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0 ${
+                  blockchainInfo.market_price_usd_change_24h_percentage > 0
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >
                 {blockchainInfo.market_price_usd_change_24h_percentage?.toFixed(
                   2
                 ) ?? "N/A"}
@@ -156,7 +285,7 @@ const ShieldedPoolDashboard = () => {
             </tr>
             <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Blocks
+                Block Height
               </td>
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
                 {blockchainInfo.blocks?.toLocaleString() ?? "N/A"}
@@ -164,26 +293,12 @@ const ShieldedPoolDashboard = () => {
             </tr>
             <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Transactions
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.transactions?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Outputs
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.outputs?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
                 Circulation
               </td>
               <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {(blockchainInfo.circulation / 1e8)?.toLocaleString() ?? "N/A"}{" "}
+                {circulation !== null
+                  ? `${circulation.toLocaleString()}`
+                  : "N/A"}{" "}
                 ZEC
               </td>
             </tr>

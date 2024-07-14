@@ -7,6 +7,14 @@ import { daoMembers } from '@/constants/membersDao';
 import logo from '/public/DAOlogo.png';
 import daoLogo from '/public/daodao.jpg';
 import ethLogo from '/public/snapshot.jpg';
+import { Metadata } from 'next';
+import { genMetadata } from '@/lib/helpers';
+
+// export const metadata: Metadata = genMetadata({
+//   title: "DAO Members",
+//   url: "https://zechub.wiki/dao"
+// })
+
 
 const DaoMembers: React.FC = () => {
   return (
