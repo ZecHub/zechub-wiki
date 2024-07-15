@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { getFileContent, getRoot } from "@/lib/authAndFetch";
 import { getDynamicRoute, getBanner, genMetadata } from "@/lib/helpers";
-import SideMenu from "@/components/SideMenu";
 import { Metadata } from "next";
 
 export const metadata: Metadata = genMetadata({

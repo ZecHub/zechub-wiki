@@ -1,8 +1,8 @@
 import React from "react";
 import { Metadata } from "next";
 import Image from "next/image";
-import { getFileContent, getRoot } from "@/lib/authAndFetch";
-import { getDynamicRoute, getBanner, genMetadata } from "@/lib/helpers";
+import { getRoot } from "@/lib/authAndFetch";
+import { getBanner, genMetadata } from "@/lib/helpers";
 import SideMenu from "@/components/SideMenu";
 
 export const metadata: Metadata = genMetadata({
