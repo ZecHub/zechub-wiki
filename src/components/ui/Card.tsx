@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({
   buttonLink,
 }) => {
   return (
-    <div className="lg:w-[22%] md:w-[30%] w-full rounded overflow-hidden shadow-lg md:m-4">
+    <div className="w-full rounded overflow-hidden shadow-lg md:m-4">
       <img className="w-full" src={imageUrl} alt="Card image cap" />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{title}</div>
