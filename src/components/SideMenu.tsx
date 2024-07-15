@@ -4,13 +4,10 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   BiRightArrowAlt as Arrow,
-  BiMenu as BurgerMenuIcon,
 } from "react-icons/bi";
 import { BiSolidWallet as Wallet } from "react-icons/bi";
-import { FiFile as FileIcon } from "react-icons/fi";
 import { Icon } from "./ui/Icon";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
-import { matchIcons } from "@/constants/Icons";
 import Card from "./ui/Card";
 
 interface MenuProps {
@@ -18,6 +15,7 @@ interface MenuProps {
   roots: string[];
 }
 
+const images = ['/exchangetutorials.png' , '/fullnodetutorials.png' , '/usingzcashtutorials.png' , '/wallettutorials.png']
 const SideMenu = ({ folder, roots }: MenuProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -90,7 +88,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
               return (
                 <Card
                   title={getName(item)}
-                  imageUrl="https://via.placeholder.com/400x300"
+                  imageUrl={images[i]}
                   description=""
                   buttonText="Watch Videos"
                   buttonLink={`/${transformGithubFilePathToWikiLink(item)}#content`}
