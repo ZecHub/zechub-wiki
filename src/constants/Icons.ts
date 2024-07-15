@@ -26,7 +26,7 @@ import { MdOutlinePayments } from "react-icons/md";
 
 interface IconsFor {
     [key: string]: {
-      [key: string]: string;
+      [key: string]: any;
     };
   };
 
