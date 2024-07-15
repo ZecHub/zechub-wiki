@@ -2,9 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import {
-  BiRightArrowAlt as Arrow,
-} from "react-icons/bi";
+import { BiRightArrowAlt as Arrow } from "react-icons/bi";
 import { BiSolidWallet as Wallet } from "react-icons/bi";
 import { Icon } from "./ui/Icon";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
@@ -15,7 +13,12 @@ interface MenuProps {
   roots: string[];
 }
 
-const images = ['/exchangetutorials.png' , '/fullnodetutorials.png' , '/usingzcashtutorials.png' , '/wallettutorials.png']
+const images = [
+  "/exchangetutorials.png",
+  "/fullnodetutorials.png",
+  "/usingzcashtutorials.png",
+  "/wallettutorials.png",
+];
 const SideMenu = ({ folder, roots }: MenuProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -53,8 +56,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
         <h1 className="text-4xl font-bold mb-6"> {fold}: </h1>
 
         <div className="flex w-full gap-2 justify-between flex-wrap">
-          
-            {/* {root.map((item, i) => {
+          {/* {root.map((item, i) => {
               if (getName(item) === "Wallets") return null; // Skip rendering the item named "Wallets"
 
               const myIcon = matchIcons(fold, getName(item));
@@ -84,38 +86,41 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
               );
             })} */}
 
-            {root.map((item, i) => {
-              return (
+          {root.map((item, i) => {
+            return (
+              <div key={i} className="lg:w-[22%] md:w-[30%] w-full">
                 <Card
                   title={getName(item)}
                   imageUrl={images[i]}
                   description=""
                   buttonText="Watch Videos"
-                  buttonLink={`/${transformGithubFilePathToWikiLink(item)}#content`}
+                  buttonLink={`/${transformGithubFilePathToWikiLink(
+                    item
+                  )}#content`}
                 />
-              );
-            })}
+              </div>
+            );
+          })}
 
-            {fold === "Using Zcash" && (
-              <li
-                className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
-              >
-                <a href="/wallets">
-                  <div className={`flex items-center space-x-4`}>
-                    <div className="flex-shrink-0">
-                      <Icon icon={Wallet} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium ">Wallets</p>
-                    </div>
-                    <div className="inline-flex items-center text-base font-semibold ">
-                      <Icon icon={Arrow} />
-                    </div>
+          {fold === "Using Zcash" && (
+            <li
+              className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
+            >
+              <a href="/wallets">
+                <div className={`flex items-center space-x-4`}>
+                  <div className="flex-shrink-0">
+                    <Icon icon={Wallet} />
                   </div>
-                </a>
-              </li>
-            )}
-          
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium ">Wallets</p>
+                  </div>
+                  <div className="inline-flex items-center text-base font-semibold ">
+                    <Icon icon={Arrow} />
+                  </div>
+                </div>
+              </a>
+            </li>
+          )}
         </div>
       </div>
     </div>
