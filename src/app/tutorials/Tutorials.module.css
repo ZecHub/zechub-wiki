@@ -1,0 +1,14 @@
+/* pages/Tutorials.module.css */
+
+.container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  

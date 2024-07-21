@@ -158,6 +158,7 @@ const ShieldedPoolDashboard = () => {
   if (!blockchainInfo) {
     return <div>Loading...</div>;
   }
+
   return (
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>

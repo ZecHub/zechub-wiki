@@ -1,9 +1,19 @@
-import { BsDiscord as Discord } from "react-icons/bs";
+import { 
+  BsDiscord as Discord,
+  BsCurrencyExchange as BuyingZec,
+  BsShieldShaded as ShieldedPools,
+  BsArrowUpCircle as Transaction,
+ } from "react-icons/bs";
 import {
   RiTwitterXFill as Twitter,
   RiGithubFill as Github,
   RiYoutubeFill as Youtube,
+  RiExchangeFundsLine as Exchange,
 } from "react-icons/ri";
+import { FaMagnifyingGlassChart as BlockchainExplorer } from "react-icons/fa6";
+import { FaWallet as Wallet } from "react-icons/fa6";
+
+
 
 export const navigations = [
   {
@@ -12,26 +22,32 @@ export const navigations = [
       {
         subName: "Buying ZEC",
         path: "/using-zcash/buying-zec",
+        icon: BuyingZec,
       },
       {
         subName: "Wallets",
         path: "/wallets",
+        icon: Wallet,
       },
       {
         subName: "Exchanges",
         path: "/using-zcash/non-custodial-exchanges",
+        icon: Exchange,
       },
       {
         subName: "Block Explorers",
         path: "/using-zcash/blockchain-explorers",
+        icon: BlockchainExplorer,
       },
       {
         subName: "Shielded Pools",
         path: "/using-zcash/shielded-pools",
+        icon: ShieldedPools,
       },
       {
         subName: "Transactions",
         path: "/using-zcash/transactions",
+        icon: Transaction,
       },
     ],
   },
@@ -45,6 +61,10 @@ export const navigations = [
       {
         subName: "Community Links",
         path: "/zcash-community/community-links",
+      },
+      {
+        subName: "Community Forum",
+        path: "https://forum.zcashcommunity.com/",
       },
       {
         subName: "Community Projects",
@@ -80,7 +100,7 @@ export const navigations = [
         path: "/zcash-organizations/zcash-foundation",
       },
       {
-        subName: "Zcash Commnuity Grants",
+        subName: "Zcash Community Grants",
         path: "/zcash-organizations/zcash-community-grants",
       },
       {
@@ -119,19 +139,13 @@ export const navigations = [
     ],
   },
   {
-    name: "Glossary & FAQ's",
-    links: [
-      {
-        subName: "FAQ's",
-        path: "/glossary-and-faqs/faq",
-      },
-      {
-        subName: "Zcash Library",
-        path: "/glossary-and-faqs/zcash-library",
-      },
-    ],
+    name: "Tutorials",
+    path: "https://zechub.wiki/zechub-tutorials",
   },
-  
+  {
+    name: "Contribute",
+    path: "https://zechub.wiki/contribute/help-build-zechub",
+  },
 ];
 
 export const socialNav = [
@@ -155,8 +169,8 @@ export const socialNav = [
     url: "https://github.com/ZecHub/zechub",
     icon: Github,
   },
-  
 ];
+
 export const socialMedia = [
   {
     name: "Youtube",
