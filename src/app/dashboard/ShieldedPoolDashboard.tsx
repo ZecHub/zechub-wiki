@@ -19,6 +19,8 @@ const saplingUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json";
 const orchardUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
+const hashrateUrl =
+  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
 
 const apiUrl =
   "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
@@ -135,6 +137,8 @@ const ShieldedPoolDashboard = () => {
         return saplingUrl;
       case "orchard":
         return orchardUrl;
+      case "hashrate":
+        return hashrateUrl;
       case "default":
       default:
         return defaultUrl;
@@ -158,7 +162,6 @@ const ShieldedPoolDashboard = () => {
   if (!blockchainInfo) {
     return <div>Loading...</div>;
   }
-
   return (
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
@@ -197,6 +200,15 @@ const ShieldedPoolDashboard = () => {
               text="Total Shielded"
               className={`rounded-[0.4rem] py-2 px-4 text-white ${
                 selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("hashrate")}
+              text="Hash Rate"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "hashrate" ? "bg-[#1984c7]" : "bg-gray-400"
               }`}
             />
           </div>
