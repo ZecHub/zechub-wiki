@@ -57,34 +57,42 @@ export const navigations = [
       {
         subName: "Arborist Calls",
         path: "/zcash-community/arborist-calls",
+        icon: "",
       },
       {
         subName: "Community Links",
         path: "/zcash-community/community-links",
+        icon: "",
       },
       {
         subName: "Community Forum",
         path: "https://forum.zcashcommunity.com/",
+        icon: "",
       },
       {
         subName: "Community Projects",
         path: "/zcash-community/community-projects",
+        icon: "",
       },
       {
         subName: "Zcash Global Ambassadors",
         path: "/zcash-community/zcash-global-ambassadors",
+        icon: "",
       },
       {
         subName: "ZCAP",
         path: "/zcash-community/zcap",
+        icon: "",
       },
       {
         subName: "Zcash Podcasts",
         path: "/zcash-community/zcash-podcasts",
+        icon: "",
       },
       {
         subName: "Zcon Archive",
         path: "/zcash-community/zcap",
+        icon: "",
       },
     ],
   },
@@ -94,18 +102,22 @@ export const navigations = [
       {
         subName: "Electric Coin Company",
         path: "/zcash-organizations/electric-coin-company",
+        icon: "",
       },
       {
         subName: "Zcash Foundation",
         path: "/zcash-organizations/zcash-foundation",
+        icon: "",
       },
       {
         subName: "Zcash Community Grants",
         path: "/zcash-organizations/zcash-community-grants",
+        icon: "",
       },
       {
         subName: "Shielded Labs",
         path: "/zcash-organizations/shielded-labs",
+        icon: "",
       },
     ],
   },
@@ -115,36 +127,44 @@ export const navigations = [
       {
         subName: "Zgo Payment Processor",
         path: "/guides/zgo-payment-processor",
+        icon: "",
       },
       {
         subName: "Free2z Livestreaming",
         path: "/guides/free2z-live",
+        icon: "",
       },
       {
         subName: "Raspberry Pi Zcashd Node",
         path: "/guides/raspberry-pi-4-full-node",
+        icon: "",
       },
       {
         subName: "Raspberry Pi Zebra Node",
         path: "https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5",
+        icon: "",
       },
       {
         subName: "Visualizing Zcash Addresses",
         path: "/guides/visualizing-zcash-addresses",
+        icon: "",
       },
       {
         subName: "Zero Knowledge vs Decoy Systems",
         path: "/guides/zero-knowledge-vs-decoys",
+        icon: "",
       },
     ],
   },
   {
     name: "Tutorials",
     path: "https://zechub.wiki/zechub-tutorials",
+    icon: "",
   },
   {
     name: "Contribute",
     path: "https://zechub.wiki/contribute/help-build-zechub",
+    icon: "",
   },
 ];
 

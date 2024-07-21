@@ -5,18 +5,12 @@ import { useEffect, useState } from "react";
 import { navigations } from "@/constants/navigation";
 import type { Classes, MenuExp } from "@/types";
 import { Dropdown } from "flowbite-react";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "../components/ui/Sheet";
+import { Sheet, SheetContent, SheetTrigger } from "../components/ui/Sheet";
 import {
   MdOutlineDarkMode as DarkIcon,
   MdLightMode as LightIcon,
 } from "react-icons/md";
-import {
-  RiMenuLine as MenuIcon,
-} from "react-icons/ri";
+import { RiMenuLine as MenuIcon } from "react-icons/ri";
 import { IoSearch as SearchIcon } from "react-icons/io5";
 import { Icon } from "./ui/Icon";
 import Logo from "./ui/Logo";
@@ -36,7 +30,7 @@ const NavLinks = ({
 
   return (
     <div className={`flex ${classes}`}>
-      {navigations.map((item, i) => (
+      {navigations.map((item, i) =>
         item.links ? (
           <Dropdown
             className="flex flex-row font-normal"
@@ -47,9 +41,18 @@ const NavLinks = ({
             style={{ fontWeight: "400" }}
           >
             {item.links.map((link) => (
-              <Dropdown.Item key={link.path} onClick={handleLinkClick}>
-                <Link href={link.path}>{link.subName}</Link>
-              </Dropdown.Item>
+              <div key={link.path}>
+                <Dropdown.Item
+                  key={link.path}
+                  onClick={handleLinkClick}
+                  className="flex items-center gap-2 p-2"
+                >
+                  {link.icon && (
+                    <Icon icon={link.icon} className="md:w-6 w-4 h-4 md:h-6" />
+                  )}
+                  <Link href={link.path}>{link.subName}</Link>
+                </Dropdown.Item>
+              </div>
             ))}
           </Dropdown>
         ) : (
@@ -62,7 +65,7 @@ const NavLinks = ({
             {item.name}
           </Link>
         )
-      ))}
+      )}
 
       <div className="flex md:flex-row flex-col md:space-x-3 md:ml-3">
         <Link
@@ -92,7 +95,9 @@ const MobileNav = ({
 }: MenuExp & { closeMenu: () => void }) => {
   return (
     <div className="relative flex flex-col w-11/12 h-auto justify-center z-10">
-      <div className={`flex flex-col p-6 absolute top-20 px-8 w-full rounded-xl transition duration-200`}>
+      <div
+        className={`flex flex-col p-6 absolute top-20 px-8 w-full rounded-xl transition duration-200`}
+      >
         <ul className="list-none flex items-start flex-1 flex-col">
           <NavLinks
             classes="flex-col font-bold"
@@ -152,7 +157,9 @@ const Navigation = () => {
       </div>
 
       <nav className="flex flex-wrap w-full md:space-x-11">
-        <div className={`flex flex-wrap space-between font-bold text-base items-center grow hidden md:flex`}>
+        <div
+          className={`flex flex-wrap space-between font-bold text-base items-center grow hidden md:flex`}
+        >
           <NavLinks
             classes={""}
             menuExp={menuExpanded}
@@ -175,7 +182,10 @@ const Navigation = () => {
               onClick={() => setDark(!dark)}
             />
           </div>
-          <div className="hidden md:flex p-2 w-auto justify-end sm:gap-6" style={{ display: "flex", alignItems: "center" }}>
+          <div
+            className="hidden md:flex p-2 w-auto justify-end sm:gap-6"
+            style={{ display: "flex", alignItems: "center" }}
+          >
             <DonationBtn />
           </div>
         </div>

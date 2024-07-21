@@ -1,6 +1,7 @@
 export interface Links {
   name: string;
-  path: string
+  path: string;
+  icon : any;
 }
 
 export interface MenuExp {
@@ -23,6 +24,7 @@ export interface Path {
 export interface Sublinks {
   name: string
   path: string
+  icon : any
 }
 
 export interface SearchInputProps {
