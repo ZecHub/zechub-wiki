@@ -1,7 +1,7 @@
 // pages/tutorials.tsx
 
 import React from 'react';
-import Cards from '../components/Cards';
+import Cards from '../../components/Cards/Cards';
 import styles from './Tutorials.module.css';
 
 const Tutorials: React.FC = () => {
