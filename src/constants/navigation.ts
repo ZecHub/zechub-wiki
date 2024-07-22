@@ -1,9 +1,19 @@
-import { BsDiscord as Discord } from "react-icons/bs";
+import { 
+  BsDiscord as Discord,
+  BsCurrencyExchange as BuyingZec,
+  BsShieldShaded as ShieldedPools,
+  BsArrowUpCircle as Transaction,
+ } from "react-icons/bs";
 import {
   RiTwitterXFill as Twitter,
   RiGithubFill as Github,
   RiYoutubeFill as Youtube,
+  RiExchangeFundsLine as Exchange,
 } from "react-icons/ri";
+import { FaMagnifyingGlassChart as BlockchainExplorer } from "react-icons/fa6";
+import { FaWallet as Wallet } from "react-icons/fa6";
+
+
 
 export const navigations = [
   {
@@ -12,26 +22,32 @@ export const navigations = [
       {
         subName: "Buying ZEC",
         path: "/using-zcash/buying-zec",
+        icon: BuyingZec,
       },
       {
         subName: "Wallets",
         path: "/wallets",
+        icon: Wallet,
       },
       {
         subName: "Exchanges",
         path: "/using-zcash/non-custodial-exchanges",
+        icon: Exchange,
       },
       {
         subName: "Block Explorers",
         path: "/using-zcash/blockchain-explorers",
+        icon: BlockchainExplorer,
       },
       {
         subName: "Shielded Pools",
         path: "/using-zcash/shielded-pools",
+        icon: ShieldedPools,
       },
       {
         subName: "Transactions",
         path: "/using-zcash/transactions",
+        icon: Transaction,
       },
     ],
   },
@@ -41,30 +57,42 @@ export const navigations = [
       {
         subName: "Arborist Calls",
         path: "/zcash-community/arborist-calls",
+        icon: "",
       },
       {
         subName: "Community Links",
         path: "/zcash-community/community-links",
+        icon: "",
+      },
+      {
+        subName: "Community Forum",
+        path: "https://forum.zcashcommunity.com/",
+        icon: "",
       },
       {
         subName: "Community Projects",
         path: "/zcash-community/community-projects",
+        icon: "",
       },
       {
         subName: "Zcash Global Ambassadors",
         path: "/zcash-community/zcash-global-ambassadors",
+        icon: "",
       },
       {
         subName: "ZCAP",
         path: "/zcash-community/zcap",
+        icon: "",
       },
       {
         subName: "Zcash Podcasts",
         path: "/zcash-community/zcash-podcasts",
+        icon: "",
       },
       {
         subName: "Zcon Archive",
         path: "/zcash-community/zcap",
+        icon: "",
       },
     ],
   },
@@ -74,18 +102,22 @@ export const navigations = [
       {
         subName: "Electric Coin Company",
         path: "/zcash-organizations/electric-coin-company",
+        icon: "",
       },
       {
         subName: "Zcash Foundation",
         path: "/zcash-organizations/zcash-foundation",
+        icon: "",
       },
       {
-        subName: "Zcash Commnuity Grants",
+        subName: "Zcash Community Grants",
         path: "/zcash-organizations/zcash-community-grants",
+        icon: "",
       },
       {
         subName: "Shielded Labs",
         path: "/zcash-organizations/shielded-labs",
+        icon: "",
       },
     ],
   },
@@ -95,43 +127,45 @@ export const navigations = [
       {
         subName: "Zgo Payment Processor",
         path: "/guides/zgo-payment-processor",
+        icon: "",
       },
       {
         subName: "Free2z Livestreaming",
         path: "/guides/free2z-live",
+        icon: "",
       },
       {
         subName: "Raspberry Pi Zcashd Node",
         path: "/guides/raspberry-pi-4-full-node",
+        icon: "",
       },
       {
         subName: "Raspberry Pi Zebra Node",
         path: "https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5",
+        icon: "",
       },
       {
         subName: "Visualizing Zcash Addresses",
         path: "/guides/visualizing-zcash-addresses",
+        icon: "",
       },
       {
         subName: "Zero Knowledge vs Decoy Systems",
         path: "/guides/zero-knowledge-vs-decoys",
+        icon: "",
       },
     ],
   },
   {
-    name: "Glossary & FAQ's",
-    links: [
-      {
-        subName: "FAQ's",
-        path: "/glossary-and-faqs/faq",
-      },
-      {
-        subName: "Zcash Library",
-        path: "/glossary-and-faqs/zcash-library",
-      },
-    ],
+    name: "Tutorials",
+    path: "https://zechub.wiki/zechub-tutorials",
+    icon: "",
   },
-  
+  {
+    name: "Contribute",
+    path: "https://zechub.wiki/contribute/help-build-zechub",
+    icon: "",
+  },
 ];
 
 export const socialNav = [
@@ -155,8 +189,8 @@ export const socialNav = [
     url: "https://github.com/ZecHub/zechub",
     icon: Github,
   },
-  
 ];
+
 export const socialMedia = [
   {
     name: "Youtube",

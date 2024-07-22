@@ -5,71 +5,94 @@ import { useEffect, useState } from "react";
 import { navigations } from "@/constants/navigation";
 import type { Classes, MenuExp } from "@/types";
 import { Dropdown } from "flowbite-react";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../components/ui/Sheet";
+import { Sheet, SheetContent, SheetTrigger } from "../components/ui/Sheet";
 import {
   MdOutlineDarkMode as DarkIcon,
   MdLightMode as LightIcon,
 } from "react-icons/md";
-import {
-  RiCloseFill as CloseIcon,
-  RiMenuLine as MenuIcon,
-} from "react-icons/ri";
+import { RiMenuLine as MenuIcon } from "react-icons/ri";
 import { IoSearch as SearchIcon } from "react-icons/io5";
 import { Icon } from "./ui/Icon";
 import Logo from "./ui/Logo";
 import SocialIcons from "./ui/SocialIcons";
-// import { AuthDisplay } from "./AccountDisplay/AccountDisplay";
 import DonationBtn from "@/components/ui/DonationBtn";
 import SearchBar from "./SearchBar";
 
-const NavLinks = ({ classes, menuExp, setMenuExpanded, closeMenu }: Classes & { closeMenu: () => void }) => {
-  const router = useRouter();
+const NavLinks = ({
+  classes,
+  menuExp,
+  setMenuExpanded,
+  closeMenu,
+}: Classes & { closeMenu: () => void }) => {
   const handleLinkClick = () => {
-    // Close the menu
     closeMenu();
   };
+
   return (
-    <div className={`flex  ${classes}`}>
-      {navigations.map((item, i) => (
-        <Dropdown
-          className="flex flex-row font-normal"
-          key={item.name + i}
-          label={item.name}
-          color="inherit"
-          trigger={menuExp ? "click" : "hover"}
-          style={{fontWeight:"400"}}
-        >
-          {item.links.map((link) => (
-            <Dropdown.Item key={link.path} onClick={handleLinkClick}>
-              <Link href={link.path}>{link.subName}</Link>
-            </Dropdown.Item>
-          ))}
-        </Dropdown>
-      ))}
+    <div className={`flex ${classes}`}>
+      {navigations.map((item, i) =>
+        item.links ? (
+          <Dropdown
+            className="flex flex-row font-normal"
+            key={item.name + i}
+            label={item.name}
+            color="inherit"
+            trigger={menuExp ? "click" : "hover"}
+            style={{ fontWeight: "400" }}
+          >
+            {item.links.map((link) => (
+              <div key={link.path}>
+                <Dropdown.Item
+                  key={link.path}
+                  onClick={handleLinkClick}
+                  className="flex items-center gap-2 p-2"
+                >
+                  {link.icon && (
+                    <Icon icon={link.icon} className="md:w-6 w-4 h-4 md:h-6" />
+                  )}
+                  <Link href={link.path}>{link.subName}</Link>
+                </Dropdown.Item>
+              </div>
+            ))}
+          </Dropdown>
+        ) : (
+          <Link
+            key={item.name + i}
+            href={item.path}
+            onClick={handleLinkClick}
+            className="flex flex-row font-normal p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
+          >
+            {item.name}
+          </Link>
+        )
+      )}
 
       <div className="flex md:flex-row flex-col md:space-x-3 md:ml-3">
-        {/* DAO Link */}
-        <Link href="/dao" onClick={handleLinkClick} className="flex flex-row font-normal md:ml-3 p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black">
-            DAO
+        <Link
+          href="/dao"
+          onClick={handleLinkClick}
+          className="flex flex-row font-normal md:ml-3 p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
+        >
+          DAO
         </Link>
 
-        {/* Dashboard Link */}
-        <Link href="/dashboard" onClick={handleLinkClick} className="flex flex-row font-normal md:ml-3 p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black">
-            Dashboard    
+        <Link
+          href="/dashboard"
+          onClick={handleLinkClick}
+          className="flex flex-row font-normal md:ml-3 p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
+        >
+          Dashboard
         </Link>
       </div>
     </div>
   );
 };
 
-const MobileNav = ({ menuExp, setMenuExpanded, closeMenu }: MenuExp & { closeMenu: () => void }) => {
+const MobileNav = ({
+  menuExp,
+  setMenuExpanded,
+  closeMenu,
+}: MenuExp & { closeMenu: () => void }) => {
   return (
     <div className="relative flex flex-col w-11/12 h-auto justify-center z-10">
       <div
@@ -140,10 +163,8 @@ const Navigation = () => {
           <NavLinks
             classes={""}
             menuExp={menuExpanded}
-            setMenuExpanded={setMenuExpanded} 
-            closeMenu={function (): void {
-              setMenuExpanded(false)
-            } }         
+            setMenuExpanded={setMenuExpanded}
+            closeMenu={() => setMenuExpanded(false)}
           />
         </div>
 

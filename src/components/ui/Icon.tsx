@@ -5,7 +5,7 @@ type Size = "tiny" | "small" | "medium" | "large";
 
 interface Props extends IconBaseProps {
   size?: Size | number;
-  icon: IconType;
+  icon?: any;
 }
 
 const ICON_SIZE: Record<Size, number> = {
