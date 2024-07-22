@@ -22,4 +22,5 @@ const Cards: React.FC<CardsProps> = ({ title, imageSrc, link, children }) => {
   );
 };
 
+
 export default Cards;
