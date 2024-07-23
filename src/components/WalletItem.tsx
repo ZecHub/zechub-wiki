@@ -98,8 +98,8 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes,
           </div>
         </div>
       </div>
-      <hr className="w-full hidden"/>
-      <div className="wallet-likes w-full flex hidden">
+      <hr className="w-full"/>
+      <div className="wallet-likes w-full flex">
         <div className="likes-count flex-grow">
           <span className="text-gray-400">Rating:</span> {likes}
         </div>
