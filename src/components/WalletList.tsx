@@ -26,6 +26,11 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   const [likes, setLikes] = useState<{ [key: string]: number }>({});
   const [error, setError] = useState<{ [key: string]: string }>({});
   const [success, setSuccess] = useState<{ [key: string]: string }>({});
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+
+  const handleToggleFilter = () => {
+    setIsFilterVisible(!isFilterVisible);
+  };
 
   useEffect(() => {
     const fetchLikes = async () => {
@@ -157,12 +162,21 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   return (
     <div className="flex flex-col md:flex-row">
       <div className="wallet-filter w-auto md:w-1/5 relative">
-        <h2 className="text-4xl font-bold mb-6">Filters</h2>
-        <FilterToggle
-          filters={filters}
-          activeFilters={activeFilters}
-          toggleFilter={toggleFilter}
-        />
+        <h2 className="text-4xl font-bold mb-6">
+          Filters
+          <button
+            onClick={handleToggleFilter}
+            className="float-right bg-blue-500 text-white px-4 py-2 rounded text-sm md:text-lg md:hidden">
+            {isFilterVisible ? 'Hide' : 'Show'}
+          </button>
+        </h2>
+        <div className={`md:block ${isFilterVisible ? 'block' : 'hidden'}`}>
+          <FilterToggle
+            filters={filters}
+            activeFilters={activeFilters}
+            toggleFilter={toggleFilter}
+          />
+        </div>
       </div>
       <section className="h-auto w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
