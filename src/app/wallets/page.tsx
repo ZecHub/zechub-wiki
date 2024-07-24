@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     const urlRoot = `/site/using-zcash`
     const roots = await getRoot(urlRoot)
 
-
+    
     const walletsParsed = parseMarkdown(content);
     // console.log("Parsed Wallets:", walletsParsed); // Check parsed markdown output
 
