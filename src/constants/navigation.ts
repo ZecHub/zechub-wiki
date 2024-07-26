@@ -1,18 +1,17 @@
-import { 
-  BsDiscord as Discord,
-  BsCurrencyExchange as BuyingZec,
-  BsShieldShaded as ShieldedPools,
-  BsArrowUpCircle as Transaction,
- } from "react-icons/bs";
-import {
-  RiTwitterXFill as Twitter,
-  RiGithubFill as Github,
-  RiYoutubeFill as Youtube,
-  RiExchangeFundsLine as Exchange,
-} from "react-icons/ri";
+import { RiTwitterXFill as Twitter, RiGithubFill as Github, RiYoutubeFill as Youtube, RiExchangeFundsLine as Exchange, RiLiveFill as Free2zLive } from "react-icons/ri";
+import { BsArrowUpRightCircle as Transaction, BsShieldShaded as ShieldedPools, BsQrCode as QrCode, BsDiscord as Discord } from 'react-icons/bs'
+import { FcCurrencyExchange as BuyingZec, FcGlobe as Ambassadors } from 'react-icons/fc'
 import { FaMagnifyingGlassChart as BlockchainExplorer } from "react-icons/fa6";
-import { FaWallet as Wallet } from "react-icons/fa6";
-
+import { FaWallet as Wallet } from 'react-icons/fa';
+import { LuTrees as Arborist } from "react-icons/lu";
+import { PiLinkSimpleBold as communityLink, PiPresentationChartLight as Archive } from "react-icons/pi";
+import { IoBuildOutline as commProject } from "react-icons/io5";
+import { GrGroup as ZCAP } from 'react-icons/gr';
+import { ImPodcast as Podcast } from 'react-icons/im';
+import { MdRadar as ECC, MdOutlinePointOfSale as ZgoPayment, MdForum as Forum } from "react-icons/md";
+import { GiCheckedShield as foundation, GiBorderedShield as Shieldedlabs } from 'react-icons/gi'
+import { TbHexagonLetterZ as Grants, TbTopologyRing as TopologyRing } from 'react-icons/tb'
+import { SiRaspberrypi as RaspBerry, SiZebratechnologies as Zebratechnologies }  from 'react-icons/si'
 
 
 export const navigations = [
@@ -57,42 +56,42 @@ export const navigations = [
       {
         subName: "Arborist Calls",
         path: "/zcash-community/arborist-calls",
-        icon: "",
+        icon: Arborist,
       },
       {
         subName: "Community Links",
         path: "/zcash-community/community-links",
-        icon: "",
+        icon: communityLink,
       },
       {
         subName: "Community Forum",
         path: "https://forum.zcashcommunity.com/",
-        icon: "",
+        icon: Forum,
       },
       {
         subName: "Community Projects",
         path: "/zcash-community/community-projects",
-        icon: "",
+        icon: commProject,
       },
       {
         subName: "Zcash Global Ambassadors",
         path: "/zcash-community/zcash-global-ambassadors",
-        icon: "",
+        icon: Ambassadors,
       },
       {
         subName: "ZCAP",
         path: "/zcash-community/zcap",
-        icon: "",
+        icon: ZCAP,
       },
       {
         subName: "Zcash Podcasts",
         path: "/zcash-community/zcash-podcasts",
-        icon: "",
+        icon: Podcast,
       },
       {
         subName: "Zcon Archive",
         path: "/zcash-community/zcap",
-        icon: "",
+        icon: Archive,
       },
     ],
   },
@@ -102,22 +101,22 @@ export const navigations = [
       {
         subName: "Electric Coin Company",
         path: "/zcash-organizations/electric-coin-company",
-        icon: "",
+        icon: ECC,
       },
       {
         subName: "Zcash Foundation",
         path: "/zcash-organizations/zcash-foundation",
-        icon: "",
+        icon: foundation,
       },
       {
         subName: "Zcash Community Grants",
         path: "/zcash-organizations/zcash-community-grants",
-        icon: "",
+        icon: Grants,
       },
       {
         subName: "Shielded Labs",
         path: "/zcash-organizations/shielded-labs",
-        icon: "",
+        icon: Shieldedlabs,
       },
     ],
   },
@@ -127,32 +126,32 @@ export const navigations = [
       {
         subName: "Zgo Payment Processor",
         path: "/guides/zgo-payment-processor",
-        icon: "",
+        icon: ZgoPayment,
       },
       {
         subName: "Free2z Livestreaming",
         path: "/guides/free2z-live",
-        icon: "",
+        icon: Free2zLive,
       },
       {
         subName: "Raspberry Pi Zcashd Node",
         path: "/guides/raspberry-pi-4-full-node",
-        icon: "",
+        icon: RaspBerry,
       },
       {
         subName: "Raspberry Pi Zebra Node",
         path: "https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5",
-        icon: "",
+        icon: Zebratechnologies,
       },
       {
         subName: "Visualizing Zcash Addresses",
         path: "/guides/visualizing-zcash-addresses",
-        icon: "",
+        icon: QrCode,
       },
       {
         subName: "Zero Knowledge vs Decoy Systems",
         path: "/guides/zero-knowledge-vs-decoys",
-        icon: "",
+        icon: TopologyRing,
       },
     ],
   },
