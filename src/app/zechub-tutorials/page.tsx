@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getRoot } from "@/lib/authAndFetch";
 import { getBanner, genMetadata } from "@/lib/helpers";
 import SideMenu from "@/components/SideMenu";
+import ListTutorial from "./ListTutorial";
 
 export const metadata: Metadata = genMetadata({
   title: "Zechub Tutorial",
@@ -35,7 +36,7 @@ const ZechubTutorial = async () => {
       >
         {roots && roots.length > 0 && (
           <div className="relative">
-            <SideMenu folder={slug} roots={roots} />
+            <ListTutorial folder={slug} roots={roots} />
           </div>
         )}
       </div>
