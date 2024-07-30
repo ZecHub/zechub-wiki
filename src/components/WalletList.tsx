@@ -111,7 +111,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         }));
         setSuccess({ [walletTitle]: "We saved your review!" });
       } else {
-        setError({ [walletTitle]: "You reviewed this in the past." });
+        const data = await response.json();
+        setError({ [walletTitle]: data.message });
       }
     } catch (error) {
       setError({ [walletTitle]: "Error updating rating: " + error });
@@ -140,7 +141,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         }));
         setSuccess({ [walletTitle]: "We saved your review!" });
       } else {
-        setError({ [walletTitle]: "You reviewed this in the past." });
+        const data = await response.json();
+        setError({ [walletTitle]: data.message });
       }
     } catch (error) {
       setError({ [walletTitle]: "Error updating rating: " + error });
