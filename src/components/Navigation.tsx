@@ -37,6 +37,7 @@ const NavLinks = ({
             key={item.name + i}
             label={item.name}
             color="inherit"
+            size={'lg'}
             trigger={menuExp ? "click" : "hover"}
             style={{ fontWeight: "400" }}
           >
@@ -56,18 +57,19 @@ const NavLinks = ({
             ))}
           </Dropdown>
         ) : (
-          <Link
-            key={item.name + i}
-            href={item.path}
-            onClick={handleLinkClick}
-            className="flex flex-row font-normal p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
-          >
-            {item.name}
-          </Link>
+          <div key={item.name + i} className="flex gap-2">
+            <Link
+              href={item.path}
+              onClick={handleLinkClick}
+              className="flex flex-row font-normal p-2 mr-3 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
+            >
+              {item.name}
+            </Link>
+          </div>
         )
       )}
 
-      <div className="flex md:flex-row flex-col md:space-x-3 md:ml-3">
+      <div className="flex md:flex-row flex-col md:space-x-3 md:ml-3 sm:gap-0 gap-2">
         <Link
           href="/dao"
           onClick={handleLinkClick}
@@ -100,7 +102,7 @@ const MobileNav = ({
       >
         <ul className="list-none flex items-start flex-1 flex-col">
           <NavLinks
-            classes="flex-col font-bold"
+            classes="flex-col font-bold gap-2 text-[18px]"
             menuExp={menuExp}
             setMenuExpanded={setMenuExpanded}
             closeMenu={closeMenu}

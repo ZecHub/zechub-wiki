@@ -163,7 +163,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
 
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="wallet-filter w-auto md:w-1/5 relative">
+      <div className="wallet-filter w-[25%] relative">
         <h2 className="text-4xl font-bold mb-6">
           Filters
           <button
@@ -180,7 +180,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           />
         </div>
       </div>
-      <section className="h-auto w-full">
+      <section className="h-auto w-[75%]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
           {sortedWallets.map((wallet) => (
             <WalletItem

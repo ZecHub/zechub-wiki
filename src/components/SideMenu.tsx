@@ -6,7 +6,6 @@ import { BiRightArrowAlt as Arrow } from "react-icons/bi";
 import { BiSolidWallet as Wallet } from "react-icons/bi";
 import { Icon } from "./ui/Icon";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
-import Card from "./ui/Card";
 import { BiMenu as BurgerMenuIcon } from "react-icons/bi";
 import { matchIcons } from "@/constants/Icons";
 import { FiFile as FileIcon } from "react-icons/fi";
