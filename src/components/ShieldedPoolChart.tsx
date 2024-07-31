@@ -1,439 +1,375 @@
 "use client";
-import Button from "@/components/Button/Button";
-import HalvingMeter from "@/components/HalvingMeter";
-import Tools from "@/components/tools";
-import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import React, { useMemo, useCallback, useState, useLayoutEffect, useEffect, useRef } from 'react';
+import { AreaClosed, Line, Bar } from '@visx/shape';
+import { curveMonotoneX } from '@visx/curve';
+import { GridRows, GridColumns } from '@visx/grid';
+import { scaleTime, scaleLinear } from '@visx/scale';
+import { withTooltip, Tooltip, TooltipWithBounds, defaultStyles } from '@visx/tooltip';
+import { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
+import { localPoint } from '@visx/event';
+import { LinearGradient } from '@visx/gradient';
+import { max, extent, bisector } from '@visx/vendor/d3-array';
+import { timeFormat } from '@visx/vendor/d3-time-format';
 
-const ShieldedPoolChart = dynamic(
-  () => import("../../components/ShieldedPoolChart"),
-  { ssr: true } // Enable SSR
-);
-
-const defaultUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json";
-const sproutUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json";
-const saplingUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json";
-const orchardUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
-const hashrateUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
-
-const apiUrl =
-  "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
-const blockchainInfoUrl =
-  "https://mainnet.zcashexplorer.app/api/v1/blockchain-info";
-
-interface BlockchainInfo {
-  blocks: number;
-  transactions: number;
-  outputs: number;
-  circulation: number | null;
-  blocks_24h: number;
-  transactions_24h: number;
-  difficulty: number;
-  volume_24h: number;
-  mempool_transactions: number;
-  average_transaction_fee_24h: number;
-  largest_transaction_24h: {
-    hash: string;
-    value_usd: number;
-  };
-  nodes: number;
-  hashrate_24h: string;
-  inflation_usd_24h: number;
-  average_transaction_fee_usd_24h: number;
-  market_price_usd: number;
-  market_price_btc: number;
-  market_price_usd_change_24h_percentage: number;
-  market_cap_usd: number;
-  market_dominance_percentage: number;
-  next_retarget_time_estimate: string;
-  next_difficulty_estimate: number;
-  countdowns: any[];
-  hodling_addresses: number;
-}
-
-interface SupplyData {
-  timestamp: string;
+/**
+ * Type of values from the shielded pool over time. Each datum is amount 
+ * shielded at a given date.
+ */
+type ShieldedAmountDatum = {
+  close: string;
   supply: number;
-}
-
-async function getBlockchainData() {
-  const response = await fetch(
-    "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
-  );
-  const data = await response.json();
-
-  return data.data as BlockchainInfo;
-}
-
-async function getBlockchainInfo() {
-  const response = await fetch(blockchainInfoUrl);
-  const data = await response.json();
-  return data.chainSupply.chainValue;
-}
-
-async function getSupplyData(url: string): Promise<SupplyData[]> {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data as SupplyData[];
-}
-
-async function getLastUpdatedDate(): Promise<string> {
-  const response = await fetch(apiUrl);
-  const data = await response.json();
-  return data[0].commit.committer.date;
-}
-
-const ShieldedPoolDashboard = () => {
-  const [selectedPool, setSelectedPool] = useState("default");
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
-    null
-  );
-  const [circulation, setCirculation] = useState<number | null>(null);
-  const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
-  const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
-  const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-
-  const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
-
-  useEffect(() => {
-    getBlockchainData().then((data) => setBlockchainInfo(data));
-    getBlockchainInfo().then((data) => setCirculation(data));
-
-    getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
-
-    getSupplyData(sproutUrl).then((data) =>
-      setSproutSupply(data[data.length - 1])
-    );
-
-    getSupplyData(saplingUrl).then((data) =>
-      setSaplingSupply(data[data.length - 1])
-    );
-
-    getSupplyData(orchardUrl).then((data) =>
-      setOrchardSupply(data[data.length - 1])
-    );
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getSupplyData(getDataUrl());
-      setLastUpdated(data[data.length - 1].timestamp.split("T")[0]);
-    };
-    fetchData();
-  }, [selectedPool]);
-
-  const getDataUrl = () => {
-    switch (selectedPool) {
-      case "sprout":
-        return sproutUrl;
-      case "sapling":
-        return saplingUrl;
-      case "orchard":
-        return orchardUrl;
-      case "hashrate":
-        return hashrateUrl;
-      case "default":
-      default:
-        return defaultUrl;
-    }
-  };
-
-  const getDataColor = () => {
-    switch (selectedPool) {
-      case "sprout":
-        return "#A020F0";
-      case "sapling":
-        return "#FFA500";
-      case "orchard":
-        return "#32CD32";
-      case "url(#area-background-gradient)":
-      default:
-        return "url(#area-background-gradient)";
-    }
-  };
-
-  if (!blockchainInfo) {
-    return <div>Loading...</div>;
-  }
-  return (
-    <div>
-      <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
-      <div className="border p-3 rounded-lg">
-        <Tools />
-        <div className="relative">
-          <div ref={divChartRef}>
-            <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
-          </div>
-        </div>
-        <div className="flex justify-end gap-12 text-right mt-4 text-sm text-gray-500">
-          <span className="px-3 py-2">
-            Last updated:{" "}
-            {lastUpdated
-              ? new Date(lastUpdated).toLocaleDateString()
-              : "Loading..."}
-          </span>
-          <Button
-            text="Export (PNG)"
-            className="px-3 py-2 border text-white border-slate-300 rounded-md shadow-sm bg-[#1984c7]"
-            onClick={() =>
-              handleSaveToPng(selectedPool, {
-                sproutSupply,
-                saplingSupply,
-                orchardSupply,
-              })
-            }
-          />
-        </div>
-      </div>
-      <div className="mt-8 flex flex-col items-center">
-        <div className="flex justify-center space-x-4">
-          <div className="flex flex-col items-center">
-            <Button
-              onClick={() => setSelectedPool("default")}
-              text="Total Shielded"
-              className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
-              }`}
-            />
-          </div>
-          <div className="flex flex-col items-center">
-            <Button
-              onClick={() => setSelectedPool("hashrate")}
-              text="Hash Rate"
-              className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                selectedPool === "hashrate" ? "bg-[#1984c7]" : "bg-gray-400"
-              }`}
-            />
-          </div>
-          <div className="flex flex-col items-center">
-            <Button
-              onClick={() => setSelectedPool("sprout")}
-              text="Sprout Pool"
-              className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                selectedPool === "sprout" ? "bg-[#1984c7]" : "bg-gray-400"
-              }`}
-            />
-            <span className="text-sm text-gray-600">
-              {sproutSupply
-                ? `${sproutSupply.supply.toLocaleString()} ZEC`
-                : "Loading..."}
-            </span>
-          </div>
-          <div className="flex flex-col items-center">
-            <Button
-              onClick={() => setSelectedPool("sapling")}
-              text="Sapling Pool"
-              className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                selectedPool === "sapling" ? "bg-[#1984c7]" : "bg-gray-400"
-              }`}
-            />
-            <span className="text-sm text-gray-600">
-              {saplingSupply
-                ? `${saplingSupply.supply.toLocaleString()} ZEC`
-                : "Loading..."}
-            </span>
-          </div>
-          <div className="flex flex-col items-center">
-            <Button
-              onClick={() => setSelectedPool("orchard")}
-              text="Orchard Pool"
-              className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                selectedPool === "orchard" ? "bg-[#1984c7]" : "bg-gray-400"
-              }`}
-            />
-            <span className="text-sm text-gray-600">
-              {orchardSupply
-                ? `${orchardSupply.supply.toLocaleString()} ZEC`
-                : "Loading..."}
-            </span>
-          </div>
-        </div>
-      </div>
-      <HalvingMeter />
-      <div className="mt-8">
-        <h2 className="font-bold my-2">Metrics</h2>
-        <table className="border-collapse w-full rounded-lg first:tr">
-          <thead>
-            <tr className="p-0 lg:p-4 hidden lg:table-row">
-              <th className="lg:border border-blue-300 text-left px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0 bg-blue-100 text-gray-500">
-                Property
-              </th>
-              <th className="lg:border border-blue-300 text-left px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0 bg-blue-100">
-                Value
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Market Price (USD)
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                ${blockchainInfo.market_price_usd?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Market Price Change (24h %)
-              </td>
-              <td
-                className={`lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0 ${
-                  blockchainInfo.market_price_usd_change_24h_percentage > 0
-                    ? "text-green-500"
-                    : "text-red-500"
-                }`}
-              >
-                {blockchainInfo.market_price_usd_change_24h_percentage?.toFixed(
-                  2
-                ) ?? "N/A"}
-                %
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Block Height
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.blocks?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Circulation
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {circulation !== null
-                  ? `${circulation.toLocaleString()}`
-                  : "N/A"}{" "}
-                ZEC
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Blocks (24h)
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.blocks_24h?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Transactions (24h)
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.transactions_24h?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Difficulty
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.difficulty?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Volume (24h)
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {(blockchainInfo.volume_24h / 1e8)?.toLocaleString() ?? "N/A"}{" "}
-                ZEC
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Mempool Transactions
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.mempool_transactions?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Average Transaction Fee (24h)
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.average_transaction_fee_24h?.toLocaleString() ??
-                  "N/A"}{" "}
-                sat
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Largest Transaction (24h)
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                <a
-                  href={`https://3xpl.com/zcash/transaction/${blockchainInfo.largest_transaction_24h?.hash}`}
-                  className="text-blue-500 underline"
-                >
-                  {blockchainInfo.largest_transaction_24h?.hash ?? "N/A"}
-                </a>
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Nodes
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.nodes?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Hashrate (24h)
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.hashrate_24h ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Inflation (USD, 24h)
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                ${blockchainInfo.inflation_usd_24h?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Average Transaction Fee (USD, 24h)
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                $
-                {blockchainInfo.average_transaction_fee_usd_24h?.toFixed(2) ??
-                  "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Market Cap (USD)
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                ${blockchainInfo.market_cap_usd?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-            <tr className="p-0 lg:p-4 flex flex-col lg:table-row">
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-2 lg:py-2 text-sm text-gray-500">
-                Hodling Addresses
-              </td>
-              <td className="lg:border border-blue-300 px-0 lg:px-2 pt-0 lg:py-2 font-bold break-all text-lg mb-4 lg:mb-0">
-                {blockchainInfo.hodling_addresses?.toLocaleString() ?? "N/A"}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+  Date : string;
+  Hashrate : any
 };
 
-export default ShieldedPoolDashboard;
+interface ShieldedPoolChartProps {
+  dataUrl: string;
+  color : string;
+}
+
+/**
+ * Loads the historic shielded pool data from a public json file in Github repo
+ * @returns Promise of shielded pool data
+ */
+async function fetchShieldedSupplyData(url: string): Promise<Array<ShieldedAmountDatum>> {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
+
+// Color scheme for chart and tooltip
+export const background = '#1984c7';
+export const background2 = 'rgb(34, 211, 238)';
+export const accentColor = '#edffea';
+export const accentColorDark = 'rgb(107, 114, 128)';
+const tooltipStyles = {
+  ...defaultStyles,
+  background,
+  border: '1px solid white',
+  color: 'white',
+};
+
+/** Date format from data, i.e. "01/01/1970" */
+const formatDate = timeFormat("%b %d, '%y");
+
+/**
+ * Native `Date` object from datum
+ * @param d datum for measurement of shielded amount
+ * @returns Date object
+ */
+const getDate = (d: ShieldedAmountDatum): Date => new Date(d.close ?? d.Date);
+
+/**
+ * Returns the shielded amount from datum
+ * @param d 
+ * @returns number
+ */
+const getShieldedValue = (d: ShieldedAmountDatum): number => d.supply ?? d.Hashrate.replace(/,/g, '') / 100000000000000000000000000000000000;
+
+/** Bisector for date */
+const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close ?? d.Date)).left;
+
+/**
+ * Default width for the chart. It will render 1000px wide, although if this 
+ * happens that means there an error with the `userRef` hook below.
+ */
+const DEFAULT_WIDTH = 1000;
+
+/* Default height for the chart. It will render 500px tall. */
+const DEFAULT_HEIGHT = 500;
+
+/**
+ * Props to override default layout, all of which are optional. By default, the
+ * visualization will take up the entire width  of the parent container, and the
+ * height will be 500px.
+ */
+export type AreaProps = {
+  providedWidth?: number;
+  providedHeight?: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+};
+
+/**
+ * Area line chart for shielded pool over time
+ * @param props can be used to override height, width, and margin
+ * 
+ * Inspired by example from visx documentation: https://visx.dev/examples/gallery?group=Area&show=AreaClosed
+ * 
+ * @returns Area chart for shielded pool over time
+ * 
+ */
+const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, ShieldedAmountDatum>(
+  ({
+    dataUrl,
+    color,
+    providedWidth = DEFAULT_WIDTH,
+    providedHeight = DEFAULT_HEIGHT,
+    margin = { top: 0, right: 0, bottom: 0, left: 0 },
+    showTooltip,
+    hideTooltip,
+    tooltipData,
+    tooltipTop = 0,
+    tooltipLeft = 0,
+  }: AreaProps & WithTooltipProvidedProps<ShieldedAmountDatum> & ShieldedPoolChartProps) => {
+    
+    /* State for chart data loaded from server */
+    const [chartData, setChartData] = useState([] as Array<ShieldedAmountDatum>);
+
+    const yMax = useMemo(() => max(chartData, getShieldedValue) || 0, [chartData]);
+
+    /* Loading state for chart data in progress */
+    const [isLoading, setIsLoading] = useState(false);
+
+    /* Error state for chart data */
+    const [error, setError] = useState<Error | null>(null);
+
+    // Fetch data whenever dataUrl changes
+    useEffect(() => {
+      setIsLoading(true);
+      fetchShieldedSupplyData(dataUrl)
+        .then((data) => setChartData(data))
+        .catch((error) => setError(error))
+        .finally(() => setIsLoading(false));
+    }, [dataUrl]);
+
+    /**
+     * Reference to child, which will fill all space available horizontally
+     */
+    const ref = useRef<HTMLDivElement>(null);
+
+    // State for width and height so that they update as browser size changes
+    const [width, setWidth] = useState(providedWidth);
+    const [height, setHeight] = useState(providedHeight);
+
+    // Compute inner height and width based upon margin
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
+    // Update width and height on resize
+    useLayoutEffect(() => {
+      if (ref.current) {
+        setWidth(ref?.current?.clientWidth || providedWidth);
+        setHeight(ref?.current?.clientHeight || providedHeight);
+      }
+    });
+
+    /**
+     * Scale for date on x-axis
+     */
+    const dateScale = useMemo(
+      () =>
+        scaleTime({
+          range: [margin.left, innerWidth + margin.left],
+          domain: extent(chartData, getDate) as [Date, Date],
+        }),
+      [chartData, innerWidth, margin.left],
+    );
+
+    /**
+     * Scale for shielded amount on y-axis
+     */
+    const shieldedValueScale = useMemo(
+      () =>
+        scaleLinear({
+          range: [innerHeight + margin.top, margin.top],
+          domain: [0, (max(chartData, getShieldedValue) || 0) + innerHeight / 3],
+          nice: true,
+        }),
+      [margin.top, innerHeight, chartData],
+    );
+
+    /**
+     * Handle tooltip behavior on hover. The user should see the date and 
+     * shielded value corresponding to the point hovered over.
+     */
+    const handleTooltip = useCallback(
+      (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
+        const { x } = localPoint(event) || { x: 0 };
+        const x0 = dateScale.invert(x);
+        const index = bisectDate(chartData, x0, 1);
+        const d0 = chartData[index - 1];
+        const d1 = chartData[index];
+        let d = d0;
+        if (d1 && getDate(d1)) {
+          d = x0.valueOf() - getDate(d0).valueOf() > getDate(d1).valueOf() - x0.valueOf() ? d1 : d0;
+        }
+        showTooltip({
+          tooltipData: d,
+          tooltipLeft: x,
+          tooltipTop: shieldedValueScale(getShieldedValue(d)),
+        });
+      },
+      [showTooltip, shieldedValueScale, dateScale, chartData],
+    );
+
+    // Function to format number with commas
+    const formatNumber = (number: number) => {
+      return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(number);
+    };
+
+    // Render loading message when loading
+    if (chartData.length === 0 || isLoading) {
+      return (
+        <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
+          <p><i>Loading historic shielded pool data...</i></p>
+        </div>
+      );
+    }
+
+    // Render error message if error loading data
+    if (error) {
+      return (
+        <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
+          <p><i>Error loading historic shielding data: {error.message}</i></p>
+        </div>
+      );
+    }
+
+    // Render the chart by default
+    return (
+      // Make sure container fills width of parent
+      <div ref={ref} style={{ width: '100%', minWidth: '100%', minHeight: '500px' }}>
+        <svg width={width} height={height}>
+          <rect
+            aria-label="background"
+            role="background"
+            x={0}
+            y={0}
+            width={width}
+            height={height}
+            fill={color}
+            rx={14}
+          />
+          <LinearGradient id="area-background-gradient" from={background} to={background2} />
+          <LinearGradient id="area-gradient" from={accentColor} to={accentColor} toOpacity={0.1} />
+          <GridRows
+            left={margin.left}
+            scale={shieldedValueScale}
+            width={innerWidth}
+            strokeDasharray="1,3"
+            stroke={accentColor}
+            strokeOpacity={0.25}
+            pointerEvents="none"
+            aria-label="Rows of chart"
+          />
+          <GridColumns
+            top={margin.top}
+            scale={dateScale}
+            height={innerHeight}
+            strokeDasharray="1,3"
+            stroke={accentColor}
+            strokeOpacity={0.25}
+            pointerEvents="none"
+            aria-label="Columns of chart"
+          />
+          <AreaClosed<ShieldedAmountDatum>
+            data={chartData}
+            x={(d) => dateScale(getDate(d)) ?? 0}
+            y={(d) => shieldedValueScale(getShieldedValue(d)) ?? 0}
+            yScale={shieldedValueScale}
+            strokeWidth={1}
+            stroke="url(#area-gradient)"
+            fill="url(#area-gradient)"
+            curve={curveMonotoneX}
+            aria-label="Area under line of the chart"
+          />
+          <Bar
+            x={margin.left}
+            y={margin.top}
+            width={innerWidth}
+            height={innerHeight}
+            fill="transparent"
+            rx={14}
+            onTouchStart={handleTooltip}
+            onTouchMove={handleTooltip}
+            onMouseMove={handleTooltip}
+            onMouseLeave={() => hideTooltip()}
+            aria-label="Shielded pooling over time"
+          />
+          {tooltipData && (
+            <g>
+              <Line
+                from={{ x: tooltipLeft, y: margin.top }}
+                to={{ x: tooltipLeft, y: innerHeight + margin.top }}
+                stroke={accentColorDark}
+                strokeWidth={2}
+                pointerEvents="none"
+                strokeDasharray="5,2"
+                aria-label="Line for tooltip of mouse on x axis"
+              />
+              <circle
+                cx={tooltipLeft}
+                cy={tooltipTop + 1}
+                r={4}
+                fill="black"
+                fillOpacity={0.25}
+                stroke="black"
+                strokeOpacity={0.25}
+                strokeWidth={2}
+                pointerEvents="none"
+                aria-label="Point showing shielding on the y-axis for this point on the x-axis"
+              />
+              <circle
+                cx={tooltipLeft}
+                cy={tooltipTop}
+                r={4}
+                fill={accentColorDark}
+                stroke="white"
+                strokeWidth={2}
+                pointerEvents="none"
+                aria-label="Accent color for point showing shielding on the y-axis for this point on the x-axis"
+              />
+            </g>
+          )}
+          <text
+            x={width - 60}
+            y={height - 10}
+            textAnchor="end"
+            fontSize={14}
+            fill={accentColor}
+            opacity={0.8}
+            aria-label="Watermark"
+          >
+           ZECHUB DASHBOARD
+          </text>
+          <image
+            x={width - 60}
+            y={height - 50}
+            width="40"
+            height="40"
+            href=""
+            opacity={0.8}
+            aria-label="Watermark logo"
+          />
+        </svg>
+        {tooltipData && (
+          <div>
+            <TooltipWithBounds
+              key={Math.random()}
+              top={tooltipTop - 12}
+              left={tooltipLeft + 12}
+              style={tooltipStyles}
+              aria-label="Tooltip for shielded value at this point in time"
+            >
+              {formatNumber(getShieldedValue(tooltipData))}
+            </TooltipWithBounds>
+            <Tooltip
+              top={innerHeight + margin.top - 14}
+              left={tooltipLeft}
+              style={{
+                ...defaultStyles,
+                minWidth: 72,
+                textAlign: 'center',
+                transform: 'translateX(-50%)',
+              }}
+            >
+              {formatDate(getDate(tooltipData))}
+            </Tooltip>
+          </div>
+        )}
+      </div>
+    );
+  },
+);
+
+export default ShieldedPoolChart;
