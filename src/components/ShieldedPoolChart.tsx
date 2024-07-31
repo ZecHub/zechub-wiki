@@ -16,15 +16,13 @@ import { timeFormat } from '@visx/vendor/d3-time-format';
  * shielded at a given date.
  */
 type ShieldedAmountDatum = {
-  close: string;
-  supply: number;
-  Date : string;
-  Hashrate : any
+  Date: string;
+  Hashrate: string;
 };
 
 interface ShieldedPoolChartProps {
   dataUrl: string;
-  color : string;
+  color: string;
 }
 
 /**
@@ -57,17 +55,19 @@ const formatDate = timeFormat("%b %d, '%y");
  * @param d datum for measurement of shielded amount
  * @returns Date object
  */
-const getDate = (d: ShieldedAmountDatum): Date => new Date(d.close ?? d.Date);
+const getDate = (d: ShieldedAmountDatum): Date => new Date(d.Date);
 
 /**
  * Returns the shielded amount from datum
  * @param d 
  * @returns number
  */
-const getShieldedValue = (d: ShieldedAmountDatum): number => d.supply ?? d.Hashrate.replace(/,/g, '') / 100000000000000000000000000000000000;
+const getShieldedValue = (d: ShieldedAmountDatum): number => {
+  return parseFloat(d.Hashrate.replace(/,/g, ''));
+};
 
 /** Bisector for date */
-const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close ?? d.Date)).left;
+const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.Date)).left;
 
 /**
  * Default width for the chart. It will render 1000px wide, although if this 
