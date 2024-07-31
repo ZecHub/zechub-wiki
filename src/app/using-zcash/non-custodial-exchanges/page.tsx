@@ -23,7 +23,7 @@ const DEXListingPage = () => {
             title={itm.title}
             url={itm.url}
             key={itm.title + '_' + Math.random() / i}
-            ctaLabel='' // Providing an empty string as ctaLabel
+            ctaLabel='Read More' // Providing an empty string as ctaLabel
           />
         ))}
       </div>

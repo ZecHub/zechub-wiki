@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </div>
 
             <div id="content" className={`flex flex-col space-y-5 ${roots && roots.length > 0 ? 'md:flex-row md:space-x-5' : 'md:flex-col'} h-auto w-full py-5`}>
-                <section className='h-auto w-auto'>
+                <section className='h-auto w-full'>
                     <div>
                         <WalletList allWallets={walletsParsed} />
                     </div>
