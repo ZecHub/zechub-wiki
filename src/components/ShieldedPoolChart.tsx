@@ -11,18 +11,26 @@ import { LinearGradient } from '@visx/gradient';
 import { max, extent, bisector } from '@visx/vendor/d3-array';
 import { timeFormat } from '@visx/vendor/d3-time-format';
 
-// Define types for data
+/**
+ * Type of values from the shielded pool over time. Each datum is amount 
+ * shielded at a given date.
+ */
 type ShieldedAmountDatum = {
-  Date: string;
-  Hashrate: string;
+  close: string;
+  supply: number;
+  Date : string;
+  Hashrate : any
 };
 
 interface ShieldedPoolChartProps {
   dataUrl: string;
-  color: string;
+  color : string;
 }
 
-// Fetch data function
+/**
+ * Loads the historic shielded pool data from a public json file in Github repo
+ * @returns Promise of shielded pool data
+ */
 async function fetchShieldedSupplyData(url: string): Promise<Array<ShieldedAmountDatum>> {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -41,30 +49,55 @@ const tooltipStyles = {
   color: 'white',
 };
 
-// Date format from data
+/** Date format from data, i.e. "01/01/1970" */
 const formatDate = timeFormat("%b %d, '%y");
 
-// Function to extract Date from data
-const getDate = (d: ShieldedAmountDatum): Date => new Date(d.Date);
+/**
+ * Native `Date` object from datum
+ * @param d datum for measurement of shielded amount
+ * @returns Date object
+ */
+const getDate = (d: ShieldedAmountDatum): Date => new Date(d.close ?? d.Date);
 
-// Function to extract and convert hashrate value from data
-const getShieldedValue = (d: ShieldedAmountDatum): number => {
-  const hashrate = d.Hashrate ? parseFloat(d.Hashrate.replace(/,/g, '')) : 0;
-  return hashrate;
-};
+/**
+ * Returns the shielded amount from datum
+ * @param d 
+ * @returns number
+ */
+const getShieldedValue = (d: ShieldedAmountDatum): number => d.supply ?? d.Hashrate.replace(/,/g, '') / 100000000000000000000000000000000000;
 
-// Bisector for date
-const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.Date)).left;
+/** Bisector for date */
+const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close ?? d.Date)).left;
 
+/**
+ * Default width for the chart. It will render 1000px wide, although if this 
+ * happens that means there an error with the `userRef` hook below.
+ */
 const DEFAULT_WIDTH = 1000;
+
+/* Default height for the chart. It will render 500px tall. */
 const DEFAULT_HEIGHT = 500;
 
+/**
+ * Props to override default layout, all of which are optional. By default, the
+ * visualization will take up the entire width  of the parent container, and the
+ * height will be 500px.
+ */
 export type AreaProps = {
   providedWidth?: number;
   providedHeight?: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 };
 
+/**
+ * Area line chart for shielded pool over time
+ * @param props can be used to override height, width, and margin
+ * 
+ * Inspired by example from visx documentation: https://visx.dev/examples/gallery?group=Area&show=AreaClosed
+ * 
+ * @returns Area chart for shielded pool over time
+ * 
+ */
 const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, ShieldedAmountDatum>(
   ({
     dataUrl,
@@ -79,11 +112,18 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     tooltipLeft = 0,
   }: AreaProps & WithTooltipProvidedProps<ShieldedAmountDatum> & ShieldedPoolChartProps) => {
     
+    /* State for chart data loaded from server */
     const [chartData, setChartData] = useState([] as Array<ShieldedAmountDatum>);
+
     const yMax = useMemo(() => max(chartData, getShieldedValue) || 0, [chartData]);
+
+    /* Loading state for chart data in progress */
     const [isLoading, setIsLoading] = useState(false);
+
+    /* Error state for chart data */
     const [error, setError] = useState<Error | null>(null);
 
+    // Fetch data whenever dataUrl changes
     useEffect(() => {
       setIsLoading(true);
       fetchShieldedSupplyData(dataUrl)
@@ -92,13 +132,20 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
         .finally(() => setIsLoading(false));
     }, [dataUrl]);
 
+    /**
+     * Reference to child, which will fill all space available horizontally
+     */
     const ref = useRef<HTMLDivElement>(null);
+
+    // State for width and height so that they update as browser size changes
     const [width, setWidth] = useState(providedWidth);
     const [height, setHeight] = useState(providedHeight);
 
+    // Compute inner height and width based upon margin
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
+    // Update width and height on resize
     useLayoutEffect(() => {
       if (ref.current) {
         setWidth(ref?.current?.clientWidth || providedWidth);
@@ -106,6 +153,9 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       }
     });
 
+    /**
+     * Scale for date on x-axis
+     */
     const dateScale = useMemo(
       () =>
         scaleTime({
@@ -115,6 +165,9 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       [chartData, innerWidth, margin.left],
     );
 
+    /**
+     * Scale for shielded amount on y-axis
+     */
     const shieldedValueScale = useMemo(
       () =>
         scaleLinear({
@@ -125,6 +178,10 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       [margin.top, innerHeight, chartData],
     );
 
+    /**
+     * Handle tooltip behavior on hover. The user should see the date and 
+     * shielded value corresponding to the point hovered over.
+     */
     const handleTooltip = useCallback(
       (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
         const { x } = localPoint(event) || { x: 0 };
@@ -145,10 +202,12 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       [showTooltip, shieldedValueScale, dateScale, chartData],
     );
 
+    // Function to format number with commas
     const formatNumber = (number: number) => {
       return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(number);
     };
 
+    // Render loading message when loading
     if (chartData.length === 0 || isLoading) {
       return (
         <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
@@ -157,6 +216,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       );
     }
 
+    // Render error message if error loading data
     if (error) {
       return (
         <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
@@ -165,7 +225,9 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       );
     }
 
+    // Render the chart by default
     return (
+      // Make sure container fills width of parent
       <div ref={ref} style={{ width: '100%', minWidth: '100%', minHeight: '500px' }}>
         <svg width={width} height={height}>
           <rect
@@ -209,7 +271,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             stroke="url(#area-gradient)"
             fill="url(#area-gradient)"
             curve={curveMonotoneX}
-            aria-label="Closed area showing shielded pool value over time"
+            aria-label="Area under line of the chart"
           />
           <Bar
             x={margin.left}
@@ -222,7 +284,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             onTouchMove={handleTooltip}
             onMouseMove={handleTooltip}
             onMouseLeave={() => hideTooltip()}
-            aria-label="Hover overlay"
+            aria-label="Shielded pooling over time"
           />
           {tooltipData && (
             <g>
@@ -233,7 +295,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
                 strokeWidth={2}
                 pointerEvents="none"
                 strokeDasharray="5,2"
-                aria-label="Line showing x axis"
+                aria-label="Line for tooltip of mouse on x axis"
               />
               <circle
                 cx={tooltipLeft}
@@ -268,7 +330,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             opacity={0.8}
             aria-label="Watermark"
           >
-            ZECHUB DASHBOARD
+           ZECHUB DASHBOARD
           </text>
           <image
             x={width - 60}
