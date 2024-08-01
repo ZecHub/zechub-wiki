@@ -13,8 +13,6 @@ import { timeFormat } from '@visx/vendor/d3-time-format';
 
 // Define types for data
 type ShieldedAmountDatum = {
-  close: string;
-  supply: number;
   Date: string;
   Hashrate: string;
 };
@@ -47,7 +45,7 @@ const tooltipStyles = {
 const formatDate = timeFormat("%b %d, '%y");
 
 // Function to extract Date from data
-const getDate = (d: ShieldedAmountDatum): Date => new Date(d.close ?? d.Date);
+const getDate = (d: ShieldedAmountDatum): Date => new Date(d.Date);
 
 // Function to extract and convert hashrate value from data
 const getShieldedValue = (d: ShieldedAmountDatum): number => {
@@ -56,7 +54,7 @@ const getShieldedValue = (d: ShieldedAmountDatum): number => {
 };
 
 // Bisector for date
-const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close ?? d.Date)).left;
+const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.Date)).left;
 
 const DEFAULT_WIDTH = 1000;
 const DEFAULT_HEIGHT = 500;
@@ -211,7 +209,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             stroke="url(#area-gradient)"
             fill="url(#area-gradient)"
             curve={curveMonotoneX}
-            aria-label="Area under line of the chart"
+            aria-label="Closed area showing shielded pool value over time"
           />
           <Bar
             x={margin.left}
@@ -224,7 +222,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             onTouchMove={handleTooltip}
             onMouseMove={handleTooltip}
             onMouseLeave={() => hideTooltip()}
-            aria-label="Shielded pooling over time"
+            aria-label="Hover overlay"
           />
           {tooltipData && (
             <g>
@@ -235,7 +233,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
                 strokeWidth={2}
                 pointerEvents="none"
                 strokeDasharray="5,2"
-                aria-label="Line for tooltip of mouse on x axis"
+                aria-label="Line showing x axis"
               />
               <circle
                 cx={tooltipLeft}
@@ -270,7 +268,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             opacity={0.8}
             aria-label="Watermark"
           >
-           ZECHUB DASHBOARD
+            ZECHUB DASHBOARD
           </text>
           <image
             x={width - 60}
