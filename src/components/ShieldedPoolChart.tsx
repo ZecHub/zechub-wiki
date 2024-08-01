@@ -18,13 +18,13 @@ import { timeFormat } from '@visx/vendor/d3-time-format';
 type ShieldedAmountDatum = {
   close: string;
   supply: number;
-  Date : string;
-  Hashrate : any
+  Date: string;
+  Hashrate: any
 };
 
 interface ShieldedPoolChartProps {
   dataUrl: string;
-  color : string;
+  color: string;
 }
 
 /**
@@ -64,10 +64,12 @@ const getDate = (d: ShieldedAmountDatum): Date => new Date(d.close ?? d.Date);
  * @param d 
  * @returns number
  */
-const getShieldedValue = (d: ShieldedAmountDatum): number => d.supply ?? d.Hashrate.replace(/,/g, '') / 100000000000000000000000000000000000;
+const getShieldedValue = (d: ShieldedAmountDatum): number => {
+  return parseFloat(d.Hashrate.replace(/,/g, ''));
+};
 
 /** Bisector for date */
-const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close ?? d.Date)).left;
+const bisectorDate = bisector<ShieldedAmountDatum, Date>((d) => new Date(d.close ?? d.Date)).left;
 
 /**
  * Default width for the chart. It will render 1000px wide, although if this 
@@ -186,7 +188,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
       (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
         const { x } = localPoint(event) || { x: 0 };
         const x0 = dateScale.invert(x);
-        const index = bisectDate(chartData, x0, 1);
+        const index = bisectorDate(chartData, x0, 1);
         const d0 = chartData[index - 1];
         const d1 = chartData[index];
         let d = d0;
@@ -210,57 +212,43 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     // Render loading message when loading
     if (chartData.length === 0 || isLoading) {
       return (
-        <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
-          <p><i>Loading historic shielded pool data...</i></p>
+        <div ref={ref} style={{ height: DEFAULT_HEIGHT }}>
+          <p>Loading...</p>
         </div>
       );
     }
 
-    // Render error message if error loading data
+    // Render error message when error
     if (error) {
       return (
-        <div ref={ref} style={{ width: '100%', minWidth: '100%' }}>
-          <p><i>Error loading historic shielding data: {error.message}</i></p>
+        <div ref={ref} style={{ height: DEFAULT_HEIGHT }}>
+          <p>There was an error loading data.</p>
         </div>
       );
     }
 
-    // Render the chart by default
     return (
-      // Make sure container fills width of parent
-      <div ref={ref} style={{ width: '100%', minWidth: '100%', minHeight: '500px' }}>
+      <div ref={ref} style={{ height: DEFAULT_HEIGHT }}>
         <svg width={width} height={height}>
-          <rect
-            aria-label="background"
-            role="background"
-            x={0}
-            y={0}
-            width={width}
-            height={height}
-            fill={color}
-            rx={14}
-          />
-          <LinearGradient id="area-background-gradient" from={background} to={background2} />
-          <LinearGradient id="area-gradient" from={accentColor} to={accentColor} toOpacity={0.1} />
+          <rect x={0} y={0} width={width} height={height} fill="url(#gradient)" rx={14} />
+          <LinearGradient id="gradient" from={background} to={background2} />
           <GridRows
             left={margin.left}
             scale={shieldedValueScale}
             width={innerWidth}
             strokeDasharray="1,3"
-            stroke={accentColor}
-            strokeOpacity={0.25}
+            stroke={accentColorDark}
+            strokeOpacity={0.2}
             pointerEvents="none"
-            aria-label="Rows of chart"
           />
           <GridColumns
             top={margin.top}
             scale={dateScale}
             height={innerHeight}
             strokeDasharray="1,3"
-            stroke={accentColor}
-            strokeOpacity={0.25}
+            stroke={accentColorDark}
+            strokeOpacity={0.2}
             pointerEvents="none"
-            aria-label="Columns of chart"
           />
           <AreaClosed<ShieldedAmountDatum>
             data={chartData}
@@ -268,10 +256,9 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             y={(d) => shieldedValueScale(getShieldedValue(d)) ?? 0}
             yScale={shieldedValueScale}
             strokeWidth={1}
-            stroke="url(#area-gradient)"
-            fill="url(#area-gradient)"
+            stroke="url(#gradient)"
+            fill="url(#gradient)"
             curve={curveMonotoneX}
-            aria-label="Area under line of the chart"
           />
           <Bar
             x={margin.left}
@@ -284,7 +271,6 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             onTouchMove={handleTooltip}
             onMouseMove={handleTooltip}
             onMouseLeave={() => hideTooltip()}
-            aria-label="Shielded pooling over time"
           />
           {tooltipData && (
             <g>
@@ -295,19 +281,17 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
                 strokeWidth={2}
                 pointerEvents="none"
                 strokeDasharray="5,2"
-                aria-label="Line for tooltip of mouse on x axis"
               />
               <circle
                 cx={tooltipLeft}
-                cy={tooltipTop + 1}
+                cy={tooltipTop}
                 r={4}
                 fill="black"
-                fillOpacity={0.25}
+                fillOpacity={0.1}
                 stroke="black"
-                strokeOpacity={0.25}
+                strokeOpacity={0.1}
                 strokeWidth={2}
                 pointerEvents="none"
-                aria-label="Point showing shielding on the y-axis for this point on the x-axis"
               />
               <circle
                 cx={tooltipLeft}
@@ -317,54 +301,17 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
                 stroke="white"
                 strokeWidth={2}
                 pointerEvents="none"
-                aria-label="Accent color for point showing shielding on the y-axis for this point on the x-axis"
               />
             </g>
           )}
-          <text
-            x={width - 60}
-            y={height - 10}
-            textAnchor="end"
-            fontSize={14}
-            fill={accentColor}
-            opacity={0.8}
-            aria-label="Watermark"
-          >
-           ZECHUB DASHBOARD
-          </text>
-          <image
-            x={width - 60}
-            y={height - 50}
-            width="40"
-            height="40"
-            href=""
-            opacity={0.8}
-            aria-label="Watermark logo"
-          />
         </svg>
         {tooltipData && (
           <div>
-            <TooltipWithBounds
-              key={Math.random()}
-              top={tooltipTop - 12}
-              left={tooltipLeft + 12}
-              style={tooltipStyles}
-              aria-label="Tooltip for shielded value at this point in time"
-            >
-              {formatNumber(getShieldedValue(tooltipData))}
+            <TooltipWithBounds key={Math.random()} top={tooltipTop - 12} left={tooltipLeft + 12} style={tooltipStyles}>
+              {`Date: ${formatDate(getDate(tooltipData))}`}
+              <br />
+              {`Hashrate: ${formatNumber(getShieldedValue(tooltipData))}`}
             </TooltipWithBounds>
-            <Tooltip
-              top={innerHeight + margin.top - 14}
-              left={tooltipLeft}
-              style={{
-                ...defaultStyles,
-                minWidth: 72,
-                textAlign: 'center',
-                transform: 'translateX(-50%)',
-              }}
-            >
-              {formatDate(getDate(tooltipData))}
-            </Tooltip>
           </div>
         )}
       </div>
