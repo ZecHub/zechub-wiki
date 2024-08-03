@@ -31,21 +31,21 @@ const Home = ({ text }: HomeProps) => {
                 <FadeInAnimation>
                   <h1 className="text-4xl text-center font-bold mb-3">Welcome to ZecHub</h1>
                 </FadeInAnimation>
-                <div className="flex items-center justify-center p-4">
+                <div className="flex flex-col items-center justify-center p-4">
                   <FadeInAnimation>
                     <p className="text-lg text-center">{text}</p>
                   </FadeInAnimation>
-                </div>
-                <div className="flex justify-center mx-auto">
-                  <FadeInAnimation>
-                    <Link
-                      type="button"
-                      href={"/explore"}
-                      className=" md:hover:scale-110 border-[#1984c7] transition duration-400 border-4 font-bold rounded-full py-4 px-8 color-[#1984c7]"
-                    >
-                      Explore Zcash
-                    </Link>
-                  </FadeInAnimation>
+                  <div className="w-full flex justify-center mt-6">
+                    <FadeInAnimation>
+                      <Link
+                        type="button"
+                        href="/explore"
+                        className="transition duration-400 border-4 border-[#1984c7] font-bold rounded-full py-6 px-10 text-[#1984c7] bg-white hover:bg-[#1984c7] hover:text-white shadow-lg transform hover:scale-110"
+                      >
+                        Explore Zcash
+                      </Link>
+                    </FadeInAnimation>
+                  </div>
                 </div>
               </div>
             </FadeInAnimation>
