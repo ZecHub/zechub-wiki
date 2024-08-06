@@ -117,9 +117,6 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
 
     const yMax = useMemo(() => max(chartData, getShieldedValue) || 0, [chartData]);
 
-    /* State for total shielded amount */
-    const [totalShielded, setTotalShielded] = useState(0);
-
     /* Loading state for chart data in progress */
     const [isLoading, setIsLoading] = useState(false);
 
@@ -130,11 +127,7 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     useEffect(() => {
       setIsLoading(true);
       fetchShieldedSupplyData(dataUrl)
-        .then((data) => {
-          setChartData(data);
-          const total = data.reduce((sum, datum) => sum + getShieldedValue(datum), 0);
-          setTotalShielded(total);
-        })
+        .then((data) => setChartData(data))
         .catch((error) => setError(error))
         .finally(() => setIsLoading(false));
     }, [dataUrl]);
@@ -374,10 +367,6 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
             </Tooltip>
           </div>
         )}
-        <div style={{ textAlign: 'center', marginTop: '10px' }}>
-          <button>Total Shielded</button>
-          <p style={{ color: accentColor }}>{formatNumber(totalShielded)}</p>
-        </div>
       </div>
     );
   },
