@@ -9,6 +9,7 @@ import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import { BiMenu as BurgerMenuIcon } from "react-icons/bi";
 import { matchIcons } from "@/constants/Icons";
 import { FiFile as FileIcon } from "react-icons/fi";
+import { FaListAlt } from "react-icons/fa";
 
 interface MenuProps {
   folder: string;
@@ -63,6 +64,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
           <ul>
             {root.map((item, i) => {
               if (getName(item) === "Wallets") return null; // Skip rendering the item named "Wallets"
+              if (getName(item) === "Custodial Exchanges") return null; // Skip rendering the item named "Wallets"
 
               const myIcon = matchIcons(fold, getName(item));
               return (
@@ -90,6 +92,25 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                 </li>
               );
             })}
+            {fold === "Using Zcash" && (
+              <li
+                className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
+              >
+                <a href="/using-zcash/custodial-exchanges">
+                  <div className={`flex items-center space-x-4`}>
+                    <div className="flex-shrink-0">
+                      <Icon icon={FaListAlt} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium ">Custodial xchanges</p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold ">
+                      <Icon icon={Arrow} />
+                    </div>
+                  </div>
+                </a>
+              </li>
+            )}
             {fold === "Using Zcash" && (
               <li
                 className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
