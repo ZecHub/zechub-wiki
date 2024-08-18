@@ -102,7 +102,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                       <Icon icon={FaListAlt} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium ">Custodial xchanges</p>
+                      <p className="text-sm font-medium ">Custodial Exchanges</p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold ">
                       <Icon icon={Arrow} />
