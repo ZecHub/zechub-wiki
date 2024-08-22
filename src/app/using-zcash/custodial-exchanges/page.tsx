@@ -83,6 +83,24 @@ const exchanges: Exchange[] = [
     logo: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Official_logo_of_OKEx.png',
     altText: 'OKEx Logo',
   },
+  {
+    name: 'CoinEx',
+    url: 'https://www.coinex.com',
+    pairs: 'ALL/ZEC',
+    support: 'Transparent',
+    depositTime: '15 Minutes',
+    logo: 'https://logowik.com/content/uploads/images/coinex9788.jpg',
+    altText: 'CoinEx Logo',
+  },
+  {
+    name: 'Bybit',
+    url: 'https://www.bybit.com',
+    pairs: 'ALL/ZEC',
+    support: 'Transparent',
+    depositTime: '30 Minutes',
+    logo: 'https://logowik.com/content/uploads/images/t_bybit5549.jpg',
+    altText: 'Bybit Logo',
+  }
 ];
 
 interface ExchangeCardProps {
