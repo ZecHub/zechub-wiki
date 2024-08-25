@@ -157,12 +157,12 @@ export const navigations = [
   },
   {
     name: "Tutorials",
-    path: "https://zechub.wiki/zechub-tutorials",
+    path: "/zechub-tutorials",
     icon: "",
   },
   {
     name: "Contribute",
-    path: "https://zechub.wiki/contribute/help-build-zechub",
+    path: "/contribute/help-build-zechub",
     icon: "",
   },
 ];
