@@ -1,22 +1,21 @@
 "use client";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import DonationBtn from "@/components/ui/DonationBtn";
 import { navigations } from "@/constants/navigation";
 import type { Classes, MenuExp } from "@/types";
 import { Dropdown } from "flowbite-react";
-import { Sheet, SheetContent, SheetTrigger } from "../components/ui/Sheet";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { IoSearch as SearchIcon } from "react-icons/io5";
 import {
   MdOutlineDarkMode as DarkIcon,
   MdLightMode as LightIcon,
 } from "react-icons/md";
 import { RiMenuLine as MenuIcon } from "react-icons/ri";
-import { IoSearch as SearchIcon } from "react-icons/io5";
+import { Sheet, SheetContent, SheetTrigger } from "../components/ui/Sheet";
+import SearchBar from "./SearchBar";
 import { Icon } from "./ui/Icon";
 import Logo from "./ui/Logo";
 import SocialIcons from "./ui/SocialIcons";
-import DonationBtn from "@/components/ui/DonationBtn";
-import SearchBar from "./SearchBar";
 
 const NavLinks = ({
   classes,
@@ -37,12 +36,12 @@ const NavLinks = ({
             key={item.name + i}
             label={item.name}
             color="inherit"
-            size={'lg'}
+            size={"lg"}
             trigger={menuExp ? "click" : "hover"}
             style={{ fontWeight: "400" }}
           >
-            {item.links.map((link) => (
-              <div key={link.path}>
+            {item.links.map((link, i) => (
+              <div key={link.path + i}>
                 <Dropdown.Item
                   key={link.path}
                   onClick={handleLinkClick}
