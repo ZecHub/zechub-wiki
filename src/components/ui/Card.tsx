@@ -1,4 +1,5 @@
 // Card.js
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -19,7 +20,7 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div className="w-full rounded overflow-hidden shadow-lg md:m-4">
-      <img className="w-full" src={imageUrl} alt="Card image cap" />
+      <Image className="w-full" src={imageUrl} alt="Card image cap" />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{title}</div>
         <p className="text-gray-700 text-base">{description}</p>
