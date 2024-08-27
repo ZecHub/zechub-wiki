@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     url: 'https://zechub.wiki/hackathon',
     images: [
       {
-        url: '/public/data/hackathon.svg',
+        url: 'https://i.ibb.co/tmLVvgZ/zechub-hackathon-5.png',
         width: 1200,
         height: 630,
         alt: 'Zechub Hackathon',
@@ -42,7 +42,7 @@ const Hackathon: React.FC = () => {
     <div
       className="min-h-screen bg-cover bg-center p-8"
       style={{
-        backgroundImage: 'url(https://i.ibb.co/ZKxH6Yw/zechub-hackathon-2.png)',
+        backgroundImage: 'url(/public/data/hackathon.svg)',
       }}
     >
       <h1 className="text-3xl font-bold text-center mb-4">Zechub Hackathon</h1>
@@ -122,6 +122,16 @@ const Hackathon: React.FC = () => {
 
       <h3 className="text-xl font-semibold mt-8 mb-4">How to Participate</h3>
       <p>If you need assistance with your project, feel free to give us a shout in the Zcash Global Discord. Akash Network Zcash nodes can be requested as well.</p>
+
+      {/* Donation Request */}
+      <h3 className="text-xl font-semibold mt-8 mb-4">Support the Hackathon with Your Donations!</h3>
+      <p className="mb-8">
+        Your contributions can help us 1) run nodes for contestants to build on the Zcash network, 2) increase the prize pool. If you’d like to support our efforts, please consider making a donation. 
+        <br /><br />
+        We gladly accept ZEC via our <a href="/donations" target="_blank" rel="noopener noreferrer">Donations page</a>, and AKT (Akash Token) on the <a href="https://zechub.wiki/dao" target="_blank" rel="noopener noreferrer">DAO</a>. <br /> 
+        AKT Address: [Insert AKT Address Here]
+      </p>
+      <p>Thank you for your support!</p>
     </div>
   );
 };
