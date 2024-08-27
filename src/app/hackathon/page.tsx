@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     url: 'https://zechub.wiki/hackathon',
     images: [
       {
-        url: 'https://i.ibb.co/tmLVvgZ/zechub-hackathon-5.png',
+        url: 'https://i.ibb.co/KzP6QGp/zechub-hackathon-3.png',
         width: 1200,
         height: 630,
         alt: 'Zechub Hackathon',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Zechub Hackathon',
     description: 'Join the Zechub Hackathon and showcase your skills in building with Zcash. Participate, innovate, and win up to 15 ZEC!',
-    images: ['https://i.ibb.co/tmLVvgZ/zechub-hackathon-5.png'],
+    images: ['https://i.ibb.co/KzP6QGp/zechub-hackathon-3.png'],
   },
 };
 
@@ -118,7 +118,7 @@ const Hackathon: React.FC = () => {
       </ul>
 
       <p className="font-semibold mb-8">Documentation is Required</p>
-      <p className="mb-8">To be eligible for a prize, you must provide thorough documentation of your project. This includes the setup, execution, and final presentation of your Zcash app.</p>
+      <p className="mb-8">To be eligible for a prize, you must provide some basic documentation of your project - setup, execution, and final presentation of your Zcash app.</p>
 
       <h3 className="text-xl font-semibold mt-8 mb-4">How to Participate</h3>
       <p>If you need assistance with your project, feel free to give us a shout in the Zcash Global Discord. Akash Network Zcash nodes can be requested as well.</p>
