@@ -14,7 +14,12 @@ const buttonStyle: React.CSSProperties = {
 
 const Hackathon: React.FC = () => {
   return (
-    <div className="p-8">
+    <div
+      className="min-h-screen bg-cover bg-center p-8"
+      style={{
+        backgroundImage: 'url(https://i.ibb.co/s6mBqD0/zechub-hackathon-2.png)',
+      }}
+    >
       <h1 className="text-3xl font-bold text-center mb-4">Zechub Hackathon</h1>
       <p className="text-xl text-center mb-8">
         Welcome to the Zechub Hackathon! Join the challenge and showcase your skills in building with Zcash. Here’s everything you need to know:
