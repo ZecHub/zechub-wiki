@@ -40,7 +40,7 @@ const buttonStyle: React.CSSProperties = {
 const Hackathon: React.FC = () => {
   return (
     <div
-      className="min-h-screen bg-center bg-no-repeat p-8"
+      className="min-h-screen bg-cover bg-center p-8"
       style={{
         backgroundImage: 'url(https://i.ibb.co/ZKxH6Yw/zechub-hackathon-2.png)',
       }}
