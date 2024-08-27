@@ -42,7 +42,7 @@ const Hackathon: React.FC = () => {
     <div
       className="min-h-screen bg-cover bg-center p-8"
       style={{
-        backgroundImage: 'url(/public/hackathon.svg)',
+        backgroundImage: 'url(https://i.ibb.co/ZKxH6Yw/zechub-hackathon-2.png)',
       }}
     >
       <h1 className="text-3xl font-bold text-center mb-4">Zechub Hackathon</h1>
@@ -128,7 +128,7 @@ const Hackathon: React.FC = () => {
       <p className="mb-8">
         Your contributions can help us 1) run nodes for contestants to build on the Zcash network, 2) increase the prize pool. If you’d like to support our efforts, please consider making a donation. 
         <br /><br />
-        We gladly accept ZEC via our <a href="https://zechub.wiki/donation" target="_blank" rel="noopener noreferrer">Donations page</a>, and AKT (Akash Token) via the <a href="https://daodao.zone/dao/juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y/treasury" target="_blank" rel="noopener noreferrer">DAO</a>.
+        We gladly accept ZEC via our <a href="https://zechub.wiki/donation" className="text-blue-500 hover:underline" rel="noopener noreferrer">Donations page</a>, and AKT (Akash Token) via the <a href="https://daodao.zone/dao/juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y/treasury" className="text-blue-500 hover:underline" rel="noopener noreferrer">DAO</a>.
       </p>
       <p>Thank you for your support!</p>
     </div>
