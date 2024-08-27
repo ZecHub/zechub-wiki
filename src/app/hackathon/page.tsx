@@ -1,4 +1,29 @@
 import React from 'react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Zechub Hackathon',
+  description: 'Join the Zechub Hackathon and showcase your skills in building with Zcash. Participate, innovate, and win up to 15 ZEC!',
+  openGraph: {
+    title: 'Zechub Hackathon',
+    description: 'Join the Zechub Hackathon and showcase your skills in building with Zcash. Participate, innovate, and win up to 15 ZEC!',
+    url: 'https://zechub.wiki/hackathon',
+    images: [
+      {
+        url: 'https://i.ibb.co/tmLVvgZ/zechub-hackathon-5.png',
+        width: 1200,
+        height: 630,
+        alt: 'Zechub Hackathon',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Zechub Hackathon',
+    description: 'Join the Zechub Hackathon and showcase your skills in building with Zcash. Participate, innovate, and win up to 15 ZEC!',
+    images: ['https://i.ibb.co/tmLVvgZ/zechub-hackathon-5.png'],
+  },
+};
 
 const buttonStyle: React.CSSProperties = {
   padding: '10px 20px',
@@ -15,7 +40,7 @@ const buttonStyle: React.CSSProperties = {
 const Hackathon: React.FC = () => {
   return (
     <div
-      className="min-h-screen bg-cover bg-center p-8"
+      className="min-h-screen bg-center bg-no-repeat p-8"
       style={{
         backgroundImage: 'url(https://i.ibb.co/ZKxH6Yw/zechub-hackathon-2.png)',
       }}
