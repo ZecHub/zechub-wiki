@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     url: 'https://zechub.wiki/hackathon',
     images: [
       {
-        url: 'https://i.ibb.co/tmLVvgZ/zechub-hackathon-5.png',
+        url: '/public/data/hackathon.svg',
         width: 1200,
         height: 630,
         alt: 'Zechub Hackathon',
