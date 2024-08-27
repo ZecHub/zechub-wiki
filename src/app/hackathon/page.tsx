@@ -17,7 +17,7 @@ const Hackathon: React.FC = () => {
     <div
       className="min-h-screen bg-cover bg-center p-8"
       style={{
-        backgroundImage: 'url(https://i.ibb.co/BCSVPf3/zechub-hackathon-6.png)',
+        backgroundImage: 'url(https://i.ibb.co/6W5z4m1/zechub-hackathon-3.png)',
       }}
     >
       <h1 className="text-3xl font-bold text-center mb-4">Zechub Hackathon</h1>
