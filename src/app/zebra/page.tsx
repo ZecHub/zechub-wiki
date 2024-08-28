@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 const Zebra: React.FC = () => {
   const [showGuide, setShowGuide] = useState(false);
@@ -52,11 +53,11 @@ const Zebra: React.FC = () => {
       {showGuide && (
         <div style={{ marginTop: '20px', textAlign: 'left' }}>
           <h1>Raspberry Pi 4 Guide for Running Zebra</h1>
-          <img
+          <Image
             src="https://i.ibb.co/V3rjKwv/image-2023-11-28-172907488.png"
             alt="raspberry pi"
-            width="300"
-            height="300"
+            width={300}
+            height={300}
           />
           <p>
             Running the Zebra node software on a Raspberry Pi 4 allows you to participate in the Zcash network as an independent,
@@ -101,7 +102,7 @@ const Zebra: React.FC = () => {
               <p>Create a configuration file for Zebra. You can use the default configuration as a starting point:</p>
               <pre>cp zcash.conf.example zcash.conf</pre>
               <p>
-                Edit the zcash.conf file to customize your node's settings. You can specify the network, enable mining, set up peer
+                Edit the zcash.conf file to customize your node&apos;s settings. You can specify the network, enable mining, set up peer
                 connections, and more.
               </p>
             </li>
@@ -119,11 +120,11 @@ const Zebra: React.FC = () => {
             </li>
           </ol>
 
-          <img
+          <Image
             src="https://i.ibb.co/BCtKrGp/image-2023-11-28-173024853.png"
             alt="zebra logo"
-            width="200"
-            height="200"
+            width={200}
+            height={200}
           />
 
           <h2>Troubleshooting</h2>
@@ -139,7 +140,7 @@ const Zebra: React.FC = () => {
 
           <h2>Conclusion</h2>
           <p>
-            By following this guide, you should have successfully set up and run Zebra on your Raspberry Pi 4. You're now contributing to
+            By following this guide, you should have successfully set up and run Zebra on your Raspberry Pi 4. You&apos;re now contributing to
             the Zcash network as an independent node, helping to secure the privacy of Zcash transactions.
           </p>
         </div>
