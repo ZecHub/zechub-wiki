@@ -13,7 +13,7 @@ const Zebra: React.FC = () => {
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
       {/* Page Heading */}
-      <h1>Zebra</h1>
+      <h1 style={{ fontSize: '3em', fontWeight: 'bold', marginBottom: '20px' }}>Zebra</h1>
       
       {/* Subheading */}
       <h3 style={{ margin: '10px 0', fontWeight: 'normal', fontSize: '18px', lineHeight: '1.5' }}>
@@ -23,7 +23,7 @@ const Zebra: React.FC = () => {
       </h3>
       
       {/* YouTube Video */}
-      <div style={{ marginBottom: '20px' }}>
+      <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center' }}>
         <iframe
           width="560"
           height="315"
@@ -33,6 +33,15 @@ const Zebra: React.FC = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe>
+      </div>
+
+      {/* Zebra Launcher Button */}
+      <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center' }}>
+        <a href="https://zfnd.org/zebra/download/" target="_blank" rel="noopener noreferrer">
+          <button style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer', backgroundColor: '#FFA500', border: 'none', borderRadius: '5px', color: 'white' }}>
+            Zebra Launcher
+          </button>
+        </a>
       </div>
 
       {/* Raspberry Pi 4 Guide Button */}
