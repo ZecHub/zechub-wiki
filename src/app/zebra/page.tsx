@@ -82,7 +82,7 @@ const Zebra: React.FC = () => {
             </li>
             <li>
               <strong>Install Dependencies</strong>
-              <p>You'll need to install some necessary dependencies for building and running Zebra:</p>
+              <p>You will need to install some necessary dependencies for building and running Zebra:</p>
               <pre>sudo apt install build-essential cmake git clang libssl-dev pkg-config</pre>
             </li>
             <li>
@@ -102,7 +102,7 @@ const Zebra: React.FC = () => {
               <p>Create a configuration file for Zebra. You can use the default configuration as a starting point:</p>
               <pre>cp zcash.conf.example zcash.conf</pre>
               <p>
-                Edit the zcash.conf file to customize your node&apos;s settings. You can specify the network, enable mining, set up peer
+                Edit the zcash.conf file to customize your node settings. You can specify the network, enable mining, set up peer
                 connections, and more.
               </p>
             </li>
@@ -140,7 +140,7 @@ const Zebra: React.FC = () => {
 
           <h2>Conclusion</h2>
           <p>
-            By following this guide, you should have successfully set up and run Zebra on your Raspberry Pi 4. You&apos;re now contributing to
+            By following this guide, you should have successfully set up and run Zebra on your Raspberry Pi 4. You are now contributing to
             the Zcash network as an independent node, helping to secure the privacy of Zcash transactions.
           </p>
         </div>
