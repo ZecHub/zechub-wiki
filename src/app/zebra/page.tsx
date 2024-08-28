@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Page: React.FC = () => {
+const Zebra: React.FC = () => {
   const [showGuide, setShowGuide] = useState(false);
 
   const toggleGuide = () => {
@@ -146,5 +146,4 @@ const Page: React.FC = () => {
   );
 };
 
-export default zebra;
-
+export default Zebra;
