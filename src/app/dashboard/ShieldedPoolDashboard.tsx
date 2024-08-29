@@ -21,6 +21,8 @@ const orchardUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
 const hashrateUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
+const shieldedTxCountUrl =
+  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json";
 
 const apiUrl =
   "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
@@ -62,6 +64,12 @@ interface SupplyData {
   supply: number;
 }
 
+interface ShieldedTxCount {
+  sapling_outputs: number;
+  orchard_outputs: number;
+  end_time: string;
+}
+
 async function getBlockchainData() {
   const response = await fetch(
     "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
@@ -89,6 +97,12 @@ async function getLastUpdatedDate(): Promise<string> {
   return data[0].commit.committer.date;
 }
 
+async function getShieldedTxCount(): Promise<ShieldedTxCount> {
+  const response = await fetch(shieldedTxCountUrl);
+  const data = await response.json();
+  return data as ShieldedTxCount;
+}
+
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
@@ -99,11 +113,17 @@ const ShieldedPoolDashboard = () => {
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+  const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(
+    null
+  );
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
   useEffect(() => {
-    getBlockchainData().then((data) => setBlockchainInfo(data));
+    getBlockchainData().then((data) => {
+      data.nodes = 125; // Manually set the node count to 125
+      setBlockchainInfo(data);
+    });
     getBlockchainInfo().then((data) => setCirculation(data));
 
     getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
@@ -119,6 +139,8 @@ const ShieldedPoolDashboard = () => {
     getSupplyData(orchardUrl).then((data) =>
       setOrchardSupply(data[data.length - 1])
     );
+
+    getShieldedTxCount().then((data) => setShieldedTxCount(data));
   }, []);
 
   useEffect(() => {
@@ -170,6 +192,7 @@ const ShieldedPoolDashboard = () => {
   if (!blockchainInfo) {
     return <div>Loading...</div>;
   }
+
   return (
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
@@ -274,10 +297,6 @@ const ShieldedPoolDashboard = () => {
           <p>${blockchainInfo.market_cap_usd.toLocaleString()}</p>
         </div>
         <div className="border p-4 rounded-md text-center">
-          <h3 className="font-bold text-lg">24h Volume</h3>
-          <p>${blockchainInfo.volume_24h.toLocaleString()}</p>
-        </div>
-        <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">ZEC in Circulation</h3>
           <p>{circulation?.toLocaleString() ?? "Loading..."} ZEC</p>
         </div>
@@ -299,7 +318,15 @@ const ShieldedPoolDashboard = () => {
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Nodes</h3>
-          <p>{blockchainInfo.nodes.toLocaleString()}</p>
+          <p>{blockchainInfo.nodes}</p> {/* Node count is now manually set to 125 */}
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
+          <p>
+            {shieldedTxCount
+              ? `Sapling: ${shieldedTxCount.sapling_outputs.toLocaleString()} | Orchard: ${shieldedTxCount.orchard_outputs.toLocaleString()}`
+              : "Loading..."}
+          </p>
         </div>
       </div>
     </div>
