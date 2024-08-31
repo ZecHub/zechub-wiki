@@ -1,4 +1,4 @@
-"use client";  
+"use client";
 
 import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
@@ -71,12 +71,21 @@ interface ShieldedTxCount {
   end_time: string;
 }
 
-async function getBlockchainData(): Promise<BlockchainInfo> {
-  const response = await fetch(
-    "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
-  );
-  const data = await response.json();
-  return data.data as BlockchainInfo;
+async function getBlockchainData(): Promise<BlockchainInfo | null> {
+  try {
+    const response = await fetch(
+      "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
+    );
+    if (!response.ok) {
+      console.error("Failed to fetch blockchain data:", response.statusText);
+      return null;
+    }
+    const data = await response.json();
+    return data.data as BlockchainInfo;
+  } catch (error) {
+    console.error("Error fetching blockchain data:", error);
+    return null;
+  }
 }
 
 async function getBlockchainInfo(): Promise<number | null> {
@@ -153,21 +162,23 @@ const ShieldedPoolDashboard = () => {
 
   useEffect(() => {
     getBlockchainData().then((data) => {
-      data.nodes = 125; // Manually set the node count to 125
-      setBlockchainInfo(data);
+      if (data) {
+        data.nodes = 125; // Manually set the node count to 125
+        setBlockchainInfo(data);
+      }
     });
 
-    getBlockchainInfo().then((data) => setCirculation(data));
+    getBlockchainInfo().then((data) => setCirculation(data ?? 0));
 
     getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
 
-    getSupplyData(sproutUrl).then((data) => setSproutSupply(data[data.length - 1]));
+    getSupplyData(sproutUrl).then((data) => setSproutSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 }));
 
-    getSupplyData(saplingUrl).then((data) => setSaplingSupply(data[data.length - 1]));
+    getSupplyData(saplingUrl).then((data) => setSaplingSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 }));
 
-    getSupplyData(orchardUrl).then((data) => setOrchardSupply(data[data.length - 1]));
+    getSupplyData(orchardUrl).then((data) => setOrchardSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 }));
 
-    getShieldedTxCount().then((data) => setShieldedTxCount(data));
+    getShieldedTxCount().then((data) => setShieldedTxCount(data ?? { sapling_outputs: 0, orchard_outputs: 0, end_time: "N/A" }));
   }, []);
 
   useEffect(() => {
