@@ -1,4 +1,4 @@
-"use client";  // Ensures this component is treated as a client component in Next.js
+"use client";  
 
 import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
@@ -80,28 +80,55 @@ async function getBlockchainData(): Promise<BlockchainInfo> {
 }
 
 async function getBlockchainInfo(): Promise<number | null> {
-  const response = await fetch(blockchainInfoUrl);
-  const data = await response.json();
-  return data.chainSupply.chainValue ?? null;
+  try {
+    const response = await fetch(blockchainInfoUrl, { mode: 'cors' });
+    if (!response.ok) {
+      console.error("Failed to fetch blockchain info:", response.statusText);
+      return null;
+    }
+    const data = await response.json();
+    return data.chainSupply.chainValue ?? null;
+  } catch (error) {
+    console.error("Error fetching blockchain info:", error);
+    return null;
+  }
 }
 
 async function getSupplyData(url: string): Promise<SupplyData[]> {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data as SupplyData[];
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error("Failed to fetch supply data:", response.statusText);
+      return [];
+    }
+    const data = await response.json();
+    return data as SupplyData[];
+  } catch (error) {
+    console.error("Error fetching supply data:", error);
+    return [];
+  }
 }
 
 async function getLastUpdatedDate(): Promise<string> {
-  const response = await fetch(apiUrl);
-  const data = await response.json();
-  return data[0].commit.committer.date;
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      console.error("Failed to fetch last updated date:", response.statusText);
+      return "N/A";
+    }
+    const data = await response.json();
+    return data[0].commit.committer.date;
+  } catch (error) {
+    console.error("Error fetching last updated date:", error);
+    return "N/A";
+  }
 }
 
 async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
   try {
     const response = await fetch(shieldedTxCountUrl);
     if (!response.ok) {
-      console.error("Failed to fetch shielded transaction counts");
+      console.error("Failed to fetch shielded transaction counts:", response.statusText);
       return null;
     }
     const data = await response.json();
@@ -146,7 +173,7 @@ const ShieldedPoolDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getSupplyData(getDataUrl());
-      setLastUpdated(data[data.length - 1].timestamp.split("T")[0]);
+      setLastUpdated(data[data.length - 1]?.timestamp.split("T")[0] || "N/A");
     };
     fetchData();
   }, [selectedPool]);
@@ -201,7 +228,7 @@ const ShieldedPoolDashboard = () => {
         <div className="flex justify-end gap-12 text-right mt-4 text-sm text-gray-500">
           <span className="px-3 py-2">
             Last updated:{" "}
-            {lastUpdated ? new Date(lastUpdated).toLocaleDateString() : "Loading..."}
+            {lastUpdated ? new Date(lastUpdated).toLocaleDateString() : "N/A"}
           </span>
           <Button
             text="Export (PNG)"
@@ -285,7 +312,7 @@ const ShieldedPoolDashboard = () => {
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">ZEC in Circulation</h3>
-          <p>{circulation?.toLocaleString() ?? "Loading..."} ZEC</p>
+          <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Market Price (USD)</h3>
@@ -312,7 +339,7 @@ const ShieldedPoolDashboard = () => {
           <p>
             {shieldedTxCount
               ? `Sapling: ${shieldedTxCount.sapling_outputs.toLocaleString()} | Orchard: ${shieldedTxCount.orchard_outputs.toLocaleString()}`
-              : "Loading..."}
+              : "N/A"}
           </p>
         </div>
       </div>
