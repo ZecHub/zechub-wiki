@@ -1,77 +1,15 @@
-"use client";
-import Button from "@/components/Button/Button";
-import HalvingMeter from "@/components/HalvingMeter";
-import Tools from "@/components/tools";
-import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
-import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-const ShieldedPoolChart = dynamic(
-  () => import("../../components/ShieldedPoolChart"),
-  { ssr: true } // Enable SSR
-);
-
-const defaultUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json";
-const sproutUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json";
-const saplingUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json";
-const orchardUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
-const hashrateUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
-const shieldedTxCountUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json";
-
-const apiUrl =
-  "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
-const blockchainInfoUrl =
-  "https://mainnet.zcashexplorer.app/api/v1/blockchain-info";
-
 interface BlockchainInfo {
-  blocks: number;
-  transactions: number;
-  outputs: number;
-  circulation: number | null;
-  blocks_24h: number;
-  transactions_24h: number;
-  difficulty: number;
-  volume_24h: number;
-  mempool_transactions: number;
-  average_transaction_fee_24h: number;
-  largest_transaction_24h: {
-    hash: string;
-    value_usd: number;
-  };
-  nodes: number;
-  hashrate_24h: string;
-  inflation_usd_24h: number;
-  average_transaction_fee_usd_24h: number;
-  market_price_usd: number;
-  market_price_btc: number;
-  market_price_usd_change_24h_percentage: number;
-  market_cap_usd: number;
-  market_dominance_percentage: number;
-  next_retarget_time_estimate: string;
-  next_difficulty_estimate: number;
-  countdowns: any[];
-  hodling_addresses: number;
+  // Interface properties...
 }
 
 interface SupplyData {
-  timestamp: string;
-  supply: number;
+  // Interface properties...
 }
 
-**// Add ShieldedTxCount interface matching the JSON structure**
-interface ShieldedTxCount {
-  sapling_outputs: number;
-  orchard_outputs: number;
-  end_time: string;
-}
+// Other interfaces and functions...
 
-**// Function to fetch shielded transaction counts**
 async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
   try {
     const response = await fetch(shieldedTxCountUrl);
@@ -87,44 +25,17 @@ async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
   }
 }
 
-async function getBlockchainData() {
-  const response = await fetch(
-    "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
-  );
-  const data = await response.json();
-
-  return data.data as BlockchainInfo;
-}
-
-async function getBlockchainInfo() {
-  const response = await fetch(blockchainInfoUrl);
-  const data = await response.json();
-  return data.chainSupply.chainValue;
-}
-
-async function getSupplyData(url: string): Promise<SupplyData[]> {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data as SupplyData[];
-}
-
-async function getLastUpdatedDate(): Promise<string> {
-  const response = await fetch(apiUrl);
-  const data = await response.json();
-  return data[0].commit.committer.date;
-}
+// Rest of your code...
 
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
-    null
-  );
+  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
   const [circulation, setCirculation] = useState<number | null>(null);
   const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-  **const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(null);**
+  const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(null);
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
@@ -138,19 +49,12 @@ const ShieldedPoolDashboard = () => {
 
     getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
 
-    getSupplyData(sproutUrl).then((data) =>
-      setSproutSupply(data[data.length - 1])
-    );
+    getSupplyData(sproutUrl).then((data) => setSproutSupply(data[data.length - 1]));
 
-    getSupplyData(saplingUrl).then((data) =>
-      setSaplingSupply(data[data.length - 1])
-    );
+    getSupplyData(saplingUrl).then((data) => setSaplingSupply(data[data.length - 1]));
 
-    getSupplyData(orchardUrl).then((data) =>
-      setOrchardSupply(data[data.length - 1])
-    );
+    getSupplyData(orchardUrl).then((data) => setOrchardSupply(data[data.length - 1]));
 
-    **// Fetch shielded transaction counts and set state**
     getShieldedTxCount().then((data) => setShieldedTxCount(data));
   }, []);
 
@@ -172,7 +76,6 @@ const ShieldedPoolDashboard = () => {
         return orchardUrl;
       case "hashrate":
         return hashrateUrl;
-      case "default":
       default:
         return defaultUrl;
     }
@@ -186,17 +89,13 @@ const ShieldedPoolDashboard = () => {
         return "#FFA500";
       case "orchard":
         return "#32CD32";
-      case "url(#area-background-gradient)":
       default:
         return "url(#area-background-gradient)";
     }
   };
 
   const getTotalShieldedSupply = () => {
-    const totalSupply =
-      (sproutSupply?.supply ?? 0) +
-      (saplingSupply?.supply ?? 0) +
-      (orchardSupply?.supply ?? 0);
+    const totalSupply = (sproutSupply?.supply ?? 0) + (saplingSupply?.supply ?? 0) + (orchardSupply?.supply ?? 0);
     return totalSupply;
   };
 
@@ -217,9 +116,7 @@ const ShieldedPoolDashboard = () => {
         <div className="flex justify-end gap-12 text-right mt-4 text-sm text-gray-500">
           <span className="px-3 py-2">
             Last updated:{" "}
-            {lastUpdated
-              ? new Date(lastUpdated).toLocaleDateString()
-              : "Loading..."}
+            {lastUpdated ? new Date(lastUpdated).toLocaleDateString() : "Loading..."}
           </span>
           <Button
             text="Export (PNG)"
@@ -266,9 +163,7 @@ const ShieldedPoolDashboard = () => {
               }`}
             />
             <span className="text-sm text-gray-600">
-              {sproutSupply
-                ? `${sproutSupply.supply.toLocaleString()} ZEC`
-                : "Loading..."}
+              {sproutSupply ? `${sproutSupply.supply.toLocaleString()} ZEC` : "Loading..."}
             </span>
           </div>
           <div className="flex flex-col items-center">
@@ -280,9 +175,7 @@ const ShieldedPoolDashboard = () => {
               }`}
             />
             <span className="text-sm text-gray-600">
-              {saplingSupply
-                ? `${saplingSupply.supply.toLocaleString()} ZEC`
-                : "Loading..."}
+              {saplingSupply ? `${saplingSupply.supply.toLocaleString()} ZEC` : "Loading..."}
             </span>
           </div>
           <div className="flex flex-col items-center">
@@ -294,9 +187,7 @@ const ShieldedPoolDashboard = () => {
               }`}
             />
             <span className="text-sm text-gray-600">
-              {orchardSupply
-                ? `${orchardSupply.supply.toLocaleString()} ZEC`
-                : "Loading..."}
+              {orchardSupply ? `${orchardSupply.supply.toLocaleString()} ZEC` : "Loading..."}
             </span>
           </div>
         </div>
@@ -331,14 +222,14 @@ const ShieldedPoolDashboard = () => {
           <h3 className="font-bold text-lg">Nodes</h3>
           <p>{blockchainInfo.nodes}</p>
         </div>
-        **<div className="border p-4 rounded-md text-center">
+        <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
           <p>
             {shieldedTxCount
               ? `Sapling: ${shieldedTxCount.sapling_outputs.toLocaleString()} | Orchard: ${shieldedTxCount.orchard_outputs.toLocaleString()}`
               : "Loading..."}
           </p>
-        </div>**
+        </div>
       </div>
     </div>
   );
