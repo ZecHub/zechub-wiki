@@ -70,6 +70,17 @@ interface ShieldedTxCount {
   timestamp: string;
 }
 
+// Add this function to fetch blockchain data
+async function getBlockchainData(): Promise<BlockchainInfo> {
+  const response = await fetch(
+    "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
+  );
+  const data = await response.json();
+
+  // Assuming the structure is correct and this is how you extract the relevant part:
+  return data.data as BlockchainInfo;
+}
+
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
