@@ -64,27 +64,54 @@ interface SupplyData {
   supply: number;
 }
 
+**// Add ShieldedTxCount interface matching the JSON structure**
 interface ShieldedTxCount {
-  sapling: number;
-  orchard: number;
-  timestamp: string;
+  sapling_outputs: number;
+  orchard_outputs: number;
+  end_time: string;
 }
 
-// Add the function to fetch blockchain info
-async function getBlockchainInfo(): Promise<number | null> {
-  const response = await fetch(blockchainInfoUrl);
-  const data = await response.json();
-  return data.chainSupply.chainValue ?? null;
+**// Function to fetch shielded transaction counts**
+async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
+  try {
+    const response = await fetch(shieldedTxCountUrl);
+    if (!response.ok) {
+      console.error("Failed to fetch shielded transaction counts");
+      return null;
+    }
+    const data = await response.json();
+    return data as ShieldedTxCount;
+  } catch (error) {
+    console.error("Error fetching shielded transaction counts:", error);
+    return null;
+  }
 }
 
-async function getBlockchainData(): Promise<BlockchainInfo> {
+async function getBlockchainData() {
   const response = await fetch(
     "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
   );
   const data = await response.json();
 
-  // Assuming the structure is correct and this is how you extract the relevant part:
   return data.data as BlockchainInfo;
+}
+
+async function getBlockchainInfo() {
+  const response = await fetch(blockchainInfoUrl);
+  const data = await response.json();
+  return data.chainSupply.chainValue;
+}
+
+async function getSupplyData(url: string): Promise<SupplyData[]> {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data as SupplyData[];
+}
+
+async function getLastUpdatedDate(): Promise<string> {
+  const response = await fetch(apiUrl);
+  const data = await response.json();
+  return data[0].commit.committer.date;
 }
 
 const ShieldedPoolDashboard = () => {
@@ -97,9 +124,7 @@ const ShieldedPoolDashboard = () => {
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-  const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(
-    null
-  );
+  **const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(null);**
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
@@ -125,9 +150,8 @@ const ShieldedPoolDashboard = () => {
       setOrchardSupply(data[data.length - 1])
     );
 
-    getShieldedTxCount().then((data) => {
-      setShieldedTxCount(data); // Directly set the fetched 24-hour data
-    });
+    **// Fetch shielded transaction counts and set state**
+    getShieldedTxCount().then((data) => setShieldedTxCount(data));
   }, []);
 
   useEffect(() => {
@@ -180,7 +204,7 @@ const ShieldedPoolDashboard = () => {
     return <div>Loading...</div>;
   }
 
- return (
+  return (
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
       <div className="border p-3 rounded-lg">
@@ -305,16 +329,16 @@ const ShieldedPoolDashboard = () => {
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Nodes</h3>
-          <p>{blockchainInfo.nodes}</p> {/* Node count is now manually set to 125 */}
+          <p>{blockchainInfo.nodes}</p>
         </div>
-        <div className="border p-4 rounded-md text-center">
+        **<div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
           <p>
             {shieldedTxCount
-              ? `Sapling: ${shieldedTxCount.sapling.toLocaleString()} | Orchard: ${shieldedTxCount.orchard.toLocaleString()}`
+              ? `Sapling: ${shieldedTxCount.sapling_outputs.toLocaleString()} | Orchard: ${shieldedTxCount.orchard_outputs.toLocaleString()}`
               : "Loading..."}
           </p>
-        </div>
+        </div>**
       </div>
     </div>
   );
