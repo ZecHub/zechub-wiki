@@ -70,7 +70,13 @@ interface ShieldedTxCount {
   timestamp: string;
 }
 
-// Add this function to fetch blockchain data
+// Add the function to fetch blockchain info
+async function getBlockchainInfo(): Promise<number | null> {
+  const response = await fetch(blockchainInfoUrl);
+  const data = await response.json();
+  return data.chainSupply.chainValue ?? null;
+}
+
 async function getBlockchainData(): Promise<BlockchainInfo> {
   const response = await fetch(
     "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
@@ -274,7 +280,7 @@ const ShieldedPoolDashboard = () => {
       <HalvingMeter />
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
         <div className="border p-4 rounded-md text-center">
-          <h3 className="font-bold text-lg">Market Cap</h3>
+          <h3 className="font-bold text-lg">Market Cap</hchevron_right
           <p>${blockchainInfo.market_cap_usd.toLocaleString()}</p>
         </div>
         <div className="border p-4 rounded-md text-center">
