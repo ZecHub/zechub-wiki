@@ -90,13 +90,13 @@ async function getBlockchainData(): Promise<BlockchainInfo | null> {
 
 async function getBlockchainInfo(): Promise<number | null> {
   try {
-    const response = await fetch(blockchainInfoUrl, { mode: 'cors' });
+    const response = await fetch(blockchainInfoUrl, { mode: "cors" });
     if (!response.ok) {
       console.error("Failed to fetch blockchain info:", response.statusText);
       return null;
     }
     const data = await response.json();
-    return data.chainSupply.chainValue ?? null;
+    return data.chainSupply?.chainValue ?? null;
   } catch (error) {
     console.error("Error fetching blockchain info:", error);
     return null;
@@ -126,7 +126,7 @@ async function getLastUpdatedDate(): Promise<string> {
       return "N/A";
     }
     const data = await response.json();
-    return data[0].commit.committer.date;
+    return data[0]?.commit?.committer?.date ?? "N/A";
   } catch (error) {
     console.error("Error fetching last updated date:", error);
     return "N/A";
@@ -172,13 +172,21 @@ const ShieldedPoolDashboard = () => {
 
     getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
 
-    getSupplyData(sproutUrl).then((data) => setSproutSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 }));
+    getSupplyData(sproutUrl).then((data) =>
+      setSproutSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+    );
 
-    getSupplyData(saplingUrl).then((data) => setSaplingSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 }));
+    getSupplyData(saplingUrl).then((data) =>
+      setSaplingSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+    );
 
-    getSupplyData(orchardUrl).then((data) => setOrchardSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 }));
+    getSupplyData(orchardUrl).then((data) =>
+      setOrchardSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+    );
 
-    getShieldedTxCount().then((data) => setShieldedTxCount(data ?? { sapling_outputs: 0, orchard_outputs: 0, end_time: "N/A" }));
+    getShieldedTxCount().then((data) =>
+      setShieldedTxCount(data ?? { sapling_outputs: 0, orchard_outputs: 0, end_time: "N/A" })
+    );
   }, []);
 
   useEffect(() => {
@@ -218,7 +226,10 @@ const ShieldedPoolDashboard = () => {
   };
 
   const getTotalShieldedSupply = () => {
-    const totalSupply = (sproutSupply?.supply ?? 0) + (saplingSupply?.supply ?? 0) + (orchardSupply?.supply ?? 0);
+    const totalSupply =
+      (sproutSupply?.supply ?? 0) +
+      (saplingSupply?.supply ?? 0) +
+      (orchardSupply?.supply ?? 0);
     return totalSupply;
   };
 
