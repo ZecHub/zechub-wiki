@@ -180,7 +180,7 @@ const ShieldedPoolDashboard = () => {
     return <div>Loading...</div>;
   }
 
-  return (
+ return (
     <div>
       <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
       <div className="border p-3 rounded-lg">
@@ -280,7 +280,7 @@ const ShieldedPoolDashboard = () => {
       <HalvingMeter />
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
         <div className="border p-4 rounded-md text-center">
-          <h3 className="font-bold text-lg">Market Cap</hchevron_right
+          <h3 className="font-bold text-lg">Market Cap</h3>
           <p>${blockchainInfo.market_cap_usd.toLocaleString()}</p>
         </div>
         <div className="border p-4 rounded-md text-center">
