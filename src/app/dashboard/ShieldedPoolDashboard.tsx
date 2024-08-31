@@ -65,8 +65,8 @@ interface SupplyData {
 }
 
 interface ShieldedTxCount {
-  sapling_outputs: number;
-  orchard_outputs: number;
+  sapling: number;
+  orchard: number;
   timestamp: string;
 }
 
