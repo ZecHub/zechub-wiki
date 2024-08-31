@@ -1,4 +1,7 @@
+"use client";
+
 import { useEffect, useState } from "react";
+
 
 interface BlockchainInfo {
   // Interface properties...
