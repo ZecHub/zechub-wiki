@@ -70,39 +70,6 @@ interface ShieldedTxCount {
   timestamp: string;
 }
 
-async function getBlockchainData() {
-  const response = await fetch(
-    "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
-  );
-  const data = await response.json();
-
-  return data.data as BlockchainInfo;
-}
-
-async function getBlockchainInfo() {
-  const response = await fetch(blockchainInfoUrl);
-  const data = await response.json();
-  return data.chainSupply.chainValue;
-}
-
-async function getSupplyData(url: string): Promise<SupplyData[]> {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data as SupplyData[];
-}
-
-async function getLastUpdatedDate(): Promise<string> {
-  const response = await fetch(apiUrl);
-  const data = await response.json();
-  return data[0].commit.committer.date;
-}
-
-async function getShieldedTxCount(): Promise<ShieldedTxCount> {
-  const response = await fetch(shieldedTxCountUrl);
-  const data = await response.json();
-  return data as ShieldedTxCount;
-}
-
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
@@ -124,6 +91,7 @@ const ShieldedPoolDashboard = () => {
       data.nodes = 125; // Manually set the node count to 125
       setBlockchainInfo(data);
     });
+
     getBlockchainInfo().then((data) => setCirculation(data));
 
     getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
@@ -140,7 +108,9 @@ const ShieldedPoolDashboard = () => {
       setOrchardSupply(data[data.length - 1])
     );
 
-    getShieldedTxCount().then((data) => setShieldedTxCount(data));
+    getShieldedTxCount().then((data) => {
+      setShieldedTxCount(data); // Directly set the fetched 24-hour data
+    });
   }, []);
 
   useEffect(() => {
@@ -324,7 +294,7 @@ const ShieldedPoolDashboard = () => {
           <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
           <p>
             {shieldedTxCount
-              ? `Sapling: ${shieldedTxCount.sapling_outputs.toLocaleString()} | Orchard: ${shieldedTxCount.orchard_outputs.toLocaleString()}`
+              ? `Sapling: ${shieldedTxCount.sapling.toLocaleString()} | Orchard: ${shieldedTxCount.orchard.toLocaleString()}`
               : "Loading..."}
           </p>
         </div>
