@@ -67,7 +67,7 @@ interface SupplyData {
 interface ShieldedTxCount {
   sapling_outputs: number;
   orchard_outputs: number;
-  end_time: string;
+  timestamp: string;
 }
 
 async function getBlockchainData() {
