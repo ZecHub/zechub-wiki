@@ -66,9 +66,9 @@ interface SupplyData {
 }
 
 interface ShieldedTxCount {
-  sapling_outputs: number;
-  orchard_outputs: number;
-  end_time: string;
+  sapling: number;
+  orchard: number;
+  timestamp: string;
 }
 
 async function getBlockchainData(): Promise<BlockchainInfo | null> {
@@ -360,7 +360,7 @@ const ShieldedPoolDashboard = () => {
           <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
           <p>
             {shieldedTxCount
-              ? `Sapling: ${shieldedTxCount?.sapling_outputs?.toLocaleString()} | Orchard: ${shieldedTxCount.orchard_outputs?.toLocaleString()}`
+              ? `Sapling: ${shieldedTxCount?.sapling?.toLocaleString()} | Orchard: ${shieldedTxCount.orchard?.toLocaleString()}`
               : "N/A"}
           </p>
         </div>
