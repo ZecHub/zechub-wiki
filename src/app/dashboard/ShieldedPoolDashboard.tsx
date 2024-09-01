@@ -192,7 +192,7 @@ const ShieldedPoolDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getSupplyData(getDataUrl());
-      setLastUpdated(data[data.length - 1]?.timestamp.split("T")[0] || "N/A");
+      setLastUpdated(data[data.length - 1]?.timestamp?.split("T")[0] || "N/A");
     };
     fetchData();
   }, [selectedPool]);
@@ -330,7 +330,7 @@ const ShieldedPoolDashboard = () => {
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Market Cap</h3>
-          <p>${blockchainInfo.market_cap_usd.toLocaleString()}</p>
+          <p>${blockchainInfo.market_cap_usd?.toLocaleString()}</p>
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">ZEC in Circulation</h3>
@@ -338,7 +338,7 @@ const ShieldedPoolDashboard = () => {
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Market Price (USD)</h3>
-          <p>${blockchainInfo.market_price_usd.toFixed(2)}</p>
+          <p>${blockchainInfo.market_price_usd?.toFixed(2)}</p>
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Market Price (BTC)</h3>
@@ -346,11 +346,11 @@ const ShieldedPoolDashboard = () => {
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Blocks</h3>
-          <p>{blockchainInfo.blocks.toLocaleString()}</p>
+          <p>{blockchainInfo.blocks?.toLocaleString()}</p>
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">24h Transactions</h3>
-          <p>{blockchainInfo.transactions_24h.toLocaleString()}</p>
+          <p>{blockchainInfo.transactions_24h?.toLocaleString()}</p>
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Nodes</h3>
@@ -360,7 +360,7 @@ const ShieldedPoolDashboard = () => {
           <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
           <p>
             {shieldedTxCount
-              ? `Sapling: ${shieldedTxCount.sapling_outputs.toLocaleString()} | Orchard: ${shieldedTxCount.orchard_outputs.toLocaleString()}`
+              ? `Sapling: ${shieldedTxCount?.sapling_outputs?.toLocaleString()} | Orchard: ${shieldedTxCount.orchard_outputs?.toLocaleString()}`
               : "N/A"}
           </p>
         </div>
