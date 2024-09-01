@@ -185,7 +185,7 @@ const ShieldedPoolDashboard = () => {
     );
 
     getShieldedTxCount().then((data) =>
-      setShieldedTxCount(data ?? { sapling_outputs: 0, orchard_outputs: 0, end_time: "N/A" })
+      setShieldedTxCount(data ?? { sapling: 0, orchard: 0, end_time: "N/A" })
     );
   }, []);
 
