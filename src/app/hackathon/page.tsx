@@ -37,6 +37,20 @@ const buttonStyle: React.CSSProperties = {
   transition: 'background-color 0.3s, color 0.3s',
 };
 
+const prizeBoxStyle: React.CSSProperties = {
+  padding: '20px',
+  border: '2px solid #E5E7EB',
+  borderRadius: '10px',
+  backgroundColor: '#F9FAFB',
+  textAlign: 'center',
+  marginBottom: '20px',
+};
+
+const prizeItemStyle: React.CSSProperties = {
+  fontSize: '18px',
+  marginBottom: '10px',
+};
+
 const Hackathon: React.FC = () => {
   return (
     <div
@@ -111,11 +125,13 @@ const Hackathon: React.FC = () => {
       <p className="mb-8">The voting will take place on October 12th. Make sure your project is posted before this date to be considered.</p>
 
       <h3 className="text-xl font-semibold mt-8 mb-4">Prizes</h3>
-      <ul className="mb-8">
-        <li>1st Prize: 15 ZEC</li>
-        <li>2nd Prize: 5 ZEC</li>
-        <li>3rd Prize: 5 ZEC</li>
-      </ul>
+      <div style={prizeBoxStyle}>
+        <p style={prizeItemStyle}>🏆 1st Prize: 15 ZEC</p>
+        <p style={prizeItemStyle}>🥈 2nd Prize: 7 ZEC</p>
+        <p style={prizeItemStyle}>🥉 3rd Prize: 5 ZEC</p>
+        <p style={prizeItemStyle}>🏅 4th Prize: 3 ZEC</p>
+        <p style={prizeItemStyle}>🎖 5th Prize: 2 ZEC</p>
+      </div>
 
       <p className="font-semibold mb-8">Documentation is Required</p>
       <p className="mb-8">To be eligible for a prize, you must provide some basic documentation of your project - setup, execution, and final presentation of your Zcash app.</p>
