@@ -35,7 +35,7 @@ export const dexListingConfig = [
     image: '/Trocodor.png',
   },
   {
-    title: 'DCRDEX',
+    title: 'Bison Wallet',
     description:
       'Trade crypto peer to peer. No trading fees. No KYC. Decentralised Exchange built by Decred Project.',
     url: 'https://dex.decred.org/',
@@ -61,5 +61,12 @@ export const dexListingConfig = [
       'Anonymous Cryptocurrency Exchange, cheap, reliable, AlwaysOnTime and without any registration. Dedicated Tor mirror available.',
     url: 'https://xchange.me/',
     image: '/xchange.png',
+  },
+  {
+    title: 'Bitcoin VN',
+    description:
+      'Instant Bitcoin & Cryptocurrency Exchange in Vietnam. Buy, sell or swap between 80 assets including VND, BTC, XMR, USDT, ETH, BCH, SOL',
+    url: 'https://bitcoinvn.io/?deposit=xmr&settle=zec/',
+    image: '/Bitcoinvn.png',
   },
 ];
