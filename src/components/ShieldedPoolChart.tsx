@@ -31,7 +31,8 @@ interface ShieldedPoolChartProps {
  * Loads the historic shielded pool data from a public json file in Github repo
  * @returns Promise of shielded pool data
  */
-async function fetchShieldedSupplyData(url: string): Promise<Array<ShieldedAmountDatum>> {
+async function 
+fetchShieldedSupplyData(url: string): Promise<Array<ShieldedAmountDatum>> {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
