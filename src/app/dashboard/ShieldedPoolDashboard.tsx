@@ -29,10 +29,10 @@ const orchardUrl =
 const hashrateUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
   
-  const txsummaryUrl =
-  "http://127.0.0.1:8000/transaction_summary.json";
-// const txsummaryUrl =
-//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
+  // const txsummaryUrl =
+  // "http://127.0.0.1:8000/transaction_summary.json";
+const txsummaryUrl =
+  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
 
 const shieldedTxCountUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json";
