@@ -28,9 +28,11 @@ const orchardUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
 const hashrateUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
-
+  
   const txsummaryUrl =
-"https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
+  "http://127.0.0.1:8000/transaction_summary.json";
+// const txsummaryUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
 
 const shieldedTxCountUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json";
@@ -164,7 +166,7 @@ const ShieldedPoolDashboard = () => {
   const [circulation, setCirculation] = useState<number | null>(null);
   const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
-  const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);  
+  const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(null);
 
@@ -202,6 +204,7 @@ const ShieldedPoolDashboard = () => {
     getShieldedTxCount().then((data) =>
       setShieldedTxCount(data ?? { sapling: 0, orchard: 0, timestamp: "N/A" })
     );
+
   }, []);
 
   useEffect(() => {
@@ -260,7 +263,6 @@ const ShieldedPoolDashboard = () => {
         setSelectedToolName("Shielded Transactions Chart (ZEC)");
         break;
     }
-    // console.log(tool)
   };
 
   const handleCumulativeChange = (checked: boolean) => {
