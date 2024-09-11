@@ -1,29 +1,22 @@
 import { IoSearch as searchIcon } from "react-icons/io5";
-import { IoIosGitMerge as inputIcon } from "react-icons/io";
 import { SearchInputProps } from "@/types";
 import { Icon } from "../ui/Icon";
 
 export const SearchInput = ({ searchInput, handleSearch }: SearchInputProps) => {
-
     return (
         <form className="flex items-center w-50 max-w-sm mx-auto">
             <label htmlFor="simple-search" className="sr-only">
                 Search
             </label>
             <div className="relative w-full">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <Icon
-                        icon={inputIcon}
-                    />
-                </div>
+                {/* Removed the div containing the unwanted icon */}
                 <input
                     type="text"
                     id="simple-search"
                     value={searchInput}
                     onChange={handleSearch}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search..."
-
                 />
             </div>
             <button
@@ -31,10 +24,9 @@ export const SearchInput = ({ searchInput, handleSearch }: SearchInputProps) => 
             >
                 <Icon
                     icon={searchIcon}
-                    onClick={() => { }}
+                    onClick={() => {}}
                 />
             </button>
         </form>
-
-    )
-}
+    );
+};
