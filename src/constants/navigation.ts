@@ -4,17 +4,16 @@ import { FcCurrencyExchange as BuyingZec, FcGlobe as Ambassadors } from 'react-i
 import { FaMagnifyingGlassChart as BlockchainExplorer } from "react-icons/fa6";
 import { FaWallet as Wallet } from 'react-icons/fa';
 import { LuTrees as Arborist } from "react-icons/lu";
-import { PiLinkSimpleBold as communityLink, PiPresentationChartLight as Archive } from "react-icons/pi";
-import { IoBuildOutline as commProject } from "react-icons/io5";
+import { PiLinkSimpleBold as communityLink, PiPresentationChartLight as Archive, PiHandDepositLight as HandDepositLight } from "react-icons/pi"; 
+import { IoBuildOutline as commProject, IoCloudUploadOutline as CloudUploadOutline } from "react-icons/io5";
 import { GrGroup as ZCAP } from 'react-icons/gr';
 import { ImPodcast as Podcast } from 'react-icons/im';
 import { MdRadar as ECC, MdOutlinePointOfSale as ZgoPayment, MdForum as Forum } from "react-icons/md";
-import { GiCheckedShield as foundation, GiBorderedShield as Shieldedlabs } from 'react-icons/gi'
-import { TbHexagonLetterZ as Grants, TbTopologyRing as TopologyRing } from 'react-icons/tb'
-import { SiRaspberrypi as RaspBerry, SiZebratechnologies as Zebratechnologies }  from 'react-icons/si'
-import { IoCloudUploadOutline as CloudUploadOutline} from "react-icons/io5";
-import { PiHandDepositLightas as HandDepositLightas} from "react-icons/pi";
-import { TbSquareLetterFFilled as SquareLetterFFilled} from "react-icons/tb";
+import { GiCheckedShield as foundation, GiBorderedShield as Shieldedlabs } from 'react-icons/gi';
+import { TbHexagonLetterZ as Grants, TbTopologyRing as TopologyRing, TbSquareRoundedLetterFFilled as SquareLetterFFilled } from 'react-icons/tb';
+import { SiRaspberrypi as RaspBerry, SiZebratechnologies as Zebratechnologies }  from 'react-icons/si';
+
+
 
 export const navigations = [
   {
