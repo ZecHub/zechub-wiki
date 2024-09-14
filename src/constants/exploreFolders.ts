@@ -45,7 +45,7 @@ export const exploreFolders = [
         img: '/ZFAV.png',
         description: '',
         name: 'ZKAV_Club',
-        url: '/zfav-club/av-club-background'
+        url: 'https://www.zkav.club'
     },
     {
         img: '/PrivacyTools.png',
