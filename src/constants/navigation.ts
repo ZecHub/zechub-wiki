@@ -12,9 +12,9 @@ import { MdRadar as ECC, MdOutlinePointOfSale as ZgoPayment, MdForum as Forum } 
 import { GiCheckedShield as foundation, GiBorderedShield as Shieldedlabs } from 'react-icons/gi'
 import { TbHexagonLetterZ as Grants, TbTopologyRing as TopologyRing } from 'react-icons/tb'
 import { SiRaspberrypi as RaspBerry, SiZebratechnologies as Zebratechnologies }  from 'react-icons/si'
-import { IoCloudUploadOutline } from "react-icons/io5";
-import { PiHandDepositLight } from "react-icons/pi";
-import { TbSquareLetterFFilled } from "react-icons/tb";
+import { IoCloudUploadOutline as IoCloudUploadOutline} from "react-icons/io5";
+import { PiHandDepositLightas as IoCloudUploadOutline} from "react-icons/pi";
+import { TbSquareLetterFFilled as IoCloudUploadOutline} from "react-icons/tb";
 
 export const navigations = [
   {
