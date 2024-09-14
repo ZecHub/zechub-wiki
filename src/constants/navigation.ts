@@ -12,9 +12,9 @@ import { MdRadar as ECC, MdOutlinePointOfSale as ZgoPayment, MdForum as Forum } 
 import { GiCheckedShield as foundation, GiBorderedShield as Shieldedlabs } from 'react-icons/gi'
 import { TbHexagonLetterZ as Grants, TbTopologyRing as TopologyRing } from 'react-icons/tb'
 import { SiRaspberrypi as RaspBerry, SiZebratechnologies as Zebratechnologies }  from 'react-icons/si'
-import { IoCloudUploadOutline as IoCloudUploadOutline} from "react-icons/io5";
-import { PiHandDepositLightas as IoCloudUploadOutline} from "react-icons/pi";
-import { TbSquareLetterFFilled as IoCloudUploadOutline} from "react-icons/tb";
+import { IoCloudUploadOutline as CloudUploadOutline} from "react-icons/io5";
+import { PiHandDepositLightas as HandDepositLightas} from "react-icons/pi";
+import { TbSquareLetterFFilled as SquareLetterFFilled} from "react-icons/tb";
 
 export const navigations = [
   {
@@ -48,7 +48,7 @@ export const navigations = [
       {
         subName: "Transparent Exchange Addresses",
         path: "/using-zcash/transparent-exchange-addresses",
-        icon: PiHandDepositLight,
+        icon: HandDepositLight,
       },
       {
         subName: "Transactions",
@@ -123,7 +123,7 @@ export const navigations = [
       {
         subName: "Financial Privacy Foundation",
         path: "/zcash-organizations/financial-privacy-foundation",
-        icon: TbSquareLetterFFilled,
+        icon: SquareLetterFFilled,
       },
       {
         subName: "Shielded Labs",
@@ -158,7 +158,7 @@ export const navigations = [
       {
         subName: "zcashd on Akash Network",
         path: "/guids/zcash-on-akash-network",
-        icon: IoCloudUploadOutline,
+        icon: CloudUploadOutline,
       },
       {
         subName: "Visualizing Zcash Addresses",
