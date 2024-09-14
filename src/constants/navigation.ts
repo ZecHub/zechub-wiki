@@ -4,15 +4,17 @@ import { FcCurrencyExchange as BuyingZec, FcGlobe as Ambassadors } from 'react-i
 import { FaMagnifyingGlassChart as BlockchainExplorer } from "react-icons/fa6";
 import { FaWallet as Wallet } from 'react-icons/fa';
 import { LuTrees as Arborist } from "react-icons/lu";
-import { PiLinkSimpleBold as communityLink, PiPresentationChartLight as Archive, PiHandDepositLight as TEX } from "react-icons/pi";
-import { IoBuildOutline as commProject, IoCloudUploadOutline as Akash } from "react-icons/io5";
+import { PiLinkSimpleBold as communityLink, PiPresentationChartLight as Archive } from "react-icons/pi";
+import { IoBuildOutline as commProject } from "react-icons/io5";
 import { GrGroup as ZCAP } from 'react-icons/gr';
 import { ImPodcast as Podcast } from 'react-icons/im';
 import { MdRadar as ECC, MdOutlinePointOfSale as ZgoPayment, MdForum as Forum } from "react-icons/md";
 import { GiCheckedShield as foundation, GiBorderedShield as Shieldedlabs } from 'react-icons/gi'
 import { TbHexagonLetterZ as Grants, TbTopologyRing as TopologyRing } from 'react-icons/tb'
 import { SiRaspberrypi as RaspBerry, SiZebratechnologies as Zebratechnologies }  from 'react-icons/si'
-
+import { IoCloudUploadOutline } from "react-icons/io5";
+import { PiHandDepositLight } from "react-icons/pi";
+import { TbSquareLetterFFilled } from "react-icons/tb";
 
 export const navigations = [
   {
@@ -46,7 +48,7 @@ export const navigations = [
       {
         subName: "Transparent Exchange Addresses",
         path: "/using-zcash/transparent-exchange-addresses",
-        icon: TEX,
+        icon: PiHandDepositLight,
       },
       {
         subName: "Transactions",
@@ -119,6 +121,11 @@ export const navigations = [
         icon: Grants,
       },
       {
+        subName: "Financial Privacy Foundation",
+        path: "/zcash-organizations/financial-privacy-foundation",
+        icon: TbSquareLetterFFilled,
+      },
+      {
         subName: "Shielded Labs",
         path: "/zcash-organizations/shielded-labs",
         icon: Shieldedlabs,
@@ -144,14 +151,14 @@ export const navigations = [
         icon: RaspBerry,
       },
       {
-        subName: "zcashd on Akash Network",
-        path: "/guides/zcashd-on-akash-network",
-        icon: Akash,
-      },
-      {
         subName: "Raspberry Pi Zebra Node",
         path: "https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5",
         icon: Zebratechnologies,
+      },
+      {
+        subName: "zcashd on Akash Network",
+        path: "/guids/zcash-on-akash-network",
+        icon: IoCloudUploadOutline,
       },
       {
         subName: "Visualizing Zcash Addresses",
