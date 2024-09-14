@@ -1,19 +1,17 @@
 import { RiTwitterXFill as Twitter, RiGithubFill as Github, RiYoutubeFill as Youtube, RiExchangeFundsLine as Exchange, RiLiveFill as Free2zLive } from "react-icons/ri";
-import { BsArrowUpRightCircle as Transaction, BsShieldShaded as ShieldedPools, BsQrCode as QrCode, BsDiscord as Discord } from 'react-icons/bs'
-import { FcCurrencyExchange as BuyingZec, FcGlobe as Ambassadors } from 'react-icons/fc'
+import { BsArrowUpRightCircle as Transaction, BsShieldShaded as ShieldedPools, BsQrCode as QrCode, BsDiscord as Discord } from 'react-icons/bs';
+import { FcCurrencyExchange as BuyingZec, FcGlobe as Ambassadors } from 'react-icons/fc';
 import { FaMagnifyingGlassChart as BlockchainExplorer } from "react-icons/fa6";
 import { FaWallet as Wallet } from 'react-icons/fa';
 import { LuTrees as Arborist } from "react-icons/lu";
-import { PiLinkSimpleBold as communityLink, PiPresentationChartLight as Archive, PiHandDepositLight as HandDepositLight } from "react-icons/pi"; 
+import { PiLinkSimpleBold as communityLink, PiPresentationChartLight as Archive, PiHandFistLight as HandDepositLight } from "react-icons/pi"; // Updated
 import { IoBuildOutline as commProject, IoCloudUploadOutline as CloudUploadOutline } from "react-icons/io5";
 import { GrGroup as ZCAP } from 'react-icons/gr';
 import { ImPodcast as Podcast } from 'react-icons/im';
 import { MdRadar as ECC, MdOutlinePointOfSale as ZgoPayment, MdForum as Forum } from "react-icons/md";
 import { GiCheckedShield as foundation, GiBorderedShield as Shieldedlabs } from 'react-icons/gi';
-import { TbHexagonLetterZ as Grants, TbTopologyRing as TopologyRing, TbSquareRoundedLetterFFilled as SquareLetterFFilled } from 'react-icons/tb';
-import { SiRaspberrypi as RaspBerry, SiZebratechnologies as Zebratechnologies }  from 'react-icons/si';
-
-
+import { TbHexagonLetterZ as Grants, TbTopologyRing as TopologyRing, TbSquareLetterFFilled as SquareLetterFFilled } from 'react-icons/tb'; // Updated
+import { SiRaspberrypi as RaspBerry, SiZebratechnologies as Zebratechnologies } from 'react-icons/si';
 
 export const navigations = [
   {
