@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     url: 'https://zechub.wiki/hackathon',
     images: [
       {
-        url: 'https://i.ibb.co/KzP6QGp/zechub-hackathon-3.png',
+        url: 'https://i.ibb.co/V2svhN6/zechub-hackathon-6.png',
         width: 1200,
         height: 630,
         alt: 'Zechub Hackathon',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Zechub Hackathon',
     description: 'Join the Zechub Hackathon and showcase your skills in building with Zcash. Participate, innovate, and win up to 15 ZEC!',
-    images: ['https://i.ibb.co/KzP6QGp/zechub-hackathon-3.png'],
+    images: ['https://i.ibb.co/V2svhN6/zechub-hackathon-6.png'],
   },
 };
 
