@@ -153,8 +153,8 @@ export const navigations = [
         icon: Zebratechnologies,
       },
       {
-        subName: "zcashd on Akash Network",
-        path: "/guids/zcash-on-akash-network",
+        subName: "Akash Network",
+        path: "/guides/akash-network",
         icon: CloudUploadOutline,
       },
       {
