@@ -8,7 +8,7 @@ export const daoMembers = [
         zcashAddress: 'u1ckyxdk4ed7g70n8j96cquycqmx652tqrv00hjd0mpvv6u6wwhcaqath8whjswxg7a7vnfc9ldyucj5lepaplwrkll4594ehmcv0lglrre0yh27lagsgd2zwflvh4erq5fwckyv6c3ert6glhkpqm206qf0plp4tal3nqlf7xfzwurgfpvkhkexskwy8a7s647cd4lnw0lcy6zm7np9a'
     },
     {
-        imgUrl: 'https://zeal.center/system/accounts/avatars/109/304/356/632/808/494/original/d29374a89ef5cc4b.png',
+        imgUrl: 'https://zeal.center/system/accounts/avatars/109/304/356/632/808/494/original/5163355cdb5f77d5.png',
         name: 'Wizard',
         description: `I am the admin of Zeal Center, a Mastodon and Mobilizon instance created for the Zcash community`,
         linkName:'Mastodon',
@@ -35,7 +35,7 @@ export const daoMembers = [
         zcashAddress: 'u1xut04cg3v0a5zqpud5l5nrkx8x4847q2fg38jzw8840aqj6e6gzj6m4paae906h88dsehymz5m28lrdfgwcvkymhqpfk0hlmjx2gef08q3rty9ljvnvxv9fevggegzqeql63dl220kpwe4n60kzwz87eq7mj8ppsuhqhvdzhdp00dymfgrc05e73ljwagn6ct5t33nrel0n7gxftv29'
     },
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1754288028732870656/sOWHjU3i_400x400.jpg',
+        imgUrl: 'https://pbs.twimg.com/profile_images/1822790017543995392/eSLHSXKD_400x400.jpg',
         name: 'Yoditar',
         description: 'SpacesHost | Blogger | Crypto community builder: @zcashesp and @libredotorg | Ambassador @Vivaldi_es | Privacy activist',
         linkName: 'Twitter',
@@ -43,7 +43,7 @@ export const daoMembers = [
         zcashAddress: 'u1lfhzhek3mt09pyjfthvfvlp2d0epat35ucwajl5uayw6q4ekjq3j9gcrelakntx0zpjqc5j37rg7p9c0jphedvx2pf2sl4j0whl8de8unzld9qndacw89z5zeqem55q2qjfprr3z4welw04dxgggr7etklj25prpspkuy59ayt7q5gu29lndvnjwdghqv5pd2a4lytjwmrtskhk95hn'
     },
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1756041822973882368/oax4ppkd_400x400.jpg',
+        imgUrl: 'https://pbs.twimg.com/profile_images/1821670682637332480/r46lAEy9_400x400.jpg',
         name: 'zerodartz',
         description: `Meme and media creator, ZFAV club contributor, nerd who loves new technology and Shielding everything`,
         linkName: 'Twitter',
@@ -60,7 +60,7 @@ export const daoMembers = [
         zcashAddress: 'u19cd4nhq2l0gpn985h8d63xkqj2man6gpzm8fkjczzy7lkgaermgv5ueuyp86r4eemwef0x4mavg9mmuycxcar3x477mrp98p97x7l3qvzrut6ap4y9c8xuy7hcq8q90ek6rhkd3xlufshjyv7dzpv4mx428pzq568jrye77hratw4tjwdwqekqljgyalnm8l3y72sqdd9jed6k65vpf'
     },
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1568361509104803840/KFrdM4OY_200x200.jpg',
+        imgUrl: 'https://pbs.twimg.com/profile_images/1822406076978843648/2btC651V_400x400.jpg',
         name: 'Mine',
         description: `I am a diagrammer, graphic and packaging designer. My interest in blockchain, NFTs and cryptocurrencies started
         just three years ago. In May 2022 Iogy and I became the design team for Zcash Brasil, and since then I've been
@@ -98,7 +98,7 @@ export const daoMembers = [
         zcashAddress: 'u1zhgy24tweexhjcsstya5qqzrus4cgv0amasfv5jp6f3p3qvw265rugn8ref5djg472l5s382mwuffremffr7se6xjlh5exagwg2d6frs'
     },
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1703030858771279872/1onKu0vX_400x400.jpg',
+        imgUrl: 'https://pbs.twimg.com/profile_images/1823096501003866113/DChQwneD_400x400.jpg',
         name: 'Roosevelt Gordones',
         description: `Zcast Podcast en Español, Educator & Media Production.`,
         linkName:'Twitter',
@@ -106,7 +106,7 @@ export const daoMembers = [
         zcashAddress: 'u1nvhfur5lruk4lzy7v5j4wqs65rvslk7tvgxvcjpe7f8u08vjs98rsg9sralpnwgzzkevtr6k2flh7g9hqqk07m9eff222ljyg9ge2d7upx9ycr9lqzmwmww05npwypmw5t2cvt32tnuylnud4qts3hq2af5w50t3czatklrv5f7spwpfasjdr3rm7qpklpmvv5fc5vpl2spyysvvwra'
     },
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1560452481829818368/c6XtZG6i_200x200.jpg',
+        imgUrl: 'https://pbs.twimg.com/profile_images/1822391888759894016/x4YVVNjd_400x400.jpg',
         name: 'Michae2xl',
         description: `1 year+ as Zcash Brazil ambassador, Software Engineer & Product Owner, known as Michae2xl on social media, has
         been 7+ years in the crypto space, worked for a DAO as a Community Manager in Brazil & Canada for almost 4
@@ -116,7 +116,7 @@ export const daoMembers = [
         zcashAddress: 'u1h5pajxdsa0zfm747v0rs82z45y2z2nqmsxyqku2fpkfryple9r5m6660h00hql8nffljunq7mz2d0auemxm83pjy8ptpyurxnncedftvf0z3xwcff2efslz2stzdenpzzvv25n5fql2uxn4k8cffdeya3ugkf0s6d55ar9z0jawpqzmz9jyg7x7zvssu9d26lxkswp657uq2cwkc45n'
     },
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1699907348993626112/KRH0sBXD_400x400.jpg',
+        imgUrl: 'https://pbs.twimg.com/profile_images/1822334312043192320/MCmSNbZr_400x400.jpg',
         name: 'Decentralistdan',
         description: 'ᙇecosystem relations @ZcashFoundation',
         linkName:'Twitter',
@@ -124,7 +124,7 @@ export const daoMembers = [
         zcashAddress: 'u1kgwgt0suhaymfn99ffelnsy8afl74g6p3cw9p20xmcmqhvyv023h0y5wgweqdhzju2l0v705m7jx8q4hxp53tskmwstcc6sdm0rdqc455v4jdnxnlvflzmwzzceneqld8xnhzjv0gqqgpgnajlav0w9eqrmwks2pdap6pgj8m5hjkcn40g3dmnz24azshesaf0lkke67szxzsgdv0wd'
     },
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1528027327921201152/ra7kpu96_400x400.jpg',
+        imgUrl: 'https://pbs.twimg.com/profile_images/1822034761214504961/vdE9iWGS_400x400.jpg',
         name: 'Jason McGee',
         description: `Member of Zcash Community Grants Committe and Founder of Shielded Labs.`,
         linkName:'Twitter',
@@ -148,7 +148,7 @@ export const daoMembers = [
         zcashAddress: 'u14fv86hd6eqehj7w40xw5wen47qp2muk4ulk7660ty8z7wuv6k5cg9tqhnp8p8qjltzw6a4v4nscltzar5q2k75vrxsq65fda459kc79r'
     },
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1560475487004250112/GoLrrEim_400x400.jpg',
+        imgUrl: 'https://pbs.twimg.com/profile_images/1822429578943451136/Q3og94Zy_400x400.jpg',
         name: 'vito',
         description: `Data Security Analyst & Community Manager at Zcash Brasil.`,
         linkName:'Twitter',
