@@ -1,11 +1,5 @@
 export const dexListingConfig = [
-    {
-    title: 'Sideshift AI',
-    description:
-      'SideShift.ai enables HUMANS and AI to trade between BTC, ETH, SOL and 100+ other coins. Sent directly to your wallet.',
-    url: 'https://sideshift.ai',
-    image: '/sideshiftai.png',
-  },
+
   {
     title: 'Stealth EX',
     description:
