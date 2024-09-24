@@ -42,6 +42,13 @@ export const dexListingConfig = [
     image: '/DCRDEX.jpg',
   },
   {
+    title: 'Firo DEX',
+    description:
+      'Trustless decentralized swaps using atomic swaps with FiroDEX!.',
+    url: 'https://github.com/firoorg/FiroDEX-Desktop',
+    image: 'https://firo.org/blog/assets/firodex-beta-release.png',
+  },
+  {
     title: 'Changenow',
     description: 
       'Limitless WEB 3 Crypto Exchange – Simple, Fast, Custody-free.',
