@@ -9,7 +9,7 @@ export const exploreFolders = [
         img: '/Tutorials.png',
         description: '',
         name: 'Tutorials',
-        url: '/zechub-tutorials'
+        url: 'https://youtube.com/@zechub'
     },
     {
         img: '/Using_Zcash-07.png',
