@@ -171,7 +171,7 @@ export const navigations = [
   },
   {
     name: "Tutorials",
-    path: "https://zechub.wiki/zechub-tutorials",
+    path: "https://youtube.com/@zechub",
     icon: "",
   },
   {
