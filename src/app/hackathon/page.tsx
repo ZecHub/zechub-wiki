@@ -97,7 +97,7 @@ const Hackathon: React.FC = () => {
       <h3 className="text-xl font-semibold mt-8 mb-4">Create a Zcash App</h3>
       <p className="mb-4">Develop an application that leverages the Zcash network. Zcash enables fast private payments (~75 seconds) and encrypted messages up to 512 bytes per transaction.</p>
       <p className="mb-4">Here are some ideas:</p>
-      <a href="https://github.com/ZecHub/zechub/blob/main/site/contribute/Build_on_Zcash.md" target="_blank" rel="noopener noreferrer">
+      <a href="https://github.com/ZecHub/zechub/blob/main/site/contribute/Community_Infrastructure.md" target="_blank" rel="noopener noreferrer">
         <button
           style={buttonStyle}
           className="hover:bg-blue-500 hover:text-white"
