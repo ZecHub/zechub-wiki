@@ -5,13 +5,11 @@ const Gallery: React.FC = () => {
   const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
-    
-    const importAll = (r: __WebpackModuleApi.RequireContext): string[] =>
-      r.keys().map(r);
+    const importAll = (r: any): string[] => r.keys().map(r);
 
     try {
       const images = importAll(
-        require.context('/public/gallery', false, /\.(png|jpe?g|svg|gif)$/)
+        (require as any).context('/public/gallery', false, /\.(png|jpe?g|svg|gif)$/)
       );
       setImages(images.map((image: any) => image.default.src));
     } catch (error) {
