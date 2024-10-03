@@ -8,7 +8,7 @@ const Gallery = () => {
     
     const importAll = (r) => r.keys().map(r);
     const images = importAll(
-      require.context("/public/data/gallery", false, /\.(png|jpe?g|svg|gif)$/)
+      require.context("/public/gallery", false, /\.(png|jpe?g|svg|gif)$/)
     );
     setImages(images);
   }, []);
