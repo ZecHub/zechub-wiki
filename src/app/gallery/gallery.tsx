@@ -6,10 +6,9 @@ const GalleryPage: React.FC = () => {
 
   useEffect(() => {
     
-    const importAll = (r: __WebpackModuleApi.RequireContext) =>
-      r.keys().map(r);
+    const importAll = (r: any) => r.keys().map(r);
     const images = importAll(
-      require.context("/public/gallery", false, /\.(png|jpe?g|svg|gif)$/)
+      (require as any).context("/public/gallery", false, /\.(png|jpe?g|svg|gif)$/)
     );
     setImages(images.map((image: any) => image.default.src));
   }, []);
