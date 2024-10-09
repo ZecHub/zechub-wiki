@@ -1,7 +1,7 @@
 export const dexListingConfig = [
   
     {
-    title: 'LetExchange',
+    title: 'LetsExchange',
     description:
       'A crypto exchange hub with 4,500+ cryptocurrencies, deep liquidity, cross-chain swaps, on- & off-ramp, DEX, swift and secure transactions.',
     url: 'https://https://letsexchange.io/',
