@@ -94,7 +94,7 @@ export const navigations = [
       },
       {
         subName: "Zcon Archive",
-        path: "/zcash-community/zcap",
+        path: "/zcash-community/zcon-archive",
         icon: Archive,
       },
     ],
