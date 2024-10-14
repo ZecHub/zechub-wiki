@@ -69,16 +69,6 @@ const NavLinks = ({
         )
       )}
 
-      {/* New Hackathon Link */}
-      <div className="flex gap-2">
-        <Link
-          href="/hackathon"
-          onClick={handleLinkClick}
-          className="flex flex-row font-normal p-2 mr-3 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
-        >
-          Hackathon
-        </Link>
-      </div>
 
       <div className="flex md:flex-row flex-col md:space-x-3 md:ml-3 sm:gap-0 gap-2">
         <Link
