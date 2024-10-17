@@ -19,7 +19,7 @@ export default function RootLayout({
   //dark:bg-slate-900 dark:text-gray-200
 
   return (
-    <html lang='en'>
+    <html lang='en-US'>
       <body className={`${inter.className} px-6`}>
         <div className='container mx-auto min-h-screen flex flex-col'>
           <div className='flex flex-col justify-between flex-grow'>
