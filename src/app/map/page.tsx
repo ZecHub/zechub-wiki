@@ -74,7 +74,7 @@ const MapPage: React.FC = () => {
   const fetchStoreLocations = async (storeName: string) => {
     try {
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${storeName}+store&key=AIzaSyDduV2URznwk_HiV8YbpYxl43yvyNbe3ho`
+        `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${storeName}+store&key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`
       );
       const data = await response.json();
 
@@ -124,7 +124,7 @@ const MapPage: React.FC = () => {
       {/* Map displaying store locations */}
       <div style={{ width: "70%", height: "auto" }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyDduV2URznwk_HiV8YbpYxl43yvyNbe3ho" }}
+          bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_API_KEY ?? "" }}
           defaultCenter={
             locations.length > 0
               ? { lat: locations[0].lat, lng: locations[0].lng }
