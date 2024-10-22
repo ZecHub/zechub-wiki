@@ -6,14 +6,18 @@
 }
 
 .zcash-image {
-    flex-basis: auto; /* Remove fixed basis for better responsiveness */
+    flex-basis: auto;
 }
 
 .donation-slider {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center the slider */
-    width: 100%; /* Make slider span full width */
+    width: 100%;
+}
+
+.currency-switch {
+    margin-top: 5px; /* Bring currency options higher */
 }
 
 .donation-header {
@@ -58,7 +62,7 @@
     flex-direction: column;
     gap: .5rem;
     margin-bottom: 1rem;
-    align-items: center; /* Ensure the number input is centered */
+    align-items: center;
 }
 
 label {
@@ -66,10 +70,10 @@ label {
 }
 
 .slider {
-    width: 80%; /* Adjust slider width to fit nicely */
+    width: 80%; /* Adjust slider width */
     -webkit-appearance: none;
     appearance: none;
-    height: 10px;
+    height: 15px; /* Make the slider larger */
     border-radius: 5px;
     background: #d3d3d3;
     outline: none;
@@ -81,26 +85,26 @@ label {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 15px;
-    height: 15px;
+    width: 20px; /* Increase thumb size */
+    height: 20px;
     border-radius: 50%;
     background: #4CAF50;
     cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: #4CAF50;
     cursor: pointer;
 }
 
-/* CSS for predefined value buttons */
+/* Predefined value buttons */
 .amount-buttons {
     display: flex;
-    justify-content: center; /* Center the buttons */
-    gap: 1rem; /* Add space between the buttons */
+    justify-content: center;
+    gap: 1rem;
     margin-bottom: 1rem;
 }
 
@@ -127,7 +131,7 @@ label {
 }
 
 .donation-memo textarea {
-    width: 80%; /* Make memo box span a reasonable width */
+    width: 80%;
     padding: 0.5rem;
     border-radius: 5px;
     border: 1px solid #d3d3d3;
