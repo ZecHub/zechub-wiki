@@ -6,6 +6,10 @@ import zcashLogo from '../../../public/zcash-logo.png';
 import ycashLogo from '../../../public/ycash-logo.png';
 import namadaLogo from '../../../public/namada-logo.png';
 import penumbraLogo from '../../../public/penumbra-logo.png';
+import { createPraxClient } from '@penumbra-zone/client';
+import { ViewService } from '@penumbra-zone/protobuf';
+import { bech32mAddress } from '@penumbra-zone/bech32m/penumbra';
+import { PenumbraSymbol } from '@penumbra-zone/client';
 import './donation.css';
 
 // Function to convert string to Base64 URL-safe format
@@ -26,6 +30,40 @@ const DonationComp = () => {
   const ycashAddress = 'ys1t2e77wawylp8zky7wq3gzky2j4w6rpgd8632vmvqqj370thgpls8t973qutj4gn5wsc3qmcy56y';
   const namadaAddress = 'znam1qp9v3gvs6dx576wx938kns0xx5ancxgv7z8athjq3gp7qp4uxk9qzdqdwqycpkyp0emtlsg9wlzzr';
   const penumbraDonationAddress = 'penumbra1mrjsg0kggcsxt3qn839tzahraa669jrpxh47ejry0twnph2328pjmlzg65z4em8u8xl8g3k6k4tdspvdmk5vxtjcwv4ssd3cagpg9a6xntfxe8yvdch0xm9eaq550yaffwvgqv';
+
+  const connectToPraxWallet = async () => {
+    try {
+      if (window[PenumbraSymbol]) {
+        const provider = window[PenumbraSymbol]?.['prax'] as PenumbraProvider;
+        if (provider) {
+          await provider.connect();
+          const viewClient = createPraxClient(ViewService);
+          const { address } = await viewClient.addressByIndex({});
+          console.log("Connected Penumbra Address: ", bech32mAddress(address));
+          return true;
+        } else {
+          console.error('Prax provider is not available');
+        }
+      } else {
+        console.error('Prax Wallet is not installed or detected.');
+      }
+    } catch (error) {
+      console.error('Error connecting to Prax Wallet: ', error);
+    }
+    return false;
+  };
+
+  const generatePenumbraTransaction = async () => {
+    const connected = await connectToPraxWallet();
+    if (!connected) {
+      alert('Please connect your Prax wallet.');
+      return;
+    }
+
+    // Here, create the transaction and send it using the client
+    console.log(`Sending ${donationAmount} PENUMBRA to ${penumbraDonationAddress}`);
+    // You would then proceed to build and send the transaction through the Prax wallet
+  };
 
   const handleSelectAmount = (amount: string) => {
     setDonationAmount(parseFloat(amount));
@@ -59,44 +97,50 @@ const DonationComp = () => {
     const formattedAmount = parseFloat(donationAmount.toString()).toFixed(4); // Format amount to four decimal places
     let address = '';
     let encodedMemo = memo ? toBase64Url(memo) : '';
+    let donationLink = '';
 
     switch (selectedCurrency) {
       case 'zcash':
         address = zcashAddress;
+        donationLink = `${address}?amount=${formattedAmount}&memo=${encodeURIComponent(encodedMemo)}`;
         break;
       case 'ycash':
         address = ycashAddress;
+        donationLink = `${address}?amount=${formattedAmount}&memo=${encodeURIComponent(encodedMemo)}`;
         break;
       case 'namada':
         address = namadaAddress;
+        donationLink = `${address}?amount=${formattedAmount}&memo=${encodeURIComponent(encodedMemo)}`;
         break;
       case 'penumbra':
+        // Special format for Penumbra using pcli send syntax
         address = penumbraDonationAddress;
+        donationLink = `pcli tx send ${formattedAmount}penumbra --to ${address}`;
         break;
       default:
         address = '';
     }
 
-    return `${address}?amount=${formattedAmount}&memo=${encodeURIComponent(encodedMemo)}`;
+    return donationLink;
   };
 
-  const copyAndOpenWallet = () => {
-    if (error) {
-      alert('Please enter a valid donation amount or fix the memo.');
-      return;
+  const copyAndOpenWallet = async () => {
+    if (selectedCurrency === 'penumbra') {
+      await generatePenumbraTransaction();
+    } else {
+      // Handle other currencies like Zcash and Ycash
+      const donationLink = generateDonationLink();
+      navigator.clipboard.writeText(donationLink).then(() => {
+        alert('Address copied to clipboard!');
+        window.location.href = donationLink; // Attempt to open the link with the default wallet application
+      }, (err) => {
+        console.error('Could not copy text: ', err);
+      });
     }
-    const donationLink = generateDonationLink();
-    navigator.clipboard.writeText(donationLink).then(() => {
-      alert('Address copied to clipboard!');
-      window.location.href = donationLink; // Attempt to open the link with the default wallet application
-    }, (err) => {
-      console.error('Could not copy text: ', err);
-    });
   };
 
   return (
     <div className='donation-container'>
-      {/* QR Code at the top */}
       <div style={{ width: '300px', margin: '20px auto', textAlign: 'center' }}>
         <QRCode value={generateDonationLink()} size={280} />
         <button onClick={copyAndOpenWallet} style={{ marginTop: '10px' }}>
@@ -104,9 +148,8 @@ const DonationComp = () => {
         </button>
       </div>
 
-      {/* Currency buttons below QR code */}
-      <div className="currency-switch" style={{ marginTop: '10px', display: 'flex', justifyContent: 'center' }}>
-        {/* Zcash Button */}
+      {/* Currency buttons */}
+      <div className="currency-switch" style={{ marginTop: '5px', display: 'flex', justifyContent: 'center' }}>
         <button
           onClick={() => setSelectedCurrency('zcash')}
           className={selectedCurrency === 'zcash' ? 'active' : ''}
@@ -125,7 +168,6 @@ const DonationComp = () => {
           <Image src={zcashLogo} alt='Zcash' width={32} height={32} />
         </button>
 
-        {/* Ycash Button */}
         <button
           onClick={() => setSelectedCurrency('ycash')}
           className={selectedCurrency === 'ycash' ? 'active' : ''}
@@ -144,7 +186,6 @@ const DonationComp = () => {
           <Image src={ycashLogo} alt='Ycash' width={32} height={32} />
         </button>
 
-        {/* Namada Button */}
         <button
           onClick={() => setSelectedCurrency('namada')}
           className={selectedCurrency === 'namada' ? 'active' : ''}
@@ -163,7 +204,6 @@ const DonationComp = () => {
           <Image src={namadaLogo} alt='Namada' width={32} height={32} />
         </button>
 
-        {/* Penumbra Button */}
         <button
           onClick={() => setSelectedCurrency('penumbra')}
           className={selectedCurrency === 'penumbra' ? 'active' : ''}
@@ -183,7 +223,7 @@ const DonationComp = () => {
         </button>
       </div>
 
-      {/* Slider below currency buttons */}
+      {/* Slider */}
       <div className="donation-slider" style={{ marginTop: '20px', textAlign: 'center' }}>
         <label>Donation Amount:</label>
         <input
@@ -194,10 +234,10 @@ const DonationComp = () => {
           value={donationAmount}
           onChange={handleChangeAmount}
         />
-        <p>{donationAmount} {selectedCurrency.toUpperCase()}</p>
+        <p>{donationAmount} {selectedCurrency === 'penumbra' ? 'PENUMBRA' : selectedCurrency.toUpperCase()}</p>
       </div>
 
-      {/* Memo textbox below slider */}
+      {/* Memo */}
       <div className="donation-memo" style={{ marginTop: '20px', textAlign: 'center' }}>
         <label>Memo (Optional):</label>
         <textarea
