@@ -1,27 +1,36 @@
 'use client';
-import './donation.css';
 import { ChangeEvent, useState } from 'react';
 import QRCode from 'qrcode.react';
 import Image from 'next/image';
 import zcashLogo from '../../../public/zcash-logo.png';
 import ycashLogo from '../../../public/ycash-logo.png';
-// You can add a Namada logo here if available
-import namadaLogo from '../../../public/namada-logo.png'; // Placeholder
+import namadaLogo from '../../../public/namada-logo.png';
+import penumbraLogo from '../../../public/penumbra-logo.png'; // Assume you have Penumbra's logo
+import './donation.css';
+
+// Function to convert string to Base64 URL-safe format
+const toBase64Url = (str: string) => {
+  return btoa(str)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, ''); // Remove any padding characters (=)
+};
 
 const DonationComp = () => {
   const [donationAmount, setDonationAmount] = useState(1); // Default donation amount
-  const [memo, setMemo] = useState(''); // Optional memo for the donation
+  const [memo, setMemo] = useState(''); // Memo for the donation
   const [selectedCurrency, setSelectedCurrency] = useState('zcash'); // Track selected currency
   const [error, setError] = useState<string | null>(null); // Error state for invalid input
+
+  const zcashAddress = 'zcash:u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89';
+  const ycashAddress = 'ys1t2e77wawylp8zky7wq3gzky2j4w6rpgd8632vmvqqj370thgpls8t973qutj4gn5wsc3qmcy56y';
+  const namadaAddress = 'znam1qp9v3gvs6dx576wx938kns0xx5ancxgv7z8athjq3gp7qp4uxk9qzdqdwqycpkyp0emtlsg9wlzzr';
+  const penumbraDonationAddress = 'penumbra1mrjsg0kggcsxt3qn839tzahraa669jrpxh47ejry0twnph2328pjmlzg65z4em8u8xl8g3k6k4tdspvdmk5vxtjcwv4ssd3cagpg9a6xntfxe8yvdch0xm9eaq550yaffwvgqv';
 
   // Predefined amounts for Zcash, Ycash, and Namada
   const predefinedZecAmounts = [0.25, 0.5, 1.0, 2.5, 5];
   const predefinedYecAmounts = [100, 200, 400, 1000];
-  const predefinedNamAmounts = [1, 2, 5, 10, 20]; // Adjust according to typical Namada donations
-
-  const zcashAddress = 'zcash:u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89';
-  const ycashAddress = 'ys1t2e77wawylp8zky7wq3gzky2j4w6rpgd8632vmvqqj370thgpls8t973qutj4gn5wsc3qmcy56y';
-  const namadaAddress = 'znam1qp9v3gvs6dx576wx938kns0xx5ancxgv7z8athjq3gp7qp4uxk9qzdqdwqycpkyp0emtlsg9wlzzr'; // Namada donation address
+  const predefinedNamAmounts = [10, 20, 40, 100]; // Example amounts for Namada
 
   const handleSelectAmount = (amount: string) => {
     setDonationAmount(parseFloat(amount));
@@ -35,49 +44,59 @@ const DonationComp = () => {
       setError('Please enter a valid amount greater than 0');
     } else {
       setDonationAmount(value);
-      setMemo(event.target.value); // Synchronize memo with donation amount
+      setMemo(''); // Clear memo if donation amount is changed
       setError(null); // Clear error if input is valid
     }
   };
 
-  const handleChangeMemo = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(event.target.value);
-    if (isNaN(value) || value <= 0) {
-      setError('Please enter a valid amount greater than 0');
+  const handleChangeMemo = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const value = event.target.value;
+    if (value.length > 512) {
+      setError('Memo exceeds the maximum allowed length of 512 characters.');
     } else {
-      setDonationAmount(value);
-      setMemo(event.target.value);
-      setError(null); // Clear error if input is valid
+      setMemo(value);
+      setError(null); // Clear error when memo length is valid
     }
   };
 
   const generateDonationLink = () => {
     if (error) return ''; // Return empty if there's an error
     const formattedAmount = parseFloat(donationAmount.toString()).toFixed(4); // Format amount to four decimal places
-    const address =
-      selectedCurrency === 'zcash'
-        ? zcashAddress
-        : selectedCurrency === 'ycash'
-        ? ycashAddress
-        : namadaAddress;
-    return `${address}?amount=${formattedAmount}&memo=${encodeURIComponent(memo)}`;
+    let address = '';
+    let encodedMemo = memo ? toBase64Url(memo) : '';
+
+    switch (selectedCurrency) {
+      case 'zcash':
+        address = zcashAddress;
+        break;
+      case 'ycash':
+        address = ycashAddress;
+        break;
+      case 'namada':
+        address = namadaAddress;
+        break;
+      case 'penumbra':
+        address = penumbraDonationAddress;
+        break;
+      default:
+        address = '';
+    }
+
+    return `${address}?amount=${formattedAmount}&memo=${encodeURIComponent(encodedMemo)}`;
   };
 
   const copyAndOpenWallet = () => {
     if (error) {
-      alert('Please enter a valid donation amount.');
+      alert('Please enter a valid donation amount or fix the memo.');
       return;
     }
     const donationLink = generateDonationLink();
-    navigator.clipboard.writeText(donationLink).then(
-      () => {
-        alert('Address copied to clipboard!');
-        window.location.href = donationLink; // Attempt to open the link with the default wallet application
-      },
-      (err) => {
-        console.error('Could not copy text: ', err);
-      }
-    );
+    navigator.clipboard.writeText(donationLink).then(() => {
+      alert('Address copied to clipboard!');
+      window.location.href = donationLink; // Attempt to open the link with the default wallet application
+    }, (err) => {
+      console.error('Could not copy text: ', err);
+    });
   };
 
   return (
@@ -88,8 +107,8 @@ const DonationComp = () => {
           Copy & Open Wallet
         </button>
 
-        <div className='currency-switch' style={{ marginTop: '10px', display: 'flex', justifyContent: 'center' }}>
-          {/* Zcash button */}
+        <div className="currency-switch" style={{ marginTop: '10px', display: 'flex', justifyContent: 'center' }}>
+          {/* Zcash Button */}
           <button
             onClick={() => setSelectedCurrency('zcash')}
             className={selectedCurrency === 'zcash' ? 'active' : ''}
@@ -102,13 +121,13 @@ const DonationComp = () => {
               height: '80px',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Image src={zcashLogo} alt='Zcash' width={32} height={32} />
           </button>
 
-          {/* Ycash button */}
+          {/* Ycash Button */}
           <button
             onClick={() => setSelectedCurrency('ycash')}
             className={selectedCurrency === 'ycash' ? 'active' : ''}
@@ -121,13 +140,13 @@ const DonationComp = () => {
               height: '80px',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Image src={ycashLogo} alt='Ycash' width={32} height={32} />
           </button>
 
-          {/* Namada button */}
+          {/* Namada Button */}
           <button
             onClick={() => setSelectedCurrency('namada')}
             className={selectedCurrency === 'namada' ? 'active' : ''}
@@ -140,65 +159,55 @@ const DonationComp = () => {
               height: '80px',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center',
+              alignItems: 'center'
             }}
           >
             <Image src={namadaLogo} alt='Namada' width={32} height={32} />
           </button>
+
+          {/* Penumbra Button */}
+          <button
+            onClick={() => setSelectedCurrency('penumbra')}
+            className={selectedCurrency === 'penumbra' ? 'active' : ''}
+            style={{
+              borderRadius: '50%',
+              padding: '10px',
+              margin: '5px',
+              border: selectedCurrency === 'penumbra' ? '3px solid lightblue' : '3px solid transparent',
+              width: '80px',
+              height: '80px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Image src={penumbraLogo} alt='Penumbra' width={32} height={32} />
+          </button>
         </div>
       </div>
 
-      <div className='donation-slider'>
-        <div className='donation-header'>
-          <h1>Donate Now</h1>
-          <p>
-            The goal of ZecHub is to provide an educational platform where
-            community members can work together on creating, validating, and
-            promoting content that supports the Zcash & Privacy technology
-            ecosystems.
-          </p>
+      <div className="donation-input">
+        <label>Donation Amount:</label>
+        <input
+          type="number"
+          value={donationAmount}
+          onChange={handleChangeAmount}
+          min="0"
+        />
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+      </div>
 
-          <div className='input-range'>
-            <label>Choose your donation amount ({selectedCurrency === 'zcash' ? 'ZEC' : selectedCurrency === 'ycash' ? 'YEC' : 'NAM'}):</label>
-            <input
-              type='range'
-              min={selectedCurrency === 'zcash' ? '0.25' : selectedCurrency === 'ycash' ? '100' : '1'}
-              max={selectedCurrency === 'zcash' ? '5' : selectedCurrency === 'ycash' ? '1000' : '20'}
-              step={selectedCurrency === 'zcash' ? '0.05' : selectedCurrency === 'ycash' ? '50' : '1'}
-              value={donationAmount <= (selectedCurrency === 'zcash' ? 5 : selectedCurrency === 'ycash' ? 1000 : 20) ? donationAmount : 5} // Sync with slider
-              onChange={handleChangeAmount}
-              className='slider'
-            />
-          </div>
-
-          <div className='amount'>
-            <p>Amount: {donationAmount} {selectedCurrency === 'zcash' ? 'ZEC' : selectedCurrency === 'ycash' ? 'YEC' : 'NAM'}</p>
-          </div>
-
-          <div className='amount-buttons'>
-            {(selectedCurrency === 'zcash'
-              ? predefinedZecAmounts
-              : selectedCurrency === 'ycash'
-              ? predefinedYecAmounts
-              : predefinedNamAmounts
-            ).map((amount, index) => (
-              <button key={index} onClick={() => handleSelectAmount(amount.toString())}>
-                {amount} {selectedCurrency === 'zcash' ? 'ZEC' : selectedCurrency === 'ycash' ? 'YEC' : 'NAM'}
-              </button>
-            ))}
-          </div>
-
-          <div className='input-number'>
-            <label>Enter Amount ({selectedCurrency === 'zcash' ? 'ZEC' : selectedCurrency === 'ycash' ? 'YEC' : 'NAM'}):</label>
-            <input
-              type='number'
-              value={memo}
-              placeholder={`Enter any amount in ${selectedCurrency === 'zcash' ? 'ZEC' : selectedCurrency === 'ycash' ? 'YEC' : 'NAM'}`}
-              onChange={handleChangeMemo}
-            />
-          </div>
-
-          {error && <p style={{ color: 'red' }}>{error}</p>}
+      <div className="donation-memo">
+        <label>Memo (Optional):</label>
+        <textarea
+          value={memo}
+          onChange={handleChangeMemo}
+          maxLength={512}
+          rows={4}
+          placeholder="Add a memo (Optional, max 512 characters)"
+        />
+        <div style={{ textAlign: 'right', fontSize: '12px', color: 'gray' }}>
+          {memo.length}/512
         </div>
       </div>
     </div>
