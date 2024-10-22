@@ -5,7 +5,7 @@ import Image from 'next/image';
 import zcashLogo from '../../../public/zcash-logo.png';
 import ycashLogo from '../../../public/ycash-logo.png';
 import namadaLogo from '../../../public/namada-logo.png';
-import penumbraLogo from '../../../public/penumbra-logo.png'; // Assume you have Penumbra's logo
+import penumbraLogo from '../../../public/penumbra-logo.png';
 import './donation.css';
 
 // Function to convert string to Base64 URL-safe format
@@ -26,11 +26,6 @@ const DonationComp = () => {
   const ycashAddress = 'ys1t2e77wawylp8zky7wq3gzky2j4w6rpgd8632vmvqqj370thgpls8t973qutj4gn5wsc3qmcy56y';
   const namadaAddress = 'znam1qp9v3gvs6dx576wx938kns0xx5ancxgv7z8athjq3gp7qp4uxk9qzdqdwqycpkyp0emtlsg9wlzzr';
   const penumbraDonationAddress = 'penumbra1mrjsg0kggcsxt3qn839tzahraa669jrpxh47ejry0twnph2328pjmlzg65z4em8u8xl8g3k6k4tdspvdmk5vxtjcwv4ssd3cagpg9a6xntfxe8yvdch0xm9eaq550yaffwvgqv';
-
-  // Predefined amounts for Zcash, Ycash, and Namada
-  const predefinedZecAmounts = [0.25, 0.5, 1.0, 2.5, 5];
-  const predefinedYecAmounts = [100, 200, 400, 1000];
-  const predefinedNamAmounts = [10, 20, 40, 100]; // Example amounts for Namada
 
   const handleSelectAmount = (amount: string) => {
     setDonationAmount(parseFloat(amount));
@@ -101,103 +96,109 @@ const DonationComp = () => {
 
   return (
     <div className='donation-container'>
+      {/* QR Code at the top */}
       <div style={{ width: '300px', margin: '20px auto', textAlign: 'center' }}>
         <QRCode value={generateDonationLink()} size={280} />
         <button onClick={copyAndOpenWallet} style={{ marginTop: '10px' }}>
           Copy & Open Wallet
         </button>
-
-        <div className="currency-switch" style={{ marginTop: '10px', display: 'flex', justifyContent: 'center' }}>
-          {/* Zcash Button */}
-          <button
-            onClick={() => setSelectedCurrency('zcash')}
-            className={selectedCurrency === 'zcash' ? 'active' : ''}
-            style={{
-              borderRadius: '50%',
-              padding: '10px',
-              margin: '5px',
-              border: selectedCurrency === 'zcash' ? '3px solid lightblue' : '3px solid transparent',
-              width: '80px',
-              height: '80px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
-            <Image src={zcashLogo} alt='Zcash' width={32} height={32} />
-          </button>
-
-          {/* Ycash Button */}
-          <button
-            onClick={() => setSelectedCurrency('ycash')}
-            className={selectedCurrency === 'ycash' ? 'active' : ''}
-            style={{
-              borderRadius: '50%',
-              padding: '10px',
-              margin: '5px',
-              border: selectedCurrency === 'ycash' ? '3px solid lightblue' : '3px solid transparent',
-              width: '80px',
-              height: '80px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
-            <Image src={ycashLogo} alt='Ycash' width={32} height={32} />
-          </button>
-
-          {/* Namada Button */}
-          <button
-            onClick={() => setSelectedCurrency('namada')}
-            className={selectedCurrency === 'namada' ? 'active' : ''}
-            style={{
-              borderRadius: '50%',
-              padding: '10px',
-              margin: '5px',
-              border: selectedCurrency === 'namada' ? '3px solid lightblue' : '3px solid transparent',
-              width: '80px',
-              height: '80px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
-            <Image src={namadaLogo} alt='Namada' width={32} height={32} />
-          </button>
-
-          {/* Penumbra Button */}
-          <button
-            onClick={() => setSelectedCurrency('penumbra')}
-            className={selectedCurrency === 'penumbra' ? 'active' : ''}
-            style={{
-              borderRadius: '50%',
-              padding: '10px',
-              margin: '5px',
-              border: selectedCurrency === 'penumbra' ? '3px solid lightblue' : '3px solid transparent',
-              width: '80px',
-              height: '80px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
-            <Image src={penumbraLogo} alt='Penumbra' width={32} height={32} />
-          </button>
-        </div>
       </div>
 
-      <div className="donation-input">
+      {/* Currency buttons below QR code */}
+      <div className="currency-switch" style={{ marginTop: '10px', display: 'flex', justifyContent: 'center' }}>
+        {/* Zcash Button */}
+        <button
+          onClick={() => setSelectedCurrency('zcash')}
+          className={selectedCurrency === 'zcash' ? 'active' : ''}
+          style={{
+            borderRadius: '50%',
+            padding: '10px',
+            margin: '5px',
+            border: selectedCurrency === 'zcash' ? '3px solid lightblue' : '3px solid transparent',
+            width: '80px',
+            height: '80px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <Image src={zcashLogo} alt='Zcash' width={32} height={32} />
+        </button>
+
+        {/* Ycash Button */}
+        <button
+          onClick={() => setSelectedCurrency('ycash')}
+          className={selectedCurrency === 'ycash' ? 'active' : ''}
+          style={{
+            borderRadius: '50%',
+            padding: '10px',
+            margin: '5px',
+            border: selectedCurrency === 'ycash' ? '3px solid lightblue' : '3px solid transparent',
+            width: '80px',
+            height: '80px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <Image src={ycashLogo} alt='Ycash' width={32} height={32} />
+        </button>
+
+        {/* Namada Button */}
+        <button
+          onClick={() => setSelectedCurrency('namada')}
+          className={selectedCurrency === 'namada' ? 'active' : ''}
+          style={{
+            borderRadius: '50%',
+            padding: '10px',
+            margin: '5px',
+            border: selectedCurrency === 'namada' ? '3px solid lightblue' : '3px solid transparent',
+            width: '80px',
+            height: '80px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <Image src={namadaLogo} alt='Namada' width={32} height={32} />
+        </button>
+
+        {/* Penumbra Button */}
+        <button
+          onClick={() => setSelectedCurrency('penumbra')}
+          className={selectedCurrency === 'penumbra' ? 'active' : ''}
+          style={{
+            borderRadius: '50%',
+            padding: '10px',
+            margin: '5px',
+            border: selectedCurrency === 'penumbra' ? '3px solid lightblue' : '3px solid transparent',
+            width: '80px',
+            height: '80px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <Image src={penumbraLogo} alt='Penumbra' width={32} height={32} />
+        </button>
+      </div>
+
+      {/* Slider below currency buttons */}
+      <div className="donation-slider" style={{ marginTop: '20px', textAlign: 'center' }}>
         <label>Donation Amount:</label>
         <input
-          type="number"
+          type="range"
+          min={0.1}
+          max={5.0}
+          step={0.1}
           value={donationAmount}
           onChange={handleChangeAmount}
-          min="0"
         />
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <p>{donationAmount} {selectedCurrency.toUpperCase()}</p>
       </div>
 
-      <div className="donation-memo">
+      {/* Memo textbox below slider */}
+      <div className="donation-memo" style={{ marginTop: '20px', textAlign: 'center' }}>
         <label>Memo (Optional):</label>
         <textarea
           value={memo}
@@ -210,6 +211,8 @@ const DonationComp = () => {
           {memo.length}/512
         </div>
       </div>
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };
