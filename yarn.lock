@@ -1073,21 +1073,13 @@
 
 "@penumbra-zone/client@^20.0.0":
   version "20.0.0"
-  resolved "https://registry.npmjs.org/@penumbra-zone/client/-/client-20.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/@penumbra-zone/client/-/client-20.0.0.tgz#d2771fbfae8196e902953ca551a97acfb5ba4e37"
   integrity sha512-BW942t0sbcSdNk+RSUA+yYX5oAXjt2tfPcf+G7eOs0CjE7XF17lpmGMfsV8EpGh0swu9SFQlORBN3VThR/ne7Q==
 
 "@penumbra-zone/protobuf@^6.2.0":
   version "6.2.0"
-  resolved "https://registry.npmjs.org/@penumbra-zone/protobuf/-/protobuf-6.2.0.tgz"
+  resolved "https://registry.yarnpkg.com/@penumbra-zone/protobuf/-/protobuf-6.2.0.tgz#ede0e209be5b014449840216010cd45193bb9469"
   integrity sha512-OCIvrXtRBK20lG32A62KNg9daOlpr4fEtB5uTENVuf3IAyemjETMJpz1To86KgCv2sR2kYiVNfazdRKh9whNWQ==
-
-"@penumbra-zone/transport-dom@^7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@penumbra-zone/transport-dom/-/transport-dom-7.5.0.tgz#428488f893e99b5207213ae6f218e31bab5cc938"
-  integrity sha512-8xFIEDeXODl18AITfiIrJJoE8Y6y/+apO+BhrqCmXP+yqGo8LBzcW3iWDQkOc6Go2c1MGJT97B25r079Km1kuA==
-  dependencies:
-    "@bufbuild/protobuf" "1.10.0"
-    "@connectrpc/connect" "1.4.0"
 
 "@playwright/test@^1.45.1":
   version "1.45.1"
