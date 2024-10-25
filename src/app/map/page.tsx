@@ -59,7 +59,6 @@ const brandSpedn: BrandSpednType = {
 
 // List of brands (to display and fetch locations)
 const storeList = [
-  { name: "BancoAgricola", displayName: "Banco Agricola" },
   { name: "BarnesAndNoble", displayName: "Barnes & Noble" },
   { name: "BaskinRobbins", displayName: "Baskin-Robbins" },
   { name: "CoCoBubbleTea", displayName: "CoCo Bubble Tea" },
@@ -93,7 +92,7 @@ const defaultCenter: Coordinates = {
 };
 
 const LocationFilter: React.FC = () => {
-  const [selectedStore, setSelectedStore] = useState("BancoAgricola");
+  const [selectedStore, setSelectedStore] = useState("BarnesAndNoble");
   const [selectedState, setSelectedState] = useState<string>("");
   const [selectedCity, setSelectedCity] = useState<string>("");
 
