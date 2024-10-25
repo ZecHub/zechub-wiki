@@ -6,10 +6,6 @@ import zcashLogo from '../../../public/zcash-logo.png';
 import ycashLogo from '../../../public/ycash-logo.png';
 import namadaLogo from '../../../public/namada-logo.png';
 import penumbraLogo from '../../../public/penumbra-logo.png';
-import { createPraxClient } from '@penumbra-zone/client';
-import { ViewService } from '@penumbra-zone/protobuf';
-import { bech32mAddress } from '@penumbra-zone/bech32m/penumbra';
-import { PenumbraSymbol } from '@penumbra-zone/client';
 import './donation.css';
 
 // Function to convert string to Base64 URL-safe format
