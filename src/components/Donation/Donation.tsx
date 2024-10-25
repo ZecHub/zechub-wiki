@@ -27,39 +27,7 @@ const DonationComp = () => {
   const namadaAddress = 'znam1qp9v3gvs6dx576wx938kns0xx5ancxgv7z8athjq3gp7qp4uxk9qzdqdwqycpkyp0emtlsg9wlzzr';
   const penumbraDonationAddress = 'penumbra1mrjsg0kggcsxt3qn839tzahraa669jrpxh47ejry0twnph2328pjmlzg65z4em8u8xl8g3k6k4tdspvdmk5vxtjcwv4ssd3cagpg9a6xntfxe8yvdch0xm9eaq550yaffwvgqv';
 
-  const connectToPraxWallet = async () => {
-    try {
-      if (window[PenumbraSymbol]) {
-        const provider = window[PenumbraSymbol]?.['prax'] as PenumbraProvider;
-        if (provider) {
-          await provider.connect();
-          const viewClient = createPraxClient(ViewService);
-          const { address } = await viewClient.addressByIndex({});
-          console.log("Connected Penumbra Address: ", bech32mAddress(address));
-          return true;
-        } else {
-          console.error('Prax provider is not available');
-        }
-      } else {
-        console.error('Prax Wallet is not installed or detected.');
-      }
-    } catch (error) {
-      console.error('Error connecting to Prax Wallet: ', error);
-    }
-    return false;
-  };
 
-  const generatePenumbraTransaction = async () => {
-    const connected = await connectToPraxWallet();
-    if (!connected) {
-      alert('Please connect your Prax wallet.');
-      return;
-    }
-
-    // Here, create the transaction and send it using the client
-    console.log(`Sending ${donationAmount} PENUMBRA to ${penumbraDonationAddress}`);
-    // You would then proceed to build and send the transaction through the Prax wallet
-  };
 
   const handleSelectAmount = (amount: string) => {
     setDonationAmount(parseFloat(amount));
@@ -121,18 +89,14 @@ const DonationComp = () => {
   };
 
   const copyAndOpenWallet = async () => {
-    if (selectedCurrency === 'penumbra') {
-      await generatePenumbraTransaction();
-    } else {
-      // Handle other currencies like Zcash and Ycash
-      const donationLink = generateDonationLink();
-      navigator.clipboard.writeText(donationLink).then(() => {
-        alert('Address copied to clipboard!');
-        window.location.href = donationLink; // Attempt to open the link with the default wallet application
-      }, (err) => {
-        console.error('Could not copy text: ', err);
-      });
-    }
+    // Generate donation link and copy it
+    const donationLink = generateDonationLink();
+    navigator.clipboard.writeText(donationLink).then(() => {
+      alert('Address copied to clipboard!');
+      window.location.href = donationLink; // Attempt to open the link with the default wallet application
+    }, (err) => {
+      console.error('Could not copy text: ', err);
+    });
   };
 
   return (
