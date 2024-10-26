@@ -29,8 +29,6 @@ const orchardUrl =
 const hashrateUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
   
-  // const txsummaryUrl =
-  // "http://127.0.0.1:8000/transaction_summary.json";
 const txsummaryUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
 
@@ -153,7 +151,13 @@ async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
       return null;
     }
     const data = await response.json();
-    return data as ShieldedTxCount;
+    // Get the latest data entry and handle missing fields by defaulting to zero
+    const latestData = data[data.length - 1] || {};
+    return {
+      sapling: latestData.sapling || 0,
+      orchard: latestData.orchard || 0,
+      timestamp: latestData.timestamp || "N/A",
+    };
   } catch (error) {
     console.error("Error fetching shielded transaction counts:", error);
     return null;
@@ -170,8 +174,8 @@ const ShieldedPoolDashboard = () => {
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(null);
 
-  const [selectedTool, setSelectedTool] = useState<string>('supply'); // Manage the selected tool state
-  const [selectedToolName, setSelectedToolName] = useState<string>('Shielded Supply Chart (ZEC)'); // Manage the selected tool name state
+  const [selectedTool, setSelectedTool] = useState<string>('supply');
+  const [selectedToolName, setSelectedToolName] = useState<string>('Shielded Supply Chart (ZEC)');
   const [cumulativeCheck, setCumulativeCheck] = useState(true);
   const [filterSpamCheck, setfilterSpamCheck] = useState(false);  
 
@@ -180,7 +184,7 @@ const ShieldedPoolDashboard = () => {
   useEffect(() => {
     getBlockchainData().then((data) => {
       if (data) {
-        data.nodes = 125; // Manually set the node count to 125
+        data.nodes = 125;
         setBlockchainInfo(data);
       }
     });
@@ -252,7 +256,7 @@ const ShieldedPoolDashboard = () => {
   };
 
   const handleToolChange = (tool: string) => {
-    setSelectedTool(tool); // Update the selected tool
+    setSelectedTool(tool);
     switch(tool) {
       case "supply":
         setSelectedPool("default");
@@ -284,11 +288,9 @@ const ShieldedPoolDashboard = () => {
         <Tools onToolChange={handleToolChange} />
         <div className="relative">
           <div ref={divChartRef}>
-            {/* Render Shielded Supply Chart */}
             {selectedTool === 'supply' && (
               <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />            
             )}
-            {/* Render Transactions Chart */}
             {selectedTool === 'transaction' && (
               <TransactionSummaryChart dataUrl={txsummaryUrl} pool={selectedPool} cumulative={cumulativeCheck} filter={filterSpamCheck}/>
             )}
@@ -312,7 +314,6 @@ const ShieldedPoolDashboard = () => {
           />
         </div>
       </div>
-      {/* Buttons for Shielded Supply Chart */}
       {selectedTool === 'supply' && (
       <div className="mt-8 flex flex-col items-center">        
         <div className="flex justify-center space-x-4">
@@ -376,7 +377,6 @@ const ShieldedPoolDashboard = () => {
         </div>        
       </div>
       )}
-      {/* Buttons for Transactions chart */}
       {selectedTool === 'transaction' && (
       <div className="mt-8 flex flex-col items-center">        
         <div className="flex justify-center space-x-4">
