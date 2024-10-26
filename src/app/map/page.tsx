@@ -36,14 +36,14 @@ type BrandSpednType = Record<string, string>;
 
 const brandSpedn: BrandSpednType = {
   BancoAgricola: "./spedn/BancoAgricola.png",
-  BarnesAndNoble: "./spedn/BarnesAndNoble.png",
+  BarnesAndNoble: "./spedn/BarnesandNoble.png",
   BaskinRobbins: "/spedn/BaskinRobbins.png",
   Chipotle: "/spedn/Chipotle.png",
   CoCoBubbleTea: "/spedn/CoCoBubbleTea.png",
   TheCoffeeBean: "/spedn/TheCoffeeBean.png",
   FamousFootwear: "/spedn/FamousFootwear.png",
   Fresh: "/spedn/Fresh.png",
-  GameStop: "/spedn/GameStop.png",
+  GameStop: "/spedn/Gamestop.png",
   InternationalShoppes: "/spedn/InternationalShoppes.png",
   Kiehls: "/spedn/Kiehls.png",
   LuxuryBeautyStore: "/spedn/LuxuryBeautyStore.png",
