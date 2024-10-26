@@ -163,9 +163,14 @@ const ContentSections = () => {
                     href={'https://zechub.wiki/map'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className='inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center text-pink-500 border-pink-500 border-2 rounded-lg bg-transparent hover:bg-pink-500 hover:text-white hover:shadow-[0px_0px_15px_rgba(255,105,180,0.5)] focus:ring-4 focus:outline-none focus:ring-pink-200'
+                    className='inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center border-pink-500 border-2 rounded-lg bg-transparent hover:bg-pink-500 hover:shadow-[0px_0px_15px_rgba(255,105,180,0.5)] focus:ring-4 focus:outline-none focus:ring-pink-200'
                   >
-                    Spedn
+                    <Image
+                      src={'/spedn.png'}
+                      alt='Spedn'
+                      width={80} // adjust width as needed
+                      height={30} // adjust height as needed
+                    />
                   </Link>
                 </div>
               </FadeInAnimation>
