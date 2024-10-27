@@ -123,7 +123,7 @@ const LocationFilter: React.FC = () => {
     <div className="py-6">
       {/* Page Heading */}
       <h1 className="text-4xl font-bold text-center mb-2">Spedn Store Locator</h1>
-      <h2 className="text-lg text-center mb-6">select brand -> select state -> select city</h2>
+      <h2 className="text-lg text-center mb-6">select brand -&gt; select state -&gt; select city</h2>
       
       {/* State and City Dropdowns */}
       <div className="flex items-center gap-2">
