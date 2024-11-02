@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { Icon } from "@/components/ui/Icon";
-import { MdDevices, MdPool, MdChecklist, MdOpenInNew as OpenNew, MdThumbUp as Like, MdThumbDown as Dislike } from "react-icons/md";
+import {
+  MdDevices,
+  MdPool,
+  MdChecklist,
+  MdOpenInNew as OpenNew,
+  MdThumbUp as Like,
+  MdThumbDown as Dislike,
+} from "react-icons/md";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -10,6 +17,7 @@ interface WalletItemProps {
   logo: string;
   tags: Tag[];
   likes: number;
+  syncSpeed: string;
   onLike: () => void;
   onDislike: () => void;
   error: string;
@@ -27,7 +35,18 @@ const categoryIcons = {
   Pools: MdPool,
   Features: MdChecklist,
 };
-const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes, onLike, onDislike, error, success }) => {
+const WalletItem: React.FC<WalletItemProps> = ({
+  title,
+  link,
+  logo,
+  tags,
+  syncSpeed,
+  likes,
+  onLike,
+  onDislike,
+  error,
+  success,
+}) => {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
 
@@ -43,6 +62,8 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes,
     setLiked(false);
   };
 
+  console.log(syncSpeed);
+
   return (
     <div className="wallet-item h-full flex flex-col gap-4 items-start border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5">
       <div className="col-span-12 grid grid-cols-12 gap-4 items-start h-full w-full">
@@ -52,13 +73,30 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes,
           rel="noopener noreferrer"
           className="col-span-12 row-span-1 md:col-span-6 md:row-span-2 bg-gray-100 dark:bg-gray-200 p-2 h-full flex items-center"
         >
-          <Image className="w-full" width={200} height={200} src={logo} alt={`${title} Logo`} />
+          <Image
+            className="w-full"
+            width={200}
+            height={200}
+            src={logo}
+            alt={`${title} Logo`}
+          />
         </a>
         <div className="col-span-12 row-span-1 md:col-span-6">
           <div className="wallet-meta">
             <div className="flex justify-between items-center w-full">
-              <h5 className="text-xl md:text-2xl my-4 font-bold text-slate-700 dark:text-slate-200 flex-grow">
-                {title}
+              <h5 className="text-xl flex items-center gap-2 md:text-2xl my-4 font-bold text-slate-700 dark:text-slate-200 flex-grow">
+                {title}{" "}
+                {syncSpeed && (
+                  <span className="w-[30px] h-[30px] bg-gray-300 flex justify-center items-center">
+                    <Image
+                      className="w-full"
+                      src={syncSpeed}
+                      width={100}
+                      height={100}
+                      alt={`${title} Logo`}
+                    />
+                  </span>
+                )}
               </h5>
               <Link
                 href={link}
@@ -66,12 +104,12 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes,
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Open 
+                Open
                 <Icon
-                    icon={OpenNew}
-                    className="inline-block ms-2"
-                    size="small"
-                  />
+                  icon={OpenNew}
+                  className="inline-block ms-2"
+                  size="small"
+                />
               </Link>
             </div>
             {tags.map((tag, index) => (
@@ -89,7 +127,9 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes,
                       key={valueIndex}
                       className="wallet-tag-item bg-slate-200 dark:bg-slate-900"
                     >
-                      {value}
+                      <Link href="https://zechub.wiki/using-zcash/shielded-pools">
+                        {value}
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -98,27 +138,41 @@ const WalletItem: React.FC<WalletItemProps> = ({ title, link, logo, tags, likes,
           </div>
         </div>
       </div>
-      <hr className="w-full"/>
+      <hr className="w-full" />
       <div className="wallet-likes w-full flex">
         <div className="likes-count flex-grow">
           <span className="text-gray-400">Rating:</span> {likes}
         </div>
-        <div className="error text-pink-700 dark:text-red-300 text-xs flex items-center pr-1">{error}</div>
-        <div className="text-green-700 dark:text-green-300 text-xs flex items-center pr-1">{success}</div>
+        <div className="error text-pink-700 dark:text-red-300 text-xs flex items-center pr-1">
+          {error}
+        </div>
+        <div className="text-green-700 dark:text-green-300 text-xs flex items-center pr-1">
+          {success}
+        </div>
         <div>
-          <button onClick={handleLike} className={`like-button mr-4 ${liked ? 'text-blue-500' : 'text-gray-600 hover:text-blue-500'} duration-300`}>
+          <button
+            onClick={handleLike}
+            className={`like-button mr-4 ${
+              liked ? "text-blue-500" : "text-gray-600 hover:text-blue-500"
+            } duration-300`}
+          >
             <Icon
-                icon={Like}
-                className="inline-block h-5 w-5 ms-2"
-                size="small"
-              />
+              icon={Like}
+              className="inline-block h-5 w-5 ms-2"
+              size="small"
+            />
           </button>
-          <button onClick={handleDislike} className={`like-button ${disliked ? 'text-red-500' : 'text-gray-600 hover:text-red-500'} duration-300`}>
+          <button
+            onClick={handleDislike}
+            className={`like-button ${
+              disliked ? "text-red-500" : "text-gray-600 hover:text-red-500"
+            } duration-300`}
+          >
             <Icon
-                icon={Dislike}
-                className="inline-block h-5 w-5 ms-2"
-                size="small"
-              />
+              icon={Dislike}
+              className="inline-block h-5 w-5 ms-2"
+              size="small"
+            />
           </button>
         </div>
       </div>

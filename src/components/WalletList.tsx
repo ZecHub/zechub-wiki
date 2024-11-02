@@ -10,6 +10,7 @@ interface Wallet {
   devices: string[];
   pools: string[];
   features: string[];
+  syncSpeed: string;
 }
 
 interface Props {
@@ -193,6 +194,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                 { category: "Pools", values: [...wallet.pools] },
                 { category: "Features", values: [...wallet.features] },
               ]}
+              syncSpeed={wallet.syncSpeed}
               likes={likes[wallet.title]}
               onLike={() => handleLike(wallet.title)}
               onDislike={() => handleDislike(wallet.title)}
