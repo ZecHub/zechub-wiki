@@ -4,9 +4,9 @@ export function parseMarkdown(md: string) {
       const lines = section.trim().split("\n");
       const titleMatch = lines[0]?.match(/## \[(.*?)\]\((.*?)\)/);
       const imageUrlMatch = lines[1]?.match(/!\[logo\]\((.*?) ".*?"\)/);
-      const devices = lines[2]?.split(": ")[1]?.split(" | ").map(item => item.trim());
-      const pools = lines[3]?.split(": ")[1]?.split(" | ").map(item => item.trim());
-      const features = lines[4]?.split(": ")[1]?.split(" | ").map(item => item.trim());
+      const devices = lines[2]?.split(": ")[1]?.split(" | ").map(item => item.trim()) || [];
+      const pools = lines[3]?.split(": ")[1]?.split(" | ").map(item => item.trim()) || [];
+      const features = lines[4]?.split(": ")[1]?.split(" | ").map(item => item.trim()) || [];
       const syncSpeed = lines[5]?.match(/!\[syncspeed\]\((.*?) ".*?"\)/);
   
       return {
@@ -16,7 +16,7 @@ export function parseMarkdown(md: string) {
         devices,
         pools,
         features,
-        syncSpeed :syncSpeed ?  syncSpeed[1] : '',
+        syncSpeed : syncSpeed ?  syncSpeed[1] : '',
       };
     });
   

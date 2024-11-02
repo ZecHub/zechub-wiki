@@ -161,7 +161,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   );
 
   const sortedWallets = filteredWallets.sort((a, b) => likes[b.title] - likes[a.title]);
-
+  
   return (
     <div className="flex flex-col w-full md:flex-row">
       <div className="wallet-filter w-auto md:w-[30%] relative">
