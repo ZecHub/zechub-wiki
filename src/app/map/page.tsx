@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import locations from './locations.json'
+import locations from './locations.json';
 
 // Define types for the location data structure
 type Coordinates = {
@@ -36,14 +36,14 @@ type BrandSpednType = Record<string, string>;
 
 const brandSpedn: BrandSpednType = {
   BancoAgricola: "./spedn/BancoAgricola.png",
-  BarnesAndNoble: "./spedn/BarnesAndNoble.png",
+  BarnesAndNoble: "./spedn/BarnesandNoble.png",
   BaskinRobbins: "/spedn/BaskinRobbins.png",
   Chipotle: "/spedn/Chipotle.png",
   CoCoBubbleTea: "/spedn/CoCoBubbleTea.png",
   TheCoffeeBean: "/spedn/TheCoffeeBean.png",
   FamousFootwear: "/spedn/FamousFootwear.png",
   Fresh: "/spedn/Fresh.png",
-  GameStop: "/spedn/GameStop.png",
+  GameStop: "/spedn/Gamestop.png",
   InternationalShoppes: "/spedn/InternationalShoppes.png",
   Kiehls: "/spedn/Kiehls.png",
   LuxuryBeautyStore: "/spedn/LuxuryBeautyStore.png",
@@ -96,12 +96,10 @@ const LocationFilter: React.FC = () => {
   const [selectedState, setSelectedState] = useState<string>("");
   const [selectedCity, setSelectedCity] = useState<string>("");
 
-
-
   const availableStates = Object.keys((locations as LocationsType)[selectedStore] ?? {});
-const availableCities = selectedState
-  ? Object.keys((locations as LocationsType)[selectedStore]?.[selectedState] ?? {})
-  : [];
+  const availableCities = selectedState
+    ? Object.keys((locations as LocationsType)[selectedStore]?.[selectedState] ?? {})
+    : [];
 
   const handleStateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedState(event.target.value);
@@ -123,7 +121,11 @@ const availableCities = selectedState
 
   return (
     <div className="py-6">
-      {/* State Dropdown */}
+      {/* Page Heading */}
+      <h1 className="text-4xl font-bold text-center mb-2">Spedn Store Locator</h1>
+      <h2 className="text-lg text-center mb-6">select brand -&gt; select state -&gt; select city</h2>
+      
+      {/* State and City Dropdowns */}
       <div className="flex items-center gap-2">
         <div>
           <label htmlFor="state">State: </label>
@@ -154,7 +156,6 @@ const availableCities = selectedState
       </div>
 
       {/* Show filtered results and map */}
-
       <div className="py-6 h-[600px]" style={{ display: "flex" }}>
         {/* Sidebar for selecting a store */}
         <div style={{ width: "30%", paddingRight: "20px" }}>
@@ -179,7 +180,7 @@ const availableCities = selectedState
             ))}
           </div>
         </div>
-        <div style={{ width: "70%", height: "600" }}>
+        <div style={{ width: "70%", height: "600px" }}>
           <LoadScript
             googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY ?? ""}
           >
@@ -208,51 +209,43 @@ const availableCities = selectedState
           </LoadScript>
         </div>
       </div>
+      
       <style>{`
         .brand-grid {
-          height : 600px;
-          overflow-y : scroll;
-           overflow-x : hidden;
-           
+          height: 600px;
+          overflow-y: scroll;
+          overflow-x: hidden;
         }
         /* Styling for the scrollbar */
-.brand-grid::-webkit-scrollbar {
-    width: 8px; /* Adjust the width here */
-}
-
-.brand-grid::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Track color */
-}
-
-.brand-grid::-webkit-scrollbar-thumb {
-    background: #888; /* Thumb color */
-    border-radius: 10px; /* Rounded corners */
-}
-
-.brand-grid::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Thumb color on hover */
-}
-
+        .brand-grid::-webkit-scrollbar {
+          width: 8px;
+        }
+        .brand-grid::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+        .brand-grid::-webkit-scrollbar-thumb {
+          background: #888;
+          border-radius: 10px;
+        }
+        .brand-grid::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
         .brand-item {
           text-align: center;
           transition: all 0.3s ease;
         }
-
         .brand-item.selected {
           border: 2px solid #007bff;
         }
-
         .brand-item img {
           max-width: 100%;
           height: auto;
         }
-
         .brand-item p {
           margin-top: 5px;
           font-size: 14px;
           font-weight: bold;
         }
-
         .brand-item:hover {
           transform: scale(1.05);
         }

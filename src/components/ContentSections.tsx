@@ -6,12 +6,11 @@ const ContentSections = () => {
   return (
     <>
       <section>
-        <div className='flex  space-y-4 flex-col w-full mt-5'>
+        <div className='flex space-y-4 flex-col w-full mt-5'>
           <div className='flex flex-col space-y-4 md:flex-row min-h-screen w-auto border-2 border-[#E4A100]/50 rounded-md p-5'>
             <div className='flex flex-1 items-center justify-center w-auto md:w-2/4'>
               <FadeInAnimation>
                 <Image
-                  className=''
                   src={'/Zcashcard.png'}
                   alt=''
                   width={500}
@@ -55,11 +54,12 @@ const ContentSections = () => {
               </FadeInAnimation>
             </div>
           </div>
+          
           <div
             className='flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto border-2 border-black/50 rounded-md p-5'
             style={{ height: '30rem' }}
           >
-            <div className='flex flex-col w-auto md:w-2/4  items-center justify-center'>
+            <div className='flex flex-col w-auto md:w-2/4 items-center justify-center'>
               <FadeInAnimation>
                 <h1 className='text-3xl mb-4 font-semibold'>ZECPages</h1>
               </FadeInAnimation>
@@ -75,7 +75,7 @@ const ContentSections = () => {
                 <div className='flex flex-row space-x-4 mt-4'>
                   <Link
                     href={'https://zecpages.com'}
-                    className='inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center  border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                    className='inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
                   >
                     ZECPages
                   </Link>
@@ -85,7 +85,7 @@ const ContentSections = () => {
             <div className='flex justify-center items-center w-auto md:w-2/4 '>
               <FadeInAnimation>
                 <Image
-                  className=' w-50 h-auto'
+                  className='w-50 h-auto'
                   src={'/ZecPages_Banner.gif'}
                   alt=''
                   width={500}
@@ -94,6 +94,7 @@ const ContentSections = () => {
               </FadeInAnimation>
             </div>
           </div>
+          
           <div
             className='flex flex-col md:flex-row space-y-4 h-96 my-4 w-full border-cyan-400/50 border-2 rounded-md p-5'
             style={{ height: '30rem' }}
@@ -136,7 +137,7 @@ const ContentSections = () => {
             className='flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto border-2 border-black/50 rounded-md p-5'
             style={{ height: '30rem' }}
           >
-            <div className='flex flex-col w-auto md:w-2/4  items-center justify-center'>
+            <div className='flex flex-col w-auto md:w-2/4 items-center justify-center'>
               <FadeInAnimation>
                 <h1 className='text-3xl mb-4 font-semibold'>Pay with Zcash</h1>
               </FadeInAnimation>
@@ -154,9 +155,22 @@ const ContentSections = () => {
                     href={'https://paywithz.cash/'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className='inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center  border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                    className='inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
                   >
                     paywithz.cash
+                  </Link>
+                  <Link
+                    href={'https://zechub.wiki/map'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className='inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center border-pink-500 border-2 rounded-lg bg-transparent hover:bg-pink-500 hover:shadow-[0px_0px_15px_rgba(255,105,180,0.5)] focus:ring-4 focus:outline-none focus:ring-pink-200'
+                  >
+                    <Image
+                      src={'/spedn.png'}
+                      alt='Spedn'
+                      width={80} // adjust width as needed
+                      height={30} // adjust height as needed
+                    />
                   </Link>
                 </div>
               </FadeInAnimation>
