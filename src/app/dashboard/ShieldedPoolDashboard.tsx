@@ -329,15 +329,7 @@ const ShieldedPoolDashboard = () => {
               {getTotalShieldedSupply().toLocaleString()} ZEC
             </span>
           </div>
-          <div className="flex flex-col items-center">
-            <Button
-              onClick={() => setSelectedPool("hashrate")}
-              text="Hash Rate"
-              className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                selectedPool === "hashrate" ? "bg-[#1984c7]" : "bg-gray-400"
-              }`}
-            />
-          </div>
+        
           <div className="flex flex-col items-center">
             <Button
               onClick={() => setSelectedPool("sprout")}
