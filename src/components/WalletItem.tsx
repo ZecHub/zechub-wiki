@@ -29,24 +29,23 @@ interface Tag {
   values: string[];
 }
 type CategoryKey = "Devices" | "Pools" | "Features";
-
+// Mapping of categories to icons
 const categoryIcons = {
   Devices: MdDevices,
   Pools: MdPool,
   Features: MdChecklist,
 };
-
 const WalletItem: React.FC<WalletItemProps> = ({
   title,
   link,
   logo,
-  tags = [],
+  tags,
   syncSpeed,
   likes,
   onLike,
   onDislike,
-  error = "",
-  success = "",
+  error,
+  success,
 }) => {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
@@ -62,6 +61,8 @@ const WalletItem: React.FC<WalletItemProps> = ({
     setDisliked(true);
     setLiked(false);
   };
+
+  console.log(syncSpeed);
 
   return (
     <div className="wallet-item h-full flex flex-col gap-4 items-start border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5">
@@ -92,7 +93,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
                       src={syncSpeed}
                       width={100}
                       height={100}
-                      alt={`${title} Sync Speed`}
+                      alt={`${title} Logo`}
                     />
                   </span>
                 )}
@@ -121,17 +122,16 @@ const WalletItem: React.FC<WalletItemProps> = ({
                     className="icon-class"
                     size="medium"
                   />
-                  {tag.values &&
-                    tag.values.map((value, valueIndex) => (
-                      <div
-                        key={valueIndex}
-                        className="wallet-tag-item bg-slate-200 dark:bg-slate-900"
-                      >
-                        <Link href="https://zechub.wiki/using-zcash/shielded-pools">
-                          {value}
-                        </Link>
-                      </div>
-                    ))}
+                  {tag.values.map((value, valueIndex) => (
+                    <div
+                      key={valueIndex}
+                      className="wallet-tag-item bg-slate-200 dark:bg-slate-900"
+                    >
+                      <Link href="https://zechub.wiki/using-zcash/shielded-pools">
+                        {value}
+                      </Link>
+                    </div>
+                  ))}
                 </div>
               </React.Fragment>
             ))}
