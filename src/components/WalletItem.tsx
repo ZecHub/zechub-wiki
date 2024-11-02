@@ -87,7 +87,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
               <h5 className="text-xl flex items-center gap-2 md:text-2xl my-4 font-bold text-slate-700 dark:text-slate-200 flex-grow">
                 {title}{" "}
                 {syncSpeed && (
-                  <span className="w-[30px] h-[30px] bg-gray-300 flex justify-center items-center">
+                  <span className="w-[30px] h-[30px] flex justify-center items-center">
                     <Image
                       className="w-full"
                       src={syncSpeed}
