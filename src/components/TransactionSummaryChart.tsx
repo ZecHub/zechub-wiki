@@ -77,8 +77,10 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({ dat
             } as ShieldedTransactionDatum;
         });
 
+        let lastIndex = chartDataSum.length - 1;
         
-        let chartDataPeriod = chartDataSum.filter(d => d.height % BLOCKS_PERIOD == 0);
+        let chartDataPeriod = chartDataSum.filter(d => (d.height % BLOCKS_PERIOD == 0) || d.height >= chartDataSum[lastIndex].height);
+        // let chartDataPeriod = chartDataSum;;
         if(!cumulative) {
             chartDataPeriod = [];
             saplingSum = 0;
@@ -92,7 +94,8 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({ dat
                 orchardSum += d.orchard;
                 orchardFilterSum += d.orchard_filter;
 
-                if(d.height % 32256 == 0) {
+                // if(d.height % 32256 == 0) {
+                if((d.height % BLOCKS_PERIOD == 0) || d.height >= chartDataSum[lastIndex].height) {
                     chartDataPeriod.push({
                         height: d.height,
                         sapling:saplingSum,
@@ -163,6 +166,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({ dat
 
         const chartInstance = new Chart(chartRef.current, {
             type: cumulative ? 'line' : 'bar', 
+            // type: 'line', 
             data: {
                 labels: chartDataPeriod.map(d => d.height.toString()),
                 datasets: chartSets
