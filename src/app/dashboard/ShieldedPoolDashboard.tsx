@@ -417,7 +417,7 @@ const ShieldedPoolDashboard = () => {
         </div>        
       </div>
       )}
-      <HalvingMeter />
+     
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Market Cap</h3>
