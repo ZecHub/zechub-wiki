@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
-import HalvingMeter from "@/components/HalvingMeter";
 import Tools from "@/components/tools";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import dynamic from "next/dynamic";
