@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
 import Tools from "@/components/tools";
-import ZecToZatsConverter from "@/components/Converter/ZecToZatsConverter"; 
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import dynamic from "next/dynamic";
 
@@ -28,7 +27,7 @@ const orchardUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
 const hashrateUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
-
+  
 const txsummaryUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
 
@@ -151,6 +150,7 @@ async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
       return null;
     }
     const data = await response.json();
+    // Get the latest data entry and handle missing fields by defaulting to zero
     const latestData = data[data.length - 1] || {};
     return {
       sapling: latestData.sapling || 0,
@@ -176,7 +176,7 @@ const ShieldedPoolDashboard = () => {
   const [selectedTool, setSelectedTool] = useState<string>('supply');
   const [selectedToolName, setSelectedToolName] = useState<string>('Shielded Supply Chart (ZEC)');
   const [cumulativeCheck, setCumulativeCheck] = useState(true);
-  const [filterSpamCheck, setFilterSpamCheck] = useState(false);
+  const [filterSpamCheck, setfilterSpamCheck] = useState(false);  
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
@@ -207,6 +207,7 @@ const ShieldedPoolDashboard = () => {
     getShieldedTxCount().then((data) =>
       setShieldedTxCount(data ?? { sapling: 0, orchard: 0, timestamp: "N/A" })
     );
+
   }, []);
 
   useEffect(() => {
@@ -255,7 +256,7 @@ const ShieldedPoolDashboard = () => {
 
   const handleToolChange = (tool: string) => {
     setSelectedTool(tool);
-    switch (tool) {
+    switch(tool) {
       case "supply":
         setSelectedPool("default");
         setSelectedToolName("Shielded Supply Chart (ZEC)");
@@ -272,7 +273,7 @@ const ShieldedPoolDashboard = () => {
   };
 
   const handleFilterChange = (checked: boolean) => {
-    setFilterSpamCheck(checked);
+    setfilterSpamCheck(checked);
   };
 
   if (!blockchainInfo) {
@@ -284,19 +285,13 @@ const ShieldedPoolDashboard = () => {
       <h2 className="font-bold mt-8 mb-4">{selectedToolName}</h2>
       <div className="border p-3 rounded-lg">
         <Tools onToolChange={handleToolChange} />
-        <ZecToZatsConverter className="my-4" /> {/* Integrated converter */}
         <div className="relative">
           <div ref={divChartRef}>
-            {selectedTool === "supply" && (
-              <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+            {selectedTool === 'supply' && (
+              <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />            
             )}
-            {selectedTool === "transaction" && (
-              <TransactionSummaryChart
-                dataUrl={txsummaryUrl}
-                pool={selectedPool}
-                cumulative={cumulativeCheck}
-                filter={filterSpamCheck}
-              />
+            {selectedTool === 'transaction' && (
+              <TransactionSummaryChart dataUrl={txsummaryUrl} pool={selectedPool} cumulative={cumulativeCheck} filter={filterSpamCheck}/>
             )}
           </div>
         </div>
@@ -318,115 +313,111 @@ const ShieldedPoolDashboard = () => {
           />
         </div>
       </div>
-      {selectedTool === "supply" && (
-        <div className="mt-8 flex flex-col items-center">
-          <div className="flex justify-center space-x-4">
-            <div className="flex flex-col items-center">
-              <Button
-                onClick={() => setSelectedPool("default")}
-                text="Total Shielded"
-                className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                  selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
-                }`}
-              />
-              <span className="text-sm text-gray-600">
-                {getTotalShieldedSupply().toLocaleString()} ZEC
-              </span>
-            </div>
-            <div className="flex flex-col items-center">
-              <Button
-                onClick={() => setSelectedPool("sprout")}
-                text="Sprout Pool"
-                className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                  selectedPool === "sprout" ? "bg-[#1984c7]" : "bg-gray-400"
-                }`}
-              />
-              <span className="text-sm text-gray-600">
-                {sproutSupply
-                  ? `${sproutSupply.supply.toLocaleString()} ZEC`
-                  : "Loading..."}
-              </span>
-            </div>
-            <div className="flex flex-col items-center">
-              <Button
-                onClick={() => setSelectedPool("sapling")}
-                text="Sapling Pool"
-                className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                  selectedPool === "sapling" ? "bg-[#1984c7]" : "bg-gray-400"
-                }`}
-              />
-              <span className="text-sm text-gray-600">
-                {saplingSupply
-                  ? `${saplingSupply.supply.toLocaleString()} ZEC`
-                  : "Loading..."}
-              </span>
-            </div>
-            <div className="flex flex-col items-center">
-              <Button
-                onClick={() => setSelectedPool("orchard")}
-                text="Orchard Pool"
-                className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                  selectedPool === "orchard" ? "bg-[#1984c7]" : "bg-gray-400"
-                }`}
-              />
-              <span className="text-sm text-gray-600">
-                {orchardSupply
-                  ? `${orchardSupply.supply.toLocaleString()} ZEC`
-                  : "Loading..."}
-              </span>
-            </div>
+      {selectedTool === 'supply' && (
+      <div className="mt-8 flex flex-col items-center">        
+        <div className="flex justify-center space-x-4">
+          <div className="flex flex-col items-center">          
+            <Button
+              onClick={() => setSelectedPool("default")}
+              text="Total Shielded"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {getTotalShieldedSupply().toLocaleString()} ZEC
+            </span>
           </div>
-        </div>
-      )}
-      {selectedTool === "transaction" && (
-        <div className="mt-8 flex flex-col items-center">
-          <div className="flex justify-center space-x-4">
-            <div className="flex flex-col items-center">
-              <Button
-                onClick={() => setSelectedPool("default")}
-                text="Sapling + Orchard"
-                className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                  selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
-                }`}
-              />
-            </div>
-            <div className="flex flex-col items-center">
-              <Button
-                onClick={() => setSelectedPool("sapling")}
-                text="Sapling"
-                className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                  selectedPool === "sapling" ? "bg-[#1984c7]" : "bg-gray-400"
-                }`}
-              />
-            </div>
-            <div className="flex flex-col items-center">
-              <Button
-                onClick={() => setSelectedPool("orchard")}
-                text="Orchard"
-                className={`rounded-[0.4rem] py-2 px-4 text-white ${
-                  selectedPool === "orchard" ? "bg-[#1984c7]" : "bg-gray-400"
-                }`}
-              />
-            </div>
-            <div className="flex flex-col items-center">
-              <Checkbox
-                checked={cumulativeCheck}
-                onChange={handleCumulativeChange}
-                label="Cumulative Values"
-                className="custom-checkbox"
-              />
-            </div>
-            <div className="flex flex-col items-center">
-              <Checkbox
-                checked={filterSpamCheck}
-                onChange={handleFilterChange}
-                label="Filter Spam"
-                className="custom-checkbox"
-              />
-            </div>
+        
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("sprout")}
+              text="Sprout Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "sprout" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {sproutSupply ? `${sproutSupply.supply.toLocaleString()} ZEC` : "Loading..."}
+            </span>
           </div>
-        </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("sapling")}
+              text="Sapling Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "sapling" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {saplingSupply ? `${saplingSupply.supply.toLocaleString()} ZEC` : "Loading..."}
+            </span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("orchard")}
+              text="Orchard Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "orchard" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {orchardSupply ? `${orchardSupply.supply.toLocaleString()} ZEC` : "Loading..."}
+            </span>
+          </div>
+        </div>        
+      </div>
       )}
+      {selectedTool === 'transaction' && (
+      <div className="mt-8 flex flex-col items-center">        
+        <div className="flex justify-center space-x-4">
+          <div className="flex flex-col items-center">          
+            <Button
+              onClick={() => setSelectedPool("default")}
+              text="Sapling + Orchard"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("sapling")}
+              text="Sapling"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "sapling" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("orchard")}
+              text="Orchard"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "orchard" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />           
+          </div>  
+          <div className="flex flex-col items-center">
+            <Checkbox
+              checked={cumulativeCheck}
+              onChange={handleCumulativeChange}
+              label="Cumulative Values"
+              className="custom-checkbox"
+            />          
+          </div>   
+          <div className="flex flex-col items-center">
+            <Checkbox
+              checked={filterSpamCheck}
+              onChange={handleFilterChange}
+              label="Filter Spam"
+              className="custom-checkbox"
+            />          
+          </div>
+        </div>        
+      </div>
+      )}
+     
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Market Cap</h3>
