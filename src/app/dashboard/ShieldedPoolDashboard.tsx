@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
 import Tools from "@/components/tools";
-import ZecToZatsConverter from "@/components/ZecToZatsConverter"; // Added converter
+import ZecToZatsConverter from "@/components/Converter/ZecToZatsConverter"; 
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import dynamic from "next/dynamic";
 
