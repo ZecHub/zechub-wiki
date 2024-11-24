@@ -81,88 +81,6 @@ interface ShieldedTxCount {
   timestamp: string;
 }
 
-async function getBlockchainData(): Promise<BlockchainInfo | null> {
-  try {
-    const response = await fetch(
-      "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
-    );
-    if (!response.ok) {
-      console.error("Failed to fetch blockchain data:", response.statusText);
-      return null;
-    }
-    const data = await response.json();
-    return data.data as BlockchainInfo;
-  } catch (error) {
-    console.error("Error fetching blockchain data:", error);
-    return null;
-  }
-}
-
-async function getBlockchainInfo(): Promise<number | null> {
-  try {
-    const response = await fetch(blockchainInfoUrl, { mode: "cors" });
-    if (!response.ok) {
-      console.error("Failed to fetch blockchain info:", response.statusText);
-      return null;
-    }
-    const data = await response.json();
-    return data.chainSupply?.chainValue ?? null;
-  } catch (error) {
-    console.error("Error fetching blockchain info:", error);
-    return null;
-  }
-}
-
-async function getSupplyData(url: string): Promise<SupplyData[]> {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      console.error("Failed to fetch supply data:", response.statusText);
-      return [];
-    }
-    const data = await response.json();
-    return data as SupplyData[];
-  } catch (error) {
-    console.error("Error fetching supply data:", error);
-    return [];
-  }
-}
-
-async function getLastUpdatedDate(): Promise<string> {
-  try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      console.error("Failed to fetch last updated date:", response.statusText);
-      return "N/A";
-    }
-    const data = await response.json();
-    return data[0]?.commit?.committer?.date ?? "N/A";
-  } catch (error) {
-    console.error("Error fetching last updated date:", error);
-    return "N/A";
-  }
-}
-
-async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
-  try {
-    const response = await fetch(shieldedTxCountUrl);
-    if (!response.ok) {
-      console.error("Failed to fetch shielded transaction counts:", response.statusText);
-      return null;
-    }
-    const data = await response.json();
-    const latestData = data[data.length - 1] || {};
-    return {
-      sapling: latestData.sapling || 0,
-      orchard: latestData.orchard || 0,
-      timestamp: latestData.timestamp || "N/A",
-    };
-  } catch (error) {
-    console.error("Error fetching shielded transaction counts:", error);
-    return null;
-  }
-}
-
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
@@ -173,61 +91,106 @@ const ShieldedPoolDashboard = () => {
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-  const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(
-    null
+  const [shieldedTxCount, setShieldedTxCount] =
+    useState<ShieldedTxCount | null>(null);
+
+  const [selectedTool, setSelectedTool] = useState<string>("supply");
+  const [selectedToolName, setSelectedToolName] = useState<string>(
+    "Shielded Supply Chart (ZEC)"
   );
+  const [cumulativeCheck, setCumulativeCheck] = useState(true);
+  const [filterSpamCheck, setFilterSpamCheck] = useState(false);
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-  useEffect(() => {
-    getBlockchainData().then((data) => {
-      if (data) {
-        data.nodes = 125;
-        setBlockchainInfo(data);
-      }
-    });
-
-    getBlockchainInfo().then((data) => setCirculation(data ?? 0));
-
-    getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
-
-    getSupplyData(sproutUrl).then((data) =>
-      setSproutSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
-    );
-
-    getSupplyData(saplingUrl).then((data) =>
-      setSaplingSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
-    );
-
-    getSupplyData(orchardUrl).then((data) =>
-      setOrchardSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
-    );
-
-    getShieldedTxCount().then((data) =>
-      setShieldedTxCount(data ?? { sapling: 0, orchard: 0, timestamp: "N/A" })
-    );
-  }, []);
-
-  const getTotalShieldedSupply = () => {
-    return (
-      (sproutSupply?.supply ?? 0) +
-      (saplingSupply?.supply ?? 0) +
-      (orchardSupply?.supply ?? 0)
-    );
+  const getDataUrl = () => {
+    switch (selectedPool) {
+      case "sprout":
+        return sproutUrl;
+      case "sapling":
+        return saplingUrl;
+      case "orchard":
+        return orchardUrl;
+      case "hashrate":
+        return hashrateUrl;
+      default:
+        return defaultUrl;
+    }
   };
 
-  if (!blockchainInfo) {
-    return <div>Loading...</div>;
-  }
+  const getDataColor = () => {
+    switch (selectedPool) {
+      case "sprout":
+        return "#A020F0";
+      case "sapling":
+        return "#FFA500";
+      case "orchard":
+        return "#32CD32";
+      default:
+        return "url(#area-background-gradient)";
+    }
+  };
+
+  const getTotalShieldedSupply = () => {
+    const totalSupply =
+      (sproutSupply?.supply ?? 0) +
+      (saplingSupply?.supply ?? 0) +
+      (orchardSupply?.supply ?? 0);
+    return totalSupply;
+  };
+
+  const handleToolChange = (tool: string) => {
+    setSelectedTool(tool);
+    switch (tool) {
+      case "supply":
+        setSelectedPool("default");
+        setSelectedToolName("Shielded Supply Chart (ZEC)");
+        break;
+      case "transaction":
+        setSelectedPool("default");
+        setSelectedToolName("Shielded Transactions Chart (ZEC)");
+        break;
+    }
+  };
+
+  useEffect(() => {
+    const fetchLastUpdatedDate = async () => {
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          console.error("Failed to fetch last updated date:", response.statusText);
+          setLastUpdated("N/A");
+          return;
+        }
+        const data = await response.json();
+        setLastUpdated(data[0]?.commit?.committer?.date ?? "N/A");
+      } catch (error) {
+        console.error("Error fetching last updated date:", error);
+        setLastUpdated("N/A");
+      }
+    };
+
+    fetchLastUpdatedDate();
+  }, []);
 
   return (
     <div>
-      <h2 className="font-bold mt-8 mb-4">Shielded Supply Chart (ZEC)</h2>
+      <h2 className="font-bold mt-8 mb-4">{selectedToolName}</h2>
       <div className="border p-3 rounded-lg">
-        <Tools />
+        <Tools onToolChange={handleToolChange} />
         <div className="relative">
           <div ref={divChartRef}>
-            <ShieldedPoolChart dataUrl={defaultUrl} color="blue" />
+            {selectedTool === "supply" && (
+              <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+            )}
+            {selectedTool === "transaction" && (
+              <TransactionSummaryChart
+                dataUrl={txsummaryUrl}
+                pool={selectedPool}
+                cumulative={cumulativeCheck}
+                filter={filterSpamCheck}
+              />
+            )}
           </div>
         </div>
         <div className="flex justify-end gap-12 text-right mt-4 text-sm text-gray-500">
@@ -239,44 +202,42 @@ const ShieldedPoolDashboard = () => {
             text="Export (PNG)"
             className="px-3 py-2 border text-white border-slate-300 rounded-md shadow-sm bg-[#1984c7]"
             onClick={() =>
-              handleSaveToPng(selectedPool, {
-                sproutSupply,
-                saplingSupply,
-                orchardSupply,
-              })
+              handleSaveToPng(selectedPool, { sproutSupply, saplingSupply, orchardSupply }, selectedTool)
             }
           />
         </div>
       </div>
-      <div className="mt-8 flex flex-col items-center">
-        <div className="flex justify-center space-x-4">
-          <Button
-            text="Total Shielded"
-            className={`rounded-[0.4rem] py-2 px-4 text-white ${
-              selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
-            }`}
-            onClick={() => setSelectedPool("default")}
-          />
-          <Button
-            text="Sprout Pool"
-            className={`rounded-[0.4rem] py-2 px-4 text-white ${
-              selectedPool === "sprout" ? "bg-[#1984c7]" : "bg-gray-400"
-            }`}
-            onClick={() => setSelectedPool("sprout")}
-          />
+      {selectedTool === "supply" && (
+        <div className="mt-8 flex flex-col items-center">
+          <div className="flex justify-center space-x-4">
+            <Button
+              text="Total Shielded"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+              onClick={() => setSelectedPool("default")}
+            />
+            <Button
+              text="Sprout Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "sprout" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+              onClick={() => setSelectedPool("sprout")}
+            />
+          </div>
+          <div
+            className="mt-8 w-full max-w-md"
+            style={{
+              background: "rgba(255, 255, 255, 0.85)",
+              borderRadius: "10px",
+              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+              padding: "20px",
+            }}
+          >
+            <ZecToZatsConverter />
+          </div>
         </div>
-        <div
-          className="mt-8 w-full max-w-md"
-          style={{
-            background: "rgba(255, 255, 255, 0.85)",
-            borderRadius: "10px",
-            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-            padding: "20px",
-          }}
-        >
-          <ZecToZatsConverter />
-        </div>
-      </div>
+      )}
     </div>
   );
 };
