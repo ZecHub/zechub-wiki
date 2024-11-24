@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
 import Tools from "@/components/tools";
-import ZecToZatsConverter from "@/components/Converter/ZecToZatsConverter"; // Importing the ZecToZatsConverter component
+import ZecToZatsConverter from "@/components/Converter/ZecToZatsConverter"; // Import Zec to Zats Converter
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import dynamic from "next/dynamic";
 
@@ -28,8 +28,10 @@ const orchardUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
 const hashrateUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
+
 const txsummaryUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
+
 const shieldedTxCountUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json";
 
@@ -96,6 +98,72 @@ async function getBlockchainData(): Promise<BlockchainInfo | null> {
   }
 }
 
+async function getBlockchainInfo(): Promise<number | null> {
+  try {
+    const response = await fetch(blockchainInfoUrl, { mode: "cors" });
+    if (!response.ok) {
+      console.error("Failed to fetch blockchain info:", response.statusText);
+      return null;
+    }
+    const data = await response.json();
+    return data.chainSupply?.chainValue ?? null;
+  } catch (error) {
+    console.error("Error fetching blockchain info:", error);
+    return null;
+  }
+}
+
+async function getSupplyData(url: string): Promise<SupplyData[]> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error("Failed to fetch supply data:", response.statusText);
+      return [];
+    }
+    const data = await response.json();
+    return data as SupplyData[];
+  } catch (error) {
+    console.error("Error fetching supply data:", error);
+    return [];
+  }
+}
+
+async function getLastUpdatedDate(): Promise<string> {
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      console.error("Failed to fetch last updated date:", response.statusText);
+      return "N/A";
+    }
+    const data = await response.json();
+    return data[0]?.commit?.committer?.date ?? "N/A";
+  } catch (error) {
+    console.error("Error fetching last updated date:", error);
+    return "N/A";
+  }
+}
+
+async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
+  try {
+    const response = await fetch(shieldedTxCountUrl);
+    if (!response.ok) {
+      console.error("Failed to fetch shielded transaction counts:", response.statusText);
+      return null;
+    }
+    const data = await response.json();
+    // Get the latest data entry and handle missing fields by defaulting to zero
+    const latestData = data[data.length - 1] || {};
+    return {
+      sapling: latestData.sapling || 0,
+      orchard: latestData.orchard || 0,
+      timestamp: latestData.timestamp || "N/A",
+    };
+  } catch (error) {
+    console.error("Error fetching shielded transaction counts:", error);
+    return null;
+  }
+}
+
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
@@ -120,46 +188,129 @@ const ShieldedPoolDashboard = () => {
         setBlockchainInfo(data);
       }
     });
+
+    getBlockchainInfo().then((data) => setCirculation(data ?? 0));
+
+    getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
+
+    getSupplyData(sproutUrl).then((data) =>
+      setSproutSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+    );
+
+    getSupplyData(saplingUrl).then((data) =>
+      setSaplingSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+    );
+
+    getSupplyData(orchardUrl).then((data) =>
+      setOrchardSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+    );
+
+    getShieldedTxCount().then((data) =>
+      setShieldedTxCount(data ?? { sapling: 0, orchard: 0, timestamp: "N/A" })
+    );
   }, []);
+
+  const getDataUrl = () => {
+    switch (selectedPool) {
+      case "sprout":
+        return sproutUrl;
+      case "sapling":
+        return saplingUrl;
+      case "orchard":
+        return orchardUrl;
+      case "hashrate":
+        return hashrateUrl;
+      default:
+        return defaultUrl;
+    }
+  };
+
+  const getTotalShieldedSupply = () => {
+    const totalSupply =
+      (sproutSupply?.supply ?? 0) +
+      (saplingSupply?.supply ?? 0) +
+      (orchardSupply?.supply ?? 0);
+    return totalSupply;
+  };
+
+  const handleToolChange = (tool: string) => {
+    setSelectedTool(tool);
+    switch (tool) {
+      case "supply":
+        setSelectedPool("default");
+        setSelectedToolName("Shielded Supply Chart (ZEC)");
+        break;
+      case "transaction":
+        setSelectedPool("default");
+        setSelectedToolName("Shielded Transactions Chart (ZEC)");
+        break;
+    }
+  };
+
+  if (!blockchainInfo) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
       <h2 className="font-bold mt-8 mb-4">{selectedToolName}</h2>
       <div className="border p-3 rounded-lg">
-        <Tools onToolChange={setSelectedTool} />
+        <Tools onToolChange={handleToolChange} />
         <div className="relative">
           <div ref={divChartRef}>
             {selectedTool === "supply" && (
-              <ShieldedPoolChart dataUrl={defaultUrl} color="blue" />
+              <ShieldedPoolChart dataUrl={getDataUrl()} color="blue" />
             )}
           </div>
         </div>
       </div>
-      <div className="mt-8 flex flex-col items-center">
-        {/* Existing Buttons and Data */}
-        <div className="flex justify-center space-x-4">
-          <div className="flex flex-col items-center">
-            <Button text="Total Shielded" className="bg-blue-500 text-white" />
+      {selectedTool === "supply" && (
+        <div className="mt-8 flex flex-col items-center">
+          {/* Pool Buttons */}
+          <div className="flex justify-center space-x-4">
+            <Button
+              text="Total Shielded"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+              onClick={() => setSelectedPool("default")}
+            />
+            <Button
+              text="Sprout Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "sprout" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+              onClick={() => setSelectedPool("sprout")}
+            />
+            <Button
+              text="Sapling Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "sapling" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+              onClick={() => setSelectedPool("sapling")}
+            />
+            <Button
+              text="Orchard Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "orchard" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+              onClick={() => setSelectedPool("orchard")}
+            />
           </div>
-          <div className="flex flex-col items-center">
-            <Button text="Sprout Pool" className="bg-green-500 text-white" />
+
+          {/* Zec to Zats Converter */}
+          <div
+            className="mt-8 w-full max-w-md bg-white shadow-md rounded-lg p-4"
+            style={{
+              background: "rgba(255, 255, 255, 0.85)", // Semi-transparent background
+              borderRadius: "10px",
+              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <ZecToZatsConverter />
           </div>
         </div>
-        {/* ZecToZatsConverter */}
-        <div
-          style={{
-            marginTop: "20px",
-            background: "rgba(255, 255, 255, 0.8)",
-            borderRadius: "8px",
-            padding: "16px",
-            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-            width: "100%",
-            maxWidth: "400px",
-          }}
-        >
-          <ZecToZatsConverter />
-        </div>
-      </div>
+      )}
     </div>
   );
 };
