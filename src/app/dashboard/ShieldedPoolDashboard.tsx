@@ -26,48 +26,25 @@ const saplingUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json";
 const orchardUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
-const hashrateUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
-
 const txsummaryUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
-
 const shieldedTxCountUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json";
-
 const apiUrl =
   "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
-const blockchainInfoUrl =
-  "https://mainnet.zcashexplorer.app/api/v1/blockchain-info";
+const blockchairUrl =
+  "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ";
 
 interface BlockchainInfo {
   blocks: number;
   transactions: number;
-  outputs: number;
-  circulation: number | null;
-  blocks_24h: number;
-  transactions_24h: number;
-  difficulty: number;
-  volume_24h: number;
-  mempool_transactions: number;
-  average_transaction_fee_24h: number;
-  largest_transaction_24h: {
-    hash: string;
-    value_usd: number;
-  };
-  nodes: number;
-  hashrate_24h: string;
-  inflation_usd_24h: number;
-  average_transaction_fee_usd_24h: number;
   market_price_usd: number;
   market_price_btc: number;
-  market_price_usd_change_24h_percentage: number;
   market_cap_usd: number;
-  market_dominance_percentage: number;
-  next_retarget_time_estimate: string;
-  next_difficulty_estimate: number;
-  countdowns: any[];
-  hodling_addresses: number;
+  circulation: number;
+  transactions_24h: number;
+  difficulty: number;
+  nodes: number;
 }
 
 interface SupplyData {
@@ -81,126 +58,24 @@ interface ShieldedTxCount {
   timestamp: string;
 }
 
-async function getBlockchainData(): Promise<BlockchainInfo | null> {
-  try {
-    const response = await fetch(
-      "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
-    );
-    if (!response.ok) {
-      console.error("Failed to fetch blockchain data:", response.statusText);
-      return null;
-    }
-    const data = await response.json();
-    return data.data as BlockchainInfo;
-  } catch (error) {
-    console.error("Error fetching blockchain data:", error);
-    return null;
-  }
-}
-
-async function getBlockchainInfo(): Promise<number | null> {
-  try {
-    const response = await fetch(blockchainInfoUrl, { mode: "cors" });
-    if (!response.ok) {
-      console.error("Failed to fetch blockchain info:", response.statusText);
-      return null;
-    }
-    const data = await response.json();
-    return data.chainSupply?.chainValue ?? null;
-  } catch (error) {
-    console.error("Error fetching blockchain info:", error);
-    return null;
-  }
-}
-
-async function getSupplyData(url: string): Promise<SupplyData[]> {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      console.error("Failed to fetch supply data:", response.statusText);
-      return [];
-    }
-    const data = await response.json();
-    return data as SupplyData[];
-  } catch (error) {
-    console.error("Error fetching supply data:", error);
-    return [];
-  }
-}
-
-async function getLastUpdatedDate(): Promise<string> {
-  try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      console.error("Failed to fetch last updated date:", response.statusText);
-      return "N/A";
-    }
-    const data = await response.json();
-    return data[0]?.commit?.committer?.date ?? "N/A";
-  } catch (error) {
-    console.error("Error fetching last updated date:", error);
-    return "N/A";
-  }
-}
-
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
+  const [selectedTool, setSelectedTool] = useState<string>("supply");
+  const [cumulativeCheck, setCumulativeCheck] = useState(true);
+  const [filterSpamCheck, setFilterSpamCheck] = useState(false);
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
     null
   );
-  const [circulation, setCirculation] = useState<number | null>(null);
-  const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
-  const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
-  const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
 
-  const [selectedTool, setSelectedTool] = useState<string>("supply");
-  const [selectedToolName, setSelectedToolName] = useState<string>(
-    "Shielded Supply Chart (ZEC)"
-  );
-
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
-
-  const getDataUrl = () => {
-    switch (selectedPool) {
-      case "sprout":
-        return sproutUrl;
-      case "sapling":
-        return saplingUrl;
-      case "orchard":
-        return orchardUrl;
-      default:
-        return defaultUrl;
-    }
-  };
-
-  const getDataColor = () => {
-    switch (selectedPool) {
-      case "sprout":
-        return "#A020F0";
-      case "sapling":
-        return "#FFA500";
-      case "orchard":
-        return "#32CD32";
-      default:
-        return "url(#area-background-gradient)";
-    }
-  };
-
-  const getTotalShieldedSupply = () => {
-    return (
-      (sproutSupply?.supply ?? 0) +
-      (saplingSupply?.supply ?? 0) +
-      (orchardSupply?.supply ?? 0)
-    );
-  };
 
   useEffect(() => {
     const fetchBlockchainInfo = async () => {
       try {
-        const response = await fetch(defaultUrl);
+        const response = await fetch(blockchairUrl);
         const data = await response.json();
-        setBlockchainInfo(data);
+        setBlockchainInfo(data.data);
       } catch (error) {
         console.error("Error fetching blockchain info:", error);
       }
@@ -222,21 +97,26 @@ const ShieldedPoolDashboard = () => {
 
   return (
     <div>
-      <h2 className="font-bold mt-8 mb-4">{selectedToolName}</h2>
+      <h2 className="font-bold mt-8 mb-4">
+        {selectedTool === "supply"
+          ? "Shielded Supply Chart (ZEC)"
+          : "Shielded Transactions Chart"}
+      </h2>
       <div className="border p-3 rounded-lg">
-        <Tools onToolChange={(tool) => setSelectedTool(tool)} />
+        <Tools
+          onToolChange={(tool) => setSelectedTool(tool)}
+        />
         <div className="relative">
           <div ref={divChartRef}>
             {selectedTool === "supply" && (
-              <ShieldedPoolChart
-                dataUrl={getDataUrl()}
-                color={getDataColor()}
-              />
+              <ShieldedPoolChart dataUrl={defaultUrl} color="blue" />
             )}
             {selectedTool === "transaction" && (
               <TransactionSummaryChart
                 dataUrl={txsummaryUrl}
                 pool={selectedPool}
+                cumulative={cumulativeCheck}
+                filter={filterSpamCheck}
               />
             )}
           </div>
@@ -250,7 +130,7 @@ const ShieldedPoolDashboard = () => {
             text="Export (PNG)"
             className="bg-blue-500 text-white px-3 py-2 rounded-lg"
             onClick={() =>
-              handleSaveToPng(selectedPool, { sproutSupply, saplingSupply })
+              handleSaveToPng(selectedPool, { blockchainInfo })
             }
           />
         </div>
@@ -291,6 +171,33 @@ const ShieldedPoolDashboard = () => {
         <div className="mt-8 w-full max-w-md p-6 bg-white shadow-lg rounded-lg">
           <ZecToZatsConverter />
         </div>
+      </div>
+
+      <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
+        {blockchainInfo && (
+          <>
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">Market Cap</h3>
+              <p>${blockchainInfo.market_cap_usd?.toLocaleString()}</p>
+            </div>
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">ZEC in Circulation</h3>
+              <p>{blockchainInfo.circulation?.toLocaleString()} ZEC</p>
+            </div>
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">Market Price (USD)</h3>
+              <p>${blockchainInfo.market_price_usd?.toFixed(2)}</p>
+            </div>
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">Market Price (BTC)</h3>
+              <p>{blockchainInfo.market_price_btc}</p>
+            </div>
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">24h Transactions</h3>
+              <p>{blockchainInfo.transactions_24h?.toLocaleString()}</p>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
