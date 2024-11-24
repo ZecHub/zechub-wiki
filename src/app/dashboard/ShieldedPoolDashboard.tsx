@@ -26,6 +26,8 @@ const saplingUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json";
 const orchardUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
+const hashrateUrl =
+  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
 const txsummaryUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
 const shieldedTxCountUrl =
@@ -63,6 +65,8 @@ const ShieldedPoolDashboard = () => {
   const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(null);
   const [selectedTool, setSelectedTool] = useState<string>("supply");
   const [selectedToolName, setSelectedToolName] = useState<string>("Shielded Supply Chart (ZEC)");
+  const [cumulativeCheck, setCumulativeCheck] = useState(true);
+  const [filterSpamCheck, setFilterSpamCheck] = useState(false);
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
@@ -74,8 +78,23 @@ const ShieldedPoolDashboard = () => {
         return saplingUrl;
       case "orchard":
         return orchardUrl;
+      case "hashrate":
+        return hashrateUrl;
       default:
         return defaultUrl;
+    }
+  };
+
+  const getDataColor = () => {
+    switch (selectedPool) {
+      case "sprout":
+        return "#A020F0";
+      case "sapling":
+        return "#FFA500";
+      case "orchard":
+        return "#32CD32";
+      default:
+        return "url(#area-background-gradient)";
     }
   };
 
@@ -115,10 +134,15 @@ const ShieldedPoolDashboard = () => {
         <div className="relative">
           <div ref={divChartRef}>
             {selectedTool === "supply" && (
-              <ShieldedPoolChart dataUrl={getDataUrl()} />
+              <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
             )}
             {selectedTool === "transaction" && (
-              <TransactionSummaryChart dataUrl={txsummaryUrl} />
+              <TransactionSummaryChart
+                dataUrl={txsummaryUrl}
+                pool={selectedPool}
+                cumulative={cumulativeCheck}
+                filter={filterSpamCheck}
+              />
             )}
           </div>
         </div>
@@ -157,7 +181,7 @@ const ShieldedPoolDashboard = () => {
             />
           </div>
 
-          {/* ZecToZatsConverter placed here */}
+          {/* ZecToZatsConverter */}
           <div className="mt-8">
             <ZecToZatsConverter />
           </div>
