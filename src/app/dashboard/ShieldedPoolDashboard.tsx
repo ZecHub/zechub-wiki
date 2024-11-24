@@ -32,6 +32,9 @@ interface TransactionSummary {
 
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
+  const [cumulativeCheck, setCumulativeCheck] = useState<boolean>(true);
+  const [filterSpamCheck, setFilterSpamCheck] = useState<boolean>(false);
+
   const [supplyData, setSupplyData] = useState<TransactionSummary | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
 
@@ -83,7 +86,12 @@ const ShieldedPoolDashboard = () => {
             />
           )}
           {selectedTool === "transaction" && (
-            <TransactionSummaryChart dataUrl={txsummaryUrl} />
+            <TransactionSummaryChart
+              dataUrl={txsummaryUrl}
+              pool={selectedPool}
+              cumulative={cumulativeCheck}
+              filter={filterSpamCheck}
+            />
           )}
         </div>
 
@@ -147,7 +155,7 @@ const ShieldedPoolDashboard = () => {
             </div>
           </div>
 
-          {/* ZecToZatsConverter placed here with transparency */}
+          {/* ZecToZatsConverter */}
           <div className="mt-8 w-full flex justify-center">
             <div
               style={{
