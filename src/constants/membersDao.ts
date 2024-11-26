@@ -1,5 +1,13 @@
 export const daoMembers = [
         {
+        imgUrl: 'https://pbs.twimg.com/profile_images/1844114414317801472/2RD8YvX6_400x400.jpg',
+        name: 'Cassia',
+        description: `Junior Python Developer and Data Scientist`,
+        linkName:'Twiiter',
+        urlLink: 'https://x.com/Cristinycr',
+        zcashAddress: 'u10vapp784fsk4y6uerp6cccq8jkfk5dffchu8t9r9gaa7rdhnnjt9q4lp9tlay8r4ufa8hv8ex550myhugws5skyps84mym9qa6yc7nd0ntvse2depdpl86p2uyqmmp05x0emzlslm5ktluxcuvxf9ua37cnltrznudvtqegdr5e7tutgg7gxpw8ptc3x68kk2763tnj9zfwtwsue6p8'
+        },
+        {
         imgUrl: 'https://i.ibb.co/MDxNVq4/puw-a7-PE-400x400.jpg',
         name: 'AidenZ',
         description: `Zcash Global Ambassador / cypherpunkZero Holder / QUADHASH Holder / inkonbtc Holder`,
@@ -162,7 +170,7 @@ export const daoMembers = [
         and development of the Zcash ecosystem.`,
         linkName: 'Twitter',
         urlLink: 'https://twitter.com/zksquirrel',
-        zcashAddress: 'zs1huxhjdm23gnm67g9neyemvn65s5vrkcv496ngwumk0pkw7tlu0lsgf5smrvncc8f0fwxquz6s0j'
+        zcashAddress: 'u1n6sscrlxhz8a9wlvfa076rux7q00lff48jt62kje09ds5ntynlp2hcrsf3emtprts3z59yt99cvzwvnz7lvzgrpdxqrj3kxfx98y2pt46qry87rqcfuj02x3xsj0jqqnehhzd8hy090tntqwsx8ncatsckzmnw43yqqntuv668av4vhqf2p6payrz94cstm2v465f4nllmpawp5jcat'
     },
 
 

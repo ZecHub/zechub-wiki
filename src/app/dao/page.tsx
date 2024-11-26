@@ -128,9 +128,9 @@ const DaoMembers: React.FC = () => {
             <a
               target="_blank"
               className="text-blue-500 active:text-blue-700 hover:text-blue-600"
-              href="https://www.forbes.com/sites/cathyhackl/2021/06/01/what-are-daos-and-why-you-should-pay-attention/?sh=3d34fb2c7305"
+              href="https://www.forbes.com/sites/cathyhackl/2021/06/01/what-are-daos-and-why-you-should-pay-attention/"
             >
-              https://www.forbes.com/sites/cathyhackl/2021/06/01/what-are-daos-and-why-you-should-pay-attention/?sh=3d34fb2c7305
+              https://www.forbes.com/sites/cathyhackl/2021/06/01/what-are-daos-and-why-you-should-pay-attention/
             </a>
           </li>
         </ul>

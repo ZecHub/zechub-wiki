@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
-import HalvingMeter from "@/components/HalvingMeter";
 import Tools from "@/components/tools";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import dynamic from "next/dynamic";
@@ -38,7 +37,7 @@ const shieldedTxCountUrl =
 const apiUrl =
   "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
 const blockchainInfoUrl =
-  "https://mainnet.zcashexplorer.app/api/v1/blockchain-info";
+  "https://explorer.zec.rocks/api/v1/blockchain-info";
 
 interface BlockchainInfo {
   blocks: number;
@@ -418,7 +417,7 @@ const ShieldedPoolDashboard = () => {
         </div>        
       </div>
       )}
-      <HalvingMeter />
+     
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Market Cap</h3>

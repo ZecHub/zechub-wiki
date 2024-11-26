@@ -17836,5 +17836,221 @@
     "orchard_filter": 166,
     "transactions": 1097,
     "transactions_filter": 1097
+  },
+  {
+    "height": 2702592,
+    "sapling": 913,
+    "sapling_filter": 913,
+    "orchard": 157,
+    "orchard_filter": 157,
+    "transactions": 1051,
+    "transactions_filter": 1051
+  },
+  {
+    "height": 2703744,
+    "sapling": 980,
+    "sapling_filter": 980,
+    "orchard": 172,
+    "orchard_filter": 172,
+    "transactions": 1138,
+    "transactions_filter": 1138
+  },
+  {
+    "height": 2704896,
+    "sapling": 961,
+    "sapling_filter": 961,
+    "orchard": 265,
+    "orchard_filter": 265,
+    "transactions": 1212,
+    "transactions_filter": 1212
+  },
+  {
+    "height": 2706048,
+    "sapling": 691,
+    "sapling_filter": 691,
+    "orchard": 232,
+    "orchard_filter": 232,
+    "transactions": 909,
+    "transactions_filter": 909
+  },
+  {
+    "height": 2707200,
+    "sapling": 186,
+    "sapling_filter": 186,
+    "orchard": 290,
+    "orchard_filter": 290,
+    "transactions": 459,
+    "transactions_filter": 459
+  },
+  {
+    "height": 2708352,
+    "sapling": 127,
+    "sapling_filter": 127,
+    "orchard": 266,
+    "orchard_filter": 266,
+    "transactions": 377,
+    "transactions_filter": 377
+  },
+  {
+    "height": 2709504,
+    "sapling": 182,
+    "sapling_filter": 182,
+    "orchard": 290,
+    "orchard_filter": 290,
+    "transactions": 449,
+    "transactions_filter": 449
+  },
+  {
+    "height": 2710656,
+    "sapling": 129,
+    "sapling_filter": 129,
+    "orchard": 191,
+    "orchard_filter": 191,
+    "transactions": 302,
+    "transactions_filter": 302
+  },
+  {
+    "height": 2711808,
+    "sapling": 134,
+    "sapling_filter": 134,
+    "orchard": 188,
+    "orchard_filter": 188,
+    "transactions": 303,
+    "transactions_filter": 303
+  },
+  {
+    "height": 2712960,
+    "sapling": 129,
+    "sapling_filter": 129,
+    "orchard": 205,
+    "orchard_filter": 205,
+    "transactions": 317,
+    "transactions_filter": 317
+  },
+  {
+    "height": 2714112,
+    "sapling": 207,
+    "sapling_filter": 207,
+    "orchard": 247,
+    "orchard_filter": 247,
+    "transactions": 441,
+    "transactions_filter": 441
+  },
+  {
+    "height": 2715264,
+    "sapling": 249,
+    "sapling_filter": 249,
+    "orchard": 190,
+    "orchard_filter": 190,
+    "transactions": 424,
+    "transactions_filter": 424
+  },
+  {
+    "height": 2716416,
+    "sapling": 232,
+    "sapling_filter": 232,
+    "orchard": 232,
+    "orchard_filter": 232,
+    "transactions": 437,
+    "transactions_filter": 437
+  },
+  {
+    "height": 2717568,
+    "sapling": 289,
+    "sapling_filter": 289,
+    "orchard": 245,
+    "orchard_filter": 244,
+    "transactions": 501,
+    "transactions_filter": 500
+  },
+  {
+    "height": 2718720,
+    "sapling": 151,
+    "sapling_filter": 151,
+    "orchard": 269,
+    "orchard_filter": 269,
+    "transactions": 398,
+    "transactions_filter": 398
+  },
+  {
+    "height": 2719872,
+    "sapling": 136,
+    "sapling_filter": 136,
+    "orchard": 243,
+    "orchard_filter": 243,
+    "transactions": 368,
+    "transactions_filter": 368
+  },
+  {
+    "height": 2721024,
+    "sapling": 204,
+    "sapling_filter": 204,
+    "orchard": 303,
+    "orchard_filter": 303,
+    "transactions": 478,
+    "transactions_filter": 478
+  },
+  {
+    "height": 2722176,
+    "sapling": 136,
+    "sapling_filter": 136,
+    "orchard": 239,
+    "orchard_filter": 238,
+    "transactions": 363,
+    "transactions_filter": 362
+  },
+  {
+    "height": 2723328,
+    "sapling": 170,
+    "sapling_filter": 170,
+    "orchard": 317,
+    "orchard_filter": 317,
+    "transactions": 471,
+    "transactions_filter": 471
+  },
+  {
+    "height": 2724480,
+    "sapling": 171,
+    "sapling_filter": 171,
+    "orchard": 217,
+    "orchard_filter": 216,
+    "transactions": 367,
+    "transactions_filter": 366
+  },
+  {
+    "height": 2725632,
+    "sapling": 156,
+    "sapling_filter": 156,
+    "orchard": 188,
+    "orchard_filter": 188,
+    "transactions": 334,
+    "transactions_filter": 334
+  },
+  {
+    "height": 2726784,
+    "sapling": 130,
+    "sapling_filter": 130,
+    "orchard": 141,
+    "orchard_filter": 141,
+    "transactions": 249,
+    "transactions_filter": 249
+  },
+  {
+    "height": 2727936,
+    "sapling": 134,
+    "sapling_filter": 134,
+    "orchard": 191,
+    "orchard_filter": 191,
+    "transactions": 302,
+    "transactions_filter": 302
+  },
+  {
+    "height": 2729088,
+    "sapling": 140,
+    "sapling_filter": 140,
+    "orchard": 201,
+    "orchard_filter": 201,
+    "transactions": 313,
+    "transactions_filter": 313
   }
 ]
