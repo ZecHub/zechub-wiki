@@ -28,7 +28,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const roots = await getRoot(urlRoot);
 
   const imgUrl = getBanner(slug[0]);
-  
+
   return (
     <main>
       <div className="flex justify-center w-full  mb-5 bg-transparent rounded pb-4">
@@ -54,7 +54,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         )}
         <section className="h-auto w-full border-t-2 md:border-l-2 px-3">
           <div>
-            <MdxComponent source={content} />
+            <MdxComponent source={content} slug={slug[1]} />
           </div>
         </section>
       </div>
