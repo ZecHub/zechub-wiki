@@ -37,7 +37,7 @@ const shieldedTxCountUrl =
 const apiUrl =
   "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
 const blockchainInfoUrl =
-  "https://mainnet.zcashexplorer.app/api/v1/blockchain-info";
+  "https://explorer.zec.rocks/api/v1/blockchain-info";
 
 interface BlockchainInfo {
   blocks: number;
