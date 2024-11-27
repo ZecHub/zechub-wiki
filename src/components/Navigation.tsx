@@ -68,6 +68,7 @@ const NavLinks = ({
         )
       )}
 
+
       <div className="flex md:flex-row flex-col md:space-x-3 md:ml-3 sm:gap-0 gap-2">
         <Link
           href="/dao"

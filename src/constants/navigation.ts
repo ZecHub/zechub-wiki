@@ -1,18 +1,17 @@
 import { RiTwitterXFill as Twitter, RiGithubFill as Github, RiYoutubeFill as Youtube, RiExchangeFundsLine as Exchange, RiLiveFill as Free2zLive } from "react-icons/ri";
-import { BsArrowUpRightCircle as Transaction, BsShieldShaded as ShieldedPools, BsQrCode as QrCode, BsDiscord as Discord } from 'react-icons/bs'
-import { FcCurrencyExchange as BuyingZec, FcGlobe as Ambassadors } from 'react-icons/fc'
+import { BsArrowUpRightCircle as Transaction, BsShieldShaded as ShieldedPools, BsQrCode as QrCode, BsDiscord as Discord } from 'react-icons/bs';
+import { FcCurrencyExchange as BuyingZec, FcGlobe as Ambassadors } from 'react-icons/fc';
 import { FaMagnifyingGlassChart as BlockchainExplorer } from "react-icons/fa6";
 import { FaWallet as Wallet } from 'react-icons/fa';
 import { LuTrees as Arborist } from "react-icons/lu";
-import { PiLinkSimpleBold as communityLink, PiPresentationChartLight as Archive } from "react-icons/pi";
-import { IoBuildOutline as commProject } from "react-icons/io5";
+import { PiLinkSimpleBold as communityLink, PiPresentationChartLight as Archive, PiHandFistLight as HandDepositLight } from "react-icons/pi"; 
+import { IoBuildOutline as commProject, IoCloudUploadOutline as CloudUploadOutline } from "react-icons/io5";
 import { GrGroup as ZCAP } from 'react-icons/gr';
 import { ImPodcast as Podcast } from 'react-icons/im';
 import { MdRadar as ECC, MdOutlinePointOfSale as ZgoPayment, MdForum as Forum } from "react-icons/md";
-import { GiCheckedShield as foundation, GiBorderedShield as Shieldedlabs } from 'react-icons/gi'
-import { TbHexagonLetterZ as Grants, TbTopologyRing as TopologyRing } from 'react-icons/tb'
-import { SiRaspberrypi as RaspBerry, SiZebratechnologies as Zebratechnologies }  from 'react-icons/si'
-
+import { GiCheckedShield as foundation, GiBorderedShield as Shieldedlabs } from 'react-icons/gi';
+import { TbHexagonLetterZ as Grants, TbTopologyRing as TopologyRing, TbSquareLetterF as SquareLetterFFilled } from 'react-icons/tb'; 
+import { SiRaspberrypi as RaspBerry, SiZebratechnologies as Zebratechnologies } from 'react-icons/si';
 
 export const navigations = [
   {
@@ -42,6 +41,11 @@ export const navigations = [
         subName: "Shielded Pools",
         path: "/using-zcash/shielded-pools",
         icon: ShieldedPools,
+      },
+      {
+        subName: "Transparent Exchange Addresses",
+        path: "/using-zcash/transparent-exchange-addresses",
+        icon: HandDepositLight,
       },
       {
         subName: "Transactions",
@@ -90,7 +94,7 @@ export const navigations = [
       },
       {
         subName: "Zcon Archive",
-        path: "/zcash-community/zcap",
+        path: "/zcash-community/zcon-archive",
         icon: Archive,
       },
     ],
@@ -112,6 +116,11 @@ export const navigations = [
         subName: "Zcash Community Grants",
         path: "/zcash-organizations/zcash-community-grants",
         icon: Grants,
+      },
+      {
+        subName: "Financial Privacy Foundation",
+        path: "/zcash-organizations/financial-privacy-foundation",
+        icon: SquareLetterFFilled,
       },
       {
         subName: "Shielded Labs",
@@ -144,6 +153,11 @@ export const navigations = [
         icon: Zebratechnologies,
       },
       {
+        subName: "Akash Network",
+        path: "/guides/akash-network",
+        icon: CloudUploadOutline,
+      },
+      {
         subName: "Visualizing Zcash Addresses",
         path: "/guides/visualizing-zcash-addresses",
         icon: QrCode,
@@ -157,7 +171,7 @@ export const navigations = [
   },
   {
     name: "Tutorials",
-    path: "/zechub-tutorials",
+    path: "https://youtube.com/@zechub",
     icon: "",
   },
   {

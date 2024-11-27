@@ -14,8 +14,9 @@ const useExportDashboardAsPNG = () => {
 
   const handleSaveToPng = async (
     poolType: string,
-    poolData: Record<string, { timestamp: string; supply: number } | null>
-  ) => {
+    poolData: Record<string, { timestamp: string; supply: number } | null>,
+    toolType: string
+  ) => {    
     const poolQty = document.createTextNode("");
 
     if (poolType == PoolsType.sprout) {
@@ -42,7 +43,7 @@ const useExportDashboardAsPNG = () => {
     span.style.zIndex = "1000";
     span.appendChild(poolQty);
 
-    if (divChartRef.current) {
+    if (divChartRef.current && toolType == "supply") {
       divChartRef.current.appendChild(span);
     }
 
@@ -51,7 +52,8 @@ const useExportDashboardAsPNG = () => {
       const link = document.createElement("a");
 
       link.href = canvas.toDataURL("image/png");
-      link.download = `zcash-${poolType}-pool-chart.png`;
+      if(toolType == 'supply') link.download = `zcash-${poolType}-pool-chart.png`;
+      else link.download = `zcash-${poolType}-transaction-chart.png`;
       link.click();
       
       divChartRef.current?.removeChild(span);

@@ -1,10 +1,11 @@
 export const dexListingConfig = [
+  
     {
-    title: 'Sideshift AI',
+    title: 'LetsExchange',
     description:
-      'SideShift.ai enables HUMANS and AI to trade between BTC, ETH, SOL and 100+ other coins. Sent directly to your wallet.',
-    url: 'https://sideshift.ai',
-    image: '/sideshiftai.png',
+      'A crypto exchange hub with 4,500+ cryptocurrencies, deep liquidity, cross-chain swaps, on- & off-ramp, DEX, swift and secure transactions.',
+    url: 'https://letsexchange.io/',
+    image: 'https://i.ibb.co/JxzSyx6/1500x500-1.jpg',
   },
   {
     title: 'Stealth EX',
@@ -35,11 +36,18 @@ export const dexListingConfig = [
     image: '/Trocodor.png',
   },
   {
-    title: 'DCRDEX',
+    title: 'Bison Wallet',
     description:
       'Trade crypto peer to peer. No trading fees. No KYC. Decentralised Exchange built by Decred Project.',
     url: 'https://dex.decred.org/',
     image: '/DCRDEX.jpg',
+  },
+  {
+    title: 'Firo DEX',
+    description:
+      'Trustless decentralized swaps using atomic swaps with FiroDEX!.',
+    url: 'https://github.com/firoorg/FiroDEX-Desktop',
+    image: 'https://firo.org/blog/assets/firodex-beta-release.png',
   },
   {
     title: 'Changenow',
@@ -61,5 +69,12 @@ export const dexListingConfig = [
       'Anonymous Cryptocurrency Exchange, cheap, reliable, AlwaysOnTime and without any registration. Dedicated Tor mirror available.',
     url: 'https://xchange.me/',
     image: '/xchange.png',
+  },
+  {
+    title: 'Bitcoin VN',
+    description:
+      'Instant Bitcoin & Cryptocurrency Exchange in Vietnam. Buy, sell or swap between 80 assets including VND, BTC, XMR, USDT, ETH, BCH, SOL',
+    url: 'https://bitcoinvn.io/?deposit=xmr&settle=zec/',
+    image: '/Bitcoinvn.png',
   },
 ];

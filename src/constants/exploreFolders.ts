@@ -9,7 +9,7 @@ export const exploreFolders = [
         img: '/Tutorials.png',
         description: '',
         name: 'Tutorials',
-        url: '/zechub-tutorials'
+        url: 'https://youtube.com/@zechub'
     },
     {
         img: '/Using_Zcash-07.png',
@@ -44,8 +44,8 @@ export const exploreFolders = [
     {
         img: '/ZFAV.png',
         description: '',
-        name: 'ZFAV_Club',
-        url: '/zfav-club/av-club-background'
+        name: 'ZKAV_Club',
+        url: 'https://www.zkav.club'
     },
     {
         img: '/PrivacyTools.png',

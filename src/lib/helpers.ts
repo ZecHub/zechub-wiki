@@ -51,7 +51,7 @@ export const getDynamicRoute = (slug: string): string => {
   for (let i = 0; i < slug.length; i++) {
     uri += '/' + slug[i];
   }
-  return `/site${transformUri(uri)}.md`;
+  return  uri === '/contribute/community-infrastructure' ? `/site/contribute/Community_Infrastructure.md` : `/site${transformUri(uri)}.md`;
 };
 
 export const getFiles = (data: any) => {
@@ -134,8 +134,10 @@ const specialWordsMap = {
 
 export const transformUri = (uri: string, ignoreLowerCase = false) => {
   let transformed = uri
-    .replace(/\b\w/g, (l) => l.toUpperCase())
+    .replace(/\b\w/g, (l) => l.toUpperCase())  
     .replace(/-/g, '_');
+    
+    console.log(transformed)
   if (!ignoreLowerCase)
     lowercaseWords.forEach((word) => {
       if (transformed.includes(word))
