@@ -10,7 +10,7 @@ const ZecToZatsConverter: React.FC = () => {
     const zecValue = parseFloat(value);
     if (!isNaN(zecValue)) {
       setZec(zecValue);
-      setZats(zecValue * 1_000_000_000); // 1 ZEC = 1,000,000,000 Zats
+      setZats(zecValue * 100_000_000); // 1 ZEC = 100,000,000 Zats
     } else {
       setZec("");
       setZats("");
