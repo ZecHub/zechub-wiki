@@ -131,7 +131,9 @@ label {
 }
 
 .donation-memo textarea {
-  width: 80%;
+  /* width: 80%; */
+  width: 320px;
+  height: 160px;
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #d3d3d3;
@@ -167,7 +169,8 @@ label {
   }
 
   .donation-memo textarea {
-    width: 100%; /* Full width memo box for mobile */
+    width: 320px; /* Full width memo box for mobile */
+    height: 120px;
   }
 }
 
@@ -180,9 +183,14 @@ label {
   transition: all 0.4s;
 }
 
+.new-input-size {
+  height: 40px;
+  width: 320px;
+}
+
 .new-value-buttons button {
-  margin: 8px 4px;
-  padding: 4px;
+  margin: 8px 16px;
+  padding: 8px 16px;
   border-radius: 5px;
   border: 1px solid #d3d3d3;
 }
