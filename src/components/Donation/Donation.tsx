@@ -223,6 +223,7 @@ const DonationComp = () => {
       >
         <label>Donation Amount:</label>
         <input
+          className="new-input-size"
           type="range"
           min={0.1}
           max={5.0}
