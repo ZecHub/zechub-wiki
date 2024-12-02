@@ -295,8 +295,7 @@ const [circulation, setCirculation] = useState<number | null>(null);
   }
 
   return (
-    <div>
-      <h2 className="font-bold mt-8 mb-4">{selectedToolName}</h2>
+    <div className="font-bold mt-8 mb-4">{selectedToolName}</h2>
       <div className="border p-3 rounded-lg">
         <Tools onToolChange={handleToolChange} />
         <div className="relative">
