@@ -425,7 +425,7 @@ const ShieldedPoolDashboard = () => {
           <p>${blockchainInfo.market_cap_usd?.toLocaleString()}</p>
         </div>
         <div className="border p-4 rounded-md text-center">
-          <h3 className="font-bold text-lg">ZEC in Circulation</h3>
+         <h3 className="font-bold text-lg">ZEC in Circulation</h3>
           <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
         </div>
         <div className="border p-4 rounded-md text-center">
