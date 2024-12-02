@@ -105,7 +105,8 @@ async function getBlockchainInfo(): Promise<number | null> {
       return null;
     }
     const data = await response.json();
-    return data.chainSupply?.chainValue ?? null;
+   
+    return data.chainSupply?.chainValueZat ? data.chainSupply.chainValueZat / 10 ** 8 : null;
   } catch (error) {
     console.error("Error fetching blockchain info:", error);
     return null;
