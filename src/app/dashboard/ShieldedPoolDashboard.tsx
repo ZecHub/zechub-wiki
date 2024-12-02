@@ -256,7 +256,7 @@ useEffect(() => {
   };
 
 const [blockchainInfo, setBlockchainInfo] = useState<BlockchairBlockchainInfo | null>(null); 
-const [circulation, setCirculation] = useState<number | null>(null); 
+
 
 
   const getTotalShieldedSupply = () => {
