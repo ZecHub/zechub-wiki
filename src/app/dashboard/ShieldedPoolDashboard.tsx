@@ -434,25 +434,26 @@ const [circulation, setCirculation] = useState<number | null>(null);
      
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
  
+<div className="flex flex-wrap gap-8 justify-center items-center mt-8">
   <div className="border p-4 rounded-md text-center">
     <h3 className="font-bold text-lg">Market Cap</h3>
-     <p>${blockchainInfo?.market_cap_usd?.toLocaleString() ?? "N/A"}</p>
-    </div>
-    <div className="border p-4 rounded-md text-center">
-     <h3 className="font-bold text-lg">ZEC in Circulation</h3>
-      <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
-    </div>
-    <div className="border p-4 rounded-md text-center">
-     <h3 className="font-bold text-lg">Market Price (USD)</h3>
-      <p>${blockchainInfo?.market_price_usd?.toFixed(2) ?? "N/A"}</p>
-   </div>
-   <div className="border p-4 rounded-md text-center">
-     <h3 className="font-bold text-lg">Market Price (BTC)</h3>
-      <p>{blockchainInfo?.market_price_btc ?? "N/A"}</p>
+    <p>${blockchainInfo?.market_cap_usd?.toLocaleString() ?? "N/A"}</p>
+  </div>
+  <div className="border p-4 rounded-md text-center">
+    <h3 className="font-bold text-lg">ZEC in Circulation</h3>
+    <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
+  </div>
+  <div className="border p-4 rounded-md text-center">
+    <h3 className="font-bold text-lg">Market Price (USD)</h3>
+    <p>${blockchainInfo?.market_price_usd?.toFixed(2) ?? "N/A"}</p>
+  </div>
+  <div className="border p-4 rounded-md text-center">
+    <h3 className="font-bold text-lg">Market Price (BTC)</h3>
+    <p>{blockchainInfo?.market_price_btc ?? "N/A"}</p>
   </div>
   <div className="border p-4 rounded-md text-center">
     <h3 className="font-bold text-lg">Blocks</h3>
-     <p>{blockchainInfo?.blocks?.toLocaleString() ?? "N/A"}</p>
+    <p>{blockchainInfo?.blocks?.toLocaleString() ?? "N/A"}</p>
   </div>
   <div className="border p-4 rounded-md text-center">
     <h3 className="font-bold text-lg">24h Transactions</h3>
@@ -462,18 +463,15 @@ const [circulation, setCirculation] = useState<number | null>(null);
     <h3 className="font-bold text-lg">Nodes</h3>
     <p>{blockchainInfo?.nodes ?? "N/A"}</p>
   </div>
+  <div className="border p-4 rounded-md text-center">
+    <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
+    <p>
+      {shieldedTxCount
+        ? `Sapling: ${shieldedTxCount.sapling?.toLocaleString()} | Orchard: ${shieldedTxCount.orchard?.toLocaleString()}`
+        : "N/A"}
+    </p>
+  </div>
 </div>
-
-        <div className="border p-4 rounded-md text-center">
-          <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
-          <p>
-            {shieldedTxCount
-              ? `Sapling: ${shieldedTxCount?.sapling?.toLocaleString()} | Orchard: ${shieldedTxCount.orchard?.toLocaleString()}`
-              : "N/A"}
-          </p>
-        </div>
-      </div>
-    </div>
   );
 };
 
