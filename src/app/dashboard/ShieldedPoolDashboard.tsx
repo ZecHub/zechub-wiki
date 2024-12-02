@@ -97,6 +97,7 @@ async function getBlockchainData(): Promise<BlockchainInfo | null> {
   }
 }
 
+
 async function getBlockchainInfo(): Promise<number | null> {
   try {
     const response = await fetch(blockchainInfoUrl, { mode: "cors" });
@@ -105,13 +106,16 @@ async function getBlockchainInfo(): Promise<number | null> {
       return null;
     }
     const data = await response.json();
-   
-    return data.chainSupply?.chainValueZat ? data.chainSupply.chainValueZat / 10 ** 8 : null;
+
+    return data.chainSupply?.chainValueZat
+      ? data.chainSupply.chainValueZat / 10 ** 8
+      : null;
   } catch (error) {
     console.error("Error fetching blockchain info:", error);
     return null;
   }
 }
+
 
 async function getSupplyData(url: string): Promise<SupplyData[]> {
   try {
@@ -181,35 +185,38 @@ const ShieldedPoolDashboard = () => {
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-  useEffect(() => {
-    getBlockchainData().then((data) => {
-      if (data) {
-        data.nodes = 125;
-        setBlockchainInfo(data);
-      }
-    });
+useEffect(() => {
+  
+  getBlockchainData().then((data) => {
+    if (data) {
+      data.nodes = 85; 
+      setBlockchainInfo(data);
+    }
+  });
 
-    getBlockchainInfo().then((data) => setCirculation(data ?? 0));
+  
+  getBlockchainInfo().then((data) => setCirculation(data ?? 0));
 
-    getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
+  
+  getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
 
-    getSupplyData(sproutUrl).then((data) =>
-      setSproutSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
-    );
+  getSupplyData(sproutUrl).then((data) =>
+    setSproutSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+  );
 
-    getSupplyData(saplingUrl).then((data) =>
-      setSaplingSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
-    );
+  getSupplyData(saplingUrl).then((data) =>
+    setSaplingSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+  );
 
-    getSupplyData(orchardUrl).then((data) =>
-      setOrchardSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
-    );
+  getSupplyData(orchardUrl).then((data) =>
+    setOrchardSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+  );
 
-    getShieldedTxCount().then((data) =>
-      setShieldedTxCount(data ?? { sapling: 0, orchard: 0, timestamp: "N/A" })
-    );
+  getShieldedTxCount().then((data) =>
+    setShieldedTxCount(data ?? { sapling: 0, orchard: 0, timestamp: "N/A" })
+  );
+}, []);
 
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
