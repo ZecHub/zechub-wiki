@@ -255,7 +255,7 @@ useEffect(() => {
     }
   };
 
-const [blockchainInfo, setBlockchainInfo] = useState<BlockchairBlockchainInfo | null>(null); 
+const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null); 
 
 
 
