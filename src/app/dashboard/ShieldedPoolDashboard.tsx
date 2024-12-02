@@ -90,7 +90,7 @@ async function getBlockchainData(): Promise<BlockchainInfo | null> {
       return null;
     }
     const data = await response.json();
-    return data.data as BlockchainInfo;
+    return data.data as BlockchainInfo; 
   } catch (error) {
     console.error("Error fetching blockchain data:", error);
     return null;
@@ -98,23 +98,24 @@ async function getBlockchainData(): Promise<BlockchainInfo | null> {
 }
 
 
+
 async function getBlockchainInfo(): Promise<number | null> {
   try {
-    const response = await fetch(blockchainInfoUrl, { mode: "cors" });
+    const response = await fetch("https://explorer.zec.rocks/api/v1/blockchain-info");
     if (!response.ok) {
-      console.error("Failed to fetch blockchain info:", response.statusText);
+      console.error("Failed to fetch blockchain info from ZEC Rocks:", response.statusText);
       return null;
     }
     const data = await response.json();
-
     return data.chainSupply?.chainValueZat
       ? data.chainSupply.chainValueZat / 10 ** 8
-      : null;
+      : null; 
   } catch (error) {
     console.error("Error fetching blockchain info:", error);
     return null;
   }
 }
+
 
 
 async function getSupplyData(url: string): Promise<SupplyData[]> {
@@ -218,6 +219,7 @@ useEffect(() => {
 }, []);
 
 
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await getSupplyData(getDataUrl());
@@ -253,6 +255,10 @@ useEffect(() => {
         return "url(#area-background-gradient)";
     }
   };
+
+const [blockchainInfo, setBlockchainInfo] = useState<BlockchairBlockchainInfo | null>(null); 
+const [circulation, setCirculation] = useState<number | null>(null); 
+
 
   const getTotalShieldedSupply = () => {
     const totalSupply =
@@ -427,34 +433,37 @@ useEffect(() => {
       )}
      
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
-        <div className="border p-4 rounded-md text-center">
-          <h3 className="font-bold text-lg">Market Cap</h3>
-          <p>${blockchainInfo.market_cap_usd?.toLocaleString()}</p>
-        </div>
-        <div className="border p-4 rounded-md text-center">
-         <h3 className="font-bold text-lg">ZEC in Circulation</h3>
-          <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
-        </div>
-        <div className="border p-4 rounded-md text-center">
-          <h3 className="font-bold text-lg">Market Price (USD)</h3>
-          <p>${blockchainInfo.market_price_usd?.toFixed(2)}</p>
-        </div>
-        <div className="border p-4 rounded-md text-center">
-          <h3 className="font-bold text-lg">Market Price (BTC)</h3>
-          <p>{blockchainInfo.market_price_btc}</p>
-        </div>
-        <div className="border p-4 rounded-md text-center">
-          <h3 className="font-bold text-lg">Blocks</h3>
-          <p>{blockchainInfo.blocks?.toLocaleString()}</p>
-        </div>
-        <div className="border p-4 rounded-md text-center">
-          <h3 className="font-bold text-lg">24h Transactions</h3>
-          <p>{blockchainInfo.transactions_24h?.toLocaleString()}</p>
-        </div>
-        <div className="border p-4 rounded-md text-center">
-          <h3 className="font-bold text-lg">Nodes</h3>
-          <p>{blockchainInfo.nodes}</p>
-        </div>
+ 
+  <div className="border p-4 rounded-md text-center">
+    <h3 className="font-bold text-lg">Market Cap</h3>
+     <p>${blockchainInfo?.market_cap_usd?.toLocaleString() ?? "N/A"}</p>
+    </div>
+    <div className="border p-4 rounded-md text-center">
+     <h3 className="font-bold text-lg">ZEC in Circulation</h3>
+      <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
+    </div>
+    <div className="border p-4 rounded-md text-center">
+     <h3 className="font-bold text-lg">Market Price (USD)</h3>
+      <p>${blockchainInfo?.market_price_usd?.toFixed(2) ?? "N/A"}</p>
+   </div>
+   <div className="border p-4 rounded-md text-center">
+     <h3 className="font-bold text-lg">Market Price (BTC)</h3>
+      <p>{blockchainInfo?.market_price_btc ?? "N/A"}</p>
+  </div>
+  <div className="border p-4 rounded-md text-center">
+    <h3 className="font-bold text-lg">Blocks</h3>
+     <p>{blockchainInfo?.blocks?.toLocaleString() ?? "N/A"}</p>
+  </div>
+  <div className="border p-4 rounded-md text-center">
+    <h3 className="font-bold text-lg">24h Transactions</h3>
+    <p>{blockchainInfo?.transactions_24h?.toLocaleString() ?? "N/A"}</p>
+  </div>
+  <div className="border p-4 rounded-md text-center">
+    <h3 className="font-bold text-lg">Nodes</h3>
+    <p>{blockchainInfo?.nodes ?? "N/A"}</p>
+  </div>
+</div>
+
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
           <p>
