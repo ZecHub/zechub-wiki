@@ -171,7 +171,6 @@ async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
 
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
   const [circulation, setCirculation] = useState<number | null>(null);
   const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
