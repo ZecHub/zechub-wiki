@@ -90,33 +90,27 @@ async function getBlockchainData(): Promise<BlockchainInfo | null> {
       return null;
     }
     const data = await response.json();
-    return data.data as BlockchainInfo; 
+    return data.data as BlockchainInfo;
   } catch (error) {
     console.error("Error fetching blockchain data:", error);
     return null;
   }
 }
 
-
-
 async function getBlockchainInfo(): Promise<number | null> {
   try {
-    const response = await fetch("https://explorer.zec.rocks/api/v1/blockchain-info");
+    const response = await fetch(blockchainInfoUrl, { mode: "cors" });
     if (!response.ok) {
-      console.error("Failed to fetch blockchain info from ZEC Rocks:", response.statusText);
+      console.error("Failed to fetch blockchain info:", response.statusText);
       return null;
     }
     const data = await response.json();
-    return data.chainSupply?.chainValueZat
-      ? data.chainSupply.chainValueZat / 10 ** 8
-      : null; 
+    return data.chainSupply?.chainValue ?? null;
   } catch (error) {
     console.error("Error fetching blockchain info:", error);
     return null;
   }
 }
-
-
 
 async function getSupplyData(url: string): Promise<SupplyData[]> {
   try {
@@ -171,6 +165,7 @@ async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
 
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
+  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
   const [circulation, setCirculation] = useState<number | null>(null);
   const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
@@ -185,39 +180,35 @@ const ShieldedPoolDashboard = () => {
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-useEffect(() => {
-  
-  getBlockchainData().then((data) => {
-    if (data) {
-      data.nodes = 85; 
-      setBlockchainInfo(data);
-    }
-  });
+  useEffect(() => {
+    getBlockchainData().then((data) => {
+      if (data) {
+        data.nodes = 125;
+        setBlockchainInfo(data);
+      }
+    });
 
-  
-  getBlockchainInfo().then((data) => setCirculation(data ?? 0));
+    getBlockchainInfo().then((data) => setCirculation(data ?? 0));
 
-  
-  getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
+    getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
 
-  getSupplyData(sproutUrl).then((data) =>
-    setSproutSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
-  );
+    getSupplyData(sproutUrl).then((data) =>
+      setSproutSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+    );
 
-  getSupplyData(saplingUrl).then((data) =>
-    setSaplingSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
-  );
+    getSupplyData(saplingUrl).then((data) =>
+      setSaplingSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+    );
 
-  getSupplyData(orchardUrl).then((data) =>
-    setOrchardSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
-  );
+    getSupplyData(orchardUrl).then((data) =>
+      setOrchardSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+    );
 
-  getShieldedTxCount().then((data) =>
-    setShieldedTxCount(data ?? { sapling: 0, orchard: 0, timestamp: "N/A" })
-  );
-}, []);
+    getShieldedTxCount().then((data) =>
+      setShieldedTxCount(data ?? { sapling: 0, orchard: 0, timestamp: "N/A" })
+    );
 
-
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -255,10 +246,6 @@ useEffect(() => {
     }
   };
 
-const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null); 
-
-
-
   const getTotalShieldedSupply = () => {
     const totalSupply =
       (sproutSupply?.supply ?? 0) +
@@ -294,83 +281,182 @@ const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null
   }
 
   return (
-<div>
-  <h2 className="font-bold mt-8 mb-4">{selectedToolName}</h2>
-  <div className="border p-3 rounded-lg">
-    <Tools onToolChange={handleToolChange} />
-    <div className="relative">
-      <div ref={divChartRef}>
-        {selectedTool === "supply" && (
-          <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
-        )}
-        {selectedTool === "transaction" && (
-          <TransactionSummaryChart
-            dataUrl={txsummaryUrl}
-            pool={selectedPool}
-            cumulative={cumulativeCheck}
-            filter={filterSpamCheck}
+    <div>
+      <h2 className="font-bold mt-8 mb-4">{selectedToolName}</h2>
+      <div className="border p-3 rounded-lg">
+        <Tools onToolChange={handleToolChange} />
+        <div className="relative">
+          <div ref={divChartRef}>
+            {selectedTool === 'supply' && (
+              <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />            
+            )}
+            {selectedTool === 'transaction' && (
+              <TransactionSummaryChart dataUrl={txsummaryUrl} pool={selectedPool} cumulative={cumulativeCheck} filter={filterSpamCheck}/>
+            )}
+          </div>
+        </div>
+        <div className="flex justify-end gap-12 text-right mt-4 text-sm text-gray-500">
+          <span className="px-3 py-2">
+            Last updated:{" "}
+            {lastUpdated ? new Date(lastUpdated).toLocaleDateString() : "N/A"}
+          </span>
+          <Button
+            text="Export (PNG)"
+            className="px-3 py-2 border text-white border-slate-300 rounded-md shadow-sm bg-[#1984c7]"
+            onClick={() =>
+              handleSaveToPng(selectedPool, {
+                sproutSupply,
+                saplingSupply,
+                orchardSupply,
+              }, selectedTool)
+            }
           />
-        )}
+        </div>
+      </div>
+      {selectedTool === 'supply' && (
+      <div className="mt-8 flex flex-col items-center">        
+        <div className="flex justify-center space-x-4">
+          <div className="flex flex-col items-center">          
+            <Button
+              onClick={() => setSelectedPool("default")}
+              text="Total Shielded"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {getTotalShieldedSupply().toLocaleString()} ZEC
+            </span>
+          </div>
+        
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("sprout")}
+              text="Sprout Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "sprout" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {sproutSupply ? `${sproutSupply.supply.toLocaleString()} ZEC` : "Loading..."}
+            </span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("sapling")}
+              text="Sapling Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "sapling" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {saplingSupply ? `${saplingSupply.supply.toLocaleString()} ZEC` : "Loading..."}
+            </span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("orchard")}
+              text="Orchard Pool"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "orchard" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+            <span className="text-sm text-gray-600">
+              {orchardSupply ? `${orchardSupply.supply.toLocaleString()} ZEC` : "Loading..."}
+            </span>
+          </div>
+        </div>        
+      </div>
+      )}
+      {selectedTool === 'transaction' && (
+      <div className="mt-8 flex flex-col items-center">        
+        <div className="flex justify-center space-x-4">
+          <div className="flex flex-col items-center">          
+            <Button
+              onClick={() => setSelectedPool("default")}
+              text="Sapling + Orchard"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "default" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("sapling")}
+              text="Sapling"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "sapling" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={() => setSelectedPool("orchard")}
+              text="Orchard"
+              className={`rounded-[0.4rem] py-2 px-4 text-white ${
+                selectedPool === "orchard" ? "bg-[#1984c7]" : "bg-gray-400"
+              }`}
+            />           
+          </div>  
+          <div className="flex flex-col items-center">
+            <Checkbox
+              checked={cumulativeCheck}
+              onChange={handleCumulativeChange}
+              label="Cumulative Values"
+              className="custom-checkbox"
+            />          
+          </div>   
+          <div className="flex flex-col items-center">
+            <Checkbox
+              checked={filterSpamCheck}
+              onChange={handleFilterChange}
+              label="Filter Spam"
+              className="custom-checkbox"
+            />          
+          </div>
+        </div>        
+      </div>
+      )}
+     
+      <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Market Cap</h3>
+          <p>${blockchainInfo.market_cap_usd?.toLocaleString()}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">ZEC in Circulation</h3>
+          <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Market Price (USD)</h3>
+          <p>${blockchainInfo.market_price_usd?.toFixed(2)}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Market Price (BTC)</h3>
+          <p>{blockchainInfo.market_price_btc}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Blocks</h3>
+          <p>{blockchainInfo.blocks?.toLocaleString()}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">24h Transactions</h3>
+          <p>{blockchainInfo.transactions_24h?.toLocaleString()}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Nodes</h3>
+          <p>{blockchainInfo.nodes}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
+          <p>
+            {shieldedTxCount
+              ? `Sapling: ${shieldedTxCount?.sapling?.toLocaleString()} | Orchard: ${shieldedTxCount.orchard?.toLocaleString()}`
+              : "N/A"}
+          </p>
+        </div>
       </div>
     </div>
-    <div className="flex justify-end gap-12 text-right mt-4 text-sm text-gray-500">
-      <span className="px-3 py-2">
-        Last updated:{" "}
-        {lastUpdated ? new Date(lastUpdated).toLocaleDateString() : "N/A"}
-      </span>
-      <Button
-        text="Export (PNG)"
-        className="px-3 py-2 border text-white border-slate-300 rounded-md shadow-sm bg-[#1984c7]"
-        onClick={() =>
-          handleSaveToPng(
-            selectedPool,
-            { sproutSupply, saplingSupply, orchardSupply },
-            selectedTool
-          )
-        }
-      />
-    </div>
-  </div>
-  <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
-    <div className="border p-4 rounded-md text-center">
-      <h3 className="font-bold text-lg">Market Cap</h3>
-      <p>${blockchainInfo?.market_cap_usd?.toLocaleString() ?? "N/A"}</p>
-    </div>
-    <div className="border p-4 rounded-md text-center">
-      <h3 className="font-bold text-lg">ZEC in Circulation</h3>
-      <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
-    </div>
-    <div className="border p-4 rounded-md text-center">
-      <h3 className="font-bold text-lg">Market Price (USD)</h3>
-      <p>${blockchainInfo?.market_price_usd?.toFixed(2) ?? "N/A"}</p>
-    </div>
-    <div className="border p-4 rounded-md text-center">
-      <h3 className="font-bold text-lg">Market Price (BTC)</h3>
-      <p>{blockchainInfo?.market_price_btc ?? "N/A"}</p>
-    </div>
-    <div className="border p-4 rounded-md text-center">
-      <h3 className="font-bold text-lg">Blocks</h3>
-      <p>{blockchainInfo?.blocks?.toLocaleString() ?? "N/A"}</p>
-    </div>
-    <div className="border p-4 rounded-md text-center">
-      <h3 className="font-bold text-lg">24h Transactions</h3>
-      <p>{blockchainInfo?.transactions_24h?.toLocaleString() ?? "N/A"}</p>
-    </div>
-    <div className="border p-4 rounded-md text-center">
-      <h3 className="font-bold text-lg">Nodes</h3>
-      <p>{blockchainInfo?.nodes ?? "N/A"}</p>
-    </div>
-    <div className="border p-4 rounded-md text-center">
-      <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
-      <p>
-        {shieldedTxCount
-          ? `Sapling: ${shieldedTxCount.sapling?.toLocaleString()} | Orchard: ${shieldedTxCount.orchard?.toLocaleString()}`
-          : "N/A"}
-      </p>
-    </div>
-  </div>
-</div>
-
   );
 };
 
