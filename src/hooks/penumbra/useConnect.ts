@@ -6,8 +6,8 @@ import {
 } from "@penumbra-zone/client";
 import { useEffect, useState } from "react";
 
-export default async function useConnect(origin: string) {
-  console.log("onConnect::origin ", origin);
+export default function useConnect() {
+
   const [loading, setLoading] = useState(false);
   const [connected, setConnected] = useState<string>();
   const [error, setError] = useState<Error>();
