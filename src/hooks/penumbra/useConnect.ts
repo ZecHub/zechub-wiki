@@ -7,7 +7,6 @@ import {
 import { useEffect, useState } from "react";
 
 export default function useConnect() {
-
   const [loading, setLoading] = useState(false);
   const [connected, setConnected] = useState<string>();
   const [error, setError] = useState<Error>();
@@ -32,19 +31,20 @@ export default function useConnect() {
   };
 
   const onConnect = async (path: string) => {
-
     try {
       setLoading(true);
       await client.connect(path);
     } catch (err) {
       console.error("onConnect::error: ", err);
-      
+
       if (err instanceof Error && err.cause) {
         if (err.cause === PenumbraRequestFailure.Denied) {
-          alert("Connection denied by user");
+          alert(
+            "Connection denied: you should delete this website from the list of Connected sites in the extension settings"
+          );
         }
 
-        if (err.cause == PenumbraRequestFailure.NeedsLogin) {
+        if (err.cause === PenumbraRequestFailure.NeedsLogin) {
           alert("Please login to the extension and try again");
         }
       }
@@ -82,6 +82,6 @@ export default function useConnect() {
     connected,
     onConnect,
     onDisconnect,
-    error
+    error,
   };
 }
