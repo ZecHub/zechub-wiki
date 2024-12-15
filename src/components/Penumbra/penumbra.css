@@ -1,0 +1,43 @@
+.p-board {
+    background-color: black;
+    color: white;
+    min-width: 420px;
+    padding: 24px;
+    margin: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.p-btn {
+    padding: 16px;
+    background-color: #000;
+    border: 1px solid rgb(175, 123, 83);
+    color: rgba(213, 149, 100, 0.952);
+    border-radius: 4px;
+    margin: 24px 0;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.p-btn:hover {
+    color: rgb(175, 123, 83);
+}
+
+.p-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.p-section span {
+    display: block;
+    margin-top: 12px;
+}
+
+.p-balance {
+    margin: 24px 0;
+}
+
+.p-text {
+    padding: 8px;
+}

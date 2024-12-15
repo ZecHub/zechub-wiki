@@ -1,11 +1,12 @@
 "use client";
-import { ChangeEvent, useState } from "react";
-import QRCode from "qrcode.react";
 import Image from "next/image";
-import zcashLogo from "../../../public/zcash-logo.png";
-import ycashLogo from "../../../public/ycash-logo.png";
+import QRCode from "qrcode.react";
+import { ChangeEvent, useState } from "react";
 import namadaLogo from "../../../public/namada-logo.png";
 import penumbraLogo from "../../../public/penumbra-logo.png";
+import ycashLogo from "../../../public/ycash-logo.png";
+import zcashLogo from "../../../public/zcash-logo.png";
+import PenumbraWalletConnect from "../Penumbra/PenumbraWalletConnect";
 import "./donation.css";
 
 // Function to convert string to Base64 URL-safe format
@@ -264,6 +265,7 @@ const DonationComp = () => {
       </div>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
+      <PenumbraWalletConnect />
     </div>
   );
 };

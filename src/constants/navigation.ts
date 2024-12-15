@@ -176,7 +176,7 @@ export const navigations = [
   },
   {
     name: "Contribute",
-    path: "https://zechub.wiki/contribute/help-build-zechub",
+    path: "/contribute/help-build-zechub",
     icon: "",
   },
 ];
