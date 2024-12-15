@@ -31,27 +31,40 @@ export default async function useConnect(origin: string) {
     }
   };
 
-    const onConnect = async (path: string) => {
-      console.log("onConnect::origin ", path);
+  const onConnect = async (path: string) => {
+    console.log("onConnect::origin ", path);
 
-      try {
-        setLoading(true);
-        await client.connect(path);
-      } catch (err) {
-        console.error("onConnect::error: ", err);
-        if (err instanceof Error && err.cause) {
-          if (err.cause === PenumbraRequestFailure.Denied) {
-            alert("Connection denied");
-          }
-
-          if (err.cause == PenumbraRequestFailure.NeedsLogin) {
-            alert("Please login to the extension and try again");
-          }
+    try {
+      setLoading(true);
+      await client.connect(path);
+    } catch (err) {
+      console.error("onConnect::error: ", err);
+      if (err instanceof Error && err.cause) {
+        if (err.cause === PenumbraRequestFailure.Denied) {
+          alert("Connection denied");
         }
-      } finally {
-        setLoading(false);
+
+        if (err.cause == PenumbraRequestFailure.NeedsLogin) {
+          alert("Please login to the extension and try again");
+        }
       }
-    };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onDisconnect = async () => {
+    if (!client.connected) {
+      return;
+    }
+
+    try {
+      await client.disconnect();
+    } catch (err: any) {
+      console.error("onDisconnect::error :", err);
+      setError(err.message);
+    }
+  };
 
   useEffect(() => {
     reconnect();
@@ -67,6 +80,7 @@ export default async function useConnect(origin: string) {
   return {
     loading,
     connected,
-    onConnect
+    onConnect,
+    onDisconnect
   };
 }
