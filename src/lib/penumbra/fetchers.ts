@@ -1,4 +1,3 @@
-
 import {
   getAmount,
   getMetadataFromBalancesResponse,
@@ -6,9 +5,7 @@ import {
 import { ViewService } from "@penumbra-zone/protobuf";
 import { AddressView } from "@penumbra-zone/protobuf/penumbra/core/keys/v1/keys_pb";
 import { BalancesResponse } from "@penumbra-zone/protobuf/penumbra/view/v1/view_pb";
-import { useCallback, useEffect, useState } from "react";
-import client  from "./client";
-
+import client from "./client";
 
 export const fetchAddress = async (
   account: number
@@ -26,7 +23,6 @@ export const fetchAddress = async (
   });
 };
 
-
 export const fetchBalances = async (
   account: number
 ): Promise<BalancesResponse[]> => {
@@ -43,25 +39,4 @@ export const fetchBalances = async (
 
     return metadataSymbol && amount;
   });
-};
-
-export const useInfo = (connectedWallet?: string) => {
-  const [address, setAddress] = useState<AddressView>();
-  const [balances, setBalances] = useState<BalancesResponse[]>([]);
-
-  const fetchInfo = useCallback(async () => {
-    if (!connectedWallet) {
-      setAddress(undefined);
-      setBalances([]);
-    } else {
-      setAddress(await fetchAddress(0));
-      setBalances(await fetchBalances(0));
-    }
-  }, [connectedWallet, setAddress]);
-
-  useEffect(() => {
-    fetchInfo();
-  }, [connectedWallet, fetchInfo]);
-
-  return { address, balances };
 };
