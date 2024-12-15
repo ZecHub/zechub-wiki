@@ -62,7 +62,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
 
         <div>
           <ul>
-            {root.map((item, i) => {
+            {root.map((item: any, i: any) => {
               if (getName(item) === "Wallets") return null; // Skip rendering the item named "Wallets"
               if (getName(item) === "Custodial Exchanges") return null; // Skip rendering the item named "Wallets"
 

@@ -37,7 +37,7 @@ const shieldedTxCountUrl =
 const apiUrl =
   "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
 const blockchainInfoUrl =
-  "https://mainnet.zcashexplorer.app/api/v1/blockchain-info";
+  "/api/blockchain-info";
 
 interface BlockchainInfo {
   blocks: number;
@@ -99,13 +99,15 @@ async function getBlockchainData(): Promise<BlockchainInfo | null> {
 
 async function getBlockchainInfo(): Promise<number | null> {
   try {
-    const response = await fetch(blockchainInfoUrl, { mode: "cors" });
+    const response = await fetch(blockchainInfoUrl);
     if (!response.ok) {
       console.error("Failed to fetch blockchain info:", response.statusText);
       return null;
     }
     const data = await response.json();
-    return data.chainSupply?.chainValue ?? null;
+    console.log(data)
+    const valZat = parseInt(data?.chainSupply?.chainValueZat) * 0.00000001;
+    return valZat ?? null;
   } catch (error) {
     console.error("Error fetching blockchain info:", error);
     return null;

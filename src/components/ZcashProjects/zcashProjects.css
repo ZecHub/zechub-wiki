@@ -1,15 +1,24 @@
-.donation-container {
+.zcash-projects-container {
   display: flex;
   flex-direction: column; /* Ensure vertical stacking */
-  align-items: center; /* Center align all items */
-  gap: 2rem; /* Space between elements */
+  /* align-items: center; Center align all items */
+  /* gap: 2rem; Space between elements */
+}
+
+.zcash-projects-container h1 {
+  display: flex;
+  justify-content: center;
+  margin: 1.25rem 0;
+  font-weight: 600;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .zcash-image {
   flex-basis: auto;
 }
 
-.donation-slider {
+.zcash-projects-slider {
   display: flex;
   flex-direction: column;
   align-items: center; /* Center the slider */
@@ -20,12 +29,12 @@
   margin-top: 5px; /* Bring currency options higher */
 }
 
-.donation-header {
+.zcash-projects-header {
   margin-top: 2rem;
   margin-bottom: 0;
 }
 
-.donation-header h1 {
+.zcash-projects-header h1 {
   position: relative;
   font-size: 2.5rem;
   font-weight: 700;
@@ -33,7 +42,7 @@
   margin-bottom: 2rem;
 }
 
-.donation-header p {
+.zcash-projects-header p {
   color: #374151;
   font-size: 1rem;
   max-width: 1000px;
@@ -123,14 +132,14 @@ label {
 }
 
 /* Center the memo box */
-.donation-memo {
+.zcash-projects-memo {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.donation-memo textarea {
+.zcash-projects-memo textarea {
   /* width: 80%; */
   width: 320px;
   height: 160px;
@@ -139,18 +148,18 @@ label {
   border: 1px solid #d3d3d3;
 }
 
-.donation-memo div {
+.zcash-projects-memo div {
   margin-top: 0.5rem;
 }
 
 /* Media queries for mobile responsiveness */
 @media screen and (max-width: 768px) {
-  .donation-container {
+  .zcash-projects-container {
     flex-direction: column;
   }
 
   .zcash-image,
-  .donation-slider {
+  .zcash-projects-slider {
     flex-basis: auto;
     width: 100%;
   }
@@ -168,7 +177,7 @@ label {
     width: 100%; /* Full width slider for mobile */
   }
 
-  .donation-memo textarea {
+  .zcash-projects-memo textarea {
     width: 320px; /* Full width memo box for mobile */
     height: 120px;
   }
@@ -181,20 +190,4 @@ label {
 .nav-donate-btn button:hover {
   transform: scale(1.05);
   transition: all 0.4s;
-}
-
-.new-input-size {
-  height: 40px;
-  width: 320px;
-}
-
-.new-value-buttons button {
-  margin: 8px 16px;
-  padding: 8px 16px;
-  border-radius: 5px;
-  border: 1px solid #d3d3d3;
-}
-
-.donation-border {
-  border: 2px solid #d3d3d3;
 }

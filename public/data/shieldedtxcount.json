@@ -141,5 +141,119 @@
     "sapling": 131,
     "orchard": 201,
     "timestamp": "11/25/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 165,
+    "orchard": 275,
+    "timestamp": "11/26/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 191,
+    "orchard": 301,
+    "timestamp": "11/27/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 131,
+    "orchard": 271,
+    "timestamp": "11/28/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 127,
+    "orchard": 260,
+    "timestamp": "11/29/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 110,
+    "orchard": 296,
+    "timestamp": "11/30/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 106,
+    "orchard": 313,
+    "timestamp": "11/30/2024"
+  },
+  {
+    "sprout": 1,
+    "sapling": 142,
+    "orchard": 252,
+    "timestamp": "12/01/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 185,
+    "orchard": 224,
+    "timestamp": "12/02/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 204,
+    "orchard": 298,
+    "timestamp": "12/03/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 169,
+    "orchard": 267,
+    "timestamp": "12/04/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 164,
+    "orchard": 210,
+    "timestamp": "12/05/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 133,
+    "orchard": 238,
+    "timestamp": "12/06/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 129,
+    "orchard": 234,
+    "timestamp": "12/07/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 171,
+    "orchard": 241,
+    "timestamp": "12/09/2024"
+  },
+  {
+    "sprout": 0,
+    "sapling": 152,
+    "orchard": 198,
+    "timestamp": "12/10/2024"
+  },
+  {
+    "sprout": 1,
+    "sapling": 176,
+    "orchard": 208,
+    "timestamp": "12/11/2024"
+  },
+  {
+    "sprout": 2,
+    "sapling": 119,
+    "orchard": 242,
+    "timestamp": "12/12/2024"
+  },
+  {
+    "sprout": 3,
+    "sapling": 122,
+    "orchard": 226,
+    "timestamp": "12/13/2024"
+  },
+  {
+    "sprout": 2,
+    "sapling": 96,
+    "orchard": 239,
+    "timestamp": "12/14/2024"
   }
 ]

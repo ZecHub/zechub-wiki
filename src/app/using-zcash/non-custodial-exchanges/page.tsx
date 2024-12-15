@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = genMetadata({
-  title: "Decentralize Exchange Listing",
+  title: "Non-Custodial Exchange Listing",
   url: "https://zechub-wiki.vercel.app/using-zcash/non-custodial-exchanges"
 });
 
@@ -22,7 +22,9 @@ const DEXListingPage = () => {
           </a>
         </Link>
       </div>
-
+      <p className='text-gray-600 my-4'>
+        ZecHub does not endorse any particular exchange service, please do your own research.
+      </p>
       <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
         {dexListingConfig.map((itm, i) => (
           <Card

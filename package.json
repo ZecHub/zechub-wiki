@@ -12,6 +12,7 @@
     "test:e2e": "npx playwright test",
     "test:e2e:ui": "npx playwright test --ui"
   },
+  "proxy": "https://explorer.zec.rocks",
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@hookform/error-message": "^2.0.1",

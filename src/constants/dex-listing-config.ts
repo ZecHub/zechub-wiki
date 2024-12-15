@@ -29,6 +29,13 @@ export const dexListingConfig = [
     image: '/flyp.me.png',
   },
   {
+    title: 'Exolix',
+    description:
+      'Exchange 1311+ crypto instantly, with the best rate and without registration',
+    url: 'https://exolix.com',
+    image: '/exolix.png',
+  },
+  {
     title: 'Trocodor',
     description:
       'Trade Cryptocurrency Anonymously. Fast. Safe. No Bureaucracy. Prepaid Debit Cards available.',
