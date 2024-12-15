@@ -25,3 +25,22 @@ export const fetchAddress = async (
     },
   });
 };
+
+
+export const fetchBalances = async (
+  account: number
+): Promise<BalancesResponse[]> => {
+  const viewService = client.service(ViewService);
+  const iterable = viewService.balances({
+    accountFilter: { account: account },
+  });
+  const balances = await Array.fromAsync(iterable);
+
+  return balances.filter((balance) => {
+    const metadata = getMetadataFromBalancesResponse.optional(balance);
+    const metadataSymbol = metadata?.symbol;
+    const amount = getAmount(balance);
+
+    return metadataSymbol && amount;
+  });
+};
