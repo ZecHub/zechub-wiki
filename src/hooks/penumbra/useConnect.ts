@@ -32,16 +32,16 @@ export default function useConnect() {
   };
 
   const onConnect = async (path: string) => {
-    console.log("onConnect::origin ", path);
 
     try {
       setLoading(true);
       await client.connect(path);
     } catch (err) {
       console.error("onConnect::error: ", err);
+      
       if (err instanceof Error && err.cause) {
         if (err.cause === PenumbraRequestFailure.Denied) {
-          alert("Connection denied");
+          alert("Connection denied by user");
         }
 
         if (err.cause == PenumbraRequestFailure.NeedsLogin) {
@@ -81,6 +81,7 @@ export default function useConnect() {
     loading,
     connected,
     onConnect,
-    onDisconnect
+    onDisconnect,
+    error
   };
 }
