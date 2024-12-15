@@ -31,6 +31,28 @@ export default async function useConnect(origin: string) {
     }
   };
 
+    const onConnect = async (path: string) => {
+      console.log("onConnect::origin ", path);
+
+      try {
+        setLoading(true);
+        await client.connect(path);
+      } catch (err) {
+        console.error("onConnect::error: ", err);
+        if (err instanceof Error && err.cause) {
+          if (err.cause === PenumbraRequestFailure.Denied) {
+            alert("Connection denied");
+          }
+
+          if (err.cause == PenumbraRequestFailure.NeedsLogin) {
+            alert("Please login to the extension and try again");
+          }
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
   useEffect(() => {
     reconnect();
     client.onConnectionStateChange((e) => {
@@ -45,5 +67,6 @@ export default async function useConnect(origin: string) {
   return {
     loading,
     connected,
+    onConnect
   };
 }
