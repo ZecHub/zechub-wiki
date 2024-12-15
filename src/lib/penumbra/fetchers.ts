@@ -44,3 +44,24 @@ export const fetchBalances = async (
     return metadataSymbol && amount;
   });
 };
+
+export const useInfo = (connectedWallet?: string) => {
+  const [address, setAddress] = useState<AddressView>();
+  const [balances, setBalances] = useState<BalancesResponse[]>([]);
+
+  const fetchInfo = useCallback(async () => {
+    if (!connectedWallet) {
+      setAddress(undefined);
+      setBalances([]);
+    } else {
+      setAddress(await fetchAddress(0));
+      setBalances(await fetchBalances(0));
+    }
+  }, [connectedWallet, setAddress]);
+
+  useEffect(() => {
+    fetchInfo();
+  }, [connectedWallet, fetchInfo]);
+
+  return { address, balances };
+};
