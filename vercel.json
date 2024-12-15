@@ -1,10 +1,11 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "package.json",
       "use": "@vercel/node",
       "config": {
-        "installCommand": "npm install --force"
+        "installCommand": "npm ci --force"
       }
     }
   ]
