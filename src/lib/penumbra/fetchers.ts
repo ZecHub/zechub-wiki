@@ -30,7 +30,12 @@ export const fetchBalances = async (
   const iterable = viewService.balances({
     accountFilter: { account: account },
   });
-  const balances = await Array.fromAsync(iterable);
+
+  const balances = [];
+  
+  for await (const bal of iterable) {
+    balances.push(bal);
+  }
 
   return balances.filter((balance) => {
     const metadata = getMetadataFromBalancesResponse.optional(balance);
