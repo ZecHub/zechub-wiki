@@ -1,6 +1,6 @@
 import { contentBanners } from '@/constants/contentBanners';
 import { getRoot } from './authAndFetch';
-import matter from 'gray-matter'; // To parse front matter in markdown
+import matter from 'gray-matter'; 
 
 type MetadataOpts = {
   title?: string;
@@ -9,20 +9,20 @@ type MetadataOpts = {
   url?: string;
 };
 
-// Function to fetch markdown file content from a repository (e.g., GitHub)
+
 const fetchMarkdownFile = async (slug: string) => {
   const response = await fetch(`https://api.github.com/repos/{owner}/{repo}/contents/{path}/${slug}.md`);
   const data = await response.json();
 
   if (data.content) {
-    const content = atob(data.content); // Decode base64 content
+    const content = atob(data.content);
     return content;
   }
 
   throw new Error('Failed to fetch markdown file');
 };
 
-// Function to parse metadata from markdown file using gray-matter
+
 const parseMarkdownMetadata = (content: string) => {
   const { data, content: bodyContent } = matter(content);
 
@@ -30,11 +30,11 @@ const parseMarkdownMetadata = (content: string) => {
     title: data.title || 'Default Title',
     description: data.description || 'Default Description',
     image: data.image || '/previews/default-banner.jpg',
-    bodyContent, // You can use this to render the markdown content
+    bodyContent,
   };
 };
 
-// Modified genMetadata to fetch and generate metadata dynamically from markdown files
+
 export const generateMetadataForMarkdown = async (slug: string) => {
   try {
     // Fetch and parse markdown content from the repository
