@@ -3,9 +3,9 @@
 import useConnect from "@/hooks/penumbra/useConnect";
 import useInfo from "@/hooks/penumbra/useInfo";
 import { useWalletManifests } from "@/hooks/penumbra/useWalletManifests";
-import { AddressViewComponent } from "@penumbra-zone/ui/AddressView";
-
 import { truncateString } from "@/lib/penumbra/format";
+import { AddressViewComponent } from "@penumbra-zone/ui/AddressView";
+import Image from "next/image";
 import { useEffect } from "react";
 import "./penumbra.css";
 
@@ -13,6 +13,8 @@ export default function PenumbraWalletConnect() {
   const { manifest: wallets, loading: loadingManifest } = useWalletManifests();
   const { connected, loading, onConnect, onDisconnect } = useConnect();
   const { address, balances } = useInfo(connected);
+
+  console.log({ balances });
 
   useEffect(() => {
     // Access the DOM and truncate the address once it's rendered
@@ -75,16 +77,44 @@ export default function PenumbraWalletConnect() {
               </span>
             </div>
             <div className="p-balance">
-              <h4>Balance{balances.length === 0 && ": 0"} </h4>
-              {balances.length > 0 && (
+              <h4>Balance:</h4>
+              {balances.length > 0 ? (
                 <ul>
                   {balances.map((bal, i) => (
                     // <WalletBalance key={i} balance={bal} />
-                    <li key={i}>
-                      {String(balances[0].balanceView?.valueView.value)}
+                    <li key={i} className="mb-1">
+                      <p className="flex flex-row gap-1 self-center">
+                        <span>
+                          <Image
+                            src={
+                              bal.balanceView?.valueView.value?.metadata
+                                .images[0].svg
+                            }
+                            width={24}
+                            height={24}
+                            alt={
+                              bal.balanceView?.valueView.value?.metadata.name
+                            }
+                          />
+                        </span>
+                        <span>
+                          {String(
+                            Number(
+                              bal.balanceView?.valueView.value?.amount
+                                ?.lo as unknown as bigint
+                            ) /
+                              10 ** 6
+                          )}{" "}
+                        </span>
+                        <span className="text-slate-300 text-sm self-center">
+                          {bal.balanceView?.valueView.value?.metadata.symbol}
+                        </span>
+                      </p>
                     </li>
                   ))}
                 </ul>
+              ) : (
+                0
               )}
             </div>
           </div>
