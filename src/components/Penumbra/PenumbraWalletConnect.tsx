@@ -68,8 +68,10 @@ export default function PenumbraWalletConnect() {
       {connected && (
         <section className="p-section">
           <div className="p-info">
-            <div className="p-text">
-              Address:
+            <div className="p-text ">
+              <span className="text-slate-400 text-sm font-medium">
+                Address:
+              </span>
               <span>
                 {address && (
                   <AddressViewComponent addressView={address} truncate={true} />
@@ -77,7 +79,7 @@ export default function PenumbraWalletConnect() {
               </span>
             </div>
             <div className="p-balance">
-              <h4>Balance:</h4>
+              <p className="text-slate-400 text-sm font-medium">Balance:</p>
               {balances.length > 0 ? (
                 <ul>
                   {balances.map((bal, i) => (
