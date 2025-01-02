@@ -86,15 +86,21 @@ export default function PenumbraWalletConnect() {
                       <p className="flex flex-row gap-1 self-center">
                         <span>
                           <Image
+                            className="rounded-full"
                             src={
-                              bal.balanceView?.valueView.value?.metadata
-                                .images[0].svg
+                              "metadata" in bal.balanceView?.valueView.value!
+                                ? bal.balanceView?.valueView.value.metadata!
+                                    .images[0].svg || "/penumbra-logo.png"
+                                : "/penumbra-logo.png"
                             }
                             width={24}
                             height={24}
-                            alt={
-                              bal.balanceView?.valueView.value?.metadata.name
-                            }
+                            alt={String(
+                              "metadata" in bal.balanceView?.valueView.value!
+                                ? bal.balanceView?.valueView.value.metadata!
+                                    .name
+                                : ""
+                            )}
                           />
                         </span>
                         <span>
@@ -107,7 +113,9 @@ export default function PenumbraWalletConnect() {
                           )}{" "}
                         </span>
                         <span className="text-slate-300 text-sm self-center">
-                          {bal.balanceView?.valueView.value?.metadata.symbol}
+                          {"metadata" in bal.balanceView?.valueView.value!
+                            ? bal.balanceView?.valueView.value.metadata!.symbol
+                            : ""}
                         </span>
                       </p>
                     </li>
