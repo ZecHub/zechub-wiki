@@ -10,7 +10,7 @@ const projects = [
       "Maya is a decentralized exchange (DEX) system that enables trading of cryptocurrencies across different blockchains.... ",
     link: "https://zechub.wiki/guides/maya-protocol",
     imageUrl:
-      "https://zechub.wiki/_next/image?url=%2Fcontent-banners%2Fbannerguides.png&w=1920&q=75",
+      "https://i.ibb.co/ykvrF7p/GL3-I-yn-Wo-AAQc-Oi.png",
   },
   {
     title: "Zavax Redbridge",
@@ -53,6 +53,13 @@ const projects = [
       "Brave, Electric Coin Co. (ECC), and Filecoin Foundation announced that they are teaming up to bring innovative new privacy features to the Brave browser and its integrated Web3 wallet,...",
     link: "https://brave.com/blog/web3-privacy/",
     imageUrl: "https://i.ibb.co/rd62mr8/bravezcash.jpg",
+  },
+  {
+    title: "Nym Mixnet Network Privacy",
+    description:
+      "With this Nym integration, Zcash is moving to ensure that transactions are fully protected, even while in transit, by obscuring metadata and patterns of transactions,...",
+    link: "https://blog.nymtech.net/zcash-nym-one-step-closer-to-a-full-privacy-payment-network-8b2276e7a55b",
+    imageUrl: "https://i.ibb.co/CmpwX5V/0-nj-QT1k62y3n-QYfwb.png",
   },
 ];
 
