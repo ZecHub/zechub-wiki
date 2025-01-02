@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import useConnect from "@/hooks/penumbra/useConnect";
 import useInfo from "@/hooks/penumbra/useInfo";
 import { useWalletManifests } from "@/hooks/penumbra/useWalletManifests";
