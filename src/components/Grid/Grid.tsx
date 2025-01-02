@@ -21,10 +21,17 @@ const projects = [
   },
   {
     title: "Zaino Indexer",
-    description: "Description for Zaino Indexer... ",
+    description: "Zaino is an Indexer, developed in Rust by the Zingo team, that aims to replace lightwalletd and to push forward the zcashd deprecation project,...",
     link: "https://zechub.wiki/zcash-tech/zaino-indexer#content",
     imageUrl:
       "https://zechub.wiki/_next/image?url=%2Fcontent-banners%2Fbannertech.png&w=1920&q=75",
+  },
+  {
+    title: "FROST for Zcash",
+    description: "FROST improves upon the state of the art in Schnorr threshold signature protocols, as it can be safely used without limiting concurrency of signing operations,...",
+    link: "https://zfnd.org/frost/",
+    imageUrl:
+      "https://i.ibb.co/YQfXp8r/image-2025-01-02-183754891.png",
   },
   {
     title: "Zcash Shielded Assets",
