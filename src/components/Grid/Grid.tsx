@@ -40,6 +40,20 @@ const projects = [
     link: "https://zechub.wiki/zcash-tech/crosslink_protocol#content",
     imageUrl: "https://i.ibb.co/6HZpChV/image-2025-01-01-141008115.png",
   },
+  {
+    title: "Metamask Shielded Snap",
+    description:
+      "The ongoing maintenance and support of the WebZJS library, Metamask Snap and associated browser wallet (soon in production),...",
+    link: "https://forum.zcashcommunity.com/t/webzjs-browser-library-and-browser-wallet-maintenance/49717",
+    imageUrl: "https://i.ibb.co/3Sknkjf/metamask-234363-555.png",
+  },
+  {
+    title: "Brave Browser Shielded Wallet & Messaging Protocol",
+    description:
+      "Brave, Electric Coin Co. (ECC), and Filecoin Foundation announced that they are teaming up to bring innovative new privacy features to the Brave browser and its integrated Web3 wallet,...",
+    link: "https://brave.com/blog/web3-privacy/",
+    imageUrl: "https://i.ibb.co/rd62mr8/bravezcash.jpg",
+  },
 ];
 
 const Grid: React.FC = () => {
