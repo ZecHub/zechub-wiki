@@ -61,6 +61,7 @@ const brandSpedn: BrandSpednType = {
 const storeList = [
   { name: "BarnesAndNoble", displayName: "Barnes & Noble" },
   { name: "BaskinRobbins", displayName: "Baskin-Robbins" },
+  { name: "Chipotle", displayName: "Chipotle" },
   { name: "CoCoBubbleTea", displayName: "CoCo Bubble Tea" },
   { name: "TheCoffeeBean", displayName: "The Coffee Bean & Tea Leaf" },
   { name: "FamousFootwear", displayName: "Famous Footwear" },

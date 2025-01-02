@@ -3,9 +3,9 @@
 import useConnect from "@/hooks/penumbra/useConnect";
 import useInfo from "@/hooks/penumbra/useInfo";
 import { useWalletManifests } from "@/hooks/penumbra/useWalletManifests";
-import { truncateString } from "@/lib/penumbra/format";
 import { AddressViewComponent } from "@penumbra-zone/ui/AddressView";
-import Image from "next/image";
+
+import { truncateString } from "@/lib/penumbra/format";
 import { useEffect } from "react";
 import "./penumbra.css";
 
@@ -13,8 +13,6 @@ export default function PenumbraWalletConnect() {
   const { manifest: wallets, loading: loadingManifest } = useWalletManifests();
   const { connected, loading, onConnect, onDisconnect } = useConnect();
   const { address, balances } = useInfo(connected);
-
-  console.log({ balances });
 
   useEffect(() => {
     // Access the DOM and truncate the address once it's rendered
@@ -83,7 +81,6 @@ export default function PenumbraWalletConnect() {
               {balances.length > 0 ? (
                 <ul>
                   {balances.map((bal, i) => (
-                    // <WalletBalance key={i} balance={bal} />
                     <li key={i} className="mb-1">
                       <p className="flex flex-row gap-1 self-center">
                         <span>
@@ -99,8 +96,7 @@ export default function PenumbraWalletConnect() {
                             height={24}
                             alt={String(
                               "metadata" in bal.balanceView?.valueView.value!
-                                ? bal.balanceView?.valueView.value.metadata!
-                                    .name
+                                ? bal.balanceView?.valueView.value.metadata!.name
                                 : ""
                             )}
                           />
@@ -124,7 +120,7 @@ export default function PenumbraWalletConnect() {
                   ))}
                 </ul>
               ) : (
-                0
+                <p className="p-text">No balances available.</p>
               )}
             </div>
           </div>
