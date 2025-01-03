@@ -22,7 +22,7 @@ const projects = [
   {
     title: "Zaino Indexer",
     description: "Zaino is an Indexer, developed in Rust by the Zingo team, that aims to replace lightwalletd and to push forward the zcashd deprecation project,...",
-    link: "https://zechub.wiki/zcash-tech/zaino-indexer#content",
+    link: "https://zechub.wiki/zcash-tech/zaino#content",
     imageUrl:
       "https://zechub.wiki/_next/image?url=%2Fcontent-banners%2Fbannertech.png&w=1920&q=75",
   },
