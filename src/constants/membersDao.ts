@@ -1,6 +1,6 @@
 export const daoMembers = [
         {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1844114414317801472/2RD8YvX6_400x400.jpg',
+        imgUrl: 'https://pbs.twimg.com/profile_images/1853492798298750976/e_BnXZX4_400x400.jpg',
         name: 'Cassia',
         description: `Junior Python Developer and Data Scientist`,
         linkName:'Twiiter',
@@ -43,7 +43,7 @@ export const daoMembers = [
         zcashAddress: 'u1xut04cg3v0a5zqpud5l5nrkx8x4847q2fg38jzw8840aqj6e6gzj6m4paae906h88dsehymz5m28lrdfgwcvkymhqpfk0hlmjx2gef08q3rty9ljvnvxv9fevggegzqeql63dl220kpwe4n60kzwz87eq7mj8ppsuhqhvdzhdp00dymfgrc05e73ljwagn6ct5t33nrel0n7gxftv29'
     },
     {
-        imgUrl: 'https://pbs.twimg.com/profile_images/1822790017543995392/eSLHSXKD_400x400.jpg',
+        imgUrl: 'https://pbs.twimg.com/profile_images/1857956807957688320/MXJltXFR_400x400.jpg',
         name: 'Yoditar',
         description: 'SpacesHost | Blogger | Crypto community builder: @zcashesp and @libredotorg | Ambassador @Vivaldi_es | Privacy activist',
         linkName: 'Twitter',
