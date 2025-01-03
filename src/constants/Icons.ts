@@ -8,6 +8,7 @@ import {
   SiTorbrowser as TorBrowser,
   SiOpenvpn as Openvpn,
   SiZebratechnologies as Zebratechnologies,
+  SiLetsencrypt as Letsencrypt,
 } from "react-icons/si";
 import {
   PiShootingStarThin as ShootingStar,
@@ -19,6 +20,9 @@ import {
   PiSpotifyLogo as Spotify,
   PiComputerTower as ComputerTower,
 } from "react-icons/pi";
+import {
+TfiServer as Tfi,
+} from "react-icons/tfi";
 import {
   RiSecurePaymentLine as SecurePayment,
   RiMailSendFill as MailSend,
@@ -55,6 +59,9 @@ import {
   FcGallery,
   FcGlobe as Globe,
 } from "react-icons/fc";
+import {
+  GoSync as Go,
+} from "react-icons/go";
 import {
   BsFillArrowUpRightCircleFill as ArrowUp,
   BsShieldShaded as ShieldShaded,
@@ -162,8 +169,12 @@ const iconsForMenu: IconsFor = {
   },
   "Zcash Tech": {
     "zk SNARKS": Circuitry,
-    Halo: NumberCircle,
-    FROST: SnowFlake,
+    "Halo": NumberCircle,
+    "FROST": SnowFlake,
+    "Zaino": Tfi,
+    "Zcash Wallet Syncing": Go,
+    "Zebra Full Node": Zebratechnologies,
+    "Zk SNARKS": Letsencrypt,
     "Viewing Keys": FileKey,
     "Zcash Shielded Assets": DollarZimbabwean,
     "Lightwallet Nodes": ComputerTower,
@@ -178,7 +189,7 @@ const iconsForMenu: IconsFor = {
     "Community Links": LinkSimpleBold,
     "Community Blogs": Blog,
     "Zcash Global Ambassadors": Globe,
-    ZCAP: Group,
+    "ZCAP": Group,
     "Community Projects": BuildOutline,
     "Arborist Calls": Trees,
     "Cypherpunk Zero NFT": NftFill,
