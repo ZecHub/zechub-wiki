@@ -15,7 +15,7 @@ const projects = [
   {
     title: "Zcash Avalanche Redbridge",
     description: "The Zcash-Avalanche Red-Bridge is a decentralized bridge that enables interoperability between the Zcash (ZEC) and Avalanche (AVAX) blockchains,...",
-    link: "https://zechub.wiki/guides/zcash-avalanche-redbridge#content",
+    link: "https://zechub.wiki/guides/redbridge#content",
     imageUrl:
       "https://images.ctfassets.net/jg6lo9a2ukvr/27nB85zQBKXGOyMzsGpH6r/0fc7d99bc7a53a90002614480e16f4c9/AVAX-TokenLaunch-Blog-Header.png?fm=webp",
   },
