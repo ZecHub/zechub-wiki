@@ -44,7 +44,7 @@ const projects = [
     title: "Hybrid Proof of Stake (Crosslink)",
     description:
       "The Crosslink protocol is a proposed design for Zcash hybrid Proof-of-Work/Proof-of-Stake (PoW/PoS) stage,...",
-    link: "https://zechub.wiki/zcash-tech/crosslink_protocol#content",
+    link: "https://zechub.wiki/zcash-tech/crosslink-protocol#content",
     imageUrl: "https://i.ibb.co/6HZpChV/image-2025-01-01-141008115.png",
   },
   {
