@@ -37,6 +37,7 @@ import {
   GrCircleInformation as CircleInfo,
   GrGroup as Group,
   GrNodes as Nodes,
+  GrStakeholder as Stakeholder,
 } from "react-icons/gr";
 import {
   TbBinaryTree2 as BinaryTree,
@@ -169,6 +170,7 @@ const iconsForMenu: IconsFor = {
     "Zcash Improvement Proposals": GrDocumentZip,
   },
   "Zcash Tech": {
+    "Crosslink Protocol": Stakeholder,
     "zk SNARKS": Circuitry,
     "Halo": NumberCircle,
     "FROST": SnowFlake,
