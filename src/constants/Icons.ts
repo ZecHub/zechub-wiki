@@ -36,6 +36,7 @@ import {
   GrResources as Resources,
   GrCircleInformation as CircleInfo,
   GrGroup as Group,
+  GrNodes as Nodes,
 } from "react-icons/gr";
 import {
   TbBinaryTree2 as BinaryTree,
@@ -171,6 +172,7 @@ const iconsForMenu: IconsFor = {
     "zk SNARKS": Circuitry,
     "Halo": NumberCircle,
     "FROST": SnowFlake,
+    "Full Nodes": Nodes,
     "Zaino": Tfi,
     "Zcash Wallet Syncing": Go,
     "Zebra Full Node": Zebratechnologies,
