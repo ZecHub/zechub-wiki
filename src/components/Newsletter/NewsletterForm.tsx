@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import styles from "./NewsletterForm.module.css";
 
-const NewsletterForm = () => {
+const NewsletterForm: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<"ecosystemnews" | "networkstats" | null>(null);
   const [address, setAddress] = useState("");
-  const [confirmationMessage, setConfirmationMessage] = useState("");
 
   const handleSubmit = () => {
     if (!address) {
@@ -13,14 +12,13 @@ const NewsletterForm = () => {
     }
 
     const optionName = selectedOption === "ecosystemnews" ? "Ecosystem News" : "Network Stats";
-    setConfirmationMessage(`Your address has been submitted for ${optionName}.`);
+    alert(`Your address has been submitted for ${optionName}.`);
     setAddress(""); // Clear the input field after submission
   };
 
   return (
     <div className={styles.container}>
-      <h1>Sign Up to the Shielded Newsletter</h1>
-      <p>🔒 Why Join? Stay informed...</p>
+      <h2 className="text-2xl font-semibold mb-6">Sign Up</h2>
       <div className={styles.buttons}>
         <button
           onClick={() => setSelectedOption("ecosystemnews")}
@@ -49,7 +47,6 @@ const NewsletterForm = () => {
           </button>
         </div>
       )}
-      {confirmationMessage && <p className={styles.confirmation}>{confirmationMessage}</p>}
     </div>
   );
 };
