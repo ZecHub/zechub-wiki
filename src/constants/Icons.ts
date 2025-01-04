@@ -19,6 +19,7 @@ import {
   PiPresentationChartLight as PresentationChar,
   PiSpotifyLogo as Spotify,
   PiComputerTower as ComputerTower,
+  PiListMagnifyingGlassFill as ListMagnifyingGlassFill,
 } from "react-icons/pi";
 import {
 TfiServer as Tfi,
@@ -98,6 +99,8 @@ import {
   GiCheckedShield as CheckedShield,
   GiBorderedShield as BordererShield,
   GiSpellBook as SpellBook,
+  GiCableStayedBridge as CableStayedBridge,
+  GiMayanPyramid as MayanPyramid,
   GiMeshBall,
 } from "react-icons/gi";
 import { LuFileKey as FileKey, LuTrees as Trees } from "react-icons/lu";
@@ -159,6 +162,9 @@ const iconsForMenu: IconsFor = {
   Guides: {
     "Using ZEC Privately": PrivacyTip,
     "Visualizing Zcash Addresses": QrCode,
+    "Blockchain Explorers": ListMagnifyingGlassFill,
+    "Maya Protocol": MayanPyramid,
+    "Avalanche RedBridge": CableStayedBridge,
     "Full Nodes": ServerSolid,
     "Raspberry Pi 4 Full Node": RaspBerry,
     "Raspberry pi 4 Zebra Node": Zebratechnologies,
