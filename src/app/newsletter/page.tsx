@@ -1,7 +1,7 @@
 import React from "react";
 import NewsletterForm from "../../components/Newsletter/NewsletterForm";
 
-const NewsletterPage = () => {
+const Page = () => {
   return (
     <div>
       <NewsletterForm />
@@ -9,4 +9,4 @@ const NewsletterPage = () => {
   );
 };
 
-export default NewsletterPage;
+export default Page;
