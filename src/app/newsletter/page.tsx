@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 
 const Newsletter: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const [unifiedAddress, setUnifiedAddress] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Ecosystem News");
 
   const handleSubmit = async () => {
+    setLoading(true);
     if (!unifiedAddress || !selectedCategory) {
       alert("Please enter a Unified Address and select a category.");
       return;
@@ -25,13 +27,16 @@ const Newsletter: React.FC = () => {
       });
 
       if (response.ok) {
+        setLoading(false);
         alert("Unified address submitted successfully!");
         setUnifiedAddress("");
         setSelectedCategory("Ecosystem News");
       } else {
+        setLoading(false);
         alert("Failed to submit the address.");
       }
     } catch (error) {
+      setLoading(false);
       console.error("Error submitting address:", error);
       alert("An error occurred. Please try again.");
     }
@@ -46,7 +51,9 @@ const Newsletter: React.FC = () => {
         <button
           onClick={() => setSelectedCategory("Ecosystem News")}
           className={`md:px-6 px-2 py-2 font-semibold rounded-lg ${
-            selectedCategory !== "Ecosystem News" ? "bg-gray-200" : "bg-[#1984c7] text-white"
+            selectedCategory !== "Ecosystem News"
+              ? "bg-gray-200"
+              : "bg-[#1984c7] text-white"
           }`}
         >
           Ecosystem News
@@ -54,7 +61,9 @@ const Newsletter: React.FC = () => {
         <button
           onClick={() => setSelectedCategory("Network Stats")}
           className={`md:px-6 px-4 py-2 font-semibold rounded-lg ${
-            selectedCategory !== "Network Stats" ? "bg-gray-200" : "bg-[#1984c7] text-white"
+            selectedCategory !== "Network Stats"
+              ? "bg-gray-200"
+              : "bg-[#1984c7] text-white"
           }`}
         >
           Network Stats
@@ -71,7 +80,7 @@ const Newsletter: React.FC = () => {
         onClick={handleSubmit}
         className="mt-4 px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700"
       >
-        Submit
+        {loading ? "Submitting..." : "Subscribe"}
       </button>
     </div>
   );
