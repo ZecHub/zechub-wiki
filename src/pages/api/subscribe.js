@@ -7,11 +7,7 @@ export default function handler(req, res) {
 
     // Basic validation for Unified Address
     const isValidUnifiedAddress = (address) => {
-      return (
-        typeof address === "string" &&
-        address.startsWith("u") &&
-        address.length >= 78
-      );
+      return typeof address === "string" && address.length >= 10;
     };
 
     if (
