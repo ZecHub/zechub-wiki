@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import QRCodeComponent from "./QRCodeComponent"; // Import your QRCodeComponent
+import QRCodeComponent from "./QRCodeComponent";
 
 const Newsletter: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -9,44 +9,14 @@ const Newsletter: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("Ecosystem News");
   const [paymentUri, setPaymentUri] = useState<string | null>(null);
 
-  const handleSubmit = async () => {
-    setLoading(true);
+  const handleSubmit = () => {
     if (!unifiedAddress || !selectedCategory) {
       alert("Please enter a Unified Address and select a category.");
-      setLoading(false);
       return;
     }
 
-    try {
-      // Construct the memo based on the selected category
-      const memo = `${selectedCategory} | Address: ${unifiedAddress}`;
-
-      // Base64 URL encode the memo
-      const base64UrlEncode = (input: string) => {
-        const base64Encoded = btoa(unescape(encodeURIComponent(input)));
-        return base64Encoded
-          .replace(/\+/g, "-")
-          .replace(/\//g, "_")
-          .replace(/=+$/, "");
-      };
-
-      const encodedMemo = base64UrlEncode(memo);
-
-      // Define the Zcash payment URI
-      const zcashAddress =
-        "zcash:u1n6sscrlxhz8a9wlvfa076rux7q00lff48jt62kje09ds5ntynlp2hcrsf3emtprts3z59yt99cvzwvnz7lvzgrpdxqrj3kxfx98y2pt46qry87rqcfuj02x3xsj0jqqnehhzd8hy090tntqwsx8ncatsckzmnw43yqqntuv668av4vhqf2p6payrz94cstm2v465f4nllmpawp5jcat";
-      const amount = "0.05"; // Example amount in ZEC
-      const uri = `${zcashAddress}?amount=${amount}&memo=${encodedMemo}`;
-
-      // Save the generated URI to state
-      setPaymentUri(uri);
-
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.error("Error generating payment URI:", error);
-      alert("An error occurred. Please try again.");
-    }
+    const memo = `${selectedCategory} | Address: ${unifiedAddress}`;
+    setPaymentUri(memo);
   };
 
   return (
@@ -94,10 +64,7 @@ const Newsletter: React.FC = () => {
 
       {paymentUri && (
         <div className="mt-6">
-          <QRCodeComponent prefix="ZecHub" memo={paymentUri} encrypt={false} fec={false} />
-          <p className="text-sm text-gray-500 mt-2">
-            Scan the QR code or click it to complete your payment.
-          </p>
+          <QRCodeComponent memo={paymentUri} />
         </div>
       )}
     </div>
