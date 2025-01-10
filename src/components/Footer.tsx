@@ -42,7 +42,7 @@ const Footer = () => {
         </div>
         <div className="flex justify-center flex-col my-3">
           <span className="text-sm  sm:text-center">
-            © 2024{" "}
+            © 2025{" "}
             <a href="null" className="hover:underline">
               Zechub™
             </a>
