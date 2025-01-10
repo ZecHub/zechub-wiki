@@ -34,7 +34,7 @@ const Newsletter: React.FC = () => {
 
       // Define the Zcash payment URI
       const zcashAddress =
-        "zcash:u1w2xxkpqq84j09rku9s3nsu7q0w2s8l2ducurgmuq0ezp97cdp7ku7pdfst6npw7sgqc4zat6tawvcqhwfde7zsvwcn4l87h8l2h484uukj2t6yh72zk96uapwvvclkctuvg0rpjkda4vwg34gl2sxlk6r27qztuqlz7zf7d2x9ycyh9g0mlhn64ey026fes4l0alxf7cx8d4un8ret9";
+        "zcash:u1n6sscrlxhz8a9wlvfa076rux7q00lff48jt62kje09ds5ntynlp2hcrsf3emtprts3z59yt99cvzwvnz7lvzgrpdxqrj3kxfx98y2pt46qry87rqcfuj02x3xsj0jqqnehhzd8hy090tntqwsx8ncatsckzmnw43yqqntuv668av4vhqf2p6payrz94cstm2v465f4nllmpawp5jcat";
       const amount = "0.05"; // Example amount in ZEC
       const uri = `${zcashAddress}?amount=${amount}&memo=${encodedMemo}`;
 
