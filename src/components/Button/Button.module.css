@@ -1,0 +1,36 @@
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 2px solid transparent;
+    /* color: #333; */
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .button[href*="sprout-pool"] {
+    background-color: rgba(128, 0, 128, 0.2); /* Purple with 20% transparency */
+  }
+  
+  .button[href*="sapling-pool"] {
+    background-color: rgba(255, 177, 0, 0.2); /* Yellow with 20% transparency */
+  }
+  
+  .button[href*="orchard-pool"] {
+    background-color: rgba(0, 163, 255, 0.2); /* Blue with 20% transparency */
+  }
+  
+  .button:hover {
+    background-color: rgba(255, 177, 0, 0.5); /* Yellow with 50% transparency */
+  }
+  
+  .button:hover[href*="orchard-pool"] {
+    background-color: rgba(0, 163, 255, 0.5); /* Blue with 50% transparency */
+  }
+  
+  .button:hover[href*="sprout-pool"] {
+    background-color: rgba(128, 0, 128, 0.5); /* Purple with 50% transparency */
+  }
+  

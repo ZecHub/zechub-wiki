@@ -1,0 +1,200 @@
+.donation-container {
+  display: flex;
+  flex-direction: column; /* Ensure vertical stacking */
+  align-items: center; /* Center align all items */
+  gap: 2rem; /* Space between elements */
+}
+
+.zcash-image {
+  flex-basis: auto;
+}
+
+.donation-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the slider */
+  width: 100%;
+}
+
+.currency-switch {
+  margin-top: 5px; /* Bring currency options higher */
+}
+
+.donation-header {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+.donation-header h1 {
+  position: relative;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 2rem;
+  margin-bottom: 2rem;
+}
+
+.donation-header p {
+  color: #374151;
+  font-size: 1rem;
+  max-width: 1000px;
+}
+
+.input-range {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.amount {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: #22d3ee;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.input-number {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+label {
+  font-weight: 600;
+}
+
+.slider {
+  width: 80%; /* Adjust slider width */
+  -webkit-appearance: none;
+  appearance: none;
+  height: 15px; /* Make the slider larger */
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px; /* Increase thumb size */
+  height: 20px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+}
+
+/* Predefined value buttons */
+.amount-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.amount-buttons button {
+  padding: 0.5rem 1rem;
+  background-color: #22d3ee;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.amount-buttons button:hover {
+  background-color: #0ea5c0;
+}
+
+/* Center the memo box */
+.donation-memo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.donation-memo textarea {
+  /* width: 80%; */
+  width: 320px;
+  height: 160px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+}
+
+.donation-memo div {
+  margin-top: 0.5rem;
+}
+
+/* Media queries for mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .donation-container {
+    flex-direction: column;
+  }
+
+  .zcash-image,
+  .donation-slider {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .amount-buttons {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .amount-buttons button {
+    margin-bottom: 0.5rem;
+  }
+
+  .slider {
+    width: 100%; /* Full width slider for mobile */
+  }
+
+  .donation-memo textarea {
+    width: 320px; /* Full width memo box for mobile */
+    height: 120px;
+  }
+}
+
+.nav-donate-btn button {
+  border: none;
+}
+
+.nav-donate-btn button:hover {
+  transform: scale(1.05);
+  transition: all 0.4s;
+}
+
+.new-input-size {
+  height: 40px;
+  width: 320px;
+}
+
+.new-value-buttons button {
+  margin: 8px 16px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+}
+
+.donation-border {
+  border: 2px solid #d3d3d3;
+}
