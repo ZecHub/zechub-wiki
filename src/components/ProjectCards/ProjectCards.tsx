@@ -1,5 +1,3 @@
-// components/Cards.tsx
-
 import React from "react";
 import styles from "./ProjectCards.module.css";
 
@@ -41,3 +39,4 @@ const ProjectCards: React.FC<CardsProps> = ({
 };
 
 export default ProjectCards;
+ 
