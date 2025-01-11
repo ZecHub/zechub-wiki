@@ -1,5 +1,3 @@
-// components/Cards.tsx
-
 import React from "react";
 import styles from "./ProjectCards.module.css";
 
@@ -20,23 +18,23 @@ const ProjectCards: React.FC<CardsProps> = ({
 }) => {
   return (
     <div className={styles.card}>
-      <a href={link} target="_blank" rel="noopener noreferrer">
+      <div className={styles.header}>
         <img src={imageSrc} alt={title} className={styles.image} />
         <h2 className={styles.title}>{title}</h2>
-      </a>
-      <p className={styles.description}>
-        {description}
-      </p>
-        <a
-          className={styles.para}
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      </div>
+      <div className={styles.body}>
+        <p className={styles.description}>
+          {description}
+        </p>
+        {children}
+      </div>
+      <div className={styles.footer}>
+        <a className={styles.link} href={link} target="_blank" rel="noopener noreferrer">
           Read more
         </a>
-      {children}
+      </div>
     </div>
+
   );
 };
 
