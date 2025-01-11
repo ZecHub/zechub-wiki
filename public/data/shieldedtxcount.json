@@ -369,5 +369,41 @@
     "sapling": 94,
     "orchard": 213,
     "timestamp": "01/01/2025"
+  },
+  {
+    "sprout": 2,
+    "sapling": 141,
+    "orchard": 240,
+    "timestamp": "01/02/2025"
+  },
+  {
+    "sprout": 7,
+    "sapling": 155,
+    "orchard": 252,
+    "timestamp": "01/03/2025"
+  },
+  {
+    "sprout": 2,
+    "sapling": 139,
+    "orchard": 256,
+    "timestamp": "01/05/2025"
+  },
+  {
+    "sprout": 3,
+    "sapling": 156,
+    "orchard": 272,
+    "timestamp": "01/06/2025"
+  },
+  {
+    "sprout": 2,
+    "sapling": 174,
+    "orchard": 248,
+    "timestamp": "01/07/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 125,
+    "orchard": 243,
+    "timestamp": "01/08/2025"
   }
 ]

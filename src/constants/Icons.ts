@@ -8,6 +8,7 @@ import {
   SiTorbrowser as TorBrowser,
   SiOpenvpn as Openvpn,
   SiZebratechnologies as Zebratechnologies,
+  SiLetsencrypt as Letsencrypt,
 } from "react-icons/si";
 import {
   PiShootingStarThin as ShootingStar,
@@ -18,7 +19,11 @@ import {
   PiPresentationChartLight as PresentationChar,
   PiSpotifyLogo as Spotify,
   PiComputerTower as ComputerTower,
+  PiListMagnifyingGlassFill as ListMagnifyingGlassFill,
 } from "react-icons/pi";
+import {
+TfiServer as Tfi,
+} from "react-icons/tfi";
 import {
   RiSecurePaymentLine as SecurePayment,
   RiMailSendFill as MailSend,
@@ -32,6 +37,8 @@ import {
   GrResources as Resources,
   GrCircleInformation as CircleInfo,
   GrGroup as Group,
+  GrNodes as Nodes,
+  GrStakeholder as Stakeholder,
 } from "react-icons/gr";
 import {
   TbBinaryTree2 as BinaryTree,
@@ -55,6 +62,9 @@ import {
   FcGallery,
   FcGlobe as Globe,
 } from "react-icons/fc";
+import {
+  GoSync as Go,
+} from "react-icons/go";
 import {
   BsFillArrowUpRightCircleFill as ArrowUp,
   BsShieldShaded as ShieldShaded,
@@ -89,6 +99,8 @@ import {
   GiCheckedShield as CheckedShield,
   GiBorderedShield as BordererShield,
   GiSpellBook as SpellBook,
+  GiCableStayedBridge as CableStayedBridge,
+  GiMayanPyramid as MayanPyramid,
   GiMeshBall,
 } from "react-icons/gi";
 import { LuFileKey as FileKey, LuTrees as Trees } from "react-icons/lu";
@@ -150,6 +162,9 @@ const iconsForMenu: IconsFor = {
   Guides: {
     "Using ZEC Privately": PrivacyTip,
     "Visualizing Zcash Addresses": QrCode,
+    "Blockchain Explorers": ListMagnifyingGlassFill,
+    "Maya Protocol": MayanPyramid,
+    "Avalanche RedBridge": CableStayedBridge,
     "Full Nodes": ServerSolid,
     "Raspberry Pi 4 Full Node": RaspBerry,
     "Raspberry pi 4 Zebra Node": Zebratechnologies,
@@ -161,9 +176,15 @@ const iconsForMenu: IconsFor = {
     "Zcash Improvement Proposals": GrDocumentZip,
   },
   "Zcash Tech": {
+    "Crosslink Protocol": Stakeholder,
     "zk SNARKS": Circuitry,
-    Halo: NumberCircle,
-    FROST: SnowFlake,
+    "Halo": NumberCircle,
+    "FROST": SnowFlake,
+    "Full Nodes": Nodes,
+    "Zaino": Tfi,
+    "Zcash Wallet Syncing": Go,
+    "Zebra Full Node": Zebratechnologies,
+    "Zk SNARKS": Letsencrypt,
     "Viewing Keys": FileKey,
     "Zcash Shielded Assets": DollarZimbabwean,
     "Lightwallet Nodes": ComputerTower,
@@ -178,7 +199,7 @@ const iconsForMenu: IconsFor = {
     "Community Links": LinkSimpleBold,
     "Community Blogs": Blog,
     "Zcash Global Ambassadors": Globe,
-    ZCAP: Group,
+    "ZCAP": Group,
     "Community Projects": BuildOutline,
     "Arborist Calls": Trees,
     "Cypherpunk Zero NFT": NftFill,
