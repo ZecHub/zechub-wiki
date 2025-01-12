@@ -24,7 +24,8 @@
   margin-bottom: 24px;
 }
 
-.header .title {
+/* .header  */
+.title {
   font-size: 1.2rem;
   font-weight: bold;
   color: #666;
@@ -40,7 +41,8 @@
   overflow: hidden; /* Prevents overflow of content */
 }
 
-.body .description {
+/* .body  */
+.description {
   font-size: 1rem;
   color: #555;
   margin-bottom: 16px;
@@ -59,7 +61,8 @@
   align-items: center;
 }
 
-.footer .link {
+/* .footer  */
+.link {
   font-size: 0.95rem;
   color: #007BFF;
   text-decoration: none;
