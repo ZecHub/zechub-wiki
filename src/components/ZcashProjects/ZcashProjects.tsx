@@ -17,7 +17,11 @@ const toBase64Url = (str: string) => {
 const ZcashProjectsComp = () => {
   return (
     <div className="zcash-projects-container">
-      <h1 className="my-48 dark:text-slate-100">Zcash Projects</h1>
+      <div className="text-center"> 
+        <h1 className="dark:text-slate-100 text-slate-800">Zcash Projects</h1>
+        <p className="dark:text-slate-400 text-slate-800 text-lg">
+          A collection of projects that are currently being developed in the Zcash ecosystem.</p>
+      </div>
       <Grid />
     </div>
   );
