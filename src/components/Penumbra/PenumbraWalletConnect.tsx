@@ -4,9 +4,8 @@ import Image from "next/image";
 import useConnect from "@/hooks/penumbra/useConnect";
 import useInfo from "@/hooks/penumbra/useInfo";
 import { useWalletManifests } from "@/hooks/penumbra/useWalletManifests";
-import { AddressViewComponent } from "@penumbra-zone/ui/AddressView";
-
 import { truncateString } from "@/lib/penumbra/format";
+import { AddressViewComponent } from "@penumbra-zone/ui/AddressView";
 import { useEffect } from "react";
 import "./penumbra.css";
 
@@ -82,6 +81,7 @@ export default function PenumbraWalletConnect() {
               {balances.length > 0 ? (
                 <ul>
                   {balances.map((bal, i) => (
+                    // <WalletBalance key={i} balance={bal} />
                     <li key={i} className="mb-1">
                       <p className="flex flex-row gap-1 self-center">
                         <span>
@@ -97,7 +97,8 @@ export default function PenumbraWalletConnect() {
                             height={24}
                             alt={String(
                               "metadata" in bal.balanceView?.valueView.value!
-                                ? bal.balanceView?.valueView.value.metadata!.name
+                                ? bal.balanceView?.valueView.value.metadata!
+                                    .name
                                 : ""
                             )}
                           />
@@ -121,7 +122,7 @@ export default function PenumbraWalletConnect() {
                   ))}
                 </ul>
               ) : (
-                <p className="p-text">No balances available.</p>
+                <p className="p-text">No balance</p>
               )}
             </div>
           </div>
