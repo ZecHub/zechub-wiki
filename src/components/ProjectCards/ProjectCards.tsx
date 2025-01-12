@@ -29,7 +29,7 @@ const ProjectCards: React.FC<CardsProps> = ({
         {children}
       </div>
       <div className={styles.footer}>
-        <a className={`${styles.link}  dark:text-blue-400 mb-6`} href={link} target="_blank" rel="noopener noreferrer">
+        <a className={`${styles.link}  dark:text-[#83cbf8] mb-6`} href={link} target="_blank" rel="noopener noreferrer">
           Read more
         </a>
       </div>
