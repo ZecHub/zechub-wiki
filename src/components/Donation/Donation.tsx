@@ -124,24 +124,21 @@ const DonationComp = () => {
 
   const handleOnClick = (tokenName: string, tokenImg: StaticImageData) => {
     setImgFade(true); // Trigger fade out
-    // setImgLogo(tokenImg);
-    setNewImgLogo(tokenImg); // Set the new image temporarily
 
     setTimeout(() => {
       setSelectedCurrency(tokenName);
       setImgLogo(tokenImg);
       setImgFade(false); // Trigger fade in
-      setNewImgLogo(null); // Clear the temporary new image
     }, 500); // Match the duration of the transition
   };
 
   return (
-    <div className="flex justify-evenly mt-24">
+    <div className="flex justify-evenly mt-24 overflow-hidden">
       <div className="hidden md:block">
         <div id="img-container" className="mt-72">
           {imgLogo && (
             <Image
-              src={newImgLogo ? newImgLogo : imgLogo}
+              src={imgLogo}
               alt={selectedCurrency}
               className={`w-72 h-72 transition-opacity duration-500 ease-in-out ${
                 imgFade ? "opacity-0" : "opacity-100"
@@ -254,6 +251,7 @@ const DonationComp = () => {
           </div>
 
           {/* Slider */}
+
           <div
             className="donation-slider"
             style={{ marginTop: "20px", textAlign: "center" }}
@@ -278,10 +276,9 @@ const DonationComp = () => {
               {donationAmount}{" "}
               {selectedCurrency === "penumbra"
                 ? "PENUMBRA"
-                : selectedCurrency.toUpperCase()}
+                : String(selectedCurrency).toUpperCase()}
             </p>
           </div>
-
           {/* Memo */}
           <div
             className="donation-memo"
@@ -296,13 +293,18 @@ const DonationComp = () => {
               placeholder="Add a memo (Optional, max 512 characters)"
             />
             <div
-              style={{ textAlign: "right", fontSize: "12px", color: "gray" }}
+              style={{
+                textAlign: "right",
+                fontSize: "12px",
+                color: "gray",
+              }}
             >
               {memo.length}/512
             </div>
           </div>
 
           {error && <p style={{ color: "red" }}>{error}</p>}
+
           <PenumbraWalletConnect />
         </div>
       </div>
