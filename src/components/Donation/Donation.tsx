@@ -1,7 +1,7 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
 import QRCode from "qrcode.react";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import namadaLogo from "../../../public/namada-logo.png";
 import penumbraLogo from "../../../public/penumbra-logo.png";
 import ycashLogo from "../../../public/ycash-logo.png";
@@ -20,6 +20,9 @@ const DonationComp = () => {
   const [imgLogo, setImgLogo] = useState<StaticImageData>(zcashLogo); // Memo for the donation
   const [selectedCurrency, setSelectedCurrency] = useState("zcash"); // Track selected currency
   const [error, setError] = useState<string | null>(null); // Error state for invalid input
+
+  const [imgFade, setImgFade] = useState(false);
+  const [newImgLogo, setNewImgLogo] = useState<StaticImageData | null>(null); // Temporary new image
 
   const zcashAddress =
     "zcash:u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89";
@@ -119,15 +122,30 @@ const DonationComp = () => {
     );
   };
 
+  const handleOnClick = (tokenName: string, tokenImg: StaticImageData) => {
+    setImgFade(true); // Trigger fade out
+    // setImgLogo(tokenImg);
+    setNewImgLogo(tokenImg); // Set the new image temporarily
+
+    setTimeout(() => {
+      setSelectedCurrency(tokenName);
+      setImgLogo(tokenImg);
+      setImgFade(false); // Trigger fade in
+      setNewImgLogo(null); // Clear the temporary new image
+    }, 500); // Match the duration of the transition
+  };
+
   return (
     <div className="flex justify-evenly mt-24">
       <div className="hidden md:block">
         <div id="img-container" className="mt-72">
           {imgLogo && (
             <Image
-              src={imgLogo}
+              src={newImgLogo ? newImgLogo : imgLogo}
               alt={selectedCurrency}
-              className="w-72 h-72 transition-opacity duration-500 ease-in-out"
+              className={`w-72 h-72 transition-opacity duration-500 ease-in-out ${
+                imgFade ? "opacity-0" : "opacity-100"
+              } `}
             />
           )}
         </div>
@@ -151,10 +169,7 @@ const DonationComp = () => {
             }}
           >
             <button
-              onClick={() => {
-                setSelectedCurrency("zcash");
-                setImgLogo(zcashLogo);
-              }}
+              onClick={() => handleOnClick("zcash", zcashLogo)}
               className={selectedCurrency === "zcash" ? "active" : ""}
               style={{
                 borderRadius: "50%",
@@ -175,10 +190,7 @@ const DonationComp = () => {
             </button>
 
             <button
-              onClick={() => {
-                setSelectedCurrency("ycash");
-                setImgLogo(ycashLogo);
-              }}
+              onClick={() => handleOnClick("ycash", ycashLogo)}
               className={selectedCurrency === "ycash" ? "active" : ""}
               style={{
                 borderRadius: "50%",
@@ -199,10 +211,7 @@ const DonationComp = () => {
             </button>
 
             <button
-              onClick={() => {
-                setSelectedCurrency("namada");
-                setImgLogo(namadaLogo);
-              }}
+              onClick={() => handleOnClick("namada", namadaLogo)}
               className={selectedCurrency === "namada" ? "active" : ""}
               style={{
                 borderRadius: "50%",
@@ -223,11 +232,7 @@ const DonationComp = () => {
             </button>
 
             <button
-              onClick={() => {
-                setSelectedCurrency("penumbra");
-
-                setImgLogo(penumbraLogo);
-              }}
+              onClick={() => handleOnClick("penumbra", penumbraLogo)}
               className={selectedCurrency === "penumbra" ? "active" : ""}
               style={{
                 borderRadius: "50%",
