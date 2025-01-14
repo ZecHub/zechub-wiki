@@ -3,6 +3,7 @@
   flex-direction: column; /* Ensure vertical stacking */
   align-items: center; /* Center align all items */
   gap: 2rem; /* Space between elements */
+  padding: 28px;
 }
 
 .zcash-image {
@@ -196,5 +197,5 @@ label {
 }
 
 .donation-border {
-  border: 2px solid #d3d3d3;
+  border: 1px solid #d3d3d3;
 }
