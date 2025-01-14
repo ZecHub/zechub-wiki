@@ -319,7 +319,7 @@ const DonationComp = () => {
               </div>
             </>
           ) : (
-            <div className="my-9">
+            <div className="my-10">
               <PenumbraWalletConnect />
             </div>
           )}
