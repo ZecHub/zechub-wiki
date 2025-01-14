@@ -127,6 +127,11 @@ export const navigations = [
         path: "/zcash-organizations/shielded-labs",
         icon: Shieldedlabs,
       },
+      {
+        subName: "Zingo Labs",
+        path: "/zcash-organizations/zingo-labs",
+        icon: Zingolabs,
+      },
     ],
   },
   {
