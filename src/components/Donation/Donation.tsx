@@ -154,7 +154,7 @@ const DonationComp = () => {
             <Image
               src={imgLogo}
               alt={selectedCurrency}
-              className={`w-72 h-72 transition-opacity duration-500 ease-in-out ${
+              className={`w-96 h-96 transition-opacity duration-500 ease-in-out ${
                 imgFade ? "opacity-0" : "opacity-100"
               } `}
             />
