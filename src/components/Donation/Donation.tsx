@@ -6,6 +6,10 @@ import namadaLogo from "../../../public/namada-logo.png";
 import penumbraLogo from "../../../public/penumbra-logo.png";
 import ycashLogo from "../../../public/ycash-logo.png";
 import zcashLogo from "../../../public/zcash-logo.png";
+import zcashIsometricLogo from "../../../public/donation-isometric/i4_zcash_-_isometric.png";
+import namadaIsometricLogo from "../../../public/donation-isometric/i2_Namada_-_Isometric.png";
+import ycashIsometricLogo from "../../../public/donation-isometric/i3_Ycash_-_Isometric.png";
+import penumbraIsometricLogo from "../../../public/donation-isometric/i1_Penumbra_-_Isometric.png";
 import PenumbraWalletConnect from "../Penumbra/PenumbraWalletConnect";
 import "./donation.css";
 
@@ -19,13 +23,13 @@ type Token = "zcash" | "penumbra" | "ycash" | "namada";
 const DonationComp = () => {
   const [donationAmount, setDonationAmount] = useState(1); // Default donation amount
   const [memo, setMemo] = useState(""); // Memo for the donation
-  const [imgLogo, setImgLogo] = useState<StaticImageData>(zcashLogo); // Memo for the donation
+  const [imgLogo, setImgLogo] = useState<StaticImageData>(zcashIsometricLogo); // Memo for the donation
   const [selectedCurrency, setSelectedCurrency] = useState<Token>("zcash"); // Track selected currency
   const [error, setError] = useState<string | null>(null); // Error state for invalid input
   const [isPenumbraVisible, setIsPenumbraVisible] = useState(false);
 
   const [imgFade, setImgFade] = useState(false);
- 
+
   const zcashAddress =
     "zcash:u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89";
   const ycashAddress =
@@ -176,7 +180,7 @@ const DonationComp = () => {
             }}
           >
             <button
-              onClick={() => handleOnClick("zcash", zcashLogo)}
+              onClick={() => handleOnClick("zcash", zcashIsometricLogo)}
               className={selectedCurrency === "zcash" ? "active" : ""}
               style={{
                 borderRadius: "50%",
@@ -197,7 +201,7 @@ const DonationComp = () => {
             </button>
 
             <button
-              onClick={() => handleOnClick("ycash", ycashLogo)}
+              onClick={() => handleOnClick("ycash", ycashIsometricLogo)}
               className={selectedCurrency === "ycash" ? "active" : ""}
               style={{
                 borderRadius: "50%",
@@ -218,7 +222,7 @@ const DonationComp = () => {
             </button>
 
             <button
-              onClick={() => handleOnClick("namada", namadaLogo)}
+              onClick={() => handleOnClick("namada", namadaIsometricLogo)}
               className={selectedCurrency === "namada" ? "active" : ""}
               style={{
                 borderRadius: "50%",
@@ -239,7 +243,7 @@ const DonationComp = () => {
             </button>
 
             <button
-              onClick={() => handleOnClick("penumbra", penumbraLogo)}
+              onClick={() => handleOnClick("penumbra", penumbraIsometricLogo)}
               className={selectedCurrency === "penumbra" ? "active" : ""}
               style={{
                 borderRadius: "50%",
@@ -315,7 +319,7 @@ const DonationComp = () => {
               </div>
             </>
           ) : (
-            <div className="my-5">
+            <div className="my-9">
               <PenumbraWalletConnect />
             </div>
           )}
