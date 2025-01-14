@@ -12,6 +12,7 @@ import { MdRadar as ECC, MdOutlinePointOfSale as ZgoPayment, MdForum as Forum } 
 import { GiCheckedShield as foundation, GiBorderedShield as Shieldedlabs } from 'react-icons/gi';
 import { TbHexagonLetterZ as Grants, TbTopologyRing as TopologyRing, TbSquareLetterF as SquareLetterFFilled } from 'react-icons/tb'; 
 import { SiRaspberrypi as RaspBerry, SiZebratechnologies as Zebratechnologies } from 'react-icons/si';
+import { TbCircleDashedLetterZ as Zingolabs from "react-icons/tb";
 
 export const navigations = [
   {
