@@ -20,11 +20,14 @@ const toBase64Url = (str: string) => {
 
 type Token = "zcash" | "penumbra" | "ycash" | "namada";
 
+type Symbol = "zec" | "um" | "yec" | "nam";
+
 const DonationComp = () => {
   const [donationAmount, setDonationAmount] = useState(1); // Default donation amount
   const [memo, setMemo] = useState(""); // Memo for the donation
   const [imgLogo, setImgLogo] = useState<StaticImageData>(zcashIsometricLogo); // Memo for the donation
   const [selectedCurrency, setSelectedCurrency] = useState<Token>("zcash"); // Track selected currency
+  const [selectedSymbol, setSelectedSymbol] = useState<Symbol>("zec"); // Track selected currency
   const [error, setError] = useState<string | null>(null); // Error state for invalid input
   const [isPenumbraVisible, setIsPenumbraVisible] = useState(false);
 
@@ -138,10 +141,22 @@ const DonationComp = () => {
 
   const handleOnClick = (tokenName: Token, tokenImg: StaticImageData) => {
     setImgFade(true); // Trigger fade out
+    var tokenSymbol: Symbol;
+    if (tokenName === "zcash") {
+      tokenSymbol = "zec";
+    } else if (tokenName === "penumbra") {
+      tokenSymbol = "um";
+    } else if (tokenName === "ycash") {
+      tokenSymbol = "yec";
+    } else if (tokenName === "namada") {
+      tokenSymbol = "nam";
+    }
 
     setTimeout(() => {
+      setSelectedSymbol(tokenSymbol);
       setSelectedCurrency(tokenName);
       setImgLogo(tokenImg);
+      setDonationAmount(0);
       setImgFade(false); // Trigger fade in
     }, 500); // Match the duration of the transition
   };
@@ -273,25 +288,111 @@ const DonationComp = () => {
               >
                 <label>Donation Amount:</label>
                 <input
-                  className="new-input-size"
+                  className={
+                    selectedCurrency === "zcash"
+                      ? "new-input-size"
+                      : "hidden-value-button"
+                  }
                   type="range"
                   min={0.1}
                   max={5.0}
-                  step={0.1}
+                  step={0.01}
                   value={donationAmount}
                   onChange={handleChangeAmount}
                 />
-                <div className="new-value-buttons">
+                <div
+                  className={
+                    selectedCurrency === "zcash"
+                      ? "new-value-buttons-zec"
+                      : "hidden-value-button"
+                  }
+                >
+                  <button onClick={() => handleAmountButton(0.25)}>0.25</button>
                   <button onClick={() => handleAmountButton(0.5)}>0.5</button>
                   <button onClick={() => handleAmountButton(1.0)}>1.0</button>
                   <button onClick={() => handleAmountButton(2.0)}>2.0</button>
                   <button onClick={() => handleAmountButton(5.0)}>5.0</button>
                 </div>
+                <input
+                  className={
+                    selectedCurrency === "ycash"
+                      ? "new-input-size"
+                      : "hidden-value-button"
+                  }
+                  type="range"
+                  min={1}
+                  max={1000}
+                  step={0.01}
+                  value={donationAmount}
+                  onChange={handleChangeAmount}
+                />
+                <div
+                  className={
+                    selectedCurrency === "ycash"
+                      ? "new-value-buttons"
+                      : "hidden-value-button"
+                  }
+                >
+                  <button onClick={() => handleAmountButton(100)}>100</button>
+                  <button onClick={() => handleAmountButton(250)}>250</button>
+                  <button onClick={() => handleAmountButton(500)}>500</button>
+                  <button onClick={() => handleAmountButton(1000)}>1000</button>
+                </div>
+                <input
+                  className={
+                    selectedCurrency === "namada"
+                      ? "new-input-size"
+                      : "hidden-value-button"
+                  }
+                  type="range"
+                  min={1}
+                  max={1000}
+                  step={0.01}
+                  value={donationAmount}
+                  onChange={handleChangeAmount}
+                />
+                <div
+                  className={
+                    selectedCurrency === "namada"
+                      ? "new-value-buttons"
+                      : "hidden-value-button"
+                  }
+                >
+                  <button onClick={() => handleAmountButton(100)}>100</button>
+                  <button onClick={() => handleAmountButton(250)}>250</button>
+                  <button onClick={() => handleAmountButton(500)}>500</button>
+                  <button onClick={() => handleAmountButton(1000)}>1000</button>
+                </div>
+                <input
+                  className={
+                    selectedCurrency === "penumbra"
+                      ? "new-input-size"
+                      : "hidden-value-button"
+                  }
+                  type="range"
+                  min={1}
+                  max={100}
+                  step={0.01}
+                  value={donationAmount}
+                  onChange={handleChangeAmount}
+                />
+                <div
+                  className={
+                    selectedCurrency === "penumbra"
+                      ? "new-value-buttons-pen"
+                      : "hidden-value-button"
+                  }
+                >
+                  <button onClick={() => handleAmountButton(10)}>10</button>
+                  <button onClick={() => handleAmountButton(25)}>25</button>
+                  <button onClick={() => handleAmountButton(50)}>50</button>
+                  <button onClick={() => handleAmountButton(100)}>100</button>
+                </div>
                 <p>
                   {donationAmount}{" "}
                   {selectedCurrency === "penumbra"
-                    ? "PENUMBRA"
-                    : String(selectedCurrency).toUpperCase()}
+                    ? "UM"
+                    : String(selectedSymbol).toUpperCase()}
                 </p>
               </div>
               {/* Memo */}
