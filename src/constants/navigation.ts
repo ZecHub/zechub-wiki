@@ -130,7 +130,7 @@ export const navigations = [
       },
       {
         subName: "Zingo Labs",
-        path: "/zcash-organizations/zingo-labs",
+        path: "/zcash-organizations/Zingo-labs",
         icon: Zingolabs,
       },
     ],
