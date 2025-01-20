@@ -11,35 +11,35 @@ import styles from "./Row.module.css";
 const projects = [
   {
     title: "ECC",
-    description: "Description",
+    description: "Electric Coin Co. (ECC) created and launched the Zcash digital currency in 2016.",
     link: "/downloads/brand/ECC.zip",
     imageUrl: ecc,
     size: 200,
   },
   {
     title: "Wallets",
-    description: "Description",
+    description: "Brand Assets for all Zcash Shielded Wallets",
     link: "/downloads/brand/Wallets.zip",
     imageUrl: wallet,
     size: 150,
   },
   {
     title: "Zcash",
-    description: "Description",
+    description: "Zcash is a digital currency providing censorship resistant, secure & private payments",
     link: "/downloads/brand/Zcash.zip",
     imageUrl: zcash,
     size: 240,
   },
   {
     title: "Zcash Brasil",
-    description: "Description",
+    description: "Brand Assets for the Zcash Brazil Ambassador Program",
     link: "/downloads/brand/ZcashBrasil.zip",
     imageUrl: zcashBrasil,
     size: 200,
   },
   {
     title: "Zechub",
-    description: "Description",
+    description: "ZecHub is the community driven education hub for the Zcash cryptocurrency (ZEC)." 
     link: "/downloads/brand/ZecHub.zip",
     imageUrl: zechub,
     size: 200,
