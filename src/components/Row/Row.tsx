@@ -39,7 +39,7 @@ const projects = [
   },
   {
     title: "Zechub",
-    description: "ZecHub is the community driven education hub for the Zcash cryptocurrency (ZEC)." 
+    description: "ZecHub is the community driven education hub for the Zcash cryptocurrency (ZEC).",
     link: "/downloads/brand/ZecHub.zip",
     imageUrl: zechub,
     size: 200,
