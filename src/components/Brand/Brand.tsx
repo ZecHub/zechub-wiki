@@ -20,7 +20,7 @@ const BrandComp = () => {
       <div className="text-center">
         <h1 className="dark:text-slate-100 text-slate-800">Brand</h1>
         <p className="dark:text-slate-400 text-slate-800 text-lg">
-          Download of Brand Asset Folders are accessible to site visitors.{" "}
+          Downloads for Zcash Ecosystem Brand Asset Folders are accessible below!{" "}
           <a
             href="/downloads/brand/Midia Kit Ecossistema Zcash.zip"
             download="brand.zip"
