@@ -46,6 +46,7 @@ const Footer = () => {
             <a href="null" className="hover:underline">
               Zechub™
             </a>
+            <link rel="me" href="https://zechub.social/@Zechub" />
             . All Rights Reserved.
           </span>
 
