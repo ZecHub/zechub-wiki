@@ -83,7 +83,7 @@ interface ShieldedTxCount {
 async function getBlockchainData(): Promise<BlockchainInfo | null> {
   try {
     const response = await fetch(
-      "https://api.blockchair.com/zcash/stats?key=A___8A4ebOe3KJT9bqiiOHWnJbCLpDUZ"
+      "https://api.blockchair.com/zcash/stats?key=A___nnFHttBygZPrKgm5WZyXU3WCondo"
     );
     if (!response.ok) {
       console.error("Failed to fetch blockchain data:", response.statusText);
