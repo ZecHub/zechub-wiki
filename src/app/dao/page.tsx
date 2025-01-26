@@ -1,24 +1,23 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import { FadeInAnimation } from '@/components/ui/FadeInAnimation';
-import MemberCards from '@/components/ui/MemberCards';
-import { daoMembers } from '@/constants/membersDao';
-import logo from '/public/DAOlogo.png';
-import daoLogo from '/public/daodao.jpg';
-import ethLogo from '/public/snapshot.jpg';
-import { Metadata } from 'next';
-import { genMetadata } from '@/lib/helpers';
+"use client";
+import React from "react";
+import Image from "next/image";
+import { FadeInAnimation } from "@/components/ui/FadeInAnimation";
+import MemberCards from "@/components/ui/MemberCards";
+import { daoMembers } from "@/constants/membersDao";
+import logo from "/public/DAOlogo.png";
+import daoLogo from "/public/daodao.jpg";
+import ethLogo from "/public/snapshot.jpg";
+import { Metadata } from "next";
+import { genMetadata } from "@/lib/helpers";
 
 // export const metadata: Metadata = genMetadata({
 //   title: "DAO Members",
 //   url: "https://zechub.wiki/dao"
 // })
 
-
 const DaoMembers: React.FC = () => {
   return (
-    <main>
+    <main className="dao-main-container">
       <FadeInAnimation>
         <div className="flex items-center justify-center my-12">
           <Image
@@ -31,33 +30,59 @@ const DaoMembers: React.FC = () => {
           <h1 className="text-4xl font-semibold">ZecHub DAO</h1>
         </div>
 
-        <p className="text-xl text-center text-slate-600 mb-12">
-          ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:
-          Privacy is a human right
-          Education should be open-source and accessible worldwide
-          Community members have a right to earn ZEC privately
-          ZecHub DAO is comprised of likeminded individuals located around the world with the common goal of effectively guiding Zcash and Privacy Technology education.
+        <p
+          style={{ textAlign: "justify" }}
+          className="text-xl text-slate-600 mb-12"
+        >
+          ZecHub provides an open source educational platform where community
+          members can work together on creating, validating, and promoting
+          content that supports the Zcash ecosystem. ZecHub believes: Privacy is
+          a human right Education should be open-source and accessible worldwide
+          Community members have a right to earn ZEC privately ZecHub DAO is
+          comprised of likeminded individuals located around the world with the
+          common goal of effectively guiding Zcash and Privacy Technology
+          education.
         </p>
       </FadeInAnimation>
 
       <FadeInAnimation>
-        <h3 className="text-3xl mb-4 font-semibold">What makes ZecHub unique?</h3>
+        <h3 className="text-3xl text-center mb-4 font-semibold">
+          What makes ZecHub unique?
+        </h3>
 
-        <p className="text-base text-slate-600 mb-12">
-          ZecHub is the first Zcash ecosystem DAO. Its funds are held primarily within the Zcash shielded pool. Global Ambassadors, Community Grants members and community experts form a group that decides the direction of Zcash education. The DAO also allows any group to create SubDAO&apos;s which are able to form projects and create proposals or request Retroactive Compensation via the DAO DAO module.
+        <p
+          style={{ textAlign: "justify" }}
+          className="text-base text-slate-600 mb-12"
+        >
+          ZecHub is the first Zcash ecosystem DAO. Its funds are held primarily
+          within the Zcash shielded pool. Global Ambassadors, Community Grants
+          members and community experts form a group that decides the direction
+          of Zcash education. The DAO also allows any group to create
+          SubDAO&apos;s which are able to form projects and create proposals or
+          request Retroactive Compensation via the DAO DAO module.
         </p>
       </FadeInAnimation>
 
       <FadeInAnimation>
-        <h3 className="text-3xl mb-4 font-semibold">Governance</h3>
+        <h3 className="text-3xl text-center mb-4 font-semibold">Governance</h3>
 
-        <p className="text-base text-slate-600 mb-12">
-          All DAO proposals are public and can be viewed using the DAO DAO or Snapshot buttons. Anyone can create a proposal to vote on. In an effort to support community transparency, ZecHub DAO will post all governance proposals in the Zcash Community Forum ZecHub Governance thread.
+        <p
+          style={{ textAlign: "justify" }}
+          className="text-base text-slate-600 mb-12"
+        >
+          All DAO proposals are public and can be viewed using the DAO DAO or
+          Snapshot buttons. Anyone can create a proposal to vote on. In an
+          effort to support community transparency, ZecHub DAO will post all
+          governance proposals in the Zcash Community Forum ZecHub Governance
+          thread.
         </p>
 
         <div className="flex justify-center items-center text-center space-x-4 mb-12">
           <div>
-            <a href="https://daodao.zone/dao/juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y/proposals" target="_blank">
+            <a
+              href="https://daodao.zone/dao/juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y/proposals"
+              target="_blank"
+            >
               <Image
                 className="rounded-full border-4 border-slate-400 dark:border-black hover:scale-125"
                 src={daoLogo}
@@ -112,7 +137,7 @@ const DaoMembers: React.FC = () => {
               className="text-blue-500 active:text-blue-700 hover:text-blue-600"
               href="https://twitter.com/ZecHub/status/1569827000218537984"
             >
-              https://twitter.com/ZecHub/status/1569827000218537984?s=20&t=v6h3n3P7o7LMbnAG-O8Kug
+              Twitter
             </a>
           </li>
           <li>
@@ -121,7 +146,7 @@ const DaoMembers: React.FC = () => {
               className="text-blue-500 active:text-blue-700 hover:text-blue-600"
               href="https://forum.zcashcommunity.com/t/zechub-rfi/42778/17"
             >
-              https://forum.zcashcommunity.com/t/zechub-rfi/42778/17
+              Zcash Forum Community
             </a>
           </li>
           <li>
@@ -130,7 +155,7 @@ const DaoMembers: React.FC = () => {
               className="text-blue-500 active:text-blue-700 hover:text-blue-600"
               href="https://www.forbes.com/sites/cathyhackl/2021/06/01/what-are-daos-and-why-you-should-pay-attention/"
             >
-              https://www.forbes.com/sites/cathyhackl/2021/06/01/what-are-daos-and-why-you-should-pay-attention/
+              Forbes
             </a>
           </li>
         </ul>
