@@ -23,7 +23,7 @@ const MemberCards = ({
   const [isOpen, setIsOpen] = useState(false);
   const [shortDescription, setShortDescription] = useState(description);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const shouldShowReadMore = description.length >= 37;
 
   useEffect(() => {
@@ -36,17 +36,23 @@ const MemberCards = ({
     const encodedMemo = base64UrlEncode(message);
     const uri = `zcash:${zcashAddress}?amount=0.01&memo=${encodedMemo}`;
     window.location.href = uri;
-    handleFlip()
+    handleFlip();
   };
 
   const handleFlip = () => {
-    setIsFlipped(!isFlipped)
-  }
+    setIsFlipped(!isFlipped);
+  };
 
   return (
-    <div className={`card ${isFlipped ? 'card-flipped' : ''}`} >
-      <div className={` border m-2.5 p-5 rounded-lg shadow-lg dark:bg-gray-800`}>
-        <div className={`${isFlipped ? 'hidden' : ''} flex flex-col items-center justify-center`}>
+    <div className={`card ${isFlipped ? "card-flipped" : ""}`}>
+      <div
+        className={` border m-2.5 p-5 rounded-lg shadow-lg dark:bg-gray-800`}
+      >
+        <div
+          className={`${
+            isFlipped ? "hidden" : ""
+          } flex flex-col items-center justify-center`}
+        >
           <Image
             className="w-50 h-50 my-3 rounded-full shadow-lg"
             src={imgUrl ? imgUrl : ""}
@@ -59,7 +65,11 @@ const MemberCards = ({
             {name}
           </h5>
           <div className="p-4 text-center ">
-            <p className={`text-gray-600 dark:text-white ${isOpen ? "hidden" : "line-clamp-3"}`}>
+            <p
+              className={`text-max-width text-gray-600 dark:text-white ${
+                isOpen ? "hidden" : "line-clamp-3"
+              }`}
+            >
               {shortDescription}
             </p>
             {shouldShowReadMore && (
@@ -71,7 +81,11 @@ const MemberCards = ({
               </button>
             )}
 
-            {isOpen && <p className="text-gray-600 mt-2 dark:text-white">{description}</p>}
+            {isOpen && (
+              <p className="text-max-width text-gray-600 mt-2 dark:text-white">
+                {description}
+              </p>
+            )}
           </div>
           <div className="mt-4 w-full inherit justify-center text-center items-center md:mt-6 space-x-2">
             <Link
@@ -89,7 +103,11 @@ const MemberCards = ({
             </button>
           </div>
         </div>
-        <div className={`card-back ${!isFlipped ? 'hidden' : 'h-100'} p-5 dark:bg-gray-800`}>
+        <div
+          className={`card-back ${
+            !isFlipped ? "hidden" : "h-100"
+          } p-5 dark:bg-gray-800`}
+        >
           <h1 className="text-lg mb-3">Message to {name}</h1>
           <textarea
             className="w-full p-2 border rounded-lg dark:text-black font-bold"
@@ -110,12 +128,12 @@ const MemberCards = ({
           </button>
           <button
             onClick={() => {
-              handleFlip()
-              setMessage('')
+              handleFlip();
+              setMessage("");
             }}
             className="mt-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 hover:scale-110 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
           >
-            Cancel 
+            Cancel
           </button>
         </div>
       </div>
@@ -126,8 +144,5 @@ const MemberCards = ({
 export default MemberCards;
 
 function base64UrlEncode(str: string) {
-  return btoa(str)
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/, '');
+  return btoa(str).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }

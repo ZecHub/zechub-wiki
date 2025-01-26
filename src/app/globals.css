@@ -15,9 +15,9 @@ body {
 }
 
 .wallet-tag-item {
-  padding: .2rem .5rem;
-  margin: .2rem;
-  border-radius: .3rem;
+  padding: 0.2rem 0.5rem;
+  margin: 0.2rem;
+  border-radius: 0.3rem;
   font-size: 80%;
 }
 
@@ -66,6 +66,27 @@ body {
   }
 }
 
+/* Desktop View (for screens larger than 968px) */
+@media (min-width: 968px) {
+  .dao-main-container {
+    margin: 0 4rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .text-max-width {
+    max-width: 250px;
+  }
+
+  .card-height {
+    min-height: 505.41px;
+  }
+
+  .dao-main-container {
+    margin: 0 8rem;
+  }
+}
+
 @media (min-width: 1440px) {
   .container {
     max-width: 1504px;
@@ -95,7 +116,8 @@ body {
 }
 
 @keyframes moveRight {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-300%);
     height: 0.75rem;
     width: 4rem;
@@ -130,12 +152,12 @@ body {
   margin: 16px;
 }
 
-.card{
+.card {
   width: 100%;
   height: 100%;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  perspective: 1000px,
+  perspective: 1000px;
 }
 
 .card-flipped {
@@ -158,7 +180,7 @@ body {
 }
 
 .grid-container {
-  display: grid; 
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 16px;
   justify-items: center;

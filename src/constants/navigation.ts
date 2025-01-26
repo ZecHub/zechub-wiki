@@ -108,6 +108,7 @@ export const navigations = [
         subName: "Community Forum",
         path: "https://forum.zcashcommunity.com/",
         icon: Forum,
+        newTab: true,
       },
       {
         subName: "Community Projects",
@@ -198,6 +199,7 @@ export const navigations = [
         subName: "Raspberry Pi Zebra Node",
         path: "https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5",
         icon: Zebratechnologies,
+        newTab: true,
       },
       {
         subName: "Akash Network",
@@ -220,6 +222,7 @@ export const navigations = [
     name: "Tutorials",
     path: "https://youtube.com/@zechub",
     icon: "",
+    newTab: true,
   },
   {
     name: "Contribute",

@@ -50,7 +50,12 @@ const NavLinks = ({
                   {link.icon && (
                     <Icon icon={link.icon} className="md:w-6 w-4 h-4 md:h-6" />
                   )}
-                  <Link href={link.path}>{link.subName}</Link>
+                  <Link
+                    target={link.newTab ? "_blank" : "_self"}
+                    href={link.path}
+                  >
+                    {link.subName}
+                  </Link>
                 </Dropdown.Item>
               </div>
             ))}
@@ -58,6 +63,7 @@ const NavLinks = ({
         ) : (
           <div key={item.name + i} className="flex gap-2">
             <Link
+              target={item.newTab ? "_blank" : "_self"}
               href={item.path}
               onClick={handleLinkClick}
               className="flex flex-row font-normal p-2 mr-3 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
@@ -67,7 +73,6 @@ const NavLinks = ({
           </div>
         )
       )}
-
 
       <div className="flex md:flex-row flex-col md:space-x-3 md:ml-3 sm:gap-0 gap-2">
         <Link
