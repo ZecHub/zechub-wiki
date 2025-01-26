@@ -156,6 +156,7 @@ const DaoMembers: React.FC = () => {
               href="https://www.forbes.com/sites/cathyhackl/2021/06/01/what-are-daos-and-why-you-should-pay-attention/"
             >
               Forbes
+              {/* ll? */}
             </a>
           </li>
         </ul>
