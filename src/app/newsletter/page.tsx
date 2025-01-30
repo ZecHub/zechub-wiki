@@ -86,7 +86,7 @@ const Newsletter: React.FC = () => {
       {/* Address Input */}
       <input
         type="text"
-        placeholder="Enter your Unified Address (must start with 'u' or 'z')"
+        placeholder="Enter your Zcash Unified Address"
         value={unifiedAddress}
         onChange={handleAddressChange}
         className={`w-full max-w-md mt-6 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
