@@ -69,7 +69,7 @@ const Newsletter: React.FC = () => {
               : "bg-[#1984c7] text-white"
           }`}
         >
-          Ecosystem News
+          📰 Ecosystem News
         </button>
         <button
           onClick={() => setSelectedCategory("Network Stats")}
@@ -79,7 +79,7 @@ const Newsletter: React.FC = () => {
               : "bg-[#1984c7] text-white"
           }`}
         >
-          Network Stats
+          📊 Network Stats
         </button>
       </div>
 
