@@ -16,18 +16,18 @@ const Newsletter: React.FC = () => {
   const [isValidUnsubAddress, setIsValidUnsubAddress] = useState(false);
   const [unsubscribeUri, setUnsubscribeUri] = useState<string | null>(null);
 
-  // Validate Subscribe Address
+  // Validate Subscription Address
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const address = e.target.value.trim();
     setUnifiedAddress(address);
-    setIsValidAddress(/^u|^z/.test(address)); // Check if it starts with "u" or "z"
+    setIsValidAddress(/^u|^z/.test(address)); // Address must start with "u" or "z"
   };
 
-  // Validate Unsubscribe Address
+  // Validate Unsubscription Address
   const handleUnsubscribeAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const address = e.target.value.trim();
     setUnsubscribeAddress(address);
-    setIsValidUnsubAddress(/^u|^z/.test(address)); // Check if it starts with "u" or "z"
+    setIsValidUnsubAddress(/^u|^z/.test(address)); // Address must start with "u" or "z"
   };
 
   // Subscribe Function
@@ -131,7 +131,7 @@ const Newsletter: React.FC = () => {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How It Works</h2>
           <p className="text-gray-700 dark:text-gray-300">
-            We collect subscriber addresses and send newsletters via **Zcash encrypted memos**. 
+            We collect subscriber addresses and send newsletters via <strong>Zcash encrypted memos</strong>. 
             The updates are delivered using the <strong>z_sendmany RPC method</strong>, ensuring privacy.
           </p>
         </div>
@@ -139,8 +139,8 @@ const Newsletter: React.FC = () => {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How to Receive Updates</h2>
           <p className="text-gray-700 dark:text-gray-300">
-            Enter your **shielded Zcash address (UA or z-address)**. Once subscribed, you’ll 
-            automatically receive weekly updates **on-chain**, without email or third-party services.
+            Enter your <strong>shielded Zcash address (UA or z-address)</strong>. Once subscribed, you’ll 
+            automatically receive weekly updates <strong>on-chain</strong>, without email or third-party services.
           </p>
         </div>
       </div>
