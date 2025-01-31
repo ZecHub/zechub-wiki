@@ -109,7 +109,7 @@ const Newsletter: React.FC = () => {
         }`}
       />
       {unifiedAddress && !isValidAddress && (
-        <p className="text-red-500 mt-2 text-sm">Invalid address. Must start with "u" or "z".</p>
+        <p className="text-red-500 mt-2 text-sm">Invalid address. Must start with &quot;u&quot; or &quot;z&quot;.</p>
       )}
 
       {/* Subscribe Button */}
