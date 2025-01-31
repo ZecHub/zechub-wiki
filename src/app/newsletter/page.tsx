@@ -206,6 +206,6 @@ const downloadQRCode = (filename: string) => {
       </div>
     )}
   </div>
-)};
+)}
 
 export default Newsletter;
