@@ -20,14 +20,14 @@ const Newsletter: React.FC = () => {
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const address = e.target.value.trim();
     setUnifiedAddress(address);
-    setIsValidAddress(/^u|^z/.test(address)); // Address must start with "u" or "z"
+    setIsValidAddress(/^u|^z/.test(address));
   };
 
   // Validate Unsubscription Address
   const handleUnsubscribeAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const address = e.target.value.trim();
     setUnsubscribeAddress(address);
-    setIsValidUnsubAddress(/^u|^z/.test(address)); // Address must start with "u" or "z"
+    setIsValidUnsubAddress(/^u|^z/.test(address));
   };
 
   // Subscribe Function
@@ -50,18 +50,6 @@ const Newsletter: React.FC = () => {
 
     const memo = `UNSUBSCRIBE | Address: ${unsubscribeAddress}`;
     setUnsubscribeUri(memo);
-  };
-
-  // Function to Download QR Code
-  const downloadQRCode = (filename: string) => {
-    const canvas = document.querySelector("canvas");
-    if (canvas) {
-      const image = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      link.href = image;
-      link.download = filename;
-      link.click();
-    }
   };
 
   return (
@@ -132,14 +120,31 @@ const Newsletter: React.FC = () => {
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
             <strong>Do not edit the memo generated in your wallet.</strong>
           </p>
-          <button
-            onClick={() => downloadQRCode("subscription_qr.png")}
-            className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            Download QR Code
-          </button>
         </div>
       )}
+
+      {/* Information Boxes */}
+      <div className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">What is This Service?</h2>
+          <p className="text-gray-700 dark:text-gray-300">
+            Receive Zcash ecosystem news and network stats directly via the Zcash network using encrypted memos.
+          </p>
+        </div>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How It Works</h2>
+          <p className="text-gray-700 dark:text-gray-300">
+            We send newsletters once per week to multiple recipients in one shielded transaction using the{" "}
+            <strong>z_sendmany</strong> RPC method.
+          </p>
+        </div>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How to Receive Updates</h2>
+          <p className="text-gray-700 dark:text-gray-300">
+            Enter your <strong>shielded Zcash address</strong>. Weekly updates delivered on-chain. No email required.
+          </p>
+        </div>
+      </div>
 
       {/* Unsubscribe Section */}
       <div className="mt-16">
@@ -150,25 +155,6 @@ const Newsletter: React.FC = () => {
           {showUnsubscribe ? "Cancel Unsubscribe" : "Unsubscribe"}
         </button>
       </div>
-
-      {showUnsubscribe && (
-        <div className="mt-6 text-center">
-          <input
-            type="text"
-            placeholder="Enter your Unified Address to unsubscribe"
-            value={unsubscribeAddress}
-            onChange={handleUnsubscribeAddressChange}
-            className="w-full max-w-md px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <button
-            onClick={handleUnsubscribe}
-            className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
-            disabled={!isValidUnsubAddress}
-          >
-            Confirm Unsubscribe
-          </button>
-        </div>
-      )}
     </div>
   );
 };
