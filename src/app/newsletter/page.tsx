@@ -52,18 +52,6 @@ const Newsletter: React.FC = () => {
     setUnsubscribeUri(memo);
   };
 
-  // Function to Download QR Code
-  const downloadQRCode = (filename: string) => {
-    const canvas = document.querySelector("canvas");
-    if (canvas) {
-      const image = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      link.href = image;
-      link.download = filename;
-      link.click();
-    }
-  };
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-slate-900 p-6">
       <h1 className="text-3xl font-bold mb-4 text-center">ZecHub Shielded Newsletter</h1>
@@ -74,31 +62,7 @@ const Newsletter: React.FC = () => {
         A one-time <strong>0.05 ZEC subscription fee</strong> is required to cover transaction costs.
       </p>
 
-      {/* Category Selection */}
-      <div className="space-y-4 md:space-x-4 space-x-2">
-        <button
-          onClick={() => setSelectedCategory("Ecosystem News")}
-          className={`md:px-6 px-2 py-2 font-semibold rounded-lg ${
-            selectedCategory !== "Ecosystem News"
-              ? "bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
-              : "bg-[#1984c7] text-white"
-          }`}
-        >
-          📰 Ecosystem News
-        </button>
-        <button
-          onClick={() => setSelectedCategory("Network Stats")}
-          className={`md:px-6 px-4 py-2 font-semibold rounded-lg ${
-            selectedCategory !== "Network Stats"
-              ? "bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
-              : "bg-[#1984c7] text-white"
-          }`}
-        >
-          📊 Network Stats
-        </button>
-      </div>
-
-      {/* Address Input */}
+      {/* Subscribe Section */}
       <input
         type="text"
         placeholder="Enter your Zcash Unified Address"
@@ -112,7 +76,6 @@ const Newsletter: React.FC = () => {
         <p className="text-red-500 mt-2 text-sm">Invalid address. Must start with &quot;u&quot; or &quot;z&quot;.</p>
       )}
 
-      {/* Subscribe Button */}
       <button
         onClick={handleSubmit}
         className={`mt-4 px-6 py-2 font-semibold rounded-lg ${
@@ -132,36 +95,8 @@ const Newsletter: React.FC = () => {
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
             <strong>Do not edit the memo generated in your wallet.</strong>
           </p>
-          <button
-            onClick={() => downloadQRCode("subscription_qr.png")}
-            className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            Download QR Code
-          </button>
         </div>
       )}
-
-      {/* Information Boxes */}
-      <div className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">What is This Service?</h2>
-          <p className="text-gray-700 dark:text-gray-300">
-            Receive updates directly via the Zcash network using encrypted memos.
-          </p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How It Works</h2>
-          <p className="text-gray-700 dark:text-gray-300">
-            We send newsletters via <strong>Zcash encrypted memos</strong>. No email required.
-          </p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How to Receive Updates</h2>
-          <p className="text-gray-700 dark:text-gray-300">
-            Enter your <strong>shielded Zcash address</strong>. Weekly updates delivered on-chain.
-          </p>
-        </div>
-      </div>
 
       {/* Unsubscribe Section */}
       <div className="mt-16">
@@ -180,8 +115,15 @@ const Newsletter: React.FC = () => {
             placeholder="Enter your Unified Address to unsubscribe"
             value={unsubscribeAddress}
             onChange={handleUnsubscribeAddressChange}
+            className="w-full max-w-md px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <button onClick={handleUnsubscribe}>Confirm Unsubscribe</button>
+          <button
+            onClick={handleUnsubscribe}
+            className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
+            disabled={!isValidUnsubAddress}
+          >
+            Confirm Unsubscribe
+          </button>
         </div>
       )}
     </div>
