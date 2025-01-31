@@ -41,6 +41,18 @@ const Newsletter: React.FC = () => {
     setPaymentUri(memo);
   };
 
+  // Function to Download QR Code
+const downloadQRCode = (filename: string) => {
+  const canvas = document.querySelector("canvas");
+  if (canvas) {
+    const image = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = image;
+    link.download = filename;
+    link.click();
+  }
+};
+
   // Unsubscribe Function
   const handleUnsubscribe = () => {
     if (!isValidUnsubAddress) {
@@ -115,13 +127,20 @@ const Newsletter: React.FC = () => {
 
       {/* QR Code Display */}
       {paymentUri && (
-        <div className="mt-6 text-center">
-          <QRCodeComponent memo={paymentUri} />
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            <strong>Do not edit the memo generated in your wallet.</strong>
-          </p>
-        </div>
-      )}
+     <div className="mt-6 text-center">
+     <QRCodeComponent memo={paymentUri} />
+     <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+      <strong>Do not edit the memo generated in your wallet.</strong>
+     </p>
+     <button
+      onClick={() => downloadQRCode("subscription_qr.png")}
+      className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+     >
+      Download QR Code
+    </button>
+  </div>
+)}
+
 
       {/* Information Boxes */}
       <div className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
