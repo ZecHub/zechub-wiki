@@ -165,17 +165,49 @@ const downloadQRCode = (filename: string) => {
         </div>
       </div>
 
-      {/* Unsubscribe Section */}
-      <div className="mt-16">
+{/* Unsubscribe Section */}
+<div className="mt-16">
+  <button
+    onClick={() => setShowUnsubscribe(!showUnsubscribe)}
+    className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
+  >
+    {showUnsubscribe ? "Cancel Unsubscribe" : "Unsubscribe"}
+  </button>
+</div>
+
+{/* Show Unsubscribe Input Field, Confirm Button & QR Code When `showUnsubscribe` is True */}
+{showUnsubscribe && (
+  <div className="mt-6 text-center">
+    <input
+      type="text"
+      placeholder="Enter your Unified Address to unsubscribe"
+      value={unsubscribeAddress}
+      onChange={handleUnsubscribeAddressChange}
+      className="w-full max-w-md px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <button
+      onClick={handleUnsubscribe}
+      className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
+      disabled={!isValidUnsubAddress}
+    >
+      Confirm Unsubscribe
+    </button>
+
+    {/* Unsubscribe QR Code Display & Download Button */}
+    {unsubscribeUri && (
+      <div className="mt-6">
+        <QRCodeComponent memo={unsubscribeUri} />
         <button
-          onClick={() => setShowUnsubscribe(!showUnsubscribe)}
-          className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
+          onClick={() => downloadQRCode("unsubscribe_qr.png")}
+          className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
         >
-          {showUnsubscribe ? "Cancel Unsubscribe" : "Unsubscribe"}
+          Download QR Code
         </button>
       </div>
-    </div>
-  );
-};
+    )}
+  </div>
+)}
+
+
 
 export default Newsletter;
