@@ -37,7 +37,7 @@ const Newsletter: React.FC = () => {
       return;
     }
 
-    const memo = `${selectedCategory} | Address: ${unifiedAddress}`;
+    const memo = `Subscription: ${selectedCategory} | Address: ${unifiedAddress}`;
     setPaymentUri(memo);
   };
 
@@ -74,6 +74,30 @@ const Newsletter: React.FC = () => {
         A one-time <strong>0.05 ZEC subscription fee</strong> is required to cover transaction costs.
       </p>
 
+      {/* Category Selection Buttons */}
+      <div className="space-y-4 md:space-x-4 space-x-2">
+        <button
+          onClick={() => setSelectedCategory("Ecosystem News")}
+          className={`md:px-6 px-4 py-2 font-semibold rounded-lg ${
+            selectedCategory !== "Ecosystem News"
+              ? "bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
+              : "bg-[#1984c7] text-white"
+          }`}
+        >
+          📰 Ecosystem News
+        </button>
+        <button
+          onClick={() => setSelectedCategory("Network Stats")}
+          className={`md:px-6 px-4 py-2 font-semibold rounded-lg ${
+            selectedCategory !== "Network Stats"
+              ? "bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
+              : "bg-[#1984c7] text-white"
+          }`}
+        >
+          📊 Network Stats
+        </button>
+      </div>
+
       {/* Address Input */}
       <input
         type="text"
@@ -85,7 +109,7 @@ const Newsletter: React.FC = () => {
         }`}
       />
       {unifiedAddress && !isValidAddress && (
-        <p className="text-red-500 mt-2 text-sm">Invalid address. Must start with &quot;u&quot; or &quot;z&quot;.</p>
+        <p className="text-red-500 mt-2 text-sm">Invalid address. Must start with "u" or "z".</p>
       )}
 
       {/* Subscribe Button */}
@@ -117,28 +141,6 @@ const Newsletter: React.FC = () => {
         </div>
       )}
 
-      {/* Information Boxes */}
-      <div className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">What is This Service?</h2>
-          <p className="text-gray-700 dark:text-gray-300">
-            Receive Zcash ecosystem News and Network Stats directly via the Zcash network using encrypted memos.
-          </p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How It Works</h2>
-          <p className="text-gray-700 dark:text-gray-300">
-            We send newsletters once per week to multiple recipients in one shielded transaction using the <strong>z_sendmany</strong> RPC method.  
-          </p>
-        </div>
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How to Receive Updates</h2>
-          <p className="text-gray-700 dark:text-gray-300">
-            Enter your <strong>shielded Zcash address</strong>. Weekly updates delivered onchain. No email required. 
-          </p>
-        </div>
-      </div>
-
       {/* Unsubscribe Section */}
       <div className="mt-16">
         <button
@@ -165,17 +167,6 @@ const Newsletter: React.FC = () => {
           >
             Confirm Unsubscribe
           </button>
-          {unsubscribeUri && (
-            <div className="mt-6">
-              <QRCodeComponent memo={unsubscribeUri} />
-              <button
-                onClick={() => downloadQRCode("unsubscribe_qr.png")}
-                className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Download QR Code
-              </button>
-            </div>
-          )}
         </div>
       )}
     </div>
