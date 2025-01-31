@@ -209,3 +209,4 @@ const downloadQRCode = (filename: string) => {
 )}
 
 export default Newsletter;
+
