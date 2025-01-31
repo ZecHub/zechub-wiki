@@ -62,7 +62,7 @@ const downloadQRCode = (filename: string) => {
 
     const memo = `UNSUBSCRIBE | Address: ${unsubscribeAddress}`;
     setUnsubscribeUri(memo);
-  };
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-slate-900 p-6">
