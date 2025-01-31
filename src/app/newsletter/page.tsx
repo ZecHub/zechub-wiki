@@ -122,19 +122,19 @@ const Newsletter: React.FC = () => {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold mb-2 text-[#1984c7]">What is This Service?</h2>
           <p className="text-gray-700 dark:text-gray-300">
-            Receive updates directly via the Zcash network using encrypted memos.
+            Receive Zcash ecosystem News and Network Stats directly via the Zcash network using encrypted memos.
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How It Works</h2>
           <p className="text-gray-700 dark:text-gray-300">
-            We send newsletters via <strong>Zcash encrypted memos</strong>. No email required.
+            We send newsletters once per week to multiple recipients in one shielded transaction using the <strong>z_sendmany</strong> RPC method.  
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How to Receive Updates</h2>
           <p className="text-gray-700 dark:text-gray-300">
-            Enter your <strong>shielded Zcash address</strong>. Weekly updates delivered on-chain.
+            Enter your <strong>shielded Zcash address</strong>. Weekly updates delivered onchain. No email required. 
           </p>
         </div>
       </div>
