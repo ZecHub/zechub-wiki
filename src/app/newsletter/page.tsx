@@ -53,7 +53,7 @@ const Newsletter: React.FC = () => {
   };
 
   // Function to Download QR Code
-  const downloadQRCode = (uri: string, filename: string) => {
+  const downloadQRCode = (filename: string) => {
     const canvas = document.querySelector("canvas");
     if (canvas) {
       const image = canvas.toDataURL("image/png");
@@ -133,13 +133,35 @@ const Newsletter: React.FC = () => {
             <strong>Do not edit the memo generated in your wallet.</strong>
           </p>
           <button
-            onClick={() => downloadQRCode(paymentUri, "subscription_qr.png")}
+            onClick={() => downloadQRCode("subscription_qr.png")}
             className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             Download QR Code
           </button>
         </div>
       )}
+
+      {/* Information Boxes */}
+      <div className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">What is This Service?</h2>
+          <p className="text-gray-700 dark:text-gray-300">
+            Receive updates directly via the Zcash network using encrypted memos.
+          </p>
+        </div>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How It Works</h2>
+          <p className="text-gray-700 dark:text-gray-300">
+            We send newsletters via <strong>Zcash encrypted memos</strong>. No email required.
+          </p>
+        </div>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How to Receive Updates</h2>
+          <p className="text-gray-700 dark:text-gray-300">
+            Enter your <strong>shielded Zcash address</strong>. Weekly updates delivered on-chain.
+          </p>
+        </div>
+      </div>
 
       {/* Unsubscribe Section */}
       <div className="mt-16">
@@ -158,28 +180,8 @@ const Newsletter: React.FC = () => {
             placeholder="Enter your Unified Address to unsubscribe"
             value={unsubscribeAddress}
             onChange={handleUnsubscribeAddressChange}
-            className="w-full max-w-md px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <button
-            onClick={handleUnsubscribe}
-            className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
-            disabled={!isValidUnsubAddress}
-          >
-            Confirm Unsubscribe
-          </button>
-
-          {/* Unsubscribe QR Code Display */}
-          {unsubscribeUri && (
-            <div className="mt-6">
-              <QRCodeComponent memo={unsubscribeUri} />
-              <button
-                onClick={() => downloadQRCode(unsubscribeUri, "unsubscribe_qr.png")}
-                className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Download QR Code
-              </button>
-            </div>
-          )}
+          <button onClick={handleUnsubscribe}>Confirm Unsubscribe</button>
         </div>
       )}
     </div>
