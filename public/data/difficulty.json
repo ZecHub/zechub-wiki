@@ -1,1394 +1,1398 @@
 [
   {
     "Date": "10/28/2016",
-    "Difficulty": "1"
+    "Networksolps": "8362028594"
   },
   {
     "Date": "11/10/2016",
-    "Difficulty": "231440.6091337734"
+    "Networksolps": "8220149384"
   },
   {
     "Date": "11/24/2016",
-    "Difficulty": "685794.4359905792"
+    "Networksolps": "8226073805"
   },
   {
     "Date": "12/08/2016",
-    "Difficulty": "978573.5028480291"
+    "Networksolps": "8073564790"
   },
   {
     "Date": "12/22/2016",
-    "Difficulty": "1134886.935481153"
+    "Networksolps": "7989387204"
   },
   {
     "Date": "01/05/2017",
-    "Difficulty": "1040004.625945881"
+    "Networksolps": "8048262535"
   },
   {
     "Date": "01/19/2017",
-    "Difficulty": "1068834.514475802"
+    "Networksolps": "8148340867"
   },
   {
     "Date": "02/02/2017",
-    "Difficulty": "876209.3342173713"
+    "Networksolps": "8329561925"
   },
   {
     "Date": "02/17/2017",
-    "Difficulty": "898010.3714390256"
+    "Networksolps": "8400153948"
   },
   {
     "Date": "03/03/2017",
-    "Difficulty": "940562.0659713668"
+    "Networksolps": "8435910671"
   },
   {
     "Date": "03/17/2017",
-    "Difficulty": "924641.3571582347"
+    "Networksolps": "8457617979"
   },
   {
     "Date": "03/31/2017",
-    "Difficulty": "820411.9489028438"
+    "Networksolps": "8581940138"
   },
   {
     "Date": "04/14/2017",
-    "Difficulty": "959499.3809550405"
+    "Networksolps": "8671090148"
   },
   {
     "Date": "04/28/2017",
-    "Difficulty": "1234148.84455177"
+    "Networksolps": "8749319779"
   },
   {
     "Date": "05/12/2017",
-    "Difficulty": "1274015.216932958"
+    "Networksolps": "8797651852"
   },
   {
     "Date": "05/26/2017",
-    "Difficulty": "1842952.756200793"
+    "Networksolps": "8840520923"
   },
   {
     "Date": "06/09/2017",
-    "Difficulty": "2514816.516618202"
+    "Networksolps": "8856253836"
   },
   {
     "Date": "06/23/2017",
-    "Difficulty": "3252726.943776681"
+    "Networksolps": "8858661465"
   },
   {
     "Date": "07/07/2017",
-    "Difficulty": "3485737.072843189"
+    "Networksolps": "8842894539"
   },
   {
     "Date": "07/21/2017",
-    "Difficulty": "5115160.623718532"
+    "Networksolps": "8799095253"
   },
   {
     "Date": "08/04/2017",
-    "Difficulty": "4562377.231565609"
+    "Networksolps": "8748434407"
   },
   {
     "Date": "08/18/2017",
-    "Difficulty": "4430420.062734527"
+    "Networksolps": "8686223082"
   },
   {
     "Date": "09/01/2017",
-    "Difficulty": "5542710.349889695"
+    "Networksolps": "8639348811"
   },
   {
     "Date": "09/15/2017",
-    "Difficulty": "5516112.820330926"
+    "Networksolps": "8595654471"
   },
   {
     "Date": "09/30/2017",
-    "Difficulty": "6999556.1614754"
+    "Networksolps": "8564968032"
   },
   {
     "Date": "10/14/2017",
-    "Difficulty": "4894940.68357844"
+    "Networksolps": "8528231756"
   },
   {
     "Date": "10/28/2017",
-    "Difficulty": "6187522.110908754"
+    "Networksolps": "8474432272"
   },
   {
     "Date": "11/11/2017",
-    "Difficulty": "6726639.160532498"
+    "Networksolps": "8408258735"
   },
   {
     "Date": "11/25/2017",
-    "Difficulty": "6379728.541126263"
+    "Networksolps": "8339867018"
   },
   {
     "Date": "12/09/2017",
-    "Difficulty": "6764375.707974681"
+    "Networksolps": "8259298331"
   },
   {
     "Date": "12/23/2017",
-    "Difficulty": "6589294.994240784"
+    "Networksolps": "8185563693"
   },
   {
     "Date": "01/06/2018",
-    "Difficulty": "7039231.809266961"
+    "Networksolps": "8127516063"
   },
   {
     "Date": "01/20/2018",
-    "Difficulty": "6268529.805184106"
+    "Networksolps": "8083257897"
   },
   {
     "Date": "02/03/2018",
-    "Difficulty": "6080740.027798613"
+    "Networksolps": "8055613866"
   },
   {
     "Date": "02/17/2018",
-    "Difficulty": "9698866.099241607"
+    "Networksolps": "8027117274"
   },
   {
     "Date": "03/03/2018",
-    "Difficulty": "9516329.131650068"
+    "Networksolps": "8012460723"
   },
   {
     "Date": "03/17/2018",
-    "Difficulty": "9573585.410522146"
+    "Networksolps": "7998785263"
   },
   {
     "Date": "04/01/2018",
-    "Difficulty": "9180203.500044355"
+    "Networksolps": "7987709646"
   },
   {
     "Date": "04/15/2018",
-    "Difficulty": "9031110.906329218"
+    "Networksolps": "7984022317"
   },
   {
     "Date": "04/29/2018",
-    "Difficulty": "9268618.207041603"
+    "Networksolps": "7981412622"
   },
   {
     "Date": "05/13/2018",
-    "Difficulty": "8039054.555600237"
+    "Networksolps": "7984195940"
   },
   {
     "Date": "05/27/2018",
-    "Difficulty": "8457741.222854165"
+    "Networksolps": "7985756849"
   },
   {
     "Date": "06/10/2018",
-    "Difficulty": "7797635.770406119"
+    "Networksolps": "7990092735"
   },
   {
     "Date": "06/24/2018",
-    "Difficulty": "9930305.848727847"
+    "Networksolps": "8004128229"
   },
   {
     "Date": "07/08/2018",
-    "Difficulty": "10435046.36768628"
+    "Networksolps": "8015707386"
   },
   {
     "Date": "07/22/2018",
-    "Difficulty": "12301137.86635564"
+    "Networksolps": "8030303777"
   },
   {
     "Date": "08/05/2018",
-    "Difficulty": "18465380.32558071"
+    "Networksolps": "8042662939"
   },
   {
     "Date": "08/19/2018",
-    "Difficulty": "14082261.47534585"
+    "Networksolps": "8057391840"
   },
   {
     "Date": "09/02/2018",
-    "Difficulty": "14363661.10968281"
+    "Networksolps": "8076690261"
   },
   {
     "Date": "09/16/2018",
-    "Difficulty": "24378152.54502824"
+    "Networksolps": "8093006871"
   },
   {
     "Date": "09/30/2018",
-    "Difficulty": "30798478.45417908"
+    "Networksolps": "8108459097"
   },
   {
     "Date": "10/14/2018",
-    "Difficulty": "39626070.471229"
+    "Networksolps": "8122197758"
   },
   {
     "Date": "10/29/2018",
-    "Difficulty": "28709507.23277477"
+    "Networksolps": "8135655323"
   },
   {
     "Date": "11/12/2018",
-    "Difficulty": "37163169.42553911"
+    "Networksolps": "8149171124"
   },
   {
     "Date": "11/26/2018",
-    "Difficulty": "44868783.13095286"
+    "Networksolps": "8156658151"
   },
   {
     "Date": "12/10/2018",
-    "Difficulty": "42266069.44814331"
+    "Networksolps": "8155987999"
   },
   {
     "Date": "12/24/2018",
-    "Difficulty": "47197099.54440921"
+    "Networksolps": "8167301175"
   },
   {
     "Date": "01/07/2019",
-    "Difficulty": "41565036.92901494"
+    "Networksolps": "8181284947"
   },
   {
     "Date": "01/21/2019",
-    "Difficulty": "52497903.59348497"
+    "Networksolps": "8193160839"
   },
   {
     "Date": "02/04/2019",
-    "Difficulty": "51972750.8507953"
+    "Networksolps": "8208621264"
   },
   {
     "Date": "02/18/2019",
-    "Difficulty": "42888232.38721946"
+    "Networksolps": "8218331743"
   },
   {
     "Date": "03/04/2019",
-    "Difficulty": "51390056.52502001"
+    "Networksolps": "8225615100"
   },
   {
     "Date": "03/18/2019",
-    "Difficulty": "48099370.84748432"
+    "Networksolps": "8232577223"
   },
   {
     "Date": "04/01/2019",
-    "Difficulty": "46514736.6514122"
+    "Networksolps": "8237477002"
   },
   {
     "Date": "04/15/2019",
-    "Difficulty": "57833917.92462457"
+    "Networksolps": "8238150945"
   },
   {
     "Date": "04/29/2019",
-    "Difficulty": "70881794.14957896"
+    "Networksolps": "8244625334"
   },
   {
     "Date": "05/13/2019",
-    "Difficulty": "60321880.17331075"
+    "Networksolps": "8250713679"
   },
   {
     "Date": "05/27/2019",
-    "Difficulty": "85637419.26525366"
+    "Networksolps": "8255870913"
   },
   {
     "Date": "06/11/2019",
-    "Difficulty": "75504744.71438749"
+    "Networksolps": "8263203018"
   },
   {
     "Date": "06/25/2019",
-    "Difficulty": "87964281.02116084"
+    "Networksolps": "8269363438"
   },
   {
     "Date": "07/09/2019",
-    "Difficulty": "78709274.34357607"
+    "Networksolps": "8270329693"
   },
   {
     "Date": "07/23/2019",
-    "Difficulty": "83815259.70491491"
+    "Networksolps": "8268280217"
   },
   {
     "Date": "08/06/2019",
-    "Difficulty": "74980830.82568558"
+    "Networksolps": "8268334162"
   },
   {
     "Date": "08/20/2019",
-    "Difficulty": "94416996.68311115"
+    "Networksolps": "8269229469"
   },
   {
     "Date": "09/03/2019",
-    "Difficulty": "80746839.78364882"
+    "Networksolps": "8264487960"
   },
   {
     "Date": "09/17/2019",
-    "Difficulty": "80734240.57596534"
+    "Networksolps": "8258906197"
   },
   {
     "Date": "10/01/2019",
-    "Difficulty": "94834356.6175608"
+    "Networksolps": "8252496334"
   },
   {
     "Date": "10/15/2019",
-    "Difficulty": "107461867.5551538"
+    "Networksolps": "8245890407"
   },
   {
     "Date": "10/29/2019",
-    "Difficulty": "89176234.52651642"
+    "Networksolps": "8237797303"
   },
   {
     "Date": "11/12/2019",
-    "Difficulty": "100337378.0299093"
+    "Networksolps": "8230037016"
   },
   {
     "Date": "11/26/2019",
-    "Difficulty": "82927088.1963986"
+    "Networksolps": "8225764568"
   },
   {
     "Date": "12/10/2019",
-    "Difficulty": "97460209.02343412"
+    "Networksolps": "8223160357"
   },
   {
     "Date": "12/18/2019",
-    "Difficulty": "40777511.57806119"
+    "Networksolps": "8219573748"
   },
   {
     "Date": "12/25/2019",
-    "Difficulty": "35173893.50748979"
+    "Networksolps": "8218002139"
   },
   {
     "Date": "01/01/2020",
-    "Difficulty": "41694283.65230417"
+    "Networksolps": "8218808205"
   },
   {
     "Date": "01/08/2020",
-    "Difficulty": "48602476.76534424"
+    "Networksolps": "8220281770"
   },
   {
     "Date": "01/15/2020",
-    "Difficulty": "47039098.61221958"
+    "Networksolps": "8225250866"
   },
   {
     "Date": "01/22/2020",
-    "Difficulty": "49565132.53313047"
+    "Networksolps": "8232403138"
   },
   {
     "Date": "01/29/2020",
-    "Difficulty": "44511627.4991625"
+    "Networksolps": "8237862038"
   },
   {
     "Date": "02/05/2020",
-    "Difficulty": "57341905.28492735"
+    "Networksolps": "8241333348"
   },
   {
     "Date": "02/12/2020",
-    "Difficulty": "39530261.98230232"
+    "Networksolps": "8249570090"
   },
   {
     "Date": "02/19/2020",
-    "Difficulty": "52633924.8015893"
+    "Networksolps": "8262216349"
   },
   {
     "Date": "02/26/2020",
-    "Difficulty": "39486962.34491985"
+    "Networksolps": "8271186655"
   },
   {
     "Date": "03/04/2020",
-    "Difficulty": "49788171.42124865"
+    "Networksolps": "8280385758"
   },
   {
     "Date": "03/11/2020",
-    "Difficulty": "46563737.3744971"
+    "Networksolps": "8298727844"
   },
   {
     "Date": "03/18/2020",
-    "Difficulty": "49999864.96852014"
+    "Networksolps": "8315018536"
   },
   {
     "Date": "03/25/2020",
-    "Difficulty": "49416991.55037444"
+    "Networksolps": "8328892114"
   },
   {
     "Date": "04/01/2020",
-    "Difficulty": "47861988.4916313"
+    "Networksolps": "8342556649"
   },
   {
     "Date": "04/08/2020",
-    "Difficulty": "39894939.90408244"
+    "Networksolps": "8362605109"
   },
   {
     "Date": "04/15/2020",
-    "Difficulty": "46638297.81758412"
+    "Networksolps": "8377277997"
   },
   {
     "Date": "04/22/2020",
-    "Difficulty": "53866499.96320747"
+    "Networksolps": "8394716553"
   },
   {
     "Date": "04/29/2020",
-    "Difficulty": "52975964.95396864"
+    "Networksolps": "8413055744"
   },
   {
     "Date": "05/06/2020",
-    "Difficulty": "70552045.27765791"
+    "Networksolps": "8431797351"
   },
   {
     "Date": "05/13/2020",
-    "Difficulty": "57649702.08674907"
+    "Networksolps": "8452275003"
   },
   {
     "Date": "05/21/2020",
-    "Difficulty": "43797744.62985351"
+    "Networksolps": "8472340875"
   },
   {
     "Date": "05/28/2020",
-    "Difficulty": "47343930.78777766"
+    "Networksolps": "8490712170"
   },
   {
     "Date": "06/04/2020",
-    "Difficulty": "49751281.07302561"
+    "Networksolps": "8508167030"
   },
   {
     "Date": "06/11/2020",
-    "Difficulty": "65302688.58988693"
+    "Networksolps": "8526265860"
   },
   {
     "Date": "06/18/2020",
-    "Difficulty": "40317163.72858112"
+    "Networksolps": "8545072661"
   },
   {
     "Date": "06/25/2020",
-    "Difficulty": "42210697.72292631"
+    "Networksolps": "8561017259"
   },
   {
     "Date": "07/02/2020",
-    "Difficulty": "48539448.96941202"
+    "Networksolps": "8571835246"
   },
   {
     "Date": "07/09/2020",
-    "Difficulty": "51976129.03506999"
+    "Networksolps": "8587434233"
   },
   {
     "Date": "07/16/2020",
-    "Difficulty": "63945420.37418942"
+    "Networksolps": "8605803672"
   },
   {
     "Date": "07/23/2020",
-    "Difficulty": "48780099.07327488"
+    "Networksolps": "8620183436"
   },
   {
     "Date": "07/30/2020",
-    "Difficulty": "64748921.55990843"
+    "Networksolps": "8636411327"
   },
   {
     "Date": "08/06/2020",
-    "Difficulty": "46775945.61461762"
+    "Networksolps": "8649062011"
   },
   {
     "Date": "08/13/2020",
-    "Difficulty": "55922666.69840422"
+    "Networksolps": "8660776553"
   },
   {
     "Date": "08/20/2020",
-    "Difficulty": "65593409.73148397"
+    "Networksolps": "8674505323"
   },
   {
     "Date": "08/27/2020",
-    "Difficulty": "56120689.34821195"
+    "Networksolps": "8687252476"
   },
   {
     "Date": "09/03/2020",
-    "Difficulty": "52597101.35433372"
+    "Networksolps": "8700988416"
   },
   {
     "Date": "09/10/2020",
-    "Difficulty": "58879953.44395207"
+    "Networksolps": "8711984609"
   },
   {
     "Date": "09/17/2020",
-    "Difficulty": "47361265.13674666"
+    "Networksolps": "8723710498"
   },
   {
     "Date": "09/24/2020",
-    "Difficulty": "64503914.09080043"
+    "Networksolps": "8733978443"
   },
   {
     "Date": "10/01/2020",
-    "Difficulty": "67937533.26942296"
+    "Networksolps": "8741822430"
   },
   {
     "Date": "10/08/2020",
-    "Difficulty": "59496061.66671401"
+    "Networksolps": "8748236702"
   },
   {
     "Date": "10/15/2020",
-    "Difficulty": "66117518.02124221"
+    "Networksolps": "8755287460"
   },
   {
     "Date": "10/22/2020",
-    "Difficulty": "55409052.36596367"
+    "Networksolps": "8761160275"
   },
   {
     "Date": "10/29/2020",
-    "Difficulty": "64161849.30551746"
+    "Networksolps": "8762752135"
   },
   {
     "Date": "11/05/2020",
-    "Difficulty": "56412948.98759003"
+    "Networksolps": "8762134698"
   },
   {
     "Date": "11/12/2020",
-    "Difficulty": "72285030.69368704"
+    "Networksolps": "8761330747"
   },
   {
     "Date": "11/19/2020",
-    "Difficulty": "56514072.14535736"
+    "Networksolps": "8759776977"
   },
   {
     "Date": "11/26/2020",
-    "Difficulty": "57423137.7790312"
+    "Networksolps": "8754979705"
   },
   {
     "Date": "12/03/2020",
-    "Difficulty": "68371080.47284146"
+    "Networksolps": "8751043782"
   },
   {
     "Date": "12/10/2020",
-    "Difficulty": "67748112.95099165"
+    "Networksolps": "8744937909"
   },
   {
     "Date": "12/18/2020",
-    "Difficulty": "65726725.6851481"
+    "Networksolps": "8740285876"
   },
   {
     "Date": "12/25/2020",
-    "Difficulty": "56378960.27350865"
+    "Networksolps": "8737585249"
   },
   {
     "Date": "01/01/2021",
-    "Difficulty": "63997993.67732078"
+    "Networksolps": "8736189832"
   },
   {
     "Date": "01/08/2021",
-    "Difficulty": "50722403.03658255"
+    "Networksolps": "8739499905"
   },
   {
     "Date": "01/15/2021",
-    "Difficulty": "71587894.98736073"
+    "Networksolps": "8751450658"
   },
   {
     "Date": "01/22/2021",
-    "Difficulty": "70251711.11264455"
+    "Networksolps": "8761719706"
   },
   {
     "Date": "01/29/2021",
-    "Difficulty": "60494461.9092591"
+    "Networksolps": "8775583112"
   },
   {
     "Date": "02/05/2021",
-    "Difficulty": "48841041.69438522"
+    "Networksolps": "8790662213"
   },
   {
     "Date": "02/12/2021",
-    "Difficulty": "69567195.86358747"
+    "Networksolps": "8805564300"
   },
   {
     "Date": "02/19/2021",
-    "Difficulty": "71086871.71171112"
+    "Networksolps": "8819257634"
   },
   {
     "Date": "02/26/2021",
-    "Difficulty": "69003987.11083218"
+    "Networksolps": "8831938616"
   },
   {
     "Date": "03/05/2021",
-    "Difficulty": "83312744.43773857"
+    "Networksolps": "8843276372"
   },
   {
     "Date": "03/12/2021",
-    "Difficulty": "65169636.99872566"
+    "Networksolps": "8853828915"
   },
   {
     "Date": "03/19/2021",
-    "Difficulty": "53920653.74236499"
+    "Networksolps": "8863234214"
   },
   {
     "Date": "03/26/2021",
-    "Difficulty": "78841200.75821704"
+    "Networksolps": "8870803309"
   },
   {
     "Date": "04/02/2021",
-    "Difficulty": "102862444.8328558"
+    "Networksolps": "8880638531"
   },
   {
     "Date": "04/09/2021",
-    "Difficulty": "75874684.03067395"
+    "Networksolps": "8888632657"
   },
   {
     "Date": "04/16/2021",
-    "Difficulty": "63042560.13210441"
+    "Networksolps": "8892016803"
   },
   {
     "Date": "04/23/2021",
-    "Difficulty": "63323035.71422812"
+    "Networksolps": "8892003404"
   },
   {
     "Date": "04/30/2021",
-    "Difficulty": "59373974.80200072"
+    "Networksolps": "8889093119"
   },
   {
     "Date": "05/07/2021",
-    "Difficulty": "77081482.07049091"
+    "Networksolps": "8883981503"
   },
   {
     "Date": "05/14/2021",
-    "Difficulty": "62702814.6518584"
+    "Networksolps": "8877143689"
   },
   {
     "Date": "05/21/2021",
-    "Difficulty": "57382305.61222266"
+    "Networksolps": "8870064955"
   },
   {
     "Date": "05/28/2021",
-    "Difficulty": "50921784.24420941"
+    "Networksolps": "8862758995"
   },
   {
     "Date": "06/05/2021",
-    "Difficulty": "54529020.17848863"
+    "Networksolps": "8855251094"
   },
   {
     "Date": "06/12/2021",
-    "Difficulty": "54048876.11136577"
+    "Networksolps": "8847129808"
   },
   {
     "Date": "06/19/2021",
-    "Difficulty": "41352239.63496011"
+    "Networksolps": "8837736965"
   },
   {
     "Date": "06/26/2021",
-    "Difficulty": "39565468.43017853"
+    "Networksolps": "8827676680"
   },
   {
     "Date": "07/03/2021",
-    "Difficulty": "32936087.63781102"
+    "Networksolps": "8819421053"
   },
   {
     "Date": "07/10/2021",
-    "Difficulty": "39640892.70098335"
+    "Networksolps": "8810043461"
   },
   {
     "Date": "07/17/2021",
-    "Difficulty": "50598689.85844455"
+    "Networksolps": "8799345812"
   },
   {
     "Date": "07/24/2021",
-    "Difficulty": "45981255.56068312"
+    "Networksolps": "8787268778"
   },
   {
     "Date": "07/31/2021",
-    "Difficulty": "41732066.16055984"
+    "Networksolps": "8773749971"
   },
   {
     "Date": "08/07/2021",
-    "Difficulty": "50217666.49154197"
+    "Networksolps": "8759074969"
   },
   {
     "Date": "08/14/2021",
-    "Difficulty": "36802280.43710488"
+    "Networksolps": "8745006796"
   },
   {
     "Date": "08/21/2021",
-    "Difficulty": "44454263.67574342"
+    "Networksolps": "8729864106"
   },
   {
     "Date": "08/28/2021",
-    "Difficulty": "48488342.41972151"
+    "Networksolps": "8715656887"
   },
   {
     "Date": "09/04/2021",
-    "Difficulty": "55223291.04978591"
+    "Networksolps": "8699593169"
   },
   {
     "Date": "09/11/2021",
-    "Difficulty": "50544609.68471378"
+    "Networksolps": "8681460234"
   },
   {
     "Date": "09/18/2021",
-    "Difficulty": "40097353.51095875"
+    "Networksolps": "8662416938"
   },
   {
     "Date": "09/25/2021",
-    "Difficulty": "52937705.72157993"
+    "Networksolps": "8642748898"
   },
   {
     "Date": "10/02/2021",
-    "Difficulty": "53186739.98217449"
+    "Networksolps": "8624043509"
   },
   {
     "Date": "10/09/2021",
-    "Difficulty": "45526931.07352774"
+    "Networksolps": "8603651000"
   },
   {
     "Date": "10/16/2021",
-    "Difficulty": "39191214.77896988"
+    "Networksolps": "8583314623"
   },
   {
     "Date": "10/23/2021",
-    "Difficulty": "54744523.07447954"
+    "Networksolps": "8562162590"
   },
   {
     "Date": "10/30/2021",
-    "Difficulty": "66293920.43435858"
+    "Networksolps": "8539709614"
   },
   {
     "Date": "11/06/2021",
-    "Difficulty": "57373322.84275959"
+    "Networksolps": "8517194268"
   },
   {
     "Date": "11/13/2021",
-    "Difficulty": "53773307.03578132"
+    "Networksolps": "8496350771"
   },
   {
     "Date": "11/20/2021",
-    "Difficulty": "56065244.72555294"
+    "Networksolps": "8475876066"
   },
   {
     "Date": "11/27/2021",
-    "Difficulty": "64903238.08709768"
+    "Networksolps": "8454976419"
   },
   {
     "Date": "12/04/2021",
-    "Difficulty": "63907323.88578735"
+    "Networksolps": "8436618836"
   },
   {
     "Date": "12/12/2021",
-    "Difficulty": "73060145.72857676"
+    "Networksolps": "8417218871"
   },
   {
     "Date": "12/19/2021",
-    "Difficulty": "67318799.08613762"
+    "Networksolps": "8397450364"
   },
   {
     "Date": "12/26/2021",
-    "Difficulty": "59878801.92372939"
+    "Networksolps": "8377106733"
   },
   {
     "Date": "01/02/2022",
-    "Difficulty": "70993924.44646043"
+    "Networksolps": "8356080743"
   },
   {
     "Date": "01/09/2022",
-    "Difficulty": "57475668.09325667"
+    "Networksolps": "8341341160"
   },
   {
     "Date": "01/16/2022",
-    "Difficulty": "81507035.38790563"
+    "Networksolps": "8328946170"
   },
   {
     "Date": "01/23/2022",
-    "Difficulty": "64946847.15909477"
+    "Networksolps": "8317124374"
   },
   {
     "Date": "01/30/2022",
-    "Difficulty": "75952648.69175373"
+    "Networksolps": "8307313737"
   },
   {
     "Date": "02/06/2022",
-    "Difficulty": "76302503.01435648"
+    "Networksolps": "8298337152"
   },
   {
     "Date": "02/13/2022",
-    "Difficulty": "73559934.14278665"
+    "Networksolps": "8292255913"
   },
   {
     "Date": "02/20/2022",
-    "Difficulty": "80411711.01941712"
+    "Networksolps": "8284694221"
   },
   {
     "Date": "02/27/2022",
-    "Difficulty": "81118423.43331949"
+    "Networksolps": "8275284651"
   },
   {
     "Date": "03/06/2022",
-    "Difficulty": "73771543.72907057"
+    "Networksolps": "8270160317"
   },
   {
     "Date": "03/13/2022",
-    "Difficulty": "88211282.49219784"
+    "Networksolps": "8268057761"
   },
   {
     "Date": "03/20/2022",
-    "Difficulty": "98871199.29176642"
+    "Networksolps": "8268784783"
   },
   {
     "Date": "03/27/2022",
-    "Difficulty": "102325169.7842302"
+    "Networksolps": "8269019545"
   },
   {
     "Date": "04/03/2022",
-    "Difficulty": "91552361.59530377"
+    "Networksolps": "8268458040"
   },
   {
     "Date": "04/10/2022",
-    "Difficulty": "102418101.6835732"
+    "Networksolps": "8264624079"
   },
   {
     "Date": "04/17/2022",
-    "Difficulty": "74033567.69511497"
+    "Networksolps": "8259905189"
   },
   {
     "Date": "04/24/2022",
-    "Difficulty": "125348442.3495076"
+    "Networksolps": "8256273351"
   },
   {
     "Date": "05/01/2022",
-    "Difficulty": "99265068.44436419"
+    "Networksolps": "8251714982"
   },
   {
     "Date": "05/08/2022",
-    "Difficulty": "87891328.30056256"
+    "Networksolps": "8248687055"
   },
   {
     "Date": "05/15/2022",
-    "Difficulty": "102260931.047619"
+    "Networksolps": "8244186405"
   },
   {
     "Date": "05/22/2022",
-    "Difficulty": "108501107.0198473"
+    "Networksolps": "8237355263"
   },
   {
     "Date": "05/29/2022",
-    "Difficulty": "101990587.6929642"
+    "Networksolps": "8230970506"
   },
   {
     "Date": "06/05/2022",
-    "Difficulty": "99777399.92277414"
+    "Networksolps": "8225496154"
   },
   {
     "Date": "06/13/2022",
-    "Difficulty": "87622539.44765206"
+    "Networksolps": "8221267953"
   },
   {
     "Date": "06/20/2022",
-    "Difficulty": "79389119.24503371"
+    "Networksolps": "8217125969"
   },
   {
     "Date": "06/27/2022",
-    "Difficulty": "72236353.10584061"
+    "Networksolps": "8214089502"
   },
   {
     "Date": "07/04/2022",
-    "Difficulty": "79637814.46063866"
+    "Networksolps": "8212039748"
   },
   {
     "Date": "07/11/2022",
-    "Difficulty": "78058980.74270755"
+    "Networksolps": "8208885375"
   },
   {
     "Date": "07/18/2022",
-    "Difficulty": "76037346.19334203"
+    "Networksolps": "8206870161"
   },
   {
     "Date": "07/25/2022",
-    "Difficulty": "81583388.93673539"
+    "Networksolps": "8201456348"
   },
   {
     "Date": "08/01/2022",
-    "Difficulty": "78394305.36609538"
+    "Networksolps": "8193469750"
   },
   {
     "Date": "08/08/2022",
-    "Difficulty": "82903640.38635249"
+    "Networksolps": "8186882573"
   },
   {
     "Date": "08/15/2022",
-    "Difficulty": "79624838.14456545"
+    "Networksolps": "8180092961"
   },
   {
     "Date": "08/22/2022",
-    "Difficulty": "77707286.05496709"
+    "Networksolps": "8171987662"
   },
   {
     "Date": "08/29/2022",
-    "Difficulty": "88449000.93508165"
+    "Networksolps": "8163239055"
   },
   {
     "Date": "09/05/2022",
-    "Difficulty": "72301667.33788161"
+    "Networksolps": "8155706539"
   },
   {
     "Date": "09/12/2022",
-    "Difficulty": "72830273.19388947"
+    "Networksolps": "8149142451"
   },
   {
     "Date": "09/19/2022",
-    "Difficulty": "103257298.6757448"
+    "Networksolps": "8142883442"
   },
   {
     "Date": "09/26/2022",
-    "Difficulty": "79479504.522341"
+    "Networksolps": "8135943689"
   },
   {
     "Date": "10/03/2022",
-    "Difficulty": "81118423.43331949"
+    "Networksolps": "8128108678"
   },
   {
     "Date": "10/10/2022",
-    "Difficulty": "80804698.36290145"
+    "Networksolps": "8121026632"
   },
   {
     "Date": "10/17/2022",
-    "Difficulty": "91022768.37816134"
+    "Networksolps": "8113296311"
   },
   {
     "Date": "10/24/2022",
-    "Difficulty": "105335922.9386504"
+    "Networksolps": "8105400644"
   },
   {
     "Date": "10/31/2022",
-    "Difficulty": "92703472.08161545"
+    "Networksolps": "8097342339"
   },
   {
     "Date": "11/07/2022",
-    "Difficulty": "86905726.9250499"
+    "Networksolps": "8088180847"
   },
   {
     "Date": "11/14/2022",
-    "Difficulty": "97381443.27205899"
+    "Networksolps": "8080249991"
   },
   {
     "Date": "11/21/2022",
-    "Difficulty": "109898751.1556011"
+    "Networksolps": "8073036927"
   },
   {
     "Date": "11/28/2022",
-    "Difficulty": "106316265.7278298"
+    "Networksolps": "8064401563"
   },
   {
     "Date": "12/05/2022",
-    "Difficulty": "97678829.1633852"
+    "Networksolps": "8054580447"
   },
   {
     "Date": "12/12/2022",
-    "Difficulty": "94939786.1282043"
+    "Networksolps": "8045922300"
   },
   {
     "Date": "12/19/2022",
-    "Difficulty": "94099835.73315075"
+    "Networksolps": "8037809423"
   },
   {
     "Date": "12/26/2022",
-    "Difficulty": "92518209.44729368"
+    "Networksolps": "8027648111"
   },
   {
     "Date": "01/02/2023",
-    "Difficulty": "90766350.33889525"
+    "Networksolps": "8017119543"
   },
   {
     "Date": "01/10/2023",
-    "Difficulty": "77951756.86806098"
+    "Networksolps": "8006386385"
   },
   {
     "Date": "01/17/2023",
-    "Difficulty": "93899933.22649586"
+    "Networksolps": "7996175671"
   },
   {
     "Date": "01/24/2023",
-    "Difficulty": "85143368.38989827"
+    "Networksolps": "7986520139"
   },
   {
     "Date": "01/31/2023",
-    "Difficulty": "88664760.64947684"
+    "Networksolps": "7976740639"
   },
   {
     "Date": "02/07/2023",
-    "Difficulty": "115575127.7148225"
+    "Networksolps": "7966546519"
   },
   {
     "Date": "02/14/2023",
-    "Difficulty": "115119833.5906188"
+    "Networksolps": "7957582275"
   },
   {
     "Date": "02/21/2023",
-    "Difficulty": "69634385.00444908"
+    "Networksolps": "7947936159"
   },
   {
     "Date": "02/28/2023",
-    "Difficulty": "97345878.60635908"
+    "Networksolps": "7938059931"
   },
   {
     "Date": "03/07/2023",
-    "Difficulty": "97461288.89101626"
+    "Networksolps": "7926310619"
   },
   {
     "Date": "03/14/2023",
-    "Difficulty": "78612199.66567762"
+    "Networksolps": "7915597187"
   },
   {
     "Date": "03/21/2023",
-    "Difficulty": "88405441.8222861"
+    "Networksolps": "7904311881"
   },
   {
     "Date": "03/28/2023",
-    "Difficulty": "102034362.0006728"
+    "Networksolps": "7892411641"
   },
   {
     "Date": "04/04/2023",
-    "Difficulty": "97349110.68431537"
+    "Networksolps": "7881391262"
   },
   {
     "Date": "04/11/2023",
-    "Difficulty": "98321927.13098298"
+    "Networksolps": "7870695520"
   },
   {
     "Date": "04/18/2023",
-    "Difficulty": "120303028.6803436"
+    "Networksolps": "7860243381"
   },
   {
     "Date": "04/25/2023",
-    "Difficulty": "72273745.90191035"
+    "Networksolps": "7850680584"
   },
   {
     "Date": "05/02/2023",
-    "Difficulty": "88781995.91210699"
+    "Networksolps": "7841698233"
   },
   {
     "Date": "05/09/2023",
-    "Difficulty": "66957525.76724926"
+    "Networksolps": "7832517996"
   },
   {
     "Date": "05/16/2023",
-    "Difficulty": "75514467.85762607"
+    "Networksolps": "7823923376"
   },
   {
     "Date": "05/23/2023",
-    "Difficulty": "85827100.72587475"
+    "Networksolps": "7815486443"
   },
   {
     "Date": "05/30/2023",
-    "Difficulty": "67409081.63962969"
+    "Networksolps": "7807341810"
   },
   {
     "Date": "06/06/2023",
-    "Difficulty": "66929504.31044795"
+    "Networksolps": "7798722097"
   },
   {
     "Date": "06/13/2023",
-    "Difficulty": "77944158.62501884"
+    "Networksolps": "7789011002"
   },
   {
     "Date": "06/20/2023",
-    "Difficulty": "75511226.53164731"
+    "Networksolps": "7778754744"
   },
   {
     "Date": "06/27/2023",
-    "Difficulty": "62240939.16058957"
+    "Networksolps": "7768056828"
   },
   {
     "Date": "07/04/2023",
-    "Difficulty": "79516147.57721931"
+    "Networksolps": "7756688493"
   },
   {
     "Date": "07/11/2023",
-    "Difficulty": "77381204.21028925"
+    "Networksolps": "7745022573"
   },
   {
     "Date": "07/19/2023",
-    "Difficulty": "68076343.32741527"
+    "Networksolps": "7722567713"
   },
   {
     "Date": "07/26/2023",
-    "Difficulty": "78590425.9624206"
+    "Networksolps": "7699932572"
   },
   {
     "Date": "08/02/2023",
-    "Difficulty": "69955592.14391831"
+    "Networksolps": "7677271433"
   },
   {
     "Date": "08/09/2023",
-    "Difficulty": "82230912.46907486"
+    "Networksolps": "7656111320"
   },
   {
     "Date": "08/16/2023",
-    "Difficulty": "73550092.77292149"
+    "Networksolps": "7638430420"
   },
   {
     "Date": "08/23/2023",
-    "Difficulty": "58149340.20633714"
+    "Networksolps": "7619207989"
   },
   {
     "Date": "08/30/2023",
-    "Difficulty": "73896735.70965791"
+    "Networksolps": "7597995457"
   },
   {
     "Date": "09/06/2023",
-    "Difficulty": "57598739.1053283"
+    "Networksolps": "7576078101"
   },
   {
     "Date": "09/13/2023",
-    "Difficulty": "77935180.7927417"
+    "Networksolps": "7554346882"
   },
   {
     "Date": "09/20/2023",
-    "Difficulty": "61865342.38043058"
+    "Networksolps": "7532718105"
   },
   {
     "Date": "09/27/2023",
-    "Difficulty": "74677818.81694923"
+    "Networksolps": "7511513417"
   },
   {
     "Date": "10/04/2023",
-    "Difficulty": "79533403.06152122"
+    "Networksolps": "7490186352"
   },
   {
     "Date": "10/11/2023",
-    "Difficulty": "76183547.7961181"
+    "Networksolps": "7468021196"
   },
   {
     "Date": "10/18/2023",
-    "Difficulty": "64258876.02726376"
+    "Networksolps": "7445619871"
   },
   {
     "Date": "10/25/2023",
-    "Difficulty": "73150068.15132186"
+    "Networksolps": "7422068093"
   },
   {
     "Date": "11/01/2023",
-    "Difficulty": "89119313.52575481"
+    "Networksolps": "7398444732"
   },
   {
     "Date": "11/08/2023",
-    "Difficulty": "75005126.88335763"
+    "Networksolps": "7374324781"
   },
   {
     "Date": "11/15/2023",
-    "Difficulty": "70487028.167257"
+    "Networksolps": "7344893457"
   },
   {
     "Date": "11/22/2023",
-    "Difficulty": "79832967.97988763"
+    "Networksolps": "7314621643"
   },
   {
     "Date": "11/29/2023",
-    "Difficulty": "77017365.04996979"
+    "Networksolps": "7284165619"
   },
   {
     "Date": "12/06/2023",
-    "Difficulty": "103467425.5112983"
+    "Networksolps": "7253638000"
   },
   {
     "Date": "12/13/2023",
-    "Difficulty": "84774103.8848871"
+    "Networksolps": "7223522181"
   },
   {
     "Date": "12/20/2023",
-    "Difficulty": "92280408.3655095"
+    "Networksolps": "7195349708"
   },
   {
     "Date": "12/27/2023",
-    "Difficulty": "60431288.8254749"
+    "Networksolps": "7166236175"
   },
   {
     "Date": "01/03/2024",
-    "Difficulty": "79224659.2719969"
+    "Networksolps": "7136893095"
   },
   {
     "Date": "01/10/2024",
-    "Difficulty": "88290084.46497436"
+    "Networksolps": "7108537313"
   },
   {
     "Date": "01/17/2024",
-    "Difficulty": "68116409.0123516"
+    "Networksolps": "7078226831"
   },
   {
     "Date": "01/24/2024",
-    "Difficulty": "87627776.89770871"
+    "Networksolps": "7049068574"
   },
   {
     "Date": "01/31/2024",
-    "Difficulty": "79206111.00098151"
+    "Networksolps": "7019474216"
   },
   {
     "Date": "02/08/2024",
-    "Difficulty": "98162824.83502404"
+    "Networksolps": "6988628333"
   },
   {
     "Date": "02/15/2024",
-    "Difficulty": "89678098.02713972"
+    "Networksolps": "6957429957"
   },
   {
     "Date": "02/22/2024",
-    "Difficulty": "92346287.65043937"
+    "Networksolps": "6925818514"
   },
   {
     "Date": "02/29/2024",
-    "Difficulty": "81308131.15852915"
+    "Networksolps": "6891028143"
   },
   {
     "Date": "03/07/2024",
-    "Difficulty": "76242318.15022969"
+    "Networksolps": "6854943704"
   },
   {
     "Date": "03/14/2024",
-    "Difficulty": "89415553.50545374"
+    "Networksolps": "6818667294"
   },
   {
     "Date": "03/21/2024",
-    "Difficulty": "72232793.90503719"
+    "Networksolps": "6782756497"
   },
   {
     "Date": "03/28/2024",
-    "Difficulty": "85378075.66116962"
+    "Networksolps": "6746777165"
   },
   {
     "Date": "04/04/2024",
-    "Difficulty": "82920834.15026678"
+    "Networksolps": "6710831526"
   },
   {
     "Date": "04/11/2024",
-    "Difficulty": "75794919.86274999"
+    "Networksolps": "6675092993"
   },
   {
     "Date": "04/18/2024",
-    "Difficulty": "75214210.24046791"
+    "Networksolps": "6639459107"
   },
   {
     "Date": "04/25/2024",
-    "Difficulty": "67156385.71826018"
+    "Networksolps": "6603989374"
   },
   {
     "Date": "05/02/2024",
-    "Difficulty": "51347157.98040932"
+    "Networksolps": "6568850992"
   },
   {
     "Date": "05/09/2024",
-    "Difficulty": "84782274.96160927"
+    "Networksolps": "6534263399"
   },
   {
     "Date": "05/16/2024",
-    "Difficulty": "65251338.9538215"
+    "Networksolps": "6500059484"
   },
   {
     "Date": "05/23/2024",
-    "Difficulty": "56114602.97152189"
+    "Networksolps": "6466413219"
   },
   {
     "Date": "05/30/2024",
-    "Difficulty": "60854812.06149077"
+    "Networksolps": "6433124043"
   },
   {
     "Date": "06/06/2024",
-    "Difficulty": "52404074.11926053"
+    "Networksolps": "6400200650"
   },
   {
     "Date": "06/13/2024",
-    "Difficulty": "48023215.63302632"
+    "Networksolps": "6367384811"
   },
   {
     "Date": "06/20/2024",
-    "Difficulty": "71464590.926383"
+    "Networksolps": "6334539123"
   },
   {
     "Date": "06/27/2024",
-    "Difficulty": "56646914.55375163"
+    "Networksolps": "6302023488"
   },
   {
     "Date": "07/04/2024",
-    "Difficulty": "59985380.53146204"
+    "Networksolps": "6269718449"
   },
   {
     "Date": "07/11/2024",
-    "Difficulty": "58278791.26880495"
+    "Networksolps": "6237836668"
   },
   {
     "Date": "07/18/2024",
-    "Difficulty": "57615339.36157308"
+    "Networksolps": "6206042294"
   },
   {
     "Date": "07/25/2024",
-    "Difficulty": "51540918.56999215"
+    "Networksolps": "6174689435"
   },
   {
     "Date": "08/01/2024",
-    "Difficulty": "74813743.33386067"
+    "Networksolps": "6143693407"
   },
   {
     "Date": "08/08/2024",
-    "Difficulty": "68777376.57548557"
+    "Networksolps": "6112922083"
   },
   {
     "Date": "08/16/2024",
-    "Difficulty": "67095426.66548689"
+    "Networksolps": "6082849852"
   },
   {
     "Date": "08/23/2024",
-    "Difficulty": "72625820.45982744"
+    "Networksolps": "6052889969"
   },
   {
     "Date": "08/30/2024",
-    "Difficulty": "67638711.56132108"
+    "Networksolps": "6022903046"
   },
   {
     "Date": "09/06/2024",
-    "Difficulty": "76466341.93087141"
+    "Networksolps": "5993207791"
   },
   {
     "Date": "09/13/2024",
-    "Difficulty": "77529207.57121326"
+    "Networksolps": "5963647414"
   },
   {
     "Date": "09/20/2024",
-    "Difficulty": "65435310.99351306"
+    "Networksolps": "5934308957"
   },
   {
     "Date": "09/27/2024",
-    "Difficulty": "74204695.92022811"
+    "Networksolps": "5905236594"
   },
   {
     "Date": "10/04/2024",
-    "Difficulty": "83194546.86029378"
+    "Networksolps": "5876427012"
   },
   {
     "Date": "10/11/2024",
-    "Difficulty": "82278602.18315156"
+    "Networksolps": "5847718230"
   },
   {
     "Date": "10/18/2024",
-    "Difficulty": "77377119.97916923"
+    "Networksolps": "5819022011"
   },
   {
     "Date": "10/25/2024",
-    "Difficulty": "76192126.57859086"
+    "Networksolps": "5790486663"
   },
   {
     "Date": "11/01/2024",
-    "Difficulty": "118158540.6954583"
+    "Networksolps": "5762142991"
   },
   {
     "Date": "11/08/2024",
-    "Difficulty": "93023078.37509254"
+    "Networksolps": "5734018498"
   },
   {
     "Date": "11/15/2024",
-    "Difficulty": "98678201.96537991"
+    "Networksolps": "5706133568"
   },
   {
     "Date": "11/22/2024",
-    "Difficulty": "95029021.03446339"
+    "Networksolps": "5678472254"
   },
   {
     "Date": "11/29/2024",
-    "Difficulty": "80194707.02191751"
+    "Networksolps": "5651068486"
   },
   {
     "Date": "12/06/2024",
-    "Difficulty": "78262476.37725104"
+    "Networksolps": "5623953493"
   },
   {
     "Date": "12/13/2024",
-    "Difficulty": "78709978.65821947"
+    "Networksolps": "5597079895"
   },
   {
     "Date": "12/20/2024",
-    "Difficulty": "86695869.71083885"
+    "Networksolps": "5570399640"
   },
   {
     "Date": "12/27/2024",
-    "Difficulty": "73555013.12866998"
+    "Networksolps": "5544082194"
   },
   {
     "Date": "01/03/2025",
-    "Difficulty": "73750513.50732803"
+    "Networksolps": "5517955227"
   },
   {
     "Date": "01/10/2025",
-    "Difficulty": "78047898.82070257"
+    "Networksolps": "5492108586"
   },
   {
     "Date": "01/17/2025",
-    "Difficulty": "74254809.6793125"
+    "Networksolps": "5466419118"
   },
   {
     "Date": "01/24/2025",
-    "Difficulty": "84438008.72587644"
+    "Networksolps": "5441074166"
+  },
+  {
+    "Date": "01/31/2025",
+    "Networksolps": "5415876608"
   }
 ]
