@@ -3,18 +3,26 @@
 import React, { useState } from "react";
 import QRCodeComponent from "./QRCodeComponent";
 
+interface PaymentData {
+  address: string;
+  amount: number;
+  memo: string;
+}
+
 const Newsletter: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [unifiedAddress, setUnifiedAddress] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Ecosystem News");
-  const [paymentUri, setPaymentUri] = useState<string | null>(null);
   const [isValidAddress, setIsValidAddress] = useState(false);
+
+  // Subscription Data
+  const [subscriptionData, setSubscriptionData] = useState<PaymentData | null>(null);
 
   // Unsubscribe State
   const [showUnsubscribe, setShowUnsubscribe] = useState(false);
   const [unsubscribeAddress, setUnsubscribeAddress] = useState("");
   const [isValidUnsubAddress, setIsValidUnsubAddress] = useState(false);
-  const [unsubscribeUri, setUnsubscribeUri] = useState<string | null>(null);
+  const [unsubscribeData, setUnsubscribeData] = useState<PaymentData | null>(null);
 
   // Validate Subscription Address
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,31 +38,35 @@ const Newsletter: React.FC = () => {
     setIsValidUnsubAddress(/^u|^z/.test(address));
   };
 
-  // Subscribe Function – generates a QR code URI with 0.05 ZEC fee
+  // Subscribe Function
   const handleSubmit = () => {
     if (!isValidAddress) {
       alert("Please enter a valid shielded Zcash address.");
       return;
     }
-    const amount = "0.05";
-    const memo = `Subscription: ${selectedCategory} | Address: ${unifiedAddress}`;
-    const uri = `zcash:${unifiedAddress}?amount=${amount}&memo=${encodeURIComponent(memo)}`;
-    setPaymentUri(uri);
+    const memoText = `Subscription: ${selectedCategory} | Address: ${unifiedAddress}`;
+    setSubscriptionData({
+      address: unifiedAddress,
+      amount: 0.05,
+      memo: memoText,
+    });
   };
 
-  // Unsubscribe Function – generates a QR code URI with 0.0001 ZEC fee
+  // Unsubscribe Function
   const handleUnsubscribe = () => {
     if (!isValidUnsubAddress) {
       alert("Please enter a valid shielded Zcash address.");
       return;
     }
-    const amount = "0.0001";
-    const memo = `UNSUBSCRIBE | Address: ${unsubscribeAddress}`;
-    const uri = `zcash:${unsubscribeAddress}?amount=${amount}&memo=${encodeURIComponent(memo)}`;
-    setUnsubscribeUri(uri);
+    const memoText = `UNSUBSCRIBE | Address: ${unsubscribeAddress}`;
+    setUnsubscribeData({
+      address: unsubscribeAddress,
+      amount: 0.0001,
+      memo: memoText,
+    });
   };
 
-  // Function to Download QR Code
+  // Function to Download QR Code (common for both)
   const downloadQRCode = (filename: string) => {
     const canvas = document.querySelector("canvas");
     if (canvas) {
@@ -129,9 +141,13 @@ const Newsletter: React.FC = () => {
       </button>
 
       {/* QR Code Display for Subscription */}
-      {paymentUri && (
+      {subscriptionData && (
         <div className="mt-6 text-center">
-          <QRCodeComponent memo={paymentUri} />
+          <QRCodeComponent
+            address={subscriptionData.address}
+            amount={subscriptionData.amount}
+            memo={subscriptionData.memo}
+          />
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
             <strong>Do not edit the memo generated in your wallet.</strong>
           </p>
@@ -193,9 +209,13 @@ const Newsletter: React.FC = () => {
           >
             Confirm Unsubscribe
           </button>
-          {unsubscribeUri && (
+          {unsubscribeData && (
             <div className="mt-6">
-              <QRCodeComponent memo={unsubscribeUri} />
+              <QRCodeComponent
+                address={unsubscribeData.address}
+                amount={unsubscribeData.amount}
+                memo={unsubscribeData.memo}
+              />
               <button
                 onClick={() => downloadQRCode("unsubscribe_qr.png")}
                 className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
