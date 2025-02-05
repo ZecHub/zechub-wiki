@@ -30,15 +30,28 @@ const Newsletter: React.FC = () => {
     setIsValidUnsubAddress(/^u|^z/.test(address));
   };
 
-  // Subscribe Function
+  // Subscribe Function – generates a QR code URI with 0.05 ZEC fee
   const handleSubmit = () => {
     if (!isValidAddress) {
       alert("Please enter a valid shielded Zcash address.");
       return;
     }
-
+    const amount = "0.05";
     const memo = `Subscription: ${selectedCategory} | Address: ${unifiedAddress}`;
-    setPaymentUri(memo);
+    const uri = `zcash:${unifiedAddress}?amount=${amount}&memo=${encodeURIComponent(memo)}`;
+    setPaymentUri(uri);
+  };
+
+  // Unsubscribe Function – generates a QR code URI with 0.0001 ZEC fee
+  const handleUnsubscribe = () => {
+    if (!isValidUnsubAddress) {
+      alert("Please enter a valid shielded Zcash address.");
+      return;
+    }
+    const amount = "0.0001";
+    const memo = `UNSUBSCRIBE | Address: ${unsubscribeAddress}`;
+    const uri = `zcash:${unsubscribeAddress}?amount=${amount}&memo=${encodeURIComponent(memo)}`;
+    setUnsubscribeUri(uri);
   };
 
   // Function to Download QR Code
@@ -51,17 +64,6 @@ const Newsletter: React.FC = () => {
       link.download = filename;
       link.click();
     }
-  };
-
-  // Unsubscribe Function
-  const handleUnsubscribe = () => {
-    if (!isValidUnsubAddress) {
-      alert("Please enter a valid shielded Zcash address.");
-      return;
-    }
-
-    const memo = `UNSUBSCRIBE | Address: ${unsubscribeAddress}`;
-    setUnsubscribeUri(memo);
   };
 
   return (
@@ -126,7 +128,7 @@ const Newsletter: React.FC = () => {
         {loading ? "Generating..." : "Subscribe"}
       </button>
 
-      {/* QR Code Display */}
+      {/* QR Code Display for Subscription */}
       {paymentUri && (
         <div className="mt-6 text-center">
           <QRCodeComponent memo={paymentUri} />
@@ -165,7 +167,7 @@ const Newsletter: React.FC = () => {
         </div>
       </div>
 
-      {/* Unsubscribe Section */}
+      {/* Unsubscribe Section (without fee info) */}
       <div className="mt-16">
         <button
           onClick={() => setShowUnsubscribe(!showUnsubscribe)}
