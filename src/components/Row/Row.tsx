@@ -1,6 +1,7 @@
 // components/ProjectRow.tsx
 import React from "react";
 import BrandCards from "../BrandCards/BrandCards";
+import zcashEspanol from "../../assets/brand/ZcashEspanol/JPG/ZcashEspanol.jpg";
 import ecc from "../../assets/brand/ECC/JPG/ECCBlack.jpg";
 import wallet from "../../assets/brand/Wallets/Zashi/JPG/ZashiIconBlack.jpg";
 import zcash from "../../assets/brand/Zcash/JPG/Primary Brandmark/Brandmark Yellow.jpg";
@@ -44,6 +45,13 @@ const projects = [
     link: "/downloads/brand/ECC.zip",
     imageUrl: ecc,
     size: 200,
+  },
+  {
+    title: "Zcash En Español",
+    description: "Zcash en Español provides Spanish resources, news, guides, and community support for Zcash users.",
+    link: "downloads/brand/ZcashEspanol.zip",
+    imageUrl: zcashEspanol,
+    size: 240,
   },
 ];
 
