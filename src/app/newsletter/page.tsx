@@ -3,12 +3,6 @@
 import React, { useState } from "react";
 import QRCodeComponent from "./QRCodeComponent";
 
-interface PaymentData {
-  address: string;
-  amount: number;
-  memo: string;
-}
-
 const Newsletter: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [unifiedAddress, setUnifiedAddress] = useState("");
@@ -16,13 +10,13 @@ const Newsletter: React.FC = () => {
   const [isValidAddress, setIsValidAddress] = useState(false);
 
   // Subscription Data
-  const [subscriptionData, setSubscriptionData] = useState<PaymentData | null>(null);
+  const [subscriptionData, setSubscriptionData] = useState<{ memo: string; amount: number } | null>(null);
 
   // Unsubscribe State
   const [showUnsubscribe, setShowUnsubscribe] = useState(false);
   const [unsubscribeAddress, setUnsubscribeAddress] = useState("");
   const [isValidUnsubAddress, setIsValidUnsubAddress] = useState(false);
-  const [unsubscribeData, setUnsubscribeData] = useState<PaymentData | null>(null);
+  const [unsubscribeData, setUnsubscribeData] = useState<{ memo: string; amount: number } | null>(null);
 
   // Validate Subscription Address
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,10 +39,10 @@ const Newsletter: React.FC = () => {
       return;
     }
     const memoText = `Subscription: ${selectedCategory} | Address: ${unifiedAddress}`;
+    // Subscription fee is 0.05 ZEC
     setSubscriptionData({
-      address: unifiedAddress,
-      amount: 0.05,
       memo: memoText,
+      amount: 0.05,
     });
   };
 
@@ -59,14 +53,14 @@ const Newsletter: React.FC = () => {
       return;
     }
     const memoText = `UNSUBSCRIBE | Address: ${unsubscribeAddress}`;
+    // Unsubscription fee is 0.0001 ZEC
     setUnsubscribeData({
-      address: unsubscribeAddress,
-      amount: 0.0001,
       memo: memoText,
+      amount: 0.0001,
     });
   };
 
-  // Function to Download QR Code (common for both)
+  // Function to Download QR Code
   const downloadQRCode = (filename: string) => {
     const canvas = document.querySelector("canvas");
     if (canvas) {
@@ -144,7 +138,6 @@ const Newsletter: React.FC = () => {
       {subscriptionData && (
         <div className="mt-6 text-center">
           <QRCodeComponent
-            address={subscriptionData.address}
             amount={subscriptionData.amount}
             memo={subscriptionData.memo}
           />
@@ -212,7 +205,6 @@ const Newsletter: React.FC = () => {
           {unsubscribeData && (
             <div className="mt-6">
               <QRCodeComponent
-                address={unsubscribeData.address}
                 amount={unsubscribeData.amount}
                 memo={unsubscribeData.memo}
               />
