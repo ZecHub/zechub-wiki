@@ -4,22 +4,22 @@ import { getFileContent, getRoot } from "@/lib/authAndFetch";
 import {
   getDynamicRoute,
   getBanner,
-  getName,
   genMetadata,
 } from "@/lib/helpers";
 import { Metadata } from "next";
-import SideMenu from "@/components/SideMenu";
+import SideMenu from "@/components/SideMenu/SideMenu";
 
 export const metadata: Metadata = genMetadata({
   title: "Donate now",
   url: "https://zechub.wiki/donation",
 });
 
-const MdxComponent = dynamic(() => import("@/components/MdxComponent"), {
+const MdxComponent = dynamic(() => import("@/components/MdxComponents/MdxComponent"), {
   loading: () => <span className="text-center text-3xl">Loading...</span>,
 });
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const { slug } = params;
   const url = getDynamicRoute(slug);
   const markdown = await getFileContent(url);

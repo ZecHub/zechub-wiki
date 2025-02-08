@@ -1,4 +1,4 @@
-import ShieldedPoolDashboard from './ShieldedPoolDashboard';
+import ShieldedPoolDashboard from '../../components/ShieldedPool/ShieldedPoolDashboard';
 import { genMetadata } from '@/lib/helpers';
 import { Metadata } from 'next';
 

@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { getFileContent, getRoot } from "@/lib/authAndFetch";
 import { getBanner } from "@/lib/helpers";
-import SideMenu from "@/components/SideMenu";
+import SideMenu from "@/components/SideMenu/SideMenu";
 import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
 
@@ -14,11 +14,12 @@ export const metadata: Metadata = genMetadata({
   image: imgUrl,
 });
 
-const MdxComponent = dynamic(() => import("@/components/MdxComponent"), {
+const MdxComponent = dynamic(() => import("@/components/MdxComponents/MdxComponent"), {
   loading: () => <span className="text-center text-3xl">Loading...</span>,
 });
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const { slug } = params;
   const url = `/site/Using_Zcash/Shielded_Pools.md`;
 
