@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node --max-old-space-size=4096 node_modules/next/dist/bin/next dev --turbopack",
     "build": "node --max-old-space-size=4096 node_modules/next/dist/bin/next build",
-    "start": "node --max-old-space-size=4096 node_modules/next/dist/bin/next start --turbo",
+    "start": "next start",
     "lint": "next lint",
     "test:coverage": "jest --coverage",
     "test": "jest --watch",
