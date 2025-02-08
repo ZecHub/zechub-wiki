@@ -20,7 +20,7 @@ const MdxComponent = async ({ source, slug }: ContentSource) => {
         mdExtensions: [".md"],
       },
     },
-    //@ts-ignore
+    
     components: MdxComponents,
   });
 

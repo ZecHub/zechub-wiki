@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { HTMLProps } from "react";
+import { HTMLProps, JSX } from "react";
 import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 
 
@@ -19,7 +19,7 @@ export const ImagePrev = (props: HTMLProps<HTMLImageElement>) => {
   )
 }
 
-export const LinkComponent = (props: HTMLProps<HTMLHyperlinkElementUtils>) => {
+export const LinkComponent = (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.Element => {
 
   return (
 
@@ -29,105 +29,105 @@ export const LinkComponent = (props: HTMLProps<HTMLHyperlinkElementUtils>) => {
   )
 }
 
-export const PreComponent = (props: HTMLProps<HTMLPreElement>) => (
+export const PreComponent = (props: HTMLProps<HTMLPreElement>): JSX.Element => (
   <pre {...props} >{props.children}</pre>
 )
 
-export const EmComponent = (props: HTMLProps<HTMLSpanElement>) => (
+export const EmComponent = (props: HTMLProps<HTMLSpanElement>): JSX.Element => (
   <em {...props}>{props.children}</em>
 )
 
-export const BlockQuote = (props: HTMLProps<HTMLQuoteElement>) => (
+export const BlockQuote = (props: HTMLProps<HTMLQuoteElement>): JSX.Element => (
   <blockquote className="text-base text-justify my-2" {...props}>
     {props.children}
   </blockquote>
 )
 
-export const UlComponent = (props: HTMLProps<HTMLUListElement>) => (
+export const UlComponent = (props: HTMLProps<HTMLUListElement>): JSX.Element => (
   <ul {...props} className="list-outside">
     {props.children}
   </ul>
 )
 
-export const LiComponent = (props: HTMLProps<HTMLLIElement>) => (
+export const LiComponent = (props: HTMLProps<HTMLLIElement>): JSX.Element => (
   <li {...props}>{props.children}</li>
 )
 
-export const H1Component = (props: HTMLProps<HTMLHeadingElement>) => (
+export const H1Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
   <h1 className="text-5xl font-bold my-4" {...props}>
     {props.children}
   </h1>
 )
 
-export const H2Component = (props: HTMLProps<HTMLHeadingElement>) => (
+export const H2Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
   <h2 className="text-4xl font-bold my-4" {...props}>
     {props.children}
   </h2>
 )
 
-export const H3Component = (props: HTMLProps<HTMLHeadingElement>) => (
+export const H3Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
   <h3 className="text-3xl font-bold my-4" {...props}>
     {props.children}
   </h3>
 )
 
-export const H4Component = (props: HTMLProps<HTMLHeadingElement>) => (
+export const H4Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
   <h4 className="text-2xl text-lg font-bold my-4" {...props}>
     {props.children}
   </h4>
 )
 
-export const H5Component = (props: HTMLProps<HTMLHeadingElement>) => (
+export const H5Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
   <h5 className="text-xl font-bold my-4" {...props}>
     {props.children}
   </h5>
 )
 
-export const H6Component = (props: HTMLProps<HTMLHeadingElement>) => (
+export const H6Component = (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
   <h6 className="text-lg font-bold my-4" {...props}>
     {props.children}
   </h6>
 )
 
-export const ParaphCompoent = (props: HTMLProps<HTMLParagraphElement>) => (
+export const ParaphCompoent = (props: HTMLProps<HTMLParagraphElement>): JSX.Element => (
   <p className="text-base text-justify my-4" {...props}>
     {props.children}
   </p>
 )
-export const StrongComponent = (props: HTMLProps<HTMLHtmlElement>) => (
+export const StrongComponent = (props: HTMLProps<HTMLHtmlElement>): JSX.Element => (
   <strong className="font-bold">{props.children}</strong>
 )
 
-export const TableComponent = (props: HTMLProps<HTMLTableElement>) => (
+export const TableComponent = (props: HTMLProps<HTMLTableElement>): JSX.Element => (
   <table className="table-fixed">
     {props.children}
   </table>
 )
 
-export const TheadComponent = (props: HTMLProps<HTMLTableSectionElement>) => (
+export const TheadComponent = (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
   <thead >
     {props.children}
   </thead>
 )
 
-export const TrComponent = (props: HTMLProps<HTMLTableRowElement>) => (
+export const TrComponent = (props: HTMLProps<HTMLTableRowElement>): JSX.Element => (
   <tr className="p-3 py-3 border-2">
     {props.children}
   </tr>
 )
 
-export const TBodyComponent = (props: HTMLProps<HTMLTableSectionElement>) => (
+export const TBodyComponent = (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
   <tbody className="p-3 ">
     {props.children}
   </tbody>
 )
 
-export const ThComponent = (props: HTMLProps<HTMLTableCellElement>) => (
+export const ThComponent = (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
   <th>
     {props.children}
   </th>
 )
-export const TdComponent = (props: HTMLProps<HTMLTableCellElement>) => (
+export const TdComponent = (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
   <td className="p-3">
     {props.children}
   </td>
