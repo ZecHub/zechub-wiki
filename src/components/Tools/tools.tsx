@@ -18,6 +18,9 @@ export const Tools: React.FC<ToolsProps> = ({ onToolChange }) => {
           </option>
           <option value="supply">Shielded Supply Chart</option>
           <option value="transaction">Shielded Transactions Chart</option>
+          <option value="nodecount">Node Count</option>
+          <option value="difficulty">Difficulty</option>
+          <option value="lockbox">Lockbox ZEC Amount</option>
         </select>
       </span>
     </div>
