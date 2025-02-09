@@ -6,7 +6,7 @@ import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import type { MDXComponents } from 'mdx/types'
 
 const MdxComponents: MDXComponents = {
-  img: (props: HTMLProps<HTMLImageElement | MDXComponents>) => {
+  img: (props: HTMLProps<HTMLImageElement>) => {
     if (props.src?.startsWith('/')) props.src = 'https://github.com/ZecHub/zechub/tree/main' + props.src
     return (
       <Image
