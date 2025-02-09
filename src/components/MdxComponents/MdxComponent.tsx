@@ -1,7 +1,7 @@
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
 import { compileMDX } from "next-mdx-remote/rsc";
-import { MdxComponents } from "./ConfigComponent";
+import MdxComponents  from "./ConfigComponent";
 import ZecToZatsConverter from "../Converter/ZecToZatsConverter";
 
 type ContentSource = {

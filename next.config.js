@@ -30,11 +30,6 @@ const nextConfig = {
         hostname: "**",
       },
     ],
-
-    //domains: ['github.com', 'i.ibb.co', 'user-images.githubusercontent.com', 'cdn.discordapp.com', 'prozcash.ru', 'i.seadn.io', 'sea2.discourse-cdn.com', 'pbs.twimg.com', 'free2z.cash', 'images.app.goo.gl'],
-  },
-  typescript: {
-    ignoreBuildErrors: true,
   },
 };
 
