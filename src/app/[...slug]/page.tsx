@@ -52,7 +52,7 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
             <SideMenu folder={slug[0]} roots={roots} />
           </div>
         )}
-        <section className="h-auto w-full border-t-2 md:border-l-2 px-3">
+        <section className="h-auto w-full border-t-4 md:border-l-4 p-3">
           <div>
             <MdxComponent source={content} slug={slug[1]} />
           </div>

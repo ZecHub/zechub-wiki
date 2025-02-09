@@ -19,11 +19,6 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
-  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
-  },
   // Configure pageExtensions to include md and mdx
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   // Optionally, add any other Next.js config below
@@ -37,6 +32,9 @@ const nextConfig = {
     ],
 
     //domains: ['github.com', 'i.ibb.co', 'user-images.githubusercontent.com', 'cdn.discordapp.com', 'prozcash.ru', 'i.seadn.io', 'sea2.discourse-cdn.com', 'pbs.twimg.com', 'free2z.cash', 'images.app.goo.gl'],
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 

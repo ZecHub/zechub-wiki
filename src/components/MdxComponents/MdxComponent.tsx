@@ -10,7 +10,7 @@ type ContentSource = {
 };
 
 const MdxComponent = async ({ source, slug }: ContentSource) => {
-  const { content, frontmatter } = await compileMDX<{ title: string }>({
+  const { content } = await compileMDX<{ title: string }>({
     source: source,
     options: {
       parseFrontmatter: true,
