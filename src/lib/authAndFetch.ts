@@ -25,6 +25,7 @@ export async function getFileContent(path: string) {
     return atob(res.data?.content)
   } catch (error) {
     console.log(error);
+    return undefined
   }
 }
 
@@ -43,6 +44,7 @@ export async function getRoot(path: string) {
  
   } catch (error) {
     console.log(error);
+    return undefined
   }
 }
 
@@ -61,6 +63,7 @@ export async function getSiteFolders(path: string){
  
   } catch (error) {
     console.log(error);
+    return undefined
   }
 }
 

@@ -1,15 +1,7 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import QRCode from "qrcode.react";
 import { ChangeEvent, useEffect, useState } from "react";
-import namadaLogo from "../../../public/namada-logo.png";
-import penumbraLogo from "../../../public/penumbra-logo.png";
-import ycashLogo from "../../../public/ycash-logo.png";
-import zcashLogo from "../../../public/zcash-logo.png";
-import zcashIsometricLogo from "../../../public/donation-isometric/i4_zcash_-_isometric.png";
-import namadaIsometricLogo from "../../../public/donation-isometric/i2_Namada_-_Isometric.png";
-import ycashIsometricLogo from "../../../public/donation-isometric/i3_Ycash_-_Isometric.png";
-import penumbraIsometricLogo from "../../../public/donation-isometric/i1_Penumbra_-_Isometric.png";
 import PenumbraWalletConnect from "../Penumbra/PenumbraWalletConnect";
 import "./donation.css";
 
@@ -22,10 +14,18 @@ type Token = "zcash" | "penumbra" | "ycash" | "namada";
 
 type Symbol = "zec" | "um" | "yec" | "nam";
 
+//Import images it's not supported by nextjs v15
+const images = {
+  "zcash": "/donation-isometric/i4_zcash_-_isometric.png",
+  "namada": "/donation-isometric/i2_Namada_-_Isometric.png",
+  "ycash": "/donation-isometric/i3_Ycash_-_Isometric.png",
+  "penumbra": "/donation-isometric/i1_Penumbra_-_Isometric.png"
+}
+
 const DonationComp = () => {
   const [donationAmount, setDonationAmount] = useState(1); // Default donation amount
   const [memo, setMemo] = useState(""); // Memo for the donation
-  const [imgLogo, setImgLogo] = useState<StaticImageData>(zcashIsometricLogo); // Memo for the donation
+  const [imgLogo, setImgLogo] = useState(images.zcash); // Memo for the donation
   const [selectedCurrency, setSelectedCurrency] = useState<Token>("zcash"); // Track selected currency
   const [selectedSymbol, setSelectedSymbol] = useState<Symbol>("zec"); // Track selected currency
   const [error, setError] = useState<string | null>(null); // Error state for invalid input
@@ -50,11 +50,11 @@ const DonationComp = () => {
     }
   }, [selectedCurrency]);
 
-  const handleSelectAmount = (amount: string) => {
+  /* const handleSelectAmount = (amount: string) => {
     setDonationAmount(parseFloat(amount));
     setMemo(""); // Clear memo when a predefined amount is selected
     setError(null); // Clear error on valid selection
-  };
+  }; */
 
   const handleChangeAmount = (event: ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(event.target.value);
@@ -139,7 +139,7 @@ const DonationComp = () => {
     );
   };
 
-  const handleOnClick = (tokenName: Token, tokenImg: StaticImageData) => {
+  const handleOnClick = (tokenName: Token) => {
     setImgFade(true); // Trigger fade out
     var tokenSymbol: Symbol;
     if (tokenName === "zcash") {
@@ -155,7 +155,7 @@ const DonationComp = () => {
     setTimeout(() => {
       setSelectedSymbol(tokenSymbol);
       setSelectedCurrency(tokenName);
-      setImgLogo(tokenImg);
+      setImgLogo(images[tokenName]);
       setDonationAmount(0);
       setImgFade(false); // Trigger fade in
     }, 500); // Match the duration of the transition
@@ -165,13 +165,15 @@ const DonationComp = () => {
     <div className="flex justify-evenly mt-24 overflow-hidden">
       <div className="hidden md:block">
         <div id="img-container" className="mt-72">
-          {imgLogo && (
+          { imgLogo && (
             <Image
               src={imgLogo}
               alt={selectedCurrency}
+              width={200}
+              height={200}
               className={`w-96 h-96 transition-opacity duration-500 ease-in-out ${
                 imgFade ? "opacity-0" : "opacity-100"
-              } `}
+              }`}
             />
           )}
         </div>
@@ -195,7 +197,7 @@ const DonationComp = () => {
             }}
           >
             <button
-              onClick={() => handleOnClick("zcash", zcashIsometricLogo)}
+              onClick={() => handleOnClick("zcash")}
               className={selectedCurrency === "zcash" ? "active" : ""}
               style={{
                 borderRadius: "50%",
@@ -212,11 +214,11 @@ const DonationComp = () => {
                 alignItems: "center",
               }}
             >
-              <Image src={zcashLogo} alt="Zcash" width={32} height={32} />
+              <Image src={"/zcash-logo.png"} alt="Zcash" width={32} height={32} />
             </button>
 
             <button
-              onClick={() => handleOnClick("ycash", ycashIsometricLogo)}
+              onClick={() => handleOnClick("ycash")}
               className={selectedCurrency === "ycash" ? "active" : ""}
               style={{
                 borderRadius: "50%",
@@ -233,11 +235,11 @@ const DonationComp = () => {
                 alignItems: "center",
               }}
             >
-              <Image src={ycashLogo} alt="Ycash" width={32} height={32} />
+              <Image src={"/ycash-logo.png"} alt="Ycash" width={32} height={32} />
             </button>
 
             <button
-              onClick={() => handleOnClick("namada", namadaIsometricLogo)}
+              onClick={() => handleOnClick("namada")}
               className={selectedCurrency === "namada" ? "active" : ""}
               style={{
                 borderRadius: "50%",
@@ -254,11 +256,11 @@ const DonationComp = () => {
                 alignItems: "center",
               }}
             >
-              <Image src={namadaLogo} alt="Namada" width={32} height={32} />
+              <Image src={"/namada-logo.png"} alt="Namada" width={32} height={32} />
             </button>
 
             <button
-              onClick={() => handleOnClick("penumbra", penumbraIsometricLogo)}
+              onClick={() => handleOnClick("penumbra")}
               className={selectedCurrency === "penumbra" ? "active" : ""}
               style={{
                 borderRadius: "50%",
@@ -275,7 +277,7 @@ const DonationComp = () => {
                 alignItems: "center",
               }}
             >
-              <Image src={penumbraLogo} alt="Penumbra" width={32} height={32} />
+              <Image src={"/penumbra-logo.png"} alt="Penumbra" width={32} height={32} />
             </button>
           </div>
 

@@ -412,6 +412,7 @@ const NodeCountChart = withTooltip<
         </svg>
         {tooltipData && (
           <div>
+            {/*@ts-ignore*/}
             <TooltipWithBounds
               key={Math.random()}
               top={tooltipTop - 12}
