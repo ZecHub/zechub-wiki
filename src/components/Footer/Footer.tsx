@@ -20,9 +20,9 @@ const Footer = () => {
         <div className="flex justify-center flex-col my-3">
           <span className="text-sm sm:text-center">
             © 2025{" "}
-            <a href="https://zechub.social/@Zechub" rel="me" className="hover:underline">
+            <Link href="https://zechub.social/@Zechub" rel="me" className="hover:underline">
               Zechub™
-            </a>
+            </Link>
             . All Rights Reserved.
           </span>
         </div>
