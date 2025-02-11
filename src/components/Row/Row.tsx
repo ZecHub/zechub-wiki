@@ -1,7 +1,7 @@
 // components/ProjectRow.tsx
 import React from "react";
 import BrandCards from "../BrandCards/BrandCards";
-import zcashNigeria from "../../assets/brand/ZcashNigeria/JPG/ZcashNigeria_Black.jpg";
+import zcashNigeria from "../../assets/brand/ZcashNigeria/JPG/ZcashNigeria_White.jpg";
 import zcashEspanol from "../../assets/brand/ZcashEspanol/JPG/ZcashEspanol.jpg";
 import ecc from "../../assets/brand/ECC/JPG/ECCBlack.jpg";
 import wallet from "../../assets/brand/Wallets/Zashi/JPG/ZashiIconBlack.jpg";
@@ -50,16 +50,16 @@ const projects = [
   {
     title: "Zcash En Español",
     description: "Zcash en Español provides Spanish resources, news, guides, and community support for Zcash users.",
-    link: "downloads/brand/ZcashNigeria.zip",
+    link: "downloads/brand/ZcashEspanol.zip",
     imageUrl: zcashEspanol,
     size: 240,
   },
   {
     title: "Zcash Nigeria",
     description: "Zcash Nigeria promotes financial privacy by educating and onboarding Nigerians to Zcash",
-    link: "downloads/brand/ZcashEspanol.zip",
+    link: "downloads/brand/ZcashNigeria.zip",
     imageUrl: zcashNigeria,
-    size: 240,
+    size: 190,
   },
 ];
 
