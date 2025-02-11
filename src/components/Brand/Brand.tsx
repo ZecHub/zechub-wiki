@@ -35,3 +35,4 @@ const BrandComp = () => {
 };
 
 export default BrandComp;
+      
