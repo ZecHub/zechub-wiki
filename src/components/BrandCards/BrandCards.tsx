@@ -20,7 +20,7 @@ const BrandCards: React.FC<CardsProps> = ({
   children,
 }) => {
   return (
-    <div className={`${styles.card} dark:bg-slate-800`}>
+    <div className={`flex dark:bg-slate-800`}>
       <div className={styles.header}>
         <Image
           src={imageSrc}
