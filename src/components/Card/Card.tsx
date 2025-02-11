@@ -8,7 +8,7 @@ import { formatString } from "@/lib/helpers";
 type CardsProps = {
   title: string;
   url: string;
-  thumbnailImage: string;
+  thumbnailImage: any;
   description: string;
   [index: string]: any;
   ctaLabel: string;
@@ -31,7 +31,7 @@ export const Card = (props: CardsProps) => (
       </Link>
 
       <h2 className="text-xl font-bold px-4 my-6">{props.title}</h2>
-      <p className="text-gray-700 px-4 mb-4">{props.description}</p>
+      <p className="text-gray-700 dark:text-white px-4 mb-4">{props.description}</p>
 
       {props.features && props.features.length > 0 && (
         <div className="px-4">
