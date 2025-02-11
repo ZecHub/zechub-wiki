@@ -1,7 +1,5 @@
-import React from "react";
 import ZcashProjectsComp from "@/components/ZcashProjects/ZcashProjects";
 import { Metadata } from "next";
-import { title } from "process";
 import { genMetadata } from "@/lib/helpers";
 
 export const metadata: Metadata = genMetadata({

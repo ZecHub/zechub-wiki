@@ -1,6 +1,7 @@
 // components/ProjectRow.tsx
 import React from "react";
 import styles from "./SiteLinks.module.css";
+import Link from "next/link";
 
 const SiteLinks: React.FC = () => {
   return (
@@ -12,33 +13,33 @@ const SiteLinks: React.FC = () => {
           </h2>
           <ul className="elementor-sitemap-list elementor-sitemap-page-list">
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-15">
-              <a href="/">Homepage</a>
+              <Link href="/">Homepage</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-22">
-              <a href="/dashboard">Dashboard</a>
+              <Link href="/dashboard">Dashboard</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-9">
-              <a href="/donation">Donation</a>
+              <Link href="/donation">Donation</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-9">
-              <a href="/contribute/help-build-zechub">Contribute</a>
+              <Link href="/contribute/help-build-zechub">Contribute</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-3">
-              <a href="/dao">Dao</a>
+              <Link href="/dao">Dao</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5668">
-              <a href="/brand/">Brand</a>
+              <Link href="/brand/">Brand</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5470">
-              <a href="/wallets">Wallets</a>
+              <Link href="/wallets">Wallets</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-122">
-              <a href="/sitemap/">Sitemap</a>
+              <Link href="/sitemap/">Sitemap</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-15">
-              <a target="_blank" href="https://youtube.com/@zechub">
+              <Link target="_blank" href="https://youtube.com/@zechub">
                 Tutorials
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -48,61 +49,61 @@ const SiteLinks: React.FC = () => {
           </h2>
           <ul className="elementor-sitemap-list elementor-sitemap-question-list">
             <li className="elementor-sitemap-item elementor-sitemap-item-question page_item page-item-6014">
-              <a href="/guides/zgo-payment-processor">Zgo Payment Processor</a>
+              <Link href="/guides/zgo-payment-processor">Zgo Payment Processor</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-question page_item page-item-6016">
-              <a href="/guides/free2z-live">Free2z Livestreaming</a>
+              <Link href="/guides/free2z-live">Free2z Livestreaming</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-question page_item page-item-5992">
-              <a href="/guides/raspberry-pi-4-full-node">
+              <Link href="/guides/raspberry-pi-4-full-node">
                 Raspberry Pi Zcashd Node
-              </a>
+              </Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-question page_item page-item-6010">
-              <a
+              <Link
                 target="_blank"
                 href="https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5"
               >
                 Raspberry Pi Zebra Node
-              </a>
+              </Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-question page_item page-item-5989">
-              <a href="/guides/akash-network">Akash Network</a>
+              <Link href="/guides/akash-network">Akash Network</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-question page_item page-item-5987">
-              <a href="/guides/visualizing-zcash-addresses">
+              <Link href="/guides/visualizing-zcash-addresses">
                 Visualizing Zcash Addresses
-              </a>
+              </Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-question page_item page-item-5969">
-              <a href="/guides/zero-knowledge-vs-decoys">
+              <Link href="/guides/zero-knowledge-vs-decoys">
                 Zero Knowledge vs Decoy Systems
-              </a>
+              </Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5321">
-              <a href="#">Use Zcash</a>
+              <Link href="#">Use Zcash</Link>
               <ul className="children">
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5482">
-                  <a href="/using-zcash/buying-zec">Buying ZEC</a>
+                  <Link href="/using-zcash/buying-zec">Buying ZEC</Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5450">
-                  <a href="/using-zcash/non-custodial-exchanges">Exchanges</a>
+                  <Link href="/using-zcash/non-custodial-exchanges">Exchanges</Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5434">
-                  <a href="/using-zcash/blockchain-explorers">
+                  <Link href="/using-zcash/blockchain-explorers">
                     Block Explorers
-                  </a>
+                  </Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5373">
-                  <a href="/using-zcash/shielded-pools">Shielded Pools</a>
+                  <Link href="/using-zcash/shielded-pools">Shielded Pools</Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5323">
-                  <a href="/using-zcash/transparent-exchange-addresses">
+                  <Link href="/using-zcash/transparent-exchange-addresses">
                     Transparent Exchange Addresses
-                  </a>
+                  </Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5323">
-                  <a href="/using-zcash/transactions/">Transactions</a>
+                  <Link href="/using-zcash/transactions/">Transactions</Link>
                 </li>
               </ul>
             </li>
@@ -114,63 +115,63 @@ const SiteLinks: React.FC = () => {
           </h2>
           <ul className="elementor-sitemap-list elementor-sitemap-partner-list">
             <li className="elementor-sitemap-item elementor-sitemap-item-partner page_item page-item-6280">
-              <a href="/zcash-community/arborist-calls">Aborist Calls</a>
+              <Link href="/zcash-community/arborist-calls">Aborist Calls</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-partner page_item page-item-6169">
-              <a href="/zcash-community/community-links">Community Links</a>
+              <Link href="/zcash-community/community-links">Community Links</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-partner page_item page-item-6142">
-              <a target="_blank" href="https://forum.zcashcommunity.com/">
+              <Link target="_blank" href="https://forum.zcashcommunity.com/">
                 Community Forum
-              </a>
+              </Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-partner page_item page-item-6037">
-              <a href="/zcash-community/community-projects">
+              <Link href="/zcash-community/community-projects">
                 Community Projects
-              </a>
+              </Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-partner page_item page-item-5908">
-              <a href="/zcash-community/zcash-global-ambassadors">
+              <Link href="/zcash-community/zcash-global-ambassadors">
                 Zcash Global Ambassadors
-              </a>
+              </Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-partner page_item page-item-5612">
-              <a href="/zcash-community/zcap">ZCAP</a>
+              <Link href="/zcash-community/zcap">ZCAP</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-partner page_item page-item-5620">
-              <a href="/zcash-community/zcash-podcasts">Zcash Podcasts</a>
+              <Link href="/zcash-community/zcash-podcasts">Zcash Podcasts</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-partner page_item page-item-5628">
-              <a href="/zcash-community/zcon-archive">Zcon Archive</a>
+              <Link href="/zcash-community/zcon-archive">Zcon Archive</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5321">
-              <a href="#">Organizations</a>
+              <Link href="#">Organizations</Link>
               <ul className="children">
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5482">
-                  <a href="/zcash-organizations/electric-coin-company">
+                  <Link href="/zcash-organizations/electric-coin-company">
                     Electric Coin Company
-                  </a>
+                  </Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5450">
-                  <a href="/zcash-organizations/zcash-foundation">
+                  <Link href="/zcash-organizations/zcash-foundation">
                     Zcash Foundation
-                  </a>
+                  </Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5434">
-                  <a href="/zcash-organizations/zcash-community-grants">
+                  <Link href="/zcash-organizations/zcash-community-grants">
                     Zcash Community Grants
-                  </a>
+                  </Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5373">
-                  <a href="/zcash-organizations/zcash-community-grants">
+                  <Link href="/zcash-organizations/zcash-community-grants">
                     Financial Privacy Foundation
-                  </a>
+                  </Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5323">
-                  <a href="/zcash-organizations/shielded-labs">Shielded Labs</a>
+                  <Link href="/zcash-organizations/shielded-labs">Shielded Labs</Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5323">
-                  <a href="/zcash-organizations/zingo-labs">Zingo Labs</a>
+                  <Link href="/zcash-organizations/zingo-labs">Zingo Labs</Link>
                 </li>
               </ul>
             </li>

@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import styles from "./ProjectCards.module.css";
 
@@ -19,7 +21,7 @@ const ProjectCards: React.FC<CardsProps> = ({
   return (
     <div className={`${styles.card } dark:bg-slate-800`}>
       <div className={styles.header}>
-        <img src={imageSrc} alt={title} className={styles.image} />
+        <Image src={imageSrc} alt={title} className={styles.image} />
         <h2 className={`dark:text-slate-300 ${styles.title}`}>{title}</h2>
       </div>
       <div className={styles.body}>
@@ -29,9 +31,9 @@ const ProjectCards: React.FC<CardsProps> = ({
         {children}
       </div>
       <div className={styles.footer}>
-        <a className={`${styles.link}  dark:text-[#83cbf8] mb-6`} href={link} target="_blank" rel="noopener noreferrer">
+        <Link className={`${styles.link}  dark:text-[#83cbf8] mb-6`} href={link} target="_blank" rel="noopener noreferrer">
           Read more
-        </a>
+        </Link>
       </div>
     </div>
 

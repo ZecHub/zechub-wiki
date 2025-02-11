@@ -244,7 +244,7 @@ export const socialNav = [
   },
   {
     name: "Twitter",
-    url: "https://twitter.com/zechub",
+    url: "https://x.com/zechub",
     icon: Twitter,
   },
   {

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { getFileContent, getRoot } from "@/lib/authAndFetch";
 import { getBanner } from "@/lib/helpers";
 import { parseMarkdown } from "@/lib/parseMarkdown";
-import WalletList from "@/components/WalletList";
+import WalletList from "@/components/Wallet/WalletList";
 import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
 
@@ -16,7 +16,8 @@ export const metadata: Metadata = genMetadata({
   image: imgUrl,
 });
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const { slug } = params;
   const url = `/site/Using_Zcash/Wallets.md`;
 
