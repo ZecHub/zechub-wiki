@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { getRoot } from "@/lib/authAndFetch";
 import { getBanner, genMetadata } from "@/lib/helpers";
-import SideMenu from "@/components/SideMenu";
+import SideMenu from "@/components/SideMenu/SideMenu";
 import ListTutorial from "./ListTutorial";
 
 export const metadata: Metadata = genMetadata({

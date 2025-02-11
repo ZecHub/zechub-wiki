@@ -15,7 +15,6 @@ const withMDX = require("@next/mdx")({
   },
 });
 
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
     serverActions: true,
@@ -31,8 +30,6 @@ const nextConfig = {
         hostname: "**",
       },
     ],
-
-    //domains: ['github.com', 'i.ibb.co', 'user-images.githubusercontent.com', 'cdn.discordapp.com', 'prozcash.ru', 'i.seadn.io', 'sea2.discourse-cdn.com', 'pbs.twimg.com', 'free2z.cash', 'images.app.goo.gl'],
   },
 };
 

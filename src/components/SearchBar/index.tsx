@@ -6,7 +6,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { motion } from "framer-motion";
 import { IoMdClose as closeIcon } from "react-icons/io";
 import { MdArrowForward as ArrowIcon } from "react-icons/md";
-import { Icon } from "../ui/Icon";
+import { Icon } from "../UI/Icon";
 import { SearchBarProps } from "@/types";
 import { debounce } from 'lodash';
 
