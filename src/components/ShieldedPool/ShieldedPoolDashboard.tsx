@@ -87,6 +87,27 @@ interface ShieldedTxCount {
   timestamp: string;
 }
 
+// --- New interface and function for Node Count Data ---
+interface NodeCountData {
+  close: string;
+  nodeCount: number;
+}
+
+async function getNodeCountData(url: string): Promise<NodeCountData[]> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error("Failed to fetch node count data:", response.statusText);
+      return [];
+    }
+    const data = await response.json();
+    return data as NodeCountData[];
+  } catch (error) {
+    console.error("Error fetching node count data:", error);
+    return [];
+  }
+}
+
 async function getBlockchainData(): Promise<BlockchainInfo | null> {
   try {
     const response = await fetch(
@@ -209,6 +230,8 @@ const ShieldedPoolDashboard = () => {
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(null);
+  // New state for the most recent node count from the nodecount JSON.
+  const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
   const [selectedTool, setSelectedTool] = useState<string>("supply");
   const [selectedToolName, setSelectedToolName] = useState<string>(
@@ -222,7 +245,7 @@ const ShieldedPoolDashboard = () => {
   useEffect(() => {
     getBlockchainData().then((data) => {
       if (data) {
-        data.nodes = 125;
+        // Remove hard-coded nodes so we can use the actual node count
         setBlockchainInfo(data);
       }
     });
@@ -249,14 +272,24 @@ const ShieldedPoolDashboard = () => {
     );
   }, []);
 
+  // When the selected pool changes, update lastUpdated using the "close" field.
   useEffect(() => {
     const fetchData = async () => {
       const data = await getSupplyData(getDataUrl());
-      // Update lastUpdated using the "close" field from the fetched supply data.
       setLastUpdated(data[data.length - 1]?.close || "N/A");
     };
     fetchData();
   }, [selectedPool]);
+
+  // New useEffect to fetch the node count data and update the most recent node count.
+  useEffect(() => {
+    getNodeCountData(nodecountUrl).then((data) => {
+      if (data.length > 0) {
+        const lastEntry = data[data.length - 1];
+        setLatestNodeCount(lastEntry.nodeCount);
+      }
+    });
+  }, []);
 
   const getDataUrl = () => {
     switch (selectedPool) {
@@ -525,7 +558,11 @@ const ShieldedPoolDashboard = () => {
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Nodes</h3>
-          <p>{blockchainInfo.nodes}</p>
+          <p>
+            {latestNodeCount !== null
+              ? latestNodeCount.toLocaleString()
+              : "Loading..."}
+          </p>
         </div>
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
