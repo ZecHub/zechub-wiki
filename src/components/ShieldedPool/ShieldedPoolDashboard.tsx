@@ -75,8 +75,9 @@ interface BlockchainInfo {
   hodling_addresses: number;
 }
 
+// Note: We now use "close" (not "timestamp") to match your JSON.
 interface SupplyData {
-  close: string; // using "close" to match the JSON data
+  close: string;
   supply: number;
 }
 
@@ -189,6 +190,14 @@ function formatDate(dateString: string | null): string {
   // Fallback for ISO strings or other formats.
   const date = new Date(dateString);
   return isNaN(date.getTime()) ? "N/A" : date.toLocaleDateString();
+}
+
+// Helper function to transform SupplyData to the expected shape.
+// We change the "close" property to "timestamp" for the export function.
+function transformSupplyData(
+  data: SupplyData | null
+): { timestamp: string; supply: number } | null {
+  return data ? { timestamp: data.close, supply: data.supply } : null;
 }
 
 const ShieldedPoolDashboard = () => {
@@ -368,7 +377,11 @@ const ShieldedPoolDashboard = () => {
             onClick={() =>
               handleSaveToPng(
                 selectedPool,
-                { sproutSupply, saplingSupply, orchardSupply },
+                {
+                  sproutSupply: transformSupplyData(sproutSupply),
+                  saplingSupply: transformSupplyData(saplingSupply),
+                  orchardSupply: transformSupplyData(orchardSupply),
+                },
                 selectedTool
               )
             }
