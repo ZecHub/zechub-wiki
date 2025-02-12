@@ -43,7 +43,6 @@ const shieldedTxCountUrl =
 const apiUrl =
   "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
 const blockchainInfoUrl = "/api/blockchain-info";
-
 const blockchainDataUrl = "/api/blockchain-data";
 
 interface BlockchainInfo {
@@ -77,7 +76,7 @@ interface BlockchainInfo {
 }
 
 interface SupplyData {
-  timestamp: string;
+  close: string; // using "close" to match the JSON data
   supply: number;
 }
 
@@ -162,7 +161,6 @@ async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
       return null;
     }
     const data = await response.json();
-    // Get the latest data entry and handle missing fields by defaulting to zero
     const latestData = data[data.length - 1] || {};
     return {
       sapling: latestData.sapling || 0,
@@ -175,18 +173,33 @@ async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
   }
 }
 
+// Helper function to format dates.
+// It handles MM/DD/YYYY dates (as in your JSON) and ISO strings.
+function formatDate(dateString: string | null): string {
+  if (!dateString || dateString === "N/A") return "N/A";
+
+  // Check for MM/DD/YYYY format.
+  const mmddyyyyRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/;
+  if (mmddyyyyRegex.test(dateString)) {
+    const [month, day, year] = dateString.split("/").map(Number);
+    const date = new Date(year, month - 1, day);
+    return isNaN(date.getTime()) ? "N/A" : date.toLocaleDateString();
+  }
+
+  // Fallback for ISO strings or other formats.
+  const date = new Date(dateString);
+  return isNaN(date.getTime()) ? "N/A" : date.toLocaleDateString();
+}
+
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
-    null
-  );
+  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
   const [circulation, setCirculation] = useState<number | null>(null);
   const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-  const [shieldedTxCount, setShieldedTxCount] =
-    useState<ShieldedTxCount | null>(null);
+  const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(null);
 
   const [selectedTool, setSelectedTool] = useState<string>("supply");
   const [selectedToolName, setSelectedToolName] = useState<string>(
@@ -207,18 +220,19 @@ const ShieldedPoolDashboard = () => {
 
     getBlockchainInfo().then((data) => setCirculation(data ?? 0));
 
-    getLastUpdatedDate().then((date) => setLastUpdated(date.split("T")[0]));
+    // Use the full ISO string from GitHub (the helper will format it)
+    getLastUpdatedDate().then((date) => setLastUpdated(date));
 
     getSupplyData(sproutUrl).then((data) =>
-      setSproutSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+      setSproutSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
     );
 
     getSupplyData(saplingUrl).then((data) =>
-      setSaplingSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+      setSaplingSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
     );
 
     getSupplyData(orchardUrl).then((data) =>
-      setOrchardSupply(data[data.length - 1] ?? { timestamp: "N/A", supply: 0 })
+      setOrchardSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
     );
 
     getShieldedTxCount().then((data) =>
@@ -229,7 +243,8 @@ const ShieldedPoolDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getSupplyData(getDataUrl());
-      setLastUpdated(data[data.length - 1]?.timestamp?.split("T")[0] || "N/A");
+      // Update lastUpdated using the "close" field from the fetched supply data.
+      setLastUpdated(data[data.length - 1]?.close || "N/A");
     };
     fetchData();
   }, [selectedPool]);
@@ -322,10 +337,7 @@ const ShieldedPoolDashboard = () => {
         <div className="relative">
           <div ref={divChartRef}>
             {selectedTool === "supply" && (
-              <ShieldedPoolChart
-                dataUrl={getDataUrl()}
-                color={getDataColor()}
-              />
+              <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
             )}
             {selectedTool === "transaction" && (
               <TransactionSummaryChart
@@ -348,8 +360,7 @@ const ShieldedPoolDashboard = () => {
         </div>
         <div className="flex justify-end gap-12 text-right mt-4 text-sm text-gray-500">
           <span className="px-3 py-2">
-            Last updated:{" "}
-            {lastUpdated ? new Date(lastUpdated).toLocaleDateString() : "N/A"}
+            Last updated: {formatDate(lastUpdated)}
           </span>
           <Button
             text="Export (PNG)"
@@ -357,11 +368,7 @@ const ShieldedPoolDashboard = () => {
             onClick={() =>
               handleSaveToPng(
                 selectedPool,
-                {
-                  sproutSupply,
-                  saplingSupply,
-                  orchardSupply,
-                },
+                { sproutSupply, saplingSupply, orchardSupply },
                 selectedTool
               )
             }
@@ -383,7 +390,6 @@ const ShieldedPoolDashboard = () => {
                 {getTotalShieldedSupply().toLocaleString()} ZEC
               </span>
             </div>
-
             <div className="flex flex-col items-center">
               <Button
                 onClick={() => setSelectedPool("sprout")}
