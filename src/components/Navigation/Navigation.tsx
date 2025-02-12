@@ -46,7 +46,7 @@ const NavLinks = ({
                   className="flex items-center gap-2 p-2"
                 >
                   {link.icon && (
-                    <Icon icon={link.icon} className="md:w-6 w-4 h-4 md:h-6" />
+                    <Icon icon={link.icon} className="xl:w-6 w-4 h-4 xl:h-6" />
                   )}
                   <Link
                     target={link.newTab ? "_blank" : "_self"}
@@ -64,7 +64,7 @@ const NavLinks = ({
               target={item.newTab ? "_blank" : "_self"}
               href={item.path}
               onClick={handleLinkClick}
-              className="flex flex-row font-normal p-2 mr-3 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
+              className="flex flex-row font-normal p-2 mr-3 border-2 border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
             >
               {item.name}
             </Link>
@@ -72,11 +72,11 @@ const NavLinks = ({
         )
       )}
 
-      <div className="flex md:flex-row flex-col md:space-x-3 md:ml-3 sm:gap-0 gap-2">
+      <div className="flex xl:flex-row flex-col xl:space-x-3 xl:ml-3 sm:gap-0 gap-2">
         <Link
           href="/dao"
           onClick={handleLinkClick}
-          className="flex flex-row font-normal md:ml-3 p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
+          className="flex flex-row font-normal xl:ml-3 p-2 border-2 border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
         >
           DAO
         </Link>
@@ -84,7 +84,7 @@ const NavLinks = ({
         <Link
           href="/dashboard"
           onClick={handleLinkClick}
-          className="flex flex-row font-normal md:ml-3 p-2 border-2 border-light-blue-500 rounded-md hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
+          className="flex flex-row font-normal xl:ml-3 p-2 border-2 border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
         >
           Dashboard
         </Link>
@@ -151,19 +151,19 @@ const Navigation = () => {
 
   return (
     <div
-      className={`flex w-full border-b-1 md:mx-auto sticky top-0 bg-white dark:bg-slate-900 z-40  ${
+      className={`flex w-full border-b-1 xl:mx-auto sticky top-0 bg-white dark:bg-slate-900 z-40  ${
         menuExpanded ? "mb-[120%]" : ""
       }`}
     >
-      <div className="p-2 flex flex-wrap md:space-x-2">
+      <div className="p-2 flex flex-wrap xl:space-x-2">
         <Link href={"/"} className="hover:cursor-pointer">
           <Logo />
         </Link>
       </div>
 
-      <nav className="flex flex-wrap w-full md:space-x-11">
+      <nav className="flex flex-wrap w-full xl:space-x-11">
         <div
-          className={`flex flex-wrap space-between font-bold text-base items-center grow hidden md:flex`}
+          className={`flex flex-wrap space-between font-bold text-base items-center grow hidden xl:flex`}
         >
           <NavLinks
             classes={""}
@@ -174,7 +174,7 @@ const Navigation = () => {
         </div>
 
         <div className={"flex items-center ms-auto"}>
-          <div className="flex w-auto md:p-5 md:justify-end space-x-5">
+          <div className="flex w-auto xl:p-5 xl:justify-end space-x-5">
             <Icon
               icon={SearchIcon}
               className="hover:cursor-pointer h-5 w-5"
@@ -188,7 +188,7 @@ const Navigation = () => {
             />
           </div>
           <div
-            className="hidden md:flex p-2 w-auto justify-end sm:gap-6"
+            className="hidden xl:flex p-2 w-auto justify-end sm:gap-6"
             style={{ display: "flex", alignItems: "center" }}
           >
             <DonationBtn />
@@ -196,7 +196,7 @@ const Navigation = () => {
         </div>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="mobile-trigger">
-            <div className=" w-auto md:hidden hover:cursor-pointer p-5">
+            <div className=" w-auto xl:hidden hover:cursor-pointer p-5">
               <Icon
                 className="transition duration-500"
                 size={25}
