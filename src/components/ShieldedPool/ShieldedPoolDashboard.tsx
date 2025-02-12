@@ -75,7 +75,7 @@ interface BlockchainInfo {
   hodling_addresses: number;
 }
 
-// Note: We now use "close" (not "timestamp") to match your JSON.
+// The supply JSON uses "close" as the date field.
 interface SupplyData {
   close: string;
   supply: number;
@@ -87,10 +87,11 @@ interface ShieldedTxCount {
   timestamp: string;
 }
 
-// --- New interface and function for Node Count Data ---
+// --- Updated interface for Node Count Data ---
+// Note: The JSON uses "Date" and "nodecount" (as strings)
 interface NodeCountData {
-  close: string;
-  nodeCount: number;
+  Date: string;
+  nodecount: string;
 }
 
 async function getNodeCountData(url: string): Promise<NodeCountData[]> {
@@ -213,8 +214,7 @@ function formatDate(dateString: string | null): string {
   return isNaN(date.getTime()) ? "N/A" : date.toLocaleDateString();
 }
 
-// Helper function to transform SupplyData to the expected shape.
-// We change the "close" property to "timestamp" for the export function.
+// Helper function to transform SupplyData to the expected shape for export.
 function transformSupplyData(
   data: SupplyData | null
 ): { timestamp: string; supply: number } | null {
@@ -230,7 +230,7 @@ const ShieldedPoolDashboard = () => {
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(null);
-  // New state for the most recent node count from the nodecount JSON.
+  // New state for the most recent node count.
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
   const [selectedTool, setSelectedTool] = useState<string>("supply");
@@ -245,7 +245,7 @@ const ShieldedPoolDashboard = () => {
   useEffect(() => {
     getBlockchainData().then((data) => {
       if (data) {
-        // Remove hard-coded nodes so we can use the actual node count
+        // Use actual blockchain info
         setBlockchainInfo(data);
       }
     });
@@ -272,7 +272,7 @@ const ShieldedPoolDashboard = () => {
     );
   }, []);
 
-  // When the selected pool changes, update lastUpdated using the "close" field.
+  // Update lastUpdated when the selected pool changes.
   useEffect(() => {
     const fetchData = async () => {
       const data = await getSupplyData(getDataUrl());
@@ -281,12 +281,13 @@ const ShieldedPoolDashboard = () => {
     fetchData();
   }, [selectedPool]);
 
-  // New useEffect to fetch the node count data and update the most recent node count.
+  // Fetch node count data and update the most recent node count.
   useEffect(() => {
     getNodeCountData(nodecountUrl).then((data) => {
       if (data.length > 0) {
         const lastEntry = data[data.length - 1];
-        setLatestNodeCount(lastEntry.nodeCount);
+        // Convert the string value to a number.
+        setLatestNodeCount(Number(lastEntry.nodecount));
       }
     });
   }, []);
@@ -559,7 +560,7 @@ const ShieldedPoolDashboard = () => {
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Nodes</h3>
           <p>
-            {latestNodeCount !== null
+            {typeof latestNodeCount === "number"
               ? latestNodeCount.toLocaleString()
               : "Loading..."}
           </p>
@@ -568,7 +569,7 @@ const ShieldedPoolDashboard = () => {
           <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
           <p>
             {shieldedTxCount
-              ? `Sapling: ${shieldedTxCount?.sapling?.toLocaleString()} | Orchard: ${shieldedTxCount.orchard?.toLocaleString()}`
+              ? `Sapling: ${shieldedTxCount.sapling?.toLocaleString()} | Orchard: ${shieldedTxCount.orchard?.toLocaleString()}`
               : "N/A"}
           </p>
         </div>
