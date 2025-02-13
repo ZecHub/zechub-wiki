@@ -63,7 +63,6 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
   const [minHeight, setMinHeight] = useState(0);
   const [maxHeight, setMaxHeight] = useState(Infinity);
 
-
   useEffect(() => {
     setIsLoading(true);
     fetchTransactionData(dataUrl)
@@ -73,9 +72,9 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
         setChartData(data);
 
         // Set the min and max block heights based on the data
-        const heights = data.map(d => d.height);
-        setMinHeight(Math.min(...heights))
-        setMaxHeight(Math.max(...heights))
+        const heights = data.map((d) => d.height);
+        setMinHeight(Math.min(...heights));
+        setMaxHeight(Math.max(...heights));
         // setStartHeight(data[0].height);
       })
       .catch((error) => setError(error))
@@ -263,21 +262,34 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
         width: "100%",
       }}
     >
-      <div className="mb-3">
-        <input
-          type="number"
-          name="startHeight"
-          value={startHeight}
-          onChange={(e) => setStartHeight(Number(e.target.value))}
-          placeholder="Start Height"
-        />
-        <input
-          type="number"
-          name="endHeight"
-          value={endHeight}
-          onChange={(e) => setEndHeight(Number(e.target.value))}
-          placeholder="End Height"
-        />
+      <div className="flex gap-2 flex-col items-center mb-3">
+        <div className="flex gap-4 justify-center items-center">
+          <label htmlFor="startHeight">Start Height:</label>
+          <input
+            type="number"
+            id="startHeight"
+            name="startHeight"
+            value={startHeight}
+            onChange={(e) => setStartHeight(Number(e.target.value))}
+            placeholder={`Min: ${minHeight}`}
+            min={minHeight}
+            max={maxHeight}
+          />
+          <label htmlFor="endHeight">End Height:</label>
+          <input
+            type="number"
+            id="endHeight"
+            name="endHeight"
+            value={endHeight}
+            onChange={(e) => setEndHeight(Number(e.target.value))}
+            placeholder={`Max: ${maxHeight}`}
+            min={minHeight}
+            max={maxHeight}
+          />
+        </div>
+        <p>
+          Please enter a height between {minHeight} and {maxHeight}.
+        </p>
       </div>
       <canvas ref={chartRef} />
     </div>
