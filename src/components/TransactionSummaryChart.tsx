@@ -25,6 +25,16 @@ type ShieldedTransactionDatum = {
   orchard_filter: number;
 };
 
+/* debounce function to limit how oftern the slider triggers re-render */
+function debounce(func: Function, delay: number) {
+  let timeout: NodeJS.Timeout;
+
+  return (...args: any[]) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), delay);
+  };
+}
+
 /**
  * Loads the historic shielded transaction data from a public json file in Github repo
  * @returns Promise of shielded transaction data
@@ -82,6 +92,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
   }, [dataUrl]);
 
   useEffect(() => {
+    // if (isLoading || !chartRef.current) return;
     if (isLoading || !chartRef.current) return;
 
     let saplingSum = 0;
