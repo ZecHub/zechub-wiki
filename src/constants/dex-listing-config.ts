@@ -8,6 +8,13 @@ export const dexListingConfig = [
     image: 'https://i.ibb.co/JxzSyx6/1500x500-1.jpg',
   },
   {
+    title: 'Near-intents',
+    description:
+      'Fast exchange with the support of NEAR. Make deposits, sell, swap including popular TRUMP, MELANIA, BERA and other memes',
+    url: 'https://app.near-intents.org/',
+    image: '/nearintents.png',
+  },
+  {
     title: 'Stealth EX',
     description:
       'StealthEX is an instant cryptocurrency exchange for limitless swaps whose service is free from registration and does not store user’s funds on the platform. StealthEX is the best place to buy cryptocurrency.',
@@ -83,12 +90,5 @@ export const dexListingConfig = [
       'Instant Bitcoin & Cryptocurrency Exchange in Vietnam. Buy, sell or swap between 80 assets including VND, BTC, XMR, USDT, ETH, BCH, SOL',
     url: 'https://bitcoinvn.io/?deposit=xmr&settle=zec/',
     image: '/Bitcoinvn.png',
-  },
-  {
-    title: 'Near-intents',
-    description:
-      'Fast exchange with the support of NEAR. Make deposits, sell, swap including popular TRUMP, MELANIA, BERA and other memes',
-    url: 'https://app.near-intents.org/',
-    image: '/near-intentslogo.png',
   },
 ];
