@@ -84,4 +84,11 @@ export const dexListingConfig = [
     url: 'https://bitcoinvn.io/?deposit=xmr&settle=zec/',
     image: '/Bitcoinvn.png',
   },
+  {
+    title: 'Near-intents',
+    description:
+      'Fast exchange with the support of NEAR. Make deposits, sell, swap including popular TRUMP, MELANIA, BERA and other memes',
+    url: 'https://app.near-intents.org/',
+    image: '/near-intentslogo.png',
+  },
 ];
