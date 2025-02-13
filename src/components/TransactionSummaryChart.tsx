@@ -262,34 +262,39 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
         width: "100%",
       }}
     >
-      <div className="flex gap-2 flex-col items-center mb-3">
-        <div className="flex gap-4 justify-center items-center">
-          <label htmlFor="startHeight">Start Height:</label>
+      <div className="flex gap-2 flex-col items-center mb-8">
+        <div className="flex gap-4 justify-center items-center mt-4">
+          <label
+            htmlFor="rangeStartHeight"
+            className="font-medium text-slate-500"
+          >
+            Start Height ({minHeight}):
+          </label>
           <input
-            type="number"
-            id="startHeight"
-            name="startHeight"
+            type="range"
+            id="rangeStartHeight"
+            name="rangeStartHeight"
             value={startHeight}
             onChange={(e) => setStartHeight(Number(e.target.value))}
-            placeholder={`Min: ${minHeight}`}
             min={minHeight}
             max={maxHeight}
           />
-          <label htmlFor="endHeight">End Height:</label>
+          <label
+            htmlFor="rangeEndHeight"
+            className="font-medium text-slate-500"
+          >
+            End Height ({maxHeight}):
+          </label>
           <input
-            type="number"
-            id="endHeight"
-            name="endHeight"
+            type="range"
+            id="rangeEndHeight"
+            name="rangeEndHeight"
             value={endHeight}
             onChange={(e) => setEndHeight(Number(e.target.value))}
-            placeholder={`Max: ${maxHeight}`}
             min={minHeight}
             max={maxHeight}
           />
         </div>
-        <p>
-          Please enter a height between {minHeight} and {maxHeight}.
-        </p>
       </div>
       <canvas ref={chartRef} />
     </div>
