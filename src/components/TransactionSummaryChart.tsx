@@ -258,9 +258,6 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
     };
   }, [chartData, pool, cumulative, filter, isLoading, startHeight, endHeight]);
 
-  if (isLoading) return <p>Loading ...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
   return (
     <div
       style={{
@@ -273,43 +270,51 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
         marginTop: "32px",
       }}
     >
-      <div className="flex gap-2 flex-col items-center my-8">
-        <div className="flex gap-4 justify-center items-center mt-4">
-          <label
-            htmlFor="rangeStartHeight"
-            className="font-medium text-slate-500"
-          >
-            Start Height ({startHeight}):
-          </label>
-          <input
-            type="range"
-            id="rangeStartHeight"
-            name="rangeStartHeight"
-            className="accent-[#22d3ee]"
-            value={startHeight}
-            onChange={(e) => setStartHeight(Number(e.target.value))}
-            min={minHeight}
-            max={maxHeight}
-          />
-          <label
-            htmlFor="rangeEndHeight"
-            className="font-medium text-slate-500"
-          >
-            End Height ({endHeight}):
-          </label>
-          <input
-            type="range"
-            id="rangeEndHeight"
-            name="rangeEndHeight"
-            className="accent-[#22d3ee]"
-            value={endHeight}
-            onChange={(e) => setEndHeight(Number(e.target.value))}
-            min={minHeight}
-            max={maxHeight}
-          />
-        </div>
-      </div>
-      <canvas ref={chartRef} width={400} />
+      {isLoading ? (
+        <p>Loading ...</p>
+      ) : error ? (
+        <p>Error: {error.message}</p>
+      ) : (
+        <>
+          <div className="flex gap-2 flex-col items-center my-8">
+            <div className="flex gap-4 justify-center items-center mt-4">
+              <label
+                htmlFor="rangeStartHeight"
+                className="font-medium text-slate-500"
+              >
+                Start Height ({startHeight}):
+              </label>
+              <input
+                type="range"
+                id="rangeStartHeight"
+                name="rangeStartHeight"
+                className="dark:accent-[#22d3ee] accent-[#1984c7]"
+                value={startHeight}
+                onChange={(e) => setStartHeight(Number(e.target.value))}
+                min={minHeight}
+                max={maxHeight}
+              />
+              <label
+                htmlFor="rangeEndHeight"
+                className="font-medium text-slate-500"
+              >
+                End Height ({endHeight}):
+              </label>
+              <input
+                type="range"
+                id="rangeEndHeight"
+                name="rangeEndHeight"
+                className="dark:accent-[#22d3ee] accent-[#1984c7]"
+                value={endHeight}
+                onChange={(e) => setEndHeight(Number(e.target.value))}
+                min={minHeight}
+                max={maxHeight}
+              />
+            </div>
+          </div>
+          <canvas ref={chartRef} />
+        </>
+      )}
     </div>
   );
 };
