@@ -375,7 +375,7 @@ const ShieldedPoolDashboard = () => {
   return (
     <div className="mt-28">
       <h2 className="font-bold mt-8 mb-4">{selectedToolName}</h2>
-      <div className="border p-3 rounded-lg">
+      <div className="border border-slate-400 p-3 rounded-lg">
         <Tools onToolChange={handleToolChange} />
         <div className="relative">
           <div ref={divChartRef}>
