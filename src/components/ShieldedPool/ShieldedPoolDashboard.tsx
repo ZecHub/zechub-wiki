@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
+import NodeCountChart from "@/components/NodeCountChart";
 import Tools from "@/components/Tools";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
+import { Spinner } from "flowbite-react";
 import dynamic from "next/dynamic";
-import NodeCountChart from "@/components/NodeCountChart";
+import { useEffect, useState } from "react";;
 
 const ShieldedPoolChart = dynamic(
   () => import("./ShieldedPoolChart"),
@@ -223,13 +224,16 @@ function transformSupplyData(
 
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
+  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
+    null
+  );
   const [circulation, setCirculation] = useState<number | null>(null);
   const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-  const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(null);
+  const [shieldedTxCount, setShieldedTxCount] =
+    useState<ShieldedTxCount | null>(null);
   // New state for the most recent node count.
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
@@ -369,7 +373,11 @@ const ShieldedPoolDashboard = () => {
   };
 
   if (!blockchainInfo) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center content-center mt-48">
+        <Spinner />
+      </div>
+    );
   }
 
   return (
@@ -380,7 +388,10 @@ const ShieldedPoolDashboard = () => {
         <div className="relative">
           <div ref={divChartRef}>
             {selectedTool === "supply" && (
-              <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+              <ShieldedPoolChart
+                dataUrl={getDataUrl()}
+                color={getDataColor()}
+              />
             )}
             {selectedTool === "transaction" && (
               <TransactionSummaryChart
