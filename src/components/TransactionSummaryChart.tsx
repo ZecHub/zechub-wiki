@@ -56,7 +56,6 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
   filter,
 }) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
-  console.log({ dataUrl });
 
   /* State for chart data loaded from server */
   const [chartData, setChartData] = useState(
@@ -75,6 +74,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
 
   useEffect(() => {
     setIsLoading(true);
+
     fetchTransactionData(dataUrl)
       .then((data) => {
         console.log({ data: data[0] });
@@ -85,14 +85,12 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
         const heights = data.map((d) => d.height);
         setMinHeight(Math.min(...heights));
         setMaxHeight(Math.max(...heights));
-        // setStartHeight(data[0].height);
       })
       .catch((error) => setError(error))
       .finally(() => setIsLoading(false));
   }, [dataUrl]);
 
   useEffect(() => {
-    // if (isLoading || !chartRef.current) return;
     if (isLoading || !chartRef.current) return;
 
     let saplingSum = 0;
@@ -123,7 +121,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
 
     /* NOTE: filter with custome timeframe (startHeight and endHeight) */
     let chartDataPeriod = chartDataSum.filter((d) => {
-      console.log({ height: d.height });
+      console.log({ chartDataSum: d });
 
       return (
         (d.height >= startHeight &&
@@ -231,6 +229,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           tooltip: {
             enabled: true,
@@ -257,7 +256,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
     return () => {
       chartInstance.destroy();
     };
-  }, [chartData, pool, cumulative, filter, startHeight, endHeight, isLoading]);
+  }, [chartData, pool, cumulative, filter, isLoading, startHeight, endHeight]);
 
   if (isLoading) return <p>Loading ...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -279,7 +278,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
             htmlFor="rangeStartHeight"
             className="font-medium text-slate-500"
           >
-            Start Height ({minHeight}):
+            Start Height ({startHeight}):
           </label>
           <input
             type="range"
@@ -294,7 +293,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
             htmlFor="rangeEndHeight"
             className="font-medium text-slate-500"
           >
-            End Height ({maxHeight}):
+            End Height ({endHeight}):
           </label>
           <input
             type="range"
@@ -307,7 +306,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
           />
         </div>
       </div>
-      <canvas ref={chartRef} />
+      <canvas ref={chartRef} width={400} />
     </div>
   );
 };
