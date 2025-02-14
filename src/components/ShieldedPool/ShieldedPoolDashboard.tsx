@@ -412,7 +412,7 @@ const ShieldedPoolDashboard = () => {
             )}
           </div>
         </div>
-        <div className="flex justify-end gap-12 text-right mt-4 text-sm text-gray-500">
+        <div className="flex justify-end gap-12 text-right mt-20 mb-2 mr-2 text-sm text-gray-500">
           <span className="px-3 py-2">
             Last updated: {formatDate(lastUpdated)}
           </span>
