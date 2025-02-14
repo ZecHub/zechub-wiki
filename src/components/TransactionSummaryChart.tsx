@@ -270,9 +270,10 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
         alignItems: "center",
         height: "600px",
         width: "100%",
+        marginTop: "32px",
       }}
     >
-      <div className="flex gap-2 flex-col items-center mb-8">
+      <div className="flex gap-2 flex-col items-center my-8">
         <div className="flex gap-4 justify-center items-center mt-4">
           <label
             htmlFor="rangeStartHeight"
@@ -284,6 +285,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
             type="range"
             id="rangeStartHeight"
             name="rangeStartHeight"
+            className="accent-[#22d3ee]"
             value={startHeight}
             onChange={(e) => setStartHeight(Number(e.target.value))}
             min={minHeight}
@@ -299,6 +301,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
             type="range"
             id="rangeEndHeight"
             name="rangeEndHeight"
+            className="accent-[#22d3ee]"
             value={endHeight}
             onChange={(e) => setEndHeight(Number(e.target.value))}
             min={minHeight}
