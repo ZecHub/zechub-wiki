@@ -206,38 +206,57 @@ const ShieldedPoolChart = withTooltip<
     console.log({ height });
     console.log({ margin });
     console.log({ providedHeight });
-    
+
     // Compute inner height and width based upon margin
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
-    
+
     console.log({ innerWidth });
     console.log({ innerHeight });
 
-    // Update width and height on resize
-    useLayoutEffect(() => {
-      
-      if (ref.current) {
-        console.log("ref.current.clientWidth: ", ref.current.clientWidth);
-        console.log("ref.current.clientHeight: ", ref.current.clientHeight);
+    useEffect(() => {
+      let timeoutId: NodeJS.Timeout;
 
-        const newWidth = ref?.current?.clientWidth || providedWidth;
-        const newHeight = ref?.current?.clientHeight || providedHeight;
+      const handleResize = () => {
+        if (ref.current) {
+          const newWidth = ref?.current?.clientWidth || providedWidth;
+          const newHeight = ref?.current?.clientHeight || providedHeight;
 
-          console.log({ newWidth });
-          console.log({ newHeight });
+          // If the width has changed, update it
+          if (newWidth !== width) {
+            setWidth(newWidth);
+          }
 
-        if (newWidth !== width) {
-          setWidth(newWidth);
+          // Only update height if it is different from the current height
+          if (newHeight !== height) {
+            // If the height is still invalid (like 24px), fallback to default height
+            if (newHeight > 24 && newHeight <= providedHeight) {
+              setHeight(newHeight);
+            } else if (newHeight === 24) {
+              // Use provided height if 24px is detected
+              setHeight(providedHeight);
+            }
+          }
         }
+      };
 
-        if(newHeight > 24 ){
-          setHeight(newHeight)
-        }else if (newHeight === 24 ) {
-          setHeight(providedHeight);
-        }
-      }
-    }, [providedHeight, providedWidth, width, height]);
+      const resizeHandler = () => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(handleResize, 200); // Debound resize by 200s
+      };
+
+      // Add resize event listener
+      window.addEventListener("resize", resizeHandler);
+
+      // Call immediately to handle the initial render
+      handleResize();
+
+      // Cleanup on unmount
+      return () => {
+        clearTimeout(timeoutId);
+        window.removeEventListener("resize", resizeHandler);
+      };
+    }, [providedHeight, providedWidth]);
 
     /**
      * Scale for date on x-axis
@@ -277,10 +296,10 @@ const ShieldedPoolChart = withTooltip<
     const shieldedValueScale = useMemo(
       () =>
         scaleLinear({
-          range: [innerHeight  + margin.top, margin.top],
+          range: [innerHeight + margin.top, margin.top],
           domain: [
             0,
-            (max(filteredData, getShieldedValue) || 0) + innerHeight  / 3,
+            (max(filteredData, getShieldedValue) || 0) + innerHeight / 3,
           ],
           nice: true,
         }),
@@ -372,14 +391,14 @@ const ShieldedPoolChart = withTooltip<
         </div>
         <p>height: {height} </p>
         <p>innerHeight: {innerHeight} </p>
-        <svg width={width} height={height }>
+        <svg width={width} height={height}>
           <rect
             aria-label="background"
             role="background"
             x={0}
             y={0}
             width={width}
-            height={height }
+            height={height}
             fill={color}
             rx={14}
           />
@@ -407,7 +426,7 @@ const ShieldedPoolChart = withTooltip<
           <GridColumns
             top={margin.top}
             scale={dateScale}
-            height={innerHeight }
+            height={innerHeight}
             strokeDasharray="1,3"
             stroke={accentColor}
             strokeOpacity={0.25}
@@ -429,7 +448,7 @@ const ShieldedPoolChart = withTooltip<
             x={margin.left}
             y={margin.top}
             width={innerWidth}
-            height={innerHeight }
+            height={innerHeight}
             fill="transparent"
             rx={14}
             onTouchStart={handleTooltip}
@@ -442,7 +461,7 @@ const ShieldedPoolChart = withTooltip<
             <g>
               <Line
                 from={{ x: tooltipLeft, y: margin.top }}
-                to={{ x: tooltipLeft, y: innerHeight  + margin.top }}
+                to={{ x: tooltipLeft, y: innerHeight + margin.top }}
                 stroke={accentColorDark}
                 strokeWidth={2}
                 pointerEvents="none"
@@ -506,7 +525,7 @@ const ShieldedPoolChart = withTooltip<
               {formatNumber(getShieldedValue(tooltipData))}
             </TooltipWithBounds>
             <Tooltip
-              top={innerHeight  + margin.top - 14}
+              top={innerHeight + margin.top - 14}
               left={tooltipLeft}
               style={{
                 ...defaultStyles,
