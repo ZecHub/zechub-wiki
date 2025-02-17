@@ -3,7 +3,6 @@ import React, {
   useMemo,
   useCallback,
   useState,
-  useLayoutEffect,
   useEffect,
   useRef,
 } from "react";
@@ -170,8 +169,6 @@ const ShieldedPoolChart = withTooltip<
       return uniqueYears;
     }, [chartData]);
 
-    console.log({ years });
-
     // Filter data based on selected year
     const filteredData = useMemo(() => {
       if (selectedYear) {
@@ -188,11 +185,6 @@ const ShieldedPoolChart = withTooltip<
       [filteredData]
     );
 
-    // const yMax = useMemo(
-    //   () => max(chartData, getShieldedValue) || 0,
-    //   [chartData]
-    // );
-
     /**
      * Reference to child, which will fill all space available horizontally
      */
@@ -202,17 +194,9 @@ const ShieldedPoolChart = withTooltip<
     const [width, setWidth] = useState(providedWidth);
     const [height, setHeight] = useState(providedHeight);
 
-    console.log({ width });
-    console.log({ height });
-    console.log({ margin });
-    console.log({ providedHeight });
-
     // Compute inner height and width based upon margin
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
-
-    console.log({ innerWidth });
-    console.log({ innerHeight });
 
     useEffect(() => {
       let timeoutId: NodeJS.Timeout;
@@ -261,14 +245,6 @@ const ShieldedPoolChart = withTooltip<
     /**
      * Scale for date on x-axis
      */
-    // const dateScale = useMemo(
-    //   () =>
-    //     scaleTime({
-    //       range: [margin.left, innerWidth + margin.left],
-    //       domain: extent(chartData, getDate) as [Date, Date],
-    //     }),
-    //   [chartData, innerWidth, margin.left]
-    // );
     const dateScale = useMemo(
       () =>
         scaleTime({
@@ -281,18 +257,6 @@ const ShieldedPoolChart = withTooltip<
     /**
      * Scale for shielded amount on y-axis
      */
-    // const shieldedValueScale = useMemo(
-    //   () =>
-    //     scaleLinear({
-    //       range: [innerHeight + margin.top, margin.top],
-    //       domain: [
-    //         0,
-    //         (max(chartData, getShieldedValue) || 0) + innerHeight / 3,
-    //       ],
-    //       nice: true,
-    //     }),
-    //   [margin.top, innerHeight, chartData]
-    // );
     const shieldedValueScale = useMemo(
       () =>
         scaleLinear({
@@ -374,23 +338,27 @@ const ShieldedPoolChart = withTooltip<
         ref={ref}
         style={{ width: "100%", minWidth: "100%", minHeight: "500px" }}
       >
-        <div>
-          <label htmlFor="year">Select Year: </label>
+        <div className="flex flex-row gap-4 mb-4">
+          <label
+            htmlFor="year"
+            className="font-medium dark:text-slate-300 text-slate-700 px-3 py-2"
+          >
+            Select Year:{" "}
+          </label>
           <select
             id="year"
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
+            className="dark:bg-transparent outline-none focus:outline-none focus:border-slate-300 active:border-slate-300 border-solid border-slate-300"
           >
             <option value="">All</option>
             {years.map((year) => (
-              <option value={year} key={year}>
+              <option value={year} key={year} className="dar:text-slate-800">
                 {year}
               </option>
             ))}
           </select>
         </div>
-        <p>height: {height} </p>
-        <p>innerHeight: {innerHeight} </p>
         <svg width={width} height={height}>
           <rect
             aria-label="background"
