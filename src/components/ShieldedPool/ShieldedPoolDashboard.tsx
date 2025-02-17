@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
+import NodeCountChart from "@/components/NodeCountChart";
 import Tools from "@/components/Tools";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
+import { Spinner } from "flowbite-react";
 import dynamic from "next/dynamic";
-import NodeCountChart from "@/components/NodeCountChart";
+import { useEffect, useState } from "react";;
 
 const ShieldedPoolChart = dynamic(
   () => import("./ShieldedPoolChart"),
@@ -223,13 +224,16 @@ function transformSupplyData(
 
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
+  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
+    null
+  );
   const [circulation, setCirculation] = useState<number | null>(null);
   const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-  const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount | null>(null);
+  const [shieldedTxCount, setShieldedTxCount] =
+    useState<ShieldedTxCount | null>(null);
   // New state for the most recent node count.
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
@@ -369,18 +373,25 @@ const ShieldedPoolDashboard = () => {
   };
 
   if (!blockchainInfo) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center content-center mt-48">
+        <Spinner />
+      </div>
+    );
   }
 
   return (
-    <div>
+    <div className="mt-28">
       <h2 className="font-bold mt-8 mb-4">{selectedToolName}</h2>
-      <div className="border p-3 rounded-lg">
+      <div className="border border-slate-400 p-3 rounded-lg">
         <Tools onToolChange={handleToolChange} />
         <div className="relative">
           <div ref={divChartRef}>
             {selectedTool === "supply" && (
-              <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+              <ShieldedPoolChart
+                dataUrl={getDataUrl()}
+                color={getDataColor()}
+              />
             )}
             {selectedTool === "transaction" && (
               <TransactionSummaryChart
@@ -401,7 +412,7 @@ const ShieldedPoolDashboard = () => {
             )}
           </div>
         </div>
-        <div className="flex justify-end gap-12 text-right mt-4 text-sm text-gray-500">
+        <div className="flex justify-end gap-12 text-right mt-20 mb-2 mr-2 text-sm text-gray-500">
           <span className="px-3 py-2">
             Last updated: {formatDate(lastUpdated)}
           </span>
