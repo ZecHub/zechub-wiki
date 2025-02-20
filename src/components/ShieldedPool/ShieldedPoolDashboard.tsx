@@ -7,7 +7,7 @@ import Tools from "@/components/Tools";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { Spinner } from "flowbite-react";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";;
+import { useEffect, useState } from "react";
 
 const ShieldedPoolChart = dynamic(
   () => import("./ShieldedPoolChart"),
@@ -224,10 +224,9 @@ function transformSupplyData(
 
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
-    null
-  );
+  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
   const [circulation, setCirculation] = useState<number | null>(null);
+  const [shieldedSupply, setShieldedSupply] = useState<SupplyData | null>(null);
   const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
   const [saplingSupply, setSaplingSupply] = useState<SupplyData | null>(null);
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
@@ -258,6 +257,11 @@ const ShieldedPoolDashboard = () => {
 
     // Use the full ISO string from GitHub (the helper will format it)
     getLastUpdatedDate().then((date) => setLastUpdated(date));
+
+    // Fetch shielded supply (Total Shielded) from defaultUrl.
+    getSupplyData(defaultUrl).then((data) =>
+      setShieldedSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
+    );
 
     getSupplyData(sproutUrl).then((data) =>
       setSproutSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
@@ -330,12 +334,9 @@ const ShieldedPoolDashboard = () => {
     }
   };
 
+  // Now, the total supply is directly taken from shieldedSupply.
   const getTotalShieldedSupply = () => {
-    const totalSupply =
-      (sproutSupply?.supply ?? 0) +
-      (saplingSupply?.supply ?? 0) +
-      (orchardSupply?.supply ?? 0);
-    return totalSupply;
+    return shieldedSupply?.supply ?? 0;
   };
 
   const handleToolChange = (tool: string) => {
