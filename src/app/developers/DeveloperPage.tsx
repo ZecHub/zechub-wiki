@@ -9,7 +9,6 @@ export const metadata: Metadata = genMetadata({
 })
 
 export default function DeveloperPage() {
-  // State to track feedback
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
   const [isHelpful, setIsHelpful] = useState(false);
 
