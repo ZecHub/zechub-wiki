@@ -225,6 +225,11 @@ export const navigations = [
     newTab: true,
   },
   {
+    name: "Developers",
+    path: "/developers",
+    icon: "",
+  },
+  {
     name: "Contribute",
     path: "/contribute/help-build-zechub",
     icon: "",
