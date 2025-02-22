@@ -4,7 +4,7 @@ import { genMetadata } from '@/lib/helpers';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = genMetadata({
-  title: "ZCash Developer Resources",
+  title: "Zcash Developer Resources",
   url: "https://zechub.wiki/using-zcash/blockchain-explorers"
 })
 
