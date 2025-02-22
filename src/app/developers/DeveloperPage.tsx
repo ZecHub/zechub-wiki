@@ -191,7 +191,7 @@ export default function DeveloperPage() {
                     Intro to ZEC
                   </a>
                   <p className="text-gray-600 text-sm mt-1 mb-2">
-                    Discover the use cases and benefits of ZEC, Zcash's native
+                    Discover the use cases and benefits of ZEC, Zcash native
                     cryptocurrency.
                   </p>
                 </li>
@@ -379,7 +379,7 @@ export default function DeveloperPage() {
                 </p>
               ) : (
                 <p className="text-red-600">
-                  We're sorry to hear that. Please let us know how we can
+                  Sorry to hear that. Please let us know how we can
                   improve this page. You can reach out to the community on our{" "}
                   <a
                     href="https://discord.gg/zcash"
