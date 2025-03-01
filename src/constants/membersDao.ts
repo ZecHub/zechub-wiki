@@ -1,7 +1,7 @@
 export const daoMembers = [
 
   {
-    imgUrl: "https://ibb.co/gZL46Kz9",
+    imgUrl: "https://i.ibb.co/9HkZG5sg/IMG-20250301-114424-340.jpg",
     name: "AidenZ",
     description: `Zcash Global Ambassador / cypherpunkZero Holder / QUADHASH Holder / inkonbtc Holder`,
     linkName: "Twitter",
