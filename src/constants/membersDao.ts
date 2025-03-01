@@ -1,10 +1,10 @@
 export const daoMembers = [
 
   {
-    imgUrl: "https://i.ibb.co/MDxNVq4/puw-a7-PE-400x400.jpg",
+    imgUrl: "https://x.com/zaos1004/photo",
     name: "AidenZ",
     description: `Zcash Global Ambassador / cypherpunkZero Holder / QUADHASH Holder / inkonbtc Holder`,
-    linkName: "Twiiter",
+    linkName: "Twitter",
     urlLink: "https://cafe.naver.com/zcashcommunity",
     zcashAddress:
       "u1ckyxdk4ed7g70n8j96cquycqmx652tqrv00hjd0mpvv6u6wwhcaqath8whjswxg7a7vnfc9ldyucj5lepaplwrkll4594ehmcv0lglrre0yh27lagsgd2zwflvh4erq5fwckyv6c3ert6glhkpqm206qf0plp4tal3nqlf7xfzwurgfpvkhkexskwy8a7s647cd4lnw0lcy6zm7np9a",
