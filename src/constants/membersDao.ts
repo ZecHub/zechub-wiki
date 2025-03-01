@@ -3,9 +3,9 @@ export const daoMembers = [
   {
     imgUrl: "https://i.ibb.co/9HkZG5sg/IMG-20250301-114424-340.jpg",
     name: "AidenZ",
-    description: `Zcash Global Ambassador / cypherpunkZero Holder / QUADHASH Holder / inkonbtc Holder`,
+    description: `Zcash Korea Global Ambassador / I am operating Telegram, KakaoTalk, and Naver Blog to share information about Zcash.`,
     linkName: "Twitter",
-    urlLink: "https://cafe.naver.com/zcashcommunity",
+    urlLink: "https://x.com/zaos1004",
     zcashAddress:
       "u1ckyxdk4ed7g70n8j96cquycqmx652tqrv00hjd0mpvv6u6wwhcaqath8whjswxg7a7vnfc9ldyucj5lepaplwrkll4594ehmcv0lglrre0yh27lagsgd2zwflvh4erq5fwckyv6c3ert6glhkpqm206qf0plp4tal3nqlf7xfzwurgfpvkhkexskwy8a7s647cd4lnw0lcy6zm7np9a",
   },
