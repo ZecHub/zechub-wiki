@@ -19,6 +19,16 @@ const TransactionSummaryChart = dynamic(
   { ssr: true } // Enable SSR
 );
 
+// const ZecIssuanceSummaryChart = dynamic(
+//   () => import("../ZecIssuanceSummaryChart"),
+//   { ssr: true } // Enable SSR
+// );
+
+const ZecIssuanceSummaryChart = dynamic(
+  () => import("../ZecIssuanceSummaryChart"),
+  { ssr: true } // Enable SSR
+);
+
 const defaultUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json";
 const sproutUrl =
@@ -40,6 +50,9 @@ const txsummaryUrl =
 
 const shieldedTxCountUrl =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json";
+
+const issuanceUrl =
+  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/issuance.json";
 
 const apiUrl =
   "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
@@ -224,7 +237,9 @@ function transformSupplyData(
 
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
+  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
+    null
+  );
   const [circulation, setCirculation] = useState<number | null>(null);
   const [shieldedSupply, setShieldedSupply] = useState<SupplyData | null>(null);
   const [sproutSupply, setSproutSupply] = useState<SupplyData | null>(null);
@@ -316,6 +331,9 @@ const ShieldedPoolDashboard = () => {
         return difficultyUrl;
       case "lockbox":
         return lockboxUrl;
+      case "issuance":
+        console.log(issuanceUrl);
+        return issuanceUrl;
       default:
         return defaultUrl;
     }
@@ -349,6 +367,10 @@ const ShieldedPoolDashboard = () => {
       case "transaction":
         setSelectedPool("default");
         setSelectedToolName("Shielded Transactions Chart (ZEC)");
+        break;
+      case "issuance":
+        setSelectedPool("issuance");
+        setSelectedToolName("Issuance Chart (ZEC)");
         break;
       case "nodecount":
         setSelectedPool("nodecount");
@@ -410,6 +432,21 @@ const ShieldedPoolDashboard = () => {
             )}
             {selectedTool === "lockbox" && (
               <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
+            )}
+            {/* {selectedTool === "issuance" && (
+              <NodeCountChart
+                dataUrl={getDataUrl()}
+                color={getDataColor()}
+                chartType="line"
+              />
+            )} */}
+            {selectedTool === "issuance" && (
+              <ZecIssuanceSummaryChart
+                dataUrl={issuanceUrl}
+                pool={selectedPool}
+                cumulative={cumulativeCheck}
+                filter={filterSpamCheck}
+              />
             )}
           </div>
         </div>
