@@ -92,6 +92,7 @@ export default function NetInflowsOutflowsChart(
             beginAtZero: true,
           },
         },
+        aspectRatio: -1120,
       },
     });
 
@@ -105,7 +106,12 @@ export default function NetInflowsOutflowsChart(
     <div className="flex items-center justify-center">
       {isLoading && <p> Loading data... </p>}
 
-      <canvas ref={chartRef}></canvas>
+      <canvas
+        role="img"
+        id="netInflowsOutflowsChart"
+        aria-label="Net inflows and outflows chart"
+        ref={chartRef}
+      ></canvas>
     </div>
   );
 }
