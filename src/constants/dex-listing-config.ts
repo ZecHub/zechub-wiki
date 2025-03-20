@@ -8,6 +8,13 @@ export const dexListingConfig = [
     image: 'https://i.ibb.co/JxzSyx6/1500x500-1.jpg',
   },
   {
+    title: 'Near-intents',
+    description:
+      'Fast exchange with the support of NEAR. Make deposits, sell, swap including popular TRUMP, MELANIA, BERA and other memes',
+    url: 'https://app.near-intents.org/',
+    image: '/nearintents.png',
+  },
+  {
     title: 'Stealth EX',
     description:
       'StealthEX is an instant cryptocurrency exchange for limitless swaps whose service is free from registration and does not store user’s funds on the platform. StealthEX is the best place to buy cryptocurrency.',

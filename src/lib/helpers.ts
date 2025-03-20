@@ -72,20 +72,9 @@ export const firstFileForFolders = async (folders: string[]) => {
 };
 
 export const getBanner = (name: string) => {
-
-  let uri = '';
-  for (let i = 0; i <= contentBanners.length; i++) {
-    if (contentBanners[i]?.name === undefined) {
-      uri = '';
-    }
-
-    if (contentBanners[i]?.name == transformUri(name)) {
-      // uri = contentBanners[i].url;
-      return contentBanners[i].url; // replace uri assignment with `return` to break the loop search on first find
-    }
-  }
-
-  // return uri; // commented out to avoid uri being replaced by ''
+  const transformedName = transformUri(name);
+  const banner = contentBanners.find(banner => banner.name === transformedName);
+  return banner ? banner.url : '';
 };
 
 const uppercaseWords = [
@@ -136,8 +125,7 @@ export const transformUri = (uri: string, ignoreLowerCase = false) => {
   let transformed = uri
     .replace(/\b\w/g, (l) => l.toUpperCase())  
     .replace(/-/g, '_');
-    
-    console.log(transformed)
+
   if (!ignoreLowerCase)
     lowercaseWords.forEach((word) => {
       if (transformed.includes(word))

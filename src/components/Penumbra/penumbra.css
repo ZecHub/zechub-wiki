@@ -1,9 +1,9 @@
 .p-board {
     background-color: black;
     color: white;
-    min-width: 420px;
-    padding: 24px;
-    margin: 24px;
+    min-width: 320px;
+    padding: 16px;
+    margin: 12px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;

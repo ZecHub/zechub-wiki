@@ -18,7 +18,7 @@ export const exploreFolders = [
         url: '/using-zcash/buying-zec'
     },
     {
-        img: '/Guides.png',
+        img: '/GuidesZ.png',
         description: '',
         name: 'Guides',
         url: '/guides/raspberry-pi-4-full-node'

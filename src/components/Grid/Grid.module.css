@@ -1,10 +1,25 @@
 .project_grid {
   display: grid;
-  /* grid-template-columns: auto auto auto; */
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 32px;
+  grid-template-columns: 1fr; /* Mobile: 1 column */
+  gap: 16px; /* smaller gap for mobile */
   padding: 16px;
   align-items: center;
-  justify-content: space-between;
-  /* justify-content: center; */
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+/* Medium devices (Tablets) */
+@media (min-width: 600px) {
+  .project_grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    gap: 24px; /* slightly larger gap */
+  }
+}
+
+/* Large devices (Desktops) */
+@media (min-width: 1024px) {
+  .project_grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on large screens */
+    gap: 32px; /* larger gap for large screens */
+  }
 }

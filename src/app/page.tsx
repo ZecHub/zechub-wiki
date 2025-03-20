@@ -1,4 +1,4 @@
-import HomePage from "@/components/home/Home";
+import HomePage from "@/components/Home/Home"
 
 // Define Metadata interface locally
 interface Metadata {
