@@ -9,6 +9,7 @@ import { Spinner } from "flowbite-react";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { ToolOptions } from "../Tools/tools";
+import NetInflowsOutflowsChart from "../Charts/NetInflowsOutflowsChart";
 
 const ShieldedPoolChart = dynamic(
   () => import("./ShieldedPoolChart"),
@@ -23,8 +24,7 @@ const TransactionSummaryChart = dynamic(
 const DataUrlOptions = {
   defaultUrl:
     "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json",
-  netInflowsOutflowsUrl:
-    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/netinflowoutflow.json",
+  netInflowsOutflowsUrl: "/data/netinflowoutflow.json",
   sproutUrl:
     "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json",
   saplingUrl:
@@ -452,6 +452,12 @@ const ShieldedPoolDashboard = () => {
             {/* {selectedTool === "lockbox" && ( */}
             {selectedTool === ToolOptions.lockbox && (
               <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
+            )}
+            {selectedTool === ToolOptions.net_inflows_outflows && (
+              <NetInflowsOutflowsChart
+                dataUrl={getDataUrl()}
+                color={getDataColor()}
+              />
             )}
           </div>
         </div>
