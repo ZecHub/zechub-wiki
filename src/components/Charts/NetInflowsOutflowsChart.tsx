@@ -57,9 +57,6 @@ export default function NetInflowsOutflowsChart(
     netOrchardFlow: itm["Net Orchard Flow"],
   }));
 
-  const labels = parseData.map((itm) => itm.date);
-  console.log({ labels });
-
   useEffect(() => {
     if (isLoading || !chartRef.current) return;
 
@@ -87,12 +84,12 @@ export default function NetInflowsOutflowsChart(
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        devicePixelRatio: 2,
         scales: {
           y: {
             beginAtZero: true,
           },
         },
-        aspectRatio: -1120,
       },
     });
 
@@ -104,9 +101,15 @@ export default function NetInflowsOutflowsChart(
 
   return (
     <div className="flex items-center justify-center">
-      {isLoading && <p> Loading data... </p>}
-
+      {isLoading && <p className="p-1"> Loading data... </p>}
+      {error && (
+        <p className="p-1 text-red-400">
+          Chart can not be rendered at the moment
+        </p>
+      )}
       <canvas
+        width={"100%"}
+        height={"400px"}
         role="img"
         id="netInflowsOutflowsChart"
         aria-label="Net inflows and outflows chart"
