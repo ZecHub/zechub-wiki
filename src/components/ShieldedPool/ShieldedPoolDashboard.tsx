@@ -108,6 +108,14 @@ interface NodeCountData {
   nodecount: string;
 }
 
+enum ToolsOption {
+  supply = "supply",
+  transaction = "transaction",
+  nodecount = "nodecount",
+  difficulty = "difficulty",
+  lockbox = "lockbox",
+}
+
 async function getNodeCountData(url: string): Promise<NodeCountData[]> {
   try {
     const response = await fetch(url);
@@ -251,7 +259,7 @@ const ShieldedPoolDashboard = () => {
   // New state for the most recent node count.
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
-  const [selectedTool, setSelectedTool] = useState<string>("supply");
+  const [selectedTool, setSelectedTool] = useState<string>(ToolsOption.supply);
   const [selectedToolName, setSelectedToolName] = useState<string>(
     "Shielded Supply Chart (ZEC)"
   );
@@ -360,11 +368,11 @@ const ShieldedPoolDashboard = () => {
   const handleToolChange = (tool: string) => {
     setSelectedTool(tool);
     switch (tool) {
-      case "supply":
+      case ToolsOption.supply: 
         setSelectedPool("default");
         setSelectedToolName("Shielded Supply Chart (ZEC)");
         break;
-      case "transaction":
+      case ToolsOption.transaction:  
         setSelectedPool("default");
         setSelectedToolName("Shielded Transactions Chart (ZEC)");
         break;
@@ -372,15 +380,15 @@ const ShieldedPoolDashboard = () => {
         setSelectedPool("issuance");
         setSelectedToolName("Issuance Chart (ZEC)");
         break;
-      case "nodecount":
+      case ToolsOption.nodecount: 
         setSelectedPool("nodecount");
         setSelectedToolName("Node Count");
         break;
-      case "difficulty":
+      case ToolsOption.difficulty: 
         setSelectedPool("difficulty");
         setSelectedToolName("Difficulty");
         break;
-      case "lockbox":
+      case ToolsOption.lockbox: 
         setSelectedPool("lockbox");
         setSelectedToolName("Lockbox ZEC Amount");
         break;
