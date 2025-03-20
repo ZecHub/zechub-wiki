@@ -1,3 +1,23 @@
+
+// ToolOptions is used to keep the encapsulate the each tool item
+export enum ToolOptions {
+  supply = "supply",
+  transaction = "transaction",
+  nodecount = "nodecount",
+  difficulty = "difficulty",
+  lockbox = "lockbox",
+  net_inflows_outflows = "Net Inflows & Outflows",
+}
+
+// Map enum values to display names in select tag
+const toolOptionLabels: Record<ToolOptions, string> = {
+  [ToolOptions.supply]: "Shielded Supply Chart",
+  [ToolOptions.transaction]: "Shielded Transactions Chart",
+  [ToolOptions.nodecount]: "Node Count",
+  [ToolOptions.difficulty]: "Difficulty",
+  [ToolOptions.lockbox]: "Lockbox ZEC Amount",
+  [ToolOptions.net_inflows_outflows]: "Net Inflows & Outflows",
+};
 interface ToolsProps {
   onToolChange: (selectedTool: string) => void; // Callback function to pass the selected tool up
 }
@@ -18,12 +38,18 @@ export const Tools: React.FC<ToolsProps> = ({ onToolChange }) => {
           <option value="" disabled>
             Select
           </option>
-          <option value="supply">Shielded Supply Chart</option>
-          <option value="transaction">Shielded Transactions Chart</option>
+          {/* <option value="supply">Shielded Supply Chart</option> */}
+          {/* <option value="transaction">Shielded Transactions Chart</option> */}
           <option value="issuance">Issuance Chart</option>
-          <option value="nodecount">Node Count</option>
-          <option value="difficulty">Difficulty</option>
-          <option value="lockbox">Lockbox ZEC Amount</option>
+          {/* <option value="nodecount">Node Count</option> */}
+          {/* <option value="difficulty">Difficulty</option> */}
+          {/* <option value="lockbox">Lockbox ZEC Amount</option> */}
+
+          {Object.values(ToolOptions).map((opt, i) => (
+            <option key={opt + "_" + i} value={opt}>
+              {toolOptionLabels[opt]}
+            </option>
+          ))}
         </select>
       </span>
     </div>
