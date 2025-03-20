@@ -31,7 +31,7 @@ type NodeCountAmountDatum = {
   nodecount: number;
   Date: string;
   lockbox: number;
-  Difficulty : number
+  Difficulty: number;
 };
 
 interface NodeCountChartProps {
@@ -78,7 +78,8 @@ const getDate = (d: NodeCountAmountDatum): Date => new Date(d.Date);
  * @param d
  * @returns number
  */
-const getShieldedValue = (d: NodeCountAmountDatum): number => d.nodecount ?? d.lockbox ?? d.Difficulty;
+const getShieldedValue = (d: NodeCountAmountDatum): number =>
+  d.nodecount ?? d.lockbox ?? d.Difficulty;
 
 /** Bisector for date */
 const bisectDate = bisector<NodeCountAmountDatum, Date>(
@@ -169,7 +170,7 @@ const NodeCountChart = withTooltip<
         .finally(() => setIsLoading(false));
     }, [dataUrl]);
 
-    console.log(chartData);
+    // console.log(chartData);
 
     /**
      * Reference to child, which will fill all space available horizontally
