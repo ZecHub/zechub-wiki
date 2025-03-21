@@ -8,6 +8,8 @@ import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { Spinner } from "flowbite-react";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { ToolOptions } from "../Tools/tools";
+import NetInflowsOutflowsChart from "../Charts/NetInflowsOutflowsChart";
 
 const ShieldedPoolChart = dynamic(
   () => import("./ShieldedPoolChart"),
@@ -29,33 +31,60 @@ const ZecIssuanceSummaryChart = dynamic(
   { ssr: true } // Enable SSR
 );
 
-const defaultUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json";
-const sproutUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json";
-const saplingUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json";
-const orchardUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
-const hashrateUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
-const nodecountUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/nodecount.json";
-const difficultyUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/difficulty.json";
-const lockboxUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/lockbox.json";
-const txsummaryUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
+const DataUrlOptions = {
+  defaultUrl:
+    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json",
+  netInflowsOutflowsUrl: "/data/netinflowoutflow.json",
+  sproutUrl:
+    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json",
+  saplingUrl:
+    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json",
+  orchardUrl:
+    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json",
+  hashrateUrl:
+    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json",
+  nodecountUrl:
+    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/nodecount.json",
+  difficultyUrl:
+    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/difficulty.json",
+  lockboxUrl:
+    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/lockbox.json",
+  txsummaryUrl:
+    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json",
+  shieldedTxCountUrl:
+    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json",
+  apiUrl:
+    "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json",
+  issuanceUrl:
+    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/issuance.json",
+};
 
-const shieldedTxCountUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json";
+// const defaultUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json";
+// const sproutUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json";
+// const saplingUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json";
+// const orchardUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json";
+// const hashrateUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/hashrate.json";
+// const nodecountUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/nodecount.json";
+// const difficultyUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/difficulty.json";
+// const lockboxUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/lockbox.json";
+// const txsummaryUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
+// const shieldedTxCountUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json";
+// const netInflowsOutflowsUrl =
+//   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/netinflowoutflow.json";
+// const issuanceUrl =  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/issuance.json";
 
-const issuanceUrl =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/issuance.json";
+// const apiUrl =   "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
 
-const apiUrl =
-  "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json";
 const blockchainInfoUrl = "/api/blockchain-info";
 const blockchainDataUrl = "/api/blockchain-data";
 
@@ -174,7 +203,7 @@ async function getSupplyData(url: string): Promise<SupplyData[]> {
 
 async function getLastUpdatedDate(): Promise<string> {
   try {
-    const response = await fetch(apiUrl);
+    const response = await fetch(DataUrlOptions.apiUrl);
     if (!response.ok) {
       console.error("Failed to fetch last updated date:", response.statusText);
       return "N/A";
@@ -189,7 +218,7 @@ async function getLastUpdatedDate(): Promise<string> {
 
 async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
   try {
-    const response = await fetch(shieldedTxCountUrl);
+    const response = await fetch(DataUrlOptions.shieldedTxCountUrl);
     if (!response.ok) {
       console.error(
         "Failed to fetch shielded transaction counts:",
@@ -251,7 +280,7 @@ const ShieldedPoolDashboard = () => {
   // New state for the most recent node count.
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
-  const [selectedTool, setSelectedTool] = useState<string>("supply");
+  const [selectedTool, setSelectedTool] = useState<string>(ToolOptions.supply);
   const [selectedToolName, setSelectedToolName] = useState<string>(
     "Shielded Supply Chart (ZEC)"
   );
@@ -274,19 +303,19 @@ const ShieldedPoolDashboard = () => {
     getLastUpdatedDate().then((date) => setLastUpdated(date));
 
     // Fetch shielded supply (Total Shielded) from defaultUrl.
-    getSupplyData(defaultUrl).then((data) =>
+    getSupplyData(DataUrlOptions.defaultUrl).then((data) =>
       setShieldedSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
     );
 
-    getSupplyData(sproutUrl).then((data) =>
+    getSupplyData(DataUrlOptions.sproutUrl).then((data) =>
       setSproutSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
     );
 
-    getSupplyData(saplingUrl).then((data) =>
+    getSupplyData(DataUrlOptions.saplingUrl).then((data) =>
       setSaplingSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
     );
 
-    getSupplyData(orchardUrl).then((data) =>
+    getSupplyData(DataUrlOptions.orchardUrl).then((data) =>
       setOrchardSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
     );
 
@@ -306,7 +335,7 @@ const ShieldedPoolDashboard = () => {
 
   // Fetch node count data and update the most recent node count.
   useEffect(() => {
-    getNodeCountData(nodecountUrl).then((data) => {
+    getNodeCountData(DataUrlOptions.nodecountUrl).then((data) => {
       if (data.length > 0) {
         const lastEntry = data[data.length - 1];
         // Convert the string value to a number.
@@ -318,24 +347,26 @@ const ShieldedPoolDashboard = () => {
   const getDataUrl = () => {
     switch (selectedPool) {
       case "sprout":
-        return sproutUrl;
+        return DataUrlOptions.sproutUrl;
       case "sapling":
-        return saplingUrl;
+        return DataUrlOptions.saplingUrl;
       case "orchard":
-        return orchardUrl;
+        return DataUrlOptions.orchardUrl;
       case "hashrate":
-        return hashrateUrl;
+        return DataUrlOptions.hashrateUrl;
       case "nodecount":
-        return nodecountUrl;
+        return DataUrlOptions.nodecountUrl;
       case "difficulty":
-        return difficultyUrl;
+        return DataUrlOptions.difficultyUrl;
       case "lockbox":
-        return lockboxUrl;
+        return DataUrlOptions.lockboxUrl;
+      case ToolOptions.net_inflows_outflows:
+        return DataUrlOptions.netInflowsOutflowsUrl;
       case "issuance":
-        console.log(issuanceUrl);
-        return issuanceUrl;
+        // console.log(issuanceUrl);
+        return DataUrlOptions.issuanceUrl;
       default:
-        return defaultUrl;
+        return DataUrlOptions.defaultUrl;
     }
   };
 
@@ -360,11 +391,11 @@ const ShieldedPoolDashboard = () => {
   const handleToolChange = (tool: string) => {
     setSelectedTool(tool);
     switch (tool) {
-      case "supply":
+      case ToolOptions.supply:
         setSelectedPool("default");
         setSelectedToolName("Shielded Supply Chart (ZEC)");
         break;
-      case "transaction":
+      case ToolOptions.transaction:
         setSelectedPool("default");
         setSelectedToolName("Shielded Transactions Chart (ZEC)");
         break;
@@ -372,17 +403,21 @@ const ShieldedPoolDashboard = () => {
         setSelectedPool("issuance");
         setSelectedToolName("Issuance Chart (ZEC)");
         break;
-      case "nodecount":
+      case ToolOptions.nodecount:
         setSelectedPool("nodecount");
         setSelectedToolName("Node Count");
         break;
-      case "difficulty":
+      case ToolOptions.difficulty:
         setSelectedPool("difficulty");
         setSelectedToolName("Difficulty");
         break;
-      case "lockbox":
+      case ToolOptions.lockbox:
         setSelectedPool("lockbox");
         setSelectedToolName("Lockbox ZEC Amount");
+        break;
+      case ToolOptions.net_inflows_outflows:
+        setSelectedPool(ToolOptions.net_inflows_outflows);
+        setSelectedToolName(ToolOptions.net_inflows_outflows);
         break;
     }
   };
@@ -410,28 +445,39 @@ const ShieldedPoolDashboard = () => {
         <Tools onToolChange={handleToolChange} />
         <div className="relative">
           <div ref={divChartRef}>
-            {selectedTool === "supply" && (
+            {/* {selectedTool === "supply" && ( */}
+            {selectedTool === ToolOptions.supply && (
               <ShieldedPoolChart
                 dataUrl={getDataUrl()}
                 color={getDataColor()}
               />
             )}
-            {selectedTool === "transaction" && (
+            {/* {selectedTool === "transaction" && ( */}
+            {selectedTool === ToolOptions.transaction && (
               <TransactionSummaryChart
-                dataUrl={txsummaryUrl}
+                dataUrl={DataUrlOptions.txsummaryUrl}
                 pool={selectedPool}
                 cumulative={cumulativeCheck}
                 filter={filterSpamCheck}
               />
             )}
-            {selectedTool === "nodecount" && (
+            {/* {selectedTool === "nodecount" && ( */}
+            {selectedTool === ToolOptions.nodecount && (
               <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
             )}
-            {selectedTool === "difficulty" && (
+            {/* {selectedTool === "difficulty" && ( */}
+            {selectedTool === ToolOptions.difficulty && (
               <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
             )}
-            {selectedTool === "lockbox" && (
+            {/* {selectedTool === "lockbox" && ( */}
+            {selectedTool === ToolOptions.lockbox && (
               <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
+            )}
+            {selectedTool === ToolOptions.net_inflows_outflows && (
+              <NetInflowsOutflowsChart
+                dataUrl={getDataUrl()}
+                color={getDataColor()}
+              />
             )}
             {/* {selectedTool === "issuance" && (
               <NodeCountChart
@@ -442,7 +488,7 @@ const ShieldedPoolDashboard = () => {
             )} */}
             {selectedTool === "issuance" && (
               <ZecIssuanceSummaryChart
-                dataUrl={issuanceUrl}
+                dataUrl={DataUrlOptions.issuanceUrl}
                 pool={selectedPool}
                 cumulative={cumulativeCheck}
                 filter={filterSpamCheck}
