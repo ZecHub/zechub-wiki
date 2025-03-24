@@ -11,6 +11,16 @@ export const daoMembers = [
   },
   {
     imgUrl:
+      "https://i.ibb.co/93pD2H0n/18714-2.png",
+    name: "1337bytes",
+    description: `Software Engineer with 8 years professional experience working in web and app development`,
+    linkName: "Github",
+    urlLink: " https://github.com/macintoshhelper/",
+    zcashAddress:
+      "",
+  },
+  {
+    imgUrl:
       "https://zeal.center/system/accounts/avatars/109/304/356/632/808/494/original/5163355cdb5f77d5.png",
     name: "Wizard",
     description: `I am the admin of Zeal Center, a Mastodon and Mobilizon instance created for the Zcash community`,
