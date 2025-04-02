@@ -10,6 +10,8 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { ToolOptions } from "../Tools/tools";
 import NetInflowsOutflowsChart from "../Charts/NetInflowsOutflowsChart";
+import NoData from "../../assets/nodata.svg";
+import Image from "next/image";
 
 const ShieldedPoolChart = dynamic(
   () => import("./ShieldedPoolChart"),
@@ -266,6 +268,7 @@ function transformSupplyData(
 
 const ShieldedPoolDashboard = () => {
   const [selectedPool, setSelectedPool] = useState("default");
+  const [selectedCoin, setSelectedCoin] = useState("Zcash");
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
     null
   );
@@ -440,59 +443,108 @@ const ShieldedPoolDashboard = () => {
 
   return (
     <div className="mt-28">
-      <h2 className="font-bold mt-8 mb-4">{selectedToolName}</h2>
+      <div className="flex items-center gap-4 justify-between">
+        <h2 className="font-bold mt-8 mb-4">{selectedToolName}</h2>
+        <div>
+          <Button
+            text="Zcash"
+            className="px-3 py-2 border text-white border-slate-300 rounded-md shadow-sm bg-[#1984c7]"
+            onClick={() => setSelectedCoin("Zcash")}
+          />
+          <Button
+            text="Penumbra"
+            className="px-3 py-2 border text-white border-slate-300 rounded-md shadow-sm bg-[#1984c7]"
+            onClick={() => setSelectedCoin("Penumbra")}
+          />
+          <Button
+            text="Namada"
+            className="px-3 py-2 border text-white border-slate-300 rounded-md shadow-sm bg-[#1984c7]"
+            onClick={() => setSelectedCoin("Namada")}
+          />
+        </div>
+      </div>
+
       <div className="border border-slate-400 p-3 rounded-lg">
-        <Tools onToolChange={handleToolChange} />
+        <div className="flex items-center gap-4 justify-end">
+          
+          <Tools onToolChange={handleToolChange} />
+        </div>
         <div className="relative">
           <div ref={divChartRef}>
-            {/* {selectedTool === "supply" && ( */}
-            {selectedTool === ToolOptions.supply && (
-              <ShieldedPoolChart
-                dataUrl={getDataUrl()}
-                color={getDataColor()}
-              />
-            )}
-            {/* {selectedTool === "transaction" && ( */}
-            {selectedTool === ToolOptions.transaction && (
-              <TransactionSummaryChart
-                dataUrl={DataUrlOptions.txsummaryUrl}
-                pool={selectedPool}
-                cumulative={cumulativeCheck}
-                filter={filterSpamCheck}
-              />
-            )}
-            {/* {selectedTool === "nodecount" && ( */}
-            {selectedTool === ToolOptions.nodecount && (
-              <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
-            )}
-            {/* {selectedTool === "difficulty" && ( */}
-            {selectedTool === ToolOptions.difficulty && (
-              <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
-            )}
-            {/* {selectedTool === "lockbox" && ( */}
-            {selectedTool === ToolOptions.lockbox && (
-              <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
-            )}
-            {selectedTool === ToolOptions.net_inflows_outflows && (
-              <NetInflowsOutflowsChart
-                dataUrl={getDataUrl()}
-                color={getDataColor()}
-              />
-            )}
-            {/* {selectedTool === "issuance" && (
+            {selectedCoin !== "Zcash" ? (
+              <div className="w-full h-[400px] flex flex-col justify-center items-center">
+                <Image
+                  className="mb-8 object-cover "
+                  alt="Nodata"
+                  width={200}
+                  height={250}
+                  src={NoData}
+                />
+                <p className="font-[20px]">
+                  Chart data for {selectedCoin} unavailable
+                </p>
+              </div>
+            ) : (
+              <>
+                {/* {selectedTool === "supply" && ( */}
+                {selectedTool === ToolOptions.supply && (
+                  <ShieldedPoolChart
+                    dataUrl={getDataUrl()}
+                    color={getDataColor()}
+                  />
+                )}
+                {/* {selectedTool === "transaction" && ( */}
+                {selectedTool === ToolOptions.transaction && (
+                  <TransactionSummaryChart
+                    dataUrl={DataUrlOptions.txsummaryUrl}
+                    pool={selectedPool}
+                    cumulative={cumulativeCheck}
+                    filter={filterSpamCheck}
+                  />
+                )}
+                {/* {selectedTool === "nodecount" && ( */}
+                {selectedTool === ToolOptions.nodecount && (
+                  <NodeCountChart
+                    dataUrl={getDataUrl()}
+                    color={getDataColor()}
+                  />
+                )}
+                {/* {selectedTool === "difficulty" && ( */}
+                {selectedTool === ToolOptions.difficulty && (
+                  <NodeCountChart
+                    dataUrl={getDataUrl()}
+                    color={getDataColor()}
+                  />
+                )}
+                {/* {selectedTool === "lockbox" && ( */}
+                {selectedTool === ToolOptions.lockbox && (
+                  <NodeCountChart
+                    dataUrl={getDataUrl()}
+                    color={getDataColor()}
+                  />
+                )}
+                {selectedTool === ToolOptions.net_inflows_outflows && (
+                  <NetInflowsOutflowsChart
+                    dataUrl={getDataUrl()}
+                    color={getDataColor()}
+                  />
+                )}
+                {/* {selectedTool === "issuance" && (
               <NodeCountChart
                 dataUrl={getDataUrl()}
                 color={getDataColor()}
                 chartType="line"
               />
             )} */}
-            {selectedTool === "issuance" && (
-              <ZecIssuanceSummaryChart
-                dataUrl={DataUrlOptions.issuanceUrl}
-                pool={selectedPool}
-                cumulative={cumulativeCheck}
-                filter={filterSpamCheck}
-              />
+                {selectedTool === "issuance" && (
+                  <ZecIssuanceSummaryChart
+                    dataUrl={DataUrlOptions.issuanceUrl}
+                    pool={selectedPool}
+                    cumulative={cumulativeCheck}
+                    filter={filterSpamCheck}
+                  />
+                )}
+              </>
             )}
           </div>
         </div>
