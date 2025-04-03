@@ -11,12 +11,14 @@ import { Metadata } from "next";
 const imgUrl = getBanner(`using-zcash`);
 
 export const metadata: Metadata = genMetadata({
-  title: "Wallets",
+  title: "Wallets | Zechub",
   url: "https://zechub.wiki/wallets",
   image: imgUrl,
 });
 
-export default async function Page(props: { params: Promise<{ slug: string }> }) {
+export default async function Page(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const params = await props.params;
   const { slug } = params;
   const url = `/site/Using_Zcash/Wallets.md`;
