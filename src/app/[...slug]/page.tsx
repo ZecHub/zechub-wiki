@@ -1,24 +1,41 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { getFileContent, getRoot } from "@/lib/authAndFetch";
-import {
-  getDynamicRoute,
-  getBanner,
-  genMetadata,
-} from "@/lib/helpers";
+import { getDynamicRoute, getBanner, genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
 import SideMenu from "@/components/SideMenu/SideMenu";
 
-export const metadata: Metadata = genMetadata({
-  title: "Donate now",
-  url: "https://zechub.wiki/donation",
-});
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string[] };
+}): Promise<Metadata> {
+  const param = await Promise.resolve(params);
+  const slug = param.slug;
+  const word = slug[0];
+  const firstLetter = word.charAt(0);
 
-const MdxComponent = dynamic(() => import("@/components/MdxComponents/MdxComponent"), {
-  loading: () => <span className="text-center text-3xl">Loading...</span>,
-});
+  const firstLetterCap = firstLetter.toUpperCase();
 
-export default async function Page(props: { params: Promise<{ slug: string }> }) {
+  const remainingLetters = word.slice(1);
+
+  const capitalizedWord = firstLetterCap + remainingLetters;
+  return genMetadata({
+    title: slug ? `${capitalizedWord} | Zechub` : "Zechub",
+    url: "https://zechub.wiki/donation",
+  });
+}
+
+const MdxComponent = dynamic(
+  () => import("@/components/MdxComponents/MdxComponent"),
+  {
+    loading: () => <span className="text-center text-3xl">Loading...</span>,
+  }
+);
+
+export default async function Page(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const params = await props.params;
   const { slug } = params;
   const url = getDynamicRoute(slug);
