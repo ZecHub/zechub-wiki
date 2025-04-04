@@ -8,7 +8,7 @@ import SideMenu from "@/components/SideMenu/SideMenu";
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string[] };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const param = await Promise.resolve(params);
   const slug = param.slug;
