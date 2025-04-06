@@ -12,16 +12,11 @@ type InflowOutflow = {
   netSaplingFlow: string;
 };
 
-/**
- * Loads the historic shielded transaction data from a public json file in Github repo
- * @returns Promise of shielded transaction data
- */
-async function fetchData(url: string) {
+
+async function fetchData(url: string): Promise<InflowOutflow[]> {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-  const resJson = await response.json();
-  return resJson;
+  return response.json();
 }
 
 export default function NetInflowsOutflowsChart(
@@ -49,29 +44,23 @@ export default function NetInflowsOutflowsChart(
       });
   }, [props.dataUrl]);
 
-  const parseData = dataFlow.map((itm) => ({
-    date: itm["date"] || itm["Date"],
-    netSaplingFlow: itm["netSaplingFlow"] || itm["Net Sapling Flow"],
-    netOrchardFlow: itm["netOrchardFlow"] || itm["Net Orchard Flow"],
-  }));
-
   useEffect(() => {
     if (isLoading || !chartRef.current) return;
 
     const chartObj = new Chart(chartRef.current, {
       type: "bar",
       data: {
-        labels: parseData.map((itm) => itm.date),
+        labels: dataFlow.map((itm) => itm.date),
         datasets: [
           {
             label: "Net Sapling Flow",
-            data: parseData.map((itm) => parseFloat(itm.netSaplingFlow)),
-            backgroundColor: parseData.map((itm) =>
+            data: dataFlow.map((itm) => parseFloat(itm.netSaplingFlow)),
+            backgroundColor: dataFlow.map((itm) =>
               parseFloat(itm.netSaplingFlow) < 0
                 ? "rgba(75, 192, 192, 0.2)" 
                 : "rgba(255, 99, 132, 0.2)" 
             ),
-            borderColor: parseData.map((itm) =>
+            borderColor: dataFlow.map((itm) =>
               parseFloat(itm.netSaplingFlow) < 0
                 ? "rgba(75, 192, 192, 1)" 
                 : "rgba(255, 99, 132, 1)" 
@@ -80,13 +69,13 @@ export default function NetInflowsOutflowsChart(
           },
           {
             label: "Net Orchard Flow",
-            data: parseData.map((itm) => parseFloat(itm.netOrchardFlow)),
-            backgroundColor: parseData.map((itm) =>
+            data: dataFlow.map((itm) => parseFloat(itm.netOrchardFlow)),
+            backgroundColor: dataFlow.map((itm) =>
               parseFloat(itm.netOrchardFlow) < 0
                 ? "rgba(75, 192, 192, 0.2)" 
-                : "rgba(54, 162, 235, 0.2)"
+                : "rgba(54, 162, 235, 0.2)" 
             ),
-            borderColor: parseData.map((itm) =>
+            borderColor: dataFlow.map((itm) =>
               parseFloat(itm.netOrchardFlow) < 0
                 ? "rgba(75, 192, 192, 1)" 
                 : "rgba(54, 162, 235, 1)" 
@@ -110,7 +99,7 @@ export default function NetInflowsOutflowsChart(
     return () => {
       chartObj.destroy();
     };
-  }, [isLoading, parseData]);
+  }, [isLoading, dataFlow]);
 
   return (
     <div className="flex items-center justify-center w-full h-[400px]">
