@@ -18,11 +18,11 @@ type InflowOutflow = {
 async function fetchData(url: string): Promise<InflowOutflow[]> {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-  return response.json();
+  return await response.json();
 }
 
 /**
- * Parses a number string safely (removes commas/whitespace)
+ * Parses number strings, removing commas and trimming whitespace
  */
 function cleanNumber(str: string): number {
   return parseFloat(str.replace(/,/g, "").trim());
@@ -43,7 +43,7 @@ export default function NetInflowsOutflowsChart(
     fetchData(props.dataUrl)
       .then((data) => {
         setIsLoading(false);
-        console.log("Fetched data:", data);
+        console.log({ data });
         setDataFlow(data);
       })
       .catch((err) => {
@@ -53,41 +53,47 @@ export default function NetInflowsOutflowsChart(
       });
   }, [props.dataUrl]);
 
+  const parseData = dataFlow.map((itm) => ({
+    date: itm["date"] || itm["Date"],
+    netSaplingFlow: itm["netSaplingFlow"] || itm["Net Sapling Flow"],
+    netOrchardFlow: itm["netOrchardFlow"] || itm["Net Orchard Flow"],
+  }));
+
   useEffect(() => {
-    if (isLoading || !chartRef.current || dataFlow.length === 0) return;
+    if (isLoading || !chartRef.current || parseData.length === 0) return;
 
     const chartObj = new Chart(chartRef.current, {
       type: "bar",
       data: {
-        labels: dataFlow.map((itm) => itm.date),
+        labels: parseData.map((itm) => itm.date),
         datasets: [
           {
             label: "Net Sapling Flow",
-            data: dataFlow.map((itm) => cleanNumber(itm.netSaplingFlow)),
-            backgroundColor: dataFlow.map((itm) =>
+            data: parseData.map((itm) => cleanNumber(itm.netSaplingFlow)),
+            backgroundColor: parseData.map((itm) =>
               cleanNumber(itm.netSaplingFlow) < 0
-                ? "rgba(75, 192, 192, 0.2)"
-                : "rgba(255, 99, 132, 0.2)" 
+                ? "rgba(75, 192, 192, 0.2)" // green
+                : "rgba(255, 99, 132, 0.2)" // red
             ),
-            borderColor: dataFlow.map((itm) =>
+            borderColor: parseData.map((itm) =>
               cleanNumber(itm.netSaplingFlow) < 0
-                ? "rgba(75, 192, 192, 1)" 
-                : "rgba(255, 99, 132, 1)" 
+                ? "rgba(75, 192, 192, 1)" // green
+                : "rgba(255, 99, 132, 1)" // red
             ),
             borderWidth: 1.5,
           },
           {
             label: "Net Orchard Flow",
-            data: dataFlow.map((itm) => cleanNumber(itm.netOrchardFlow)),
-            backgroundColor: dataFlow.map((itm) =>
+            data: parseData.map((itm) => cleanNumber(itm.netOrchardFlow)),
+            backgroundColor: parseData.map((itm) =>
               cleanNumber(itm.netOrchardFlow) < 0
-                ? "rgba(75, 192, 192, 0.2)" 
-                : "rgba(54, 162, 235, 0.2)" 
+                ? "rgba(75, 192, 192, 0.2)" // green
+                : "rgba(54, 162, 235, 0.2)" // blue
             ),
-            borderColor: dataFlow.map((itm) =>
+            borderColor: parseData.map((itm) =>
               cleanNumber(itm.netOrchardFlow) < 0
-                ? "rgba(75, 192, 192, 1)" 
-                : "rgba(54, 162, 235, 1)" 
+                ? "rgba(75, 192, 192, 1)" // green
+                : "rgba(54, 162, 235, 1)" // blue
             ),
             borderWidth: 1.5,
           },
@@ -108,22 +114,16 @@ export default function NetInflowsOutflowsChart(
     return () => {
       chartObj.destroy();
     };
-  }, [isLoading, dataFlow]);
+  }, [isLoading, parseData]);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-[450px]">
+    <div className="flex items-center justify-center w-full h-[450px]">
       {isLoading && <p className="p-1">Loading data...</p>}
       {error && (
         <p className="p-1 text-red-400">
-          Chart cannot be rendered at the moment.
+          Chart cannot be rendered at the moment
         </p>
       )}
-
-      {/* Debug panel to inspect raw data */}
-      <pre className="text-xs text-left max-h-32 overflow-auto w-full bg-gray-100 p-2 rounded mb-2">
-        {JSON.stringify(dataFlow.slice(0, 5), null, 2)}
-      </pre>
-
       <canvas
         width={"100%"}
         height={"400px"}
