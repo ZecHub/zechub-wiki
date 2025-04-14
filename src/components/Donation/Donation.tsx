@@ -102,6 +102,7 @@ const DonationComp = () => {
             <pre
               className="address-code-block"
               style={{
+                width: "320px", // fixed width: slightly wider than the QR code
                 textAlign: "left",
                 padding: "10px",
                 backgroundColor: "#f5f5f5",
