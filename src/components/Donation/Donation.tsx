@@ -27,7 +27,7 @@ const DonationComp = () => {
 
   // Static donation addresses
   const zcashAddress =
-    "zcash:u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89";
+    "u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89";
   const ycashAddress =
     "ys1t2e77wawylp8zky7wq3gzky2j4w6rpgd8632vmvqqj370thgpls8t973qutj4gn5wsc3qmcy56y";
   const namadaAddress =
@@ -35,12 +35,12 @@ const DonationComp = () => {
   const penumbraDonationAddress =
     "penumbra1mrjsg0kggcsxt3qn839tzahraa669jrpxh47ejry0twnph2328pjmlzg65z4em8u8xl8g3k6k4tdspvdmk5vxtjcwv4ssd3cagpg9a6xntfxe8yvdch0xm9eaq550yaffwvgqv";
 
-  // Show penumbra-specific content if that currency is selected
+  // Update Penumbra-specific UI as needed
   useEffect(() => {
     setIsPenumbraVisible(selectedCurrency === "penumbra");
   }, [selectedCurrency]);
 
-  // Instead of composing a variable URI, simply return the donation address for the selected currency
+  // Return the donation address based on the selected currency
   const getDonationAddress = () => {
     switch (selectedCurrency) {
       case "zcash":
@@ -54,15 +54,6 @@ const DonationComp = () => {
       default:
         return "";
     }
-  };
-
-  // Copy only the static address to clipboard
-  const copyAddress = () => {
-    const address = getDonationAddress();
-    navigator.clipboard.writeText(address).then(
-      () => alert("Address copied to clipboard!"),
-      (err) => console.error("Could not copy address: ", err)
-    );
   };
 
   // Handle clicking on a currency button to update the displayed QR code and image
@@ -107,9 +98,20 @@ const DonationComp = () => {
         <div className="donation-container donation-border">
           <div style={{ margin: "20px auto", textAlign: "center" }}>
             <QRCode value={getDonationAddress()} size={280} />
-            <button onClick={copyAddress} style={{ marginTop: "10px" }}>
-              Copy Address
-            </button>
+            {/* Code block displaying the selected donation address */}
+            <pre
+              className="address-code-block"
+              style={{
+                textAlign: "left",
+                padding: "10px",
+                backgroundColor: "#f5f5f5",
+                borderRadius: "4px",
+                marginTop: "10px",
+                overflowX: "auto"
+              }}
+            >
+              <code>{getDonationAddress()}</code>
+            </pre>
           </div>
 
           {/* Currency buttons */}
@@ -118,7 +120,7 @@ const DonationComp = () => {
             style={{
               marginTop: "5px",
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <button
@@ -136,7 +138,7 @@ const DonationComp = () => {
                 height: "80px",
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center",
+                alignItems: "center"
               }}
             >
               <Image src={"/zcash-logo.png"} alt="Zcash" width={32} height={32} />
@@ -157,7 +159,7 @@ const DonationComp = () => {
                 height: "80px",
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center",
+                alignItems: "center"
               }}
             >
               <Image src={"/ycash-logo.png"} alt="Ycash" width={32} height={32} />
@@ -178,7 +180,7 @@ const DonationComp = () => {
                 height: "80px",
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center",
+                alignItems: "center"
               }}
             >
               <Image
@@ -204,7 +206,7 @@ const DonationComp = () => {
                 height: "80px",
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center",
+                alignItems: "center"
               }}
             >
               <Image
