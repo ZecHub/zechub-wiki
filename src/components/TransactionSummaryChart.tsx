@@ -11,6 +11,7 @@ interface TransactionsSummaryChartProps {
   pool: String;
   cumulative: boolean;
   filter: boolean;
+  applyFilter?: boolean;
 }
 
 /**
@@ -44,6 +45,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
   pool,
   cumulative,
   filter,
+  applyFilter = true,
 }) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
 

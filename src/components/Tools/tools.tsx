@@ -1,31 +1,50 @@
+"use client";
 
-// ToolOptions is used to keep the encapsulate the each tool item
+import { useEffect, useState } from "react";
+
+// ToolOptions is used to encapsulate each tool item
 export enum ToolOptions {
   supply = "supply",
   transaction = "transaction",
   nodecount = "nodecount",
   difficulty = "difficulty",
   lockbox = "lockbox",
-  net_inflows_outflows = "Net Inflows & Outflows",
+  net_inflows_outflows = "net_inflows_outflows",
+  issuance = "issuance",
 }
 
 // Map enum values to display names in select tag
 const toolOptionLabels: Record<ToolOptions, string> = {
-  [ToolOptions.supply]: "Shielded Supply Chart",
+  [ToolOptions.supply]: "Shielded Supply Chart (ZEC)",
   [ToolOptions.transaction]: "Shielded Transactions Chart",
   [ToolOptions.nodecount]: "Node Count",
   [ToolOptions.difficulty]: "Difficulty",
   [ToolOptions.lockbox]: "Lockbox ZEC Amount",
   [ToolOptions.net_inflows_outflows]: "Net Inflows & Outflows",
+  [ToolOptions.issuance]: "Issuance Chart (ZEC)",
 };
+
 interface ToolsProps {
-  onToolChange: (selectedTool: string) => void; // Callback function to pass the selected tool up
+  onToolChange: (selectedTool: string) => void;
+  defaultSelected?: ToolOptions;
 }
 
-export const Tools: React.FC<ToolsProps> = ({ onToolChange }) => {
+export const Tools: React.FC<ToolsProps> = ({ 
+  onToolChange, 
+  defaultSelected = ToolOptions.supply 
+}) => {
+  const [selectedTool, setSelectedTool] = useState<ToolOptions>(defaultSelected);
+
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    onToolChange(event.target.value); // Call the callback with the selected value
+    const value = event.target.value as ToolOptions;
+    setSelectedTool(value);
+    onToolChange(value);
   };
+
+  useEffect(() => {
+    // Initialize with default selection
+    onToolChange(defaultSelected);
+  }, [defaultSelected, onToolChange]);
 
   return (
     <div className="flex justify-end gap-2 text-right my-4 text-sm text-gray-500">
@@ -33,21 +52,15 @@ export const Tools: React.FC<ToolsProps> = ({ onToolChange }) => {
       <span>
         <select
           onChange={handleSelectChange}
-          className="outline-none focus:outline-none focus:border-slate-300 active:border-slate-300 border-solid border-slate-300"
+          value={selectedTool}
+          className="outline-none focus:outline-none focus:border-slate-300 active:border-slate-300 border-solid border-slate-300 rounded-md px-3 py-2"
         >
-          <option value="" disabled>
-            Select
-          </option>
-          {/* <option value="supply">Shielded Supply Chart</option> */}
-          {/* <option value="transaction">Shielded Transactions Chart</option> */}
-          <option value="issuance">Issuance Chart</option>
-          {/* <option value="nodecount">Node Count</option> */}
-          {/* <option value="difficulty">Difficulty</option> */}
-          {/* <option value="lockbox">Lockbox ZEC Amount</option> */}
-
-          {Object.values(ToolOptions).map((opt, i) => (
-            <option key={opt + "_" + i} value={opt}>
-              {toolOptionLabels[opt]}
+          {Object.values(ToolOptions).map((option) => (
+            <option 
+              key={option} 
+              value={option}
+            >
+              {toolOptionLabels[option]}
             </option>
           ))}
         </select>

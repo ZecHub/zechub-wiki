@@ -283,9 +283,9 @@ const ShieldedPoolDashboard = () => {
   // New state for the most recent node count.
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
-  const [selectedTool, setSelectedTool] = useState<string>(ToolOptions.supply);
+  const [selectedTool, setSelectedTool] = useState<string>(ToolOptions.supply);  // Changed to supply
   const [selectedToolName, setSelectedToolName] = useState<string>(
-    "Shielded Supply Chart (ZEC)"
+    "Shielded Supply Chart (ZEC)"  // Changed to this default text
   );
   const [cumulativeCheck, setCumulativeCheck] = useState(true);
   const [filterSpamCheck, setfilterSpamCheck] = useState(false);
@@ -467,8 +467,10 @@ const ShieldedPoolDashboard = () => {
       <div className="border border-slate-400 p-3 rounded-lg">
         <div className="flex items-center gap-4 justify-end">
           
-          <Tools onToolChange={handleToolChange} />
-        </div>
+        <Tools 
+  onToolChange={handleToolChange}
+  defaultSelected={ToolOptions.supply}  // Add this prop
+/>        </div>
         <div className="relative">
           <div ref={divChartRef}>
             {selectedCoin !== "Zcash" ? (
@@ -495,12 +497,13 @@ const ShieldedPoolDashboard = () => {
                 )}
                 {/* {selectedTool === "transaction" && ( */}
                 {selectedTool === ToolOptions.transaction && (
-                  <TransactionSummaryChart
-                    dataUrl={DataUrlOptions.txsummaryUrl}
-                    pool={selectedPool}
-                    cumulative={cumulativeCheck}
-                    filter={filterSpamCheck}
-                  />
+              <TransactionSummaryChart
+              dataUrl={DataUrlOptions.txsummaryUrl}
+              pool={selectedPool}
+              cumulative={cumulativeCheck}
+              filter={filterSpamCheck}
+              applyFilter={!cumulativeCheck || filterSpamCheck}  // Add this new prop
+            />
                 )}
                 {/* {selectedTool === "nodecount" && ( */}
                 {selectedTool === ToolOptions.nodecount && (
