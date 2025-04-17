@@ -8,9 +8,10 @@ const ORCHARD_ACTIVATION = 1687104;
 
 interface TransactionsSummaryChartProps {
   dataUrl: string;
-  pool: String;
+  pool: string;  // Changed from String to string (convention)
   cumulative: boolean;
   filter: boolean;
+  applyFilter?: boolean; // Add this new optional prop
 }
 
 /**
@@ -44,6 +45,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
   pool,
   cumulative,
   filter,
+  applyFilter = true, // Default value
 }) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -197,13 +199,14 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
 
     const chartSets = [];
     if (pool == "default" || pool == "orchard") {
-      if (filter) chartSets.push(orchardFilterChart);
+      if (filter && applyFilter) chartSets.push(orchardFilterChart); // Modified this line
       chartSets.push(orchardChart);
     }
     if (pool == "default" || pool == "sapling") {
-      if (filter) chartSets.push(saplingFilterChart);
+      if (filter && applyFilter) chartSets.push(saplingFilterChart); // Modified this line
       chartSets.push(saplingChart);
     }
+
 
     const chartInstance = new Chart(chartRef.current, {
       type: cumulative ? "line" : "bar",
@@ -241,7 +244,7 @@ const TransactionsSummaryChart: React.FC<TransactionsSummaryChartProps> = ({
     return () => {
       chartInstance.destroy();
     };
-  }, [chartData, pool, cumulative, filter, isLoading, startHeight, endHeight]);
+  }, [chartData, pool, cumulative, filter, isLoading, startHeight, endHeight, applyFilter]);
 
   return (
     <div
