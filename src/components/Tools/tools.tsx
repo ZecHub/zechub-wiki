@@ -9,7 +9,7 @@ export enum ToolOptions {
   nodecount = "nodecount",
   difficulty = "difficulty",
   lockbox = "lockbox",
-  net_inflows_outflows = "net_inflows_outflows",
+  net_inflows_outflows = "Net Inflows & Outflows",
   issuance = "issuance",
 }
 
