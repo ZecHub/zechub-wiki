@@ -8,7 +8,7 @@ import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { Spinner } from "flowbite-react";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { ToolOptions } from "../Tools/tools";
+import { ToolOptions, toolOptionLabels } from "../Tools/tools";
 import NetInflowsOutflowsChart from "../Charts/NetInflowsOutflowsChart";
 import NoData from "../../assets/nodata.svg";
 import Image from "next/image";
@@ -391,8 +391,11 @@ const ShieldedPoolDashboard = () => {
     return shieldedSupply?.supply ?? 0;
   };
 
-  const handleToolChange = (tool: string) => {
+  const handleToolChange = (tool: ToolOptions) => {
     setSelectedTool(tool);
+    setSelectedPool("default");
+
+    setSelectedToolName(toolOptionLabels[tool]);
     switch (tool) {
       case ToolOptions.supply:
         setSelectedPool("default");
