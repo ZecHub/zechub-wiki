@@ -957,5 +957,11 @@
     "sapling": 153,
     "orchard": 232,
     "timestamp": "04/22/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 178,
+    "orchard": 312,
+    "timestamp": "04/23/2025"
   }
 ]
