@@ -68,6 +68,13 @@ const projects = [
     link: "https://blog.nymtech.net/zcash-nym-one-step-closer-to-a-full-privacy-payment-network-8b2276e7a55b",
     imageUrl: "https://i.ibb.co/CmpwX5V/0-nj-QT1k62y3n-QYfwb.png",
   },
+  {
+    title: "Project Tachyon",
+    description: 
+  "Project Tachyon is a major initiative to dramatically scale Zcash shielded transactions using proof-carrying wallets, oblivious synchronization, and transaction aggregation — enabling faster, lighter, and more private payments.",
+    link: "https://hackmd.io/@RhipperBoy/HyRI_UT1gx",
+    imageUrl: "https://cdn.mos.cms.futurecdn.net/vDJXf5C55h6nrcq3b6t3B3-970-80.jpg.webp",
+  },
 ];
 
 const Grid: React.FC = () => {
