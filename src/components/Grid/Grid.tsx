@@ -73,7 +73,7 @@ const projects = [
     description: 
   "Project Tachyon is a major initiative to dramatically scale Zcash shielded transactions using proof-carrying wallets, oblivious synchronization, and transaction aggregation — enabling faster, lighter, and more private payments.",
     link: "https://hackmd.io/@RhipperBoy/HyRI_UT1gx",
-    imageUrl: "https://cdn.mos.cms.futurecdn.net/vDJXf5C55h6nrcq3b6t3B3-970-80.jpg.webp",
+    imageUrl: "https://raw.githubusercontent.com/TheRhipper/Images/refs/heads/main/file_0000000006a462469eefcc3a38630375_conversation_id%3D68108e26-1b74-800c-92e3-199cd3c0ac36%26message_id%3D4c8b318e-e887-4dc8-ba8e-674bb80a14a4.png",
   },
 ];
 
