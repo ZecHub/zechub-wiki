@@ -156,7 +156,6 @@ const ShieldedPoolChart = withTooltip<
         .finally(() => setIsLoading(false));
     }, [dataUrl]);
 
-    console.log({ chartData });
 
     // Get years available in the data
     const years = useMemo(() => {

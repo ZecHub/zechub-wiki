@@ -10,6 +10,7 @@ export enum ToolOptions {
   lockbox = "lockbox",
   net_inflows_outflows = "net_inflows_outflows",
   issuance = "issuance",
+  privacy_set = "privacy_set",  
 }
 
 export const toolOptionLabels: Record<ToolOptions, string> = {
@@ -20,6 +21,7 @@ export const toolOptionLabels: Record<ToolOptions, string> = {
   [ToolOptions.lockbox]: "Lockbox ZEC Amount",
   [ToolOptions.net_inflows_outflows]: "Net Inflows & Outflows",
   [ToolOptions.issuance]: "Issuance Chart (ZEC)",
+  [ToolOptions.privacy_set]: "Privacy Set Visualization",
 };
 
 interface ToolsProps {

@@ -12,6 +12,7 @@ import { ToolOptions, toolOptionLabels } from "../Tools/tools";
 import NetInflowsOutflowsChart from "../Charts/NetInflowsOutflowsChart";
 import NoData from "../../assets/nodata.svg";
 import Image from "next/image";
+import PrivacySetVisualization from "../PrivacySet/PrivacySetVisualization";
 
 const ShieldedPoolChart = dynamic(
   () => import("./ShieldedPoolChart"),
@@ -164,7 +165,10 @@ async function getBlockchainData(): Promise<BlockchainInfo | null> {
       return null;
     }
     const data = await response.json();
+    
+
     return data.data as BlockchainInfo;
+
   } catch (error) {
     console.error("Error fetching blockchain data:", error);
     return null;
@@ -179,7 +183,7 @@ async function getBlockchainInfo(): Promise<number | null> {
       return null;
     }
     const data = await response.json();
-    console.log(data);
+    
     const valZat = parseInt(data?.chainSupply?.chainValueZat) * 0.00000001;
     return valZat ?? null;
   } catch (error) {
@@ -218,23 +222,19 @@ async function getLastUpdatedDate(): Promise<string> {
   }
 }
 
-async function getShieldedTxCount(): Promise<ShieldedTxCount | null> {
+async function getShieldedTxCount(): Promise<{ sapling: number; orchard: number; timestamp: string }[] | null> {
   try {
     const response = await fetch(DataUrlOptions.shieldedTxCountUrl);
     if (!response.ok) {
-      console.error(
-        "Failed to fetch shielded transaction counts:",
-        response.statusText
-      );
+      console.error("Failed to fetch shielded transaction counts:", response.statusText);
       return null;
     }
     const data = await response.json();
-    const latestData = data[data.length - 1] || {};
-    return {
-      sapling: latestData.sapling || 0,
-      orchard: latestData.orchard || 0,
-      timestamp: latestData.timestamp || "N/A",
-    };
+    return data.map((entry: any) => ({
+      sapling: entry.sapling || 0,
+      orchard: entry.orchard || 0,
+      timestamp: entry.timestamp || "N/A",
+    }));
   } catch (error) {
     console.error("Error fetching shielded transaction counts:", error);
     return null;
@@ -279,9 +279,10 @@ const ShieldedPoolDashboard = () => {
   const [orchardSupply, setOrchardSupply] = useState<SupplyData | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [shieldedTxCount, setShieldedTxCount] =
-    useState<ShieldedTxCount | null>(null);
+    useState<{ sapling: number; orchard: number; timestamp: string }[] | null>(null);
   // New state for the most recent node count.
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
+  const [chartData, setChartData] = useState<{ sapling: number; orchard: number; timestamp: string }[]>([]);
 
   const [selectedTool, setSelectedTool] = useState<string>(ToolOptions.supply);  // Changed to supply
   const [selectedToolName, setSelectedToolName] = useState<string>(
@@ -292,26 +293,27 @@ const ShieldedPoolDashboard = () => {
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
+  console.log('data',shieldedTxCount);
+
   useEffect(() => {
     getBlockchainData().then((data) => {
       if (data) {
-        // Use actual blockchain info
         setBlockchainInfo(data);
       }
     });
 
     getBlockchainInfo().then((data) => setCirculation(data ?? 0));
 
-    // Use the full ISO string from GitHub (the helper will format it)
     getLastUpdatedDate().then((date) => setLastUpdated(date));
 
-    // Fetch shielded supply (Total Shielded) from defaultUrl.
     getSupplyData(DataUrlOptions.defaultUrl).then((data) =>
       setShieldedSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
     );
 
     getSupplyData(DataUrlOptions.sproutUrl).then((data) =>
+
       setSproutSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
+      
     );
 
     getSupplyData(DataUrlOptions.saplingUrl).then((data) =>
@@ -322,10 +324,17 @@ const ShieldedPoolDashboard = () => {
       setOrchardSupply(data[data.length - 1] ?? { close: "N/A", supply: 0 })
     );
 
-    getShieldedTxCount().then((data) =>
-      setShieldedTxCount(data ?? { sapling: 0, orchard: 0, timestamp: "N/A" })
-    );
+    getShieldedTxCount().then((data) => {
+      console.log('data',data);
+      if (data) {
+        // Assuming data is an array of objects with sapling, orchard, and timestamp
+        setChartData(data);
+        setShieldedTxCount(data);
+      }
+    });
   }, []);
+
+  
 
   // Update lastUpdated when the selected pool changes.
   useEffect(() => {
@@ -425,6 +434,10 @@ const ShieldedPoolDashboard = () => {
         setSelectedPool(ToolOptions.net_inflows_outflows);
         setSelectedToolName(ToolOptions.net_inflows_outflows);
         break;
+      case ToolOptions.privacy_set:
+        setSelectedPool("default");
+        setSelectedToolName("Privacy Set");
+        break;
     }
   };
 
@@ -435,6 +448,9 @@ const ShieldedPoolDashboard = () => {
   const handleFilterChange = (checked: boolean) => {
     setfilterSpamCheck(checked);
   };
+
+  // Example chartData
+  
 
   if (!blockchainInfo) {
     return (
@@ -492,38 +508,33 @@ const ShieldedPoolDashboard = () => {
               </div>
             ) : (
               <>
-                {/* {selectedTool === "supply" && ( */}
                 {selectedTool === ToolOptions.supply && (
                   <ShieldedPoolChart
                     dataUrl={getDataUrl()}
                     color={getDataColor()}
                   />
                 )}
-                {/* {selectedTool === "transaction" && ( */}
                 {selectedTool === ToolOptions.transaction && (
                   <TransactionSummaryChart
-                  dataUrl={DataUrlOptions.txsummaryUrl}
-                  pool={selectedPool}
-                  cumulative={cumulativeCheck}
-                  filter={filterSpamCheck}
-                  applyFilter={!cumulativeCheck || filterSpamCheck} 
-                />
+                    dataUrl={DataUrlOptions.txsummaryUrl}
+                    pool={selectedPool}
+                    cumulative={cumulativeCheck}
+                    filter={filterSpamCheck}
+                    applyFilter={!cumulativeCheck || filterSpamCheck} 
+                  />
                 )}
-                {/* {selectedTool === "nodecount" && ( */}
                 {selectedTool === ToolOptions.nodecount && (
                   <NodeCountChart
                     dataUrl={getDataUrl()}
                     color={getDataColor()}
                   />
                 )}
-                {/* {selectedTool === "difficulty" && ( */}
                 {selectedTool === ToolOptions.difficulty && (
                   <NodeCountChart
                     dataUrl={getDataUrl()}
                     color={getDataColor()}
                   />
                 )}
-                {/* {selectedTool === "lockbox" && ( */}
                 {selectedTool === ToolOptions.lockbox && (
                   <NodeCountChart
                     dataUrl={getDataUrl()}
@@ -536,13 +547,6 @@ const ShieldedPoolDashboard = () => {
                     color={getDataColor()}
                   />
                 )}
-                {/* {selectedTool === "issuance" && (
-              <NodeCountChart
-                dataUrl={getDataUrl()}
-                color={getDataColor()}
-                chartType="line"
-              />
-            )} */}
                 {selectedTool === "issuance" && (
                   <ZecIssuanceSummaryChart
                     dataUrl={DataUrlOptions.issuanceUrl}
@@ -550,6 +554,9 @@ const ShieldedPoolDashboard = () => {
                     cumulative={cumulativeCheck}
                     filter={filterSpamCheck}
                   />
+                )}
+                {selectedTool === ToolOptions.privacy_set && (
+                  <PrivacySetVisualization chartData={chartData} />
                 )}
               </>
             )}
@@ -723,7 +730,7 @@ const ShieldedPoolDashboard = () => {
           <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
           <p>
             {shieldedTxCount
-              ? `Sapling: ${shieldedTxCount.sapling?.toLocaleString()} | Orchard: ${shieldedTxCount.orchard?.toLocaleString()}`
+              ? `Sapling: ${shieldedTxCount[0].sapling?.toLocaleString()} | Orchard: ${shieldedTxCount[0].orchard?.toLocaleString()}`
               : "N/A"}
           </p>
         </div>
