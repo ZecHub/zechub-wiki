@@ -25,74 +25,61 @@ const PrivacySetVisualization: React.FC = () => {
   const [yearlyData, setYearlyData] = useState<
     Map<string, { sapling: number; orchard: number }>
   >(new Map());
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    async function fetchData() {
+    (async () => {
       try {
-        setIsLoading(true);
-        const response = await fetch(DATA_URL);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const rawData: TransactionSummaryDatum[] = await response.json();
-
-        const dataMap = new Map<string, { sapling: number; orchard: number }>();
-        rawData.forEach((item) => {
+        const res = await fetch(DATA_URL);
+        if (!res.ok) throw new Error(`HTTP status ${res.status}`);
+        const raw: TransactionSummaryDatum[] = await res.json();
+        const map = new Map<string, { sapling: number; orchard: number }>();
+        raw.forEach(({ height, sapling, orchard }) => {
           const year =
-            HEIGHT_YEAR_MAP.find(
-              (r) => item.height >= r.start && item.height <= r.end
-            )?.year ?? "Unknown";
-          if (!dataMap.has(year)) dataMap.set(year, { sapling: 0, orchard: 0 });
-          const y = dataMap.get(year)!;
-          y.sapling += item.sapling;
-          y.orchard += item.orchard;
+            HEIGHT_YEAR_MAP.find(r => height >= r.start && height <= r.end)?.year ?? "Unknown";
+          if (!map.has(year)) map.set(year, { sapling: 0, orchard: 0 });
+          const y = map.get(year)!;
+          y.sapling += sapling;
+          y.orchard += orchard;
         });
-
-        setYearlyData(dataMap);
+        setYearlyData(map);
       } catch (e) {
-        setError(e instanceof Error ? e : new Error("Unknown error"));
+        setError(e instanceof Error ? e : new Error(String(e)));
       } finally {
-        setIsLoading(false);
+        setLoading(false);
       }
-    }
-    fetchData();
+    })();
   }, []);
 
-  if (isLoading) return <div className="text-center p-8">Loading...</div>;
+  if (loading) return <div className="text-center p-8">Loading...</div>;
   if (error) return <div className="text-center p-8 text-red-500">Error: {error.message}</div>;
 
-  // Sort by year ascending
+  // Prepare data
   const entries = Array.from(yearlyData.entries()).sort((a, b) => a[0].localeCompare(b[0]));
-  const saplingValues = entries.map(([, d]) => d.sapling);
-  const orchardValues = entries.map(([, d]) => d.orchard);
+  const saplingVals = entries.map(([, d]) => d.sapling);
+  const orchardVals = entries.map(([, d]) => d.orchard);
 
-  const minRadius = 30;
-  const maxRadius = 120;
-  const saplingScale = scaleLinear({
-    domain: [Math.min(...saplingValues), Math.max(...saplingValues)],
-    range: [minRadius, maxRadius],
-  });
-  const orchardScale = scaleLinear({
-    domain: [Math.min(...orchardValues), Math.max(...orchardValues)],
-    range: [minRadius, maxRadius],
-  });
+  const minR = 30;
+  const maxR = 120;
+  const saplingScale = scaleLinear({ domain: [Math.min(...saplingVals), Math.max(...saplingVals)], range: [minR, maxR] });
+  const orchardScale = scaleLinear({ domain: [Math.min(...orchardVals), Math.max(...orchardVals)], range: [minR, maxR] });
 
   const humanize = (v: number) =>
-    v >= 1_000_000 ? `${(v / 1_000_000).toFixed(1)}M` :
-    v >= 1_000 ? `${(v / 1_000).toFixed(1)}k` : `${v}`;
+    v >= 1e6 ? `${(v / 1e6).toFixed(1)}M` : v >= 1e3 ? `${(v / 1e3).toFixed(1)}k` : `${v}`;
 
   // Totals
-  const totalSapling = saplingValues.reduce((s, v) => s + v, 0);
-  const totalOrchard = orchardValues.reduce((s, v) => s + v, 0);
+  const totalSapling = saplingVals.reduce((a, b) => a + b, 0);
+  const totalOrchard = orchardVals.reduce((a, b) => a + b, 0);
 
-  // Render concentric rings for a given cluster center
-  const renderRings = (
+  // Render concentric rings for a pool at center x
+  const renderCluster = (
     data: Array<[string, number]>,
     scale: (n: number) => number,
     cx: number,
     color: string
-  ) => {
-    return data.map(([year, val]) => {
+  ) =>
+    data.map(([year, val]) => {
       const r = scale(val);
       return (
         <g key={year} transform={`translate(${cx}, 300)`}>
@@ -106,41 +93,31 @@ const PrivacySetVisualization: React.FC = () => {
         </g>
       );
     });
-  };
 
-      const saplingData = entries.map(([y, d]) => [y, d.sapling] as [string, number]);
-  const orchardData = entries.map(([y, d]) => [y, d.orchard] as [string, number]);
+  const saplingData: [string, number][] = entries.map(([y, d]) => [y, d.sapling]);
+  const orchardData: [string, number][] = entries.map(([y, d]) => [y, d.orchard]);
 
-  const orchardData = entries.map(([y, d]) => [y, d.orchard] as [string, number]);
+  // Cluster centers
+  const saplingX = 350;
+  const orchardX = 800;
 
   return (
-    <div style={{ textAlign: 'center', backgroundColor: '#f8f4e8', padding: '40px' }}>
+    <div style={{ textAlign: 'center', backgroundColor: '#f8f4e8', padding: 40 }}>
       <svg width={1100} height={500}>
-        {/* Title & subtitle */}
+        {/* Title */}
         <text x={50} y={40} fill="#d4a017" fontSize={28} fontWeight="bold">
           Zcash shielded transactions
         </text>
         <text x={50} y={70} fill="#333" fontSize={16}>
-          Privacy set based on number of Orchard & Sapling transactions with shielded outputs
+          Privacy set based on number of Orchard &amp; Sapling shielded transactions
         </text>
 
-        {/* Calculate spacing */}
-        {(() => {
-          const clusterSpacing = (maxRadius + 20) * entries.length + 50;
-          const saplingX = 150;
-          const orchardX = saplingX + clusterSpacing;
-          return (
-            <>
-              {/* Sapling cluster */}
-              {renderRings(saplingData, saplingScale, saplingX, '#d4a017')}
-              {/* Orchard cluster */}
-              {renderRings(orchardData, orchardScale, orchardX, '#111')}
-            </>
-          );
-        })()}
+        {/* Clusters */}
+        {renderCluster(saplingData, saplingScale, saplingX, '#d4a017')}
+        {renderCluster(orchardData, orchardScale, orchardX, '#111')}
 
         {/* Legend */}
-        <g transform="translate(800, 420)">
+        <g transform="translate(900,420)">
           <rect x={-12} y={-20} width={24} height={24} fill="#d4a017" />
           <text x={30} y={-2} fill="#333" fontSize={14}>
             Sapling ({humanize(totalSapling)})
