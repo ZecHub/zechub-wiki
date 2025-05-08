@@ -22,14 +22,12 @@ type TransactionSummaryDatum = {
 };
 
 const PrivacySetVisualization: React.FC = () => {
-  const [yearlyData, setYearlyData] = useState<
-    Map<string, { sapling: number; orchard: number }>
-  >(new Map());
+  const [dataMap, setDataMap] = useState<Map<string, { sapling: number; orchard: number }>>(new Map());
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    (async () => {
+    async function fetchData() {
       try {
         const res = await fetch(DATA_URL);
         if (!res.ok) throw new Error(`HTTP status ${res.status}`);
@@ -39,161 +37,88 @@ const PrivacySetVisualization: React.FC = () => {
           const year =
             HEIGHT_YEAR_MAP.find(r => height >= r.start && height <= r.end)?.year ?? "Unknown";
           if (!map.has(year)) map.set(year, { sapling: 0, orchard: 0 });
-          const y = map.get(year)!;
-          y.sapling += sapling;
-          y.orchard += orchard;
+          const entry = map.get(year)!;
+          entry.sapling += sapling;
+          entry.orchard += orchard;
         });
-        setYearlyData(map);
+        setDataMap(map);
       } catch (e) {
-        setError(e instanceof Error ? e : new Error(String(e)));
+        setError(e instanceof Error ? e.message : String(e));
       } finally {
         setLoading(false);
       }
-    })();
+    }
+    fetchData();
   }, []);
 
-  if (loading) return <div className="text-center p-8">Loading...</div>;
-  if (error) return <div className="text-center p-8 text-red-500">Error: {error.message}</div>;
+  if (loading) return <div className="text-center p-8">Loading privacy set...</div>;
+  if (error) return <div className="text-center p-8 text-red-500">Error: {error}</div>;
 
-  // Prepare data sorted by year
-  const entries = Array.from(yearlyData.entries()).sort((a, b) => a[0].localeCompare(b[0]));
-  const saplingVals = entries.map(([, d]) => d.sapling);
-  const orchardVals = entries.map(([, d]) => d.orchard);
+  // Sort data by year ascending
+  const entries = Array.from(dataMap.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
-  // Scales for per-year rings
-  const minR = 30;
-  const maxR = 120;
-  const saplingScale = scaleLinear({
-    domain: [
-      Math.sqrt(Math.min(...saplingVals)),
-      Math.sqrt(Math.max(...saplingVals))
-    ],
-    range: [minR, maxR],
-  });
-  const orchardScale = scaleLinear({
-    domain: [Math.min(...orchardVals), Math.max(...orchardVals)],
-    range: [minR, maxR],
-  });({
-    domain: [
-      Math.sqrt(Math.min(...orchardVals)),
-      Math.sqrt(Math.max(...orchardVals))
-    ],
-    range: [minR, maxR],
-  });
-  const orchardScale = scaleLinear({
-    domain: [Math.min(...orchardVals), Math.max(...orchardVals)],
-    range: [minR, maxR],
-  });
-
-  // Totals
+  const saplingVals = entries.map(([, v]) => v.sapling);
+  const orchardVals = entries.map(([, v]) => v.orchard);
   const totalSapling = saplingVals.reduce((a, b) => a + b, 0);
   const totalOrchard = orchardVals.reduce((a, b) => a + b, 0);
 
-  // Scale for total circles (same range)
+  const minR = 40;
+  const maxR = 160;
+  // Use sqrt scale to compress range but clamp minimum radius for readability
+  const saplingScale = scaleLinear({
+    domain: [Math.sqrt(Math.min(...saplingVals)), Math.sqrt(Math.max(...saplingVals))],
+    range: [minR, maxR],
+  });
+  const orchardScale = scaleLinear({
+    domain: [Math.sqrt(Math.min(...orchardVals)), Math.sqrt(Math.max(...orchardVals))],
+    range: [minR, maxR],
+  });
+  // Scale for totals
   const totalScale = scaleLinear({
-    domain: [0, Math.max(totalSapling, totalOrchard)],
+    domain: [0, Math.sqrt(Math.max(totalSapling, totalOrchard))],
     range: [minR, maxR],
   });
 
-  // Format numbers
   const humanize = (v: number) =>
-    v >= 1e6 ? `${(v / 1e6).toFixed(1)}M` : v >= 1e3 ? `${(v / 1e3).toFixed(1)}k` : `${v}`;
+    v >= 1e6
+      ? `${(v / 1e6).toFixed(1)}M`
+      : v >= 1e3
+      ? `${(v / 1e3).toFixed(1)}k`
+      : `${v}`;
 
-  // Render concentric rings for a pool at center x, drawing outermost first
+  // Render concentric cluster
   const renderCluster = (
     data: Array<[string, number]>,
-    scale: (n: number) => number,
+    scaleFn: (x: number) => number,
     cx: number,
     color: string
   ) =>
     [...data]
       .reverse()
       .map(([year, val]) => {
-        // Ensure minimum radius for legibility
-        const rawR = scale(val);
-        const r = Math.max(rawR, 50); // clamp to 50px minimum radius
+        const rRaw = scaleFn(Math.sqrt(val));
+        const r = Math.max(rRaw, minR);
         return (
           <g key={year} transform={`translate(${cx}, 300)`}>
-            <circle
-              cx={0}
-              cy={0}
-              r={r}
-              fill={color}
-              fillOpacity={0.2}
-              stroke={color}
-              strokeWidth={2}
-            />
-            <text
-              x={0}
-              y={-r - 10}
-              textAnchor="middle"
-              fill={color}
-              fontSize={16}
-              fontWeight="bold"
-            >
+            <circle cx={0} cy={0} r={r} fill={color} fillOpacity={0.2} stroke={color} strokeWidth={2} />
+            <text x={0} y={-r - 10} textAnchor="middle" fill={color} fontSize={16} fontWeight="bold">
               {year}
             </text>
-            <text
-              x={0}
-              y={r + 20}
-              textAnchor="middle"
-              fill={color}
-              fontSize={14}
-            >
-              {humanize(val)}
-            </text>
-          </g>
-        );
-      }));
-        return (
-          <g key={year} transform={`translate(${cx}, 300)`}>
-            <circle
-              cx={0}
-              cy={0}
-              r={r}
-              fill={color}
-              fillOpacity={0.2}
-              stroke={color}
-              strokeWidth={2}
-            />
-            <text
-              x={0}
-              y={-r - 10}
-              textAnchor="middle"
-              fill={color}
-              fontSize={16}
-              fontWeight="bold"
-            >
-              {year}
-            </text>
-            <text
-              x={0}
-              y={r + 20}
-              textAnchor="middle"
-              fill={color}
-              fontSize={14}
-            >
+            <text x={0} y={r + 20} textAnchor="middle" fill={color} fontSize={14}>
               {humanize(val)}
             </text>
           </g>
         );
       });
 
-  const saplingData: [string, number][] = entries.map(([y, d]) => [y, d.sapling]);
-  const orchardData: [string, number][] = entries.map(([y, d]) => [y, d.orchard]);
+  const saplingData = entries.map(([y, v]) => [y, v.sapling] as [string, number]);
+  const orchardData = entries.map(([y, v]) => [y, v.orchard] as [string, number]);
 
-  // Cluster centers
   const saplingX = 350;
   const orchardX = 800;
 
   return (
-    <div
-      style={{
-        textAlign: 'center',
-        backgroundColor: '#f8f4e8',
-        padding: 40,
-      }}
-    >
+    <div style={{ textAlign: 'center', backgroundColor: '#f8f4e8', padding: '20px' }}>
       <svg width={1100} height={500}>
         {/* Title */}
         <text x={50} y={40} fill="#d4a017" fontSize={28} fontWeight="bold">
@@ -203,11 +128,11 @@ const PrivacySetVisualization: React.FC = () => {
           Privacy set based on number of Orchard &amp; Sapling shielded transactions
         </text>
 
-        {/* Total circles behind each cluster */}
+        {/* Total rings behind clusters */}
         <circle
           cx={saplingX}
           cy={300}
-          r={totalScale(totalSapling)}
+          r={Math.max(totalScale(Math.sqrt(totalSapling)), minR)}
           fill="none"
           stroke="#d4a017"
           strokeOpacity={0.5}
@@ -216,19 +141,19 @@ const PrivacySetVisualization: React.FC = () => {
         <circle
           cx={orchardX}
           cy={300}
-          r={totalScale(totalOrchard)}
+          r={Math.max(totalScale(Math.sqrt(totalOrchard)), minR)}
           fill="none"
           stroke="#111"
           strokeOpacity={0.5}
           strokeWidth={4}
         />
 
-        {/* Concentric clusters */}
+        {/* Clusters */}
         {renderCluster(saplingData, saplingScale, saplingX, '#d4a017')}
         {renderCluster(orchardData, orchardScale, orchardX, '#111')}
 
         {/* Legend */}
-        <g transform="translate(900,420)">
+        <g transform="translate(900,430)">
           <rect x={-12} y={-20} width={24} height={24} fill="#d4a017" />
           <text x={30} y={-2} fill="#333" fontSize={14}>
             Sapling (total: {humanize(totalSapling)})
