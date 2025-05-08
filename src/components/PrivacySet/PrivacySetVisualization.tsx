@@ -71,6 +71,9 @@ const PrivacySetVisualization: React.FC = () => {
     range: [minR, maxR],
   });
   const orchardScale = scaleLinear({
+    domain: [Math.min(...orchardVals), Math.max(...orchardVals)],
+    range: [minR, maxR],
+  });({
     domain: [
       Math.sqrt(Math.min(...orchardVals)),
       Math.sqrt(Math.max(...orchardVals))
@@ -106,7 +109,42 @@ const PrivacySetVisualization: React.FC = () => {
     [...data]
       .reverse()
       .map(([year, val]) => {
-        const r = scale(val);
+        // Ensure minimum radius for legibility
+        const rawR = scale(val);
+        const r = Math.max(rawR, 50); // clamp to 50px minimum radius
+        return (
+          <g key={year} transform={`translate(${cx}, 300)`}>
+            <circle
+              cx={0}
+              cy={0}
+              r={r}
+              fill={color}
+              fillOpacity={0.2}
+              stroke={color}
+              strokeWidth={2}
+            />
+            <text
+              x={0}
+              y={-r - 10}
+              textAnchor="middle"
+              fill={color}
+              fontSize={16}
+              fontWeight="bold"
+            >
+              {year}
+            </text>
+            <text
+              x={0}
+              y={r + 20}
+              textAnchor="middle"
+              fill={color}
+              fontSize={14}
+            >
+              {humanize(val)}
+            </text>
+          </g>
+        );
+      }));
         return (
           <g key={year} transform={`translate(${cx}, 300)`}>
             <circle
