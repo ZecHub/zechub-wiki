@@ -54,7 +54,7 @@ const PrivacySetVisualization: React.FC = () => {
   if (loading) return <div className="text-center p-8">Loading privacy set...</div>;
   if (error) return <div className="text-center p-8 text-red-500">Error: {error}</div>;
 
-  // Sort data by year ascending
+  // Prepare sorted data by year
   const entries = Array.from(dataMap.entries()).sort((a, b) => a[0].localeCompare(b[0]));
 
   const saplingVals = entries.map(([, v]) => v.sapling);
@@ -62,9 +62,11 @@ const PrivacySetVisualization: React.FC = () => {
   const totalSapling = saplingVals.reduce((a, b) => a + b, 0);
   const totalOrchard = orchardVals.reduce((a, b) => a + b, 0);
 
-  const minR = 40;
+  // Radius settings
+  const minR = 20;
   const maxR = 160;
-  // Use sqrt scale to compress range but clamp minimum radius for readability
+
+  // Scales using sqrt to compress range
   const saplingScale = scaleLinear({
     domain: [Math.sqrt(Math.min(...saplingVals)), Math.sqrt(Math.max(...saplingVals))],
     range: [minR, maxR],
@@ -73,7 +75,6 @@ const PrivacySetVisualization: React.FC = () => {
     domain: [Math.sqrt(Math.min(...orchardVals)), Math.sqrt(Math.max(...orchardVals))],
     range: [minR, maxR],
   });
-  // Scale for totals
   const totalScale = scaleLinear({
     domain: [0, Math.sqrt(Math.max(totalSapling, totalOrchard))],
     range: [minR, maxR],
@@ -86,30 +87,52 @@ const PrivacySetVisualization: React.FC = () => {
       ? `${(v / 1e3).toFixed(1)}k`
       : `${v}`;
 
-  // Render concentric cluster
+  // Render concentric cluster at center x
   const renderCluster = (
     data: Array<[string, number]>,
     scaleFn: (x: number) => number,
     cx: number,
     color: string
-  ) =>
-    [...data]
-      .reverse()
-      .map(([year, val]) => {
-        const rRaw = scaleFn(Math.sqrt(val));
-        const r = Math.max(rRaw, minR);
-        return (
-          <g key={year} transform={`translate(${cx}, 300)`}>
-            <circle cx={0} cy={0} r={r} fill={color} fillOpacity={0.2} stroke={color} strokeWidth={2} />
-            <text x={0} y={-r - 10} textAnchor="middle" fill={color} fontSize={16} fontWeight="bold">
-              {year}
-            </text>
-            <text x={0} y={r + 20} textAnchor="middle" fill={color} fontSize={14}>
-              {humanize(val)}
-            </text>
-          </g>
-        );
-      });
+  ) => {
+    // sort by value descending (largest first)
+    const sorted = [...data].sort((a, b) => b[1] - a[1]);
+    return sorted.map(([year, val]) => {
+      const rRaw = scaleFn(Math.sqrt(val));
+      const r = Math.max(rRaw, minR);
+      return (
+        <g key={year} transform={`translate(${cx}, 300)`}>
+          <circle
+            cx={0}
+            cy={0}
+            r={r}
+            fill={color}
+            fillOpacity={0.2}
+            stroke={color}
+            strokeWidth={2}
+          />
+          <text
+            x={0}
+            y={-r - 10}
+            textAnchor="middle"
+            fill={color}
+            fontSize={16}
+            fontWeight="bold"
+          >
+            {year}
+          </text>
+          <text
+            x={0}
+            y={r + 20}
+            textAnchor="middle"
+            fill={color}
+            fontSize={14}
+          >
+            {humanize(val)}
+          </text>
+        </g>
+      );
+    });
+  };
 
   const saplingData = entries.map(([y, v]) => [y, v.sapling] as [string, number]);
   const orchardData = entries.map(([y, v]) => [y, v.orchard] as [string, number]);
@@ -118,24 +141,25 @@ const PrivacySetVisualization: React.FC = () => {
   const orchardX = 800;
 
   return (
-    <div style={{ textAlign: 'center', backgroundColor: '#f8f4e8', padding: '20px' }}>
-      <svg width={1100} height={500}>
+    <div className="p-6 bg-[#f8f4e8] rounded-lg">
+      <h3 className="text-lg font-bold mb-4">Privacy Set Visualization</h3>
+      <svg width={1100} height={500} style={{ display: 'block', margin: '0 auto' }}>
         {/* Title */}
         <text x={50} y={40} fill="#d4a017" fontSize={28} fontWeight="bold">
           Zcash shielded transactions
         </text>
         <text x={50} y={70} fill="#333" fontSize={16}>
-          Privacy set based on number of Orchard &amp; Sapling shielded transactions
+          Privacy set based on Orchard & Sapling shielded transactions
         </text>
 
-        {/* Total rings behind clusters */}
+        {/* Background total rings */}
         <circle
           cx={saplingX}
           cy={300}
           r={Math.max(totalScale(Math.sqrt(totalSapling)), minR)}
           fill="none"
           stroke="#d4a017"
-          strokeOpacity={0.5}
+          strokeOpacity={0.4}
           strokeWidth={4}
         />
         <circle
@@ -144,7 +168,7 @@ const PrivacySetVisualization: React.FC = () => {
           r={Math.max(totalScale(Math.sqrt(totalOrchard)), minR)}
           fill="none"
           stroke="#111"
-          strokeOpacity={0.5}
+          strokeOpacity={0.4}
           strokeWidth={4}
         />
 
@@ -153,13 +177,13 @@ const PrivacySetVisualization: React.FC = () => {
         {renderCluster(orchardData, orchardScale, orchardX, '#111')}
 
         {/* Legend */}
-        <g transform="translate(900,430)">
-          <rect x={-12} y={-20} width={24} height={24} fill="#d4a017" />
-          <text x={30} y={-2} fill="#333" fontSize={14}>
+        <g transform="translate(850, 360)">
+          <rect x={0} y={0} width={16} height={16} fill="#d4a017" />
+          <text x={24} y={12} fill="#333" fontSize={14}>
             Sapling (total: {humanize(totalSapling)})
           </text>
-          <rect x={-12} y={10} width={24} height={24} fill="#111" />
-          <text x={30} y={28} fill="#333" fontSize={14}>
+          <rect x={0} y={24} width={16} height={16} fill="#111" />
+          <text x={24} y={36} fill="#333" fontSize={14}>
             Orchard (total: {humanize(totalOrchard)})
           </text>
         </g>
