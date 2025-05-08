@@ -122,57 +122,53 @@ const PrivacySetVisualization: React.FC = () => {
   ) =>
     data.map(([year, val], idx) => {
       const id = `${type}-${year}`;
-      const isHover = hoveredId === id;
-      const r = minR + idx * step;
-      const cy = 350 + (isHover ? -10 : 0);
-      const opac = isHover ? 0.4 : 0.2;
-      const sw = isHover ? 3 : 2;
+      const hovered = hoveredId === id;
+      const r = minR + idx * (type === 'sapling' ? stepSap : stepOrch);
+      const dy = hovered ? -10 : 0;
+      const opacity = hovered ? 0.4 : 0.2;
+      const strokeWidth = hovered ? 3 : 2;
+
       return (
         <g
           key={id}
-          transform={`translate(${cx},${cy})`}
+          transform={`translate(${cx},${350 + dy})`}
           style={{ cursor: 'pointer' }}
-          onMouseEnter={()=>setHoveredId(id)}
-          onMouseLeave={()=>setHoveredId(null)}
+          onMouseEnter={() => setHoveredId(id)}
+          onMouseLeave={() => setHoveredId(null)}
         >
-          <circle pointerEvents="visibleStroke" r={r} fill={type==='sapling' ? '#333' : color} fillOpacity={opac} stroke={color} strokeWidth={sw} />
-          <text x={0} y={-r-10} textAnchor='middle' fill={color} fontSize={14} fontWeight='bold'>
+          <circle
+            cx={0}
+            cy={0}
+            r={r}
+            fill={color}
+            fillOpacity={opacity}
+            stroke={color}
+            strokeWidth={strokeWidth}
+            pointerEvents="visibleStroke"
+          />
+          {/* Year label */}
+          <text
+            x={0}
+            y={-r - 10 - idx * 2}
+            textAnchor="middle"
+            fill="#333"
+            fontSize={14}
+            fontWeight="bold"
+          >
             {year}
           </text>
-          <text x={0} y={r+20} textAnchor='middle' fill={color} fontSize={12}>
+          {/* Value label */}
+          <text
+            x={0}
+            y={r + 20 + idx * 2}
+            textAnchor="middle"
+            fill="#333"
+            fontSize={12}
+          >
             {humanize(val)}
           </text>
         </g>
       );
     });
-
-  const sapX = 300, orchX = 900;
-
-  return (
-    <div style={{background:'#f8f4e8', padding:20, borderRadius:8, overflow:'visible'}}>
-      <svg width={1200} height={650} style={{margin:'0 auto', display:'block'}}>
-        {/* Title/Sub */}
-        <text x={60} y={50} fill='#d4a017' fontSize={28} fontWeight='bold'>Zcash shielded transactions</text>
-        <text x={60} y={80} fill='#333' fontSize={14}>Privacy set based on Orchard & Sapling shielded transactions</text>
-
-        {/* Total rings */}
-        <circle cx={sapX} cy={350} r={maxR+10} fill='none' stroke='#d4a017' strokeOpacity={0.4} strokeWidth={4}/>
-        <circle cx={orchX} cy={350} r={maxR+10} fill='none' stroke='#111' strokeOpacity={0.4} strokeWidth={4}/>
-
-        {/* Clusters */}
-        {renderCluster(cumSaplingData, sapX, '#d4a017','sapling')}
-        {renderCluster(cumOrchardData, orchX, '#111','orchard')}
-
-        {/* Legend */}
-        <g transform='translate(1040,600)'>
-          <rect width={16} height={16} fill='#d4a017'/>
-          <text x={24} y={12} fill='#333' fontSize={12}>Sapling (total: {humanize(totalSapling)})</text>
-          <rect y={24} width={16} height={16} fill='#111'/>
-          <text x={24} y={36} fill='#333' fontSize={12}>Orchard (total: {humanize(totalOrchard)})</text>
-        </g>
-      </svg>
-    </div>
-  );
-};
 
 export default PrivacySetVisualization;
