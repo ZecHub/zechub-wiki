@@ -85,17 +85,15 @@ const PrivacySetVisualization: React.FC = () => {
   const totalSapling = saplingValues.reduce((s, v) => s + v, 0);
   const totalOrchard = orchardValues.reduce((s, v) => s + v, 0);
 
-  // Render a series of rings along a horizontal line
+  // Render concentric rings for a given cluster center
   const renderRings = (
     data: Array<[string, number]>,
     scale: (n: number) => number,
-    xOffset: number,
+    cx: number,
     color: string
   ) => {
-    const xStep = maxRadius + 20;
-    return data.map(([year, val], i) => {
+    return data.map(([year, val]) => {
       const r = scale(val);
-      const cx = xOffset + i * xStep;
       return (
         <g key={year} transform={`translate(${cx}, 300)`}>
           <circle cx={0} cy={0} r={r} fill={color} fillOpacity={0.2} stroke={color} strokeWidth={2} />
@@ -111,6 +109,7 @@ const PrivacySetVisualization: React.FC = () => {
   };
 
   const saplingData = entries.map(([y, d]) => [y, d.sapling] as [string, number]);
+  const orchardData = entries.map(([y, d]) => [y, d.orchard] as [string, number]); = entries.map(([y, d]) => [y, d.sapling] as [string, number]);
   const orchardData = entries.map(([y, d]) => [y, d.orchard] as [string, number]);
 
   return (
@@ -124,10 +123,20 @@ const PrivacySetVisualization: React.FC = () => {
           Privacy set based on number of Orchard & Sapling transactions with shielded outputs
         </text>
 
-        {/* Sapling first */}
-        {renderRings(saplingData, saplingScale, 150, '#d4a017')}
-        {/* Orchard first */}
-        {renderRings(orchardData, orchardScale, 150, '#111')}
+        {/* Calculate spacing */}
+        {(() => {
+          const clusterSpacing = (maxRadius + 20) * entries.length + 50;
+          const saplingX = 150;
+          const orchardX = saplingX + clusterSpacing;
+          return (
+            <>
+              {/* Sapling cluster */}
+              {renderRings(saplingData, saplingScale, saplingX, '#d4a017')}
+              {/* Orchard cluster */}
+              {renderRings(orchardData, orchardScale, orchardX, '#111')}
+            </>
+          );
+        })()}
 
         {/* Legend */}
         <g transform="translate(800, 420)">
