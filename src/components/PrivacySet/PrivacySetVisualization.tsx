@@ -108,8 +108,9 @@ const PrivacySetVisualization: React.FC = () => {
     });
   };
 
-    const saplingData = entries.map(([y, d]) => [y, d.sapling] as [string, number]);
-  const orchardData = entries.map(([y, d]) => [y, d.orchard] as [string, number]); = entries.map(([y, d]) => [y, d.sapling] as [string, number]);
+      const saplingData = entries.map(([y, d]) => [y, d.sapling] as [string, number]);
+  const orchardData = entries.map(([y, d]) => [y, d.orchard] as [string, number]);
+
   const orchardData = entries.map(([y, d]) => [y, d.orchard] as [string, number]);
 
   return (
