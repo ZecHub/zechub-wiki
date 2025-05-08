@@ -36,7 +36,6 @@ const PrivacySetVisualization: React.FC = () => {
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const rawData: TransactionSummaryDatum[] = await response.json();
 
-        // Aggregate per year
         const dataMap = new Map<string, { sapling: number; orchard: number }>();
         rawData.forEach(item => {
           const year =
@@ -46,7 +45,6 @@ const PrivacySetVisualization: React.FC = () => {
           y.sapling += item.sapling;
           y.orchard += item.orchard;
         });
-
         setYearlyData(dataMap);
       } catch (err) {
         setError(err instanceof Error ? err : new Error("Unknown error"));
@@ -60,97 +58,65 @@ const PrivacySetVisualization: React.FC = () => {
   if (isLoading) return <div className="text-center p-8">Loading privacy set data...</div>;
   if (error) return <div className="text-center p-8 text-red-500">Error loading data: {error.message}</div>;
 
-  // Prepare scales for radii
+  // Prepare scales
   const entries = Array.from(yearlyData.entries()).sort((a, b) => a[0].localeCompare(b[0]));
   const saplingValues = entries.map(([, d]) => d.sapling);
   const orchardValues = entries.map(([, d]) => d.orchard);
-  const minRadius = 50;
-  const maxRadius = 200;
+  const minR = 50, maxR = 200;
+  const saplingScale = scaleLinear({ domain: [Math.min(...saplingValues), Math.max(...saplingValues)], range: [minR, maxR] });
+  const orchardScale = scaleLinear({ domain: [Math.min(...orchardValues), Math.max(...orchardValues)], range: [minR, maxR] });
 
-  const saplingScale = scaleLinear({
-    domain: [Math.min(...saplingValues), Math.max(...saplingValues)],
-    range: [minRadius, maxRadius],
-  });
-  const orchardScale = scaleLinear({
-    domain: [Math.min(...orchardValues), Math.max(...orchardValues)],
-    range: [minRadius, maxRadius],
-  });
-
-  // Totals for legend
-  const totalSapling = saplingValues.reduce((sum, v) => sum + v, 0);
-  const totalOrchard = orchardValues.reduce((sum, v) => sum + v, 0);
-
-  const humanizeNumber = (value: number) => {
-    if (value >= 1_000_000) return (value / 1_000_000).toFixed(1) + 'M';
-    if (value >= 1_000) return (value / 1_000).toFixed(1) + 'k';
-    return value.toString();
-  };
+  const humanize = (v: number) => v >= 1e6 ? (v/1e6).toFixed(1)+'M' : v >= 1e3 ? (v/1e3).toFixed(1)+'k' : v.toString();
+  const totalSapling = saplingValues.reduce((a,b) => a+b, 0);
+  const totalOrchard = orchardValues.reduce((a,b) => a+b, 0);
 
   const renderCircles = (
     data: Array<[string, number]>,
-    scale: (value: number) => number,
-    xOffset: number,
+    scale: (v:number)=>number,
+    cx: number,
     color: string
-  ) => data.map(([year, value]) => {
-    const r = scale(value);
+  ) => data.map(([year, val]) => {
+    const r = scale(val);
     return (
-      <g key={year} transform={`translate(${xOffset}, 300)`}>
+      <g key={year} transform={`translate(${cx}, 300)`}>
         <circle cx={0} cy={0} r={r} fill={color} fillOpacity={0.2} stroke={color} strokeWidth={3} />
-        <text
-          x={0}
-          y={-r + 30}
-          textAnchor="middle"
-          fill={color}
-          fontSize="18"
-          fontWeight="bold"
-        >
+        <text x={0} y={-r+30} textAnchor="middle" fill={color} fontSize="16" fontWeight="bold">
           {year}
         </text>
-        <text
-          x={0}
-          y={-r + 55}
-          textAnchor="middle"
-          fill={color}
-          fontSize="14"
-        >
-          {humanizeNumber(value)}
+        <text x={0} y={-r+55} textAnchor="middle" fill={color} fontSize="14">
+          {humanize(val)}
         </text>
       </g>
     );
   });
 
-  const saplingData = entries.map(([y, d]) => [y, d.sapling] as [string, number]);
-  const orchardData = entries.map(([y, d]) => [y, d.orchard] as [string, number]);
+  const saplingData = entries.map(([y,d])=>[y,d.sapling] as [string,number]);
+  const orchardData = entries.map(([y,d])=>[y,d.orchard] as [string,number]);
 
   return (
-    <div style={{ textAlign: 'center', backgroundColor: '#f8f4e8', padding: '40px' }}>
-      <svg width={1100} height={600}>
-        {/* All rings radiating from a common center */}
-        {renderCircles(saplingData, saplingScale, 550, '#d4a017')}
-        {renderCircles(orchardData, orchardScale, 550, '#111')}
+    <div style={{ textAlign:'center', backgroundColor:'#f8f4e8', padding:'40px' }}>
+      <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
+        {/* Title */}
+        <text x={100} y={50} fill="#d4a017" fontSize="32" fontWeight="bold">
+          Zcash shielded transactions
+        </text>
+        <text x={100} y={85} fill="#333" fontSize="18">
+          Privacy set based on number of orchard & sapling transactions with shielded outputs
+        </text>
 
-        {/* Legend at bottom right with totals */}
-        <g transform="translate(880, 520)">
-          <rect x={-15} y={-30} width={25} height={25} fill="#d4a017" />
-          <text x={30} y={-12} fill="#333" fontSize="16">
-            Sapling ({humanizeNumber(totalSapling)})
-          </text>
-          <rect x={-15} y={5} width={25} height={25} fill="#111" />
-          <text x={30} y={27} fill="#333" fontSize="16">
-            Orchard ({humanizeNumber(totalOrchard)})
-          </text>
-        </g>
+        {/* Rings radiating from two centers */}
+        {renderCircles(saplingData, saplingScale, 400, '#d4a017')}
+        {renderCircles(orchardData, orchardScale, 800, '#111')}
 
-        {/* Title and subtitle */}
-        <g transform="translate(650, 100)">
-          <text x={0} y={0} fill="#d4a017" fontSize="32" fontWeight="bold">
-            Zcash shielded transactions
+        {/* Legend with totals */}
+        <g transform="translate(900,520)">
+          <rect x={-15} y={-25} width={25} height={25} fill="#d4a017" />
+          <text x={30} y={-7} fill="#333" fontSize="16">
+            Sapling ({humanize(totalSapling)})
           </text>
-          <text x={0} y={36} fill="#333" fontSize="18">
-            Privacy set based on number of orchard & sapling transactions
-          </text>
-          <text x={0} y={60} fill="#333" fontSize="18">
-            with shielded outputs
+          <rect x={-15} y={10} width={25} height={25} fill="#111" />
+          <text x={30} y={32} fill="#333" fontSize="16">
+            Orchard ({humanize(totalOrchard)})
           </text>
         </g>
       </svg>
