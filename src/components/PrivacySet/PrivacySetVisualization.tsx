@@ -1,11 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
 
-// URL to the transaction summary JSON file in the ZecHub repository
+import React, { useEffect, useState } from "react";
+import { scaleLinear } from "@visx/scale";
+
+// Transaction summary source URL
 const DATA_URL =
   "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
 
-// Map block height ranges to calendar years
+// Block height to year mapping
 const HEIGHT_YEAR_MAP = [
   { start: 0, end: 1933300, year: "2022" },
   { start: 1933301, end: 2352180, year: "2023" },
@@ -34,131 +36,122 @@ const PrivacySetVisualization: React.FC = () => {
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const rawData: TransactionSummaryDatum[] = await response.json();
 
+        // Aggregate per year
         const dataMap = new Map<string, { sapling: number; orchard: number }>();
-
-        rawData.forEach((item) => {
-          // Determine which year bucket this height falls into
+        rawData.forEach(item => {
           const year =
-            HEIGHT_YEAR_MAP.find(
-              (range) => item.height >= range.start && item.height <= range.end
-            )?.year ?? "Unknown";
-
-          if (!dataMap.has(year)) {
-            dataMap.set(year, { sapling: 0, orchard: 0 });
-          }
-
-          const yearData = dataMap.get(year)!;
-          yearData.sapling += item.sapling;
-          yearData.orchard += item.orchard;
+            HEIGHT_YEAR_MAP.find(r => item.height >= r.start && item.height <= r.end)?.year ?? "Unknown";
+          if (!dataMap.has(year)) dataMap.set(year, { sapling: 0, orchard: 0 });
+          const y = dataMap.get(year)!;
+          y.sapling += item.sapling;
+          y.orchard += item.orchard;
         });
 
         setYearlyData(dataMap);
       } catch (err) {
-        setError(err instanceof Error ? err : new Error("Unknown error occurred"));
+        setError(err instanceof Error ? err : new Error("Unknown error"));
       } finally {
         setIsLoading(false);
       }
     }
-
     fetchData();
   }, []);
 
-  const humanizeNumber = (value: number): string => {
-    if (value >= 1_000_000) return (value / 1_000_000).toFixed(1) + "M";
-    if (value >= 1_000) return (value / 1_000).toFixed(1) + "k";
+  if (isLoading) return <div className="text-center p-8">Loading privacy set data...</div>;
+  if (error) return <div className="text-center p-8 text-red-500">Error loading data: {error.message}</div>;
+
+  // Prepare scales for radii
+  const entries = Array.from(yearlyData.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+  const saplingValues = entries.map(([, d]) => d.sapling);
+  const orchardValues = entries.map(([, d]) => d.orchard);
+  const minRadius = 50;
+  const maxRadius = 200;
+
+  const saplingScale = scaleLinear({
+    domain: [Math.min(...saplingValues), Math.max(...saplingValues)],
+    range: [minRadius, maxRadius],
+  });
+  const orchardScale = scaleLinear({
+    domain: [Math.min(...orchardValues), Math.max(...orchardValues)],
+    range: [minRadius, maxRadius],
+  });
+
+  // Totals for legend
+  const totalSapling = saplingValues.reduce((sum, v) => sum + v, 0);
+  const totalOrchard = orchardValues.reduce((sum, v) => sum + v, 0);
+
+  const humanizeNumber = (value: number) => {
+    if (value >= 1_000_000) return (value / 1_000_000).toFixed(1) + 'M';
+    if (value >= 1_000) return (value / 1_000).toFixed(1) + 'k';
     return value.toString();
   };
 
   const renderCircles = (
-    data: Map<string, number>,
+    data: Array<[string, number]>,
+    scale: (value: number) => number,
     xOffset: number,
     color: string
-  ) => {
-    const radiusStep = 40;
-    let radius = 30;
-
-    return Array.from(data.entries()).map(([year, value], index) => {
-      const circleRadius = radius + index * radiusStep;
-      return (
-        <g key={year} transform={`translate(${xOffset}, 200)`}>
-          <circle
-            cx={0}
-            cy={0}
-            r={circleRadius}
-            fill={color}
-            fillOpacity={0.2}
-            stroke={color}
-            strokeWidth={2}
-          />
-          <text
-            x={0}
-            y={-circleRadius + 20}
-            textAnchor="middle"
-            fill={color}
-            fontSize="14"
-            fontWeight="bold"
-          >
-            {year}
-          </text>
-          <text
-            x={0}
-            y={-circleRadius + 40}
-            textAnchor="middle"
-            fill={color}
-            fontSize="12"
-          >
-            {humanizeNumber(value)}
-          </text>
-        </g>
-      );
-    });
-  };
-
-  if (isLoading) {
-    return <div className="text-center p-8">Loading privacy set data...</div>;
-  }
-
-  if (error) {
+  ) => data.map(([year, value]) => {
+    const r = scale(value);
     return (
-      <div className="text-center p-8 text-red-500">
-        Error loading data: {error.message}
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ textAlign: "center", backgroundColor: "#f8f4e8", padding: "20px" }}>
-      <svg width={1000} height={500}>
-        {renderCircles(
-          new Map(
-            Array.from(yearlyData.entries()).map(([year, data]) => [year, data.sapling])
-          ),
-          300,
-          "#d4a017"
-        )}
-        {renderCircles(
-          new Map(
-            Array.from(yearlyData.entries()).map(([year, data]) => [year, data.orchard])
-          ),
-          500,
-          "#111"
-        )}
+      <g key={year} transform={`translate(${xOffset}, 300)`}>
+        <circle cx={0} cy={0} r={r} fill={color} fillOpacity={0.2} stroke={color} strokeWidth={3} />
         <text
-          x={800}
-          y={250}
+          x={0}
+          y={-r + 30}
           textAnchor="middle"
-          fill="#333"
-          fontSize="16"
+          fill={color}
+          fontSize="18"
           fontWeight="bold"
         >
-          Sapling & Orchard
+          {year}
         </text>
-        {/* Legend */}
-        <g transform="translate(800, 300)">
-          <rect x={-10} y={-10} width={20} height={20} fill="#d4a017" />
-          <text x={20} y={5} fill="#333" fontSize="14">Sapling</text>
-          <rect x={-10} y={30} width={20} height={20} fill="#111" />
-          <text x={20} y={45} fill="#333" fontSize="14">Orchard</text>
+        <text
+          x={0}
+          y={-r + 55}
+          textAnchor="middle"
+          fill={color}
+          fontSize="14"
+        >
+          {humanizeNumber(value)}
+        </text>
+      </g>
+    );
+  });
+
+  const saplingData = entries.map(([y, d]) => [y, d.sapling] as [string, number]);
+  const orchardData = entries.map(([y, d]) => [y, d.orchard] as [string, number]);
+
+  return (
+    <div style={{ textAlign: 'center', backgroundColor: '#f8f4e8', padding: '40px' }}>
+      <svg width={1100} height={600}>
+        {/* All rings radiating from a common center */}
+        {renderCircles(saplingData, saplingScale, 550, '#d4a017')}
+        {renderCircles(orchardData, orchardScale, 550, '#111')}
+
+        {/* Legend at bottom right with totals */}
+        <g transform="translate(880, 520)">
+          <rect x={-15} y={-30} width={25} height={25} fill="#d4a017" />
+          <text x={30} y={-12} fill="#333" fontSize="16">
+            Sapling ({humanizeNumber(totalSapling)})
+          </text>
+          <rect x={-15} y={5} width={25} height={25} fill="#111" />
+          <text x={30} y={27} fill="#333" fontSize="16">
+            Orchard ({humanizeNumber(totalOrchard)})
+          </text>
+        </g>
+
+        {/* Title and subtitle */}
+        <g transform="translate(650, 100)">
+          <text x={0} y={0} fill="#d4a017" fontSize="32" fontWeight="bold">
+            Zcash shielded transactions
+          </text>
+          <text x={0} y={36} fill="#333" fontSize="18">
+            Privacy set based on number of orchard & sapling transactions
+          </text>
+          <text x={0} y={60} fill="#333" fontSize="18">
+            with shielded outputs
+          </text>
         </g>
       </svg>
     </div>
