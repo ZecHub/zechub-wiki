@@ -63,8 +63,8 @@ const PrivacySetVisualization: React.FC = () => {
   const totalOrchard = orchardVals.reduce((a, b) => a + b, 0);
 
   // Radius settings
-  const minR = 20;
-  const maxR = 160;
+  const minR = 40; // increased for better readability
+  const maxR = 240; // increased size of circles
 
   // Scales using sqrt to compress range
   const saplingScale = scaleLinear({
@@ -142,7 +142,6 @@ const PrivacySetVisualization: React.FC = () => {
 
   return (
     <div className="p-6 bg-[#f8f4e8] rounded-lg">
-      <h3 className="text-lg font-bold mb-4">Privacy Set Visualization</h3>
       <svg width={1100} height={500} style={{ display: 'block', margin: '0 auto' }}>
         {/* Title */}
         <text x={50} y={40} fill="#d4a017" fontSize={28} fontWeight="bold">
@@ -177,7 +176,7 @@ const PrivacySetVisualization: React.FC = () => {
         {renderCluster(orchardData, orchardScale, orchardX, '#111')}
 
         {/* Legend */}
-        <g transform="translate(850, 360)">
+        <g transform="translate(900, 460)">
           <rect x={0} y={0} width={16} height={16} fill="#d4a017" />
           <text x={24} y={12} fill="#333" fontSize={14}>
             Sapling (total: {humanize(totalSapling)})
