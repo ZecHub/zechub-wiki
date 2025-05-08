@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { scaleLinear } from "@visx/scale";
 
 /**
  * PrivacySetVisualization
- * Interactive rings that highlight & lift on hover
+ * Rings radiate from center in year order (2022→2025), hover to highlight
  */
 
 type TransactionSummaryDatum = {
@@ -14,14 +13,21 @@ type TransactionSummaryDatum = {
   orchard: number;
 };
 
-const DATA_URL =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
+// Map block heights to years
 const HEIGHT_YEAR_MAP = [
-  { start: 0, end: 1933300, year: "2022" },
-  { start: 1933301, end: 2352180, year: "2023" },
+  // Approximate blocks per year (~418k)
+  { start: 0, end: 257775, year: "2018" },
+  { start: 257776, end: 676656, year: "2019" },
+  { start: 676657, end: 1095537, year: "2020" },
+  { start: 1095538, end: 1514418, year: "2021" },
+  { start: 1514419, end: 1933299, year: "2022" },
+  { start: 1933300, end: 2352180, year: "2023" },
   { start: 2352181, end: 2771014, year: "2024" },
   { start: 2771015, end: Infinity, year: "2025" },
 ];
+
+const DATA_URL =
+  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
 
 const PrivacySetVisualization: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -60,164 +66,79 @@ const PrivacySetVisualization: React.FC = () => {
   if (loading) return <div className="text-center p-8">Loading...</div>;
   if (error) return <div className="text-center p-8 text-red-500">Error: {error}</div>;
 
-  const entries = Array.from(yearly.entries()).sort((a, b) =>
-    a[0].localeCompare(b[0])
-  );
-  const saplingVals = entries.map(([, v]) => v.sapling);
-  const orchardVals = entries.map(([, v]) => v.orchard);
-  const totalSapling = saplingVals.reduce((a, b) => a + b, 0);
-  const totalOrchard = orchardVals.reduce((a, b) => a + b, 0);
+  // Chronological order
+  const years = ["2018","2019","2020","2021","2022","2023","2024","2025"];  // full range
+  const entries = years.map((y) => [y, yearly.get(y) ?? { sapling: 0, orchard: 0 }] as [string, { sapling: number; orchard: number }]);
 
-  const minRadius = 30;
-  const maxRadius = 150;
-  const saplingScale = scaleLinear({
-    domain: [
-      Math.sqrt(Math.min(...saplingVals)),
-      Math.sqrt(Math.max(...saplingVals)),
-    ],
-    range: [minRadius, maxRadius],
-  });
-  const orchardScale = scaleLinear({
-    domain: [
-      Math.sqrt(Math.min(...orchardVals)),
-      Math.sqrt(Math.max(...orchardVals)),
-    ],
-    range: [minRadius, maxRadius],
-  });
-  const totalScale = scaleLinear({
-    domain: [0, Math.sqrt(Math.max(totalSapling, totalOrchard))],
-    range: [minRadius, maxRadius],
-  });
+  const saplingData = entries.map(([y, v]) => [y, v.sapling] as [string, number]);
+  const orchardData = entries.map(([y, v]) => [y, v.orchard] as [string, number]);
+  const totalSapling = saplingData.reduce((sum, [,v]) => sum+v, 0);
+  const totalOrchard = orchardData.reduce((sum, [,v]) => sum+v, 0);
+
+  // Radii by chronological index
+  const minR = 20; // smaller inner radius
+  const maxR = 200; // larger outer radius
+  const step = (maxR - minR) / (years.length - 1);
 
   const humanize = (v: number) =>
-    v >= 1e6 ? `${(v / 1e6).toFixed(1)}M` : v >= 1e3 ? `${(v / 1e3).toFixed(1)}k` : `${v}`;
+    v >= 1e6 ? `${(v/1e6).toFixed(1)}M` : v >= 1e3 ? `${(v/1e3).toFixed(1)}k` : `${v}`;
 
-  // Render rings in chronological order (2022→2025)
+  // Render one cluster
   const renderCluster = (
-    data: Array<[string, number]>,
-    scaleFn: (n: number) => number,
+    data: [string, number][],
     cx: number,
     color: string,
     type: string
-  ) => {
-    return data.map(([year, val], idx) => {
+  ) =>
+    data.map(([year, val], idx) => {
       const id = `${type}-${year}`;
-      const r = scaleFn(Math.sqrt(val));
-      // On hover, lift ring by 10px
-      const isHovered = hoveredId === id;
-      const cy = 350 + (isHovered ? -10 : 0);
-      const fillOpac = isHovered ? 0.4 : 0.2;
-      const strokeW = isHovered ? 3 : 2;
-      // Stagger labels to avoid overlap
-      const yearLabelY = -r - 10 - idx * 18;
-      const valueLabelY = r + 20 + idx * 18;
+      const isHover = hoveredId === id;
+      const r = minR + idx * step;
+      const cy = 350 + (isHover ? -10 : 0);
+      const opac = isHover ? 0.4 : 0.2;
+      const sw = isHover ? 3 : 2;
       return (
         <g
           key={id}
           transform={`translate(${cx},${cy})`}
-          style={{ cursor: "pointer" }}
-          onMouseEnter={() => setHoveredId(id)}
-          onMouseLeave={() => setHoveredId(null)}
+          style={{ cursor: 'pointer' }}
+          onMouseEnter={()=>setHoveredId(id)}
+          onMouseLeave={()=>setHoveredId(null)}
         >
-          <circle
-            cx={0}
-            cy={0}
-            r={r}
-            fill={color}
-            fillOpacity={fillOpac}
-            stroke={color}
-            strokeWidth={strokeW}
-          />
-          <text
-            x={0}
-            y={yearLabelY}
-            textAnchor="middle"
-            fill={color}
-            fontSize={14}
-            fontWeight="bold"
-          >
+          <circle r={r} fill={color} fillOpacity={opac} stroke={color} strokeWidth={sw} />
+          <text x={0} y={-r-10} textAnchor='middle' fill={color} fontSize={14} fontWeight='bold'>
             {year}
           </text>
-          <text
-            x={0}
-            y={valueLabelY}
-            textAnchor="middle"
-            fill={color}
-            fontSize={12}
-          >
+          <text x={0} y={r+20} textAnchor='middle' fill={color} fontSize={12}>
             {humanize(val)}
           </text>
         </g>
       );
     });
-  };
 
-  const yearOrder = ["2022","2023","2024","2025"];
-  const saplingData: [string, number][] = yearOrder.map(y => [y, yearly.get(y)?.sapling || 0]);
-  const orchardData: [string, number][] = yearOrder.map(y => [y, yearly.get(y)?.orchard || 0]);
-  const saplingX = 300;
-  const orchardX = 900;
+  const sapX = 300, orchX = 900;
 
   return (
-    <div
-      style={{
-        background: "#f8f4e8",
-        padding: 20,
-        borderRadius: 8,
-        overflow: "visible",
-      }}
-    >
-      <svg
-        width={1200}
-        height={650}
-        style={{ display: "block", margin: "0 auto" }}
-      >
-        {/* Title */}
-        <text x={60} y={50}
-          fill="#d4a017"
-          fontSize={28}
-          fontWeight="bold"
-        >
-          Zcash shielded transactions
-        </text>
-        <text x={60} y={80} fill="#333" fontSize={14}>
-          Privacy set based on Orchard & Sapling shielded transactions
-        </text>
+    <div style={{background:'#f8f4e8', padding:20, borderRadius:8, overflow:'visible'}}>
+      <svg width={1200} height={650} style={{margin:'0 auto', display:'block'}}>
+        {/* Title/Sub */}
+        <text x={60} y={50} fill='#d4a017' fontSize={28} fontWeight='bold'>Zcash shielded transactions</text>
+        <text x={60} y={80} fill='#333' fontSize={14}>Privacy set based on Orchard & Sapling shielded transactions</text>
 
         {/* Total rings */}
-        <circle
-          cx={saplingX}
-          cy={350}
-          r={totalScale(Math.sqrt(totalSapling))}
-          fill="none"
-          stroke="#d4a017"
-          strokeOpacity={0.4}
-          strokeWidth={4}
-        />
-        <circle
-          cx={orchardX}
-          cy={350}
-          r={totalScale(Math.sqrt(totalOrchard))}
-          fill="none"
-          stroke="#111"
-          strokeOpacity={0.4}
-          strokeWidth={4}
-        />
+        <circle cx={sapX} cy={350} r={maxR+10} fill='none' stroke='#d4a017' strokeOpacity={0.4} strokeWidth={4}/>
+        <circle cx={orchX} cy={350} r={maxR+10} fill='none' stroke='#111' strokeOpacity={0.4} strokeWidth={4}/>
 
-        {/* Interactive clusters */}
-        {renderCluster(saplingData, saplingScale, saplingX, "#d4a017", "sapling")}
-        {renderCluster(orchardData, orchardScale, orchardX, "#111", "orchard")}
+        {/* Clusters */}
+        {renderCluster(saplingData, sapX, '#d4a017','sapling')}
+        {renderCluster(orchardData, orchX, '#111','orchard')}
 
-        {/* Legend bottom-right */}
-        <g transform="translate(1040,600)">
-          <rect x={0} y={0} width={16} height={16} fill="#d4a017" />
-          <text x={24} y={12} fill="#333" fontSize={12}>
-            Sapling (total: {humanize(totalSapling)})
-          </text>
-          <rect x={0} y={24} width={16} height={16} fill="#111" />
-          <text x={24} y={36} fill="#333" fontSize={12}>
-            Orchard (total: {humanize(totalOrchard)})
-          </text>
+        {/* Legend */}
+        <g transform='translate(1040,600)'>
+          <rect width={16} height={16} fill='#d4a017'/>
+          <text x={24} y={12} fill='#333' fontSize={12}>Sapling (total: {humanize(totalSapling)})</text>
+          <rect y={24} width={16} height={16} fill='#111'/>
+          <text x={24} y={36} fill='#333' fontSize={12}>Orchard (total: {humanize(totalOrchard)})</text>
         </g>
       </svg>
     </div>
