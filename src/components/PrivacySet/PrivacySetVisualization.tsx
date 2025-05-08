@@ -72,56 +72,39 @@ const PrivacySetVisualization: React.FC = () => {
 
   const renderCircles = (
     data: Array<[string, number]>,
-    scale: (v:number)=>number,
-    cx: number,
+    scale: (value: number) => number,
+    xStart: number,
     color: string
-  ) => data.map(([year, val]) => {
-    const r = scale(val);
-    return (
-      <g key={year} transform={`translate(${cx}, 300)`}>
-        <circle cx={0} cy={0} r={r} fill={color} fillOpacity={0.2} stroke={color} strokeWidth={3} />
-        <text x={0} y={-r+30} textAnchor="middle" fill={color} fontSize="16" fontWeight="bold">
-          {year}
-        </text>
-        <text x={0} y={-r+55} textAnchor="middle" fill={color} fontSize="14">
-          {humanize(val)}
-        </text>
-      </g>
-    );
-  });
-
-  const saplingData = entries.map(([y,d])=>[y,d.sapling] as [string,number]);
-  const orchardData = entries.map(([y,d])=>[y,d.orchard] as [string,number]);
-
-  return (
-    <div style={{ textAlign:'center', backgroundColor:'#f8f4e8', padding:'40px' }}>
-      <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
-        {/* Title */}
-        <text x={100} y={50} fill="#d4a017" fontSize="32" fontWeight="bold">
-          Zcash shielded transactions
-        </text>
-        <text x={100} y={85} fill="#333" fontSize="18">
-          Privacy set based on number of orchard & sapling transactions with shielded outputs
-        </text>
-
-        {/* Rings radiating from two centers */}
-        {renderCircles(saplingData, saplingScale, 400, '#d4a017')}
-        {renderCircles(orchardData, orchardScale, 800, '#111')}
-
-        {/* Legend with totals */}
-        <g transform="translate(900,520)">
-          <rect x={-15} y={-25} width={25} height={25} fill="#d4a017" />
-          <text x={30} y={-7} fill="#333" fontSize="16">
-            Sapling ({humanize(totalSapling)})
+  ) => {
+    const xStep = maxRadius + 50; // horizontal spacing
+    return data.map(([year, value], index) => {
+      const r = scale(value);
+      const x = xStart + index * xStep;
+      return (
+        <g key={year} transform={`translate(${x}, 300)`}>
+          <circle cx={0} cy={0} r={r} fill={color} fillOpacity={0.2} stroke={color} strokeWidth={3} />
+          <text
+            x={0}
+            y={-r + 30}
+            textAnchor="middle"
+            fill={color}
+            fontSize="16"
+            fontWeight="bold"
+          >
+            {year}
           </text>
-          <rect x={-15} y={10} width={25} height={25} fill="#111" />
-          <text x={30} y={32} fill="#333" fontSize="16">
-            Orchard ({humanize(totalOrchard)})
+          <text
+            x={0}
+            y={-r + 55}
+            textAnchor="middle"
+            fill={color}
+            fontSize="14"
+          >
+            {humanize(val)}
           </text>
         </g>
-      </svg>
-    </div>
-  );
-};
+      );
+    });
+  };
 
 export default PrivacySetVisualization;
