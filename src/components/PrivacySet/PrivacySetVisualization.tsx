@@ -100,14 +100,17 @@ const PrivacySetVisualization: React.FC = () => {
     color: string,
     type: string
   ) => {
-    return data.map(([year, val]) => {
+    return data.map(([year, val], idx) => {
       const id = `${type}-${year}`;
-      const isHovered = hoveredId === id;
       const r = scaleFn(Math.sqrt(val));
-      // raise by 10px on hover, highlight opacity & stroke
+      // On hover, lift ring by 10px
+      const isHovered = hoveredId === id;
       const cy = 350 + (isHovered ? -10 : 0);
       const fillOpac = isHovered ? 0.4 : 0.2;
       const strokeW = isHovered ? 3 : 2;
+      // Stagger labels to avoid overlap
+      const yearLabelY = -r - 10 - idx * 18;
+      const valueLabelY = r + 20 + idx * 18;
       return (
         <g
           key={id}
@@ -127,7 +130,7 @@ const PrivacySetVisualization: React.FC = () => {
           />
           <text
             x={0}
-            y={-r - 10}
+            y={yearLabelY}
             textAnchor="middle"
             fill={color}
             fontSize={14}
@@ -137,7 +140,7 @@ const PrivacySetVisualization: React.FC = () => {
           </text>
           <text
             x={0}
-            y={r + 20}
+            y={valueLabelY}
             textAnchor="middle"
             fill={color}
             fontSize={12}
@@ -149,8 +152,9 @@ const PrivacySetVisualization: React.FC = () => {
     });
   };
 
-  const saplingData = entries.map(([y, v]) => [y, v.sapling] as [string, number]);
-  const orchardData = entries.map(([y, v]) => [y, v.orchard] as [string, number]);
+  const yearOrder = ["2022","2023","2024","2025"];
+  const saplingData: [string, number][] = yearOrder.map(y => [y, yearly.get(y)?.sapling || 0]);
+  const orchardData: [string, number][] = yearOrder.map(y => [y, yearly.get(y)?.orchard || 0]);
   const saplingX = 300;
   const orchardX = 900;
 
@@ -169,16 +173,14 @@ const PrivacySetVisualization: React.FC = () => {
         style={{ display: "block", margin: "0 auto" }}
       >
         {/* Title */}
-        <text
-          x={900}
-          y={50}
+        <text x={60} y={50}
           fill="#d4a017"
           fontSize={28}
           fontWeight="bold"
         >
           Zcash shielded transactions
         </text>
-        <text x={900} y={80} fill="#333" fontSize={14}>
+        <text x={60} y={80} fill="#333" fontSize={14}>
           Privacy set based on Orchard & Sapling shielded transactions
         </text>
 
