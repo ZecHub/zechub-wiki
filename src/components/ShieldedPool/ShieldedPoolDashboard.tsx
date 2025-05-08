@@ -207,11 +207,40 @@ const ShieldedPoolDashboard: React.FC = () => {
     }
   };
 
-  const handleToolChange = (tool: ToolOptions) => {
-    setSelectedTool(tool);
-    setSelectedPool("default");
-    setSelectedToolName(toolOptionLabels[tool]);
-  };
+const handleToolChange = (tool: ToolOptions) => {
+  setSelectedTool(tool);
+  // route each tool to the correct dataUrl via selectedPool
+  switch (tool) {
+    case ToolOptions.supply:
+      setSelectedPool("default");
+      break;
+    case ToolOptions.transaction:
+      setSelectedPool("default");
+      break;
+    case ToolOptions.nodecount:
+      setSelectedPool("nodecount");
+      break;
+    case ToolOptions.difficulty:
+      setSelectedPool("difficulty");
+      break;
+    case ToolOptions.lockbox:
+      setSelectedPool("lockbox");
+      break;
+    case ToolOptions.net_inflows_outflows:
+      setSelectedPool("net_inflows_outflows");
+      break;
+    case "issuance":
+      setSelectedPool("issuance");
+      break;
+    case ToolOptions.privacy_set:
+      setSelectedPool("default");
+      break;
+    default:
+      setSelectedPool("default");
+  }
+  setSelectedToolName(toolOptionLabels[tool]);
+};
+
 
   if (!blockchainInfo) {
     return <div className="flex justify-center mt-48"><Spinner /></div>;
