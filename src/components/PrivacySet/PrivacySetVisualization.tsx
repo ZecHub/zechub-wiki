@@ -64,7 +64,11 @@ const PrivacySetVisualization: React.FC = () => {
   const maxRadius = 240;
   const saplingScale = scaleLinear({
     domain: [Math.sqrt(Math.min(...saplingVals)), Math.sqrt(Math.max(...saplingVals))],
-    range: [minRadius, maxRadius],
+    range: [minRadius, 200], // reduced max radius to avoid clipping
+  });
+  const orchardScale = scaleLinear({
+    domain: [Math.sqrt(Math.min(...orchardVals)), Math.sqrt(Math.max(...orchardVals))],
+    range: [minRadius, 200],
   });
   const orchardScale = scaleLinear({
     domain: [Math.sqrt(Math.min(...orchardVals)), Math.sqrt(Math.max(...orchardVals))],
@@ -72,7 +76,7 @@ const PrivacySetVisualization: React.FC = () => {
   });
   const totalScale = scaleLinear({
     domain: [0, Math.sqrt(Math.max(totalSapling, totalOrchard))],
-    range: [minRadius, maxRadius],
+    range: [minRadius, 200],
   });
 
   const humanize = (v: number) =>
@@ -85,7 +89,8 @@ const PrivacySetVisualization: React.FC = () => {
     cx: number,
     color: string
   ) => {
-    const sorted = [...data].sort((a, b) => b[1] - a[1]);
+    // chronological order: 2022 first, 2023 next, etc.
+    const sorted = data; // already in year order
     return sorted.map(([year, val]) => {
       const r = scaleFn(Math.sqrt(val));
       return (
