@@ -64,7 +64,17 @@ const PrivacySetVisualization: React.FC = () => {
   const minR = 30;
   const maxR = 120;
   const saplingScale = scaleLinear({
-    domain: [Math.min(...saplingVals), Math.max(...saplingVals)],
+    domain: [
+      Math.sqrt(Math.min(...saplingVals)),
+      Math.sqrt(Math.max(...saplingVals))
+    ],
+    range: [minR, maxR],
+  });
+  const orchardScale = scaleLinear({
+    domain: [
+      Math.sqrt(Math.min(...orchardVals)),
+      Math.sqrt(Math.max(...orchardVals))
+    ],
     range: [minR, maxR],
   });
   const orchardScale = scaleLinear({
