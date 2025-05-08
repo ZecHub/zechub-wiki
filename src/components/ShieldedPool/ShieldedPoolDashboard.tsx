@@ -226,7 +226,7 @@ const ShieldedPoolDashboard: React.FC = () => {
       case "sprout": return DataUrlOptions.sproutUrl;
       case "sapling": return DataUrlOptions.saplingUrl;
       case "orchard": return DataUrlOptions.orchardUrl;
-      case ToolOptions.net_inflows_outflows: return DataUrlOptions.netInflowsOutFlowsUrl;
+      case ToolOptions.net_inflows_outflows: return DataUrlOptions.netInflowsOutflowsUrl;
       case "issuance": return DataUrlOptions.issuanceUrl;
       case ToolOptions.nodecount: return DataUrlOptions.nodecountUrl;
       case ToolOptions.difficulty: return DataUrlOptions.difficultyUrl;
