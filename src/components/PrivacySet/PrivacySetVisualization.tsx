@@ -67,16 +67,45 @@ const PrivacySetVisualization: React.FC = () => {
   if (error) return <div className="text-center p-8 text-red-500">Error: {error}</div>;
 
   // Chronological order
-  const years = ["2018","2019","2020","2021","2022","2023","2024","2025"];  // full range
+  // Full sapling years: 2018–2025
+  const saplingYears = ["2018","2019","2020","2021","2022","2023","2024","2025"];
+  // Orchard only from 2022 onward
+  const orchardYears = ["2022","2023","2024","2025"];  // full range
   const entries = years.map((y) => [y, yearly.get(y) ?? { sapling: 0, orchard: 0 }] as [string, { sapling: number; orchard: number }]);
 
-  const saplingData = entries.map(([y, v]) => [y, v.sapling] as [string, number]);
+  // Build data arrays per specific year sequences
+  // raw per-year counts
+  const saplingData: [string, number][] = saplingYears.map(y => [y, yearly.get(y)?.sapling || 0]);
+  const orchardData: [string, number][] = orchardYears.map(y => [y, yearly.get(y)?.orchard || 0]);
+
+  // cumulative sums so each ring grows continuously
+  const cumSaplingData: [string, number][] = [];
+  saplingData.forEach(([y, v], i) => {
+    const prev = i > 0 ? cumSaplingData[i - 1][1] : 0;
+    cumSaplingData.push([y, prev + v]);
+  });
+
+  const cumOrchardData: [string, number][] = [];
+  orchardData.forEach(([y, v], i) => {
+    const prev = i > 0 ? cumOrchardData[i - 1][1] : 0;
+    cumOrchardData.push([y, prev + v]);
+  });
+
+  // now use cumSaplingData and cumOrchardData for rendering & totals
+  const totalSapling = cumSaplingData[cumSaplingData.length - 1][1];
+  const totalOrchard = cumOrchardData[cumOrchardData.length - 1][1];
+  const orchardData: [string, number][] = orchardYears.map(y => [y, yearly.get(y)?.orchard || 0]);(([y, v]) => [y, v.sapling] as [string, number]);
   const orchardData = entries.map(([y, v]) => [y, v.orchard] as [string, number]);
-  const totalSapling = saplingData.reduce((sum, [,v]) => sum+v, 0);
+  const totalSapling = saplingData.reduce((sum, [,v]) => sum + v, 0);
+  const totalOrchard = orchardData.reduce((sum, [,v]) => sum + v, 0);((sum, [,v]) => sum+v, 0);
   const totalOrchard = orchardData.reduce((sum, [,v]) => sum+v, 0);
 
   // Radii by chronological index
-  const minR = 20; // smaller inner radius
+  const minR = 20;
+  // Steps are scaled by number of rings per cluster
+  const maxR = 200;
+  const stepSap = (maxR - minR) / (saplingYears.length - 1);
+  const stepOrch = (maxR - minR) / (orchardYears.length - 1); // smaller inner radius
   const maxR = 200; // larger outer radius
   const step = (maxR - minR) / (years.length - 1);
 
@@ -85,10 +114,11 @@ const PrivacySetVisualization: React.FC = () => {
 
   // Render one cluster
   const renderCluster = (
-    data: [string, number][],
+    data: Array<[string, number]>,
     cx: number,
     color: string,
-    type: string
+    type: string,
+    step: number
   ) =>
     data.map(([year, val], idx) => {
       const id = `${type}-${year}`;
@@ -130,8 +160,8 @@ const PrivacySetVisualization: React.FC = () => {
         <circle cx={orchX} cy={350} r={maxR+10} fill='none' stroke='#111' strokeOpacity={0.4} strokeWidth={4}/>
 
         {/* Clusters */}
-        {renderCluster(saplingData, sapX, '#d4a017','sapling')}
-        {renderCluster(orchardData, orchX, '#111','orchard')}
+        {renderCluster(cumSaplingData, sapX, '#d4a017','sapling')}
+        {renderCluster(cumOrchardData, orchX, '#111','orchard')}
 
         {/* Legend */}
         <g transform='translate(1040,600)'>
