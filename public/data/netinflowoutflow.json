@@ -86,7 +86,42 @@
   },
   {
     "Date": "2025-03-16",
-    "Net Sapling Flow": "-6164",
-    "Net Orchard Flow": "46"
+    "Net Sapling Flow": "1262",
+    "Net Orchard Flow": "-421597"
+  },
+  {
+    "Date": "2025-03-23",
+    "Net Sapling Flow": "-6071",
+    "Net Orchard Flow": "-34446"
+  },
+  {
+    "Date": "2025-03-30",
+    "Net Sapling Flow": "-7954",
+    "Net Orchard Flow": "-142783"
+  },
+  {
+    "Date": "2025-04-06",
+    "Net Sapling Flow": "25963",
+    "Net Orchard Flow": "-105184"
+  },
+  {
+    "Date": "2025-04-13",
+    "Net Sapling Flow": "14792",
+    "Net Orchard Flow": "65488"
+  },
+  {
+    "Date": "2025-04-21",
+    "Net Sapling Flow": "8185",
+    "Net Orchard Flow": "-11984"
+  },
+  {
+    "Date": "2025-04-26",
+    "Net Sapling Flow": "-29",
+    "Net Orchard Flow": "15283"
+  },
+  {
+    "Date": "2025-05-04",
+    "Net Sapling Flow": "241",
+    "Net Orchard Flow": "-71742"
   }
 ]

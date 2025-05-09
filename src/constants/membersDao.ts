@@ -10,6 +10,15 @@ export const daoMembers = [
       "u1ckyxdk4ed7g70n8j96cquycqmx652tqrv00hjd0mpvv6u6wwhcaqath8whjswxg7a7vnfc9ldyucj5lepaplwrkll4594ehmcv0lglrre0yh27lagsgd2zwflvh4erq5fwckyv6c3ert6glhkpqm206qf0plp4tal3nqlf7xfzwurgfpvkhkexskwy8a7s647cd4lnw0lcy6zm7np9a",
   },
   {
+    imgUrl: "https://i.ibb.co/nsJ0SVP8/Xg-DCz-KYU-400x400.jpg",
+    name: "Kroy!",
+    description: `@ZecHub Design SubDAO Contributor | Creativity | Design | Web3 | DAOs`,
+    linkName: "Twitter",
+    urlLink: "https://x.com/theKroyX",
+    zcashAddress:
+      "",
+  },
+  {
     imgUrl:
       "https://i.ibb.co/93pD2H0n/18714-2.png",
     name: "1337bytes",

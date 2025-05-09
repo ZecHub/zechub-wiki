@@ -68,15 +68,31 @@ export default function NetInflowsOutflowsChart(
           {
             label: "Net Sapling Flow",
             data: parseData.map((itm) => parseFloat(itm.netSaplingFlow)),
-            backgroundColor: "rgba(54, 162, 235, 0.2)",
-            borderColor: "rgba(54, 162, 235, 1)",
+            backgroundColor: parseData.map((itm) =>
+              parseFloat(itm.netSaplingFlow) < 0
+                ? "rgba(75, 192, 192, 0.2)"
+                : "rgba(54, 162, 235, 0.2)"
+            ),
+            borderColor: parseData.map((itm) =>
+              parseFloat(itm.netSaplingFlow) < 0
+                ? "rgba(75, 192, 192, 1)"
+                : "rgba(54, 162, 235, 1)"
+            ),
             borderWidth: 1.5,
           },
           {
             label: "Net Orchard Flow",
             data: parseData.map((itm) => parseFloat(itm.netOrchardFlow)),
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: parseData.map((itm) =>
+              parseFloat(itm.netOrchardFlow) < 0
+                ? "rgba(75, 192, 192, 0.2)"
+                : "rgba(255, 99, 132, 0.2)"
+            ),
+            borderColor: parseData.map((itm) =>
+              parseFloat(itm.netOrchardFlow) < 0
+                ? "rgba(75, 192, 192, 1)"
+                : "rgba(255, 99, 132, 1)"
+            ),
             borderWidth: 1.5,
           },
         ],
