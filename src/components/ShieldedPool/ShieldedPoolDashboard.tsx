@@ -15,21 +15,21 @@ import { ToolOptions, toolOptionLabels } from "../Tools/tools";
 
 const ShieldedPoolChart       = dynamic(() => import("./ShieldedPoolChart"),       { ssr: true });
 const TransactionSummaryChart = dynamic(() => import("../TransactionSummaryChart"), { ssr: true });
-const ZecIssuanceSummaryChart = dynamic(() => import("../ZecIssuanceSummaryChart"), { ssr: true });
-const NetInflowsOutflowsChart = dynamic(() => import("../Charts/NetInflowsOutflowsChart"), { ssr: true });
+const ZecIssuanceSummaryChart = dynamic(() => import("../ZecIssuanceSummaryChart"),{ ssr: true });
+const NetInflowsOutflowsChart = dynamic(() => import("../Charts/NetInflowsOutflowsChart"),{ ssr: true });
 
 const DataUrlOptions = {
-  defaultUrl:            "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json",
-  sproutUrl:             "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json",
-  saplingUrl:            "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json",
-  orchardUrl:            "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json",
-  netInflowsOutflowsUrl: "/data/netinflowoutflow.json",
-  nodecountUrl:          "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/nodecount.json",
-  difficultyUrl:         "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/difficulty.json",
-  lockboxUrl:            "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/lockbox.json",
-  txsummaryUrl:          "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json",
-  shieldedTxCountUrl:    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json",
-  issuanceUrl:           "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/issuance.json",
+  defaultUrl:            "/data/zcash/shielded_supply.json",
+  sproutUrl:             "/data/zcash/sprout_supply.json",
+  saplingUrl:            "/data/zcash/sapling_supply.json",
+  orchardUrl:            "/data/zcash/orchard_supply.json",
+  netInflowsOutflowsUrl: "/data/zcash/netinflowoutflow.json",
+  nodecountUrl:          "/data/zcash/nodecount.json",
+  difficultyUrl:         "/data/zcash/difficulty.json",
+  lockboxUrl:            "/data/zcash/lockbox.json",
+  txsummaryUrl:          "/data/zcash/transaction_summary.json",
+  shieldedTxCountUrl:    "/data/zcash/shieldedtxcount.json",
+  issuanceUrl:           "/data/zcash/issuance.json",
   apiUrl:                "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json",
 };
 
@@ -76,6 +76,7 @@ async function getBlockchainData(): Promise<BlockchainInfo | null> {
     return null;
   }
 }
+
 async function getBlockchainInfo(): Promise<number | null> {
   try {
     const res = await fetch(blockchainInfoUrl);
@@ -86,6 +87,7 @@ async function getBlockchainInfo(): Promise<number | null> {
     return null;
   }
 }
+
 async function getSupplyData(url: string): Promise<SupplyData[]> {
   try {
     const res = await fetch(url);
@@ -95,6 +97,7 @@ async function getSupplyData(url: string): Promise<SupplyData[]> {
     return [];
   }
 }
+
 async function getLastUpdatedDate(): Promise<string> {
   try {
     const res = await fetch(DataUrlOptions.apiUrl);
@@ -105,6 +108,7 @@ async function getLastUpdatedDate(): Promise<string> {
     return "N/A";
   }
 }
+
 async function getShieldedTxCount(): Promise<ShieldedTxCount[] | null> {
   try {
     const res = await fetch(DataUrlOptions.shieldedTxCountUrl);
@@ -114,6 +118,7 @@ async function getShieldedTxCount(): Promise<ShieldedTxCount[] | null> {
     return null;
   }
 }
+
 async function getNodeCountData(url: string): Promise<NodeCountData[]> {
   try {
     const res = await fetch(url);
@@ -129,35 +134,31 @@ function formatDate(s: string | null): string {
   const d = new Date(s);
   return isNaN(d.getTime()) ? "N/A" : d.toLocaleDateString();
 }
+
 function transformSupplyData(d: SupplyData | null) {
   return d ? { timestamp: d.close, supply: d.supply } : null;
 }
 
 const ShieldedPoolDashboard: React.FC = () => {
-  // <-- loosen selectedPool to generic string
-  const [selectedPool, setSelectedPool] = useState<string>("default");
-  const [selectedCoin, setSelectedCoin] = useState<"Zcash"|"Penumbra"|"Namada">("Zcash");
-  const [selectedTool, setSelectedTool] = useState<ToolOptions>(ToolOptions.supply);
-  const [selectedToolName, setSelectedToolName] = useState<string>(toolOptionLabels[ToolOptions.supply]);
-  const [cumulativeCheck, setCumulativeCheck] = useState(true);
-  const [filterSpamCheck, setfilterSpamCheck] = useState(false);
 
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo|null>(null);
-  const [circulation, setCirculation]       = useState<number|null>(null);
+  const [selectedPool, setSelectedPool]     = useState<string>("default");
+  const [selectedCoin, setSelectedCoin]     = useState<"Zcash"|"Penumbra"|"Namada">("Zcash");
+  const [selectedTool, setSelectedTool]     = useState<ToolOptions>(ToolOptions.supply);
+  const [selectedToolName, setSelectedToolName] = useState<string>(toolOptionLabels[ToolOptions.supply]);
+  const [cumulativeCheck, setCumulativeCheck]   = useState<boolean>(true);
+  const [filterSpamCheck, setfilterSpamCheck]   = useState<boolean>(false);
+
+  const [blockchainInfo, setBlockchainInfo]   = useState<BlockchainInfo|null>(null);
+  const [circulation, setCirculation]         = useState<number|null>(null);
   const [supplies, setSupplies] = useState<{
     default: SupplyData|null;
     sprout:  SupplyData|null;
     sapling: SupplyData|null;
     orchard: SupplyData|null;
-  }>({
-    default: null,
-    sprout: null,
-    sapling: null,
-    orchard: null,
-  });
-  const [lastUpdated, setLastUpdated]           = useState<string|null>(null);
-  const [shieldedTxCount, setShieldedTxCount]   = useState<ShieldedTxCount[]|null>(null);
-  const [latestNodeCount, setLatestNodeCount]   = useState<number|null>(null);
+  }>({ default: null, sprout: null, sapling: null, orchard: null });
+  const [lastUpdated, setLastUpdated]         = useState<string|null>(null);
+  const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount[]|null>(null);
+  const [latestNodeCount, setLatestNodeCount] = useState<number|null>(null);
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
@@ -201,6 +202,7 @@ const ShieldedPoolDashboard: React.FC = () => {
       default: return DataUrlOptions.defaultUrl;
     }
   };
+
   const getDataColor = (): string => {
     switch (selectedPool) {
       case "sprout": return "#A020F0";
@@ -213,14 +215,15 @@ const ShieldedPoolDashboard: React.FC = () => {
   const handleToolChange = (tool: ToolOptions) => {
     setSelectedTool(tool);
     switch (tool) {
-      case ToolOptions.supply: setSelectedPool("default"); break;
-      case ToolOptions.transaction: setSelectedPool("default"); break;
-      case ToolOptions.nodecount: setSelectedPool("nodecount"); break;
-      case ToolOptions.difficulty: setSelectedPool("difficulty"); break;
-      case ToolOptions.lockbox: setSelectedPool("lockbox"); break;
-      case ToolOptions.net_inflows_outflows: setSelectedPool("net_inflows_outflows"); break;
-      case "issuance": setSelectedPool("issuance"); break;
-      case ToolOptions.privacy_set: setSelectedPool("default"); break;
+      case ToolOptions.supply:           setSelectedPool("default"); break;
+      case ToolOptions.transaction:      setSelectedPool("default"); break;
+      case ToolOptions.nodecount:        setSelectedPool("nodecount"); break;
+      case ToolOptions.difficulty:       setSelectedPool("difficulty"); break;
+      case ToolOptions.lockbox:          setSelectedPool("lockbox"); break;
+      case ToolOptions.net_inflows_outflows:
+                                         setSelectedPool("net_inflows_outflows"); break;
+      case "issuance":                   setSelectedPool("issuance"); break;
+      case ToolOptions.privacy_set:      setSelectedPool("default"); break;
     }
     setSelectedToolName(toolOptionLabels[tool]);
   };
@@ -239,7 +242,6 @@ const ShieldedPoolDashboard: React.FC = () => {
     sapling: "Sapling Pool",
     orchard: "Orchard Pool",
   };
-
   const poolKeys = Object.keys(poolLabels) as Array<keyof typeof supplies>;
 
   return (
