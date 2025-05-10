@@ -76,7 +76,6 @@ async function getBlockchainData(): Promise<BlockchainInfo | null> {
     return null;
   }
 }
-
 async function getBlockchainInfo(): Promise<number | null> {
   try {
     const res = await fetch(blockchainInfoUrl);
@@ -87,7 +86,6 @@ async function getBlockchainInfo(): Promise<number | null> {
     return null;
   }
 }
-
 async function getSupplyData(url: string): Promise<SupplyData[]> {
   try {
     const res = await fetch(url);
@@ -97,18 +95,16 @@ async function getSupplyData(url: string): Promise<SupplyData[]> {
     return [];
   }
 }
-
 async function getLastUpdatedDate(): Promise<string> {
   try {
     const res = await fetch(DataUrlOptions.apiUrl);
     if (!res.ok) return "N/A";
-    const data = await res.json();
-    return data[0]?.commit?.committer?.date ?? "N/A";
+    const d = await res.json();
+    return d[0]?.commit?.committer?.date ?? "N/A";
   } catch {
     return "N/A";
   }
 }
-
 async function getShieldedTxCount(): Promise<ShieldedTxCount[] | null> {
   try {
     const res = await fetch(DataUrlOptions.shieldedTxCountUrl);
@@ -118,7 +114,6 @@ async function getShieldedTxCount(): Promise<ShieldedTxCount[] | null> {
     return null;
   }
 }
-
 async function getNodeCountData(url: string): Promise<NodeCountData[]> {
   try {
     const res = await fetch(url);
@@ -134,13 +129,13 @@ function formatDate(s: string | null): string {
   const d = new Date(s);
   return isNaN(d.getTime()) ? "N/A" : d.toLocaleDateString();
 }
-
 function transformSupplyData(d: SupplyData | null) {
   return d ? { timestamp: d.close, supply: d.supply } : null;
 }
 
 const ShieldedPoolDashboard: React.FC = () => {
-  const [selectedPool, setSelectedPool] = useState<"default"|"sprout"|"sapling"|"orchard">("default");
+  // <-- loosen selectedPool to generic string
+  const [selectedPool, setSelectedPool] = useState<string>("default");
   const [selectedCoin, setSelectedCoin] = useState<"Zcash"|"Penumbra"|"Namada">("Zcash");
   const [selectedTool, setSelectedTool] = useState<ToolOptions>(ToolOptions.supply);
   const [selectedToolName, setSelectedToolName] = useState<string>(toolOptionLabels[ToolOptions.supply]);
@@ -187,8 +182,7 @@ const ShieldedPoolDashboard: React.FC = () => {
       const url =
         selectedPool === "default"
           ? DataUrlOptions.defaultUrl
-          : // @ts-ignore: pool URL key matches
-            (DataUrlOptions as any)[`${selectedPool}Url`];
+          : (DataUrlOptions as any)[`${selectedPool}Url`];
       const arr = await getSupplyData(url);
       setLastUpdated(arr.pop()?.close || "N/A");
     })();
