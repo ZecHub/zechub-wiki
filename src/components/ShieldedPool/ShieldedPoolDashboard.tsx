@@ -66,8 +66,6 @@ interface SupplyData { close: string; supply: number; }
 type ShieldedTxCount = { sapling: number; orchard: number; timestamp: string; };
 type NodeCountData   = { Date: string; nodecount: string; };
 
-// --- fetchers omitted for brevity; same as before ---
-
 async function getBlockchainData(): Promise<BlockchainInfo | null> {
   try {
     const res = await fetch("https://api.blockchair.com/zcash/stats?key=A___nnFHttBygZPrKgm5WZyXU3WCondo");
@@ -101,8 +99,8 @@ async function getLastUpdatedDate(): Promise<string> {
   try {
     const res = await fetch(DataUrlOptions.apiUrl);
     if (!res.ok) return "N/A";
-    const data = await res.json();
-    return data[0]?.commit?.committer?.date ?? "N/A";
+    const d = await res.json();
+    return d[0]?.commit?.committer?.date ?? "N/A";
   } catch {
     return "N/A";
   }
@@ -150,13 +148,19 @@ const ShieldedPoolDashboard: React.FC = () => {
     sprout: SupplyData|null,
     sapling: SupplyData|null,
     orchard: SupplyData|null
-  }>({ default: null, sprout: null, sapling: null, orchard: null });
+  }>({
+    default: null,
+    sprout: null,
+    sapling: null,
+    orchard: null,
+  });
   const [lastUpdated, setLastUpdated]           = useState<string|null>(null);
   const [shieldedTxCount, setShieldedTxCount]   = useState<ShieldedTxCount[]|null>(null);
   const [latestNodeCount, setLatestNodeCount]   = useState<number|null>(null);
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
+  // prime data
   useEffect(() => {
     getBlockchainData().then(d => d && setBlockchainInfo(d));
     getBlockchainInfo().then(c => setCirculation(c));
@@ -173,50 +177,81 @@ const ShieldedPoolDashboard: React.FC = () => {
     });
   }, []);
 
+  // refresh updated timestamp on pool change
   useEffect(() => {
     (async () => {
-      const url = selectedPool==="default"
-        ? DataUrlOptions.defaultUrl
-        : (DataUrlOptions as any)[`${selectedPool}Url`];
+      const url =
+        selectedPool === "default"
+          ? DataUrlOptions.defaultUrl
+          : // @ts-expect-error: poolUrl keys match naming
+            (DataUrlOptions as any)[`${selectedPool}Url`];
       const arr = await getSupplyData(url);
-      setLastUpdated(arr.pop()?.close||"N/A");
+      setLastUpdated(arr.pop()?.close || "N/A");
     })();
   }, [selectedPool]);
 
   const getDataUrl = (): string => {
     switch (selectedPool) {
-      case "sprout": return DataUrlOptions.sproutUrl;
-      case "sapling": return DataUrlOptions.saplingUrl;
-      case "orchard": return DataUrlOptions.orchardUrl;
+      case "sprout":
+        return DataUrlOptions.sproutUrl;
+      case "sapling":
+        return DataUrlOptions.saplingUrl;
+      case "orchard":
+        return DataUrlOptions.orchardUrl;
       case ToolOptions.net_inflows_outflows:
         return DataUrlOptions.netInflowsOutflowsUrl;
-      case "issuance": return DataUrlOptions.issuanceUrl;
-      case ToolOptions.nodecount: return DataUrlOptions.nodecountUrl;
-      case ToolOptions.difficulty: return DataUrlOptions.difficultyUrl;
-      case ToolOptions.lockbox: return DataUrlOptions.lockboxUrl;
-      default: return DataUrlOptions.defaultUrl;
+      case "issuance":
+        return DataUrlOptions.issuanceUrl;
+      case ToolOptions.nodecount:
+        return DataUrlOptions.nodecountUrl;
+      case ToolOptions.difficulty:
+        return DataUrlOptions.difficultyUrl;
+      case ToolOptions.lockbox:
+        return DataUrlOptions.lockboxUrl;
+      default:
+        return DataUrlOptions.defaultUrl;
     }
   };
   const getDataColor = (): string => {
     switch (selectedPool) {
-      case "sprout": return "#A020F0";
-      case "sapling": return "#FFA500";
-      case "orchard": return "#32CD32";
-      default: return "url(#area-background-gradient)";
+      case "sprout":
+        return "#A020F0";
+      case "sapling":
+        return "#FFA500";
+      case "orchard":
+        return "#32CD32";
+      default:
+        return "url(#area-background-gradient)";
     }
   };
 
   const handleToolChange = (tool: ToolOptions) => {
     setSelectedTool(tool);
     switch (tool) {
-      case ToolOptions.supply: setSelectedPool("default"); break;
-      case ToolOptions.transaction: setSelectedPool("default"); break;
-      case ToolOptions.nodecount: setSelectedPool("nodecount"); break;
-      case ToolOptions.difficulty: setSelectedPool("difficulty"); break;
-      case ToolOptions.lockbox: setSelectedPool("lockbox"); break;
-      case ToolOptions.net_inflows_outflows: setSelectedPool("net_inflows_outflows"); break;
-      case "issuance": setSelectedPool("issuance"); break;
-      case ToolOptions.privacy_set: setSelectedPool("default"); break;
+      case ToolOptions.supply:
+        setSelectedPool("default");
+        break;
+      case ToolOptions.transaction:
+        setSelectedPool("default");
+        break;
+      case ToolOptions.nodecount:
+        setSelectedPool("nodecount");
+        break;
+      case ToolOptions.difficulty:
+        setSelectedPool("difficulty");
+        break;
+      case ToolOptions.lockbox:
+        setSelectedPool("lockbox");
+        break;
+      case ToolOptions.net_inflows_outflows:
+        setSelectedPool("net_inflows_outflows");
+        break;
+      case "issuance":
+        setSelectedPool("issuance");
+        break;
+      case ToolOptions.privacy_set:
+        setSelectedPool("default");
+        break;
     }
     setSelectedToolName(toolOptionLabels[tool]);
   };
@@ -236,10 +271,12 @@ const ShieldedPoolDashboard: React.FC = () => {
     orchard: "Orchard Pool",
   };
 
+  // ✂️ extract these once so TS knows they’re correct keys
+  const poolKeys = Object.keys(poolLabels) as Array<keyof typeof supplies>;
+
   return (
     <div className="mt-28">
-
-      {/* Header (title left, coin buttons right) */}
+      {/* HEADER */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="font-bold text-xl">{selectedToolName}</h2>
         <div className="flex gap-4">
@@ -261,9 +298,10 @@ const ShieldedPoolDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Chart & Tools */}
+      {/* CHART + TOOL SELECTOR */}
       <div className="border p-4 rounded-lg relative">
         <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply} />
+
         <div ref={divChartRef}>
           {selectedCoin !== "Zcash" ? (
             <div className="w-full h-[400px] flex flex-col items-center justify-center">
@@ -275,6 +313,7 @@ const ShieldedPoolDashboard: React.FC = () => {
               {selectedTool === ToolOptions.supply && (
                 <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
               )}
+
               {selectedTool === ToolOptions.transaction && (
                 <>
                   <div className="flex gap-4 justify-center mb-4">
@@ -298,6 +337,7 @@ const ShieldedPoolDashboard: React.FC = () => {
                   />
                 </>
               )}
+
               {selectedTool === ToolOptions.nodecount && (
                 <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
               )}
@@ -318,24 +358,20 @@ const ShieldedPoolDashboard: React.FC = () => {
                   filter={filterSpamCheck}
                 />
               )}
-              {selectedTool === ToolOptions.privacy_set && (
-                <PrivacySetVisualization />
-              )}
+              {selectedTool === ToolOptions.privacy_set && <PrivacySetVisualization />}
             </>
           )}
         </div>
 
-        {/* Pool toggles */}
+        {/* POOL BUTTONS */}
         {selectedTool === ToolOptions.supply && (
           <div className="mt-8 flex justify-center gap-6">
-            {(Object.keys(poolLabels) as Array<keyof typeof supplies>).map((key) => (
+            {poolKeys.map((key) => (
               <div key={key} className="flex flex-col items-center">
                 <Button
                   text={poolLabels[key]}
                   className={`py-2 px-4 rounded-full ${
-                    selectedPool === key
-                      ? "bg-[#1984c7] text-white"
-                      : "bg-gray-400 text-white"
+                    selectedPool === key ? "bg-[#1984c7] text-white" : "bg-gray-400 text-white"
                   }`}
                   onClick={() => setSelectedPool(key)}
                 />
@@ -347,7 +383,7 @@ const ShieldedPoolDashboard: React.FC = () => {
           </div>
         )}
 
-        {/* Export & Last updated */}
+        {/* EXPORT + UPDATED */}
         <div className="flex justify-end items-center gap-4 mt-4">
           <span className="text-sm text-gray-500">
             Last updated: {formatDate(lastUpdated)}
@@ -370,7 +406,7 @@ const ShieldedPoolDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Metrics */}
+      {/* METRICS */}
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Market Cap</h3>
