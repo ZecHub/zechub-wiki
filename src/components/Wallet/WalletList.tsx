@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import WalletItem from "@/components/Wallet/WalletItem";
 import FilterToggle from "@/components/FilterToggle";
@@ -51,7 +51,6 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         Features: featuresSet,
       });
 
-      
       let initialLikes: { [key: string]: number } = {};
       try {
         const response = await fetch("/api/wallet-likes", {
@@ -72,8 +71,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       }
 
       allWallets.forEach((wallet) => {
-        if (!initialLikes[wallet.title])
-          initialLikes[wallet.title] = 0; // Initialize likes to zero
+        if (!initialLikes[wallet.title]) initialLikes[wallet.title] = 0; // Initialize likes to zero
       });
       setLikes(initialLikes);
     };
@@ -160,24 +158,51 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     })
   );
 
-  const sortedWallets = filteredWallets.sort((a, b) => likes[b.title] - likes[a.title]);
-  
+  const sortedWallets = filteredWallets.sort(
+    (a, b) => likes[b.title] - likes[a.title]
+  );
+
   return (
     <div className="flex flex-col w-full md:flex-row">
-      <div className="wallet-filter w-[20%] relative">
-        <h2 className="text-4xl font-bold mb-6">
-          Filters
+      <div className="md:hidden flex justify-between items-center w-full mb-4">
+        <h2 className="text-4xl font-bold">Filters</h2>
+        <button
+          onClick={handleToggleFilter}
+          className="bg-[#1984c7] text-white px-4 py-2 rounded text-sm md:text-lg md:hidden"
+        >
+          Show Navigation
+        </button>
+      </div>
+
+      <div className="flex gap-2 py-4 flex-wrap md:hidden ">
+        {activeFilters?.map((item, index) => {
+          return (
+            <div
+              key={index + 1}
+              className="px-2 py-1 rounded-md font-[500] text-sm bg-slate-200 dark:bg-gray-700"
+            >
+              <p>{item}</p>
+            </div>
+          );
+        })}
+      </div>
+      <div className="wallet-filter w-full md:w-[20%] relative">
+        <div
+          className={`md:block md:static fixed  bottom-0 left-0 p-2 w-full bg-white dark:bg-gray-700 ${
+            isFilterVisible ? "block" : "hidden"
+          }`}
+        >
           <button
             onClick={handleToggleFilter}
-            className="float-right bg-blue-500 text-white px-4 py-2 rounded text-sm md:text-lg md:hidden">
-            {isFilterVisible ? 'Hide' : 'Show'}
+            className="bg-[#1984c7] absolute right-5 top-5 text-white px-4 py-2 rounded text-sm md:text-lg md:hidden"
+          >
+            Close
           </button>
-        </h2>
-        <div className={`md:block ${isFilterVisible ? 'block' : 'hidden'}`}>
           <FilterToggle
             filters={filters}
             activeFilters={activeFilters}
             toggleFilter={toggleFilter}
+            handleToggleFilter={handleToggleFilter}
           />
         </div>
       </div>

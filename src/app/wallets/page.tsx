@@ -1,5 +1,5 @@
 // src/app/wallets/page.tsx
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { getFileContent, getRoot } from "@/lib/authAndFetch";
 import { getBanner } from "@/lib/helpers";

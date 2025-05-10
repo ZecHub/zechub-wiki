@@ -20,7 +20,6 @@ const ZecToZatsConverter: React.FC = () => {
   return (
     <div
       style={{
-        background: "rgba(255, 255, 255, 0.8)",
         borderRadius: "10px",
         padding: "20px",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -28,6 +27,7 @@ const ZecToZatsConverter: React.FC = () => {
         margin: "20px auto",
         textAlign: "center",
       }}
+      className="dark:bg-gray-800 dark:text-white"
     >
       <h3>ZEC to Zats Converter</h3>
       <input
@@ -43,6 +43,7 @@ const ZecToZatsConverter: React.FC = () => {
           borderRadius: "5px",
           fontSize: "16px",
         }}
+        className="dark:bg-gray-700 dark:text-white"
       />
       <input
         type="text"
@@ -56,8 +57,8 @@ const ZecToZatsConverter: React.FC = () => {
           border: "1px solid #ddd",
           borderRadius: "5px",
           fontSize: "16px",
-          backgroundColor: "#f9f9f9",
         }}
+        className="dark:bg-gray-700 dark:text-white"
       />
     </div>
   );
