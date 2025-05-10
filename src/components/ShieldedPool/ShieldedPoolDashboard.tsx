@@ -13,27 +13,26 @@ import NoData from "../../assets/nodata.svg";
 import PrivacySetVisualization from "../PrivacySet/PrivacySetVisualization";
 import { ToolOptions, toolOptionLabels } from "../Tools/tools";
 
-// Dynamic imports
-const ShieldedPoolChart       = dynamic(() => import("./ShieldedPoolChart"), { ssr: true });
+const ShieldedPoolChart       = dynamic(() => import("./ShieldedPoolChart"),       { ssr: true });
 const TransactionSummaryChart = dynamic(() => import("../TransactionSummaryChart"), { ssr: true });
 const ZecIssuanceSummaryChart = dynamic(() => import("../ZecIssuanceSummaryChart"), { ssr: true });
 const NetInflowsOutflowsChart = dynamic(() => import("../Charts/NetInflowsOutflowsChart"), { ssr: true });
 
-// Data URLs
 const DataUrlOptions = {
-  defaultUrl:              "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json",
-  sproutUrl:               "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json",
-  saplingUrl:              "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json",
-  orchardUrl:              "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json",
-  netInflowsOutflowsUrl:   "/data/netinflowoutflow.json",
-  nodecountUrl:            "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/nodecount.json",
-  difficultyUrl:           "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/difficulty.json",
-  lockboxUrl:              "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/lockbox.json",
-  txsummaryUrl:            "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json",
-  shieldedTxCountUrl:      "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json",
-  issuanceUrl:             "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/issuance.json",
-  apiUrl:                  "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json",
+  defaultUrl:            "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shielded_supply.json",
+  sproutUrl:             "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sprout_supply.json",
+  saplingUrl:            "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/sapling_supply.json",
+  orchardUrl:            "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/orchard_supply.json",
+  netInflowsOutflowsUrl: "/data/netinflowoutflow.json",
+  nodecountUrl:          "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/nodecount.json",
+  difficultyUrl:         "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/difficulty.json",
+  lockboxUrl:            "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/lockbox.json",
+  txsummaryUrl:          "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json",
+  shieldedTxCountUrl:    "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/shieldedtxcount.json",
+  issuanceUrl:           "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/issuance.json",
+  apiUrl:                "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json",
 };
+
 const blockchainInfoUrl = "/api/blockchain-info";
 
 interface BlockchainInfo {
@@ -67,7 +66,6 @@ interface SupplyData { close: string; supply: number; }
 type ShieldedTxCount = { sapling: number; orchard: number; timestamp: string; };
 type NodeCountData   = { Date: string; nodecount: string; };
 
-// Fetch helpers
 async function getBlockchainData(): Promise<BlockchainInfo | null> {
   try {
     const res = await fetch("https://api.blockchair.com/zcash/stats?key=A___nnFHttBygZPrKgm5WZyXU3WCondo");
@@ -104,8 +102,8 @@ async function getLastUpdatedDate(): Promise<string> {
   try {
     const res = await fetch(DataUrlOptions.apiUrl);
     if (!res.ok) return "N/A";
-    const d = await res.json();
-    return d[0]?.commit?.committer?.date ?? "N/A";
+    const data = await res.json();
+    return data[0]?.commit?.committer?.date ?? "N/A";
   } catch {
     return "N/A";
   }
@@ -138,45 +136,65 @@ function formatDate(s: string | null): string {
 }
 
 function transformSupplyData(d: SupplyData | null) {
-  return d ? { timestamp: d.close, supply:	d.supply } : null;
+  return d ? { timestamp: d.close, supply: d.supply } : null;
 }
 
 const ShieldedPoolDashboard: React.FC = () => {
-  const [selectedPool, setSelectedPool] = useState<string>("default");
-  const [selectedCoin, setSelectedCoin] = useState<string>("Zcash");
-  const [selectedTool, setSelectedTool] = useState<string>(ToolOptions.supply);
+  const [selectedPool, setSelectedPool]         = useState<string>("default");
+  const [selectedCoin, setSelectedCoin]         = useState<string>("Zcash");
+  const [selectedTool, setSelectedTool]         = useState<string>(ToolOptions.supply);
   const [selectedToolName, setSelectedToolName] = useState<string>(toolOptionLabels[ToolOptions.supply]);
-  const [cumulativeCheck, setCumulativeCheck] = useState<boolean>(true);
-  const [filterSpamCheck, setfilterSpamCheck] = useState<boolean>(false);
+  const [cumulativeCheck, setCumulativeCheck]   = useState<boolean>(true);
+  const [filterSpamCheck, setfilterSpamCheck]   = useState<boolean>(false);
 
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
-  const [circulation, setCirculation] = useState<number | null>(null);
-  const [supplies, setSupplies] = useState<Record<string, SupplyData | null>>({ default: null, sprout: null, sapling: null, orchard: null });
-  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+  const [circulation, setCirculation]       = useState<number | null>(null);
+  const [supplies, setSupplies]             = useState<{
+    default: SupplyData | null;
+    sprout: SupplyData | null;
+    sapling: SupplyData | null;
+    orchard: SupplyData | null;
+  }>({
+    default: null, sprout: null, sapling: null, orchard: null
+  });
+  const [lastUpdated, setLastUpdated]         = useState<string | null>(null);
   const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount[] | null>(null);
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
   useEffect(() => {
-    getBlockchainData().then((d) => d && setBlockchainInfo(d));
-    getBlockchainInfo().then((c) => setCirculation(c));
-    getLastUpdatedDate().then((d) => setLastUpdated(d));
+    getBlockchainData().then(d => d && setBlockchainInfo(d));
+    getBlockchainInfo().then(c => setCirculation(c));
+    getLastUpdatedDate().then(d => setLastUpdated(d));
 
-    getSupplyData(DataUrlOptions.defaultUrl).then((a) => setSupplies((s) => ({ ...s, default: a.pop() || null })));
-    getSupplyData(DataUrlOptions.sproutUrl).then((a) => setSupplies((s) => ({ ...s, sprout: a.pop() || null })));
-    getSupplyData(DataUrlOptions.saplingUrl).then((a) => setSupplies((s) => ({ ...s, sapling: a.pop() || null })));
-    getSupplyData(DataUrlOptions.orchardUrl).then((a) => setSupplies((s) => ({ ...s, orchard: a.pop() || null })));
+    getSupplyData(DataUrlOptions.defaultUrl).then(a =>
+      setSupplies(s => ({ ...s, default: a.pop() || null }))
+    );
+    getSupplyData(DataUrlOptions.sproutUrl).then(a =>
+      setSupplies(s => ({ ...s, sprout: a.pop() || null }))
+    );
+    getSupplyData(DataUrlOptions.saplingUrl).then(a =>
+      setSupplies(s => ({ ...s, sapling: a.pop() || null }))
+    );
+    getSupplyData(DataUrlOptions.orchardUrl).then(a =>
+      setSupplies(s => ({ ...s, orchard: a.pop() || null }))
+    );
 
-    getShieldedTxCount().then((d) => d && setShieldedTxCount(d));
-    getNodeCountData(DataUrlOptions.nodecountUrl).then((a) => a.length && setLatestNodeCount(Number(a[a.length - 1].nodecount)));
+    getShieldedTxCount().then(d => d && setShieldedTxCount(d));
+    getNodeCountData(DataUrlOptions.nodecountUrl).then(a => {
+      if (a.length) setLatestNodeCount(Number(a[a.length - 1].nodecount));
+    });
   }, []);
 
   useEffect(() => {
     (async () => {
-      const url = selectedPool === "default" ? DataUrlOptions.defaultUrl : (DataUrlOptions as any)[`${selectedPool}Url`];
-      const a = await getSupplyData(url);
-      setLastUpdated(a.pop()?.close || "N/A");
+      const url =
+        selectedPool === "default"
+          ? DataUrlOptions.defaultUrl
+          : (DataUrlOptions as any)[`${selectedPool}Url`];
+      const data = await getSupplyData(url);
+      setLastUpdated(data.pop()?.close || "N/A");
     })();
   }, [selectedPool]);
 
@@ -185,7 +203,8 @@ const ShieldedPoolDashboard: React.FC = () => {
       case "sprout": return DataUrlOptions.sproutUrl;
       case "sapling": return DataUrlOptions.saplingUrl;
       case "orchard": return DataUrlOptions.orchardUrl;
-      case ToolOptions.net_inflows_outflows: return DataUrlOptions.netInflowsOutflowsUrl;
+      case ToolOptions.net_inflows_outflows:
+        return DataUrlOptions.netInflowsOutflowsUrl;
       case "issuance": return DataUrlOptions.issuanceUrl;
       case ToolOptions.nodecount: return DataUrlOptions.nodecountUrl;
       case ToolOptions.difficulty: return DataUrlOptions.difficultyUrl;
@@ -211,7 +230,9 @@ const ShieldedPoolDashboard: React.FC = () => {
       case ToolOptions.nodecount: setSelectedPool("nodecount"); break;
       case ToolOptions.difficulty: setSelectedPool("difficulty"); break;
       case ToolOptions.lockbox: setSelectedPool("lockbox"); break;
-      case ToolOptions.net_inflows_outflows: setSelectedPool("net_inflows_outflows"); break;
+      case ToolOptions.net_inflows_outflows:
+        setSelectedPool("net_inflows_outflows");
+        break;
       case "issuance": setSelectedPool("issuance"); break;
       case ToolOptions.privacy_set: setSelectedPool("default"); break;
       default: setSelectedPool("default");
@@ -220,7 +241,11 @@ const ShieldedPoolDashboard: React.FC = () => {
   };
 
   if (!blockchainInfo) {
-    return <div className="flex justify-center mt-48"><Spinner /></div>;
+    return (
+      <div className="flex justify-center mt-48">
+        <Spinner />
+      </div>
+    );
   }
 
   const poolLabels: Record<string, string> = {
@@ -232,27 +257,29 @@ const ShieldedPoolDashboard: React.FC = () => {
 
   return (
     <div className="mt-28">
-      {/* Header & Coin Buttons */}
-      <div className="flex items-center justify-center mb-4 space-x-6">
+      {/* Header: title left, coin buttons right */}
+      <div className="flex items-center justify-between mb-4">
         <h2 className="font-bold text-xl">{selectedToolName}</h2>
-        <Button
-          text="Zcash"
-          className="bg-yellow-400/75 text-white rounded-xl"
-          onClick={() => setSelectedCoin("Zcash")}
-        />
-        <Button
-          text="Penumbra"
-          className="bg-purple-500/75 text-white rounded-xl"
-          onClick={() => setSelectedCoin("Penumbra")}
-        />
-        <Button
-          text="Namada"
-          className="bg-yellow-300/75 text-white rounded-xl"
-          onClick={() => setSelectedCoin("Namada")}
-        />
+        <div className="flex gap-4">
+          <Button
+            text="Zcash"
+            className="bg-yellow-400/75 text-white rounded-xl px-4 py-2"
+            onClick={() => setSelectedCoin("Zcash")}
+          />
+          <Button
+            text="Penumbra"
+            className="bg-purple-500/75 text-white rounded-xl px-4 py-2"
+            onClick={() => setSelectedCoin("Penumbra")}
+          />
+          <Button
+            text="Namada"
+            className="bg-yellow-300/75 text-white rounded-xl px-4 py-2"
+            onClick={() => setSelectedCoin("Namada")}
+          />
+        </div>
       </div>
 
-      {/* Chart & Tool Selector */}
+      {/* Chart & Tools */}
       <div className="border p-4 rounded-lg relative">
         <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply} />
         <div ref={divChartRef}>
@@ -262,59 +289,143 @@ const ShieldedPoolDashboard: React.FC = () => {
               <p>Chart data for {selectedCoin} unavailable</p>
             </div>
           ) : (
-            <> {/* Chart cases */}
-              {selectedTool===ToolOptions.supply && <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />}
-              {selectedTool===ToolOptions.transaction && (
+            <>
+              {selectedTool === ToolOptions.supply && (
+                <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+              )}
+              {selectedTool === ToolOptions.transaction && (
                 <>
                   <div className="flex gap-4 justify-center mb-4">
-                    <Checkbox checked={cumulativeCheck} onChange={setCumulativeCheck} label="Cumulative" />
-                    <Checkbox checked={filterSpamCheck} onChange={setfilterSpamCheck} label="Filter Spam" />
+                    <Checkbox
+                      checked={cumulativeCheck}
+                      onChange={setCumulativeCheck}
+                      label="Cumulative"
+                    />
+                    <Checkbox
+                      checked={filterSpamCheck}
+                      onChange={setfilterSpamCheck}
+                      label="Filter Spam"
+                    />
                   </div>
                   <TransactionSummaryChart
                     dataUrl={DataUrlOptions.txsummaryUrl}
                     pool={selectedPool}
                     cumulative={cumulativeCheck}
                     filter={filterSpamCheck}
-                    applyFilter={!cumulativeCheck||filterSpamCheck}
+                    applyFilter={!cumulativeCheck || filterSpamCheck}
                   />
                 </>
               )}
-              {selectedTool===ToolOptions.nodecount && <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />}
-              {selectedTool===ToolOptions.difficulty && <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />}
-              {selectedTool===ToolOptions.lockbox && <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />}
-              {selectedTool===ToolOptions.net_inflows_outflows && <NetInflowsOutflowsChart dataUrl={getDataUrl()} color={getDataColor()} />}
-              {selectedTool==="issuance" && <ZecIssuanceSummaryChart dataUrl={DataUrlOptions.issuanceUrl} pool={selectedPool} cumulative={cumulativeCheck} filter={filterSpamCheck} />}
-              {selectedTool===ToolOptions.privacy_set && <PrivacySetVisualization />}
+              {selectedTool === ToolOptions.nodecount && (
+                <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
+              )}
+              {selectedTool === ToolOptions.difficulty && (
+                <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
+              )}
+              {selectedTool === ToolOptions.lockbox && (
+                <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
+              )}
+              {selectedTool === ToolOptions.net_inflows_outflows && (
+                <NetInflowsOutflowsChart dataUrl={getDataUrl()} color={getDataColor()} />
+              )}
+              {selectedTool === "issuance" && (
+                <ZecIssuanceSummaryChart
+                  dataUrl={DataUrlOptions.issuanceUrl}
+                  pool={selectedPool}
+                  cumulative={cumulativeCheck}
+                  filter={filterSpamCheck}
+                />
+              )}
+              {selectedTool === ToolOptions.privacy_set && (
+                <PrivacySetVisualization />
+              )}
             </>
           )}
         </div>
 
-        {/* Supply toggles */}
-        {selectedTool===ToolOptions.supply && (
+        {/* Pool toggles */}
+        {selectedTool === ToolOptions.supply && (
           <div className="mt-8 flex justify-center gap-6">
-            {Object.entries(poolLabels).map(([key,label])=> (
+            {Object.entries(poolLabels).map(([key, label]) => (
               <div key={key} className="flex flex-col items-center">
-                <Button text={label} className={`py-2 px-4 rounded ${selectedPool===key?"bg-blue-500 text-white":"bg-gray-400 text-white"}`} onClick={()=>setSelectedPool(key)} />
-                <span className="text-sm text-gray-600 mt-1">{(supplies[key]?.supply??0).toLocaleString()} ZEC</span>
+                <Button
+                  text={label}
+                  className={`py-2 px-4 rounded ${
+                    selectedPool === key
+                      ? "bg-[#1984c7] text-white"
+                      : "bg-gray-400 text-white"
+                  }`}
+                  onClick={() => setSelectedPool(key)}
+                />
+                <span className="text-sm text-gray-600 mt-1">
+                  {(supplies[key]?.supply ?? 0).toLocaleString()} ZEC
+                </span>
               </div>
             ))}
           </div>
         )}
 
-        {/* Export & Last Updated */}
+        {/* Export & Last updated */}
         <div className="flex justify-end items-center gap-4 mt-4">
-          <span className="text-sm text-gray-500">Last updated: {formatDate(lastUpdated)}</span>
-          <Button text="Export PNG" className="bg-blue-500 text-white" onClick={()=>handleSaveToPng(
-            selectedPool,
-            { sproutSupply: transformSupplyData(supplies.sprout), saplingSupply: transformSupplyData(supplies.sapling), orchardSupply: transformSupplyData(supplies.orchard) },
-            selectedTool
-          )} />
+          <span className="text-sm text-gray-500">
+            Last updated: {formatDate(lastUpdated)}
+          </span>
+          <Button
+            text="Export PNG"
+            className="bg-blue-500 text-white rounded-xl px-4 py-2"
+            onClick={() =>
+              handleSaveToPng(
+                selectedPool,
+                {
+                  sproutSupply: transformSupplyData(supplies.sprout),
+                  saplingSupply: transformSupplyData(supplies.sapling),
+                  orchardSupply: transformSupplyData(supplies.orchard),
+                },
+                selectedTool
+              )
+            }
+          />
         </div>
       </div>
 
-      {/* Metrics panel */}
+      {/* Metrics */}
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
-        {/* metric cards omitted for brevity */}
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Market Cap</h3>
+          <p>${blockchainInfo.market_cap_usd.toLocaleString()}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">ZEC in Circulation</h3>
+          <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Market Price (USD)</h3>
+          <p>${blockchainInfo.market_price_usd.toFixed(2)}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Market Price (BTC)</h3>
+          <p>{blockchainInfo.market_price_btc}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Blocks</h3>
+          <p>{blockchainInfo.blocks.toLocaleString()}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">24h Transactions</h3>
+          <p>{blockchainInfo.transactions_24h.toLocaleString()}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Nodes</h3>
+          <p>{latestNodeCount?.toLocaleString() ?? "Loading..."}</p>
+        </div>
+        <div className="border p-4 rounded-md text-center">
+          <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
+          <p>
+            {shieldedTxCount?.length
+              ? `Sapling: ${shieldedTxCount[shieldedTxCount.length - 1].sapling.toLocaleString()} | Orchard: ${shieldedTxCount[shieldedTxCount.length - 1].orchard.toLocaleString()}`
+              : "N/A"}
+          </p>
+        </div>
       </div>
     </div>
   );
