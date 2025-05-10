@@ -27,7 +27,7 @@ const HEIGHT_YEAR_MAP = [
 ];
 
 const DATA_URL =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/transaction_summary.json";
+  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/zcash/transaction_summary.json";
 
 const PrivacySetVisualization: React.FC = () => {
   const [loading, setLoading] = useState(true);
