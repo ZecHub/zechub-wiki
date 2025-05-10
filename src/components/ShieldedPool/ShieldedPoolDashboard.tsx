@@ -76,6 +76,7 @@ async function getBlockchainData(): Promise<BlockchainInfo | null> {
     return null;
   }
 }
+
 async function getBlockchainInfo(): Promise<number | null> {
   try {
     const res = await fetch(blockchainInfoUrl);
@@ -86,6 +87,7 @@ async function getBlockchainInfo(): Promise<number | null> {
     return null;
   }
 }
+
 async function getSupplyData(url: string): Promise<SupplyData[]> {
   try {
     const res = await fetch(url);
@@ -95,16 +97,18 @@ async function getSupplyData(url: string): Promise<SupplyData[]> {
     return [];
   }
 }
+
 async function getLastUpdatedDate(): Promise<string> {
   try {
     const res = await fetch(DataUrlOptions.apiUrl);
     if (!res.ok) return "N/A";
-    const d = await res.json();
-    return d[0]?.commit?.committer?.date ?? "N/A";
+    const data = await res.json();
+    return data[0]?.commit?.committer?.date ?? "N/A";
   } catch {
     return "N/A";
   }
 }
+
 async function getShieldedTxCount(): Promise<ShieldedTxCount[] | null> {
   try {
     const res = await fetch(DataUrlOptions.shieldedTxCountUrl);
@@ -114,6 +118,7 @@ async function getShieldedTxCount(): Promise<ShieldedTxCount[] | null> {
     return null;
   }
 }
+
 async function getNodeCountData(url: string): Promise<NodeCountData[]> {
   try {
     const res = await fetch(url);
@@ -129,6 +134,7 @@ function formatDate(s: string | null): string {
   const d = new Date(s);
   return isNaN(d.getTime()) ? "N/A" : d.toLocaleDateString();
 }
+
 function transformSupplyData(d: SupplyData | null) {
   return d ? { timestamp: d.close, supply: d.supply } : null;
 }
@@ -144,10 +150,10 @@ const ShieldedPoolDashboard: React.FC = () => {
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo|null>(null);
   const [circulation, setCirculation]       = useState<number|null>(null);
   const [supplies, setSupplies] = useState<{
-    default: SupplyData|null,
-    sprout: SupplyData|null,
-    sapling: SupplyData|null,
-    orchard: SupplyData|null
+    default: SupplyData|null;
+    sprout:  SupplyData|null;
+    sapling: SupplyData|null;
+    orchard: SupplyData|null;
   }>({
     default: null,
     sprout: null,
@@ -160,7 +166,6 @@ const ShieldedPoolDashboard: React.FC = () => {
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-  // prime data
   useEffect(() => {
     getBlockchainData().then(d => d && setBlockchainInfo(d));
     getBlockchainInfo().then(c => setCirculation(c));
@@ -177,13 +182,12 @@ const ShieldedPoolDashboard: React.FC = () => {
     });
   }, []);
 
-  // refresh updated timestamp on pool change
   useEffect(() => {
     (async () => {
       const url =
         selectedPool === "default"
           ? DataUrlOptions.defaultUrl
-          : // @ts-expect-error: poolUrl keys match naming
+          : // @ts-ignore: pool URL key matches
             (DataUrlOptions as any)[`${selectedPool}Url`];
       const arr = await getSupplyData(url);
       setLastUpdated(arr.pop()?.close || "N/A");
@@ -192,66 +196,37 @@ const ShieldedPoolDashboard: React.FC = () => {
 
   const getDataUrl = (): string => {
     switch (selectedPool) {
-      case "sprout":
-        return DataUrlOptions.sproutUrl;
-      case "sapling":
-        return DataUrlOptions.saplingUrl;
-      case "orchard":
-        return DataUrlOptions.orchardUrl;
-      case ToolOptions.net_inflows_outflows:
-        return DataUrlOptions.netInflowsOutflowsUrl;
-      case "issuance":
-        return DataUrlOptions.issuanceUrl;
-      case ToolOptions.nodecount:
-        return DataUrlOptions.nodecountUrl;
-      case ToolOptions.difficulty:
-        return DataUrlOptions.difficultyUrl;
-      case ToolOptions.lockbox:
-        return DataUrlOptions.lockboxUrl;
-      default:
-        return DataUrlOptions.defaultUrl;
+      case "sprout": return DataUrlOptions.sproutUrl;
+      case "sapling": return DataUrlOptions.saplingUrl;
+      case "orchard": return DataUrlOptions.orchardUrl;
+      case ToolOptions.net_inflows_outflows: return DataUrlOptions.netInflowsOutflowsUrl;
+      case "issuance": return DataUrlOptions.issuanceUrl;
+      case ToolOptions.nodecount: return DataUrlOptions.nodecountUrl;
+      case ToolOptions.difficulty: return DataUrlOptions.difficultyUrl;
+      case ToolOptions.lockbox: return DataUrlOptions.lockboxUrl;
+      default: return DataUrlOptions.defaultUrl;
     }
   };
   const getDataColor = (): string => {
     switch (selectedPool) {
-      case "sprout":
-        return "#A020F0";
-      case "sapling":
-        return "#FFA500";
-      case "orchard":
-        return "#32CD32";
-      default:
-        return "url(#area-background-gradient)";
+      case "sprout": return "#A020F0";
+      case "sapling": return "#FFA500";
+      case "orchard": return "#32CD32";
+      default: return "url(#area-background-gradient)";
     }
   };
 
   const handleToolChange = (tool: ToolOptions) => {
     setSelectedTool(tool);
     switch (tool) {
-      case ToolOptions.supply:
-        setSelectedPool("default");
-        break;
-      case ToolOptions.transaction:
-        setSelectedPool("default");
-        break;
-      case ToolOptions.nodecount:
-        setSelectedPool("nodecount");
-        break;
-      case ToolOptions.difficulty:
-        setSelectedPool("difficulty");
-        break;
-      case ToolOptions.lockbox:
-        setSelectedPool("lockbox");
-        break;
-      case ToolOptions.net_inflows_outflows:
-        setSelectedPool("net_inflows_outflows");
-        break;
-      case "issuance":
-        setSelectedPool("issuance");
-        break;
-      case ToolOptions.privacy_set:
-        setSelectedPool("default");
-        break;
+      case ToolOptions.supply: setSelectedPool("default"); break;
+      case ToolOptions.transaction: setSelectedPool("default"); break;
+      case ToolOptions.nodecount: setSelectedPool("nodecount"); break;
+      case ToolOptions.difficulty: setSelectedPool("difficulty"); break;
+      case ToolOptions.lockbox: setSelectedPool("lockbox"); break;
+      case ToolOptions.net_inflows_outflows: setSelectedPool("net_inflows_outflows"); break;
+      case "issuance": setSelectedPool("issuance"); break;
+      case ToolOptions.privacy_set: setSelectedPool("default"); break;
     }
     setSelectedToolName(toolOptionLabels[tool]);
   };
@@ -271,7 +246,6 @@ const ShieldedPoolDashboard: React.FC = () => {
     orchard: "Orchard Pool",
   };
 
-  // ✂️ extract these once so TS knows they’re correct keys
   const poolKeys = Object.keys(poolLabels) as Array<keyof typeof supplies>;
 
   return (
@@ -298,10 +272,9 @@ const ShieldedPoolDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* CHART + TOOL SELECTOR */}
+      {/* CHART & TOOLS */}
       <div className="border p-4 rounded-lg relative">
         <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply} />
-
         <div ref={divChartRef}>
           {selectedCoin !== "Zcash" ? (
             <div className="w-full h-[400px] flex flex-col items-center justify-center">
@@ -313,7 +286,6 @@ const ShieldedPoolDashboard: React.FC = () => {
               {selectedTool === ToolOptions.supply && (
                 <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
               )}
-
               {selectedTool === ToolOptions.transaction && (
                 <>
                   <div className="flex gap-4 justify-center mb-4">
@@ -337,7 +309,6 @@ const ShieldedPoolDashboard: React.FC = () => {
                   />
                 </>
               )}
-
               {selectedTool === ToolOptions.nodecount && (
                 <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
               )}
@@ -363,7 +334,7 @@ const ShieldedPoolDashboard: React.FC = () => {
           )}
         </div>
 
-        {/* POOL BUTTONS */}
+        {/* POOL TOGGLES */}
         {selectedTool === ToolOptions.supply && (
           <div className="mt-8 flex justify-center gap-6">
             {poolKeys.map((key) => (
@@ -383,7 +354,7 @@ const ShieldedPoolDashboard: React.FC = () => {
           </div>
         )}
 
-        {/* EXPORT + UPDATED */}
+        {/* EXPORT + LAST UPDATED */}
         <div className="flex justify-end items-center gap-4 mt-4">
           <span className="text-sm text-gray-500">
             Last updated: {formatDate(lastUpdated)}
