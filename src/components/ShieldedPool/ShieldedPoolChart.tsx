@@ -156,7 +156,6 @@ const ShieldedPoolChart = withTooltip<
         .finally(() => setIsLoading(false));
     }, [dataUrl]);
 
-
     // Get years available in the data
     const years = useMemo(() => {
       const uniqueYears = Array.from(
@@ -348,7 +347,7 @@ const ShieldedPoolChart = withTooltip<
             id="year"
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
-            className="dark:bg-transparent outline-none focus:outline-none focus:border-slate-300 active:border-slate-300 border-solid border-slate-300"
+            className="dark:bg-transparent dark:bg-gray-800 dark:text-gray-200 outline-none focus:outline-none focus:border-slate-300 active:border-slate-300 border-solid border-slate-300"
           >
             <option value="">All</option>
             {years.map((year) => (

@@ -24,7 +24,7 @@ const Dao: React.FC = () => {
 
         <p
           style={{ textAlign: "justify" }}
-          className="text-xl text-slate-600 mb-12"
+          className="text-xl text-slate-600 dark:text-slate-100  mb-12"
         >
           ZecHub provides an open source educational platform where community
           members can work together on creating, validating, and promoting
@@ -44,7 +44,7 @@ const Dao: React.FC = () => {
 
         <p
           style={{ textAlign: "justify" }}
-          className="text-base text-slate-600 mb-12"
+          className="text-base text-slate-600 dark:text-slate-100 mb-12"
         >
           ZecHub is the first Zcash ecosystem DAO. Its funds are held primarily
           within the Zcash shielded pool. Global Ambassadors, Community Grants
@@ -60,7 +60,7 @@ const Dao: React.FC = () => {
 
         <p
           style={{ textAlign: "justify" }}
-          className="text-base text-slate-600 mb-12"
+          className="text-base text-slate-600 dark:text-slate-100  mb-12"
         >
           All DAO proposals are public and can be viewed using the DAO DAO or
           Snapshot buttons. Anyone can create a proposal to vote on. In an
@@ -111,8 +111,7 @@ const Dao: React.FC = () => {
                   imgUrl={e.imgUrl}
                   description={e.description}
                   name={e.name}
-                  linkName={e.linkName}
-                  urlLink={e.urlLink}
+                  socials={e.social}
                   zcashAddress={e.zcashAddress}
                 />
               </FadeInAnimation>
