@@ -1,7 +1,7 @@
 [
     {
         "Date": "05/10/2025",
-        "Total Supply": [
+        "Total_Supply": [
             {
                 "id": "Namada",
                 "totalSupply": "1040288568.290605"
@@ -35,11 +35,11 @@
                 "totalSupply": "100000"
             }
         ],
-       "Native Supply NAM": "1024673515.595884"
+       "Native_Supply_NAM": "1024673515.595884"
   },
     {
         "Date": "05/11/2025",
-        "Total Supply": [
+        "Total_Supply": [
             {
                 "id": "Namada",
                 "totalSupply": "1040499128.459217"
@@ -73,6 +73,6 @@
                 "totalSupply": "100000"
             }
         ],
-       "Native Supply NAM": "1024778793.877170"
+       "Native_Supply_NAM": "1024778793.877170"
    }
 ]
