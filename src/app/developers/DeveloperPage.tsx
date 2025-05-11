@@ -94,7 +94,7 @@ export default function DeveloperPage() {
   return (
     <>
       <div
-        className="min-h-screen flex flex-col md:flex-row"
+        className="min-h-[50vh] flex flex-col md:flex-row"
         style={{
           backgroundImage: `url('zecbg.png')`, // Replace with your image path
           backgroundSize: "cover", // Ensure the background covers the entire section
@@ -102,7 +102,7 @@ export default function DeveloperPage() {
         }}
       >
         {/* Left Section with Full Background Image */}
-        <div className="w-full md:w-1/2 h-screen relative">
+        <div className="w-full md:w-1/2 h-[50vh] relative">
           {/* Overlay for Better Text Readability */}
           <div className="absolute inset-0 bg-white bg-opacity-50"></div>
 
@@ -120,7 +120,7 @@ export default function DeveloperPage() {
       </div>
 
       {/* Cards Section */}
-      <section id="cardLinks" className="bg-gray-100 py-12">
+      <section id="cardLinks" className="bg-gray-100 dark:bg-gray-800 py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12">
             How would you like to get started?
@@ -129,7 +129,7 @@ export default function DeveloperPage() {
             {cardsConfig.map((card, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg shadow-md overflow-hidden"
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
               >
                 {/* Card SVG Icon */}
                 <div className="flex items-center justify-center p-6">
@@ -139,7 +139,7 @@ export default function DeveloperPage() {
                 {/* Card Content */}
                 <div className="p-6">
                   <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
-                  <p className="text-gray-700 mb-4">{card.content}</p>
+                  <p className="dark:text-gray-300 text-gray-700 mb--4 h-[100px]">{card.content}</p>
                   <a
                     href={card.url}
                     target="_blank"
@@ -156,7 +156,7 @@ export default function DeveloperPage() {
       </section>
 
       {/* Explore the Documentation Section */}
-      <section id="exploreDocumentation" className="bg-white py-12">
+      <section id="exploreDocumentation" className="bg-white dark:bg-gray-800 py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12">
             Explore the Documentation
@@ -177,7 +177,7 @@ export default function DeveloperPage() {
                   >
                     Intro to Zcash
                   </a>
-                  <p className="text-gray-600 text-sm mt-1 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Learn about Zcash, its history, and its core principles.
                   </p>
                 </li>
@@ -190,7 +190,7 @@ export default function DeveloperPage() {
                   >
                     Intro to ZEC
                   </a>
-                  <p className="text-gray-600 text-sm mt-1 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Discover the use cases and benefits of ZEC, Zcash native
                     cryptocurrency.
                   </p>
@@ -204,7 +204,7 @@ export default function DeveloperPage() {
                   >
                     Intro to the Stack
                   </a>
-                  <p className="text-gray-600 text-sm mt-1 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Understand the architecture and components of the Zcash
                     stack.
                   </p>
@@ -225,7 +225,7 @@ export default function DeveloperPage() {
                   >
                     Address Encoding
                   </a>
-                  <p className="text-gray-600 text-sm mt-1 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Learn how Zcash addresses and keys are encoded.
                   </p>
                 </li>
@@ -238,7 +238,7 @@ export default function DeveloperPage() {
                   >
                     Transactions
                   </a>
-                  <p className="text-gray-600 text-sm mt-1 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Understand how transactions work in Zcash.
                   </p>
                 </li>
@@ -251,7 +251,7 @@ export default function DeveloperPage() {
                   >
                     Fees
                   </a>
-                  <p className="text-gray-600 text-sm mt-1 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Learn about transaction fees and how they are calculated.
                   </p>
                 </li>
@@ -264,7 +264,7 @@ export default function DeveloperPage() {
                   >
                     Nodes (zcashd)
                   </a>
-                  <p className="text-gray-600 text-sm mt-1 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Set up and manage Zcash nodes using zcashd.
                   </p>
                 </li>
@@ -277,7 +277,7 @@ export default function DeveloperPage() {
                   >
                     Nodes (zebrad)
                   </a>
-                  <p className="text-gray-600 text-sm mt-1 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Explore Zebra, an alternative Zcash node implementation.
                   </p>
                 </li>
@@ -290,7 +290,7 @@ export default function DeveloperPage() {
                   >
                     Lightwallet Servers
                   </a>
-                  <p className="text-gray-600 text-sm mt-1 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Learn about lightwalletd, a lightweight Zcash wallet server.
                   </p>
                 </li>
@@ -303,7 +303,7 @@ export default function DeveloperPage() {
                   >
                     Block Explorers
                   </a>
-                  <p className="text-gray-600 text-sm mt-1 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Explore Zcash blockchains using block explorers.
                   </p>
                 </li>
@@ -325,7 +325,7 @@ export default function DeveloperPage() {
                   >
                     Development Guidelines
                   </a>
-                  <p className="text-gray-600 text-sm mt-1 mb-2">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Follow best practices for developing on Zcash.
                   </p>
                 </li>
@@ -336,7 +336,7 @@ export default function DeveloperPage() {
       </section>
 
       {/* Was this page helpful? Section */}
-      <section id="feedback" className="bg-gray-100 py-12">
+      <section id="feedback" className="bg-gray-100 dark:bg-gray-800 py-12 mt-6">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold mb-4">Was this page helpful?</h2>
           <div className="flex items-center space-x-4">
