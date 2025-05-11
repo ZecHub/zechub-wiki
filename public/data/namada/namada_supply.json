@@ -35,44 +35,6 @@
                 "totalSupply": "100000"
             }
         ],
-        "Native Supply NAM": "1024673515.595884"
-  },
-    {
-        "Date": "05/10/2025",
-        "Total Supply": [
-            {
-                "id": "Namada",
-                "totalSupply": "1040288568.290605"
-            },
-            {
-                "id": "Atom",
-                "totalSupply": "11267804366"
-            },
-            {
-                "id": "Osmo",
-                "totalSupply": "106107437962"
-            },
-            {
-                "id": "Tia",
-                "totalSupply": "12714514321"
-            },
-            {
-                "id": "Penumbra",
-                "totalSupply": ""
-            },
-            {
-                "id": "Nym",
-                "totalSupply": "500000"
-            },
-            {
-                "id": "Neutron",
-                "totalSupply": "1000000"
-            },
-            {
-                "id": "Usdc",
-                "totalSupply": "100000"
-            }
-        ],
        "Native Supply NAM": "1024673515.595884"
   },
     {
