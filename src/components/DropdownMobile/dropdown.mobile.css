@@ -1,0 +1,73 @@
+.dropdown-mobile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  min-width: max-content;
+  font-weight: 500;
+}
+
+.dropdown-mobile-label {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  margin: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  max-width: max-content;
+}
+
+.dropdown-mobile-label .arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  margin-left: 6px;
+}
+
+.dropdown-mobile-label .arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.dropdown-mobile-content {
+  top: 56px;
+  max-width: 14rem;
+  padding: 0px 16px;
+  z-index: 1;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+}
+
+.dropdown-mobile-content.open {
+  max-height: 600px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.jen-padding {
+  padding: 10px 16px;
+}
+
+.jen-logo-position {
+  position: relative;
+}
+
+@media (min-width: 412px) and (max-width: 768px) {
+  .dropdown-mobile-content {
+    top: 56px;
+    max-width: 16rem;
+    padding: 0px 16px;
+    z-index: 1;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1290) {
+  .dropdown-mobile-content {
+    top: 56px;
+    max-width: 21rem;
+    padding: 0px 16px;
+    z-index: 1;
+  }
+}

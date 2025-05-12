@@ -2,7 +2,8 @@
 import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
 import type { Classes, MenuExp } from "@/types";
-import { Dropdown } from "flowbite-react";
+import Dropdown from "../Dropdown/Dropdown";
+import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoSearch as SearchIcon } from "react-icons/io5";
@@ -26,57 +27,61 @@ const NavLinks = ({
     closeMenu();
   };
   return (
-    <div className={`flex ${classes}`}>
+    <div className={`flex jen-justify-content ${classes}`}>
       {navigations.map((item, i) =>
         item.links ? (
-          <Dropdown
-            className="flex flex-row font-normal"
-            key={item.name + i}
-            label={item.name}
-            color="inherit"
-            size={"lg"}
-            trigger={menuExp ? "click" : "hover"}
-            style={{ fontWeight: "400" }}
-          >
+          <Dropdown label={item.name}>
             {item.links.map((link, i) => (
-              <div key={link.path + i}>
-                <Dropdown.Item
-                  key={link.subName}
-                  onClick={handleLinkClick}
-                  className="flex items-center gap-2 p-2"
+              <div
+                key={link.path + i}
+                className="hover:bg-yellow-300 dark:hover:bg-yellow-500 py-0 px-1 rounded-md"
+              >
+                <Link
+                  target={link.newTab ? "_blank" : "_self"}
+                  href={link.path}
                 >
-                  {link.icon && (
-                    <Icon icon={link.icon} className="xl:w-6 w-4 h-4 xl:h-6" />
-                  )}
-                  <Link
-                    target={link.newTab ? "_blank" : "_self"}
-                    href={link.path}
+                  <div
+                    key={link.subName}
+                    onClick={handleLinkClick}
+                    className="flex items-center gap-2 p-2 text-sm"
                   >
+                    {link.icon && (
+                      <Icon
+                        icon={link.icon}
+                        className="xl:w-6 w-4 h-4 xl:h-6"
+                      />
+                    )}
                     {link.subName}
-                  </Link>
-                </Dropdown.Item>
+                  </div>
+                </Link>
               </div>
             ))}
           </Dropdown>
         ) : (
-          <div key={item.name + i} className="flex gap-2">
-            <Link
-              target={item.newTab ? "_blank" : "_self"}
-              href={item.path}
+          <div className="dropdown" key={item.name + i}>
+            <div
+              key={"link.subName"}
               onClick={handleLinkClick}
-              className="flex flex-row font-normal p-2 mr-3 border-2 border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
+              className="jen-padding"
             >
-              {item.name}
-            </Link>
+              <Link
+                target={item.newTab ? "_blank" : "_self"}
+                href={item.path}
+                onClick={handleLinkClick}
+                className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold"
+              >
+                {item.name}
+              </Link>
+            </div>
           </div>
         )
       )}
 
-      <div className="flex xl:flex-row flex-col xl:space-x-3 xl:ml-3 sm:gap-0 gap-2">
+      <div className="flex xl:flex-row flex-col xl:space-x-3 xl:ml-6 sm:gap-0 gap-2">
         <Link
           href="/dao"
           onClick={handleLinkClick}
-          className="flex flex-row font-normal xl:ml-3 p-2 border-2 border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
+          className="flex flex-row font-normal xl:ml-0 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4 items-center justify-center w-[60px]"
         >
           DAO
         </Link>
@@ -84,10 +89,91 @@ const NavLinks = ({
         <Link
           href="/dashboard"
           onClick={handleLinkClick}
-          className="flex flex-row font-normal xl:ml-3 p-2 border-2 border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
+          className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4"
         >
           Dashboard
         </Link>
+      </div>
+    </div>
+  );
+};
+const MobileNavLinks = ({
+  classes,
+  menuExp,
+  closeMenu,
+}: Classes & { closeMenu: () => void }) => {
+  const handleLinkClick = () => {
+    closeMenu();
+  };
+  return (
+    <div>
+      <div className={`flex jen-justify-content ${classes}`}>
+        {navigations.map((item, i) =>
+          item.links ? (
+            <DropdownMobile label={item.name}>
+              {item.links.map((link, i) => (
+                <div
+                  className="hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-md"
+                  key={link.path + i}
+                >
+                  <Link
+                    target={link.newTab ? "_blank" : "_self"}
+                    href={link.path}
+                  >
+                    <div
+                      key={link.subName}
+                      onClick={handleLinkClick}
+                      className="flex items-center gap-2 p-2 text-sm"
+                    >
+                      {link.icon && (
+                        <Icon
+                          icon={link.icon}
+                          className="xl:w-6 w-4 h-4 xl:h-6 min-w-[1rem]"
+                        />
+                      )}
+                      {link.subName}
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </DropdownMobile>
+          ) : (
+            <div className="dropdown" key={item.name + i}>
+              <div
+                key={"link.subName"}
+                onClick={handleLinkClick}
+                className="jen-padding "
+              >
+                <Link
+                  target={item.newTab ? "_blank" : "_self"}
+                  href={item.path}
+                  onClick={handleLinkClick}
+                  className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold"
+                >
+                  {item.name}
+                </Link>
+              </div>
+            </div>
+          )
+        )}
+
+        <div className="flex flex-row xl:space-x-3 xl:ml-3 sm:gap-0 gap-2 items-baseline mt-3">
+          <Link
+            href="/dao"
+            onClick={handleLinkClick}
+            className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4 items-center justify-center w-[60px]"
+          >
+            DAO
+          </Link>
+
+          <Link
+            href="/dashboard"
+            onClick={handleLinkClick}
+            className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4 ml-2 items-center justify-center w-[108px]"
+          >
+            Dashboard
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -101,11 +187,11 @@ const MobileNav = ({
   return (
     <div className="relative flex flex-col w-11/12 h-auto justify-center z-10">
       <div
-        className={`flex flex-col p-6 absolute top-20 px-8 w-full rounded-xl transition duration-200`}
+        className={`flex flex-col p-6 absolute top-20 px-8 w-full rounded-xl transition duration-200 jen-fix-padding`}
       >
         <ul className="list-none flex items-start flex-1 flex-col">
-          <NavLinks
-            classes="flex-col font-bold gap-2 text-[18px]"
+          <MobileNavLinks
+            classes="flex-col font-bold gap-0 text-[18px]"
             menuExp={menuExp}
             setMenuExpanded={setMenuExpanded}
             closeMenu={closeMenu}
@@ -208,7 +294,10 @@ const Navigation = () => {
             <MobileNav
               menuExp={menuExpanded}
               setMenuExpanded={setMenuExpanded}
-              closeMenu={() => setIsOpen(false)}
+              closeMenu={() => {
+                setIsOpen(false);
+                console.log(isOpen);
+              }}
             />
           </SheetContent>
         </Sheet>
