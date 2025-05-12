@@ -30,7 +30,7 @@ const NavLinks = ({
     <div className={`flex jen-justify-content ${classes}`}>
       {navigations.map((item, i) =>
         item.links ? (
-          <Dropdown label={item.name}>
+          <Dropdown label={item.name} key={item.name + i}>
             {item.links.map((link, i) => (
               <div
                 key={link.path + i}
@@ -110,11 +110,11 @@ const MobileNavLinks = ({
       <div className={`flex jen-justify-content ${classes}`}>
         {navigations.map((item, i) =>
           item.links ? (
-            <DropdownMobile label={item.name}>
+            <DropdownMobile label={item.name} key={item.name + i}>
               {item.links.map((link, i) => (
                 <div
-                  className="hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-md"
                   key={link.path + i}
+                  className="hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-md"
                 >
                   <Link
                     target={link.newTab ? "_blank" : "_self"}

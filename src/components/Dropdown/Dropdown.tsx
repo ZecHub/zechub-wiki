@@ -8,8 +8,8 @@ interface DropdownProps {
 
 const Dropdown: React.FC<DropdownProps> = ({ label, children }) => {
   return (
-    <div className="dropdown" key={label}>
-      <div className="dropdown-label" key={label}>
+    <div className="dropdown">
+      <div className="dropdown-label">
         {label}{" "}
         <span className="arrow">
           <svg
