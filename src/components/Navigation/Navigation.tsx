@@ -1,184 +1,168 @@
 "use client";
 
-import DonationBtn from "@/components/UI/DonationBtn";
-import { navigations } from "@/constants/navigation";
-import type { Classes, MenuExp } from "@/types";
-import Dropdown from "../Dropdown/Dropdown";
-import DropdownMobile from "../DropdownMobile/DropdownMobile";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { IoSearch as SearchIcon } from "react-icons/io5";
 import {
   MdOutlineDarkMode as DarkIcon,
   MdLightMode as LightIcon,
 } from "react-icons/md";
 import { RiMenuLine as MenuIcon } from "react-icons/ri";
-import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
+import DonationBtn from "@/components/UI/DonationBtn";
+import Dropdown from "../Dropdown/Dropdown";
+import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
 import { Icon } from "../UI/Icon";
 import Logo from "../UI/Logo";
 import SocialIcons from "../UI/SocialIcons";
+import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
+import { navigations } from "@/constants/navigation";
 
-const NavLinks = ({
-  classes,
-  closeMenu,
-}: Classes & { closeMenu: () => void }) => {
-  return (
-    <div className={`flex jen-justify-content ${classes}`}>
-      {navigations.map((item) =>
-        item.links ? (
-          <Dropdown key={item.name} label={item.name}>
-            {item.links.map((link, idx) => (
-              <div
-                key={link.path + idx}
-                className="hover:bg-yellow-300 dark:hover:bg-yellow-500 py-0 px-1 rounded-md"
-              >
-                <Link
-                  target={link.newTab ? "_blank" : "_self"}
-                  href={link.path}
-                >
-                  <div
-                    onClick={closeMenu}
-                    className="flex items-center gap-2 p-2 text-sm"
-                  >
-                    {link.icon && (
-                      <Icon
-                        icon={link.icon}
-                        className="xl:w-6 w-4 h-4 xl:h-6"
-                      />
-                    )}
-                    {link.subName}
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </Dropdown>
-        ) : (
-          <div className="dropdown" key={item.name}>
-            <div onClick={closeMenu} className="jen-padding">
+
+// Desktop links component
+const NavLinks: React.FC<{
+  classes: string;
+  closeMenu: () => void;
+}> = ({ classes, closeMenu }) => (
+  <div className={`flex items-center ${classes}`}>
+    {navigations.map((item) =>
+      item.links ? (
+        <Dropdown key={item.name} label={item.name}>
+          {item.links.map((link, idx) => (
+            <div
+              key={link.path + idx}
+              className="hover:bg-yellow-300 dark:hover:bg-yellow-500 py-1 px-2 rounded-md"
+            >
               <Link
-                target={item.newTab ? "_blank" : "_self"}
-                href={item.path}
-                className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold"
+                href={link.path}
+                target={link.newTab ? "_blank" : "_self"}
+                onClick={closeMenu}
+                className="flex items-center gap-2 p-2 text-sm"
               >
-                {item.name}
+                {link.icon && <Icon icon={link.icon} className="w-5 h-5" />}
+                {link.subName}
               </Link>
             </div>
-          </div>
-        )
-      )}
+          ))}
+        </Dropdown>
+      ) : (
+        <div className="px-2" key={item.name}>
+          <Link
+            href={item.path}
+            target={item.newTab ? "_blank" : "_self"}
+            onClick={closeMenu}
+            className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold"
+          >
+            {item.name}
+          </Link>
+        </div>
+      )
+    )}
 
-      <div className="flex xl:flex-row flex-col xl:space-x-3 xl:ml-6 sm:gap-0 gap-2">
-        <Link
-          href="/dao"
-          onClick={closeMenu}
-          className="flex font-normal xl:ml-0 p-2 border-4 border-light-blue-500 rounded-xl hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black items-center justify-center w-[60px]"
-        >
-          DAO
-        </Link>
-        <Link
-          href="/dashboard"
-          onClick={closeMenu}
-          className="flex font-normal xl:ml-3 p-2 border-4 border-light-blue-500 rounded-xl hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black"
-        >
-          Dashboard
-        </Link>
-      </div>
-    </div>
-  );
-};
-
-const MobileNavLinks = ({
-  classes,
-  closeMenu,
-}: Classes & { closeMenu: () => void }) => {
-  return (
-    <div className={classes}>
-      {navigations.map((item) =>
-        item.links ? (
-          <DropdownMobile key={item.name} label={item.name}>
-            {item.links.map((link, idx) => (
-              <div
-                key={link.path + idx}
-                className="hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-md"
-              >
-                <Link
-                  target={link.newTab ? "_blank" : "_self"}
-                  href={link.path}
-                >
-                  <div
-                    onClick={closeMenu}
-                    className="flex items-center gap-2 p-2 text-sm"
-                  >
-                    {link.icon && (
-                      <Icon
-                        icon={link.icon}
-                        className="xl:w-6 w-4 h-4 xl:h-6 min-w-[1rem]"
-                      />
-                    )}
-                    {link.subName}
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </DropdownMobile>
-        ) : (
-          <div className="dropdown" key={item.name}>
-            <div onClick={closeMenu} className="jen-padding">
-              <Link
-                target={item.newTab ? "_blank" : "_self"}
-                href={item.path}
-                className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold"
-              >
-                {item.name}
-              </Link>
-            </div>
-          </div>
-        )
-      )}
-
-      <div className="flex flex-row xl:space-x-3 xl:ml-3 sm:gap-0 gap-2 items-baseline mt-3">
-        <Link
-          href="/dao"
-          onClick={closeMenu}
-          className="flex font-normal p-2 border-4 border-light-blue-500 rounded-xl hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black justify-center w-[60px]"
-        >
-          DAO
-        </Link>
-        <Link
-          href="/dashboard"
-          onClick={closeMenu}
-          className="flex font-normal p-2 border-4 border-light-blue-500 rounded-xl hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black ml-2 justify-center w-[108px]"
-        >
-          Dashboard
-        </Link>
-      </div>
-    </div>
-  );
-};
-
-const MobileNav = ({
-  closeMenu,
-}: { closeMenu: () => void }) => (
-  <div className="relative flex flex-col w-11/12 h-auto justify-center z-10">
-    <div className="flex flex-col p-6 absolute top-20 px-8 w-full rounded-xl transition duration-200 jen-fix-padding">
-      <MobileNavLinks
-        classes="flex-col font-bold gap-0 text-[18px]"
-        closeMenu={closeMenu}
-      />
-      <div className="flex flex-1 p-2 top-10 justify-start items-start my-3">
-        <SocialIcons newTab />
-      </div>
+    {/* DAO + Dashboard Buttons */}
+    <div className="flex space-x-3 ml-6">
+      <Link
+        href="/dao"
+        onClick={closeMenu}
+        className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
+      >
+        DAO
+      </Link>
+      <Link
+        href="/dashboard"
+        onClick={closeMenu}
+        className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
+      >
+        Dashboard
+      </Link>
     </div>
   </div>
 );
 
-const Navigation = () => {
-  const [dark, setDark]         = useState(false);
-  const [menuExpanded, setMenuExpanded] = useState(false);
-  const [openSearch, setOpenSearch]     = useState(false);
-  const [isOpen, setIsOpen]             = useState(false);
 
+// Mobile dropdown links
+const MobileNavLinks: React.FC<{
+  classes: string;
+  closeMenu: () => void;
+}> = ({ classes, closeMenu }) => (
+  <div className={classes}>
+    {navigations.map((item) =>
+      item.links ? (
+        <DropdownMobile key={item.name} label={item.name}>
+          {item.links.map((link, idx) => (
+            <div
+              key={link.path + idx}
+              className="hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-md"
+            >
+              <Link
+                href={link.path}
+                target={link.newTab ? "_blank" : "_self"}
+                onClick={closeMenu}
+                className="flex items-center gap-2 p-2 text-sm"
+              >
+                {link.icon && <Icon icon={link.icon} className="w-5 h-5" />}
+                {link.subName}
+              </Link>
+            </div>
+          ))}
+        </DropdownMobile>
+      ) : (
+        <div className="px-2" key={item.name}>
+          <Link
+            href={item.path}
+            target={item.newTab ? "_blank" : "_self"}
+            onClick={closeMenu}
+            className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold block p-2"
+          >
+            {item.name}
+          </Link>
+        </div>
+      )
+    ))}
+
+    {/* DAO + Dashboard for mobile */}
+    <div className="flex flex-col space-y-2 mt-4">
+      <Link
+        href="/dao"
+        onClick={closeMenu}
+        className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
+      >
+        DAO
+      </Link>
+      <Link
+        href="/dashboard"
+        onClick={closeMenu}
+        className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
+      >
+        Dashboard
+      </Link>
+    </div>
+  </div>
+);
+
+
+// Mobile sheet wrapper
+const MobileNav: React.FC<{
+  closeMenu: () => void;
+}> = ({ closeMenu }) => (
+  <div className="relative flex flex-col w-full h-auto justify-center bg-white dark:bg-slate-900">
+    <MobileNavLinks
+      classes="flex-col font-bold gap-2 text-lg p-4"
+      closeMenu={closeMenu}
+    />
+    <div className="p-4">
+      <SocialIcons newTab />
+    </div>
+  </div>
+);
+
+
+const Navigation: React.FC = () => {
+  const [dark, setDark]           = useState(false);
+  const [openSearch, setOpenSearch] = useState(false);
+  const [menuOpen, setMenuOpen]   = useState(false);
+
+  // toggle dark mode classes
   useEffect(() => {
     const html = document.documentElement;
     const body = document.body;
@@ -192,44 +176,46 @@ const Navigation = () => {
   }, [dark]);
 
   return (
-    <div className={`flex w-full border-b sticky top-0 bg-white dark:bg-slate-900 z-40 ${menuExpanded ? "mb-[120%]" : ""}`}>
-      <div className="p-2 flex items-center">
+    <header className="sticky top-0 z-40 bg-white dark:bg-slate-900 border-b">
+      <div className="flex items-center justify-between px-4 py-2">
         <Link href="/">
           <Logo />
         </Link>
-      </div>
 
-      <nav className="flex w-full xl:space-x-11">
-        <div className="hidden xl:flex flex-wrap items-center flex-grow">
-          <NavLinks
-            classes=""
-            closeMenu={() => setMenuExpanded(false)}
+        {/* Desktop nav */}
+        <nav className="hidden xl:flex flex-grow items-center">
+          <NavLinks classes="" closeMenu={() => {}} />
+        </nav>
+
+        {/* Search / Dark / Donation / Mobile menu */}
+        <div className="flex items-center space-x-4">
+          <Icon
+            icon={SearchIcon}
+            className="w-5 h-5 cursor-pointer"
+            onClick={() => setOpenSearch(true)}
           />
-        </div>
-
-        <div className="flex items-center ms-auto space-x-5 p-5">
-          <Icon icon={SearchIcon} className="h-5 w-5 cursor-pointer" onClick={() => setOpenSearch(true)} />
           <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
           <Icon
             icon={dark ? LightIcon : DarkIcon}
-            className="h-5 w-5 cursor-pointer"
+            className="w-5 h-5 cursor-pointer"
             onClick={() => setDark(!dark)}
           />
-          <div className="hidden xl:flex p-2">
+          <div className="hidden xl:block">
             <DonationBtn />
           </div>
-        </div>
 
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger className="xl:hidden p-5 cursor-pointer">
-            <Icon icon={MenuIcon} size={25} className="transition duration-500" />
-          </SheetTrigger>
-          <SheetContent side="left" className="bg-white dark:bg-slate-900">
-            <MobileNav closeMenu={() => setIsOpen(false)} />
-          </SheetContent>
-        </Sheet>
-      </nav>
-    </div>
+          {/* mobile menu button */}
+          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+            <SheetTrigger className="xl:hidden p-2">
+              <Icon icon={MenuIcon} size={24} className="cursor-pointer" />
+            </SheetTrigger>
+            <SheetContent side="left" className="p-0">
+              <MobileNav closeMenu={() => setMenuOpen(false)} />
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
+    </header>
   );
 };
 
