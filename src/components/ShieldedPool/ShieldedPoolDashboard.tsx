@@ -142,7 +142,8 @@ function transformSupplyData(d: SupplyData | null) {
 }
 
 const ShieldedPoolDashboard: React.FC = () => {
-  const [selectedPool, setSelectedPool]     = useState<"default"|"sprout"|"sapling"|"orchard">("default");
+  // ← widened to string so we can set other tool keys too
+  const [selectedPool, setSelectedPool]     = useState<string>("default");
   const [selectedCoin, setSelectedCoin]     = useState<"Zcash"|"Penumbra"|"Namada">("Zcash");
   const [selectedTool, setSelectedTool]     = useState<ToolOptions>(ToolOptions.supply);
   const [selectedToolName, setSelectedToolName] = useState<string>(toolOptionLabels[ToolOptions.supply]);
@@ -161,7 +162,7 @@ const ShieldedPoolDashboard: React.FC = () => {
   const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount[]|null>(null);
   const [latestNodeCount, setLatestNodeCount] = useState<number|null>(null);
 
-  // Namada-specific
+  // Namada
   const [namadaAssets, setNamadaAssets]               = useState<{ id: string; totalSupply: string }[]>([]);
   const [selectedNamadaAsset, setSelectedNamadaAsset] = useState<string>("");
 
@@ -198,7 +199,7 @@ const ShieldedPoolDashboard: React.FC = () => {
     fetch(DataUrlOptions.namadaSupplyUrl)
       .then(r => r.json())
       .then((json:any[]) => {
-        const list = (json[0]?.["Total Supply"]) || [];
+        const list = json[0]?.["Total Supply"] || [];
         setNamadaAssets(list);
         if (list.length) setSelectedNamadaAsset(list[0].id);
       })
@@ -217,11 +218,12 @@ const ShieldedPoolDashboard: React.FC = () => {
   } as const;
   const poolKeys = Object.keys(poolLabels) as Array<keyof typeof poolLabels>;
 
-  const getDataUrl = () => {
+  const getDataUrl = (): string => {
     switch (selectedPool) {
       case "sprout": return DataUrlOptions.sproutUrl;
       case "sapling": return DataUrlOptions.saplingUrl;
       case "orchard": return DataUrlOptions.orchardUrl;
+      // no TS error any more:
       case ToolOptions.net_inflows_outflows: return DataUrlOptions.netInflowsOutflowsUrl;
       case "issuance": return DataUrlOptions.issuanceUrl;
       case ToolOptions.nodecount: return DataUrlOptions.nodecountUrl;
@@ -231,7 +233,7 @@ const ShieldedPoolDashboard: React.FC = () => {
     }
   };
 
-  const getDataColor = () => {
+  const getDataColor = (): string => {
     switch (selectedPool) {
       case "sprout": return "#A020F0";
       case "sapling": return "#FFA500";
@@ -251,7 +253,7 @@ const ShieldedPoolDashboard: React.FC = () => {
       case ToolOptions.difficulty:  setSelectedPool("difficulty"); break;
       case ToolOptions.lockbox:     setSelectedPool("lockbox"); break;
       case ToolOptions.net_inflows_outflows:
-        setSelectedPool("net_inflows_outflows"); break;
+        setSelectedPool(ToolOptions.net_inflows_outflows); break;
       default:
         setSelectedPool("default");
     }
@@ -260,7 +262,7 @@ const ShieldedPoolDashboard: React.FC = () => {
 
   return (
     <div className="mt-28">
-      {/* Header & coin selector */}
+      {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="font-bold text-xl">{selectedToolName}</h2>
         <div className="flex gap-4">
@@ -282,7 +284,7 @@ const ShieldedPoolDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Chart & tools */}
+      {/* Chart + Tools */}
       <div className="border p-4 rounded-lg relative">
         <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply} />
         <div ref={divChartRef}>
@@ -346,7 +348,7 @@ const ShieldedPoolDashboard: React.FC = () => {
           )}
         </div>
 
-        {/* Zcash supply toggles */}
+        {/* ZEC supply toggles */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Zcash" && (
           <div className="mt-8 flex justify-center gap-6">
             {poolKeys.map(key => (
@@ -366,7 +368,7 @@ const ShieldedPoolDashboard: React.FC = () => {
           </div>
         )}
 
-        {/* Namada asset toggles */}
+        {/* Namada toggles */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Namada" && (
           <div className="mt-8 flex justify-center gap-6">
             {namadaAssets.map(asset => (
@@ -395,7 +397,7 @@ const ShieldedPoolDashboard: React.FC = () => {
           </div>
         )}
 
-        {/* Namada time-series */}
+        {/* Namada chart */}
         {selectedCoin === "Namada" &&
          selectedTool === ToolOptions.supply &&
          selectedNamadaAsset && (
@@ -407,7 +409,7 @@ const ShieldedPoolDashboard: React.FC = () => {
           </div>
         )}
 
-        {/* Export & last-updated */}
+        {/* Export & last updated */}
         <div className="flex justify-end items-center gap-4 mt-4">
           <span className="text-sm text-gray-500">
             Last updated: {formatDate(lastUpdated)}
@@ -430,7 +432,7 @@ const ShieldedPoolDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Metrics panel */}
+      {/* Metrics */}
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Market Cap</h3>
