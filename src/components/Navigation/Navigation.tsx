@@ -1,4 +1,3 @@
-// src/components/Navigation/Navigation.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -16,135 +15,142 @@ import SearchBar from "../SearchBar";
 import { Icon } from "../UI/Icon";
 import Logo from "../UI/Logo";
 import SocialIcons from "../UI/SocialIcons";
-import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
+import { Sheet, SheetTrigger, SheetContent } from "../UI/Sheet";
 import { navigations } from "@/constants/navigation";
 
-// Desktop navigation links
-const NavLinks: React.FC<{ classes?: string; closeMenu: () => void }> = ({
-  classes = "",
-  closeMenu,
-}) => {
-  return (
-    <div className={`flex items-center ${classes}`}>
-      {navigations.map((item) =>
-        item.links ? (
-          <Dropdown key={item.name} label={item.name}>
-            {item.links.map((link, idx) => (
-              <div
-                key={link.path + idx}
-                className="hover:bg-yellow-300 dark:hover:bg-yellow-500 py-1 px-2 rounded-md"
-              >
-                <Link
-                  href={link.path}
-                  target={link.newTab ? "_blank" : "_self"}
-                  onClick={closeMenu}
-                  className="flex items-center gap-2 p-2 text-sm"
-                >
-                  {link.icon && <Icon icon={link.icon} className="w-5 h-5" />}
-                  {link.subName}
-                </Link>
-              </div>
-            ))}
-          </Dropdown>
-        ) : (
-          <div className="px-2" key={item.name}>
-            <Link
-              href={item.path}
-              target={item.newTab ? "_blank" : "_self"}
-              onClick={closeMenu}
-              className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold"
+// Props for desktop links
+interface NavLinksProps {
+  classes?: string;
+  closeMenu: () => void;
+}
+
+// Desktop nav links
+const NavLinks: React.FC<NavLinksProps> = ({ classes = "", closeMenu }) => (
+  <div className={`flex items-center ${classes}`}>
+    {navigations.map((item) =>
+      item.links ? (
+        <Dropdown key={item.name} label={item.name}>
+          {item.links.map((link, idx) => (
+            <div
+              key={`${link.path}-${idx}`}
+              className="hover:bg-yellow-300 dark:hover:bg-yellow-500 py-1 px-2 rounded-md"
             >
-              {item.name}
-            </Link>
-          </div>
-        )
-      )}
-
-      {/* DAO + Dashboard */}
-      <div className="flex space-x-3 ml-6">
-        <Link
-          href="/dao"
-          onClick={closeMenu}
-          className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
-        >
-          DAO
-        </Link>
-        <Link
-          href="/dashboard"
-          onClick={closeMenu}
-          className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
-        >
-          Dashboard
-        </Link>
-      </div>
-    </div>
-  );
-};
-
-// Mobile dropdown links
-const MobileNavLinks: React.FC<{ classes?: string; closeMenu: () => void }> = ({
-  classes = "",
-  closeMenu,
-}) => {
-  return (
-    <div className={classes}>
-      {navigations.map((item) =>
-        item.links ? (
-          <DropdownMobile key={item.name} label={item.name}>
-            {item.links.map((link, idx) => (
-              <div
-                key={link.path + idx}
-                className="hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-md"
+              <Link
+                href={link.path}
+                target={link.newTab ? "_blank" : "_self"}
+                onClick={closeMenu}
+                className="flex items-center gap-2 p-2 text-sm"
               >
-                <Link
-                  href={link.path}
-                  target={link.newTab ? "_blank" : "_self"}
-                  onClick={closeMenu}
-                  className="flex items-center gap-2 p-2 text-sm"
-                >
-                  {link.icon && <Icon icon={link.icon} className="w-5 h-5" />}
-                  {link.subName}
-                </Link>
-              </div>
-            ))}
-          </DropdownMobile>
-        ) : (
-          <div className="px-2" key={item.name}>
-            <Link
-              href={item.path}
-              target={item.newTab ? "_blank" : "_self"}
-              onClick={closeMenu}
-              className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold block p-2"
-            >
-              {item.name}
-            </Link>
-          </div>
-        )
-      ))}
+                {link.icon && <Icon icon={link.icon} className="w-5 h-5" />}
+                {link.subName}
+              </Link>
+            </div>
+          ))}
+        </Dropdown>
+      ) : (
+        <div className="px-2" key={item.name}>
+          <Link
+            href={item.path}
+            target={item.newTab ? "_blank" : "_self"}
+            onClick={closeMenu}
+            className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold"
+          >
+            {item.name}
+          </Link>
+        </div>
+      )
+    )}
 
-      {/* DAO + Dashboard (mobile) */}
-      <div className="flex flex-col space-y-2 mt-4">
-        <Link
-          href="/dao"
-          onClick={closeMenu}
-          className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
-        >
-          DAO
-        </Link>
-        <Link
-          href="/dashboard"
-          onClick={closeMenu}
-          className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
-        >
-          Dashboard
-        </Link>
-      </div>
+    {/* DAO + Dashboard */}
+    <div className="flex space-x-3 ml-6">
+      <Link
+        href="/dao"
+        onClick={closeMenu}
+        className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
+      >
+        DAO
+      </Link>
+      <Link
+        href="/dashboard"
+        onClick={closeMenu}
+        className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
+      >
+        Dashboard
+      </Link>
     </div>
-  );
-};
+  </div>
+);
+
+// Props for mobile links
+interface MobileNavLinksProps {
+  classes?: string;
+  closeMenu: () => void;
+}
+
+// Mobile nav links
+const MobileNavLinks: React.FC<MobileNavLinksProps> = ({ classes = "", closeMenu }) => (
+  <div className={classes}>
+    {navigations.map((item) =>
+      item.links ? (
+        <DropdownMobile key={item.name} label={item.name}>
+          {item.links.map((link, idx) => (
+            <div
+              key={`${link.path}-${idx}`}
+              className="hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-md"
+            >
+              <Link
+                href={link.path}
+                target={link.newTab ? "_blank" : "_self"}
+                onClick={closeMenu}
+                className="flex items-center gap-2 p-2 text-sm"
+              >
+                {link.icon && <Icon icon={link.icon} className="w-5 h-5" />}
+                {link.subName}
+              </Link>
+            </div>
+          ))}
+        </DropdownMobile>
+      ) : (
+        <div className="px-2" key={item.name}>
+          <Link
+            href={item.path}
+            target={item.newTab ? "_blank" : "_self"}
+            onClick={closeMenu}
+            className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold block p-2"
+          >
+            {item.name}
+          </Link>
+        </div>
+      )
+    ))}
+
+    {/* DAO + Dashboard (mobile) */}
+    <div className="flex flex-col space-y-2 mt-4">
+      <Link
+        href="/dao"
+        onClick={closeMenu}
+        className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
+      >
+        DAO
+      </Link>
+      <Link
+        href="/dashboard"
+        onClick={closeMenu}
+        className="px-3 py-1 border-2 border-light-blue-500 rounded-lg hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black text-center"
+      >
+        Dashboard
+      </Link>
+    </div>
+  </div>
+);
+
+// Props for mobile container
+interface MobileNavProps {
+  closeMenu: () => void;
+}
 
 // Mobile sheet container
-const MobileNav: React.FC<{ closeMenu: () => void }> = ({ closeMenu }) => (
+const MobileNav: React.FC<MobileNavProps> = ({ closeMenu }) => (
   <div className="relative flex flex-col w-full h-auto justify-center bg-white dark:bg-slate-900">
     <MobileNavLinks classes="flex-col font-bold gap-2 text-lg p-4" closeMenu={closeMenu} />
     <div className="p-4">
@@ -158,7 +164,7 @@ const Navigation: React.FC = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Toggle dark mode on <html> & <body>
+  // Toggle dark mode classes on html & body
   useEffect(() => {
     const html = document.documentElement;
     const body = document.body;
@@ -183,7 +189,7 @@ const Navigation: React.FC = () => {
           <NavLinks closeMenu={() => {}} />
         </nav>
 
-        {/* Search / Dark toggle / Donation / Mobile menu */}
+        {/* Search / Dark / Donation / Mobile menu */}
         <div className="flex items-center space-x-4">
           <Icon icon={SearchIcon} className="w-5 h-5 cursor-pointer" onClick={() => setOpenSearch(true)} />
           <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
@@ -212,4 +218,3 @@ const Navigation: React.FC = () => {
 };
 
 export default Navigation;
-
