@@ -146,10 +146,7 @@ const MobileNavLinks: React.FC<{ classes?: string; closeMenu: () => void }> = ({
 // Mobile sheet container
 const MobileNav: React.FC<{ closeMenu: () => void }> = ({ closeMenu }) => (
   <div className="relative flex flex-col w-full h-auto justify-center bg-white dark:bg-slate-900">
-    <MobileNavLinks
-      classes="flex-col font-bold gap-2 text-lg p-4"
-      closeMenu={closeMenu}
-    />
+    <MobileNavLinks classes="flex-col font-bold gap-2 text-lg p-4" closeMenu={closeMenu} />
     <div className="p-4">
       <SocialIcons newTab />
     </div>
@@ -188,11 +185,7 @@ const Navigation: React.FC = () => {
 
         {/* Search / Dark toggle / Donation / Mobile menu */}
         <div className="flex items-center space-x-4">
-          <Icon
-            icon={SearchIcon}
-            className="w-5 h-5 cursor-pointer"
-            onClick={() => setOpenSearch(true)}
-          />
+          <Icon icon={SearchIcon} className="w-5 h-5 cursor-pointer" onClick={() => setOpenSearch(true)} />
           <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
           <Icon
             icon={dark ? LightIcon : DarkIcon}
@@ -219,3 +212,4 @@ const Navigation: React.FC = () => {
 };
 
 export default Navigation;
+
