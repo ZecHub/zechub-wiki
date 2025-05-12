@@ -2,28 +2,29 @@ import Link from "next/link";
 import { useState, ChangeEvent, useRef } from "react";
 import { SearchInput } from "./SearchInput";
 import { searcher } from "@/constants/searcher";
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, Transition } from "@headlessui/react";
 import { motion } from "framer-motion";
 import { IoMdClose as closeIcon } from "react-icons/io";
 import { MdArrowForward as ArrowIcon } from "react-icons/md";
 import { Icon } from "../UI/Icon";
 import { SearchBarProps } from "@/types";
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
 const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const observerRef = useRef<HTMLDivElement>(null);
 
   const onClose = () => {
-    setSearchInput('');
+    setSearchInput("");
     setOpenSearch(false);
   };
 
   // Debounced search function
   const debouncedSearch = debounce((inputValue: string) => {
-    const results = searcher.filter((item) =>
-      item.name && item.name.toLowerCase().includes(inputValue.toLowerCase())
+    const results = searcher.filter(
+      (item) =>
+        item.name && item.name.toLowerCase().includes(inputValue.toLowerCase())
     );
     setSearchResults(results);
   }, 300); // Delay in milliseconds
@@ -45,9 +46,13 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
       <Dialog
         as="div"
         className="fixed inset-0 overflow-y-auto"
-        onClose={() => { }}
+        onClose={() => {}}
+        title=""
       >
-        <Dialog.Overlay className="fixed inset-0 bg-black opacity-75 z-10" />
+        <Dialog.Overlay
+          title=""
+          className="fixed inset-0 bg-black opacity-75 z-10"
+        />
 
         <div className="flex items-center justify-center min-h-screen  z-20">
           <motion.div
@@ -66,7 +71,10 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
             </div>
 
             <div className="my-3">
-              <SearchInput searchInput={searchInput} handleSearch={handleChange} />
+              <SearchInput
+                searchInput={searchInput}
+                handleSearch={handleChange}
+              />
             </div>
 
             {searchInput.length > 0 ? (
@@ -74,13 +82,19 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
                 {searchResults.length > 0 ? (
                   <div className="mt-4 h-72" ref={observerRef}>
                     {searchResults.map((result) => (
-                      <Link key={result.name} href={result.url} onClick={onClose}>
-                        <div
-                          className="inline-flex mb-2 items-center justify-between w-full p-5 text-gray-900 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-500 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-900 hover:bg-gray-100 dark:text-white dark:bg-gray-600 dark:hover:bg-gray-500"
-                        >
+                      <Link
+                        key={result.name}
+                        href={result.url}
+                        onClick={onClose}
+                      >
+                        <div className="inline-flex mb-2 items-center justify-between w-full p-5 text-gray-900 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-500 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-900 hover:bg-gray-100 dark:text-white dark:bg-gray-600 dark:hover:bg-gray-500">
                           <div className="block">
-                            <div className="w-full text-lg font-semibold">{result.name}</div>
-                            <div className="w-full text-gray-500 justify-self-auto dark:text-gray-400">{result.desc}</div>
+                            <div className="w-full text-lg font-semibold">
+                              {result.name}
+                            </div>
+                            <div className="w-full text-gray-500 justify-self-auto dark:text-gray-400">
+                              {result.desc}
+                            </div>
                           </div>
 
                           <Icon
