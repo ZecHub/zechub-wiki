@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
 import NodeCountChart from "@/components/NodeCountChart";
@@ -10,8 +11,8 @@ import Tools from "@/components/Tools";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { Spinner } from "flowbite-react";
 import PrivacySetVisualization from "../PrivacySet/PrivacySetVisualization";
-import { ToolOptions, toolOptionLabels } from "../Tools/tools";
 import NamadaSupplyChart from "./NamadaSupplyChart";
+import { ToolOptions, toolOptionLabels } from "../Tools/tools";
 
 const ShieldedPoolChart       = dynamic(() => import("./ShieldedPoolChart"),       { ssr: true });
 const TransactionSummaryChart = dynamic(() => import("../TransactionSummaryChart"), { ssr: true });
@@ -141,13 +142,13 @@ function transformSupplyData(d: SupplyData | null) {
 }
 
 const ShieldedPoolDashboard: React.FC = () => {
-  // --- state ---
-  const [selectedPool, setSelectedPool]       = useState<"default"|"sprout"|"sapling"|"orchard">("default");
-  const [selectedCoin, setSelectedCoin]       = useState<"Zcash"|"Penumbra"|"Namada">("Zcash");
-  const [selectedTool, setSelectedTool]       = useState<ToolOptions>(ToolOptions.supply);
+  // use string so any pool or tool string is assignable
+  const [selectedPool, setSelectedPool]     = useState<string>("default");
+  const [selectedCoin, setSelectedCoin]     = useState<"Zcash"|"Penumbra"|"Namada">("Zcash");
+  const [selectedTool, setSelectedTool]     = useState<ToolOptions>(ToolOptions.supply);
   const [selectedToolName, setSelectedToolName] = useState<string>(toolOptionLabels[ToolOptions.supply]);
-  const [cumulativeCheck, setCumulativeCheck] = useState<boolean>(true);
-  const [filterSpamCheck, setfilterSpamCheck] = useState<boolean>(false);
+  const [cumulativeCheck, setCumulativeCheck]   = useState<boolean>(true);
+  const [filterSpamCheck, setfilterSpamCheck]   = useState<boolean>(false);
 
   const [blockchainInfo, setBlockchainInfo]     = useState<BlockchainInfo|null>(null);
   const [circulation, setCirculation]           = useState<number|null>(null);
@@ -162,12 +163,12 @@ const ShieldedPoolDashboard: React.FC = () => {
   const [latestNodeCount, setLatestNodeCount] = useState<number|null>(null);
 
   // Namada assets
-  const [namadaAssets, setNamadaAssets]             = useState<{id:string;totalSupply:string}[]>([]);
+  const [namadaAssets, setNamadaAssets]               = useState<{ id:string; totalSupply:string }[]>([]);
   const [selectedNamadaAsset, setSelectedNamadaAsset] = useState<string>("");
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-  // --- data fetch on mount ---
+  // initial fetch
   useEffect(() => {
     getBlockchainData().then(d => d && setBlockchainInfo(d));
     getBlockchainInfo().then(c => setCirculation(c));
@@ -184,7 +185,7 @@ const ShieldedPoolDashboard: React.FC = () => {
     });
   }, []);
 
-  // update last‐updated when pool changes
+  // update last‐updated on pool change
   useEffect(() => {
     (async () => {
       const url = selectedPool === "default"
@@ -195,7 +196,7 @@ const ShieldedPoolDashboard: React.FC = () => {
     })();
   }, [selectedPool]);
 
-  // load Namada assets when Namada is selected
+  // load Namada when selectedCoin changes
   useEffect(() => {
     if (selectedCoin !== "Namada") return;
     fetch(DataUrlOptions.namadaSupplyUrl)
@@ -246,6 +247,7 @@ const ShieldedPoolDashboard: React.FC = () => {
 
   const handleToolChange = (tool: ToolOptions) => {
     setSelectedTool(tool);
+    // routing each tool into a pool key
     switch (tool) {
       case ToolOptions.supply:           setSelectedPool("default"); break;
       case ToolOptions.transaction:      setSelectedPool("default"); break;
@@ -253,7 +255,7 @@ const ShieldedPoolDashboard: React.FC = () => {
       case ToolOptions.difficulty:       setSelectedPool("difficulty"); break;
       case ToolOptions.lockbox:          setSelectedPool("lockbox"); break;
       case ToolOptions.net_inflows_outflows:
-                                         setSelectedPool("net_inflows_outflows"); break;
+                                         setSelectedPool(ToolOptions.net_inflows_outflows); break;
       case "issuance":                   setSelectedPool("issuance"); break;
       case ToolOptions.privacy_set:      setSelectedPool("default"); break;
     }
@@ -287,6 +289,7 @@ const ShieldedPoolDashboard: React.FC = () => {
       {/* Chart & Tools */}
       <div className="border p-4 rounded-lg relative">
         <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply} />
+
         <div ref={divChartRef}>
           {selectedCoin !== "Zcash" ? (
             <div className="w-full h-[400px] flex flex-col items-center justify-center">
@@ -298,19 +301,12 @@ const ShieldedPoolDashboard: React.FC = () => {
               {selectedTool === ToolOptions.supply && (
                 <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
               )}
+
               {selectedTool === ToolOptions.transaction && (
                 <>
                   <div className="flex gap-4 justify-center mb-4">
-                    <Checkbox
-                      checked={cumulativeCheck}
-                      onChange={setCumulativeCheck}
-                      label="Cumulative"
-                    />
-                    <Checkbox
-                      checked={filterSpamCheck}
-                      onChange={setfilterSpamCheck}
-                      label="Filter Spam"
-                    />
+                    <Checkbox checked={cumulativeCheck} onChange={setCumulativeCheck} label="Cumulative" />
+                    <Checkbox checked={filterSpamCheck} onChange={setfilterSpamCheck} label="Filter Spam" />
                   </div>
                   <TransactionSummaryChart
                     dataUrl={DataUrlOptions.txsummaryUrl}
@@ -321,6 +317,7 @@ const ShieldedPoolDashboard: React.FC = () => {
                   />
                 </>
               )}
+
               {selectedTool === ToolOptions.nodecount && (
                 <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
               )}
@@ -346,10 +343,10 @@ const ShieldedPoolDashboard: React.FC = () => {
           )}
         </div>
 
-        {/* Pool Toggles */}
+        {/* Shielded Supply toggles */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Zcash" && (
           <div className="mt-8 flex justify-center gap-6">
-            {poolKeys.map((key) => (
+            {poolKeys.map(key => (
               <div key={key} className="flex flex-col items-center">
                 <Button
                   text={poolLabels[key]}
@@ -366,25 +363,18 @@ const ShieldedPoolDashboard: React.FC = () => {
           </div>
         )}
 
-        {/* Namada Asset Toggles */}
+        {/* Namada toggles */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Namada" && (
           <div className="mt-8 flex justify-center gap-6">
             {namadaAssets.map(asset => (
               <div key={asset.id} className="flex flex-col items-center">
                 <Button
                   className={`flex items-center gap-2 py-2 px-4 rounded-full ${
-                    selectedNamadaAsset === asset.id
-                      ? "bg-yellow-500 text-white"
-                      : "bg-gray-400 text-white"
+                    selectedNamadaAsset === asset.id ? "bg-yellow-500 text-white" : "bg-gray-400 text-white"
                   }`}
                   onClick={() => setSelectedNamadaAsset(asset.id)}
                 >
-                  <Image
-                    src={`/logos/${asset.id.toLowerCase()}.png`}
-                    alt={asset.id}
-                    width={24}
-                    height={24}
-                  />
+                  <Image src={`/logos/${asset.id.toLowerCase()}.png`} alt={asset.id} width={24} height={24} />
                   {asset.id}
                 </Button>
                 <span className="text-sm text-gray-600 mt-1">
@@ -395,21 +385,16 @@ const ShieldedPoolDashboard: React.FC = () => {
           </div>
         )}
 
-        {/* Namada Supply Time‐Series */}
+        {/* Namada timeseries */}
         {selectedCoin === "Namada" && selectedTool === ToolOptions.supply && selectedNamadaAsset && (
           <div className="mt-6">
-            <NamadaSupplyChart
-              dataUrl={DataUrlOptions.namadaSupplyUrl}
-              assetId={selectedNamadaAsset}
-            />
+            <NamadaSupplyChart dataUrl={DataUrlOptions.namadaSupplyUrl} assetId={selectedNamadaAsset} />
           </div>
         )}
 
-        {/* Export & Last Updated */}
+        {/* Export + Last updated */}
         <div className="flex justify-end items-center gap-4 mt-4">
-          <span className="text-sm text-gray-500">
-            Last updated: {formatDate(lastUpdated)}
-          </span>
+          <span className="text-sm text-gray-500">Last updated: {formatDate(lastUpdated)}</span>
           <Button
             text="Export PNG"
             className="bg-blue-500 text-white rounded-full px-4 py-2"
@@ -428,7 +413,7 @@ const ShieldedPoolDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Metrics */}
+      {/* Metrics panel */}
       <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Market Cap</h3>
