@@ -216,7 +216,7 @@ const ShieldedPoolDashboard: React.FC = () => {
     });
   }, []);
 
-  // Update last‐updated when pool changes
+  // Update “last updated”
   useEffect(() => {
     (async () => {
       const key = selectedPool === "default" ? "defaultUrl" : `${selectedPool}Url`;
@@ -225,7 +225,7 @@ const ShieldedPoolDashboard: React.FC = () => {
     })();
   }, [selectedPool]);
 
-  // Load Namada assets on selection
+  // Load Namada assets
   useEffect(() => {
     if (selectedCoin !== "Namada") return;
     fetch(DataUrlOptions.namadaSupplyUrl)
@@ -254,7 +254,7 @@ const ShieldedPoolDashboard: React.FC = () => {
   } as const;
   const poolKeys = Object.keys(poolLabels) as Array<keyof typeof poolLabels>;
 
-  // Data URL selector
+  // Helpers
   const getDataUrl = (): string => {
     switch (selectedPool) {
       case "sprout":
@@ -293,7 +293,6 @@ const ShieldedPoolDashboard: React.FC = () => {
 
   const handleToolChange = (tool: ToolOptions) => {
     setSelectedTool(tool);
-    // route to pools
     switch (tool) {
       case ToolOptions.supply:
       case ToolOptions.transaction:
@@ -323,7 +322,7 @@ const ShieldedPoolDashboard: React.FC = () => {
 
   return (
     <div className="mt-28">
-      {/* Header & coin buttons */}
+      {/* Header & Coin Buttons */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="font-bold text-xl">{selectedToolName}</h2>
         <div className="flex gap-4">
@@ -345,11 +344,12 @@ const ShieldedPoolDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Chart & tools */}
+      {/* Chart & Tools */}
       <div className="border p-4 rounded-lg relative">
         <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply} />
 
         <div ref={divChartRef}>
+          {/* Zcash */}
           {selectedCoin === "Zcash" && (
             <>
               {selectedTool === ToolOptions.supply && (
@@ -410,13 +410,26 @@ const ShieldedPoolDashboard: React.FC = () => {
             </>
           )}
 
-          {selectedCoin === "Namada" && selectedTool === ToolOptions.supply && selectedNamadaAsset && (
-            <NamadaSupplyChart
-              dataUrl={DataUrlOptions.namadaSupplyUrl}
-              assetId={selectedNamadaAsset}
-            />
-          )}
+          {/* Namada: spinner */}
+          {selectedCoin === "Namada" &&
+            selectedTool === ToolOptions.supply &&
+            namadaAssets.length === 0 && (
+              <div className="flex justify-center p-8">
+                <Spinner />
+              </div>
+            )}
 
+          {/* Namada: chart */}
+          {selectedCoin === "Namada" &&
+            selectedTool === ToolOptions.supply &&
+            selectedNamadaAsset && (
+              <NamadaSupplyChart
+                dataUrl={DataUrlOptions.namadaSupplyUrl}
+                assetId={selectedNamadaAsset}
+              />
+            )}
+
+          {/* Other coins */}
           {selectedCoin !== "Zcash" && selectedCoin !== "Namada" && (
             <div className="w-full h-[400px] flex flex-col items-center justify-center">
               <Image src={NoData} width={200} height={250} alt="No data" />
@@ -469,7 +482,7 @@ const ShieldedPoolDashboard: React.FC = () => {
           </div>
         )}
 
-        {/* Export & last updated */}
+        {/* Export & Last Updated */}
         <div className="flex justify-end items-center gap-4 mt-4">
           <span className="text-sm text-gray-500">
             Last updated: {formatDate(lastUpdated)}
