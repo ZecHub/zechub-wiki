@@ -231,7 +231,7 @@ const ShieldedPoolDashboard: React.FC = () => {
     fetch(DataUrlOptions.namadaSupplyUrl)
       .then((r) => r.json())
       .then((json: any[]) => {
-        const list = json[0]?.["Total Supply"] || [];
+        const list = json[0]?.["Total_Supply"] || [];
         setNamadaAssets(list);
         if (list.length) setSelectedNamadaAsset(list[0].id);
       })
