@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
+
 type TransactionSummaryDatum = {
   height: number;
   sapling: number;
@@ -111,9 +112,9 @@ const PrivacySetVisualization: React.FC = () => {
 
   const humanize = (v: number) =>
     v >= 1e6
-      ? `${(v / 1e6).toFixed(1)}M`
+      ? `${Math.ceil(v / 1e6)}M`
       : v >= 1e3
-      ? `${(v / 1e3).toFixed(1)}k`
+      ? `${Math.ceil(v / 1e3)}k`
       : `${v}`;
 
   // Draw cluster
@@ -170,7 +171,7 @@ const PrivacySetVisualization: React.FC = () => {
   return (
     <div className="bg-[#f8f4e8] overflow-x-scroll" style={{ padding: 20, borderRadius: 8 }}>
       <svg
-        width={1200}
+        width={1400}
         height={650}
         style={{ margin: "0 auto", display: "block" }}
       >
@@ -210,11 +211,11 @@ const PrivacySetVisualization: React.FC = () => {
         <g transform="translate(1040,600)">
           <rect width={16} height={16} fill="#d4a017" />
           <text x={24} y={12} fill="#333" fontSize={12}>
-            Sapling (total notes: {humanize(totalSapNotes)})
+            Sapling: {humanize(totalSapNotes)}
           </text>
           <rect y={24} width={16} height={16} fill="#111" />
           <text x={24} y={36} fill="#333" fontSize={12}>
-            Orchard (total notes: {humanize(totalOrchNotes)})
+            Orchard: {humanize(totalOrchNotes)}
           </text>
         </g>
       </svg>
