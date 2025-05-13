@@ -154,7 +154,7 @@ const ShieldedPoolDashboard: React.FC = () => {
     getSupplyData(DataUrlOptions.defaultUrl).then((a) => setSupplies((s) => ({ ...s, default: a.pop() || null })));
     getSupplyData(DataUrlOptions.sproutUrl).then((a) => setSupplies((s) => ({ ...s, sprout: a.pop() || null })));
     getSupplyData(DataUrlOptions.saplingUrl).then((a) => setSupplies((s) => ({ ...s, sapling: a.pop() || null })));
-    getSupplyData(DataUrlOptions.orchardUrl).then((a) => setSuplates((s) => ({ ...s, orchard: a.pop() || null })));
+    getSupplyData(DataUrlOptions.orchardUrl).then((a) => setSupplies((s) => ({ ...s, orchard: a.pop() || null })));
 
     getShieldedTxCount().then((d) => d && setShieldedTxCount(d));
     getNodeCountData(DataUrlOptions.nodecountUrl).then((a) => { if (a.length) setLatestNodeCount(Number(a[a.length - 1].nodecount)); });
