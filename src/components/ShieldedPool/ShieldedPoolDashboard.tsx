@@ -315,13 +315,18 @@ const ShieldedPoolDashboard: React.FC = () => {
         {selectedTool === ToolOptions.supply && selectedCoin === "Namada" && (
           <div className="mt-8 flex flex-wrap justify-center gap-6">
             {namadaAssets.map((asset) => (
-              <div key={asset.id} className="flex flex-col items-center">
-                <Button
-                  text={asset.id}
-                  className={`py-2 px-4 rounded-full ${selectedNamadaAsset === asset.id ? "bg-yellow-500 text-white" : "bg-gray-400 text-white"}`}
-                  onClick={() => setSelectedNamadaAsset(asset.id)}
-                />
-                <span className="text-sm text-gray-600 mt-1">{(Number(asset.totalSupply || 0) / 1_000_000).toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+    <div key={asset.id} className="flex flex-col items-center">
+      <Button
+        text={asset.id}
+        className={`py-2 px-4 rounded-full ${selectedNamadaAsset === asset.id ? "bg-yellow-500 text-white" : "bg-gray-400 text-white"}`}
+        onClick={() => setSelectedNamadaAsset(asset.id)}
+      />
+      <span className="text-sm text-gray-600 mt-1">
+        {asset.id === "Namada"
+          ? Number(asset.totalSupply || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })
+          : Math.floor(Number(asset.totalSupply || 0) / 1_000_000).toLocaleString()}
+      </span>
+    </div>.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
               </div>
             ))}
           </div>
