@@ -347,11 +347,11 @@ const ShieldedPoolChart = withTooltip<
             id="year"
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
-            className="dark:bg-transparent dark:bg-gray-800 dark:text-gray-200 outline-none focus:outline-none focus:border-slate-300 active:border-slate-300 border-solid border-slate-300"
+            className="dark:bg-gray-800 dark:text-gray-200 outline-none focus:outline-none focus:border-slate-300 active:border-slate-300 border-solid border-slate-300"
           >
             <option value="">All</option>
             {years.map((year) => (
-              <option value={year} key={year} className="dar:text-slate-800">
+              <option value={year} key={year} className="dark:text-gray-200">
                 {year}
               </option>
             ))}

@@ -211,8 +211,8 @@ export const daoMembers = [
     social: [
       {
         name: "Zcash",
-        url: "https://zcashblockexplorer.com/ua/u1zhgy24tweexhjcsstya5qqzrus4cgv0amasfv5jp6f3p3qvw265rugn8ref5djg472l5s382mwuffremffr7se6xjlh5exagwg2d6frs",
-        icon: socialIcons.zcash,
+        url: "https://zechub.social/@dismad",
+        icon: socialIcons.mastodon,
       },
     ],
     zcashAddress:
@@ -237,7 +237,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1822391888759894016/x4YVVNjd_400x400.jpg",
+      "https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png",
     name: "Michae2xl",
     description: `1 year+ as Zcash Brazil ambassador, Software Engineer & Product Owner, known as Michae2xl on social media, has
         been 7+ years in the crypto space, worked for a DAO as a Community Manager in Brazil & Canada for almost 4

@@ -323,7 +323,7 @@ const ShieldedPoolDashboard: React.FC = () => {
   return (
     <div className="mt-28">
       {/* Header & Coin Buttons */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex flex-wrap gap-4 items-center justify-between mb-4">
         <h2 className="font-bold text-xl">{selectedToolName}</h2>
         <div className="flex gap-4">
           <Button
@@ -440,7 +440,7 @@ const ShieldedPoolDashboard: React.FC = () => {
 
         {/* Zcash pool toggles */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Zcash" && (
-          <div className="mt-8 flex justify-center gap-6">
+          <div className="mt-8 flex flex-wrap justify-center gap-6">
             {poolKeys.map((key) => (
               <div key={key} className="flex flex-col items-center">
                 <Button
@@ -452,7 +452,7 @@ const ShieldedPoolDashboard: React.FC = () => {
                   }`}
                   onClick={() => setSelectedPool(key)}
                 />
-                <span className="text-sm text-gray-600 mt-1">
+                <span className="text-sm text-gray-600 dark:text-gray-200 mt-1">
                   {(supplies[key]?.supply || 0).toLocaleString()} ZEC
                 </span>
               </div>
@@ -462,7 +462,7 @@ const ShieldedPoolDashboard: React.FC = () => {
 
         {/* Namada asset toggles */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Namada" && (
-          <div className="mt-8 flex justify-center gap-6">
+          <div className="mt-8 flex flex-wrap justify-center gap-6">
             {namadaAssets.map((asset) => (
               <div key={asset.id} className="flex flex-col items-center">
                 <Button

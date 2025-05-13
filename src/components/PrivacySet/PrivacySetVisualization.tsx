@@ -171,7 +171,7 @@ const PrivacySetVisualization: React.FC = () => {
     orcX = 900;
 
   return (
-    <div className="bg-[#f8f4e8] dark:bg-slate-900 overflow-x-scroll" style={{ padding: 20, borderRadius: 8 }}>
+    <div className="bg-[#f8f4e8] overflow-x-scroll" style={{ padding: 20, borderRadius: 8 }}>
       <svg
         width={1200}
         height={650}
