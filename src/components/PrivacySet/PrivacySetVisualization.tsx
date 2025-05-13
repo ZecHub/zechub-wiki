@@ -2,12 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 
-/**
- * PrivacySetVisualization
- * Rings radiate chronologically from center (earliest year) to outer (latest),
- * with hover highlighting via stroke events.
- */
-
 type TransactionSummaryDatum = {
   height: number;
   sapling: number;
@@ -102,9 +96,12 @@ const PrivacySetVisualization: React.FC = () => {
     cumOrch.push([y, prev + v]);
   });
 
-  // Totals
-  const totalSap = cumSap[cumSap.length - 1][1];
-  const totalOrc = cumOrch[cumOrch.length - 1][1];
+  // Totals (transactions)
+  const totalSapTx = cumSap[cumSap.length - 1][1];
+  const totalOrchTx = cumOrch[cumOrch.length - 1][1];
+  // Privacy set = notes ≈ tx * 2
+  const totalSapNotes = totalSapTx * 2;
+  const totalOrchNotes = totalOrchTx * 2;
 
   // Radii
   const minR = 20;
@@ -192,7 +189,7 @@ const PrivacySetVisualization: React.FC = () => {
           r={maxR + 10}
           fill="none"
           stroke="#d4a017"
-          strokeOpacity={0.4}
+          strokeOpacity={0.2}
           strokeWidth={4}
         />
         <circle
@@ -213,11 +210,11 @@ const PrivacySetVisualization: React.FC = () => {
         <g transform="translate(1040,600)">
           <rect width={16} height={16} fill="#d4a017" />
           <text x={24} y={12} fill="#333" fontSize={12}>
-            Sapling (total: {humanize(totalSap)})
+            Sapling (total notes: {humanize(totalSapNotes)})
           </text>
           <rect y={24} width={16} height={16} fill="#111" />
           <text x={24} y={36} fill="#333" fontSize={12}>
-            Orchard (total: {humanize(totalOrc)})
+            Orchard (total notes: {humanize(totalOrchNotes)})
           </text>
         </g>
       </svg>
