@@ -1,0 +1,95 @@
+[
+    {
+        "Last_committed_epoch": 644,
+        "Proposal": [
+            {
+                "id": 10,
+                "Type": "Default with Wasm",
+                "Author": "tnam1qqgll8x8rz9fvtdv8q6n985za0vjvgyu0udxh7fp",
+                "Start_Epoch": "318",
+                "End_Epoch": "330",
+                "Activation_Epoch": "331"
+            },
+            {
+                "id": 11,
+                "Type": "Default with Wasm",
+                "Author": "tnam1qqgll8x8rz9fvtdv8q6n985za0vjvgyu0udxh7fp",
+                "Start_Epoch": "339",
+                "End_Epoch": "358",
+                "Activation_Epoch": "359"
+            },
+            {
+                "id": 12,
+                "Type": "PGF funding",
+                "Author": "tnam1qztdx4y7a3wn0qmgcgtrty237vcnp9f9hs3rt3k7",
+                "Start_Epoch": "340",
+                "End_Epoch": "360",
+                "Activation_Epoch": "361"
+            },
+            {
+                "id": 13,
+                "Type": "PGF funding",
+                "Author": "tnam1qztdx4y7a3wn0qmgcgtrty237vcnp9f9hs3rt3k7",
+                "Start_Epoch": "364",
+                "End_Epoch": "380",
+                "Activation_Epoch": "381"
+            },
+            {
+                "id": 14,
+                "Type": "PGF funding",
+                "Author": "tnam1qztdx4y7a3wn0qmgcgtrty237vcnp9f9hs3rt3k7",
+                "Start_Epoch": "477",
+                "End_Epoch": "497",
+                "Activation_Epoch": "498"
+            },
+            {
+                "id": 15,
+                "Type": "Default with Wasm",
+                "Author": "tnam1qztdx4y7a3wn0qmgcgtrty237vcnp9f9hs3rt3k7",
+                "Start_Epoch": "501",
+                "End_Epoch": "519",
+                "Activation_Epoch": "520"
+            },
+            {
+                "id": 16,
+                "Type": "PGF funding",
+                "Author": "tnam1qztdx4y7a3wn0qmgcgtrty237vcnp9f9hs3rt3k7",
+                "Start_Epoch": "522",
+                "End_Epoch": "546",
+                "Activation_Epoch": "746"
+            },
+            {
+                "id": 17,
+                "Type": "PGF funding",
+                "Author": "tnam1qztdx4y7a3wn0qmgcgtrty237vcnp9f9hs3rt3k7",
+                "Start_Epoch": "568",
+                "End_Epoch": "592",
+                "Activation_Epoch": "593"
+            },
+            {
+                "id": 18,
+                "Type": "PGF funding",
+                "Author": "tnam1qq58gs03fscgfuexy972wz70qawlk0ahguexglsg",
+                "Start_Epoch": "568",
+                "End_Epoch": "592",
+                "Activation_Epoch": "593"
+            },
+            {
+                "id": 19,
+                "Type": "Default with Wasm",
+                "Author": "tnam1qq92nknz9u82aewcw3k0nrp7t7d5ytgskcjkyduk",
+                "Start_Epoch": "598",
+                "End_Epoch": "621",
+                "Activation_Epoch": "622"
+            },
+            {
+                "id": 20,
+                "Type": "Default",
+                "Author": "tnam1qq92nknz9u82aewcw3k0nrp7t7d5ytgskcjkyduk",
+                "Start_Epoch": "607",
+                "End_Epoch": "645",
+                "Activation_Epoch": "646"
+            }
+        ]
+    }
+]
