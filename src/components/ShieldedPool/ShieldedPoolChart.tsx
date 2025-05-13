@@ -217,8 +217,10 @@ const ShieldedPoolChart = withTooltip<
             } else if (newHeight === 24) {
               // Use provided height if 24px is detected
               setHeight(providedHeight);
+            } else {
+              setHeight(providedHeight);
             }
-          }
+          } 
         }
       };
 
