@@ -110,7 +110,20 @@ const PrivacySetVisualization: React.FC = () => {
   const stepSap = (maxR - minR) / (saplingYears.length - 1);
   const stepOrc = (maxR - minR) / (orchardYears.length - 1);
 
+  /**
+   * Precise humanize for circle labels (one decimal place)
+   */
   const humanize = (v: number) =>
+    v >= 1e6
+      ? `${(v / 1e6).toFixed(1)}M`
+      : v >= 1e3
+      ? `${(v / 1e3).toFixed(1)}k`
+      : `${v}`;
+
+  /**
+   * Rounded-up humanize for legend only
+   */
+  const legendHumanize = (v: number) =>
     v >= 1e6
       ? `${Math.ceil(v / 1e6)}M`
       : v >= 1e3
@@ -211,11 +224,11 @@ const PrivacySetVisualization: React.FC = () => {
         <g transform="translate(1040,600)">
           <rect width={16} height={16} fill="#d4a017" />
           <text x={24} y={12} fill="#333" fontSize={12}>
-            Sapling: {humanize(totalSapNotes)}
+            Sapling: {legendHumanize(totalSapNotes)}
           </text>
           <rect y={24} width={16} height={16} fill="#111" />
           <text x={24} y={36} fill="#333" fontSize={12}>
-            Orchard: {humanize(totalOrchNotes)}
+            Orchard: {legendHumanize(totalOrchNotes)}
           </text>
         </g>
       </svg>
