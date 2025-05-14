@@ -1,3 +1,5 @@
+// src/components/ShieldedPool/NamadaSupplyChart.tsx
+
 import React, { useMemo } from "react";
 import { Group } from "@visx/group";
 import { AxisBottom, AxisLeft } from "@visx/axis";
@@ -7,10 +9,11 @@ import { curveMonotoneX } from "@visx/curve";
 import { scaleTime, scaleLinear } from "@visx/scale";
 import { extent, max } from "d3-array";
 
-interface SeriesPoint {
+export interface SeriesPoint {
   timestamp: string;
   supply: number;
 }
+
 interface Props {
   data: SeriesPoint[];
   width: number;
@@ -22,11 +25,20 @@ const margin = { top: 20, right: 20, bottom: 50, left: 60 };
 export default function NamadaSupplyChart({ data, width, height }: Props) {
   // parse dates once
   const points = useMemo(
-    () => data.map(d => ({ date: new Date(d.timestamp), supply: d.supply })),
+    () =>
+      data.map(d => ({
+        date: new Date(d.timestamp),
+        supply: d.supply,
+      })),
     [data]
   );
 
-  const xScale = scaleTime<number>({
+  if (!points.length) {
+    return <div className="p-8 text-center">No data to display</div>;
+  }
+
+  // Scales
+  const xScale = scaleTime<Date>({
     domain: extent(points, p => p.date) as [Date, Date],
     range: [margin.left, width - margin.right],
   });
@@ -35,10 +47,6 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
     range: [height - margin.bottom, margin.top],
     nice: true,
   });
-
-  if (!points.length) {
-    return <div className="p-8 text-center">No data to display</div>;
-  }
 
   return (
     <svg width={width} height={height}>
@@ -54,7 +62,7 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
       />
 
       <Group>
-        <AreaClosed<{"date": Date; supply: number}>
+        <AreaClosed<{ date: Date; supply: number }>
           data={points}
           x={d => xScale(d.date)!}
           y={d => yScale(d.supply)!}
@@ -63,7 +71,7 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
           fill="rgba(0,122,255,0.3)"
           curve={curveMonotoneX}
         />
-        <Line<{"date": Date; supply: number}>
+        <Line<{ date: Date; supply: number }>
           data={points}
           x={d => xScale(d.date)!}
           y={d => yScale(d.supply)!}
