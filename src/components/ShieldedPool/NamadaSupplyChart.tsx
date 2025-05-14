@@ -1,44 +1,88 @@
-import React, { useEffect, useState } from "react";
-import { Line } from "recharts";
+import React, { useMemo } from "react";
+import { Group } from "@visx/group";
+import { AxisBottom, AxisLeft } from "@visx/axis";
+import { AreaClosed, Line } from "@visx/shape";
+import { GridRows, GridColumns } from "@visx/grid";
+import { curveMonotoneX } from "@visx/curve";
+import { scaleTime, scaleLinear } from "@visx/scale";
+import { extent, max } from "d3-array";
 
-export interface NamadaSupplyChartProps {
-  dataUrl: string;
-  assetId: string;
+interface SeriesPoint {
+  timestamp: string;
+  supply: number;
+}
+interface Props {
+  data: SeriesPoint[];
+  width: number;
+  height: number;
 }
 
-export default function NamadaSupplyChart({ dataUrl, assetId }: NamadaSupplyChartProps) {
-  const [series, setSeries] = useState<{ timestamp: string; supply: number }[]>([]);
+const margin = { top: 20, right: 20, bottom: 50, left: 60 };
 
-  useEffect(() => {
-    fetch(dataUrl)
-      .then(r => r.json())
-      .then((raw: any[]) => {
-        const data = raw
-          .map(day => {
-            const row = day.Total_Supply.find((a: any) => a.id === assetId);
-            if (!row?.totalSupply) return null;
-            return {
-              timestamp: day.Date,
-              supply: parseFloat(row.totalSupply),
-            };
-          })
-          .filter((x): x is { timestamp: string; supply: number } => !!x);
-        setSeries(data);
-      })
-      .catch(console.error);
-  }, [dataUrl, assetId]);
+export default function NamadaSupplyChart({ data, width, height }: Props) {
+  // parse dates once
+  const points = useMemo(
+    () => data.map(d => ({ date: new Date(d.timestamp), supply: d.supply })),
+    [data]
+  );
 
-  if (!series.length) return <p className="text-center p-8">No data for {assetId}</p>;
+  const xScale = scaleTime<number>({
+    domain: extent(points, p => p.date) as [Date, Date],
+    range: [margin.left, width - margin.right],
+  });
+  const yScale = scaleLinear<number>({
+    domain: [0, max(points, p => p.supply) || 0],
+    range: [height - margin.bottom, margin.top],
+    nice: true,
+  });
+
+  if (!points.length) {
+    return <div className="p-8 text-center">No data to display</div>;
+  }
 
   return (
-    <div style={{ width: "100%", height: 400 }}>
-      <Line
-        data={series}
-        dataKey="supply"
-        xAxis={{ dataKey: "timestamp" }}
-        yAxis={{}}
-        margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+    <svg width={width} height={height}>
+      <GridRows
+        scale={yScale}
+        width={width - margin.left - margin.right}
+        left={margin.left}
       />
-    </div>
+      <GridColumns
+        scale={xScale}
+        height={height - margin.top - margin.bottom}
+        top={margin.top}
+      />
+
+      <Group>
+        <AreaClosed<{"date": Date; supply: number}>
+          data={points}
+          x={d => xScale(d.date)!}
+          y={d => yScale(d.supply)!}
+          yScale={yScale}
+          strokeWidth={0}
+          fill="rgba(0,122,255,0.3)"
+          curve={curveMonotoneX}
+        />
+        <Line<{"date": Date; supply: number}>
+          data={points}
+          x={d => xScale(d.date)!}
+          y={d => yScale(d.supply)!}
+          stroke="#007AFF"
+          strokeWidth={2}
+          curve={curveMonotoneX}
+        />
+      </Group>
+
+      <AxisBottom
+        top={height - margin.bottom}
+        scale={xScale}
+        label="Date"
+      />
+      <AxisLeft
+        left={margin.left}
+        scale={yScale}
+        label="Supply"
+      />
+    </svg>
   );
 }
