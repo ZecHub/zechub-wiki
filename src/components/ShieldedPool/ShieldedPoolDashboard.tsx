@@ -10,7 +10,7 @@ import Tools from "@/components/Tools";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { Spinner } from "flowbite-react";
 import PrivacySetVisualization from "../PrivacySet/PrivacySetVisualization";
-import NamadaSupplyChart from "./NamadaSupplyChart";
+import NamadaSupplyChart, { SeriesPoint } from "./NamadaSupplyChart";
 import { ToolOptions, toolOptionLabels } from "../Tools/tools";
 import NoData from "../../assets/nodata.svg";
 
@@ -48,6 +48,7 @@ interface BlockchainInfo {
 type SupplyData      = { close: string; supply: number };
 type ShieldedTxCount = { sapling: number; orchard: number; timestamp: string };
 type NodeCountData   = { Date: string; nodecount: string };
+type NamadaAsset     = { id: string; totalSupply: string };
 
 async function getBlockchainData(): Promise<BlockchainInfo | null> {
   try {
@@ -126,8 +127,10 @@ function transformSupplyData(
   return d ? { timestamp: d.close, supply: d.supply } : null;
 }
 
-const ShieldedPoolDashboard: React.FC = () => {
-  const [selectedPool, setSelectedPool] = useState<string>("default");
+type PoolKey = "default" | "sprout" | "sapling" | "orchard";
+
+export default function ShieldedPoolDashboard() {
+  const [selectedPool, setSelectedPool] = useState<PoolKey>("default");
   const [selectedCoin, setSelectedCoin] = useState<"Zcash" | "Penumbra" | "Namada">("Zcash");
   const [selectedTool, setSelectedTool] = useState<ToolOptions>(ToolOptions.supply);
   const [selectedToolName, setSelectedToolName] = useState<string>(
@@ -138,18 +141,21 @@ const ShieldedPoolDashboard: React.FC = () => {
 
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
   const [circulation, setCirculation] = useState<number | null>(null);
-  const [supplies, setSupplies] = useState<{
-    default: SupplyData | null;
-    sprout: SupplyData | null;
-    sapling: SupplyData | null;
-    orchard: SupplyData | null;
-  }>({ default: null, sprout: null, sapling: null, orchard: null });
+  const [supplies, setSupplies] = useState<Record<PoolKey, SupplyData | null>>({
+    default: null,
+    sprout: null,
+    sapling: null,
+    orchard: null,
+  });
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount[] | null>(null);
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
-  const [namadaAssets, setNamadaAssets] = useState<{ id: string; totalSupply: string }[]>([]);
+  // Namada
+  const [namadaRaw, setNamadaRaw] = useState<any[]>([]);
+  const [namadaAssets, setNamadaAssets] = useState<NamadaAsset[]>([]);
   const [selectedNamadaAsset, setSelectedNamadaAsset] = useState<string>("");
+  const [namadaSeries, setNamadaSeries] = useState<SeriesPoint[]>([]);
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
@@ -175,29 +181,40 @@ const ShieldedPoolDashboard: React.FC = () => {
     getNodeCountData(DataUrlOptions.nodecountUrl).then((a) => {
       if (a.length) setLatestNodeCount(Number(a[a.length - 1].nodecount));
     });
+
+    // Namada raw + assets
+    getNodeCountData(DataUrlOptions.namadaSupplyUrl)
+      .then((data: any[]) => {
+        if (!data) return;
+        setNamadaRaw(data);
+        const list: NamadaAsset[] = data[0]?.Total_Supply || [];
+        setNamadaAssets(list);
+        if (list.length) setSelectedNamadaAsset(list[0].id);
+      })
+      .catch(console.error);
   }, []);
 
-  // ←———— **PATCHED** useEffect for last updated:
+  // ——— PATCHED ——— last‐updated effect
   useEffect(() => {
     (async () => {
-      // Build a typed key out of your pool string
       const key = (selectedPool === "default" ? "defaultUrl" : `${selectedPool}Url`) as keyof typeof DataUrlOptions;
       const arr = await getSupplyData(DataUrlOptions[key]);
       setLastUpdated(arr.pop()?.close || "N/A");
     })();
   }, [selectedPool]);
 
+  // Build Namada series from raw
   useEffect(() => {
-    if (selectedCoin !== "Namada") return;
-    fetch(DataUrlOptions.namadaSupplyUrl)
-      .then((r) => r.json())
-      .then((json: any[]) => {
-        const list = json[0]?.["Total_Supply"] || [];
-        setNamadaAssets(list);
-        if (list.length) setSelectedNamadaAsset(list[0].id);
+    if (!selectedNamadaAsset) return;
+    const s = namadaRaw
+      .map((day) => {
+        const row = day.Total_Supply.find((a: any) => a.id === selectedNamadaAsset);
+        if (!row?.totalSupply) return null;
+        return { timestamp: day.Date, supply: parseFloat(row.totalSupply) };
       })
-      .catch(console.error);
-  }, [selectedCoin]);
+      .filter((x): x is SeriesPoint => !!x);
+    setNamadaSeries(s);
+  }, [namadaRaw, selectedNamadaAsset]);
 
   if (!blockchainInfo) {
     return (
@@ -208,12 +225,12 @@ const ShieldedPoolDashboard: React.FC = () => {
   }
 
   const poolLabels = {
-    default: "Total Shielded",
-    sprout: "Sprout Pool",
-    sapling: "Sapling Pool",
-    orchard: "Orchard Pool",
+    default:  "Total Shielded",
+    sprout:   "Sprout Pool",
+    sapling:  "Sapling Pool",
+    orchard:  "Orchard Pool",
   } as const;
-  const poolKeys = Object.keys(poolLabels) as Array<keyof typeof poolLabels>;
+  const poolKeys = Object.keys(poolLabels) as PoolKey[];
 
   const getDataUrl = (): string => {
     switch (selectedPool) {
@@ -305,6 +322,7 @@ const ShieldedPoolDashboard: React.FC = () => {
 
       <div className="border p-4 rounded-lg relative">
         <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply} />
+
         <div ref={divChartRef}>
           {selectedCoin === "Zcash" && (
             <>
@@ -313,7 +331,7 @@ const ShieldedPoolDashboard: React.FC = () => {
               )}
               {selectedTool === ToolOptions.transaction && (
                 <>
-                  <div className="flex gap-4 justify-center mb-4">
+                  <div className="flex gap-4 justify-center mb-4">  
                     <Checkbox
                       checked={cumulativeCheck}
                       onChange={setCumulativeCheck}
@@ -353,9 +371,11 @@ const ShieldedPoolDashboard: React.FC = () => {
               {selectedTool === ToolOptions.privacy_set && <PrivacySetVisualization />}
             </>
           )}
-          {selectedCoin === "Namada" && selectedTool === ToolOptions.supply && selectedNamadaAsset && (
-            <NamadaSupplyChart dataUrl={DataUrlOptions.namadaSupplyUrl} assetId={selectedNamadaAsset} />
+
+          {selectedCoin === "Namada" && selectedTool === ToolOptions.supply && (
+            <NamadaSupplyChart data={namadaSeries} width={800} height={400} />
           )}
+
           {selectedCoin !== "Zcash" && selectedCoin !== "Namada" && (
             <div className="w-full h-[400px] flex flex-col items-center justify-center">
               <Image src={NoData} width={200} height={250} alt="No data" />
@@ -460,6 +480,4 @@ const ShieldedPoolDashboard: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default ShieldedPoolDashboard;
+}
