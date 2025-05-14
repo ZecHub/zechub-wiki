@@ -1,3 +1,4 @@
+// src/components/ShieldedPool/ShieldedPoolDashboard.tsx
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
