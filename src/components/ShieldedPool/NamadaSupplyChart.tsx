@@ -1,11 +1,9 @@
-// src/components/ShieldedPool/NamadaSupplyChart.tsx
-
 import React, { useMemo } from "react";
 import { Group } from "@visx/group";
 import { AreaClosed, LinePath } from "@visx/shape";
 import { GridRows, GridColumns } from "@visx/grid";
 import { curveMonotoneX } from "@visx/curve";
-import { scaleTime, scaleLinear } from "@visx/scale";
+import { scaleLinear } from "@visx/scale";
 import { extent, max } from "d3-array";
 
 export interface SeriesPoint {
@@ -22,9 +20,13 @@ interface Props {
 const margin = { top: 20, right: 20, bottom: 50, left: 60 };
 
 export default function NamadaSupplyChart({ data, width, height }: Props) {
-  // Convert to Date once
+  // 1) Convert to numeric x/y once
   const points = useMemo(
-    () => data.map(d => ({ date: new Date(d.timestamp), supply: d.supply })),
+    () =>
+      data.map(d => ({
+        x: new Date(d.timestamp).valueOf(),
+        y: d.supply,
+      })),
     [data]
   );
 
@@ -32,15 +34,18 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
     return <div className="p-8 text-center">No data to display</div>;
   }
 
-  // time-scale with correct generic
-  const xScale = scaleTime<Date>({
-    domain: extent(points, p => p.date) as [Date, Date],
-    range: [margin.left, width - margin.right],
-  });
+  // 2) Compute extents/limits
+  const [minX, maxX] = extent(points, p => p.x) as [number, number];
+  const maxY = max(points, p => p.y) || 0;
 
-  // linear-scale for supply
+  // 3) Build linear scales for both axes
+  const xScale = scaleLinear<number>({
+    domain: [minX, maxX],
+    range: [margin.left, width - margin.right],
+    nice: true,
+  });
   const yScale = scaleLinear<number>({
-    domain: [0, max(points, p => p.supply) || 0],
+    domain: [0, maxY],
     range: [height - margin.bottom, margin.top],
     nice: true,
   });
@@ -60,21 +65,21 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
       />
 
       <Group>
-        {/* filled area */}
-        <AreaClosed<{ date: Date; supply: number }>
+        {/* filled area under the curve */}
+        <AreaClosed<{ x: number; y: number }>
           data={points}
-          x={d => xScale(d.date)!}
-          y={d => yScale(d.supply)!}
+          x={d => xScale(d.x)!}
+          y={d => yScale(d.y)!}
           yScale={yScale}
           strokeWidth={0}
           fill="rgba(0,122,255,0.3)"
           curve={curveMonotoneX}
         />
-        {/* line path */}
-        <LinePath<{ date: Date; supply: number }>
+        {/* line over the area */}
+        <LinePath<{ x: number; y: number }>
           data={points}
-          x={d => xScale(d.date)!}
-          y={d => yScale(d.supply)!}
+          x={d => xScale(d.x)!}
+          y={d => yScale(d.y)!}
           stroke="#007AFF"
           strokeWidth={2}
           curve={curveMonotoneX}
