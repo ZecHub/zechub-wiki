@@ -24,11 +24,11 @@ const DataUrlOptions = {
   sproutUrl:              "/data/zcash/sprout_supply.json",
   saplingUrl:             "/data/zcash/sapling_supply.json",
   orchardUrl:             "/data/zcash/orchard_supply.json",
+  txsummaryUrl:           "/data/zcash/transaction_summary.json",
   netInflowsOutflowsUrl:  "/data/zcash/netinflowoutflow.json",
   nodecountUrl:           "/data/zcash/nodecount.json",
   difficultyUrl:          "/data/zcash/difficulty.json",
   lockboxUrl:             "/data/zcash/lockbox.json",
-  txsummaryUrl:           "/data/zcash/transaction_summary.json",
   shieldedTxCountUrl:     "/data/zcash/shieldedtxcount.json",
   issuanceUrl:            "/data/zcash/issuance.json",
   apiUrl:                 "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json",
@@ -37,7 +37,6 @@ const DataUrlOptions = {
 
 const blockchainInfoUrl = "/api/blockchain-info";
 
-// Types
 interface BlockchainInfo {
   blocks: number;
   transactions_24h: number;
@@ -51,33 +50,31 @@ type ShieldedTxCount = { sapling: number; orchard: number; timestamp: string };
 type NodeCountData   = { Date: string; nodecount: string };
 type NamadaAsset     = { id: string; totalSupply: string };
 
-// helper to transform SupplyData → { timestamp, supply }
 function transformSupplyData(
   d: SupplyData | null
 ): { timestamp: string; supply: number } | null {
   return d ? { timestamp: d.close, supply: d.supply } : null;
 }
 
-// simple JSON fetch helper
 async function fetchJSON<T>(url: string): Promise<T|null> {
   try {
-    const r = await fetch(url);
-    if (!r.ok) return null;
-    return (await r.json()) as T;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    return (await res.json()) as T;
   } catch {
     return null;
   }
 }
 
-// valid Zcash pool keys
+// Zcash pool keys used only for supply charts
 type PoolKey = "defaultUrl" | "sproutUrl" | "saplingUrl" | "orchardUrl";
 
 export default function ShieldedPoolDashboard() {
-  // State
-  const [selectedPool, setSelectedPool]               = useState<PoolKey>("defaultUrl");
+  // === State ===
   const [selectedCoin, setSelectedCoin]               = useState<"Zcash"|"Penumbra"|"Namada">("Zcash");
   const [selectedTool, setSelectedTool]               = useState<ToolOptions>(ToolOptions.supply);
   const [selectedToolName, setSelectedToolName]       = useState(toolOptionLabels[ToolOptions.supply]);
+  const [selectedPool, setSelectedPool]               = useState<PoolKey>("defaultUrl");
   const [cumulativeCheck, setCumulativeCheck]         = useState(true);
   const [filterSpamCheck, setFilterSpamCheck]         = useState(false);
 
@@ -93,7 +90,6 @@ export default function ShieldedPoolDashboard() {
   const [shieldedTxCount, setShieldedTxCount]         = useState<ShieldedTxCount[]|null>(null);
   const [latestNodeCount, setLatestNodeCount]         = useState<number|null>(null);
 
-  // Namada
   const [namadaRaw, setNamadaRaw]                     = useState<any[]>([]);
   const [namadaAssets, setNamadaAssets]               = useState<NamadaAsset[]>([]);
   const [selectedNamadaAsset, setSelectedNamadaAsset] = useState<string>("");
@@ -101,29 +97,21 @@ export default function ShieldedPoolDashboard() {
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-  // compute data URL
+  // === Determine which URL to fetch based on tool & pool ===
   const getDataUrl = useCallback((): string => {
     switch (selectedTool) {
-      case ToolOptions.supply:
-        return DataUrlOptions[selectedPool];
-      case ToolOptions.transaction:
-        return DataUrlOptions.txsummaryUrl;
-      case ToolOptions.net_inflows_outflows:
-        return DataUrlOptions.netInflowsOutflowsUrl;
-      case ToolOptions.nodecount:
-        return DataUrlOptions.nodecountUrl;
-      case ToolOptions.difficulty:
-        return DataUrlOptions.difficultyUrl;
-      case ToolOptions.lockbox:
-        return DataUrlOptions.lockboxUrl;
-      case "issuance":
-        return DataUrlOptions.issuanceUrl;
-      default:
-        return DataUrlOptions.defaultUrl;
+      case ToolOptions.supply:              return DataUrlOptions[selectedPool];
+      case ToolOptions.transaction:         return DataUrlOptions.txsummaryUrl;
+      case ToolOptions.net_inflows_outflows:return DataUrlOptions.netInflowsOutflowsUrl;
+      case ToolOptions.nodecount:           return DataUrlOptions.nodecountUrl;
+      case ToolOptions.difficulty:          return DataUrlOptions.difficultyUrl;
+      case ToolOptions.lockbox:             return DataUrlOptions.lockboxUrl;
+      case "issuance":                      return DataUrlOptions.issuanceUrl;
+      default:                              return DataUrlOptions.defaultUrl;
     }
   }, [selectedTool, selectedPool]);
 
-  // initial load
+  // === Initial data load ===
   useEffect(() => {
     fetchJSON<BlockchainInfo>("https://api.blockchair.com/zcash/stats?key=A___nnFHttBygZPrKgm5WZyXU3WCondo")
       .then(d => d && setBlockchainInfo(d));
@@ -132,30 +120,27 @@ export default function ShieldedPoolDashboard() {
     fetchJSON<any[]>(DataUrlOptions.apiUrl)
       .then(c => c && setLastUpdated(c[0]?.commit?.committer?.date?.slice(0,10) || "N/A"));
 
-    // shielded pools
     (["defaultUrl","sproutUrl","saplingUrl","orchardUrl"] as PoolKey[]).forEach(key => {
       fetchJSON<SupplyData[]>(DataUrlOptions[key])
         .then(arr => arr && setSupplies(s => ({ ...s, [key]: arr.pop()||null })));
     });
 
-    // shielded tx & nodes
     fetchJSON<ShieldedTxCount[]>(DataUrlOptions.shieldedTxCountUrl)
       .then(d => d && setShieldedTxCount(d));
     fetchJSON<NodeCountData[]>(DataUrlOptions.nodecountUrl)
       .then(n => n?.length && setLatestNodeCount(Number(n[n.length-1].nodecount)));
 
-    // namada raw + assets
     fetchJSON<any[]>(DataUrlOptions.namadaSupplyUrl)
       .then(data => {
         if (!data) return;
         setNamadaRaw(data);
-        const list: NamadaAsset[] = data[0]?.Total_Supply || [];
+        const list = data[0]?.Total_Supply || [];
         setNamadaAssets(list);
         if (list.length) setSelectedNamadaAsset(list[0].id);
       });
   }, []);
 
-  // update lastUpdated
+  // === Update "Last updated" when data URL changes ===
   useEffect(() => {
     (async () => {
       const arr = (await fetchJSON<SupplyData[]>(getDataUrl())) || [];
@@ -163,7 +148,7 @@ export default function ShieldedPoolDashboard() {
     })();
   }, [getDataUrl]);
 
-  // build namada series
+  // === Build Namada time series ===
   useEffect(() => {
     if (!selectedNamadaAsset) return;
     const series = namadaRaw
@@ -191,29 +176,28 @@ export default function ShieldedPoolDashboard() {
   const getDataColor = (): string => {
     switch (selectedPool) {
       case "sproutUrl": return "#A020F0";
-      case "saplingUrl": return "#FFA500";
-      case "orchardUrl": return "#32CD32";
-      default:          return "url(#area-background-gradient)";
+      case "saplingUrl":return "#FFA500";
+      case "orchardUrl":return "#32CD32";
+      default:         return "url(#area-background-gradient)";
     }
   };
 
+  // === Tool change handler – only reset pool on supply ===
   const handleToolChange = (tool: ToolOptions) => {
     setSelectedTool(tool);
-    if (tool === ToolOptions.supply) {
-      setSelectedPool("defaultUrl");
-    }
+    if (tool === ToolOptions.supply) setSelectedPool("defaultUrl");
     setSelectedToolName(toolOptionLabels[tool]);
   };
 
   return (
     <div className="mt-28">
-      {/* Header */}
+      {/* Header & Coin Buttons */}
       <div className="flex flex-wrap gap-4 items-center justify-between mb-4">
         <h2 className="font-bold text-xl">{selectedToolName}</h2>
         <div className="flex gap-4">
-          <Button text="Zcash"    className="bg-orange-400/75 text-white px-4 py-2 rounded-full" onClick={()=>setSelectedCoin("Zcash")} />
-          <Button text="Penumbra" className="bg-purple-500/75 text-white px-4 py-2 rounded-full" onClick={()=>setSelectedCoin("Penumbra")} />
-          <Button text="Namada"   className="bg-yellow-300/75 text-white px-4 py-2 rounded-full" onClick={()=>setSelectedCoin("Namada")} />
+          <Button text="Zcash"    onClick={()=>setSelectedCoin("Zcash")}    className="bg-orange-400/75 text-white px-4 py-2 rounded-full"/>
+          <Button text="Penumbra" onClick={()=>setSelectedCoin("Penumbra")} className="bg-purple-500/75 text-white px-4 py-2 rounded-full"/>
+          <Button text="Namada"   onClick={()=>setSelectedCoin("Namada")}   className="bg-yellow-300/75 text-white px-4 py-2 rounded-full"/>
         </div>
       </div>
 
@@ -223,49 +207,48 @@ export default function ShieldedPoolDashboard() {
           <div className="mb-4 flex justify-center">
             <Button
               text="Supply"
+              onClick={() => handleToolChange(ToolOptions.supply)}
               className={`px-4 py-2 rounded-full ${
                 selectedTool === ToolOptions.supply
                   ? "bg-blue-600 text-white"
                   : "bg-gray-300 text-gray-700"
               }`}
-              onClick={() => handleToolChange(ToolOptions.supply)}
             />
           </div>
         ) : (
-          <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply} />
+          <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply}/>
         )}
 
         <div ref={divChartRef}>
-          {/* Zcash */}
           {selectedCoin === "Zcash" && (
             <>
               {selectedTool === ToolOptions.supply && (
-                <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+                <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()}/>
               )}
               {selectedTool === ToolOptions.transaction && (
                 <>
                   <div className="flex gap-4 justify-center mb-4">
-                    <Checkbox checked={cumulativeCheck} onChange={setCumulativeCheck} label="Cumulative" />
-                    <Checkbox checked={filterSpamCheck} onChange={setFilterSpamCheck} label="Filter Spam" />
+                    <Checkbox checked={cumulativeCheck} onChange={setCumulativeCheck} label="Cumulative"/>
+                    <Checkbox checked={filterSpamCheck} onChange={setFilterSpamCheck} label="Filter Spam"/>
                   </div>
                   <TransactionSummaryChart
                     dataUrl={DataUrlOptions.txsummaryUrl}
                     pool={selectedPool}
                     cumulative={cumulativeCheck}
                     filter={filterSpamCheck}
-                    applyFilter={!cumulativeCheck || filterSpamCheck}
+                    applyFilter={!cumulativeCheck||filterSpamCheck}
                   />
                 </>
               )}
-              {(selectedTool === ToolOptions.nodecount ||
-                selectedTool === ToolOptions.difficulty ||
-                selectedTool === ToolOptions.lockbox) && (
-                <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
+              {(selectedTool===ToolOptions.nodecount||
+                selectedTool===ToolOptions.difficulty||
+                selectedTool===ToolOptions.lockbox) && (
+                <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()}/>
               )}
-              {selectedTool === ToolOptions.net_inflows_outflows && (
-                <NetInflowsOutFlowsChart dataUrl={getDataUrl()} color={getDataColor()} />
+              {selectedTool===ToolOptions.net_inflows_outflows && (
+                <NetInflowsOutFlowsChart dataUrl={getDataUrl()} color={getDataColor()}/>
               )}
-              {selectedTool === "issuance" && (
+              {selectedTool==="issuance" && (
                 <ZecIssuanceSummaryChart
                   dataUrl={DataUrlOptions.issuanceUrl}
                   pool={selectedPool}
@@ -273,60 +256,58 @@ export default function ShieldedPoolDashboard() {
                   filter={filterSpamCheck}
                 />
               )}
-              {selectedTool === ToolOptions.privacy_set && <PrivacySetVisualization />}
+              {selectedTool===ToolOptions.privacy_set && <PrivacySetVisualization/>}
             </>
           )}
 
-          {/* Namada */}
-          {selectedCoin === "Namada" && selectedTool === ToolOptions.supply && selectedNamadaAsset && (
-            <NamadaSupplyChart data={namadaSeries} width={800} height={400} />
+          {selectedCoin==="Namada" && selectedTool===ToolOptions.supply && selectedNamadaAsset && (
+            <NamadaSupplyChart data={namadaSeries} width={800} height={400}/>
           )}
 
-          {/* No Data */}
-          {selectedCoin !== "Zcash" && selectedCoin !== "Namada" && (
+          {selectedCoin!=="Zcash" && selectedCoin!=="Namada" && (
             <div className="w-full h-[400px] flex flex-col items-center justify-center">
-              <Image src={NoData} width={200} height={250} alt="No data" />
+              <Image src={NoData} width={200} height={250} alt="No data"/>
               <p>Chart data for {selectedCoin} unavailable</p>
             </div>
           )}
         </div>
 
-        {/* Zcash pool toggles */}
-        {selectedCoin === "Zcash" && selectedTool === ToolOptions.supply && (
+        {/* Zcash Pool Toggles */}
+        {selectedCoin==="Zcash" && selectedTool===ToolOptions.supply && (
           <div className="mt-8 flex flex-wrap justify-center gap-6">
-            {poolKeys.map(key => (
+            {poolKeys.map(key=>(
               <div key={key} className="flex flex-col items-center">
                 <Button
                   text={poolLabels[key]}
+                  onClick={()=>setSelectedPool(key)}
                   className={`px-4 py-2 rounded-full ${
-                    selectedPool === key ? "bg-[#1984c7] text-white" : "bg-gray-400 text-white"
+                    selectedPool===key ? "bg-[#1984c7] text-white" : "bg-gray-400 text-white"
                   }`}
-                  onClick={() => setSelectedPool(key)}
                 />
-                <span className="text-sm text-gray-600	mt-1">
-                  {(supplies[key]?.supply || 0).toLocaleString()} ZEC
+                <span className="text-sm text-gray-600 mt-1">
+                  {(supplies[key]?.supply||0).toLocaleString()} ZEC
                 </span>
               </div>
             ))}
           </div>
         )}
 
-        {/* Namada asset toggles */}
-        {selectedCoin === "Namada" && (
+        {/* Namada Asset Toggles */}
+        {selectedCoin==="Namada" && (
           <div className="mt-8 flex flex-wrap justify-center gap-6">
-            {namadaAssets.map(asset => (
+            {namadaAssets.map(asset=>(
               <div key={asset.id} className="flex flex-col items-center">
                 <Button
                   text={asset.id}
+                  onClick={()=>setSelectedNamadaAsset(asset.id)}
                   className={`px-4 py-2 rounded-full ${
-                    selectedNamadaAsset === asset.id ? "bg-yellow-500 text-white" : "bg-gray-400 text-white"
+                    selectedNamadaAsset===asset.id ? "bg-yellow-500 text-white" : "bg-gray-400 text-white"
                   }`}
-                  onClick={() => setSelectedNamadaAsset(asset.id)}
                 />
-                <span className="text-sm text-gray-600	mt-1">
-                  {asset.id === "Namada"
-                    ? Number(asset.totalSupply || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })
-                    : Math.floor(Number(asset.totalSupply || 0) / 1e6).toLocaleString()}
+                <span className="text-sm text-gray-600 mt-1">
+                  {asset.id==="Namada"
+                    ? Number(asset.totalSupply||0).toLocaleString(undefined,{maximumFractionDigits:2})
+                    : Math.floor(Number(asset.totalSupply||0)/1e6).toLocaleString()}
                 </span>
               </div>
             ))}
@@ -338,18 +319,16 @@ export default function ShieldedPoolDashboard() {
           <span className="text-sm text-gray-500">Last updated: {lastUpdated}</span>
           <Button
             text="Export PNG"
+            onClick={()=>handleSaveToPng(
+              selectedPool,
+              {
+                sproutSupply: transformSupplyData(supplies.sproutUrl),
+                saplingSupply: transformSupplyData(supplies.saplingUrl),
+                orchardSupply: transformSupplyData(supplies.orchardUrl),
+              },
+              selectedTool
+            )}
             className="bg-blue-500 text-white px-4 py-2 rounded-full"
-            onClick={() =>
-              handleSaveToPng(
-                selectedPool,
-                {
-                  sproutSupply: transformSupplyData(supplies.sproutUrl),
-                  saplingSupply: transformSupplyData(supplies.saplingUrl),
-                  orchardSupply: transformSupplyData(supplies.orchardUrl),
-                },
-                selectedTool
-              )
-            }
           />
         </div>
       </div>
@@ -388,7 +367,7 @@ export default function ShieldedPoolDashboard() {
           <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
           <p>
             {shieldedTxCount?.length
-              ? `Sapling: ${shieldedTxCount[shieldedTxCount.length - 1].sapling.toLocaleString()} | Orchard: ${shieldedTxCount[shieldedTxCount.length - 1].orchard.toLocaleString()}`
+              ? `Sapling: ${shieldedTxCount[shieldedTxCount.length-1].sapling.toLocaleString()} | Orchard: ${shieldedTxCount[shieldedTxCount.length-1].orchard.toLocaleString()}`
               : "N/A"}
           </p>
         </div>
