@@ -1,5 +1,3 @@
-// src/components/ShieldedPool/NamadaSupplyChart.tsx
-
 import React, { useMemo } from "react";
 import { Group } from "@visx/group";
 import { AreaClosed, Line } from "@visx/shape";
@@ -32,7 +30,7 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
     return <div className="p-8 text-center">No data to display</div>;
   }
 
-  // Scales (no generic on scaleTime)
+  // Scales
   const xScale = scaleTime({
     domain: extent(points, p => p.date) as [Date, Date],
     range: [margin.left, width - margin.right],
@@ -57,7 +55,7 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
       />
 
       <Group>
-        <AreaClosed<{ date: Date; supply: number }>
+        <AreaClosed
           data={points}
           x={d => xScale(d.date)!}
           y={d => yScale(d.supply)!}
@@ -66,7 +64,7 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
           fill="rgba(0,122,255,0.3)"
           curve={curveMonotoneX}
         />
-        <Line<{ date: Date; supply: number }>
+        <Line
           data={points}
           x={d => xScale(d.date)!}
           y={d => yScale(d.supply)!}
