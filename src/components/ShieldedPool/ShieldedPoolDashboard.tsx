@@ -1,4 +1,3 @@
-// src/components/ShieldedPool/ShieldedPoolDashboard.tsx
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
@@ -52,6 +51,13 @@ type ShieldedTxCount = { sapling: number; orchard: number; timestamp: string };
 type NodeCountData   = { Date: string; nodecount: string };
 type NamadaAsset     = { id: string; totalSupply: string };
 
+// helper to transform SupplyData → { timestamp, supply }
+function transformSupplyData(
+  d: SupplyData | null
+): { timestamp: string; supply: number } | null {
+  return d ? { timestamp: d.close, supply: d.supply } : null;
+}
+
 // simple JSON fetch helper
 async function fetchJSON<T>(url: string): Promise<T|null> {
   try {
@@ -63,7 +69,7 @@ async function fetchJSON<T>(url: string): Promise<T|null> {
   }
 }
 
-// valid pool keys for Zcash supply
+// valid Zcash pool keys
 type PoolKey = "defaultUrl" | "sproutUrl" | "saplingUrl" | "orchardUrl";
 
 export default function ShieldedPoolDashboard() {
@@ -78,13 +84,16 @@ export default function ShieldedPoolDashboard() {
   const [blockchainInfo, setBlockchainInfo]           = useState<BlockchainInfo|null>(null);
   const [circulation, setCirculation]                 = useState<number|null>(null);
   const [supplies, setSupplies] = useState<Record<PoolKey,SupplyData|null>>({
-    defaultUrl: null, sproutUrl: null, saplingUrl: null, orchardUrl: null
+    defaultUrl: null,
+    sproutUrl: null,
+    saplingUrl: null,
+    orchardUrl: null,
   });
   const [lastUpdated, setLastUpdated]                 = useState<string|null>(null);
   const [shieldedTxCount, setShieldedTxCount]         = useState<ShieldedTxCount[]|null>(null);
   const [latestNodeCount, setLatestNodeCount]         = useState<number|null>(null);
 
-  // Namada-specific
+  // Namada
   const [namadaRaw, setNamadaRaw]                     = useState<any[]>([]);
   const [namadaAssets, setNamadaAssets]               = useState<NamadaAsset[]>([]);
   const [selectedNamadaAsset, setSelectedNamadaAsset] = useState<string>("");
@@ -92,7 +101,7 @@ export default function ShieldedPoolDashboard() {
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-  // compute data URL based on tool & pool
+  // compute data URL
   const getDataUrl = useCallback((): string => {
     switch (selectedTool) {
       case ToolOptions.supply:
@@ -114,7 +123,7 @@ export default function ShieldedPoolDashboard() {
     }
   }, [selectedTool, selectedPool]);
 
-  // Initial load
+  // initial load
   useEffect(() => {
     fetchJSON<BlockchainInfo>("https://api.blockchair.com/zcash/stats?key=A___nnFHttBygZPrKgm5WZyXU3WCondo")
       .then(d => d && setBlockchainInfo(d));
@@ -123,27 +132,30 @@ export default function ShieldedPoolDashboard() {
     fetchJSON<any[]>(DataUrlOptions.apiUrl)
       .then(c => c && setLastUpdated(c[0]?.commit?.committer?.date?.slice(0,10) || "N/A"));
 
+    // shielded pools
     (["defaultUrl","sproutUrl","saplingUrl","orchardUrl"] as PoolKey[]).forEach(key => {
       fetchJSON<SupplyData[]>(DataUrlOptions[key])
         .then(arr => arr && setSupplies(s => ({ ...s, [key]: arr.pop()||null })));
     });
 
+    // shielded tx & nodes
     fetchJSON<ShieldedTxCount[]>(DataUrlOptions.shieldedTxCountUrl)
       .then(d => d && setShieldedTxCount(d));
     fetchJSON<NodeCountData[]>(DataUrlOptions.nodecountUrl)
       .then(n => n?.length && setLatestNodeCount(Number(n[n.length-1].nodecount)));
 
+    // namada raw + assets
     fetchJSON<any[]>(DataUrlOptions.namadaSupplyUrl)
       .then(data => {
         if (!data) return;
         setNamadaRaw(data);
-        const list = data[0]?.Total_Supply || [];
+        const list: NamadaAsset[] = data[0]?.Total_Supply || [];
         setNamadaAssets(list);
         if (list.length) setSelectedNamadaAsset(list[0].id);
       });
   }, []);
 
-  // update lastUpdated on URL change
+  // update lastUpdated
   useEffect(() => {
     (async () => {
       const arr = (await fetchJSON<SupplyData[]>(getDataUrl())) || [];
@@ -151,7 +163,7 @@ export default function ShieldedPoolDashboard() {
     })();
   }, [getDataUrl]);
 
-  // build Namada series
+  // build namada series
   useEffect(() => {
     if (!selectedNamadaAsset) return;
     const series = namadaRaw
@@ -185,7 +197,6 @@ export default function ShieldedPoolDashboard() {
     }
   };
 
-  // only reset pool when switching back to supply
   const handleToolChange = (tool: ToolOptions) => {
     setSelectedTool(tool);
     if (tool === ToolOptions.supply) {
@@ -225,6 +236,7 @@ export default function ShieldedPoolDashboard() {
         )}
 
         <div ref={divChartRef}>
+          {/* Zcash */}
           {selectedCoin === "Zcash" && (
             <>
               {selectedTool === ToolOptions.supply && (
@@ -265,10 +277,12 @@ export default function ShieldedPoolDashboard() {
             </>
           )}
 
+          {/* Namada */}
           {selectedCoin === "Namada" && selectedTool === ToolOptions.supply && selectedNamadaAsset && (
             <NamadaSupplyChart data={namadaSeries} width={800} height={400} />
           )}
 
+          {/* No Data */}
           {selectedCoin !== "Zcash" && selectedCoin !== "Namada" && (
             <div className="w-full h-[400px] flex flex-col items-center justify-center">
               <Image src={NoData} width={200} height={250} alt="No data" />
@@ -281,16 +295,16 @@ export default function ShieldedPoolDashboard() {
         {selectedCoin === "Zcash" && selectedTool === ToolOptions.supply && (
           <div className="mt-8 flex flex-wrap justify-center gap-6">
             {poolKeys.map(key => (
-              <div key={key} className="flex flex-col	items-center">
+              <div key={key} className="flex flex-col items-center">
                 <Button
                   text={poolLabels[key]}
-                  className={`px-4	py-2 rounded-full ${
-                    selectedPool===key ? "bg-[#1984c7] text-white" : "bg-gray-400 text-white"
+                  className={`px-4 py-2 rounded-full ${
+                    selectedPool === key ? "bg-[#1984c7] text-white" : "bg-gray-400 text-white"
                   }`}
-                  onClick={()=>setSelectedPool(key)}
+                  onClick={() => setSelectedPool(key)}
                 />
                 <span className="text-sm text-gray-600	mt-1">
-                  { (supplies[key]?.supply||0).toLocaleString() } ZEC
+                  {(supplies[key]?.supply || 0).toLocaleString()} ZEC
                 </span>
               </div>
             ))}
@@ -299,21 +313,20 @@ export default function ShieldedPoolDashboard() {
 
         {/* Namada asset toggles */}
         {selectedCoin === "Namada" && (
-          <div className="mt-8	flex flex-wrap justify-center gap-6">
+          <div className="mt-8 flex flex-wrap justify-center gap-6">
             {namadaAssets.map(asset => (
               <div key={asset.id} className="flex flex-col items-center">
                 <Button
                   text={asset.id}
-                  className={`px-4	py-2 rounded-full ${
-                    selectedNamadaAsset===asset.id ? "bg-yellow-500 text-white" : "bg-gray-400 text-white"
+                  className={`px-4 py-2 rounded-full ${
+                    selectedNamadaAsset === asset.id ? "bg-yellow-500 text-white" : "bg-gray-400 text-white"
                   }`}
-                  onClick={()=>setSelectedNamadaAsset(asset.id)}
+                  onClick={() => setSelectedNamadaAsset(asset.id)}
                 />
-                <span className="text-sm	text-gray-600 mt-1">
-                  { asset.id==="Namada" 
-                      ? Number(asset.totalSupply||0).toLocaleString(undefined,{ maximumFractionDigits:2 })
-                      : Math.floor(Number(asset.totalSupply||0)/1e6).toLocaleString()
-                  }
+                <span className="text-sm text-gray-600	mt-1">
+                  {asset.id === "Namada"
+                    ? Number(asset.totalSupply || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })
+                    : Math.floor(Number(asset.totalSupply || 0) / 1e6).toLocaleString()}
                 </span>
               </div>
             ))}
@@ -322,25 +335,27 @@ export default function ShieldedPoolDashboard() {
 
         {/* Export & Last Updated */}
         <div className="flex justify-end items-center gap-4 mt-4">
-          <span className="text-sm	text-gray-500">Last updated: {lastUpdated}</span>
+          <span className="text-sm text-gray-500">Last updated: {lastUpdated}</span>
           <Button
             text="Export PNG"
-            className="bg-blue-500 text-white px-4	py-2 rounded-full"
-            onClick={()=>handleSaveToPng(
-              selectedPool,
-              {
-                sproutSupply: supplies.sproutUrl,
-                saplingSupply: supplies.saplingUrl,
-                orchardSupply: supplies.orchardUrl,
-              },
-              selectedTool
-            )}
+            className="bg-blue-500 text-white px-4 py-2 rounded-full"
+            onClick={() =>
+              handleSaveToPng(
+                selectedPool,
+                {
+                  sproutSupply: transformSupplyData(supplies.sproutUrl),
+                  saplingSupply: transformSupplyData(supplies.saplingUrl),
+                  orchardSupply: transformSupplyData(supplies.orchardUrl),
+                },
+                selectedTool
+              )
+            }
           />
         </div>
       </div>
 
       {/* Metrics */}
-      <div className="flex	flex-wrap gap-8 justify-center	items-center mt-8">
+      <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
         <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Market Cap</h3>
           <p>${blockchainInfo.market_cap_usd.toLocaleString()}</p>
@@ -369,7 +384,7 @@ export default function ShieldedPoolDashboard() {
           <h3 className="font-bold text-lg">Nodes</h3>
           <p>{latestNodeCount?.toLocaleString() ?? "Loading..."}</p>
         </div>
-        <div className="border p-4	nrounded-md text-center">
+        <div className="border p-4 rounded-md text-center">
           <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
           <p>
             {shieldedTxCount?.length
