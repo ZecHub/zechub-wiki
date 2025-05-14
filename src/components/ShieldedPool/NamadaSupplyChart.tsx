@@ -1,6 +1,8 @@
+// src/components/ShieldedPool/NamadaSupplyChart.tsx
+
 import React, { useMemo } from "react";
 import { Group } from "@visx/group";
-import { AreaClosed, Line } from "@visx/shape";
+import { AreaClosed, LinePath } from "@visx/shape";
 import { GridRows, GridColumns } from "@visx/grid";
 import { curveMonotoneX } from "@visx/curve";
 import { scaleTime, scaleLinear } from "@visx/scale";
@@ -20,7 +22,7 @@ interface Props {
 const margin = { top: 20, right: 20, bottom: 50, left: 60 };
 
 export default function NamadaSupplyChart({ data, width, height }: Props) {
-  // parse and memoize
+  // parse and memoize data points
   const points = useMemo(
     () => data.map(d => ({ date: new Date(d.timestamp), supply: d.supply })),
     [data]
@@ -31,7 +33,7 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
   }
 
   // Scales
-  const xScale = scaleTime({
+  const xScale = scaleTime<Date>({
     domain: extent(points, p => p.date) as [Date, Date],
     range: [margin.left, width - margin.right],
   });
@@ -43,6 +45,7 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
 
   return (
     <svg width={width} height={height}>
+      {/* grid background */}
       <GridRows
         scale={yScale}
         width={width - margin.left - margin.right}
@@ -55,7 +58,8 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
       />
 
       <Group>
-        <AreaClosed
+        {/* filled area */}
+        <AreaClosed<{ date: Date; supply: number }>
           data={points}
           x={d => xScale(d.date)!}
           y={d => yScale(d.supply)!}
@@ -64,7 +68,8 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
           fill="rgba(0,122,255,0.3)"
           curve={curveMonotoneX}
         />
-        <Line
+        {/* line path */}
+        <LinePath<{ date: Date; supply: number }>
           data={points}
           x={d => xScale(d.date)!}
           y={d => yScale(d.supply)!}
