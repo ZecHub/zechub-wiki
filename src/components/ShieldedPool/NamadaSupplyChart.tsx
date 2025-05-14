@@ -22,7 +22,7 @@ interface Props {
 const margin = { top: 20, right: 20, bottom: 50, left: 60 };
 
 export default function NamadaSupplyChart({ data, width, height }: Props) {
-  // parse and memoize data points
+  // Convert to Date objects once
   const points = useMemo(
     () => data.map(d => ({ date: new Date(d.timestamp), supply: d.supply })),
     [data]
@@ -32,12 +32,12 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
     return <div className="p-8 text-center">No data to display</div>;
   }
 
-  // Scales
-  const xScale = scaleTime<Date>({
+  // Scales (no <Date> generic)
+  const xScale = scaleTime({
     domain: extent(points, p => p.date) as [Date, Date],
     range: [margin.left, width - margin.right],
   });
-  const yScale = scaleLinear<number>({
+  const yScale = scaleLinear({
     domain: [0, max(points, p => p.supply) || 0],
     range: [height - margin.bottom, margin.top],
     nice: true,
@@ -45,7 +45,7 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
 
   return (
     <svg width={width} height={height}>
-      {/* grid background */}
+      {/* Background grid */}
       <GridRows
         scale={yScale}
         width={width - margin.left - margin.right}
@@ -58,8 +58,8 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
       />
 
       <Group>
-        {/* filled area */}
-        <AreaClosed<{ date: Date; supply: number }>
+        {/* Filled area */}
+        <AreaClosed
           data={points}
           x={d => xScale(d.date)!}
           y={d => yScale(d.supply)!}
@@ -68,8 +68,8 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
           fill="rgba(0,122,255,0.3)"
           curve={curveMonotoneX}
         />
-        {/* line path */}
-        <LinePath<{ date: Date; supply: number }>
+        {/* Line */}
+        <LinePath
           data={points}
           x={d => xScale(d.date)!}
           y={d => yScale(d.supply)!}
