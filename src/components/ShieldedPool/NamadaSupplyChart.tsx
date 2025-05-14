@@ -22,7 +22,7 @@ interface Props {
 const margin = { top: 20, right: 20, bottom: 50, left: 60 };
 
 export default function NamadaSupplyChart({ data, width, height }: Props) {
-  // Convert to Date objects once
+  // Convert to Date once
   const points = useMemo(
     () => data.map(d => ({ date: new Date(d.timestamp), supply: d.supply })),
     [data]
@@ -32,12 +32,14 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
     return <div className="p-8 text-center">No data to display</div>;
   }
 
-  // Scales (no <Date> generic)
-  const xScale = scaleTime({
+  // time-scale with correct generic
+  const xScale = scaleTime<Date>({
     domain: extent(points, p => p.date) as [Date, Date],
     range: [margin.left, width - margin.right],
   });
-  const yScale = scaleLinear({
+
+  // linear-scale for supply
+  const yScale = scaleLinear<number>({
     domain: [0, max(points, p => p.supply) || 0],
     range: [height - margin.bottom, margin.top],
     nice: true,
@@ -45,7 +47,7 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
 
   return (
     <svg width={width} height={height}>
-      {/* Background grid */}
+      {/* background grid */}
       <GridRows
         scale={yScale}
         width={width - margin.left - margin.right}
@@ -58,8 +60,8 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
       />
 
       <Group>
-        {/* Filled area */}
-        <AreaClosed
+        {/* filled area */}
+        <AreaClosed<{ date: Date; supply: number }>
           data={points}
           x={d => xScale(d.date)!}
           y={d => yScale(d.supply)!}
@@ -68,8 +70,8 @@ export default function NamadaSupplyChart({ data, width, height }: Props) {
           fill="rgba(0,122,255,0.3)"
           curve={curveMonotoneX}
         />
-        {/* Line */}
-        <LinePath
+        {/* line path */}
+        <LinePath<{ date: Date; supply: number }>
           data={points}
           x={d => xScale(d.date)!}
           y={d => yScale(d.supply)!}
