@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import { Group } from "@visx/group";
-import { AxisBottom, AxisLeft } from "@visx/axis";
+// import { AxisBottom, AxisLeft } from "@visx/axis";
 import { AreaClosed, Line } from "@visx/shape";
 import { GridRows, GridColumns } from "@visx/grid";
 import { curveMonotoneX } from "@visx/curve";
