@@ -1,3 +1,4 @@
+// src/components/ShieldedPool/ShieldedPoolDashboard.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -24,11 +25,11 @@ const DataUrlOptions = {
   sproutUrl:              "/data/zcash/sprout_supply.json",
   saplingUrl:             "/data/zcash/sapling_supply.json",
   orchardUrl:             "/data/zcash/orchard_supply.json",
+  txsummaryUrl:           "/data/zcash/transaction_summary.json",
   netInflowsOutflowsUrl:  "/data/zcash/netinflowoutflow.json",
   nodecountUrl:           "/data/zcash/nodecount.json",
   difficultyUrl:          "/data/zcash/difficulty.json",
   lockboxUrl:             "/data/zcash/lockbox.json",
-  txsummaryUrl:           "/data/zcash/transaction_summary.json",
   shieldedTxCountUrl:     "/data/zcash/shieldedtxcount.json",
   issuanceUrl:            "/data/zcash/issuance.json",
   apiUrl:                 "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json",
@@ -151,13 +152,62 @@ export default function ShieldedPoolDashboard() {
   const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount[] | null>(null);
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
-  // Namada
   const [namadaRaw, setNamadaRaw] = useState<any[]>([]);
   const [namadaAssets, setNamadaAssets] = useState<NamadaAsset[]>([]);
   const [selectedNamadaAsset, setSelectedNamadaAsset] = useState<string>("");
   const [namadaSeries, setNamadaSeries] = useState<SeriesPoint[]>([]);
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
+
+  // 1) Corrected getDataUrl: first switch on tool, then pool
+  const getDataUrl = (): string => {
+    // supply tool → choose by pool
+    if (selectedTool === ToolOptions.supply) {
+      switch (selectedPool) {
+        case "sprout":
+          return DataUrlOptions.sproutUrl;
+        case "sapling":
+          return DataUrlOptions.saplingUrl;
+        case "orchard":
+          return DataUrlOptions.orchardUrl;
+        default:
+          return DataUrlOptions.defaultUrl;
+      }
+    }
+
+    // other tools → direct URLs
+    switch (selectedTool) {
+      case ToolOptions.transaction:
+        return DataUrlOptions.txsummaryUrl;
+      case ToolOptions.net_inflows_outflows:
+        return DataUrlOptions.netInflowsOutflowsUrl;
+      case ToolOptions.nodecount:
+        return DataUrlOptions.nodecountUrl;
+      case ToolOptions.difficulty:
+        return DataUrlOptions.difficultyUrl;
+      case ToolOptions.lockbox:
+        return DataUrlOptions.lockboxUrl;
+      case "issuance":
+        return DataUrlOptions.issuanceUrl;
+      case ToolOptions.privacy_set:
+        return ""; // privacy_set is a visualization, not a data URL
+      default:
+        return DataUrlOptions.defaultUrl;
+    }
+  };
+
+  const getDataColor = (): string => {
+    switch (selectedPool) {
+      case "sprout":
+        return "#A020F0";
+      case "sapling":
+        return "#FFA500";
+      case "orchard":
+        return "#32CD32";
+      default:
+        return "url(#area-background-gradient)";
+    }
+  };
 
   useEffect(() => {
     getBlockchainData().then((d) => d && setBlockchainInfo(d));
@@ -183,7 +233,8 @@ export default function ShieldedPoolDashboard() {
     });
 
     // Namada raw + assets
-    getNodeCountData(DataUrlOptions.namadaSupplyUrl)
+    fetch(DataUrlOptions.namadaSupplyUrl)
+      .then((r) => r.json())
       .then((data: any[]) => {
         if (!data) return;
         setNamadaRaw(data);
@@ -194,7 +245,7 @@ export default function ShieldedPoolDashboard() {
       .catch(console.error);
   }, []);
 
-  // ——— PATCHED ——— last‐updated effect
+  // 2) Patched “last updated” effect
   useEffect(() => {
     (async () => {
       const key = (selectedPool === "default" ? "defaultUrl" : `${selectedPool}Url`) as keyof typeof DataUrlOptions;
@@ -203,7 +254,7 @@ export default function ShieldedPoolDashboard() {
     })();
   }, [selectedPool]);
 
-  // Build Namada series from raw
+  // Build Namada series
   useEffect(() => {
     if (!selectedNamadaAsset) return;
     const s = namadaRaw
@@ -232,96 +283,47 @@ export default function ShieldedPoolDashboard() {
   } as const;
   const poolKeys = Object.keys(poolLabels) as PoolKey[];
 
-  const getDataUrl = (): string => {
-    switch (selectedPool) {
-      case "sprout":
-        return DataUrlOptions.sproutUrl;
-      case "sapling":
-        return DataUrlOptions.saplingUrl;
-      case "orchard":
-        return DataUrlOptions.orchardUrl;
-      case ToolOptions.net_inflows_outflows:
-        return DataUrlOptions.netInflowsOutflowsUrl;
-      case "issuance":
-        return DataUrlOptions.issuanceUrl;
-      case ToolOptions.nodecount:
-        return DataUrlOptions.nodecountUrl;
-      case ToolOptions.difficulty:
-        return DataUrlOptions.difficultyUrl;
-      case ToolOptions.lockbox:
-        return DataUrlOptions.lockboxUrl;
-      default:
-        return DataUrlOptions.defaultUrl;
-    }
-  };
-
-  const getDataColor = (): string => {
-    switch (selectedPool) {
-      case "sprout":
-        return "#A020F0";
-      case "sapling":
-        return "#FFA500";
-      case "orchard":
-        return "#32CD32";
-      default:
-        return "url(#area-background-gradient)";
-    }
-  };
-
   const handleToolChange = (tool: ToolOptions) => {
     setSelectedTool(tool);
-    switch (tool) {
-      case ToolOptions.supply:
-      case ToolOptions.transaction:
-      case ToolOptions.privacy_set:
-        setSelectedPool("default");
-        break;
-      case ToolOptions.nodecount:
-        setSelectedPool("nodecount");
-        break;
-      case ToolOptions.difficulty:
-        setSelectedPool("difficulty");
-        break;
-      case ToolOptions.lockbox:
-        setSelectedPool("lockbox");
-        break;
-      case ToolOptions.net_inflows_outflows:
-        setSelectedPool(ToolOptions.net_inflows_outflows);
-        break;
-      case "issuance":
-        setSelectedPool("issuance");
-        break;
-      default:
-        setSelectedPool("default");
+    if (
+      tool === ToolOptions.supply ||
+      tool === ToolOptions.transaction ||
+      tool === ToolOptions.privacy_set
+    ) {
+      setSelectedPool("default");
     }
     setSelectedToolName(toolOptionLabels[tool]);
   };
 
   return (
     <div className="mt-28">
+      {/* Header & Coin Buttons */}
       <div className="flex flex-wrap gap-4 items-center justify-between mb-4">
         <h2 className="font-bold text-xl">{selectedToolName}</h2>
         <div className="flex gap-4">
-          <Button
-            text="Zcash"
-            onClick={() => setSelectedCoin("Zcash")}
-            className="bg-orange-400/75 text-white rounded-full px-4 py-2"
-          />
-          <Button
-            text="Penumbra"
-            onClick={() => setSelectedCoin("Penumbra")}
-            className="bg-purple-500/75 text-white rounded-full px-4 py-2"
-          />
-          <Button
-            text="Namada"
-            onClick={() => setSelectedCoin("Namada")}
-            className="bg-yellow-300/75 text-white rounded-full px-4 py-2"
-          />
+          <Button text="Zcash" onClick={() => setSelectedCoin("Zcash")} className="bg-orange-400/75 text-white rounded-full px-4 py-2" />
+          <Button text="Penumbra" onClick={() => setSelectedCoin("Penumbra")} className="bg-purple-500/75 text-white rounded-full px-4 py-2" />
+          <Button text="Namada" onClick={() => setSelectedCoin("Namada")} className="bg-yellow-300/75 text-white rounded-full px-4 py-2" />
         </div>
       </div>
 
+      {/* Chart & Tools */}
       <div className="border p-4 rounded-lg relative">
-        <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply} />
+        {selectedCoin === "Namada" ? (
+          <div className="mb-4 flex justify-center">
+            <Button
+              text="Supply"
+              onClick={() => handleToolChange(ToolOptions.supply)}
+              className={`px-4 py-2 rounded-full ${
+                selectedTool === ToolOptions.supply
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-300 text-gray-700"
+              }`}
+            />
+          </div>
+        ) : (
+          <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply} />
+        )}
 
         <div ref={divChartRef}>
           {selectedCoin === "Zcash" && (
@@ -331,17 +333,9 @@ export default function ShieldedPoolDashboard() {
               )}
               {selectedTool === ToolOptions.transaction && (
                 <>
-                  <div className="flex gap-4 justify-center mb-4">  
-                    <Checkbox
-                      checked={cumulativeCheck}
-                      onChange={setCumulativeCheck}
-                      label="Cumulative"
-                    />
-                    <Checkbox
-                      checked={filterSpamCheck}
-                      onChange={setFilterSpamCheck}
-                      label="Filter Spam"
-                    />
+                  <div className="flex gap-4 justify-center mb-4">
+                    <Checkbox checked={cumulativeCheck} onChange={setCumulativeCheck} label="Cumulative" />
+                    <Checkbox checked={filterSpamCheck} onChange={setFilterSpamCheck} label="Filter Spam" />
                   </div>
                   <TransactionSummaryChart
                     dataUrl={DataUrlOptions.txsummaryUrl}
@@ -384,9 +378,10 @@ export default function ShieldedPoolDashboard() {
           )}
         </div>
 
+        {/* Pool toggles (Zcash) */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Zcash" && (
           <div className="mt-8 flex flex-wrap justify-center gap-6">
-            {poolKeys.map((key) => (
+            {poolKeys.map(key => (
               <div key={key} className="flex flex-col items-center">
                 <Button
                   text={poolLabels[key]}
@@ -403,9 +398,10 @@ export default function ShieldedPoolDashboard() {
           </div>
         )}
 
+        {/* Namada toggles */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Namada" && (
           <div className="mt-8 flex flex-wrap justify-center gap-6">
-            {namadaAssets.map((asset) => (
+            {namadaAssets.map(asset => (
               <div key={asset.id} className="flex flex-col items-center">
                 <Button
                   text={asset.id}
@@ -424,6 +420,7 @@ export default function ShieldedPoolDashboard() {
           </div>
         )}
 
+        {/* Export & Last Updated */}
         <div className="flex justify-end items-center gap-4 mt-4">
           <span className="text-sm text-gray-500">Last updated: {formatDate(lastUpdated)}</span>
           <Button
@@ -443,6 +440,7 @@ export default function ShieldedPoolDashboard() {
           />
         </div>
 
+        {/* Metrics */}
         <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
           <div className="border p-4 rounded-md text-center">
             <h3 className="font-bold text-lg">Market Cap</h3>
