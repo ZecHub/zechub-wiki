@@ -1,18 +1,14 @@
 import React, { useMemo } from "react";
-import { Group } from "@visx/group";
-import { AreaClosed, LinePath } from "@visx/shape";
-import { GridRows, GridColumns } from "@visx/grid";
-import { curveMonotoneX } from "@visx/curve";
-import { scaleLinear } from "@visx/scale";
-import { extent, max } from "d3-array";
+import Chart from "react-apexcharts";
+import { ApexOptions } from "apexcharts";
 
 export interface SeriesPoint {
-  timestamp: string;
-  supply: number;
+  x: string[];
+  y: any;
 }
 
 interface Props {
-  data: SeriesPoint[];
+  data: SeriesPoint;
   width: number;
   height: number;
 }
@@ -20,71 +16,104 @@ interface Props {
 const margin = { top: 20, right: 20, bottom: 50, left: 60 };
 
 export default function NamadaSupplyChart({ data, width, height }: Props) {
-  // 1) Convert to numeric x/y once
-  const points = useMemo(
-    () =>
-      data.map(d => ({
-        x: new Date(d.timestamp).valueOf(),
-        y: d.supply,
-      })),
-    [data]
-  );
+  console.log("NamadaSupplyChart data", data);
+  const options: ApexOptions = {
+    legend: {
+      show: false, // Hide legend
+      position: "top",
+      horizontalAlign: "left",
+    },
+    colors: ["#465FFF", "#9CB9FF"], // Define line colors
+    chart: {
+      fontFamily: "Outfit, sans-serif",
+      height: 310,
+      type: "line", // Set the chart type to 'line'
+      toolbar: {
+        show: false, // Hide chart toolbar
+      },
+    },
+    stroke: {
+      curve: "straight", // Define the line style (straight, smooth, or step)
+      width: [2, 2], // Line width for each dataset
+    },
 
-  if (!points.length) {
-    return <div className="p-8 text-center">No data to display</div>;
-  }
+    fill: {
+      type: "gradient",
+      gradient: {
+        opacityFrom: 0.55,
+        opacityTo: 0,
+      },
+    },
+    markers: {
+      size: 0, // Size of the marker points
+      strokeColors: "#fff", // Marker border color
+      strokeWidth: 2,
+      hover: {
+        size: 6, // Marker size on hover
+      },
+    },
+    grid: {
+      xaxis: {
+        lines: {
+          show: false, // Hide grid lines on x-axis
+        },
+      },
+      yaxis: {
+        lines: {
+          show: true, // Show grid lines on y-axis
+        },
+      },
+    },
+    dataLabels: {
+      enabled: false, // Disable data labels
+    },
+    tooltip: {
+      enabled: true, // Enable tooltip
+      x: {
+        format: "dd MMM yyyy", // Format for x-axis tooltip
+      },
+    },
+    xaxis: {
+      type: "category", // Category-based x-axis
+      categories: data?.x || [],
+      axisBorder: {
+        show: false, // Hide x-axis border
+      },
+      axisTicks: {
+        show: false, // Hide x-axis ticks
+      },
+      tooltip: {
+        enabled: false, // Disable tooltip for x-axis points
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          fontSize: "12px", // Adjust font size for y-axis labels
+          colors: ["#6B7280"], // Color of the labels
+        },
+        formatter: (value: number) => {
+          return value.toLocaleString("en-US", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          });
+        }, // Format y-axis labels
+      },
+      title: {
+        text: "", // Remove y-axis title
+        style: {
+          fontSize: "0px",
+        },
+      },
+    },
+  };
 
-  // 2) Compute extents/limits
-  const [minX, maxX] = extent(points, p => p.x) as [number, number];
-  const maxY = max(points, p => p.y) || 0;
-
-  // 3) Build linear scales for both axes
-  const xScale = scaleLinear<number>({
-    domain: [minX, maxX],
-    range: [margin.left, width - margin.right],
-    nice: true,
-  });
-  const yScale = scaleLinear<number>({
-    domain: [0, maxY],
-    range: [height - margin.bottom, margin.top],
-    nice: true,
-  });
-
+  const series = [data?.y || []];
   return (
-    <svg width={width} height={height}>
-      {/* background grid */}
-      <GridRows
-        scale={yScale}
-        width={width - margin.left - margin.right}
-        left={margin.left}
-      />
-      <GridColumns
-        scale={xScale}
-        height={height - margin.top - margin.bottom}
-        top={margin.top}
-      />
-
-      <Group>
-        {/* filled area under the curve */}
-        <AreaClosed<{ x: number; y: number }>
-          data={points}
-          x={d => xScale(d.x)!}
-          y={d => yScale(d.y)!}
-          yScale={yScale}
-          strokeWidth={0}
-          fill="rgba(0,122,255,0.3)"
-          curve={curveMonotoneX}
-        />
-        {/* line over the area */}
-        <LinePath<{ x: number; y: number }>
-          data={points}
-          x={d => xScale(d.x)!}
-          y={d => yScale(d.y)!}
-          stroke="#007AFF"
-          strokeWidth={2}
-          curve={curveMonotoneX}
-        />
-      </Group>
-    </svg>
+    <div className="max-w-full overflow-x-auto custom-scrollbar">
+      <div id="chartEight" className="w-full">
+        <Chart options={options} series={series} type="area" height={500} />
+      </div>
+    </div>
   );
 }
