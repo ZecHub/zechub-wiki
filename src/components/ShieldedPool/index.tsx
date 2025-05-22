@@ -6,7 +6,7 @@ const ShieldedPoolDashboard = dynamic(
   () => import("./ShieldedPoolDashboard"),
   { 
     ssr: false,
-    loading: () => <p>Loading dashboard...</p>
+    loading: () => <span className="text-center text-3xl">Loading...</span>
   }
 );
 
