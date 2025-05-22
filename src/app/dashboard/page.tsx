@@ -1,3 +1,4 @@
+import ClientDashboard from "@/components/ShieldedPool";
 import ShieldedPoolDashboard from "../../components/ShieldedPool/ShieldedPoolDashboard";
 import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
@@ -10,7 +11,7 @@ export const metadata: Metadata = genMetadata({
 export default function DashboardPage() {
   return (
     <div>
-      <ShieldedPoolDashboard />
+      <ClientDashboard />
     </div>
   );
 }
