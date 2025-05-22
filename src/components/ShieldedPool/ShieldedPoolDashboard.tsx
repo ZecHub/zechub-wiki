@@ -306,7 +306,9 @@ export default function ShieldedPoolDashboard() {
         const tokenEntry = entry.Total_Supply.find(
           (item: { id: string }) => item.id === selectedNamadaAsset
         );
-        return parseFloat(tokenEntry.totalSupply);
+        return selectedNamadaAsset != "Namada"
+          ? parseFloat(tokenEntry.totalSupply) / 1000000
+          : parseFloat(tokenEntry.totalSupply);
       }),
     };
     const result = {x,y}
