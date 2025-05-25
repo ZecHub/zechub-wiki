@@ -12,6 +12,10 @@ type CardsProps = {
   description: string;
   [index: string]: any;
   ctaLabel: string;
+  manual?: {
+    url: string;
+    ctaLabel: string;
+  };
 };
 
 export const Card = (props: CardsProps) => (
@@ -31,7 +35,9 @@ export const Card = (props: CardsProps) => (
       </Link>
 
       <h2 className="text-xl font-bold px-4 my-6">{props.title}</h2>
-      <p className="text-gray-700 dark:text-white px-4 mb-4">{props.description}</p>
+      <p className="text-gray-700 dark:text-white px-4 mb-4">
+        {props.description}
+      </p>
 
       {props.features && props.features.length > 0 && (
         <div className="px-4">
@@ -55,6 +61,15 @@ export const Card = (props: CardsProps) => (
       >
         {props.ctaLabel}
       </Link>
+      {props.manual && (
+        <Link
+          href={props.manual.url}
+          target="_blank"
+          className="ml-4 inline-flex py-2 px-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          {props.manual.ctaLabel}
+        </Link>
+      )}
     </div>
   </div>
 );
