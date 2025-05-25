@@ -41,6 +41,10 @@ const projects = [
     link: "/downloads/brand/ZecHub.zip",
     imageUrl: zechub,
     size: 200,
+    manual: {
+      url: "https://heyzine.com/flip-book/4d4f08fac9.html",
+      ctaLabel: "ZecHub Visual Brand",
+    },
   },
   {
     title: "ECC",
@@ -60,7 +64,8 @@ const projects = [
   },
   {
     title: "Zcash Nigeria",
-    description: "Zcash Nigeria promotes financial privacy by educating and onboarding Nigerians to Zcash",
+    description:
+      "Zcash Nigeria promotes financial privacy by educating and onboarding Nigerians to Zcash",
     link: "downloads/brand/ZcashNigeria.zip",
     imageUrl: zcashNigeria,
     size: 190,
@@ -69,7 +74,11 @@ const projects = [
 
 const Row: React.FC = () => {
   return (
-    <div className={"grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"}>
+    <div
+      className={
+        "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+      }
+    >
       {projects.map((project, index) => (
         <Card
           thumbnailImage={project.imageUrl}
@@ -78,6 +87,7 @@ const Row: React.FC = () => {
           url={project.link}
           key={project.title + "_" + Math.random() / index}
           ctaLabel="Download"
+          manual={project.manual}
         />
       ))}
     </div>
