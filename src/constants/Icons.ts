@@ -21,9 +21,7 @@ import {
   PiComputerTower as ComputerTower,
   PiListMagnifyingGlassFill as ListMagnifyingGlassFill,
 } from "react-icons/pi";
-import {
-TfiServer as Tfi,
-} from "react-icons/tfi";
+import { TfiServer as Tfi } from "react-icons/tfi";
 import {
   RiSecurePaymentLine as SecurePayment,
   RiMailSendFill as MailSend,
@@ -32,6 +30,7 @@ import {
   RiNftFill as NftFill,
   RiMessengerLine as MessengerLine,
   RiArticleLine,
+  RiSecurePaymentLine,
 } from "react-icons/ri";
 import {
   GrResources as Resources,
@@ -47,6 +46,7 @@ import {
   Tb2Fa as Fa2,
   TbHexagonLetterN as HexagonLetterN,
   TbHexagonLetterZ as HexagonLetterZ,
+  TbDeviceMobileShare,
 } from "react-icons/tb";
 import { SlGraph as Graph } from "react-icons/sl";
 import {
@@ -60,11 +60,11 @@ import {
 import {
   FcCurrencyExchange as CurrencyExchange,
   FcGallery,
+  FcMoneyTransfer,
+  FcProcess,
   FcGlobe as Globe,
 } from "react-icons/fc";
-import {
-  GoSync as Go,
-} from "react-icons/go";
+import { GoSync as Go } from "react-icons/go";
 import {
   BsFillArrowUpRightCircleFill as ArrowUp,
   BsShieldShaded as ShieldShaded,
@@ -117,10 +117,11 @@ import { LiaHorseHeadSolid } from "react-icons/lia";
 import { FaLifeRing as LifeRing } from "react-icons/fa";
 import { GrDocumentZip } from "react-icons/gr";
 import { MdOutlinePayments } from "react-icons/md";
+import { IconType } from "react-icons";
 
 interface IconsFor {
   [key: string]: {
-    [key: string]: string;
+    [key: string]: IconType;
   };
 }
 
@@ -150,6 +151,9 @@ const iconsForMenu: IconsFor = {
     Wallets: Wallet,
     "Buying ZEC": CurrencyExchange,
     Transactions: ArrowUp,
+    "Transparent Exchange Addresses": RiSecurePaymentLine,
+    "Mobile Top Ups": TbDeviceMobileShare,
+    "Payment Processors": FcProcess,
     Memos: MailSend,
     "Shielded Pools": ShieldShaded,
     Faucets: Faucet,
@@ -178,10 +182,10 @@ const iconsForMenu: IconsFor = {
   "Zcash Tech": {
     "Crosslink Protocol": Stakeholder,
     "zk SNARKS": Circuitry,
-    "Halo": NumberCircle,
-    "FROST": SnowFlake,
+    Halo: NumberCircle,
+    FROST: SnowFlake,
     "Full Nodes": Nodes,
-    "Zaino": Tfi,
+    Zaino: Tfi,
     "Zcash Wallet Syncing": Go,
     "Zebra Full Node": Zebratechnologies,
     "Zk SNARKS": Letsencrypt,
@@ -199,7 +203,7 @@ const iconsForMenu: IconsFor = {
     "Community Links": LinkSimpleBold,
     "Community Blogs": Blog,
     "Zcash Global Ambassadors": Globe,
-    "ZCAP": Group,
+    ZCAP: Group,
     "Community Projects": BuildOutline,
     "Arborist Calls": Trees,
     "Cypherpunk Zero NFT": NftFill,
