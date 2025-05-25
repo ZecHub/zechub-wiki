@@ -31,6 +31,7 @@ import {
   RiMessengerLine as MessengerLine,
   RiArticleLine,
   RiSecurePaymentLine,
+  RiInstallLine,
 } from "react-icons/ri";
 import {
   GrResources as Resources,
@@ -47,6 +48,8 @@ import {
   TbHexagonLetterN as HexagonLetterN,
   TbHexagonLetterZ as HexagonLetterZ,
   TbDeviceMobileShare,
+  TbSquareRoundedLetterY,
+  TbCircleLetterZ,
 } from "react-icons/tb";
 import { SlGraph as Graph } from "react-icons/sl";
 import {
@@ -56,6 +59,7 @@ import {
   FaEthereum as Ethereum,
   FaQuestion,
   FaSyncAlt,
+  FaLaptop,
 } from "react-icons/fa";
 import {
   FcCurrencyExchange as CurrencyExchange,
@@ -81,6 +85,8 @@ import {
   MdSettings as Settings,
   MdOutlineEnhancedEncryption as OutlineEnchanceEncryption,
   MdOutlineLiveHelp as LiveHelp,
+  MdOutlinePodcasts,
+  MdFoundation,
 } from "react-icons/md";
 import {
   LiaServerSolid as ServerSolid,
@@ -102,15 +108,20 @@ import {
   GiCableStayedBridge as CableStayedBridge,
   GiMayanPyramid as MayanPyramid,
   GiMeshBall,
+  GiSoapExperiment,
 } from "react-icons/gi";
 import { LuFileKey as FileKey, LuTrees as Trees } from "react-icons/lu";
 import {
   IoBuildOutline as BuildOutline,
+  IoCloudUploadOutline,
   IoConstructOutline,
 } from "react-icons/io5";
 import { IoIosMicrophone as IosMicrophone } from "react-icons/io";
 import { GrBlog as Blog } from "react-icons/gr";
-import { FaMagnifyingGlassChart as MagnifyingGlassChart } from "react-icons/fa6";
+import {
+  FaLaptopCode,
+  FaMagnifyingGlassChart as MagnifyingGlassChart,
+} from "react-icons/fa6";
 import { CiStreamOn as StreamOn } from "react-icons/ci";
 import { HiOutlineBuildingLibrary } from "react-icons/hi2";
 import { LiaHorseHeadSolid } from "react-icons/lia";
@@ -169,9 +180,15 @@ const iconsForMenu: IconsFor = {
     "Blockchain Explorers": ListMagnifyingGlassFill,
     "Maya Protocol": MayanPyramid,
     "Avalanche RedBridge": CableStayedBridge,
+    "Akash Network": IoCloudUploadOutline,
     "Full Nodes": ServerSolid,
     "Raspberry Pi 4 Full Node": RaspBerry,
+    "Raspberry pi5 Zebra Lightwalletd Zingo": RaspBerry,
     "Raspberry pi 4 Zebra Node": Zebratechnologies,
+    "Ywallet FROST Demo": TbSquareRoundedLetterY,
+    "Zcash Devtool": TbCircleLetterZ,
+    "Zenith Installation": RiInstallLine,
+    "Zingolib and Zaino Tutorial": FaLaptopCode,
     "Using ZEC in DeFi": Ethereum,
     "Free2z Live": Live,
     "Zgo Payment Processor": PointOfSale,
@@ -198,6 +215,8 @@ const iconsForMenu: IconsFor = {
     "Zcash Foundation": CheckedShield,
     "Zcash Community Grants": HexagonLetterZ,
     "Shielded Labs": BordererShield,
+    "Financial Privacy Foundation": MdFoundation,
+    "Zingo Labs": GiSoapExperiment,
   },
   "Zcash Community": {
     "Community Links": LinkSimpleBold,
@@ -209,6 +228,7 @@ const iconsForMenu: IconsFor = {
     "Cypherpunk Zero NFT": NftFill,
     "Zcash Ecosystem Security": Lock,
     "Zcash Media": Play,
+    "Zcash Podcasts": MdOutlinePodcasts,
     "Zcon Archive": PresentationChar,
   },
   "ZFAV Club": {
