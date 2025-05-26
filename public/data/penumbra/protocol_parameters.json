@@ -1,0 +1,94 @@
+{
+  "chainId": "penumbra-1",
+  "sctParams": {
+    "epochDuration": "34560"
+  },
+  "communityPoolParams": {},
+  "governanceParams": {
+    "proposalVotingBlocks": "34560",
+    "proposalDepositAmount": {
+      "lo": "100000000"
+    },
+    "proposalValidQuorum": "40/100",
+    "proposalPassThreshold": "67/100",
+    "proposalSlashThreshold": "80/100"
+  },
+  "ibcParams": {
+    "ibcEnabled": true,
+    "inboundIcs20TransfersEnabled": true,
+    "outboundIcs20TransfersEnabled": true
+  },
+  "stakeParams": {
+    "activeValidatorLimit": "100",
+    "slashingPenaltyMisbehavior": "10000000",
+    "slashingPenaltyDowntime": "10000",
+    "signedBlocksWindowLen": "10000",
+    "missedBlocksMaximum": "9500",
+    "minValidatorStake": {
+      "lo": "100000000"
+    },
+    "unbondingDelay": "120960"
+  },
+  "feeParams": {
+    "fixedGasPrices": {
+      "blockSpacePrice": "60",
+      "compactBlockSpacePrice": "1556",
+      "verificationPrice": "1",
+      "executionPrice": "1"
+    },
+    "fixedAltGasPrices": [
+      {
+        "assetId": {
+          "inner": "drPksQaBNYwSOzgfkGOEdrd4kEDkeALeh58Ps+7cjQs="
+        },
+        "blockSpacePrice": "600",
+        "compactBlockSpacePrice": "15560",
+        "verificationPrice": "10",
+        "executionPrice": "10"
+      },
+      {
+        "assetId": {
+          "inner": "B+9mATKkwyNfqyctQ9m5dSqDN7LRCFl6v/r/XyRtDw8="
+        },
+        "blockSpacePrice": "120",
+        "compactBlockSpacePrice": "3112",
+        "verificationPrice": "2",
+        "executionPrice": "2"
+      },
+      {
+        "assetId": {
+          "inner": "KSOgqHs6JCHxZcyFPb9zqb2vtdoNlIVktgWcsCF8RAc="
+        },
+        "blockSpacePrice": "1200",
+        "compactBlockSpacePrice": "31120",
+        "verificationPrice": "20",
+        "executionPrice": "20"
+      }
+    ]
+  },
+  "distributionsParams": {
+    "stakingIssuancePerBlock": "63411"
+  },
+  "fundingParams": {},
+  "shieldedPoolParams": {
+    "fmdMetaParams": {
+      "fmdGracePeriodBlocks": "360",
+      "fixedPrecisionBits": 0
+    }
+  },
+  "dexParams": {
+    "isEnabled": true,
+    "fixedCandidates": [
+      {
+        "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+      },
+      {
+        "inner": "drPksQaBNYwSOzgfkGOEdrd4kEDkeALeh58Ps+7cjQs="
+      }
+    ],
+    "maxHops": 4,
+    "maxPositionsPerPair": 1000,
+    "maxExecutionBudget": 128
+  },
+  "auctionParams": {}
+}
