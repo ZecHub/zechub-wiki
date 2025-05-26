@@ -4,6 +4,8 @@ import QRCode from "qrcode.react";
 import { useState, useEffect } from "react";
 import PenumbraWalletConnect from "../Penumbra/PenumbraWalletConnect";
 import "./donation.css";
+import { BsQrCodeScan } from "react-icons/bs";
+import { MdOutlineCopyAll } from "react-icons/md";
 
 // Define token and symbol types for clarity
 type Token = "zcash" | "penumbra" | "ycash" | "namada";
@@ -14,7 +16,7 @@ const images = {
   zcash: "/donation-isometric/i4_zcash_-_isometric.png",
   namada: "/donation-isometric/i2_Namada_-_Isometric.png",
   ycash: "/donation-isometric/i3_Ycash_-_Isometric.png",
-  penumbra: "/donation-isometric/i1_Penumbra_-_Isometric.png"
+  penumbra: "/donation-isometric/i1_Penumbra_-_Isometric.png",
 };
 
 const DonationComp = () => {
@@ -24,6 +26,7 @@ const DonationComp = () => {
   const [imgLogo, setImgLogo] = useState(images.zcash);
   const [imgFade, setImgFade] = useState(false);
   const [isPenumbraVisible, setIsPenumbraVisible] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   // Static donation addresses
   const zcashAddress =
@@ -77,152 +80,98 @@ const DonationComp = () => {
     }, 500);
   };
 
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
+
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
-    <div className="flex justify-evenly mt-24 overflow-hidden">
-      <div className="hidden md:block">
-        <div id="img-container" className="mt-72">
-          {imgLogo && (
-            <Image
-              src={imgLogo}
-              alt={selectedCurrency}
-              width={200}
-              height={200}
-              className={`w-96 h-96 transition-opacity duration-500 ease-in-out ${
-                imgFade ? "opacity-0" : "opacity-100"
-              }`}
-            />
+    <div className="flex h-[100vh] flex-col relative w-full items-center justify-center gap-16 overflow-hidden">
+      <div className="md:w-[600px] w-[90%] flex bg-white shadow-md  rounded-[100px] h-[50px]">
+        <div
+          onClick={() => handleOnClick("zcash")}
+          className={`${
+            selectedCurrency === "zcash"
+              ? "bg-[#1984c7] shadow-lg"
+              : "bg-transparent"
+          } flex cursor-pointer gap-2 justify-center items-center w-[150px] h-[50px] rounded-[100px] animate-fade-in-out`}
+        >
+          <Image src={"/zcash-logo.png"} alt="Zcash" width={32} height={32} />
+          <span className="text-white md:block hidden">Zcash</span>
+        </div>
+        <div
+          onClick={() => handleOnClick("ycash")}
+          className={`${
+            selectedCurrency === "ycash"
+              ? "bg-[#1984c7] shadow-lg"
+              : "bg-transparent"
+          } flex cursor-pointer gap-2 justify-center items-center w-[150px] h-[50px] rounded-[100px] animate-fade-in-out`}
+        >
+          <Image src={"/ycash-logo.png"} alt="Ycash" width={32} height={32} />
+          {selectedCurrency === "ycash" && (
+            <span className="text-white md:block hidden">Ycash</span>
+          )}
+        </div>
+        <div
+          onClick={() => handleOnClick("namada")}
+          className={`${
+            selectedCurrency === "namada"
+              ? "bg-[#1984c7] shadow-lg"
+              : "bg-transparent"
+          } flex cursor-pointer gap-2 justify-center items-center w-[150px] h-[50px] rounded-[100px] animate-fade-in-out`}
+        >
+          <Image src={"/namada-logo.png"} alt="Namada" width={32} height={32} />
+          {selectedCurrency === "namada" && (
+            <span className="text-white md:block hidden">Namada</span>
+          )}
+        </div>
+        <div
+          onClick={() => handleOnClick("penumbra")}
+          className={`${
+            selectedCurrency === "penumbra"
+              ? "bg-[#1984c7] shadow-lg"
+              : "bg-transparent"
+          } flex cursor-pointer gap-2 justify-center items-center w-[150px] h-[50px] rounded-[100px] animate-fade-in-out`}
+        >
+          <Image
+            src={"/penumbra-logo.png"}
+            alt="Penumbra"
+            width={32}
+            height={32}
+          />
+          {selectedCurrency === "penumbra" && (
+            <span className="text-white md:block hidden">Penumbra</span>
           )}
         </div>
       </div>
-      <div className="block">
-        <div className="donation-container donation-border">
-          <div style={{ margin: "20px auto", textAlign: "center" }}>
+      <div className="h-[70%] flex-col w-full flex justify-center items-center">
+        <div className="bg-white relative flex justify-center items-center shadow-md rounded-lg h-full md:w-[600px] w-[90%]">
+          <div className="absolute rounded-full left-[50%] -top-[5%] -translate-x-[50%] flex justify-center items-center bg-[#1984c7] w-[50px] h-[50px] shadow-md">
+            <BsQrCodeScan color="white" />
+          </div>
+          <div className="flex justify-center items-center">
             <QRCode value={getDonationAddress()} size={280} />
-            {/* Code block displaying the selected donation address */}
-            <pre
-              className="address-code-block"
-              style={{
-                width: "320px", // fixed width: slightly wider than the QR code
-                textAlign: "left",
-                padding: "10px",
-                backgroundColor: "#f5f5f5",
-                borderRadius: "4px",
-                marginTop: "10px",
-                overflowX: "auto"
-              }}
-            >
-              <code>{getDonationAddress()}</code>
-            </pre>
           </div>
+        </div>
+        <div className="flex flex-wrap justify-between items-center md:w-[600px] w-[90%] h-[50px] mt-6">
+          <input
+            disabled
+            value={getDonationAddress()}
+            className="bg-white p-2 relative flex justify-center items-center h-full shadow-lg rounded-lg md:w-[530px] w-[85%]"
+          />
 
-          {/* Currency buttons */}
           <div
-            className="currency-switch"
-            style={{
-              marginTop: "5px",
-              display: "flex",
-              justifyContent: "center"
-            }}
+            onClick={() => handleCopy(getDonationAddress())}
+            className="w-[50px] cursor-pointer bg-[#1984c7] h-full  flex justify-center items-center rounded-md"
           >
-            <button
-              onClick={() => handleOnClick("zcash")}
-              className={selectedCurrency === "zcash" ? "active" : ""}
-              style={{
-                borderRadius: "50%",
-                padding: "10px",
-                margin: "5px",
-                border:
-                  selectedCurrency === "zcash"
-                    ? "3px solid lightblue"
-                    : "3px solid transparent",
-                width: "80px",
-                height: "80px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <Image src={"/zcash-logo.png"} alt="Zcash" width={32} height={32} />
-            </button>
-
-            <button
-              onClick={() => handleOnClick("ycash")}
-              className={selectedCurrency === "ycash" ? "active" : ""}
-              style={{
-                borderRadius: "50%",
-                padding: "10px",
-                margin: "5px",
-                border:
-                  selectedCurrency === "ycash"
-                    ? "3px solid lightblue"
-                    : "3px solid transparent",
-                width: "80px",
-                height: "80px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <Image src={"/ycash-logo.png"} alt="Ycash" width={32} height={32} />
-            </button>
-
-            <button
-              onClick={() => handleOnClick("namada")}
-              className={selectedCurrency === "namada" ? "active" : ""}
-              style={{
-                borderRadius: "50%",
-                padding: "10px",
-                margin: "5px",
-                border:
-                  selectedCurrency === "namada"
-                    ? "3px solid lightblue"
-                    : "3px solid transparent",
-                width: "80px",
-                height: "80px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <Image
-                src={"/namada-logo.png"}
-                alt="Namada"
-                width={32}
-                height={32}
-              />
-            </button>
-
-            <button
-              onClick={() => handleOnClick("penumbra")}
-              className={selectedCurrency === "penumbra" ? "active" : ""}
-              style={{
-                borderRadius: "50%",
-                padding: "10px",
-                margin: "5px",
-                border:
-                  selectedCurrency === "penumbra"
-                    ? "3px solid lightblue"
-                    : "3px solid transparent",
-                width: "80px",
-                height: "80px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <Image
-                src={"/penumbra-logo.png"}
-                alt="Penumbra"
-                width={32}
-                height={32}
-              />
-            </button>
+            <MdOutlineCopyAll color="white" size={"20"} />
           </div>
-
-          {/* Optional: For Penumbra, show wallet connect options */}
-          {isPenumbraVisible && (
-            <div className="my-10">
-              <PenumbraWalletConnect />
+          {copied && (
+            <div className="bg-green-500 mt-5 w-full text-white px-3 py-3 rounded-md text-sm animate-fade-in-out">
+              Wallet address copied to clipboard!
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-green-500"></div>
             </div>
           )}
         </div>
