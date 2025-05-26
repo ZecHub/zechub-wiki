@@ -88,8 +88,8 @@ const DonationComp = () => {
   };
 
   return (
-    <div className="flex h-[100vh] flex-col relative w-full items-center justify-center gap-16 overflow-hidden">
-      <div className="md:w-[600px] w-[90%] flex bg-white shadow-md  rounded-[100px] h-[50px]">
+    <div className="flex md:h-[90vh] h-[100vh] flex-col relative w-full items-center justify-center gap-16 overflow-hidden">
+      <div className="md:w-[600px] w-[90%] flex bg- dark:bg-gray-800 shadow-md  rounded-[100px] h-[50px]">
         <div
           onClick={() => handleOnClick("zcash")}
           className={`${
@@ -146,20 +146,20 @@ const DonationComp = () => {
           )}
         </div>
       </div>
-      <div className="h-[70%] flex-col w-full flex justify-center items-center">
-        <div className="bg-white relative flex justify-center items-center shadow-md rounded-lg h-full md:w-[600px] w-[90%]">
+      <div className="md:h-[65%] h-[70%] flex-col w-full flex justify-center items-center">
+        <div className="bg-white dark:bg-gray-800  relative flex justify-center items-center shadow-md rounded-lg h-full md:w-[600px] w-[90%]">
           <div className="absolute rounded-full left-[50%] -top-[5%] -translate-x-[50%] flex justify-center items-center bg-[#1984c7] w-[50px] h-[50px] shadow-md">
             <BsQrCodeScan color="white" />
           </div>
           <div className="flex justify-center items-center">
-            <QRCode value={getDonationAddress()} size={280} />
+            <QRCode value={getDonationAddress()} size={380} />
           </div>
         </div>
         <div className="flex flex-wrap justify-between items-center md:w-[600px] w-[90%] h-[50px] mt-6">
           <input
             disabled
             value={getDonationAddress()}
-            className="bg-white p-2 relative flex justify-center items-center h-full shadow-lg rounded-lg md:w-[530px] w-[85%]"
+            className="bg-white dark:bg-gray-800 p-2 py-4 relative flex justify-center items-center h-full shadow-lg rounded-lg md:w-[530px] w-[85%]"
           />
 
           <div

@@ -21,6 +21,7 @@ import { localPoint } from "@visx/event";
 import { LinearGradient } from "@visx/gradient";
 import { max, extent, bisector } from "@visx/vendor/d3-array";
 import { timeFormat } from "@visx/vendor/d3-time-format";
+import styled from 'styled-components';
 
 /**
  * Type of values from the shielded pool over time. Each datum is amount
@@ -115,6 +116,21 @@ export type AreaProps = {
  * @returns Area chart for shielded pool over time
  *
  */
+
+const AnimatedArea = styled(AreaClosed<ShieldedAmountDatum>)`
+  animation: fadeIn 1s ease-out forwards;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scaleY(0);
+      transform-origin: bottom;
+    }
+    to {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+`;
 const ShieldedPoolChart = withTooltip<
   AreaProps & ShieldedPoolChartProps,
   ShieldedAmountDatum
@@ -401,7 +417,7 @@ const ShieldedPoolChart = withTooltip<
             pointerEvents="none"
             aria-label="Columns of chart"
           />
-          <AreaClosed<ShieldedAmountDatum>
+          <AnimatedArea
             data={filteredData}
             x={(d) => dateScale(getDate(d)) ?? 0}
             y={(d) => shieldedValueScale(getShieldedValue(d)) ?? 0}
