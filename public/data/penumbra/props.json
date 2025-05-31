@@ -1,0 +1,84 @@
+[
+  {
+    "Proposal": [
+      {
+        "id": 0,
+        "Title": "Mainnet ratification and establishment of IBC channels",
+        "State": {
+          "finished": {
+            "outcome": {
+              "passed": {}
+            }
+          }
+        },
+        "Start_Block": 207250,
+        "End_Block": 241810
+      },
+      {
+        "id": 1,
+        "Title": "Enable Full Functionality",
+        "State": {
+          "finished": {
+            "outcome": {
+              "passed": {}
+            }
+          }
+        },
+        "Start_Block": 377056,
+        "End_Block": 411616
+      },
+      {
+        "id": 2,
+        "Title": "Refine Mainnet Parameters",
+        "State": {
+          "finished": {
+            "outcome": {
+              "passed": {}
+            }
+          }
+        },
+        "Start_Block": 432276,
+        "End_Block": 466836
+      },
+      {
+        "id": 3,
+        "Title": "IBC Stuck Transfers Fix",
+        "State": {
+          "finished": {
+            "outcome": {
+              "passed": {}
+            }
+          }
+        },
+        "Start_Block": 466456,
+        "End_Block": 501016
+      },
+      {
+        "id": 4,
+        "Title": "Penumbra v0.81.00 Support for UIP 4, UIP 5, UIP6 and UIP 8 ",
+        "State": {
+          "finished": {
+            "outcome": {
+              "passed": {}
+            }
+          }
+        },
+        "Start_Block": 2576980,
+        "End_Block": 2611540
+      },
+      {
+        "id": 5,
+        "Title": "Penumbra voluntary halt and upgrade in response to IBC dependency fix ",
+        "State": {
+          "finished": {
+            "outcome": {
+              "passed": {}
+            }
+          }
+        },
+        "Start_Block": 4312313,
+        "End_Block": 4346873
+      }
+    ]
+  }
+]
