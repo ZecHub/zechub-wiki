@@ -948,5 +948,43 @@
             }
         ],
        "Native_Supply_NAM": "1027871773.667644"
+  },
+    {
+        "Date": "06/03/2025",
+        "Total_Supply": [
+            {
+                "id": "Namada",
+                "totalSupply": "1046966821.975391"
+            },
+            {
+                "id": "Atom",
+                "totalSupply": "30433580880"
+            },
+            {
+                "id": "Osmo",
+                "totalSupply": "377246447190"
+            },
+            {
+                "id": "Tia",
+                "totalSupply": "33600768462"
+            },
+            {
+                "id": "Penumbra",
+                "totalSupply": "34318600004"
+            },
+            {
+                "id": "Nym",
+                "totalSupply": "148062880748"
+            },
+            {
+                "id": "Neutron",
+                "totalSupply": "978568515"
+            },
+            {
+                "id": "Usdc",
+                "totalSupply": "110656312211"
+            }
+        ],
+       "Native_Supply_NAM": "1028012585.253103"
    }
 ]
