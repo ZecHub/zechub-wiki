@@ -75,6 +75,14 @@ const projects = [
     link: "https://hackmd.io/@RhipperBoy/HyRI_UT1gx",
     imageUrl: "https://raw.githubusercontent.com/TheRhipper/Images/refs/heads/main/file_0000000006a462469eefcc3a38630375_conversation_id%3D68108e26-1b74-800c-92e3-199cd3c0ac36%26message_id%3D4c8b318e-e887-4dc8-ba8e-674bb80a14a4.png",
   },
+  {
+    title: "ZeWIF",
+    description:
+      "Zcash Extensible Wallet Interchange Format (ZeWIF) is a collaborative project by Zingo Labs and Blockchain Commons to improve Zcash wallet compatibility and interoperability.",
+    link: "https://forum.zcashcommunity.com/t/zewif-is-ready-for-testing/50782",
+    imageUrl: "https://i.ibb.co/wN2PZmzN/ZeWIF.png",
+    
+  }
 ];
 
 const Grid: React.FC = () => {
