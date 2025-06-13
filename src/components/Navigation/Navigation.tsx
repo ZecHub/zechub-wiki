@@ -211,6 +211,25 @@ const Navigation = () => {
   const [menuExpanded, setMenuExpanded] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  
+  useEffect(() => {
+  
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+  
+    setDark(prefersDark.matches);
+
+   
+    const listener = (e: MediaQueryListEvent) => {
+      setDark(e.matches);
+    };
+
+    prefersDark.addEventListener("change", listener);
+
+    return () => {
+      prefersDark.removeEventListener("change", listener);
+    };
+  }, []);
 
   useEffect(() => {
     const html: HTMLElement = document.querySelector("html")!;
