@@ -6,7 +6,6 @@ import { FadeInAnimation } from "@/components/UI/FadeInAnimation";
 import MemberCards from "@/components/UI/MemberCards";
 import { daoMembers } from "@/constants/membersDao";
 
-
 const Dao: React.FC = () => {
   return (
     <main className="dao-main-container">
@@ -19,7 +18,7 @@ const Dao: React.FC = () => {
             height={100}
             className="mr-4"
           />
-          <h1 className="text-4xl font-semibold">ZecHub DAO</h1>
+          <h1 className="text-4xl font-semibold">ZecHub <Link href="https://nym.com/blog/what-is-dao" target="_blank" className="text-blue-500 hover:text-blue-600">DAO</Link></h1>
         </div>
 
         <p
@@ -30,7 +29,7 @@ const Dao: React.FC = () => {
           members can work together on creating, validating, and promoting
           content that supports the Zcash ecosystem. ZecHub believes: Privacy is
           a human right Education should be open-source and accessible worldwide
-          Community members have a right to earn ZEC privately ZecHub DAO is
+          Community members have a right to earn ZEC privately ZecHub <Link href="https://nym.com/blog/what-is-dao" target="_blank" className="text-blue-500 hover:text-blue-600">DAO</Link> is
           comprised of likeminded individuals located around the world with the
           common goal of effectively guiding Zcash and Privacy Technology
           education.
