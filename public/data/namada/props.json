@@ -1,39 +1,7 @@
 [
     {
-        "Last_committed_epoch": 708,
+        "Last_committed_epoch": 803,
         "Proposal": [
-            {
-                "id": 12,
-                "Type": "PGF funding",
-                "Author": "tnam1qztdx4y7a3wn0qmgcgtrty237vcnp9f9hs3rt3k7",
-                "Start_Epoch": "340",
-                "End_Epoch": "360",
-                "Activation_Epoch": "361"
-            },
-            {
-                "id": 13,
-                "Type": "PGF funding",
-                "Author": "tnam1qztdx4y7a3wn0qmgcgtrty237vcnp9f9hs3rt3k7",
-                "Start_Epoch": "364",
-                "End_Epoch": "380",
-                "Activation_Epoch": "381"
-            },
-            {
-                "id": 14,
-                "Type": "PGF funding",
-                "Author": "tnam1qztdx4y7a3wn0qmgcgtrty237vcnp9f9hs3rt3k7",
-                "Start_Epoch": "477",
-                "End_Epoch": "497",
-                "Activation_Epoch": "498"
-            },
-            {
-                "id": 15,
-                "Type": "Default with Wasm",
-                "Author": "tnam1qztdx4y7a3wn0qmgcgtrty237vcnp9f9hs3rt3k7",
-                "Start_Epoch": "501",
-                "End_Epoch": "519",
-                "Activation_Epoch": "520"
-            },
             {
                 "id": 16,
                 "Type": "PGF funding",
@@ -89,6 +57,38 @@
                 "Start_Epoch": "709",
                 "End_Epoch": "734",
                 "Activation_Epoch": "735"
+            },
+            {
+                "id": 23,
+                "Type": "Default with Wasm",
+                "Author": "tnam1qqgll8x8rz9fvtdv8q6n985za0vjvgyu0udxh7fp",
+                "Start_Epoch": "740",
+                "End_Epoch": "754",
+                "Activation_Epoch": "755"
+            },
+            {
+                "id": 24,
+                "Type": "Default with Wasm",
+                "Author": "tnam1qqgll8x8rz9fvtdv8q6n985za0vjvgyu0udxh7fp",
+                "Start_Epoch": "744",
+                "End_Epoch": "756",
+                "Activation_Epoch": "757"
+            },
+            {
+                "id": 25,
+                "Type": "Default with Wasm",
+                "Author": "tnam1qqgll8x8rz9fvtdv8q6n985za0vjvgyu0udxh7fp",
+                "Start_Epoch": "753",
+                "End_Epoch": "765",
+                "Activation_Epoch": "766"
+            },
+            {
+                "id": 26,
+                "Type": "Default with Wasm",
+                "Author": "tnam1qqgll8x8rz9fvtdv8q6n985za0vjvgyu0udxh7fp",
+                "Start_Epoch": "783",
+                "End_Epoch": "795",
+                "Activation_Epoch": "796"
             }
         ]
     }
