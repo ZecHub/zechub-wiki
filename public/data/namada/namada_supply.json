@@ -4,1949 +4,2700 @@
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1040288568.290605"
+                "totalSupply": "1040288568.290605",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
+
             },
             {
                 "id": "Atom",
-                "totalSupply": "11267804366"
+                "totalSupply": "11267804366",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "106107437962"
+                "totalSupply": "106107437962",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12714514321"
+                "totalSupply": "12714514321",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": ""
+                "totalSupply": "",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "500000"
+                "totalSupply": "500000",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1000000"
+                "totalSupply": "1000000",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "100000"
+                "totalSupply": "100000",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1024673515.595884",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1024673515.595884"
   },
     {
         "Date": "05/11/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1040499128.459217"
+                "totalSupply": "1040499128.459217",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "11270704366"
+                "totalSupply": "11270704366",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "106125437962"
+                "totalSupply": "106125437962",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12715014321"
+                "totalSupply": "12715014321",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": ""
+                "totalSupply": "",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "500000"
+                "totalSupply": "500000",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1000000"
+                "totalSupply": "1000000",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "100000"
+                "totalSupply": "100000",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1024778793.877170",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1024778793.877170"
   },
     {
         "Date": "05/12/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1040779909.003407"
+                "totalSupply": "1040779909.003407",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "11270859366"
+                "totalSupply": "11270859366",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "106140949171"
+                "totalSupply": "106140949171",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12715134321"
+                "totalSupply": "12715134321",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": ""
+                "totalSupply": "",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "500000"
+                "totalSupply": "500000",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1000000"
+                "totalSupply": "1000000",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "100000"
+                "totalSupply": "100000",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1024919181.744948",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1024919181.744948"
   },
     {
         "Date": "05/13/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1041060728.012661"
+                "totalSupply": "1041060728.012661",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "11281178166"
+                "totalSupply": "11281178166",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "106187308871"
+                "totalSupply": "106187308871",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12717264321"
+                "totalSupply": "12717264321",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": ""
+                "totalSupply": "",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147112580748"
+                "totalSupply": "147112580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "83888310"
+                "totalSupply": "83888310",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "264380"
+                "totalSupply": "264380",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1025059588.844931",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1025059588.844931"
   },
     {
         "Date": "05/14/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1041341585.492248"
+                "totalSupply": "1041341585.492248",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "11282178166"
+                "totalSupply": "11282178166",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "105904476541"
+                "totalSupply": "105904476541",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12717414321"
+                "totalSupply": "12717414321",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": ""
+                "totalSupply": "",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147112580748"
+                "totalSupply": "147112580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "83888310"
+                "totalSupply": "83888310",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "264380"
+                "totalSupply": "264380",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1025200015.179765",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1025200015.179765"
   },
     {
         "Date": "05/15/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1041622481.44744"
+                "totalSupply": "1041622481.44744",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "11243774166"
+                "totalSupply": "11243774166",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "105570226541"
+                "totalSupply": "105570226541",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12716414321"
+                "totalSupply": "12716414321",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": ""
+                "totalSupply": "",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147163580748"
+                "totalSupply": "147163580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "114888310"
+                "totalSupply": "114888310",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "13442791"
+                "totalSupply": "13442791",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1025340460.752064",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1025340460.752064"
   },
     {
         "Date": "05/16/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1041903415.883505"
+                "totalSupply": "1041903415.883505",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "11254810936"
+                "totalSupply": "11254810936",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "105695226541"
+                "totalSupply": "105695226541",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12715894321"
+                "totalSupply": "12715894321",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": ""
+                "totalSupply": "",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147163580748"
+                "totalSupply": "147163580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "114888310"
+                "totalSupply": "114888310",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "5413512791"
+                "totalSupply": "5413512791",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1025480925.564469",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1025480925.564469"
   },
     {
         "Date": "05/17/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1042184388.805719"
+                "totalSupply": "1042184388.805719",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "10963089634"
+                "totalSupply": "10963089634",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "105705426541"
+                "totalSupply": "105705426541",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12714064321"
+                "totalSupply": "12714064321",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": ""
+                "totalSupply": "",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147203580748"
+                "totalSupply": "147203580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "117913310"
+                "totalSupply": "117913310",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "5414960156"
+                "totalSupply": "5414960156",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1025621409.619627",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1025621409.619627"
   },
     {
         "Date": "05/18/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1042465400.21935"
+                "totalSupply": "1042465400.21935",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "10764382134"
+                "totalSupply": "10764382134",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "105706426541"
+                "totalSupply": "105706426541",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12579456821"
+                "totalSupply": "12579456821",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "100004"
+                "totalSupply": "100004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147203580748"
+                "totalSupply": "147203580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "147913310"
+                "totalSupply": "147913310",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "5436957305"
+                "totalSupply": "5436957305",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1025761912.920168",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1025761912.920168"
   },
     {
         "Date": "05/19/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1042746450.129672"
+                "totalSupply": "1042746450.129672",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "10765579678"
+                "totalSupply": "10765579678",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "105707857441"
+                "totalSupply": "105707857441",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12579456821"
+                "totalSupply": "12579456821",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "100004"
+                "totalSupply": "100004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147203580748"
+                "totalSupply": "147203580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "148013310"
+                "totalSupply": "148013310",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "5436957305"
+                "totalSupply": "5436957305",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1025902435.468721",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1025902435.468721"
   },
     {
         "Date": "05/20/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1043027538.541959"
+                "totalSupply": "1043027538.541959",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "10762932381"
+                "totalSupply": "10762932381",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "110710054121"
+                "totalSupply": "110710054121",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12832856821"
+                "totalSupply": "12832856821",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "100004"
+                "totalSupply": "100004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147670580748"
+                "totalSupply": "147670580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "148013310"
+                "totalSupply": "148013310",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "5457068118"
+                "totalSupply": "5457068118",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1026042977.267924",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1026042977.267924"
   },
     {
         "Date": "05/23/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1043730428.05339"
+                "totalSupply": "1043730428.05339",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "10759863953"
+                "totalSupply": "10759863953",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "122242164121"
+                "totalSupply": "122242164121",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12835056821"
+                "totalSupply": "12835056821",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "4304100004"
+                "totalSupply": "4304100004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147672580748"
+                "totalSupply": "147672580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "148013310"
+                "totalSupply": "148013310",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "50452068118"
+                "totalSupply": "50452068118",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1026394416.004852",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1026394416.004852"
   },
     {
         "Date": "05/23/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1043871034.84336"
+                "totalSupply": "1043871034.84336",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "10759963953"
+                "totalSupply": "10759963953",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "122242314121"
+                "totalSupply": "122242314121",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "12835056821"
+                "totalSupply": "12835056821",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34304100004"
+                "totalSupply": "34304100004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147672580748"
+                "totalSupply": "147672580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "149468515"
+                "totalSupply": "149468515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "50590823243"
+                "totalSupply": "50590823243",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1026464718.195833",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1026464718.195833"
   },
     {
         "Date": "05/23/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1043941341.849842"
+                "totalSupply": "1043941341.849842",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "29087697416"
+                "totalSupply": "29087697416",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "247241314121"
+                "totalSupply": "247241314121",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "22835056821"
+                "totalSupply": "22835056821",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34304100004"
+                "totalSupply": "34304100004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147672580748"
+                "totalSupply": "147672580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "149468515"
+                "totalSupply": "149468515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "97699606979"
+                "totalSupply": "97699606979",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1026499871.097039",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1026499871.097039"
   },
     {
         "Date": "05/24/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1044152277.316263"
+                "totalSupply": "1044152277.316263",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "29082697416"
+                "totalSupply": "29082697416",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "347265390021"
+                "totalSupply": "347265390021",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "27845056821"
+                "totalSupply": "27845056821",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34304100004"
+                "totalSupply": "34304100004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147672580748"
+                "totalSupply": "147672580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "977468515"
+                "totalSupply": "977468515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "97723260213"
+                "totalSupply": "97723260213",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1026605337.024024",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1026605337.024024"
   },
     {
         "Date": "05/25/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1044433558.31751"
+                "totalSupply": "1044433558.31751",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "29082697416"
+                "totalSupply": "29082697416",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "347478440021"
+                "totalSupply": "347478440021",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "27845056821"
+                "totalSupply": "27845056821",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34304100004"
+                "totalSupply": "34304100004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147672580748"
+                "totalSupply": "147672580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "977468515"
+                "totalSupply": "977468515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "97723260213"
+                "totalSupply": "97723260213",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1026745975.116058",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1026745975.116058"
   },
     {
         "Date": "05/26/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1044714877.852381"
+                "totalSupply": "1044714877.852381",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "29024325151"
+                "totalSupply": "29024325151",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "348496330021"
+                "totalSupply": "348496330021",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "27847396821"
+                "totalSupply": "27847396821",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34304100004"
+                "totalSupply": "34304100004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147672580748"
+                "totalSupply": "147672580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "977468515"
+                "totalSupply": "977468515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "97735494399"
+                "totalSupply": "97735494399",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1026886632.474583",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1026886632.474583"
   },
     {
         "Date": "05/27/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1044996235.926153"
+                "totalSupply": "1044996235.926153",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "29026492651"
+                "totalSupply": "29026492651",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "348509404181"
+                "totalSupply": "348509404181",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "27847976821"
+                "totalSupply": "27847976821",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147672580748"
+                "totalSupply": "147672580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "977468515"
+                "totalSupply": "977468515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "97746343274"
+                "totalSupply": "97746343274",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1027027309.102239",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1027027309.102239"
   },
     {
         "Date": "05/27/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1045066581.466918"
+                "totalSupply": "1045066581.466918",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "29028492651"
+                "totalSupply": "29028492651",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "348528846200"
+                "totalSupply": "348528846200",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "27850116821"
+                "totalSupply": "27850116821",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147672580748"
+                "totalSupply": "147672580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "977468515"
+                "totalSupply": "977468515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "97746343274"
+                "totalSupply": "97746343274",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1027062481.270263",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1027062481.270263"
   },
     {
         "Date": "05/28/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1045277632.544106"
+                "totalSupply": "1045277632.544106",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "29080962651"
+                "totalSupply": "29080962651",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "348612346200"
+                "totalSupply": "348612346200",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "27874362915"
+                "totalSupply": "27874362915",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147672580748"
+                "totalSupply": "147672580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "978568515"
+                "totalSupply": "978568515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "97746343274"
+                "totalSupply": "97746343274",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1027168005.001654",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1027168005.001654"
   },
     {
         "Date": "05/29/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1045559067.711521"
+                "totalSupply": "1045559067.711521",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "29082012651"
+                "totalSupply": "29082012651",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "348609846200"
+                "totalSupply": "348609846200",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "27879364915"
+                "totalSupply": "27879364915",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147672580748"
+                "totalSupply": "147672580748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "978568515"
+                "totalSupply": "978568515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "97746343274"
+                "totalSupply": "97746343274",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1027308720.175490",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1027308720.175490"
   },
     {
         "Date": "05/30/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1045840541.43368"
+                "totalSupply": "1045840541.43368",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "29085523042"
+                "totalSupply": "29085523042",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "348628026200"
+                "totalSupply": "348628026200",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "30879366145"
+                "totalSupply": "30879366145",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147667880748"
+                "totalSupply": "147667880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "978568515"
+                "totalSupply": "978568515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "104261343274"
+                "totalSupply": "104261343274",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1027449454.626362",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1027449454.626362"
   },
     {
         "Date": "05/31/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1046122053.715863"
+                "totalSupply": "1046122053.715863",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30410329780"
+                "totalSupply": "30410329780",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "366029191200"
+                "totalSupply": "366029191200",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "30882916145"
+                "totalSupply": "30882916145",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147662880748"
+                "totalSupply": "147662880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "978568515"
+                "totalSupply": "978568515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "104265543274"
+                "totalSupply": "104265543274",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1027590208.356912",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1027590208.356912"
   },
     {
         "Date": "06/01/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1046403604.563353"
+                "totalSupply": "1046403604.563353",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30425180880"
+                "totalSupply": "30425180880",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "366079991200"
+                "totalSupply": "366079991200",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "30883116145"
+                "totalSupply": "30883116145",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147662880748"
+                "totalSupply": "147662880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "978568515"
+                "totalSupply": "978568515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "105762043274"
+                "totalSupply": "105762043274",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1027730981.369804",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1027730981.369804"
   },
     {
         "Date": "06/02/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1046685193.981433"
+                "totalSupply": "1046685193.981433",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30425280880"
+                "totalSupply": "30425280880",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "376875397190"
+                "totalSupply": "376875397190",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "33592555962"
+                "totalSupply": "33592555962",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "147662880748"
+                "totalSupply": "147662880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "978568515"
+                "totalSupply": "978568515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "107774043274"
+                "totalSupply": "107774043274",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1027871773.667644",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1027871773.667644"
   },
     {
         "Date": "06/03/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1046966821.975391"
+                "totalSupply": "1046966821.975391",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30433580880"
+                "totalSupply": "30433580880",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "377246447190"
+                "totalSupply": "377246447190",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "33600768462"
+                "totalSupply": "33600768462",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "148062880748"
+                "totalSupply": "148062880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "978568515"
+                "totalSupply": "978568515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "110656312211"
+                "totalSupply": "110656312211",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1028012585.253103",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1028012585.253103"
   },
     {
         "Date": "06/04/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1047248488.550505"
+                "totalSupply": "1047248488.550505",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30452090880"
+                "totalSupply": "30452090880",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "377261716982"
+                "totalSupply": "377261716982",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "33600768462"
+                "totalSupply": "33600768462",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "148062880748"
+                "totalSupply": "148062880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "978569515"
+                "totalSupply": "978569515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "110658812211"
+                "totalSupply": "110658812211",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1028153416.128800",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1028153416.128800"
   },
     {
         "Date": "06/05/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1047528193.575077"
+                "totalSupply": "1047528193.575077",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30453590880"
+                "totalSupply": "30453590880",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "377328976982"
+                "totalSupply": "377328976982",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "33602268462"
+                "totalSupply": "33602268462",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "148062880748"
+                "totalSupply": "148062880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "988569515"
+                "totalSupply": "988569515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "110657312211"
+                "totalSupply": "110657312211",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1028292266.228888",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1028292266.228888"
   },
     {
         "Date": "06/06/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1047809936.780366"
+                "totalSupply": "1047809936.780366",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30497030880"
+                "totalSupply": "30497030880",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "377332976982"
+                "totalSupply": "377332976982",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "33602268462"
+                "totalSupply": "33602268462",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "148062880748"
+                "totalSupply": "148062880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "988569515"
+                "totalSupply": "988569515",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "110657312211"
+                "totalSupply": "110657312211",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1028433135.419007",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1028433135.419007"
   },
     {
         "Date": "06/08/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1048232623.959219"
+                "totalSupply": "1048232623.959219",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30294995885"
+                "totalSupply": "30294995885",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "376732127562"
+                "totalSupply": "376732127562",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "33608368462"
+                "totalSupply": "33608368462",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "148062880748"
+                "totalSupply": "148062880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "989667873"
+                "totalSupply": "989667873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "120057473034"
+                "totalSupply": "120057473034",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1028644475.389029",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1028644475.389029"
   },
     {
         "Date": "06/09/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1048655780.313107"
+                "totalSupply": "1048655780.313107",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30331490360"
+                "totalSupply": "30331490360",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "376806726562"
+                "totalSupply": "376806726562",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "33719528462"
+                "totalSupply": "33719528462",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "148062880748"
+                "totalSupply": "148062880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "989667873"
+                "totalSupply": "989667873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "119181445936"
+                "totalSupply": "119181445936",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1029786251.942563",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1029786251.942563"
   },
     {
         "Date": "06/10/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1048937932.857586"
+                "totalSupply": "1048937932.857586",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30647058900"
+                "totalSupply": "30647058900",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "380815243100"
+                "totalSupply": "380815243100",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "34146720873"
+                "totalSupply": "34146720873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "148063880748"
+                "totalSupply": "148063880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1017067873"
+                "totalSupply": "1017067873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "442696331093"
+                "totalSupply": "442696331093",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1029927325.798785",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1029927325.798785"
   },
     {
         "Date": "06/11/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1049220124.055082"
+                "totalSupply": "1049220124.055082",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "31052513173"
+                "totalSupply": "31052513173",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "485414676854"
+                "totalSupply": "485414676854",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "34243994427"
+                "totalSupply": "34243994427",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153075880748"
+                "totalSupply": "153075880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1161757873"
+                "totalSupply": "1161757873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "451244365218"
+                "totalSupply": "451244365218",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1030068418.981190",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1030068418.981190"
   },
     {
         "Date": "06/12/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1049502353.910892"
+                "totalSupply": "1049502353.910892",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "32178496305"
+                "totalSupply": "32178496305",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "536119746854"
+                "totalSupply": "536119746854",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "35916569402"
+                "totalSupply": "35916569402",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "34318600004"
+                "totalSupply": "34318600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153075880748"
+                "totalSupply": "153075880748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1186957873"
+                "totalSupply": "1186957873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "479110573106"
+                "totalSupply": "479110573106",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1030209531.492404",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1030209531.492404"
   },
     {
         "Date": "06/13/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1049784622.430315"
+                "totalSupply": "1049784622.430315",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "32219743364"
+                "totalSupply": "32219743364",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "619712467776"
+                "totalSupply": "619712467776",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36179859402"
+                "totalSupply": "36179859402",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "38338600004"
+                "totalSupply": "38338600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153071130748"
+                "totalSupply": "153071130748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1197958873"
+                "totalSupply": "1197958873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "554151778538"
+                "totalSupply": "554151778538",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1030350663.335102",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1030350663.335102"
   },
     {
         "Date": "06/14/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1050137512.458365"
+                "totalSupply": "1050137512.458365",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "33067990452"
+                "totalSupply": "33067990452",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "619730541030"
+                "totalSupply": "619730541030",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36258666402"
+                "totalSupply": "36258666402",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "38338600004"
+                "totalSupply": "38338600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153082130748"
+                "totalSupply": "153082130748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1202058873"
+                "totalSupply": "1202058873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "567411747781"
+                "totalSupply": "567411747781",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1030527105.327382",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1030527105.327382"
   },
     {
         "Date": "06/15/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1050349275.48118"
+                "totalSupply": "1050349275.48118",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "31999376269"
+                "totalSupply": "31999376269",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "644974041030"
+                "totalSupply": "644974041030",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36404537546"
+                "totalSupply": "36404537546",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44339600004"
+                "totalSupply": "44339600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153259130748"
+                "totalSupply": "153259130748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1202058873"
+                "totalSupply": "1202058873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "568584977629"
+                "totalSupply": "568584977629",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1030632985.025501",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1030632985.025501"
   },
     {
         "Date": "06/17/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1050914083.25005"
+                "totalSupply": "1050914083.25005",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "32028511269"
+                "totalSupply": "32028511269",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "646556891030"
+                "totalSupply": "646556891030",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36320045003"
+                "totalSupply": "36320045003",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44340600004"
+                "totalSupply": "44340600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153259130748"
+                "totalSupply": "153259130748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1211558873"
+                "totalSupply": "1211558873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "572809686788"
+                "totalSupply": "572809686788",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1030915384.073580",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1030915384.073580"
   },
     {
         "Date": "06/18/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1051196545.166986"
+                "totalSupply": "1051196545.166986",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "31225738611"
+                "totalSupply": "31225738611",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "646575120940"
+                "totalSupply": "646575120940",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36379714356"
+                "totalSupply": "36379714356",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44340600004"
+                "totalSupply": "44340600004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153259130748"
+                "totalSupply": "153259130748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1211558873"
+                "totalSupply": "1211558873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "574550698020"
+                "totalSupply": "574550698020",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1031056612.613375",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1031056612.613375"
   },
     {
         "Date": "06/19/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1051479045.779324"
+                "totalSupply": "1051479045.779324",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "31226087463"
+                "totalSupply": "31226087463",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "645595195636"
+                "totalSupply": "645595195636",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36391291358"
+                "totalSupply": "36391291358",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44345225004"
+                "totalSupply": "44345225004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153259130748"
+                "totalSupply": "153259130748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1218578873"
+                "totalSupply": "1218578873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "460295953960"
+                "totalSupply": "460295953960",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1031197860.500544",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1031197860.500544"
   },
     {
         "Date": "06/20/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1051761585.092363"
+                "totalSupply": "1051761585.092363",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "31232169748"
+                "totalSupply": "31232169748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "644300985636"
+                "totalSupply": "644300985636",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36440984495"
+                "totalSupply": "36440984495",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44345225004"
+                "totalSupply": "44345225004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153259130748"
+                "totalSupply": "153259130748",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1208578873"
+                "totalSupply": "1208578873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "437881410656"
+                "totalSupply": "437881410656",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1031339127.737746",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1031339127.737746"
   },
     {
         "Date": "06/21/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1052044163.111405"
+                "totalSupply": "1052044163.111405",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "31208279851"
+                "totalSupply": "31208279851",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "643215923996"
+                "totalSupply": "643215923996",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36327386742"
+                "totalSupply": "36327386742",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44345225004"
+                "totalSupply": "44345225004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153599464788"
+                "totalSupply": "153599464788",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1208578873"
+                "totalSupply": "1208578873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "447680535384"
+                "totalSupply": "447680535384",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1031480414.327601",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1031480414.327601"
   },
     {
         "Date": "06/22/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1052326779.841754"
+                "totalSupply": "1052326779.841754",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "31206242381"
+                "totalSupply": "31206242381",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "643705028996"
+                "totalSupply": "643705028996",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36286648276"
+                "totalSupply": "36286648276",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44345225004"
+                "totalSupply": "44345225004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153599464788"
+                "totalSupply": "153599464788",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1208578873"
+                "totalSupply": "1208578873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "454930881416"
+                "totalSupply": "454930881416",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1031621720.272773",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1031621720.272773"
   },
     {
         "Date": "06/23/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1052609435.288713"
+                "totalSupply": "1052609435.288713",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "31134252381"
+                "totalSupply": "31134252381",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "642263659596"
+                "totalSupply": "642263659596",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36279190776"
+                "totalSupply": "36279190776",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44345225004"
+                "totalSupply": "44345225004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153599464788"
+                "totalSupply": "153599464788",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1208578873"
+                "totalSupply": "1208578873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "454098186745"
+                "totalSupply": "454098186745",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1031763045.575894",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1031763045.575894"
   },
     {
         "Date": "06/24/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1052962809.050722"
+                "totalSupply": "1052962809.050722",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "31130401281"
+                "totalSupply": "31130401281",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "641716789686"
+                "totalSupply": "641716789686",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36269211913"
+                "totalSupply": "36269211913",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44345225004"
+                "totalSupply": "44345225004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153600464788"
+                "totalSupply": "153600464788",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1208578873"
+                "totalSupply": "1208578873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "452101233228"
+                "totalSupply": "452101233228",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1031939729.431024",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1031939729.431024"
   },
     {
         "Date": "06/25/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1053174862.353672"
+                "totalSupply": "1053174862.353672",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30836979781"
+                "totalSupply": "30836979781",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "641722589686"
+                "totalSupply": "641722589686",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36269661913"
+                "totalSupply": "36269661913",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44345225004"
+                "totalSupply": "44345225004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153600464788"
+                "totalSupply": "153600464788",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1208578873"
+                "totalSupply": "1208578873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "451875113846"
+                "totalSupply": "451875113846",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1032045754.266706",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1032045754.266706"
   },
     {
         "Date": "06/26/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1053457633.982283"
+                "totalSupply": "1053457633.982283",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30825123781"
+                "totalSupply": "30825123781",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "641735589686"
+                "totalSupply": "641735589686",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36268562165"
+                "totalSupply": "36268562165",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44345225004"
+                "totalSupply": "44345225004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153600464788"
+                "totalSupply": "153600464788",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1208578873"
+                "totalSupply": "1208578873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "451515708231"
+                "totalSupply": "451515708231",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1032187137.659663",
-       "Shielded_Supply_NAM": "0"
+       "Native_Supply_NAM": "1032187137.659663"
   },
     {
         "Date": "06/28/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1053881864.06029"
+                "totalSupply": "1053881864.06029",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30830359281"
+                "totalSupply": "30830359281",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "642008127467"
+                "totalSupply": "642008127467",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36173823573"
+                "totalSupply": "36173823573",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44345225004"
+                "totalSupply": "44345225004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153600464788"
+                "totalSupply": "153600464788",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1355578873"
+                "totalSupply": "1355578873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "450927595728"
+                "totalSupply": "450927595728",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1032399249.066056",
-       "Shielded_Supply_NAM": "26093687.063549"
+       "Native_Supply_NAM": "1032399249.066056"
   },
     {
         "Date": "06/28/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1053881864.06029"
+                "totalSupply": "1053881864.06029",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30830359281"
+                "totalSupply": "30830359281",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "642008127467"
+                "totalSupply": "642008127467",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36173823573"
+                "totalSupply": "36173823573",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44345225004"
+                "totalSupply": "44345225004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153600464788"
+                "totalSupply": "153600464788",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1355578873"
+                "totalSupply": "1355578873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "450927595728"
+                "totalSupply": "450927595728",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1032399249.066056",
-       "Shielded_Supply_NAM": "26093687.063549"
+       "Native_Supply_NAM": "1032399249.066056"
   },
     {
         "Date": "06/29/2025",
         "Total_Supply": [
             {
                 "id": "Namada",
-                "totalSupply": "1054164732.543428"
+                "totalSupply": "1054164732.543428",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Atom",
-                "totalSupply": "30836247282"
+                "totalSupply": "30836247282",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Osmo",
-                "totalSupply": "641033049627"
+                "totalSupply": "641033049627",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Tia",
-                "totalSupply": "36165547679"
+                "totalSupply": "36165547679",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Penumbra",
-                "totalSupply": "44345225004"
+                "totalSupply": "44345225004",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Nym",
-                "totalSupply": "153600464788"
+                "totalSupply": "153600464788",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Neutron",
-                "totalSupply": "1355578873"
+                "totalSupply": "1355578873",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             },
             {
                 "id": "Usdc",
-                "totalSupply": "450917076516"
+                "totalSupply": "450917076516",
+                "shieldedSupply": "0",
+                "transparentSupply": "0"
             }
         ],
-       "Native_Supply_NAM": "1032540680.885463",
-       "Shielded_Supply_NAM": "25983903.681671"
+       "Native_Supply_NAM": "1032540680.885463"
    }
 ]
