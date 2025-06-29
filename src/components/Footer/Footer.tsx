@@ -6,7 +6,7 @@ import { ShopButton } from "../Shop-button/shop-button";
 const Footer = () => {
   return (
     <div className="w-full border-slate-500 dark:border-slate-100 mt-3 md:py-5">
-      <footer className="rounded-lg shadow bg-[#1984c7] md:flex md:items-center md:flex-col py-3 text-white">
+      <footer className="rounded-t-md md:rounded-lg shadow bg-[#1984c7] md:flex md:items-center md:flex-col py-3 text-white">
         <div className="flex justify-center items-center my-4">
           <Logo />
         </div>
@@ -20,7 +20,11 @@ const Footer = () => {
         <div className="flex justify-center flex-col my-3">
           <span className="text-sm sm:text-center">
             © 2025{" "}
-            <Link href="https://zechub.social/@Zechub" rel="me" className="hover:underline">
+            <Link
+              href="https://zechub.social/@Zechub"
+              rel="me"
+              className="hover:underline"
+            >
               Zechub™
             </Link>
             . All Rights Reserved.

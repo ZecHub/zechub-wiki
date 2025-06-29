@@ -62,7 +62,7 @@ export default async function Page(props: {
         id="content"
         className={`flex flex-col space-y-5 ${
           roots && roots.length > 0 ? "md:flex-row md:space-x-5" : "md:flex-col"
-        } h-auto w-full p-5`}
+        } h-auto w-full pt-5 px-2`}
       >
         {roots && roots.length > 0 && (
           <div className="w-auto md:w-2/5  relative">

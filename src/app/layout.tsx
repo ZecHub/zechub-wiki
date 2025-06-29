@@ -20,7 +20,7 @@ export default function RootLayout({
 
   return (
     <html lang="en-US">
-      <body className={`${inter.className} px-6`}>
+      <body className={`px-0 md:px-6 ${inter.className}`}>
         <div className="container mx-auto min-h-screen flex flex-col">
           <div className="flex flex-col justify-between flex-grow">
             <div>
