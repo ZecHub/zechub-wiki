@@ -2702,7 +2702,7 @@
   },
     {
         "Date": "06/29/2025",
-        "Supply": [
+        "Total_Supply": [
             {
                 "id": "Namada",
                 "totalSupply": "1054306181.316326",
