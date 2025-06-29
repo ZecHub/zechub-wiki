@@ -211,15 +211,12 @@ const Navigation = () => {
   const [menuExpanded, setMenuExpanded] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  
+
   useEffect(() => {
-  
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
-  
     setDark(prefersDark.matches);
 
-   
     const listener = (e: MediaQueryListEvent) => {
       setDark(e.matches);
     };
@@ -256,7 +253,7 @@ const Navigation = () => {
 
   return (
     <div
-      className={`flex w-full border-b-1 xl:mx-auto sticky top-0 bg-white dark:bg-slate-900 z-40  ${
+      className={`flex w-full border-b-1 xl:mx-auto sticky top-0 bg-white dark:bg-slate-900 z-40 px-3 md:px-0  ${
         menuExpanded ? "mb-[120%]" : ""
       }`}
     >
@@ -301,7 +298,7 @@ const Navigation = () => {
         </div>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="mobile-trigger">
-            <div className=" w-auto xl:hidden hover:cursor-pointer p-5">
+            <div className=" w-auto xl:hidden hover:cursor-pointer p-3 md:p-5">
               <Icon
                 className="transition duration-500"
                 size={25}

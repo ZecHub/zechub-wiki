@@ -6,11 +6,17 @@ const ContentSections = () => {
   return (
     <>
       <section>
-        <div className="flex space-y-4 flex-col w-full mt-5">
+        <div className="flex space-y-4 flex-col w-full mt-5 px-5">
           <div className="flex flex-col space-y-4 md:flex-row min-h-screen w-auto border-2 border-[#E4A100]/50 rounded-md p-5">
             <div className="flex flex-1 items-center justify-center w-auto md:w-2/4">
               <FadeInAnimation>
-                <Image src={"/Zcashcard.png"} alt="" width={500} height={50} unoptimized={true} />
+                <Image
+                  src={"/Zcashcard.png"}
+                  alt=""
+                  width={500}
+                  height={50}
+                  unoptimized={true}
+                />
               </FadeInAnimation>
             </div>
 
@@ -67,7 +73,10 @@ const ContentSections = () => {
             </div>
             <div className="flex flex-col w-auto md:w-2/4 items-center justify-center">
               <FadeInAnimation>
-                <h1 className="text-3xl mb-4 font-semibold">
+                <h1
+                  style={{ fontSize: "1.85rem" }}
+                  className="text-3xl mb-4 font-semibold"
+                >
                   Shielded Newsletter
                 </h1>
               </FadeInAnimation>
