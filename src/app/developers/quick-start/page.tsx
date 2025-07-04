@@ -1,12 +1,4 @@
-"use client";
 import React from "react";
-import { genMetadata } from '@/lib/helpers';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = genMetadata({
-  title: "Zcash Dev Quick Start Guide",
-  url: "https://zechub.wiki/developers/quick-start"
-})
 
 export default function QuickStartPage() {
   return (

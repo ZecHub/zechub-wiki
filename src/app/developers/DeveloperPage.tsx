@@ -165,8 +165,6 @@ export default function DeveloperPage() {
                   <p className="dark:text-gray-300 text-gray-700 mb--4 h-[100px]">{card.content}</p>
                   <a
                     href={card.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
                   >
                     {card.buttonText} {/* Custom button text */}
