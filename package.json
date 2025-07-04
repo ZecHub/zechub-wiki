@@ -15,7 +15,7 @@
   "proxy": "https://explorer.zec.rocks",
   "dependencies": {
     "@connectrpc/connect": "^1.6.1",
-    "@headlessui/react": "^1.7.18",
+    "@headlessui/react": "^2.0.0",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.3.4",
     "@mdx-js/loader": "^2.3.0",

@@ -47,7 +47,7 @@ export default function DeveloperPage() {
       title: "Learn Through Tutorials",
       content:
         "Follow step-by-step tutorials to build on Zcash, from creating wallets to integrating Zcash into your applications.",
-      url: "https://zcash.readthedocs.io/en/latest/rtd_pages/learning.html",
+      url: "https://www.youtube.com/playlist?list=PL6_epn0lASLFF28ePj7P5TvtMG_WE7p3O",
       svg: (
         <svg
           className="w-12 h-12 text-green-500"
@@ -67,10 +67,33 @@ export default function DeveloperPage() {
       buttonText: "View Tutorials", // Custom button text
     },
     {
-      title: "Set Up Servers",
+      title: "Quick Start Guide",
+      content:
+        "Get up and running with Zcash development quickly. Learn installation, configuration, and basic operations.",
+      url: "/developers/quick-start",
+      svg: (
+        <svg
+          className="w-12 h-12 text-orange-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M13 10V3L4 14h7v7l9-11h-7z"
+          />
+        </svg>
+      ), // SVG for "Quick Start Guide"
+      buttonText: "Quick Start Guide", // Custom button text
+    },
+    {
+      title: "Zcash Developer QuickStart",
       content:
         "Learn how to set up and run Zcash nodes or servers for development and production environments.",
-      url: "https://zcash.readthedocs.io/en/latest/rtd_pages/user_guide.html",
+      url: "https://zcash.readthedocs.io/en/latest/rtd_pages/zcashd.html",
       svg: (
         <svg
           className="w-12 h-12 text-purple-500"
@@ -125,7 +148,7 @@ export default function DeveloperPage() {
           <h2 className="text-4xl font-bold mb-12">
             How would you like to get started?
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {cardsConfig.map((card, index) => (
               <div
                 key={index}
@@ -142,8 +165,6 @@ export default function DeveloperPage() {
                   <p className="dark:text-gray-300 text-gray-700 mb--4 h-[100px]">{card.content}</p>
                   <a
                     href={card.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
                   >
                     {card.buttonText} {/* Custom button text */}
@@ -207,6 +228,46 @@ export default function DeveloperPage() {
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Understand the architecture and components of the Zcash
                     stack.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://zebra.zfnd.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Intro to Zebra
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                  Understanding how Zebra powers the Zcash network with a modular and secure Rust-based implementation
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zingolabs/zingolib"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Intro to Zingolib
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                  Understanding the zingolib repository—a Rust-based API and CLI for interacting with zcashd via Lightwalletd.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zcash/lightwalletd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Intro to Lightwalletd
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                  Understanding the lightwalletd project—a scalable server written in Go that 
+                  efficiently serves compact blockchain data to Zcash light clients via gRPC.
                   </p>
                 </li>
               </ul>
@@ -305,6 +366,20 @@ export default function DeveloperPage() {
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Explore Zcash blockchains using block explorers.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://fringe-brow-647.notion.site/Shade-Agents-19a09959836d8091bb8febb318cc09fd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Shade Agent- Notion
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                  Learn about Shade Agents—the first truly autonomous AI agents on NEAR—powered by secure TEEs and decentralized 
+                  Chain Signatures to manage assets, access LLMs, and execute multichain transactions independently.
                   </p>
                 </li>
               </ul>
