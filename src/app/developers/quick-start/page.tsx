@@ -178,7 +178,7 @@ zcash-cli getblockchaininfo`}
             <h3 className="text-xl font-semibold mb-4">What is lightwalletd?</h3>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               lightwalletd is a server that provides a lightweight interface to the Zcash blockchain, 
-              designed for mobile and desktop wallets that don't need to run a full node.
+              designed for mobile and desktop wallets that don&apos;t need to run a full node.
             </p>
           </div>
 
