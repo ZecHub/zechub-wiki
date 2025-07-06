@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = genMetadata({
-  title: "Non-Custodial Exchange Listing",
+  title: "Centralized Swap Platform Listing",
   url: "https://zechub-wiki.vercel.app/using-zcash/non-custodial-exchanges",
 });
 
@@ -13,10 +13,13 @@ const DEXListingPage = () => {
   return (
     <div className="container mx-auto px-4">
       <div className="flex justify-between items-center my-12">
-        <h1 className="text-4xl font-semibold">Non-Custodial Exchanges</h1>
-        <Link href="https://zechub.wiki/using-zcash/custodial-exchanges">
+        <h1 className="text-4xl font-semibold">Centralized Swap Platforms</h1>
+        <Link
+          href="https://zechub.wiki/using-zcash/custodial-exchanges"
+          className="inline-flex py-2 px-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-lg"
+        >
           {/* <a className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600'> */}
-          Custodial Exchanges
+          DEX platforms
           {/* </a> */}
         </Link>
       </div>
