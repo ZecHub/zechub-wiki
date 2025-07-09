@@ -316,5 +316,11 @@
         "Staked_Ratio": "0.361461330601",
         "Annual_Staking_Rewards_Ratio": "0.138322646145",
         "Inflation_Rate": "0.049998287728"
+    },
+    {
+        "Date": "07/09/2025",
+        "Staked_Ratio": "0.361724388057",
+        "Annual_Staking_Rewards_Ratio": "0.138222053526",
+        "Inflation_Rate": "0.049998287728"
     }
 ]
