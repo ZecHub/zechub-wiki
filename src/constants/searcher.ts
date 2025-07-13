@@ -15,7 +15,7 @@ export const searcher: Searcher[] = [
     { name: 'Dex List', desc: 'Listed above are non-custodial exchanges', url: '/using-zcash/dex-list' },
     { name: 'Faucets', desc: 'Faucets are services that dispense small amounts of cryptocurrency for free.', url: '/using-zcash/faucets' },
     { name: 'Memos', desc: 'When sending a Z2Z (shielded-to-shielded) transaction...', url: '/using-zcash/memos' },
-    { name: 'Exchanges', desc: 'Listed above are non-custodial exchanges that enable you to effortlessly obtain and trade Zcash independently', url: '/using-zcash/non-custodial-exchanges' },
+    { name: 'Exchanges', desc: 'Listed above are non-custodial exchanges that enable you to effortlessly obtain and trade Zcash independently', url: '/using-zcash/centralizedswaps' },
     { name: 'Value Pools', desc: 'There are currently 4 value pools in Zcash.', url: '/using-zcash/shielded-pools' },
     { name: 'Transactions', desc: 'ZEC is primarily used for payments...', url: '/using-zcash/transactions' },
     { name: 'Tutorials', desc: 'How to buy ZEC in Gemini', url: '/tutorials/buy-zec-in-gemini' },

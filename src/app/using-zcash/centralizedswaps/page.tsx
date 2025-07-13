@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = genMetadata({
   title: "Centralized Swap Platform Listing",
-  url: "https://zechub-wiki.vercel.app/using-zcash/non-custodial-exchanges",
+  url: "https://zechub.wiki/using-zcash/centralizedswaps",
 });
 
 const DEXListingPage = () => {

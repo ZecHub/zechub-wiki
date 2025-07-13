@@ -66,7 +66,7 @@ export const navigations = [
       },
       {
         subName: "Exchanges",
-        path: "/using-zcash/non-custodial-exchanges",
+        path: "/using-zcash/centralizedswaps",
         icon: Exchange,
       },
       {

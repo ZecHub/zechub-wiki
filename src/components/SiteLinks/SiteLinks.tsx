@@ -87,7 +87,7 @@ const SiteLinks: React.FC = () => {
                   <Link href="/using-zcash/buying-zec">Buying ZEC</Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5450">
-                  <Link href="/using-zcash/non-custodial-exchanges">Exchanges</Link>
+                  <Link href="/using-zcash/centralizedswaps">Exchanges</Link>
                 </li>
                 <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5434">
                   <Link href="/using-zcash/blockchain-explorers">
