@@ -21,7 +21,9 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [filters, setFilters] = useState({
     Devices: new Set<string>(),
+    "Operating System": new Set<string>(),
     Pools: new Set<string>(),
+    "Wallet Support": new Set<string>(),
     Features: new Set<string>(),
   });
   const [likes, setLikes] = useState<{ [key: string]: number }>({});
@@ -36,7 +38,9 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   useEffect(() => {
     const fetchLikes = async () => {
       const devicesSet = new Set<string>();
+      const operatingSystemSet = new Set<string>();
       const poolsSet = new Set<string>();
+      const walletSupportSet = new Set<string>();
       const featuresSet = new Set<string>();
 
       allWallets.forEach((wallet) => {
@@ -47,7 +51,9 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
 
       setFilters({
         Devices: devicesSet,
+        "Operating System": operatingSystemSet,
         Pools: poolsSet,
+        "Wallet Support": walletSupportSet,
         Features: featuresSet,
       });
 
