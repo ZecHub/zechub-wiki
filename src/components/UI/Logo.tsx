@@ -3,7 +3,7 @@ import Image from "next/image";
 const Logo = () => (
   <Image
     priority
-    src={"/ZechubBlue.png"}
+    src={"/ZecHubBlue.png"}
     alt={"Logo"}
     width={60}
     height={60}
