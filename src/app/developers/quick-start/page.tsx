@@ -182,13 +182,13 @@ peerset_initial_target_size = 25
 
 [rpc]
 listen_addr = "127.0.0.1:8232"
-cookie_dir = "/home/zktails/.cache/zebra"
+cookie_dir = "/home/your_username/.cache/zebra"
 debug_force_finished_sync = false
 enable_cookie_auth = false
 parallel_cpu_threads = 0
 
 [state]
-cache_dir = "/home/zktails/.cache/zebra"
+cache_dir = "/home/your_username/.cache/zebra"
 delete_old_database = true
 ephemeral = false
 
