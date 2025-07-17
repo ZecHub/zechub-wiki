@@ -428,12 +428,12 @@ const Zainod = () => {
             <h3 className="text-xl font-semibold mb-4">What is Zaino?</h3>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               Zaino is an indexer for the Zcash blockchain implemented in Rust.
-              Zaino provides all necessary functionality for "light" clients
-              (wallets and other applications that don&apos;t rely on the
-              complete history of blockchain) and "full" clients / wallets and
-              block explorers providing access to both the finalized chain and
-              the non-finalized best chain and mempool held by either a Zebra or
-              Zcashd full validator.
+              Zaino provides all necessary functionality for &quot;light&quot;
+              clients (wallets and other applications that don&apos;t rely on
+              the complete history of blockchain) and &quot;full&quot; clients /
+              wallets and block explorers providing access to both the finalized
+              chain and the non-finalized best chain and mempool held by either
+              a Zebra or Zcashd full validator.
             </p>
           </div>
 
@@ -614,8 +614,9 @@ const ZingoLib = () => {
             <h3 className="text-xl font-semibold mb-4">What is Zingo CLI?</h3>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               Zingo-cli is a command line lightwalletd-proxy client. To use it,
-              see "compiling from source" below. Releases are currently only
-              provisional, we will update the README as releases come out.
+              see &quot;compiling from source&quot; below. Releases are
+              currently only provisional, we will update the README as releases
+              come out.
             </p>
           </div>
 
@@ -761,7 +762,11 @@ export default function QuickStartPage() {
 
       <TabsPage
         titles={["Zebrad", "Zaino", "Zingolib"]}
-        components={[<Zebrad />, <Zainod />, <ZingoLib />]}
+        components={[
+          <Zebrad key="zebrad" />,
+          <Zainod key="zainod" />,
+          <ZingoLib key="zingolib" />,
+        ]}
       />
     </>
   );
