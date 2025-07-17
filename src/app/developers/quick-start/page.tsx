@@ -1,20 +1,10 @@
 import React from "react";
+import { ReactNode } from "react";
+import TabsPage from "@/components/TabsPage/TabsPage";
 
-export default function QuickStartPage() {
+const Zebrad = () => {
   return (
     <>
-      {/* Hero Section */}
-      <div className="min-h-[40vh] bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
-        <div className="text-center text-white">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Zcash Dev Quick Start
-          </h1>
-          <p className="text-xl md:text-2xl">
-            Get up and running with Zcash development in minutes
-          </p>
-        </div>
-      </div>
-
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
         {/* Table of Contents */}
@@ -53,7 +43,6 @@ export default function QuickStartPage() {
                 4. Testing with Testnet
               </a>
             </li> */}
-            {/* m */}
             {/* <li>
               <a href="#rpc-commands" className="text-blue-500 hover:underline">
                 5. Common RPC Commands
@@ -330,197 +319,191 @@ EOF`}
           </div>
         </section>
 
-        {/* Testing with Testnet Section */}
-        {/* <section id="testing-testnet" className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">4. Testing with Testnet</h2>
+        {/* Next Steps Section */}
+        <section className="bg-blue-50 dark:bg-blue-900 rounded-lg p-8">
+          <h2 className="text-3xl font-bold mb-6">Next Steps</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Ready to Build?</h3>
+              <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                <li>
+                  Explore the{" "}
+                  <a
+                    href="https://zebra.zfnd.org/index.html"
+                    className="text-blue-500 hover:underline"
+                  >
+                    official documentation
+                  </a>
+                </li>
+                <li>
+                  Join the{" "}
+                  <a
+                    href="https://discord.gg/zcash"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Discord
+                  </a>{" "}
+                  community
+                </li>
+                <li>
+                  Check out{" "}
+                  <a
+                    href="https://github.com/zcash"
+                    className="text-blue-500 hover:underline"
+                  >
+                    GitHub repositories
+                  </a>
+                </li>
+                <li>
+                  Read the{" "}
+                  <a
+                    href="https://zips.z.cash/"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Improvement Proposals (ZIPs)
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Need Help?</h3>
+              <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                <li>
+                  Visit the{" "}
+                  <a
+                    href="https://forum.zcashcommunity.com/"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Community Forum
+                  </a>
+                </li>
+                <li>
+                  Check{" "}
+                  <a
+                    href="https://github.com/zcash/zcash/issues"
+                    className="text-blue-500 hover:underline"
+                  >
+                    GitHub Issues
+                  </a>
+                </li>
+                <li>
+                  Read the{" "}
+                  <a
+                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/troubleshooting.html"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Troubleshooting Guide
+                  </a>
+                </li>
+                <li>
+                  Ask questions on{" "}
+                  <a
+                    href="https://stackoverflow.com/questions/tagged/zcash"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Stack Overflow
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+};
+
+const Zainod = () => {
+  return (
+    <>
+      {/* Main Content */}
+      <div className="container mx-auto px-4 py-12">
+        {/* Installing zainod Section */}
+
+        {/* Installing Zaino Section */}
+        <section id="installing-zaino" className="mb-12">
+          <h2 className="text-3xl font-bold mb-6">1. Installing Zaino</h2>
 
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
-            <h3 className="text-xl font-semibold mb-4">Why Use Testnet?</h3>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-              <li>Free test ZEC for development</li>
-              <li>No risk of losing real funds</li>
-              <li>Faster block times for testing</li>
-              <li>Perfect for learning and experimentation</li>
-            </ul>
+            <h3 className="text-xl font-semibold mb-4">What is Zaino?</h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Zaino is an indexer for the Zcash blockchain implemented in Rust.
+              Zaino provides all necessary functionality for "light" clients
+              (wallets and other applications that don&apos;t rely on the
+              complete history of blockchain) and "full" clients / wallets and
+              block explorers providing access to both the finalized chain and
+              the non-finalized best chain and mempool held by either a Zebra or
+              Zcashd full validator.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold mb-4">
-                Testnet Configuration
-              </h3>
+              <h3 className="text-xl font-semibold mb-4">Installation</h3>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-semibold text-green-600">
-                    zcash.conf for Testnet:
-                  </h4>
+                  <h4 className="font-semibold text-green-600">Build Zaino:</h4>
                   <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`# Testnet configuration
-testnet=1
-rpcuser=your_rpc_username
-rpcpassword=your_rpc_password
-rpcallowip=127.0.0.1
-rpcport=18232
-server=1
-daemon=1
-txindex=1`}
+                    {`git clone https://github.com/zingolabs/zaino.git \ncd zaino \ncargo build --release \nPATH-$PATH:~/zaino/target/release/`}
                   </pre>
                 </div>
                 <div>
                   <h4 className="font-semibold text-green-600">
-                    Start Testnet Node:
+                    Zaino Configuration:
                   </h4>
                   <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`zebrad -testnet
-# Or with config file
-zebrad -testnet -conf=~/.zcash/zcash.conf`}
+                    {`cd ~/zaino/zainod \nsudo nano zindexer.toml #Adjust port to 8232 for mainnet`}
                   </pre>
                 </div>
               </div>
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold mb-4">Getting Test ZEC</h3>
+              <h3 className="text-xl font-semibold mb-4">Configuration</h3>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-semibold text-green-600">
-                    Testnet Faucet:
-                  </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Visit{" "}
-                    <a
-                      href="https://faucet.testnet.z.cash/"
-                      className="text-blue-500 hover:underline"
-                    >
-                      faucet.testnet.z.cash
-                    </a>{" "}
-                    to get free test ZEC
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-green-600">
-                    Generate Address:
-                  </h4>
+                  <h4 className="font-semibold text-green-600">Basic Setup:</h4>
                   <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`# Generate testnet address
-zcash-cli -testnet getnewaddress`}
+                    {`# Configuration for Zaino
+
+# Sets the TcpIngestor's status (true or false)
+tcp_active = true
+
+# Optional TcpIngestors listen port (use None or specify a port number
+listen_port = 8137
+
+# LightWalletD listen port [DEPRECATED]
+lightwalletd_port = 9067
+
+# Full node / validator listen port
+zebrad_ port = 8232
+
+# Optional full node Username
+node_user = "xxxxxx"
+
+# Optional full node Password
+node_password = "xxxxxx"
+
+# Maximum requests allowed in the request queue
+max_queue_size = 1024
+
+# Maximum workers allowed in the worker pool
+max_worker_pool_size = 64
+
+# Minimum number of workers held in the worker pool when idle
+idle_worker_pool_size = 4`}
                   </pre>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-green-600">
-                    Check Balance:
-                  </h4>
+                  <h4 className="font-semibold text-green-600">Run zainod:</h4>
                   <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`# Check testnet balance
-zcash-cli -testnet getbalance`}
+                    {`zainod --config zindexer.toml`}
                   </pre>
                 </div>
               </div>
             </div>
           </div>
-        </section> */}
-
-        {/* Common RPC Commands Section */}
-        {/* <section id="rpc-commands" className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">5. Common RPC Commands</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold mb-4">Node Information</h3>
-              <div className="space-y-3">
-                <div>
-                  <h4 className="font-semibold text-green-600">
-                    Get Node Info:
-                  </h4>
-                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`zcash-cli getinfo
-zcash-cli getblockchaininfo
-zcash-cli getnetworkinfo`}
-                  </pre>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-green-600">
-                    Connection Status:
-                  </h4>
-                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`zcash-cli getconnectioncount
-zcash-cli getpeerinfo`}
-                  </pre>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold mb-4">Wallet Operations</h3>
-              <div className="space-y-3">
-                <div>
-                  <h4 className="font-semibold text-green-600">
-                    Address Management:
-                  </h4>
-                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`zcash-cli getnewaddress
-zcash-cli listaddresses
-zcash-cli getaddressesbyaccount ""`}
-                  </pre>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-green-600">
-                    Balance & Transactions:
-                  </h4>
-                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`zcash-cli getbalance
-zcash-cli listtransactions
-zcash-cli gettransaction <txid>`}
-                  </pre>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold mb-4">Blockchain Data</h3>
-              <div className="space-y-3">
-                <div>
-                  <h4 className="font-semibold text-green-600">
-                    Block Information:
-                  </h4>
-                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`zcash-cli getblockcount
-zcash-cli getblockhash <height>
-zcash-cli getblock <hash>`}
-                  </pre>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-green-600">Mempool:</h4>
-                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`zcash-cli getmempoolinfo
-zcash-cli getrawmempool`}
-                  </pre>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold mb-4">Advanced Commands</h3>
-              <div className="space-y-3">
-                <div>
-                  <h4 className="font-semibold text-green-600">Mining:</h4>
-                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`zcash-cli getmininginfo
-zcash-cli getblocktemplate`}
-                  </pre>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-green-600">Debugging:</h4>
-                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`zcash-cli help
-zcash-cli help <command>
-zcash-cli getmemoryinfo`}
-                  </pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
+        </section>
 
         {/* Next Steps Section */}
         <section className="bg-blue-50 dark:bg-blue-900 rounded-lg p-8">
@@ -612,6 +595,174 @@ zcash-cli getmemoryinfo`}
           </div>
         </section>
       </div>
+    </>
+  );
+};
+
+const ZingoLib = () => {
+  return (
+    <>
+      {/* Main Content */}
+      <div className="container mx-auto px-4 py-12">
+        {/* Installing zingo Section */}
+
+        {/* Installing zingo Section */}
+        <section id="installing-zingo" className="mb-12">
+          <h2 className="text-3xl font-bold mb-6">1. Installing Zingo CLI</h2>
+
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+            <h3 className="text-xl font-semibold mb-4">What is Zingo CLI?</h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Zingo-cli is a command line lightwalletd-proxy client. To use it,
+              see "compiling from source" below. Releases are currently only
+              provisional, we will update the README as releases come out.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+              <h3 className="text-xl font-semibold mb-4">Installation</h3>
+              <div className="space-y-3">
+                <div>
+                  <h4 className="font-semibold text-green-600">
+                    Build Zingo CLI:
+                  </h4>
+                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
+                    {`git clone https://github.com/zingolabs/zingolib.git \ncd zingolib \ncargo build --release --package zingo-cli`}
+                  </pre>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+              <h3 className="text-xl font-semibold mb-4">Configuration</h3>
+              <div className="space-y-3">
+                <div>
+                  <h4 className="font-semibold text-green-600">
+                    Run Zingo CLI:
+                  </h4>
+                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
+                    {`cd ~/zingolib/target \n./zingo-cli --server http://127.0.0.1:8137 --data-dir /path/to/your/zaino/data \n(note: this will need to fully sync, Just like lightwalletd did)`}
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Next Steps Section */}
+        <section className="bg-blue-50 dark:bg-blue-900 rounded-lg p-8">
+          <h2 className="text-3xl font-bold mb-6">Next Steps</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Ready to Build?</h3>
+              <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                <li>
+                  Explore the{" "}
+                  <a
+                    href="https://zebra.zfnd.org/index.html"
+                    className="text-blue-500 hover:underline"
+                  >
+                    official documentation
+                  </a>
+                </li>
+                <li>
+                  Join the{" "}
+                  <a
+                    href="https://discord.gg/zcash"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Discord
+                  </a>{" "}
+                  community
+                </li>
+                <li>
+                  Check out{" "}
+                  <a
+                    href="https://github.com/zcash"
+                    className="text-blue-500 hover:underline"
+                  >
+                    GitHub repositories
+                  </a>
+                </li>
+                <li>
+                  Read the{" "}
+                  <a
+                    href="https://zips.z.cash/"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Improvement Proposals (ZIPs)
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Need Help?</h3>
+              <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                <li>
+                  Visit the{" "}
+                  <a
+                    href="https://forum.zcashcommunity.com/"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Community Forum
+                  </a>
+                </li>
+                <li>
+                  Check{" "}
+                  <a
+                    href="https://github.com/zcash/zcash/issues"
+                    className="text-blue-500 hover:underline"
+                  >
+                    GitHub Issues
+                  </a>
+                </li>
+                <li>
+                  Read the{" "}
+                  <a
+                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/troubleshooting.html"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Troubleshooting Guide
+                  </a>
+                </li>
+                <li>
+                  Ask questions on{" "}
+                  <a
+                    href="https://stackoverflow.com/questions/tagged/zcash"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Stack Overflow
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+};
+
+export default function QuickStartPage() {
+  return (
+    <>
+      {/* Hero Section */}
+      <div className="min-h-[40vh] bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
+        <div className="text-center text-white">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            Zcash Dev Quick Start
+          </h1>
+          <p className="text-xl md:text-2xl">
+            Get up and running with Zcash development in minutes
+          </p>
+        </div>
+      </div>
+
+      <TabsPage
+        titles={["Zebrad", "Zaino", "Zingolib"]}
+        components={[<Zebrad />, <Zainod />, <ZingoLib />]}
+      />
     </>
   );
 }
