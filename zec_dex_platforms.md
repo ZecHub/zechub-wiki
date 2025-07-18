@@ -1,8 +1,6 @@
 
 # 🟪 DEX Platforms Supporting Zcash (ZEC)
 
-Below is a list of decentralized exchanges (DEXs) where users can trade Zcash (ZEC) without relying on centralized custodians. These platforms enable peer-to-peer or smart contract-based swaps.
-
 ---
 
 ### 🌀 **ThorChain**
@@ -40,7 +38,3 @@ Below is a list of decentralized exchanges (DEXs) where users can trade Zcash (Z
 - [🔗 View Centralised Exchanges](https://zechub.wiki/using-zcash/custodial-exchanges)
 - [🔗 View Custodial Swap Platforms](https://zechub.wiki/using-zcash/centralizedswaps)
 
----
-
-**Page URL:** `/dex`  
-**Format:** Use existing style and layout conventions seen on other pages in the [ZecHub Wiki](https://zechub.wiki)
