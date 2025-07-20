@@ -16,6 +16,7 @@ export type ShieldedTxCount = {
 };
 export type NodeCountData = { Date: string; nodecount: string };
 
+
 /**
  * Type of values from the shielded pool over time. Each datum is amount
  * shielded at a given date.
