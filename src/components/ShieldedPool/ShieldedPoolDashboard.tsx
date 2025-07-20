@@ -18,6 +18,7 @@ import {
   NamadaToolOptions,
   NamadaTools,
 } from "../Tools/Namadatools";
+import CryptoMetrics from "./Metric";
 
 const ShieldedPoolChart = dynamic(() => import("./ShieldedPoolChart"), {
   ssr: true,
@@ -157,9 +158,8 @@ export default function ShieldedPoolDashboard() {
     ToolOptions.supply
   );
 
-  const [selectedNamadaTool, setSelectedNamadaTool] = useState<NamadaToolOptions>(
-    NamadaToolOptions.supply
-  );
+  const [selectedNamadaTool, setSelectedNamadaTool] =
+    useState<NamadaToolOptions>(NamadaToolOptions.supply);
   const [selectedToolName, setSelectedToolName] = useState<string>(
     toolOptionLabels[ToolOptions.supply]
   );
@@ -311,8 +311,8 @@ export default function ShieldedPoolDashboard() {
           : parseFloat(tokenEntry.totalSupply);
       }),
     };
-    const result = {x,y}
-    setNamadaSeries(result)
+    const result = { x, y };
+    setNamadaSeries(result);
   }, [namadaRaw, selectedNamadaAsset]);
 
   if (!blockchainInfo) {
@@ -351,6 +351,7 @@ export default function ShieldedPoolDashboard() {
     }
     setSelectedToolName(namadatoolOptionLabels[tool]);
   };
+
 
   return (
     <div className="mt-28">
@@ -448,9 +449,10 @@ export default function ShieldedPoolDashboard() {
             </>
           )}
 
-          {selectedCoin === "Namada" && selectedNamadaTool === NamadaToolOptions.supply && (
-            <NamadaSupplyChart data={namadaSeries} width={800} height={400} />
-          )}
+          {selectedCoin === "Namada" &&
+            selectedNamadaTool === NamadaToolOptions.supply && (
+              <NamadaSupplyChart data={namadaSeries} width={800} height={400} />
+            )}
 
           {selectedCoin !== "Zcash" && selectedCoin !== "Namada" && (
             <div className="w-full h-[400px] flex flex-col items-center justify-center">
@@ -496,7 +498,6 @@ export default function ShieldedPoolDashboard() {
                   }`}
                   onClick={() => setSelectedNamadaAsset(asset.id)}
                 />
-              
               </div>
             ))}
           </div>
@@ -523,8 +524,7 @@ export default function ShieldedPoolDashboard() {
             }
           />
         </div>
-
-        {/* Metrics */}
+        {selectedCoin === 'Zcash' &&
         <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
           <div className="border p-4 rounded-md text-center">
             <h3 className="font-bold text-lg">Market Cap</h3>
@@ -563,6 +563,10 @@ export default function ShieldedPoolDashboard() {
             </p>
           </div>
         </div>
+        }
+        {(selectedCoin == "Penumbra") && <CryptoMetrics selectedCoin={selectedCoin} />}
+
+        {(selectedCoin == "Namada") && <CryptoMetrics selectedCoin={selectedNamadaAsset} />}
       </div>
     </div>
   );

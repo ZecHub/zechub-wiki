@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { genMetadata } from '@/lib/helpers';
-import { Metadata } from 'next';
+import { genMetadata } from "@/lib/helpers";
+import { Metadata } from "next";
 
 export const metadata: Metadata = genMetadata({
   title: "Zcash Developer Resources",
-  url: "https://zechub.wiki/using-zcash/blockchain-explorers"
-})
+  url: "https://zechub.wiki/using-zcash/blockchain-explorers",
+});
 
 export default function DeveloperPage() {
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
@@ -47,7 +47,7 @@ export default function DeveloperPage() {
       title: "Learn Through Tutorials",
       content:
         "Follow step-by-step tutorials to build on Zcash, from creating wallets to integrating Zcash into your applications.",
-      url: "https://zcash.readthedocs.io/en/latest/rtd_pages/learning.html",
+      url: "https://www.youtube.com/playlist?list=PL6_epn0lASLFF28ePj7P5TvtMG_WE7p3O",
       svg: (
         <svg
           className="w-12 h-12 text-green-500"
@@ -67,13 +67,13 @@ export default function DeveloperPage() {
       buttonText: "View Tutorials", // Custom button text
     },
     {
-      title: "Set Up Servers",
+      title: "Quick Start Guide",
       content:
-        "Learn how to set up and run Zcash nodes or servers for development and production environments.",
-      url: "https://zcash.readthedocs.io/en/latest/rtd_pages/user_guide.html",
+        "Get up and running with Zcash development quickly. Learn installation, configuration, and basic operations.",
+      url: "/developers/quick-start",
       svg: (
         <svg
-          className="w-12 h-12 text-purple-500"
+          className="w-12 h-12 text-orange-500"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -83,11 +83,11 @@ export default function DeveloperPage() {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
+            d="M13 10V3L4 14h7v7l9-11h-7z"
           />
         </svg>
-      ), // SVG for "Set Up Servers"
-      buttonText: "Choose Your Stack", // Custom button text
+      ), // SVG for "Quick Start Guide"
+      buttonText: "Quick Start Guide", // Custom button text
     },
   ];
 
@@ -121,7 +121,7 @@ export default function DeveloperPage() {
 
       {/* Cards Section */}
       <section id="cardLinks" className="bg-gray-100 dark:bg-gray-800 py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8">
           <h2 className="text-4xl font-bold mb-12">
             How would you like to get started?
           </h2>
@@ -139,11 +139,11 @@ export default function DeveloperPage() {
                 {/* Card Content */}
                 <div className="p-6">
                   <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
-                  <p className="dark:text-gray-300 text-gray-700 mb--4 h-[100px]">{card.content}</p>
+                  <p className="dark:text-gray-300 text-gray-700 mb--4 h-[100px]">
+                    {card.content}
+                  </p>
                   <a
                     href={card.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
                   >
                     {card.buttonText} {/* Custom button text */}
@@ -156,7 +156,10 @@ export default function DeveloperPage() {
       </section>
 
       {/* Explore the Documentation Section */}
-      <section id="exploreDocumentation" className="bg-white dark:bg-gray-800 py-12">
+      <section
+        id="exploreDocumentation"
+        className="bg-white dark:bg-gray-800 py-12"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12">
             Explore the Documentation
@@ -197,16 +200,31 @@ export default function DeveloperPage() {
                 </li>
                 <li>
                   <a
-                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/librustzcash_arch.html"
+                    href="https://zebra.zfnd.org/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Intro to the Stack
+                    Intro to Zebra
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Understand the architecture and components of the Zcash
-                    stack.
+                    Understanding how Zebra powers the Zcash network with a
+                    modular and secure Rust-based implementation
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zcash/lightwalletd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Intro to Lightwalletd
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Understanding the lightwalletd project—a scalable server
+                    written in Go that efficiently serves compact blockchain
+                    data to Zcash light clients via gRPC.
                   </p>
                 </li>
               </ul>
@@ -307,15 +325,57 @@ export default function DeveloperPage() {
                     Explore Zcash blockchains using block explorers.
                   </p>
                 </li>
+                <li>
+                  <a
+                    href="https://fringe-brow-647.notion.site/Shade-Agents-19a09959836d8091bb8febb318cc09fd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Shade Agent- Notion
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Learn about Shade Agents—the first truly autonomous AI
+                    agents on NEAR—powered by secure TEEs and decentralized
+                    Chain Signatures to manage assets, access LLMs, and execute
+                    multichain transactions independently.
+                  </p>
+                </li>
               </ul>
             </div>
 
-            {/* Development Workflow */}
+            {/* Advanced */}
             <div className="flex-1">
-              <h3 className="text-3xl font-semibold mb-4">
-                Development Workflow
-              </h3>
+              <h3 className="text-3xl font-semibold mb-4">Advanced</h3>
               <ul className="space-y-3">
+                <li>
+                  <a
+                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/librustzcash_arch.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Intro to the Stack
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Understand the architecture and components of the Zcash
+                    stack.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zingolabs/zingolib"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Intro to Zingolib
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Understanding the zingolib repository—a Rust-based API and
+                    CLI for interacting with zcashd via Lightwalletd.
+                  </p>
+                </li>
                 <li>
                   <a
                     href="https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html"
@@ -336,7 +396,10 @@ export default function DeveloperPage() {
       </section>
 
       {/* Was this page helpful? Section */}
-      <section id="feedback" className="bg-gray-100 dark:bg-gray-800 py-12 mt-6">
+      <section
+        id="feedback"
+        className="bg-gray-100 dark:bg-gray-800 py-12 mt-6"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold mb-4">Was this page helpful?</h2>
           <div className="flex items-center space-x-4">
@@ -379,8 +442,8 @@ export default function DeveloperPage() {
                 </p>
               ) : (
                 <p className="text-red-600">
-                  Sorry to hear that. Please let us know how we can
-                  improve this page. You can reach out to the community on our{" "}
+                  Sorry to hear that. Please let us know how we can improve this
+                  page. You can reach out to the community on our{" "}
                   <a
                     href="https://discord.gg/zcash"
                     target="_blank"

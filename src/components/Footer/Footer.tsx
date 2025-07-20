@@ -30,7 +30,7 @@ const Footer = () => {
             . All Rights Reserved.
           </span>
         </div>
-        <div className="w-full flex justify-center items-center">
+        <div className="w-full flex justify-center items-center my-3">
           <SocialIcons newTab={true} />
         </div>
       </footer>
