@@ -1,4 +1,4 @@
-import { useInMobile } from "@/hooks/useIsMobile";
+import { useInMobile } from "@/hooks/useInMobile";
 import { BlockchainInfo } from "@/lib/chart/types";
 import { MetricCard } from "./MetricCard";
 
@@ -15,7 +15,9 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
   const metricsObj = [
     {
       label: "Market Cap",
-      value: `$${props.blockchainInfo.market_cap_usd.toLocaleString()}`,
+      value: `$${
+        props.blockchainInfo?.market_cap_usd.toLocaleString() ?? "NA"
+      }`,
     },
     {
       label: "Circulation",
@@ -23,21 +25,21 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
     },
     {
       label: "Market Price (USD)",
-      value: `$${props.blockchainInfo.market_price_usd.toFixed(2)}`,
+      value: `$${props.blockchainInfo?.market_price_usd.toFixed(2) ?? "NA"}`,
     },
     {
       label: "Market Price (BTC)",
       value: isMobile
-        ? Number(props.blockchainInfo.market_price_btc).toFixed(4)
-        : Number(props.blockchainInfo.market_price_btc).toFixed(8),
+        ? Number(props.blockchainInfo?.market_price_btc).toFixed(4) ?? "NA"
+        : Number(props.blockchainInfo?.market_price_btc).toFixed(8) ?? "NA",
     },
     {
       label: "Blocks",
-      value: props.blockchainInfo.blocks.toLocaleString(),
+      value: props.blockchainInfo?.blocks.toLocaleString() ?? "NA",
     },
     {
       label: "24h Transactions",
-      value: props.blockchainInfo.transactions_24h.toLocaleString(),
+      value: props.blockchainInfo?.transactions_24h.toLocaleString() ?? "NA",
     },
     {
       label: "Shielded TX (24h)",
