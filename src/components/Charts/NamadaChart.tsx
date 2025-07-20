@@ -10,6 +10,16 @@ import { DATA_URL } from "@/lib/chart/data-url";
 import { getNamadaSupply } from "@/lib/chart/helpers";
 // import { NamadaAsset } from "@/lib/chart/types";
 import { useEffect, useState } from "react";
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 import CryptoMetrics from "../ShieldedPool/Metric";
 import {
@@ -20,64 +30,8 @@ import {
   SelectValue,
 } from "../ui/shadcn/select";
 
-type NamadaChartProps = {
-  //   selectedCrypto: string;
-};
+type NamadaChartProps = {};
 
-const type = {
-  Date: "05/10/2025",
-  Total_Supply: [
-    {
-      id: "Namada",
-      totalSupply: "1040288568.290605",
-      shieldedSupply: "0",
-      transparentSupply: "0",
-    },
-    {
-      id: "Atom",
-      totalSupply: "11267804366",
-      shieldedSupply: "0",
-      transparentSupply: "0",
-    },
-    {
-      id: "Osmo",
-      totalSupply: "106107437962",
-      shieldedSupply: "0",
-      transparentSupply: "0",
-    },
-    {
-      id: "Tia",
-      totalSupply: "12714514321",
-      shieldedSupply: "0",
-      transparentSupply: "0",
-    },
-    {
-      id: "Penumbra",
-      totalSupply: "",
-      shieldedSupply: "0",
-      transparentSupply: "0",
-    },
-    {
-      id: "Nym",
-      totalSupply: "500000",
-      shieldedSupply: "0",
-      transparentSupply: "0",
-    },
-    {
-      id: "Neutron",
-      totalSupply: "1000000",
-      shieldedSupply: "0",
-      transparentSupply: "0",
-    },
-    {
-      id: "Usdc",
-      totalSupply: "100000",
-      shieldedSupply: "0",
-      transparentSupply: "0",
-    },
-  ],
-  Native_Supply_NAM: "1024673515.595884",
-};
 type NamadaAsset = {
   id: string;
   totalSupply: string;
@@ -123,8 +77,6 @@ function NamadaChart(props: NamadaChartProps) {
         }
 
         const list: NamadaAsset[] = namadaResponse[0]?.Total_Supply || [];
-        console.log({ list });
-
         if (list.length > 0) {
           setSelectedNamadaAsset(list[0].id);
         }
@@ -163,7 +115,6 @@ function NamadaChart(props: NamadaChartProps) {
   const tokenIds = Object.keys(flattenedNamadaSupply[0] || {}).filter(
     (id) => id !== "Date"
   );
-  console.log({ tokenIds });
 
   // Default: All tokens stacked
   const filteredTokenData = selectedTokenId
@@ -183,57 +134,61 @@ function NamadaChart(props: NamadaChartProps) {
 
         {/* Chart Card */}
         <Card>
-          <CardHeader>
-            <CardTitle>Namada Token Supply Overview:</CardTitle>
+          <CardHeader className="flex flex-row items-center mb-12">
+            <CardTitle className="flex-1">
+              Namada Token Supply Overview:
+            </CardTitle>
+
+            <div className="flex items-center gap-2">
+              <label className="text-sm font-medium">Filter by Token</label>
+              <Select
+                value={selectedTokenId}
+                onValueChange={(e) => {
+                  setSelectedTokenId(e);
+                }}
+              >
+                <SelectTrigger className="w-48">
+                  <SelectValue placeholder="All Tokens" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Tokens</SelectItem>
+                  {tokenIds.length > 0 &&
+                    tokenIds.map((token) => (
+                      <SelectItem key={token} value={token}>
+                        {token}
+                      </SelectItem>
+                    ))}
+                </SelectContent>
+              </Select>
+            </div>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <label className="text-sm font-medium">Filter by Token</label>
-                <Select
-                  value={selectedTokenId}
-                  onValueChange={(e) => {
-                    setSelectedTokenId(e);
-                  }}
-                >
-                  <SelectTrigger className="w-48">
-                    <SelectValue placeholder="All Tokens" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Tokens</SelectItem>
-                    {tokenIds.length > 0 &&
-                      tokenIds.map((token) => (
-                        <SelectItem key={token} value={token}>
-                          {token}
-                        </SelectItem>
-                      ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            {/* <ResponsiveContainer width="100%" height={400}>
-              <AreaChart data={filteredTokenData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="Date" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                {(selectedTokenId ? [selectedTokenId] : tokenIds).map(
-                  (id, index) => (
-                    <Area
-                      key={id}
-                      type="monotone"
-                      dataKey={id}
-                      stackId="1"
-                      stroke={`hsl(var(--chart-${(index % 6) + 1}))`}
-                      fill={`hsl(var(--chart-${(index % 6) + 1}))`}
-                      name={id}
-                    />
-                  )
-                )}
-              </AreaChart>
-            </ResponsiveContainer> */}
+            <ResponsiveContainer width="100%" height={400}>
+              {filteredTokenData.length > 0 ? (
+                <AreaChart data={filteredTokenData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="Date" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  {(selectedTokenId ? [selectedTokenId] : tokenIds).map(
+                    (id, index) => (
+                      <Area
+                        key={id}
+                        type="monotone"
+                        dataKey={id}
+                        stackId="1"
+                        stroke={`hsl(var(--chart-${(index % 6) + 1}))`}
+                        fill={`hsl(var(--chart-${(index % 6) + 1}))`}
+                        name={id}
+                      />
+                    )
+                  )}
+                </AreaChart>
+              ) : (
+                <p>loading...</p>
+              )}
+            </ResponsiveContainer>
           </CardContent>
         </Card>
       </div>
