@@ -55,9 +55,9 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
 
   return (
     <div className="my-12">
-      <h1 className="font-bold text-xl text-slate-700 dark:text-slate-100">
+      <h2 className="font-bold text-xl text-slate-700 dark:text-slate-100">
         Zcash Metrics
-      </h1>
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
         {metricsObj.map(({ label, value }) => (
           <MetricCard label={label} value={value} key={label} />
