@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/shadcn/select";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -26,7 +26,28 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { ZcashMetrics } from "../ZcashMetrics/ZcashMetrics";
 import "./index.css";
+
+import { DATA_URL } from "@/lib/chart/data-url";
+import {
+  getBlockchainData,
+  getBlockchainInfo,
+  getLastUpdatedDate,
+  getNamadaSupply,
+  getNodeCountData,
+  getShieldedTxCount,
+  getSupplyData,
+} from "@/lib/chart/helpers";
+import {
+  BlockchainInfo,
+  NamadaAsset,
+  PoolKey,
+  ShieldedTxCount,
+  SupplyData,
+} from "@/lib/chart/types";
+import { NamadaToolOptions } from "../Tools/Namadatools";
+import { toolOptionLabels, ToolOptions } from "../Tools/tools";
 
 // Tabs component - simple implementation
 const Tabs = ({ children, defaultValue, value, onValueChange }: any) => {
@@ -201,16 +222,148 @@ const Dashboard = () => {
   const [selectedYear, setSelectedYear] = useState("all");
   const [activeTab, setActiveTab] = useState("supply");
 
-  // Placeholder metrics data
-  const metricsData = {
-    marketCap: "$2.45B",
-    zecInCirculation: "15.7M ZEC",
-    marketPriceUSD: "$156.78",
-    marketPriceBTC: "0.00321 BTC",
-    blocks: "2,456,789",
-    tx24hr: "12,456",
-    shieldedTx24hr: "3,247",
-  };
+  const [selectedNamadaTool, setSelectedNamadaTool] =
+    useState<NamadaToolOptions>(NamadaToolOptions.supply);
+  const [selectedToolName, setSelectedToolName] = useState<string>(
+    toolOptionLabels[ToolOptions.supply]
+  );
+  const [cumulativeCheck, setCumulativeCheck] = useState(true);
+  const [filterSpamCheck, setFilterSpamCheck] = useState(false);
+
+  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
+    null
+  );
+  const [circulation, setCirculation] = useState<number | null>(null);
+  const [supplies, setSupplies] = useState<Record<PoolKey, SupplyData | null>>({
+    default: null,
+    sprout: null,
+    sapling: null,
+    orchard: null,
+  });
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+  const [shieldedTxCount, setShieldedTxCount] = useState<
+    ShieldedTxCount[] | null
+  >(null);
+  const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
+
+  const [namadaRaw, setNamadaRaw] = useState<any[]>([]);
+  const [namadaAssets, setNamadaAssets] = useState<NamadaAsset[]>([]);
+  const [selectedNamadaAsset, setSelectedNamadaAsset] = useState<string>("");
+  const [namadaSeries, setNamadaSeries] = useState<any>();
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const fetchAllData = async () => {
+      try {
+        const [
+          blockchainData,
+          blockchainInfo,
+          lastUpdated,
+          defaultSupply,
+          sproutSupply,
+          saplingSupply,
+          orchardSupply,
+          shieldedTx,
+          nodeCountData,
+          namadaResponse,
+        ] = await Promise.all([
+          // fetchShieldedSupplyData(dataUrl, controller.signal),
+          getBlockchainData(DATA_URL.blockchairUrl, controller.signal),
+          getBlockchainInfo(DATA_URL.blockchainInfoUrl, controller.signal),
+          getLastUpdatedDate(DATA_URL.shieldedUrl, controller.signal),
+          getSupplyData(DATA_URL.defaultUrl, controller.signal),
+          getSupplyData(DATA_URL.sproutUrl, controller.signal),
+          getSupplyData(DATA_URL.saplingUrl, controller.signal),
+          getSupplyData(DATA_URL.orchardUrl, controller.signal),
+          getShieldedTxCount(DATA_URL.shieldedTxCountUrl, controller.signal),
+          getNodeCountData(DATA_URL.nodecountUrl, controller.signal),
+          getNamadaSupply(DATA_URL.namadaSupplyUrl, controller.signal),
+        ]);
+
+        if (blockchainData) {
+          setBlockchainInfo(blockchainData);
+        }
+        if (blockchainInfo) {
+          setCirculation(blockchainInfo);
+        }
+        if (lastUpdated) {
+          setLastUpdated(lastUpdated);
+        }
+
+        setSupplies({
+          default: defaultSupply.pop() || null,
+          sprout: sproutSupply.pop() || null,
+          sapling: saplingSupply.pop() || null,
+          orchard: orchardSupply.pop() || null,
+        });
+
+        if (shieldedTx) {
+          setShieldedTxCount(shieldedTx);
+        }
+        if (nodeCountData?.length) {
+          const latest = Number(
+            nodeCountData[nodeCountData.length - 1].nodecount
+          );
+          setLatestNodeCount(latest);
+        }
+
+        if (namadaResponse) {
+          setNamadaRaw(namadaResponse);
+          const list: NamadaAsset[] = namadaResponse[0]?.Total_Supply || [];
+          setNamadaAssets(list);
+
+          if (list.length) {
+            setSelectedNamadaAsset(list[0].id);
+          }
+        }
+
+        // getBlockchainData(controller.signal).then((d) => d && setBlockchainInfo(d));
+        // getBlockchainInfo(controller.signal).then((c) => setCirculation(c));
+        // getLastUpdatedDate(controller.signal).then((d) => setLastUpdated(d));
+
+        // getSupplyData(DATA_URL.defaultUrl, controller.signal).then((a) =>
+        //   setSupplies((s) => ({ ...s, default: a.pop() || null }))
+        // );
+        // getSupplyData(DATA_URL.sproutUrl, controller.signal).then((a) =>
+        //   setSupplies((s) => ({ ...s, sprout: a.pop() || null }))
+        // );
+        // getSupplyData(DATA_URL.saplingUrl, controller.signal).then((a) =>
+        //   setSupplies((s) => ({ ...s, sapling: a.pop() || null }))
+        // );
+        // getSupplyData(DATA_URL.orchardUrl, controller.signal).then((a) =>
+        //   setSupplies((s) => ({ ...s, orchard: a.pop() || null }))
+        // );
+
+        // getShieldedTxCount(controller.signal).then(
+        //   (d) => d && setShieldedTxCount(d)
+        // );
+        // getNodeCountData(DATA_URL.nodecountUrl).then((a) => {
+        //   if (a.length) setLatestNodeCount(Number(a[a.length - 1].nodecount));
+        // });
+
+        // Namada raw + assets
+        // fetch(DATA_URL.namadaSupplyUrl)
+        //   .then((r) => r.json())
+        //   .then((data: any[]) => {
+        //     if (!data) return;
+        //     setNamadaRaw(data);
+        //     const list: NamadaAsset[] = data[0]?.Total_Supply || [];
+        //     setNamadaAssets(list);
+        //     if (list.length) setSelectedNamadaAsset(list[0].id);
+        //   })
+        //   .catch(console.error);
+      } catch (err) {
+        console.error("Error fetching dashboard data:", err);
+      }
+    };
+
+    fetchAllData();
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   const getAvailableYears = () => {
     const allData = [
@@ -312,78 +465,11 @@ const Dashboard = () => {
         {selectedCrypto === "zcash" && (
           <div className="space-y-6">
             {/* Market Metrics */}
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-              <Card>
-                <CardContent className="p-4">
-                  <div className="text-xs text-muted-foreground mb-1">
-                    Market Cap
-                  </div>
-                  <div className="text-lg font-semibold">
-                    {metricsData.marketCap}
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <div className="text-xs text-muted-foreground mb-1">
-                    ZEC in Circulation
-                  </div>
-                  <div className="text-lg font-semibold">
-                    {metricsData.zecInCirculation}
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <div className="text-xs text-muted-foreground mb-1">
-                    Market Price (USD)
-                  </div>
-                  <div className="text-lg font-semibold">
-                    {metricsData.marketPriceUSD}
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <div className="text-xs text-muted-foreground mb-1">
-                    Market Price (BTC)
-                  </div>
-                  <div className="text-lg font-semibold">
-                    {metricsData.marketPriceBTC}
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <div className="text-xs text-muted-foreground mb-1">
-                    Blocks
-                  </div>
-                  <div className="text-lg font-semibold">
-                    {metricsData.blocks}
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <div className="text-xs text-muted-foreground mb-1">
-                    24hr TX
-                  </div>
-                  <div className="text-lg font-semibold">
-                    {metricsData.tx24hr}
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <div className="text-xs text-muted-foreground mb-1">
-                    Shielded TX (24hr)
-                  </div>
-                  <div className="text-lg font-semibold">
-                    {metricsData.shieldedTx24hr}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+            <ZcashMetrics
+              blockchainInfo={blockchainInfo!}
+              circulation={circulation!}
+              shieldedTxCount={shieldedTxCount || []}
+            />
 
             {/* Charts Tabs */}
             <Card>
