@@ -104,16 +104,25 @@ export async function getNamadaSupply(
   signal?: AbortSignal
 ): Promise<any[]> {
   try {
-    const res = await fetch(url, {
-      signal,
-    });
-    if (!res.ok) return [];
-    return (await res.json()) as any[];
-  } catch (err) {
-    console.error("Error fetching Namada supply");
+    const res = await fetch(url, { signal });
+
+    if (!res.ok) {
+      console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
+      return [];
+    }
+
+    const data: any[] = await res.json();
+    return data;
+  } catch (err: any) {
+    if (err.name === "AbortError") {
+      console.warn("Fetch aborted.");
+    } else {
+      console.error("Error fetching Namada supply:", err.message || err);
+    }
     return [];
   }
 }
+
 
 /**
  * Loads the historic shielded pool data from a public json file in Github repo
