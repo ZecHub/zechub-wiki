@@ -10,17 +10,9 @@ import { DATA_URL } from "@/lib/chart/data-url";
 import { getNamadaSupply } from "@/lib/chart/helpers";
 // import { NamadaAsset } from "@/lib/chart/types";
 import { useEffect, useState } from "react";
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { ResponsiveContainer } from "recharts";
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
+import SupplyDataLastUpdated from "../LastUpdated";
 import CryptoMetrics from "../ShieldedPool/Metric";
 import {
   Select,
@@ -30,7 +22,7 @@ import {
   SelectValue,
 } from "../ui/shadcn/select";
 
-type NamadaChartProps = {};
+type NamadaChartProps = { lastUpdated: Date };
 
 type NamadaAsset = {
   id: string;
@@ -135,9 +127,7 @@ function PenumbraChart(props: NamadaChartProps) {
         {/* Chart Card */}
         <Card>
           <CardHeader className="flex flex-row items-center mb-12">
-            <CardTitle className="flex-1">
-              Penumbra Supply Overview:
-            </CardTitle>
+            <CardTitle className="flex-1">Penumbra Supply Overview:</CardTitle>
 
             <div className="flex items-center gap-2">
               <label className="text-sm font-medium">Filter by Token</label>
@@ -163,11 +153,17 @@ function PenumbraChart(props: NamadaChartProps) {
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
-            <ResponsiveContainer width="100%" height={400} className='flex items-center '>
-       
-                <p>Coming soon...</p>
-            
+            <ResponsiveContainer
+              width="100%"
+              height={400}
+              className="flex items-center "
+            >
+              <p>Coming soon...</p>
             </ResponsiveContainer>
+
+            {props.lastUpdated && (
+              <SupplyDataLastUpdated lastUpdated={props.lastUpdated} />
+            )}
           </CardContent>
         </Card>
       </div>
