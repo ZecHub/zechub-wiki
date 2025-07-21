@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FadeInAnimation } from "@/components/UI/FadeInAnimation";
-import MemberCards from "@/components/UI/MemberCards";
+import MemberCards from "@/components/ui/MemberCards";
 import { daoMembers } from "@/constants/membersDao";
 
 const Dao: React.FC = () => {
