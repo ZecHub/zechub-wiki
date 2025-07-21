@@ -16,7 +16,6 @@ export type ShieldedTxCount = {
 };
 export type NodeCountData = { Date: string; nodecount: string };
 
-
 /**
  * Type of values from the shielded pool over time. Each datum is amount
  * shielded at a given date.
@@ -32,5 +31,31 @@ export interface ShieldedPoolChartProps {
   dataUrl: string;
   color: string;
 }
+
+export type Issuance = {
+  Date: string;
+  "ZEC Issuance": string;
+  "ZEC  Supply": string;
+  "Current Inflation (%)": string;
+  "Unnamed: 4": string;
+  "ZIP 234": string;
+  "Unnamed: 6": string;
+};
+
+export type Difficulty = {
+  Date: string;
+  Difficulty: string;
+};
+
+export type NetInOutflow = {
+  Date: string;
+  "Net Sapling Flow": string;
+  "Net Orchard Flow": string;
+};
+
+export type LockBox = {
+  Date: string;
+  lockbox: string;
+};
 
 export type BlockchainNetwork = "Zcash" | "Namada" | "Penumbra";
