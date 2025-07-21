@@ -26,6 +26,7 @@ import {
   ShieldedTxCount,
   SupplyData,
 } from "@/lib/chart/types";
+import { Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
 import {
   Area,
@@ -124,6 +125,8 @@ function ZcashChart(props: ZcashChartProps) {
     const controller = new AbortController();
 
     const fetchAllData = async () => {
+      setLoading(true);
+
       try {
         const [
           blockchainData,
@@ -195,7 +198,9 @@ function ZcashChart(props: ZcashChartProps) {
           );
           setLatestNodeCount(latest);
         }
+        setLoading(false);
       } catch (err) {
+        setLoading(false);
         console.error("Error fetching dashboard data:", err);
       }
     };
@@ -382,37 +387,43 @@ function ZcashChart(props: ZcashChartProps) {
                         </CardContent>
                       </div>
                       <ResponsiveContainer width="100%" height={400}>
-                        <AreaChart data={combinedPoolData}>
-                          <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis dataKey="close" />
-                          <YAxis />
-                          <Tooltip />
-                          <Legend />
-                          <Area
-                            type="monotone"
-                            dataKey="sprout"
-                            stackId="1"
-                            stroke="hsl(var(--chart-1))"
-                            fill="hsl(var(--chart-1))"
-                            name="Sprout Pool"
-                          />
-                          <Area
-                            type="monotone"
-                            dataKey="sapling"
-                            stackId="1"
-                            stroke="hsl(var(--chart-2))"
-                            fill="hsl(var(--chart-2))"
-                            name="Sapling Pool"
-                          />
-                          <Area
-                            type="monotone"
-                            dataKey="orchard"
-                            stackId="1"
-                            stroke="hsl(var(--chart-3))"
-                            fill="hsl(var(--chart-3))"
-                            name="Orchard Pool"
-                          />
-                        </AreaChart>
+                        {loading ? (
+                          <div className="flex justify-center items-center">
+                            <Spinner />
+                          </div>
+                        ) : (
+                          <AreaChart data={combinedPoolData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="close" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Area
+                              type="monotone"
+                              dataKey="sprout"
+                              stackId="1"
+                              stroke="hsl(var(--chart-1))"
+                              fill="hsl(var(--chart-1))"
+                              name="Sprout Pool"
+                            />
+                            <Area
+                              type="monotone"
+                              dataKey="sapling"
+                              stackId="1"
+                              stroke="hsl(var(--chart-2))"
+                              fill="hsl(var(--chart-2))"
+                              name="Sapling Pool"
+                            />
+                            <Area
+                              type="monotone"
+                              dataKey="orchard"
+                              stackId="1"
+                              stroke="hsl(var(--chart-3))"
+                              fill="hsl(var(--chart-3))"
+                              name="Orchard Pool"
+                            />
+                          </AreaChart>
+                        )}
                       </ResponsiveContainer>
                     </div>
                   </TabsContent>

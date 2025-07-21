@@ -30,6 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/shadcn/select";
+import { Spinner } from "flowbite-react";
 
 type NamadaChartProps = {
   lastUpdated: Date;
@@ -172,7 +173,11 @@ function NamadaChart(props: NamadaChartProps) {
           </CardHeader>
           <CardContent className="space-y-6">
             <ResponsiveContainer width="100%" height={400}>
-              {filteredTokenData.length > 0 ? (
+              {loading ? (
+                <div className="flex justify-center items-center">
+                  <Spinner />
+                </div>
+              ) : (
                 <AreaChart data={filteredTokenData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="Date" />
@@ -193,8 +198,6 @@ function NamadaChart(props: NamadaChartProps) {
                     )
                   )}
                 </AreaChart>
-              ) : (
-                <p>loading...</p>
               )}
             </ResponsiveContainer>
 
