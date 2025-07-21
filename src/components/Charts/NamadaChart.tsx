@@ -21,6 +21,7 @@ import {
   YAxis,
 } from "recharts";
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
+import SupplyDataLastUpdated from "../LastUpdated";
 import CryptoMetrics from "../ShieldedPool/Metric";
 import {
   Select,
@@ -30,7 +31,9 @@ import {
   SelectValue,
 } from "../ui/shadcn/select";
 
-type NamadaChartProps = {};
+type NamadaChartProps = {
+  lastUpdated: Date;
+};
 
 type NamadaAsset = {
   id: string;
@@ -136,7 +139,7 @@ function NamadaChart(props: NamadaChartProps) {
             <CardTitle className="flex-1">
               Namada Token Supply Overview:
             </CardTitle>
-    
+
             <div className="flex items-center gap-2">
               <label className="text-sm font-medium">Filter by Token</label>
               <Select
@@ -187,6 +190,10 @@ function NamadaChart(props: NamadaChartProps) {
                 <p>loading...</p>
               )}
             </ResponsiveContainer>
+
+            {props.lastUpdated && (
+              <SupplyDataLastUpdated lastUpdated={props.lastUpdated} />
+            )}
           </CardContent>
         </Card>
       </div>
