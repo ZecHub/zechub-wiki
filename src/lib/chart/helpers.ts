@@ -1,5 +1,9 @@
 import {
   BlockchainInfo,
+  Difficulty,
+  Issuance,
+  LockBox,
+  NetInOutflow,
   NodeCountData,
   ShieldedAmountDatum,
   ShieldedTxCount,
@@ -17,6 +21,21 @@ export async function getBlockchainData(
     if (!res.ok) return null;
     const json = await res.json();
     return json.data as BlockchainInfo;
+  } catch {
+    return null;
+  }
+}
+export async function getIssuanceData(
+  url: string,
+  signal?: AbortSignal
+): Promise<Issuance[] | null> {
+  try {
+    const res = await fetch(url, {
+      signal,
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data;
   } catch {
     return null;
   }
@@ -63,6 +82,7 @@ export async function getLastUpdatedDate(
     });
     if (!res.ok) return "N/A";
     const d = await res.json();
+
     return d[0]?.commit?.committer?.date ?? "N/A";
   } catch {
     return "N/A";
@@ -99,6 +119,76 @@ export async function getNodeCountData(
   }
 }
 
+export async function getLockboxData(
+  url: string,
+  signal?: AbortSignal
+): Promise<LockBox[]> {
+  try {
+    const res = await fetch(url, { signal });
+
+    if (!res.ok) {
+      console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
+      return [];
+    }
+
+    const data: any[] = await res.json();
+    return data;
+  } catch (err: any) {
+    if (err.name === "AbortError") {
+      console.warn("Fetch aborted.");
+    } else {
+      console.error(err.message || err);
+    }
+    return [];
+  }
+}
+export async function getNetInOutflowData(
+  url: string,
+  signal?: AbortSignal
+): Promise<NetInOutflow[]> {
+  try {
+    const res = await fetch(url, { signal });
+
+    if (!res.ok) {
+      console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
+      return [];
+    }
+
+    const data: any[] = await res.json();
+    return data;
+  } catch (err: any) {
+    if (err.name === "AbortError") {
+      console.warn("Fetch aborted.");
+    } else {
+      console.error(err.message || err);
+    }
+    return [];
+  }
+}
+export async function getDifficultyData(
+  url: string,
+  signal?: AbortSignal
+): Promise<Difficulty[]> {
+  try {
+    const res = await fetch(url, { signal });
+
+    if (!res.ok) {
+      console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
+      return [];
+    }
+
+    const data: any[] = await res.json();
+    return data;
+  } catch (err: any) {
+    if (err.name === "AbortError") {
+      console.warn("Fetch aborted.");
+    } else {
+      console.error(err.message || err);
+    }
+    return [];
+  }
+}
+
 export async function getNamadaSupply(
   url: string,
   signal?: AbortSignal
@@ -122,7 +212,6 @@ export async function getNamadaSupply(
     return [];
   }
 }
-
 
 /**
  * Loads the historic shielded pool data from a public json file in Github repo
