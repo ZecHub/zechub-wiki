@@ -359,7 +359,7 @@ function ZcashChart(props: ZcashChartProps) {
                                   <SelectItem
                                     key={year}
                                     value={year.toString()}
-                                    className="hover:cursor-pointer"
+                                    className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
                                   >
                                     {year === "all" ? "All" : year}
                                   </SelectItem>
