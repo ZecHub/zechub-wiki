@@ -9,7 +9,7 @@ import {
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getNamadaSupply } from "@/lib/chart/helpers";
 // import { NamadaAsset } from "@/lib/chart/types";
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import { ResponsiveContainer } from "recharts";
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 import SupplyDataLastUpdated from "../LastUpdated";
@@ -22,7 +22,10 @@ import {
   SelectValue,
 } from "../ui/shadcn/select";
 
-type NamadaChartProps = { lastUpdated: Date };
+type NamadaChartProps = {
+  lastUpdated: Date;
+  divChartRef: RefObject<HTMLDivElement | null>;
+};
 
 type NamadaAsset = {
   id: string;

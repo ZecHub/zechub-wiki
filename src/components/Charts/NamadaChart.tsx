@@ -9,7 +9,8 @@ import {
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getNamadaSupply } from "@/lib/chart/helpers";
 // import { NamadaAsset } from "@/lib/chart/types";
-import { useEffect, useState } from "react";
+import { Spinner } from "flowbite-react";
+import { RefObject, useEffect, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -30,10 +31,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/shadcn/select";
-import { Spinner } from "flowbite-react";
 
 type NamadaChartProps = {
   lastUpdated: Date;
+  divChartRef: RefObject<HTMLDivElement | null>;
 };
 
 type NamadaAsset = {

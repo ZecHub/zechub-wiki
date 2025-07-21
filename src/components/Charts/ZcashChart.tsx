@@ -27,7 +27,7 @@ import {
   SupplyData,
 } from "@/lib/chart/types";
 import { Spinner } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -53,6 +53,18 @@ import { ZcashMetrics } from "../ZcashMetrics/ZcashMetrics";
 
 type ZcashChartProps = {
   lastUpdated: Date;
+  divChartRef: RefObject<HTMLDivElement | null>;
+  handleSaveToPng: (
+    poolType: string,
+    poolData: Record<
+      string,
+      {
+        timestamp: string;
+        supply: number;
+      } | null
+    >,
+    toolType: string
+  ) => Promise<void>;
 };
 
 // Tabs component - simple implementation
@@ -343,7 +355,11 @@ function ZcashChart(props: ZcashChartProps) {
                     </TabsTrigger>
                   </TabsList>
 
-                  <TabsContent value="supply" activeTab={activeTab}>
+                  <TabsContent
+                    value="supply"
+                    activeTab={activeTab}
+                    ref={props.divChartRef}
+                  >
                     <div className="space-y-6">
                       <div className="flex mt-12">
                         <h3 className="text-lg font-semibold mb-4 flex-1">
@@ -538,9 +554,17 @@ function ZcashChart(props: ZcashChartProps) {
                     </div>
                   </TabsContent>
 
-                  {props.lastUpdated && (
-                    <SupplyDataLastUpdated lastUpdated={props.lastUpdated} />
-                  )}
+                  <div>
+                    {props.lastUpdated && (
+                      <SupplyDataLastUpdated lastUpdated={props.lastUpdated} />
+                    )}
+                    <ExportButton
+                      handleSaveToPng={props.handleSaveToPng}
+                      // selectedPool={selectedPool}
+                      // selectedTool={selectedTool}
+                      // supplies={supplies}
+                    />
+                  </div>
                 </>
               )}
             </Tabs>
