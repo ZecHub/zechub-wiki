@@ -32,6 +32,8 @@ export interface ShieldedPoolChartProps {
   color: string;
 }
 
+export type ShieldedSupplyLastUpdated = string;
+
 export type Issuance = {
   Date: string;
   "ZEC Issuance": string;
