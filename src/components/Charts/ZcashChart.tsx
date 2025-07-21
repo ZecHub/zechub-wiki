@@ -558,12 +558,12 @@ function ZcashChart(props: ZcashChartProps) {
                     {props.lastUpdated && (
                       <SupplyDataLastUpdated lastUpdated={props.lastUpdated} />
                     )}
-                    <ExportButton
+                    {/* <ExportButton
                       handleSaveToPng={props.handleSaveToPng}
-                      // selectedPool={selectedPool}
-                      // selectedTool={selectedTool}
-                      // supplies={supplies}
-                    />
+                      selectedPool={selectedPool}
+                      selectedTool={selectedTool}
+                      supplies={supplies}
+                    /> */}
                   </div>
                 </>
               )}
