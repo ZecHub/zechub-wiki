@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 const fadeDownAnimation = () => ({
   hidden: {
@@ -13,14 +13,20 @@ const fadeDownAnimation = () => ({
       type: "spring",
       duration: 1.25,
       delayChildren: 1,
-      staggerChildren: 1
+      staggerChildren: 1,
     },
-  }
-})
+  },
+});
 
-export const FadeInAnimation = ({ children, className }: { children: ReactNode; className?: string }) => (
+export const FadeInAnimation = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => (
   <motion.div
-    className={className ?? ''}
+    className={className ?? ""}
     variants={fadeDownAnimation()}
     initial="hidden"
     whileInView="show"
@@ -28,4 +34,4 @@ export const FadeInAnimation = ({ children, className }: { children: ReactNode; 
   >
     {children}
   </motion.div>
-)
+);
