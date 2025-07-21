@@ -1,14 +1,41 @@
 import { Button } from "@/components/ui/shadcn/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./index.css";
 
+import { DATA_URL } from "@/lib/chart/data-url";
+import { getLastUpdatedDate } from "@/lib/chart/helpers";
 import NamadaChart from "./NamadaChart";
 import PenumbraChart from "./PenumbraChart";
 import ZcashChart from "./ZcashChart";
 
 const Dashboard = () => {
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const fetchAllData = async () => {
+      try {
+        const [lastUpdated] = await Promise.all([
+          getLastUpdatedDate(DATA_URL.shieldedUrl, controller.signal),
+        ]);
+
+        if (lastUpdated) {
+          setLastUpdated(new Date(lastUpdated));
+        }
+      } catch (err) {
+        console.error("Error fetching dashboard data:", err);
+      }
+    };
+
+    fetchAllData();
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -52,13 +79,19 @@ const Dashboard = () => {
         </div>
 
         {/* Zcash Dashboard */}
-        {selectedCrypto === "zcash" && <ZcashChart />}
+        {selectedCrypto === "zcash" && (
+          <ZcashChart lastUpdated={lastUpdated!} />
+        )}
 
         {/* Namada Dashboard */}
-        {selectedCrypto === "namada" && <NamadaChart />}
+        {selectedCrypto === "namada" && (
+          <NamadaChart lastUpdated={lastUpdated!} />
+        )}
 
         {/* Penumbra Dashboard */}
-        {selectedCrypto === "penumbra" && <PenumbraChart />}
+        {selectedCrypto === "penumbra" && (
+          <PenumbraChart lastUpdated={lastUpdated!} />
+        )}
       </div>
     </div>
   );
