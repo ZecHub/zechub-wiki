@@ -97,8 +97,6 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
         setCoinData(coinInfo);
         console.log(name.toLowerCase(), "coinInfo", data);
 
-        console.log({ coinInfo });
-
         // Mock blockchain data (replace with actual API calls)
         setBlockchainInfo({
           market_cap_usd: coinInfo?.usd_market_cap || 0,
