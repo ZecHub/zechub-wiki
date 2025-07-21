@@ -61,3 +61,8 @@ export type LockBox = {
 };
 
 export type BlockchainNetwork = "Zcash" | "Namada" | "Penumbra";
+
+export type FlattenedTokenData = {
+  Date: string;
+  [tokenId: string]: number | string; // `Date` is string, others are numbers
+};
