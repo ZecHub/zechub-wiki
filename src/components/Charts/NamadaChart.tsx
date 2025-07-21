@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/shadcn/card";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getNamadaSupply } from "@/lib/chart/helpers";
-// import { NamadaAsset } from "@/lib/chart/types";
 import { Spinner } from "flowbite-react";
 import { RefObject, useEffect, useState } from "react";
 import {
@@ -31,6 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/shadcn/select";
+import { FlattenedTokenData } from "@/lib/chart/types";
 
 type NamadaChartProps = {
   lastUpdated: Date;
@@ -113,7 +113,7 @@ function NamadaChart(props: NamadaChartProps) {
     );
 
     return { Date: date, ...tokens };
-  });
+  }) as FlattenedTokenData[];
 
   const tokenIds = Object.keys(flattenedNamadaSupply[0] || {}).filter(
     (id) => id !== "Date"
