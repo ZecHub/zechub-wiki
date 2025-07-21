@@ -149,13 +149,20 @@ function NamadaChart(props: NamadaChartProps) {
                 }}
               >
                 <SelectTrigger className="w-48">
-                  <SelectValue placeholder="All Tokens" />
+                  <SelectValue
+                    placeholder="All Tokens"
+                    className="bg-slate-50 dark:bg-slate-800"
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Tokens</SelectItem>
                   {tokenIds.length > 0 &&
                     tokenIds.map((token) => (
-                      <SelectItem key={token} value={token}>
+                      <SelectItem
+                        key={token}
+                        value={token}
+                        className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
+                      >
                         {token}
                       </SelectItem>
                     ))}
