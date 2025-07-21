@@ -6,8 +6,8 @@ import { BiRightArrowAlt as Arrow } from "react-icons/bi";
 import { BiSolidWallet as Wallet } from "react-icons/bi";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import { BiMenu as BurgerMenuIcon } from "react-icons/bi";
-import Card from "@/components/UI/Card";
-import { Icon } from "@/components/UI/Icon";
+import Card from "@/components/ui/Card";
+import { Icon } from "@/components/ui/Icon";
 
 
 interface MenuProps {
