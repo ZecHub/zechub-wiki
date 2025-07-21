@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import "./index.css";
 
+import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getLastUpdatedDate } from "@/lib/chart/helpers";
 import NamadaChart from "./NamadaChart";
@@ -12,6 +13,8 @@ import ZcashChart from "./ZcashChart";
 const Dashboard = () => {
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+
+  const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -80,17 +83,21 @@ const Dashboard = () => {
 
         {/* Zcash Dashboard */}
         {selectedCrypto === "zcash" && (
-          <ZcashChart lastUpdated={lastUpdated!} />
+          <ZcashChart
+            lastUpdated={lastUpdated!}
+            divChartRef={divChartRef}
+            handleSaveToPng={handleSaveToPng}
+          />
         )}
 
         {/* Namada Dashboard */}
         {selectedCrypto === "namada" && (
-          <NamadaChart lastUpdated={lastUpdated!} />
+          <NamadaChart lastUpdated={lastUpdated!} divChartRef={divChartRef} />
         )}
 
         {/* Penumbra Dashboard */}
         {selectedCrypto === "penumbra" && (
-          <PenumbraChart lastUpdated={lastUpdated!} />
+          <PenumbraChart lastUpdated={lastUpdated!} divChartRef={divChartRef} />
         )}
       </div>
     </div>
