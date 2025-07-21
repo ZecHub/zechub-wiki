@@ -3,9 +3,9 @@ import ContentSections from "@/components/Home/ContentSections";
 import Hero from "@/components/Hero/Hero";
 import AnimationHome from "@/components/ui/AnimationHome";
 import Cards from "@/components/ui/Cards";
-import { FadeInAnimation } from "@/components/ui/FadeInAnimation";
 import { cardsConfig } from "@/constants/cardsConfig";
 import Link from "next/link";
+import { FadeInAnimation } from "../ui/FadeInAnimation";
 
 type HomeProps = {
   text: string;
