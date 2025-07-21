@@ -50,9 +50,7 @@ function NamadaChart(props: NamadaChartProps) {
   const [selectedNamadaAsset, setSelectedNamadaAsset] = useState<string>("");
   const [namadaSeries, setNamadaSeries] = useState<any>();
   const [namadaRaw, setNamadaRaw] = useState<NamadaRawData[]>([]);
-  const [holder, setHolder] = useState<any>({});
   const [selectedTokenId, setSelectedTokenId] = useState("");
-  const [tokenIndex, setTokenIndex] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
