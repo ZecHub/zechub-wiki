@@ -6,12 +6,6 @@ interface NetInflowsOutflowsChartProps {
   color: string;
 }
 
-type InflowOutflow = {
-  date: string;
-  netOrchardFlow: string;
-  netSaplingFlow: string;
-};
-
 /**
  * Loads the historic shielded transaction data from a public json file in Github repo
  * @returns Promise of shielded transaction data
