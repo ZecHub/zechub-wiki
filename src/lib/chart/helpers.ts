@@ -2,6 +2,7 @@ import {
   BlockchainInfo,
   Difficulty,
   Issuance,
+  IssuanceParsed,
   LockBox,
   NetInOutflow,
   NodeCountData,
@@ -28,14 +29,22 @@ export async function getBlockchainData(
 export async function getIssuanceData(
   url: string,
   signal?: AbortSignal
-): Promise<Issuance[] | null> {
+): Promise<IssuanceParsed[] | null> {
   try {
     const res = await fetch(url, {
       signal,
     });
     if (!res.ok) return null;
-    const data = await res.json();
-    return data;
+    const data: Issuance[] = await res.json();
+
+    const parsed = data.map((entry) => ({
+      Date: entry.Date,
+      zecIssuance: parseFloat(entry["ZEC  Supply"]),
+      zecSupply: parseFloat(entry["ZEC  Supply"]),
+      inflation: parseFloat(entry["Current Inflation (%)"]),
+    }));
+
+    return parsed;
   } catch {
     return null;
   }
