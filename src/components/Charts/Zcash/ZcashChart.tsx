@@ -34,6 +34,7 @@ import IssuanceChart from "./IssuanceChart";
 import LockboxChart from "./LockboxChart";
 import NetInflowsOutflowsChart from "./NetInflowsOutflowsChart";
 import ShieldedSupplyChart from "./ShieldedSupplyChart";
+import NodeCountChart from "@/components/NodeCountChart";
 
 type ZcashChartProps = {
   lastUpdated: Date;
@@ -117,6 +118,15 @@ function ZcashChart(props: ZcashChartProps) {
     ShieldedTxCount[] | null
   >([]);
 
+    const tabLabels = [
+      "Supply",
+      "Difficulty",
+      "Issuance",
+      "Lockbox",
+      "Flows",
+      "Node Count",
+    ];
+
   useEffect(() => {
     const controller = new AbortController();
 
@@ -136,7 +146,6 @@ function ZcashChart(props: ZcashChartProps) {
           lockboxData,
           netInOutflow,
           difficultyData,
-          // issuanceData,
         ] = await Promise.all([
           // fetchShieldedSupplyData(DATA_URL.shieldedTxCountUrl, controller.signal),
           getBlockchainData(DATA_URL.blockchairUrl, controller.signal),
@@ -153,7 +162,6 @@ function ZcashChart(props: ZcashChartProps) {
             controller.signal
           ),
           getDifficultyData(DATA_URL.difficultyUrl, controller.signal),
-          // getIssuanceData(DATA_URL.issuanceUrl, controller.signal),
         ]);
 
         if (netInOutflow) {
@@ -255,6 +263,8 @@ function ZcashChart(props: ZcashChartProps) {
     return totalSum;
   };
 
+
+
   const combinedPoolData = [
     ...filterDataByYear(shieldedSupplyData, selectedYear).map((item) => ({
       ...item,
@@ -282,7 +292,7 @@ function ZcashChart(props: ZcashChartProps) {
     })),
   ].sort((a, b) => new Date(a.close).getTime() - new Date(b.close).getTime());
 
-  const tabLabels = ["Supply", "Difficulty", "Issuance", "Lockbox", "Flows"];
+
   return (
     <ErrorBoundary fallback={`Failed to load Namada's chart`}>
       <div className="space-y-6">
@@ -346,18 +356,29 @@ function ZcashChart(props: ZcashChartProps) {
                   </TabsContent>
 
                   <TabsContent value="flows" activeTab={activeTab}>
-                    {/* <NetFlowChart netInOutflowData={netInOutflowData} /> */}
-
                     <div className="space-y-6">
                       <div className="flex mt-12">
                         <h3 className="text-lg font-semibold mb-4 flex-1">
                           Net Sapling & Orchard Flow
                         </h3>
                       </div>
-
                       <NetInflowsOutflowsChart
                         color="red"
                         dataUrl={DATA_URL.netInflowsOutflowsUrl}
+                      />
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="node count" activeTab={activeTab}>
+                    <div className="space-y-6">
+                      <div className="flex mt-12">
+                        <h3 className="text-lg font-semibold mb-4 flex-1">
+                          Node Count
+                        </h3>
+                      </div>
+                      <NodeCountChart
+                        color="red"
+                        dataUrl={DATA_URL.nodecountUrl}
                       />
                     </div>
                   </TabsContent>
