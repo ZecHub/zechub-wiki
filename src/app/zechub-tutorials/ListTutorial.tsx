@@ -7,7 +7,7 @@ import { BiSolidWallet as Wallet } from "react-icons/bi";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import { BiMenu as BurgerMenuIcon } from "react-icons/bi";
 import Card from "@/components/ui/Card";
-import { Icon } from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/Icon_temp";
 
 
 interface MenuProps {

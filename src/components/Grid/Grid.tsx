@@ -1,6 +1,6 @@
 // components/ProjectGrid.tsx
 import React from "react";
-import ProjectCards from "../ProjectCards/ProjectCards";
+import ProjectCards from "../PrivacySet/ProjectCards/ProjectCards";
 import styles from "./Grid.module.css";
 
 const projects = [
