@@ -16,6 +16,7 @@ import SearchBar from "../SearchBar";
 import Logo from "../ui/Logo";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/Sheet";
 import SocialIcons from "../ui/SocialIcons";
+import { Icon } from "../ui/Icon_temp";
 
 const NavLinks = ({
   classes,
