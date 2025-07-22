@@ -347,10 +347,19 @@ function ZcashChart(props: ZcashChartProps) {
 
                   <TabsContent value="flows" activeTab={activeTab}>
                     {/* <NetFlowChart netInOutflowData={netInOutflowData} /> */}
-                    <NetInflowsOutflowsChart
-                      color="red"
-                      dataUrl={DATA_URL.netInflowsOutflowsUrl}
-                    />
+
+                    <div className="space-y-6">
+                      <div className="flex mt-12">
+                        <h3 className="text-lg font-semibold mb-4 flex-1">
+                          Net Sapling & Orchard Flow
+                        </h3>
+                      </div>
+
+                      <NetInflowsOutflowsChart
+                        color="red"
+                        dataUrl={DATA_URL.netInflowsOutflowsUrl}
+                      />
+                    </div>
                   </TabsContent>
 
                   <div>
