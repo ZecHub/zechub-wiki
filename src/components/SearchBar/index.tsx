@@ -8,6 +8,7 @@ import { ChangeEvent, Fragment, useRef, useState } from "react";
 import { IoMdClose as closeIcon } from "react-icons/io";
 import { MdArrowForward as ArrowIcon } from "react-icons/md";
 import { SearchInput } from "./SearchInput";
+import { Icon } from "../ui/Icon_temp";
 
 const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
   const [searchInput, setSearchInput] = useState("");

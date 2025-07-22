@@ -1,5 +1,6 @@
 import { SearchInputProps } from "@/types";
 import { IoSearch as searchIcon } from "react-icons/io5";
+import { Icon } from "../ui/Icon_temp";
 
 export const SearchInput = ({
   searchInput,
