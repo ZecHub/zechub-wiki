@@ -6,9 +6,9 @@ import "./index.css";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getLastUpdatedDate } from "@/lib/chart/helpers";
-import NamadaChart from "./NamadaChart";
-import PenumbraChart from "./PenumbraChart";
-import ZcashChart from "./ZcashChart";
+import ZcashChart from "./Zcash/ZcashChart";
+import NamadaChart from "./Namada/NamadaChart";
+import PenumbraChart from "./Penumbra/PenumbraChart";
 
 const Dashboard = () => {
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");

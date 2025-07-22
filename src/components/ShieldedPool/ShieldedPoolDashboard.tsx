@@ -32,7 +32,7 @@ const ZecIssuanceSummaryChart = dynamic(
   { ssr: true }
 );
 const NetInflowsOutFlowsChart = dynamic(
-  () => import("../Charts/NetInflowsOutflowsChart"),
+  () => import("../Charts/Zcash/NetInflowsOutflowsChart"),
   { ssr: true }
 );
 
