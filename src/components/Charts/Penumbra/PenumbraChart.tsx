@@ -6,16 +6,16 @@ import {
 } from "@/components/ui/shadcn/card";
 import { RefObject, useState } from "react";
 import { ResponsiveContainer } from "recharts";
-import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
-import SupplyDataLastUpdated from "../LastUpdated";
-import CryptoMetrics from "../ShieldedPool/Metric";
+import { ErrorBoundary } from "../../ErrorBoundary/ErrorBoundary";
+import SupplyDataLastUpdated from "../../LastUpdated";
+import CryptoMetrics from "../../ShieldedPool/Metric";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/shadcn/select";
+} from "../../ui/shadcn/select";
 
 type PenumbraChartProps = {
   lastUpdated: Date;
