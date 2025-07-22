@@ -4,7 +4,7 @@ import { HTMLProps, JSX } from "react";
 import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import type { MDXComponents } from "mdx/types";
 
-const MdxComponents: MDXComponents = {
+const MdxComponents = {
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => {
     if (props.src?.startsWith("/"))
       props.src = "https://github.com/ZecHub/zechub/tree/main" + props.src;
