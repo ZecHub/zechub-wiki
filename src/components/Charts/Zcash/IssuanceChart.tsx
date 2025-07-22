@@ -1,9 +1,9 @@
 import {
+  Area,
   Bar,
   CartesianGrid,
   ComposedChart,
   Legend,
-  Line,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -17,6 +17,7 @@ type IssuanceChartProps = {
 };
 
 // Parse data and preload
+
 export default function IssuanceChart(props: IssuanceChartProps) {
   const data = useIssuanceData(props.url);
 
@@ -30,6 +31,21 @@ export default function IssuanceChart(props: IssuanceChartProps) {
 
       <ResponsiveContainer width="100%" height={400}>
         <ComposedChart data={data}>
+          <defs>
+            <linearGradient id="inflationGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="0%"
+                stopColor="#ff6b6b" // vivid red
+                stopOpacity={0.9}
+              />
+              <stop
+                offset="100%"
+                stopColor="#ff6b6b" // vivid red
+                stopOpacity={0.3}
+              />
+            </linearGradient>
+          </defs>
+
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" tick={{ fontSize: 12 }} />
           <YAxis
@@ -49,25 +65,24 @@ export default function IssuanceChart(props: IssuanceChartProps) {
               position: "insideRight",
             }}
           />
-          <Tooltip
-            formatter={(value: any) =>
-              typeof value === "number" ? value.toLocaleString() : value
-            }
-          />
+          <Tooltip formatter={(v: any) => v.toLocaleString()} />
           <Legend />
+
           <Bar
             yAxisId="left"
             dataKey="issuance"
             fill="hsl(var(--chart-1))"
             radius={[4, 4, 0, 0]}
           />
-          <Line
+
+          <Area
             yAxisId="right"
             type="monotone"
             dataKey="inflation"
             stroke="hsl(var(--chart-5))"
+            fill="url(#inflationGradient)"
+            fillOpacity={1} // ✅ max fill visibility
             strokeWidth={2}
-            dot={false}
           />
         </ComposedChart>
       </ResponsiveContainer>
