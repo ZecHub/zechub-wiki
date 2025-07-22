@@ -9,7 +9,7 @@ export const useIssuanceData = (url: string) => {
       .then((res) => res.json())
       .then((raw) => {
         const parsed = raw
-          .filter((_, i: number) => i % 7 === 0) // weekly sampling
+          .filter((_:any, i: number) => i % 7 === 0) // weekly sampling
           .map((d: Issuance) => ({
             date: d.Date.split(" ")[0],
             issuance: parseFloat(d["ZEC Issuance"]),
