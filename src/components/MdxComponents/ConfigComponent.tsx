@@ -133,6 +133,6 @@ const MdxComponents = {
   ),
   br: () => <br />,
   hr: () => <hr />,
-};
+} as MDXComponents ;
 
 export default MdxComponents;

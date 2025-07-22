@@ -5,7 +5,7 @@ import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { cva, type VariantProps } from "class-variance-authority";
 import Link from "next/link";
-import Logo from "../UI/Logo";
+import Logo from "../ui/Logo";
 
 import { cn } from "../../lib/util";
 

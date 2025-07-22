@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { FadeInAnimation } from "../UI/FadeInAnimation"
+import { FadeInAnimation } from "../ui/Fade"
 
 type ShopButtonProps = {
     shopUrl: string;
