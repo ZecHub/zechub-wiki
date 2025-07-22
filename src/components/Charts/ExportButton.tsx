@@ -1,6 +1,6 @@
 import Button from "@/components/Button/Button";
 import { ToolOptions } from "@/components/Tools/tools";
-import { formatDate, transformSupplyData } from "@/lib/chart/helpers";
+import { transformSupplyData } from "@/lib/chart/helpers";
 import { PoolKey, SupplyData } from "@/lib/chart/types";
 
 interface ExportButtonProps {

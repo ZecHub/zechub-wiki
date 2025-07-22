@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Logo from "../UI/Logo";
-import SocialIcons from "../UI/SocialIcons";
+import Logo from "../ui/Logo";
+import SocialIcons from "../ui/SocialIcons";
 import { ShopButton } from "../Shop-button/shop-button";
 
 const Footer = () => {
