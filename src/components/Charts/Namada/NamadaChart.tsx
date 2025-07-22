@@ -20,16 +20,16 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
-import SupplyDataLastUpdated from "../LastUpdated";
-import CryptoMetrics from "../ShieldedPool/Metric";
+import { ErrorBoundary } from "../../ErrorBoundary/ErrorBoundary";
+import SupplyDataLastUpdated from "../../LastUpdated";
+import CryptoMetrics from "../../ShieldedPool/Metric";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/shadcn/select";
+} from "../../ui/shadcn/select";
 import { FlattenedTokenData } from "@/lib/chart/types";
 
 type NamadaChartProps = {
