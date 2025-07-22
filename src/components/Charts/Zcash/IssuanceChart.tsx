@@ -21,11 +21,14 @@ export default function IssuanceChart(props: IssuanceChartProps) {
   const data = useIssuanceData(props.url);
 
   return (
-    <div className="w-full h-[500px]">
-      <h3 className="text-lg font-semibold mb-4">
-        ZEC Issuance vs. Inflation Rate
-      </h3>
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="space-y-6">
+      <div className="flex mt-12">
+        <h3 className="text-lg font-semibold mb-4 flex-1">
+          ZEC Issuance vs. Inflation Rate
+        </h3>
+      </div>
+
+      <ResponsiveContainer width="100%" height={400}>
         <ComposedChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" tick={{ fontSize: 12 }} />
