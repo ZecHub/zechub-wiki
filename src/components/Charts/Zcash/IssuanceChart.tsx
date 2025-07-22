@@ -1,43 +1,24 @@
 import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  BarChart,
   Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
   CartesianGrid,
   ComposedChart,
+  Legend,
+  Line,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
 
-import { useEffect, useState } from "react";
+import { useIssuanceData } from "@/hooks/useIssuanceData";
 
-// Parse data and preload
-const useIssuanceData = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch("/data/issuances.json")
-      .then((res) => res.json())
-      .then((raw) => {
-        const parsed = raw
-          .filter((_, i) => i % 7 === 0) // weekly sampling
-          .map((d) => ({
-            date: d.Date.split(" ")[0],
-            issuance: parseFloat(d["ZEC Issuance"]),
-            inflation: parseFloat(d["Current Inflation (%)"]),
-          }));
-        setData(parsed);
-      });
-  }, []);
-
-  return data;
+type IssuanceChartProps = {
+  url: string;
 };
 
-export default function IssuanceChart() {
-  const data = useIssuanceData();
+// Parse data and preload
+export default function IssuanceChart(props: IssuanceChartProps) {
+  const data = useIssuanceData(props.url);
 
   return (
     <div className="w-full h-[500px]">
