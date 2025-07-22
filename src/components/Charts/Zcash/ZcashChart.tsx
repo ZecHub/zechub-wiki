@@ -20,7 +20,7 @@ import {
 import {
   BlockchainInfo,
   Difficulty,
-  Issuance,
+  IssuanceParsed,
   LockBox,
   NetInOutflow,
   ShieldedTxCount,
@@ -40,16 +40,17 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
-import SupplyDataLastUpdated from "../LastUpdated";
+import { ErrorBoundary } from "../../ErrorBoundary/ErrorBoundary";
+import SupplyDataLastUpdated from "../../LastUpdated";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/shadcn/select";
-import { ZcashMetrics } from "../ZcashMetrics/ZcashMetrics";
+} from "../../ui/shadcn/select";
+import { ZcashMetrics } from "../../ZcashMetrics/ZcashMetrics";
+import IssuanceChart from "./IssuanceChart";
 
 type ZcashChartProps = {
   lastUpdated: Date;
@@ -125,7 +126,7 @@ function ZcashChart(props: ZcashChartProps) {
   const [orchardSupplyData, setOrchardSupplyData] = useState<SupplyData[]>([]);
   const [saplingSupplyData, setSaplingSupplyData] = useState<SupplyData[]>([]);
   const [sproutSupplyData, setSproutSupplyData] = useState<SupplyData[]>([]);
-  const [issuanceData, setIssuanceData] = useState<Issuance[]>([]);
+  const [issuanceData, setIssuanceData] = useState<IssuanceParsed[]>([]);
   const [lockboxData, setLockboxData] = useState<LockBox[]>([]);
   const [difficulty, setDifficulty] = useState<Difficulty[]>([]);
   const [netInOutflowData, setNetInOutflowData] = useState<NetInOutflow[]>([]);
@@ -470,29 +471,7 @@ function ZcashChart(props: ZcashChartProps) {
                   </TabsContent>
 
                   <TabsContent value="issuance" activeTab={activeTab}>
-                    <div className="space-y-6">
-                      <div className="flex mt-12">
-                        <h3 className="text-lg font-semibold mb-4 flex-1">
-                          ZEC Issuance & Inflation
-                        </h3>
-                      </div>
-
-                      <ResponsiveContainer width="100%" height={400}>
-                        <LineChart data={issuanceData}>
-                          <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis dataKey="Date" />
-                          <YAxis />
-                          <Tooltip />
-                          <Legend />
-                          <Line
-                            type="monotone"
-                            dataKey="Current Inflation (%)"
-                            stroke="hsl(var(--chart-5))"
-                            strokeWidth={2}
-                          />
-                        </LineChart>
-                      </ResponsiveContainer>
-                    </div>
+                    {activeTab === "issuance" && <IssuanceChart />}
                   </TabsContent>
 
                   <TabsContent value="lockbox" activeTab={activeTab}>
