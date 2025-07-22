@@ -44,6 +44,13 @@ export type Issuance = {
   "Unnamed: 6": string;
 };
 
+export type IssuanceParsed = {
+  Date: string;
+  zecIssuance: number;
+  zecSupply: number;
+  inflation: number;
+};
+
 export type Difficulty = {
   Date: string;
   Difficulty: string;
