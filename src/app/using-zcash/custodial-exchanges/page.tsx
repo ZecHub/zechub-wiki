@@ -1,9 +1,10 @@
-import React from "react";
-import Link from "next/link";
+import ExchangeCard from "@/components/ExchangeCard/ExchangeCard";
+import exchanges from "@/constants/exchange";
 import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
-import exchanges from "@/constants/exchange";
-import ExchangeCard from "@/components/ExchangeCard/ExchangeCard";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 export const metadata: Metadata = genMetadata({
   title: "Custodial Exchanges",
@@ -19,13 +20,23 @@ const CustodialExchanges: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src="https://img.shields.io/badge/Edit-blue" alt="Edit Page" />
+          <Image
+            src={"https://img.shields.io/badge/Edit-blue"}
+            alt="Edit Page"
+          />
+          {/* <img src="https://img.shields.io/badge/Edit-blue" alt="Edit Page" /> */}
         </a>
       </div>
       <div className="flex justify-between items-center my-6 flex-col imd:flex-row">
         <h1 className="flex justify-center items-center text-2xl imd:text-3xl font-bold mb-4 imd:mb-0 text-center">
-          <img
+          {/* <img
             src="https://i.ibb.co/bmS65xV/image-2024-02-03-173258092.png"
+            alt="Alt Text"
+            width="50"
+            className="inline-block mr-2"
+            /> */}
+          <Image
+            src={"https://i.ibb.co/bmS65xV/image-2024-02-03-173258092.png"}
             alt="Alt Text"
             width="50"
             className="inline-block mr-2"
