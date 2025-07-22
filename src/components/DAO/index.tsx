@@ -4,7 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import MemberCards from "@/components/ui/MemberCards";
 import { daoMembers } from "@/constants/membersDao";
-import { FadeInAnimation } from "../ui/FadeInAnimation";
+import { FadeInAnimation } from "../ui/Fade";
+
 
 const Dao: React.FC = () => {
   return (

@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { useState, ChangeEvent, useRef, Fragment } from "react";
-import { SearchInput } from "./SearchInput";
 import { searcher } from "@/constants/searcher";
+import { SearchBarProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { motion } from "framer-motion";
+import { debounce } from "lodash";
+import Link from "next/link";
+import { ChangeEvent, Fragment, useRef, useState } from "react";
 import { IoMdClose as closeIcon } from "react-icons/io";
 import { MdArrowForward as ArrowIcon } from "react-icons/md";
-import { Icon } from "../UI/Icon";
-import { SearchBarProps } from "@/types";
-import { debounce } from "lodash";
+import { Icon } from "../ui/Icon";
+import { SearchInput } from "./SearchInput";
 
 const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
   const [searchInput, setSearchInput] = useState("");
@@ -41,7 +41,8 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
 
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4 text-center">
-            <Dialog.Panel as={motion.div}
+            <Dialog.Panel
+              as={motion.div}
               className="w-2/3 max-w-md h-auto p-4 bg-white rounded-lg shadow-lg dark:bg-slate-900 dark:text-white z-30"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
