@@ -1,15 +1,17 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { BiRightArrowAlt as Arrow } from "react-icons/bi";
-import { BiSolidWallet as Wallet } from "react-icons/bi";
-import { Icon } from "../UI/Icon";
-import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
-import { BiMenu as BurgerMenuIcon } from "react-icons/bi";
 import { matchIcons } from "@/constants/Icons";
-import { FiFile as FileIcon } from "react-icons/fi";
+import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import {
+  BiRightArrowAlt as Arrow,
+  BiMenu as BurgerMenuIcon,
+  BiSolidWallet as Wallet,
+} from "react-icons/bi";
 import { FaListAlt } from "react-icons/fa";
+import { FiFile as FileIcon } from "react-icons/fi";
+import { Icon } from "../ui/Icon";
 
 interface MenuProps {
   folder: string;
@@ -102,7 +104,9 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                       <Icon icon={FaListAlt} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium ">Custodial Exchanges</p>
+                      <p className="text-sm font-medium ">
+                        Custodial Exchanges
+                      </p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold ">
                       <Icon icon={Arrow} />

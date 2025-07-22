@@ -5,7 +5,9 @@ import AnimationHome from "@/components/ui/AnimationHome";
 import Cards from "@/components/ui/Cards";
 import { cardsConfig } from "@/constants/cardsConfig";
 import Link from "next/link";
-import { FadeInAnimation } from "../ui/FadeInAnimation";
+import { FadeInAnimation } from "../ui/Fade";
+
+
 
 type HomeProps = {
   text: string;
