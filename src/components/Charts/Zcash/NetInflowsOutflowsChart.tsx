@@ -1,49 +1,51 @@
+import { DATA_URL } from "@/lib/chart/data-url";
+import { getNetInOutflowData } from "@/lib/chart/helpers";
+import { NetInOutflow } from "@/lib/chart/types";
 import { Chart } from "chart.js/auto";
+import { Spinner } from "flowbite-react";
 import { useEffect, useRef, useState } from "react";
 
 interface NetInflowsOutflowsChartProps {
-  dataUrl: string;
-  color: string;
-}
-
-/**
- * Loads the historic shielded transaction data from a public json file in Github repo
- * @returns Promise of shielded transaction data
- */
-async function fetchData(url: string) {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-  const resJson = await response.json();
-  return resJson;
+  color?: string;
 }
 
 export default function NetInflowsOutflowsChart(
   props: NetInflowsOutflowsChartProps
 ) {
+  const [loading, setLoading] = useState(false);
+  const [dataFlow, setDataFlow] = useState<NetInOutflow[]>([]);
+  const [error, setError] = useState(false);
   const chartRef = useRef<HTMLCanvasElement | null>(null);
 
-  const [dataFlow, setDataFlow] = useState([]);
-  const [error, setError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
-    setIsLoading(true);
+    const controller = new AbortController();
 
-    fetchData(props.dataUrl)
-      .then((data) => {
-        setIsLoading(false);
+    const fetchAllData = async () => {
+      setLoading(true);
 
-        console.log({ data });
-        setDataFlow(data);
-      })
-      .catch((err) => {
-        console.error(err);
+      try {
+        const [netInOutflow] = await Promise.all([
+          getNetInOutflowData(
+            DATA_URL.netInflowsOutflowsUrl,
+            controller.signal
+          ),
+        ]);
 
-        setIsLoading(false);
+        setDataFlow(netInOutflow);
+      } catch (err) {
+        console.error("Error fetching dashboard data:", err);
         setError(true);
-      });
-  }, [props.dataUrl]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllData();
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   const parseData = dataFlow.map((itm) => ({
     date: itm["Date"],
@@ -52,7 +54,7 @@ export default function NetInflowsOutflowsChart(
   }));
 
   useEffect(() => {
-    if (isLoading || !chartRef.current) return;
+    if (loading || !chartRef.current) return;
 
     const chartObj = new Chart(chartRef.current, {
       type: "bar",
@@ -107,24 +109,37 @@ export default function NetInflowsOutflowsChart(
       // clear when unmounted
       chartObj.destroy();
     };
-  }, [isLoading, parseData]);
+  }, [loading, parseData]);
 
   return (
-    <div className="flex items-center justify-center">
-      {isLoading && <p className="p-1"> Loading data... </p>}
-      {error && (
-        <p className="p-1 text-red-400">
-          Chart can not be rendered at the moment
-        </p>
-      )}
-      <canvas
-        width={"100%"}
-        height={"400px"}
-        role="img"
-        id="netInflowsOutflowsChart"
-        aria-label="Net inflows and outflows chart"
-        ref={chartRef}
-      ></canvas>
+    <div className="space-y-6">
+      <div className="flex mt-12">
+        <h3 className="text-lg font-semibold mb-4 flex-1">
+          Net Sapling & Orchard Flow
+        </h3>
+      </div>
+      <div className="flex items-center justify-center">
+        {loading ? (
+          <div className="flex justify-center items-center">
+            <Spinner />
+          </div>
+        ) : (
+          <canvas
+            width={"100%"}
+            height={"400px"}
+            role="img"
+            id="netInflowsOutflowsChart"
+            aria-label="Net inflows and outflows chart"
+            ref={chartRef}
+          ></canvas>
+        )}
+        
+        {error && (
+          <p className="flex justify-center items-center p-1 text-red-400">
+            Chart can not be rendered at the moment
+          </p>
+        )}
+      </div>
     </div>
   );
 }
