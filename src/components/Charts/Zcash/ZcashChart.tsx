@@ -5,7 +5,7 @@ import {
   CardTitle,
 } from "@/components/ui/shadcn/card";
 // import { NamadaAsset } from "@/lib/chart/types";
-import NodeCountChart from "@/components/NodeCountChart";
+import NodeCountChartB from "@/components/NodeCountChart";
 import { RefObject, useState } from "react";
 import { ErrorBoundary } from "../../ErrorBoundary/ErrorBoundary";
 import SupplyDataLastUpdated from "../../LastUpdated";
@@ -92,9 +92,9 @@ function ZcashChart(props: ZcashChartProps) {
         <ZcashMetrics />
 
         {/* Charts Tabs */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Analytics Charts</CardTitle>
+        <Card className="shadow-sm border border-gray-200 dark:border-slate-700">
+          <CardHeader className="mb-4">
+            <CardTitle className="text-xl">Analytics Charts</CardTitle>
           </CardHeader>
           <CardContent>
             <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -138,7 +138,8 @@ function ZcashChart(props: ZcashChartProps) {
                   </TabsContent>
 
                   <TabsContent value="node count" activeTab={activeTab}>
-                    <NodeCountChart color="red" />
+                    {/* <NodeCountChart color="red" /> */}
+                    <NodeCountChartB color="red" />
                   </TabsContent>
 
                   <div>
