@@ -4,28 +4,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/shadcn/card";
-import { DATA_URL } from "@/lib/chart/data-url";
-import {
-  getBlockchainData,
-  getBlockchainInfo,
-  getDifficultyData,
-  getLockboxData,
-  getNetInOutflowData,
-  getNodeCountData,
-  getShieldedTxCount,
-  getSupplyData,
-} from "@/lib/chart/helpers";
 // import { NamadaAsset } from "@/lib/chart/types";
-import {
-  BlockchainInfo,
-  Difficulty,
-  IssuanceParsed,
-  LockBox,
-  NetInOutflow,
-  ShieldedTxCount,
-  SupplyData,
-} from "@/lib/chart/types";
-import { RefObject, useEffect, useState } from "react";
+import NodeCountChart from "@/components/NodeCountChart";
+import { RefObject, useState } from "react";
 import { ErrorBoundary } from "../../ErrorBoundary/ErrorBoundary";
 import SupplyDataLastUpdated from "../../LastUpdated";
 import { ZcashMetrics } from "../../ZcashMetrics/ZcashMetrics";
@@ -34,7 +15,6 @@ import IssuanceChart from "./IssuanceChart";
 import LockboxChart from "./LockboxChart";
 import NetInflowsOutflowsChart from "./NetInflowsOutflowsChart";
 import ShieldedSupplyChart from "./ShieldedSupplyChart";
-import NodeCountChart from "@/components/NodeCountChart";
 
 type ZcashChartProps = {
   lastUpdated: Date;
@@ -92,216 +72,24 @@ const TabsContent = ({ value, children, activeTab }: any) => (
 );
 
 function ZcashChart(props: ZcashChartProps) {
-  const [loading, setLoading] = useState(true);
-  const [selectedYear, setSelectedYear] = useState("all");
   const [activeTab, setActiveTab] = useState("supply");
-
   const [cumulativeCheck, setCumulativeCheck] = useState(true);
   const [filterSpamCheck, setFilterSpamCheck] = useState(false);
-  const [circulation, setCirculation] = useState<number | null>(null);
 
-  const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>();
-  const [blockchainData, setBlockchainData] = useState<number | null>(null);
-
-  const [shieldedSupplyData, setShieldedSupplyData] = useState<SupplyData[]>(
-    []
-  );
-  const [orchardSupplyData, setOrchardSupplyData] = useState<SupplyData[]>([]);
-  const [saplingSupplyData, setSaplingSupplyData] = useState<SupplyData[]>([]);
-  const [sproutSupplyData, setSproutSupplyData] = useState<SupplyData[]>([]);
-  const [issuanceData, setIssuanceData] = useState<IssuanceParsed[]>([]);
-  const [lockboxData, setLockboxData] = useState<LockBox[]>([]);
-  const [difficulty, setDifficulty] = useState<Difficulty[]>([]);
-  const [netInOutflowData, setNetInOutflowData] = useState<NetInOutflow[]>([]);
-  const [shieldedTxCount, setShieldedTxCount] = useState<
-    ShieldedTxCount[] | null
-  >([]);
-
-    const tabLabels = [
-      "Supply",
-      "Difficulty",
-      "Issuance",
-      "Lockbox",
-      "Flows",
-      "Node Count",
-    ];
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    const fetchAllData = async () => {
-      setLoading(true);
-
-      try {
-        const [
-          blockchainData,
-          blockchainInfoData,
-          defaultSupply,
-          sproutSupply,
-          saplingSupply,
-          orchardSupply,
-          shieldedTxCount,
-          nodeCountData,
-          lockboxData,
-          netInOutflow,
-          difficultyData,
-        ] = await Promise.all([
-          // fetchShieldedSupplyData(DATA_URL.shieldedTxCountUrl, controller.signal),
-          getBlockchainData(DATA_URL.blockchairUrl, controller.signal),
-          getBlockchainInfo(DATA_URL.blockchainInfoUrl, controller.signal),
-          getSupplyData(DATA_URL.defaultUrl, controller.signal),
-          getSupplyData(DATA_URL.sproutUrl, controller.signal),
-          getSupplyData(DATA_URL.saplingUrl, controller.signal),
-          getSupplyData(DATA_URL.orchardUrl, controller.signal),
-          getShieldedTxCount(DATA_URL.shieldedTxCountUrl, controller.signal),
-          getNodeCountData(DATA_URL.nodecountUrl, controller.signal),
-          getLockboxData(DATA_URL.lockboxUrl, controller.signal),
-          getNetInOutflowData(
-            DATA_URL.netInflowsOutflowsUrl,
-            controller.signal
-          ),
-          getDifficultyData(DATA_URL.difficultyUrl, controller.signal),
-        ]);
-
-        if (netInOutflow) {
-          setNetInOutflowData(netInOutflow);
-        }
-        if (lockboxData) {
-          setLockboxData(lockboxData);
-        }
-        if (difficultyData) {
-          setDifficulty(difficultyData);
-        }
-        if (issuanceData) {
-          setIssuanceData(issuanceData);
-        }
-
-        if (blockchainInfo) {
-          setBlockchainInfo(blockchainInfo);
-        }
-        if (sproutSupply) {
-          setSproutSupplyData(sproutSupply);
-        }
-        if (shieldedTxCount) {
-          setShieldedTxCount(shieldedTxCount);
-        }
-        if (saplingSupply) {
-          setSaplingSupplyData(saplingSupplyData);
-        }
-        if (orchardSupply) {
-          setOrchardSupplyData(orchardSupplyData);
-        }
-        if (blockchainInfoData) {
-          setCirculation(blockchainInfoData);
-        }
-
-        if (nodeCountData?.length) {
-          const latest = Number(
-            nodeCountData[nodeCountData.length - 1].nodecount
-          );
-          setLatestNodeCount(latest);
-        }
-        setLoading(false);
-      } catch (err) {
-        setLoading(false);
-        console.error("Error fetching dashboard data:", err);
-      }
-    };
-
-    fetchAllData();
-
-    return () => {
-      controller.abort();
-    };
-  }, []);
-
-  const getAvailableYears = () => {
-    const allData = [
-      ...shieldedSupplyData,
-      ...orchardSupplyData,
-      ...saplingSupplyData,
-      ...sproutSupplyData,
-    ];
-
-    const years = [
-      ...new Set(
-        allData.map((item) => {
-          const year = extractYear(item.close);
-          return year;
-        })
-      ),
-    ].sort();
-
-    return ["all", ...years];
-  };
-
-  const extractYear = (date: string) => {
-    const [, , year] = date.split("/");
-    return year;
-  };
-
-  const filterDataByYear = (data: any[], year: string) => {
-    if (year === "all") return data;
-
-    return data.filter(
-      (item) => parseInt(extractYear(item.close)) === parseInt(year)
-    );
-  };
-
-  const calculateTotalSupply = (year: string) => {
-    const allData = [
-      ...shieldedSupplyData,
-      ...orchardSupplyData,
-      ...saplingSupplyData,
-      ...sproutSupplyData,
-    ];
-
-    const filteredData = filterDataByYear(allData, year);
-
-    const totalSum = filteredData.reduce((sum, item) => sum + item.supply, 0);
-    return totalSum;
-  };
-
-
-
-  const combinedPoolData = [
-    ...filterDataByYear(shieldedSupplyData, selectedYear).map((item) => ({
-      ...item,
-      sprout: 0,
-      sapling: 0,
-      orchard: 0,
-    })),
-    ...filterDataByYear(sproutSupplyData, selectedYear).map((item) => ({
-      ...item,
-      sprout: item.supply,
-      sapling: 0,
-      orchard: 0,
-    })),
-    ...filterDataByYear(saplingSupplyData, selectedYear).map((item) => ({
-      ...item,
-      sprout: 0,
-      sapling: item.supply,
-      orchard: 0,
-    })),
-    ...filterDataByYear(orchardSupplyData, selectedYear).map((item) => ({
-      ...item,
-      sprout: 0,
-      sapling: 0,
-      orchard: item.supply,
-    })),
-  ].sort((a, b) => new Date(a.close).getTime() - new Date(b.close).getTime());
-
+  const tabLabels = [
+    "Supply",
+    "Difficulty",
+    "Issuance",
+    "Lockbox",
+    "Flows",
+    "Node Count",
+  ];
 
   return (
     <ErrorBoundary fallback={`Failed to load Namada's chart`}>
       <div className="space-y-6">
         {/* Market Metrics */}
-        <ZcashMetrics
-          blockchainInfo={blockchainInfo!}
-          circulation={circulation!}
-          shieldedTxCount={shieldedTxCount || []}
-        />
+        <ZcashMetrics />
 
         {/* Charts Tabs */}
         <Card>
@@ -330,57 +118,27 @@ function ZcashChart(props: ZcashChartProps) {
                     activeTab={activeTab}
                     ref={props.divChartRef}
                   >
-                    <ShieldedSupplyChart
-                      calculateTotalSupply={calculateTotalSupply}
-                      combinedPoolData={combinedPoolData}
-                      difficulty={difficulty}
-                      getAvailableYears={getAvailableYears}
-                      loading={loading}
-                      selectedYear={selectedYear}
-                      setSelectedYear={setSelectedYear}
-                    />
+                    <ShieldedSupplyChart />
                   </TabsContent>
 
                   <TabsContent value="difficulty" activeTab={activeTab}>
-                    <DifficultyChart difficulty={difficulty} />
+                    <DifficultyChart />
                   </TabsContent>
 
                   <TabsContent value="issuance" activeTab={activeTab}>
-                    {activeTab === "issuance" && (
-                      <IssuanceChart url={DATA_URL.issuanceUrl} />
-                    )}
+                    {activeTab === "issuance" && <IssuanceChart />}
                   </TabsContent>
 
                   <TabsContent value="lockbox" activeTab={activeTab}>
-                    <LockboxChart lockboxData={lockboxData} />
+                    <LockboxChart />
                   </TabsContent>
 
                   <TabsContent value="flows" activeTab={activeTab}>
-                    <div className="space-y-6">
-                      <div className="flex mt-12">
-                        <h3 className="text-lg font-semibold mb-4 flex-1">
-                          Net Sapling & Orchard Flow
-                        </h3>
-                      </div>
-                      <NetInflowsOutflowsChart
-                        color="red"
-                        dataUrl={DATA_URL.netInflowsOutflowsUrl}
-                      />
-                    </div>
+                    <NetInflowsOutflowsChart color="red" />
                   </TabsContent>
 
                   <TabsContent value="node count" activeTab={activeTab}>
-                    <div className="space-y-6">
-                      <div className="flex mt-12">
-                        <h3 className="text-lg font-semibold mb-4 flex-1">
-                          Node Count
-                        </h3>
-                      </div>
-                      <NodeCountChart
-                        color="red"
-                        dataUrl={DATA_URL.nodecountUrl}
-                      />
-                    </div>
+                    <NodeCountChart color="red" />
                   </TabsContent>
 
                   <div>
