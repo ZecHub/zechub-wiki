@@ -64,6 +64,14 @@ export default function LockboxChart(props: LockboxChartProps) {
           </div>
         ) : (
           <AreaChart data={lockboxData}>
+            {/* Gradients */}
+            <defs>
+              <linearGradient id="lockboxGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.5} />
+                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.25} />
+              </linearGradient>
+            </defs>
+
             <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
             <XAxis dataKey="Date" tick={{ fontSize, fill: "#94a3b8" }} />
             <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
@@ -73,8 +81,9 @@ export default function LockboxChart(props: LockboxChartProps) {
               type="monotone"
               dataKey="lockbox"
               stroke="hsl(var(--chart-1))"
-              fill="hsl(var(--chart-1))"
-              fillOpacity={0.6}
+              fill="url(#lockboxGradient)"
+              fillOpacity={1}
+              strokeWidth={2}
             />
           </AreaChart>
         )}
