@@ -1,3 +1,4 @@
+import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getLockboxData } from "@/lib/chart/helpers";
 import { LockBox } from "@/lib/chart/types";
@@ -20,6 +21,7 @@ type LockboxChartProps = {
 export default function LockboxChart(props: LockboxChartProps) {
   const [loading, setLoading] = useState(false);
   const [lockboxData, setLockboxData] = useState<LockBox[]>([]);
+  const fontSize = useResponsiveFontSize(); // optional: pass min/max
 
   useEffect(() => {
     const controller = new AbortController();
@@ -49,7 +51,6 @@ export default function LockboxChart(props: LockboxChartProps) {
     };
   }, []);
 
-  
   return (
     <div className="space-y-6">
       <div className="flex mt-12">
@@ -63,9 +64,9 @@ export default function LockboxChart(props: LockboxChartProps) {
           </div>
         ) : (
           <AreaChart data={lockboxData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="Date" />
-            <YAxis />
+            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+            <XAxis dataKey="Date" tick={{ fontSize, fill: "#94a3b8" }} />
+            <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
             <Tooltip />
             <Legend />
             <Area
