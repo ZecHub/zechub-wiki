@@ -1,6 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
-import { FadeInAnimation } from "./Fade";
+import Link from "next/link";
+import { FadeInAnimation } from "./FadeInAnimation";
 
 interface props {
   title: string;
