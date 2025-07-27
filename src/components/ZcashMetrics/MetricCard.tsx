@@ -11,3 +11,10 @@ export const MetricCard = ({
   </div>
 );
   
+
+export const MetricCardSkeleton = () => (
+  <div className="bg-white dark:bg-transparent shadow-sm border border-gray-200 dark:border-slate-700 rounded-md p-4 animate-pulse">
+    <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded w-24 mb-2" />
+    <div className="h-6 bg-gray-300 dark:bg-slate-600 rounded w-32" />
+  </div>
+);
