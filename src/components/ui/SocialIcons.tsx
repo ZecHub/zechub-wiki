@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { socialNav } from "@/constants/navigation";
 import type { Socials } from "@/types";
-import { Icon } from "./Icon_temp";
+import { Icon } from "./Icon";
 
 const SocialIcons = (newTab: Socials) => {
   return (
@@ -15,7 +15,7 @@ const SocialIcons = (newTab: Socials) => {
             className=" hover:text-brand-ui-primary hover:scale-125"
             target={newTab ? "_blank" : "_self"}
           >
-            <Icon  icon={icon} className="md:w-6 w-4 h-4 md:h-6" />
+            <Icon icon={icon} className="md:w-6 w-4 h-4 md:h-6" />
           </Link>
         );
       })}

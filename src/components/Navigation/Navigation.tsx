@@ -13,10 +13,10 @@ import { RiMenuLine as MenuIcon } from "react-icons/ri";
 import Dropdown from "../Dropdown/Dropdown";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
+import { Icon } from "../ui/Icon";
 import Logo from "../ui/Logo";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/Sheet";
 import SocialIcons from "../ui/SocialIcons";
-import { Icon } from "../ui/Icon_temp";
 
 const NavLinks = ({
   classes,

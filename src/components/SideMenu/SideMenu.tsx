@@ -11,8 +11,7 @@ import {
 } from "react-icons/bi";
 import { FaListAlt } from "react-icons/fa";
 import { FiFile as FileIcon } from "react-icons/fi";
-import { Icon } from "../ui/Icon_temp";
-
+import { Icon } from "../ui/Icon";
 
 interface MenuProps {
   folder: string;

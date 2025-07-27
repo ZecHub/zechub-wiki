@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -10,7 +9,7 @@ import {
   MdPool,
   MdOpenInNew as OpenNew,
 } from "react-icons/md";
-import { Icon } from "../ui/Icon_temp";
+import { Icon } from "../ui/Icon";
 
 interface WalletItemProps {
   title: string;
