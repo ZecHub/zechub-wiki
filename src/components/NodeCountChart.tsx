@@ -15,6 +15,7 @@ import {
 import { WithTooltipProvidedProps } from "@visx/tooltip/lib/enhancers/withTooltip";
 import { bisector, extent, max } from "@visx/vendor/d3-array";
 import { timeFormat } from "@visx/vendor/d3-time-format";
+import { Spinner } from "flowbite-react";
 import React, {
   useCallback,
   useEffect,
@@ -286,163 +287,168 @@ const NodeCountChart = withTooltip<
     // Render the chart by default
     return (
       <div className="space-y-6">
-        <div className="flex mt-12">
-          <h3 className="text-lg font-semibold mb-4 flex-1">Node Count</h3>
-        </div>
-        {/* // Make sure container fills width of parent */}
-        <div
-          ref={ref}
-          style={{ width: "100%", minWidth: "100%", minHeight: "500px" }}
-        >
-          <svg width={width} height={height}>
-            <rect
-              aria-label="background"
-              role="background"
-              x={0}
-              y={0}
-              width={width}
-              height={height}
-              fill={color}
-              rx={14}
-            />
-            <LinearGradient
-              id="area-background-gradient"
-              from={background}
-              to={background2}
-            />
-            <LinearGradient
-              id="area-gradient"
-              from={accentColor}
-              to={accentColor}
-              toOpacity={0.1}
-            />
-            <GridRows
-              left={margin.left}
-              scale={shieldedValueScale}
-              width={innerWidth}
-              strokeDasharray="1,3"
-              stroke={accentColor}
-              strokeOpacity={0.25}
-              pointerEvents="none"
-              aria-label="Rows of chart"
-            />
-            <GridColumns
-              top={margin.top}
-              scale={dateScale}
-              height={innerHeight}
-              strokeDasharray="1,3"
-              stroke={accentColor}
-              strokeOpacity={0.25}
-              pointerEvents="none"
-              aria-label="Columns of chart"
-            />
-            <AreaClosed<NodeCountAmountDatum>
-              data={chartData}
-              x={(d) => dateScale(getDate(d)) ?? 0}
-              y={(d) => shieldedValueScale(getShieldedValue(d)) ?? 0}
-              yScale={shieldedValueScale}
-              strokeWidth={1}
-              stroke="url(#area-gradient)"
-              fill="url(#area-gradient)"
-              curve={curveMonotoneX}
-              aria-label="Area under line of the chart"
-            />
-            <Bar
-              x={margin.left}
-              y={margin.top}
-              width={innerWidth}
-              height={innerHeight}
-              fill="transparent"
-              rx={14}
-              onTouchStart={handleTooltip}
-              onTouchMove={handleTooltip}
-              onMouseMove={handleTooltip}
-              onMouseLeave={() => hideTooltip()}
-              aria-label="Shielded pooling over time"
-            />
-            {tooltipData && (
-              <g>
-                <Line
-                  from={{ x: tooltipLeft, y: margin.top }}
-                  to={{ x: tooltipLeft, y: innerHeight + margin.top }}
-                  stroke={accentColorDark}
-                  strokeWidth={2}
-                  pointerEvents="none"
-                  strokeDasharray="5,2"
-                  aria-label="Line for tooltip of mouse on x axis"
-                />
-                <circle
-                  cx={tooltipLeft}
-                  cy={tooltipTop + 1}
-                  r={4}
-                  fill="black"
-                  fillOpacity={0.25}
-                  stroke="black"
-                  strokeOpacity={0.25}
-                  strokeWidth={2}
-                  pointerEvents="none"
-                  aria-label="Point showing shielding on the y-axis for this point on the x-axis"
-                />
-                <circle
-                  cx={tooltipLeft}
-                  cy={tooltipTop}
-                  r={4}
-                  fill={accentColorDark}
-                  stroke="white"
-                  strokeWidth={2}
-                  pointerEvents="none"
-                  aria-label="Accent color for point showing shielding on the y-axis for this point on the x-axis"
-                />
-              </g>
-            )}
-            <text
-              x={width - 60}
-              y={height - 10}
-              textAnchor="end"
-              fontSize={14}
-              fill={accentColor}
-              opacity={0.8}
-              aria-label="Watermark"
-            >
-              ZECHUB DASHBOARD
-            </text>
-            <image
-              x={width - 60}
-              y={height - 50}
-              width="40"
-              height="40"
-              href=""
-              opacity={0.8}
-              aria-label="Watermark logo"
-            />
-          </svg>
-          {tooltipData && (
-            <div>
-              {/*@ts-ignore*/}
-              <TooltipWithBounds
-                key={Math.random()}
-                top={tooltipTop - 12}
-                left={tooltipLeft + 12}
-                style={tooltipStyles}
-                aria-label="Tooltip for shielded value at this point in time"
-              >
-                {formatNumber(getShieldedValue(tooltipData))}
-              </TooltipWithBounds>
-              <Tooltip
-                top={innerHeight + margin.top - 14}
-                left={tooltipLeft}
-                style={{
-                  ...defaultStyles,
-                  minWidth: 72,
-                  textAlign: "center",
-                  transform: "translateX(-50%)",
-                }}
-              >
-                {formatDate(getDate(tooltipData))}
-              </Tooltip>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <div className="flex mt-12">
+              <h3 className="text-lg font-semibold mb-4 flex-1">Node Count</h3>
             </div>
-          )}
-        </div>
+            <div
+              ref={ref}
+              style={{ width: "100%", minWidth: "100%", minHeight: "500px" }}
+            >
+              <svg width={width} height={height}>
+                <rect
+                  aria-label="background"
+                  role="background"
+                  x={0}
+                  y={0}
+                  width={width}
+                  height={height}
+                  fill={color}
+                  rx={14}
+                />
+                <LinearGradient
+                  id="area-background-gradient"
+                  from={background}
+                  to={background2}
+                />
+                <LinearGradient
+                  id="area-gradient"
+                  from={accentColor}
+                  to={accentColor}
+                  toOpacity={0.1}
+                />
+                <GridRows
+                  left={margin.left}
+                  scale={shieldedValueScale}
+                  width={innerWidth}
+                  strokeDasharray="1,3"
+                  stroke={accentColor}
+                  strokeOpacity={0.25}
+                  pointerEvents="none"
+                  aria-label="Rows of chart"
+                />
+                <GridColumns
+                  top={margin.top}
+                  scale={dateScale}
+                  height={innerHeight}
+                  strokeDasharray="1,3"
+                  stroke={accentColor}
+                  strokeOpacity={0.25}
+                  pointerEvents="none"
+                  aria-label="Columns of chart"
+                />
+                <AreaClosed<NodeCountAmountDatum>
+                  data={chartData}
+                  x={(d) => dateScale(getDate(d)) ?? 0}
+                  y={(d) => shieldedValueScale(getShieldedValue(d)) ?? 0}
+                  yScale={shieldedValueScale}
+                  strokeWidth={1}
+                  stroke="url(#area-gradient)"
+                  fill="url(#area-gradient)"
+                  curve={curveMonotoneX}
+                  aria-label="Area under line of the chart"
+                />
+                <Bar
+                  x={margin.left}
+                  y={margin.top}
+                  width={innerWidth}
+                  height={innerHeight}
+                  fill="transparent"
+                  rx={14}
+                  onTouchStart={handleTooltip}
+                  onTouchMove={handleTooltip}
+                  onMouseMove={handleTooltip}
+                  onMouseLeave={() => hideTooltip()}
+                  aria-label="Shielded pooling over time"
+                />
+                {tooltipData && (
+                  <g>
+                    <Line
+                      from={{ x: tooltipLeft, y: margin.top }}
+                      to={{ x: tooltipLeft, y: innerHeight + margin.top }}
+                      stroke={accentColorDark}
+                      strokeWidth={2}
+                      pointerEvents="none"
+                      strokeDasharray="5,2"
+                      aria-label="Line for tooltip of mouse on x axis"
+                    />
+                    <circle
+                      cx={tooltipLeft}
+                      cy={tooltipTop + 1}
+                      r={4}
+                      fill="black"
+                      fillOpacity={0.25}
+                      stroke="black"
+                      strokeOpacity={0.25}
+                      strokeWidth={2}
+                      pointerEvents="none"
+                      aria-label="Point showing shielding on the y-axis for this point on the x-axis"
+                    />
+                    <circle
+                      cx={tooltipLeft}
+                      cy={tooltipTop}
+                      r={4}
+                      fill={accentColorDark}
+                      stroke="white"
+                      strokeWidth={2}
+                      pointerEvents="none"
+                      aria-label="Accent color for point showing shielding on the y-axis for this point on the x-axis"
+                    />
+                  </g>
+                )}
+                <text
+                  x={width - 60}
+                  y={height - 10}
+                  textAnchor="end"
+                  fontSize={14}
+                  fill={accentColor}
+                  opacity={0.8}
+                  aria-label="Watermark"
+                >
+                  ZECHUB DASHBOARD
+                </text>
+                <image
+                  x={width - 60}
+                  y={height - 50}
+                  width="40"
+                  height="40"
+                  href=""
+                  opacity={0.8}
+                  aria-label="Watermark logo"
+                />
+              </svg>
+              {tooltipData && (
+                <div>
+                  {/*@ts-ignore*/}
+                  <TooltipWithBounds
+                    key={Math.random()}
+                    top={tooltipTop - 12}
+                    left={tooltipLeft + 12}
+                    style={tooltipStyles}
+                    aria-label="Tooltip for shielded value at this point in time"
+                  >
+                    {formatNumber(getShieldedValue(tooltipData))}
+                  </TooltipWithBounds>
+                  <Tooltip
+                    top={innerHeight + margin.top - 14}
+                    left={tooltipLeft}
+                    style={{
+                      ...defaultStyles,
+                      minWidth: 72,
+                      textAlign: "center",
+                      transform: "translateX(-50%)",
+                    }}
+                  >
+                    {formatDate(getDate(tooltipData))}
+                  </Tooltip>
+                </div>
+              )}
+            </div>
+          </>
+        )}
       </div>
     );
   }
