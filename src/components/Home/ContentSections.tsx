@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FadeInAnimation } from "../ui/Fade";
+import { FadeInAnimation } from "../ui/FadeInAnimation";
 
 const ContentSections = () => {
   return (

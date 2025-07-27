@@ -1,13 +1,11 @@
 "use client";
-import ContentSections from "@/components/Home/ContentSections";
 import Hero from "@/components/Hero/Hero";
+import ContentSections from "@/components/Home/ContentSections";
 import AnimationHome from "@/components/ui/AnimationHome";
 import Cards from "@/components/ui/Cards";
 import { cardsConfig } from "@/constants/cardsConfig";
 import Link from "next/link";
-import { FadeInAnimation } from "../ui/Fade";
-
-
+import { FadeInAnimation } from "../ui/FadeInAnimation";
 
 type HomeProps = {
   text: string;
@@ -31,7 +29,9 @@ const Home = ({ text }: HomeProps) => {
                   <AnimationHome />
                 </FadeInAnimation>
                 <FadeInAnimation>
-                  <h1 className="text-4xl text-center font-bold mb-3">Welcome to ZecHub</h1>
+                  <h1 className="text-4xl text-center font-bold mb-3">
+                    Welcome to ZecHub
+                  </h1>
                 </FadeInAnimation>
                 <div className="flex flex-col items-center justify-center p-4">
                   <FadeInAnimation>
