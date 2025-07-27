@@ -1,3 +1,4 @@
+import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getDifficultyData } from "@/lib/chart/helpers";
 import { Difficulty } from "@/lib/chart/types";
@@ -20,6 +21,7 @@ type DifficultyChartProps = {};
 export default function DifficultyChart(props: DifficultyChartProps) {
   const [difficulty, setDifficulty] = useState<Difficulty[]>([]);
   const [loading, setLoading] = useState(false);
+    const fontSize = useResponsiveFontSize(); // optional: pass min/max
 
   useEffect(() => {
     const controller = new AbortController();
@@ -87,8 +89,8 @@ export default function DifficultyChart(props: DifficultyChartProps) {
                 />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+            <XAxis dataKey="date" tick={{ fontSize, fill: "#94a3b8" }} />
             <YAxis
               tickFormatter={(v) =>
                 v >= 1_000_000
@@ -97,7 +99,7 @@ export default function DifficultyChart(props: DifficultyChartProps) {
                   ? `${v / 1_000}K`
                   : v
               }
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize, fill: "#94a3b8" }}
               width={60}
             />
             <Tooltip

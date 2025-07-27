@@ -12,6 +12,7 @@ import {
 } from "recharts";
 
 import { useIssuanceData } from "@/hooks/useIssuanceData";
+import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 
 type IssuanceChartProps = {};
@@ -20,6 +21,7 @@ type IssuanceChartProps = {};
 
 export default function IssuanceChart(props: IssuanceChartProps) {
   const { data, loading } = useIssuanceData(DATA_URL.issuanceUrl);
+  const fontSize = useResponsiveFontSize(); // optional: pass min/max
 
   return (
     <div className="space-y-6">
@@ -57,18 +59,18 @@ export default function IssuanceChart(props: IssuanceChartProps) {
               </linearGradient>
             </defs>
 
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+            <XAxis dataKey="date" tick={{ fontSize, fill: "#94a3b8" }} />
             <YAxis
               yAxisId="left"
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize, fill: "#94a3b8" }}
               width={60}
               label={{ value: "Issuance", angle: -90, position: "insideLeft" }}
             />
             <YAxis
               yAxisId="right"
               orientation="right"
-              tick={{ fontSize: 12 }}
+              tick={{ fontSize, fill: "#94a3b8" }}
               width={60}
               label={{
                 value: "Inflation (%)",
