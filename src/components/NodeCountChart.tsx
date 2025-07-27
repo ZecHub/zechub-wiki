@@ -262,28 +262,6 @@ const NodeCountChart = withTooltip<
       }).format(number);
     };
 
-    // Render loading message when loading
-    if (chartData.length === 0 || isLoading) {
-      return (
-        <div ref={ref} style={{ width: "100%", minWidth: "100%" }}>
-          <p>
-            <i>Loading historic shielded pool data...</i>
-          </p>
-        </div>
-      );
-    }
-
-    // Render error message if error loading data
-    if (error) {
-      return (
-        <div ref={ref} style={{ width: "100%", minWidth: "100%" }}>
-          <p>
-            <i>Error loading historic shielding data: {error.message}</i>
-          </p>
-        </div>
-      );
-    }
-
     // Render the chart by default
     return (
       <div className="space-y-6">
@@ -449,6 +427,16 @@ const NodeCountChart = withTooltip<
             </div>
           </>
         )}
+        {
+          // Render error message if error loading data
+          error && (
+            <div ref={ref} style={{ width: "100%", minWidth: "100%" }}>
+              <p>
+                <i>Error loading historic shielding data: {error.message}</i>
+              </p>
+            </div>
+          )
+        }
       </div>
     );
   }
