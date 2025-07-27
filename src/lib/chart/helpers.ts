@@ -50,7 +50,7 @@ export async function getIssuanceData(
   }
 }
 
-export async function getBlockchainInfo(
+export async function getZcashCirculationCount(
   url: string,
   signal?: AbortSignal
 ): Promise<number | null> {
@@ -227,7 +227,8 @@ export async function getNamadaSupply(
  * @returns Promise of shielded pool data
  */
 export async function fetchShieldedSupplyData(
-  url: string
+  url: string,
+  signal?: AbortSignal
 ): Promise<Array<ShieldedAmountDatum>> {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
