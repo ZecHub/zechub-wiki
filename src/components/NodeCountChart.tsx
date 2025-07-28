@@ -15,12 +15,8 @@ import {
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { fetchShieldedSupplyData } from "@/lib/chart/helpers";
+import { formatNumber } from "@/lib/helpers";
 import { Spinner } from "flowbite-react";
-
-const formatNumber = (n: number) =>
-  new Intl.NumberFormat("en-US", {
-    maximumFractionDigits: 2,
-  }).format(n);
 
 type NodeCountAmountDatum = {
   Date: string; // ISO date
@@ -91,7 +87,6 @@ const NodeCountChart = (props: NodeCountChartProps) => {
                 stroke="#94a3b8"
                 tick={{ fontSize, fill: "#94a3b8" }}
                 interval={"preserveStartEnd"}
-                
               />
               <YAxis
                 tickFormatter={formatNumber}
