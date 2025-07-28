@@ -22,6 +22,7 @@ import { LinearGradient } from "@visx/gradient";
 import { max, extent, bisector } from "@visx/vendor/d3-array";
 import { timeFormat } from "@visx/vendor/d3-time-format";
 import styled from 'styled-components';
+import { formatNumber } from "@/lib/helpers";
 
 /**
  * Type of values from the shielded pool over time. Each datum is amount
@@ -318,12 +319,7 @@ const ShieldedPoolChart = withTooltip<
       [showTooltip, shieldedValueScale, dateScale, filteredData]
     );
 
-    // Function to format number with commas
-    const formatNumber = (number: number) => {
-      return new Intl.NumberFormat("en-US", {
-        maximumFractionDigits: 2,
-      }).format(number);
-    };
+
 
     // Render loading message when loading
     if (filteredData.length === 0 || isLoading) {

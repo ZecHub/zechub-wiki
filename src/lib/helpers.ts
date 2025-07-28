@@ -171,3 +171,8 @@ export const formatString = {
     return txt;
   },
 };
+
+export const formatNumber = (n: number) =>
+  new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 2,
+  }).format(n);
