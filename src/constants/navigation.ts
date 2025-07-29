@@ -33,6 +33,7 @@ import {
   MdRadar as ECC,
   MdOutlinePointOfSale as ZgoPayment,
   MdForum as Forum,
+  MdOutlineOndemandVideo as AudioVideo,
 } from "react-icons/md";
 import {
   GiCheckedShield as foundation,
@@ -174,6 +175,12 @@ export const navigations = [
         subName: "Brand",
         path: "/brand",
         icon: BrandIcon,
+      },
+      {
+        subName: "ZKAV Club",
+        path: "https://www.zkav.club",
+        icon: AudioVideo,
+        newTab: true,
       },
     ],
   },
