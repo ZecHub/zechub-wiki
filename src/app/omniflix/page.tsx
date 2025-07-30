@@ -19,7 +19,7 @@ const OmniflixMedia = () => {
       </div>
       <div className="flex flex-row justify-center">
         <p className="text-gray-600 mb-8 text-center text-xl">
-          Check out Zechub's official Omniflix page{" "}
+          Check out Zechub&apos;s official Omniflix page{" "}
           <a
             className="text-gray-400"
             href="https://omniflix.tv/zechub/videos/all"
