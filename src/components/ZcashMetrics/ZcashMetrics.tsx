@@ -7,6 +7,7 @@ import {
 } from "@/lib/chart/helpers";
 import { BlockchainInfo, ShieldedTxCount } from "@/lib/chart/types";
 import { useEffect, useState } from "react";
+import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 import { MetricCard, MetricCardSkeleton } from "./MetricCard";
 
 interface ZcashStatisticsPorps {}
@@ -106,19 +107,21 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
   ];
 
   return (
-    <div className="my-12">
-      <h2 className="font-bold text-xl text-slate-700 dark:text-slate-100">
-        Zcash Metrics
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
-        {loading
-          ? metricsObj.map(({ label, value }) => (
-              <MetricCardSkeleton key={label} />
-            ))
-          : metricsObj.map(({ label, value }) => (
-              <MetricCard label={label} value={value} key={label} />
-            ))}
+    <ErrorBoundary fallback={"Failed to load Zcash Metrics"}>
+      <div className="my-12">
+        <h2 className="font-bold text-xl text-slate-700 dark:text-slate-100">
+          Zcash Metrics
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+          {loading
+            ? metricsObj.map(({ label, value }) => (
+                <MetricCardSkeleton key={label} />
+              ))
+            : metricsObj.map(({ label, value }) => (
+                <MetricCard label={label} value={value} key={label} />
+              ))}
+        </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 }

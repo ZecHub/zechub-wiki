@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getLockboxData } from "@/lib/chart/helpers";
@@ -52,42 +53,52 @@ export default function LockboxChart(props: LockboxChartProps) {
   }, []);
 
   return (
-    <div className="space-y-6">
-      <div className="flex mt-12">
-        <h3 className="text-lg font-semibold mb-4 flex-1">Lockbox Activity</h3>
+    <ErrorBoundary fallback={"Failed to load Lockbox Chart"}>
+      <div className="space-y-6">
+        <div className="flex mt-12">
+          <h3 className="text-lg font-semibold mb-4 flex-1">
+            Lockbox Activity
+          </h3>
+        </div>
+
+        <ResponsiveContainer width="100%" height={400}>
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <Spinner />
+            </div>
+          ) : (
+            <AreaChart data={lockboxData}>
+              {/* Gradients */}
+              <defs>
+                <linearGradient
+                  id="lockboxGradient"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.5} />
+                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.25} />
+                </linearGradient>
+              </defs>
+
+              <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+              <XAxis dataKey="Date" tick={{ fontSize, fill: "#94a3b8" }} />
+              <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
+              <Tooltip />
+              <Legend />
+              <Area
+                type="monotone"
+                dataKey="lockbox"
+                stroke="hsl(var(--chart-1))"
+                fill="url(#lockboxGradient)"
+                fillOpacity={1}
+                strokeWidth={2}
+              />
+            </AreaChart>
+          )}
+        </ResponsiveContainer>
       </div>
-
-      <ResponsiveContainer width="100%" height={400}>
-        {loading ? (
-          <div className="flex justify-center items-center">
-            <Spinner />
-          </div>
-        ) : (
-          <AreaChart data={lockboxData}>
-            {/* Gradients */}
-            <defs>
-              <linearGradient id="lockboxGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.5} />
-                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.25} />
-              </linearGradient>
-            </defs>
-
-            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-            <XAxis dataKey="Date" tick={{ fontSize, fill: "#94a3b8" }} />
-            <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
-            <Tooltip />
-            <Legend />
-            <Area
-              type="monotone"
-              dataKey="lockbox"
-              stroke="hsl(var(--chart-1))"
-              fill="url(#lockboxGradient)"
-              fillOpacity={1}
-              strokeWidth={2}
-            />
-          </AreaChart>
-        )}
-      </ResponsiveContainer>
-    </div>
+    </ErrorBoundary>
   );
 }

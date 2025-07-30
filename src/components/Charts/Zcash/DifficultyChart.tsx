@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getDifficultyData } from "@/lib/chart/helpers";
@@ -21,7 +22,7 @@ type DifficultyChartProps = {};
 export default function DifficultyChart(props: DifficultyChartProps) {
   const [difficulty, setDifficulty] = useState<Difficulty[]>([]);
   const [loading, setLoading] = useState(false);
-    const fontSize = useResponsiveFontSize(); // optional: pass min/max
+  const fontSize = useResponsiveFontSize(); // optional: pass min/max
 
   useEffect(() => {
     const controller = new AbortController();
@@ -62,63 +63,65 @@ export default function DifficultyChart(props: DifficultyChartProps) {
   }, [difficulty]);
 
   return (
-    <div className="space-y-6">
-      <div className="flex mt-12">
-        <h3 className="text-lg font-semibold mb-4 flex-1">
-          Mining Difficulty Over Time
-        </h3>
+    <ErrorBoundary fallback={"Failed to load Difficulty Chart"}>
+      <div className="space-y-6">
+        <div className="flex mt-12">
+          <h3 className="text-lg font-semibold mb-4 flex-1">
+            Mining Difficulty Over Time
+          </h3>
+        </div>
+        <ResponsiveContainer width="100%" height={400}>
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <Spinner />
+            </div>
+          ) : (
+            <AreaChart data={parsedData}>
+              <defs>
+                <linearGradient id="diffGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="5%"
+                    stopColor="hsl(var(--chart-4))"
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="hsl(var(--chart-4))"
+                    stopOpacity={0}
+                  />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+              <XAxis dataKey="date" tick={{ fontSize, fill: "#94a3b8" }} />
+              <YAxis
+                tickFormatter={(v) =>
+                  v >= 1_000_000
+                    ? `${v / 1_000_000}M`
+                    : v >= 1_000
+                    ? `${v / 1_000}K`
+                    : v
+                }
+                tick={{ fontSize, fill: "#94a3b8" }}
+                width={60}
+              />
+              <Tooltip
+                formatter={(value: any) =>
+                  typeof value === "number" ? value.toLocaleString() : value
+                }
+              />
+              <Legend />
+              <Area
+                type="monotone"
+                dataKey="difficulty"
+                stroke="hsl(var(--chart-4))"
+                fillOpacity={1}
+                fill="url(#diffGradient)"
+                strokeWidth={2}
+              />
+            </AreaChart>
+          )}
+        </ResponsiveContainer>
       </div>
-      <ResponsiveContainer width="100%" height={400}>
-        {loading ? (
-          <div className="flex justify-center items-center">
-            <Spinner />
-          </div>
-        ) : (
-          <AreaChart data={parsedData}>
-            <defs>
-              <linearGradient id="diffGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="hsl(var(--chart-4))"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="hsl(var(--chart-4))"
-                  stopOpacity={0}
-                />
-              </linearGradient>
-            </defs>
-            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-            <XAxis dataKey="date" tick={{ fontSize, fill: "#94a3b8" }} />
-            <YAxis
-              tickFormatter={(v) =>
-                v >= 1_000_000
-                  ? `${v / 1_000_000}M`
-                  : v >= 1_000
-                  ? `${v / 1_000}K`
-                  : v
-              }
-              tick={{ fontSize, fill: "#94a3b8" }}
-              width={60}
-            />
-            <Tooltip
-              formatter={(value: any) =>
-                typeof value === "number" ? value.toLocaleString() : value
-              }
-            />
-            <Legend />
-            <Area
-              type="monotone"
-              dataKey="difficulty"
-              stroke="hsl(var(--chart-4))"
-              fillOpacity={1}
-              fill="url(#diffGradient)"
-              strokeWidth={2}
-            />
-          </AreaChart>
-        )}
-      </ResponsiveContainer>
-    </div>
+    </ErrorBoundary>
   );
 }
