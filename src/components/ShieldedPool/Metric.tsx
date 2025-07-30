@@ -90,12 +90,12 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
 
         const data = await response.json();
 
-        if(name == "Usdc") {
-          name = "USDC"
+        if (name == "Usdc") {
+          name = "USDC";
         }
         const coinInfo = data[name];
         setCoinData(coinInfo);
-        console.log(name.toLowerCase(), "coinInfo", data);
+
 
         // Mock blockchain data (replace with actual API calls)
         setBlockchainInfo({
