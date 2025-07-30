@@ -6,6 +6,7 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -112,7 +113,8 @@ const NodeCountChart = (props: NodeCountChartProps) => {
                   return null;
                 }}
               />
-
+              <Legend />
+              
               {/* Area */}
               <Area
                 type="monotone"
