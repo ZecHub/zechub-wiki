@@ -70,25 +70,31 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
   const metricsObj = [
     {
       label: "Market Cap",
-      value: `$${blockchainInfo?.market_cap_usd.toLocaleString() ?? "N/A"}`,
+      value: blockchainInfo?.market_cap_usd
+        ? `$${blockchainInfo?.market_cap_usd.toLocaleString()}`
+        : "N/A",
     },
     {
       label: "Circulation",
-      value: `${circulation?.toLocaleString() ?? "N/A"} ZEC`,
+      value: circulation ? `${circulation?.toLocaleString()} ZEC` : "N/A",
     },
     {
       label: "Market Price (USD)",
-      value: `$${blockchainInfo?.market_price_usd.toFixed(2) ?? "N/A"}`,
+      value: blockchainInfo?.market_price_usd
+        ? `$${blockchainInfo?.market_price_usd.toFixed(2)}`
+        : "N/A",
     },
     {
       label: "Market Price (BTC)",
-      value: isMobile
-        ? Number(blockchainInfo?.market_price_btc).toFixed(4) ?? "N/A"
-        : Number(blockchainInfo?.market_price_btc).toFixed(8) ?? "N/A",
+      value: blockchainInfo?.market_price_btc
+        ? isMobile
+          ? Number(blockchainInfo?.market_price_btc).toFixed(4)
+          : Number(blockchainInfo?.market_price_btc).toFixed(8)
+        : "N/A",
     },
     {
       label: "Blocks",
-      value: blockchainInfo?.blocks.toLocaleString() ?? "NA",
+      value: blockchainInfo?.blocks.toLocaleString() ?? "N/A",
     },
     {
       label: "24h Transactions",
@@ -97,9 +103,9 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
     {
       label: "Shielded TX (24h)",
       value: shieldedTxCount?.length
-        ? `Sapling: ${shieldedTxCount
+        ? `Sap: ${shieldedTxCount
             .at(-1)!
-            .sapling.toLocaleString()} | Orchard: ${shieldedTxCount
+            .sapling.toLocaleString()} | Orc: ${shieldedTxCount
             .at(-1)!
             .orchard.toLocaleString()}`
         : "N/A",
