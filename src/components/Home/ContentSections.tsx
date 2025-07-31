@@ -236,6 +236,43 @@ const ContentSections = () => {
               </FadeInAnimation>
             </div>
           </div>
+
+           <div
+            className="flex flex-col md:flex-row space-y-4 h-96 my-4 w-full border-cyan-400/50 border-2 rounded-md p-5"
+            style={{ height: "30rem" }}
+          >
+            <div className="flex justify-center items-center w-auto md:w-2/4">
+              <FadeInAnimation>
+                <Image
+                  src={"/hackathon.png"}
+                  alt=""
+                  width={350}
+                  height={350}
+                  unoptimized={true}
+                />
+              </FadeInAnimation>
+            </div>
+            <div className="flex flex-col w-auto md:w-2/4 items-center justify-center">
+              <FadeInAnimation>
+                <h1 className="text-3xl mb-4 font-semibold">Hackathon</h1>
+              </FadeInAnimation>
+              <FadeInAnimation>
+                <p className="text-center mb-5">
+                  Challenge yourself to build with Zcash—one of the leading privacy-preserving blockchains.
+                </p>
+              </FadeInAnimation>
+              <div className="flex flex-row space-x-4 mt-4">
+                <FadeInAnimation>
+                  <Link
+                    href={"https://hackathon.zechub.wiki"}
+                    className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Join the Hackathon
+                  </Link>
+                </FadeInAnimation>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>

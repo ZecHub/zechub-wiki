@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 
 export enum NamadaToolOptions {
   supply = "supply", 
-  
+  rewards = "rewards", 
 }
 
 export const namadatoolOptionLabels: Record<NamadaToolOptions, string> = {
   [NamadaToolOptions.supply]: "Shielded Supply Chart",
+  [NamadaToolOptions.rewards]: "Namada Rewards Chart",
 };
 
 interface NamadaToolsProps {

@@ -19,6 +19,7 @@ import {
   NamadaTools,
 } from "../Tools/Namadatools";
 import CryptoMetrics from "./Metric";
+import RewardsChart from "./RewardsChart";
 
 const ShieldedPoolChart = dynamic(() => import("./ShieldedPoolChart"), {
   ssr: true,
@@ -51,6 +52,7 @@ const DataUrlOptions = {
   apiUrl:
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json",
   namadaSupplyUrl: "/data/namada/namada_supply.json",
+  namadaRewardUrl: "/data/namada/namada_rewards_rate.json",
 } as const;
 
 const blockchainInfoUrl = "/api/blockchain-info";
@@ -66,7 +68,7 @@ interface BlockchainInfo {
 type SupplyData = { close: string; supply: number };
 type ShieldedTxCount = { sapling: number; orchard: number; timestamp: string };
 type NodeCountData = { Date: string; nodecount: string };
-type NamadaAsset = { id: string; totalSupply: string };
+type NamadaAsset = { id: string; shieldedSupply: string };
 
 async function getBlockchainData(): Promise<BlockchainInfo | null> {
   try {
@@ -183,6 +185,7 @@ export default function ShieldedPoolDashboard() {
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
   const [namadaRaw, setNamadaRaw] = useState<any[]>([]);
+
   const [namadaAssets, setNamadaAssets] = useState<NamadaAsset[]>([]);
   const [selectedNamadaAsset, setSelectedNamadaAsset] = useState<string>("");
   const [namadaSeries, setNamadaSeries] = useState<any>();
@@ -268,7 +271,7 @@ export default function ShieldedPoolDashboard() {
       .then((data: any[]) => {
         if (!data) return;
         setNamadaRaw(data);
-        const list: NamadaAsset[] = data[0]?.Total_Supply || [];
+        const list: NamadaAsset[] = data[data.length - 1]?.Total_Supply || [];
         setNamadaAssets(list);
         if (list.length) setSelectedNamadaAsset(list[0].id);
       })
@@ -293,8 +296,8 @@ export default function ShieldedPoolDashboard() {
     // 1. Filter entries where the selected token exists (and has non-empty supply)
     const filteredData = inputData.filter((entry) =>
       entry.Total_Supply.some(
-        (item: { id: string; totalSupply: string }) =>
-          item.id === selectedNamadaAsset && item.totalSupply !== ""
+        (item: { id: string; shieldedSupply: string }) =>
+          item.id === selectedNamadaAsset && item.shieldedSupply !== ""
       )
     );
 
@@ -307,8 +310,8 @@ export default function ShieldedPoolDashboard() {
           (item: { id: string }) => item.id === selectedNamadaAsset
         );
         return selectedNamadaAsset != "Namada"
-          ? parseFloat(tokenEntry.totalSupply) / 1000000
-          : parseFloat(tokenEntry.totalSupply);
+          ? parseFloat(tokenEntry.shieldedSupply) / 1000000
+          : parseFloat(tokenEntry.shieldedSupply);
       }),
     };
     const result = { x, y };
@@ -345,13 +348,12 @@ export default function ShieldedPoolDashboard() {
 
   // NAMADA supply chart
   const handlenNamadaToolChange = (tool: NamadaToolOptions) => {
-    setSelectedNamadaPool(tool);
+    setSelectedNamadaTool(tool);
     if (tool === NamadaToolOptions.supply) {
       setSelectedNamadaPool("default");
     }
     setSelectedToolName(namadatoolOptionLabels[tool]);
   };
-
 
   return (
     <div className="mt-28">
@@ -453,6 +455,10 @@ export default function ShieldedPoolDashboard() {
             selectedNamadaTool === NamadaToolOptions.supply && (
               <NamadaSupplyChart data={namadaSeries} width={800} height={400} />
             )}
+          {selectedCoin === "Namada" &&
+            selectedNamadaTool === NamadaToolOptions.rewards && (
+              <RewardsChart DataUrlOptions={DataUrlOptions} />
+            )}
 
           {selectedCoin !== "Zcash" && selectedCoin !== "Namada" && (
             <div className="w-full h-[400px] flex flex-col items-center justify-center">
@@ -524,49 +530,53 @@ export default function ShieldedPoolDashboard() {
             }
           />
         </div>
-        {selectedCoin === 'Zcash' &&
-        <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
-          <div className="border p-4 rounded-md text-center">
-            <h3 className="font-bold text-lg">Market Cap</h3>
-            <p>${blockchainInfo.market_cap_usd.toLocaleString()}</p>
+        {selectedCoin === "Zcash" && (
+          <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">Market Cap</h3>
+              <p>${blockchainInfo.market_cap_usd.toLocaleString()}</p>
+            </div>
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">ZEC in Circulation</h3>
+              <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
+            </div>
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">Market Price (USD)</h3>
+              <p>${blockchainInfo.market_price_usd.toFixed(2)}</p>
+            </div>
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">Market Price (BTC)</h3>
+              <p>{blockchainInfo.market_price_btc}</p>
+            </div>
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">Blocks</h3>
+              <p>{blockchainInfo.blocks.toLocaleString()}</p>
+            </div>
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">24h Transactions</h3>
+              <p>{blockchainInfo.transactions_24h.toLocaleString()}</p>
+            </div>
+            <div className="border p-4 rounded-md text-center">
+              <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
+              <p>
+                {shieldedTxCount?.length
+                  ? `Sapling: ${shieldedTxCount[
+                      shieldedTxCount.length - 1
+                    ].sapling.toLocaleString()} | Orchard: ${shieldedTxCount[
+                      shieldedTxCount.length - 1
+                    ].orchard.toLocaleString()}`
+                  : "N/A"}
+              </p>
+            </div>
           </div>
-          <div className="border p-4 rounded-md text-center">
-            <h3 className="font-bold text-lg">ZEC in Circulation</h3>
-            <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
-          </div>
-          <div className="border p-4 rounded-md text-center">
-            <h3 className="font-bold text-lg">Market Price (USD)</h3>
-            <p>${blockchainInfo.market_price_usd.toFixed(2)}</p>
-          </div>
-          <div className="border p-4 rounded-md text-center">
-            <h3 className="font-bold text-lg">Market Price (BTC)</h3>
-            <p>{blockchainInfo.market_price_btc}</p>
-          </div>
-          <div className="border p-4 rounded-md text-center">
-            <h3 className="font-bold text-lg">Blocks</h3>
-            <p>{blockchainInfo.blocks.toLocaleString()}</p>
-          </div>
-          <div className="border p-4 rounded-md text-center">
-            <h3 className="font-bold text-lg">24h Transactions</h3>
-            <p>{blockchainInfo.transactions_24h.toLocaleString()}</p>
-          </div>
-          <div className="border p-4 rounded-md text-center">
-            <h3 className="font-bold text-lg">Shielded TX (24h)</h3>
-            <p>
-              {shieldedTxCount?.length
-                ? `Sapling: ${shieldedTxCount[
-                    shieldedTxCount.length - 1
-                  ].sapling.toLocaleString()} | Orchard: ${shieldedTxCount[
-                    shieldedTxCount.length - 1
-                  ].orchard.toLocaleString()}`
-                : "N/A"}
-            </p>
-          </div>
-        </div>
-        }
-        {(selectedCoin == "Penumbra") && <CryptoMetrics selectedCoin={selectedCoin} />}
+        )}
+        {selectedCoin == "Penumbra" && (
+          <CryptoMetrics selectedCoin={selectedCoin} />
+        )}
 
-        {(selectedCoin == "Namada") && <CryptoMetrics selectedCoin={selectedNamadaAsset} />}
+        {selectedCoin == "Namada" && (
+          <CryptoMetrics selectedCoin={selectedNamadaAsset} />
+        )}
       </div>
     </div>
   );
