@@ -111,6 +111,21 @@ export default function LockboxChart(props: LockboxChartProps) {
                 fill="url(#lockboxGradient)"
                 fillOpacity={1}
                 strokeWidth={2}
+                dot={({ index, cx, cy }) =>
+                  index % 7 === 0 ? (
+                    <circle
+                      key={index}
+                      cx={cx}
+                      cy={cy}
+                      r={4}
+                      fill="hsl(var(--chart-1))"
+                      stroke="white"
+                      strokeWidth={1}
+                    />
+                  ) : (
+                    <span />
+                  )
+                }
               />
             </AreaChart>
           )}
