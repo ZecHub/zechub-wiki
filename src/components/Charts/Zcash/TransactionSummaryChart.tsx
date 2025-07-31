@@ -4,6 +4,8 @@ import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import RangeSlider from "@/components/RangeSlider";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
+import { fetchTransactionData } from "@/lib/chart/helpers";
+import { ShieldedTransactionDatum } from "@/lib/chart/types";
 import { Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
 import {
@@ -21,22 +23,6 @@ import {
 
 const BLOCKS_PERIOD = 8064;
 const ORCHARD_ACTIVATION = 1687104;
-
-type ShieldedTransactionDatum = {
-  height: number;
-  sapling: number;
-  sapling_filter: number;
-  orchard: number;
-  orchard_filter: number;
-};
-
-async function fetchTransactionData(
-  url: string
-): Promise<Array<ShieldedTransactionDatum>> {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-  return await response.json();
-}
 
 export default function TransactionsSummaryChart() {
   const [chartData, setChartData] = useState<ShieldedTransactionDatum[]>([]);
@@ -64,6 +50,7 @@ export default function TransactionsSummaryChart() {
       .then((data) => {
         setChartData(data);
         const heights = data.map((d) => d.height);
+
         setMinHeight(Math.min(...heights));
         setMaxHeight(Math.max(...heights));
         setEndHeight(Math.max(...heights));
@@ -154,12 +141,63 @@ export default function TransactionsSummaryChart() {
   return (
     <ErrorBoundary fallback={"Failed to load Transaction Summary Chart"}>
       <div className="space-y-6">
-        <div className="flex mt-12 ">
+        <div className="flex mt-12 space-x-10">
+          {/* <h3 className="text-lg font-semibold mb-4 flex-1">
+            Transactions Summary
+          </h3> */}
           <h3 className="text-lg font-semibold mb-4 flex-1">
             Transactions Summary
           </h3>
+
+          {/* Toggle Controls */}
+          <div className="flex justify-center items-center flex-wrap space-x-12">
+            {/* Cumulative View Toggle */}
+            <div className="relative group">
+              <label className="inline-flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
+                <input
+                  type="checkbox"
+                  checked={cumulative}
+                  onChange={() => setCumulative(!cumulative)}
+                  className="accent-sky-600 dark:accent-cyan-400"
+                />
+                Cumulative
+                <div className="relative">
+                  <div
+                    className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap
+                     bg-slate-700 text-white text-xs rounded px-2 py-1
+                     opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                  >
+                    Accumulate totals over time
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            {/* Filter Spam Toggle */}
+            <div className="relative group">
+              <label className="inline-flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
+                <input
+                  type="checkbox"
+                  checked={filter}
+                  onChange={() => setFilter(!filter)}
+                  className="accent-sky-600 dark:accent-cyan-400"
+                />
+                Filter Spam
+                <div className="relative">
+                  <div
+                    className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap
+                     bg-slate-700 text-white text-xs rounded px-2 py-1
+                     opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                  >
+                    Hide known spam transactions
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
           {/* Sliders */}
-          <div className="flex justify-center items-center space-x-48 ">
+          <div className="flex justify-center items-center space-x-12">
             <RangeSlider
               value={startHeight}
               onChange={setStartHeight}
