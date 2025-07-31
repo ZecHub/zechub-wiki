@@ -116,21 +116,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     );
   };
 
-  const calculateTotalSupply = (year: string) => {
-    const allData = [
-      ...orchardSupplyData,
-      ...saplingSupplyData,
-      ...sproutSupplyData,
-    ];
-
-    const filteredData = filterDataByYear(allData, year);
-
-    const totalSum = filteredData.reduce((sum, item) => sum + item.supply, 0);
-    return totalSum;
-  };
-
- 
-  
   const normalizePools = () => {
     const allDates = new Set([
       ...sproutSupplyData.map((d) => d.close),
@@ -166,7 +151,18 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   };
 
   const combinedPoolData = normalizePools();
-  console.log({ combinedPoolData });
+
+  const latest = combinedPoolData[combinedPoolData.length - 1];
+
+  const latestTotals = {
+    sprout: latest?.sprout || 0,
+    sapling: latest?.sapling || 0,
+    orchard: latest?.orchard || 0,
+  };
+
+  const calculateTotalShielded = () => {
+    return latestTotals.orchard + latestTotals.sapling + latestTotals.sprout;
+  };
 
   return (
     <ErrorBoundary fallback={"Failed to load Shielded Supply Chart"}>
@@ -197,9 +193,9 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             </div>
 
             <div className="flex justify-center items-center gap-2">
-              <label className="text-sm font-medium">Total Supply</label>
+              <label className="text-sm font-medium">Total Shielded</label>
               <div className="w-fit">
-                {calculateTotalSupply(selectedYear).toLocaleString()} ZEC
+                {calculateTotalShielded().toLocaleString()} ZEC
               </div>
             </div>
           </CardContent>
@@ -272,13 +268,38 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                   name,
                 ]}
               />
+
               <Legend
-                wrapperStyle={{
-                  fontSize,
-                  color: "#94a3b8",
-                  // marginTop: '12px'
-                }}
+                verticalAlign="bottom"
+                align="center"
+                wrapperStyle={{ marginTop: 20 }}
+                content={() => (
+                  <div className="flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{ background: "hsl(var(--chart-1))" }}
+                      />
+                      Sprout Pool — {latestTotals.sprout.toLocaleString()} ZEC
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{ background: "hsl(var(--chart-2))" }}
+                      />
+                      Sapling Pool — {latestTotals.sapling.toLocaleString()} ZEC
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{ background: "hsl(var(--chart-3))" }}
+                      />
+                      Orchard Pool — {latestTotals.orchard.toLocaleString()} ZEC
+                    </div>
+                  </div>
+                )}
               />
+
               <Area
                 type="monotone"
                 dataKey="sprout"
