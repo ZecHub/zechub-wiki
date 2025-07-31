@@ -5,7 +5,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
-import NodeCountChart from "@/components/NodeCountChart";
+import NodeCountChart from "@/components/NodeCountChartOld";
 import Tools from "@/components/Tools";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { Spinner } from "flowbite-react";
@@ -24,7 +24,7 @@ const ShieldedPoolChart = dynamic(() => import("./ShieldedPoolChart"), {
   ssr: true,
 });
 const TransactionSummaryChart = dynamic(
-  () => import("../TransactionSummaryChart"),
+  () => import("../TransactionSummaryChartOld"),
   { ssr: true }
 );
 const ZecIssuanceSummaryChart = dynamic(
