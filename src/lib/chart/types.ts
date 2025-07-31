@@ -73,3 +73,11 @@ export type FlattenedTokenData = {
   Date: string;
   [tokenId: string]: number | string; // `Date` is string, others are numbers
 };
+
+export type ShieldedTransactionDatum = {
+  height: number;
+  sapling: number;
+  sapling_filter: number;
+  orchard: number;
+  orchard_filter: number;
+};
