@@ -11,10 +11,10 @@ import {
   YAxis,
 } from "recharts";
 
+import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import { useIssuanceData } from "@/hooks/useIssuanceData";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
-import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 
 type IssuanceChartProps = {};
 
@@ -85,7 +85,33 @@ export default function IssuanceChart(props: IssuanceChartProps) {
                 }}
               />
               <Tooltip formatter={(v: any) => v.toLocaleString()} />
-              <Legend />
+
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                content={() => (
+                  <div
+                    style={{ paddingTop: 20 }}
+                    className="flex justify-center gap-6 text-sm text-slate-600 dark:text-slate-300"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{ background: "hsl(var(--chart-1))" }}
+                      />
+                      Issuance
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{ background: "hsl(var(--chart-3))" }}
+                      />
+                      Inflation
+                    </div>
+                  </div>
+                )}
+              />
 
               <Bar
                 yAxisId="left"

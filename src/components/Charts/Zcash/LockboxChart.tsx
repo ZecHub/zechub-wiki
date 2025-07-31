@@ -86,7 +86,24 @@ export default function LockboxChart(props: LockboxChartProps) {
               <XAxis dataKey="Date" tick={{ fontSize, fill: "#94a3b8" }} />
               <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
               <Tooltip />
-              <Legend />
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                content={() => (
+                  <div
+                    style={{ paddingTop: 20 }}
+                    className="flex justify-center gap-6 text-sm text-slate-600 dark:text-slate-300"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{ background: "hsl(var(--chart-1))" }}
+                      />
+                      Lockbox
+                    </div>
+                  </div>
+                )}
+              />
               <Area
                 type="monotone"
                 dataKey="lockbox"
