@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import { CardContent } from "@/components/ui/shadcn/card";
 import {
   Select,
@@ -9,7 +10,7 @@ import {
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getSupplyData } from "@/lib/chart/helpers";
-import { ShieldedTxCount, SupplyData } from "@/lib/chart/types";
+import { SupplyData } from "@/lib/chart/types";
 import { Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
 import {
@@ -27,20 +28,16 @@ type ShieldedSupplyChartProps = {};
 export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState("all");
-    const fontSize = useResponsiveFontSize(); // optional: pass min/max
-
-  const [cumulativeCheck, setCumulativeCheck] = useState(true);
-  const [filterSpamCheck, setFilterSpamCheck] = useState(false);
-  const [circulation, setCirculation] = useState<number | null>(null);
+  const fontSize = useResponsiveFontSize(); // optional: pass min/max
+  // const [cumulativeCheck, setCumulativeCheck] = useState(true);
+  // const [filterSpamCheck, setFilterSpamCheck] = useState(false);
+  // const [circulation, setCirculation] = useState<number | null>(null);
   const [shieldedSupplyData, setShieldedSupplyData] = useState<SupplyData[]>(
     []
   );
   const [orchardSupplyData, setOrchardSupplyData] = useState<SupplyData[]>([]);
   const [saplingSupplyData, setSaplingSupplyData] = useState<SupplyData[]>([]);
   const [sproutSupplyData, setSproutSupplyData] = useState<SupplyData[]>([]);
-  const [shieldedTxCount, setShieldedTxCount] = useState<
-    ShieldedTxCount[] | null
-  >([]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -60,14 +57,16 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
         if (sproutSupply) {
           setSproutSupplyData(sproutSupply);
         }
-        if (shieldedTxCount) {
-          setShieldedTxCount(shieldedTxCount);
+        if (defaultSupply) {
+          console.log({ defaultSupply });
+          setShieldedSupplyData(defaultSupply);
         }
+
         if (saplingSupply) {
-          setSaplingSupplyData(saplingSupplyData);
+          setSaplingSupplyData(saplingSupply);
         }
         if (orchardSupply) {
-          setOrchardSupplyData(orchardSupplyData);
+          setOrchardSupplyData(orchardSupply);
         }
 
         setLoading(false);
@@ -86,7 +85,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
   const getAvailableYears = () => {
     const allData = [
-      ...shieldedSupplyData,
+      // ...shieldedSupplyData,
       ...orchardSupplyData,
       ...saplingSupplyData,
       ...sproutSupplyData,
@@ -119,7 +118,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
   const calculateTotalSupply = (year: string) => {
     const allData = [
-      ...shieldedSupplyData,
       ...orchardSupplyData,
       ...saplingSupplyData,
       ...sproutSupplyData,
@@ -131,109 +129,184 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     return totalSum;
   };
 
-  const combinedPoolData = [
-    ...filterDataByYear(shieldedSupplyData, selectedYear).map((item) => ({
-      ...item,
-      sprout: 0,
-      sapling: 0,
-      orchard: 0,
-    })),
-    ...filterDataByYear(sproutSupplyData, selectedYear).map((item) => ({
-      ...item,
-      sprout: item.supply,
-      sapling: 0,
-      orchard: 0,
-    })),
-    ...filterDataByYear(saplingSupplyData, selectedYear).map((item) => ({
-      ...item,
-      sprout: 0,
-      sapling: item.supply,
-      orchard: 0,
-    })),
-    ...filterDataByYear(orchardSupplyData, selectedYear).map((item) => ({
-      ...item,
-      sprout: 0,
-      sapling: 0,
-      orchard: item.supply,
-    })),
-  ].sort((a, b) => new Date(a.close).getTime() - new Date(b.close).getTime());
+ 
+  
+  const normalizePools = () => {
+    const allDates = new Set([
+      ...sproutSupplyData.map((d) => d.close),
+      ...saplingSupplyData.map((d) => d.close),
+      ...orchardSupplyData.map((d) => d.close),
+    ]);
 
+    const dateArray = Array.from(allDates).sort(
+      (a, b) => new Date(a).getTime() - new Date(b).getTime()
+    );
+
+    const dataMap: Record<string, any> = {};
+
+    for (const date of dateArray) {
+      dataMap[date] = { close: date, sprout: 0, sapling: 0, orchard: 0 };
+    }
+
+    for (const d of sproutSupplyData) {
+      if (dataMap[d.close]) dataMap[d.close].sprout = d.supply;
+    }
+
+    for (const d of saplingSupplyData) {
+      if (dataMap[d.close]) dataMap[d.close].sapling = d.supply;
+    }
+
+    for (const d of orchardSupplyData) {
+      if (dataMap[d.close]) dataMap[d.close].orchard = d.supply;
+    }
+
+    return Object.values(dataMap).filter((d) =>
+      selectedYear === "all" ? true : extractYear(d.close) === selectedYear
+    );
+  };
+
+  const combinedPoolData = normalizePools();
   console.log({ combinedPoolData });
 
   return (
-    <div className="space-y-6">
-      <div className="flex mt-12">
-        <h3 className="text-lg font-semibold mb-4 flex-1">
-          Shielded Supply Overview
-        </h3>
-        <CardContent className="flex items-center flex-col lg:flex-row gap-4">
-          <div className="flex justify-center items-center gap-2">
-            <label className="text-sm font-medium">Year</label>
-            <Select value={selectedYear} onValueChange={setSelectedYear}>
-              <SelectTrigger className="w-32">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {getAvailableYears().map((year) => (
-                  <SelectItem
-                    key={year}
-                    value={year.toString()}
-                    className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
-                  >
-                    {year === "all" ? "All" : year}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="flex justify-center items-center gap-2">
-            <label className="text-sm font-medium">Total Supply</label>
-            <div className="w-fit">
-              {calculateTotalSupply(selectedYear).toLocaleString()} ZEC
+    <ErrorBoundary fallback={"Failed to load Shielded Supply Chart"}>
+      <div className="space-y-6">
+        <div className="flex mt-12">
+          <h3 className="text-lg font-semibold mb-4 flex-1">
+            Shielded Supply Overview
+          </h3>
+          <CardContent className="flex items-center flex-col lg:flex-row gap-4">
+            <div className="flex justify-center items-center gap-2">
+              <label className="text-sm font-medium">Year</label>
+              <Select value={selectedYear} onValueChange={setSelectedYear}>
+                <SelectTrigger className="w-32">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {getAvailableYears().map((year) => (
+                    <SelectItem
+                      key={year}
+                      value={year.toString()}
+                      className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
+                    >
+                      {year === "all" ? "All" : year}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
-          </div>
-        </CardContent>
+
+            <div className="flex justify-center items-center gap-2">
+              <label className="text-sm font-medium">Total Supply</label>
+              <div className="w-fit">
+                {calculateTotalSupply(selectedYear).toLocaleString()} ZEC
+              </div>
+            </div>
+          </CardContent>
+        </div>
+        <ResponsiveContainer width="100%" height={400}>
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <Spinner />
+            </div>
+          ) : (
+            <AreaChart data={combinedPoolData}>
+              <defs>
+                <linearGradient id="sproutGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="5%"
+                    stopColor="hsl(var(--chart-1))"
+                    stopOpacity={0.6}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="hsl(var(--chart-1))"
+                    stopOpacity={0.05}
+                  />
+                </linearGradient>
+
+                <linearGradient
+                  id="saplingGradient"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="5%"
+                    stopColor="hsl(var(--chart-2))"
+                    stopOpacity={0.6}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="hsl(var(--chart-2))"
+                    stopOpacity={0.05}
+                  />
+                </linearGradient>
+
+                <linearGradient
+                  id="orchardGradient"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="5%"
+                    stopColor="hsl(var(--chart-3))"
+                    stopOpacity={0.6}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="hsl(var(--chart-3))"
+                    stopOpacity={0.05}
+                  />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+              <XAxis dataKey="close" tick={{ fontSize, fill: "#94a3b8" }} />
+              <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
+              <Tooltip
+                formatter={(value: any, name: any) => [
+                  Number(value).toLocaleString() + " ZEC",
+                  name,
+                ]}
+              />
+              <Legend
+                wrapperStyle={{
+                  fontSize,
+                  color: "#94a3b8",
+                  // marginTop: '12px'
+                }}
+              />
+              <Area
+                type="monotone"
+                dataKey="sprout"
+                stackId="1"
+                stroke="hsl(var(--chart-1))"
+                fill="url(#sproutGradient)"
+                name="Sprout Pool"
+              />
+              <Area
+                type="monotone"
+                dataKey="sapling"
+                stackId="1"
+                stroke="hsl(var(--chart-2))"
+                fill="url(#saplingGradient)"
+                name="Sapling Pool"
+              />
+              <Area
+                type="monotone"
+                dataKey="orchard"
+                stackId="1"
+                stroke="hsl(var(--chart-3))"
+                fill="url(#orchardGradient)"
+                name="Orchard Pool"
+              />
+            </AreaChart>
+          )}
+        </ResponsiveContainer>
       </div>
-      <ResponsiveContainer width="100%" height={400}>
-        {loading ? (
-          <div className="flex justify-center items-center">
-            <Spinner />
-          </div>
-        ) : (
-          <AreaChart data={combinedPoolData}>
-            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-            <XAxis dataKey="close" tick={{ fontSize, fill: "#94a3b8" }} />
-            <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
-            <Tooltip />
-            <Legend />
-            <Area
-              type="monotone"
-              dataKey="sprout"
-              stackId="1"
-              stroke="hsl(var(--chart-1))"
-              fill="hsl(var(--chart-1))"
-              name="Sprout Pool"
-            />
-            <Area
-              type="monotone"
-              dataKey="sapling"
-              stackId="1"
-              stroke="hsl(var(--chart-2))"
-              fill="hsl(var(--chart-2))"
-              name="Sapling Pool"
-            />
-            <Area
-              type="monotone"
-              dataKey="orchard"
-              stackId="1"
-              stroke="hsl(var(--chart-3))"
-              fill="hsl(var(--chart-3))"
-              name="Orchard Pool"
-            />
-          </AreaChart>
-        )}
-      </ResponsiveContainer>
-    </div>
+    </ErrorBoundary>
   );
 }
