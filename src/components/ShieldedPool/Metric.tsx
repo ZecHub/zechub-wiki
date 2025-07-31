@@ -40,12 +40,27 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
         setLoading(false);
         return;
       }
+    
       if (selectedCoin === "Atom") {
         name = "Cosmos Hub";
       } else if (selectedCoin === "Tia") {
         name = "Celestia";
       } else if (selectedCoin === "Osmo") {
         name = "Osmosis";
+      } else if (selectedCoin === "stOsmo") {
+        name = "Stride Staked Osmo";
+      }
+      else if (selectedCoin === "stTia") {
+        name = "Stride Staked TIA";
+      }
+      else if (selectedCoin === "stAtom") {
+        name = "Stride Staked Atom";
+      }
+      else if (selectedCoin === "Um") {
+        name = "Penumbra";
+      }
+      else if (selectedCoin === "Ntrn") {
+        name = "Neutron";
       }
 
       try {
@@ -73,7 +88,7 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
         }
 
         const data = await response.json();
-        console.log(name)
+
         if(name == "Usdc") {
           name = "USDC"
         }
