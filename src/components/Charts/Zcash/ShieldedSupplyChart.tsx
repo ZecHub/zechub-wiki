@@ -206,7 +206,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               <Spinner />
             </div>
           ) : (
-            <AreaChart data={combinedPoolData}>
+            <AreaChart data={combinedPoolData} key={selectedYear}>
               <defs>
                 <linearGradient id="sproutGradient" x1="0" y1="0" x2="0" y2="1">
                   <stop
@@ -307,6 +307,8 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                 stroke="hsl(var(--chart-1))"
                 fill="url(#sproutGradient)"
                 name="Sprout Pool"
+                isAnimationActive={true}
+                animationDuration={800} // milliseconds
               />
               <Area
                 type="monotone"
@@ -315,6 +317,8 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                 stroke="hsl(var(--chart-2))"
                 fill="url(#saplingGradient)"
                 name="Sapling Pool"
+                isAnimationActive={true}
+                animationDuration={800} // milliseconds
               />
               <Area
                 type="monotone"
@@ -323,6 +327,8 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                 stroke="hsl(var(--chart-3))"
                 fill="url(#orchardGradient)"
                 name="Orchard Pool"
+                isAnimationActive={true}
+                animationDuration={800} // milliseconds
               />
             </AreaChart>
           )}
