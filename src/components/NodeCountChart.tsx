@@ -142,7 +142,16 @@ const NodeCountChart = (props: NodeCountChartProps) => {
                   stroke="#3b82f6"
                   fill="url(#nodeGradient)"
                   strokeWidth={2}
-                  dot={true}
+                  dot={({ cx, cy }) => (
+                    <circle
+                      cx={cx}
+                      cy={cy}
+                      r={4}
+                      fill="#3b82f6" // background color
+                      stroke="white" // outer ring
+                      strokeWidth={1.5}
+                    />
+                  )}
                 />
               </AreaChart>
             </ResponsiveContainer>
