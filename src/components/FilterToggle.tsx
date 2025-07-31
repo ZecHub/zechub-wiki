@@ -4,12 +4,14 @@ import React from "react";
 interface FilterToggleProps {
   filters: {
     Devices: Set<string>;
+    "Operating System": Set<string>;
     Pools: Set<string>;
+    "Wallet Support": Set<string>;
     Features: Set<string>;
   };
   activeFilters: string[];
   toggleFilter: (filterCategory: string, filterValue: string) => void;
-  handleToggleFilter : () => void;
+  handleToggleFilter: () => void;
 }
 
 const FilterToggle: React.FC<FilterToggleProps> = ({

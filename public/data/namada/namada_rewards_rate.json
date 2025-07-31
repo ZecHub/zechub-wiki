@@ -298,5 +298,95 @@
         "Staked_Ratio": "0.344795964646",
         "Annual_Staking_Rewards_Ratio": "0.145008332044",
         "Inflation_Rate": "0.049998287729"
+    },
+    {
+        "Date": "07/05/2025",
+        "Staked_Ratio": "0.346919974563",
+        "Annual_Staking_Rewards_Ratio": "0.144120521719",
+        "Inflation_Rate": "0.049998287729"
+    },
+    {
+        "Date": "07/06/2025",
+        "Staked_Ratio": "0.347362144899",
+        "Annual_Staking_Rewards_Ratio": "0.143937065288",
+        "Inflation_Rate": "0.049998287729"
+    },
+    {
+        "Date": "07/08/2025",
+        "Staked_Ratio": "0.361461330601",
+        "Annual_Staking_Rewards_Ratio": "0.138322646145",
+        "Inflation_Rate": "0.049998287728"
+    },
+    {
+        "Date": "07/09/2025",
+        "Staked_Ratio": "0.361724388057",
+        "Annual_Staking_Rewards_Ratio": "0.138222053526",
+        "Inflation_Rate": "0.049998287728"
+    },
+    {
+        "Date": "07/11/2025",
+        "Staked_Ratio": "0.362250241483",
+        "Annual_Staking_Rewards_Ratio": "0.138021406208",
+        "Inflation_Rate": "0.049998287729"
+    },
+    {
+        "Date": "07/11/2025",
+        "Staked_Ratio": "0.362435520925",
+        "Annual_Staking_Rewards_Ratio": "0.13795084875",
+        "Inflation_Rate": "0.049998287729"
+    },
+    {
+        "Date": "07/12/2025",
+        "Staked_Ratio": "0.363078968851",
+        "Annual_Staking_Rewards_Ratio": "0.13770637249",
+        "Inflation_Rate": "0.049998287728"
+    },
+    {
+        "Date": "07/15/2025",
+        "Staked_Ratio": "0.363485350203",
+        "Annual_Staking_Rewards_Ratio": "0.137552414973",
+        "Inflation_Rate": "0.049998287728"
+    },
+    {
+        "Date": "07/15/2025",
+        "Staked_Ratio": "0.363837856583",
+        "Annual_Staking_Rewards_Ratio": "0.137419146532",
+        "Inflation_Rate": "0.049998287728"
+    },
+    {
+        "Date": "07/17/2025",
+        "Staked_Ratio": "0.363941976819",
+        "Annual_Staking_Rewards_Ratio": "0.137379832263",
+        "Inflation_Rate": "0.049998287729"
+    },
+    {
+        "Date": "07/18/2025",
+        "Staked_Ratio": "0.406646361927",
+        "Annual_Staking_Rewards_Ratio": "0.122952748161",
+        "Inflation_Rate": "0.049998287729"
+    },
+    {
+        "Date": "07/22/2025",
+        "Staked_Ratio": "0.408899908861",
+        "Annual_Staking_Rewards_Ratio": "0.122275125634",
+        "Inflation_Rate": "0.049998287728"
+    },
+    {
+        "Date": "07/23/2025",
+        "Staked_Ratio": "0.417641674445",
+        "Annual_Staking_Rewards_Ratio": "0.119715753451",
+        "Inflation_Rate": "0.049998287729"
+    },
+    {
+        "Date": "07/28/2025",
+        "Staked_Ratio": "0.417374638914",
+        "Annual_Staking_Rewards_Ratio": "0.119792347369",
+        "Inflation_Rate": "0.049998287728"
+    },
+    {
+        "Date": "07/29/2025",
+        "Staked_Ratio": "0.418922134832",
+        "Annual_Staking_Rewards_Ratio": "0.119349835138",
+        "Inflation_Rate": "0.049998287728"
     }
 ]
