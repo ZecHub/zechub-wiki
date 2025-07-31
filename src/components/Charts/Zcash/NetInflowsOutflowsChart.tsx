@@ -150,7 +150,13 @@ export default function NetInflowsOutflowsChart(
                 cursor={{ fill: "#3b82f6", fillOpacity: 0.1 }}
               />
 
-              <Legend />
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                wrapperStyle={{
+                  transform: "translateY(20px)", // adds spacing downward
+                }}
+              />
 
               <Bar
                 dataKey="netSaplingFlow"

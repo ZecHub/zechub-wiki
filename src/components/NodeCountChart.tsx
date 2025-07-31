@@ -115,7 +115,25 @@ const NodeCountChart = (props: NodeCountChartProps) => {
                     return null;
                   }}
                 />
-                <Legend />
+
+                <Legend
+                  verticalAlign="bottom"
+                  align="center"
+                  content={() => (
+                    <div
+                      style={{ paddingTop: 20 }}
+                      className="flex justify-center gap-6 text-sm text-slate-600 dark:text-slate-300"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="w-3 h-3 inline-block rounded-sm"
+                          style={{ background: "#3b82f6" }}
+                        />
+                        Node Count
+                      </div>
+                    </div>
+                  )}
+                />
 
                 {/* Area */}
                 <Area
