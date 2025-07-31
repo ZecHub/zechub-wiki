@@ -23,6 +23,7 @@ import {
 
 const BLOCKS_PERIOD = 8064;
 const ORCHARD_ACTIVATION = 1687104;
+const MIN_GAP_BTW_SLIDER = 100;
 
 export default function TransactionsSummaryChart() {
   const [chartData, setChartData] = useState<ShieldedTransactionDatum[]>([]);
@@ -138,13 +139,28 @@ export default function TransactionsSummaryChart() {
 
   const chartDataset = processData();
 
+  const handleStartChange = (val: number) => {
+    // Prevent start from meeting or exceeding end
+    if (val >= endHeight - MIN_GAP_BTW_SLIDER) {
+      setStartHeight(endHeight - MIN_GAP_BTW_SLIDER); // or a safe MIN_GAP
+    } else {
+      setStartHeight(val);
+    }
+  };
+
+  const handleEndChange = (val: number) => {
+    // Prevent end from meeting or being lower than start
+    if (val <= startHeight + MIN_GAP_BTW_SLIDER) {
+      setEndHeight(startHeight + MIN_GAP_BTW_SLIDER); // or a safe MIN_GAP
+    } else {
+      setEndHeight(val);
+    }
+  };
+
   return (
     <ErrorBoundary fallback={"Failed to load Transaction Summary Chart"}>
       <div className="space-y-6">
         <div className="flex mt-12 space-x-10">
-          {/* <h3 className="text-lg font-semibold mb-4 flex-1">
-            Transactions Summary
-          </h3> */}
           <h3 className="text-lg font-semibold mb-4 flex-1">
             Transactions Summary
           </h3>
@@ -200,7 +216,7 @@ export default function TransactionsSummaryChart() {
           <div className="flex justify-center items-center space-x-12">
             <RangeSlider
               value={startHeight}
-              onChange={setStartHeight}
+              onChange={handleStartChange}
               min={minHeight}
               max={maxHeight}
               label="Start Height"
@@ -208,7 +224,7 @@ export default function TransactionsSummaryChart() {
 
             <RangeSlider
               value={endHeight}
-              onChange={setEndHeight}
+              onChange={handleEndChange}
               min={minHeight}
               max={maxHeight}
               label="End Height"
