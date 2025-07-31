@@ -5,7 +5,7 @@ import {
   CardTitle,
 } from "@/components/ui/shadcn/card";
 // import { NamadaAsset } from "@/lib/chart/types";
-import NodeCountChartB from "@/components/NodeCountChart";
+import NodeCountChartB from "@/components/Charts/Zcash/NodeCountChart";
 import { RefObject, useState } from "react";
 import SupplyDataLastUpdated from "../../LastUpdated";
 import { ZcashMetrics } from "../../ZcashMetrics/ZcashMetrics";
@@ -14,6 +14,7 @@ import IssuanceChart from "./IssuanceChart";
 import LockboxChart from "./LockboxChart";
 import NetInflowsOutflowsChart from "./NetInflowsOutflowsChart";
 import ShieldedSupplyChart from "./ShieldedSupplyChart";
+import TransactionsSummaryChart from "./TransactionSummaryChart";
 
 type ZcashChartProps = {
   lastUpdated: Date;
@@ -72,8 +73,6 @@ const TabsContent = ({ value, children, activeTab }: any) => (
 
 function ZcashChart(props: ZcashChartProps) {
   const [activeTab, setActiveTab] = useState("supply");
-  const [cumulativeCheck, setCumulativeCheck] = useState(true);
-  const [filterSpamCheck, setFilterSpamCheck] = useState(false);
 
   const tabLabels = [
     "Supply",
@@ -82,6 +81,7 @@ function ZcashChart(props: ZcashChartProps) {
     "Lockbox",
     "Flows",
     "Node Count",
+    "TX Summary",
   ];
 
   return (
@@ -138,6 +138,10 @@ function ZcashChart(props: ZcashChartProps) {
                 <TabsContent value="node count" activeTab={activeTab}>
                   {/* <NodeCountChart color="red" /> */}
                   <NodeCountChartB color="red" />
+                </TabsContent>
+
+                <TabsContent value="tx summary" activeTab={activeTab}>
+                  <TransactionsSummaryChart />
                 </TabsContent>
 
                 <div>
