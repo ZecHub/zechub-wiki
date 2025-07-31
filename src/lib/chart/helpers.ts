@@ -7,6 +7,7 @@ import {
   NetInOutflow,
   NodeCountData,
   ShieldedAmountDatum,
+  ShieldedTransactionDatum,
   ShieldedTxCount,
   SupplyData,
 } from "./types";
@@ -222,6 +223,13 @@ export async function getNamadaSupply(
   }
 }
 
+export async function fetchTransactionData(
+  url: string
+): Promise<Array<ShieldedTransactionDatum>> {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  return await response.json();
+}
 /**
  * Loads the historic shielded pool data from a public json file in Github repo
  * @returns Promise of shielded pool data
