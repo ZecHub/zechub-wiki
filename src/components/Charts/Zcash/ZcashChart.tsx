@@ -7,7 +7,6 @@ import {
 // import { NamadaAsset } from "@/lib/chart/types";
 import NodeCountChartB from "@/components/NodeCountChart";
 import { RefObject, useState } from "react";
-import { ErrorBoundary } from "../../ErrorBoundary/ErrorBoundary";
 import SupplyDataLastUpdated from "../../LastUpdated";
 import { ZcashMetrics } from "../../ZcashMetrics/ZcashMetrics";
 import DifficultyChart from "./DifficultyChart";
@@ -86,80 +85,78 @@ function ZcashChart(props: ZcashChartProps) {
   ];
 
   return (
-    <ErrorBoundary fallback={`Failed to load Namada's chart`}>
-      <div className="space-y-6">
-        {/* Market Metrics */}
-        <ZcashMetrics />
+    <div className="space-y-6">
+      {/* Market Metrics */}
+      <ZcashMetrics />
 
-        {/* Charts Tabs */}
-        <Card className="shadow-sm border border-gray-200 dark:border-slate-700">
-          <CardHeader className="mb-4">
-            <CardTitle className="text-xl">Analytics Charts</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
-              {({ activeTab, setActiveTab }: any) => (
-                <>
-                  <TabsList>
-                    {tabLabels.map((label) => (
-                      <TabsTrigger
-                        key={label}
-                        value={label.toLowerCase()}
-                        activeTab={activeTab}
-                        setActiveTab={setActiveTab}
-                      >
-                        {label}
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
+      {/* Charts Tabs */}
+      <Card className="shadow-sm border border-gray-200 dark:border-slate-700">
+        <CardHeader className="mb-4">
+          <CardTitle className="text-xl">Analytics Charts</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
+            {({ activeTab, setActiveTab }: any) => (
+              <>
+                <TabsList>
+                  {tabLabels.map((label) => (
+                    <TabsTrigger
+                      key={label}
+                      value={label.toLowerCase()}
+                      activeTab={activeTab}
+                      setActiveTab={setActiveTab}
+                    >
+                      {label}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
 
-                  <TabsContent
-                    value="supply"
-                    activeTab={activeTab}
-                    ref={props.divChartRef}
-                  >
-                    <ShieldedSupplyChart />
-                  </TabsContent>
+                <TabsContent
+                  value="supply"
+                  activeTab={activeTab}
+                  ref={props.divChartRef}
+                >
+                  <ShieldedSupplyChart />
+                </TabsContent>
 
-                  <TabsContent value="difficulty" activeTab={activeTab}>
-                    <DifficultyChart />
-                  </TabsContent>
+                <TabsContent value="difficulty" activeTab={activeTab}>
+                  <DifficultyChart />
+                </TabsContent>
 
-                  <TabsContent value="issuance" activeTab={activeTab}>
-                    {activeTab === "issuance" && <IssuanceChart />}
-                  </TabsContent>
+                <TabsContent value="issuance" activeTab={activeTab}>
+                  {activeTab === "issuance" && <IssuanceChart />}
+                </TabsContent>
 
-                  <TabsContent value="lockbox" activeTab={activeTab}>
-                    <LockboxChart />
-                  </TabsContent>
+                <TabsContent value="lockbox" activeTab={activeTab}>
+                  <LockboxChart />
+                </TabsContent>
 
-                  <TabsContent value="flows" activeTab={activeTab}>
-                    <NetInflowsOutflowsChart color="red" />
-                  </TabsContent>
+                <TabsContent value="flows" activeTab={activeTab}>
+                  <NetInflowsOutflowsChart color="red" />
+                </TabsContent>
 
-                  <TabsContent value="node count" activeTab={activeTab}>
-                    {/* <NodeCountChart color="red" /> */}
-                    <NodeCountChartB color="red" />
-                  </TabsContent>
+                <TabsContent value="node count" activeTab={activeTab}>
+                  {/* <NodeCountChart color="red" /> */}
+                  <NodeCountChartB color="red" />
+                </TabsContent>
 
-                  <div>
-                    {props.lastUpdated && (
-                      <SupplyDataLastUpdated lastUpdated={props.lastUpdated} />
-                    )}
-                    {/* <ExportButton
+                <div>
+                  {props.lastUpdated && (
+                    <SupplyDataLastUpdated lastUpdated={props.lastUpdated} />
+                  )}
+                  {/* <ExportButton
                       handleSaveToPng={props.handleSaveToPng}
                       selectedPool={selectedPool}
                       selectedTool={selectedTool}
                       supplies={supplies}
                     /> */}
-                  </div>
-                </>
-              )}
-            </Tabs>
-          </CardContent>
-        </Card>
-      </div>
-    </ErrorBoundary>
+                </div>
+              </>
+            )}
+          </Tabs>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
