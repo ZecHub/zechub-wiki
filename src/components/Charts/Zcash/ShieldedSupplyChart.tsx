@@ -29,12 +29,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState("all");
   const fontSize = useResponsiveFontSize(); // optional: pass min/max
-  // const [cumulativeCheck, setCumulativeCheck] = useState(true);
-  // const [filterSpamCheck, setFilterSpamCheck] = useState(false);
-  // const [circulation, setCirculation] = useState<number | null>(null);
-  const [shieldedSupplyData, setShieldedSupplyData] = useState<SupplyData[]>(
-    []
-  );
+
   const [orchardSupplyData, setOrchardSupplyData] = useState<SupplyData[]>([]);
   const [saplingSupplyData, setSaplingSupplyData] = useState<SupplyData[]>([]);
   const [sproutSupplyData, setSproutSupplyData] = useState<SupplyData[]>([]);
@@ -56,10 +51,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
         if (sproutSupply) {
           setSproutSupplyData(sproutSupply);
-        }
-        if (defaultSupply) {
-          console.log({ defaultSupply });
-          setShieldedSupplyData(defaultSupply);
         }
 
         if (saplingSupply) {
@@ -85,7 +76,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
   const getAvailableYears = () => {
     const allData = [
-      // ...shieldedSupplyData,
       ...orchardSupplyData,
       ...saplingSupplyData,
       ...sproutSupplyData,
@@ -106,14 +96,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const extractYear = (date: string) => {
     const [, , year] = date.split("/");
     return year;
-  };
-
-  const filterDataByYear = (data: any[], year: string) => {
-    if (year === "all") return data;
-
-    return data.filter(
-      (item) => parseInt(extractYear(item.close)) === parseInt(year)
-    );
   };
 
   const normalizePools = () => {
@@ -272,9 +254,8 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               <Legend
                 verticalAlign="bottom"
                 align="center"
-                wrapperStyle={{ marginTop: 20 }}
                 content={() => (
-                  <div className="flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
+                  <div className="pt-5 flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
                     <div className="flex items-center gap-2">
                       <span
                         className="w-3 h-3 inline-block rounded-sm"
