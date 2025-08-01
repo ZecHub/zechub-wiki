@@ -1,5 +1,5 @@
 import { formatDate } from "@/lib/chart/helpers";
-import { ErrorBoundary } from "./ErrorBoundary/ErrorBoundary";
+import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 
 const SupplyDataLastUpdated = (args: { lastUpdated: Date }) => {
   return (
