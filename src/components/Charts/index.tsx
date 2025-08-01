@@ -92,7 +92,11 @@ const Dashboard = () => {
 
         {/* Namada Dashboard */}
         {selectedCrypto === "namada" && (
-          <NamadaChart lastUpdated={lastUpdated!} divChartRef={divChartRef} />
+          <NamadaChart
+            lastUpdated={lastUpdated!}
+            divChartRef={divChartRef}
+            handleSaveToPng={handleSaveToPng}
+          />
         )}
 
         {/* Penumbra Dashboard */}
