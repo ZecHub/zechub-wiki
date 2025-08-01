@@ -5,7 +5,7 @@ import { getDifficultyData } from "@/lib/chart/helpers";
 import { Difficulty } from "@/lib/chart/types";
 import * as dateFns from "date-fns";
 import { Spinner } from "flowbite-react";
-import { useEffect, useMemo, useState } from "react";
+import { RefObject, useEffect, useMemo, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -16,8 +16,11 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import ChartContainer from "./ChartContainer";
 
-type DifficultyChartProps = {};
+type DifficultyChartProps = {
+  chartRef: RefObject<HTMLDivElement | null>;
+};
 
 export default function DifficultyChart(props: DifficultyChartProps) {
   const [difficulty, setDifficulty] = useState<Difficulty[]>([]);
@@ -70,75 +73,69 @@ export default function DifficultyChart(props: DifficultyChartProps) {
             Mining Difficulty Over Time
           </h3>
         </div>
-        <ResponsiveContainer width="100%" height={400}>
-          {loading ? (
-            <div className="flex justify-center items-center">
-              <Spinner />
-            </div>
-          ) : (
-            <AreaChart data={parsedData}>
-              <defs>
-                <linearGradient id="diffGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="5%"
-                    stopColor="hsl(var(--chart-4))"
-                    stopOpacity={0.8}
-                  />
-                  <stop
-                    offset="95%"
-                    stopColor="hsl(var(--chart-4))"
-                    stopOpacity={0}
-                  />
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-              <XAxis dataKey="date" tick={{ fontSize, fill: "#94a3b8" }} />
-              <YAxis
-                tickFormatter={(v) =>
-                  v >= 1_000_000
-                    ? `${v / 1_000_000}M`
-                    : v >= 1_000
-                    ? `${v / 1_000}K`
-                    : v
-                }
-                tick={{ fontSize, fill: "#94a3b8" }}
-                width={60}
-              />
-              <Tooltip
-                formatter={(value: any) =>
-                  typeof value === "number" ? value.toLocaleString() : value
-                }
-              />
+        <ChartContainer ref={props.chartRef} loading={loading}>
+          <AreaChart data={parsedData}>
+            <defs>
+              <linearGradient id="diffGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="5%"
+                  stopColor="hsl(var(--chart-4))"
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="hsl(var(--chart-4))"
+                  stopOpacity={0}
+                />
+              </linearGradient>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+            <XAxis dataKey="date" tick={{ fontSize, fill: "#94a3b8" }} />
+            <YAxis
+              tickFormatter={(v) =>
+                v >= 1_000_000
+                  ? `${v / 1_000_000}M`
+                  : v >= 1_000
+                  ? `${v / 1_000}K`
+                  : v
+              }
+              tick={{ fontSize, fill: "#94a3b8" }}
+              width={60}
+            />
+            <Tooltip
+              formatter={(value: any) =>
+                typeof value === "number" ? value.toLocaleString() : value
+              }
+            />
 
-              <Legend
-                verticalAlign="bottom"
-                align="center"
-                content={() => (
-                  <div
-                    style={{ paddingTop: 20 }}
-                    className="flex justify-center gap-6 text-sm text-slate-600 dark:text-slate-300"
-                  >
-                    <div className="flex items-center gap-2">
-                      <span
-                        className="w-3 h-3 inline-block rounded-sm"
-                        style={{ background: "#3b82f6" }}
-                      />
-                      Difficulty
-                    </div>
+            <Legend
+              verticalAlign="bottom"
+              align="center"
+              content={() => (
+                <div
+                  style={{ paddingTop: 20 }}
+                  className="flex justify-center gap-6 text-sm text-slate-600 dark:text-slate-300"
+                >
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="w-3 h-3 inline-block rounded-sm"
+                      style={{ background: "#3b82f6" }}
+                    />
+                    Difficulty
                   </div>
-                )}
-              />
-              <Area
-                type="monotone"
-                dataKey="difficulty"
-                stroke="hsl(var(--chart-4))"
-                fillOpacity={1}
-                fill="url(#diffGradient)"
-                strokeWidth={2}
-              />
-            </AreaChart>
-          )}
-        </ResponsiveContainer>
+                </div>
+              )}
+            />
+            <Area
+              type="monotone"
+              dataKey="difficulty"
+              stroke="hsl(var(--chart-4))"
+              fillOpacity={1}
+              fill="url(#diffGradient)"
+              strokeWidth={2}
+            />
+          </AreaChart>
+        </ChartContainer>
       </div>
     </ErrorBoundary>
   );
