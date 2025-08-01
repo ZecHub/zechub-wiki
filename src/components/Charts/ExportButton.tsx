@@ -4,9 +4,9 @@ import { transformSupplyData } from "@/lib/chart/helpers";
 import { PoolKey, SupplyData } from "@/lib/chart/types";
 
 interface ExportButtonProps {
-  supplies: Record<PoolKey, SupplyData | null>;
+  supplies?: Record<PoolKey, SupplyData | null> | any;
   selectedPool: PoolKey;
-  selectedTool: ToolOptions;
+  selectedTool?: ToolOptions ;
   handleSaveToPng: (
     poolType: string,
     poolData: Record<string, { timestamp: string; supply: number } | null>,
@@ -23,11 +23,11 @@ export function ExportButton(props: ExportButtonProps) {
           props.handleSaveToPng(
             props.selectedPool,
             {
-              sproutSupply: transformSupplyData(props.supplies.sprout),
-              saplingSupply: transformSupplyData(props.supplies.sapling),
-              orchardSupply: transformSupplyData(props.supplies.orchard),
+              sproutSupply: transformSupplyData(props.supplies!.sprout),
+              saplingSupply: transformSupplyData(props.supplies!.sapling),
+              orchardSupply: transformSupplyData(props.supplies!.orchard),
             },
-            props.selectedTool
+            props.selectedTool!
           )
         }
       />
