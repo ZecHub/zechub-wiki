@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/shadcn/card";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getNamadaSupply } from "@/lib/chart/helpers";
+import { FlattenedTokenData } from "@/lib/chart/types";
 import { Spinner } from "flowbite-react";
 import { RefObject, useEffect, useState } from "react";
 import {
@@ -21,7 +22,6 @@ import {
   YAxis,
 } from "recharts";
 import { ErrorBoundary } from "../../ErrorBoundary/ErrorBoundary";
-import SupplyDataLastUpdated from "../../LastUpdated";
 import CryptoMetrics from "../../ShieldedPool/Metric";
 import {
   Select,
@@ -30,7 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../ui/shadcn/select";
-import { FlattenedTokenData } from "@/lib/chart/types";
+import SupplyDataLastUpdated from "../LastUpdated";
 
 type NamadaChartProps = {
   lastUpdated: Date;

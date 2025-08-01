@@ -7,7 +7,6 @@ import {
 import { RefObject, useState } from "react";
 import { ResponsiveContainer } from "recharts";
 import { ErrorBoundary } from "../../ErrorBoundary/ErrorBoundary";
-import SupplyDataLastUpdated from "../../LastUpdated";
 import CryptoMetrics from "../../ShieldedPool/Metric";
 import {
   Select,
@@ -16,13 +15,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../ui/shadcn/select";
+import SupplyDataLastUpdated from "../LastUpdated";
 
 type PenumbraChartProps = {
   lastUpdated: Date;
   divChartRef: RefObject<HTMLDivElement | null>;
 };
-
- 
 
 function PenumbraChart(props: PenumbraChartProps) {
   const [selectedTokenId, setSelectedTokenId] = useState("");
