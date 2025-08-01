@@ -1,20 +1,19 @@
+import NodeCountChart from "@/components/Charts/Zcash/NodeCountChart";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/components/ui/shadcn/card";
-// import { NamadaAsset } from "@/lib/chart/types";
-import NodeCountChart from "@/components/Charts/Zcash/NodeCountChart";
 import { RefObject, useState } from "react";
 import { ZcashMetrics } from "../../ZcashMetrics/ZcashMetrics";
-import { ExportButton } from "../ExportButton";
-import SupplyDataLastUpdated from "../LastUpdated";
+import ChartFooter from "../ChartFooter";
 import DifficultyChart from "./DifficultyChart";
 import IssuanceChart from "./IssuanceChart";
 import LockboxChart from "./LockboxChart";
 import NetInflowsOutflowsChart from "./NetInflowsOutflowsChart";
 import ShieldedSupplyChart from "./ShieldedSupplyChart";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../Tabs";
 import TransactionsSummaryChart from "./TransactionSummaryChart";
 
 type ZcashChartProps = {
@@ -32,45 +31,6 @@ type ZcashChartProps = {
     toolType: string
   ) => Promise<void>;
 };
-
-// Tabs component - simple implementation
-const Tabs = ({ children, defaultValue, value, onValueChange }: any) => {
-  const [activeTab, setActiveTab] = useState(defaultValue || value);
-
-  const handleTabChange = (newValue: string) => {
-    setActiveTab(newValue);
-    onValueChange?.(newValue);
-  };
-
-  return (
-    <div className="tabs-container">
-      {children({ activeTab, setActiveTab: handleTabChange })}
-    </div>
-  );
-};
-
-const TabsList = ({ children }: any) => (
-  <div className="flex space-x-1 rounded-lg bg-muted bg-slate-100 p-1 mb-4">
-    {children}
-  </div>
-);
-
-const TabsTrigger = ({ value, children, activeTab, setActiveTab }: any) => (
-  <button
-    className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-      activeTab === value
-        ? "bg-background text-foreground shadow-sm"
-        : "text-muted-foreground hover:text-foreground"
-    }`}
-    onClick={() => setActiveTab(value)}
-  >
-    {children}
-  </button>
-);
-
-const TabsContent = ({ value, children, activeTab }: any) => (
-  <div className={activeTab === value ? "block" : "hidden"}>{children}</div>
-);
 
 function ZcashChart(props: ZcashChartProps) {
   const [activeTab, setActiveTab] = useState("supply");
@@ -112,11 +72,7 @@ function ZcashChart(props: ZcashChartProps) {
                   ))}
                 </TabsList>
 
-                <TabsContent
-                  value="supply"
-                  activeTab={activeTab}
-                  ref={props.divChartRef}
-                >
+                <TabsContent value="supply" activeTab={activeTab}>
                   <ShieldedSupplyChart chartRef={props.divChartRef} />
                 </TabsContent>
 
@@ -149,24 +105,12 @@ function ZcashChart(props: ZcashChartProps) {
                   <TransactionsSummaryChart chartRef={props.divChartRef} />
                 </TabsContent>
 
-                {props.lastUpdated && (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      marginTop: 48,
-                    }}
-                  >
-                    <SupplyDataLastUpdated lastUpdated={props.lastUpdated} />
-                    
-                    <ExportButton
-                      handleSaveToPng={props.handleSaveToPng}
-                      selectedPool={activeTab}
-                      supplies={[]}
-                    />
-                  </div>
-                )}
+                <ChartFooter
+                  pngLabel={activeTab}
+                  handleSaveToPng={props.handleSaveToPng}
+                  lastUpdatedDate={props.lastUpdated}
+                  data={[]}
+                />
               </>
             )}
           </Tabs>
