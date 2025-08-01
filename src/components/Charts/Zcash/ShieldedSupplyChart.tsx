@@ -158,10 +158,10 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             <div className="flex justify-center items-center gap-2">
               <label className="text-sm font-medium">Year</label>
               <Select value={selectedYear} onValueChange={setSelectedYear}>
-                <SelectTrigger className="w-32">
+                <SelectTrigger className="w-32 dark:border-slate-700">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="dark:border-slate-700">
                   {getAvailableYears().map((year) => (
                     <SelectItem
                       key={year}
