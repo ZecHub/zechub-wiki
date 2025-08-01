@@ -8,20 +8,21 @@ import { NetInOutflow } from "@/lib/chart/types";
 import { formatNumber } from "@/lib/helpers";
 import * as dateFns from "date-fns";
 import { Spinner } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import {
   Bar,
   BarChart,
   CartesianGrid,
   Legend,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
+import ChartContainer from "./ChartContainer";
 
 interface NetInflowsOutflowsChartProps {
   color?: string;
+  chartRef: RefObject<HTMLDivElement | null>;
 }
 
 export default function NetInflowsOutflowsChart(
@@ -85,7 +86,7 @@ export default function NetInflowsOutflowsChart(
             Chart cannot be rendered at the moment
           </p>
         ) : (
-          <ResponsiveContainer width="100%" height={400}>
+          <ChartContainer ref={props.chartRef} loading={loading}>
             <BarChart
               data={parsedData}
               margin={{ top: 20, right: 20, left: 0, bottom: 40 }}
@@ -175,7 +176,7 @@ export default function NetInflowsOutflowsChart(
                 radius={[4, 4, 0, 0]}
               />
             </BarChart>
-          </ResponsiveContainer>
+          </ChartContainer>
         )}
       </div>
     </ErrorBoundary>
