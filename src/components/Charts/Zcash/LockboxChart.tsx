@@ -3,14 +3,12 @@ import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getLockboxData } from "@/lib/chart/helpers";
 import { LockBox } from "@/lib/chart/types";
-import { Spinner } from "flowbite-react";
-import { useEffect, useState, RefObject } from "react";
+import { RefObject, useEffect, useState } from "react";
 import {
   Area,
   AreaChart,
   CartesianGrid,
   Legend,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
