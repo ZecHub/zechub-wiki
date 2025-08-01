@@ -5,10 +5,11 @@ import {
   CardTitle,
 } from "@/components/ui/shadcn/card";
 // import { NamadaAsset } from "@/lib/chart/types";
-import NodeCountChartB from "@/components/Charts/Zcash/NodeCountChart";
+import NodeCountChart from "@/components/Charts/Zcash/NodeCountChart";
 import { RefObject, useState } from "react";
-import SupplyDataLastUpdated from "../../LastUpdated";
 import { ZcashMetrics } from "../../ZcashMetrics/ZcashMetrics";
+import { ExportButton } from "../ExportButton";
+import SupplyDataLastUpdated from "../LastUpdated";
 import DifficultyChart from "./DifficultyChart";
 import IssuanceChart from "./IssuanceChart";
 import LockboxChart from "./LockboxChart";
@@ -116,7 +117,7 @@ function ZcashChart(props: ZcashChartProps) {
                   activeTab={activeTab}
                   ref={props.divChartRef}
                 >
-                  <ShieldedSupplyChart />
+                  <ShieldedSupplyChart chartRef={props.divChartRef} />
                 </TabsContent>
 
                 <TabsContent value="difficulty" activeTab={activeTab}>
@@ -136,25 +137,30 @@ function ZcashChart(props: ZcashChartProps) {
                 </TabsContent>
 
                 <TabsContent value="node count" activeTab={activeTab}>
-                  {/* <NodeCountChart color="red" /> */}
-                  <NodeCountChartB color="red" />
+                  <NodeCountChart color="red" />
                 </TabsContent>
 
                 <TabsContent value="tx summary" activeTab={activeTab}>
                   <TransactionsSummaryChart />
                 </TabsContent>
 
-                <div>
-                  {props.lastUpdated && (
+                {props.lastUpdated && (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      marginTop: 48,
+                    }}
+                  >
                     <SupplyDataLastUpdated lastUpdated={props.lastUpdated} />
-                  )}
-                  {/* <ExportButton
+                    <ExportButton
                       handleSaveToPng={props.handleSaveToPng}
-                      selectedPool={selectedPool}
-                      selectedTool={selectedTool}
-                      supplies={supplies}
-                    /> */}
-                </div>
+                      selectedPool={activeTab}
+                      supplies={[]}
+                    />
+                  </div>
+                )}
               </>
             )}
           </Tabs>
