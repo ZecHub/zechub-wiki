@@ -6,8 +6,7 @@ import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { fetchTransactionData } from "@/lib/chart/helpers";
 import { ShieldedTransactionDatum } from "@/lib/chart/types";
-import { Spinner } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -15,17 +14,22 @@ import {
   BarChart,
   CartesianGrid,
   Legend,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
+import ChartContainer from "./ChartContainer";
 
 const BLOCKS_PERIOD = 8064;
 const ORCHARD_ACTIVATION = 1687104;
 const MIN_GAP_BTW_SLIDER = 100;
 
-export default function TransactionsSummaryChart() {
+interface TransactionsSummaryChartProps {
+  chartRef: RefObject<HTMLDivElement | null>;
+}
+export default function TransactionsSummaryChart(
+  props: TransactionsSummaryChartProps
+) {
   const [chartData, setChartData] = useState<ShieldedTransactionDatum[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -231,12 +235,8 @@ export default function TransactionsSummaryChart() {
             />
           </div>
         </div>
-        <ResponsiveContainer width="100%" height={400}>
-          {loading ? (
-            <div className="flex justify-center items-center">
-              <Spinner />
-            </div>
-          ) : cumulative ? (
+        <ChartContainer ref={props.chartRef} loading={loading}>
+          {cumulative ? (
             <AreaChart data={chartDataset}>
               <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
               <XAxis
@@ -341,7 +341,7 @@ export default function TransactionsSummaryChart() {
               )}
             </BarChart>
           )}
-        </ResponsiveContainer>
+        </ChartContainer>
       </div>
     </ErrorBoundary>
   );
