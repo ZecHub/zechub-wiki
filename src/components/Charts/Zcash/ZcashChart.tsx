@@ -121,27 +121,32 @@ function ZcashChart(props: ZcashChartProps) {
                 </TabsContent>
 
                 <TabsContent value="difficulty" activeTab={activeTab}>
-                  <DifficultyChart />
+                  <DifficultyChart chartRef={props.divChartRef} />
                 </TabsContent>
 
                 <TabsContent value="issuance" activeTab={activeTab}>
-                  {activeTab === "issuance" && <IssuanceChart />}
+                  {activeTab === "issuance" && (
+                    <IssuanceChart chartRef={props.divChartRef} />
+                  )}
                 </TabsContent>
 
                 <TabsContent value="lockbox" activeTab={activeTab}>
-                  <LockboxChart />
+                  <LockboxChart chartRef={props.divChartRef} />
                 </TabsContent>
 
                 <TabsContent value="flows" activeTab={activeTab}>
-                  <NetInflowsOutflowsChart color="red" />
+                  <NetInflowsOutflowsChart
+                    color="red"
+                    chartRef={props.divChartRef}
+                  />
                 </TabsContent>
 
                 <TabsContent value="node count" activeTab={activeTab}>
-                  <NodeCountChart color="red" />
+                  <NodeCountChart color="red" chartRef={props.divChartRef} />
                 </TabsContent>
 
                 <TabsContent value="tx summary" activeTab={activeTab}>
-                  <TransactionsSummaryChart />
+                  <TransactionsSummaryChart chartRef={props.divChartRef} />
                 </TabsContent>
 
                 {props.lastUpdated && (
@@ -154,6 +159,7 @@ function ZcashChart(props: ZcashChartProps) {
                     }}
                   >
                     <SupplyDataLastUpdated lastUpdated={props.lastUpdated} />
+                    
                     <ExportButton
                       handleSaveToPng={props.handleSaveToPng}
                       selectedPool={activeTab}
