@@ -94,7 +94,9 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
     },
     {
       label: "Blocks",
-      value: blockchainInfo?.blocks.toLocaleString() ?? "N/A",
+      value: blockchainInfo?.blocks
+        ? blockchainInfo?.blocks.toLocaleString()
+        : "N/A",
     },
     {
       label: "24h Transactions",
