@@ -152,13 +152,30 @@ export default function NetInflowsOutflowsChart(
               />
 
               <Legend
-                verticalAlign="bottom"
                 align="center"
-                wrapperStyle={{
-                  transform: "translateY(20px)", // adds spacing downward
-                }}
+                content={() => (
+                  <div className="pt-5 flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{
+                          background: "#ec4899",
+                        }}
+                      />
+                      <p>Net Orchard Flow</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{
+                          background: "#3b82f6",
+                        }}
+                      />
+                      <p>Net Sapling Flow</p>
+                    </div>
+                  </div>
+                )}
               />
-
               <Bar
                 dataKey="netSaplingFlow"
                 name="Net Sapling Flow"

@@ -122,7 +122,7 @@ const NodeCountChart = (props: NodeCountChartProps) => {
                       className="w-3 h-3 inline-block rounded-sm"
                       style={{ background: "#3b82f6" }}
                     />
-                    Node Count
+                    <p>Node Count</p>
                   </div>
                 </div>
               )}

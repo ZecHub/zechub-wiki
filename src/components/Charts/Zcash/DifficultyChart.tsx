@@ -4,14 +4,12 @@ import { DATA_URL } from "@/lib/chart/data-url";
 import { getDifficultyData } from "@/lib/chart/helpers";
 import { Difficulty } from "@/lib/chart/types";
 import * as dateFns from "date-fns";
-import { Spinner } from "flowbite-react";
 import { RefObject, useEffect, useMemo, useState } from "react";
 import {
   Area,
   AreaChart,
   CartesianGrid,
   Legend,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -121,7 +119,7 @@ export default function DifficultyChart(props: DifficultyChartProps) {
                       className="w-3 h-3 inline-block rounded-sm"
                       style={{ background: "#3b82f6" }}
                     />
-                    Difficulty
+                    <p>Difficulty</p>
                   </div>
                 </div>
               )}

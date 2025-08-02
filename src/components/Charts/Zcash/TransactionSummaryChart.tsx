@@ -246,7 +246,33 @@ export default function TransactionsSummaryChart(
               />
               <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
               <Tooltip />
-              <Legend />
+
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                content={({ payload }) => (
+                  <div className="flex justify-center gap-6 mt-6 text-sm text-slate-600 dark:text-slate-300">
+                    {payload?.map((entry, index) => (
+                      <div
+                        key={`item-${index}`}
+                        className="flex items-center gap-2"
+                      >
+                        <span
+                          className="w-3 h-3 inline-block rounded-sm"
+                          style={{ background: entry.color }}
+                        />
+                        <p
+                          className="m-0 leading-none"
+                          style={{ color: entry.color }}
+                        >
+                          {entry.value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              />
+
               {(pool === "default" || pool === "sapling") && (
                 <>
                   {filter && (
@@ -302,7 +328,28 @@ export default function TransactionsSummaryChart(
               />
               <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
               <Tooltip />
-              <Legend />
+              {/* <Legend /> */}
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                content={({ payload }) => (
+                  <div className="flex justify-center gap-6 mt-6 text-sm text-slate-600 dark:text-slate-300">
+                    {payload?.map((entry, index) => (
+                      <div
+                        key={`item-${index}`}
+                        className="flex items-center gap-2"
+                      >
+                        <span
+                          className="w-3 h-3 inline-block rounded-sm"
+                          style={{ background: entry.color }}
+                        />
+                        <p className="m-0 leading-none">{entry.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              />
+
               {(pool === "default" || pool === "sapling") && (
                 <>
                   {filter && (
