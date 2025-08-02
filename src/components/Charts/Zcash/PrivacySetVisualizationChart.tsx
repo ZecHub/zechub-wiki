@@ -142,7 +142,45 @@ function PrivacySetVisualizationChart({ chartRef }: Props) {
                       : v
                   }
                 />
-                <Tooltip />
+
+                <Tooltip
+                  content={({ active, payload, label }) => {
+                    if (!active || !payload?.length) return null;
+
+                    return (
+                      <div
+                        className="rounded-md px-3 py-2 shadow-sm border text-sm"
+                        style={{
+                          backgroundColor: "#1e293b", // slate-800
+                          borderColor: "#334155", // slate-700
+                          color: "#f1f5f9", // slate-100
+                        }}
+                      >
+                        <p style={{ color: "#38bdf8", marginBottom: "4px" }}>
+                          Year: {label}
+                        </p>
+                        {payload.map((entry, idx) => (
+                          <div
+                            key={idx}
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                              gap: "1.5rem",
+                              color: entry.color,
+                            }}
+                          >
+                            <span>{entry.name}</span>
+                            <span style={{ color: "#f8fafc" }}>
+                              {entry.value?.toLocaleString()}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  }}
+                  cursor={{ fill: "transparent" }}
+                />
+
                 <Legend
                   verticalAlign="bottom"
                   align="center"
