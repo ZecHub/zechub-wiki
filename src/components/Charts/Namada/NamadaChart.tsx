@@ -224,7 +224,7 @@ function NamadaChart(props: NamadaChartProps) {
                                   }))`,
                                 }}
                               />
-                              {id}
+                              <p>{id}</p>
                             </div>
                           ))}
                         </div>

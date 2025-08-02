@@ -94,7 +94,7 @@ export default function IssuanceChart(props: IssuanceChartProps) {
                       className="w-3 h-3 inline-block rounded-sm"
                       style={{ background: "hsl(var(--chart-1))" }}
                     />
-                    Issuance
+                    <p>Issuance</p>
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -102,7 +102,7 @@ export default function IssuanceChart(props: IssuanceChartProps) {
                       className="w-3 h-3 inline-block rounded-sm"
                       style={{ background: "hsl(var(--chart-3))" }}
                     />
-                    Inflation
+                    <p>Inflation</p>
                   </div>
                 </div>
               )}

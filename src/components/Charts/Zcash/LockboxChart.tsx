@@ -87,7 +87,7 @@ export default function LockboxChart(props: LockboxChartProps) {
                       className="w-3 h-3 inline-block rounded-sm"
                       style={{ background: "hsl(var(--chart-1))" }}
                     />
-                    Lockbox
+                    <p>Lockbox</p>
                   </div>
                 </div>
               )}
