@@ -6,9 +6,9 @@ import "./index.css";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getLastUpdatedDate } from "@/lib/chart/helpers";
-import ZcashChart from "./Zcash/ZcashChart";
 import NamadaChart from "./Namada/NamadaChart";
 import PenumbraChart from "./Penumbra/PenumbraChart";
+import ZcashChart from "./Zcash/ZcashChart";
 
 const Dashboard = () => {
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");
@@ -41,7 +41,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background p-6">
+    <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
