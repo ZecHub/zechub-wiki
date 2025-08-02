@@ -120,9 +120,6 @@ function NamadaChart(props: NamadaChartProps) {
   const activeTokenIds =
     selectedTokenId === "all" ? tokenIds : [selectedTokenId];
 
-  if (!flattenedData.length)
-    return <p className="text-center mt-12">No data available.</p>;
-
   return (
     <ErrorBoundary fallback="Failed to render Namada Chart">
       <div className="space-y-6">
