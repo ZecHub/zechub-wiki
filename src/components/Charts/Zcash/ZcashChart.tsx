@@ -15,6 +15,7 @@ import NetInflowsOutflowsChart from "./NetInflowsOutflowsChart";
 import ShieldedSupplyChart from "./ShieldedSupplyChart";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../Tabs";
 import TransactionsSummaryChart from "./TransactionSummaryChart";
+import PrivacySetVisualizationChart from "./PrivacySetVisualizationChart";
 
 type ZcashChartProps = {
   lastUpdated: Date;
@@ -43,6 +44,7 @@ function ZcashChart(props: ZcashChartProps) {
     "Flows",
     "Node Count",
     "TX Summary",
+    "Privacy Set",
   ];
 
   return (
@@ -103,6 +105,10 @@ function ZcashChart(props: ZcashChartProps) {
 
                 <TabsContent value="tx summary" activeTab={activeTab}>
                   <TransactionsSummaryChart chartRef={props.divChartRef} />
+                </TabsContent>
+
+                <TabsContent value="privacy set" activeTab={activeTab}>
+                  <PrivacySetVisualizationChart chartRef={props.divChartRef} />
                 </TabsContent>
 
                 <ChartFooter
