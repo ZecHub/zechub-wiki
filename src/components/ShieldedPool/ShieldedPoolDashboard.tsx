@@ -431,12 +431,12 @@ export default function ShieldedPoolDashboard() {
                 selectedTool === ToolOptions.lockbox) && (
                 <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
               )}
-              {selectedTool === ToolOptions.net_inflows_outflows && (
+              {/* {selectedTool === ToolOptions.net_inflows_outflows && (
                 <NetInflowsOutFlowsChart
                   dataUrl={getDataUrl()}
                   color={getDataColor()}
                 />
-              )}
+              )} */}
               {selectedTool === "issuance" && (
                 <ZecIssuanceSummaryChart
                   dataUrl={DataUrlOptions.issuanceUrl}
