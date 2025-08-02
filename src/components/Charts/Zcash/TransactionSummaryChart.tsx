@@ -261,12 +261,7 @@ export default function TransactionsSummaryChart(
                           className="w-3 h-3 inline-block rounded-sm"
                           style={{ background: entry.color }}
                         />
-                        <p
-                          className="m-0 leading-none"
-                          style={{ color: entry.color }}
-                        >
-                          {entry.value}
-                        </p>
+                        <p style={{ color: entry.color }}>{entry.value}</p>
                       </div>
                     ))}
                   </div>
@@ -328,7 +323,6 @@ export default function TransactionsSummaryChart(
               />
               <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
               <Tooltip />
-              {/* <Legend /> */}
               <Legend
                 verticalAlign="bottom"
                 align="center"
@@ -343,7 +337,7 @@ export default function TransactionsSummaryChart(
                           className="w-3 h-3 inline-block rounded-sm"
                           style={{ background: entry.color }}
                         />
-                        <p className="m-0 leading-none">{entry.value}</p>
+                        <p>{entry.value}</p>
                       </div>
                     ))}
                   </div>
