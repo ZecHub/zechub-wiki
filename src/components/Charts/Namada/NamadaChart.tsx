@@ -134,8 +134,8 @@ function NamadaChart(props: NamadaChartProps) {
           <CardHeader className="flex flex-row items-center mb-12">
             <CardTitle className="flex-1 text-xl">
               {selectedTokenId === "all"
-                ? "Namada Tokens Supply Overview"
-                : selectedTokenId + " Supply Overview"}
+                ? "Namada Tokens Ecosystem Overview"
+                : selectedTokenId + " Supply Chart"}
             </CardTitle>
             <div className="flex items-center gap-2">
               <label className="text-sm font-medium">Filter by Token</label>
@@ -164,7 +164,7 @@ function NamadaChart(props: NamadaChartProps) {
 
           <CardContent className="space-y-6">
             <div ref={props.divChartRef} className="relative">
-              <ResponsiveContainer width="100%" height={400}>
+              <ResponsiveContainer width="100%" height={420}>
                 {loading ? (
                   <div className="flex justify-center items-center h-full">
                     <Spinner />
