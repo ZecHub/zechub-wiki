@@ -52,16 +52,20 @@ const useExportDashboardAsPNG = () => {
     }
 
     try {
-      const canvas = await html2canvas(divChartRef.current!);
+      const canvas = await html2canvas(divChartRef.current!, {
+        scale: 3, // renders at 3x resolution
+        useCORS: true,
+      });
+
       const link = document.createElement("a");
 
       link.href = canvas.toDataURL("image/png");
       // if(toolType == 'supply') link.download = `zcash-${poolType}-pool-chart.png`;
       // else link.download = `zcash-${poolType}-transaction-chart.png`;
-
-      link.download = `zcash-${poolType}-transaction-chart.png`;
+      link.download = `${poolType}-chart.png`;
       link.click();
 
+      // Clean up
       divChartRef.current?.removeChild(span);
     } catch (err) {
       console.error("Error saving chart: ", err);
