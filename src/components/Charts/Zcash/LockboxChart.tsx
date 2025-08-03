@@ -102,7 +102,7 @@ export default function LockboxChart(props: LockboxChartProps) {
               dot={({ index, cx, cy }) =>
                 index % 7 === 0 ? (
                   <circle
-                    key={index}
+                    key={index + cy + cx}
                     cx={cx}
                     cy={cy}
                     r={4}
@@ -111,7 +111,7 @@ export default function LockboxChart(props: LockboxChartProps) {
                     strokeWidth={1}
                   />
                 ) : (
-                  <span />
+                  <span key={index + cy + cx} />
                 )
               }
             />
