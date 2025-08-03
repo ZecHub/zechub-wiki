@@ -254,3 +254,17 @@ export function transformSupplyData(
 ): { timestamp: string; supply: number } | null {
   return d ? { timestamp: d.close, supply: d.supply } : null;
 }
+
+export type PoolType = "sprout" | "sapling" | "orchard";
+export const getColorForPool = (poolKey: PoolType): string => {
+  switch (poolKey) {
+    case "sprout":
+      return "hsl(var(--chart-1))";
+    case "sapling":
+      return "hsl(var(--chart-2))";
+    case "orchard":
+      return "hsl(var(--chart-3))";
+    default:
+      return "#999999"; // fallback gray
+  }
+};
