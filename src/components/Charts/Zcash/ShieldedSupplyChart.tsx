@@ -205,8 +205,20 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
           </div>
 
           <div className="text-sm">
-            <span className="font-medium">Total Shielded:</span>{" "}
-            {calculateTotalShielded().toLocaleString()} ZEC
+            {selectedPool === "all" ? (
+              <>
+                <span className="font-medium">Total Shielded:</span>{" "}
+                {calculateTotalShielded().toLocaleString()} ZEC
+              </>
+            ) : (
+              <span className="ml-1">
+                {selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)}:{" "}
+                {latestTotals[
+                  selectedPool as keyof typeof latestTotals
+                ]?.toLocaleString?.() ?? "0"}{" "}
+                ZEC
+              </span>
+            )}
           </div>
         </div>
 
@@ -309,15 +321,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             )}
           </AreaChart>
         </ChartContainer>
-        <div className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
-          <div className="text-slate-500 dark:text-slate-400">
-            <span className="font-medium text-slate-700 dark:text-white">
-              {latestTotals.orchard.toLocaleString()}
-            </span>{" "}
-            ZEC in Orchard
-          </div>
-          ...
-        </div>
       </div>
     </ErrorBoundary>
   );
