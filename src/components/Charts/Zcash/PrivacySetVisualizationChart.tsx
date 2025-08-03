@@ -138,7 +138,7 @@ function PrivacySetVisualizationChart({
             textAnchor="middle"
             fontSize={12}
             fill="#0f172a"
-            className="dark:fill-slate-100 hover:text-lg"
+            className="dark:fill-slate-100 hover:text-sm"
           >
             {year}
           </text>
@@ -148,7 +148,7 @@ function PrivacySetVisualizationChart({
             textAnchor="middle"
             fontSize={12}
             fill="#475569"
-            className="dark:fill-slate-300 hover:text-lg"
+            className="dark:fill-slate-300 hover:text-sm"
           >
             {formatVal(value)}
           </text>
@@ -192,7 +192,7 @@ function PrivacySetVisualizationChart({
               </svg>
 
               {/* Legend */}
-              <div className="flex justify-center gap-6 mt-[-50] text-sm text-slate-600 dark:text-slate-300">
+              <div className="flex justify-center gap-6 md:mt-4 text-sm text-slate-600 dark:text-slate-300">
                 <div className="flex items-center gap-2">
                   <span
                     className="w-3 h-3 inline-block rounded-sm"
@@ -211,6 +211,8 @@ function PrivacySetVisualizationChart({
             </div>
           </div>
         </ChartContainer>
+
+        
       </div>
     </ErrorBoundary>
   );
