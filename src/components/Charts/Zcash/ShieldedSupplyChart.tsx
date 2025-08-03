@@ -15,6 +15,7 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  Legend,
   Tooltip,
   XAxis,
   YAxis,
@@ -326,23 +327,91 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                   fill="url(#orchardGradient)"
                   name="Orchard Pool"
                 />
+
+                <Legend
+                  align="center"
+                  content={() => (
+                    <div className="pt-5 flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="w-3 h-3 inline-block rounded-sm"
+                          style={{
+                            background: "hsl(var(--chart-1))",
+                          }}
+                        />
+                        <p>
+                          Sprout Pool — {latestTotals.sprout.toLocaleString()}{" "}
+                          ZEC
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="w-3 h-3 inline-block rounded-sm"
+                          style={{ background: "hsl(var(--chart-2))" }}
+                        />
+                        <p>
+                          Sapling Pool — {latestTotals.sapling.toLocaleString()}{" "}
+                          ZEC
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="w-3 h-3 inline-block rounded-sm"
+                          style={{ background: "hsl(var(--chart-3))" }}
+                        />
+                        <p>
+                          Orchard Pool — {latestTotals.orchard.toLocaleString()}{" "}
+                          ZEC
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                />
               </>
             ) : (
-              <Area
-                type="monotone"
-                dataKey="supply"
-                stroke={`hsl(var(--chart-${
-                  selectedPool === "sprout"
-                    ? 1
-                    : selectedPool === "sapling"
-                    ? 2
-                    : 3
-                }))`}
-                fill={`url(#${selectedPool}Gradient)`}
-                name={`${
-                  selectedPool[0].toUpperCase() + selectedPool.slice(1)
-                } Pool`}
-              />
+              <>
+                <Area
+                  type="monotone"
+                  dataKey="supply"
+                  stroke={`hsl(var(--chart-${
+                    selectedPool === "sprout"
+                      ? 1
+                      : selectedPool === "sapling"
+                      ? 2
+                      : 3
+                  }))`}
+                  fill={`url(#${selectedPool}Gradient)`}
+                  name={`${
+                    selectedPool[0].toUpperCase() + selectedPool.slice(1)
+                  } Pool`}
+                />
+                <Legend
+                  align="center"
+                  content={() => (
+                    <div className="pt-5 flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="w-3 h-3 inline-block rounded-sm"
+                          style={{
+                            background: `hsl(var(--chart-${
+                              selectedPool === "sprout"
+                                ? 1
+                                : selectedPool === "sapling"
+                                ? 2
+                                : 3
+                            }))`,
+                          }}
+                        />
+                        <p>
+                          {selectedPool[0].toUpperCase() +
+                            selectedPool.slice(1)}{" "}
+                          Pool
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                />
+              </>
             )}
           </AreaChart>
         </ChartContainer>
