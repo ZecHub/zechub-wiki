@@ -333,7 +333,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                 <Area
                   type="monotone"
                   dataKey="sprout"
-                  // stackId="1"
                   stroke={getColorForPool("sprout")}
                   // stroke="red"
                   fill="url(#sproutGradient)"
@@ -344,7 +343,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                 <Area
                   type="monotone"
                   dataKey="sapling"
-                  // stackId="1"
                   stroke={getColorForPool("sapling")}
                   fill="url(#saplingGradient)"
                   name="Sapling Pool"
@@ -352,7 +350,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                 <Area
                   type="monotone"
                   dataKey="orchard"
-                  // stackId="1"
                   stroke={getColorForPool("orchard")}
                   fill="url(#orchardGradient)"
                   name="Orchard Pool"
