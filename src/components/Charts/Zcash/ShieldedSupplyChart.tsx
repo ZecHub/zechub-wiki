@@ -85,6 +85,13 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     };
   }, []);
 
+  useEffect(() => {
+    const years = getAvailableYears(selectedPool);
+    if (!years.includes(selectedYear)) {
+      setSelectedYear("all");
+    }
+  }, [selectedPool]);
+
   const extractYear = (date: string) => date.split("/")[2];
 
   const getAvailableYears = (poolKey: PoolKey) => {
