@@ -87,13 +87,21 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
   const extractYear = (date: string) => date.split("/")[2];
 
-  const getAvailableYears = () => {
-    const all = [
-      ...orchardSupplyData,
-      ...saplingSupplyData,
-      ...sproutSupplyData,
-    ];
-    return ["all", ...new Set(all.map((d) => extractYear(d.close)))].sort();
+  const getAvailableYears = (poolKey: PoolKey) => {
+    const dataByPool = {
+      sprout: sproutSupplyData,
+      sapling: saplingSupplyData,
+      orchard: orchardSupplyData,
+    };
+
+    const data =
+      poolKey == "all"
+        ? [...sproutSupplyData, ...saplingSupplyData, ...orchardSupplyData]
+        : dataByPool[poolKey];
+
+    const years = [...new Set(data.map((d) => extractYear(d.close)))].sort();
+
+    return ["all", ...years];
   };
 
   const filterByYear = (data: SupplyData[]) =>
@@ -164,7 +172,9 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             {selectedPool === "all"
               ? "Shielded Supply Overview"
               : `${capitalize(selectedPool)} Pool Supply`}
-            <span className="text-sm">{selectedYear !== "all" ? ` - ${selectedYear}` : ""}</span>
+            <span className="text-sm">
+              {selectedYear !== "all" ? ` - ${selectedYear}` : ""}
+            </span>
           </h3>
 
           {/*  Year Dropdown */}
@@ -175,8 +185,12 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {getAvailableYears().map((year) => (
-                  <SelectItem key={year} value={year}>
+                {getAvailableYears(selectedPool).map((year) => (
+                  <SelectItem
+                    key={year}
+                    value={year.toString()}
+                    className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
+                  >
                     {year === "all" ? "All" : year}
                   </SelectItem>
                 ))}
@@ -196,7 +210,11 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               </SelectTrigger>
               <SelectContent>
                 {POOL_OPTIONS.map((opt) => (
-                  <SelectItem key={opt.value} value={opt.value}>
+                  <SelectItem
+                    key={opt.value}
+                    value={opt.value}
+                    className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
+                  >
                     {opt.label}
                   </SelectItem>
                 ))}
