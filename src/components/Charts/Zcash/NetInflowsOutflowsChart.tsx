@@ -3,7 +3,7 @@
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
-import { getNetInOutflowData } from "@/lib/chart/helpers";
+import { formatNumberShort, getNetInOutflowData } from "@/lib/chart/helpers";
 import { NetInOutflow } from "@/lib/chart/types";
 import { formatNumber } from "@/lib/helpers";
 import * as dateFns from "date-fns";
@@ -125,7 +125,7 @@ export default function NetInflowsOutflowsChart(
                 tick={{ fontSize, fill: "#94a3b8" }}
               />
               <YAxis
-                tickFormatter={(v) => formatNumber(v)}
+                tickFormatter={(v) => formatNumberShort(v)}
                 tick={{ fontSize, fill: "#94a3b8" }}
               />
 
