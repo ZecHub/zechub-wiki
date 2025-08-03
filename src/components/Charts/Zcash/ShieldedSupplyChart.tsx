@@ -93,7 +93,12 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     }
   }, [selectedPool]);
 
-  const extractYear = (date: string) => date.split("/")[2];
+  const extractYear = (dateStr: string) => {
+    const parsed = new Date(dateStr);
+
+    return parsed.getFullYear().toString();
+    //date.split("/")[2];
+  };
 
   const getAvailableYears = (poolKey: PoolKey) => {
     const dataByPool = {
@@ -334,7 +339,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                   type="monotone"
                   dataKey="sprout"
                   stroke={getColorForPool("sprout")}
-                  // stroke="red"
                   fill="url(#sproutGradient)"
                   name="Sprout Pool"
                   isAnimationActive={true}
