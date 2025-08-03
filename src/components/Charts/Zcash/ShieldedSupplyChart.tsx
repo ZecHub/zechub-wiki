@@ -326,15 +326,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               tick={{ fontSize, fill: "#94a3b8" }}
               tickFormatter={(val) => formatNumberShort(val)}
             />
-            {/* <Tooltip
-              formatter={(value: any, name) => {
-                if (value === undefined) {
-                  return ["0 Zec", name];
-                }
-
-                return [`${Number(value).toLocaleString()} ZEC`];
-              }}
-            /> */}
             <Tooltip
               content={({ active, payload, label }) => {
                 if (!active || !payload?.length) return null;
