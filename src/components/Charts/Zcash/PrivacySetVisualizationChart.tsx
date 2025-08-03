@@ -172,7 +172,7 @@ function PrivacySetVisualizationChart({
               <svg
                 viewBox="0 0 1000 600"
                 preserveAspectRatio="xMidYMid slice"
-                className="w-full h-[520]"
+                className="w-full h-[480]"
                 role="img"
               >
                 {renderCluster(
