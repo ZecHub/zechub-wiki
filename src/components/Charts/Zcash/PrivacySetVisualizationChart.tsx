@@ -127,7 +127,9 @@ function PrivacySetVisualizationChart({
             fill={color}
             stroke={color}
             fillOpacity={fillOpacity}
-            strokeWidth={mouseEnter && pool === "sapling" ? 3 : strokeWidth}
+            strokeWidth={
+              mouseEnter && targetPool === "sapling" ? 3 : strokeWidth
+            }
             className="transition-all duration-150"
           />
           <text
