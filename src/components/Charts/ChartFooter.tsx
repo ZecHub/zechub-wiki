@@ -9,8 +9,6 @@ type ChartFooterProps = {
 };
 
 const ChartFooter = (props: ChartFooterProps) => {
-  console.log({ lastUpdated: props.lastUpdatedDate });
-
   return (
     <>
       {props.lastUpdatedDate && (
