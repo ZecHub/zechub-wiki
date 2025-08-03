@@ -70,13 +70,13 @@ export default function NetInflowsOutflowsChart(
             data: parseData.map((itm) => parseFloat(itm.netSaplingFlow)),
             backgroundColor: parseData.map((itm) =>
               parseFloat(itm.netSaplingFlow) < 0
-                ? "rgba(75, 192, 192, 0.2)"
-                : "rgba(54, 162, 235, 0.2)"
+                ? "rgba(255, 99, 132, 0.2)"
+                : "rgba(75, 192, 192, 0.2)"
             ),
             borderColor: parseData.map((itm) =>
               parseFloat(itm.netSaplingFlow) < 0
-                ? "rgba(75, 192, 192, 1)"
-                : "rgba(54, 162, 235, 1)"
+                ? "rgba(255, 99, 132, 1)"
+                : "rgba(34, 139, 34, 1)"
             ),
             borderWidth: 1.5,
           },
@@ -85,13 +85,13 @@ export default function NetInflowsOutflowsChart(
             data: parseData.map((itm) => parseFloat(itm.netOrchardFlow)),
             backgroundColor: parseData.map((itm) =>
               parseFloat(itm.netOrchardFlow) < 0
-                ? "rgba(75, 192, 192, 0.2)"
-                : "rgba(255, 99, 132, 0.2)"
+                ? "rgba(255, 99, 132, 0.2)"
+                : "rgba(75, 192, 192, 0.2)"
             ),
             borderColor: parseData.map((itm) =>
               parseFloat(itm.netOrchardFlow) < 0
-                ? "rgba(75, 192, 192, 1)"
-                : "rgba(255, 99, 132, 1)"
+                ? "rgba(255, 99, 132, 1)"
+                : "rgba(75, 192, 192, 1)"
             ),
             borderWidth: 1.5,
           },

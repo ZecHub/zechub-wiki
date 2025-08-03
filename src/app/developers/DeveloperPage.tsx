@@ -389,6 +389,21 @@ export default function DeveloperPage() {
                     Follow best practices for developing on Zcash.
                   </p>
                 </li>
+                <li>
+                  <a
+                    href="/aborist-calls"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Aborist Calls Page
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    The Zcash Arborist Calls are bi-weekly protocol development
+                    meetings focused on tracking upcoming protocol deployment
+                    logistics, consensus node implementation issues, and
+                    protocol research.
+                  </p>
+                </li>
               </ul>
             </div>
           </div>

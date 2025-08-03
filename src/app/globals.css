@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body[data-scroll-locked] {
+  padding: 0 1.5rem !important;
+}
+
 body {
   background: #fff9f9;
 }
