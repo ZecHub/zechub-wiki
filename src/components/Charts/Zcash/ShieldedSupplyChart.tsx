@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/shadcn/select";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
-import { getSupplyData } from "@/lib/chart/helpers";
+import { getColorForPool, getSupplyData, PoolType } from "@/lib/chart/helpers";
 import { SupplyData } from "@/lib/chart/types";
 import { RefObject, useEffect, useState } from "react";
 import {
@@ -22,14 +22,14 @@ import {
 } from "recharts";
 import ChartContainer from "./ChartContainer";
 
-const POOLS = ["sprout", "sapling", "orchard"];
 const POOL_OPTIONS = [
   { label: "All Pools", value: "all" },
   { label: "Sprout", value: "sprout" },
   { label: "Sapling", value: "sapling" },
   { label: "Orchard", value: "orchard" },
 ];
-type PoolKey = "all" | "sprout" | "sapling" | "orchard";
+type PoolKey = "all" | PoolType;
+// "sprout" | "sapling" | "orchard";
 
 type ShieldedSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
@@ -306,24 +306,27 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                 <Area
                   type="monotone"
                   dataKey="sprout"
-                  stackId="1"
-                  stroke="hsl(var(--chart-1))"
+                  // stackId="1"
+                  stroke={getColorForPool("sprout")}
+                  // stroke="red"
                   fill="url(#sproutGradient)"
                   name="Sprout Pool"
+                  isAnimationActive={true}
+                  animationDuration={800}
                 />
                 <Area
                   type="monotone"
                   dataKey="sapling"
-                  stackId="1"
-                  stroke="hsl(var(--chart-2))"
+                  // stackId="1"
+                  stroke={getColorForPool("sapling")}
                   fill="url(#saplingGradient)"
                   name="Sapling Pool"
                 />
                 <Area
                   type="monotone"
                   dataKey="orchard"
-                  stackId="1"
-                  stroke="hsl(var(--chart-3))"
+                  // stackId="1"
+                  stroke={getColorForPool("orchard")}
                   fill="url(#orchardGradient)"
                   name="Orchard Pool"
                 />
