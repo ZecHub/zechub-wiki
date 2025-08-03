@@ -164,10 +164,10 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             {selectedPool === "all"
               ? "Shielded Supply Overview"
               : `${capitalize(selectedPool)} Pool Supply`}
-            {selectedYear !== "all" ? ` — ${selectedYear}` : ""}
+            <span className="text-sm">{selectedYear !== "all" ? ` - ${selectedYear}` : ""}</span>
           </h3>
 
-          {/* 🔸 Year Dropdown */}
+          {/*  Year Dropdown */}
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Year</label>
             <Select value={selectedYear} onValueChange={setSelectedYear}>
@@ -184,7 +184,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             </Select>
           </div>
 
-          {/* 🔸 Pool Dropdown */}
+          {/*  Pool Dropdown */}
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Pool</label>
             <Select
@@ -222,7 +222,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
           </div>
         </div>
 
-        {/* 🔸 Chart Container */}
+        {/*  Chart Container */}
         <ChartContainer ref={props.chartRef} loading={loading}>
           <AreaChart data={poolData} key={`${selectedYear}-${selectedPool}`}>
             <defs>
