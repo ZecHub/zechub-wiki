@@ -1,15 +1,7 @@
 [
     {
-        "Last_committed_epoch": 951,
+        "Last_committed_epoch": 963,
         "Proposal": [
-            {
-                "id": 18,
-                "Type": "PGF funding",
-                "Author": "tnam1qq58gs03fscgfuexy972wz70qawlk0ahguexglsg",
-                "Start_Epoch": "568",
-                "End_Epoch": "592",
-                "Activation_Epoch": "593"
-            },
             {
                 "id": 19,
                 "Type": "Default with Wasm",
@@ -89,6 +81,14 @@
                 "Start_Epoch": "873",
                 "End_Epoch": "891",
                 "Activation_Epoch": "892"
+            },
+            {
+                "id": 29,
+                "Type": "PGF funding",
+                "Author": "tnam1qztdx4y7a3wn0qmgcgtrty237vcnp9f9hs3rt3k7",
+                "Start_Epoch": "955",
+                "End_Epoch": "979",
+                "Activation_Epoch": "980"
             }
         ]
     }

@@ -1,0 +1,14 @@
+[
+    {
+        "Address": "tnam1q9rzmgclz9lgys34cmfe3wfry25nhlasayxzuk3c",
+        "Name": "ZecHub",
+        "Email": "zechub@zechub.social",
+        "Description": "ZecHub provides an open source educational platform",
+        "Website": "https://zechub.wiki/",
+        "Discord": "dismad",
+        "Avatar": "https://raw.githubusercontent.com/ZecHub/zechub/cca1178986f55bb4fc7ba379976a14b461855f99/ZecHubBlue.png",
+        "Commission": "0.05",
+        "Max_Change": "1",
+        "Epoch": "963"
+    }
+]
