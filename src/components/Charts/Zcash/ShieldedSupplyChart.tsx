@@ -319,9 +319,13 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             <XAxis dataKey="close" tick={{ fontSize, fill: "#94a3b8" }} />
             <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
             <Tooltip
-              formatter={(value: any) => [
-                `${Number(value).toLocaleString()} ZEC`,
-              ]}
+              formatter={(value: any, name) => {
+                if (value === undefined) {
+                  return ["0 Zec", name];
+                }
+
+                return [`${Number(value).toLocaleString()} ZEC`];
+              }}
             />
 
             {selectedPool === "all" ? (
