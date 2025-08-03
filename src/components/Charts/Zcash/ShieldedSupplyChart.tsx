@@ -160,7 +160,11 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
       <div className="space-y-6">
         <div className="flex mt-12 flex-wrap gap-4 items-center">
           <h3 className="text-lg font-semibold flex-1">
-            Shielded Supply Overview
+            {/* Shielded Supply Overview */}
+            {selectedPool === "all"
+              ? "Shielded Supply Overview"
+              : `${capitalize(selectedPool)} Pool Supply`}
+            {selectedYear !== "all" ? ` — ${selectedYear}` : ""}
           </h3>
 
           {/* 🔸 Year Dropdown */}
@@ -305,7 +309,20 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             )}
           </AreaChart>
         </ChartContainer>
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+          <div className="text-slate-500 dark:text-slate-400">
+            <span className="font-medium text-slate-700 dark:text-white">
+              {latestTotals.orchard.toLocaleString()}
+            </span>{" "}
+            ZEC in Orchard
+          </div>
+          ...
+        </div>
       </div>
     </ErrorBoundary>
   );
+}
+
+function capitalize(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }
