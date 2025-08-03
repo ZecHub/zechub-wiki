@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/shadcn/select";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
-import { getColorForPool, getSupplyData, PoolType } from "@/lib/chart/helpers";
+import { formatNumberShort, getColorForPool, getSupplyData, PoolType } from "@/lib/chart/helpers";
 import { SupplyData } from "@/lib/chart/types";
 import { RefObject, useEffect, useState } from "react";
 import {
@@ -322,7 +322,10 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
             <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
             <XAxis dataKey="close" tick={{ fontSize, fill: "#94a3b8" }} />
-            <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
+            <YAxis
+              tick={{ fontSize, fill: "#94a3b8" }}
+              tickFormatter={(val) => formatNumberShort(val)}
+            />
             <Tooltip
               formatter={(value: any, name) => {
                 if (value === undefined) {
