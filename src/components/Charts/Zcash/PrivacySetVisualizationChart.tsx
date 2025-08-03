@@ -42,7 +42,10 @@ type Props = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
 
-function PrivacySetVisualizationChart({ chartRef }: Props) {
+
+type YearlyTotals = Record<string, { sapling: number; orchard: number }>;
+
+function PrivacySetVisualizationChart2({ chartRef }: Props) {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -222,4 +225,180 @@ function PrivacySetVisualizationChart({ chartRef }: Props) {
   );
 }
 
+function PrivacySetVisualizationChart({ chartRef }: Props) {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [data, setData] = useState<YearlyTotals>({});
+  const [hover, setHover] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(DATA_URL.txsummaryUrl);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const raw: TransactionSummaryDatum[] = await res.json();
+
+        const totals: YearlyTotals = {};
+        for (const { height, sapling, orchard } of raw) {
+          const year =
+            HEIGHT_YEAR_MAP.find((r) => height >= r.start && height <= r.end)
+              ?.year || "Unknown";
+          if (!totals[year]) totals[year] = { sapling: 0, orchard: 0 };
+          totals[year].sapling += sapling;
+          totals[year].orchard += orchard;
+        }
+
+        setData(totals);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : String(err));
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  const years = Object.keys(data).sort();
+
+  const getCumulative = (pool: "sapling" | "orchard"): [string, number][] => {
+    let sum = 0;
+    return years.map((y) => {
+      sum += data[y]?.[pool] || 0;
+      return [y, sum];
+    });
+  };
+
+  const formatVal = (v: number) =>
+    v >= 1e6
+      ? `${(v / 1e6).toFixed(1)}M`
+      : v >= 1e3
+      ? `${(v / 1e3).toFixed(1)}k`
+      : `${v}`;
+
+  const saplingData = getCumulative("sapling");
+  const orchardData = getCumulative("orchard");
+
+  const maxRadius = 180;
+  const minRadius = 30;
+
+  const sapStep = (maxRadius - minRadius) / Math.max(1, saplingData.length - 1);
+  const orcStep = (maxRadius - minRadius) / Math.max(1, orchardData.length - 1);
+
+  const renderCluster = (
+    data: [string, number][],
+    cx: number,
+    color: string,
+    id: string,
+    step: number
+  ) =>
+    data.map(([year, value], index) => {
+      const r = minRadius + step * index;
+      const isHover = hover === `${id}-${year}`;
+      const fillOpacity = isHover ? 0.35 : 0.2;
+      const strokeWidth = isHover ? 3 : 2;
+
+      return (
+        <g
+          key={year}
+          transform={`translate(${cx}, 300)`}
+          onMouseEnter={() => setHover(`${id}-${year}`)}
+          onMouseLeave={() => setHover(null)}
+        >
+          <circle
+            r={r}
+            fill={color}
+            stroke={color}
+            fillOpacity={fillOpacity}
+            strokeWidth={strokeWidth}
+            className="transition-all duration-200"
+          />
+          <text
+            y={-r - 10}
+            textAnchor="middle"
+            fontSize={12}
+            fill="#0f172a"
+            className="dark:fill-slate-100"
+          >
+            {year}
+          </text>
+          <text
+            y={r + 20}
+            textAnchor="middle"
+            fontSize={12}
+            fill="#475569"
+            className="dark:fill-slate-300"
+          >
+            {formatVal(value)}
+          </text>
+        </g>
+      );
+    });
+
+  return (
+    <ErrorBoundary fallback="Failed to load privacy set chart">
+      <div className="space-y-6 mt-12">
+        <h3 className="text-lg font-semibold">Shielded Outputs by Year</h3>
+
+        <ChartContainer ref={chartRef} loading={loading}>
+          <div className="bg-sand-100 dark:bg-slate-900 rounded-md overflow-x-auto px-6 py-4">
+            {loading || error ? (
+              <div className="h-[400px] flex items-center justify-center text-slate-600 dark:text-slate-400">
+                {error ? `Error: ${error}` : "Loading..."}
+              </div>
+            ) : (
+              <svg
+                width={1200}
+                height={600}
+                className="mx-auto block"
+                role="img"
+              >
+                {/* Title */}
+                <text
+                  x={50}
+                  y={40}
+                  fontSize={24}
+                  fontWeight="bold"
+                  fill="#d97706"
+                  className="dark:fill-yellow-400"
+                >
+                  Zcash shielded outputs
+                </text>
+                <text
+                  x={50}
+                  y={65}
+                  fontSize={14}
+                  fill="#334155"
+                  className="dark:fill-slate-400"
+                >
+                  Total number of fully shielded outputs collected in each pool
+                  over time
+                </text>
+
+                {/* Sapling Cluster */}
+                {renderCluster(saplingData, 350, "#facc15", "sap", sapStep)}
+
+                {/* Orchard Cluster */}
+                {renderCluster(orchardData, 850, "#4b5563", "orc", orcStep)}
+
+                {/* Legend */}
+                <g transform="translate(1000, 520)">
+                  <rect width={12} height={12} fill="#facc15" />
+                  <text x={20} y={10} fontSize={12} fill="#0f172a">
+                    Sapling: {formatVal(saplingData.at(-1)?.[1] || 0)}
+                  </text>
+                  <rect y={20} width={12} height={12} fill="#4b5563" />
+                  <text x={20} y={30} fontSize={12} fill="#0f172a">
+                    Orchard: {formatVal(orchardData.at(-1)?.[1] || 0)}
+                  </text>
+                </g>
+              </svg>
+            )}
+          </div>
+        </ChartContainer>
+      </div>
+    </ErrorBoundary>
+  );
+}
+
 export default PrivacySetVisualizationChart;
+
+
