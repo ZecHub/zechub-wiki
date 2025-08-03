@@ -117,11 +117,30 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
       ? data
       : data.filter((d) => extractYear(d.close) === selectedYear);
 
-  const normalizePools2 = () => {
+  const normalizePools = () => {
+    // Normalize date format (YYYY-MM-DD)
+    const normalizeDate = (dateStr: string) => {
+      const date = new Date(dateStr);
+      return date.toISOString().split("T")[0]; // "2022-01-01"
+    };
+
+    const sprout = sproutSupplyData.map((d) => ({
+      ...d,
+      close: normalizeDate(d.close),
+    }));
+    const sapling = saplingSupplyData.map((d) => ({
+      ...d,
+      close: normalizeDate(d.close),
+    }));
+    const orchard = orchardSupplyData.map((d) => ({
+      ...d,
+      close: normalizeDate(d.close),
+    }));
+
     const allDates = new Set([
-      ...sproutSupplyData.map((d) => d.close),
-      ...saplingSupplyData.map((d) => d.close),
-      ...orchardSupplyData.map((d) => d.close),
+      ...sprout.map((d) => d.close),
+      ...sapling.map((d) => d.close),
+      ...orchard.map((d) => d.close),
     ]);
 
     const dateArray = Array.from(allDates).sort(
@@ -130,19 +149,23 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
     const dataMap: Record<string, any> = {};
 
+    // Init with 0 values for each date
     for (const date of dateArray) {
-      dataMap[date] = { close: date, sprout: 0, sapling: 0, orchard: 0 };
+      dataMap[date] = {
+        close: date,
+        sprout: 0,
+        sapling: 0,
+        orchard: 0,
+      };
     }
 
-    for (const d of sproutSupplyData) {
+    for (const d of sprout) {
       if (dataMap[d.close]) dataMap[d.close].sprout = d.supply;
     }
-
-    for (const d of saplingSupplyData) {
+    for (const d of sapling) {
       if (dataMap[d.close]) dataMap[d.close].sapling = d.supply;
     }
-
-    for (const d of orchardSupplyData) {
+    for (const d of orchard) {
       if (dataMap[d.close]) dataMap[d.close].orchard = d.supply;
     }
 
@@ -151,63 +174,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     );
   };
 
-    const normalizePools = () => {
-      // Normalize date format (YYYY-MM-DD)
-      const normalizeDate = (dateStr: string) => {
-        const date = new Date(dateStr);
-        return date.toISOString().split("T")[0]; // "2022-01-01"
-      };
-
-      const sprout = sproutSupplyData.map((d) => ({
-        ...d,
-        close: normalizeDate(d.close),
-      }));
-      const sapling = saplingSupplyData.map((d) => ({
-        ...d,
-        close: normalizeDate(d.close),
-      }));
-      const orchard = orchardSupplyData.map((d) => ({
-        ...d,
-        close: normalizeDate(d.close),
-      }));
-
-      const allDates = new Set([
-        ...sprout.map((d) => d.close),
-        ...sapling.map((d) => d.close),
-        ...orchard.map((d) => d.close),
-      ]);
-
-      const dateArray = Array.from(allDates).sort(
-        (a, b) => new Date(a).getTime() - new Date(b).getTime()
-      );
-
-      const dataMap: Record<string, any> = {};
-
-      // Init with 0 values for each date
-      for (const date of dateArray) {
-        dataMap[date] = {
-          close: date,
-          sprout: 0,
-          sapling: 0,
-          orchard: 0,
-        };
-      }
-
-      for (const d of sprout) {
-        if (dataMap[d.close]) dataMap[d.close].sprout = d.supply;
-      }
-      for (const d of sapling) {
-        if (dataMap[d.close]) dataMap[d.close].sapling = d.supply;
-      }
-      for (const d of orchard) {
-        if (dataMap[d.close]) dataMap[d.close].orchard = d.supply;
-      }
-
-      return Object.values(dataMap).filter((d) =>
-        selectedYear === "all" ? true : extractYear(d.close) === selectedYear
-      );
-    };
-    
   const combinedPoolData = normalizePools();
   const poolDataMap = {
     sprout: filterByYear(sproutSupplyData),
