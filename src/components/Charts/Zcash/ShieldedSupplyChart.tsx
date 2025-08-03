@@ -326,13 +326,43 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               tick={{ fontSize, fill: "#94a3b8" }}
               tickFormatter={(val) => formatNumberShort(val)}
             />
-            <Tooltip
+            {/* <Tooltip
               formatter={(value: any, name) => {
                 if (value === undefined) {
                   return ["0 Zec", name];
                 }
 
                 return [`${Number(value).toLocaleString()} ZEC`];
+              }}
+            /> */}
+            <Tooltip
+              content={({ active, payload, label }) => {
+                if (!active || !payload?.length) return null;
+
+                return (
+                  <div
+                    className="rounded-md px-3 py-2 shadow-md border text-sm"
+                    style={{
+                      backgroundColor: "#1e293b", // dark bg
+                      borderColor: "#334155",
+                      color: "#f1f5f9", // default text
+                    }}
+                  >
+                    <p className="text-slate-100 font-semibold mb-2">{label}</p>
+                    {payload.map((entry, idx) => (
+                      <div
+                        key={idx}
+                        className="flex justify-between gap-4"
+                        style={{ color: entry.color }}
+                      >
+                        <span>{entry.name}</span>
+                        <span className="text-slate-50">
+                          {entry.value?.toLocaleString()} ZEC
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                );
               }}
             />
 
