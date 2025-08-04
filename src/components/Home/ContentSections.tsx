@@ -7,11 +7,12 @@ const ContentSections = () => {
     <>
       <section>
         <div className="flex space-y-4 flex-col w-full mt-5 px-5">
+          {/* Zcash Section */}
           <div className="flex flex-col space-y-4 md:flex-row min-h-screen w-auto border-2 border-[#E4A100]/50 rounded-md p-5">
             <div className="flex flex-1 items-center justify-center w-auto md:w-2/4">
               <FadeInAnimation>
                 <Image
-                  src={"/Zcashcard.png"}
+                  src={'/Zcashcard.png'}
                   alt=""
                   width={500}
                   height={50}
@@ -39,14 +40,14 @@ const ContentSections = () => {
               <FadeInAnimation className="w-full">
                 <div className="flex flex-col md:flex-row mt-4 w-full">
                   <Link
-                    href={"/start-here/what-is-zec-and-zcash"}
+                    href={'/start-here/what-is-zec-and-zcash'}
                     className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-bold text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     What is Zcash?
                   </Link>
                   &nbsp;
                   <Link
-                    href={"/zcash-tech/zk-snarks"}
+                    href={'/zcash-tech/zk-snarks'}
                     className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-blue-400 border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Zcash Technology
@@ -56,14 +57,47 @@ const ContentSections = () => {
             </div>
           </div>
 
-          <div
-            className="flex flex-col md:flex-row space-y-4 h-96 my-4 w-full border-black border-2 rounded-md p-5"
-            style={{ height: "30rem", borderColor: "revert" }}
-          >
+          {/* Hackathon Section */}
+          <div className="flex flex-col md:flex-row space-y-4 h-96 my-4 w-full border-cyan-400/50 border-2 rounded-md p-5" style={{ height: "30rem" }}>
             <div className="flex justify-center items-center w-auto md:w-2/4">
               <FadeInAnimation>
                 <Image
-                  src={"/zcash_newsletter.gif"}
+                  src={'/hackathon.png'}
+                  alt=""
+                  width={350}
+                  height={350}
+                  unoptimized={true}
+                />
+              </FadeInAnimation>
+            </div>
+            <div className="flex flex-col w-auto md:w-2/4 items-center justify-center">
+              <FadeInAnimation>
+                <h1 className="text-3xl mb-4 font-semibold">Hackathon</h1>
+              </FadeInAnimation>
+              <FadeInAnimation>
+                <p className="text-center mb-5">
+                  Challenge yourself to build with Zcash. Unstoppable Private Money.
+                </p>
+              </FadeInAnimation>
+              <div className="flex flex-row space-x-4 mt-4">
+                <FadeInAnimation>
+                  <Link
+                    href={'https://hackathon.zechub.wiki'}
+                    className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Join the Hackathon
+                  </Link>
+                </FadeInAnimation>
+              </div>
+            </div>
+          </div>
+
+          {/* Shielded Newsletter Section */}
+          <div className="flex flex-col md:flex-row space-y-4 h-96 my-4 w-full border-black border-2 rounded-md p-5" style={{ height: "30rem", borderColor: "revert" }}>
+            <div className="flex justify-center items-center w-auto md:w-2/4">
+              <FadeInAnimation>
+                <Image
+                  src={'/zcash_newsletter.gif'}
                   alt=""
                   width={500}
                   height={50}
@@ -73,10 +107,7 @@ const ContentSections = () => {
             </div>
             <div className="flex flex-col w-auto md:w-2/4 items-center justify-center">
               <FadeInAnimation>
-                <h1
-                  style={{ fontSize: "1.85rem" }}
-                  className="text-3xl mb-4 font-semibold"
-                >
+                <h1 style={{ fontSize: "1.85rem" }} className="text-3xl mb-4 font-semibold">
                   Shielded Newsletter
                 </h1>
               </FadeInAnimation>
@@ -89,7 +120,7 @@ const ContentSections = () => {
               <div className="flex flex-row space-x-4 mt-4">
                 <FadeInAnimation>
                   <Link
-                    href={"/newsletter"}
+                    href={'/newsletter'}
                     className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Subscribe
@@ -99,55 +130,12 @@ const ContentSections = () => {
             </div>
           </div>
 
-          <div
-            className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto border-2 border-black/50 rounded-md p-5"
-            style={{ height: "30rem", borderColor: "revert" }}
-          >
-            <div className="flex flex-col w-auto md:w-2/4 items-center justify-center">
-              <FadeInAnimation>
-                <h1 className="text-3xl mb-4 font-semibold">ZECPages</h1>
-              </FadeInAnimation>
-              <FadeInAnimation>
-                <p className="text-center mb-5">
-                  ZECPages is an anonymous message board powered by Zcash. It
-                  also serves as a public directory of Zcash users. Take it easy
-                  is the ZECpages motto. A good reason to swing by is if you
-                  want to chat and make new friends.
-                </p>
-              </FadeInAnimation>
-              <FadeInAnimation>
-                <div className="flex flex-row space-x-4 mt-4">
-                  <Link
-                    href={"https://zecpages.com"}
-                    className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    ZECPages
-                  </Link>
-                </div>
-              </FadeInAnimation>
-            </div>
-            <div className="flex justify-center items-center w-auto md:w-2/4 ">
-              <FadeInAnimation>
-                <Image
-                  className="w-50 h-auto"
-                  src={"/ZecPages_Banner.gif"}
-                  alt=""
-                  width={500}
-                  height={50}
-                  unoptimized={true}
-                />
-              </FadeInAnimation>
-            </div>
-          </div>
-
-          <div
-            className="flex flex-col md:flex-row space-y-4 h-96 my-4 w-full border-cyan-400/50 border-2 rounded-md p-5"
-            style={{ height: "30rem" }}
-          >
+          {/* Free2Z Section */}
+          <div className="flex flex-col md:flex-row space-y-4 h-96 my-4 w-full border-cyan-400/50 border-2 rounded-md p-5" style={{ height: "30rem" }}>
             <div className="flex justify-center items-center w-auto md:w-2/4">
               <FadeInAnimation>
                 <Image
-                  src={"/Free2z_Banner.gif"}
+                  src={'/Free2z_Banner.gif'}
                   alt=""
                   width={500}
                   height={50}
@@ -169,7 +157,7 @@ const ContentSections = () => {
               <div className="flex flex-row space-x-4 mt-4">
                 <FadeInAnimation>
                   <Link
-                    href={"https://free2z.cash"}
+                    href={'https://free2z.cash'}
                     className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Free2Z
@@ -179,18 +167,15 @@ const ContentSections = () => {
             </div>
           </div>
 
-          <div
-            className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto border-2 border-black/50 rounded-md p-5"
-            style={{ height: "30rem", borderColor: "revert" }}
-          >
+          {/* Pay with Zcash Section */}
+          <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto border-2 border-black/50 rounded-md p-5" style={{ height: "30rem", borderColor: "revert" }}>
             <div className="flex flex-col w-auto md:w-2/4 items-center justify-center">
               <FadeInAnimation>
                 <h1 className="text-3xl mb-4 font-semibold">Pay with Zcash</h1>
               </FadeInAnimation>
               <FadeInAnimation>
                 <p className="text-center">
-                  This website is an answer to the question:{" "}
-                  <strong>where can I pay with Zcash?</strong>
+                  This website is an answer to the question: <strong>where can I pay with Zcash?</strong>
                 </p>
                 <p className="text-center mb-5">
                   The directory is free to use. The items listed are for
@@ -201,7 +186,7 @@ const ContentSections = () => {
               <FadeInAnimation>
                 <div className="flex flex-row space-x-4 mt-4">
                   <Link
-                    href={"https://paywithz.cash/"}
+                    href={'https://paywithz.cash/'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -209,16 +194,16 @@ const ContentSections = () => {
                     paywithz.cash
                   </Link>
                   <Link
-                    href={"https://zechub.wiki/map"}
+                    href={'https://zechub.wiki/map'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center border-pink-500 border-2 rounded-lg bg-transparent hover:bg-pink-500 hover:shadow-[0px_0px_15px_rgba(255,105,180,0.5)] focus:ring-4 focus:outline-none focus:ring-pink-200"
                   >
                     <Image
-                      src={"/spedn.png"}
+                      src={'/spedn.png'}
                       alt="Spedn"
-                      width={80} // adjust width as needed
-                      height={30} // adjust height as needed
+                      width={80}
+                      height={30}
                     />
                   </Link>
                 </div>
@@ -228,7 +213,7 @@ const ContentSections = () => {
               <FadeInAnimation>
                 <Image
                   className="w-50 h-auto"
-                  src={"/paywithzcash.png"}
+                  src={'/paywithzcash.png'}
                   alt="paywithz.cash"
                   width={400}
                   height={40}
@@ -237,40 +222,42 @@ const ContentSections = () => {
             </div>
           </div>
 
-           <div
-            className="flex flex-col md:flex-row space-y-4 h-96 my-4 w-full border-cyan-400/50 border-2 rounded-md p-5"
-            style={{ height: "30rem" }}
-          >
-            <div className="flex justify-center items-center w-auto md:w-2/4">
-              <FadeInAnimation>
-                <Image
-                  src={"/hackathon.png"}
-                  alt=""
-                  width={350}
-                  height={350}
-                  unoptimized={true}
-                />
-              </FadeInAnimation>
-            </div>
+          {/* ZECPages Section */}
+          <div className="flex flex-col md:flex-row space-y-4 h-screen my-4 w-auto border-2 border-black/50 rounded-md p-5" style={{ height: "30rem", borderColor: "revert" }}>
             <div className="flex flex-col w-auto md:w-2/4 items-center justify-center">
               <FadeInAnimation>
-                <h1 className="text-3xl mb-4 font-semibold">Hackathon</h1>
+                <h1 className="text-3xl mb-4 font-semibold">ZECPages</h1>
               </FadeInAnimation>
               <FadeInAnimation>
                 <p className="text-center mb-5">
-                  Challenge yourself to build with Zcash Unstoppable Private Money.
+                  ZECPages is an anonymous message board powered by Zcash. It
+                  also serves as a public directory of Zcash users. Take it easy
+                  is the ZECpages motto. A good reason to swing by is if you
+                  want to chat and make new friends.
                 </p>
               </FadeInAnimation>
-              <div className="flex flex-row space-x-4 mt-4">
-                <FadeInAnimation>
+              <FadeInAnimation>
+                <div className="flex flex-row space-x-4 mt-4">
                   <Link
-                    href={"https://hackathon.zechub.wiki"}
-                    className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    href={'https://zecpages.com'}
+                    className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-semibold text-center border-blue-300 border-2 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
-                    Join the Hackathon
+                    ZECPages
                   </Link>
-                </FadeInAnimation>
-              </div>
+                </div>
+              </FadeInAnimation>
+            </div>
+            <div className="flex justify-center items-center w-auto md:w-2/4 ">
+              <FadeInAnimation>
+                <Image
+                  className="w-50 h-auto"
+                  src={'/ZecPages_Banner.gif'}
+                  alt=""
+                  width={500}
+                  height={50}
+                  unoptimized={true}
+                />
+              </FadeInAnimation>
             </div>
           </div>
         </div>
