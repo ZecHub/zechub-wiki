@@ -258,7 +258,7 @@ const ContentSections = () => {
               </FadeInAnimation>
               <FadeInAnimation>
                 <p className="text-center mb-5">
-                  Challenge yourself to build with Zcash—one of the leading privacy-preserving blockchains.
+                  Challenge yourself to build with Zcash Unstoppable Private Money.
                 </p>
               </FadeInAnimation>
               <div className="flex flex-row space-x-4 mt-4">
