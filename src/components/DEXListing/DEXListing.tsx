@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FadeInAnimation } from "../ui/FadeInAnimation";
+import { FadeInAnimation } from "../UI/FadeInAnimation";
 import "./DexListing.css";
 
 type DEXDetails = {

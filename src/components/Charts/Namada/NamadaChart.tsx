@@ -5,7 +5,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/shadcn/card";
+} from "@/components/UI/shadcn/card";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getNamadaSupply } from "@/lib/chart/helpers";
@@ -30,7 +30,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../ui/shadcn/select";
+} from "../../UI/shadcn/select";
 import ChartFooter from "../ChartFooter";
 
 type NamadaChartProps = {

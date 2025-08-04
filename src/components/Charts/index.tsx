@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/shadcn/button";
+import { Button } from "@/components/UI/shadcn/button";
 import { useEffect, useState } from "react";
 
 import "./index.css";

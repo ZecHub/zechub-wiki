@@ -3,7 +3,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/shadcn/card";
+} from "@/components/UI/shadcn/card";
 import { RefObject, useState } from "react";
 import { ResponsiveContainer } from "recharts";
 import { ErrorBoundary } from "../../ErrorBoundary/ErrorBoundary";
@@ -14,7 +14,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../ui/shadcn/select";
+} from "../../UI/shadcn/select";
 import SupplyDataLastUpdated from "../LastUpdated";
 
 type PenumbraChartProps = {

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeInAnimation } from "./FadeInAnimation";
 
+
 interface props {
   title: string;
   paraph: string;

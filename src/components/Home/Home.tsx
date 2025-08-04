@@ -1,11 +1,11 @@
 "use client";
 import Hero from "@/components/Hero/Hero";
 import ContentSections from "@/components/Home/ContentSections";
-import AnimationHome from "@/components/ui/AnimationHome";
-import Cards from "@/components/ui/Cards";
+import AnimationHome from "@/components/UI/AnimationHome";
+import Cards from "@/components/UI/Cards";
 import { cardsConfig } from "@/constants/cardsConfig";
 import Link from "next/link";
-import { FadeInAnimation } from "../ui/FadeInAnimation";
+import { FadeInAnimation } from "../UI/FadeInAnimation";
 
 type HomeProps = {
   text: string;

@@ -1,10 +1,10 @@
 "use client";
-import MemberCards from "@/components/ui/MemberCards";
+import MemberCards from "@/components/UI/MemberCards";
 import { daoMembers } from "@/constants/membersDao";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FadeInAnimation } from "../ui/FadeInAnimation";
+import { FadeInAnimation } from "../UI/FadeInAnimation";
 
 const Dao: React.FC = () => {
   return (

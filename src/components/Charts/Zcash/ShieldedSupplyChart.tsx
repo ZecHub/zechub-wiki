@@ -5,7 +5,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/shadcn/select";
+} from "@/components/UI/shadcn/select";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { formatNumberShort, getColorForPool, getSupplyData, PoolType } from "@/lib/chart/helpers";

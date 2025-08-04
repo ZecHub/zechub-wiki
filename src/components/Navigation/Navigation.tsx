@@ -1,5 +1,5 @@
 "use client";
-import DonationBtn from "@/components/ui/DonationBtn";
+import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
 import type { Classes, MenuExp } from "@/types";
 import Link from "next/link";
@@ -14,9 +14,9 @@ import Dropdown from "../Dropdown/Dropdown";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
 import { Icon } from "../ui/Icon";
-import Logo from "../ui/Logo";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/Sheet";
-import SocialIcons from "../ui/SocialIcons";
+import Logo from "../UI/Logo";
+import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
+import SocialIcons from "../UI/SocialIcons";
 
 const NavLinks = ({
   classes,

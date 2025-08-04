@@ -4,7 +4,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/shadcn/card";
+} from "@/components/UI/shadcn/card";
 import { RefObject, useState } from "react";
 import { ZcashMetrics } from "../../ZcashMetrics/ZcashMetrics";
 import ChartFooter from "../ChartFooter";

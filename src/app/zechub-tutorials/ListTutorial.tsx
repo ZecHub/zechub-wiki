@@ -1,6 +1,5 @@
 "use client";
-import Card from "@/components/ui/Card";
-import { Icon } from "@/components/ui/Icon";
+import Card from "@/components/UI/Card";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
