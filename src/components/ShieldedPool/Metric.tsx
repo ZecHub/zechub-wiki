@@ -1,4 +1,6 @@
+import { useInMobile } from "@/hooks/useInMobile";
 import { useEffect, useState } from "react";
+import { MetricCard, MetricCardSkeleton } from "../ZcashMetrics/MetricCard";
 
 interface CoinData {
   usd?: number;
@@ -26,11 +28,9 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
     transactions_24h: 0,
   });
   const [circulation, setCirculation] = useState<number | null>(null);
-  const [shieldedTxCount, setShieldedTxCount] = useState<
-    { sapling: number; orchard: number }[] | null
-  >(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const isMobile = useInMobile();
 
   useEffect(() => {
     let name = selectedCoin;
@@ -89,25 +89,26 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
 
         const data = await response.json();
 
-        if(name == "Usdc") {
-          name = "USDC"
+        if (name == "Usdc") {
+          name = "USDC";
         }
         const coinInfo = data[name];
-        setCoinData(coinInfo);
-        console.log(name.toLowerCase(), "coinInfo", data);
+        // setCoinData(coinInfo);
 
         // Mock blockchain data (replace with actual API calls)
         setBlockchainInfo({
-          market_cap_usd: coinInfo.usd_market_cap || 0,
-          market_price_usd: coinInfo.usd || 0,
-          market_price_btc: coinInfo.btc || 0,
+          market_cap_usd: coinInfo?.usd_market_cap || 0,
+          market_price_usd: coinInfo?.usd || 0,
+          market_price_btc: coinInfo?.btc || 0,
           blocks: Math.floor(Math.random() * 2000000),
-          transactions_24h: coinInfo.usd_24h_vol || 0,
+          transactions_24h: coinInfo?.usd_24h_vol || 0,
         });
 
         setCirculation(
           Math.floor(
-            coinInfo.usd_market_cap ? coinInfo.usd_market_cap / coinInfo.usd : 0
+            coinInfo?.usd_market_cap
+              ? coinInfo?.usd_market_cap / coinInfo?.usd
+              : 0
           )
         );
       } catch (err) {
@@ -121,42 +122,71 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
     fetchCoinData();
   }, [selectedCoin]);
 
+  const metricsObj = [
+    {
+      label: "Market Cap",
+      value: blockchainInfo?.market_cap_usd
+        ? `$${blockchainInfo?.market_cap_usd.toLocaleString()}`
+        : "N/A",
+    },
+    {
+      label: "Circulation",
+      value: circulation
+        ? `${circulation?.toLocaleString()}  ${selectedCoin}`
+        : "N/A",
+    },
+    {
+      label: "Market Price (USD)",
+      value: blockchainInfo?.market_price_usd
+        ? `$${blockchainInfo?.market_price_usd.toFixed(2)}`
+        : "N/A",
+    },
+    {
+      label: "Market Price (BTC)",
+      value: blockchainInfo?.market_price_btc
+        ? isMobile
+          ? Number(blockchainInfo?.market_price_btc).toFixed(4)
+          : Number(blockchainInfo?.market_price_btc).toFixed(8)
+        : "N/A",
+    },
+    {
+      label: "Blocks",
+      value: blockchainInfo?.blocks
+        ? blockchainInfo?.blocks.toLocaleString()
+        : "N/A",
+    },
+    {
+      label: "24h Transactions",
+      value: Number(blockchainInfo?.transactions_24h)
+        ? blockchainInfo?.transactions_24h.toLocaleString()
+        : "N/A",
+    },
+  ];
 
   return (
-    <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
-      <div className="border p-4 rounded-md text-center min-w-[200px]">
-        <h3 className="font-bold text-lg">Market Cap</h3>
-        <p>${blockchainInfo?.market_cap_usd?.toLocaleString()}</p>
-      </div>
+    <div className="my-12">
+      <h2 className="font-bold text-xl text-slate-700 dark:text-slate-100">
+        {loading ? (
+          <div className="h-7 bg-gray-200 dark:bg-slate-700 rounded w-24 mb-2" />
+        ) : (
+          `${selectedCoin} Metrics`
+        )}
+      </h2>
 
-      <div className="border p-4 rounded-md text-center min-w-[200px]">
-        <h3 className="font-bold text-lg">{selectedCoin} in Circulation</h3>
-        <p>
-          {circulation?.toLocaleString()} {selectedCoin}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+        {loading
+          ? metricsObj.map(({ label, value }) => (
+              <MetricCardSkeleton key={label} />
+            ))
+          : metricsObj.map(({ label, value }) => (
+              <MetricCard label={label} value={value!} key={label} />
+            ))}
+      </div>
+      {error && (
+        <p className="flex items-center bg-red-400">
+          Error loading {selectedCoin} chart.
         </p>
-      </div>
-
-      <div className="border p-4 rounded-md text-center min-w-[200px]">
-        <h3 className="font-bold text-lg">Market Price (USD)</h3>
-        <p>${blockchainInfo?.market_price_usd?.toFixed(2)}</p>
-      </div>
-
-      <div className="border p-4 rounded-md text-center min-w-[200px]">
-        <h3 className="font-bold text-lg">Market Price (BTC)</h3>
-        <p>{blockchainInfo?.market_price_btc?.toFixed(8)}</p>
-      </div>
-
-      {/* {blockchainInfo?.blocks && (
-        <div className="border p-4 rounded-md text-center min-w-[200px]">
-          <h3 className="font-bold text-lg">Blocks</h3>
-          <p>{blockchainInfo.blocks.toLocaleString()}</p>
-        </div>
-      )} */}
-
-      <div className="border p-4 rounded-md text-center min-w-[200px]">
-        <h3 className="font-bold text-lg">24h Transactions</h3>
-        <p>{blockchainInfo?.transactions_24h?.toLocaleString()}</p>
-      </div>
+      )}
     </div>
   );
 };

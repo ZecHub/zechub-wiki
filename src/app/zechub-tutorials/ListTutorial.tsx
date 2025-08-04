@@ -1,14 +1,15 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { BiRightArrowAlt as Arrow } from "react-icons/bi";
-import { BiSolidWallet as Wallet } from "react-icons/bi";
-import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
-import { BiMenu as BurgerMenuIcon } from "react-icons/bi";
 import Card from "@/components/UI/Card";
 import { Icon } from "@/components/UI/Icon";
-
+import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import {
+  BiRightArrowAlt as Arrow,
+  BiMenu as BurgerMenuIcon,
+  BiSolidWallet as Wallet,
+} from "react-icons/bi";
 
 interface MenuProps {
   folder: string;

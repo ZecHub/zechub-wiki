@@ -5,7 +5,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import Button from "@/components/Button/Button";
 import Checkbox from "@/components/Checkbox/Checkbox";
-import NodeCountChart from "@/components/NodeCountChart";
+import NodeCountChart from "@/components/NodeCountChartOld";
 import Tools from "@/components/Tools";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { Spinner } from "flowbite-react";
@@ -25,7 +25,7 @@ const ShieldedPoolChart = dynamic(() => import("./ShieldedPoolChart"), {
   ssr: true,
 });
 const TransactionSummaryChart = dynamic(
-  () => import("../TransactionSummaryChart"),
+  () => import("../TransactionSummaryChartOld"),
   { ssr: true }
 );
 const ZecIssuanceSummaryChart = dynamic(
@@ -33,7 +33,7 @@ const ZecIssuanceSummaryChart = dynamic(
   { ssr: true }
 );
 const NetInflowsOutFlowsChart = dynamic(
-  () => import("../Charts/NetInflowsOutflowsChart"),
+  () => import("../Charts/Zcash/NetInflowsOutflowsChart"),
   { ssr: true }
 );
 
@@ -431,12 +431,12 @@ export default function ShieldedPoolDashboard() {
                 selectedTool === ToolOptions.lockbox) && (
                 <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
               )}
-              {selectedTool === ToolOptions.net_inflows_outflows && (
+              {/* {selectedTool === ToolOptions.net_inflows_outflows && (
                 <NetInflowsOutFlowsChart
                   dataUrl={getDataUrl()}
                   color={getDataColor()}
                 />
-              )}
+              )} */}
               {selectedTool === "issuance" && (
                 <ZecIssuanceSummaryChart
                   dataUrl={DataUrlOptions.issuanceUrl}

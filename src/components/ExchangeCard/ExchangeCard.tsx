@@ -1,5 +1,5 @@
+import Image from "next/image";
 import React from "react";
-
 interface ExchangeCardProps {
   name: string;
   url: string;
@@ -22,11 +22,17 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
   <div className="light:bg-white border dark:border-gray-600 shadow-md rounded-lg overflow-hidden">
     <div className="p-6 text-center dark:bg-slate-900">
       <a href={url} target="_blank" rel="noopener noreferrer">
-        <img
+        {/* <img
           src={logo}
           alt={altText}
           className="mx-auto mb-4 object-contain"
           style={{ height: "160px" }}
+          /> */}
+        <Image
+          src={logo}
+          alt={altText}
+          style={{ height: "160px" }}
+          className="mx-auto mb-4 object-contain"
         />
       </a>
       <h2 className="text-xl font-semibold mb-2">{name}</h2>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ReactElement } from "react";
 
 export const socialIcons: Record<string, ReactElement> = {
@@ -102,9 +103,14 @@ export const socialIcons: Record<string, ReactElement> = {
     </svg>
   ),
   zcash: (
-    <img
-      className="w-12 h-12"
+    // <img
+    //   className="w-12 h-12"
+    //   src="https://z.cash/wp-content/uploads/2023/11/Secondary-Brandmark-Black.svg"
+    // />
+    <Image
       src="https://z.cash/wp-content/uploads/2023/11/Secondary-Brandmark-Black.svg"
+      alt={"Zcash"}
+      className="w-12 h-12"
     />
   ),
   telegram: (

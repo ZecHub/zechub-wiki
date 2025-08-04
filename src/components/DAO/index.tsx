@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { FadeInAnimation } from "@/components/UI/FadeInAnimation";
 import MemberCards from "@/components/UI/MemberCards";
 import { daoMembers } from "@/constants/membersDao";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { FadeInAnimation } from "../UI/FadeInAnimation";
 
 const Dao: React.FC = () => {
   return (
@@ -12,13 +12,22 @@ const Dao: React.FC = () => {
       <FadeInAnimation>
         <div className="flex items-center justify-center my-12">
           <Image
-            src={'/DAOlogo.png'}
+            src={"/DAOlogo.png"}
             alt="ZecHub Logo"
             width={100}
             height={100}
             className="mr-4"
           />
-          <h1 className="text-4xl font-semibold">ZecHub <Link href="https://nym.com/blog/what-is-dao" target="_blank" className="text-blue-500 hover:text-blue-600">DAO</Link></h1>
+          <h1 className="text-4xl font-semibold">
+            ZecHub{" "}
+            <Link
+              href="https://nym.com/blog/what-is-dao"
+              target="_blank"
+              className="text-blue-500 hover:text-blue-600"
+            >
+              DAO
+            </Link>
+          </h1>
         </div>
 
         <p
@@ -29,9 +38,16 @@ const Dao: React.FC = () => {
           members can work together on creating, validating, and promoting
           content that supports the Zcash ecosystem. ZecHub believes: Privacy is
           a human right Education should be open-source and accessible worldwide
-          Community members have a right to earn ZEC privately ZecHub <Link href="https://nym.com/blog/what-is-dao" target="_blank" className="text-blue-500 hover:text-blue-600">DAO</Link> is
-          comprised of likeminded individuals located around the world with the
-          common goal of effectively guiding Zcash and Privacy Technology
+          Community members have a right to earn ZEC privately ZecHub{" "}
+          <Link
+            href="https://nym.com/blog/what-is-dao"
+            target="_blank"
+            className="text-blue-500 hover:text-blue-600"
+          >
+            DAO
+          </Link>{" "}
+          is comprised of likeminded individuals located around the world with
+          the common goal of effectively guiding Zcash and Privacy Technology
           education.
         </p>
       </FadeInAnimation>
@@ -76,7 +92,7 @@ const Dao: React.FC = () => {
             >
               <Image
                 className="rounded-full border-4 border-slate-400 dark:border-black hover:scale-125"
-                src={'/daodao.jpg'}
+                src={"/daodao.jpg"}
                 alt="DAODAO"
                 width={80}
                 height={80}
@@ -88,7 +104,7 @@ const Dao: React.FC = () => {
             <Link href="https://snapshot.org/#/zechubdao.eth" target="_blank">
               <Image
                 className="rounded-full border-4 border-slate-400 dark:border-black hover:scale-125"
-                src={'/snapshot.jpg'}
+                src={"/snapshot.jpg"}
                 alt="Ethereum DAO"
                 width={80}
                 height={80}

@@ -171,3 +171,9 @@ export const formatString = {
     return txt;
   },
 };
+
+// Function to format number with commas
+export const formatNumber = (n: number) =>
+  new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 2,
+  }).format(n);

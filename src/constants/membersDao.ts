@@ -1,4 +1,5 @@
-import { socialIcons } from "@/components/UI/Icons";
+import { socialIcons } from "@/components/UI/SvgIcons";
+
 
 export const daoMembers = [
   {

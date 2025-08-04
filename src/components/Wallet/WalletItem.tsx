@@ -1,15 +1,15 @@
+import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
-import { Icon } from "@/components/UI/Icon";
 import {
+  MdThumbDown as Dislike,
+  MdThumbUp as Like,
+  MdChecklist,
   MdDevices,
   MdPool,
-  MdChecklist,
   MdOpenInNew as OpenNew,
-  MdThumbUp as Like,
-  MdThumbDown as Dislike,
 } from "react-icons/md";
-import Link from "next/link";
-import Image from "next/image";
+import { Icon } from "../UI/Icon";
 
 interface WalletItemProps {
   title: string;
