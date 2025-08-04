@@ -13,7 +13,7 @@ import { RiMenuLine as MenuIcon } from "react-icons/ri";
 import Dropdown from "../Dropdown/Dropdown";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
-import { Icon } from "../ui/Icon";
+import { Icon } from "../UI/Icon";
 import Logo from "../UI/Logo";
 import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
 import SocialIcons from "../UI/SocialIcons";

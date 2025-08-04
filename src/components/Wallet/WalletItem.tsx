@@ -9,7 +9,7 @@ import {
   MdPool,
   MdOpenInNew as OpenNew,
 } from "react-icons/md";
-import { Icon } from "../ui/Icon";
+import { Icon } from "../UI/Icon";
 
 interface WalletItemProps {
   title: string;

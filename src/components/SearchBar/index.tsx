@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ChangeEvent, Fragment, useRef, useState } from "react";
 import { IoMdClose as closeIcon } from "react-icons/io";
 import { MdArrowForward as ArrowIcon } from "react-icons/md";
-import { Icon } from "../ui/Icon";
+import { Icon } from "../UI/Icon";
 import { SearchInput } from "./SearchInput";
 
 const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
