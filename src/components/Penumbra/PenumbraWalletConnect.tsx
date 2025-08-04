@@ -5,7 +5,7 @@ import useConnect from "@/hooks/penumbra/useConnect";
 import useInfo from "@/hooks/penumbra/useInfo";
 import { useWalletManifests } from "@/hooks/penumbra/useWalletManifests";
 import { truncateString } from "@/lib/penumbra/format";
-import { AddressViewComponent } from "@penumbra-zone/UI/AddressView";
+import { AddressViewComponent } from "@penumbra-zone/ui/AddressView";
 import { useEffect } from "react";
 import "./penumbra.css";
 
