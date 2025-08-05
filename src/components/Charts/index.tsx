@@ -47,10 +47,10 @@ const Dashboard = () => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div className="mt-12">
             <h1 className="text-3xl font-bold text-foreground">
-              Privacy Cryptocurrency Dashboard
+              ZecHub Dashboard
             </h1>
             <p className="text-muted-foreground">
-              Analyze privacy coin metrics and trends
+              Analyze Zcash network metrics and trends
             </p>
           </div>
 
