@@ -334,7 +334,7 @@ const RewardChart = (props: RewardChartProps) => {
               <span
                 className="w-3 h-3 inline-block rounded-sm"
                 style={{
-                  background: `hsl(var(--chart-${(index % 6) + 1}))`,
+                  background: `rgb(75, 192, 192)`,
                 }}
               />
               <p>
@@ -364,7 +364,7 @@ const RewardChart = (props: RewardChartProps) => {
               <span
                 className="w-3 h-3 inline-block rounded-sm"
                 style={{
-                  background: `hsl(var(--chart-${(index % 6) + 2}))`,
+                  background: `rgb(54, 162, 235)`,
                 }}
               />
               <p>
@@ -383,7 +383,7 @@ const RewardChart = (props: RewardChartProps) => {
               <span
                 className="w-3 h-3 inline-block rounded-sm"
                 style={{
-                  background: `hsl(var(--chart-${(index % 6) + 3}))`,
+                  background: `rgb(255, 99, 132)`,
                 }}
               />
               <p>
