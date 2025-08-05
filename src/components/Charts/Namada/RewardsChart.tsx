@@ -1,6 +1,7 @@
 // components/RewardChart.tsx
 "use client";
 
+import { CardTitle } from "@/components/UI/shadcn/card";
 import {
   Select,
   SelectContent,
@@ -264,11 +265,14 @@ const RewardChart = (props: RewardChartProps) => {
   return (
     <div
       ref={props.chartRef}
-      className="bg-white dark:bg-slate-900 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-slate-700"
+      className="bg-white dark:bg-slate-900 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700"
       style={{ width: "100%" }}
     >
-      <div className="flex flex-col sm:flex-row gap-4 mb-12">
-        <div className="flex items-center gap-2 ml-auto">
+      <div className="flex flex-col sm:flex-row  gap-4 mb-12 space-y-1.5 items-center">
+        <CardTitle className="flex-1 text-xl">
+          Staked Ratio / Annual Rewards / Inflation
+        </CardTitle>
+        <div className="flex items-center gap-2">
           <label className="text-sm font-medium">Filter by Days:</label>
           <Select
             value={timeRange}
@@ -302,7 +306,6 @@ const RewardChart = (props: RewardChartProps) => {
       <div className="w-full" style={{ height: "480px", position: "relative" }}>
         <Line data={chartData} options={options} />
       </div>
-
       {/* <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-blue-50 dark:bg-slate-800 p-4 rounded-lg">
           <h3 className="font-semibold text-blue-800">Current Staked Ratio</h3>
