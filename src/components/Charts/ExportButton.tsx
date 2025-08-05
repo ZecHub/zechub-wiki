@@ -1,17 +1,8 @@
 import Button from "@/components/Button/Button";
-import { ToolOptions } from "@/components/Tools/tools";
-import { transformSupplyData } from "@/lib/chart/helpers";
-import { PoolKey, SupplyData } from "@/lib/chart/types";
 
 interface ExportButtonProps {
-  supplies?: Record<PoolKey, SupplyData | null> | any;
-  selectedPool: PoolKey;
-  selectedTool?: ToolOptions ;
-  handleSaveToPng: (
-    poolType: string,
-    poolData: Record<string, { timestamp: string; supply: number } | null>,
-    toolType: string
-  ) => void;
+  handleSaveToPng: (imgLabel: string) => void;
+  imgLabel: string;
 }
 export function ExportButton(props: ExportButtonProps) {
   return (
@@ -19,17 +10,7 @@ export function ExportButton(props: ExportButtonProps) {
       <Button
         text="Export PNG"
         className="bg-[#1984c7] text-white px-4 py-2 rounded-md mt-2 sm:mt-0 hover:bg-[#1675b1] transition"
-        onClick={() =>
-          props.handleSaveToPng(
-            props.selectedPool,
-            {
-              sproutSupply: transformSupplyData(props.supplies!.sprout),
-              saplingSupply: transformSupplyData(props.supplies!.sapling),
-              orchardSupply: transformSupplyData(props.supplies!.orchard),
-            },
-            props.selectedTool!
-          )
-        }
+        onClick={() => props.handleSaveToPng(props.imgLabel)}
       />
     </div>
   );
