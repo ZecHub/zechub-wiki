@@ -3,6 +3,7 @@
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { RefObject, useEffect, useState } from "react";
+import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
 
 type TransactionSummaryDatum = {
@@ -158,62 +159,56 @@ function PrivacySetVisualizationChart({
 
   return (
     <ErrorBoundary fallback="Failed to load privacy set chart">
-      <div className="space-y-6 mt-12">
-        <h3 className="text-lg font-semibold">Shielded Outputs by Year</h3>
-        <text fill="#334155" className="dark:text-slate-300 font-light">
-          Total number of fully shielded outputs collected in each pool over
-          time
-        </text>
+      <ChartHeader title="Shielded Outputs by Year"></ChartHeader>
+      <p className="dark:text-slate-400 mt-[-20] mb-12 text-sm font-light self-start">
+        Total number of fully shielded outputs collected in each pool over time
+      </p>
+      <ChartContainer ref={chartRef} loading={loading}>
+        <div className="relative w-full">
+          <div className="w-full max-w-[1200px] mx-auto px-4">
+            {/* Chart */}
+            <svg
+              viewBox="0 0 1000 600"
+              preserveAspectRatio="xMidYMid slice"
+              className="w-full h-[480]"
+              role="img"
+            >
+              {renderCluster(
+                "sapling",
+                saplingData,
+                0.3 * 1000,
+                "hsl(var(--chart-2))",
+                sapStep
+              )}
+              {renderCluster(
+                "orchard",
+                orchardData,
+                0.7 * 1000,
+                "hsl(var(--chart-3))",
+                orcStep
+              )}
+            </svg>
 
-        <ChartContainer ref={chartRef} loading={loading}>
-          <div className="relative w-full">
-            <div className="w-full max-w-[1200px] mx-auto px-4">
-              {/* Chart */}
-              <svg
-                viewBox="0 0 1000 600"
-                preserveAspectRatio="xMidYMid slice"
-                className="w-full h-[480]"
-                role="img"
-              >
-                {renderCluster(
-                  "sapling",
-                  saplingData,
-                  0.3 * 1000,
-                  "hsl(var(--chart-2))",
-                  sapStep
-                )}
-                {renderCluster(
-                  "orchard",
-                  orchardData,
-                  0.7 * 1000,
-                  "hsl(var(--chart-3))",
-                  orcStep
-                )}
-              </svg>
-
-              {/* Legend */}
-              <div className="flex justify-center gap-6 md:mt-4 text-sm text-slate-600 dark:text-slate-300">
-                <div className="flex items-center gap-2">
-                  <span
-                    className="w-3 h-3 inline-block rounded-sm"
-                    style={{ background: "hsl(var(--chart-2))" }}
-                  />
-                  <p>Sapling Pool</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span
-                    className="w-3 h-3 inline-block rounded-sm"
-                    style={{ background: "hsl(var(--chart-3))" }}
-                  />
-                  <p>Orchard Pool</p>
-                </div>
+            {/* Legend */}
+            <div className="flex justify-center gap-6 md:mt-4 text-sm text-slate-600 dark:text-slate-300">
+              <div className="flex items-center gap-2">
+                <span
+                  className="w-3 h-3 inline-block rounded-sm"
+                  style={{ background: "hsl(var(--chart-2))" }}
+                />
+                <p>Sapling Pool</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <span
+                  className="w-3 h-3 inline-block rounded-sm"
+                  style={{ background: "hsl(var(--chart-3))" }}
+                />
+                <p>Orchard Pool</p>
               </div>
             </div>
           </div>
-        </ChartContainer>
-
-        
-      </div>
+        </div>
+      </ChartContainer>
     </ErrorBoundary>
   );
 }
