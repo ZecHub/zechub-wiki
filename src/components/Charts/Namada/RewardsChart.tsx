@@ -278,7 +278,7 @@ const RewardChart = (props: RewardChartProps) => {
         <Line data={chartData} options={options} />
       </div>
 
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-blue-50 dark:bg-slate-800 p-4 rounded-lg">
           <h3 className="font-semibold text-blue-800">Current Staked Ratio</h3>
           <p className="text-2xl font-bold">
@@ -323,9 +323,81 @@ const RewardChart = (props: RewardChartProps) => {
             %
           </p>
         </div>
-      </div>
+      </div> */}
 
-   
+      <div className="pt-5 flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
+        {[namadaRewards[namadaRewards.length - 1]].map((id, index) => (
+          <div key={id.Date.toString()} className="flex items-center space-x-4">
+            <div className="flex items-center space-x-1">
+              <span
+                className="w-3 h-3 inline-block rounded-sm"
+                style={{
+                  background: `hsl(var(--chart-${(index % 6) + 1}))`,
+                }}
+              />
+              <p>
+                {" "}
+                Staked Ratio -{" "}
+                {(
+                  parseFloat(
+                    namadaRewards[namadaRewards.length - 1]?.Staked_Ratio || "0"
+                  ) * 100
+                ).toFixed(2)}
+                %{" "}
+                <span className="text-xs text-slate-400">
+                  (
+                  {format(
+                    parse(
+                      namadaRewards[namadaRewards.length - 1]?.Date || "",
+                      "MM/dd/yyyy",
+                      new Date()
+                    ),
+                    "PP"
+                  )}
+                  )
+                </span>
+              </p>
+            </div>
+            <div className="flex items-center space-x-1">
+              <span
+                className="w-3 h-3 inline-block rounded-sm"
+                style={{
+                  background: `hsl(var(--chart-${(index % 6) + 2}))`,
+                }}
+              />
+              <p>
+                {" "}
+                Annual Rewards -{" "}
+                {(
+                  parseFloat(
+                    namadaRewards[namadaRewards.length - 1]
+                      ?.Annual_Staking_Rewards_Ratio || "0"
+                  ) * 100
+                ).toFixed(3)}
+                %
+              </p>
+            </div>
+            <div className="flex items-center space-x-1">
+              <span
+                className="w-3 h-3 inline-block rounded-sm"
+                style={{
+                  background: `hsl(var(--chart-${(index % 6) + 3}))`,
+                }}
+              />
+              <p>
+                Inflation -{" "}
+                {(
+                  parseFloat(
+                    namadaRewards[namadaRewards.length - 1]?.Inflation_Rate ||
+                      "0"
+                  ) * 100
+                ).toFixed(4)}
+                %
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
