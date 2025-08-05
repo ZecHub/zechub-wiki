@@ -74,7 +74,7 @@ function NamadaChart(props: NamadaChartProps) {
                   </TabsContent>
 
                   <TabsContent value="rewards" activeTab={activeTab}>
-                    <RewardChart chartRef={props.divChartRef} />
+                    <RewardChart divChartRef={props.divChartRef} />
                   </TabsContent>
 
                   <ChartFooter

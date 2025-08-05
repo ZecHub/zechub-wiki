@@ -106,7 +106,10 @@ export default function TokenEcosystem(props: TokenEcosystemProps) {
     props.selectedTokenId === "all" ? tokenIds : [props.selectedTokenId];
 
   return (
-    <Card className="shadow-sm border border-gray-200 dark:border-slate-700">
+    <Card
+      ref={props.divChartRef}
+      className="shadow-sm border border-gray-200 dark:border-slate-700"
+    >
       <CardHeader className="flex flex-row items-center mb-12">
         <CardTitle className="flex-1 text-xl">
           {props.selectedTokenId === "all"
@@ -137,9 +140,8 @@ export default function TokenEcosystem(props: TokenEcosystemProps) {
           </Select>
         </div>
       </CardHeader>
-
       <CardContent className="space-y-6">
-        <div ref={props.divChartRef} className="relative">
+        <div className="relative">
           <ResponsiveContainer width="100%" height={420}>
             {loading ? (
               <div className="flex justify-center items-center h-full">

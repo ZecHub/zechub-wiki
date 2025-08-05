@@ -45,7 +45,7 @@ interface RewardData {
 }
 
 interface RewardChartProps {
-  chartRef: RefObject<HTMLDivElement | null>;
+  divChartRef: RefObject<HTMLDivElement | null>;
 }
 
 const RewardChart = (props: RewardChartProps) => {
@@ -264,7 +264,7 @@ const RewardChart = (props: RewardChartProps) => {
 
   return (
     <div
-      ref={props.chartRef}
+      ref={props.divChartRef}
       className="bg-white dark:bg-slate-900 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700"
       style={{ width: "100%" }}
     >
