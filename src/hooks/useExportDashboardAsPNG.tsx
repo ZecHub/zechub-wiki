@@ -12,6 +12,30 @@ export const PoolsType = {
 const useExportDashboardAsPNG = () => {
   const divChartRef = useRef<HTMLDivElement>(null);
 
+  const handleSaveToPng = async (label: string) => {
+    try {
+      const canvas = await html2canvas(divChartRef.current!, {
+        scale: 3, // renders at 3x resolution
+        useCORS: true,
+      });
+
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = `${label}-chart.png`;
+      link.click();
+
+    } catch (err) {
+      alert("Error exporting chart!");
+      console.error("Error saving chart: ", err);
+    }
+  };
+
+  return { divChartRef, handleSaveToPng };
+};
+
+const useExportDashboardAsPNGBackup = () => {
+  const divChartRef = useRef<HTMLDivElement>(null);
+
   const handleSaveToPng = async (
     poolType: string,
     poolData:
