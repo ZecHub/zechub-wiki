@@ -183,7 +183,7 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
             ))}
       </div>
       {error && (
-        <p className="flex items-center bg-red-400">
+        <p className="flex items-center bg-red-300 text-red-400 mt-8 p-4">
           Error loading {selectedCoin} chart.
         </p>
       )}
