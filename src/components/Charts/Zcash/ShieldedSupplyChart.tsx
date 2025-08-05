@@ -97,7 +97,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     const parsed = new Date(dateStr);
 
     return parsed.getFullYear().toString();
-    //date.split("/")[2];
   };
 
   const getAvailableYears = (poolKey: PoolKey) => {
