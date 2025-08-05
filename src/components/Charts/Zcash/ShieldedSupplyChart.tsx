@@ -27,6 +27,7 @@ import {
 } from "recharts";
 import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
+import { useInMobile } from "@/hooks/useInMobile";
 
 const POOL_OPTIONS = [
   { label: "All Pools", value: "all" },
@@ -40,12 +41,16 @@ type ShieldedSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
 
+const THROTTLE = 6; // every Nth datapoint
+
+
 export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState("all");
   const [selectedPool, setSelectedPool] = useState<PoolKey>("all");
 
   const fontSize = useResponsiveFontSize();
+  const isMobile = useInMobile();
 
   const [orchardSupplyData, setOrchardSupplyData] = useState<SupplyData[]>([]);
   const [saplingSupplyData, setSaplingSupplyData] = useState<SupplyData[]>([]);
@@ -203,6 +208,15 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const poolData =
     selectedPool === "all" ? combinedPoolData : poolDataMap[selectedPool];
 
+  const downsampleData = (data: any[], interval: number) =>
+    data.filter((_, idx) => idx % interval === 0);
+
+  // use in place of full dataset:
+  const renderedPoolData =
+    selectedYear === "all" && selectedPool === "all"
+      ? downsampleData(poolData, THROTTLE)
+      : poolData;
+
   return (
     <ErrorBoundary fallback={"Failed to load Shielded Supply Chart"}>
       <ChartHeader
@@ -282,7 +296,10 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
       {/*  Chart Container */}
       <ChartContainer ref={props.chartRef} loading={loading}>
-        <AreaChart data={poolData} key={`${selectedYear}-${selectedPool}`}>
+        <AreaChart
+          data={renderedPoolData}
+          key={`${selectedYear}-${selectedPool}`}
+        >
           <defs>
             <linearGradient id="sproutGradient" x1="0" y1="0" x2="0" y2="1">
               <stop
@@ -325,7 +342,13 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
           </defs>
 
           <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-          <XAxis dataKey="close" tick={{ fontSize, fill: "#94a3b8" }} />
+          <XAxis
+            dataKey="close"
+            tick={{ fontSize, fill: "#94a3b8" }}
+            interval={isMobile ? 10 : "preserveStartEnd"}
+            minTickGap={isMobile ? 10 : 30}
+            tickCount={isMobile ? 4 : 8}
+          />
           <YAxis
             tick={{ fontSize, fill: "#94a3b8" }}
             tickFormatter={(val) => formatNumberShort(val)}
@@ -378,6 +401,10 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                 stroke={getColorForPool("sapling")}
                 fill="url(#saplingGradient)"
                 name="Sapling Pool"
+                dot={false}
+                connectNulls={true}
+                isAnimationActive={true}
+                animationDuration={600}
               />
               <Area
                 type="monotone"
