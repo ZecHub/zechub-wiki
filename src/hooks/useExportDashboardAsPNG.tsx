@@ -47,9 +47,9 @@ const useExportDashboardAsPNG = () => {
     span.style.zIndex = "1000";
     span.appendChild(poolQty);
 
-    if (divChartRef.current && toolType == "supply") {
-      divChartRef.current.appendChild(span);
-    }
+    // if (divChartRef.current && toolType == "supply") {
+    //   divChartRef.current.appendChild(span);
+    // }
 
     try {
       const canvas = await html2canvas(divChartRef.current!, {
@@ -66,7 +66,7 @@ const useExportDashboardAsPNG = () => {
       link.click();
 
       // Clean up
-      divChartRef.current?.removeChild(span);
+      // divChartRef.current?.removeChild(span);
     } catch (err) {
       console.error("Error saving chart: ", err);
     }
