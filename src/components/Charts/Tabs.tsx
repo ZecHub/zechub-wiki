@@ -17,7 +17,7 @@ export const Tabs = ({ children, defaultValue, value, onValueChange }: any) => {
 };
 
 export const TabsList = ({ children }: any) => (
-  <div className="flex space-x-1 rounded-lg bg-muted bg-slate-100 p-1 mb-4">
+  <div className="flex space-x-1 rounded-lg bg-muted bg-slate-100 p-1 mb-4 overflow-x-auto">
     {children}
   </div>
 );
