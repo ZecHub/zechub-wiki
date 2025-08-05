@@ -1,6 +1,13 @@
 // components/RewardChart.tsx
 "use client";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/UI/shadcn/select";
 import { DATA_URL } from "@/lib/chart/data-url";
 import {
   CategoryScale,
@@ -256,23 +263,39 @@ const RewardChart = (props: RewardChartProps) => {
 
   return (
     <div
-      className="bg-white dark:bg-slate-900 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-slate-700"
+      ref={props.chartRef}
+      className="bg-white dark:bg-slate-900 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-slate-700"
       style={{ width: "100%" }}
     >
-      <div className="flex flex-col sm:flex-row justify-between gap-4 mb-12">
-        <div></div>
-        <div className="flex gap-4 items-center">
+      <div className="flex flex-col sm:flex-row gap-4 mb-12">
+        <div className="flex items-center gap-2 ml-auto">
           <label className="text-sm font-medium">Filter by Days:</label>
-          <select
+          <Select
             value={timeRange}
-            onChange={(e) => setTimeRange(e.target.value as any)}
-            className="border bg-white dark:bg-slate-900 rounded px-3 py-2 text-sm w-48 hover:cursor-pointer "
+            onValueChange={(value) => {
+              setTimeRange(value as any);
+            }}
           >
-            <option value="7d">Last 7 days</option>
-            <option value="30d">Last 30 days</option>
-            <option value="90d">Last 90 days</option>
-            <option value="all">All time</option>
-          </select>
+            <SelectTrigger className="w-48 border dark:border-slate-700">
+              <SelectValue placeholder="All Tokens" />
+            </SelectTrigger>
+            <SelectContent className="border dark:border-slate-700">
+              <SelectItem value="all">All Tokens</SelectItem>
+              {[
+                { label: "Last 7 days", value: "7d" },
+                { label: "Last 30 days", value: "30d" },
+                { label: "Last 90 days", value: "90d" },
+              ].map((token) => (
+                <SelectItem
+                  key={token.value}
+                  value={token.value}
+                  className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800 flex justify-center items-center"
+                >
+                  {token.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
