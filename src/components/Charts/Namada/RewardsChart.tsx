@@ -256,15 +256,17 @@ const RewardChart = (props: RewardChartProps) => {
 
   return (
     <div
-      className="bg-white dark:bg-slate-900 rounded-lg shadow p-4"
+      className="bg-white dark:bg-slate-900 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-slate-700"
       style={{ width: "100%" }}
     >
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
-        <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row justify-between gap-4 mb-12">
+        <div></div>
+        <div className="flex gap-4 items-center">
+          <label className="text-sm font-medium">Filter by Days:</label>
           <select
             value={timeRange}
             onChange={(e) => setTimeRange(e.target.value as any)}
-            className="border bg-white dark:bg-slate-900 rounded px-3 py-1 text-sm"
+            className="border bg-white dark:bg-slate-900 rounded px-3 py-2 text-sm w-48 hover:cursor-pointer "
           >
             <option value="7d">Last 7 days</option>
             <option value="30d">Last 30 days</option>
@@ -274,7 +276,7 @@ const RewardChart = (props: RewardChartProps) => {
         </div>
       </div>
 
-      <div className="w-full" style={{ height: "420px", position: "relative" }}>
+      <div className="w-full" style={{ height: "480px", position: "relative" }}>
         <Line data={chartData} options={options} />
       </div>
 
@@ -325,7 +327,7 @@ const RewardChart = (props: RewardChartProps) => {
         </div>
       </div> */}
 
-      <div className="pt-5 flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
+      <div className="flex justify-center gap-6 text-sm my-6 text-slate-600 dark:text-slate-300">
         {[namadaRewards[namadaRewards.length - 1]].map((id, index) => (
           <div key={id.Date.toString()} className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
