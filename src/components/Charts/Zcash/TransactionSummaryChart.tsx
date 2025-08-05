@@ -18,6 +18,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
 
 const BLOCKS_PERIOD = 8064;
@@ -163,13 +164,9 @@ export default function TransactionsSummaryChart(
 
   return (
     <ErrorBoundary fallback={"Failed to load Transaction Summary Chart"}>
-      <div className="space-y-6">
-        <div className="flex mt-12 space-x-10">
-          <h3 className="text-lg font-semibold mb-4 flex-1">
-            Transactions Summary
-          </h3>
-
-          {/* Toggle Controls */}
+      <ChartHeader title="Transactions Summary">
+        {/* Toggle Controls */}
+        <div className="flex items-center justify-center space-x-8">
           <div className="flex justify-center items-center flex-wrap space-x-12">
             {/* Cumulative View Toggle */}
             <div className="relative group">
@@ -215,7 +212,6 @@ export default function TransactionsSummaryChart(
               </label>
             </div>
           </div>
-
           {/* Sliders */}
           <div className="flex justify-center items-center space-x-12">
             <RangeSlider
@@ -235,155 +231,156 @@ export default function TransactionsSummaryChart(
             />
           </div>
         </div>
-        <ChartContainer ref={props.chartRef} loading={loading}>
-          {cumulative ? (
-            <AreaChart data={chartDataset}>
-              <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-              <XAxis
-                dataKey="height"
-                tick={{ fontSize, fill: "#94a3b8" }}
-                tickFormatter={(v) => `#${v}`}
-              />
-              <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
-              <Tooltip />
+      </ChartHeader>
 
-              <Legend
-                verticalAlign="bottom"
-                align="center"
-                content={({ payload }) => (
-                  <div className="flex justify-center gap-6 mt-6 text-sm text-slate-600 dark:text-slate-300">
-                    {payload?.map((entry, index) => (
-                      <div
-                        key={`item-${index}`}
-                        className="flex items-center gap-2"
-                      >
-                        <span
-                          className="w-3 h-3 inline-block rounded-sm"
-                          style={{ background: entry.color }}
-                        />
-                        <p style={{ color: entry.color }}>{entry.value}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              />
+      <ChartContainer ref={props.chartRef} loading={loading}>
+        {cumulative ? (
+          <AreaChart data={chartDataset}>
+            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+            <XAxis
+              dataKey="height"
+              tick={{ fontSize, fill: "#94a3b8" }}
+              tickFormatter={(v) => `#${v}`}
+            />
+            <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
+            <Tooltip />
 
-              {(pool === "default" || pool === "sapling") && (
-                <>
-                  {filter && (
-                    <Area
-                      type="monotone"
-                      dataKey="sapling_filter"
-                      name="Sapling Filter"
-                      stroke="#3b82f6"
-                      fill="#3b82f6"
-                      fillOpacity={0.2}
-                    />
-                  )}
+            <Legend
+              verticalAlign="bottom"
+              align="center"
+              content={({ payload }) => (
+                <div className="flex justify-center gap-6 mt-6 text-sm text-slate-600 dark:text-slate-300">
+                  {payload?.map((entry, index) => (
+                    <div
+                      key={`item-${index}`}
+                      className="flex items-center gap-2"
+                    >
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{ background: entry.color }}
+                      />
+                      <p style={{ color: entry.color }}>{entry.value}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            />
+
+            {(pool === "default" || pool === "sapling") && (
+              <>
+                {filter && (
                   <Area
                     type="monotone"
-                    dataKey="sapling"
-                    name="Sapling"
-                    stroke="#0ea5e9"
-                    fill="#0ea5e9"
-                    fillOpacity={0.3}
-                  />
-                </>
-              )}
-              {(pool === "default" || pool === "orchard") && (
-                <>
-                  {filter && (
-                    <Area
-                      type="monotone"
-                      dataKey="orchard_filter"
-                      name="Orchard Filter"
-                      stroke="#f87171"
-                      fill="#f87171"
-                      fillOpacity={0.2}
-                    />
-                  )}
-                  <Area
-                    type="monotone"
-                    dataKey="orchard"
-                    name="Orchard"
-                    stroke="#ef4444"
-                    fill="#ef4444"
-                    fillOpacity={0.3}
-                  />
-                </>
-              )}
-            </AreaChart>
-          ) : (
-            <BarChart data={chartDataset}>
-              <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-              <XAxis
-                dataKey="height"
-                tick={{ fontSize, fill: "#94a3b8" }}
-                tickFormatter={(v) => `#${v}`}
-              />
-              <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
-              <Tooltip />
-              <Legend
-                verticalAlign="bottom"
-                align="center"
-                content={({ payload }) => (
-                  <div className="flex justify-center gap-6 mt-6 text-sm text-slate-600 dark:text-slate-300">
-                    {payload?.map((entry, index) => (
-                      <div
-                        key={`item-${index}`}
-                        className="flex items-center gap-2"
-                      >
-                        <span
-                          className="w-3 h-3 inline-block rounded-sm"
-                          style={{ background: entry.color }}
-                        />
-                        <p>{entry.value}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              />
-
-              {(pool === "default" || pool === "sapling") && (
-                <>
-                  {filter && (
-                    <Bar
-                      dataKey="sapling_filter"
-                      name="Sapling Filter"
-                      fill="#60a5fa"
-                      stackId="stack"
-                    />
-                  )}
-                  <Bar
-                    dataKey="sapling"
-                    name="Sapling"
+                    dataKey="sapling_filter"
+                    name="Sapling Filter"
+                    stroke="#3b82f6"
                     fill="#3b82f6"
-                    stackId="stack"
+                    fillOpacity={0.2}
                   />
-                </>
+                )}
+                <Area
+                  type="monotone"
+                  dataKey="sapling"
+                  name="Sapling"
+                  stroke="#0ea5e9"
+                  fill="#0ea5e9"
+                  fillOpacity={0.3}
+                />
+              </>
+            )}
+            {(pool === "default" || pool === "orchard") && (
+              <>
+                {filter && (
+                  <Area
+                    type="monotone"
+                    dataKey="orchard_filter"
+                    name="Orchard Filter"
+                    stroke="#f87171"
+                    fill="#f87171"
+                    fillOpacity={0.2}
+                  />
+                )}
+                <Area
+                  type="monotone"
+                  dataKey="orchard"
+                  name="Orchard"
+                  stroke="#ef4444"
+                  fill="#ef4444"
+                  fillOpacity={0.3}
+                />
+              </>
+            )}
+          </AreaChart>
+        ) : (
+          <BarChart data={chartDataset}>
+            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+            <XAxis
+              dataKey="height"
+              tick={{ fontSize, fill: "#94a3b8" }}
+              tickFormatter={(v) => `#${v}`}
+            />
+            <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
+            <Tooltip />
+            <Legend
+              verticalAlign="bottom"
+              align="center"
+              content={({ payload }) => (
+                <div className="flex justify-center gap-6 mt-6 text-sm text-slate-600 dark:text-slate-300">
+                  {payload?.map((entry, index) => (
+                    <div
+                      key={`item-${index}`}
+                      className="flex items-center gap-2"
+                    >
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{ background: entry.color }}
+                      />
+                      <p>{entry.value}</p>
+                    </div>
+                  ))}
+                </div>
               )}
-              {(pool === "default" || pool === "orchard") && (
-                <>
-                  {filter && (
-                    <Bar
-                      dataKey="orchard_filter"
-                      name="Orchard Filter"
-                      fill="#fb7185"
-                      stackId="stack"
-                    />
-                  )}
+            />
+
+            {(pool === "default" || pool === "sapling") && (
+              <>
+                {filter && (
                   <Bar
-                    dataKey="orchard"
-                    name="Orchard"
-                    fill="#f43f5e"
+                    dataKey="sapling_filter"
+                    name="Sapling Filter"
+                    fill="#60a5fa"
                     stackId="stack"
                   />
-                </>
-              )}
-            </BarChart>
-          )}
-        </ChartContainer>
-      </div>
+                )}
+                <Bar
+                  dataKey="sapling"
+                  name="Sapling"
+                  fill="#3b82f6"
+                  stackId="stack"
+                />
+              </>
+            )}
+            {(pool === "default" || pool === "orchard") && (
+              <>
+                {filter && (
+                  <Bar
+                    dataKey="orchard_filter"
+                    name="Orchard Filter"
+                    fill="#fb7185"
+                    stackId="stack"
+                  />
+                )}
+                <Bar
+                  dataKey="orchard"
+                  name="Orchard"
+                  fill="#f43f5e"
+                  stackId="stack"
+                />
+              </>
+            )}
+          </BarChart>
+        )}
+      </ChartContainer>
     </ErrorBoundary>
   );
 }

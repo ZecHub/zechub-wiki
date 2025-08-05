@@ -4,8 +4,7 @@ import SupplyDataLastUpdated from "./LastUpdated";
 type ChartFooterProps = {
   lastUpdatedDate: Date;
   handleSaveToPng: any;
-  pngLabel: any;
-  data?: [];
+  imgLabel: string;
 };
 
 const ChartFooter = (props: ChartFooterProps) => {
@@ -24,9 +23,7 @@ const ChartFooter = (props: ChartFooterProps) => {
 
           <ExportButton
             handleSaveToPng={props.handleSaveToPng}
-            selectedPool={props.pngLabel}
-            supplies={props.data}
-            selectedTool={undefined}
+            imgLabel={props.imgLabel}
           />
         </div>
       )}

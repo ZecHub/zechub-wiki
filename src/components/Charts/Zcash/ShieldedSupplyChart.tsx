@@ -8,7 +8,12 @@ import {
 } from "@/components/UI/shadcn/select";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
-import { formatNumberShort, getColorForPool, getSupplyData, PoolType } from "@/lib/chart/helpers";
+import {
+  formatNumberShort,
+  getColorForPool,
+  getSupplyData,
+  PoolType,
+} from "@/lib/chart/helpers";
 import { SupplyData } from "@/lib/chart/types";
 import { RefObject, useEffect, useState } from "react";
 import {
@@ -20,7 +25,9 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
+import { useInMobile } from "@/hooks/useInMobile";
 
 const POOL_OPTIONS = [
   { label: "All Pools", value: "all" },
@@ -29,11 +36,13 @@ const POOL_OPTIONS = [
   { label: "Orchard", value: "orchard" },
 ];
 type PoolKey = "all" | PoolType;
-// "sprout" | "sapling" | "orchard";
 
 type ShieldedSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
+
+const THROTTLE = 6; // every Nth datapoint
+
 
 export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [loading, setLoading] = useState(true);
@@ -41,6 +50,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [selectedPool, setSelectedPool] = useState<PoolKey>("all");
 
   const fontSize = useResponsiveFontSize();
+  const isMobile = useInMobile();
 
   const [orchardSupplyData, setOrchardSupplyData] = useState<SupplyData[]>([]);
   const [saplingSupplyData, setSaplingSupplyData] = useState<SupplyData[]>([]);
@@ -97,7 +107,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     const parsed = new Date(dateStr);
 
     return parsed.getFullYear().toString();
-    //date.split("/")[2];
   };
 
   const getAvailableYears = (poolKey: PoolKey) => {
@@ -199,20 +208,28 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const poolData =
     selectedPool === "all" ? combinedPoolData : poolDataMap[selectedPool];
 
+  const downsampleData = (data: any[], interval: number) =>
+    data.filter((_, idx) => idx % interval === 0);
+
+  // use in place of full dataset:
+  const renderedPoolData =
+    selectedYear === "all" && selectedPool === "all"
+      ? downsampleData(poolData, THROTTLE)
+      : poolData;
+
   return (
     <ErrorBoundary fallback={"Failed to load Shielded Supply Chart"}>
-      <div className="space-y-6">
-        <div className="flex mt-12 flex-wrap gap-4 items-center">
-          <h3 className="text-lg font-semibold flex-1">
-            {/* Shielded Supply Overview */}
-            {selectedPool === "all"
-              ? "Shielded Supply Overview"
-              : `${capitalize(selectedPool)} Pool Supply`}
-            <span className="text-sm">
-              {selectedYear !== "all" ? ` - ${selectedYear}` : ""}
-            </span>
-          </h3>
-
+      <ChartHeader
+        title={
+          selectedPool === "all"
+            ? "Shielded Supply Overview"
+            : `${capitalize(selectedPool)} Pool Supply`
+        }
+        //         <span className="text-sm">
+        //   {selectedYear !== "all" ? ` - ${selectedYear}` : ""}
+        // </span>;
+      >
+        <div className="flex flex-wrap gap-4 items-center">
           {/*  Year Dropdown */}
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Year</label>
@@ -275,202 +292,213 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             )}
           </div>
         </div>
+      </ChartHeader>
 
-        {/*  Chart Container */}
-        <ChartContainer ref={props.chartRef} loading={loading}>
-          <AreaChart data={poolData} key={`${selectedYear}-${selectedPool}`}>
-            <defs>
-              <linearGradient id="sproutGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="hsl(var(--chart-1))"
-                  stopOpacity={0.6}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="hsl(var(--chart-1))"
-                  stopOpacity={0.05}
-                />
-              </linearGradient>
+      {/*  Chart Container */}
+      <ChartContainer ref={props.chartRef} loading={loading}>
+        <AreaChart
+          data={renderedPoolData}
+          key={`${selectedYear}-${selectedPool}`}
+        >
+          <defs>
+            <linearGradient id="sproutGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="5%"
+                stopColor="hsl(var(--chart-1))"
+                stopOpacity={0.6}
+              />
+              <stop
+                offset="95%"
+                stopColor="hsl(var(--chart-1))"
+                stopOpacity={0.05}
+              />
+            </linearGradient>
 
-              <linearGradient id="saplingGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="hsl(var(--chart-2))"
-                  stopOpacity={0.6}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="hsl(var(--chart-2))"
-                  stopOpacity={0.05}
-                />
-              </linearGradient>
+            <linearGradient id="saplingGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="5%"
+                stopColor="hsl(var(--chart-2))"
+                stopOpacity={0.6}
+              />
+              <stop
+                offset="95%"
+                stopColor="hsl(var(--chart-2))"
+                stopOpacity={0.05}
+              />
+            </linearGradient>
 
-              <linearGradient id="orchardGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="hsl(var(--chart-3))"
-                  stopOpacity={0.6}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="hsl(var(--chart-3))"
-                  stopOpacity={0.05}
-                />
-              </linearGradient>
-            </defs>
+            <linearGradient id="orchardGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="5%"
+                stopColor="hsl(var(--chart-3))"
+                stopOpacity={0.6}
+              />
+              <stop
+                offset="95%"
+                stopColor="hsl(var(--chart-3))"
+                stopOpacity={0.05}
+              />
+            </linearGradient>
+          </defs>
 
-            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-            <XAxis dataKey="close" tick={{ fontSize, fill: "#94a3b8" }} />
-            <YAxis
-              tick={{ fontSize, fill: "#94a3b8" }}
-              tickFormatter={(val) => formatNumberShort(val)}
-            />
-            <Tooltip
-              content={({ active, payload, label }) => {
-                if (!active || !payload?.length) return null;
+          <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+          <XAxis
+            dataKey="close"
+            tick={{ fontSize, fill: "#94a3b8" }}
+            interval={isMobile ? 10 : "preserveStartEnd"}
+            minTickGap={isMobile ? 10 : 30}
+            tickCount={isMobile ? 4 : 8}
+          />
+          <YAxis
+            tick={{ fontSize, fill: "#94a3b8" }}
+            tickFormatter={(val) => formatNumberShort(val)}
+          />
+          <Tooltip
+            content={({ active, payload, label }) => {
+              if (!active || !payload?.length) return null;
 
-                return (
-                  <div
-                    className="rounded-md px-3 py-2 shadow-md border text-sm"
-                    style={{
-                      backgroundColor: "#1e293b", // dark bg
-                      borderColor: "#334155",
-                      color: "#f1f5f9", // default text
-                    }}
-                  >
-                    <p className="text-slate-100 font-semibold mb-2">{label}</p>
-                    {payload.map((entry, idx) => (
-                      <div
-                        key={idx}
-                        className="flex justify-between gap-4"
-                        style={{ color: entry.color }}
-                      >
-                        <span>{entry.name}</span>
-                        <span className="text-slate-50">
-                          {entry.value?.toLocaleString()} ZEC
-                        </span>
-                      </div>
-                    ))}
+              return (
+                <div
+                  className="rounded-md px-3 py-2 shadow-md border text-sm"
+                  style={{
+                    backgroundColor: "#1e293b", // dark bg
+                    borderColor: "#334155",
+                    color: "#f1f5f9", // default text
+                  }}
+                >
+                  <p className="text-slate-100 font-semibold mb-2">{label}</p>
+                  {payload.map((entry, idx) => (
+                    <div
+                      key={idx}
+                      className="flex justify-between gap-4"
+                      style={{ color: entry.color }}
+                    >
+                      <span>{entry.name}</span>
+                      <span className="text-slate-50">
+                        {entry.value?.toLocaleString()} ZEC
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              );
+            }}
+          />
+
+          {selectedPool === "all" ? (
+            <>
+              <Area
+                type="monotone"
+                dataKey="sprout"
+                stroke={getColorForPool("sprout")}
+                fill="url(#sproutGradient)"
+                name="Sprout Pool"
+                isAnimationActive={true}
+                animationDuration={800}
+              />
+              <Area
+                type="monotone"
+                dataKey="sapling"
+                stroke={getColorForPool("sapling")}
+                fill="url(#saplingGradient)"
+                name="Sapling Pool"
+                dot={false}
+                connectNulls={true}
+                isAnimationActive={true}
+                animationDuration={600}
+              />
+              <Area
+                type="monotone"
+                dataKey="orchard"
+                stroke={getColorForPool("orchard")}
+                fill="url(#orchardGradient)"
+                name="Orchard Pool"
+              />
+
+              <Legend
+                align="center"
+                content={() => (
+                  <div className="pt-5 flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{
+                          background: "hsl(var(--chart-1))",
+                        }}
+                      />
+                      <p>
+                        Sprout Pool — {latestTotals.sprout.toLocaleString()} ZEC
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{ background: "hsl(var(--chart-2))" }}
+                      />
+                      <p>
+                        Sapling Pool — {latestTotals.sapling.toLocaleString()}{" "}
+                        ZEC
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{ background: "hsl(var(--chart-3))" }}
+                      />
+                      <p>
+                        Orchard Pool — {latestTotals.orchard.toLocaleString()}{" "}
+                        ZEC
+                      </p>
+                    </div>
                   </div>
-                );
-              }}
-            />
-
-            {selectedPool === "all" ? (
-              <>
-                <Area
-                  type="monotone"
-                  dataKey="sprout"
-                  stroke={getColorForPool("sprout")}
-                  fill="url(#sproutGradient)"
-                  name="Sprout Pool"
-                  isAnimationActive={true}
-                  animationDuration={800}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="sapling"
-                  stroke={getColorForPool("sapling")}
-                  fill="url(#saplingGradient)"
-                  name="Sapling Pool"
-                />
-                <Area
-                  type="monotone"
-                  dataKey="orchard"
-                  stroke={getColorForPool("orchard")}
-                  fill="url(#orchardGradient)"
-                  name="Orchard Pool"
-                />
-
-                <Legend
-                  align="center"
-                  content={() => (
-                    <div className="pt-5 flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
-                      <div className="flex items-center gap-2">
-                        <span
-                          className="w-3 h-3 inline-block rounded-sm"
-                          style={{
-                            background: "hsl(var(--chart-1))",
-                          }}
-                        />
-                        <p>
-                          Sprout Pool — {latestTotals.sprout.toLocaleString()}{" "}
-                          ZEC
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span
-                          className="w-3 h-3 inline-block rounded-sm"
-                          style={{ background: "hsl(var(--chart-2))" }}
-                        />
-                        <p>
-                          Sapling Pool — {latestTotals.sapling.toLocaleString()}{" "}
-                          ZEC
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span
-                          className="w-3 h-3 inline-block rounded-sm"
-                          style={{ background: "hsl(var(--chart-3))" }}
-                        />
-                        <p>
-                          Orchard Pool — {latestTotals.orchard.toLocaleString()}{" "}
-                          ZEC
-                        </p>
-                      </div>
+                )}
+              />
+            </>
+          ) : (
+            <>
+              <Area
+                type="monotone"
+                dataKey="supply"
+                stroke={`hsl(var(--chart-${
+                  selectedPool === "sprout"
+                    ? 1
+                    : selectedPool === "sapling"
+                    ? 2
+                    : 3
+                }))`}
+                fill={`url(#${selectedPool}Gradient)`}
+                name={`${
+                  selectedPool[0].toUpperCase() + selectedPool.slice(1)
+                } Pool`}
+              />
+              <Legend
+                align="center"
+                content={() => (
+                  <div className="pt-5 flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-3 h-3 inline-block rounded-sm"
+                        style={{
+                          background: `hsl(var(--chart-${
+                            selectedPool === "sprout"
+                              ? 1
+                              : selectedPool === "sapling"
+                              ? 2
+                              : 3
+                          }))`,
+                        }}
+                      />
+                      <p>
+                        {selectedPool[0].toUpperCase() + selectedPool.slice(1)}{" "}
+                        Pool
+                      </p>
                     </div>
-                  )}
-                />
-              </>
-            ) : (
-              <>
-                <Area
-                  type="monotone"
-                  dataKey="supply"
-                  stroke={`hsl(var(--chart-${
-                    selectedPool === "sprout"
-                      ? 1
-                      : selectedPool === "sapling"
-                      ? 2
-                      : 3
-                  }))`}
-                  fill={`url(#${selectedPool}Gradient)`}
-                  name={`${
-                    selectedPool[0].toUpperCase() + selectedPool.slice(1)
-                  } Pool`}
-                />
-                <Legend
-                  align="center"
-                  content={() => (
-                    <div className="pt-5 flex justify-center gap-6 text-sm mt-2 text-slate-600 dark:text-slate-300">
-                      <div className="flex items-center gap-2">
-                        <span
-                          className="w-3 h-3 inline-block rounded-sm"
-                          style={{
-                            background: `hsl(var(--chart-${
-                              selectedPool === "sprout"
-                                ? 1
-                                : selectedPool === "sapling"
-                                ? 2
-                                : 3
-                            }))`,
-                          }}
-                        />
-                        <p>
-                          {selectedPool[0].toUpperCase() +
-                            selectedPool.slice(1)}{" "}
-                          Pool
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                />
-              </>
-            )}
-          </AreaChart>
-        </ChartContainer>
-      </div>
+                  </div>
+                )}
+              />
+            </>
+          )}
+        </AreaChart>
+      </ChartContainer>
     </ErrorBoundary>
   );
 }

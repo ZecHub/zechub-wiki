@@ -16,4 +16,5 @@ export const DATA_URL = {
   blockchainInfoUrl: "/api/blockchain-info",
   blockchairUrl:
     "https://api.blockchair.com/zcash/stats?key=A___nnFHttBygZPrKgm5WZyXU3WCondo",
+  namadaRewardUrl: "/data/namada/namada_rewards_rate.json",
 } as const;

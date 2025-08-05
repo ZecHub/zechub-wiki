@@ -8,14 +8,14 @@ import {
 import { RefObject, useState } from "react";
 import { ZcashMetrics } from "../../ZcashMetrics/ZcashMetrics";
 import ChartFooter from "../ChartFooter";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../Tabs";
 import DifficultyChart from "./DifficultyChart";
 import IssuanceChart from "./IssuanceChart";
 import LockboxChart from "./LockboxChart";
 import NetInflowsOutflowsChart from "./NetInflowsOutflowsChart";
-import ShieldedSupplyChart from "./ShieldedSupplyChart";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../Tabs";
-import TransactionsSummaryChart from "./TransactionSummaryChart";
 import PrivacySetVisualizationChart from "./PrivacySetVisualizationChart";
+import ShieldedSupplyChart from "./ShieldedSupplyChart";
+import TransactionsSummaryChart from "./TransactionSummaryChart";
 
 type ZcashChartProps = {
   lastUpdated: Date;
@@ -96,6 +96,7 @@ function ZcashChart(props: ZcashChartProps) {
                   <NetInflowsOutflowsChart
                     color="red"
                     chartRef={props.divChartRef}
+                    
                   />
                 </TabsContent>
 
@@ -112,10 +113,9 @@ function ZcashChart(props: ZcashChartProps) {
                 </TabsContent>
 
                 <ChartFooter
-                  pngLabel={activeTab}
+                  imgLabel={activeTab}
                   handleSaveToPng={props.handleSaveToPng}
                   lastUpdatedDate={props.lastUpdated}
-                  data={[]}
                 />
               </>
             )}

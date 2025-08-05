@@ -15,6 +15,7 @@ import {
   YAxis,
 } from "recharts";
 import ChartContainer from "./ChartContainer";
+import ChartHeader from "../ChartHeader";
 
 type DifficultyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
@@ -65,76 +66,70 @@ export default function DifficultyChart(props: DifficultyChartProps) {
 
   return (
     <ErrorBoundary fallback={"Failed to load Difficulty Chart"}>
-      <div className="space-y-6">
-        <div className="flex mt-12">
-          <h3 className="text-lg font-semibold mb-4 flex-1">
-            Mining Difficulty Over Time
-          </h3>
-        </div>
-        <ChartContainer ref={props.chartRef} loading={loading}>
-          <AreaChart data={parsedData}>
-            <defs>
-              <linearGradient id="diffGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="hsl(var(--chart-4))"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="hsl(var(--chart-4))"
-                  stopOpacity={0}
-                />
-              </linearGradient>
-            </defs>
-            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-            <XAxis dataKey="date" tick={{ fontSize, fill: "#94a3b8" }} />
-            <YAxis
-              tickFormatter={(v) =>
-                v >= 1_000_000
-                  ? `${v / 1_000_000}M`
-                  : v >= 1_000
-                  ? `${v / 1_000}K`
-                  : v
-              }
-              tick={{ fontSize, fill: "#94a3b8" }}
-              width={60}
-            />
-            <Tooltip
-              formatter={(value: any) =>
-                typeof value === "number" ? value.toLocaleString() : value
-              }
-            />
+      <ChartHeader title="Mining Difficulty Over Time" />
+      <ChartContainer ref={props.chartRef} loading={loading}>
+        <AreaChart data={parsedData}>
+          <defs>
+            <linearGradient id="diffGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="5%"
+                stopColor="hsl(var(--chart-4))"
+                stopOpacity={0.8}
+              />
+              <stop
+                offset="95%"
+                stopColor="hsl(var(--chart-4))"
+                stopOpacity={0}
+              />
+            </linearGradient>
+          </defs>
+          <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+          <XAxis dataKey="date" tick={{ fontSize, fill: "#94a3b8" }} />
+          <YAxis
+            tickFormatter={(v) =>
+              v >= 1_000_000
+                ? `${v / 1_000_000}M`
+                : v >= 1_000
+                ? `${v / 1_000}K`
+                : v
+            }
+            tick={{ fontSize, fill: "#94a3b8" }}
+            width={60}
+          />
+          <Tooltip
+            formatter={(value: any) =>
+              typeof value === "number" ? value.toLocaleString() : value
+            }
+          />
 
-            <Legend
-              verticalAlign="bottom"
-              align="center"
-              content={() => (
-                <div
-                  style={{ paddingTop: 20 }}
-                  className="flex justify-center gap-6 text-sm text-slate-600 dark:text-slate-300"
-                >
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="w-3 h-3 inline-block rounded-sm"
-                      style={{ background: "#3b82f6" }}
-                    />
-                    <p>Difficulty</p>
-                  </div>
+          <Legend
+            verticalAlign="bottom"
+            align="center"
+            content={() => (
+              <div
+                style={{ paddingTop: 20 }}
+                className="flex justify-center gap-6 text-sm text-slate-600 dark:text-slate-300"
+              >
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-3 h-3 inline-block rounded-sm"
+                    style={{ background: "#3b82f6" }}
+                  />
+                  <p>Difficulty</p>
                 </div>
-              )}
-            />
-            <Area
-              type="monotone"
-              dataKey="difficulty"
-              stroke="hsl(var(--chart-4))"
-              fillOpacity={1}
-              fill="url(#diffGradient)"
-              strokeWidth={2}
-            />
-          </AreaChart>
-        </ChartContainer>
-      </div>
+              </div>
+            )}
+          />
+          <Area
+            type="monotone"
+            dataKey="difficulty"
+            stroke="hsl(var(--chart-4))"
+            fillOpacity={1}
+            fill="url(#diffGradient)"
+            strokeWidth={2}
+          />
+        </AreaChart>
+      </ChartContainer>
     </ErrorBoundary>
   );
 }

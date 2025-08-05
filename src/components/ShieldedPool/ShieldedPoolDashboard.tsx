@@ -517,17 +517,17 @@ export default function ShieldedPoolDashboard() {
           <Button
             text="Export PNG"
             className="bg-blue-500 text-white rounded-full px-4 py-2"
-            onClick={() =>
-              handleSaveToPng(
-                selectedPool,
-                {
-                  sproutSupply: transformSupplyData(supplies.sprout),
-                  saplingSupply: transformSupplyData(supplies.sapling),
-                  orchardSupply: transformSupplyData(supplies.orchard),
-                },
-                selectedTool
-              )
-            }
+            onClick={() => {
+              //   handleSaveToPng(
+              //     selectedPool,
+              //     {
+              //       sproutSupply: transformSupplyData(supplies.sprout),
+              //       saplingSupply: transformSupplyData(supplies.sapling),
+              //       orchardSupply: transformSupplyData(supplies.orchard),
+              //     },
+              //     selectedTool
+              //   )
+            }}
           />
         </div>
         {selectedCoin === "Zcash" && (
