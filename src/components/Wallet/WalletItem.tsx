@@ -62,7 +62,6 @@ const WalletItem: React.FC<WalletItemProps> = ({
     setLiked(false);
   };
 
-  console.log(syncSpeed);
 
   return (
     <div className="wallet-item h-full flex flex-col gap-4 items-start border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5">

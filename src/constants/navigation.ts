@@ -34,6 +34,7 @@ import {
   MdOutlinePointOfSale as ZgoPayment,
   MdForum as Forum,
   MdOutlineOndemandVideo as AudioVideo,
+  MdPayment,
 } from "react-icons/md";
 import {
   GiCheckedShield as foundation,
@@ -89,6 +90,11 @@ export const navigations = [
         subName: "Transactions",
         path: "/using-zcash/transactions",
         icon: Transaction,
+      },
+       {
+        subName: "Payment Processors",
+        path: "/payment-processors",
+        icon: MdPayment,
       },
     ],
   },
