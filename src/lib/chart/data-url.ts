@@ -15,6 +15,6 @@ export const DATA_URL = {
   namadaSupplyUrl: "/data/namada/namada_supply.json",
   blockchainInfoUrl: "/api/blockchain-info",
   blockchairUrl:
-    "https://api.blockchair.com/zcash/stats?key=A___nnFHttBygZPrKgm5WZyXU3WCondo",
+    "https://api.blockchair.com/zcash/stats?key=A___wNpGniYbmkv7tLpMfOPBGe2as7vI",
   namadaRewardUrl: "/data/namada/namada_rewards_rate.json",
 } as const;
