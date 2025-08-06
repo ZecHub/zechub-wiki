@@ -92,8 +92,8 @@ export const navigations = [
         icon: Transaction,
       },
        {
-        subName: "Payment Processors",
-        path: "/payment-processors",
+        subName: "Payments",
+        path: "/payments",
         icon: MdPayment,
       },
     ],
