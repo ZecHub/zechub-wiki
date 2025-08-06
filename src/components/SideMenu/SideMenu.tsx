@@ -12,6 +12,7 @@ import {
 import { FaListAlt } from "react-icons/fa";
 import { FiFile as FileIcon } from "react-icons/fi";
 import { Icon } from "../UI/Icon";
+import { MdPayment } from "react-icons/md";
 
 interface MenuProps {
   folder: string;
@@ -32,6 +33,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
   const name = folder[0].toUpperCase() + folder.slice(1);
 
   const fold = getName(name);
+  console.log("Fold:", fold);
   const router = useRouter();
 
   return (
@@ -66,6 +68,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
           <ul>
             {root.map((item: any, i: any) => {
               if (getName(item) === "Wallets") return null; // Skip rendering the item named "Wallets"
+              if (getName(item) === "Payment Processors") return null; // Skip rendering the item named "Wallets"
               if (getName(item) === "Custodial Exchanges") return null; // Skip rendering the item named "Wallets"
 
               const myIcon = matchIcons(fold, getName(item));
@@ -134,6 +137,26 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                 </Link>
               </li>
             )}
+            {fold === "Using Zcash" && (
+              <li
+                className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
+              >
+                <Link href="/payment-processors">
+                  <div className={`flex items-center space-x-4`}>
+                    <div className="flex-shrink-0">
+                      <Icon icon={MdPayment} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium ">Payment Processors</p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold ">
+                      <Icon icon={Arrow} />
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            )}
+            
           </ul>
         </div>
       </div>
