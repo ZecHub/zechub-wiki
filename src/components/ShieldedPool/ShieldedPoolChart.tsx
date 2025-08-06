@@ -4,7 +4,7 @@ import { AreaClosed, Line, Bar } from "@visx/shape";
 import { curveMonotoneX } from "@visx/curve";
 import { GridRows, GridColumns } from "@visx/grid";
 import { scaleTime, scaleLinear } from "@visx/scale";
-import { withTooltip, Tooltip, TooltipWithBounds, defaultStyles } from "@visx/tooltip";
+import { withTooltip, Tooltip, defaultStyles } from "@visx/tooltip";
 import { WithTooltipProvidedProps } from "@visx/tooltip/lib/enhancers/withTooltip";
 import { localPoint } from "@visx/event";
 import { LinearGradient } from "@visx/gradient";
@@ -44,10 +44,10 @@ const tooltipStyles = {
 };
 
 const formatDate = timeFormat("%b %d, '%y");
-const getDate = (d: ShieldedAmountDatum) => new Date(d.close ?? d.Date);
+const getDate = (d: ShieldedAmountDatum): Date => new Date(d.close ?? d.Date);
 const getShieldedValue = (d: ShieldedAmountDatum): number =>
   d.supply ?? parseFloat(String(d.Hashrate).replace(/,/g, ""));
-const bisectDate = bisector<ShieldedAmountDatum, Date>(d => getDate(d)).left;
+const bisectDate = bisector<ShieldedAmountDatum, Date>((d) => getDate(d)).left;
 
 const DEFAULT_WIDTH = 1000;
 const DEFAULT_HEIGHT = 500;
@@ -61,12 +61,22 @@ export type AreaProps = {
 const AnimatedArea = styled(AreaClosed<ShieldedAmountDatum>)`
   animation: fadeIn 1s ease-out forwards;
   @keyframes fadeIn {
-    from { opacity: 0; transform: scaleY(0); transform-origin: bottom; }
-    to { opacity: 1; transform: scaleY(1); }
+    from {
+      opacity: 0;
+      transform: scaleY(0);
+      transform-origin: bottom;
+    }
+    to {
+      opacity: 1;
+      transform: scaleY(1);
+    }
   }
 `;
 
-const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, ShieldedAmountDatum>(
+const ShieldedPoolChart = withTooltip<
+  AreaProps & ShieldedPoolChartProps,
+  ShieldedAmountDatum
+>(
   ({
     dataUrl,
     color,
@@ -78,7 +88,9 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     tooltipData,
     tooltipTop = 0,
     tooltipLeft = 0,
-  }: AreaProps & WithTooltipProvidedProps<ShieldedAmountDatum> & ShieldedPoolChartProps) => {
+  }: AreaProps &
+    WithTooltipProvidedProps<ShieldedAmountDatum> &
+    ShieldedPoolChartProps) => {
     const [chartData, setChartData] = useState<ShieldedAmountDatum[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
@@ -93,14 +105,19 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     }, [dataUrl]);
 
     const years = useMemo(
-      () => Array.from(new Set(chartData.map(d => getDate(d).getFullYear().toString()))),
+      () =>
+        Array.from(
+          new Set(chartData.map((d) => getDate(d).getFullYear().toString()))
+        ),
       [chartData]
     );
 
     const filteredData = useMemo(
       () =>
         selectedYear
-          ? chartData.filter(d => getDate(d).getFullYear().toString() === selectedYear)
+          ? chartData.filter(
+              (d) => getDate(d).getFullYear().toString() === selectedYear
+            )
           : chartData,
       [chartData, selectedYear]
     );
@@ -130,7 +147,11 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
           const newHeight = ref.current.clientHeight || providedHeight;
           if (newWidth !== width) setWidth(newWidth);
           if (newHeight !== height) {
-            setHeight(newHeight > 24 && newHeight <= providedHeight ? newHeight : providedHeight);
+            setHeight(
+              newHeight > 24 && newHeight <= providedHeight
+                ? newHeight
+                : providedHeight
+            );
           }
         }
       };
@@ -166,7 +187,11 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     );
 
     const handleTooltip = useCallback(
-      (event: React.TouchEvent<SVGRectElement> | React.MouseEvent<SVGRectElement>) => {
+      (
+        event:
+          | React.TouchEvent<SVGRectElement>
+          | React.MouseEvent<SVGRectElement>
+      ) => {
         const { x } = localPoint(event) || { x: 0 };
         const x0 = dateScale.invert(x);
         const index = bisectDate(sortedData, x0, 1);
@@ -175,7 +200,8 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
         let d = d0;
         if (d1 && getDate(d1)) {
           d =
-            x0.valueOf() - getDate(d0).valueOf() > getDate(d1).valueOf() - x0.valueOf()
+            x0.valueOf() - getDate(d0).valueOf() >
+            getDate(d1).valueOf() - x0.valueOf()
               ? d1
               : d0;
         }
@@ -209,35 +235,71 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
     }
 
     return (
-      <div ref={ref} style={{ width: "100%", minWidth: "100%", minHeight: 500 }}>
+      <div
+        ref={ref}
+        style={{ width: "100%", minWidth: "100%", minHeight: 500 }}
+      >
         <div className="flex flex-row gap-4 mb-4">
-          <label htmlFor="year" className="font-medium dark:text-slate-300 text-slate-700 px-3 py-2">
+          <label
+            htmlFor="year"
+            className="font-medium dark:text-slate-300 text-slate-700 px-3 py-2"
+          >
             Select Year:
           </label>
           <select
             id="year"
             value={selectedYear}
-            onChange={e => setSelectedYear(e.target.value)}
+            onChange={(e) => setSelectedYear(e.target.value)}
             className="dark:bg-gray-800 dark:text-gray-200 outline-none focus:outline-none focus:border-slate-300 active:border-slate-300 border-solid border-slate-300"
           >
             <option value="">All</option>
-            {years.map(year => (
-              <option key={year} value={year} className="dark:text-gray-200">
+            {years.map((year) => (
+              <option key={year} value={year}>
                 {year}
               </option>
             ))}
           </select>
         </div>
         <svg width={width} height={height}>
-          <rect x={0} y={0} width={width} height={height} fill={color} rx={14} />
-          <LinearGradient id="area-background-gradient" from={background} to={background2} />
-          <LinearGradient id="area-gradient" from={accentColor} to={accentColor} toOpacity={0.1} />
-          <GridRows left={margin.left} scale={shieldedValueScale} width={innerWidth} strokeDasharray="1,3" stroke={accentColor} strokeOpacity={0.25} />
-          <GridColumns top={margin.top} scale={dateScale} height={innerHeight} strokeDasharray="1,3" stroke={accentColor} strokeOpacity={0.25} />
+          <rect
+            x={0}
+            y={0}
+            width={width}
+            height={height}
+            fill={color}
+            rx={14}
+          />
+          <LinearGradient
+            id="area-background-gradient"
+            from={background}
+            to={background2}
+          />
+          <LinearGradient
+            id="area-gradient"
+            from={accentColor}
+            to={accentColor}
+            toOpacity={0.1}
+          />
+          <GridRows
+            left={margin.left}
+            scale={shieldedValueScale}
+            width={innerWidth}
+            strokeDasharray="1,3"
+            stroke={accentColor}
+            strokeOpacity={0.25}
+          />
+          <GridColumns
+            top={margin.top}
+            scale={dateScale}
+            height={innerHeight}
+            strokeDasharray="1,3"
+            stroke={accentColor}
+            strokeOpacity={0.25}
+          />
           <AnimatedArea
             data={sortedData}
-            x={d => dateScale(getDate(d)) ?? 0}
-            y={d => shieldedValueScale(getShieldedValue(d)) ?? 0}
+            x={(d) => dateScale(getDate(d)) ?? 0}
+            y={(d) => shieldedValueScale(getShieldedValue(d)) ?? 0}
             yScale={shieldedValueScale}
             strokeWidth={1}
             stroke="url(#area-gradient)"
@@ -258,25 +320,59 @@ const ShieldedPoolChart = withTooltip<AreaProps & ShieldedPoolChartProps, Shield
           />
           {tooltipData && (
             <g>
-              <Line from={{ x: tooltipLeft, y: margin.top }} to={{ x: tooltipLeft, y: innerHeight + margin.top }} stroke={accentColorDark} strokeWidth={2} strokeDasharray="5,2" pointerEvents="none" />
-              <circle cx={tooltipLeft} cy={tooltipTop + 1} r={4} fill="black" fillOpacity={0.25} stroke="black" strokeOpacity={0.25} strokeWidth={2} pointerEvents="none" />
-              <circle cx={tooltipLeft} cy={tooltipTop} r={4} fill={accentColorDark} stroke="white" strokeWidth={2} pointerEvents="none" />
+              <Line
+                from={{ x: tooltipLeft, y: margin.top }}
+                to={{ x: tooltipLeft, y: innerHeight + margin.top }}
+                stroke={accentColorDark}
+                strokeWidth={2}
+                strokeDasharray="5,2"
+                pointerEvents="none"
+              />
+              <circle
+                cx={tooltipLeft}
+                cy={tooltipTop + 1}
+                r={4}
+                fill="black"
+                fillOpacity={0.25}
+                stroke="black"
+                strokeOpacity={0.25}
+                strokeWidth={2}
+                pointerEvents="none"
+              />
+              <circle
+                cx={tooltipLeft}
+                cy={tooltipTop}
+                r={4}
+                fill={accentColorDark}
+                stroke="white"
+                strokeWidth={2}
+                pointerEvents="none"
+              />
             </g>
           )}
-          <text x={width - 60} y={height - 10} textAnchor="end" fontSize={14} fill={accentColor} opacity={0.8}>
-            ZECHUB DASHBOARD
-          </text>
-          <image x={width - 60} y={height - 50} width="40" height="40" opacity={0.8} />
         </svg>
         {tooltipData && (
-          <>
-            <TooltipWithBounds top={tooltipTop - 12} left={tooltipLeft + 12} style={tooltipStyles}>
-              {formatNumber(getShieldedValue(tooltipData))}
-            </TooltipWithBounds>
-            <Tooltip top={innerHeight + margin.top - 14} left={tooltipLeft} style={{ ...defaultStyles, minWidth: 72, textAlign: "center", transform: "translateX(-50%)" }}>
-              {formatDate(getDate(tooltipData))}
-            </Tooltip>
-          </>
+          <Tooltip
+            top={tooltipTop - 12}
+            left={tooltipLeft + 12}
+            style={tooltipStyles}
+          >
+            {formatNumber(getShieldedValue(tooltipData))}
+          </Tooltip>
+        )}
+        {tooltipData && (
+          <Tooltip
+            top={innerHeight + margin.top - 14}
+            left={tooltipLeft}
+            style={{
+              ...defaultStyles,
+              minWidth: 72,
+              textAlign: "center",
+              transform: "translateX(-50%)",
+            }}
+          >
+            {formatDate(getDate(tooltipData))}
+          </Tooltip>
         )}
       </div>
     );
