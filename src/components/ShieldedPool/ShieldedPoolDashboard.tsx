@@ -68,29 +68,6 @@ type ShieldedTxCount = { sapling: number; orchard: number; timestamp: string };
 type NodeCountData = { Date: string; nodecount: string };
 type NamadaAsset = { id: string; shieldedSupply: string };
 
-// fetch any data array and return its last date field (close/Date/date/timestamp/time)
-async function getDataLastTimestampFromFile(url: string): Promise<string> {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) return "N/A";
-    const json = await res.json();
-    if (Array.isArray(json) && json.length) {
-      const last: any = json[json.length - 1];
-      return (
-        last.close ||
-        last.Date ||
-        last.date ||
-        last.timestamp ||
-        last.time ||
-        "N/A"
-      );
-    }
-    return "N/A";
-  } catch {
-    return "N/A";
-  }
-}
-
 async function getBlockchainData(): Promise<BlockchainInfo | null> {
   try {
     const res = await fetch(
@@ -183,7 +160,6 @@ export default function ShieldedPoolDashboard() {
     sapling: null,
     orchard: null,
   });
-  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [shieldedTxCount, setShieldedTxCount] = useState<
     ShieldedTxCount[] | null
   >(null);
@@ -244,7 +220,6 @@ export default function ShieldedPoolDashboard() {
     }
   };
 
-  // initial load
   useEffect(() => {
     getBlockchainData().then((d) => d && setBlockchainInfo(d));
     getBlockchainInfo().then((c) => setCirculation(c));
@@ -267,7 +242,6 @@ export default function ShieldedPoolDashboard() {
       if (a.length) setLatestNodeCount(Number(a[a.length - 1].nodecount));
     });
 
-    // Namada fetch
     fetch(DataUrlOptions.namadaSupplyUrl)
       .then((r) => r.json())
       .then((data: any[]) => {
@@ -280,7 +254,6 @@ export default function ShieldedPoolDashboard() {
       .catch(console.error);
   }, []);
 
-  // build Namada series
   useEffect(() => {
     if (!selectedNamadaAsset) return;
     const filtered = namadaRaw.filter((e) =>
@@ -300,29 +273,6 @@ export default function ShieldedPoolDashboard() {
     };
     setNamadaSeries({ x, y });
   }, [namadaRaw, selectedNamadaAsset]);
-
-  // NEW: JSON-only last-updated
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const url = getDataUrl();
-      if (!url) {
-        if (!cancelled) setLastUpdated("N/A");
-        return;
-      }
-      const ts = await getDataLastTimestampFromFile(url);
-      if (!cancelled) setLastUpdated(ts);
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [
-    selectedCoin,
-    selectedTool,
-    selectedPool,
-    selectedNamadaTool,
-    selectedNamadaAsset,
-  ]);
 
   if (!blockchainInfo) {
     return (
@@ -359,7 +309,6 @@ export default function ShieldedPoolDashboard() {
 
   return (
     <div className="mt-28">
-      {/* Header */}
       <div className="flex flex-wrap gap-4 items-center justify-between mb-4">
         <h2 className="font-bold text-xl">{selectedToolName}</h2>
         <div className="flex gap-4">
@@ -381,7 +330,6 @@ export default function ShieldedPoolDashboard() {
         </div>
       </div>
 
-      {/* Chart container */}
       <div className="border p-4 rounded-lg relative">
         {selectedCoin === "Zcash" && (
           <Tools
@@ -397,7 +345,6 @@ export default function ShieldedPoolDashboard() {
         )}
 
         <div ref={divChartRef}>
-          {/* Zcash charts */}
           {selectedCoin === "Zcash" && (
             <>
               {selectedTool === ToolOptions.supply && (
@@ -451,7 +398,6 @@ export default function ShieldedPoolDashboard() {
             </>
           )}
 
-          {/* Namada charts */}
           {selectedCoin === "Namada" &&
             selectedNamadaTool === NamadaToolOptions.supply && (
               <NamadaSupplyChart data={namadaSeries} width={800} height={400} />
@@ -461,7 +407,6 @@ export default function ShieldedPoolDashboard() {
               <RewardsChart DataUrlOptions={DataUrlOptions} />
             )}
 
-          {/* No data */}
           {selectedCoin !== "Zcash" && selectedCoin !== "Namada" && (
             <div className="w-full h-[400px] flex flex-col items-center justify-center">
               <Image src={NoData} width={200} height={250} alt="No data" />
@@ -470,7 +415,6 @@ export default function ShieldedPoolDashboard() {
           )}
         </div>
 
-        {/* Pool buttons (Zcash) */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Zcash" && (
           <div className="mt-8 flex flex-wrap justify-center gap-6">
             {poolKeys.map((key) => (
@@ -492,7 +436,6 @@ export default function ShieldedPoolDashboard() {
           </div>
         )}
 
-        {/* Namada asset buttons */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Namada" && (
           <div className="mt-8 flex flex-wrap justify-center gap-6">
             {namadaAssets.map((asset) => (
@@ -511,11 +454,7 @@ export default function ShieldedPoolDashboard() {
           </div>
         )}
 
-        {/* Last updated & export */}
         <div className="flex justify-end items-center gap-4 mt-4">
-          <span className="text-sm text-gray-500">
-            Last updated: {formatDate(lastUpdated)}
-          </span>
           <Button
             text="Export PNG"
             className="bg-blue-500 text-white rounded-full px-4 py-2"
@@ -523,7 +462,6 @@ export default function ShieldedPoolDashboard() {
           />
         </div>
 
-        {/* Metrics */}
         {selectedCoin === "Zcash" && (
           <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
             <div className="border p-4 rounded-md text-center">
