@@ -150,6 +150,17 @@ async function getGitLastUpdated(publicPath: string): Promise<string> {
   }
 }
 
+async function getLastModifiedFromHead(url: string): Promise<string> {
+  try {
+    const res = await fetch(url, { method: "HEAD" });
+    if (!res.ok) return "N/A";
+    const lm = res.headers.get("last-modified");
+    return lm ?? "N/A";
+  } catch {
+    return "N/A";
+  }
+}
+
 async function getDataLastTimestampFromFile(url: string): Promise<string> {
   try {
     const res = await fetch(url);
@@ -357,15 +368,23 @@ export default function ShieldedPoolDashboard() {
     (async () => {
       const { url, publicPath } = getCurrentDataUrlAndPublicPath();
 
-      if (!url || !publicPath) {
+      if (!url) {
         if (!cancelled) setLastUpdated("N/A");
         return;
       }
 
-      const gitDate = await getGitLastUpdated(publicPath);
-      if (gitDate !== "N/A") {
-        if (!cancelled) setLastUpdated(gitDate);
+      const headDate = await getLastModifiedFromHead(url);
+      if (headDate !== "N/A") {
+        if (!cancelled) setLastUpdated(headDate);
         return;
+      }
+
+      if (publicPath) {
+        const gitDate = await getGitLastUpdated(publicPath);
+        if (gitDate !== "N/A") {
+          if (!cancelled) setLastUpdated(gitDate);
+          return;
+        }
       }
 
       const ts = await getDataLastTimestampFromFile(url);
@@ -593,7 +612,7 @@ export default function ShieldedPoolDashboard() {
               <h3 className="font-bold text-lg">ZEC in Circulation</h3>
               <p>{circulation?.toLocaleString() ?? "N/A"} ZEC</p>
             </div>
-            <div className="border p-4 rounded-md text-center">
+            <div className="border p-4 rounded-md text中心">
               <h3 className="font-bold text-lg">Market Price (USD)</h3>
               <p>${blockchainInfo.market_price_usd.toFixed(2)}</p>
             </div>
@@ -634,3 +653,4 @@ export default function ShieldedPoolDashboard() {
     </div>
   );
 }
+```
