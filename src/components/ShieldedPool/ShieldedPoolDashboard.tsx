@@ -10,7 +10,7 @@ import Tools from "@/components/Tools";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { Spinner } from "flowbite-react";
 import PrivacySetVisualization from "../PrivacySet/PrivacySetVisualization";
-import NamadaSupplyChart, { SeriesPoint } from "./NamadaSupplyChart";
+import NamadaSupplyChart from "./NamadaSupplyChart";
 import { ToolOptions, toolOptionLabels } from "../Tools/tools";
 import NoData from "../../assets/nodata.svg";
 import {
@@ -21,21 +21,9 @@ import {
 import CryptoMetrics from "./Metric";
 import RewardsChart from "./RewardsChart";
 
-const ShieldedPoolChart = dynamic(() => import("./ShieldedPoolChart"), {
-  ssr: true,
-});
-const TransactionSummaryChart = dynamic(
-  () => import("../TransactionSummaryChartOld"),
-  { ssr: true }
-);
-const ZecIssuanceSummaryChart = dynamic(
-  () => import("../ZecIssuanceSummaryChart"),
-  { ssr: true }
-);
-const NetInflowsOutFlowsChart = dynamic(
-  () => import("../Charts/Zcash/NetInflowsOutflowsChart"),
-  { ssr: true }
-);
+const ShieldedPoolChart = dynamic(() => import("./ShieldedPoolChart"), { ssr: true });
+const TransactionSummaryChart = dynamic(() => import("../TransactionSummaryChartOld"), { ssr: true });
+const ZecIssuanceSummaryChart = dynamic(() => import("../ZecIssuanceSummaryChart"), { ssr: true });
 
 const DataUrlOptions = {
   defaultUrl: "/data/zcash/shielded_supply.json",
@@ -49,8 +37,6 @@ const DataUrlOptions = {
   lockboxUrl: "/data/zcash/lockbox.json",
   shieldedTxCountUrl: "/data/zcash/shieldedtxcount.json",
   issuanceUrl: "/data/zcash/issuance.json",
-  apiUrl:
-    "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/shielded_supply.json",
   namadaSupplyUrl: "/data/namada/namada_supply.json",
   namadaRewardUrl: "/data/namada/namada_rewards_rate.json",
 } as const;
@@ -130,54 +116,15 @@ function formatDate(s: string | null): string {
   return isNaN(d.getTime()) ? "N/A" : d.toLocaleDateString();
 }
 
-function transformSupplyData(
-  d: SupplyData | null
-): { timestamp: string; supply: number } | null {
-  return d ? { timestamp: d.close, supply: d.supply } : null;
-}
-
-async function getGitLastUpdated(publicPath: string): Promise<string> {
-  try {
-    const api = `https://api.github.com/repos/ZecHub/zechub-wiki/commits?per_page=1&path=${encodeURIComponent(
-      publicPath
-    )}`;
-    const res = await fetch(api);
-    if (!res.ok) return "N/A";
-    const d = await res.json();
-    return d[0]?.commit?.committer?.date ?? "N/A";
-  } catch {
-    return "N/A";
-  }
-}
-
-async function getLastModifiedFromHead(url: string): Promise<string> {
-  try {
-    const res = await fetch(url, { method: "HEAD" });
-    if (!res.ok) return "N/A";
-    const lm = res.headers.get("last-modified");
-    return lm ?? "N/A";
-  } catch {
-    return "N/A";
-  }
-}
-
+// Simplified: read last date from JSON
 async function getDataLastTimestampFromFile(url: string): Promise<string> {
   try {
     const res = await fetch(url);
     if (!res.ok) return "N/A";
     const json = await res.json();
-
     if (Array.isArray(json) && json.length) {
-      const last = json[json.length - 1];
-      const ts =
-        last?.close ||
-        last?.Date ||
-        last?.date ||
-        last?.timestamp ||
-        last?.time ||
-        null;
-
-      if (typeof ts === "string" && ts) return ts;
+      const last: any = json[json.length - 1];
+      return typeof last.close === "string" ? last.close : "N/A";
     }
     return "N/A";
   } catch {
@@ -189,26 +136,15 @@ type PoolKey = "default" | "sprout" | "sapling" | "orchard";
 
 export default function ShieldedPoolDashboard() {
   const [selectedPool, setSelectedPool] = useState<PoolKey>("default");
-  const [selectedNamadaPool, setSelectedNamadaPool] =
-    useState<string>("default");
-  const [selectedCoin, setSelectedCoin] = useState<
-    "Zcash" | "Penumbra" | "Namada"
-  >("Zcash");
-  const [selectedTool, setSelectedTool] = useState<ToolOptions>(
-    ToolOptions.supply
-  );
-
-  const [selectedNamadaTool, setSelectedNamadaTool] =
-    useState<NamadaToolOptions>(NamadaToolOptions.supply);
+  const [selectedCoin, setSelectedCoin] = useState<"Zcash" | "Penumbra" | "Namada">("Zcash");
+  const [selectedTool, setSelectedTool] = useState<ToolOptions>(ToolOptions.supply);
   const [selectedToolName, setSelectedToolName] = useState<string>(
     toolOptionLabels[ToolOptions.supply]
   );
   const [cumulativeCheck, setCumulativeCheck] = useState(true);
   const [filterSpamCheck, setFilterSpamCheck] = useState(false);
 
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(
-    null
-  );
+  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
   const [circulation, setCirculation] = useState<number | null>(null);
   const [supplies, setSupplies] = useState<Record<PoolKey, SupplyData | null>>({
     default: null,
@@ -217,13 +153,10 @@ export default function ShieldedPoolDashboard() {
     orchard: null,
   });
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-  const [shieldedTxCount, setShieldedTxCount] = useState<
-    ShieldedTxCount[] | null
-  >(null);
+  const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount[] | null>(null);
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
   const [namadaRaw, setNamadaRaw] = useState<any[]>([]);
-
   const [namadaAssets, setNamadaAssets] = useState<NamadaAsset[]>([]);
   const [selectedNamadaAsset, setSelectedNamadaAsset] = useState<string>("");
   const [namadaSeries, setNamadaSeries] = useState<any>();
@@ -233,69 +166,35 @@ export default function ShieldedPoolDashboard() {
   const getDataUrl = (): string => {
     if (selectedTool === ToolOptions.supply) {
       switch (selectedPool) {
-        case "sprout":
-          return DataUrlOptions.sproutUrl;
-        case "sapling":
-          return DataUrlOptions.saplingUrl;
-        case "orchard":
-          return DataUrlOptions.orchardUrl;
-        default:
-          return DataUrlOptions.defaultUrl;
+        case "sprout": return DataUrlOptions.sproutUrl;
+        case "sapling": return DataUrlOptions.saplingUrl;
+        case "orchard": return DataUrlOptions.orchardUrl;
+        default: return DataUrlOptions.defaultUrl;
       }
     }
-
     switch (selectedTool) {
-      case ToolOptions.transaction:
-        return DataUrlOptions.txsummaryUrl;
-      case ToolOptions.net_inflows_outflows:
-        return DataUrlOptions.netInflowsOutflowsUrl;
-      case ToolOptions.nodecount:
-        return DataUrlOptions.nodecountUrl;
-      case ToolOptions.difficulty:
-        return DataUrlOptions.difficultyUrl;
-      case ToolOptions.lockbox:
-        return DataUrlOptions.lockboxUrl;
-      case "issuance":
-        return DataUrlOptions.issuanceUrl;
-      case ToolOptions.privacy_set:
-        return "";
-      default:
-        return DataUrlOptions.defaultUrl;
-    }
-  };
-
-  const getDataColor = (): string => {
-    switch (selectedPool) {
-      case "sprout":
-        return "#A020F0";
-      case "sapling":
-        return "#FFA500";
-      case "orchard":
-        return "#32CD32";
-      default:
-        return "url(#area-background-gradient)";
+      case ToolOptions.transaction: return DataUrlOptions.txsummaryUrl;
+      case ToolOptions.net_inflows_outflows: return DataUrlOptions.netInflowsOutflowsUrl;
+      case ToolOptions.nodecount: return DataUrlOptions.nodecountUrl;
+      case ToolOptions.difficulty: return DataUrlOptions.difficultyUrl;
+      case ToolOptions.lockbox: return DataUrlOptions.lockboxUrl;
+      case "issuance": return DataUrlOptions.issuanceUrl;
+      case ToolOptions.privacy_set: return "";
+      default: return DataUrlOptions.defaultUrl;
     }
   };
 
   useEffect(() => {
-    getBlockchainData().then((d) => d && setBlockchainInfo(d));
-    getBlockchainInfo().then((c) => setCirculation(c));
+    getBlockchainData().then(d => d && setBlockchainInfo(d));
+    getBlockchainInfo().then(c => setCirculation(c));
 
-    getSupplyData(DataUrlOptions.defaultUrl).then((a) =>
-      setSupplies((s) => ({ ...s, default: a.pop() || null }))
-    );
-    getSupplyData(DataUrlOptions.sproutUrl).then((a) =>
-      setSupplies((s) => ({ ...s, sprout: a.pop() || null }))
-    );
-    getSupplyData(DataUrlOptions.saplingUrl).then((a) =>
-      setSupplies((s) => ({ ...s, sapling: a.pop() || null }))
-    );
-    getSupplyData(DataUrlOptions.orchardUrl).then((a) =>
-      setSupplies((s) => ({ ...s, orchard: a.pop() || null }))
-    );
+    getSupplyData(DataUrlOptions.defaultUrl).then(a => setSupplies(s => ({ ...s, default: a.pop() || null })));
+    getSupplyData(DataUrlOptions.sproutUrl).then(a => setSupplies(s => ({ ...s, sprout: a.pop() || null })));
+    getSupplyData(DataUrlOptions.saplingUrl).then(a => setSupplies(s => ({ ...s, sapling: a.pop() || null })));
+    getSupplyData(DataUrlOptions.orchardUrl).then(a => setSupplies(s => ({ ...s, orchard: a.pop() || null })));
 
-    getShieldedTxCount().then((d) => d && setShieldedTxCount(d));
-    getNodeCountData(DataUrlOptions.nodecountUrl).then((a) => {
+    getShieldedTxCount().then(d => d && setShieldedTxCount(d));
+    getNodeCountData(DataUrlOptions.nodecountUrl).then(a => {
       if (a.length) setLatestNodeCount(Number(a[a.length - 1].nodecount));
     });
 
