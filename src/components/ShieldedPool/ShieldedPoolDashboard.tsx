@@ -21,7 +21,9 @@ import {
 import CryptoMetrics from "./Metric";
 import RewardsChart from "./RewardsChart";
 
-const ShieldedPoolChart = dynamic(() => import("./ShieldedPoolChart"), { ssr: true });
+const ShieldedPoolChart = dynamic(() => import("./ShieldedPoolChart"), {
+  ssr: true,
+});
 const TransactionSummaryChart = dynamic(
   () => import("../TransactionSummaryChartOld"),
   { ssr: true }
@@ -65,6 +67,29 @@ type SupplyData = { close: string; supply: number };
 type ShieldedTxCount = { sapling: number; orchard: number; timestamp: string };
 type NodeCountData = { Date: string; nodecount: string };
 type NamadaAsset = { id: string; shieldedSupply: string };
+
+// fetch any data array and return its last date field (close/Date/date/timestamp/time)
+async function getDataLastTimestampFromFile(url: string): Promise<string> {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return "N/A";
+    const json = await res.json();
+    if (Array.isArray(json) && json.length) {
+      const last: any = json[json.length - 1];
+      return (
+        last.close ||
+        last.Date ||
+        last.date ||
+        last.timestamp ||
+        last.time ||
+        "N/A"
+      );
+    }
+    return "N/A";
+  } catch {
+    return "N/A";
+  }
+}
 
 async function getBlockchainData(): Promise<BlockchainInfo | null> {
   try {
@@ -126,22 +151,6 @@ function formatDate(s: string | null): string {
   return isNaN(d.getTime()) ? "N/A" : d.toLocaleDateString();
 }
 
-// NEW helper: fetch the JSON and return the last .close
-async function getDataLastTimestampFromFile(url: string): Promise<string> {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) return "N/A";
-    const json = await res.json();
-    if (Array.isArray(json) && json.length) {
-      const last: any = json[json.length - 1];
-      return typeof last.close === "string" ? last.close : "N/A";
-    }
-    return "N/A";
-  } catch {
-    return "N/A";
-  }
-}
-
 function transformSupplyData(
   d: SupplyData | null
 ): { timestamp: string; supply: number } | null {
@@ -152,19 +161,21 @@ type PoolKey = "default" | "sprout" | "sapling" | "orchard";
 
 export default function ShieldedPoolDashboard() {
   const [selectedPool, setSelectedPool] = useState<PoolKey>("default");
-  const [selectedNamadaPool] = useState<string>("default");
-  const [selectedCoin, setSelectedCoin] = useState<"Zcash" | "Penumbra" | "Namada">("Zcash");
-  const [selectedTool, setSelectedTool] = useState<ToolOptions>(ToolOptions.supply);
-
-  const [selectedNamadaTool, setSelectedNamadaTool] =
-    useState<NamadaToolOptions>(NamadaToolOptions.supply);
+  const [selectedCoin, setSelectedCoin] = useState<
+    "Zcash" | "Penumbra" | "Namada"
+  >("Zcash");
+  const [selectedTool, setSelectedTool] = useState<ToolOptions>(
+    ToolOptions.supply
+  );
   const [selectedToolName, setSelectedToolName] = useState<string>(
     toolOptionLabels[ToolOptions.supply]
   );
   const [cumulativeCheck, setCumulativeCheck] = useState(true);
   const [filterSpamCheck, setFilterSpamCheck] = useState(false);
 
-  const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>(null);
+  const [blockchainInfo, setBlockchainInfo] = useState<
+    BlockchainInfo | null
+  >(null);
   const [circulation, setCirculation] = useState<number | null>(null);
   const [supplies, setSupplies] = useState<Record<PoolKey, SupplyData | null>>({
     default: null,
@@ -173,9 +184,13 @@ export default function ShieldedPoolDashboard() {
     orchard: null,
   });
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-  const [shieldedTxCount, setShieldedTxCount] = useState<ShieldedTxCount[] | null>(null);
+  const [shieldedTxCount, setShieldedTxCount] = useState<
+    ShieldedTxCount[] | null
+  >(null);
   const [latestNodeCount, setLatestNodeCount] = useState<number | null>(null);
 
+  const [selectedNamadaTool, setSelectedNamadaTool] =
+    useState<NamadaToolOptions>(NamadaToolOptions.supply);
   const [namadaRaw, setNamadaRaw] = useState<any[]>([]);
   const [namadaAssets, setNamadaAssets] = useState<NamadaAsset[]>([]);
   const [selectedNamadaAsset, setSelectedNamadaAsset] = useState<string>("");
@@ -183,7 +198,6 @@ export default function ShieldedPoolDashboard() {
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-  // Compute which URL to use for data/charts
   const getDataUrl = (): string => {
     if (selectedTool === ToolOptions.supply) {
       switch (selectedPool) {
@@ -230,12 +244,11 @@ export default function ShieldedPoolDashboard() {
     }
   };
 
-  // Initial data fetch
+  // initial load
   useEffect(() => {
     getBlockchainData().then((d) => d && setBlockchainInfo(d));
     getBlockchainInfo().then((c) => setCirculation(c));
 
-    // Load initial supply snapshots
     getSupplyData(DataUrlOptions.defaultUrl).then((a) =>
       setSupplies((s) => ({ ...s, default: a.pop() || null }))
     );
@@ -254,7 +267,7 @@ export default function ShieldedPoolDashboard() {
       if (a.length) setLatestNodeCount(Number(a[a.length - 1].nodecount));
     });
 
-    // Load Namada raw and asset list
+    // Namada fetch
     fetch(DataUrlOptions.namadaSupplyUrl)
       .then((r) => r.json())
       .then((data: any[]) => {
@@ -267,11 +280,13 @@ export default function ShieldedPoolDashboard() {
       .catch(console.error);
   }, []);
 
-  // Re-build Namada series when selection changes
+  // build Namada series
   useEffect(() => {
     if (!selectedNamadaAsset) return;
     const filtered = namadaRaw.filter((e) =>
-      e.Total_Supply.some((t: any) => t.id === selectedNamadaAsset && t.shieldedSupply)
+      e.Total_Supply.some(
+        (t: any) => t.id === selectedNamadaAsset && t.shieldedSupply
+      )
     );
     const x = filtered.map((e) => e.Date);
     const y = {
@@ -286,7 +301,7 @@ export default function ShieldedPoolDashboard() {
     setNamadaSeries({ x, y });
   }, [namadaRaw, selectedNamadaAsset]);
 
-  // NEW: Always fetch the JSON and set lastUpdated from its final element
+  // NEW: JSON-only last-updated
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -309,7 +324,6 @@ export default function ShieldedPoolDashboard() {
     selectedNamadaAsset,
   ]);
 
-  // If data not ready, show spinner
   if (!blockchainInfo) {
     return (
       <div className="flex justify-center mt-48">
@@ -345,7 +359,7 @@ export default function ShieldedPoolDashboard() {
 
   return (
     <div className="mt-28">
-      {/* Header & coin toggles */}
+      {/* Header */}
       <div className="flex flex-wrap gap-4 items-center justify-between mb-4">
         <h2 className="font-bold text-xl">{selectedToolName}</h2>
         <div className="flex gap-4">
@@ -367,10 +381,13 @@ export default function ShieldedPoolDashboard() {
         </div>
       </div>
 
+      {/* Chart container */}
       <div className="border p-4 rounded-lg relative">
-        {/* Tool selector */}
         {selectedCoin === "Zcash" && (
-          <Tools onToolChange={handleToolChange} defaultSelected={ToolOptions.supply} />
+          <Tools
+            onToolChange={handleToolChange}
+            defaultSelected={ToolOptions.supply}
+          />
         )}
         {selectedCoin === "Namada" && (
           <NamadaTools
@@ -379,12 +396,15 @@ export default function ShieldedPoolDashboard() {
           />
         )}
 
-        {/* Chart area */}
         <div ref={divChartRef}>
+          {/* Zcash charts */}
           {selectedCoin === "Zcash" && (
             <>
               {selectedTool === ToolOptions.supply && (
-                <ShieldedPoolChart dataUrl={getDataUrl()} color={getDataColor()} />
+                <ShieldedPoolChart
+                  dataUrl={getDataUrl()}
+                  color={getDataColor()}
+                />
               )}
               {selectedTool === ToolOptions.transaction && (
                 <>
@@ -412,12 +432,11 @@ export default function ShieldedPoolDashboard() {
               {(selectedTool === ToolOptions.nodecount ||
                 selectedTool === ToolOptions.difficulty ||
                 selectedTool === ToolOptions.lockbox) && (
-                <NodeCountChart dataUrl={getDataUrl()} color={getDataColor()} />
+                <NodeCountChart
+                  dataUrl={getDataUrl()}
+                  color={getDataColor()}
+                />
               )}
-              {/* Uncomment if you want the net-flows chart */}
-              {/* {selectedTool === ToolOptions.net_inflows_outflows && (
-                <NetInflowsOutFlowsChart dataUrl={getDataUrl()} color={getDataColor()} />
-              )} */}
               {selectedTool === "issuance" && (
                 <ZecIssuanceSummaryChart
                   dataUrl={DataUrlOptions.issuanceUrl}
@@ -426,17 +445,23 @@ export default function ShieldedPoolDashboard() {
                   filter={filterSpamCheck}
                 />
               )}
-              {selectedTool === ToolOptions.privacy_set && <PrivacySetVisualization />}
+              {selectedTool === ToolOptions.privacy_set && (
+                <PrivacySetVisualization />
+              )}
             </>
           )}
 
-          {selectedCoin === "Namada" && selectedNamadaTool === NamadaToolOptions.supply && (
-            <NamadaSupplyChart data={namadaSeries} width={800} height={400} />
-          )}
-          {selectedCoin === "Namada" && selectedNamadaTool === NamadaToolOptions.rewards && (
-            <RewardsChart DataUrlOptions={DataUrlOptions} />
-          )}
+          {/* Namada charts */}
+          {selectedCoin === "Namada" &&
+            selectedNamadaTool === NamadaToolOptions.supply && (
+              <NamadaSupplyChart data={namadaSeries} width={800} height={400} />
+            )}
+          {selectedCoin === "Namada" &&
+            selectedNamadaTool === NamadaToolOptions.rewards && (
+              <RewardsChart DataUrlOptions={DataUrlOptions} />
+            )}
 
+          {/* No data */}
           {selectedCoin !== "Zcash" && selectedCoin !== "Namada" && (
             <div className="w-full h-[400px] flex flex-col items-center justify-center">
               <Image src={NoData} width={200} height={250} alt="No data" />
@@ -445,7 +470,7 @@ export default function ShieldedPoolDashboard() {
           )}
         </div>
 
-        {/* Pool-buttons for Zcash */}
+        {/* Pool buttons (Zcash) */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Zcash" && (
           <div className="mt-8 flex flex-wrap justify-center gap-6">
             {poolKeys.map((key) => (
@@ -453,7 +478,9 @@ export default function ShieldedPoolDashboard() {
                 <Button
                   text={poolLabels[key]}
                   className={`py-2 px-4 rounded-full ${
-                    selectedPool === key ? "bg-[#1984c7] text-white" : "bg-gray-400 text-white"
+                    selectedPool === key
+                      ? "bg-[#1984c7] text-white"
+                      : "bg-gray-400 text-white"
                   }`}
                   onClick={() => setSelectedPool(key)}
                 />
@@ -465,7 +492,7 @@ export default function ShieldedPoolDashboard() {
           </div>
         )}
 
-        {/* Asset-buttons for Namada */}
+        {/* Namada asset buttons */}
         {selectedTool === ToolOptions.supply && selectedCoin === "Namada" && (
           <div className="mt-8 flex flex-wrap justify-center gap-6">
             {namadaAssets.map((asset) => (
@@ -484,7 +511,7 @@ export default function ShieldedPoolDashboard() {
           </div>
         )}
 
-        {/* Last-updated + Export */}
+        {/* Last updated & export */}
         <div className="flex justify-end items-center gap-4 mt-4">
           <span className="text-sm text-gray-500">
             Last updated: {formatDate(lastUpdated)}
@@ -496,7 +523,7 @@ export default function ShieldedPoolDashboard() {
           />
         </div>
 
-        {/* Metrics grid */}
+        {/* Metrics */}
         {selectedCoin === "Zcash" && (
           <div className="flex flex-wrap gap-8 justify-center items-center mt-8">
             <div className="border p-4 rounded-md text-center">
@@ -533,7 +560,6 @@ export default function ShieldedPoolDashboard() {
             </div>
           </div>
         )}
-
         {selectedCoin === "Penumbra" && <CryptoMetrics selectedCoin={selectedCoin} />}
         {selectedCoin === "Namada" && <CryptoMetrics selectedCoin={selectedNamadaAsset} />}
       </div>
