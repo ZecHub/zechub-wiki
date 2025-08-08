@@ -653,4 +653,3 @@ export default function ShieldedPoolDashboard() {
     </div>
   );
 }
-```
