@@ -1,7 +1,6 @@
 /* src/app/guides/btcpay-zcash/page.tsx */
 import type { Metadata } from "next";
 import Link from "next/link";
-import { useState } from "react";
 
 export const metadata: Metadata = {
   title:
@@ -23,37 +22,14 @@ export const metadata: Metadata = {
   },
 };
 
-/* --- UI helpers --- */
 type TocItem = { id: string; label: string; indent?: boolean };
 
+/* --- small helpers (server components) --- */
 function Badge({ children }: { children: React.ReactNode }) {
   return (
     <span className="select-none text-[11px] tracking-wide uppercase rounded-md border border-zinc-300/70 bg-zinc-100 px-1.5 py-0.5 text-zinc-700 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
       {children}
     </span>
-  );
-}
-
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-  async function onCopy() {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1600);
-    } catch {
-      // noop
-    }
-  }
-  return (
-    <button
-      type="button"
-      onClick={onCopy}
-      className="absolute right-2 top-2 rounded-md border border-zinc-300 bg-white/80 px-2 py-1 text-xs text-zinc-700 backdrop-blur hover:bg-white dark:border-zinc-700 dark:bg-zinc-900/70 dark:text-zinc-200"
-      aria-label="Copy to clipboard"
-    >
-      {copied ? "Copied!" : "Copy"}
-    </button>
   );
 }
 
@@ -69,7 +45,6 @@ function CodeBlock({
       <div className="absolute left-2 top-2">
         <Badge>{language}</Badge>
       </div>
-      <CopyButton text={code} />
       <pre className="overflow-x-auto rounded-lg border border-zinc-200 bg-zinc-100 p-4 text-sm leading-relaxed dark:border-zinc-700 dark:bg-zinc-900">
         <code>{code}</code>
       </pre>
@@ -80,14 +55,8 @@ function CodeBlock({
 const sections: TocItem[] = [
   { id: "Why-Use-BTCPay-Server-with-Zcash", label: "Why Use BTCPay Server with Zcash" },
   { id: "How-BTCPay-Server-Works", label: "How BTCPay Server Works" },
-  {
-    id: "Where-Are-Funds-Stored-Who-Controls-the-Private-Keys",
-    label: "Where Are Funds Stored? Who Controls the Private Keys?",
-  },
-  {
-    id: "How-to-Set-Up-BTCPay-Server-for-Accepting-Zcash",
-    label: "How to Set Up BTCPay Server for Accepting Zcash",
-  },
+  { id: "Where-Are-Funds-Stored-Who-Controls-the-Private-Keys", label: "Where Are Funds Stored? Who Controls the Private Keys?" },
+  { id: "How-to-Set-Up-BTCPay-Server-for-Accepting-Zcash", label: "How to Set Up BTCPay Server for Accepting Zcash" },
   { id: "Deploying-BTCPay-Server-with-Zcash-Support", label: "Deploying BTCPay Server with Zcash Support", indent: true },
   { id: "Running-Your-Own-Zcash-Full-Node-Zebra--Lightwalletd", label: "Running Your Own Zcash Full Node (Zebra + Lightwalletd)", indent: true },
   { id: "Connecting-to-an-External-lightwalletd-Node-Custom-Configuration", label: "Connecting to an External lightwalletd Node", indent: true },
