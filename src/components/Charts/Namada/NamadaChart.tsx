@@ -10,7 +10,7 @@ import {
 import { RefObject, useState } from "react";
 
 import { ErrorBoundary } from "../../ErrorBoundary/ErrorBoundary";
-import CryptoMetrics from "../../ShieldedPool/Metric";
+import CryptoMetrics from "../Metric";
 import ChartFooter from "../ChartFooter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../Tabs";
 import RewardChart from "./RewardsChart";
