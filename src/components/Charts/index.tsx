@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "@/components/UI/shadcn/button";
 import { useEffect, useState } from "react";
 

@@ -1,6 +1,9 @@
 import { useInMobile } from "@/hooks/useInMobile";
 import { useEffect, useState } from "react";
-import { MetricCard, MetricCardSkeleton } from "../ZcashMetrics/MetricCard";
+import {
+  MetricCard,
+  MetricCardSkeleton,
+} from "./Zcash/ZcashMetrics/MetricCard";
 
 interface CoinData {
   usd?: number;
@@ -40,7 +43,7 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
         setLoading(false);
         return;
       }
-    
+
       if (selectedCoin === "Atom") {
         name = "Cosmos Hub";
       } else if (selectedCoin === "Tia") {
@@ -49,17 +52,13 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
         name = "Osmosis";
       } else if (selectedCoin === "stOsmo") {
         name = "Stride Staked Osmo";
-      }
-      else if (selectedCoin === "stTia") {
+      } else if (selectedCoin === "stTia") {
         name = "Stride Staked TIA";
-      }
-      else if (selectedCoin === "stAtom") {
+      } else if (selectedCoin === "stAtom") {
         name = "Stride Staked Atom";
-      }
-      else if (selectedCoin === "Um") {
+      } else if (selectedCoin === "Um") {
         name = "Penumbra";
-      }
-      else if (selectedCoin === "Ntrn") {
+      } else if (selectedCoin === "Ntrn") {
         name = "Neutron";
       }
 
