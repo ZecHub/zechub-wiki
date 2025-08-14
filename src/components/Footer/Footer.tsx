@@ -28,7 +28,7 @@ const Footer = () => {
           </Link>
           . All Rights Reserved.
         </span>
-        <span className="text-sm sm:text-center">
+        <span className="text-sm sm:text-center text-slate-100">
           <Link href={"/sitemap"}>Sitemap</Link>
         </span>
       </div>
