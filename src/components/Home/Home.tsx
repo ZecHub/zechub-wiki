@@ -20,59 +20,60 @@ const Home = ({ text }: HomeProps) => {
         </FadeInAnimation>
       </section>
 
-      <div className="flex flex-col">
-        <section id="presentation">
-          <div className="w-full flex items-center justify-center py-5">
-            <FadeInAnimation>
-              <div className="flex flex-col items-center justify-center p-3 mt-6 shadow">
+      <section id="presentation">
+        <div className="w-full flex items-center justify-center py-5">
+          <FadeInAnimation>
+            <div className="flex flex-col items-center justify-center p-3 mt-6 shadow">
+              <FadeInAnimation>
+                <AnimationHome />
+              </FadeInAnimation>
+              <FadeInAnimation>
+                <h1 className="text-4xl text-center font-bold mb-3">
+                  Welcome to ZecHub
+                </h1>
+              </FadeInAnimation>
+              <div className="flex flex-col items-center justify-center p-4">
                 <FadeInAnimation>
-                  <AnimationHome />
+                  <p className="text-lg text-center">{text}</p>
                 </FadeInAnimation>
-                <FadeInAnimation>
-                  <h1 className="text-4xl text-center font-bold mb-3">
-                    Welcome to ZecHub
-                  </h1>
-                </FadeInAnimation>
-                <div className="flex flex-col items-center justify-center p-4">
+                <div className="w-full flex justify-center mt-6">
                   <FadeInAnimation>
-                    <p className="text-lg text-center">{text}</p>
+                    <Link
+                      type="button"
+                      href="/explore"
+                      className="transition duration-400 border-4 border-[#1984c7] font-bold rounded-full py-6 px-10 text-[#1984c7] bg-white hover:bg-[#1984c7] hover:text-white shadow-lg transform hover:scale-110"
+                    >
+                      Explore Zcash
+                    </Link>
                   </FadeInAnimation>
-                  <div className="w-full flex justify-center mt-6">
-                    <FadeInAnimation>
-                      <Link
-                        type="button"
-                        href="/explore"
-                        className="transition duration-400 border-4 border-[#1984c7] font-bold rounded-full py-6 px-10 text-[#1984c7] bg-white hover:bg-[#1984c7] hover:text-white shadow-lg transform hover:scale-110"
-                      >
-                        Explore Zcash
-                      </Link>
-                    </FadeInAnimation>
-                  </div>
                 </div>
               </div>
-            </FadeInAnimation>
-          </div>
-        </section>
+            </div>
+          </FadeInAnimation>
+        </div>
+      </section>
 
-        <section id="cardLinks" className="flex justify-center items-center px-4 my-12">
-          <div className="flex flex-col md:flex-row md:flex-wrap gap-8 justify-between items-stretch">
-            {cardsConfig &&
-              cardsConfig.map((items) => (
-                <Cards
-                  key={items.title}
-                  paraph={items.content}
-                  title={items.title}
-                  url={items.url}
-                  image={items.image}
-                />
-              ))}
-          </div>
-        </section>
+      <section
+        id="cardLinks"
+        className="flex justify-center items-center px-4 my-12"
+      >
+        <div className="flex flex-col md:flex-row md:flex-wrap gap-8 justify-between items-stretch">
+          {cardsConfig &&
+            cardsConfig.map((items) => (
+              <Cards
+                key={items.title}
+                paraph={items.content}
+                title={items.title}
+                url={items.url}
+                image={items.image}
+              />
+            ))}
+        </div>
+      </section>
 
-        <section id="content">
-          <ContentSections />
-        </section>
-      </div>
+      <section id="content">
+        <ContentSections />
+      </section>
     </main>
   );
 };
