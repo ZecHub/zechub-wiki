@@ -54,7 +54,7 @@ const Home = ({ text }: HomeProps) => {
           </div>
         </section>
 
-        <section id="cardLinks" className="flex justify-center items-center px-4">
+        <section id="cardLinks" className="flex justify-center items-center px-4 my-12">
           <div className="flex flex-col md:flex-row md:flex-wrap gap-8 justify-between items-stretch">
             {cardsConfig &&
               cardsConfig.map((items) => (
