@@ -6,62 +6,7 @@ const ContentSections = () => {
   return (
     <section className="flex space-y-24 flex-col w-full px-5 my-12">
       {/* Zcash Section */}
-      <div
-        id="what-is-zcash"
-        className="flex flex-col md:flex-row border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden"
-      >
-        {/* Left Column - Image */}
-        <div className="flex flex-1 items-center justify-center bg-slate-50 dark:bg-slate-800 p-4">
-          <FadeInAnimation>
-            <Image
-              src="/Zcashcard.png"
-              alt="Zcash Card"
-              width={500}
-              height={500}
-              className="max-w-full h-auto"
-              unoptimized
-            />
-          </FadeInAnimation>
-        </div>
-
-        {/* Right Column - Content */}
-        <div className="flex flex-col flex-1 p-6 space-y-6 items-center md:items-start justify-center text-center md:text-left">
-          <FadeInAnimation>
-            <h2 className="text-3xl my-4 font-semibold dark:text-slate-300">
-              What is Zcash?
-            </h2>
-          </FadeInAnimation>
-
-          <FadeInAnimation>
-            <p className="mb-8 text-slate-700 dark:text-slate-300 leading-relaxed">
-              It is an open-source, blockchain ledger that features a
-              sophisticated zero-knowledge proving system. It specializes in
-              offering a higher standard of privacy through its proving system
-              preserving confidentiality of transaction metadata. At its core,
-              Zcash is private data ownership that is permissionlessly
-              transferred when transactions are made.
-            </p>
-          </FadeInAnimation>
-
-          <FadeInAnimation className="w-full">
-            <div className="flex flex-col sm:flex-row gap-4 w-full">
-              <Link
-                href="/start-here/what-is-zec-and-zcash"
-                className="flex-1 inline-flex justify-center items-center px-4 py-2 text-sm font-bold text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                What is Zcash?
-              </Link>
-              <Link
-                href="/zcash-tech/zk-snarks"
-                className="flex-1 inline-flex justify-center items-center px-4 py-2 text-sm font-medium text-blue-400 border border-blue-300 rounded-lg hover:bg-blue-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-300 dark:hover:bg-blue-700"
-              >
-                Zcash Technology
-              </Link>
-            </div>
-          </FadeInAnimation>
-        </div>
-      </div>
-
+    
       <InfoCard
         id="what-is-zcash"
         title="What is Zcash?"
@@ -558,8 +503,8 @@ function InfoCard({
                 className={`flex-1 inline-flex justify-center items-center px-4 py-4 text-md font-medium rounded-lg focus:ring-4 focus:outline-none
                   ${
                     link.primary
-                      ? "font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                      : "text-blue-400 border border-blue-300 hover:bg-blue-800 hover:text-white dark:border-blue-500 dark:text-blue-300 dark:hover:bg-blue-700 focus:ring-blue-300 dark:focus:ring-blue-800"
+                      ? "font-bold text-white bg-[#1984c7] hover:bg-[#1574af] focus:ring-[#1984c7]"
+                      : "text-blue-400 border border-blue-300 hover:bg-blue-800 hover:text-white dark:border-[#1574af] dark:text-blue-300 dark:hover:bg-[#1574af]  focus:ring-blue-300 dark:focus:ring-[#1574af]"
                   }
                 `}
               >
