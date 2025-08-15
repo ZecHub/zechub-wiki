@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Cards = ({ title, paraph, url, image }: Props) => (
-  <div className="flex w-full min-w-[30%] md:w-1/5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:-translate-y-1 transition-all duration-100">
+  <div className="flex w-full min-w-[30%] md:w-1/5 bg-slate-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:-translate-y-1 transition-all duration-100">
     <FadeInAnimation className="flex flex-col justify-center items-center w-full">
       <Link href={url} className="w-full flex justify-center">
         <Image
