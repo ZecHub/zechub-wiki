@@ -15,14 +15,14 @@ type HomeProps = {
 const Home = ({ text }: HomeProps) => {
   return (
     <main className="flex flex-col mx-auto">
-      <section id="hero">
+      <section id="hero" className="mb-12">
         <FadeInAnimation>
           <Hero />
         </FadeInAnimation>
       </section>
 
       <section id="presentation" className="px-4 my-12">
-        <FadeInAnimation className="flex flex-col items-center justify-center space-y-6 p-3 mt-6 shadow">
+        <FadeInAnimation className="flex flex-col items-center justify-center space-y-6 shadow">
           <FadeInAnimation>
             <AnimationHome />
           </FadeInAnimation>
@@ -37,7 +37,7 @@ const Home = ({ text }: HomeProps) => {
                 {text}
               </p>
             </FadeInAnimation>
-            <div className="w-full flex justify-center my-12">
+            <div className="w-full flex justify-center mt-12">
               <FadeInAnimation>
                 <Link
                   type="button"
