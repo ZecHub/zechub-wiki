@@ -14,7 +14,7 @@ const Footer = () => {
       </div>
       <div className="flex justify-center flex-col my-3 space-y-1">
         <span className="text-sm sm:text-center">
-          © 2025{" "}
+          © {new Date().getFullYear()}{" "}
           <Link
             href="https://zechub.social/@Zechub"
             rel="me"
