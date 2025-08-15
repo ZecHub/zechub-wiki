@@ -5,6 +5,7 @@ import AnimationHome from "@/components/UI/AnimationHome";
 import Cards from "@/components/UI/Cards";
 import { cardsConfig } from "@/constants/cardsConfig";
 import Link from "next/link";
+import Explorer from "../Explorer/Explorer";
 import { FadeInAnimation } from "../UI/FadeInAnimation";
 
 type HomeProps = {
@@ -40,7 +41,7 @@ const Home = ({ text }: HomeProps) => {
               <FadeInAnimation>
                 <Link
                   type="button"
-                  href="/explore"
+                  href="#explore"
                   className="transition duration-400 border-2 border-[#1984c7] font-bold rounded-md py-4 px-10 text-[#1984c7] bg-white hover:bg-[#1984c7] hover:text-white shadow-lg transform hover:scale-104"
                 >
                   Explore Zcash
@@ -71,6 +72,10 @@ const Home = ({ text }: HomeProps) => {
 
       <section id="content" className="px-4 my-12">
         <ContentSections />
+      </section>
+
+      <section id="explore" className="px-4 my-12">
+        <Explorer />
       </section>
     </main>
   );
