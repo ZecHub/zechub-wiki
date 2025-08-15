@@ -27,7 +27,7 @@ const CardsExplorer = ({
         <Image
           className="rounded-t-lg"
           src={image}
-          alt="cardImage"
+          alt={name}
           width={1000}
           height={50}
         />
