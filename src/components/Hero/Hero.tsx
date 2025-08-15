@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 const Hero = () => {
   const router = useRouter();
   return (
-    <div className="w-full my-12 mx-auto items-center md:flex-row justify-center rounded-lg">
+    <div className="w-full mx-auto items-center md:flex-row justify-center rounded-lg">
       <Image
         className="w-full object-cover"
         alt="hero"
