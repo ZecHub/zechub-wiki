@@ -20,37 +20,35 @@ const Home = ({ text }: HomeProps) => {
         </FadeInAnimation>
       </section>
 
-      <section id="presentation">
-        <div className="w-full flex items-center justify-center py-5">
+      <section id="presentation" className="px-4 my-12">
+        <FadeInAnimation className="flex flex-col items-center justify-center space-y-6 p-3 mt-6 shadow">
           <FadeInAnimation>
-            <div className="flex flex-col items-center justify-center p-3 mt-6 shadow">
-              <FadeInAnimation>
-                <AnimationHome />
-              </FadeInAnimation>
-              <FadeInAnimation>
-                <h1 className="text-4xl text-center font-bold mb-3">
-                  Welcome to ZecHub
-                </h1>
-              </FadeInAnimation>
-              <div className="flex flex-col items-center justify-center p-4">
-                <FadeInAnimation>
-                  <p className="text-lg text-center">{text}</p>
-                </FadeInAnimation>
-                <div className="w-full flex justify-center mt-6">
-                  <FadeInAnimation>
-                    <Link
-                      type="button"
-                      href="/explore"
-                      className="transition duration-400 border-4 border-[#1984c7] font-bold rounded-full py-6 px-10 text-[#1984c7] bg-white hover:bg-[#1984c7] hover:text-white shadow-lg transform hover:scale-110"
-                    >
-                      Explore Zcash
-                    </Link>
-                  </FadeInAnimation>
-                </div>
-              </div>
-            </div>
+            <AnimationHome />
           </FadeInAnimation>
-        </div>
+          <FadeInAnimation>
+            <h1 className="text-4xl text-center font-bold mb-3">
+              Welcome to ZecHub
+            </h1>
+          </FadeInAnimation>
+          <div className="flex flex-col items-center justify-center m-auto">
+            <FadeInAnimation>
+              <p className="text-lg leading-relaxed text-center text-gray-700 dark:text-gray-400">
+                {text}
+              </p>
+            </FadeInAnimation>
+            <div className="w-full flex justify-center mt-12">
+              <FadeInAnimation>
+                <Link
+                  type="button"
+                  href="/explore"
+                  className="transition duration-400 border-2 border-[#1984c7] font-bold rounded-md py-4 px-10 text-[#1984c7] bg-white hover:bg-[#1984c7] hover:text-white shadow-lg transform hover:scale-104"
+                >
+                  Explore Zcash
+                </Link>
+              </FadeInAnimation>
+            </div>
+          </div>
+        </FadeInAnimation>
       </section>
 
       <section
@@ -71,7 +69,7 @@ const Home = ({ text }: HomeProps) => {
         </div>
       </section>
 
-      <section id="content">
+      <section id="content" className="px-4 my-12">
         <ContentSections />
       </section>
     </main>
