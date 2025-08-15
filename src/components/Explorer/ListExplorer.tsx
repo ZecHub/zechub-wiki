@@ -25,7 +25,7 @@ const CardsExplorer = ({ image, name, description, url, ...props }: Props) => {
           height={50}
         />
         <div className="p-5 space-y-1">
-          <h4 className="text-md tracking-tight text-gray-700 dark:text-gray-300">
+          <h4 className="text-md font-bold tracking-tight text-gray-700 dark:text-gray-300">
             {getName(name)}
           </h4>
 
