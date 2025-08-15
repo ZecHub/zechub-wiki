@@ -1,29 +1,27 @@
-'use client'
+"use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const Hero = () => {
-
-  const router = useRouter()
+  const router = useRouter();
   return (
-    <div className='w-full  mb-3'>
-      <div className=' w-full mx-auto items-center md:flex-row justify-center rounded-lg '>
-        <Image
-          className='w-full  mb-5 object-cover'
-          alt='hero'
-          width={800}
-          height={50}
-          priority
-          src={'/BannerPrancheta.webp'}
-        />
-      </div>
+    <div className="w-full mx-auto items-center md:flex-row justify-center rounded-lg">
+      <Image
+        className="w-full object-cover"
+        alt="hero"
+        width={800}
+        height={50}
+        priority
+        src={"/BannerPrancheta.webp"}
+      />
     </div>
   );
 };
 
 export default Hero;
 
-{/* <div className="text-center lg:w-5/12 w-full mb-5">
+{
+  /* <div className="text-center lg:w-5/12 w-full mb-5">
 <h1 className="my-3 text-lg text-white md:text-5xl font-bold leading-tight dark:text-gray-100">
   Learn all about Zcash network
 </h1>
@@ -38,4 +36,5 @@ export default Hero;
 flex flex-col px-3 py-16  bg-[#1984c7]
 
 
-*/}
+*/
+}

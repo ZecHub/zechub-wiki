@@ -5,6 +5,7 @@ import AnimationHome from "@/components/UI/AnimationHome";
 import Cards from "@/components/UI/Cards";
 import { cardsConfig } from "@/constants/cardsConfig";
 import Link from "next/link";
+import Explorer from "../Explorer/Explorer";
 import { FadeInAnimation } from "../UI/FadeInAnimation";
 
 type HomeProps = {
@@ -14,65 +15,68 @@ type HomeProps = {
 const Home = ({ text }: HomeProps) => {
   return (
     <main className="flex flex-col mx-auto">
-      <section id="hero">
+      <section id="hero" className="mb-12">
         <FadeInAnimation>
           <Hero />
         </FadeInAnimation>
       </section>
 
-      <div className="flex flex-col">
-        <section id="presentation">
-          <div className="w-full flex items-center justify-center py-5">
+      <section id="presentation" className="px-1 my-12 bg-slate-100 dark:bg-transparent">
+        <FadeInAnimation className="flex flex-col items-center justify-center space-y-6 shadow">
+          <FadeInAnimation className="mt-12">
+            <AnimationHome />
+          </FadeInAnimation>
+          <FadeInAnimation>
+            <h1 className="text-4xl text-center font-bold mb-3">
+              Welcome to ZecHub
+            </h1>
+          </FadeInAnimation>
+          <div className="flex flex-col w-[90%] items-center justify-center m-auto">
             <FadeInAnimation>
-              <div className="flex flex-col items-center justify-center p-3 mt-6 shadow">
-                <FadeInAnimation>
-                  <AnimationHome />
-                </FadeInAnimation>
-                <FadeInAnimation>
-                  <h1 className="text-4xl text-center font-bold mb-3">
-                    Welcome to ZecHub
-                  </h1>
-                </FadeInAnimation>
-                <div className="flex flex-col items-center justify-center p-4">
-                  <FadeInAnimation>
-                    <p className="text-lg text-center">{text}</p>
-                  </FadeInAnimation>
-                  <div className="w-full flex justify-center mt-6">
-                    <FadeInAnimation>
-                      <Link
-                        type="button"
-                        href="/explore"
-                        className="transition duration-400 border-4 border-[#1984c7] font-bold rounded-full py-6 px-10 text-[#1984c7] bg-white hover:bg-[#1984c7] hover:text-white shadow-lg transform hover:scale-110"
-                      >
-                        Explore Zcash
-                      </Link>
-                    </FadeInAnimation>
-                  </div>
-                </div>
-              </div>
+              <p className="text-lg leading-relaxed text-center text-gray-700 dark:text-gray-400">
+                {text}
+              </p>
             </FadeInAnimation>
+            <div className="w-full flex justify-center my-12">
+              <FadeInAnimation>
+                <Link
+                  type="button"
+                  href="#explore"
+                  className="transition duration-400 border-2 border-[#1984c7] font-bold rounded-md py-4 px-10 text-white  bg-[#1984c7] hover:bg-[#1574af] hover:text-white shadow-lg transform hover:scale-104"
+                >
+                  Explore Zcash
+                </Link>
+              </FadeInAnimation>
+            </div>
           </div>
-        </section>
+        </FadeInAnimation>
+      </section>
 
-        <section id="cardLinks">
-          <div className="p-5 flex flex-col space-y-7 md:flex-row md:space-x-11 items-center justify-center mb-4">
-            {cardsConfig &&
-              cardsConfig.map((items) => (
-                <Cards
-                  key={items.title}
-                  paraph={items.content}
-                  title={items.title}
-                  url={items.url}
-                  image={items.image}
-                />
-              ))}
-          </div>
-        </section>
+      <section
+        id="cardLinks"
+        className="flex justify-center items-center px-4 my-12"
+      >
+        <div className="flex flex-col md:flex-row md:flex-wrap gap-8 justify-between items-stretch">
+          {cardsConfig &&
+            cardsConfig.map((items) => (
+              <Cards
+                key={items.title}
+                paraph={items.content}
+                title={items.title}
+                url={items.url}
+                image={items.image}
+              />
+            ))}
+        </div>
+      </section>
 
-        <section id="content">
-          <ContentSections />
-        </section>
-      </div>
+      <section id="content" className="px-4 my-12">
+        <ContentSections />
+      </section>
+
+      <section id="explore" className="px-4 my-12 scroll-mt-24">
+        <Explorer />
+      </section>
     </main>
   );
 };

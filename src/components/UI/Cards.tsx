@@ -2,39 +2,39 @@ import Image from "next/image";
 import Link from "next/link";
 import { FadeInAnimation } from "./FadeInAnimation";
 
-
-interface props {
+interface Props {
   title: string;
   paraph: string;
   url: string;
   image: string;
 }
 
-const Cards = ({ title, paraph, url, image }: props) => (
-  <div className="min-w-[30%] flex max-w-sm md:w-1/5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:-translate-y-6 transition-all duration-100">
-    <FadeInAnimation>
-      <Link href={url}>
+const Cards = ({ title, paraph, url, image }: Props) => (
+  <div className="flex w-full min-w-[30%] md:w-1/5 bg-slate-100 border border-gray-200 rounded-lg shadow dark:bg-slate-800 dark:border-slate-700 hover:-translate-y-1 transition-all duration-100">
+    <FadeInAnimation className="flex flex-col justify-center items-center w-full">
+      <Link href={url} className="w-full flex justify-center">
         <Image
-          className="rounded-t-lg "
+          className="rounded-t-lg object-cover"
           src={image}
-          alt=""
+          alt={title}
           width={400}
           height={100}
         />
       </Link>
-      <div className="flex flex-col p-5 min-h-56">
+      <div className="flex flex-col items-center min-h-56 p-5 min-h-56 space-y-4 flex-1">
         <Link href={url}>
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h2 className="text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title}
-          </h5>
+          </h2>
         </Link>
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
           {paraph}
         </p>
-        <div className="grow"></div>
+      </div>
+      <div className="my-4 px-4 w-full ">
         <Link
           href={url}
-          className="inline-flex justify-center items-center w-full px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="inline-flex justify-center items-center w-full px-3 py-4 text-md font-medium text-center text-white rounded-lg bg-[#1984c7] hover:bg-[#1574af] focus:ring-[#1984c7]   focus:ring-4 focus:outline-none  dark:hover:bg-[#1574af] dark:focus:ring-blue-800"
         >
           Read more
           <svg

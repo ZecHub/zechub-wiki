@@ -81,7 +81,7 @@ const NavLinks = ({
         <Link
           href="/dao"
           onClick={handleLinkClick}
-          className="flex flex-row font-normal xl:ml-0 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4 items-center justify-center w-[60px]"
+          className="flex flex-row font-normal xl:ml-0 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-2 items-center justify-center w-[60px]"
         >
           DAO
         </Link>
@@ -89,7 +89,7 @@ const NavLinks = ({
         <Link
           href="/dashboard"
           onClick={handleLinkClick}
-          className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4"
+          className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-2"
         >
           Dashboard
         </Link>
@@ -161,7 +161,7 @@ const MobileNavLinks = ({
           <Link
             href="/dao"
             onClick={handleLinkClick}
-            className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4 items-center justify-center w-[60px]"
+            className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-2 items-center justify-center w-[60px]"
           >
             DAO
           </Link>
@@ -169,7 +169,7 @@ const MobileNavLinks = ({
           <Link
             href="/dashboard"
             onClick={handleLinkClick}
-            className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4 ml-2 items-center justify-center w-[108px]"
+            className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-2 ml-2 items-center justify-center w-[108px]"
           >
             Dashboard
           </Link>
@@ -275,7 +275,7 @@ const Navigation = () => {
           />
         </div>
 
-        <div className={"flex items-center ms-auto"}>
+        <div className={"flex items-center ms-auto space-x-2"}>
           <div className="flex w-auto xl:p-5 xl:justify-end space-x-5">
             <Icon
               icon={SearchIcon}
@@ -298,7 +298,7 @@ const Navigation = () => {
         </div>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="mobile-trigger">
-            <div className=" w-auto xl:hidden hover:cursor-pointer p-3 md:p-5">
+            <div className=" w-auto xl:hidden hover:cursor-pointer p-3 md:p-5 ">
               <Icon
                 className="transition duration-500"
                 size={25}
