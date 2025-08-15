@@ -37,7 +37,7 @@ const Home = ({ text }: HomeProps) => {
                 {text}
               </p>
             </FadeInAnimation>
-            <div className="w-full flex justify-center mt-12">
+            <div className="w-full flex justify-center my-12">
               <FadeInAnimation>
                 <Link
                   type="button"
