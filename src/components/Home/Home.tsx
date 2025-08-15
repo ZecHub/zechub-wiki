@@ -21,9 +21,9 @@ const Home = ({ text }: HomeProps) => {
         </FadeInAnimation>
       </section>
 
-      <section id="presentation" className="px-4 my-12">
+      <section id="presentation" className="px-1 my-12 bg-slate-100 dark:bg-transparent">
         <FadeInAnimation className="flex flex-col items-center justify-center space-y-6 shadow">
-          <FadeInAnimation>
+          <FadeInAnimation className="mt-12">
             <AnimationHome />
           </FadeInAnimation>
           <FadeInAnimation>
@@ -31,13 +31,13 @@ const Home = ({ text }: HomeProps) => {
               Welcome to ZecHub
             </h1>
           </FadeInAnimation>
-          <div className="flex flex-col items-center justify-center m-auto">
+          <div className="flex flex-col w-[90%] items-center justify-center m-auto">
             <FadeInAnimation>
               <p className="text-lg leading-relaxed text-center text-gray-700 dark:text-gray-400">
                 {text}
               </p>
             </FadeInAnimation>
-            <div className="w-full flex justify-center mt-12">
+            <div className="w-full flex justify-center my-12">
               <FadeInAnimation>
                 <Link
                   type="button"
