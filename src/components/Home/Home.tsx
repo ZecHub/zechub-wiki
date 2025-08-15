@@ -42,7 +42,7 @@ const Home = ({ text }: HomeProps) => {
                 <Link
                   type="button"
                   href="#explore"
-                  className="transition duration-400 border-2 border-[#1984c7] font-bold rounded-md py-4 px-10 text-[#1984c7] bg-white hover:bg-[#1984c7] hover:text-white shadow-lg transform hover:scale-104"
+                  className="transition duration-400 border-2 border-[#1984c7] font-bold rounded-md py-4 px-10 text-white  bg-[#1984c7] hover:bg-[#1574af] hover:text-white shadow-lg transform hover:scale-104"
                 >
                   Explore Zcash
                 </Link>
