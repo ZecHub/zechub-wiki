@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body[data-scroll-locked] {
   padding: 0 1.5rem !important;
 }
@@ -125,22 +129,26 @@ body {
 }
 
 @keyframes moveRight {
+
   0%,
   100% {
     transform: translateX(-300%);
     height: 0.75rem;
     width: 4rem;
   }
+
   25% {
     transform: translateX(0%);
     height: 2rem;
     width: 2rem;
   }
+
   50% {
     transform: translateX(300%);
     height: 0.75rem;
     width: 4rem;
   }
+
   75% {
     transform: translateX(0%);
     height: 2rem;
@@ -226,10 +234,13 @@ body {
 
 .hide-scrollbar {
   overflow: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
