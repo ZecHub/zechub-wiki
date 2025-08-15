@@ -275,7 +275,7 @@ const Navigation = () => {
           />
         </div>
 
-        <div className={"flex items-center ms-auto"}>
+        <div className={"flex items-center ms-auto space-x-2"}>
           <div className="flex w-auto xl:p-5 xl:justify-end space-x-5">
             <Icon
               icon={SearchIcon}
@@ -298,7 +298,7 @@ const Navigation = () => {
         </div>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger className="mobile-trigger">
-            <div className=" w-auto xl:hidden hover:cursor-pointer p-3 md:p-5">
+            <div className=" w-auto xl:hidden hover:cursor-pointer p-3 md:p-5 ">
               <Icon
                 className="transition duration-500"
                 size={25}
