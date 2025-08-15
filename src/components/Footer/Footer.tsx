@@ -1,15 +1,11 @@
 import Link from "next/link";
 import { ShopButton } from "../Shop-button/shop-button";
-import Logo from "../UI/Logo";
 import SocialIcons from "../UI/SocialIcons";
 
 const Footer = () => {
   return (
     <footer className=" shadow bg-[#1984c7] md:flex md:items-center md:flex-col py-3 text-white">
-      <div className="flex justify-center items-center my-4">
-        <Logo />
-      </div>
-      <div className="flex w-full mx-auto max-w-screen-xl justify-center items-center p-4 md:flex-col md:items-center md:justify-between">
+      <div className="flex w-full mx-auto max-w-screen-xl justify-center items-center p-4 md:flex-col md:items-center md:justify-between my-8">
         <ul className="flex flex-wrap items-center justify-center mt-3 text-sm font-medium sm:mt-0">
           <li>
             <ShopButton hasBorder={true} shopUrl="https://zechub.store" />
