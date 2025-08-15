@@ -17,6 +17,7 @@ const Explorer = () => {
               description={description}
               name={name}
               url={url}
+              className={i === exploreFolders.length - 1 ? "mb-24" : ""}
             />
           ))}
       </div>
