@@ -4,9 +4,9 @@ import { FadeInAnimation } from "../UI/FadeInAnimation";
 
 const ContentSections = () => {
   return (
-    <section className="flex space-y-24 flex-col w-full px-5 my-12">
+    <section className="flex space-y-24 flex-col w-full ">
       {/* Zcash Section */}
-    
+
       <InfoCard
         id="what-is-zcash"
         title="What is Zcash?"
@@ -489,7 +489,7 @@ function InfoCard({
         </FadeInAnimation>
 
         <FadeInAnimation>
-          <p className="mb-5 text-slate-700 dark:text-slate-300 leading-relaxed">
+          <p className="mb-5 text-slate-700 dark:text-gray-400 leading-relaxed">
             {description}
           </p>
         </FadeInAnimation>
