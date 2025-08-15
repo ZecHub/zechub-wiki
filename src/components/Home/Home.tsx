@@ -74,7 +74,7 @@ const Home = ({ text }: HomeProps) => {
         <ContentSections />
       </section>
 
-      <section id="explore" className="px-4 my-12">
+      <section id="explore" className="px-4 my-12 scroll-mt-24">
         <Explorer />
       </section>
     </main>
