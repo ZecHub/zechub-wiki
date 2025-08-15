@@ -21,7 +21,7 @@ const CardsExplorer = ({
 }: Props) => {
   return (
     <div
-      className={`w-4/6 shadow hover:bg-gray-100 dark:hover:bg-transparent hover:cursor-pointer hover:scale-105 transition-all duration-100 ${className}`}
+      className={`w-4/6  hover:bg-gray-100 dark:hover:bg-transparent hover:cursor-pointer hover:scale-105 transition-all duration-100 ${className}`}
     >
       <Link href={url}>
         <Image
