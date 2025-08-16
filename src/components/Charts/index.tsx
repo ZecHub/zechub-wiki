@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
 import { Button } from "@/components/UI/shadcn/button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import "./index.css";
 
@@ -15,6 +15,9 @@ import ZcashChart from "./Zcash/ZcashChart";
 const Dashboard = () => {
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [open, setOpen] = useState(false);
+  // Fix: Properly type the ref as HTMLDivElement
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
@@ -42,6 +45,20 @@ const Dashboard = () => {
     };
   }, []);
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      const target = event.target as Node;
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -65,21 +82,34 @@ const Dashboard = () => {
             >
               Zcash
             </Button>
-            <Button
-              className="bg-purple-500/75 text-white"
-              variant={selectedCrypto === "penumbra" ? "default" : "outline"}
-              onClick={() => setSelectedCrypto("penumbra")}
-              disabled
+            {/* Dropdown */}
+            <div
+              className="relative inline-block text-left w-[160px]"
+              ref={dropdownRef}
             >
-              Penumbra
-            </Button>
-            <Button
-              className="bg-yellow-300/75 text-white"
-              variant={selectedCrypto === "namada" ? "default" : "outline"}
-              onClick={() => setSelectedCrypto("namada")}
-            >
-              Namada
-            </Button>
+              <Button
+                className="bg-purple-500/90 text-white w-[160px]"
+                variant={selectedCrypto === "zcash" ? "default" : "outline"}
+                onClick={() => setOpen(!open)}
+              >
+                Shielded Networks
+              </Button>
+              {open && (
+                <div className="absolute mt-2 w-48 bg-white shadow-lg rounded-lg dark:bg-slate-900 w-[160px]">
+                  <ul className="w-[160px]">
+                    <li
+                      className="px-4 py-2 hover:bg-purple-300/50 dark:hover:bg-purple-500/50 rounded-md cursor-pointer w-[160px]"
+                      onClick={() => {
+                        setSelectedCrypto("namada");
+                        setOpen(false);
+                      }}
+                    >
+                      Namada
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
