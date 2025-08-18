@@ -13,4 +13,17 @@ export const decentralizedExchanges = [
     url: "https://github.com/firoorg/FiroDEX-Desktop",
     image: "https://firo.org/blog/assets/firodex-beta-release.png",
   },
+  {
+    title: "LeoDEX",
+    description:
+      "A crosschain crypto swapping interface for Maya Protocol, Thorchain, ChainFlip and Rango. BTC, ETH, RUNE, DASH, LTC & More",
+    url: "https://leodex.io",
+    image: "/leodex-logo.png",
+  },
+  {
+    title: "Bison Wallet",
+    description: "Trade crypto peer-to-peer. No trading fees. No KYC.",
+    url: "https://dex.decred.org/",
+    image: "/bisonwallet-logo.png",
+  },
 ];
