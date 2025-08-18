@@ -1,7 +1,6 @@
 "use client";
 import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
-import type { Classes, MenuExp } from "@/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoSearch as SearchIcon } from "react-icons/io5";
@@ -114,40 +113,42 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
   const handleLinkClick = () => closeMenu();
 
   return (
-    <div className="flex flex-col space-y-3 font-semibold text-lg">
-      {navigations.map((item, i) =>
-        item.links ? (
-          <DropdownMobile label={item.name} key={item.name + i}>
-            {item.links.map((link, i) => (
-              <Link
-                key={link.path + i}
-                target={link.newTab ? "_blank" : "_self"}
-                href={link.path}
-                onClick={handleLinkClick}
-                className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500 transition-colors duration-200"
-              >
-                {link.icon && (
-                  <Icon
-                    icon={link.icon}
-                    className="w-4 h-4 xl:w-5 xl:h-5 min-w-[1rem]"
-                  />
-                )}
-                {link.subName}
-              </Link>
-            ))}
-          </DropdownMobile>
-        ) : (
-          <Link
-            key={item.name + i}
-            href={item.path}
-            target={item.newTab ? "_blank" : "_self"}
-            onClick={handleLinkClick}
-            className="px-3 py-2 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500 hover:underline transition-colors duration-200"
-          >
-            {item.name}
-          </Link>
-        )
-      )}
+    <div className="flex flex-col space-y-3 font-normal text-md">
+      <ul className="list-none flex flex-col ">
+        {navigations.map((item, i) =>
+          item.links ? (
+            <DropdownMobile label={item.name} key={item.name + i}>
+              {item.links.map((link, i) => (
+                <Link
+                  key={link.path + i}
+                  target={link.newTab ? "_blank" : "_self"}
+                  href={link.path}
+                  onClick={handleLinkClick}
+                  className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500 transition-colors duration-200"
+                >
+                  {link.icon && (
+                    <Icon
+                      icon={link.icon}
+                      className="w-4 h-4 xl:w-5 xl:h-5 min-w-[1rem]"
+                    />
+                  )}
+                  {link.subName}
+                </Link>
+              ))}
+            </DropdownMobile>
+          ) : (
+            <Link
+              key={item.name + i}
+              href={item.path}
+              target={item.newTab ? "_blank" : "_self"}
+              onClick={handleLinkClick}
+              className="px-3 py-2 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500 hover:underline transition-colors duration-200"
+            >
+              {item.name}
+            </Link>
+          )
+        )}
+      </ul>
 
       {/* CTA buttons */}
       <div className="flex flex-row space-x-3 mt-4">
@@ -173,17 +174,12 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
 
 const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => {
   return (
-    <div className="relative flex flex-col w-11/12 h-full justify-between z-10">
-      <div className="flex flex-col p-6 w-full rounded-xl transition duration-200">
-        <ul className="list-none flex flex-col flex-1">
-          <MobileNavLinks closeMenu={closeMenu} />
-        </ul>
-
-        {/* social icons pushed down */}
-        <div className="flex justify-start items-start mt-auto pt-4">
-          <SocialIcons newTab={true} />
-        </div>
+    <div className="flex flex-col h-[90%]">
+      <div className="flex-1">
+        <MobileNavLinks closeMenu={closeMenu} />
       </div>
+
+      <SocialIcons newTab={true} />
     </div>
   );
 };
@@ -258,6 +254,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Hamburger */}
+
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger className="lg:hidden">
               <div className="hover:cursor-pointer p-3">
@@ -268,9 +265,10 @@ const Navigation = () => {
                 />
               </div>
             </SheetTrigger>
+
             <SheetContent
               side="left"
-              className="bg-white dark:bg-slate-900 h-full"
+              className=" bg-white dark:bg-slate-900 min-h-screen"
             >
               <MobileNav closeMenu={() => setIsOpen(false)} />
             </SheetContent>
@@ -281,7 +279,4 @@ const Navigation = () => {
   );
 };
 
- 
-
- 
 export default Navigation;
