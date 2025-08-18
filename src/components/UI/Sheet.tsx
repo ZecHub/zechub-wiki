@@ -1,10 +1,10 @@
 "use client";
 
-import * as React from "react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { cva, type VariantProps } from "class-variance-authority";
 import Link from "next/link";
+import * as React from "react";
 import Logo from "../UI/Logo";
 
 import { cn } from "../../lib/util";
@@ -74,8 +74,8 @@ const SheetContent = React.forwardRef<
       className={cn(sheetVariants({ side }), className)}
       {...props}
     >
-      <div className="flex justify-between relative -top-4">
-        <div className="p-2 flex flex-wrap xl:space-x-2">
+      <div className="flex justify-between relative pb-12">
+        <div className="flex flex-wrap xl:space-x-2">
           <Link href={"/"} className="hover:cursor-pointer">
             <Logo />
           </Link>
@@ -145,13 +145,13 @@ SheetDescription.displayName = SheetPrimitive.Description.displayName;
 
 export {
   Sheet,
-  SheetPortal,
-  SheetOverlay,
-  SheetTrigger,
   SheetClose,
   SheetContent,
-  SheetHeader,
-  SheetFooter,
-  SheetTitle,
   SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetOverlay,
+  SheetPortal,
+  SheetTitle,
+  SheetTrigger,
 };
