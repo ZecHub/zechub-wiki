@@ -114,7 +114,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
 
   return (
     <div className="flex flex-col space-y-3 font-normal text-md">
-      <ul className="list-none flex flex-col ">
+      <ul className="list-none flex flex-col">
         {navigations.map((item, i) =>
           item.links ? (
             <DropdownMobile label={item.name} key={item.name + i}>
@@ -151,11 +151,11 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
       </ul>
 
       {/* CTA buttons */}
-      <div className="flex flex-row space-x-3 mt-4">
+      <div className="flex flex-col space-y-4 mt-4 ">
         <Link
           href="/dao"
           onClick={handleLinkClick}
-          className="px-4 py-2 border border-blue-500 rounded-xl hover:bg-blue-600 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200"
+          className="px-4 py-2 border border-blue-500 rounded-xl hover:bg-blue-600 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200 w-fit"
         >
           DAO
         </Link>
@@ -163,7 +163,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
         <Link
           href="/dashboard"
           onClick={handleLinkClick}
-          className="px-4 py-2 border border-blue-500 rounded-xl hover:bg-blue-600 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200"
+          className="px-4 py-2 border border-blue-500 rounded-xl hover:bg-blue-600 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200 w-fit"
         >
           Dashboard
         </Link>
