@@ -20,35 +20,36 @@ import SocialIcons from "../UI/SocialIcons";
 
 const NavLinks = ({
   classes,
-  menuExp,
   closeMenu,
-}: Classes & { closeMenu: () => void }) => {
+}: {
+  classes: string;
+  closeMenu: () => void;
+}) => {
   const handleLinkClick = () => {
     closeMenu();
   };
+
   return (
-    <div className={`flex jen-justify-content ${classes}`}>
-      {navigations.map((item, i) =>
+    <div className={`flex items-center space-x-6 ${classes}`}>
+      {/* show first 4 links normally */}
+      {navigations.slice(0, 4).map((item, i) =>
         item.links ? (
           <Dropdown label={item.name} key={item.name + i}>
             {item.links.map((link, i) => (
               <div
                 key={link.path + i}
-                className="hover:bg-yellow-300 dark:hover:bg-yellow-500 py-0 px-1 rounded-md"
+                className="hover:bg-yellow-300 dark:hover:bg-yellow-500 py-1 px-2 rounded-md transition-colors duration-200"
               >
                 <Link
                   target={link.newTab ? "_blank" : "_self"}
                   href={link.path}
+                  onClick={handleLinkClick}
                 >
-                  <div
-                    key={link.subName}
-                    onClick={handleLinkClick}
-                    className="flex items-center gap-2 p-2 text-sm"
-                  >
+                  <div className="flex items-center gap-2 text-sm">
                     {link.icon && (
                       <Icon
                         icon={link.icon}
-                        className="xl:w-6 w-4 h-4 xl:h-6"
+                        className="w-4 h-4 xl:w-5 xl:h-5"
                       />
                     )}
                     {link.subName}
@@ -58,30 +59,41 @@ const NavLinks = ({
             ))}
           </Dropdown>
         ) : (
-          <div className="dropdown" key={item.name + i}>
-            <div
-              key={"link.subName"}
-              onClick={handleLinkClick}
-              className="jen-padding"
-            >
-              <Link
-                target={item.newTab ? "_blank" : "_self"}
-                href={item.path}
-                onClick={handleLinkClick}
-                className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold"
-              >
-                {item.name}
-              </Link>
-            </div>
-          </div>
+          <Link
+            key={item.name + i}
+            href={item.path}
+            target={item.newTab ? "_blank" : "_self"}
+            onClick={handleLinkClick}
+            className="hover:text-yellow-400 dark:hover:text-yellow-500 hover:underline transition-colors duration-200"
+          >
+            {item.name}
+          </Link>
         )
       )}
 
-      <div className="flex xl:flex-row flex-col xl:space-x-3 xl:ml-6 sm:gap-0 gap-2">
+      {/* overflow nav in a More dropdown */}
+      {navigations.length > 4 && (
+        <Dropdown label="More">
+          {navigations.slice(4).map((item, i) => (
+            <Link
+              key={item.name + i}
+              href={String(item.path)}
+              target={item.newTab ? "_blank" : "_self"}
+              onClick={handleLinkClick}
+              className="block px-4 py-2 hover:bg-yellow-200 dark:hover:bg-yellow-600 rounded-md transition-colors duration-200"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </Dropdown>
+      )}
+
+      {/* CTA buttons */}
+      <div className="flex flex-row space-x-3 ml-6">
         <Link
           href="/dao"
           onClick={handleLinkClick}
-          className="flex flex-row font-normal xl:ml-0 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-2 items-center justify-center w-[60px]"
+          className="px-4 py-2 border border-blue-500 rounded-xl hover:bg-blue-600 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200"
         >
           DAO
         </Link>
@@ -89,7 +101,7 @@ const NavLinks = ({
         <Link
           href="/dashboard"
           onClick={handleLinkClick}
-          className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-2"
+          className="px-4 py-2 border border-blue-500 rounded-xl hover:bg-blue-600 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200"
         >
           Dashboard
         </Link>
@@ -97,108 +109,78 @@ const NavLinks = ({
     </div>
   );
 };
-const MobileNavLinks = ({
-  classes,
-  menuExp,
-  closeMenu,
-}: Classes & { closeMenu: () => void }) => {
-  const handleLinkClick = () => {
-    closeMenu();
-  };
+
+const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
+  const handleLinkClick = () => closeMenu();
+
   return (
-    <div>
-      <div className={`flex jen-justify-content ${classes}`}>
-        {navigations.map((item, i) =>
-          item.links ? (
-            <DropdownMobile label={item.name} key={item.name + i}>
-              {item.links.map((link, i) => (
-                <div
-                  key={link.path + i}
-                  className="hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-md"
-                >
-                  <Link
-                    target={link.newTab ? "_blank" : "_self"}
-                    href={link.path}
-                  >
-                    <div
-                      key={link.subName}
-                      onClick={handleLinkClick}
-                      className="flex items-center gap-2 p-2 text-sm"
-                    >
-                      {link.icon && (
-                        <Icon
-                          icon={link.icon}
-                          className="xl:w-6 w-4 h-4 xl:h-6 min-w-[1rem]"
-                        />
-                      )}
-                      {link.subName}
-                    </div>
-                  </Link>
-                </div>
-              ))}
-            </DropdownMobile>
-          ) : (
-            <div className="dropdown" key={item.name + i}>
-              <div
-                key={"link.subName"}
+    <div className="flex flex-col space-y-3 font-semibold text-lg">
+      {navigations.map((item, i) =>
+        item.links ? (
+          <DropdownMobile label={item.name} key={item.name + i}>
+            {item.links.map((link, i) => (
+              <Link
+                key={link.path + i}
+                target={link.newTab ? "_blank" : "_self"}
+                href={link.path}
                 onClick={handleLinkClick}
-                className="jen-padding "
+                className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500 transition-colors duration-200"
               >
-                <Link
-                  target={item.newTab ? "_blank" : "_self"}
-                  href={item.path}
-                  onClick={handleLinkClick}
-                  className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold"
-                >
-                  {item.name}
-                </Link>
-              </div>
-            </div>
-          )
-        )}
-
-        <div className="flex flex-row xl:space-x-3 xl:ml-3 sm:gap-0 gap-2 items-baseline mt-3">
+                {link.icon && (
+                  <Icon
+                    icon={link.icon}
+                    className="w-4 h-4 xl:w-5 xl:h-5 min-w-[1rem]"
+                  />
+                )}
+                {link.subName}
+              </Link>
+            ))}
+          </DropdownMobile>
+        ) : (
           <Link
-            href="/dao"
+            key={item.name + i}
+            href={item.path}
+            target={item.newTab ? "_blank" : "_self"}
             onClick={handleLinkClick}
-            className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-2 items-center justify-center w-[60px]"
+            className="px-3 py-2 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500 hover:underline transition-colors duration-200"
           >
-            DAO
+            {item.name}
           </Link>
+        )
+      )}
 
-          <Link
-            href="/dashboard"
-            onClick={handleLinkClick}
-            className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-2 ml-2 items-center justify-center w-[108px]"
-          >
-            Dashboard
-          </Link>
-        </div>
+      {/* CTA buttons */}
+      <div className="flex flex-row space-x-3 mt-4">
+        <Link
+          href="/dao"
+          onClick={handleLinkClick}
+          className="px-4 py-2 border border-blue-500 rounded-xl hover:bg-blue-600 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200"
+        >
+          DAO
+        </Link>
+
+        <Link
+          href="/dashboard"
+          onClick={handleLinkClick}
+          className="px-4 py-2 border border-blue-500 rounded-xl hover:bg-blue-600 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200"
+        >
+          Dashboard
+        </Link>
       </div>
     </div>
   );
 };
 
-const MobileNav = ({
-  menuExp,
-  setMenuExpanded,
-  closeMenu,
-}: MenuExp & { closeMenu: () => void }) => {
+const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => {
   return (
-    <div className="relative flex flex-col w-11/12 h-auto justify-center z-10">
-      <div
-        className={`flex flex-col p-6 absolute top-20 px-8 w-full rounded-xl transition duration-200 jen-fix-padding`}
-      >
-        <ul className="list-none flex items-start flex-1 flex-col">
-          <MobileNavLinks
-            classes="flex-col font-bold gap-0 text-[18px]"
-            menuExp={menuExp}
-            setMenuExpanded={setMenuExpanded}
-            closeMenu={closeMenu}
-          />
+    <div className="relative flex flex-col w-11/12 h-full justify-between z-10">
+      <div className="flex flex-col p-6 w-full rounded-xl transition duration-200">
+        <ul className="list-none flex flex-col flex-1">
+          <MobileNavLinks closeMenu={closeMenu} />
         </ul>
 
-        <div className="flex flex-1 p-2 top-10 justify-start items-start my-3">
+        {/* social icons pushed down */}
+        <div className="flex justify-start items-start mt-auto pt-4">
           <SocialIcons newTab={true} />
         </div>
       </div>
@@ -208,118 +190,98 @@ const MobileNav = ({
 
 const Navigation = () => {
   const [dark, setDark] = useState(false);
-  const [menuExpanded, setMenuExpanded] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-
     setDark(prefersDark.matches);
 
-    const listener = (e: MediaQueryListEvent) => {
-      setDark(e.matches);
-    };
-
+    const listener = (e: MediaQueryListEvent) => setDark(e.matches);
     prefersDark.addEventListener("change", listener);
 
-    return () => {
-      prefersDark.removeEventListener("change", listener);
-    };
+    return () => prefersDark.removeEventListener("change", listener);
   }, []);
 
   useEffect(() => {
     const html: HTMLElement = document.querySelector("html")!;
     const body: HTMLBodyElement = document.querySelector("body")!;
-    const activeClassesHtml = ["dark"];
-    const activeBody = [
-      "bg-slate-900",
-      "text-white",
-      "transition",
-      "duration-500",
-    ];
-    if (html && dark) {
-      activeClassesHtml.forEach((activeClass) =>
-        html.classList.add(activeClass)
+    if (dark) {
+      html.classList.add("dark");
+      body.classList.add(
+        "bg-slate-900",
+        "text-white",
+        "transition",
+        "duration-500"
       );
-      activeBody.forEach((activeClass) => body.classList.add(activeClass));
-    } else if (html.classList.contains(activeClassesHtml[0])) {
-      activeClassesHtml.forEach((activeClass) =>
-        html.classList.remove(activeClass)
+    } else {
+      html.classList.remove("dark");
+      body.classList.remove(
+        "bg-slate-900",
+        "text-white",
+        "transition",
+        "duration-500"
       );
-      activeBody.forEach((activeClass) => body.classList.remove(activeClass));
     }
   }, [dark]);
 
   return (
-    <div
-      className={`flex w-full border-b-1 xl:mx-auto sticky top-0 bg-white dark:bg-slate-900 z-40 px-3 md:px-0  ${
-        menuExpanded ? "mb-[120%]" : ""
-      }`}
-    >
-      <div className="p-2 flex flex-wrap xl:space-x-2">
+    <div className="flex w-full border-b sticky top-0 bg-white dark:bg-slate-900 z-40 px-3 md:px-6">
+      <div className="p-2 flex items-center">
         <Link href={"/"} className="hover:cursor-pointer">
           <Logo />
         </Link>
       </div>
 
-      <nav className="flex flex-wrap w-full xl:space-x-11">
-        <div
-          className={`flex flex-wrap space-between font-bold text-base items-center grow hidden xl:flex`}
-        >
-          <NavLinks
-            classes={""}
-            menuExp={menuExpanded}
-            setMenuExpanded={setMenuExpanded}
-            closeMenu={() => setMenuExpanded(false)}
-          />
+      <nav className="flex items-center w-full">
+        {/* Desktop Nav */}
+        <div className="hidden lg:flex grow">
+          <NavLinks classes="" closeMenu={() => setIsOpen(false)} />
         </div>
 
-        <div className={"flex items-center ms-auto space-x-2"}>
-          <div className="flex w-auto xl:p-5 xl:justify-end space-x-5">
-            <Icon
-              icon={SearchIcon}
-              className="hover:cursor-pointer h-5 w-5"
-              onClick={() => setOpenSearch(true)}
-            />
-            <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
-            <Icon
-              icon={dark ? LightIcon : DarkIcon}
-              className="hover:cursor-pointer h-5 w-5"
-              onClick={() => setDark(!dark)}
-            />
-          </div>
-          <div
-            className="hidden xl:flex p-2 w-auto justify-end sm:gap-6"
-            style={{ display: "flex", alignItems: "center" }}
-          >
+        {/* Right side controls */}
+        <div className="flex items-center ml-auto space-x-4">
+          <Icon
+            icon={SearchIcon}
+            className="hover:cursor-pointer h-5 w-5"
+            onClick={() => setOpenSearch(true)}
+          />
+          <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
+          <Icon
+            icon={dark ? LightIcon : DarkIcon}
+            className="hover:cursor-pointer h-5 w-5"
+            onClick={() => setDark(!dark)}
+          />
+
+          <div className="hidden lg:flex">
             <DonationBtn />
           </div>
+
+          {/* Mobile Hamburger */}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger className="lg:hidden">
+              <div className="hover:cursor-pointer p-3">
+                <Icon
+                  className="transition duration-500"
+                  size={25}
+                  icon={MenuIcon}
+                />
+              </div>
+            </SheetTrigger>
+            <SheetContent
+              side="left"
+              className="bg-white dark:bg-slate-900 h-full"
+            >
+              <MobileNav closeMenu={() => setIsOpen(false)} />
+            </SheetContent>
+          </Sheet>
         </div>
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger className="mobile-trigger">
-            <div className=" w-auto xl:hidden hover:cursor-pointer p-3 md:p-5 ">
-              <Icon
-                className="transition duration-500"
-                size={25}
-                icon={MenuIcon}
-              />
-            </div>
-          </SheetTrigger>
-          <SheetContent side={"left"} className={"bg-white dark:bg-slate-900"}>
-            <MobileNav
-              menuExp={menuExpanded}
-              setMenuExpanded={setMenuExpanded}
-              closeMenu={() => {
-                setIsOpen(false);
-                console.log(isOpen);
-              }}
-            />
-          </SheetContent>
-        </Sheet>
       </nav>
     </div>
   );
 };
 
+ 
+
+ 
 export default Navigation;
