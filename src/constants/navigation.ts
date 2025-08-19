@@ -4,6 +4,12 @@ import {
   RiYoutubeFill as Youtube,
   RiExchangeFundsLine as Exchange,
   RiLiveFill as Free2zLive,
+  RiCoinsLine as RecoveryFund,
+  RiFunctionLine as MetamaskSnap,
+  RiQuoteText as Memo,
+  RiSmartphoneLine as MobileTopUp,
+  RiQrCodeLine as UriQrCode,
+  RiHandCoinLine as Faucet,
 } from "react-icons/ri";
 import {
   BsArrowUpRightCircle as Transaction,
@@ -62,9 +68,19 @@ export const navigations = [
         icon: BuyingZec,
       },
       {
+        subName: "Faucets",
+        path: "/using-zcash/faucets",
+        icon: Faucet,
+      },
+      {
         subName: "Wallets",
         path: "/wallets",
         icon: Wallet,
+      },
+      {
+        subName: "Metamask Snap",
+        path: "/using-zcash/metamask-snap",
+        icon: MetamaskSnap,
       },
       {
         subName: "Exchanges",
@@ -92,9 +108,29 @@ export const navigations = [
         icon: Transaction,
       },
       {
+        subName: "Memos",
+        path: "/using-zcash/memos",
+        icon: Memo,
+      },
+      {
+        subName: "Mobile Top Ups",
+        path: "/using-zcash/mobile-top-ups",
+        icon: MobileTopUp,
+      },
+      {
+        subName: "Payment Request URIs and QR Codes",
+        path: "/using-zcash/payment-request-uris",
+        icon: UriQrCode,
+      },
+      {
         subName: "Payment Processors",
         path: "/payment-processors",
         icon: MdPayment,
+      },
+      {
+        subName: "Recovery Funds",
+        path: "/using-zcash/recovery-funds",
+        icon: RecoveryFund,
       },
     ],
   },
