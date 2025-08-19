@@ -13,7 +13,7 @@ import SocialIcons from "../UI/SocialIcons";
 import { ChevronDown, Menu, Moon, Search, Sun } from "lucide-react";
 import { Button } from "../UI/button";
 
-const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm text-slate-300 hover:text-white`;
+const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
 
 const Dropdown = ({
   label,
@@ -39,7 +39,7 @@ const Dropdown = ({
         />
       </div>
       {isOpen && (
-        <div className="absolute top-full left-0 z-50 dark:bg-slate-900 shadow-lg min-w-[200px] py-0 mt-0 ">
+        <div className="absolute top-full left-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[200px] py-0 mt-0 ">
           {children}
         </div>
       )}
