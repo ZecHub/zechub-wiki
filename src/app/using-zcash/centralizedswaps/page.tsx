@@ -31,7 +31,7 @@ const DEXListingPage = () => {
           Centralized Swap Platforms
         </h1>
         <Link
-          href="/using-zcash/custodial-exchanges"
+          href="/dex"
           className="inline-flex py-2 px-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-lg"
         >
           {/* <a className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600'> */}
