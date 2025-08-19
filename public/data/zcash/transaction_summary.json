@@ -20419,5 +20419,23 @@
     "orchard_filter": 531,
     "transactions": 748,
     "transactions_filter": 744
+  },
+  {
+    "height": 3033216,
+    "sapling": 218,
+    "sapling_filter": 218,
+    "orchard": 342,
+    "orchard_filter": 339,
+    "transactions": 528,
+    "transactions_filter": 525
+  },
+  {
+    "height": 3034368,
+    "sapling": 173,
+    "sapling_filter": 173,
+    "orchard": 306,
+    "orchard_filter": 305,
+    "transactions": 459,
+    "transactions_filter": 458
   }
 ]
