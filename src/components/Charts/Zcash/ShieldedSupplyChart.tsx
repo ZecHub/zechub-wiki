@@ -43,7 +43,6 @@ type ShieldedSupplyChartProps = {
 
 const THROTTLE = 6; // every Nth datapoint
 
-
 export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState("all");
@@ -89,8 +88,9 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
       }
     };
 
-    fetchAllData();
-
+    setTimeout(() => {
+      fetchAllData();
+    }, 2000);
     return () => {
       controller.abort();
     };
