@@ -333,7 +333,7 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => {
            {/* Desktop & Tablet Nav */}
            <nav className="hidden md:flex flex-1 justify-center max-w-4xl mx-8">
              <NavLinks
-               classes="w-full justify-center"
+               classes="w-full justify-start"
                closeMenu={() => setIsOpen(false)}
              />
            </nav>
