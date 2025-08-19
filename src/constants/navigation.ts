@@ -232,6 +232,11 @@ export const navigations = [
     ],
   },
   {
+    name: "DAO",
+    path: "/dao",
+    icon: "",
+  },
+  {
     name: "Tutorials",
     path: "https://youtube.com/@zechub",
     icon: "",

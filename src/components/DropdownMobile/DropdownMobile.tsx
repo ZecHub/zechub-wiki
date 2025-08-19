@@ -17,7 +17,7 @@ const DropdownMobile: React.FC<DropdownMobileProps> = ({ label, children }) => {
   return (
     <div className="dropdown-mobile">
       <div className="dropdown-mobile-label" onClick={handleClick}>
-        {label}{" "}
+        <span className="py-2">{label}</span>
         <span className={`arrow ${isOpen ? "rotate" : ""}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
