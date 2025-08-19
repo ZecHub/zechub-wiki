@@ -1,6 +1,6 @@
 "use client";
 import DonationBtn from "@/components/UI/DonationBtn";
-// import { navigations } from "@/constants/navigation";
+import { navigations } from "@/constants/navigation";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { IoSearch as SearchIcon } from "react-icons/io5";
@@ -10,7 +10,7 @@ import {
 } from "react-icons/md";
 import { RiMenuLine as MenuIcon } from "react-icons/ri";
 // import Dropdown from "../Dropdown/Dropdown";
-// import DropdownMobile from "../DropdownMobile/DropdownMobile";
+import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
 import { Icon } from "../UI/Icon";
 import Logo from "../UI/Logo";
@@ -25,25 +25,6 @@ import SocialIcons from "../UI/SocialIcons";
  } from "@/components/UI/dropdown-menu";
  import { Search, Sun, Moon, Menu, ChevronDown } from "lucide-react";
 import { Button } from "../UI/button";
-
- // Sample navigation data - replace with your actual data
- const navigations = [
-   { name: "Home", path: "/" },
-   { name: "About", path: "/about" },
-   {
-     name: "Services",
-     path: "/services",
-     links: [
-       { subName: "Web Development", path: "/services/web", icon: "Code" },
-       { subName: "Design", path: "/services/design", icon: "Palette" },
-       { subName: "Consulting", path: "/services/consulting", icon: "Users" },
-     ],
-   },
-   { name: "Blog", path: "/blog" },
-   { name: "Contact", path: "/contact" },
-   { name: "Portfolio", path: "/portfolio" },
- ];
-
 
  const Dropdown = ({
    label,
@@ -69,7 +50,7 @@ import { Button } from "../UI/button";
          />
        </div>
        {isOpen && (
-         <div className="absolute top-full left-0 z-50 bg-nav-background border border-nav-border shadow-lg min-w-[200px] rounded-md py-1 mt-1">
+         <div className="absolute top-full left-0 z-50 dark:bg-slate-900 shadow-lg min-w-[200px] py-1 mt-0 border ">
            {children}
          </div>
        )}
@@ -77,7 +58,7 @@ import { Button } from "../UI/button";
    );
  };
 
- const DropdownMobile = ({
+ const DropdownMobile2 = ({
    label,
    children,
  }: {
@@ -104,6 +85,7 @@ import { Button } from "../UI/button";
    );
  };
 
+ 
  const NavLinks = ({
    classes,
    closeMenu,
@@ -126,7 +108,7 @@ import { Button } from "../UI/button";
                {item.links.map((link, i) => (
                  <div
                    key={link.path + i}
-                   className="hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200"
+                   className="hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm"
                  >
                    <Link
                      href={link.path}
@@ -174,14 +156,15 @@ import { Button } from "../UI/button";
        {/* Medium screens - show fewer links */}
        <div className="hidden md:flex lg:hidden items-center space-x-4">
          {navigations.slice(0, 2).map((item, i) => (
-           <Link
-             key={item.name + i}
-             href={item.path}
-             onClick={handleLinkClick}
-             className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm"
-           >
-             {item.name}
-           </Link>
+          //  <Link
+          //    key={item.name + i}
+          //    href={item.path}
+          //    onClick={handleLinkClick}
+          //    className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 text-sm"
+          //  >
+          //    {item.name}
+          //  </Link>
+          <p key={i + item.name}>Show something</p>
          ))}
          {navigations.length > 2 && (
            <Dropdown label="More">
