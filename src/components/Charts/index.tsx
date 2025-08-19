@@ -1,5 +1,8 @@
+"use client";
+
 import { Button } from "@/components/UI/shadcn/button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 
 import "./index.css";
 
@@ -13,6 +16,8 @@ import ZcashChart from "./Zcash/ZcashChart";
 const Dashboard = () => {
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
@@ -40,48 +45,61 @@ const Dashboard = () => {
     };
   }, []);
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      const target = event.target as Node;
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div className="mt-12">
-            <h1 className="text-3xl font-bold text-foreground">
-              ZecHub Dashboard
-            </h1>
-            <p className="text-muted-foreground">
-              Analyze Zcash network metrics and trends
-            </p>
+            <h1 className="text-3xl font-bold text-foreground">ZecHub Dashboard</h1>
+            <p className="text-muted-foreground">Analyze Zcash network metrics and trends</p>
           </div>
 
-          {/* Crypto Selector */}
-          <div className="flex gap-2">
+          {/* Shielded Networks Dropdown only */}
+          <div
+            className="relative inline-block text-left w-[160px]"
+            ref={dropdownRef}
+          >
             <Button
-              className="bg-orange-400/75 text-white"
+              className="bg-purple-500/90 text-white w-[160px]"
               variant={selectedCrypto === "zcash" ? "default" : "outline"}
-              onClick={() => setSelectedCrypto("zcash")}
+              onClick={() => setOpen(!open)}
             >
-              Zcash
+              Shielded Networks
             </Button>
-            <Button
-              className="bg-purple-500/75 text-white"
-              variant={selectedCrypto === "penumbra" ? "default" : "outline"}
-              onClick={() => setSelectedCrypto("penumbra")}
-              disabled
-            >
-              Penumbra
-            </Button>
-            <Button
-              className="bg-yellow-300/75 text-white"
-              variant={selectedCrypto === "namada" ? "default" : "outline"}
-              onClick={() => setSelectedCrypto("namada")}
-            >
-              Namada
-            </Button>
+            {open && (
+              <div className="absolute mt-2 bg-white shadow-lg rounded-lg dark:bg-slate-900 w-[160px]">
+                <ul className="w-[160px]">
+                  <li className="px-4 py-2 hover:bg-purple-300/50 dark:hover:bg-purple-500/50 rounded-md cursor-pointer w-[160px]">
+                    <Link
+                      href="https://namada.zechub.wiki"
+                      className="block w-full h-full"
+                      onClick={() => setOpen(false)}
+                    >
+                      Namada
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Zcash Dashboard */}
+        {/* Zcash Dashboard (default) */}
         {selectedCrypto === "zcash" && (
           <ZcashChart
             lastUpdated={lastUpdated!}
@@ -90,7 +108,7 @@ const Dashboard = () => {
           />
         )}
 
-        {/* Namada Dashboard */}
+        {/* Namada Dashboard (kept for potential future internal view; currently linked out) */}
         {selectedCrypto === "namada" && (
           <NamadaChart
             lastUpdated={lastUpdated!}
@@ -99,7 +117,7 @@ const Dashboard = () => {
           />
         )}
 
-        {/* Penumbra Dashboard */}
+        {/* Penumbra Dashboard (not selectable in UI currently) */}
         {selectedCrypto === "penumbra" && (
           <PenumbraChart lastUpdated={lastUpdated!} divChartRef={divChartRef} />
         )}

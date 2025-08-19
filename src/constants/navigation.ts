@@ -68,7 +68,7 @@ export const navigations = [
       },
       {
         subName: "Exchanges",
-        path: "/using-zcash/centralizedswaps",
+        path: "/dex",
         icon: Exchange,
       },
       {
@@ -91,7 +91,7 @@ export const navigations = [
         path: "/using-zcash/transactions",
         icon: Transaction,
       },
-       {
+      {
         subName: "Payment Processors",
         path: "/payment-processors",
         icon: MdPayment,
@@ -230,6 +230,11 @@ export const navigations = [
         icon: TopologyRing,
       },
     ],
+  },
+  {
+    name: "DAO",
+    path: "/dao",
+    icon: "",
   },
   {
     name: "Tutorials",

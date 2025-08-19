@@ -6,7 +6,6 @@ import {
   CardTitle,
 } from "@/components/UI/shadcn/card";
 import { RefObject, useState } from "react";
-import { ZcashMetrics } from "../../ZcashMetrics/ZcashMetrics";
 import ChartFooter from "../ChartFooter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../Tabs";
 import DifficultyChart from "./DifficultyChart";
@@ -16,6 +15,7 @@ import NetInflowsOutflowsChart from "./NetInflowsOutflowsChart";
 import PrivacySetVisualizationChart from "./PrivacySetVisualizationChart";
 import ShieldedSupplyChart from "./ShieldedSupplyChart";
 import TransactionsSummaryChart from "./TransactionSummaryChart";
+import { ZcashMetrics } from "./ZcashMetrics/ZcashMetrics";
 
 type ZcashChartProps = {
   lastUpdated: Date;
@@ -96,7 +96,6 @@ function ZcashChart(props: ZcashChartProps) {
                   <NetInflowsOutflowsChart
                     color="red"
                     chartRef={props.divChartRef}
-                    
                   />
                 </TabsContent>
 

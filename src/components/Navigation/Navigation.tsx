@@ -1,95 +1,204 @@
 "use client";
 import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
-import type { Classes, MenuExp } from "@/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { IoSearch as SearchIcon } from "react-icons/io5";
-import {
-  MdOutlineDarkMode as DarkIcon,
-  MdLightMode as LightIcon,
-} from "react-icons/md";
-import { RiMenuLine as MenuIcon } from "react-icons/ri";
-import Dropdown from "../Dropdown/Dropdown";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
-import { Icon } from "../UI/Icon";
 import Logo from "../UI/Logo";
 import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
 import SocialIcons from "../UI/SocialIcons";
 
+import { ChevronDown, Menu, Moon, Search, Sun } from "lucide-react";
+import { Button } from "../UI/button";
+
+const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
+
+const Dropdown = ({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <div className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2">
+        {label}
+        <ChevronDown
+          className={`h-4 w-4 transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </div>
+      {isOpen && (
+        <div className="absolute top-full left-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[200px] py-0 mt-0 ">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const NavLinks = ({
   classes,
-  menuExp,
   closeMenu,
-}: Classes & { closeMenu: () => void }) => {
+}: {
+  classes: string;
+  closeMenu: () => void;
+}) => {
   const handleLinkClick = () => {
     closeMenu();
   };
+
+  const [openIndex, setOpenIndex] = useState<null | number>(null);
+
   return (
-    <div className={`flex jen-justify-content ${classes}`}>
-      {navigations.map((item, i) =>
-        item.links ? (
-          <Dropdown label={item.name} key={item.name + i}>
-            {item.links.map((link, i) => (
+    <div className={`flex items-center ${classes}`}>
+      {/* Navigation links with responsive behavior */}
+      <div className="hidden lg:flex items-center space-x-10">
+        {/* Show first 4 links normally on desktop */}
+        {navigations.slice(0, 4).map((item, i) =>
+          item.links ? (
+            <Dropdown label={item.name} key={item.name + i}>
+              {item.links.map((link, i) => (
+                <div
+                  key={link.path + i}
+                  className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200     ${liStyle}`}
+                >
+                  <Link
+                    href={link.path}
+                    onClick={handleLinkClick}
+                    className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
+                  >
+                    {link.subName}
+                  </Link>
+                </div>
+              ))}
+            </Dropdown>
+          ) : (
+            <Link
+              key={item.name + i}
+              href={item.path}
+              onClick={handleLinkClick}
+              className={`text-nav-foreground hover:text-nav-hover transition-colors duration-200 whitespace-nowrap`}
+            >
+              {item.name}
+            </Link>
+          )
+        )}
+
+        {/* Overflow nav in a More dropdown for desktop */}
+        {navigations.length > 4 && (
+          <Dropdown label="More">
+            {navigations.slice(4).map((item, i) => (
               <div
-                key={link.path + i}
-                className="hover:bg-yellow-300 dark:hover:bg-yellow-500 py-0 px-1 rounded-md"
+                key={item.name + i}
+                className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
               >
                 <Link
-                  target={link.newTab ? "_blank" : "_self"}
-                  href={link.path}
+                  href={String(item.path)}
+                  onClick={handleLinkClick}
+                  className={`w-full text-nav-foreground `}
                 >
-                  <div
-                    key={link.subName}
-                    onClick={handleLinkClick}
-                    className="flex items-center gap-2 p-2 text-sm"
-                  >
-                    {link.icon && (
-                      <Icon
-                        icon={link.icon}
-                        className="xl:w-6 w-4 h-4 xl:h-6"
-                      />
-                    )}
-                    {link.subName}
-                  </div>
+                  {item.name}
                 </Link>
               </div>
             ))}
           </Dropdown>
-        ) : (
-          <div className="dropdown" key={item.name + i}>
-            <div
-              key={"link.subName"}
-              onClick={handleLinkClick}
-              className="jen-padding"
-            >
-              <Link
-                target={item.newTab ? "_blank" : "_self"}
-                href={item.path}
-                onClick={handleLinkClick}
-                className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold"
+        )}
+      </div>
+
+      {/* Medium screens - show fewer links */}
+      <div className="hidden md:flex lg:hidden items-center space-x-12">
+        {navigations.slice(0, 3).map((item, i) => (
+          <Dropdown label={item.name} key={item.name + i}>
+            {item.links?.map((link, i) => (
+              <div
+                key={link.path + i}
+                className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
               >
-                {item.name}
-              </Link>
+                <Link
+                  href={link.path}
+                  onClick={handleLinkClick}
+                  className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
+                >
+                  {link.subName}
+                </Link>
+              </div>
+            ))}
+          </Dropdown>
+        ))}
+
+        {navigations.length > 2 && (
+          <Dropdown label="More">
+            <div onMouseLeave={() => setOpenIndex(null)}>
+              {navigations.slice(3).map((item, i) => {
+                const isOpen = openIndex === i; // check if current item is open
+
+                return (
+                  <div
+                    key={item.name + i}
+                    className="hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200"
+                  >
+                    {item.links ? (
+                      <>
+                        <div
+                          className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
+                          onClick={() => setOpenIndex(isOpen ? null : i)}
+                        >
+                          {item.name}
+                          <ChevronDown
+                            className={`h-4 w-4 transition-transform duration-200 ${
+                              isOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </div>
+                        {isOpen &&
+                          item.links.map((link, j) => (
+                            <div
+                              key={link.path + j}
+                              className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
+                            >
+                              <Link
+                                href={link.path}
+                                onClick={handleLinkClick}
+                                className="flex items-center gap-2 text-sm w-full"
+                              >
+                                {link.subName}
+                              </Link>
+                            </div>
+                          ))}
+                      </>
+                    ) : (
+                      <Link
+                        href={String(item.path)}
+                        onClick={handleLinkClick}
+                        className="w-full text-nav-foreground hover:text-nav-hover"
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-          </div>
-        )
-      )}
+          </Dropdown>
+        )}
+      </div>
 
-      <div className="flex xl:flex-row flex-col xl:space-x-3 xl:ml-6 sm:gap-0 gap-2">
-        <Link
-          href="/dao"
-          onClick={handleLinkClick}
-          className="flex flex-row font-normal xl:ml-0 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4 items-center justify-center w-[60px]"
-        >
-          DAO
-        </Link>
-
+      {/* CTA buttons - responsive */}
+      <div className="hidden md:flex items-center space-x-8 ml-6">
         <Link
           href="/dashboard"
           onClick={handleLinkClick}
-          className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4"
+          className="text-cta-primary hover:bg-cta-primary hover:text-white transition-colors duration-200"
         >
           Dashboard
         </Link>
@@ -97,228 +206,186 @@ const NavLinks = ({
     </div>
   );
 };
-const MobileNavLinks = ({
-  classes,
-  menuExp,
-  closeMenu,
-}: Classes & { closeMenu: () => void }) => {
-  const handleLinkClick = () => {
-    closeMenu();
-  };
+
+const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
+  const handleLinkClick = () => closeMenu();
   return (
-    <div>
-      <div className={`flex jen-justify-content ${classes}`}>
-        {navigations.map((item, i) =>
-          item.links ? (
-            <DropdownMobile label={item.name} key={item.name + i}>
-              {item.links.map((link, i) => (
-                <div
-                  key={link.path + i}
-                  className="hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-md"
-                >
-                  <Link
-                    target={link.newTab ? "_blank" : "_self"}
-                    href={link.path}
-                  >
-                    <div
-                      key={link.subName}
-                      onClick={handleLinkClick}
-                      className="flex items-center gap-2 p-2 text-sm"
-                    >
-                      {link.icon && (
-                        <Icon
-                          icon={link.icon}
-                          className="xl:w-6 w-4 h-4 xl:h-6 min-w-[1rem]"
-                        />
-                      )}
-                      {link.subName}
-                    </div>
-                  </Link>
-                </div>
-              ))}
-            </DropdownMobile>
-          ) : (
-            <div className="dropdown" key={item.name + i}>
-              <div
-                key={"link.subName"}
-                onClick={handleLinkClick}
-                className="jen-padding "
-              >
+    <div className="flex flex-col space-y-1 font-normal">
+      {navigations.map((item, i) =>
+        item.links ? (
+          <DropdownMobile label={item.name} key={item.name + i}>
+            {item.links.map((link, i) => {
+              return (
                 <Link
-                  target={item.newTab ? "_blank" : "_self"}
-                  href={item.path}
+                  key={link.path + i}
+                  href={link.path}
                   onClick={handleLinkClick}
-                  className="hover:text-yellow-300 dark:hover:text-yellow-500 hover:font-bold"
+                  className={`flex items-center gap-2 px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 text-sm ${liStyle} text-slate-700`}
                 >
-                  {item.name}
+                  {link.subName}
                 </Link>
-              </div>
-            </div>
-          )
-        )}
-
-        <div className="flex flex-row xl:space-x-3 xl:ml-3 sm:gap-0 gap-2 items-baseline mt-3">
+              );
+            })}
+          </DropdownMobile>
+        ) : (
           <Link
-            href="/dao"
+            key={item.name + i}
+            href={item.path}
             onClick={handleLinkClick}
-            className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4 items-center justify-center w-[60px]"
+            className={`px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 ${liStyle} dark:text-white`}
           >
-            DAO
+            {item.name}
           </Link>
+        )
+      )}
 
-          <Link
-            href="/dashboard"
-            onClick={handleLinkClick}
-            className="flex flex-row font-normal xl:ml-3 p-2 border-2-off border-light-blue-500 rounded-xl hover:cursor-pointer hover:bg-[#1984c7] hover:text-white dark:hover:bg-white dark:hover:text-black border-4 ml-2 items-center justify-center w-[108px]"
-          >
-            Dashboard
-          </Link>
-        </div>
+      {/* Mobile CTA buttons */}
+      <div className="flex flex-col">
+        <div className="flex flex-col space-y-3 my-8 border-t border-slate-400 dark:border-slate-50 "></div>
+        <Link
+          href="/dao"
+          onClick={handleLinkClick}
+          className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
+        >
+          DAO
+        </Link>
+
+        <Link
+          href="/dashboard"
+          onClick={handleLinkClick}
+          className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
+        >
+          Dashboard
+        </Link>
+      </div>
+      <div className="py-12">
+        <DonationBtn />
       </div>
     </div>
   );
 };
 
-const MobileNav = ({
-  menuExp,
-  setMenuExpanded,
-  closeMenu,
-}: MenuExp & { closeMenu: () => void }) => {
+const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => {
   return (
-    <div className="relative flex flex-col w-11/12 h-auto justify-center z-10">
-      <div
-        className={`flex flex-col p-6 absolute top-20 px-8 w-full rounded-xl transition duration-200 jen-fix-padding`}
-      >
-        <ul className="list-none flex items-start flex-1 flex-col">
-          <MobileNavLinks
-            classes="flex-col font-bold gap-0 text-[18px]"
-            menuExp={menuExp}
-            setMenuExpanded={setMenuExpanded}
-            closeMenu={closeMenu}
-          />
-        </ul>
-
-        <div className="flex flex-1 p-2 top-10 justify-start items-start my-3">
-          <SocialIcons newTab={true} />
-        </div>
+    <div className="flex flex-col h-[90%] ">
+      <div className="flex-1">
+        <MobileNavLinks closeMenu={closeMenu} />
       </div>
+
+      <SocialIcons newTab={true} />
     </div>
   );
 };
 
 const Navigation = () => {
   const [dark, setDark] = useState(false);
-  const [menuExpanded, setMenuExpanded] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-
     setDark(prefersDark.matches);
 
-    const listener = (e: MediaQueryListEvent) => {
-      setDark(e.matches);
-    };
-
+    const listener = (e: MediaQueryListEvent) => setDark(e.matches);
     prefersDark.addEventListener("change", listener);
 
-    return () => {
-      prefersDark.removeEventListener("change", listener);
-    };
+    return () => prefersDark.removeEventListener("change", listener);
   }, []);
 
   useEffect(() => {
     const html: HTMLElement = document.querySelector("html")!;
     const body: HTMLBodyElement = document.querySelector("body")!;
-    const activeClassesHtml = ["dark"];
-    const activeBody = [
-      "bg-slate-900",
-      "text-white",
-      "transition",
-      "duration-500",
-    ];
-    if (html && dark) {
-      activeClassesHtml.forEach((activeClass) =>
-        html.classList.add(activeClass)
+    if (dark) {
+      html.classList.add("dark");
+      body.classList.add(
+        "bg-slate-900",
+        "text-white",
+        "transition",
+        "duration-500"
       );
-      activeBody.forEach((activeClass) => body.classList.add(activeClass));
-    } else if (html.classList.contains(activeClassesHtml[0])) {
-      activeClassesHtml.forEach((activeClass) =>
-        html.classList.remove(activeClass)
+    } else {
+      html.classList.remove("dark");
+      body.classList.remove(
+        "bg-slate-900",
+        "text-white",
+        "transition",
+        "duration-500"
       );
-      activeBody.forEach((activeClass) => body.classList.remove(activeClass));
     }
   }, [dark]);
 
   return (
-    <div
-      className={`flex w-full border-b-1 xl:mx-auto sticky top-0 bg-white dark:bg-slate-900 z-40 px-3 md:px-0  ${
-        menuExpanded ? "mb-[120%]" : ""
-      }`}
-    >
-      <div className="p-2 flex flex-wrap xl:space-x-2">
-        <Link href={"/"} className="hover:cursor-pointer">
-          <Logo />
-        </Link>
-      </div>
+    <header className="sticky top-0 z-40 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95">
+      <div className="container mx-auto">
+        <div className="flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
+          {/* Logo */}
+          <Link href="/" className="shrink-0 hover:cursor-pointer">
+            <Logo />
+          </Link>
 
-      <nav className="flex flex-wrap w-full xl:space-x-11">
-        <div
-          className={`flex flex-wrap space-between font-bold text-base items-center grow hidden xl:flex`}
-        >
-          <NavLinks
-            classes={""}
-            menuExp={menuExpanded}
-            setMenuExpanded={setMenuExpanded}
-            closeMenu={() => setMenuExpanded(false)}
-          />
-        </div>
+          {/* Desktop & Tablet Nav */}
+          <nav className="hidden md:flex flex-1 justify-center max-w-4xl mx-8">
+            <NavLinks
+              classes="w-full justify-start"
+              closeMenu={() => setIsOpen(false)}
+            />
+          </nav>
 
-        <div className={"flex items-center ms-auto"}>
-          <div className="flex w-auto xl:p-5 xl:justify-end space-x-5">
-            <Icon
-              icon={SearchIcon}
-              className="hover:cursor-pointer h-5 w-5"
+          {/* Right side controls */}
+          <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
+            {/* Search */}
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={() => setOpenSearch(true)}
-            />
+              className="p-2 hover:bg-nav-hover-bg"
+            >
+              <Search className="h-4 w-4 md:h-5 md:w-5" />
+            </Button>
             <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
-            <Icon
-              icon={dark ? LightIcon : DarkIcon}
-              className="hover:cursor-pointer h-5 w-5"
+
+            {/* Theme toggle */}
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={() => setDark(!dark)}
-            />
-          </div>
-          <div
-            className="hidden xl:flex p-2 w-auto justify-end sm:gap-6"
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <DonationBtn />
+              className="p-2 hover:bg-nav-hover-bg"
+            >
+              {dark ? (
+                <Sun className="h-4 w-4 md:h-5 md:w-5" />
+              ) : (
+                <Moon className="h-4 w-4 md:h-5 md:w-5" />
+              )}
+            </Button>
+
+            {/* Desktop donation button */}
+            <div className="hidden lg:flex">
+              <DonationBtn />
+            </div>
+
+            {/* Mobile menu */}
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger className="md:hidden">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="p-2 hover:bg-nav-hover-bg"
+                >
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+
+              <SheetContent
+                side="left"
+                className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-50 dark:bg-slate-900"
+              >
+                <MobileNav closeMenu={() => setIsOpen(false)} />
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger className="mobile-trigger">
-            <div className=" w-auto xl:hidden hover:cursor-pointer p-3 md:p-5">
-              <Icon
-                className="transition duration-500"
-                size={25}
-                icon={MenuIcon}
-              />
-            </div>
-          </SheetTrigger>
-          <SheetContent side={"left"} className={"bg-white dark:bg-slate-900"}>
-            <MobileNav
-              menuExp={menuExpanded}
-              setMenuExpanded={setMenuExpanded}
-              closeMenu={() => {
-                setIsOpen(false);
-                console.log(isOpen);
-              }}
-            />
-          </SheetContent>
-        </Sheet>
-      </nav>
-    </div>
+      </div>
+    </header>
   );
 };
 

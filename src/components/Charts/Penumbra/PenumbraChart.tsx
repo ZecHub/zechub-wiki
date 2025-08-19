@@ -7,7 +7,7 @@ import {
 import { RefObject, useState } from "react";
 import { ResponsiveContainer } from "recharts";
 import { ErrorBoundary } from "../../ErrorBoundary/ErrorBoundary";
-import CryptoMetrics from "../../ShieldedPool/Metric";
+import CryptoMetrics from "../Metric";
 import {
   Select,
   SelectContent,

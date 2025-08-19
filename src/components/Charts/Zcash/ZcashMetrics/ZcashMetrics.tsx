@@ -7,7 +7,7 @@ import {
 } from "@/lib/chart/helpers";
 import { BlockchainInfo, ShieldedTxCount } from "@/lib/chart/types";
 import { useEffect, useState } from "react";
-import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
+import { ErrorBoundary } from "../../../ErrorBoundary/ErrorBoundary";
 import { MetricCard, MetricCardSkeleton } from "./MetricCard";
 
 interface ZcashStatisticsPorps {}
