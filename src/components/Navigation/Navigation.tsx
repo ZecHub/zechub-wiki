@@ -3,7 +3,6 @@ import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-// import Dropdown from "../Dropdown/Dropdown";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
 import Logo from "../UI/Logo";
