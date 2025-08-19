@@ -15,7 +15,7 @@ type HomeProps = {
 const Home = ({ text }: HomeProps) => {
   return (
     <main className="flex flex-col">
-      <section id="hero" className=" bg-slate-100">
+      <section id="hero" className=" bg-slate-100 mb-24">
         <FadeInAnimation>
           <Hero />
         </FadeInAnimation>
@@ -24,9 +24,9 @@ const Home = ({ text }: HomeProps) => {
       <div className="container mx-auto">
         <section
           id="presentation"
-          className="px-1  bg-slate-100 dark:bg-transparent"
+          className="px-1 bg-slate-100 dark:bg-transparent"
         >
-          <FadeInAnimation className="flex flex-col items-center mt-12 justify-center space-y-6 shadow">
+          <FadeInAnimation className="flex flex-col items-center justify-center space-y-6 shadow ">
             <FadeInAnimation className="mt-12">
               <AnimationHome />
             </FadeInAnimation>
@@ -58,7 +58,7 @@ const Home = ({ text }: HomeProps) => {
 
         <section
           id="cardLinks"
-          className="flex justify-center items-center px-4 my-12"
+          className="flex justify-center items-center px-4 my-24"
         >
           <div className="flex flex-col md:flex-row md:flex-wrap gap-8 justify-between items-stretch">
             {cardsConfig &&
@@ -74,11 +74,11 @@ const Home = ({ text }: HomeProps) => {
           </div>
         </section>
 
-        <section id="content" className="px-4 my-12">
+        <section id="content" className="px-4 my-24">
           <ContentSections />
         </section>
 
-        <section id="explore" className="px-4 my-12 scroll-mt-24">
+        <section id="explore" className="px-4 my-24 scroll-mt-24">
           <Explorer />
         </section>
       </div>
