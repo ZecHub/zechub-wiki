@@ -47,33 +47,6 @@ const Dropdown = ({
   );
 };
 
-const DropdownMobile2 = ({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="w-full">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full px-3 py-2 text-left text-nav-foreground hover:bg-nav-hover-bg rounded-md transition-colors duration-200"
-      >
-        {label}
-        <ChevronDown
-          className={`h-4 w-4 transition-transform ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-      {isOpen && <div className="pl-4 mt-1 space-y-1">{children}</div>}
-    </div>
-  );
-};
-
 const NavLinks = ({
   classes,
   closeMenu,
@@ -255,29 +228,30 @@ const NavLinks = ({
 
 const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
   const handleLinkClick = () => closeMenu();
-
   return (
     <div className="flex flex-col space-y-1 font-normal">
       {navigations.map((item, i) =>
         item.links ? (
           <DropdownMobile label={item.name} key={item.name + i}>
-            {item.links.map((link, i) => (
-              <Link
-                key={link.path + i}
-                href={link.path}
-                onClick={handleLinkClick}
-                className="flex items-center gap-2 px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200"
-              >
-                {link.subName}
-              </Link>
-            ))}
+            {item.links.map((link, i) => {
+              return (
+                <Link
+                  key={link.path + i}
+                  href={link.path}
+                  onClick={handleLinkClick}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 text-sm ${liStyle}`}
+                >
+                  {link.subName}
+                </Link>
+              );
+            })}
           </DropdownMobile>
         ) : (
           <Link
             key={item.name + i}
             href={item.path}
             onClick={handleLinkClick}
-            className="px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200"
+            className={`px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 ${liStyle} dark:text-white`}
           >
             {item.name}
           </Link>
@@ -285,26 +259,23 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
       )}
 
       {/* Mobile CTA buttons */}
-      <div className="flex flex-col space-y-3 mt-6 pt-6 border-t border-nav-border">
-        <Button
-          variant="outline"
-          className="border-cta-border text-cta-primary hover:bg-cta-primary hover:text-white transition-colors duration-200 w-full justify-start"
-          asChild
+      <div className="flex flex-col">
+        <div className="flex flex-col space-y-3 my-8 border-t border-slate-50"></div>
+        <Link
+          href="/dao"
+          onClick={handleLinkClick}
+          className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
         >
-          <Link href="/dao" onClick={handleLinkClick}>
-            DAO
-          </Link>
-        </Button>
+          DAO
+        </Link>
 
-        <Button
-          variant="outline"
-          className="border-cta-border text-cta-primary hover:bg-cta-primary hover:text-white transition-colors duration-200 w-full justify-start"
-          asChild
+        <Link
+          href="/dashboard"
+          onClick={handleLinkClick}
+          className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
         >
-          <Link href="/dashboard" onClick={handleLinkClick}>
-            Dashboard
-          </Link>
-        </Button>
+          Dashboard
+        </Link>
       </div>
     </div>
   );
@@ -312,7 +283,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
 
 const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => {
   return (
-    <div className="flex flex-col h-[90%]">
+    <div className="flex flex-col h-[90%] ">
       <div className="flex-1">
         <MobileNavLinks closeMenu={closeMenu} />
       </div>
@@ -422,7 +393,7 @@ const Navigation = () => {
 
               <SheetContent
                 side="left"
-                className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px]"
+                className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-900"
               >
                 <MobileNav closeMenu={() => setIsOpen(false)} />
               </SheetContent>
