@@ -50,7 +50,7 @@ import { Button } from "../UI/button";
          />
        </div>
        {isOpen && (
-         <div className="absolute top-full left-0 z-50 dark:bg-slate-900 shadow-lg min-w-[200px] py-1 mt-0 border ">
+         <div className="absolute top-full left-0 z-50 dark:bg-slate-900 shadow-lg min-w-[200px] py-0 mt-0 ">
            {children}
          </div>
        )}
@@ -100,7 +100,7 @@ import { Button } from "../UI/button";
    return (
      <div className={`flex items-center ${classes}`}>
        {/* Navigation links with responsive behavior */}
-       <div className="hidden lg:flex items-center space-x-6">
+       <div className="hidden lg:flex items-center space-x-10">
          {/* Show first 4 links normally on desktop */}
          {navigations.slice(0, 4).map((item, i) =>
            item.links ? (
