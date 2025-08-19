@@ -31,6 +31,8 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
         <Image
           src={logo}
           alt={altText}
+          height="160"
+          width="160"
           style={{ height: "160px" }}
           className="mx-auto mb-4 object-contain"
         />
