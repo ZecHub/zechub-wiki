@@ -195,24 +195,7 @@ const NavLinks = ({
       </div>
 
       {/* CTA buttons - responsive */}
-      <div className="hidden md:flex items-center space-x-3 ml-6">
-        {/* <Button
-          variant="outline"
-          size="sm"
-          className="border-cta-border text-cta-primary hover:bg-cta-primary hover:text-white transition-colors duration-200"
-          asChild
-        >
-          <Link href="/dao" onClick={handleLinkClick}>
-            DAO
-          </Link>
-        </Button> */}
-
-        {/* <Button
-          variant="outline"
-          size="sm"
-          className="border-cta-border text-cta-primary hover:bg-cta-primary hover:text-white transition-colors duration-200"
-          asChild
-        > */}
+      <div className="hidden md:flex items-center space-x-8 ml-6">
         <Link
           href="/dashboard"
           onClick={handleLinkClick}
@@ -220,7 +203,6 @@ const NavLinks = ({
         >
           Dashboard
         </Link>
-        {/* </Button> */}
       </div>
     </div>
   );
@@ -239,7 +221,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
                   key={link.path + i}
                   href={link.path}
                   onClick={handleLinkClick}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 text-sm ${liStyle}`}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 text-sm ${liStyle} text-slate-700`}
                 >
                   {link.subName}
                 </Link>
@@ -260,7 +242,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
 
       {/* Mobile CTA buttons */}
       <div className="flex flex-col">
-        <div className="flex flex-col space-y-3 my-8 border-t border-slate-50"></div>
+        <div className="flex flex-col space-y-3 my-8 border-t border-slate-400 dark:border-slate-50 "></div>
         <Link
           href="/dao"
           onClick={handleLinkClick}
@@ -276,6 +258,9 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
         >
           Dashboard
         </Link>
+      </div>
+      <div className="py-12">
+        <DonationBtn />
       </div>
     </div>
   );
@@ -393,7 +378,7 @@ const Navigation = () => {
 
               <SheetContent
                 side="left"
-                className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-900"
+                className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-50 dark:bg-slate-900"
               >
                 <MobileNav closeMenu={() => setIsOpen(false)} />
               </SheetContent>
