@@ -2,6 +2,7 @@ import { Card } from "@/components/Card/Card";
 import { dexListingConfig } from "@/constants/dex-listing-config";
 import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = genMetadata({
@@ -13,7 +14,20 @@ const DEXListingPage = () => {
   return (
     <div className="container mx-auto px-4">
       <div className="flex justify-between items-center my-12 flex-col imd:flex-row">
-        <h1 className="flex justify-center items-center text-2xl imd:text-3xl font-bold mb-6 imd:mb-0 text-center">
+        <h1 className="flex justify-center items-center text-2xl imd:text-3xl font-bold mb-4 imd:mb-0 text-center">
+          {/* <img
+            src="https://i.ibb.co/bmS65xV/image-2024-02-03-173258092.png"
+            alt="Alt Text"
+            width="50"
+            className="inline-block mr-2"
+            /> */}
+          <Image
+            src={"https://i.ibb.co/bmS65xV/image-2024-02-03-173258092.png"}
+            alt="Alt Text"
+            width="50"
+            height="50"
+            className="inline-block mr-2"
+          />
           Centralized Swap Platforms
         </h1>
         <Link
