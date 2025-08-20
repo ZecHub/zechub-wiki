@@ -26,6 +26,14 @@ const Dao: React.FC = () => {
               className="text-blue-500 hover:text-blue-600"
             >
               DAO
+            </Link>{" "}
+            &{" "}
+            <Link
+              href="/governance-howto"
+              target="_blank"
+              className="text-blue-500 hover:text-blue-600"
+            >
+              Governance
             </Link>
           </h1>
         </div>
