@@ -20,7 +20,7 @@ type CardsProps = {
 export const Card = (props: CardsProps) => (
   <div
     style={{ backgroundColor: "revert" }}
-    className="bg-white rounded-lg shadow flex flex-col justify-between mb-8 sm:mb-4"
+    className="bg-white rounded-lg border dark:border-slate-600 shadow flex flex-col justify-between mb-8 sm:mb-4"
   >
     <div>
       <Link href={props.url}>
@@ -29,7 +29,7 @@ export const Card = (props: CardsProps) => (
           height={500}
           src={props.thumbnailImage}
           alt="Thumbnail 1"
-          className="w-full h-48 object-cover mb-4 rounded-t"
+          className="w-full h-48 object-cover mb-4 rounded-t bg-slate-50"
         />
       </Link>
 
