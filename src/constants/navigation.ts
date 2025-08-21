@@ -2,40 +2,14 @@ import {
   RiTwitterXFill as Twitter,
   RiGithubFill as Github,
   RiYoutubeFill as Youtube,
-  RiLiveFill as Free2zLive,
-  RiArtboard2Line as ZeroNFT,
 } from "react-icons/ri";
 import {
-  BsQrCode as QrCode,
   BsDiscord as Discord,
 } from "react-icons/bs";
 import {
-  FcGlobe as Ambassadors,
-} from "react-icons/fc";
-import { LuTrees as Arborist } from "react-icons/lu";
-import {
-  PiLinkSimpleBold as CommunityLink,
-  PiPresentationChartLight as Archive,
-  PiShieldCheck as EcoSecurity,
-} from "react-icons/pi";
-import {
-  IoBuildOutline as CommunityProject,
-  IoCloudUploadOutline as CloudUploadOutline,
-} from "react-icons/io5";
-import { GrGroup as ZCAP, GrBlog as CommunityBlog } from "react-icons/gr";
-import { ImPodcast as Podcast } from "react-icons/im";
-import {
-  MdOutlinePointOfSale as ZgoPayment,
   MdForum as Forum,
   MdOutlineOndemandVideo as AudioVideo,
 } from "react-icons/md";
-import {
-  TbTopologyRing as TopologyRing,
-} from "react-icons/tb";
-import {
-  SiRaspberrypi as RaspBerry,
-  SiZebratechnologies as Zebratechnologies,
-} from "react-icons/si";
 import { SiBrandfolder as BrandIcon } from "react-icons/si";
 import { IconType } from "react-icons";
 
@@ -119,17 +93,14 @@ export const navigations: Array<NavigationItem> = [
       {
         label: "Arborist Calls",
         path: "/zcash-community/arborist-calls",
-        icon: Arborist,
       },
       {
         label: "Community Blogs",
         path: "/zcash-community/community-blogs",
-        icon: CommunityBlog,
       },
       {
         label: "Community Links",
         path: "/zcash-community/community-links",
-        icon: CommunityLink,
       },
       {
         label: "Community Forum",
@@ -140,42 +111,34 @@ export const navigations: Array<NavigationItem> = [
       {
         label: "Community Projects",
         path: "/zcash-community/community-projects",
-        icon: CommunityProject,
       },
       {
         label: "Zcash Global Ambassadors",
         path: "/zcash-community/zcash-global-ambassadors",
-        icon: Ambassadors,
       },
       {
         label: "Zcash Media",
         path: "/zcash-community/zcash-media",
-        icon: CommunityProject,
       },
       {
         label: "ZCAP",
         path: "/zcash-community/zcap",
-        icon: ZCAP,
       },
       {
         label: "Zcash Podcasts",
         path: "/zcash-community/zcash-podcasts",
-        icon: Podcast,
       },
       {
         label: "Zcash Ecosystem Security",
         path: "/zcash-community/zcash-ecosystem-security",
-        icon: EcoSecurity,
       },
       {
         label: "Cypherpunk Zero NFT",
         path: "/zcash-community/cypherpunk-zero-nft",
-        icon: ZeroNFT,
       },
       {
         label: "Zcon Archive",
         path: "/zcash-community/zcon-archive",
-        icon: Archive,
       },
     ],
   },

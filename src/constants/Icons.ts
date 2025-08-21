@@ -64,12 +64,10 @@ import {
   FaEthereum as Ethereum,
   FaQuestion,
   FaSyncAlt,
-  FaLaptop,
 } from "react-icons/fa";
 import {
   FcCurrencyExchange as CurrencyExchange,
   FcGallery,
-  FcMoneyTransfer,
   FcProcess,
   FcGlobe as Globe,
 } from "react-icons/fc";
