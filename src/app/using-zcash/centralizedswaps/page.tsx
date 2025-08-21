@@ -25,11 +25,11 @@ const DEXListingPage = () => {
           {/* </a> */}
         </Link>
       </div>
-      <p className="text-gray-600 my-4">
+      <p className="dark:text-slate-300 text-gray-600 text-lg my-12">
         ZecHub does not endorse any particular exchange service, please do your
         own research.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {dexListingConfig.map((itm, i) => (
           <Card
             thumbnailImage={itm.image}
