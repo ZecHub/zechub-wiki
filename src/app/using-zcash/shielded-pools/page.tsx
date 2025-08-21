@@ -44,7 +44,7 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
 
       <div
         id="content"
-        className={`flex shielded-pools flex-col space-y-5 ${
+        className={`flex shielded-pools flex-col space-y-5 container m-auto ${
           roots && roots.length > 0 ? "md:flex-row md:space-x-5" : "md:flex-col"
         } h-auto w-full md:p-5`}
       >
