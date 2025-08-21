@@ -23,6 +23,8 @@ const CustodialExchanges: React.FC = () => {
           <Image
             src={"https://img.shields.io/badge/Edit-blue"}
             alt="Edit Page"
+            width={24}
+            height={24}
           />
           {/* <img src="https://img.shields.io/badge/Edit-blue" alt="Edit Page" /> */}
         </a>
@@ -39,6 +41,7 @@ const CustodialExchanges: React.FC = () => {
             src={"https://i.ibb.co/bmS65xV/image-2024-02-03-173258092.png"}
             alt="Alt Text"
             width="50"
+            height={24}
             className="inline-block mr-2"
           />
           Custodial Exchanges
