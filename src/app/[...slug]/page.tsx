@@ -1,9 +1,10 @@
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import { getFileContent, getRoot } from "@/lib/authAndFetch";
-import { getDynamicRoute, getBanner, genMetadata } from "@/lib/helpers";
-import { Metadata } from "next";
+import MdxContainer from "@/components/MdxContainer";
 import SideMenu from "@/components/SideMenu/SideMenu";
+import { getFileContent, getRoot } from "@/lib/authAndFetch";
+import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -16,10 +17,9 @@ export async function generateMetadata({
   const firstLetter = word.charAt(0);
 
   const firstLetterCap = firstLetter.toUpperCase();
-
   const remainingLetters = word.slice(1);
-
   const capitalizedWord = firstLetterCap + remainingLetters;
+
   return genMetadata({
     title: slug ? `${capitalizedWord} | Zechub` : "Zechub",
     url: "https://zechub.wiki/donation",
@@ -41,40 +41,55 @@ export default async function Page(props: {
   const url = getDynamicRoute(slug);
   const markdown = await getFileContent(url);
   const content = markdown ? markdown : "No Data or Wrong file";
-  const urlRoot = `/site/${slug[0]}`;
-  const roots = await getRoot(urlRoot);
 
-  const imgUrl = getBanner(slug[0]);
+  if (markdown) {
+    const urlRoot = `/site/${slug[0]}`;
+    const roots = await getRoot(urlRoot);
+    const imgUrl = getBanner(slug[0]);
 
-  return (
-    <main>
-      <div className="flex justify-center w-full  mb-5 bg-transparent rounded pb-4">
-        <Image
-          className="w-full mb-5 object-cover "
-          alt="wiki-banner"
-          width={800}
-          height={50}
-          src={imgUrl != undefined ? imgUrl : "/wiki-banner.avif"}
-        />
-      </div>
+    console.log({ slug, url, urlRoot, roots, imgUrl });
 
-      <div
-        id="content"
-        className={`flex flex-col space-y-5 ${
-          roots && roots.length > 0 ? "md:flex-row md:space-x-5" : "md:flex-col"
-        } h-auto w-full pt-5 px-2`}
+    return (
+      <MdxContainer
+        hasSideMenu={true}
+        sideMenu={<SideMenu folder={slug[0]} roots={roots} />}
+        roots={roots}
+        heroImage={{ src: imgUrl }}
       >
-        {roots && roots.length > 0 && (
-          <div className="w-auto md:w-2/5  relative">
-            <SideMenu folder={slug[0]} roots={roots} />
-          </div>
-        )}
-        <section className="h-auto w-full border-t-4 md:border-l-4 p-3">
-          <div>
+        <MdxComponent source={content} slug={slug[1]} />
+      </MdxContainer>
+    );
+  }
+
+  /* <main>
+        <div className="flex justify-center w-full  mb-5 bg-transparent rounded pb-4">
+          <Image
+            className="w-full mb-5 object-cover "
+            alt="wiki-banner"
+            width={800}
+            height={50}
+            src={imgUrl != undefined ? imgUrl : "/wiki-banner.avif"}
+          />
+        </div>
+
+        <div
+          id="content"
+          className={`flex flex-col space-y-5 container m-auto ${
+            roots && roots.length > 0
+              ? "md:flex-row md:space-x-5"
+              : "md:flex-col"
+          } h-auto pt-5 px-2`}
+        >
+          {roots && roots.length > 0 && (
+            <div className="w-auto md:w-2/5  relative">
+              <SideMenu folder={slug[0]} roots={roots} />
+            </div>
+          )}
+          <section className="h-auto w-full border-t-2 md:border-l-2 p-3">
             <MdxComponent source={content} slug={slug[1]} />
-          </div>
-        </section>
-      </div>
-    </main>
-  );
+          </section>
+        </div>
+      </main> */
+
+  return notFound();
 }
