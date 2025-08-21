@@ -96,6 +96,41 @@ export const navigations = [
         path: "/payment-processors",
         icon: MdPayment,
       },
+      {
+        subName: "Metamask Snap",
+        path: "/using-zcash/metamask-snap",
+        icon: Transaction,
+      },
+      {
+        subName: "Custodial Exchanges",
+        path: "/using-zcash/custodial-exchanges",
+        icon: Transaction,
+      },
+      {
+        subName: "Faucets",
+        path: "/using-zcash/faucets",
+        icon: Transaction,
+      },
+      {
+        subName: "Memos",
+        path: "/using-zcash/memos",
+        icon: Transaction,
+      },
+      {
+        subName: "Mobile Top Ups",
+        path: "/using-zcash/mobile-top-ups",
+        icon: Transaction,
+      },
+      {
+        subName: "Non-Custodial Exchanges",
+        path: "/using-zcash/non-custodial-exchanges",
+        icon: Transaction,
+      },
+      {
+        subName: "Payment Request URLs",
+        path: "/using-zcash/payment-request-urls",
+        icon: Transaction,
+      },
     ],
   },
   {
@@ -141,6 +176,26 @@ export const navigations = [
         subName: "Zcon Archive",
         path: "/zcash-community/zcon-archive",
         icon: Archive,
+      },
+      {
+        subName: "Community Blogs",
+        path: "/zcash-community/community-blogs",
+        icon: Arborist,
+      },
+      {
+        subName: "Cypherpunk Zero NFT",
+        path: "/zcash-community/cypherpunk-zero-nft",
+        icon: Arborist,
+      },
+      {
+        subName: "Zcash Ecosystem Security",
+        path: "/zcash-community/zcash-ecosystem-security",
+        icon: Arborist,
+      },
+      {
+        subName: "Zcash Media",
+        path: "/zcash-community/zcash-media",
+        icon: Arborist,
       },
     ],
   },
@@ -228,6 +283,91 @@ export const navigations = [
         subName: "Zero Knowledge vs Decoy Systems",
         path: "/guides/zero-knowledge-vs-decoys",
         icon: TopologyRing,
+      },
+      {
+        subName: "Avalanche RedBridge",
+        path: "/guides/avalanche-redbridge",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "BTCPayServer Zcash Plugin",
+        path: "/guides/btcpayserver-zcash-plugin",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Blockchain Explorers",
+        path: "/guides/blockchain-explorers",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Brave Wallet Guide",
+        path: "/guides/brave-wallet-guide",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Free2z Live",
+        path: "/guides/free2z-live",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Keystone Zashi",
+        path: "/guides/keystone-zashi",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Maya Protocol",
+        path: "/guides/maya-protocol",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Nym VPN",
+        path: "/guides/nym-vpn",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Raspberry PL4 Full Node",
+        path: "/guides/raspberry-pl4-full-node",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Raspberry pi5 Zebra Lightwalled Zingo",
+        path: "/guides/raspberry-pi5-zebra-lightwalled-zingo",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Using ZEC Privately",
+        path: "/guides/using-zec-privately",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Using ZEC in DeFi",
+        path: "/guides/using-zec-in-defi",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Visualizing the Zcash Network",
+        path: "/guides/visualizing-the-zcash-network",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Ywallet FROST Demo",
+        path: "/guides/ywallet-frost-demo",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Zcash Devtool",
+        path: "/guides/zcash-devtool",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Zcash Improvement Proposals",
+        path: "/guides/zcash-improvement-proposals",
+        icon: ZgoPayment,
+      },
+      {
+        subName: "Zenith Installation",
+        path: "/guides/zenith-installation",
+        icon: ZgoPayment,
       },
     ],
   },
