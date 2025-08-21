@@ -43,12 +43,11 @@ export default async function Page(props: {
           height={50}
           src={imgUrl != undefined ? imgUrl : "/wiki-banner.avif"}
         />
-        
       </div>
 
       <div
         id="content"
-        className={`flex flex-col space-y-5 ${
+        className={`flex flex-col space-y-5 container m-auto ${
           roots && roots.length > 0 ? "md:flex-row md:space-x-5" : "md:flex-col"
         } h-auto w-full py-5`}
       >
