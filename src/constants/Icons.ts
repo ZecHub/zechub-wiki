@@ -32,6 +32,8 @@ import {
   RiArticleLine,
   RiSecurePaymentLine,
   RiInstallLine,
+  RiFunctionLine,
+  RiExchangeFundsLine,
 } from "react-icons/ri";
 import {
   GrResources as Resources,
@@ -161,6 +163,7 @@ const iconsForMenu: IconsFor = {
     "Blockchain Explorers": MagnifyingGlassChart,
     Wallets: Wallet,
     "Buying ZEC": CurrencyExchange,
+    "Metamask Snap": RiFunctionLine,
     Transactions: ArrowUp,
     "Transparent Exchange Addresses": RiSecurePaymentLine,
     "Mobile Top Ups": TbDeviceMobileShare,
@@ -172,6 +175,7 @@ const iconsForMenu: IconsFor = {
     "Payment Request URIs": MdOutlinePayments,
     "Recovering Funds": LifeRing,
     "Custodial Exchanges": ListAlt,
+    "Exchanges": RiExchangeFundsLine,
     "Zcash Wallet Syncing": FaSyncAlt,
   },
   Guides: {
@@ -285,5 +289,4 @@ export const matchIcons = (root: string, file: string) => {
       }
     }
   }
-  return "Nothing";
 };

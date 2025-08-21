@@ -71,7 +71,6 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
               if (getName(item) === "Payment Processors") return null; // Skip rendering the item named "Wallets"
               if (getName(item) === "Custodial Exchanges") return null; // Skip rendering the item named "Wallets"
 
-              const myIcon = matchIcons(fold, getName(item));
               return (
                 <li
                   key={i}
@@ -82,7 +81,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                   >
                     <div className={`flex items-center space-x-4`}>
                       <div className="flex-shrink-0">
-                        <Icon icon={myIcon != "Nothing" ? myIcon : FileIcon} />
+                        <Icon icon={matchIcons(fold, getName(item)) ?? FileIcon} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium ">

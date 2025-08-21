@@ -2,224 +2,218 @@ import {
   RiTwitterXFill as Twitter,
   RiGithubFill as Github,
   RiYoutubeFill as Youtube,
-  RiExchangeFundsLine as Exchange,
   RiLiveFill as Free2zLive,
-  RiCoinsLine as RecoveryFund,
-  RiFunctionLine as MetamaskSnap,
-  RiQuoteText as Memo,
-  RiSmartphoneLine as MobileTopUp,
-  RiQrCodeLine as UriQrCode,
-  RiHandCoinLine as Faucet,
+  RiArtboard2Line as ZeroNFT,
 } from "react-icons/ri";
 import {
-  BsArrowUpRightCircle as Transaction,
-  BsShieldShaded as ShieldedPools,
   BsQrCode as QrCode,
   BsDiscord as Discord,
 } from "react-icons/bs";
 import {
-  FcCurrencyExchange as BuyingZec,
   FcGlobe as Ambassadors,
 } from "react-icons/fc";
-import { FaMagnifyingGlassChart as BlockchainExplorer } from "react-icons/fa6";
-import { FaWallet as Wallet } from "react-icons/fa";
 import { LuTrees as Arborist } from "react-icons/lu";
 import {
-  PiLinkSimpleBold as communityLink,
+  PiLinkSimpleBold as CommunityLink,
   PiPresentationChartLight as Archive,
-  PiHandFistLight as HandDepositLight,
+  PiShieldCheck as EcoSecurity,
 } from "react-icons/pi";
 import {
-  IoBuildOutline as commProject,
+  IoBuildOutline as CommunityProject,
   IoCloudUploadOutline as CloudUploadOutline,
 } from "react-icons/io5";
-import { GrGroup as ZCAP } from "react-icons/gr";
+import { GrGroup as ZCAP, GrBlog as CommunityBlog } from "react-icons/gr";
 import { ImPodcast as Podcast } from "react-icons/im";
 import {
-  MdRadar as ECC,
   MdOutlinePointOfSale as ZgoPayment,
   MdForum as Forum,
   MdOutlineOndemandVideo as AudioVideo,
-  MdPayment,
 } from "react-icons/md";
 import {
-  GiCheckedShield as foundation,
-  GiBorderedShield as Shieldedlabs,
-} from "react-icons/gi";
-import {
-  TbHexagonLetterZ as Grants,
   TbTopologyRing as TopologyRing,
-  TbSquareLetterF as SquareLetterFFilled,
 } from "react-icons/tb";
 import {
   SiRaspberrypi as RaspBerry,
   SiZebratechnologies as Zebratechnologies,
 } from "react-icons/si";
-import { TbCircleLetterZ as Zingolabs } from "react-icons/tb";
 import { SiBrandfolder as BrandIcon } from "react-icons/si";
+import { IconType } from "react-icons";
 
-export const navigations = [
+export type NavigationItem = {
+  label: string;
+  name?: string;
+  path?: string;
+  icon?: IconType;
+  newTab?: boolean;
+  links?: Array<NavigationItem>;
+}
+
+export const navigations: Array<NavigationItem> = [
   {
-    name: "Use Zcash",
+    label: "Use Zcash",
+    name: "Using Zcash",
     links: [
       {
-        subName: "Buying ZEC",
+        label: "Buying ZEC",
         path: "/using-zcash/buying-zec",
-        icon: BuyingZec,
       },
       {
-        subName: "Faucets",
+        label: "Faucets",
         path: "/using-zcash/faucets",
-        icon: Faucet,
       },
       {
-        subName: "Wallets",
+        label: "Wallets",
         path: "/wallets",
-        icon: Wallet,
       },
       {
-        subName: "Metamask Snap",
+        label: "Metamask Snap",
         path: "/using-zcash/metamask-snap",
-        icon: MetamaskSnap,
       },
       {
-        subName: "Exchanges",
+        label: "Exchanges",
         path: "/dex",
-        icon: Exchange,
       },
       {
-        subName: "Block Explorers",
+        label: "Block Explorers",
+        name: "Blockchain Explorers",
         path: "/using-zcash/blockchain-explorers",
-        icon: BlockchainExplorer,
       },
       {
-        subName: "Shielded Pools",
+        label: "Shielded Pools",
         path: "/using-zcash/shielded-pools",
-        icon: ShieldedPools,
       },
       {
-        subName: "Transparent Exchange Addresses",
+        label: "Transparent Exchange Addresses",
         path: "/using-zcash/transparent-exchange-addresses",
-        icon: HandDepositLight,
       },
       {
-        subName: "Transactions",
+        label: "Transactions",
         path: "/using-zcash/transactions",
-        icon: Transaction,
       },
       {
-        subName: "Memos",
+        label: "Memos",
         path: "/using-zcash/memos",
-        icon: Memo,
       },
       {
-        subName: "Mobile Top Ups",
+        label: "Mobile Top Ups",
         path: "/using-zcash/mobile-top-ups",
-        icon: MobileTopUp,
       },
       {
-        subName: "Payment Request URIs and QR Codes",
+        label: "Payment Request URIs",
         path: "/using-zcash/payment-request-uris",
-        icon: UriQrCode,
       },
       {
-        subName: "Payment Processors",
+        label: "Payment Processors",
         path: "/payment-processors",
-        icon: MdPayment,
       },
       {
-        subName: "Recovery Funds",
-        path: "/using-zcash/recovery-funds",
-        icon: RecoveryFund,
+        label: "Recovering Funds",
+        path: "/using-zcash/recovering-funds",
       },
     ],
   },
   {
-    name: "Ecosystem",
+    label: "Ecosystem",
+    name: "Zcash Community",
     links: [
       {
-        subName: "Arborist Calls",
+        label: "Arborist Calls",
         path: "/zcash-community/arborist-calls",
         icon: Arborist,
       },
       {
-        subName: "Community Links",
-        path: "/zcash-community/community-links",
-        icon: communityLink,
+        label: "Community Blogs",
+        path: "/zcash-community/community-blogs",
+        icon: CommunityBlog,
       },
       {
-        subName: "Community Forum",
+        label: "Community Links",
+        path: "/zcash-community/community-links",
+        icon: CommunityLink,
+      },
+      {
+        label: "Community Forum",
         path: "https://forum.zcashcommunity.com/",
         icon: Forum,
         newTab: true,
       },
       {
-        subName: "Community Projects",
+        label: "Community Projects",
         path: "/zcash-community/community-projects",
-        icon: commProject,
+        icon: CommunityProject,
       },
       {
-        subName: "Zcash Global Ambassadors",
+        label: "Zcash Global Ambassadors",
         path: "/zcash-community/zcash-global-ambassadors",
         icon: Ambassadors,
       },
       {
-        subName: "ZCAP",
+        label: "Zcash Media",
+        path: "/zcash-community/zcash-media",
+        icon: CommunityProject,
+      },
+      {
+        label: "ZCAP",
         path: "/zcash-community/zcap",
         icon: ZCAP,
       },
       {
-        subName: "Zcash Podcasts",
+        label: "Zcash Podcasts",
         path: "/zcash-community/zcash-podcasts",
         icon: Podcast,
       },
       {
-        subName: "Zcon Archive",
+        label: "Zcash Ecosystem Security",
+        path: "/zcash-community/zcash-ecosystem-security",
+        icon: EcoSecurity,
+      },
+      {
+        label: "Cypherpunk Zero NFT",
+        path: "/zcash-community/cypherpunk-zero-nft",
+        icon: ZeroNFT,
+      },
+      {
+        label: "Zcon Archive",
         path: "/zcash-community/zcon-archive",
         icon: Archive,
       },
     ],
   },
   {
-    name: "Organizations",
+    label: "Organizations",
+    name: "Zcash Organizations",
     links: [
       {
-        subName: "Electric Coin Company",
+        label: "Electric Coin Company",
         path: "/zcash-organizations/electric-coin-company",
-        icon: ECC,
       },
       {
-        subName: "Zcash Foundation",
+        label: "Zcash Foundation",
         path: "/zcash-organizations/zcash-foundation",
-        icon: foundation,
       },
       {
-        subName: "Zcash Community Grants",
+        label: "Zcash Community Grants",
         path: "/zcash-organizations/zcash-community-grants",
-        icon: Grants,
       },
       {
-        subName: "Financial Privacy Foundation",
+        label: "Financial Privacy Foundation",
         path: "/zcash-organizations/financial-privacy-foundation",
-        icon: SquareLetterFFilled,
       },
       {
-        subName: "Shielded Labs",
+        label: "Shielded Labs",
         path: "/zcash-organizations/shielded-labs",
-        icon: Shieldedlabs,
       },
       {
-        subName: "Zingo Labs",
+        label: "Zingo Labs",
         path: "/zcash-organizations/zingo-labs",
-        icon: Zingolabs,
       },
       {
-        subName: "Brand",
+        label: "Brand",
         path: "/brand",
         icon: BrandIcon,
       },
       {
-        subName: "ZKAV Club",
+        label: "ZKAV Club",
         path: "https://www.zkav.club",
         icon: AudioVideo,
         newTab: true,
@@ -227,87 +221,83 @@ export const navigations = [
     ],
   },
   {
-    name: "Guides",
+    label: "Guides",
     links: [
       {
-        subName: "Zgo Payment Processor",
+        label: "Zgo Payment Processor",
         path: "/guides/zgo-payment-processor",
         icon: ZgoPayment,
       },
       {
-        subName: "Free2z Livestreaming",
+        label: "Free2z Livestreaming",
         path: "/guides/free2z-live",
         icon: Free2zLive,
       },
       {
-        subName: "Raspberry Pi Zcashd Node",
+        label: "Raspberry Pi Zcashd Node",
         path: "/guides/raspberry-pi-4-full-node",
         icon: RaspBerry,
       },
       {
-        subName: "Raspberry Pi Zebra Node",
+        label: "Raspberry Pi Zebra Node",
         path: "https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5",
         icon: Zebratechnologies,
         newTab: true,
       },
       {
-        subName: "Akash Network",
+        label: "Akash Network",
         path: "/guides/akash-network",
         icon: CloudUploadOutline,
       },
       {
-        subName: "Visualizing Zcash Addresses",
+        label: "Visualizing Zcash Addresses",
         path: "/guides/visualizing-zcash-addresses",
         icon: QrCode,
       },
       {
-        subName: "Zero Knowledge vs Decoy Systems",
+        label: "Zero Knowledge vs Decoy Systems",
         path: "/guides/zero-knowledge-vs-decoys",
         icon: TopologyRing,
       },
     ],
   },
   {
-    name: "DAO",
+    label: "DAO",
     path: "/dao",
-    icon: "",
   },
   {
-    name: "Tutorials",
+    label: "Tutorials",
     path: "https://youtube.com/@zechub",
-    icon: "",
     newTab: true,
   },
   {
-    name: "Developers",
+    label: "Developers",
     path: "/developers",
-    icon: "",
   },
   {
-    name: "Contribute",
+    label: "Contribute",
     path: "/contribute/help-build-zechub",
-    icon: "",
   },
 ];
 
 export const socialNav = [
   {
-    name: "Discord",
+    label: "Discord",
     url: "https://discord.gg/zcash",
     icon: Discord,
   },
   {
-    name: "Youtube",
+    label: "Youtube",
     url: "https://www.youtube.com/channel/UC3-KM00kjCUheRzO5cq3PAA",
     icon: Youtube,
   },
   {
-    name: "Twitter",
+    label: "Twitter",
     url: "https://x.com/zechub",
     icon: Twitter,
   },
   {
-    name: "Github",
+    label: "Github",
     url: "https://github.com/ZecHub/zechub",
     icon: Github,
   },
@@ -315,27 +305,27 @@ export const socialNav = [
 
 export const socialMedia = [
   {
-    name: "Youtube",
+    label: "Youtube",
     link: "https://youtube.com/@zechub",
   },
   {
-    name: "Newsletter",
+    label: "Newsletter",
     link: "https://zechub.substack.com/",
   },
   {
-    name: "Podcast",
+    label: "Podcast",
     link: "https://www.youtube.com/watch?v=ILdMTGtVOD4&list=PL6_epn0lASLHlNCMtUErX8UfaJK6N9K5O",
   },
   {
-    name: "Extras",
+    label: "Extras",
     link: "https://extras.zechub.xyz/",
   },
   {
-    name: "DAO",
+    label: "DAO",
     link: "https://vote.zechub.xyz/",
   },
   {
-    name: "Store",
+    label: "Store",
     link: "https://zechub.store/",
   },
 ];
