@@ -11,7 +11,6 @@ import SocialIcons from "../UI/SocialIcons";
 
 import { ChevronDown, Menu, Moon, Search, Sun } from "lucide-react";
 import { Button } from "../UI/button";
-import { Icon } from "../UI/Icon";
 
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
 
@@ -71,13 +70,8 @@ const NavLinks = ({
               {item.links.map((link, i) => (
                 <div
                   key={link.path + i}
-                  className={`flex items-center space-x-2 hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
+                  className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200     ${liStyle}`}
                 >
-                  <Icon
-                    className="transition duration-500"
-                    size={14}
-                    icon={link.icon}
-                  />
                   <Link
                     href={link.path}
                     onClick={handleLinkClick}
@@ -371,7 +365,7 @@ const Navigation = () => {
 
             {/* Mobile menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger className="md:hidden">
+              <SheetTrigger className="md:hidden" asChild>
                 <Button
                   variant="ghost"
                   size="sm"
