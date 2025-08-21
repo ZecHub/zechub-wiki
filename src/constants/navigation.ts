@@ -68,7 +68,7 @@ export const navigations = [
       },
       {
         subName: "Wallets",
-        path: "/wallets",
+        path: "/using-zcash/wallets",
         icon: Wallet,
       },
       {
@@ -98,7 +98,7 @@ export const navigations = [
       },
       {
         subName: "Payment Processors",
-        path: "/payment-processors",
+        path: "/using-zcash/payment-processors",
         icon: MdPayment,
       },
     ],
