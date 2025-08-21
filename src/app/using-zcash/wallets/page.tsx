@@ -46,7 +46,7 @@ export default async function Page(props: {
 
       <div
         id="content"
-        className={`flex flex-col space-y-5 ${
+        className={`flex flex-col space-y-5 container m-auto ${
           roots && roots.length > 0 ? "md:flex-row md:space-x-5" : "md:flex-col"
         } h-auto w-full py-5`}
       >
