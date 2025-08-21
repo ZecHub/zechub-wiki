@@ -226,38 +226,102 @@ export const navigations: Array<NavigationItem> = [
       {
         label: "Zgo Payment Processor",
         path: "/guides/zgo-payment-processor",
-        icon: ZgoPayment,
       },
       {
-        label: "Free2z Livestreaming",
+        label: "Free2z Live",
         path: "/guides/free2z-live",
-        icon: Free2zLive,
+      },
+      {
+        label: "Keystone Zashi",
+        path: "/guides/keystone-zashi",
+      },
+      {
+        label: "Maya Protocol",
+        path: "/guides/maya-protocol",
+      },
+      {
+        label: "Nym VPN",
+        path: "/guides/nym-vpn",
+      },
+      {
+        label: "Using ZEC in DeFi",
+        path: "/guides/using-zec-in-defi",
+      },
+      {
+        label: "Using ZEC Privately",
+        path: "/guides/using-zec-privately",
       },
       {
         label: "Raspberry Pi Zcashd Node",
+        name: "Raspberry Pi 4 Full Node",
         path: "/guides/raspberry-pi-4-full-node",
-        icon: RaspBerry,
+      },
+      {
+        label: "Raspberry pi5 Zebra Lightwalletd Zingo",
+        path: "/guides/raspberry-pi5-zebra-lightwalletd-zingo",
       },
       {
         label: "Raspberry Pi Zebra Node",
+        name: "Raspberry pi 4 Zebra Node",
         path: "https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5",
-        icon: Zebratechnologies,
         newTab: true,
       },
       {
         label: "Akash Network",
         path: "/guides/akash-network",
-        icon: CloudUploadOutline,
+      },
+      {
+        label: "Avalanche RedBridge",
+        path: "/guides/avalanche-redbridge",
+      },
+      {
+        label: "Zkool Multisig",
+        path: "/guides/zkool-multisig",
+      },
+      {
+        label: "Ywallet FROST Demo",
+        path: "/guides/ywallet-frost-demo",
+      },
+      {
+        label: "Blockchain Explorers",
+        path: "/guides/blockchain-explorers",
+      },
+      {
+        label: "Brave Wallet",
+        path: "/guides/brave-wallet-guide",
+      },
+      {
+        label: "BTCPayServer Plugin",
+        path: "/guides/btcpayserver-zcash-plugin",
+      },
+      {
+        label: "Visualizing the Zcash Network",
+        path: "/guides/visualizing-the-zcash-network",
       },
       {
         label: "Visualizing Zcash Addresses",
         path: "/guides/visualizing-zcash-addresses",
-        icon: QrCode,
+      },
+      {
+        label: "Zcash Devtool",
+        path: "/guides/zcash-devtool",
+      },
+      {
+        label: "Zcash Improvement Proposals",
+        path: "/guides/zcash-improvement-proposals",
+      },
+      {
+        label: "Zingolib and Zaino Tutorial",
+        path: "/guides/zingolib-and-zaino-tutorial",
+      },
+      {
+        label: "Zenith Installation",
+        path: "/guides/zenith-installation",
       },
       {
         label: "Zero Knowledge vs Decoy Systems",
+        name: "Zero-Knowledge vs Decoys",
         path: "/guides/zero-knowledge-vs-decoys",
-        icon: TopologyRing,
       },
     ],
   },

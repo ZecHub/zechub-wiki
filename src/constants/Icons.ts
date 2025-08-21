@@ -9,6 +9,8 @@ import {
   SiOpenvpn as Openvpn,
   SiZebratechnologies as Zebratechnologies,
   SiLetsencrypt as Letsencrypt,
+  SiBrave,
+  SiKeystone,
 } from "react-icons/si";
 import {
   PiShootingStarThin as ShootingStar,
@@ -34,6 +36,7 @@ import {
   RiInstallLine,
   RiFunctionLine,
   RiExchangeFundsLine,
+  RiBitCoinLine,
 } from "react-icons/ri";
 import {
   GrResources as Resources,
@@ -89,10 +92,12 @@ import {
   MdOutlineLiveHelp as LiveHelp,
   MdOutlinePodcasts,
   MdFoundation,
+  MdVpnLock,
 } from "react-icons/md";
 import {
   LiaServerSolid as ServerSolid,
   LiaLinkSolid as LinkSolid,
+  LiaSignatureSolid,
 } from "react-icons/lia";
 import {
   BiLogoGraphql as LogoGraph,
@@ -180,14 +185,18 @@ const iconsForMenu: IconsFor = {
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
+    "Keystone Zashi": SiKeystone,
     "Visualizing Zcash Addresses": QrCode,
     "Blockchain Explorers": ListMagnifyingGlassFill,
     "Maya Protocol": MayanPyramid,
     "Avalanche RedBridge": CableStayedBridge,
     "Akash Network": IoCloudUploadOutline,
+    "BTCPayServer Plugin": RiBitCoinLine,
     "Full Nodes": ServerSolid,
+    "Nym VPN": MdVpnLock,
     "Raspberry Pi 4 Full Node": RaspBerry,
     "Raspberry pi5 Zebra Lightwalletd Zingo": RaspBerry,
+    "Brave Wallet": SiBrave,
     "Raspberry pi 4 Zebra Node": Zebratechnologies,
     "Ywallet FROST Demo": TbSquareRoundedLetterY,
     "Zcash Devtool": TbCircleLetterZ,
@@ -199,6 +208,7 @@ const iconsForMenu: IconsFor = {
     "Zero-Knowledge vs Decoys": TopologyRing,
     "Visualizing the Zcash Network": LogoGraph,
     "Zcash Improvement Proposals": GrDocumentZip,
+    "Zkool Multisig": LiaSignatureSolid,
   },
   "Zcash Tech": {
     "Crosslink Protocol": Stakeholder,
