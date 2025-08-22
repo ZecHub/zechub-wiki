@@ -51,9 +51,9 @@ export default async function Page(props: {
 
     return (
       <MdxContainer
-        hasSideMenu={true}
-        sideMenu={<SideMenu folder={slug[0]} roots={roots} />}
-        roots={roots}
+        hasSideMenu={!!roots && roots.length > 0}
+        sideMenu={roots ? <SideMenu folder={slug[0]} roots={roots} /> : null}
+        roots={roots ?? []}
         heroImage={{ src: imgUrl }}
       >
         <MdxComponent source={content} slug={slug[1]} />
