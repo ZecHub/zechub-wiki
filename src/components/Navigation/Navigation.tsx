@@ -38,7 +38,12 @@ const Dropdown = ({
         />
       </div>
       {isOpen && (
-        <div className="absolute top-full left-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[200px] py-0 mt-0 ">
+        <div
+          className="absolute top-full left-0 z-50 
+             bg-slate-100 text-slate-700 dark:bg-slate-900 
+             shadow-lg min-w-[600px] mt-0 
+             grid grid-cols-2 gap-2 p-2"
+        >
           {children}
         </div>
       )}
