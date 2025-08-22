@@ -70,7 +70,7 @@ const NavLinks = ({
               {item.links.map((link, i) => (
                 <div
                   key={link.path + i}
-                  className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200     ${liStyle}`}
+                  className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
                 >
                   <Link
                     href={link.path}
@@ -150,7 +150,7 @@ const NavLinks = ({
                     {item.links ? (
                       <>
                         <div
-                          className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
+                          className="flex items-center gap-1 text-white hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
                           onClick={() => setOpenIndex(isOpen ? null : i)}
                         >
                           {item.name}
@@ -180,7 +180,7 @@ const NavLinks = ({
                       <Link
                         href={String(item.path)}
                         onClick={handleLinkClick}
-                        className="w-full text-nav-foreground hover:text-nav-hover"
+                        className="w-full text-white hover:text-nav-hover"
                       >
                         {item.name}
                       </Link>
