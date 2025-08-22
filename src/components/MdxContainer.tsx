@@ -38,13 +38,13 @@ export default async function MdxContainer({
       <div
         id="content"
         className={`flex flex-col space-y-5 container m-auto ${
-          roots && roots.length > 0 ? "md:flex-row md:space-x-5" : "md:flex-col"
+          roots && roots.length > 0 ? "md:flex-row md:space-x-12" : "md:flex-col"
         } h-auto pt-5 px-2`}
       >
         {hasSideMenu && (
-          <div className="w-auto md:w-2/5  relative">{sideMenu}</div>
+          <div className="w-auto md:w-2/5 relative">{sideMenu}</div>
         )}
-        <section className="h-auto w-full border-t-2 md:border-l-2 p-3">
+        <section className="h-auto w-full border-t md:border-l p-3 dark:border-slate-400">
           {children}
         </section>
       </div>
