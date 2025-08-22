@@ -68,10 +68,10 @@ const NavLinks = ({
         {/* Show first 4 links normally on desktop */}
         {navigations.slice(0, 4).map((item, i) =>
           item.links ? (
-            <Dropdown label={item.label} key={`${item.label}-${i}`}>
+            <Dropdown label={item.label || item.name} key={`${item.name}-${i}`}>
               {item.links.map((link, i) => (
                 <div
-                  key={`${link.path ?? '#'}-${i}`}
+                  key={`${link.name}-${i}`}
                   className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200     ${liStyle}`}
                 >
                   <Link
@@ -79,25 +79,25 @@ const NavLinks = ({
                     onClick={handleLinkClick}
                     className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
                   >
-                    {(link.icon || matchIcons(item.name ?? item.label, link.name ?? link.label)) && (
+                    {(link.icon || matchIcons(item.name, link.name)) && (
                       <Icon
-                        icon={link.icon ?? matchIcons(item.name ?? item.label, link.name ?? link.label)}
+                        icon={link.icon ?? matchIcons(item.name, link.name)}
                         className="xl:w-6 w-4 h-4 xl:h-6"
                       />
                     )}
-                    {link.label}
+                    {link.label || link.name}
                   </Link>
                 </div>
               ))}
             </Dropdown>
           ) : (
             <Link
-              key={`${item.label}-${i}`}
+              key={`${item.name}-${i}`}
               href={item.path ?? '#'}
               onClick={handleLinkClick}
               className={`text-nav-foreground hover:text-nav-hover transition-colors duration-200 whitespace-nowrap`}
             >
-              {item.label}
+              {item.label || item.name}
             </Link>
           )
         )}
@@ -107,7 +107,7 @@ const NavLinks = ({
           <Dropdown label="More">
             {navigations.slice(4).map((item, i) => (
               <div
-                key={`${item.label}-${i}`}
+                key={`${item.name}-${i}`}
                 className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
               >
                 <Link
@@ -115,7 +115,7 @@ const NavLinks = ({
                   onClick={handleLinkClick}
                   className={`w-full text-nav-foreground `}
                 >
-                  {item.label}
+                  {item.label || item.name}
                 </Link>
               </div>
             ))}
@@ -126,10 +126,10 @@ const NavLinks = ({
       {/* Medium screens - show fewer links */}
       <div className="hidden md:flex lg:hidden items-center space-x-12">
         {navigations.slice(0, 3).map((item, i) => (
-          <Dropdown label={item.label} key={`${item.label}-${i}`}>
+          <Dropdown label={item.label || item.name} key={`${item.name}-${i}`}>
             {item.links?.map((link, i) => (
               <div
-                key={`${link.path ?? '#'}-${i}`}
+                key={`${link.name}-${i}`}
                 className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
               >
                 <Link
@@ -137,13 +137,13 @@ const NavLinks = ({
                   onClick={handleLinkClick}
                   className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
                 >
-                  {(link.icon || matchIcons(item.name ?? item.label, link.name ?? link.label)) && (
+                  {(link.icon || matchIcons(item.name, link.name)) && (
                     <Icon
-                      icon={link.icon ?? matchIcons(item.name ?? item.label, link.name ?? link.label)}
+                      icon={link.icon ?? matchIcons(item.name, link.name)}
                       className="xl:w-6 w-4 h-4 xl:h-6"
                     />
                   )}
-                  {link.label}
+                  {link.label || link.name}
                 </Link>
               </div>
             ))}
@@ -158,7 +158,7 @@ const NavLinks = ({
 
                 return (
                   <div
-                    key={`${item.label}-${i}`}
+                    key={`${item.name}-${i}`}
                     className="hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200"
                   >
                     {item.links ? (
@@ -167,7 +167,7 @@ const NavLinks = ({
                           className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
                           onClick={() => setOpenIndex(isOpen ? null : i)}
                         >
-                          {item.label}
+                          {item.label || item.name}
                           <ChevronDown
                             className={`h-4 w-4 transition-transform duration-200 ${
                               isOpen ? "rotate-180" : ""
@@ -177,7 +177,7 @@ const NavLinks = ({
                         {isOpen &&
                           item.links.map((link, j) => (
                             <div
-                              key={`${link.path ?? '#'}-${j}`}
+                              key={`${link.name}-${j}`}
                               className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
                             >
                               <Link
@@ -185,13 +185,13 @@ const NavLinks = ({
                                 onClick={handleLinkClick}
                                 className="flex items-center gap-2 text-sm w-full"
                               >
-                                {(link.icon || matchIcons(item.name ?? item.label, link.name ?? link.label)) && (
+                                {(link.icon || matchIcons(item.name, link.name)) && (
                                   <Icon
-                                    icon={link.icon ?? matchIcons(item.name ?? item.label, link.name ?? link.label)}
+                                    icon={link.icon ?? matchIcons(item.name, link.name)}
                                     className="xl:w-6 w-4 h-4 xl:h-6"
                                   />
                                 )}
-                                {link.label}
+                                {link.label || link.name}
                               </Link>
                             </div>
                           ))}
@@ -233,34 +233,34 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
     <div className="flex flex-col space-y-1 font-normal">
       {navigations.map((item, i) =>
         item.links ? (
-          <DropdownMobile label={item.label} key={`${item.label}-${i}`}>
+          <DropdownMobile label={item.label || item.name} key={`${item.name}-${i}`}>
             {item.links.map((link, i) => {
               return (
                 <Link
-                  key={`${link.label ?? '#'}-${i}`}
+                  key={`${link.name}-${i}`}
                   href={link.path ?? '#'}
                   onClick={handleLinkClick}
                   className={`flex items-center gap-2 px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 text-sm ${liStyle} text-slate-700`}
                 >
-                  {(link.icon || matchIcons(item.name ?? item.label, link.name ?? link.label)) && (
+                  {(link.icon || matchIcons(item.name, link.name)) && (
                     <Icon
-                      icon={link.icon ?? matchIcons(item.name ?? item.label, link.name ?? link.label)}
+                      icon={link.icon ?? matchIcons(item.name, link.name)}
                       className="xl:w-6 w-4 h-4 xl:h-6"
                     />
                   )}
-                  {link.label}
+                  {link.label || link.name}
                 </Link>
               );
             })}
           </DropdownMobile>
         ) : (
           <Link
-            key={`${item.label}-${i}`}
+            key={`${item.name}-${i}`}
             href={item.path ?? '#'}
             onClick={handleLinkClick}
             className={`px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 ${liStyle} dark:text-white`}
           >
-            {item.label}
+            {item.label || item.name}
           </Link>
         )
       )}
