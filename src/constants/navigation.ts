@@ -51,6 +51,11 @@ import {
 } from "react-icons/si";
 import { TbCircleLetterZ as Zingolabs } from "react-icons/tb";
 import { SiBrandfolder as BrandIcon } from "react-icons/si";
+import { MdDeveloperMode } from "react-icons/md";
+import { RiCommunityLine } from "react-icons/ri";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
+import { SiHomeassistant } from "react-icons/si";
+
 
 export const navigations = [
   {
@@ -63,7 +68,7 @@ export const navigations = [
       },
       {
         subName: "Wallets",
-        path: "/wallets",
+        path: "/using-zcash/wallets",
         icon: Wallet,
       },
       {
@@ -93,7 +98,7 @@ export const navigations = [
       },
       {
         subName: "Payment Processors",
-        path: "/payment-processors",
+        path: "/using-zcash/payment-processors",
         icon: MdPayment,
       },
     ],
@@ -234,23 +239,23 @@ export const navigations = [
   {
     name: "DAO",
     path: "/dao",
-    icon: "",
+    icon: RiCommunityLine,
   },
   {
     name: "Tutorials",
     path: "https://youtube.com/@zechub",
-    icon: "",
+    icon: LiaChalkboardTeacherSolid,
     newTab: true,
   },
   {
     name: "Developers",
     path: "/developers",
-    icon: "",
+    icon: MdDeveloperMode,
   },
   {
     name: "Contribute",
     path: "/contribute/help-build-zechub",
-    icon: "",
+    icon: SiHomeassistant,
   },
 ];
 
