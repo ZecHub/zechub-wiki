@@ -47,13 +47,13 @@ const exchanges: Exchange[] = [
     altText: "Gemini Custodian Exchange Logo",
   },
   {
-    name: "Huobi",
-    url: "https://huobi.com",
+    name: "HTX (former Huobi)",
+    url: "https://htx.com",
     pairs: "ALL/ZEC",
     support: "Transparent",
     depositTime: "35 Minutes",
-    logo: "https://seeklogo.com/images/H/huobi-global-logo-82DAA48E43-seeklogo.com.png",
-    altText: "Huobi Logo",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/c/c1/HTX_logo.png",
+    altText: "HTX Logo",
   },
   {
     name: "Kraken",

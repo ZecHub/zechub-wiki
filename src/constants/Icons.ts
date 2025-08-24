@@ -9,6 +9,8 @@ import {
   SiOpenvpn as Openvpn,
   SiZebratechnologies as Zebratechnologies,
   SiLetsencrypt as Letsencrypt,
+  SiBrave,
+  SiKeystone,
 } from "react-icons/si";
 import {
   PiShootingStarThin as ShootingStar,
@@ -32,6 +34,9 @@ import {
   RiArticleLine,
   RiSecurePaymentLine,
   RiInstallLine,
+  RiFunctionLine,
+  RiExchangeFundsLine,
+  RiBitCoinLine,
 } from "react-icons/ri";
 import {
   GrResources as Resources,
@@ -59,12 +64,10 @@ import {
   FaEthereum as Ethereum,
   FaQuestion,
   FaSyncAlt,
-  FaLaptop,
 } from "react-icons/fa";
 import {
   FcCurrencyExchange as CurrencyExchange,
   FcGallery,
-  FcMoneyTransfer,
   FcProcess,
   FcGlobe as Globe,
 } from "react-icons/fc";
@@ -87,10 +90,12 @@ import {
   MdOutlineLiveHelp as LiveHelp,
   MdOutlinePodcasts,
   MdFoundation,
+  MdVpnLock,
 } from "react-icons/md";
 import {
   LiaServerSolid as ServerSolid,
   LiaLinkSolid as LinkSolid,
+  LiaSignatureSolid,
 } from "react-icons/lia";
 import {
   BiLogoGraphql as LogoGraph,
@@ -161,6 +166,7 @@ const iconsForMenu: IconsFor = {
     "Blockchain Explorers": MagnifyingGlassChart,
     Wallets: Wallet,
     "Buying ZEC": CurrencyExchange,
+    "Metamask Snap": RiFunctionLine,
     Transactions: ArrowUp,
     "Transparent Exchange Addresses": RiSecurePaymentLine,
     "Mobile Top Ups": TbDeviceMobileShare,
@@ -172,18 +178,23 @@ const iconsForMenu: IconsFor = {
     "Payment Request URIs": MdOutlinePayments,
     "Recovering Funds": LifeRing,
     "Custodial Exchanges": ListAlt,
+    "Exchanges": RiExchangeFundsLine,
     "Zcash Wallet Syncing": FaSyncAlt,
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
+    "Keystone Zashi": SiKeystone,
     "Visualizing Zcash Addresses": QrCode,
     "Blockchain Explorers": ListMagnifyingGlassFill,
     "Maya Protocol": MayanPyramid,
     "Avalanche RedBridge": CableStayedBridge,
     "Akash Network": IoCloudUploadOutline,
+    "BTCPayServer Plugin": RiBitCoinLine,
     "Full Nodes": ServerSolid,
+    "Nym VPN": MdVpnLock,
     "Raspberry Pi 4 Full Node": RaspBerry,
     "Raspberry pi5 Zebra Lightwalletd Zingo": RaspBerry,
+    "Brave Wallet": SiBrave,
     "Raspberry pi 4 Zebra Node": Zebratechnologies,
     "Ywallet FROST Demo": TbSquareRoundedLetterY,
     "Zcash Devtool": TbCircleLetterZ,
@@ -195,6 +206,7 @@ const iconsForMenu: IconsFor = {
     "Zero-Knowledge vs Decoys": TopologyRing,
     "Visualizing the Zcash Network": LogoGraph,
     "Zcash Improvement Proposals": GrDocumentZip,
+    "Zkool Multisig": LiaSignatureSolid,
   },
   "Zcash Tech": {
     "Crosslink Protocol": Stakeholder,
@@ -285,5 +297,4 @@ export const matchIcons = (root: string, file: string) => {
       }
     }
   }
-  return "Nothing";
 };
