@@ -2,15 +2,16 @@ import {
   RiTwitterXFill as Twitter,
   RiGithubFill as Github,
   RiYoutubeFill as Youtube,
+  RiCommunityLine,
 } from "react-icons/ri";
-import {
-  BsDiscord as Discord,
-} from "react-icons/bs";
+import { BsDiscord as Discord } from "react-icons/bs";
 import {
   MdForum as Forum,
   MdOutlineOndemandVideo as AudioVideo,
+  MdDeveloperMode,
 } from "react-icons/md";
-import { SiBrandfolder as BrandIcon } from "react-icons/si";
+import { SiBrandfolder as BrandIcon, SiHomeassistant } from "react-icons/si";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { IconType } from "react-icons";
 
 export type NavigationItem = {
@@ -20,7 +21,7 @@ export type NavigationItem = {
   icon?: IconType;
   newTab?: boolean;
   links?: Array<NavigationItem>;
-}
+};
 
 export const navigations: Array<NavigationItem> = [
   {
@@ -37,7 +38,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Wallets",
-        path: "/wallets",
+        path: "/using-zcash/wallets",
       },
       {
         name: "Metamask Snap",
@@ -78,7 +79,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Payment Processors",
-        path: "/payment-processors",
+        path: "/using-zcash/payment-processors",
       },
       {
         name: "Recovering Funds",
@@ -291,68 +292,45 @@ export const navigations: Array<NavigationItem> = [
   {
     name: "DAO",
     path: "/dao",
+    icon: RiCommunityLine,
   },
   {
     name: "Tutorials",
     path: "https://youtube.com/@zechub",
+    icon: LiaChalkboardTeacherSolid,
     newTab: true,
   },
   {
     name: "Developers",
     path: "/developers",
+    icon: MdDeveloperMode,
   },
   {
     name: "Contribute",
     path: "/contribute/help-build-zechub",
+    icon: SiHomeassistant,
   },
 ];
 
 export const socialNav = [
-  {
-    name: "Discord",
-    url: "https://discord.gg/zcash",
-    icon: Discord,
-  },
+  { name: "Discord", url: "https://discord.gg/zcash", icon: Discord },
   {
     name: "Youtube",
     url: "https://www.youtube.com/channel/UC3-KM00kjCUheRzO5cq3PAA",
     icon: Youtube,
   },
-  {
-    name: "Twitter",
-    url: "https://x.com/zechub",
-    icon: Twitter,
-  },
-  {
-    name: "Github",
-    url: "https://github.com/ZecHub/zechub",
-    icon: Github,
-  },
+  { name: "Twitter", url: "https://x.com/zechub", icon: Twitter },
+  { name: "Github", url: "https://github.com/ZecHub/zechub", icon: Github },
 ];
 
 export const socialMedia = [
-  {
-    name: "Youtube",
-    link: "https://youtube.com/@zechub",
-  },
-  {
-    name: "Newsletter",
-    link: "https://zechub.substack.com/",
-  },
+  { name: "Youtube", link: "https://youtube.com/@zechub" },
+  { name: "Newsletter", link: "https://zechub.substack.com/" },
   {
     name: "Podcast",
     link: "https://www.youtube.com/watch?v=ILdMTGtVOD4&list=PL6_epn0lASLHlNCMtUErX8UfaJK6N9K5O",
   },
-  {
-    name: "Extras",
-    link: "https://extras.zechub.xyz/",
-  },
-  {
-    name: "DAO",
-    link: "https://vote.zechub.xyz/",
-  },
-  {
-    name: "Store",
-    link: "https://zechub.store/",
-  },
+  { name: "Extras", link: "https://extras.zechub.xyz/" },
+  { name: "DAO", link: "https://vote.zechub.xyz/" },
+  { name: "Store", link: "https://zechub.store/" },
 ];

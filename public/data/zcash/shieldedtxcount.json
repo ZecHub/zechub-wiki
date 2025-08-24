@@ -1659,5 +1659,53 @@
     "sapling": 222,
     "orchard": 602,
     "timestamp": "08/20/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 195,
+    "orchard": 703,
+    "timestamp": "08/21/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 194,
+    "orchard": 641,
+    "timestamp": "08/21/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 211,
+    "orchard": 661,
+    "timestamp": "08/21/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 215,
+    "orchard": 582,
+    "timestamp": "08/22/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 202,
+    "orchard": 601,
+    "timestamp": "08/22/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 155,
+    "orchard": 528,
+    "timestamp": "08/23/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 117,
+    "orchard": 552,
+    "timestamp": "08/23/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 176,
+    "orchard": 499,
+    "timestamp": "08/24/2025"
   }
 ]

@@ -24,7 +24,7 @@ export async function getFileContent(path: string) {
     // @ts-ignore
     return atob(res.data?.content)
   } catch (error) {
-    console.log(error);
+    console.log('getFileContent: ', error);
     return undefined
   }
 }
@@ -43,7 +43,7 @@ export async function getRoot(path: string) {
     return elements.filter((item: string) => item.endsWith(".md"))
  
   } catch (error) {
-    console.log(error);
+    console.log('getRoot: ', error);
     return undefined
   }
 }
@@ -62,10 +62,7 @@ export async function getSiteFolders(path: string){
     return elements
  
   } catch (error) {
-    console.log(error);
+    console.log('getSiteFolders: ', error);
     return undefined
   }
 }
-
-
-

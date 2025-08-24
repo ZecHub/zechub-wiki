@@ -219,7 +219,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               key={wallet.title}
               title={wallet.title}
               link={wallet.url}
-              logo={wallet.imageUrl}
+              logo={wallet.imageUrl.trim()}
               tags={[
                 { category: "Devices", values: [...wallet.devices] },
                 { category: "Pools", values: [...wallet.pools] },

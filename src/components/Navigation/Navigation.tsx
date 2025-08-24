@@ -40,7 +40,12 @@ const Dropdown = ({
         />
       </div>
       {isOpen && (
-        <div className="absolute top-full left-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[200px] py-0 mt-0 ">
+        <div
+          className="absolute top-full left-0 z-50 
+             bg-slate-100 text-slate-700 dark:bg-slate-900 
+             shadow-lg min-w-[600px] mt-0 
+             grid grid-cols-2 gap-2 p-2"
+        >
           {children}
         </div>
       )}
@@ -72,10 +77,10 @@ const NavLinks = ({
               {item.links.map((link, i) => (
                 <div
                   key={`${link.name}-${i}`}
-                  className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200     ${liStyle}`}
+                  className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
                 >
                   <Link
-                    href={link.path ?? '#'}
+                    href={link.path ?? "#"}
                     onClick={handleLinkClick}
                     className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
                   >
@@ -93,7 +98,7 @@ const NavLinks = ({
           ) : (
             <Link
               key={`${item.name}-${i}`}
-              href={item.path ?? '#'}
+              href={item.path ?? "#"}
               onClick={handleLinkClick}
               className={`text-nav-foreground hover:text-nav-hover transition-colors duration-200 whitespace-nowrap`}
             >
@@ -111,7 +116,7 @@ const NavLinks = ({
                 className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
               >
                 <Link
-                  href={item.path ?? '#'}
+                  href={item.path ?? "#"}
                   onClick={handleLinkClick}
                   className={`w-full text-nav-foreground `}
                 >
@@ -133,7 +138,7 @@ const NavLinks = ({
                 className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
               >
                 <Link
-                  href={link.path ?? '#'}
+                  href={link.path ?? "#"}
                   onClick={handleLinkClick}
                   className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
                 >
@@ -164,7 +169,7 @@ const NavLinks = ({
                     {item.links ? (
                       <>
                         <div
-                          className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
+                          className="flex items-center gap-1 text-white hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
                           onClick={() => setOpenIndex(isOpen ? null : i)}
                         >
                           {item.label || item.name}
@@ -181,13 +186,17 @@ const NavLinks = ({
                               className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
                             >
                               <Link
-                                href={link.path ?? '#'}
+                                href={link.path ?? "#"}
                                 onClick={handleLinkClick}
                                 className="flex items-center gap-2 text-sm w-full"
                               >
-                                {(link.icon || matchIcons(item.name, link.name)) && (
+                                {(link.icon ||
+                                  matchIcons(item.name, link.name)) && (
                                   <Icon
-                                    icon={link.icon ?? matchIcons(item.name, link.name)}
+                                    icon={
+                                      link.icon ??
+                                      matchIcons(item.name, link.name)
+                                    }
                                     className="xl:w-6 w-4 h-4 xl:h-6"
                                   />
                                 )}
@@ -198,9 +207,9 @@ const NavLinks = ({
                       </>
                     ) : (
                       <Link
-                        href={item.path ?? '#'}
+                        href={item.path ?? "#"}
                         onClick={handleLinkClick}
-                        className="w-full text-nav-foreground hover:text-nav-hover"
+                        className="w-full text-white hover:text-nav-hover"
                       >
                         {item.name}
                       </Link>
@@ -238,7 +247,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
               return (
                 <Link
                   key={`${link.name}-${i}`}
-                  href={link.path ?? '#'}
+                  href={link.path ?? "#"}
                   onClick={handleLinkClick}
                   className={`flex items-center gap-2 px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 text-sm ${liStyle} text-slate-700`}
                 >
@@ -256,7 +265,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
         ) : (
           <Link
             key={`${item.name}-${i}`}
-            href={item.path ?? '#'}
+            href={item.path ?? "#"}
             onClick={handleLinkClick}
             className={`px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 ${liStyle} dark:text-white`}
           >
@@ -383,7 +392,7 @@ const Navigation = () => {
 
             {/* Mobile menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger className="md:hidden">
+              <SheetTrigger className="md:hidden" asChild>
                 <Button
                   variant="ghost"
                   size="sm"
