@@ -89,6 +89,7 @@ const Dashboard = () => {
                       href="https://namada.zechub.wiki"
                       className="block w-full h-full"
                       onClick={() => setOpen(false)}
+                      target="_blank"
                     >
                       Namada
                     </Link>
