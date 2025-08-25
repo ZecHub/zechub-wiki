@@ -61,35 +61,5 @@ export default async function Page(props: {
     );
   }
 
-  /* <main>
-        <div className="flex justify-center w-full  mb-5 bg-transparent rounded pb-4">
-          <Image
-            className="w-full mb-5 object-cover "
-            alt="wiki-banner"
-            width={800}
-            height={50}
-            src={imgUrl != undefined ? imgUrl : "/wiki-banner.avif"}
-          />
-        </div>
-
-        <div
-          id="content"
-          className={`flex flex-col space-y-5 container m-auto ${
-            roots && roots.length > 0
-              ? "md:flex-row md:space-x-5"
-              : "md:flex-col"
-          } h-auto pt-5 px-2`}
-        >
-          {roots && roots.length > 0 && (
-            <div className="w-auto md:w-2/5  relative">
-              <SideMenu folder={slug[0]} roots={roots} />
-            </div>
-          )}
-          <section className="h-auto w-full border-t-2 md:border-l-2 p-3">
-            <MdxComponent source={content} slug={slug[1]} />
-          </section>
-        </div>
-      </main> */
-
   return notFound();
 }
