@@ -221,7 +221,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1823096501003866113/DChQwneD_400x400.jpg",
+      "https://pbs.twimg.com/profile_images/1935652504642965504/DKZa14WW_400x400.jpg",
     name: "Roosevelt Gordones",
     description: `Zcast Podcast en Español, Educator & Media Production.`,
     linkName: "Twitter",
@@ -257,7 +257,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1822334312043192320/MCmSNbZr_400x400.jpg",
+      "https://pbs.twimg.com/profile_images/1940210940449783808/_yRuRWlp_400x400.jpg",
     name: "Decentralistdan",
     description: "ᙇecosystem relations @ZcashFoundation",
     linkName: "Twitter",
