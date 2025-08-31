@@ -1,13 +1,15 @@
 "use client";
 
+import { formatString } from "@/lib/helpers";
 import Image from "next/image";
 import Link from "next/link";
-import { formatString } from "@/lib/helpers";
 
 type CardsProps = {
   title: string;
   url: string;
   thumbnailImage: any;
+  thumbnailImageWidth?: number;
+  thumbnailImageHeight?: number;
   description: string;
   [index: string]: any;
   ctaLabel: string;
@@ -18,6 +20,7 @@ type CardsProps = {
 };
 
 export const Card = (props: CardsProps) => (
+
   <div
     style={{ backgroundColor: "revert" }}
     className="bg-white rounded-lg border dark:border-slate-600 shadow flex flex-col justify-between mb-8 sm:mb-4"
@@ -25,10 +28,10 @@ export const Card = (props: CardsProps) => (
     <div>
       <Link href={props.url}>
         <Image
-          width={1000}
-          height={500}
+          width={props.thumbnailImageHeight || 1000}
+          height={props.thumbnailImageWidth || 500}
           src={props.thumbnailImage}
-          alt="Thumbnail 1"
+          alt={props.title}
           className="w-full h-48 object-cover mb-4 rounded-t bg-slate-50"
         />
       </Link>
@@ -52,11 +55,11 @@ export const Card = (props: CardsProps) => (
       )}
     </div>
 
-    <div className="p-4">
+    <div className="flex justify-between p-4">
       <Link
         href={props.url}
         target="_blank"
-        className="inline-flex py-2 px-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="inline-flex  py-2 px-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         {props.ctaLabel}
       </Link>
