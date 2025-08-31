@@ -11,7 +11,7 @@ export const metadata: Metadata = genMetadata({
 
 const ZcashProject = () => {
   return (
-    <main>
+    <main className="container mx-auto">
       <BrandComp />
     </main>
   );
