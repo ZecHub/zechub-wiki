@@ -1,6 +1,6 @@
 import MdxContainer from "@/components/MdxContainer";
 import SideMenu from "@/components/SideMenu/SideMenu";
-import { getFileContent, getRoot } from "@/lib/authAndFetch";
+import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
@@ -22,7 +22,7 @@ export async function generateMetadata({
 
   return genMetadata({
     title: slug ? `${capitalizedWord} | Zechub` : "Zechub",
-    url: "https://zechub.wiki/donation",
+    url: `https://zechub.wiki/${slug.join("/")}`,
   });
 }
 
@@ -36,17 +36,20 @@ const MdxComponent = dynamic(
 export default async function Page(props: {
   params: Promise<{ slug: string }>;
 }) {
-  const params = await props.params;
-  const { slug } = params;
+  const { slug } = await props.params;
   const url = getDynamicRoute(slug);
-  const markdown = await getFileContent(url);
+  const urlRoot = `/site/${slug[0]}`;
+
+  const [markdown, roots] = await Promise.all([
+    getFileContentCached(url),
+    getRootCached(urlRoot),
+  ]);
+
   const content = markdown ? markdown : "No Data or Wrong file";
+  if (slug[0] === ".well-known") return null;
 
   if (markdown) {
-    const urlRoot = `/site/${slug[0]}`;
-    const roots = await getRoot(urlRoot);
     const imgUrl = getBanner(slug[0]);
-
     console.log({ slug, url, urlRoot, roots, imgUrl });
 
     return (
@@ -63,3 +66,6 @@ export default async function Page(props: {
 
   return notFound();
 }
+
+// ✅ Enable ISR
+export const revalidate = 60; // Rebuild every 60s (tune as needed)
