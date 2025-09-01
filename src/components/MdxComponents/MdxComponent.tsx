@@ -1,8 +1,8 @@
-import remarkGfm from "remark-gfm";
-import rehypePrism from "rehype-prism-plus";
 import { compileMDX } from "next-mdx-remote/rsc";
-import MdxComponents  from "./ConfigComponent";
+import rehypePrism from "rehype-prism-plus";
+import remarkGfm from "remark-gfm";
 import ZecToZatsConverter from "../Converter/ZecToZatsConverter";
+import MdxComponents from "./ConfigComponent";
 
 type ContentSource = {
   source: string;
@@ -20,9 +20,11 @@ const MdxComponent = async ({ source, slug }: ContentSource) => {
         mdExtensions: [".md"],
       },
     },
-    
+
     components: MdxComponents,
   });
+
+  console.log({ content });
 
   return content ? (
     <>
