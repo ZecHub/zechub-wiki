@@ -2,6 +2,34 @@ import { socialIcons } from "@/components/UI/SvgIcons";
 
 
 export const daoMembers = [
+    {
+    imgUrl: "https://pbs.twimg.com/profile_images/1939712599857197056/uO46TIpy_400x400.jpg",
+    name: "Blakiat",
+    description: `Passionate about technology, advocate for free software, and obsessed with digital security. Here I share tips and discuss the digital future.`,
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/Blakiat",
+        icon: socialIcons.twitter,
+      },
+    ],
+    zcashAddress:
+      "u",
+  },
+    {
+    imgUrl: "https://pbs.twimg.com/profile_images/1828110665837387776/xHIp1JO9_400x400.jpg",
+    name: "Robmar",
+    description: `Cameraman, Photographer, Master Audio and Video Editor, Advertiser, Graphic Designer... Audiovisual solutions...`,
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/robmarn",
+        icon: socialIcons.twitter,
+      },
+    ],
+    zcashAddress:
+      "u",
+  },
   {
     imgUrl: "https://i.ibb.co/9HkZG5sg/IMG-20250301-114424-340.jpg",
     name: "AidenZ",
