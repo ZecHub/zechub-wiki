@@ -14,7 +14,7 @@ export const daoMembers = [
       },
     ],
     zcashAddress:
-      "u",
+      "u16jatma9euqxw7dujrjf2mzq2dm5r7z5kf8n0rsujva64c93p0kl42gu0pcxuttqvus2admaq2235hy2nds5vte3u0ygyszf6cdtv8hzqkec0kzhlp5hvz6nnhz6k6v8xz0v9lefxs4zl0j79mljkjtnqv4lxr28wqt709s6hkypmm2sm",
   },
     {
     imgUrl: "https://pbs.twimg.com/profile_images/1828110665837387776/xHIp1JO9_400x400.jpg",
