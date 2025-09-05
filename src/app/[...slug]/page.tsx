@@ -37,8 +37,10 @@ export default async function Page(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
+  console.log(params);
   const { slug } = params;
   const url = getDynamicRoute(slug);
+  console.log({ url });
   const markdown = await getFileContent(url);
   const content = markdown ? markdown : "No Data or Wrong file";
 

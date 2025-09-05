@@ -98,8 +98,7 @@ const lowercaseWords = [
   'The',
   'Vs',
   'And',
-  'Is',
-  'Zk',
+  'Is'
 ];
 const specialWordsMap = {
   Non_Custodial: 'Non-Custodial',
