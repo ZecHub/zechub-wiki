@@ -32,7 +32,7 @@ export const daoMembers = [
       },
     ],
     zcashAddress:
-      "u",
+      "u1lvl8tc5wsq4jp7mpzkpdvv5uxst5c2eslc8qcvm6h5f7u8t0y0kjgw238f2gxr65tj4ldt58d0h8j5yuw7rc8jh0r4pcaq6fx40pcxqrsvqhchr3llp99vysqc337cwt7ym5klvrmsl",
   },
   {
     imgUrl: "https://i.ibb.co/9HkZG5sg/IMG-20250301-114424-340.jpg",
