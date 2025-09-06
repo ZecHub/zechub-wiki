@@ -12,7 +12,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const param = await Promise.resolve(params);
-  const slug = param.slug;
+  const slug: any = param.slug;
   const word = slug[0];
   const firstLetter = word.charAt(0);
 
@@ -50,8 +50,7 @@ export default async function Page(props: {
 
   if (markdown) {
     const imgUrl = getBanner(slug[0]);
-    console.log({ slug, url, urlRoot, roots, imgUrl });
-
+  
     return (
       <MdxContainer
         hasSideMenu={!!roots && roots.length > 0}
