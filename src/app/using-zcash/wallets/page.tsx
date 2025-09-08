@@ -35,7 +35,7 @@ export default async function Page(props: {
   // const roots = await getRoot(urlRoot);
   const roots = await getRootCached(urlRoot);
 
-  const walletsParsed = parseMarkdown(content);
+  const walletsParsed = parseMarkdown(String(content));
   // console.log("Parsed Wallets:", walletsParsed); // Check parsed markdown output
 
   return (

@@ -33,7 +33,7 @@ export default async function Page(props: {
   ]);
   const content = markdown ? markdown : "No Data or Wrong file";
 
-  const paymentProcessors = parseProcessorMarkdown(content);
+  const paymentProcessors = parseProcessorMarkdown(String(content));
   console.log("payment-processors: ", {
     params,
     roots,
