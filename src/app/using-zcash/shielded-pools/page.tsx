@@ -14,7 +14,7 @@ export const metadata: Metadata = genMetadata({
 });
 
 const MdxComponent = dynamic(
-  () => import("@/components/MdxComponents/MdxComponent1"),
+  () => import("@/components/MdxComponents/MdxComponent"),
   {
     loading: () => <span className="text-center text-3xl">Loading...</span>,
   }
