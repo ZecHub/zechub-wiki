@@ -1,94 +1,109 @@
 import { parseProcessorMarkdown } from "@/lib/parseProcessorMarkdown";
 import { compileMDX } from "next-mdx-remote/rsc";
+import React from "react";
 import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
 import ZecToZatsConverter from "../Converter/ZecToZatsConverter";
 import PaymentProcessorList from "../PaymentProcessor/PaymentProcessorList";
 import MdxComponents from "./ConfigComponent";
+import type { MDXComponents } from "mdx/types";
 
-type ContentSource = {
+
+async function safeCompileMDX(
+  source: string,
+  components: MDXComponents
+) {
+  try {
+    const compiled = await compileMDX({
+      source,
+      options: {
+        parseFrontmatter: true,
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+          rehypePlugins: [rehypePrism],
+          mdExtensions: [".md"],
+        },
+      },
+      components,
+    });
+
+    return { content: compiled.content, error: null };
+  } catch (err) {
+    console.error(
+      "[MdxComponent] safeCompileMDX ultimately failed, rendering source as plaintext.",
+      err
+    );
+    return { content: null, error: err };
+  }
+}
+
+function MdxErrorBanner({ error }: { error: unknown }) {
+  return (
+    <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 mb-4 rounded">
+      <p className="font-semibold">⚠️ Invalid Markdown/MDX</p>
+      <p className="text-sm">
+        This page contains invalid Markdown/MDX and is being shown as raw text.
+      </p>
+      <details className="mt-2 text-xs">
+        <summary className="cursor-pointer">Error details</summary>
+        <pre className="whitespace-pre-wrap mt-1">
+          {String((error as Error).message || error)}
+        </pre>
+      </details>
+    </div>
+  );
+}
+
+export default async function MdxComponent({
+  source,
+  slug,
+}: {
   source: string;
   slug: string;
-};
+}) {
+  let body = null;
 
-const MdxComponent = async ({ source, slug }: ContentSource) => {
-  let content;
-  let body;
-
-  switch (slug) {
-    case "payment-processors": {
-      const paymentProcessors = parseProcessorMarkdown(source);
-
-      //  Still can render markdown if you want
-      const compiled = await compileMDX<{ title: string }>({
-        source,
-        options: {
-          parseFrontmatter: true,
-          mdxOptions: {
-            remarkPlugins: [remarkGfm],
-            rehypePlugins: [rehypePrism],
-            mdExtensions: [".md"],
-          },
-        },
-        components: MdxComponents,
-      });
-
-      content = compiled.content;
-      body = <PaymentProcessorList allProcessors={paymentProcessors as any} />;
-      break;
-    }
-
-    case "transactions": {
-      const compiled = await compileMDX({
-        source,
-        options: {
-          parseFrontmatter: true,
-          mdxOptions: {
-            remarkPlugins: [remarkGfm],
-            rehypePlugins: [rehypePrism],
-            mdExtensions: [".md"],
-          },
-        },
-        components: MdxComponents,
-      });
-
-      content = compiled.content;
-      body = <ZecToZatsConverter />;
-      break;
-    }
-
-    default: {
-      const compiled = await compileMDX({
-        source,
-        options: {
-          parseFrontmatter: true,
-          mdxOptions: {
-            remarkPlugins: [remarkGfm],
-            rehypePlugins: [rehypePrism],
-            mdExtensions: [".md"],
-          },
-        },
-        components: MdxComponents,
-      });
-
-      content = compiled.content;
-    }
+  // 🔹 slug-specific overrides
+  if (slug === "payment-processors") {
+    const paymentProcessors = parseProcessorMarkdown(source);
+    body = <PaymentProcessorList allProcessors={paymentProcessors as any} />;
+    return <>{body}</>;
   }
 
-  return (
-    <>
-      {slug === "payment-processors" ? (
-        body
-      ) : content ? (
-        <>
-          <div className="px-3">{content}</div>
-          {body}
-        </>
-      ) : (
-        <p className="text-center text-2xl">{source}</p>
-      )}
-    </>
-  );
-};
+  if (slug === "transactions") {
+    const { content, error } = await safeCompileMDX(source, MdxComponents);
+    return (
+      <>
+        {error ? (
+          <>
+            <MdxErrorBanner error={error} />
+            <pre className="whitespace-pre-wrap p-3 rounded text-sm">
+              {source}
+            </pre>
+          </>
+        ) : (
+          <>
+            <div className="px-3">{content}</div>
+            <ZecToZatsConverter />
+          </>
+        )}
+      </>
+    );
+  }
 
-export default MdxComponent;
+  // 🔹 default rendering (MetaMaskSnap, guides, etc.)
+  const { content, error } = await safeCompileMDX(source, MdxComponents);
+
+  if (error) {
+    return (
+      <div className="px-3">
+        <MdxErrorBanner error={error} />
+        <pre className="whitespace-pre-wrap p-3 rounded text-sm">
+          {source}
+        </pre>
+      </div>
+    );
+  }
+
+  return <div className="px-3">{content}</div>;
+}
