@@ -1,4 +1,6 @@
 export function MdxFetchError({ error }: { error: unknown }) {
+  console.error({ MdxFetchError: error });
+  
   const message = getFriendlyError(error);
 
   return (
