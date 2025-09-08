@@ -10,13 +10,14 @@ type ContentSource = {
 };
 
 const MdxComponent = async ({ source, slug }: ContentSource) => {
+  console.log(source);
   const { content } = await compileMDX<{ title: string }>({
     source: source,
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [rehypePrism],
+        // remarkPlugins: [remarkGfm],
+        // rehypePlugins: [rehypePrism],
         mdExtensions: [".md"],
       },
     },
