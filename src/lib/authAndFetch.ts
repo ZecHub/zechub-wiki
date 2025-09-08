@@ -45,15 +45,20 @@ const TTL_MS = 60_000; // This keep fresh for 60s, still 'runtime fresh' for mos
 
 export const getFileContentCached = unstable_cache(
   async (path: string) => {
-    const res = await octokit.rest.repos.getContent({
-      owner,
-      repo,
-      path,
-      ref: BRANCH,
-    });
+    try {
+      const res = await octokit.rest.repos.getContent({
+        owner,
+        repo,
+        path,
+        ref: BRANCH,
+      });
 
-    // @ts-ignore
-    return atob(res.data?.content);
+      // @ts-ignore
+      return atob(res.data?.content);
+    } catch (err) {
+      console.error("[getFileContent] failed:", err);
+      return { error: err as Error };
+    }
   },
   ["github-md-cache"],
   { revalidate: 60 * 5 } // cache for 5 min
@@ -92,7 +97,6 @@ export const getRootCached = unstable_cache(
   ["github-md-cache"],
   { revalidate: 60 * 5 } // cache for 5 min
 );
-
 
 export async function getRoot(path: string) {
   try {
