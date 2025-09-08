@@ -7,12 +7,9 @@ import ZecToZatsConverter from "../Converter/ZecToZatsConverter";
 import PaymentProcessorList from "../PaymentProcessor/PaymentProcessorList";
 import MdxComponents from "./ConfigComponent";
 import type { MDXComponents } from "mdx/types";
+import { MdxFetchError } from "../MdxFetchError";
 
-
-async function safeCompileMDX(
-  source: string,
-  components: MDXComponents
-) {
+async function safeCompileMDX(source: string, components: MDXComponents) {
   try {
     const compiled = await compileMDX({
       source,
@@ -33,6 +30,7 @@ async function safeCompileMDX(
       "[MdxComponent] safeCompileMDX ultimately failed, rendering source as plaintext.",
       err
     );
+
     return { content: null, error: err };
   }
 }
@@ -58,16 +56,24 @@ export default async function MdxComponent({
   source,
   slug,
 }: {
-  source: string;
+  source: string | { error: Error };
   slug: string;
 }) {
   let body = null;
+
+  // If the "source" itself is an error object, short-circuit
+  if (typeof source !== "string") {
+    return <MdxFetchError error={source} />;
+  }
 
   // 🔹 slug-specific overrides
   if (slug === "payment-processors") {
     const paymentProcessors = parseProcessorMarkdown(source);
     body = <PaymentProcessorList allProcessors={paymentProcessors as any} />;
     return <>{body}</>;
+  }
+  if (slug === "payment-request-uris") {
+    console.log({ source, slug });
   }
 
   if (slug === "transactions") {
@@ -98,9 +104,7 @@ export default async function MdxComponent({
     return (
       <div className="px-3">
         <MdxErrorBanner error={error} />
-        <pre className="whitespace-pre-wrap p-3 rounded text-sm">
-          {source}
-        </pre>
+        <pre className="whitespace-pre-wrap p-3 rounded text-sm">{source}</pre>
       </div>
     );
   }
