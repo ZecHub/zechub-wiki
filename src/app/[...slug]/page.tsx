@@ -50,7 +50,8 @@ export default async function Page(props: {
 
   if (markdown) {
     const imgUrl = getBanner(slug[0]);
-  
+    console.log('[...slug]:', { slug, url, urlRoot, roots, imgUrl });
+
     return (
       <MdxContainer
         hasSideMenu={!!roots && roots.length > 0}
