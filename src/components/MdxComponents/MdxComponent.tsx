@@ -1,13 +1,12 @@
 import { parseProcessorMarkdown } from "@/lib/parseProcessorMarkdown";
+import type { MDXComponents } from "mdx/types";
 import { compileMDX } from "next-mdx-remote/rsc";
-import React from "react";
 import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
 import ZecToZatsConverter from "../Converter/ZecToZatsConverter";
+import { MdxFetchError } from "../MdxFetchError";
 import PaymentProcessorList from "../PaymentProcessor/PaymentProcessorList";
 import MdxComponents from "./ConfigComponent";
-import type { MDXComponents } from "mdx/types";
-import { MdxFetchError } from "../MdxFetchError";
 
 async function safeCompileMDX(source: string, components: MDXComponents) {
   try {
@@ -72,8 +71,10 @@ export default async function MdxComponent({
     body = <PaymentProcessorList allProcessors={paymentProcessors as any} />;
     return <>{body}</>;
   }
+
   if (slug === "payment-request-uris") {
-    console.log({ source, slug });
+    const { content, error } = await safeCompileMDX(source, MdxComponents);
+    console.log({ slug, source, content, error });
   }
 
   if (slug === "transactions") {
@@ -97,7 +98,6 @@ export default async function MdxComponent({
     );
   }
 
-  // 🔹 default rendering (MetaMaskSnap, guides, etc.)
   const { content, error } = await safeCompileMDX(source, MdxComponents);
 
   if (error) {
