@@ -50,7 +50,7 @@ export default async function Page(props: {
 
   if (markdown) {
     const imgUrl = getBanner(slug[0]);
-    console.log('[...slug]:', { slug, url, urlRoot, roots, imgUrl });
+    console.log("[...slug]:", { slug, url, urlRoot, roots, imgUrl });
 
     return (
       <MdxContainer
@@ -59,7 +59,7 @@ export default async function Page(props: {
         roots={roots ?? []}
         heroImage={{ src: imgUrl }}
       >
-        <MdxComponent source={content} slug={slug[1]} />
+        <MdxComponent source={String(content)} slug={slug[1]} />
       </MdxContainer>
     );
   }
