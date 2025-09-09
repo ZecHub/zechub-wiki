@@ -66,3 +66,29 @@ export async function getSiteFolders(path: string){
     return undefined
   }
 }
+
+
+export async function getRootFileName(path: string) {
+  try {
+    const res = await octokit.rest.repos.getContent({
+      owner: owner,
+      repo: repo,
+      path: transformUri(path).replace('/Site', '/site'),
+      ref: BRANCH
+    });
+
+    const data = res.data;
+    const elements = getFiles(data);
+
+    return elements
+      .filter((item: string) => item.endsWith(".md"))
+      .map((item: string) => {
+        const fileName = item.split("/").pop() || ""; // get last part of path
+        return fileName.replace(/\.md$/, ""); // remove extension
+      });
+  } catch (error) {
+    console.log("getRoot: ", error);
+    return undefined;
+  }
+}
+

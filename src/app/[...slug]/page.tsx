@@ -5,6 +5,7 @@ import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+import { serialize } from 'next-mdx-remote/serialize';
 
 export async function generateMetadata({
   params,
@@ -37,12 +38,13 @@ export default async function Page(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
-  console.log(params);
   const { slug } = params;
   const url = getDynamicRoute(slug);
-  console.log({ url });
+
+  console.log({url });
   const markdown = await getFileContent(url);
   const content = markdown ? markdown : "No Data or Wrong file";
+
 
   if (markdown) {
     const urlRoot = `/site/${slug[0]}`;

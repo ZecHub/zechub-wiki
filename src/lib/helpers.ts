@@ -98,7 +98,8 @@ const lowercaseWords = [
   'The',
   'Vs',
   'And',
-  'Is'
+  'Is',
+  'Zk',
 ];
 const specialWordsMap = {
   Non_Custodial: 'Non-Custodial',
@@ -118,6 +119,11 @@ const specialWordsMap = {
   ZECweekly: 'ZecWeekly',
   ZECWeekly: 'ZecWeekly',
   Help_Build_ZecHub: 'Help_build_ZecHub',
+  zkool_Multisig : 'Zkool_Multisig',
+  Zenith_installation : 'Zenith_Installation',
+  Raspberry_Pi5_Zebra_Lightwalletd_Zingo : "Raspberry_pi5_Zebra_Lightwalletd_Zingo",
+  Btcpayserver_Zcash_Plugin : "BTCPayServer_Zcash_Plugin",
+  Uris: 'URIs',
 };
 
 export const transformUri = (uri: string, ignoreLowerCase = false) => {
