@@ -1,4 +1,3 @@
-// src/app/payment-processors/page.tsx
 import PaymentProcessorList from "@/components/PaymentProcessor/PaymentProcessorList";
 import { getFileContentCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner } from "@/lib/helpers";
@@ -9,7 +8,7 @@ const imgUrl = getBanner(`using-zcash`);
 
 export const metadata: Metadata = genMetadata({
   title: "Payment Processors | Zechub",
-  url: "https://zechub.wiki/using-zcash/payment-processors",
+  url: "https://zechub.wiki/using-zcash/using-zcash/payment-processors",
   image: imgUrl,
 });
 
@@ -17,14 +16,7 @@ export default async function Page(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
-
-  // const { slug } = params;
-  // const { slug } = await props.params;
-
   const url = "site/Using_Zcash/Payment_Processors.md";
-  // const url = getDynamicRoute(slug);
-  // const urlRoot = `/site/${slug[0]}`;
-  const urlRoot = "site/using-zcash";
 
   const [markdown, roots] = await Promise.all([
     getFileContentCached(url),
@@ -34,12 +26,6 @@ export default async function Page(props: {
   const content = markdown ? markdown : "No Data or Wrong file";
 
   const paymentProcessors = parseProcessorMarkdown(String(content));
-  console.log("payment-processors: ", {
-    params,
-    roots,
-    content,
-    // paymentProcessors,
-  });
 
   return (
     <main>
