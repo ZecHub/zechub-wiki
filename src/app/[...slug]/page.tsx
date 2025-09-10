@@ -1,7 +1,6 @@
 import MdxContainer from "@/components/MdxContainer";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
-import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
@@ -18,12 +17,14 @@ export async function generateMetadata({
   const firstLetter = word.charAt(0);
 
   const firstLetterCap = firstLetter.toUpperCase();
-  const remainingLetters = word.slice(1);
+  const remainingLetters = word.slice(1).replace(/-/g, " ");
+  console.log({ firstLetter, firstLetterCap, remainingLetters });
   const capitalizedWord = firstLetterCap + remainingLetters;
 
   return genMetadata({
-    title: slug ? `${capitalizedWord} | Zechub` : "Zechub",
-    url: `https://zechub.wiki/${slug.join("/")}`,
+    title: slug
+      ? `Zechub - ${capitalizedWord} | ${slug[1].replace(/-/g, " ")}`
+      : "Zechub",
     url: `https://zechub.wiki/${slug.join("/")}`,
   });
 }
@@ -47,15 +48,7 @@ export default async function Page(props: {
     getRootCached(urlRoot),
   ]);
 
-  const urlRoot = `/site/${slug[0]}`;
-
-  const [markdown, roots] = await Promise.all([
-    getFileContentCached(url),
-    getRootCached(urlRoot),
-  ]);
-
   const content = markdown ? markdown : "No Data or Wrong file";
-  if (slug[0] === ".well-known") return null;
   if (slug[0] === ".well-known") return null;
 
   if (markdown) {
@@ -76,9 +69,6 @@ export default async function Page(props: {
 
   return notFound();
 }
-
-// ✅ Enable ISR
-export const revalidate = 60; // Rebuild every 60s (tune as needed)
 
 // ✅ Enable ISR
 export const revalidate = 60; // Rebuild every 60s (tune as needed)
