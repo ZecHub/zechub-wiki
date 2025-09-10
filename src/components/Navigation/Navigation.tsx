@@ -360,7 +360,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
           {/* Logo */}
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
-            <Logo />
+            <Logo theme={dark}/>
           </Link>
 
           {/* Desktop & Tablet Nav */}

@@ -1,9 +1,12 @@
 import Image from "next/image";
 
-const Logo = () => (
+type LogoProps = {
+  theme?: boolean;
+};
+const Logo = (props: LogoProps) => (
   <Image
     priority
-    src={"/ZecHubBlue.png"}
+    src={props.theme ? "/zechubLogo-white.png" : "/ZecHubBlue.png"}
     alt={"Logo"}
     width={60}
     height={60}
