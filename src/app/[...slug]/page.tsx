@@ -5,6 +5,7 @@ import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+import { serialize } from 'next-mdx-remote/serialize';
 
 export async function generateMetadata({
   params,
@@ -72,3 +73,4 @@ export default async function Page(props: {
 
 // ✅ Enable ISR
 export const revalidate = 60; // Rebuild every 60s (tune as needed)
+

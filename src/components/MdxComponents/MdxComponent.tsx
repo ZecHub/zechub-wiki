@@ -8,6 +8,7 @@ import { MdxFetchError } from "../MdxFetchError";
 import PaymentProcessorList from "../PaymentProcessor/PaymentProcessorList";
 import MdxComponents from "./ConfigComponent";
 
+
 async function safeCompileMDX(source: string, components: MDXComponents) {
   try {
     const compiled = await compileMDX({
@@ -33,6 +34,7 @@ async function safeCompileMDX(source: string, components: MDXComponents) {
     return { content: null, error: err };
   }
 }
+
 
 function MdxErrorBanner({ error }: { error: unknown }) {
   return (
@@ -65,7 +67,7 @@ export default async function MdxComponent({
     return <MdxFetchError error={source} />;
   }
 
-  // 🔹 slug-specific overrides
+  // slug-specific overrides
   if (slug === "payment-processors") {
     const paymentProcessors = parseProcessorMarkdown(source);
     body = <PaymentProcessorList allProcessors={paymentProcessors as any} />;
