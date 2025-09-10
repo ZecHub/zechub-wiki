@@ -2,6 +2,38 @@ import { socialIcons } from "@/components/UI/SvgIcons";
 
 
 export const daoMembers = [
+    {
+    imgUrl: "https://pbs.twimg.com/profile_images/1939712599857197056/uO46TIpy_400x400.jpg",
+    name: "Blakiat",
+    description: `Passionate about technology, advocate for free software, and obsessed with digital security. Here I share tips and discuss the digital future.`,
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/Blakiat",
+        icon: socialIcons.twitter,
+      },
+      {
+        name: "Free2Z",
+        url: "https://free2z.cash/Tingo",
+      },
+    ],
+    zcashAddress:
+      "u16jatma9euqxw7dujrjf2mzq2dm5r7z5kf8n0rsujva64c93p0kl42gu0pcxuttqvus2admaq2235hy2nds5vte3u0ygyszf6cdtv8hzqkec0kzhlp5hvz6nnhz6k6v8xz0v9lefxs4zl0j79mljkjtnqv4lxr28wqt709s6hkypmm2sm",
+  },
+    {
+    imgUrl: "https://pbs.twimg.com/profile_images/1828110665837387776/xHIp1JO9_400x400.jpg",
+    name: "Robmar",
+    description: `Cameraman, Photographer, Master Audio and Video Editor, Advertiser, Graphic Designer... Audiovisual solutions...`,
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/robmarn",
+        icon: socialIcons.twitter,
+      },
+    ],
+    zcashAddress:
+      "u1lvl8tc5wsq4jp7mpzkpdvv5uxst5c2eslc8qcvm6h5f7u8t0y0kjgw238f2gxr65tj4ldt58d0h8j5yuw7rc8jh0r4pcaq6fx40pcxqrsvqhchr3llp99vysqc337cwt7ym5klvrmsl",
+  },
   {
     imgUrl: "https://i.ibb.co/9HkZG5sg/IMG-20250301-114424-340.jpg",
     name: "AidenZ",
@@ -221,7 +253,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1823096501003866113/DChQwneD_400x400.jpg",
+      "https://pbs.twimg.com/profile_images/1935652504642965504/DKZa14WW_400x400.jpg",
     name: "Roosevelt Gordones",
     description: `Zcast Podcast en Español, Educator & Media Production.`,
     linkName: "Twitter",
@@ -257,7 +289,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1822334312043192320/MCmSNbZr_400x400.jpg",
+      "https://pbs.twimg.com/profile_images/1940210940449783808/_yRuRWlp_400x400.jpg",
     name: "Decentralistdan",
     description: "ᙇecosystem relations @ZcashFoundation",
     linkName: "Twitter",
