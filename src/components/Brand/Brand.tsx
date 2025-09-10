@@ -16,11 +16,12 @@ const toBase64Url = (str: string) => {
 
 const BrandComp = () => {
   return (
-    <div className="zcash-projects-container">
-      <div className="text-center">
+    <div className="zcash-projects-container px-4">
+      <div className="text-center ">
         <h1 className="dark:text-slate-100 text-slate-800">Brand</h1>
         <p className="dark:text-slate-400 text-slate-800 text-lg">
-          Downloads for Zcash Ecosystem Brand Asset Folders are accessible below!{" "}
+          Downloads for Zcash Ecosystem Brand Asset Folders are accessible
+          below!{" "}
           <a
             href="/downloads/brand/Midia Kit Ecossistema Zcash.zip"
             download="brand.zip"

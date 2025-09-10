@@ -1,10 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { HTMLProps, JSX } from "react";
+import React, { HTMLProps, JSX } from "react";
 import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import type { MDXComponents } from "mdx/types";
 
 const MdxComponents = {
+  Video: (props: React.VideoHTMLAttributes<HTMLVideoElement>) => (
+    <video {...props} />
+  ),
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => {
     if (props.src?.startsWith("/"))
       props.src = "https://github.com/ZecHub/zechub/tree/main" + props.src;
@@ -133,6 +136,6 @@ const MdxComponents = {
   ),
   br: () => <br />,
   hr: () => <hr />,
-} as MDXComponents ;
+} as MDXComponents;
 
 export default MdxComponents;
