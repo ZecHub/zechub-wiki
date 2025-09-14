@@ -121,7 +121,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
               <li
                 className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
               >
-                <Link href="/using-zcash/wallets">
+                <Link href="/wallets">
                   <div className={`flex items-center space-x-4`}>
                     <div className="flex-shrink-0">
                       <Icon icon={Wallet} />
@@ -140,7 +140,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
               <li
                 className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
               >
-                <Link href="/using-zcash/payment-processors">
+                <Link href="/payment-processors">
                   <div className={`flex items-center space-x-4`}>
                     <div className="flex-shrink-0">
                       <Icon icon={MdPayment} />
