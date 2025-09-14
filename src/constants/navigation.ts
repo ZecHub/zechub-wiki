@@ -173,7 +173,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Brand",
-        path: "/brand",
+        path: "/zcash-organizations/brand",
         icon: BrandIcon,
       },
       {

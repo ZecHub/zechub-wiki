@@ -1773,5 +1773,59 @@
     "sapling": 154,
     "orchard": 331,
     "timestamp": "09/05/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 167,
+    "orchard": 338,
+    "timestamp": "09/06/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 162,
+    "orchard": 448,
+    "timestamp": "09/07/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 212,
+    "orchard": 375,
+    "timestamp": "09/08/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 203,
+    "orchard": 343,
+    "timestamp": "09/09/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 197,
+    "orchard": 398,
+    "timestamp": "09/10/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 143,
+    "orchard": 359,
+    "timestamp": "09/11/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 178,
+    "orchard": 371,
+    "timestamp": "09/12/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 186,
+    "orchard": 326,
+    "timestamp": "09/13/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 226,
+    "orchard": 288,
+    "timestamp": "09/13/2025"
   }
 ]

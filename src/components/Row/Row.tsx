@@ -76,11 +76,13 @@ const Row: React.FC = () => {
   return (
     <div
       className={
-        "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        "grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       }
     >
       {projects.map((project, index) => (
         <Card
+          thumbnailImageHeight={100}
+          thumbnailImageWidth={500}
           thumbnailImage={project.imageUrl}
           description={project.description}
           title={project.title}

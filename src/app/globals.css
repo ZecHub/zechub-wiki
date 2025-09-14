@@ -1,6 +1,18 @@
+@import "nprogress/nprogress.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ 
+
+  
+#nprogress .bar {
+  /* background: #f88185 !important; */
+  background: rgb(250 202 21 / var(--tw-bg-opacity)) !important;
+  height: 1px !important;
+}
+
 
 html {
   scroll-behavior: smooth;

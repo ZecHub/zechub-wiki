@@ -1,7 +1,11 @@
 // src/app/wallets/page.tsx
 import React from "react";
 import Image from "next/image";
-import { getFileContent, getRoot } from "@/lib/authAndFetch";
+import {
+  getFileContent,
+  getFileContentCached, getRoot,
+  getRootCached,
+} from "@/lib/authAndFetch";
 import { getBanner } from "@/lib/helpers";
 import { parseMarkdown } from "@/lib/parseMarkdown";
 import WalletList from "@/components/Wallet/WalletList";
@@ -23,13 +27,15 @@ export default async function Page(props: {
   const { slug } = params;
   const url = `/site/Using_Zcash/Wallets.md`;
 
-  const markdown = await getFileContent(url);
+  // const markdown = await getFileContent(url);
+  const markdown = await getFileContentCached(url);
 
   const content = markdown ? markdown : "No Data or Wrong file";
   const urlRoot = `/site/using-zcash`;
-  const roots = await getRoot(urlRoot);
+  // const roots = await getRoot(urlRoot);
+  const roots = await getRootCached(urlRoot);
 
-  const walletsParsed = parseMarkdown(content);
+  const walletsParsed = parseMarkdown(String(content));
   // console.log("Parsed Wallets:", walletsParsed); // Check parsed markdown output
 
   return (

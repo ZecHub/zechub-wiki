@@ -9,9 +9,9 @@ import Logo from "../UI/Logo";
 import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
 import SocialIcons from "../UI/SocialIcons";
 
+import { matchIcons } from "@/constants/Icons";
 import { ChevronDown, Menu, Moon, Search, Sun } from "lucide-react";
 import { Button } from "../UI/button";
-import { matchIcons } from "@/constants/Icons";
 import { Icon } from "../UI/Icon";
 
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
@@ -80,6 +80,7 @@ const NavLinks = ({
                   className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
                 >
                   <Link
+                    prefetch
                     href={link.path ?? "#"}
                     onClick={handleLinkClick}
                     className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
@@ -97,6 +98,7 @@ const NavLinks = ({
             </Dropdown>
           ) : (
             <Link
+              prefetch
               key={`${item.name}-${i}`}
               href={item.path ?? "#"}
               onClick={handleLinkClick}
@@ -116,6 +118,7 @@ const NavLinks = ({
                 className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
               >
                 <Link
+                  prefetch
                   href={item.path ?? "#"}
                   onClick={handleLinkClick}
                   className={`w-full text-nav-foreground `}
@@ -138,6 +141,7 @@ const NavLinks = ({
                 className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
               >
                 <Link
+                  prefetch
                   href={link.path ?? "#"}
                   onClick={handleLinkClick}
                   className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
@@ -186,6 +190,7 @@ const NavLinks = ({
                               className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
                             >
                               <Link
+                                prefetch
                                 href={link.path ?? "#"}
                                 onClick={handleLinkClick}
                                 className="flex items-center gap-2 text-sm w-full"
@@ -207,6 +212,7 @@ const NavLinks = ({
                       </>
                     ) : (
                       <Link
+                        prefetch
                         href={item.path ?? "#"}
                         onClick={handleLinkClick}
                         className="w-full text-white hover:text-nav-hover"
@@ -225,6 +231,7 @@ const NavLinks = ({
       {/* CTA buttons - responsive */}
       <div className="hidden md:flex items-center space-x-8 ml-6">
         <Link
+          prefetch
           href="/dashboard"
           onClick={handleLinkClick}
           className="text-cta-primary hover:bg-cta-primary hover:text-white transition-colors duration-200"
@@ -242,10 +249,14 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
     <div className="flex flex-col space-y-1 font-normal">
       {navigations.map((item, i) =>
         item.links ? (
-          <DropdownMobile label={item.label || item.name} key={`${item.name}-${i}`}>
+          <DropdownMobile
+            label={item.label || item.name}
+            key={`${item.name}-${i}`}
+          >
             {item.links.map((link, i) => {
               return (
                 <Link
+                  prefetch
                   key={`${link.name}-${i}`}
                   href={link.path ?? "#"}
                   onClick={handleLinkClick}
@@ -264,6 +275,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
           </DropdownMobile>
         ) : (
           <Link
+            prefetch
             key={`${item.name}-${i}`}
             href={item.path ?? "#"}
             onClick={handleLinkClick}
@@ -278,6 +290,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
       <div className="flex flex-col">
         <div className="flex flex-col space-y-3 my-8 border-t border-slate-400 dark:border-slate-50 "></div>
         <Link
+          prefetch
           href="/dashboard"
           onClick={handleLinkClick}
           className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
@@ -346,8 +359,8 @@ const Navigation = () => {
       <div className="container mx-auto">
         <div className="flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
           {/* Logo */}
-          <Link href="/" className="shrink-0 hover:cursor-pointer">
-            <Logo />
+          <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
+            <Logo theme={dark}/>
           </Link>
 
           {/* Desktop & Tablet Nav */}
