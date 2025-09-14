@@ -38,7 +38,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Wallets",
-        path: "/using-zcash/wallets",
+        path: "/wallets",
       },
       {
         name: "Metamask Snap",
@@ -79,7 +79,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Payment Processors",
-        path: "/using-zcash/payment-processors",
+        path: "/payment-processors",
       },
       {
         name: "Recovering Funds",
