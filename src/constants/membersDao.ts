@@ -358,7 +358,7 @@ export const daoMembers = [
     imgUrl:
       "https://pbs.twimg.com/profile_images/1822429578943451136/Q3og94Zy_400x400.jpg",
     name: "vito",
-    description: `Data Security Analyst & Community Manager at Zcash Brasil.`,
+    description: `Data Security Analyst & Core Team Member of ZecHub.`,
     linkName: "Twitter",
     urlLink: "https://twitter.com/vitozkp",
     social: [
@@ -374,7 +374,7 @@ export const daoMembers = [
   {
     imgUrl: "https://i.ibb.co/rbMZ67Y/profile.jpg",
     name: "zksquirrel",
-    description: `Core Contributor on ZecHub and Community Note Taker for Zcash Arborist
+    description: `Core Contributor on ZecHub, Prev. Community Note Taker for Zcash Arborist
         and development of the Zcash ecosystem.`,
     linkName: "Twitter",
     urlLink: "https://twitter.com/zksquirrel",
