@@ -1,5 +1,5 @@
 import { contentBanners } from '@/constants/contentBanners';
-import { getRoot, getRootCached } from './authAndFetch';
+import { getRootCached } from './authAndFetch';
 
 type MetadataOpts = {
   title?: string,
@@ -65,7 +65,6 @@ export const getFolders = (folder: string[]) => {
 export const firstFileForFolders = async (folders: string[]) => {
   let files: string[] = [''];
   for (let i = 0; i <= folders.length; i++) {
-    // const res = await getRoot(folders[i]);
     const res = await getRootCached(folders[i]);
     files.push(res[0]);
   }

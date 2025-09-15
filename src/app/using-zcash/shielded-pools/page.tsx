@@ -27,13 +27,13 @@ export default async function Page(props: {
   const { slug } = params;
   const url = `/site/Using_Zcash/Shielded_Pools.md`;
 
-  // const markdown = await getFileContent(url);
-  const markdown = await getFileContentCached(url);
+  const urlRoot = `/site/using-zcash`;
+  const [markdown, roots] = await Promise.all([
+    getFileContentCached(url),
+    getRootCached(urlRoot),
+  ]);
 
   const content = markdown ? markdown : "No Data or Wrong file";
-  const urlRoot = `/site/using-zcash`;
-  // const roots = await getRoot(urlRoot);
-  const roots = await getRootCached(urlRoot);
 
   return (
     <MdxContainer

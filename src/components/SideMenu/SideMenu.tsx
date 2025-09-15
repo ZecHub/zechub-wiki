@@ -2,7 +2,6 @@
 import { matchIcons } from "@/constants/Icons";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   BiRightArrowAlt as Arrow,
@@ -33,8 +32,6 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
   const name = folder[0].toUpperCase() + folder.slice(1);
 
   const fold = getName(name);
-  console.log("Fold:", fold);
-  const router = useRouter();
 
   return (
     <div className="relative flex flex-wrap items-center md:items-start order-1 justify-between md:flex-col">
