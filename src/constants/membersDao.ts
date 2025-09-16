@@ -12,6 +12,9 @@ export const daoMembers = [
         url: "https://x.com/JamesKatzCrypto",
         icon: socialIcons.twitter,
       },
+    zcashAddress:
+      "u",
+  },
     {
     imgUrl: "https://pbs.twimg.com/profile_images/1939712599857197056/uO46TIpy_400x400.jpg",
     name: "Blakiat",
