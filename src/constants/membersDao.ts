@@ -280,7 +280,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png",
+      "https://pbs.twimg.com/profile_images/1918083458598932480/GgprijAp_400x400.jpg",
     name: "Michae2xl",
     description: `1 year+ as Zcash Brazil ambassador, Software Engineer & Product Owner, known as Michae2xl on social media, has
         been 7+ years in the crypto space, worked for a DAO as a Community Manager in Brazil & Canada for almost 4
