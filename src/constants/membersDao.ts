@@ -3,6 +3,16 @@ import { socialIcons } from "@/components/UI/SvgIcons";
 
 export const daoMembers = [
     {
+    imgUrl: "https://pbs.twimg.com/profile_images/1595255841933893632/bqPZFQo0_400x400.jpg",
+        name: "James Katz",
+    description: `Developer of Dizzy bot and Zecfaucet.com, Zcash Brazil Team Member`,
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/JamesKatzCrypto",
+        icon: socialIcons.twitter,
+      },
+    {
     imgUrl: "https://pbs.twimg.com/profile_images/1939712599857197056/uO46TIpy_400x400.jpg",
     name: "Blakiat",
     description: `Passionate about technology, advocate for free software, and obsessed with digital security. Here I share tips and discuss the digital future.`,
