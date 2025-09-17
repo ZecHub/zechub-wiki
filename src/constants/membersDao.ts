@@ -1,7 +1,19 @@
 import { socialIcons } from "@/components/UI/SvgIcons";
 
-
 export const daoMembers = [
+  {
+    imgUrl: "https://pbs.twimg.com/profile_images/1595255841933893632/bqPZFQo0_400x400.jpg",
+    name: "James Katz",
+    description: "Developer of Dizzy bot and Zecfaucet.com, Zcash Brazil Team Member",
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/JamesKatzCrypto",
+        icon: socialIcons.twitter,
+      },
+    ],
+    zcashAddress: "u",
+  },
     {
     imgUrl: "https://pbs.twimg.com/profile_images/1939712599857197056/uO46TIpy_400x400.jpg",
     name: "Blakiat",
@@ -270,7 +282,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png",
+      "https://pbs.twimg.com/profile_images/1918083458598932480/GgprijAp_400x400.jpg",
     name: "Michae2xl",
     description: `1 year+ as Zcash Brazil ambassador, Software Engineer & Product Owner, known as Michae2xl on social media, has
         been 7+ years in the crypto space, worked for a DAO as a Community Manager in Brazil & Canada for almost 4
@@ -358,7 +370,7 @@ export const daoMembers = [
     imgUrl:
       "https://pbs.twimg.com/profile_images/1822429578943451136/Q3og94Zy_400x400.jpg",
     name: "vito",
-    description: `Data Security Analyst & Community Manager at Zcash Brasil.`,
+    description: `Data Security Analyst & Core Team Member of ZecHub.`,
     linkName: "Twitter",
     urlLink: "https://twitter.com/vitozkp",
     social: [
@@ -374,7 +386,7 @@ export const daoMembers = [
   {
     imgUrl: "https://i.ibb.co/rbMZ67Y/profile.jpg",
     name: "zksquirrel",
-    description: `Core Contributor on ZecHub and Community Note Taker for Zcash Arborist
+    description: `Core Contributor on ZecHub, Prev. Community Note Taker for Zcash Arborist
         and development of the Zcash ecosystem.`,
     linkName: "Twitter",
     urlLink: "https://twitter.com/zksquirrel",
