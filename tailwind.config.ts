@@ -24,6 +24,10 @@ const config: Config = {
       },
       colors: {
         white: "#fff9f9",
+        brand: {
+          DEFAULT: "#1984c7",
+          hover: "#1574af",
+        },
       },
     },
   },

@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import Image from "next/image";
-import { getRoot, getRootCached } from "@/lib/authAndFetch";
+import { getRootCached } from "@/lib/authAndFetch";
 import { getBanner, genMetadata } from "@/lib/helpers";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import ListTutorial from "./ListTutorial";
@@ -14,7 +14,6 @@ export const metadata: Metadata = genMetadata({
 const ZechubTutorial = async () => {
   const slug = "tutorials";
   const urlRoot = `/site/tutorials`;
-  // const roots = await getRoot(urlRoot);
   const roots = await getRootCached(urlRoot);
   const imgUrl = getBanner(slug);
   

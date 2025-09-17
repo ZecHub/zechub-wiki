@@ -121,8 +121,14 @@ const NavLinks = ({
                   prefetch
                   href={item.path ?? "#"}
                   onClick={handleLinkClick}
-                  className={`w-full text-nav-foreground `}
+                  className={`flex items-center gap-2 text-sm w-full text-nav-foreground `}
                 >
+                  {(item.icon || matchIcons(item.name, item.name)) && (
+                    <Icon
+                      icon={item.icon ?? matchIcons(item.name, item.name)}
+                      className="xl:w-6 w-4 h-4 xl:h-6"
+                    />
+                  )}
                   {item.label || item.name}
                 </Link>
               </div>

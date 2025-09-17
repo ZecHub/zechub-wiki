@@ -5,7 +5,6 @@ import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-import { serialize } from 'next-mdx-remote/serialize';
 
 export async function generateMetadata({
   params,
@@ -19,7 +18,6 @@ export async function generateMetadata({
 
   const firstLetterCap = firstLetter.toUpperCase();
   const remainingLetters = word.slice(1).replace(/-/g, " ");
-  console.log({ firstLetter, firstLetterCap, remainingLetters });
   const capitalizedWord = firstLetterCap + remainingLetters;
 
   return genMetadata({
@@ -54,7 +52,6 @@ export default async function Page(props: {
 
   if (markdown) {
     const imgUrl = getBanner(slug[0]);
-    console.log({ slug, url, urlRoot, roots, imgUrl });
 
     return (
       <MdxContainer
@@ -73,4 +70,3 @@ export default async function Page(props: {
 
 // ✅ Enable ISR
 export const revalidate = 60; // Rebuild every 60s (tune as needed)
-

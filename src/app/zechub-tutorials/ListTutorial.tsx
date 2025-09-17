@@ -3,7 +3,6 @@ import Card from "@/components/UI/Card";
 import { Icon } from "@/components/UI/Icon";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   BiRightArrowAlt as Arrow,
@@ -30,7 +29,6 @@ const ListTutorial = ({ folder, roots }: MenuProps) => {
   const name = folder[0].toUpperCase() + folder.slice(1);
 
   const fold = getName(name);
-  const router = useRouter();
 
   return (
     <div className="relative flex flex-wrap items-center md:items-start order-1 justify-between md:flex-col">
