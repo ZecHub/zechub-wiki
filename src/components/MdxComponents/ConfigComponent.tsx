@@ -36,7 +36,19 @@ const MdxComponents = {
             : props.href!
         }
         target={props.href?.startsWith("/site") ? "" : "_blank"}
-        className="text-blue-700"
+        className=" 
+        inline
+          font-medium
+          text-blue-700
+          hover:text-blue-800
+          underline
+          decoration-dashed
+          underline-offset-2
+          decoration-[0.5px]
+          decoration-slate-600 /* light mode color */
+          dark:text-blue-300
+          dark:decoration-slate-400 /* dark mode color */
+          dark:hover:text-blue-200"
       >
         {props.children}{" "}
       </Link>
