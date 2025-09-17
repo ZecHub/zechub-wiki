@@ -19,7 +19,7 @@ const DecentralisedExchanges = () => {
         <div className="flex gap-4 mt-0 imd:mt-4 text-center flex-col items-center imd:flex-row">
           <Link
             href="/using-zcash/custodial-exchanges"
-            className="inline-flex py-2 px-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-lg"
+            className="inline-flex py-2 px-4 btn-brand focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm"
           >
             {/* <a className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600'> */}
             Custodial Exchanges
@@ -27,7 +27,7 @@ const DecentralisedExchanges = () => {
           </Link>
           <Link
             href="/using-zcash/centralizedswaps"
-            className="inline-flex py-2 px-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-lg"
+            className="inline-flex py-2 px-4 btn-brand focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm"
           >
             {/* <a className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600'> */}
             Centralised Swap platforms

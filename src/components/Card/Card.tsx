@@ -20,7 +20,6 @@ type CardsProps = {
 };
 
 export const Card = (props: CardsProps) => (
-
   <div
     style={{ backgroundColor: "revert" }}
     className="bg-white rounded-lg border dark:border-slate-600 shadow flex flex-col justify-between mb-8 sm:mb-4"
@@ -59,7 +58,7 @@ export const Card = (props: CardsProps) => (
       <Link
         href={props.url}
         target="_blank"
-        className="inline-flex  py-2 px-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="inline-flex focus:ring-4 focus:outline-none focus:ring-blue-300 btn-brand"
       >
         {props.ctaLabel}
       </Link>
@@ -67,7 +66,7 @@ export const Card = (props: CardsProps) => (
         <Link
           href={props.manual.url}
           target="_blank"
-          className="ml-4 inline-flex py-2 px-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="ml-4 inline-flex btn-brand focus:ring-4 focus:outline-none focus:ring-blue-300"
         >
           {props.manual.ctaLabel}
         </Link>
