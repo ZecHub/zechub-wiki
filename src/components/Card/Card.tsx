@@ -58,7 +58,7 @@ export const Card = (props: CardsProps) => (
       <Link
         href={props.url}
         target="_blank"
-        className="inline-flex focus:ring-4 focus:outline-none focus:ring-blue-300 btn-brand"
+        className="inline-flex btn-brand"
       >
         {props.ctaLabel}
       </Link>
@@ -66,7 +66,7 @@ export const Card = (props: CardsProps) => (
         <Link
           href={props.manual.url}
           target="_blank"
-          className="ml-4 inline-flex btn-brand focus:ring-4 focus:outline-none focus:ring-blue-300"
+          className="ml-4 inline-flex btn-brand"
         >
           {props.manual.ctaLabel}
         </Link>
