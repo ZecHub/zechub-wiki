@@ -5,7 +5,9 @@
 @tailwind utilities;
 
  
-
+.btn-brand {
+  @apply text-white border-brand bg-brand hover:bg-brand-hover hover:text-white py-2 px-4;
+}
   
 #nprogress .bar {
   /* background: #f88185 !important; */
