@@ -17,7 +17,7 @@ if pgrep "runzenith" > /dev/null; then
 else
 	# Zebra
 	user="__cookie__"                                     #set your  username
-	pw="R8ve59LjP36pRpaPLm8iik3B1-fiIxWLiI5uvNOKHyU="      #set your  pw
+	pw=""      #set your  pw
 	port="8232"                                            #set your port 
 fi
 
@@ -26,12 +26,12 @@ credentials="$user:$pw"
 
 # Zebra
 #user="__cookie__"                                     #set your  username
-#pw="R8ve59LjP36pRpaPLm8iik3B1-fiIxWLiI5uvNOKHyU="      #set your  pw
+#pw=""      #set your  pw
 #port="8232"                                            #set your port 
 
 # Zcashd
 #user="zkanon"                                     #set your  username
-#pw="Di8x4RUCG3Y1vdM2Mhilqb9IqU6a71pNPjtrGnmoSnA="      #set your  pw
+#pw=""      #set your  pw
 #port="8232"
 
 
