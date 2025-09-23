@@ -3,14 +3,17 @@
 
 ## Basic Shielded Snapshots
 
+```markdown
 toCurl.sh                     - cURL bash wrapper that connects to a running zebra RPC server
 tx_type.sh                    - heart of metrics, extracts relevant data from a zebra node using RPC's
 getDailySnapshot.sh           - input number of blocks, creates an interval of blocks from the tip, finds all txids in that interval and extracts data using tx_type.sh
 extractShieldedInfoII.sh      - finds current data/time, finds snapshot of shielded metrics for 1152 blocks ( ~ day worth ), and counts/exports shielded data into a .md file
+```
 
 
 ## Shielded Currents
 
+```markdown
 toCurl.sh                     - cURL bash wrapper that connects to a running zebra RPC server
 tx_type.sh                    - heart of metrics, extracts relevant data from a zebra node using RPC's
 findTXsByTypeII.sh            - find txid's filtered by searchType input: < Transparent / Sapling / Orchard >
@@ -28,4 +31,5 @@ saplingCurrentOut.sh          - given an interval of blocks, export txid's that 
 orchardCurrent.sh             - given an interval of blocks, export txid's that involve the orchard pool
 orchardCurrentIn.sh           - given an interval of blocks, export txid's that involve moving into the orchard pool
 orchardCurrentOut.sh          - given an interval of blocks, export txid's that involve moving out of the orchard pool
+```
 
