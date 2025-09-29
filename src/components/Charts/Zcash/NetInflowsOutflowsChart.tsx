@@ -67,6 +67,8 @@ export default function NetInflowsOutflowsChart(
     netOrchardFlow: parseFloat(item["Net Orchard Flow"]),
   }));
 
+  console.log(parsedData);
+
   return (
     <ErrorBoundary fallback={"Failed to load Net Inflows"}>
       <ChartHeader title="Net Sapling & Orchard Flow" />
@@ -104,7 +106,7 @@ export default function NetInflowsOutflowsChart(
               typeof value === "number"
                 ? `${value.toLocaleString()} ZEC`
                 : value,
-              name === "netSaplingFlow"
+              name === "Net Sapling Flow"
                 ? "Net Sapling Flow"
                 : "Net Orchard Flow",
             ]}
