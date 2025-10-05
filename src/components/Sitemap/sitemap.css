@@ -1,194 +1,125 @@
-.zcash-projects-container {
-  display: flex;
-  flex-direction: column; /* Ensure vertical stacking */
-  /* align-items: center; Center align all items */
-  gap: 2rem; /* Space between elements*/
-  margin-top: 48px;
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.99 0.002 106);
+  --foreground: oklch(0.15 0.01 106);
+  --card: oklch(0.99 0.002 106);
+  --card-foreground: oklch(0.15 0.01 106);
+  --popover: oklch(0.99 0.002 106);
+  --popover-foreground: oklch(0.15 0.01 106);
+  --primary: oklch(0.25 0.02 106);
+  --primary-foreground: oklch(0.99 0.002 106);
+  --secondary: oklch(0.95 0.005 106);
+  --secondary-foreground: oklch(0.25 0.02 106);
+  --muted: oklch(0.96 0.005 106);
+  --muted-foreground: oklch(0.5 0.01 106);
+  --accent: oklch(0.96 0.005 106);
+  --accent-foreground: oklch(0.25 0.02 106);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.99 0.002 106);
+  --border: oklch(0.9 0.005 106);
+  --input: oklch(0.9 0.005 106);
+  --ring: oklch(0.7 0.01 106);
+  --chart-1: oklch(0.55 0.15 220);
+  --chart-2: oklch(0.6 0.12 180);
+  --chart-3: oklch(0.65 0.14 150);
+  --chart-4: oklch(0.7 0.13 280);
+  --chart-5: oklch(0.75 0.11 320);
+  --radius: 0.5rem;
+  --sidebar: oklch(0.99 0.002 106);
+  --sidebar-foreground: oklch(0.15 0.01 106);
+  --sidebar-primary: oklch(0.25 0.02 106);
+  --sidebar-primary-foreground: oklch(0.99 0.002 106);
+  --sidebar-accent: oklch(0.96 0.005 106);
+  --sidebar-accent-foreground: oklch(0.25 0.02 106);
+  --sidebar-border: oklch(0.9 0.005 106);
+  --sidebar-ring: oklch(0.7 0.01 106);
 }
 
-.zcash-projects-container h1 {
-  display: flex;
-  justify-content: center;
-  margin: 1.25rem 0;
-  font-weight: 600;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+.dark {
+  --background: oklch(0.12 0.01 106);
+  --foreground: oklch(0.97 0.005 106);
+  --card: oklch(0.12 0.01 106);
+  --card-foreground: oklch(0.97 0.005 106);
+  --popover: oklch(0.12 0.01 106);
+  --popover-foreground: oklch(0.97 0.005 106);
+  --primary: oklch(0.97 0.005 106);
+  --primary-foreground: oklch(0.15 0.01 106);
+  --secondary: oklch(0.2 0.015 106);
+  --secondary-foreground: oklch(0.97 0.005 106);
+  --muted: oklch(0.2 0.015 106);
+  --muted-foreground: oklch(0.65 0.01 106);
+  --accent: oklch(0.2 0.015 106);
+  --accent-foreground: oklch(0.97 0.005 106);
+  --destructive: oklch(0.45 0.18 25);
+  --destructive-foreground: oklch(0.97 0.005 106);
+  --border: oklch(0.25 0.015 106);
+  --input: oklch(0.25 0.015 106);
+  --ring: oklch(0.5 0.01 106);
+  --chart-1: oklch(0.55 0.15 220);
+  --chart-2: oklch(0.6 0.12 180);
+  --chart-3: oklch(0.65 0.14 150);
+  --chart-4: oklch(0.7 0.13 280);
+  --chart-5: oklch(0.75 0.11 320);
+  --sidebar: oklch(0.15 0.01 106);
+  --sidebar-foreground: oklch(0.97 0.005 106);
+  --sidebar-primary: oklch(0.55 0.15 220);
+  --sidebar-primary-foreground: oklch(0.97 0.005 106);
+  --sidebar-accent: oklch(0.2 0.015 106);
+  --sidebar-accent-foreground: oklch(0.97 0.005 106);
+  --sidebar-border: oklch(0.25 0.015 106);
+  --sidebar-ring: oklch(0.5 0.01 106);
 }
 
-.zcash-image {
-  flex-basis: auto;
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-.zcash-projects-slider {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center the slider */
-  width: 100%;
-}
-
-.currency-switch {
-  margin-top: 5px; /* Bring currency options higher */
-}
-
-.zcash-projects-header {
-  margin-top: 2rem;
-  margin-bottom: 0;
-}
-
-.zcash-projects-header h1 {
-  position: relative;
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 2rem;
-  margin-bottom: 2rem;
-}
-
-.zcash-projects-header p {
-  color: #374151;
-  font-size: 1rem;
-  max-width: 1000px;
-}
-
-.input-range {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-  margin-top: 1rem;
-  align-items: center;
-}
-
-.amount {
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  background: #22d3ee;
-  font-weight: 700;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.input-number {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  align-items: center;
-}
-
-label {
-  font-weight: 600;
-}
-
-.slider {
-  width: 80%; /* Adjust slider width */
-  -webkit-appearance: none;
-  appearance: none;
-  height: 15px; /* Make the slider larger */
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px; /* Increase thumb size */
-  height: 20px;
-  border-radius: 50%;
-  background: #4caf50;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #4caf50;
-  cursor: pointer;
-}
-
-/* Predefined value buttons */
-.amount-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.amount-buttons button {
-  padding: 0.5rem 1rem;
-  background-color: #22d3ee;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.amount-buttons button:hover {
-  background-color: #0ea5c0;
-}
-
-/* Center the memo box */
-.zcash-projects-memo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.zcash-projects-memo textarea {
-  /* width: 80%; */
-  width: 320px;
-  height: 160px;
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid #d3d3d3;
-}
-
-.zcash-projects-memo div {
-  margin-top: 0.5rem;
-}
-
-/* Media queries for mobile responsiveness */
-@media screen and (max-width: 768px) {
-  .zcash-projects-container {
-    flex-direction: column;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-
-  .zcash-image,
-  .zcash-projects-slider {
-    flex-basis: auto;
-    width: 100%;
+  body {
+    @apply bg-background text-foreground;
   }
-
-  .amount-buttons {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .amount-buttons button {
-    margin-bottom: 0.5rem;
-  }
-
-  .slider {
-    width: 100%; /* Full width slider for mobile */
-  }
-
-  .zcash-projects-memo textarea {
-    width: 320px; /* Full width memo box for mobile */
-    height: 120px;
-  }
-}
-
-.nav-donate-btn button {
-  border: none;
-}
-
-.nav-donate-btn button:hover {
-  transform: scale(1.05);
-  transition: all 0.4s;
 }
