@@ -1,21 +1,15 @@
-import NodeCountChart from "@/components/Charts/Zcash/NodeCountChart";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/UI/shadcn/card";
+import { Card, CardHeader, CardTitle } from "@/components/UI/shadcn/card";
 import { RefObject, useState } from "react";
-import ChartFooter from "../ChartFooter";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../Tabs";
-import DifficultyChart from "./DifficultyChart";
-import IssuanceChart from "./IssuanceChart";
-import LockboxChart from "./LockboxChart";
-import NetInflowsOutflowsChart from "./NetInflowsOutflowsChart";
-import PrivacySetVisualizationChart from "./PrivacySetVisualizationChart";
-import ShieldedSupplyChart from "./ShieldedSupplyChart";
-import TransactionsSummaryChart from "./TransactionSummaryChart";
 import { ZcashMetrics } from "./ZcashMetrics/ZcashMetrics";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/UI/shadcn/select";
+import CardContentShielded from "./Shielded/CardContent";
+import CardContentTxn from "./Transparent/CardContent";
 
 type ZcashChartProps = {
   lastUpdated: Date;
@@ -35,6 +29,7 @@ type ZcashChartProps = {
 
 function ZcashChart(props: ZcashChartProps) {
   const [activeTab, setActiveTab] = useState("supply");
+  const [supplyTab, setSupplyTab] = useState("Shielded");
 
   const tabLabels = [
     "Supply",
@@ -47,6 +42,8 @@ function ZcashChart(props: ZcashChartProps) {
     "Privacy Set",
   ];
 
+  const supplyLabels = ["Shielded", "Transparent"];
+
   return (
     <div className="space-y-6">
       {/* Market Metrics */}
@@ -55,71 +52,35 @@ function ZcashChart(props: ZcashChartProps) {
       {/* Charts Tabs */}
       <Card className="shadow-sm border border-gray-200 dark:border-slate-700">
         <CardHeader className="mb-4">
-          <CardTitle className="text-xl">Analytics Charts</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
-            {({ activeTab, setActiveTab }: any) => (
-              <>
-                <TabsList>
-                  {tabLabels.map((label) => (
-                    <TabsTrigger
-                      key={label}
-                      value={label.toLowerCase()}
-                      activeTab={activeTab}
-                      setActiveTab={setActiveTab}
+          <div className="flex justify-between items-center">
+            <CardTitle className="text-xl">Analytics Charts</CardTitle>
+            {/*  Supply Dropdown */}
+            <div className="flex gap-2 items-center">
+              <Select
+                value={supplyTab}
+                onValueChange={(v) => setSupplyTab(v as any)}
+              >
+                <SelectTrigger className="w-36 dark:border-slate-700">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {supplyLabels.map((opt) => (
+                    <SelectItem
+                      key={opt}
+                      value={opt}
+                      className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
                     >
-                      {label}
-                    </TabsTrigger>
+                      {opt}
+                    </SelectItem>
                   ))}
-                </TabsList>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </CardHeader>
+        {supplyTab == "Shielded" && <CardContentShielded {...props} />}
 
-                <TabsContent value="supply" activeTab={activeTab}>
-                  <ShieldedSupplyChart chartRef={props.divChartRef} />
-                </TabsContent>
-
-                <TabsContent value="difficulty" activeTab={activeTab}>
-                  <DifficultyChart chartRef={props.divChartRef} />
-                </TabsContent>
-
-                <TabsContent value="issuance" activeTab={activeTab}>
-                  {activeTab === "issuance" && (
-                    <IssuanceChart chartRef={props.divChartRef} />
-                  )}
-                </TabsContent>
-
-                <TabsContent value="lockbox" activeTab={activeTab}>
-                  <LockboxChart chartRef={props.divChartRef} />
-                </TabsContent>
-
-                <TabsContent value="flows" activeTab={activeTab}>
-                  <NetInflowsOutflowsChart
-                    color="red"
-                    chartRef={props.divChartRef}
-                  />
-                </TabsContent>
-
-                <TabsContent value="node count" activeTab={activeTab}>
-                  <NodeCountChart color="red" chartRef={props.divChartRef} />
-                </TabsContent>
-
-                <TabsContent value="tx summary" activeTab={activeTab}>
-                  <TransactionsSummaryChart chartRef={props.divChartRef} />
-                </TabsContent>
-
-                <TabsContent value="privacy set" activeTab={activeTab}>
-                  <PrivacySetVisualizationChart chartRef={props.divChartRef} />
-                </TabsContent>
-
-                <ChartFooter
-                  imgLabel={activeTab}
-                  handleSaveToPng={props.handleSaveToPng}
-                  lastUpdatedDate={props.lastUpdated}
-                />
-              </>
-            )}
-          </Tabs>
-        </CardContent>
+        {supplyTab == "Transparent" && <CardContentTxn {...props} />}
       </Card>
     </div>
   );

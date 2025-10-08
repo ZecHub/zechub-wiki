@@ -95,13 +95,14 @@ const Dashboard = () => {
                     </Link>
                   </li>
                 </ul>
+                
               </div>
             )}
           </div>
         </div>
 
         {/* Zcash Dashboard (default) */}
-        {selectedCrypto === "zcash" && (
+        {selectedCrypto === "zcash" &&  (
           <ZcashChart
             lastUpdated={lastUpdated!}
             divChartRef={divChartRef}
