@@ -4,6 +4,7 @@ export const DATA_URL = {
   saplingUrl: "/data/zcash/sapling_supply.json",
   orchardUrl: "/data/zcash/orchard_supply.json",
   txsummaryUrl: "/data/zcash/transaction_summary.json",
+  transparentSupplyUrl: "/data/zcash/transparent_supply.json",
   netInflowsOutflowsUrl: "/data/zcash/netinflowoutflow.json",
   nodecountUrl: "/data/zcash/nodecount.json",
   difficultyUrl: "/data/zcash/difficulty.json",
