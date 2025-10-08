@@ -11,8 +11,25 @@
             }
           }
         },
-        "Start_Block": 207250,
-        "End_Block": 241810
+        "Start_Block": 241810,
+        "End_Block": 207250,
+        "Description": [
+          " \"\"\"",
+          "Greetings, fellow members and operators of Penumbra,",
+          "",
+          "This is the first governance proposal for the Penumbra network. It is a parameter-change proposal for Penumbra that will allow other IBC chains to recognize this chain as the Penumbra mainnet, thereby ratifying the network that was started two weeks ago as the canonical Penumbra network moving forward.",
+          "",
+          "*Crucially - This proposal does NOT enable transfers or trading - this will happen in a subsequent parameter change proposal. This proposal allows relayers to establish IBC connections and align on channel and token metadata in advance of a proposal to enable full functionality.*",
+          "",
+          "This governance proposal and the parameter changes associated with it will turn affect the following functions:",
+          "",
+          "- Allow for the establishment of IBC channels",
+          "- Changes gas prices in order to reduce cost for relayers to establish channels",
+          "",
+          "Voting YES for this proposal is a signaling vote to ratify mainnet and enable the preceding functions. This proposal requires a supermajority (2/3+1) in order to pass.",
+          "\"\"\"",
+          ""
+        ]
       },
       {
         "id": 1,
@@ -24,8 +41,29 @@
             }
           }
         },
-        "Start_Block": 377056,
-        "End_Block": 411616
+        "Start_Block": 411616,
+        "End_Block": 377056,
+        "Description": [
+          " \"\"\"",
+          "",
+          "This proposal enables full functionality of the Penumbra chain, enabling IBC transfers and the Penumbra DEX.",
+          "",
+          "If this proposal passes, price discovery of the UM token can occur as it becomes tradeable on Penumbra and elsewhere in the IBC ecosystem. This may involve significant initial volatility, pricing, and liquidity risk. Penumbra's Gradual Dutch Auctions allow users to spread trade intent over time, up to 48 hours, and are one tool for users who wish to participate in price discovery, either by buying or selling tokens.",
+          "",
+          "To enable full functionality of the Penumbra chain, this proposal makes the following parameter changes:",
+          "",
+          "- Enable inbound ICS20 token transfers.",
+          "- Enable outbound ICS20 token transfers.",
+          "- Enable the Penumbra Decentralized Exchange.",
+          "- Set the slashing penalty for validator downtime to 1 basis point, up from when the network was starting.",
+          "- Add Noble USDC as a priority routing candidate for on-chain routing.",
+          "- Add Noble USDC, ATOM, and OSMO as alternative fee tokens for gas payment.",
+          "",
+          "Hello from the other side.",
+          "",
+          "\"\"\"",
+          ""
+        ]
       },
       {
         "id": 2,
@@ -37,8 +75,17 @@
             }
           }
         },
-        "Start_Block": 432276,
-        "End_Block": 466836
+        "Start_Block": 466836,
+        "End_Block": 432276,
+        "Description": [
+          " \"Update fee parameters for USDC, ATOM and OSMO\"",
+          "",
+          "[[parameterChange.changes]]",
+          " \"feeParams\"",
+          " \"fixedAltGasPrices\"",
+          " \"[{\\\"assetId\\\":{\\\"inner\\\":\\\"drPksQaBNYwSOzgfkGOEdrd4kEDkeALeh58Ps+7cjQs",
+          ""
+        ]
       },
       {
         "id": 3,
@@ -50,8 +97,16 @@
             }
           }
         },
-        "Start_Block": 466456,
-        "End_Block": 501016
+        "Start_Block": 501016,
+        "End_Block": 466456,
+        "Description": [
+          " \"\"\"",
+          "Upgrade to the v0.80.0 tag to restore stuck transfers.",
+          "",
+          "For more information, see the Penumbra forum thread: https://forum.penumbra.zone/t/usdc-withdrawal-issues-and-proposed-fix/53/",
+          "\"\"\"",
+          ""
+        ]
       },
       {
         "id": 4,
@@ -63,8 +118,28 @@
             }
           }
         },
-        "Start_Block": 2576980,
-        "End_Block": 2611540
+        "Start_Block": 2611540,
+        "End_Block": 2576980,
+        "Description": [
+          " \"\"\"",
+          "This proposal is in place to encourage validators to upgrade version to version v.81.0 of the Penumbra software,",
+          "",
+          "This upgrade is consensus-breaking, and will adopt several breaking changes to the Penumbra protocol that both help fix and improve the software.",
+          "",
+          "Voting for this proposal opens up potential for increases in wallet sync speed and improvements in IBC compatibility.",
+          "",
+          "Critically, this proposal also includes a solution for issues stemming from a connection to Noble network and re-enables Noble USDC transfers with the introduction of transparent addresses.",
+          "",
+          "In preparation for this upgrade, validators of the Penumbra chain are encouraged to upgrade to v0.80.11 well ahead of the proposals passing blockheight 2611800 in order to ensure compatibility, then upgrade to 0.81.00 and migrate state in order to prevent chain halt.",
+          "",
+          "v.81.00 is set to be released ahead of the upgrade at blockheight 2611800",
+          "",
+          "For more information, see the Penumbra forum thread: https://forum.penumbra.zone/t/candidate-mainnet-upgrade-2/147",
+          "",
+          "",
+          "\"\"\"",
+          ""
+        ]
       },
       {
         "id": 5,
@@ -76,92 +151,19 @@
             }
           }
         },
-        "Start_Block": 4312313,
-        "End_Block": 4346873
-      }
-    ]
-  }
-]
-[
-  {
-    "Proposal": [
-      {
-        "id": 0,
-        "Title": "Mainnet ratification and establishment of IBC channels",
-        "State": {
-          "finished": {
-            "outcome": {
-              "passed": {}
-            }
-          }
-        },
-        "Start_Block": 207250,
-        "End_Block": 241810
-      },
-      {
-        "id": 1,
-        "Title": "Enable Full Functionality",
-        "State": {
-          "finished": {
-            "outcome": {
-              "passed": {}
-            }
-          }
-        },
-        "Start_Block": 377056,
-        "End_Block": 411616
-      },
-      {
-        "id": 2,
-        "Title": "Refine Mainnet Parameters",
-        "State": {
-          "finished": {
-            "outcome": {
-              "passed": {}
-            }
-          }
-        },
-        "Start_Block": 432276,
-        "End_Block": 466836
-      },
-      {
-        "id": 3,
-        "Title": "IBC Stuck Transfers Fix",
-        "State": {
-          "finished": {
-            "outcome": {
-              "passed": {}
-            }
-          }
-        },
-        "Start_Block": 466456,
-        "End_Block": 501016
-      },
-      {
-        "id": 4,
-        "Title": "Penumbra v0.81.00 Support for UIP 4, UIP 5, UIP6 and UIP 8 ",
-        "State": {
-          "finished": {
-            "outcome": {
-              "passed": {}
-            }
-          }
-        },
-        "Start_Block": 2576980,
-        "End_Block": 2611540
-      },
-      {
-        "id": 5,
-        "Title": "Penumbra voluntary halt and upgrade in response to IBC dependency fix ",
-        "State": {
-          "finished": {
-            "outcome": {
-              "passed": {}
-            }
-          }
-        },
-        "Start_Block": 4312313,
-        "End_Block": 4346873
+        "Start_Block": 4346873,
+        "End_Block": 4312313,
+        "Description": [
+          " \"\"\"",
+          "This upgrade is consensus-breaking, and adopts a liveness bug fix to an IBC dependency that the Penumbra protocol depends on.",
+          "",
+          "Voting for this proposal signals agreement and readiness by the community of validators supporting the Penumbra chain to standby for an upcoming software patch upon halt at a predetermined height.",
+          "",
+          "Penumbra validators should be expected to momentarily halt the chain at height 4378762, standby, and adopt a new version of the Penumbra software disseminated in response to the IBC path in order to reinitialize the Penumbra chain upon release of new software.",
+          "",
+          "\"\"\"",
+          ""
+        ]
       },
       {
         "id": 6,
@@ -173,8 +175,191 @@
             }
           }
         },
-        "Start_Block": 5156787,
-        "End_Block": 5191347
+        "Start_Block": 5191347,
+        "End_Block": 5156787,
+        "Description": [
+          " \"\"\"",
+          "",
+          "This proposal extends Penumbra's alternative fee token set to include Celestia's TIA, joining ATOM, Noble USDC, and OSMO.",
+          "",
+          "The mechanics are minimal: we're adding TIA to the fixedAltGasPrices parameter with pricing calibrated to match our existing fee token tiers.",
+          "",
+          "TIA is one of the most popular assets in the shielded pool. This change will make life better for these users, and encourage deeper ecosystem interaction.",
+          "",
+          "The pricing follows the standard relative pricing multiplier relative to the base token, maintaining consistency across all alternative fee tokens. ",
+          "",
+          "When ratified, TIA becomes immediately available as a gas token.",
+          "",
+          "A better present is possible.",
+          "\"\"\"",
+          ""
+        ]
+      },
+      {
+        "id": 7,
+        "Title": "Signaling Proposal in Support of the Liquidity Tournament",
+        "State": {
+          "finished": {
+            "outcome": {
+              "passed": {}
+            }
+          }
+        },
+        "Start_Block": 5318880,
+        "End_Block": 5284320,
+        "Description": [
+          " \"\"\"",
+          "",
+          "The Liquidity Tournament is a novel mechanism of using Penumbra's Community Pool, allowing users of Penumbra to derive value from deciding on and/or providing liquidity to Penumbra's shielded DEX.",
+          "",
+          "This proposal signals support from the UM community that the Liquidity Tournament be adapted into the Penumbra mainnet network.",
+          "",
+          "More information to support a voter's decision can be found in the forum at https://forum.penumbra.zone/t/uip-liquidity-tournament/159/7, in support of the original discussion detailing a Liquidity Tournament.",
+          "",
+          "If this proposal passes, a subsequent upgrade_plan proposal with anticipated software should be submitted scheduling the integration of Liquidity Tournament software into Penumbra.",
+          "",
+          "\"\"\"",
+          ""
+        ]
+      },
+      {
+        "id": 8,
+        "Title": "Upgrade Penumbra with the Liquidity Tournament",
+        "State": {
+          "finished": {
+            "outcome": {
+              "passed": {}
+            }
+          }
+        },
+        "Start_Block": 5417905,
+        "End_Block": 5383345,
+        "Description": [
+          " \"\"\"",
+          "",
+          "This is an upgrade proposal for Penumbra mainnet.",
+          "",
+          "The community of UM voters has signaled positively towards launching a liquidity tournament to bootstrap Penumbra DEX liquidity (prop 7), which introduces a novel incentive mechanism for liquidity providers and UM stakers.",
+          "",
+          "To achieve this as a part of the Penumbra Mainnet software, the Penumbra network needs to upgrade to a new release of the protocol. ",
+          "",
+          "That release must contain:",
+          "- Support for UIP-8 (liquidity tournament)",
+          "- Support for UIP-9 (encrypted LP metadata)",
+          "",
+          "If this proposal passes, a software release will be appended to the Penumbra Mainnet software, which validators can expect to pick up ahead of the halt height.",
+          "",
+          "This upgrade plan targets block height #5480873 or approximately June 16th, 2025 at 4:00pm UTC",
+          "",
+          "Notes:",
+          "1. A specific release artifact will be released on June 13th, 2025: https://github.com/penumbra-zone/penumbra/releases/tag/v2.0.0",
+          "2. Upgrade instructions can be found here: https://guide.penumbra.zone/node/pd/chain-upgrade",
+          "",
+          "A better future is possible.",
+          "",
+          "\"\"\"",
+          ""
+        ]
+      },
+      {
+        "id": 9,
+        "Title": "Fund LQT tranche 1",
+        "State": {
+          "finished": {
+            "outcome": {
+              "failed": {
+                "withdrawn": {
+                  "reason": "delegator limit too low"
+                }
+              }
+            }
+          }
+        },
+        "Start_Block": 5626781,
+        "End_Block": 5592221,
+        "Description": [
+          " \"\"\"",
+          "Funding parameters for liquidity tournament, tranche 1",
+          "",
+          "    This proposal seeks to fund the Liquidity Tournament with approximately 100,000UM from the Community Pool, with the intent that this tranche last approximately 7 epochs (14 days) after passing.",
+          "",
+          "    The parameters included in this proposal intend to create incentives for both Liquidity Providers (LPs) and Delegators (UM holders who have staked their UM to a validator). ",
+          "",
+          "    If this proposal passes:",
+          "    - LPs who provide liquidity to the protocol in UM pairs that are voted as highest priority liquidity will receive incentives if their liquidity is executed against.",
+          "    - Delegators are rewarded for using a tournament-native voting scheme to promote desired pairs, which accumulates across all Delegator votes to signal the highest desired pairs in the tournament.",
+          "    - These tournament incentives are disbursed automatically from the Community Pool at the end of each epoch until this tranche of community funding is exhausted.",
+          "",
+          "Remember, the future is yours to create.",
+          "",
+          "\"\"\"",
+          ""
+        ]
+      },
+      {
+        "id": 10,
+        "Title": "Fund Liquidity Tournament tranche 1",
+        "State": {
+          "finished": {
+            "outcome": {
+              "passed": {}
+            }
+          }
+        },
+        "Start_Block": 5627698,
+        "End_Block": 5593138,
+        "Description": [
+          " \"\"\"",
+          "Funding parameters for liquidity tournament, tranche 1",
+          "",
+          "This proposal seeks to fund the Liquidity Tournament with approximately 100,000UM from the Community Pool, with the intent that this tranche last approximately 7 epochs (14 days) after passing.",
+          "",
+          "The parameters included in this proposal intend to create incentives for both Liquidity Providers (LPs) and Delegators (UM holders who have staked their UM to a validator). ",
+          "",
+          "If this proposal passes:",
+          "- LPs who provide liquidity to the protocol in UM pairs that are voted as highest priority liquidity will receive incentives if their liquidity is executed against.",
+          "- Delegators are rewarded for using a tournament-native voting scheme to promote desired pairs, which accumulates across all Delegator votes to signal the highest desired pairs in the tournament.",
+          "- These tournament incentives are disbursed automatically from the Community Pool at the end of each epoch until this tranche of community funding is exhausted.",
+          "",
+          "Remember, the future is yours to create.",
+          "",
+          "(this proposal replaces parameters set on withdrawn prop 9 and increases them substantially)",
+          "",
+          "\"\"\"",
+          ""
+        ]
+      },
+      {
+        "id": 11,
+        "Title": "Fund Liquidity Tournament tranche 2",
+        "State": {
+          "finished": {
+            "outcome": {
+              "passed": {}
+            }
+          }
+        },
+        "Start_Block": 5849690,
+        "End_Block": 5815130,
+        "Description": [
+          " \"\"\"",
+          "                                                                                                                                             ",
+          "Funding parameters for liquidity tournament, tranche 2                                                                                                        ",
+          "                                                                                                                                                              ",
+          "This proposal seeks to fund the Liquidity Tournament with approximately 150,000UM from the Community Pool, with the intent that this tranche last approximately 10 epochs (21 days) after passing.                                                                                                                          ",
+          "                                                                                                                                                              ",
+          "The parameters included in this proposal intend to create incentives for both Liquidity Providers (LPs) and Delegators (UM holders who have staked their UM to a validator).                                                                                                                                                ",
+          "                                                                                                                                                              ",
+          "If this proposal passes:                                                                                                                                      ",
+          "                                                                                                                                                              ",
+          "- LPs who provide liquidity to the protocol in UM pairs that are voted as highest priority liquidity will receive incentives if their liquidity is executed against.                                                                                                                                                        ",
+          "- Delegators are rewarded for using a tournament-native voting scheme to promote desired pairs, which accumulates across all Delegator votes to signal the highest desired pairs in the tournament.                                                                                                                         ",
+          "- These tournament incentives are disbursed automatically from the Community Pool at the end of each epoch until this tranche of community funding is exhausted.                                                                                                                                                            ",
+          "                                                                                                                                                              ",
+          "Remember, the future is yours to create.                                                                                                                      ",
+          "\"\"\"",
+          ""
+        ]
       }
     ]
   }
