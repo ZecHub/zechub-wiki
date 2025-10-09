@@ -140,12 +140,12 @@ export default function TransparentSupplyChart(
             <linearGradient id="supplyGradient" x1="0" y1="0" x2="0" y2="1">
               <stop
                 offset="5%"
-                stopColor="hsl(var(--chart-1))"
+                stopColor="hsl(var(--chart-7))"
                 stopOpacity={0.6}
               />
               <stop
                 offset="95%"
-                stopColor="hsl(var(--chart-1))"
+                stopColor="hsl(var(--chart-7))"
                 stopOpacity={0.05}
               />
             </linearGradient>
@@ -179,7 +179,7 @@ export default function TransparentSupplyChart(
                   <p className="text-slate-100 font-semibold mb-2">{label}</p>
                   <div
                     className="flex justify-between gap-4"
-                    style={{ color: "hsl(var(--chart-1))" }}
+                    style={{ color: "hsl(var(--chart-7))" }}
                   >
                     <span>Supply</span>
                     <span className="text-slate-50">
@@ -194,7 +194,7 @@ export default function TransparentSupplyChart(
           <Area
             type="monotone"
             dataKey="supply"
-            stroke="hsl(var(--chart-1))"
+            stroke="hsl(var(--chart-7))"
             fill="url(#supplyGradient)"
             name="Transparent Supply"
           />
