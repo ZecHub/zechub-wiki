@@ -42,19 +42,40 @@ All colors MUST be HSL.
 
         --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
-        --radius: 0.5rem;
+                --radius: 0.5rem;
 
-        /* Chart colors for cryptocurrency dashboard */
-        --chart-1: 270 75% 60%;
-        /* Purple for Sprout Pool */
-        --chart-2: 45 93% 47%;
-        /* Deep yellow for Sapling Pool */
-        --chart-3: 84 81% 44%;
-        /* Lemon green for Orchard Pool */
-        --chart-4: 217 91% 60%;
-        /* Primary blue for other charts */
-        --chart-5: 142 71% 45%;
-        /* Accent green for additional charts */
+                /* Chart colors for cryptocurrency dashboard */
+        --chart-1: 270 75% 60%;    /* Purple for Sprout Pool */
+        --chart-2: 45 93% 47%;     /* Deep yellow for Sapling Pool */
+        --chart-3: 84 81% 44%;     /* Lemon green for Orchard Pool */
+        --chart-4: 217 91% 60%;    /* Primary blue for other charts */
+        --chart-5: 142 71% 45%;    /* Accent green for additional charts */
+
+        /* Additional vibrant chart colors */
+        --chart-6: 350 89% 60%;    /* Vibrant coral/red */
+        --chart-7: 195 85% 55%;    /* Electric cyan blue */
+        --chart-8: 320 75% 65%;    /* Magenta pink */
+        --chart-9: 30 95% 55%;     /* Bright orange */
+        --chart-10: 170 75% 45%;   /* Teal/turquoise */
+        --chart-11: 280 65% 65%;   /* Lavender purple */
+        --chart-12: 10 85% 60%;    /* Coral red-orange */
+        --chart-13: 210 100% 50%;  /* Pure bright blue */
+        --chart-14: 90 70% 45%;    /* Lime green */
+        --chart-15: 330 75% 60%;   /* Raspberry pink */
+
+        /* Gradient-inspired colors */
+        --chart-16: 225 75% 55%;   /* Royal blue */
+        --chart-17: 160 80% 40%;   /* Emerald green */
+        --chart-18: 40 95% 50%;    /* Golden yellow */
+        --chart-19: 275 70% 60%;   /* Amethyst purple */
+        --chart-20: 185 85% 45%;   /* Ocean blue */
+
+        /* Modern crypto-themed colors */
+        --chart-21: 200 100% 40%;  /* Bitcoin orange alternative */
+        --chart-22: 240 65% 55%;   /* Ethereum blue */
+        --chart-23: 340 75% 60%;   /* Altcoin pink */
+        --chart-24: 50 95% 55%;    /* Gold/yellow for value */
+        --chart-25: 150 75% 40%;   /* Blockchain green */
     }
 
     .dark {
