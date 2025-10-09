@@ -258,3 +258,12 @@ body {
   display: none;
   /* Chrome, Safari, Opera */
 }
+
+
+.list-outside li , pre {
+  width: 150px;
+}
+
+code {
+  display: block;
+}

@@ -16,8 +16,6 @@ async function safeCompileMDX(source: string, components: MDXComponents) {
       options: {
         parseFrontmatter: true,
         mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          rehypePlugins: [rehypePrism],
           mdExtensions: [".md"],
         },
       },
