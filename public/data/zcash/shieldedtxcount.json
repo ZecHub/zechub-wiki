@@ -2025,5 +2025,11 @@
     "sapling": 365,
     "orchard": 2061,
     "timestamp": "10/11/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 381,
+    "orchard": 2037,
+    "timestamp": "10/11/2025"
   }
 ]
