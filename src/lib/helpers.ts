@@ -124,6 +124,10 @@ const specialWordsMap = {
   Raspberry_Pi5_Zebra_Lightwalletd_Zingo : "Raspberry_pi5_Zebra_Lightwalletd_Zingo",
   Btcpayserver_Zcash_Plugin : "BTCPayServer_Zcash_Plugin",
   Uris: 'URIs',
+  Free2z_Livestreaming : "Free2Z_Livestreaming",
+  Avalanche_Redbridge : "Avalanche_RedBridge",
+  Raspberry_Pi_4_Full_Node : "Raspberry_Pi_4_Full_Node",
+  Raspberry_Pi_4_Zebra_Node : "Raspberry_pi_4_Zebra_Node"
 };
 
 export const transformUri = (uri: string, ignoreLowerCase = false) => {
