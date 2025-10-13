@@ -213,7 +213,7 @@ function ZcashEmbedContent() {
                   <ChartFooter
                     imgLabel={activeTab}
                     handleSaveToPng={handleSaveToPng}
-                    lastUpdatedDate={lastUpdated}
+                    lastUpdatedDate={activeTab}
                   />
                 )}
               </>

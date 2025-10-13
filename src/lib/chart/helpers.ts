@@ -1,3 +1,4 @@
+import { DATE_URL } from "./data-url";
 import {
   BlockchainInfo,
   Difficulty,
@@ -89,14 +90,38 @@ export async function getLastUpdatedDate(
   try {
     const res = await fetch(url, {
       signal,
+      headers: {
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'ZecHub-App',
+      }
     });
+
+    
     if (!res.ok) return "N/A";
     const d = await res.json();
 
-    return d[0]?.commit?.committer?.date ?? "N/A";
+    console.log('d' , d);
+
+    return d[d.length - 1]?.commit?.committer?.date ?? "N/A";
   } catch {
     return "N/A";
   }
+}
+
+export function getCommitUrlForTab(tabLabel: string): string {
+  const urlMap: Record<string, string> = {
+    "Supply": DATE_URL.shieldedUrl, // or defaultUrl, depending on which supply you want
+    "Difficulty": DATE_URL.difficultyUrl,
+    "Issuance": DATE_URL.issuanceUrl,
+    "Lockbox": DATE_URL.lockboxUrl,
+    "Flows": DATE_URL.netInflowsOutflowsUrl,
+    "Node Count": DATE_URL.nodecountUrl,
+    "TX Summary": DATE_URL.txsummaryUrl,
+    "Privacy Set": DATE_URL.shieldedTxCountUrl,
+    "Rewards" : DATE_URL.namadaRewardUrl
+  };
+
+  return urlMap[tabLabel] || DATE_URL.defaultUrl;
 }
 
 export async function getShieldedTxCount(

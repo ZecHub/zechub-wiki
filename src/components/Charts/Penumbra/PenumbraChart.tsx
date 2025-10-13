@@ -18,7 +18,6 @@ import {
 import SupplyDataLastUpdated from "../LastUpdated";
 
 type PenumbraChartProps = {
-  lastUpdated: Date;
   divChartRef: RefObject<HTMLDivElement | null>;
 };
 
@@ -68,10 +67,6 @@ function PenumbraChart(props: PenumbraChartProps) {
             >
               <p>Coming soon...</p>
             </ResponsiveContainer>
-
-            {props.lastUpdated && (
-              <SupplyDataLastUpdated lastUpdated={props.lastUpdated} />
-            )}
           </CardContent>
         </Card>
       </div>

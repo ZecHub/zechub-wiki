@@ -1,19 +1,10 @@
 import React, { RefObject, useState } from "react";
 import ChartFooter from "../../ChartFooter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../Tabs";
-import DifficultyChart from "../DifficultyChart";
-import IssuanceChart from "../IssuanceChart";
-import LockboxChart from "../LockboxChart";
-import NetInflowsOutflowsChart from "../NetInflowsOutflowsChart";
-import PrivacySetVisualizationChart from "../PrivacySetVisualizationChart";
-import ShieldedSupplyChart from "../ShieldedSupplyChart";
-import TransactionsSummaryChart from "../TransactionSummaryChart";
 import { CardContent } from "@/components/UI/shadcn/card";
-import NodeCountChart from "../NodeCountChart";
 import TransparentSupplyChart from "./TransparentSupplyChart";
 
 type ZcashChartProps = {
-  lastUpdated: Date;
   divChartRef: RefObject<HTMLDivElement | null>;
   handleSaveToPng: (
     poolType: string,
@@ -53,11 +44,11 @@ const CardContentTxn = (props: ZcashChartProps) => {
             <TabsContent value="supply" activeTab={activeTab}>
               <TransparentSupplyChart chartRef={props.divChartRef} />
             </TabsContent>
-
+            
             <ChartFooter
               imgLabel={activeTab}
               handleSaveToPng={props.handleSaveToPng}
-              lastUpdatedDate={props.lastUpdated}
+              lastUpdatedDate={activeTab}
             />
           </>
         )}

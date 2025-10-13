@@ -17,7 +17,6 @@ import RewardChart from "./RewardsChart";
 import TokenEcosystem from "./TokenEcosystem";
 
 type NamadaChartProps = {
-  lastUpdated: Date;
   divChartRef: RefObject<HTMLDivElement | null>;
   handleSaveToPng: (
     poolType: string,
@@ -80,7 +79,7 @@ function NamadaChart(props: NamadaChartProps) {
                   <ChartFooter
                     imgLabel={selectedTokenId}
                     handleSaveToPng={props.handleSaveToPng}
-                    lastUpdatedDate={props.lastUpdated}
+                    lastUpdatedDate={activeTab}
                   />
                 </>
               )}
