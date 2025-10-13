@@ -96,7 +96,7 @@ export async function getLastUpdatedDate(
       }
     });
 
-    
+
     if (!res.ok) return "N/A";
     const d = await res.json();
 
@@ -110,13 +110,13 @@ export async function getLastUpdatedDate(
 
 export function getCommitUrlForTab(tabLabel: string): string {
   const urlMap: Record<string, string> = {
-    "Supply": DATE_URL.shieldedUrl, // or defaultUrl, depending on which supply you want
-    "Difficulty": DATE_URL.difficultyUrl,
-    "Issuance": DATE_URL.issuanceUrl,
-    "Lockbox": DATE_URL.lockboxUrl,
-    "Flows": DATE_URL.netInflowsOutflowsUrl,
-    "Node Count": DATE_URL.nodecountUrl,
-    "TX Summary": DATE_URL.txsummaryUrl,
+    "supply": DATE_URL.shieldedUrl, // or defaultUrl, depending on which supply you want
+    "difficulty": DATE_URL.difficultyUrl,
+    "issuance": DATE_URL.issuanceUrl,
+    "lockbox": DATE_URL.lockboxUrl,
+    "flows": DATE_URL.netInflowsOutflowsUrl,
+    "node count": DATE_URL.nodecountUrl,
+    "tx summary": DATE_URL.txsummaryUrl,
     "Privacy Set": DATE_URL.shieldedTxCountUrl,
     "Rewards" : DATE_URL.namadaRewardUrl
   };
