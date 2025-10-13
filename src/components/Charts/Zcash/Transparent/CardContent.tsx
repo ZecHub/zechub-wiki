@@ -48,7 +48,7 @@ const CardContentTxn = (props: ZcashChartProps) => {
             <ChartFooter
               imgLabel={activeTab}
               handleSaveToPng={props.handleSaveToPng}
-              lastUpdatedDate={activeTab}
+              lastUpdatedDate={"transparent"}
             />
           </>
         )}

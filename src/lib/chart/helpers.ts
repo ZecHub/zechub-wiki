@@ -110,15 +110,16 @@ export async function getLastUpdatedDate(
 
 export function getCommitUrlForTab(tabLabel: string): string {
   const urlMap: Record<string, string> = {
-    "supply": DATE_URL.shieldedUrl, // or defaultUrl, depending on which supply you want
+    "supply": DATE_URL.shieldedUrl,
     "difficulty": DATE_URL.difficultyUrl,
     "issuance": DATE_URL.issuanceUrl,
     "lockbox": DATE_URL.lockboxUrl,
     "flows": DATE_URL.netInflowsOutflowsUrl,
     "node count": DATE_URL.nodecountUrl,
     "tx summary": DATE_URL.txsummaryUrl,
-    "Privacy Set": DATE_URL.shieldedTxCountUrl,
-    "Rewards" : DATE_URL.namadaRewardUrl
+    "privacy set": DATE_URL.shieldedTxCountUrl,
+    "rewards" : DATE_URL.namadaRewardUrl,
+    "transparent" : DATE_URL.transparentSupplyUrl
   };
 
   return urlMap[tabLabel] || DATE_URL.defaultUrl;
