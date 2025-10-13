@@ -15,35 +15,11 @@ import ZcashChart from "./Zcash/ZcashChart";
 
 const Dashboard = () => {
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    const fetchAllData = async () => {
-      try {
-        const [lastUpdated] = await Promise.all([
-          getLastUpdatedDate(DATA_URL.shieldedUrl, controller.signal),
-        ]);
-
-        if (lastUpdated) {
-          setLastUpdated(new Date(lastUpdated));
-        }
-      } catch (err) {
-        console.error("Error fetching dashboard data:", err);
-      }
-    };
-
-    fetchAllData();
-
-    return () => {
-      controller.abort();
-    };
-  }, []);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -104,7 +80,7 @@ const Dashboard = () => {
         {/* Zcash Dashboard (default) */}
         {selectedCrypto === "zcash" &&  (
           <ZcashChart
-            lastUpdated={lastUpdated!}
+            
             divChartRef={divChartRef}
             handleSaveToPng={handleSaveToPng}
           />
@@ -113,7 +89,7 @@ const Dashboard = () => {
         {/* Namada Dashboard (kept for potential future internal view; currently linked out) */}
         {selectedCrypto === "namada" && (
           <NamadaChart
-            lastUpdated={lastUpdated!}
+            
             divChartRef={divChartRef}
             handleSaveToPng={handleSaveToPng}
           />
@@ -121,7 +97,7 @@ const Dashboard = () => {
 
         {/* Penumbra Dashboard (not selectable in UI currently) */}
         {selectedCrypto === "penumbra" && (
-          <PenumbraChart lastUpdated={lastUpdated!} divChartRef={divChartRef} />
+          <PenumbraChart  divChartRef={divChartRef} />
         )}
       </div>
     </div>

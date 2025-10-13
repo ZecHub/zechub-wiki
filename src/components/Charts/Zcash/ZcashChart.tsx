@@ -12,7 +12,6 @@ import CardContentShielded from "./Shielded/CardContent";
 import CardContentTxn from "./Transparent/CardContent";
 
 type ZcashChartProps = {
-  lastUpdated: Date;
   divChartRef: RefObject<HTMLDivElement | null>;
   handleSaveToPng: (
     poolType: string,

@@ -12,7 +12,7 @@ import { CardContent } from "@/components/UI/shadcn/card";
 import NodeCountChart from "../NodeCountChart";
 
 type ZcashChartProps = {
-  lastUpdated: Date;
+  
   divChartRef: RefObject<HTMLDivElement | null>;
   handleSaveToPng: (
     poolType: string,
@@ -98,7 +98,7 @@ const CardContentShielded = (props: ZcashChartProps) => {
             <ChartFooter
               imgLabel={activeTab}
               handleSaveToPng={props.handleSaveToPng}
-              lastUpdatedDate={props.lastUpdated}
+              lastUpdatedDate={activeTab}
             />
           </>
         )}
