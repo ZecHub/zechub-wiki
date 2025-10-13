@@ -1,4 +1,4 @@
-Dates,Transactions,"Transparent Transfer TX's","Sapling Transfer TX's","Orchard Transfer TX's","Total Transfer TX's","Total Transparent TX's","Coinbase %","Total Sapling TX's","Net Sapling Flow","Total Orchard TX's","Net Orchard Flow","Total Shielded Supply","Total Lockbox Supply","Zebra Nodes","Zcashd Nodes","Total Node Count","Closing Price ($)","Shielded Market Cap",
+Dates,Transactions,Transparent_Transfer_TXs,Sapling_Transfer_TXs,Orchard_Transfer_TXs,Total_Transfer_TXs,Total_Transparent_TXs,Coinbase_percent,Total_Sapling_TXs,Net_Sapling_Flow,Total_Orchard_TXs,Net_Orchard_Flow,Total_Shielded_Supply,Total_Lockbox_Supply,Zebra_Nodes,Zcashd_Nodes,Total_Node_Count,Closing_Price,Shielded_Market_Cap,Shielded_Transaction_Percentage
 2024/11/17,19591,64546,2661,3632,70839,16580,na,1392,70655.9,1619,297273.7,1704262,0,9,76,85,44.47,75788531.14,0.153693022306161
 2024/11/24,18024,58275,2119,3864,64258,15340,na,1104,42988.3,1580,-6249.9,1745059,284,9,76,85,52.64,91859905.76,0.14891256102973816
 2024/12/01,16364,40630,1924,4820,47374,13425,na,1010,-4982,1929,-15568,1765527,1788,10,74,84,60.12,106143483.24,0.17960156440967978
@@ -46,3 +46,4 @@ Dates,Transactions,"Transparent Transfer TX's","Sapling Transfer TX's","Orchard 
 2025/09/21,18717,34871,2524,7420,44815,14759,0.57,1347,-3401,2718,8799,3795330,64892,23,50,73,51.87,196863767.1,0.2114655126355719
 2025/09/28,19204,36283,2247,8420,46950,15096,0.59,1211,822,3045,-37502,3832156,66389,19,41,60,62.69,240237859.64,0.21391376796500727
 2025/10/05,45047,76285,3654,20033,99972,36333,0.83,1927,45183,7076,-11770,3803129,67935,24,51,75,166.03,631433507.87,0.19344240459964035
+2025/10/12,59616,96965,3837,32417,133219,46386,0.87,2070,20693,11465,-430639,4272668,69435,19,35,53,260.23,1111876393.64,0.2219202898550725

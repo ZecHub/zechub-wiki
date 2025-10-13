@@ -1,5 +1,6 @@
 [
   {
+    "sprout": 0,
     "sapling": 3134,
     "orchard": 0,
     "timestamp": "2024-09-05T19:11:11.440662Z"
@@ -1971,5 +1972,95 @@
     "sapling": 251,
     "orchard": 1469,
     "timestamp": "10/07/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 237,
+    "orchard": 1066,
+    "timestamp": "10/08/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 266,
+    "orchard": 1285,
+    "timestamp": "10/08/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 301,
+    "orchard": 1454,
+    "timestamp": "10/09/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 301,
+    "orchard": 1423,
+    "timestamp": "10/09/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 345,
+    "orchard": 1687,
+    "timestamp": "10/09/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 376,
+    "orchard": 1835,
+    "timestamp": "10/09/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 405,
+    "orchard": 2410,
+    "timestamp": "10/10/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 411,
+    "orchard": 2417,
+    "timestamp": "10/10/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 365,
+    "orchard": 2061,
+    "timestamp": "10/11/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 381,
+    "orchard": 2037,
+    "timestamp": "10/11/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 390,
+    "orchard": 2084,
+    "timestamp": "10/11/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 357,
+    "orchard": 1851,
+    "timestamp": "10/12/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 341,
+    "orchard": 1790,
+    "timestamp": "10/12/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 316,
+    "orchard": 1710,
+    "timestamp": "10/12/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 357,
+    "orchard": 1644,
+    "timestamp": "10/13/2025"
   }
 ]

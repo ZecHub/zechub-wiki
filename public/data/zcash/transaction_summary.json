@@ -20878,5 +20878,59 @@
     "orchard_filter": 1578,
     "transactions": 1780,
     "transactions_filter": 1780
+  },
+  {
+    "height": 3091968,
+    "sapling": 240,
+    "sapling_filter": 240,
+    "orchard": 1100,
+    "orchard_filter": 1100,
+    "transactions": 1303,
+    "transactions_filter": 1303
+  },
+  {
+    "height": 3093120,
+    "sapling": 288,
+    "sapling_filter": 288,
+    "orchard": 1338,
+    "orchard_filter": 1337,
+    "transactions": 1582,
+    "transactions_filter": 1581
+  },
+  {
+    "height": 3094272,
+    "sapling": 411,
+    "sapling_filter": 411,
+    "orchard": 2334,
+    "orchard_filter": 2330,
+    "transactions": 2690,
+    "transactions_filter": 2686
+  },
+  {
+    "height": 3095424,
+    "sapling": 332,
+    "sapling_filter": 332,
+    "orchard": 1953,
+    "orchard_filter": 1951,
+    "transactions": 2233,
+    "transactions_filter": 2231
+  },
+  {
+    "height": 3096576,
+    "sapling": 377,
+    "sapling_filter": 377,
+    "orchard": 1993,
+    "orchard_filter": 1990,
+    "transactions": 2329,
+    "transactions_filter": 2326
+  },
+  {
+    "height": 3097728,
+    "sapling": 316,
+    "sapling_filter": 316,
+    "orchard": 1624,
+    "orchard_filter": 1624,
+    "transactions": 1883,
+    "transactions_filter": 1883
   }
 ]
