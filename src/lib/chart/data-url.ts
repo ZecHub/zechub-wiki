@@ -12,7 +12,7 @@ export const DATA_URL = {
   shieldedTxCountUrl: "/data/zcash/shieldedtxcount.json",
   issuanceUrl: "/data/zcash/issuance.json",
   shieldedUrl:
-    "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/shielded_supply.json&per_page=1",
+    "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/shielded_supply.json",
   namadaSupplyUrl: "/data/namada/namada_supply.json",
   blockchainInfoUrl: "/api/blockchain-info",
   blockchairUrl:
