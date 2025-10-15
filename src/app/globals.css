@@ -265,5 +265,48 @@ body {
 }
 
 code {
-  display: block;
+  white-space: pre;
+  overflow-x: auto;
+  display: inline-block;
+  max-width: 100%;
+  padding: 12px;
+}
+
+/* Optional: hide scrollbar for a cleaner look on modern browsers */
+code::-webkit-scrollbar {
+  height: 4px;
+}
+
+code::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+code::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 🔹 Responsive width tuning */
+@media (min-width: 640px) {
+
+  /* sm */
+  code {
+    max-width: 450px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  /* md */
+  code {
+    max-width: 550px;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  /* lg */
+  code {
+    max-width: 650px;
+  }
 }

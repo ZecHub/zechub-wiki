@@ -84,6 +84,10 @@ const NavLinks = ({
                     href={link.path ?? "#"}
                     onClick={handleLinkClick}
                     className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
+                    {...(link.newTab && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
                   >
                     {(link.icon || matchIcons(item.name, link.name)) && (
                       <Icon
@@ -103,6 +107,10 @@ const NavLinks = ({
               href={item.path ?? "#"}
               onClick={handleLinkClick}
               className={`text-nav-foreground hover:text-nav-hover transition-colors duration-200 whitespace-nowrap`}
+              {...(item.newTab && {
+                target: "_blank",
+                rel: "noopener noreferrer",
+              })}
             >
               {item.label || item.name}
             </Link>
@@ -122,6 +130,10 @@ const NavLinks = ({
                   href={item.path ?? "#"}
                   onClick={handleLinkClick}
                   className={`flex items-center gap-2 text-sm w-full text-nav-foreground `}
+                  {...(item.newTab && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
                 >
                   {(item.icon || matchIcons(item.name, item.name)) && (
                     <Icon
@@ -151,6 +163,10 @@ const NavLinks = ({
                   href={link.path ?? "#"}
                   onClick={handleLinkClick}
                   className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
+                  {...(link.newTab && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
                 >
                   {(link.icon || matchIcons(item.name, link.name)) && (
                     <Icon
@@ -200,6 +216,10 @@ const NavLinks = ({
                                 href={link.path ?? "#"}
                                 onClick={handleLinkClick}
                                 className="flex items-center gap-2 text-sm w-full"
+                                {...(link.newTab && {
+                                  target: "_blank",
+                                  rel: "noopener noreferrer",
+                                })}
                               >
                                 {(link.icon ||
                                   matchIcons(item.name, link.name)) && (
@@ -222,6 +242,10 @@ const NavLinks = ({
                         href={item.path ?? "#"}
                         onClick={handleLinkClick}
                         className="w-full text-white hover:text-nav-hover"
+                        {...(item.newTab && {
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                        })}
                       >
                         {item.name}
                       </Link>
@@ -267,6 +291,10 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
                   href={link.path ?? "#"}
                   onClick={handleLinkClick}
                   className={`flex items-center gap-2 px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 text-sm ${liStyle} text-slate-700`}
+                  {...(link.newTab && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
                 >
                   {(link.icon || matchIcons(item.name, link.name)) && (
                     <Icon
@@ -286,6 +314,10 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
             href={item.path ?? "#"}
             onClick={handleLinkClick}
             className={`px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 ${liStyle} dark:text-white`}
+            {...(item.newTab && {
+              target: "_blank",
+              rel: "noopener noreferrer",
+            })}
           >
             {item.label || item.name}
           </Link>
@@ -366,7 +398,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
           {/* Logo */}
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
-            <Logo theme={dark}/>
+            <Logo theme={dark} />
           </Link>
 
           {/* Desktop & Tablet Nav */}
