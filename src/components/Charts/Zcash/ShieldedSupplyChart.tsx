@@ -28,6 +28,7 @@ import {
 import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
 import { useInMobile } from "@/hooks/useInMobile";
+import DefaultSelect from "@/components/DefaultSelect";
 
 const POOL_OPTIONS = [
   { label: "All Pools", value: "all" },
@@ -229,50 +230,38 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
         //   {selectedYear !== "all" ? ` - ${selectedYear}` : ""}
         // </span>;
       >
-        <div className="flex flex-wrap gap-4 items-center">
+        <div className="flex flex-wrap gap-20 items-center">
           {/*  Year Dropdown */}
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Year</label>
-            <Select value={selectedYear} onValueChange={setSelectedYear}>
-              <SelectTrigger className="w-28 dark:border-slate-700">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {getAvailableYears(selectedPool).map((year) => (
-                  <SelectItem
-                    key={year}
-                    value={year.toString()}
-                    className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
-                  >
-                    {year === "all" ? "All" : year}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <DefaultSelect
+              value={selectedYear}
+              onChange={setSelectedYear}
+              options={getAvailableYears(selectedPool).map((year) =>
+                year.toString()
+              )}
+              className="w-28 dark:border-slate-700"
+              optionClassName="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
+              renderOption={(year) => (year === "all" ? "All" : year)}
+            />
           </div>
 
           {/*  Pool Dropdown */}
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Pool</label>
-            <Select
+            <DefaultSelect
               value={selectedPool}
-              onValueChange={(v) => setSelectedPool(v as PoolKey)}
-            >
-              <SelectTrigger className="w-36 dark:border-slate-700">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {POOL_OPTIONS.map((opt) => (
-                  <SelectItem
-                    key={opt.value}
-                    value={opt.value}
-                    className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
-                  >
-                    {opt.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              onChange={(v) => setSelectedPool(v as PoolKey)}
+              options={POOL_OPTIONS.map((opt) => opt.value)}
+              className="w-36 dark:border-slate-700"
+              optionClassName="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
+              renderOption={(value) => {
+                const label = POOL_OPTIONS.find(
+                  (opt) => opt.value === value
+                )?.label;
+                return label ?? value;
+              }}
+            />
           </div>
 
           <div className="text-sm">
