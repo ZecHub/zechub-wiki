@@ -33,7 +33,7 @@ export default function DefaultSelect<T extends string>({
           w-36 text-sm py-1.5 px-3 pr-8 rounded-md
           bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100
           border dark:border-slate-700 shadow-sm
-          focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-blue-300
+          focus:outline-none focus:ring-1 focus:ring-slate-400 dark:focus:ring-slate-600
           hover:border-slate-400 dark:hover:border-slate-600
           appearance-none cursor-pointer
         `}
