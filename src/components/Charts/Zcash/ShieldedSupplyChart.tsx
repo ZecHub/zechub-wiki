@@ -226,9 +226,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             ? "Shielded Supply Overview"
             : `${capitalize(selectedPool)} Pool Supply`
         }
-        //         <span className="text-sm">
-        //   {selectedYear !== "all" ? ` - ${selectedYear}` : ""}
-        // </span>;
       >
         <div className="flex flex-wrap gap-20 items-center">
           {/*  Year Dropdown */}
