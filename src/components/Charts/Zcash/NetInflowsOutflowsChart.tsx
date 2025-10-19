@@ -63,8 +63,8 @@ export default function NetInflowsOutflowsChart(
 
   const parsedData = dataFlow.map((item) => ({
     date: item.Date,
-    netSaplingFlow: parseFloat(item["Net Sapling Flow"]),
-    netOrchardFlow: parseFloat(item["Net Orchard Flow"]),
+    netSaplingFlow: -parseFloat(item["Net Sapling Flow"]),
+    netOrchardFlow: -parseFloat(item["Net Orchard Flow"]),
   }));
 
   console.log(parsedData);
