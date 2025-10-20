@@ -116,8 +116,10 @@ export default function DeveloperPage() {
               A builders manual for Zcash. By builders, for builders.
             </p>
           </div>
-        </div>
-      </div>
+          </div> 
+          </div> 
+        </section>
+
 
       {/* Cards Section */}
       <section id="cardLinks" className="bg-gray-100 dark:bg-gray-800 py-12">
