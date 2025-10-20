@@ -14,13 +14,11 @@ export default function DeveloperPage() {
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
   const [isHelpful, setIsHelpful] = useState(false);
 
-  // Handle feedback submission
   const handleFeedback = (helpful: boolean) => {
     setIsHelpful(helpful);
     setFeedbackSubmitted(true);
   };
 
-  // Card data with custom button text and SVG icons
   const cardsConfig: CardConfig[] = [
     {
       title: "Learn Zcash Development",
@@ -98,21 +96,18 @@ export default function DeveloperPage() {
 
   return (
     <>
+      {/* Hero */}
       <div
         className="min-h-screen flex flex-col md:flex-row"
         style={{
-          backgroundImage: `url('/zecbg.png')`,
+          backgroundImage: "url('/zecbg.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
         aria-label="Zcash Developers Hero Section"
       >
-        {/* Left Section with Full Background Image */}
         <div className="w-full md:w-1/2 h-screen relative">
-          {/* Overlay for Better Text Readability */}
           <div className="absolute inset-0 bg-white bg-opacity-50" />
-
-          {/* Text Content */}
           <div className="absolute inset-0 flex flex-col items-start justify-center p-8 text-black max-w-md mx-auto md:ml-16">
             <h1 className="text-2xl md:text-5xl font-bold mb-4">Developers</h1>
             <h2 className="text-4xl md:text-3xl font-semibold mb-4">
@@ -137,12 +132,9 @@ export default function DeveloperPage() {
                 key={index}
                 className="bg-white rounded-lg shadow-md overflow-hidden"
               >
-                {/* Card SVG Icon */}
                 <div className="flex items-center justify-center p-6">
                   {card.svg}
                 </div>
-
-                {/* Card Content */}
                 <div className="p-6">
                   <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
                   <p className="text-gray-700 mb-4">{card.content}</p>
@@ -161,12 +153,10 @@ export default function DeveloperPage() {
         </div>
       </section>
 
-      {/* Explore the Documentation Section */}
+      {/* Explore the Documentation */}
       <section id="exploreDocumentation" className="bg-white py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12">Explore the Documentation</h2>
-
-          {/* Flex Container for Subsections */}
           <div className="flex flex-col md:flex-row gap-8">
             {/* Introductions */}
             <div className="flex-1">
@@ -339,12 +329,11 @@ export default function DeveloperPage() {
         </div>
       </section>
 
-      {/* Was this page helpful? Section */}
+      {/* Feedback */}
       <section id="feedback" className="bg-gray-100 py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold mb-4">Was this page helpful?</h2>
           <div className="flex items-center space-x-4">
-            {/* Yes Button */}
             <button
               onClick={() => handleFeedback(true)}
               className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300"
@@ -353,8 +342,6 @@ export default function DeveloperPage() {
               <span>👍</span>
               <span>Yes</span>
             </button>
-
-            {/* No Button */}
             <button
               onClick={() => handleFeedback(false)}
               className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
@@ -365,7 +352,6 @@ export default function DeveloperPage() {
             </button>
           </div>
 
-          {/* Feedback Message */}
           {feedbackSubmitted && (
             <div className="mt-4">
               {isHelpful ? (
