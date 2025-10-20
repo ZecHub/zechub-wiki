@@ -139,7 +139,7 @@ export default function DeveloperPage() {
                 {/* Card Content */}
                 <div className="p-6">
                   <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
-                  <p className="dark:text-gray-300 text-gray-700 mb--4 h-[100px]">
+                  <p className="dark:text-gray-300 text-gray-700 mb-4 h-[100px]">
                     {card.content}
                   </p>
                   <a
@@ -343,8 +343,7 @@ export default function DeveloperPage() {
                 </li>
               </ul>
             </div>
-
-            {/* Advanced */}
+{/* Advanced */}
 <div className="flex-1">
   <h3 className="text-3xl font-semibold mb-4">Advanced</h3>
   <ul className="space-y-3">
@@ -362,7 +361,6 @@ export default function DeveloperPage() {
       </p>
     </li>
 
-    {/* Added link */}
     <li>
       <a
         href="https://zecdev.github.io/community"
@@ -373,60 +371,57 @@ export default function DeveloperPage() {
         Zcash Community Wishlist
       </a>
       <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-        Explore the Zcash Community Wishlist to discover project ideas, priorities, and
-        contributions from the broader Zcash ecosystem.
+        Explore the Zcash Community Wishlist to discover project ideas,
+        priorities, and contributions from the broader Zcash ecosystem.
+      </p>
+    </li>
+
+    <li>
+      <a
+        href="https://github.com/zingolabs/zingolib"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-500 hover:underline"
+      >
+        Intro to Zingolib
+      </a>
+      <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+        Understanding the zingolib repository—a Rust-based API and CLI for
+        interacting with zcashd via Lightwalletd.
+      </p>
+    </li>
+
+    <li>
+      <a
+        href="https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-500 hover:underline"
+      >
+        Development Guidelines
+      </a>
+      <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+        Follow best practices for developing on Zcash.
+      </p>
+    </li>
+
+    <li>
+      <a
+        href="https://github.com/ZcashCommunityGrants/arboretum-notes"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-lg font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+      >
+        Aborist Calls Page
+      </a>
+      <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+        The Zcash Arborist Calls are bi-weekly protocol development meetings
+        focused on tracking upcoming protocol deployment logistics, consensus
+        node implementation issues, and protocol research.
       </p>
     </li>
   </ul>
 </div>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/zingolabs/zingolib"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Intro to Zingolib
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Understanding the zingolib repository—a Rust-based API and
-                    CLI for interacting with zcashd via Lightwalletd.
-                  </p>
-                </li>
-                <li>
-                  <a
-                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Development Guidelines
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Follow best practices for developing on Zcash.
-                  </p>
-                </li>
-                <li>
-                 <a
-                 href="https://github.com/ZcashCommunityGrants/arboretum-notes"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                   className="text-lg font-semibold text-blue-600 dark:text-blue-400 hover:underline"
-                   >
-                 Aborist Calls Page
-                 </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                   The Zcash Arborist Calls are bi-weekly protocol development
-                   meetings focused on tracking upcoming protocol deployment
-                  logistics, consensus node implementation issues, and
-                  protocol research.
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Was this page helpful? Section */}
