@@ -4,7 +4,7 @@ import ArboristCallsPage from "./ArboristCallsPage";
 
 export const metadata: Metadata = genMetadata({
   title: "ZecHub Arborist Calls",
-  url: "https://zechub.wiki/arborist-calls",
+  url: "https://github.com/ZcashCommunityGrants/arboretum-notes",
 });
 
 export default function Page() {

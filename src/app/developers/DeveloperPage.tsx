@@ -156,7 +156,9 @@ export default function DeveloperPage() {
       {/* Explore the Documentation */}
       <section id="exploreDocumentation" className="bg-white py-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12">Explore the Documentation</h2>
+          <h2 className="text-4xl font-bold mb-12">
+            Explore the Documentation
+          </h2>
           <div className="flex flex-col md:flex-row gap-8">
             {/* Introductions */}
             <div className="flex-1">
@@ -326,6 +328,31 @@ export default function DeveloperPage() {
               </ul>
             </div>
           </div>
+        </div>
+
+        {/* Advanced */}
+          <div className="container mx-auto px-4">
+
+        <div className="flex-1  ">
+          <h3 className="text-3xl font-semibold mb-4">Advanced</h3>
+          <ul className="space-y-3">
+            <li>
+              <a
+                href="https://zecdev.github.io/community"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                Zcash Community Wishlist
+              </a>
+              <p className="text-gray-600 text-sm mt-1 mb-2">
+                Explore open ideas and community priorities for future Zcash
+                development.
+              </p>
+            </li>
+          </ul>
+              </div>
+
         </div>
       </section>
 
