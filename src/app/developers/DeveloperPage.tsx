@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
@@ -96,17 +95,13 @@ export default function DeveloperPage() {
       <div
         className="min-h-[50vh] flex flex-col md:flex-row"
         style={{
-          backgroundImage: `url('zecbg.png')`, // Replace with your image path
-          backgroundSize: "cover", // Ensure the background covers the entire section
-          backgroundPosition: "center", // Center the background image
+          backgroundImage: `url('zecbg.png')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
-        {/* Left Section with Full Background Image */}
         <div className="w-full md:w-1/2 h-[50vh] relative">
-          {/* Overlay for Better Text Readability */}
           <div className="absolute inset-0 bg-white bg-opacity-50"></div>
-
-          {/* Text Content */}
           <div className="absolute inset-0 flex flex-col items-start justify-center p-8 text-black max-w-md mx-auto md:ml-16">
             <h1 className="text-2xl md:text-5xl font-bold mb-4">Developers</h1>
             <h2 className="text-4xl md:text-3xl font-semibold mb-4">
@@ -131,12 +126,9 @@ export default function DeveloperPage() {
                 key={index}
                 className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
               >
-                {/* Card SVG Icon */}
                 <div className="flex items-center justify-center p-6">
                   {card.svg}
                 </div>
-
-                {/* Card Content */}
                 <div className="p-6">
                   <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
                   <p className="dark:text-gray-300 text-gray-700 mb--4 h-[100px]">
@@ -146,7 +138,7 @@ export default function DeveloperPage() {
                     href={card.url}
                     className="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
                   >
-                    {card.buttonText} {/* Custom button text */}
+                    {card.buttonText}
                   </a>
                 </div>
               </div>
@@ -165,7 +157,6 @@ export default function DeveloperPage() {
             Explore the Documentation
           </h2>
 
-          {/* Flex Container for Subsections */}
           <div className="flex flex-col md:flex-row gap-8">
             {/* Introductions */}
             <div className="flex-1">
@@ -389,19 +380,35 @@ export default function DeveloperPage() {
                     Follow best practices for developing on Zcash.
                   </p>
                 </li>
+
                 <li>
                   <a
-                    href="/aborist-calls"
+                    href="https://github.com/ZcashCommunityGrants/arboretum-notes"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Aborist Calls Page
+                    Arborist Calls
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    The Zcash Arborist Calls are bi-weekly protocol development
-                    meetings focused on tracking upcoming protocol deployment
-                    logistics, consensus node implementation issues, and
-                    protocol research.
+                    The Zcash Arborist Calls are bi-weekly protocol development meetings 
+                    focused on protocol updates, node implementation issues, and research. 
+                    Meeting notes are available in the Arboretum repository.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zecdev.github.io/community"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Community Wishlist
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Browse and contribute to the Zcash Community Wishlist — a collection of 
+                    developer ideas, project requests, and community-driven opportunities.
                   </p>
                 </li>
               </ul>
@@ -418,7 +425,6 @@ export default function DeveloperPage() {
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold mb-4">Was this page helpful?</h2>
           <div className="flex items-center space-x-4">
-            {/* Yes Button */}
             <button
               onClick={() => handleFeedback(true)}
               className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300"
@@ -426,8 +432,6 @@ export default function DeveloperPage() {
               <span>👍</span>
               <span>Yes</span>
             </button>
-
-            {/* No Button */}
             <button
               onClick={() => handleFeedback(false)}
               className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
@@ -437,43 +441,9 @@ export default function DeveloperPage() {
             </button>
           </div>
 
-          {/* Feedback Message */}
           {feedbackSubmitted && (
             <div className="mt-4">
               {isHelpful ? (
                 <p className="text-green-600">
                   Thank you for your feedback! Make this page even better by
-                  answering a few questions. If you need help, you can reach out
-                  to the community on our{" "}
-                  <a
-                    href="https://discord.gg/zcash"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Discord
-                  </a>
-                  .
-                </p>
-              ) : (
-                <p className="text-red-600">
-                  Sorry to hear that. Please let us know how we can improve this
-                  page. You can reach out to the community on our{" "}
-                  <a
-                    href="https://discord.gg/zcash"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Discord
-                  </a>
-                  .
-                </p>
-              )}
-            </div>
-          )}
-        </div>
-      </section>
-    </>
-  );
-}
+                  answering a few
