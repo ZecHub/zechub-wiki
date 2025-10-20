@@ -10,7 +10,7 @@ import {
   MdOutlineOndemandVideo as AudioVideo,
   MdDeveloperMode,
 } from "react-icons/md";
-import { SiBrandfolder as BrandIcon, SiHomeassistant } from "react-icons/si";
+import { SiBrandfolder as BrandIcon, SiHomeassistant , SiZcash} from "react-icons/si";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { IconType } from "react-icons";
 
@@ -309,6 +309,11 @@ export const navigations: Array<NavigationItem> = [
     name: "Contribute",
     path: "/contribute/help-build-zechub",
     icon: SiHomeassistant,
+  },
+  {
+    name: "Dao Governance",
+    path: "/governance-howto",
+    icon:  SiZcash,
   },
 ];
 
