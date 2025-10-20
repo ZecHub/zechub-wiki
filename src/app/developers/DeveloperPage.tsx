@@ -345,22 +345,40 @@ export default function DeveloperPage() {
             </div>
 
             {/* Advanced */}
-            <div className="flex-1">
-              <h3 className="text-3xl font-semibold mb-4">Advanced</h3>
-              <ul className="space-y-3">
-                <li>
-                  <a
-                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/librustzcash_arch.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Intro to the Stack
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Understand the architecture and components of the Zcash
-                    stack.
-                  </p>
+<div className="flex-1">
+  <h3 className="text-3xl font-semibold mb-4">Advanced</h3>
+  <ul className="space-y-3">
+    <li>
+      <a
+        href="https://zcash.readthedocs.io/en/latest/rtd_pages/librustzcash_arch.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-500 hover:underline"
+      >
+        Intro to the Stack
+      </a>
+      <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+        Understand the architecture and components of the Zcash stack.
+      </p>
+    </li>
+
+    {/* Added link */}
+    <li>
+      <a
+        href="https://zecdev.github.io/community"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-500 hover:underline"
+      >
+        Zcash Community Wishlist
+      </a>
+      <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+        Explore the Zcash Community Wishlist to discover project ideas, priorities, and
+        contributions from the broader Zcash ecosystem.
+      </p>
+    </li>
+  </ul>
+</div>
                 </li>
                 <li>
                   <a
@@ -390,18 +408,19 @@ export default function DeveloperPage() {
                   </p>
                 </li>
                 <li>
-                  <a
-                    href="/aborist-calls"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Aborist Calls Page
-                  </a>
+                 <a
+                 href="https://github.com/ZcashCommunityGrants/arboretum-notes"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                   className="text-lg font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+                   >
+                 Aborist Calls Page
+                 </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    The Zcash Arborist Calls are bi-weekly protocol development
-                    meetings focused on tracking upcoming protocol deployment
-                    logistics, consensus node implementation issues, and
-                    protocol research.
+                   The Zcash Arborist Calls are bi-weekly protocol development
+                   meetings focused on tracking upcoming protocol deployment
+                  logistics, consensus node implementation issues, and
+                  protocol research.
                   </p>
                 </li>
               </ul>
