@@ -31,7 +31,7 @@ const ContentSections = () => {
         reverse={true}
         title="Zcash.me"
         description="Zcash.Me is a public directory of Zcash users featuring private messaging, leaderboards, and verified users. Connect, explore, and interact with the Zcash community."
-        image="/Zcash-me.jpg"
+        image="/Zcash-me.png"
         links={[
           {
             href: "https://zcash.me",
