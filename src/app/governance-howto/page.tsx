@@ -68,6 +68,17 @@ export default function GovernanceGuide() {
                       Watch Video Guide
                     </Link>
                   </button>
+                  <button className="border py-2 px-3 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500">
+                    <Link
+                      href="https://www.youtube.com/watch?v=1zGYmT66MzE"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center"
+                    >
+                      <FaExternalLinkAlt className="h-4 w-4 mr-2" />
+                      Watch Proposal Walkthrough
+                    </Link>
+                  </button>
                 </div>
               </div>
 
