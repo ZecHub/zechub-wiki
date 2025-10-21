@@ -119,7 +119,8 @@ export function getCommitUrlForTab(tabLabel: string): string {
     "tx summary": DATE_URL.txsummaryUrl,
     "privacy set": DATE_URL.shieldedTxCountUrl,
     "rewards" : DATE_URL.namadaRewardUrl,
-    "transparent" : DATE_URL.transparentSupplyUrl
+    "transparent" : DATE_URL.transparentSupplyUrl,
+    "shielded stats" : DATE_URL.zcashShieldedStatsUrl
   };
 
   return urlMap[tabLabel] || DATE_URL.defaultUrl;

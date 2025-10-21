@@ -80,7 +80,6 @@ const Dashboard = () => {
         {/* Zcash Dashboard (default) */}
         {selectedCrypto === "zcash" &&  (
           <ZcashChart
-            
             divChartRef={divChartRef}
             handleSaveToPng={handleSaveToPng}
           />
