@@ -269,7 +269,7 @@ export default function GovernanceGuide() {
               <div className="flex items-start gap-2">
                 <p className="text-red-800">
                   ZecHub DAO voting period has a{" "}
-                  <strong>minimum duration of 3 days</strong>
+                  <strong>minimum duration of 5 days</strong>
                 </p>
               </div>
             </div>
