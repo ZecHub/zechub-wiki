@@ -26,16 +26,16 @@ const ContentSections = () => {
       />
 
       {/* Hackathon Section */}
-      <InfoCard
-        id="hackathon"
+       <InfoCard
+        id="zcashme"
         reverse={true}
-        title="Hackathon"
-        description="Challenge yourself to build with Zcash — the foundation of unstoppable, private money. Harness cutting-edge cryptography, empower true financial freedom, and shape the future of privacy-focused innovation."
-        image="/hackathon.png"
+        title="Zcash.me"
+        description="Zcash.Me is a public directory of Zcash users featuring private messaging, leaderboards, and verified users. Connect, explore, and interact with the Zcash community."
+        image="/Zcash-me.jpg"
         links={[
           {
-            href: "https://hackathon.zechub.wiki",
-            label: " Join the Hackathon",
+            href: "https://zcash.me",
+            label: " Visit Zcash.Me",
             primary: true,
           },
         ]}

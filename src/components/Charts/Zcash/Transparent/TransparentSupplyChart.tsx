@@ -1,4 +1,13 @@
+import DefaultSelect from "@/components/DefaultSelect";
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/UI/shadcn/select";
+import { useInMobile } from "@/hooks/useInMobile";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { formatNumberShort, getSupplyData } from "@/lib/chart/helpers";
@@ -14,14 +23,6 @@ import {
 } from "recharts";
 import ChartHeader from "../../ChartHeader";
 import ChartContainer from "../ChartContainer";
-import { useInMobile } from "@/hooks/useInMobile";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/UI/shadcn/select";
 
 type TransparentSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
@@ -105,26 +106,18 @@ export default function TransparentSupplyChart(
   return (
     <ErrorBoundary fallback={"Failed to load Shielded Supply Chart"}>
       <ChartHeader title="Transparent Supply Overview">
-        <div className="flex flex-wrap gap-4 items-center">
+        <div className="flex flex-wrap gap-16 items-center">
           {/*  Year Dropdown */}
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Year</label>
-            <Select value={selectedYear} onValueChange={setSelectedYear}>
-              <SelectTrigger className="w-28 dark:border-slate-700">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {getAvailableYears().map((year) => (
-                  <SelectItem
-                    key={year}
-                    value={year.toString()}
-                    className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
-                  >
-                    {year === "all" ? "All" : year}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <DefaultSelect
+              value={selectedYear}
+              onChange={setSelectedYear}
+              options={getAvailableYears().map((year) => year.toString())}
+              className="w-28 dark:border-slate-700"
+              optionClassName="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
+              renderOption={(year) => (year === "all" ? "All" : year)}
+            />
           </div>
 
           <div className="text-sm">

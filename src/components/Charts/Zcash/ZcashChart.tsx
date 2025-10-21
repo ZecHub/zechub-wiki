@@ -1,6 +1,4 @@
 import { Card, CardHeader, CardTitle } from "@/components/UI/shadcn/card";
-import { RefObject, useState } from "react";
-import { ZcashMetrics } from "./ZcashMetrics/ZcashMetrics";
 import {
   Select,
   SelectContent,
@@ -8,8 +6,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/UI/shadcn/select";
+import { RefObject, useState } from "react";
 import CardContentShielded from "./Shielded/CardContent";
 import CardContentTxn from "./Transparent/CardContent";
+import { ZcashMetrics } from "./ZcashMetrics/ZcashMetrics";
+import DefaultSelect from "@/components/DefaultSelect";
 
 type ZcashChartProps = {
   divChartRef: RefObject<HTMLDivElement | null>;
@@ -56,7 +57,14 @@ function ZcashChart(props: ZcashChartProps) {
             <CardTitle className="text-xl">Analytics Charts</CardTitle>
             {/*  Supply Dropdown */}
             <div className="flex gap-2 items-center">
-              <Select
+              <DefaultSelect
+                value={supplyTab}
+                onChange={(v) => setSupplyTab(v)}
+                options={supplyLabels}
+                className="inline-block"
+                ariaLabel="Supply type"
+              />
+              {/* <Select
                 value={supplyTab}
                 onValueChange={(v) => setSupplyTab(v as any)}
               >
@@ -74,7 +82,7 @@ function ZcashChart(props: ZcashChartProps) {
                     </SelectItem>
                   ))}
                 </SelectContent>
-              </Select>
+              </Select> */}
             </div>
           </div>
         </CardHeader>

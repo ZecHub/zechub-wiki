@@ -93,20 +93,18 @@ export default function DeveloperPage() {
 
   return (
     <>
+      {/* Hero Section */}
       <div
         className="min-h-[50vh] flex flex-col md:flex-row"
         style={{
-          backgroundImage: `url('zecbg.png')`, // Replace with your image path
-          backgroundSize: "cover", // Ensure the background covers the entire section
-          backgroundPosition: "center", // Center the background image
+          backgroundImage: `url('zecbg.png')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
-        {/* Left Section with Full Background Image */}
         <div className="w-full md:w-1/2 h-[50vh] relative">
-          {/* Overlay for Better Text Readability */}
           <div className="absolute inset-0 bg-white bg-opacity-50"></div>
 
-          {/* Text Content */}
           <div className="absolute inset-0 flex flex-col items-start justify-center p-8 text-black max-w-md mx-auto md:ml-16">
             <h1 className="text-2xl md:text-5xl font-bold mb-4">Developers</h1>
             <h2 className="text-4xl md:text-3xl font-semibold mb-4">
@@ -125,28 +123,27 @@ export default function DeveloperPage() {
           <h2 className="text-4xl font-bold mb-12">
             How would you like to get started?
           </h2>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {cardsConfig.map((card, index) => (
               <div
                 key={index}
                 className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
               >
-                {/* Card SVG Icon */}
                 <div className="flex items-center justify-center p-6">
                   {card.svg}
                 </div>
 
-                {/* Card Content */}
                 <div className="p-6">
                   <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
-                  <p className="dark:text-gray-300 text-gray-700 mb--4 h-[100px]">
+                  <p className="dark:text-gray-300 text-gray-700 mb-4 h-[100px]">
                     {card.content}
                   </p>
                   <a
                     href={card.url}
                     className="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
                   >
-                    {card.buttonText} {/* Custom button text */}
+                    {card.buttonText}
                   </a>
                 </div>
               </div>
@@ -155,7 +152,7 @@ export default function DeveloperPage() {
         </div>
       </section>
 
-      {/* Explore the Documentation Section */}
+      {/* Documentation Section */}
       <section
         id="exploreDocumentation"
         className="bg-white dark:bg-gray-800 py-12"
@@ -165,9 +162,8 @@ export default function DeveloperPage() {
             Explore the Documentation
           </h2>
 
-          {/* Flex Container for Subsections */}
           <div className="flex flex-col md:flex-row gap-8">
-            {/* Introductions */}
+            {/* Introductions Column */}
             <div className="flex-1">
               <h3 className="text-3xl font-semibold mb-4">Introductions</h3>
               <ul className="space-y-3">
@@ -184,6 +180,7 @@ export default function DeveloperPage() {
                     Learn about Zcash, its history, and its core principles.
                   </p>
                 </li>
+
                 <li>
                   <a
                     href="https://zechub.wiki/start-here/zec-use-cases#content"
@@ -198,6 +195,7 @@ export default function DeveloperPage() {
                     cryptocurrency.
                   </p>
                 </li>
+
                 <li>
                   <a
                     href="https://zebra.zfnd.org/"
@@ -212,6 +210,7 @@ export default function DeveloperPage() {
                     modular and secure Rust-based implementation
                   </p>
                 </li>
+
                 <li>
                   <a
                     href="https://github.com/zcash/lightwalletd"
@@ -230,7 +229,7 @@ export default function DeveloperPage() {
               </ul>
             </div>
 
-            {/* Fundamentals */}
+            {/* Fundamentals Column */}
             <div className="flex-1">
               <h3 className="text-3xl font-semibold mb-4">Fundamentals</h3>
               <ul className="space-y-3">
@@ -247,6 +246,7 @@ export default function DeveloperPage() {
                     Learn how Zcash addresses and keys are encoded.
                   </p>
                 </li>
+
                 <li>
                   <a
                     href="https://zechub.wiki/using-zcash/transactions"
@@ -260,6 +260,7 @@ export default function DeveloperPage() {
                     Understand how transactions work in Zcash.
                   </p>
                 </li>
+
                 <li>
                   <a
                     href="https://zips.z.cash/zip-0317"
@@ -273,6 +274,7 @@ export default function DeveloperPage() {
                     Learn about transaction fees and how they are calculated.
                   </p>
                 </li>
+
                 <li>
                   <a
                     href="https://zcash.github.io/zcash/"
@@ -286,6 +288,7 @@ export default function DeveloperPage() {
                     Set up and manage Zcash nodes using zcashd.
                   </p>
                 </li>
+
                 <li>
                   <a
                     href="https://zebra.zfnd.org/"
@@ -299,6 +302,7 @@ export default function DeveloperPage() {
                     Explore Zebra, an alternative Zcash node implementation.
                   </p>
                 </li>
+
                 <li>
                   <a
                     href="https://zcash.readthedocs.io/en/latest/lightwalletd/index.html"
@@ -312,6 +316,7 @@ export default function DeveloperPage() {
                     Learn about lightwalletd, a lightweight Zcash wallet server.
                   </p>
                 </li>
+
                 <li>
                   <a
                     href="https://github.com/nighthawk-apps/zcash-explorer"
@@ -325,6 +330,7 @@ export default function DeveloperPage() {
                     Explore Zcash blockchains using block explorers.
                   </p>
                 </li>
+
                 <li>
                   <a
                     href="https://fringe-brow-647.notion.site/Shade-Agents-19a09959836d8091bb8febb318cc09fd"
@@ -332,7 +338,7 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Shade Agent- Notion
+                    Shade Agent - Notion
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Learn about Shade Agents—the first truly autonomous AI
@@ -344,7 +350,7 @@ export default function DeveloperPage() {
               </ul>
             </div>
 
-            {/* Advanced */}
+            {/* Advanced Column */}
             <div className="flex-1">
               <h3 className="text-3xl font-semibold mb-4">Advanced</h3>
               <ul className="space-y-3">
@@ -362,6 +368,32 @@ export default function DeveloperPage() {
                     stack.
                   </p>
                 </li>
+
+                <li>
+                  <a
+                    href="https://zecdev.github.io/community"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Community Wishlist
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Explore the Zcash Community Wishlist to discover project
+                    ideas, priorities, and contributions from the broader Zcash
+                    ecosystem.
+                  </p>
+                  Link:{" "}
+                  <a
+                    href="https://zecdev.github.io/community"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Community Wishlist
+                  </a>
+                </li>
+
                 <li>
                   <a
                     href="https://github.com/zingolabs/zingolib"
@@ -376,6 +408,7 @@ export default function DeveloperPage() {
                     CLI for interacting with zcashd via Lightwalletd.
                   </p>
                 </li>
+
                 <li>
                   <a
                     href="https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html"
@@ -389,13 +422,15 @@ export default function DeveloperPage() {
                     Follow best practices for developing on Zcash.
                   </p>
                 </li>
+
                 <li>
                   <a
-                    href="/aborist-calls"
+                    href="https://github.com/ZcashCommunityGrants/arboretum-notes"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Aborist Calls Page
+                    Arborist Calls Page
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     The Zcash Arborist Calls are bi-weekly protocol development
@@ -410,15 +445,15 @@ export default function DeveloperPage() {
         </div>
       </section>
 
-      {/* Was this page helpful? Section */}
+      {/* Feedback Section */}
       <section
         id="feedback"
         className="bg-gray-100 dark:bg-gray-800 py-12 mt-6"
       >
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold mb-4">Was this page helpful?</h2>
+
           <div className="flex items-center space-x-4">
-            {/* Yes Button */}
             <button
               onClick={() => handleFeedback(true)}
               className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300"
@@ -427,7 +462,6 @@ export default function DeveloperPage() {
               <span>Yes</span>
             </button>
 
-            {/* No Button */}
             <button
               onClick={() => handleFeedback(false)}
               className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
@@ -437,7 +471,6 @@ export default function DeveloperPage() {
             </button>
           </div>
 
-          {/* Feedback Message */}
           {feedbackSubmitted && (
             <div className="mt-4">
               {isHelpful ? (

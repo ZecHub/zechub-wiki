@@ -5,6 +5,17 @@ import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import type { MDXComponents } from "mdx/types";
 
 const MdxComponents = {
+  code: (props: HTMLProps<HTMLElement>): JSX.Element => (
+    <code
+      {...props}
+      className={`
+      bg-neutral-200
+      dark:bg-neutral-800 dark:text-neutral-100
+    `}
+    >
+      {props.children}
+    </code>
+  ),
   Video: (props: React.VideoHTMLAttributes<HTMLVideoElement>) => (
     <video {...props} />
   ),

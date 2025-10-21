@@ -3,6 +3,7 @@ import {
   RiGithubFill as Github,
   RiYoutubeFill as Youtube,
   RiCommunityLine,
+  RiGovernmentLine,
 } from "react-icons/ri";
 import { BsDiscord as Discord } from "react-icons/bs";
 import {
@@ -293,6 +294,11 @@ export const navigations: Array<NavigationItem> = [
     name: "DAO",
     path: "/dao",
     icon: RiCommunityLine,
+  },
+  {
+    name: "Governance",
+    path: "/governance-howto",
+    icon: RiGovernmentLine,
   },
   {
     name: "Tutorials",
