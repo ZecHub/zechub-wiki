@@ -39,6 +39,7 @@ function ZcashChart(props: ZcashChartProps) {
     "Node Count",
     "TX Summary",
     "Privacy Set",
+    "Stats"
   ];
 
   const supplyLabels = ["Shielded", "Transparent"];
@@ -80,6 +81,8 @@ function ZcashChart(props: ZcashChartProps) {
         {supplyTab == "Shielded" && <CardContentShielded {...props} />}
 
         {supplyTab == "Transparent" && <CardContentTxn {...props} />}
+
+        
       </Card>
     </div>
   );

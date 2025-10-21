@@ -10,6 +10,8 @@ import ShieldedSupplyChart from "../ShieldedSupplyChart";
 import TransactionsSummaryChart from "../TransactionSummaryChart";
 import { CardContent } from "@/components/UI/shadcn/card";
 import NodeCountChart from "../NodeCountChart";
+import ShieldedStats from "./ShieldedStats";
+
 
 type ZcashChartProps = {
   
@@ -39,6 +41,7 @@ const CardContentShielded = (props: ZcashChartProps) => {
     "Node Count",
     "TX Summary",
     "Privacy Set",
+    "Shielded Stats"
   ];
   return (
     <CardContent>
@@ -93,6 +96,10 @@ const CardContentShielded = (props: ZcashChartProps) => {
 
             <TabsContent value="privacy set" activeTab={activeTab}>
               <PrivacySetVisualizationChart chartRef={props.divChartRef} />
+            </TabsContent>
+
+            <TabsContent value="shielded stats" activeTab={activeTab}>
+              <ShieldedStats  chartRef={props.divChartRef}/>
             </TabsContent>
 
             <ChartFooter
