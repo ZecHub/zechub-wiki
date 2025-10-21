@@ -270,12 +270,31 @@ function ShieldedStats({ chartRef }: ShieldedStatsProps) {
           textAnchor="end"
           height={80}
         />
-        <YAxis stroke="#64748b" fontSize={12} tickFormatter={formatValue} />
+
+        {/* Left Y-Axis for Shielded Supply (millions) */}
+        <YAxis
+          yAxisId="left"
+          stroke="#64748b"
+          fontSize={12}
+          tickFormatter={formatValue}
+          orientation="left"
+        />
+
+        {/* Right Y-Axis for Transactions (thousands) */}
+        <YAxis
+          yAxisId="right"
+          orientation="right"
+          stroke="#64748b"
+          fontSize={12}
+          tickFormatter={formatValue}
+        />
+
         <Tooltip content={<CustomTooltip />} />
         <Legend />
 
-        {/* Shielded Supply Areas */}
+        {/* Shielded Supply - Use left axis */}
         <Area
+          yAxisId="left"
           dataKey="totalShieldedSupply"
           name="Total Shielded Supply"
           fill="hsl(var(--chart-2))"
@@ -283,8 +302,20 @@ function ShieldedStats({ chartRef }: ShieldedStatsProps) {
           fillOpacity={0.3}
         />
 
-        {/* Transaction Areas */}
+        {/* Lockbox Supply - Use left axis (also higher values) */}
+        <Line
+          yAxisId="left"
+          type="monotone"
+          dataKey="totalLockboxSupply"
+          name="Total Lockbox Supply"
+          stroke="hsl(var(--chart-5))"
+          strokeWidth={2}
+          dot={false}
+        />
+
+        {/* Transactions - Use right axis */}
         <Area
+          yAxisId="right"
           dataKey="totalTransferTxs"
           name="Total Transfer TXs"
           fill="hsl(var(--chart-1))"
@@ -293,6 +324,7 @@ function ShieldedStats({ chartRef }: ShieldedStatsProps) {
         />
 
         <Area
+          yAxisId="right"
           dataKey="totalTransparentTxs"
           name="Total Transparent TXs"
           fill="hsl(var(--chart-6))"
@@ -300,8 +332,9 @@ function ShieldedStats({ chartRef }: ShieldedStatsProps) {
           fillOpacity={0.4}
         />
 
-        {/* Pool Transaction Lines */}
+        {/* Pool Transactions - Use right axis */}
         <Line
+          yAxisId="right"
           type="monotone"
           dataKey="totalSaplingTxs"
           name="Total Sapling TXs"
@@ -311,29 +344,13 @@ function ShieldedStats({ chartRef }: ShieldedStatsProps) {
         />
 
         <Line
+          yAxisId="right"
           type="monotone"
           dataKey="totalOrchardTxs"
           name="Total Orchard TXs"
           stroke="hsl(var(--chart-4))"
           strokeWidth={2}
           dot={false}
-        />
-
-        {/* Lockbox Supply Line */}
-        <Line
-          type="monotone"
-          dataKey="totalLockboxSupply"
-          name="Total Lockbox Supply"
-          stroke="hsl(var(--chart-5))"
-          strokeWidth={2}
-          yAxisId="right"
-          dot={false}
-        />
-
-        <YAxis
-          yAxisId="right"
-          orientation="right"
-          tickFormatter={formatValue} // Changed from percentage to regular format
         />
       </ComposedChart>
     </ResponsiveContainer>
