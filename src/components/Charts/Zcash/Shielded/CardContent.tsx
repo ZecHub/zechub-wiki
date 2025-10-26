@@ -12,9 +12,7 @@ import { CardContent } from "@/components/UI/shadcn/card";
 import NodeCountChart from "../NodeCountChart";
 import ShieldedStats from "./ShieldedStats";
 
-
 type ZcashChartProps = {
-  
   divChartRef: RefObject<HTMLDivElement | null>;
   handleSaveToPng: (
     poolType: string,
@@ -30,7 +28,7 @@ type ZcashChartProps = {
 };
 
 const CardContentShielded = (props: ZcashChartProps) => {
-  const [activeTab, setActiveTab] = useState("supply");
+  const [activeTab, setActiveTab] = useState<String | any>("supply");
 
   const tabLabels = [
     "Supply",
@@ -41,7 +39,7 @@ const CardContentShielded = (props: ZcashChartProps) => {
     "Node Count",
     "TX Summary",
     "Privacy Set",
-    "Shielded Stats"
+    "Shielded Stats",
   ];
   return (
     <CardContent>
@@ -99,7 +97,7 @@ const CardContentShielded = (props: ZcashChartProps) => {
             </TabsContent>
 
             <TabsContent value="shielded stats" activeTab={activeTab}>
-              <ShieldedStats  chartRef={props.divChartRef}/>
+              <ShieldedStats chartRef={props.divChartRef} />
             </TabsContent>
 
             <ChartFooter
