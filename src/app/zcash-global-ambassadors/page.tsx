@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { LuExternalLink } from "react-icons/lu";
 
 export const metadata: Metadata = genMetadata({
-  title: "Blockchain Explorers",
+  title: "Global Ambassadors",
   url: "https://zechub.wiki/using-zcash/zcash-global-ambassadors",
 });
 
