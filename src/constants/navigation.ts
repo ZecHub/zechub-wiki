@@ -116,7 +116,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Zcash Global Ambassadors",
-        path: "/zcash-community/zcash-global-ambassadors",
+        path: "/zcash-global-ambassadors",
       },
       {
         name: "Zcash Media",
