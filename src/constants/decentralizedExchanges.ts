@@ -26,4 +26,18 @@ export const decentralizedExchanges = [
     url: "https://dex.decred.org/",
     image: "/bisonwallet-logo.png",
   },
+   {
+    title: "THORSwap",
+    description:
+      "Cross-chain DEX powered by THORChain, enabling native swaps between Bitcoin, Ethereum, and other major assets without wrapped tokens.",
+    url: "https://app.thorswap.finance/",
+    image: "/thorswapLogo.png",
+  },
+  {
+    title: "Router Protocol",
+    description:
+      "Cross-chain liquidity transport layer that allows seamless asset and data transfer between multiple blockchains.",
+    url: "https://app.routerprotocol.com/",
+    image: "/routerProtocolLogo.png",
+  },
 ];
