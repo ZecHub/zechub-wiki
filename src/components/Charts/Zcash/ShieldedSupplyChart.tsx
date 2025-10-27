@@ -1,11 +1,4 @@
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/UI/shadcn/select";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import {
@@ -42,7 +35,7 @@ type ShieldedSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
 
-const THROTTLE = 6; // every Nth datapoint
+const THROTTLE = 10; // every Nth datapoint
 
 export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [loading, setLoading] = useState(true);
@@ -134,10 +127,10 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
   const normalizePools = () => {
     // Normalize date format (YYYY-MM-DD)
-    const normalizeDate = (dateStr: string) => {
-      const date = new Date(dateStr);
-      return date.toISOString().split("T")[0]; // "2022-01-01"
-    };
+    function normalizeDate(dateStr: string) {
+      const [month, day, year] = dateStr.split("/");
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+    }
 
     const sprout = sproutSupplyData.map((d) => ({
       ...d,
@@ -209,8 +202,12 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const poolData =
     selectedPool === "all" ? combinedPoolData : poolDataMap[selectedPool];
 
-  const downsampleData = (data: any[], interval: number) =>
-    data.filter((_, idx) => idx % interval === 0);
+  const downsampleData = (data: any[], interval: number, keepLast = 50) => {
+    const cutoff = Math.max(0, data.length - keepLast);
+    const head = data.slice(0, cutoff).filter((_, i) => i % interval === 0);
+    const tail = data.slice(cutoff); // always keep the latest ones
+    return [...head, ...tail];
+  };
 
   // use in place of full dataset:
   const renderedPoolData =
