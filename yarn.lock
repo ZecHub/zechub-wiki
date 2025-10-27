@@ -290,6 +290,14 @@
   resolved "https://registry.npmjs.org/@bufbuild/protobuf/-/protobuf-1.10.0.tgz"
   integrity sha512-QDdVFLoN93Zjg36NoQPZfsVH9tZew7wKDKyV5qRdj8ntT4wQCOradQjRaTdwMhWUYsgKsvCINKKm87FdEk96Ag==
 
+<<<<<<< Updated upstream
+=======
+"@connectrpc/connect@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.npmjs.org/@connectrpc/connect/-/connect-1.6.1.tgz"
+  integrity sha512-KchMDNtU4CDTdkyf0qG7ugJ6qHTOR/aI7XebYn3OTCNagaDYWiZUVKgRgwH79yeMkpNgvEUaXSK7wKjaBK9b/Q==
+
+>>>>>>> Stashed changes
 "@connectrpc/connect@1.4.0":
   version "1.4.0"
   resolved "https://registry.npmjs.org/@connectrpc/connect/-/connect-1.4.0.tgz"
@@ -305,6 +313,7 @@
   resolved "https://registry.npmjs.org/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
+<<<<<<< Updated upstream
 "@emnapi/runtime@^1.2.0":
   version "1.5.0"
   resolved "https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.5.0.tgz"
@@ -312,6 +321,8 @@
   dependencies:
     tslib "^2.4.0"
 
+=======
+>>>>>>> Stashed changes
 "@emotion/is-prop-valid@1.2.2":
   version "1.2.2"
   resolved "https://registry.npmjs.org/@emotion/is-prop-valid/-/is-prop-valid-1.2.2.tgz"
@@ -464,6 +475,7 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-2.0.3.tgz"
   integrity sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==
 
+<<<<<<< Updated upstream
 "@img/sharp-darwin-arm64@0.33.5":
   version "0.33.5"
   resolved "https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.33.5.tgz"
@@ -572,6 +584,8 @@
   resolved "https://registry.npmjs.org/@img/sharp-win32-ia32/-/sharp-win32-ia32-0.33.5.tgz"
   integrity sha512-T36PblLaTwuVJ/zw/LaH0PdZkRz5rd3SmMHX8GSmR7vtNSP5Z6bQkExdSK7xGWyxLw4sUknBuugTelgw2faBbQ==
 
+=======
+>>>>>>> Stashed changes
 "@img/sharp-win32-x64@0.33.5":
   version "0.33.5"
   resolved "https://registry.npmjs.org/@img/sharp-win32-x64/-/sharp-win32-x64-0.33.5.tgz"
@@ -904,41 +918,6 @@
   dependencies:
     source-map "^0.7.0"
 
-"@next/swc-darwin-arm64@15.1.6":
-  version "15.1.6"
-  resolved "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-15.1.6.tgz"
-  integrity sha512-u7lg4Mpl9qWpKgy6NzEkz/w0/keEHtOybmIl0ykgItBxEM5mYotS5PmqTpo+Rhg8FiOiWgwr8USxmKQkqLBCrw==
-
-"@next/swc-darwin-x64@15.1.6":
-  version "15.1.6"
-  resolved "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-15.1.6.tgz"
-  integrity sha512-x1jGpbHbZoZ69nRuogGL2MYPLqohlhnT9OCU6E6QFewwup+z+M6r8oU47BTeJcWsF2sdBahp5cKiAcDbwwK/lg==
-
-"@next/swc-linux-arm64-gnu@15.1.6":
-  version "15.1.6"
-  resolved "https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-15.1.6.tgz"
-  integrity sha512-jar9sFw0XewXsBzPf9runGzoivajeWJUc/JkfbLTC4it9EhU8v7tCRLH7l5Y1ReTMN6zKJO0kKAGqDk8YSO2bg==
-
-"@next/swc-linux-arm64-musl@15.1.6":
-  version "15.1.6"
-  resolved "https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-15.1.6.tgz"
-  integrity sha512-+n3u//bfsrIaZch4cgOJ3tXCTbSxz0s6brJtU3SzLOvkJlPQMJ+eHVRi6qM2kKKKLuMY+tcau8XD9CJ1OjeSQQ==
-
-"@next/swc-linux-x64-gnu@15.1.6":
-  version "15.1.6"
-  resolved "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-15.1.6.tgz"
-  integrity sha512-SpuDEXixM3PycniL4iVCLyUyvcl6Lt0mtv3am08sucskpG0tYkW1KlRhTgj4LI5ehyxriVVcfdoxuuP8csi3kQ==
-
-"@next/swc-linux-x64-musl@15.1.6":
-  version "15.1.6"
-  resolved "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-15.1.6.tgz"
-  integrity sha512-L4druWmdFSZIIRhF+G60API5sFB7suTbDRhYWSjiw0RbE+15igQvE2g2+S973pMGvwN3guw7cJUjA/TmbPWTHQ==
-
-"@next/swc-win32-arm64-msvc@15.1.6":
-  version "15.1.6"
-  resolved "https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-15.1.6.tgz"
-  integrity sha512-s8w6EeqNmi6gdvM19tqKKWbCyOBvXFbndkGHl+c9YrzsLARRdCHsD9S1fMj8gsXm9v8vhC8s3N8rjuC/XrtkEg==
-
 "@next/swc-win32-x64-msvc@15.1.6":
   version "15.1.6"
   resolved "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.1.6.tgz"
@@ -1224,6 +1203,16 @@
     "@octokit/webhooks-types" "7.6.1"
     aggregate-error "^3.1.0"
 
+<<<<<<< Updated upstream
+=======
+"@penumbra-zone/bech32m@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.npmjs.org/@penumbra-zone/bech32m/-/bech32m-13.0.0.tgz"
+  integrity sha512-d89AM78hoeqK2xtHku2jjbjJaMxpimo0qVXuOMM4doa7G31x61WktMAjWmsi1mjK9o9IXgzTRaaFkI1QpT0Vag==
+  dependencies:
+    bech32 "^2.0.0"
+
+>>>>>>> Stashed changes
 "@penumbra-zone/bech32m@15.0.0":
   version "15.0.0"
   resolved "https://registry.npmjs.org/@penumbra-zone/bech32m/-/bech32m-15.0.0.tgz"
@@ -1243,31 +1232,53 @@
   resolved "https://registry.npmjs.org/@penumbra-zone/client/-/client-24.0.0.tgz"
   integrity sha512-I9ZP774dt9CJCLCLXxKu+VsdSDXaSNCU+5v1ptwEbaxEcIB4OEBLDmgYVKtEjYQewb/1zJpXRxxgaj/Cp+4IxQ==
 
-"@penumbra-zone/getters@25.0.0":
-  version "25.0.0"
-  resolved "https://registry.npmjs.org/@penumbra-zone/getters/-/getters-25.0.0.tgz"
-  integrity sha512-Bi3x7qib1+WFKDLmWqzA6+q7WxxX6Wr5xSVd+CKR9x19ec45a3311uMfaEYG2Twet0FXLYbq1uPUM1PFIlsqDA==
-
+<<<<<<< Updated upstream
+=======
 "@penumbra-zone/getters@^23.0.0":
   version "23.0.0"
   resolved "https://registry.npmjs.org/@penumbra-zone/getters/-/getters-23.0.0.tgz"
   integrity sha512-50ZUxfC1j4mCTs/UCdWQto3p8s13X/sPQ64RM4BTEGrpVMuk9Wick9PF94bo2pmQ8Ao6sAK+9a86yMAOqvjvEw==
 
+>>>>>>> Stashed changes
+"@penumbra-zone/getters@25.0.0":
+  version "25.0.0"
+  resolved "https://registry.npmjs.org/@penumbra-zone/getters/-/getters-25.0.0.tgz"
+  integrity sha512-Bi3x7qib1+WFKDLmWqzA6+q7WxxX6Wr5xSVd+CKR9x19ec45a3311uMfaEYG2Twet0FXLYbq1uPUM1PFIlsqDA==
+
+<<<<<<< Updated upstream
+"@penumbra-zone/getters@^23.0.0":
+  version "23.0.0"
+  resolved "https://registry.npmjs.org/@penumbra-zone/getters/-/getters-23.0.0.tgz"
+  integrity sha512-50ZUxfC1j4mCTs/UCdWQto3p8s13X/sPQ64RM4BTEGrpVMuk9Wick9PF94bo2pmQ8Ao6sAK+9a86yMAOqvjvEw==
+
+=======
+>>>>>>> Stashed changes
 "@penumbra-zone/perspective@50.0.0":
   version "50.0.0"
   resolved "https://registry.npmjs.org/@penumbra-zone/perspective/-/perspective-50.0.0.tgz"
   integrity sha512-x4PcxzkLGJpX8dAFHXRWqJ8of6qHmJ+Pn2DFZo37lbaDm1ZWhxDYIlE5Ygu1/Kx2++9UC+30AKPBB6t4TnHO9w==
 
-"@penumbra-zone/protobuf@9.0.0":
-  version "9.0.0"
-  resolved "https://registry.npmjs.org/@penumbra-zone/protobuf/-/protobuf-9.0.0.tgz"
-  integrity sha512-JqILcfjymUbhcOVDYtECZ9n042SFCBfatNFIx60uO3uEPQ6rIK50KVYTDyFY8bUFCKiXqiSkBnQuJbeS8B0SHw==
-
+<<<<<<< Updated upstream
+=======
 "@penumbra-zone/protobuf@^7.2.0":
   version "7.2.0"
   resolved "https://registry.npmjs.org/@penumbra-zone/protobuf/-/protobuf-7.2.0.tgz"
   integrity sha512-04o85rT1cE0kQ6NF6iScNNviI1Gn/i1zM1jyC6nYDG45WuNvx2L+ZCcpWXOSsS4G2zFNZaW5eeEXv9GLq46Imw==
 
+>>>>>>> Stashed changes
+"@penumbra-zone/protobuf@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.npmjs.org/@penumbra-zone/protobuf/-/protobuf-9.0.0.tgz"
+  integrity sha512-JqILcfjymUbhcOVDYtECZ9n042SFCBfatNFIx60uO3uEPQ6rIK50KVYTDyFY8bUFCKiXqiSkBnQuJbeS8B0SHw==
+
+<<<<<<< Updated upstream
+"@penumbra-zone/protobuf@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.npmjs.org/@penumbra-zone/protobuf/-/protobuf-7.2.0.tgz"
+  integrity sha512-04o85rT1cE0kQ6NF6iScNNviI1Gn/i1zM1jyC6nYDG45WuNvx2L+ZCcpWXOSsS4G2zFNZaW5eeEXv9GLq46Imw==
+
+=======
+>>>>>>> Stashed changes
 "@penumbra-zone/transport-dom@^7.5.0":
   version "7.5.0"
   resolved "https://registry.npmjs.org/@penumbra-zone/transport-dom/-/transport-dom-7.5.0.tgz"
@@ -2698,7 +2709,11 @@
   dependencies:
     react-icons "*"
 
+<<<<<<< Updated upstream
 "@types/react@*", "@types/react@19.0.8", "@types/react@>=16":
+=======
+"@types/react@*", "@types/react@>=16", "@types/react@19.0.8":
+>>>>>>> Stashed changes
   version "19.0.8"
   resolved "https://registry.npmjs.org/@types/react/-/react-19.0.8.tgz"
   integrity sha512-9P/o1IGdfmQxrujGbIMDyYaaCykhLKc0NGCtYcECNUr9UAaDe4gwvV9bR6tvd5Br1SG0j+PBpbKr2UYY8CwqSw==
@@ -4855,6 +4870,7 @@ fs.realpath@^1.0.0:
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
 
+<<<<<<< Updated upstream
 fsevents@2.3.2:
   version "2.3.2"
   resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
@@ -4865,6 +4881,8 @@ fsevents@^2.3.2, fsevents@~2.3.2:
   resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
+=======
+>>>>>>> Stashed changes
 function-bind@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz"
@@ -4970,6 +4988,16 @@ glob-parent@^6.0.2:
   dependencies:
     is-glob "^4.0.3"
 
+<<<<<<< Updated upstream
+=======
+glob-parent@~5.1.2:
+  version "5.1.2"
+  resolved "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz"
+  integrity sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==
+  dependencies:
+    is-glob "^4.0.1"
+
+>>>>>>> Stashed changes
 glob@^10.3.10:
   version "10.4.5"
   resolved "https://registry.npmjs.org/glob/-/glob-10.4.5.tgz"
@@ -7940,7 +7968,11 @@ postcss-value-parser@^4.0.0, postcss-value-parser@^4.0.2, postcss-value-parser@^
   resolved "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
+<<<<<<< Updated upstream
 postcss@8.4.29, postcss@^8.4.23:
+=======
+postcss@^8.4.23, postcss@8.4.29:
+>>>>>>> Stashed changes
   version "8.4.29"
   resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.29.tgz"
   integrity sha512-cbI+jaqIeu/VGqXEarWkRCCffhjgXc0qjBtXpqJhTBohMUjUQnbBr0xqX3vEKudc4iviTewcJo5ajcec5+wdJw==
@@ -8617,7 +8649,11 @@ safe-array-concat@^1.1.2:
     has-symbols "^1.1.0"
     isarray "^2.0.5"
 
+<<<<<<< Updated upstream
 safe-buffer@5.2.1, safe-buffer@^5.0.1:
+=======
+safe-buffer@^5.0.1, safe-buffer@5.2.1:
+>>>>>>> Stashed changes
   version "5.2.1"
   resolved "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz"
   integrity sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
@@ -8655,7 +8691,16 @@ scheduler@^0.25.0:
   resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.25.0.tgz"
   integrity sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==
 
+<<<<<<< Updated upstream
 semver@^6.3.0, semver@^6.3.1:
+=======
+semver@^6.3.0:
+  version "6.3.1"
+  resolved "https://registry.npmjs.org/semver/-/semver-6.3.1.tgz"
+  integrity sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==
+
+semver@^6.3.1:
+>>>>>>> Stashed changes
   version "6.3.1"
   resolved "https://registry.npmjs.org/semver/-/semver-6.3.1.tgz"
   integrity sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==
