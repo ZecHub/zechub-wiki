@@ -381,7 +381,7 @@ export default function DeveloperPage() {
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant.
                   </p>
-                  =>:{" "}
+                  Link:{" "}
                   <a
                     href="https://zecdev.github.io/community"
                     target="_blank"
