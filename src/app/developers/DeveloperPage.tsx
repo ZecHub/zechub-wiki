@@ -371,19 +371,17 @@ export default function DeveloperPage() {
 
                 <li>
                   <a
-                    href="https://zecdev.github.io/community"
+                    href="https://zecdev.github.io/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Zcash Community Wishlist
+                    ZecDev
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Explore the Zcash Community Wishlist to discover project
-                    ideas, priorities, and contributions from the broader Zcash
-                    ecosystem.
+                    Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant.
                   </p>
-                  Link:{" "}
+                  =>:{" "}
                   <a
                     href="https://zecdev.github.io/community"
                     target="_blank"
