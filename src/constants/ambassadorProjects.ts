@@ -64,4 +64,11 @@ export const ambassadorProjects = [
     projectSite: null,
     image: "/zcashTurkey.jpg",
   },
+    {
+    name: "Zcash Kenya",
+    twitter: "https://x.com/ZcashKenya",
+    description: "Zcash community and advocacy in Kenya",
+    projectSite: null,
+    image: "/zcashKenya.jpg",
+  },
 ];
