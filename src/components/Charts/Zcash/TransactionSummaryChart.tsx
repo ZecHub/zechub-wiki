@@ -166,8 +166,8 @@ export default function TransactionsSummaryChart(
     <ErrorBoundary fallback={"Failed to load Transaction Summary Chart"}>
       <ChartHeader title="Transactions Summary">
         {/* Toggle Controls */}
-        <div className="flex items-center justify-center space-x-8">
-          <div className="flex justify-center items-center flex-wrap space-x-12">
+        <div className="flex items-center justify-between gap-6 md:mt-0 mt-4 space-x-8">
+          <div className="md:flex flex-1 justify-center items-center gap-4">
             {/* Cumulative View Toggle */}
             <div className="relative group">
               <label className="inline-flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">

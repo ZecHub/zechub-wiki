@@ -224,7 +224,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             : `${capitalize(selectedPool)} Pool Supply`
         }
       >
-        <div className="flex flex-wrap gap-20 items-center">
+        <div className="flex sm:gap-20 justify-between gap-4 py-4 md:py-0 items-center">
           {/*  Year Dropdown */}
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Year</label>
@@ -258,7 +258,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             />
           </div>
 
-          <div className="text-sm">
+          <div className="md:flex hidden text-sm">
             {selectedPool === "all" ? (
               <>
                 <span className="font-medium">Total Shielded:</span>{" "}
@@ -275,6 +275,22 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             )}
           </div>
         </div>
+        <div className="flex md:hidden text-sm">
+            {selectedPool === "all" ? (
+              <>
+                <span className="font-medium">Total Shielded:</span>{" "}
+                {calculateTotalShielded().toLocaleString()} ZEC
+              </>
+            ) : (
+              <span className="ml-1">
+                {selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)}:{" "}
+                {latestTotals[
+                  selectedPool as keyof typeof latestTotals
+                ]?.toLocaleString?.() ?? "0"}{" "}
+                ZEC
+              </span>
+            )}
+          </div>
       </ChartHeader>
 
       {/*  Chart Container */}

@@ -132,7 +132,7 @@ function ShieldedStats({ chartRef }: ShieldedStatsProps) {
 
   // Transaction Volume Chart
   const renderTransactionChart = () => (
-    <ResponsiveContainer width="100%" height={400}>
+    <ResponsiveContainer width="100%" height={480}>
       <ComposedChart data={chartData}>
         <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
         <XAxis
@@ -489,7 +489,7 @@ function ShieldedStats({ chartRef }: ShieldedStatsProps) {
           </div>
 
           {/* Chart Display */}
-          <div className="bg-white dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-900 md:p-6 p-2 rounded-lg border border-gray-200 dark:border-gray-700">
             {activeTab === "transactions" && renderTransactionChart()}
             {activeTab === "price" && renderPriceChart()}
             {activeTab === "nodes" && renderNodeChart()}

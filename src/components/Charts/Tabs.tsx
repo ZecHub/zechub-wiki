@@ -24,7 +24,7 @@ export const TabsList = ({ children }: any) => (
 
 export const TabsTrigger = ({ value, children, activeTab, setActiveTab }: any) => (
   <button
-    className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+    className={`px-3 py-2 text-sm inline-flex flex-shrink-0 font-medium rounded-md transition-colors ${
       activeTab === value
         ? "bg-background text-foreground shadow-sm"
         : "text-muted-foreground hover:text-slate-600"

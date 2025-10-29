@@ -12,7 +12,7 @@ interface ChartContainerProps {
 const ChartContainer = forwardRef<HTMLDivElement, ChartContainerProps>(
   (props, ref) => {
     return (
-      <div style={{ width: "100%", height: props.height || "480px" }}>
+      <div style={{ width: "100%", minHeight: props.height || "480px" , height : props.height ? "820px" : "480px" }}>
         {props.loading ? (
           <div className="flex justify-center items-center w-full h-full">
             <Spinner />
