@@ -13,6 +13,8 @@ import NamadaChart from "./Namada/NamadaChart";
 import PenumbraChart from "./Penumbra/PenumbraChart";
 import ZcashChart from "./Zcash/ZcashChart";
 
+import { HalvingMeter } from "../HalvingMeter/halving-meter";
+
 const Dashboard = () => {
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");
   const [open, setOpen] = useState(false);
@@ -98,6 +100,7 @@ const Dashboard = () => {
         {selectedCrypto === "penumbra" && (
           <PenumbraChart  divChartRef={divChartRef} />
         )}
+      <HalvingMeter />
       </div>
     </div>
   );
