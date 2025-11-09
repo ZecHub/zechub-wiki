@@ -17,7 +17,7 @@ export const DATA_URL = {
   namadaSupplyUrl: "/data/namada/namada_supply.json",
   blockchainInfoUrl: "/api/blockchain-info",
   blockchairUrl:
-    "https://api.blockchair.com/zcash/stats?key=A___eEXBXdQS8WpQXTDwrSRNOm8LJvfv",
+    "https://api.blockchair.com/zcash/stats?key=A___NwjLQ29USRVGxzBQd2QoFvxSRNSk",
   namadaRewardUrl: "/data/namada/namada_rewards_rate.json",
 } as const;
 
@@ -38,7 +38,7 @@ export const DATE_URL = {
   shieldedUrl: "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/shielded_supply.json&per_page=1",
   namadaSupplyUrl: "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/namada/namada_supply.json&per_page=1",
   blockchainInfoUrl: "/api/blockchain-info",
-  blockchairUrl: "https://api.blockchair.com/zcash/stats?key=A___wNpGniYbmkv7tLpMfOPBGe2as7vI",
+  blockchairUrl: "https://api.blockchair.com/zcash/stats?key=A___NwjLQ29USRVGxzBQd2QoFvxSRNSk",
   namadaRewardUrl: "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/namada/namada_rewards_rate.json&per_page=1",
   zcashShieldedStatsUrl : "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/shieldedStatsJSON&per_page=1",
 } as const;
