@@ -120,7 +120,8 @@ export function getCommitUrlForTab(tabLabel: string): string {
     "privacy set": DATE_URL.shieldedTxCountUrl,
     "rewards" : DATE_URL.namadaRewardUrl,
     "transparent" : DATE_URL.transparentSupplyUrl,
-    "shielded stats" : DATE_URL.zcashShieldedStatsUrl
+    "shielded stats" : DATE_URL.zcashShieldedStatsUrl,
+    "Halving Meter": "",
   };
 
   return urlMap[tabLabel] || DATE_URL.defaultUrl;

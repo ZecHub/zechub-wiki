@@ -100,7 +100,7 @@ const Dashboard = () => {
         {selectedCrypto === "penumbra" && (
           <PenumbraChart  divChartRef={divChartRef} />
         )}
-      <HalvingMeter />
+      
       </div>
     </div>
   );
