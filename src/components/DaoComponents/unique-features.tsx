@@ -32,7 +32,7 @@ export default function UniqueFeatures() {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="dark:bg-slate-800/40 border-l-4 border-amber-400 rounded-lg p-6 hover:bg-slate-800/60 transition-all duration-300 hover:translate-x-1"
+            className="dark:bg-slate-800/40 border-l-4 border-amber-400 rounded-lg p-6 dark:hover:bg-slate-800/60 transition-all duration-300 hover:translate-x-1"
           >
             <h3 className="text-xl font-semibold dark:text-yellow-300 mb-2">
               {feature.icon} {feature.title}
