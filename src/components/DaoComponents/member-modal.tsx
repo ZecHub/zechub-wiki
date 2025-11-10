@@ -107,8 +107,8 @@ export default function MemberModal({
                     {member.description}
                   </p>
                   <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-                    Learn more about {member.name}'s contributions to ZecHub DAO
-                    and their role in the community.
+                    Learn more about {member.name}&apos;s contributions to
+                    ZecHub DAO and their role in the community.
                   </p>
 
                   {/* Action buttons */}
