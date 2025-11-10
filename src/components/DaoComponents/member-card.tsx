@@ -86,13 +86,13 @@ export default function MemberCard({ member }: MemberCardProps) {
               <div className="flex gap-3 mt-auto">
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="flex-1 px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg text-sm font-medium transition-all duration-300"
+                  className="flex-1 px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg text-sm font-medium transition-all duration-300"
                 >
                   Read More
                 </button>
                 <button
                   onClick={handleFlip}
-                  className="flex-1 px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg text-sm font-medium transition-all duration-300"
+                  className="flex-1 px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg text-sm font-medium transition-all duration-300"
                 >
                   Message
                 </button>
