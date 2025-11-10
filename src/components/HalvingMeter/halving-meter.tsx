@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 const api = ['https://api.blockchair.com/zcash/stats'];
 
-function fetchData(url:any) {
+function fetchData(url: any) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -33,18 +33,15 @@ export const HalvingMeter = () => {
   const [seconds, setSeconds] = useState('00');
   const [loading, setLoading] = useState(true);
 
-  const previousHalvingBlock = 2092800; 
-  const nextHalvingBlock = 4406400;
-
-  // Halving progress data
-  const progressPercent = currentBlock > 0 ? (currentBlock / nextHalvingBlock) * 100 : 0;
+  const previousHalvingBlock = 2726400; // Block 2726400 (Nov 28, 2024)
+  const nextHalvingBlock = 4406400;     // Block 4406400 (estimated Nov 28, 2028)
 
   // Fetch data once on mount
   useEffect(() => {
     const fetchAllData = async () => {
       try {
         const apiData = await Promise.all(api.map((url) => fetchData(url)));
-        const z_stats:any = apiData[0];
+        const z_stats: any = apiData[0];
         const blocks = z_stats.data.blocks;
         const remaining = nextHalvingBlock - blocks;
         
@@ -65,6 +62,10 @@ export const HalvingMeter = () => {
 
     fetchAllData();
   }, []); // Empty dependency array - only run once
+
+  // Halving progress data - calculated from previous halving block
+  const progressPercent = currentBlock > 0 ? 
+    ((currentBlock - previousHalvingBlock) / (nextHalvingBlock - previousHalvingBlock)) * 100 : 0;
 
   // Separate effect for the countdown timer
   useEffect(() => {
@@ -123,11 +124,21 @@ export const HalvingMeter = () => {
 
   return (
     <div
-      className='flex flex-col my-8 space-y-4 border-2 border-blue-200 p-4'
+      className='flex flex-col my-8 space-y-4 p-4'
       id='halving-meter'
     >
       <h2 className='font-bold'>Halving Meter</h2>
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
+        <div className='shadow-lg p-4 rounded-md'>
+          <h2 className='font-bold capitalize text-lg text-blue-500 py-2'>
+            Current Block
+          </h2>
+          <div className='pt-2'>
+            <div>
+              <span>{currentBlock.toLocaleString('en-US')}</span>
+            </div>
+          </div>
+        </div>
         <div className='shadow-lg p-4 rounded-md'>
           <h2 className='font-bold capitalize text-lg text-blue-500 py-2'>
             Halving Date
@@ -154,15 +165,49 @@ export const HalvingMeter = () => {
         <div className='relative w-full h-12 bg-gray-200 rounded-lg overflow-hidden'>
           <div
             className='absolute top-0 left-0 h-full bg-blue-500 transition-all duration-300'
-            style={{ width: `${progressPercent.toFixed(2)}%` }}
+            style={{ width: `${Math.min(progressPercent, 100).toFixed(2)}%` }}
           ></div>
           <span className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-gray-800 z-10'>
-            {progressPercent.toFixed(2) + '%'}
+            {Math.min(progressPercent, 100).toFixed(2) + '%'}
           </span>
         </div>
         <h2 className='flex justify-center text-xl font-bold'>
           {`${days}d ${hours}h ${minutes}m ${seconds}s to go!`}
         </h2>
+      </div>
+      
+      {/* Highlighted Information Box */}
+      <div className='bg-yellow-50 dark:bg-gray-800 border border-yellow-200 rounded-lg p-4 mt-4'>
+        <p className='text-sm dark:text-white text-yellow-800 font-medium'>
+          Zcash issuance schedule may change
+        </p>
+        <p className='text-sm dark:text-white text-yellow-700 mt-2'>
+          The Network Sustainability Mechanism is a draft set of features planned for Network Upgrade 7 (NU7). If implemented the Block Subsidy schedule will be smoothed.
+        </p>
+        <div className='text-sm dark:text-white text-yellow-700 mt-2'>
+          <p className='font-medium'>Learn More:</p>
+          <a 
+            href='https://zips.z.cash/zip-0234' 
+            target='_blank' 
+            rel='noopener noreferrer'
+            className='text-blue-600 hover:text-blue-800 underline'
+          >
+            https://zips.z.cash/zip-0234
+          </a>
+          <br />
+          <a 
+            href='https://shieldedlabs.net/nsm/' 
+            target='_blank' 
+            rel='noopener noreferrer'
+            className='text-blue-600 hover:text-blue-800 underline'
+          >
+            https://shieldedlabs.net/nsm/
+          </a>
+        </div>
+      </div>
+
+      <div className='text-sm dark:text-gray-300 text-gray-600 mt-2'>
+        <p>Progress from Block {previousHalvingBlock.toLocaleString()} (Previous Halving - 2024) to Block {nextHalvingBlock.toLocaleString()} (Next Halving - 2028)</p>
       </div>
     </div>
   );
