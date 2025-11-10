@@ -2,6 +2,19 @@ import { socialIcons } from "@/components/UI/SvgIcons";
 
 export const daoMembers = [
   {
+    imgUrl: "https://pbs.twimg.com/profile_images/1860844315922051072/VoIFT2pa_400x400.jpg",
+    name: "Tron",
+    description: "Creator of ZEC Bounties, Software Developer | Building with Django, FastAPI, React, and React Native | Electronics & Electrical Engineering (in view) | AI & ML.. ",
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/FortuneSznDev",
+        icon: socialIcons.twitter,
+      },
+    ],
+    zcashAddress: "u",
+  },
+  {
     imgUrl: "https://pbs.twimg.com/profile_images/1595255841933893632/bqPZFQo0_400x400.jpg",
     name: "James Katz",
     description: "Developer of Dizzy bot and Zecfaucet.com, Zcash Brazil Team Member",
