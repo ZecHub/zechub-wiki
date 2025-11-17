@@ -68,7 +68,7 @@ function ShieldedStats({ chartRef }: ShieldedStatsProps) {
         const processedData = raw.map((item) => ({
           date: item.Dates,
           transactions: parseInt(item.Transactions) || 0,
-          transparentTxs: parseInt(item.Transparent_Transfer_TXs) || 0,
+          transparentTxs: parseInt(item.Total_Transparent_TXs) || 0,
           saplingTxs: parseInt(item.Sapling_Transfer_TXs) || 0,
           orchardTxs: parseInt(item.Orchard_Transfer_TXs) || 0,
           totalTransferTxs: parseInt(item.Total_Transfer_TXs) || 0,
