@@ -11,6 +11,7 @@ import CardContentShielded from "./Shielded/CardContent";
 import CardContentTxn from "./Transparent/CardContent";
 import { ZcashMetrics } from "./ZcashMetrics/ZcashMetrics";
 import DefaultSelect from "@/components/DefaultSelect";
+import CardContentBlockFees from "./ZcashMetrics/BlockFeesChart";
 
 type ZcashChartProps = {
   divChartRef: RefObject<HTMLDivElement | null>;
@@ -43,7 +44,7 @@ function ZcashChart(props: ZcashChartProps) {
     "Stats"
   ];
 
-  const supplyLabels = ["Shielded", "Transparent"];
+  const supplyLabels = ["Shielded", "Transparent", "Block Fees"];
 
   return (
     <div className="space-y-6">
@@ -89,6 +90,9 @@ function ZcashChart(props: ZcashChartProps) {
         {supplyTab == "Shielded" && <CardContentShielded {...props} />}
 
         {supplyTab == "Transparent" && <CardContentTxn {...props} />}
+
+        {supplyTab == "Block Fees" && <CardContentBlockFees />}
+
 
         
       </Card>
