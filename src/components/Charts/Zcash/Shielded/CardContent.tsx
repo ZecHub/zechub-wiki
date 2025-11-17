@@ -12,6 +12,7 @@ import { CardContent } from "@/components/UI/shadcn/card";
 import NodeCountChart from "../NodeCountChart";
 import ShieldedStats from "./ShieldedStats";
 import { HalvingMeter } from "@/components/HalvingMeter/halving-meter";
+import BlockFeesChart from "../BlockFeesChart";
 
 type ZcashChartProps = {
   divChartRef: RefObject<HTMLDivElement | null>;
@@ -42,6 +43,7 @@ const CardContentShielded = (props: ZcashChartProps) => {
     "Privacy Set",
     "Shielded Stats",
     "Halving Meter",
+    "Block Fees",
   ];
   return (
     <CardContent>
@@ -102,10 +104,13 @@ const CardContentShielded = (props: ZcashChartProps) => {
               <ShieldedStats chartRef={props.divChartRef} />
             </TabsContent>
 
+            <TabsContent value="block fees" activeTab={activeTab}>
+              <BlockFeesChart chartRef={props.divChartRef} />
+            </TabsContent>
+
             <TabsContent value="halving meter" activeTab={activeTab}>
               <HalvingMeter />
             </TabsContent>
-
 
             <ChartFooter
               imgLabel={activeTab}
