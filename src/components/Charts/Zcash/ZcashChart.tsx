@@ -91,8 +91,9 @@ function ZcashChart(props: ZcashChartProps) {
 
         {supplyTab == "Transparent" && <CardContentTxn {...props} />}
 
-        {supplyTab == "Block Fees" && <CardContentBlockFees />}
-
+ {supplyTab == "Block Fees" && (
+          <CardContentBlockFees chartRef={props.divChartRef} />
+        )}
 
         
       </Card>
