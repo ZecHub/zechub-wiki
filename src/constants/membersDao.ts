@@ -1,6 +1,22 @@
 import { socialIcons } from "@/components/UI/SvgIcons";
 
 export const daoMembers = [
+    {
+    imgUrl:
+      "https://pbs.twimg.com/profile_images/1984413242597560320/taevvueV_400x400.jpg",
+    name: "Zolder",
+    description:
+      "Nerdy.moca 👁👁👁 🐙 Privacy is normal 🙏🖕🏻 Every little bit adds up",
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/Mindmovesme",
+        icon: socialIcons.x,
+      },
+    ],
+    zcashAddress: "u",
+    role: "",
+  },
   {
     imgUrl:
       "https://pbs.twimg.com/profile_images/1860844315922051072/VoIFT2pa_400x400.jpg",
