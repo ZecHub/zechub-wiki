@@ -21,7 +21,7 @@ const Home = ({ text }: HomeProps) => {
         </FadeInAnimation>
       </section>
 
-      <div className="mx-auto">
+      <div className="container mx-auto">
         <section
           id="presentation"
           className="px-1 bg-slate-100 dark:bg-transparent"
