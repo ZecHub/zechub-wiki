@@ -379,17 +379,19 @@ export default function DeveloperPage() {
                     ZecDev
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant.
+                    Here you will find projects, resources and tools created and
+                    maintained in the context of the (Zcash) Developer Relations
+                    Engineer grant. See also the{" "}
+                    <a
+                      href="https://zecdev.github.io/community"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Zcash Community Wishlist
+                    </a>
+                    .
                   </p>
-                  Link:{" "}
-                  <a
-                    href="https://zecdev.github.io/community"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Zcash Community Wishlist
-                  </a>
                 </li>
 
                 <li>
@@ -404,6 +406,21 @@ export default function DeveloperPage() {
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Understanding the zingolib repository—a Rust-based API and
                     CLI for interacting with zcashd via Lightwalletd.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/ChainSafe/WebZjs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    WebZjs
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    A JavaScript/TypeScript library for building Zcash-enabled
+                    web applications using WebAssembly.
                   </p>
                 </li>
 

@@ -2368,5 +2368,59 @@
     "sapling": 218,
     "orchard": 1927,
     "timestamp": "11/09/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 264,
+    "orchard": 1918,
+    "timestamp": "11/10/2025"
+  },
+  {
+    "sprout": 3,
+    "sapling": 257,
+    "orchard": 1935,
+    "timestamp": "11/11/2025"
+  },
+  {
+    "sprout": 11,
+    "sapling": 236,
+    "orchard": 1775,
+    "timestamp": "11/11/2025"
+  },
+  {
+    "sprout": 10,
+    "sapling": 255,
+    "orchard": 1624,
+    "timestamp": "11/12/2025"
+  },
+  {
+    "sprout": 13,
+    "sapling": 333,
+    "orchard": 1965,
+    "timestamp": "11/13/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 294,
+    "orchard": 1917,
+    "timestamp": "11/14/2025"
+  },
+  {
+    "sprout": 1,
+    "sapling": 318,
+    "orchard": 2518,
+    "timestamp": "11/15/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 250,
+    "orchard": 2175,
+    "timestamp": "11/16/2025"
+  },
+  {
+    "sprout": 0,
+    "sapling": 318,
+    "orchard": 2001,
+    "timestamp": "11/17/2025"
   }
 ]
