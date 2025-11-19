@@ -11,6 +11,7 @@ import {
   ShieldedTransactionDatum,
   ShieldedTxCount,
   SupplyData,
+  BlockFees,
 } from "./types";
 
 export async function getBlockchainData(
@@ -91,16 +92,15 @@ export async function getLastUpdatedDate(
     const res = await fetch(url, {
       signal,
       headers: {
-        'Accept': 'application/vnd.github.v3+json',
-        'User-Agent': 'ZecHub-App',
-      }
+        Accept: "application/vnd.github.v3+json",
+        "User-Agent": "ZecHub-App",
+      },
     });
-
 
     if (!res.ok) return "N/A";
     const d = await res.json();
 
-    console.log('d' , d);
+    console.log("d", d);
 
     return d[d.length - 1]?.commit?.committer?.date ?? "N/A";
   } catch {
@@ -110,17 +110,17 @@ export async function getLastUpdatedDate(
 
 export function getCommitUrlForTab(tabLabel: string): string {
   const urlMap: Record<string, string> = {
-    "supply": DATE_URL.shieldedUrl,
-    "difficulty": DATE_URL.difficultyUrl,
-    "issuance": DATE_URL.issuanceUrl,
-    "lockbox": DATE_URL.lockboxUrl,
-    "flows": DATE_URL.netInflowsOutflowsUrl,
+    supply: DATE_URL.shieldedUrl,
+    difficulty: DATE_URL.difficultyUrl,
+    issuance: DATE_URL.issuanceUrl,
+    lockbox: DATE_URL.lockboxUrl,
+    flows: DATE_URL.netInflowsOutflowsUrl,
     "node count": DATE_URL.nodecountUrl,
     "tx summary": DATE_URL.txsummaryUrl,
     "privacy set": DATE_URL.shieldedTxCountUrl,
-    "rewards" : DATE_URL.namadaRewardUrl,
-    "transparent" : DATE_URL.transparentSupplyUrl,
-    "shielded stats" : DATE_URL.zcashShieldedStatsUrl,
+    rewards: DATE_URL.namadaRewardUrl,
+    transparent: DATE_URL.transparentSupplyUrl,
+    "shielded stats": DATE_URL.zcashShieldedStatsUrl,
     "Halving Meter": "",
   };
 
@@ -207,6 +207,30 @@ export async function getDifficultyData(
   url: string,
   signal?: AbortSignal
 ): Promise<Difficulty[]> {
+  try {
+    const res = await fetch(url, { signal });
+
+    if (!res.ok) {
+      console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
+      return [];
+    }
+
+    const data: any[] = await res.json();
+    return data;
+  } catch (err: any) {
+    if (err.name === "AbortError") {
+      console.warn("Fetch aborted.");
+    } else {
+      console.error(err.message || err);
+    }
+    return [];
+  }
+}
+
+export async function getBlockFeesData(
+  url: string,
+  signal?: AbortSignal
+): Promise<BlockFees[]> {
   try {
     const res = await fetch(url, { signal });
 

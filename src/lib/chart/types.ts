@@ -56,6 +56,11 @@ export type Difficulty = {
   Difficulty: string;
 };
 
+export type BlockFees = {
+  Block: string;
+  Fees: string;
+};
+
 export type NetInOutflow = {
   Date: string;
   "Net Sapling Flow": string;
