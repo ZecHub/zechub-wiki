@@ -41,7 +41,7 @@ export default function TotalSupplyChart() {
   const options = {
     chart: {
       id: "total-supply-chart",
-      type: "line",
+      type: "line" as const,
       height: 350,
     },
     xaxis: {
