@@ -1,3 +1,4 @@
+import TotalSupplyChart from './Zcash/TotalSupplyChart';
 import { Card, CardHeader, CardTitle } from "@/components/UI/shadcn/card";
 import {
   Select,
@@ -32,6 +33,7 @@ function ZcashChart(props: ZcashChartProps) {
   const [supplyTab, setSupplyTab] = useState("Shielded");
 
   const tabLabels = [
+    "Total Supply",
     "Supply",
     "Difficulty",
     "Issuance",
@@ -43,7 +45,7 @@ function ZcashChart(props: ZcashChartProps) {
     "Stats"
   ];
 
-  const supplyLabels = ["Shielded", "Transparent"];
+  const supplyLabels = ["Shielded", "Transparent", "Total Supply"];
 
   return (
     <div className="space-y-6">
@@ -89,7 +91,8 @@ function ZcashChart(props: ZcashChartProps) {
         {supplyTab == "Shielded" && <CardContentShielded {...props} />}
 
         {supplyTab == "Transparent" && <CardContentTxn {...props} />}
-
+      
+        {supplyTab == "Total Supply" && <TotalSupplyChart />}
         
       </Card>
     </div>
