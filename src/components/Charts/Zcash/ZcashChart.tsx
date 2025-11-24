@@ -1,17 +1,11 @@
-import TotalSupplyChart from './Zcash/TotalSupplyChart';
 import { Card, CardHeader, CardTitle } from "@/components/UI/shadcn/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/UI/shadcn/select";
 import { RefObject, useState } from "react";
 import CardContentShielded from "./Shielded/CardContent";
 import CardContentTxn from "./Transparent/CardContent";
 import { ZcashMetrics } from "./ZcashMetrics/ZcashMetrics";
 import DefaultSelect from "@/components/DefaultSelect";
+import TotalSupplyChart from "./Supply/TotalSupplyChart";
+import CardContentSupply from "./Supply/CardContentSupply";
 
 type ZcashChartProps = {
   divChartRef: RefObject<HTMLDivElement | null>;
@@ -66,25 +60,7 @@ function ZcashChart(props: ZcashChartProps) {
                 className="inline-block"
                 ariaLabel="Supply type"
               />
-              {/* <Select
-                value={supplyTab}
-                onValueChange={(v) => setSupplyTab(v as any)}
-              >
-                <SelectTrigger className="w-36 dark:border-slate-700">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {supplyLabels.map((opt) => (
-                    <SelectItem
-                      key={opt}
-                      value={opt}
-                      className="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
-                    >
-                      {opt}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select> */}
+        
             </div>
           </div>
         </CardHeader>
@@ -92,7 +68,7 @@ function ZcashChart(props: ZcashChartProps) {
 
         {supplyTab == "Transparent" && <CardContentTxn {...props} />}
       
-        {supplyTab == "Total Supply" && <TotalSupplyChart />}
+        {supplyTab == "Total Supply" && <CardContentSupply {...props} />}
         
       </Card>
     </div>

@@ -2,6 +2,7 @@ export const DATA_URL = {
   defaultUrl: "/data/zcash/shielded_supply.json",
   sproutUrl: "/data/zcash/sprout_supply.json",
   saplingUrl: "/data/zcash/sapling_supply.json",
+  totalSupplyUrl: "/data/zcash/total_supply.json",
   orchardUrl: "/data/zcash/orchard_supply.json",
   txsummaryUrl: "/data/zcash/transaction_summary.json",
   transparentSupplyUrl: "/data/zcash/transparent_supply.json",
@@ -58,4 +59,6 @@ export const DATE_URL = {
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/namada/namada_rewards_rate.json&per_page=1",
   zcashShieldedStatsUrl:
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/shieldedStatsJSON&per_page=1",
+  totalSupplyUrl:
+    "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/total_supply.json&per_page=1",
 } as const;

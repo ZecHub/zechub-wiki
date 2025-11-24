@@ -227,6 +227,31 @@ export async function getDifficultyData(
   }
 }
 
+export async function getTotalSupplyData(
+  url: string,
+  signal?: AbortSignal
+): Promise<any[]> {
+  try {
+    const res = await fetch(url, { signal });
+
+    if (!res.ok) {
+      console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
+      return [];
+    }
+    
+    const data: any[] = await res.json();
+    return data;
+  } catch (err: any) {
+    if (err.name === "AbortError") {
+      console.warn("Fetch aborted.");
+    }
+    else {
+      console.error(err.message || err);
+    }
+    return [];
+  }
+}
+
 export async function getBlockFeesData(
   url: string,
   signal?: AbortSignal
