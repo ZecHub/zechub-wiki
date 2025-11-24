@@ -1,4 +1,4 @@
-import TotalSupplyChart from './Zcash/TotalSupplyChart';
+import TotalSupplyChart from "./TotalSupplyChart";
 import { Card, CardHeader, CardTitle } from "@/components/UI/shadcn/card";
 import {
   Select,
