@@ -56,6 +56,11 @@ export type Difficulty = {
   Difficulty: string;
 };
 
+export type totalSupply = {
+  close: string;
+  supply : string;
+};
+
 export type BlockFees = {
   Block: string;
   Fees: string;
