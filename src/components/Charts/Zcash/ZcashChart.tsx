@@ -4,7 +4,6 @@ import CardContentShielded from "./Shielded/CardContent";
 import CardContentTxn from "./Transparent/CardContent";
 import { ZcashMetrics } from "./ZcashMetrics/ZcashMetrics";
 import DefaultSelect from "@/components/DefaultSelect";
-import TotalSupplyChart from "./Supply/TotalSupplyChart";
 import CardContentSupply from "./Supply/CardContentSupply";
 
 type ZcashChartProps = {
