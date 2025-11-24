@@ -1,131 +1,186 @@
+import DefaultSelect from "@/components/DefaultSelect";
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
+import { useInMobile } from "@/hooks/useInMobile";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
-import * as dateFns from "date-fns";
-import { RefObject, useEffect, useMemo, useState } from "react";
+import { formatNumberShort, getTotalSupplyData } from "@/lib/chart/helpers";
+import { totalSupply } from "@/lib/chart/types";
+import { RefObject, useEffect, useState } from "react";
 import {
   Area,
   AreaChart,
   CartesianGrid,
-  Legend,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
-import ChartContainer from "../ChartContainer";
 import ChartHeader from "../../ChartHeader";
-import { getTotalSupplyData } from "@/lib/chart/helpers";
-import { totalSupply } from "@/lib/chart/types";
+import ChartContainer from "../ChartContainer";
 
 type TotalSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
 
 export default function TotalSupplyChart(props: TotalSupplyChartProps) {
-  const [totalSupply, setTotalSupply] = useState<totalSupply[]>([]);
-  const [loading, setLoading] = useState(false);
-  const fontSize = useResponsiveFontSize(); // optional: pass min/max
+  const [loading, setLoading] = useState(true);
+  const [selectedYear, setSelectedYear] = useState("all");
+  const [totalSupplyData, setTotalSupplyData] = useState<totalSupply[]>([]);
+
+  const fontSize = useResponsiveFontSize();
+  const isMobile = useInMobile();
 
   useEffect(() => {
     const controller = new AbortController();
 
-    const fetchAllData = async () => {
+    const fetchSupplyData = async () => {
       setLoading(true);
 
       try {
-        const [totalSupplyData] = await Promise.all([
-          getTotalSupplyData(DATA_URL.totalSupplyUrl, controller.signal),
-        ]);
-
-        if (totalSupplyData) {
-          setTotalSupply(totalSupplyData);
-        }
-      } catch (err) {
-        console.error("Error fetching dashboard data:", err);
-      } finally {
+        const supply = await getTotalSupplyData(
+          DATA_URL.totalSupplyUrl,
+          controller.signal
+        );
+        setTotalSupplyData(supply || []);
         setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        console.error("Error fetching total supply data:", err);
       }
     };
 
-    fetchAllData();
+    setTimeout(() => {
+      fetchSupplyData();
+    }, 2000);
 
     return () => {
       controller.abort();
     };
   }, []);
 
-  const parsedData = useMemo(() => {
-    return totalSupply.map((d) => ({
-      date: dateFns.format(
-        dateFns.parse(d.close, "MM/dd/yyyy", new Date()),
-        "MMM yyyy"
-      ),
-      "Total Supply": parseFloat(d.supply),
-    }));
-  }, [totalSupply]);
+  useEffect(() => {
+    const years = getAvailableYears();
+    if (!years.includes(selectedYear)) {
+      setSelectedYear("all");
+    }
+  }, [selectedYear, totalSupplyData]);
+
+  const extractYear = (dateStr: string) => {
+    const parsed = new Date(dateStr);
+    return parsed.getFullYear().toString();
+  };
+
+  const getAvailableYears = () => {
+    // Filter out invalid dates and ensure we have data
+    const validData = totalSupplyData.filter(
+      (d) => d && d.close && !isNaN(new Date(d.close).getTime())
+    );
+
+    if (validData.length === 0) {
+      return ["all"];
+    }
+
+    const years = [
+      ...new Set(validData.map((d) => extractYear(d.close))),
+    ].sort();
+    return ["all", ...years];
+  };
+
+  // Filter data by selected year
+  const filteredData =
+    selectedYear === "all"
+      ? totalSupplyData
+      : totalSupplyData.filter((d) => extractYear(d.close) === selectedYear);
+
+  // Get latest supply from filtered data
+  const latestSupply = filteredData[filteredData.length - 1]?.supply || 0;
 
   return (
     <ErrorBoundary fallback={"Failed to load Total Supply Chart"}>
-      <ChartHeader title="Total Supply" />
+      <ChartHeader title="Total Supply Overview">
+        <div className="flex flex-wrap gap-16 items-center">
+          {/* Year Dropdown */}
+          <div className="flex gap-2 items-center">
+            <label className="text-sm font-medium">Year</label>
+            <DefaultSelect
+              value={selectedYear}
+              onChange={setSelectedYear}
+              options={getAvailableYears().map((year) => year.toString())}
+              className="w-28 dark:border-slate-700"
+              optionClassName="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
+              renderOption={(year) => (year === "all" ? "All" : year)}
+            />
+          </div>
+
+          <div className="text-sm">
+            <span className="font-medium">Total Supply:</span>{" "}
+            {latestSupply.toLocaleString()} ZEC
+          </div>
+        </div>
+      </ChartHeader>
+
       <ChartContainer ref={props.chartRef} loading={loading}>
-        <AreaChart data={parsedData}>
+        <AreaChart data={filteredData}>
           <defs>
-            <linearGradient id="diffGradient" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="totalSupplyGradient" x1="0" y1="0" x2="0" y2="1">
               <stop
                 offset="5%"
                 stopColor="hsl(var(--chart-4))"
-                stopOpacity={0.8}
+                stopOpacity={0.6}
               />
               <stop
                 offset="95%"
                 stopColor="hsl(var(--chart-4))"
-                stopOpacity={0}
+                stopOpacity={0.05}
               />
             </linearGradient>
           </defs>
+
           <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-          <XAxis dataKey="date" tick={{ fontSize, fill: "#94a3b8" }} />
-          <YAxis
-            tickFormatter={(v) =>
-              v >= 1_000_000
-                ? `${v / 1_000_000}M`
-                : v >= 1_000
-                ? `${v / 1_000}K`
-                : v
-            }
+          <XAxis
+            dataKey="close"
             tick={{ fontSize, fill: "#94a3b8" }}
-            width={60}
+            interval={isMobile ? 10 : "preserveStartEnd"}
+            minTickGap={isMobile ? 10 : 30}
+            tickCount={isMobile ? 4 : 8}
+          />
+          <YAxis
+            tick={{ fontSize, fill: "#94a3b8" }}
+            tickFormatter={(val) => formatNumberShort(val)}
           />
           <Tooltip
-            formatter={(value: any) =>
-              typeof value === "number" ? value.toLocaleString() : value
-            }
+            content={({ active, payload, label }) => {
+              if (!active || !payload?.length) return null;
+
+              return (
+                <div
+                  className="rounded-md px-3 py-2 shadow-md border text-sm"
+                  style={{
+                    backgroundColor: "#1e293b",
+                    borderColor: "#334155",
+                    color: "#f1f5f9",
+                  }}
+                >
+                  <p className="text-slate-100 font-semibold mb-2">{label}</p>
+                  <div
+                    className="flex justify-between gap-4"
+                    style={{ color: "hsl(var(--chart-4))" }}
+                  >
+                    <span>Total Supply</span>
+                    <span className="text-slate-50">
+                      {payload[0]?.value?.toLocaleString()} ZEC
+                    </span>
+                  </div>
+                </div>
+              );
+            }}
           />
 
-          <Legend
-            verticalAlign="bottom"
-            align="center"
-            content={() => (
-              <div
-                style={{ paddingTop: 20 }}
-                className="flex justify-center gap-6 text-sm text-slate-600 dark:text-slate-300"
-              >
-                <div className="flex items-center gap-2">
-                  <span
-                    className="w-3 h-3 inline-block rounded-sm"
-                    style={{ background: "#3b82f6" }}
-                  />
-                  <p>Total Supply</p>
-                </div>
-              </div>
-            )}
-          />
           <Area
             type="monotone"
-            dataKey="Total Supply"
+            dataKey="supply"
             stroke="hsl(var(--chart-4))"
-            fillOpacity={1}
-            fill="url(#diffGradient)"
+            fill="url(#totalSupplyGradient)"
+            name="Total Supply"
             strokeWidth={2}
           />
         </AreaChart>

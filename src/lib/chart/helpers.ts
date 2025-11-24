@@ -122,6 +122,7 @@ export function getCommitUrlForTab(tabLabel: string): string {
     transparent: DATE_URL.transparentSupplyUrl,
     "shielded stats": DATE_URL.zcashShieldedStatsUrl,
     "Halving Meter": "",
+    "total supply": DATE_URL.totalSupplyUrl,
   };
 
   return urlMap[tabLabel] || DATE_URL.defaultUrl;
