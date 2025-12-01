@@ -58,7 +58,7 @@ export type Difficulty = {
 
 export type totalSupply = {
   close: string;
-  supply : string;
+  supply: string;
 };
 
 export type BlockFees = {
@@ -74,7 +74,8 @@ export type NetInOutflow = {
 
 export type LockBox = {
   Date: string;
-  lockbox: string;
+  lockbox: number;
+  coinholders_fund: number;
 };
 
 export type BlockchainNetwork = "Zcash" | "Namada" | "Penumbra";
