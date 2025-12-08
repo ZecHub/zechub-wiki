@@ -197,7 +197,7 @@ export default function GovernanceGuide() {
                     </p>
                     <p className="text-blue-700 text-sm mb-3">
                       Feel free to discuss or present your DAO proposal with
-                      existing DAO members. They are there to help!
+                      existing DAO members. They are there to help! Join a ZecHub Sync Meeting held bi-weekly in the Zcash Global Voice Channel
                     </p>
                     <button className="border py-2 px-3 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500">
                       <Link
