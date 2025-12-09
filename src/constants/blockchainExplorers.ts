@@ -16,6 +16,14 @@ export const blockchainExplorers = [
     thumbnailImage: '/explorer/messari.io.png',
   },
   {
+    title: '3xpl',
+    description:
+      '3xpl is a super-fast, universal explorer for most popular public blockchains.',
+    features: [],
+    url: 'https://3xpl.com/zcash',
+    thumbnailImage: '/explorer/3xpl.png',
+  },
+  {
     title: 'BlockExplorer.one',
     description:
       'Blockexplorer.one is a blockchain browser where you can search for information on several blockchains.',
