@@ -1,16 +1,16 @@
+'use client'
+
 import { Button } from "@/components/UI/shadcn/button";
 import { Card } from "@/components/UI/shadcn/card";
 import { Progress } from "@/components/UI/shadcn/progress";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  ArrowLeft,
   ChevronLeft,
   ChevronRight,
   Pause,
   Play,
   RotateCcw,
 } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Stage } from "./ProofStep";
 import ProofStep from "./ProofStep";
@@ -198,9 +198,9 @@ const ZKSNARKProofVisualizer = () => {
                     Key Insight:
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    The zk-SNARK proof is the "magic" that makes this all work.
-                    It's a cryptographic proof that can verify complex
-                    statements without revealing the underlying data.
+                    The zk-SNARK proof is the &quot;magic&quot; that makes this
+                    all work. It&apos;s a cryptographic proof that can verify
+                    complex statements without revealing the underlying data.
                   </p>
                 </Card>
               )}
