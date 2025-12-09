@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 
-export const SetupVisualization = () => {
+export const SetupVisualization = () => (
   <div className="space-y-8 w-full">
     <motion.div
       initial={{ x: -100, opacity: 0 }}
-      animate={{ x: 0, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
       transition={{ delay: 0.2 }}
-      className="flex items-center gap-4 bg-card border boder-primary/20 rounded-lg p-6"
+      className="flex items-center gap-4 bg-card border border-primary/20 rounded-lg p-6"
     >
       <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center">
         <span className="text-2xl font-bold text-primary">A</span>
@@ -46,5 +46,5 @@ export const SetupVisualization = () => {
         <p className="text-sm text-muted-foreground">Will receive privately</p>
       </div>
     </motion.div>
-  </div>;
-};
+  </div>
+);

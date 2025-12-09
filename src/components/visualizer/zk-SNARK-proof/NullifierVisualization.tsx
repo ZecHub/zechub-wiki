@@ -29,17 +29,17 @@ export const NullifierVisualization = () => (
     >
       <div className="flex items-center gap-3 mb-4">
         <div className="w-12 h-12 rounded-lg bg-destructive/20 flex items-center justify-center">
-          <span className="text-2xl">DANGER_ICON</span>
+          <span className="text-2xl">⚠️</span>
         </div>
         <div>
           <p className="text-sm font-semibold">Unique Nullifier</p>
           <p className="font-mono text-xs text-muted-foreground">
-            ng = HASH(sk, mote)
+            nf = HASH(sk, mote)
           </p>
         </div>
       </div>
       <p className="text-xs text-muted-foreground">
-        Once published, prevent double-spending
+        Once published, prevents double-spending
       </p>
     </motion.div>
   </div>

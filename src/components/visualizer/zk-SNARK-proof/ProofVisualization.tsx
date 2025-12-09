@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Key, Shield } from "lucide-react";
+import { CheckCircle2, Shield } from "lucide-react";
 
-const ProofVisualization = () => (
+export const ProofVisualization = () => (
   <div className="space-y-6 w-full">
     <motion.div
       initial={{ opacity: 0 }}

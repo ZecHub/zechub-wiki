@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Lock, Shield } from "lucide-react";
 
-export const CommitmentVisualization = () => {
+export const CommitmentVisualization = () => (
   <div className="space-y-6 w-full">
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -27,9 +27,9 @@ export const CommitmentVisualization = () => {
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.4 }}
-        className="p-4 rounded-lg bg-primary/10 border-primary/20 text-center"
+        className="p-4 rounded-lg bg-primary/10 border border-primary/20 text-center"
       >
-        <p className="text-sm text-muted-foreground mb-1">Recipient</p>
+        <p className="text-xs text-muted-foreground mb-1">Recipient</p>
         <p className="text-sm font-mono">zs1...</p>
       </motion.div>
 
@@ -65,5 +65,5 @@ export const CommitmentVisualization = () => {
         cm = HASH(value, recipient, random)
       </p>
     </motion.div>
-  </div>;
-};
+  </div>
+);
