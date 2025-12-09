@@ -7,7 +7,6 @@ import { cardsConfig } from "@/constants/cardsConfig";
 import Link from "next/link";
 import Explorer from "../Explorer/Explorer";
 import { FadeInAnimation } from "../UI/FadeInAnimation";
-import ZKSNARKProofVisualizer from "../visualizer/zk-SNARK-proof/ZK-SNARKProofVisualizer";
 
 type HomeProps = {
   text: string;
@@ -77,10 +76,6 @@ const Home = ({ text }: HomeProps) => {
 
         <section id="content" className="px-4 my-24">
           <ContentSections />
-        </section>
-
-        <section id="zksnark-proof-visualizer" className="px-4 my-24">
-          <ZKSNARKProofVisualizer />
         </section>
 
         <section id="explore" className="px-4 my-24 scroll-mt-24">
