@@ -11,7 +11,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Stage } from "./ProofStep";
 import ProofStep from "./ProofStep";
 
@@ -103,7 +103,7 @@ const ZKSNARKProofVisualizer = () => {
   };
 
   // Auto-advance when playing
-  useState(() => {
+  useEffect(() => {
     if (isPlaying) {
       const timer = setInterval(() => {
         setCurrentStep((prev) => {
@@ -113,7 +113,8 @@ const ZKSNARKProofVisualizer = () => {
           }
           return prev + 1;
         });
-      }, 3000);
+      }, 10000);
+      
       return () => clearInterval(timer);
     }
   });
