@@ -7,6 +7,13 @@ export const decentralizedExchanges = [
     image: "/nearintents.png",
   },
   {
+    title: "Nativeswap",
+    description:
+      "Native Cross-Chain Trading Without Barriers. Trade directly on-chain without bridges or wrapped tokens - enjoy industry low fees and complete asset control.",
+    url: "https://nativeswap.io/",
+    image: "/nativeswap.png",
+  },
+  {
     title: "Firo DEX",
     description:
       "Trustless decentralized swaps using atomic swaps with FiroDEX!.",
@@ -41,3 +48,4 @@ export const decentralizedExchanges = [
     image: "/routerProtocolLogo.png",
   },
 ];
+
