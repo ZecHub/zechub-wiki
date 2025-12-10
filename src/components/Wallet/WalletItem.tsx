@@ -26,15 +26,39 @@ interface WalletItemProps {
 
 interface Tag {
   category: string;
-  values: string[];
+  values: string[] | FeatureLink[];
 }
+
+interface FeatureLink {
+  name: string;
+  url: string;
+}
+
 type CategoryKey = "Devices" | "Pools" | "Features";
+
 // Mapping of categories to icons
 const categoryIcons = {
   Devices: MdDevices,
   Pools: MdPool,
   Features: MdChecklist,
 };
+
+// Default feature links mapping
+const featureLinkMap: { [key: string]: string } = {
+  "Orchard": "https://zechub.wiki/using-zcash/shielded-pools#orchard",
+  "Sapling": "https://zechub.wiki/using-zcash/shielded-pools#sapling",
+  "Sprout": "https://zechub.wiki/using-zcash/shielded-pools#sprout",
+  "Transparent": "https://zechub.wiki/using-zcash/shielded-pools#transparent",
+  "Shielded": "https://zechub.wiki/using-zcash/shielded-pools",
+  "Hardware Wallet": "https://zechub.wiki/using-zcash/hardware-wallets",
+  "Full Node": "https://zechub.wiki/using-zcash/full-node",
+  "Light Client": "https://zechub.wiki/using-zcash/light-clients",
+  "Mobile": "https://zechub.wiki/using-zcash/mobile-wallets",
+  "Desktop": "https://zechub.wiki/using-zcash/desktop-wallets",
+  "Web": "https://zechub.wiki/using-zcash/web-wallets",
+  "Open Source": "https://zechub.wiki/contributing/open-source",
+};
+
 const WalletItem: React.FC<WalletItemProps> = ({
   title,
   link,
@@ -62,6 +86,13 @@ const WalletItem: React.FC<WalletItemProps> = ({
     setLiked(false);
   };
 
+  const getFeatureLink = (value: string): string => {
+    return featureLinkMap[value] || "https://zechub.wiki/using-zcash/shielded-pools";
+  };
+
+  const isFeatureLink = (value: any): value is FeatureLink => {
+    return typeof value === 'object' && 'name' in value && 'url' in value;
+  };
 
   return (
     <div className="wallet-item h-full flex flex-col gap-4 items-start border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5">
@@ -121,16 +152,45 @@ const WalletItem: React.FC<WalletItemProps> = ({
                     className="icon-class"
                     size="medium"
                   />
-                  {tag.values.map((value, valueIndex) => (
-                    <div
-                      key={valueIndex}
-                      className="wallet-tag-item bg-slate-200 dark:bg-slate-900"
-                    >
-                      <Link href="https://zechub.wiki/using-zcash/shielded-pools">
-                        {value}
-                      </Link>
-                    </div>
-                  ))}
+                  {tag.values.map((value, valueIndex) => {
+                    if (isFeatureLink(value)) {
+                      // Handle FeatureLink object
+                      return (
+                        <div
+                          key={valueIndex}
+                          className="wallet-tag-item bg-slate-200 dark:bg-slate-900"
+                        >
+                          <Link 
+                            href={value.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {value.name}
+                          </Link>
+                        </div>
+                      );
+                    } else {
+                      // Handle string value with default link mapping
+                      const linkUrl = tag.category === "Pools" || tag.category === "Features"
+                        ? getFeatureLink(value)
+                        : "https://zechub.wiki/using-zcash/shielded-pools";
+                      
+                      return (
+                        <div
+                          key={valueIndex}
+                          className="wallet-tag-item bg-slate-200 dark:bg-slate-900"
+                        >
+                          <Link 
+                            href={linkUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {value}
+                          </Link>
+                        </div>
+                      );
+                    }
+                  })}
                 </div>
               </React.Fragment>
             ))}
