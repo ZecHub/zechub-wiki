@@ -9,7 +9,7 @@ export const decentralizedExchanges = [
   {
     title: "Nativeswap",
     description:
-      "Native Cross-Chain Trading Without Barriers. Trade directly on-chain without bridges or wrapped tokens - enjoy industry low fees and complete asset control.",
+      "Native Cross-Chain Trading Without Barriers via Maya Protocol. Trade directly on-chain without bridges or wrapped tokens - enjoy industry low fees and complete asset control.",
     url: "https://nativeswap.io/",
     image: "/nativeswap.png",
   },
@@ -48,4 +48,5 @@ export const decentralizedExchanges = [
     image: "/routerProtocolLogo.png",
   },
 ];
+
 
