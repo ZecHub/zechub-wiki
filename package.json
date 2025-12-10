@@ -59,7 +59,7 @@
     "express-session": "^1.18.0",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.4",
-    "framer-motion": "^11.0.3",
+    "framer-motion": "^11.18.2",
     "gitlog": "^4.0.8",
     "google-map-react": "^2.2.1",
     "html2canvas": "^1.4.1",
@@ -110,7 +110,8 @@
     "@types/web-push": "^3.6.3",
     "eslint-config-prettier": "^9.1.0",
     "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0"
+    "jest-environment-jsdom": "^29.7.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "resolutions": {
     "@types/react": "19.0.8",
