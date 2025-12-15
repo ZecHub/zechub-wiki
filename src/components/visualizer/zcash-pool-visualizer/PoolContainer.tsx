@@ -106,7 +106,7 @@ export const PoolContainer = ({
 
         <div
           className={cn(
-            "text-xs px-2 py-1 rounded-full",
+            "text-xs px-2 py-1 rounded-full text-center",
             styles.bg,
             styles.text
           )}
