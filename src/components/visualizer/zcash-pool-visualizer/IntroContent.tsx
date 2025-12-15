@@ -7,13 +7,13 @@ export const IntroContent = ({ stage }: { stage: Stage }) => {
   const pools: PoolType[] = ["transparent", "sapling", "orchard"];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
       {/* Animated icons */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.3 }}
-        className="flex justify-center gap-8 mb-8"
+        className="flex justify-center gap-12 my-16"
       >
         <motion.div
           animate={{ y: [0, -10, 0] }}
