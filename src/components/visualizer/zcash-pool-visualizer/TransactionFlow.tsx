@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
-import { ArrowRight, Coins } from "lucide-react";
-import { PoolType, POOLS } from "./types";
 import { cn } from "@/lib/util";
+import { motion } from "framer-motion";
+import { ArrowRight, Coins, UserIcon } from "lucide-react";
+import { POOLS, PoolType } from "./types";
 
 interface TransactionFlowProps {
   from: PoolType;
@@ -9,7 +9,6 @@ interface TransactionFlowProps {
   amount: string;
   isAnimating: boolean;
 }
-
 
 export const TransactionFlow = ({
   from,
@@ -184,7 +183,8 @@ export const TransactionFlow = ({
         transition={{ delay: 0.7 }}
         className="mt-8 grid grid-cols-3 gap-4 text-center text-sm"
       >
-        <div className="space-y-1">
+        <div className="flex flex-col items-center space-y-2">
+          <UserIcon />
           <p className="text-muted-foreground text-xs">Sender</p>
           <p className={cn("font-medium", getPoolColor(from))}>
             {from === "transparent" ? "Public" : "Private"}
@@ -205,7 +205,8 @@ export const TransactionFlow = ({
               : "Encrypted"}
           </p>
         </div>
-        <div className="space-y-1">
+        <div className="flex flex-col items-center space-y-2">
+          <UserIcon />
           <p className="text-muted-foreground text-xs">Receiver</p>
           <p className={cn("font-medium", getPoolColor(to))}>
             {to === "transparent" ? "Public" : "Private"}
