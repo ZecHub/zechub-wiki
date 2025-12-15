@@ -64,8 +64,8 @@ export interface Stage {
 export const STAGES: Stage[] = [
   {
     id: 0,
-    title: "Welcome to Zcash",
-    subtitle: "Understanding Privacy Pools",
+    title: "Understanding Privacy Pools",
+    subtitle: "Introduction",
     description:
       "Explore how Zcash provides financial privacy through its innovative shielded pool technology.",
     type: "intro",
