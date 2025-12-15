@@ -2,11 +2,11 @@
 
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
+import { Controls } from "./Controls";
 import { ProgressIndicator } from "./ProgressIndicator";
 import { StageContent } from "./StageContent";
 import "./index.css";
 import { STAGES } from "./types";
-// import { Controls } from "./Controls";
 
 const AUTO_PLAY_INTERVAL = 8000; // 8 seconds per stage
 
@@ -92,6 +92,11 @@ export const ZcashPoolVisualizer = () => {
       <main className="flex-1 container mx-auto px-4 py-8 md:py-13">
         <StageContent stage={stage} isAnimating={isAnimating} />
       </main>
+
+      {/* Controls Footer */}
+      <footer className="border-t border-border bg-card/50 p-4">
+        <Controls />
+      </footer>
     </div>
   );
 };
