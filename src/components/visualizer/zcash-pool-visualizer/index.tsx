@@ -95,7 +95,15 @@ export const ZcashPoolVisualizer = () => {
 
       {/* Controls Footer */}
       <footer className="border-t border-border bg-card/50 p-4">
-        <Controls />
+        <Controls
+          currentStage={currentStage}
+          isPlaying={isPlaying}
+          onNext={goToNext}
+          onRestart={restart}
+          onPause={() => setIsPlaying(false)}
+          onPlay={() => setIsPlaying(true)}
+          onPrevious={goToPrevious}
+        />
       </footer>
     </div>
   );
