@@ -63,6 +63,7 @@ export const Controls = (props: ControlsProps) => {
       <Button
         variant={"ghost"}
         size={"icon"}
+        onClick={props.onNext}
         disabled={isLastStage}
         className={cn(
           `text-muted-foreground hover:text-foreground`,
