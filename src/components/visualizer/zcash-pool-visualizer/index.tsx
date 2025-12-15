@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import { Controls } from "./Controls";
-import { ProgressIndicator } from "./ProgressIndicator";
 import { StageContent } from "./StageContent";
 import "./index.css";
 import { STAGES } from "./types";
@@ -56,12 +55,12 @@ export const ZcashPoolVisualizer = () => {
   }, [isPlaying, currentStage, goToNext]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="flex flex-col ">
       {/* Header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="py-6 px-4 text-center border-b border-border"
+        className="py-6 px-4 text-center border-b border-border mt-12"
       >
         <div className="flex items-center justify-center gap-3">
           <motion.div
@@ -80,16 +79,8 @@ export const ZcashPoolVisualizer = () => {
         </p>
       </motion.header>
 
-      {/* Progress Indicator */}
-      <div className="border-b border-border bg-card/50">
-        <ProgressIndicator
-          currentStage={currentStage}
-          onStageClick={goToStage}
-        />
-      </div>
-
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 md:py-13">
+      <main className="container mx-auto px-4 py-8 md:py-13 mt-8">
         <StageContent stage={stage} isAnimating={isAnimating} />
       </main>
 
