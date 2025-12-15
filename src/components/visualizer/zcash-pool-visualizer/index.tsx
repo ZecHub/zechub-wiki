@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { STAGES } from "./types";
 import { StageContent } from "./StageContent";
 import { ProgressIndicator } from "./ProgressIndicator";
+import './index.css';
 // import { Controls } from "./Controls";
 
 const AUTO_PLAY_INTERVAL = 8000; // 8 seconds per stage
