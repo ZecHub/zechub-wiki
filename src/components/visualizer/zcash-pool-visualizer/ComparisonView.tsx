@@ -80,6 +80,61 @@ export const ComparisonView = () => {
           );
         })}
       </div>
+
+      {/* Comparison Rows */}
+      <div className="space-y-3">
+        {comparisonData.map((row, rowIndex) => (
+          <motion.div
+            key={row.feature}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 + rowIndex * 0.1 }}
+            className="grid grid-cols-4 gap-4 items-center"
+          >
+            {/* Feature name */}
+            <div className="text-sm font-medium text-foreground">
+              {row.feature}
+            </div>
+
+            {/* Pool values */}
+            {poolOrder.map((poolType) => {
+              const data = row[poolType];
+              const styles = getPoolStyles(poolType);
+              const Icon = data.icon;
+
+              return (
+                <motion.div
+                  key={`${row.feature}-${poolType}`}
+                  whileHover={{ scale: 1.02 }}
+                  className={cn(
+                    "flex items-center justify-center gap-2 p-3 rounded-lg",
+                    styles.bg,
+                    "border",
+                    styles.border
+                  )}
+                >
+                  <Icon
+                    className={cn(
+                      "w-4 h-4",
+                      data.positive ? styles.text : "text-destructive/70"
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      "text-sm",
+                      data.positive ? styles.text : "text-muted-foreground"
+                    )}
+                  >
+                    {data.value}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        ))}
+      </div>
+
+      
     </motion.div>
   );
 }
