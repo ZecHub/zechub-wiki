@@ -47,3 +47,83 @@ export const POOLS: Record<PoolType, PoolData> = {
     glowColor: "pool-orchard-glow",
   },
 };
+
+
+export interface Stage {
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  type: "intro" | "pool" | "transaction" | "comparison";
+  focusPool?: PoolType;
+  transactionFrom?: PoolType;
+  transactionTo?: PoolType;
+  amount?: string;
+}
+
+export const STAGES: Stage[] = [
+  {
+    id: 0,
+    title: "Welcome to Zcash",
+    subtitle: "Understanding Privacy Pools",
+    description:
+      "Explore how Zcash provides financial privacy through its innovative shielded pool technology.",
+    type: "intro",
+  },
+  {
+    id: 1,
+    title: "Transparent Addresses",
+    subtitle: "t-addresses",
+    description:
+      "Public transactions similar to Bitcoin. All details visible on the blockchain.",
+    type: "pool",
+    focusPool: "transparent",
+  },
+  {
+    id: 2,
+    title: "Sapling Addresses",
+    subtitle: "z-addresses (zs1...)",
+    description:
+      "Shielded transactions using zero-knowledge proofs. Fast and private.",
+    type: "pool",
+    focusPool: "sapling",
+  },
+  {
+    id: 3,
+    title: "Orchard Protocol",
+    subtitle: "Unified Addresses (u1...)",
+    description:
+      "The latest privacy protocol with enhanced anonymity and improved cryptography.",
+    type: "pool",
+    focusPool: "orchard",
+  },
+  {
+    id: 4,
+    title: "Shielding Transaction",
+    subtitle: "Transparent → Shielded",
+    description:
+      "Move funds from transparent to shielded pool. Source is visible, but destination is hidden.",
+    type: "transaction",
+    transactionFrom: "transparent",
+    transactionTo: "sapling",
+    amount: "1.5 ZEC",
+  },
+  {
+    id: 5,
+    title: "Shielded Transfer",
+    subtitle: "Shielded → Shielded",
+    description:
+      "Fully private transaction. Sender, receiver, and amount are all encrypted.",
+    type: "transaction",
+    transactionFrom: "sapling",
+    transactionTo: "orchard",
+    amount: "2.0 ZEC",
+  },
+  {
+    id: 6,
+    title: "Privacy Comparison",
+    subtitle: "Understanding the Differences",
+    description: "Compare privacy levels across all three pool types.",
+    type: "comparison",
+  },
+];
