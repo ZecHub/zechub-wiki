@@ -60,7 +60,7 @@ export const ZcashPoolVisualizer = () => {
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="py-6 px-4 text-center border-b border-border mt-12"
+        className="py-6 px-4 text-center border-b  border-slate-200 dark:border-slate-600 mt-12"
       >
         <div className="flex items-center justify-center gap-3">
           <motion.div
@@ -85,7 +85,7 @@ export const ZcashPoolVisualizer = () => {
       </main>
 
       {/* Controls Footer */}
-      <footer className="border-t border-border bg-card/50 p-4">
+      <footer className="border-t border-slate-200 dark:border-slate-600 p-4">
         <Controls
           currentStage={currentStage}
           isPlaying={isPlaying}
