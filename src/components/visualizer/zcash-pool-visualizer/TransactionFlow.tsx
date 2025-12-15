@@ -177,7 +177,41 @@ export const TransactionFlow = ({
         </motion.div>
       </div>
 
-
+      {/* Transaction Details */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7 }}
+        className="mt-8 grid grid-cols-3 gap-4 text-center text-sm"
+      >
+        <div className="space-y-1">
+          <p className="text-muted-foreground text-xs">Sender</p>
+          <p className={cn("font-medium", getPoolColor(from))}>
+            {from === "transparent" ? "Public" : "Private"}
+          </p>
+        </div>
+        <div className="space-y-1">
+          <p className="text-muted-foreground text-xs">Amount</p>
+          <p
+            className={cn(
+              "font-mono font-medium",
+              from === "transparent" && to === "transparent"
+                ? "text-pool-transparent"
+                : "text-primary"
+            )}
+          >
+            {from === "transparent" && to === "transparent"
+              ? amount
+              : "Encrypted"}
+          </p>
+        </div>
+        <div className="space-y-1">
+          <p className="text-muted-foreground text-xs">Receiver</p>
+          <p className={cn("font-medium", getPoolColor(to))}>
+            {to === "transparent" ? "Public" : "Private"}
+          </p>
+        </div>
+      </motion.div>
     </div>
   );
 };
