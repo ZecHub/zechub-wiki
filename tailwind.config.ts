@@ -64,6 +64,13 @@ const config: Config = {
           DEFAULT: "#1984c7",
           hover: "#1574af",
         },
+        zcash: {
+          gold: "hsl(var(--zcash-gold))",
+          "gold-glow": "hsl(var(--zcash-gold-glow))",
+          dark: "hsl(var(--zcash-dark))",
+          "dark-lighter": "hsl(var(--zcash-dark-lighter))",
+        },
+
       },
       borderRadius: {
         lg: "var(--radius)",
