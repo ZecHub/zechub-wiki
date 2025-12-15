@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { STAGES } from "./types";
-import { StageContent } from "./StageContent";
+import { useCallback, useEffect, useState } from "react";
 import { ProgressIndicator } from "./ProgressIndicator";
-import './index.css';
+import { StageContent } from "./StageContent";
+import "./index.css";
+import { STAGES } from "./types";
 // import { Controls } from "./Controls";
 
 const AUTO_PLAY_INTERVAL = 8000; // 8 seconds per stage
@@ -87,6 +87,11 @@ export const ZcashPoolVisualizer = () => {
           onStageClick={goToStage}
         />
       </div>
+
+      {/* Main Content */}
+      <main className="flex-1 container mx-auto px-4 py-8 md:py-13">
+        <StageContent stage={stage} isAnimating={isAnimating} />
+      </main>
     </div>
   );
-}
+};
