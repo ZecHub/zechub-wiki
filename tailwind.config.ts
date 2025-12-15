@@ -70,7 +70,14 @@ const config: Config = {
           dark: "hsl(var(--zcash-dark))",
           "dark-lighter": "hsl(var(--zcash-dark-lighter))",
         },
-
+        pool: {
+          transparent: "hsl(var(--pool-transparent))",
+          "transparent-glow": "hsl(var(--pool-transparent-glow))",
+          sapling: "hsl(var(--pool-sapling))",
+          "sapling-glow": "hsl(var(--pool-sapling-glow))",
+          orchard: "hsl(var(--pool-orchard))",
+          "orchard-glow": "hsl(var(--pool-orchard-glow))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
