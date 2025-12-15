@@ -89,7 +89,7 @@ export const ZcashPoolVisualizer = () => {
       </div>
 
       {/* Main Content */}
-      <main className="flex-1 container mx-auto px-4 py-8 md:py-13">
+      <main className="container mx-auto px-4 py-8 md:py-13">
         <StageContent stage={stage} isAnimating={isAnimating} />
       </main>
 
