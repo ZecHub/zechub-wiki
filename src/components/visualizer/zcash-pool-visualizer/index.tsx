@@ -78,6 +78,14 @@ export const ZcashPoolVisualizer = () => {
           Interactive guide to Zcash privacy technology
         </p>
       </motion.header>
+
+      {/* Progress Indicator */}
+      <div className="border-b border-border bg-card/50">
+        <ProgressIndicator
+          currentStage={currentStage}
+          onStageClick={goToStage}
+        />
+      </div>
     </div>
   );
 }
