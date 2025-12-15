@@ -35,6 +35,31 @@ export const Controls = (props: ControlsProps) => {
       aria-label="Previous stage">
         <SkipBack className="w-4 h-4"/>
       </Button>
+
+      {/* Play/Pause */}
+      <Button variant={'default'}
+      size={'icon'}
+      onClick={props.isPlaying ? props.onPause : props.onPlay}
+      className="w-12 h-12 rounded-full bg-primary hover:bg-primary/90"
+      aria-label={props.isPlaying ? 'Pause' : 'Play'}
+      >
+        {props.isPlaying ? (<Pause className="w-4 h-4"/>) : <Play className="w-4 h-4"/>}
+      </Button>
+
+      {/* Next */}
+      <Button 
+      variant={'ghost'}
+      size={'icon'}
+      disabled={isLastStage}
+      className={
+        cn(
+            `text-muted-foreground hover:text-foreground`, 
+            isLastStage && 'opacity-50 cursor-not-allowed'
+        )
+      }
+      aria-label="Next stage">
+        <SkipForward className="w-4 h-4"/>
+      </Button>
     </motion.div>
   );
 };
