@@ -14,10 +14,27 @@ interface ControlsProps {
   onRestart: () => void;
 }
 
-export const Controls = () => {
+export const Controls = (props: ControlsProps) => {
+    const isFirstStage = props.currentStage === 0;
+    const isLastStage = props.currentStage === STAGES.length - 1;
+
   return (
-    <div>
+    <motion.div initial={{opacity: 0, y:20}} animate={{opacity: 1, y:0}}
+    className="flex items-center justify-center gap-2">
       
-    </div>
+      {/* Restart */}
+      <Button variant={'ghost'} size={'icon'} onClick={props.onRestart}>
+        <RotateCcw className="w-4 h-4"/>
+      </Button>
+  
+      {/* Previous */}
+      <Button variant={'ghost'} size={'icon'} onClick={props.onPrevious} disabled={isFirstStage}
+      className={cn(
+        `text-muted-foreground hover:text-foreground`, isFirstStage && 'opacity-50 cursor-not-allowed'
+      )}
+      aria-label="Previous stage">
+        <SkipBack className="w-4 h-4"/>
+      </Button>
+    </motion.div>
   );
 };
