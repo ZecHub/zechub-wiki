@@ -2,14 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap'); */
-
 /* Zcash branded design system - dark theme with gold accents */
 
 @layer base {
     :root {
-        --background: 220 20% 7%;
-        --foreground: 45 100% 96%;
+        /* --background: 220 20% 7%;
+        --foreground: 45 100% 96%; */
 
         --card: 220 18% 10%;
         --card-foreground: 45 100% 96%;
