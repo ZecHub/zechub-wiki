@@ -64,7 +64,7 @@ export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
         </div>
 
         {/* Stage-specific content */}
-        <div className="mt-8">{renderContent()}</div>
+        <div className="mt-24">{renderContent()}</div>
       </motion.div>
     </AnimatePresence>
   );
