@@ -134,7 +134,46 @@ export const ComparisonView = () => {
         ))}
       </div>
 
-      
+      {/* Privacy Level Summary */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="mt-8 grid grid-cols-3 gap-4"
+      >
+        {poolOrder.map((poolType, index) => {
+          const pool = POOLS[poolType];
+          const styles = getPoolStyles(poolType);
+          const privacyLevel =
+            poolType === "transparent" ? 0 : poolType === "sapling" ? 75 : 100;
+
+          return (
+            <div key={pool.type} className="text-center">
+              <p className="text-xs text-muted-foreground mb-2">
+                Privacy Level
+              </p>
+              <div className="relative h-2 bg-muted rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${privacyLevel}%` }}
+                  transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
+                  className={cn(
+                    "absolute inset-y-0 left-0 rounded-full",
+                    poolType === "transparent"
+                      ? "bg-pool-transparent"
+                      : poolType === "sapling"
+                      ? "bg-pool-sapling"
+                      : "bg-pool-orchard"
+                  )}
+                />
+              </div>
+              <p className={cn("text-sm font-medium mt-2", styles.text)}>
+                {privacyLevel}%
+              </p>
+            </div>
+          );
+        })}
+      </motion.div>
     </motion.div>
   );
 }
