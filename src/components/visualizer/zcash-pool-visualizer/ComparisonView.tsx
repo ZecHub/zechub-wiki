@@ -226,9 +226,9 @@ export const ComparisonView = () => {
     >
       {/* Pool Headers */}
       {/* <div className="grid grid-cols-4 gap-4 mb-6"> */}
-        {/* <div />  */}
-        {/* Empty cell for feature column */}
-        {/* {poolOrder.map((poolType, index) => {
+      {/* <div />  */}
+      {/* Empty cell for feature column */}
+      {/* {poolOrder.map((poolType, index) => {
           const pool = POOLS[poolType];
           const styles = getPoolStyles(poolType);
 
@@ -268,7 +268,7 @@ export const ComparisonView = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
               className={cn(
-                'text-center p-2 rounded-lg border text-sm font-semibold',
+                "text-center p-2 rounded-lg border text-sm font-semibold",
                 getPoolBg(tx.from)
               )}
             >
@@ -279,9 +279,52 @@ export const ComparisonView = () => {
           ))}
         </div>
 
+        {/* Feature Rows */}
+        {features.map((feature, idx) => (
+          <motion.div
+            key={feature}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 + idx * 0.1 }}
+            className="grid grid-cols-[140px_repeat(9,1fr)] gap-2 mb-2"
+          >
+            <div className="text-sm font-medium text-foreground p-2 flex items-center">
+              {feature}
+            </div>
+
+            {transactionTypes.map((tx) => {
+              const privacy = getTransactionPrivacy(tx.from, tx.to);
+              const featureKey = feature.toLowerCase() as keyof Pick<
+                TransactionPrivacy,
+                "sender" | "receiver" | "amount" | "memo"
+              >;
+              const level = privacy[featureKey];
+              const { icon: Icon, color, label } = getPrivacyIcon(level);
+
+              return (
+                <motion.div
+                  key={`${feature}-${tx.label}`}
+                  whileHover={{ scale: 1.05 }}
+                  className={cn(
+                    "flex items-center justify-center gap-1 p-2 rounded-lg border",
+                    level === "hidden"
+                      ? "bg-green-500/5 border-green-500/20"
+                      : level === "visible"
+                      ? "bg-destructive/5 border-destructive/20"
+                      : "bg-yellow-500/5 border-yellow-500/20"
+                  )}
+                >
+                  <Icon className={cn("w-3 h-3", color)} />
+                  <span className={cn("text-xs", color)}>{label}</span>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        ))}
 
 
-        </div>
+        
+      </div>
 
       {/* Comparison Rows */}
       <div className="space-y-3">
