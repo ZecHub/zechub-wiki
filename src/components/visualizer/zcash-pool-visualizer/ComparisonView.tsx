@@ -358,99 +358,49 @@ export const ComparisonView = () => {
         </motion.div>
       </div>
 
-      {/* Comparison Rows */}
-      <div className="space-y-3">
-        {comparisonData.map((row, rowIndex) => (
-          <motion.div
-            key={row.feature}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 + rowIndex * 0.1 }}
-            className="grid grid-cols-4 gap-4 items-center"
-          >
-            {/* Feature name */}
-            <div className="text-sm font-medium text-foreground">
-              {row.feature}
-            </div>
-
-            {/* Pool values */}
-            {poolOrder.map((poolType) => {
-              const data = row[poolType];
-              const styles = getPoolStyles(poolType);
-              const Icon = data.icon;
-
-              return (
-                <motion.div
-                  key={`${row.feature}-${poolType}`}
-                  whileHover={{ scale: 1.02 }}
-                  className={cn(
-                    "flex items-center justify-center gap-2 p-3 rounded-lg",
-                    styles.bg,
-                    "border",
-                    styles.border
-                  )}
-                >
-                  <Icon
-                    className={cn(
-                      "w-4 h-4",
-                      data.positive ? styles.text : "text-destructive/70"
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      "text-sm",
-                      data.positive ? styles.text : "text-muted-foreground"
-                    )}
-                  >
-                    {data.value}
-                  </span>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Privacy Level Summary */}
+      {/* Legend */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className="mt-8 grid grid-cols-3 gap-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="mt-6 p-4 rounded-xl bg-muted/30 border border-border"
       >
-        {poolOrder.map((poolType, index) => {
-          const pool = POOLS[poolType];
-          const styles = getPoolStyles(poolType);
-          const privacyLevel =
-            poolType === "transparent" ? 0 : poolType === "sapling" ? 75 : 100;
-
-          return (
-            <div key={pool.type} className="text-center">
-              <p className="text-xs text-muted-foreground mb-2">
-                Privacy Level
-              </p>
-              <div className="relative h-2 bg-muted rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${privacyLevel}%` }}
-                  transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
-                  className={cn(
-                    "absolute inset-y-0 left-0 rounded-full",
-                    poolType === "transparent"
-                      ? "bg-pool-transparent"
-                      : poolType === "sapling"
-                      ? "bg-pool-sapling"
-                      : "bg-pool-orchard"
-                  )}
-                />
-              </div>
-              <p className={cn("text-sm font-medium mt-2", styles.text)}>
-                {privacyLevel}%
-              </p>
-            </div>
-          );
-        })}
+        <h4 className="text-sm font-semibold text-foreground mb-3">
+          Key Insights
+        </h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
+          <div className="flex items-start gap-2">
+            <Lock className="w-4 h-4 text-pool-orchard shrink-0 mt-0.5" />
+            <span>
+              <strong className="text-pool-orchard">Same-pool shielded</strong>{" "}
+              (S→S, O→O): Maximum privacy - all details encrypted
+            </span>
+          </div>
+          <div className="flex items-start gap-2">
+            <Shield className="w-4 h-4 text-pool-sapling shrink-0 mt-0.5" />
+            <span>
+              <strong className="text-pool-sapling">Cross-pool shielded</strong>{" "}
+              (S↔O): High privacy but amount visible at pool boundary
+            </span>
+          </div>
+          <div className="flex items-start gap-2">
+            <Eye className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
+            <span>
+              <strong className="text-orange-500">Shielding/Deshielding</strong>{" "}
+              (T↔S/O): One address visible, amount visible
+            </span>
+          </div>
+          <div className="flex items-start gap-2">
+            <X className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
+            <span>
+              <strong className="text-destructive">Transparent</strong> (T→T):
+              No privacy - all details public like Bitcoin
+            </span>
+          </div>
+        </div>
       </motion.div>
+
+   
     </motion.div>
   );
 };
