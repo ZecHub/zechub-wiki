@@ -283,12 +283,12 @@ export const ComparisonView = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="mt-6 p-4 rounded-xl bg-muted/30 border border-border"
+        className="mt-24 p-4 rounded-xl bg-muted/10 border border-border"
       >
         <h4 className="text-sm font-semibold text-foreground mb-3">
           Key Insights
         </h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-muted-foreground">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-muted-foreground">
           <div className="flex items-start gap-2">
             <Lock className="w-4 h-4 text-pool-orchard shrink-0 mt-0.5" />
             <span>
