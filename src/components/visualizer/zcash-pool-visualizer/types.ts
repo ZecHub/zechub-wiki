@@ -127,7 +127,7 @@ export const STAGES: Stage[] = [
     type: "transaction",
     transactionFrom: "sapling",
     transactionTo: "sapling",
-    amount: "3.0 ZEC",
+    amount: "0 ZEC",
   },
   {
     id: 7,
@@ -138,7 +138,7 @@ export const STAGES: Stage[] = [
     type: "transaction",
     transactionFrom: "orchard",
     transactionTo: "orchard",
-    amount: "4.5 ZEC",
+    amount: "0 ZEC",
   },
   {
     id: 8,
