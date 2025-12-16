@@ -64,6 +64,7 @@ export type totalSupply = {
 export type BlockFees = {
   Block: string;
   Fees: string;
+  Date: string;
 };
 
 export type NetInOutflow = {

@@ -24,7 +24,8 @@ type BlockFeesChartProps = {
 export default function BlockFeesChart(props: BlockFeesChartProps) {
   const [blockFees, setBlockFees] = useState<BlockFees[]>([]);
   const [loading, setLoading] = useState(false);
-  const fontSize = useResponsiveFontSize(); // optional: pass min/max
+  const [selectedYear, setSelectedYear] = useState<string>("all");
+  const fontSize = useResponsiveFontSize();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -54,18 +55,74 @@ export default function BlockFeesChart(props: BlockFeesChartProps) {
     };
   }, []);
 
-  const parsedData = useMemo(() => {
-    return blockFees.map((d) => ({
-      block: d.Block,
-      fees: parseFloat(d.Fees),
-    }));
+  // Extract available years from the data
+  const availableYears = useMemo(() => {
+    const years = new Set<string>();
+    blockFees.forEach((d) => {
+      if (d.Date) {
+        try {
+          const year = dateFns.format(new Date(d.Date), "yyyy");
+          years.add(year);
+        } catch (err) {
+          console.error("Error parsing date:", d.Date);
+        }
+      }
+    });
+    return Array.from(years).sort((a, b) => b.localeCompare(a)); // Sort descending
   }, [blockFees]);
 
-  console.log(parsedData);
+  const parsedData = useMemo(() => {
+    let filtered = blockFees;
+
+    // Filter by year if a specific year is selected
+    if (selectedYear !== "all") {
+      filtered = blockFees.filter((d) => {
+        if (!d.Date) return false;
+        try {
+          const year = dateFns.format(new Date(d.Date), "yyyy");
+          return year === selectedYear;
+        } catch (err) {
+          return false;
+        }
+      });
+    }
+
+    return filtered.map((d) => ({
+      block: d.Block,
+      fees: parseFloat(d.Fees),
+      date: d.Date,
+    }));
+  }, [blockFees, selectedYear]);
 
   return (
     <ErrorBoundary fallback={"Failed to load Block Fees Chart"}>
-      <ChartHeader title="Block Fees" />
+      <div className="flex items-center justify-between mb-4">
+        <ChartHeader title="Block Fees" />
+
+        {/* Year Filter Dropdown */}
+        <div className="flex items-center gap-2">
+          <label
+            htmlFor="year-filter"
+            className="text-sm text-slate-600 dark:text-slate-300"
+          >
+            Filter by Year:
+          </label>
+          <select
+            id="year-filter"
+            value={selectedYear}
+            onChange={(e) => setSelectedYear(e.target.value)}
+            className="px-3 py-1.5 text-sm rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="all">All Years</option>
+            {availableYears.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
       <ChartContainer ref={props.chartRef} loading={loading}>
         <AreaChart data={parsedData}>
           <defs>
@@ -99,16 +156,13 @@ export default function BlockFeesChart(props: BlockFeesChartProps) {
             content={({ active, payload, label }) => {
               if (!active || !payload?.length) return null;
 
+              const { date, block } = payload[0].payload;
+
               return (
-                <div
-                  className="rounded-md px-3 py-2 shadow-md border text-sm"
-                  style={{
-                    backgroundColor: "#1e293b", // dark bg
-                    borderColor: "#334155",
-                    color: "#f1f5f9", // default text
-                  }}
-                >
-                  <p className="text-slate-100 font-semibold mb-2">{label}</p>
+                <div className="rounded-md px-3 py-2 shadow-md border text-sm bg-slate-800 border-slate-700 text-slate-100">
+                  <p className="font-semibold">{block}</p>
+                  <p className="text-xs text-slate-400 mb-2">{date}</p>
+
                   {payload.map((entry, idx) => (
                     <div
                       key={idx}
@@ -145,6 +199,7 @@ export default function BlockFeesChart(props: BlockFeesChartProps) {
           <Area
             type="monotone"
             dataKey="fees"
+            name="Fees"
             stroke="hsl(var(--chart-4))"
             fillOpacity={1}
             fill="url(#blockFeesGradient)"
