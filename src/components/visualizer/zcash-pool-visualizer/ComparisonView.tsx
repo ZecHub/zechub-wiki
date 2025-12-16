@@ -128,6 +128,16 @@ const getTransactionPrivacy = (from: Pool, to: Pool): TransactionPrivacy => {
   };
 };
 
+const getPoolColor = (pool:Pool)=>{
+  switch(pool){
+    case 'T': return `text-pool-transparent`;
+    case 'S': return `text-pool-sapling`;
+    case 'O': return `text-pool-orchard`
+  }
+}
+
+
+
 export const ComparisonView = () => {
   const getPoolStyles = (type: PoolType) => {
     switch (type) {
