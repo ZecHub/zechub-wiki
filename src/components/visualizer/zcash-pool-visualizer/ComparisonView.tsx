@@ -192,6 +192,8 @@ const getOverallPrivacyStyle = (
   }
 };
 
+const features = ["Sender", "Receiver", "Amount", "Memo"];
+
 export const ComparisonView = () => {
   const getPoolStyles = (type: PoolType) => {
     switch (type) {
@@ -220,12 +222,13 @@ export const ComparisonView = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="w-full max-w-4xl mx-auto"
+      className="w-full max-w-6xl mx-auto overflow-x-auto"
     >
       {/* Pool Headers */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
-        <div /> {/* Empty cell for feature column */}
-        {poolOrder.map((poolType, index) => {
+      {/* <div className="grid grid-cols-4 gap-4 mb-6"> */}
+        {/* <div />  */}
+        {/* Empty cell for feature column */}
+        {/* {poolOrder.map((poolType, index) => {
           const pool = POOLS[poolType];
           const styles = getPoolStyles(poolType);
 
@@ -249,8 +252,36 @@ export const ComparisonView = () => {
               </p>
             </motion.div>
           );
-        })}
-      </div>
+        })} */}
+      {/* </div> */}
+
+      <div className="min-w-[800px]">
+        {/* Header Row */}
+        <div className="grid grid-cols-[140px_repeat(9,1fr)] gap-2 mb-4">
+          <div className="text-sm font-medium text-muted-foreground p-2">
+            Transaction Type
+          </div>
+          {transactionTypes.map((tx, index) => (
+            <motion.div
+              key={tx.label}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+              className={cn(
+                'text-center p-2 rounded-lg border text-sm font-semibold',
+                getPoolBg(tx.from)
+              )}
+            >
+              <span className={getPoolColor(tx.from)}>{tx.from}</span>
+              <span className="text-muted-foreground mx-1">→</span>
+              <span className={getPoolColor(tx.to)}>{tx.to}</span>
+            </motion.div>
+          ))}
+        </div>
+
+
+
+        </div>
 
       {/* Comparison Rows */}
       <div className="space-y-3">
