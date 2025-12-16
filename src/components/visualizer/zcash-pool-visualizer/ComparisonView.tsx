@@ -322,8 +322,40 @@ export const ComparisonView = () => {
           </motion.div>
         ))}
 
+        {/* Overall Privacy Row */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="grid grid-cols-[140px_repeat(9,1fr)] gap-2 mt-4 pt-4 border-t border-border"
+        >
+          <div className="text-sm font-bold text-foreground p-2 flex items-center">
+            Overall Privacy
+          </div>
+          {transactionTypes.map((tx, index) => {
+            const privacy = getTransactionPrivacy(tx.from, tx.to);
+            const style = getOverallPrivacyStyle(privacy.overallPrivacy);
 
-        
+            return (
+              <motion.div
+                key={`overall-${tx.label}`}
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.7 + index * 0.05 }}
+                whileHover={{ scale: 1.05 }}
+                className={cn(
+                  "flex items-center justify-center p-2 rounded-lg border",
+                  style.bg,
+                  "border-current/20"
+                )}
+              >
+                <span className={cn("text-xs font-semibold", style.color)}>
+                  {style.label}
+                </span>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
 
       {/* Comparison Rows */}
