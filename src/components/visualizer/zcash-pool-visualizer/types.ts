@@ -148,11 +148,4 @@ export const STAGES: Stage[] = [
       "Privacy depends on transaction type. Compare what's visible across all possible transaction combinations.",
     type: "comparison",
   },
-  // {
-  //   id: 6,
-  //   title: "Privacy Comparison",
-  //   subtitle: "Understanding the Differences",
-  //   description: "Compare privacy levels across all three pool types.",
-  //   type: "comparison",
-  // },
 ];
