@@ -60,14 +60,10 @@ const transactionTypes: TransactionType[] = [
   { from: "O", to: "O", label: "O → O" },
 ];
 
-type FromTxType = "T" | "S" | "O";
-type ToTxType = "T" | "S" | "O";
+type Pool = "T" | "S" | "O";
 
 // Privacy data for each tx type
-const getTransactionPrivacy = (
-  from: FromTxType,
-  to: ToTxType
-): TransactionPrivacy => {
+const getTransactionPrivacy = (from: Pool, to: Pool): TransactionPrivacy => {
   // T -> T : Everything visible
   if (from === "T" && to === "T") {
     return {
