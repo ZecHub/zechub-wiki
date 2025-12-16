@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
-import { Eye, EyeOff, Shield, Lock, Check, X } from "lucide-react";
-import { POOLS, PoolType } from "./types";
 import { cn } from "@/lib/util";
+import { motion } from "framer-motion";
+import { Eye, EyeOff, Lock, Shield, X } from "lucide-react";
+import { POOLS, PoolType } from "./types";
 
 const comparisonData = [
   {
@@ -32,16 +32,127 @@ const comparisonData = [
 
 const poolOrder: PoolType[] = ["transparent", "sapling", "orchard"];
 
+type TransactionType = {
+  from: "T" | "S" | "O";
+  to: "T" | "S" | "O";
+  label: string;
+};
+
+type PrivacyLevel = "visible" | "hidden" | "partial";
+
+interface TransactionPrivacy {
+  sender: PrivacyLevel;
+  receiver: PrivacyLevel;
+  amount: PrivacyLevel;
+  memo: PrivacyLevel;
+  overallPrivacy: "none" | "low" | "medium" | "high" | "maximum";
+}
+
+const transactionTypes: TransactionType[] = [
+  { from: "T", to: "T", label: "T → T" },
+  { from: "T", to: "S", label: "T → S" },
+  { from: "T", to: "O", label: "T → O" },
+  { from: "S", to: "T", label: "S → T" },
+  { from: "S", to: "S", label: "S → S" },
+  { from: "S", to: "O", label: "S → O" },
+  { from: "O", to: "T", label: "O → T" },
+  { from: "O", to: "S", label: "O → S" },
+  { from: "O", to: "O", label: "O → O" },
+];
+
+type FromTxType = "T" | "S" | "O";
+type ToTxType = "T" | "S" | "O";
+
+// Privacy data for each tx type
+const getTransactionPrivacy = (
+  from: FromTxType,
+  to: ToTxType
+): TransactionPrivacy => {
+  // T -> T : Everything visible
+  if (from === "T" && to === "T") {
+    return {
+      sender: "visible",
+      receiver: "visible",
+      memo: "visible",
+      amount: "visible",
+      overallPrivacy: "none",
+    };
+  }
+
+  // T -> Shielded (S or O): Sender visible, receiver hidden, amount visible on entry
+  if (from === "T" && (to === "S" || to === "O")) {
+    return {
+      sender: "visible",
+      receiver: "hidden",
+      amount: "visible",
+      memo: "hidden",
+      overallPrivacy: "low",
+    };
+  }
+
+  // Shielded -> T:Sender hidden, receiver visible,amount visible on exit
+  if ((from === "S" || from === "O") && to === "T") {
+    return {
+      sender: "hidden",
+      receiver: "visible",
+      amount: "visible",
+      memo: "visible",
+      overallPrivacy: "low",
+    };
+  }
+
+  // Same pool shieelded (S -> S or O -> O): Maximun privacy
+  if (from === to && from !== "T") {
+    return {
+      sender: "hidden",
+      receiver: "hidden",
+      amount: "hidden",
+      memo: "hidden",
+      overallPrivacy: "maximum",
+    };
+  }
+
+  // Cross-pool shielded (S <-> O):Amount revealed due to pool boundry
+  if ((from === "S" && to === "O") || (from === "O" && to === "S")) {
+    return {
+      sender: "hidden",
+      receiver: "hidden",
+      amount: "visible",
+      memo: "hidden",
+      overallPrivacy: "high",
+    };
+  }
+
+  return {
+    sender: "visible",
+    receiver: "visible",
+    amount: "visible",
+    memo: "visible",
+    overallPrivacy: "none",
+  };
+};
 
 export const ComparisonView = () => {
   const getPoolStyles = (type: PoolType) => {
     switch (type) {
-      case 'transparent':
-        return { text: 'text-pool-transparent', bg: 'bg-pool-transparent/10', border: 'border-pool-transparent/30' };
-      case 'sapling':
-        return { text: 'text-pool-sapling', bg: 'bg-pool-sapling/10', border: 'border-pool-sapling/30' };
-      case 'orchard':
-        return { text: 'text-pool-orchard', bg: 'bg-pool-orchard/10', border: 'border-pool-orchard/30' };
+      case "transparent":
+        return {
+          text: "text-pool-transparent",
+          bg: "bg-pool-transparent/10",
+          border: "border-pool-transparent/30",
+        };
+      case "sapling":
+        return {
+          text: "text-pool-sapling",
+          bg: "bg-pool-sapling/10",
+          border: "border-pool-sapling/30",
+        };
+      case "orchard":
+        return {
+          text: "text-pool-orchard",
+          bg: "bg-pool-orchard/10",
+          border: "border-pool-orchard/30",
+        };
     }
   };
 
@@ -176,4 +287,4 @@ export const ComparisonView = () => {
       </motion.div>
     </motion.div>
   );
-}
+};
