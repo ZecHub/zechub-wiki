@@ -1,36 +1,7 @@
 import { cn } from "@/lib/util";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Lock, Minus, Shield, X } from "lucide-react";
-import { POOLS, PoolType } from "./types";
-
-// const comparisonData = [
-//   {
-//     feature: "Address Visibility",
-//     transparent: { value: "Public", icon: Eye, positive: false },
-//     sapling: { value: "Hidden", icon: EyeOff, positive: true },
-//     orchard: { value: "Hidden", icon: EyeOff, positive: true },
-//   },
-//   {
-//     feature: "Transaction Amount",
-//     transparent: { value: "Visible", icon: Eye, positive: false },
-//     sapling: { value: "Encrypted", icon: Shield, positive: true },
-//     orchard: { value: "Encrypted", icon: Lock, positive: true },
-//   },
-//   {
-//     feature: "Sender Identity",
-//     transparent: { value: "Traceable", icon: Eye, positive: false },
-//     sapling: { value: "Anonymous", icon: Shield, positive: true },
-//     orchard: { value: "Anonymous", icon: Lock, positive: true },
-//   },
-//   {
-//     feature: "Blockchain Analysis",
-//     transparent: { value: "Easy", icon: X, positive: false },
-//     sapling: { value: "Difficult", icon: Shield, positive: true },
-//     orchard: { value: "Very Hard", icon: Lock, positive: true },
-//   },
-// ];
-
-// const poolOrder: PoolType[] = ["transparent", "sapling", "orchard"];
+import { PoolType } from "./types";
 
 type TransactionType = {
   from: "T" | "S" | "O";
@@ -128,13 +99,16 @@ const getTransactionPrivacy = (from: Pool, to: Pool): TransactionPrivacy => {
   };
 };
 
-const getPoolColor = (pool:Pool)=>{
-  switch(pool){
-    case 'T': return `text-pool-transparent`;
-    case 'S': return `text-pool-sapling`;
-    case 'O': return `text-pool-orchard`
+const getPoolColor = (pool: Pool) => {
+  switch (pool) {
+    case "T":
+      return `text-pool-transparent`;
+    case "S":
+      return `text-pool-sapling`;
+    case "O":
+      return `text-pool-orchard`;
   }
-}
+};
 
 const getPoolBg = (pool: Pool) => {
   switch (pool) {
@@ -157,7 +131,6 @@ const getPrivacyIcon = (level: PrivacyLevel) => {
       return { icon: Minus, color: "text-yellow-500", label: "Partial" };
   }
 };
-
 
 const getOverallPrivacyStyle = (
   level: TransactionPrivacy["overallPrivacy"]
@@ -195,36 +168,13 @@ const getOverallPrivacyStyle = (
 const features = ["Sender", "Receiver", "Amount", "Memo"];
 
 export const ComparisonView = () => {
-  const getPoolStyles = (type: PoolType) => {
-    switch (type) {
-      case "transparent":
-        return {
-          text: "text-pool-transparent",
-          bg: "bg-pool-transparent/10",
-          border: "border-pool-transparent/30",
-        };
-      case "sapling":
-        return {
-          text: "text-pool-sapling",
-          bg: "bg-pool-sapling/10",
-          border: "border-pool-sapling/30",
-        };
-      case "orchard":
-        return {
-          text: "text-pool-orchard",
-          bg: "bg-pool-orchard/10",
-          border: "border-pool-orchard/30",
-        };
-    }
-  };
-
+ 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="w-full max-w-6xl mx-auto overflow-x-auto"
     >
-
       <div className="min-w-[800px]">
         {/* Header Row */}
         <div className="grid grid-cols-[140px_repeat(9,1fr)] gap-2 mb-4">
@@ -369,8 +319,6 @@ export const ComparisonView = () => {
           </div>
         </div>
       </motion.div>
-
-   
     </motion.div>
   );
 };
