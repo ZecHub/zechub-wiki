@@ -1,6 +1,6 @@
 import { cn } from "@/lib/util";
 import { motion } from "framer-motion";
-import { Eye, EyeOff, Lock, Shield, X } from "lucide-react";
+import { Eye, EyeOff, Lock, Minus, Shield, X } from "lucide-react";
 import { POOLS, PoolType } from "./types";
 
 const comparisonData = [
@@ -136,7 +136,61 @@ const getPoolColor = (pool:Pool)=>{
   }
 }
 
+const getPoolBg = (pool: Pool) => {
+  switch (pool) {
+    case "T":
+      return "bg-pool-transparent/10 border-pool-transparent/30";
+    case "S":
+      return "bg-pool-sapling/10 border-pool-sapling/30";
+    case "O":
+      return "bg-pool-orchard/10 border-pool-orchard/30";
+  }
+};
 
+const getPrivacyIcon = (level: PrivacyLevel) => {
+  switch (level) {
+    case "visible":
+      return { icon: Eye, color: "text-destructive/70", label: "Visible" };
+    case "hidden":
+      return { icon: EyeOff, color: "text-green-500", label: "Hidden" };
+    case "partial":
+      return { icon: Minus, color: "text-yellow-500", label: "Partial" };
+  }
+};
+
+
+const getOverallPrivacyStyle = (
+  level: TransactionPrivacy["overallPrivacy"]
+) => {
+  switch (level) {
+    case "none":
+      return {
+        color: "text-destructive",
+        bg: "bg-destructive/10",
+        label: "None",
+      };
+    case "low":
+      return { color: "text-orange-500", bg: "bg-orange-500/10", label: "Low" };
+    case "medium":
+      return {
+        color: "text-yellow-500",
+        bg: "bg-yellow-500/10",
+        label: "Medium",
+      };
+    case "high":
+      return {
+        color: "text-pool-sapling",
+        bg: "bg-pool-sapling/10",
+        label: "High",
+      };
+    case "maximum":
+      return {
+        color: "text-pool-orchard",
+        bg: "bg-pool-orchard/10",
+        label: "Maximum",
+      };
+  }
+};
 
 export const ComparisonView = () => {
   const getPoolStyles = (type: PoolType) => {
