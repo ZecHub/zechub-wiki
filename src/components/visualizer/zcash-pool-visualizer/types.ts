@@ -48,7 +48,6 @@ export const POOLS: Record<PoolType, PoolData> = {
   },
 };
 
-
 export interface Stage {
   id: number;
   title: string;
@@ -111,9 +110,9 @@ export const STAGES: Stage[] = [
   {
     id: 5,
     title: "Shielded Transfer",
-    subtitle: "Shielded → Shielded",
+    subtitle: "Sapling → Orchard",
     description:
-      "Fully private transaction. Sender, receiver, and amount are all encrypted.",
+      "Cross-pool shielded transaction. Amount is visible on-chain, but sender and receiver remain hidden.",
     type: "transaction",
     transactionFrom: "sapling",
     transactionTo: "orchard",
@@ -121,9 +120,32 @@ export const STAGES: Stage[] = [
   },
   {
     id: 6,
-    title: "Privacy Comparison",
-    subtitle: "Understanding the Differences",
-    description: "Compare privacy levels across all three pool types.",
+    title: "Sapling Internal Transfer",
+    subtitle: "Sapling → Sapling",
+    description:
+      "Fully private transaction within the Sapling pool. Sender, receiver, and amount are all encrypted.",
+    type: "transaction",
+    transactionFrom: "sapling",
+    transactionTo: "sapling",
+    amount: "0.5 ZEC",
+  },
+  {
+    id: 7,
+    title: "Orchard Internal Transfer",
+    subtitle: "Orchard → Orchard",
+    description:
+      "Maximum privacy transaction within the Orchard pool. All details fully encrypted with latest cryptography.",
+    type: "transaction",
+    transactionFrom: "orchard",
+    transactionTo: "orchard",
+    amount: "2.30 ZEC",
+  },
+  {
+    id: 8,
+    title: "Transaction Privacy Matrix",
+    subtitle: "Understanding the Nuances",
+    description:
+      "Privacy depends on transaction type. Compare what's visible across all possible transaction combinations.",
     type: "comparison",
   },
 ];

@@ -51,7 +51,9 @@ export const TransactionFlow = ({
       >
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
           <Coins className="w-4 h-4 text-primary" />
-          <span className="font-mono font-bold text-primary">{amount}</span>
+          <span className="font-mono font-bold text-primary">
+            {from != to ? amount : "***"}
+          </span>
         </div>
       </motion.div>
 
@@ -200,9 +202,7 @@ export const TransactionFlow = ({
                 : "text-primary"
             )}
           >
-            {from === "transparent" && to === "transparent"
-              ? amount
-              : "Encrypted"}
+            {from != to ? "Visible" : "Encrypted"}
           </p>
         </div>
         <div className="flex flex-col items-center space-y-2">
