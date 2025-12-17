@@ -13,6 +13,7 @@ import {
 } from "react-icons/md";
 import { SiBrandfolder as BrandIcon, SiHomeassistant } from "react-icons/si";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
+import { BsDisplay as Media } from "react-icons/bs";
 import { IconType } from "react-icons";
 
 export type NavigationItem = {
@@ -315,6 +316,11 @@ export const navigations: Array<NavigationItem> = [
     name: "Contribute",
     path: "/contribute/help-build-zechub",
     icon: SiHomeassistant,
+  },
+  {
+    name: "Zcash Pool Visualizer",
+    path: "zcash-pool-visualizer",
+    icon: Media,
   },
 ];
 
