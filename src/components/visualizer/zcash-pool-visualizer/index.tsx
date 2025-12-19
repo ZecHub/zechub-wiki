@@ -7,7 +7,8 @@ import { StageContent } from "./StageContent";
 import "./index.css";
 import { STAGES } from "./types";
 
-const AUTO_PLAY_INTERVAL = 8000; // 8 seconds per stage
+const WELCOME_STAGE_INTERVAL = 1000; // 4 seconds for welcome stage
+const OTHER_STAGES_INTERVAL = 6000; // 8 seconds for other stages
 
 export const ZcashPoolVisualizer = () => {
   const [currentStage, setCurrentStage] = useState(0);
@@ -43,13 +44,17 @@ export const ZcashPoolVisualizer = () => {
     setIsPlaying(false);
   }, []);
 
-  // Auto-play logic
+  // Auto-play logic with different intervals
   useEffect(() => {
     if (!isPlaying) return;
 
+    // Use faster interval for welcome stage (stage 0), slower for others
+    const interval =
+      currentStage === 0 ? WELCOME_STAGE_INTERVAL : OTHER_STAGES_INTERVAL;
+
     const timer = setTimeout(() => {
       goToNext();
-    }, AUTO_PLAY_INTERVAL);
+    }, interval);
 
     return () => clearTimeout(timer);
   }, [isPlaying, currentStage, goToNext]);
