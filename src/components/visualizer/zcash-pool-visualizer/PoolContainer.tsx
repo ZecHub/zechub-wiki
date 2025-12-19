@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Eye, EyeOff, Shield, Lock } from "lucide-react";
 import { PoolData } from "./types";
 import { cn } from "@/lib/util";
+import Link from "next/link";
 
 interface PoolContainerProps {
   pool: PoolData;
@@ -23,7 +24,6 @@ const privacyLabels = {
   partial: "Shielded",
   full: "Maximum Privacy",
 };
-
 
 export const PoolContainer = ({
   pool,

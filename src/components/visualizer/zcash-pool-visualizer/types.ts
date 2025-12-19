@@ -53,7 +53,7 @@ export interface Stage {
   title: string;
   subtitle: string;
   description: string;
-  type: "intro" | "pool" | "transaction" | "comparison";
+  type: "welcome" | "intro" | "pool" | "transaction" | "comparison";
   focusPool?: PoolType;
   transactionFrom?: PoolType;
   transactionTo?: PoolType;
@@ -63,6 +63,13 @@ export interface Stage {
 export const STAGES: Stage[] = [
   {
     id: 0,
+    title: "Welcome",
+    subtitle: "Ready to explore Zcash?",
+    description: "Click the play button below to begin!",
+    type: "welcome",
+  },
+  {
+    id: 1,
     title: "Understanding Privacy Pools",
     subtitle: "Introduction",
     description:
@@ -70,7 +77,7 @@ export const STAGES: Stage[] = [
     type: "intro",
   },
   {
-    id: 1,
+    id: 2,
     title: "Transparent Addresses",
     subtitle: "t-addresses",
     description:
@@ -79,7 +86,7 @@ export const STAGES: Stage[] = [
     focusPool: "transparent",
   },
   {
-    id: 2,
+    id: 3,
     title: "Sapling Addresses",
     subtitle: "z-addresses (zs1...)",
     description:
@@ -88,7 +95,7 @@ export const STAGES: Stage[] = [
     focusPool: "sapling",
   },
   {
-    id: 3,
+    id: 4,
     title: "Orchard Protocol",
     subtitle: "Unified Addresses (u1...)",
     description:
@@ -97,7 +104,7 @@ export const STAGES: Stage[] = [
     focusPool: "orchard",
   },
   {
-    id: 4,
+    id: 5,
     title: "Shielding Transaction",
     subtitle: "Transparent → Shielded",
     description:
@@ -108,7 +115,7 @@ export const STAGES: Stage[] = [
     amount: "1.5 ZEC",
   },
   {
-    id: 5,
+    id: 6,
     title: "Shielded Transfer",
     subtitle: "Sapling → Orchard",
     description:
@@ -119,7 +126,7 @@ export const STAGES: Stage[] = [
     amount: "2.0 ZEC",
   },
   {
-    id: 6,
+    id: 7,
     title: "Sapling Internal Transfer",
     subtitle: "Sapling → Sapling",
     description:
@@ -130,7 +137,7 @@ export const STAGES: Stage[] = [
     amount: "0.5 ZEC",
   },
   {
-    id: 7,
+    id: 8,
     title: "Orchard Internal Transfer",
     subtitle: "Orchard → Orchard",
     description:
@@ -141,7 +148,7 @@ export const STAGES: Stage[] = [
     amount: "2.30 ZEC",
   },
   {
-    id: 8,
+    id: 9,
     title: "Transaction Privacy Matrix",
     subtitle: "Understanding the Nuances",
     description:
