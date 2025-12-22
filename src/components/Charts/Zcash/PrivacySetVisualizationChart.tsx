@@ -1,10 +1,5 @@
-// "use client";
-
-import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
-import { DATA_URL } from "@/lib/chart/data-url";
-import { RefObject, useEffect, useState } from "react";
-import ChartHeader from "../ChartHeader";
-import ChartContainer from "./ChartContainer";
+import { useState, useEffect, useRef } from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 type TransactionSummaryDatum = {
   height: number;
@@ -12,7 +7,6 @@ type TransactionSummaryDatum = {
   orchard: number;
 };
 
-// Define year boundaries by block height
 const HEIGHT_YEAR_MAP = [
   { start: 0, end: 257775, year: "2018" },
   { start: 257776, end: 676656, year: "2019" },
@@ -24,21 +18,20 @@ const HEIGHT_YEAR_MAP = [
   { start: 2771015, end: Infinity, year: "2025" },
 ];
 
-type PrivacySetVisualizationChartProps = {
-  chartRef: RefObject<HTMLDivElement | null>;
-};
-
 type YearlyTotals = Record<string, { sapling: number; orchard: number }>;
 
-function PrivacySetVisualizationChart({
-  chartRef,
-}: PrivacySetVisualizationChartProps) {
+const DATA_URL = {
+  txsummaryUrl: "/data/zcash/transaction_summary.json",
+};
+
+function PrivacySetVisualizationChart() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<YearlyTotals>({});
-  const [targetPool, setTargetPool] = useState("");
+  const [viewMode, setViewMode] = useState<"linear" | "circular">("linear");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [mouseEnter, setMouseEnter] = useState(false);
+  const [targetPool, setTargetPool] = useState("");
+  const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     (async () => {
@@ -86,6 +79,18 @@ function PrivacySetVisualizationChart({
   const saplingData = getCumulative("sapling");
   const orchardData = getCumulative("orchard");
 
+  // Prepare data for linear chart
+  const linearChartData = years.map((year) => {
+    const saplingCumulative = saplingData.find(([y]) => y === year)?.[1] || 0;
+    const orchardCumulative = orchardData.find(([y]) => y === year)?.[1] || 0;
+    return {
+      year,
+      sapling: saplingCumulative,
+      orchard: orchardCumulative,
+    };
+  });
+
+  // Circular chart rendering
   const maxRadius = 180;
   const minRadius = 30;
 
@@ -113,12 +118,10 @@ function PrivacySetVisualizationChart({
           style={{ cursor: "pointer" }}
           onMouseEnter={() => {
             setHoveredId(id);
-            setMouseEnter(true);
             setTargetPool(pool);
           }}
           onMouseLeave={() => {
             setHoveredId(null);
-            setMouseEnter(false);
             setTargetPool("");
           }}
           pointerEvents="visibleStroke"
@@ -128,18 +131,16 @@ function PrivacySetVisualizationChart({
             fill={color}
             stroke={color}
             fillOpacity={fillOpacity}
-            strokeWidth={
-              mouseEnter && targetPool === "sapling" ? 3 : strokeWidth
-            }
+            strokeWidth={targetPool === pool ? 3 : strokeWidth}
             className="transition-all duration-150"
           />
           <text
-            x1={0}
+            x={0}
             y={-r - 10}
             textAnchor="middle"
             fontSize={12}
             fill="#0f172a"
-            className="dark:fill-slate-100 hover:text-sm"
+            className="dark:fill-slate-100"
           >
             {year}
           </text>
@@ -149,7 +150,7 @@ function PrivacySetVisualizationChart({
             textAnchor="middle"
             fontSize={12}
             fill="#475569"
-            className="dark:fill-slate-300 hover:text-sm"
+            className="dark:fill-slate-300"
           >
             {formatVal(value)}
           </text>
@@ -157,59 +158,145 @@ function PrivacySetVisualizationChart({
       );
     });
 
-  return (
-    <ErrorBoundary fallback="Failed to load privacy set chart">
-      <ChartHeader title="Shielded Outputs by Year"></ChartHeader>
-      <p className="dark:text-slate-400 mt-[-20] mb-12 text-sm font-light self-start">
-        Total number of fully shielded outputs collected in each pool over time
-      </p>
-      <ChartContainer ref={chartRef} loading={loading}>
-        <div className="relative w-full">
-          <div className="w-full max-w-[1200px] mx-auto px-4">
-            {/* Chart */}
-            <svg
-              viewBox="0 0 1000 600"
-              preserveAspectRatio="xMidYMid slice"
-              className="w-full h-[480]"
-              role="img"
-            >
-              {renderCluster(
-                "sapling",
-                saplingData,
-                0.3 * 1000,
-                "hsl(var(--chart-2))",
-                sapStep
-              )}
-              {renderCluster(
-                "orchard",
-                orchardData,
-                0.7 * 1000,
-                "hsl(var(--chart-3))",
-                orcStep
-              )}
-            </svg>
+  if (loading) {
+    return (
+      <div className="w-full min-h-[480px] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
-            {/* Legend */}
-            <div className="flex justify-center gap-6 md:mt-4 text-sm text-slate-600 dark:text-slate-300">
-              <div className="flex items-center gap-2">
-                <span
-                  className="w-3 h-3 inline-block rounded-sm"
-                  style={{ background: "hsl(var(--chart-2))" }}
-                />
-                <p>Sapling Pool</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <span
-                  className="w-3 h-3 inline-block rounded-sm"
-                  style={{ background: "hsl(var(--chart-3))" }}
-                />
-                <p>Orchard Pool</p>
-              </div>
+  if (error) {
+    return (
+      <div className="w-full min-h-[480px] flex items-center justify-center">
+        <p className="text-red-500">Error loading data: {error}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full space-y-4">
+      {/* Header */}
+      <div className="flex flex-wrap mt-12 mb-6 items-center justify-between">
+        <h3 className="md:text-lg text-md font-semibold">
+          Shielded Outputs by Year
+        </h3>
+        <button
+          onClick={() => setViewMode(viewMode === "linear" ? "circular" : "linear")}
+          className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors text-sm font-medium"
+        >
+          Switch to {viewMode === "linear" ? "Circular" : "Linear"} View
+        </button>
+      </div>
+
+      <p className="text-slate-600 dark:text-slate-400 text-sm font-light mb-8">
+        Cumulative count of fully shielded outputs in each pool over time
+      </p>
+
+      {/* Chart Container */}
+      <div ref={chartRef} className="w-full" style={{ minHeight: "480px" }}>
+        {viewMode === "linear" ? (
+          <ResponsiveContainer width="100%" height={480}>
+            <LineChart
+              data={linearChartData}
+              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <XAxis
+                dataKey="year"
+                tick={{ fill: "#64748b" }}
+                label={{ value: "Year", position: "insideBottom", offset: -10 }}
+              />
+              <YAxis
+                tick={{ fill: "#64748b" }}
+                tickFormatter={formatVal}
+                label={{
+                  value: "Cumulative Transaction Count",
+                  angle: -90,
+                  position: "insideLeft",
+                  style: { textAnchor: "middle" },
+                }}
+              />
+              <Tooltip
+                formatter={(value: number) => [formatVal(value), ""]}
+                contentStyle={{
+                  backgroundColor: "rgba(255, 255, 255, 0.95)",
+                  border: "1px solid #e2e8f0",
+                  borderRadius: "8px",
+                }}
+              />
+              <Legend
+                wrapperStyle={{ paddingTop: "20px" }}
+                iconType="line"
+              />
+              <Line
+                type="monotone"
+                dataKey="sapling"
+                stroke="hsl(142, 76%, 36%)"
+                strokeWidth={2}
+                name="Sapling Pool"
+                dot={{ r: 4 }}
+                activeDot={{ r: 6 }}
+              />
+              <Line
+                type="monotone"
+                dataKey="orchard"
+                stroke="hsl(262, 83%, 58%)"
+                strokeWidth={2}
+                name="Orchard Pool"
+                dot={{ r: 4 }}
+                activeDot={{ r: 6 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        ) : (
+          <div className="relative w-full">
+            <div className="w-full max-w-[1200px] mx-auto px-4">
+              <svg
+                viewBox="0 0 1000 600"
+                preserveAspectRatio="xMidYMid meet"
+                className="w-full"
+                style={{ height: "480px" }}
+                role="img"
+              >
+                {renderCluster(
+                  "sapling",
+                  saplingData,
+                  0.3 * 1000,
+                  "hsl(142, 76%, 36%)",
+                  sapStep
+                )}
+                {renderCluster(
+                  "orchard",
+                  orchardData,
+                  0.7 * 1000,
+                  "hsl(262, 83%, 58%)",
+                  orcStep
+                )}
+              </svg>
             </div>
           </div>
+        )}
+      </div>
+
+      {/* Legend */}
+      <div className="flex justify-center gap-6 mt-4 text-sm text-slate-600 dark:text-slate-300">
+        <div className="flex items-center gap-2">
+          <span
+            className="w-3 h-3 inline-block rounded-sm"
+            style={{ background: "hsl(142, 76%, 36%)" }}
+          />
+          <p>Sapling Pool</p>
         </div>
-      </ChartContainer>
-    </ErrorBoundary>
+        <div className="flex items-center gap-2">
+          <span
+            className="w-3 h-3 inline-block rounded-sm"
+            style={{ background: "hsl(262, 83%, 58%)" }}
+          />
+          <p>Orchard Pool</p>
+        </div>
+      </div>
+    </div>
   );
 }
 
