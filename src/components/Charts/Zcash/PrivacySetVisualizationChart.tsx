@@ -1,8 +1,18 @@
 // "use client";
 
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
+import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { RefObject, useEffect, useState } from "react";
+import {
+  Line,
+  LineChart,
+  CartesianGrid,
+  Legend,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
 
@@ -36,9 +46,12 @@ function PrivacySetVisualizationChart({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<YearlyTotals>({});
+  const [chartData, setChartData] = useState<any[]>([]);
+  const [viewMode, setViewMode] = useState<"bubble" | "linear">("linear");
   const [targetPool, setTargetPool] = useState("");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [mouseEnter, setMouseEnter] = useState(false);
+  const fontSize = useResponsiveFontSize();
 
   useEffect(() => {
     (async () => {
@@ -58,6 +71,23 @@ function PrivacySetVisualizationChart({
         }
 
         setData(totals);
+
+        // Prepare data for linear chart
+        const years = Object.keys(totals).sort();
+        let saplingSum = 0;
+        let orchardSum = 0;
+
+        const formatted = years.map((year) => {
+          saplingSum += totals[year].sapling;
+          orchardSum += totals[year].orchard;
+          return {
+            year,
+            sapling: saplingSum,
+            orchard: orchardSum,
+          };
+        });
+
+        setChartData(formatted);
       } catch (err) {
         setError(err instanceof Error ? err.message : String(err));
       } finally {
@@ -159,55 +189,173 @@ function PrivacySetVisualizationChart({
 
   return (
     <ErrorBoundary fallback="Failed to load privacy set chart">
-      <ChartHeader title="Shielded Outputs by Year"></ChartHeader>
-      <p className="dark:text-slate-400 mt-[-20] mb-12 text-sm font-light self-start">
-        Total number of fully shielded outputs collected in each pool over time
-      </p>
-      <ChartContainer ref={chartRef} loading={loading}>
-        <div className="relative w-full">
-          <div className="w-full max-w-[1200px] mx-auto px-4">
-            {/* Chart */}
-            <svg
-              viewBox="0 0 1000 600"
-              preserveAspectRatio="xMidYMid slice"
-              className="w-full h-[480]"
-              role="img"
-            >
-              {renderCluster(
-                "sapling",
-                saplingData,
-                0.3 * 1000,
-                "hsl(var(--chart-2))",
-                sapStep
-              )}
-              {renderCluster(
-                "orchard",
-                orchardData,
-                0.7 * 1000,
-                "hsl(var(--chart-3))",
-                orcStep
-              )}
-            </svg>
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <ChartHeader title="Shielded Outputs by Year" />
+          <p className="dark:text-slate-400 mt-[-20] mb-4 text-sm font-light">
+            Total number of fully shielded outputs collected in each pool over
+            time
+          </p>
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setViewMode("linear")}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              viewMode === "linear"
+                ? "bg-blue-600 text-white"
+                : "bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600"
+            }`}
+          >
+            Linear
+          </button>
+          <button
+            onClick={() => setViewMode("bubble")}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              viewMode === "bubble"
+                ? "bg-blue-600 text-white"
+                : "bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600"
+            }`}
+          >
+            Bubble
+          </button>
+        </div>
+      </div>
 
-            {/* Legend */}
-            <div className="flex justify-center gap-6 md:mt-4 text-sm text-slate-600 dark:text-slate-300">
-              <div className="flex items-center gap-2">
-                <span
-                  className="w-3 h-3 inline-block rounded-sm"
-                  style={{ background: "hsl(var(--chart-2))" }}
-                />
-                <p>Sapling Pool</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <span
-                  className="w-3 h-3 inline-block rounded-sm"
-                  style={{ background: "hsl(var(--chart-3))" }}
-                />
-                <p>Orchard Pool</p>
+      <ChartContainer ref={chartRef} loading={loading}>
+        {viewMode === "linear" ? (
+          <LineChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+            <XAxis dataKey="year" tick={{ fontSize, fill: "#94a3b8" }} />
+            <YAxis
+              tickFormatter={(v) =>
+                v >= 1_000_000_000_000
+                  ? `${(v / 1_000_000_000_000).toFixed(1)}T`
+                  : v >= 1_000_000_000
+                  ? `${(v / 1_000_000_000).toFixed(1)}B`
+                  : v >= 1_000_000
+                  ? `${(v / 1_000_000).toFixed(1)}M`
+                  : v >= 1_000
+                  ? `${(v / 1_000).toFixed(1)}K`
+                  : v
+              }
+              tick={{ fontSize, fill: "#94a3b8" }}
+              width={60}
+            />
+            <Tooltip
+              content={({ active, payload }) => {
+                if (!active || !payload?.length) return null;
+
+                return (
+                  <div className="rounded-md px-3 py-2 shadow-md border text-sm bg-slate-800 border-slate-700 text-slate-100">
+                    <p className="font-semibold mb-1">
+                      {payload[0].payload.year}
+                    </p>
+                    {payload.map((entry, idx) => (
+                      <div
+                        key={idx}
+                        className="flex justify-between gap-4"
+                        style={{ color: entry.color }}
+                      >
+                        <span>{entry.name}</span>
+                        <span className="text-slate-50">
+                          {typeof entry.value === "number"
+                            ? entry.value.toLocaleString()
+                            : entry.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                );
+              }}
+            />
+            <Legend
+              verticalAlign="bottom"
+              align="center"
+              content={() => (
+                <div
+                  style={{ paddingTop: 20 }}
+                  className="flex justify-center gap-6 text-sm text-slate-600 dark:text-slate-300"
+                >
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="w-3 h-3 inline-block rounded-sm"
+                      style={{ background: "hsl(var(--chart-2))" }}
+                    />
+                    <p>Sapling Pool</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="w-3 h-3 inline-block rounded-sm"
+                      style={{ background: "hsl(var(--chart-3))" }}
+                    />
+                    <p>Orchard Pool</p>
+                  </div>
+                </div>
+              )}
+            />
+            <Line
+              type="monotone"
+              dataKey="sapling"
+              name="Sapling Pool"
+              stroke="hsl(var(--chart-2))"
+              strokeWidth={2}
+              dot={{ r: 4 }}
+              activeDot={{ r: 6 }}
+            />
+            <Line
+              type="monotone"
+              dataKey="orchard"
+              name="Orchard Pool"
+              stroke="hsl(var(--chart-3))"
+              strokeWidth={2}
+              dot={{ r: 4 }}
+              activeDot={{ r: 6 }}
+            />
+          </LineChart>
+        ) : (
+          <div className="relative w-full">
+            <div className="w-full max-w-[1200px] mx-auto px-4">
+              <svg
+                viewBox="0 0 1000 600"
+                preserveAspectRatio="xMidYMid slice"
+                className="w-full h-[480]"
+                role="img"
+              >
+                {renderCluster(
+                  "sapling",
+                  saplingData,
+                  0.3 * 1000,
+                  "hsl(var(--chart-2))",
+                  sapStep
+                )}
+                {renderCluster(
+                  "orchard",
+                  orchardData,
+                  0.7 * 1000,
+                  "hsl(var(--chart-3))",
+                  orcStep
+                )}
+              </svg>
+
+              <div className="flex justify-center gap-6 md:mt-4 text-sm text-slate-600 dark:text-slate-300">
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-3 h-3 inline-block rounded-sm"
+                    style={{ background: "hsl(var(--chart-2))" }}
+                  />
+                  <p>Sapling Pool</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-3 h-3 inline-block rounded-sm"
+                    style={{ background: "hsl(var(--chart-3))" }}
+                  />
+                  <p>Orchard Pool</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </ChartContainer>
     </ErrorBoundary>
   );
