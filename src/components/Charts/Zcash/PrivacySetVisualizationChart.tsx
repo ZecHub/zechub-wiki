@@ -185,6 +185,7 @@ function PrivacySetVisualizationChart({
             height={400}
             data={linearChartData}
             margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+            className="mx-auto"
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" className="dark:stroke-slate-700" />
             <XAxis
