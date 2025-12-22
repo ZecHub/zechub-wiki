@@ -178,9 +178,11 @@ function PrivacySetVisualizationChart({
         Cumulative count of fully shielded outputs in each pool over time
       </p>
 
-      <ChartContainer ref={chartRef} loading={loading}>
-        {viewMode === "linear" ? (
+      {viewMode === "linear" ? (
+        <ChartContainer ref={chartRef} loading={loading}>
           <LineChart
+            width={500}
+            height={400}
             data={linearChartData}
             margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
           >
@@ -234,34 +236,42 @@ function PrivacySetVisualizationChart({
               activeDot={{ r: 6 }}
             />
           </LineChart>
-        ) : (
-          <div className="relative w-full">
-            <div className="w-full max-w-[1200px] mx-auto px-4">
-              <svg
-                viewBox="0 0 1000 600"
-                preserveAspectRatio="xMidYMid meet"
-                className="w-full h-[480px]"
-                role="img"
-              >
-                {renderCluster(
-                  "sapling",
-                  saplingData,
-                  0.3 * 1000,
-                  "hsl(var(--chart-2))",
-                  sapStep
-                )}
-                {renderCluster(
-                  "orchard",
-                  orchardData,
-                  0.7 * 1000,
-                  "hsl(var(--chart-3))",
-                  orcStep
-                )}
-              </svg>
+        </ChartContainer>
+      ) : (
+        <div ref={chartRef} style={{ width: "100%", minHeight: "480px" }}>
+          {loading ? (
+            <div className="flex justify-center items-center w-full h-full">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
             </div>
-          </div>
-        )}
-      </ChartContainer>
+          ) : (
+            <div className="relative w-full">
+              <div className="w-full max-w-[1200px] mx-auto px-4">
+                <svg
+                  viewBox="0 0 1000 600"
+                  preserveAspectRatio="xMidYMid meet"
+                  className="w-full h-[480px]"
+                  role="img"
+                >
+                  {renderCluster(
+                    "sapling",
+                    saplingData,
+                    0.3 * 1000,
+                    "hsl(var(--chart-2))",
+                    sapStep
+                  )}
+                  {renderCluster(
+                    "orchard",
+                    orchardData,
+                    0.7 * 1000,
+                    "hsl(var(--chart-3))",
+                    orcStep
+                  )}
+                </svg>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Legend */}
       <div className="flex justify-center gap-6 md:mt-4 text-sm text-slate-600 dark:text-slate-300">
