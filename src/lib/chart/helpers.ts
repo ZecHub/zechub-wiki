@@ -12,6 +12,7 @@ import {
   ShieldedTxCount,
   SupplyData,
   BlockFees,
+  NetworkSolps,
 } from "./types";
 
 export async function getBlockchainData(
@@ -227,6 +228,29 @@ export async function getDifficultyData(
     return [];
   }
 }
+export async function getNetworkSolpsData(
+  url: string,
+  signal?: AbortSignal
+): Promise<NetworkSolps[]> {
+  try {
+    const res = await fetch(url, { signal });
+
+    if (!res.ok) {
+      console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
+      return [];
+    }
+
+    const data: any[] = await res.json();
+    return data;
+  } catch (err: any) {
+    if (err.name === "AbortError") {
+      console.warn("Fetch aborted.");
+    } else {
+      console.error(err.message || err);
+    }
+    return [];
+  }
+}
 
 export async function getTotalSupplyData(
   url: string,
@@ -239,14 +263,13 @@ export async function getTotalSupplyData(
       console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
       return [];
     }
-    
+
     const data: any[] = await res.json();
     return data;
   } catch (err: any) {
     if (err.name === "AbortError") {
       console.warn("Fetch aborted.");
-    }
-    else {
+    } else {
       console.error(err.message || err);
     }
     return [];

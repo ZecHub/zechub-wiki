@@ -67,6 +67,11 @@ export type BlockFees = {
   Date: string;
 };
 
+export type NetworkSolps = {
+  Date: string;
+  Networksolps: string;
+};
+
 export type NetInOutflow = {
   Date: string;
   "Net Sapling Flow": string;
