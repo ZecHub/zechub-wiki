@@ -13,6 +13,7 @@ import NodeCountChart from "../NodeCountChart";
 import ShieldedStats from "./ShieldedStats";
 import { HalvingMeter } from "@/components/HalvingMeter/halving-meter";
 import BlockFeesChart from "../BlockFeesChart";
+import NetworkSolpsChart from "../NetworkSolpsChart";
 
 type ZcashChartProps = {
   divChartRef: RefObject<HTMLDivElement | null>;
@@ -42,8 +43,9 @@ const CardContentShielded = (props: ZcashChartProps) => {
     "TX Summary",
     "Privacy Set",
     "Shielded Stats",
-    "Halving Meter",
     "Block Fees",
+    "Network Solps",
+    "Halving Meter",
   ];
   return (
     <CardContent>
@@ -106,6 +108,10 @@ const CardContentShielded = (props: ZcashChartProps) => {
 
             <TabsContent value="block fees" activeTab={activeTab}>
               <BlockFeesChart chartRef={props.divChartRef} />
+            </TabsContent>
+
+            <TabsContent value="network solps" activeTab={activeTab}>
+              <NetworkSolpsChart chartRef={props.divChartRef} />
             </TabsContent>
 
             <TabsContent value="halving meter" activeTab={activeTab}>

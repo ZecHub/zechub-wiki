@@ -21,6 +21,7 @@ export const DATA_URL = {
     "https://api.blockchair.com/zcash/stats?key=A___akeIQZjpBEtzalr10ajq4BhxTfSc",
   namadaRewardUrl: "/data/namada/namada_rewards_rate.json",
   blockFeesUrl: "/data/zcash/blockFeesZEC.json",
+  networkSolpsUrl: "/data/zcash/networksolps.json",
 } as const;
 
 export const DATE_URL = {
