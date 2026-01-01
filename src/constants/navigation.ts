@@ -180,7 +180,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "ZKAV Club",
-        path: "https://www.zkav.club",
+        path: "/zcash-organizations/zkav",
         icon: AudioVideo,
         newTab: true,
       },
@@ -346,3 +346,4 @@ export const socialMedia = [
   { name: "DAO", link: "https://vote.zechub.xyz/" },
   { name: "Store", link: "https://zechub.store/" },
 ];
+
