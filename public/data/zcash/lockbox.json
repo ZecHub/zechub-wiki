@@ -2008,5 +2008,15 @@
     "Date": "12/31/2025",
     "lockbox": 7866.1875,
     "coinholders_fund": 78750.00
+  },
+  {
+    "Date": "01/01/2026",
+    "lockbox": 8082.1875,
+    "coinholders_fund": 78750.00
+  },
+  {
+    "Date": "01/02/2026",
+    "lockbox": 8298.1875,
+    "coinholders_fund": 78750.00
   }
 ]
