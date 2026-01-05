@@ -322,6 +322,11 @@ export const navigations: Array<NavigationItem> = [
     path: "zcash-pool-visualizer",
     icon: Media,
   },
+  {
+    name: "Zcash Infrastructure Visualizer",
+    path: "zcash-infrastructure-visualizer",
+    icon: Media,
+  },
 ];
 
 export const socialNav = [
