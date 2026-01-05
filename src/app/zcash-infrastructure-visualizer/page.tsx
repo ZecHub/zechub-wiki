@@ -7,7 +7,7 @@ export const metadata: Metadata = genMetadata({
   url: "https://zechub.wiki/zcash-infrastructure-visualizer",
 });
 
-export default function ZcashPoolVisualizerPage() {
+export default function ZcashInfrastructureVisualizerPage() {
   return (
     <div className="min-h-[600px] w-full max-w-4xl m-auto">
       <ZcashInfrastructureVisualizer />
