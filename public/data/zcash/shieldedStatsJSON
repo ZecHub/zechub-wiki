@@ -1315,8 +1315,8 @@
         "Zebra_Nodes": 49,
         "Zcashd_Nodes": 69,
         "Total_Node_Count": 118,
-        "Closing_Price": "502.17",
-        "Shielded_Market_Cap": "2441894036.01",
+        "Closing_Price": 502.17,
+        "Shielded_Market_Cap": 2441894036.01,
         "Shielded_Transaction_Percentage": 0.18
     }
 ]
