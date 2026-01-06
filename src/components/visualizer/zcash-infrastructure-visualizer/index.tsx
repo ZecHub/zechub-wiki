@@ -19,13 +19,11 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
 
   useEffect(() => {
     setMounted(true);
-    // Initialize Web Audio API
     audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
   }, []);
 
   const stage = STAGES[currentStage];
 
-  // Play transition sound
   const playTransitionSound = useCallback((frequency: number = 440) => {
     if (isMuted || !audioContextRef.current) return;
 
@@ -46,7 +44,6 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
     oscillator.stop(ctx.currentTime + 0.3);
   }, [isMuted]);
 
-  // Play ambient sound for highlights
   const playHighlightSound = useCallback(() => {
     if (isMuted || !audioContextRef.current) return;
 
@@ -70,18 +67,18 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
   const goToNext = useCallback(() => {
     if (currentStage < STAGES.length - 1) {
       setCurrentStage(prev => prev + 1);
-      playTransitionSound(523.25); // C5 note
+      playTransitionSound(523.25);
       playHighlightSound();
     } else {
       setIsPlaying(false);
-      playTransitionSound(659.25); // E5 note
+      playTransitionSound(659.25);
     }
   }, [currentStage, playTransitionSound, playHighlightSound]);
 
   const goToPrevious = useCallback(() => {
     if (currentStage > 0) {
       setCurrentStage(prev => prev - 1);
-      playTransitionSound(392); // G4 note
+      playTransitionSound(392);
       playHighlightSound();
     }
   }, [currentStage, playTransitionSound, playHighlightSound]);
@@ -89,7 +86,7 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
   const restart = useCallback(() => {
     setCurrentStage(0);
     setIsPlaying(false);
-    playTransitionSound(261.63); // C4 note
+    playTransitionSound(261.63);
   }, [playTransitionSound]);
 
   useEffect(() => {
@@ -104,8 +101,8 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
-      {/* Enhanced animated background elements */}
+    <div className="h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden flex flex-col">
+      {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
           animate={{ 
@@ -134,23 +131,9 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
           }}
           className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl" 
         />
-        <motion.div 
-          animate={{ 
-            x: [0, 50, 0],
-            y: [0, -100, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ 
-            duration: 30, 
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 4
-          }}
-          className="absolute top-1/2 right-1/3 w-64 h-64 bg-cyan-400/8 rounded-full blur-3xl" 
-        />
       </div>
 
-      {/* Mute/Unmute button */}
+      {/* Mute button */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -169,16 +152,15 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
       </motion.button>
 
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 flex flex-col h-full">
         <Header />
         
-        <main className="container mx-auto px-4 py-16">
+        <main className="flex-1 flex flex-col justify-center px-4 py-6 overflow-hidden">
           <StageInfo stage={stage} />
           <InfrastructureDiagram stage={stage} />
-          <Legend />
         </main>
 
-        <footer className="border-t border-slate-700/50 p-8 bg-slate-900/50 backdrop-blur-xl mt-20">
+        <footer className="border-t border-slate-700/50 bg-slate-900/50 backdrop-blur-xl py-6">
           <Controls
             currentStage={currentStage}
             isPlaying={isPlaying}
@@ -194,6 +176,11 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
             onPrevious={goToPrevious}
             onRestart={restart}
           />
+          {currentStage === STAGES.length - 1 && (
+            <div className="mt-4">
+              <Legend />
+            </div>
+          )}
         </footer>
       </div>
     </div>

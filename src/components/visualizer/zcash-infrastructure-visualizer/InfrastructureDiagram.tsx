@@ -12,6 +12,11 @@ interface InfrastructureDiagramProps {
 export const InfrastructureDiagram: React.FC<InfrastructureDiagramProps> = ({ stage }) => {
   const isHighlighted = (componentId: string) => stage.highlight.includes(componentId);
   
+  // Determine which layers to show based on highlighted components
+  const showLayer1 = stage.highlight.includes('zebra');
+  const showLayer2 = stage.highlight.some(h => h === 'zaino' || h === 'lightwalletd');
+  const showLayer3 = stage.highlight.some(h => h === 'mobile' || h === 'desktop' || h === 'web');
+  
   const hasActiveConnection = (from: string, to: string) => {
     if (stage.highlight.length === 0) return false;
     return isHighlighted(from) && stage.highlight.some(h => 
@@ -20,172 +25,206 @@ export const InfrastructureDiagram: React.FC<InfrastructureDiagramProps> = ({ st
     );
   };
 
-  return (
-    <div className="relative max-w-7xl mx-auto px-4 pb-24">
-      {/* Layer 1: Full Nodes */}
+  // Welcome stage - show overview
+  if (stage.id === 0) {
+    return (
       <motion.div 
-        className="mb-8"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1, duration: 0.4 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="flex items-center justify-center py-12"
       >
-        <div className="text-center mb-4">
-          <motion.span 
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.15 }}
-            className="inline-block px-3 py-1.5 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-900/80 border border-slate-700/50 text-xs uppercase tracking-wider text-slate-300 font-semibold backdrop-blur-sm shadow-lg"
-          >
-            <motion.span
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              Layer 1: Full Nodes
-            </motion.span>
-          </motion.span>
-        </div>
-        <motion.div 
-          className="max-w-md mx-auto"
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.3 }}
-        >
-          <ComponentBox 
-            id="zebra" 
-            component={COMPONENTS.zebra}
-            highlighted={isHighlighted('zebra')}
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* Connection Layer 1 to 2 */}
-      <AnimatePresence>
-        {stage.highlight.length > 0 && (
-          <motion.div 
-            className="relative h-12 mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <ConnectionLine 
-              highlighted={hasActiveConnection('zebra', 'layer2')}
-              vertical={true}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Layer 2: Indexers & Servers */}
-      <motion.div 
-        className="mb-8"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.4 }}
-      >
-        <div className="text-center mb-4">
-          <motion.span 
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.25 }}
-            className="inline-block px-3 py-1.5 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-900/80 border border-slate-700/50 text-xs uppercase tracking-wider text-slate-300 font-semibold backdrop-blur-sm shadow-lg"
-          >
-            <motion.span
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-            >
-              Layer 2: Indexers & Light Wallet Servers
-            </motion.span>
-          </motion.span>
-        </div>
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="text-center max-w-2xl">
           <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
+            animate={{ 
+              scale: [1, 1.05, 1],
+              rotate: [0, 5, -5, 0]
+            }}
+            transition={{ 
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="mb-6 mx-auto w-32 h-32 rounded-3xl bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 flex items-center justify-center shadow-[0_0_60px_rgba(251,191,36,0.6)]"
           >
+            <span className="text-6xl font-bold text-slate-900">Z</span>
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-slate-300 text-lg leading-relaxed"
+          >
+            Click <span className="text-yellow-400 font-semibold">Next</span> or <span className="text-yellow-400 font-semibold">Play</span> to explore the infrastructure
+          </motion.p>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // Last stage - show complete ecosystem
+  if (stage.id === 7) {
+    return (
+      <div className="relative max-w-5xl mx-auto">
+        <div className="grid grid-cols-3 gap-4 mb-6">
+          {/* Layer 1 */}
+          <div className="col-span-3 flex justify-center">
+            <div className="w-72">
+              <ComponentBox 
+                id="zebra" 
+                component={COMPONENTS.zebra}
+                highlighted={true}
+              />
+            </div>
+          </div>
+          
+          {/* Connection */}
+          <div className="col-span-3 h-8 relative">
+            <ConnectionLine highlighted={true} vertical={true} />
+          </div>
+          
+          {/* Layer 2 */}
+          <div className="col-span-3 grid grid-cols-2 gap-4">
             <ComponentBox 
               id="zaino" 
               component={COMPONENTS.zaino}
-              highlighted={isHighlighted('zaino')}
+              highlighted={true}
             />
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-          >
             <ComponentBox 
               id="lightwalletd" 
               component={COMPONENTS.lightwalletd}
-              highlighted={isHighlighted('lightwalletd')}
+              highlighted={true}
             />
-          </motion.div>
+          </div>
+          
+          {/* Connection */}
+          <div className="col-span-3 h-8 relative">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative"><ConnectionLine highlighted={true} vertical={true} /></div>
+              <div className="relative"><ConnectionLine highlighted={true} vertical={true} /></div>
+            </div>
+          </div>
+          
+          {/* Layer 3 */}
+          <ComponentBox 
+            id="mobile" 
+            component={COMPONENTS.mobile}
+            highlighted={true}
+          />
+          <ComponentBox 
+            id="desktop" 
+            component={COMPONENTS.desktop}
+            highlighted={true}
+          />
+          <ComponentBox 
+            id="web" 
+            component={COMPONENTS.web}
+            highlighted={true}
+          />
         </div>
-      </motion.div>
+      </div>
+    );
+  }
 
-      {/* Connection Layer 2 to 3 */}
-      <AnimatePresence>
-        {stage.highlight.some(h => h === 'mobile' || h === 'desktop' || h === 'web') && (
-          <motion.div 
-            className="relative h-12 mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="grid grid-cols-2 max-w-5xl mx-auto gap-6">
-              <div className="relative">
-                <ConnectionLine 
-                  highlighted={hasActiveConnection('zaino', 'layer3')}
-                  vertical={true}
-                />
-              </div>
-              <div className="relative">
-                <ConnectionLine 
-                  highlighted={hasActiveConnection('lightwalletd', 'layer3')}
-                  vertical={true}
+  // Individual stages - show only relevant layers
+  return (
+    <div className="relative max-w-4xl mx-auto flex items-center justify-center min-h-[400px]">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={stage.id}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="w-full"
+        >
+          {/* Single layer view */}
+          {!showLayer2 && !showLayer3 && showLayer1 && (
+            <div className="flex justify-center">
+              <div className="w-full max-w-md">
+                <ComponentBox 
+                  id="zebra" 
+                  component={COMPONENTS.zebra}
+                  highlighted={true}
                 />
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
 
-      {/* Layer 3: Wallets */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.4 }}
-      >
-        <div className="text-center mb-4">
-          <motion.span 
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.35 }}
-            className="inline-block px-3 py-1.5 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-900/80 border border-slate-700/50 text-xs uppercase tracking-wider text-slate-300 font-semibold backdrop-blur-sm shadow-lg"
-          >
-            <motion.span
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-            >
-              Layer 3: Wallet Applications
-            </motion.span>
-          </motion.span>
-        </div>
-        <div className="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-          {['mobile', 'desktop', 'web'].map((id, index) => (
-            <motion.div
-              key={id}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + index * 0.08 }}
-              whileHover={{ scale: 1.02 }}
-            >
-              <ComponentBox 
-                id={id} 
-                component={COMPONENTS[id]}
-                highlighted={isHighlighted(id)}
-              />
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+          {/* Two layer view (Layer 1 + 2) */}
+          {showLayer2 && !showLayer3 && (
+            <div className="space-y-6">
+              <div className="flex justify-center">
+                <div className="w-full max-w-md">
+                  <ComponentBox 
+                    id="zebra" 
+                    component={COMPONENTS.zebra}
+                    highlighted={isHighlighted('zebra')}
+                  />
+                </div>
+              </div>
+              
+              <div className="h-12 relative">
+                <ConnectionLine highlighted={hasActiveConnection('zebra', 'layer2')} vertical={true} />
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <ComponentBox 
+                  id="zaino" 
+                  component={COMPONENTS.zaino}
+                  highlighted={isHighlighted('zaino')}
+                />
+                <ComponentBox 
+                  id="lightwalletd" 
+                  component={COMPONENTS.lightwalletd}
+                  highlighted={isHighlighted('lightwalletd')}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Three layer view (all layers) */}
+          {showLayer3 && (
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <ComponentBox 
+                  id="zaino" 
+                  component={COMPONENTS.zaino}
+                  highlighted={isHighlighted('zaino')}
+                />
+                <ComponentBox 
+                  id="lightwalletd" 
+                  component={COMPONENTS.lightwalletd}
+                  highlighted={isHighlighted('lightwalletd')}
+                />
+              </div>
+              
+              <div className="h-12 relative">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="relative"><ConnectionLine highlighted={hasActiveConnection('zaino', 'layer3')} vertical={true} /></div>
+                  <div className="relative"><ConnectionLine highlighted={hasActiveConnection('lightwalletd', 'layer3')} vertical={true} /></div>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-3 gap-3">
+                <ComponentBox 
+                  id="mobile" 
+                  component={COMPONENTS.mobile}
+                  highlighted={isHighlighted('mobile')}
+                />
+                <ComponentBox 
+                  id="desktop" 
+                  component={COMPONENTS.desktop}
+                  highlighted={isHighlighted('desktop')}
+                />
+                <ComponentBox 
+                  id="web" 
+                  component={COMPONENTS.web}
+                  highlighted={isHighlighted('web')}
+                />
+              </div>
+            </div>
+          )}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };

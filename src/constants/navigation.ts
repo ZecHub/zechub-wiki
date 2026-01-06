@@ -319,12 +319,12 @@ export const navigations: Array<NavigationItem> = [
   },
   {
     name: "Zcash Pool Visualizer",
-    path: "zcash-pool-visualizer",
+    path: "/zcash-pool-visualizer",
     icon: Media,
   },
   {
     name: "Zcash Infrastructure Visualizer",
-    path: "zcash-infrastructure-visualizer",
+    path: "/zcash-infrastructure-visualizer",
     icon: BsServer,
   },
 ];
