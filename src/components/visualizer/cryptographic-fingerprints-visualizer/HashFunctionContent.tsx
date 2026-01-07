@@ -29,7 +29,24 @@ export function HashFunctionContent() {
           </div>
         </motion.div>
 
-
+        {/* Arrow with hash function */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5 }}
+          className="flex flex-col items-center gap-2"
+        >
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            className="p-4 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30"
+          >
+            <Hash className="w-8 h-8 text-primary" />
+          </motion.div>
+          <span className="text-xs text-muted-foreground font-mono">
+            SHA-256
+          </span>
+        </motion.div>
       </motion.div>
     </div>
   );
