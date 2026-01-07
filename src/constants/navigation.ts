@@ -318,16 +318,6 @@ export const navigations: Array<NavigationItem> = [
     icon: SiHomeassistant,
   },
   {
-    name: "Zcash Pool Visualizer",
-    path: "/zcash-pool-visualizer",
-    icon: Media,
-  },
-  {
-    name: "Zcash Infrastructure Visualizer",
-    path: "/zcash-infrastructure-visualizer",
-    icon: BsServer,
-  },
-  {
     name: "Visualizer",
     path: "/visualizer",
     icon: BsPlay,
