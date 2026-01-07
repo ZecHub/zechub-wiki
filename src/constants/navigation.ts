@@ -5,7 +5,7 @@ import {
   RiCommunityLine,
   RiGovernmentLine,
 } from "react-icons/ri";
-import { BsServer, BsDiscord as Discord } from "react-icons/bs";
+import { BsDisplay, BsPlay, BsServer, BsDiscord as Discord } from "react-icons/bs";
 import {
   MdForum as Forum,
   MdOutlineOndemandVideo as AudioVideo,
@@ -327,6 +327,12 @@ export const navigations: Array<NavigationItem> = [
     path: "/zcash-infrastructure-visualizer",
     icon: BsServer,
   },
+  {
+    name: "Visualizer",
+    path: "/visualizer",
+    icon: BsPlay,
+  },
+
 ];
 
 export const socialNav = [
