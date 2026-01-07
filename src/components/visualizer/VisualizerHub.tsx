@@ -5,10 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ZcashInfrastructureVisualizer } from './zcash-infrastructure-visualizer';
 import { ZcashPoolVisualizer } from './zcash-pool-visualizer';
 import ZKSNARKProofVisualizer from './zk-SNARK-proof/ZK-SNARKProofVisualizer';
+import ZcashWalletsVisualizer from './zcash-wallets-visualizer';
 import { Play, Pause, RotateCcw, Home } from 'lucide-react';
 import { Button } from '@/components/UI/shadcn/button';
 
-type VisualizerType = 'welcome' | 'pool' | 'zkproof' | 'infrastructure';
+type VisualizerType = 'welcome' | 'pool' | 'zkproof' | 'infrastructure' | 'wallets';
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -18,6 +19,12 @@ interface VisualizerInfo {
 }
 
 const VISUALIZERS: VisualizerInfo[] = [
+  {
+    id: 'wallets',
+    title: 'Zcash Wallets',
+    description: 'Explore mobile, desktop, and web wallets with shielded functionality',
+    component: ZcashWalletsVisualizer,
+  },
   {
     id: 'pool',
     title: 'Pool & Address Visualizer',
