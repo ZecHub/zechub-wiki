@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Hash, Layers } from "lucide-react";
+import { Fingerprint, Hash, Layers } from "lucide-react";
 
 // Hash Intro - What is a hash function
 export function HashFunctionContent() {
@@ -46,6 +46,22 @@ export function HashFunctionContent() {
           <span className="text-xs text-muted-foreground font-mono">
             SHA-256
           </span>
+        </motion.div>
+
+        {/* Output */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.6 }}
+          className="p-6 rounded-xl bg-primary/10 border border-primary/30 min-w-[200px]"
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <Fingerprint className="w-5 h-5 text-primary" />
+            <span className="font-medium text-foreground">Fixed Output</span>
+          </div>
+          <code className="text-xs font-mono text-primary break-all">
+            64 characters (256 bits)
+          </code>
         </motion.div>
       </motion.div>
     </div>
