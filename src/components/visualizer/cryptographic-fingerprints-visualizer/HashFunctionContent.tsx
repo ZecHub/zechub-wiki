@@ -1,8 +1,22 @@
 import { motion } from "framer-motion";
-import { Fingerprint, Hash, Layers } from "lucide-react";
+import { Fingerprint, Hash, Layers, RefreshCw, Shield } from "lucide-react";
 
 // Hash Intro - What is a hash function
 export function HashFunctionContent() {
+  const icons = [
+    {
+      icon: Shield,
+      title: "Deterministic",
+      desc: "Same input always produces same output",
+    },
+    { icon: RefreshCw, title: "One-Way", desc: "Cannot reverse to find input" },
+    {
+      icon: Fingerprint,
+      title: "Unique",
+      desc: "Tiny changes create completely different hashes",
+    },
+  ];
+
   return (
     <div className="space-y-8">
       <motion.div
@@ -63,6 +77,28 @@ export function HashFunctionContent() {
             64 characters (256 bits)
           </code>
         </motion.div>
+      </motion.div>
+
+      {/* Key property preview */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7 }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-4"
+      >
+        {icons.map((itm, idx) => (
+          <motion.div
+            key={itm.title}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 + idx * 0.1 }}
+            className="p-4 rounded-lg bg-card border border-border"
+          >
+            <itm.icon className="w-5 h-5 text-primary mb-2" />
+            <h4 className="font-medium text-foreground text-sm">{itm.title}</h4>
+            <p className="text-xs text-muted-foreground mt-1">{itm.desc}</p>
+          </motion.div>
+        ))}
       </motion.div>
     </div>
   );
