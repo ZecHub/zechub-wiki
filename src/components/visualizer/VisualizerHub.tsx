@@ -5,10 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ZcashInfrastructureVisualizer } from './zcash-infrastructure-visualizer';
 import { ZcashPoolVisualizer } from './zcash-pool-visualizer';
 import ZKSNARKProofVisualizer from './zk-SNARK-proof/ZK-SNARKProofVisualizer';
+import ZcashExchangesVisualizer from './zcash-dex-visualizer';
 import { Play, Pause, RotateCcw, Home } from 'lucide-react';
 import { Button } from '@/components/UI/shadcn/button';
 
-type VisualizerType = 'welcome' | 'pool' | 'zkproof' | 'infrastructure';
+type VisualizerType = 'welcome' | 'pool' | 'zkproof' | 'infrastructure' | 'exchanges';
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -35,6 +36,12 @@ const VISUALIZERS: VisualizerInfo[] = [
     title: 'Zcash Infrastructure Visualizer',
     description: 'How Zcash components work together',
     component: ZcashInfrastructureVisualizer,
+  },
+  {
+    id: 'exchanges',
+    title: 'Zcash Exchanges Visualizer',
+    description: 'How Zcash components work together',
+    component: ZcashExchangesVisualizer,
   },
 ];
 
