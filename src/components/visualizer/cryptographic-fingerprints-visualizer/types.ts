@@ -11,9 +11,9 @@ export interface Stage {
   title: string;
   subtitle: string;
   description: string;
-  type: "welcome" | "keys";
+  type: "welcome" | "hash";
   amount?: string;
-  keyType?: KeyType;
+  hashType?: HashType;
 }
 
 export const STAGES: Stage[] = [
