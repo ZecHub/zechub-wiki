@@ -11,12 +11,12 @@ export const ResourcesSlide = () => {
         transition={{ delay: 0.2 }}
         className="max-w-2xl mx-auto"
       >
-        <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/30 text-center">
+        <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/5 to-primary/2.5 border border-primary/30 text-center">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.3, type: "spring" }}
-            className="inline-flex p-4 rounded-full bg-primary/20 mb-6"
+            className="inline-flex p-4 rounded-full bg-primary/10 mb-6"
           >
             <Info className="w-8 h-8 text-primary" />
           </motion.div>
@@ -66,13 +66,15 @@ export const ResourcesSlide = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 + index * 0.1 }}
-            className="p-4 rounded-xl bg-card/30 border border-border/30 text-center my-6"
+            className="p-4 rounded-xl dark:bg-card/30 bg-card/5 border border-border/30 text-center my-6"
           >
             <item.icon className="w-6 h-6 text-muted-foreground mx-auto mb-2" />
             <h4 className="font-medium text-foreground text-sm">
               {item.label}
             </h4>
-            <p className="text-xs text-muted-foreground">{item.desc}</p>
+            <p className="text-xs dark:text-slate-400 text-muted-foreground">
+              {item.desc}
+            </p>
           </motion.div>
         ))}
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { parseMarkdown } from "@/lib/parseMarkdown";
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import { Controls } from "./Controls";
@@ -10,12 +11,51 @@ import { STAGES } from "./types";
 const WELCOME_STAGE_INTERVAL = 1000; // 4 seconds for welcome stage
 const OTHER_STAGES_INTERVAL = 6000; // 8 seconds for other stages
 
+const url = `/site/Using_Zcash/Wallets.md`;
+
+export type Device = "Mobile" | "Desktop" | "Full Node" | "Web" | "Hardware";
+
+export type WalletInfo = {
+  title: string;
+  url: string;
+  imageUrl: string;
+  devices: string[];
+  pools: string[];
+  features: string[];
+  syncSpeed: string;
+};
+
 export const WalletVisualizer = () => {
   const [currentStage, setCurrentStage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isAnimating, setIsAnimating] = useState(true);
+  const [wallets, setWallets] = useState<WalletInfo[]>([]);
 
   const stage = STAGES[currentStage];
+
+  useEffect(() => {
+    async function getWalletInfo() {
+      try {
+        const res = await fetch(`/api/github/file?path=${url}`);
+
+        const data = await res.json();
+        const content = atob(data.content);
+
+        const parsedData = parseMarkdown(content).map((d) => {
+          return {
+            ...d,
+            devices: d.devices.map((d) => d.toLowerCase()),
+          };
+        });
+
+        setWallets(parsedData);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    getWalletInfo();
+  }, []);
 
   const goToNext = useCallback(() => {
     if (currentStage < STAGES.length - 1) {
@@ -60,7 +100,7 @@ export const WalletVisualizer = () => {
   }, [isPlaying, currentStage, goToNext]);
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col" id="WalletVisualizer">
       {/* Header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
@@ -85,12 +125,16 @@ export const WalletVisualizer = () => {
       </motion.header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-8">
-        <StageContent stage={stage} isAnimating={isAnimating} />
+      <main className=" container mx-auto px-4 py-8 md:py-13 mt-8">
+        <StageContent
+          stage={stage}
+          wallets={wallets}
+          isAnimating={isAnimating}
+        />
       </main>
 
       {/* Controls Footer */}
-      <footer className="border-t border-slate-200 dark:border-slate-600 p-4">
+      <footer className="border-t border-slate-200 dark:border-slate-600 p-4 mt-12">
         <Controls
           currentStage={currentStage}
           isPlaying={isPlaying}

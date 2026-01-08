@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { WalletInfo } from "./index";
 import { Stage } from "./types";
 import { WalletContent } from "./WalletContent";
 import { WelcomeContent } from "./WelcomeContent";
@@ -6,17 +7,18 @@ import { WelcomeContent } from "./WelcomeContent";
 interface StageContentProps {
   stage: Stage;
   isAnimating: boolean;
+  wallets: WalletInfo[];
 }
 
-export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
-  console.log({ stage });
-
+export const StageContent = ({
+  stage,
+  isAnimating,
+  wallets,
+}: StageContentProps) => {
   const renderContent = () => {
     switch (stage.type) {
-      case "welcome":
-        return <WelcomeContent stage={stage} />;
       case "wallet":
-        return <WalletContent stage={stage} />;
+        return <WalletContent wallets={wallets} stage={stage} />;
       default:
         return null;
     }
@@ -30,7 +32,7 @@ export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.4 }}
-        className="w-full min-h-[640]"
+        className="w-full"
       >
         {/* Stage Header */}
         {stage.type === "welcome" ? (
@@ -58,6 +60,8 @@ export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
             >
               {stage.description}
             </motion.p>
+
+            <WelcomeContent wallets={wallets} stage={stage} />
           </div>
         ) : (
           <div className="text-center mb-8">
@@ -86,13 +90,16 @@ export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
             </motion.p>
           </div>
         )}
-        {/* Stage-specific content */}
 
+        {/* Stage-specific content */}
+        {/* 
         {stage.type === "welcome" ? (
           ""
         ) : (
           <div className="mt-24">{renderContent()}</div>
-        )}
+        )} */}
+
+        <div className="mt-24">{renderContent()}</div>
       </motion.div>
     </AnimatePresence>
   );
