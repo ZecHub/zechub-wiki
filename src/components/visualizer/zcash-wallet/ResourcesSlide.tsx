@@ -46,7 +46,36 @@ export const ResourcesSlide = () => {
         </div>
       </motion.div>
 
- 
+      {/* Quick links grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+        {[
+          {
+            icon: Smartphone,
+            label: "Mobile Wallets",
+            desc: "iOS & Android apps",
+          },
+          {
+            icon: Monitor,
+            label: "Desktop Wallets",
+            desc: "Windows, Mac, Linux",
+          },
+          { icon: Globe, label: "Web Wallets", desc: "Browser-based access" },
+        ].map((item, index) => (
+          <motion.div
+            key={item.label}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 + index * 0.1 }}
+            className="p-4 rounded-xl bg-card/30 border border-border/30 text-center my-6"
+          >
+            <item.icon className="w-6 h-6 text-muted-foreground mx-auto mb-2" />
+            <h4 className="font-medium text-foreground text-sm">
+              {item.label}
+            </h4>
+            <p className="text-xs text-muted-foreground">{item.desc}</p>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };
