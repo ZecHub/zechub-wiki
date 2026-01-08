@@ -53,7 +53,7 @@ export const WalletIntro = () => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-20">
       {/* Central wallet icon */}
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
@@ -74,53 +74,59 @@ export const WalletIntro = () => {
       </motion.div>
 
       {/* Feature grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {features.map((feature, index) => (
-          <motion.div
-            key={feature.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 + index * 0.1 }}
-            className={`p-4 rounded-xl ${feature.bg} border border-white/5`}
-          >
-            <div className="flex items-start gap-3">
-              <feature.icon className={`w-5 h-5 ${feature.color} mt-0.5`} />
-              <div>
-                <h4 className="font-medium text-foreground mb-1">
-                  {feature.title}
-                </h4>
-                <p className="text-sm text-muted-foreground">
-                  {feature.description}
-                </p>
+      <div>
+        <h2 className="text-lg font-bold mb-4">Wallet Features</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + index * 0.1 }}
+              className={`p-4 rounded-xl ${feature.bg} border border-white/5`}
+            >
+              <div className="flex items-start gap-3">
+                <feature.icon className={`w-5 h-5 ${feature.color} mt-0.5`} />
+                <div>
+                  <h4 className="font-medium text-foreground mb-1">
+                    {feature.title}
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {/* Wallet highlights */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-        {walletHighlights.map((wallet, index) => (
-          <motion.div
-            key={wallet.name}
-            initial={{ opacity: 0, x: index === 0 ? -20 : 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6 + index * 0.1 }}
-            className={`p-4 rounded-xl bg-gradient-to-br ${wallet.color} border ${wallet.border}`}
-          >
-            <h4 className="font-bold text-foreground mb-2">{wallet.name}</h4>
-            <div className="flex flex-wrap gap-2">
-              {wallet.features.map((feature) => (
-                <span
-                  key={feature}
-                  className="text-xs px-2 py-1 rounded-full bg-white/10 text-foreground/80"
-                >
-                  {feature}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+      <div>
+        <h2 className="text-lg font-bold mb-4">Wallet Types</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {walletHighlights.map((wallet, index) => (
+            <motion.div
+              key={wallet.name}
+              initial={{ opacity: 0, x: index === 0 ? -20 : 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6 + index * 0.1 }}
+              className={`p-4 rounded-xl bg-gradient-to-br ${wallet.color} border ${wallet.border}`}
+            >
+              <h4 className="font-bold text-foreground mb-2">{wallet.name}</h4>
+              <div className="flex flex-wrap gap-2">
+                {wallet.features.map((feature) => (
+                  <span
+                    key={feature}
+                    className="text-xs px-2 py-1 rounded-full bg-white/10 text-foreground/80"
+                  >
+                    {feature}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );
