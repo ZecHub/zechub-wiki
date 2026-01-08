@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Layers, Shield, Shuffle, Users, Wallet } from "lucide-react";
+import Image from "next/image";
 
 export const WalletIntro = () => {
   const features = [
@@ -63,7 +64,14 @@ export const WalletIntro = () => {
       >
         <div className="relative">
           <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30">
-            <Wallet className="w-16 h-16 text-primary" />
+            <Image
+              priority
+              src="/zwallets.png"
+              alt={"zwallets"}
+              width={32}
+              height={32}
+              className="w-20 h-20 text-pool-transparent"
+            />
           </div>
           <motion.div
             animate={{ rotate: 360 }}
