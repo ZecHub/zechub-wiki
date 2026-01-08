@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ExternalLink, TypeIcon, Wallet } from "lucide-react";
+import { ExternalLink, TypeIcon } from "lucide-react";
+import Image from "next/image";
 import { WalletInfo } from "./index";
 
 interface WalletListProps {
@@ -44,7 +45,14 @@ export const WalletList = (props: WalletListProps) => {
               <div
                 className={`w-16 h-16 rounded-xl bg-gradient-to-br flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
               >
-                <Wallet className="w-8 h-8 text-white" />
+                <Image
+                  priority
+                  src={wallet.imageUrl.trimEnd()}
+                  alt={wallet.title}
+                  width={64}
+                  height={64}
+                  className="w-44 text-pool-transparent"
+                />
               </div>
 
               {/* Wallet name */}
