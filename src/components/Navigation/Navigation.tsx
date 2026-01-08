@@ -13,6 +13,7 @@ import { matchIcons } from "@/constants/Icons";
 import { ChevronDown, Menu, Moon, Search, Sun } from "lucide-react";
 import { Button } from "../UI/button";
 import { Icon } from "../UI/Icon";
+import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
 
@@ -356,7 +357,7 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => {
 };
 
 const Navigation = () => {
-  const [dark, setDark] = useState(false);
+  const { dark, setDark } = useDarkModeContext();
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
