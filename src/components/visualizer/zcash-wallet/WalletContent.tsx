@@ -3,6 +3,7 @@ import { Globe, Monitor, Smartphone } from "lucide-react";
 import { Stage } from "./types";
 import { WalletList } from "./WalletList";
 import { WalletIntro } from "./WalletIntro";
+import { ResourcesSlide } from "./ResourcesSlide";
 
 interface WalletContentProps {
   stage: Stage;
@@ -92,7 +93,8 @@ export const WalletContent = ({ stage }: WalletContentProps) => {
         );
       case "web":
         return <WalletList wallets={WEB_WALLETS} type="Web" icon={Globe} />;
-
+      case "resources":
+      return <ResourcesSlide />;
       default:
         return null;
     }
