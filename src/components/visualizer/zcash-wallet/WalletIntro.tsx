@@ -67,7 +67,7 @@ export const WalletIntro = () => {
       </motion.div>
 
       {/* Feature grid */}
-      <div id="wallet-features" className="pb-20">
+      <div id="wallet-features">
         <h2 className="text-lg font-bold mb-4">Wallet Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {features.map((feature, index) => (
