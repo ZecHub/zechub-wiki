@@ -2,18 +2,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Stage } from "./types";
 import { WalletContent } from "./WalletContent";
 import { WelcomeContent } from "./WelcomeContent";
+import { WalletInfo } from "./index";
 
 interface StageContentProps {
   stage: Stage;
   isAnimating: boolean;
+  wallets: WalletInfo[];
 }
 
-export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
+export const StageContent = ({ stage, isAnimating , wallets}: StageContentProps) => {
 
   const renderContent = () => {
     switch (stage.type) {
       case "wallet":
-        return <WalletContent stage={stage} />;
+        return <WalletContent wallets={wallets} stage={stage} />;
       default:
         return null;
     }
