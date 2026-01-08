@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { WalletInfo } from "./index";
 import { Stage } from "./types";
 import { WalletContent } from "./WalletContent";
 import { WelcomeContent } from "./WelcomeContent";
-import { WalletInfo } from "./index";
 
 interface StageContentProps {
   stage: Stage;
@@ -10,8 +10,11 @@ interface StageContentProps {
   wallets: WalletInfo[];
 }
 
-export const StageContent = ({ stage, isAnimating , wallets}: StageContentProps) => {
-
+export const StageContent = ({
+  stage,
+  isAnimating,
+  wallets,
+}: StageContentProps) => {
   const renderContent = () => {
     switch (stage.type) {
       case "wallet":
@@ -58,7 +61,7 @@ export const StageContent = ({ stage, isAnimating , wallets}: StageContentProps)
               {stage.description}
             </motion.p>
 
-            <WelcomeContent stage={stage}/>
+            <WelcomeContent wallets={wallets} stage={stage} />
           </div>
         ) : (
           <div className="text-center mb-8">
