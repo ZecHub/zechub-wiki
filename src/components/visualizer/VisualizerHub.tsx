@@ -1,14 +1,20 @@
-'use client';
+"use client";
 
-import React, { useState, useCallback, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ZcashInfrastructureVisualizer } from './zcash-infrastructure-visualizer';
-import { ZcashPoolVisualizer } from './zcash-pool-visualizer';
-import ZKSNARKProofVisualizer from './zk-SNARK-proof/ZK-SNARKProofVisualizer';
-import { Play, Pause, RotateCcw, Home } from 'lucide-react';
-import { Button } from '@/components/UI/shadcn/button';
+import { Button } from "@/components/UI/shadcn/button";
+import { motion } from "framer-motion";
+import { Home, Pause, Play } from "lucide-react";
+import React, { useCallback, useEffect, useState } from "react";
+import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
+import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
+import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
+import { WalletVisualizer } from "./zcash-wallet";
 
-type VisualizerType = 'welcome' | 'pool' | 'zkproof' | 'infrastructure';
+type VisualizerType =
+  | "welcome"
+  | "pool"
+  | "zkproof"
+  | "infrastructure"
+  | "zcash-wallet";
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -19,33 +25,40 @@ interface VisualizerInfo {
 
 const VISUALIZERS: VisualizerInfo[] = [
   {
-    id: 'pool',
-    title: 'Pool & Address Visualizer',
-    description: 'Explore Zcash privacy pools and address types',
+    id: "zcash-wallet",
+    title: "Introduction to Zcash Wallets.",
+    description: "Providing Shielded Functionality",
+    component: WalletVisualizer,
+  },
+  {
+    id: "pool",
+    title: "Pool & Address Visualizer",
+    description: "Explore Zcash privacy pools and address types",
     component: ZcashPoolVisualizer,
   },
   {
-    id: 'zkproof',
-    title: 'zk-SNARK Proof Visualizer',
-    description: 'Interactive demonstration of shielded transactions',
+    id: "zkproof",
+    title: "zk-SNARK Proof Visualizer",
+    description: "Interactive demonstration of shielded transactions",
     component: ZKSNARKProofVisualizer,
   },
   {
-    id: 'infrastructure',
-    title: 'Zcash Infrastructure Visualizer',
-    description: 'How Zcash components work together',
+    id: "infrastructure",
+    title: "Zcash Infrastructure Visualizer",
+    description: "How Zcash components work together",
     component: ZcashInfrastructureVisualizer,
   },
 ];
 
 export const VisualizerHub: React.FC = () => {
-  const [currentVisualizer, setCurrentVisualizer] = useState<VisualizerType>('welcome');
+  const [currentVisualizer, setCurrentVisualizer] =
+    useState<VisualizerType>("welcome");
   const [isPlayingAll, setIsPlayingAll] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const startPlayAll = useCallback(() => {
     setIsPlayingAll(true);
-    setCurrentIndex(0); 
+    setCurrentIndex(0);
     setCurrentVisualizer(VISUALIZERS[0].id);
   }, []);
 
@@ -59,7 +72,7 @@ export const VisualizerHub: React.FC = () => {
   }, []);
 
   const goHome = useCallback(() => {
-    setCurrentVisualizer('welcome');
+    setCurrentVisualizer("welcome");
     setIsPlayingAll(false);
     setCurrentIndex(0);
   }, []);
@@ -77,8 +90,10 @@ export const VisualizerHub: React.FC = () => {
     return () => clearTimeout(timer);
   }, [isPlayingAll, currentIndex]);
 
-  if (currentVisualizer !== 'welcome') {
-    const CurrentComponent = VISUALIZERS.find(v => v.id === currentVisualizer)?.component;
+  if (currentVisualizer !== "welcome") {
+    const CurrentComponent = VISUALIZERS.find(
+      (v) => v.id === currentVisualizer
+    )?.component;
 
     if (!CurrentComponent) return null;
 
@@ -128,12 +143,12 @@ export const VisualizerHub: React.FC = () => {
           animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
-            scale: [1, 1.2, 1]
+            scale: [1, 1.2, 1],
           }}
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
           className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-yellow-400/10 rounded-full blur-3xl"
         />
@@ -141,13 +156,13 @@ export const VisualizerHub: React.FC = () => {
           animate={{
             x: [0, -100, 0],
             y: [0, 50, 0],
-            scale: [1, 1.3, 1]
+            scale: [1, 1.3, 1],
           }}
           transition={{
             duration: 25,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 2
+            delay: 2,
           }}
           className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-400/10 rounded-full blur-3xl"
         />
@@ -164,8 +179,8 @@ export const VisualizerHub: React.FC = () => {
             Zcash Visualizers
           </h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Interactive educational tools to understand Zcash privacy technology,
-            infrastructure, and zero-knowledge proofs
+            Interactive educational tools to understand Zcash privacy
+            technology, infrastructure, and zero-knowledge proofs
           </p>
         </motion.div>
 
@@ -208,7 +223,9 @@ export const VisualizerHub: React.FC = () => {
                       {visualizer.description}
                     </p>
                     <div className="mt-4 text-yellow-400 group-hover:text-yellow-300 transition-colors">
-                      <span className="text-sm font-medium">Click to explore →</span>
+                      <span className="text-sm font-medium">
+                        Click to explore →
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -224,7 +241,8 @@ export const VisualizerHub: React.FC = () => {
           className="text-center mt-12"
         >
           <p className="text-slate-400 text-sm">
-            Each visualizer runs automatically. Use controls to navigate or pause.
+            Each visualizer runs automatically. Use controls to navigate or
+            pause.
           </p>
         </motion.div>
       </div>
