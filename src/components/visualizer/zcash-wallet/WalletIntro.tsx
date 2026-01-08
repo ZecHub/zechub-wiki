@@ -82,7 +82,7 @@ export const WalletIntro = () => {
       </motion.div>
 
       {/* Feature grid */}
-      <div>
+      <div className="">
         <h2 className="text-lg font-bold mb-4">Wallet Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {features.map((feature, index) => (
@@ -109,33 +109,6 @@ export const WalletIntro = () => {
         </div>
       </div>
 
-      {/* Wallet highlights */}
-      <div>
-        <h2 className="text-lg font-bold mb-4">Wallet Types</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {walletHighlights.map((wallet, index) => (
-            <motion.div
-              key={wallet.name}
-              initial={{ opacity: 0, x: index === 0 ? -20 : 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 + index * 0.1 }}
-              className={`p-4 rounded-xl bg-gradient-to-br ${wallet.color} border ${wallet.border}`}
-            >
-              <h4 className="font-bold text-foreground mb-2">{wallet.name}</h4>
-              <div className="flex flex-wrap gap-2">
-                {wallet.features.map((feature) => (
-                  <span
-                    key={feature}
-                    className="text-xs px-2 py-1 rounded-full bg-white/10 text-foreground/80"
-                  >
-                    {feature}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };
