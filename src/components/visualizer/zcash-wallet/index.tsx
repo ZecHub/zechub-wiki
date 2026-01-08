@@ -60,7 +60,7 @@ export const WalletVisualizer = () => {
   }, [isPlaying, currentStage, goToNext]);
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col" id="WalletVisualizer">
       {/* Header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
@@ -85,7 +85,7 @@ export const WalletVisualizer = () => {
       </motion.header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-8">
+      <main className=" container mx-auto px-4 py-8 md:py-13 mt-8">
         <StageContent stage={stage} isAnimating={isAnimating} />
       </main>
 
