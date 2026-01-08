@@ -6,10 +6,11 @@ import { ZcashInfrastructureVisualizer } from './zcash-infrastructure-visualizer
 import { ZcashPoolVisualizer } from './zcash-pool-visualizer';
 import ZKSNARKProofVisualizer from './zk-SNARK-proof/ZK-SNARKProofVisualizer';
 import ZcashWalletsVisualizer from './zcash-wallets-visualizer';
+import ZcashExchangesVisualizer from './zcash-exchanges-visualizer';
 import { Play, Pause, RotateCcw, Home } from 'lucide-react';
 import { Button } from '@/components/UI/shadcn/button';
 
-type VisualizerType = 'welcome' | 'pool' | 'zkproof' | 'infrastructure' | 'wallets';
+type VisualizerType = 'welcome' | 'pool' | 'zkproof' | 'infrastructure' | 'wallets'| 'exchanges';
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -26,6 +27,12 @@ const VISUALIZERS: VisualizerInfo[] = [
     component: ZcashWalletsVisualizer,
   },
   {
+    id: 'exchanges',
+    title: 'DEX Exchanges',
+    description: 'Explore decentralized exchanges for trading ZEC',
+    component: ZcashExchangesVisualizer,
+  },
+    {
     id: 'pool',
     title: 'Pool & Address Visualizer',
     description: 'Explore Zcash privacy pools and address types',
