@@ -2,8 +2,6 @@ import { motion } from "framer-motion";
 import { ExternalLink, TypeIcon, Wallet } from "lucide-react";
 import { WalletInfo } from "./index";
 
-// import { WalletInfo } from "./WalletContent";
-
 interface WalletListProps {
   wallets: WalletInfo[];
   type: string;
