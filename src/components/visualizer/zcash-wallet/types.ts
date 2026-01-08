@@ -1,10 +1,16 @@
-// stages.ts
+import { StaticImageData } from "next/image";
+import ZashiIconBlack from "../../../assets/brand/Wallets/Zashi/PNG/ZashiIconBlack.png";
+
+export type WalletType = "intro" | "mobile" | "desktop" | "web" | "resources";
+
 export interface Stage {
   id: number;
   title: string;
   subtitle: string;
   description: string;
-  type: "welcome" | "intro" | "zashi" | "ywallet" | "categories";
+  type: "welcome" | "intro" | "wallet";
+  icon?: StaticImageData | undefined;
+  walletType?: WalletType;
 }
 
 export const STAGES: Stage[] = [
@@ -12,40 +18,57 @@ export const STAGES: Stage[] = [
     id: 0,
     title: "Welcome",
     subtitle: "Ready to explore Zcash wallets?",
-    description:
-      "Click play to learn how shielded Zcash wallets protect your privacy.",
+    description: `Zcash wallets enable shielded transactions, protecting sender, receiver, and amount. Different wallets emphasize different privacy and UX trade-offs.`,
     type: "welcome",
   },
   {
     id: 1,
-    title: "Shielded Zcash Wallets",
-    subtitle: "Privacy by default",
+    title: "Zcash Wallets",
+    subtitle: "Shielded Functionality",
     description:
-      "Zcash wallets enable shielded transactions, protecting sender, receiver, and amount. Different wallets emphasize different privacy and UX trade-offs.",
-    type: "intro",
+      "Wallets provide different features for managing your ZEC. From Tor privacy to DEX swaps, choose the right tool for your needs.",
+    type: "wallet",
+    walletType: "intro",
+    icon: ZashiIconBlack,
   },
   {
     id: 2,
-    title: "Zashi Wallet",
-    subtitle: "Privacy-first mobile wallet",
+    title: "Mobile Wallets",
+    subtitle: "Privacy On-the-Go",
     description:
-      "Zashi integrates Tor for network-level privacy and supports Near DEX swaps, combining shielded payments with DeFi access.",
-    type: "zashi",
+      "iOS and Android wallets for everyday transactions. Full shielded support in your pocket.",
+    type: "wallet",
+    walletType: "mobile",
+    icon: ZashiIconBlack,
   },
   {
     id: 3,
-    title: "Ywallet",
-    subtitle: "Power-user Zcash wallet",
+    title: "Desktop Wallets",
+    subtitle: "Full-Featured Experience",
     description:
-      "Ywallet supports multiple accounts, pool transfers, and advanced shielding controls for experienced Zcash users.",
-    type: "ywallet",
+      "Windows, macOS, and Linux applications with advanced features and secure key storage.",
+    type: "wallet",
+    walletType: "desktop",
+    icon: ZashiIconBlack,
   },
   {
     id: 4,
-    title: "Wallet Categories",
-    subtitle: "Choose your platform",
+    title: "Web Wallets",
+    subtitle: "Browser-Based Access",
     description:
-      "Zcash wallets are available across mobile, desktop, and web platforms—each with different trade-offs in custody, UX, and security.",
-    type: "categories",
+      "Access your ZEC from any device without installing software. Quick and convenient.",
+    type: "wallet",
+    walletType: "web",
+    icon: ZashiIconBlack,
+  },
+  {
+    id: 5,
+    title: "Learn More",
+    subtitle: "ZecHub Resources",
+    description:
+      "Visit zechub.wiki/wallets for comprehensive wallet comparisons, guides, and the latest updates.",
+    type: "wallet",
+    walletType: "resources",
+    icon: ZashiIconBlack,
   },
 ];
