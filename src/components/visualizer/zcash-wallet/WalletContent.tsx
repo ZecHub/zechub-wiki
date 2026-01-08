@@ -1,24 +1,14 @@
 import { motion } from "framer-motion";
-import { Stage, WalletType } from "./types";
-import {
-  Smartphone,
-  Monitor,
-  Globe,
-  Shield,
-  Wallet,
-  ExternalLink,
-  Layers,
-  Shuffle,
-  Users,
-  ArrowRightLeft,
-  Info,
-} from "lucide-react";
+import { Globe, Monitor, Smartphone } from "lucide-react";
+import { Stage } from "./types";
+import { WalletList } from "./WalletList";
+import { WalletIntro } from "./WalletIntro";
 
 interface WalletContentProps {
   stage: Stage;
 }
 
-interface WalletInfo {
+export interface WalletInfo {
   name: string;
   features: string[];
   downloadUrl: string;
@@ -82,3 +72,39 @@ const WEB_WALLETS: WalletInfo[] = [
     color: "from-pink-500 to-rose-500",
   },
 ];
+
+export const WalletContent = ({ stage }: WalletContentProps) => {
+  const renderContent = () => {
+    switch (stage.walletType) {
+      case "intro":
+        return <WalletIntro />;
+      case "mobile":
+        return (
+          <WalletList
+            wallets={MOBILE_WALLETS}
+            type="Mobile"
+            icon={Smartphone}
+          />
+        );
+      case "desktop":
+        return (
+          <WalletList wallets={DESKTOP_WALLETS} type="Desktop" icon={Monitor} />
+        );
+      case "web":
+        return <WalletList wallets={WEB_WALLETS} type="Web" icon={Globe} />;
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.3 }}
+    >
+      {renderContent()}
+    </motion.div>
+  );
+};
