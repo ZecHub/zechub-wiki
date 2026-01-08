@@ -134,7 +134,7 @@ export const WalletVisualizer = () => {
       </main>
 
       {/* Controls Footer */}
-      <footer className="border-t border-slate-200 dark:border-slate-600 p-4">
+      <footer className="border-t border-slate-200 dark:border-slate-600 p-4 mt-12">
         <Controls
           currentStage={currentStage}
           isPlaying={isPlaying}
