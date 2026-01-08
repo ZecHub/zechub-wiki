@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Layers, Shield, Shuffle, Users, Wallet } from "lucide-react";
 
-export const IntroWallet = () => {
+export const WalletIntro = () => {
   const features = [
     {
       icon: Shield,
