@@ -67,7 +67,7 @@ export const WalletIntro = () => {
             <Image
               priority
               src="/zwallets.png"
-              alt={"zwallets"}
+              alt="zwallets icon"
               width={32}
               height={32}
               className="w-20 h-20 text-pool-transparent"
