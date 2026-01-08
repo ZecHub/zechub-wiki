@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { ExternalLink, TypeIcon, Wallet } from "lucide-react";
+import { WalletInfo } from "./index";
 
-import { WalletInfo } from "./WalletContent";
+// import { WalletInfo } from "./WalletContent";
 
 interface WalletListProps {
   wallets: WalletInfo[];
@@ -30,8 +31,8 @@ export const WalletList = (props: WalletListProps) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {props.wallets.map((wallet, index) => (
           <motion.a
-            key={wallet.name}
-            href={wallet.downloadUrl}
+            key={wallet.title}
+            href={wallet.imageUrl}
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 30 }}
@@ -43,14 +44,14 @@ export const WalletList = (props: WalletListProps) => {
             <div className="h-full p-6 rounded-2xl bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300">
               {/* Logo placeholder */}
               <div
-                className={`w-16 h-16 rounded-xl bg-gradient-to-br ${wallet.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                className={`w-16 h-16 rounded-xl bg-gradient-to-br flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
               >
                 <Wallet className="w-8 h-8 text-white" />
               </div>
 
               {/* Wallet name */}
               <h4 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-                {wallet.name}
+                {wallet.title}
                 <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
               </h4>
 
