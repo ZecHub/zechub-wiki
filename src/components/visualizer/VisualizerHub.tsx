@@ -8,13 +8,15 @@ import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer
 import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
 import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
 import { WalletVisualizer } from "./zcash-wallet";
+import ZcashExchangesVisualizer from "./zcash-exchanges-visualizer";
 
 type VisualizerType =
   | "welcome"
   | "pool"
   | "zkproof"
   | "infrastructure"
-  | "zcash-wallet";
+  | "zcash-wallet"
+  | "exchanges";
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -29,6 +31,12 @@ const VISUALIZERS: VisualizerInfo[] = [
     title: "Introduction to Zcash Wallets.",
     description: "Providing Shielded Functionality",
     component: WalletVisualizer,
+  },
+  {
+    id: 'exchanges',
+    title: 'DEX Exchanges',
+    description: 'Explore decentralized exchanges for trading ZEC',
+    component: ZcashExchangesVisualizer,
   },
   {
     id: "pool",
