@@ -63,7 +63,7 @@ export const WalletList = (props: WalletListProps) => {
 
               {/* Features */}
               <div className="space-y-2">
-                {wallet.features.map((feature: string) => (
+                {wallet.features.slice(0, 3).map((feature: string) => (
                   <div
                     key={feature}
                     className="flex items-center gap-2 text-sm text-muted-foreground"
