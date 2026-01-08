@@ -38,21 +38,6 @@ export const WalletIntro = () => {
     },
   ];
 
-  const walletHighlights = [
-    {
-      name: "Zashi",
-      features: ["Tor Privacy", "Near DEX Swaps"],
-      color: "from-amber-500/20 to-orange-500/20",
-      border: "border-amber-500/30",
-    },
-    {
-      name: "Ywallet",
-      features: ["Multiple Accounts", "Pool Transfers"],
-      color: "from-blue-500/20 to-cyan-500/20",
-      border: "border-blue-500/30",
-    },
-  ];
-
   return (
     <div className="space-y-20">
       {/* Central wallet icon */}
@@ -68,9 +53,9 @@ export const WalletIntro = () => {
               priority
               src="/zwallets.png"
               alt="zwallets icon"
-              width={32}
-              height={32}
-              className="w-20 h-20 text-pool-transparent"
+              width={24}
+              height={24}
+              className="w-8 h-8 text-pool-transparent"
             />
           </div>
           <motion.div
@@ -82,7 +67,7 @@ export const WalletIntro = () => {
       </motion.div>
 
       {/* Feature grid */}
-      <div className="">
+      <div id="wallet-features" className="pb-20">
         <h2 className="text-lg font-bold mb-4">Wallet Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {features.map((feature, index) => (
@@ -108,7 +93,6 @@ export const WalletIntro = () => {
           ))}
         </div>
       </div>
-
     </div>
   );
 };
