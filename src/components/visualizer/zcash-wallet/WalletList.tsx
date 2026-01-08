@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, TypeIcon } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { WalletInfo } from "./index";
 
@@ -19,7 +19,14 @@ export const WalletList = (props: WalletListProps) => {
         className="flex items-center justify-center gap-3 mb-8"
       >
         <div className="p-3 rounded-xl bg-primary/10 border border-primary/30">
-          <TypeIcon className="w-6 h-6 text-primary" />
+          <Image
+            priority
+            src="/zwallets.png"
+            alt="zwallets icon"
+            width={24}
+            height={24}
+            className="w-8 h-8 "
+          />
         </div>
         <h3 className="text-xl font-bold text-foreground">
           {props.type} Wallets
