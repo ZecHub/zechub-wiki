@@ -27,8 +27,8 @@ export const IrreversibleContent = () => {
             <ArrowRight className="w-8 h-8 text-emerald-500" />
             <span className="text-xs text-emerald-500 mt-1">Easy ✓</span>
           </motion.div>
-          <div className="flex-1 p-4 rounded-lg bg-card border border-border text-center">
-            <code className="text-xs font-mono text-muted-foreground break-all">
+          <div className="flex-1 p-4 rounded-lg dark:bg-card/40  bg-emerald-400/30 dark:border border-border text-center">
+            <code className="text-xs font-mono dark:text-muted-foreground break-all">
               ef92b778...2d3f
             </code>
           </div>
@@ -36,8 +36,10 @@ export const IrreversibleContent = () => {
 
         {/* Reverse direction - impossible */}
         <div className="flex items-center gap-6 w-full max-w-2xl">
-          <div className="flex-1 p-4 rounded-lg bg-card border border-border text-center">
-            <code className="text-xs font-mono text-muted-foreground">???</code>
+          <div className="flex-1 p-4 rounded-lg dark:bg-card/40 bg-card/20 dark:border border-border text-center">
+            <code className="text-xs font-mono dark:text-muted-foreground">
+              ???
+            </code>
           </div>
           <motion.div className="flex flex-col items-center">
             <div className="relative">
@@ -88,12 +90,12 @@ export const IrreversibleContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="p-6 rounded-xl bg-card border border-border"
+        className="p-6 rounded-xl dark:bg-card/40 bg-card/10 dark:border border-border"
       >
         <h4 className="font-semibold text-foreground mb-3">
           Why Irreversible?
         </h4>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm dark:text-muted-foreground text-slate-500">
           Hash functions compress data (many-to-one). A 256-bit hash could
           represent infinite possible inputs. Finding the original is
           computationally infeasible — it would take longer than the age of the
