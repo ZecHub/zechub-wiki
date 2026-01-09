@@ -7,6 +7,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
 import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
 import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
+import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
 import { WalletVisualizer } from "./zcash-wallet";
 
 type VisualizerType =
@@ -14,7 +15,8 @@ type VisualizerType =
   | "pool"
   | "zkproof"
   | "infrastructure"
-  | "zcash-wallet";
+  | "zcash-wallet"
+  |"zcash-dex";
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -29,6 +31,13 @@ const VISUALIZERS: VisualizerInfo[] = [
     title: "Introduction to Zcash Wallets.",
     description: "Providing Shielded Functionality",
     component: WalletVisualizer,
+  },
+   {
+    id: "zcash-dex",
+    title: "Zcash Exchanges (DEX)",
+    description:
+      "Permissionless, censorship-resistant access to ZEC using decentralized exchanges",
+    component: ZcashDexVisualizer,
   },
   {
     id: "pool",
@@ -48,6 +57,7 @@ const VISUALIZERS: VisualizerInfo[] = [
     description: "How Zcash components work together",
     component: ZcashInfrastructureVisualizer,
   },
+  
 ];
 
 export const VisualizerHub: React.FC = () => {
