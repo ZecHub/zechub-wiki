@@ -102,11 +102,11 @@ export default function NetInflowsOutflowsChart(
           />
 
           <Tooltip
-            formatter={(value: any, name: string) => [
+            formatter={(value: any, name: any, props: any) => [
               typeof value === "number"
                 ? `${value.toLocaleString()} ZEC`
                 : value,
-              name === "Net Sapling Flow"
+              name === "netSaplingFlow"
                 ? "Net Sapling Flow"
                 : "Net Orchard Flow",
             ]}
