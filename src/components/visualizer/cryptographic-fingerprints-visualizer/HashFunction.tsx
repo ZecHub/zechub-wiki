@@ -1,4 +1,5 @@
 import { CollisionContent } from "./CollisionContent";
+import { HashFunctionIntroContent } from "./HashFunctionContent";
 import { IntegrityContent } from "./IntegrityContent";
 import { IntroContent } from "./IntroContent";
 import { IrreversibleContent } from "./IrreversibleContent";
@@ -12,7 +13,7 @@ interface HashFunctionContentProps {
 export const HashFunction = (props: HashFunctionContentProps) => {
   switch (props.stage.hashType) {
     case "intro":
-      return <IntroContent stage={props.stage} />;
+      return <HashFunctionIntroContent   />;
     case "integrity":
       return <IntegrityContent />;
     case "irreversible":
