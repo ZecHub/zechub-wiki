@@ -18,14 +18,7 @@ export interface Stage {
 
 export const STAGES: Stage[] = [
   {
-    id: 0,
-    title: "Welcome",
-    subtitle: "Ready to explore Zcash?",
-    description: "Click the play button below to begin!",
-    type: "welcome",
-  },
-  {
-    id: 2,
+    id: 1,
     title: "Hash Functions",
     subtitle: "Cryptographic Fingerprints",
     description:
@@ -34,7 +27,7 @@ export const STAGES: Stage[] = [
     hashType: "intro",
   },
   {
-    id: 3,
+    id: 2,
     title: "Integrity Verification",
     subtitle: "Detecting Tampering",
     description:
@@ -43,7 +36,7 @@ export const STAGES: Stage[] = [
     hashType: "integrity",
   },
   {
-    id: 4,
+    id: 3,
     title: "Irreversibility",
     subtitle: "One-Way Functions",
     description:
@@ -52,7 +45,7 @@ export const STAGES: Stage[] = [
     hashType: "irreversible",
   },
   {
-    id: 5,
+    id: 4,
     title: "Collision Resistance",
     subtitle: "Unique Outputs",
     description:
@@ -61,7 +54,7 @@ export const STAGES: Stage[] = [
     hashType: "collision",
   },
   {
-    id: 6,
+    id: 5,
     title: "Hash Properties",
     subtitle: "Additional Characteristics",
     description:
