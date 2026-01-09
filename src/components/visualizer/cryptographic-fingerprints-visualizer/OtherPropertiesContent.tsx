@@ -80,6 +80,41 @@ export const OtherPropertiesContent = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Zcash context */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="p-6 rounded-xl bg-gradient-to-br from-primary/10 to-pool-orchard/10 border border-primary/30"
+        >
+          <h4 className="font-semibold text-foreground mb-3">
+            Hash Functions in Zcash
+          </h4>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li className="flex items-start gap-2">
+              <span className="text-primary">•</span>
+              <span>
+                <strong className="text-foreground">BLAKE2b</strong> — Primary
+                hash function for speed and security
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-primary">•</span>
+              <span>
+                <strong className="text-foreground">Pedersen Hash</strong> —
+                Used in Sapling for commitments
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-primary">•</span>
+              <span>
+                <strong className="text-foreground">Poseidon</strong> —
+                ZK-friendly hash used in Orchard
+              </span>
+            </li>
+          </ul>
+        </motion.div>
       </div>
     );
 }
