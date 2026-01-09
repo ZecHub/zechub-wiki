@@ -65,7 +65,7 @@ export const OtherPropertiesContent = () => {
 
         {/* Properties grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {properties.slice(1).map((prop, index) => (
+          {properties.map((prop, index) => (
             <motion.div
               key={prop.title}
               initial={{ opacity: 0, y: 20 }}
