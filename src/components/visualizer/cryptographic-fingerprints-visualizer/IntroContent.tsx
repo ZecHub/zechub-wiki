@@ -47,25 +47,7 @@ export const IntroContent = ({ stage }: { stage: Stage }) => {
           <span className="text-xs text-muted-foreground">Orchard</span>
         </motion.div>
       </motion.div>
-
-      {/* Pool preview cards */}
-      {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {pools.map((poolType, index) => (
-          <motion.div
-            key={poolType}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 + index * 0.15 }}
-          >
-            <PoolContainer
-              pool={POOLS[poolType]}
-              isActive={true}
-              isFocused={false}
-              showDetails={false}
-            />
-          </motion.div>
-        ))}
-      </div> */}
+      
     </div>
   );
 };
