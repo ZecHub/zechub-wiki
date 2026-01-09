@@ -33,27 +33,27 @@ export const OtherPropertiesContent = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="p-6 rounded-xl bg-card border border-border"
+          className="p-6 rounded-xl dark:bg-card/40 bg-card/10 dark:border  border-border"
         >
           <h4 className="font-semibold text-foreground mb-4">
             Avalanche Effect Demo
           </h4>
           <div className="space-y-3">
             <div className="flex items-center gap-4 flex-wrap">
-              <code className="px-3 py-2 rounded bg-muted text-sm font-mono">
+              <code className="px-3 py-2 rounded dark:bg-muted bg-muted/10 text-sm font-mono">
                 "Zcash"
               </code>
               <ArrowRight className="w-4 h-4 text-muted-foreground" />
-              <code className="px-3 py-2 rounded bg-primary/10 text-xs font-mono text-primary">
+              <code className="px-3 py-2 rounded dark:bg-primary/10 bg-primary/20 font-extrabold text-xs font-mono text-primary ">
                 9b4e8f2a7c1d3e5b...
               </code>
             </div>
             <div className="flex items-center gap-4 flex-wrap">
-              <code className="px-3 py-2 rounded bg-muted text-sm font-mono">
+              <code className="px-3 py-2 rounded dark:bg-muted bg-muted/10 text-sm font-mono">
                 "Zcas<span className="text-destructive font-bold">H</span>"
               </code>
               <ArrowRight className="w-4 h-4 text-muted-foreground" />
-              <code className="px-3 py-2 rounded bg-destructive/10 text-xs font-mono text-destructive">
+              <code className="px-3 py-2 rounded bg-destructive/10 font-extrabold text-xs font-mono text-destructive">
                 2f7a1c9e4b8d6a3f...
               </code>
             </div>
