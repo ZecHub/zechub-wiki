@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Fingerprint, Hash, Layers, RefreshCw, Shield } from "lucide-react";
 
 // Hash Intro - What is a hash function
-export function HashFunctionContent() {
+export function HashFunctionIntroContent() {
   const icons = [
     {
       icon: Shield,
@@ -18,25 +18,25 @@ export function HashFunctionContent() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-24">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="flex flex-col md:flex-row items-center justify-center gap-6"
+        className="flex flex-col md:flex-row items-center justify-center gap-8"
       >
         {/* Input */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4 }}
-          className="p-6 rounded-xl bg-card border border-border min-w-[200px]"
+          className="p-6 rounded-xl dark:bg-card bg-card/10 dark:border border-border min-w-[240px] min-h-[160px]"
         >
           <div className="flex items-center gap-3 mb-3">
-            <Layers className="w-5 h-5 text-primary" />
+            <Layers className="w-5 h-5 text-primary font-extrabold" />
             <span className="font-medium text-foreground">Any Input</span>
           </div>
-          <div className="space-y-2 text-sm text-muted-foreground">
+          <div className="space-y-2 text-sm dark:text-muted-foreground text-slate-600">
             <p>"Hello World"</p>
             <p>A 10GB file</p>
             <p>An entire blockchain</p>
@@ -53,7 +53,9 @@ export function HashFunctionContent() {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-            className="p-4 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30"
+            className="p-4 rounded-full bg-gradient-to-br dark:from-primary/20 dark:to-primary/5 
+            from-primary/40 to-primary/25
+            border border-primary/30"
           >
             <Hash className="w-8 h-8 text-primary" />
           </motion.div>
@@ -67,13 +69,13 @@ export function HashFunctionContent() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6 }}
-          className="p-6 rounded-xl bg-primary/10 border border-primary/30 min-w-[200px]"
+          className="p-6 rounded-xl bg-primary/5 border border-primary/100 min-w-[240px] min-h-[160px]"
         >
           <div className="flex items-center gap-3 mb-3">
             <Fingerprint className="w-5 h-5 text-primary" />
             <span className="font-medium text-foreground">Fixed Output</span>
           </div>
-          <code className="text-xs font-mono text-primary break-all">
+          <code className="text-xs font-mono font-extrabold text-primary break-all">
             64 characters (256 bits)
           </code>
         </motion.div>
@@ -92,9 +94,9 @@ export function HashFunctionContent() {
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 + idx * 0.1 }}
-            className="p-4 rounded-lg bg-card border border-border"
+            className="p-4 rounded-lg dark:bg-card/40 bg-card/5 dark:border border-border"
           >
-            <itm.icon className="w-5 h-5 text-primary mb-2" />
+            <itm.icon className="w-5 h-5 text-primary mb-2 font-medium" />
             <h4 className="font-medium text-foreground text-sm">{itm.title}</h4>
             <p className="text-xs text-muted-foreground mt-1">{itm.desc}</p>
           </motion.div>
