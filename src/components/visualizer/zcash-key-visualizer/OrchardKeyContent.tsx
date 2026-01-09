@@ -1,0 +1,71 @@
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
+
+export const OrchardKeyContent = () => {
+  const features = [
+    {
+      title: "Unified Addresses",
+      desc: "Single address encodes multiple receivers (transparent, sapling, orchard)",
+    },
+    {
+      title: "Improved Crypto",
+      desc: "Uses Pallas curve instead of Jubjub, with Poseidon hash",
+    },
+    {
+      title: "Action-based",
+      desc: 'Replaces input/output model with unified "actions" for better privacy',
+    },
+    {
+      title: "Forwards Compatible",
+      desc: "Designed to support future protocol upgrades",
+    },
+  ];
+
+  return (
+    <div className="space-y-8">
+      {/* Unified Address explanation */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="p-6 rounded-xl bg-pool-orchard/10 border border-pool-orchard/30"
+      >
+        <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+          <Sparkles className="w-5 h-5 text-pool-orchard" />
+          Unified Addresses (UA)
+        </h4>
+
+        <div className="p-4 rounded-lg bg-card border border-border mb-4">
+          <h5 className="font-medium text-foreground mb-2">Address Format</h5>
+          <code className="px-2 py-1 rounded bg-muted text-sm font-mono break-all">
+            u1...
+          </code>
+          <p className="text-sm text-muted-foreground mt-2">
+            Encodes multiple receiver types in a single address
+          </p>
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
+            <div className="w-3 h-3 rounded-full bg-pool-transparent" />
+            <span className="text-sm text-foreground">
+              Transparent receiver (optional)
+            </span>
+          </div>
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
+            <div className="w-3 h-3 rounded-full bg-pool-sapling" />
+            <span className="text-sm text-foreground">
+              Sapling receiver (optional)
+            </span>
+          </div>
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
+            <div className="w-3 h-3 rounded-full bg-pool-orchard" />
+            <span className="text-sm text-foreground">
+              Orchard receiver (required)
+            </span>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
