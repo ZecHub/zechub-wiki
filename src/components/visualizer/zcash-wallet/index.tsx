@@ -25,6 +25,11 @@ export type WalletInfo = {
   syncSpeed: string;
 };
 
+const noneShieldedWallets = ["Exodus", "SSP", "Trust", "Coinomi", "Vultisig"];
+const noneShieldedSet = new Set(
+  noneShieldedWallets.map((w) => w.toLowerCase())
+);
+
 export const WalletVisualizer = () => {
   const [currentStage, setCurrentStage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -41,12 +46,12 @@ export const WalletVisualizer = () => {
         const data = await res.json();
         const content = atob(data.content);
 
-        const parsedData = parseMarkdown(content).map((d) => {
-          return {
+        const parsedData = parseMarkdown(content)
+          .filter((w) => !noneShieldedSet.has(w.title.toLowerCase()))
+          .map((d) => ({
             ...d,
             devices: d.devices.map((d) => d.toLowerCase()),
-          };
-        });
+          }));
 
         setWallets(parsedData);
       } catch (err) {

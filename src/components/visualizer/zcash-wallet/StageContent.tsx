@@ -91,14 +91,6 @@ export const StageContent = ({
           </div>
         )}
 
-        {/* Stage-specific content */}
-        {/* 
-        {stage.type === "welcome" ? (
-          ""
-        ) : (
-          <div className="mt-24">{renderContent()}</div>
-        )} */}
-
         <div className="mt-24">{renderContent()}</div>
       </motion.div>
     </AnimatePresence>

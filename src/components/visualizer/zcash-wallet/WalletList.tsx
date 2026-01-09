@@ -12,33 +12,12 @@ interface WalletListProps {
 export const WalletList = (props: WalletListProps) => {
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex items-center justify-center gap-3 mb-8"
-      >
-        <div className="p-3 rounded-xl bg-primary/10 border border-primary/30">
-          <Image
-            priority
-            src="/zwallets.png"
-            alt="zwallets icon"
-            width={24}
-            height={24}
-            className="w-8 h-8 "
-          />
-        </div>
-        <h3 className="text-xl font-bold text-foreground">
-          {props.type} Wallets
-        </h3>
-      </motion.div>
-
       {/* Wallet cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xlgrid-cols-4 gap-6">
         {props.wallets.map((wallet, index) => (
           <motion.a
             key={wallet.title}
-            href={wallet.imageUrl}
+            href={wallet.url}
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 30 }}
@@ -47,10 +26,10 @@ export const WalletList = (props: WalletListProps) => {
             whileHover={{ scale: 1.02, y: -5 }}
             className="group block"
           >
-            <div className="h-full p-6 rounded-2xl dark:text-slate-600 bg-card/10 border border-border/50 hover:border-primary/50 transition-all duration-300">
+            <div className="flex flex-col h-full p-6 rounded-2xl dark:text-slate-600 bg-card/10 border border-border/100 hover:border-primary/50 transition-all duration-300">
               {/* Logo placeholder */}
               <div
-                className={`w-16 h-16 rounded-xl bg-gradient-to-br flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                className={`flex flex-row items-center gap-4 rounded-xl bg-gradient-to-br mb-4 `}
               >
                 <Image
                   priority
@@ -58,18 +37,18 @@ export const WalletList = (props: WalletListProps) => {
                   alt={wallet.title}
                   width={64}
                   height={64}
-                  className="w-44 text-pool-transparent"
+                  className="w-24"
                 />
+
+                {/* Wallet name */}
+                <h4 className="flex items-center gap-2 text-lg font-bold text-foreground">
+                  {wallet.title}
+                  <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 " />
+                </h4>
               </div>
 
-              {/* Wallet name */}
-              <h4 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-                {wallet.title}
-                <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-              </h4>
-
               {/* Features */}
-              <div className="space-y-2">
+              <div className="space-y-2 flex-1">
                 {wallet.features.slice(0, 3).map((feature: string) => (
                   <div
                     key={feature}
@@ -82,9 +61,9 @@ export const WalletList = (props: WalletListProps) => {
               </div>
 
               {/* Download hint */}
-              <div className="mt-4 pt-4 border-t border-border/30">
+              <div className="mt-4 pt-4 border-t border-border/30 ">
                 <span className="text-xs text-primary font-medium group-hover:underline">
-                  Download →
+                  Visit -&gt;
                 </span>
               </div>
             </div>
