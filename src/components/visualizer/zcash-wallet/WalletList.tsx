@@ -12,27 +12,6 @@ interface WalletListProps {
 export const WalletList = (props: WalletListProps) => {
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex items-center justify-center gap-3 mb-8"
-      >
-        <div className="p-3 rounded-xl bg-primary/10 border border-primary/30">
-          <Image
-            priority
-            src="/zwallets.png"
-            alt="zwallets icon"
-            width={24}
-            height={24}
-            className="w-8 h-8 "
-          />
-        </div>
-        <h3 className="text-xl font-bold text-foreground">
-          {props.type} Wallets
-        </h3>
-      </motion.div>
-
       {/* Wallet cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {props.wallets.map((wallet, index) => (
