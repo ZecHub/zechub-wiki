@@ -13,7 +13,7 @@ export const WalletList = (props: WalletListProps) => {
   return (
     <div className="space-y-6">
       {/* Wallet cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xlgrid-cols-4 gap-6">
         {props.wallets.map((wallet, index) => (
           <motion.a
             key={wallet.title}
