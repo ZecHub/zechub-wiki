@@ -17,7 +17,7 @@ export const WalletList = (props: WalletListProps) => {
         {props.wallets.map((wallet, index) => (
           <motion.a
             key={wallet.title}
-            href={wallet.imageUrl}
+            href={wallet.url}
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 30 }}
