@@ -62,6 +62,24 @@ export const OtherPropertiesContent = () => {
             </p>
           </div>
         </motion.div>
+
+        {/* Properties grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {properties.slice(1).map((prop, index) => (
+            <motion.div
+              key={prop.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 + index * 0.1 }}
+              className={`p-5 rounded-xl bg-${prop.color}/10 border border-${prop.color}/30`}
+            >
+              <h4 className={`font-semibold text-foreground mb-2`}>
+                {prop.title}
+              </h4>
+              <p className="text-sm text-muted-foreground">{prop.desc}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     );
 }
