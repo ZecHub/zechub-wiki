@@ -21,7 +21,7 @@ export function IntegrityContent() {
             <CheckCircle className="w-6 h-6 text-emerald-500" />
             <h4 className="font-semibold text-foreground">Original Data</h4>
           </div>
-          <div className="p-3 rounded-lg bg-card border border-border mb-3">
+          <div className="p-3 rounded-lg dark:bg-card/40 bg-card/10 dark:border border-border mb-3">
             <code className="text-sm font-mono text-foreground">
               {originalData}
             </code>
@@ -49,7 +49,7 @@ export function IntegrityContent() {
             <XCircle className="w-6 h-6 text-destructive" />
             <h4 className="font-semibold text-foreground">Tampered Data</h4>
           </div>
-          <div className="p-3 rounded-lg bg-card border border-border mb-3">
+          <div className="p-3 rounded-lg dark:bg-card/40 bg-card/10 dark:border border-border mb-3">
             <code className="text-sm font-mono text-foreground">
               {modifiedData.split("").map((char, i) => (
                 <span
@@ -81,31 +81,31 @@ export function IntegrityContent() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="p-6 rounded-xl bg-card border border-border"
+        className="p-6 rounded-xl dark:bg-card/40 bg-card/10 dark:border border-border"
       >
         <h4 className="font-semibold text-foreground mb-4">
           Real-World Applications
         </h4>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div className="p-3 rounded-lg bg-muted/50">
+          <div className="p-3 rounded-lg dark:bg-muted/40 bg-muted/10">
             <span className="font-medium text-foreground">File Downloads</span>
-            <p className="text-muted-foreground text-xs mt-1">
+            <p className="dark:text-muted-foreground text-slate-500 text-xs mt-1">
               Verify files weren&apos;t corrupted or modified
             </p>
           </div>
-          <div className="p-3 rounded-lg bg-muted/50">
+          <div className="p-3 rounded-lg dark:bg-muted/40 bg-muted/10">
             <span className="font-medium text-foreground">
               Blockchain Blocks
             </span>
-            <p className="text-muted-foreground text-xs mt-1">
+            <p className="dark:text-muted-foreground text-slate-500 text-xs mt-1">
               Each block contains hash of previous block
             </p>
           </div>
-          <div className="p-3 rounded-lg bg-muted/50">
+          <div className="p-3 rounded-lg dark:bg-muted/40 bg-muted/10">
             <span className="font-medium text-foreground">
               Digital Signatures
             </span>
-            <p className="text-muted-foreground text-xs mt-1">
+            <p className="dark:text-muted-foreground text-slate-500 text-xs mt-1">
               Sign hash instead of entire document
             </p>
           </div>
