@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Fingerprint } from "lucide-react";
+import { ArrowRight, Fingerprint, XCircle } from "lucide-react";
 
 export const CollisionContent = () => {
+  const collisionsAreDangerous = [
+    "An attacker could substitute a malicious file for a legitimate one",
+    "Digital signatures could be forged",
+    "Blockchain integrity could be compromised",
+  ];
+
   return (
     <div className="space-y-8">
       {/* What is a collision */}
@@ -38,6 +44,28 @@ export const CollisionContent = () => {
             <code className="text-sm font-mono">"Input B"</code>
           </div>
         </div>
+      </motion.div>
+
+      {/* Why it's bad */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="p-6 rounded-xl bg-destructive/10 border border-destructive/30"
+      >
+        <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+          <XCircle className="w-5 h-5 text-destructive" />
+          Why Collisions Are Dangerous
+        </h4>
+
+        <ul className="space-y-2 text-sm text-muted-foreground">
+          {collisionsAreDangerous.map((c, idx) => (
+            <li className="flex items-start gap-2" key={idx}>
+              <span className="text-destructive">.</span>
+              <span>{c}</span>
+            </li>
+          ))}
+        </ul>
       </motion.div>
     </div>
   );
