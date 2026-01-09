@@ -8,12 +8,6 @@ export function IntegrityContent() {
 
   return (
     <div className="space-y-8">
-      {/* <div className="flex items-center gap-3 mb-4">
-        <CheckCircle className="w-6 h-6 text-emerald-500" />
-        <h2 className="text-lg font-semibold text-foreground mb-4 text-center">
-          IntegrityContent
-        </h2>
-      </div> */}
       {/* Original vs Modified comparison */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Original */}
