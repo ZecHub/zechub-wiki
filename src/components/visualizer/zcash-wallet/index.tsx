@@ -26,7 +26,9 @@ export type WalletInfo = {
 };
 
 const noneShieldedWallets = ["Exodus", "SSP", "Trust", "Coinomi", "Vultisig"];
-const noneShieldedSet = new Set(noneShieldedWallets.map((w) => w.toLowerCase()));
+const noneShieldedSet = new Set(
+  noneShieldedWallets.map((w) => w.toLowerCase())
+);
 
 export const WalletVisualizer = () => {
   const [currentStage, setCurrentStage] = useState(0);
@@ -46,12 +48,10 @@ export const WalletVisualizer = () => {
 
         const parsedData = parseMarkdown(content)
           .filter((w) => !noneShieldedSet.has(w.title.toLowerCase()))
-          .map((d) => {
-            return {
-              ...d,
-              devices: d.devices.map((d) => d.toLowerCase()),
-            };
-          });
+          .map((d) => ({
+            ...d,
+            devices: d.devices.map((d) => d.toLowerCase()),
+          }));
 
         setWallets(parsedData);
       } catch (err) {
