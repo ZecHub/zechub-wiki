@@ -15,7 +15,7 @@ export const CollisionContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="p-6 rounded-xl bg-card border border-border"
+        className="p-6 rounded-xl dark:bg-card/40 bg-card/10 dark:border border-border"
       >
         <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
           <Fingerprint className="w-5 h-5 text-primary" />
@@ -26,7 +26,7 @@ export const CollisionContent = () => {
           output.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-          <div className="p-3 rounded-lg bg-muted/50 text-center">
+          <div className="p-3 rounded-lg dark:bg-muted/50 bg-muted/10 text-center">
             <code className="text-sm font-mono">"Input A"</code>
           </div>
           <div className="flex flex-col items-center">
@@ -40,7 +40,7 @@ export const CollisionContent = () => {
               <ArrowRight className="w-4 h-4 text-muted-foreground rotate-180" />
             </div>
           </div>
-          <div className="p-3 rounded-lg bg-muted/50 text-center">
+          <div className="p-3 rounded-lg dark:bg-muted/50 bg-muted/10 text-center">
             <code className="text-sm font-mono">"Input B"</code>
           </div>
         </div>
@@ -91,8 +91,8 @@ export const CollisionContent = () => {
           </div>
           <div>
             <p className="text-muted-foreground mb-2">
-              <span className="text-foreground font-medium">2²⁵⁶</span> operations to find collision
-              outputs
+              <span className="text-foreground font-medium">2²⁵⁶</span>{" "}
+              operations to find collision outputs
             </p>
             <p className="text-muted-foreground">
               Would take billions of years with all computers on Earth
