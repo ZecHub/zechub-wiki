@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Fingerprint, XCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, Fingerprint, XCircle } from "lucide-react";
 
 export const CollisionContent = () => {
   const collisionsAreDangerous = [
@@ -66,6 +66,39 @@ export const CollisionContent = () => {
             </li>
           ))}
         </ul>
+      </motion.div>
+
+      {/* SHA-256 strength */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30"
+      >
+        <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+          <CheckCircle className="w-5 h-5 text-emerald-500" />
+          SHA-256: Collision Resistant
+        </h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <p className="text-muted-foreground mb-2">
+              <span className="text-foreground font-medium">2²⁵⁶</span> possible
+              outputs
+            </p>
+            <p className="text-muted-foreground">
+              That's more than atoms in the observable universe
+            </p>
+          </div>
+          <div>
+            <p className="text-muted-foreground mb-2">
+              <span className="text-foreground font-medium">2²⁵⁶</span> operations to find collision
+              outputs
+            </p>
+            <p className="text-muted-foreground">
+              Would take billions of years with all computers on Earth
+            </p>
+          </div>
+        </div>
       </motion.div>
     </div>
   );
