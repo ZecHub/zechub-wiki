@@ -26,7 +26,7 @@ export const WalletList = (props: WalletListProps) => {
             whileHover={{ scale: 1.02, y: -5 }}
             className="group block"
           >
-            <div className="h-full p-6 rounded-2xl dark:text-slate-600 bg-card/10 border border-border/100 hover:border-primary/50 transition-all duration-300">
+            <div className="flex flex-col h-full p-6 rounded-2xl dark:text-slate-600 bg-card/10 border border-border/100 hover:border-primary/50 transition-all duration-300">
               {/* Logo placeholder */}
               <div
                 className={`flex flex-row items-center gap-4 rounded-xl bg-gradient-to-br mb-4 `}
@@ -48,7 +48,7 @@ export const WalletList = (props: WalletListProps) => {
               </div>
 
               {/* Features */}
-              <div className="space-y-2">
+              <div className="space-y-2 flex-1">
                 {wallet.features.slice(0, 3).map((feature: string) => (
                   <div
                     key={feature}
@@ -61,11 +61,11 @@ export const WalletList = (props: WalletListProps) => {
               </div>
 
               {/* Download hint */}
-              {/* <div className="mt-4 pt-4 border-t border-border/30">
+              <div className="mt-4 pt-4 border-t border-border/30 ">
                 <span className="text-xs text-primary font-medium group-hover:underline">
-                  Download →
+                  Visit -&gt;
                 </span>
-              </div> */}
+              </div>
             </div>
           </motion.a>
         ))}
