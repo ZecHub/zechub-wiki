@@ -93,6 +93,18 @@ export const SoftForkContent = () => {
         </div>
       </motion.div>
 
-
+      {/* Example */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="p-4 rounded-lg bg-muted/50 border border-border"
+      >
+        <span className="text-sm font-medium text-foreground">Example: </span>
+        <span className="text-sm text-muted-foreground">
+          Bitcoin&apos;s SegWit was a soft fork — old nodes saw valid
+          transactions, new nodes enforced additional witness rules.
+        </span>
+      </motion.div>
     </div>
   );}
