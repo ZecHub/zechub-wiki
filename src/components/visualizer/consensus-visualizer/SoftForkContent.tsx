@@ -51,6 +51,48 @@ export const SoftForkContent = () => {
         </div>
       </motion.div>
 
+      {/* Explanation */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="p-6 rounded-xl bg-card border border-border"
+      >
+        <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+          <GitMerge className="w-5 h-5 text-primary" />
+          What is a Soft Fork?
+        </h4>
+        <p className="text-sm text-muted-foreground mb-4">
+          A backward-compatible protocol upgrade. New rules are a{" "}
+          <em>subset</em> of old rules. Upgraded nodes enforce stricter rules,
+          but old nodes still accept new blocks.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-3 rounded-lg bg-emerald-500/10">
+            <CheckCircle className="w-4 h-4 text-emerald-500 mb-2" />
+            <span className="text-sm font-medium text-foreground">
+              Advantages
+            </span>
+            <ul className="mt-2 space-y-1 text-xs text-muted-foreground">
+              <li>• No forced upgrade for all nodes</li>
+              <li>• Maintains network unity</li>
+              <li>• Lower coordination overhead</li>
+            </ul>
+          </div>
+          <div className="p-3 rounded-lg bg-warning/10">
+            <AlertTriangle className="w-4 h-4 text-warning mb-2" />
+            <span className="text-sm font-medium text-foreground">
+              Limitations
+            </span>
+            <ul className="mt-2 space-y-1 text-xs text-muted-foreground">
+              <li>• Can only tighten rules, not relax</li>
+              <li>• Old nodes get reduced security</li>
+              <li>• Complex to implement safely</li>
+            </ul>
+          </div>
+        </div>
+      </motion.div>
+
 
     </div>
   );}
