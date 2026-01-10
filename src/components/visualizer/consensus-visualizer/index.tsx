@@ -76,7 +76,7 @@ export const ConsensusVisualizer = () => {
             <span className="text-xl font-bold text-primary-foreground">Z</span>
           </motion.div>
           <h1 className="text-2xl font-bold text-foreground">
-            Zcash Key Visualizer
+            Zcash Decentralized Consensus
           </h1>
         </div>
         <p className="text-sm text-muted-foreground mt-2">
