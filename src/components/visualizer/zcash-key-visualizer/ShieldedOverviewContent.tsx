@@ -7,8 +7,8 @@ export const ShieldedOverviewContent = () => {
       name: "Sprout",
       era: "2016",
       status: "Deprecated",
-      color: "text-muted-foreground",
-      bgColor: "bg-muted/50",
+      color: "dark:text-muted-foreground",
+      bgColor: "dark:bg-muted/50 bg-muted/20",
     },
     {
       name: "Sapling",
@@ -27,7 +27,7 @@ export const ShieldedOverviewContent = () => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -88,7 +88,7 @@ export const ShieldedOverviewContent = () => {
           >
             <div className="flex items-center justify-center mb-2">
               <h4 className={`font-semibold ${p.color}`}>{p.name}</h4>
-              <span className="text-xs px-2 py-1 rounded-full bg-background/50 text-muted-foreground">
+              <span className="text-xs px-2 py-1 rounded-full dark:bg-background/50 bg-slate-400/10 dark:text-muted-foreground text-muted-foreground">
                 {p.era}
               </span>
             </div>
