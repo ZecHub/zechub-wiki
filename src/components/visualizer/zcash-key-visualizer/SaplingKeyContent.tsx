@@ -44,7 +44,9 @@ export const SaplingKeyContent = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
                 style={{ marginLeft: `${key.level * 16}px` }}
-                className="p-3 rounded-lg bg-card border border-border"
+                className={`p-3 rounded-lg bg-pool-sapling/${
+                  index * 10
+                } border border-border`}
               >
                 <div className="flex items-center justify-between">
                   <span className="font-medium text-foreground text-sm">
@@ -66,16 +68,16 @@ export const SaplingKeyContent = () => {
           transition={{ delay: 0.8 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
-          <div className="p-4 rounded-lg bg-card border border-border">
+          <div className="p-4 rounded-lg dark:bg-card dark:border bg-card/10 border/20 border-border">
             <h5 className="font-medium text-foreground mb-2">Address Format</h5>
-            <code className="px-2 py-1 rounded bg-muted text-sm font-mono">
+            <code className="px-2 py-1 rounded dark:bg-muted bg-muted/20 text-sm font-mono">
               zs1...
             </code>
             <p className="text-sm text-muted-foreground mt-2">
               78 characters, Bech32 encoding
             </p>
           </div>
-          <div className="p-4 rounded-lg bg-card border border-border">
+          <div className="p-4 rounded-lg dark:bg-card dark:border bg-card/10 border/20 border-border">
             <h5 className="font-medium text-foreground mb-2">Key Feature</h5>
             <p className="text-sm text-muted-foreground">
               <strong className="text-foreground">Diversified addresses</strong>{" "}
