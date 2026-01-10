@@ -76,7 +76,7 @@ export const ZcashKeyVisualizer = () => {
             <span className="text-xl font-bold text-primary-foreground">Z</span>
           </motion.div>
           <h1 className="text-2xl font-bold text-foreground">
-            Zcash Pool Visualizer
+            Zcash Key Visualizer
           </h1>
         </div>
         <p className="text-sm text-muted-foreground mt-2">
