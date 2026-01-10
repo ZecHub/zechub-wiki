@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { AlertTriangle, Users } from "lucide-react";
+import { AlertTriangle, Shield, Users } from "lucide-react";
 
 const SybilContent = () => {
   return (
@@ -48,6 +48,35 @@ const SybilContent = () => {
             <span className="text-xs text-destructive">
               1 Attacker (6 fakes)
             </span>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Solution */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="p-6 rounded-xl bg-emerald-500/10 border border-emerald-500/30"
+      >
+        <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+          <Shield className="w-5 h-5 text-emerald-500" />
+          How Zcash Prevents Sybil Attacks
+        </h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-4 rounded-lg bg-card border border-border">
+            <h5 className="font-medium text-foreground mb-2">Proof of Work</h5>
+            <p className="text-sm text-muted-foreground">
+              Mining requires real computational resources. Creating fake
+              identities doesn&apos;t give more voting power — only real work does.
+            </p>
+          </div>
+          <div className="p-4 rounded-lg bg-card border border-border">
+            <h5 className="font-medium text-foreground mb-2">Economic Cost</h5>
+            <p className="text-sm text-muted-foreground">
+              Attacking the network requires massive investment in hardware and
+              electricity, making attacks economically irrational.
+            </p>
           </div>
         </div>
       </motion.div>
