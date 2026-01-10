@@ -22,7 +22,7 @@ export const useIssuanceData = (url: string) => {
         setData(parsed);
         setLoading(false);
       });
-  }, []);
+  }, [url]);
 
   return {data, loading};
 };
