@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { AlertTriangle, Shield, Users } from "lucide-react";
 
-const SybilContent = () => {
+export const SybilContent = () => {
   return (
     <div className="space-y-8">
       {/* What is Sybil attack */}
