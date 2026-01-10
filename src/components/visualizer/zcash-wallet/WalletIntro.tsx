@@ -1,0 +1,98 @@
+import { motion } from "framer-motion";
+import { Layers, Shield, Shuffle, Users, Wallet } from "lucide-react";
+import Image from "next/image";
+
+export const WalletIntro = () => {
+  const features = [
+    {
+      icon: Shield,
+      title: "Shielded Functionality",
+      description:
+        "Send and receive private transactions with zero-knowledge proofs",
+      color: "text-pool-orchard",
+      bg: "bg-pool-orchard/10",
+    },
+    {
+      icon: Layers,
+      title: "Multi-Pool Support",
+      description:
+        "Manage transparent, Sapling, and Orchard addresses in one place",
+      color: "text-pool-sapling",
+      bg: "bg-pool-sapling/10",
+    },
+    {
+      icon: Shuffle,
+      title: "DEX Integration",
+      description:
+        "Some wallets offer built-in exchange features like Near DEX swaps",
+      color: "text-primary",
+      bg: "bg-primary/10",
+    },
+    {
+      icon: Users,
+      title: "Multiple Accounts",
+      description:
+        "Organize funds across different accounts for various purposes",
+      color: "text-pool-transparent",
+      bg: "bg-pool-transparent/10",
+    },
+  ];
+
+  return (
+    <div className="space-y-20">
+      {/* Central wallet icon */}
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="flex justify-center"
+      >
+        <div className="relative">
+          <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30">
+            <Image
+              priority
+              src="/zwallets.png"
+              alt="zwallets icon"
+              width={24}
+              height={24}
+              className="w-8 h-8 text-pool-transparent"
+            />
+          </div>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute -inset-4 border-2 border-dashed border-primary/20 rounded-3xl"
+          />
+        </div>
+      </motion.div>
+
+      {/* Feature grid */}
+      <div id="wallet-features">
+        <h2 className="text-lg font-bold mb-4">Wallet Features</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + index * 0.1 }}
+              className={`p-4 rounded-xl ${feature.bg} border border-white/5`}
+            >
+              <div className="flex items-start gap-3">
+                <feature.icon className={`w-5 h-5 ${feature.color} mt-0.5`} />
+                <div>
+                  <h4 className="font-medium text-foreground mb-1">
+                    {feature.title}
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
