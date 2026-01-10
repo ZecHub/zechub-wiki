@@ -24,7 +24,7 @@ export const TransparentKeyContent = () => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-16">
       {/* Key derivation chain */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
         {keyFlow.map((item, idx) => (
@@ -35,7 +35,7 @@ export const TransparentKeyContent = () => {
             transition={{ delay: 0.3 + idx * 0.15 }}
             className="flex items-center gap-4"
           >
-            <div className="p-4 rounded-xl bg-card border border-border flex flex-col items-center min-w-[140px] ">
+            <div className="p-4 rounded-xl dark:bg-card/40 bg-card/10 dark:border border-border flex flex-col items-center min-w-[140px] ">
               <item.icon className={`w-8 h-8 ${item.color} mb-2`} />
               <h4 className="font-semibold text-foreground text-sm">
                 {item.label}
@@ -78,9 +78,22 @@ export const TransparentKeyContent = () => {
           <li className="flex items-start gap-2">
             <span className="text-pool-transparent">.</span>
             <span>
-              Address prefixes:
-              <code className="bg-muted px-1 rounded">t1</code> (P2PKH) or{" "}
-              <code className="bg-muted px-1 rounded">t3</code> (P2SH)
+              Address prefixes:{" "}
+              <span
+                className="bg-muted/40 px-1 rounded border border-border inline-
+              text-gray-700 dark:text-gray-400"
+              >
+                t1
+              </span>{" "}
+              (P2PKH) or{" "}
+              <span
+                className="bg-muted/40 px-1 rounded
+              border border-border inline-
+              text-gray-700 dark:text-gray-400"
+              >
+                t3
+              </span>{" "}
+              (P2SH)
             </span>
           </li>
           <li className="flex items-start gap-2">
