@@ -13,16 +13,18 @@ interface ComponentBoxProps {
 export const ComponentBox: React.FC<ComponentBoxProps> = ({ id, component, highlighted, compact = false }) => {
   const Icon = component.icon;
   
+  if (!highlighted) return null;
+  
   return (
     <motion.a
       href={component.docs}
       target="_blank"
       rel="noopener noreferrer"
-      className="relative block group"
+      className="relative block group mx-auto"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ 
-        opacity: highlighted ? 1 : 0.4,
-        scale: highlighted ? 1 : 0.95,
+        opacity: 1,
+        scale: 1,
       }}
       whileHover={{ 
         scale: 1.03,
@@ -30,21 +32,22 @@ export const ComponentBox: React.FC<ComponentBoxProps> = ({ id, component, highl
       }}
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
-      <div className={`
+            <div className={`
         relative rounded-lg border-2 cursor-pointer
         bg-gradient-to-br ${component.color}
         ${highlighted ? component.glowColor : ''}
         ${highlighted ? 'border-white/40' : 'border-white/10'}
         backdrop-blur-sm transition-all duration-500
         group-hover:border-white/60
-        overflow-hidden
+        overflow-hidden w-full
+        ${highlighted ? 'max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl' : 'max-w-sm'}
         ${compact 
-          ? 'p-1.5 sm:p-2 md:p-2.5 rounded-lg sm:rounded-xl' 
-          : 'p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl'
+          ? 'p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl' 
+          : 'p-2 sm:p-3 md:p-4 lg:p-5 rounded-lg sm:rounded-xl'
         }
       `}>
-        {/* Animated background glow effect */}
-        <motion.div 
+                {/* Animated background glow effect */}
+          <motion.div 
           animate={{ 
             scale: highlighted ? [1, 1.2, 1] : 1,
             opacity: highlighted ? [0.1, 0.2, 0.1] : 0
