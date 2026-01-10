@@ -1,21 +1,18 @@
+import { HardForkContent } from "./HardForkContent";
 import { IntroContent } from "./IntroContent";
-import { OrchardKeyContent } from "./OrchardKeyContent";
-import { SaplingKeyContent } from "./SaplingKeyContent";
-import { ShieldedOverviewContent } from "./ShieldedOverviewContent";
-import { SproutKeyContent } from "./SproutKeyContent";
-import { TransparentKeyContent } from "./TransparentKeyContent";
+import { NetworkUpgradeContent } from "./NetworkUpgradeContent";
+import { SoftForkContent } from "./SoftForkContent";
+import { SybilContent } from "./SybilContent";
 import { Stage } from "./types";
 
 interface ConsensusContentProps {
   stage: Stage;
 }
 
-
-
 export const ConsensusContent = (props: ConsensusContentProps) => {
-  switch (props.stage.consensusype) {
+  switch (props.stage.consensusType) {
     case "intro":
-      return <ConsensusIntroContent />;
+      return <IntroContent />;
     case "sybil":
       return <SybilContent />;
     case "soft-fork":
