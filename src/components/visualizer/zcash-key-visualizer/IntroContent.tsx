@@ -19,7 +19,7 @@ export const IntroContent = () => {
           transition={{ delay: 0.4 }}
           className="relative"
         >
-          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center">
+          <div className="w-24 h-24 rounded-full bg-gradient-to-br dark:from-primary/20 dark:to-primary/5 border from-primary/30 to-primary/25 dark:border-primary/30 border-primary/80  flex items-center justify-center">
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
