@@ -24,12 +24,12 @@ export const SproutKeyContent = () => {
           </div>
 
           <div className="space-y-4">
-            <div className="p-4 rounded-lg dark:bg-card/90 bg-card/70 border border-border">
+            <div className="p-4 rounded-lg dark:bg-card/90 bg-card/40 border border-border">
               <h5 className="font-medium dark:text-foreground text-slate-200 mb-2">
                 Address Format
               </h5>
               <div className="flex items-center gap-2">
-                <code className="px-2 py-1 rounded dark:bg-muted bg-slate-800 text-sm font-mono text-primary/80">
+                <code className="px-2 py-1 rounded dark:bg-muted bg-slate-600/40 text-sm font-mono text-primary/90">
                   zcU1Cd6zYyzcsAPN4XZ7pxbZCd2VJF...9wphfNsTfuiGN1jQoVN4kGxUR4gux9s
                 </code>
                 <span className="text-sm text-muted-foreground">
