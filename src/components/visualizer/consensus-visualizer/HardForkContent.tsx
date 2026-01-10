@@ -81,6 +81,46 @@ export const HardForkContent = () => {
         </div>
       </motion.div>
 
+      {/* Explanation */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="p-6 rounded-xl bg-card border border-border"
+      >
+        <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+          <GitBranch className="w-5 h-5 text-destructive" />
+          What is a Hard Fork?
+        </h4>
+        <p className="text-sm text-muted-foreground mb-4">
+          A non-backward-compatible change. Old nodes <em>reject</em> new
+          blocks. Without universal upgrade, the chain splits into two separate
+          networks.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-3 rounded-lg bg-emerald-500/10">
+            <CheckCircle className="w-4 h-4 text-emerald-500 mb-2" />
+            <span className="text-sm font-medium text-foreground">
+              Advantages
+            </span>
+            <ul className="mt-2 space-y-1 text-xs text-muted-foreground">
+              <li>• Can add any new feature</li>
+              <li>• Clean protocol upgrades</li>
+              <li>• All nodes on same rules</li>
+            </ul>
+          </div>
+          <div className="p-3 rounded-lg bg-destructive/10">
+            <XCircle className="w-4 h-4 text-destructive mb-2" />
+            <span className="text-sm font-medium text-foreground">Risks</span>
+            <ul className="mt-2 space-y-1 text-xs text-muted-foreground">
+              <li>• Can split the community</li>
+              <li>• Requires coordination</li>
+              <li>• May create competing coins</li>
+            </ul>
+          </div>
+        </div>
+      </motion.div>
+
 
     </div>
   );
