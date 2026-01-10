@@ -20,7 +20,7 @@ export const HardForkContent = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 + i * 0.1 }}
-                className="w-14 h-14 rounded-lg bg-card border border-border flex items-center justify-center"
+                className="w-14 h-14 rounded-lg dark:bg-card/40 bg-slate-100 border dark:border-slate-700 border-slate-300 border-border flex items-center justify-center"
               >
                 <span className="text-xs text-muted-foreground">B{i}</span>
               </motion.div>
@@ -49,7 +49,7 @@ export const HardForkContent = () => {
                 {[4, 5].map((i) => (
                   <div
                     key={i}
-                    className="w-12 h-12 rounded-lg bg-muted/50 border border-border flex items-center justify-center"
+                    className="w-12 h-12 rounded-lg dark:bg-muted/50 bg-muted/20 border dark:border-slate-700 border-slate-300 border-border flex items-center justify-center"
                   >
                     <span className="text-xs text-muted-foreground">B{i}</span>
                   </div>
@@ -86,7 +86,7 @@ export const HardForkContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="p-6 rounded-xl bg-card border border-border"
+        className="p-6 rounded-xl dark:bg-card/40 bg-slate-100 border dark:border-slate-700 border-slate-300 border-border"
       >
         <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
           <GitBranch className="w-5 h-5 text-destructive" />
@@ -126,12 +126,12 @@ export const HardForkContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="p-4 rounded-lg bg-muted/50 border border-border"
+        className="p-4 rounded-lg bg-muted/20 dark:border  dark:border-slate-700 border-slate-300 border border-border"
       >
         <span className="text-sm font-medium text-foreground">
           Famous Hard Forks:{" "}
         </span>
-        <span className="text-sm text-muted-foreground">
+        <span className="text-sm dark:text-muted-foreground text-slate-700">
           Bitcoin Cash (from Bitcoin), Ethereum Classic (from Ethereum)
         </span>
       </motion.div>
