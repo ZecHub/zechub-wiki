@@ -121,7 +121,20 @@ export const HardForkContent = () => {
         </div>
       </motion.div>
 
-
+      {/* Famous examples */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="p-4 rounded-lg bg-muted/50 border border-border"
+      >
+        <span className="text-sm font-medium text-foreground">
+          Famous Hard Forks:{" "}
+        </span>
+        <span className="text-sm text-muted-foreground">
+          Bitcoin Cash (from Bitcoin), Ethereum Classic (from Ethereum)
+        </span>
+      </motion.div>
     </div>
   );
 };
