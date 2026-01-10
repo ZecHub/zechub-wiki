@@ -66,6 +66,29 @@ export const OrchardKeyContent = () => {
           </div>
         </div>
       </motion.div>
+
+      {/* Features grid */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+      >
+        {features.map((feature, index) => (
+          <motion.div
+            key={feature.title}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6 + index * 0.1 }}
+            className="p-4 rounded-lg bg-card border border-border"
+          >
+            <h5 className="font-medium text-pool-orchard mb-1">
+              {feature.title}
+            </h5>
+            <p className="text-sm text-muted-foreground">{feature.desc}</p>
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   );
 };
