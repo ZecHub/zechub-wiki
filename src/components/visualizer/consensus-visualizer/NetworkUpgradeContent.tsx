@@ -75,5 +75,21 @@ export const NetworkUpgradeContent = () => {
           ))}
         </div>
       </motion.div>
+
+      {/* Key difference */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+        className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30"
+      >
+        <p className="text-sm text-center text-muted-foreground">
+          <strong className="text-foreground">Key Difference:</strong> Network
+          upgrades are
+          <em className="text-emerald-500"> planned collaborations</em>, not
+          contentious splits. The community agrees, sets a date, and everyone
+          upgrades together.
+        </p>
+      </motion.div>
     </div>
   );}
