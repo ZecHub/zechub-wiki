@@ -37,25 +37,6 @@ export const IntroContent = () => {
               <Users className="w-4 h-4 text-muted-foreground" />
             </motion.div>
           ))}
-
-          {/* Connecting lines */}
-          <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
-            {[0, 1, 2, 3, 4, 5].map((i) => (
-              <motion.line
-                key={i}
-                x1="50%"
-                y1="50%"
-                x2={`${50 + 40 * Math.cos((i * Math.PI * 2) / 6)}%`}
-                y2={`${50 + 40 * Math.sin((i * Math.PI * 2) / 6)}%`}
-                stroke="currentColor"
-                strokeWidth="1"
-                className="text-border"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.5 }}
-                transition={{ delay: 0.6 + i * 0.05 }}
-              />
-            ))}
-          </svg>
         </div>
       </motion.div>
 
