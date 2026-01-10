@@ -11,10 +11,10 @@ export const IntroContent = () => {
         transition={{ delay: 0.3 }}
         className="relative flex justify-center py-8"
       >
-        <div className="relative w064 h-64">
+        <div className="relative w-64 h-64">
           {/* Central concept */}
 
-          <motion.div className="absolute top-1/2 -translate-x-1/2 -transy-1/2 z-10">
+          <motion.div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
             <div className="p-6 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border-2 border-primary/40">
               <Network className="w-10 h-10 text-primary" />
             </div>
@@ -26,8 +26,8 @@ export const IntroContent = () => {
               key={i}
               className="absolute w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center"
               style={{
-                top: `${50 + (40 * Math.sin(i * Math.PI * 2)) / 6}%`,
-                left: `${50 + (40 * Math.sin(i * Math.PI * 2)) / 6}%`,
+                top: `${50 + 40 * Math.sin((i * Math.PI * 2) / 6)}%`,
+                left: `${50 + 40 * Math.cos((i * Math.PI * 2) / 6)}%`,
                 transform: "translate(-50%, -50%)",
               }}
               initial={{ opacity: 0, scale: 0 }}
