@@ -58,6 +58,31 @@ export const SaplingKeyContent = () => {
             ))}
           </div>
         </motion.div>
+
+        {/* Features */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+        >
+          <div className="p-4 rounded-lg bg-card border border-border">
+            <h5 className="font-medium text-foreground mb-2">Address Format</h5>
+            <code className="px-2 py-1 rounded bg-muted text-sm font-mono">
+              zs1...
+            </code>
+            <p className="text-sm text-muted-foreground mt-2">
+              78 characters, Bech32 encoding
+            </p>
+          </div>
+          <div className="p-4 rounded-lg bg-card border border-border">
+            <h5 className="font-medium text-foreground mb-2">Key Feature</h5>
+            <p className="text-sm text-muted-foreground">
+              <strong className="text-foreground">Diversified addresses</strong>{" "}
+              — Generate unlimited unique addresses from one key
+            </p>
+          </div>
+        </motion.div>
       </div>
     );
 }
