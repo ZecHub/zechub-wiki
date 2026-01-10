@@ -9,7 +9,7 @@ export const SybilContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="p-6 rounded-xl bg-destructive/10 border border-destructive/30"
+        className="p-6 rounded-xl bg-destructive/20 border border-destructive/30"
       >
         <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
           <AlertTriangle className="w-5 h-5 text-destructive" />
@@ -19,7 +19,7 @@ export const SybilContent = () => {
           In a network where voting determines truth, an attacker could create
           millions of fake identities to outvote legitimate participants.
         </p>
-        <div className="flex items-center justify-center gap-4 p-4 rounded-lg bg-card">
+        <div className="flex items-center justify-center gap-4 p-4 rounded-lg dark:bg-card/50 bg-slate-100 dark:border">
           <div className="text-center">
             <div className="flex -space-x-2 justify-center mb-2">
               {[1, 2, 3].map((i) => (
@@ -64,7 +64,7 @@ export const SybilContent = () => {
           How Zcash Prevents Sybil Attacks
         </h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 rounded-lg bg-card border border-border">
+          <div className="p-4 rounded-lg dark:bg-card/40 bg-slate-100 dark:border border border-border">
             <h5 className="font-medium text-foreground mb-2">Proof of Work</h5>
             <p className="text-sm text-muted-foreground">
               Mining requires real computational resources. Creating fake
@@ -72,7 +72,7 @@ export const SybilContent = () => {
               does.
             </p>
           </div>
-          <div className="p-4 rounded-lg bg-card border border-border">
+          <div className="p-4 rounded-lg dark:bg-card/40 bg-slate-100 dark:border border border-border">
             <h5 className="font-medium text-foreground mb-2">Economic Cost</h5>
             <p className="text-sm text-muted-foreground">
               Attacking the network requires massive investment in hardware and
