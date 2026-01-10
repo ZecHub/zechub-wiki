@@ -24,7 +24,7 @@ export const IntroContent = () => {
           {[0, 1, 2, 3, 4, 5].map((i) => (
             <motion.div
               key={i}
-              className="absolute w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center"
+              className="absolute w-10 h-10 rounded-full dark:bg-card bg-slate-100 border border-border flex items-center justify-center"
               style={{
                 top: `${50 + 40 * Math.sin((i * Math.PI * 2) / 6)}%`,
                 left: `${50 + 40 * Math.cos((i * Math.PI * 2) / 6)}%`,
@@ -43,12 +43,12 @@ export const IntroContent = () => {
             {[0, 1, 2, 3, 4, 5].map((i) => (
               <motion.line
                 key={i}
-                x1={"50%"}
-                y1={"50%"}
+                x1="50%"
+                y1="50%"
                 x2={`${50 + 40 * Math.cos((i * Math.PI * 2) / 6)}%`}
-                y2={`${50 + 40 * Math.cos((i * Math.PI * 2) / 6)}%`}
-                stroke={"currentColor"}
-                strokeWidth={1}
+                y2={`${50 + 40 * Math.sin((i * Math.PI * 2) / 6)}%`}
+                stroke="currentColor"
+                strokeWidth="1"
                 className="text-border"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 0.5 }}
@@ -59,12 +59,12 @@ export const IntroContent = () => {
         </div>
       </motion.div>
 
-      {/* Key concept */}
+      {/* Key concepts */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="p-6 rounded-xl bg-card border border-border"
+        className="p-6 rounded-xl dark:bg-card/40 bg-slate-100 dark:border border-border"
       >
         <h4 className="font-semibold text-foreground mb-4">
           What is Decentralized Consensus?
@@ -89,11 +89,13 @@ export const IntroContent = () => {
               desc: "Anyone can verify the protocol",
             },
           ].map((item, i) => (
-            <div key={i} className="p-3 rounded-lg bg-muted/50 text-center">
+            <div key={i} className="p-3 rounded-lg bg-muted/10 text-center">
               <span className="font-medium text-foreground text-sm">
                 {item.title}
               </span>
-              <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
+              <p className="text-xs dark:text-muted-foreground text-slate-500 mt-1">
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>
