@@ -1,9 +1,17 @@
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { RefObject, useEffect, useState } from "react";
+import {
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 type TransactionSummaryDatum = {
   height: number;
@@ -167,13 +175,15 @@ function PrivacySetVisualizationChart({
     <ErrorBoundary fallback="Failed to load privacy set chart">
       <ChartHeader title="Shielded Outputs by Year">
         <button
-          onClick={() => setViewMode(viewMode === "linear" ? "circular" : "linear")}
+          onClick={() =>
+            setViewMode(viewMode === "linear" ? "circular" : "linear")
+          }
           className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors text-sm font-medium"
         >
           Switch to {viewMode === "linear" ? "Circular" : "Linear"} View
         </button>
       </ChartHeader>
-      
+
       <p className="dark:text-slate-400 mt-[-20px] mb-12 text-sm font-light self-start">
         Cumulative count of fully shielded outputs in each pool over time
       </p>
@@ -187,7 +197,11 @@ function PrivacySetVisualizationChart({
             margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
             className="mx-auto"
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" className="dark:stroke-slate-700" />
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke="#e2e8f0"
+              className="dark:stroke-slate-700"
+            />
             <XAxis
               dataKey="year"
               tick={{ fill: "#64748b" }}
@@ -206,7 +220,10 @@ function PrivacySetVisualizationChart({
               }}
             />
             <Tooltip
-              formatter={(value: number) => [formatVal(Number(value)), ""]}
+              formatter={(value) => [
+                value != null ? formatVal(Number(value)) : "",
+                "",
+              ]}
               contentStyle={{
                 backgroundColor: "rgba(255, 255, 255, 0.95)",
                 border: "1px solid #e2e8f0",
@@ -214,10 +231,7 @@ function PrivacySetVisualizationChart({
               }}
               labelStyle={{ fontWeight: "bold" }}
             />
-            <Legend
-              wrapperStyle={{ paddingTop: "20px" }}
-              iconType="line"
-            />
+            <Legend wrapperStyle={{ paddingTop: "20px" }} iconType="line" />
             <Line
               type="monotone"
               dataKey="sapling"
