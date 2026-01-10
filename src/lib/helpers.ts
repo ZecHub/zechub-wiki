@@ -127,7 +127,9 @@ const specialWordsMap = {
   Free2z_Livestreaming : "Free2Z_Livestreaming",
   Avalanche_Redbridge : "Avalanche_RedBridge",
   Raspberry_Pi_4_Full_Node : "Raspberry_Pi_4_Full_Node",
-  Raspberry_Pi_4_Zebra_Node : "Raspberry_pi_4_Zebra_Node"
+  Raspberry_Pi_4_Zebra_Node : "Raspberry_pi_4_Zebra_Node",
+  Coinholder_Directed_Retroactive_Grants : "CoinHolder_Directed_Retroactive_Grants",
+  zkav : 'ZKAV',
 };
 
 export const transformUri = (uri: string, ignoreLowerCase = false) => {
