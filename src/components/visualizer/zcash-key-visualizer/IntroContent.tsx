@@ -57,7 +57,7 @@ export const IntroContent = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
-          className="p-6 rounded-xl bg-card border border-border"
+          className="p-6 rounded-xl dark:bg-card/40 bg-card/10 dark:border border-border"
         >
           <div className="flex items-center gap-4">
             <div className="p-3 rounded-lg bg-primary/10">
