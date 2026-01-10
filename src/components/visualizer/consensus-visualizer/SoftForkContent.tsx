@@ -19,7 +19,7 @@ export const SoftForkContent = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 + i * 0.1 }}
-                className="w-16 h-16 rounded-lg bg-card border border-border flex items-center justify-center"
+                className="w-16 h-16 rounded-lg dark:bg-card/40 bg-slate-100 border dark:border-slate-700 border-slate-300 border-border flex items-center justify-center"
               >
                 <span className="text-xs text-muted-foreground">Block {i}</span>
               </motion.div>
@@ -30,7 +30,7 @@ export const SoftForkContent = () => {
               transition={{ delay: 0.7 }}
               className="w-16 h-16 rounded-lg bg-emerald-500/20 border-2 border-emerald-500 flex items-center justify-center"
             >
-              <span className="text-xs text-emerald-500 font-medium">
+              <span className="text-xs text-emerald-500 font-medium ml-4">
                 New Rules
               </span>
             </motion.div>
@@ -56,7 +56,7 @@ export const SoftForkContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="p-6 rounded-xl bg-card border border-border"
+        className="p-6 rounded-xl dark:bg-card/40 bg-slate-100 dark:border  dark:border-slate-700 border-slate-400 border-border"
       >
         <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
           <GitMerge className="w-5 h-5 text-primary" />
@@ -98,10 +98,10 @@ export const SoftForkContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="p-4 rounded-lg bg-muted/50 border border-border"
+        className="p-4 rounded-lg bg-muted/20 dark:border  dark:border-slate-700 border-slate-300 border-border"
       >
         <span className="text-sm font-medium text-foreground">Example: </span>
-        <span className="text-sm text-muted-foreground">
+        <span className="text-sm dark:text-muted-foreground text-slate-700">
           Bitcoin&apos;s SegWit was a soft fork — old nodes saw valid
           transactions, new nodes enforced additional witness rules.
         </span>
