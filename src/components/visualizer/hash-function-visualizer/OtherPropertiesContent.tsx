@@ -41,7 +41,7 @@ export const OtherPropertiesContent = () => {
           <div className="space-y-3">
             <div className="flex items-center gap-4 flex-wrap">
               <code className="px-3 py-2 rounded dark:bg-muted bg-muted/10 text-sm font-mono">
-                "Zcash"
+                &quot;Zcash&quot;
               </code>
               <ArrowRight className="w-4 h-4 text-muted-foreground" />
               <code className="px-3 py-2 rounded dark:bg-primary/10 bg-primary/20 font-extrabold text-xs font-mono text-primary ">
@@ -50,7 +50,8 @@ export const OtherPropertiesContent = () => {
             </div>
             <div className="flex items-center gap-4 flex-wrap">
               <code className="px-3 py-2 rounded dark:bg-muted bg-muted/10 text-sm font-mono">
-                "Zcas<span className="text-destructive font-bold">H</span>"
+                &quot;Zcas<span className="text-destructive font-bold">H</span>
+                &quot;
               </code>
               <ArrowRight className="w-4 h-4 text-muted-foreground" />
               <code className="px-3 py-2 rounded bg-destructive/10 font-extrabold text-xs font-mono text-destructive">
