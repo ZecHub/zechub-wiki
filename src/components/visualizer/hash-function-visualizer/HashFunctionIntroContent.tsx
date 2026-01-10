@@ -37,7 +37,7 @@ export function HashFunctionIntroContent() {
             <span className="font-medium text-foreground">Any Input</span>
           </div>
           <div className="space-y-2 text-sm dark:text-muted-foreground text-slate-600">
-            <p>"Hello World"</p>
+            <p>&quot;Hello World&quot;</p>
             <p>A 10GB file</p>
             <p>An entire blockchain</p>
           </div>

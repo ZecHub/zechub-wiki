@@ -27,7 +27,7 @@ export const CollisionContent = () => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
           <div className="p-3 rounded-lg dark:bg-muted/50 bg-muted/10 text-center">
-            <code className="text-sm font-mono">"Input A"</code>
+            <code className="text-sm font-mono">&quot;Input A&quot;</code>
           </div>
           <div className="flex flex-col items-center">
             <div className="flex items-center gap-4">
@@ -41,7 +41,7 @@ export const CollisionContent = () => {
             </div>
           </div>
           <div className="p-3 rounded-lg dark:bg-muted/50 bg-muted/10 text-center">
-            <code className="text-sm font-mono">"Input B"</code>
+            <code className="text-sm font-mono">&quot;Input B&quot;</code>
           </div>
         </div>
       </motion.div>
@@ -86,7 +86,7 @@ export const CollisionContent = () => {
               outputs
             </p>
             <p className="text-muted-foreground">
-              That's more than atoms in the observable universe
+              That&apo;s more than atoms in the observable universe
             </p>
           </div>
           <div>
