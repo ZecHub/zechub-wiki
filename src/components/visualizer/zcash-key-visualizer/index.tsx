@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
-import { PlaybackControls } from "../PlaybackControls";
+import { VisualizerFooter } from "../Footer";
 import { StageContent } from "./StageContent";
 import "./index.css";
 import { STAGES } from "./types";
@@ -90,18 +90,17 @@ export const ZcashKeyVisualizer = () => {
       </main>
 
       {/* Controls Footer */}
-      <footer className="border-t border-slate-200 dark:border-slate-600 p-4">
-        <PlaybackControls
-          stages={STAGES}
-          currentStage={currentStage}
-          isPlaying={isPlaying}
-          onNext={goToNext}
-          onRestart={restart}
-          onPause={() => setIsPlaying(false)}
-          onPlay={() => setIsPlaying(true)}
-          onPrevious={goToPrevious}
-        />
-      </footer>
+      <VisualizerFooter
+        stages={STAGES}
+        currentStage={currentStage}
+        isPlaying={isPlaying}
+        onRestart={restart}
+        onPrevious={goToPrevious}
+        goToNext={goToNext}
+        goToPrevious={goToPrevious}
+        onPause={() => setIsPlaying(false)}
+        onPlay={() => setIsPlaying(true)}
+      />
     </div>
   );
 };
