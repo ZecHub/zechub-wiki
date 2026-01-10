@@ -34,9 +34,9 @@ export const NetworkUpgradeContent = () => {
           are agreed upon by the community with activation heights announced in
           advance.
         </p>
-        <div className="flex items-center gap-4 p-3 rounded-lg bg-card">
-          <Lock className="w-5 h-5 text-primary" />
-          <span className="text-sm text-muted-foreground">
+        <div className="flex items-center gap-4 p-3 rounded-lg dark:bg-card bg-card/10">
+          <Lock className="w-5 h-5 text-primary font-semibold" />
+          <span className="text-sm dark:text-muted-foreground text-slate-600">
             Activation height set → Nodes upgrade → Network transitions smoothly
           </span>
         </div>
@@ -47,7 +47,7 @@ export const NetworkUpgradeContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="p-6 rounded-xl bg-card border border-border"
+        className="p-6 rounded-xl dark:bg-card bg-card/10 dark:border border-border"
       >
         <h4 className="font-semibold text-foreground mb-4">
           Zcash Upgrade History
@@ -59,7 +59,7 @@ export const NetworkUpgradeContent = () => {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 + index * 0.05 }}
-              className="flex items-center gap-4 p-2 rounded-lg hover:bg-muted/50 transition-colors"
+              className="flex items-center gap-4 p-2 rounded-lg hover:bg-muted/10 transition-colors"
             >
               <span className="text-xs text-muted-foreground w-12">
                 {upgrade.year}
@@ -68,7 +68,7 @@ export const NetworkUpgradeContent = () => {
               <span className="font-medium text-foreground text-sm flex-1">
                 {upgrade.name}
               </span>
-              <span className="text-xs text-muted-foreground hidden sm:block">
+              <span className="text-xs dark:text-muted-foreground text-slate-600 hidden sm:block">
                 {upgrade.desc}
               </span>
             </motion.div>
