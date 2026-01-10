@@ -28,37 +28,37 @@ export const OrchardKeyContent = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="p-6 rounded-xl bg-pool-orchard/10 border border-pool-orchard/30"
+        className="p-6 rounded-xl dark:bg-pool-orchard/10 bg-pool-orchard/20 border border-pool-orchard/30"
       >
         <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-pool-orchard" />
           Unified Addresses (UA)
         </h4>
 
-        <div className="p-4 rounded-lg bg-card border border-border mb-4">
+        <div className="p-4 rounded-lg dark:bg-card bg-card/10 dark:border border-border mb-4">
           <h5 className="font-medium text-foreground mb-2">Address Format</h5>
-          <code className="px-2 py-1 rounded bg-muted text-sm font-mono break-all">
+          <code className="px-2 py-1 rounded bg-muted/30 text-sm font-mono break-all">
             u1...
           </code>
-          <p className="text-sm text-muted-foreground mt-2">
+          <p className="text-sm dark:text-muted-foreground text-slate-600 mt-2">
             Encodes multiple receiver types in a single address
           </p>
         </div>
 
         <div className="space-y-2">
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
+          <div className="flex items-center gap-3 p-3 rounded-lg dark:bg-background/50 bg-slate-300/40">
             <div className="w-3 h-3 rounded-full bg-pool-transparent" />
             <span className="text-sm text-foreground">
               Transparent receiver (optional)
             </span>
           </div>
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
+          <div className="flex items-center gap-3 p-3 rounded-lg dark:bg-background/50 bg-slate-300/70">
             <div className="w-3 h-3 rounded-full bg-pool-sapling" />
             <span className="text-sm text-foreground">
               Sapling receiver (optional)
             </span>
           </div>
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50">
+          <div className="flex items-center gap-3 p-3 rounded-lg   dark:bg-background/50 bg-slate-300/90">
             <div className="w-3 h-3 rounded-full bg-pool-orchard" />
             <span className="text-sm text-foreground">
               Orchard receiver (required)
@@ -80,7 +80,7 @@ export const OrchardKeyContent = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6 + index * 0.1 }}
-            className="p-4 rounded-lg bg-card border border-border"
+            className="p-4 rounded-lg dark:bg-pool-orchard/10 bg-pool-orchard/10  border border-border"
           >
             <h5 className="font-medium text-pool-orchard mb-1">
               {feature.title}
