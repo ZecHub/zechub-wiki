@@ -41,5 +41,39 @@ export const NetworkUpgradeContent = () => {
           </span>
         </div>
       </motion.div>
+
+      {/* Timeline */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="p-6 rounded-xl bg-card border border-border"
+      >
+        <h4 className="font-semibold text-foreground mb-4">
+          Zcash Upgrade History
+        </h4>
+        <div className="space-y-2">
+          {upgrades.map((upgrade, index) => (
+            <motion.div
+              key={upgrade.name}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6 + index * 0.05 }}
+              className="flex items-center gap-4 p-2 rounded-lg hover:bg-muted/50 transition-colors"
+            >
+              <span className="text-xs text-muted-foreground w-12">
+                {upgrade.year}
+              </span>
+              <div className="w-2 h-2 rounded-full bg-primary" />
+              <span className="font-medium text-foreground text-sm flex-1">
+                {upgrade.name}
+              </span>
+              <span className="text-xs text-muted-foreground hidden sm:block">
+                {upgrade.desc}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </div>
   );}
