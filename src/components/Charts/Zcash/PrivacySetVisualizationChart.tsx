@@ -206,7 +206,7 @@ function PrivacySetVisualizationChart({
               }}
             />
             <Tooltip
-              formatter={(value: number) => [formatVal(value), ""]}
+              formatter={(value: number) => [formatVal(Number(value)), ""]}
               contentStyle={{
                 backgroundColor: "rgba(255, 255, 255, 0.95)",
                 border: "1px solid #e2e8f0",
