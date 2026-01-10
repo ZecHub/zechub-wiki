@@ -68,7 +68,8 @@ const SybilContent = () => {
             <h5 className="font-medium text-foreground mb-2">Proof of Work</h5>
             <p className="text-sm text-muted-foreground">
               Mining requires real computational resources. Creating fake
-              identities doesn&apos;t give more voting power — only real work does.
+              identities doesn&apos;t give more voting power — only real work
+              does.
             </p>
           </div>
           <div className="p-4 rounded-lg bg-card border border-border">
@@ -79,6 +80,20 @@ const SybilContent = () => {
             </p>
           </div>
         </div>
+      </motion.div>
+
+      {/* Key insight */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="p-4 rounded-lg bg-primary/10 border border-primary/30"
+      >
+        <p className="text-sm text-center text-muted-foreground">
+          <strong className="text-foreground">Key Insight:</strong> Sybil
+          resistance ties voting power to <em>scarce resources</em>{" "}
+          (computation, stake) rather than easily-created identities.
+        </p>
       </motion.div>
     </div>
   );
