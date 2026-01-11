@@ -34,7 +34,7 @@ interface VisualizerInfo {
 const VISUALIZERS: VisualizerInfo[] = [
   {
     id: "zcash-wallet",
-    title: "Introduction to Zcash Wallets.",
+    title: "Introduction to Zcash Wallets",
     description: "Providing Shielded Functionality",
     component: WalletVisualizer,
   },
@@ -47,19 +47,19 @@ const VISUALIZERS: VisualizerInfo[] = [
   },
   {
     id: "pool",
-    title: "Pool & Address Visualizer",
+    title: "Pool & Address",
     description: "Explore Zcash privacy pools and address types",
     component: ZcashPoolVisualizer,
   },
   {
     id: "zkproof",
-    title: "zk-SNARK Proof Visualizer",
+    title: "zk-SNARK Proof",
     description: "Interactive demonstration of shielded transactions",
     component: ZKSNARKProofVisualizer,
   },
   {
     id: "infrastructure",
-    title: "Zcash Infrastructure Visualizer",
+    title: "Zcash Infrastructure",
     description: "How Zcash components work together",
     component: ZcashInfrastructureVisualizer,
   },
@@ -235,77 +235,24 @@ export const VisualizerHub: React.FC = () => {
           </motion.div>
         </section>
 
-        <section id='basic' className="mt-24">
+        <section id="basic" className="mt-24">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Display  */}
-            {VISUALIZERS.slice(0, 5).map((visualizer, index) => (
-              <motion.div
-                key={visualizer.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div
-                  onClick={() => goToVisualizer(visualizer.id)}
-                  className="cursor-pointer group"
-                >
-                  <div className="bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-xl p-6 h-full hover:bg-slate-800/70 hover:border-slate-600/50 transition-all duration-300">
-                    <div className="text-center">
-                      <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-yellow-400 transition-colors">
-                        {visualizer.title}
-                      </h3>
-                      <p className="text-slate-300 group-hover:text-slate-200 transition-colors">
-                        {visualizer.description}
-                      </p>
-                      <div className="mt-4 text-yellow-400 group-hover:text-yellow-300 transition-colors">
-                        <span className="text-sm font-medium">
-                          Click to explore →
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+            <VisualizerCard
+              data={VISUALIZERS.slice(0, 5)}
+              goToVisualizer={goToVisualizer}
+            />
+
           </div>
         </section>
 
         <section id="advance" className="mt-24">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Display  */}
-            {VISUALIZERS.slice(5).map((visualizer, index) => (
-              <motion.div
-                key={visualizer.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div
-                  onClick={() => goToVisualizer(visualizer.id)}
-                  className="cursor-pointer group"
-                >
-                  <div className="bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-xl p-6 h-full hover:bg-slate-800/70 hover:border-slate-600/50 transition-all duration-300">
-                    <div className="text-center">
-                      <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-yellow-400 transition-colors">
-                        {visualizer.title}
-                      </h3>
-                      <p className="text-slate-300 group-hover:text-slate-200 transition-colors">
-                        {visualizer.description}
-                      </p>
-                      <div className="mt-4 text-yellow-400 group-hover:text-yellow-300 transition-colors">
-                        <span className="text-sm font-medium">
-                          Click to explore →
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+            <VisualizerCard
+              data={VISUALIZERS.slice(5)}
+              goToVisualizer={goToVisualizer}
+            />
           </div>
         </section>
 
@@ -324,3 +271,41 @@ export const VisualizerHub: React.FC = () => {
     </div>
   );
 };
+
+type CardProps = {
+  data: VisualizerInfo[];
+  goToVisualizer: (id: VisualizerType) => void;
+};
+
+function VisualizerCard(props: CardProps) {
+  return props.data.map((v, index) => (
+    <motion.div
+      key={v.id}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <div
+        onClick={() => props.goToVisualizer(v.id)}
+        className="cursor-pointer group"
+      >
+        <div className="flex flex-col min-h-[240px] bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-xl p-6 h-full hover:bg-slate-800/70 hover:border-slate-600/50 transition-all duration-300">
+          <div className="flex-1 text-center">
+            <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-yellow-400 transition-colors">
+              {v.title}
+            </h3>
+            <p className="text-slate-300 group-hover:text-slate-200 transition-colors">
+              {v.description}
+            </p>
+          </div>
+
+          <div className="text-yellow-400 text-center group-hover:text-yellow-300 transition-colors">
+            <span className="text-sm font-medium">Click to explore →</span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  ));
+}
