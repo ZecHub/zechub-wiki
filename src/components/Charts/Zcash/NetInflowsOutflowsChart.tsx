@@ -102,13 +102,15 @@ export default function NetInflowsOutflowsChart(
           />
 
           <Tooltip
-            formatter={(value: any, name: any, props: any) => [
+            formatter={(value: any, name: any) => [
               typeof value === "number"
                 ? `${value.toLocaleString()} ZEC`
                 : value,
               name === "netSaplingFlow"
                 ? "Net Sapling Flow"
-                : "Net Orchard Flow",
+                : name === "netOrchardFlow"
+                ? "Net Orchard Flow"
+                : name,
             ]}
             labelFormatter={(label) => dateFns.format(new Date(label), "PPP")}
             contentStyle={{
