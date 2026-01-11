@@ -58,6 +58,12 @@ export const OrchardKeyContent = () => {
               Sapling receiver (optional)
             </span>
           </div>
+          <div className="flex items-center gap-3 p-3 rounded-lg dark:bg-background/50 bg-slate-300/70">
+            <div className="w-3 h-3 rounded-full bg-gradient-to-br from-background bg-pool-sapling" />
+            <span className="text-sm text-foreground">
+              Transparent + Sapling receiver (optional)
+            </span>
+          </div>
           <div className="flex items-center gap-3 p-3 rounded-lg   dark:bg-background/50 bg-slate-300/90">
             <div className="w-3 h-3 rounded-full bg-pool-orchard" />
             <span className="text-sm text-foreground">
