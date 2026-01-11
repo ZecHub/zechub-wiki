@@ -137,7 +137,7 @@ const NodeCountChart = (props: NodeCountChartProps) => {
               <circle
                 cx={cx}
                 cy={cy}
-                key={index + cx}
+                key={`node-dot-${index}`}
                 r={4}
                 fill="#3b82f6" // background color
                 stroke="white" // outer ring
