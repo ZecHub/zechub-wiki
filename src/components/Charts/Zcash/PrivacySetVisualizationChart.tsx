@@ -1,18 +1,17 @@
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { RefObject, useEffect, useState } from "react";
-import ChartHeader from "../ChartHeader";
-import ChartContainer from "./ChartContainer";
 import {
-  LineChart,
+  CartesianGrid,
+  Legend,
   Line,
+  LineChart,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
 } from "recharts";
+import ChartHeader from "../ChartHeader";
+import ChartContainer from "./ChartContainer";
 
 type TransactionSummaryDatum = {
   height: number;
@@ -221,8 +220,8 @@ function PrivacySetVisualizationChart({
               }}
             />
             <Tooltip
-              formatter={(value: any) => [
-                value !== undefined ? formatVal(value) : "N/A",
+              formatter={(value) => [
+                value != null ? formatVal(Number(value)) : "",
                 "",
               ]}
               contentStyle={{
