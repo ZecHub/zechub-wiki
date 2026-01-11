@@ -66,7 +66,7 @@ const VISUALIZERS: VisualizerInfo[] = [
   {
     id: "hash-function",
     title: "Hash Functions",
-    description: "Waht is a Hash Function?",
+    description: "What is a Hash Function?",
     component: HashFunctionVisualizer,
   },
   {

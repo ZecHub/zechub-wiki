@@ -3,13 +3,31 @@ import { ArrowUpCircle, Lock } from "lucide-react";
 
 export const NetworkUpgradeContent = () => {
   const upgrades = [
-    { name: 'Sprout', year: '2016', desc: 'Original shielded protocol' },
-    { name: 'Overwinter', year: '2018', desc: 'Transaction format improvements' },
-    { name: 'Sapling', year: '2018', desc: 'Efficient shielded transactions' },
-    { name: 'Blossom', year: '2019', desc: 'Faster block times' },
-    { name: 'Heartwood', year: '2020', desc: 'Shielded coinbase' },
-    { name: 'Canopy', year: '2020', desc: 'Dev fund, deprecate Sprout' },
-    { name: 'NU5 (Orchard)', year: '2022', desc: 'Unified addresses, new proofs' },
+    { name: "Sprout", year: "2016", desc: "Original shielded protocol" },
+    {
+      name: "Overwinter",
+      year: "2018",
+      desc: "Transaction format improvements",
+    },
+    { name: "Sapling", year: "2018", desc: "Efficient shielded transactions" },
+    { name: "Blossom", year: "2019", desc: "Faster block times" },
+    { name: "Heartwood", year: "2020", desc: "Shielded coinbase" },
+    { name: "Canopy", year: "2020", desc: "Dev fund, deprecate Sprout" },
+    {
+      name: "NU5 (Orchard)",
+      year: "2022",
+      desc: "Unified addresses, new proofs",
+    },
+    {
+      name: "NU6 (Orchard)",
+      year: "2024",
+      desc: "Transition to a new, community-driven development funding model",
+    },
+    {
+      name: "NU6.1 (Orchard)",
+      year: "2025",
+      desc: "Eighth major upgrade, enhancing governance, funding transparency, and technical stability and Full migration from legacy C++ node software (zcashd) to Zebrad, a Rust-based implementation.",
+    },
   ];
 
   return (
