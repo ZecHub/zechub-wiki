@@ -10,7 +10,7 @@ import ShieldedSupplyChart from "../ShieldedSupplyChart";
 import TransactionsSummaryChart from "../TransactionSummaryChart";
 import { CardContent } from "@/components/UI/shadcn/card";
 import NodeCountChart from "../NodeCountChart";
-import ShieldedStats from "./ShieldedStats";
+import ShieldedStats from "./ShieldedStatsPro";
 import { HalvingMeter } from "@/components/HalvingMeter/halving-meter";
 import BlockFeesChart from "../BlockFeesChart";
 import NetworkSolpsChart from "../NetworkSolpsChart";
