@@ -260,7 +260,7 @@ export const VisualizerHub: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-12"
+          className="text-center mt-16"
         >
           <p className="text-slate-400 text-sm">
             Each visualizer runs automatically. Use controls to navigate or
