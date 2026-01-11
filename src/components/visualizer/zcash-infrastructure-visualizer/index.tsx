@@ -101,7 +101,7 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
   }
 
   return (
-    <div className="h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
+    <div className="flex flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative">
       {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
@@ -151,49 +151,46 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
         )}
       </motion.button>
 
-      {/* Fixed layout */}
-      <div className="relative z-10 h-full flex flex-col">
-        {/* Fixed Header */}
-        <div className="flex-shrink-0">
-          <Header />
-        </div>
-        
-        {/* Main Content - properly sized */}
-        <main className="flex-1 flex flex-col min-h-0 overflow-hidden">
-          <div className="flex-shrink-0 px-2 sm:px-4 pt-2 sm:pt-3">
-            <StageInfo stage={stage} />
-          </div>
-          <div className="flex-1 min-h-0 overflow-hidden">
-            <InfrastructureDiagram stage={stage} />
-          </div>
-        </main>
+      {/* Header */}
+      <motion.header
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative z-10 py-6 px-4 text-center border-b border-slate-700/50 mt-12"
+      >
+        <Header />
+      </motion.header>
 
-        {/* Fixed Footer */}
-        <div className="flex-shrink-0 border-t border-slate-700/50 bg-slate-900/80 backdrop-blur-xl">
-          <div className="py-2 sm:py-2.5 md:py-3">
-            <Controls
-              currentStage={currentStage}
-              isPlaying={isPlaying}
-              onPlay={() => {
-                setIsPlaying(true);
-                playTransitionSound(440);
-              }}
-              onPause={() => {
-                setIsPlaying(false);
-                playTransitionSound(330);
-              }}
-              onNext={goToNext}
-              onPrevious={goToPrevious}
-              onRestart={restart}
-            />
-            {currentStage === STAGES.length - 1 && (
-              <div className="mt-1.5 sm:mt-2 md:mt-2.5">
-                <Legend />
-              </div>
-            )}
-          </div>
+      {/* Main Content */}
+      <main className="relative z-10 container mx-auto px-2 sm:px-4 py-6 sm:py-8 md:py-13 mt-6 sm:mt-8">
+      <div className="mb-6">
+          <StageInfo stage={stage} />
         </div>
-      </div>
+        <InfrastructureDiagram stage={stage} />
+      </main>
+
+      {/* Controls Footer */}
+      <footer className="relative z-10 border-t border-slate-700/50 bg-slate-900/80 backdrop-blur-xl p-4">
+        <Controls
+          currentStage={currentStage}
+          isPlaying={isPlaying}
+          onPlay={() => {
+            setIsPlaying(true);
+            playTransitionSound(440);
+          }}
+          onPause={() => {
+            setIsPlaying(false);
+            playTransitionSound(330);
+          }}
+          onNext={goToNext}
+          onPrevious={goToPrevious}
+          onRestart={restart}
+        />
+        {currentStage === STAGES.length - 1 && (
+          <div className="mt-4">
+            <Legend />
+          </div>
+        )}
+      </footer>
     </div>
   );
 };

@@ -50,7 +50,8 @@ export default async function Page(props: {
   const content = markdown ? markdown : "No Data or Wrong file";
   if (slug[0] === ".well-known") return null;
 
-  console.log(url);
+  // console.log(url);
+  // console.log(content);
 
   if (markdown) {
     const imgUrl = getBanner(slug[0]);
