@@ -122,7 +122,7 @@ const ZKSNARKProofVisualizer = () => {
   const progress = ((currentStep + 1) / steps.length) * 100;
 
   return (
-    <div className=" min-h-screen py-12 px-6 rounded-sm">
+    <div className=" min-h-screen py-12 px-6 rounded-sm bg-background text-foreground">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Header */}
         <div className="flex items-center justify-center">
@@ -136,7 +136,7 @@ const ZKSNARKProofVisualizer = () => {
         </div>
 
         {/* Progress Bar */}
-        <Card className="bg-slate-700 p-6 space-y-4">
+        <Card className="bg-card p-6 space-y-4">
           <div className="flex items-center justify-between text-sm">
             <span className="font-medium">
               Step {currentStep + 1} of {steps.length}
@@ -151,7 +151,7 @@ const ZKSNARKProofVisualizer = () => {
         {/* Main Visualization Area */}
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Visual Diagram */}
-          <Card className="bg-slate-700 p-8 min-h-[500px] flex items-center justify-center border-primary/20">
+          <Card className="bg-card p-8 min-h-[500px] flex items-center justify-center border-primary/20">
             <AnimatePresence mode="wait">
               <ProofStep
                 key={currentStep}
@@ -162,7 +162,7 @@ const ZKSNARKProofVisualizer = () => {
           </Card>
 
           {/* Explanation Panel */}
-          <Card className="bg-slate-700 p-8 space-y-6 border-secondary/20">
+          <Card className="bg-card p-8 space-y-6 border-secondary/20">
             <motion.div
               key={currentStep}
               initial={{ opacity: 0, x: 20 }}
@@ -209,7 +209,7 @@ const ZKSNARKProofVisualizer = () => {
         </div>
 
         {/* Controls */}
-        <Card className="bg-slate-700 p-6">
+        <Card className="bg-card p-6">
           <div className="flex items-center justify-center gap-4">
             <Button
               variant="outline"

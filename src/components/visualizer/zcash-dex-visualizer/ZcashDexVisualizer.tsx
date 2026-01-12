@@ -47,7 +47,7 @@ const WALLET_INTEGRATIONS = [
 
 export const ZcashDexVisualizer = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white p-4 md:p-8">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-8 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-white">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -58,7 +58,7 @@ export const ZcashDexVisualizer = () => {
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-emerald-400 bg-clip-text text-transparent">
             Zcash Decentralized Exchanges
           </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Permissionless, censorship-resistant access to ZEC using
             decentralized exchanges
           </p>
@@ -69,7 +69,7 @@ export const ZcashDexVisualizer = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-xl p-6 mb-12"
+          className="bg-card/50 backdrop-blur-md border border-border/50 rounded-xl p-6 mb-12"
         >
           <div className="flex items-center gap-4 mb-4">
             <Shield className="w-8 h-8 text-emerald-400" />
@@ -77,7 +77,7 @@ export const ZcashDexVisualizer = () => {
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <p className="text-slate-300 mb-4">
+              <p className="text-muted-foreground mb-4">
                 While Zcash can be purchased on centralized exchanges, DEXs
                 provide
                 <span className="font-semibold text-yellow-400">
@@ -86,7 +86,7 @@ export const ZcashDexVisualizer = () => {
                 </span>
                 to ZEC without intermediaries.
               </p>
-              <p className="text-slate-300">
+              <p className="text-muted-foreground">
                 Swap from multiple assets directly to Zcash with
                 <span className="font-semibold text-emerald-400">
                   {" "}
@@ -145,7 +145,7 @@ export const ZcashDexVisualizer = () => {
                       </div>
                       {dex.name}
                     </CardTitle>
-                    <CardDescription className="text-slate-300">
+                    <CardDescription className="text-muted-foreground">
                       {dex.description}
                     </CardDescription>
                   </CardHeader>
@@ -154,7 +154,7 @@ export const ZcashDexVisualizer = () => {
                       {dex.features.map((feature) => (
                         <li
                           key={feature}
-                          className="flex items-center gap-2 text-slate-300"
+                          className="flex items-center gap-2 text-muted-foreground"
                         >
                           <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                           {feature}
