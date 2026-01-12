@@ -70,7 +70,7 @@ export const IrreversibleContent = () => {
           </h4>
           <p className="text-sm text-muted-foreground">
             Websites store hashes, not passwords. Even if database is stolen,
-            attackers can&apo;t reverse the hashes.
+            attackers can't reverse the hashes.
           </p>
         </div>
         <div className="p-5 rounded-xl bg-primary/10 border border-primary/30">
