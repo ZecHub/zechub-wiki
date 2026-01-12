@@ -1,8 +1,4 @@
-// Key fixes for production stability:
-
-import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
-import { DATA_URL } from "@/lib/chart/data-url";
-import { RefObject, useEffect, useState } from "react";
+import { useEffect, useState, useMemo, RefObject } from "react";
 import {
   LineChart,
   Line,
@@ -18,10 +14,14 @@ import {
   ResponsiveContainer,
   ComposedChart,
 } from "recharts";
-import ChartHeader from "../../ChartHeader";
-import ChartContainer from "../ChartContainer";
+import { DATA_URL } from "@/lib/chart/data-url";
 
-type ZcashData = {
+type ZcashDashboardProps = {
+  chartRef: RefObject<HTMLDivElement | null>;
+};
+
+// Types
+type ZcashRawData = {
   Dates: string;
   Transactions: string;
   Transparent_Transfer_TXs: string;
@@ -44,418 +44,446 @@ type ZcashData = {
   Shielded_Transaction_Percentage: string;
 };
 
-type ShieldedStatsProps = {
-  chartRef: RefObject<HTMLDivElement | null>;
+type ProcessedData = {
+  date: string;
+  transactions: number;
+  transparentTxs: number;
+  saplingTxs: number;
+  orchardTxs: number;
+  totalTransferTxs: number;
+  totalTransparentTxs: number;
+  totalSaplingTxs: number;
+  totalOrchardTxs: number;
+  netSaplingFlow: number;
+  netOrchardFlow: number;
+  totalShieldedSupply: number;
+  totalLockboxSupply: number;
+  zebraNodes: number;
+  zcashdNodes: number;
+  totalNodes: number;
+  closingPrice: number;
+  shieldedMarketCap: number;
+  shieldedPercentage: number;
 };
 
-function ShieldedStats({ chartRef }: ShieldedStatsProps) {
+type TabKey = "transactions" | "price" | "nodes" | "shielded";
+
+// Utility Functions
+const formatValue = (value: number): string => {
+  if (value >= 1e6) return `${(value / 1e6).toFixed(1)}M`;
+  if (value >= 1e3) return `${(value / 1e3).toFixed(1)}K`;
+  return value.toFixed(0);
+};
+
+const formatCurrency = (value: number): string => {
+  if (value >= 1e9) return `$${(value / 1e9).toFixed(2)}B`;
+  if (value >= 1e6) return `$${(value / 1e6).toFixed(1)}M`;
+  return `$${value.toFixed(2)}`;
+};
+
+const formatPercentage = (value: number): string => {
+  return `${(value * 100).toFixed(1)}%`;
+};
+
+const calculateChange = (current: number, previous: number): number => {
+  return previous ? ((current - previous) / previous) * 100 : 0;
+};
+
+const parseNumber = (value: string): number => {
+  const parsed = parseFloat(value);
+  return isNaN(parsed) ? 0 : parsed;
+};
+
+const parseInt10 = (value: string): number => {
+  const parsed = parseInt(value, 10);
+  return isNaN(parsed) ? 0 : parsed;
+};
+
+// Components
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload?.length) return null;
+
+  return (
+    <div className="bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg">
+      <p className="font-semibold text-gray-900 dark:text-white mb-2">
+        {label}
+      </p>
+      {payload.map((entry: any, index: number) => (
+        <p key={index} className="text-sm" style={{ color: entry.color }}>
+          {`${entry.name}: ${formatValue(entry.value)}`}
+        </p>
+      ))}
+    </div>
+  );
+};
+
+const StatCard = ({
+  label,
+  value,
+  change,
+}: {
+  label: string;
+  value: string | number;
+  change: number;
+}) => (
+  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+    <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">{label}</div>
+    <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1 truncate">
+      {value}
+    </div>
+    <div
+      className={`text-sm font-medium ${
+        change >= 0 ? "text-green-600" : "text-red-600"
+      }`}
+    >
+      {change >= 0 ? "+" : ""}
+      {change.toFixed(1)}%
+    </div>
+  </div>
+);
+
+const TabButton = ({
+  active,
+  onClick,
+  label,
+}: {
+  active: boolean;
+  onClick: () => void;
+  label: string;
+}) => (
+  <button
+    onClick={onClick}
+    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+      active
+        ? "bg-blue-600 text-white shadow-md"
+        : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+    }`}
+  >
+    {label}
+  </button>
+);
+
+const ChartWrapper = ({ children }: { children: React.ReactElement }) => (
+  <div className="w-full h-[450px]">
+    <ResponsiveContainer width="100%" height="100%">
+      {children}
+    </ResponsiveContainer>
+  </div>
+);
+
+// Main Component
+export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
+  const [data, setData] = useState<ProcessedData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [chartData, setChartData] = useState<any[]>([]);
-  const [activeTab, setActiveTab] = useState<
-    "transactions" | "price" | "nodes" | "shielded" | "comparison"
-  >("transactions");
+  const [activeTab, setActiveTab] = useState<TabKey>("transactions");
 
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
       try {
-        const res = await fetch(DATA_URL.zcashShieldedStatsUrl);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const raw: ZcashData[] = await res.json();
+        const response = await fetch(DATA_URL.zcashShieldedStatsUrl);
+        if (!response.ok)
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
 
-        const processedData = raw.map((item) => ({
+        const rawData: ZcashRawData[] = await response.json();
+
+        const processed = rawData.map((item) => ({
           date: item.Dates,
-          transactions: parseInt(item.Transactions) || 0,
-          transparentTxs: parseInt(item.Total_Transparent_TXs) || 0,
-          saplingTxs: parseInt(item.Sapling_Transfer_TXs) || 0,
-          orchardTxs: parseInt(item.Orchard_Transfer_TXs) || 0,
-          totalTransferTxs: parseInt(item.Total_Transfer_TXs) || 0,
-          totalTransparentTxs: parseInt(item.Total_Transparent_TXs) || 0,
-          totalSaplingTxs: parseInt(item.Total_Sapling_TXs) || 0,
-          totalOrchardTxs: parseInt(item.Total_Orchard_TXs) || 0,
-          netSaplingFlow: parseFloat(item.Net_Sapling_Flow) || 0,
-          netOrchardFlow: parseFloat(item.Net_Orchard_Flow) || 0,
-          totalShieldedSupply: parseFloat(item.Total_Shielded_Supply) || 0,
-          totalLockboxSupply: parseFloat(item.Total_Lockbox_Supply) || 0,
-          zebraNodes: parseInt(item.Zebra_Nodes) || 0,
-          zcashdNodes: parseInt(item.Zcashd_Nodes) || 0,
-          totalNodes: parseInt(item.Total_Node_Count) || 0,
-          closingPrice: parseFloat(item.Closing_Price) || 0,
-          shieldedMarketCap: parseFloat(item.Shielded_Market_Cap) || 0,
-          shieldedPercentage:
-            parseFloat(item.Shielded_Transaction_Percentage) || 0,
+          transactions: parseInt10(item.Transactions),
+          transparentTxs: parseInt10(item.Total_Transparent_TXs),
+          saplingTxs: parseInt10(item.Sapling_Transfer_TXs),
+          orchardTxs: parseInt10(item.Orchard_Transfer_TXs),
+          totalTransferTxs: parseInt10(item.Total_Transfer_TXs),
+          totalTransparentTxs: parseInt10(item.Total_Transparent_TXs),
+          totalSaplingTxs: parseInt10(item.Total_Sapling_TXs),
+          totalOrchardTxs: parseInt10(item.Total_Orchard_TXs),
+          netSaplingFlow: parseNumber(item.Net_Sapling_Flow),
+          netOrchardFlow: parseNumber(item.Net_Orchard_Flow),
+          totalShieldedSupply: parseNumber(item.Total_Shielded_Supply),
+          totalLockboxSupply: parseNumber(item.Total_Lockbox_Supply),
+          zebraNodes: parseInt10(item.Zebra_Nodes),
+          zcashdNodes: parseInt10(item.Zcashd_Nodes),
+          totalNodes: parseInt10(item.Total_Node_Count),
+          closingPrice: parseNumber(item.Closing_Price),
+          shieldedMarketCap: parseNumber(item.Shielded_Market_Cap),
+          shieldedPercentage: parseNumber(item.Shielded_Transaction_Percentage),
         }));
 
-        setChartData(processedData);
+        setData(processed);
       } catch (err) {
-        setError(err instanceof Error ? err.message : String(err));
+        setError(err instanceof Error ? err.message : "Failed to load data");
       } finally {
         setLoading(false);
       }
-    })();
+    };
+
+    fetchData();
   }, []);
 
-  const formatValue = (value: number) => {
-    if (value >= 1e6) return `${(value / 1e6).toFixed(1)}M`;
-    if (value >= 1e3) return `${(value / 1e3).toFixed(1)}K`;
-    return value.toString();
+  const stats = useMemo(() => {
+    if (data.length < 2) return [];
+
+    const latest = data[data.length - 1];
+    const previous = data[data.length - 2];
+
+    return [
+      {
+        label: "Price",
+        value: formatCurrency(latest.closingPrice),
+        change: calculateChange(latest.closingPrice, previous.closingPrice),
+      },
+      {
+        label: "Total Transactions",
+        value: formatValue(latest.transactions),
+        change: calculateChange(latest.transactions, previous.transactions),
+      },
+      {
+        label: "Shielded TX %",
+        value: formatPercentage(latest.shieldedPercentage),
+        change: calculateChange(
+          latest.shieldedPercentage,
+          previous.shieldedPercentage
+        ),
+      },
+      {
+        label: "Total Nodes",
+        value: latest.totalNodes.toFixed(0),
+        change: calculateChange(latest.totalNodes, previous.totalNodes),
+      },
+    ];
+  }, [data]);
+
+  const commonAxisProps = {
+    stroke: "#64748b",
+    fontSize: 12,
   };
 
-  const formatCurrency = (value: number) => {
-    if (value >= 1e9) return `$${(value / 1e9).toFixed(2)}B`;
-    if (value >= 1e6) return `$${(value / 1e6).toFixed(1)}M`;
-    return `$${value.toFixed(2)}`;
+  const commonXAxisProps = {
+    ...commonAxisProps,
+    dataKey: "date",
+    angle: -45,
+    textAnchor: "end" as const,
+    height: 80,
   };
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg">
-          <p className="font-semibold text-gray-900 dark:text-white mb-2">{`Date: ${label}`}</p>
-          {payload.map((entry: any, index: number) => (
-            <p key={index} className="text-sm" style={{ color: entry.color }}>
-              {`${entry.name}: ${
-                typeof entry.value === "number"
-                  ? formatValue(entry.value)
-                  : entry.value
-              }`}
-            </p>
-          ))}
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-96">
+        <div className="text-gray-600 dark:text-gray-400">
+          Loading Zcash data...
         </div>
-      );
-    }
-    return null;
-  };
+      </div>
+    );
+  }
 
-  // FIX 1: Use consistent height prop (string "100%")
-  const renderTransactionChart = () => (
-    <div className="w-full" style={{ height: "450px" }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <ComposedChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-          <XAxis
-            dataKey="date"
-            stroke="#64748b"
-            fontSize={12}
-            angle={-45}
-            textAnchor="end"
-            height={80}
-          />
-          <YAxis stroke="#64748b" fontSize={12} tickFormatter={formatValue} />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend />
-          <Bar
-            dataKey="transparentTxs"
-            name="Transparent TXs"
-            fill="hsl(var(--chart-1))"
-            opacity={0.8}
-          />
-          <Bar
-            dataKey="saplingTxs"
-            name="Sapling TXs"
-            fill="hsl(var(--chart-2))"
-            opacity={0.8}
-          />
-          <Bar
-            dataKey="orchardTxs"
-            name="Orchard TXs"
-            fill="hsl(var(--chart-3))"
-            opacity={0.8}
-          />
-          <Line
-            type="monotone"
-            dataKey="shieldedPercentage"
-            name="Shielded %"
-            stroke="hsl(var(--chart-5))"
-            strokeWidth={2}
-            yAxisId="right"
-            dot={false}
-          />
-          <YAxis
-            yAxisId="right"
-            orientation="right"
-            tickFormatter={(value) => `${(value * 100).toFixed(1)}%`}
-          />
-        </ComposedChart>
-      </ResponsiveContainer>
-    </div>
-  );
-
-  const renderPriceChart = () => (
-    <div className="w-full" style={{ height: "450px" }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <ComposedChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-          <XAxis
-            dataKey="date"
-            stroke="#64748b"
-            fontSize={12}
-            angle={-45}
-            textAnchor="end"
-            height={80}
-          />
-          <YAxis
-            stroke="#64748b"
-            fontSize={12}
-            tickFormatter={formatCurrency}
-          />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="closingPrice"
-            name="Closing Price"
-            stroke="hsl(var(--chart-1))"
-            strokeWidth={3}
-            dot={false}
-          />
-          <Area
-            dataKey="shieldedMarketCap"
-            name="Shielded Market Cap"
-            fill="hsl(var(--chart-2))"
-            stroke="hsl(var(--chart-2))"
-            fillOpacity={0.3}
-          />
-        </ComposedChart>
-      </ResponsiveContainer>
-    </div>
-  );
-
-  const renderNodeChart = () => (
-    <div className="w-full" style={{ height: "450px" }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <ComposedChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-          <XAxis
-            dataKey="date"
-            stroke="#64748b"
-            fontSize={12}
-            angle={-45}
-            textAnchor="end"
-            height={80}
-          />
-          <YAxis stroke="#64748b" fontSize={12} />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend />
-          <Bar
-            dataKey="zcashdNodes"
-            name="Zcashd Nodes"
-            fill="hsl(var(--chart-1))"
-            opacity={0.8}
-          />
-          <Bar
-            dataKey="zebraNodes"
-            name="Zebra Nodes"
-            fill="hsl(var(--chart-2))"
-            opacity={0.8}
-          />
-          <Line
-            type="monotone"
-            dataKey="totalNodes"
-            name="Total Nodes"
-            stroke="hsl(var(--chart-5))"
-            strokeWidth={2}
-            dot={false}
-          />
-        </ComposedChart>
-      </ResponsiveContainer>
-    </div>
-  );
-
-  const renderShieldedChart = () => (
-    <div className="w-full" style={{ height: "450px" }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <ComposedChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-          <XAxis
-            dataKey="date"
-            stroke="#64748b"
-            fontSize={12}
-            angle={-45}
-            textAnchor="end"
-            height={80}
-          />
-          <YAxis
-            yAxisId="left"
-            stroke="#64748b"
-            fontSize={12}
-            tickFormatter={formatValue}
-            orientation="left"
-          />
-          <YAxis
-            yAxisId="right"
-            orientation="right"
-            stroke="#64748b"
-            fontSize={12}
-            tickFormatter={formatValue}
-          />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend />
-          <Area
-            yAxisId="left"
-            dataKey="totalShieldedSupply"
-            name="Total Shielded Supply"
-            fill="hsl(var(--chart-2))"
-            stroke="hsl(var(--chart-2))"
-            fillOpacity={0.3}
-          />
-          <Line
-            yAxisId="left"
-            type="monotone"
-            dataKey="totalLockboxSupply"
-            name="Total Lockbox Supply"
-            stroke="hsl(var(--chart-5))"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Area
-            yAxisId="right"
-            dataKey="totalTransferTxs"
-            name="Total Transfer TXs"
-            fill="hsl(var(--chart-1))"
-            stroke="hsl(var(--chart-1))"
-            fillOpacity={0.4}
-          />
-          <Area
-            yAxisId="right"
-            dataKey="totalTransparentTxs"
-            name="Total Transparent TXs"
-            fill="hsl(var(--chart-6))"
-            stroke="hsl(var(--chart-6))"
-            fillOpacity={0.4}
-          />
-          <Line
-            yAxisId="right"
-            type="monotone"
-            dataKey="totalSaplingTxs"
-            name="Total Sapling TXs"
-            stroke="hsl(var(--chart-3))"
-            strokeWidth={2}
-            dot={false}
-          />
-          <Line
-            yAxisId="right"
-            type="monotone"
-            dataKey="totalOrchardTxs"
-            name="Total Orchard TXs"
-            stroke="hsl(var(--chart-4))"
-            strokeWidth={2}
-            dot={false}
-          />
-        </ComposedChart>
-      </ResponsiveContainer>
-    </div>
-  );
-
-  const latestData = chartData[chartData.length - 1] || {};
-  const previousData = chartData[chartData.length - 2] || {};
-
-  const calculateChange = (current: number, previous: number) => {
-    return previous ? ((current - previous) / previous) * 100 : 0;
-  };
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-96">
+        <div className="text-red-600 dark:text-red-400">Error: {error}</div>
+      </div>
+    );
+  }
 
   return (
-    <ErrorBoundary fallback="Failed to load Zcash dashboard">
-      <ChartHeader title="Zcash Network Analytics"></ChartHeader>
-      <p className="dark:text-slate-400 mt-[-20] mb-2 text-sm font-light self-start">
-        Comprehensive overview of Zcash network metrics and performance
-        indicators
-      </p>
+    <div ref={chartRef} className="w-full max-w-7xl mx-auto p-6 space-y-6">
+      {/* Header */}
+      <div>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Zcash Network Analytics
+        </h1>
+        <p className="text-gray-600 dark:text-gray-400">
+          Comprehensive overview of Zcash network metrics and performance
+          indicators
+        </p>
+      </div>
 
-      <ChartContainer ref={chartRef} loading={loading} height="auto">
-        <div className="w-full">
-          {/* FIX 2: Use consistent grid with min-width to prevent collapse */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            {[
-              {
-                label: "Price",
-                value: formatCurrency(latestData.closingPrice || 0),
-                change: calculateChange(
-                  latestData.closingPrice || 0,
-                  previousData.closingPrice || 0
-                ),
-              },
-              {
-                label: "Total Transactions",
-                value: formatValue(latestData.transactions || 0),
-                change: calculateChange(
-                  latestData.transactions || 0,
-                  previousData.transactions || 0
-                ),
-              },
-              {
-                label: "Shielded TX %",
-                value: `${((latestData.shieldedPercentage || 0) * 100).toFixed(
-                  1
-                )}%`,
-                change: calculateChange(
-                  latestData.shieldedPercentage || 0,
-                  previousData.shieldedPercentage || 0
-                ),
-              },
-              {
-                label: "Total Nodes",
-                value: latestData.totalNodes || 0,
-                change: calculateChange(
-                  latestData.totalNodes || 0,
-                  previousData.totalNodes || 0
-                ),
-              },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 min-w-0"
-              >
-                <div className="text-sm text-gray-600 dark:text-gray-400 truncate">
-                  {stat.label}
-                </div>
-                <div className="text-2xl font-bold text-gray-900 dark:text-white truncate">
-                  {stat.value}
-                </div>
-                <div
-                  className={`text-sm ${
-                    stat.change > 0 ? "text-green-600" : "text-red-600"
-                  }`}
-                >
-                  {stat.change.toFixed(1)}%
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* Stats Grid */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {stats.map((stat, index) => (
+          <StatCard key={index} {...stat} />
+        ))}
+      </div>
 
-          {/* FIX 3: Use grid instead of flex-wrap for consistent layout */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
-            {[
-              { key: "transactions", label: "Transactions" },
-              { key: "price", label: "Price & Market Cap" },
-              { key: "nodes", label: "Network Nodes" },
-              { key: "shielded", label: "Shielded Metrics" },
-            ].map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key as any)}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${
-                  activeTab === tab.key
-                    ? "bg-blue-500 text-white"
-                    : "text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+      {/* Tabs */}
+      <div className="flex flex-wrap gap-2">
+        {[
+          { key: "transactions" as TabKey, label: "Transactions" },
+          { key: "price" as TabKey, label: "Price & Market Cap" },
+          { key: "nodes" as TabKey, label: "Network Nodes" },
+          { key: "shielded" as TabKey, label: "Shielded Metrics" },
+        ].map((tab) => (
+          <TabButton
+            key={tab.key}
+            active={activeTab === tab.key}
+            onClick={() => setActiveTab(tab.key)}
+            label={tab.label}
+          />
+        ))}
+      </div>
 
-          {/* FIX 4: Fixed height container for chart area */}
-          <div className="bg-white dark:bg-gray-900 p-2 md:p-6 rounded-lg border border-gray-200 dark:border-gray-700">
-            {activeTab === "transactions" && renderTransactionChart()}
-            {activeTab === "price" && renderPriceChart()}
-            {activeTab === "nodes" && renderNodeChart()}
-            {activeTab === "shielded" && renderShieldedChart()}
-          </div>
-        </div>
-      </ChartContainer>
-    </ErrorBoundary>
+      {/* Chart Container */}
+      <div className="bg-white dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+        {activeTab === "transactions" && (
+          <ChartWrapper>
+            <ComposedChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis {...commonXAxisProps} />
+              <YAxis {...commonAxisProps} tickFormatter={formatValue} />
+              <YAxis
+                yAxisId="right"
+                orientation="right"
+                {...commonAxisProps}
+                tickFormatter={formatPercentage}
+              />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+              <Bar
+                dataKey="transparentTxs"
+                name="Transparent"
+                fill="#3b82f6"
+                opacity={0.8}
+              />
+              <Bar
+                dataKey="saplingTxs"
+                name="Sapling"
+                fill="#10b981"
+                opacity={0.8}
+              />
+              <Bar
+                dataKey="orchardTxs"
+                name="Orchard"
+                fill="#8b5cf6"
+                opacity={0.8}
+              />
+              <Line
+                type="monotone"
+                dataKey="shieldedPercentage"
+                name="Shielded %"
+                stroke="#f59e0b"
+                strokeWidth={3}
+                yAxisId="right"
+                dot={false}
+              />
+            </ComposedChart>
+          </ChartWrapper>
+        )}
+
+        {activeTab === "price" && (
+          <ChartWrapper>
+            <ComposedChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis {...commonXAxisProps} />
+              <YAxis {...commonAxisProps} tickFormatter={formatCurrency} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+              <Area
+                dataKey="shieldedMarketCap"
+                name="Shielded Market Cap"
+                fill="#3b82f6"
+                stroke="#3b82f6"
+                fillOpacity={0.2}
+              />
+              <Line
+                type="monotone"
+                dataKey="closingPrice"
+                name="Closing Price"
+                stroke="#10b981"
+                strokeWidth={3}
+                dot={false}
+              />
+            </ComposedChart>
+          </ChartWrapper>
+        )}
+
+        {activeTab === "nodes" && (
+          <ChartWrapper>
+            <ComposedChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis {...commonXAxisProps} />
+              <YAxis {...commonAxisProps} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+              <Bar
+                dataKey="zcashdNodes"
+                name="Zcashd Nodes"
+                fill="#3b82f6"
+                opacity={0.8}
+              />
+              <Bar
+                dataKey="zebraNodes"
+                name="Zebra Nodes"
+                fill="#10b981"
+                opacity={0.8}
+              />
+              <Line
+                type="monotone"
+                dataKey="totalNodes"
+                name="Total Nodes"
+                stroke="#f59e0b"
+                strokeWidth={3}
+                dot={false}
+              />
+            </ComposedChart>
+          </ChartWrapper>
+        )}
+
+        {activeTab === "shielded" && (
+          <ChartWrapper>
+            <ComposedChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis {...commonXAxisProps} />
+              <YAxis
+                yAxisId="left"
+                {...commonAxisProps}
+                tickFormatter={formatValue}
+              />
+              <YAxis
+                yAxisId="right"
+                orientation="right"
+                {...commonAxisProps}
+                tickFormatter={formatValue}
+              />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+              <Area
+                yAxisId="left"
+                dataKey="totalShieldedSupply"
+                name="Shielded Supply"
+                fill="#3b82f6"
+                stroke="#3b82f6"
+                fillOpacity={0.2}
+              />
+              <Line
+                yAxisId="left"
+                type="monotone"
+                dataKey="totalLockboxSupply"
+                name="Lockbox Supply"
+                stroke="#8b5cf6"
+                strokeWidth={2}
+                dot={false}
+              />
+              <Line
+                yAxisId="right"
+                type="monotone"
+                dataKey="totalSaplingTxs"
+                name="Sapling TXs"
+                stroke="#10b981"
+                strokeWidth={2}
+                dot={false}
+              />
+              <Line
+                yAxisId="right"
+                type="monotone"
+                dataKey="totalOrchardTxs"
+                name="Orchard TXs"
+                stroke="#f59e0b"
+                strokeWidth={2}
+                dot={false}
+              />
+            </ComposedChart>
+          </ChartWrapper>
+        )}
+      </div>
+    </div>
   );
 }
-
-export default ShieldedStats;
