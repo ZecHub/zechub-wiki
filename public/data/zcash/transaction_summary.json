@@ -21715,5 +21715,32 @@
     "orchard_filter": 1845,
     "transactions": 2032,
     "transactions_filter": 2032
+  },
+  {
+    "height": 3199104,
+    "sapling": 180,
+    "sapling_filter": 180,
+    "orchard": 1263,
+    "orchard_filter": 1263,
+    "transactions": 1411,
+    "transactions_filter": 1411
+  },
+  {
+    "height": 3200256,
+    "sapling": 174,
+    "sapling_filter": 174,
+    "orchard": 1223,
+    "orchard_filter": 1223,
+    "transactions": 1368,
+    "transactions_filter": 1368
+  },
+  {
+    "height": 3201408,
+    "sapling": 204,
+    "sapling_filter": 204,
+    "orchard": 975,
+    "orchard_filter": 974,
+    "transactions": 1146,
+    "transactions_filter": 1145
   }
 ]

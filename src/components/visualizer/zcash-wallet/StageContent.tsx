@@ -91,7 +91,7 @@ export const StageContent = ({
           </div>
         )}
 
-        <div className="mt-24">{renderContent()}</div>
+        <div className="mt-6">{renderContent()}</div>
       </motion.div>
     </AnimatePresence>
   );

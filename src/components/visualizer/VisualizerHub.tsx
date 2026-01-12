@@ -4,11 +4,14 @@ import { Button } from "@/components/UI/shadcn/button";
 import { motion } from "framer-motion";
 import { Home, Pause, Play } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
-import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
-import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
-import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
+import { ConsensusVisualizer } from "./consensus-visualizer";
+import { HashFunctionVisualizer } from "./hash-function-visualizer";
 import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
+import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
+import { ZcashKeyVisualizer } from "./zcash-key-visualizer";
+import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
 import { WalletVisualizer } from "./zcash-wallet";
+import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
 
 type VisualizerType =
   | "welcome"
@@ -16,7 +19,10 @@ type VisualizerType =
   | "zkproof"
   | "infrastructure"
   | "zcash-wallet"
-  |"zcash-dex";
+  | "zcash-dex"
+  | "hash-function"
+  | "consensus"
+  | "zcash-key";
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -28,11 +34,11 @@ interface VisualizerInfo {
 const VISUALIZERS: VisualizerInfo[] = [
   {
     id: "zcash-wallet",
-    title: "Introduction to Zcash Wallets.",
+    title: "Introduction to Zcash Wallets",
     description: "Providing Shielded Functionality",
     component: WalletVisualizer,
   },
-   {
+  {
     id: "zcash-dex",
     title: "Zcash Exchanges (DEX)",
     description:
@@ -41,23 +47,40 @@ const VISUALIZERS: VisualizerInfo[] = [
   },
   {
     id: "pool",
-    title: "Pool & Address Visualizer",
+    title: "Pool & Address",
     description: "Explore Zcash privacy pools and address types",
     component: ZcashPoolVisualizer,
   },
   {
     id: "zkproof",
-    title: "zk-SNARK Proof Visualizer",
+    title: "zk-SNARK Proof",
     description: "Interactive demonstration of shielded transactions",
     component: ZKSNARKProofVisualizer,
   },
   {
     id: "infrastructure",
-    title: "Zcash Infrastructure Visualizer",
+    title: "Zcash Infrastructure",
     description: "How Zcash components work together",
     component: ZcashInfrastructureVisualizer,
   },
-  
+  {
+    id: "hash-function",
+    title: "Hash Functions",
+    description: "What is a Hash Function?",
+    component: HashFunctionVisualizer,
+  },
+  {
+    id: "zcash-key",
+    title: "Zcash keys",
+    description: "Understanding Zcash Keys",
+    component: ZcashKeyVisualizer,
+  },
+  {
+    id: "consensus",
+    title: "Consensus",
+    description: "How do thousands of nodes agree?",
+    component: ConsensusVisualizer,
+  },
 ];
 
 export const VisualizerHub: React.FC = () => {
@@ -178,77 +201,66 @@ export const VisualizerHub: React.FC = () => {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-            Zcash Visualizers
-          </h1>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Interactive educational tools to understand Zcash privacy
-            technology, infrastructure, and zero-knowledge proofs
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex justify-center mb-8"
-        >
-          <Button
-            onClick={startPlayAll}
-            size="lg"
-            className="bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 text-slate-900 shadow-[0_0_40px_rgba(251,191,36,0.5)] hover:shadow-[0_0_60px_rgba(251,191,36,0.7)] transition-all px-8 py-3 text-lg font-semibold"
+      <div className="relative z-10 container mx-auto px-4 flex flex-col  py-12">
+        <section>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
           >
-            <Play className="w-5 h-5 mr-2" />
-            Play All Visualizers
-          </Button>
-        </motion.div>
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+              Zcash Visualizers
+            </h1>
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+              Interactive educational tools to understand Zcash privacy
+              technology, infrastructure, and zero-knowledge proofs
+            </p>
+          </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {VISUALIZERS.map((visualizer, index) => (
-            <motion.div
-              key={visualizer.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex justify-center mb-8"
+          >
+            <Button
+              onClick={startPlayAll}
+              size="lg"
+              className="bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 text-slate-900 shadow-[0_0_40px_rgba(251,191,36,0.5)] hover:shadow-[0_0_60px_rgba(251,191,36,0.7)] transition-all px-8 py-3 text-lg font-semibold"
             >
-              <div
-                onClick={() => goToVisualizer(visualizer.id)}
-                className="cursor-pointer group"
-              >
-                <div className="bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-xl p-6 h-full hover:bg-slate-800/70 hover:border-slate-600/50 transition-all duration-300">
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-yellow-400 transition-colors">
-                      {visualizer.title}
-                    </h3>
-                    <p className="text-slate-300 group-hover:text-slate-200 transition-colors">
-                      {visualizer.description}
-                    </p>
-                    <div className="mt-4 text-yellow-400 group-hover:text-yellow-300 transition-colors">
-                      <span className="text-sm font-medium">
-                        Click to explore →
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              <Play className="w-5 h-5 mr-2" />
+              Play All Visualizers
+            </Button>
+          </motion.div>
+        </section>
+
+        <section id="basic" className="mt-24">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Display  */}
+            <VisualizerCard
+              data={VISUALIZERS.slice(0, 5)}
+              goToVisualizer={goToVisualizer}
+            />
+
+          </div>
+        </section>
+
+        <section id="advance" className="mt-24">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Display  */}
+            <VisualizerCard
+              data={VISUALIZERS.slice(5)}
+              goToVisualizer={goToVisualizer}
+            />
+          </div>
+        </section>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-12"
+          className="text-center mt-16"
         >
           <p className="text-slate-400 text-sm">
             Each visualizer runs automatically. Use controls to navigate or
@@ -259,3 +271,41 @@ export const VisualizerHub: React.FC = () => {
     </div>
   );
 };
+
+type CardProps = {
+  data: VisualizerInfo[];
+  goToVisualizer: (id: VisualizerType) => void;
+};
+
+function VisualizerCard(props: CardProps) {
+  return props.data.map((v, index) => (
+    <motion.div
+      key={v.id}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <div
+        onClick={() => props.goToVisualizer(v.id)}
+        className="cursor-pointer group"
+      >
+        <div className="flex flex-col min-h-[240px] bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-xl p-6 h-full hover:bg-slate-800/70 hover:border-slate-600/50 transition-all duration-300">
+          <div className="flex-1 text-center">
+            <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-yellow-400 transition-colors">
+              {v.title}
+            </h3>
+            <p className="text-slate-300 group-hover:text-slate-200 transition-colors">
+              {v.description}
+            </p>
+          </div>
+
+          <div className="text-yellow-400 text-center group-hover:text-yellow-300 transition-colors">
+            <span className="text-sm font-medium">Click to explore →</span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  ));
+}
