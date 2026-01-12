@@ -102,7 +102,7 @@ export const IntroContent = () => {
 
           <p className="text-sm text-muted-foreground">
             Complex key hierarchy with spending keys, viewing keys, and
-            diversified addresses fro maximum privacy.
+            diversified addresses for maximum privacy.
           </p>
         </div>
       </motion.div>
