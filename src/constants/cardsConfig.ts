@@ -2,7 +2,7 @@ export const cardsConfig = [
     {
       title: 'Start Here',
       content: 'Find out what Zcash is and ZEC use cases',
-      url: 'zechub.wiki/visualizer',
+      url: 'visualizer',
       image: '/LearnZcash.png'
     },
     {
