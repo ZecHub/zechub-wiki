@@ -52,9 +52,9 @@ export const ShieldedOverviewContent = () => {
           <div className="flex items-center gap-3 p-3 rounded-lg bg-warning/10 border border-warning/30 ml-4">
             <Eye className="w-5 h-5 text-primary" />
             <div>
-              <span className="font-medium text-foreground">Spending Key</span>
+              <span className="font-medium text-foreground">Full Viewing Key</span>
               <span className="text-sm text-muted-foreground ml-2">
-                - Full control, can spend funds
+                - View incoming and outgoing, no spending authority
               </span>
             </div>
           </div>
@@ -65,7 +65,7 @@ export const ShieldedOverviewContent = () => {
                 Incoming Viewing Key
               </span>
               <span className="text-sm text-muted-foreground ml-2">
-                - View incoming only
+                - View incoming only, no spending authority
               </span>
             </div>
           </div>
