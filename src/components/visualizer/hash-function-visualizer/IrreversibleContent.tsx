@@ -80,7 +80,7 @@ export const IrreversibleContent = () => {
           </h4>
           <p className="text-sm text-muted-foreground">
             Commit to a value by publishing its hash. Reveal later — others can
-            verify you haven&apo;t changed it.
+            verify you haven't changed it.
           </p>
         </div>
       </motion.div>
