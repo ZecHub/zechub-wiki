@@ -70,7 +70,7 @@ export const IrreversibleContent = () => {
           </h4>
           <p className="text-sm text-muted-foreground">
             Websites store hashes, not passwords. Even if database is stolen,
-            attackers can't reverse the hashes.
+            attackers cannot reverse the hashes.
           </p>
         </div>
         <div className="p-5 rounded-xl bg-primary/10 border border-primary/30">
@@ -80,7 +80,7 @@ export const IrreversibleContent = () => {
           </h4>
           <p className="text-sm text-muted-foreground">
             Commit to a value by publishing its hash. Reveal later — others can
-            verify you haven't changed it.
+            verify you have not changed it.
           </p>
         </div>
       </motion.div>
