@@ -86,7 +86,7 @@ export const CollisionContent = () => {
               outputs
             </p>
             <p className="text-muted-foreground">
-              That&apo;s more than atoms in the observable universe
+              That is more atoms than exist in the observable universe
             </p>
           </div>
           <div>
