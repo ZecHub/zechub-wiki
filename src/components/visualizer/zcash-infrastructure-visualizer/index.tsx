@@ -101,7 +101,7 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative">
+    <div className="flex flex-col bg-background text-foreground dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-white relative">
       {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
@@ -141,11 +141,11 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsMuted(!isMuted)}
-        className="fixed top-2 right-2 md:top-4 md:right-4 z-50 p-2 md:p-3 rounded-full bg-slate-800/80 backdrop-blur-md border border-slate-700/50 hover:bg-slate-700/80 transition-all shadow-lg"
+        className="fixed top-2 right-2 md:top-4 md:right-4 z-50 p-2 md:p-3 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/80 transition-all shadow-lg"
         aria-label={isMuted ? "Unmute" : "Mute"}
       >
         {isMuted ? (
-          <VolumeX className="w-4 h-4 md:w-5 md:h-5 text-slate-400" />
+          <VolumeX className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground" />
         ) : (
           <Volume2 className="w-4 h-4 md:w-5 md:h-5 text-yellow-400" />
         )}
@@ -155,7 +155,7 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 py-6 px-4 text-center border-b border-slate-700/50 mt-12"
+        className="relative z-10 py-6 px-4 text-center border-b border-border/50 mt-12"
       >
         <Header />
       </motion.header>
@@ -169,7 +169,7 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
       </main>
 
       {/* Controls Footer */}
-      <footer className="relative z-10 border-t border-slate-700/50 bg-slate-900/80 backdrop-blur-xl p-4">
+      <footer className="relative z-10 border-t border-border/50 bg-card/80 backdrop-blur-xl p-4">
         <Controls
           currentStage={currentStage}
           isPlaying={isPlaying}

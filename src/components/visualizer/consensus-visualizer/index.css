@@ -6,40 +6,40 @@
 
 @layer base {
     :root {
-        /* --background: 220 20% 7%;
-        --foreground: 45 100% 96%; */
+        --background: 0 0% 100%;
+        --foreground: 0 0% 0%;
 
-        --card: 220 18% 10%;
-        --card-foreground: 45 100% 96%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 0%;
 
-        --popover: 220 18% 10%;
-        --popover-foreground: 45 100% 96%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 0%;
 
         --primary: 43 89% 56%;
-        --primary-foreground: 220 20% 7%;
+        --primary-foreground: 0 0% 100%;
 
-        --secondary: 220 15% 15%;
-        --secondary-foreground: 45 100% 96%;
+        --secondary: 210 40% 96%;
+        --secondary-foreground: 222 47% 4%;
 
-        --muted: 220 15% 18%;
-        --muted-foreground: 220 10% 60%;
+        --muted: 210 40% 96%;
+        --muted-foreground: 215 16% 47%;
 
-        --accent: 43 89% 56%;
-        --accent-foreground: 220 20% 7%;
+        --accent: 210 40% 96%;
+        --accent-foreground: 222 47% 4%;
 
-        --destructive: 0 72% 51%;
-        --destructive-foreground: 45 100% 96%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 210 40% 98%;
 
-        --border: 220 15% 20%;
-        --input: 220 15% 15%;
+        --border: 214 32% 91%;
+        --input: 214 32% 91%;
         --ring: 43 89% 56%;
 
         --radius: 0.75rem;
 /* Zcash specific colors */
     --zcash-gold: 43 89% 56%;
     --zcash-gold-glow: 43 100% 65%;
-    --zcash-dark: 220 20% 7%;
-    --zcash-dark-lighter: 220 18% 12%;
+    --zcash-dark: 0 0% 0%;
+    --zcash-dark-lighter: 0 0% 10%;
 
     /* Pool colors */
     --pool-transparent: 200 80% 50%;

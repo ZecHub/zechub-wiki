@@ -138,10 +138,10 @@ export const VisualizerHub: React.FC = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5 }}
           onClick={goHome}
-          className="fixed top-[6rem] left-[1.5rem] imd:top-[7rem] imd:left-8 z-50 p-3 rounded-full bg-slate-800/80 backdrop-blur-md border border-slate-700/50 hover:bg-slate-700/80 transition-all shadow-lg"
+          className="fixed top-[6rem] left-[1.5rem] imd:top-[7rem] imd:left-8 z-50 p-3 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/80 transition-all shadow-lg"
           aria-label="Back to Visualizer Hub"
         >
-          <Home className="w-5 h-5 text-white" />
+          <Home className="w-5 h-5 text-foreground" />
         </motion.button>
 
         {/* Play All controls when playing all */}
@@ -155,7 +155,7 @@ export const VisualizerHub: React.FC = () => {
               onClick={stopPlayAll}
               variant="secondary"
               size="sm"
-              className="bg-slate-800/80 backdrop-blur-md border border-slate-700/50"
+              className="bg-card/80 backdrop-blur-md border border-border/50"
             >
               <Pause className="w-4 h-4 mr-2" />
               Stop Auto-Play
@@ -169,7 +169,7 @@ export const VisualizerHub: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+    <div className="min-h-screen bg-background text-foreground dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-white">
       {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -212,7 +212,7 @@ export const VisualizerHub: React.FC = () => {
             <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
               Zcash Visualizers
             </h1>
-            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Interactive educational tools to understand Zcash privacy
               technology, infrastructure, and zero-knowledge proofs
             </p>
@@ -261,7 +261,7 @@ export const VisualizerHub: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-center mt-16"
         >
-          <p className="text-slate-400 text-sm">
+          <p className="text-muted-foreground text-sm">
             Each visualizer runs automatically. Use controls to navigate or
             pause.
           </p>
@@ -290,17 +290,17 @@ function VisualizerCard(props: CardProps) {
         onClick={() => props.goToVisualizer(v.id)}
         className="cursor-pointer group"
       >
-        <div className="flex flex-col min-h-[240px] bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-xl p-6 h-full hover:bg-slate-800/70 hover:border-slate-600/50 transition-all duration-300">
+        <div className="flex flex-col min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
           <div className="flex-1 text-center">
-            <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-yellow-400 transition-colors">
+            <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
               {v.title}
             </h3>
-            <p className="text-slate-300 group-hover:text-slate-200 transition-colors">
+            <p className="text-muted-foreground group-hover:text-muted-foreground transition-colors">
               {v.description}
             </p>
           </div>
 
-          <div className="text-yellow-400 text-center group-hover:text-yellow-300 transition-colors">
+          <div className="text-yellow-500 text-center group-hover:text-yellow-400 transition-colors">
             <span className="text-sm font-medium">Click to explore →</span>
           </div>
         </div>
