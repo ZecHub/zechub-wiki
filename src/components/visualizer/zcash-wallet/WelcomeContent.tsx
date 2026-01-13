@@ -18,7 +18,7 @@ export const WelcomeContent = (props: {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.3 }}
-        className="flex justify-center gap-8 my-16"
+        className="grid grid-cols-3 imd:grid-cols-6 justify-center gap-8 my-16"
       >
         {props.wallets.slice(0, 6).map((w, idx) => (
           <motion.div
