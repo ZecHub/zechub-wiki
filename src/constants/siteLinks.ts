@@ -202,7 +202,7 @@ export const SITE_LINKS: SiteLinkSection[] = [
       },
       { label: "Zingo Labs", href: "/zcash-organizations/zingo-labs" },
       { label: "Brand", href: "/zcash-organizations/brand" },
-      { label: "ZKAV Club", href: "https://www.zkav.club", target: "_blank" },
+      { label: "ZKAV Club", href: "/zcash-organizations/zkav" },
     ],
   },
 ];

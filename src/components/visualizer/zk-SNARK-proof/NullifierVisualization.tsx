@@ -34,7 +34,7 @@ export const NullifierVisualization = () => (
         <div>
           <p className="text-sm font-semibold">Unique Nullifier</p>
           <p className="font-mono text-xs text-muted-foreground">
-            nf = HASH(sk, mote)
+            nf = HASH(sk, note)
           </p>
         </div>
       </div>

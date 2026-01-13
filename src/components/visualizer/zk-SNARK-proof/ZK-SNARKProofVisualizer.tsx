@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Button } from "@/components/UI/shadcn/button";
 import { Card } from "@/components/UI/shadcn/card";
@@ -21,7 +21,7 @@ export type Step = {
   details: string;
   stage: Stage;
 };
-import './index.css';
+import "./index.css";
 
 const steps: Step[] = [
   {
@@ -114,7 +114,7 @@ const ZKSNARKProofVisualizer = () => {
           return prev + 1;
         });
       }, 10000);
-      
+
       return () => clearInterval(timer);
     }
   });
@@ -125,7 +125,7 @@ const ZKSNARKProofVisualizer = () => {
     <div className=" min-h-screen py-12 px-6 rounded-sm bg-background text-foreground">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Header */}
-        <div className="flex items-center justify-center">
+        <div className="block">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-2">zk-SNARK Visualizer</h1>
             <p className="text-muted-foreground">
@@ -210,7 +210,7 @@ const ZKSNARKProofVisualizer = () => {
 
         {/* Controls */}
         <Card className="bg-card p-6">
-          <div className="flex items-center justify-center gap-4">
+          <div className="grid grid-cols-2 imd:grid-cols-4 justify-center gap-4">
             <Button
               variant="outline"
               size="lg"
@@ -234,7 +234,7 @@ const ZKSNARKProofVisualizer = () => {
             <Button
               size="lg"
               onClick={togglePlay}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 min-w-[140px]"
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
             >
               {isPlaying ? (
                 <>
