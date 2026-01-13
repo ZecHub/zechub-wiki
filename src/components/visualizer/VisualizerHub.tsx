@@ -138,7 +138,7 @@ export const VisualizerHub: React.FC = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5 }}
           onClick={goHome}
-          className="fixed top-4 left-4 z-50 p-3 rounded-full bg-slate-800/80 backdrop-blur-md border border-slate-700/50 hover:bg-slate-700/80 transition-all shadow-lg"
+          className="fixed top-[6rem] left-[1.5rem] imd:top-[7rem] imd:left-8 z-50 p-3 rounded-full bg-slate-800/80 backdrop-blur-md border border-slate-700/50 hover:bg-slate-700/80 transition-all shadow-lg"
           aria-label="Back to Visualizer Hub"
         >
           <Home className="w-5 h-5 text-white" />
@@ -242,7 +242,6 @@ export const VisualizerHub: React.FC = () => {
               data={VISUALIZERS.slice(0, 5)}
               goToVisualizer={goToVisualizer}
             />
-
           </div>
         </section>
 

@@ -120,7 +120,7 @@ export const WalletVisualizer = () => {
           >
             <span className="text-xl font-bold text-primary-foreground">Z</span>
           </motion.div>
-          <h1 className="text-2xl font-bold text-foreground">
+          <h1 className="text-xl imd:text-2xl font-bold text-foreground">
             Zcash Wallet Visualizer
           </h1>
         </div>
