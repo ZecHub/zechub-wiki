@@ -71,7 +71,7 @@ export const ConsensusVisualizer = () => {
           <motion.div
             animate={{ rotate: [0, 360] }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="w-10 h-10 rounded-full gradient-gold flex items-center justify-center"
+            className="w-10 h-10 rounded-full gradient-gold hidden imd:flex items-center justify-center"
           >
             <span className="text-xl font-bold text-primary-foreground">Z</span>
           </motion.div>

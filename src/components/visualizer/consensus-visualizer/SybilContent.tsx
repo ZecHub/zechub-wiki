@@ -19,7 +19,7 @@ export const SybilContent = () => {
           In a network where voting determines truth, an attacker could create
           millions of fake identities to outvote legitimate participants.
         </p>
-        <div className="flex items-center justify-center gap-4 p-4 rounded-lg dark:bg-card/50 bg-slate-100 dark:border">
+        <div className="flex flex-col imd:flex-row items-center justify-center gap-4 p-4 rounded-lg dark:bg-card/50 bg-slate-100 dark:border">
           <div className="text-center">
             <div className="flex -space-x-2 justify-center mb-2">
               {[1, 2, 3].map((i) => (
