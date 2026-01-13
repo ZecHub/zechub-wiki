@@ -12,7 +12,7 @@ export const IrreversibleContent = () => {
         className="flex flex-col items-center gap-6"
       >
         {/* Forward direction - easy */}
-        <div className="flex items-center gap-6 w-full max-w-2xl">
+        <div className="flex flex-col imd:flex-row items-center gap-6 w-full max-w-2xl">
           <div className="flex-1 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-center">
             <code className="text-sm font-mono text-foreground">
               &quot;password123&quot;
@@ -35,16 +35,16 @@ export const IrreversibleContent = () => {
         </div>
 
         {/* Reverse direction - impossible */}
-        <div className="flex items-center gap-6 w-full max-w-2xl">
+        <div className="flex flex-col-reverse imd:flex-row items-center gap-6 w-full max-w-2xl">
           <div className="flex-1 p-4 rounded-lg dark:bg-card/40 bg-card/20 dark:border border-border text-center">
             <code className="text-xs font-mono dark:text-muted-foreground">
               ???
             </code>
           </div>
           <motion.div className="flex flex-col items-center">
-            <div className="relative">
+            <div className="relative rotate-180 imd:rotate-0">
               <ArrowRight className="w-8 h-8 text-destructive rotate-180" />
-              <XCircle className="w-4 h-4 text-destructive absolute -top-1 -right-1" />
+              <XCircle className="w-4 h-4 text-destructive absolute top-5 imd:-top-1 -right-1" />
             </div>
             <span className="text-xs text-destructive mt-1">Impossible ✗</span>
           </motion.div>
