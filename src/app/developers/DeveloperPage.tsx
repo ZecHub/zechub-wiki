@@ -226,6 +226,21 @@ export default function DeveloperPage() {
                     data to Zcash light clients via gRPC.
                   </p>
                 </li>
+ 
+                <li>
+                  <a
+                    href="https://github.com/ZecHub/zechub/blob/main/site/Start_Here/Developer_Resources.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Developer Resources
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Links to Zcash further Technical Documentation.
+                  </p>
+                </li>
+   
               </ul>
             </div>
 
