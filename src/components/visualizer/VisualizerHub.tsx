@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Home, Pause, Play } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
 import { ConsensusVisualizer } from "./consensus-visualizer";
+import { ContributionVisualizer } from "./contribution-visualizer";
 import { HashFunctionVisualizer } from "./hash-function-visualizer";
 import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
 import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
@@ -22,7 +23,8 @@ type VisualizerType =
   | "zcash-dex"
   | "hash-function"
   | "consensus"
-  | "zcash-key";
+  | "zcash-key"
+  | "contribution";
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -80,6 +82,12 @@ const VISUALIZERS: VisualizerInfo[] = [
     title: "Consensus",
     description: "How do thousands of nodes agree?",
     component: ConsensusVisualizer,
+  },
+  {
+    id: "contribution",
+    title: "Contributing to Zcash",
+    description: "Learn about bounties, grants, and open source opportunities",
+    component: ContributionVisualizer,
   },
 ];
 
@@ -250,7 +258,16 @@ export const VisualizerHub: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Display  */}
             <VisualizerCard
-              data={VISUALIZERS.slice(5)}
+              data={VISUALIZERS.slice(5, 8)}
+              goToVisualizer={goToVisualizer}
+            />
+          </div>
+        </section>
+
+        <section id="contribution" className="mt-24">
+          <div className="grid md:grid-cols-1 gap-8 max-w-6xl mx-auto">
+            <VisualizerCard
+              data={VISUALIZERS.slice(8)}
               goToVisualizer={goToVisualizer}
             />
           </div>
