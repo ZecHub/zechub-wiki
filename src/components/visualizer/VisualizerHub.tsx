@@ -241,7 +241,7 @@ export const VisualizerHub: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r dark:from-yellow-400 dark:via-emerald-400 dark:to-cyan-400 bg-clip-text text-foreground dark:text-transparent">
               Zcash Visualizers
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -333,7 +333,7 @@ function VisualizerCard(props: CardProps) {
       >
         <div className="flex flex-col min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
           <div className="flex-1 text-center">
-            <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+            <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
               {v.title}
             </h3>
             <p className="text-muted-foreground group-hover:text-muted-foreground transition-colors">
