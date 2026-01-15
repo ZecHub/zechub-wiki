@@ -1,14 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useCallback, useState } from "react";
 import { PlaybackControls } from "../PlaybackControls";
-import { ZecHubBountiesContent, slides } from "./ZecHubBountiesContent";
-import "./index.css";
+import { OpenSourceReposContent, slides } from "./OpenSourceReposContent";
 
 const SLIDES = slides.map((s) => ({ id: s.id, title: s.title }));
 
-export const ContributionVisualizer = () => {
+export const OpenSourceReposVisualizer = () => {
   const [currentStage, setCurrentStage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
@@ -31,16 +29,14 @@ export const ContributionVisualizer = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8 md:py-13 mt-12">
-        <ZecHubBountiesContent 
+        <OpenSourceReposContent 
           currentSlide={currentStage}
           onSlideChange={handleSlideChange}
           isPlaying={isPlaying}
         />
       </main>
 
-      {/* Playback Controls */}
       <footer className="sticky bottom-0 bg-background/80 backdrop-blur-md border-t border-border/50 py-6">
         <PlaybackControls
           currentStage={currentStage}

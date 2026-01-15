@@ -2,91 +2,109 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  MessageSquare, 
-  Settings, 
-  Calendar, 
-  FileText, 
+  FileText,
+  Github,
+  MessageCircle,
+  Users,
   CheckCircle,
   ExternalLink,
   ArrowRight,
-  Users,
-  Workflow,
-  ClipboardList
+  Lightbulb,
+  Target
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const slides = [
   {
-    id: "discord",
-    title: "Join Zcash Discord",
-    icon: MessageSquare,
-    color: "from-blue-500 to-indigo-600",
+    id: "prepare",
+    title: "Prepare Your Proposal",
+    icon: Lightbulb,
+    color: "from-purple-500 to-violet-600",
     steps: [
-      "Click the Discord invite link",
-      "Accept the community guidelines",
-      "Add the ZecHub role in #lang-menu channel",
-      "Explore the ZecHub section"
+      "Project title and applicant details",
+      "Problem statement and proposed solution",
+      "Deliverables, timeline, and milestones",
+      "Budget and funding request",
+      "Relevant experience and potential risks"
     ],
-    link: "https://discord.gg/zcash",
-    linkText: "Join Discord Community"
+    link: "https://zcashcommunitygrants.org/",
+    linkText: "Visit ZCG Website"
   },
   {
-    id: "dework",
-    title: "Connect to Dework",
-    icon: Workflow,
-    color: "from-purple-500 to-pink-600",
+    id: "github",
+    title: "Submit on GitHub",
+    icon: Github,
+    color: "from-slate-600 to-slate-800",
     steps: [
-      "Visit dework.zechub.org",
-      "Sign in with your wallet or Discord",
-      "Complete your profile setup",
-      "Browse available bounties"
+      "Go to Zcash Community Grants GitHub repository",
+      "Open the Issues tab and click New Issue",
+      "Select the grant application template",
+      "Complete all required fields",
+      "Submit your GitHub issue (official record)"
     ],
-    link: "https://dework.zechub.org/",
-    linkText: "Open Dework Platform"
+    link: "https://github.com/ZcashCommunityGrants/arborist-calls",
+    linkText: "Open GitHub Repository"
   },
   {
-    id: "schedule",
-    title: "Task Schedule",
-    icon: Calendar,
+    id: "forum",
+    title: "Create a Forum Post",
+    icon: MessageCircle,
+    color: "from-blue-500 to-cyan-600",
+    steps: [
+      "Go to the Zcash Community Forum",
+      "Create a new thread in ZCG category",
+      "Use the same title as GitHub issue",
+      "Add a short summary of your proposal",
+      "Include a link to the GitHub issue"
+    ],
+    link: "https://forum.zcashcommunity.com/",
+    linkText: "Visit Community Forum"
+  },
+  {
+    id: "review",
+    title: "Engage in Review",
+    icon: Users,
     color: "from-emerald-500 to-teal-600",
     steps: [
-      "Review active bounties and deadlines",
-      "Check task priorities and requirements",
-      "Filter tasks by your skills (Next.js, content, design)",
-      "Track ongoing work and submissions"
+      "Monitor your GitHub issue and forum thread",
+      "Respond to questions from ZCG Committee",
+      "Address community feedback promptly",
+      "Clarify any concerns or requirements",
+      "Update proposal based on input"
     ],
-    link: "https://dework.zechub.org/",
-    linkText: "View Task Schedule"
+    link: "https://zcashcommunitygrants.org/committee/",
+    linkText: "Meet the Committee"
   },
   {
-    id: "application",
-    title: "Application & Contributor Form",
-    icon: ClipboardList,
+    id: "outcome",
+    title: "Outcome & Next Steps",
+    icon: Target,
     color: "from-amber-500 to-orange-600",
     steps: [
-      "Fill out the contributor application form",
-      "Specify your skills and interests",
-      "Submit for team review",
-      "Get assigned to tasks matching your expertise"
+      "ZCG Committee reviews your complete application",
+      "Approved proposals proceed to funding",
+      "Begin work on deliverables and milestones",
+      "Submit regular progress reports",
+      "Unapproved proposals may be revised and resubmitted"
     ],
-    link: "https://zechub.wiki/contribute/help-build-zechub",
-    linkText: "Start Application"
+    link: "https://docs.google.com/spreadsheets/d/1FQ28rDCyRW0TiNxrm3rgD8ai2KGUsXAjPieQmI1kKKg/",
+    linkText: "View Approved Projects"
   }
 ];
 
 export { slides };
 
-interface ZecHubBountiesContentProps {
+interface ZcashCommunityGrantsContentProps {
   currentSlide: number;
   onSlideChange: (index: number) => void;
   isPlaying: boolean;
 }
 
-export const ZecHubBountiesContent = ({ 
+export const ZcashCommunityGrantsContent = ({ 
   currentSlide, 
   onSlideChange,
   isPlaying 
-}: ZecHubBountiesContentProps) => {
+}: ZcashCommunityGrantsContentProps) => {
   const [progress, setProgress] = useState(0);
 
   const slide = slides[currentSlide];
@@ -99,8 +117,8 @@ export const ZecHubBountiesContent = ({
       return;
     }
 
-    const duration = 8000; // 8 seconds per slide
-    const interval = 50; // Update every 50ms
+    const duration = 8000;
+    const interval = 50;
     const increment = (interval / duration) * 100;
 
     const timer = setInterval(() => {
@@ -126,7 +144,6 @@ export const ZecHubBountiesContent = ({
     }
   }, [progress, isPlaying, currentSlide, onSlideChange]);
 
-  // Reset progress when slide changes
   useEffect(() => {
     setProgress(0);
   }, [currentSlide]);
@@ -139,11 +156,11 @@ export const ZecHubBountiesContent = ({
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
-          ZecHub Bounties
+        <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">
+          Zcash Community Grants
         </h2>
         <p className="text-muted-foreground text-lg">
-          Contribute to ZecHub and earn ZEC
+          Funding independent teams for the public good of Zcash
         </p>
       </motion.div>
 
@@ -158,13 +175,13 @@ export const ZecHubBountiesContent = ({
             <div 
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 index === currentSlide 
-                  ? 'bg-yellow-400 w-8' 
+                  ? 'bg-purple-400 w-8' 
                   : 'bg-slate-400/30 hover:bg-slate-400/50'
               }`}
             />
             {index === currentSlide && isPlaying && (
               <motion.div
-                className="absolute inset-0 bg-yellow-400 rounded-full"
+                className="absolute inset-0 bg-purple-400 rounded-full"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: progress / 100 }}
                 style={{ transformOrigin: 'left' }}
@@ -201,7 +218,6 @@ export const ZecHubBountiesContent = ({
                 <Icon className="w-12 h-12 text-foreground" />
               </div>
               
-              {/* Animated Ring */}
               <motion.div
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${slide.color} opacity-50`}
                 animate={{ 
@@ -235,7 +251,7 @@ export const ZecHubBountiesContent = ({
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="flex items-start gap-4 bg-card/50 backdrop-blur-sm p-5 rounded-xl border border-border/50 hover:border-yellow-400/50 hover:bg-card/70 transition-all group"
+                className="flex items-start gap-4 bg-card/50 backdrop-blur-sm p-5 rounded-xl border border-border/50 hover:border-purple-400/50 hover:bg-card/70 transition-all group"
               >
                 <motion.div
                   initial={{ scale: 0 }}
@@ -250,7 +266,7 @@ export const ZecHubBountiesContent = ({
                   {index + 1}
                 </motion.div>
                 <div className="flex-1 pt-1">
-                  <p className="text-foreground text-lg group-hover:text-yellow-400 transition-colors">
+                  <p className="text-foreground text-lg group-hover:text-purple-400 transition-colors">
                     {step}
                   </p>
                 </div>
