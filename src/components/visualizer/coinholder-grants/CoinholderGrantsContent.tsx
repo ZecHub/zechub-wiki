@@ -2,91 +2,125 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  MessageSquare, 
-  Settings, 
-  Calendar, 
-  FileText, 
-  CheckCircle,
+  Coins,
+  FileCheck,
+  MessageSquare,
+  Vote,
+  Trophy,
   ExternalLink,
   ArrowRight,
+  CheckCircle,
   Users,
-  Workflow,
-  ClipboardList
+  Calendar
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const slides = [
   {
-    id: "discord",
-    title: "Join Zcash Discord",
-    icon: MessageSquare,
-    color: "from-blue-500 to-indigo-600",
+    id: "eligibility",
+    title: "Eligible Applications",
+    icon: FileCheck,
+    color: "from-cyan-500 to-blue-600",
     steps: [
-      "Click the Discord invite link",
-      "Accept the community guidelines",
-      "Add the ZecHub role in #lang-menu channel",
-      "Explore the ZecHub section"
+      "Completed, publicly verifiable work benefiting Zcash",
+      "Focus on privacy, adoption, tooling, or security",
+      "Demonstrated impact with transparent evidence",
+      "Alignment with Zcash values (privacy, decentralization)",
+      "Open to individuals, teams, or organizations"
     ],
-    link: "https://discord.gg/zcash",
-    linkText: "Join Discord Community"
+    link: "https://zips.z.cash/zip-1016",
+    linkText: "Read ZIP 1016"
   },
   {
-    id: "dework",
-    title: "Connect to Dework",
-    icon: Workflow,
+    id: "prepare",
+    title: "Prepare Your Proposal",
+    icon: Coins,
+    color: "from-amber-500 to-yellow-600",
+    steps: [
+      "Describe your completed work and its impact",
+      "Provide transparent evidence (code, reports, metrics)",
+      "Specify requested amount (ZEC/USD equivalent)",
+      "Include justification for the funding request",
+      "Add your payout address and contact information"
+    ],
+    link: "https://forum.zcashcommunity.com/c/grants/32",
+    linkText: "Visit Grants Forum"
+  },
+  {
+    id: "submit",
+    title: "Submit on Forum",
+    icon: MessageSquare,
     color: "from-purple-500 to-pink-600",
     steps: [
-      "Visit dework.zechub.org",
-      "Sign in with your wallet or Discord",
-      "Complete your profile setup",
-      "Browse available bounties"
+      "Post on Zcash Community Forum in Grants section",
+      'Title: "[Retroactive Grant] - [Project Name]"',
+      "Use clear markdown format for readability",
+      "Submit before quarterly deadline (announced on forum)",
+      "Late submissions go to next round or ZCG"
     ],
-    link: "https://dework.zechub.org/",
-    linkText: "Open Dework Platform"
+    link: "https://forum.zcashcommunity.com/c/grants/32",
+    linkText: "Submit Proposal"
   },
   {
-    id: "schedule",
-    title: "Task Schedule",
-    icon: Calendar,
+    id: "review",
+    title: "30-Day Review Period",
+    icon: Users,
     color: "from-emerald-500 to-teal-600",
     steps: [
-      "Review active bounties and deadlines",
-      "Check task priorities and requirements",
-      "Filter tasks by your skills (Next.js, content, design)",
-      "Track ongoing work and submissions"
+      "Community reviews and discusses your proposal",
+      "Respond to questions in your forum thread",
+      "Provide clarifications and additional evidence",
+      "Summary thread often created for all proposals",
+      "Proposals compiled on GitHub for visibility"
     ],
-    link: "https://dework.zechub.org/",
-    linkText: "View Task Schedule"
+    link: "https://forum.zcashcommunity.com/c/grants/32",
+    linkText: "Engage with Community"
   },
   {
-    id: "application",
-    title: "Application & Contributor Form",
-    icon: ClipboardList,
-    color: "from-amber-500 to-orange-600",
+    id: "voting",
+    title: "Coinholder Voting",
+    icon: Vote,
+    color: "from-indigo-500 to-violet-600",
     steps: [
-      "Fill out the contributor application form",
-      "Specify your skills and interests",
-      "Submit for team review",
-      "Get assigned to tasks matching your expertise"
+      "Coinholders vote with ZEC holdings (no lockup needed)",
+      "Orchard pool holdings are eligible to vote",
+      "Requires ≥420,000 ZEC quorum + simple majority",
+      "Voting period: ~1-2 weeks after review",
+      "Public, transparent results with decentralized polling"
     ],
-    link: "https://zechub.wiki/contribute/help-build-zechub",
-    linkText: "Start Application"
+    link: "https://forum.zcashcommunity.com/c/grants/32",
+    linkText: "Learn About Voting"
+  },
+  {
+    id: "outcome",
+    title: "Results & Disbursement",
+    icon: Trophy,
+    color: "from-rose-500 to-red-600",
+    steps: [
+      "Results announced soon after voting period",
+      "Highest ZEC support wins among competing proposals",
+      "Approved grants paid per specified terms",
+      "KYC required for grants over $50,000",
+      "Quarterly cadence continues until 3rd halving (~2028)"
+    ],
+    link: "https://forum.zcashcommunity.com/c/grants/32",
+    linkText: "View Past Results"
   }
 ];
 
 export { slides };
 
-interface ZecHubBountiesContentProps {
+interface CoinholderGrantsContentProps {
   currentSlide: number;
   onSlideChange: (index: number) => void;
   isPlaying: boolean;
 }
 
-export const ZecHubBountiesContent = ({ 
+export const CoinholderGrantsContent = ({ 
   currentSlide, 
   onSlideChange,
   isPlaying 
-}: ZecHubBountiesContentProps) => {
+}: CoinholderGrantsContentProps) => {
   const [progress, setProgress] = useState(0);
 
   const slide = slides[currentSlide];
@@ -99,8 +133,8 @@ export const ZecHubBountiesContent = ({
       return;
     }
 
-    const duration = 8000; // 8 seconds per slide
-    const interval = 50; // Update every 50ms
+    const duration = 8000;
+    const interval = 50;
     const increment = (interval / duration) * 100;
 
     const timer = setInterval(() => {
@@ -126,7 +160,6 @@ export const ZecHubBountiesContent = ({
     }
   }, [progress, isPlaying, currentSlide, onSlideChange]);
 
-  // Reset progress when slide changes
   useEffect(() => {
     setProgress(0);
   }, [currentSlide]);
@@ -139,11 +172,11 @@ export const ZecHubBountiesContent = ({
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
-          ZecHub Bounties
+        <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+          Coinholder Directed Grants
         </h2>
         <p className="text-muted-foreground text-lg">
-          Contribute to ZecHub and earn ZEC
+          Retroactive funding for completed work that delivered value to Zcash
         </p>
       </motion.div>
 
@@ -158,13 +191,13 @@ export const ZecHubBountiesContent = ({
             <div 
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 index === currentSlide 
-                  ? 'bg-yellow-400 w-8' 
+                  ? 'bg-cyan-400 w-8' 
                   : 'bg-slate-400/30 hover:bg-slate-400/50'
               }`}
             />
             {index === currentSlide && isPlaying && (
               <motion.div
-                className="absolute inset-0 bg-yellow-400 rounded-full"
+                className="absolute inset-0 bg-cyan-400 rounded-full"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: progress / 100 }}
                 style={{ transformOrigin: 'left' }}
@@ -201,7 +234,6 @@ export const ZecHubBountiesContent = ({
                 <Icon className="w-12 h-12 text-foreground" />
               </div>
               
-              {/* Animated Ring */}
               <motion.div
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${slide.color} opacity-50`}
                 animate={{ 
@@ -235,7 +267,7 @@ export const ZecHubBountiesContent = ({
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="flex items-start gap-4 bg-card/50 backdrop-blur-sm p-5 rounded-xl border border-border/50 hover:border-yellow-400/50 hover:bg-card/70 transition-all group"
+                className="flex items-start gap-4 bg-card/50 backdrop-blur-sm p-5 rounded-xl border border-border/50 hover:border-cyan-400/50 hover:bg-card/70 transition-all group"
               >
                 <motion.div
                   initial={{ scale: 0 }}
@@ -250,7 +282,7 @@ export const ZecHubBountiesContent = ({
                   {index + 1}
                 </motion.div>
                 <div className="flex-1 pt-1">
-                  <p className="text-foreground text-lg group-hover:text-yellow-400 transition-colors">
+                  <p className="text-foreground text-lg group-hover:text-cyan-400 transition-colors">
                     {step}
                   </p>
                 </div>

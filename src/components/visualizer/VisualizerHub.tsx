@@ -4,9 +4,12 @@ import { Button } from "@/components/UI/shadcn/button";
 import { motion } from "framer-motion";
 import { Home, Pause, Play } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
+import { CoinholderGrantsVisualizer } from "./coinholder-grants";
 import { ConsensusVisualizer } from "./consensus-visualizer";
 import { ContributionVisualizer } from "./contribution-visualizer";
 import { HashFunctionVisualizer } from "./hash-function-visualizer";
+import { OpenSourceReposVisualizer } from "./open-source-repos";
+import { ZcashCommunityGrantsVisualizer } from "./zcash-community-grants";
 import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
 import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
 import { ZcashKeyVisualizer } from "./zcash-key-visualizer";
@@ -24,7 +27,10 @@ type VisualizerType =
   | "hash-function"
   | "consensus"
   | "zcash-key"
-  | "contribution";
+  | "zechub-bounties"
+  | "zcash-community-grants"
+  | "coinholder-grants"
+  | "open-source-repos";
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -84,10 +90,28 @@ const VISUALIZERS: VisualizerInfo[] = [
     component: ConsensusVisualizer,
   },
   {
-    id: "contribution",
-    title: "Contributing to Zcash",
-    description: "Learn about bounties, grants, and open source opportunities",
+    id: "zechub-bounties",
+    title: "ZecHub Bounties",
+    description: "Contribute to ZecHub and earn ZEC",
     component: ContributionVisualizer,
+  },
+  {
+    id: "zcash-community-grants",
+    title: "Zcash Community Grants",
+    description: "Funding for Zcash ecosystem projects",
+    component: ZcashCommunityGrantsVisualizer,
+  },
+  {
+    id: "coinholder-grants",
+    title: "Coinholder Directed Grants",
+    description: "Retroactive funding directed by ZEC holders",
+    component: CoinholderGrantsVisualizer,
+  },
+  {
+    id: "open-source-repos",
+    title: "Open Source Repositories",
+    description: "Contribute to Zcash open source projects",
+    component: OpenSourceReposVisualizer,
   },
 ];
 
@@ -264,7 +288,7 @@ export const VisualizerHub: React.FC = () => {
         </section>
 
         <section id="contribution" className="mt-24">
-          <div className="grid md:grid-cols-1 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <VisualizerCard
               data={VISUALIZERS.slice(8)}
               goToVisualizer={goToVisualizer}
