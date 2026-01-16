@@ -1,8 +1,15 @@
 import { motion } from "framer-motion";
 import {
+  ArrowRight,
   CheckCircle2,
+  FileSignature,
+  FileText,
+  Hash,
+  Key,
+  KeyRound,
   Lock,
-  ShieldCheck
+  ShieldCheck,
+  Unlock
 } from "lucide-react";
 
 export const DigitalSignature = () => {
@@ -60,6 +67,146 @@ export const DigitalSignature = () => {
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Sign & Verify Flow */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Signing Process */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5 }}
+          className="bg-card border border-border rounded-xl p-4"
+        >
+          <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
+            <FileSignature className="w-5 h-5 text-primary" />
+            Signing Process
+          </h3>
+          <div className="space-y-3">
+            {[
+              {
+                icon: FileText,
+                label: "Message",
+                value: "Send 1.5 ZEC to zs1...",
+                color: "text-muted-foreground",
+              },
+              {
+                icon: Hash,
+                label: "Hash",
+                value: "0x7f3a...digest",
+                color: "text-pool-transparent",
+              },
+              {
+                icon: Key,
+                label: "Private Key",
+                value: "Encrypt hash",
+                color: "text-pool-sapling",
+              },
+              {
+                icon: FileSignature,
+                label: "Signature",
+                value: "0xsig...attached",
+                color: "text-pool-orchard",
+              },
+            ].map((step, i) => (
+              <motion.div
+                key={step.label}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6 + i * 0.15 }}
+                className="flex items-center gap-3"
+              >
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <step.icon className={`w-5 h-5 ${step.color}`} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs text-muted-foreground">{step.label}</p>
+                  <p className="text-sm font-mono text-foreground truncate">
+                    {step.value}
+                  </p>
+                </div>
+                {i < 3 && (
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Verification Process */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.7 }}
+          className="bg-card border border-border rounded-xl p-4"
+        >
+          <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 text-pool-sapling" />
+            Verification Process
+          </h3>
+          <div className="space-y-3">
+            {[
+              {
+                icon: FileSignature,
+                label: "Received",
+                value: "Message + Signature",
+                color: "text-muted-foreground",
+              },
+              {
+                icon: KeyRound,
+                label: "Public Key",
+                value: "Decrypt signature",
+                color: "text-pool-transparent",
+              },
+              {
+                icon: Hash,
+                label: "Compute Hash",
+                value: "Hash received message",
+                color: "text-pool-sapling",
+              },
+              {
+                icon: Unlock,
+                label: "Compare",
+                value: "Hashes match ✓",
+                color: "text-pool-orchard",
+              },
+            ].map((step, i) => (
+              <motion.div
+                key={step.label}
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8 + i * 0.15 }}
+                className="flex items-center gap-3"
+              >
+                <div className="w-10 h-10 rounded-full bg-pool-sapling/10 flex items-center justify-center">
+                  <step.icon className={`w-5 h-5 ${step.color}`} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs text-muted-foreground">{step.label}</p>
+                  <p className="text-sm font-mono text-foreground truncate">
+                    {step.value}
+                  </p>
+                </div>
+                {i < 3 && (
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Verification result */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.4 }}
+            className="mt-4 bg-pool-sapling/10 border border-pool-sapling/30 rounded-lg p-3 flex items-center gap-2"
+          >
+            <CheckCircle2 className="w-5 h-5 text-pool-sapling" />
+            <span className="text-sm text-pool-sapling font-medium">
+              Signature Valid - Transaction Authorized
+            </span>
+          </motion.div>
+        </motion.div>
+      </div>
 
 
     </div>
