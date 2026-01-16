@@ -34,7 +34,11 @@ export const DigitalSignature = () => {
     },
   ];
 
-
+  const algorithms = [
+    { name: "ECDSA", desc: "Used by Bitcoin/Zcash" },
+    { name: "Schnorr", desc: "Signature aggregation" },
+    { name: "BLS", desc: "50% smaller signatures" },
+  ];
 
   return (
     <div className="space-y-6">
@@ -208,7 +212,26 @@ export const DigitalSignature = () => {
         </motion.div>
       </div>
 
-
+      {/* Algorithm Badges */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2 }}
+        className="flex flex-wrap justify-center gap-3"
+      >
+        {algorithms.map((algo, i) => (
+          <motion.div
+            key={algo.name}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.3 + i * 0.1 }}
+            className="bg-primary/10 border border-primary/30 rounded-full px-4 py-2 flex items-center gap-2"
+          >
+            <span className="font-bold text-primary text-sm">{algo.name}</span>
+            <span className="text-xs text-muted-foreground">{algo.desc}</span>
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   );
 };
