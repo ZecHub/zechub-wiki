@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import "../index.css";
 import { PlaybackControls } from "../PlaybackControls";
+import { stages } from "./types";
 
 const WELCOME_STAGE_INTERVAL = 1000; // 4 seconds for welcome stage
 const OTHER_STAGES_INTERVAL = 6000; // 8 seconds for other stages
@@ -13,10 +14,10 @@ export const BlockchainFoundationVisualizer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isAnimating, setIsAnimating] = useState(true);
 
-  const stage = STAGES[currentStage];
+  const stage = stages[currentStage];
 
   const goToNext = useCallback(() => {
-    if (currentStage < STAGES.length - 1) {
+    if (currentStage < stages.length - 1) {
       setCurrentStage((prev) => prev + 1);
       setIsAnimating(true);
     } else {
@@ -85,6 +86,7 @@ export const BlockchainFoundationVisualizer = () => {
       {/* Controls Footer */}
       <footer className="border-t border-slate-200 dark:border-slate-600 p-4">
         <PlaybackControls
+          stages={stages}
           currentStage={currentStage}
           isPlaying={isPlaying}
           onNext={goToNext}
