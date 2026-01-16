@@ -102,7 +102,52 @@ export const BlockAnatomy = () => {
             <p className="text-xs font-mono text-pool-orchard">Merkle Root</p>
           </motion.div>
 
+          {/* Level 2 */}
+          <div className="flex gap-8">
+            {["H(AB)", "H(CD)"].map((hash, i) => (
+              <motion.div
+                key={hash}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 + i * 0.1 }}
+                className="bg-pool-sapling/20 border border-pool-sapling rounded-lg px-3 py-1"
+              >
+                <p className="text-xs font-mono text-pool-sapling">{hash}</p>
+              </motion.div>
+            ))}
+          </div>
 
+          {/* Level 3 */}
+          <div className="flex gap-4">
+            {["H(A)", "H(B)", "H(C)", "H(D)"].map((hash, i) => (
+              <motion.div
+                key={hash}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 + i * 0.1 }}
+                className="bg-pool-transparent/20 border border-pool-transparent rounded-lg px-2 py-1"
+              >
+                <p className="text-xs font-mono text-pool-transparent">
+                  {hash}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Transactions */}
+          <div className="flex gap-4">
+            {["Tx A", "Tx B", "Tx C", "Tx D"].map((tx, i) => (
+              <motion.div
+                key={tx}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2 + i * 0.1 }}
+                className="bg-muted rounded-lg px-2 py-1"
+              >
+                <p className="text-xs font-mono text-muted-foreground">{tx}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </div>
