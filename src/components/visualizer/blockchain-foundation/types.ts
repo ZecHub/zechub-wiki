@@ -1,18 +1,20 @@
-export type BlockchainType = 'intro' | 'digital-signature'|'anatomy'|'transaction-lifecycle'| 'mining'|'miners'|'difficulty';
+export type BlockchainType =
+  | "intro"
+  | "digital-signature"
+  | "anatomy"
+  | "transaction-lifecycle"
+  | "mining"
+  | "miners"
+  | "difficulty";
 
 export interface Stage {
   id: number;
   title: string;
   subtitle: string;
   description: string;
-  type:
-    | "intro"
-    | "blockchain"
-  amount?: string;
-  keyType?: KeyType;
+  type: "intro" | "blockchain";
   blockchainType?: BlockchainType;
 }
-
 
 export const stage: Stage[] = [
   {
