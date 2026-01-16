@@ -16,7 +16,7 @@ export interface Stage {
   blockchainType?: BlockchainType;
 }
 
-export const stage: Stage[] = [
+export const stages: Stage[] = [
   {
     id: 0,
     title: "What is a Blockchain?",
