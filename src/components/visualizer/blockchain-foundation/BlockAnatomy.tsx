@@ -35,7 +35,9 @@ export const BlockAnatomy = () => {
                 className="bg-background/50 rounded p-2"
               >
                 <p className="text-xs text-muted-foreground">{field.name}</p>
-                <p className={`text-xs font-mono ${field.color}`}>{field.value}</p>
+                <p className={`text-xs font-mono ${field.color}`}>
+                  {field.value}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -48,22 +50,61 @@ export const BlockAnatomy = () => {
             <h3 className="font-bold text-foreground">Transaction List</h3>
           </div>
           <div className="space-y-2">
-            {['Tx #1 (Coinbase)', 'Tx #2', 'Tx #3', 'Tx #4'].map((tx, index) => (
-              <motion.div
-                key={tx}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8 + index * 0.1 }}
-                className="flex items-center gap-2 text-sm"
-              >
-                <div className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-primary' : 'bg-muted-foreground'}`} />
-                <span className="text-foreground font-mono text-xs">{tx}</span>
-              </motion.div>
-            ))}
+            {["Tx #1 (Coinbase)", "Tx #2", "Tx #3", "Tx #4"].map(
+              (tx, index) => (
+                <motion.div
+                  key={tx}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                  className="flex items-center gap-2 text-sm"
+                >
+                  <div
+                    className={`w-2 h-2 rounded-full ${
+                      index === 0 ? "bg-primary" : "bg-muted-foreground"
+                    }`}
+                  />
+                  <span className="text-foreground font-mono text-xs">
+                    {tx}
+                  </span>
+                </motion.div>
+              )
+            )}
           </div>
         </div>
       </motion.div>
 
+      {/* Merkle tree visualization */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.5 }}
+        className="flex-1 bg-card border border-border rounded-xl p-4"
+      >
+        <div className="flex items-center gap-2 mb-4">
+          <Layers className="w-5 h-5 text-pool-orchard" />
+          <h3 className="font-bold text-foreground">Merkle Tree</h3>
+        </div>
+
+        <div className="flex flex-col items-center space-y-4">
+          {/* Root */}
+          <motion.div
+            animate={{
+              boxShadow: [
+                "0 0 0 hsl(var(--pool-orchard) / 0)",
+                "0 0 15px hsl(var(--pool-orchard) / 0.5)",
+                "0 0 0 hsl(var(--pool-orchard) / 0)",
+              ],
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="bg-pool-orchard/20 border border-pool-orchard rounded-lg px-4 py-2"
+          >
+            <p className="text-xs font-mono text-pool-orchard">Merkle Root</p>
+          </motion.div>
+
+
+        </div>
+      </motion.div>
     </div>
   );
 };
