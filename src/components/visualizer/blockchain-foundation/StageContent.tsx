@@ -12,6 +12,8 @@ export const StageContent = ({ stage }: StageContentProps) => {
     switch (stage.type) {
       case "intro":
         return <BlockchainIntroContent />;
+      case "blockchain":
+        return <BlockchainContent stage={stage} />;
       default:
         return null;
     }
