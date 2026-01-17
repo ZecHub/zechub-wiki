@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import "../index.css";
 import { PlaybackControls } from "../PlaybackControls";
+import { StageContent } from "./StageContent";
 import { stages } from "./types";
 
 const WELCOME_STAGE_INTERVAL = 1000; // 4 seconds for welcome stage
@@ -70,17 +71,17 @@ export const BlockchainFoundationVisualizer = () => {
             <span className="text-xl font-bold text-primary-foreground">Z</span>
           </motion.div>
           <h1 className="text-2xl font-bold text-foreground">
-            Zcash Pool Visualizer
+            Blockchain Foundation Visualizer
           </h1>
         </div>
         <p className="text-sm text-muted-foreground mt-2">
-          Interactive guide to Zcash privacy technology
+          Interactive guide to Blockchain Technology (Foundation)
         </p>
       </motion.header>
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8 md:py-13 mt-8">
-        {/* <StageContent stage={stage} isAnimating={isAnimating} /> */}
+        <StageContent stage={stage} />
       </main>
 
       {/* Controls Footer */}
