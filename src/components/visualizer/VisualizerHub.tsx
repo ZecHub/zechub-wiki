@@ -12,6 +12,7 @@ import { ZcashKeyVisualizer } from "./zcash-key-visualizer";
 import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
 import { WalletVisualizer } from "./zcash-wallet";
 import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
+import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
 
 type VisualizerType =
   | "welcome"
@@ -22,7 +23,8 @@ type VisualizerType =
   | "zcash-dex"
   | "hash-function"
   | "consensus"
-  | "zcash-key";
+  | "zcash-key"
+  | "blockchain-foundation";
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -32,6 +34,12 @@ interface VisualizerInfo {
 }
 
 const VISUALIZERS: VisualizerInfo[] = [
+  {
+    id: "blockchain-foundation",
+    title: "What is Blockchain",
+    description: "Understanding Blockchain Foundation",
+    component: BlockchainFoundationVisualizer,
+  },
   {
     id: "zcash-wallet",
     title: "Introduction to Zcash Wallets",
