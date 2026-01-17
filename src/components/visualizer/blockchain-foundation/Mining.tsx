@@ -15,9 +15,9 @@ export const Mining = () => {
           Finding a Valid Hash (Proof of Work)
         </h3>
 
-        <div className="space-y-4">
+        <div className="space-y-8">
           {/* Input */}
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mt-8">
             <div className="flex-1 w-full">
               <p className="text-xs text-muted-foreground mb-1">
                 Block Header + Nonce
