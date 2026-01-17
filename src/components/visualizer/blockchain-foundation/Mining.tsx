@@ -92,6 +92,21 @@ export const Mining = () => {
         </div>
       </motion.div>
 
+      {/* Equihash info */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+        className="bg-pool-orchard/10 border border-pool-orchard/30 rounded-xl p-4"
+      >
+        <h4 className="font-semibold text-pool-orchard mb-2">
+          Zcash uses Equihash
+        </h4>
+        <p className="text-sm text-muted-foreground">
+          Equihash is a memory-hard proof-of-work algorithm, making it
+          ASIC-resistant and promoting decentralization by allowing GPU mining.
+        </p>
+      </motion.div>
     </div>
   );
 };
