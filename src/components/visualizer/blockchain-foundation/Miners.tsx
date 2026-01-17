@@ -4,7 +4,16 @@ import { Coins, Cpu, Shield } from "lucide-react";
 export const Miners = () => {
   const distribution = [
     { label: "Miners", percentage: 80, color: "bg-primary" },
-    { label: "Dev Fund", percentage: 20, color: "bg-pool-orchard" },
+    {
+      label: "Zcash Community Grants Committee (ZCG)",
+      percentage: 8,
+      color: "bg-pool-sapling",
+    },
+    {
+      label: "Lockbox",
+      percentage: 12,
+      color: "bg-pool-orchard",
+    },
   ];
 
   return (
@@ -51,7 +60,7 @@ export const Miners = () => {
       >
         <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
           <Coins className="w-5 h-5 text-primary" />
-          Block Reward Distribution (Current: 3.125 ZEC)
+          Block Reward Distribution (Current: 1.5625 ZEC)
         </h3>
 
         <div className="space-y-4">
