@@ -108,11 +108,17 @@ const CustomTooltip = ({ active, payload, label }: any) => {
       <p className="font-semibold text-gray-900 dark:text-white mb-2">
         {label}
       </p>
-      {payload.map((entry: any, index: number) => (
-        <p key={index} className="text-sm" style={{ color: entry.color }}>
-          {`${entry.name}: ${formatValue(entry.value)}`}
-        </p>
-      ))}
+      {payload.map((entry: any, index: number) => {
+        const formattedValue = entry.name.includes("%")
+          ? formatPercentage(entry.value)
+          : formatValue(entry.value);
+
+        return (
+          <p key={index} className="text-sm" style={{ color: entry.color }}>
+            {`${entry.name}: ${formattedValue}`}
+          </p>
+        );
+      })}
     </div>
   );
 };
@@ -326,7 +332,11 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
         {activeTab === "transactions" && (
           <ChartWrapper>
             <ComposedChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#e5e7eb"
+                className="dark:stroke-slate-700"
+              />
               <XAxis {...commonXAxisProps} />
               <YAxis {...commonAxisProps} tickFormatter={formatValue} />
               <YAxis
@@ -371,12 +381,27 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
         {activeTab === "price" && (
           <ChartWrapper>
             <ComposedChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#e5e7eb"
+                className="dark:stroke-slate-700"
+              />
               <XAxis {...commonXAxisProps} />
-              <YAxis {...commonAxisProps} tickFormatter={formatCurrency} />
+              <YAxis
+                yAxisId="left"
+                {...commonAxisProps}
+                tickFormatter={formatCurrency}
+              />
+              <YAxis
+                yAxisId="right"
+                orientation="right"
+                {...commonAxisProps}
+                tickFormatter={formatCurrency}
+              />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
               <Area
+                yAxisId="left" // Add this
                 dataKey="shieldedMarketCap"
                 name="Shielded Market Cap"
                 fill="#3b82f6"
@@ -384,6 +409,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 fillOpacity={0.2}
               />
               <Line
+                yAxisId="right" // Add this
                 type="monotone"
                 dataKey="closingPrice"
                 name="Closing Price"
@@ -398,7 +424,11 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
         {activeTab === "nodes" && (
           <ChartWrapper>
             <ComposedChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#e5e7eb"
+                className="dark:stroke-slate-700"
+              />
               <XAxis {...commonXAxisProps} />
               <YAxis {...commonAxisProps} />
               <Tooltip content={<CustomTooltip />} />
@@ -430,7 +460,11 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
         {activeTab === "shielded" && (
           <ChartWrapper>
             <ComposedChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#e5e7eb"
+                className="dark:stroke-slate-700"
+              />
               <XAxis {...commonXAxisProps} />
               <YAxis
                 yAxisId="left"
