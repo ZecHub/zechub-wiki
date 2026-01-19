@@ -9,6 +9,7 @@ import { ConsensusVisualizer } from "./consensus-visualizer";
 import { ContributionVisualizer } from "./contribution-visualizer";
 import { HashFunctionVisualizer } from "./hash-function-visualizer";
 import { OpenSourceReposVisualizer } from "./open-source-repos";
+import { PayWithZcashVisualizer } from "./pay-with-zcash";
 import { ZcashCommunityGrantsVisualizer } from "./zcash-community-grants";
 import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
 import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
@@ -19,6 +20,7 @@ import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
 
 type VisualizerType =
   | "welcome"
+  | "pay-with-zcash"
   | "pool"
   | "zkproof"
   | "infrastructure"
@@ -40,6 +42,12 @@ interface VisualizerInfo {
 }
 
 const VISUALIZERS: VisualizerInfo[] = [
+  {
+    id: "pay-with-zcash",
+    title: "Pay with Zcash",
+    description: "Discover where and how to use ZEC for private payments",
+    component: PayWithZcashVisualizer,
+  },
   {
     id: "zcash-wallet",
     title: "Introduction to Zcash Wallets",
