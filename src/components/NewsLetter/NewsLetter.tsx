@@ -111,7 +111,7 @@ const NewsLetter: React.FC = () => {
         placeholder="Enter your Zcash Unified Address"
         value={unifiedAddress}
         onChange={handleAddressChange}
-        className={`w-full max-w-md mt-6 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+        className={`w-full max-w-md mt-6 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white dark:bg-gray-800 text-black dark:text-white ${
           isValidAddress ? "focus:ring-green-500 border-green-500" : "focus:ring-red-500 border-red-500"
         }`}
       />
@@ -193,7 +193,7 @@ const NewsLetter: React.FC = () => {
             placeholder="Enter your Unified Address to unsubscribe"
             value={unsubscribeAddress}
             onChange={handleUnsubscribeAddressChange}
-            className="w-full max-w-md px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full max-w-md px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-black dark:text-white"
           />
           <button
             onClick={handleUnsubscribe}
