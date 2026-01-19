@@ -96,25 +96,6 @@ const ContentSections = () => {
           },
         ]}
       />
-
-      {/* ZECPages Section */}
-      <InfoCard
-        id="zec-pages"
-        reverse={true}
-        title="ZECPages"
-        description="ZECPages is an anonymous message board powered by Zcash. It also
-              serves as a public directory of Zcash users. Take it easy is the
-              ZECpages motto. A good reason to swing by is if you want to chat
-              and make new friends."
-        image="/ZecPages_Banner.gif"
-        links={[
-          {
-            href: "https://zecpages.com",
-            label: "ZECPages",
-            primary: true,
-          },
-        ]}
-      />
     </section>
   );
 };
@@ -260,4 +241,4 @@ function InfoCard({
       </div>
     </div>
   );
-}
+  }
