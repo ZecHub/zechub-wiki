@@ -45,6 +45,18 @@ YOUR_CHANNEL_ID=
 
 
 
+## Sources
+
+
+[1](https://console.cloud.google.com/apis/api/youtube.googleapis.com/metrics)
+[2](https://www.streamweasels.com/%20tools/youtube-channel-id-and-%20user-id-convertor/)
+
+Scripts sourced from grok 1/2/2026 by dismad8
+
+
+
+
+
 
 
 
