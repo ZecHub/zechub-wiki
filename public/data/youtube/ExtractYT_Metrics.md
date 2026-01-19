@@ -35,7 +35,7 @@ YOUR_CHANNEL_ID=
 
 ### See number of views for a particular playlist
 
-`python3 extractYTplaylistMetrics.py --api_key YOUR_API_KEY --playlist_id YOUR_PLAYLIST_ID
+`python3 extractYTplaylistMetrics.py --api_key YOUR_API_KEY --playlist_id YOUR_PLAYLIST_ID`
 
 
 ## Sort Data as needed
