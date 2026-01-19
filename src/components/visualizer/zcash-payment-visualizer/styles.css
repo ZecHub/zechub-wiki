@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Zcash branded design system - matches ZecHub tailwind config */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 43 89% 56%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 43 89% 56%;
+
+    --radius: 0.5rem;
+
+    /* Zcash specific colors */
+    --zcash-gold: 43 89% 56%;
+    --zcash-gold-glow: 43 100% 65%;
+    --zcash-dark: 0 0% 0%;
+    --zcash-dark-lighter: 0 0% 10%;
+
+    /* Pool colors */
+    --pool-transparent: 200 80% 50%;
+    --pool-transparent-glow: 200 100% 60%;
+    --pool-sapling: 160 70% 45%;
+    --pool-sapling-glow: 160 100% 55%;
+    --pool-orchard: 280 70% 55%;
+    --pool-orchard-glow: 280 100% 65%;
+
+    /* Code background */
+    --code-bg: 0 0% 96.1%;
+  }
+
+  .dark {
+    --background: 220 40% 12%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 43 89% 56%;
+    --primary-foreground: 222.2 47% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 43 89% 56%;
+
+    /* Code background */
+    --code-bg: 217.2 32.6% 17.5%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+@layer utilities {
+  .glow-gold {
+    box-shadow: 0 0 30px hsl(var(--zcash-gold) / 0.3),
+      0 0 60px hsl(var(--zcash-gold) / 0.15);
+  }
+
+  .glow-transparent {
+    box-shadow: 0 0 20px hsl(var(--pool-transparent) / 0.4),
+      0 0 40px hsl(var(--pool-transparent) / 0.2);
+  }
+
+  .glow-sapling {
+    box-shadow: 0 0 20px hsl(var(--pool-sapling) / 0.4),
+      0 0 40px hsl(var(--pool-sapling) / 0.2);
+  }
+
+  .glow-orchard {
+    box-shadow: 0 0 20px hsl(var(--pool-orchard) / 0.4),
+      0 0 40px hsl(var(--pool-orchard) / 0.2);
+  }
+
+  .glass {
+    background: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .gradient-gold {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--zcash-gold)) 0%,
+      hsl(var(--zcash-gold-glow)) 100%
+    );
+  }
+}

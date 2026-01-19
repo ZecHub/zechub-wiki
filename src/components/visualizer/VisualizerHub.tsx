@@ -16,9 +16,11 @@ import { ZcashKeyVisualizer } from "./zcash-key-visualizer";
 import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
 import { WalletVisualizer } from "./zcash-wallet";
 import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
+import { ZcashPaymentVisualizer } from "./zcash-payment-visualizer";
 
 type VisualizerType =
   | "welcome"
+  | "payment"
   | "pool"
   | "zkproof"
   | "infrastructure"
@@ -40,6 +42,12 @@ interface VisualizerInfo {
 }
 
 const VISUALIZERS: VisualizerInfo[] = [
+  {
+    id: "payment",
+    title: "Pay with Zcash",
+    description: "Private payments for everyday purchases",
+    component: ZcashPaymentVisualizer,
+  },
   {
     id: "zcash-wallet",
     title: "Introduction to Zcash Wallets",
