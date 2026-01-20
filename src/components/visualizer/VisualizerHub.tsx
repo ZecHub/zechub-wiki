@@ -35,12 +35,6 @@ interface VisualizerInfo {
 
 const VISUALIZERS: VisualizerInfo[] = [
   {
-    id: "blockchain-foundation",
-    title: "What is Blockchain",
-    description: "Understanding Blockchain Foundation",
-    component: BlockchainFoundationVisualizer,
-  },
-  {
     id: "zcash-wallet",
     title: "Introduction to Zcash Wallets",
     description: "Providing Shielded Functionality",
@@ -78,16 +72,22 @@ const VISUALIZERS: VisualizerInfo[] = [
     component: HashFunctionVisualizer,
   },
   {
-    id: "zcash-key",
-    title: "Zcash keys",
-    description: "Understanding Zcash Keys",
-    component: ZcashKeyVisualizer,
+    id: "blockchain-foundation",
+    title: "Blockchain Fundamentals",
+    description: "Understanding Blockchain Foundation",
+    component: BlockchainFoundationVisualizer,
   },
   {
     id: "consensus",
     title: "Consensus",
     description: "How do thousands of nodes agree?",
     component: ConsensusVisualizer,
+  },
+  {
+    id: "zcash-key",
+    title: "Zcash keys",
+    description: "Understanding Zcash Keys",
+    component: ZcashKeyVisualizer,
   },
 ];
 
