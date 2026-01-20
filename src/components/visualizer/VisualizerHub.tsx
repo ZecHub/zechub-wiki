@@ -16,6 +16,7 @@ import { ZcashKeyVisualizer } from "./zcash-key-visualizer";
 import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
 import { WalletVisualizer } from "./zcash-wallet";
 import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
+import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
 
 type VisualizerType =
   | "welcome"
@@ -27,6 +28,7 @@ type VisualizerType =
   | "hash-function"
   | "consensus"
   | "zcash-key"
+  | "blockchain-foundation"
   | "zechub-bounties"
   | "zcash-community-grants"
   | "coinholder-grants"
@@ -78,16 +80,22 @@ const VISUALIZERS: VisualizerInfo[] = [
     component: HashFunctionVisualizer,
   },
   {
-    id: "zcash-key",
-    title: "Zcash keys",
-    description: "Understanding Zcash Keys",
-    component: ZcashKeyVisualizer,
+    id: "blockchain-foundation",
+    title: "Blockchain Fundamentals",
+    description: "Understanding Blockchain Foundation",
+    component: BlockchainFoundationVisualizer,
   },
   {
     id: "consensus",
     title: "Consensus",
     description: "How do thousands of nodes agree?",
     component: ConsensusVisualizer,
+  },
+  {
+    id: "zcash-key",
+    title: "Zcash keys",
+    description: "Understanding Zcash Keys",
+    component: ZcashKeyVisualizer,
   },
   {
     id: "zechub-bounties",
@@ -281,7 +289,7 @@ export const VisualizerHub: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Display  */}
             <VisualizerCard
-              data={VISUALIZERS.slice(5, 8)}
+              data={VISUALIZERS.slice(5, 9)}
               goToVisualizer={goToVisualizer}
             />
           </div>
@@ -290,7 +298,7 @@ export const VisualizerHub: React.FC = () => {
         <section id="contribution" className="mt-24">
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <VisualizerCard
-              data={VISUALIZERS.slice(8)}
+              data={VISUALIZERS.slice(9)}
               goToVisualizer={goToVisualizer}
             />
           </div>

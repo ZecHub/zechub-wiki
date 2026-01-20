@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Zcash branded design system - dark theme with gold accents */
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 0%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 0%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 0%;
+
+        --primary: 43 89% 56%;
+        --primary-foreground: 0 0% 100%;
+
+        --secondary: 210 40% 96%;
+        --secondary-foreground: 222 47% 4%;
+
+        --muted: 210 40% 96%;
+        --muted-foreground: 215 16% 47%;
+
+        --accent: 210 40% 96%;
+        --accent-foreground: 222 47% 4%;
+
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 214 32% 91%;
+        --input: 214 32% 91%;
+        --ring: 43 89% 56%;
+
+        --radius: 0.75rem;
+/* Zcash specific colors */
+    --zcash-gold: 43 89% 56%;
+    --zcash-gold-glow: 43 100% 65%;
+    --zcash-dark: 0 0% 0%;
+    --zcash-dark-lighter: 0 0% 10%;
+
+    /* Pool colors */
+    --pool-transparent: 200 80% 50%;
+    --pool-transparent-glow: 200 100% 60%;
+    --pool-sapling: 160 70% 45%;
+    --pool-sapling-glow: 160 100% 55%;
+    --pool-orchard: 280 70% 55%;
+    --pool-orchard-glow: 280 100% 65%;
+
+    --sidebar-background: 220 18% 10%;
+    --sidebar-foreground: 45 100% 96%;
+    --sidebar-primary: 43 89% 56%;
+    --sidebar-primary-foreground: 220 20% 7%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 45 100% 96%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 43 89% 56%;
+}
+.dark {
+    --background: 220 20% 7%;
+    --foreground: 45 100% 96%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 45 100% 96%;
+
+    --popover: 220 18% 10%;
+    --popover-foreground: 45 100% 96%;
+
+    --primary: 43 89% 56%;
+    --primary-foreground: 220 20% 7%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 45 100% 96%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 43 89% 56%;
+    --accent-foreground: 220 20% 7%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 45 100% 96%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 43 89% 56%;
+
+    --sidebar-background: 220 18% 10%;
+    --sidebar-foreground: 45 100% 96%;
+    --sidebar-primary: 43 89% 56%;
+    --sidebar-primary-foreground: 220 20% 7%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 45 100% 96%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 43 89% 56%;
+}
+}
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
+        font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+    }
+}
+
+@layer utilities {
+    .glow-gold {
+        box-shadow: 0 0 30px hsl(var(--zcash-gold) / 0.3),
+            0 0 60px hsl(var(--zcash-gold) / 0.15);
+    }
+
+    .glow-transparent {
+        box-shadow: 0 0 20px hsl(var(--pool-transparent) / 0.4),
+            0 0 40px hsl(var(--pool-transparent) / 0.2);
+    }
+
+    .glow-sapling {
+        box-shadow: 0 0 20px hsl(var(--pool-sapling) / 0.4),
+            0 0 40px hsl(var(--pool-sapling) / 0.2);
+    }
+
+    .glow-orchard {
+        box-shadow: 0 0 20px hsl(var(--pool-orchard) / 0.4),
+            0 0 40px hsl(var(--pool-orchard) / 0.2);
+    }
+
+    .glass {
+        background: hsl(var(--card) / 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid hsl(var(--border) / 0.5);
+    }
+
+    .gradient-gold {
+        background: linear-gradient(135deg,
+                hsl(var(--zcash-gold)) 0%,
+                hsl(var(--zcash-gold-glow)) 100%);
+    }
+}
