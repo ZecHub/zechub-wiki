@@ -81,8 +81,8 @@ const VISUALIZERS: VisualizerInfo[] = [
   },
   {
     id: "blockchain-foundation",
-    title: "Blockchain Fundamentals",
-    description: "Understanding Blockchain Foundation",
+    title: "Zcash Blockchain Fundamentals",
+    description: "Understanding Zcash Blockchain Foundation",
     component: BlockchainFoundationVisualizer,
   },
   {
