@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "ZecHub Wiki",
   description: "An open source education hub for Zcash",
-  icons: "https://i.ibb.co/ysPDS9Q/Zec-Hub-blue-globe.png",
+  icons: "/ZecHubBlue.png",
 };
 
 export default function RootLayout({

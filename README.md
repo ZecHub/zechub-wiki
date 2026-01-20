@@ -39,7 +39,13 @@ To set up the development environment, follow these steps:
 yarn install
 ```
 
-2. Run the development server:
+2. Copy the example file:
+
+```bash
+cp .env.example .env
+```
+
+3. Run the development server:
 
 ```bash
 yarn dev

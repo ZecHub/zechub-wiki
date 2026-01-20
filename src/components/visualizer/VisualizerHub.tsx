@@ -4,8 +4,12 @@ import { Button } from "@/components/UI/shadcn/button";
 import { motion } from "framer-motion";
 import { Home, Pause, Play } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
+import { CoinholderGrantsVisualizer } from "./coinholder-grants";
 import { ConsensusVisualizer } from "./consensus-visualizer";
+import { ContributionVisualizer } from "./contribution-visualizer";
 import { HashFunctionVisualizer } from "./hash-function-visualizer";
+import { OpenSourceReposVisualizer } from "./open-source-repos";
+import { ZcashCommunityGrantsVisualizer } from "./zcash-community-grants";
 import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
 import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
 import { ZcashKeyVisualizer } from "./zcash-key-visualizer";
@@ -24,7 +28,11 @@ type VisualizerType =
   | "hash-function"
   | "consensus"
   | "zcash-key"
-  | "blockchain-foundation";
+  | "blockchain-foundation"
+  | "zechub-bounties"
+  | "zcash-community-grants"
+  | "coinholder-grants"
+  | "open-source-repos";
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -88,6 +96,30 @@ const VISUALIZERS: VisualizerInfo[] = [
     title: "Zcash keys",
     description: "Understanding Zcash Keys",
     component: ZcashKeyVisualizer,
+  },
+  {
+    id: "zechub-bounties",
+    title: "ZecHub Bounties",
+    description: "Contribute to ZecHub and earn ZEC",
+    component: ContributionVisualizer,
+  },
+  {
+    id: "zcash-community-grants",
+    title: "Zcash Community Grants",
+    description: "Funding for Zcash ecosystem projects",
+    component: ZcashCommunityGrantsVisualizer,
+  },
+  {
+    id: "coinholder-grants",
+    title: "Coinholder Directed Grants",
+    description: "Retroactive funding directed by ZEC holders",
+    component: CoinholderGrantsVisualizer,
+  },
+  {
+    id: "open-source-repos",
+    title: "Open Source Repositories",
+    description: "Contribute to Zcash open source projects",
+    component: OpenSourceReposVisualizer,
   },
 ];
 
@@ -217,7 +249,7 @@ export const VisualizerHub: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r dark:from-yellow-400 dark:via-emerald-400 dark:to-cyan-400 bg-clip-text text-foreground dark:text-transparent">
               Zcash Visualizers
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -257,7 +289,16 @@ export const VisualizerHub: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Display  */}
             <VisualizerCard
-              data={VISUALIZERS.slice(5)}
+              data={VISUALIZERS.slice(5, 8)}
+              goToVisualizer={goToVisualizer}
+            />
+          </div>
+        </section>
+
+        <section id="contribution" className="mt-24">
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <VisualizerCard
+              data={VISUALIZERS.slice(8)}
               goToVisualizer={goToVisualizer}
             />
           </div>
@@ -300,7 +341,7 @@ function VisualizerCard(props: CardProps) {
       >
         <div className="flex flex-col min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
           <div className="flex-1 text-center">
-            <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+            <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
               {v.title}
             </h3>
             <p className="text-muted-foreground group-hover:text-muted-foreground transition-colors">
