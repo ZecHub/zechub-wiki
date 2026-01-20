@@ -55,7 +55,7 @@ export const stages: Stage[] = [
   },
   {
     id: 4,
-    title: "Block Mining",
+    title: "Zcash Block Mining",
     subtitle: "Proof of Work (Equihash)",
     description:
       "Miners compete to find a valid nonce that produces a hash meeting the network's difficulty target.",
@@ -64,7 +64,7 @@ export const stages: Stage[] = [
   },
   {
     id: 5,
-    title: "Miners & Block Rewards",
+    title: "Zcash Miners & Block Rewards",
     subtitle: "Incentivizing Security",
     description:
       "Miners secure the network by expending computational resources and receive newly minted ZEC as reward.",
