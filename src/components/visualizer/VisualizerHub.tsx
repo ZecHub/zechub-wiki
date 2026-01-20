@@ -9,6 +9,7 @@ import { ConsensusVisualizer } from "./consensus-visualizer";
 import { ContributionVisualizer } from "./contribution-visualizer";
 import { HashFunctionVisualizer } from "./hash-function-visualizer";
 import { OpenSourceReposVisualizer } from "./open-source-repos";
+import { PayWithZcashVisualizer } from "./pay-with-zcash";
 import { ZcashCommunityGrantsVisualizer } from "./zcash-community-grants";
 import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
 import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
@@ -20,6 +21,7 @@ import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
 
 type VisualizerType =
   | "welcome"
+  | "pay-with-zcash"
   | "pool"
   | "zkproof"
   | "infrastructure"
@@ -54,6 +56,12 @@ const VISUALIZERS: VisualizerInfo[] = [
     description:
       "Permissionless, censorship-resistant access to ZEC using decentralized exchanges",
     component: ZcashDexVisualizer,
+  },
+  {
+    id: "pay-with-zcash",
+    title: "Pay with Zcash",
+    description: "Discover where and how to use ZEC for private payments",
+    component: PayWithZcashVisualizer,
   },
   {
     id: "pool",
