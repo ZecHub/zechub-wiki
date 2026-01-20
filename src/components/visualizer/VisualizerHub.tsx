@@ -58,12 +58,6 @@ const VISUALIZERS: VisualizerInfo[] = [
     component: ZcashDexVisualizer,
   },
   {
-    id: "pay-with-zcash",
-    title: "Pay with Zcash",
-    description: "Discover where and how to use ZEC for private payments",
-    component: PayWithZcashVisualizer,
-  },
-  {
     id: "pool",
     title: "Pool & Address",
     description: "Explore Zcash privacy pools and address types",
@@ -80,6 +74,12 @@ const VISUALIZERS: VisualizerInfo[] = [
     title: "Zcash Infrastructure",
     description: "How Zcash components work together",
     component: ZcashInfrastructureVisualizer,
+  },
+  {
+    id: "pay-with-zcash",
+    title: "Pay with Zcash",
+    description: "Discover where and how to use ZEC for private payments",
+    component: PayWithZcashVisualizer,
   },
   {
     id: "hash-function",
@@ -297,7 +297,7 @@ export const VisualizerHub: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Display  */}
             <VisualizerCard
-              data={VISUALIZERS.slice(5, 9)}
+              data={VISUALIZERS.slice(5, 10)}
               goToVisualizer={goToVisualizer}
             />
           </div>
@@ -306,7 +306,7 @@ export const VisualizerHub: React.FC = () => {
         <section id="contribution" className="mt-24">
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <VisualizerCard
-              data={VISUALIZERS.slice(9)}
+              data={VISUALIZERS.slice(10)}
               goToVisualizer={goToVisualizer}
             />
           </div>
