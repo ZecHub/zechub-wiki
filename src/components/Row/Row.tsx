@@ -2,6 +2,7 @@
 import React from "react";
 import BrandCards from "../BrandCards/BrandCards";
 import zcashNigeria from "../../assets/brand/ZcashNigeria/JPG/ZcashNigeria_White.jpg";
+import zcashUkraine from "../../assets/brand/ZcashUkraine/Zcash_Ukraine.jpg";
 import zcashEspanol from "../../assets/brand/ZcashEspanol/JPG/ZcashEspanol.jpg";
 import ecc from "../../assets/brand/ECC/JPG/ECCBlack.jpg";
 import wallet from "../../assets/brand/Wallets/Zashi/JPG/ZashiIconBlack.jpg";
@@ -63,6 +64,14 @@ const projects = [
     size: 240,
   },
   {
+    title: "Zcash Ukraine",
+    description:
+      "A community-led hub bridging Zcash to Turkey, empowering users with financial privacy through localized education, grassroots activism for global sovereignty.",
+    link: "downloads/brand/zcashUkraine.zip",
+    imageUrl: zcashUkraine,
+    size: 200,
+  },
+  {
     title: "Zcash Nigeria",
     description:
       "Zcash Nigeria promotes financial privacy by educating and onboarding Nigerians to Zcash",
@@ -97,3 +106,4 @@ const Row: React.FC = () => {
 };
 
 export default Row;
+
