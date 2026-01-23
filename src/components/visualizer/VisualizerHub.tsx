@@ -303,7 +303,7 @@ export const VisualizerHub: React.FC = () => {
         )}
 
         {/* Navigation buttons */}
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 max-w-[95vw]">
+        <div className="fixed bottom-2 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 max-w-[95vw]">
           {/* Previous button */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
