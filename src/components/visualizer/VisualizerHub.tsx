@@ -2,8 +2,8 @@
 
 import { Button } from "@/components/UI/shadcn/button";
 import { motion } from "framer-motion";
-import { Home, Pause, Play } from "lucide-react";
-import React, { useCallback, useEffect, useState } from "react";
+import { Home, Pause, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import { CoinholderGrantsVisualizer } from "./coinholder-grants";
 import { ConsensusVisualizer } from "./consensus-visualizer";
 import { ContributionVisualizer } from "./contribution-visualizer";
@@ -41,6 +41,7 @@ interface VisualizerInfo {
   title: string;
   description: string;
   component: React.ComponentType<any>;
+  autoPlayDuration?: number; // Custom duration in ms for auto-play
 }
 
 const VISUALIZERS: VisualizerInfo[] = [
@@ -49,6 +50,7 @@ const VISUALIZERS: VisualizerInfo[] = [
     title: "Introduction to Zcash Wallets",
     description: "Providing Shielded Functionality",
     component: WalletVisualizer,
+    autoPlayDuration: 45000, // 45 seconds - has multiple stages
   },
   {
     id: "zcash-dex",
@@ -56,78 +58,91 @@ const VISUALIZERS: VisualizerInfo[] = [
     description:
       "Permissionless, censorship-resistant access to ZEC using decentralized exchanges",
     component: ZcashDexVisualizer,
+    autoPlayDuration: 15000, // 15 seconds - static content
   },
   {
     id: "pool",
     title: "Pool & Address",
     description: "Explore Zcash privacy pools and address types",
     component: ZcashPoolVisualizer,
+    autoPlayDuration: 40000, // 40 seconds
   },
   {
     id: "zkproof",
     title: "zk-SNARK Proof",
     description: "Interactive demonstration of shielded transactions",
     component: ZKSNARKProofVisualizer,
+    autoPlayDuration: 70000, // 70 seconds - 7 stages
   },
   {
     id: "infrastructure",
     title: "Zcash Infrastructure",
     description: "How Zcash components work together",
     component: ZcashInfrastructureVisualizer,
+    autoPlayDuration: 50000, // 50 seconds
   },
   {
     id: "pay-with-zcash",
     title: "Pay with Zcash",
     description: "Discover where and how to use ZEC for private payments",
     component: PayWithZcashVisualizer,
+    autoPlayDuration: 30000, // 30 seconds - slide-based
   },
   {
     id: "hash-function",
     title: "Hash Functions",
     description: "What is a Hash Function?",
     component: HashFunctionVisualizer,
+    autoPlayDuration: 40000, // 40 seconds
   },
   {
     id: "blockchain-foundation",
     title: "Zcash Blockchain Fundamentals",
     description: "Understanding Zcash Blockchain Foundation",
     component: BlockchainFoundationVisualizer,
+    autoPlayDuration: 45000, // 45 seconds
   },
   {
     id: "consensus",
     title: "Consensus",
     description: "How do thousands of nodes agree?",
     component: ConsensusVisualizer,
+    autoPlayDuration: 40000, // 40 seconds
   },
   {
     id: "zcash-key",
     title: "Zcash keys",
     description: "Understanding Zcash Keys",
     component: ZcashKeyVisualizer,
+    autoPlayDuration: 40000, // 40 seconds
   },
   {
     id: "zechub-bounties",
     title: "ZecHub Bounties",
     description: "Contribute to ZecHub and earn ZEC",
     component: ContributionVisualizer,
+    autoPlayDuration: 25000, // 25 seconds - slide-based
   },
   {
     id: "zcash-community-grants",
     title: "Zcash Community Grants",
     description: "Funding for Zcash ecosystem projects",
     component: ZcashCommunityGrantsVisualizer,
+    autoPlayDuration: 30000, // 30 seconds - slide-based
   },
   {
     id: "coinholder-grants",
     title: "Coinholder Directed Grants",
     description: "Retroactive funding directed by ZEC holders",
     component: CoinholderGrantsVisualizer,
+    autoPlayDuration: 25000, // 25 seconds - slide-based
   },
   {
     id: "open-source-repos",
     title: "Open Source Repositories",
     description: "Contribute to Zcash open source projects",
     component: OpenSourceReposVisualizer,
+    autoPlayDuration: 25000, // 25 seconds - slide-based
   },
 ];
 
@@ -135,70 +150,146 @@ export const VisualizerHub: React.FC = () => {
   const [currentVisualizer, setCurrentVisualizer] =
     useState<VisualizerType>("welcome");
   const [isPlayingAll, setIsPlayingAll] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentIndexRef = useRef(0);
+  const autoPlayTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const getCurrentIndex = () => {
+    return VISUALIZERS.findIndex((v) => v.id === currentVisualizer);
+  };
 
   const startPlayAll = useCallback(() => {
     setIsPlayingAll(true);
-    setCurrentIndex(0);
+    currentIndexRef.current = 0;
     setCurrentVisualizer(VISUALIZERS[0].id);
   }, []);
 
   const stopPlayAll = useCallback(() => {
     setIsPlayingAll(false);
+    if (autoPlayTimerRef.current) {
+      clearTimeout(autoPlayTimerRef.current);
+      autoPlayTimerRef.current = null;
+    }
   }, []);
 
   const goToVisualizer = useCallback((visualizerId: VisualizerType) => {
     setCurrentVisualizer(visualizerId);
     setIsPlayingAll(false);
+    if (autoPlayTimerRef.current) {
+      clearTimeout(autoPlayTimerRef.current);
+      autoPlayTimerRef.current = null;
+    }
   }, []);
 
   const goHome = useCallback(() => {
     setCurrentVisualizer("welcome");
     setIsPlayingAll(false);
-    setCurrentIndex(0);
+    currentIndexRef.current = 0;
+    if (autoPlayTimerRef.current) {
+      clearTimeout(autoPlayTimerRef.current);
+      autoPlayTimerRef.current = null;
+    }
   }, []);
 
-  // Auto-advance through visualizers when playing all
+  const goToNext = useCallback(() => {
+    const currentIdx = getCurrentIndex();
+    if (currentIdx < VISUALIZERS.length - 1) {
+      const nextIdx = currentIdx + 1;
+      currentIndexRef.current = nextIdx;
+      setCurrentVisualizer(VISUALIZERS[nextIdx].id);
+    } else if (isPlayingAll) {
+      // Loop back to start when in auto-play mode
+      currentIndexRef.current = 0;
+      setCurrentVisualizer(VISUALIZERS[0].id);
+    }
+  }, [currentVisualizer, isPlayingAll]);
+
+  const goToPrevious = useCallback(() => {
+    const currentIdx = getCurrentIndex();
+    if (currentIdx > 0) {
+      const prevIdx = currentIdx - 1;
+      currentIndexRef.current = prevIdx;
+      setCurrentVisualizer(VISUALIZERS[prevIdx].id);
+    }
+  }, [currentVisualizer]);
+
+  const handleVisualizerComplete = useCallback(() => {
+    if (isPlayingAll) {
+      const nextIndex = currentIndexRef.current + 1;
+      if (nextIndex < VISUALIZERS.length) {
+        currentIndexRef.current = nextIndex;
+        setCurrentVisualizer(VISUALIZERS[nextIndex].id);
+      } else {
+        // Loop back to start
+        currentIndexRef.current = 0;
+        setCurrentVisualizer(VISUALIZERS[0].id);
+      }
+    }
+  }, [isPlayingAll]);
+
+  // Fallback timer for visualizers that don't have internal auto-play
   useEffect(() => {
-    if (!isPlayingAll) return;
+    if (!isPlayingAll || currentVisualizer === "welcome") {
+      if (autoPlayTimerRef.current) {
+        clearTimeout(autoPlayTimerRef.current);
+        autoPlayTimerRef.current = null;
+      }
+      return;
+    }
 
-    const timer = setTimeout(() => {
-      const nextIndex = (currentIndex + 1) % VISUALIZERS.length;
-      setCurrentIndex(nextIndex);
-      setCurrentVisualizer(VISUALIZERS[nextIndex].id);
-    }, 60000); // 1 minute per visualizer
+    const currentIdx = getCurrentIndex();
+    const visualizerInfo = VISUALIZERS[currentIdx];
+    const duration = visualizerInfo?.autoPlayDuration || 30000;
 
-    return () => clearTimeout(timer);
-  }, [isPlayingAll, currentIndex]);
+    // Set a fallback timer
+    autoPlayTimerRef.current = setTimeout(() => {
+      handleVisualizerComplete();
+    }, duration);
+
+    return () => {
+      if (autoPlayTimerRef.current) {
+        clearTimeout(autoPlayTimerRef.current);
+        autoPlayTimerRef.current = null;
+      }
+    };
+  }, [isPlayingAll, currentVisualizer, handleVisualizerComplete]);
 
   if (currentVisualizer !== "welcome") {
-    const CurrentComponent = VISUALIZERS.find(
-      (v) => v.id === currentVisualizer
-    )?.component;
+    const currentIdx = getCurrentIndex();
+    const CurrentComponent = VISUALIZERS[currentIdx]?.component;
+    const isFirst = currentIdx === 0;
+    const isLast = currentIdx === VISUALIZERS.length - 1;
+    const nextVisualizer = !isLast ? VISUALIZERS[currentIdx + 1] : VISUALIZERS[0];
+    const prevVisualizer = !isFirst ? VISUALIZERS[currentIdx - 1] : null;
 
     if (!CurrentComponent) return null;
 
     return (
-      <>
+      <div className="relative min-h-screen">
         {/* Back to hub button */}
         <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.3 }}
           onClick={goHome}
-          className="fixed top-[6rem] left-[1.5rem] imd:top-[7rem] imd:left-8 z-50 p-3 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/80 transition-all shadow-lg"
+          className="fixed top-[6rem] left-[1.5rem] imd:top-[7rem] imd:left-8 z-50 p-3 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card transition-all shadow-lg"
           aria-label="Back to Visualizer Hub"
         >
           <Home className="w-5 h-5 text-foreground" />
         </motion.button>
 
-        {/* Play All controls when playing all */}
+        {/* Auto-play indicator */}
         {isPlayingAll && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="fixed top-4 right-4 z-50 flex gap-2"
+            className="fixed top-6 right-6 z-50 flex gap-2"
           >
+            <div className="bg-card/80 backdrop-blur-md border border-border/50 rounded-lg px-4 py-2 flex items-center gap-2">
+              <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+              <span className="text-sm font-medium">
+                Auto-playing ({currentIdx + 1}/{VISUALIZERS.length})
+              </span>
+            </div>
             <Button
               onClick={stopPlayAll}
               variant="secondary"
@@ -206,13 +297,74 @@ export const VisualizerHub: React.FC = () => {
               className="bg-card/80 backdrop-blur-md border border-border/50"
             >
               <Pause className="w-4 h-4 mr-2" />
-              Stop Auto-Play
+              Stop
             </Button>
           </motion.div>
         )}
 
-        <CurrentComponent />
-      </>
+        {/* Navigation buttons */}
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 max-w-[95vw]">
+          {/* Previous button */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <Button
+              onClick={goToPrevious}
+              disabled={isFirst}
+              variant="secondary"
+              className="bg-card/90 backdrop-blur-md border border-border/50 hover:bg-card disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft className="w-4 h-4 mr-2" />
+              {prevVisualizer && (
+                <span className="hidden md:inline max-w-[150px] lg:max-w-[200px] truncate">
+                  {prevVisualizer.title}
+                </span>
+              )}
+              <span className="md:hidden">Previous</span>
+            </Button>
+          </motion.div>
+
+          {/* Current module indicator */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5 }}
+            className="bg-card/90 backdrop-blur-md border border-border/50 rounded-lg px-4 py-2 max-w-[180px] md:max-w-[250px]"
+          >
+            <div className="text-xs text-muted-foreground mb-1">
+              Current Module
+            </div>
+            <div className="font-semibold text-sm truncate">
+              {VISUALIZERS[currentIdx].title}
+            </div>
+          </motion.div>
+
+          {/* Next button */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <Button
+              onClick={goToNext}
+              variant="secondary"
+              className="bg-card/90 backdrop-blur-md border border-border/50 hover:bg-card"
+            >
+              {nextVisualizer && (
+                <span className="hidden md:inline max-w-[150px] lg:max-w-[200px] truncate">
+                  {nextVisualizer.title}
+                </span>
+              )}
+              <span className="md:hidden">Next</span>
+              <ChevronRight className="w-4 h-4 ml-2" />
+            </Button>
+          </motion.div>
+        </div>
+
+        <CurrentComponent onComplete={handleVisualizerComplete} />
+      </div>
     );
   }
 
@@ -285,7 +437,6 @@ export const VisualizerHub: React.FC = () => {
 
         <section id="basic" className="mt-24">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Display  */}
             <VisualizerCard
               data={VISUALIZERS.slice(0, 5)}
               goToVisualizer={goToVisualizer}
@@ -295,7 +446,6 @@ export const VisualizerHub: React.FC = () => {
 
         <section id="advance" className="mt-24">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Display  */}
             <VisualizerCard
               data={VISUALIZERS.slice(5, 10)}
               goToVisualizer={goToVisualizer}
