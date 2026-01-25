@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/UI/shadcn/card";
+import { useEffect } from "react";
 import { Button } from "@/components/UI/shadcn/button";
 import { ExternalLink, Shield, Zap, Wallet } from "lucide-react";
 import { motion } from "framer-motion";
@@ -45,8 +46,21 @@ const WALLET_INTEGRATIONS = [
   "Unstoppable Wallet",
 ];
 
-export const ZcashDexVisualizer = () => {
-  return (
+interface ZcashDexVisualizerProps {
+  onComplete?: () => void;
+  autoStart?: boolean;
+}
+
+export const ZcashDexVisualizer = ({ onComplete, autoStart = false }: ZcashDexVisualizerProps) => {
+  useEffect(() => {
+    if (autoStart && onComplete) {
+      const timer = setTimeout(() => {
+        onComplete();
+      }, 15000); // 15 seconds
+      
+      return () => clearTimeout(timer);
+    }
+  }, [autoStart, onComplete]);  return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-8 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-white">
       <div className="max-w-6xl mx-auto">
         {/* Header */}

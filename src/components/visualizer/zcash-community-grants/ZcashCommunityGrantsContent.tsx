@@ -138,7 +138,7 @@ export const ZcashCommunityGrantsContent = ({
   useEffect(() => {
     if (progress >= 100 && isPlaying) {
       const timer = setTimeout(() => {
-        onSlideChange((currentSlide + 1) % slides.length);
+        onSlideChange(currentSlide + 1);
       }, 0);
       return () => clearTimeout(timer);
     }
@@ -282,7 +282,7 @@ export const ZcashCommunityGrantsContent = ({
             transition={{ delay: 0.8 }}
             className="flex justify-center"
           >
-            <a
+            <a            
               href={slide.link}
               target="_blank"
               rel="noopener noreferrer"

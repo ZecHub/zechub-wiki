@@ -10,10 +10,13 @@ import { stages } from "./types";
 const WELCOME_STAGE_INTERVAL = 1000; // 4 seconds for welcome stage
 const OTHER_STAGES_INTERVAL = 6000; // 8 seconds for other stages
 
-export const BlockchainFoundationVisualizer = () => {
+interface BlockchainFoundationVisualizerProps {
+  onComplete?: () => void;
+  autoStart?: boolean;
+}
+export const BlockchainFoundationVisualizer = ({ onComplete, autoStart = false }: BlockchainFoundationVisualizerProps) => {
   const [currentStage, setCurrentStage] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(autoStart);   const [isAnimating, setIsAnimating] = useState(true);
 
   const stage = stages[currentStage];
 
@@ -38,6 +41,23 @@ export const BlockchainFoundationVisualizer = () => {
     setIsAnimating(true);
     setIsPlaying(false);
   }, []);
+
+  useEffect(() => {
+    if (autoStart) {
+      setIsPlaying(true);
+    }
+  }, [autoStart]);
+  
+  // Completion logic
+  useEffect(() => {
+    if (currentStage === stages.length - 1 && onComplete) {
+      const timer = setTimeout(() => {
+        onComplete();
+      }, OTHER_STAGES_INTERVAL);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [currentStage, onComplete]);
 
   // Auto-play logic with different intervals
   useEffect(() => {

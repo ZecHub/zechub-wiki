@@ -30,14 +30,35 @@ const noneShieldedSet = new Set(
   noneShieldedWallets.map((w) => w.toLowerCase())
 );
 
-export const WalletVisualizer = () => {
+interface WalletVisualizerProps {
+  onComplete?: () => void;
+  autoStart?: boolean;
+}
+
+export const WalletVisualizer = ({ onComplete, autoStart = false }: WalletVisualizerProps) => {
   const [currentStage, setCurrentStage] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(autoStart);
   const [isAnimating, setIsAnimating] = useState(true);
   const [wallets, setWallets] = useState<WalletInfo[]>([]);
 
   const stage = STAGES[currentStage];
-
+  
+  useEffect(() => {
+    if (autoStart) {
+      setIsPlaying(true);
+    }
+  }, [autoStart]);
+  
+  // Completion logic
+  useEffect(() => {
+    if (currentStage === STAGES.length - 1 && onComplete) {
+      const timer = setTimeout(() => {
+        onComplete();
+      }, OTHER_STAGES_INTERVAL);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [currentStage, onComplete]);
   useEffect(() => {
     async function getWalletInfo() {
       try {
