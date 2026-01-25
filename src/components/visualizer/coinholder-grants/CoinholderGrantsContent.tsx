@@ -150,15 +150,15 @@ export const CoinholderGrantsContent = ({
     return () => clearInterval(timer);
   }, [isPlaying]);
 
-  // Handle slide change when progress reaches 100
-  useEffect(() => {
-    if (progress >= 100 && isPlaying) {
-      const timer = setTimeout(() => {
-        onSlideChange((currentSlide + 1) % slides.length);
-      }, 0);
-      return () => clearTimeout(timer);
-    }
-  }, [progress, isPlaying, currentSlide, onSlideChange]);
+// Handle slide change when progress reaches 100
+useEffect(() => {
+  if (progress >= 100 && isPlaying) {
+    const timer = setTimeout(() => {
+      onSlideChange(currentSlide + 1);
+    }, 0);
+    return () => clearTimeout(timer);
+  }
+}, [progress, isPlaying, currentSlide, onSlideChange]);
 
   useEffect(() => {
     setProgress(0);

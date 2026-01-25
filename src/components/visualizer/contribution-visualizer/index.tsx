@@ -1,19 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { PlaybackControls } from "../PlaybackControls";
 import { ZecHubBountiesContent, slides } from "./ZecHubBountiesContent";
 import "./index.css";
 
 const SLIDES = slides.map((s) => ({ id: s.id, title: s.title }));
+interface ContributionVisualizerProps {
+  onComplete?: () => void;
+  autoStart?: boolean;
+}
 
-export const ContributionVisualizer = () => {
+export const ContributionVisualizer = ({ onComplete, autoStart = false }: ContributionVisualizerProps) => {
   const [currentStage, setCurrentStage] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(autoStart);
 
   const goToNext = useCallback(() => {
-    setCurrentStage((prev) => (prev + 1) % SLIDES.length);
+    setCurrentStage((prev) => {
+      if (prev < SLIDES.length - 1) {
+        return prev + 1;
+      }
+      // Stop playing when reaching the end
+      setIsPlaying(false);
+      return prev;
+    });
   }, []);
 
   const goToPrevious = useCallback(() => {
@@ -26,9 +37,32 @@ export const ContributionVisualizer = () => {
   }, []);
 
   const handleSlideChange = useCallback((index: number) => {
-    setCurrentStage(index);
+    if (index >= SLIDES.length) {
+      setIsPlaying(false);
+      setCurrentStage(SLIDES.length - 1);
+    } else {
+      setCurrentStage(index);
+    }
   }, []);
 
+  // Auto-start when autoStart prop is true
+  useEffect(() => {
+    if (autoStart) {
+      setIsPlaying(true);
+    }
+  }, [autoStart]);
+  
+  // Completion logic - triggers when on last slide and playing stops
+  useEffect(() => {
+    if (currentStage === SLIDES.length - 1 && !isPlaying && onComplete) {
+      const timer = setTimeout(() => {
+        onComplete();
+      }, 5000); // 5 seconds on last slide
+      
+      return () => clearTimeout(timer);
+    }
+  }, [currentStage, isPlaying, onComplete]);
+  
   return (
     <div className="flex flex-col min-h-screen">
       {/* Main Content */}

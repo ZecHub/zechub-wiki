@@ -99,8 +99,8 @@ export const ZecHubBountiesContent = ({
       return;
     }
 
-    const duration = 8000; // 8 seconds per slide
-    const interval = 50; // Update every 50ms
+    const duration = 8000;
+    const interval = 50;
     const increment = (interval / duration) * 100;
 
     const timer = setInterval(() => {
@@ -120,7 +120,7 @@ export const ZecHubBountiesContent = ({
   useEffect(() => {
     if (progress >= 100 && isPlaying) {
       const timer = setTimeout(() => {
-        onSlideChange((currentSlide + 1) % slides.length);
+        onSlideChange(currentSlide + 1);
       }, 0);
       return () => clearTimeout(timer);
     }

@@ -75,9 +75,52 @@ const steps: Step[] = [
   },
 ];
 
-const ZKSNARKProofVisualizer = () => {
+interface ZKSNARKProofVisualizerProps {
+  onComplete?: () => void;
+  autoStart?: boolean;
+}
+
+const ZKSNARKProofVisualizer = ({ 
+  onComplete, 
+  autoStart = false 
+}: ZKSNARKProofVisualizerProps) => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(autoStart);
+  
+  // Auto-start when autoStart prop is true
+  useEffect(() => {
+    if (autoStart) {
+      setIsPlaying(true);
+    }
+  }, [autoStart]);
+
+  // Auto-play through steps
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const timer = setTimeout(() => {
+      setCurrentStep((prev) => {
+        if (prev >= steps.length - 1) {
+          setIsPlaying(false);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 10000); // 10 seconds per step
+
+    return () => clearTimeout(timer);
+  }, [isPlaying, currentStep]);
+
+  // Completion logic - trigger when on last step and not playing anymore
+  useEffect(() => {
+    if (currentStep === steps.length - 1 && !isPlaying && onComplete) {
+      const timer = setTimeout(() => {
+        onComplete();
+      }, 10000); // Wait 10 seconds on final step before completing
+      
+      return () => clearTimeout(timer);
+    }
+  }, [currentStep, isPlaying, onComplete]);
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
@@ -102,27 +145,10 @@ const ZKSNARKProofVisualizer = () => {
     setIsPlaying(!isPlaying);
   };
 
-  // Auto-advance when playing
-  useEffect(() => {
-    if (isPlaying) {
-      const timer = setInterval(() => {
-        setCurrentStep((prev) => {
-          if (prev >= steps.length - 1) {
-            setIsPlaying(false);
-            return prev;
-          }
-          return prev + 1;
-        });
-      }, 10000);
-
-      return () => clearInterval(timer);
-    }
-  });
-
   const progress = ((currentStep + 1) / steps.length) * 100;
 
   return (
-    <div className=" min-h-screen py-12 px-6 rounded-sm bg-background text-foreground">
+    <div className="min-h-screen py-12 px-6 rounded-sm bg-background text-foreground">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Header */}
         <div className="block">
@@ -193,7 +219,7 @@ const ZKSNARKProofVisualizer = () => {
               </div>
 
               {currentStep === 3 && (
-                <Card className=" p-4 bg-accent/5 border-accent/20">
+                <Card className="p-4 bg-accent/5 border-accent/20">
                   <h4 className="font-semibold mb-2 text-accent">
                     Key Insight:
                   </h4>
@@ -272,34 +298,6 @@ const ZKSNARKProofVisualizer = () => {
             ))}
           </div>
         </Card>
-
-        {/* Additional Info */}
-        {/* <Card className=" p-6 bg-muted/20 border-border/50">
-          <div className="grid md:grid-cols-3 gap-6 text-center">
-            <div>
-              <h3 className="text-2xl font-bold text-primary mb-2">
-                288 bytes
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Average proof size
-              </p>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-secondary mb-2">
-                ~6 seconds
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Proof generation time
-              </p>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-accent mb-2">~10 ms</h3>
-              <p className="text-sm text-muted-foreground">
-                Proof verification time
-              </p>
-            </div>
-          </div>
-        </Card> */}
       </div>
     </div>
   );

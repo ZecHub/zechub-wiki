@@ -10,9 +10,20 @@ import { Controls } from './Controls';
 import { Volume2, VolumeX } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export const ZcashInfrastructureVisualizer: React.FC = () => {
+const WELCOME_STAGE_INTERVAL = 1000; // 1 second for welcome/first stage
+const OTHER_STAGES_INTERVAL = 5000; // 5 seconds for other stages
+
+interface ZcashInfrastructureVisualizerProps {
+  onComplete?: () => void;
+  autoStart?: boolean;
+}
+
+export const ZcashInfrastructureVisualizer = ({ 
+  onComplete, 
+  autoStart = false 
+}: ZcashInfrastructureVisualizerProps) => {
   const [currentStage, setCurrentStage] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(autoStart); 
   const [mounted, setMounted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -89,12 +100,33 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
     playTransitionSound(261.63);
   }, [playTransitionSound]);
 
+  // Auto-start when autoStart prop changes
+  useEffect(() => {
+    if (autoStart) {
+      setIsPlaying(true);
+    }
+  }, [autoStart]);
+  
+  // Auto-play through stages
   useEffect(() => {
     if (!isPlaying) return;
-    const interval = currentStage === 0 ? 1000 : 5000;
+    
+    const interval = currentStage === 0 ? WELCOME_STAGE_INTERVAL : OTHER_STAGES_INTERVAL;
     const timer = setTimeout(goToNext, interval);
+    
     return () => clearTimeout(timer);
   }, [isPlaying, currentStage, goToNext]);
+
+  // Completion logic - trigger when reaching last stage
+  useEffect(() => {
+    if (currentStage === STAGES.length - 1 && onComplete) {
+      const timer = setTimeout(() => {
+        onComplete();
+      }, OTHER_STAGES_INTERVAL); // Wait for the last stage to display
+      
+      return () => clearTimeout(timer);
+    }
+  }, [currentStage, onComplete]);
 
   if (!mounted) {
     return null;
@@ -162,7 +194,7 @@ export const ZcashInfrastructureVisualizer: React.FC = () => {
 
       {/* Main Content */}
       <main className="relative z-10 container mx-auto px-2 sm:px-4 py-6 sm:py-8 md:py-13 mt-6 sm:mt-8">
-      <div className="mb-6">
+        <div className="mb-6">
           <StageInfo stage={stage} />
         </div>
         <InfrastructureDiagram stage={stage} />

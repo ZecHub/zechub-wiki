@@ -1,15 +1,20 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { PlaybackControls } from "../PlaybackControls";
 import { PayWithZcashContent, slides } from "./PayWithZcashContent";
 
 const SLIDES = slides.map((s) => ({ id: s.id, title: s.title }));
 
-export const PayWithZcashVisualizer = () => {
-  const [currentStage, setCurrentStage] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+interface PayWithZcashVisualizerProps {
+  onComplete?: () => void;
+  autoStart?: boolean;
+}
 
+export const PayWithZcashVisualizer = ({ onComplete, autoStart = false }: PayWithZcashVisualizerProps) => {
+  const [currentStage, setCurrentStage] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(autoStart);
+  
   const goToNext = useCallback(() => {
     setCurrentStage((prev) => (prev + 1) % SLIDES.length);
   }, []);
@@ -27,6 +32,23 @@ export const PayWithZcashVisualizer = () => {
     setCurrentStage(index);
   }, []);
 
+  useEffect(() => {
+    if (autoStart) {
+      setIsPlaying(true);
+    }
+  }, [autoStart]);
+  
+  // Completion logic
+  useEffect(() => {
+    if (currentStage === SLIDES.length - 1 && isPlaying && onComplete) {
+      const timer = setTimeout(() => {
+        onComplete();
+      }, 5000); // 5 seconds on last slide
+      
+      return () => clearTimeout(timer);
+    }
+  }, [currentStage, isPlaying, onComplete]);
+  
   return (
     <div className="flex flex-col min-h-screen">
       <main className="container mx-auto px-4 py-8 md:py-13 mt-12">
