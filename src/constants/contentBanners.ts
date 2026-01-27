@@ -25,7 +25,7 @@ export const contentBanners = [
     },
     {
         name: "Zcash_Community",
-        url: '/content-banners/bannerecosystem.png'
+        url: '/content-banners/bannerecosystem2.png'
     },
     {
         name: "ZFAV_Club", 
