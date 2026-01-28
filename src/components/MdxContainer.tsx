@@ -21,8 +21,6 @@ export default async function MdxContainer({
   hasSideMenu = false,
   children,
 }: MdxContainerProps) {
-
-
   return (
     <main>
       <div className="flex justify-center w-full mb-5 bg-transparent rounded pb-4">
@@ -38,13 +36,15 @@ export default async function MdxContainer({
       <div
         id="content"
         className={`flex flex-col space-y-5 container m-auto ${
-          roots && roots.length > 0 ? "md:flex-row md:space-x-12" : "md:flex-col"
+          roots && roots.length > 0
+            ? "xl:flex-row xl:space-x-12"
+            : "xl:flex-col"
         } h-auto pt-5 px-2`}
       >
         {hasSideMenu && (
-          <div className="w-auto md:w-2/5 relative">{sideMenu}</div>
+          <div className="w-auto xl:w-2/5 relative">{sideMenu}</div>
         )}
-        <section className="h-auto w-full border-t md:border-l p-3 dark:border-slate-400">
+        <section className="h-auto w-full border-t xl:border-l p-3 dark:border-slate-400">
           {children}
         </section>
       </div>

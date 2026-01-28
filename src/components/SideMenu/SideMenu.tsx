@@ -34,12 +34,12 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
   const fold = getName(name);
 
   return (
-    <div className="relative flex flex-wrap items-center md:items-start order-1 justify-between md:flex-col">
-      <button onClick={toggleMenu} className="md:hidden flex">
+    <div className="relative flex flex-wrap items-center xl:items-start order-1 justify-between xl:flex-col">
+      <button onClick={toggleMenu} className="xl:hidden flex">
         <BurgerMenuIcon size={24} />{" "}
         <h3 className="ms-2 font-bold">Navigation</h3>
       </button>
-      <div className="flex justify-end md:justify-center w-auto order-2 md:order-3">
+      <div className="flex justify-end xl:justify-center w-auto order-2 xl:order-3">
         <Link
           href="/explore"
           className="flex items-center rounded-full font-bold px-4 py-2 hover:bg-[#1984c7]"
@@ -55,8 +55,8 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
         </Link>
       </div>
       <div
-        className={`flex flex-col shrink-0 top-0 py-4 items-center justify-start w-full px-3 order-3 md:order-2 ${
-          isMenuOpen ? "block mt-7" : "hidden md:block"
+        className={`flex flex-col shrink-0 top-0 py-4 xl:items-center justify-start w-full px-3 order-3 xl:order-2 ${
+          isMenuOpen ? "block mt-7" : "hidden xl:block"
         }`}
       >
         <h1 className="text-4xl font-bold mb-6"> {fold}: </h1>
@@ -78,7 +78,9 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                   >
                     <div className={`flex items-center space-x-4`}>
                       <div className="flex-shrink-0">
-                        <Icon icon={matchIcons(fold, getName(item)) ?? FileIcon} />
+                        <Icon
+                          icon={matchIcons(fold, getName(item)) ?? FileIcon}
+                        />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium ">
@@ -152,7 +154,6 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                 </Link>
               </li>
             )}
-            
           </ul>
         </div>
       </div>
