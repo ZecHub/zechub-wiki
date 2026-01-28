@@ -44,7 +44,10 @@ export default async function MdxContainer({
         {hasSideMenu && (
           <div className="w-auto xl:w-2/5 relative">{sideMenu}</div>
         )}
-        <section className="h-auto w-full border-t xl:border-l p-3 dark:border-slate-400">
+        <section
+          style={{ margin: "auto" }}
+          className="h-auto w-full border-t xl:border-l p-3 dark:border-slate-400"
+        >
           {children}
         </section>
       </div>
