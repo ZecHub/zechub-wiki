@@ -313,5 +313,10 @@
     "Date": "2026-01-25",
     "Net Sapling Flow": "1175",
     "Net Orchard Flow": "-58411"
+  },
+  {
+    "Date": "2026-02-01",
+    "Net Sapling Flow": "728",
+    "Net Orchard Flow": "-58080"
   }
 ]
