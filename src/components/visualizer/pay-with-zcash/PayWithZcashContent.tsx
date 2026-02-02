@@ -118,7 +118,7 @@ export const PayWithZcashContent = ({
       return;
     }
 
-    const duration = 8000; // 8 seconds per slide
+    const duration = 10000; // 10 seconds per slide
     const interval = 50; // Update every 50ms
     const increment = (interval / duration) * 100;
 
