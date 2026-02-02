@@ -59,7 +59,7 @@ export const OpenSourceReposVisualizer = ({
     if (currentStage === SLIDES.length - 1 && !isPlaying && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
-      }, 5000); // 5 seconds on last slide
+      }, 10000); // 5 seconds on last slide
       
       return () => clearTimeout(timer);
     }

@@ -56,7 +56,7 @@ export const ZcashDexVisualizer = ({ onComplete, autoStart = false }: ZcashDexVi
     if (autoStart && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
-      }, 15000); // 15 seconds
+      }, 10000);
       
       return () => clearTimeout(timer);
     }

@@ -11,7 +11,7 @@ import { Volume2, VolumeX } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const WELCOME_STAGE_INTERVAL = 1000; // 1 second for welcome/first stage
-const OTHER_STAGES_INTERVAL = 5000; // 5 seconds for other stages
+const OTHER_STAGES_INTERVAL = 10000; // Changed to 10 seconds for other stages
 
 interface ZcashInfrastructureVisualizerProps {
   onComplete?: () => void;
@@ -122,7 +122,7 @@ export const ZcashInfrastructureVisualizer = ({
     if (currentStage === STAGES.length - 1 && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
-      }, OTHER_STAGES_INTERVAL); // Wait for the last stage to display
+      }, OTHER_STAGES_INTERVAL); // Changed to 10 seconds for the last stage
       
       return () => clearTimeout(timer);
     }
