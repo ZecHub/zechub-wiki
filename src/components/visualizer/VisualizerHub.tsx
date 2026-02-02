@@ -62,13 +62,19 @@ const VISUALIZERS: VisualizerInfo[] = [
   },
   {
     id: "pool",
-    title: "Pool & Address",
+    title: "Value Pools & Address Types",
     description: "Explore Zcash privacy pools and address types",
     component: ZcashPoolVisualizer,
   },
   {
+    id: "pay-with-zcash",
+    title: "Pay with Zcash",
+    description: "Discover where and how to use ZEC for private payments",
+    component: PayWithZcashVisualizer,
+  },
+  {
     id: "zkproof",
-    title: "zk-SNARK Proof",
+    title: "zk-SNARKs",
     description: "Interactive demonstration of shielded transactions",
     component: ZKSNARKProofVisualizer,
   },
@@ -78,12 +84,7 @@ const VISUALIZERS: VisualizerInfo[] = [
     description: "How Zcash components work together",
     component: ZcashInfrastructureVisualizer,
   },
-  {
-    id: "pay-with-zcash",
-    title: "Pay with Zcash",
-    description: "Discover where and how to use ZEC for private payments",
-    component: PayWithZcashVisualizer,
-  },
+  
   {
     id: "hash-function",
     title: "Hash Functions",
@@ -94,17 +95,17 @@ const VISUALIZERS: VisualizerInfo[] = [
     id: "blockchain-foundation",
     title: "Zcash Blockchain Fundamentals",
     description: "Understanding Zcash Blockchain Foundation",
-    component: BlockchainFoundationVisualizer,
+    component: BlockchainFoundationVisualizer,``
   },
   {
     id: "consensus",
     title: "Consensus",
-    description: "How do thousands of nodes agree?",
+    description: "How do hundreds of nodes agree on chain state?",
     component: ConsensusVisualizer,
   },
   {
     id: "zcash-key",
-    title: "Zcash keys",
+    title: "Zcash Keys",
     description: "Understanding Zcash Keys",
     component: ZcashKeyVisualizer,
   },
