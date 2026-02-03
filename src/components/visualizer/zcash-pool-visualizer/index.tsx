@@ -7,8 +7,8 @@ import { StageContent } from "./StageContent";
 import "./index.css";
 import { STAGES } from "./types";
 
-const WELCOME_STAGE_INTERVAL = 1000; // 4 seconds for welcome stage
-const OTHER_STAGES_INTERVAL = 6000; // 8 seconds for other stages
+const WELCOME_STAGE_INTERVAL = 10000; // 4 seconds for welcome stage
+const OTHER_STAGES_INTERVAL = 10000; // 8 seconds for other stages
 interface ZcashPoolVisualizerProps {
   onComplete?: () => void;
   autoStart?: boolean;
@@ -97,7 +97,7 @@ export const ZcashPoolVisualizer = ({ onComplete, autoStart = false }: ZcashPool
             <span className="text-xl font-bold text-primary-foreground">Z</span>
           </motion.div>
           <h1 className="text-2xl font-bold text-foreground">
-            Zcash Pool Visualizer
+          Value Pools & Address Types
           </h1>
         </div>
         <p className="text-sm text-muted-foreground mt-2">
