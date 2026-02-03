@@ -74,7 +74,7 @@ export const STAGES: Stage[] = [
     subtitle: "Live Performance",
     description: "Current hashrate, rewards, and efficiency metrics",
     type: "network-stats",
-    link: "https://zcashblockexplorer.com",
+    link: "https://mainnet.zcashexplorer.app",
     linkText: "Network Explorer",
   },
 ];
