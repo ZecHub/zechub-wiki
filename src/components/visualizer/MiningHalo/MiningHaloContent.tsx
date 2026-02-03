@@ -5,7 +5,6 @@ import {
   Pickaxe,
   Cpu,
   Zap,
-  Minimize2,
   Network,
   Box,
   Coins,
@@ -13,13 +12,15 @@ import {
   TrendingUp,
   Hash,
   Blocks,
-  Binary,
   ArrowRight,
   CheckCircle,
+  Shield,
+  Lock,
+  GitBranch,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
-export type StageType = "equihash" | "mining-process" | "halo-intro" | "proof-compression" | "network-stats";
+export type StageType = "equihash" | "mining-process" | "halo-intro" | "shielded-rewards" | "network-stats" | "crosslink";
 
 export interface Stage {
   id: string;
@@ -60,13 +61,13 @@ export const STAGES: Stage[] = [
     linkText: "Explore Halo 2",
   },
   {
-    id: "proof-compression",
-    title: "Proof Compression",
-    subtitle: "Aggregation Demo",
-    description: "Watch multiple proofs compress into one",
-    type: "proof-compression",
-    link: "https://zcash.github.io/halo2/",
-    linkText: "Halo 2 Documentation",
+    id: "shielded-rewards",
+    title: "Shielded Mining Rewards",
+    subtitle: "Private Coinbase",
+    description: "How miners can shield rewards for enhanced privacy using zk-proofs",
+    type: "shielded-rewards",
+    link: "https://zcash.readthedocs.io/en/latest/rtd_pages/shield_coinbase.html",
+    linkText: "Shielded Coinbase Guide",
   },
   {
     id: "network-stats",
@@ -76,6 +77,15 @@ export const STAGES: Stage[] = [
     type: "network-stats",
     link: "https://mainnet.zcashexplorer.app",
     linkText: "Network Explorer",
+  },
+  {
+    id: "crosslink",
+    title: "Crosslink Hybrid Consensus",
+    subtitle: "Future PoW/PoS Upgrade",
+    description: "Upcoming hybrid system adding PoS for finality, staking, and scalability on top of PoW",
+    type: "crosslink",
+    link: "https://shieldedlabs.net/crosslink-roadmap-q1-2025",
+    linkText: "Crosslink Roadmap",
   },
 ];
 
@@ -301,7 +311,7 @@ const Halo2Animation = () => {
 
         {/* Result */}
         <motion.div
-          className="w-32 h-32 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center"
+          className="w-32 h-32 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center"
           animate={{
             scale: recursing ? [1, 1.2, 1] : 1,
             boxShadow: recursing
@@ -340,14 +350,14 @@ const Halo2Animation = () => {
   );
 };
 
-// Proof Compression Animation
-const ProofCompressionAnimation = () => {
-  const [compressing, setCompressing] = useState(false);
+// Shielded Rewards Animation
+const ShieldedRewardsAnimation = () => {
+  const [shielding, setShielding] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCompressing(true);
-      setTimeout(() => setCompressing(false), 2000);
+      setShielding(true);
+      setTimeout(() => setShielding(false), 2000);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
@@ -355,70 +365,52 @@ const ProofCompressionAnimation = () => {
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-center gap-8">
-        {/* Multiple proofs */}
-        <div className="flex flex-col gap-2">
-          {[0, 1, 2, 3, 4].map((i) => (
+        {/* Mining Reward */}
+        <motion.div
+          className="w-32 h-32 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 flex items-center justify-center text-white"
+          animate={{ scale: shielding ? [1, 1.1, 1] : 1 }}
+        >
+          <Coins className="w-16 h-16" />
+        </motion.div>
+
+        <motion.div
+          animate={{ x: shielding ? [0, 20, 0] : 0 }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <ArrowRight className="w-8 h-8 text-muted-foreground" />
+        </motion.div>
+
+        {/* Shielded Pool */}
+        <div className="relative">
+          <motion.div
+            className="w-32 h-32 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white"
+            animate={{
+              boxShadow: shielding ? "0 0 40px rgba(34, 197, 94, 0.8)" : "0 0 20px rgba(34, 197, 94, 0.3)",
+            }}
+          >
+            <Shield className="w-16 h-16" />
+          </motion.div>
+          {shielding && (
             <motion.div
-              key={i}
-              className="w-32 h-8 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-600 flex items-center justify-center text-white text-xs font-semibold"
-              animate={{
-                x: compressing ? 100 : 0,
-                opacity: compressing ? 0 : 1,
-                scale: compressing ? 0.5 : 1,
-              }}
-              transition={{
-                duration: 1,
-                delay: i * 0.1,
-              }}
-            >
-              Proof {i + 1}
-            </motion.div>
-          ))}
+              initial={{ scale: 1, opacity: 1 }}
+              animate={{ scale: 1.5, opacity: 0 }}
+              transition={{ duration: 1, repeat: Infinity }}
+              className="absolute inset-0 rounded-xl border-4 border-green-400"
+            />
+          )}
         </div>
-
-        <motion.div
-          animate={{
-            rotate: compressing ? 360 : 0,
-            scale: compressing ? [1, 1.5, 1] : 1,
-          }}
-          transition={{ duration: 2 }}
-        >
-          <Minimize2 className="w-12 h-12 text-purple-400" />
-        </motion.div>
-
-        {/* Compressed proof */}
-        <motion.div
-          className="w-32 h-12 rounded-lg bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center text-white font-semibold"
-          animate={{
-            scale: compressing ? [0, 1] : 1,
-            opacity: compressing ? [0, 1] : 1,
-          }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          ✓ Verified
-        </motion.div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 mt-8">
-        <div className="text-center">
-          <div className="text-4xl font-bold text-emerald-400">5 Proofs</div>
-          <div className="text-sm text-muted-foreground mt-2">Original Size</div>
-          <motion.div
-            className="mt-4 h-24 bg-gradient-to-t from-emerald-500/20 to-emerald-500/5 rounded-lg"
-            animate={{ scaleY: compressing ? 0.2 : 1 }}
-            style={{ transformOrigin: "bottom" }}
-          />
+      <div className="grid grid-cols-2 gap-4">
+        <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-center">
+          <Lock className="w-6 h-6 text-green-400 mx-auto mb-2" />
+          <div className="font-semibold">Private Rewards</div>
+          <div className="text-sm text-muted-foreground">Hide mining income</div>
         </div>
-        <div className="text-center">
-          <div className="text-4xl font-bold text-purple-400">1 Proof</div>
-          <div className="text-sm text-muted-foreground mt-2">Compressed (90% smaller)</div>
-          <div className="mt-4 h-24 bg-gradient-to-t from-purple-500/20 to-purple-500/5 rounded-lg flex items-end">
-            <motion.div
-              className="w-full bg-gradient-to-t from-purple-500 to-purple-400 rounded-lg"
-              animate={{ height: compressing ? "20%" : 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-            />
-          </div>
+        <div className="p-4 rounded-lg bg-blue-500/10 border border-blue-500/30 text-center">
+          <Zap className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+          <div className="font-semibold">Halo Enabled</div>
+          <div className="text-sm text-muted-foreground">Verifiable privacy</div>
         </div>
       </div>
     </div>
@@ -514,6 +506,71 @@ const NetworkStatsAnimation = () => {
   );
 };
 
+// Crosslink Animation
+const CrosslinkAnimation = () => {
+  const [hybridizing, setHybridizing] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHybridizing(true);
+      setTimeout(() => setHybridizing(false), 3000);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="space-y-8">
+      <div className="flex items-center justify-center gap-8">
+        {/* PoW Layer */}
+        <motion.div
+          className="w-32 h-32 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white"
+          animate={{ y: hybridizing ? [0, -10, 0] : 0 }}
+        >
+          <Pickaxe className="w-16 h-16" />
+        </motion.div>
+
+        <motion.div
+          animate={{ rotate: hybridizing ? 360 : 0 }}
+          transition={{ duration: 2 }}
+        >
+          <GitBranch className="w-12 h-12 text-purple-400" />
+        </motion.div>
+
+        {/* PoS Layer */}
+        <motion.div
+          className="w-32 h-32 rounded-xl bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center text-white"
+          animate={{ y: hybridizing ? [0, 10, 0] : 0 }}
+        >
+          <Lock className="w-16 h-16" />
+        </motion.div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div className="p-4 rounded-lg bg-purple-500/10 border border-purple-500/30">
+          <TrendingUp className="w-5 h-5 text-purple-400 mb-2" />
+          <div className="font-semibold text-foreground">Staking Yield</div>
+          <div className="text-sm text-muted-foreground">Earn rewards on ZEC</div>
+        </div>
+        <div className="p-4 rounded-lg bg-indigo-500/10 border border-indigo-500/30">
+          <Zap className="w-5 h-5 text-indigo-400 mb-2" />
+          <div className="font-semibold text-foreground">Fast Finality</div>
+          <div className="text-sm text-muted-foreground">Improved security</div>
+        </div>
+        <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/30">
+          <Network className="w-5 h-5 text-green-400 mb-2" />
+          <div className="font-semibold text-foreground">Scalability</div>
+          <div className="text-sm text-muted-foreground">Lays foundation for L2</div>
+        </div>
+        <div className="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
+          <Shield className="w-5 h-5 text-cyan-400 mb-2" />
+          <div className="font-semibold text-foreground">Hybrid Model</div>
+          <div className="text-sm text-muted-foreground">PoW blocks + PoS finality</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Main Content Component
 interface StageContentProps {
   stage: Stage;
@@ -529,10 +586,12 @@ export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
         return <MiningProcessAnimation />;
       case "halo-intro":
         return <Halo2Animation />;
-      case "proof-compression":
-        return <ProofCompressionAnimation />;
+      case "shielded-rewards":
+        return <ShieldedRewardsAnimation />;
       case "network-stats":
         return <NetworkStatsAnimation />;
+      case "crosslink":
+        return <CrosslinkAnimation />;
       default:
         return null;
     }
