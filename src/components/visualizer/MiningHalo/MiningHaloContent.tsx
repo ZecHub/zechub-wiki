@@ -5,7 +5,7 @@ import {
   Pickaxe,
   Cpu,
   Zap,
-  Compass,
+  Minimize2,
   Network,
   Box,
   Coins,
@@ -383,7 +383,7 @@ const ProofCompressionAnimation = () => {
           }}
           transition={{ duration: 2 }}
         >
-          <Compass className="w-12 h-12 text-purple-400" />
+          <Minimize2 className="w-12 h-12 text-purple-400" />
         </motion.div>
 
         {/* Compressed proof */}
