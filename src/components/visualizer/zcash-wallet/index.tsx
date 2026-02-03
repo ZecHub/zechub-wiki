@@ -8,8 +8,8 @@ import { StageContent } from "./StageContent";
 import "./index.css";
 import { STAGES } from "./types";
 
-const WELCOME_STAGE_INTERVAL = 10000; // 4 seconds for welcome stage
-const OTHER_STAGES_INTERVAL = 10000; // 8 seconds for other stages
+const WELCOME_STAGE_INTERVAL = 10000; // 10 seconds for welcome stage
+const OTHER_STAGES_INTERVAL = 10000; // 10 seconds for other stages
 
 const url = `/site/Using_Zcash/Wallets.md`;
 
