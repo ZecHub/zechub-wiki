@@ -99,37 +99,39 @@ const DevFundAnimation = () => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 md:space-y-8">
       {/* Block Reward Flow */}
-      <div className="flex items-center justify-center gap-8">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
         <motion.div
-          className="p-6 rounded-xl bg-gradient-to-br from-yellow-400 to-amber-500 text-white"
+          className="p-4 md:p-6 rounded-xl bg-gradient-to-br from-yellow-400 to-amber-500 text-white"
           animate={{
             scale: distributing ? [1, 1.1, 1] : 1,
           }}
         >
-          <Coins className="w-12 h-12 mx-auto mb-2" />
-          <div className="text-2xl font-bold">3.125 ZEC</div>
-          <div className="text-sm opacity-90">Block Reward</div>
+          <Coins className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-2" />
+          <div className="text-xl md:text-2xl font-bold">3.125 ZEC</div>
+          <div className="text-xs md:text-sm opacity-90">Block Reward</div>
         </motion.div>
 
-        <ArrowRight className="w-8 h-8 text-muted-foreground" />
+        <div className="rotate-90 md:rotate-0">
+          <ArrowRight className="w-6 h-6 md:w-8 md:h-8 text-muted-foreground" />
+        </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-3 md:gap-4">
           {/* 80% to miners */}
           <motion.div
-            className="p-4 rounded-xl bg-gradient-to-br from-orange-400 to-red-500 text-white text-center"
+            className="p-3 md:p-4 rounded-xl bg-gradient-to-br from-orange-400 to-red-500 text-white text-center"
             animate={{
               scale: distributing ? [1, 1.05, 1] : 1,
             }}
           >
-            <div className="text-xl font-bold">80%</div>
+            <div className="text-lg md:text-xl font-bold">80%</div>
             <div className="text-xs">Miners</div>
           </motion.div>
 
           {/* 20% to dev fund */}
           <motion.div
-            className="p-4 rounded-xl bg-gradient-to-br from-indigo-400 to-purple-500 text-white text-center"
+            className="p-3 md:p-4 rounded-xl bg-gradient-to-br from-indigo-400 to-purple-500 text-white text-center"
             animate={{
               scale: distributing ? [1, 1.1, 1] : 1,
               boxShadow: distributing
@@ -137,20 +139,20 @@ const DevFundAnimation = () => {
                 : "0 0 20px rgba(129, 140, 248, 0.3)",
             }}
           >
-            <div className="text-xl font-bold">20%</div>
+            <div className="text-lg md:text-xl font-bold">20%</div>
             <div className="text-xs">Dev Fund</div>
           </motion.div>
         </div>
       </div>
 
       {/* Fund Distribution */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-3 md:gap-4">
         {allocations.map((alloc, idx) => {
           const Icon = alloc.icon;
           return (
             <motion.div
               key={alloc.name}
-              className={`p-6 rounded-xl bg-gradient-to-br ${alloc.color} text-white text-center`}
+              className={`p-4 md:p-6 rounded-xl bg-gradient-to-br ${alloc.color} text-white text-center`}
               initial={{ opacity: 0, y: 20 }}
               animate={{
                 opacity: 1,
@@ -159,9 +161,9 @@ const DevFundAnimation = () => {
               }}
               transition={{ delay: idx * 0.2 }}
             >
-              <Icon className="w-8 h-8 mx-auto mb-2" />
-              <div className="text-2xl font-bold">{alloc.percent}%</div>
-              <div className="text-sm opacity-90">{alloc.name}</div>
+              <Icon className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2" />
+              <div className="text-xl md:text-2xl font-bold">{alloc.percent}%</div>
+              <div className="text-xs md:text-sm opacity-90">{alloc.name}</div>
             </motion.div>
           );
         })}
@@ -190,23 +192,23 @@ const ZIPsAnimation = () => {
   ];
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 md:space-y-8">
+      <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-3 md:gap-2">
         {stages.map((s, idx) => {
           const Icon = s.icon;
           const isActive = idx === stage;
           const isDone = idx < stage;
 
           return (
-            <div key={s.label} className="flex flex-col items-center gap-2">
+            <div key={s.label} className="flex flex-col items-center gap-2 w-[18%] md:w-auto">
               <motion.div
-                className={`w-16 h-16 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center relative`}
+                className={`w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center relative`}
                 animate={{
                   scale: isActive ? [1, 1.2, 1] : 1,
                   opacity: isDone ? 0.5 : 1,
                 }}
               >
-                <Icon className="w-8 h-8 text-white" />
+                <Icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                 {isActive && (
                   <motion.div
                     className="absolute inset-0 rounded-xl border-4 border-white/50"
@@ -215,14 +217,14 @@ const ZIPsAnimation = () => {
                   />
                 )}
               </motion.div>
-              <div className="text-xs font-medium">{s.label}</div>
+              <div className="text-[10px] md:text-xs font-medium text-center">{s.label}</div>
             </div>
           );
         })}
       </div>
 
       {/* Notable ZIPs */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
         {[
           { num: "1022", name: "Dev Fund Restructure", impact: "Lockbox fund" },
           { num: "255", name: "NU6.1 Deployment", impact: "Consensus upgrade" },
@@ -231,18 +233,18 @@ const ZIPsAnimation = () => {
         ].map((zip, idx) => (
           <motion.div
             key={zip.num}
-            className="p-4 rounded-lg bg-card/50 border border-border"
+            className="p-3 md:p-4 rounded-lg bg-card/50 border border-border"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: idx * 0.1 }}
           >
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold text-sm">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold text-xs md:text-sm">
                 {zip.num}
               </div>
-              <div className="font-semibold">{zip.name}</div>
+              <div className="text-sm md:text-base font-semibold">{zip.name}</div>
             </div>
-            <div className="text-sm text-muted-foreground">{zip.impact}</div>
+            <div className="text-xs md:text-sm text-muted-foreground">{zip.impact}</div>
           </motion.div>
         ))}
       </div>
@@ -271,36 +273,36 @@ const VotingAnimation = () => {
   }, []);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 md:space-y-8">
       {/* Voters */}
-      <div className="flex items-center justify-center gap-8">
+      <div className="flex items-center justify-center gap-3 md:gap-8 flex-wrap">
         {[0, 1, 2, 3, 4].map((i) => (
           <motion.div
             key={i}
-            className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-fuchsia-500 flex items-center justify-center"
+            className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-purple-400 to-fuchsia-500 flex items-center justify-center"
             animate={{
               scale: voting ? [1, 1.2, 1] : 1,
             }}
             transition={{ delay: i * 0.1 }}
           >
-            <Vote className="w-8 h-8 text-white" />
+            <Vote className="w-6 h-6 md:w-8 md:h-8 text-white" />
           </motion.div>
         ))}
       </div>
 
       {/* Results */}
-      <div className="space-y-4">
+      <div className="space-y-3 md:space-y-4">
         {[
           { label: "Yes", value: votes.yes, color: "bg-green-500" },
           { label: "No", value: votes.no, color: "bg-red-500" },
           { label: "Abstain", value: votes.abstain, color: "bg-gray-500" },
         ].map((option) => (
           <div key={option.label}>
-            <div className="flex justify-between text-sm mb-2">
+            <div className="flex justify-between text-xs md:text-sm mb-2">
               <span className="font-medium">{option.label}</span>
               <span className="text-muted-foreground">{option.value}%</span>
             </div>
-            <div className="h-4 bg-muted/20 rounded-full overflow-hidden">
+            <div className="h-3 md:h-4 bg-muted/20 rounded-full overflow-hidden">
               <motion.div
                 className={`h-full ${option.color}`}
                 initial={{ width: 0 }}
@@ -334,38 +336,39 @@ const GrantsAnimation = () => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 md:space-y-8">
       {/* Funding Flow */}
-      <div className="flex items-center justify-center gap-8">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
         <motion.div
-          className="w-24 h-24 rounded-xl bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center"
+          className="w-20 h-20 md:w-24 md:h-24 rounded-xl bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center"
           animate={{
             scale: funding ? [1, 0.9, 1] : 1,
           }}
         >
-          <DollarSign className="w-12 h-12 text-white" />
+          <DollarSign className="w-10 h-10 md:w-12 md:h-12 text-white" />
         </motion.div>
 
         <motion.div
-          className="w-1 h-16 bg-gradient-to-b from-orange-400 to-green-400"
+          className="w-16 h-1 md:w-1 md:h-16 bg-gradient-to-r md:bg-gradient-to-b from-orange-400 to-green-400 rotate-90 md:rotate-0"
           animate={{
+            scaleX: funding ? [0, 1] : 0,
             scaleY: funding ? [0, 1] : 0,
           }}
           style={{ transformOrigin: "top" }}
         />
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-2 md:gap-3">
           {[0, 1, 2, 3].map((i) => (
             <motion.div
               key={i}
-              className="w-16 h-16 rounded-lg bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center"
+              className="w-12 h-12 md:w-16 md:h-16 rounded-lg bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center"
               animate={{
                 scale: funding ? [0.8, 1] : 0.8,
                 opacity: funding ? [0, 1] : 0,
               }}
               transition={{ delay: i * 0.2 }}
             >
-              <Award className="w-8 h-8 text-white" />
+              <Award className="w-6 h-6 md:w-8 md:h-8 text-white" />
             </motion.div>
           ))}
         </div>
@@ -376,16 +379,16 @@ const GrantsAnimation = () => {
         {grants.map((grant, idx) => (
           <motion.div
             key={grant.name}
-            className="p-4 rounded-lg bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/30"
+            className="p-3 md:p-4 rounded-lg bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/30"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: idx * 0.1 }}
           >
-            <div className="flex items-center justify-between mb-2">
-              <div className="font-semibold">{grant.name}</div>
-              <div className="text-sm text-indigo-400 font-bold">{grant.max}</div>
+            <div className="flex items-center justify-between mb-2 flex-wrap gap-2">
+              <div className="text-sm md:text-base font-semibold">{grant.name}</div>
+              <div className="text-xs md:text-sm text-indigo-400 font-bold">{grant.max}</div>
             </div>
-            <div className="text-sm text-muted-foreground">{grant.focus}</div>
+            <div className="text-xs md:text-sm text-muted-foreground">{grant.focus}</div>
           </motion.div>
         ))}
       </div>
@@ -413,41 +416,41 @@ const ImpactAnimation = () => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 md:space-y-8">
       {/* Timeline */}
       <div className="relative">
-        <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 via-purple-500 to-pink-500" />
-        <div className="space-y-8">
+        <div className="absolute left-1/2 top-0 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-blue-400 via-purple-500 to-pink-500" />
+        <div className="space-y-6 md:space-y-8">
           {milestones.map((m, idx) => {
             const Icon = m.icon;
             return (
               <motion.div
                 key={m.year}
-                className="flex items-center gap-4"
+                className="flex items-center gap-3 md:gap-4"
                 initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.2 }}
               >
                 {idx % 2 === 0 ? (
                   <>
-                    <div className="flex-1 text-right">
-                      <div className="font-semibold">{m.event}</div>
-                      <div className="text-sm text-muted-foreground">{m.year}</div>
+                    <div className="flex-1 text-right pr-2">
+                      <div className="text-sm md:text-base font-semibold">{m.event}</div>
+                      <div className="text-xs md:text-sm text-muted-foreground">{m.year}</div>
                     </div>
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center relative z-10">
-                      <Icon className="w-6 h-6 text-white" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center relative z-10 shrink-0">
+                      <Icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                     </div>
                     <div className="flex-1" />
                   </>
                 ) : (
                   <>
                     <div className="flex-1" />
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center relative z-10">
-                      <Icon className="w-6 h-6 text-white" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center relative z-10 shrink-0">
+                      <Icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                     </div>
-                    <div className="flex-1">
-                      <div className="font-semibold">{m.event}</div>
-                      <div className="text-sm text-muted-foreground">{m.year}</div>
+                    <div className="flex-1 pl-2">
+                      <div className="text-sm md:text-base font-semibold">{m.event}</div>
+                      <div className="text-xs md:text-sm text-muted-foreground">{m.year}</div>
                     </div>
                   </>
                 )}
@@ -458,7 +461,7 @@ const ImpactAnimation = () => {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-3 md:gap-4">
         {[
           { value: "60+", label: "ZIPs Deployed" },
           { value: "$5B+", label: "Ecosystem Value" },
@@ -466,16 +469,16 @@ const ImpactAnimation = () => {
         ].map((stat, idx) => (
           <motion.div
             key={stat.label}
-            className="p-4 rounded-lg bg-card/50 border border-border text-center"
+            className="p-3 md:p-4 rounded-lg bg-card/50 border border-border text-center"
             animate={{
               scale: growing ? [1, 1.05, 1] : 1,
             }}
             transition={{ delay: idx * 0.1 }}
           >
-            <div className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+            <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
               {stat.value}
             </div>
-            <div className="text-sm text-muted-foreground">{stat.label}</div>
+            <div className="text-xs md:text-sm text-muted-foreground">{stat.label}</div>
           </motion.div>
         ))}
       </div>
@@ -515,13 +518,13 @@ export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.4 }}
-        className="w-full min-h-[500px]"
+        className="w-full min-h-[400px] md:min-h-[500px]"
       >
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12 px-4">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-sm text-indigo-400 font-medium mb-2"
+            className="text-xs md:text-sm text-indigo-400 font-medium mb-2"
           >
             {stage.subtitle}
           </motion.p>
@@ -529,7 +532,7 @@ export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3 md:mb-4"
           >
             {stage.title}
           </motion.h2>
@@ -537,25 +540,25 @@ export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-muted-foreground max-w-2xl mx-auto"
+            className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto"
           >
             {stage.description}
           </motion.p>
         </div>
 
-        <div className="max-w-4xl mx-auto">{renderContent()}</div>
+        <div className="max-w-4xl mx-auto px-4">{renderContent()}</div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-center mt-12"
+          className="text-center mt-8 md:mt-12"
         >
           <a
             href={stage.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors"
+            className="inline-flex items-center gap-2 text-sm md:text-base text-indigo-400 hover:text-indigo-300 transition-colors"
           >
             <span>{stage.linkText}</span>
             <ArrowRight className="w-4 h-4" />
