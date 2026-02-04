@@ -24,20 +24,26 @@ export const MiningHaloVisualizer = ({
   const stage = STAGES[currentStage];
 
   const goToNext = useCallback(() => {
-    if (currentStage < STAGES.length - 1) {
-      setCurrentStage((prev) => prev + 1);
-      setIsAnimating(true);
-    } else {
-      setIsPlaying(false);
-    }
-  }, [currentStage]);
+    setCurrentStage((prev) => {
+      if (prev < STAGES.length - 1) {
+        setIsAnimating(true);
+        return prev + 1;
+      } else {
+        setIsPlaying(false);
+        return prev;
+      }
+    });
+  }, []);
 
   const goToPrevious = useCallback(() => {
-    if (currentStage > 0) {
-      setCurrentStage((prev) => prev - 1);
-      setIsAnimating(true);
-    }
-  }, [currentStage]);
+    setCurrentStage((prev) => {
+      if (prev > 0) {
+        setIsAnimating(true);
+        return prev - 1;
+      }
+      return prev;
+    });
+  }, []);
 
   const goToStage = useCallback((stageIndex: number) => {
     setCurrentStage(stageIndex);
@@ -76,7 +82,7 @@ export const MiningHaloVisualizer = ({
     }, STAGE_INTERVAL);
 
     return () => clearTimeout(timer);
-  }, [isPlaying, currentStage, goToNext]);
+  }, [isPlaying, goToNext]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -105,7 +111,7 @@ export const MiningHaloVisualizer = ({
           </motion.div>
         </div>
         <p className="text-sm text-muted-foreground mt-2">
-          Understanding Zcash's mining and zero-knowledge proof technology
+          Understanding Zcash&apos;s mining and zero-knowledge proof technology
         </p>
       </motion.header>
 

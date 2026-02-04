@@ -99,7 +99,7 @@ const VISUALIZERS: VisualizerInfo[] = [
   {
     id: "privacy-use-cases",
     title: "Privacy Use Cases",
-    description: "Real-world applications of Zcash's privacy technology",
+    description: "Real-world applications of privacy technology on Zcash",
     component: PrivacyUseCasesVisualizer,
   },
   {
@@ -163,10 +163,6 @@ export const VisualizerHub: React.FC = () => {
     useState<VisualizerType>("welcome");
   const [isPlayingAll, setIsPlayingAll] = useState(false);
 
-  const getCurrentIndex = () => {
-    return VISUALIZERS.findIndex((v) => v.id === currentVisualizer);
-  };
-
   const startPlayAll = useCallback(() => {
     setIsPlayingAll(true);
     setCurrentVisualizer(VISUALIZERS[0].id);
@@ -187,40 +183,64 @@ export const VisualizerHub: React.FC = () => {
   }, []);
 
   const goToNext = useCallback(() => {
-    const currentIdx = getCurrentIndex();
-    if (currentIdx < VISUALIZERS.length - 1) {
-      const nextIdx = currentIdx + 1;
-      setCurrentVisualizer(VISUALIZERS[nextIdx].id);
-    } else if (isPlayingAll) {
-      // Loop back to start when in auto-play mode
-      setCurrentVisualizer(VISUALIZERS[0].id);
-    }
-  }, [currentVisualizer, isPlayingAll]);
+    setCurrentVisualizer((current) => {
+      const currentIdx = VISUALIZERS.findIndex((v) => v.id === current);
+      if (currentIdx < VISUALIZERS.length - 1) {
+        return VISUALIZERS[currentIdx + 1].id;
+      } else {
+        // Only loop if in auto-play mode
+        return current; // Stay on current if not auto-playing
+      }
+    });
+    
+    // Handle looping for auto-play separately
+    setIsPlayingAll((playing) => {
+      if (playing) {
+        setCurrentVisualizer((current) => {
+          const currentIdx = VISUALIZERS.findIndex((v) => v.id === current);
+          if (currentIdx === VISUALIZERS.length - 1) {
+            return VISUALIZERS[0].id; // Loop back to start
+          }
+          return current;
+        });
+      }
+      return playing;
+    });
+  }, []); // No dependencies needed
 
   const goToPrevious = useCallback(() => {
-    const currentIdx = getCurrentIndex();
-    if (currentIdx > 0) {
-      const prevIdx = currentIdx - 1;
-      setCurrentVisualizer(VISUALIZERS[prevIdx].id);
-    }
-  }, [currentVisualizer]);
+    setCurrentVisualizer((current) => {
+      const currentIdx = VISUALIZERS.findIndex((v) => v.id === current);
+      if (currentIdx > 0) {
+        return VISUALIZERS[currentIdx - 1].id;
+      }
+      return current;
+    });
+  }, []);
 
   const handleVisualizerComplete = useCallback(() => {
-    if (isPlayingAll) {
-      const currentIdx = getCurrentIndex();
-      const nextIndex = currentIdx + 1;
-      
-      if (nextIndex < VISUALIZERS.length) {
-        setCurrentVisualizer(VISUALIZERS[nextIndex].id);
-      } else {
-        // Loop back to start
-        setCurrentVisualizer(VISUALIZERS[0].id);
+    setIsPlayingAll((playing) => {
+      if (playing) {
+        setCurrentVisualizer((current) => {
+          const currentIdx = VISUALIZERS.findIndex((v) => v.id === current);
+          const nextIndex = currentIdx + 1;
+          
+          if (nextIndex < VISUALIZERS.length) {
+            return VISUALIZERS[nextIndex].id;
+          } else {
+            // Loop back to start
+            return VISUALIZERS[0].id;
+          }
+        });
       }
-    }
-  }, [isPlayingAll, currentVisualizer]);
+      return playing;
+    });
+  }, []);
+
+  // Calculate current index for display
+  const currentIdx = VISUALIZERS.findIndex((v) => v.id === currentVisualizer);
 
   if (currentVisualizer !== "welcome") {
-    const currentIdx = getCurrentIndex();
     const CurrentComponent = VISUALIZERS[currentIdx]?.component;
     const isFirst = currentIdx === 0;
     const isLast = currentIdx === VISUALIZERS.length - 1;

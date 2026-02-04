@@ -24,20 +24,26 @@ export const PrivacyUseCasesVisualizer = ({
   const stage = STAGES[currentStage];
 
   const goToNext = useCallback(() => {
-    if (currentStage < STAGES.length - 1) {
-      setCurrentStage((prev) => prev + 1);
-      setIsAnimating(true);
-    } else {
-      setIsPlaying(false);
-    }
-  }, [currentStage]);
+    setCurrentStage((prev) => {
+      if (prev < STAGES.length - 1) {
+        setIsAnimating(true);
+        return prev + 1;
+      } else {
+        setIsPlaying(false);
+        return prev;
+      }
+    });
+  }, []);
 
   const goToPrevious = useCallback(() => {
-    if (currentStage > 0) {
-      setCurrentStage((prev) => prev - 1);
-      setIsAnimating(true);
-    }
-  }, [currentStage]);
+    setCurrentStage((prev) => {
+      if (prev > 0) {
+        setIsAnimating(true);
+        return prev - 1;
+      }
+      return prev;
+    });
+  }, []);
 
   const restart = useCallback(() => {
     setCurrentStage(0);
@@ -69,7 +75,7 @@ export const PrivacyUseCasesVisualizer = ({
     }, STAGE_INTERVAL);
 
     return () => clearTimeout(timer);
-  }, [isPlaying, currentStage, goToNext]);
+  }, [isPlaying, goToNext]);
 
   return (
     <div className="flex flex-col min-h-screen">
