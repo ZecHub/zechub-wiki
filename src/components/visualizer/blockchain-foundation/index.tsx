@@ -8,7 +8,7 @@ import { StageContent } from "./StageContent";
 import { stages } from "./types";
 
 const WELCOME_STAGE_INTERVAL = 1000; // 4 seconds for welcome stage
-const OTHER_STAGES_INTERVAL = 6000; // 8 seconds for other stages
+const OTHER_STAGES_INTERVAL = 10000; // 10 seconds for other stages
 
 interface BlockchainFoundationVisualizerProps {
   onComplete?: () => void;

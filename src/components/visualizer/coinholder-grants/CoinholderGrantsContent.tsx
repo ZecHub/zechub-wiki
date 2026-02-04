@@ -133,7 +133,7 @@ export const CoinholderGrantsContent = ({
       return;
     }
 
-    const duration = 8000;
+    const duration = 10000;
     const interval = 50;
     const increment = (interval / duration) * 100;
 
