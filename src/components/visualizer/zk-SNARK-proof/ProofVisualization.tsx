@@ -16,7 +16,7 @@ export const ProofVisualization = () => (
           className="absolute inset-0 rounded-full bg-accent/20 blur-xl"
         />
       </div>
-      <p className="mt-4 text-lg font-semibold">Generating zk-SNARK Proof</p>
+      <p className="mt-4 text-lg font-semibold">Generating zk-SNARKs Proof</p>
     </motion.div>
 
     <div className="space-y-3">

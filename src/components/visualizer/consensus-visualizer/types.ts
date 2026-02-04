@@ -19,7 +19,7 @@ export const STAGES: Stage[] = [
     id: 0,
     title: 'Decentralized Consensus',
     subtitle: 'Agreement Without Authority',
-    description: 'How do thousands of nodes agree on truth without a central coordinator? Consensus mechanisms make it possible.',
+    description: 'How do hundreds of nodes agree on chain state? Consensus mechanisms make it possible.',
     type: 'consensus',
     consensusType: 'intro',
   },
