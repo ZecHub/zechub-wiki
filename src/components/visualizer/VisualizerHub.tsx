@@ -18,6 +18,9 @@ import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
 import { WalletVisualizer } from "./zcash-wallet";
 import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
 import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
+import { MiningHaloVisualizer } from "./MiningHalo";
+import { PrivacyUseCasesVisualizer } from "./PrivacyUsecases";
+import { GovernanceVisualizer } from "./Governance";
 
 type VisualizerType =
   | "welcome"
@@ -27,6 +30,9 @@ type VisualizerType =
   | "infrastructure"
   | "zcash-wallet"
   | "zcash-dex"
+  | "mining-halo"
+  | "privacy-use-cases"
+  | "governance"
   | "hash-function"
   | "consensus"
   | "zcash-key"
@@ -83,6 +89,24 @@ const VISUALIZERS: VisualizerInfo[] = [
     title: "Zcash Infrastructure",
     description: "How Zcash components work together",
     component: ZcashInfrastructureVisualizer,
+  },
+  {
+    id: "mining-halo",
+    title: "Zcash Mining & Halo 2",
+    description: "Understanding Equihash mining and recursive zero-knowledge proofs",
+    component: MiningHaloVisualizer,
+  },
+  {
+    id: "privacy-use-cases",
+    title: "Privacy Use Cases",
+    description: "Real-world applications of Zcash's privacy technology",
+    component: PrivacyUseCasesVisualizer,
+  },
+  {
+    id: "governance",
+    title: "Governance & Dev Fund",
+    description: "Community-driven development and decentralized decision making",
+    component: GovernanceVisualizer,
   },
   {
     id: "hash-function",
