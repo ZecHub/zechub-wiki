@@ -16,14 +16,14 @@ const DEX_PLATFORMS = [
   {
     name: "Near Intents",
     description: "Swap directly into shielded ZEC with minimal fees",
-    logo: "/Logo/near.png", 
+    logo: "/Logo/near.png",
     link: "https://near.org/intents",
     features: ["Direct to shielded ZEC", "Cross-chain swaps", "Near Protocol"],
   },
   {
     name: "Maya Protocol",
     description: "Native cross-chain DEX supporting shielded ZEC",
-    logo: "/Logo/maya-protocol.png", 
+    logo: "/Logo/maya-protocol.png",
     link: "https://mayaprotocol.com",
     features: [
       "Native ZEC support",
@@ -34,7 +34,7 @@ const DEX_PLATFORMS = [
   {
     name: "Thorchain",
     description: "Cross-chain liquidity protocol for ZEC",
-    logo: "/Logo/thorr.png", 
+    logo: "/Logo/thorr.png",
     link: "https://thorchain.org",
     features: ["Cross-chain swaps", "Deep liquidity", "Non-custodial"],
   },
@@ -51,16 +51,20 @@ interface ZcashDexVisualizerProps {
   autoStart?: boolean;
 }
 
-export const ZcashDexVisualizer = ({ onComplete, autoStart = false }: ZcashDexVisualizerProps) => {
+export const ZcashDexVisualizer = ({
+  onComplete,
+  autoStart = false,
+}: ZcashDexVisualizerProps) => {
   useEffect(() => {
     if (autoStart && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
       }, 15000); // 15 seconds
-      
+
       return () => clearTimeout(timer);
     }
-  }, [autoStart, onComplete]);  return (
+  }, [autoStart, onComplete]);
+  return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-8 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-white">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -72,7 +76,7 @@ export const ZcashDexVisualizer = ({ onComplete, autoStart = false }: ZcashDexVi
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-emerald-400 bg-clip-text text-transparent">
             Zcash Decentralized Exchanges
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl dark:text-muted-foreground max-w-3xl mx-auto">
             Permissionless, censorship-resistant access to ZEC using
             decentralized exchanges
           </p>
@@ -91,7 +95,7 @@ export const ZcashDexVisualizer = ({ onComplete, autoStart = false }: ZcashDexVi
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <p className="text-muted-foreground mb-4">
+              <p className="dark:text-muted-foreground mb-4">
                 While Zcash can be purchased on centralized exchanges, DEXs
                 provide
                 <span className="font-semibold text-yellow-400">
@@ -100,7 +104,7 @@ export const ZcashDexVisualizer = ({ onComplete, autoStart = false }: ZcashDexVi
                 </span>
                 to ZEC without intermediaries.
               </p>
-              <p className="text-muted-foreground">
+              <p className="dark:text-muted-foreground">
                 Swap from multiple assets directly to Zcash with
                 <span className="font-semibold text-emerald-400">
                   {" "}
@@ -147,7 +151,7 @@ export const ZcashDexVisualizer = ({ onComplete, autoStart = false }: ZcashDexVi
                 transition={{ delay: 0.6 + index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <Card className="bg-slate-800/50 backdrop-blur-md border border-slate-700/50 h-full hover:border-slate-600/50 transition-all">
+                <Card className="bg-card/70 backdrop-blur-md border border-slate-700/50 h-full hover:border-slate-600/50 transition-all">
                   <CardHeader>
                     <CardTitle className="text-2xl flex items-center gap-3">
                       <div className="w-12 h-12 bg-gradient-to-br from-yellow-400/20 to-emerald-400/20 rounded-lg flex items-center justify-center font-bold">
@@ -159,7 +163,7 @@ export const ZcashDexVisualizer = ({ onComplete, autoStart = false }: ZcashDexVi
                       </div>
                       {dex.name}
                     </CardTitle>
-                    <CardDescription className="text-muted-foreground">
+                    <CardDescription className="dark:text-muted-foreground">
                       {dex.description}
                     </CardDescription>
                   </CardHeader>
@@ -168,7 +172,7 @@ export const ZcashDexVisualizer = ({ onComplete, autoStart = false }: ZcashDexVi
                       {dex.features.map((feature) => (
                         <li
                           key={feature}
-                          className="flex items-center gap-2 text-muted-foreground"
+                          className="flex items-center gap-2 dark:text-muted-foreground"
                         >
                           <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                           {feature}
@@ -194,7 +198,7 @@ export const ZcashDexVisualizer = ({ onComplete, autoStart = false }: ZcashDexVi
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="bg-slate-800/50 backdrop-blur-md border border-slate-700/50 rounded-xl p-6"
+          className="bg-card/70 backdrop-blur-md border border-slate-700/50 rounded-xl p-6"
         >
           <h2 className="text-2xl font-bold mb-6 text-center">
             Wallet Integrations
@@ -209,7 +213,7 @@ export const ZcashDexVisualizer = ({ onComplete, autoStart = false }: ZcashDexVi
               </div>
             ))}
           </div>
-          <p className="text-center text-slate-400 mt-6">
+          <p className="text-center dark:text-slate-400 mt-6">
             These wallets support direct integration with Zcash DEX platforms
           </p>
         </motion.div>
