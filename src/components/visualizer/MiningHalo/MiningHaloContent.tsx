@@ -408,7 +408,7 @@ const ShieldedRewardsAnimation = () => {
         <div className="p-3 md:p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-center">
           <Lock className="w-5 h-5 md:w-6 md:h-6 text-green-400 mx-auto mb-2" />
           <div className="text-sm md:text-base font-semibold">Private Rewards</div>
-          <div className="text-xs md:text-sm text-muted-foreground">Hide mining income</div>
+          <div className="text-xs md:text-sm text-muted-foreground">Mining income private</div>
         </div>
         <div className="p-3 md:p-4 rounded-lg bg-blue-500/10 border border-blue-500/30 text-center">
           <Zap className="w-5 h-5 md:w-6 md:h-6 text-blue-400 mx-auto mb-2" />
