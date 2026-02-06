@@ -25,6 +25,40 @@ export default function IssuanceChart(props: IssuanceChartProps) {
   const { data, loading } = useIssuanceData(DATA_URL.issuanceUrl);
   const fontSize = useResponsiveFontSize(); // optional: pass min/max
 
+  // Custom tooltip for better data display
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg p-3">
+          <p className="font-semibold text-slate-900 dark:text-slate-100 mb-2">
+            {label}
+          </p>
+          {payload.map((entry: any, index: number) => {
+            return (
+              <p
+                key={index}
+                className="text-sm flex items-center gap-2"
+                style={{ color: entry.color }}
+              >
+                <span
+                  className="w-3 h-3 rounded-full"
+                  style={{ backgroundColor: entry.color }}
+                />
+                <span className="font-medium">
+                  {entry.dataKey === "issuance" ? "Issuance" : "Inflation"}:
+                </span>
+                <span className="font-semibold">
+                  {entry.value.toLocaleString()}
+                </span>
+              </p>
+            );
+          })}
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <ErrorBoundary fallback={"Failed to load Issuance Chart"}>
       <ChartHeader title="ZEC Issuance vs. Inflation Rate" />
@@ -68,7 +102,7 @@ export default function IssuanceChart(props: IssuanceChartProps) {
               position: "insideRight",
             }}
           />
-          <Tooltip formatter={(v: any) => v.toLocaleString()} />
+          <Tooltip content={<CustomTooltip />} />
 
           <Legend
             verticalAlign="bottom"
