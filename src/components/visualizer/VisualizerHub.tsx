@@ -429,7 +429,7 @@ export const VisualizerHub: React.FC = () => {
         <section id="basic" className="mt-24">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <VisualizerCard
-              data={VISUALIZERS.slice(0, 5)}
+              data={VISUALIZERS.slice(0, 6)}
               goToVisualizer={goToVisualizer}
             />
           </div>
@@ -438,7 +438,7 @@ export const VisualizerHub: React.FC = () => {
         <section id="advance" className="mt-24">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <VisualizerCard
-              data={VISUALIZERS.slice(5, 10)}
+              data={VISUALIZERS.slice(6, 10)}
               goToVisualizer={goToVisualizer}
             />
           </div>
