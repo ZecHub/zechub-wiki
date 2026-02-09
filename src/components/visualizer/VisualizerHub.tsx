@@ -21,6 +21,96 @@ import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
 import { MiningHaloVisualizer } from "./MiningHalo";
 import { PrivacyUseCasesVisualizer } from "./PrivacyUsecases";
 import { GovernanceVisualizer } from "./Governance";
+import { QuizModule, type QuizQuestion } from "./QuizModule";
+
+const QUIZ_BEGINNER: QuizQuestion[] = [
+  {
+    question: "What do Zcash wallets provide for users?",
+    options: ["Only transparent addresses", "Shielded functionality", "Mining only", "Exchange listing"],
+    correctIndex: 1,
+  },
+  {
+    question: "How can you get ZEC in a permissionless way?",
+    options: ["Only from banks", "Through centralized exchanges only", "Using decentralized exchanges (DEX)", "ZEC cannot be bought"],
+    correctIndex: 2,
+  },
+  {
+    question: "Which pool offers the strongest privacy on Zcash?",
+    options: ["Transparent", "Sapling", "Orchard", "Both Sapling and Orchard"],
+    correctIndex: 3,
+  },
+  {
+    question: "What does a zk-SNARK proof demonstrate in a shielded transaction?",
+    options: ["The transaction amount publicly", "Valid ownership without revealing details", "Only the sender address", "Mining reward"],
+    correctIndex: 1,
+  },
+  {
+    question: "Where can you typically use ZEC for payments?",
+    options: ["Only on one website", "Nowhere", "At merchants and services that accept ZEC", "Only in mining"],
+    correctIndex: 2,
+  },
+  {
+    question: "What does Zcash infrastructure refer to?",
+    options: ["Only one server", "How nodes, wallets, and network components work together", "Only websites", "Only mining pools"],
+    correctIndex: 1,
+  },
+];
+
+const QUIZ_INTERMEDIATE: QuizQuestion[] = [
+  {
+    question: "What is Halo 2 used for in Zcash?",
+    options: ["Mining only", "Recursive zero-knowledge proofs", "Wallet storage", "Exchange trading"],
+    correctIndex: 1,
+  },
+  {
+    question: "What are privacy use cases on Zcash?",
+    options: ["Only personal use", "Real-world applications of privacy technology", "Only for miners", "There are none"],
+    correctIndex: 1,
+  },
+  {
+    question: "How is Zcash development funded?",
+    options: ["Only by one company", "Through governance and the Dev Fund", "Only by miners", "Exchanges only"],
+    correctIndex: 1,
+  },
+  {
+    question: "What role do hash functions play in Zcash?",
+    options: ["Mining rewards only", "Integrity, commitments, and binding data", "Only for addresses", "Display names"],
+    correctIndex: 1,
+  },
+];
+
+const QUIZ_CONTRIBUTORS: QuizQuestion[] = [
+  {
+    question: "How can you earn ZEC through ZecHub?",
+    options: ["Only by mining", "By completing bounties and contributing", "By buying only", "ZecHub does not offer ZEC"],
+    correctIndex: 1,
+  },
+  {
+    question: "What are Zcash Community Grants for?",
+    options: ["Personal use", "Funding ecosystem projects and development", "Only for miners", "Exchange fees"],
+    correctIndex: 1,
+  },
+  {
+    question: "Who directs Coinholder Directed Grants?",
+    options: ["A single company", "ZEC holders (retroactive funding)", "Only developers", "Exchanges only"],
+    correctIndex: 1,
+  },
+  {
+    question: "How do nodes in the Zcash network agree on the chain?",
+    options: ["By voting on a leader", "Through consensus rules", "Only miners decide", "There is no agreement"],
+    correctIndex: 1,
+  },
+  {
+    question: "What are Zcash keys used for?",
+    options: ["Only for logging in", "Sending, receiving, and proving ownership of funds", "Mining only", "Website passwords"],
+    correctIndex: 1,
+  },
+  {
+    question: "How can you contribute to Zcash open source?",
+    options: ["Only by donating money", "Through code, docs, and repos listed in the visualizer", "Only by mining", "You cannot contribute"],
+    correctIndex: 1,
+  },
+];
 
 type VisualizerType =
   | "welcome"
@@ -427,29 +517,47 @@ export const VisualizerHub: React.FC = () => {
         </section>
 
         <section id="basic" className="mt-24">
+          <h2 className="text-2xl font-bold text-foreground mb-6 max-w-6xl mx-auto">
+            Beginner
+          </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <VisualizerCard
               data={VISUALIZERS.slice(0, 6)}
               goToVisualizer={goToVisualizer}
             />
           </div>
+          <div className="max-w-3xl mx-auto mt-12">
+            <QuizModule title="Beginner Quiz" questions={QUIZ_BEGINNER} />
+          </div>
         </section>
 
         <section id="advance" className="mt-24">
+          <h2 className="text-2xl font-bold text-foreground mb-6 max-w-6xl mx-auto">
+            Intermediate
+          </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <VisualizerCard
               data={VISUALIZERS.slice(6, 10)}
               goToVisualizer={goToVisualizer}
             />
           </div>
+          <div className="max-w-3xl mx-auto mt-12">
+            <QuizModule title="Intermediate Quiz" questions={QUIZ_INTERMEDIATE} />
+          </div>
         </section>
 
         <section id="contribution" className="mt-24">
+          <h2 className="text-2xl font-bold text-foreground mb-6 max-w-6xl mx-auto">
+            Contributors
+          </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <VisualizerCard
               data={VISUALIZERS.slice(10)}
               goToVisualizer={goToVisualizer}
             />
+          </div>
+          <div className="max-w-3xl mx-auto mt-12">
+            <QuizModule title="Contributors Quiz" questions={QUIZ_CONTRIBUTORS} />
           </div>
         </section>
 
