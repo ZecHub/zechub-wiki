@@ -526,7 +526,7 @@ export const VisualizerHub: React.FC = () => {
               goToVisualizer={goToVisualizer}
             />
           </div>
-          <div className="max-w-3xl mx-auto mt-12">
+          <div className="max-w-6xl mx-auto mt-12">
             <QuizModule title="Beginner Quiz" questions={QUIZ_BEGINNER} />
           </div>
         </section>
@@ -541,7 +541,7 @@ export const VisualizerHub: React.FC = () => {
               goToVisualizer={goToVisualizer}
             />
           </div>
-          <div className="max-w-3xl mx-auto mt-12">
+          <div className="max-w-6xl mx-auto mt-12">
             <QuizModule title="Intermediate Quiz" questions={QUIZ_INTERMEDIATE} />
           </div>
         </section>
@@ -556,7 +556,7 @@ export const VisualizerHub: React.FC = () => {
               goToVisualizer={goToVisualizer}
             />
           </div>
-          <div className="max-w-3xl mx-auto mt-12">
+          <div className="max-w-6xl mx-auto mt-12">
             <QuizModule title="Contributors Quiz" questions={QUIZ_CONTRIBUTORS} />
           </div>
         </section>
