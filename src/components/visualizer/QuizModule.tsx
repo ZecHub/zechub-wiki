@@ -3,7 +3,7 @@
 import { Button } from "@/components/UI/shadcn/button";
 import { Progress } from "@/components/UI/shadcn/progress";
 import { AnimatePresence, motion } from "framer-motion";
-import { CheckCircle2, ChevronLeft, ChevronRight, HelpCircle, XCircle } from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, HelpCircle, X, XCircle } from "lucide-react";
 import React, { useState } from "react";
 
 export interface QuizQuestion {
@@ -15,10 +15,14 @@ export interface QuizQuestion {
 interface QuizModuleProps {
   title: string;
   questions: QuizQuestion[];
+  description?: string;
   className?: string;
 }
 
-export function QuizModule({ title, questions, className = "" }: QuizModuleProps) {
+const DEFAULT_QUIZ_DESCRIPTION = "Test your knowledge with a short quiz. Click to open.";
+
+export function QuizModule({ title, questions, description = DEFAULT_QUIZ_DESCRIPTION, className = "" }: QuizModuleProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<Record<number, number>>({});
   const [showResults, setShowResults] = useState(false);
@@ -61,27 +65,71 @@ export function QuizModule({ title, questions, className = "" }: QuizModuleProps
     0
   );
 
+  if (!isExpanded) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.95 }}
+        className={className}
+      >
+        <div
+          onClick={() => setIsExpanded(true)}
+          className="cursor-pointer group flex flex-row items-center justify-between gap-4 min-h-0 bg-card/70 backdrop-blur-md border border-border/50 rounded-lg py-3 px-4 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300"
+        >
+          <div className="flex items-center gap-3 min-w-0 flex-1">
+            <HelpCircle className="w-5 h-5 text-yellow-500 flex-shrink-0 group-hover:text-yellow-400 transition-colors" />
+            <div className="min-w-0">
+              <h3 className="text-base font-semibold text-foreground truncate group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
+                {title}
+              </h3>
+              <p className="text-xs text-muted-foreground truncate">
+                {description}
+              </p>
+            </div>
+          </div>
+          <span className="text-yellow-500 flex-shrink-0 text-xs font-medium flex items-center gap-1 group-hover:text-yellow-400 transition-colors">
+            Open <ChevronDown className="w-4 h-4" />
+          </span>
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`rounded-xl border-2 border-emerald-500/40 bg-emerald-950/30 dark:bg-emerald-950/40 p-6 md:p-8 ${className}`}
+      className={`rounded-xl border-2 border-emerald-500/40 bg-emerald-950/30 dark:bg-emerald-950/40 p-4 sm:p-6 md:p-8 min-w-0 max-w-full ${className}`}
     >
-      <div className="flex items-center justify-between gap-4 mb-6">
-        <div className="flex items-center gap-2">
-          <HelpCircle className="w-6 h-6 text-emerald-400 flex-shrink-0" />
-          <h3 className="text-xl font-bold text-emerald-100">{title}</h3>
+      {/* Header: stack on mobile, row on larger screens */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="flex items-center gap-2 min-w-0">
+          <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400 flex-shrink-0" />
+          <h3 className="text-lg sm:text-xl font-bold text-emerald-100 truncate">{title}</h3>
         </div>
-        {!isOnResults && (
-          <span className="text-sm text-emerald-200/90">
-            Question {currentIndex + 1} of {total}
-          </span>
-        )}
+        <div className="flex items-center justify-between sm:justify-end gap-2 flex-shrink-0">
+          {!isOnResults && (
+            <span className="text-xs sm:text-sm text-emerald-200/90 whitespace-nowrap">
+              Question {currentIndex + 1} of {total}
+            </span>
+          )}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsExpanded(false)}
+            className="text-emerald-200 hover:text-emerald-100 hover:bg-emerald-500/20 shrink-0 h-8 w-8"
+            aria-label="Close quiz"
+          >
+            <X className="w-4 h-4 shrink-0" />
+          </Button>
+        </div>
       </div>
 
       {/* Progress bar */}
       {!isOnResults && total > 0 && (
-        <div className="mb-6">
+        <div className="mb-4 sm:mb-6">
           <Progress
             value={((currentIndex + 1) / total) * 100}
             className="h-2 bg-emerald-900/50"
@@ -89,7 +137,7 @@ export function QuizModule({ title, questions, className = "" }: QuizModuleProps
         </div>
       )}
 
-      <div className="min-h-[280px]">
+      <div className="min-h-[200px] sm:min-h-[280px]">
         <AnimatePresence mode="wait">
           {isOnResults ? (
             <motion.div
@@ -100,17 +148,17 @@ export function QuizModule({ title, questions, className = "" }: QuizModuleProps
               transition={{ duration: 0.25 }}
               className="space-y-6"
             >
-              <div className="p-4 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex flex-wrap items-center justify-between gap-4">
+              <div className="p-4 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-3 sm:gap-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-emerald-100 font-semibold">Score:</span>
-                  <span className="text-emerald-300 font-bold">
+                  <span className="text-emerald-100 font-semibold text-sm sm:text-base">Score:</span>
+                  <span className="text-emerald-300 font-bold text-sm sm:text-base">
                     {score} / {total}
                   </span>
                 </div>
                 <Button
                   onClick={handleReset}
                   variant="outline"
-                  className="border-emerald-500/50 text-emerald-200 hover:bg-emerald-500/20"
+                  className="border-emerald-500/50 text-emerald-200 hover:bg-emerald-500/20 w-full sm:w-auto"
                 >
                   Retry Quiz
                 </Button>
@@ -125,10 +173,10 @@ export function QuizModule({ title, questions, className = "" }: QuizModuleProps
                   return (
                     <div
                       key={qIndex}
-                      className="rounded-lg bg-emerald-900/20 dark:bg-emerald-900/30 border border-emerald-500/20 p-4"
+                      className="rounded-lg bg-emerald-900/20 dark:bg-emerald-900/30 border border-emerald-500/20 p-3 sm:p-4"
                     >
-                      <p className="font-medium text-foreground mb-2">{q.question}</p>
-                      <div className="flex items-center gap-2 flex-wrap">
+                      <p className="font-medium text-foreground mb-2 text-sm sm:text-base break-words">{q.question}</p>
+                      <div className="flex items-center gap-2 flex-wrap text-xs sm:text-sm">
                         {isCorrect ? (
                           <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
                         ) : (
@@ -158,15 +206,15 @@ export function QuizModule({ title, questions, className = "" }: QuizModuleProps
                 transition={{ duration: 0.25 }}
                 className="space-y-6"
               >
-                <div className="rounded-lg bg-emerald-900/20 dark:bg-emerald-900/30 border border-emerald-500/20 p-4">
-                  <p className="font-medium text-foreground mb-4 text-lg">
+                <div className="rounded-lg bg-emerald-900/20 dark:bg-emerald-900/30 border border-emerald-500/20 p-3 sm:p-4">
+                  <p className="font-medium text-foreground mb-3 sm:mb-4 text-base sm:text-lg">
                     {currentQuestion.question}
                   </p>
                   <div className="space-y-2">
                     {currentQuestion.options.map((opt, optIndex) => {
                       const isSelected = selected[currentIndex] === optIndex;
                       const optionStyle =
-                        "flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors text-left " +
+                        "flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-lg border cursor-pointer transition-colors text-left text-sm sm:text-base " +
                         (isSelected
                           ? "border-emerald-400 bg-emerald-500/20 text-emerald-100"
                           : "border-emerald-500/30 hover:border-emerald-400/50 hover:bg-emerald-500/10");
@@ -196,27 +244,27 @@ export function QuizModule({ title, questions, className = "" }: QuizModuleProps
         </AnimatePresence>
       </div>
 
-      {/* Navigation */}
-      <div className="mt-6 flex items-center justify-between gap-4">
+      {/* Navigation: stacked on small screens to avoid overflow; side-by-side on md+ */}
+      <div className="mt-4 sm:mt-6 flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-3 md:gap-4 min-w-0 w-full">
         <Button
           onClick={handlePrev}
           disabled={currentIndex === 0 && !showResults}
           variant="outline"
-          className="border-emerald-500/50 text-emerald-200 hover:bg-emerald-500/20 disabled:opacity-50"
+          className="border-emerald-500/50 text-emerald-200 hover:bg-emerald-500/20 disabled:opacity-50 w-full md:w-auto min-w-0 max-w-full md:min-w-0 order-2 md:order-1 shrink-0"
         >
-          <ChevronLeft className="w-4 h-4 mr-2" />
+          <ChevronLeft className="w-4 h-4 mr-2 shrink-0" />
           Previous
         </Button>
         {!isOnResults ? (
           <Button
             onClick={handleNext}
             disabled={!hasSelectedCurrent}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white border-0 disabled:opacity-50"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white border-0 disabled:opacity-50 w-full md:w-auto min-w-0 max-w-full md:min-w-0 order-1 md:order-2 shrink-0"
           >
             {currentIndex < total - 1 ? (
               <>
                 Next
-                <ChevronRight className="w-4 h-4 ml-2" />
+                <ChevronRight className="w-4 h-4 ml-2 shrink-0" />
               </>
             ) : (
               "See results"
