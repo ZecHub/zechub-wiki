@@ -50,7 +50,7 @@ const ContentSections = () => {
           {
             href: "/zcash-global-ambassadors",
             label: "Meet the Ambassadors",
-            primary: true,
+            primary: true
           },
         ]}
       />
