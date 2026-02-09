@@ -26,7 +26,7 @@ const ContentSections = () => {
       />
 
       {/* Hackathon Section */}
-       <InfoCard
+      <InfoCard
         id="zcashme"
         reverse={true}
         title="Zcash.me"
@@ -40,7 +40,20 @@ const ContentSections = () => {
           },
         ]}
       />
-
+      {/* Global Ambassadors Section */}
+      <InfoCard
+        id="global-ambassadors"
+        title="Zcash Global Ambassadors"
+        description="Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions."
+        image="/zcash-global-ambassadors.png"
+        links={[
+          {
+            href: "/zcash-global-ambassadors",
+            label: "Meet the Ambassadors",
+            primary: true,
+          },
+        ]}
+      />
       {/* Shielded Newsletter Section */}
       <InfoCard
         id="shielded-newsletter"
@@ -188,9 +201,8 @@ function InfoCard({
   return (
     <div
       id={id}
-      className={`flex flex-col md:flex-row border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden ${
-        reverse ? "md:flex-row-reverse" : ""
-      }`}
+      className={`flex flex-col md:flex-row border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden ${reverse ? "md:flex-row-reverse" : ""
+        }`}
     >
       {/* Left Column - Image */}
       <div className="flex flex-1 items-center justify-center  bg-slate-100 dark:bg-slate-800 p-6 min-h-[250px] ">
@@ -227,10 +239,9 @@ function InfoCard({
                 key={index}
                 href={link.href}
                 className={`flex-1 inline-flex justify-center items-center px-4 py-4 text-md font-medium rounded-lg focus:ring-4 focus:outline-none
-                  ${
-                    link.primary
-                      ? "font-bold text-white bg-[#1984c7] hover:bg-[#1574af] focus:ring-[#1984c7]"
-                      : "text-blue-400 border border-blue-300 hover:bg-blue-800 hover:text-white dark:border-[#1574af] dark:text-blue-300 dark:hover:bg-[#1574af]  focus:ring-blue-300 dark:focus:ring-[#1574af]"
+                  ${link.primary
+                    ? "font-bold text-white bg-[#1984c7] hover:bg-[#1574af] focus:ring-[#1984c7]"
+                    : "text-blue-400 border border-blue-300 hover:bg-blue-800 hover:text-white dark:border-[#1574af] dark:text-blue-300 dark:hover:bg-[#1574af]  focus:ring-blue-300 dark:focus:ring-[#1574af]"
                   }
                 `}
               >
