@@ -76,20 +76,20 @@ export function QuizModule({ title, questions, description = DEFAULT_QUIZ_DESCRI
       >
         <div
           onClick={() => setIsExpanded(true)}
-          className="cursor-pointer group flex flex-row items-center justify-between gap-4 min-h-0 bg-card/70 backdrop-blur-md border border-border/50 rounded-lg py-3 px-4 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300"
+          className="cursor-pointer group flex flex-row items-center justify-between gap-4 min-h-0 bg-emerald-950/50 dark:bg-emerald-900/40 backdrop-blur-md border border-emerald-500/30 rounded-lg py-3 px-4 h-full hover:bg-emerald-900/60 hover:border-emerald-500/50 transition-all duration-300"
         >
           <div className="flex items-center gap-3 min-w-0 flex-1">
-            <HelpCircle className="w-5 h-5 text-yellow-500 flex-shrink-0 group-hover:text-yellow-400 transition-colors" />
+            <HelpCircle className="w-5 h-5 text-emerald-400 flex-shrink-0 group-hover:text-emerald-300 transition-colors" />
             <div className="min-w-0">
-              <h3 className="text-base font-semibold text-foreground truncate group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
+              <h3 className="text-base font-semibold text-emerald-100 truncate group-hover:text-emerald-50 transition-colors">
                 {title}
               </h3>
-              <p className="text-xs text-muted-foreground truncate">
+              <p className="text-xs text-emerald-200/80 truncate">
                 {description}
               </p>
             </div>
           </div>
-          <span className="text-yellow-500 flex-shrink-0 text-xs font-medium flex items-center gap-1 group-hover:text-yellow-400 transition-colors">
+          <span className="text-emerald-400 flex-shrink-0 text-xs font-medium flex items-center gap-1 group-hover:text-emerald-300 transition-colors">
             Open <ChevronDown className="w-4 h-4" />
           </span>
         </div>
