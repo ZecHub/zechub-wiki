@@ -21,7 +21,7 @@ import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
 import { MiningHaloVisualizer } from "./MiningHalo";
 import { PrivacyUseCasesVisualizer } from "./PrivacyUsecases";
 import { GovernanceVisualizer } from "./Governance";
-import { QuizModule, type QuizQuestion } from "./QuizModule";
+import { QuizCard, QuizModule, type QuizQuestion } from "./QuizModule";
 
 const QUIZ_BEGINNER: QuizQuestion[] = [
   {
@@ -266,10 +266,13 @@ const ALL_VISUALIZERS = [
   ...CONTRIBUTOR_VISUALIZERS,
 ];
 
+type OpenQuizSection = "basic" | "advanced" | "contributors" | null;
+
 export const VisualizerHub: React.FC = () => {
   const [currentVisualizer, setCurrentVisualizer] =
     useState<VisualizerType>("welcome");
   const [isPlayingAll, setIsPlayingAll] = useState(false);
+  const [openQuiz, setOpenQuiz] = useState<OpenQuizSection>(null);
 
   const startPlayAll = useCallback(() => {
     setIsPlayingAll(true);
@@ -546,10 +549,25 @@ export const VisualizerHub: React.FC = () => {
               goToVisualizer={goToVisualizer}
               startDelay={0.4}
             />
+            {openQuiz !== "basic" && (
+              <div className="min-h-[240px] h-full flex">
+                <QuizCard
+                  title="Beginner Quiz"
+                  className="w-full h-full min-h-[240px]"
+                  onOpen={() => setOpenQuiz("basic")}
+                />
+              </div>
+            )}
           </div>
-          <div className="max-w-6xl mx-auto mt-12">
-            <QuizModule title="Beginner Quiz" questions={QUIZ_BEGINNER} />
-          </div>
+          {openQuiz === "basic" && (
+            <div className="max-w-6xl mx-auto mt-8">
+              <QuizModule
+                title="Beginner Quiz"
+                questions={QUIZ_BEGINNER}
+                onClose={() => setOpenQuiz(null)}
+              />
+            </div>
+          )}
         </section>
 
         {/* ADVANCED SECTION */}
@@ -574,10 +592,25 @@ export const VisualizerHub: React.FC = () => {
               goToVisualizer={goToVisualizer}
               startDelay={0.6}
             />
+            {openQuiz !== "advanced" && (
+              <div className="min-h-[240px] h-full flex">
+                <QuizCard
+                  title="Intermediate Quiz"
+                  className="w-full h-full min-h-[240px]"
+                  onOpen={() => setOpenQuiz("advanced")}
+                />
+              </div>
+            )}
           </div>
-          <div className="max-w-6xl mx-auto mt-12">
-            <QuizModule title="Intermediate Quiz" questions={QUIZ_INTERMEDIATE} />
-          </div>
+          {openQuiz === "advanced" && (
+            <div className="max-w-6xl mx-auto mt-8">
+              <QuizModule
+                title="Intermediate Quiz"
+                questions={QUIZ_INTERMEDIATE}
+                onClose={() => setOpenQuiz(null)}
+              />
+            </div>
+          )}
         </section>
 
         {/* CONTRIBUTORS SECTION */}
@@ -601,10 +634,25 @@ export const VisualizerHub: React.FC = () => {
               goToVisualizer={goToVisualizer}
               startDelay={0.8}
             />
+            {openQuiz !== "contributors" && (
+              <div className="min-h-[240px] h-full flex">
+                <QuizCard
+                  title="Contributors Quiz"
+                  className="w-full h-full min-h-[240px]"
+                  onOpen={() => setOpenQuiz("contributors")}
+                />
+              </div>
+            )}
           </div>
-          <div className="max-w-6xl mx-auto mt-12">
-            <QuizModule title="Contributors Quiz" questions={QUIZ_CONTRIBUTORS} />
-          </div>
+          {openQuiz === "contributors" && (
+            <div className="max-w-6xl mx-auto mt-8">
+              <QuizModule
+                title="Contributors Quiz"
+                questions={QUIZ_CONTRIBUTORS}
+                onClose={() => setOpenQuiz(null)}
+              />
+            </div>
+          )}
         </section>
 
         <motion.div

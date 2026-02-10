@@ -3,7 +3,14 @@
 import { Button } from "@/components/UI/shadcn/button";
 import { Progress } from "@/components/UI/shadcn/progress";
 import { AnimatePresence, motion } from "framer-motion";
-import { CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, HelpCircle, X, XCircle } from "lucide-react";
+import {
+  CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
+  HelpCircle,
+  X,
+  XCircle,
+} from "lucide-react";
 import React, { useState } from "react";
 
 export interface QuizQuestion {
@@ -12,26 +19,80 @@ export interface QuizQuestion {
   correctIndex: number;
 }
 
-interface QuizModuleProps {
+export interface QuizModuleProps {
   title: string;
   questions: QuizQuestion[];
-  description?: string;
   className?: string;
+  onClose?: () => void;
 }
 
-const DEFAULT_QUIZ_DESCRIPTION = "Test your knowledge with a short quiz. Click to open.";
+interface QuizCardProps {
+  title: string;
+  description?: string;
+  className?: string;
+  onOpen: () => void;
+}
 
-export function QuizModule({ title, questions, description = DEFAULT_QUIZ_DESCRIPTION, className = "" }: QuizModuleProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+const DEFAULT_QUIZ_DESCRIPTION =
+  "Test your knowledge with a short quiz. Click to open.";
+
+/**
+ * Grid card that looks like the other visualizer cards.
+ * Used as the minimized quiz entry point.
+ */
+export function QuizCard({
+  title,
+  description = DEFAULT_QUIZ_DESCRIPTION,
+  className = "",
+  onOpen,
+}: QuizCardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className={`h-full ${className}`}
+    >
+      <div onClick={onOpen} className="cursor-pointer group h-full">
+        <div className="flex flex-col min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
+          <div className="flex-1 text-center">
+            <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
+              {title}
+            </h3>
+            <p className="text-muted-foreground group-hover:text-muted-foreground transition-colors">
+              {description}
+            </p>
+          </div>
+
+          <div className="text-yellow-500 text-center group-hover:text-yellow-400 transition-colors">
+            <span className="text-sm font-medium">Click to open quiz →</span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/**
+ * Full-width quiz module (expanded state), rendered below the section grid.
+ */
+export function QuizModule({
+  title,
+  questions,
+  className = "",
+  onClose,
+}: QuizModuleProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<Record<number, number>>({});
   const [showResults, setShowResults] = useState(false);
 
   const total = questions.length;
   const isOnResults = showResults;
-  const isOnQuestion = !isOnResults && currentIndex < total;
   const currentQuestion = questions[currentIndex];
-  const hasSelectedCurrent = currentQuestion && selected[currentIndex] !== undefined;
+  const hasSelectedCurrent =
+    currentQuestion && selected[currentIndex] !== undefined;
 
   const handleSelect = (optionIndex: number) => {
     setSelected((prev) => ({ ...prev, [currentIndex]: optionIndex }));
@@ -65,49 +126,19 @@ export function QuizModule({ title, questions, description = DEFAULT_QUIZ_DESCRI
     0
   );
 
-  if (!isExpanded) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        whileHover={{ scale: 1.01 }}
-        whileTap={{ scale: 0.95 }}
-        className={className}
-      >
-        <div
-          onClick={() => setIsExpanded(true)}
-          className="cursor-pointer group flex flex-row items-center justify-between gap-4 min-h-0 bg-emerald-950/50 dark:bg-emerald-900/40 backdrop-blur-md border border-emerald-500/30 rounded-lg py-3 px-4 h-full hover:bg-emerald-900/60 hover:border-emerald-500/50 transition-all duration-300"
-        >
-          <div className="flex items-center gap-3 min-w-0 flex-1">
-            <HelpCircle className="w-5 h-5 text-emerald-400 flex-shrink-0 group-hover:text-emerald-300 transition-colors" />
-            <div className="min-w-0">
-              <h3 className="text-base font-semibold text-emerald-100 truncate group-hover:text-emerald-50 transition-colors">
-                {title}
-              </h3>
-              <p className="text-xs text-emerald-200/80 truncate">
-                {description}
-              </p>
-            </div>
-          </div>
-          <span className="text-emerald-400 flex-shrink-0 text-xs font-medium flex items-center gap-1 group-hover:text-emerald-300 transition-colors">
-            Open <ChevronDown className="w-4 h-4" />
-          </span>
-        </div>
-      </motion.div>
-    );
-  }
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`rounded-xl border-2 border-emerald-500/40 bg-emerald-950/30 dark:bg-emerald-950/40 p-4 sm:p-6 md:p-8 min-w-0 max-w-full ${className}`}
+      className={`rounded-xl border-2 border-emerald-500/40 bg-emerald-950/30 dark:bg-emerald-950/40 p-4 sm:p-6 md:p-8 w-full max-w-full ${className}`}
     >
       {/* Header: stack on mobile, row on larger screens */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
         <div className="flex items-center gap-2 min-w-0">
           <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400 flex-shrink-0" />
-          <h3 className="text-lg sm:text-xl font-bold text-emerald-100 truncate">{title}</h3>
+          <h3 className="text-lg sm:text-xl font-bold text-emerald-100 truncate">
+            {title}
+          </h3>
         </div>
         <div className="flex items-center justify-between sm:justify-end gap-2 flex-shrink-0">
           {!isOnResults && (
@@ -115,15 +146,17 @@ export function QuizModule({ title, questions, description = DEFAULT_QUIZ_DESCRI
               Question {currentIndex + 1} of {total}
             </span>
           )}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsExpanded(false)}
-            className="text-emerald-200 hover:text-emerald-100 hover:bg-emerald-500/20 shrink-0 h-8 w-8"
-            aria-label="Close quiz"
-          >
-            <X className="w-4 h-4 shrink-0" />
-          </Button>
+          {onClose && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              className="text-emerald-200 hover:text-emerald-100 hover:bg-emerald-500/20 shrink-0 h-8 w-8"
+              aria-label="Close quiz"
+            >
+              <X className="w-4 h-4 shrink-0" />
+            </Button>
+          )}
         </div>
       </div>
 
@@ -150,7 +183,9 @@ export function QuizModule({ title, questions, description = DEFAULT_QUIZ_DESCRI
             >
               <div className="p-4 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-3 sm:gap-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-emerald-100 font-semibold text-sm sm:text-base">Score:</span>
+                  <span className="text-emerald-100 font-semibold text-sm sm:text-base">
+                    Score:
+                  </span>
                   <span className="text-emerald-300 font-bold text-sm sm:text-base">
                     {score} / {total}
                   </span>
@@ -165,7 +200,9 @@ export function QuizModule({ title, questions, description = DEFAULT_QUIZ_DESCRI
               </div>
 
               <div className="space-y-4">
-                <p className="text-sm font-medium text-emerald-200/90">Correct answers</p>
+                <p className="text-sm font-medium text-emerald-200/90">
+                  Correct answers
+                </p>
                 {questions.map((q, qIndex) => {
                   const correctOpt = q.options[q.correctIndex];
                   const userOpt = selected[qIndex];
@@ -175,7 +212,9 @@ export function QuizModule({ title, questions, description = DEFAULT_QUIZ_DESCRI
                       key={qIndex}
                       className="rounded-lg bg-emerald-900/20 dark:bg-emerald-900/30 border border-emerald-500/20 p-3 sm:p-4"
                     >
-                      <p className="font-medium text-foreground mb-2 text-sm sm:text-base break-words">{q.question}</p>
+                      <p className="font-medium text-foreground mb-2 text-sm sm:text-base break-words">
+                        {q.question}
+                      </p>
                       <div className="flex items-center gap-2 flex-wrap text-xs sm:text-sm">
                         {isCorrect ? (
                           <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
