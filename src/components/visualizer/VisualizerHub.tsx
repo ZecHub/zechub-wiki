@@ -142,19 +142,13 @@ interface VisualizerInfo {
   }>;
 }
 
-const VISUALIZERS: VisualizerInfo[] = [
+// BASIC VISUALIZERS - Foundational concepts
+const BASIC_VISUALIZERS: VisualizerInfo[] = [
   {
     id: "zcash-wallet",
     title: "Introduction to Zcash Wallets",
     description: "Providing Shielded Functionality",
     component: WalletVisualizer,
-  },
-  {
-    id: "zcash-dex",
-    title: "Zcash Exchanges (DEX)",
-    description:
-      "Permissionless, censorship-resistant access to ZEC using decentralized exchanges",
-    component: ZcashDexVisualizer,
   },
   {
     id: "pool",
@@ -169,34 +163,11 @@ const VISUALIZERS: VisualizerInfo[] = [
     component: PayWithZcashVisualizer,
   },
   {
-    id: "zkproof",
-    title: "zk-SNARKs",
-    description: "Interactive demonstration of shielded transactions",
-    component: ZKSNARKProofVisualizer,
-  },
-  {
-    id: "infrastructure",
-    title: "Zcash Infrastructure",
-    description: "How Zcash components work together",
-    component: ZcashInfrastructureVisualizer,
-  },
-  {
-    id: "mining-halo",
-    title: "Zcash Mining & Halo 2",
-    description: "Understanding Equihash mining and recursive zero-knowledge proofs",
-    component: MiningHaloVisualizer,
-  },
-  {
-    id: "privacy-use-cases",
-    title: "Privacy Use Cases",
-    description: "Real-world applications of privacy technology on Zcash",
-    component: PrivacyUseCasesVisualizer,
-  },
-  {
-    id: "governance",
-    title: "Governance & Dev Fund",
-    description: "Community-driven development and decentralized decision making",
-    component: GovernanceVisualizer,
+    id: "zcash-dex",
+    title: "Zcash Exchanges (DEX)",
+    description:
+      "Permissionless, censorship-resistant access to ZEC using decentralized exchanges",
+    component: ZcashDexVisualizer,
   },
   {
     id: "hash-function",
@@ -210,11 +181,15 @@ const VISUALIZERS: VisualizerInfo[] = [
     description: "Understanding Zcash Blockchain Foundation",
     component: BlockchainFoundationVisualizer,
   },
+];
+
+// ADVANCED VISUALIZERS - Technical deep dives
+const ADVANCED_VISUALIZERS: VisualizerInfo[] = [
   {
-    id: "consensus",
-    title: "Consensus",
-    description: "How do hundreds of nodes agree on chain state?",
-    component: ConsensusVisualizer,
+    id: "zkproof",
+    title: "zk-SNARKs",
+    description: "Interactive demonstration of shielded transactions",
+    component: ZKSNARKProofVisualizer,
   },
   {
     id: "zcash-key",
@@ -222,6 +197,42 @@ const VISUALIZERS: VisualizerInfo[] = [
     description: "Understanding Zcash Keys",
     component: ZcashKeyVisualizer,
   },
+  {
+    id: "infrastructure",
+    title: "Zcash Infrastructure",
+    description: "How Zcash components work together",
+    component: ZcashInfrastructureVisualizer,
+  },
+  {
+    id: "consensus",
+    title: "Consensus",
+    description: "How do hundreds of nodes agree on chain state?",
+    component: ConsensusVisualizer,
+  },
+  {
+    id: "mining-halo",
+    title: "Zcash Mining & Halo 2",
+    description:
+      "Understanding Equihash mining and recursive zero-knowledge proofs",
+    component: MiningHaloVisualizer,
+  },
+  {
+    id: "privacy-use-cases",
+    title: "Privacy Use Cases",
+    description: "Real-world applications of privacy technology on Zcash",
+    component: PrivacyUseCasesVisualizer,
+  },
+  {
+    id: "governance",
+    title: "Governance & Dev Fund",
+    description:
+      "Community-driven development and decentralized decision making",
+    component: GovernanceVisualizer,
+  },
+];
+
+// CONTRIBUTOR VISUALIZERS - Community contribution pathways
+const CONTRIBUTOR_VISUALIZERS: VisualizerInfo[] = [
   {
     id: "zechub-bounties",
     title: "ZecHub Bounties",
@@ -248,6 +259,13 @@ const VISUALIZERS: VisualizerInfo[] = [
   },
 ];
 
+// Combined array for sequential playback
+const ALL_VISUALIZERS = [
+  ...BASIC_VISUALIZERS,
+  ...ADVANCED_VISUALIZERS,
+  ...CONTRIBUTOR_VISUALIZERS,
+];
+
 export const VisualizerHub: React.FC = () => {
   const [currentVisualizer, setCurrentVisualizer] =
     useState<VisualizerType>("welcome");
@@ -255,7 +273,7 @@ export const VisualizerHub: React.FC = () => {
 
   const startPlayAll = useCallback(() => {
     setIsPlayingAll(true);
-    setCurrentVisualizer(VISUALIZERS[0].id);
+    setCurrentVisualizer(ALL_VISUALIZERS[0].id);
   }, []);
 
   const stopPlayAll = useCallback(() => {
@@ -274,35 +292,33 @@ export const VisualizerHub: React.FC = () => {
 
   const goToNext = useCallback(() => {
     setCurrentVisualizer((current) => {
-      const currentIdx = VISUALIZERS.findIndex((v) => v.id === current);
-      if (currentIdx < VISUALIZERS.length - 1) {
-        return VISUALIZERS[currentIdx + 1].id;
+      const currentIdx = ALL_VISUALIZERS.findIndex((v) => v.id === current);
+      if (currentIdx < ALL_VISUALIZERS.length - 1) {
+        return ALL_VISUALIZERS[currentIdx + 1].id;
       } else {
-        // Only loop if in auto-play mode
-        return current; // Stay on current if not auto-playing
+        return current;
       }
     });
-    
-    // Handle looping for auto-play separately
+
     setIsPlayingAll((playing) => {
       if (playing) {
         setCurrentVisualizer((current) => {
-          const currentIdx = VISUALIZERS.findIndex((v) => v.id === current);
-          if (currentIdx === VISUALIZERS.length - 1) {
-            return VISUALIZERS[0].id; // Loop back to start
+          const currentIdx = ALL_VISUALIZERS.findIndex((v) => v.id === current);
+          if (currentIdx === ALL_VISUALIZERS.length - 1) {
+            return ALL_VISUALIZERS[0].id;
           }
           return current;
         });
       }
       return playing;
     });
-  }, []); // No dependencies needed
+  }, []);
 
   const goToPrevious = useCallback(() => {
     setCurrentVisualizer((current) => {
-      const currentIdx = VISUALIZERS.findIndex((v) => v.id === current);
+      const currentIdx = ALL_VISUALIZERS.findIndex((v) => v.id === current);
       if (currentIdx > 0) {
-        return VISUALIZERS[currentIdx - 1].id;
+        return ALL_VISUALIZERS[currentIdx - 1].id;
       }
       return current;
     });
@@ -312,14 +328,13 @@ export const VisualizerHub: React.FC = () => {
     setIsPlayingAll((playing) => {
       if (playing) {
         setCurrentVisualizer((current) => {
-          const currentIdx = VISUALIZERS.findIndex((v) => v.id === current);
+          const currentIdx = ALL_VISUALIZERS.findIndex((v) => v.id === current);
           const nextIndex = currentIdx + 1;
-          
-          if (nextIndex < VISUALIZERS.length) {
-            return VISUALIZERS[nextIndex].id;
+
+          if (nextIndex < ALL_VISUALIZERS.length) {
+            return ALL_VISUALIZERS[nextIndex].id;
           } else {
-            // Loop back to start
-            return VISUALIZERS[0].id;
+            return ALL_VISUALIZERS[0].id;
           }
         });
       }
@@ -327,23 +342,23 @@ export const VisualizerHub: React.FC = () => {
     });
   }, []);
 
-  // Calculate current index for display
-  const currentIdx = VISUALIZERS.findIndex((v) => v.id === currentVisualizer);
+  const currentIdx = ALL_VISUALIZERS.findIndex(
+    (v) => v.id === currentVisualizer,
+  );
 
   if (currentVisualizer !== "welcome") {
-    const CurrentComponent = VISUALIZERS[currentIdx]?.component;
+    const CurrentComponent = ALL_VISUALIZERS[currentIdx]?.component;
     const isFirst = currentIdx === 0;
-    const isLast = currentIdx === VISUALIZERS.length - 1;
+    const isLast = currentIdx === ALL_VISUALIZERS.length - 1;
     const nextVisualizer = !isLast
-      ? VISUALIZERS[currentIdx + 1]
-      : VISUALIZERS[0];
-    const prevVisualizer = !isFirst ? VISUALIZERS[currentIdx - 1] : null;
+      ? ALL_VISUALIZERS[currentIdx + 1]
+      : ALL_VISUALIZERS[0];
+    const prevVisualizer = !isFirst ? ALL_VISUALIZERS[currentIdx - 1] : null;
 
     if (!CurrentComponent) return null;
 
     return (
       <div className="relative min-h-screen">
-        {/* Back to hub button */}
         <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -355,7 +370,6 @@ export const VisualizerHub: React.FC = () => {
           <Home className="w-5 h-5 text-foreground" />
         </motion.button>
 
-        {/* Auto-play indicator */}
         {isPlayingAll && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -365,7 +379,7 @@ export const VisualizerHub: React.FC = () => {
             <div className="bg-card/80 backdrop-blur-md border border-border/50 rounded-lg px-4 py-2 flex items-center gap-2">
               <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
               <span className="text-sm font-medium">
-                Auto-playing ({currentIdx + 1}/{VISUALIZERS.length})
+                Auto-playing ({currentIdx + 1}/{ALL_VISUALIZERS.length})
               </span>
             </div>
             <Button
@@ -380,9 +394,7 @@ export const VisualizerHub: React.FC = () => {
           </motion.div>
         )}
 
-        {/* Navigation buttons */}
         <div className="fixed bottom-2 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 max-w-[95vw]">
-          {/* Previous button */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -404,7 +416,6 @@ export const VisualizerHub: React.FC = () => {
             </Button>
           </motion.div>
 
-          {/* Current module indicator */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -415,11 +426,10 @@ export const VisualizerHub: React.FC = () => {
               Current Module
             </div>
             <div className="font-semibold text-sm truncate">
-              {VISUALIZERS[currentIdx].title}
+              {ALL_VISUALIZERS[currentIdx].title}
             </div>
           </motion.div>
 
-          {/* Next button */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -451,7 +461,6 @@ export const VisualizerHub: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-white">
-      {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
@@ -482,7 +491,7 @@ export const VisualizerHub: React.FC = () => {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 flex flex-col  py-12">
+      <div className="relative z-10 container mx-auto px-4 flex flex-col py-12">
         <section>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -516,14 +525,26 @@ export const VisualizerHub: React.FC = () => {
           </motion.div>
         </section>
 
+        {/* BASIC SECTION */}
         <section id="basic" className="mt-24">
-          <h2 className="text-2xl font-bold text-foreground mb-6 max-w-6xl mx-auto">
-            Beginner
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mb-8"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+              Basic
+            </h2>
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+              Foundational concepts and essential features of Zcash
+            </p>
+          </motion.div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <VisualizerCard
-              data={VISUALIZERS.slice(0, 6)}
+              data={BASIC_VISUALIZERS}
               goToVisualizer={goToVisualizer}
+              startDelay={0.4}
             />
           </div>
           <div className="max-w-6xl mx-auto mt-12">
@@ -531,14 +552,27 @@ export const VisualizerHub: React.FC = () => {
           </div>
         </section>
 
+        {/* ADVANCED SECTION */}
         <section id="advance" className="mt-24">
-          <h2 className="text-2xl font-bold text-foreground mb-6 max-w-6xl mx-auto">
-            Intermediate
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mb-8"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent">
+              Advanced
+            </h2>
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+              Deep technical dives into cryptography, consensus, and
+              infrastructure
+            </p>
+          </motion.div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <VisualizerCard
-              data={VISUALIZERS.slice(6, 10)}
+              data={ADVANCED_VISUALIZERS}
               goToVisualizer={goToVisualizer}
+              startDelay={0.6}
             />
           </div>
           <div className="max-w-6xl mx-auto mt-12">
@@ -546,14 +580,26 @@ export const VisualizerHub: React.FC = () => {
           </div>
         </section>
 
+        {/* CONTRIBUTORS SECTION */}
         <section id="contribution" className="mt-24">
-          <h2 className="text-2xl font-bold text-foreground mb-6 max-w-6xl mx-auto">
-            Contributors
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="mb-8"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Contributors
+            </h2>
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+              Ways to contribute to the Zcash ecosystem and earn rewards
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <VisualizerCard
-              data={VISUALIZERS.slice(10)}
+              data={CONTRIBUTOR_VISUALIZERS}
               goToVisualizer={goToVisualizer}
+              startDelay={0.8}
             />
           </div>
           <div className="max-w-6xl mx-auto mt-12">
@@ -564,7 +610,7 @@ export const VisualizerHub: React.FC = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 1 }}
           className="text-center mt-16"
         >
           <p className="text-muted-foreground text-sm">
@@ -580,20 +626,23 @@ export const VisualizerHub: React.FC = () => {
 type CardProps = {
   data: VisualizerInfo[];
   goToVisualizer: (id: VisualizerType) => void;
+  startDelay?: number;
 };
 
 function VisualizerCard(props: CardProps) {
-  return props.data.map((v, index) => (
+  const { data, goToVisualizer, startDelay = 0.3 } = props;
+
+  return data.map((v, index) => (
     <motion.div
       key={v.id}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+      transition={{ duration: 0.6, delay: startDelay + index * 0.1 }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
       <div
-        onClick={() => props.goToVisualizer(v.id)}
+        onClick={() => goToVisualizer(v.id)}
         className="cursor-pointer group"
       >
         <div className="flex flex-col min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
