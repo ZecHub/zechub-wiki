@@ -550,10 +550,10 @@ export const VisualizerHub: React.FC = () => {
               startDelay={0.4}
             />
             {openQuiz !== "basic" && (
-              <div className="min-h-[200px] sm:min-h-[240px] h-full flex">
+              <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
                 <QuizCard
                   title="Beginner Quiz"
-                  className="w-full h-full min-h-[200px] sm:min-h-[240px]"
+                  className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
                   onOpen={() => setOpenQuiz("basic")}
                 />
               </div>
@@ -593,10 +593,10 @@ export const VisualizerHub: React.FC = () => {
               startDelay={0.6}
             />
             {openQuiz !== "advanced" && (
-              <div className="min-h-[200px] sm:min-h-[240px] h-full flex">
+              <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
                 <QuizCard
                   title="Intermediate Quiz"
-                  className="w-full h-full min-h-[200px] sm:min-h-[240px]"
+                  className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
                   onOpen={() => setOpenQuiz("advanced")}
                 />
               </div>
@@ -635,10 +635,10 @@ export const VisualizerHub: React.FC = () => {
               startDelay={0.8}
             />
             {openQuiz !== "contributors" && (
-              <div className="min-h-[200px] sm:min-h-[240px] h-full flex">
+              <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
                 <QuizCard
                   title="Contributors Quiz"
-                  className="w-full h-full min-h-[200px] sm:min-h-[240px]"
+                  className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
                   onOpen={() => setOpenQuiz("contributors")}
                 />
               </div>
@@ -693,7 +693,7 @@ function VisualizerCard(props: CardProps) {
         onClick={() => goToVisualizer(v.id)}
         className="cursor-pointer group"
       >
-        <div className="flex flex-col min-h-[200px] sm:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
+        <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
           <div className="flex-1 text-center">
             <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
               {v.title}
