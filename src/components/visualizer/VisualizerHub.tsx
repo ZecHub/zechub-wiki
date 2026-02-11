@@ -367,7 +367,7 @@ export const VisualizerHub: React.FC = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
           onClick={goHome}
-          className="fixed top-[6rem] left-[1.5rem] imd:top-[7rem] imd:left-8 z-50 p-3 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card transition-all shadow-lg"
+          className="fixed top-[6rem] left-2 sm:left-4 imd:top-[7rem] imd:left-8 z-50 p-2 sm:p-3 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card transition-all shadow-lg"
           aria-label="Back to Visualizer Hub"
         >
           <Home className="w-5 h-5 text-foreground" />
@@ -377,7 +377,7 @@ export const VisualizerHub: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="fixed top-6 right-6 z-50 flex gap-2"
+            className="fixed top-6 right-2 sm:right-4 md:right-6 z-50 flex flex-wrap gap-2 justify-end"
           >
             <div className="bg-card/80 backdrop-blur-md border border-border/50 rounded-lg px-4 py-2 flex items-center gap-2">
               <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
@@ -397,7 +397,7 @@ export const VisualizerHub: React.FC = () => {
           </motion.div>
         )}
 
-        <div className="fixed bottom-2 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 max-w-[95vw]">
+        <div className="fixed bottom-2 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 sm:gap-3 max-w-[95vw] px-1">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -423,7 +423,7 @@ export const VisualizerHub: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5 }}
-            className="bg-card/90 backdrop-blur-md border border-border/50 rounded-lg px-4 py-2 max-w-[180px] md:max-w-[250px]"
+            className="bg-card/90 backdrop-blur-md border border-border/50 rounded-lg px-3 py-2 max-w-[140px] sm:max-w-[180px] md:max-w-[250px]"
           >
             <div className="text-xs text-muted-foreground mb-1">
               Current Module
@@ -494,7 +494,7 @@ export const VisualizerHub: React.FC = () => {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 flex flex-col py-12">
+      <div className="relative z-10 w-full max-w-[100vw] overflow-x-hidden container mx-auto px-5 imd:px-4 md:px-6 flex flex-col py-6 sm:py-8 md:py-12">
         <section>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -502,10 +502,10 @@ export const VisualizerHub: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r dark:from-yellow-400 dark:via-emerald-400 dark:to-cyan-400 bg-clip-text text-foreground dark:text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r dark:from-yellow-400 dark:via-emerald-400 dark:to-cyan-400 bg-clip-text text-foreground dark:text-transparent">
               Zcash Visualizers
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-0">
               Interactive educational tools to understand Zcash privacy
               technology, infrastructure, and zero-knowledge proofs
             </p>
@@ -515,12 +515,12 @@ export const VisualizerHub: React.FC = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center mb-8"
+            className="flex justify-center mb-6 sm:mb-8 px-2"
           >
             <Button
               onClick={startPlayAll}
               size="lg"
-              className="bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 text-slate-900 shadow-[0_0_40px_rgba(251,191,36,0.5)] hover:shadow-[0_0_60px_rgba(251,191,36,0.7)] transition-all px-8 py-3 text-lg font-semibold"
+              className="bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 text-slate-900 shadow-[0_0_40px_rgba(251,191,36,0.5)] hover:shadow-[0_0_60px_rgba(251,191,36,0.7)] transition-all px-5 sm:px-8 py-3 text-base sm:text-lg font-semibold"
             >
               <Play className="w-5 h-5 mr-2" />
               Play All Visualizers
@@ -529,38 +529,38 @@ export const VisualizerHub: React.FC = () => {
         </section>
 
         {/* BASIC SECTION */}
-        <section id="basic" className="mt-24">
+        <section id="basic" className="mt-12 sm:mt-16 md:mt-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-8"
+            className="mb-6 sm:mb-8"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
               Basic
             </h2>
-            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
               Foundational concepts and essential features of Zcash
             </p>
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
             <VisualizerCard
               data={BASIC_VISUALIZERS}
               goToVisualizer={goToVisualizer}
               startDelay={0.4}
             />
             {openQuiz !== "basic" && (
-              <div className="min-h-[240px] h-full flex">
+              <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
                 <QuizCard
                   title="Beginner Quiz"
-                  className="w-full h-full min-h-[240px]"
+                  className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
                   onOpen={() => setOpenQuiz("basic")}
                 />
               </div>
             )}
           </div>
           {openQuiz === "basic" && (
-            <div className="max-w-6xl mx-auto mt-8">
+            <div className="max-w-6xl mx-auto mt-6 sm:mt-8 w-full px-0">
               <QuizModule
                 title="Beginner Quiz"
                 questions={QUIZ_BEGINNER}
@@ -571,39 +571,39 @@ export const VisualizerHub: React.FC = () => {
         </section>
 
         {/* ADVANCED SECTION */}
-        <section id="advance" className="mt-24">
+        <section id="advance" className="mt-12 sm:mt-16 md:mt-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mb-8"
+            className="mb-6 sm:mb-8"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent">
               Advanced
             </h2>
-            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
               Deep technical dives into cryptography, consensus, and
               infrastructure
             </p>
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
             <VisualizerCard
               data={ADVANCED_VISUALIZERS}
               goToVisualizer={goToVisualizer}
               startDelay={0.6}
             />
             {openQuiz !== "advanced" && (
-              <div className="min-h-[240px] h-full flex">
+              <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
                 <QuizCard
                   title="Intermediate Quiz"
-                  className="w-full h-full min-h-[240px]"
+                  className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
                   onOpen={() => setOpenQuiz("advanced")}
                 />
               </div>
             )}
           </div>
           {openQuiz === "advanced" && (
-            <div className="max-w-6xl mx-auto mt-8">
+            <div className="max-w-6xl mx-auto mt-6 sm:mt-8 w-full px-0">
               <QuizModule
                 title="Intermediate Quiz"
                 questions={QUIZ_INTERMEDIATE}
@@ -614,38 +614,38 @@ export const VisualizerHub: React.FC = () => {
         </section>
 
         {/* CONTRIBUTORS SECTION */}
-        <section id="contribution" className="mt-24">
+        <section id="contribution" className="mt-12 sm:mt-16 md:mt-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="mb-8"
+            className="mb-6 sm:mb-8"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Contributors
             </h2>
-            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
               Ways to contribute to the Zcash ecosystem and earn rewards
             </p>
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
             <VisualizerCard
               data={CONTRIBUTOR_VISUALIZERS}
               goToVisualizer={goToVisualizer}
               startDelay={0.8}
             />
             {openQuiz !== "contributors" && (
-              <div className="min-h-[240px] h-full flex">
+              <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
                 <QuizCard
                   title="Contributors Quiz"
-                  className="w-full h-full min-h-[240px]"
+                  className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
                   onOpen={() => setOpenQuiz("contributors")}
                 />
               </div>
             )}
           </div>
           {openQuiz === "contributors" && (
-            <div className="max-w-6xl mx-auto mt-8">
+            <div className="max-w-6xl mx-auto mt-6 sm:mt-8 w-full px-0">
               <QuizModule
                 title="Contributors Quiz"
                 questions={QUIZ_CONTRIBUTORS}
@@ -659,9 +659,9 @@ export const VisualizerHub: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="text-center mt-16"
+          className="text-center mt-10 sm:mt-16"
         >
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground text-xs sm:text-sm px-2">
             Each visualizer runs automatically. Use controls to navigate or
             pause.
           </p>
@@ -693,9 +693,9 @@ function VisualizerCard(props: CardProps) {
         onClick={() => goToVisualizer(v.id)}
         className="cursor-pointer group"
       >
-        <div className="flex flex-col min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
+        <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
           <div className="flex-1 text-center">
-            <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
+            <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
               {v.title}
             </h3>
             <p className="text-muted-foreground group-hover:text-muted-foreground transition-colors">

@@ -56,12 +56,12 @@ export function QuizCard({
       className={`h-full ${className}`}
     >
       <div onClick={onOpen} className="cursor-pointer group h-full">
-        <div className="flex flex-col min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
+        <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
           <div className="flex-1 text-center">
-            <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
+            <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
               {title}
             </h3>
-            <p className="text-muted-foreground group-hover:text-muted-foreground transition-colors">
+            <p className="text-muted-foreground text-sm sm:text-base group-hover:text-muted-foreground transition-colors">
               {description}
             </p>
           </div>
