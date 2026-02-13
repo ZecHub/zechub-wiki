@@ -419,7 +419,7 @@ const Navigation = () => {
               onClick={() => setOpenSearch(true)}
               className="p-2 hover:bg-nav-hover-bg"
             >
-              <Search className="h-4 w-4 md:h-5 md:w-5" />
+              <Search className="h-5 w-5 md:h-6 md:w-6" />
             </Button>
             <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
 
