@@ -431,9 +431,9 @@ const Navigation = () => {
               className="p-2 hover:bg-nav-hover-bg"
             >
               {dark ? (
-                <Sun className="h-4 w-4 md:h-5 md:w-5" />
+                <Sun className="h-5 w-5 md:h-6 md:w-6" />
               ) : (
-                <Moon className="h-4 w-4 md:h-5 md:w-5" />
+                <Moon className="h-5 w-5 md:h-6 md:w-6" />
               )}
             </Button>
 
