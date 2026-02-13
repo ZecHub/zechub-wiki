@@ -450,7 +450,7 @@ const Navigation = () => {
                   size="sm"
                   className="p-2 hover:bg-nav-hover-bg"
                 >
-                  <Menu className="h-5 w-5" />
+                  <Menu className="h-10 w-10" />
                 </Button>
               </SheetTrigger>
 
