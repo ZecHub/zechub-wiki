@@ -8,8 +8,8 @@ const Logo = (props: LogoProps) => (
     priority
     src={props.theme ? "/zechubLogo-white.png" : "/ZecHubBlue.png"}
     alt={"Logo"}
-    width={60}
-    height={60}
+    width={55}
+    height={55}
     className="rounded-full md:h-50"
   />
 );
