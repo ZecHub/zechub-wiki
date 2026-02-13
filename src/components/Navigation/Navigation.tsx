@@ -395,8 +395,8 @@ const Navigation = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95">
-      <div className="mx-auto">
-        <div className="flex items-center justify-between px-4 md:px-6 py-3 md:py-4">
+      <div className="mx-auto w-full max-w-7xl px-2 md:px-4">
+        <div className="flex items-center justify-between py-3 md:py-4">
           {/* Logo */}
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={dark} />
