@@ -36,6 +36,7 @@
     "@react-google-maps/api": "^2.20.3",
     "@react-icons/all-files": "^4.1.0",
     "@react-spring/web": "^10.0.1",
+    "@tanstack/react-query": "^5.90.21",
     "@types/mdx": "^2.0.13",
     "@visx/axis": "^3.12.0",
     "@visx/event": "^3.3.0",
