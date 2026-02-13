@@ -10,10 +10,22 @@ export function DashboardSection() {
           </div>
           <div>
             <h2 className="text-xl font-bold tracking-tight text-foreground">
-                Zcash <span className="text-gradient-zcash">Governance</span>
+              Zcash <span className="text-gradient-zcash">Governance</span>
             </h2>
+            <p className="text-sm text-muted-foreground">
+              ZIPs · Grants · Proposals
+            </p>
           </div>
         </div>
+
+        <a
+          href="https://z.cash"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm to-muted-foreground hover:to-primary transition-colors"
+        >
+          z.cash ↗
+        </a>
       </div>
     </section>
   );
