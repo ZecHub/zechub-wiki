@@ -81,7 +81,28 @@ export function GrantList() {
         search={search}
         onSearchChange={setSearch}
         placeholder="Search grants..."
-      ></SearchFilter>
+      >
+        <button
+          className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors capitalize bg-primary text-primary-foreground border-primary`}
+        >
+          All
+        </button>
+        <button
+          className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors capitalize text-muted-foreground `}
+        >
+          Funded
+        </button>
+        <button
+          className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors capitalize text-muted-foreground `}
+        >
+          In Progress
+        </button>
+        <button
+          className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors capitalize text-muted-foreground `}
+        >
+          Completed
+        </button>
+      </SearchFilter>
 
       <div>
         <ul className="flex flex-row gap-2 flex-wrap mt-3">
@@ -138,7 +159,9 @@ export function GrantList() {
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground">
                 {grant.category}
               </span>
-              <span className="text-[10px] text-muted-foreground">{grant.date}</span>
+              <span className="text-[10px] text-muted-foreground">
+                {grant.date}
+              </span>
             </div>
           </div>
         ))}
