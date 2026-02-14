@@ -80,9 +80,11 @@ export function ZIPList() {
       )}
 
       {!isLoading && !error && (
-        <div className="mt-4">
+        <div
+          className={`my-4 max-h-[640px] ${filtered && filtered.length < 5 ? "overscroll-none" : "overflow-y-scroll"} pr-2`}
+        >
           <ul className="space-y-2">
-            {filtered.slice(0, 6).map((zip, i) => (
+            {filtered.map((zip, i) => (
               <li key={zip.number}>
                 <a
                   href={zip.url}
