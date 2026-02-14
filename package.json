@@ -53,6 +53,7 @@
     "autoprefixer": "10.4.15",
     "chart.js": "^4.5.0",
     "chartjs-adapter-date-fns": "^3.0.0",
+    "cheerio": "^1.2.0",
     "class-variance-authority": "^0.7.0",
     "date-fns": "^4.1.0",
     "eslint": "8.48.0",
