@@ -82,7 +82,20 @@ export function GrantList() {
         placeholder="Search grants..."
       ></SearchFilter>
 
- 
+      <div>
+        <ul className="flex flex-row gap-2 flex-wrap mt-3">
+          {CATEGORY_FILTER.map((cf) => (
+            <li key={cf}>
+              <button
+                onClick={() => {}}
+                className={`px-3 py-1.5 text-sm font-medium rounded-full border transition-colors`}
+              >
+                {cf}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
