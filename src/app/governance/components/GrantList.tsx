@@ -1,6 +1,7 @@
-import { Coins } from "lucide-react";
+import { Coins, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { SearchFilter } from "./SearchFilter";
+import { StatusBadge } from "./StatusBadge";
 
 export type GrantStatus = "funded" | "in-progress" | "completed" | "proposed";
 const CATEGORY_FILTER = [
@@ -95,6 +96,52 @@ export function GrantList() {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        {curatedGrants.map((grant, i) => (
+          <div
+            className="bg-slate-200 dark:bg-slate-800 rounded-lg border border-border p-5 hover:border-primary/40 hover:glow-zcash transition-all animate-fade-in"
+            style={{ animationDelay: `${i * 50}ms` }}
+          >
+            <div className="flex items-start justify-between gap-2 mb-2">
+              <h3 className="text-sm font-semibold text-foreground leading-tight">
+                {grant.title}
+              </h3>
+              <StatusBadge status={grant.status} />
+            </div>
+            <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+              {grant.description}
+            </p>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="font-mono text-sm font-semibold text-primary">
+                  {grant.amount}
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  {grant.organization}
+                </span>
+              </div>
+              {grant.link && (
+                <a
+                  href={grant.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              )}
+            </div>
+            <div className="flex items-center gap-2 mt-3">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground">
+                {grant.category}
+              </span>
+              <span className="text-[10px] text-muted-foreground">{grant.date}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
