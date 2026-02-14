@@ -1,5 +1,9 @@
+import { FileText } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useZIPs } from "../hooks/use-zips";
+import { SearchFilter } from "./SearchFilter";
+
+const STATUS_FILTERS = ["All", "Active", "Final", "Draft", "Withdrawn"];
 
 export function ZIPList() {
   const { data: zips, isLoading, error } = useZIPs();
@@ -19,9 +23,29 @@ export function ZIPList() {
         statusFilter === "All" ||
         zip.status.toLowerCase().includes(statusFilter.toLowerCase());
 
-        return matchesSearch && matchesStatus;
+      return matchesSearch && matchesStatus;
     });
   }, [zips, search, statusFilter]);
 
+  return (
+    <section className="">
+      <div className="flex items-center gap-2 mb-4">
+        <FileText className="h-5 w-5 text-primary" />
+        <h2 className="text-lg font-semibold text-foreground">
+          Zcash Improvement Proposals
+        </h2>
+        {zips && (
+          <span className="text-xs to-muted-foreground ml-1">
+            ({filtered.length})
+          </span>
+        )}
 
+        <SearchFilter
+          search={search}
+          onSearchChange={setSearch}
+          placeholder="Search ZIPS by number, title or author..."
+        ></SearchFilter>
+      </div>
+    </section>
+  );
 }
