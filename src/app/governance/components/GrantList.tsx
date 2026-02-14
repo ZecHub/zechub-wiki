@@ -122,6 +122,7 @@ export function GrantList() {
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         {curatedGrants.map((grant, i) => (
           <div
+            key={grant.id}
             className="bg-slate-200 dark:bg-slate-800 rounded-lg border border-border p-5 hover:border-primary/40 hover:glow-zcash transition-all animate-fade-in"
             style={{ animationDelay: `${i * 50}ms` }}
           >
