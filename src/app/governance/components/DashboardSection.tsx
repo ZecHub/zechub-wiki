@@ -17,15 +17,6 @@ export function DashboardSection() {
             </p>
           </div>
         </div>
-
-        <a
-          href="https://z.cash"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm to-muted-foreground hover:to-primary transition-colors"
-        >
-          z.cash ↗
-        </a>
       </div>
     </section>
   );
