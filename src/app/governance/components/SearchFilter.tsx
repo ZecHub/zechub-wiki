@@ -17,7 +17,7 @@ export function SearchFilter(props: SearchFilterProps) {
           value={props.search}
           onChange={(e) => props.onSearchChange(e.target.value)}
           placeholder={props.placeholder || "Search..."}
-          className="pl-9 bg-card board-border focus:ring-primary"
+          className="pl-9 bg-slate-200 dark:bg-slate-700 board-border border-slate-300 dark:border-slate-600 focus:ring-primary"
         />
       </div>
       {props.children && (
