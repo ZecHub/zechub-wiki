@@ -1,12 +1,25 @@
+"use client";
 import { Coins, FileText, TrendingUp, Users } from "lucide-react";
+import { useZIPs } from "../hooks/use-zips";
 
-export function StatusBar() {
+interface StatusBarProps {
+}
+
+export function StatusBar(props: StatusBarProps) {
+  const { data: zips, error } = useZIPs();
+
+  const totalGrantFunding = 2000; // source for data
+
   const stats = [
-    { icon: FileText, label: "ZIPs Tracked", value: 0 },
+    {
+      icon: FileText,
+      label: "ZIPs Tracked",
+      value: zips ? String(zips.length) : "-",
+    },
     {
       icon: Coins,
       label: "Total Funding",
-      value: 2000,
+      value: totalGrantFunding,
     },
     {
       icon: TrendingUp,
