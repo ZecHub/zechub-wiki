@@ -1,4 +1,4 @@
-import { FileText } from "lucide-react";
+import { FileText, Loader2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useZIPs } from "../hooks/use-zips";
 import { SearchFilter } from "./SearchFilter";
@@ -59,6 +59,23 @@ export function ZIPList() {
             </button>
           ))}
         </SearchFilter>
+
+        {isLoading && (
+          <div className="flex items-center justify-center py-16">
+            <Loader2 className="h-6 w-6 animate-spin text-primary" />
+            <span className="ml-2 text-muted-foreground text-sm">
+              Loading ZIPs from GitHub...
+            </span>
+          </div>
+        )}
+
+        {error && (
+          <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 mt-4">
+            <p className="text-sm text-destructive">
+              Failed to load ZIPs. GitHub API rate limit may have been reached.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
