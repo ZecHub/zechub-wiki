@@ -2,7 +2,7 @@ import * as cheerio from "cheerio";
 import { appConfig } from "./appConfig";
 
 export interface ZIPData {
-  zipNumber: string;
+  number: string;
   title: string;
   status: string;
   type?: string;
@@ -38,7 +38,7 @@ export async function fetchZIPs(): Promise<ZIPData[]> {
 
       if (cols.length === 3) {
         rows.push({
-          zipNumber: $(cols[0]).text().trim(),
+          number: $(cols[0]).text().trim(),
           title: $(cols[1]).text().trim(),
           status: $(cols[2]).text().trim(),
           url: appConfig.zipUrl + $(cols[1]).find("a").attr("href"),
