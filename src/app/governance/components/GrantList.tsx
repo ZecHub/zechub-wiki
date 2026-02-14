@@ -1,4 +1,16 @@
+import { Coins } from "lucide-react";
+import { useState } from "react";
+import { SearchFilter } from "./SearchFilter";
+
 export type GrantStatus = "funded" | "in-progress" | "completed" | "proposed";
+const CATEGORY_FILTER = [
+  "All",
+  "Wallets",
+  "Infrastructure",
+  "Protocol",
+  "Education",
+  "Security",
+];
 
 export interface Grant {
   id: string;
@@ -51,9 +63,26 @@ export const curatedGrants: Grant[] = [
 ];
 
 export function GrantList() {
+  const [search, setSearch] = useState("");
+
   return (
-    <section className="flex items-center gap-2 mb-4">
-      <h2>Grant Listing section</h2>
+    <section>
+      <div className="flex items-center gap-2 mb-4">
+        <Coins className="h-5 w-5 text-primary" />
+        <h2 className="text-lg font-semibold text-foreground">
+          Grants & Funding
+        </h2>
+        <span className="text-xs text-muted-foreground ml-1">
+          ({curatedGrants.length})
+        </span>
+      </div>
+      <SearchFilter
+        search={search}
+        onSearchChange={setSearch}
+        placeholder="Search grants..."
+      ></SearchFilter>
+
+ 
     </section>
   );
 }
