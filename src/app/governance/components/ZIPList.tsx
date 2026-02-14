@@ -44,7 +44,21 @@ export function ZIPList() {
           search={search}
           onSearchChange={setSearch}
           placeholder="Search ZIPS by number, title or author..."
-        ></SearchFilter>
+        >
+          {STATUS_FILTERS.map((sf) => (
+            <button
+              key={sf}
+              onClick={() => setStatusFilter(sf)}
+              className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors ${
+                statusFilter === sf
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
+              }`}
+            >
+              {sf}
+            </button>
+          ))}
+        </SearchFilter>
       </div>
     </section>
   );
