@@ -152,7 +152,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     ]);
 
     const dateArray = Array.from(allDates).sort(
-      (a, b) => new Date(a).getTime() - new Date(b).getTime()
+      (a, b) => new Date(a).getTime() - new Date(b).getTime(),
     );
 
     const dataMap: Record<string, any> = {};
@@ -178,7 +178,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     }
 
     return Object.values(dataMap).filter((d) =>
-      selectedYear === "all" ? true : extractYear(d.close) === selectedYear
+      selectedYear === "all" ? true : extractYear(d.close) === selectedYear,
     );
   };
 
@@ -224,7 +224,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             : `${capitalize(selectedPool)} Pool Supply`
         }
       >
-        <div className="flex sm:gap-20 justify-between gap-4 py-4 md:py-0 items-center">
+        <div className="grid gap-2 imd:flex justify-between imd:gap-16 py-4 md:py-0 items-center">
           {/*  Year Dropdown */}
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Year</label>
@@ -232,7 +232,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               value={selectedYear}
               onChange={setSelectedYear}
               options={getAvailableYears(selectedPool).map((year) =>
-                year.toString()
+                year.toString(),
               )}
               className="w-28 dark:border-slate-700"
               optionClassName="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
@@ -251,7 +251,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               optionClassName="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
               renderOption={(value) => {
                 const label = POOL_OPTIONS.find(
-                  (opt) => opt.value === value
+                  (opt) => opt.value === value,
                 )?.label;
                 return label ?? value;
               }}
@@ -276,21 +276,21 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
           </div>
         </div>
         <div className="flex md:hidden text-sm">
-            {selectedPool === "all" ? (
-              <>
-                <span className="font-medium">Total Shielded:</span>{" "}
-                {calculateTotalShielded().toLocaleString()} ZEC
-              </>
-            ) : (
-              <span className="ml-1">
-                {selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)}:{" "}
-                {latestTotals[
-                  selectedPool as keyof typeof latestTotals
-                ]?.toLocaleString?.() ?? "0"}{" "}
-                ZEC
-              </span>
-            )}
-          </div>
+          {selectedPool === "all" ? (
+            <>
+              <span className="font-medium">Total Shielded:</span>{" "}
+              {calculateTotalShielded().toLocaleString()} ZEC
+            </>
+          ) : (
+            <span className="ml-1">
+              {selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)}:{" "}
+              {latestTotals[
+                selectedPool as keyof typeof latestTotals
+              ]?.toLocaleString?.() ?? "0"}{" "}
+              ZEC
+            </span>
+          )}
+        </div>
       </ChartHeader>
 
       {/*  Chart Container */}
@@ -350,7 +350,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
           />
           <YAxis
             tick={{ fontSize, fill: "#94a3b8" }}
-            tickFormatter={(val) => formatNumberShort(val)}
+            tickFormatter={(val: any) => formatNumberShort(val)}
           />
           <Tooltip
             content={({ active, payload, label }) => {
@@ -461,8 +461,8 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                   selectedPool === "sprout"
                     ? 1
                     : selectedPool === "sapling"
-                    ? 2
-                    : 3
+                      ? 2
+                      : 3
                 }))`}
                 fill={`url(#${selectedPool}Gradient)`}
                 name={`${
@@ -481,8 +481,8 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                             selectedPool === "sprout"
                               ? 1
                               : selectedPool === "sapling"
-                              ? 2
-                              : 3
+                                ? 2
+                                : 3
                           }))`,
                         }}
                       />
