@@ -1428,5 +1428,27 @@
         "Closing_Price": 239.72,
         "Shielded_Market_Cap": 1206053891.9,
         "Shielded_Transaction_Percentage": 0.2
+    },
+    {
+        "Dates": "2026/02/14",
+        "Transactions": 44488,
+        "Transparent_Transfer_TXs": 83099,
+        "Sapling_Transfer_TXs": 2849,
+        "Orchard_Transfer_TXs": 23615,
+        "Total_Transfer_TXs": 109563,
+        "Total_Transparent_TXs": 34824,
+        "Coinbase_percent": 22.0,
+        "Total_Sapling_TXs": 1492,
+        "Net_Sapling_Flow": 2782.95187143,
+        "Total_Orchard_TXs": 8325,
+        "Net_Orchard_Flow": -22511.68516262,
+        "Total_Shielded_Supply": 5029207.58602974,
+        "Total_Lockbox_Supply": 17768.8125,
+        "Zebra_Nodes": 9,
+        "Zcashd_Nodes": 13,
+        "Total_Node_Count": 22,
+        "Closing_Price": 297.74,
+        "Shielded_Market_Cap": 1497396266.7,
+        "Shielded_Transaction_Percentage": 0.22
     }
 ]
