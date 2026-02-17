@@ -243,7 +243,7 @@ const CONTRIBUTOR_VISUALIZERS: VisualizerInfo[] = [
   },
   {
   id: "dao-proposal",
-  title: "DAO Proposal Process",
+  title: "DAO Proposals",
   description: "Step-by-step guide to creating a ZecHub DAO governance proposal",
   component: DAOProposalVisualizer,
 },

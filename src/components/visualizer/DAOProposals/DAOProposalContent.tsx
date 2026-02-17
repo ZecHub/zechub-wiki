@@ -38,12 +38,12 @@ export interface Stage {
 export const STAGES: Stage[] = [
   {
     id: "dao-overview",
-    title: "ZecHub DAO Governance",
+    title: "ZecHub DAO Proposals",
     subtitle: "Full Process Overview",
     description:
       "A community-driven process for shaping the future of ZecHub — from wallet setup to on-chain voting",
     type: "overview",
-    link: "https://zechub-wiki.vercel.app/governance-howto",
+    link: "https://zechub.wiki/governance-howto",
     linkText: "Governance Guide",
   },
   {
@@ -63,7 +63,7 @@ export const STAGES: Stage[] = [
     description:
       "Structure your proposal using the recommended Background to Proposal to Action format",
     type: "draft",
-    link: "https://zechub-wiki.vercel.app/governance-howto",
+    link: "https://zechub.wiki/governance-howto",
     linkText: "Proposal Guide",
   },
   {
@@ -187,7 +187,6 @@ const SetupAnimation = () => {
     return () => clearInterval(t);
   }, []);
 
-  // Straight apostrophes only — no curly/smart quotes in string literals
   const walletSteps = ["Download Extension", "Create Account", "Connect to DAO"];
 
   return (
