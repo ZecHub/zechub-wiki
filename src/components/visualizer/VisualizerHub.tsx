@@ -22,6 +22,7 @@ import { MiningHaloVisualizer } from "./MiningHalo";
 import { PrivacyUseCasesVisualizer } from "./PrivacyUsecases";
 import { GovernanceVisualizer } from "./Governance";
 import { QuizCard, QuizModule, type QuizQuestion } from "./QuizModule";
+import { DAOProposalVisualizer } from "./DAOProposals";
 
 const QUIZ_BEGINNER: QuizQuestion[] = [
   {
@@ -128,6 +129,7 @@ type VisualizerType =
   | "zcash-key"
   | "blockchain-foundation"
   | "zechub-bounties"
+  | "dao-proposal"
   | "zcash-community-grants"
   | "coinholder-grants"
   | "open-source-repos";
@@ -239,6 +241,12 @@ const CONTRIBUTOR_VISUALIZERS: VisualizerInfo[] = [
     description: "Contribute to ZecHub and earn ZEC",
     component: ContributionVisualizer,
   },
+  {
+  id: "dao-proposal",
+  title: "DAO Proposals",
+  description: "Step-by-step guide to creating a ZecHub DAO governance proposal",
+  component: DAOProposalVisualizer,
+},
   {
     id: "zcash-community-grants",
     title: "Zcash Community Grants",
