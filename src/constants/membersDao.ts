@@ -157,7 +157,7 @@ export const daoMembers = [
     role: "",
   },
   {
-    imgUrl: "https://prozcash.ru/wp-content/uploads/2023/04/serdcze.jpeg",
+    imgUrl: "https://pbs.twimg.com/profile_images/1694282200735252480/rIyFjLbF_400x400.jpg",
     name: "RuZcash",
     description: `I'm the creator of prozcash.ru website, which I fill with translations into Russian of press releases from
         official sources of Zcash developers, as well as my own articles about the coin. My goal is for the
@@ -272,7 +272,7 @@ export const daoMembers = [
     role: "",
   },
   {
-    imgUrl: "https://i.seadn.io/gcs/files/b7d75113578335f503d620166f459b4a.png",
+    imgUrl: "https://pbs.twimg.com/profile_images/1829533580017754112/sbJI5vQn_400x400.jpg",
     name: "Tokidoki",
     description: `Tokidoki is the community manager of ZecHub. He is a software engineer from Indonesia who also teaches
         programming and has mentored hundreds of junior developers at a coding bootcamp.`,
