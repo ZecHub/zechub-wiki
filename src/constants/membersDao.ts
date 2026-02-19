@@ -3,7 +3,7 @@ import { socialIcons } from "@/components/UI/SvgIcons";
 export const daoMembers = [
     {
     imgUrl:
-      "https://i.ibb.co/qL5J9MKs/7204868.png",
+      "",
     name: "Speedfox",
     description:
       "Zcash Contributor, Developer and Graphic Design professional",
@@ -15,7 +15,7 @@ export const daoMembers = [
       },
    ],
     zcashAddress: "u",
-    role: "Developer",
+    role: "Member",
   },
     {
     imgUrl:
