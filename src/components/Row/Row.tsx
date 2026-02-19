@@ -5,7 +5,7 @@ import zcashNigeria from "../../assets/brand/ZcashNigeria/JPG/ZcashNigeria_White
 import zcashUkraine from "../../assets/brand/ZcashUkraine/Zcash_Ukraine.jpg";
 import zcashEspanol from "../../assets/brand/ZcashEspanol/JPG/ZcashEspanol.jpg";
 import ecc from "../../assets/brand/ECC/JPG/ECCBlack.jpg";
-import wallet from "../../assets/brand/Wallets/Zashi/JPG/ZashiIconBlack.jpg";
+import wallet from "../../assets/brand/wallets/All_Wallets/zodl/Zodl_Logo_Black.jpg";
 import zcash from "../../assets/brand/Zcash/JPG/Primary Brandmark/Brandmark Yellow.jpg";
 import zcashBrasil from "../../assets/brand/ZcashBrasil/JPG/ZcashBRBlack.jpg";
 import zechub from "../../assets/brand/ZecHub/JPG/ZecHubBlue.jpg";
@@ -24,7 +24,7 @@ const projects = [
   {
     title: "Wallets",
     description: "Brand Assets for all Zcash Shielded Wallets",
-    link: "/downloads/brand/Wallets.zip",
+    link: "/downloads/brand/All_Wallets.zip",
     imageUrl: wallet,
     size: 150,
   },
@@ -106,4 +106,5 @@ const Row: React.FC = () => {
 };
 
 export default Row;
+
 
