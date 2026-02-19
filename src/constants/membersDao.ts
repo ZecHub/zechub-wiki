@@ -13,6 +13,10 @@ export const daoMembers = [
         url: "https://x.com/",
         icon: socialIcons.x,
       },
+   ],
+    zcashAddress: "u",
+    role: "Developer",
+  },
     {
     imgUrl:
       "https://pbs.twimg.com/profile_images/1984413242597560320/taevvueV_400x400.jpg",
