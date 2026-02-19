@@ -1,5 +1,5 @@
 import * as cheerio from "cheerio";
-import { appConfig } from "./appConfig";
+import * as config from '../../../config'
 
 export interface ZIPData {
   number: string;
@@ -12,7 +12,7 @@ export interface ZIPData {
 
 export async function fetchZIPs(): Promise<ZIPData[]> {
   try {
-    const res = await fetch(appConfig.zipRawUrl);
+    const res = await fetch(config.ZIPs_RAW_URL);
 
     if (!res.ok) throw new Error("Failed to fetch ZIPs from GitHub");
 
@@ -41,7 +41,7 @@ export async function fetchZIPs(): Promise<ZIPData[]> {
           number: $(cols[0]).text().trim(),
           title: $(cols[1]).text().trim(),
           status: $(cols[2]).text().trim(),
-          url: appConfig.zipUrl + $(cols[1]).find("a").attr("href"),
+          url: config.ZIPs_URL + $(cols[1]).find("a").attr("href"),
         });
       }
     });
