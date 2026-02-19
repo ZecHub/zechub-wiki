@@ -14,7 +14,6 @@ import { ZcashCommunityGrantsVisualizer } from "./zcash-community-grants";
 import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
 import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
 import { ZcashKeyVisualizer } from "./zcash-key-visualizer";
-import { ZcashMeVisualizer } from "./zcash-me";
 import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
 import { WalletVisualizer } from "./zcash-wallet";
 import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
@@ -117,7 +116,6 @@ const QUIZ_CONTRIBUTORS: QuizQuestion[] = [
 type VisualizerType =
   | "welcome"
   | "pay-with-zcash"
-  | "zcash-me"
   | "pool"
   | "zkproof"
   | "infrastructure"
@@ -165,12 +163,6 @@ const BASIC_VISUALIZERS: VisualizerInfo[] = [
     title: "Pay with Zcash",
     description: "Discover where and how to use ZEC for private payments",
     component: PayWithZcashVisualizer,
-  },
-  {
-    id: "zcash-me",
-    title: "Zcash.me Payment Links",
-    description: "Create personalized payment links for receiving ZEC",
-    component: ZcashMeVisualizer,
   },
   {
     id: "zcash-dex",
