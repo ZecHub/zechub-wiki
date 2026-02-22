@@ -300,7 +300,7 @@ export function GrantList() {
               <li key={cf}>
                 <button
                   onClick={() => setCategoryFilter(cf)}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors ${
+                  className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors  ${
                     categoryFilter === cf
                       ? "bg-primary text-primary-foreground border-primary"
                       : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
@@ -314,10 +314,14 @@ export function GrantList() {
         </div>
       )}
 
-      <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        {filteredGrants.map((grant, i) => (
-          <GrantCard key={grant.id} grant={grant} index={i} />
-        ))}
+      <div
+        className={`max-h-[640px] ${filteredGrants && filteredGrants.length < 5 ? "overscroll-none" : "overflow-y-scroll"}`}
+      >
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 ">
+          {filteredGrants.map((grant, i) => (
+            <GrantCard key={grant.id} grant={grant} index={i} />
+          ))}
+        </div>
       </div>
 
       {search !== "" && filteredGrants.length === 0 && !isLoading && (
