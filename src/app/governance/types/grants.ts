@@ -3,8 +3,8 @@ export type MilestoneStatus = "Completed" | "In progress" | "Pending";
 export interface RawGrantRow {
   Project: string;
   Grantee: string;
-  "Category ↵(as determined by ZCG)": string;
-  "Reporting Frequency ↵(as determined by ZCG)"?: string;
+  "Category (as determined by ZCG)": string;
+  "Reporting Frequency (as determined by ZCG)"?: string;
   Milestone: string;
   "Amount (USD)"?: string;
   Estimate?: string;
@@ -18,6 +18,7 @@ export interface RawGrantRow {
 export interface Milestone {
   number: number;
   amountUSD: number | null;
+  estimateUSD: number | null;
   status: MilestoneStatus;
   paidOutDate: string | null;
   usdDisbursed: number | null;
@@ -27,7 +28,7 @@ export interface Milestone {
 
 export interface GrantSummary {
   totalMilestones: number;
-  complettedMilestones: number;
+  completedMilestones: number;
   totalAmountUSD: number;
   totalUsdDisbursed: number;
   totalZecDisbursed: number;
@@ -41,6 +42,6 @@ export interface Grant {
   grantee: string;
   category: string;
   reportingFrequency: string | null;
-  milestone: Milestone[];
+  milestones: Milestone[];
   summary: GrantSummary;
 }
