@@ -11,16 +11,16 @@ import { Grant } from "./types/grants";
 
 const queryClient = new QueryClient();
 
-export const ZipAndGrants = () => {
+export const ZipAndGrantsGovernance  = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <DashboardSection />
-      <ZipAndGrantsGovernance />
+      <ZipAndGrants />
     </QueryClientProvider>
   );
 };
 
-function ZipAndGrantsGovernance() {
+function ZipAndGrants() {
   const { data: zips, isLoading: isLoadingZip, error: zipError } = useZIPs();
   const [grants, setGrants] = useState<Grant[]>([]);
   const [isLoading, setIsLoading] = useState(false);
