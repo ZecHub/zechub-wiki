@@ -8,10 +8,11 @@ import { StatusBar } from "./components/StatusBar";
 import { ZIPList } from "./components/ZIPList";
 import { useZIPs } from "./hooks/use-zips";
 import { Grant } from "./types/grants";
+import * as config from '../../config';
 
 const queryClient = new QueryClient();
 
-export const ZipAndGrantsGovernance  = () => {
+export const ZipAndGrantsGovernance = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <DashboardSection />
@@ -68,7 +69,7 @@ function ZipAndGrants() {
         <p className="text-xs text-muted-foreground">
           Data sourced from{" "}
           <a
-            href="https://github.com/zcash/zips/blob/main/README.rst"
+            href={config.ZIPs_URL_PATH}
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:underline"
@@ -77,12 +78,12 @@ function ZipAndGrants() {
           </a>{" "}
           and curated grants records from{" "}
           <a
-            href=""
+            href={config.GOOGLE_ZCG_SPREADSHEET_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:underline"
           >
-            Grants Link
+            Zcash Grants (Google Sheet)
           </a>{" "}
         </p>
       </div>
