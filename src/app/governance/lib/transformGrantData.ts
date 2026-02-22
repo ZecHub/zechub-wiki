@@ -7,7 +7,6 @@ import {
 import { normalizeStatus, parseMoney, parseNumber } from "./grantParsers";
 
 export function transformGrantData(rows: RawGrantRow[]): Grant[] {
-  console.log(rows[0]);
   const grouped = new Map<string, Grant>();
 
   for (const row of rows) {
