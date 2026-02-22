@@ -250,6 +250,25 @@ export type GrantStatus = "funded" | "in-progress" | "completed" | "proposed";
 export function GrantList() {
   const [search, setSearch] = useState("");
   const [grants, setGrants] = useState<Grant[]>([]);
+  const [statusFilter, setStatusFilter] = useState("All");
+
+  const filteredGrants = useMemo(() => {
+    if (!data) return [];
+
+    return data.filter((grant) => {
+      const matchesSearch =
+        grant.grantee.toLowerCase().includes(search.toLowerCase()) ||
+        grant.project.includes(search);
+
+      const matchesStatus =
+        statusFilter === "All" ||
+        grant.summary.overallStatus
+          .toLowerCase()
+          .includes(statusFilter.toLowerCase());
+
+      return matchesSearch && matchesStatus;
+    });
+  }, [data, search, statusFilter]);
 
   const handleFetchZCGrants = async () => {
     try {
