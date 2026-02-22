@@ -180,16 +180,6 @@ const data = [
   },
 ] as Grant[];
 
-const CATEGORY_FILTER = data
-  .map((d) => d.category)
-  .filter((c, i, arr) => arr.indexOf(c) === i);
-
-const STATUS_FILTERS: MilestoneStatus[] = [
-  "Completed",
-  "In progress",
-  "Pending",
-];
-
 export function GrantList() {
   const [search, setSearch] = useState("");
   const [grants, setGrants] = useState<Grant[]>([]);
@@ -198,10 +188,20 @@ export function GrantList() {
   const [error, setError] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
 
-  const filteredGrants = useMemo(() => {
-    if (!data) return [];
+  const CATEGORY_FILTER = grants
+    .map((d) => d.category)
+    .filter((c, i, arr) => arr.indexOf(c) === i);
 
-    return data.filter((grant) => {
+  const STATUS_FILTERS: MilestoneStatus[] = [
+    "Completed",
+    "In progress",
+    "Pending",
+  ]; //TODO: Sort this from live data
+
+  const filteredGrants = useMemo(() => {
+    if (!grants) return [];
+
+    return grants.filter((grant) => {
       const matchesSearch =
         grant.grantee.toLowerCase().includes(search.toLowerCase()) ||
         grant.project.includes(search);
@@ -220,32 +220,29 @@ export function GrantList() {
     });
   }, [grants, search, statusFilter, categoryFilter]);
 
-  const handleFetchZCGrants = async () => {
-    try {
-      const data = await getZCGrantsData();
-      if (data) {
-        console.log(data);
-        setGrants(data);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   useEffect(() => {
-    setGrants(data);
+    const handleFetchZCGrants = async () => {
+      setIsLoading(true);
+      
+      try {
+        const data = await getZCGrantsData();
+        if (data) {
+          console.log(data);
+          setGrants(data);
+        }
+      } catch (err: any) {
+        console.error("AppError:", err);
+        setError(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    handleFetchZCGrants();
   }, []);
 
   return (
     <section>
-      <div>
-        <button
-          className="p-4 border border-red-400"
-          onClick={handleFetchZCGrants}
-        >
-          Get Data
-        </button>
-      </div>
       <div className="flex items-center gap-2 mb-4">
         <Coins className="h-5 w-5 text-primary" />
         <h2 className="text-lg font-semibold text-foreground">
@@ -290,6 +287,12 @@ export function GrantList() {
         </div>
       )}
 
+      {search !== "" && filteredGrants.length === 0 && !isLoading && (
+        <p className="text-center py-8 text-muted-foreground text-sm">
+          Unable to fetch grants!
+        </p>
+      )}
+
       <div>
         <ul className="flex flex-row gap-2 flex-wrap mt-3">
           {[...CATEGORY_FILTER, "All"].sort().map((cf) => (
@@ -314,6 +317,12 @@ export function GrantList() {
           <GrantCard key={grant.id} grant={grant} index={i} />
         ))}
       </div>
+
+      {search !== "" && filteredGrants.length === 0 && !isLoading && (
+        <p className="text-center py-8 text-muted-foreground text-sm">
+          No Grant(s) match your search!
+        </p>
+      )}
     </section>
   );
 }
