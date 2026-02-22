@@ -41,7 +41,11 @@ const NOTIFICATION_PERMISSION = "zechub-wiki-notification-permission";
 const ZIPs_RAW_URL =
   "https://raw.githubusercontent.com/zcash/zips/main/README.rst";
 const ZIPs_URL = "https://github.com/zcash/zips/blob/main/";
- 
+ const ZIPs_URL_PATH = `${ZIPs_URL}/README.rst`;
+
+const GOOGLE_ZCG_SPREADSHEET_URL =
+  "https://docs.google.com/spreadsheets/d/1FQ28rDCyRW0TiNxrm3rgD8ai2KGUsXAjPieQmI1kKKg/edit?gid=803214474#gid=803214474";
+
 const GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_EMAIL =
   process.env.GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_EMAIL;
  
@@ -70,4 +74,6 @@ export {
   WEB_PUSH_VAPID_SUBJECT,
   ZIPs_RAW_URL,
   ZIPs_URL,
+  GOOGLE_ZCG_SPREADSHEET_URL,
+  ZIPs_URL_PATH,
 };
