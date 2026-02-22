@@ -1,21 +1,12 @@
 import { getZCGrantsData } from "@/app/actions/google-sheets.action";
 import { Coins, ExternalLink } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { Grant } from "../types/grants";
+import { Grant, MilestoneStatus } from "../types/grants";
 import { GrantCard } from "./grants/GrantCard";
 import { SearchFilter } from "./SearchFilter";
 import { StatusBadge } from "./StatusBadge";
 
-export type GrantStatus2 = "funded" | "in-progress" | "completed" | "proposed";
-const CATEGORY_FILTER2 = [
-  "All",
-  "Wallets",
-  "Infrastructure",
-  "Protocol",
-  "Education",
-  "Security",
-];
-
+export type GrantStatus = "funded" | "in-progress" | "completed" | "proposed";
 export interface Grant2 {
   id: string;
   title: string;
@@ -245,12 +236,13 @@ const CATEGORY_FILTER = data
   .map((d) => d.category)
   .filter((c, i, arr) => arr.indexOf(c) === i);
 
-export type GrantStatus = "funded" | "in-progress" | "completed" | "proposed";
+const grantStatus: MilestoneStatus[] = ["Completed", "In progress", "Pending"];
 
 export function GrantList() {
   const [search, setSearch] = useState("");
   const [grants, setGrants] = useState<Grant[]>([]);
   const [statusFilter, setStatusFilter] = useState("All");
+  const [activeTab, setActiveTab] = useState("All");
 
   const filteredGrants = useMemo(() => {
     if (!data) return [];
@@ -310,32 +302,20 @@ export function GrantList() {
         onSearchChange={setSearch}
         placeholder="Search grants..."
       >
-      
-        <button
-          className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors capitalize bg-primary text-primary-foreground border-primary`}
-        >
-          All
-        </button>
-        <button
-          className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors capitalize text-muted-foreground `}
-        >
-          Funded
-        </button>
-        <button
-          className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors capitalize text-muted-foreground `}
-        >
-          In Progress
-        </button>
-        <button
-          className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors capitalize text-muted-foreground `}
-        >
-          Completed
-        </button>
+        {["All", ...grantStatus].map((gs, i) => (
+          <button
+            onClick={() => setActiveTab(gs)}
+            key={gs + i}
+            className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors capitalize bg-primary ${activeTab === gs ? "text-primary-foreground" : "text-muted-foreground"} border-primary`}
+          >
+            {gs}
+          </button>
+        ))}
       </SearchFilter>
 
       <div>
         <ul className="flex flex-row gap-2 flex-wrap mt-3">
-          {[...CATEGORY_FILTER, "All"].map((cf) => (
+          {[...CATEGORY_FILTER, "All"].sort().map((cf) => (
             <li key={cf}>
               <button
                 onClick={() => {}}
