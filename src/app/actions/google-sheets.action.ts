@@ -3,6 +3,7 @@
 import { google } from "googleapis";
 import keys from "../../../zcg-service-account_teak-surge-466414-v7-f4aa089dbb8d.json";
 import * as config from "../../config";
+import { transformGrantData } from "../governance/lib/transformGrantData";
 
 /**
  * This function fetches the Zcash Community Grants data
@@ -26,14 +27,17 @@ export async function getZCGrantsData() {
 
     const resp = response.data.values || [];
 
-    return parseReponseData(resp);
+    const data = parseReponseData(resp);
+    const transformed = transformGrantData(data);
+
+    return transformed;
   } catch (err) {
     console.error(err);
   }
 }
 
 function parseReponseData(data: string[][]) {
-  const labelArr = data.slice(0, 1)[0].map((l) => l.toLowerCase());
+  const labelArr = data.slice(0, 1)[0].map((l) => l.replace(/\n/g, ""));
 
   const arrObj: any[] = [];
 
@@ -50,4 +54,3 @@ function parseReponseData(data: string[][]) {
 
   return arrObj;
 }
-
