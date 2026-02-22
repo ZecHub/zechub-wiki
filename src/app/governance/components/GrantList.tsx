@@ -1,5 +1,5 @@
 import { getZCGrantsData } from "@/app/actions/google-sheets.action";
-import { Coins } from "lucide-react";
+import { Coins, Loader2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Grant, MilestoneStatus } from "../types/grants";
 import { GrantCard } from "./grants/GrantCard";
@@ -194,6 +194,7 @@ export function GrantList() {
   const [search, setSearch] = useState("");
   const [grants, setGrants] = useState<Grant[]>([]);
   const [statusFilter, setStatusFilter] = useState("All");
+  const [isLoading, setIsLoading] = useState(false);
   // const [activeTab, setActiveTab] = useState("All");
 
   const filteredGrants = useMemo(() => {
@@ -268,6 +269,15 @@ export function GrantList() {
           </button>
         ))}
       </SearchFilter>
+
+      {isLoading && (
+        <div className="flex items-center justify-center py-16">
+          <Loader2 className="h-6 w-6 animate-spin text-primary" />
+          <span className="ml-2 text-muted-foreground text-sm">
+            Loading Grants...
+          </span>
+        </div>
+      )}
 
       <div>
         <ul className="flex flex-row gap-2 flex-wrap mt-3">
