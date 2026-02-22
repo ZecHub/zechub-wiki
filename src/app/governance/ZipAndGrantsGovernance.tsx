@@ -1,6 +1,7 @@
 "use client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import * as config from "../../config";
 import { getZCGrantsData } from "../actions/google-sheets.action";
 import { DashboardSection } from "./components/DashboardSection";
 import { GrantList } from "./components/GrantList";
@@ -8,7 +9,6 @@ import { StatusBar } from "./components/StatusBar";
 import { ZIPList } from "./components/ZIPList";
 import { useZIPs } from "./hooks/use-zips";
 import { Grant } from "./types/grants";
-import * as config from '../../config';
 
 const queryClient = new QueryClient();
 
@@ -26,8 +26,6 @@ function ZipAndGrants() {
   const [grants, setGrants] = useState<Grant[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [grantError, setGrantError] = useState("");
-
-  const totalGrantFunding = 200;
 
   useEffect(() => {
     const handleFetchZCGrants = async () => {
@@ -50,9 +48,11 @@ function ZipAndGrants() {
     handleFetchZCGrants();
   }, []);
 
+  const totalFundingInUsd = calculateTotalFundinginUsd(grants);
+
   return (
     <section className="flex flex-col min-h-screen container mx-auto px-4 py-8 space-y-8">
-      <StatusBar zips={zips} totalGrantFunding={totalGrantFunding} />
+      <StatusBar zips={zips} totalGrantFunding={totalFundingInUsd} />
 
       <div className="flex-1 grid gap-8 xl:grid-cols-2">
         <ZIPList error={zipError} isLoading={isLoadingZip} zips={zips} />
@@ -90,3 +90,17 @@ function ZipAndGrants() {
     </section>
   );
 }
+
+const calculateTotalFundinginUsd = (grants: Grant[]) => {
+  const totalFunding = useMemo(
+    () => grants.reduce((acc, row) => acc + row.summary.totalAmountUSD, 0),
+    [grants],
+  );
+
+  const totalFundingInUsd = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(totalFunding);
+
+  return totalFundingInUsd;
+};
