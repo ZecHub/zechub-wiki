@@ -36,7 +36,7 @@ export interface GrantSummary {
 }
 
 export interface Grant {
-  idz: string;
+  id: string;
   project: string;
   grantee: string;
   category: string;
