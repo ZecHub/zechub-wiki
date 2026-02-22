@@ -195,8 +195,8 @@ export function GrantList() {
   const [grants, setGrants] = useState<Grant[]>([]);
   const [statusFilter, setStatusFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  // const [activeTab, setActiveTab] = useState("All");
+  const [error, setError] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("All");
 
   const filteredGrants = useMemo(() => {
     if (!data) return [];
@@ -212,9 +212,15 @@ export function GrantList() {
           .toLowerCase()
           .includes(statusFilter.toLowerCase());
 
-      return matchesSearch && matchesStatus;
+      const matchesCategory =
+        categoryFilter === "All" ||
+        grant.category.toLowerCase().includes(statusFilter.toLowerCase());
+
+      console.log({ matchesCategory });
+
+      return matchesSearch && matchesStatus && matchesCategory;
     });
-  }, [data, search, statusFilter]);
+  }, [grants, search, statusFilter, categoryFilter]);
 
   const handleFetchZCGrants = async () => {
     try {
@@ -282,20 +288,21 @@ export function GrantList() {
 
       {error && (
         <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 mt-4">
-          <p className="text-sm text-destructive">
-            Failed to load Grants!
-          </p>
+          <p className="text-sm text-destructive">Failed to load Grants!</p>
         </div>
       )}
-
 
       <div>
         <ul className="flex flex-row gap-2 flex-wrap mt-3">
           {[...CATEGORY_FILTER, "All"].sort().map((cf) => (
             <li key={cf}>
               <button
-                onClick={() => {}}
-                className={`px-3 py-1.5 text-sm font-medium rounded-full border transition-colors`}
+                onClick={() => setCategoryFilter(cf)}
+                className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors ${
+                  categoryFilter === cf
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
+                }`}
               >
                 {cf}
               </button>
