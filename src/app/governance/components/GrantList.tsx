@@ -214,9 +214,7 @@ export function GrantList() {
 
       const matchesCategory =
         categoryFilter === "All" ||
-        grant.category.toLowerCase().includes(statusFilter.toLowerCase());
-
-      console.log({ matchesCategory });
+        grant.category.toLowerCase().includes(categoryFilter.toLowerCase());
 
       return matchesSearch && matchesStatus && matchesCategory;
     });
