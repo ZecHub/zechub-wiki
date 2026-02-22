@@ -1,19 +1,26 @@
-import { getZCGrantsData } from "@/app/actions/google-sheets.action";
 import { Coins, Loader2 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Grant, MilestoneStatus } from "../types/grants";
 import { GrantCard } from "./grants/GrantCard";
 import { SearchFilter } from "./SearchFilter";
 
-export function GrantList() {
-  const [search, setSearch] = useState("");
-  const [grants, setGrants] = useState<Grant[]>([]);
-  const [statusFilter, setStatusFilter] = useState("All");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("All");
+interface Props {
+  grants: Grant[];
+  error: string | any;
+  setError: (err: string | any) => void;
+  isLoading: boolean;
+  setIsLoading: (l: boolean) => void;
+}
 
-  const CATEGORY_FILTER = grants
+export function GrantList(props: Props) {
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  // const [grants, setGrants] = useState<Grant[]>([]);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState("");
+
+  const CATEGORY_FILTER = props.grants
     .map((d) => d.category)
     .filter((c, i, arr) => arr.indexOf(c) === i);
 
@@ -24,9 +31,9 @@ export function GrantList() {
   ]; //TODO: Sort this from live data
 
   const filteredGrants = useMemo(() => {
-    if (!grants) return [];
+    if (!props.grants) return [];
 
-    return grants.filter((grant) => {
+    return props.grants.filter((grant) => {
       const matchesSearch =
         grant.grantee.toLowerCase().includes(search.toLowerCase()) ||
         grant.project.includes(search);
@@ -43,28 +50,7 @@ export function GrantList() {
 
       return matchesSearch && matchesStatus && matchesCategory;
     });
-  }, [grants, search, statusFilter, categoryFilter]);
-
-  useEffect(() => {
-    const handleFetchZCGrants = async () => {
-      setIsLoading(true);
-
-      try {
-        const data = await getZCGrantsData();
-        if (data) {
-          console.log(data);
-          setGrants(data);
-        }
-      } catch (err: any) {
-        console.error("AppError:", err);
-        setError(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    handleFetchZCGrants();
-  }, []);
+  }, [props.grants, search, statusFilter, categoryFilter]);
 
   return (
     <section>
@@ -74,7 +60,7 @@ export function GrantList() {
           Grants & Funding
         </h2>
         <span className="text-xs text-muted-foreground ml-1">
-          ({grants.length})
+          ({props.grants.length})
         </span>
       </div>
       <SearchFilter
@@ -97,7 +83,7 @@ export function GrantList() {
         ))}
       </SearchFilter>
 
-      {isLoading && (
+      {props.isLoading && (
         <div className="flex items-center justify-center py-16">
           <Loader2 className="h-6 w-6 animate-spin text-primary" />
           <span className="ml-2 text-muted-foreground text-sm">
@@ -106,13 +92,13 @@ export function GrantList() {
         </div>
       )}
 
-      {error && (
+      {props.error && (
         <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 mt-4">
           <p className="text-sm text-destructive">Failed to load Grants!</p>
         </div>
       )}
 
-      {search !== "" && filteredGrants.length === 0 && !isLoading && (
+      {search !== "" && filteredGrants.length === 0 && !props.isLoading && (
         <p className="text-center py-8 text-muted-foreground text-sm">
           Unable to fetch grants!
         </p>
@@ -149,7 +135,7 @@ export function GrantList() {
         </div>
       </div>
 
-      {search !== "" && filteredGrants.length === 0 && !isLoading && (
+      {search !== "" && filteredGrants.length === 0 && !props.isLoading && (
         <p className="text-center py-8 text-muted-foreground text-sm">
           No Grant(s) match your search!
         </p>
