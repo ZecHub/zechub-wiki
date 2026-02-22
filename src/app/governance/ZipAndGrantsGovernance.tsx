@@ -50,9 +50,15 @@ function ZipAndGrants() {
 
   const totalFundingInUsd = calculateTotalFundinginUsd(grants);
 
+  const activeGrants = calculateActiveGrants(grants);
+
   return (
     <section className="flex flex-col min-h-screen container mx-auto px-4 py-8 space-y-8">
-      <StatusBar zips={zips} totalGrantFunding={totalFundingInUsd} />
+      <StatusBar
+        zips={zips}
+        totalGrantFunding={totalFundingInUsd}
+        activeGrants={activeGrants}
+      />
 
       <div className="flex-1 grid gap-8 xl:grid-cols-2">
         <ZIPList error={zipError} isLoading={isLoadingZip} zips={zips} />
@@ -103,4 +109,17 @@ const calculateTotalFundinginUsd = (grants: Grant[]) => {
   }).format(totalFunding);
 
   return totalFundingInUsd;
+};
+
+const calculateActiveGrants = (grants: Grant[]) => {
+  const totalActiveGrants = useMemo(() => {
+    return grants.reduce((acc, rows) => {
+      if (rows.summary.overallStatus === "In progress") {
+        acc++;
+      }
+      return acc;
+    }, 0);
+  }, [grants]);
+
+  return totalActiveGrants;
 };
