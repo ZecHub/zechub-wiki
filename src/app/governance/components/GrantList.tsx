@@ -184,13 +184,17 @@ const CATEGORY_FILTER = data
   .map((d) => d.category)
   .filter((c, i, arr) => arr.indexOf(c) === i);
 
-const grantStatus: MilestoneStatus[] = ["Completed", "In progress", "Pending"];
+const STATUS_FILTERS: MilestoneStatus[] = [
+  "Completed",
+  "In progress",
+  "Pending",
+];
 
 export function GrantList() {
   const [search, setSearch] = useState("");
   const [grants, setGrants] = useState<Grant[]>([]);
   const [statusFilter, setStatusFilter] = useState("All");
-  const [activeTab, setActiveTab] = useState("All");
+  // const [activeTab, setActiveTab] = useState("All");
 
   const filteredGrants = useMemo(() => {
     if (!data) return [];
@@ -250,13 +254,17 @@ export function GrantList() {
         onSearchChange={setSearch}
         placeholder="Search grants..."
       >
-        {["All", ...grantStatus].map((gs, i) => (
+        {["All", ...STATUS_FILTERS].map((sf) => (
           <button
-            onClick={() => setActiveTab(gs)}
-            key={gs + i}
-            className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors capitalize bg-primary ${activeTab === gs ? "text-primary-foreground" : "text-muted-foreground"} border-primary`}
+            key={sf}
+            onClick={() => setStatusFilter(sf)}
+            className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors ${
+              statusFilter === sf
+                ? "bg-primary text-primary-foreground border-primary"
+                : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
+            }`}
           >
-            {gs}
+            {sf}
           </button>
         ))}
       </SearchFilter>
