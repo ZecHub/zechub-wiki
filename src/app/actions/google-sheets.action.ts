@@ -26,8 +26,28 @@ export async function getZCGrantsData() {
 
     const resp = response.data.values || [];
 
-  return resp;
+    return parseReponseData(resp);
   } catch (err) {
     console.error(err);
   }
 }
+
+function parseReponseData(data: string[][]) {
+  const labelArr = data.slice(0, 1)[0].map((l) => l.toLowerCase());
+
+  const arrObj: any[] = [];
+
+  data.slice(1, data.length).forEach((arr) => {
+    const obj: Record<string, any> = {};
+
+    arr.forEach((a, i) => {
+      const key = labelArr[i];
+      obj[key] = a;
+    });
+
+    arrObj.push(obj);
+  });
+
+  return arrObj;
+}
+
