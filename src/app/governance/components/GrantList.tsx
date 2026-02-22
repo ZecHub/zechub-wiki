@@ -195,6 +195,7 @@ export function GrantList() {
   const [grants, setGrants] = useState<Grant[]>([]);
   const [statusFilter, setStatusFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   // const [activeTab, setActiveTab] = useState("All");
 
   const filteredGrants = useMemo(() => {
@@ -278,6 +279,15 @@ export function GrantList() {
           </span>
         </div>
       )}
+
+      {error && (
+        <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 mt-4">
+          <p className="text-sm text-destructive">
+            Failed to load Grants!
+          </p>
+        </div>
+      )}
+
 
       <div>
         <ul className="flex flex-row gap-2 flex-wrap mt-3">
