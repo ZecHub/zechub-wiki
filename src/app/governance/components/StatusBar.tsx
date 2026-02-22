@@ -4,7 +4,9 @@ import { ZIPData } from "../lib/github";
 
 interface StatusBarProps {
   zips: ZIPData[] | undefined;
-  totalGrantFunding: number;
+  totalGrantFunding: string;
+  activeGrants: number;
+  totalGrantee: number;
 }
 
 export function StatusBar(props: StatusBarProps) {
@@ -22,12 +24,12 @@ export function StatusBar(props: StatusBarProps) {
     {
       icon: TrendingUp,
       label: "Active Grants",
-      value: 2000,
+      value: props.activeGrants,
     },
     {
       icon: Users,
-      label: "Organizations",
-      value: 3999,
+      label: "Grantee",
+      value: props.totalGrantee || 0,
     },
   ];
 
