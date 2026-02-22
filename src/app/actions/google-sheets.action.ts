@@ -1,7 +1,6 @@
 "use server";
 
 import { google } from "googleapis";
-import keys from "../../../zcg-service-account_teak-surge-466414-v7-f4aa089dbb8d.json";
 import * as config from "../../config";
 import { transformGrantData } from "../governance/lib/transformGrantData";
 
@@ -12,8 +11,8 @@ import { transformGrantData } from "../governance/lib/transformGrantData";
  */
 export async function getZCGrantsData() {
   const auth = new google.auth.JWT({
-    email: config.GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_EMAIL, // keys.client_email,
-    key: keys.private_key.replace(/\\n/g, "\n"),
+    email: config.GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_EMAIL,
+    key:  config.GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_PRIVATE_KEY!.replace(/\\n/g, "\n"),
     scopes: [config.GOOGLE_ZCG_SPREADSHEET_SCOPE],
   });
 
