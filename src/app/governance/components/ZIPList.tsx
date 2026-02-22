@@ -1,20 +1,23 @@
 import { ExternalLink, FileText, Loader2 } from "lucide-react";
 import { useMemo, useState } from "react";
-import { useZIPs } from "../hooks/use-zips";
+import { ZIPData } from "../lib/github";
 import { SearchFilter } from "./SearchFilter";
 import { StatusBadge } from "./StatusBadge";
 
 const STATUS_FILTERS = ["All", "Active", "Final", "Draft", "Withdrawn"];
-
-export function ZIPList() {
-  const { data: zips, isLoading, error } = useZIPs();
+interface Props {
+  zips: ZIPData[] | undefined;
+  isLoading: boolean;
+  error: Error | null;
+}
+export function ZIPList(props: Props) {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
 
   const filtered = useMemo(() => {
-    if (!zips) return [];
+    if (!props.zips) return [];
 
-    return zips.filter((zip) => {
+    return props.zips.filter((zip) => {
       const matchesSearch =
         zip.title.toLowerCase().includes(search.toLowerCase()) ||
         zip.number.includes(search) ||
@@ -26,7 +29,7 @@ export function ZIPList() {
 
       return matchesSearch && matchesStatus;
     });
-  }, [zips, search, statusFilter]);
+  }, [props.zips, search, statusFilter]);
 
   return (
     <section className="">
@@ -35,7 +38,7 @@ export function ZIPList() {
         <h2 className="text-lg font-semibold text-foreground">
           Zcash Improvement Proposals
         </h2>
-        {zips && (
+        {props.zips && (
           <span className="text-xs to-muted-foreground ml-1">
             ({filtered.length})
           </span>
@@ -62,7 +65,7 @@ export function ZIPList() {
         ))}
       </SearchFilter>
 
-      {isLoading && (
+      {props.isLoading && (
         <div className="flex items-center justify-center py-16">
           <Loader2 className="h-6 w-6 animate-spin text-primary" />
           <span className="ml-2 text-muted-foreground text-sm">
@@ -71,7 +74,7 @@ export function ZIPList() {
         </div>
       )}
 
-      {error && (
+      {props.error && (
         <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 mt-4">
           <p className="text-sm text-destructive">
             Failed to load ZIPs. GitHub API rate limit may have been reached.
@@ -79,7 +82,7 @@ export function ZIPList() {
         </div>
       )}
 
-      {!isLoading && !error && (
+      {!props.isLoading && !props.error && (
         <div
           className={`my-4 max-h-[640px] ${filtered && filtered.length < 5 ? "overscroll-none" : "overflow-y-scroll"} pr-2`}
         >
@@ -117,7 +120,7 @@ export function ZIPList() {
             ))}
           </ul>
 
-          {filtered.length === 0 && !isLoading && (
+          {filtered.length === 0 && !props.isLoading && (
             <p className="text-center py-8 text-muted-foreground text-sm">
               No ZIPs match your search.
             </p>
