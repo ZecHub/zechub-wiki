@@ -16,9 +16,6 @@ export function GrantList(props: Props) {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [categoryFilter, setCategoryFilter] = useState("All");
-  // const [grants, setGrants] = useState<Grant[]>([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState("");
 
   const CATEGORY_FILTER = props.grants
     .map((d) => d.category)
