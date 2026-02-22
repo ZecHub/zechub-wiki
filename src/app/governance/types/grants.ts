@@ -1,6 +1,7 @@
 export type MilestoneStatus = "Completed" | "In progress" | "Pending";
 
 export interface RawGrantRow {
+  Project: string;
   Grantee: string;
   "Category ↵(as determined by ZCG)": string;
   "Reporting Frequency ↵(as determined by ZCG)"?: string;
