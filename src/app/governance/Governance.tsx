@@ -1,21 +1,67 @@
 "use client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { getZCGrantsData } from "../actions/google-sheets.action";
 import { DashboardSection } from "./components/DashboardSection";
 import { GrantList } from "./components/GrantList";
 import { StatusBar } from "./components/StatusBar";
 import { ZIPList } from "./components/ZIPList";
+import { useZIPs } from "./hooks/use-zips";
+import { Grant } from "./types/grants";
 
 const queryClient = new QueryClient();
 
-export const Governance = () => (
-  <QueryClientProvider client={queryClient}>
-    <DashboardSection />
+export const ZipAndGrants = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <DashboardSection />
+      <ZipAndGrantsGovernance />
+    </QueryClientProvider>
+  );
+};
+
+function ZipAndGrantsGovernance() {
+  const { data: zips, isLoading: isLoadingZip, error: zipError } = useZIPs();
+  const [grants, setGrants] = useState<Grant[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [grantError, setGrantError] = useState("");
+
+  const totalGrantFunding = 200;
+
+  useEffect(() => {
+    const handleFetchZCGrants = async () => {
+      setIsLoading(true);
+
+      try {
+        const data = await getZCGrantsData();
+        if (data) {
+          console.log(data);
+          setGrants(data);
+        }
+      } catch (err: any) {
+        console.error("AppError:", err);
+        setGrantError(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    handleFetchZCGrants();
+  }, []);
+
+  return (
     <section className="flex flex-col min-h-screen container mx-auto px-4 py-8 space-y-8">
-      <StatusBar />
+      <StatusBar zips={zips} totalGrantFunding={totalGrantFunding} />
 
       <div className="flex-1 grid gap-8 xl:grid-cols-2">
-        <ZIPList />
-        <GrantList />
+        <ZIPList error={zipError} isLoading={isLoadingZip} zips={zips} />
+        <GrantList
+          grants={grants}
+          error={grantError}
+          isLoading={isLoading}
+          setError={setGrantError}
+          setIsLoading={setIsLoading}
+        />
       </div>
 
       <div className="text-center py-6 border-t border-border">
@@ -41,5 +87,5 @@ export const Governance = () => (
         </p>
       </div>
     </section>
-  </QueryClientProvider>
-);
+  );
+}
