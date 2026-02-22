@@ -223,7 +223,7 @@ export function GrantList() {
   useEffect(() => {
     const handleFetchZCGrants = async () => {
       setIsLoading(true);
-      
+
       try {
         const data = await getZCGrantsData();
         if (data) {
@@ -293,24 +293,26 @@ export function GrantList() {
         </p>
       )}
 
-      <div>
-        <ul className="flex flex-row gap-2 flex-wrap mt-3">
-          {[...CATEGORY_FILTER, "All"].sort().map((cf) => (
-            <li key={cf}>
-              <button
-                onClick={() => setCategoryFilter(cf)}
-                className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors ${
-                  categoryFilter === cf
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
-                }`}
-              >
-                {cf}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {filteredGrants.length > 0 && (
+        <div>
+          <ul className="flex flex-row gap-2 flex-wrap mt-3">
+            {[...CATEGORY_FILTER, "All"].sort().map((cf) => (
+              <li key={cf}>
+                <button
+                  onClick={() => setCategoryFilter(cf)}
+                  className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors ${
+                    categoryFilter === cf
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
+                  }`}
+                >
+                  {cf}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         {filteredGrants.map((grant, i) => (
