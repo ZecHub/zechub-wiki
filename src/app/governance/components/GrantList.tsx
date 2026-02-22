@@ -1,10 +1,13 @@
+import { getZCGrantsData } from "@/app/actions/google-sheets.action";
 import { Coins, ExternalLink } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Grant } from "../types/grants";
+import { GrantCard } from "./grants/GrantCard";
 import { SearchFilter } from "./SearchFilter";
 import { StatusBadge } from "./StatusBadge";
 
-export type GrantStatus = "funded" | "in-progress" | "completed" | "proposed";
-const CATEGORY_FILTER = [
+export type GrantStatus2 = "funded" | "in-progress" | "completed" | "proposed";
+const CATEGORY_FILTER2 = [
   "All",
   "Wallets",
   "Infrastructure",
@@ -13,7 +16,7 @@ const CATEGORY_FILTER = [
   "Security",
 ];
 
-export interface Grant {
+export interface Grant2 {
   id: string;
   title: string;
   organization: string;
@@ -25,7 +28,7 @@ export interface Grant {
   link?: string;
 }
 
-export const curatedGrants: Grant[] = [
+export const curatedGrants: Grant2[] = [
   {
     id: "g1",
     title: "Zcash Wallet Community Developer",
@@ -63,18 +66,224 @@ export const curatedGrants: Grant[] = [
   },
 ];
 
+const data = [
+  {
+    id: "2-years-of-lightwalletd-infra-hosting-&-maintenance::nighthawk",
+    project: "2 years of Lightwalletd Infra hosting & maintenance",
+    grantee: "NightHawk",
+    category: "Infrastructure",
+    reportingFrequency: "NA",
+    milestones: [
+      {
+        number: 1,
+        amountUSD: 10440,
+        estimateUSD: null,
+        status: "Completed",
+        paidOutDate: " 10 Feb 2021",
+        usdDisbursed: null,
+        zecDisbursed: 96.9180354,
+        zecUsdRate: 107.72,
+      },
+      {
+        number: 2,
+        amountUSD: 10440,
+        estimateUSD: null,
+        status: "Completed",
+        paidOutDate: " 2 Mar 2021",
+        usdDisbursed: null,
+        zecDisbursed: 86.4239411,
+        zecUsdRate: 120.8,
+      },
+      {
+        number: 3,
+        amountUSD: 13920,
+        estimateUSD: null,
+        status: "Completed",
+        paidOutDate: " 21 Dec 2021",
+        usdDisbursed: null,
+        zecDisbursed: 87.8401697,
+        zecUsdRate: 158.47,
+      },
+    ],
+    summary: {
+      totalMilestones: 3,
+      completedMilestones: 3,
+      totalUsdDisbursed: 0,
+      totalAmountUSD: 34800,
+      totalZecDisbursed: 271.1821462,
+      completedPercent: 100,
+      overallStatus: "Completed",
+    },
+  },
+  {
+    id: "moeda.casa---smart-brazilian-fiat-to-crypto-over-zcash::moeda.casa",
+    project: "Moeda.casa - Smart Brazilian Fiat-to-Crypto over Zcash",
+    grantee: "Moeda.casa",
+    category: "Integration",
+    reportingFrequency: "NA",
+    milestones: [
+      {
+        number: 1,
+        amountUSD: 6950,
+        estimateUSD: null,
+        status: "Completed",
+        paidOutDate: " 26 Jan 2021",
+        usdDisbursed: null,
+        zecDisbursed: 80.7764831,
+        zecUsdRate: 86.04,
+      },
+    ],
+    summary: {
+      totalMilestones: 1,
+      completedMilestones: 1,
+      totalUsdDisbursed: 0,
+      totalAmountUSD: 6950,
+      totalZecDisbursed: 80.7764831,
+      completedPercent: 100,
+      overallStatus: "Completed",
+    },
+  },
+  {
+    id: "zecwallet-infra-costs::zecwallet",
+    project: "Zecwallet Infra costs",
+    grantee: "ZecWallet",
+    category: "Infrastructure",
+    reportingFrequency: "NA",
+    milestones: [
+      {
+        number: 1,
+        amountUSD: 9750,
+        estimateUSD: null,
+        status: "Completed",
+        paidOutDate: " 16 Feb 2021",
+        usdDisbursed: null,
+        zecDisbursed: 58.0461797,
+        zecUsdRate: 167.97,
+      },
+      {
+        number: 2,
+        amountUSD: 9750,
+        estimateUSD: null,
+        status: "Completed",
+        paidOutDate: " 24 Feb 2021",
+        usdDisbursed: null,
+        zecDisbursed: 76.4946865,
+        zecUsdRate: 127.46,
+      },
+    ],
+    summary: {
+      totalMilestones: 2,
+      completedMilestones: 2,
+      totalUsdDisbursed: 0,
+      totalAmountUSD: 19500,
+      totalZecDisbursed: 134.5408662,
+      completedPercent: 100,
+      overallStatus: "Completed",
+    },
+  },
+  {
+    id: "zcashzeal::zcashzeal",
+    project: "ZcashZeal",
+    grantee: "ZcashZeal",
+    category: "Community",
+    reportingFrequency: "NA",
+    milestones: [
+      {
+        number: 1,
+        amountUSD: 2754,
+        estimateUSD: null,
+        status: "In progress",
+        paidOutDate: " 22 Feb 2021",
+        usdDisbursed: null,
+        zecDisbursed: 15.3230845,
+        zecUsdRate: 179.73,
+      },
+      {
+        number: 2,
+        amountUSD: null,
+        estimateUSD: null,
+        status: "In progress",
+        paidOutDate: null,
+        usdDisbursed: null,
+        zecDisbursed: null,
+        zecUsdRate: null,
+      },
+      {
+        number: 3,
+        amountUSD: null,
+        estimateUSD: null,
+        status: "In progress",
+        paidOutDate: null,
+        usdDisbursed: null,
+        zecDisbursed: null,
+        zecUsdRate: null,
+      },
+      {
+        number: 4,
+        amountUSD: null,
+        estimateUSD: null,
+        status: "In progress",
+        paidOutDate: null,
+        usdDisbursed: null,
+        zecDisbursed: null,
+        zecUsdRate: null,
+      },
+    ],
+    summary: {
+      totalMilestones: 4,
+      completedMilestones: 0,
+      totalUsdDisbursed: 0,
+      totalAmountUSD: 2754,
+      totalZecDisbursed: 15.3230845,
+      completedPercent: 0,
+      overallStatus: "Pending",
+    },
+  },
+] as Grant[];
+
+const CATEGORY_FILTER = data
+  .map((d) => d.category)
+  .filter((c, i, arr) => arr.indexOf(c) === i);
+
+export type GrantStatus = "funded" | "in-progress" | "completed" | "proposed";
+
 export function GrantList() {
   const [search, setSearch] = useState("");
+  const [grants, setGrants] = useState<Grant[]>([]);
+
+  const handleFetchZCGrants = async () => {
+    try {
+      const data = await getZCGrantsData();
+      if (data) {
+        console.log(data);
+        setGrants(data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    setGrants(data);
+  }, []);
 
   return (
     <section>
+      <div>
+        <button
+          className="p-4 border border-red-400"
+          onClick={handleFetchZCGrants}
+        >
+          Get Data
+        </button>
+      </div>
       <div className="flex items-center gap-2 mb-4">
         <Coins className="h-5 w-5 text-primary" />
         <h2 className="text-lg font-semibold text-foreground">
           Grants & Funding
         </h2>
         <span className="text-xs text-muted-foreground ml-1">
-          ({curatedGrants.length})
+          ({grants.length})
         </span>
       </div>
       <SearchFilter
@@ -82,6 +291,7 @@ export function GrantList() {
         onSearchChange={setSearch}
         placeholder="Search grants..."
       >
+      
         <button
           className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors capitalize bg-primary text-primary-foreground border-primary`}
         >
@@ -106,7 +316,7 @@ export function GrantList() {
 
       <div>
         <ul className="flex flex-row gap-2 flex-wrap mt-3">
-          {CATEGORY_FILTER.map((cf) => (
+          {[...CATEGORY_FILTER, "All"].map((cf) => (
             <li key={cf}>
               <button
                 onClick={() => {}}
@@ -165,6 +375,12 @@ export function GrantList() {
               </span>
             </div>
           </div>
+        ))}
+      </div>
+
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        {filteredGrants.map((grant, i) => (
+          <GrantCard key={grant.id} grant={grant} index={i} />
         ))}
       </div>
     </section>
