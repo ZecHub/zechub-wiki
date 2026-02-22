@@ -52,12 +52,15 @@ function ZipAndGrants() {
 
   const activeGrants = calculateActiveGrants(grants);
 
+  const totalGrantee = calculateTotalGrantee(grants);
+
   return (
     <section className="flex flex-col min-h-screen container mx-auto px-4 py-8 space-y-8">
       <StatusBar
         zips={zips}
         totalGrantFunding={totalFundingInUsd}
         activeGrants={activeGrants}
+        totalGrantee={totalGrantee}
       />
 
       <div className="flex-1 grid gap-8 xl:grid-cols-2">
@@ -122,4 +125,14 @@ const calculateActiveGrants = (grants: Grant[]) => {
   }, [grants]);
 
   return totalActiveGrants;
+};
+
+const calculateTotalGrantee = (grants: Grant[]) => {
+  const totalGrantee = useMemo(() => {
+    return grants
+      .map((g) => g.grantee)
+      .filter((g, i, arr) => arr.indexOf(g) === i);
+  }, [grants]);
+
+  return totalGrantee.length;
 };
