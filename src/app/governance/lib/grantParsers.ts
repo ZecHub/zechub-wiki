@@ -1,20 +1,20 @@
-import { MilestoneStatus } from "../types/grants";
+import { GrantStatus } from "../types/grants";
 
 export const parseMoney = (value?: string): number | null => {
   if (!value || value.trim() === "") return null;
 
-  return Number(value.replace(/[$,]/g, "")) || null;
+  return Number(value.replace(/[$,]/g, "")) || 0;
 };
 
 export const parseNumber = (value?: string): number | null => {
   if (!value || value.trim() === "") return null;
 
-  return Number(value) || null;
+  return Number(value);
 };
 
-export const normalizeStatus = (status?: string): MilestoneStatus => {
-  if (!status) return "Pending";
-  if (status.toLowerCase() === "completed") return "Completed";
+export const normalizeStatus = (status?: string): GrantStatus => {
+  if (status === "Complete") return "Completed";
+  if (status === "Cancelled") return "Cancelled";
 
-  return "In progress";
+  return "Open";
 };
