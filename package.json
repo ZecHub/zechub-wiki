@@ -64,16 +64,10 @@
     "framer-motion": "^11.18.2",
     "gitlog": "^4.0.8",
     "google-map-react": "^2.2.1",
+    "googleapis": "^171.4.0",
     "html2canvas": "^1.4.1",
     "lucide-react": "^0.536.0",
-<<<<<<< HEAD
     "next": "^16.1.6",
-=======
-    "next": "15.1.9",
-<<<<<<< HEAD
->>>>>>> 1ced181c (bump next-mdx-remote to 6.0.0)
-=======
->>>>>>> 1ced181c9075c0eb45efb78d0471245b5b9eaf16
     "next-mdx-remote": "^6.0.0",
     "nprogress": "^0.2.0",
     "octokit": "^3.1.0",
