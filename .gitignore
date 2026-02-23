@@ -9,6 +9,9 @@
 /.pnp
 .pnp.js
 
+#force yarn
+package-lock.json
+
 # testing
 /coverage
 
