@@ -48,11 +48,30 @@ function ZipAndGrants() {
     handleFetchZCGrants();
   }, []);
 
-  const totalFundingInUsd = calculateTotalFundinginUsd(grants);
+  const totalFundingInUsd = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(
+    useMemo(
+      () => grants.reduce((acc, row) => acc + row.summary.totalAmountUSD, 0),
+      [grants],
+    ),
+  );
 
-  const activeGrants = calculateActiveGrants(grants);
+  const activeGrants = useMemo(() => {
+    return grants.reduce((acc, rows) => {
+      if (rows.summary.overallStatus === "In progress") {
+        acc++;
+      }
+      return acc;
+    }, 0);
+  }, [grants]);
 
-  const totalGrantee = calculateTotalGrantee(grants);
+  const totalGrantee = useMemo(() => {
+    return grants
+      .map((g) => g.grantee)
+      .filter((g, i, arr) => arr.indexOf(g) === i);
+  }, [grants]);
 
   return (
     <section className="flex flex-col min-h-screen container mx-auto px-4 py-8 space-y-8">
@@ -60,7 +79,7 @@ function ZipAndGrants() {
         zips={zips}
         totalGrantFunding={totalFundingInUsd}
         activeGrants={activeGrants}
-        totalGrantee={totalGrantee}
+        totalGrantee={totalGrantee.length}
       />
 
       <div className="flex-1 grid gap-8 xl:grid-cols-2">
@@ -99,40 +118,3 @@ function ZipAndGrants() {
     </section>
   );
 }
-
-const calculateTotalFundinginUsd = (grants: Grant[]) => {
-  const totalFunding = useMemo(
-    () => grants.reduce((acc, row) => acc + row.summary.totalAmountUSD, 0),
-    [grants],
-  );
-
-  const totalFundingInUsd = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(totalFunding);
-
-  return totalFundingInUsd;
-};
-
-const calculateActiveGrants = (grants: Grant[]) => {
-  const totalActiveGrants = useMemo(() => {
-    return grants.reduce((acc, rows) => {
-      if (rows.summary.overallStatus === "In progress") {
-        acc++;
-      }
-      return acc;
-    }, 0);
-  }, [grants]);
-
-  return totalActiveGrants;
-};
-
-const calculateTotalGrantee = (grants: Grant[]) => {
-  const totalGrantee = useMemo(() => {
-    return grants
-      .map((g) => g.grantee)
-      .filter((g, i, arr) => arr.indexOf(g) === i);
-  }, [grants]);
-
-  return totalGrantee.length;
-};
