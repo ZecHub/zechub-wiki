@@ -18,3 +18,8 @@ export const normalizeStatus = (status?: string): GrantStatus => {
 
   return "Open";
 };
+
+export const extractNumericMilestone = (label: string): number | null => {
+  const match = label.match(/\d+/);
+  return match ? Number(match[0]) : null;
+};
