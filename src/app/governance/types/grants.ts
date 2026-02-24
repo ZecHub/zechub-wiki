@@ -16,17 +16,6 @@ export interface RawGrantRow {
   "ZEC/USD"?: string;
 }
 
-export interface Milestone2 {
-  number: number;
-  amountUSD: number | null;
-  estimateUSD: number | null;
-  status: MilestoneStatus;
-  paidOutDate: string | null;
-  usdDisbursed: number | null;
-  zecDisbursed: number | null;
-  zecUsdRate: number | null;
-}
-
 export interface Milestone {
   label: string;
   numericOrder: number | null;
