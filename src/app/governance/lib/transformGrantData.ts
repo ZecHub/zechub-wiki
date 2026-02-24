@@ -1,10 +1,10 @@
+import { Grant, RawGrantRow } from "../types/grants";
 import {
-  Grant,
-  Milestone,
-  MilestoneStatus,
-  RawGrantRow,
-} from "../types/grants";
-import { normalizeStatus, parseMoney, parseNumber } from "./grantParsers";
+  extractNumericMilestone,
+  normalizeStatus,
+  parseMoney,
+  parseNumber,
+} from "./grantParsers";
 
 export function transformGrantData(rows: RawGrantRow[]): Grant[] {
   const grouped = new Map<string, Grant>();
@@ -21,27 +21,44 @@ export function transformGrantData(rows: RawGrantRow[]): Grant[] {
         reportingFrequency:
           row["Reporting Frequency (as determined by ZCG)"] || null,
         milestones: [],
+        status: normalizeStatus(row["Grant Status"]!),
         summary: {} as any,
       });
     }
 
-    const milestone: Milestone = {
-      number: Number(row.Milestone),
+    const grant = grouped.get(key);
+ 
+    if (grant && grant.status) {
+      if (grant.status === 'Cancelled') {
+        grant.status = "Cancelled";
+      } else if (grant.status === "Open") {
+        grant.status = "Open";
+      } else {
+        grant.status === "Completed";
+      }
+    }
+
+    grant!.milestones.push({
+      label: row.Milestone,
+      numericOrder: extractNumericMilestone(row.Milestone),
       amountUSD: parseMoney(row["Amount (USD)"]),
       estimateUSD: parseMoney(row.Estimate),
-      status: normalizeStatus(row["Grant Status"]),
+      // status: normalizeStatus(row["Grant Status"]),
       paidOutDate: row["Paid Out"] || null,
       usdDisbursed: parseMoney(row["USD Disbursed"]),
       zecDisbursed: parseNumber(row["ZEC Disbursed"]),
       zecUsdRate: parseMoney(row["ZEC/USD"]),
-    };
-
-    grouped.get(key)!.milestones.push(milestone);
+    });
   }
 
   // Compute summaries
   for (const grant of grouped.values()) {
-    grant.milestones.sort((a, b) => a.number - b.number);
+    grant.milestones.sort((a, b) => {
+      if (a.numericOrder === null) return 1;
+      if (b.numericOrder === null) return -1;
+
+      return a.numericOrder - b.numericOrder;
+    });
 
     const totalMilestones = grant.milestones.length;
     const completedMilestones = grant.milestones.filter(
@@ -63,25 +80,17 @@ export function transformGrantData(rows: RawGrantRow[]): Grant[] {
     );
 
     const completedPercent =
-      totalMilestones === 0
+      totalAmountUSD === 0
         ? 0
-        : Math.round((completedMilestones / totalMilestones) * 100);
-
-    const overallStatus: MilestoneStatus =
-      completedMilestones === totalMilestones
-        ? "Completed"
-        : completedMilestones > 0
-          ? "In progress"
-          : "Pending";
+        : Math.round((totalUsdDisbursed / totalAmountUSD) * 100);
 
     grant.summary = {
-      totalMilestones,
       completedMilestones,
+      totalMilestones,
       totalUsdDisbursed,
       totalAmountUSD,
       totalZecDisbursed,
       completedPercent,
-      overallStatus,
     };
   }
 
