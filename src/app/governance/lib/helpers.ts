@@ -8,7 +8,9 @@ export type StatusVariant =
   | "in-progress"
   | "completed"
   | "proposed"
-  | "default";
+  | "default"
+  | "cancelled"
+  | "open";
 
 export function getVariant(status: string): StatusVariant {
   const s = status.toLowerCase();
@@ -21,6 +23,8 @@ export function getVariant(status: string): StatusVariant {
   if (s === "in-progress") return "in-progress";
   if (s === "completed") return "completed";
   if (s === "proposed") return "proposed";
+  if (s === "cancelled") return "cancelled";
+  if (s === "open") return "open";
 
   return "default";
 }
