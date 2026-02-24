@@ -9,7 +9,7 @@ export function MilestoneItem(props: Props) {
 
   return (
     <div className="border rounded p-2 text-sm dark:bg-gray-700">
-      <div className="flex justify-evenly">
+      <div className="flex justify-between">
         <span>Milestone {milestone.numericOrder}</span>
         {milestone.amountUSD && (
           <span>Amount: ${milestone.amountUSD.toLocaleString()}</span>
