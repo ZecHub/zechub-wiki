@@ -11,7 +11,7 @@ export function GrantHeader(props: Props) {
         <h3 className="text-sm font-semibold text-foreground leading-tight">
           {props.grant.grantee}
         </h3>
-        <StatusBadge status={props.grant.summary.overallStatus} />
+        <StatusBadge status={props.grant.status} />
       </div>
 
       <div className="flex items-center gap-2 mb-3">
