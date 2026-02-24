@@ -34,7 +34,7 @@ function ZipAndGrants() {
       try {
         const data = await getZCGrantsData();
         if (data) {
-          console.log(data);
+          // console.log(data);
           setGrants(data);
         }
       } catch (err: any) {
@@ -59,12 +59,7 @@ function ZipAndGrants() {
   );
 
   const activeGrants = useMemo(() => {
-    return grants.reduce((acc, rows) => {
-      if (rows.summary.overallStatus === "In progress") {
-        acc++;
-      }
-      return acc;
-    }, 0);
+    return grants.filter((g) => g.status === "Open").length;
   }, [grants]);
 
   const totalGrantee = useMemo(() => {
