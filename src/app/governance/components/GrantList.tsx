@@ -1,6 +1,7 @@
 import { Coins, Loader2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Grant } from "../types/grants";
+import { FilterButton } from "./FilterButton";
 import { GrantCard } from "./grants/GrantCard";
 import { SearchFilter } from "./SearchFilter";
 
@@ -61,18 +62,13 @@ export function GrantList(props: Props) {
         onSearchChange={setSearch}
         placeholder="Search grants..."
       >
-        {["All", ...STATUS_FILTERS].map((sf) => (
-          <button
-            key={sf}
-            onClick={() => setStatusFilter(sf)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors ${
-              statusFilter === sf
-                ? "bg-primary text-primary-foreground border-primary"
-                : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
-            }`}
-          >
-            {sf}
-          </button>
+        {["All", ...STATUS_FILTERS].map((sf, i) => (
+          <FilterButton
+            key={sf + i}
+            search={sf}
+            filter={statusFilter}
+            onClick={setStatusFilter}
+          />
         ))}
       </SearchFilter>
 
@@ -99,22 +95,16 @@ export function GrantList(props: Props) {
 
       {filteredGrants.length > 0 && (
         <div className="my-8">
-          <ul className="flex flex-row gap-2 flex-wrap mt-3">
-            {[...CATEGORY_FILTER, "All"].sort().map((cf) => (
-              <li key={cf}>
-                <button
-                  onClick={() => setCategoryFilter(cf)}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors  ${
-                    categoryFilter === cf
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
-                  }`}
-                >
-                  {cf}
-                </button>
-              </li>
+          <div className="flex flex-row gap-2 flex-wrap mt-3">
+            {[...CATEGORY_FILTER, "All"].sort().map((cf, i) => (
+              <FilterButton
+                key={cf + i}
+                search={cf}
+                filter={categoryFilter}
+                onClick={setCategoryFilter}
+              />
             ))}
-          </ul>
+          </div>
         </div>
       )}
 
