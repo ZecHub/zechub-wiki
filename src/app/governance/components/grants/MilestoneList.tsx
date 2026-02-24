@@ -8,8 +8,8 @@ interface Props {
 export function MilestoneList(props: Props) {
   return (
     <div className="mt-4 space-y-3">
-      {props.milestones.map((m) => (
-        <MilestoneItem key={m.number} milestone={m} />
+      {props.milestones.map((m, i) => (
+        <MilestoneItem key={m.label+i} milestone={m} />
       ))}
     </div>
   );
