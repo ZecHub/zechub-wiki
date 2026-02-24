@@ -55,8 +55,8 @@ export function ZIPList(props: Props) {
           <FilterButton
             key={sf}
             search={sf}
-            statusFilter={statusFilter}
-            setStatusFilter={setStatusFilter}
+            filter={statusFilter}
+            onClick={setStatusFilter}
           />
         ))}
       </SearchFilter>
