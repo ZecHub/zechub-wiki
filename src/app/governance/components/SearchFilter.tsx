@@ -10,7 +10,7 @@ interface SearchFilterProps {
 
 export function SearchFilter(props: SearchFilterProps) {
   return (
-    <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+    <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center mb-8">
       <div className="relative flex-1 w-full sm:max-w-xs">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 to-muted-foreground" />
         <Input
