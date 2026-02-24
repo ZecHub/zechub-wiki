@@ -34,11 +34,10 @@ function ZipAndGrants() {
       try {
         const data = await getZCGrantsData();
         if (data) {
-          // console.log(data);
           setGrants(data);
         }
       } catch (err: any) {
-        console.error("AppError:", err);
+        console.error("handleFetchZCGrants:", err);
         setGrantError(err);
       } finally {
         setIsLoading(false);
