@@ -98,7 +98,7 @@ export function GrantList(props: Props) {
       )}
 
       {filteredGrants.length > 0 && (
-        <div>
+        <div className="my-8">
           <ul className="flex flex-row gap-2 flex-wrap mt-3">
             {[...CATEGORY_FILTER, "All"].sort().map((cf) => (
               <li key={cf}>
