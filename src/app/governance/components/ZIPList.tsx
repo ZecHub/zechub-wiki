@@ -40,7 +40,7 @@ export function ZIPList(props: Props) {
           Zcash Improvement Proposals
         </h2>
         {props.zips && (
-          <span className="text-xs to-muted-foreground ml-1">
+          <span className="text-xs text-muted-foreground ml-1">
             ({filtered.length})
           </span>
         )}
