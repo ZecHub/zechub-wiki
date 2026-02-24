@@ -43,7 +43,6 @@ export function transformGrantData(rows: RawGrantRow[]): Grant[] {
       numericOrder: extractNumericMilestone(row.Milestone),
       amountUSD: parseMoney(row["Amount (USD)"]),
       estimateUSD: parseMoney(row.Estimate),
-      // status: normalizeStatus(row["Grant Status"]),
       paidOutDate: row["Paid Out"] || null,
       usdDisbursed: parseMoney(row["USD Disbursed"]),
       zecDisbursed: parseNumber(row["ZEC Disbursed"]),
@@ -87,8 +86,6 @@ export function transformGrantData(rows: RawGrantRow[]): Grant[] {
       totalMilestones === 0
         ? 0
         : Math.round((completedMilestones / totalMilestones) * 100);
-
-    console.log({ completedPercent, totalAmountUSD });
 
     grant.summary = {
       completedMilestones,
