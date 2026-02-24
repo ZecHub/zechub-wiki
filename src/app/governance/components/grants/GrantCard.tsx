@@ -18,17 +18,18 @@ export function GrantCard(props: Props) {
       style={{ animationDelay: `${props.index * 50}ms` }}
     >
       <GrantHeader grant={props.grant} />
-      <div className={`${expanded && 'mb3'} my-2`}>
+      <div className={`${expanded && "mb3"} my-2`}>
         <GrantSummaryBar grant={props.grant} />
       </div>
-      {expanded && <MilestoneList milestones={props.grant.milestones} />}
-
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="mt-4 text-sm font-medium text-slate-300 hover:underline"
-      >
-        {expanded ? "Hide milestones" : "View milestone"}
-      </button>
+      <div>
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="mt-4 text-sm font-medium text-slate-300 hover:underline"
+        >
+          {expanded ? "Hide milestones" : "View milestone"}
+        </button>
+        {expanded && <MilestoneList milestones={props.grant.milestones} />}
+      </div>
     </div>
   );
 }
