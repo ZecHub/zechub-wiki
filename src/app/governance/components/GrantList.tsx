@@ -1,6 +1,6 @@
 import { Coins, Loader2 } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Grant, MilestoneStatus } from "../types/grants";
+import { Grant } from "../types/grants";
 import { GrantCard } from "./grants/GrantCard";
 import { SearchFilter } from "./SearchFilter";
 
@@ -21,11 +21,9 @@ export function GrantList(props: Props) {
     .map((d) => d.category)
     .filter((c, i, arr) => arr.indexOf(c) === i);
 
-  const STATUS_FILTERS: MilestoneStatus[] = [
-    "Completed",
-    "In progress",
-    "Pending",
-  ]; //TODO: Sort this from live data
+  const STATUS_FILTERS = props.grants
+    .map((d) => d.status)
+    .filter((s, i, arr) => arr.indexOf(s) === i);
 
   const filteredGrants = useMemo(() => {
     if (!props.grants) return [];
@@ -37,9 +35,7 @@ export function GrantList(props: Props) {
 
       const matchesStatus =
         statusFilter === "All" ||
-        grant.summary.overallStatus
-          .toLowerCase()
-          .includes(statusFilter.toLowerCase());
+        grant.status.toLowerCase().includes(statusFilter.toLowerCase());
 
       const matchesCategory =
         categoryFilter === "All" ||
