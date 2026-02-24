@@ -1,6 +1,7 @@
 import { ExternalLink, FileText, Loader2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { ZIPData } from "../lib/github";
+import { FilterButton } from "./FilterButton";
 import { SearchFilter } from "./SearchFilter";
 import { StatusBadge } from "./StatusBadge";
 
@@ -51,17 +52,12 @@ export function ZIPList(props: Props) {
         placeholder="Search ZIPS by number, title or author..."
       >
         {STATUS_FILTERS.map((sf) => (
-          <button
+          <FilterButton
             key={sf}
-            onClick={() => setStatusFilter(sf)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors ${
-              statusFilter === sf
-                ? "bg-primary text-primary-foreground border-primary"
-                : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
-            }`}
-          >
-            {sf}
-          </button>
+            search={sf}
+            statusFilter={statusFilter}
+            setStatusFilter={setStatusFilter}
+          />
         ))}
       </SearchFilter>
 
