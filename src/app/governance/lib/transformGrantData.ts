@@ -27,9 +27,9 @@ export function transformGrantData(rows: RawGrantRow[]): Grant[] {
     }
 
     const grant = grouped.get(key);
- 
+
     if (grant && grant.status) {
-      if (grant.status === 'Cancelled') {
+      if (grant.status === "Cancelled") {
         grant.status = "Cancelled";
       } else if (grant.status === "Open") {
         grant.status = "Open";
@@ -61,8 +61,12 @@ export function transformGrantData(rows: RawGrantRow[]): Grant[] {
     });
 
     const totalMilestones = grant.milestones.length;
+
     const completedMilestones = grant.milestones.filter(
-      (m) => m.status === "Completed",
+      (m) =>
+        m.paidOutDate !== null ||
+        (m.usdDisbursed ?? 0) !== 0 ||
+        (m.zecDisbursed ?? 0) !== 0,
     ).length;
 
     const totalAmountUSD = grant.milestones.reduce(
@@ -80,9 +84,11 @@ export function transformGrantData(rows: RawGrantRow[]): Grant[] {
     );
 
     const completedPercent =
-      totalAmountUSD === 0
+      totalMilestones === 0
         ? 0
-        : Math.round((totalUsdDisbursed / totalAmountUSD) * 100);
+        : Math.round((completedMilestones / totalMilestones) * 100);
+
+    console.log({ completedPercent, totalAmountUSD });
 
     grant.summary = {
       completedMilestones,
