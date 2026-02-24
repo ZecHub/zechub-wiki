@@ -53,9 +53,12 @@ export function GrantList(props: Props) {
         <h2 className="text-lg font-semibold text-foreground">
           Grants & Funding
         </h2>
-        <span className="text-xs text-muted-foreground ml-1">
-          ({props.grants.length})
-        </span>
+
+        {filteredGrants && (
+          <span className="text-xs text-muted-foreground ml-1">
+            ({filteredGrants.length})
+          </span>
+        )}
       </div>
       <SearchFilter
         search={search}
