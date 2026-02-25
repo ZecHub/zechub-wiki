@@ -1,20 +1,98 @@
+@import "tailwindcss";
 @import "nprogress/nprogress.css";
+@plugin "flowbite/plugin";
+@plugin "tailwindcss-animate";
+@import "../components/Charts/index.css";
+@import "../components/Sitemap/sitemap.css";
+@import "../components/visualizer/index.css";
+@import "../components/visualizer/consensus-visualizer/index.css";
+@import "../components/visualizer/contribution-visualizer/index.css";
+@import "../components/visualizer/hash-function-visualizer/index.css";
+@import "../components/visualizer/zcash-key-visualizer/index.css";
+@import "../components/visualizer/zcash-pool-visualizer/index.css";
+@import "../components/visualizer/zcash-wallet/index.css";
+@import "../components/visualizer/zk-SNARK-proof/index.css";
+@import "../components/Proposals/index.css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@variant dark (&:where(.dark, .dark *));
 
- 
+@theme {
+  /* Screens */
+  --breakpoint-sm: 300px;
+  --breakpoint-imd: 725px;
+  --breakpoint-md: 830px;
+  --breakpoint-lg: 976px;
+  --breakpoint-xl: 1530px;
+  --breakpoint-2xl: 1536px;
+
+  /* Background Images */
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+
+  /* Colors */
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-code-bg: hsl(var(--code-bg));
+
+  --color-white: #fff9f9;
+
+  --color-brand: #1984c7;
+  --color-brand-hover: #1574af;
+
+  --color-zcash-gold: hsl(var(--zcash-gold));
+  --color-zcash-gold-glow: hsl(var(--zcash-gold-glow));
+  --color-zcash-dark: hsl(var(--zcash-dark));
+  --color-zcash-dark-lighter: hsl(var(--zcash-dark-lighter));
+
+  --color-pool-transparent: hsl(var(--pool-transparent));
+  --color-pool-transparent-glow: hsl(var(--pool-transparent-glow));
+  --color-pool-sapling: hsl(var(--pool-sapling));
+  --color-pool-sapling-glow: hsl(var(--pool-sapling-glow));
+  --color-pool-orchard: hsl(var(--pool-orchard));
+  --color-pool-orchard-glow: hsl(var(--pool-orchard-glow));
+
+  /* Border Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
 .btn-brand {
   @apply text-white border-brand bg-brand hover:bg-brand-hover hover:text-white py-2 px-4;
 }
-  
+
 #nprogress .bar {
-  /* background: #f88185 !important; */
-  background: rgb(250 202 21 / var(--tw-bg-opacity)) !important;
+  background: rgb(250 202 21) !important;
   height: 1px !important;
 }
-
 
 html {
   scroll-behavior: smooth;
@@ -24,9 +102,9 @@ body[data-scroll-locked] {
   padding: 0 1.5rem !important;
 }
 
-body {
+/* body {
   background: #fff9f9;
-}
+} */
 
 .wallet-tag {
   display: flex;
@@ -54,8 +132,7 @@ body {
   margin-bottom: 10px;
   align-content: center;
   align-items: center;
-  --tw-text-opacity: 1;
-  color: rgb(26 86 219 / var(--tw-text-opacity));
+  color: rgb(26 86 219);
 }
 
 .shielded-pools img {
@@ -88,7 +165,6 @@ body {
   }
 }
 
-/* Desktop View (for screens larger than 968px) */
 @media (min-width: 968px) {
   .dao-main-container {
     margin: 0 4rem;
@@ -143,7 +219,6 @@ body {
 }
 
 @keyframes moveRight {
-
   0%,
   100% {
     transform: translateX(-300%);
@@ -230,8 +305,6 @@ body {
   margin: auto;
 }
 
-/* New additions */
-
 .jen-justify-content {
   justify-content: space-around;
 }
@@ -249,19 +322,11 @@ body {
 .hide-scrollbar {
   overflow: auto;
   scrollbar-width: none;
-  /* Firefox */
   -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
-  /* Chrome, Safari, Opera */
-}
-
-
-.list-outside li , pre {
-  
 }
 
 code {
@@ -272,7 +337,6 @@ code {
   padding: 12px;
 }
 
-/* Optional: hide scrollbar for a cleaner look on modern browsers */
 code::-webkit-scrollbar {
   height: 4px;
 }
@@ -286,26 +350,19 @@ code::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* 🔹 Responsive width tuning */
 @media (min-width: 640px) {
-
-  /* sm */
   code {
     max-width: 450px;
   }
 }
 
 @media (min-width: 768px) {
-
-  /* md */
   code {
     max-width: 550px;
   }
 }
 
 @media (min-width: 1024px) {
-
-  /* lg */
   code {
     max-width: 650px;
   }

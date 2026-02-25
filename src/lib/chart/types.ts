@@ -67,6 +67,52 @@ export type BlockFees = {
   Date: string;
 };
 
+export type DaoProps = {
+  coreAddress: string;
+  proposalModuleAddress: string;
+  id: string;
+  proposal: {
+    msgs: {
+      wasm: {
+        execute: {
+          msg: string;
+          funds: string;
+          contract_addr: string;
+        };
+      };
+    }[];
+    title: string;
+    votes: {
+      no: string;
+      yes: string;
+      abstain: string;
+    };
+    status: string;
+    proposer: string;
+    threshold: {
+      threshold_quorum: {
+        quorum: {
+          percent: string;
+        };
+        threshold: {
+          percent: string;
+        };
+      };
+    };
+    expiration: {
+      at_time: string;
+    };
+    description: string;
+    total_power: string;
+    start_height: string;
+    allow_revoting: string;
+    min_voting_period: string;
+  };
+  createdAt: string;
+  completedAt: string;
+  executedAt: string;
+};
+
 export type NetworkSolps = {
   Date: string;
   Networksolps: string;

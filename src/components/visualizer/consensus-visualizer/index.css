@@ -1,147 +1,178 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(0 0% 0%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(0 0% 0%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(0 0% 0%);
+  --primary: hsl(43 89% 56%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(210 40% 96%);
+  --secondary-foreground: hsl(222 47% 4%);
+  --muted: hsl(210 40% 96%);
+  --muted-foreground: hsl(215 16% 47%);
+  --accent: hsl(210 40% 96%);
+  --accent-foreground: hsl(222 47% 4%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(214 32% 91%);
+  --input: hsl(214 32% 91%);
+  --ring: hsl(43 89% 56%);
+  --radius: 0.75rem;
 
-/* Zcash branded design system - dark theme with gold accents */
+  /* Zcash specific */
+  --zcash-gold: hsl(43 89% 56%);
+  --zcash-gold-glow: hsl(43 100% 65%);
+  --zcash-dark: hsl(0 0% 0%);
+  --zcash-dark-lighter: hsl(0 0% 10%);
 
-@layer base {
-    :root {
-        --background: 0 0% 100%;
-        --foreground: 0 0% 0%;
+  /* Pool colors */
+  --pool-transparent: hsl(200 80% 50%);
+  --pool-transparent-glow: hsl(200 100% 60%);
+  --pool-sapling: hsl(160 70% 45%);
+  --pool-sapling-glow: hsl(160 100% 55%);
+  --pool-orchard: hsl(280 70% 55%);
+  --pool-orchard-glow: hsl(280 100% 65%);
 
-        --card: 0 0% 100%;
-        --card-foreground: 0 0% 0%;
-
-        --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 0%;
-
-        --primary: 43 89% 56%;
-        --primary-foreground: 0 0% 100%;
-
-        --secondary: 210 40% 96%;
-        --secondary-foreground: 222 47% 4%;
-
-        --muted: 210 40% 96%;
-        --muted-foreground: 215 16% 47%;
-
-        --accent: 210 40% 96%;
-        --accent-foreground: 222 47% 4%;
-
-        --destructive: 0 84% 60%;
-        --destructive-foreground: 210 40% 98%;
-
-        --border: 214 32% 91%;
-        --input: 214 32% 91%;
-        --ring: 43 89% 56%;
-
-        --radius: 0.75rem;
-/* Zcash specific colors */
-    --zcash-gold: 43 89% 56%;
-    --zcash-gold-glow: 43 100% 65%;
-    --zcash-dark: 0 0% 0%;
-    --zcash-dark-lighter: 0 0% 10%;
-
-    /* Pool colors */
-    --pool-transparent: 200 80% 50%;
-    --pool-transparent-glow: 200 100% 60%;
-    --pool-sapling: 160 70% 45%;
-    --pool-sapling-glow: 160 100% 55%;
-    --pool-orchard: 280 70% 55%;
-    --pool-orchard-glow: 280 100% 65%;
-
-    --sidebar-background: 220 18% 10%;
-    --sidebar-foreground: 45 100% 96%;
-    --sidebar-primary: 43 89% 56%;
-    --sidebar-primary-foreground: 220 20% 7%;
-    --sidebar-accent: 220 15% 18%;
-    --sidebar-accent-foreground: 45 100% 96%;
-    --sidebar-border: 220 15% 20%;
-    --sidebar-ring: 43 89% 56%;
+  /* Sidebar */
+  --sidebar: hsl(220 18% 10%);
+  --sidebar-foreground: hsl(45 100% 96%);
+  --sidebar-primary: hsl(43 89% 56%);
+  --sidebar-primary-foreground: hsl(220 20% 7%);
+  --sidebar-accent: hsl(220 15% 18%);
+  --sidebar-accent-foreground: hsl(45 100% 96%);
+  --sidebar-border: hsl(220 15% 20%);
+  --sidebar-ring: hsl(43 89% 56%);
 }
+
 .dark {
-    --background: 220 20% 7%;
-    --foreground: 45 100% 96%;
+  --background: hsl(220 20% 7%);
+  --foreground: hsl(45 100% 96%);
+  --card: hsl(220 18% 10%);
+  --card-foreground: hsl(45 100% 96%);
+  --popover: hsl(220 18% 10%);
+  --popover-foreground: hsl(45 100% 96%);
+  --primary: hsl(43 89% 56%);
+  --primary-foreground: hsl(220 20% 7%);
+  --secondary: hsl(220 15% 15%);
+  --secondary-foreground: hsl(45 100% 96%);
+  --muted: hsl(220 15% 18%);
+  --muted-foreground: hsl(220 10% 60%);
+  --accent: hsl(43 89% 56%);
+  --accent-foreground: hsl(220 20% 7%);
+  --destructive: hsl(0 72% 51%);
+  --destructive-foreground: hsl(45 100% 96%);
+  --border: hsl(220 15% 20%);
+  --input: hsl(220 15% 15%);
+  --ring: hsl(43 89% 56%);
 
-    --card: 220 18% 10%;
-    --card-foreground: 45 100% 96%;
-
-    --popover: 220 18% 10%;
-    --popover-foreground: 45 100% 96%;
-
-    --primary: 43 89% 56%;
-    --primary-foreground: 220 20% 7%;
-
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 45 100% 96%;
-
-    --muted: 220 15% 18%;
-    --muted-foreground: 220 10% 60%;
-
-    --accent: 43 89% 56%;
-    --accent-foreground: 220 20% 7%;
-
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 45 100% 96%;
-
-    --border: 220 15% 20%;
-    --input: 220 15% 15%;
-    --ring: 43 89% 56%;
-
-    --sidebar-background: 220 18% 10%;
-    --sidebar-foreground: 45 100% 96%;
-    --sidebar-primary: 43 89% 56%;
-    --sidebar-primary-foreground: 220 20% 7%;
-    --sidebar-accent: 220 15% 18%;
-    --sidebar-accent-foreground: 45 100% 96%;
-    --sidebar-border: 220 15% 20%;
-    --sidebar-ring: 43 89% 56%;
+  --sidebar: hsl(220 18% 10%);
+  --sidebar-foreground: hsl(45 100% 96%);
+  --sidebar-primary: hsl(43 89% 56%);
+  --sidebar-primary-foreground: hsl(220 20% 7%);
+  --sidebar-accent: hsl(220 15% 18%);
+  --sidebar-accent-foreground: hsl(45 100% 96%);
+  --sidebar-border: hsl(220 15% 20%);
+  --sidebar-ring: hsl(43 89% 56%);
 }
+
+@theme inline {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Zcash specific */
+  --color-zcash-gold: var(--zcash-gold);
+  --color-zcash-gold-glow: var(--zcash-gold-glow);
+  --color-zcash-dark: var(--zcash-dark);
+  --color-zcash-dark-lighter: var(--zcash-dark-lighter);
+
+  /* Pool colors */
+  --color-pool-transparent: var(--pool-transparent);
+  --color-pool-transparent-glow: var(--pool-transparent-glow);
+  --color-pool-sapling: var(--pool-sapling);
+  --color-pool-sapling-glow: var(--pool-sapling-glow);
+  --color-pool-orchard: var(--pool-orchard);
+  --color-pool-orchard-glow: var(--pool-orchard-glow);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
+
 @layer base {
-    * {
-        @apply border-border;
-    }
-
-    body {
-        @apply bg-background text-foreground font-sans antialiased;
-        font-family: 'Inter', system-ui, sans-serif;
-    }
-
-    .font-mono {
-        font-family: 'JetBrains Mono', monospace;
-    }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
 }
 
-@layer utilities {
-    .glow-gold {
-        box-shadow: 0 0 30px hsl(var(--zcash-gold) / 0.3),
-            0 0 60px hsl(var(--zcash-gold) / 0.15);
-    }
+@utility glow-gold {
+  box-shadow:
+    0 0 30px color-mix(in srgb, var(--zcash-gold) 30%, transparent),
+    0 0 60px color-mix(in srgb, var(--zcash-gold) 15%, transparent);
+}
 
-    .glow-transparent {
-        box-shadow: 0 0 20px hsl(var(--pool-transparent) / 0.4),
-            0 0 40px hsl(var(--pool-transparent) / 0.2);
-    }
+@utility glow-transparent {
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--pool-transparent) 40%, transparent),
+    0 0 40px color-mix(in srgb, var(--pool-transparent) 20%, transparent);
+}
 
-    .glow-sapling {
-        box-shadow: 0 0 20px hsl(var(--pool-sapling) / 0.4),
-            0 0 40px hsl(var(--pool-sapling) / 0.2);
-    }
+@utility glow-sapling {
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--pool-sapling) 40%, transparent),
+    0 0 40px color-mix(in srgb, var(--pool-sapling) 20%, transparent);
+}
 
-    .glow-orchard {
-        box-shadow: 0 0 20px hsl(var(--pool-orchard) / 0.4),
-            0 0 40px hsl(var(--pool-orchard) / 0.2);
-    }
+@utility glow-orchard {
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--pool-orchard) 40%, transparent),
+    0 0 40px color-mix(in srgb, var(--pool-orchard) 20%, transparent);
+}
 
-    .glass {
-        background: hsl(var(--card) / 0.6);
-        backdrop-filter: blur(12px);
-        border: 1px solid hsl(var(--border) / 0.5);
-    }
+@utility glass {
+  background: color-mix(in srgb, var(--card) 60%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+}
 
-    .gradient-gold {
-        background: linear-gradient(135deg,
-                hsl(var(--zcash-gold)) 0%,
-                hsl(var(--zcash-gold-glow)) 100%);
-    }
+@utility gradient-gold {
+  background: linear-gradient(
+    135deg,
+    var(--zcash-gold) 0%,
+    var(--zcash-gold-glow) 100%
+  );
 }

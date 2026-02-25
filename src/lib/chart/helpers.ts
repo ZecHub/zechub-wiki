@@ -17,7 +17,7 @@ import {
 
 export async function getBlockchainData(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<BlockchainInfo | null> {
   try {
     const res = await fetch(url, {
@@ -32,7 +32,7 @@ export async function getBlockchainData(
 }
 export async function getIssuanceData(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<IssuanceParsed[] | null> {
   try {
     const res = await fetch(url, {
@@ -56,7 +56,7 @@ export async function getIssuanceData(
 
 export async function getZcashCirculationCount(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<number | null> {
   try {
     const res = await fetch(url, {
@@ -72,7 +72,7 @@ export async function getZcashCirculationCount(
 
 export async function getSupplyData(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<SupplyData[]> {
   try {
     const res = await fetch(url, {
@@ -87,7 +87,7 @@ export async function getSupplyData(
 
 export async function getLastUpdatedDate(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<string> {
   try {
     const res = await fetch(url, {
@@ -131,7 +131,7 @@ export function getCommitUrlForTab(tabLabel: string): string {
 
 export async function getShieldedTxCount(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<ShieldedTxCount[] | null> {
   try {
     const res = await fetch(url, {
@@ -146,7 +146,7 @@ export async function getShieldedTxCount(
 
 export async function getNodeCountData(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<NodeCountData[]> {
   try {
     const res = await fetch(url, {
@@ -161,7 +161,7 @@ export async function getNodeCountData(
 
 export async function getLockboxData(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<LockBox[]> {
   try {
     const res = await fetch(url, { signal });
@@ -184,7 +184,7 @@ export async function getLockboxData(
 }
 export async function getNetInOutflowData(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<NetInOutflow[]> {
   try {
     const res = await fetch(url, { signal });
@@ -207,7 +207,7 @@ export async function getNetInOutflowData(
 }
 export async function getDifficultyData(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<Difficulty[]> {
   try {
     const res = await fetch(url, { signal });
@@ -230,7 +230,7 @@ export async function getDifficultyData(
 }
 export async function getNetworkSolpsData(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<NetworkSolps[]> {
   try {
     const res = await fetch(url, { signal });
@@ -254,7 +254,7 @@ export async function getNetworkSolpsData(
 
 export async function getTotalSupplyData(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<any[]> {
   try {
     const res = await fetch(url, { signal });
@@ -278,7 +278,7 @@ export async function getTotalSupplyData(
 
 export async function getBlockFeesData(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<BlockFees[]> {
   try {
     const res = await fetch(url, { signal });
@@ -302,7 +302,7 @@ export async function getBlockFeesData(
 
 export async function getNamadaSupply(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<any[]> {
   try {
     const res = await fetch(url, { signal });
@@ -324,8 +324,32 @@ export async function getNamadaSupply(
   }
 }
 
+export async function getDaoProps(
+  url: string,
+  signal?: AbortSignal,
+): Promise<any[]> {
+  try {
+    const res = await fetch(url, { signal });
+
+    if (!res.ok) {
+      console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
+      return [];
+    }
+
+    const data: any[] = await res.json();
+    return data;
+  } catch (err: any) {
+    if (err.name === "AbortError") {
+      console.warn("Fetch aborted.");
+    } else {
+      console.error("Error fetching Doa Props:", err.message || err);
+    }
+    return [];
+  }
+}
+
 export async function fetchTransactionData(
-  url: string
+  url: string,
 ): Promise<Array<ShieldedTransactionDatum>> {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -337,7 +361,7 @@ export async function fetchTransactionData(
  */
 export async function fetchShieldedSupplyData(
   url: string,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ): Promise<Array<ShieldedAmountDatum>> {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -351,7 +375,7 @@ export function formatDate(s: string | null): string {
 }
 
 export function transformSupplyData(
-  d: SupplyData | null
+  d: SupplyData | null,
 ): { timestamp: string; supply: number } | null {
   return d ? { timestamp: d.close, supply: d.supply } : null;
 }
