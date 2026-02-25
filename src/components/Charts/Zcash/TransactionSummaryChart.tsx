@@ -29,14 +29,14 @@ interface TransactionsSummaryChartProps {
   chartRef: RefObject<HTMLDivElement | null>;
 }
 export default function TransactionsSummaryChart(
-  props: TransactionsSummaryChartProps
+  props: TransactionsSummaryChartProps,
 ) {
   const [chartData, setChartData] = useState<ShieldedTransactionDatum[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   const [pool, setPool] = useState<"default" | "orchard" | "sapling">(
-    "default"
+    "default",
   );
   const [cumulative, setCumulative] = useState(true);
   const [filter, setFilter] = useState(true);
@@ -98,7 +98,7 @@ export default function TransactionsSummaryChart(
           (d.height >= startHeight &&
             d.height <= endHeight &&
             d.height % BLOCKS_PERIOD === 0) ||
-          d.height === last.height
+          d.height === last.height,
       );
     } else {
       saplingSum = 0;

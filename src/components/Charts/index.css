@@ -1,139 +1,119 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  /* Border Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+  /* Chart colors for cryptocurrency dashboard */
+  --chart-1: 270 75% 60%; /* Purple for Sprout Pool */
+  --chart-2: 45 93% 47%; /* Deep yellow for Sapling Pool */
+  --chart-3: 84 81% 44%; /* Lemon green for Orchard Pool */
+  --chart-4: 217 91% 60%; /* Primary blue for other charts */
+  --chart-5: 142 71% 45%; /* Accent green for additional charts */
 
-@layer base {
-    :root {
-        --background: 0 0% 100%;
-        --foreground: 222.2 84% 4.9%;
+  /* Additional vibrant chart colors */
+  --chart-6: 350 89% 60%; /* Vibrant coral/red */
+  --chart-7: 195 85% 55%; /* Electric cyan blue */
+  --chart-8: 320 75% 65%; /* Magenta pink */
+  --chart-9: 30 95% 55%; /* Bright orange */
+  --chart-10: 170 75% 45%; /* Teal/turquoise */
+  --chart-11: 280 65% 65%; /* Lavender purple */
+  --chart-12: 10 85% 60%; /* Coral red-orange */
+  --chart-13: 210 100% 50%; /* Pure bright blue */
+  --chart-14: 90 70% 45%; /* Lime green */
+  --chart-15: 330 75% 60%; /* Raspberry pink */
 
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
+  /* Gradient-inspired colors */
+  --chart-16: 225 75% 55%; /* Royal blue */
+  --chart-17: 160 80% 40%; /* Emerald green */
+  --chart-18: 40 95% 50%; /* Golden yellow */
+  --chart-19: 275 70% 60%; /* Amethyst purple */
+  --chart-20: 185 85% 45%; /* Ocean blue */
 
-        --primary: 217 91% 60%;
-        --primary-foreground: 0 0% 100%;
-        --primary-hover: 217 91% 55%;
-
-        --secondary: 210 40% 96.1%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
-
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
-
-        --accent: 142 71% 45%;
-        --accent-foreground: 0 0% 100%;
-        --accent-hover: 142 71% 40%;
-
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 210 40% 98%;
-
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --ring: 217 91% 60%;
-
-        --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-hover)));
-        --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-hover)));
-        --shadow-nav: 0 4px 6px -1px hsl(var(--nav-background) / 0.1);
-        --shadow-card: 0 1px 3px 0 hsl(var(--foreground) / 0.1);
-
-        --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-
-                --radius: 0.5rem;
-
-                /* Chart colors for cryptocurrency dashboard */
-        --chart-1: 270 75% 60%;    /* Purple for Sprout Pool */
-        --chart-2: 45 93% 47%;     /* Deep yellow for Sapling Pool */
-        --chart-3: 84 81% 44%;     /* Lemon green for Orchard Pool */
-        --chart-4: 217 91% 60%;    /* Primary blue for other charts */
-        --chart-5: 142 71% 45%;    /* Accent green for additional charts */
-
-        /* Additional vibrant chart colors */
-        --chart-6: 350 89% 60%;    /* Vibrant coral/red */
-        --chart-7: 195 85% 55%;    /* Electric cyan blue */
-        --chart-8: 320 75% 65%;    /* Magenta pink */
-        --chart-9: 30 95% 55%;     /* Bright orange */
-        --chart-10: 170 75% 45%;   /* Teal/turquoise */
-        --chart-11: 280 65% 65%;   /* Lavender purple */
-        --chart-12: 10 85% 60%;    /* Coral red-orange */
-        --chart-13: 210 100% 50%;  /* Pure bright blue */
-        --chart-14: 90 70% 45%;    /* Lime green */
-        --chart-15: 330 75% 60%;   /* Raspberry pink */
-
-        /* Gradient-inspired colors */
-        --chart-16: 225 75% 55%;   /* Royal blue */
-        --chart-17: 160 80% 40%;   /* Emerald green */
-        --chart-18: 40 95% 50%;    /* Golden yellow */
-        --chart-19: 275 70% 60%;   /* Amethyst purple */
-        --chart-20: 185 85% 45%;   /* Ocean blue */
-
-        /* Modern crypto-themed colors */
-        --chart-21: 200 100% 40%;  /* Bitcoin orange alternative */
-        --chart-22: 240 65% 55%;   /* Ethereum blue */
-        --chart-23: 340 75% 60%;   /* Altcoin pink */
-        --chart-24: 50 95% 55%;    /* Gold/yellow for value */
-        --chart-25: 150 75% 40%;   /* Blockchain green */
-    }
-
-    .dark {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
-
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
-
-        --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
-
-        --primary: 210 40% 98%;
-        --primary-foreground: 222.2 47.4% 11.2%;
-
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
-
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
-
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
-
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
-
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 212.7 26.8% 83.9%;
-    }
+  /* Modern crypto-themed colors */
+  --chart-21: 200 100% 40%; /* Bitcoin orange alternative */
+  --chart-22: 240 65% 55%; /* Ethereum blue */
+  --chart-23: 340 75% 60%; /* Altcoin pink */
+  --chart-24: 50 95% 55%; /* Gold/yellow for value */
+  --chart-25: 150 75% 40%; /* Blockchain green */
 }
 
-@layer base {
-    .border-border {}
+/* Design system CSS variables — light mode */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
 
-    .bg-background {
-        /* background-color: hsl(var(--background) / 0.1); */
-        background-color: hsl(var(--background));
-    }
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
 
-    .bg-muted {
-        background-color: hsl(var(--muted));
-    }
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
 
-    .text-muted-foreground {
-        color: hsl(var(--muted-foreground));
-    }
+  --primary: 217 91% 60%;
+  --primary-foreground: 0 0% 100%;
+  --primary-hover: 217 91% 55%;
 
-    .text-foreground {
-        color: hsl(var(--foreground))
-    }
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
 
-    * {
-        @apply border-border;
-    }
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
 
-    body {
-        @apply bg-background text-foreground;
-    }
+  --accent: 142 71% 45%;
+  --accent-foreground: 0 0% 100%;
+  --accent-hover: 142 71% 40%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 217 91% 60%;
+
+  --radius: 0.5rem;
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    hsl(var(--primary)),
+    hsl(var(--primary-hover))
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    hsl(var(--accent)),
+    hsl(var(--accent-hover))
+  );
+  --shadow-nav: 0 4px 6px -1px hsl(var(--background) / 0.1);
+  --shadow-card: 0 1px 3px 0 hsl(var(--foreground) / 0.1);
+  --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark mode overrides */
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
 }
