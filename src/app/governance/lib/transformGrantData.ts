@@ -10,12 +10,18 @@ export function transformGrantData(rows: RawGrantRow[]): Grant[] {
   const grouped = new Map<string, Grant>();
 
   for (const row of rows) {
-    const key = `${row.Project}::${row.Grantee}`;
+    if (row.Project === null || row.Project === undefined) {
+      continue;
+    }
+
+    const [pName, pUrl] = row.Project.split("::");
+    const key = `${pName}::${row.Grantee}`;
 
     if (!grouped.has(key)) {
       grouped.set(key, {
         id: key.toLowerCase().replace(/\s+/g, "-"),
-        project: row.Project,
+        project: pName,
+        url: pUrl,
         grantee: row.Grantee,
         category: row["Category (as determined by ZCG)"],
         reportingFrequency:
