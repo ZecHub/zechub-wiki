@@ -29,7 +29,7 @@ export const TabsList2 = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex space-x-1 p-1 mb-4 overflow-x-auto", className)}
+    className={cn("flex space-x-1 overflow-x-auto", className)}
     {...props}
   />
 ));
@@ -41,13 +41,16 @@ export const TabsTrigger = ({
   children,
   activeTab,
   setActiveTab,
+  borderBottom,
 }: any) => (
   <button
     className={`px-3 py-2 text-sm inline-flex flex-shrink-0 font-medium rounded-md transition-colors ${
       activeTab === value
         ? "bg-background text-foreground shadow-sm"
         : "text-muted-foreground hover:text-slate-600"
-    }`}
+    }
+    ${borderBottom && activeTab === value ? "border-b-2 dark:border-primary rounded-none" : ""}
+    `}
     onClick={() => setActiveTab(value)}
   >
     {children}
