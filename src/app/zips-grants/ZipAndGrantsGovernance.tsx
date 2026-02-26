@@ -1,4 +1,10 @@
 "use client";
+import {
+  Tabs,
+  TabsContent,
+  TabsList2,
+  TabsTrigger,
+} from "@/components/Charts/Tabs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import * as config from "../../config";
@@ -9,13 +15,6 @@ import { StatusBar } from "./components/StatusBar";
 import { ZIPList } from "./components/ZIPList";
 import { useZIPs } from "./hooks/use-zips";
 import { Grant } from "./types/grants";
-import { CardContent } from "@/components/UI/shadcn/card";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/Charts/Tabs";
 
 const queryClient = new QueryClient();
 
@@ -78,7 +77,7 @@ function ZipAndGrants() {
   }, [grants]);
 
   return (
-    <section className="flex flex-col min-h-screen container mx-auto px-4 py-8 space-y-8">
+    <section className="flex flex-col min-h-screen container mx-auto px-4 py-8 space-y-16">
       <StatusBar
         zips={zips}
         totalGrantFunding={totalFundingInUsd}
@@ -89,32 +88,38 @@ function ZipAndGrants() {
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         {({ activeTab, setActiveTab }: any) => (
           <>
-            <TabsList>
+            <TabsList2 className="dark:bg-inherit bg-inherit dark:text-primary border-b">
               {tabLabels.map((label) => (
                 <TabsTrigger
                   key={label}
                   value={label.toLowerCase()}
                   activeTab={activeTab}
                   setActiveTab={setActiveTab}
+                  borderBottom={true}
                 >
                   {label}
                 </TabsTrigger>
               ))}
-            </TabsList>
+            </TabsList2>
+            <div className="mt-8">
+              <TabsContent value="zips" activeTab={activeTab}>
+                <ZIPList
+                  error={zipError}
+                  isLoading={isLoadingZip}
+                  zips={zips}
+                />
+              </TabsContent>
 
-            <TabsContent value="zips" activeTab={activeTab}>
-              <ZIPList error={zipError} isLoading={isLoadingZip} zips={zips} />
-            </TabsContent>
-
-            <TabsContent value="grants" activeTab={activeTab}>
-              <GrantList
-                grants={grants}
-                error={grantError}
-                isLoading={isLoading}
-                setError={setGrantError}
-                setIsLoading={setIsLoading}
-              />
-            </TabsContent>
+              <TabsContent value="grants" activeTab={activeTab}>
+                <GrantList
+                  grants={grants}
+                  error={grantError}
+                  isLoading={isLoading}
+                  setError={setGrantError}
+                  setIsLoading={setIsLoading}
+                />
+              </TabsContent>
+            </div>
           </>
         )}
       </Tabs>
