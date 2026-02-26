@@ -1,3 +1,4 @@
+import { Grant } from "../types/grants";
 
 export type StatusVariant =
   | "active"
@@ -27,4 +28,25 @@ export function getVariant(status: string): StatusVariant {
   if (s === "open") return "open";
 
   return "default";
+}
+
+export function computeGrantStatusStats(grants: Grant[]) {
+  const stats = {
+    total: grants.length,
+    open: 0,
+    completed: 0,
+    cancelled: 0,
+  };
+
+  for (const grant of grants) {
+    if (grant.status === "Open") stats.open++;
+    if (grant.status === "Completed") stats.completed++;
+    if (grant.status === "Cancelled") stats.cancelled++;
+  }
+
+  return {
+    ...stats,
+    activeGrants: stats.open,
+    closedGrants: stats.cancelled + stats.completed,
+  };
 }
