@@ -3,7 +3,6 @@ import { Grant } from "../../types/grants";
 import { GrantHeader } from "./GrantHeader";
 import { GrantSummaryBar } from "./GrantSummaryBar";
 import { MilestoneList } from "./MilestoneList";
-import { ExternalLink } from "lucide-react";
 
 interface Props {
   grant: Grant;
