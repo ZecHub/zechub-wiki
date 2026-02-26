@@ -50,3 +50,20 @@ export function computeGrantStatusStats(grants: Grant[]) {
     closedGrants: stats.cancelled + stats.completed,
   };
 }
+
+export function computeFinancialStats(grants: Grant[]) {
+  return grants.reduce(
+    (acc, grant) => {
+      acc.totalAwarded += grant.summary.totalAmountUSD;
+      acc.totalUsdDisbursed += grant.summary.totalUsdDisbursed;
+      acc.totalZecDisbursed += grant.summary.totalZecDisbursed;
+
+      return acc;
+    },
+    {
+      totalAwarded: 0,
+      totalUsdDisbursed: 0,
+      totalZecDisbursed: 0,
+    },
+  );
+}
