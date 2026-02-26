@@ -135,3 +135,12 @@ export function buildFinancialChartData(grants: Grant[]) {
   ];
 }
 
+
+export function buildMilestoneCompletionChartData(grants: Grant[]){
+  const stats = computeMilestonesStats(grants)
+  
+  return [
+    {name: 'Completed', value: stats.totalCompletedMilestone},
+    {name: 'Remaining', value: stats.totalMilestones - stats.totalCompletedMilestone}
+  ]
+}
