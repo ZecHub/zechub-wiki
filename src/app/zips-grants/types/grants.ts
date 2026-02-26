@@ -47,3 +47,8 @@ export interface Grant {
   milestones: Milestone[];
   summary: GrantSummary;
 }
+
+export type TimeFilter =
+  | { type: "all" }
+  | { type: "year"; year: number }
+  | { type: "quarter"; year: number; quarter: 1 | 2 | 3 | 4 };
