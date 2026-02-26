@@ -27,7 +27,7 @@ export function GrantHeader(props: Props) {
       </div>
 
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-[10px] px-2 py-0.5 rounded dark:bg-slate-700 bg-secondary text-secondary-foreground">
+        <span className="text-[10px] px-2 py-0.5 rounded dark:bg-slate-700 bg-slate-500 text-secondary-foreground">
           {props.grant.category}
         </span>
         {/* <span className="text-[10px] text-muted-foreground">
