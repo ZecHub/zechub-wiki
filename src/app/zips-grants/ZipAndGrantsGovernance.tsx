@@ -9,6 +9,13 @@ import { StatusBar } from "./components/StatusBar";
 import { ZIPList } from "./components/ZIPList";
 import { useZIPs } from "./hooks/use-zips";
 import { Grant } from "./types/grants";
+import { CardContent } from "@/components/UI/shadcn/card";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/Charts/Tabs";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +33,7 @@ function ZipAndGrants() {
   const [grants, setGrants] = useState<Grant[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [grantError, setGrantError] = useState("");
+  const [activeTab, setActiveTab] = useState("zips");
 
   useEffect(() => {
     const handleFetchZCGrants = async () => {
@@ -46,6 +54,8 @@ function ZipAndGrants() {
 
     handleFetchZCGrants();
   }, []);
+
+  const tabLabels = ["ZIPs", "Grants"];
 
   const totalFundingInUsd = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -76,16 +86,38 @@ function ZipAndGrants() {
         totalGrantee={totalGrantee.length}
       />
 
-      <div className="flex-1 grid gap-8 xl:grid-cols-2">
-        <ZIPList error={zipError} isLoading={isLoadingZip} zips={zips} />
-        <GrantList
-          grants={grants}
-          error={grantError}
-          isLoading={isLoading}
-          setError={setGrantError}
-          setIsLoading={setIsLoading}
-        />
-      </div>
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
+        {({ activeTab, setActiveTab }: any) => (
+          <>
+            <TabsList>
+              {tabLabels.map((label) => (
+                <TabsTrigger
+                  key={label}
+                  value={label.toLowerCase()}
+                  activeTab={activeTab}
+                  setActiveTab={setActiveTab}
+                >
+                  {label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+
+            <TabsContent value="zips" activeTab={activeTab}>
+              <ZIPList error={zipError} isLoading={isLoadingZip} zips={zips} />
+            </TabsContent>
+
+            <TabsContent value="grants" activeTab={activeTab}>
+              <GrantList
+                grants={grants}
+                error={grantError}
+                isLoading={isLoading}
+                setError={setGrantError}
+                setIsLoading={setIsLoading}
+              />
+            </TabsContent>
+          </>
+        )}
+      </Tabs>
 
       <div className="text-center py-6 border-t border-border">
         <p className="text-xs text-muted-foreground">
