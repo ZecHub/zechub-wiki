@@ -12,6 +12,7 @@ interface Props {
   isLoading: boolean;
   setIsLoading: (l: boolean) => void;
 }
+// TODO: Review on how to get the link of grantee url via google sheet api
 
 export function GrantList(props: Props) {
   const [search, setSearch] = useState("");
@@ -29,9 +30,10 @@ export function GrantList(props: Props) {
   const filteredGrants = useMemo(() => {
     if (!props.grants) return [];
 
-    return props.grants.filter((grant) => {
+    return props.grants.filter((grant, i) => {
+
       const matchesSearch =
-        grant.grantee.toLowerCase().includes(search.toLowerCase()) ||
+        grant.grantee?.toLowerCase().includes(search.toLowerCase()) ||
         grant.project.includes(search);
 
       const matchesStatus =
