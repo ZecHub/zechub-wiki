@@ -8,7 +8,7 @@ import { transformGrantData } from "../governance/lib/transformGrantData";
 /**
  * This function fetches the Zcash Community Grants data
  * from google sheet where it's made public
- * @returns any[] {any}
+ * @returns Promise<Grant[] | undefined>
  */
 export async function getZCGrantsData() {
   const auth = new google.auth.JWT({
