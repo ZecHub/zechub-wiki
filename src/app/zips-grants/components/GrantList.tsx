@@ -115,7 +115,7 @@ export function GrantList(props: Props) {
       <div
         className={`max-h-[640px] ${filteredGrants && filteredGrants.length < 5 ? "overscroll-none" : "overflow-y-scroll"}`}
       >
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 ">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 pr-2">
           {filteredGrants.map((grant, i) => (
             <GrantCard key={grant.id} grant={grant} index={i} />
           ))}
