@@ -2,8 +2,8 @@
 
 import { google } from "googleapis";
 import * as config from "../../config";
-import { parseReponseData } from "../governance/lib/parseReponseData";
-import { transformGrantData } from "../governance/lib/transformGrantData";
+import { parseReponseData } from "../zips-grants/lib/parseReponseData";
+import { transformGrantData } from "../zips-grants/lib/transformGrantData";
 
 /**
  * This function fetches the Zcash Community Grants data
@@ -31,7 +31,7 @@ export async function getZCGrantsData() {
         "sheets(data(rowData(values(userEnteredValue,effectiveValue,formattedValue,hyperlink))))",
     });
 
-    const sheetData = resWithLink?.data?.sheets?.[0]?.data?.[0]?.rowData ?? [];   
+    const sheetData = resWithLink?.data?.sheets?.[0]?.data?.[0]?.rowData ?? [];
 
     const result = sheetData!.map((row) => {
       return (
@@ -48,7 +48,7 @@ export async function getZCGrantsData() {
             return `${text}::${url}`;
           }
 
-          return text
+          return text;
         }) || []
       );
     }) as string[][];
