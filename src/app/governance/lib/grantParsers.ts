@@ -20,6 +20,8 @@ export const normalizeStatus = (status: string): GrantStatus => {
 };
 
 export const extractNumericMilestone = (label: string): number | null => {
+  if (!label) return null;
+
   const match = label.match(/\d+/);
   return match ? Number(match[0]) : null;
 };
