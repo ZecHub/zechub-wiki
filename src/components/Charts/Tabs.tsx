@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { cn } from "@/lib/util";
+import React, { useState } from "react";
 
 // Tabs component - simple implementation
 export const Tabs = ({ children, defaultValue, value, onValueChange }: any) => {
@@ -22,7 +23,25 @@ export const TabsList = ({ children }: any) => (
   </div>
 );
 
-export const TabsTrigger = ({ value, children, activeTab, setActiveTab }: any) => (
+export const TabsList2 = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex space-x-1 p-1 mb-4 overflow-x-auto", className)}
+    {...props}
+  />
+));
+
+TabsList2.displayName = "CardHeader";
+
+export const TabsTrigger = ({
+  value,
+  children,
+  activeTab,
+  setActiveTab,
+}: any) => (
   <button
     className={`px-3 py-2 text-sm inline-flex flex-shrink-0 font-medium rounded-md transition-colors ${
       activeTab === value
