@@ -1,4 +1,4 @@
-import { Grant } from "../types/grants";
+import { Grant, GrantStatus } from "../types/grants";
 
 export type StatusVariant =
   | "active"
@@ -112,4 +112,16 @@ export function computeMilestonesStats(grants: Grant[]) {
     totalMilestoneAmountUSD,
     totalEstimatedUSD,
   };
+}
+
+export function buildGrantStatusChartData(
+  grants: Grant[],
+): { name: GrantStatus; value: number }[] {
+  const stats = computeGrantStatusStats(grants);
+
+  return [
+    { name: "Open", value: stats.open },
+    { name: "Completed", value: stats.completed },
+    { name: "Cancelled", value: stats.cancelled },
+  ];
 }
