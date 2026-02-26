@@ -21,7 +21,7 @@ export function GrantList(props: Props) {
 
   const CATEGORY_FILTER = props.grants
     .map((d) => d.category)
-    .filter((c, i, arr) => c !== "" && arr.indexOf(c) === i);
+    .filter((c, i, arr) => c && arr.indexOf(c) === i);
 
   const STATUS_FILTERS = props.grants
     .map((d) => d.status)
@@ -42,7 +42,7 @@ export function GrantList(props: Props) {
 
       const matchesCategory =
         categoryFilter === "All" ||
-        grant.category.toLowerCase().includes(categoryFilter.toLowerCase());
+        grant.category?.toLowerCase().includes(categoryFilter.toLowerCase());
 
       return matchesSearch && matchesStatus && matchesCategory;
     });
