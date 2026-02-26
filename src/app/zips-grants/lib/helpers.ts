@@ -67,3 +67,17 @@ export function computeFinancialStats(grants: Grant[]) {
     },
   );
 }
+
+export function computeCategoryStats(grants: Grant[]) {
+  const map = new Map<string, number>();
+
+  for (const grant of grants) {
+    map.set(grant.category, (map.get(grant.category) || 0) + 1);
+  }
+
+  return Array.from(map.entries()).map(([category, count]) => ({
+    category,
+    count,
+  }));
+}
+
