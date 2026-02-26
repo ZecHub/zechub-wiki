@@ -15,6 +15,7 @@ import { StatusBar } from "./components/StatusBar";
 import { ZIPList } from "./components/ZIPList";
 import { useZIPs } from "./hooks/use-zips";
 import { Grant } from "./types/grants";
+import { ZipAndGrantsChart } from "./components/charts";
 
 const queryClient = new QueryClient();
 
@@ -54,7 +55,7 @@ function ZipAndGrants() {
     handleFetchZCGrants();
   }, []);
 
-  const tabLabels = ["ZIPs", "Grants"];
+  const tabLabels = ["ZIPs", "Grants", "Charts"];
 
   const totalFundingInUsd = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -118,6 +119,10 @@ function ZipAndGrants() {
                   setError={setGrantError}
                   setIsLoading={setIsLoading}
                 />
+              </TabsContent>
+
+              <TabsContent value="charts" activeTab={activeTab}>
+                <ZipAndGrantsChart grants={grants} />
               </TabsContent>
             </div>
           </>
