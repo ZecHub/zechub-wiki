@@ -12,7 +12,6 @@ interface Props {
   isLoading: boolean;
   setIsLoading: (l: boolean) => void;
 }
-// TODO: Review on how to get the link of grantee url via google sheet api
 
 export function GrantList(props: Props) {
   const [search, setSearch] = useState("");
