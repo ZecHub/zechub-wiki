@@ -125,3 +125,13 @@ export function buildGrantStatusChartData(
     { name: "Cancelled", value: stats.cancelled },
   ];
 }
+
+export function buildFinancialChartData(grants: Grant[]) {
+  const stats = computeFinancialStats(grants);
+
+  return [
+    { name: "Awarded", value: stats.totalAwarded },
+    { name: "USD Disbursed", value: stats.totalUsdDisbursed },
+  ];
+}
+
