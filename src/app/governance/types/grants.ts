@@ -39,6 +39,7 @@ export interface GrantSummary {
 export interface Grant {
   id: string;
   project: string;
+  url: string;
   grantee: string;
   category: string;
   reportingFrequency: string | null;
