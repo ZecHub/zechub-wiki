@@ -13,7 +13,7 @@ export function DashboardSection() {
               Zcash <span className="text-gradient-zcash">Governance</span>
             </h2>
             <p className="text-sm text-muted-foreground">
-              ZIPs · Grants · Proposals
+              ZIPs · Grants Proposals
             </p>
           </div>
         </div>
