@@ -11,7 +11,7 @@ const variantStyles: Record<StatusVariant, string> = {
   completed: "bg-success/15 text-success border-success/30",
   proposed: "bg-warning/15 text-warning border-warning/30",
   default: "bg-muted text-muted-foreground border-border",
-  cancelled: "bg-muted text-muted-foreground border-border",
+  cancelled: "bg-red-300 text-destructive/90 border-destructive/30",
   open: "bg-green-100 dark:text-green-500 text-green-700 border-border",
 };
 
