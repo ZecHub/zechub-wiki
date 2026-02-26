@@ -81,3 +81,35 @@ export function computeCategoryStats(grants: Grant[]) {
   }));
 }
 
+export function computeMilestonesStats(grants: Grant[]) {
+  let totalMilestones = 0;
+  let totalCompletedMilestone = 0;
+  let totalEstimatedUSD = 0;
+  let totalMilestoneAmountUSD = 0;
+
+  for (const grant of grants) {
+    totalMilestones += grant.summary.totalMilestones;
+    totalCompletedMilestone += grant.summary.completedMilestones;
+
+    for (const milestone of grant.milestones) {
+      if (milestone.amountUSD) {
+        totalMilestoneAmountUSD += milestone.amountUSD;
+      }
+
+      if (milestone.estimateUSD) {
+        totalEstimatedUSD += milestone.estimateUSD;
+      }
+    }
+  }
+
+  return {
+    totalMilestones,
+    totalCompletedMilestone,
+    completionRates:
+      totalMilestones > 0
+        ? Math.round((totalCompletedMilestone / totalMilestones) * 100)
+        : 0,
+    totalMilestoneAmountUSD,
+    totalEstimatedUSD,
+  };
+}
