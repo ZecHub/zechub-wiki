@@ -249,7 +249,7 @@ export function zecUsdRateOverTime(grants: Grant[]) {
 export function totalGrantees(grants: Grant[]) {
   return grants
     .map((g) => g.grantee)
-    .filter((g, i, arr) => arr.indexOf(g) === i);
+    .filter((g, i, arr) => arr.indexOf(g) === i).length;
 }
 
 export function activeGrants(grants: Grant[]) {
