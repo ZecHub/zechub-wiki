@@ -199,8 +199,23 @@ export function disbursedOverTime(grants: Grant[]) {
       monthly.set(key, (monthly.get(key) || 0) + m.amountUSD!);
     }
   }
-  
+
   return Array.from(monthly.entries())
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([month, amount]) => ({ month, amount }));
 }
+
+export function topGrantees(grants: Grant[], limit = 15) {
+  const map = new Map<string, number>();
+
+  for (const g of grants) {
+    const prev = map.get(g.grantee) || 0;
+    map.set(g.grantee, prev + g.summary.totalAmountUSD);
+  }
+
+  return Array.from(map.entries())
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, limit)
+    .map(([name, amount], i) => ({ name, amount, fill: getColorForIndex(i) }));
+}
+
