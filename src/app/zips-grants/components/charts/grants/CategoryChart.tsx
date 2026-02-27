@@ -36,6 +36,10 @@ export function CategoryChart(props: Props) {
                 `${name} ${(percent! * 100).toFixed(0)}%`
               }
               labelLine={false}
+              style={{
+                fontSize: "12px",
+                fontWeight: 700,
+              }}
             >
               {props.catData.map((entry, i) => (
                 <Cell key={i} fill={entry.fill} />
@@ -46,6 +50,7 @@ export function CategoryChart(props: Props) {
                 backgroundColor: "hsl(230, 20%, 12%)",
                 border: "1px solid hsl(230, 15%, 20%)",
                 borderRadius: "8px",
+                fontSize: "12px",
               }}
               itemStyle={{ color: "hsl(210, 40%, 96%)" }}
               formatter={(value: number, name: string, props: any) => [
