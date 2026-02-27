@@ -20,7 +20,6 @@ const queryClient = new QueryClient();
 export const ZipAndGrantsGovernance = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <DashboardSection /> */}
       <ZipAndGrants />
     </QueryClientProvider>
   );
@@ -56,12 +55,9 @@ function ZipAndGrants() {
   const tabLabels = ["ZIPs", "Grants", "Charts"];
 
   return (
-    <section className="flex flex-col min-h-screen container mx-auto px-4 py-8 space-y-16">
-      <div className="container flex py-8">
+    <section className="flex flex-col min-h-screen container mx-auto px-4 py-8 space-y-8">
+      <div className="container flex py-4">
         <div className="flex justify-start gap-3">
-          {/* <div className="gradient-zcash rounded-lg p-2">
-              <Shield className="h-6 w-6 text-primary-foreground" />
-            </div> */}
           <div>
             <h2 className="text-xl font-bold tracking-tight text-foreground">
               Zcash <span className="text-gradient-zcash">Governance</span>
