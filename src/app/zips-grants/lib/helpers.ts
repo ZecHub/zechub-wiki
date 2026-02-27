@@ -187,7 +187,7 @@ function parseDateSafe(dateStr: string): Date | null {
 
 export function disbursedOverTime(grants: Grant[]) {
   const monthly = new Map<string, number>();
-  
+
   for (const g of grants) {
     for (const m of g.milestones) {
       if (!m.paidOutDate) continue;
@@ -219,3 +219,29 @@ export function topGrantees(grants: Grant[], limit = 15) {
     .map(([name, amount], i) => ({ name, amount, fill: getColorForIndex(i) }));
 }
 
+export function zecUsdRateOverTime(grants: Grant[]) {
+  const points: {
+    date: string;
+    rate: number;
+    project: string;
+    amount: number;
+  }[] = [];
+
+  for (const g of grants) {
+    for (const m of g.milestones) {
+      if (!m.paidOutDate || !m.zecUsdRate) continue;
+
+      const d = parseDateSafe(m.paidOutDate);
+      if (!d || isNaN(d.getTime())) continue;
+
+      points.push({
+        date: format(d, "yyyy-MM-dd"),
+        rate: m.zecUsdRate,
+        project: g.project,
+        amount: m.amountUSD!,
+      });
+    }
+  }
+
+  return points.sort((a, b) => a.date.localeCompare(b.date));
+}
