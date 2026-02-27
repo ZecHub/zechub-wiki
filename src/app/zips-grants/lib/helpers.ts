@@ -174,3 +174,33 @@ export function computeStats(grants: Grant[]) {
 
   return { totalGrants, totalAmountUSD, totalZec, avgGrant, completionRate };
 }
+
+function parseDateSafe(dateStr: string): Date | null {
+  try {
+    const trimmed = dateStr.trim();
+    // Try "d MMM yyyy" format
+    return parse(trimmed, "d MMM yyyy", new Date());
+  } catch {
+    return null;
+  }
+}
+
+export function disbursedOverTime(grants: Grant[]) {
+  const monthly = new Map<string, number>();
+  
+  for (const g of grants) {
+    for (const m of g.milestones) {
+      if (!m.paidOutDate) continue;
+
+      const d = parseDateSafe(m.paidOutDate);
+      if (!d || isNaN(d.getTime())) continue;
+
+      const key = format(d, "yyyy-MM");
+      monthly.set(key, (monthly.get(key) || 0) + m.amountUSD!);
+    }
+  }
+  
+  return Array.from(monthly.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([month, amount]) => ({ month, amount }));
+}
