@@ -87,7 +87,7 @@ export function USDDisbursedOverTimeChart(props: Props) {
                 fontSize: "12px",
               }}
               itemStyle={{ color: "hsl(210, 40%, 96%)" }}
-              formatter={(v: number) => [`$${v.toLocaleString()}`, "Amount"]}
+              formatter={(v) => [`$${v?.toLocaleString()}`, "Amount"]}
             />
           </AreaChart>
         </ResponsiveContainer>

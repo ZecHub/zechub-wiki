@@ -54,10 +54,7 @@ export function TopGranteesChart(props: Props) {
                 fontSize: "12px",
               }}
               itemStyle={{ color: "hsl(210, 40%, 96%)" }}
-              formatter={(v: number) => [
-                `$${v.toLocaleString()}`,
-                "Total Funding",
-              ]}
+              formatter={(v) => [`$${v?.toLocaleString()}`, "Total Funding"]}
             />
             <Bar dataKey="amount" radius={[0, 6, 6, 0]}>
               {props.topData.map((entry, i) => (

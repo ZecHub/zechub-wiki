@@ -33,7 +33,7 @@ export function ZecUsdRateChart(props: Props) {
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={420}>
-          <LineChart data={props.rateData} >
+          <LineChart data={props.rateData}>
             <defs>
               <linearGradient id="gradLine" x1="0" y1="0" x2="0" y2="1">
                 <stop
@@ -65,7 +65,7 @@ export function ZecUsdRateChart(props: Props) {
                 fontSize: "12px",
               }}
               itemStyle={{ color: "hsl(210, 40%, 96%)" }}
-              formatter={(v: number, _: any, props: any) => [
+              formatter={(v, _, props) => [
                 `$${v} — ${props.payload.project}`,
                 "ZEC/USD",
               ]}

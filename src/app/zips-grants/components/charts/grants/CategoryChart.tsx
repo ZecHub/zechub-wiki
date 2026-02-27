@@ -5,6 +5,7 @@ import {
   CardTitle,
 } from "@/components/UI/shadcn/card";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import type { Payload } from "recharts/types/component/DefaultTooltipContent";
 
 type Props = {
   catData: {
@@ -53,10 +54,15 @@ export function CategoryChart(props: Props) {
                 fontSize: "12px",
               }}
               itemStyle={{ color: "hsl(210, 40%, 96%)" }}
-              formatter={(value: number, name: string, props: any) => [
-                `${value} grants — $${(props.payload.totalUSD / 1e3).toFixed(0)}K`,
-                name,
-              ]}
+              formatter={(value, name, item) => {
+                const safeValue = value ?? 0;
+                const totalUSD = item?.payload?.totalUSD ?? 0;
+
+                return [
+                  `${safeValue} grants — $${(totalUSD / 1e3).toFixed(0)}K`,
+                  name,
+                ];
+              }}
             />
           </PieChart>
         </ResponsiveContainer>
