@@ -245,3 +245,9 @@ export function zecUsdRateOverTime(grants: Grant[]) {
 
   return points.sort((a, b) => a.date.localeCompare(b.date));
 }
+
+export function totalGrantees(grants: Grant[]) {
+  return grants
+    .map((g) => g.grantee)
+    .filter((g, i, arr) => arr.indexOf(g) === i);
+}
