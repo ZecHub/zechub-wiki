@@ -45,7 +45,18 @@ export function TopGranteesChart(props: Props) {
               tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }}
               width={110}
             />
-    
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "hsl(230, 20%, 12%)",
+                border: "1px solid hsl(230, 15%, 20%)",
+                borderRadius: "8px",
+              }}
+              itemStyle={{ color: "hsl(210, 40%, 96%)" }}
+              formatter={(v: number) => [
+                `$${v.toLocaleString()}`,
+                "Total Funding",
+              ]}
+            />
             <Bar dataKey="amount" radius={[0, 6, 6, 0]}>
               {props.topData.map((entry, i) => (
                 <Cell key={i} fill={entry.fill} />
