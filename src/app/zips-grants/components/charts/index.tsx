@@ -92,7 +92,7 @@ export function ZipAndGrantsChart(props: Props) {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <section className="">
       {/* Header */}
       <div className="flex items-center gap-2 mb-8">
         <Shield className="h-5 w-5 text-primary" />
@@ -111,6 +111,6 @@ export function ZipAndGrantsChart(props: Props) {
         <TopGranteesChart topData={data.topData} />
         <ZecUsdRateChart rateData={data.rateData} />
       </div>
-    </div>
+    </section>
   );
 }
