@@ -157,3 +157,20 @@ export function buildMilestoneCompletionChartData(grants: Grant[]) {
 export function getColorForIndex(i: number) {
   return CHART_COLORS[i % CHART_COLORS.length];
 }
+
+export function computeStats(grants: Grant[]) {
+  const totalGrants = grants.length;
+  const totalAmountUSD = grants.reduce(
+    (s, g) => s + g.summary.totalAmountUSD,
+    0,
+  );
+  const totalZec = grants.reduce((s, g) => s + g.summary.totalZecDisbursed, 0);
+  const avgGrant = totalGrants ? totalAmountUSD / totalGrants : 0;
+  const completed = grants.filter(
+    (g) => g.summary.completedPercent === 100,
+  ).length;
+
+  const completionRate = totalGrants ? (completed / totalGrants) * 100 : 0;
+
+  return { totalGrants, totalAmountUSD, totalZec, avgGrant, completionRate };
+}
