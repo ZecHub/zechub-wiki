@@ -1,4 +1,6 @@
+import { format, parse } from "date-fns";
 import { Grant, GrantStatus } from "../types/grants";
+import { CHART_COLORS } from "./chart-colors";
 
 export type StatusVariant =
   | "active"
@@ -69,15 +71,20 @@ export function computeFinancialStats(grants: Grant[]) {
 }
 
 export function computeCategoryStats(grants: Grant[]) {
-  const map = new Map<string, number>();
-
-  for (const grant of grants) {
-    map.set(grant.category, (map.get(grant.category) || 0) + 1);
+  const map = new Map<string, { count: number; totalUSD: number }>();
+  for (const g of grants) {
+    const cat = g.category || "Unknown";
+    const prev = map.get(cat) || { count: 0, totalUSD: 0 };
+    map.set(cat, {
+      count: prev.count + 1,
+      totalUSD: prev.totalUSD + g.summary.totalAmountUSD,
+    });
   }
-
-  return Array.from(map.entries()).map(([category, count]) => ({
-    category,
-    count,
+  return Array.from(map.entries()).map(([name, val], i) => ({
+    name,
+    value: val.count,
+    totalUSD: val.totalUSD,
+    fill: getColorForIndex(i),
   }));
 }
 
@@ -135,12 +142,18 @@ export function buildFinancialChartData(grants: Grant[]) {
   ];
 }
 
+export function buildMilestoneCompletionChartData(grants: Grant[]) {
+  const stats = computeMilestonesStats(grants);
 
-export function buildMilestoneCompletionChartData(grants: Grant[]){
-  const stats = computeMilestonesStats(grants)
-  
   return [
-    {name: 'Completed', value: stats.totalCompletedMilestone},
-    {name: 'Remaining', value: stats.totalMilestones - stats.totalCompletedMilestone}
-  ]
+    { name: "Completed", value: stats.totalCompletedMilestone },
+    {
+      name: "Remaining",
+      value: stats.totalMilestones - stats.totalCompletedMilestone,
+    },
+  ];
+}
+
+export function getColorForIndex(i: number) {
+  return CHART_COLORS[i % CHART_COLORS.length];
 }
