@@ -51,6 +51,7 @@ export function TopGranteesChart(props: Props) {
                 backgroundColor: "hsl(230, 20%, 12%)",
                 border: "1px solid hsl(230, 15%, 20%)",
                 borderRadius: "8px",
+                fontSize: "12px",
               }}
               itemStyle={{ color: "hsl(210, 40%, 96%)" }}
               formatter={(v: number) => [
