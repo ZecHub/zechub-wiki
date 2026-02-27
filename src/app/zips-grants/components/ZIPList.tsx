@@ -80,16 +80,19 @@ export function ZIPList(props: Props) {
 
       {!props.isLoading && !props.error && (
         <div
-          className={`my-4 max-h-[640px] ${filtered && filtered.length < 5 ? "overscroll-none" : "overflow-y-scroll"} pr-2`}
+          className={`my-4 max-h-160 ${filtered && filtered.length < 5 ? "overscroll-none" : "overflow-y-scroll"} pr-2`}
         >
           <ul className="space-y-2">
             {filtered.map((zip, i) => (
-              <li key={zip.number}>
+              <li
+                key={zip.number}
+                className="shadow-md dark:outline outline-black/5 dark:border border-slate-700 rounded-md bg-red-600 hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 p-4 hover:border-primary/40 hover:glow-zcash"
+              >
                 <a
                   href={zip.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between rounded-lg border border-border bg-slate-300 dark:bg-slate-800 p-4 hover:border-primary/40 hover:glow-zcash transition-all animate-fade-in"
+                  className="group flex items-center justify-between transition-all animate-fade-in"
                   style={{ animationDelay: `${i * 30}ms` }}
                 >
                   <div className="flex items-center gap-4 min-w-0">
