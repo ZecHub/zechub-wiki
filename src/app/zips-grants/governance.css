@@ -1,0 +1,90 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+
+@theme {
+    --text-foreground: white;
+    
+    --card: 230 12% 12%;
+    --card-foreground: 45 10% 92%;
+
+    --popover: 230 12% 14%;
+    --popover-foreground: 45 10% 92%;
+
+    --primary: 45 100% 55%;
+    --primary-foreground: 230 15% 8%;
+
+    --secondary: 230 10% 18%;
+    --secondary-foreground: 45 10% 85%;
+
+    --muted: 230 10% 16%;
+    --muted-foreground: 220 8% 55%;
+
+    --accent: 45 80% 45%;
+    --accent-foreground: 230 15% 8%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 45 10% 92%;
+
+    --border: 230 10% 20%;
+    --input: 230 10% 20%;
+    --ring: 45 100% 55%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 230 12% 10%;
+    --sidebar-foreground: 45 10% 85%;
+    --sidebar-primary: 45 100% 55%;
+    --sidebar-primary-foreground: 230 15% 8%;
+    --sidebar-accent: 230 10% 16%;
+    --sidebar-accent-foreground: 45 10% 85%;
+    --sidebar-border: 230 10% 18%;
+    --sidebar-ring: 45 100% 55%;
+
+    /* Custom tokens */
+    --zcash-yellow: 45 100% 55%;
+    --zcash-gold: 40 85% 48%;
+    --surface-elevated: 230 12% 15%;
+    --success: 155 65% 45%;
+    --success-foreground: 155 10% 95%;
+    --info: 210 70% 55%;
+    --info-foreground: 210 10% 95%;
+    --warning: 35 90% 55%;
+    --warning-foreground: 35 10% 10%;
+}
+
+@layer base {
+
+    body {
+        /* @apply bg-background text-foreground font-sans antialiased; */
+        @apply text-foreground antialiased;
+        font-family: 'Space Grotesk', sans-serif;
+    }
+
+    code,
+    pre,
+    .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+    }
+}
+
+@layer utilities {
+    .gradient-zcash {
+        background: linear-gradient(135deg, hsl(45 100% 55%), hsl(40 85% 48%));
+    }
+
+    .gradient-card {
+        background: linear-gradient(180deg, hsl(230 12% 14%), hsl(230 12% 11%));
+    }
+
+    .glow-zcash {
+        box-shadow: 0 0 30px -5px hsl(45 100% 55% / 0.15);
+    }
+
+    .text-gradient-zcash {
+        background: linear-gradient(135deg, hsl(45 100% 55%), hsl(40 85% 48%));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}

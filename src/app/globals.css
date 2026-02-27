@@ -27,10 +27,8 @@
 
   /* Background Images */
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
-  --background-image-gradient-conic: conic-gradient(
-    from 180deg at 50% 50%,
-    var(--tw-gradient-stops)
-  );
+  --background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%,
+      var(--tw-gradient-stops));
 
   /* Colors */
   --color-border: hsl(var(--border));
@@ -83,6 +81,7 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
 }
 
 .btn-brand {
@@ -219,6 +218,7 @@ body[data-scroll-locked] {
 }
 
 @keyframes moveRight {
+
   0%,
   100% {
     transform: translateX(-300%);
