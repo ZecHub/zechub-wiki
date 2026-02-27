@@ -91,7 +91,7 @@ export function ZipAndGrantsChart(props: Props) {
   ];
 
   return (
-    <div className="min-h-screen bg-background p-4 md:p-8">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="mb-8">
         <h2 className="text-2xl md:text-3xl font-black tracking-tight text-primary">
