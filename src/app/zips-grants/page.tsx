@@ -3,7 +3,7 @@ import "./governance.css";
 
 export default function GovernancePage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="mx-auto max-w-7xl min-h-screen bg-background">
       <ZipAndGrantsGovernance />
     </div>
   );
