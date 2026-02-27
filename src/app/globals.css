@@ -27,10 +27,8 @@
 
   /* Background Images */
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
-  --background-image-gradient-conic: conic-gradient(
-    from 180deg at 50% 50%,
-    var(--tw-gradient-stops)
-  );
+  --background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%,
+      var(--tw-gradient-stops));
 
   /* Colors */
   --color-border: hsl(var(--border));
@@ -83,6 +81,17 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  /* Custom tokens  */
+  --zcash-yellow: 45 100% 55%;
+  --zcash-gold: 40 85% 48%;
+  --surface-elevated: 230 12% 15%;
+  --success: 155 65% 45%;
+  --success-foreground: 155 10% 95%;
+  --info: 210 70% 55%;
+  --info-foreground: 210 10% 95%;
+  --warning: 35 90% 55%;
+  --warning-foreground: 35 10% 10%;
 }
 
 .btn-brand {
@@ -219,6 +228,7 @@ body[data-scroll-locked] {
 }
 
 @keyframes moveRight {
+
   0%,
   100% {
     transform: translateX(-300%);
