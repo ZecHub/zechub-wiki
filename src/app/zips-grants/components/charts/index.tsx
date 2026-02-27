@@ -41,7 +41,7 @@ export function ZipAndGrantsChart(props: Props) {
       topData: topGrantees(grants),
       rateData: zecUsdRateOverTime(grants),
     }),
-    [props.grants],
+    [grants],
   );
 
   const statCards = [
@@ -59,9 +59,9 @@ export function ZipAndGrantsChart(props: Props) {
     },
     {
       label: "Total ZEC",
-      value: data.stats.totalZec.toLocaleString(undefined, {
+      value: `${data.stats.totalZec.toLocaleString(undefined, {
         maximumFractionDigits: 0,
-      }),
+      })} ZEC`,
       icon: Coins,
       color: "hsl(170, 80%, 45%)",
     },
