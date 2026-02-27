@@ -1,5 +1,5 @@
 import { ZipAndGrantsGovernance } from "./ZipAndGrantsGovernance";
-import "./governance.css";
+import './governance.css';
 
 export default function GovernancePage() {
   return (
