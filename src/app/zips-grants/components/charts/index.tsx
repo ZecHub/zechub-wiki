@@ -3,6 +3,7 @@ import {
   CheckCircle,
   Coins,
   DollarSign,
+  Shield,
   TrendingUp,
   Users,
 } from "lucide-react";
@@ -93,14 +94,12 @@ export function ZipAndGrantsChart(props: Props) {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-black tracking-tight text-primary">
+      <div className="flex items-center gap-2 mb-8">
+        <Shield className="h-5 w-5 text-primary" />
+        <h2 className="text-lg font-semibold text-foreground">
           Zcash Grants Analytics
         </h2>
-        <p className="text-muted-foreground mt-1">
-          {grants.length} grants loaded
-        </p>
-      </header>
+      </div>
 
       {/* Stats  */}
       <Stats statCards={statCards} />
