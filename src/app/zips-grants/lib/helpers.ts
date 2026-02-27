@@ -164,7 +164,16 @@ export function computeStats(grants: Grant[]) {
     (s, g) => s + g.summary.totalAmountUSD,
     0,
   );
-  const totalZec = grants.reduce((s, g) => s + g.summary.totalZecDisbursed, 0);
+
+  const totalZec = grants.reduce((acc, cur, i) => {
+    const value = cur.summary.totalZecDisbursed;
+    if (isNaN(value) || value === null) {
+      return acc;
+    }
+
+    return acc + value;
+  }, 0);
+
   const avgGrant = totalGrants ? totalAmountUSD / totalGrants : 0;
   const completed = grants.filter(
     (g) => g.summary.completedPercent === 100,
