@@ -6,23 +6,21 @@ import {
   TabsTrigger,
 } from "@/components/Charts/Tabs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import * as config from "../../config";
 import { getZCGrantsData } from "../actions/google-sheets.action";
-import { DashboardSection } from "./components/DashboardSection";
+import { ZipAndGrantsChart } from "./components/charts";
 import { GrantList } from "./components/GrantList";
-import { StatusBar } from "./components/StatusBar";
 import { ZIPList } from "./components/ZIPList";
 import { useZIPs } from "./hooks/use-zips";
 import { Grant } from "./types/grants";
-import { ZipAndGrantsChart } from "./components/charts";
 
 const queryClient = new QueryClient();
 
 export const ZipAndGrantsGovernance = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <DashboardSection />
+      {/* <DashboardSection /> */}
       <ZipAndGrants />
     </QueryClientProvider>
   );
@@ -57,34 +55,23 @@ function ZipAndGrants() {
 
   const tabLabels = ["ZIPs", "Grants", "Charts"];
 
-  const totalFundingInUsd = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(
-    useMemo(
-      () => grants.reduce((acc, row) => acc + row.summary.totalAmountUSD, 0),
-      [grants],
-    ),
-  );
-
-  const activeGrants = useMemo(() => {
-    return grants.filter((g) => g.status === "Open").length;
-  }, [grants]);
-
-  const totalGrantee = useMemo(() => {
-    return grants
-      .map((g) => g.grantee)
-      .filter((g, i, arr) => arr.indexOf(g) === i);
-  }, [grants]);
-
   return (
     <section className="flex flex-col min-h-screen container mx-auto px-4 py-8 space-y-16">
-      <StatusBar
-        zips={zips}
-        totalGrantFunding={totalFundingInUsd}
-        activeGrants={activeGrants}
-        totalGrantee={totalGrantee.length}
-      />
+      <div className="container flex py-8">
+        <div className="flex justify-start gap-3">
+          {/* <div className="gradient-zcash rounded-lg p-2">
+              <Shield className="h-6 w-6 text-primary-foreground" />
+            </div> */}
+          <div>
+            <h2 className="text-xl font-bold tracking-tight text-foreground">
+              Zcash <span className="text-gradient-zcash">Governance</span>
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              ZIPs · Grants Proposals
+            </p>
+          </div>
+        </div>
+      </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         {({ activeTab, setActiveTab }: any) => (
