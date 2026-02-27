@@ -22,6 +22,7 @@ export const DATA_URL = {
   namadaRewardUrl: "/data/namada/namada_rewards_rate.json",
   blockFeesUrl: "/data/zcash/blockFeesZEC.json",
   networkSolpsUrl: "/data/zcash/networksolps.json",
+  daoProps: "/data/juno/daoProps.json",
 } as const;
 
 export const DATE_URL = {
