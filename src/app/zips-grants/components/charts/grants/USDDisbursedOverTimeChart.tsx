@@ -78,6 +78,16 @@ export function USDDisbursedOverTimeChart(props: Props) {
               fill="url(#gradArea)"
               strokeWidth={2}
             />
+
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "hsl(230, 20%, 12%)",
+                border: "1px solid hsl(230, 15%, 20%)",
+                borderRadius: "8px",
+              }}
+              itemStyle={{ color: "hsl(210, 40%, 96%)" }}
+              formatter={(v: number) => [`$${v.toLocaleString()}`, "Amount"]}
+            />
           </AreaChart>
         </ResponsiveContainer>
       </CardContent>
