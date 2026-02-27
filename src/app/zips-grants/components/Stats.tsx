@@ -18,7 +18,7 @@ export function Stats(props: Props) {
       {props.statCards.map((s) => (
         <Card
           key={s.label}
-          className="border-border/30 bg-slate-800 backdrop-blur-sm"
+          className="border-border/30 bg-slate-800/90 backdrop-blur-sm"
         >
           <CardContent className="p-3 flex items-center gap-3">
             <s.icon
