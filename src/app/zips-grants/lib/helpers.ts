@@ -251,3 +251,7 @@ export function totalGrantees(grants: Grant[]) {
     .map((g) => g.grantee)
     .filter((g, i, arr) => arr.indexOf(g) === i);
 }
+
+export function activeGrants(grants: Grant[]) {
+  return grants.filter((g) => g.status === "Open").length;
+}
