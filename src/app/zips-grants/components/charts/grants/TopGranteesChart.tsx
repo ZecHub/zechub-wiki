@@ -46,6 +46,7 @@ export function TopGranteesChart(props: Props) {
               width={110}
             />
             <Tooltip
+              cursor={{ fill: "hsl(215, 20%, 25%)" }}
               contentStyle={{
                 backgroundColor: "hsl(230, 20%, 12%)",
                 border: "1px solid hsl(230, 15%, 20%)",
