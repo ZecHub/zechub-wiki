@@ -21,7 +21,24 @@ do
 
 	echo "$result" > result
 	result=$(cat result | grep "Completed")
-	echo "parallel=$i | $result"
+        error=$(cat result | grep "Error")
+	echo "parallel=$i | batch-size=80 | $result | $error"
+done
+
+max=600
+
+for (( i=40; i <= max; i+=40 )) 
+do
+	if [[ "$skipfees" == "true" ]]; then 
+		result=$(./target/release/zcash-shielded-currents --out ./results --from 3248829 --to 3256893 --parallel 32 --batch-size $i --skip-fees)
+	else
+		result=$(./target/release/zcash-shielded-currents --out ./results --from 3248829 --to 3256893 --parallel 32 --batch-size $i)
+	fi
+
+	echo "$result" > result
+	result=$(cat result | grep "Completed")
+	error=$(cat result | grep "Error")
+	echo "parallel= 32 | batch-size=$i | $result | $error"
 done
 
 rm result
