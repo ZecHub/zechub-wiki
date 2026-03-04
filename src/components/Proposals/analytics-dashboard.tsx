@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { DaoProps } from "@/lib/chart/types";
+import type { FlatProposal } from "@/components/Proposals/proposals-list-client";
 import {
   AreaChart,
   Area,
@@ -27,7 +27,7 @@ const COLORS = {
 };
 
 interface AnalyticsDashboardProps {
-  proposals: DaoProps[];
+  proposals: FlatProposal[];
 }
 
 function formatMonth(dateStr: string) {
@@ -124,8 +124,6 @@ export const MetricCardSkeleton = () => (
 export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
   const [activeChart, setActiveChart] = useState<ChartTab>("Submissions");
 
-  const [loading, setLoading] = useState(false);
-
   const sorted = useMemo(
     () =>
       [...proposals].sort(
@@ -152,14 +150,12 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
 
   const approvalData = useMemo(() => {
     const byMonth = new Map<string, { totalApproval: number; count: number }>();
-
     sorted
       .filter(
         (p) =>
-          p.proposal.votes &&
-          p.proposal.votes.yes !== undefined &&
-          p.proposal.votes.no !== undefined &&
-          p.proposal.votes.abstain !== undefined,
+          p.proposal.votes?.yes !== undefined &&
+          p.proposal.votes?.no !== undefined &&
+          p.proposal.votes?.abstain !== undefined,
       )
       .forEach((p) => {
         const yes = parseInt(p.proposal.votes.yes, 10);
@@ -167,7 +163,6 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
         const abstain = parseInt(p.proposal.votes.abstain, 10);
         const total = yes + no + abstain;
         const approval = total > 0 ? (yes / total) * 100 : 0;
-
         const key = formatMonth(p.createdAt);
         const existing = byMonth.get(key) ?? { totalApproval: 0, count: 0 };
         byMonth.set(key, {
@@ -175,7 +170,6 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
           count: existing.count + 1,
         });
       });
-
     return Array.from(byMonth.entries()).map(
       ([month, { totalApproval, count }]) => ({
         month,
@@ -197,17 +191,14 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
     }));
   }, [sorted]);
 
-  // Voter turnout grouped by month — average turnout % across all proposals in that month
   const turnoutData = useMemo(() => {
     const byMonth = new Map<string, { totalTurnout: number; count: number }>();
-
     sorted
       .filter(
         (p) =>
-          p.proposal.votes &&
-          p.proposal.votes.yes !== undefined &&
-          p.proposal.votes.no !== undefined &&
-          p.proposal.votes.abstain !== undefined,
+          p.proposal.votes?.yes !== undefined &&
+          p.proposal.votes?.no !== undefined &&
+          p.proposal.votes?.abstain !== undefined,
       )
       .forEach((p) => {
         const yes = parseInt(p.proposal.votes.yes, 10);
@@ -216,7 +207,6 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
         const totalPower = parseInt(p.proposal.total_power, 10);
         const turnout =
           totalPower > 0 ? ((yes + no + abstain) / totalPower) * 100 : 0;
-
         const key = formatMonth(p.createdAt);
         const existing = byMonth.get(key) ?? { totalTurnout: 0, count: 0 };
         byMonth.set(key, {
@@ -224,7 +214,6 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
           count: existing.count + 1,
         });
       });
-
     return Array.from(byMonth.entries()).map(
       ([month, { totalTurnout, count }]) => ({
         month,
@@ -235,17 +224,12 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
 
   const powerData = useMemo(() => {
     const byMonth = new Map<string, number>();
-
     sorted.forEach((p) => {
       const key = formatMonth(p.createdAt);
       const totalPower = parseInt(p.proposal.total_power, 10);
-
-      // Convert total power to voting power percentage
       const votingPower = totalPower > 0 ? 100 / totalPower : 0;
-
       byMonth.set(key, Math.max(byMonth.get(key) ?? 0, votingPower));
     });
-
     return Array.from(byMonth.entries()).map(([month, power]) => ({
       month,
       power,
@@ -288,22 +272,16 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
       : "—";
 
     return [
-      {
-        label: "Total Proposals",
-        value: totalProposals,
-        accent: COLORS.primary,
-      },
-      { label: "Unique Proposers", value: uniqueProposers, accent: COLORS.yes },
-      { label: "Executed", value: executed, accent: COLORS.yes },
-      { label: "Passed", value: passed, accent: "#a3e635" },
-      { label: "Rejected", value: rejected, accent: COLORS.no },
-      { label: "Avg Approval", value: avgApproval, accent: COLORS.yes },
-      { label: "Avg Turnout", value: avgTurnout, accent: COLORS.abstain },
-      { label: "Peak Voting Power", value: maxPower, accent: COLORS.primary },
+      { label: "Total Proposals", value: totalProposals },
+      { label: "Unique Proposers", value: uniqueProposers },
+      { label: "Executed", value: executed },
+      { label: "Passed", value: passed },
+      { label: "Rejected", value: rejected },
+      { label: "Avg Approval", value: avgApproval },
+      { label: "Avg Turnout", value: avgTurnout },
+      { label: "Peak Voting Power", value: maxPower },
     ];
   }, [proposals, approvalData, turnoutData, powerData]);
-
-  // ── per-tab meta ──────────────────────────────────────────────────────────
 
   const chartMeta: Record<ChartTab, { title: string; subtitle: string }> = {
     Submissions: {
@@ -312,7 +290,7 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
     },
     Members: {
       title: "DAO Members Over Time",
-      subtitle: "Unique proposers accumulated by month",
+      subtitle: "Peak total power recorded per month",
     },
     "Approval Rate": {
       title: "Approval Rate",
@@ -330,25 +308,20 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
 
   return (
     <div className="space-y-4">
-      {/* ── Metrics grid ── */}
+      {/* Metrics grid */}
       <div className="my-12">
         <h2 className="font-bold text-xl text-slate-700 dark:text-slate-100">
           Proposals Metrics
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
-          {loading
-            ? metrics.map(({ label, value }) => (
-                <MetricCardSkeleton key={label} />
-              ))
-            : metrics.map(({ label, value }) => (
-                <MetricCard label={label} value={value} key={label} />
-              ))}
+          {metrics.map(({ label, value }) => (
+            <MetricCard label={label} value={value} key={label} />
+          ))}
         </div>
       </div>
 
-      {/* ── Tabbed chart panel ── */}
+      {/* Tabbed chart panel */}
       <div className="rounded-lg border border-border bg-card overflow-hidden">
-        {/* Tab bar */}
         <div className="flex items-center border-b border-border overflow-y-hidden">
           {CHART_TABS.map((tab) => (
             <button
@@ -366,7 +339,6 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
           ))}
         </div>
 
-        {/* Chart header */}
         <div className="px-5 pt-5 pb-2">
           <h3 className="text-lg font-semibold text-card-foreground">
             {chartMeta[activeChart].title}
@@ -376,7 +348,6 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
           </p>
         </div>
 
-        {/* Chart body — full-width, tall */}
         <div className="w-full px-2 pb-6">
           {activeChart === "Submissions" && (
             <ResponsiveContainer width="100%" height={460}>

@@ -405,3 +405,7 @@ export function formatNumberShort(num: number): string {
 
   return `${sign}${absNum.toLocaleString()}`;
 }
+
+export function ipfsToHttp(ipfsUrl: string) {
+  return ipfsUrl.replace("ipfs://", "https://ipfs.daodao.zone/ipfs/");
+}
