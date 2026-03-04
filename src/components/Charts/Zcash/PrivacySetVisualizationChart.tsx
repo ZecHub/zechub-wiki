@@ -86,8 +86,8 @@ function PrivacySetVisualizationChart({
     v >= 1e6
       ? `${(v / 1e6).toFixed(1)}M`
       : v >= 1e3
-      ? `${(v / 1e3).toFixed(1)}k`
-      : `${v}`;
+        ? `${(v / 1e3).toFixed(1)}k`
+        : `${v}`;
 
   const saplingData = getCumulative("sapling");
   const orchardData = getCumulative("orchard");
@@ -115,7 +115,7 @@ function PrivacySetVisualizationChart({
     data: [string, number][],
     cx: number,
     color: string,
-    step: number
+    step: number,
   ) =>
     data.map(([year, value], index) => {
       const id = `${pool}-${year}`;
@@ -220,16 +220,30 @@ function PrivacySetVisualizationChart({
               }}
             />
             <Tooltip
-              formatter={(value) => [
-                value != null ? formatVal(Number(value)) : "",
-                "",
-              ]}
-              contentStyle={{
-                backgroundColor: "rgba(255, 255, 255, 0.95)",
-                border: "1px solid #e2e8f0",
-                borderRadius: "8px",
+              content={({ active, payload, label }) => {
+                if (!active || !payload?.length) return null;
+
+                const { year } = payload[0].payload;
+
+                return (
+                  <div className="rounded-md px-3 py-2 shadow-md border text-sm bg-slate-800 border-slate-700 text-slate-100">
+                    <p className="font-semibold">{year}</p>
+
+                    {payload.map((entry, idx) => (
+                      <div
+                        key={idx}
+                        className="flex justify-between gap-4"
+                        style={{ color: entry.color }}
+                      >
+                        <span>{entry.name}</span>
+                        <span className="text-slate-50">
+                          {formatVal(entry.value)} ZEC
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                );
               }}
-              labelStyle={{ fontWeight: "bold" }}
             />
             <Legend wrapperStyle={{ paddingTop: "20px" }} iconType="line" />
             <Line
@@ -272,14 +286,14 @@ function PrivacySetVisualizationChart({
                     saplingData,
                     0.3 * 1000,
                     "hsl(var(--chart-2))",
-                    sapStep
+                    sapStep,
                   )}
                   {renderCluster(
                     "orchard",
                     orchardData,
                     0.7 * 1000,
                     "hsl(var(--chart-3))",
-                    orcStep
+                    orcStep,
                   )}
                 </svg>
               </div>

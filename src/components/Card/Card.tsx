@@ -31,7 +31,7 @@ export const Card = (props: CardsProps) => (
           height={props.thumbnailImageWidth || 500}
           src={props.thumbnailImage}
           alt={props.title}
-          className="w-full h-48 object-cover mb-4 rounded-t bg-slate-50"
+          className="w-full h-48 object-contain mb- p-4 rounded-t bg-slate-50"
         />
       </Link>
 
@@ -55,11 +55,7 @@ export const Card = (props: CardsProps) => (
     </div>
 
     <div className="flex justify-between p-4">
-      <Link
-        href={props.url}
-        target="_blank"
-        className="inline-flex btn-brand"
-      >
+      <Link href={props.url} target="_blank" className="inline-flex btn-brand">
         {props.ctaLabel}
       </Link>
       {props.manual && (

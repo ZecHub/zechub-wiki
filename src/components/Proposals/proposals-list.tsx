@@ -1,14 +1,13 @@
 "use client";
 
 import { ProposalsListClient } from "@/components/Proposals/proposals-list-client";
-import { DaoProps } from "@/lib/chart/types";
-import { getDaoProps } from "@/lib/chart/helpers";
+import type { DaoJsonSchema } from "@/components/Proposals/proposals-list-client";
 import { useState, useEffect } from "react";
 import { DATA_URL } from "@/lib/chart/data-url";
 import "./index.css";
 
 export function ProposalsList() {
-  const [daoProps, setDaoProps] = useState<DaoProps[]>([]);
+  const [daoData, setDaoData] = useState<DaoJsonSchema | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -16,17 +15,16 @@ export function ProposalsList() {
 
     const fetchAllData = async () => {
       setLoading(true);
-
       try {
-        const [blockFeesData] = await Promise.all([
-          getDaoProps(DATA_URL.daoProps, controller.signal),
-        ]);
-
-        if (blockFeesData) {
-          setDaoProps(blockFeesData);
-        }
+        const res = await fetch(DATA_URL.daoProps, {
+          signal: controller.signal,
+        });
+        const json: DaoJsonSchema = await res.json();
+        setDaoData(json);
       } catch (err) {
-        console.error("Error fetching dashboard data:", err);
+        if ((err as Error).name !== "AbortError") {
+          console.error("Error fetching DAO data:", err);
+        }
       } finally {
         setLoading(false);
       }
@@ -39,5 +37,7 @@ export function ProposalsList() {
     };
   }, []);
 
-  return <ProposalsListClient proposals={daoProps} />;
+  if (loading || !daoData) return null;
+
+  return <ProposalsListClient proposals={daoData} />;
 }
