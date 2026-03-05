@@ -30,7 +30,7 @@ struct Args {
     rpc: String,
     #[arg(long)]
     cookie_file: Option<String>,
-    #[arg(long, default_value = ".")]
+    #[arg(long, default_value = "./results")]
     out: String,
     #[arg(long, default_value_t = 32)]
     parallel: usize,
@@ -277,6 +277,7 @@ async fn process_block(
                 println!("Block {}: {} transactions", height, txs.len());
             }
 
+            // === Per-block batch pre-fetch for missing prevouts ===
             if calculate_fees {
                 let mut needed = HashSet::new();
                 for tx_json in txs {
@@ -305,12 +306,14 @@ async fn process_block(
                 }
             }
 
+            // === Main transaction processing loop ===
             for tx_json in txs {
                 match serde_json::from_value::<RawTx>(tx_json.clone()) {
                     Ok(mut tx) => {
                         if tx.height.is_none() { tx.height = Some(block_height); }
                         if tx.time.is_none() { tx.time = Some(block_time); }
 
+                        // Store this tx's own vouts in cache
                         let vout_values: Vec<i64> = tx.vout.iter().map(|v| v.value_zat).collect();
                         {
                             let mut cache = rpc.prevout_cache.lock().unwrap();
@@ -319,6 +322,7 @@ async fn process_block(
 
                         let (pool_type, is_cb, t_zat, s_zat, o_zat, transfers, vout_count, vshielded_count, orchard_count) = detect_pools_and_values(&tx);
 
+                        // ==================== CORRECT FEE CALCULATION (matches zcash-block-fees) ====================
                         let fee_zat = if !calculate_fees || is_cb {
                             0
                         } else {
@@ -334,8 +338,21 @@ async fn process_block(
                                 }
                             }
                             let output_sum = tx.vout.iter().map(|v| v.value_zat).sum::<i64>();
-                            input_sum - output_sum - s_zat - o_zat
+
+                            // Sprout vjoinsplit handling (vpub_old / vpub_new) - this was the missing piece
+                            let mut vpub_old = 0i64;
+                            let mut vpub_new = 0i64;
+                            if let Some(js) = &tx.v_joinsplit {
+                                for j in js {
+                                    vpub_old += j["vpub_oldZat"].as_i64().unwrap_or(0);
+                                    vpub_new += j["vpub_newZat"].as_i64().unwrap_or(0);
+                                }
+                            }
+
+                            // Official Zcash fee formula
+                            input_sum - output_sum - vpub_old + vpub_new + s_zat + o_zat
                         };
+                        // ============================================================================================
 
                         res.push(TxMetrics {
                             block: tx.height.unwrap_or(block_height),
@@ -516,7 +533,7 @@ async fn write_summary_md(metrics: &[TxMetrics], start: u32, end: u32, out: &Pat
     let tso_mixed = metrics.iter().filter(|m| m.pool_type == "Transparent,Sapling,Orchard").count();
     let other_mixed = mixed_total - ts_mixed - to_mixed - so_mixed - tso_mixed;
 
-    println!("Mixed Transaction Breakdown:");
+    println!("\nMixed Transaction Breakdown:");
     println!("  Transparent + Sapling          : {}", ts_mixed);
     println!("  Transparent + Orchard          : {}", to_mixed);
     println!("  Sapling + Orchard              : {}", so_mixed);
@@ -543,7 +560,7 @@ async fn write_summary_md(metrics: &[TxMetrics], start: u32, end: u32, out: &Pat
     // ============================================================
 
     if sum == total_txs {
-        println!("All transactions perfectly categorized!");
+        println!("\nAll transactions perfectly categorized!");
     } else {
         println!("WARNING: Categories do not add up (difference = {})", (sum as i64 - total_txs as i64));
     }
@@ -602,8 +619,7 @@ async fn write_summary_md(metrics: &[TxMetrics], start: u32, end: u32, out: &Pat
          Sapling + Orchard              : {}\n\
          Transparent + Sapling + Orchard: {}\n\
          Other mixed (incl Sprout)      : {}\n\
-         Total Mixed                    : {}\n",
-        ts_mixed, to_mixed, so_mixed, tso_mixed, other_mixed, mixed_total
+         Total Mixed                    : {}\n", ts_mixed, to_mixed, so_mixed, tso_mixed, other_mixed, mixed_total
     );
 
     let percentage_matrix = format!(
