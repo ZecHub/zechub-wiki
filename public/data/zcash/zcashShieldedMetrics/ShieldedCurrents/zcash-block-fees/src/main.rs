@@ -55,6 +55,7 @@ struct BlockEntry {
     date: String,
     block: u32,
     fees: f64,
+    tx_count: u32,
 }
 
 fn main() -> Result<()> {
@@ -86,8 +87,9 @@ fn main() -> Result<()> {
 
     let elapsed = start.elapsed().as_secs_f64();
     let total_zats: i64 = stats.iter().map(|s| s.total_fee_zats).sum();
+    let total_txs: u32 = stats.iter().map(|s| s.tx_count).sum();   // ← NEW
 
-    print_summary(stats.len(), total_zats, elapsed);
+    print_summary(stats.len(), total_zats, total_txs, elapsed);   // ← updated
 
     let total_fallbacks: usize = stats.iter().map(|s| s.fallback_misses).sum();
     if total_fallbacks > 0 {
@@ -120,6 +122,7 @@ struct BlockStats {
     total_fee_zats: i64,
     timestamp: i64,
     fallback_misses: usize,
+    tx_count: u32,
 }
 
 fn determine_blocks(args: &Args) -> Result<Vec<u32>> {
@@ -171,9 +174,9 @@ fn process_blocks_safe(
         .with_max_len(3)
         .map(|&height| {
             match calculate_block_fees(client, url, user, pass, height, debug) {
-                Ok((total, timestamp, fallbacks)) => {
+                Ok((total, timestamp, fallbacks, tx_count)) => {
                     if let Some(pb) = &pb { pb.inc(1); }
-                    (Some(BlockStats { total_fee_zats: total, timestamp, fallback_misses: fallbacks }), height)
+                    (Some(BlockStats { total_fee_zats: total, timestamp, fallback_misses: fallbacks, tx_count }), height)
                 }
                 Err(e) => {
                     eprintln!("Failed to process block {}: {}", height, e);
@@ -201,13 +204,14 @@ fn calculate_block_fees(
     pass: &str,
     height: u32,
     debug: bool,
-) -> Result<(i64, i64, usize)> {
+) -> Result<(i64, i64, usize, u32)> {
     let hash = rpc_call(client, url, user, pass, "getblockhash", vec![json!(height)])?;
     let hash_str = hash.as_str().context("no hash")?.to_string();
     let block = rpc_call(client, url, user, pass, "getblock", vec![json!(hash_str), json!(2)])?;
 
     let timestamp = block["time"].as_i64().unwrap_or(0);
     let txs = block["tx"].as_array().context("no tx array")?;
+    let tx_count = txs.len() as u32;
 
     let mut local_cache: LruCache<String, Value> = LruCache::new(NonZeroUsize::new(300).unwrap());
 
@@ -232,25 +236,20 @@ fn calculate_block_fees(
     }
 
     if !missing_txids.is_empty() {
-    if missing_txids.len() > 5000 {
-        println!("\n⚠️  Very dense block {} ({} prev-txs) — using safe fallback mode (on-demand fetching)", height, missing_txids.len());
-        println!("Block {} has {} transactions but {} unique prev-txids", height, txs.len(), missing_txids.len());
-        // ← REAL BEHAVIOR CHANGE: skip prefetch entirely
-        // calculate_fee_from_tx will fetch each prev-tx on-demand (safe, low memory)
-    } 
-    else {
-        if missing_txids.len() > 400 {
-            println!("\nℹ️ Dense block {} — fetching {} prev-txs sequentially (safe per-block cache)", height, missing_txids.len());
-            println!("Block {} has {} transactions but {} unique prev-txids", height, txs.len(), missing_txids.len());
-        }
-        let  txids_vec: Vec<String> = missing_txids.into_iter().collect();
-        for txid in txids_vec {
-            if let Ok(value) = rpc_call(client, url, user, pass, "getrawtransaction", vec![json!(&txid), json!(1)]) {
-                local_cache.put(txid, value);
+        if missing_txids.len() > 5000 {
+            println!("⚠️ Very dense block {} ({} transactions but {} unique prev-txids) — using safe fallback mode (on-demand fetching)", height, tx_count, missing_txids.len());
+        } else {
+            if missing_txids.len() > 400 {
+                println!("ℹ️ Dense block {} ({} transactions but {} unique prev-txids) — fetching sequentially", height, tx_count, missing_txids.len());
+            }
+            let txids_vec: Vec<String> = missing_txids.into_iter().collect();
+            for txid in txids_vec {
+                if let Ok(value) = rpc_call(client, url, user, pass, "getrawtransaction", vec![json!(&txid), json!(1)]) {
+                    local_cache.put(txid, value);
+                }
             }
         }
     }
-}
 
     let mut total = 0i64;
     let mut total_fallbacks = 0usize;
@@ -267,7 +266,7 @@ fn calculate_block_fees(
         total_fallbacks += misses;
     }
 
-    Ok((total, timestamp, total_fallbacks))
+    Ok((total, timestamp, total_fallbacks, tx_count))
 }
 
 fn calculate_fee_from_tx(
@@ -276,7 +275,7 @@ fn calculate_fee_from_tx(
     user: &str,
     pass: &str,
     tx: &Value,
-    local_cache: &mut LruCache<String, Value>,   // ← now mutable
+    local_cache: &mut LruCache<String, Value>,
     debug: bool,
     tx_index: usize,
 ) -> Result<(i64, usize)> {
@@ -335,7 +334,7 @@ fn calculate_fee_from_tx(
 }
 
 // ────────────────────────────────────────────────
-// Helper functions
+// Helper functions (unchanged)
 // ────────────────────────────────────────────────
 
 fn get_credentials(args: &Args) -> Result<(String, String)> {
@@ -411,7 +410,12 @@ fn write_pretty_json(path: &PathBuf, blocks: &[u32], stats: &[BlockStats], date_
                 .map(|dt| dt.format(date_format).to_string())
                 .unwrap_or_else(|| "unknown".to_string())
         } else { "unknown".to_string() };
-        data.push(BlockEntry { date: date_str, block: b, fees: s.total_fee_zats as f64 / 1e8 });
+        data.push(BlockEntry { 
+            date: date_str, 
+            block: b, 
+            fees: s.total_fee_zats as f64 / 1e8,
+            tx_count: s.tx_count 
+        });
     }
     let pretty = serde_json::to_string_pretty(&data)?;
     fs::write(path, pretty)?;
@@ -445,10 +449,12 @@ fn generate_graph(blocks: &[u32], stats: &[BlockStats], path: &PathBuf, width: u
     Ok(())
 }
 
-fn print_summary(processed: usize, total_zats: i64, elapsed: f64) {
+fn print_summary(processed: usize, total_zats: i64, total_txs: u32, elapsed: f64) {
     println!("\n=== BLOCK FEES SUMMARY ===");
-    println!("Blocks processed : {}", processed);
-    println!("Total fees       : {} Zats ({:.4} ZEC)", total_zats, total_zats as f64 / 1e8);
-    println!("Time             : {:.2}s", elapsed);
-    println!("Avg fee per block: {:.0} Zats", if processed > 0 { total_zats as f64 / processed as f64 } else { 0.0 });
+    println!("Blocks processed   : {}", processed);
+    println!("Total transactions : {}", total_txs);
+    println!("Total fees         : {} Zats ({:.4} ZEC)", total_zats, total_zats as f64 / 1e8);
+    println!("Time               : {:.2}s", elapsed);
+    println!("Avg fee per block  : {:.0} Zats", if processed > 0 { total_zats as f64 / processed as f64 } else { 0.0 });
+    println!("Avg txs per block  : {:.1}", if processed > 0 { total_txs as f64 / processed as f64 } else { 0.0 });
 }
