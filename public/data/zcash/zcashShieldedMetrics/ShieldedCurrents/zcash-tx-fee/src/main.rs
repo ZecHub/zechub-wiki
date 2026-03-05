@@ -4,7 +4,6 @@ use dashmap::DashMap;
 use futures::StreamExt;
 use reqwest::Client;
 use serde_json::{json, Value};
-use std::env;
 use std::fs;
 use std::path::Path;
 use std::sync::Arc;
@@ -16,35 +15,27 @@ use tokio::sync::Semaphore;
 struct Args {
     /// Single txid (hex)
     txid: Option<String>,
-
     /// File with one txid per line
     #[arg(short, long, value_name = "FILE")]
     file: Option<std::path::PathBuf>,
-
     /// RPC URL
     #[arg(long, default_value = "http://127.0.0.1:8232")]
     rpc_url: String,
-
     /// Classic zcashd user
     #[arg(long)]
     user: Option<String>,
-
     /// Classic zcashd pass
     #[arg(long)]
     pass: Option<String>,
-
     /// Explicit cookie file
     #[arg(long, value_name = "FILE")]
     cookie_file: Option<std::path::PathBuf>,
-
     /// Max concurrent RPC calls
     #[arg(long, default_value_t = 24)]
     concurrency: usize,
-
     /// Save results to CSV
     #[arg(short, long)]
     output: Option<std::path::PathBuf>,
-
     /// Quiet mode – no individual fee lines (summary + CSV only)
     #[arg(short = 'q', long)]
     quiet: bool,
@@ -78,7 +69,7 @@ async fn main() -> Result<()> {
         if stats.processed > 0 {
             println!("Avg fee   : {:.0} Zats/tx", stats.total_fee as f64 / stats.processed as f64);
         }
-        println!("Time      : {:.2}s  (~{:.0} tx/s)", elapsed, stats.processed as f64 / elapsed);
+        println!("Time      : {:.2}s (~{:.0} tx/s)", elapsed, stats.processed as f64 / elapsed);
     } else if let Some(txid) = &args.txid {
         let fee = calculate_fee(&client, &args.rpc_url, &user, &pass, txid).await?;
         if !args.quiet {
@@ -114,7 +105,11 @@ async fn process_file(
     let cache: Arc<DashMap<String, Value>> = Arc::new(DashMap::new());
     let semaphore = Arc::new(Semaphore::new(concurrency));
 
-    let mut stats = Stats { processed: 0, skipped: 0, total_fee: 0 };
+    let mut stats = Stats {
+        processed: 0,
+        skipped: 0,
+        total_fee: 0,
+    };
 
     let mut csv_writer = output_path.map(|p| {
         let mut w = csv::Writer::from_path(p).expect("failed to create CSV");
@@ -161,13 +156,12 @@ async fn process_file(
             }
             stats.processed += 1;
             stats.total_fee += fee;
-
             if let Some(wtr) = &mut csv_writer {
                 wtr.write_record(&[&txid, &fee.to_string(), &format!("{:.8}", fee as f64 / 1e8)])
                     .unwrap();
             }
         } else if let Some(e) = err_msg {
-            eprintln!("  {}", e);
+            eprintln!(" {}", e);
             stats.skipped += 1;
         }
     }
@@ -175,10 +169,9 @@ async fn process_file(
     if let Some(mut w) = csv_writer {
         w.flush().unwrap();
     }
+
     Ok(stats)
 }
-
-// (clean_txid, print_fee, get_credentials, read_cookie_file, rpc_call, get_raw_tx, calculate_fee_with_cache, calculate_fee stay exactly the same as previous version)
 
 fn clean_txid(raw: &str) -> Result<String> {
     let cleaned: String = raw
@@ -189,6 +182,7 @@ fn clean_txid(raw: &str) -> Result<String> {
         .chars()
         .filter(|c| c.is_ascii_hexdigit())
         .collect();
+
     if cleaned.len() != 64 {
         anyhow::bail!("not 64 hex chars");
     }
@@ -197,22 +191,25 @@ fn clean_txid(raw: &str) -> Result<String> {
 
 fn print_fee(txid: &str, fee_zats: i64) {
     let short = format!("{}...{}", &txid[0..8], &txid[56..64]);
-    println!("{}  {:>12} Zats  ({:.8} ZEC)", short, fee_zats, fee_zats as f64 / 1e8);
+    println!("{} {:>12} Zats ({:.8} ZEC)", short, fee_zats, fee_zats as f64 / 1e8);
 }
 
 fn get_credentials(args: &Args) -> Result<(String, String)> {
     if let (Some(u), Some(p)) = (&args.user, &args.pass) {
         return Ok((u.clone(), p.clone()));
     }
+
     if let Some(p) = &args.cookie_file {
         return read_cookie_file(p);
     }
+
     let home = dirs::home_dir().context("no home dir")?;
     let candidates = vec![
         home.join(".cache").join("zebra").join(".cookie"),
         home.join(".zcash").join(".cookie"),
         std::path::PathBuf::from(".cookie"),
     ];
+
     for p in candidates {
         if p.exists() {
             if let Ok(creds) = read_cookie_file(&p) {
@@ -264,14 +261,20 @@ async fn rpc_call(
             anyhow::bail!("RPC error from node: {}", err);
         }
     }
-
     Ok(resp["result"].clone())
 }
 
-async fn get_raw_tx(client: &Client, url: &str, user: &str, pass: &str, txid: &str) -> Result<Value> {
+async fn get_raw_tx(
+    client: &Client,
+    url: &str,
+    user: &str,
+    pass: &str,
+    txid: &str,
+) -> Result<Value> {
     rpc_call(client, url, user, pass, "getrawtransaction", vec![json!(txid), json!(1)]).await
 }
 
+// Updated fee calculation - now matches the more accurate logic from zcash-block-fees
 async fn calculate_fee_with_cache(
     client: &Client,
     url: &str,
@@ -282,6 +285,7 @@ async fn calculate_fee_with_cache(
 ) -> Result<i64> {
     let tx = get_raw_tx(client, url, user, pass, txid).await?;
 
+    // Skip coinbase transactions
     if tx["vin"]
         .as_array()
         .and_then(|v| v.first())
@@ -334,7 +338,10 @@ async fn calculate_fee_with_cache(
         .and_then(|o| o["valueBalanceZat"].as_i64())
         .unwrap_or(0);
 
-    Ok(vin_sum + vpub_old + sapling + orchard - vout_sum - vpub_new)
+    // Accurate fee formula from zcash-block-fees
+    let fee = vin_sum - vout_sum - vpub_old + vpub_new + sapling + orchard;
+
+    Ok(fee)
 }
 
 async fn calculate_fee(
