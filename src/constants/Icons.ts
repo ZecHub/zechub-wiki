@@ -1,139 +1,139 @@
+import { IconType } from "react-icons";
 import {
-  SiZcash as Zcash,
-  SiWikipedia as Wikipedia,
-  SiYoutube as Youtube,
-  SiXdadevelopers as Dadeveloper,
-  SiRaspberrypi as RaspBerry,
-  SiApplepodcasts as ApplePodcasts,
-  SiTorbrowser as TorBrowser,
-  SiOpenvpn as Openvpn,
-  SiZebratechnologies as Zebratechnologies,
-  SiLetsencrypt as Letsencrypt,
-  SiBrave,
-  SiKeystone,
-} from "react-icons/si";
+  BiCheckShield as CheckShield,
+  BiLock as Lock,
+  BiLogoGraphql as LogoGraph,
+} from "react-icons/bi";
 import {
-  PiShootingStarThin as ShootingStar,
-  PiCircuitryLight as Circuitry,
-  PiNumberCircleZeroThin as NumberCircle,
-  PiSnowflakeThin as SnowFlake,
-  PiLinkSimpleBold as LinkSimpleBold,
-  PiPresentationChartLight as PresentationChar,
-  PiSpotifyLogo as Spotify,
-  PiComputerTower as ComputerTower,
-  PiListMagnifyingGlassFill as ListMagnifyingGlassFill,
-} from "react-icons/pi";
-import { TfiServer as Tfi } from "react-icons/tfi";
+  BsFillArrowUpRightCircleFill as ArrowUp,
+  BsBrowserFirefox as Browserfirefox,
+  BsNewspaper as Newspaper,
+  BsPlay as Play,
+  BsQrCode as QrCode,
+  BsShieldShaded as ShieldShaded,
+} from "react-icons/bs";
+import { CiStreamOn as StreamOn } from "react-icons/ci";
 import {
-  RiSecurePaymentLine as SecurePayment,
-  RiMailSendFill as MailSend,
-  RiExchangeFundsFill as ExchangeFunds,
-  RiLiveFill as Live,
-  RiNftFill as NftFill,
-  RiMessengerLine as MessengerLine,
-  RiArticleLine,
-  RiSecurePaymentLine,
-  RiInstallLine,
-  RiFunctionLine,
-  RiExchangeFundsLine,
-  RiBitCoinLine,
-} from "react-icons/ri";
-import {
-  GrResources as Resources,
-  GrCircleInformation as CircleInfo,
-  GrGroup as Group,
-  GrNodes as Nodes,
-  GrStakeholder as Stakeholder,
-} from "react-icons/gr";
-import {
-  TbBinaryTree2 as BinaryTree,
-  TbTopologyRing as TopologyRing,
-  TbCurrencyDollarZimbabwean as DollarZimbabwean,
-  Tb2Fa as Fa2,
-  TbHexagonLetterN as HexagonLetterN,
-  TbHexagonLetterZ as HexagonLetterZ,
-  TbDeviceMobileShare,
-  TbSquareRoundedLetterY,
-  TbCircleLetterZ,
-} from "react-icons/tb";
-import { SlGraph as Graph } from "react-icons/sl";
-import {
-  FaWallet as Wallet,
-  FaFaucet as Faucet,
-  FaListAlt as ListAlt,
   FaEthereum as Ethereum,
   FaQuestion,
   FaSyncAlt,
+  FaFaucet as Faucet,
+  FaLifeRing as LifeRing,
+  FaListAlt as ListAlt,
+  FaWallet as Wallet,
 } from "react-icons/fa";
+import {
+  FaLaptopCode,
+  FaMagnifyingGlassChart as MagnifyingGlassChart,
+} from "react-icons/fa6";
 import {
   FcCurrencyExchange as CurrencyExchange,
   FcGallery,
   FcProcess,
   FcGlobe as Globe,
 } from "react-icons/fc";
+import {
+  GiBorderedShield as BordererShield,
+  GiCableStayedBridge as CableStayedBridge,
+  GiCheckedShield as CheckedShield,
+  GiMeshBall,
+  GiSoapExperiment,
+  GiMayanPyramid as MayanPyramid,
+  GiSpellBook as SpellBook,
+} from "react-icons/gi";
 import { GoSync as Go } from "react-icons/go";
 import {
-  BsFillArrowUpRightCircleFill as ArrowUp,
-  BsShieldShaded as ShieldShaded,
-  BsQrCode as QrCode,
-  BsPlay as Play,
-  BsNewspaper as Newspaper,
-  BsBrowserFirefox as Browserfirefox,
-} from "react-icons/bs";
-import {
-  MdOutlinePrivacyTip as PrivacyTip,
-  MdOutlinePointOfSale as PointOfSale,
-  MdRadar as Radar,
-  MdTipsAndUpdates as TipsAndUpdates,
-  MdSettings as Settings,
-  MdOutlineEnhancedEncryption as OutlineEnchanceEncryption,
-  MdOutlineLiveHelp as LiveHelp,
-  MdOutlinePodcasts,
-  MdFoundation,
-  MdVpnLock,
-} from "react-icons/md";
-import {
-  LiaServerSolid as ServerSolid,
-  LiaLinkSolid as LinkSolid,
-  LiaSignatureSolid,
-} from "react-icons/lia";
-import {
-  BiLogoGraphql as LogoGraph,
-  BiLock as Lock,
-  BiCheckShield as CheckShield,
-} from "react-icons/bi";
+  GrBlog as Blog,
+  GrCircleInformation as CircleInfo,
+  GrDocumentZip,
+  GrGroup as Group,
+  GrNodes as Nodes,
+  GrResources as Resources,
+  GrStakeholder as Stakeholder,
+} from "react-icons/gr";
+import { HiOutlineBuildingLibrary } from "react-icons/hi2";
 import {
   ImParagraphLeft as Paragraph,
   ImPodcast as Podcast,
 } from "react-icons/im";
-import {
-  GiCheckedShield as CheckedShield,
-  GiBorderedShield as BordererShield,
-  GiSpellBook as SpellBook,
-  GiCableStayedBridge as CableStayedBridge,
-  GiMayanPyramid as MayanPyramid,
-  GiMeshBall,
-  GiSoapExperiment,
-} from "react-icons/gi";
-import { LuFileKey as FileKey, LuTrees as Trees } from "react-icons/lu";
+import { IoIosMicrophone as IosMicrophone } from "react-icons/io";
 import {
   IoBuildOutline as BuildOutline,
   IoCloudUploadOutline,
   IoConstructOutline,
 } from "react-icons/io5";
-import { IoIosMicrophone as IosMicrophone } from "react-icons/io";
-import { GrBlog as Blog } from "react-icons/gr";
 import {
-  FaLaptopCode,
-  FaMagnifyingGlassChart as MagnifyingGlassChart,
-} from "react-icons/fa6";
-import { CiStreamOn as StreamOn } from "react-icons/ci";
-import { HiOutlineBuildingLibrary } from "react-icons/hi2";
-import { LiaHorseHeadSolid } from "react-icons/lia";
-import { FaLifeRing as LifeRing } from "react-icons/fa";
-import { GrDocumentZip } from "react-icons/gr";
-import { MdOutlinePayments } from "react-icons/md";
-import { IconType } from "react-icons";
+  LiaHorseHeadSolid,
+  LiaSignatureSolid,
+  LiaLinkSolid as LinkSolid,
+  LiaServerSolid as ServerSolid,
+} from "react-icons/lia";
+import { LuFileKey as FileKey, LuTrees as Trees } from "react-icons/lu";
+import {
+  MdOutlineLiveHelp as LiveHelp,
+  MdFoundation,
+  MdOutlinePayments,
+  MdOutlinePodcasts,
+  MdVpnLock,
+  MdOutlineEnhancedEncryption as OutlineEnchanceEncryption,
+  MdOutlinePointOfSale as PointOfSale,
+  MdOutlinePrivacyTip as PrivacyTip,
+  MdRadar as Radar,
+  MdSettings as Settings,
+  MdTipsAndUpdates as TipsAndUpdates,
+} from "react-icons/md";
+import {
+  PiCircuitryLight as Circuitry,
+  PiComputerTower as ComputerTower,
+  PiLinkSimpleBold as LinkSimpleBold,
+  PiListMagnifyingGlassFill as ListMagnifyingGlassFill,
+  PiNumberCircleZeroThin as NumberCircle,
+  PiPresentationChartLight as PresentationChar,
+  PiShootingStarThin as ShootingStar,
+  PiSnowflakeThin as SnowFlake,
+  PiSpotifyLogo as Spotify,
+} from "react-icons/pi";
+import {
+  RiExchangeFundsFill as ExchangeFunds,
+  RiLiveFill as Live,
+  RiMailSendFill as MailSend,
+  RiMessengerLine as MessengerLine,
+  RiNftFill as NftFill,
+  RiArticleLine,
+  RiBitCoinLine,
+  RiExchangeFundsLine,
+  RiFunctionLine,
+  RiInstallLine,
+  RiSecurePaymentLine,
+  RiSecurePaymentLine as SecurePayment,
+} from "react-icons/ri";
+import {
+  SiApplepodcasts as ApplePodcasts,
+  SiXdadevelopers as Dadeveloper,
+  SiLetsencrypt as Letsencrypt,
+  SiOpenvpn as Openvpn,
+  SiRaspberrypi as RaspBerry,
+  SiBrave,
+  SiKeystone,
+  SiTorbrowser as TorBrowser,
+  SiWikipedia as Wikipedia,
+  SiYoutube as Youtube,
+  SiZcash as Zcash,
+  SiZebratechnologies as Zebratechnologies,
+} from "react-icons/si";
+import { SlGraph as Graph } from "react-icons/sl";
+import {
+  TbBinaryTree2 as BinaryTree,
+  TbCurrencyDollarZimbabwean as DollarZimbabwean,
+  Tb2Fa as Fa2,
+  TbHexagonLetterN as HexagonLetterN,
+  TbHexagonLetterZ as HexagonLetterZ,
+  TbCircleLetterZ,
+  TbDeviceMobileShare,
+  TbSquareRoundedLetterY,
+  TbTopologyRing as TopologyRing,
+} from "react-icons/tb";
+import { TfiServer as Tfi } from "react-icons/tfi";
 
 interface IconsFor {
   [key: string]: {
@@ -178,7 +178,7 @@ const iconsForMenu: IconsFor = {
     "Payment Request URIs": MdOutlinePayments,
     "Recovering Funds": LifeRing,
     "Custodial Exchanges": ListAlt,
-    "Exchanges": RiExchangeFundsLine,
+    Exchanges: RiExchangeFundsLine,
     "Zcash Wallet Syncing": FaSyncAlt,
   },
   Guides: {
@@ -188,7 +188,7 @@ const iconsForMenu: IconsFor = {
     "Blockchain Explorers": ListMagnifyingGlassFill,
     "Maya Protocol": MayanPyramid,
     "Avalanche RedBridge": CableStayedBridge,
-    "Akash Network": IoCloudUploadOutline,
+    "Akash Network - Zebra": IoCloudUploadOutline,
     "BTCPayServer Plugin": RiBitCoinLine,
     "Full Nodes": ServerSolid,
     "Nym VPN": MdVpnLock,

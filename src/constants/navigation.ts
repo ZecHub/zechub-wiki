@@ -1,20 +1,19 @@
+import { IconType } from "react-icons";
+import { BsPlay, BsDiscord as Discord } from "react-icons/bs";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import {
-  RiTwitterXFill as Twitter,
-  RiGithubFill as Github,
-  RiYoutubeFill as Youtube,
-  RiCommunityLine,
-  RiGovernmentLine,
-} from "react-icons/ri";
-import { BsDisplay, BsPlay, BsServer, BsDiscord as Discord } from "react-icons/bs";
-import {
-  MdForum as Forum,
   MdOutlineOndemandVideo as AudioVideo,
+  MdForum as Forum,
   MdDeveloperMode,
 } from "react-icons/md";
+import {
+  RiGithubFill as Github,
+  RiCommunityLine,
+  RiGovernmentLine,
+  RiTwitterXFill as Twitter,
+  RiYoutubeFill as Youtube,
+} from "react-icons/ri";
 import { SiBrandfolder as BrandIcon, SiHomeassistant } from "react-icons/si";
-import { LiaChalkboardTeacherSolid } from "react-icons/lia";
-import { BsDisplay as Media } from "react-icons/bs";
-import { IconType } from "react-icons";
 
 export type NavigationItem = {
   name: string;
@@ -232,8 +231,8 @@ export const navigations: Array<NavigationItem> = [
         newTab: true,
       },
       {
-        name: "Akash Network",
-        path: "/guides/akash-network",
+        name: "Akash Network - Zebra",
+        path: "/guides/akash-network-zebra",
       },
       {
         name: "Avalanche RedBridge",
@@ -321,7 +320,6 @@ export const navigations: Array<NavigationItem> = [
     path: "/visualizer",
     icon: BsPlay,
   },
-
 ];
 
 export const socialNav = [
@@ -346,5 +344,3 @@ export const socialMedia = [
   { name: "DAO", link: "https://vote.zechub.xyz/" },
   { name: "Store", link: "https://zechub.store/" },
 ];
-
-
