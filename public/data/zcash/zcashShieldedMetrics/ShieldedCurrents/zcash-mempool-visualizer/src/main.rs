@@ -1,7 +1,7 @@
 use anyhow::{bail, Context, Result};
 use clap::Parser;
 use crossterm::{
-    event::{self, Event, KeyCode, KeyModifiers, MouseEventKind},
+    event::{self, Event, KeyCode, KeyModifiers, MouseEventKind, EnableMouseCapture, DisableMouseCapture},
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
     ExecutableCommand,
 };
@@ -11,7 +11,7 @@ use ratatui::{
 };
 use serde::Deserialize;
 use serde_json::{json, Value};
-use std::collections::{BTreeMap, HashMap};
+use std::collections::{BTreeMap, HashMap, HashSet};
 use std::io;
 use std::path::Path;
 use std::sync::Arc;
@@ -121,9 +121,12 @@ async fn main() -> Result<()> {
         auto_detect_cookie()?
     };
 
-    io::stdout().execute(EnterAlternateScreen)?;
+    let mut stdout = io::stdout();
+    stdout.execute(EnterAlternateScreen)?;
+    stdout.execute(EnableMouseCapture)?;
     enable_raw_mode()?;
-    let backend = CrosstermBackend::new(io::stdout());
+
+    let backend = CrosstermBackend::new(stdout);
     let mut terminal = Terminal::new(backend)?;
     terminal.clear()?;
 
@@ -132,6 +135,7 @@ async fn main() -> Result<()> {
 
     let mut historical_counts: BTreeMap<String, u32> = BTreeMap::new();
     let mut total_tx_seen: u32 = 0;
+    let mut seen_txids: HashSet<String> = HashSet::new();
 
     let mut current_main_interval = args.interval;
     let mut current_tx_interval = args.tx_interval;
@@ -150,31 +154,35 @@ async fn main() -> Result<()> {
         if event::poll(Duration::from_millis(150))? {
             match event::read()? {
                 Event::Key(key) => match key.code {
-                    KeyCode::Char('q') | KeyCode::Char('Q') | KeyCode::Esc => {
-                        disable_raw_mode()?;
-                        io::stdout().execute(LeaveAlternateScreen)?;
-                        return Ok(());
-                    }
-                    KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => {
-                        disable_raw_mode()?;
-                        io::stdout().execute(LeaveAlternateScreen)?;
-                        return Ok(());
-                    }
+                    KeyCode::Char('q') | KeyCode::Char('Q') | KeyCode::Esc => break,
+                    KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => break,
                     KeyCode::Char('r') | KeyCode::Char('R') => {
                         last_main = Instant::now() - Duration::from_secs(current_main_interval);
                         last_tx = Instant::now() - Duration::from_secs(current_tx_interval);
                     }
                     KeyCode::Char('+') => {
-                        current_main_interval = (current_main_interval + 5).min(60);
+                        current_main_interval = (current_main_interval + 2).min(60);
                     }
                     KeyCode::Char('-') => {
-                        current_main_interval = current_main_interval.saturating_sub(5).max(5);
+                        current_main_interval = current_main_interval.saturating_sub(2).max(2);
                     }
-                    KeyCode::Char('T') => {  // Capital T = increase TxTable
-                        current_tx_interval = (current_tx_interval + 5).min(60);
+                    KeyCode::Char('T') => {
+                        current_tx_interval = (current_tx_interval + 2).min(60);
                     }
-                    KeyCode::Char('t') => {  // lowercase t = decrease TxTable
-                        current_tx_interval = current_tx_interval.saturating_sub(5).max(5);
+                    KeyCode::Char('t') => {
+                        current_tx_interval = current_tx_interval.saturating_sub(2).max(2);
+                    }
+                    KeyCode::Up => {
+                        let current = table_state.selected().unwrap_or(0);
+                        if current > 0 { table_state.select(Some(current - 1)); }
+                    }
+                    KeyCode::Down => {
+                        let current = table_state.selected().unwrap_or(0);
+                        if let Some(tx_classes) = &cached_tx_classes {
+                            if current < tx_classes.len().saturating_sub(1) {
+                                table_state.select(Some(current + 1));
+                            }
+                        }
                     }
                     _ => {}
                 },
@@ -220,10 +228,14 @@ async fn main() -> Result<()> {
             cached_tx_classes = Some(tx_classes);
             cached_total_fee = total_fee;
 
+            let mut added = 0;
             for cls in cached_tx_classes.as_ref().unwrap() {
-                *historical_counts.entry(cls.flow_type.clone()).or_insert(0) += 1;
+                if seen_txids.insert(cls.txid.clone()) {
+                    *historical_counts.entry(cls.flow_type.clone()).or_insert(0) += 1;
+                    added += 1;
+                }
             }
-            total_tx_seen += cached_tx_classes.as_ref().unwrap().len() as u32;
+            total_tx_seen += added;
 
             size_history.push(cached_info.as_ref().unwrap().size as u64);
             fee_history.push((total_fee * 1_000_000.0) as u64);
@@ -283,10 +295,16 @@ async fn main() -> Result<()> {
                 f.render_widget(current_table, split[0]);
 
                 let total_hist = total_tx_seen as f64;
-                let hist_rows: Vec<Row> = historical_counts.iter().map(|(typ, cnt)| {
+                let mut hist_rows: Vec<Row> = historical_counts.iter().map(|(typ, cnt)| {
                     let pct = if total_hist > 0.0 { (*cnt as f64 / total_hist) * 100.0 } else { 0.0 };
                     Row::new(vec![Cell::from(typ.clone()), Cell::from(format!("{:.1}%", pct))])
                 }).collect();
+
+                hist_rows.push(Row::new(vec![
+                    Cell::from("Total processed"),
+                    Cell::from(format!("{}", total_tx_seen)),
+                ]).style(Style::default().fg(Color::Gray).add_modifier(Modifier::BOLD)));
+
                 let hist_table = Table::new(hist_rows, [Constraint::Percentage(70), Constraint::Percentage(30)])
                     .header(Row::new(vec!["Type", "Hist %"]).style(Style::default().fg(Color::Yellow)))
                     .block(Block::default().title("Historical % since start").borders(Borders::ALL));
@@ -319,8 +337,8 @@ async fn main() -> Result<()> {
                     [Constraint::Length(4), Constraint::Length(68), Constraint::Length(8), Constraint::Length(10), Constraint::Length(10), Constraint::Length(10), Constraint::Percentage(30)],
                 )
                 .header(Row::new(vec!["#", "TxID", "Fee", "T", "S", "O", "Type"]).style(Style::default().fg(Color::Yellow)))
-                .block(Block::default().title("Mempool Transactions (mouse wheel to scroll)").borders(Borders::ALL))
-                .highlight_style(Style::default().bg(Color::DarkGray));
+                .block(Block::default().title("Mempool Transactions (mouse wheel or ↑↓)").borders(Borders::ALL))
+                .row_highlight_style(Style::default().bg(Color::DarkGray));
 
                 f.render_stateful_widget(table, table_area, &mut table_state);
 
@@ -351,6 +369,11 @@ async fn main() -> Result<()> {
 
         sleep(Duration::from_millis(50)).await;
     }
+
+    disable_raw_mode()?;
+    io::stdout().execute(DisableMouseCapture)?;
+    io::stdout().execute(LeaveAlternateScreen)?;
+    Ok(())
 }
 
 fn read_cookie(path: &str) -> Result<Option<(String, String)>> {
