@@ -97,7 +97,7 @@ export default async function MdxComponent({
       </>
     );
   }
-  if (slug === "tools") {
+  if (slug === "converter") {
     const { content, error } = await safeCompileMDX(source, MdxComponents);
     return (
       <>
