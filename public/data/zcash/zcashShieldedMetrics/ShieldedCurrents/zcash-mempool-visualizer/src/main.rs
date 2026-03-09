@@ -7,7 +7,9 @@ use crossterm::{
 };
 use ratatui::{
     prelude::*,
-    widgets::{Block, Borders, Cell, Paragraph, Row, Scrollbar, ScrollbarOrientation, ScrollbarState, Sparkline, Table, TableState},
+    symbols::Marker,
+    text::Line,
+    widgets::{Axis, Block, Borders, Cell, Chart, Dataset, GraphType, Paragraph, Row, Scrollbar, ScrollbarOrientation, ScrollbarState, Table, TableState},
 };
 use serde::Deserialize;
 use serde_json::{json, Value};
@@ -30,7 +32,7 @@ struct Args {
     #[arg(long)]
     cookie_file: Option<String>,
 
-    /// Refresh interval for sparkline + summary + fee history (seconds)
+    /// Refresh interval for charts + summary (seconds)
     #[arg(short = 'i', long, default_value_t = 10)]
     interval: u64,
 
@@ -51,6 +53,11 @@ struct MempoolInfo {
     usage: u64,
     maxmempool: Option<u64>,
     mempoolminfee: Option<f64>,
+}
+
+#[derive(Deserialize, Debug)]
+struct BlockchainInfo {
+    blocks: u64,
 }
 
 #[allow(dead_code)]
@@ -130,8 +137,10 @@ async fn main() -> Result<()> {
     let mut terminal = Terminal::new(backend)?;
     terminal.clear()?;
 
-    let mut size_history: Vec<u64> = Vec::with_capacity(120);
-    let mut fee_history: Vec<u64> = Vec::with_capacity(120);
+    let start_height = get_block_height(&rpc, &auth, &args.rpc_url).await.unwrap_or(0);
+
+    let mut size_history: Vec<f64> = Vec::with_capacity(600);
+    let mut fee_history: Vec<f64> = Vec::with_capacity(600);
 
     let mut historical_counts: BTreeMap<String, u32> = BTreeMap::new();
     let mut total_tx_seen: u32 = 0;
@@ -160,18 +169,10 @@ async fn main() -> Result<()> {
                         last_main = Instant::now() - Duration::from_secs(current_main_interval);
                         last_tx = Instant::now() - Duration::from_secs(current_tx_interval);
                     }
-                    KeyCode::Char('+') => {
-                        current_main_interval = (current_main_interval + 2).min(60);
-                    }
-                    KeyCode::Char('-') => {
-                        current_main_interval = current_main_interval.saturating_sub(2).max(2);
-                    }
-                    KeyCode::Char('T') => {
-                        current_tx_interval = (current_tx_interval + 2).min(60);
-                    }
-                    KeyCode::Char('t') => {
-                        current_tx_interval = current_tx_interval.saturating_sub(2).max(2);
-                    }
+                    KeyCode::Char('+') => current_main_interval = (current_main_interval + 2).min(60),
+                    KeyCode::Char('-') => current_main_interval = current_main_interval.saturating_sub(2).max(2),
+                    KeyCode::Char('T') => current_tx_interval = (current_tx_interval + 2).min(60),
+                    KeyCode::Char('t') => current_tx_interval = current_tx_interval.saturating_sub(2).max(2),
                     KeyCode::Up => {
                         let current = table_state.selected().unwrap_or(0);
                         if current > 0 { table_state.select(Some(current - 1)); }
@@ -237,10 +238,10 @@ async fn main() -> Result<()> {
             }
             total_tx_seen += added;
 
-            size_history.push(cached_info.as_ref().unwrap().size as u64);
-            fee_history.push((total_fee * 1_000_000.0) as u64);
+            size_history.push(cached_info.as_ref().unwrap().size as f64);
+            fee_history.push(total_fee * 1_000_000.0);
 
-            if size_history.len() > 120 {
+            if size_history.len() > 600 {
                 size_history.remove(0);
                 fee_history.remove(0);
             }
@@ -254,10 +255,10 @@ async fn main() -> Result<()> {
                 .direction(Direction::Vertical)
                 .constraints([
                     Constraint::Length(4),
-                    Constraint::Length(8),
-                    Constraint::Length(12),
+                    Constraint::Length(9),
+                    Constraint::Length(16),  // Tall enough for new layout
                     Constraint::Min(0),
-                    Constraint::Length(8),
+                    Constraint::Length(9),
                     Constraint::Length(2),
                 ])
                 .split(f.area());
@@ -267,20 +268,39 @@ async fn main() -> Result<()> {
                 f.render_widget(Paragraph::new(status).block(Block::default().title("Status").borders(Borders::ALL)), chunks[0]);
             }
 
-            f.render_widget(
-                Sparkline::default()
-                    .block(Block::default().title("Tx Count History (last ~20 min)").borders(Borders::ALL))
-                    .data(&size_history)
-                    .style(Style::default().fg(Color::Cyan)),
-                chunks[1],
-            );
+            // Tx Count Chart
+            let tx_data: Vec<(f64, f64)> = size_history.iter().enumerate().map(|(i, &y)| (i as f64, y)).collect();
+            let tx_max = tx_data.iter().map(|&(_, y)| y).fold(f64::NEG_INFINITY, f64::max);
+            let tx_datasets = vec![Dataset::default()
+                .name("Tx Count")
+                .marker(Marker::Dot)
+                .graph_type(GraphType::Line)
+                .style(Style::default().fg(Color::Cyan))
+                .data(&tx_data)];
 
+            let tx_chart = Chart::new(tx_datasets)
+                .block(Block::default().title("Tx Count History (last ~100 min)").borders(Borders::ALL))
+                .x_axis(Axis::default()
+                    .title("Points")
+                    .style(Style::default().fg(Color::Gray))
+                    .bounds([0.0, (tx_data.len() as f64 - 1.0).max(0.0)])
+                    .labels(vec![Line::from("0"), Line::from(format!("{}", tx_data.len()))]))
+                .y_axis(Axis::default()
+                    .title("Transactions")
+                    .style(Style::default().fg(Color::Gray))
+                    .bounds([0.0, tx_max])
+                    .labels(vec![Line::from("0"), Line::from(format!("{:.0}", tx_max))]));
+
+            f.render_widget(tx_chart, chunks[1]);
+
+            // Shielded Currents - high-level + details
             if let Some(tx_classes) = &cached_tx_classes {
                 let split = Layout::default()
                     .direction(Direction::Horizontal)
-                    .constraints([Constraint::Percentage(50), Constraint::Percentage(50)])
+                    .constraints([Constraint::Percentage(42), Constraint::Percentage(58)])
                     .split(chunks[2]);
 
+                // Current (left)
                 let mut type_counts: BTreeMap<String, (u32, f64)> = BTreeMap::new();
                 for cls in tx_classes {
                     let e = type_counts.entry(cls.flow_type.clone()).or_insert((0, 0.0));
@@ -294,11 +314,23 @@ async fn main() -> Result<()> {
                     .block(Block::default().title("Current").borders(Borders::ALL));
                 f.render_widget(current_table, split[0]);
 
+                // Historical (right) - high-level + details
                 let total_hist = total_tx_seen as f64;
-                let mut hist_rows: Vec<Row> = historical_counts.iter().map(|(typ, cnt)| {
+                let transparent_count = *historical_counts.get("Transparent").unwrap_or(&0);
+                let transparent_pct = if total_hist > 0.0 { (transparent_count as f64 / total_hist) * 100.0 } else { 0.0 };
+                let shielded_pct = 100.0 - transparent_pct;
+
+                let mut hist_rows: Vec<Row> = vec![
+                    Row::new(vec![Cell::from("Transparent"), Cell::from(format!("{:.1}%", transparent_pct))]),
+                    Row::new(vec![Cell::from("Total Shielded"), Cell::from(format!("{:.1}%", shielded_pct))]),
+                    Row::new(vec![Cell::from(""), Cell::from("")]), // separator
+                ];
+
+                // Detailed shielded types
+                for (typ, cnt) in historical_counts.iter().filter(|(t, _)| *t != "Transparent") {
                     let pct = if total_hist > 0.0 { (*cnt as f64 / total_hist) * 100.0 } else { 0.0 };
-                    Row::new(vec![Cell::from(typ.clone()), Cell::from(format!("{:.1}%", pct))])
-                }).collect();
+                    hist_rows.push(Row::new(vec![Cell::from(typ.clone()), Cell::from(format!("{:.1}%", pct))]));
+                }
 
                 hist_rows.push(Row::new(vec![
                     Cell::from("Total processed"),
@@ -348,17 +380,30 @@ async fn main() -> Result<()> {
                 f.render_stateful_widget(scrollbar, scrollbar_area, &mut scrollbar_state);
             }
 
-            let fee_title = format!(
-                "Total Mempool Fees History (µZEC) — Current: {:.8} ZEC",
-                cached_total_fee
-            );
-            f.render_widget(
-                Sparkline::default()
-                    .block(Block::default().title(fee_title).borders(Borders::ALL))
-                    .data(&fee_history)
-                    .style(Style::default().fg(Color::Green)),
-                chunks[4],
-            );
+            // Fees Chart
+            let fee_data: Vec<(f64, f64)> = fee_history.iter().enumerate().map(|(i, &y)| (i as f64, y)).collect();
+            let fee_max = fee_data.iter().map(|&(_, y)| y).fold(f64::NEG_INFINITY, f64::max);
+            let fee_datasets = vec![Dataset::default()
+                .name("Fees (µZEC)")
+                .marker(Marker::Dot)
+                .graph_type(GraphType::Line)
+                .style(Style::default().fg(Color::Green))
+                .data(&fee_data)];
+
+            let fee_chart = Chart::new(fee_datasets)
+                .block(Block::default().title(format!("Total Mempool Fees History — Current: {:.8} ZEC", cached_total_fee)).borders(Borders::ALL))
+                .x_axis(Axis::default()
+                    .title("Points")
+                    .style(Style::default().fg(Color::Gray))
+                    .bounds([0.0, (fee_data.len() as f64 - 1.0).max(0.0)])
+                    .labels(vec![Line::from("0"), Line::from(format!("{}", fee_data.len()))]))
+                .y_axis(Axis::default()
+                    .title("µZEC")
+                    .style(Style::default().fg(Color::Gray))
+                    .bounds([0.0, fee_max])
+                    .labels(vec![Line::from("0"), Line::from(format!("{:.0}", fee_max))]));
+
+            f.render_widget(fee_chart, chunks[4]);
 
             let footer = format!(
                 " q/Esc/Ctrl+C: Quit | r: Refresh | +/-: Main({}s) | T/t: TxTable({}s) ",
@@ -369,6 +414,26 @@ async fn main() -> Result<()> {
 
         sleep(Duration::from_millis(50)).await;
     }
+
+    // === ON EXIT: SAVE mempool_data.md ===
+    let end_height = get_block_height(&rpc, &auth, &args.rpc_url).await.unwrap_or(0);
+    let blocks_processed = end_height.saturating_sub(start_height);
+
+    let mut md = String::from("# Zebra Mempool Data Snapshot\n\n");
+    md.push_str("## Historical Transaction Types (% since start)\n\n");
+    md.push_str("| Type | Percentage |\n");
+    md.push_str("|------|------------|\n");
+    let total_hist = total_tx_seen as f64;
+    for (typ, cnt) in &historical_counts {
+        let pct = if total_hist > 0.0 { (*cnt as f64 / total_hist) * 100.0 } else { 0.0 };
+        md.push_str(&format!("| {} | {:.1}% |\n", typ, pct));
+    }
+    md.push_str(&format!("\n**Total transactions processed:** {}\n", total_tx_seen));
+    md.push_str(&format!("**Blocks mined while running:** {}\n", blocks_processed));
+    md.push_str("\n*File generated on exit.*\n");
+
+    fs::write("mempool_data.md", md).context("Failed to write mempool_data.md")?;
+    println!("✅ Saved mempool_data.md");
 
     disable_raw_mode()?;
     io::stdout().execute(DisableMouseCapture)?;
@@ -403,6 +468,15 @@ fn auto_detect_cookie() -> Result<Option<(String, String)>> {
     }
     println!("No cookie file found - running without authentication");
     Ok(None)
+}
+
+async fn get_block_height(rpc: &Arc<reqwest::Client>, auth: &Option<(String, String)>, rpc_url: &str) -> Result<u64> {
+    let payload = json!({ "jsonrpc": "2.0", "method": "getblockchaininfo", "params": [], "id": 99 });
+    let mut req = rpc.post(rpc_url).json(&payload);
+    if let Some((user, pass)) = auth { req = req.basic_auth(user, Some(pass)); }
+    let resp: Value = req.send().await?.json().await?;
+    let info: BlockchainInfo = serde_json::from_value(resp["result"].clone())?;
+    Ok(info.blocks)
 }
 
 async fn fetch_and_classify_mempool(
@@ -508,7 +582,7 @@ async fn fetch_and_classify_mempool(
 }
 
 fn detect_pools(tx: &RawTx) -> (String, bool, i64, i64, i64) {
-    let is_coinbase = tx.vin.first().and_then(|v| v.coinbase.as_deref()).is_some();
+    let is_coinbase = tx.vin.first().and_then(|v| v.coinbase.as_deref()).map_or(false, |s| !s.trim().is_empty());
 
     let mut pools = vec![];
     if !tx.vin.is_empty() || !tx.vout.is_empty() { pools.push("Transparent".to_string()); }
