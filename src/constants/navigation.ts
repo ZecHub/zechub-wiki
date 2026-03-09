@@ -7,7 +7,7 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Tools } from 'lucide-react';
+import { Wrench } from 'lucide-react';
 
 import {
   RiGithubFill as Github,
@@ -43,7 +43,7 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Tools",
         path: "/tools/converter",
-        icon: Tools,
+        icon: Wrench,
       },
       {
         name: "Wallets",
@@ -352,6 +352,7 @@ export const socialMedia = [
   { name: "DAO", link: "https://vote.zechub.xyz/" },
   { name: "Store", link: "https://zechub.store/" },
 ];
+
 
 
 
