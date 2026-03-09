@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'ZEC <-> Zats Converter | ZecHub',
-  description: 'Instant, free ZEC to Zats (Zatoshi) converter with live updates, swap, and copy buttons.',
+  description: 'ZEC to Zats (Zatoshi) converter.',
   openGraph: {
     title: 'ZEC <-> Zats Converter',
     description: '1 ZEC = 100,000,000 Zats - precise converter for Zcash users',
