@@ -4,6 +4,6 @@ import ZecToZatsConverter from '@/components/Converter/ZecToZatsConverter'
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    ZecToZatsConverter,
+    ZecToZatsConverter,   // ← this line makes the tag work everywhere
   }
 }
