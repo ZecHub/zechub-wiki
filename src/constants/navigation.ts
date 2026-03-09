@@ -6,6 +6,9 @@ import {
   MdForum as Forum,
   MdDeveloperMode,
 } from "react-icons/md";
+
+import { Wrench } from 'lucide-react';
+
 import {
   RiGithubFill as Github,
   RiCommunityLine,
@@ -36,6 +39,11 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Faucets",
         path: "/using-zcash/faucets",
+      },
+      {
+        name: "Tools",
+        path: "/tools/converter",
+        icon: Wrench,
       },
       {
         name: "Wallets",
@@ -344,3 +352,8 @@ export const socialMedia = [
   { name: "DAO", link: "https://vote.zechub.xyz/" },
   { name: "Store", link: "https://zechub.store/" },
 ];
+
+
+
+
+
