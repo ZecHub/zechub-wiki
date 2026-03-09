@@ -6,6 +6,9 @@ import {
   MdForum as Forum,
   MdDeveloperMode,
 } from "react-icons/md";
+
+import { Tool } from 'lucide-react';
+
 import {
   RiGithubFill as Github,
   RiCommunityLine,
@@ -40,6 +43,7 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Tools",
         path: "/tools/converter",
+        icon: Tool,
       },
       {
         name: "Wallets",
@@ -348,5 +352,6 @@ export const socialMedia = [
   { name: "DAO", link: "https://vote.zechub.xyz/" },
   { name: "Store", link: "https://zechub.store/" },
 ];
+
 
 
