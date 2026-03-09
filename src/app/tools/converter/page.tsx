@@ -15,7 +15,7 @@ export default function ConverterPage() {
     <div className="max-w-4xl mx-auto px-6 py-16">
       <div className="text-center mb-12">
         <h1 className="text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
-          ZEC <-> Zats Converter
+          ZEC_Zats_Converter
         </h1>
         <p className="mt-4 text-2xl text-emerald-600 dark:text-emerald-400">
           1 ZEC = 100,000,000 Zats (Zatoshi)
