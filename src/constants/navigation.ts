@@ -38,6 +38,9 @@ export const navigations: Array<NavigationItem> = [
         path: "/using-zcash/faucets",
       },
       {
+        name: "Tools",
+        path: "/tools/converter",
+      {
         name: "Wallets",
         path: "/wallets",
       },
@@ -344,3 +347,4 @@ export const socialMedia = [
   { name: "DAO", link: "https://vote.zechub.xyz/" },
   { name: "Store", link: "https://zechub.store/" },
 ];
+
