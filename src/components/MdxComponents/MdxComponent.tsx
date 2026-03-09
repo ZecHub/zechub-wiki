@@ -97,6 +97,26 @@ export default async function MdxComponent({
       </>
     );
   }
+  if (slug === "tools") {
+    const { content, error } = await safeCompileMDX(source, MdxComponents);
+    return (
+      <>
+        {error ? (
+          <>
+            <MdxErrorBanner error={error} />
+            <pre className="whitespace-pre-wrap p-3 rounded text-sm">
+              {source}
+            </pre>
+          </>
+        ) : (
+          <>
+            <div className="px-3">{content}</div>
+            <ZecToZatsConverter />
+          </>
+        )}
+      </>
+    );
+  }
 
   const { content, error } = await safeCompileMDX(source, MdxComponents);
 
