@@ -6,7 +6,7 @@ import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 const Hero = () => {
   const router = useRouter();
   const { dark } = useDarkModeContext();
-  const heroSrc = dark ? "/hero-dark.jpg" : "/hero-white.jpg";
+  const heroSrc = dark ? "/hero-dark.png" : "/hero-white.png";
 
   return (
     <div className="w-full mx-auto items-center md:flex-row justify-center rounded-lg">
