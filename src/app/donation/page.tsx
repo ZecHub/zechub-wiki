@@ -3,6 +3,7 @@ import DonationComp from "@/components/Donation/Donation";
 import { Metadata } from "next";
 import { title } from "process";
 import { genMetadata } from "@/lib/helpers";
+import ZcashUAZArt from '../../components/ZcashUAZArt';
 
 export const metadata: Metadata = genMetadata({
   title: "Donate now | Zechub",
@@ -12,7 +13,7 @@ export const metadata: Metadata = genMetadata({
 const Donation = () => {
   return (
     <main>
-      <DonationComp />
+      <ZcashUAZArt />
     </main>
   );
 };
