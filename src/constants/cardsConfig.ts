@@ -4,8 +4,8 @@ export const cardsConfig = [
       content: 'Find out what Zcash is and ZEC use cases',
       url: 'visualizer',
       image: '/LearnZcash.png',
-      imageLight: '/explore/light/what-is-zcash.png',
-      imageDark: '/explore/dark/what-is-zcash.png',
+      imageLight: '/explore/light/start-here.png',
+      imageDark: '/explore/dark/start-here.png',
     },
     {
       title: 'Pick a Wallet',
