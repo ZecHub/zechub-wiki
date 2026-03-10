@@ -1,9 +1,13 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 
 const Hero = () => {
   const router = useRouter();
+  const { dark } = useDarkModeContext();
+  const heroSrc = dark ? "/hero-dark.jpg" : "/hero-white.jpg";
+
   return (
     <div className="w-full mx-auto items-center md:flex-row justify-center rounded-lg">
       <Image
@@ -12,7 +16,7 @@ const Hero = () => {
         width={800}
         height={50}
         priority
-        src={"/BannerPrancheta.webp"}
+        src={heroSrc}
       />
     </div>
   );
