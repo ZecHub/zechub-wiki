@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 
 const Hero = () => {
@@ -7,12 +8,14 @@ const Hero = () => {
 
   return (
     <div className="w-full mx-auto">
-      <img
+      <Image
         src={heroSrc}
         alt="ZecHub Hero"
+        width={1920}     // ← change to your real width
+        height={720}     // ← change to your real height
         className="w-full h-auto"
-        loading="eager"
-        style={{ imageRendering: "high-quality" }}
+        priority
+        unoptimized      // ← THIS IS THE MAGIC LINE
       />
     </div>
   );
