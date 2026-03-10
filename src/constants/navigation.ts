@@ -1,4 +1,5 @@
 import { IconType } from "react-icons";
+import type { LucideIcon } from "lucide-react";
 import { BsPlay, BsDiscord as Discord } from "react-icons/bs";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import {
@@ -22,7 +23,7 @@ export type NavigationItem = {
   name: string;
   label?: string;
   path?: string;
-  icon?: IconType;
+  icon?: IconType | LucideIcon;
   newTab?: boolean;
   links?: Array<NavigationItem>;
 };
