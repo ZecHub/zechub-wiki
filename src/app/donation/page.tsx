@@ -1,8 +1,6 @@
-import React from "react";
-import DonationComp from "@/components/Donation/Donation";
 import { Metadata } from "next";
-import { title } from "process";
 import { genMetadata } from "@/lib/helpers";
+import DonationClientWrapper from "@/components/DonationClientWrapper";
 
 export const metadata: Metadata = genMetadata({
   title: "Donate now | Zechub",
@@ -12,7 +10,7 @@ export const metadata: Metadata = genMetadata({
 const Donation = () => {
   return (
     <main>
-      <DonationComp />
+      <DonationClientWrapper />
     </main>
   );
 };
