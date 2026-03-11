@@ -3,19 +3,27 @@ import rehypePlugins from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      // imgbb (many wallet logos)
+      { protocol: "https", hostname: "i.ibb.co" },
+
+      // GitHub user attachments (Wallets.md uses github.com/user-attachments/...)
+      { protocol: "https", hostname: "github.com" },
+
+      // GitHub often serves/redirects image binaries here
+      { protocol: "https", hostname: "objects.githubusercontent.com" },
+    ],
+  },
+};
 
 const withMDX = createMDX({
   options: {
-    // extension: [/\.mdx?$/, /\.md?$/ ],
     mdxExtensions: ["mdx", "md"],
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypePlugins],
-
-    // If you use `MDXProvider`, uncomment the following line.
-    // providerImportSource: "@mdx-js/react",
   },
 });
-
 
 export default withMDX(nextConfig);

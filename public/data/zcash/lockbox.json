@@ -2193,5 +2193,25 @@
     "Date": "02/15/2026",
     "lockbox": 17870.4375,
     "coinholders_fund": 78313.22
+  },
+  {
+    "Date": "02/23/2026",
+    "lockbox": 19529.8125,
+    "coinholders_fund": 78313.22
+  },
+  {
+    "Date": "02/27/2026",
+    "lockbox": 20389.3125,
+    "coinholders_fund": 78313.22
+  },
+  {
+    "Date": "03/02/2026",
+    "lockbox": 21055.6875,
+    "coinholders_fund": 78313.22
+  },
+  {
+    "Date": "03/08/2026",
+    "lockbox": 22314.9375,
+    "coinholders_fund": 78313.22
   }
 ]

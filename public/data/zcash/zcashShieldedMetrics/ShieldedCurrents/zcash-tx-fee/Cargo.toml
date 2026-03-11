@@ -1,0 +1,16 @@
+[package]
+name = "zcash-tx-fee"
+version = "0.5.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+reqwest = { version = "0.12", features = ["json"] }
+serde_json = "1.0"
+anyhow = "1.0"
+dirs = "5.0"
+indicatif = "0.17"
+dashmap = "6.1"
+tokio = { version = "1.43", features = ["full"] }
+futures = "0.3"
+csv = "1.3"

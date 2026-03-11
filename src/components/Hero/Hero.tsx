@@ -1,40 +1,24 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 
 const Hero = () => {
-  const router = useRouter();
+  const { dark } = useDarkModeContext();
+  const heroSrc = dark ? "/hero-dark.png" : "/hero-white.png";
+
   return (
-    <div className="w-full mx-auto items-center md:flex-row justify-center rounded-lg">
+    <div className="w-full mx-auto">
       <Image
-        className="w-full object-cover"
-        alt="hero"
-        width={800}
-        height={50}
+        src={heroSrc}
+        alt="ZecHub Hero"
+        width={1920}     // ← change to your real width
+        height={720}     // ← change to your real height
+        className="w-full h-auto"
         priority
-        src={"/BannerPrancheta.webp"}
+        unoptimized      // ← THIS IS THE MAGIC LINE
       />
     </div>
   );
 };
 
 export default Hero;
-
-{
-  /* <div className="text-center lg:w-5/12 w-full mb-5">
-<h1 className="my-3 text-lg text-white md:text-5xl font-bold leading-tight dark:text-gray-100">
-  Learn all about Zcash network
-</h1>
-<div className="flex justify-center mx-auto">
-  <button onClick={() => router.push('/site/zcashcommunity/zcashcommunity')} className="hover:bg-slate-300 transition duration-400 bg-white border-2 text-gray-800 font-bold rounded-full  py-4 px-8">
-    Start Here
-  </button>
-</div>
-
-
-</div> 
-flex flex-col px-3 py-16  bg-[#1984c7]
-
-
-*/
-}

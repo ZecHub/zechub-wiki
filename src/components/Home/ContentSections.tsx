@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FadeInAnimation } from "../UI/FadeInAnimation";
+import { ThemeImage } from "../UI/ThemeImage";
 
 const ContentSections = () => {
   return (
@@ -12,6 +13,8 @@ const ContentSections = () => {
         title="What is Zcash?"
         description="It is an open-source, blockchain ledger that features a sophisticated zero-knowledge proving system. It specializes in offering a higher standard of privacy through its proving system preserving confidentiality of transaction metadata. At its core, Zcash is private data ownership that is permissionlessly transferred when transactions are made."
         image="/Zcashcard.png"
+        imageLight="/explore/light/what-is-zcash.png"
+        imageDark="/explore/dark/what-is-zcash.png"
         links={[
           {
             href: "/start-here/what-is-zec-and-zcash",
@@ -32,6 +35,8 @@ const ContentSections = () => {
         title="Zcash.me"
         description="Zcash.Me is a public directory of Zcash users featuring private messaging, leaderboards, and verified users. Connect, explore, and interact with the Zcash community."
         image="/Zcash-me.png"
+        imageLight="/explore/light/zcash-me.png"
+        imageDark="/explore/dark/zcash-me.png"
         links={[
           {
             href: "https://zcash.me",
@@ -46,6 +51,8 @@ const ContentSections = () => {
         title="Zcash Global Ambassadors"
         description="Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions."
         image="/zcash-global-ambassadors.png"
+        imageLight="/explore/light/zga.png"
+        imageDark="/explore/dark/zga.png"
         links={[
           {
             href: "/zcash-global-ambassadors",
@@ -61,6 +68,8 @@ const ContentSections = () => {
         description="Subscribe using your Unified Address to get shielded access to
               Zcash Ecosystem Updates & Network Stats direct to your wallet!"
         image="/zcash_newsletter.gif"
+        imageLight="/explore/light/shielded-newsletter.png"
+        imageDark="/explore/dark/shielded-newsletter.png"
         links={[
           {
             href: "/newsletter",
@@ -79,6 +88,8 @@ const ContentSections = () => {
               donations, a revenue sharing program, advanced creative tools and
               a massive online global community."
         image="/Free2z_Banner.gif"
+        imageLight="/explore/light/free2z.png"
+        imageDark="/explore/dark/free2z.png"
         links={[
           {
             href: "https://free2z.cash",
@@ -97,6 +108,8 @@ const ContentSections = () => {
               informational purposes only, and not endorsements of any kind.
               Enjoy!"
         image="/paywithzcash.png"
+        imageLight="/explore/light/pay-with-zcash.png"
+        imageDark="/explore/dark/pay-with-zcash.png"
         links={[
           {
             href: "https://paywithz.cash",
@@ -182,6 +195,8 @@ interface InfoCardProps {
   title: string;
   description: string;
   image: string;
+  imageLight?: string;
+  imageDark?: string;
   reverse?: boolean; // for reversing layout
   links: {
     href: string;
@@ -195,9 +210,13 @@ function InfoCard({
   title,
   description,
   image,
+  imageLight,
+  imageDark,
   links,
   reverse = false,
 }: InfoCardProps) {
+  const useThemeImage = imageLight != null || imageDark != null;
+
   return (
     <div
       id={id}
@@ -207,14 +226,27 @@ function InfoCard({
       {/* Left Column - Image */}
       <div className="flex flex-1 items-center justify-center  bg-slate-100 dark:bg-slate-800 p-6 min-h-[250px] ">
         <FadeInAnimation>
-          <Image
-            src={image}
-            alt={title}
-            width={500}
-            height={500}
-            className="max-w-full h-auto"
-            unoptimized
-          />
+          {useThemeImage ? (
+            <ThemeImage
+              src={image}
+              srcLight={imageLight}
+              srcDark={imageDark}
+              alt={title}
+              width={500}
+              height={500}
+              className="max-w-full h-auto"
+              unoptimized
+            />
+          ) : (
+            <Image
+              src={image}
+              alt={title}
+              width={500}
+              height={500}
+              className="max-w-full h-auto"
+              unoptimized
+            />
+          )}
         </FadeInAnimation>
       </div>
 

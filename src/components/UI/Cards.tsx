@@ -1,21 +1,30 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeInAnimation } from "./FadeInAnimation";
+import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 
 interface Props {
   title: string;
   paraph: string;
   url: string;
   image: string;
+  imageLight?: string;
+  imageDark?: string;
 }
 
-const Cards = ({ title, paraph, url, image }: Props) => (
+const Cards = ({ title, paraph, url, image, imageLight, imageDark }: Props) => {
+  const { dark } = useDarkModeContext();
+  const src =
+    dark && imageDark ? imageDark : !dark && imageLight ? imageLight : image;
+
+  return (
   <div className="flex w-full min-w-[30%] md:w-1/5 bg-slate-100 border border-gray-200 rounded-lg shadow dark:bg-slate-800 dark:border-slate-700 hover:-translate-y-1 transition-all duration-100">
     <FadeInAnimation className="flex flex-col justify-center items-center w-full">
       <Link href={url} className="w-full flex justify-center">
         <Image
           className="rounded-t-lg object-cover"
-          src={image}
+          src={src}
           alt={title}
           width={400}
           height={100}
@@ -56,6 +65,7 @@ const Cards = ({ title, paraph, url, image }: Props) => (
       </div>
     </FadeInAnimation>
   </div>
-);
+  );
+};
 
 export default Cards;

@@ -58,11 +58,18 @@ export default function DifficultyChart(props: DifficultyChartProps) {
     return difficulty.map((d) => ({
       date: dateFns.format(
         dateFns.parse(d.Date, "MM/dd/yyyy", new Date()),
-        "MMM yyyy"
+        "MMM yyyy",
       ),
       difficulty: parseFloat(d.Difficulty),
     }));
   }, [difficulty]);
+
+  const formatVal = (v: number) =>
+    v >= 1e6
+      ? `${(v / 1e6).toFixed(1)}M`
+      : v >= 1e3
+        ? `${(v / 1e3).toFixed(1)}k`
+        : `${v}`;
 
   return (
     <ErrorBoundary fallback={"Failed to load Difficulty Chart"}>
@@ -90,8 +97,8 @@ export default function DifficultyChart(props: DifficultyChartProps) {
               v >= 1_000_000
                 ? `${v / 1_000_000}M`
                 : v >= 1_000
-                ? `${v / 1_000}K`
-                : v
+                  ? `${v / 1_000}K`
+                  : v
             }
             tick={{ fontSize, fill: "#94a3b8" }}
             width={60}
@@ -100,6 +107,30 @@ export default function DifficultyChart(props: DifficultyChartProps) {
             formatter={(value: any) =>
               typeof value === "number" ? value.toLocaleString() : value
             }
+            content={({ active, payload, label }) => {
+              if (!active || !payload?.length) return null;
+
+              const { date } = payload[0].payload;
+
+              return (
+                <div className="rounded-md px-3 py-2 shadow-md border text-sm bg-slate-800 border-slate-700 text-slate-100">
+                  <p className="font-semibold">{date}</p>
+
+                  {payload.map((entry, idx) => (
+                    <div
+                      key={idx}
+                      className="flex justify-between gap-4"
+                      style={{ color: entry.color }}
+                    >
+                      <span>{entry.name}</span>
+                      <span className="text-slate-50">
+                        {formatVal(entry.value)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              );
+            }}
           />
 
           <Legend
@@ -127,6 +158,7 @@ export default function DifficultyChart(props: DifficultyChartProps) {
             fillOpacity={1}
             fill="url(#diffGradient)"
             strokeWidth={2}
+            name="Difficulty"
           />
         </AreaChart>
       </ChartContainer>

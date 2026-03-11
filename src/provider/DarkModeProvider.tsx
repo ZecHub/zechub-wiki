@@ -1,9 +1,9 @@
-'use client'
+"use client";
 import { DarkModeContext } from "@/context/DarkModeContext";
 import React, { useEffect, useState } from "react";
 
 export const DarkModeProvider: React.FC<{ children: React.ReactNode }> = (
-  props
+  props,
 ) => {
   const [dark, setDark] = useState(false);
 

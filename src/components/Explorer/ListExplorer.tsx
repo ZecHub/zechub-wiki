@@ -2,9 +2,12 @@
 import { getName } from "@/lib/helpers";
 import Image from "next/image";
 import Link from "next/link";
+import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 
 interface Props {
   image: string;
+  imageLight?: string;
+  imageDark?: string;
   name: string;
   description: string;
   url: string;
@@ -13,12 +16,18 @@ interface Props {
 
 const CardsExplorer = ({
   image,
+  imageLight,
+  imageDark,
   name,
   description,
   url,
   className,
   ...props
 }: Props) => {
+  const { dark } = useDarkModeContext();
+  const src =
+    dark && imageDark ? imageDark : !dark && imageLight ? imageLight : image;
+
   return (
     <div
       className={`w-4/6  hover:bg-gray-100 dark:hover:bg-transparent hover:cursor-pointer hover:scale-105 transition-all duration-100 ${className}`}
@@ -26,7 +35,7 @@ const CardsExplorer = ({
       <Link href={url}>
         <Image
           className="rounded-t-lg"
-          src={image}
+          src={src}
           alt={name}
           width={1000}
           height={50}

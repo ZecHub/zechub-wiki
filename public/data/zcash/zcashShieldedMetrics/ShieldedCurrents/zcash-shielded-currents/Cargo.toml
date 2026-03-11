@@ -1,0 +1,16 @@
+[package]
+name = "zcash-shielded-currents"
+version = "0.4.0"
+edition = "2021"
+description = "Fast Rust replacement for ZecHub ShieldedCurrents"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+reqwest = { version = "0.12", features = ["json"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["full"] }
+clap = { version = "4.5", features = ["derive"] }
+chrono = { version = "0.4", features = ["serde"] }
+anyhow = "1.0"
+futures = "0.3"

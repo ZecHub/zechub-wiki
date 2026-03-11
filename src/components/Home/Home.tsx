@@ -69,6 +69,8 @@ const Home = ({ text }: HomeProps) => {
                   title={items.title}
                   url={items.url}
                   image={items.image}
+                  imageLight={items.imageLight}
+                  imageDark={items.imageDark}
                 />
               ))}
           </div>

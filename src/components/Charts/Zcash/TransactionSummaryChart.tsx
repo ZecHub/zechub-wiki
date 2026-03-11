@@ -29,14 +29,14 @@ interface TransactionsSummaryChartProps {
   chartRef: RefObject<HTMLDivElement | null>;
 }
 export default function TransactionsSummaryChart(
-  props: TransactionsSummaryChartProps
+  props: TransactionsSummaryChartProps,
 ) {
   const [chartData, setChartData] = useState<ShieldedTransactionDatum[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   const [pool, setPool] = useState<"default" | "orchard" | "sapling">(
-    "default"
+    "default",
   );
   const [cumulative, setCumulative] = useState(true);
   const [filter, setFilter] = useState(true);
@@ -98,7 +98,7 @@ export default function TransactionsSummaryChart(
           (d.height >= startHeight &&
             d.height <= endHeight &&
             d.height % BLOCKS_PERIOD === 0) ||
-          d.height === last.height
+          d.height === last.height,
       );
     } else {
       saplingSum = 0;
@@ -243,7 +243,30 @@ export default function TransactionsSummaryChart(
               tickFormatter={(v) => `#${v}`}
             />
             <YAxis tick={{ fontSize, fill: "#94a3b8" }} />
-            <Tooltip />
+            <Tooltip
+              content={({ active, payload, label }) => {
+                if (!active || !payload?.length) return null;
+
+                const { height } = payload[0].payload;
+
+                return (
+                  <div className="rounded-md px-3 py-2 shadow-md border text-sm bg-slate-800 border-slate-700 text-slate-100">
+                    <p className="font-semibold">{height}</p>
+
+                    {payload.map((entry, idx) => (
+                      <div
+                        key={idx}
+                        className="flex justify-between gap-4"
+                        style={{ color: entry.color }}
+                      >
+                        <span>{entry.name}</span>
+                        <span className="text-slate-50">{entry.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                );
+              }}
+            />
 
             <Legend
               verticalAlign="bottom"
