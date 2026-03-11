@@ -42,7 +42,7 @@ export function PrivacyMeter(props: PrivacyMeterProps) {
               opacity-0 group-hover:opacity-100 group-hover:visible
              transition-opacity duration-200 z-20 pointer-events-none"
               >
-                <div className="bg-popover border border-border rounded-md px-3 py-2 max-w-50 text-center text-xs whitespace-nowrap shadow-lg">
+                <div className="bg-slate-100 dark:bg-popover border border-slate-300 dark:border-slate-600 border-border rounded-md px-3 py-2 max-w-50 text-center text-xs whitespace-nowrap shadow-lg">
                   <p className="font-semibold text-foreground">{u.name}</p>
                   <p className="text-muted-foreground">{u.privacyLabel}</p>
                 </div>
