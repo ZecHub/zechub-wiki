@@ -7,14 +7,7 @@ interface HeroProp {
 }
 export function UpgradEvolutionHero(props: HeroProp) {
   return (
-    <div className="text-center mb-10 animate-fade-in">
-      <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 mb-4">
-        <Shield className="h-3.5 w-3.5 text-primary" />
-        <span className="text-sm font-semibold text-primary">
-          Proptocol History
-        </span>
-      </div>
-
+    <div className="text-center my-10 animate-fade-in">
       <h1 className="text-3xl md:text-4xl font-bold text-foreground">
         The Evolution of <span className="text-gradient-zcash">Privacy</span>
       </h1>
@@ -24,7 +17,7 @@ export function UpgradEvolutionHero(props: HeroProp) {
         network upgrades and beyond.
       </p>
       {props.currentEra && (
-        <div className="mt-5 inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-card px-4 py-2 glow-zcash">
+        <div className="mt-5 inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-card px-4 py-2 glow-zcash bg-primary/10">
           <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
           <span className="text-sm font-medium text-foreground">
             We are in the{" "}
