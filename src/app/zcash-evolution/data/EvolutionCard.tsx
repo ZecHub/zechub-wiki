@@ -85,7 +85,7 @@ export function EvolutinCard(props: EvolutinCardProps) {
           </div>
           <ChevronDown
             className={cn(
-              "h-4 w-4 text-muted-foreground shrink-0 transition-transform mt-1",
+              "h-4 w-4 text-muted-foreground shrink-0 transition-transform mt-1 hover:cursor-pointer",
               expanded && "rotate-180",
             )}
           />
