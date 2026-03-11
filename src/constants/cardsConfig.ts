@@ -3,18 +3,24 @@ export const cardsConfig = [
       title: 'Start Here',
       content: 'Find out what Zcash is and ZEC use cases',
       url: 'visualizer',
-      image: '/LearnZcash.png'
+      image: '/LearnZcash.png',
+      imageLight: '/explore/light/start-here.png',
+      imageDark: '/explore/dark/start-here.png',
     },
     {
       title: 'Pick a Wallet',
       content: 'Wallets allow you to receive and spend Zcash privately. Some also support encrypted memos',
       url: 'wallets',
-      image: '/zwallets.png'
+      image: '/zwallets.png',
+      imageLight: '/explore/light/pick-a-wallet.png',
+      imageDark: '/explore/dark/pick-a-wallet.png',
     },
     {
       title: 'Zcash Resources',
       content: 'Here are guides that help users understand Zcash Full Nodes, zk-SNARKs and more',
       url: 'guides/using-zec-privately',
-      image: '/GuidesZ.png'
+      image: '/GuidesZ.png',
+      imageLight: '/explore/light/guides.png',
+      imageDark: '/explore/dark/guides.png',
     }
   ]

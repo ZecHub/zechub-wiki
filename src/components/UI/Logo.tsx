@@ -10,7 +10,7 @@ const Logo = (props: LogoProps) => (
     alt={"Logo"}
     width={55}
     height={55}
-    className="rounded-full md:h-50"
+    // className="rounded-full md:h-50 h-50"
   />
 );
 

@@ -417,7 +417,7 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setOpenSearch(true)}
-              className="p-2 hover:bg-nav-hover-bg"
+              className="p-2 hover:bg-nav-hover-bg cursor-pointer"
             >
               <Search className="h-5 w-5 md:h-6 md:w-6" />
             </Button>
@@ -428,7 +428,7 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setDark(!dark)}
-              className="p-2 hover:bg-nav-hover-bg"
+              className="p-2 hover:bg-nav-hover-bg cursor-pointer"
             >
               {dark ? (
                 <Sun className="h-5 w-5 md:h-6 md:w-6" />

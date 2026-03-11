@@ -26,7 +26,7 @@ type ZcashChartProps = {
         supply: number;
       } | null
     >,
-    toolType: string
+    toolType: string,
   ) => Promise<void>;
 };
 

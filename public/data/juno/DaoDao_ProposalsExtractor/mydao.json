@@ -1,0 +1,8 @@
+{
+  "name": "ZecHub",
+  "dao_uri": null,
+  "image_url": "ipfs://bafkreifrji6q2kwiwp2m2gtlfrj34i7ghza4fs3kmgagzbkbqv6vd7ij6a",
+  "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
+  "automatically_add_cw20s": true,
+  "automatically_add_cw721s": true
+}
