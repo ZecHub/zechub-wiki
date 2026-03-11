@@ -1,6 +1,7 @@
 import { Footer, Navigation } from "@/components";
 import ProgressBar from "@/components/UI/ProgressBar";
 import { DarkModeProvider } from "@/provider/DarkModeProvider";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -24,16 +25,18 @@ export default function RootLayout({
     <html lang="en-US">
       <body className={`px-0  ${inter.className}`}>
         <DarkModeProvider>
-          {/* <div className="container mx-auto min-h-screen flex flex-col"> */}
-          <div className="min-h-screen mx-auto">
-            <ProgressBar />
-            <Navigation />
+          <LanguageProvider>
+            {/* <div className="container mx-auto min-h-screen flex flex-col"> */}
+            <div className="min-h-screen mx-auto">
+              <ProgressBar />
+              <Navigation />
 
-            <div className=" flex flex-col justify-between flex-grow">
-              <div style={{ margin: "0 0 48px 0" }}>{children}</div>
+              <div className=" flex flex-col justify-between flex-grow">
+                <div style={{ margin: "0 0 48px 0" }}>{children}</div>
+              </div>
             </div>
-          </div>
-          <Footer />
+            <Footer />
+          </LanguageProvider>
         </DarkModeProvider>
       </body>
     </html>

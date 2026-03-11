@@ -1,22 +1,51 @@
+"use client";
+
 import React from "react";
 import { ReactNode } from "react";
 import TabsPage from "@/components/TabsPage/TabsPage";
+import { useLanguage } from '@/context/LanguageContext';
 
 const Zebrad = () => {
+  const { t } = useLanguage();
+  const tableOfContents = t?.developers?.quickStart?.tableOfContents ?? "Table of Contents";
+  const toc1 = t?.developers?.quickStart?.toc1 ?? "1. Installing Zebrad";
+  const toc2 = t?.developers?.quickStart?.toc2 ?? "2. Running zebrad";
+  const toc3 = t?.developers?.quickStart?.toc3 ?? "3. Connecting with lightwalletd";
+  const installingHeading = t?.developers?.quickStart?.installingHeading ?? "1. Installing Zebrad";
+  const runningHeading = t?.developers?.quickStart?.runningHeading ?? "2. Running zebrad";
+  const connectingHeading = t?.developers?.quickStart?.connectingHeading ?? "3. Connecting with lightwalletd";
+  const systemRequirements = t?.developers?.quickStart?.systemRequirements ?? "System Requirements";
+  const sysList1 = t?.developers?.quickStart?.sysList1 ?? "Linux, macOS, or Windows";
+  const sysList2 = t?.developers?.quickStart?.sysList2 ?? "At least 4GB RAM (8GB recommended)";
+  const sysList3 = t?.developers?.quickStart?.sysList3 ?? "250GB free disk space for full node";
+  const sysList4 = t?.developers?.quickStart?.sysList4 ?? "Stable internet connection";
+  const linux = t?.developers?.quickStart?.linux ?? "Linux";
+   const initialSetup = t?.developers?.quickStart?.initialSetup ?? "Initial Setup";
+   const startingZebrad = t?.developers?.quickStart?.startingZebrad ?? "Starting zebrad";
+  const ubuntuDebian = t?.developers?.quickStart?.ubuntuDebian ?? "Ubuntu/Debian:";
+  const fromSource = t?.developers?.quickStart?.fromSource ?? "From Source:";
+  const macos = t?.developers?.quickStart?.macos ?? "macOS";
+  const homebrew = t?.developers?.quickStart?.homebrew ?? "Homebrew:";
+  const windows = t?.developers?.quickStart?.windows ?? "Windows";
+  const importantNotes = t?.developers?.quickStart?.importantNotes ?? "Important Notes";
+  const nextSteps = t?.developers?.quickStart?.nextSteps ?? "Next Steps";
+  const readyToBuild = t?.developers?.quickStart?.readyToBuild ?? "Ready to Build?";
+  const needHelp = t?.developers?.quickStart?.needHelp ?? "Need Help?";
+
   return (
     <>
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
         {/* Table of Contents */}
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 mb-8">
-          <h2 className="text-2xl font-bold mb-4">Table of Contents</h2>
+          <h2 className="text-2xl font-bold mb-4">{tableOfContents}</h2>
           <ul className="space-y-2">
             <li>
               <a
                 href="#installing-zcash"
                 className="text-blue-500 hover:underline"
               >
-                1. Installing Zebrad
+                {toc1}
               </a>
             </li>
             <li>
@@ -24,7 +53,7 @@ const Zebrad = () => {
                 href="#running-zebrad"
                 className="text-blue-500 hover:underline"
               >
-                2. Running zebrad
+                {toc2}
               </a>
             </li>
             <li>
@@ -32,7 +61,7 @@ const Zebrad = () => {
                 href="#connecting-lightwalletd"
                 className="text-blue-500 hover:underline"
               >
-                3. Connecting with lightwalletd
+                {toc3}
               </a>
             </li>
             {/* <li>
@@ -53,33 +82,31 @@ const Zebrad = () => {
 
         {/* Installing Zebrad Section */}
         <section id="installing-zcash" className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">1. Installing Zebrad</h2>
+          <h2 className="text-3xl font-bold mb-6">{installingHeading}</h2>
 
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
-            <h3 className="text-xl font-semibold mb-4">System Requirements</h3>
+            <h3 className="text-xl font-semibold mb-4">{systemRequirements}</h3>
             <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-              <li>Linux, macOS, or Windows</li>
-              <li>At least 4GB RAM (8GB recommended)</li>
-              <li>250GB free disk space for full node</li>
-              <li>Stable internet connection</li>
+              <li>{sysList1}</li>
+              <li>{sysList2}</li>
+              <li>{sysList3}</li>
+              <li>{sysList4}</li>
             </ul>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Linux Installation */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold mb-4">Linux</h3>
+                <h3 className="text-xl font-semibold mb-4">{linux}</h3>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-semibold text-green-600">
-                    Ubuntu/Debian:
-                  </h4>
+                  <h4 className="font-semibold text-green-600">{ubuntuDebian}</h4>
                   <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
                     {`sudo apt update \ncargo install --locked zebrad`}
                   </pre>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-green-600">From Source:</h4>
+                  <h4 className="font-semibold text-green-600">{fromSource}</h4>
                   <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
                     {`git clone https://github.com/ZcashFoundation/zebra.git \ncd zebra \ngit checkout v2.4.0 \ncargo build  --release --bin zebrad \ntarget/release/zebrad start`}
                   </pre>
@@ -89,10 +116,10 @@ const Zebrad = () => {
 
             {/* macOS Installation */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold mb-4">macOS</h3>
+              <h3 className="text-xl font-semibold mb-4">{macos}</h3>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-semibold text-green-600">Homebrew:</h4>
+                  <h4 className="font-semibold text-green-600">{homebrew}</h4>
                   <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
                     {`curl https://sh.rustup.rs -sSf | sh \ncargo install --locked zebrad`}
                   </pre>
@@ -110,7 +137,7 @@ const Zebrad = () => {
 
             {/* Windows Installation */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold mb-4">Windows</h3>
+              <h3 className="text-xl font-semibold mb-4">{windows}</h3>
               <div className="space-y-3">
                 <div>
                   <h4 className="font-semibold text-green-600">
@@ -128,10 +155,10 @@ const Zebrad = () => {
 
         {/* Running zebrad Section */}
         <section id="running-zebrad" className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">2. Running zebrad</h2>
+          <h2 className="text-3xl font-bold mb-6">{runningHeading}</h2>
 
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
-            <h3 className="text-xl font-semibold mb-4">Initial Setup</h3>
+            <h3 className="text-xl font-semibold mb-4">{initialSetup}</h3>
             <div className="space-y-4">
               <div>
                 <h4 className="font-semibold text-green-600">
@@ -210,7 +237,7 @@ use_journald = false`}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <h3 className="text-xl font-semibold mb-4">Starting zebrad</h3>
+              <h3 className="text-xl font-semibold mb-4">{startingZebrad}</h3>
               <div className="space-y-3">
                 <div>
                   <h4 className="font-semibold text-green-600">

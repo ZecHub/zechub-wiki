@@ -1,0 +1,36 @@
+{
+  "common": {
+    "home": "ホーム",
+    "about": "について",
+    "contact": "お問い合わせ",
+    "language": "言語"
+  },
+  "navigation": {
+    "wallet": "ウォレット",
+    "guides": "ガイド",
+    "tutorials": "チュートリアル",
+    "governance": "ガバナンス",
+    "visualizer": "ビジュアライザー"
+  },
+  "visualizer": {
+    "title": "Zcash ビジュアライザー",
+    "description": "Zcash のプライバシー技術、インフラストラクチャ、ゼロ知識証明を理解するためのインタラクティブな教育ツール",
+    "playAll": "すべてのビジュアライザーを再生",
+    "basic": "基本",
+    "basicDescription": "Zcash の基本概念と重要な機能",
+    "advanced": "上級",
+    "advancedDescription": "暗号化、コンセンサス、インフラストラクチャの技術的な詳細",
+    "contributors": "貢献者",
+    "contributorsDescription": "Zcash エコシステムに貢献して報酬を得る方法"
+  }
+  ,
+  "dao": {
+    "title": "ZecHub DAO",
+    "description": "ZecHubの分散型ガバナンス",
+    "proposals": "提案",
+    "vote": "投票",
+    "createProposal": "提案を作成",
+    "activeProposals": "アクティブな提案",
+    "pastProposals": "過去の提案"
+  }
+}

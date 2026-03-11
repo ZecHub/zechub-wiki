@@ -1,8 +1,12 @@
+"use client";
 import Link from "next/link";
 import { ShopButton } from "../Shop-button/shop-button";
 import SocialIcons from "../UI/SocialIcons";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+  
   return (
     <footer className=" shadow bg-[#1984c7] md:flex md:items-center md:flex-col py-3 text-white">
       <div className="flex w-full mx-auto max-w-screen-xl justify-center items-center p-4 md:flex-col md:items-center md:justify-between my-8">
@@ -22,7 +26,7 @@ const Footer = () => {
           >
             Zechub™
           </Link>
-          . All Rights Reserved.
+          . {t.footer?.allRightsReserved || "All Rights Reserved"}.
         </span>
         <span className="text-sm sm:text-center font-light text-slate-200">
           <Link href={"/sitemap"}>Sitemap</Link>

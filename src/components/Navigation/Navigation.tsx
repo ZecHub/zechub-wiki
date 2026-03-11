@@ -8,6 +8,8 @@ import SearchBar from "../SearchBar";
 import Logo from "../UI/Logo";
 import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
 import SocialIcons from "../UI/SocialIcons";
+import { LanguageSwitcher } from "../LanguageSwitcher";
+import { useLanguage } from "@/context/LanguageContext";
 
 import { matchIcons } from "@/constants/Icons";
 import { ChevronDown, Menu, Moon, Search, Sun } from "lucide-react";
@@ -16,6 +18,122 @@ import { Icon } from "../UI/Icon";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
+
+// Translation helper function
+const getTranslatedLabel = (itemName: string, linkName: string | undefined, t: any, originalLabel?: string): string => {
+  // if (originalLabel && originalLabel !== itemName) {
+  //   return originalLabel;
+  // }
+
+  // Main navigation items
+  const mainNavMap: Record<string, string> = {
+    'DAO': t.navigation?.dao || 'DAO',
+    'Governance': t.navigation?.governance || 'Governance',
+    'Tutorials': t.navigation?.tutorials || 'Tutorials',
+    'Developers': t.navigation?.developers || 'Developers',
+    'Contribute': t.navigation?.contribute || 'Contribute',
+    'Visualizer': t.navigation?.visualizer || 'Visualizer',
+  };
+
+  // Using Zcash submenu
+  const usingZcashMap: Record<string, string> = {
+    'Buying ZEC': t.navigation?.usingZcash?.buyingZec || 'Buying ZEC',
+    'Faucets': t.navigation?.usingZcash?.faucets || 'Faucets',
+    'Wallets': t.navigation?.usingZcash?.wallets || 'Wallets',
+    'Metamask Snap': t.navigation?.usingZcash?.metamaskSnap || 'Metamask Snap',
+    'Exchanges': t.navigation?.usingZcash?.exchanges || 'Exchanges',
+    'Block Explorers': t.navigation?.usingZcash?.blockExplorers || 'Block Explorers',
+    'Blockchain Explorers': t.navigation?.usingZcash?.blockExplorers || 'Blockchain Explorers',
+    'Shielded Pools': t.navigation?.usingZcash?.shieldedPools || 'Shielded Pools',
+    'Transparent Exchange Addresses': t.navigation?.usingZcash?.transparentExchangeAddresses || 'Transparent Exchange Addresses',
+    'Transactions': t.navigation?.usingZcash?.transactions || 'Transactions',
+    'Memos': t.navigation?.usingZcash?.memos || 'Memos',
+    'Mobile Top Ups': t.navigation?.usingZcash?.mobileTopUps || 'Mobile Top Ups',
+    'Payment Request URIs': t.navigation?.usingZcash?.paymentRequestUris || 'Payment Request URIs',
+    'Payment Processors': t.navigation?.usingZcash?.paymentProcessors || 'Payment Processors',
+    'Recovering Funds': t.navigation?.usingZcash?.recoveringFunds || 'Recovering Funds',
+  };
+
+  // Community submenu
+  const communityMap: Record<string, string> = {
+    'Arborist Calls': t.navigation?.zcashCommunity?.arboristCalls || 'Arborist Calls',
+    'Community Blogs': t.navigation?.zcashCommunity?.communityBlogs || 'Community Blogs',
+    'Community Links': t.navigation?.zcashCommunity?.communityLinks || 'Community Links',
+    'Community Forum': t.navigation?.zcashCommunity?.communityForum || 'Community Forum',
+    'Community Projects': t.navigation?.zcashCommunity?.communityProjects || 'Community Projects',
+    'Zcash Global Ambassadors': t.navigation?.zcashCommunity?.globalAmbassadors || 'Zcash Global Ambassadors',
+    'Zcash Media': t.navigation?.zcashCommunity?.zcashMedia || 'Zcash Media',
+    'ZCAP': t.navigation?.zcashCommunity?.zcap || 'ZCAP',
+    'Zcash Podcasts': t.navigation?.zcashCommunity?.zcashPodcasts || 'Zcash Podcasts',
+    'Zcash Ecosystem Security': t.navigation?.zcashCommunity?.ecosystemSecurity || 'Zcash Ecosystem Security',
+    'Cypherpunk Zero NFT': t.navigation?.zcashCommunity?.cypherpunkZeroNFT || 'Cypherpunk Zero NFT',
+    'Zcon Archive': t.navigation?.zcashCommunity?.zconArchive || 'Zcon Archive',
+  };
+
+  // Organizations submenu
+  const organizationsMap: Record<string, string> = {
+    'Electric Coin Company': t.navigation?.organizations?.electricCoinCompany || 'Electric Coin Company',
+    'Zcash Foundation': t.navigation?.organizations?.zcashFoundation || 'Zcash Foundation',
+    'Zcash Community Grants': t.navigation?.organizations?.communityGrants || 'Zcash Community Grants',
+    'Financial Privacy Foundation': t.navigation?.organizations?.financialPrivacyFoundation || 'Financial Privacy Foundation',
+    'Shielded Labs': t.navigation?.organizations?.shieldedLabs || 'Shielded Labs',
+    'Zingo Labs': t.navigation?.organizations?.zingoLabs || 'Zingo Labs',
+    'Brand': t.navigation?.organizations?.brand || 'Brand',
+    'ZKAV Club': t.navigation?.organizations?.zkavClub || 'ZKAV Club',
+  };
+
+  // Guides submenu
+  const guidesMap: Record<string, string> = {
+    'Zgo Payment Processor': t.navigation?.guidesSubmenu?.zgoPaymentProcessor || 'Zgo Payment Processor',
+    'Free2z Live': t.navigation?.guidesSubmenu?.free2zLive || 'Free2z Live',
+    'Keystone Zashi': t.navigation?.guidesSubmenu?.keystoneZashi || 'Keystone Zashi',
+    'Maya Protocol': t.navigation?.guidesSubmenu?.mayaProtocol || 'Maya Protocol',
+    'Nym VPN': t.navigation?.guidesSubmenu?.nymVpn || 'Nym VPN',
+    'Using ZEC in DeFi': t.navigation?.guidesSubmenu?.usingZecInDefi || 'Using ZEC in DeFi',
+    'Using ZEC Privately': t.navigation?.guidesSubmenu?.usingZecPrivately || 'Using ZEC Privately',
+    'Raspberry Pi Zcashd Node': t.navigation?.guidesSubmenu?.raspberryPiZcashdNode || 'Raspberry Pi Zcashd Node',
+    'Raspberry Pi 4 Full Node': t.navigation?.guidesSubmenu?.raspberryPiZcashdNode || 'Raspberry Pi 4 Full Node',
+    'Raspberry pi5 Zebra Lightwalletd Zingo': t.navigation?.guidesSubmenu?.raspberryPi5ZebraLightwalletdZingo || 'Raspberry pi5 Zebra Lightwalletd Zingo',
+    'Raspberry Pi Zebra Node': t.navigation?.guidesSubmenu?.raspberryPiZebraNode || 'Raspberry Pi Zebra Node',
+    'Raspberry pi 4 Zebra Node': t.navigation?.guidesSubmenu?.raspberryPiZebraNode || 'Raspberry pi 4 Zebra Node',
+    'Akash Network': t.navigation?.guidesSubmenu?.akashNetwork || 'Akash Network',
+    'Avalanche RedBridge': t.navigation?.guidesSubmenu?.avalancheRedbridge || 'Avalanche RedBridge',
+    'Zkool Multisig': t.navigation?.guidesSubmenu?.zkoolMultisig || 'Zkool Multisig',
+    'Ywallet FROST Demo': t.navigation?.guidesSubmenu?.ywalletFrostDemo || 'Ywallet FROST Demo',
+    'Blockchain Explorers': t.navigation?.guidesSubmenu?.blockchainExplorers || 'Blockchain Explorers',
+    'Brave Wallet': t.navigation?.guidesSubmenu?.braveWallet || 'Brave Wallet',
+    'BTCPayServer Plugin': t.navigation?.guidesSubmenu?.btcPayServerPlugin || 'BTCPayServer Plugin',
+    'Visualizing the Zcash Network': t.navigation?.guidesSubmenu?.visualizingZcashNetwork || 'Visualizing the Zcash Network',
+    'Visualizing Zcash Addresses': t.navigation?.guidesSubmenu?.visualizingZcashAddresses || 'Visualizing Zcash Addresses',
+    'Zcash Devtool': t.navigation?.guidesSubmenu?.zcashDevtool || 'Zcash Devtool',
+    'Zcash Improvement Proposals': t.navigation?.guidesSubmenu?.zcashImprovementProposals || 'Zcash Improvement Proposals',
+    'Zingolib and Zaino Tutorial': t.navigation?.guidesSubmenu?.zingolibAndZainoTutorial || 'Zingolib and Zaino Tutorial',
+    'Zenith Installation': t.navigation?.guidesSubmenu?.zenithInstallation || 'Zenith Installation',
+    'Zero Knowledge vs Decoy Systems': t.navigation?.guidesSubmenu?.zeroKnowledgeVsDecoys || 'Zero Knowledge vs Decoy Systems',
+    'Zero-Knowledge vs Decoys': t.navigation?.guidesSubmenu?.zeroKnowledgeVsDecoys || 'Zero-Knowledge vs Decoys',
+  };
+
+  // Parent menu labels
+  const parentLabels: Record<string, string> = {
+    'Using Zcash': t.navigation?.usingZcash?.label || 'Use Zcash',
+    'Use Zcash': t.navigation?.usingZcash?.label || 'Use Zcash',
+    'Zcash Community': t.navigation?.zcashCommunity?.label || 'Ecosystem',
+    'Ecosystem': t.navigation?.zcashCommunity?.label || 'Ecosystem',
+    'Zcash Organizations': t.navigation?.organizations?.label || 'Organizations',
+    'Organizations': t.navigation?.organizations?.label || 'Organizations',
+    'Guides': t.navigation?.guides || 'Guides',
+  };
+
+  const searchName = linkName || itemName;
+  
+  return mainNavMap[searchName] || 
+         usingZcashMap[searchName] || 
+         communityMap[searchName] || 
+         organizationsMap[searchName] || 
+         guidesMap[searchName] ||
+         parentLabels[searchName] ||
+         searchName;
+};
 
 const Dropdown = ({
   label,
@@ -61,6 +179,7 @@ const NavLinks = ({
   classes: string;
   closeMenu: () => void;
 }) => {
+  const { t } = useLanguage();
   const handleLinkClick = () => {
     closeMenu();
   };
@@ -74,7 +193,7 @@ const NavLinks = ({
         {/* Show first 4 links normally on desktop */}
         {navigations.slice(0, 4).map((item, i) =>
           item.links ? (
-            <Dropdown label={item.label || item.name} key={`${item.name}-${i}`}>
+            <Dropdown label={getTranslatedLabel(item.name, item.label, t, item.label)} key={`${item.name}-${i}`}>
               {item.links.map((link, i) => (
                 <div
                   key={`${link.name}-${i}`}
@@ -96,7 +215,7 @@ const NavLinks = ({
                         className="xl:w-6 w-4 h-4 xl:h-6"
                       />
                     )}
-                    {link.label || link.name}
+                    {getTranslatedLabel(item.name, link.name, t, link.label)}
                   </Link>
                 </div>
               ))}
@@ -113,14 +232,14 @@ const NavLinks = ({
                 rel: "noopener noreferrer",
               })}
             >
-              {item.label || item.name}
+              {getTranslatedLabel(item.name, item.label, t, item.label)}
             </Link>
           )
         )}
 
         {/* Overflow nav in a More dropdown for desktop */}
         {navigations.length > 4 && (
-          <Dropdown label="More">
+          <Dropdown label={t.navigation?.more || "More"}>
             {navigations.slice(4).map((item, i) => (
               <div
                 key={`${item.name}-${i}`}
@@ -142,7 +261,7 @@ const NavLinks = ({
                       className="xl:w-6 w-4 h-4 xl:h-6"
                     />
                   )}
-                  {item.label || item.name}
+                  {getTranslatedLabel(item.name, item.label, t, item.label)}
                 </Link>
               </div>
             ))}
@@ -153,7 +272,7 @@ const NavLinks = ({
       {/* Medium screens - show fewer links */}
       <div className="hidden md:flex lg:hidden items-center space-x-12">
         {navigations.slice(0, 3).map((item, i) => (
-          <Dropdown label={item.label || item.name} key={`${item.name}-${i}`}>
+          <Dropdown label={getTranslatedLabel(item.name, item.label, t, item.label)} key={`${item.name}-${i}`}>
             {item.links?.map((link, i) => (
               <div
                 key={`${link.name}-${i}`}
@@ -175,7 +294,7 @@ const NavLinks = ({
                       className="xl:w-6 w-4 h-4 xl:h-6"
                     />
                   )}
-                  {link.label || link.name}
+                  {getTranslatedLabel(item.name, link.name, t, link.label)}
                 </Link>
               </div>
             ))}
@@ -183,7 +302,7 @@ const NavLinks = ({
         ))}
 
         {navigations.length > 2 && (
-          <Dropdown label="More">
+          <Dropdown label={t.navigation?.more || "More"}>
             <div onMouseLeave={() => setOpenIndex(null)}>
               {navigations.slice(3).map((item, i) => {
                 const isOpen = openIndex === i; // check if current item is open
@@ -199,7 +318,7 @@ const NavLinks = ({
                           className="flex items-center gap-1 text-white hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
                           onClick={() => setOpenIndex(isOpen ? null : i)}
                         >
-                          {item.label || item.name}
+                          {getTranslatedLabel(item.name, item.label, t, item.label)}
                           <ChevronDown
                             className={`h-4 w-4 transition-transform duration-200 ${
                               isOpen ? "rotate-180" : ""
@@ -232,7 +351,7 @@ const NavLinks = ({
                                     className="xl:w-6 w-4 h-4 xl:h-6"
                                   />
                                 )}
-                                {link.label || link.name}
+                                {getTranslatedLabel(item.name, link.name, t, link.label)}
                               </Link>
                             </div>
                           ))}
@@ -248,7 +367,7 @@ const NavLinks = ({
                           rel: "noopener noreferrer",
                         })}
                       >
-                        {item.name}
+                        {getTranslatedLabel(item.name, item.label, t, item.label)}
                       </Link>
                     )}
                   </div>
@@ -267,7 +386,7 @@ const NavLinks = ({
           onClick={handleLinkClick}
           className="text-cta-primary hover:bg-cta-primary hover:text-white transition-colors duration-200"
         >
-          Dashboard
+          {t.navigation?.dashboard || "Dashboard"}
         </Link>
       </div>
     </div>
@@ -275,13 +394,14 @@ const NavLinks = ({
 };
 
 const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
+  const { t } = useLanguage();
   const handleLinkClick = () => closeMenu();
   return (
     <div className="flex flex-col space-y-1 font-normal">
       {navigations.map((item, i) =>
         item.links ? (
           <DropdownMobile
-            label={item.label || item.name}
+            label={getTranslatedLabel(item.name, item.label, t, item.label)}
             key={`${item.name}-${i}`}
           >
             {item.links.map((link, i) => {
@@ -303,7 +423,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
                       className="xl:w-6 w-4 h-4 xl:h-6"
                     />
                   )}
-                  {link.label || link.name}
+                  {getTranslatedLabel(item.name, link.name, t, link.label)}
                 </Link>
               );
             })}
@@ -320,7 +440,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
               rel: "noopener noreferrer",
             })}
           >
-            {item.label || item.name}
+            {getTranslatedLabel(item.name, item.label, t, item.label)}
           </Link>
         )
       )}
@@ -334,7 +454,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
           onClick={handleLinkClick}
           className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
         >
-          Dashboard
+          {t.navigation?.dashboard || "Dashboard"}
         </Link>
       </div>
       <div className="py-12">
@@ -412,6 +532,9 @@ const Navigation = () => {
 
           {/* Right side controls */}
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+
             {/* Search */}
             <Button
               variant="ghost"

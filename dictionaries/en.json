@@ -1,0 +1,407 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "language": "Language",
+    "clickToExplore": "Click to explore →",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "readMore": "Read More",
+    "search": "Search",
+    "close": "Close"
+  },
+  "navigation": {
+    "wallets": "Wallets",
+    "guides": "Guides",
+    "tutorials": "Tutorials",
+    "governance": "Governance",
+    "visualizer": "Visualizer",
+    "dao": "DAO",
+    "newsletter": "Newsletter",
+    "donate": "Donate",
+    "explore": "Explore",
+    "developers": "Developers",
+    "community": "Community",
+    "contribute": "Contribute",
+    "dashboard": "Dashboard",
+    "more": "More",
+    "usingZcash": {
+      "label": "Use Zcash",
+      "buyingZec": "Buying ZEC",
+      "faucets": "Faucets",
+      "wallets": "Wallets",
+      "metamaskSnap": "Metamask Snap",
+      "exchanges": "Exchanges",
+      "blockExplorers": "Block Explorers",
+      "shieldedPools": "Shielded Pools",
+      "transparentExchangeAddresses": "Transparent Exchange Addresses",
+      "transactions": "Transactions",
+      "memos": "Memos",
+      "mobileTopUps": "Mobile Top Ups",
+      "paymentRequestUris": "Payment Request URIs",
+      "paymentProcessors": "Payment Processors",
+      "recoveringFunds": "Recovering Funds"
+    },
+    "zcashCommunity": {
+      "label": "Ecosystem",
+      "arboristCalls": "Arborist Calls",
+      "communityBlogs": "Community Blogs",
+      "communityLinks": "Community Links",
+      "communityForum": "Community Forum",
+      "communityProjects": "Community Projects",
+      "globalAmbassadors": "Zcash Global Ambassadors",
+      "zcashMedia": "Zcash Media",
+      "zcap": "ZCAP",
+      "zcashPodcasts": "Zcash Podcasts",
+      "ecosystemSecurity": "Zcash Ecosystem Security",
+      "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
+      "zconArchive": "Zcon Archive"
+    },
+    "organizations": {
+      "label": "Organizations",
+      "electricCoinCompany": "Electric Coin Company",
+      "zcashFoundation": "Zcash Foundation",
+      "communityGrants": "Zcash Community Grants",
+      "financialPrivacyFoundation": "Financial Privacy Foundation",
+      "shieldedLabs": "Shielded Labs",
+      "zingoLabs": "Zingo Labs",
+      "brand": "Brand",
+      "zkavClub": "ZKAV Club"
+    },
+    "guidesSubmenu": {
+      "zgoPaymentProcessor": "Zgo Payment Processor",
+      "free2zLive": "Free2z Live",
+      "keystoneZashi": "Keystone Zashi",
+      "mayaProtocol": "Maya Protocol",
+      "nymVpn": "Nym VPN",
+      "usingZecInDefi": "Using ZEC in DeFi",
+      "usingZecPrivately": "Using ZEC Privately",
+      "raspberryPiZcashdNode": "Raspberry Pi Zcashd Node",
+      "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+      "raspberryPiZebraNode": "Raspberry Pi Zebra Node",
+      "akashNetwork": "Akash Network",
+      "avalancheRedbridge": "Avalanche RedBridge",
+      "zkoolMultisig": "Zkool Multisig",
+      "ywalletFrostDemo": "Ywallet FROST Demo",
+      "blockchainExplorers": "Blockchain Explorers",
+      "braveWallet": "Brave Wallet",
+      "btcPayServerPlugin": "BTCPayServer Plugin",
+      "visualizingZcashNetwork": "Visualizing the Zcash Network",
+      "visualizingZcashAddresses": "Visualizing Zcash Addresses",
+      "zcashDevtool": "Zcash Devtool",
+      "zcashImprovementProposals": "Zcash Improvement Proposals",
+      "zingolibAndZainoTutorial": "Zingolib and Zaino Tutorial",
+      "zenithInstallation": "Zenith Installation",
+      "zeroKnowledgeVsDecoys": "Zero Knowledge vs Decoy Systems"
+    }
+  },
+  "home": {
+    "heroTitle": "Welcome to ZecHub",
+    "heroSubtitle": "An open source education hub for Zcash",
+    "heroDescription": "Learn about Zcash privacy technology, explore interactive visualizers, and contribute to the ecosystem",
+    "description": "ZecHub is the community-driven education hub for the Zcash cryptocurrency (ZEC). Zcash is a digital currency providing censorship resistant, secure & private payments. The Zcash Blockchain utilises highly advanced 'verifiable' zk-snarks that do not require Trusted Setup following the NU5 network upgrade in 2022.",
+    "featuredSection": "Featured Resources",
+    "latestUpdates": "Latest Updates",
+    "getInvolved": "Get Involved",
+    "exploreEcosystem": "Explore the Ecosystem",
+    "exploreZcash": "Explore Zcash",
+    "cards": {
+      "startHere": {
+        "title": "Start Here",
+        "content": "Find out what Zcash is and ZEC use cases"
+      },
+      "pickWallet": {
+        "title": "Pick a Wallet",
+        "content": "Wallets allow you to receive and spend Zcash privately. Some also support encrypted memos"
+      },
+      "resources": {
+        "title": "Zcash Resources",
+        "content": "Here are guides that help users understand Zcash Full Nodes, zk-SNARKs and more"
+      }
+    },
+    "sections": {
+      "whatIsZcash": {
+        "title": "What is Zcash?",
+        "description": "It is an open-source, blockchain ledger that features a sophisticated zero-knowledge proving system. It specializes in offering a higher standard of privacy through its proving system preserving confidentiality of transaction metadata. At its core, Zcash is private data ownership that is permissionlessly transferred when transactions are made.",
+        "mainLink": "What is Zcash?",
+        "techLink": "Zcash Technology"
+      },
+      "zcashMe": {
+        "title": "Zcash.me",
+        "description": "Zcash.Me is a public directory of Zcash users featuring private messaging, leaderboards, and verified users. Connect, explore, and interact with the Zcash community.",
+        "link": "Visit Zcash.Me"
+      },
+      "globalAmbassadors": {
+        "title": "Zcash Global Ambassadors",
+        "description": "Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions.",
+        "link": "Meet the Ambassadors"
+      },
+      "newsletter": {
+        "title": "Shielded Newsletter",
+        "description": "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!",
+        "link": "Subscribe"
+      },
+      "free2z": {
+        "title": "Free2Z",
+        "description": "Free2Z is a social platform powered by Zcash. With peer-to-peer donations, a revenue sharing program, advanced creative tools and a massive online global community.",
+        "link": "Free2Z"
+      },
+      "payWithZcash": {
+        "title": "Pay with Zcash",
+        "description": "This website is an answer to the question: Where can I pay with Zcash? The directory is free to use. The items listed are for informational purposes only, and not endorsements of any kind. Enjoy!",
+        "mainLink": "paywithz.cash",
+        "mapLink": "SPEDN"
+      }
+    },
+    "explore": {
+      "startHere": "Start_Here",
+      "tutorials": "Tutorials",
+      "usingZcash": "Using_Zcash",
+      "guides": "Guides",
+      "zcashTech": "Zcash_Tech",
+      "organizations": "Zcash_Organizations",
+      "community": "Zcash_Community",
+      "zkavClub": "ZKAV_Club",
+      "privacyTools": "Privacy_Tools",
+      "research": "Research",
+      "glossary": "Glossary_and_FAQs",
+      "contribute": "Contribute"
+    }
+  },
+  "footer": {
+    "description": "An open source education hub for Zcash",
+    "quickLinks": "Quick Links",
+    "resources": "Resources",
+    "community": "Community",
+    "followUs": "Follow Us",
+    "allRightsReserved": "All rights reserved",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "visualizer": {
+    "title": "Zcash Visualizers",
+    "description": "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs",
+    "playAll": "Play All Visualizers",
+    "basic": "Basic",
+    "basicDescription": "Foundational concepts and essential features of Zcash",
+    "advanced": "Advanced",
+    "advancedDescription": "Deep technical dives into cryptography, consensus, and infrastructure",
+    "contributors": "Contributors",
+    "contributorsDescription": "Ways to contribute to the Zcash ecosystem and earn rewards",
+    "beginnerQuiz": "Beginner Quiz",
+    "intermediateQuiz": "Intermediate Quiz",
+    "contributorsQuiz": "Contributors Quiz",
+    "autoPlayNote": "Each visualizer runs automatically. Use controls to navigate or pause.",
+    "wallets": {
+      "title": "Introduction to Zcash Wallets",
+      "description": "Providing Shielded Functionality"
+    },
+    "pools": {
+      "title": "Value Pools & Address Types",
+      "description": "Explore Zcash privacy pools and address types"
+    },
+    "payWith": {
+      "title": "Pay with Zcash",
+      "description": "Discover where and how to use ZEC for private payments"
+    },
+    "dex": {
+      "title": "Zcash Exchanges (DEX)",
+      "description": "Permissionless, censorship-resistant access to ZEC using decentralized exchanges"
+    },
+    "hashFunction": {
+      "title": "Hash Functions",
+      "description": "What is a Hash Function?"
+    },
+    "blockchain": {
+      "title": "Zcash Blockchain Fundamentals",
+      "description": "Understanding Zcash Blockchain Foundation"
+    },
+    "zkproof": {
+      "title": "zk-SNARKs",
+      "description": "Interactive demonstration of shielded transactions"
+    },
+    "keys": {
+      "title": "Zcash Keys",
+      "description": "Understanding Zcash Keys"
+    },
+    "infrastructure": {
+      "title": "Zcash Infrastructure",
+      "description": "How Zcash components work together"
+    },
+    "consensus": {
+      "title": "Consensus",
+      "description": "How do hundreds of nodes agree on chain state?"
+    },
+    "miningHalo": {
+      "title": "Zcash Mining & Halo 2",
+      "description": "Understanding Equihash mining and recursive zero-knowledge proofs"
+    },
+    "privacyUseCases": {
+      "title": "Privacy Use Cases",
+      "description": "Real-world applications of privacy technology on Zcash"
+    },
+    "governance": {
+      "title": "Governance & Dev Fund",
+      "description": "Community-driven development and decentralized decision making"
+    },
+    "bounties": {
+      "title": "ZecHub Bounties",
+      "description": "Contribute to ZecHub and earn ZEC"
+    },
+    "daoProposal": {
+      "title": "DAO Proposals",
+      "description": "Step-by-step guide to creating a ZecHub DAO governance proposal"
+    },
+    "communityGrants": {
+      "title": "Zcash Community Grants",
+      "description": "Funding for Zcash ecosystem projects"
+    },
+    "coinholderGrants": {
+      "title": "Coinholder Directed Grants",
+      "description": "Retroactive funding directed by ZEC holders"
+    },
+    "openSource": {
+      "title": "Open Source Repositories",
+      "description": "Contribute to Zcash open source projects"
+    }
+  },
+  "wallets": {
+    "title": "Zcash Wallets",
+    "description": "Choose a wallet that fits your needs",
+    "desktopWallets": "Desktop Wallets",
+    "mobileWallets": "Mobile Wallets",
+    "hardwareWallets": "Hardware Wallets",
+    "webWallets": "Web Wallets",
+    "features": "Features",
+    "download": "Download",
+    "visitWebsite": "Visit Website",
+    "filters": "Filters",
+    "showNavigation": "Show Navigation",
+    "close": "Close",
+    "savedReview": "We saved your review!",
+    "errorGettingLikes": "Error getting likes:",
+    "errorUpdatingRating": "Error updating rating:"
+  },
+  "guides": {
+    "title": "Guides",
+    "description": "Step-by-step guides for using Zcash",
+    "allGuides": "All Guides",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
+  "tutorials": {
+    "title": "Tutorials",
+    "description": "Learn by doing with hands-on tutorials",
+    "watchVideo": "Watch Video",
+    "readTutorial": "Read Tutorial",
+    "duration": "Duration"
+  },
+  "dao": {
+    "title": "ZecHub DAO",
+    "description": "Decentralized governance for ZecHub",
+    "headerTitle": "ZecHub DAO & Governance",
+    "headerDescription": "An open source educational platform where community members collaborate on creating, validating, and promoting content that supports the Zcash ecosystem",
+    "beliefs": [
+      "Privacy is a human right",
+      "Education should be open-source and accessible worldwide",
+      "Community members have a right to earn ZEC privately",
+      "Global collaboration drives innovation"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "First Zcash Ecosystem DAO",
+        "description": "ZecHub is pioneering decentralized governance in the Zcash community, with funds held primarily within the Zcash shielded pool for maximum privacy."
+      },
+      {
+        "icon": "🌍",
+        "title": "Global Collaboration",
+        "description": "Global Ambassadors, Community Grants members, and community experts unite to guide the direction of Zcash and Privacy Technology education."
+      },
+      {
+        "icon": "🔄",
+        "title": "SubDAO Framework",
+        "description": "Any group can create SubDAOs to form projects, create proposals, or request Retroactive Compensation via the DAO DAO module."
+      }
+    ],
+    "governanceDescription": "All DAO proposals are public and transparent. Anyone can create a proposal to vote on. In support of community transparency, ZecHub DAO posts all governance proposals in the Zcash Community Forum ZecHub Governance thread.",
+    "membersTitle": "DAO Members",
+    "proposals": "Proposals",
+    "vote": "Vote",
+    "createProposal": "Create Proposal",
+    "activeProposals": "Active Proposals",
+    "pastProposals": "Past Proposals"
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "description": "Stay updated with the latest Zcash news",
+    "subscribe": "Subscribe",
+    "emailPlaceholder": "Enter your email",
+    "subscribeButton": "Subscribe Now",
+    "latestIssue": "Latest Issue",
+    "archive": "Archive"
+  }
+  ,
+  "pages": {
+    "wallets": {
+      "title": "Wallets | ZecHub",
+      "noData": "No Data or Wrong file",
+      "bannerAlt": "wiki-banner"
+    },
+    "dex": {
+      "centralizedTitle": "Centralized Swap Platform Listing",
+      "custodial": "Custodial Exchanges"
+    },
+    "usingZcash": {
+      "blockchainExplorers": { "title": "Blockchain Explorers" }
+    },
+    "dashboard": {
+      "title": "Dashboard | ZecHub"
+    },
+    "hackathon": {
+      "title": "Hackathon | ZecHub"
+    },
+    "developers": {
+      "title": "Zcash Developer Resources"
+    },
+    "zcashProjects": {
+      "title": "Zcash Projects | ZecHub"
+    },
+    "visualizer": {
+      "title": "Zcash Visualizers",
+      "hashFunction": { "title": "Hash Function Visualizer" },
+      "zcashKey": { "title": "Zcash Key Visualizer" },
+      "zksnark": { "title": "ZK-SNARK Proof Visualizer" }
+    }
+    ,
+    "paymentProcessors": {
+      "title": "Payment Processors | ZecHub",
+      "noData": "No Data or Wrong file",
+      "bannerAlt": "wiki-banner"
+    }
+  },
+  "developers": {
+    "quickStart": {
+      "tableOfContents": "Table of Contents",
+      "toc1": "1. Installing Zebrad",
+      "toc2": "2. Running zebrad",
+      "toc3": "3. Connecting with lightwalletd",
+      "installingHeading": "1. Installing Zebrad",
+      "runningHeading": "2. Running zebrad",
+      "connectingHeading": "3. Connecting with lightwalletd",
+      "systemRequirements": "System Requirements",
+      "linux": "Linux",
+      "ubuntuDebian": "Ubuntu/Debian:",
+      "fromSource": "From Source:",
+      "macos": "macOS",
+      "homebrew": "Homebrew:",
+      "windows": "Windows",
+      "importantNotes": "Important Notes",
+      "nextSteps": "Next Steps",
+      "readyToBuild": "Ready to Build?",
+      "needHelp": "Need Help?"
+    }
+  }
+}

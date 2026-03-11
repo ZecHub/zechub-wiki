@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import WalletItem from "@/components/Wallet/WalletItem";
 import FilterToggle from "@/components/FilterToggle";
+import { useLanguage } from '@/context/LanguageContext';
 
 interface Wallet {
   title: string;
@@ -30,6 +31,14 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   const [error, setError] = useState<{ [key: string]: string }>({});
   const [success, setSuccess] = useState<{ [key: string]: string }>({});
   const [isFilterVisible, setIsFilterVisible] = useState(false);
+
+  const { t } = useLanguage();
+  const filtersLabel = t?.wallets?.filters ?? "Filters";
+  const showNavLabel = t?.wallets?.showNavigation ?? "Show Navigation";
+  const closeLabel = t?.wallets?.close ?? "Close";
+  const savedReviewMsg = t?.wallets?.savedReview ?? "We saved your review!";
+  const errorGettingLikesMsgPrefix = t?.wallets?.errorGettingLikes ?? "Error getting likes:";
+  const errorUpdatingRatingPrefix = t?.wallets?.errorUpdatingRating ?? "Error updating rating:";
 
   const handleToggleFilter = () => {
     setIsFilterVisible(!isFilterVisible);
@@ -73,7 +82,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           console.log("You reviewed this in the past.");
         }
       } catch (error) {
-        console.log("Error getting likes: " + error);
+        console.log(`${errorGettingLikesMsgPrefix} ${error}`);
       }
 
       allWallets.forEach((wallet) => {
@@ -114,13 +123,13 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           ...prevLikes,
           [walletTitle]: prevLikes[walletTitle] + 1,
         }));
-        setSuccess({ [walletTitle]: "We saved your review!" });
+        setSuccess({ [walletTitle]: savedReviewMsg });
       } else {
         const data = await response.json();
         setError({ [walletTitle]: data.message });
       }
     } catch (error) {
-      setError({ [walletTitle]: "Error updating rating: " + error });
+      setError({ [walletTitle]: `${errorUpdatingRatingPrefix} ${error}` });
     }
   };
 
@@ -144,7 +153,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           ...prevLikes,
           [walletTitle]: prevLikes[walletTitle] - 1,
         }));
-        setSuccess({ [walletTitle]: "We saved your review!" });
+        setSuccess({ [walletTitle]: savedReviewMsg });
       } else {
         const data = await response.json();
         setError({ [walletTitle]: data.message });
@@ -171,12 +180,12 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   return (
     <div className="flex flex-col w-full md:flex-row">
       <div className="md:hidden flex justify-between items-center w-full mb-4">
-        <h2 className="text-4xl font-bold">Filters</h2>
-        <button
+          <h2 className="text-4xl font-bold">{filtersLabel}</h2>
+          <button
           onClick={handleToggleFilter}
           className="bg-[#1984c7] text-white px-4 py-2 rounded text-sm md:text-lg md:hidden"
         >
-          Show Navigation
+          {showNavLabel}
         </button>
       </div>
 
@@ -202,7 +211,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
             onClick={handleToggleFilter}
             className="bg-[#1984c7] absolute right-5 top-5 text-white px-4 py-2 rounded text-sm md:text-lg md:hidden"
           >
-            Close
+            {closeLabel}
           </button>
           <FilterToggle
             filters={filters}

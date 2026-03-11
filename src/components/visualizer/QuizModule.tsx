@@ -12,6 +12,7 @@ import {
   XCircle,
 } from "lucide-react";
 import React, { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export interface QuizQuestion {
   question: string;
@@ -46,6 +47,12 @@ export function QuizCard({
   className = "",
   onOpen,
 }: QuizCardProps) {
+  const { t } = useLanguage();
+  const desc =
+    description === DEFAULT_QUIZ_DESCRIPTION
+      ? t?.visualizer?.defaultQuizDescription ?? DEFAULT_QUIZ_DESCRIPTION
+      : description;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -67,7 +74,7 @@ export function QuizCard({
           </div>
 
           <div className="text-yellow-500 text-center group-hover:text-yellow-400 transition-colors">
-            <span className="text-sm font-medium">Click to open quiz →</span>
+            <span className="text-sm font-medium">{t?.visualizer?.clickToOpenQuiz ?? "Click to open quiz →"}</span>
           </div>
         </div>
       </div>

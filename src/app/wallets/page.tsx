@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
+import { getDictionary } from '@/lib/getDictionary';
 import { getBanner } from "@/lib/helpers";
 import { parseMarkdown } from "@/lib/parseMarkdown";
 import WalletList from "@/components/Wallet/WalletList";
@@ -10,11 +11,14 @@ import { Metadata } from "next";
 
 const imgUrl = getBanner(`using-zcash`);
 
-export const metadata: Metadata = genMetadata({
-  title: "Wallets | Zechub",
-  url: "https://zechub.wiki/wallets",
-  image: imgUrl,
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const dict = await getDictionary();
+  return genMetadata({
+    title: dict.pages?.wallets?.title || "Wallets | Zechub",
+    url: "https://zechub.wiki/wallets",
+    image: imgUrl,
+  }) as Metadata;
+}
 
 export default async function Page(props: {
   params: Promise<{ slug: string }>;
@@ -29,19 +33,20 @@ export default async function Page(props: {
     getRootCached(urlRoot),
   ]);
 
-  const content = markdown ? markdown : "No Data or Wrong file";
+  const dict = await getDictionary();
+  const content = markdown ? markdown : (dict.pages?.wallets?.noData ?? "No Data or Wrong file");
   const walletsParsed = parseMarkdown(String(content));
 
   return (
     <main>
       <div className="flex justify-center w-full  mb-5 bg-transparent rounded pb-4">
-        <Image
-          className="w-full mb-5 object-cover "
-          alt="wiki-banner"
-          width={800}
-          height={50}
-          src={imgUrl != undefined ? imgUrl : "/wiki-banner.avif"}
-        />
+          <Image
+            className="w-full mb-5 object-cover "
+            alt={dict.pages?.wallets?.bannerAlt || 'wiki-banner'}
+            width={800}
+            height={50}
+            src={imgUrl != undefined ? imgUrl : "/wiki-banner.avif"}
+          />
       </div>
 
       <div

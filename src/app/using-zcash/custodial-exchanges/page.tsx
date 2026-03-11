@@ -1,70 +1,16 @@
-import ExchangeCard from "@/components/ExchangeCard/ExchangeCard";
-import exchanges from "@/constants/exchange";
-import { genMetadata } from "@/lib/helpers";
-import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import Client from './ClientPage';
+import { genMetadata } from '@/lib/helpers';
+import { getDictionary } from '@/lib/getDictionary';
+import { Metadata } from 'next';
 
-export const metadata: Metadata = genMetadata({
-  title: "Custodial Exchanges",
-  url: "https://zechub.wiki/using-zcash/custodial-exchanges",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const dict = await getDictionary();
+  return genMetadata({
+    title: dict.pages?.dex?.custodial ?? 'Custodial Exchanges',
+    url: 'https://zechub.wiki/using-zcash/custodial-exchanges',
+  }) as Metadata;
+}
 
-const CustodialExchanges: React.FC = () => {
-  return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="w-[31px]">
-        <a
-          href="https://github.com/zechub/zechub/edit/main/site/Using_Zcash/Custodial_Exchanges.md"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            src={"https://img.shields.io/badge/Edit-blue"}
-            alt="Edit Page"
-            width={24}
-            height={24}
-          />
-        </a>
-      </div>
-
-      <div className="flex justify-between items-center my-6 flex-col imd:flex-row">
-        <h1 className="flex justify-center items-center text-2xl imd:text-3xl font-bold mb-4 imd:mb-0 text-center">
-          <Image
-            src={"https://i.ibb.co/bmS65xV/image-2024-02-03-173258092.png"}
-            alt="Alt Text"
-            width={50}
-            height={50}
-            className="inline-block mr-2"
-          />
-          Custodial Exchanges
-        </h1>
-
-        <Link
-          href="/dex"
-          className="inline-flex py-2 px-4 btn-brand focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm"
-        >
-          DEX platforms
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-6">
-        {exchanges.map((exchange) => (
-          <ExchangeCard
-            key={exchange.name}
-            name={exchange.name}
-            url={exchange.url}
-            pairs={exchange.pairs}
-            support={exchange.support}
-            depositTime={exchange.depositTime}
-            logo={exchange.logo}
-            altText={exchange.altText}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default CustodialExchanges;
+export default function Page() {
+  return <Client />;
+}
