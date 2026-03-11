@@ -1,5 +1,5 @@
-
 import { cn } from "@/lib/util";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { NetworkUpgrade } from "./networkUpgrade";
 
@@ -68,12 +68,29 @@ export function EvolutinCard(props: EvolutinCardProps) {
               </span>
             )}
             {isFuture && (
-                <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1">
-                    Coming Soon
-                </span>
+              <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1">
+                Coming Soon
+              </span>
             )}
+
+            <h3
+              className="text-base md:text-lg font-bold"
+              style={{ color: `hsl(${props.upgrade.eraColor})` }}
+            >
+              {props.upgrade.name}
+            </h3>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              {props.upgrade.subtitle}
+            </p>
           </div>
+          <ChevronDown
+            className={cn(
+              "h-4 w-4 text-muted-foreground shrink-0 transition-transform mt-1",
+              expanded && "rotate-180",
+            )}
+          />
         </div>
+        
       </button>
     </div>
   );
