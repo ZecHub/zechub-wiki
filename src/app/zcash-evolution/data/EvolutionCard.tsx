@@ -46,7 +46,7 @@ export function EvolutinCard(props: EvolutinCardProps) {
       <button
         onClick={() => setExpanded(!expanded)}
         className={cn(
-          "flex-1 mb-6 rounded-lg border bg-card p-5 text-left transition-all hover:border-primary/40",
+          "flex-1 mb-6 rounded-lg border border-slate-300 dark:border-inherit bg-card p-5 text-left transition-all hover:border-primary/40",
           isCurrent && "glow-zcash border-primary/50",
           isFuture && "border-dashed border-muted-foreground/30 bg-card/50",
           "animate-fade-in",
