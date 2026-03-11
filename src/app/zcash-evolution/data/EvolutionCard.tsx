@@ -90,7 +90,7 @@ export function EvolutinCard(props: EvolutinCardProps) {
             )}
           />
         </div>
-        <div className="flex flex-wrap gap-3 mt-3 text-sm to-muted-foreground">
+        <div className="flex flex-wrap gap-3 mt-3 text-sm to-muted-foreground text-slate-500 dark:text-slate-400">
           <span className="flex items-center gap-1">
             <Calendar className="h-3 w-3" />
             {props.upgrade.date}
@@ -102,11 +102,11 @@ export function EvolutinCard(props: EvolutinCardProps) {
             </span>
           )}
         </div>
-        <p className="text-sm text-primary-foreground mt-3 leading-relaxed">
+        <p className="text-sm font-semibold  text-slate-700 dark:text-slate-200 mt-3 leading-relaxed">
           {props.upgrade.description}
         </p>
         {expanded && (
-          <div>
+          <div className="mt-6">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
               Key Features
             </h4>
