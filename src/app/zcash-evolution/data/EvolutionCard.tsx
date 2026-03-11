@@ -1,5 +1,5 @@
 import { cn } from "@/lib/util";
-import { ChevronDown } from "lucide-react";
+import { Blocks, Calendar, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { NetworkUpgrade } from "./networkUpgrade";
 
@@ -90,7 +90,45 @@ export function EvolutinCard(props: EvolutinCardProps) {
             )}
           />
         </div>
-        
+        <div className="flex flex-wrap gap-3 mt-3 text-sm to-muted-foreground">
+          <span className="flex items-center gap-1">
+            <Calendar className="h-3 w-3" />
+            {props.upgrade.date}
+          </span>
+          {props.upgrade.blockHeight !== null && (
+            <span className="flex items-center gap-1 font-mono">
+              <Blocks className="h-3 w-3" />#
+              {props.upgrade.blockHeight.toLocaleString()}
+            </span>
+          )}
+        </div>
+        <p className="text-sm text-primary-foreground mt-3 leading-relaxed">
+          {props.upgrade.description}
+        </p>
+        {expanded && (
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+              Key Features
+            </h4>
+
+            <ul className="space-y-1.5">
+              {props.upgrade.features.map((f) => (
+                <li
+                  key={f}
+                  className="flex items-start gap-2 text-sm text-foreground"
+                >
+                  <span
+                    className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0"
+                    style={{
+                      backgroundColor: `hsl(${props.upgrade.eraColor})`,
+                    }}
+                  />
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </button>
     </div>
   );
