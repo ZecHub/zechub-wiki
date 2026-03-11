@@ -57,6 +57,7 @@
     "cheerio": "^1.2.0",
     "class-variance-authority": "^0.7.0",
     "date-fns": "^4.1.0",
+    "entities": "^7.0.1",
     "eslint": "8.48.0",
     "eslint-config-next": "^15.1.6",
     "express-session": "^1.18.0",
