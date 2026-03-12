@@ -65,7 +65,7 @@ const Dashboard = () => {
   };
 
   const tabs = [
-    { key: "dashboard" as const, label: "Zcash Dashboard", icon: <BarChart3 className="w-5 h-5" /> },
+    { key: "dashboard" as const, label: "ZecHub Dashboard", icon: <BarChart3 className="w-5 h-5" /> },
     { key: "proposals" as const, label: "DaoDao Dashboard", icon: <FileText className="w-5 h-5" /> },
     { key: "zcg" as const, label: "ZCG Dashboard", icon: <Award className="w-5 h-5" /> },
     { key: "youtube" as const, label: "YouTube Dashboard", icon: <Youtube className="w-5 h-5" /> },
@@ -92,11 +92,11 @@ const Dashboard = () => {
   const formatViews = (views: number) => views.toLocaleString();
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen p-4 md:p-6">
       <div className="max-w-7xl mx-auto space-y-8 relative">
 
         {/* SHIELDED NETWORKS */}
-        <div className="absolute top-8 right-8 z-50" ref={dropdownRef}>
+        <div className="absolute top-6 right-6 z-50" ref={dropdownRef}>
           <Button size="icon" className="bg-purple-600 hover:bg-purple-700 text-white h-11 w-11 rounded-2xl shadow-lg" onClick={() => setOpen(!open)} title="Shielded Networks">
             <Shield className="h-5 w-5" />
           </Button>
@@ -113,18 +113,18 @@ const Dashboard = () => {
 
         {/* HEADER */}
         <div className="mt-12 text-center">
-          <h1 className="text-3xl font-bold text-foreground">ZecHub Dashboard(s)</h1>
+          <h1 className="text-3xl font-bold text-foreground">Zcash Dashboard(s)</h1>
           <p className="text-muted-foreground">Analyze Zcash network metrics and trends</p>
         </div>
 
         {/* MAIN TABS */}
         <div className="flex justify-center">
-          <div className="inline-flex bg-slate-100 dark:bg-slate-800 rounded-3xl p-1.5 shadow-inner">
+          <div className="inline-flex bg-slate-100 dark:bg-slate-800 rounded-3xl p-1 shadow-inner">
             {tabs.map((tab) => (
               <Button
                 key={tab.key}
                 variant="ghost"
-                className={`px-9 py-3.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-base ${
+                className={`px-8 py-3 md:px-9 md:py-3.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-sm md:text-base ${
                   currentView === tab.key
                     ? "bg-purple-700 text-white shadow-lg"
                     : "text-slate-700 dark:text-slate-300 hover:bg-purple-100 dark:hover:bg-purple-950 hover:text-purple-700"
@@ -153,7 +153,7 @@ const Dashboard = () => {
                   <Button
                     key={ch.value}
                     variant="ghost"
-                    className={`px-8 py-3 rounded-3xl font-medium transition-all ${
+                    className={`px-6 py-2 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${
                       ch.name === "ZecHub" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"
                     }`}
                     onClick={() => {/* Future channel switching */}}
@@ -164,27 +164,27 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Uniform Stat Boxes – Video player now larger and balanced */}
+            {/* Uniform Stat Boxes – mobile-friendly */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Total Videos */}
-              <div className="bg-card border border-border rounded-2xl p-6 text-center relative overflow-hidden flex flex-col items-center justify-center h-72">
-                <Play className="absolute -bottom-12 -right-12 h-44 w-44 text-purple-200 dark:text-purple-950/30" />
+              <div className="bg-card border border-border rounded-2xl p-6 text-center relative overflow-hidden flex flex-col items-center justify-center h-64 md:h-72">
+                <Play className="absolute -bottom-12 -right-12 h-36 w-36 md:h-44 md:w-44 text-purple-200 dark:text-purple-950/30" />
                 <p className="text-sm text-muted-foreground relative z-10">Total Videos</p>
-                <p className="text-5xl font-bold text-purple-600 mt-3 relative z-10">{totalVideos}</p>
+                <p className="text-4xl md:text-5xl font-bold text-purple-600 mt-3 relative z-10">{totalVideos}</p>
               </div>
 
               {/* Total Views */}
-              <div className="bg-card border border-border rounded-2xl p-6 text-center relative overflow-hidden flex flex-col items-center justify-center h-72">
-                <Eye className="absolute -bottom-12 -right-12 h-44 w-44 text-purple-200 dark:text-purple-950/30" />
+              <div className="bg-card border border-border rounded-2xl p-6 text-center relative overflow-hidden flex flex-col items-center justify-center h-64 md:h-72">
+                <Eye className="absolute -bottom-12 -right-12 h-36 w-36 md:h-44 md:w-44 text-purple-200 dark:text-purple-950/30" />
                 <p className="text-sm text-muted-foreground relative z-10">Total Views</p>
-                <p className="text-5xl font-bold text-purple-600 mt-3 relative z-10">{formatViews(totalViews)}</p>
+                <p className="text-4xl md:text-5xl font-bold text-purple-600 mt-3 relative z-10">{formatViews(totalViews)}</p>
               </div>
 
-              {/* Most Viewed – Larger video player */}
-              <div className="bg-card border border-border rounded-2xl p-6 overflow-hidden flex flex-col h-72">
+              {/* Most Viewed – larger video player */}
+              <div className="bg-card border border-border rounded-2xl p-6 overflow-hidden flex flex-col h-64 md:h-72">
                 <p className="text-sm text-muted-foreground mb-3">Most Viewed</p>
                 {mostViewed.video_id && (
-                  <div className="flex-1 bg-black rounded-2xl overflow-hidden mb-3 relative min-h-[200px]">
+                  <div className="flex-1 bg-black rounded-2xl overflow-hidden mb-3 relative">
                     <iframe
                       src={`https://www.youtube.com/embed/${mostViewed.video_id}`}
                       title={mostViewed.title}
@@ -194,8 +194,8 @@ const Dashboard = () => {
                     />
                   </div>
                 )}
-                <p className="text-lg font-medium truncate">{mostViewed.title || "—"}</p>
-                <p className="text-purple-600 font-bold mt-1">{formatViews(mostViewed.views || 0)} views</p>
+                <p className="text-base font-medium truncate">{mostViewed.title || "—"}</p>
+                <p className="text-purple-600 font-bold">{formatViews(mostViewed.views || 0)} views</p>
               </div>
             </div>
 
@@ -212,17 +212,17 @@ const Dashboard = () => {
 
             {/* SUB-TABS */}
             <div className="flex justify-center">
-              <div className="inline-flex bg-slate-100 dark:bg-slate-800 rounded-3xl p-1 shadow-inner">
+              <div className="inline-flex bg-slate-100 dark:bg-slate-800 rounded-3xl p-1 shadow-inner flex-wrap">
                 <Button
                   variant="ghost"
-                  className={`px-8 py-3 rounded-3xl font-medium transition-all ${subView === "top" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
+                  className={`px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${subView === "top" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
                   onClick={() => { setSubView("top"); setLatestSortByViews(false); }}
                 >
                   Top 15 by Views
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`px-8 py-3 rounded-3xl font-medium transition-all ${subView === "latest" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
+                  className={`px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${subView === "latest" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
                   onClick={() => setSubView("latest")}
                 >
                   Latest 15 Videos
@@ -244,14 +244,14 @@ const Dashboard = () => {
               </div>
             )}
 
-            {/* Thumbnail + Bar Chart */}
-            <div className="bg-card border border-border rounded-3xl p-8">
-              <h2 className="text-2xl font-semibold mb-8 text-center">
+            {/* Thumbnail + Bar Chart – mobile-friendly */}
+            <div className="bg-card border border-border rounded-3xl p-6 md:p-8">
+              <h2 className="text-xl md:text-2xl font-semibold mb-8 text-center">
                 {subView === "top" ? "Top 15 Videos by Views" : latestSortByViews ? "Latest 15 Videos (Sorted by Views)" : "Latest 15 Videos"}
               </h2>
-              <div className="space-y-6">
+              <div className="space-y-5 md:space-y-6">
                 {displayedVideos.map((video, index) => (
-                  <div key={video.video_id} className="flex items-center gap-6 group">
+                  <div key={video.video_id} className="flex items-center gap-4 md:gap-6 group">
                     <a 
                       href={`https://youtube.com/watch?v=${video.video_id}`} 
                       target="_blank" 
@@ -261,15 +261,15 @@ const Dashboard = () => {
                       <img 
                         src={`https://i.ytimg.com/vi/${video.video_id}/hqdefault.jpg`}
                         alt={video.title}
-                        className="w-20 h-14 object-cover rounded-xl shadow-sm border border-slate-200 dark:border-slate-700"
+                        className="w-16 h-10 md:w-20 md:h-14 object-cover rounded-xl shadow-sm border border-slate-200 dark:border-slate-700"
                       />
                     </a>
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <div className="flex justify-between text-sm mb-1.5">
-                        <span className="font-medium truncate pr-4">{video.title}</span>
-                        <span className="font-mono text-purple-600 font-semibold">{formatViews(video.views)}</span>
+                        <span className="font-medium truncate pr-4 text-sm md:text-base">{video.title}</span>
+                        <span className="font-mono text-purple-600 font-semibold text-xs md:text-sm">{formatViews(video.views)}</span>
                       </div>
-                      <div className="h-5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                      <div className="h-4 md:h-5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                         <div 
                           className="h-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all group-hover:brightness-110"
                           style={{ width: `${Math.max((video.views / (displayedVideos[0]?.views || 1)) * 100, 8)}%` }}
