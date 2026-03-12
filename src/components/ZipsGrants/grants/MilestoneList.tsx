@@ -1,4 +1,4 @@
-import { Grant } from "../../types/grants";
+import { Grant } from "@/types/grants";
 import { MilestoneItem } from "./MilestoneItem.";
 
 interface Props {
@@ -9,7 +9,7 @@ export function MilestoneList(props: Props) {
   return (
     <div className="mt-4 space-y-3">
       {props.milestones.map((m, i) => (
-        <MilestoneItem key={m.label+i} milestone={m} />
+        <MilestoneItem key={m.label + i} milestone={m} />
       ))}
     </div>
   );

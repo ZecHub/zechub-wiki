@@ -1,5 +1,5 @@
 import { format, parse } from "date-fns";
-import { Grant, GrantStatus } from "../types/grants";
+import { Grant, GrantStatus } from "@/types/grants";
 import { CHART_COLORS } from "./chart-colors";
 
 export type StatusVariant =

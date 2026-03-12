@@ -1,5 +1,5 @@
 import { ExternalLink } from "lucide-react";
-import { Grant } from "../../types/grants";
+import { Grant } from "@/types/grants";
 import { StatusBadge } from "../StatusBadge";
 
 interface Props {
