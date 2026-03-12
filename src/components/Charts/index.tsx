@@ -95,29 +95,13 @@ const Dashboard = () => {
     <div className="min-h-screen p-4 md:p-6">
       <div className="max-w-7xl mx-auto space-y-8 relative">
 
-        {/* SHIELDED NETWORKS */}
-        <div className="absolute top-6 right-6 z-50" ref={dropdownRef}>
-          <Button size="icon" className="bg-purple-600 hover:bg-purple-700 text-white h-11 w-11 rounded-2xl shadow-lg" onClick={() => setOpen(!open)} title="Shielded Networks">
-            <Shield className="h-5 w-5" />
-          </Button>
-          {open && (
-            <div className="absolute mt-2 right-0 bg-white shadow-lg rounded-lg dark:bg-slate-900 w-[160px] border border-slate-200 dark:border-slate-700">
-              <ul className="w-[160px]">
-                <li className="px-4 py-2 hover:bg-purple-300/50 dark:hover:bg-purple-500/50 rounded-md cursor-pointer w-[160px]">
-                  <Link href="https://namada.zechub.wiki" className="block w-full h-full" onClick={() => setOpen(false)} target="_blank">Namada</Link>
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
-
         {/* HEADER */}
         <div className="mt-12 text-center">
           <h1 className="text-3xl font-bold text-foreground">ZecHub Dashboard(s)</h1>
           <p className="text-muted-foreground">Analyze Zcash network metrics and trends</p>
         </div>
 
-        {/* MAIN TABS – unified layout (wraps cleanly on mobile) */}
+        {/* MAIN TABS – flex-wrap for mobile visibility */}
         <div className="flex flex-wrap justify-center gap-2">
           {tabs.map((tab) => (
             <Button
@@ -134,6 +118,27 @@ const Dashboard = () => {
               {tab.label}
             </Button>
           ))}
+        </div>
+
+        {/* Shielded Networks – Top-right on desktop, below tabs on mobile */}
+        <div className="flex justify-end md:absolute md:top-6 md:right-6 z-50" ref={dropdownRef}>
+          <Button
+            size="icon"
+            className="bg-purple-600 hover:bg-purple-700 text-white h-11 w-11 rounded-2xl shadow-lg"
+            onClick={() => setOpen(!open)}
+            title="Shielded Networks"
+          >
+            <Shield className="h-5 w-5" />
+          </Button>
+          {open && (
+            <div className="absolute mt-2 right-0 bg-white shadow-lg rounded-lg dark:bg-slate-900 w-[160px] border border-slate-200 dark:border-slate-700">
+              <ul className="w-[160px]">
+                <li className="px-4 py-2 hover:bg-purple-300/50 dark:hover:bg-purple-500/50 rounded-md cursor-pointer w-[160px]">
+                  <Link href="https://namada.zechub.wiki" className="block w-full h-full" onClick={() => setOpen(false)} target="_blank">Namada</Link>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* === YOUTUBE SECTION === */}
@@ -275,7 +280,8 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-        
+
+        {/* Other sections unchanged */}
         {currentView === "dashboard" && (
           <>
             {selectedCrypto === "zcash" && <ZcashChart divChartRef={divChartRef} handleSaveToPng={handleSaveToPng} />}
