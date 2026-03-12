@@ -9,11 +9,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import * as config from "../../config";
 import { getZCGrantsData } from "../actions/google-sheets.action";
-import { ZipAndGrantsChart } from "./components/charts";
-import { GrantList } from "./components/GrantList";
-import { ZIPList } from "./components/ZIPList";
-import { useZIPs } from "./hooks/use-zips";
-import { Grant } from "./types/grants";
+import { ZipAndGrantsChart } from "@/components/ZipsGrants/charts";
+import { GrantList } from "@/components/ZipsGrants/GrantList";
+import { ZIPList } from "@/components/ZipsGrants/ZIPList";
+import { useZIPs } from "@/hooks/use-zips";
+import { Grant } from "@/types/grants";
 
 const queryClient = new QueryClient();
 

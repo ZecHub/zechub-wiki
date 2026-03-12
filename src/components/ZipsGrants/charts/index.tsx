@@ -16,8 +16,8 @@ import {
   topGrantees,
   totalGrantees,
   zecUsdRateOverTime,
-} from "../../lib/helpers";
-import { Grant } from "../../types/grants";
+} from "@/lib/zips/helpers";
+import { Grant } from "@/types/grants";
 import { Stats } from "../Stats";
 import { CategoryChart } from "./grants/CategoryChart";
 import { TopGranteesChart } from "./grants/TopGranteesChart";

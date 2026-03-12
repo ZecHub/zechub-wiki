@@ -1,32 +1,32 @@
 import { Button } from "@/components/UI/shadcn/button";
 import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
 } from "@/components/UI/shadcn/card";
 import {
-    BarChart3,
-    CheckCircle,
-    Coins,
-    DollarSign,
-    TrendingUp,
-    Upload,
+  BarChart3,
+  CheckCircle,
+  Coins,
+  DollarSign,
+  TrendingUp,
+  Upload,
 } from "lucide-react";
 import { useCallback, useMemo } from "react";
 import {
-    Area,
-    AreaChart,
-    Bar,
-    BarChart,
-    CartesianGrid,
-    Cell,
-    Line,
-    LineChart,
-    ResponsiveContainer,
-    Tooltip,
-    XAxis,
-    YAxis
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
 
 type Props = {
@@ -38,7 +38,7 @@ type Props = {
 
 export function USDDisbursedOverTimeChart(props: Props) {
   return (
-    <Card className="border-border/30 bg-slate-800/90 backdrop-blur-sm">
+    <Card className="border-border/30 dark:bg-slate-800/90 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="text-lg font-bold">
           USD Disbursed Over Time
