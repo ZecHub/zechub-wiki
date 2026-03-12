@@ -48,6 +48,7 @@ import {
   GrDocumentZip,
   GrGroup as Group,
   GrNodes as Nodes,
+  GrNetwork as Network,
   GrResources as Resources,
   GrStakeholder as Stakeholder,
 } from "react-icons/gr";
@@ -149,6 +150,7 @@ const iconsForMenu: IconsFor = {
     "Zcash Resources": Resources,
     "Developer Resources": Dadeveloper,
     "Development Fund": BinaryTree,
+    "Network Upgrades": Network,
     "Zcash Monetary Policy": Graph,
     "What is ZecHub": CircleInfo,
     "Using This Wiki": Wikipedia,
