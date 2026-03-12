@@ -117,25 +117,23 @@ const Dashboard = () => {
           <p className="text-muted-foreground">Analyze Zcash network metrics and trends</p>
         </div>
 
-        {/* MAIN TABS */}
-        <div className="flex justify-center">
-          <div className="inline-flex bg-slate-100 dark:bg-slate-800 rounded-3xl p-1 shadow-inner">
-            {tabs.map((tab) => (
-              <Button
-                key={tab.key}
-                variant="ghost"
-                className={`px-8 py-3 md:px-9 md:py-3.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-sm md:text-base ${
-                  currentView === tab.key
-                    ? "bg-purple-700 text-white shadow-lg"
-                    : "text-slate-700 dark:text-slate-300 hover:bg-purple-100 dark:hover:bg-purple-950 hover:text-purple-700"
-                }`}
-                onClick={() => changeView(tab.key)}
-              >
-                {tab.icon}
-                {tab.label}
-              </Button>
-            ))}
-          </div>
+        {/* MAIN TABS – unified layout (wraps cleanly on mobile) */}
+        <div className="flex flex-wrap justify-center gap-2">
+          {tabs.map((tab) => (
+            <Button
+              key={tab.key}
+              variant="ghost"
+              className={`px-6 py-2.5 md:px-9 md:py-3.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-sm md:text-base flex-1 md:flex-none min-w-[140px] md:min-w-0 justify-center ${
+                currentView === tab.key
+                  ? "bg-purple-700 text-white shadow-lg"
+                  : "text-slate-700 dark:text-slate-300 hover:bg-purple-100 dark:hover:bg-purple-950 hover:text-purple-700"
+              }`}
+              onClick={() => changeView(tab.key)}
+            >
+              {tab.icon}
+              {tab.label}
+            </Button>
+          ))}
         </div>
 
         {/* === YOUTUBE SECTION === */}
@@ -164,23 +162,18 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Uniform Stat Boxes – mobile-friendly */}
+            {/* Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Total Videos */}
               <div className="bg-card border border-border rounded-2xl p-6 text-center relative overflow-hidden flex flex-col items-center justify-center h-64 md:h-72">
                 <Play className="absolute -bottom-12 -right-12 h-36 w-36 md:h-44 md:w-44 text-purple-200 dark:text-purple-950/30" />
                 <p className="text-sm text-muted-foreground relative z-10">Total Videos</p>
                 <p className="text-4xl md:text-5xl font-bold text-purple-600 mt-3 relative z-10">{totalVideos}</p>
               </div>
-
-              {/* Total Views */}
               <div className="bg-card border border-border rounded-2xl p-6 text-center relative overflow-hidden flex flex-col items-center justify-center h-64 md:h-72">
                 <Eye className="absolute -bottom-12 -right-12 h-36 w-36 md:h-44 md:w-44 text-purple-200 dark:text-purple-950/30" />
                 <p className="text-sm text-muted-foreground relative z-10">Total Views</p>
                 <p className="text-4xl md:text-5xl font-bold text-purple-600 mt-3 relative z-10">{formatViews(totalViews)}</p>
               </div>
-
-              {/* Most Viewed – larger video player */}
               <div className="bg-card border border-border rounded-2xl p-6 overflow-hidden flex flex-col h-64 md:h-72">
                 <p className="text-sm text-muted-foreground mb-3">Most Viewed</p>
                 {mostViewed.video_id && (
@@ -244,7 +237,7 @@ const Dashboard = () => {
               </div>
             )}
 
-            {/* Thumbnail + Bar Chart – mobile-friendly */}
+            {/* Thumbnail + Bar Chart */}
             <div className="bg-card border border-border rounded-3xl p-6 md:p-8">
               <h2 className="text-xl md:text-2xl font-semibold mb-8 text-center">
                 {subView === "top" ? "Top 15 Videos by Views" : latestSortByViews ? "Latest 15 Videos (Sorted by Views)" : "Latest 15 Videos"}
@@ -282,8 +275,7 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-
-        {/* Other sections unchanged */}
+        
         {currentView === "dashboard" && (
           <>
             {selectedCrypto === "zcash" && <ZcashChart divChartRef={divChartRef} handleSaveToPng={handleSaveToPng} />}
