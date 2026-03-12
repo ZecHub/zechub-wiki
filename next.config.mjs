@@ -16,6 +16,16 @@ const nextConfig = {
       { protocol: "https", hostname: "objects.githubusercontent.com" },
     ],
   },
+
+  // ← NEW: Rewrite old URL to serve the new Zcash Evolution page
+  async rewrites() {
+    return [
+      {
+        source: "/start-here/network-upgrades",
+        destination: "/zcash-evolution",
+      },
+    ];
+  },
 };
 
 const withMDX = createMDX({
