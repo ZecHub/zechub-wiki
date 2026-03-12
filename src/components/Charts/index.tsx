@@ -19,6 +19,7 @@ const ZCGDashboard = dynamic(() => import("@/app/zips-grants/page"), { ssr: fals
 
 type ViewType = "dashboard" | "proposals" | "zcg" | "youtube";
 type SubViewType = "top" | "latest";
+type ChannelType = "ZecHub" | "Zcash Foundation" | "Shielded Labs";
 
 const Dashboard = () => {
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");
@@ -26,23 +27,35 @@ const Dashboard = () => {
   const [currentView, setCurrentView] = useState<ViewType>("dashboard");
   const [subView, setSubView] = useState<SubViewType>("top");
   const [latestSortByViews, setLatestSortByViews] = useState(false);
-  const [sortedVideos, setSortedVideos] = useState<any[]>([]);
-  const [dateVideos, setDateVideos] = useState<any[]>([]);
+  const [currentChannel, setCurrentChannel] = useState<ChannelType>("ZecHub");
+
+  // Data for each channel
+  const [zecSorted, setZecSorted] = useState<any[]>([]);
+  const [zecDate, setZecDate] = useState<any[]>([]);
+  const [slSorted, setSlSorted] = useState<any[]>([]);
+  const [slDate, setSlDate] = useState<any[]>([]);
+  const [zfSorted, setZfSorted] = useState<any[]>([]);
+  const [zfDate, setZfDate] = useState<any[]>([]);
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-  // Load YouTube data
+  // Load all channel data
   useEffect(() => {
     if (currentView === "youtube") {
-      fetch("/data/youtube/ZecHubSorted.json")
-        .then((res) => res.json())
-        .then((data) => setSortedVideos(data));
+      // ZecHub
+      fetch("/data/youtube/ZecHubSorted.json").then(r => r.json()).then(setZecSorted);
+      fetch("/data/youtube/ZecHubByDate.json").then(r => r.json()).then(setZecDate);
 
-      fetch("/data/youtube/ZecHubByDate.json")
-        .then((res) => res.json())
-        .then((data) => setDateVideos(data));
+      // Shielded Labs
+      fetch("/data/youtube/SLSorted.json").then(r => r.json()).then(setSlSorted);
+      fetch("/data/youtube/SLByDate.json").then(r => r.json()).then(setSlDate);
+
+      // Zcash Foundation
+      fetch("/data/youtube/ZFSorted.json").then(r => r.json()).then(setZfSorted);
+      fetch("/data/youtube/ZFByDate.json").then(r => r.json()).then(setZfDate);
     }
   }, [currentView]);
 
@@ -65,17 +78,21 @@ const Dashboard = () => {
   };
 
   const tabs = [
-    { key: "dashboard" as const, label: "Zcash Dashboard", icon: <BarChart3 className="w-5 h-5" /> },
+    { key: "dashboard" as const, label: "ZecHub Dashboard", icon: <BarChart3 className="w-5 h-5" /> },
     { key: "proposals" as const, label: "DaoDao Dashboard", icon: <FileText className="w-5 h-5" /> },
     { key: "zcg" as const, label: "ZCG Dashboard", icon: <Award className="w-5 h-5" /> },
     { key: "youtube" as const, label: "YouTube Dashboard", icon: <Youtube className="w-5 h-5" /> },
   ];
 
-  const filteredSorted = sortedVideos.filter((v) =>
+  // Select correct data for current channel
+  const currentSorted = currentChannel === "ZecHub" ? zecSorted : currentChannel === "Shielded Labs" ? slSorted : zfSorted;
+  const currentDate = currentChannel === "ZecHub" ? zecDate : currentChannel === "Shielded Labs" ? slDate : zfDate;
+
+  const filteredSorted = currentSorted.filter((v) =>
     v.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const filteredDate = dateVideos.filter((v) =>
+  const filteredDate = currentDate.filter((v) =>
     v.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -85,9 +102,9 @@ const Dashboard = () => {
       ? filteredDate.slice(0, 15).sort((a, b) => b.views - a.views)
       : filteredDate.slice(0, 15);
 
-  const totalVideos = sortedVideos.length;
-  const totalViews = sortedVideos.reduce((sum, v) => sum + (v.views || 0), 0);
-  const mostViewed = sortedVideos[0] || {};
+  const totalVideos = currentSorted.length;
+  const totalViews = currentSorted.reduce((sum, v) => sum + (v.views || 0), 0);
+  const mostViewed = currentSorted[0] || {};
 
   const formatViews = (views: number) => views.toLocaleString();
 
@@ -95,13 +112,29 @@ const Dashboard = () => {
     <div className="min-h-screen p-4 md:p-6">
       <div className="max-w-7xl mx-auto space-y-8 relative">
 
+        {/* SHIELDED NETWORKS */}
+        <div className="absolute top-6 right-6 z-50" ref={dropdownRef}>
+          <Button size="icon" className="bg-purple-600 hover:bg-purple-700 text-white h-11 w-11 rounded-2xl shadow-lg" onClick={() => setOpen(!open)} title="Shielded Networks">
+            <Shield className="h-5 w-5" />
+          </Button>
+          {open && (
+            <div className="absolute mt-2 right-0 bg-white shadow-lg rounded-lg dark:bg-slate-900 w-[160px] border border-slate-200 dark:border-slate-700">
+              <ul className="w-[160px]">
+                <li className="px-4 py-2 hover:bg-purple-300/50 dark:hover:bg-purple-500/50 rounded-md cursor-pointer w-[160px]">
+                  <Link href="https://namada.zechub.wiki" className="block w-full h-full" onClick={() => setOpen(false)} target="_blank">Namada</Link>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+
         {/* HEADER */}
         <div className="mt-12 text-center">
-          <h1 className="text-3xl font-bold text-foreground">ZecHub Dashboard(s)</h1>
+          <h1 className="text-3xl font-bold text-foreground">Zcash Dashboard(s)</h1>
           <p className="text-muted-foreground">Analyze Zcash network metrics and trends</p>
         </div>
 
-        {/* MAIN TABS – flex-wrap for mobile visibility */}
+        {/* MAIN TABS – mobile-friendly wrap */}
         <div className="flex flex-wrap justify-center gap-2">
           {tabs.map((tab) => (
             <Button
@@ -120,27 +153,6 @@ const Dashboard = () => {
           ))}
         </div>
 
-        {/* Shielded Networks – Top-right on desktop, below tabs on mobile */}
-        <div className="flex justify-end md:absolute md:top-6 md:right-6 z-50" ref={dropdownRef}>
-          <Button
-            size="icon"
-            className="bg-purple-600 hover:bg-purple-700 text-white h-11 w-11 rounded-2xl shadow-lg"
-            onClick={() => setOpen(!open)}
-            title="Shielded Networks"
-          >
-            <Shield className="h-5 w-5" />
-          </Button>
-          {open && (
-            <div className="absolute mt-2 right-0 bg-white shadow-lg rounded-lg dark:bg-slate-900 w-[160px] border border-slate-200 dark:border-slate-700">
-              <ul className="w-[160px]">
-                <li className="px-4 py-2 hover:bg-purple-300/50 dark:hover:bg-purple-500/50 rounded-md cursor-pointer w-[160px]">
-                  <Link href="https://namada.zechub.wiki" className="block w-full h-full" onClick={() => setOpen(false)} target="_blank">Namada</Link>
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
-
         {/* === YOUTUBE SECTION === */}
         {currentView === "youtube" && (
           <div className="space-y-8">
@@ -149,17 +161,17 @@ const Dashboard = () => {
               <p className="text-sm text-muted-foreground mb-2">Current YouTube Channel</p>
               <div className="inline-flex bg-slate-100 dark:bg-slate-800 rounded-3xl p-1 shadow-inner">
                 {[
-                  { name: "ZecHub", value: "ZecHub" },
-                  { name: "Zcash Foundation", value: "Zcash Foundation" },
-                  { name: "Shielded Labs", value: "Shielded Labs" },
+                  { name: "ZecHub", value: "ZecHub" as ChannelType },
+                  { name: "Zcash Foundation", value: "Zcash Foundation" as ChannelType },
+                  { name: "Shielded Labs", value: "Shielded Labs" as ChannelType },
                 ].map((ch) => (
                   <Button
                     key={ch.value}
                     variant="ghost"
                     className={`px-6 py-2 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${
-                      ch.name === "ZecHub" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"
+                      currentChannel === ch.value ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"
                     }`}
-                    onClick={() => {/* Future channel switching */}}
+                    onClick={() => setCurrentChannel(ch.value)}
                   >
                     {ch.name}
                   </Button>
