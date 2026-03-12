@@ -65,10 +65,10 @@ const Dashboard = () => {
   };
 
   const tabs = [
-    { key: "dashboard" as const, label: "ZecHub Dashboard", icon: <BarChart3 className="w-5 h-5" /> },
-    { key: "proposals" as const, label: "Proposals", icon: <FileText className="w-5 h-5" /> },
+    { key: "dashboard" as const, label: "Zcash Dashboard", icon: <BarChart3 className="w-5 h-5" /> },
+    { key: "proposals" as const, label: "DaoDao Dashboard", icon: <FileText className="w-5 h-5" /> },
     { key: "zcg" as const, label: "ZCG Dashboard", icon: <Award className="w-5 h-5" /> },
-    { key: "youtube" as const, label: "YouTube", icon: <Youtube className="w-5 h-5" /> },
+    { key: "youtube" as const, label: "YouTube Dashboard", icon: <Youtube className="w-5 h-5" /> },
   ];
 
   const filteredSorted = sortedVideos.filter((v) =>
@@ -113,7 +113,7 @@ const Dashboard = () => {
 
         {/* HEADER */}
         <div className="mt-12 text-center">
-          <h1 className="text-3xl font-bold text-foreground">Zcash Analytics</h1>
+          <h1 className="text-3xl font-bold text-foreground">ZecHub Dashboard(s)</h1>
           <p className="text-muted-foreground">Analyze Zcash network metrics and trends</p>
         </div>
 
