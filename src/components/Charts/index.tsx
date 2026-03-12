@@ -114,7 +114,7 @@ const Dashboard = () => {
 
         {/* HEADER */}
         <div className="mt-12 text-center">
-          <h1 className="text-3xl font-bold text-foreground">Zcash Dashboard(s)</h1>
+          <h1 className="text-3xl font-bold text-foreground">Dashboard(s)</h1>
           <p className="text-muted-foreground">Analyze Zcash network metrics and trends</p>
         </div>
 
