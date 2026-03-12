@@ -4,7 +4,14 @@ import { getDictionary } from '@/lib/getDictionary';
 import { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
+  const dict = (await getDictionary()) as {
+    pages?: {
+      dex?: {
+        centralizedTitle?: string;
+      };
+    };
+  };
+
   return genMetadata({
     title: dict.pages?.dex?.centralizedTitle ?? 'Centralized Swap Platform Listing',
     url: 'https://zechub.wiki/using-zcash/centralizedswaps',

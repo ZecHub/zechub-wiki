@@ -3,8 +3,18 @@ import { genMetadata } from '@/lib/helpers';
 import { getDictionary } from '@/lib/getDictionary';
 import { Metadata } from 'next';
 
+type Dictionary = {
+  pages?: {
+    usingZcash?: {
+      blockchainExplorers?: {
+        title?: string;
+      };
+    };
+  };
+};
+
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
+  const dict = (await getDictionary()) as Dictionary;
   return genMetadata({
     title: dict.pages?.usingZcash?.blockchainExplorers?.title ?? 'Blockchain Explorers',
     url: 'https://zechub.wiki/using-zcash/blockchain-explorers',

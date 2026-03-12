@@ -11,8 +11,18 @@ import { Metadata } from "next";
 
 const imgUrl = getBanner(`using-zcash`);
 
+type WalletsDictionary = {
+  pages?: {
+    wallets?: {
+      title?: string;
+      noData?: string;
+      bannerAlt?: string;
+    };
+  };
+};
+
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
+  const dict = await getDictionary() as WalletsDictionary;
   return genMetadata({
     title: dict.pages?.wallets?.title || "Wallets | Zechub",
     url: "https://zechub.wiki/wallets",
@@ -33,7 +43,7 @@ export default async function Page(props: {
     getRootCached(urlRoot),
   ]);
 
-  const dict = await getDictionary();
+  const dict = (await getDictionary()) as WalletsDictionary;
   const content = markdown ? markdown : (dict.pages?.wallets?.noData ?? "No Data or Wrong file");
   const walletsParsed = parseMarkdown(String(content));
 

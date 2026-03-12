@@ -3,8 +3,18 @@ import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
 import { getDictionary } from '@/lib/getDictionary';
 
+type VisualizerDictionary = {
+  pages?: {
+    visualizer?: {
+      zksnark?: {
+        title?: string;
+      };
+    };
+  };
+};
+
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
+  const dict = (await getDictionary()) as VisualizerDictionary;
   return genMetadata({
     title: dict.pages?.visualizer?.zksnark?.title || "ZK-SNARK Proof Visualizer",
     url: "https://zechub.wiki/zksnark-proof-visualizer",
