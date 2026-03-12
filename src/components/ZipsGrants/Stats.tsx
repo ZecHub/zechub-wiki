@@ -14,7 +14,7 @@ type Props = {
 };
 export function Stats(props: Props) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+    <div className="grid grid-cols-2 imd:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
       {props.statCards.map((s) => (
         <Card
           key={s.label}

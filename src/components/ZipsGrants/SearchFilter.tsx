@@ -10,7 +10,7 @@ interface SearchFilterProps {
 
 export function SearchFilter(props: SearchFilterProps) {
   return (
-    <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center mb-8">
+    <div className="grid grid-cols-1 gap-3 items-start sm:items-center mb-8 imd:flex imd:flex-row">
       <div className="relative flex-1 w-full ">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 to-muted-foreground" />
         <Input
@@ -21,7 +21,9 @@ export function SearchFilter(props: SearchFilterProps) {
         />
       </div>
       {props.children && (
-        <div className="flex gap-2 flex-wrap">{props.children}</div>
+        <div className="grid grid-cols-3 imd:grid-cols-5 gap-2 imd:flex imd:flex-wrap">
+          {props.children}
+        </div>
       )}
     </div>
   );
