@@ -1,4 +1,4 @@
-import { Grant, RawGrantRow } from "../types/grants";
+import { Grant, RawGrantRow } from "@/types/grants";
 import {
   extractNumericMilestone,
   normalizeStatus,

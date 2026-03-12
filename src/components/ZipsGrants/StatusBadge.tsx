@@ -1,5 +1,5 @@
 import { cn } from "@/lib/util";
-import { getVariant, StatusVariant } from "../lib/helpers";
+import { getVariant, StatusVariant } from "@/lib/zips/helpers";
 
 const variantStyles: Record<StatusVariant, string> = {
   active: "bg-success/15 text-success border-success/30",

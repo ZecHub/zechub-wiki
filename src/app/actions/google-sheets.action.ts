@@ -2,8 +2,8 @@
 
 import { google } from "googleapis";
 import * as config from "../../config";
-import { parseReponseData } from "../zips-grants/lib/parseReponseData";
-import { transformGrantData } from "../zips-grants/lib/transformGrantData";
+import { parseReponseData } from "@/lib/zips/parseReponseData";
+import { transformGrantData } from "@/lib/zips/transformGrantData";
 
 /**
  * This function fetches the Zcash Community Grants data

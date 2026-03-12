@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchZIPs, ZIPData } from "../lib/github";
+import { fetchZIPs, ZIPData } from "@/lib/zips/github";
 
 export function useZIPs() {
   return useQuery<ZIPData[]>({

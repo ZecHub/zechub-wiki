@@ -1,6 +1,6 @@
 import { Coins, Loader2 } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Grant } from "../types/grants";
+import { Grant } from "@/types/grants";
 import { FilterButton } from "./FilterButton";
 import { GrantCard } from "./grants/GrantCard";
 import { SearchFilter } from "./SearchFilter";
@@ -30,7 +30,6 @@ export function GrantList(props: Props) {
     if (!props.grants) return [];
 
     return props.grants.filter((grant, i) => {
-
       const matchesSearch =
         grant.grantee?.toLowerCase().includes(search.toLowerCase()) ||
         grant.project.includes(search);
@@ -46,7 +45,6 @@ export function GrantList(props: Props) {
       return matchesSearch && matchesStatus && matchesCategory;
     });
   }, [props.grants, search, statusFilter, categoryFilter]);
-
   return (
     <section>
       <div className="flex items-center gap-2 mb-4">

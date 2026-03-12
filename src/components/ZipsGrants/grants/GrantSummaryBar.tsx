@@ -1,4 +1,4 @@
-import { Grant } from "../../types/grants";
+import { Grant } from "@/types/grants";
 
 interface Props {
   grant: Grant;

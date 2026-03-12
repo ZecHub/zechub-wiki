@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Grant } from "../../types/grants";
+import { Grant } from "@/types/grants";
 import { GrantHeader } from "./GrantHeader";
 import { GrantSummaryBar } from "./GrantSummaryBar";
 import { MilestoneList } from "./MilestoneList";

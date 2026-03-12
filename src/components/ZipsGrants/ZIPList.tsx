@@ -1,6 +1,6 @@
 import { ExternalLink, FileText, Loader2 } from "lucide-react";
 import { useMemo, useState } from "react";
-import { ZIPData } from "../lib/github";
+import { ZIPData } from "@/lib/zips/github";
 import { FilterButton } from "./FilterButton";
 import { SearchFilter } from "./SearchFilter";
 import { StatusBadge } from "./StatusBadge";
@@ -86,7 +86,7 @@ export function ZIPList(props: Props) {
             {filtered.map((zip, i) => (
               <li
                 key={zip.number}
-                className="shadow-md dark:outline outline-black/5 dark:border border-slate-700 rounded-md bg-red-600 hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 p-4 hover:border-primary/40 hover:glow-zcash"
+                className="shadow-md dark:outline outline-black/5 dark:border border-slate-700 bg-card rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 p-4 hover:border-primary/40 hover:glow-zcash"
               >
                 <a
                   href={zip.url}

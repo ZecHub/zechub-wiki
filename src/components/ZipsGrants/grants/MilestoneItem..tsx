@@ -1,4 +1,4 @@
-import { Milestone } from "../../types/grants";
+import { Milestone } from "@/types/grants";
 
 interface Props {
   milestone: Milestone;

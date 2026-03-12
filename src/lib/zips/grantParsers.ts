@@ -1,4 +1,4 @@
-import { GrantStatus } from "../types/grants";
+import { GrantStatus } from "@/types/grants";
 
 export const parseMoney = (value?: string): number | null => {
   if (!value || value.trim() === "") return null;

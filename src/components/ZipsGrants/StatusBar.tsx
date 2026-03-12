@@ -1,6 +1,6 @@
 "use client";
 import { Coins, FileText, TrendingUp, Users } from "lucide-react";
-import { ZIPData } from "../lib/github";
+import { ZIPData } from "@/lib/zips/github";
 
 interface StatusBarProps {
   zips: ZIPData[] | undefined;
