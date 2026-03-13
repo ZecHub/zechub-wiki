@@ -38,7 +38,7 @@ interface TreasuryData {
   };
 }
 
-// Local paths from your own repo (fast & reliable on Vercel)
+// Local paths from your repo (fast & reliable on Vercel)
 const DEFAULT_COINS = [
   { ticker: 'JUNO',     display: 'JUNO',     icon: '/Logo/juno.png' },
   { ticker: 'ATOM',     display: 'ATOM',     icon: '/Logo/atom.png' },
@@ -228,7 +228,7 @@ export default function TreasuryTab() {
         )}
       </Card>
 
-      {/* Donut Pie + Clean List Below */}
+      {/* Donut Pie + Clean List */}
       <Card>
         <CardHeader><CardTitle>Selected Asset Allocation</CardTitle></CardHeader>
         <CardContent>
@@ -245,7 +245,7 @@ export default function TreasuryTab() {
               >
                 {pieData.map((_, i) => <Cell key={i} fill={['#3b82f6', '#22c55e', '#eab308', '#ef4444', '#a855f7'][i % 5]} />)}
               </Pie>
-              <Tooltip formatter={(v: number) => formatAmount(v.toString())} />
+              <Tooltip formatter={(v) => v ? formatAmount(v.toString()) : '0'} />
             </PieChart>
           </ResponsiveContainer>
 
