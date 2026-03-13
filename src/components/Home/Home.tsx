@@ -15,7 +15,7 @@ type HomeProps = {
 const Home = ({ text }: HomeProps) => {
   return (
     <main className="flex flex-col">
-      <section id="hero" className=" bg-slate-100 mb-24">
+      <section id="hero" className=" bg-slate-100 my-24">
         <FadeInAnimation>
           <Hero />
         </FadeInAnimation>
@@ -31,7 +31,7 @@ const Home = ({ text }: HomeProps) => {
               <AnimationHome />
             </FadeInAnimation>
             <FadeInAnimation>
-              <h1 className="text-4xl text-center font-bold mb-3">
+              <h1 className="text-3xl imd:text-4xl text-center font-bold mb-3">
                 Welcome to ZecHub
               </h1>
             </FadeInAnimation>

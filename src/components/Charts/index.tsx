@@ -224,10 +224,10 @@ const Dashboard = () => {
           <div className="space-y-8">
             {/* Channel Selector */}
             <div className="flex flex-col items-center">
-              <p className="text-sm text-muted-foreground mb-2">
+              <p className="text-sm dark:text-muted-foreground mb-2">
                 Current YouTube Channel
               </p>
-              <div className="inline-flex bg-slate-100 dark:bg-slate-800 rounded-3xl p-1 shadow-inner">
+              <div className="grid grid-cols-2 imd:inline-flex imd:bg-slate-100 imd:dark:bg-slate-800 rounded-3xl p-1 shadow-inner">
                 {[
                   { name: "ZecHub", value: "ZecHub" as ChannelType },
                   {
@@ -304,7 +304,7 @@ const Dashboard = () => {
               <input
                 type="text"
                 placeholder="Search videos..."
-                className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-purple-500"
+                className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-purple-500 dark:bg-slate-700"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
