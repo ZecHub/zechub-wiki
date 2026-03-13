@@ -6,6 +6,7 @@ import { AnalyticsDashboard } from "@/components/Proposals/analytics-dashboard";
 import { cn } from "@/lib/util";
 import { Search, X } from "lucide-react";
 import { ipfsToHttp } from "@/lib/chart/helpers";
+import TreasuryTab from "@/components/DAO/TreasuryTab";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -74,7 +75,7 @@ export interface FlatProposal {
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 const STATUS_FILTERS = ["All", "Executed", "Passed", "Rejected"] as const;
-const TOP_TABS = ["Proposals", "Charts"] as const;
+const TOP_TABS = ["Proposals", "Charts","Treasury"] as const;
 
 function flattenDao(dao: DaoData): FlatProposal[] {
   return dao.proposals
@@ -433,6 +434,8 @@ export function ProposalsListClient({ proposals }: ProposalsListClientProps) {
           )}
         </div>
       )}
-    </div>
+    
+      {topTab === "Treasury" && <TreasuryTab />}
+    </div>  
   );
 }
