@@ -242,9 +242,9 @@ const Dashboard = () => {
                   <Button
                     key={ch.value}
                     variant="ghost"
-                    className={`px-6 py-2 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${
+                    className={`px-6 py-2 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base hover:text-black dark:text-white  ${
                       currentChannel === ch.value
-                        ? "bg-purple-700 text-white shadow-sm"
+                        ? "bg-purple-700 shadow-sm hover:bg-purple-600"
                         : "hover:bg-purple-100 dark:hover:bg-purple-950"
                     }`}
                     onClick={() => setCurrentChannel(ch.value)}
