@@ -38,13 +38,13 @@ interface TreasuryData {
   };
 }
 
-// Raw GitHub links from YOUR repo
+// Local paths from your own repo (fast & reliable on Vercel)
 const DEFAULT_COINS = [
-  { ticker: 'JUNO',     display: 'JUNO',     icon: 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/Logo/juno.png' },
-  { ticker: 'ATOM',     display: 'ATOM',     icon: 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/Logo/atom.png' },
-  { ticker: 'OSMO',     display: 'OSMO',     icon: 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/Logo/osmo.png' },
-  { ticker: 'PENUMBRA', display: 'UM',       icon: 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/Logo/um.png' },
-  { ticker: 'TNAM1Q9GR66CVU4HRZM0SD5KMLNJJE82GS3XLFG3V6NU7', display: 'NAM', icon: 'https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/Logo/namada.png' },
+  { ticker: 'JUNO',     display: 'JUNO',     icon: '/Logo/juno.png' },
+  { ticker: 'ATOM',     display: 'ATOM',     icon: '/Logo/atom.png' },
+  { ticker: 'OSMO',     display: 'OSMO',     icon: '/Logo/osmo.png' },
+  { ticker: 'PENUMBRA', display: 'UM',       icon: '/Logo/um.png' },
+  { ticker: 'TNAM1Q9GR66CVU4HRZM0SD5KMLNJJE82GS3XLFG3V6NU7', display: 'NAM', icon: '/Logo/namada.png' },
 ];
 
 export default function TreasuryTab() {
@@ -228,11 +228,10 @@ export default function TreasuryTab() {
         )}
       </Card>
 
-      {/* Donut Pie + Spaced Legend/List Below */}
+      {/* Donut Pie + Clean List Below */}
       <Card>
         <CardHeader><CardTitle>Selected Asset Allocation</CardTitle></CardHeader>
         <CardContent>
-          {/* Donut Chart */}
           <ResponsiveContainer width="100%" height={340}>
             <PieChart>
               <Pie
@@ -244,29 +243,21 @@ export default function TreasuryTab() {
                 dataKey="value"
                 nameKey="name"
               >
-                {pieData.map((_, i) => (
-                  <Cell key={i} fill={['#3b82f6', '#22c55e', '#eab308', '#ef4444', '#a855f7'][i % 5]} />
-                ))}
+                {pieData.map((_, i) => <Cell key={i} fill={['#3b82f6', '#22c55e', '#eab308', '#ef4444', '#a855f7'][i % 5]} />)}
               </Pie>
               <Tooltip formatter={(v: number) => formatAmount(v.toString())} />
             </PieChart>
           </ResponsiveContainer>
 
-          {/* Spaced-out legend list below the donut */}
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-3">
             {pieData.map((item, i) => {
               const total = pieData.reduce((sum, d) => sum + d.value, 0);
               const percent = ((item.value / total) * 100).toFixed(1);
               return (
                 <div key={i} className="flex items-center gap-3 bg-muted/50 px-5 py-4 rounded-xl">
-                  <div
-                    className="w-4 h-4 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: ['#3b82f6', '#22c55e', '#eab308', '#ef4444', '#a855f7'][i % 5] }}
-                  />
-                  <div className="flex-1">
-                    <div className="font-medium">{item.name}</div>
-                  </div>
-                  <div className="text-right font-mono text-sm text-muted-foreground">
+                  <div className="w-4 h-4 rounded-full flex-shrink-0" style={{ backgroundColor: ['#3b82f6', '#22c55e', '#eab308', '#ef4444', '#a855f7'][i % 5] }} />
+                  <div className="flex-1 font-medium">{item.name}</div>
+                  <div className="font-mono text-sm text-muted-foreground">
                     {percent}% — {formatAmount(item.value.toString())}
                   </div>
                 </div>
