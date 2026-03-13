@@ -87,7 +87,7 @@
   {
     "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
     "video_id": "O4wQi_i7k0I",
-    "views": 1206
+    "views": 1207
   },
   {
     "title": "The State of Privacy in Cryptocurrencies - Ian Miers",
@@ -410,14 +410,14 @@
     "views": 409
   },
   {
+    "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
+    "video_id": "bRdNvepJVXM",
+    "views": 409
+  },
+  {
     "title": "ZSAs and Swaps--A Status Report with Vivek Arte and Pablo Kogan - ZconV: Zcash Unified 2024 #Zcash",
     "video_id": "L_ZtZCUvDqw",
     "views": 407
-  },
-  {
-    "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
-    "video_id": "bRdNvepJVXM",
-    "views": 406
   },
   {
     "title": "ZEXE: Enabling Decentralized Private Computation - Pratyush Mishra",
@@ -560,6 +560,11 @@
     "views": 328
   },
   {
+    "title": "Zconnaissance - Sketching a Shielded Assets Future by Vivek Arte: Zcon4",
+    "video_id": "VFQHJGqO_bY",
+    "views": 327
+  },
+  {
     "title": "Zokrates Updates",
     "video_id": "9hjeacNu7M4",
     "views": 326
@@ -568,11 +573,6 @@
     "title": "Scaleable Privacy And Threats",
     "video_id": "hHWjVLMnUDc",
     "views": 326
-  },
-  {
-    "title": "Zconnaissance - Sketching a Shielded Assets Future by Vivek Arte: Zcon4",
-    "video_id": "VFQHJGqO_bY",
-    "views": 325
   },
   {
     "title": "Zcash Wallet Landscape - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -767,7 +767,7 @@
   {
     "title": "Pool Retirement - Nate Wilcox at Zcon3",
     "video_id": "bRuly9lyRO8",
-    "views": 247
+    "views": 248
   },
   {
     "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
@@ -852,7 +852,7 @@
   {
     "title": "Zcash Wallet with Metamask Snaps (Demo) with Ivan Rubido from ChainSafe - ZconVI #zcash",
     "video_id": "vEI3-9Y4tco",
-    "views": 218
+    "views": 219
   },
   {
     "title": "Building a world class UX for ZEC - Josh Swihart at Zcon3",
@@ -1722,7 +1722,7 @@
   {
     "title": "Zebra Update with Pili Guerra and Arya Solhi: Zcon4",
     "video_id": "g20gtpNcIgE",
-    "views": 61
+    "views": 62
   },
   {
     "title": "Zcash Arborist Call 8/24/23",
