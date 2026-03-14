@@ -6,28 +6,22 @@ import remarkGfm from "remark-gfm";
 const nextConfig = {
   images: {
     remotePatterns: [
-      // imgbb (many wallet logos)
-      { protocol: "https", hostname: "i.ibb.co" },
+      { protocol: "https", hostname: "i.ibb.co", pathname: "/**" },
+      { protocol: "https", hostname: "github.com", pathname: "/**" },
+      { protocol: "https", hostname: "objects.githubusercontent.com", pathname: "/**" },
 
-      // GitHub user attachments (Wallets.md uses github.com/user-attachments/...)
-      { protocol: "https", hostname: "github.com" },
-
-      // GitHub often serves/redirects image binaries here
-      { protocol: "https", hostname: "objects.githubusercontent.com" },
-
-      // GitHub avatars (very common on the DAO page)
-      { protocol: "https", hostname: "avatars.githubusercontent.com" },
-
-      // X / Twitter profile photos (pbs.twimg.com)
-      { protocol: "https", hostname: "pbs.twimg.com" },
-
-      // Discord avatars (both domains Discord uses)
-      { protocol: "https", hostname: "cdn.discordapp.com" },
-      { protocol: "https", hostname: "media.discordapp.net" },
+  
+      { protocol: "https", hostname: "avatars.githubusercontent.com", pathname: "/**" },
+      { protocol: "https", hostname: "pbs.twimg.com", pathname: "/**" },
+      { protocol: "https", hostname: "*.twimg.com", pathname: "/**" },
+      { protocol: "https", hostname: "cdn.discordapp.com", pathname: "/**" },
+      { protocol: "https", hostname: "media.discordapp.net", pathname: "/**" },
+      { protocol: "https", hostname: "free2z.cash", pathname: "/**" },
+      { protocol: "https", hostname: "*.discourse-cdn.com", pathname: "/**" },
+      { protocol: "https", hostname: "ipfs.daodao.zone", pathname: "/**" },   
     ],
   },
 
-  // ← NEW: Rewrite old URL to serve the new Zcash Evolution page
   async rewrites() {
     return [
       {
