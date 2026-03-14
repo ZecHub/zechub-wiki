@@ -18,6 +18,7 @@ const nextConfig = {
       { protocol: "https", hostname: "*.discourse-cdn.com", pathname: "/**" },
       { protocol: "https", hostname: "ipfs.daodao.zone", pathname: "/**" },
       { protocol: "https", hostname: "hackmd.io", pathname: "/**" },
+      { protocol: "https", hostname: "user-images.githubusercontent.com", pathname: "/**" },
     ],
   },
   async rewrites() {
