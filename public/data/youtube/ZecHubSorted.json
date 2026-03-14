@@ -12,7 +12,7 @@
   {
     "title": "Coinbase + Zashi: Buy Zcash & Shield Instantly",
     "video_id": "Avweu5V9QRc",
-    "views": 2007
+    "views": 2008
   },
   {
     "title": "Useful Tips when using Zcash 🔒",
@@ -57,12 +57,12 @@
   {
     "title": "How to compile Zcash Node on Raspberry Pi!",
     "video_id": "SGYrzhs1l2k",
-    "views": 1383
+    "views": 1384
   },
   {
     "title": "Crosschain Swaps with Zcash x NEAR Intents",
     "video_id": "mKVvXY4yjjA",
-    "views": 1350
+    "views": 1351
   },
   {
     "title": "The Beginners Guide to Keplr Wallet",
@@ -242,7 +242,7 @@
   {
     "title": "How to swap Shielded ZEC for SOL using Zashi and Solflare",
     "video_id": "uS9ZDgEFCAs",
-    "views": 540
+    "views": 541
   },
   {
     "title": "how to spend zcash on real world items 💵🌎 #zcash #defi #zec #shielded #cryptocurrency #privacycoin",
@@ -290,14 +290,14 @@
     "views": 469
   },
   {
-    "title": "Install a Nym Mixnet Node: TUTORIAL",
-    "video_id": "Lwssl6Nu3V4",
+    "title": "your data is forever!⚠️#cryptocurrency #zcash #privacy #defi #shielded #zkp",
+    "video_id": "a5-Jh_nGRD8",
     "views": 460
   },
   {
-    "title": "your data is forever!⚠️#cryptocurrency #zcash #privacy #defi #shielded #zkp",
-    "video_id": "a5-Jh_nGRD8",
-    "views": 459
+    "title": "Install a Nym Mixnet Node: TUTORIAL",
+    "video_id": "Lwssl6Nu3V4",
+    "views": 460
   },
   {
     "title": "driving adoption 🚀 #zcash  #cryptocurrency #shielded #privacy #zec #education",
@@ -427,7 +427,7 @@
   {
     "title": "Z|ECC Summit 2025 | Daira-Emma Hopwood",
     "video_id": "EECpPZxq7B0",
-    "views": 314
+    "views": 315
   },
   {
     "title": "How to Swap Ethereum to Zcash on LeoDex",
@@ -810,11 +810,6 @@
     "views": 160
   },
   {
-    "title": "How Does Crosslink Preserve Unstoppable Private Money?",
-    "video_id": "jB9s572F6qE",
-    "views": 159
-  },
-  {
     "title": "Shielding Osmosis with Namada! 🟨",
     "video_id": "yqfVgbQWqek",
     "views": 158
@@ -823,6 +818,11 @@
     "title": "Who is Juan and What's Nillion? | ProtocolBerg v2, Blockchain Week 2025",
     "video_id": "rIl-GD8iUgc",
     "views": 158
+  },
+  {
+    "title": "How Does Crosslink Preserve Unstoppable Private Money?",
+    "video_id": "jB9s572F6qE",
+    "views": 157
   },
   {
     "title": "Using Transparent MutliSig with Zcash",
@@ -855,13 +855,13 @@
     "views": 147
   },
   {
-    "title": "Private comments on Free2Z with Nighthawk! 🦅",
-    "video_id": "3htk_ZeM7qA",
-    "views": 145
-  },
-  {
     "title": "Zcash & Unstoppable Wallet with iBek",
     "video_id": "0S6sfumwFq8",
+    "views": 146
+  },
+  {
+    "title": "Private comments on Free2Z with Nighthawk! 🦅",
+    "video_id": "3htk_ZeM7qA",
     "views": 145
   },
   {
@@ -1140,6 +1140,11 @@
     "views": 78
   },
   {
+    "title": "What Will Crosslink Staking Rewards Be at Launch?",
+    "video_id": "mvd2tTqajXg",
+    "views": 77
+  },
+  {
     "title": "ZecDaily #13",
     "video_id": "K7WpYZE1NEg",
     "views": 76
@@ -1152,11 +1157,6 @@
   {
     "title": "Decentralized VPNs & Private Payments: Zcash x Meile DVPN x Sentinel",
     "video_id": "ReZpLXZuLtE",
-    "views": 73
-  },
-  {
-    "title": "What Will Crosslink Staking Rewards Be at Launch?",
-    "video_id": "mvd2tTqajXg",
     "views": 73
   },
   {
@@ -1485,13 +1485,13 @@
     "views": 17
   },
   {
-    "title": "ZecHub | Sync Meet (08/19/2025)",
-    "video_id": "AHCdTy4-Mzc",
-    "views": 16
-  },
-  {
     "title": "How to Enable Testnet ZEC (TAZ) on Zkool",
     "video_id": "XCGwwqLZILg",
+    "views": 17
+  },
+  {
+    "title": "ZecHub | Sync Meet (08/19/2025)",
+    "video_id": "AHCdTy4-Mzc",
     "views": 16
   },
   {
@@ -1507,6 +1507,6 @@
   {
     "title": "Z|ECC Summit  2025 | Pacu",
     "video_id": "MYYX2RO8F2c",
-    "views": 10
+    "views": 14
   }
 ]
