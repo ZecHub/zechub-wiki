@@ -23,7 +23,7 @@ const MdxComponents = {
     if (props.src?.startsWith("/"))
       props.src = "https://github.com/ZecHub/zechub/tree/main" + props.src;
     return (
-      <Image
+      <img
         src={
           props.src?.startsWith("/")
             ? "https://github.com/ZecHub/zechub/tree/main" + props.src
@@ -32,7 +32,7 @@ const MdxComponents = {
         alt={props.alt || "Image for wiki docs"}
         height={200}
         width={300}
-        layout="responsive"
+        // layout="responsive"
         loading="lazy"
       />
     );
