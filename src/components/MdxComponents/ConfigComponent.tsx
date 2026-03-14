@@ -15,6 +15,7 @@ const MdxComponents = {
   ),
   Video: (props: React.VideoHTMLAttributes<HTMLVideoElement>) => <video {...props} />,
 
+  // Mobile-friendly tables
   table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
     <div className="overflow-x-auto my-8 rounded-2xl border border-slate-200 dark:border-slate-700">
       <table className="w-full min-w-full border-collapse text-sm" {...props} />
@@ -30,15 +31,14 @@ const MdxComponents = {
   ),
 
   tbody: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => <tbody {...props} />,
-
   th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
     <th className="px-6 py-4 text-left font-semibold text-slate-900 dark:text-white" {...props} />
   ),
-
   td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
     <td className="px-6 py-4 text-slate-700 dark:text-slate-300" {...props} />
   ),
 
+  // Clean image handling (local + external, no legacy props)
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => {
     const src = props.src || "";
     const { layout, objectFit, objectPosition, placeholder, lazyBoundary, ...cleanProps } = props;
