@@ -15,9 +15,6 @@ const MdxComponents = {
   ),
   Video: (props: React.VideoHTMLAttributes<HTMLVideoElement>) => <video {...props} />,
 
-  // ──────────────────────────────────────────────────────────────
-  // MOBILE-FRIENDLY TABLE RENDERING (from your commit)
-  // ──────────────────────────────────────────────────────────────
   table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
     <div className="overflow-x-auto my-8 rounded-2xl border border-slate-200 dark:border-slate-700">
       <table className="w-full min-w-full border-collapse text-sm" {...props} />
@@ -32,9 +29,7 @@ const MdxComponents = {
     <tr className="border-b border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-900/50" {...props} />
   ),
 
-  tbody: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
-    <tbody {...props} />
-  ),
+  tbody: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => <tbody {...props} />,
 
   th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
     <th className="px-6 py-4 text-left font-semibold text-slate-900 dark:text-white" {...props} />
@@ -44,9 +39,6 @@ const MdxComponents = {
     <td className="px-6 py-4 text-slate-700 dark:text-slate-300" {...props} />
   ),
 
-  // ──────────────────────────────────────────────────────────────
-  // FIXED IMAGE COMPONENT
-  // ──────────────────────────────────────────────────────────────
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => {
     const src = props.src || "";
     const { layout, objectFit, objectPosition, placeholder, lazyBoundary, ...cleanProps } = props;
@@ -76,9 +68,6 @@ const MdxComponents = {
     );
   },
 
-  // ──────────────────────────────────────────────────────────────
-  // FIXED LINK COMPONENT (keeps wiki link transformation)
-  // ──────────────────────────────────────────────────────────────
   a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {
     return (
       <Link
@@ -120,7 +109,7 @@ const MdxComponents = {
   p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => (
     <p className="text-base text-left my-4 leading-relaxed" {...props} />
   ),
-  strong: (props: HTMLProps<HTMLHtmlElement>): JSX.Element => <strong className="font-bold" {...props} />,
+  strong: (props: HTMLProps<HTMLElement>): JSX.Element => <strong className="font-bold" {...props} />,
 
   br: () => <br />,
   hr: () => <hr className="my-8 border-slate-200 dark:border-slate-700" />,
