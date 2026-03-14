@@ -8,7 +8,7 @@ const MdxComponents = {
   code: (props: HTMLProps<HTMLElement>): JSX.Element => (
     <code
       {...props}
-      className="bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-100 px-1.5 py-0.5 rounded"
+      className="bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-100 px-1.5 py-0.5 rounded text-sm font-mono"
     >
       {props.children}
     </code>
@@ -16,7 +16,7 @@ const MdxComponents = {
   Video: (props: React.VideoHTMLAttributes<HTMLVideoElement>) => <video {...props} />,
 
   // ──────────────────────────────────────────────────────────────
-  // IMPROVED TABLE RENDERING (mobile-friendly + nice styling)
+  // MOBILE-FRIENDLY TABLE RENDERING (from your commit)
   // ──────────────────────────────────────────────────────────────
   table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
     <div className="overflow-x-auto my-8 rounded-2xl border border-slate-200 dark:border-slate-700">
@@ -45,24 +45,8 @@ const MdxComponents = {
   ),
 
   // ──────────────────────────────────────────────────────────────
-  // Other elements (kept + slightly improved)
+  // FIXED IMAGE COMPONENT
   // ──────────────────────────────────────────────────────────────
-  a: (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.Element => {
-    return (
-      <Link
-        href={
-          props.href?.startsWith("/site")
-            ? transformGithubFilePathToWikiLink(props.href)
-            : props.href!
-        }
-        target={props.href?.startsWith("/site") ? "" : "_blank"}
-        className="font-medium text-blue-700 hover:text-blue-800 underline decoration-dashed underline-offset-2 dark:text-blue-300 dark:hover:text-blue-200"
-      >
-        {props.children}{" "}
-      </Link>
-    );
-  },
-
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => {
     const src = props.src || "";
     const { layout, objectFit, objectPosition, placeholder, lazyBoundary, ...cleanProps } = props;
@@ -92,16 +76,38 @@ const MdxComponents = {
     );
   },
 
+  // ──────────────────────────────────────────────────────────────
+  // FIXED LINK COMPONENT (keeps wiki link transformation)
+  // ──────────────────────────────────────────────────────────────
+  a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {
+    return (
+      <Link
+        href={
+          props.href?.startsWith("/site")
+            ? transformGithubFilePathToWikiLink(props.href)
+            : props.href!
+        }
+        target={props.href?.startsWith("/site") ? "" : "_blank"}
+        className="font-medium text-blue-700 hover:text-blue-800 underline decoration-dashed underline-offset-2 dark:text-blue-300 dark:hover:text-blue-200"
+      >
+        {props.children}{" "}
+      </Link>
+    );
+  },
+
   pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => <pre {...props}>{props.children}</pre>,
   em: (props: HTMLProps<HTMLSpanElement>): JSX.Element => <em {...props}>{props.children}</em>,
+
   blockquote: (props: HTMLProps<HTMLQuoteElement>): JSX.Element => (
     <blockquote className="text-base text-justify my-2 border-l-4 border-slate-300 dark:border-slate-600 pl-4" {...props}>
       {props.children}
     </blockquote>
   ),
+
   ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => (
     <ul {...props} className="list-disc pl-6 space-y-1" />
   ),
+
   li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props}>{props.children}</li>,
 
   h1: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => <h1 className="text-4xl font-bold my-6" {...props} />,
