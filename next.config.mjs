@@ -14,6 +14,16 @@ const nextConfig = {
 
       // GitHub often serves/redirects image binaries here
       { protocol: "https", hostname: "objects.githubusercontent.com" },
+
+      // GitHub avatars (very common on the DAO page)
+      { protocol: "https", hostname: "avatars.githubusercontent.com" },
+
+      // X / Twitter profile photos (pbs.twimg.com)
+      { protocol: "https", hostname: "pbs.twimg.com" },
+
+      // Discord avatars (both domains Discord uses)
+      { protocol: "https", hostname: "cdn.discordapp.com" },
+      { protocol: "https", hostname: "media.discordapp.net" },
     ],
   },
 
