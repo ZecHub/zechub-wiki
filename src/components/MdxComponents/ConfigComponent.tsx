@@ -19,36 +19,21 @@ const MdxComponents = {
   Video: (props: React.VideoHTMLAttributes<HTMLVideoElement>) => (
     <video {...props} />
   ),
-
-  // ← FIXED: strips legacy "layout" prop + handles external images cleanly
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => {
-    const src = props.src || "";
-
-    // Remove legacy Next.js 12 props that cause this exact error
-    const { layout, objectFit, objectPosition, placeholder, lazyBoundary, ...cleanProps } = props;
-
-    if (src.startsWith("/")) {
-      return (
-        <Image
-          src={src}
-          alt={cleanProps.alt || "Image for wiki docs"}
-          width={1200}
-          height={630}
-          className="w-full h-auto rounded-2xl shadow-xl my-6"
-          priority={src.includes("header") || src.includes("cpz")}
-          unoptimized={true}
-          {...cleanProps}
-        />
-      );
-    }
-
-    // External images (raw.githubusercontent.com, etc.) use plain <img>
+    if (props.src?.startsWith("/"))
+      props.src = "https://github.com/ZecHub/zechub/tree/main" + props.src;
     return (
-      <img
-        src={src}
-        alt={cleanProps.alt || "Image for wiki docs"}
-        className="w-full h-auto rounded-2xl shadow-xl my-6"
-        {...cleanProps}
+      <Image
+        src={
+          props.src?.startsWith("/")
+            ? "https://github.com/ZecHub/zechub/tree/main" + props.src
+            : props.src || ""
+        }
+        alt={props.alt || "Image for wiki docs"}
+        height={200}
+        width={300}
+        layout="responsive"
+        loading="lazy"
       />
     );
   },
