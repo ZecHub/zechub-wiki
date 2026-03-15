@@ -1,5 +1,5 @@
 const AnimationHome = () => (
-  <div className="justify-center items-center flex mx-auto h-20 mb-2 relative jen-fix-overflow">
+  <div className="justify-center items-center flex mx-auto h-25 mb-2 relative jen-fix-overflow">
     <svg
       className="path"
       width="100px"
