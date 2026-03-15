@@ -17,7 +17,7 @@ const MdxComponents = {
     <video {...props} />
   ),
 
-  // Clean image (no deprecated layout, rounded, works on Vercel + local)
+  // Clean image (rounded corners + works on Vercel)
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => {
     const src = props.src || "";
 
@@ -28,7 +28,6 @@ const MdxComponents = {
         width={1200}
         height={630}
         className="w-full h-auto rounded-2xl shadow-xl my-6"
-        priority={src.includes("header")}
         unoptimized={true}
         {...props}
       />
@@ -64,7 +63,7 @@ const MdxComponents = {
     );
   },
 
-  // Mobile-friendly table (the only big improvement you wanted)
+  // Mobile-friendly table (the improvement you wanted)
   table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
     <div className="overflow-x-auto my-8 rounded-2xl border border-slate-200 dark:border-slate-700">
       <table className="w-full min-w-full border-collapse text-sm" {...props} />
@@ -79,9 +78,7 @@ const MdxComponents = {
   tbody: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
     <tbody className="p-3 " {...props} />
   ),
-  th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
-    <th {...props} />
-  ),
+  th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => <th {...props} />,
   td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
     <td className="p-3" {...props} />
   ),
