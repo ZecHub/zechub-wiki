@@ -22,7 +22,7 @@
   {
     "title": "Understanding the Moon Math of ZK Snarks workshop led by Anna Kaplan and Liz Steininger",
     "video_id": "gaXiYRBnBPE",
-    "views": 1846
+    "views": 1847
   },
   {
     "title": "Boosting Zcash Security w/ Zebra",
@@ -167,7 +167,7 @@
   {
     "title": "The Orchard Shielded Pool, feat. Halo2: #Zcon2Lite",
     "video_id": "acl_RjBUoRE",
-    "views": 843
+    "views": 844
   },
   {
     "title": "Zcon1 Opening Keynote - Andrew Miller",
@@ -197,7 +197,7 @@
   {
     "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
     "video_id": "eero6i2WTxo",
-    "views": 761
+    "views": 762
   },
   {
     "title": "State of the Network Keynote at Zcon0 (2018) by Zooko Wilcox",
@@ -307,7 +307,7 @@
   {
     "title": "Arti: ZF + ZCG Call w/ the Tor Project",
     "video_id": "E7g9dKBOYEI",
-    "views": 498
+    "views": 499
   },
   {
     "title": "ECC Update with Josh Swihart - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -810,14 +810,14 @@
     "views": 232
   },
   {
+    "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
+    "video_id": "hzUdmwq23ac",
+    "views": 231
+  },
+  {
     "title": "ZF Engineering Update w/ FROST demo with Zcash Foundation Engineers & Manager - ZconVI #zcash",
     "video_id": "lfXIHxx5P5s",
     "views": 230
-  },
-  {
-    "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
-    "video_id": "hzUdmwq23ac",
-    "views": 229
   },
   {
     "title": "Zcash Foundation Board Candidate Call - 09 November 2022",
@@ -1515,6 +1515,11 @@
     "views": 110
   },
   {
+    "title": "Zcash Arborist Call 03-05-2026",
+    "video_id": "uBsaOLUepB0",
+    "views": 110
+  },
+  {
     "title": "ZF Community Call: FROST Server Demo",
     "video_id": "Z4N2TDFxdFA",
     "views": 109
@@ -1522,11 +1527,6 @@
   {
     "title": "Zcash Grants Committee (ZCG) Panel: Past, Present, and Future at Zcon3",
     "video_id": "V7pFnzbg2-E",
-    "views": 108
-  },
-  {
-    "title": "Zcash Arborist Call 03-05-2026",
-    "video_id": "uBsaOLUepB0",
     "views": 108
   },
   {
