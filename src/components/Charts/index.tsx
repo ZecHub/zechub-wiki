@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Button } from "@/components/UI/shadcn/button";
 import {
@@ -55,7 +55,6 @@ const Dashboard = () => {
   // Load all channel data
   useEffect(() => {
     if (currentView === "youtube") {
-      // ZecHub
       fetch("/data/youtube/ZecHubSorted.json")
         .then((r) => r.json())
         .then(setZecSorted);
@@ -63,7 +62,6 @@ const Dashboard = () => {
         .then((r) => r.json())
         .then(setZecDate);
 
-      // Shielded Labs
       fetch("/data/youtube/SLSorted.json")
         .then((r) => r.json())
         .then(setSlSorted);
@@ -71,7 +69,6 @@ const Dashboard = () => {
         .then((r) => r.json())
         .then(setSlDate);
 
-      // Zcash Foundation
       fetch("/data/youtube/ZFSorted.json")
         .then((r) => r.json())
         .then(setZfSorted);
@@ -123,7 +120,6 @@ const Dashboard = () => {
     },
   ];
 
-  // Select correct data for current channel
   const currentSorted =
     currentChannel === "ZecHub"
       ? zecSorted
@@ -169,7 +165,7 @@ const Dashboard = () => {
           </p>
         </div>
 
-        {/* MAIN TABS – mobile-friendly wrap */}
+        {/* MAIN TABS */}
         <div className="flex flex-wrap justify-center gap-2">
           {tabs.map((tab) => (
             <Button
@@ -188,9 +184,9 @@ const Dashboard = () => {
           ))}
         </div>
 
-        {/* Shielded Networks – Top-right on desktop, below tabs on mobile */}
+        {/* Shielded Networks – FIXED: now z-20 so it sits BELOW the fixed top bar / Donate button */}
         <div
-          className="flex justify-end md:absolute md:top-6 md:right-6 z-50"
+          className="flex justify-end md:absolute md:top-6 md:right-6 z-20"
           ref={dropdownRef}
         >
           <Button
@@ -202,7 +198,7 @@ const Dashboard = () => {
             <Shield className="h-5 w-5" />
           </Button>
           {open && (
-            <div className="absolute mt-2 right-0 bg-white shadow-lg rounded-lg dark:bg-slate-900 w-[160px] border border-slate-200 dark:border-slate-700">
+            <div className="absolute mt-2 right-0 bg-white shadow-lg rounded-lg dark:bg-slate-900 w-[160px] border border-slate-200 dark:border-slate-700 z-50">
               <ul className="w-[160px]">
                 <li className="px-4 py-2 hover:bg-purple-300/50 dark:hover:bg-purple-500/50 rounded-md cursor-pointer w-[160px]">
                   <Link
@@ -218,6 +214,32 @@ const Dashboard = () => {
             </div>
           )}
         </div>
+
+        {/* === DASHBOARD VIEW – RESTORED TO ORIGINAL (only ZcashChart by default) === */}
+        {currentView === "dashboard" && (
+          <>
+            {selectedCrypto === "zcash" && (
+              <ZcashChart
+                divChartRef={divChartRef}
+                handleSaveToPng={handleSaveToPng}
+              />
+            )}
+            {/* Namada + Penumbra are here ONLY if you ever switch selectedCrypto (they were never forced visible) */}
+            {selectedCrypto === "namada" && (
+              <NamadaChart
+                divChartRef={divChartRef}
+                handleSaveToPng={handleSaveToPng}
+              />
+            )}
+            {selectedCrypto === "penumbra" && <PenumbraChart divChartRef={divChartRef} />}
+          </>
+        )}
+
+        {/* === PROPOSALS VIEW === */}
+        {currentView === "proposals" && <ProposalsList />}
+
+        {/* === ZCG VIEW === */}
+        {currentView === "zcg" && <ZCGDashboard />}
 
         {/* === YOUTUBE SECTION === */}
         {currentView === "youtube" && (
@@ -326,101 +348,56 @@ const Dashboard = () => {
                 <Button
                   variant="ghost"
                   className={`px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${subView === "latest" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
-                  onClick={() => setSubView("latest")}
+                  onClick={() => {
+                    setSubView("latest");
+                    setLatestSortByViews(false);
+                  }}
                 >
-                  Latest 15 Videos
+                  Latest 15
                 </Button>
+                {subView === "latest" && (
+                  <Button
+                    variant="ghost"
+                    className={`px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${latestSortByViews ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
+                    onClick={() => setLatestSortByViews((prev) => !prev)}
+                  >
+                    {latestSortByViews ? "Sort by Date" : "Sort by Views"}
+                  </Button>
+                )}
               </div>
             </div>
 
-            {/* SORT BUTTON */}
-            {subView === "latest" && (
-              <div className="flex justify-center">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setLatestSortByViews(!latestSortByViews)}
-                  className="px-6 py-2 text-sm"
+            {/* Videos Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {displayedVideos.map((video) => (
+                <div
+                  key={video.video_id}
+                  className="bg-card border border-border rounded-3xl overflow-hidden group cursor-pointer"
                 >
-                  {latestSortByViews ? "↩ Sort by Newest" : "↑ Sort by Views"}
-                </Button>
-              </div>
-            )}
-
-            {/* Thumbnail + Bar Chart */}
-            <div className="bg-card border border-border rounded-3xl p-6 md:p-8">
-              <h2 className="text-xl md:text-2xl font-semibold mb-8 text-center">
-                {subView === "top"
-                  ? "Top 15 Videos by Views"
-                  : latestSortByViews
-                    ? "Latest 15 Videos (Sorted by Views)"
-                    : "Latest 15 Videos"}
-              </h2>
-              <div className="space-y-5 md:space-y-6">
-                {displayedVideos.map((video, index) => (
-                  <div
-                    key={video.video_id}
-                    className="flex items-center gap-4 md:gap-6 group"
-                  >
-                    <a
-                      href={`https://youtube.com/watch?v=${video.video_id}`}
-                      target="_blank"
-                      rel="noopener"
-                      className="flex-shrink-0"
-                    >
-                      <img
-                        src={`https://i.ytimg.com/vi/${video.video_id}/hqdefault.jpg`}
-                        alt={video.title}
-                        className="w-16 h-10 md:w-20 md:h-14 object-cover rounded-xl shadow-sm border border-slate-200 dark:border-slate-700"
-                      />
-                    </a>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex justify-between text-sm mb-1.5">
-                        <span className="font-medium truncate pr-4 text-sm md:text-base">
-                          {video.title}
-                        </span>
-                        <span className="font-mono text-purple-600 font-semibold text-xs md:text-sm">
-                          {formatViews(video.views)}
-                        </span>
-                      </div>
-                      <div className="h-4 md:h-5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all group-hover:brightness-110"
-                          style={{
-                            width: `${Math.max((video.views / (displayedVideos[0]?.views || 1)) * 100, 8)}%`,
-                          }}
-                        />
-                      </div>
+                  <div className="relative">
+                    <img
+                      src={`https://img.youtube.com/vi/${video.video_id}/maxresdefault.jpg`}
+                      alt={video.title}
+                      className="w-full aspect-video object-cover"
+                    />
+                    <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-0.5 rounded font-mono">
+                      {Math.floor(video.views / 1000)}K
                     </div>
                   </div>
-                ))}
-              </div>
+                  <div className="p-4">
+                    <p className="font-medium line-clamp-2 text-sm leading-snug">
+                      {video.title}
+                    </p>
+                    <div className="text-xs text-muted-foreground mt-3 flex justify-between">
+                      <span>{video.published_at}</span>
+                      <span className="font-mono">{formatViews(video.views)}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}
-
-        {/* Other sections unchanged */}
-        {currentView === "dashboard" && (
-          <>
-            {selectedCrypto === "zcash" && (
-              <ZcashChart
-                divChartRef={divChartRef}
-                handleSaveToPng={handleSaveToPng}
-              />
-            )}
-            {selectedCrypto === "namada" && (
-              <NamadaChart
-                divChartRef={divChartRef}
-                handleSaveToPng={handleSaveToPng}
-              />
-            )}
-            {selectedCrypto === "penumbra" && (
-              <PenumbraChart divChartRef={divChartRef} />
-            )}
-          </>
-        )}
-        {currentView === "proposals" && <ProposalsList />}
-        {currentView === "zcg" && <ZCGDashboard />}
       </div>
     </div>
   );
