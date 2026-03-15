@@ -3,6 +3,7 @@ import ProgressBar from "@/components/UI/ProgressBar";
 import { DarkModeProvider } from "@/provider/DarkModeProvider";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
+import FloatingExplore from '@/components/FloatingExplore';
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -28,7 +29,7 @@ export default function RootLayout({
           <div className="min-h-screen mx-auto">
             <ProgressBar />
             <Navigation />
-
+            <FloatingExplore />
             <div className=" flex flex-col justify-between flex-grow">
               <div style={{ margin: "0 0 48px 0" }}>{children}</div>
             </div>
