@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { DarkModeContext } from "@/context/DarkModeContext";
 import { useContext } from 'react';
@@ -11,12 +11,22 @@ export default function FloatingExplore() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname() || '';
   const { dark } = useContext(DarkModeContext) || { dark: false };
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const [folder, setFolder] = useState<'light' | 'dark'>('dark');
 
   useEffect(() => {
     setFolder(dark ? 'dark' : 'light');
   }, [dark]);
+
+  // Cleanup timeout when component unmounts
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const iconMap: Record<string, string> = {
     "Start Here": `/explore/${folder}/start-here.png`,
@@ -56,9 +66,15 @@ export default function FloatingExplore() {
   if (pathname === '/explore') return null;
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
+    <div 
+      className="fixed bottom-8 right-8 z-50"
+      // Mouse leaves the whole floating widget (button + menu) → close with a tiny grace period
+      onMouseLeave={() => {
+        timeoutRef.current = setTimeout(() => setOpen(false), 150);
+      }}
+    >
       <Button
-        onClick={() => setOpen(!open)}
+        onClick={() => setOpen((prev) => !prev)}
         className="h-[50px] w-[50px] rounded-full shadow-2xl bg-amber-500 hover:bg-amber-600 ring-4 ring-amber-400/30 dark:ring-amber-900/50 transition-all active:scale-95 flex items-center justify-center p-0 overflow-hidden"
         size="icon"
       >
@@ -68,10 +84,19 @@ export default function FloatingExplore() {
       </Button>
 
       {open && (
-        <div className="absolute bottom-20 right-0 w-72 max-w-[280px] rounded-3xl bg-slate-50 dark:bg-card border border-border shadow-2xl p-3 text-sm backdrop-blur-2xl"> {/* ← shorter padding */}
+        <div 
+          className="absolute bottom-20 right-0 w-72 max-w-[280px] rounded-3xl bg-slate-50 dark:bg-card border border-border shadow-2xl p-3 text-sm backdrop-blur-2xl"
+          // Cancel the close when the mouse enters the menu (handles the gap perfectly)
+          onMouseEnter={() => {
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
+              timeoutRef.current = null;
+            }
+          }}
+        >
           <div className="font-semibold mb-3 px-2 text-foreground">Explore Zcash</div>
 
-          <div className="space-y-0 mb-4"> {/* ← tighter spacing */}
+          <div className="space-y-0 mb-4">
             {exploreMenu.mainLinks.map((item) => {
               const href = deepLinkMap[item.label] || item.href;
               const iconSrc = iconMap[item.label] || `/explore/${folder}/start-here.png`;
@@ -90,7 +115,7 @@ export default function FloatingExplore() {
             })}
           </div>
 
-          <div className="border-t border-border pt-3"> {/* ← tighter section gap */}
+          <div className="border-t border-border pt-3">
             <div className="font-semibold mb-2 px-3 text-xs uppercase tracking-widest text-muted-foreground">
               For Forks & Maintainers
             </div>
