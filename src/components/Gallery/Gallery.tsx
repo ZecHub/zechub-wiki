@@ -50,8 +50,6 @@ const Gallery: React.FC = () => {
   return (
     <>
       <div className={styles.gallery}>
-        <h1>Image Gallery</h1>
-        
         <div className={styles.galleryContainer}>
           {galleryImages.map((src, index) => (
             <div
