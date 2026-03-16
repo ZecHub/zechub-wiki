@@ -5,6 +5,7 @@ import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";   // ← forces dynamic rendering
 
 export async function generateMetadata({
   params,
@@ -37,6 +38,8 @@ const MdxComponent = dynamic(
 export default async function Page(props: {
   params: Promise<{ slug: string[] }>;
 }) {
+  headers(); // ← THIS LINE FORCES DYNAMIC RENDERING (no more prerender error)
+
   let slug: string[] = [];
   try {
     const resolved = await props.params;
@@ -51,7 +54,6 @@ export default async function Page(props: {
   const url = getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
 
-  // 🔥 Stronger error handling — never shows the 404 in console
   let markdown: any = null;
   let roots: any[] = [];
 
@@ -62,15 +64,14 @@ export default async function Page(props: {
     ]);
     markdown = md;
     roots = Array.isArray(rootsRaw) ? rootsRaw : [];
-  } catch (err) {
-    // Silently ignore any remaining GitHub 404s
+  } catch {
     markdown = null;
     roots = [];
   }
 
   const imgUrl = getBanner(slug[0]) || "";
 
-  // === CATEGORY PAGES (Tutorials, Guides, etc.) ===
+  // === CATEGORY PAGES ===
   if (!markdown) {
     return (
       <MdxContainer

@@ -1,3 +1,5 @@
+'use client';
+
 import { IconType } from "react-icons";
 import {
   BiCheckShield as CheckShield,
@@ -136,11 +138,11 @@ import {
 } from "react-icons/tb";
 import { TfiServer as Tfi } from "react-icons/tfi";
 
-type AppIcon = IconType | string;
+type AppIcon = IconType | string;   // supports both React icons AND custom PNG strings
 
 interface IconsFor {
   [key: string]: {
-    [key: string]: AppType;
+    [key: string]: AppIcon;
   };
 }
 
