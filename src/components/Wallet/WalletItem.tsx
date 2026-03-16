@@ -36,14 +36,12 @@ interface FeatureLink {
 
 type CategoryKey = "Devices" | "Pools" | "Features";
 
-// Mapping of categories to icons
 const categoryIcons = {
   Devices: MdDevices,
   Pools: MdPool,
   Features: MdChecklist,
 };
 
-// Default feature links mapping
 const featureLinkMap: { [key: string]: string } = {
   "Orchard": "https://zechub.wiki/using-zcash/shielded-pools#orchard",
   "Sapling": "https://zechub.wiki/using-zcash/shielded-pools#sapling",
@@ -95,143 +93,116 @@ const WalletItem: React.FC<WalletItemProps> = ({
   };
 
   return (
-    <div className="wallet-item h-full flex flex-col gap-4 items-start border rounded-lg shadow-lg bg-white dark:bg-gray-800 p-5">
-      <div className="col-span-12 grid grid-cols-12 gap-4 items-start h-full w-full">
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="col-span-12 row-span-1 md:col-span-6 md:row-span-2 bg-gray-100 dark:bg-gray-200 p-2 h-full flex items-center"
-        >
-          <Image
-            className="w-full"
-            width={200}
-            height={200}
-            src={logo}
-            alt={`${title} Logo`}
-          />
-        </a>
-        <div className="col-span-12 row-span-1 md:col-span-6">
-          <div className="wallet-meta">
-            <div className="flex justify-between items-center w-full">
-              <h5 className="text-xl flex items-center gap-2 md:text-2xl my-4 font-bold text-slate-700 dark:text-slate-200 flex-grow">
-                {title}{" "}
-                {syncSpeed && (
-                  <span className="w-[30px] h-[30px] flex justify-center items-center">
-                    <Image
-                      className="w-full"
-                      src={syncSpeed}
-                      width={100}
-                      height={100}
-                      alt={`${title} Logo`}
-                    />
-                  </span>
-                )}
-              </h5>
-              <Link
-                href={link}
-                className="px-2 py-2 border border-slate-500 dark:border-slate-400 text-slate-500 dark:text-slate-400 text-xs hover:text-white hover:bg-slate-500 rounded-lg transition duration-300"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open
-                <Icon
-                  icon={OpenNew}
-                  className="inline-block ms-2"
-                  size="small"
-                />
-              </Link>
+    <div className="wallet-item h-full flex flex-col border rounded-2xl shadow-lg bg-white dark:bg-gray-800 overflow-hidden transition-all hover:shadow-xl">
+      {/* Fixed-height logo area */}
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block bg-gray-100 dark:bg-gray-200 p-4 flex items-center justify-center h-48"
+      >
+        <Image
+          className="w-full h-full object-contain"
+          width={240}
+          height={160}
+          src={logo}
+          alt={`${title} Logo`}
+          priority={false}
+        />
+      </a>
+
+      <div className="flex-1 flex flex-col p-5">
+        {/* Title + Open button */}
+        <div className="flex justify-between items-start mb-4">
+          <h5 className="text-xl font-bold text-slate-700 dark:text-slate-200 flex-1 pr-3">
+            {title}
+            {syncSpeed && (
+              <span className="inline-block ml-2 align-middle">
+                <Image src={syncSpeed} width={32} height={32} alt="Sync" />
+              </span>
+            )}
+          </h5>
+          <Link
+            href={link}
+            className="px-4 py-2 border border-slate-500 dark:border-slate-400 text-slate-500 dark:text-slate-400 text-sm hover:bg-slate-500 hover:text-white rounded-lg transition whitespace-nowrap"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open
+            <Icon icon={OpenNew} className="inline-block ms-2" size="small" />
+          </Link>
+        </div>
+
+        {/* Devices + Pools (compact row) */}
+        {tags
+          .filter((t) => ["Devices", "Pools"].includes(t.category))
+          .map((tag, index) => (
+            <div key={index} className="flex flex-wrap gap-2 mb-4">
+              <Icon
+                icon={categoryIcons[tag.category as CategoryKey]}
+                title={tag.category}
+                className="text-slate-500 mt-1"
+                size="medium"
+              />
+              {tag.values.map((value, vIndex) => (
+                <span
+                  key={vIndex}
+                  className="px-3 py-1 text-xs bg-slate-200 dark:bg-slate-700 rounded-full text-slate-600 dark:text-slate-300"
+                >
+                  {typeof value === "string" ? value : (value as FeatureLink).name}
+                </span>
+              ))}
             </div>
-            {tags.map((tag, index) => (
-              <React.Fragment key={index}>
-                {tag.category === "Features" && <hr className="my-2" />}
-                <div className={`wallet-tag tag-${tag.category}`}>
-                  <Icon
-                    icon={categoryIcons[tag.category as CategoryKey]}
-                    title={tag.category}
-                    className="icon-class"
-                    size="medium"
-                  />
-                  {tag.values.map((value, valueIndex) => {
-                    if (isFeatureLink(value)) {
-                      // Handle FeatureLink object
-                      return (
-                        <div
-                          key={valueIndex}
-                          className="wallet-tag-item bg-slate-200 dark:bg-slate-900"
-                        >
-                          <Link 
-                            href={value.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {value.name}
-                          </Link>
-                        </div>
-                      );
-                    } else {
-                      // Handle string value with default link mapping
-                      const linkUrl = tag.category === "Pools" || tag.category === "Features"
-                        ? getFeatureLink(value)
-                        : "https://zechub.wiki/using-zcash/shielded-pools";
-                      
-                      return (
-                        <div
-                          key={valueIndex}
-                          className="wallet-tag-item bg-slate-200 dark:bg-slate-900"
-                        >
-                          <Link 
-                            href={linkUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {value}
-                          </Link>
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
+          ))}
+
+        {/* Features section */}
+        {tags.some((t) => t.category === "Features") && (
+          <>
+            <hr className="my-3 border-slate-200 dark:border-slate-700" />
+            <div className="flex flex-wrap gap-2">
+              <Icon
+                icon={MdChecklist}
+                title="Features"
+                className="text-slate-500 mt-1"
+                size="medium"
+              />
+              {tags
+                .find((t) => t.category === "Features")
+                ?.values.map((value, index) => {
+                  const displayValue = typeof value === "string" ? value : (value as FeatureLink).name;
+                  const linkUrl =
+                    typeof value === "string"
+                      ? getFeatureLink(value)
+                      : (value as FeatureLink).url;
+
+                  return (
+                    <Link
+                      key={index}
+                      href={linkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1 text-xs bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
+                    >
+                      {displayValue}
+                    </Link>
+                  );
+                })}
+            </div>
+          </>
+        )}
       </div>
-      <hr className="w-full" />
-      <div className="wallet-likes w-full flex">
-        <div className="likes-count flex-grow">
-          <span className="text-gray-400">Rating:</span> {likes}
-        </div>
-        <div className="error text-pink-700 dark:text-red-300 text-xs flex items-center pr-1">
-          {error}
-        </div>
-        <div className="text-green-700 dark:text-green-300 text-xs flex items-center pr-1">
-          {success}
-        </div>
-        <div>
-          <button
-            onClick={handleLike}
-            className={`like-button mr-4 ${
-              liked ? "text-blue-500" : "text-gray-600 hover:text-blue-500"
-            } duration-300`}
-          >
-            <Icon
-              icon={Like}
-              className="inline-block h-5 w-5 ms-2"
-              size="small"
-            />
+
+      {/* Rating pinned at bottom */}
+      <div className="border-t border-slate-200 dark:border-slate-700 p-5 mt-auto flex items-center">
+        <div className="flex-grow text-sm text-gray-400">Rating: {likes}</div>
+        <div className="text-pink-700 dark:text-red-300 text-xs pr-2">{error}</div>
+        <div className="text-green-700 dark:text-green-300 text-xs pr-2">{success}</div>
+        <div className="flex gap-4">
+          <button onClick={handleLike} className={`text-gray-600 hover:text-blue-500 ${liked ? "text-blue-500" : ""}`}>
+            <Icon icon={Like} size="small" />
           </button>
-          <button
-            onClick={handleDislike}
-            className={`like-button ${
-              disliked ? "text-red-500" : "text-gray-600 hover:text-red-500"
-            } duration-300`}
-          >
-            <Icon
-              icon={Dislike}
-              className="inline-block h-5 w-5 ms-2"
-              size="small"
-            />
+          <button onClick={handleDislike} className={`text-gray-600 hover:text-red-500 ${disliked ? "text-red-500" : ""}`}>
+            <Icon icon={Dislike} size="small" />
           </button>
         </div>
       </div>
