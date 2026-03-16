@@ -12,25 +12,24 @@ import Link from "next/link";
 import { FaWallet, FaDiscord, FaExternalLinkAlt, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdHowToVote } from "react-icons/md";
 import { BsChatDots } from "react-icons/bs";
-import { HiUsers } from "react-icons/hi";
 import { IoDocumentText } from "react-icons/io5";
 
 export default function GovernanceGuide() {
   const [step, setStep] = useState(0); // 0 = First Steps, 1 = Draft, 2 = Submitting
 
   const sections = [
-    { title: "First Steps", icon: <FaWallet className="h-6 w-6 text-blue-600" /> },
-    { title: "Draft Proposal", icon: <IoDocumentText className="h-6 w-6 text-green-600" /> },
-    { title: "Submitting Proposal", icon: <MdHowToVote className="h-6 w-6 text-purple-600" /> },
+    { title: "First Steps", icon: <FaWallet className="h-6 w-6 text-blue-600 dark:text-blue-400" /> },
+    { title: "Draft Proposal", icon: <IoDocumentText className="h-6 w-6 text-green-600 dark:text-green-400" /> },
+    { title: "Submitting Proposal", icon: <MdHowToVote className="h-6 w-6 text-purple-600 dark:text-purple-400" /> },
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
       <div className="mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">ZecHub DAO Governance</h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold mb-4 text-slate-900 dark:text-white">ZecHub DAO Governance</h1>
+          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             A comprehensive guide to participating in ZecHub DAO governance
           </p>
         </div>
@@ -39,9 +38,9 @@ export default function GovernanceGuide() {
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             {sections[step].icon}
-            <h2 className="text-3xl font-semibold">{sections[step].title}</h2>
+            <h2 className="text-3xl font-semibold text-slate-900 dark:text-white">{sections[step].title}</h2>
           </div>
-          <div className="text-sm text-muted-foreground">
+          <div className="text-sm text-slate-500 dark:text-slate-400">
             Step {step + 1} of 3
           </div>
         </div>
@@ -51,26 +50,27 @@ export default function GovernanceGuide() {
           <ListCards>
             <ListCardsHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <FaWallet className="h-6 w-6 text-blue-600" />
+                <div className="p-2 bg-blue-100 dark:bg-blue-950 rounded-lg">
+                  <FaWallet className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div>
-                  <ListCardsTitle className="text-2xl">First Steps</ListCardsTitle>
-                  <ListCardsDescription>Get set up to participate in DAO governance</ListCardsDescription>
+                  <ListCardsTitle className="text-2xl text-slate-900 dark:text-white">First Steps</ListCardsTitle>
+                  <ListCardsDescription className="text-slate-600 dark:text-slate-400">Get set up to participate in DAO governance</ListCardsDescription>
                 </div>
               </div>
             </ListCardsHeader>
             <ListCardsContent className="space-y-6">
-              <div className="flex items-start gap-4 p-4 border rounded-lg">
+              <div className="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900">
                 <div className="flex-1">
-                  <h3 className="font-semibold mb-3">Install Keplr Wallet</h3>
-                  <p className="text-slate-600 mb-4">Set up your Keplr wallet to interact with the DAO</p>
-                  <div className="max-w-[420px] mx-auto aspect-video rounded-xl overflow-hidden border shadow-sm">
+                  <h3 className="font-semibold mb-3 text-slate-900 dark:text-white">Install Keplr Wallet</h3>
+                  <p className="text-slate-600 dark:text-slate-300 mb-4">Set up your Keplr wallet to interact with the DAO</p>
+                  <div className="max-w-[420px] mx-auto aspect-video rounded-xl overflow-hidden border border-slate-300 dark:border-slate-600 shadow-sm">
                     <iframe
                       width="100%"
                       height="100%"
                       src="https://www.youtube.com/embed/fWagokTEx-Y"
                       title="Keplr Wallet Setup Guide"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                       className="rounded-xl"
                     />
@@ -78,28 +78,28 @@ export default function GovernanceGuide() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 border rounded-lg">
+              <div className="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <img src="/Logo/juno.png" alt="JUNO" className="w-8 h-8" />
-                    <h3 className="font-semibold">Acquire JUNO</h3>
+                    <h3 className="font-semibold text-slate-900 dark:text-white">Acquire JUNO</h3>
                   </div>
-                  <p className="text-slate-600">
+                  <p className="text-slate-600 dark:text-slate-300">
                     Get JUNO tokens to interact with the daodao contract.
                     Contact core-team members for assistance.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 border rounded-lg">
+              <div className="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900">
                 <div className="flex-1">
-                  <h3 className="font-semibold mb-2">View Open Proposals</h3>
-                  <p className="text-slate-600 mb-3">Check out current proposals and voting opportunities</p>
-                  <button className="border py-2 px-3 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500">
+                  <h3 className="font-semibold mb-2 text-slate-900 dark:text-white">View Open Proposals</h3>
+                  <p className="text-slate-600 dark:text-slate-300 mb-3">Check out current proposals and voting opportunities</p>
+                  <button className="border py-2 px-3 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500 text-slate-900 dark:text-white">
                     <Link href="https://vote.zechub.xyz" target="_blank" rel="noopener noreferrer" className="flex items-center">
                       <MdHowToVote className="h-4 w-4 mr-2" /> Visit Voting Portal
                     </Link>
-                  </button>
+                  </button>        
                 </div>
               </div>
             </ListCardsContent>
@@ -111,55 +111,72 @@ export default function GovernanceGuide() {
           <ListCards>
             <ListCardsHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <IoDocumentText className="h-6 w-6 text-green-600" />
+                <div className="p-2 bg-green-100 dark:bg-green-950 rounded-lg">
+                  <IoDocumentText className="h-6 w-6 text-green-600 dark:text-green-400" />
                 </div>
                 <div>
-                  <ListCardsTitle className="text-2xl">Draft Proposal</ListCardsTitle>
-                  <ListCardsDescription>Structure and prepare your proposal for submission</ListCardsDescription>
+                  <ListCardsTitle className="text-2xl text-slate-900 dark:text-white">Draft Proposal</ListCardsTitle>
+                  <ListCardsDescription className="text-slate-600 dark:text-slate-400">Structure and prepare your proposal for submission</ListCardsDescription>
                 </div>
               </div>
             </ListCardsHeader>
             <ListCardsContent className="space-y-6">
-              <div className="p-6 bg-amber-100 border-2 border-amber-400 rounded-2xl shadow-sm">
-                <p className="text-amber-900 font-semibold text-lg flex items-center gap-2">
-                  📋 <strong>Format:</strong> Proposals may be written in .Md or .txt format
+              <div className="p-6 bg-amber-100 dark:bg-amber-950 border-2 border-amber-400 dark:border-amber-600 rounded-2xl shadow-sm">
+                <p className="text-amber-900 dark:text-amber-200 font-semibold text-lg flex items-center gap-2">
+                  Format: Proposals may be written in .Md or .txt format
                 </p>
               </div>
 
               <div>
-                <h3 className="font-semibold mb-4 text-lg">Recommended 4-Stage Structure:</h3>
+                <h3 className="font-semibold mb-4 text-lg text-slate-900 dark:text-white">Recommended 4-Stage Structure:</h3>
                 <div className="grid gap-4">
-                  <div className="flex gap-4 p-6 bg-green-50 border border-green-200 rounded-lg">
-                    <div><h4 className="font-semibold text-green-700">Background</h4><p className="text-slate-600">Provide some history of the general topic / service</p></div>
+                  <div className="flex gap-4 p-6 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-700 rounded-lg">
+                    <div><h4 className="font-semibold text-green-700 dark:text-green-300">Background</h4><p className="text-slate-600 dark:text-slate-300">Provide some history of the general topic / service</p></div>
                   </div>
-                  <div className="flex gap-4 p-6 bg-blue-50 border border-blue-200 rounded-lg">
-                    <div><h4 className="font-semibold text-blue-700">Why?</h4><p className="text-slate-600">Present the driving reason for your proposal. May use bullet points</p></div>
+                  <div className="flex gap-4 p-6 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-700 rounded-lg">
+                    <div><h4 className="font-semibold text-blue-700 dark:text-blue-300">Why?</h4><p className="text-slate-600 dark:text-slate-300">Present the driving reason for your proposal. May use bullet points</p></div>
                   </div>
-                  <div className="flex gap-4 p-6 bg-purple-50 border border-purple-200 rounded-lg">
-                    <div><h4 className="font-semibold text-purple-700">Proposal</h4><p className="text-slate-600">Clearly detail your proposal in full</p></div>
+                  <div className="flex gap-4 p-6 bg-purple-50 dark:bg-purple-950 border border-purple-200 dark:border-purple-700 rounded-lg">
+                    <div><h4 className="font-semibold text-purple-700 dark:text-purple-300">Proposal</h4><p className="text-slate-600 dark:text-slate-300">Clearly detail your proposal in full</p></div>
                   </div>
-                  <div className="flex gap-4 p-6 bg-orange-50 border border-orange-200 rounded-lg">
-                    <div><h4 className="font-semibold text-orange-700">Action</h4><p className="text-slate-600">What happens upon successful vote - may provide timeline of actions</p></div>
+                  <div className="flex gap-4 p-6 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-700 rounded-lg">
+                    <div><h4 className="font-semibold text-orange-700 dark:text-orange-300">Action</h4><p className="text-slate-600 dark:text-slate-300">What happens upon successful vote - may provide timeline of actions</p></div>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-4">
-                <h3 className="font-semibold text-lg">Get Feedback</h3>
-                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <h3 className="font-semibold text-lg text-slate-900 dark:text-white">Get Feedback</h3>
+                <div className="p-4 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-700 rounded-lg">
                   <div className="flex items-start gap-3">
-                    <BsChatDots className="h-5 w-5 text-blue-600 mt-1" />
+                    <BsChatDots className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-1" />
                     <div>
-                      <p className="text-blue-800 mb-2">
-                        Share your draft in the ZecHub <strong>#proposals</strong> Discord channel
+                      <p className="text-blue-800 dark:text-blue-300 mb-2">
+                        Share your draft in the ZecHub #proposals channel on Discord for early feedback
                       </p>
-                      <button className="border py-2 px-3 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500">
-                        <Link href="https://discord.com/channels/978714252934258779/1121442347566252043" target="_blank" rel="noopener noreferrer" className="text-blue-800 flex items-center">
-                          <FaDiscord className="h-4 w-4 mr-2" /> Join Discord Discussion
-                        </Link>
-                      </button>
+                      <Link href="https://discord.gg/zechub" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                        Join Discord <FaDiscord className="ml-1" />
+                      </Link>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Proposal Walkthrough Video — restored exactly as you provided */}
+              <div className="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900">
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-3 text-slate-900 dark:text-white">Proposal Walkthrough Video</h3>
+                  <p className="text-slate-600 dark:text-slate-300 mb-4">Watch a full walkthrough of how to write and structure a proposal</p>
+                  <div className="max-w-[420px] mx-auto aspect-video rounded-xl overflow-hidden border border-slate-300 dark:border-slate-600 shadow-sm">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/1zGYmT66MzE"
+                      title="Proposal Walkthrough"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="rounded-xl"
+                    />
                   </div>
                 </div>
               </div>
@@ -167,107 +184,65 @@ export default function GovernanceGuide() {
           </ListCards>
         )}
 
-        {/* Submitting Proposal – Proposal Walkthrough video restored here */}
+        {/* Submitting Proposal */}
         {step === 2 && (
           <ListCards>
             <ListCardsHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <MdHowToVote className="h-6 w-6 text-purple-600" />
+                <div className="p-2 bg-purple-100 dark:bg-purple-950 rounded-lg">
+                  <MdHowToVote className="h-6 w-6 text-purple-600 dark:text-purple-400" />
                 </div>
                 <div>
-                  <ListCardsTitle className="text-2xl">Submitting Proposal</ListCardsTitle>
-                  <ListCardsDescription>How to submit your proposal on DAO DAO</ListCardsDescription>
+                  <ListCardsTitle className="text-2xl text-slate-900 dark:text-white">Submitting Proposal</ListCardsTitle>
+                  <ListCardsDescription className="text-slate-600 dark:text-slate-400">Submit and promote your proposal</ListCardsDescription>
                 </div>
               </div>
             </ListCardsHeader>
             <ListCardsContent className="space-y-6">
-              <div className="flex items-start gap-4 p-4 border rounded-lg">
+              <div className="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900">
                 <div className="flex-1">
-                  <h3 className="font-semibold mb-2">Navigate to Voting Portal</h3>
-                  <button className="border py-2 px-3 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500">
-                    <Link href="https://vote.zechub.xyz" target="_blank" rel="noopener noreferrer" className="flex items-center">
-                      <FaExternalLinkAlt className="h-4 w-4 mr-2" /> Open vote.zechub.xyz
+                  <h3 className="font-semibold mb-2 text-slate-900 dark:text-white">Post in Discord</h3>
+                  <p className="text-slate-600 dark:text-slate-300 mb-3">Share your final proposal in #proposals and tag @core-team</p>
+                  <Link href="https://discord.gg/zechub" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                    <FaDiscord className="mr-2" /> Open Discord
+                  </Link>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-4 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900">
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-2 text-slate-900 dark:text-white">Submit on Voting Portal</h3>
+                  <p className="text-slate-600 dark:text-slate-300">Use the official ZecHub voting site to create your proposal</p>
+                  <button className="border py-2 px-3 rounded-md hover:bg-purple-300 dark:hover:bg-purple-700 text-slate-900 dark:text-white mt-3">
+                    <Link href="https://vote.zechub.xyz" target="_blank" className="flex items-center">
+                      Submit Now <FaExternalLinkAlt className="ml-2" />
                     </Link>
                   </button>
-                  <p className="text-xs text-muted-foreground mt-3">
+		<p className="text-xs text-muted-foreground mt-3">
                     ⚠️ You need to login with either Keplr or Keplr Mobile
                   </p>
                 </div>
-              </div>
-
-              <div className="flex items-start gap-4 p-4 border rounded-lg">
-                <div className="flex-1">
-                  <h3 className="font-semibold mb-2">Enter Proposal Details</h3>
-                  <ul className="text-slate-600 space-y-1">
-                    <li>• Proposal Name</li>
-                    <li>• Description (your full proposal)</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 p-4 border rounded-lg">
-                <div className="flex-1">
-                  <h3 className="font-semibold mb-2">Add Actions</h3>
-                  <p className="text-slate-600">
-                    Configure actions for DAO Treasury, Governance Configuration, NFT, Smart contracts, etc.
-                  </p>
-                </div>
-              </div>
-
-              {/* Proposal Walkthrough video – restored here */}
-              <div className="p-6 border rounded-xl bg-muted/30 mt-6">
-                <p className="text-xs text-muted-foreground mb-3">Helpful Video: Proposal Walkthrough</p>
-                <div className="max-w-[420px] mx-auto aspect-video rounded-xl overflow-hidden border shadow-sm">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/1zGYmT66MzE"
-                    title="Proposal Walkthrough"
-                    allowFullScreen
-                    className="rounded-xl"
-                  />
-                </div>
-              </div>
-
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-800">
-                  ZecHub DAO voting period has a <strong>minimum duration of 5 days</strong>
-                </p>
               </div>
             </ListCardsContent>
           </ListCards>
         )}
 
-        {/* Navigation Arrows */}
-        <div className="flex justify-between items-center mt-12">
+        {/* Navigation Buttons */}
+        <div className="flex justify-between mt-10">
           <button
             onClick={() => setStep(Math.max(0, step - 1))}
             disabled={step === 0}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl border disabled:opacity-40 hover:bg-muted transition-all active:scale-95"
+            className="flex items-center gap-2 px-6 py-3 border rounded-xl disabled:opacity-50 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
           >
             <FaArrowLeft /> Previous
           </button>
-
-          <div className="text-sm text-muted-foreground font-medium">
-            Step {step + 1} of 3
-          </div>
-
           <button
             onClick={() => setStep(Math.min(2, step + 1))}
             disabled={step === 2}
-            className="flex items-center gap-2 px-6 py-3 rounded-xl border disabled:opacity-40 hover:bg-muted transition-all active:scale-95"
+            className="flex items-center gap-2 px-6 py-3 border rounded-xl disabled:opacity-50 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
           >
             Next <FaArrowRight />
           </button>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center py-12 border-t mt-16">
-          <div className="flex items-center justify-center gap-2 text-slate-500">
-            <HiUsers className="h-5 w-5" />
-            <span>Ready to participate in ZecHub DAO governance</span>
-          </div>
         </div>
       </div>
     </div>
