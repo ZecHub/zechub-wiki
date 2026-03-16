@@ -80,7 +80,7 @@ export default function FloatingExplore() {
         size="icon"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-[47px] w-[47px]" viewBox="0 0 100 100" fill="none">
-          <text x="50" y="68" textAnchor="middle" dominantBaseline="middle" fill="#000000" fontSize="140" fontWeight="900" fontFamily="Arial Black, sans-serif">Z</text>
+          <text x="50" y="60" textAnchor="middle" dominantBaseline="middle" fill="#000000" fontSize="140" fontWeight="900" fontFamily="Arial Black, sans-serif">Z</text>
         </svg>
       </Button>
 
