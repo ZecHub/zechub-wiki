@@ -13,6 +13,7 @@
 @import "../components/visualizer/zcash-wallet/index.css";
 @import "../components/visualizer/zk-SNARK-proof/index.css";
 @import "../components/Proposals/index.css";
+@import "../components/ZipsGrants/governance.css";
 
 @variant dark (&:where(.dark, .dark *));
 
@@ -27,8 +28,10 @@
 
   /* Background Images */
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
-  --background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%,
-      var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
 
   /* Colors */
   --color-border: hsl(var(--border));
@@ -81,7 +84,6 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
-
 }
 
 .btn-brand {
@@ -218,7 +220,6 @@ body[data-scroll-locked] {
 }
 
 @keyframes moveRight {
-
   0%,
   100% {
     transform: translateX(-300%);
@@ -365,5 +366,26 @@ code::-webkit-scrollbar-track {
 @media (min-width: 1024px) {
   code {
     max-width: 650px;
+  }
+}
+
+@layer utilities {
+  .gradient-zcash {
+    background: linear-gradient(135deg, hsl(45 100% 55%), hsl(40 85% 48%));
+  }
+
+  .gradient-card {
+    background: linear-gradient(180deg, hsl(230 12% 14%), hsl(230 12% 11%));
+  }
+
+  .glow-zcash {
+    box-shadow: 0 0 30px -5px hsl(45 100% 55% / 0.15);
+  }
+
+  .text-gradient-zcash {
+    background: linear-gradient(135deg, hsl(45 100% 55%), hsl(40 85% 48%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }

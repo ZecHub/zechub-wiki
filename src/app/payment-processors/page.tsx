@@ -4,6 +4,8 @@ import { genMetadata, getBanner } from "@/lib/helpers";
 import { parseProcessorMarkdown } from "@/lib/parseProcessorMarkdown";
 import { Metadata } from "next";
 import Image from "next/image";
+import { headers } from "next/headers";   // ← forces dynamic rendering
+
 import { getDictionary } from '@/lib/getDictionary';
 const imgUrl = getBanner(`using-zcash`);
 
@@ -16,6 +18,8 @@ export const metadata: Metadata = genMetadata({
 export default async function Page(props: {
   params: Promise<{ slug: string }>;
 }) {
+  headers();   // ← THIS IS THE KEY FIX (prevents icon function serialization error)
+
   const params = await props.params;
   const url = "site/Using_Zcash/Payment_Processors.md";
   const urlRoot = `/site/using-zcash`;
@@ -44,9 +48,7 @@ export default async function Page(props: {
 
       <div
         id="content"
-        className={`flex flex-col space-y-5 container m-auto ${
-          roots && roots.length > 0 ? "md:flex-row md:space-x-5" : "md:flex-col"
-        } h-auto w-full py-5`}
+        className={`flex flex-col space-y-5 container m-auto h-auto w-full py-5`}
       >
         <section className="h-auto w-full px-4">
           <PaymentProcessorList allProcessors={paymentProcessors} />
@@ -55,4 +57,5 @@ export default async function Page(props: {
     </main>
   );
 }
- 
+
+export const dynamic = "force-dynamic";   // ← permanent fix for this page

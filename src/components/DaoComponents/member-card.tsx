@@ -3,6 +3,7 @@
 import { useState } from "react";
 import MemberModal from "./member-modal";
 import Link from "next/link";
+import Image from "next/image";   // ← NEW
 
 interface MemberCardProps {
   member: {
@@ -54,14 +55,18 @@ export default function MemberCard({ member }: MemberCardProps) {
           >
             <div className="bg-gradient-to-br dark:from-slate-800/40 dark:to-slate-900/40 border border-amber-500/20 rounded-xl p-6 backdrop-blur-sm hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 group h-full flex flex-col">
               <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-blue-500 dark:from-amber-400 to-blue-400 dark:to-yellow-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-t-xl origin-left"></div>
-
               <div className="mb-4 flex justify-center">
-                <img
-                  src={member.imgUrl || "/placeholder.svg"}
-                  alt={member.name}
-                  className="w-24 h-24 rounded-full border-2 border-amber-500/50 object-cover"
-                />
-              </div>
+		  <Image
+		    src={member.imgUrl || "/placeholder.svg"}
+		    alt={member.name}
+		    width={96}
+		    height={96}
+		    className="w-24 h-24 rounded-full border-2 border-amber-500/50 object-cover"
+		    loading="lazy"
+		    decoding="async"
+		  />
+		</div>
+			     
               <h3 className="text-xl font-bold dark:text-yellow-300 mb-2 text-center">
                 {member.name}
               </h3>
@@ -100,7 +105,7 @@ export default function MemberCard({ member }: MemberCardProps) {
             </div>
           </div>
 
-          {/* Back Side */}
+          {/* Back Side (unchanged) */}
           <div
             className="absolute w-full h-full backface-hidden"
             style={{
@@ -108,6 +113,7 @@ export default function MemberCard({ member }: MemberCardProps) {
               transform: "rotateY(180deg)",
             }}
           >
+            {/* ... (the back side code stays exactly the same) */}
             <div className="bg-gradient-to-br dark:from-slate-800/40 dark:to-slate-900/40 border border-amber-500/20 rounded-xl p-6 backdrop-blur-sm h-full flex flex-col justify-between">
               <div>
                 <h3 className="text-xl mb-3 font-bold text-yellow-300">

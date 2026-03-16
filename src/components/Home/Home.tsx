@@ -18,7 +18,7 @@ const Home = ({ text }: HomeProps) => {
   
   return (
     <main className="flex flex-col">
-      <section id="hero" className=" bg-slate-100 mb-24">
+      <section id="hero" className=" bg-slate-100 my-24">
         <FadeInAnimation>
           <Hero />
         </FadeInAnimation>

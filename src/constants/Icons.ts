@@ -1,3 +1,5 @@
+'use client';
+
 import { IconType } from "react-icons";
 import {
   BiCheckShield as CheckShield,
@@ -48,6 +50,7 @@ import {
   GrDocumentZip,
   GrGroup as Group,
   GrNodes as Nodes,
+  GrNetwork as Network,
   GrResources as Resources,
   GrStakeholder as Stakeholder,
 } from "react-icons/gr";
@@ -135,20 +138,23 @@ import {
 } from "react-icons/tb";
 import { TfiServer as Tfi } from "react-icons/tfi";
 
+type AppIcon = IconType | string;   // supports both React icons AND custom PNG strings
+
 interface IconsFor {
   [key: string]: {
-    [key: string]: IconType;
+    [key: string]: AppIcon;
   };
 }
 
 const iconsForMenu: IconsFor = {
   "Start Here": {
-    "What is ZEC and Zcash": Zcash,
+    "What is ZEC and Zcash": "what-is-zcash.png",
     "New User Guide": ShootingStar,
     "ZEC Use Cases": SecurePayment,
     "Zcash Resources": Resources,
     "Developer Resources": Dadeveloper,
     "Development Fund": BinaryTree,
+    "Network Upgrades": Network,
     "Zcash Monetary Policy": Graph,
     "What is ZecHub": CircleInfo,
     "Using This Wiki": Wikipedia,
@@ -164,7 +170,7 @@ const iconsForMenu: IconsFor = {
   },
   "Using Zcash": {
     "Blockchain Explorers": MagnifyingGlassChart,
-    Wallets: Wallet,
+    Wallets: "pick-a-wallet.png",
     "Buying ZEC": CurrencyExchange,
     "Metamask Snap": RiFunctionLine,
     Transactions: ArrowUp,

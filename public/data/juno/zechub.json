@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 27,
-    "proposal_count": 139,
+    "proposal_count": 140,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -5826,6 +5826,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-02-25T10:14:24.016Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 140,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash India (March to May 2026)",
+          "votes": {
+            "no": "0",
+            "yes": "15",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1fuz6z8l6w93yrehtf97zfvpz5f5snnx47mt9qf",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1773664554915901057"
+          },
+          "description": "# Zcash India (March to May 2026)\n\nHello!\n\n---\n\n## Project Description\n\nZcash India is a grassroots initiative to bring Zcash's privacy-first mission to the world's largest developer market. India has over 21 million GitHub developers, the highest crypto adoption rate globally for three consecutive years, and Devcon 2026 arriving in Mumbai in November. The opportunity to establish a strong Zcash presence here is both timely and strategic.\n\nWe have already started. Without any funding, we have grown @ZcashIND to 80 followers and our Telegram community to 91 members in under three weeks. We launched a $100 community bounty that generated 12 original threads and developer submissions about Zcash, including one developer who independently built a project explaining Zcash's underlying mechanism. We have published educational graphics on X covering shielded transactions and ZK proofs, and we collaborated with HackTour India's network to reach top developer talent across India.\n\nThis proposal funds the next two months of structured, deliverable-driven execution.\n\n---\n\n## Project Goals\n\n- Build and grow an active Zcash community in India across X and Telegram\n- Educate Indian developers and crypto users about Zcash's privacy features and real-world applications\n- Increase accessibility of Zcash content through Hindi localization and translation\n- Onboard university students hands-on through in-person workshops with wallet creation and testnet activity\n- Foster collaborations between Zcash and India's developer ecosystem ahead of Devcon 2026 in Mumbai\n- Drive organic community growth through incentivized participation and developer-focused events\n\n---\n\n## Why India is Important for Zcash\n\nIndia ranked number one globally in crypto adoption for three consecutive years, with a projected 123 million users by 2026. It is the world's largest open-source developer base with over 21 million GitHub developers, the fastest growing segment globally.\n\nFinancial privacy is deeply relevant here. Millions of Indians send remittances, receive freelance payments internationally, and make donations where privacy is either a practical need or a safety concern. There is no dedicated Hindi-language Zcash resource anywhere. We are building that from scratch.\n\nAdditionally, Devcon 8 is confirmed for Mumbai from November 3 to 6, 2026, bringing tens of thousands of zk-curious developers to India. Zcash needs a warm, knowledgeable local community already in place before that event to make the most of the opportunity.\n\n---\n\n## Our Team\n\n**Jatin Sahijwani — Project Lead**\nCo-founder of HackTour India, India's most active developer-focused Web3 community. Web3 developer, 15x hackathon winner including ETHIndia and ETHGlobal New Delhi 2025. Arbitrum Foundation grant recipient for zk infrastructure tooling. Leads strategy, events, and milestone delivery.\nX: https://x.com/jatinsahijwani\n\n**Anirudh Singh Chouhan — Community and Events Lead**\nCo-founder of HackTour India. Full-stack Web3 developer, 15x hackathon winner. Leads on-ground event execution, university partnerships, and community engagement.\nX: https://x.com/AnirudhSingh07\n\n**Karan Verma — Content and Social Media**\nCore HackTour India member specializing in video production, graphic design, and social media management across X and Telegram.\n\n---\n\n## Scope of Work — Monthly Deliverables\n\n### Community Management\nActively manage and moderate @ZcashIND on X and @ZcashIN on Telegram. Engage with the community by answering questions, fostering discussions, and onboarding new members. Monthly growth metrics reported transparently on the Zcash Community Forum.\n\n### Content Creation and Community Activation\n- 5 original educational graphics or infographics covering Zcash technology, shielded transactions, zk-SNARKs, and privacy use cases\n- 4 X threads summarizing key Zcash topics tailored to the Indian audience\n- Regular posting and activity on both X & Telegram\n- 2 resources per month covering wallet setup, shielded transaction basics, and developer quickstarts\n- 1 short explainer video or reel per month for X and Telegram\n\n### Online Community Event\n1 monthly online AMA or workshop session hosted on Google Meet, covering Zcash privacy tech, live Q&A, and community challenges. Open to all community members globally.\n\n### IRL University Workshop\n1 in-person workshop per month at a partner university targeting 200 students per event. Each session covers zk-SNARK basics, Zcash's privacy features, shielded wallet setup, and hands-on testnet activity. Every attendee sets up a Zcash wallet during the session. Top participants get onboarded into the Telegram and X community. Post-event recap with Aftermovie, photos, attendance proof, and metrics published on the Zcash Community Forum.\n\n---\n\n## Expected Impact Over 2 Months\n\n- 400+ university students introduced to Zcash in person across 2 IRL events\n- 325+ new Zcash wallets created\n- 2 online community events with 65+ live attendees each\n- X followers grown to 250+ and Telegram to 300+ members\n- 15+ original pieces of content published\n- 4 resources live and publicly accessible\n- Monthly progress reports posted on the Zcash Community Forum\n\n---\n\n## Proof of Prior Work\n\n- Community forum thread with live updates: https://forum.zcashcommunity.com/t/zcash-india-2026/54762\n- X account: https://x.com/ZcashIND\n- Telegram: https://t.me/ZcashIN\n- HackTour India X: https://x.com/HackTourIND\n\n---\n\n## Budget\n\n**Requested amount for 2 months: $2,500 USD ($1,250 per month)**\n\n| Item | Monthly Cost |\n|---|---|\n| Team compensation (Jatin, Anirudh, Karan) | $600 |\n| IRL university workshop (venue, branded materials, logistics) | $450 |\n| Online event hosting and content tools | $100 |\n| Monthly Bounty for community engagement | $100 |\n| **Total per month** | **$1,250** |\n\n**Total for 2 months: $2,500 USD**\n\n---\n\n## Conclusion\n\nZcash India is not starting from zero. We have already built momentum, run a bounty program, grown two community channels, and published educational content, all self-funded. This proposal funds the next phase: structured monthly delivery with real in-person events, wallet onboarding at scale, Regional content, and consistent community growth.\n\nIndia is the right market at the right time. We are the right team to build this.\n\nThank you.\nX: https://x.com/ZcashIND\nTelegram: https://t.me/ZcashIN",
+          "total_power": "27",
+          "start_height": 35906776,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-03-11T12:35:54.915Z"
       }
     ]
   },

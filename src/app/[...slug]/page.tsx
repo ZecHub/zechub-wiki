@@ -5,71 +5,104 @@ import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";   // ← forces dynamic rendering
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string[] }>;
 }): Promise<Metadata> {
-  const param = await Promise.resolve(params);
-  const slug: any = param.slug;
-  const word = slug[0];
-  const firstLetter = word.charAt(0);
+  const { slug = [] } = await params;
 
-  const firstLetterCap = firstLetter.toUpperCase();
-  const remainingLetters = word.slice(1).replace(/-/g, " ");
-  const capitalizedWord = firstLetterCap + remainingLetters;
+  if (slug.length === 0) {
+    return genMetadata({ title: "Zechub", url: "https://zechub.wiki" });
+  }
+
+  const folder = slug[0] || "";
+  const capitalized = folder.charAt(0).toUpperCase() + folder.slice(1).replace(/-/g, " ");
+  const title = slug.length > 1 && slug[1]
+    ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
+    : `Zechub - ${capitalized}`;
 
   return genMetadata({
-    title: slug
-      ? `Zechub - ${capitalizedWord} | ${slug[1].replace(/-/g, " ")}`
-      : "Zechub",
+    title,
     url: `https://zechub.wiki/${slug.join("/")}`,
   });
 }
 
 const MdxComponent = dynamic(
   () => import("@/components/MdxComponents/MdxComponent"),
-  {
-    loading: () => <span className="text-center text-3xl">Loading...</span>,
-  }
+  { loading: () => <span className="text-center text-3xl">Loading...</span> }
 );
 
 export default async function Page(props: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string[] }>;
 }) {
-  const { slug } = await props.params;
+  headers(); // ← THIS LINE FORCES DYNAMIC RENDERING (no more prerender error)
+
+  let slug: string[] = [];
+  try {
+    const resolved = await props.params;
+    slug = resolved.slug || [];
+  } catch {
+    return notFound();
+  }
+
+  if (slug.length === 0) return notFound();
+  if (slug[0] === ".well-known") return null;
+
   const url = getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
 
-  const [markdown, roots] = await Promise.all([
-    getFileContentCached(url),
-    getRootCached(urlRoot),
-  ]);
+  let markdown: any = null;
+  let roots: any[] = [];
 
-  const content = markdown ? markdown : "No Data or Wrong file";
-  if (slug[0] === ".well-known") return null;
+  try {
+    const [md, rootsRaw] = await Promise.all([
+      getFileContentCached(url).catch(() => null),
+      getRootCached(urlRoot).catch(() => []),
+    ]);
+    markdown = md;
+    roots = Array.isArray(rootsRaw) ? rootsRaw : [];
+  } catch {
+    markdown = null;
+    roots = [];
+  }
 
-  // console.log(url);
-  // console.log(content);
+  const imgUrl = getBanner(slug[0]) || "";
 
-  if (markdown) {
-    const imgUrl = getBanner(slug[0]);
-
+  // === CATEGORY PAGES ===
+  if (!markdown) {
     return (
       <MdxContainer
-        hasSideMenu={!!roots && roots.length > 0}
-        sideMenu={roots ? <SideMenu folder={slug[0]} roots={roots} /> : null}
-        roots={roots ?? []}
+        hasSideMenu={roots.length > 0}
+        sideMenu={roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null}
+        roots={roots}
         heroImage={{ src: imgUrl }}
       >
-        <MdxComponent source={String(content)} slug={slug[1]} />
+        <div className="px-6 py-12 text-center">
+          <h1 className="text-5xl font-bold mb-6 capitalize">
+            {slug[0].replace(/-/g, " ")}
+          </h1>
+          <p className="text-xl text-muted-foreground">
+            Browse the articles using the sidebar on the left 👈
+          </p>
+        </div>
       </MdxContainer>
     );
   }
 
-  return notFound();
+  // === ARTICLE PAGES ===
+  return (
+    <MdxContainer
+      hasSideMenu={roots.length > 0}
+      sideMenu={roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null}
+      roots={roots}
+      heroImage={{ src: imgUrl }}
+    >
+      <MdxComponent source={String(markdown)} slug={slug[1] ?? ""} />
+    </MdxContainer>
+  );
 }
 
-// ✅ Enable ISR
-export const revalidate = 60; // Rebuild every 60s (tune as needed)
+export const revalidate = 60;

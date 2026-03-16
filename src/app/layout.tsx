@@ -4,6 +4,7 @@ import { DarkModeProvider } from "@/provider/DarkModeProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
+import FloatingExplore from '@/components/FloatingExplore';
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,18 +26,16 @@ export default function RootLayout({
     <html lang="en-US">
       <body className={`px-0  ${inter.className}`}>
         <DarkModeProvider>
-          <LanguageProvider>
-            {/* <div className="container mx-auto min-h-screen flex flex-col"> */}
-            <div className="min-h-screen mx-auto">
-              <ProgressBar />
-              <Navigation />
-
-              <div className=" flex flex-col justify-between flex-grow">
-                <div style={{ margin: "0 0 48px 0" }}>{children}</div>
-              </div>
+          {/* <div className="container mx-auto min-h-screen flex flex-col"> */}
+          <div className="min-h-screen mx-auto">
+            <ProgressBar />
+            <Navigation />
+            <FloatingExplore />
+            <div className=" flex flex-col justify-between flex-grow">
+              <div style={{ margin: "0 0 48px 0" }}>{children}</div>
             </div>
-            <Footer />
-          </LanguageProvider>
+          </div>
+          <Footer />
         </DarkModeProvider>
       </body>
     </html>

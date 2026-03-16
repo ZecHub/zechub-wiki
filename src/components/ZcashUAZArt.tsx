@@ -7,26 +7,26 @@ export default function ZcashUAZArt() {
   const [copied, setCopied] = useState(false);
 
   const ua = "u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89";
-
-  const zArt = `                                u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u
-                                5533c97affg9jq208du0vf787vfx4vkd6cd0ma
-                                                                4pxk
-                                                              kuc6
-                                                            xe6u
-                                                          e4dl
-                                                        gjvn
-                                                      9dhz
-                                                    acgk
-                                                  9pee
-                                                jwxd
-                                              n0ks
-                                            w3v3
-                                          yf0d
-                                        y47z
-                                      nruq
-                                    ftfq
-                                 gf6xpuelle29g2qxquudxsnnen3dvdx8az6w3t
-                                 ggalc4pla3n4jcs8vf4h29ach3zd8enxulush89`;
+  const zArt = 
+  `   u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u
+   5533c97affg9jq208du0vf787vfx4vkd6cd0ma
+                                    4pxk
+                                  kuc6
+                                xe6u
+                              e4dl
+                            gjvn
+                          9dhz
+                        acgk
+                      9pee
+                    jwxd
+                  n0ks
+                w3v3
+              yf0d
+            y47z
+          nruq
+        ftfq
+      gf6xpuelle29g2qxquudxsnnen3dvdx8az6w3t
+      ggalc4pla3n4jcs8vf4h29ach3zd8enxulush89`;
 
   const copyUA = () => {
     navigator.clipboard.writeText(ua);
@@ -48,7 +48,7 @@ export default function ZcashUAZArt() {
         padding: '50px 1px',
         display: 'inline-block',
         boxShadow: '0 20px 55px rgba(244, 180, 0, 0.4)',
-        maxWidth: '800px',
+        maxWidth: '400px',
         width: '100%'
       }}>
         {/* QR Code centered at the top of the box */}
@@ -66,7 +66,7 @@ export default function ZcashUAZArt() {
         {/* Your Z art directly below the QR */}
         <pre style={{
           fontFamily: 'monospace',
-          padding: '1px 1px',
+          padding: '1px 20px',
           fontSize: '12px',
           lineHeight: '1.08',
           letterSpacing: '0.1px',

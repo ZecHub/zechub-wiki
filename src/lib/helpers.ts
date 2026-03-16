@@ -52,11 +52,9 @@ export const getName = (item: string) => {
   }
 };
 
-export const getDynamicRoute = (slug: string): string => {
-  let uri = "";
-  for (let i = 0; i < slug.length; i++) {
-    uri += "/" + slug[i];
-  }
+export const getDynamicRoute = (slug: string[]): string => {
+  const uri = "/" + slug.join("/");
+
   return uri === "/contribute/community-infrastructure"
     ? `/site/contribute/Community_Infrastructure.md`
     : `/site${transformUri(uri)}.md`;

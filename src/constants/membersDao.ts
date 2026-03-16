@@ -3,7 +3,7 @@ import { socialIcons } from "@/components/UI/SvgIcons";
 export const daoMembers = [
     {
     imgUrl:
-      "",
+      "/speedfox.png",
     name: "Speedfox",
     description:
       "Zcash Contributor, Developer and Graphic Design professional",
@@ -19,7 +19,7 @@ export const daoMembers = [
   },
     {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1984413242597560320/taevvueV_400x400.jpg",
+      "https://pbs.twimg.com/profile_images/2024714746025664512/qWshr051_400x400.jpg",
     name: "Zolder",
     description:
       "Nerdy.moca 👁👁👁 🐙 Privacy is normal 🙏🖕🏻 Every little bit adds up",
@@ -67,7 +67,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1939712599857197056/uO46TIpy_400x400.jpg",
+      "https://pbs.twimg.com/profile_images/2029713081585049600/AksNItPS_400x400.jpg",
     name: "Blakiat",
     description: `Passionate about technology, advocate for free software, and obsessed with digital security. Here I share tips and discuss the digital future.`,
     social: [
@@ -146,7 +146,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://zeal.center/system/accounts/avatars/109/304/356/632/808/494/original/5163355cdb5f77d5.png",
+      "https://ipfs.daodao.zone/ipfs/QmWFUqQNeQNiMv9dD8u5uLDD34NbPPqJ5d9e2qJNHqFoyg",
     name: "Wizard",
     description: `I am the admin of Zeal Center, a Mastodon and Mobilizon instance created for the Zcash community`,
     social: [
@@ -199,7 +199,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1857956807957688320/MXJltXFR_400x400.jpg",
+      "https://pbs.twimg.com/profile_images/2023439119796621312/y4S4vhOY_400x400.jpg",
     name: "Yoditar",
     description:
       "SpacesHost | Blogger | Crypto community builder: @zcashesp and @libredotorg | Ambassador @Vivaldi_es | Privacy activist",
@@ -255,7 +255,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1822406076978843648/2btC651V_400x400.jpg",
+      "https://pbs.twimg.com/profile_images/2024945609006784512/eLftKSmP_400x400.jpg",
     name: "Mine",
     description: `I am a diagrammer, graphic and packaging designer. My interest in blockchain, NFTs and cryptocurrencies started
         just three years ago. In May 2022 Iogy and I became the design team for Zcash Brasil, and since then I've been
@@ -442,7 +442,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1822429578943451136/Q3og94Zy_400x400.jpg",
+      "https://pbs.twimg.com/profile_images/2031426052212281344/TLC71_rH_400x400.jpg",
     name: "vito",
     description: `Data Security Analyst & Core Team Member of ZecHub.`,
     linkName: "Twitter",
