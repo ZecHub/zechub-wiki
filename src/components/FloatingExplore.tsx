@@ -143,7 +143,7 @@ export default function FloatingExplore() {
                 </div>
                 <div>
                   {item.label}
-                  {item.note && <span className="text-xs block text-muted-foreground mt-0.5">{item.note}</span>}
+                  {/* {item.note && <span className="text-xs block text-muted-foreground mt-0.5">{item.note}</span>}*/}
                 </div>
               </a>
             ))}
