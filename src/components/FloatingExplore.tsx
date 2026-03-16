@@ -12,6 +12,10 @@ export default function FloatingExplore() {
   const pathname = usePathname() || '';
   const { dark } = useContext(DarkModeContext) || { dark: false };
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Mobile detection (updates on resize)
+  const [isMobile, setIsMobile] = useState(false);
 
   const [folder, setFolder] = useState<'light' | 'dark'>('dark');
 
@@ -19,7 +23,40 @@ export default function FloatingExplore() {
     setFolder(dark ? 'dark' : 'light');
   }, [dark]);
 
-  // Cleanup timeout when component unmounts
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Click-outside + Escape key (works on mobile & desktop)
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+
+    if (open) {
+      document.addEventListener('mousedown', handleOutsideClick);
+      document.addEventListener('touchstart', handleOutsideClick);
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('touchstart', handleOutsideClick);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [open]);
+
+  // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
@@ -69,9 +106,10 @@ export default function FloatingExplore() {
   return (
     <div 
       className="fixed bottom-8 right-8 z-50"
-      // Mouse leaves the whole floating widget (button + menu) → close with a tiny grace period
       onMouseLeave={() => {
-        timeoutRef.current = setTimeout(() => setOpen(false), 150);
+        if (!isMobile) {
+          timeoutRef.current = setTimeout(() => setOpen(false), 150);
+        }
       }}
     >
       <Button
@@ -86,18 +124,37 @@ export default function FloatingExplore() {
 
       {open && (
         <div 
-          className="absolute bottom-20 right-0 w-72 max-w-[280px] rounded-3xl bg-slate-50 dark:bg-card border border-border shadow-2xl p-3 text-sm backdrop-blur-2xl"
-          // Cancel the close when the mouse enters the menu (handles the gap perfectly)
+          ref={menuRef}
+          className={`
+            fixed md:absolute 
+            bottom-20 left-4 right-4 md:left-auto md:right-0 md:bottom-full md:mb-4
+            w-full max-w-[280px] md:w-72
+            max-h-[65vh] md:max-h-none overflow-y-auto
+            bg-slate-50 dark:bg-card border border-border shadow-2xl 
+            rounded-3xl p-4 text-sm backdrop-blur-2xl z-50
+            transition-all duration-200
+          `}
           onMouseEnter={() => {
-            if (timeoutRef.current) {
+            if (!isMobile && timeoutRef.current) {
               clearTimeout(timeoutRef.current);
               timeoutRef.current = null;
             }
           }}
         >
-          <div className="font-semibold mb-3 px-2 text-foreground">Explore Zcash</div>
+          {/* Title row – on mobile it includes the close button */}
+          <div className="flex justify-between items-center mb-4 px-2">
+            <div className="font-semibold text-foreground text-lg md:text-base">Explore Zcash</div>
+            {isMobile && (
+              <button
+                onClick={() => setOpen(false)}
+                className="text-2xl leading-none text-muted-foreground hover:text-foreground active:scale-90"
+              >
+                ✕
+              </button>
+            )}
+          </div>
 
-          <div className="space-y-0 mb-4">
+          <div className="space-y-1 mb-4">
             {exploreMenu.mainLinks.map((item) => {
               const href = deepLinkMap[item.label] || item.href;
               const iconSrc = iconMap[item.label] || `/explore/${folder}/start-here.png`;
@@ -107,7 +164,11 @@ export default function FloatingExplore() {
                   key={item.href}
                   href={href}
                   onClick={handleLinkClick}
-                  className="flex items-center gap-4 px-4 py-2 rounded-2xl transition-all hover:bg-yellow-400 hover:text-black dark:hover:bg-amber-600 font-medium text-foreground"
+                  className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all 
+                             hover:bg-yellow-400 hover:text-black 
+                             dark:hover:bg-amber-600 
+                             active:bg-yellow-300 active:scale-[0.98] 
+                             font-medium text-foreground touch-manipulation"
                 >
                   <img src={iconSrc} alt={item.label} className="h-6 w-6 object-contain flex-shrink-0" />
                   {item.label}
@@ -116,8 +177,8 @@ export default function FloatingExplore() {
             })}
           </div>
 
-          <div className="border-t border-border pt-3">
-            <div className="font-semibold mb-2 px-3 text-xs uppercase tracking-widest text-muted-foreground">
+          <div className="border-t border-border pt-4">
+            <div className="font-semibold mb-3 px-3 text-xs uppercase tracking-widest text-muted-foreground">
               For Forks & Maintainers
             </div>
             {exploreMenu.forkSection.map((item) => (
@@ -126,10 +187,13 @@ export default function FloatingExplore() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 px-4 py-2 rounded-2xl transition-all hover:bg-yellow-400 hover:text-black dark:hover:bg-amber-600 font-medium text-foreground"
                 onClick={() => setOpen(false)}
+                className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all 
+                           hover:bg-yellow-400 hover:text-black 
+                           dark:hover:bg-amber-600 
+                           active:bg-yellow-300 active:scale-[0.98] 
+                           font-medium text-foreground touch-manipulation"
               >
-                {/* Updated GitHub icon (replaces the old ⭐ and 📝 defaults) */}
                 <div className="h-6 w-6 flex-shrink-0 text-foreground">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
@@ -143,7 +207,6 @@ export default function FloatingExplore() {
                 </div>
                 <div>
                   {item.label}
-                  {/* {item.note && <span className="text-xs block text-muted-foreground mt-0.5">{item.note}</span>}*/}
                 </div>
               </a>
             ))}
