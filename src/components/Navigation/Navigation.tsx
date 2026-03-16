@@ -93,6 +93,7 @@ const NavLinks = ({
                     {(link.icon || matchIcons(item.name, link.name)) && (
                       <Icon
                         icon={link.icon ?? matchIcons(item.name, link.name)}
+                        size={link.name === "Wallets" ? 24 : "small"}
                         className="xl:w-6 w-4 h-4 xl:h-6"
                       />
                     )}

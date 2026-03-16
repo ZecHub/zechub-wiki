@@ -29,6 +29,7 @@ export default function FloatingExplore() {
   }, []);
 
   const iconMap: Record<string, string> = {
+    "Full Explore":`/explore/${folder}/what-is-zcash.png`,
     "Start Here": `/explore/${folder}/start-here.png`,
     "Tutorials": `/explore/${folder}/tutorials.png`,
     "Using Zcash": `/explore/${folder}/using-zcash.png`,

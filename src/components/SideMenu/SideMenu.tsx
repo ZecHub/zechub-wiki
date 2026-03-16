@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { matchIcons } from "@/constants/Icons";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import Link from "next/link";
@@ -24,13 +24,12 @@ const images = [
   "/usingzcashtutorials.png",
   "/wallettutorials.png",
 ];
+
 const SideMenu = ({ folder, roots }: MenuProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const root = roots.map((item) => item.slice(0, -3));
-
   const name = folder[0].toUpperCase() + folder.slice(1);
-
   const fold = getName(name);
 
   return (
@@ -60,14 +59,12 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
         }`}
       >
         <h1 className="text-4xl font-bold mb-6"> {fold}: </h1>
-
         <div>
           <ul>
             {root.map((item: any, i: any) => {
-              if (getName(item) === "Wallets") return null; // Skip rendering the item named "Wallets"
-              if (getName(item) === "Payment Processors") return null; // Skip rendering the item named "Wallets"
-              if (getName(item) === "Custodial Exchanges") return null; // Skip rendering the item named "Wallets"
-
+              if (getName(item) === "Wallets") return null;
+              if (getName(item) === "Payment Processors") return null;
+              if (getName(item) === "Custodial Exchanges") return null;
               return (
                 <li
                   key={i}
@@ -95,27 +92,8 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                 </li>
               );
             })}
-            {fold === "Using Zcash" && (
-              <li
-                className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
-              >
-                <Link href="/using-zcash/custodial-exchanges">
-                  <div className={`flex items-center space-x-4`}>
-                    <div className="flex-shrink-0">
-                      <Icon icon={FaListAlt} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium ">
-                        Custodial Exchanges
-                      </p>
-                    </div>
-                    <div className="inline-flex items-center text-base font-semibold ">
-                      <Icon icon={Arrow} />
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            )}
+
+            {/* === FIXED: Wallets now uses your custom PNG from Icons.ts === */}
             {fold === "Using Zcash" && (
               <li
                 className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
@@ -123,7 +101,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                 <Link href="/wallets">
                   <div className={`flex items-center space-x-4`}>
                     <div className="flex-shrink-0">
-                      <Icon icon={Wallet} />
+                      <Icon icon={matchIcons(fold, "Wallets")} size={24} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium ">Wallets</p>
@@ -135,6 +113,30 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                 </Link>
               </li>
             )}
+
+            {/* Optional: made the other two consistent too (so you can add custom PNGs later) */}
+            {fold === "Using Zcash" && (
+              <li
+                className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
+              >
+                <Link href="/using-zcash/custodial-exchanges">
+                  <div className={`flex items-center space-x-4`}>
+                    <div className="flex-shrink-0">
+                      <Icon
+                        icon={matchIcons(fold, "Custodial Exchanges") ?? FaListAlt}
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium ">Custodial Exchanges</p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold ">
+                      <Icon icon={Arrow} />
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            )}
+
             {fold === "Using Zcash" && (
               <li
                 className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}
@@ -142,7 +144,9 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                 <Link href="/payment-processors">
                   <div className={`flex items-center space-x-4`}>
                     <div className="flex-shrink-0">
-                      <Icon icon={MdPayment} />
+                      <Icon
+                        icon={matchIcons(fold, "Payment Processors") ?? MdPayment}
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium ">Payment Processors</p>
