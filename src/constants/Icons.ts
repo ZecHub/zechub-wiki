@@ -136,15 +136,17 @@ import {
 } from "react-icons/tb";
 import { TfiServer as Tfi } from "react-icons/tfi";
 
+type AppIcon = IconType | string;
+
 interface IconsFor {
   [key: string]: {
-    [key: string]: IconType;
+    [key: string]: AppType;
   };
 }
 
 const iconsForMenu: IconsFor = {
   "Start Here": {
-    "What is ZEC and Zcash": Zcash,
+    "What is ZEC and Zcash": "what-is-zcash.png",
     "New User Guide": ShootingStar,
     "ZEC Use Cases": SecurePayment,
     "Zcash Resources": Resources,
@@ -166,7 +168,7 @@ const iconsForMenu: IconsFor = {
   },
   "Using Zcash": {
     "Blockchain Explorers": MagnifyingGlassChart,
-    Wallets: Wallet,
+    Wallets: "pick-a-wallet.png",
     "Buying ZEC": CurrencyExchange,
     "Metamask Snap": RiFunctionLine,
     Transactions: ArrowUp,
