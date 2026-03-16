@@ -45,16 +45,11 @@ const categoryIcons = {
 const featureLinkMap: { [key: string]: string } = {
   "Orchard": "https://zechub.wiki/using-zcash/shielded-pools#orchard",
   "Sapling": "https://zechub.wiki/using-zcash/shielded-pools#sapling",
-  "Sprout": "https://zechub.wiki/using-zcash/shielded-pools#sprout",
   "Transparent": "https://zechub.wiki/using-zcash/shielded-pools#transparent",
   "Shielded": "https://zechub.wiki/using-zcash/shielded-pools",
-  "Hardware Wallet": "https://zechub.wiki/using-zcash/hardware-wallets",
-  "Full Node": "https://zechub.wiki/using-zcash/full-node",
-  "Light Client": "https://zechub.wiki/using-zcash/light-clients",
   "Mobile": "https://zechub.wiki/using-zcash/mobile-wallets",
   "Desktop": "https://zechub.wiki/using-zcash/desktop-wallets",
   "Web": "https://zechub.wiki/using-zcash/web-wallets",
-  "Open Source": "https://zechub.wiki/contributing/open-source",
 };
 
 const WalletItem: React.FC<WalletItemProps> = ({
@@ -94,27 +89,27 @@ const WalletItem: React.FC<WalletItemProps> = ({
 
   return (
     <div className="wallet-item h-full flex flex-col border rounded-2xl shadow-lg bg-white dark:bg-gray-800 overflow-hidden transition-all hover:shadow-xl">
-      {/* Fixed-height logo area */}
+      {/* Logo — taller + more padding on mobile */}
       <a
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="block bg-gray-100 dark:bg-gray-200 p-4 flex items-center justify-center h-48"
+        className="block bg-gray-100 dark:bg-gray-200 p-5 md:p-6 flex items-center justify-center h-52 md:h-48"
       >
         <Image
           className="w-full h-full object-contain"
-          width={240}
-          height={160}
+          width={260}
+          height={180}
           src={logo}
           alt={`${title} Logo`}
           priority={false}
         />
       </a>
 
-      <div className="flex-1 flex flex-col p-5">
+      <div className="flex-1 flex flex-col p-5 md:p-6">
         {/* Title + Open button */}
         <div className="flex justify-between items-start mb-4">
-          <h5 className="text-xl font-bold text-slate-700 dark:text-slate-200 flex-1 pr-3">
+          <h5 className="text-xl md:text-2xl font-bold text-slate-700 dark:text-slate-200 flex-1 pr-3">
             {title}
             {syncSpeed && (
               <span className="inline-block ml-2 align-middle">
@@ -133,7 +128,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
           </Link>
         </div>
 
-        {/* Devices + Pools (compact row) */}
+        {/* Devices + Pools (compact pills) */}
         {tags
           .filter((t) => ["Devices", "Pools"].includes(t.category))
           .map((tag, index) => (
@@ -147,7 +142,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
               {tag.values.map((value, vIndex) => (
                 <span
                   key={vIndex}
-                  className="px-3 py-1 text-xs bg-slate-200 dark:bg-slate-700 rounded-full text-slate-600 dark:text-slate-300"
+                  className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 rounded-full text-slate-600 dark:text-slate-300"
                 >
                   {typeof value === "string" ? value : (value as FeatureLink).name}
                 </span>
@@ -155,7 +150,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
             </div>
           ))}
 
-        {/* Features section */}
+        {/* Features section — more space between tags */}
         {tags.some((t) => t.category === "Features") && (
           <>
             <hr className="my-3 border-slate-200 dark:border-slate-700" />
@@ -170,10 +165,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
                 .find((t) => t.category === "Features")
                 ?.values.map((value, index) => {
                   const displayValue = typeof value === "string" ? value : (value as FeatureLink).name;
-                  const linkUrl =
-                    typeof value === "string"
-                      ? getFeatureLink(value)
-                      : (value as FeatureLink).url;
+                  const linkUrl = typeof value === "string" ? getFeatureLink(value) : (value as FeatureLink).url;
 
                   return (
                     <Link
@@ -181,7 +173,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
                       href={linkUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3 py-1 text-xs bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
+                      className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
                     >
                       {displayValue}
                     </Link>
