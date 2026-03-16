@@ -8,11 +8,6 @@ import { useLanguage } from '@/context/LanguageContext';
 const languages: Record<Locale, string> = {
   en: 'English',
   es: 'Español',
-  de: 'Deutsch',
-  fr: 'Français',
-  ja: '日本語',
-  ru: 'Русский',
-  zh: '中文',
 };
 
 export function LanguageSwitcher() {
