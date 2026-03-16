@@ -50,12 +50,12 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       });
 
       setFilters({
-        Devices: devicesSet,
-        "Operating System": operatingSystemSet,
-        Pools: poolsSet,
-        "Wallet Support": walletSupportSet,
-        Features: featuresSet,
-      });
+	  Devices: new Set(Array.from(devicesSet).sort((a, b) => a.localeCompare(b))),
+	  "Operating System": operatingSystemSet,
+	  Pools: new Set(Array.from(poolsSet).sort((a, b) => a.localeCompare(b))),
+	  "Wallet Support": walletSupportSet,
+	  Features: new Set(Array.from(featuresSet).sort((a, b) => a.localeCompare(b))),
+	});
 
       let initialLikes: { [key: string]: number } = {};
       try {
