@@ -310,7 +310,7 @@ export const navigations: Array<NavigationItem> = [
   },
   {
     name: "Tutorials",
-    path: "https://youtube.com/@zechub",
+    path: "https://www.youtube.com/playlist?list=PL6_epn0lASLFF28ePj7P5TvtMG_WE7p3O",
     icon: LiaChalkboardTeacherSolid,
     newTab: true,
   },
