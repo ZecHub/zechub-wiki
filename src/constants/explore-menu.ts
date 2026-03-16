@@ -15,7 +15,7 @@ export const exploreMenu = {
     { icon: "✏️", label: "Contribute", href: "/contribute" },
   ],
   forkSection: [
-    { icon: "⭐", label: "Fork zechub-wiki", href: "https://github.com/ZecHub/zechub-wiki"},
+    { icon: "⭐", label: "Fork zechub-wiki", href: "https://github.com/ZecHub/zechub-wiki" },
     { icon: "📝", label: "Fork zechub", href: "https://github.com/zechub/zechub" },
   ],
 };
