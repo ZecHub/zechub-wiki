@@ -2,6 +2,7 @@ import { Card } from "@/components/Card/Card";
 import { decentralizedExchanges } from "@/constants/decentralizedExchanges";
 import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = genMetadata({
@@ -11,43 +12,49 @@ export const metadata: Metadata = genMetadata({
 
 const DecentralisedExchanges = () => {
   return (
-    <div className="container mx-auto px-4">
-      <div className="flex justify-between items-center my-12 flex-col lg:flex-row">
-        <h1 className="flex justify-center items-center text-2xl imd:text-3xl font-bold mb-6 imd:mb-0 text-center">
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex justify-between items-center my-12 flex-col md:flex-row gap-6">
+        <h1 className="flex justify-center items-center text-3xl font-bold mb-4 md:mb-0 text-center">
+          <Image
+            src="https://i.ibb.co/bmS65xV/image-2024-02-03-173258092.png"
+            alt="Zcash Logo"
+            width={50}
+            height={50}
+            className="inline-block mr-3"
+          />
           Decentralised Exchanges
         </h1>
-        <div className="flex gap-4 mt-0 imd:mt-4 text-center flex-col items-center imd:flex-row">
+
+        <div className="flex flex-col sm:flex-row gap-4">
           <Link
             href="/using-zcash/custodial-exchanges"
-            className="inline-flex py-2 px-4 btn-brand focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm"
+            className="inline-flex py-2 px-4 btn-brand focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm text-center"
           >
-            {/* <a className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600'> */}
             Custodial Exchanges
-            {/* </a> */}
           </Link>
           <Link
             href="/using-zcash/centralizedswaps"
-            className="inline-flex py-2 px-4 btn-brand focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm"
+            className="inline-flex py-2 px-4 btn-brand focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm text-center"
           >
-            {/* <a className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600'> */}
             Centralised Swap platforms
-            {/* </a> */}
           </Link>
         </div>
       </div>
-      <p className="dark:text-slate-300 text-gray-600 text-lg my-12">
-        ZecHub does not endorse any particular Decentralised Exchange service,
-        please do your own research.
+
+      <p className="text-zinc-600 dark:text-zinc-400 text-lg max-w-3xl mb-12">
+        ZecHub does not endorse any particular Decentralised Exchange service.
+        Please do your own research (DYOR).
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {decentralizedExchanges.map((itm, i) => (
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {decentralizedExchanges.map((item) => (
           <Card
-            thumbnailImage={itm.image}
-            description={itm.description}
-            title={itm.title}
-            url={itm.url}
-            key={itm.title + "_" + Math.random() / i}
-            ctaLabel="Read More"
+            key={item.title}
+            thumbnailImage={item.image}
+            description={item.description}
+            title={item.title}
+            url={item.url}
+            ctaLabel="Visit DEX →"
           />
         ))}
       </div>

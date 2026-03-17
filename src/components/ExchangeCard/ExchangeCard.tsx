@@ -20,35 +20,47 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
   logo,
   altText,
 }) => (
-  <div className="light:bg-white border dark:border-gray-600 shadow-md rounded-lg overflow-hidden">
-    <div className="p-6 text-center dark:bg-slate-900">
-      <a href={url} target="_blank" rel="noopener noreferrer">
+  <div className="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+    <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center md:items-start">
+      {/* Logo */}
+      <div className="w-28 h-28 md:w-32 md:h-32 flex-shrink-0 relative mx-auto md:mx-0">
         <Image
           src={logo}
           alt={altText}
-          width={160}
-          height={160}
-          style={{ height: "160px" }}
-          className="mx-auto mb-4 object-contain"
+          fill
+          className="object-contain group-hover:scale-105 transition-transform duration-300"
+          sizes="(max-width: 768px) 112px, 128px"
         />
-      </a>
+      </div>
 
-      <h2 className="text-xl font-semibold mb-2">{name}</h2>
+      {/* Content */}
+      <div className="flex-1 text-center md:text-left">
+        <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">{name}</h3>
 
-      <p className="mb-4">
         <a
           href={url}
-          className="text-blue-600 hover:underline"
           target="_blank"
           rel="noopener noreferrer"
+          className="btn-brand inline-block px-7 py-3 rounded-xl font-medium text-base mb-6 transition-all active:scale-95"
         >
-          Visit Website
+          Visit Exchange →
         </a>
-      </p>
 
-      <p className="mb-2">Pairs: {pairs}</p>
-      <p className="mb-2">Supports: {support}</p>
-      <p>Deposit Time: {depositTime}</p>
+        <div className="space-y-3 text-sm text-zinc-600 dark:text-zinc-400">
+          <div className="flex flex-col md:flex-row md:gap-2">
+            <span className="font-semibold text-zinc-500 w-20">Pairs:</span>
+            <span>{pairs}</span>
+          </div>
+          <div className="flex flex-col md:flex-row md:gap-2">
+            <span className="font-semibold text-zinc-500 w-20">Supports:</span>
+            <span>{support}</span>
+          </div>
+          <div className="flex flex-col md:flex-row md:gap-2">
+            <span className="font-semibold text-zinc-500 w-20">Deposit Time:</span>
+            <span>{depositTime}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 );
