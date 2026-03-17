@@ -2,6 +2,8 @@ import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Card } from "@/components/Card/Card";
+import { decentralizedExchanges } from "@/constants/decentralizedExchanges";
 
 export const metadata: Metadata = genMetadata({
   title: "Decentralised Exchanges",
