@@ -1,19 +1,24 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function GovernanceSection() {
+  const { t } = useLanguage();
+
+  const heading = t?.dao?.governanceHeading ?? "Governance";
+  const description =
+    t?.dao?.governanceDescription ??
+    "All DAO proposals are public and transparent. Anyone can create a proposal to vote on. In support of community transparency, ZecHub DAO posts all governance proposals in the Zcash Community Forum ZecHub Governance thread.";
+
   return (
     <section className="space-y-6">
       <h2 className="text-3xl font-bold dark:text-amber-400 flex items-center gap-3">
         <span className="w-1 h-10 bg-gradient-to-b from-amber-400 to-yellow-300 rounded"></span>
-        Governance
+        {heading}
       </h2>
-      <p className="dark:text-slate-300 leading-relaxed">
-        All DAO proposals are public and transparent. Anyone can create a
-        proposal to vote on. In support of community transparency, ZecHub DAO
-        posts all governance proposals in the Zcash Community Forum ZecHub
-        Governance thread.
-      </p>
+      <p className="dark:text-slate-300 leading-relaxed">{description}</p>
 
       <div className="flex justify-center items-center text-center space-x-4 mb-12">
         <div>

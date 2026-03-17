@@ -1,3 +1,4 @@
+"use client";
 import { searcher } from "@/constants/searcher";
 import { SearchBarProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
@@ -9,8 +10,10 @@ import { IoMdClose as closeIcon } from "react-icons/io";
 import { MdArrowForward as ArrowIcon } from "react-icons/md";
 import { Icon } from "../UI/Icon";
 import { SearchInput } from "./SearchInput";
+import { useLanguage } from "@/context/LanguageContext";
 
 const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
+  const { t } = useLanguage();
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const observerRef = useRef<HTMLDivElement>(null);

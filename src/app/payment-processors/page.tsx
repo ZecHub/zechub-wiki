@@ -1,11 +1,12 @@
 import PaymentProcessorList from "@/components/PaymentProcessor/PaymentProcessorList";
-import { getFileContentCached } from "@/lib/authAndFetch";
+import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { parseProcessorMarkdown } from "@/lib/parseProcessorMarkdown";
 import { Metadata } from "next";
 import Image from "next/image";
 import { headers } from "next/headers";   // ← forces dynamic rendering
 
+import { getDictionary } from '@/lib/getDictionary';
 const imgUrl = getBanner(`using-zcash`);
 
 export const metadata: Metadata = genMetadata({
@@ -21,11 +22,15 @@ export default async function Page(props: {
 
   const params = await props.params;
   const url = "site/Using_Zcash/Payment_Processors.md";
+  const urlRoot = `/site/using-zcash`;
 
-  const [markdown] = await Promise.all([
-    getFileContentCached(url).catch(() => null),
-  ]);
-  const content = markdown ? markdown : "No Data or Wrong file";
+  const [markdown, roots, dict] = await Promise.all([
+    getFileContentCached(url),
+    getRootCached(urlRoot),
+    getDictionary(),
+  ] as const);
+  const typedDict = dict as { pages?: { paymentProcessors?: { noData?: string } } };
+  const content = markdown ?? (typedDict?.pages?.paymentProcessors?.noData ?? "No Data or Wrong file");
 
   const paymentProcessors = parseProcessorMarkdown(String(content));
 

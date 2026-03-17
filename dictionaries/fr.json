@@ -1,0 +1,36 @@
+{
+  "common": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact",
+    "language": "Langue"
+  },
+  "navigation": {
+    "wallet": "Portefeuilles",
+    "guides": "Guides",
+    "tutorials": "Tutoriels",
+    "governance": "Gouvernance",
+    "visualizer": "Visualiseur"
+  },
+  "visualizer": {
+    "title": "Visualiseurs Zcash",
+    "description": "Outils éducatifs interactifs pour comprendre la technologie de confidentialité Zcash, l'infrastructure et les preuves à divulgation nulle de connaissance",
+    "playAll": "Lire tous les visualiseurs",
+    "basic": "Basique",
+    "basicDescription": "Concepts fondamentaux et fonctionnalités essentielles de Zcash",
+    "advanced": "Avancé",
+    "advancedDescription": "Plongées techniques approfondies dans la cryptographie, le consensus et l'infrastructure",
+    "contributors": "Contributeurs",
+    "contributorsDescription": "Moyens de contribuer à l'écosystème Zcash et gagner des récompenses"
+  }
+  ,
+  "dao": {
+    "title": "DAO de ZecHub",
+    "description": "Gouvernance décentralisée pour ZecHub",
+    "proposals": "Propositions",
+    "vote": "Voter",
+    "createProposal": "Créer une proposition",
+    "activeProposals": "Propositions actives",
+    "pastProposals": "Propositions passées"
+  }
+}

@@ -1,11 +1,18 @@
-const beliefs = [
-  "Privacy is a human right",
-  "Education should be open-source and accessible worldwide",
-  "Community members have a right to earn ZEC privately",
-  "Global collaboration drives innovation",
-];
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function BeliefsSection() {
+  const { t } = useLanguage();
+  console.log("DAO beliefs:", t?.dao?.beliefs);
+  const beliefs: string[] =
+    t?.dao?.beliefs ?? [
+      "Privacy is a human right",
+      "Education should be open-source and accessible worldwide",
+      "Community members have a right to earn ZEC privately",
+      "Global collaboration drives innovation",
+    ];
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {beliefs.map((belief, index) => (

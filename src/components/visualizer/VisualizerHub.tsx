@@ -4,6 +4,7 @@ import { Button } from "@/components/UI/shadcn/button";
 import { motion } from "framer-motion";
 import { Home, Pause, Play, ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useCallback, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import { CoinholderGrantsVisualizer } from "./coinholder-grants";
 import { ConsensusVisualizer } from "./consensus-visualizer";
 import { ContributionVisualizer } from "./contribution-visualizer";
@@ -281,6 +282,7 @@ export const VisualizerHub: React.FC = () => {
     useState<VisualizerType>("welcome");
   const [isPlayingAll, setIsPlayingAll] = useState(false);
   const [openQuiz, setOpenQuiz] = useState<OpenQuizSection>(null);
+  const { t } = useLanguage();
 
   const startPlayAll = useCallback(() => {
     setIsPlayingAll(true);
@@ -511,11 +513,10 @@ export const VisualizerHub: React.FC = () => {
             className="text-center mb-12"
           >
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r dark:from-yellow-400 dark:via-emerald-400 dark:to-cyan-400 bg-clip-text text-foreground dark:text-transparent">
-              Zcash Visualizers
+              {t.visualizer?.title || "Zcash Visualizers"}
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-0">
-              Interactive educational tools to understand Zcash privacy
-              technology, infrastructure, and zero-knowledge proofs
+              {t.visualizer?.description || "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs"}
             </p>
           </motion.div>
 
@@ -531,7 +532,7 @@ export const VisualizerHub: React.FC = () => {
               className="bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 text-slate-900 shadow-[0_0_40px_rgba(251,191,36,0.5)] hover:shadow-[0_0_60px_rgba(251,191,36,0.7)] transition-all px-5 sm:px-8 py-3 text-base sm:text-lg font-semibold"
             >
               <Play className="w-5 h-5 mr-2" />
-              Play All Visualizers
+              {t.visualizer?.playAll || "Play All Visualizers"}
             </Button>
           </motion.div>
         </section>
@@ -545,10 +546,10 @@ export const VisualizerHub: React.FC = () => {
             className="mb-6 sm:mb-8"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-              Basic
+              {t.visualizer?.basic || "Basic"}
             </h2>
             <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              Foundational concepts and essential features of Zcash
+              {t.visualizer?.basicDescription || "Foundational concepts and essential features of Zcash"}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
@@ -560,7 +561,7 @@ export const VisualizerHub: React.FC = () => {
             {openQuiz !== "basic" && (
               <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
                 <QuizCard
-                  title="Beginner Quiz"
+                  title={t.visualizer?.beginnerQuiz || "Beginner Quiz"}
                   className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
                   onOpen={() => setOpenQuiz("basic")}
                 />
@@ -570,7 +571,7 @@ export const VisualizerHub: React.FC = () => {
           {openQuiz === "basic" && (
             <div className="max-w-6xl mx-auto mt-6 sm:mt-8 w-full px-0">
               <QuizModule
-                title="Beginner Quiz"
+                title={t.visualizer?.beginnerQuiz || "Beginner Quiz"}
                 questions={QUIZ_BEGINNER}
                 onClose={() => setOpenQuiz(null)}
               />
@@ -587,11 +588,10 @@ export const VisualizerHub: React.FC = () => {
             className="mb-6 sm:mb-8"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent">
-              Advanced
+              {t.visualizer?.advanced || "Advanced"}
             </h2>
             <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              Deep technical dives into cryptography, consensus, and
-              infrastructure
+              {t.visualizer?.advancedDescription || "Deep technical dives into cryptography, consensus, and infrastructure"}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
@@ -603,7 +603,7 @@ export const VisualizerHub: React.FC = () => {
             {openQuiz !== "advanced" && (
               <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
                 <QuizCard
-                  title="Intermediate Quiz"
+                  title={t.visualizer?.intermediateQuiz || "Intermediate Quiz"}
                   className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
                   onOpen={() => setOpenQuiz("advanced")}
                 />
@@ -613,7 +613,7 @@ export const VisualizerHub: React.FC = () => {
           {openQuiz === "advanced" && (
             <div className="max-w-6xl mx-auto mt-6 sm:mt-8 w-full px-0">
               <QuizModule
-                title="Intermediate Quiz"
+                title={t.visualizer?.intermediateQuiz || "Intermediate Quiz"}
                 questions={QUIZ_INTERMEDIATE}
                 onClose={() => setOpenQuiz(null)}
               />
@@ -630,10 +630,10 @@ export const VisualizerHub: React.FC = () => {
             className="mb-6 sm:mb-8"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Contributors
+              {t.visualizer?.contributors || "Contributors"}
             </h2>
             <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              Ways to contribute to the Zcash ecosystem and earn rewards
+              {t.visualizer?.contributorsDescription || "Ways to contribute to the Zcash ecosystem and earn rewards"}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
@@ -645,7 +645,7 @@ export const VisualizerHub: React.FC = () => {
             {openQuiz !== "contributors" && (
               <div className="min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] h-full flex">
                 <QuizCard
-                  title="Contributors Quiz"
+                  title={t.visualizer?.contributorsQuiz || "Contributors Quiz"}
                   className="w-full h-full min-h-[160px] imd:min-h-[200px] lg:min-h-[240px]"
                   onOpen={() => setOpenQuiz("contributors")}
                 />
@@ -655,7 +655,7 @@ export const VisualizerHub: React.FC = () => {
           {openQuiz === "contributors" && (
             <div className="max-w-6xl mx-auto mt-6 sm:mt-8 w-full px-0">
               <QuizModule
-                title="Contributors Quiz"
+                title={t.visualizer?.contributorsQuiz || "Contributors Quiz"}
                 questions={QUIZ_CONTRIBUTORS}
                 onClose={() => setOpenQuiz(null)}
               />
@@ -670,8 +670,7 @@ export const VisualizerHub: React.FC = () => {
           className="text-center mt-10 sm:mt-16"
         >
           <p className="text-muted-foreground text-xs sm:text-sm px-2">
-            Each visualizer runs automatically. Use controls to navigate or
-            pause.
+            {t.visualizer?.autoPlayNote || "Each visualizer runs automatically. Use controls to navigate or pause."}
           </p>
         </motion.div>
       </div>
@@ -687,6 +686,7 @@ type CardProps = {
 
 function VisualizerCard(props: CardProps) {
   const { data, goToVisualizer, startDelay = 0.3 } = props;
+  const { t } = useLanguage();
 
   return data.map((v, index) => (
     <motion.div
@@ -704,15 +704,15 @@ function VisualizerCard(props: CardProps) {
         <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
           <div className="flex-1 text-center">
             <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
-              {v.title}
+              {t?.components?.visualizer?.[v.id]?.title ?? v.title}
             </h3>
             <p className="text-muted-foreground group-hover:text-muted-foreground transition-colors">
-              {v.description}
+              {t?.components?.visualizer?.[v.id]?.description ?? v.description}
             </p>
           </div>
 
           <div className="text-yellow-500 text-center group-hover:text-yellow-400 transition-colors">
-            <span className="text-sm font-medium">Click to explore →</span>
+            <span className="text-sm font-medium">{t.common?.clickToExplore || "Click to explore →"}</span>
           </div>
         </div>
       </div>

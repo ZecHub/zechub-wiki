@@ -1,0 +1,36 @@
+{
+  "common": {
+    "home": "首页",
+    "about": "关于",
+    "contact": "联系",
+    "language": "语言"
+  },
+  "navigation": {
+    "wallet": "钱包",
+    "guides": "指南",
+    "tutorials": "教程",
+    "governance": "治理",
+    "visualizer": "可视化工具"
+  },
+  "visualizer": {
+    "title": "Zcash 可视化工具",
+    "description": "交互式教育工具，帮助理解 Zcash 隐私技术、基础设施和零知识证明",
+    "playAll": "播放所有可视化工具",
+    "basic": "基础",
+    "basicDescription": "Zcash 的基本概念和核心功能",
+    "advanced": "高级",
+    "advancedDescription": "密码学、共识和基础设施的深入技术探讨",
+    "contributors": "贡献者",
+    "contributorsDescription": "为 Zcash 生态系统做出贡献并获得奖励的方式"
+  }
+  ,
+  "dao": {
+    "title": "ZecHub DAO",
+    "description": "ZecHub 的去中心化治理",
+    "proposals": "提案",
+    "vote": "投票",
+    "createProposal": "创建提案",
+    "activeProposals": "进行中的提案",
+    "pastProposals": "过去的提案"
+  }
+}

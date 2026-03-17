@@ -1,29 +1,33 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { FadeInAnimation } from "../UI/FadeInAnimation";
+import { useLanguage } from "@/context/LanguageContext";
 import { ThemeImage } from "../UI/ThemeImage";
 
 const ContentSections = () => {
+  const { t } = useLanguage();
+  
   return (
     <section className="flex space-y-24 flex-col w-full ">
       {/* Zcash Section */}
 
       <InfoCard
         id="what-is-zcash"
-        title="What is Zcash?"
-        description="It is an open-source, blockchain ledger that features a sophisticated zero-knowledge proving system. It specializes in offering a higher standard of privacy through its proving system preserving confidentiality of transaction metadata. At its core, Zcash is private data ownership that is permissionlessly transferred when transactions are made."
+        title={t.home?.sections?.whatIsZcash?.title || "What is Zcash?"}
+        description={t.home?.sections?.whatIsZcash?.description || "It is an open-source, blockchain ledger that features a sophisticated zero-knowledge proving system. It specializes in offering a higher standard of privacy through its proving system preserving confidentiality of transaction metadata. At its core, Zcash is private data ownership that is permissionlessly transferred when transactions are made."}
         image="/Zcashcard.png"
         imageLight="/explore/light/what-is-zcash.png"
         imageDark="/explore/dark/what-is-zcash.png"
         links={[
           {
             href: "/start-here/what-is-zec-and-zcash",
-            label: "What is Zcash?",
+            label: t.home?.sections?.whatIsZcash?.mainLink || "What is Zcash?",
             primary: true,
           },
           {
             href: "/zcash-tech/zk-snarks",
-            label: "Zcash Technology",
+            label: t.home?.sections?.whatIsZcash?.techLink || "Zcash Technology",
           },
         ]}
       />
@@ -32,15 +36,15 @@ const ContentSections = () => {
       <InfoCard
         id="zcashme"
         reverse={true}
-        title="Zcash.me"
-        description="Zcash.Me is a public directory of Zcash users featuring private messaging, leaderboards, and verified users. Connect, explore, and interact with the Zcash community."
+        title={t.home?.sections?.zcashMe?.title || "Zcash.me"}
+        description={t.home?.sections?.zcashMe?.description || "Zcash.Me is a public directory of Zcash users featuring private messaging, leaderboards, and verified users. Connect, explore, and interact with the Zcash community."}
         image="/Zcash-me.png"
         imageLight="/explore/light/zcash-me.png"
         imageDark="/explore/dark/zcash-me.png"
         links={[
           {
             href: "https://zcash.me",
-            label: " Visit Zcash.Me",
+            label: t.home?.sections?.zcashMe?.link || "Visit Zcash.Me",
             primary: true,
           },
         ]}
@@ -48,15 +52,15 @@ const ContentSections = () => {
       {/* Global Ambassadors Section */}
       <InfoCard
         id="global-ambassadors"
-        title="Zcash Global Ambassadors"
-        description="Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions."
+        title={t.home?.sections?.globalAmbassadors?.title || "Zcash Global Ambassadors"}
+        description={t.home?.sections?.globalAmbassadors?.description || "Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions."}
         image="/zcash-global-ambassadors.png"
         imageLight="/explore/light/zga.png"
         imageDark="/explore/dark/zga.png"
         links={[
           {
             href: "/zcash-global-ambassadors",
-            label: "Meet the Ambassadors",
+            label: t.home?.sections?.globalAmbassadors?.link || "Meet the Ambassadors",
             primary: true
           },
         ]}
@@ -64,16 +68,15 @@ const ContentSections = () => {
       {/* Shielded Newsletter Section */}
       <InfoCard
         id="shielded-newsletter"
-        title="Shielded Newsletter"
-        description="Subscribe using your Unified Address to get shielded access to
-              Zcash Ecosystem Updates & Network Stats direct to your wallet!"
+        title={t.home?.sections?.newsletter?.title || "Shielded Newsletter"}
+        description={t.home?.sections?.newsletter?.description || "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!"}
         image="/zcash_newsletter.gif"
         imageLight="/explore/light/shielded-newsletter.png"
         imageDark="/explore/dark/shielded-newsletter.png"
         links={[
           {
             href: "/newsletter",
-            label: "Subscribe",
+            label: t.home?.sections?.newsletter?.link || "Subscribe",
             primary: true,
           },
         ]}
@@ -83,17 +86,15 @@ const ContentSections = () => {
       <InfoCard
         id="Free2Z"
         reverse={true}
-        title="Free2Z"
-        description="Free2Z is a social platform powered by Zcash. With peer-to-peer
-              donations, a revenue sharing program, advanced creative tools and
-              a massive online global community."
+        title={t.home?.sections?.free2z?.title || "Free2Z"}
+        description={t.home?.sections?.free2z?.description || "Free2Z is a social platform powered by Zcash. With peer-to-peer donations, a revenue sharing program, advanced creative tools and a massive online global community."}
         image="/Free2z_Banner.gif"
         imageLight="/explore/light/free2z.png"
         imageDark="/explore/dark/free2z.png"
         links={[
           {
             href: "https://free2z.cash",
-            label: "Free2Z",
+            label: t.home?.sections?.free2z?.link || "Free2Z",
             primary: true,
           },
         ]}
@@ -102,23 +103,20 @@ const ContentSections = () => {
       {/* Pay with Zcash Section */}
       <InfoCard
         id="pay-with-zcash"
-        title="Pay with Zcash"
-        description="This website is an answer to the question: Where can I pay with Zcash?    
-              The directory is free to use. The items listed are for
-              informational purposes only, and not endorsements of any kind.
-              Enjoy!"
+        title={t.home?.sections?.payWithZcash?.title || "Pay with Zcash"}
+        description={t.home?.sections?.payWithZcash?.description || "This website is an answer to the question: Where can I pay with Zcash? The directory is free to use. The items listed are for informational purposes only, and not endorsements of any kind. Enjoy!"}
         image="/paywithzcash.png"
         imageLight="/explore/light/pay-with-zcash.png"
         imageDark="/explore/dark/pay-with-zcash.png"
         links={[
           {
             href: "https://paywithz.cash",
-            label: "paywithz.cash",
+            label: t.home?.sections?.payWithZcash?.mainLink || "paywithz.cash",
             primary: true,
           },
           {
             href: "https://zechub.wiki/map",
-            label: "SPEDN",
+            label: t.home?.sections?.payWithZcash?.mapLink || "SPEDN",
           },
         ]}
       />
