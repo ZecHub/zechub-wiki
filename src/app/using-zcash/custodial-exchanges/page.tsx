@@ -4,7 +4,6 @@ import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 export const metadata: Metadata = genMetadata({
   title: "Custodial Exchanges",
@@ -14,29 +13,14 @@ export const metadata: Metadata = genMetadata({
 const CustodialExchanges: React.FC = () => {
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="w-[31px]">
-        <a
-          href="https://github.com/zechub/zechub/edit/main/site/Using_Zcash/Custodial_Exchanges.md"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      <div className="flex justify-between items-center my-6 flex-col md:flex-row gap-4">
+        <h1 className="flex justify-center items-center text-3xl font-bold mb-4 md:mb-0 text-center">
           <Image
-            src={"https://img.shields.io/badge/Edit-blue"}
-            alt="Edit Page"
-            width={24}
-            height={24}
-          />
-        </a>
-      </div>
-
-      <div className="flex justify-between items-center my-6 flex-col imd:flex-row">
-        <h1 className="flex justify-center items-center text-2xl imd:text-3xl font-bold mb-4 imd:mb-0 text-center">
-          <Image
-            src={"https://i.ibb.co/bmS65xV/image-2024-02-03-173258092.png"}
-            alt="Alt Text"
+            src="https://i.ibb.co/bmS65xV/image-2024-02-03-173258092.png"
+            alt="Zcash Logo"
             width={50}
             height={50}
-            className="inline-block mr-2"
+            className="inline-block mr-3"
           />
           Custodial Exchanges
         </h1>
@@ -49,7 +33,12 @@ const CustodialExchanges: React.FC = () => {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-6">
+      <p className="text-zinc-600 dark:text-zinc-400 mb-10 max-w-2xl">
+        Centralized exchanges where you can buy, sell, and trade Zcash (ZEC). 
+        These are custodial services — you do not control your private keys.
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {exchanges.map((exchange) => (
           <ExchangeCard
             key={exchange.name}
