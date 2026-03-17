@@ -14,18 +14,6 @@ const CustodialExchangesClient: React.FC = () => {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="w-[31px]">
-        <a
-          href="https://github.com/zechub/zechub/edit/main/site/Using_Zcash/Custodial_Exchanges.md"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            src={"https://img.shields.io/badge/Edit-blue"}
-            alt={t?.common?.editPage ?? "Edit Page"}
-            width={24}
-            height={24}
-          />
-        </a>
       </div>
 
       <div className="flex justify-between items-center my-6 flex-col imd:flex-row">

@@ -35,6 +35,7 @@ const nextConfig = {
       { protocol: "https", hostname: "explorer.bitquery.io", pathname: "/**" },
       { protocol: "https", hostname: "cipherscan.app", pathname: "/**" },
       { protocol: "https", hostname: "www.zypherscan.com", pathname: "/**" },
+      { protocol: "https", hostname: "img.shields.io", pathname: "/**" },
     ],
   },
   async rewrites() {
