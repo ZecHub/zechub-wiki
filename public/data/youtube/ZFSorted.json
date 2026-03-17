@@ -12,7 +12,7 @@
   {
     "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
     "video_id": "T2B5f297d-Y",
-    "views": 2176
+    "views": 2177
   },
   {
     "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -57,7 +57,7 @@
   {
     "title": "Motivations of Proof of Stake: Zooko Wilcox at Zcon3",
     "video_id": "IB9Vh1kEeWs",
-    "views": 1386
+    "views": 1387
   },
   {
     "title": "Zcash Protocol Hangout  Halo: Jan 14, 2021",
@@ -67,7 +67,7 @@
   {
     "title": "Zcash Scalability with Sean Bowe - ZconVI #zcash",
     "video_id": "-m3JCgi3kiU",
-    "views": 1371
+    "views": 1373
   },
   {
     "title": "ZKVM: Fast, Confidential Smart Contracts",
@@ -75,13 +75,13 @@
     "views": 1368
   },
   {
-    "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
-    "video_id": "h0PUVR0s6Vg",
-    "views": 1219
-  },
-  {
     "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
     "video_id": "f6UToqiIdeY",
+    "views": 1221
+  },
+  {
+    "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
+    "video_id": "h0PUVR0s6Vg",
     "views": 1219
   },
   {
@@ -185,6 +185,11 @@
     "views": 771
   },
   {
+    "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
+    "video_id": "eero6i2WTxo",
+    "views": 763
+  },
+  {
     "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
     "video_id": "cAfTTfblzoU",
     "views": 762
@@ -192,11 +197,6 @@
   {
     "title": "Overview of Tendermint/IBC/Cosmos Stack w/ Christopher Goes",
     "video_id": "22a-ROcb3AQ",
-    "views": 762
-  },
-  {
-    "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
-    "video_id": "eero6i2WTxo",
     "views": 762
   },
   {
@@ -547,7 +547,7 @@
   {
     "title": "Zcon3: Code alone doesn't cut it! Opening Address by Jack Gavigan",
     "video_id": "MnEazS7XNW4",
-    "views": 331
+    "views": 332
   },
   {
     "title": "The State of UX in the Zcash Ecosystem: #Zcon2Lite",
@@ -777,7 +777,7 @@
   {
     "title": "Secure Distributed Storage by Anca Nitulescu: Zcon4",
     "video_id": "dn5Ui9kWQ7w",
-    "views": 240
+    "views": 241
   },
   {
     "title": "FROST Demo: Zcon4",
@@ -900,6 +900,11 @@
     "views": 215
   },
   {
+    "title": "U.S. Regulatory Issues for Consideration By Zcash Shielded Assets Issuers",
+    "video_id": "XkV8gjxcsVE",
+    "views": 215
+  },
+  {
     "title": "From Theory to Deployment: Security Evaluation of State-of-the-Art ZKP Systems #Zcon2Lite",
     "video_id": "7ToHh2JYwgA",
     "views": 214
@@ -907,11 +912,6 @@
   {
     "title": "New to Zcash? z2z & learn! with Aditya at Zcon3",
     "video_id": "Y8SVHl1f3vE",
-    "views": 214
-  },
-  {
-    "title": "U.S. Regulatory Issues for Consideration By Zcash Shielded Assets Issuers",
-    "video_id": "XkV8gjxcsVE",
     "views": 214
   },
   {
@@ -945,13 +945,13 @@
     "views": 205
   },
   {
-    "title": "Governance Panel at Zcon3",
-    "video_id": "TdlcNU5TXy8",
-    "views": 203
-  },
-  {
     "title": "To Bridge or Not to Bridge: What's at Stake? with Christopher Goes - ZconV: Zcash Unified 2024",
     "video_id": "4aXhn4MizqE",
+    "views": 204
+  },
+  {
+    "title": "Governance Panel at Zcon3",
+    "video_id": "TdlcNU5TXy8",
     "views": 203
   },
   {
@@ -962,7 +962,7 @@
   {
     "title": "Zcash Arborist Call 02-05-2026",
     "video_id": "22YcmN1PPsc",
-    "views": 200
+    "views": 201
   },
   {
     "title": "Community Call: Introducing ZOMG Candidates",
@@ -1480,6 +1480,11 @@
     "views": 113
   },
   {
+    "title": "Zcash Arborist Call 03-05-2026",
+    "video_id": "uBsaOLUepB0",
+    "views": 113
+  },
+  {
     "title": "ZF Community Call -  Sept 4, 2020, MGRC Candidates Part 2",
     "video_id": "JxyTKcGXGmg",
     "views": 111
@@ -1500,6 +1505,11 @@
     "views": 111
   },
   {
+    "title": "Brazilian CBDC Vs Privacy Implications with Michae2xl & Casta - ZconVI #zcash",
+    "video_id": "Bmx-Z3qnKdo",
+    "views": 111
+  },
+  {
     "title": "Zcash Arborist Call 04-17-2025",
     "video_id": "MBU-wfZM2a4",
     "views": 111
@@ -1508,16 +1518,6 @@
     "title": "Zcash Arborist Call 08-07-2025",
     "video_id": "79pNSvju05g",
     "views": 111
-  },
-  {
-    "title": "Brazilian CBDC Vs Privacy Implications with Michae2xl & Casta - ZconVI #zcash",
-    "video_id": "Bmx-Z3qnKdo",
-    "views": 110
-  },
-  {
-    "title": "Zcash Arborist Call 03-05-2026",
-    "video_id": "uBsaOLUepB0",
-    "views": 110
   },
   {
     "title": "ZF Community Call: FROST Server Demo",

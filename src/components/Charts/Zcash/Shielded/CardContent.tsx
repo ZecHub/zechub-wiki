@@ -1,4 +1,5 @@
 import React, { RefObject, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import ChartFooter from "../../ChartFooter";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../Tabs";
 import DifficultyChart from "../DifficultyChart";
@@ -31,21 +32,32 @@ type ZcashChartProps = {
 };
 
 const CardContentShielded = (props: ZcashChartProps) => {
+  const { t } = useLanguage();
+  const tabT = t?.pages?.dashboard?.charts?.zcashShieldedTabs;
   const [activeTab, setActiveTab] = useState<String | any>("supply");
 
-  const tabLabels = [
-    "Supply",
-    "Difficulty",
-    "Issuance",
-    "Lockbox",
-    "Flows",
-    "Node Count",
-    "TX Summary",
-    "Privacy Set",
-    "Shielded Stats",
-    "Block Fees",
-    "Network Solps",
-    "Halving Meter",
+  const tabs = [
+    { value: "supply", label: tabT?.supply || "Supply" },
+    { value: "difficulty", label: tabT?.difficulty || "Difficulty" },
+    { value: "issuance", label: tabT?.issuance || "Issuance" },
+    { value: "lockbox", label: tabT?.lockbox || "Lockbox" },
+    { value: "flows", label: tabT?.flows || "Flows" },
+    { value: "node count", label: tabT?.nodeCount || "Node Count" },
+    { value: "tx summary", label: tabT?.txSummary || "TX Summary" },
+    { value: "privacy set", label: tabT?.privacySet || "Privacy Set" },
+    {
+      value: "shielded stats",
+      label: tabT?.shieldedStats || "Shielded Stats",
+    },
+    { value: "block fees", label: tabT?.blockFees || "Block Fees" },
+    {
+      value: "network solps",
+      label: tabT?.networkSolps || "Network Solps",
+    },
+    {
+      value: "halving meter",
+      label: tabT?.halvingMeter || "Halving Meter",
+    },
   ];
   return (
     <CardContent>
@@ -53,14 +65,14 @@ const CardContentShielded = (props: ZcashChartProps) => {
         {({ activeTab, setActiveTab }: any) => (
           <>
             <TabsList>
-              {tabLabels.map((label) => (
+              {tabs.map((tab) => (
                 <TabsTrigger
-                  key={label}
-                  value={label.toLowerCase()}
+                  key={tab.value}
+                  value={tab.value}
                   activeTab={activeTab}
                   setActiveTab={setActiveTab}
                 >
-                  {label}
+                  {tab.label}
                 </TabsTrigger>
               ))}
             </TabsList>

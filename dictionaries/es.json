@@ -60,12 +60,12 @@
     },
     "organizations": {
       "label": "Organizaciones",
-      "electricCoinCompany": "Electric Coin Company",
-      "zcashFoundation": "Zcash Foundation",
+      "electricCoinCompany": "Compañía Electric Coin",
+      "zcashFoundation": "Fundación Zcash",
       "communityGrants": "Subvenciones de la comunidad Zcash",
-      "financialPrivacyFoundation": "Financial Privacy Foundation",
-      "shieldedLabs": "Shielded Labs",
-      "zingoLabs": "Zingo Labs",
+      "financialPrivacyFoundation": "Fundación de Privacidad Financiera",
+      "shieldedLabs": "Laboratorios Shielded",
+      "zingoLabs": "Laboratorios Zingo",
       "brand": "Marca",
       "zkavClub": "Club ZKAV"
     },
@@ -378,7 +378,73 @@
       "blockchainExplorers": { "title": "Exploradores de blockchain" }
     },
     "dashboard": {
-      "title": "Panel | ZecHub"
+      "title": "Panel | ZecHub",
+      "charts": {
+        "headerTitle": "Panel(es)",
+        "headerSubtitle": "Analiza metricas y tendencias de la red Zcash",
+        "shieldedNetworks": "Redes blindadas",
+        "currentYoutubeChannel": "Canal actual de YouTube",
+        "totalVideos": "Videos totales",
+        "totalViews": "Vistas totales",
+        "mostViewed": "Mas visto",
+        "viewsSuffix": "vistas",
+        "searchPlaceholder": "Buscar videos...",
+        "top15ByViews": "Top 15 por vistas",
+        "latest15Videos": "Ultimos 15 videos",
+        "sortByNewest": "↩ Ordenar por mas recientes",
+        "sortByViews": "↑ Ordenar por vistas",
+        "top15VideosByViews": "Top 15 videos por vistas",
+        "latest15VideosSortedByViews": "Ultimos 15 videos (ordenados por vistas)",
+        "zcashMetrics": {
+          "title": "Metricas de Zcash",
+          "loadError": "No se pudieron cargar las metricas de Zcash",
+          "notAvailable": "N/D",
+          "marketCap": "Capitalizacion de mercado",
+          "circulation": "Circulacion",
+          "marketPriceUsd": "Precio de mercado (USD)",
+          "marketPriceBtc": "Precio de mercado (BTC)",
+          "blocks": "Bloques",
+          "transactions24h": "Transacciones en 24 h",
+          "shieldedTx24h": "TX blindadas (24 h)",
+          "saplingAbbrev": "Sap",
+          "orchardAbbrev": "Orc"
+        },
+        "zcashChart": {
+          "title": "Graficos de analitica",
+          "supplyTypeAriaLabel": "Tipo de suministro",
+          "supplyOptions": {
+            "shielded": "Blindado",
+            "transparent": "Transparente",
+            "totalSupply": "Suministro total"
+          }
+        },
+        "zcashShieldedTabs": {
+          "supply": "Suministro",
+          "difficulty": "Dificultad",
+          "issuance": "Emision",
+          "lockbox": "Lockbox",
+          "flows": "Flujos",
+          "nodeCount": "Cantidad de nodos",
+          "txSummary": "Resumen de TX",
+          "privacySet": "Conjunto de privacidad",
+          "shieldedStats": "Estadisticas blindadas",
+          "blockFees": "Comisiones por bloque",
+          "networkSolps": "Solps de la red",
+          "halvingMeter": "Medidor de halving"
+        },
+        "difficultyChart": {
+          "title": "Dificultad de mineria a lo largo del tiempo",
+          "loadError": "No se pudo cargar el grafico de dificultad",
+          "legend": "Dificultad",
+          "seriesName": "Dificultad"
+        },
+        "tabs": {
+          "zechubDashboard": "Panel de ZecHub",
+          "daodaoDashboard": "Panel de DaoDao",
+          "zcgDashboard": "Panel de ZCG",
+          "youtubeDashboard": "Panel de YouTube"
+        }
+      }
     },
     "hackathon": {
       "title": "Hackathon | ZecHub"

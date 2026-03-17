@@ -59,12 +59,12 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       });
 
       setFilters({
-        Devices: devicesSet,
-        "Operating System": operatingSystemSet,
-        Pools: poolsSet,
-        "Wallet Support": walletSupportSet,
-        Features: featuresSet,
-      });
+	  Devices: new Set(Array.from(devicesSet).sort((a, b) => a.localeCompare(b))),
+	  "Operating System": operatingSystemSet,
+	  Pools: new Set(Array.from(poolsSet).sort((a, b) => a.localeCompare(b))),
+	  "Wallet Support": walletSupportSet,
+	  Features: new Set(Array.from(featuresSet).sort((a, b) => a.localeCompare(b))),
+	});
 
       let initialLikes: { [key: string]: number } = {};
       try {
@@ -222,7 +222,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         </div>
       </div>
       <section className="h-auto w-full md:w-[80%]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 md:gap-8">
           {sortedWallets.map((wallet) => (
             <WalletItem
               key={wallet.title}

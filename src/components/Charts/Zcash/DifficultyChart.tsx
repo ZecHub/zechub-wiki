@@ -1,4 +1,5 @@
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
+import { useLanguage } from "@/context/LanguageContext";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getDifficultyData } from "@/lib/chart/helpers";
@@ -22,6 +23,8 @@ type DifficultyChartProps = {
 };
 
 export default function DifficultyChart(props: DifficultyChartProps) {
+  const { t } = useLanguage();
+  const difficultyT = t?.pages?.dashboard?.charts?.difficultyChart;
   const [difficulty, setDifficulty] = useState<Difficulty[]>([]);
   const [loading, setLoading] = useState(false);
   const fontSize = useResponsiveFontSize(); // optional: pass min/max
@@ -72,8 +75,12 @@ export default function DifficultyChart(props: DifficultyChartProps) {
         : `${v}`;
 
   return (
-    <ErrorBoundary fallback={"Failed to load Difficulty Chart"}>
-      <ChartHeader title="Mining Difficulty Over Time" />
+    <ErrorBoundary
+      fallback={difficultyT?.loadError || "Failed to load Difficulty Chart"}
+    >
+      <ChartHeader
+        title={difficultyT?.title || "Mining Difficulty Over Time"}
+      />
       <ChartContainer ref={props.chartRef} loading={loading}>
         <AreaChart data={parsedData}>
           <defs>
@@ -146,7 +153,7 @@ export default function DifficultyChart(props: DifficultyChartProps) {
                     className="w-3 h-3 inline-block rounded-sm"
                     style={{ background: "#3b82f6" }}
                   />
-                  <p>Difficulty</p>
+                  <p>{difficultyT?.legend || "Difficulty"}</p>
                 </div>
               </div>
             )}
@@ -158,7 +165,7 @@ export default function DifficultyChart(props: DifficultyChartProps) {
             fillOpacity={1}
             fill="url(#diffGradient)"
             strokeWidth={2}
-            name="Difficulty"
+            name={difficultyT?.seriesName || "Difficulty"}
           />
         </AreaChart>
       </ChartContainer>

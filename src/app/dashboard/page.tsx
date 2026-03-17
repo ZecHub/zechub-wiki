@@ -18,6 +18,37 @@ export async function generateMetadata(): Promise<Metadata> {
   }) as Metadata;
 }
 
-export default function DashboardPage() {
-  return <Dashboard />;
+type DashboardDictionary = {
+  pages?: {
+    dashboard?: {
+      charts?: {
+        headerTitle?: string;
+        headerSubtitle?: string;
+        shieldedNetworks?: string;
+        currentYoutubeChannel?: string;
+        totalVideos?: string;
+        totalViews?: string;
+        mostViewed?: string;
+        viewsSuffix?: string;
+        searchPlaceholder?: string;
+        top15ByViews?: string;
+        latest15Videos?: string;
+        sortByNewest?: string;
+        sortByViews?: string;
+        top15VideosByViews?: string;
+        latest15VideosSortedByViews?: string;
+        tabs?: {
+          zechubDashboard?: string;
+          daodaoDashboard?: string;
+          zcgDashboard?: string;
+          youtubeDashboard?: string;
+        };
+      };
+    };
+  };
+};
+
+export default async function DashboardPage() {
+  const dict = (await getDictionary()) as DashboardDictionary;
+  return <Dashboard dict={dict} />;
 }

@@ -25,18 +25,20 @@ export default function RootLayout({
   return (
     <html lang="en-US">
       <body className={`px-0  ${inter.className}`}>
-        <DarkModeProvider>
-          {/* <div className="container mx-auto min-h-screen flex flex-col"> */}
-          <div className="min-h-screen mx-auto">
-            <ProgressBar />
-            <Navigation />
-            <FloatingExplore />
-            <div className=" flex flex-col justify-between flex-grow">
-              <div style={{ margin: "0 0 48px 0" }}>{children}</div>
+        <LanguageProvider>
+          <DarkModeProvider>
+            {/* <div className="container mx-auto min-h-screen flex flex-col"> */}
+            <div className="min-h-screen mx-auto">
+              <ProgressBar />
+              <Navigation />
+              <FloatingExplore />
+              <div className=" flex flex-col justify-between flex-grow">
+                <div style={{ margin: "0 0 48px 0" }}>{children}</div>
+              </div>
             </div>
-          </div>
-          <Footer />
-        </DarkModeProvider>
+            <Footer />
+          </DarkModeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

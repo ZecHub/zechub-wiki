@@ -75,7 +75,7 @@ export interface FlatProposal {
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 const STATUS_FILTERS = ["All", "Executed", "Passed", "Rejected"] as const;
-const TOP_TABS = ["Proposals", "Charts","Treasury"] as const;
+const TOP_TABS = ["Proposals", "Charts", "Treasury"] as const;
 
 function flattenDao(dao: DaoData): FlatProposal[] {
   return dao.proposals
@@ -434,8 +434,8 @@ export function ProposalsListClient({ proposals }: ProposalsListClientProps) {
           )}
         </div>
       )}
-    
+
       {topTab === "Treasury" && <TreasuryTab />}
-    </div>  
+    </div>
   );
 }

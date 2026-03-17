@@ -358,7 +358,73 @@
       "blockchainExplorers": { "title": "Blockchain Explorers" }
     },
     "dashboard": {
-      "title": "Dashboard | ZecHub"
+      "title": "Dashboard | ZecHub",
+      "charts": {
+        "headerTitle": "Dashboard(s)",
+        "headerSubtitle": "Analyze Zcash network metrics and trends",
+        "shieldedNetworks": "Shielded Networks",
+        "currentYoutubeChannel": "Current YouTube Channel",
+        "totalVideos": "Total Videos",
+        "totalViews": "Total Views",
+        "mostViewed": "Most Viewed",
+        "viewsSuffix": "views",
+        "searchPlaceholder": "Search videos...",
+        "top15ByViews": "Top 15 by Views",
+        "latest15Videos": "Latest 15 Videos",
+        "sortByNewest": "↩ Sort by Newest",
+        "sortByViews": "↑ Sort by Views",
+        "top15VideosByViews": "Top 15 Videos by Views",
+        "latest15VideosSortedByViews": "Latest 15 Videos (Sorted by Views)",
+        "zcashMetrics": {
+          "title": "Zcash Metrics",
+          "loadError": "Failed to load Zcash Metrics",
+          "notAvailable": "N/A",
+          "marketCap": "Market Cap",
+          "circulation": "Circulation",
+          "marketPriceUsd": "Market Price (USD)",
+          "marketPriceBtc": "Market Price (BTC)",
+          "blocks": "Blocks",
+          "transactions24h": "24h Transactions",
+          "shieldedTx24h": "Shielded TX (24h)",
+          "saplingAbbrev": "Sap",
+          "orchardAbbrev": "Orc"
+        },
+        "zcashChart": {
+          "title": "Analytics Charts",
+          "supplyTypeAriaLabel": "Supply type",
+          "supplyOptions": {
+            "shielded": "Shielded",
+            "transparent": "Transparent",
+            "totalSupply": "Total Supply"
+          }
+        },
+        "zcashShieldedTabs": {
+          "supply": "Supply",
+          "difficulty": "Difficulty",
+          "issuance": "Issuance",
+          "lockbox": "Lockbox",
+          "flows": "Flows",
+          "nodeCount": "Node Count",
+          "txSummary": "TX Summary",
+          "privacySet": "Privacy Set",
+          "shieldedStats": "Shielded Stats",
+          "blockFees": "Block Fees",
+          "networkSolps": "Network Solps",
+          "halvingMeter": "Halving Meter"
+        },
+        "difficultyChart": {
+          "title": "Mining Difficulty Over Time",
+          "loadError": "Failed to load Difficulty Chart",
+          "legend": "Difficulty",
+          "seriesName": "Difficulty"
+        },
+        "tabs": {
+          "zechubDashboard": "ZecHub Dashboard",
+          "daodaoDashboard": "DaoDao Dashboard",
+          "zcgDashboard": "ZCG Dashboard",
+          "youtubeDashboard": "YouTube Dashboard"
+        }
+      }
     },
     "hackathon": {
       "title": "Hackathon | ZecHub"

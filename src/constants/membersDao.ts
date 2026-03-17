@@ -10,7 +10,7 @@ export const daoMembers = [
     social: [
       {
         name: "Twitter",
-        url: "https://x.com/",
+        url: "https://x.com/am_ochuko",
         icon: socialIcons.x,
       },
    ],

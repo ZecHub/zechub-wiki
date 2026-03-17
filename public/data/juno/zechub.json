@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 27,
-    "proposal_count": 140,
+    "proposal_count": 141,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -5839,7 +5839,7 @@
             "yes": "15",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno1fuz6z8l6w93yrehtf97zfvpz5f5snnx47mt9qf",
           "threshold": {
             "threshold_quorum": {
@@ -5860,7 +5860,44 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-03-11T12:35:54.915Z"
+        "createdAt": "2026-03-11T12:35:54.915Z",
+        "completedAt": "2026-03-16T13:52:35.000Z",
+        "executedAt": "2026-03-16T13:52:35.000Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 141,
+        "proposal": {
+          "msgs": [],
+          "title": "Discord Engagement Bot for zcash X(twitter)",
+          "votes": {
+            "no": "0",
+            "yes": "2",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1774097366476131682"
+          },
+          "description": "**Project Background**\n\n\nCommunity engagement plays a critical role in expanding the reach and visibility of projects in the Web3 ecosystem. Platforms like X (Twitter) rely heavily on early interaction, such as replies, reposts, and discussions, to determine how widely content is distributed.\nWithin the Zcash ecosystem, there is already a passionate community that values privacy education and advocacy. However, engagement with social media posts can sometimes be inconsistent, limiting the reach of important updates, educational content, and ecosystem announcements.\nDiscord serves as one of the main coordination hubs for the Zcash community. Using Discord as an engagement hub, we can mobilize community members to support Zcash-related content on X and strengthen interactions within the community.\nThis proposal suggests implementing a Discord engagement bot that shares Zcash X posts and rewards community members who actively interact with those posts.\n\n**Why does this matter for Zcash?**\n \n\nThis initiative aims to strengthen both social media reach and community participation.\n\nKey motivations include:\n\nIncreasing engagement on Zcash X posts to improve algorithmic visibility\n\nEncouraging community members to actively support ecosystem updates\n\nCreating a fun and gamified community participation system within Discord\n\nAttracting new community members and potential contributors\n\nStrengthening the connection between Discord discussions and social media activity\n\nRewarding community members who consistently support the ecosystem(probably)\n\nA structured engagement system can transform passive followers into active contributors and advocates for Zcash.\n\n**Proposal**\n\nThis proposal recommends the implementation of a Discord Engagement Bot system that connects Zcash X activity with community participation.\n\n1. Automated Post Notifications\n\nA bot will automatically share newly published Zcash-related X posts from Zcash-approved accounts into a dedicated Discord channel (for example: #engage).\nTop Zcashers' posts and qualified contributors' posts can also be manually shared in the dedicated channel.\n\nEach post notification would include:\n\nThe link to the X post.\nA brief description or context\nA prompt encouraging members to interact\nThis ensures early engagement, which significantly increases the likelihood that posts gain wider reach.\n\n2. Engagement Participation\n\nCommunity members can participate by interacting with the X posts through:\nLikes\nReplies\nReposts\n\n3. Points-Based Reward System\n\nParticipants will earn engagement points based on their interactions.\nPoint validation will be managed through API-based verification by the Bot.\nThe primary aim of this reward structure is to foster recognition and a sense of belonging, transcending purely financial compensation.\n\nExample structure:\n\nLike a post — 1 point\n\nReply to a post — 1 point\n\nRepost — 1 point\n\nPoints can be adjusted and will be tracked over a defined period (such as monthly).\n\n4. Community Rewards\n\nAt the end of each engagement cycle, top contributors may receive recognition or rewards such as:\n\nPublic recognition in Discord\n\nSpecial contributor roles or badges\n\nOpportunities to participate in community initiatives\n\n5. Bot Management\n\nI propose to be the handler of this engagement bot based on my experience as a community moderator for different projects, where the usage of this bot has proven useful and successful in improving the reach and visibility of the project's social media accounts.\n\nExpected Outcomes\n\nDemonstrably stronger initial engagement on all Zcash X posts.\n\nSignificant increase in organic reach and post impressions.\n\nHeightened activity and participation within the Discord server.\n\nAttraction of a more dedicated contributor base.\n\n**Expenses**\n\nBot subscription for full access: $50/ month\n\nCompensation: $150\n\nTOTAL: $200\n\n\nThe goal is to have community members updated about new posts and content on X while encouraging consistent engagement.\n\nUpon approval, the following steps can be taken:\n\n**Phase 1 – Planning:**\n\nDefine engagement rules and point system\n\nIdentify the Discord channel structure\n\n**Phase 2 – Bot Setup:**\n\nIntegrate the bot with Discord\n\nConfigure automated X-post alerts\n\nTest engagement tracking system\n\n**Phase 3 – Pilot Program:**\n\nLaunch a trial engagement campaign\n\nTrack participation and post reach\n\nGather feedback from community members\n\n**Phase 4 – Evaluation and Optimization:**\n\nReview engagement metrics\nExpand the program if successful\n\n\nThe long-term goal is to create a sustainable system that improves visibility of Zcash content across different platforms with X as a starting point while strengthening community participation and contributor growth.\n\n\n",
+          "total_power": "27",
+          "start_height": 36062514,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-03-16T12:49:26.476Z"
       }
     ]
   },

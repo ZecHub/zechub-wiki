@@ -1,5 +1,6 @@
 import { Card, CardHeader, CardTitle } from "@/components/UI/shadcn/card";
 import { RefObject, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import CardContentShielded from "./Shielded/CardContent";
 import CardContentTxn from "./Transparent/CardContent";
 import { ZcashMetrics } from "./ZcashMetrics/ZcashMetrics";
@@ -21,24 +22,22 @@ type ZcashChartProps = {
   ) => Promise<void>;
 };
 
+type SupplyType = "shielded" | "transparent" | "totalSupply";
+
 function ZcashChart(props: ZcashChartProps) {
-  const [activeTab, setActiveTab] = useState("supply");
-  const [supplyTab, setSupplyTab] = useState("Shielded");
+  const { t } = useLanguage();
+  const chartT = t?.pages?.dashboard?.charts?.zcashChart;
+  const [supplyTab, setSupplyTab] = useState<SupplyType>("shielded");
 
-  const tabLabels = [
-    "Total Supply",
-    "Supply",
-    "Difficulty",
-    "Issuance",
-    "Lockbox",
-    "Flows",
-    "Node Count",
-    "TX Summary",
-    "Privacy Set",
-    "Stats"
-  ];
+  const supplyOptions: SupplyType[] = ["shielded", "transparent", "totalSupply"];
 
-  const supplyLabels = ["Shielded", "Transparent", "Total Supply"];
+  const getSupplyLabel = (opt: SupplyType) => {
+    if (opt === "shielded") return chartT?.supplyOptions?.shielded || "Shielded";
+    if (opt === "transparent") {
+      return chartT?.supplyOptions?.transparent || "Transparent";
+    }
+    return chartT?.supplyOptions?.totalSupply || "Total Supply";
+  };
 
   return (
     <div className="space-y-6">
@@ -49,25 +48,28 @@ function ZcashChart(props: ZcashChartProps) {
       <Card className="shadow-sm border border-gray-200 dark:border-slate-700">
         <CardHeader className="mb-4">
           <div className="flex justify-between items-center">
-            <CardTitle className="text-xl">Analytics Charts</CardTitle>
+            <CardTitle className="text-xl">
+              {chartT?.title || "Analytics Charts"}
+            </CardTitle>
             {/*  Supply Dropdown */}
             <div className="flex gap-2 items-center">
               <DefaultSelect
                 value={supplyTab}
                 onChange={(v) => setSupplyTab(v)}
-                options={supplyLabels}
+                options={supplyOptions}
+                renderOption={getSupplyLabel}
                 className="inline-block"
-                ariaLabel="Supply type"
+                ariaLabel={chartT?.supplyTypeAriaLabel || "Supply type"}
               />
         
             </div>
           </div>
         </CardHeader>
-        {supplyTab == "Shielded" && <CardContentShielded {...props} />}
+        {supplyTab === "shielded" && <CardContentShielded {...props} />}
 
-        {supplyTab == "Transparent" && <CardContentTxn {...props} />}
+        {supplyTab === "transparent" && <CardContentTxn {...props} />}
       
-        {supplyTab == "Total Supply" && <CardContentSupply {...props} />}
+        {supplyTab === "totalSupply" && <CardContentSupply {...props} />}
         
       </Card>
     </div>

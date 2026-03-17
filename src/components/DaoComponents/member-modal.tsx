@@ -100,13 +100,13 @@ export default function MemberModal({
                     alt={member.name}
                     className="w-32 h-32 rounded-full border-3 border-amber-500/50 object-cover mb-6"
                   />
-                  <h2 className="text-2xl font-bold dark:text-yellow-300 mb-2">
+                  <h2 className="text-2xl font-bold text-amber-400 dark:text-yellow-300 mb-2">
                     {member.name}
                   </h2>
-                  <p className="text-slate-700 dark:text-amber-400 font-semibold mb-4">
+                  <p className="text-gray-800 dark:text-amber-400 font-semibold mb-4">
                     {member.description}
                   </p>
-                  <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                  <p className="text-yellow-400 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                     Learn more about {member.name}&apos;s contributions to
                     ZecHub DAO and their role in the community.
                   </p>

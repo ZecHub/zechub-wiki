@@ -7,6 +7,7 @@ import {
 } from "@/lib/chart/helpers";
 import { BlockchainInfo, ShieldedTxCount } from "@/lib/chart/types";
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import { ErrorBoundary } from "../../../ErrorBoundary/ErrorBoundary";
 import { MetricCard, MetricCardSkeleton } from "./MetricCard";
 
@@ -15,6 +16,9 @@ interface ZcashStatisticsPorps {}
 /* Metrics */
 export function ZcashMetrics(props: ZcashStatisticsPorps) {
   const isMobile = useInMobile();
+  const { t } = useLanguage();
+  const metricT = t?.pages?.dashboard?.charts?.zcashMetrics;
+  const notAvailable = metricT?.notAvailable || "N/A";
 
   const [loading, setLoading] = useState(true);
   const [circulation, setCirculation] = useState<number | null>(null);
@@ -69,56 +73,60 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
 
   const metricsObj = [
     {
-      label: "Market Cap",
+      label: metricT?.marketCap || "Market Cap",
       value: blockchainInfo?.market_cap_usd
         ? `$${blockchainInfo?.market_cap_usd.toLocaleString()}`
-        : "N/A",
+        : notAvailable,
     },
     {
-      label: "Circulation",
-      value: circulation ? `${circulation?.toLocaleString()} ZEC` : "N/A",
+      label: metricT?.circulation || "Circulation",
+      value: circulation
+        ? `${circulation?.toLocaleString()} ZEC`
+        : notAvailable,
     },
     {
-      label: "Market Price (USD)",
+      label: metricT?.marketPriceUsd || "Market Price (USD)",
       value: blockchainInfo?.market_price_usd
         ? `$${blockchainInfo?.market_price_usd.toFixed(2)}`
-        : "N/A",
+        : notAvailable,
     },
     {
-      label: "Market Price (BTC)",
+      label: metricT?.marketPriceBtc || "Market Price (BTC)",
       value: blockchainInfo?.market_price_btc
         ? isMobile
           ? Number(blockchainInfo?.market_price_btc).toFixed(4)
           : Number(blockchainInfo?.market_price_btc).toFixed(8)
-        : "N/A",
+        : notAvailable,
     },
     {
-      label: "Blocks",
+      label: metricT?.blocks || "Blocks",
       value: blockchainInfo?.blocks
         ? blockchainInfo?.blocks.toLocaleString()
-        : "N/A",
+        : notAvailable,
     },
     {
-      label: "24h Transactions",
-      value: blockchainInfo?.transactions_24h.toLocaleString() ?? "N/A",
+      label: metricT?.transactions24h || "24h Transactions",
+      value: blockchainInfo?.transactions_24h.toLocaleString() ?? notAvailable,
     },
     {
-      label: "Shielded TX (24h)",
+      label: metricT?.shieldedTx24h || "Shielded TX (24h)",
       value: shieldedTxCount?.length
-        ? `Sap: ${shieldedTxCount
+        ? `${metricT?.saplingAbbrev || "Sap"}: ${shieldedTxCount
             .at(-1)!
-            .sapling.toLocaleString()} | Orc: ${shieldedTxCount
+            .sapling.toLocaleString()} | ${metricT?.orchardAbbrev || "Orc"}: ${shieldedTxCount
             .at(-1)!
             .orchard.toLocaleString()}`
-        : "N/A",
+        : notAvailable,
     },
   ];
 
   return (
-    <ErrorBoundary fallback={"Failed to load Zcash Metrics"}>
+    <ErrorBoundary
+      fallback={metricT?.loadError || "Failed to load Zcash Metrics"}
+    >
       <div className="my-12">
         <h2 className="font-bold text-xl text-slate-700 dark:text-slate-100">
-          Zcash Metrics
+          {metricT?.title || "Zcash Metrics"}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
           {loading
