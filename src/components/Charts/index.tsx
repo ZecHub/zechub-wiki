@@ -210,10 +210,10 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
           {tabs.map((tab) => (
             <Button
               key={tab.key}
-              className={`px-6 py-2.5 md:px-9 md:py-3.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-sm md:text-base flex-1 md:flex-none min-w-[140px] md:min-w-0 justify-center ${
+              className={`px-6 py-2.5 md:px-9 md:py-3.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-sm md:text-base flex-1 md:flex-none min-w-[140px] md:min-w-0 justify-center bg-slate-100 dark:bg-slate-800 ${
                 currentView === tab.key
-                  ? "bg-purple-700 text-white shadow-lg  hover:bg-purple-800"
-                  : "text-slate-700 dark:text-slate-300 hover:bg-purple-100 dark:hover:bg-purple-950 hover:text-purple-700"
+                  ? "bg-purple-700 text-white shadow-lg dark:bg-purple-800 hover:bg-purple-700 hover:cursor-pointer"
+                  : "text-slate-700 dark:text-slate-300 hover:bg-purple-700 dark:hover:bg-purple-800 hover:text-white"
               }`}
               onClick={() => changeView(tab.key)}
             >
@@ -279,8 +279,8 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
                     variant="ghost"
                     className={`px-6 py-2 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base hover:text-black dark:text-white  ${
                       currentChannel === ch.value
-                        ? "bg-purple-700 shadow-sm hover:bg-purple-600"
-                        : "hover:bg-purple-100 dark:hover:bg-purple-950"
+                        ? "bg-purple-700 shadow-sm hover:bg-purple-600 hover:text-white text-white"
+                        : "hover:text-white hover:bg-purple-700"
                     }`}
                     onClick={() => setCurrentChannel(ch.value)}
                   >
@@ -329,7 +329,8 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
                   {mostViewed.title || "—"}
                 </p>
                 <p className="text-purple-600 font-bold">
-                  {formatViews(mostViewed.views || 0)} {t?.viewsSuffix || "views"}
+                  {formatViews(mostViewed.views || 0)}{" "}
+                  {t?.viewsSuffix || "views"}
                 </p>
               </div>
             </div>
