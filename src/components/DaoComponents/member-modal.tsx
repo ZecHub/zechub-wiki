@@ -106,7 +106,7 @@ export default function MemberModal({
                   <p className="text-gray-800 dark:text-amber-400 font-semibold mb-4">
                     {member.description}
                   </p>
-                  <p className="text-yellow-400 text-sm mb-6 leading-relaxed">
+                  <p className="text-yellow-400 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                     Learn more about {member.name}&apos;s contributions to
                     ZecHub DAO and their role in the community.
                   </p>
