@@ -20,7 +20,7 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
   logo,
   altText,
 }) => (
-  <div className="group bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+  <div className="group bg-white dark:bg-slate-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
     <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center md:items-start">
       {/* Logo */}
       <div className="w-28 h-28 md:w-32 md:h-32 flex-shrink-0 relative mx-auto md:mx-0">
