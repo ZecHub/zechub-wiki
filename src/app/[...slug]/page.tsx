@@ -5,7 +5,7 @@ import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-import { headers } from "next/headers";   // ← forces dynamic rendering
+import { headers } from "next/headers"; // ← forces dynamic rendering
 
 export async function generateMetadata({
   params,
@@ -19,10 +19,12 @@ export async function generateMetadata({
   }
 
   const folder = slug[0] || "";
-  const capitalized = folder.charAt(0).toUpperCase() + folder.slice(1).replace(/-/g, " ");
-  const title = slug.length > 1 && slug[1]
-    ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
-    : `Zechub - ${capitalized}`;
+  const capitalized =
+    folder.charAt(0).toUpperCase() + folder.slice(1).replace(/-/g, " ");
+  const title =
+    slug.length > 1 && slug[1]
+      ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
+      : `Zechub - ${capitalized}`;
 
   return genMetadata({
     title,
@@ -32,7 +34,7 @@ export async function generateMetadata({
 
 const MdxComponent = dynamic(
   () => import("@/components/MdxComponents/MdxComponent"),
-  { loading: () => <span className="text-center text-3xl">Loading...</span> }
+  { loading: () => <span className="text-center text-3xl">Loading...</span> },
 );
 
 export default async function Page(props: {
@@ -70,15 +72,20 @@ export default async function Page(props: {
   }
 
   const imgUrl = getBanner(slug[0]) || "";
+  const imgUrlDark = getBanner(`${slug[0]}-dark`) || imgUrl;
+
+  console.log(imgUrlDark);
 
   // === CATEGORY PAGES ===
   if (!markdown) {
     return (
       <MdxContainer
         hasSideMenu={roots.length > 0}
-        sideMenu={roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null}
+        sideMenu={
+          roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null
+        }
         roots={roots}
-        heroImage={{ src: imgUrl }}
+        heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
       >
         <div className="px-6 py-12 text-center">
           <h1 className="text-5xl font-bold mb-6 capitalize">
@@ -96,9 +103,11 @@ export default async function Page(props: {
   return (
     <MdxContainer
       hasSideMenu={roots.length > 0}
-      sideMenu={roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null}
+      sideMenu={
+        roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null
+      }
       roots={roots}
-      heroImage={{ src: imgUrl }}
+      heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
     >
       <MdxComponent source={String(markdown)} slug={slug[1] ?? ""} />
     </MdxContainer>
