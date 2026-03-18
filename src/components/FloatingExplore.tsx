@@ -20,6 +20,18 @@ export default function FloatingExplore() {
     setFolder(dark ? "dark" : "light");
   }, [dark]);
 
+  //Preload Icons for performance
+  useEffect(() => {
+    const iconsToPreload = Object.values(iconMap);
+    iconsToPreload.forEach(src => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = src;
+      document.head.appendChild(link);
+    });
+  }, [folder]); // re-preload if theme changes
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -156,11 +168,16 @@ export default function FloatingExplore() {
                     onClick={handleLinkClick}
                     className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all hover:bg-yellow-400 hover:text-black dark:hover:bg-amber-600 active:bg-yellow-300 active:scale-[0.98] font-medium text-foreground touch-manipulation"
                   >
-                    <img
-                      src={iconSrc}
-                      alt={item.label}
-                      className="h-6 w-6 object-contain flex-shrink-0"
-                    />
+                    <Image
+              			  src={iconSrc}
+              			  alt={item.label}
+              			  width={24}
+              			  height={24}
+              			  className="h-6 w-6 object-contain flex-shrink-0"
+              			  quality={85}           // good balance for icons
+              			  loading="eager"        // critical: load immediately when menu opens
+              			  priority={false}       // only true if you want first 2-3 preloaded extra hard
+		                />
                     {item.label}
                   </Link>
                 );
