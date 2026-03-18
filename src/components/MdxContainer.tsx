@@ -7,6 +7,7 @@ type MdxContainerProps = {
   hasSideMenu: boolean;
   heroImage?: {
     src?: string;
+    darkSrc?: string;
     width?: number;
     height?: number;
   };
@@ -15,21 +16,41 @@ type MdxContainerProps = {
 const defaultImgSource = "/wiki-banner.avif";
 
 export default async function MdxContainer({
-  heroImage = { src: defaultImgSource, width: 800, height: 50 },
+  heroImage = {
+    src: defaultImgSource,
+    darkSrc: defaultImgSource,
+    width: 800,
+    height: 50,
+  },
   sideMenu,
   roots = [],
   hasSideMenu = false,
   children,
 }: MdxContainerProps) {
+  const lightSrc = heroImage?.src ?? defaultImgSource;
+  const darkSrc = heroImage?.darkSrc ?? lightSrc;
+  const width = heroImage?.width ?? 800;
+  const height = heroImage?.height ?? 50;
+  console.log(heroImage);
+
   return (
     <main>
       <div className="flex justify-center w-full mb-5 bg-transparent rounded pb-4">
+        {/* Light mode image */}
         <Image
-          className="w-full mb-5 object-cover"
+          className="w-full mb-5 object-cover dark:hidden"
           alt="wiki-banner"
-          width={heroImage?.width || 800}
-          height={heroImage?.height || 50}
-          src={heroImage?.src != undefined ? heroImage.src : defaultImgSource}
+          width={width}
+          height={height}
+          src={lightSrc}
+        />
+        {/* Dark mode image */}
+        <Image
+          className="w-full mb-5 object-cover hidden dark:block"
+          alt="wiki-banner"
+          width={width}
+          height={height}
+          src={darkSrc}
         />
       </div>
 

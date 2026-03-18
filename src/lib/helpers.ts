@@ -82,6 +82,7 @@ export const getBanner = (name: string) => {
   const banner = contentBanners.find(
     (banner) => banner.name === transformedName,
   );
+  console.log(banner);
   return banner ? banner.url : "";
 };
 
