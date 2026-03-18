@@ -37,7 +37,7 @@ export default function Header() {
             target="_blank"
             className="text-amber-400 hover:text-amber-500"
           >
-            {title.split(" ").slice(2).join(" ") || "Governance"}
+            {title.split(" ").slice(3).join(" ") || "Governance"}
           </Link>
         </h1>
       </div>
