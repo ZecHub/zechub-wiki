@@ -6,6 +6,7 @@ import { useContext } from "react";
 import Link from "next/link";
 import { Button } from "@/components/UI/button";
 import { exploreMenu } from "@/constants/explore-menu";
+import Image from 'next/image';
 
 export default function FloatingExplore() {
   const [open, setOpen] = useState(false);
