@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 27,
-    "proposal_count": 143,
+    "proposal_count": 144,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -5872,8 +5872,8 @@
           "msgs": [],
           "title": "Discord Engagement Bot for zcash X(twitter)",
           "votes": {
-            "no": "1",
-            "yes": "8",
+            "no": "4",
+            "yes": "13",
             "abstain": "0"
           },
           "status": "open",
@@ -5908,8 +5908,8 @@
           "title": "Zcash Ecosystem Onboarding Proposal – Women in DeFi Summit 2026",
           "votes": {
             "no": "0",
-            "yes": "3",
-            "abstain": "0"
+            "yes": "5",
+            "abstain": "2"
           },
           "status": "open",
           "proposer": "juno1tldl44lqjdrq6lkcdf5rzxjjddxa6v2wdxafjs",
@@ -5942,8 +5942,8 @@
           "msgs": [],
           "title": "DAO Proposal: Request for Permanent Moderator Appointment",
           "votes": {
-            "no": "0",
-            "yes": "3",
+            "no": "8",
+            "yes": "5",
             "abstain": "0"
           },
           "status": "open",
@@ -5968,6 +5968,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-03-16T19:14:27.881Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 144,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash Ecosystem Onboarding Proposal – Women in DeFi Summit 2026",
+          "votes": {
+            "no": "1",
+            "yes": "1",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1tldl44lqjdrq6lkcdf5rzxjjddxa6v2wdxafjs",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1774298045578305072"
+          },
+          "description": "**Zcash Ecosystem Onboarding Proposal – Women in DeFi Summit 2026**\n\n\n**Prepared by: Elzz**\n\n**Role: Zcash Ambassador**\n\n\n\n**Overview**\n\nThis proposal outlines an opportunity for Zcash to participate as a Gold Sponsor at the Women in DeFi Summit scheduled for April 2026.\n\nRather than relying solely on self-hosted meetups with limited attendance, this approach focuses on leveraging established conferences with large, crypto-native audiences. By participating as a sponsor and speaker at a high-attendance event, Zcash can reach a significantly broader and more relevant audience while reinforcing its presence within the wider Web3 ecosystem.\n\nThe proposed sponsorship package includes a booth presence, speaking opportunities, and direct engagement with conference participants, creating multiple touchpoints for education, onboarding, and ecosystem visibility.\n\n\n**About the Event**\n\nThe Women in DeFi Summit is an established Web3 conference focused on supporting and amplifying the participation of women in decentralized finance and blockchain innovation across Africa.\n\nThe summit has been held annually since 2021 and has grown steadily into one of the region’s recognized gatherings for women builders, founders, researchers, and community leaders in the Web3 space. The 2025 edition attracted over 1,400 attendees, and the upcoming 2026 summit is expected to host approximately 2,000 participants.\n\nThe event brings together developers, founders, investors, researchers, and active participants across the decentralized finance ecosystem.\n\nKey discussion areas typically include:\n\n• DeFi innovation\n\n• blockchain infrastructure\n\n• Web3 entrepreneurship\n\n• financial inclusion and digital privacy\n\nBeyond technical discussions, the summit is also mission-driven. It aims to grow and support the next generation of African women participating in Web3 by creating opportunities for education, networking, and visibility within the industry.\n\nThe audience is largely crypto-native, making it an ideal environment for meaningful conversations about privacy infrastructure and the role of Zcash within the broader decentralized ecosystem.\n\n\n\n\n**Strategic Opportunity for Zcash**\n\nParticipating in this event provides several strategic advantages:\n\n• Direct exposure to a large crypto-native audience\n\n• Opportunity to introduce Zcash privacy technology to builders and researchers\n\n• Positioning Zcash as an active participant in broader Web3 conversations\n\n• Onboarding potential contributors, builders, developers and ecosystem participants\n\n• Strengthening regional presence and community engagement\n\nThis approach allows Zcash to engage a significantly larger audience than a typical self-hosted meetup while benefiting from the credibility and reach of an established conference.\n\n\n\n\n**Strategic Narrative Opportunity**\n\nBeyond traditional event participation, this summit presents an opportunity for Zcash to actively shape the narrative around privacy within the broader decentralized finance conversation.\n\nDeFi discussions often focus heavily on scalability, liquidity, and infrastructure while privacy remains underrepresented despite being a critical component of financial sovereignty. Participating in the Women in DeFi Summit allows Zcash to introduce privacy not as a niche topic, but as an essential pillar of the decentralized financial future.\n\nThis positioning is particularly powerful in a conference centered around inclusion and financial empowerment. Privacy technology plays a direct role in protecting users, enabling financial freedom, and expanding safe participation in digital economies.\n\nBy combining:\n\n• a product presentation\n\n• panel participation\n\n• direct booth engagement\n\n• recorded interviews and conversations\n\nZcash can ensure that privacy becomes part of the broader narrative emerging from the summit.\n\nRather than simply appearing as a sponsor, Zcash becomes a voice shaping how the next generation of DeFi participants understand privacy infrastructure.\n\n\n\n\n**Proposed Sponsorship Package (Gold Tier)**\n\nThe Gold Sponsorship package includes:\n\n• Dedicated exhibition booth\n\n• Product presentation\n\n• Panel participation\n\n• Brand visibility across conference materials\n\n• Logo placement on event media and marketing\n\n• Networking access with speakers and participants\n\nThis combination enables Zcash to maintain both a visible presence throughout the event and a voice within the discussions taking place.\n\nFor more details, please look into the event deck here\n\nhttps://drive.google.com/file/d/1NxA91ih3LxttAG-bImeaStGVxSj2ysJO/view?usp=drivesdk\n\n\n\n\n**Onboarding Plan**\n\nIf sponsorship is secured, the Zcash presence at the event will include several coordinated activities.\n\n\n*Product Presentation*\n\nA dedicated speaking slot will introduce Zcash’s role within the privacy and blockchain landscape. The talk will focus on helping attendees understand the importance of privacy infrastructure in decentralized systems and how Zcash contributes to that vision.\n\n\n*Panel Participation*\n\nPanel discussions provide an opportunity to engage in broader conversations around DeFi, privacy, and the evolving blockchain ecosystem while positioning Zcash within those discussions.\n\n\n*Booth Presence*\n\nThe booth will serve as a primary engagement point for attendees to:\n\n• learn about Zcash\n\n• ask questions about privacy technology\n\n• explore ecosystem tools and opportunities\n\n• receive onboarding guidance\n\n\n*Swag and Merchandise*\n\nMerchandise and small giveaway items will be used to attract traffic to the booth and create memorable touchpoints for attendees interacting with the Zcash presence.\n\nThese items will also serve as conversation starters that introduce attendees to Zcash’s privacy mission and ecosystem.\n\n\n\n\n**Media Coverage and Documentation**\n\nTo extend the impact of the event beyond the physical conference, the summit will be documented through recorded conversations and interviews.\n\nThis will include:\n\n• interviews with ecosystem participants\n\n• short conversations with builders and researchers\n\n• highlights from the event\n\n\nThe resulting recordings and discussions can serve as long-term ecosystem assets that contribute to the historical archive of important conversations around privacy, zero-knowledge technologies, and decentralized finance.\n\n\n\n**Team and Execution**\n\nManaging a booth presence, speaking engagements, and media coverage simultaneously requires a small operational team.\n\nThe proposed team structure includes:\n\n• Elzz – Zcash Global Ambassador, speaker and event lead\n\n• Omegawolf – ZecHub Instagram and Tiktok Video Creator and SMM\n\n• One additional assistant supporting booth engagement, onboarding conversations and event logistics\n\n\nThis structure ensures that the booth remains active while speaking sessions and media activities are conducted without disrupting engagement with attendees.\n\n\n\n\n**Expected Deliverables & KPIs**\n\nTo ensure measurable impact, the following deliverables are proposed:\n\n*Event Engagement*\n\n• Active booth presence throughout the summit\n\n• Estimated 200–400 direct booth interactions with attendees\n\n• Educational onboarding conversations introducing Zcash tools and ecosystem participation opportunities\n\n\n*Speaking & Thought Leadership*\n\n• One dedicated speaker session introducing Zcash and privacy infrastructure\n\n• Participation in one panel discussion related to DeFi, privacy, or blockchain innovation\n\n\n*Content & Ecosystem Storytelling*\n\nEvent coverage will generate:\n\n• 5–8 recorded interviews with builders, researchers, and ecosystem participants\n• 1 event recap article highlighting key insights and conversations from the summit\n• Short video clips suitable for distribution across ecosystem communication channels\n\n\n*Community & Ecosystem Growth*\n\n• Identification of potential contributors, developers, and community members interested in engaging with the Zcash ecosystem\n\n• Follow-up onboarding conversations with interested participants after the event\n\nThese deliverables ensure the impact of the summit extends beyond the physical event and contributes to long-term ecosystem storytelling and education.\n\n\n\n\n**Budget Overview**\n\nBelow is a preliminary estimate of the resources required to execute the proposed activation.\n\n\n*Gold Sponsorship Package: $3,000*\n\nIncludes booth space, speaker session, panel participation, and branding opportunities.\n\n\n*Booth Setup & Merchandise: $1000*\n\n• Zcash branded merchandise (t-shirts, water bottles, keyholders)\n\n• informational materials (excerpts from my first Zcash)\n\n• small giveaway items to attract booth traffic\n\n\n*Event Operations & Support: $600*\n\n• stipends for two assistants supporting booth operations and attendee engagement\n\n• logistical coordination\n\n\n*Media Coverage & Documentation: $300*\n\n• interview setup and coordination\n\n• recording support\n\n• post-event content production assistance\n\n*Private Space For Interviews: $110*\n\n*Total Budget: $4,960*\n\n\n\n\n**Why This Matters**\n\nA typical self-hosted meetup may reach 50–100 participants.\n\nSponsoring the Women in DeFi Summit provides an opportunity for Zcash to engage directly with approximately 2,000 conference participants within a single event.\n\nThis significantly increases the efficiency of ecosystem outreach while creating opportunities for:\n\n• education around privacy infrastructure\n\n• contributor discovery and onboarding\n\n• narrative positioning for Zcash within DeFi conversations\n\n• long-term ecosystem storytelling through recorded interviews and discussions\n\n",
+          "total_power": "27",
+          "start_height": 36134867,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-03-18T20:34:05.578Z"
       }
     ]
   },
