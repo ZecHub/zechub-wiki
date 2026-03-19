@@ -6,25 +6,17 @@ import { parseReponseData } from "@/lib/zips/parseReponseData";
 import { transformGrantData } from "@/lib/zips/transformGrantData";
 
 /**
- * This function fetches the Zcash Community Grants data
- * from google sheet where it's made public
- * @returns Promise<Grant[] | undefined>
+ * Fetches the Zcash Community Grants data
+ * from a public Google Sheet using an API key.
  */
 export async function getZCGrantsData() {
-  const auth = new google.auth.JWT({
-    email: config.GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_EMAIL,
-    key: config.GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_PRIVATE_KEY!.replace(
-      /\\n/g,
-      "\n",
-    ),
-    scopes: [config.GOOGLE_ZCG_SPREADSHEET_SCOPE],
-  });
-
   try {
-    const sheets = google.sheets({ version: "v4", auth });
+    const sheets = google.sheets({
+      version: "v4",
+      auth: config.GOOGLE_API_KEY,
+    });
 
     const resWithLink = await sheets.spreadsheets.get({
-      auth,
       spreadsheetId: String(config.GOOGLE_ZCG_SPREADSHEET_ID),
       ranges: [String(config.GOOGLE_ZCG_SHEET_RANGE)],
       fields:
@@ -33,7 +25,7 @@ export async function getZCGrantsData() {
 
     const sheetData = resWithLink?.data?.sheets?.[0]?.data?.[0]?.rowData ?? [];
 
-    const result = sheetData!.map((row) => {
+    const result = sheetData.map((row) => {
       return (
         row.values?.map((cell) => {
           const url = cell.hyperlink;
@@ -41,7 +33,7 @@ export async function getZCGrantsData() {
           const text =
             cell.formattedValue ??
             cell.effectiveValue?.stringValue ??
-            cell.effectiveValue?.numberValue ??
+            cell.effectiveValue?.numberValue?.toString() ??
             null;
 
           if (url && text) {
@@ -58,6 +50,7 @@ export async function getZCGrantsData() {
 
     return transformed;
   } catch (err) {
-    console.error(err);
+    console.error("Failed to fetch Google Sheets data:", err);
+    return undefined;
   }
 }
