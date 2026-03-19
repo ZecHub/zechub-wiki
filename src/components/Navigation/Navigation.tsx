@@ -617,7 +617,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop & Tablet Nav */}
-          <nav className="hidden md:flex flex-1 justify-center max-w-4xl mx-8">
+          <nav className="hidden xl:flex flex-1 justify-center max-w-4xl mx-8">
             <NavLinks
               classes="w-full justify-start"
               closeMenu={() => setIsOpen(false)}
@@ -655,13 +655,13 @@ const Navigation = () => {
             </Button>
 
             {/* Desktop donation button */}
-            <div className="hidden lg:flex">
+            <div className="hidden xl:flex">
               <DonationBtn />
             </div>
 
             {/* Mobile menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger className="md:hidden" asChild>
+              <SheetTrigger className="xl:hidden" asChild>
                 <Button
                   variant="ghost"
                   size="sm"

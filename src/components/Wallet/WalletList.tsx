@@ -225,7 +225,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               </span>
             </div>
 
-            <div className="wl-grid">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {sortedWallets.map((wallet) => (
                 <WalletItem
                   key={wallet.title}
