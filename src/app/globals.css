@@ -728,6 +728,7 @@ code::-webkit-scrollbar-track {
   }
   .wl-drawer-overlay.open {
     display: block;
+    z-index: 199;
   }
   .wl-drawer-overlay .wl-drawer {
     display: block;
