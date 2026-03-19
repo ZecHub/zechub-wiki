@@ -35,6 +35,7 @@ import {
   FcGlobe as Globe,
 } from "react-icons/fc";
 import {
+  GiEgyptianSphinx as EgyptianSphinx,
   GiBorderedShield as BordererShield,
   GiCableStayedBridge as CableStayedBridge,
   GiCheckedShield as CheckedShield,
@@ -230,6 +231,7 @@ const iconsForMenu: IconsFor = {
   },
   "Zcash Organizations": {
     "Electric Coin Company": Radar,
+    "ZODL": EgyptianSphinx,
     "Zcash Foundation": CheckedShield,
     "Zcash Community Grants": HexagonLetterZ,
     "Shielded Labs": BordererShield,
