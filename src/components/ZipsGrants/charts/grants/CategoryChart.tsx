@@ -38,7 +38,7 @@ export function CategoryChart(props: Props) {
               }
               labelLine={false}
               style={{
-                fontSize: "12px",
+                fontSize: "10px",
                 fontWeight: 700,
               }}
             >
