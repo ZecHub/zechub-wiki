@@ -158,6 +158,10 @@ export const navigations: Array<NavigationItem> = [
     label: "Organizations",
     links: [
       {
+        name: "ZODL",
+        path: "/zcash-organizations/ZODL",
+      },
+      {
         name: "Electric Coin Company",
         path: "/zcash-organizations/electric-coin-company",
       },
