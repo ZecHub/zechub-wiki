@@ -40,30 +40,24 @@ const NOTIFICATION_PERMISSION = "zechub-wiki-notification-permission";
 // Zcash Improvement Proposals and Grants
 const ZIPs_RAW_URL =
   "https://raw.githubusercontent.com/zcash/zips/main/README.rst";
-const ZIPs_URL = "https://github.com/zcash/zips/blob/main/";
- const ZIPs_URL_PATH = `${ZIPs_URL}/README.rst`;
+const ZIPs_URL = "https://github.com/zcash/zips/blob/main";
+const ZIPs_URL_PATH = `${ZIPs_URL}/README.rst`;
 
 const GOOGLE_ZCG_SPREADSHEET_URL =
   "https://docs.google.com/spreadsheets/d/1FQ28rDCyRW0TiNxrm3rgD8ai2KGUsXAjPieQmI1kKKg/edit?gid=803214474#gid=803214474";
 
-const GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_EMAIL =
-  process.env.GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_EMAIL;
- 
-const GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_PRIVATE_KEY =
-  process.env.GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_PRIVATE_KEY;
-const GOOGLE_ZCG_SPREADSHEET_ID = process.env.GOOGLE_ZCG_SPREADSHEET_ID;
-const GOOGLE_ZCG_SHEET_RANGE = process.env.GOOGLE_ZCG_SHEET_RANGE;
-const GOOGLE_ZCG_SPREADSHEET_SCOPE = String(
-  process.env.GOOGLE_ZCG_SPREADSHEET_SCOPE,
-);
+// Public Google Sheets API key setup
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || "";
+const GOOGLE_ZCG_SPREADSHEET_ID = process.env.GOOGLE_ZCG_SPREADSHEET_ID || "";
+const GOOGLE_ZCG_SHEET_RANGE = process.env.GOOGLE_ZCG_SHEET_RANGE || "";
 
 export {
   GITHUB_ID,
   GITHUB_SECRET,
-  GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_EMAIL,
+  GOOGLE_API_KEY,
   GOOGLE_ZCG_SHEET_RANGE,
   GOOGLE_ZCG_SPREADSHEET_ID,
-  GOOGLE_ZCG_SPREADSHEET_SCOPE,
+  GOOGLE_ZCG_SPREADSHEET_URL,
   MONGO_DB_CONNECTION_STRING_DEV,
   MONGO_DB_CONNECTION_STRING_PROD,
   MONGO_DB_URI,
@@ -76,7 +70,5 @@ export {
   WEB_PUSH_VAPID_SUBJECT,
   ZIPs_RAW_URL,
   ZIPs_URL,
-  GOOGLE_ZCG_SPREADSHEET_URL,
   ZIPs_URL_PATH,
-  GOOGLE_ZCG_SERVICE_ACCOUNT_CLIENT_PRIVATE_KEY,
 };

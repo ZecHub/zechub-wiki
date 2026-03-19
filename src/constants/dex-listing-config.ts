@@ -15,6 +15,13 @@ export const dexListingConfig = [
     image: '/nearintents.png',
   },
   {
+    title: 'ShapeShift',
+    description:
+      'Your Wallet. One App. Endless Opportunity · Trade Bitcoin, Ethereum and more with the best rates across leading DEXs and aggregators',
+    url: 'https://private.shapeshift.com/',
+    image: 'https://i.ibb.co/RkKYVR9N/shapeshift.png',
+  },
+  {
     title: 'Stealth EX',
     description:
       'StealthEX is an instant cryptocurrency exchange for limitless swaps whose service is free from registration and does not store user’s funds on the platform. StealthEX is the best place to buy cryptocurrency.',
