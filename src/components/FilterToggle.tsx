@@ -21,11 +21,11 @@ const FilterToggle: React.FC<FilterToggleProps> = ({
   handleToggleFilter,
 }) => {
   return (
-    <div className="pb-6 md:block flex flex-wrap justify-between">
+    <div className="pb-6 imd:block flex flex-wrap justify-between">
       {Object.entries(filters).map(([category, values]) => (
         <div key={category}>
           <h4 className="text-xl font-bold mt-6 mb-3">{category}</h4>
-          <div className="md:block flex flex-wrap gap-2">
+          <div className="imd:block flex flex-wrap gap-2">
             {[...values].map((value) => (
               <label
                 key={value}

@@ -24,7 +24,7 @@
   --breakpoint-md: 830px;
   --breakpoint-lg: 976px;
   --breakpoint-xl: 1530px;
-  --breakpoint-2xl: 1536px;
+  --breakpoint-2xl: 2000px;
 
   /* Background Images */
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
