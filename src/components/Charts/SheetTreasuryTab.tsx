@@ -307,7 +307,7 @@ export default function SheetTreasuryTab() {
                     ))}
                   </Pie>
                   <Tooltip
-                    formatter={(v: number) => `${v.toLocaleString()} ZEC`}
+                    formatter={(v: number) => `$${v.toLocaleString()}`}
                   />
                 </PieChart>
               </ResponsiveContainer>
