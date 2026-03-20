@@ -237,7 +237,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
         </div>
 
         {/* MAIN TABS – mobile-friendly wrap */}
-        <div className="flex flex-wrap justify-center gap-2">
+        <div className="grid grid-cols-2 imd:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-center gap-2">
           {tabs.map((tab) => (
             <Button
               key={tab.key}
