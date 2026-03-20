@@ -2,7 +2,7 @@
   {
     "title": "Peter Van Valkenburgh, of Coin Center, on the OFAC Tornado Cash SDN listing at Zcon3",
     "video_id": "XpTrCA3tEKM",
-    "views": 7685
+    "views": 7688
   },
   {
     "title": "ZK Rollup: Ethereum Scalability with ZKPs - Alex Gluchowski",
@@ -12,7 +12,7 @@
   {
     "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
     "video_id": "T2B5f297d-Y",
-    "views": 2178
+    "views": 2179
   },
   {
     "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -27,7 +27,7 @@
   {
     "title": "Boosting Zcash Security w/ Zebra",
     "video_id": "02N5uP5-7uo",
-    "views": 1774
+    "views": 1775
   },
   {
     "title": "Envisioning Zcash at Global Scale - Nathan Wilcox",
@@ -145,14 +145,14 @@
     "views": 909
   },
   {
-    "title": "The State of Zcash in 2025 with Jack Gavigan - ZconVI 2025 #zcash",
-    "video_id": "El59GnEA1FY",
+    "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
+    "video_id": "sDeDNDh-1ko",
     "views": 882
   },
   {
-    "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
-    "video_id": "sDeDNDh-1ko",
-    "views": 881
+    "title": "The State of Zcash in 2025 with Jack Gavigan - ZconVI 2025 #zcash",
+    "video_id": "El59GnEA1FY",
+    "views": 882
   },
   {
     "title": "Scalable Privacy - Daira Hopwood",
@@ -192,7 +192,7 @@
   {
     "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
     "video_id": "cAfTTfblzoU",
-    "views": 763
+    "views": 764
   },
   {
     "title": "Overview of Tendermint/IBC/Cosmos Stack w/ Christopher Goes",
@@ -307,7 +307,7 @@
   {
     "title": "Arti: ZF + ZCG Call w/ the Tor Project",
     "video_id": "E7g9dKBOYEI",
-    "views": 499
+    "views": 500
   },
   {
     "title": "ECC Update with Josh Swihart - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -1022,7 +1022,7 @@
   {
     "title": "Zebra Walkthrough for Zcash Developers",
     "video_id": "aV93Ux3j4Gw",
-    "views": 186
+    "views": 187
   },
   {
     "title": "Scaling Zcash Governance - Josh Cincinnati",
@@ -1415,13 +1415,13 @@
     "views": 127
   },
   {
-    "title": "The GDPR and Privacy Impact of Using Zcash Shielded Transactions for SaaS - Silvan Jongerius",
-    "video_id": "sJGWLlGDccM",
-    "views": 123
-  },
-  {
     "title": "Zcash Arborist Call 03-05-2026",
     "video_id": "uBsaOLUepB0",
+    "views": 125
+  },
+  {
+    "title": "The GDPR and Privacy Impact of Using Zcash Shielded Transactions for SaaS - Silvan Jongerius",
+    "video_id": "sJGWLlGDccM",
     "views": 123
   },
   {
@@ -1687,6 +1687,11 @@
   {
     "title": "Zebrad for Linux Tutorial #3",
     "video_id": "FBL_tGEE2zA",
+    "views": 72
+  },
+  {
+    "title": "Zcash Arborist Call 03-19-2026",
+    "video_id": "LtdKAhi6l7s",
     "views": 71
   },
   {
