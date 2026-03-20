@@ -74,9 +74,8 @@ function formatTreasuryNumber(n: number): string {
   return n.toLocaleString(undefined, { maximumFractionDigits: 4 });
 }
 
-/** Prefix USD for the sheet’s Total USD Value fields only. */
 function formatTreasuryFieldDisplay(fieldKey: string, value: string | number): string {
-  if (fieldKey === "Total USD Value") {
+  if (fieldKey === "Total USD Value" || fieldKey === "USD Reserved") {
     const n =
       typeof value === "number"
         ? value
@@ -89,6 +88,21 @@ function formatTreasuryFieldDisplay(fieldKey: string, value: string | number): s
     }
     return value === "" ? "" : `$${value}`;
   }
+
+  if (fieldKey.endsWith(" Price")) {
+    const n =
+      typeof value === "number"
+        ? value
+        : Number(String(value).replace(/,/g, ""));
+    if (Number.isFinite(n)) {
+      const opts: Intl.NumberFormatOptions = Number.isInteger(n)
+        ? {}
+        : { minimumFractionDigits: 2, maximumFractionDigits: 6 };
+      return `$${n.toLocaleString(undefined, opts)}`;
+    }
+    return value === "" ? "" : `$${value}`;
+  }
+
   if (typeof value === "number") return formatTreasuryNumber(value);
   return value;
 }
@@ -220,7 +234,9 @@ export default function SheetTreasuryTab() {
                   className={`rounded-xl border bg-muted/30 p-4 ${TREASURY_INNER_TILE}`}
                 >
                   <div className="text-muted-foreground">{k}</div>
-                  <div className="text-lg font-semibold mt-1">{v}</div>
+                  <div className="text-lg font-semibold mt-1">
+                    {formatTreasuryFieldDisplay(k, v)}
+                  </div>
                 </div>
               ))}
             </div>
@@ -325,7 +341,7 @@ export default function SheetTreasuryTab() {
                     </TableCell>
                     <TableCell className="text-right font-mono">
                       {fpf.Allocation[i] != null
-                        ? fpf.Allocation[i].toLocaleString()
+                        ? `${fpf.Allocation[i].toLocaleString()}%`
                         : "—"}
                     </TableCell>
                   </TableRow>
