@@ -441,6 +441,7 @@
         "tabs": {
           "zechubDashboard": "Panel de ZecHub",
           "daodaoDashboard": "Panel de DaoDao",
+          "treasuryDashboard": "Tesorería",
           "zcgDashboard": "Panel de ZCG",
           "youtubeDashboard": "Panel de YouTube"
         }
