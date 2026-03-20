@@ -9,10 +9,12 @@ import {
   Youtube,
   Play,
   Eye,
+  Landmark,
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { usePathname, useRouter } from "next/navigation";
 
 import "./index.css";
 
@@ -24,11 +26,13 @@ import ZcashChart from "./Zcash/ZcashChart";
 
 import { ProposalsList } from "@/components/Proposals";
 
+import SheetTreasuryTab from "@/components/Charts/SheetTreasuryTab";
+
 const ZCGDashboard = dynamic(() => import("@/app/zips-grants/page"), {
   ssr: false,
 });
 
-type ViewType = "dashboard" | "proposals" | "zcg" | "youtube";
+type ViewType = "dashboard" | "proposals" | "treasury" | "zcg" | "youtube";
 type SubViewType = "top" | "latest";
 type ChannelType = "ZecHub" | "Zcash Foundation" | "Shielded Labs";
 
@@ -54,6 +58,7 @@ type DashboardDictionary = {
         tabs?: {
           zechubDashboard?: string;
           daodaoDashboard?: string;
+          treasuryDashboard?: string;
           zcgDashboard?: string;
           youtubeDashboard?: string;
         };
@@ -63,6 +68,8 @@ type DashboardDictionary = {
 };
 
 const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const { t: languageDict } = useLanguage();
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");
   const [open, setOpen] = useState(false);
@@ -70,6 +77,14 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
   const [subView, setSubView] = useState<SubViewType>("top");
   const [latestSortByViews, setLatestSortByViews] = useState(false);
   const [currentChannel, setCurrentChannel] = useState<ChannelType>("ZecHub");
+
+  const allowedTabs: ViewType[] = [
+    "dashboard",
+    "proposals",
+    "treasury",
+    "zcg",
+    "youtube",
+  ];
 
   // Data for each channel
   const [zecSorted, setZecSorted] = useState<any[]>([]);
@@ -128,11 +143,22 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
 
   const changeView = (view: ViewType) => {
     setCurrentView(view);
+    const nextParams = new URLSearchParams(window.location.search);
+    nextParams.set("tab", view);
+    router.replace(`${pathname}?${nextParams.toString()}`, { scroll: false });
     if (view !== "youtube") {
       setSubView("top");
       setLatestSortByViews(false);
     }
   };
+
+  useEffect(() => {
+    const tab = new URLSearchParams(window.location.search).get("tab");
+    if (!tab) return;
+    if (allowedTabs.includes(tab as ViewType) && tab !== currentView) {
+      setCurrentView(tab as ViewType);
+    }
+  }, [currentView]);
 
   const tabs = [
     {
@@ -144,6 +170,11 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
       key: "proposals" as const,
       label: t?.tabs?.daodaoDashboard || "DaoDao Dashboard",
       icon: <FileText className="w-5 h-5" />,
+    },
+    {
+      key: "treasury" as const,
+      label: t?.tabs?.treasuryDashboard || "Treasury",
+      icon: <Landmark className="w-5 h-5" />,
     },
     {
       key: "zcg" as const,
@@ -459,6 +490,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
           </>
         )}
         {currentView === "proposals" && <ProposalsList />}
+        {currentView === "treasury" && <SheetTreasuryTab />}
         {currentView === "zcg" && <ZCGDashboard />}
       </div>
     </div>

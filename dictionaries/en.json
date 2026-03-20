@@ -421,6 +421,7 @@
         "tabs": {
           "zechubDashboard": "ZecHub Dashboard",
           "daodaoDashboard": "DaoDao Dashboard",
+          "treasuryDashboard": "Treasury",
           "zcgDashboard": "ZCG Dashboard",
           "youtubeDashboard": "YouTube Dashboard"
         }
