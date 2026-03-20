@@ -155,10 +155,10 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
   useEffect(() => {
     const tab = new URLSearchParams(window.location.search).get("tab");
     if (!tab) return;
-    if (allowedTabs.includes(tab as ViewType) && tab !== currentView) {
+    if (allowedTabs.includes(tab as ViewType)) {
       setCurrentView(tab as ViewType);
     }
-  }, [currentView]);
+  }, []);
 
   const tabs = [
     {
