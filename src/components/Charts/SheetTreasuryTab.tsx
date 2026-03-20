@@ -10,13 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/UI/Table";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { fetchTreasuryFromSheet } from "@/lib/parseTreasurySheet";
 
 const PIE_COLORS = [
@@ -32,14 +26,12 @@ const PIE_COLORS = [
 const TREASURY_CARD =
   "border-slate-300/50 dark:border-slate-600/40 shadow-none";
 
-const TREASURY_INNER_TILE =
-  "border-slate-300/45 dark:border-slate-600/35";
+const TREASURY_INNER_TILE = "border-slate-300/45 dark:border-slate-600/35";
 
 const TREASURY_TABLE_HEAD =
   "[&_tr]:border-b [&_tr]:border-slate-300/50 dark:[&_tr]:border-slate-600/40";
 
-const TREASURY_TABLE_ROW =
-  "border-slate-300/50 dark:border-slate-600/40";
+const TREASURY_TABLE_ROW = "border-slate-300/50 dark:border-slate-600/40";
 
 const TREASURY_ROW_DIVIDE =
   "divide-y divide-slate-300/50 dark:divide-slate-600/40";
@@ -64,9 +56,7 @@ function isNumericSummaryObject(o: Record<string, unknown>): boolean {
   }
   const vals = Object.values(o);
   if (vals.length === 0) return false;
-  return vals.every(
-    (v) => typeof v === "number" && Number.isFinite(v),
-  );
+  return vals.every((v) => typeof v === "number" && Number.isFinite(v));
 }
 
 function formatTreasuryNumber(n: number): string {
@@ -74,7 +64,10 @@ function formatTreasuryNumber(n: number): string {
   return n.toLocaleString(undefined, { maximumFractionDigits: 4 });
 }
 
-function formatTreasuryFieldDisplay(fieldKey: string, value: string | number): string {
+function formatTreasuryFieldDisplay(
+  fieldKey: string,
+  value: string | number,
+): string {
   if (fieldKey === "Total USD Value" || fieldKey === "USD Reserved") {
     const n =
       typeof value === "number"
@@ -119,7 +112,12 @@ function extractSections(data: unknown[]) {
     if (!item || typeof item !== "object" || Array.isArray(item)) continue;
     const o = item as Record<string, unknown>;
 
-    if ("FPF" in o && o.FPF && typeof o.FPF === "object" && !Array.isArray(o.FPF)) {
+    if (
+      "FPF" in o &&
+      o.FPF &&
+      typeof o.FPF === "object" &&
+      !Array.isArray(o.FPF)
+    ) {
       fpf = o.FPF as FPFData;
       continue;
     }
@@ -172,6 +170,34 @@ function paidOutPieRows(paid: Record<string, string>) {
     .filter((r) => r.value > 0);
 }
 
+function PieLegend({
+  data,
+}: {
+  data: { name: string; value: string; color: string }[];
+}) {
+  return (
+    <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2">
+      {data.map((item, i) => (
+        <div
+          key={i}
+          className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-muted/40 border border-border/40"
+        >
+          <span
+            className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+            style={{ backgroundColor: item.color }}
+          />
+          <span className="text-sm text-muted-foreground truncate flex-1 min-w-0">
+            {item.name}
+          </span>
+          <span className="text-sm font-mono font-semibold tabular-nums ml-2 flex-shrink-0">
+            {item.value}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function SheetTreasuryTab() {
   const [rows, setRows] = useState<unknown[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -201,7 +227,10 @@ export default function SheetTreasuryTab() {
     useMemo(() => extractSections(rows ?? []), [rows]);
 
   const fpfPie = useMemo(() => (fpf ? fpfPieRows(fpf) : []), [fpf]);
-  const paidPie = useMemo(() => (paidOut ? paidOutPieRows(paidOut) : []), [paidOut]);
+  const paidPie = useMemo(
+    () => (paidOut ? paidOutPieRows(paidOut) : []),
+    [paidOut],
+  );
 
   if (loading) {
     return (
@@ -215,7 +244,9 @@ export default function SheetTreasuryTab() {
   }
   if (!rows?.length) {
     return (
-      <div className="p-8 text-center text-muted-foreground">No treasury data.</div>
+      <div className="p-8 text-center text-muted-foreground">
+        No treasury data.
+      </div>
     );
   }
 
@@ -251,7 +282,7 @@ export default function SheetTreasuryTab() {
               <CardTitle>ZEC Treasury</CardTitle>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={320}>
+              <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
                   <Pie
                     data={fpfPie}
@@ -260,18 +291,24 @@ export default function SheetTreasuryTab() {
                     cx="50%"
                     cy="50%"
                     outerRadius={110}
-                    label={({ name, percent }) => {
-                      const pct = Math.round((percent ?? 0) * 100);
-                      return `${String(name).slice(0, 22)}${String(name).length > 22 ? "…" : ""} ${pct}%`;
-                    }}
+                    paddingAngle={2}
                   >
                     {fpfPie.map((_, i) => (
                       <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(v: number) => `${v.toLocaleString()} ZEC`} />
+                  <Tooltip
+                    formatter={(v: number) => `${v.toLocaleString()} ZEC`}
+                  />
                 </PieChart>
               </ResponsiveContainer>
+              <PieLegend
+                data={fpfPie.map((d, i) => ({
+                  name: d.name,
+                  value: `${d.value.toLocaleString()} ZEC`,
+                  color: PIE_COLORS[i % PIE_COLORS.length],
+                }))}
+              />
             </CardContent>
           </Card>
         )}
@@ -282,13 +319,13 @@ export default function SheetTreasuryTab() {
               <CardTitle>USD Paid out to date</CardTitle>
               {paidOut?.["Total Paid Out | ZEC"] != null && (
                 <p className="text-sm text-muted-foreground font-normal">
-                  Total:{" "}
-                  ${Number(paidOut["Total Paid Out | ZEC"]).toLocaleString()}
+                  Total: $
+                  {Number(paidOut["Total Paid Out | ZEC"]).toLocaleString()}
                 </p>
               )}
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={320}>
+              <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
                   <Pie
                     data={paidPie}
@@ -297,10 +334,7 @@ export default function SheetTreasuryTab() {
                     cx="50%"
                     cy="50%"
                     outerRadius={110}
-                    label={({ name, percent }) => {
-                      const pct = Math.round((percent ?? 0) * 100);
-                      return `${String(name).slice(0, 18)}${String(name).length > 18 ? "…" : ""} ${pct}%`;
-                    }}
+                    paddingAngle={2}
                   >
                     {paidPie.map((_, i) => (
                       <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />
@@ -311,6 +345,13 @@ export default function SheetTreasuryTab() {
                   />
                 </PieChart>
               </ResponsiveContainer>
+              <PieLegend
+                data={paidPie.map((d, i) => ({
+                  name: d.name,
+                  value: `$${d.value.toLocaleString()}`,
+                  color: PIE_COLORS[i % PIE_COLORS.length],
+                }))}
+              />
             </CardContent>
           </Card>
         )}
@@ -354,7 +395,9 @@ export default function SheetTreasuryTab() {
 
       {fpfNumericBlocks.length > 0 && (
         <div>
-          <h3 className="text-lg font-semibold mb-4">FPF balances &amp; reserves</h3>
+          <h3 className="text-lg font-semibold mb-4">
+            FPF balances &amp; reserves
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {fpfNumericBlocks.map((block, i) => (
               <Card key={i} className={TREASURY_CARD}>
@@ -409,12 +452,6 @@ export default function SheetTreasuryTab() {
           </CardHeader>
           <CardContent>
             <Table>
-              {/* <TableHeader>
-                <TableRow>
-                  <TableHead>Item</TableHead>
-                  <TableHead className="text-right">ZEC</TableHead>
-                </TableRow>
-              </TableHeader> */}
               <TableBody>
                 {Object.entries(paidOut).map(([k, v]) => (
                   <TableRow key={k} className={TREASURY_TABLE_ROW}>
@@ -443,12 +480,6 @@ export default function SheetTreasuryTab() {
           </CardHeader>
           <CardContent>
             <Table>
-              {/* <TableHeader>
-                <TableRow>
-                  <TableHead>Item</TableHead>
-                  <TableHead className="text-right">ZEC</TableHead>
-                </TableRow>
-              </TableHeader> */}
               <TableBody>
                 {Object.entries(toBePaid).map(([k, v]) => (
                   <TableRow key={k} className={TREASURY_TABLE_ROW}>
