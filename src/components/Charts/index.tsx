@@ -14,7 +14,7 @@ import {
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import "./index.css";
 
@@ -70,7 +70,6 @@ type DashboardDictionary = {
 const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const { t: languageDict } = useLanguage();
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");
   const [open, setOpen] = useState(false);
@@ -78,6 +77,14 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
   const [subView, setSubView] = useState<SubViewType>("top");
   const [latestSortByViews, setLatestSortByViews] = useState(false);
   const [currentChannel, setCurrentChannel] = useState<ChannelType>("ZecHub");
+
+  const allowedTabs: ViewType[] = [
+    "dashboard",
+    "proposals",
+    "treasury",
+    "zcg",
+    "youtube",
+  ];
 
   // Data for each channel
   const [zecSorted, setZecSorted] = useState<any[]>([]);
@@ -136,7 +143,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
 
   const changeView = (view: ViewType) => {
     setCurrentView(view);
-    const nextParams = new URLSearchParams(searchParams?.toString() ?? "");
+    const nextParams = new URLSearchParams(window.location.search);
     nextParams.set("tab", view);
     router.replace(`${pathname}?${nextParams.toString()}`, { scroll: false });
     if (view !== "youtube") {
@@ -146,13 +153,12 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
   };
 
   useEffect(() => {
-    const tab = searchParams?.get("tab");
+    const tab = new URLSearchParams(window.location.search).get("tab");
     if (!tab) return;
-    const allowedTabs: ViewType[] = ["dashboard", "proposals", "treasury", "zcg", "youtube"];
     if (allowedTabs.includes(tab as ViewType) && tab !== currentView) {
       setCurrentView(tab as ViewType);
     }
-  }, [searchParams, currentView]);
+  }, [currentView]);
 
   const tabs = [
     {
