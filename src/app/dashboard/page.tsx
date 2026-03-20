@@ -40,6 +40,7 @@ type DashboardDictionary = {
         tabs?: {
           zechubDashboard?: string;
           daodaoDashboard?: string;
+          treasuryDashboard?: string;
           zcgDashboard?: string;
           youtubeDashboard?: string;
         };

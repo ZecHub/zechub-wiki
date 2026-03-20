@@ -9,6 +9,7 @@ import {
   Youtube,
   Play,
   Eye,
+  Landmark,
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
@@ -24,11 +25,13 @@ import ZcashChart from "./Zcash/ZcashChart";
 
 import { ProposalsList } from "@/components/Proposals";
 
+import SheetTreasuryTab from "@/components/Charts/SheetTreasuryTab";
+
 const ZCGDashboard = dynamic(() => import("@/app/zips-grants/page"), {
   ssr: false,
 });
 
-type ViewType = "dashboard" | "proposals" | "zcg" | "youtube";
+type ViewType = "dashboard" | "proposals" | "treasury" | "zcg" | "youtube";
 type SubViewType = "top" | "latest";
 type ChannelType = "ZecHub" | "Zcash Foundation" | "Shielded Labs";
 
@@ -54,6 +57,7 @@ type DashboardDictionary = {
         tabs?: {
           zechubDashboard?: string;
           daodaoDashboard?: string;
+          treasuryDashboard?: string;
           zcgDashboard?: string;
           youtubeDashboard?: string;
         };
@@ -144,6 +148,11 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
       key: "proposals" as const,
       label: t?.tabs?.daodaoDashboard || "DaoDao Dashboard",
       icon: <FileText className="w-5 h-5" />,
+    },
+    {
+      key: "treasury" as const,
+      label: t?.tabs?.treasuryDashboard || "Treasury",
+      icon: <Landmark className="w-5 h-5" />,
     },
     {
       key: "zcg" as const,
@@ -459,6 +468,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
           </>
         )}
         {currentView === "proposals" && <ProposalsList />}
+        {currentView === "treasury" && <SheetTreasuryTab />}
         {currentView === "zcg" && <ZCGDashboard />}
       </div>
     </div>
