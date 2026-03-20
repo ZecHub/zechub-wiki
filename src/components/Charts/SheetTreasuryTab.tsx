@@ -39,20 +39,6 @@ const TREASURY_TABLE_ROW =
 const TREASURY_ROW_DIVIDE =
   "divide-y divide-slate-300/50 dark:divide-slate-600/40";
 
-// ─────────────────────────────────────────────────────────────
-// Vercel-safe Tooltip helpers (explicit tuple return type)
-// This eliminates the local/Vercel TypeScript mismatch
-// ─────────────────────────────────────────────────────────────
-const formatZECTooltip = (value: number | undefined): [string, string] => [
-  `${(value ?? 0).toLocaleString()} ZEC`,
-  "",
-];
-
-const formatUSDTooltip = (value: number | undefined): [string, string] => [
-  `$${(value ?? 0).toLocaleString()}`,
-  "",
-];
-
 type FPFData = {
   Category: string[];
   "Amount (ZEC)": number[];
@@ -272,7 +258,8 @@ export default function SheetTreasuryTab() {
                       <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={formatZECTooltip} />
+                  {/* Vercel-safe inline formatter */}
+                  <Tooltip formatter={(value: any) => [`${(value ?? 0).toLocaleString()} ZEC`, ""]} />
                 </PieChart>
               </ResponsiveContainer>
             </CardContent>
@@ -309,7 +296,8 @@ export default function SheetTreasuryTab() {
                       <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={formatUSDTooltip} />
+                  {/* Vercel-safe inline formatter */}
+                  <Tooltip formatter={(value: any) => [`$${(value ?? 0).toLocaleString()}`, ""]} />
                 </PieChart>
               </ResponsiveContainer>
             </CardContent>
@@ -317,6 +305,7 @@ export default function SheetTreasuryTab() {
         )}
       </div>
 
+      {/* The rest of your component is unchanged (FPF table, balances, paidOut tables, etc.) */}
       {fpf && (
         <Card className={TREASURY_CARD}>
           <CardHeader>
