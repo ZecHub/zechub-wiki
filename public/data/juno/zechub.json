@@ -5873,7 +5873,7 @@
           "title": "Discord Engagement Bot for zcash X(twitter)",
           "votes": {
             "no": "4",
-            "yes": "13",
+            "yes": "14",
             "abstain": "0"
           },
           "status": "open",
@@ -5909,7 +5909,7 @@
           "votes": {
             "no": "0",
             "yes": "5",
-            "abstain": "2"
+            "abstain": "3"
           },
           "status": "open",
           "proposer": "juno1tldl44lqjdrq6lkcdf5rzxjjddxa6v2wdxafjs",
@@ -5942,8 +5942,8 @@
           "msgs": [],
           "title": "DAO Proposal: Request for Permanent Moderator Appointment",
           "votes": {
-            "no": "8",
-            "yes": "5",
+            "no": "9",
+            "yes": "6",
             "abstain": "0"
           },
           "status": "open",
@@ -5977,7 +5977,7 @@
           "msgs": [],
           "title": "Zcash Ecosystem Onboarding Proposal – Women in DeFi Summit 2026",
           "votes": {
-            "no": "1",
+            "no": "2",
             "yes": "2",
             "abstain": "0"
           },
