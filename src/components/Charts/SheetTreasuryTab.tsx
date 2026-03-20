@@ -283,7 +283,7 @@ export default function SheetTreasuryTab() {
               {paidOut?.["Total Paid Out | ZEC"] != null && (
                 <p className="text-sm text-muted-foreground font-normal">
                   Total:{" "}
-                  {Number(paidOut["Total Paid Out | ZEC"]).toLocaleString()} ZEC
+                  ${Number(paidOut["Total Paid Out | ZEC"]).toLocaleString()}
                 </p>
               )}
             </CardHeader>
