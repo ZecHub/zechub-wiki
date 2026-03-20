@@ -32,7 +32,7 @@ const ZCGDashboard = dynamic(() => import("@/app/zips-grants/page"), {
   ssr: false,
 });
 
-type ViewType = "dashboard" | "proposals" | "treasury" | "zcg" | "youtube";
+type ViewType = "dashboard" | "proposals" | "zcg" | "youtube";
 type SubViewType = "top" | "latest";
 type ChannelType = "ZecHub" | "Zcash Foundation" | "Shielded Labs";
 
@@ -57,7 +57,7 @@ type DashboardDictionary = {
         latest15VideosSortedByViews?: string;
         tabs?: {
           zechubDashboard?: string;
-          daodaoDashboard?: string;
+          governanceDashboard?: string;
           treasuryDashboard?: string;
           zcgDashboard?: string;
           youtubeDashboard?: string;
@@ -78,13 +78,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
   const [latestSortByViews, setLatestSortByViews] = useState(false);
   const [currentChannel, setCurrentChannel] = useState<ChannelType>("ZecHub");
 
-  const allowedTabs: ViewType[] = [
-    "dashboard",
-    "proposals",
-    "treasury",
-    "zcg",
-    "youtube",
-  ];
+  const allowedTabs: ViewType[] = ["dashboard", "proposals", "zcg", "youtube"];
 
   // Data for each channel
   const [zecSorted, setZecSorted] = useState<any[]>([]);
@@ -168,13 +162,8 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
     },
     {
       key: "proposals" as const,
-      label: t?.tabs?.daodaoDashboard || "DaoDao Dashboard",
+      label: t?.tabs?.governanceDashboard || "Governance Dashboard",
       icon: <FileText className="w-5 h-5" />,
-    },
-    {
-      key: "treasury" as const,
-      label: t?.tabs?.treasuryDashboard || "Treasury",
-      icon: <Landmark className="w-5 h-5" />,
     },
     {
       key: "zcg" as const,
@@ -237,7 +226,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
         </div>
 
         {/* MAIN TABS – mobile-friendly wrap */}
-        <div className="grid grid-cols-2 imd:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-center gap-2">
+        <div className="grid grid-cols-1 imd:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 justify-center gap-2">
           {tabs.map((tab) => (
             <Button
               key={tab.key}
@@ -490,7 +479,6 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
           </>
         )}
         {currentView === "proposals" && <ProposalsList />}
-        {currentView === "treasury" && <SheetTreasuryTab />}
         {currentView === "zcg" && <ZCGDashboard />}
       </div>
     </div>
