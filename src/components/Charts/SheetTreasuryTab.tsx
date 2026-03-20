@@ -410,7 +410,7 @@ export default function SheetTreasuryTab() {
                       {k}
                     </TableCell>
                     <TableCell className="text-right font-mono">
-                      {Number(v).toLocaleString()} ZEC
+                      ${Number(v).toLocaleString()}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -444,7 +444,7 @@ export default function SheetTreasuryTab() {
                       {k}
                     </TableCell>
                     <TableCell className="text-right font-mono">
-                      {Number(v).toLocaleString()} ZEC
+                      ${Number(v).toLocaleString()}
                     </TableCell>
                   </TableRow>
                 ))}
