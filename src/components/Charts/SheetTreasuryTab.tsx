@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/UI/Card";
 import {
@@ -31,18 +30,25 @@ const PIE_COLORS = [
 
 const TREASURY_CARD =
   "border-slate-300/50 dark:border-slate-600/40 shadow-none";
-
 const TREASURY_INNER_TILE =
   "border-slate-300/45 dark:border-slate-600/35";
-
 const TREASURY_TABLE_HEAD =
   "[&_tr]:border-b [&_tr]:border-slate-300/50 dark:[&_tr]:border-slate-600/40";
-
 const TREASURY_TABLE_ROW =
   "border-slate-300/50 dark:border-slate-600/40";
-
 const TREASURY_ROW_DIVIDE =
   "divide-y divide-slate-300/50 dark:divide-slate-600/40";
+
+// ─────────────────────────────────────────────────────────────
+// Long-term recommended Tooltip helpers
+// (Recharts expects (value, name, ...) => [formattedValue, formattedName])
+// These are fully type-safe and reusable if you add more charts later.
+// ─────────────────────────────────────────────────────────────
+const formatZECTooltip = (value: number | undefined) =>
+  [`${(value ?? 0).toLocaleString()} ZEC`, ""] as const;
+
+const formatUSDTooltip = (value: number | undefined) =>
+  [`$${(value ?? 0).toLocaleString()}`, ""] as const;
 
 type FPFData = {
   Category: string[];
@@ -88,7 +94,6 @@ function formatTreasuryFieldDisplay(fieldKey: string, value: string | number): s
     }
     return value === "" ? "" : `$${value}`;
   }
-
   if (fieldKey.endsWith(" Price")) {
     const n =
       typeof value === "number"
@@ -102,7 +107,6 @@ function formatTreasuryFieldDisplay(fieldKey: string, value: string | number): s
     }
     return value === "" ? "" : `$${value}`;
   }
-
   if (typeof value === "number") return formatTreasuryNumber(value);
   return value;
 }
@@ -114,11 +118,9 @@ function extractSections(data: unknown[]) {
   const pairSections: PairSection[] = [];
   let paidOut: Record<string, string> | null = null;
   let toBePaid: Record<string, string> | null = null;
-
   for (const item of data) {
     if (!item || typeof item !== "object" || Array.isArray(item)) continue;
     const o = item as Record<string, unknown>;
-
     if ("FPF" in o && o.FPF && typeof o.FPF === "object" && !Array.isArray(o.FPF)) {
       fpf = o.FPF as FPFData;
       continue;
@@ -139,7 +141,6 @@ function extractSections(data: unknown[]) {
       fpfNumericBlocks.push(o as Record<string, number>);
       continue;
     }
-
     const keys = Object.keys(o);
     if (keys.length === 1) {
       const title = keys[0];
@@ -153,7 +154,6 @@ function extractSections(data: unknown[]) {
       }
     }
   }
-
   return { header, fpf, fpfNumericBlocks, pairSections, paidOut, toBePaid };
 }
 
@@ -269,7 +269,7 @@ export default function SheetTreasuryTab() {
                       <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(v: number) => `${v.toLocaleString()} ZEC`} />
+                  <Tooltip formatter={formatZECTooltip} />
                 </PieChart>
               </ResponsiveContainer>
             </CardContent>
@@ -306,9 +306,7 @@ export default function SheetTreasuryTab() {
                       <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip
-                    formatter={(v: number) => `$${v.toLocaleString()}`}
-                  />
+                  <Tooltip formatter={formatUSDTooltip} />
                 </PieChart>
               </ResponsiveContainer>
             </CardContent>
@@ -409,12 +407,6 @@ export default function SheetTreasuryTab() {
           </CardHeader>
           <CardContent>
             <Table>
-              {/* <TableHeader>
-                <TableRow>
-                  <TableHead>Item</TableHead>
-                  <TableHead className="text-right">ZEC</TableHead>
-                </TableRow>
-              </TableHeader> */}
               <TableBody>
                 {Object.entries(paidOut).map(([k, v]) => (
                   <TableRow key={k} className={TREASURY_TABLE_ROW}>
@@ -443,12 +435,6 @@ export default function SheetTreasuryTab() {
           </CardHeader>
           <CardContent>
             <Table>
-              {/* <TableHeader>
-                <TableRow>
-                  <TableHead>Item</TableHead>
-                  <TableHead className="text-right">ZEC</TableHead>
-                </TableRow>
-              </TableHeader> */}
               <TableBody>
                 {Object.entries(toBePaid).map(([k, v]) => (
                   <TableRow key={k} className={TREASURY_TABLE_ROW}>
