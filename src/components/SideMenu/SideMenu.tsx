@@ -13,14 +13,10 @@ import { FiFile as FileIcon } from "react-icons/fi";
 import { Icon } from "../UI/Icon";
 import { MdPayment } from "react-icons/md";
 
-// ─────────────────────────────────────────────────────────────
-// INDIVIDUAL ICON SIZE CONTROL — edit here!
-// Add any menu item name → desired size (number or "small"/"medium"/"large")
-// ─────────────────────────────────────────────────────────────
 const getIconSize = (name: string): number | "tiny" | "small" | "medium" | "large" => {
   const sizes: Record<string, number | "tiny" | "small" | "medium" | "large"> = {
-    Wallets: 24,                    // ← your original special case
-    Treasury: 22,                   // ← example: make your custom Treasury icon bigger
+    Wallets: 24,                    
+    Treasury: 22,                   
     "Using Zcash": 20,
     Guides: 20,
     "Zcash Organizations": 20,
