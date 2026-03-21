@@ -145,13 +145,13 @@
     "views": 909
   },
   {
-    "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
-    "video_id": "sDeDNDh-1ko",
-    "views": 882
-  },
-  {
     "title": "The State of Zcash in 2025 with Jack Gavigan - ZconVI 2025 #zcash",
     "video_id": "El59GnEA1FY",
+    "views": 883
+  },
+  {
+    "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
+    "video_id": "sDeDNDh-1ko",
     "views": 882
   },
   {
@@ -337,7 +337,7 @@
   {
     "title": "QEDIT ZSA DEMO 12-19-2024",
     "video_id": "1MZMGC9ViyA",
-    "views": 473
+    "views": 474
   },
   {
     "title": "Zcon Vozes - Parte 1",
@@ -502,7 +502,7 @@
   {
     "title": "User Research: Zcash Payments Are Normal with Tatyana - ZconV: Zcash Unified 2024 #Zcash #ZEC",
     "video_id": "eFN8mUktXVQ",
-    "views": 353
+    "views": 354
   },
   {
     "title": "Zcash Arborist Call 12-11-2025",
@@ -645,6 +645,11 @@
     "views": 292
   },
   {
+    "title": "Zebrad for Linux Tutorial #1",
+    "video_id": "7cPKf4hobeI",
+    "views": 291
+  },
+  {
     "title": "Zcash Community Grants Candidates for December 2022 ZCG Elections",
     "video_id": "ZsB4KkPltTw",
     "views": 290
@@ -652,11 +657,6 @@
   {
     "title": "HSMs and Hardware Wallets: #Zcon2Lite",
     "video_id": "PescZy3QZTI",
-    "views": 289
-  },
-  {
-    "title": "Zebrad for Linux Tutorial #1",
-    "video_id": "7cPKf4hobeI",
     "views": 289
   },
   {
@@ -817,7 +817,7 @@
   {
     "title": "ZF Engineering Update w/ FROST demo with Zcash Foundation Engineers & Manager - ZconVI #zcash",
     "video_id": "lfXIHxx5P5s",
-    "views": 230
+    "views": 231
   },
   {
     "title": "Zcash Foundation Board Candidate Call - 09 November 2022",
@@ -1065,13 +1065,13 @@
     "views": 178
   },
   {
-    "title": "Gemini: Elastic SNARKs for Diverse Environments - Michele Orru at Zcon3",
-    "video_id": "onRiyf160fs",
-    "views": 176
-  },
-  {
     "title": "Zcash Arborist Call 01-23-2025",
     "video_id": "hKRk9O2Rki0",
+    "views": 177
+  },
+  {
+    "title": "Gemini: Elastic SNARKs for Diverse Environments - Michele Orru at Zcon3",
+    "video_id": "onRiyf160fs",
     "views": 176
   },
   {
@@ -1645,6 +1645,11 @@
     "views": 84
   },
   {
+    "title": "Zcash Arborist Call 03-19-2026",
+    "video_id": "LtdKAhi6l7s",
+    "views": 83
+  },
+  {
     "title": "ZconVI Community Recap Hosted by ZK AV Club- ZconVI #zcash",
     "video_id": "N8yO0gsHsO0",
     "views": 81
@@ -1688,11 +1693,6 @@
     "title": "Zebrad for Linux Tutorial #3",
     "video_id": "FBL_tGEE2zA",
     "views": 72
-  },
-  {
-    "title": "Zcash Arborist Call 03-19-2026",
-    "video_id": "LtdKAhi6l7s",
-    "views": 71
   },
   {
     "title": "AMA: Exploring SIV for Future ZCAP Voting",
