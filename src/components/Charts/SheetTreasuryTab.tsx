@@ -298,7 +298,7 @@ export default function SheetTreasuryTab() {
                     ))}
                   </Pie>
                   <Tooltip
-                    formatter={(v: number | undefined) =>
+                    formatter={(v: any) =>
                       v != null ? `${v.toLocaleString()} ZEC` : "—"
                     }
                   />
@@ -343,7 +343,7 @@ export default function SheetTreasuryTab() {
                     ))}
                   </Pie>
                   <Tooltip
-                    formatter={(v: number | undefined) =>
+                    formatter={(v: any) =>
                       v != null ? `$${v.toLocaleString()}` : "—"
                     }
                   />
