@@ -96,6 +96,7 @@ import {
   MdRadar as Radar,
   MdSettings as Settings,
   MdTipsAndUpdates as TipsAndUpdates,
+  MdOutlineStyle as Style,
 } from "react-icons/md";
 import {
   PiCircuitryLight as Circuitry,
@@ -321,6 +322,7 @@ const iconsForMenu: IconsFor = {
     "ZecHub DAO": GiMeshBall,
     "Contributing Guide": LiveHelp,
     "ZecWeekly Newsletter": Newspaper,
+    "Style Guide": Style,
   },
 };
 
