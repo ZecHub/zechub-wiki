@@ -317,7 +317,7 @@ export default function SheetTreasuryTab() {
 
         {paidPie.length > 0 && (
           <Card className={TREASURY_CARD}>
-            <CardHeader>
+            <CardHeader className="imd:flex-row imd:items-center justify-between">
               <CardTitle>USD Paid out to date</CardTitle>
               {paidOut?.["Total Paid Out | ZEC"] != null && (
                 <p className="text-sm text-muted-foreground font-normal">

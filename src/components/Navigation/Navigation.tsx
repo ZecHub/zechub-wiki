@@ -478,7 +478,7 @@ const NavLinks = ({
           prefetch
           href="/dashboard"
           onClick={handleLinkClick}
-          className="text-cta-primary hover:bg-cta-primary hover:text-white transition-colors duration-200"
+          className="text-cta-primary hover:bg-cta-primary dark:hover:text-white transition-colors duration-200"
         >
           {t.navigation?.dashboard || "Dashboard"}
         </Link>
@@ -634,7 +634,7 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setOpenSearch(true)}
-              className="p-2 hover:bg-nav-hover-bg cursor-pointer"
+              className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
             >
               <Search className="h-5 w-5 md:h-6 md:w-6" />
             </Button>
@@ -645,7 +645,7 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setDark(!dark)}
-              className="p-2 hover:bg-nav-hover-bg cursor-pointer"
+              className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
             >
               {dark ? (
                 <Sun className="h-5 w-5 md:h-6 md:w-6" />
@@ -665,7 +665,7 @@ const Navigation = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-2 hover:bg-nav-hover-bg"
+                  className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
                 >
                   <Menu className="h-10 w-10" />
                 </Button>
