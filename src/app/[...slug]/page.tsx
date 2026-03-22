@@ -5,7 +5,7 @@ import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-import { headers } from "next/headers"; // ← forces dynamic rendering
+import { headers } from "next/headers";
 
 export async function generateMetadata({
   params,
@@ -13,11 +13,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string[] }>;
 }): Promise<Metadata> {
   const { slug = [] } = await params;
-
   if (slug.length === 0) {
     return genMetadata({ title: "Zechub", url: "https://zechub.wiki" });
   }
-
   const folder = slug[0] || "";
   const capitalized =
     folder.charAt(0).toUpperCase() + folder.slice(1).replace(/-/g, " ");
@@ -25,7 +23,6 @@ export async function generateMetadata({
     slug.length > 1 && slug[1]
       ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
       : `Zechub - ${capitalized}`;
-
   return genMetadata({
     title,
     url: `https://zechub.wiki/${slug.join("/")}`,
@@ -40,7 +37,7 @@ const MdxComponent = dynamic(
 export default async function Page(props: {
   params: Promise<{ slug: string[] }>;
 }) {
-  headers(); // ← THIS LINE FORCES DYNAMIC RENDERING (no more prerender error)
+  headers();
 
   let slug: string[] = [];
   try {
@@ -55,7 +52,6 @@ export default async function Page(props: {
 
   const url = getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
-
   let markdown: any = null;
   let roots: any[] = [];
 
@@ -74,9 +70,6 @@ export default async function Page(props: {
   const imgUrl = getBanner(slug[0]) || "";
   const imgUrlDark = getBanner(`${slug[0]}-dark`) || imgUrl;
 
-  console.log(imgUrlDark);
-
-  // === CATEGORY PAGES ===
   if (!markdown) {
     return (
       <MdxContainer
@@ -99,7 +92,6 @@ export default async function Page(props: {
     );
   }
 
-  // === ARTICLE PAGES ===
   return (
     <MdxContainer
       hasSideMenu={roots.length > 0}
@@ -114,4 +106,5 @@ export default async function Page(props: {
   );
 }
 
-export const revalidate = 60;
+// no more cache delay
+export const revalidate = 0;
