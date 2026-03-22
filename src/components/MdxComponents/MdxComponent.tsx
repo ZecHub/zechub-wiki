@@ -2,7 +2,7 @@ import { parseProcessorMarkdown } from "@/lib/parseProcessorMarkdown";
 import type { MDXComponents } from "mdx/types";
 import { compileMDX } from "next-mdx-remote/rsc";
 import rehypePrism from "rehype-prism-plus";
-import remarkGfm from "remark-gfm";           // ← Already here
+import remarkGfm from "remark-gfm";
 import ZecToZatsConverter from "../Converter/ZecToZatsConverter";
 import { MdxFetchError } from "../MdxFetchError";
 import PaymentProcessorList from "../PaymentProcessor/PaymentProcessorList";
@@ -15,9 +15,9 @@ async function safeCompileMDX(source: string, components: MDXComponents) {
       options: {
         parseFrontmatter: true,
         mdxOptions: {
-          mdExtensions: [".md"],
-          remarkPlugins: [remarkGfm],           // ← THIS WAS MISSING (fixes tables + dashes)
-          rehypePlugins: [rehypePrism],
+          //These casts fix the version conflict between next-mdx-remote and modern plugins
+          remarkPlugins: [remarkGfm as any],
+          rehypePlugins: [rehypePrism as any],
         },
       },
       components,
@@ -50,17 +50,13 @@ export default async function MdxComponent({
   source: string | { error: Error };
   slug: string;
 }) {
-  let body = null;
-
   if (typeof source !== "string") {
     return <MdxFetchError error={source} />;
   }
 
-  // Special pages
   if (slug === "payment-processors") {
     const paymentProcessors = parseProcessorMarkdown(source);
-    body = <PaymentProcessorList allProcessors={paymentProcessors as any} />;
-    return <>{body}</>;
+    return <PaymentProcessorList allProcessors={paymentProcessors as any} />;
   }
 
   if (slug === "transactions") {
