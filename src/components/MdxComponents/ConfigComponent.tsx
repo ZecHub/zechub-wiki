@@ -5,8 +5,12 @@ import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import type { MDXComponents } from "mdx/types";
 
 const MdxComponents = {
+  // Inline code (backticks) — monospace only + 16px alignment shift (NO background = no more overlap)
   code: (props: HTMLProps<HTMLElement>): JSX.Element => (
-    <code className="bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-100 px-1 rounded" {...props} />
+    <code
+      className="font-mono text-sm !inline-block !translate-y-[16px]"
+      {...props}
+    />
   ),
 
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => (
@@ -17,7 +21,6 @@ const MdxComponents = {
       loading="lazy"
     />
   ),
-
   a: (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.Element => (
     <Link
       href={props.href?.startsWith("/site") ? transformGithubFilePathToWikiLink(props.href) : props.href!}
@@ -27,8 +30,7 @@ const MdxComponents = {
       {props.children}
     </Link>
   ),
-
-  // Improved table support (dark mode + nice styling)
+  // Table styling (unchanged)
   table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
     <div className="overflow-x-auto my-6">
       <table className="min-w-full border-collapse text-sm" {...props} />
@@ -46,13 +48,10 @@ const MdxComponents = {
   td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
     <td className="px-4 py-3" {...props} />
   ),
-
-  // Fixed list types (this was causing the TypeScript error)
   pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => <pre {...props} />,
   ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc pl-6 my-4" {...props} />,
   ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal pl-6 my-4" {...props} />,
   li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props} />,
-
   p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => <p className="my-4" {...props} />,
   h1: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => <h1 className="text-4xl font-bold my-6" {...props} />,
   h2: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => <h2 className="text-3xl font-bold my-6" {...props} />,
