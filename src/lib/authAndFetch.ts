@@ -42,12 +42,10 @@ export const getFileContentCached = unstable_cache(
 
         for (const file of realFiles) {
           if (normalize(file) === normalizedSlug || normalize(file).includes(normalizedSlug)) {
-            const fullPath = file;
-
             const res = await octokit.rest.repos.getContent({
               owner,
               repo,
-              path: fullPath,
+              path: file,
               ref: BRANCH,
             });
             // @ts-ignore
@@ -63,7 +61,7 @@ export const getFileContentCached = unstable_cache(
   },
   ["github-file-content-cache"],
   { 
-    revalidate: 0,          // ← FIXED: Always fresh
+    revalidate: false,          // ← FIXED: This is what Next.js accepts
     tags: ["github-content"] 
   }
 );
@@ -82,7 +80,7 @@ export const getRootCached = unstable_cache(
   },
   ["github-root-md-cache"],
   { 
-    revalidate: 30,         // Reduced from 5 minutes
+    revalidate: 30, 
     tags: ["github-content"] 
   }
 );
