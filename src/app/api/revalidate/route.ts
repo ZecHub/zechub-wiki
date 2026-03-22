@@ -8,7 +8,11 @@ export async function GET(request: NextRequest) {
     return new Response("Invalid secret", { status: 401 });
   }
 
-  revalidateTag("github-content");
+  // ←←← FIXED: Added "await" to satisfy Next.js 16 type checker
+  await revalidateTag("github-content");
 
-  return Response.json({ success: true, message: "All markdown cache cleared!" });
+  return Response.json({ 
+    success: true, 
+    message: "All markdown cache cleared!" 
+  });
 }
