@@ -5,13 +5,50 @@ import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import type { MDXComponents } from "mdx/types";
 
 const MdxComponents = {
-  // Inline code (backticks) — monospace only + 16px alignment shift (NO background = no more overlap)
-  code: (props: HTMLProps<HTMLElement>): JSX.Element => (
-    <code
-      className="font-mono text-sm !inline-block !translate-y-[16px]"
-      {...props}
-    />
-  ),
+  // INLINE CODE (single backticks)
+  code: (props: HTMLProps<HTMLElement> & { className?: string }): JSX.Element => {
+    const isBlockCode = props.className?.includes("language-") ?? false;
+
+    if (isBlockCode) {
+      // Force inner code to be transparent so pre's background wins
+      return (
+        <code
+          className={`font-mono text-sm bg-transparent !bg-transparent !p-0 !m-0 block w-full ${props.className || ""}`}
+          style={{ backgroundColor: "transparent" }}
+          {...props}
+        />
+      );
+    }
+
+    // Single backticks (inline)
+    return (
+      <code
+        className="font-mono text-sm !inline-block !translate-y-[16px]"
+        {...props}
+      />
+    );
+  },
+
+  // CODE BLOCKS
+  pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => {
+    return (
+      <div className="relative group my-6">
+        {/* Fixed header for ALL code blocks */}
+        <div className="absolute -top-3 left-4 z-10 px-3 py-1 
+          bg-amber-50 dark:bg-amber-950 
+          text-amber-800 dark:text-amber-300 
+          text-xs font-mono tracking-widest rounded border border-amber-200 dark:border-amber-800 shadow-sm">
+          Code-highlight
+        </div>
+
+        {/* Tan background */}
+        <pre
+          className="bg-amber-50 dark:bg-amber-950 !bg-amber-50 dark:!bg-amber-950 text-neutral-900 dark:text-neutral-100 p-5 pt-8 rounded-2xl overflow-x-auto border border-amber-200 dark:border-amber-900 font-mono text-sm leading-relaxed shadow-xl"
+          {...props}
+        />
+      </div>
+    );
+  },
 
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => (
     <img
@@ -30,7 +67,6 @@ const MdxComponents = {
       {props.children}
     </Link>
   ),
-  // Table styling (unchanged)
   table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
     <div className="overflow-x-auto my-6">
       <table className="min-w-full border-collapse text-sm" {...props} />
@@ -48,7 +84,6 @@ const MdxComponents = {
   td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
     <td className="px-4 py-3" {...props} />
   ),
-  pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => <pre {...props} />,
   ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc pl-6 my-4" {...props} />,
   ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal pl-6 my-4" {...props} />,
   li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props} />,
