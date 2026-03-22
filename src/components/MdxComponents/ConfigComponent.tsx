@@ -47,11 +47,12 @@ const MdxComponents = {
     <td className="px-4 py-3" {...props} />
   ),
 
-  // Other components (unchanged but cleaned)
+  // Fixed list types (this was causing the TypeScript error)
   pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => <pre {...props} />,
   ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc pl-6 my-4" {...props} />,
-  ol: (props: HTMLProps<HTMLOListElement>): JSX.Element => <ol className="list-decimal pl-6 my-4" {...props} />,
+  ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal pl-6 my-4" {...props} />,
   li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props} />,
+
   p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => <p className="my-4" {...props} />,
   h1: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => <h1 className="text-4xl font-bold my-6" {...props} />,
   h2: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => <h2 className="text-3xl font-bold my-6" {...props} />,
