@@ -62,10 +62,12 @@ export const getFileContentCached = unstable_cache(
     }
   },
   ["github-file-content-cache"],
-  { revalidate: false }
+  { 
+    revalidate: 0,          // ← FIXED: Always fresh
+    tags: ["github-content"] 
+  }
 );
 
-// === UNCHANGED ===
 export const getRootCached = unstable_cache(
   async (path: string) => {
     const res = await octokit.rest.repos.getContent({
@@ -79,7 +81,10 @@ export const getRootCached = unstable_cache(
     return elements.filter((item: string) => item.endsWith(".md"));
   },
   ["github-root-md-cache"],
-  { revalidate: 60 * 5 }
+  { 
+    revalidate: 30,         // Reduced from 5 minutes
+    tags: ["github-content"] 
+  }
 );
 
 export async function getSiteFolders(path: string) {
