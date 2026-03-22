@@ -3,7 +3,7 @@ import SideMenu from "@/components/SideMenu/SideMenu";
 import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
+import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 
@@ -29,9 +29,9 @@ export async function generateMetadata({
   });
 }
 
-const MdxComponent = dynamic(
-  () => import("@/components/MdxComponents/MdxComponent"),
-  { loading: () => <span className="text-center text-3xl">Loading...</span> },
+// Lazy-loaded component (avoids any name conflict with "dynamic")
+const LazyMdxComponent = React.lazy(() =>
+  import("@/components/MdxComponents/MdxComponent")
 );
 
 export default async function Page(props: {
@@ -74,9 +74,7 @@ export default async function Page(props: {
     return (
       <MdxContainer
         hasSideMenu={roots.length > 0}
-        sideMenu={
-          roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null
-        }
+        sideMenu={roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null}
         roots={roots}
         heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
       >
@@ -95,16 +93,15 @@ export default async function Page(props: {
   return (
     <MdxContainer
       hasSideMenu={roots.length > 0}
-      sideMenu={
-        roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null
-      }
+      sideMenu={roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null}
       roots={roots}
       heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
     >
-      <MdxComponent source={String(markdown)} slug={slug[1] ?? ""} />
+      <Suspense fallback={<span className="text-center text-3xl">Loading...</span>}>
+        <LazyMdxComponent source={String(markdown || "")} slug={slug[1] ?? ""} />
+      </Suspense>
     </MdxContainer>
   );
 }
 
-// no more cache delay
-export const revalidate = 0;
+export const dynamic = "force-dynamic";
