@@ -29,6 +29,7 @@ import {
 import {
   FaLaptopCode,
   FaMagnifyingGlassChart as MagnifyingGlassChart,
+  FaJarWheat as Jar
 } from "react-icons/fa6";
 import {
   FcCurrencyExchange as CurrencyExchange,
@@ -56,6 +57,7 @@ import {
   GiLion as Brave,
   GiTrade as Swap,
   GiFox as ShapeShift,
+  GiBugNet as Testnet,
 } from "react-icons/gi";
 import { GoSync as Go } from "react-icons/go";
 import {
@@ -210,6 +212,8 @@ const iconsForMenu: IconsFor = {
     "Zcash Mining Guide": Mining,
     "Solswap": Swap,
     "Encifher Swaps": Swap,
+    "Creators and Tips": Jar,
+    "Testnet": Testnet
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
