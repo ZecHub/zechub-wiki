@@ -12,7 +12,7 @@
   {
     "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
     "video_id": "T2B5f297d-Y",
-    "views": 2179
+    "views": 2180
   },
   {
     "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -87,7 +87,7 @@
   {
     "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
     "video_id": "O4wQi_i7k0I",
-    "views": 1207
+    "views": 1208
   },
   {
     "title": "The State of Privacy in Cryptocurrencies - Ian Miers",
@@ -137,7 +137,7 @@
   {
     "title": "Zecwallet Lite on Windows Tutorial #1",
     "video_id": "4v_wr6DBY48",
-    "views": 935
+    "views": 937
   },
   {
     "title": "Good SNARKS Are Here Needed",
@@ -160,13 +160,13 @@
     "views": 864
   },
   {
-    "title": "Sonic: Nearly Trustless SNARK Setups - Sean Bowe",
-    "video_id": "oTRAg6Km1os",
-    "views": 844
-  },
-  {
     "title": "The Orchard Shielded Pool, feat. Halo2: #Zcon2Lite",
     "video_id": "acl_RjBUoRE",
+    "views": 845
+  },
+  {
+    "title": "Sonic: Nearly Trustless SNARK Setups - Sean Bowe",
+    "video_id": "oTRAg6Km1os",
     "views": 844
   },
   {
@@ -187,7 +187,7 @@
   {
     "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
     "video_id": "eero6i2WTxo",
-    "views": 768
+    "views": 769
   },
   {
     "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
@@ -490,14 +490,14 @@
     "views": 357
   },
   {
-    "title": "The Technical Road Ahead with ZF, ECC, and QEDIT - ZconV: Zcash Unified 2024 #Zcash #ZEC",
-    "video_id": "CAc4FMUhPlc",
+    "title": "SoK: Programmable Privacy in Zcash with Ying Tong and Daniel Benarroch: Zcon4",
+    "video_id": "PBE0YAeiMa4",
     "views": 356
   },
   {
-    "title": "SoK: Programmable Privacy in Zcash with Ying Tong and Daniel Benarroch: Zcon4",
-    "video_id": "PBE0YAeiMa4",
-    "views": 355
+    "title": "The Technical Road Ahead with ZF, ECC, and QEDIT - ZconV: Zcash Unified 2024 #Zcash #ZEC",
+    "video_id": "CAc4FMUhPlc",
+    "views": 356
   },
   {
     "title": "User Research: Zcash Payments Are Normal with Tatyana - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -642,7 +642,7 @@
   {
     "title": "Constructing a Fast Prime-Order Group - Henry de Valence",
     "video_id": "pG-IZ_7NbR8",
-    "views": 292
+    "views": 293
   },
   {
     "title": "Zebrad for Linux Tutorial #1",
@@ -732,7 +732,7 @@
   {
     "title": "Zcash Arborist Call 10-30-2025",
     "video_id": "8c_6UiciAuU",
-    "views": 263
+    "views": 264
   },
   {
     "title": "Zashi & SDKs with Andrea Kobrlova and Josh Swihart - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -1520,6 +1520,11 @@
     "views": 111
   },
   {
+    "title": "Zcash Arborist Call 03-19-2026",
+    "video_id": "LtdKAhi6l7s",
+    "views": 111
+  },
+  {
     "title": "ZF Community Call: FROST Server Demo",
     "video_id": "Z4N2TDFxdFA",
     "views": 109
@@ -1528,11 +1533,6 @@
     "title": "Zcash Grants Committee (ZCG) Panel: Past, Present, and Future at Zcon3",
     "video_id": "V7pFnzbg2-E",
     "views": 108
-  },
-  {
-    "title": "Zcash Arborist Call 03-19-2026",
-    "video_id": "LtdKAhi6l7s",
-    "views": 107
   },
   {
     "title": "Zcash Global Ambassador Lightning Talks: Zcon4",
@@ -1760,6 +1760,11 @@
     "views": 53
   },
   {
+    "title": "Free2Z Caterpillars with Jonathan Bird and Skylar Saveland: Zcon4",
+    "video_id": "h0dQWq9ZJKg",
+    "views": 36
+  },
+  {
     "title": "Zcash Arborist Call 8/10/23",
     "video_id": "5NaXSHnIDNA",
     "views": 35
@@ -1768,11 +1773,6 @@
     "title": "Communities Have Power: Zcash en Español '20-'24 - English Dubbed - ZconVI #zcash",
     "video_id": "Up27HEVsRe8",
     "views": 35
-  },
-  {
-    "title": "Free2Z Caterpillars with Jonathan Bird and Skylar Saveland: Zcon4",
-    "video_id": "h0dQWq9ZJKg",
-    "views": 34
   },
   {
     "title": "State of Legislation, Regulation and Policy with Jack Gavigan, Paul Brigner, and Kurt Opsahl: Zcon4",
