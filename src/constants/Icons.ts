@@ -54,6 +54,7 @@ import {
   GiMagnifyingGlass as Magnify,
   GiLion as Brave,
   GiTrade as Swap,
+  GiFox as ShapeShift,
 } from "react-icons/gi";
 import { GoSync as Go } from "react-icons/go";
 import {
@@ -240,6 +241,7 @@ const iconsForMenu: IconsFor = {
     "My First Zcash Workbook": Mfz,
     "Migration Guide Zcashd To Zebrad Zallet": Guide,
     "Brave Wallet Guide": Brave,
+    "ShapeShift Zcash": ShapeShift,
   },
   "Zcash Tech": {
     "Crosslink Protocol": Stakeholder,
