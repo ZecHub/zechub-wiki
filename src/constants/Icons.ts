@@ -13,6 +13,7 @@ import {
   BsPlay as Play,
   BsQrCode as QrCode,
   BsShieldShaded as ShieldShaded,
+  BsGpuCard as Mining,
 } from "react-icons/bs";
 import { CiStreamOn as StreamOn } from "react-icons/ci";
 import {
@@ -52,6 +53,7 @@ import {
   GiSpellBook as SpellBook,
   GiMagnifyingGlass as Magnify,
   GiLion as Brave,
+  GiTrade as Swap,
 } from "react-icons/gi";
 import { GoSync as Go } from "react-icons/go";
 import {
@@ -203,6 +205,9 @@ const iconsForMenu: IconsFor = {
     "Custodial Exchanges": ListAlt,
     Exchanges: RiExchangeFundsLine,
     "Zcash Wallet Syncing": FaSyncAlt,
+    "Zcash Mining Guide": Mining,
+    "Solswap": Swap,
+    "Encifher Swaps": Swap,
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
