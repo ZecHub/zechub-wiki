@@ -154,7 +154,6 @@ import {
 } from "react-icons/tb";
 import { TfiServer as Tfi } from "react-icons/tfi";
 import { AiOutlineCloudServer as Akash } from "react-icons/ai";
-import { TbTipJar as TipJar } from "react-icons/tb";
 
 type AppIcon = IconType | string;   // supports both React icons AND custom PNG strings
 
@@ -189,7 +188,6 @@ const iconsForMenu: IconsFor = {
   "Using Zcash": {
     "Blockchain Explorers": MagnifyingGlassChart,
     Wallets: "pick-a-wallet.png",
-    "Creators and Tips": TipJar,
     "Buying ZEC": CurrencyExchange,
     "Metamask Snap": RiFunctionLine,
     Transactions: ArrowUp,
