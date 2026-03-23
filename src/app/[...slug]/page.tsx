@@ -7,6 +7,7 @@ import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { serialize } from 'next-mdx-remote/serialize';
+import remarkGfm from 'remark-gfm';   // ← NEW: enables GitHub-style tables
 
 const LazyMdxComponent = React.lazy(() =>
   import("@/components/MdxRenderer")
@@ -56,6 +57,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
     markdown = null;
     roots = [];
   }
+
   const imgUrl = getBanner(slug[0]) || "";
   const imgUrlDark = getBanner(`${slug[0]}-dark`) || imgUrl;
 
@@ -79,7 +81,12 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
     );
   }
 
-  const serializedSource = await serialize(String(markdown || ""), {});
+  // ← UPDATED: Now supports tables everywhere
+  const serializedSource = await serialize(String(markdown || ""), {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+    },
+  });
 
   return (
     <MdxContainer
