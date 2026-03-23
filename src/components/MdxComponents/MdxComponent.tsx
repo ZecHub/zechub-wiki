@@ -9,21 +9,19 @@ const slugify = (text: string): string => {
   return text
     .trim()
     .toLowerCase()
-    .replace(/[\(\)]/g, '')           
-    .replace(/\+/g, '-and-')          
-    .replace(/[^\w\s-]/g, '')         
-    .replace(/[\s_-]+/g, '-')         
-    .replace(/^-+|-+$/g, '');         
+    .replace(/[\(\)]/g, '')
+    .replace(/\+/g, '-and-')
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 };
 
 const MdxComponents = {
   // TOC LINKS — underline on hover only (no dashed line)
-  a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {   // ← fixed type here
+  a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {
     let href = props.href || "";
-
     if (href.startsWith("#")) {
       const normalized = "#" + slugify(href.slice(1));
-
       const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         const targetId = normalized.slice(1);
         const element = document.getElementById(targetId);
@@ -31,7 +29,6 @@ const MdxComponents = {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       };
-
       return (
         <a
           href={normalized}
@@ -41,7 +38,6 @@ const MdxComponents = {
         />
       );
     }
-
     return (
       <Link
         href={href.startsWith("/site") ? transformGithubFilePathToWikiLink(href) : href}
@@ -73,7 +69,6 @@ const MdxComponents = {
   // Code blocks — your exact tan styling
   code: (props: HTMLProps<HTMLElement> & { className?: string }): JSX.Element => {
     const isBlockCode = props.className?.includes("language-") ?? false;
-
     if (isBlockCode) {
       return (
         <code
@@ -83,7 +78,6 @@ const MdxComponents = {
         />
       );
     }
-
     return (
       <code
         className="font-mono text-sm !inline-block !translate-y-[16px]"
@@ -107,6 +101,29 @@ const MdxComponents = {
     </div>
   ),
 
+  // === UPDATED: Beautiful amber-themed tables (matches your tan code blocks) ===
+  table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
+    <div className="overflow-x-auto my-6">
+      <table 
+        className="min-w-full border-collapse text-sm bg-white dark:bg-neutral-900 rounded-xl overflow-hidden shadow-sm" 
+        {...props} 
+      />
+    </div>
+  ),
+  thead: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
+    <thead className="bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-100" {...props} />
+  ),
+  tr: (props: HTMLProps<HTMLTableRowElement>): JSX.Element => (
+    <tr className="border-b border-amber-200 dark:border-amber-900 hover:bg-amber-50 dark:hover:bg-neutral-800" {...props} />
+  ),
+  th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
+    <th className="px-6 py-4 text-left font-semibold" {...props} />
+  ),
+  td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
+    <td className="px-6 py-4" {...props} />
+  ),
+  // =====================================================================
+
   // Everything else
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => (
     <img
@@ -115,23 +132,6 @@ const MdxComponents = {
       className="rounded-lg my-4"
       loading="lazy"
     />
-  ),
-  table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
-    <div className="overflow-x-auto my-6">
-      <table className="min-w-full border-collapse text-sm" {...props} />
-    </div>
-  ),
-  thead: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
-    <thead className="bg-emerald-600 text-white dark:bg-emerald-700" {...props} />
-  ),
-  tr: (props: HTMLProps<HTMLTableRowElement>): JSX.Element => (
-    <tr className="border-b border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800" {...props} />
-  ),
-  th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
-    <th className="px-4 py-3 text-left font-semibold" {...props} />
-  ),
-  td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
-    <td className="px-4 py-3" {...props} />
   ),
   ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc pl-6 my-4" {...props} />,
   ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal pl-6 my-4" {...props} />,
