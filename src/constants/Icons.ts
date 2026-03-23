@@ -143,7 +143,6 @@ import {
 import { SlGraph as Graph } from "react-icons/sl";
 import {
   TbBinaryTree2 as BinaryTree,
-  TbTipJar as TipJar,
   TbCurrencyDollarZimbabwean as DollarZimbabwean,
   Tb2Fa as Fa2,
   TbHexagonLetterN as HexagonLetterN,
@@ -155,6 +154,7 @@ import {
 } from "react-icons/tb";
 import { TfiServer as Tfi } from "react-icons/tfi";
 import { AiOutlineCloudServer as Akash } from "react-icons/ai";
+import { TbTipJar as TipJar } from "react-icons/tb";
 
 type AppIcon = IconType | string;   // supports both React icons AND custom PNG strings
 
