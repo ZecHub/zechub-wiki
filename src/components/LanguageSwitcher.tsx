@@ -1,60 +1,83 @@
 "use client";
 
-import { useState } from 'react';
-import { i18n, type Locale } from '@/i18n/config';
+import { useState, useRef, useEffect } from 'react';
 import { Globe } from 'lucide-react';
-import { useLanguage } from '@/context/LanguageContext';
-
-const languages: Record<Locale, string> = {
-  en: 'English',
-  es: 'Español',
-};
+import { useLanguage, LANGUAGES } from '@/context/LanguageContext';
 
 export function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
-  const { locale, setLocale } = useLanguage();
+  const { locale, setLocale, currentLanguage } = useLanguage();
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleLanguageChange = (newLocale: Locale) => {
-    setLocale(newLocale);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
+  const displayLanguage = mounted ? currentLanguage : LANGUAGES[0];
+
+  // ── Outside-click handler ─────────────────────────────────────────────────
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, [isOpen]);
+
+  const handleSelect = (code: string) => {
+    setLocale(code);
     setIsOpen(false);
   };
 
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
         aria-label="Select language"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
       >
         <Globe className="w-4 h-4" />
         <span className="hidden sm:inline text-sm font-medium">
-          {languages[locale]}
+          {displayLanguage.flag} {displayLanguage.nativeLabel}
         </span>
-        <span className="sm:hidden text-sm font-medium">
-          {locale.toUpperCase()}
+        <span className="sm:hidden text-sm">
+          {displayLanguage.flag}
         </span>
+        <svg className="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
       </button>
 
       {isOpen && (
-        <>
-          <div
-            className="fixed inset-0 z-40"
-            onClick={() => setIsOpen(false)}
-          />
-          <div className="absolute right-0 mt-2 w-48 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 shadow-lg z-50 overflow-hidden">
-            {i18n.locales.map((loc) => (
-              <button
-                key={loc}
-                onClick={() => handleLanguageChange(loc)}
-                className={`w-full text-left px-4 py-2 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors ${
-                  loc === locale ? 'bg-slate-200 dark:bg-slate-700 font-semibold' : ''
-                }`}
-              >
-                {languages[loc]}
-              </button>
-            ))}
-          </div>
-        </>
+        <div
+          role="listbox"
+          aria-label="Language options"
+          className="absolute right-0 mt-2 w-52 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 shadow-xl z-50 overflow-hidden max-h-80 overflow-y-auto"
+        >
+          {LANGUAGES.map((lang) => (
+            <button
+              key={lang.code}
+              role="option"
+              aria-selected={lang.code === locale}
+              onClick={() => handleSelect(lang.code)}
+              className={`w-full text-left px-4 py-2.5 flex items-center gap-3 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-sm ${
+                lang.code === locale ? 'bg-slate-200 dark:bg-slate-700 font-semibold' : ''
+              }`}
+            >
+              <span className="text-base leading-none">{lang.flag}</span>
+              <span>{lang.nativeLabel}</span>
+              {lang.code !== lang.nativeLabel.toLowerCase() && (
+                <span className="ml-auto text-xs text-slate-400 dark:text-slate-500">
+                  {lang.label}
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
       )}
     </div>
   );
