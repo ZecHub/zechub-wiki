@@ -8395,7 +8395,7 @@ negotiator@^1.0.0:
 
 next-mdx-remote@^6.0.0:
   version "6.0.0"
-  resolved "https://registry.npmjs.org/next-mdx-remote/-/next-mdx-remote-6.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/next-mdx-remote/-/next-mdx-remote-6.0.0.tgz#75b18bbdeda807ddb73fa07fdb7ef2620500bf59"
   integrity sha512-cJEpEZlgD6xGjB4jL8BnI8FaYdN9BzZM4NwadPe1YQr7pqoWjg9EBCMv3nXBkuHqMRfv2y33SzUsuyNh9LFAQQ==
   dependencies:
     "@babel/code-frame" "^7.23.5"
