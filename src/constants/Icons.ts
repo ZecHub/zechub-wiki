@@ -100,7 +100,6 @@ import {
 } from "react-icons/md";
 import {
   PiCircuitryLight as Circuitry,
-  PiTipJarBold as TipJarBold,
   PiComputerTower as ComputerTower,
   PiLinkSimpleBold as LinkSimpleBold,
   PiListMagnifyingGlassFill as ListMagnifyingGlassFill,
@@ -144,6 +143,7 @@ import {
 import { SlGraph as Graph } from "react-icons/sl";
 import {
   TbBinaryTree2 as BinaryTree,
+  TbTipJar as TipJar,
   TbCurrencyDollarZimbabwean as DollarZimbabwean,
   Tb2Fa as Fa2,
   TbHexagonLetterN as HexagonLetterN,
@@ -189,7 +189,7 @@ const iconsForMenu: IconsFor = {
   "Using Zcash": {
     "Blockchain Explorers": MagnifyingGlassChart,
     Wallets: "pick-a-wallet.png",
-    "Creators and Tips": TipJarBold,
+    "Creators and Tips": TipJar,
     "Buying ZEC": CurrencyExchange,
     "Metamask Snap": RiFunctionLine,
     Transactions: ArrowUp,
