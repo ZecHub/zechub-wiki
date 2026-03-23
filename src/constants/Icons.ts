@@ -100,6 +100,7 @@ import {
 } from "react-icons/md";
 import {
   PiCircuitryLight as Circuitry,
+  PiTipJarBold as TipJarBold,
   PiComputerTower as ComputerTower,
   PiLinkSimpleBold as LinkSimpleBold,
   PiListMagnifyingGlassFill as ListMagnifyingGlassFill,
@@ -188,6 +189,7 @@ const iconsForMenu: IconsFor = {
   "Using Zcash": {
     "Blockchain Explorers": MagnifyingGlassChart,
     Wallets: "pick-a-wallet.png",
+    "Creators and Tips": TipJarBold,
     "Buying ZEC": CurrencyExchange,
     "Metamask Snap": RiFunctionLine,
     Transactions: ArrowUp,
