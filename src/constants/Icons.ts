@@ -41,6 +41,7 @@ import {
   FcFaq as Faq,
   FcLibrary as LibraryC,
   FcShop as Pay,
+  FcAbout as Info,
 } from "react-icons/fc";
 import {
   GiEgyptianSphinx as EgyptianSphinx,
@@ -286,16 +287,13 @@ const iconsForMenu: IconsFor = {
     "Youtube Channel": Youtube,
   },
   "Zcash Social Media": {
-    Podcasts: IosMicrophone,
-    "Social Media Links": LinkSolid,
-    "pgp for crypto podcast": Podcast,
-    "The Zcash Podcast": Zcash,
-    "Shielded Transaction Podcast": CheckShield,
-    "The ZK Podcast": Spotify,
-    "The z2z Podcast": StreamOn,
-    "Zcast Podcast": ApplePodcasts,
-    "Zero to Zero-knowledge": SpellBook,
-    "zl;dr": TipsAndUpdates,
+    "Cryptonote": Info,
+    "Hash Functions": Info,
+    "Lelantus": Info,
+    "Mnemonic Seed Phrases": Info,
+    "TEEs": Info,
+    "Zcash Addresses": Info,
+    "Zero to Zero-Knowledge": Info,
   },
   "Privacy Tools": {
     "2FA Hardware Devices": Fa2,
