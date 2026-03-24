@@ -5,7 +5,7 @@ export const ambassadorProjects = [
     twitter: "https://x.com/zcashkorea",
     description: "Zcash community and advocacy in Korea",
     projectSite: null,
-    image: "/zcashkorea.jpg",
+    image: "/zcashKorea.jpg",
     blog: null,
   },
   {
