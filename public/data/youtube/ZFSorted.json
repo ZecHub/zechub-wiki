@@ -87,7 +87,7 @@
   {
     "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
     "video_id": "O4wQi_i7k0I",
-    "views": 1208
+    "views": 1211
   },
   {
     "title": "The State of Privacy in Cryptocurrencies - Ian Miers",
@@ -172,7 +172,7 @@
   {
     "title": "Zcon1 Opening Keynote - Andrew Miller",
     "video_id": "Ob0ajGPMLuE",
-    "views": 784
+    "views": 785
   },
   {
     "title": "The State of the STARK - Eli Ben-Sasson",
@@ -1102,7 +1102,7 @@
   {
     "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
     "video_id": "65GdSSlDG3A",
-    "views": 169
+    "views": 170
   },
   {
     "title": "Zcon0 Day 2 Opening Remarks",
@@ -1255,6 +1255,11 @@
     "views": 145
   },
   {
+    "title": "Zcash Arborist Call 4/18/24",
+    "video_id": "c9LY1Rptt5c",
+    "views": 144
+  },
+  {
     "title": "Zcash Arborist Call 8/22/24",
     "video_id": "sSEH1Wau-Hs",
     "views": 144
@@ -1263,11 +1268,6 @@
     "title": "FROST Demo",
     "video_id": "skeVu0mQNQ0",
     "views": 144
-  },
-  {
-    "title": "Zcash Arborist Call 4/18/24",
-    "video_id": "c9LY1Rptt5c",
-    "views": 143
   },
   {
     "title": "Can we have privacy and compliance at the same time? with Jonathan Rouach- ZconV: Zcash Unified 2024",
@@ -1475,6 +1475,11 @@
     "views": 115
   },
   {
+    "title": "Zcash Arborist Call 03-19-2026",
+    "video_id": "LtdKAhi6l7s",
+    "views": 115
+  },
+  {
     "title": "Zcash Arborist Call 2/8/2024",
     "video_id": "cQ_Pcgrme1c",
     "views": 114
@@ -1483,6 +1488,11 @@
     "title": "The Once and Future ECC Wallet (Dev and UX) - Pacu Gindre & Joseph Van Geffen at Zcon3",
     "video_id": "-lUhiFN6yiA",
     "views": 113
+  },
+  {
+    "title": "Zcash Arborist Call 5/30/24",
+    "video_id": "bZvWrKnSszM",
+    "views": 112
   },
   {
     "title": "ZF Community Call -  Sept 4, 2020, MGRC Candidates Part 2",
@@ -1500,11 +1510,6 @@
     "views": 111
   },
   {
-    "title": "Zcash Arborist Call 5/30/24",
-    "video_id": "bZvWrKnSszM",
-    "views": 111
-  },
-  {
     "title": "Brazilian CBDC Vs Privacy Implications with Michae2xl & Casta - ZconVI #zcash",
     "video_id": "Bmx-Z3qnKdo",
     "views": 111
@@ -1517,11 +1522,6 @@
   {
     "title": "Zcash Arborist Call 08-07-2025",
     "video_id": "79pNSvju05g",
-    "views": 111
-  },
-  {
-    "title": "Zcash Arborist Call 03-19-2026",
-    "video_id": "LtdKAhi6l7s",
     "views": 111
   },
   {
@@ -1702,7 +1702,7 @@
   {
     "title": "Zcash Arborist Call 5/2/24",
     "video_id": "2K_hmx3obf4",
-    "views": 65
+    "views": 66
   },
   {
     "title": "Governance and Security Concerns - Ryan Lackey",
