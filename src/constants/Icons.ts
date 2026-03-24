@@ -13,6 +13,7 @@ import {
   BsPlay as Play,
   BsQrCode as QrCode,
   BsShieldShaded as ShieldShaded,
+  BsGpuCard as Mining,
 } from "react-icons/bs";
 import { CiStreamOn as StreamOn } from "react-icons/ci";
 import {
@@ -23,16 +24,25 @@ import {
   FaLifeRing as LifeRing,
   FaListAlt as ListAlt,
   FaWallet as Wallet,
+  FaFileInvoiceDollar as Cbdc,
 } from "react-icons/fa";
 import {
   FaLaptopCode,
   FaMagnifyingGlassChart as MagnifyingGlassChart,
+  FaJarWheat as Jar
 } from "react-icons/fa6";
 import {
   FcCurrencyExchange as CurrencyExchange,
   FcGallery,
   FcProcess,
   FcGlobe as Globe,
+  FcCollect as Collect,
+  FcWorkflow as ZkAssets,
+  FcServices as Infra,
+  FcFaq as Faq,
+  FcLibrary as LibraryC,
+  FcShop as Pay,
+  FcAbout as Info,
 } from "react-icons/fc";
 import {
   GiEgyptianSphinx as EgyptianSphinx,
@@ -43,6 +53,11 @@ import {
   GiSoapExperiment,
   GiMayanPyramid as MayanPyramid,
   GiSpellBook as SpellBook,
+  GiMagnifyingGlass as Magnify,
+  GiLion as Brave,
+  GiTrade as Swap,
+  GiFox as ShapeShift,
+  GiBugNet as Testnet,
 } from "react-icons/gi";
 import { GoSync as Go } from "react-icons/go";
 import {
@@ -59,6 +74,7 @@ import { HiOutlineBuildingLibrary } from "react-icons/hi2";
 import {
   ImParagraphLeft as Paragraph,
   ImPodcast as Podcast,
+  ImDroplet as Shade,
 } from "react-icons/im";
 import { IoIosMicrophone as IosMicrophone } from "react-icons/io";
 import {
@@ -71,8 +87,9 @@ import {
   LiaSignatureSolid,
   LiaLinkSolid as LinkSolid,
   LiaServerSolid as ServerSolid,
+  LiaRingSolid as Arti,
 } from "react-icons/lia";
-import { LuFileKey as FileKey, LuTrees as Trees } from "react-icons/lu";
+import { LuFileKey as FileKey, LuTrees as Trees, LuLeaf as PepperSync } from "react-icons/lu";
 import {
   MdOutlineLiveHelp as LiveHelp,
   MdFoundation,
@@ -85,6 +102,7 @@ import {
   MdRadar as Radar,
   MdSettings as Settings,
   MdTipsAndUpdates as TipsAndUpdates,
+  MdOutlineStyle as Style,
 } from "react-icons/md";
 import {
   PiCircuitryLight as Circuitry,
@@ -96,6 +114,8 @@ import {
   PiShootingStarThin as ShootingStar,
   PiSnowflakeThin as SnowFlake,
   PiSpotifyLogo as Spotify,
+  PiTreeBold  as Tree,
+  PiStudentFill as Mfz,
 } from "react-icons/pi";
 import {
   RiExchangeFundsFill as ExchangeFunds,
@@ -110,6 +130,7 @@ import {
   RiInstallLine,
   RiSecurePaymentLine,
   RiSecurePaymentLine as SecurePayment,
+  RiGuideFill as Guide,
 } from "react-icons/ri";
 import {
   SiApplepodcasts as ApplePodcasts,
@@ -138,6 +159,7 @@ import {
   TbTopologyRing as TopologyRing,
 } from "react-icons/tb";
 import { TfiServer as Tfi } from "react-icons/tfi";
+import { AiOutlineCloudServer as Akash } from "react-icons/ai";
 
 type AppIcon = IconType | string;   // supports both React icons AND custom PNG strings
 
@@ -187,6 +209,11 @@ const iconsForMenu: IconsFor = {
     "Custodial Exchanges": ListAlt,
     Exchanges: RiExchangeFundsLine,
     "Zcash Wallet Syncing": FaSyncAlt,
+    "Zcash Mining Guide": Mining,
+    "Solswap": Swap,
+    "Encifher Swaps": Swap,
+    "Creators and Tips": Jar,
+    "Testnet": Testnet
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
@@ -195,8 +222,9 @@ const iconsForMenu: IconsFor = {
     "Blockchain Explorers": ListMagnifyingGlassFill,
     "Maya Protocol": MayanPyramid,
     "Avalanche RedBridge": CableStayedBridge,
-    "Akash Network - Zebra": IoCloudUploadOutline,
-    "BTCPayServer Plugin": RiBitCoinLine,
+    "Akash Network Zcashd": Akash,
+    "Akash Network Zebra": IoCloudUploadOutline,
+    "BTCPayServer Zcash Plugin": Pay,
     "Full Nodes": ServerSolid,
     "Nym VPN": MdVpnLock,
     "Raspberry Pi 4 Full Node": RaspBerry,
@@ -209,11 +237,16 @@ const iconsForMenu: IconsFor = {
     "Zingolib and Zaino Tutorial": FaLaptopCode,
     "Using ZEC in DeFi": Ethereum,
     "Free2z Live": Live,
+    "Free2Z Livestreaming": StreamOn,
     "Zgo Payment Processor": PointOfSale,
     "Zero-Knowledge vs Decoys": TopologyRing,
     "Visualizing the Zcash Network": LogoGraph,
     "Zcash Improvement Proposals": GrDocumentZip,
     "Zkool Multisig": LiaSignatureSolid,
+    "My First Zcash Workbook": Mfz,
+    "Migration Guide Zcashd To Zebrad Zallet": Guide,
+    "Brave Wallet Guide": Brave,
+    "ShapeShift Zcash": ShapeShift,
   },
   "Zcash Tech": {
     "Crosslink Protocol": Stakeholder,
@@ -228,6 +261,7 @@ const iconsForMenu: IconsFor = {
     "Viewing Keys": FileKey,
     "Zcash Shielded Assets": DollarZimbabwean,
     "Lightwallet Nodes": ComputerTower,
+    "Pepper Sync": PepperSync,
   },
   "Zcash Organizations": {
     "Electric Coin Company": Radar,
@@ -257,41 +291,47 @@ const iconsForMenu: IconsFor = {
     "Youtube Channel": Youtube,
   },
   "Zcash Social Media": {
-    Podcasts: IosMicrophone,
-    "Social Media Links": LinkSolid,
-    "pgp for crypto podcast": Podcast,
-    "The Zcash Podcast": Zcash,
-    "Shielded Transaction Podcast": CheckShield,
-    "The ZK Podcast": Spotify,
-    "The z2z Podcast": StreamOn,
-    "Zcast Podcast": ApplePodcasts,
-    "Zero to Zero-knowledge": SpellBook,
-    "zl;dr": TipsAndUpdates,
+    "Cryptonote": Info,
+    "Hash Functions": Info,
+    "Lelantus": Info,
+    "Mnemonic Seed Phrases": Info,
+    "TEEs": Info,
+    "Zcash Addresses": Info,
+    "Zero to Zero-Knowledge": Info,
   },
   "Privacy Tools": {
     "2FA Hardware Devices": Fa2,
+    "Arti Tor": Arti,
     GrapheneOS: Settings,
-    "Namada Protocol": HexagonLetterN,
+    "Namada Protocol": "/Logo/namada.png",
     "PGP Encryption": OutlineEnchanceEncryption,
+    "Penumbra": "/Logo/um.png",
     "Secure Messengers": MessengerLine,
+    "Shade Protocol": Shade,
     "Tor and I2P": TorBrowser,
     "VPN and DVPN": Openvpn,
     "Web Browsers": Browserfirefox,
   },
   Research: {
-    "Social Media Data Collection": RiArticleLine,
-    "ZK Shielded Asset Platforms": Paragraph,
+    "Cbdc": Cbdc,
+    "Dash Zcash Orchard Integration": Tree,
+    "NamadaBestPractices": "/Logo/namada.png",
+    "Social Media Data Collection": Collect,
+    "Track Early Onchain And Social Signals for Zcash": Magnify,
+    "ZK Shielded Asset Platforms": ZkAssets,
   },
   "Glossary & FAQ's": {
-    "Zcash Library": HiOutlineBuildingLibrary,
-    FAQ: FaQuestion,
+    "Zcash Library": LibraryC,
+    FAQ: Faq,
     Gallery: FcGallery,
   },
   Contribute: {
+    "Community Infrastructure": Infra,
     "Help build ZecHub": IoConstructOutline,
     "ZecHub DAO": GiMeshBall,
     "Contributing Guide": LiveHelp,
     "ZecWeekly Newsletter": Newspaper,
+    "Style Guide": Style,
   },
 };
 

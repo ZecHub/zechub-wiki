@@ -3,9 +3,15 @@ import SideMenu from "@/components/SideMenu/SideMenu";
 import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
+import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { headers } from "next/headers"; // ← forces dynamic rendering
+import { headers } from "next/headers";
+import { serialize } from 'next-mdx-remote/serialize';
+import remarkGfm from 'remark-gfm';   // ← NEW: enables GitHub-style tables
+
+const LazyMdxComponent = React.lazy(() =>
+  import("@/components/MdxRenderer")
+);
 
 export async function generateMetadata({
   params,
@@ -13,35 +19,19 @@ export async function generateMetadata({
   params: Promise<{ slug: string[] }>;
 }): Promise<Metadata> {
   const { slug = [] } = await params;
-
   if (slug.length === 0) {
     return genMetadata({ title: "Zechub", url: "https://zechub.wiki" });
   }
-
   const folder = slug[0] || "";
-  const capitalized =
-    folder.charAt(0).toUpperCase() + folder.slice(1).replace(/-/g, " ");
-  const title =
-    slug.length > 1 && slug[1]
-      ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
-      : `Zechub - ${capitalized}`;
-
-  return genMetadata({
-    title,
-    url: `https://zechub.wiki/${slug.join("/")}`,
-  });
+  const capitalized = folder.charAt(0).toUpperCase() + folder.slice(1).replace(/-/g, " ");
+  const title = slug.length > 1 && slug[1]
+    ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
+    : `Zechub - ${capitalized}`;
+  return genMetadata({ title, url: `https://zechub.wiki/${slug.join("/")}` });
 }
 
-const MdxComponent = dynamic(
-  () => import("@/components/MdxComponents/MdxComponent"),
-  { loading: () => <span className="text-center text-3xl">Loading...</span> },
-);
-
-export default async function Page(props: {
-  params: Promise<{ slug: string[] }>;
-}) {
-  headers(); // ← THIS LINE FORCES DYNAMIC RENDERING (no more prerender error)
-
+export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
+  headers();
   let slug: string[] = [];
   try {
     const resolved = await props.params;
@@ -49,16 +39,13 @@ export default async function Page(props: {
   } catch {
     return notFound();
   }
-
   if (slug.length === 0) return notFound();
   if (slug[0] === ".well-known") return null;
 
   const url = getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
-
   let markdown: any = null;
   let roots: any[] = [];
-
   try {
     const [md, rootsRaw] = await Promise.all([
       getFileContentCached(url).catch(() => null),
@@ -74,16 +61,11 @@ export default async function Page(props: {
   const imgUrl = getBanner(slug[0]) || "";
   const imgUrlDark = getBanner(`${slug[0]}-dark`) || imgUrl;
 
-  console.log(imgUrlDark);
-
-  // === CATEGORY PAGES ===
   if (!markdown) {
     return (
       <MdxContainer
         hasSideMenu={roots.length > 0}
-        sideMenu={
-          roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null
-        }
+        sideMenu={roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null}
         roots={roots}
         heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
       >
@@ -99,19 +81,25 @@ export default async function Page(props: {
     );
   }
 
-  // === ARTICLE PAGES ===
+  // ← UPDATED: Now supports tables everywhere
+  const serializedSource = await serialize(String(markdown || ""), {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+    },
+  });
+
   return (
     <MdxContainer
       hasSideMenu={roots.length > 0}
-      sideMenu={
-        roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null
-      }
+      sideMenu={roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null}
       roots={roots}
       heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
     >
-      <MdxComponent source={String(markdown)} slug={slug[1] ?? ""} />
+      <Suspense fallback={<span className="text-center text-3xl">Loading...</span>}>
+        <LazyMdxComponent source={serializedSource} />
+      </Suspense>
     </MdxContainer>
   );
 }
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";

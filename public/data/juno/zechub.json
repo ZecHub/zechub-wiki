@@ -5873,10 +5873,10 @@
           "title": "Discord Engagement Bot for zcash X(twitter)",
           "votes": {
             "no": "4",
-            "yes": "13",
+            "yes": "14",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
           "threshold": {
             "threshold_quorum": {
@@ -5897,7 +5897,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-03-16T12:49:26.476Z"
+        "createdAt": "2026-03-16T12:49:26.476Z",
+        "completedAt": "2026-03-21T16:29:14.000Z",
+        "executedAt": "2026-03-21T16:29:14.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5909,9 +5911,9 @@
           "votes": {
             "no": "0",
             "yes": "5",
-            "abstain": "2"
+            "abstain": "3"
           },
-          "status": "open",
+          "status": "rejected",
           "proposer": "juno1tldl44lqjdrq6lkcdf5rzxjjddxa6v2wdxafjs",
           "threshold": {
             "threshold_quorum": {
@@ -5942,11 +5944,11 @@
           "msgs": [],
           "title": "DAO Proposal: Request for Permanent Moderator Appointment",
           "votes": {
-            "no": "8",
-            "yes": "5",
+            "no": "9",
+            "yes": "6",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "closed",
           "proposer": "juno134vfu8fhxcnq3wlnpjnnx4r5hun9yjnzeqfgnq",
           "threshold": {
             "threshold_quorum": {
@@ -5967,7 +5969,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-03-16T19:14:27.881Z"
+        "createdAt": "2026-03-16T19:14:27.881Z",
+        "completedAt": "2026-03-22T18:22:03.000Z",
+        "closedAt": "2026-03-22T18:22:03.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -5977,9 +5981,9 @@
           "msgs": [],
           "title": "Zcash Ecosystem Onboarding Proposal – Women in DeFi Summit 2026",
           "votes": {
-            "no": "1",
-            "yes": "2",
-            "abstain": "0"
+            "no": "5",
+            "yes": "6",
+            "abstain": "1"
           },
           "status": "open",
           "proposer": "juno1tldl44lqjdrq6lkcdf5rzxjjddxa6v2wdxafjs",

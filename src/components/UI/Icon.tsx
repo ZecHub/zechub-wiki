@@ -23,11 +23,14 @@ export function Icon({ className, size = "small", icon, ...rest }: Props) {
   const folder = dark ? "dark" : "light";
   const iconSize: number = typeof size === "string" ? ICON_SIZE[size] : size;
 
-  // CUSTOM PNG from public/explore/ (light/dark variants)
   if (typeof icon === "string") {
+    const src = icon.startsWith("/")
+      ? icon                                    // ← e.g. "/explore/treasury.png" or "/icons/custom.svg"
+      : `/explore/${folder}/${icon}`;           // ← old behavior still works
+
     return (
       <img
-        src={`/explore/${folder}/${icon}`}
+        src={src}
         alt="icon"
         className={className}
         style={{ width: iconSize, height: iconSize }}

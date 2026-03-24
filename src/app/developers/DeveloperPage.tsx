@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from "@/context/LanguageContext";
 import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
 
@@ -23,7 +23,8 @@ export default function DeveloperPage() {
   // Card data with custom button text and SVG icons
   const cardsConfig = [
     {
-      title: t?.pages?.developers?.cards?.learnTitle ?? "Learn Zcash Development",
+      title:
+        t?.pages?.developers?.cards?.learnTitle ?? "Learn Zcash Development",
       content:
         t?.pages?.developers?.cards?.learnContent ??
         "Explore the official documentation and learn the basics of Zcash technology.",
@@ -47,7 +48,9 @@ export default function DeveloperPage() {
       buttonText: t?.pages?.developers?.cards?.learnButton ?? "Read the Docs",
     },
     {
-      title: t?.pages?.developers?.cards?.tutorialsTitle ?? "Learn Through Tutorials",
+      title:
+        t?.pages?.developers?.cards?.tutorialsTitle ??
+        "Learn Through Tutorials",
       content:
         t?.pages?.developers?.cards?.tutorialsContent ??
         "Follow step-by-step tutorials to build on Zcash, from creating wallets to integrating Zcash into your applications.",
@@ -68,10 +71,12 @@ export default function DeveloperPage() {
           />
         </svg>
       ), // SVG for "Learn Through Tutorials"
-      buttonText: t?.pages?.developers?.cards?.tutorialsButton ?? "View Tutorials",
+      buttonText:
+        t?.pages?.developers?.cards?.tutorialsButton ?? "View Tutorials",
     },
     {
-      title: t?.pages?.developers?.cards?.quickStartTitle ?? "Quick Start Guide",
+      title:
+        t?.pages?.developers?.cards?.quickStartTitle ?? "Quick Start Guide",
       content:
         t?.pages?.developers?.cards?.quickStartContent ??
         "Get up and running with Zcash development quickly. Learn installation, configuration, and basic operations.",
@@ -92,41 +97,33 @@ export default function DeveloperPage() {
           />
         </svg>
       ), // SVG for "Quick Start Guide"
-      buttonText: t?.pages?.developers?.cards?.quickStartButton ?? "Quick Start Guide",
+      buttonText:
+        t?.pages?.developers?.cards?.quickStartButton ?? "Quick Start Guide",
     },
   ];
 
   return (
     <>
       {/* Hero Section */}
-      <div
-        className="min-h-[50vh] flex flex-col md:flex-row"
-        style={{
-          backgroundImage: `url('zecbg.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="w-full md:w-1/2 h-[50vh] relative">
-          <div className="absolute inset-0 bg-white bg-opacity-50"></div>
-
-          <div className="absolute inset-0 flex flex-col items-start justify-center p-8 text-black max-w-md mx-auto md:ml-16">
-            <h1 className="text-2xl md:text-5xl font-bold mb-4">{t?.pages?.developers?.heroTitle ?? 'Developers'}</h1>
-            <h2 className="text-4xl md:text-3xl font-semibold mb-4">
-              {t?.pages?.developers?.heroSubtitle ?? 'Zcash Developer Resources'}
-            </h2>
-            <p className="text-lg md:text-xl">
-              {t?.pages?.developers?.heroDescription ?? 'A builders manual for Zcash. By builders, for builders.'}
-            </p>
-          </div>
-        </div>
+      <div className="flex 2xl:h-[60vh] flex-col md:flex-row relative overflow-hidden">
+        <img
+          src="/developer_resources_white.jpg"
+          alt="Zcash Developer Resources"
+          className=" inset-0 w-full h-full object-contain 2xl:object-cover dark:hidden"
+        />
+        <img
+          src="/developer_resources_dark.jpg"
+          alt="Zcash Developer Resources"
+          className=" inset-0 w-full h-full object-contain 2xl:object-cover hidden dark:block"
+        />
       </div>
 
       {/* Cards Section */}
       <section id="cardLinks" className="bg-gray-100 dark:bg-gray-800 py-12">
         <div className="container mx-auto px-8">
           <h2 className="text-4xl font-bold mb-12">
-            {t?.pages?.developers?.cardSectionTitle ?? 'How would you like to get started?'}
+            {t?.pages?.developers?.cardSectionTitle ??
+              "How would you like to get started?"}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -164,23 +161,27 @@ export default function DeveloperPage() {
       >
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12">
-            {t?.pages?.developers?.exploreDocsTitle ?? 'Explore the Documentation'}
+            {t?.pages?.developers?.exploreDocsTitle ??
+              "Explore the Documentation"}
           </h2>
 
           <div className="flex flex-col md:flex-row gap-8">
             {/* Introductions Column */}
             <div className="flex-1">
-              <h3 className="text-3xl font-semibold mb-4">{t?.pages?.developers?.introductionsTitle ?? 'Introductions'}</h3>
+              <h3 className="text-3xl font-semibold mb-4">
+                {t?.pages?.developers?.introductionsTitle ?? "Introductions"}
+              </h3>
               <ul className="space-y-3">
                 <li>
                   <a
-                      href="https://zechub.wiki/start-here/what-is-zec-and-zcash#content"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      {t?.pages?.developers?.introLinks?.introToZcash || 'Intro to Zcash'}
-                    </a>
+                    href="https://zechub.wiki/start-here/what-is-zec-and-zcash#content"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.introLinks?.introToZcash ||
+                      "Intro to Zcash"}
+                  </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Learn about Zcash, its history, and its core principles.
                   </p>
@@ -193,7 +194,8 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    {t?.pages?.developers?.introLinks?.introToZec || 'Intro to ZEC'}
+                    {t?.pages?.developers?.introLinks?.introToZec ||
+                      "Intro to ZEC"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     Discover the use cases and benefits of ZEC, Zcash native
@@ -231,7 +233,7 @@ export default function DeveloperPage() {
                     data to Zcash light clients via gRPC.
                   </p>
                 </li>
- 
+
                 <li>
                   <a
                     href="https://github.com/ZecHub/zechub/blob/main/site/Start_Here/Developer_Resources.md"
@@ -245,13 +247,14 @@ export default function DeveloperPage() {
                     Links to Zcash further Technical Documentation.
                   </p>
                 </li>
-   
               </ul>
             </div>
 
             {/* Fundamentals Column */}
             <div className="flex-1">
-              <h3 className="text-3xl font-semibold mb-4">{t?.pages?.developers?.fundamentalsTitle ?? 'Fundamentals'}</h3>
+              <h3 className="text-3xl font-semibold mb-4">
+                {t?.pages?.developers?.fundamentalsTitle ?? "Fundamentals"}
+              </h3>
               <ul className="space-y-3">
                 <li>
                   <a
@@ -372,7 +375,9 @@ export default function DeveloperPage() {
 
             {/* Advanced Column */}
             <div className="flex-1">
-              <h3 className="text-3xl font-semibold mb-4">{t?.pages?.developers?.advancedTitle ?? 'Advanced'}</h3>
+              <h3 className="text-3xl font-semibold mb-4">
+                {t?.pages?.developers?.advancedTitle ?? "Advanced"}
+              </h3>
               <ul className="space-y-3">
                 <li>
                   <a
@@ -486,7 +491,9 @@ export default function DeveloperPage() {
         className="bg-gray-100 dark:bg-gray-800 py-12 mt-6"
       >
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-4">{t?.pages?.developers?.feedbackTitle ?? 'Was this page helpful?'}</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            {t?.pages?.developers?.feedbackTitle ?? "Was this page helpful?"}
+          </h2>
 
           <div className="flex items-center space-x-4">
             <button
@@ -494,7 +501,7 @@ export default function DeveloperPage() {
               className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300"
             >
               <span>👍</span>
-              <span>{t?.pages?.developers?.feedbackYes ?? 'Yes'}</span>
+              <span>{t?.pages?.developers?.feedbackYes ?? "Yes"}</span>
             </button>
 
             <button
@@ -502,7 +509,7 @@ export default function DeveloperPage() {
               className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
             >
               <span>👎</span>
-              <span>{t?.pages?.developers?.feedbackNo ?? 'No'}</span>
+              <span>{t?.pages?.developers?.feedbackNo ?? "No"}</span>
             </button>
           </div>
 
