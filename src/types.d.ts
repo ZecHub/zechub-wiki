@@ -30,6 +30,8 @@ export interface Sublinks {
 export interface SearchInputProps {
   searchInput: string
   handleSearch: (e: ChangeEvent<HTMLInputElement>) => void
+  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void
+  id?: string
 }
 
 export interface SearchBarProps {
