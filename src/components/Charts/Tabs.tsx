@@ -44,7 +44,7 @@ export const TabsTrigger = ({
   borderBottom,
 }: any) => (
   <button
-    className={`px-3 py-2 text-sm inline-flex flex-shrink-0 font-medium rounded-md transition-colors ${
+    className={`cursor-pointer px-3 py-2 text-sm inline-flex flex-shrink-0 font-medium rounded-md transition-colors ${
       activeTab === value
         ? "bg-background text-foreground shadow-sm"
         : "text-muted-foreground hover:text-slate-600"

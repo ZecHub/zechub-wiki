@@ -95,7 +95,10 @@ export default function FloatingExplore() {
   return (
     <>
       {open && (
-        <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+        <div
+          className="fixed inset-0 z-40 cursor-pointer"
+          onClick={() => setOpen(false)}
+        />
       )}
 
       <div
@@ -149,7 +152,7 @@ export default function FloatingExplore() {
               {isMobile && (
                 <button
                   onClick={() => setOpen(false)}
-                  className="text-2xl leading-none text-muted-foreground hover:text-foreground active:scale-90"
+                  className="cursor-pointer text-2xl leading-none text-muted-foreground hover:text-foreground active:scale-90"
                 >
                   ✕
                 </button>

@@ -178,7 +178,7 @@ function PrivacySetVisualizationChart({
           onClick={() =>
             setViewMode(viewMode === "linear" ? "circular" : "linear")
           }
-          className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors text-sm font-medium"
+          className="cursor-pointer px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors text-sm font-medium"
         >
           Switch to {viewMode === "linear" ? "Circular" : "Linear"} View
         </button>

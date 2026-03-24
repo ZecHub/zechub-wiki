@@ -85,7 +85,7 @@ const NewsLetter: React.FC = () => {
       <div className="space-y-4 md:space-x-4 space-x-2">
         <button
           onClick={() => setSelectedCategory("Ecosystem News")}
-          className={`md:px-6 px-4 py-2 font-semibold rounded-lg ${
+          className={`cursor-pointer md:px-6 px-4 py-2 font-semibold rounded-lg ${
             selectedCategory !== "Ecosystem News"
               ? "bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
               : "bg-[#1984c7] text-white"
@@ -95,7 +95,7 @@ const NewsLetter: React.FC = () => {
         </button>
         <button
           onClick={() => setSelectedCategory("Network Stats")}
-          className={`md:px-6 px-4 py-2 font-semibold rounded-lg ${
+          className={`cursor-pointer md:px-6 px-4 py-2 font-semibold rounded-lg ${
             selectedCategory !== "Network Stats"
               ? "bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
               : "bg-[#1984c7] text-white"
@@ -126,7 +126,7 @@ const NewsLetter: React.FC = () => {
         onClick={handleSubmit}
         className={`mt-4 px-6 py-2 font-semibold rounded-lg ${
           isValidAddress
-            ? "bg-purple-600 text-white hover:bg-purple-700"
+            ? "cursor-pointer bg-purple-600 text-white hover:bg-purple-700"
             : "bg-gray-300 text-gray-500 cursor-not-allowed"
         }`}
         disabled={!isValidAddress || loading}
@@ -146,7 +146,7 @@ const NewsLetter: React.FC = () => {
           </p>
           <button
             onClick={() => downloadQRCode("subscription_qr.png")}
-            className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="cursor-pointer mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             Download QR Code
           </button>
@@ -180,7 +180,7 @@ const NewsLetter: React.FC = () => {
       <div className="mt-16">
         <button
           onClick={() => setShowUnsubscribe(!showUnsubscribe)}
-          className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
+          className="cursor-pointer px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
         >
           {showUnsubscribe ? "Cancel Unsubscribe" : "Unsubscribe"}
         </button>
@@ -197,7 +197,7 @@ const NewsLetter: React.FC = () => {
           />
           <button
             onClick={handleUnsubscribe}
-            className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
+            className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 disabled:cursor-not-allowed cursor-pointer"
             disabled={!isValidUnsubAddress}
           >
             Confirm Unsubscribe
@@ -210,7 +210,7 @@ const NewsLetter: React.FC = () => {
               />
               <button
                 onClick={() => downloadQRCode("unsubscribe_qr.png")}
-                className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="cursor-pointer mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
               >
                 Download QR Code
               </button>

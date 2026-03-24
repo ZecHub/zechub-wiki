@@ -498,7 +498,7 @@ export default function DeveloperPage() {
           <div className="flex items-center space-x-4">
             <button
               onClick={() => handleFeedback(true)}
-              className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300"
+              className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer"
             >
               <span>👍</span>
               <span>{t?.pages?.developers?.feedbackYes ?? "Yes"}</span>
@@ -506,7 +506,7 @@ export default function DeveloperPage() {
 
             <button
               onClick={() => handleFeedback(false)}
-              className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
+              className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300 cursor-pointer"
             >
               <span>👎</span>
               <span>{t?.pages?.developers?.feedbackNo ?? "No"}</span>

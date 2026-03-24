@@ -230,7 +230,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
           {tabs.map((tab) => (
             <Button
               key={tab.key}
-              className={`px-6 py-2.5 md:px-9 md:py-3.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-sm md:text-base flex-1 md:flex-none min-w-[140px] md:min-w-0 justify-center bg-slate-100 dark:bg-slate-800 ${
+              className={`cursor-pointer px-6 py-2.5 md:px-9 md:py-3.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-sm md:text-base flex-1 md:flex-none min-w-[140px] md:min-w-0 justify-center bg-slate-100 dark:bg-slate-800 ${
                 currentView === tab.key
                   ? "bg-purple-700 text-white shadow-lg dark:bg-purple-800 hover:bg-purple-700 hover:cursor-pointer"
                   : "text-slate-700 dark:text-slate-300 hover:bg-purple-700 dark:hover:bg-purple-800 hover:text-white"
@@ -250,7 +250,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
         >
           <Button
             size="icon"
-            className="bg-purple-600 hover:bg-purple-700 text-white h-11 w-11 rounded-2xl shadow-lg"
+            className="cursor-pointer bg-purple-600 hover:bg-purple-700 text-white h-11 w-11 rounded-2xl shadow-lg"
             onClick={() => setOpen(!open)}
             title={t?.shieldedNetworks || "Shielded Networks"}
           >
@@ -297,7 +297,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
                   <Button
                     key={ch.value}
                     variant="ghost"
-                    className={`px-6 py-2 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base hover:text-black dark:text-white  ${
+                    className={`cursor-pointer px-6 py-2 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base hover:text-black dark:text-white  ${
                       currentChannel === ch.value
                         ? "bg-purple-700 shadow-sm hover:bg-purple-600 hover:text-white text-white"
                         : "hover:text-white hover:bg-purple-700"
@@ -371,7 +371,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
               <div className="inline-flex bg-slate-100 dark:bg-slate-800 rounded-3xl p-1 shadow-inner flex-wrap">
                 <Button
                   variant="ghost"
-                  className={`px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${subView === "top" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
+                  className={`cursor-pointer px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${subView === "top" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
                   onClick={() => {
                     setSubView("top");
                     setLatestSortByViews(false);
@@ -381,7 +381,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
                 </Button>
                 <Button
                   variant="ghost"
-                  className={`px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${subView === "latest" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
+                  className={`cursor-pointer px-6 py-2.5 md:px-8 md:py-3 rounded-3xl font-medium transition-all text-sm md:text-base ${subView === "latest" ? "bg-purple-700 text-white shadow-sm" : "hover:bg-purple-100 dark:hover:bg-purple-950"}`}
                   onClick={() => setSubView("latest")}
                 >
                   {t?.latest15Videos || "Latest 15 Videos"}
@@ -396,7 +396,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
                   variant="outline"
                   size="sm"
                   onClick={() => setLatestSortByViews(!latestSortByViews)}
-                  className="px-6 py-2 text-sm"
+                  className="cursor-pointer px-6 py-2 text-sm"
                 >
                   {latestSortByViews
                     ? t?.sortByNewest || "↩ Sort by Newest"

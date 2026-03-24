@@ -211,19 +211,19 @@ function DaoTreasuryTab() {
                 onClick={() =>
                   setSelectedAssets(new Set(DEFAULT_COINS.map((c) => c.ticker)))
                 }
-                className="px-3 py-1 rounded bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
+                className="cursor-pointer px-3 py-1 rounded bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
               >
                 Reset
               </button>
               <button
                 onClick={() => setSelectedAssets(new Set(allTickers))}
-                className="px-3 py-1 rounded bg-muted hover:bg-muted/80 transition-colors"
+                className="cursor-pointer px-3 py-1 rounded bg-muted hover:bg-muted/80 transition-colors"
               >
                 Select All
               </button>
               <button
                 onClick={() => setSelectedAssets(new Set())}
-                className="px-3 py-1 rounded bg-muted hover:bg-muted/80 transition-colors"
+                className="cursor-pointer px-3 py-1 rounded bg-muted hover:bg-muted/80 transition-colors"
               >
                 Clear
               </button>
@@ -383,7 +383,7 @@ export default function TreasuryTab() {
           <button
             key={seg.key}
             onClick={() => setActive(seg.key)}
-            className={`group relative flex flex-col items-start gap-1 rounded-2xl border px-5 py-4 text-left transition-all duration-200 ${
+            className={`group cursor-pointer relative flex flex-col items-start gap-1 rounded-2xl border px-5 py-4 text-left transition-all duration-200 ${
               active === seg.key
                 ? "border-purple-500 bg-purple-50 dark:bg-purple-950/30 shadow-sm"
                 : "border-slate-200 dark:border-slate-700 bg-card hover:border-purple-300 dark:hover:border-purple-700 hover:bg-muted/40"

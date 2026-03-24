@@ -8,7 +8,7 @@ export const NotificationIcon = (props: NotificationIconProps) => {
     <>
       <svg
         onClick={props.handleOnClick}
-        className='w-8 h-8 text-gray-800 dark:text-white'
+        className='w-8 h-8 cursor-pointer text-gray-800 dark:text-white'
         aria-hidden='true'
         xmlns='http://www.w3.org/2000/svg'
         fill={props.fillColor}

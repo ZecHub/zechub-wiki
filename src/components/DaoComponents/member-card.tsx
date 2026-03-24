@@ -91,13 +91,13 @@ export default function MemberCard({ member }: MemberCardProps) {
               <div className="flex gap-3 mt-auto">
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="flex-1 px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg text-sm font-medium transition-all duration-300"
+                  className="flex-1 cursor-pointer px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg text-sm font-medium transition-all duration-300"
                 >
                   Read More
                 </button>
                 <button
                   onClick={handleFlip}
-                  className="flex-1 px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg text-sm font-medium transition-all duration-300"
+                  className="flex-1 cursor-pointer px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg text-sm font-medium transition-all duration-300"
                 >
                   Message
                 </button>
@@ -140,13 +140,13 @@ export default function MemberCard({ member }: MemberCardProps) {
                     handleFlip();
                     setMessage("");
                   }}
-                  className="px-4 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800 transition-all"
+                  className="cursor-pointer px-4 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800 transition-all"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleSend}
-                  className="px-4 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 transition-all"
+                  className="cursor-pointer px-4 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 transition-all"
                 >
                   Send
                 </button>

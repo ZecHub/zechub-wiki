@@ -23,7 +23,7 @@ export function GrantCard(props: Props) {
       </div>
       <button
         onClick={() => setExpanded(!expanded)}
-        className="mt-4 text-sm font-medium dark:text-slate-300 text-slate-500 dark:hover:bg-primary/5 bg-slate-300 dark:bg-inherit  border border-slate-400 dark:border-primary/50 p-2 rounded-md"
+        className="mt-4 cursor-pointer text-sm font-medium dark:text-slate-300 text-slate-500 dark:hover:bg-primary/5 bg-slate-300 dark:bg-inherit  border border-slate-400 dark:border-primary/50 p-2 rounded-md"
       >
         {expanded ? "Hide milestones" : "View milestone"}
       </button>
