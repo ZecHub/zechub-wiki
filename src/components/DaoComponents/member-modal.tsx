@@ -51,7 +51,7 @@ export default function MemberModal({
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
+        className="fixed inset-0 cursor-pointer bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
         onClick={handleClose}
         aria-hidden="true"
       />
@@ -75,7 +75,7 @@ export default function MemberModal({
                 {/* Close button */}
                 <button
                   onClick={handleClose}
-                  className="absolute top-4 right-4 text-slate-400  hover:text-blue-600 dark:hover:text-amber-400 transition-colors"
+                  className="absolute top-4 right-4 cursor-pointer text-slate-400  hover:text-blue-600 dark:hover:text-amber-400 transition-colors"
                   aria-label="Close modal"
                 >
                   <svg
@@ -115,13 +115,13 @@ export default function MemberModal({
                   <div className="flex gap-3 w-full">
                     <button
                       onClick={handleClose}
-                      className="flex-1 px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg font-medium transition-all duration-300"
+                      className="flex-1 cursor-pointer px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg font-medium transition-all duration-300"
                     >
                       Close
                     </button>
                     <button
                       onClick={handleFlip}
-                      className="flex-1 px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 rounded-lg font-medium transition-all duration-300"
+                      className="flex-1 cursor-pointer px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 rounded-lg font-medium transition-all duration-300"
                     >
                       Message
                     </button>
@@ -142,7 +142,7 @@ export default function MemberModal({
                 {/* Close button */}
                 <button
                   onClick={handleClose}
-                  className="absolute top-4 right-4 text-slate-400 hover:text-blue-600 dark:hover:text-amber-400 transition-colors"
+                  className="absolute top-4 right-4 cursor-pointer text-slate-400 hover:text-blue-600 dark:hover:text-amber-400 transition-colors"
                   aria-label="Close modal"
                 >
                   <svg
@@ -184,13 +184,13 @@ export default function MemberModal({
                         handleFlip();
                         setMessage("");
                       }}
-                      className="px-4 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-red-300 transition-all"
+                      className="cursor-pointer px-4 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-red-300 transition-all"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={handleSend}
-                      className="px-4 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-green-300 transition-all"
+                      className="cursor-pointer px-4 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-green-300 transition-all"
                     >
                       Send
                     </button>

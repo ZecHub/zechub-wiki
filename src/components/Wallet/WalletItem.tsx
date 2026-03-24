@@ -190,10 +190,10 @@ const WalletItem: React.FC<WalletItemProps> = ({
         <div className="text-pink-700 dark:text-red-300 text-xs pr-2">{error}</div>
         <div className="text-green-700 dark:text-green-300 text-xs pr-2">{success}</div>
         <div className="flex gap-4">
-          <button onClick={handleLike} className={`text-gray-600 hover:text-blue-500 ${liked ? "text-blue-500" : ""}`}>
+          <button onClick={handleLike} className={`cursor-pointer text-gray-600 hover:text-blue-500 ${liked ? "text-blue-500" : ""}`}>
             <Icon icon={Like} size="small" />
           </button>
-          <button onClick={handleDislike} className={`text-gray-600 hover:text-red-500 ${disliked ? "text-red-500" : ""}`}>
+          <button onClick={handleDislike} className={`cursor-pointer text-gray-600 hover:text-red-500 ${disliked ? "text-red-500" : ""}`}>
             <Icon icon={Dislike} size="small" />
           </button>
         </div>
