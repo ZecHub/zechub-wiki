@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import FloatingExplore from '@/components/FloatingExplore';
+import AIAssistant from "@/components/AIAssistant";
 import Script from "next/script";
 import "./globals.css";
 
@@ -57,6 +58,7 @@ export default function RootLayout({
               <ProgressBar />
               <Navigation />
               <FloatingExplore />
+              <AIAssistant />
               <div className="flex flex-col justify-between flex-grow">
                 <div style={{ margin: "0 0 48px 0" }}>{children}</div>
               </div>
