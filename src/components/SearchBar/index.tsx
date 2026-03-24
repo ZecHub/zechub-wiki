@@ -161,7 +161,7 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
                   <button
                     type="button"
                     onClick={onClose}
-                    className="inline-flex shrink-0 rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-white"
+                    className="inline-flex shrink-0 rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-white cursor-pointer"
                     aria-label={t.common?.close || "Close"}
                   >
                     <Icon icon={closeIcon} className="h-5 w-5" />
