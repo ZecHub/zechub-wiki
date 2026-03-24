@@ -44,14 +44,16 @@ function PenumbraChart(props: PenumbraChartProps) {
                   setSelectedTokenId(e);
                 }}
               >
-                <SelectTrigger className="w-48">
+                <SelectTrigger className="w-48 cursor-pointer">
                   <SelectValue placeholder="All Tokens" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Tokens</SelectItem>
+                  <SelectItem value="all" className="cursor-pointer">
+                    All Tokens
+                  </SelectItem>
                   {[].length > 0 &&
                     [].map((token) => (
-                      <SelectItem key={token} value={token}>
+                      <SelectItem key={token} value={token} className="cursor-pointer">
                         {token}
                       </SelectItem>
                     ))}

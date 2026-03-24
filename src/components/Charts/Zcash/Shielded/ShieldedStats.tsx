@@ -478,7 +478,7 @@ function ShieldedStats({ chartRef }: ShieldedStatsProps) {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key as any)}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                className={`cursor-pointer px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
                   activeTab === tab.key
                     ? "bg-blue-500 text-white"
                     : "text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"

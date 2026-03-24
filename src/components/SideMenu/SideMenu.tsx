@@ -56,7 +56,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
 
   return (
     <div className="relative flex flex-wrap items-center xl:items-start order-1 justify-between xl:flex-col">
-      <button onClick={toggleMenu} className="xl:hidden flex">
+      <button onClick={toggleMenu} className="xl:hidden flex cursor-pointer">
         <BurgerMenuIcon size={24} />{" "}
         <h3 className="ms-2 font-bold">Navigation</h3>
       </button>

@@ -159,7 +159,7 @@ const TabButton = ({
 }) => (
   <button
     onClick={onClick}
-    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+    className={`cursor-pointer px-4 py-2 text-sm font-medium rounded-lg transition-all ${
       active
         ? "bg-blue-600 text-white shadow-md"
         : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
