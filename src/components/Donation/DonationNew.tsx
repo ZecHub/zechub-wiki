@@ -126,7 +126,7 @@ const DonationComp = () => {
           >
             <button
               onClick={() => handleOnClick("zcash")}
-              className={selectedCurrency === "zcash" ? "active" : ""}
+              className={`${selectedCurrency === "zcash" ? "active" : ""} cursor-pointer`}
               style={{
                 borderRadius: "50%",
                 padding: "10px",
@@ -147,7 +147,7 @@ const DonationComp = () => {
 
             <button
               onClick={() => handleOnClick("ycash")}
-              className={selectedCurrency === "ycash" ? "active" : ""}
+              className={`${selectedCurrency === "ycash" ? "active" : ""} cursor-pointer`}
               style={{
                 borderRadius: "50%",
                 padding: "10px",
@@ -168,7 +168,7 @@ const DonationComp = () => {
 
             <button
               onClick={() => handleOnClick("namada")}
-              className={selectedCurrency === "namada" ? "active" : ""}
+              className={`${selectedCurrency === "namada" ? "active" : ""} cursor-pointer`}
               style={{
                 borderRadius: "50%",
                 padding: "10px",
@@ -194,7 +194,7 @@ const DonationComp = () => {
 
             <button
               onClick={() => handleOnClick("penumbra")}
-              className={selectedCurrency === "penumbra" ? "active" : ""}
+              className={`${selectedCurrency === "penumbra" ? "active" : ""} cursor-pointer`}
               style={{
                 borderRadius: "50%",
                 padding: "10px",

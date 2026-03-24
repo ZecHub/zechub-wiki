@@ -95,7 +95,7 @@ export default function GovernanceGuide() {
                 <div className="flex-1">
                   <h3 className="font-semibold mb-2 text-slate-900 dark:text-white">View Open Proposals</h3>
                   <p className="text-slate-600 dark:text-slate-300 mb-3">Check out current proposals and voting opportunities</p>
-                  <button className="border py-2 px-3 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500 text-slate-900 dark:text-white">
+                  <button className="cursor-pointer border py-2 px-3 rounded-md hover:bg-yellow-300 dark:hover:bg-yellow-500 text-slate-900 dark:text-white">
                     <Link href="https://vote.zechub.xyz" target="_blank" rel="noopener noreferrer" className="flex items-center">
                       <MdHowToVote className="h-4 w-4 mr-2" /> Visit Voting Portal
                     </Link>
@@ -213,7 +213,7 @@ export default function GovernanceGuide() {
                 <div className="flex-1">
                   <h3 className="font-semibold mb-2 text-slate-900 dark:text-white">Submit on Voting Portal</h3>
                   <p className="text-slate-600 dark:text-slate-300">Use the official ZecHub voting site to create your proposal</p>
-                  <button className="border py-2 px-3 rounded-md hover:bg-purple-300 dark:hover:bg-purple-700 text-slate-900 dark:text-white mt-3">
+                  <button className="cursor-pointer border py-2 px-3 rounded-md hover:bg-purple-300 dark:hover:bg-purple-700 text-slate-900 dark:text-white mt-3">
                     <Link href="https://vote.zechub.xyz" target="_blank" className="flex items-center">
                       Submit Now <FaExternalLinkAlt className="ml-2" />
                     </Link>
@@ -232,14 +232,14 @@ export default function GovernanceGuide() {
           <button
             onClick={() => setStep(Math.max(0, step - 1))}
             disabled={step === 0}
-            className="flex items-center gap-2 px-6 py-3 border rounded-xl disabled:opacity-50 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+            className="cursor-pointer flex items-center gap-2 px-6 py-3 border rounded-xl disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
           >
             <FaArrowLeft /> Previous
           </button>
           <button
             onClick={() => setStep(Math.min(2, step + 1))}
             disabled={step === 2}
-            className="flex items-center gap-2 px-6 py-3 border rounded-xl disabled:opacity-50 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+            className="cursor-pointer flex items-center gap-2 px-6 py-3 border rounded-xl disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
           >
             Next <FaArrowRight />
           </button>

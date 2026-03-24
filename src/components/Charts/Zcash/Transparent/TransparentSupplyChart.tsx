@@ -1,12 +1,5 @@
 import DefaultSelect from "@/components/DefaultSelect";
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/UI/shadcn/select";
 import { useInMobile } from "@/hooks/useInMobile";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
