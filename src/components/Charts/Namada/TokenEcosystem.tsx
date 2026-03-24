@@ -122,11 +122,13 @@ export default function TokenEcosystem(props: TokenEcosystemProps) {
             value={props.selectedTokenId}
             onValueChange={props.setSelectedTokenId}
           >
-            <SelectTrigger className="w-48 border dark:border-slate-700">
+            <SelectTrigger className="w-48 cursor-pointer border dark:border-slate-700">
               <SelectValue placeholder="All Tokens" />
             </SelectTrigger>
             <SelectContent className="border dark:border-slate-700">
-              <SelectItem value="all">All Tokens</SelectItem>
+              <SelectItem value="all" className="cursor-pointer">
+                All Tokens
+              </SelectItem>
               {tokenIds.map((token) => (
                 <SelectItem
                   key={token}
