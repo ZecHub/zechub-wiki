@@ -1,34 +1,47 @@
 "use client";
 import { SearchInputProps } from "@/types";
-import { IoSearch as searchIcon } from "react-icons/io5";
-import { Icon } from "../UI/Icon";
+import { Search } from "lucide-react";
+import { forwardRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 
-export const SearchInput = ({
-  searchInput,
-  handleSearch,
-}: SearchInputProps) => {
-  const { t } = useLanguage();
-  
-  return (
-    <form className="flex items-center w-50 max-w-sm mx-auto">
-      <label htmlFor="simple-search" className="sr-only">
-        {t.common?.search || "Search"}
-      </label>
-      <div className="relative w-full">
-        {/* Removed the div containing the unwanted icon */}
-        <input
-          type="text"
-          id="simple-search"
-          value={searchInput}
-          onChange={handleSearch}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder={`${t.common?.search || "Search"}...`}
-        />
-      </div>
-      <button className="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        <Icon icon={searchIcon} onClick={() => {}} />
-      </button>
-    </form>
-  );
-};
+export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
+  ({ searchInput, handleSearch, onKeyDown, id = "wiki-search-input" }, ref) => {
+    const { t } = useLanguage();
+    const label = t.common?.search || "Search";
+
+    return (
+      <form
+        role="search"
+        className="w-full"
+        onSubmit={(e) => e.preventDefault()}
+      >
+        <label htmlFor={id} className="sr-only">
+          {label}
+        </label>
+        <div className="relative">
+          <Search
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400 dark:text-slate-500"
+            aria-hidden
+          />
+          <input
+            ref={ref}
+            type="search"
+            id={id}
+            name="q"
+            autoComplete="off"
+            autoCorrect="off"
+            spellCheck={false}
+            value={searchInput}
+            onChange={handleSearch}
+            onKeyDown={onKeyDown}
+            className="block w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none ring-0 transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 dark:border-slate-600 dark:bg-slate-800/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:bg-slate-900 dark:focus:ring-blue-400/25"
+            placeholder={`${label}…`}
+            aria-describedby="wiki-search-hint"
+          />
+        </div>
+      </form>
+    );
+  },
+);
+
+SearchInput.displayName = "SearchInput";
