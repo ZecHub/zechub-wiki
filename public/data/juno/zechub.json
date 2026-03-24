@@ -5982,10 +5982,10 @@
           "title": "Zcash Ecosystem Onboarding Proposal – Women in DeFi Summit 2026",
           "votes": {
             "no": "5",
-            "yes": "6",
+            "yes": "8",
             "abstain": "1"
           },
-          "status": "open",
+          "status": "rejected",
           "proposer": "juno1tldl44lqjdrq6lkcdf5rzxjjddxa6v2wdxafjs",
           "threshold": {
             "threshold_quorum": {
