@@ -1,33 +1,33 @@
 [
     {
+        "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
+        "video_id": "he_j9O5INVk",
+        "views": 45
+    },
+    {
+        "title": "Zcomm: Designing Engaging Workshops & Roundtables: Tools for Inclusive, Action-Driven Sessions #DWeb",
+        "video_id": "m20tP1iqBRQ",
+        "views": 57
+    },
+    {
+        "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
+        "video_id": "2zmtTwrHUXA",
+        "views": 60
+    },
+    {
+        "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
+        "video_id": "DU7wIy3Ywm4",
+        "views": 126
+    },
+    {
         "title": "Zcash Arborist Call 03-19-2026",
         "video_id": "LtdKAhi6l7s",
-        "views": 115
+        "views": 124
     },
     {
         "title": "Zcash Arborist Call 03-05-2026",
         "video_id": "uBsaOLUepB0",
         "views": 126
-    },
-    {
-        "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
-        "video_id": "he_j9O5INVk",
-        "views": 0
-    },
-    {
-        "title": "Zcomm: Designing Engaging Workshops & Roundtables: Tools for Inclusive, Action-Driven Sessions #DWeb",
-        "video_id": "m20tP1iqBRQ",
-        "views": 0
-    },
-    {
-        "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
-        "video_id": "2zmtTwrHUXA",
-        "views": 0
-    },
-    {
-        "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
-        "video_id": "DU7wIy3Ywm4",
-        "views": 0
     },
     {
         "title": "Zcash Arborist Call 02-19-2026",
@@ -257,7 +257,7 @@
     {
         "title": "The [Private, Shielded] Path to Better Payments with Trevor Filter from Flexa - ZconVI #zcash",
         "video_id": "b05GsvcV5BI",
-        "views": 1083
+        "views": 1084
     },
     {
         "title": "Zashi: A Year in Review & Roadmap with Andrea Kobrlova and Josh Swihart - ZconVI #zcash",
@@ -852,7 +852,7 @@
     {
         "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
         "video_id": "eero6i2WTxo",
-        "views": 769
+        "views": 770
     },
     {
         "title": "How to Build a Shielded Address Zcash Mobile App by Paul Puey: Zcon4",
@@ -977,12 +977,12 @@
     {
         "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
         "video_id": "fgkFrxiB14g",
-        "views": 151
+        "views": 152
     },
     {
         "title": "Zebra Update with Pili Guerra and Arya Solhi: Zcon4",
         "video_id": "g20gtpNcIgE",
-        "views": 62
+        "views": 63
     },
     {
         "title": "Free2Z Caterpillars with Jonathan Bird and Skylar Saveland: Zcon4",
@@ -992,7 +992,7 @@
     {
         "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
         "video_id": "hdd5X2z7O3o",
-        "views": 272
+        "views": 273
     },
     {
         "title": "State of Legislation, Regulation and Policy with Jack Gavigan, Paul Brigner, and Kurt Opsahl: Zcon4",
@@ -1057,7 +1057,7 @@
     {
         "title": "Zebra",
         "video_id": "142IudaOXUU",
-        "views": 215
+        "views": 216
     },
     {
         "title": "AMA with ZF Executive Director Jack Gavigan",
@@ -1137,7 +1137,7 @@
     {
         "title": "Arti: ZF + ZCG Call w/ the Tor Project",
         "video_id": "E7g9dKBOYEI",
-        "views": 500
+        "views": 501
     },
     {
         "title": "Free2z: Peer-to-Peer Giving - Skylar Saveland & Jonathan Bird at Zcon3",
@@ -1162,7 +1162,7 @@
     {
         "title": "Governance Panel at Zcon3",
         "video_id": "TdlcNU5TXy8",
-        "views": 203
+        "views": 204
     },
     {
         "title": "Agoric: Zcon Overview with Dean Tribble: Zcon3",
@@ -1222,7 +1222,7 @@
     {
         "title": "Peter Van Valkenburgh, of Coin Center, on the OFAC Tornado Cash SDN listing at Zcon3",
         "video_id": "XpTrCA3tEKM",
-        "views": 7688
+        "views": 7689
     },
     {
         "title": "Advancing Human Rights With Tor - Isabela Fernandes at Zcon3",
@@ -1257,7 +1257,7 @@
     {
         "title": "Motivations of Proof of Stake: Zooko Wilcox at Zcon3",
         "video_id": "IB9Vh1kEeWs",
-        "views": 1388
+        "views": 1389
     },
     {
         "title": "Protecting Civil Liberties With Privacy-Enhancing Technology - Kurt Opsahl at Zcon3",
@@ -1412,7 +1412,7 @@
     {
         "title": "Opening Address: #Zcon2Lite",
         "video_id": "jyZDUcLbUtc",
-        "views": 669
+        "views": 670
     },
     {
         "title": "Fireside Chat: #Zcon2Lite",
@@ -1592,7 +1592,7 @@
     {
         "title": "ZKVM: Fast, Confidential Smart Contracts",
         "video_id": "J9OGAwt_f_c",
-        "views": 1368
+        "views": 1369
     },
     {
         "title": "Tips and Tricks for Improved User Experience with ZKPs - Bryant Eisenbach",
