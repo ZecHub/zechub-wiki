@@ -2,7 +2,7 @@
   {
     "title": "Peter Van Valkenburgh, of Coin Center, on the OFAC Tornado Cash SDN listing at Zcon3",
     "video_id": "XpTrCA3tEKM",
-    "views": 7688
+    "views": 7689
   },
   {
     "title": "ZK Rollup: Ethereum Scalability with ZKPs - Alex Gluchowski",
@@ -57,7 +57,7 @@
   {
     "title": "Motivations of Proof of Stake: Zooko Wilcox at Zcon3",
     "video_id": "IB9Vh1kEeWs",
-    "views": 1388
+    "views": 1389
   },
   {
     "title": "Zcash Protocol Hangout  Halo: Jan 14, 2021",
@@ -72,7 +72,7 @@
   {
     "title": "ZKVM: Fast, Confidential Smart Contracts",
     "video_id": "J9OGAwt_f_c",
-    "views": 1368
+    "views": 1369
   },
   {
     "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
@@ -112,7 +112,7 @@
   {
     "title": "The [Private, Shielded] Path to Better Payments with Trevor Filter from Flexa - ZconVI #zcash",
     "video_id": "b05GsvcV5BI",
-    "views": 1083
+    "views": 1084
   },
   {
     "title": "User Defined Assets (UDAs): #Zcon2Lite",
@@ -187,7 +187,7 @@
   {
     "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
     "video_id": "eero6i2WTxo",
-    "views": 769
+    "views": 770
   },
   {
     "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
@@ -232,7 +232,7 @@
   {
     "title": "Opening Address: #Zcon2Lite",
     "video_id": "jyZDUcLbUtc",
-    "views": 669
+    "views": 670
   },
   {
     "title": "Opening Remarks at Zcon0 (2018) by Josh Cincinnati",
@@ -307,7 +307,7 @@
   {
     "title": "Arti: ZF + ZCG Call w/ the Tor Project",
     "video_id": "E7g9dKBOYEI",
-    "views": 500
+    "views": 501
   },
   {
     "title": "ECC Update with Josh Swihart - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -705,14 +705,14 @@
     "views": 273
   },
   {
-    "title": "Zcash Foundation Community Call: Nominees for ZF Board Nov 2024",
-    "video_id": "zKxVZa-SMTA",
+    "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
+    "video_id": "hdd5X2z7O3o",
     "views": 273
   },
   {
-    "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
-    "video_id": "hdd5X2z7O3o",
-    "views": 272
+    "title": "Zcash Foundation Community Call: Nominees for ZF Board Nov 2024",
+    "video_id": "zKxVZa-SMTA",
+    "views": 273
   },
   {
     "title": "Regulatory Perspective-Peter Van Valkenburgh, Paul Brigner, Kurt Opsahl, JW Verret, & Michele Korver",
@@ -870,6 +870,11 @@
     "views": 217
   },
   {
+    "title": "Zebra",
+    "video_id": "142IudaOXUU",
+    "views": 216
+  },
+  {
     "title": "ZecHub Zcash Education with Tecnopapapi, Dismad, & Squirrel - ZconV: Zcash Unified 2024 #Zcash #ZEC",
     "video_id": "fgtNXWM57UE",
     "views": 216
@@ -883,11 +888,6 @@
     "title": "Zcash Arborist Call 01-22-2026",
     "video_id": "zVu2yxxUMCs",
     "views": 216
-  },
-  {
-    "title": "Zebra",
-    "video_id": "142IudaOXUU",
-    "views": 215
   },
   {
     "title": "Design a Proof Of Solvency protocol with Halo2 Workshop by Enrico: Zcon4",
@@ -945,14 +945,14 @@
     "views": 205
   },
   {
-    "title": "To Bridge or Not to Bridge: What's at Stake? with Christopher Goes - ZconV: Zcash Unified 2024",
-    "video_id": "4aXhn4MizqE",
+    "title": "Governance Panel at Zcon3",
+    "video_id": "TdlcNU5TXy8",
     "views": 204
   },
   {
-    "title": "Governance Panel at Zcon3",
-    "video_id": "TdlcNU5TXy8",
-    "views": 203
+    "title": "To Bridge or Not to Bridge: What's at Stake? with Christopher Goes - ZconV: Zcash Unified 2024",
+    "video_id": "4aXhn4MizqE",
+    "views": 204
   },
   {
     "title": "Community Call with ZCG Candidates 12/17/2024",
@@ -1200,14 +1200,14 @@
     "views": 153
   },
   {
-    "title": "Zcash Arborist Call 6/27/24",
-    "video_id": "KtVvt3lis6o",
+    "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
+    "video_id": "fgkFrxiB14g",
     "views": 152
   },
   {
-    "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
-    "video_id": "fgkFrxiB14g",
-    "views": 151
+    "title": "Zcash Arborist Call 6/27/24",
+    "video_id": "KtVvt3lis6o",
+    "views": 152
   },
   {
     "title": "Marketing ZEC - Chris Tomeo at Zcon3",
@@ -1420,6 +1420,16 @@
     "views": 126
   },
   {
+    "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
+    "video_id": "DU7wIy3Ywm4",
+    "views": 126
+  },
+  {
+    "title": "Zcash Arborist Call 03-19-2026",
+    "video_id": "LtdKAhi6l7s",
+    "views": 124
+  },
+  {
     "title": "The GDPR and Privacy Impact of Using Zcash Shielded Transactions for SaaS - Silvan Jongerius",
     "video_id": "sJGWLlGDccM",
     "views": 123
@@ -1472,11 +1482,6 @@
   {
     "title": "Zcash Arborist Call 10/31/2024",
     "video_id": "aNXZ9ctjW-w",
-    "views": 115
-  },
-  {
-    "title": "Zcash Arborist Call 03-19-2026",
-    "video_id": "LtdKAhi6l7s",
     "views": 115
   },
   {
@@ -1720,14 +1725,14 @@
     "views": 63
   },
   {
-    "title": "Cryptocurrency and Privacy in Turkiye with Batuhan yıldırım dubbed in English- ZconVI #zcash",
-    "video_id": "BZi8_edAuBw",
+    "title": "Zebra Update with Pili Guerra and Arya Solhi: Zcon4",
+    "video_id": "g20gtpNcIgE",
     "views": 63
   },
   {
-    "title": "Zebra Update with Pili Guerra and Arya Solhi: Zcon4",
-    "video_id": "g20gtpNcIgE",
-    "views": 62
+    "title": "Cryptocurrency and Privacy in Turkiye with Batuhan yıldırım dubbed in English- ZconVI #zcash",
+    "video_id": "BZi8_edAuBw",
+    "views": 63
   },
   {
     "title": "Zcash Arborist Call 8/24/23",
@@ -1745,9 +1750,19 @@
     "views": 60
   },
   {
+    "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
+    "video_id": "2zmtTwrHUXA",
+    "views": 60
+  },
+  {
     "title": "Update on Crypto-Blockchain Policy Issues around the World with Kurt Opsahl- ZconV: Zcash Unified",
     "video_id": "50ogTrxWFIE",
     "views": 59
+  },
+  {
+    "title": "Zcomm: Designing Engaging Workshops & Roundtables: Tools for Inclusive, Action-Driven Sessions #DWeb",
+    "video_id": "m20tP1iqBRQ",
+    "views": 57
   },
   {
     "title": "Overview, Feedback and Opportunities re the NIST Call for Multi-Party Threshold Cryptography: Zcon4",
@@ -1758,6 +1773,11 @@
     "title": "Zcash Arborist Call 5/16/24",
     "video_id": "9p4uwNEKeJw",
     "views": 53
+  },
+  {
+    "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
+    "video_id": "he_j9O5INVk",
+    "views": 45
   },
   {
     "title": "Free2Z Caterpillars with Jonathan Bird and Skylar Saveland: Zcon4",
@@ -1783,25 +1803,5 @@
     "title": "Become a Creator on Free2z and Publish Your First Page Workshop w/Jonathan Bird and Skylar Saveland",
     "video_id": "_380qP3mHYk",
     "views": 28
-  },
-  {
-    "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
-    "video_id": "DU7wIy3Ywm4",
-    "views": 0
-  },
-  {
-    "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
-    "video_id": "2zmtTwrHUXA",
-    "views": 0
-  },
-  {
-    "title": "Zcomm: Designing Engaging Workshops & Roundtables: Tools for Inclusive, Action-Driven Sessions #DWeb",
-    "video_id": "m20tP1iqBRQ",
-    "views": 0
-  },
-  {
-    "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
-    "video_id": "he_j9O5INVk",
-    "views": 0
   }
 ]
