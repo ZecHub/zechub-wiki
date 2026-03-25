@@ -21,6 +21,7 @@ interface ApiError {
 }
 
 const MAX_MESSAGE_LENGTH = 1000;
+const AI_HISTORY_STORAGE_KEY = "zechub_ai_search_history_v1";
 
 const QUICK_QUESTIONS = [
   "What is Zcash?",
@@ -63,7 +64,7 @@ function CopyButton({ text }: { text: string }) {
     <button
       onClick={handleCopy}
       aria-label="Copy response"
-      className="mt-1 flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 transition-colors cursor-pointer"
+      className="mt-1 flex items-center gap-1 text-[10px] text-slate-500 transition-colors hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 cursor-pointer"
     >
       {copied ? (
         <>
@@ -103,22 +104,22 @@ function MessageBubble({ msg }: { msg: Message }) {
       <div className="max-w-[88%]">
         <div className="flex items-center gap-1.5 mb-1">
           <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#F4B728] text-black text-[9px] font-bold shrink-0">Z</span>
-          <span className="text-[10px] text-zinc-400">ZecHub AI</span>
+          <span className="text-[10px] text-slate-500 dark:text-slate-400">ZecHub AI</span>
         </div>
-        <div className="rounded-2xl rounded-tl-none bg-zinc-800 px-4 py-3 text-sm text-zinc-100 leading-relaxed break-words">
+        <div className="rounded-2xl rounded-tl-none border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 leading-relaxed break-words dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
               p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-              strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
-              em: ({ children }) => <em className="italic text-zinc-300">{children}</em>,
-              h1: ({ children }) => <h1 className="text-base font-bold text-white mt-3 mb-1 first:mt-0">{children}</h1>,
-              h2: ({ children }) => <h2 className="text-sm font-bold text-white mt-3 mb-1 first:mt-0">{children}</h2>,
-              h3: ({ children }) => <h3 className="text-sm font-semibold text-[#F4B728] mt-2 mb-1 first:mt-0">{children}</h3>,
+              strong: ({ children }) => <strong className="font-semibold text-slate-900 dark:text-white">{children}</strong>,
+              em: ({ children }) => <em className="italic text-slate-600 dark:text-slate-300">{children}</em>,
+              h1: ({ children }) => <h1 className="text-base font-bold text-slate-900 dark:text-white mt-3 mb-1 first:mt-0">{children}</h1>,
+              h2: ({ children }) => <h2 className="text-sm font-bold text-slate-900 dark:text-white mt-3 mb-1 first:mt-0">{children}</h2>,
+              h3: ({ children }) => <h3 className="text-sm font-semibold text-blue-700 dark:text-blue-300 mt-2 mb-1 first:mt-0">{children}</h3>,
               ul: ({ children }) => <ul className="mb-2 space-y-0.5 pl-1">{children}</ul>,
               li: ({ children }) => (
                 <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#F4B728]" />
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
                   <span>{children}</span>
                 </li>
               ),
@@ -127,34 +128,34 @@ function MessageBubble({ msg }: { msg: Message }) {
                 const isBlock = className?.includes("language-");
                 if (isBlock) {
                   return (
-                    <code className="block w-full overflow-x-auto rounded-lg bg-zinc-900 border border-zinc-700 px-3 py-2 my-2 font-mono text-xs text-emerald-300 whitespace-pre">
+                    <code className="block w-full overflow-x-auto rounded-lg border border-slate-200 bg-slate-100 px-3 py-2 my-2 font-mono text-xs text-slate-800 whitespace-pre dark:border-slate-600 dark:bg-slate-900 dark:text-emerald-300">
                       {children}
                     </code>
                   );
                 }
                 return (
-                  <code className="rounded bg-zinc-700 px-1.5 py-0.5 font-mono text-xs text-emerald-300">
+                  <code className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-xs text-slate-800 dark:bg-slate-700 dark:text-emerald-300">
                     {children}
                   </code>
                 );
               },
               pre: ({ children }) => (
-                <pre className="my-2 overflow-x-auto rounded-lg bg-zinc-900 border border-zinc-700 px-3 py-2 font-mono text-xs text-emerald-300 whitespace-pre">
+                <pre className="my-2 overflow-x-auto rounded-lg border border-slate-200 bg-slate-100 px-3 py-2 font-mono text-xs text-slate-800 whitespace-pre dark:border-slate-600 dark:bg-slate-900 dark:text-emerald-300">
                   {children}
                 </pre>
               ),
               blockquote: ({ children }) => (
-                <blockquote className="border-l-2 border-[#F4B728] pl-3 my-2 text-zinc-400 italic text-xs">
+                <blockquote className="border-l-2 border-blue-500 pl-3 my-2 text-slate-500 italic text-xs dark:text-slate-400">
                   {children}
                 </blockquote>
               ),
-              hr: () => <hr className="my-2 border-zinc-700" />,
+              hr: () => <hr className="my-2 border-slate-200 dark:border-slate-700" />,
               a: ({ href, children }) => (
                 <a
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#F4B728] underline underline-offset-2 hover:text-yellow-300"
+                  className="text-blue-600 underline underline-offset-2 hover:text-blue-700 dark:text-blue-300 dark:hover:text-blue-200"
                 >
                   {children}
                 </a>
@@ -165,10 +166,10 @@ function MessageBubble({ msg }: { msg: Message }) {
                 </div>
               ),
               th: ({ children }) => (
-                <th className="border border-zinc-700 bg-zinc-900 px-2 py-1 text-left font-semibold text-white">{children}</th>
+                <th className="border border-slate-300 bg-slate-100 px-2 py-1 text-left font-semibold text-slate-900 dark:border-slate-600 dark:bg-slate-800 dark:text-white">{children}</th>
               ),
               td: ({ children }) => (
-                <td className="border border-zinc-700 px-2 py-1 text-zinc-300">{children}</td>
+                <td className="border border-slate-300 px-2 py-1 text-slate-700 dark:border-slate-600 dark:text-slate-300">{children}</td>
               ),
             }}
           >
@@ -181,34 +182,76 @@ function MessageBubble({ msg }: { msg: Message }) {
   );
 }
 
-export default function AIAssistant() {
-  const [isOpen, setIsOpen] = useState(false);
+interface AIAssistantPanelProps {
+  autoSendQuery?: string;
+  autoSendNonce?: number;
+  onLoadingChange?: (isLoading: boolean) => void;
+  onAssistantReply?: () => void;
+}
+
+export default function AIAssistantPanel({
+  autoSendQuery,
+  autoSendNonce,
+  onLoadingChange,
+  onAssistantReply,
+}: AIAssistantPanelProps) {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const raw = window.sessionStorage.getItem(AI_HISTORY_STORAGE_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw) as unknown;
+      if (!Array.isArray(parsed)) return [];
+      return parsed.filter(
+        (m): m is Message =>
+          typeof m === "object" &&
+          m !== null &&
+          "role" in m &&
+          "content" in m &&
+          (((m as { role?: unknown }).role === "user") ||
+            (m as { role?: unknown }).role === "assistant") &&
+          typeof (m as { content?: unknown }).content === "string",
+      );
+    } catch {
+      return [];
+    }
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sensitiveWarning, setSensitiveWarning] = useState(false);
 
   const bottomRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
+  const processedAutoSendNonceRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (isOpen) {
-      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (typeof window === "undefined") return;
+    try {
+      window.sessionStorage.setItem(
+        AI_HISTORY_STORAGE_KEY,
+        JSON.stringify(messages),
+      );
+    } catch {
+      // no-op if storage is unavailable
     }
-  }, [messages, isOpen]);
+  }, [messages]);
 
   useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 80);
-    }
-  }, [isOpen]);
+    onLoadingChange?.(isLoading);
+  }, [isLoading, onLoadingChange]);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isLoading]);
 
   const autoResize = useCallback(() => {
     const el = inputRef.current;
     if (!el) return;
+    const maxHeight = 120;
     el.style.height = "auto";
-    el.style.height = `${Math.min(el.scrollHeight, 120)}px`;
+    el.style.height = `${Math.min(el.scrollHeight, maxHeight)}px`;
+    el.style.overflowY = el.scrollHeight > maxHeight ? "auto" : "hidden";
   }, []);
 
   function handleInputChange(value: string) {
@@ -218,7 +261,7 @@ export default function AIAssistant() {
     setTimeout(autoResize, 0);
   }
 
-  async function sendMessage(overrideText?: string) {
+  const sendMessage = useCallback(async (overrideText?: string) => {
     const trimmed = (overrideText ?? input).trim();
     if (!trimmed || isLoading) return;
     if (trimmed.length > MAX_MESSAGE_LENGTH) {
@@ -257,6 +300,7 @@ export default function AIAssistant() {
 
       const data: { answer: string } = await res.json();
       setMessages((prev) => [...prev, { role: "assistant", content: data.answer }]);
+      onAssistantReply?.();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Something went wrong.";
       setError(msg);
@@ -265,7 +309,17 @@ export default function AIAssistant() {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [autoResize, input, isLoading, messages]);
+
+  useEffect(() => {
+    if (autoSendNonce === undefined || autoSendNonce === processedAutoSendNonceRef.current) {
+      return;
+    }
+    processedAutoSendNonceRef.current = autoSendNonce;
+    const query = autoSendQuery?.trim();
+    if (!query) return;
+    void sendMessage(query);
+  }, [autoSendNonce, autoSendQuery, sendMessage]);
 
   function handleKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -283,165 +337,124 @@ export default function AIAssistant() {
     setMessages([]);
     setError(null);
     setSensitiveWarning(false);
+    if (typeof window !== "undefined") {
+      try {
+        window.sessionStorage.removeItem(AI_HISTORY_STORAGE_KEY);
+      } catch {
+        // no-op if storage is unavailable
+      }
+    }
     setTimeout(() => inputRef.current?.focus(), 80);
   }
 
   const showQuickQuestions = messages.length === 0 && !isLoading;
 
   return (
-    <>
-      {/* Floating toggle */}
-      <button
-        onClick={() => setIsOpen((v) => !v)}
-        aria-label={isOpen ? "Close AI assistant" : "Open ZecHub AI assistant"}
-        title="ZecHub AI"
-        className="fixed bottom-8 right-24 z-50 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-[#F4B728] text-black shadow-2xl ring-4 ring-[#F4B728]/30 dark:ring-amber-900/50 transition-all hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-[#F4B728]/60 cursor-pointer"
-      >
-        {isOpen ? (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
+    <div className="flex h-full min-h-0 flex-col bg-slate-50 dark:bg-slate-900">
+      <div className="flex items-center justify-between gap-3 border-b border-slate-200 bg-slate-100 px-4 py-2 dark:border-slate-800 dark:bg-slate-950/50">
+        <p className="text-[10px] text-slate-500 leading-tight dark:text-slate-400">
+          Questions are processed by OpenAI. Never share seed phrases, private keys, or wallet addresses.
+        </p>
+        {messages.length > 0 && (
+          <button
+            onClick={clearConversation}
+            aria-label="Clear conversation"
+            title="Clear conversation"
+            className="shrink-0 rounded-md px-2 py-1 text-[10px] text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+          >
+            Clear
+          </button>
         )}
-      </button>
+      </div>
 
-      {/* Chat panel */}
-      {isOpen && (
-        <div
-          role="dialog"
-          aria-label="ZecHub AI Assistant"
-          className="fixed bottom-28 right-6 z-50 flex w-[380px] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-zinc-700 bg-zinc-900 shadow-2xl"
-          style={{ height: "560px" }}
-        >
-          {/* Header */}
-          <div className="flex items-center gap-3 border-b border-zinc-700 bg-zinc-900 px-4 py-3">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F4B728] text-black text-xs font-bold">Z</span>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-white">ZecHub AI</p>
-              <p className="text-xs text-zinc-400">Ask anything about the docs</p>
-            </div>
-            {messages.length > 0 && (
-              <button
-                onClick={clearConversation}
-                aria-label="Clear conversation"
-                title="Clear conversation"
-                className="flex items-center gap-1 rounded-lg px-2 py-1 text-[10px] text-zinc-500 hover:bg-zinc-800 hover:text-zinc-300 transition-colors"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                </svg>
-                Clear
-              </button>
-            )}
-          </div>
-
-          {/* Privacy notice */}
-          <div className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-950 px-4 py-1.5">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 shrink-0 text-zinc-500" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-            </svg>
-            <p className="text-[10px] text-zinc-500 leading-tight">
-              Questions are processed by OpenAI. Never share seed phrases, private keys, or wallet addresses.
+      <div className="min-h-0 flex-1 overflow-y-auto bg-slate-50 px-4 py-3 scroll-smooth dark:bg-slate-950/40">
+        {showQuickQuestions ? (
+          <div className="flex flex-col gap-3">
+            <p className="text-center text-xs text-slate-500 dark:text-slate-400 pt-2 pb-1">
+              Get started with a question:
             </p>
+            <div className="flex flex-wrap gap-2">
+              {QUICK_QUESTIONS.map((q) => (
+                <button
+                  key={q}
+                  onClick={() => sendMessage(q)}
+                  className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-left text-xs text-slate-700 transition-colors hover:border-blue-300 hover:bg-blue-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-blue-500/50 dark:hover:bg-slate-700 dark:hover:text-white"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
           </div>
+        ) : (
+          messages.map((msg, i) => <MessageBubble key={i} msg={msg} />)
+        )}
 
-          {/* Message list */}
-          <div className="flex-1 overflow-y-auto px-4 py-3 scroll-smooth">
-            {showQuickQuestions ? (
-              <div className="flex flex-col gap-3">
-                <p className="text-center text-xs text-zinc-500 pt-2 pb-1">
-                  Get started with a question:
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {QUICK_QUESTIONS.map((q) => (
-                    <button
-                      key={q}
-                      onClick={() => sendMessage(q)}
-                      className="rounded-full border border-zinc-600 bg-zinc-800 px-3 py-1.5 text-left text-xs text-zinc-300 transition-colors hover:border-[#F4B728] hover:bg-zinc-700 hover:text-white"
-                    >
-                      {q}
-                    </button>
-                  ))}
-                </div>
+        {isLoading && (
+          <div className="flex justify-start mb-3">
+            <div className="flex flex-col gap-1">
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#F4B728] text-black text-[9px] font-bold shrink-0">Z</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400">ZecHub AI is thinking...</span>
               </div>
-            ) : (
-              messages.map((msg, i) => <MessageBubble key={i} msg={msg} />)
-            )}
-
-            {isLoading && (
-              <div className="flex justify-start mb-3">
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#F4B728] text-black text-[9px] font-bold shrink-0">Z</span>
-                    <span className="text-[10px] text-zinc-400">ZecHub AI is thinking…</span>
-                  </div>
-                  <div className="rounded-2xl rounded-tl-none bg-zinc-800 px-4 py-3">
-                    <span className="flex gap-1.5">
-                      <span className="h-2 w-2 animate-bounce rounded-full bg-zinc-400 [animation-delay:0ms]" />
-                      <span className="h-2 w-2 animate-bounce rounded-full bg-zinc-400 [animation-delay:150ms]" />
-                      <span className="h-2 w-2 animate-bounce rounded-full bg-zinc-400 [animation-delay:300ms]" />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )}
-            <div ref={bottomRef} />
+            </div>
           </div>
+        )}
+        <div ref={bottomRef} />
+      </div>
 
-          {/* Sensitive data warning */}
-          {sensitiveWarning && (
-            <div className="mx-4 mb-1 flex items-start gap-2 rounded-lg bg-amber-900/40 border border-amber-700/50 px-3 py-2">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 shrink-0 mt-0.5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-              <p className="text-[10px] text-amber-300 leading-snug">
-                This looks like sensitive wallet data. Never share private keys or seed phrases with any service.
-              </p>
-            </div>
-          )}
-
-          {/* Error banner */}
-          {error && (
-            <div className="mx-4 mb-2 rounded-lg bg-red-900/50 border border-red-800/50 px-3 py-2 text-xs text-red-300">
-              {error}
-            </div>
-          )}
-
-          {/* Input bar */}
-          <form onSubmit={handleFormSubmit} className="border-t border-zinc-700 bg-zinc-900 px-3 py-3">
-            <div className="flex items-end gap-2">
-              <textarea
-                ref={inputRef}
-                value={input}
-                onChange={(e) => handleInputChange(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Ask a question… (Enter to send, Shift+Enter for new line)"
-                rows={1}
-                maxLength={MAX_MESSAGE_LENGTH}
-                disabled={isLoading}
-                className="flex-1 resize-none rounded-xl border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white placeholder-zinc-500 focus:border-[#F4B728] focus:outline-none disabled:opacity-50 leading-relaxed"
-                style={{ maxHeight: "120px", overflowY: "auto" }}
-              />
-              <button
-                type="submit"
-                disabled={isLoading || !input.trim()}
-                aria-label="Send message"
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#F4B728] text-black transition-opacity hover:opacity-90 disabled:opacity-40"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 19V5m0 0l-7 7m7-7l7 7" />
-                </svg>
-              </button>
-            </div>
-            <p className="mt-1.5 text-right text-[10px] text-zinc-600">
-              {input.length}/{MAX_MESSAGE_LENGTH}
-            </p>
-          </form>
+      {sensitiveWarning && (
+        <div className="mx-3 mb-1 flex items-start gap-2 rounded-lg border border-amber-300 bg-amber-50 px-2.5 py-1.5 dark:border-amber-700/50 dark:bg-amber-900/40">
+          <p className="text-[10px] text-amber-700 leading-snug dark:text-amber-300">
+            This looks like sensitive wallet data. Never share private keys or seed phrases with any service.
+          </p>
         </div>
       )}
-    </>
+
+      {error && (
+        <div className="mx-3 mb-1.5 rounded-lg border border-red-300 bg-red-50 px-2.5 py-1.5 text-xs text-red-700 dark:border-red-800/50 dark:bg-red-900/50 dark:text-red-300">
+          {error}
+        </div>
+      )}
+
+      <form
+        onSubmit={handleFormSubmit}
+        className="sticky bottom-0 z-10 border-t border-slate-200/80 bg-white/95 px-3 pb-2 pt-2 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:border-slate-700 dark:bg-slate-900/95 dark:supports-[backdrop-filter]:bg-slate-900/80"
+      >
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-2 shadow-sm dark:border-slate-600 dark:bg-slate-800">
+          <div className="flex items-end gap-2">
+            <textarea
+              ref={inputRef}
+              value={input}
+              onChange={(e) => handleInputChange(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Ask a question... (Enter to send, Shift+Enter for new line)"
+              rows={1}
+              maxLength={MAX_MESSAGE_LENGTH}
+              disabled={isLoading}
+              className="flex-1 resize-none rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none disabled:opacity-50 leading-relaxed dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder-slate-500 dark:focus:border-blue-400"
+              style={{ maxHeight: "120px", overflowY: "auto" }}
+            />
+            <button
+              type="submit"
+              disabled={isLoading || !input.trim()}
+              aria-label="Send message"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F4B728] text-black transition hover:brightness-95 disabled:opacity-40"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 19V5m0 0l-7 7m7-7l7 7" />
+              </svg>
+            </button>
+          </div>
+          <div className="mt-1.5 flex items-center justify-between">
+            <p className="text-[10px] text-slate-500 dark:text-slate-400">
+              Enter to send, Shift+Enter for a new line
+            </p>
+            <p className="text-[10px] tabular-nums text-slate-500 dark:text-slate-400">
+              {input.length}/{MAX_MESSAGE_LENGTH}
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 }

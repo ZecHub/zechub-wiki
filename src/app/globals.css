@@ -734,3 +734,11 @@ code::-webkit-scrollbar-track {
     display: block;
   }
 }
+
+input[type="search"]::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+input[type="search"]::-ms-clear {
+  cursor: pointer;
+}
