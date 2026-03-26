@@ -4,7 +4,7 @@
 
 import {
   createContext, useContext, useState,
-  useEffect, useCallback, useRef, ReactNode,
+  useEffect, useCallback, useRef, useMemo, ReactNode,
 } from 'react';
 import { getDictionary } from '@/lib/getDictionary';
 
@@ -49,6 +49,56 @@ interface LanguageContextType {
 
 const STORAGE_KEY = 'zechub_language';
 
+/** In-memory English dictionary; merged under every locale so partial locale files keep full keys. */
+let enDictionarySingleton: Record<string, any> | null = null;
+
+function deepMerge(base: unknown, override: unknown): any {
+  if (override === undefined || override === null) {
+    return base;
+  }
+  if (Array.isArray(override)) {
+    return override;
+  }
+  if (typeof override !== 'object') {
+    return override;
+  }
+  const b =
+    base !== undefined &&
+    base !== null &&
+    typeof base === 'object' &&
+    !Array.isArray(base)
+      ? (base as Record<string, unknown>)
+      : {};
+  const o = override as Record<string, unknown>;
+  const out: Record<string, unknown> = { ...b };
+  for (const key of Object.keys(o)) {
+    const bv = b[key];
+    const ov = o[key];
+    if (
+      ov !== undefined &&
+      ov !== null &&
+      typeof ov === 'object' &&
+      !Array.isArray(ov)
+    ) {
+      out[key] = deepMerge(bv, ov);
+    } else if (ov !== undefined) {
+      out[key] = ov;
+    }
+  }
+  return out;
+}
+
+async function loadDictionaryForLocale(locale: Locale): Promise<Record<string, any>> {
+  if (!enDictionarySingleton) {
+    enDictionarySingleton = ((await getDictionary('en')) || {}) as Record<string, any>;
+  }
+  if (locale === 'en') {
+    return enDictionarySingleton;
+  }
+  const localized = ((await getDictionary(locale)) || {}) as Record<string, any>;
+  return deepMerge(enDictionarySingleton, localized);
+}
+
 // ── Google Translate helpers ──────────────────────────────────────────────────
 
 function getGTSelect(): HTMLSelectElement | null {
@@ -61,14 +111,6 @@ function applyGoogleTranslate(googleCode: string): boolean {
   select.value = googleCode;
   select.dispatchEvent(new Event('change'));
   return true;
-}
-
-function langFromGTCode(gtCode: string): Language | undefined {
-  return (
-    LANGUAGES.find(l => l.googleCode === gtCode) ??
-    LANGUAGES.find(l => gtCode.startsWith(l.googleCode)) ??
-    LANGUAGES.find(l => l.googleCode.startsWith(gtCode))
-  );
 }
 
 function resetGoogleTranslateToEnglish(): boolean {
@@ -101,15 +143,21 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const userSelectedRef = useRef(false);
 
   useEffect(() => {
+    let cancelled = false;
+
     (async () => {
       try {
-        const dict = await getDictionary('en');
-        setDictionary(dict || {});
+        const dict = await loadDictionaryForLocale(locale);
+        if (!cancelled) setDictionary(dict || {});
       } catch {
-        setDictionary({});
+        if (!cancelled) setDictionary(enDictionarySingleton || {});
       }
     })();
-  }, []);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [locale]);
 
   useEffect(() => {
     if (restoredRef.current) return;
@@ -184,8 +232,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const currentLanguage = LANGUAGES.find(l => l.code === locale) ?? LANGUAGES[0];
 
+  const contextValue = useMemo(
+    () => ({ locale, setLocale, currentLanguage, t: dictionary }),
+    [locale, setLocale, currentLanguage, dictionary],
+  );
+
   return (
-    <LanguageContext.Provider value={{ locale, setLocale, currentLanguage, t: dictionary }}>
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );
