@@ -80,7 +80,7 @@ export const SITE_LINKS: SiteLinkSection[] = [
       { label: "Blockchain Explorers", href: "/guides/blockchain-explorers" },
       { label: "Brave Wallet", href: "/guides/brave-wallet-guide" },
       {
-        label: "BTCPayServer Plugin",
+        label: "BTCPayServer Zcash Plugin",
         href: "/guides/btcpayserver-zcash-plugin",
       },
       {
