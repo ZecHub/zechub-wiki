@@ -22,7 +22,7 @@
   {
     "title": "Understanding the Moon Math of ZK Snarks workshop led by Anna Kaplan and Liz Steininger",
     "video_id": "gaXiYRBnBPE",
-    "views": 1847
+    "views": 1848
   },
   {
     "title": "Boosting Zcash Security w/ Zebra",
@@ -137,7 +137,7 @@
   {
     "title": "Zecwallet Lite on Windows Tutorial #1",
     "video_id": "4v_wr6DBY48",
-    "views": 937
+    "views": 938
   },
   {
     "title": "Good SNARKS Are Here Needed",
@@ -325,13 +325,13 @@
     "views": 482
   },
   {
-    "title": "A Selection of Pairing Based zk-SNARKs - Mary Maller",
-    "video_id": "O8Cn2X2nWxw",
-    "views": 478
-  },
-  {
     "title": "Decoupling the Zcash Memo Field from the Economic Outputs (Draft ZIP-231)",
     "video_id": "SBwJKYpZ520",
+    "views": 479
+  },
+  {
+    "title": "A Selection of Pairing Based zk-SNARKs - Mary Maller",
+    "video_id": "O8Cn2X2nWxw",
     "views": 478
   },
   {
@@ -352,7 +352,7 @@
   {
     "title": "Making Zcash Shine with Rust - Deirdre Connolly & Anna Kaplan",
     "video_id": "FGDpTGFF3aw",
-    "views": 450
+    "views": 451
   },
   {
     "title": "Update on Zcash Implementations and Protocol: #Zcon2Lite",
@@ -845,6 +845,11 @@
     "views": 221
   },
   {
+    "title": "Building a world class UX for ZEC - Josh Swihart at Zcon3",
+    "video_id": "yJ91V6_k5oo",
+    "views": 220
+  },
+  {
     "title": "Agoric, Smart Contracts, and Confidentiality - Dean Tribble",
     "video_id": "EAGaYg3hq88",
     "views": 219
@@ -853,11 +858,6 @@
     "title": "Zcash Wallet with Metamask Snaps (Demo) with Ivan Rubido from ChainSafe - ZconVI #zcash",
     "video_id": "vEI3-9Y4tco",
     "views": 219
-  },
-  {
-    "title": "Building a world class UX for ZEC - Josh Swihart at Zcon3",
-    "video_id": "yJ91V6_k5oo",
-    "views": 217
   },
   {
     "title": "Protecting Civil Liberties With Privacy-Enhancing Technology - Kurt Opsahl at Zcon3",
@@ -965,6 +965,11 @@
     "views": 202
   },
   {
+    "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
+    "video_id": "DU7wIy3Ywm4",
+    "views": 200
+  },
+  {
     "title": "Community Call: Introducing ZOMG Candidates",
     "video_id": "kzDA0XwoLYM",
     "views": 199
@@ -972,11 +977,6 @@
   {
     "title": "How to use FROST (incl. Demo) with Conrado Gouvêa and Deirdre Connolly: Zcon4",
     "video_id": "wjj94SYVzxs",
-    "views": 199
-  },
-  {
-    "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
-    "video_id": "DU7wIy3Ywm4",
     "views": 199
   },
   {
@@ -1180,6 +1180,11 @@
     "views": 157
   },
   {
+    "title": "The Future of ZSAs with Constance Beguier - ZconVI #zcash",
+    "video_id": "WgTiqPF7YxE",
+    "views": 155
+  },
+  {
     "title": "Zcash Arborist Call 12/14/23",
     "video_id": "vbG7-E32nj4",
     "views": 154
@@ -1187,11 +1192,6 @@
   {
     "title": "Zcash Arborist Call 09/05/24",
     "video_id": "PAayYqN9mLw",
-    "views": 154
-  },
-  {
-    "title": "The Future of ZSAs with Constance Beguier - ZconVI #zcash",
-    "video_id": "WgTiqPF7YxE",
     "views": 154
   },
   {
@@ -1380,6 +1380,11 @@
     "views": 130
   },
   {
+    "title": "Zcash Arborist Call 03-19-2026",
+    "video_id": "LtdKAhi6l7s",
+    "views": 130
+  },
+  {
     "title": "Chilling Effects of Recent US AML Prosecutions with J.W. Verret- ZconV: Zcash Unified 2024 #Zcash",
     "video_id": "C8jZH1HyqRU",
     "views": 129
@@ -1397,11 +1402,6 @@
   {
     "title": "Zcash Arborist Call 03-05-2026",
     "video_id": "uBsaOLUepB0",
-    "views": 129
-  },
-  {
-    "title": "Zcash Arborist Call 03-19-2026",
-    "video_id": "LtdKAhi6l7s",
     "views": 129
   },
   {
@@ -1435,6 +1435,11 @@
     "views": 123
   },
   {
+    "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
+    "video_id": "he_j9O5INVk",
+    "views": 122
+  },
+  {
     "title": "Educational Challenges in the Ever-Evolving Space of Zero-Knowledge with Luís Brandão & Mary Maller",
     "video_id": "hff4sAnrH08",
     "views": 121
@@ -1452,11 +1457,6 @@
   {
     "title": "Zcash Arborist Call 07-24-2025",
     "video_id": "uFz_5pzgRlQ",
-    "views": 119
-  },
-  {
-    "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
-    "video_id": "he_j9O5INVk",
     "views": 119
   },
   {
@@ -1540,13 +1540,13 @@
     "views": 109
   },
   {
-    "title": "Zcash Grants Committee (ZCG) Panel: Past, Present, and Future at Zcon3",
-    "video_id": "V7pFnzbg2-E",
-    "views": 108
-  },
-  {
     "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
     "video_id": "2zmtTwrHUXA",
+    "views": 109
+  },
+  {
+    "title": "Zcash Grants Committee (ZCG) Panel: Past, Present, and Future at Zcon3",
+    "video_id": "V7pFnzbg2-E",
     "views": 108
   },
   {
@@ -1565,13 +1565,13 @@
     "views": 105
   },
   {
-    "title": "Zcash Arborist Call 11/2/23",
-    "video_id": "IhLj4vKGuUI",
-    "views": 103
-  },
-  {
     "title": "Zcomm: Designing Engaging Workshops & Roundtables: Tools for Inclusive, Action-Driven Sessions #DWeb",
     "video_id": "m20tP1iqBRQ",
+    "views": 105
+  },
+  {
+    "title": "Zcash Arborist Call 11/2/23",
+    "video_id": "IhLj4vKGuUI",
     "views": 103
   },
   {
