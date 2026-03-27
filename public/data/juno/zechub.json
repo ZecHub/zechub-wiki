@@ -5985,7 +5985,7 @@
             "yes": "8",
             "abstain": "1"
           },
-          "status": "rejected",
+          "status": "closed",
           "proposer": "juno1tldl44lqjdrq6lkcdf5rzxjjddxa6v2wdxafjs",
           "threshold": {
             "threshold_quorum": {
@@ -6006,7 +6006,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-03-18T20:34:05.578Z"
+        "createdAt": "2026-03-18T20:34:05.578Z",
+        "completedAt": "2026-03-25T19:28:51.000Z",
+        "closedAt": "2026-03-25T19:28:51.000Z"
       }
     ]
   },
