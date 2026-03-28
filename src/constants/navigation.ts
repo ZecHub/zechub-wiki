@@ -8,7 +8,7 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench } from "lucide-react";
+import { Wrench } from 'lucide-react';
 
 import {
   RiGithubFill as Github,
@@ -193,7 +193,7 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "ZKAV Club",
         path: "/zcash-organizations/zkav",
-        icon: AudioVideo,
+        icon: "zkav-club.png",
       },
     ],
   },
@@ -244,7 +244,7 @@ export const navigations: Array<NavigationItem> = [
         newTab: true,
       },
       {
-        name: "Akash Network Zebra",
+        name: "Akash Network - Zebra",
         path: "/guides/akash-network-zebra",
       },
       {
@@ -268,7 +268,7 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/brave-wallet-guide",
       },
       {
-        name: "BTCPayServer Zcash Plugin",
+        name: "BTCPayServer Plugin",
         path: "/guides/btcpayserver-zcash-plugin",
       },
       {
@@ -357,3 +357,8 @@ export const socialMedia = [
   { name: "DAO", link: "https://vote.zechub.xyz/" },
   { name: "Store", link: "https://zechub.store/" },
 ];
+
+
+
+
+
