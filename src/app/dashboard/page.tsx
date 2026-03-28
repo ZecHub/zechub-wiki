@@ -53,3 +53,5 @@ export default async function DashboardPage() {
   const dict = (await getDictionary()) as DashboardDictionary;
   return <Dashboard dict={dict} />;
 }
+
+export const dynamic = 'force-dynamic';
