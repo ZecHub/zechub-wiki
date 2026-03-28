@@ -23,7 +23,7 @@ export type NavigationItem = {
   name: string;
   label?: string;
   path?: string;
-  icon?: IconType | LucideIcon;
+  icon?: IconType | LucideIcon | string;
   newTab?: boolean;
   links?: Array<NavigationItem>;
 };
