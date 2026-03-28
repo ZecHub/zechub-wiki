@@ -193,7 +193,7 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "ZKAV Club",
         path: "/zcash-organizations/zkav",
-        icon: AudioVideo,
+        icon: "zkav-club.png",
       },
     ],
   },
