@@ -27,6 +27,10 @@ export default function LockboxChart(props: LockboxChartProps) {
   const [copied, setCopied] = useState(false);
   const fontSize = useResponsiveFontSize();
 
+  // Toggle visibility for each series
+  const [lockboxVisible, setLockboxVisible] = useState(true);
+  const [coinholdersVisible, setCoinholdersVisible] = useState(true);
+
   useEffect(() => {
     const controller = new AbortController();
 
@@ -41,7 +45,6 @@ export default function LockboxChart(props: LockboxChartProps) {
         if (rawData) {
           setLockboxData(rawData);
 
-          // Deduplicate by Date (keeps highest/latest value)
           const sorted = [...rawData].sort(
             (a, b) => new Date(a.Date).getTime() - new Date(b.Date).getTime()
           );
@@ -50,7 +53,6 @@ export default function LockboxChart(props: LockboxChartProps) {
             new Map(sorted.map((item) => [item.Date, item])).values()
           );
 
-          // High resolution for smoothness (categorical X-axis is fast)
           const MAX_POINTS = 1200;
           const step = Math.max(1, Math.floor(cleanedData.length / MAX_POINTS));
           const sampled = cleanedData.filter((_, index) => index % step === 0);
@@ -157,7 +159,6 @@ export default function LockboxChart(props: LockboxChartProps) {
 
           <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.15} stroke="#cbd5e1" />
 
-          {/* CATEGORICAL X-AXIS (fastest + clean) */}
           <XAxis
             dataKey="Date"
             tick={{ fontSize: fontSize * 0.75, fill: "#64748b", fontWeight: 500 }}
@@ -173,7 +174,35 @@ export default function LockboxChart(props: LockboxChartProps) {
           />
 
           <Tooltip content={<CustomTooltip />} />
-          <Legend />
+
+          {/* Clickable Legend */}
+          <Legend
+            content={
+              <div className="flex justify-center gap-8 text-sm mt-4">
+                {/* Lockbox legend item */}
+                <button
+                  onClick={() => setLockboxVisible(!lockboxVisible)}
+                  className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                    lockboxVisible ? "" : "opacity-40 line-through"
+                  }`}
+                >
+                  <span className="inline-block w-3 h-3 rounded-full bg-[#3b82f6]" />
+                  <span className="font-medium text-slate-700 dark:text-slate-300">Lockbox</span>
+                </button>
+
+                {/* Coinholders Fund legend item */}
+                <button
+                  onClick={() => setCoinholdersVisible(!coinholdersVisible)}
+                  className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                    coinholdersVisible ? "" : "opacity-40 line-through"
+                  }`}
+                >
+                  <span className="inline-block w-3 h-3 rounded-full bg-[#ef4444]" />
+                  <span className="font-medium text-slate-700 dark:text-slate-300">Coinholders Fund</span>
+                </button>
+              </div>
+            }
+          />
 
           <Area
             type="monotone"
@@ -181,6 +210,7 @@ export default function LockboxChart(props: LockboxChartProps) {
             stroke="#3b82f6"
             fill="url(#lockboxGradient)"
             strokeWidth={2}
+            hide={!lockboxVisible}
             name="Lockbox"
           />
           <Area
@@ -189,6 +219,7 @@ export default function LockboxChart(props: LockboxChartProps) {
             stroke="#ef4444"
             fill="url(#coinholderGradient)"
             strokeWidth={2}
+            hide={!coinholdersVisible}
             name="Coinholders Fund"
           />
         </AreaChart>
@@ -208,6 +239,14 @@ export default function LockboxChart(props: LockboxChartProps) {
           <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Grand Total</p>
           <p className="text-2xl font-semibold text-slate-700 dark:text-slate-300 mt-1">{grandTotal.toLocaleString()}</p>
         </div>
+      </div>
+
+      {/* SINGLE FOOTER */}
+      <div className="flex items-center justify-between mt-6 text-sm">
+        <p className="text-slate-400 dark:text-slate-500">Last updated: 3/29/2026</p>
+        <button className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-xl transition-colors">
+          Export PNG
+        </button>
       </div>
     </ErrorBoundary>
   );

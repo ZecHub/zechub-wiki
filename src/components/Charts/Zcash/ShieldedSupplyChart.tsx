@@ -47,6 +47,11 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [saplingSupplyData, setSaplingSupplyData] = useState<SupplyData[]>([]);
   const [sproutSupplyData, setSproutSupplyData] = useState<SupplyData[]>([]);
 
+  // Toggle visibility for each pool (used when "All Pools" is selected)
+  const [sproutVisible, setSproutVisible] = useState(true);
+  const [saplingVisible, setSaplingVisible] = useState(true);
+  const [orchardVisible, setOrchardVisible] = useState(true);
+
   useEffect(() => {
     const controller = new AbortController();
 
@@ -143,7 +148,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const calculateTotalShielded = () =>
     latestTotals.orchard + latestTotals.sapling + latestTotals.sprout;
 
-  // NO DOWNSAMPLING — full data like the live site
   const poolData = selectedPool === "all" ? combinedPoolData : poolDataMap[selectedPool];
   const renderedPoolData = poolData;
 
@@ -251,7 +255,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
           <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
 
-          {/* CATEGORICAL X-AXIS (fast + clean) */}
           <XAxis
             dataKey="close"
             tick={{ fontSize: fontSize * 0.75, fill: "#94a3b8" }}
@@ -268,11 +271,81 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
           <Tooltip content={CustomTooltip} />
 
+          {/* Clickable Legend */}
+          <Legend
+            content={
+              <div className="flex justify-center gap-8 text-sm mt-4 flex-wrap">
+                {selectedPool === "all" ? (
+                  <>
+                    <button
+                      onClick={() => setSproutVisible(!sproutVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${sproutVisible ? "" : "opacity-40 line-through"}`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-1))]" />
+                      <span className="font-medium">Sprout</span>
+                    </button>
+
+                    <button
+                      onClick={() => setSaplingVisible(!saplingVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingVisible ? "" : "opacity-40 line-through"}`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-2))]" />
+                      <span className="font-medium">Sapling</span>
+                    </button>
+
+                    <button
+                      onClick={() => setOrchardVisible(!orchardVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardVisible ? "" : "opacity-40 line-through"}`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-3))]" />
+                      <span className="font-medium">Orchard</span>
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    className="flex items-center gap-2 cursor-pointer"
+                  >
+                    <span
+                      className="inline-block w-3 h-3 rounded-full"
+                      style={{ background: `hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : 3}))` }}
+                    />
+                    <span className="font-medium">
+                      {selectedPool[0].toUpperCase() + selectedPool.slice(1)} Pool
+                    </span>
+                  </button>
+                )}
+              </div>
+            }
+          />
+
           {selectedPool === "all" ? (
             <>
-              <Area type="monotone" dataKey="sprout" stroke={getColorForPool("sprout")} fill="url(#sproutGradient)" name="Sprout Pool" />
-              <Area type="monotone" dataKey="sapling" stroke={getColorForPool("sapling")} fill="url(#saplingGradient)" name="Sapling Pool" dot={false} connectNulls={true} />
-              <Area type="monotone" dataKey="orchard" stroke={getColorForPool("orchard")} fill="url(#orchardGradient)" name="Orchard Pool" />
+              <Area
+                type="monotone"
+                dataKey="sprout"
+                stroke={getColorForPool("sprout")}
+                fill="url(#sproutGradient)"
+                name="Sprout Pool"
+                hide={!sproutVisible}
+              />
+              <Area
+                type="monotone"
+                dataKey="sapling"
+                stroke={getColorForPool("sapling")}
+                fill="url(#saplingGradient)"
+                name="Sapling Pool"
+                hide={!saplingVisible}
+                dot={false}
+                connectNulls={true}
+              />
+              <Area
+                type="monotone"
+                dataKey="orchard"
+                stroke={getColorForPool("orchard")}
+                fill="url(#orchardGradient)"
+                name="Orchard Pool"
+                hide={!orchardVisible}
+              />
             </>
           ) : (
             <Area
@@ -283,8 +356,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               name={`${selectedPool[0].toUpperCase() + selectedPool.slice(1)} Pool`}
             />
           )}
-
-          <Legend align="center" />
         </AreaChart>
       </ChartContainer>
     </ErrorBoundary>
