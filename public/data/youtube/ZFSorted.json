@@ -17,12 +17,12 @@
   {
     "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
     "video_id": "qCVACpgQSjo",
-    "views": 1898
+    "views": 1899
   },
   {
     "title": "Understanding the Moon Math of ZK Snarks workshop led by Anna Kaplan and Liz Steininger",
     "video_id": "gaXiYRBnBPE",
-    "views": 1848
+    "views": 1849
   },
   {
     "title": "Boosting Zcash Security w/ Zebra",
@@ -87,7 +87,7 @@
   {
     "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
     "video_id": "O4wQi_i7k0I",
-    "views": 1214
+    "views": 1215
   },
   {
     "title": "The State of Privacy in Cryptocurrencies - Ian Miers",
@@ -257,7 +257,7 @@
   {
     "title": "Proof Carrying Data - Pratyush Mishra at Zcon3",
     "video_id": "7MtzoVM6e6w",
-    "views": 633
+    "views": 636
   },
   {
     "title": "Electric Coin Company: Proof of Stake - Nate Wilcox at Zcon3",
@@ -297,7 +297,7 @@
   {
     "title": "Empirical Analysis of the Zcash Blockchain at Zcon0 (2018) by Mary Maller",
     "video_id": "dP4dH_aHbdM",
-    "views": 535
+    "views": 536
   },
   {
     "title": "ZconV: Trailer May 6-10, 2024 #Zcash #ZEC #ZconV",
@@ -610,13 +610,13 @@
     "views": 313
   },
   {
-    "title": "Zecwallet Lite on Windows Tutorial #2",
-    "video_id": "NX168gEXZco",
-    "views": 308
-  },
-  {
     "title": "The Path to Shielded Programmability with Ying Tong Lai and Bryan Gillespie - ZconV: Zcash Unified",
     "video_id": "lCiw_3qMjcw",
+    "views": 309
+  },
+  {
+    "title": "Zecwallet Lite on Windows Tutorial #2",
+    "video_id": "NX168gEXZco",
     "views": 308
   },
   {
@@ -825,14 +825,14 @@
     "views": 227
   },
   {
-    "title": "Zcash Arborist Call 8/8/24",
-    "video_id": "PyMbhnnqeE4",
+    "title": "A Road Map for Lookup Tables by Arantxa: Zcon4",
+    "video_id": "mqoOBMa4zRo",
     "views": 223
   },
   {
-    "title": "A Road Map for Lookup Tables by Arantxa: Zcon4",
-    "video_id": "mqoOBMa4zRo",
-    "views": 222
+    "title": "Zcash Arborist Call 8/8/24",
+    "video_id": "PyMbhnnqeE4",
+    "views": 223
   },
   {
     "title": "MGRC Candidate Q&A Live Streams: Time Slot #3",
@@ -850,13 +850,13 @@
     "views": 220
   },
   {
-    "title": "Agoric, Smart Contracts, and Confidentiality - Dean Tribble",
-    "video_id": "EAGaYg3hq88",
-    "views": 219
-  },
-  {
     "title": "Zcash Wallet with Metamask Snaps (Demo) with Ivan Rubido from ChainSafe - ZconVI #zcash",
     "video_id": "vEI3-9Y4tco",
+    "views": 220
+  },
+  {
+    "title": "Agoric, Smart Contracts, and Confidentiality - Dean Tribble",
+    "video_id": "EAGaYg3hq88",
     "views": 219
   },
   {
@@ -1330,6 +1330,11 @@
     "views": 137
   },
   {
+    "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
+    "video_id": "he_j9O5INVk",
+    "views": 137
+  },
+  {
     "title": "Contribute Ideas to Zcash",
     "video_id": "eseOez6nKe8",
     "views": 136
@@ -1337,6 +1342,11 @@
   {
     "title": "Zcash Arborist Call 7/11/24",
     "video_id": "6edLzsbH9zU",
+    "views": 136
+  },
+  {
+    "title": "Zcash Arborist Call 03-19-2026",
+    "video_id": "LtdKAhi6l7s",
     "views": 136
   },
   {
@@ -1353,11 +1363,6 @@
     "title": "Zcash Arborist Call 01-09-2025",
     "video_id": "BG8C1Rf4jXg",
     "views": 135
-  },
-  {
-    "title": "Zcash Arborist Call 03-19-2026",
-    "video_id": "LtdKAhi6l7s",
-    "views": 134
   },
   {
     "title": "Zeal Call: FROST for Zcash + Q&A",
@@ -1382,11 +1387,6 @@
   {
     "title": "ZSAs in Zcash, NU6 or NU7?",
     "video_id": "X3gnachEWEY",
-    "views": 131
-  },
-  {
-    "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
-    "video_id": "he_j9O5INVk",
     "views": 131
   },
   {
@@ -1475,6 +1475,11 @@
     "views": 117
   },
   {
+    "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
+    "video_id": "2zmtTwrHUXA",
+    "views": 117
+  },
+  {
     "title": "Nighthawks Roadmap for Zcash with Aditya Bharadwaj and Matthew Watt: Zcon4",
     "video_id": "qRuKTkDvAk4",
     "views": 116
@@ -1482,11 +1487,6 @@
   {
     "title": "Zcash Arborist Call 02-20-2025",
     "video_id": "TmHv3_qhzQo",
-    "views": 116
-  },
-  {
-    "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
-    "video_id": "2zmtTwrHUXA",
     "views": 116
   },
   {
