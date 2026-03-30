@@ -342,8 +342,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
         ))}
       </div>
 
-      {/* Chart Container */}
-      <div className="bg-white dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-900 p-4 md:p-6 rounded-lg border border-gray-200 dark:border-gray-700">
         {/* Transactions tab */}
         {activeTab === "transactions" && (
           <ChartWrapper>
@@ -362,7 +361,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 angle={isMobile ? -30 : -45}
                 fontSize={isMobile ? 10 : 12}
                 height={isMobile ? 65 : 80}
-                interval={isMobile ? 10 : 3}
+                 interval={isMobile ? 10 : 3}
               />
               <YAxis {...commonAxisProps} tickFormatter={formatValue} />
               <YAxis
@@ -463,17 +462,13 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
         {activeTab === "price" && (
           <ChartWrapper>
             <ComposedChart data={data}>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke="#e5e7eb"
-                className="dark:stroke-slate-700"
-              />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
               <XAxis
                 {...commonXAxisProps}
                 angle={isMobile ? -30 : -45}
                 fontSize={isMobile ? 10 : 12}
                 height={isMobile ? 65 : 80}
-                interval={isMobile ? 10 : 3}
+                 interval={isMobile ? 10 : 3}
               />
               <YAxis yAxisId="left" {...commonAxisProps} tickFormatter={formatCurrency} />
               <YAxis yAxisId="right" orientation="right" {...commonAxisProps} tickFormatter={formatCurrency} />
@@ -516,7 +511,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 angle={isMobile ? -30 : -45}
                 fontSize={isMobile ? 10 : 12}
                 height={isMobile ? 65 : 80}
-                interval={isMobile ? 10 : 3}
+                 interval={isMobile ? 10 : 3}
               />
               <YAxis {...commonAxisProps} />
               <Tooltip content={<CustomTooltip />} />
@@ -556,21 +551,17 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
           </ChartWrapper>
         )}
 
-        {/* Shielded Metrics tab - now fixed */}
+        {/* Shielded Metrics tab */}
         {activeTab === "shielded" && (
           <ChartWrapper>
             <ComposedChart data={data}>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke="#e5e7eb"
-                className="dark:stroke-slate-700"
-              />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
               <XAxis
                 {...commonXAxisProps}
                 angle={isMobile ? -30 : -45}
                 fontSize={isMobile ? 10 : 12}
                 height={isMobile ? 65 : 80}
-                interval={isMobile ? 10 : 3}
+                 interval={isMobile ? 10 : 3}
               />
               <YAxis yAxisId="left" {...commonAxisProps} tickFormatter={formatValue} />
               <YAxis yAxisId="right" orientation="right" {...commonAxisProps} tickFormatter={formatValue} />
@@ -578,11 +569,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
 
               <Legend
                 content={() => (
-                  <div
-                    className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${
-                      isMobile ? "gap-3 text-xs" : ""
-                    }`}
-                  >
+                  <div className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${isMobile ? "gap-3 text-xs" : ""}`}>
                     <button
                       onClick={() => setShieldedSupplyVisible(!shieldedSupplyVisible)}
                       className={`flex items-center gap-2 cursor-pointer transition-colors ${shieldedSupplyVisible ? "" : "opacity-40 line-through"}`}
