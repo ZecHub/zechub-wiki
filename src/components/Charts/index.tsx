@@ -34,7 +34,7 @@ const ZCGDashboard = dynamic(() => import("@/app/zips-grants/page"), {
 
 type ViewType = "dashboard" | "proposals" | "zcg" | "youtube";
 type SubViewType = "top" | "latest";
-type ChannelType = "ZecHub" | "Zcash Foundation" | "Shielded Labs";
+type ChannelType = "ZecHub" | "Zcash Foundation" | "Shielded Labs" | "Zcash Media";
 
 type DashboardDictionary = {
   pages?: {
@@ -87,6 +87,8 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
   const [slDate, setSlDate] = useState<any[]>([]);
   const [zfSorted, setZfSorted] = useState<any[]>([]);
   const [zfDate, setZfDate] = useState<any[]>([]);
+  const [zmSorted, setZmSorted] = useState<any[]>([]);
+  const [zmDate, setZmDate] = useState<any[]>([]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const t =
@@ -121,6 +123,13 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
       fetch("/data/youtube/ZFByDate.json")
         .then((r) => r.json())
         .then(setZfDate);
+      // Zcash Media
+      fetch("/data/youtube/ZMSorted.json")
+        .then((r) => r.json())
+        .then(setZmSorted);
+      fetch("/data/youtube/ZMByDate.json")
+        .then((r) => r.json())
+        .then(setZmDate);
     }
   }, [currentView]);
 
@@ -179,16 +188,21 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
 
   // Select correct data for current channel
   const currentSorted =
-    currentChannel === "ZecHub"
-      ? zecSorted
-      : currentChannel === "Shielded Labs"
-        ? slSorted
+  currentChannel === "ZecHub"
+    ? zecSorted
+    : currentChannel === "Shielded Labs"
+      ? slSorted
+      : currentChannel === "Zcash Media"
+        ? zmSorted
         : zfSorted;
+
   const currentDate =
-    currentChannel === "ZecHub"
-      ? zecDate
-      : currentChannel === "Shielded Labs"
-        ? slDate
+  currentChannel === "ZecHub"
+    ? zecDate
+    : currentChannel === "Shielded Labs"
+      ? slDate
+      : currentChannel === "Zcash Media"
+        ? zmDate
         : zfDate;
 
   const filteredSorted = currentSorted.filter((v) =>
@@ -292,6 +306,10 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
                   {
                     name: "Shielded Labs",
                     value: "Shielded Labs" as ChannelType,
+                  },
+                  {
+                    name: "Zcash Media",
+                    value: "Zcash Media" as ChannelType,
                   },
                 ].map((ch) => (
                   <Button
