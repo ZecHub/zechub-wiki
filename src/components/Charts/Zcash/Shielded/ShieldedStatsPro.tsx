@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo, RefObject } from "react";
+import { useInMobile } from "@/hooks/useInMobile";
 import {
   LineChart,
   Line,
@@ -101,6 +102,8 @@ const parseInt10 = (value: string): number => {
 
 // Main Component
 export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
+  const isMobile = useInMobile();
+
   const [data, setData] = useState<ProcessedData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -277,7 +280,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
   );
 
   const ChartWrapper = ({ children }: { children: React.ReactElement }) => (
-    <div className="w-full h-[450px]">
+    <div className={`w-full ${isMobile ? "h-[340px]" : "h-[450px]"}`}>
       <ResponsiveContainer width="100%" height="100%">
         {children}
       </ResponsiveContainer>
@@ -344,13 +347,23 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
         {/* Transactions tab */}
         {activeTab === "transactions" && (
           <ChartWrapper>
-            <ComposedChart data={data}>
+            <ComposedChart
+              data={data}
+              barCategoryGap={isMobile ? 25 : 40}
+              barGap={isMobile ? 6 : 12}
+            >
               <CartesianGrid
                 strokeDasharray="3 3"
                 stroke="#e5e7eb"
                 className="dark:stroke-slate-700"
               />
-              <XAxis {...commonXAxisProps} />
+              <XAxis
+                {...commonXAxisProps}
+                angle={isMobile ? -30 : -45}
+                fontSize={isMobile ? 10 : 12}
+                height={isMobile ? 65 : 80}
+                interval={isMobile ? 5 : 3}
+              />
               <YAxis {...commonAxisProps} tickFormatter={formatValue} />
               <YAxis
                 yAxisId="right"
@@ -362,7 +375,11 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
 
               <Legend
                 content={() => (
-                  <div className="flex flex-wrap justify-center gap-6 text-sm mt-4">
+                  <div
+                    className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${
+                      isMobile ? "gap-3 text-xs" : ""
+                    }`}
+                  >
                     <button
                       onClick={() => setTransparentVisible(!transparentVisible)}
                       className={`flex items-center gap-2 cursor-pointer transition-colors ${
@@ -408,7 +425,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 name="Transparent"
                 fill="#3b82f6"
                 opacity={0.9}
-                barSize={2}
+                barSize={isMobile ? 8 : 2}
                 hide={!transparentVisible}
               />
               <Bar
@@ -416,7 +433,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 name="Sapling"
                 fill="#10b981"
                 opacity={0.9}
-                barSize={2}
+                barSize={isMobile ? 8 : 2}
                 hide={!saplingVisible}
               />
               <Bar
@@ -424,7 +441,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 name="Orchard"
                 fill="#8b5cf6"
                 opacity={0.9}
-                barSize={2}
+                barSize={isMobile ? 8 : 2}
                 hide={!orchardVisible}
               />
 
@@ -442,7 +459,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
           </ChartWrapper>
         )}
 
-        {/* Price & Market Cap tab with clickable legend */}
+        {/* Price & Market Cap tab */}
         {activeTab === "price" && (
           <ChartWrapper>
             <ComposedChart data={data}>
@@ -451,37 +468,30 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 stroke="#e5e7eb"
                 className="dark:stroke-slate-700"
               />
-              <XAxis {...commonXAxisProps} />
-              <YAxis
-                yAxisId="left"
-                {...commonAxisProps}
-                tickFormatter={formatCurrency}
+              <XAxis
+                {...commonXAxisProps}
+                angle={isMobile ? -30 : -45}
+                fontSize={isMobile ? 10 : 12}
+                height={isMobile ? 65 : 80}
+                interval={isMobile ? 5 : 3}
               />
-              <YAxis
-                yAxisId="right"
-                orientation="right"
-                {...commonAxisProps}
-                tickFormatter={formatCurrency}
-              />
+              <YAxis yAxisId="left" {...commonAxisProps} tickFormatter={formatCurrency} />
+              <YAxis yAxisId="right" orientation="right" {...commonAxisProps} tickFormatter={formatCurrency} />
               <Tooltip content={<CustomTooltip />} />
 
               <Legend
                 content={() => (
-                  <div className="flex flex-wrap justify-center gap-6 text-sm mt-4">
+                  <div className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${isMobile ? "gap-3 text-xs" : ""}`}>
                     <button
                       onClick={() => setClosingPriceVisible(!closingPriceVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
-                        closingPriceVisible ? "" : "opacity-40 line-through"
-                      }`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${closingPriceVisible ? "" : "opacity-40 line-through"}`}
                     >
                       <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#10b981" }} />
                       <span>Closing Price</span>
                     </button>
                     <button
                       onClick={() => setShieldedMarketCapVisible(!shieldedMarketCapVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
-                        shieldedMarketCapVisible ? "" : "opacity-40 line-through"
-                      }`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${shieldedMarketCapVisible ? "" : "opacity-40 line-through"}`}
                     >
                       <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#3b82f6" }} />
                       <span>Shielded Market Cap</span>
@@ -490,68 +500,47 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 )}
               />
 
-              <Area
-                yAxisId="left"
-                dataKey="shieldedMarketCap"
-                name="Shielded Market Cap"
-                fill="#3b82f6"
-                stroke="#3b82f6"
-                fillOpacity={0.2}
-                hide={!shieldedMarketCapVisible}
-              />
-              <Line
-                yAxisId="right"
-                type="monotone"
-                dataKey="closingPrice"
-                name="Closing Price"
-                stroke="#10b981"
-                strokeWidth={3}
-                dot={false}
-                hide={!closingPriceVisible}
-              />
+              <Area yAxisId="left" dataKey="shieldedMarketCap" name="Shielded Market Cap" fill="#3b82f6" stroke="#3b82f6" fillOpacity={0.2} hide={!shieldedMarketCapVisible} />
+              <Line yAxisId="right" type="monotone" dataKey="closingPrice" name="Closing Price" stroke="#10b981" strokeWidth={3} dot={false} hide={!closingPriceVisible} />
             </ComposedChart>
           </ChartWrapper>
         )}
 
-        {/* Network Nodes tab with clickable legend */}
+        {/* Network Nodes tab */}
         {activeTab === "nodes" && (
           <ChartWrapper>
             <ComposedChart data={data}>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke="#e5e7eb"
-                className="dark:stroke-slate-700"
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
+              <XAxis
+                {...commonXAxisProps}
+                angle={isMobile ? -30 : -45}
+                fontSize={isMobile ? 10 : 12}
+                height={isMobile ? 65 : 80}
+                interval={isMobile ? 5 : 3}
               />
-              <XAxis {...commonXAxisProps} />
               <YAxis {...commonAxisProps} />
               <Tooltip content={<CustomTooltip />} />
 
               <Legend
                 content={() => (
-                  <div className="flex flex-wrap justify-center gap-6 text-sm mt-4">
+                  <div className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${isMobile ? "gap-3 text-xs" : ""}`}>
                     <button
                       onClick={() => setZcashdNodesVisible(!zcashdNodesVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
-                        zcashdNodesVisible ? "" : "opacity-40 line-through"
-                      }`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${zcashdNodesVisible ? "" : "opacity-40 line-through"}`}
                     >
                       <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#3b82f6" }} />
                       <span>Zcashd Nodes</span>
                     </button>
                     <button
                       onClick={() => setZebraNodesVisible(!zebraNodesVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
-                        zebraNodesVisible ? "" : "opacity-40 line-through"
-                      }`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${zebraNodesVisible ? "" : "opacity-40 line-through"}`}
                     >
                       <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#10b981" }} />
                       <span>Zebra Nodes</span>
                     </button>
                     <button
                       onClick={() => setTotalNodesVisible(!totalNodesVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
-                        totalNodesVisible ? "" : "opacity-40 line-through"
-                      }`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${totalNodesVisible ? "" : "opacity-40 line-through"}`}
                     >
                       <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#f59e0b" }} />
                       <span>Total Nodes</span>
@@ -560,34 +549,14 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 )}
               />
 
-              <Bar
-                dataKey="zcashdNodes"
-                name="Zcashd Nodes"
-                fill="#3b82f6"
-                opacity={0.8}
-                hide={!zcashdNodesVisible}
-              />
-              <Bar
-                dataKey="zebraNodes"
-                name="Zebra Nodes"
-                fill="#10b981"
-                opacity={0.8}
-                hide={!zebraNodesVisible}
-              />
-              <Line
-                type="monotone"
-                dataKey="totalNodes"
-                name="Total Nodes"
-                stroke="#f59e0b"
-                strokeWidth={3}
-                dot={false}
-                hide={!totalNodesVisible}
-              />
+              <Bar dataKey="zcashdNodes" name="Zcashd Nodes" fill="#3b82f6" opacity={0.8} hide={!zcashdNodesVisible} />
+              <Bar dataKey="zebraNodes" name="Zebra Nodes" fill="#10b981" opacity={0.8} hide={!zebraNodesVisible} />
+              <Line type="monotone" dataKey="totalNodes" name="Total Nodes" stroke="#f59e0b" strokeWidth={3} dot={false} hide={!totalNodesVisible} />
             </ComposedChart>
           </ChartWrapper>
         )}
 
-        {/* Shielded Metrics tab (already had clickable legend) */}
+        {/* Shielded Metrics tab - now fixed */}
         {activeTab === "shielded" && (
           <ChartWrapper>
             <ComposedChart data={data}>
@@ -596,55 +565,48 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 stroke="#e5e7eb"
                 className="dark:stroke-slate-700"
               />
-              <XAxis {...commonXAxisProps} />
-              <YAxis
-                yAxisId="left"
-                {...commonAxisProps}
-                tickFormatter={formatValue}
+              <XAxis
+                {...commonXAxisProps}
+                angle={isMobile ? -30 : -45}
+                fontSize={isMobile ? 10 : 12}
+                height={isMobile ? 65 : 80}
+                interval={isMobile ? 5 : 3}
               />
-              <YAxis
-                yAxisId="right"
-                orientation="right"
-                {...commonAxisProps}
-                tickFormatter={formatValue}
-              />
+              <YAxis yAxisId="left" {...commonAxisProps} tickFormatter={formatValue} />
+              <YAxis yAxisId="right" orientation="right" {...commonAxisProps} tickFormatter={formatValue} />
               <Tooltip content={<CustomTooltip />} />
 
               <Legend
                 content={() => (
-                  <div className="flex flex-wrap justify-center gap-6 text-sm mt-4">
+                  <div
+                    className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${
+                      isMobile ? "gap-3 text-xs" : ""
+                    }`}
+                  >
                     <button
                       onClick={() => setShieldedSupplyVisible(!shieldedSupplyVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
-                        shieldedSupplyVisible ? "" : "opacity-40 line-through"
-                      }`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${shieldedSupplyVisible ? "" : "opacity-40 line-through"}`}
                     >
                       <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#3b82f6" }} />
                       <span>Shielded Supply</span>
                     </button>
                     <button
                       onClick={() => setLockboxSupplyVisible(!lockboxSupplyVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
-                        lockboxSupplyVisible ? "" : "opacity-40 line-through"
-                      }`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${lockboxSupplyVisible ? "" : "opacity-40 line-through"}`}
                     >
                       <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#8b5cf6" }} />
                       <span>Lockbox Supply</span>
                     </button>
                     <button
                       onClick={() => setSaplingTxsVisible(!saplingTxsVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
-                        saplingTxsVisible ? "" : "opacity-40 line-through"
-                      }`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingTxsVisible ? "" : "opacity-40 line-through"}`}
                     >
                       <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#10b981" }} />
                       <span>Sapling TXs</span>
                     </button>
                     <button
                       onClick={() => setOrchardTxsVisible(!orchardTxsVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
-                        orchardTxsVisible ? "" : "opacity-40 line-through"
-                      }`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardTxsVisible ? "" : "opacity-40 line-through"}`}
                     >
                       <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#f59e0b" }} />
                       <span>Orchard TXs</span>
@@ -653,45 +615,10 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 )}
               />
 
-              <Area
-                yAxisId="left"
-                dataKey="totalShieldedSupply"
-                name="Shielded Supply"
-                fill="#3b82f6"
-                stroke="#3b82f6"
-                fillOpacity={0.2}
-                hide={!shieldedSupplyVisible}
-              />
-              <Line
-                yAxisId="left"
-                type="monotone"
-                dataKey="totalLockboxSupply"
-                name="Lockbox Supply"
-                stroke="#8b5cf6"
-                strokeWidth={2}
-                dot={false}
-                hide={!lockboxSupplyVisible}
-              />
-              <Line
-                yAxisId="right"
-                type="monotone"
-                dataKey="totalSaplingTxs"
-                name="Sapling TXs"
-                stroke="#10b981"
-                strokeWidth={2}
-                dot={false}
-                hide={!saplingTxsVisible}
-              />
-              <Line
-                yAxisId="right"
-                type="monotone"
-                dataKey="totalOrchardTxs"
-                name="Orchard TXs"
-                stroke="#f59e0b"
-                strokeWidth={2}
-                dot={false}
-                hide={!orchardTxsVisible}
-              />
+              <Area yAxisId="left" dataKey="totalShieldedSupply" name="Shielded Supply" fill="#3b82f6" stroke="#3b82f6" fillOpacity={0.2} hide={!shieldedSupplyVisible} />
+              <Line yAxisId="left" type="monotone" dataKey="totalLockboxSupply" name="Lockbox Supply" stroke="#8b5cf6" strokeWidth={2} dot={false} hide={!lockboxSupplyVisible} />
+              <Line yAxisId="right" type="monotone" dataKey="totalSaplingTxs" name="Sapling TXs" stroke="#10b981" strokeWidth={2} dot={false} hide={!saplingTxsVisible} />
+              <Line yAxisId="right" type="monotone" dataKey="totalOrchardTxs" name="Orchard TXs" stroke="#f59e0b" strokeWidth={2} dot={false} hide={!orchardTxsVisible} />
             </ComposedChart>
           </ChartWrapper>
         )}
