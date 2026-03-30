@@ -212,7 +212,7 @@
   {
     "title": "Proof of Stake Panel with Shielded Labs, Ethereum Foundation, ECC, Penumbra & Namada - ZconVI #zcash",
     "video_id": "jAcvrKa5hiw",
-    "views": 703
+    "views": 704
   },
   {
     "title": "Taiga: A dark forest of zero-knowledge programmability - Christopher Goes at Zcon3",
@@ -257,7 +257,7 @@
   {
     "title": "Proof Carrying Data - Pratyush Mishra at Zcon3",
     "video_id": "7MtzoVM6e6w",
-    "views": 636
+    "views": 637
   },
   {
     "title": "Electric Coin Company: Proof of Stake - Nate Wilcox at Zcon3",
@@ -307,7 +307,7 @@
   {
     "title": "Arti: ZF + ZCG Call w/ the Tor Project",
     "video_id": "E7g9dKBOYEI",
-    "views": 502
+    "views": 503
   },
   {
     "title": "ECC Update with Josh Swihart - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -380,13 +380,13 @@
     "views": 428
   },
   {
-    "title": "Diving Into Bolt; A Privacy-Preserving Layer Two Approach",
-    "video_id": "z2l5NqJ6sOI",
-    "views": 427
-  },
-  {
     "title": "The State of ECC with Josh Swihart - ZconVI #zcash",
     "video_id": "XlKADl3bhVo",
+    "views": 428
+  },
+  {
+    "title": "Diving Into Bolt; A Privacy-Preserving Layer Two Approach",
+    "video_id": "z2l5NqJ6sOI",
     "views": 427
   },
   {
@@ -397,7 +397,7 @@
   {
     "title": "Zashi: A Year in Review & Roadmap with Andrea Kobrlova and Josh Swihart - ZconVI #zcash",
     "video_id": "rcbE7YptSHc",
-    "views": 423
+    "views": 424
   },
   {
     "title": "Bitcoin's Severe Flaw",
@@ -407,7 +407,7 @@
   {
     "title": "ZSAs and Swaps--A Status Report with Vivek Arte and Pablo Kogan - ZconV: Zcash Unified 2024 #Zcash",
     "video_id": "L_ZtZCUvDqw",
-    "views": 411
+    "views": 412
   },
   {
     "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
@@ -487,7 +487,7 @@
   {
     "title": "Zcash Ecosystem Updates with Zooko Wilcox, Jon Rouach, Jason McGee, Jack Gavigan: Zcon4",
     "video_id": "xEcDf5LSndc",
-    "views": 357
+    "views": 358
   },
   {
     "title": "SoK: Programmable Privacy in Zcash with Ying Tong and Daniel Benarroch: Zcon4",
@@ -550,13 +550,13 @@
     "views": 333
   },
   {
-    "title": "The State of UX in the Zcash Ecosystem: #Zcon2Lite",
-    "video_id": "57dTzAlmeqs",
-    "views": 329
-  },
-  {
     "title": "Zconnaissance - Sketching a Shielded Assets Future by Vivek Arte: Zcon4",
     "video_id": "VFQHJGqO_bY",
+    "views": 330
+  },
+  {
+    "title": "The State of UX in the Zcash Ecosystem: #Zcon2Lite",
+    "video_id": "57dTzAlmeqs",
     "views": 329
   },
   {
@@ -955,23 +955,23 @@
     "views": 204
   },
   {
+    "title": "Community Call with ZCG Candidates 12/17/2024",
+    "video_id": "ODW01XSGOXA",
+    "views": 203
+  },
+  {
     "title": "Zcash Arborist Call 02-05-2026",
     "video_id": "22YcmN1PPsc",
     "views": 203
   },
   {
-    "title": "Community Call with ZCG Candidates 12/17/2024",
-    "video_id": "ODW01XSGOXA",
-    "views": 202
+    "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
+    "video_id": "DU7wIy3Ywm4",
+    "views": 201
   },
   {
     "title": "How to use FROST (incl. Demo) with Conrado Gouvêa and Deirdre Connolly: Zcon4",
     "video_id": "wjj94SYVzxs",
-    "views": 200
-  },
-  {
-    "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
-    "video_id": "DU7wIy3Ywm4",
     "views": 200
   },
   {
@@ -992,7 +992,7 @@
   {
     "title": "Decentralization: Past, Present, and Future Panel - ZconVI #zcash",
     "video_id": "PTMbJG8DDTc",
-    "views": 195
+    "views": 196
   },
   {
     "title": "Zcash Community Grants Candidate Call 12/14/23",
@@ -1320,6 +1320,11 @@
     "views": 139
   },
   {
+    "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
+    "video_id": "he_j9O5INVk",
+    "views": 139
+  },
+  {
     "title": "red·bridge (ZavaX) with Kit Sturgeon - ZconVI #zcash",
     "video_id": "O6RxGsNJx2A",
     "views": 138
@@ -1330,8 +1335,8 @@
     "views": 137
   },
   {
-    "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
-    "video_id": "he_j9O5INVk",
+    "title": "Zcash Arborist Call 03-19-2026",
+    "video_id": "LtdKAhi6l7s",
     "views": 137
   },
   {
@@ -1342,11 +1347,6 @@
   {
     "title": "Zcash Arborist Call 7/11/24",
     "video_id": "6edLzsbH9zU",
-    "views": 136
-  },
-  {
-    "title": "Zcash Arborist Call 03-19-2026",
-    "video_id": "LtdKAhi6l7s",
     "views": 136
   },
   {
@@ -1465,6 +1465,11 @@
     "views": 118
   },
   {
+    "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
+    "video_id": "2zmtTwrHUXA",
+    "views": 118
+  },
+  {
     "title": "First Zebra Block!",
     "video_id": "zzRH_R8bha0",
     "views": 117
@@ -1472,11 +1477,6 @@
   {
     "title": "Str4d on Risks of Delays deploying ZSAs in NU6",
     "video_id": "Axedp0cjcl0",
-    "views": 117
-  },
-  {
-    "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
-    "video_id": "2zmtTwrHUXA",
     "views": 117
   },
   {
@@ -1550,6 +1550,11 @@
     "views": 108
   },
   {
+    "title": "Zcomm: Designing Engaging Workshops & Roundtables: Tools for Inclusive, Action-Driven Sessions #DWeb",
+    "video_id": "m20tP1iqBRQ",
+    "views": 107
+  },
+  {
     "title": "Zcash Global Ambassador Lightning Talks: Zcon4",
     "video_id": "7nn0gq7PG9I",
     "views": 105
@@ -1562,11 +1567,6 @@
   {
     "title": "Programmable Privacy Recommendations for Zcash",
     "video_id": "jme18ZNi9Hk",
-    "views": 105
-  },
-  {
-    "title": "Zcomm: Designing Engaging Workshops & Roundtables: Tools for Inclusive, Action-Driven Sessions #DWeb",
-    "video_id": "m20tP1iqBRQ",
     "views": 105
   },
   {
