@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { RefObject, useState, useCallback, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
@@ -68,7 +68,7 @@ const CardContentShielded = (props: ZcashChartProps) => {
       }
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     },
-    [router, pathname, searchParams]
+    [router, pathname, searchParams],
   );
 
   const tabs = [

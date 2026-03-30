@@ -47,7 +47,7 @@ export const TabsTrigger = ({
       "cursor-pointer px-3 py-1.5 text-xs font-medium rounded-xl transition-all flex-shrink-0 whitespace-nowrap min-w-[65px]",
       activeTab === value
         ? "bg-white dark:bg-slate-700 shadow-sm text-foreground"
-        : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-slate-700"
+        : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-slate-700",
     )}
     onClick={() => setActiveTab(value)}
   >
