@@ -106,7 +106,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<TabKey>("transactions");
 
-  // Clickable legend toggles for Transactions tab
+  // Transactions tab toggles
   const [transparentVisible, setTransparentVisible] = useState(true);
   const [saplingVisible, setSaplingVisible] = useState(true);
   const [orchardVisible, setOrchardVisible] = useState(true);
@@ -341,9 +341,10 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
 
       {/* Chart Container */}
       <div className="bg-white dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+        {/* Transactions tab */}
         {activeTab === "transactions" && (
           <ChartWrapper>
-            <ComposedChart data={data} barCategoryGap={35} barGap={8}>
+            <ComposedChart data={data}>
               <CartesianGrid
                 strokeDasharray="3 3"
                 stroke="#e5e7eb"
@@ -402,7 +403,6 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 )}
               />
 
-              {/* Smaller bars - barSize=14 */}
               <Bar
                 dataKey="transparentTxs"
                 name="Transparent"
@@ -442,49 +442,256 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
           </ChartWrapper>
         )}
 
+        {/* Price & Market Cap tab with clickable legend */}
         {activeTab === "price" && (
           <ChartWrapper>
-            <ComposedChart data={data} >
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
+            <ComposedChart data={data}>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#e5e7eb"
+                className="dark:stroke-slate-700"
+              />
               <XAxis {...commonXAxisProps} />
-              <YAxis yAxisId="left" {...commonAxisProps} tickFormatter={formatCurrency} />
-              <YAxis yAxisId="right" orientation="right" {...commonAxisProps} tickFormatter={formatCurrency} />
+              <YAxis
+                yAxisId="left"
+                {...commonAxisProps}
+                tickFormatter={formatCurrency}
+              />
+              <YAxis
+                yAxisId="right"
+                orientation="right"
+                {...commonAxisProps}
+                tickFormatter={formatCurrency}
+              />
               <Tooltip content={<CustomTooltip />} />
-              <Legend />
-              <Area yAxisId="left" dataKey="shieldedMarketCap" name="Shielded Market Cap" fill="#3b82f6" stroke="#3b82f6" fillOpacity={0.2} />
-              <Line yAxisId="right" type="monotone" dataKey="closingPrice" name="Closing Price" stroke="#10b981" strokeWidth={3} dot={false} />
+
+              <Legend
+                content={() => (
+                  <div className="flex flex-wrap justify-center gap-6 text-sm mt-4">
+                    <button
+                      onClick={() => setClosingPriceVisible(!closingPriceVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        closingPriceVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#10b981" }} />
+                      <span>Closing Price</span>
+                    </button>
+                    <button
+                      onClick={() => setShieldedMarketCapVisible(!shieldedMarketCapVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        shieldedMarketCapVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#3b82f6" }} />
+                      <span>Shielded Market Cap</span>
+                    </button>
+                  </div>
+                )}
+              />
+
+              <Area
+                yAxisId="left"
+                dataKey="shieldedMarketCap"
+                name="Shielded Market Cap"
+                fill="#3b82f6"
+                stroke="#3b82f6"
+                fillOpacity={0.2}
+                hide={!shieldedMarketCapVisible}
+              />
+              <Line
+                yAxisId="right"
+                type="monotone"
+                dataKey="closingPrice"
+                name="Closing Price"
+                stroke="#10b981"
+                strokeWidth={3}
+                dot={false}
+                hide={!closingPriceVisible}
+              />
             </ComposedChart>
           </ChartWrapper>
         )}
 
+        {/* Network Nodes tab with clickable legend */}
         {activeTab === "nodes" && (
           <ChartWrapper>
             <ComposedChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#e5e7eb"
+                className="dark:stroke-slate-700"
+              />
               <XAxis {...commonXAxisProps} />
               <YAxis {...commonAxisProps} />
               <Tooltip content={<CustomTooltip />} />
-              <Legend />
-              <Bar dataKey="zcashdNodes" name="Zcashd Nodes" fill="#3b82f6" opacity={0.8} />
-              <Bar dataKey="zebraNodes" name="Zebra Nodes" fill="#10b981" opacity={0.8} />
-              <Line type="monotone" dataKey="totalNodes" name="Total Nodes" stroke="#f59e0b" strokeWidth={3} dot={false} />
+
+              <Legend
+                content={() => (
+                  <div className="flex flex-wrap justify-center gap-6 text-sm mt-4">
+                    <button
+                      onClick={() => setZcashdNodesVisible(!zcashdNodesVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        zcashdNodesVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#3b82f6" }} />
+                      <span>Zcashd Nodes</span>
+                    </button>
+                    <button
+                      onClick={() => setZebraNodesVisible(!zebraNodesVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        zebraNodesVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#10b981" }} />
+                      <span>Zebra Nodes</span>
+                    </button>
+                    <button
+                      onClick={() => setTotalNodesVisible(!totalNodesVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        totalNodesVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#f59e0b" }} />
+                      <span>Total Nodes</span>
+                    </button>
+                  </div>
+                )}
+              />
+
+              <Bar
+                dataKey="zcashdNodes"
+                name="Zcashd Nodes"
+                fill="#3b82f6"
+                opacity={0.8}
+                hide={!zcashdNodesVisible}
+              />
+              <Bar
+                dataKey="zebraNodes"
+                name="Zebra Nodes"
+                fill="#10b981"
+                opacity={0.8}
+                hide={!zebraNodesVisible}
+              />
+              <Line
+                type="monotone"
+                dataKey="totalNodes"
+                name="Total Nodes"
+                stroke="#f59e0b"
+                strokeWidth={3}
+                dot={false}
+                hide={!totalNodesVisible}
+              />
             </ComposedChart>
           </ChartWrapper>
         )}
 
+        {/* Shielded Metrics tab (already had clickable legend) */}
         {activeTab === "shielded" && (
           <ChartWrapper>
             <ComposedChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#e5e7eb"
+                className="dark:stroke-slate-700"
+              />
               <XAxis {...commonXAxisProps} />
-              <YAxis yAxisId="left" {...commonAxisProps} tickFormatter={formatValue} />
-              <YAxis yAxisId="right" orientation="right" {...commonAxisProps} tickFormatter={formatValue} />
+              <YAxis
+                yAxisId="left"
+                {...commonAxisProps}
+                tickFormatter={formatValue}
+              />
+              <YAxis
+                yAxisId="right"
+                orientation="right"
+                {...commonAxisProps}
+                tickFormatter={formatValue}
+              />
               <Tooltip content={<CustomTooltip />} />
-              <Legend />
-              <Area yAxisId="left" dataKey="totalShieldedSupply" name="Shielded Supply" fill="#3b82f6" stroke="#3b82f6" fillOpacity={0.2} />
-              <Line yAxisId="left" type="monotone" dataKey="totalLockboxSupply" name="Lockbox Supply" stroke="#8b5cf6" strokeWidth={2} dot={false} />
-              <Line yAxisId="right" type="monotone" dataKey="totalSaplingTxs" name="Sapling TXs" stroke="#10b981" strokeWidth={2} dot={false} />
-              <Line yAxisId="right" type="monotone" dataKey="totalOrchardTxs" name="Orchard TXs" stroke="#f59e0b" strokeWidth={2} dot={false} />
+
+              <Legend
+                content={() => (
+                  <div className="flex flex-wrap justify-center gap-6 text-sm mt-4">
+                    <button
+                      onClick={() => setShieldedSupplyVisible(!shieldedSupplyVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        shieldedSupplyVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#3b82f6" }} />
+                      <span>Shielded Supply</span>
+                    </button>
+                    <button
+                      onClick={() => setLockboxSupplyVisible(!lockboxSupplyVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        lockboxSupplyVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#8b5cf6" }} />
+                      <span>Lockbox Supply</span>
+                    </button>
+                    <button
+                      onClick={() => setSaplingTxsVisible(!saplingTxsVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        saplingTxsVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#10b981" }} />
+                      <span>Sapling TXs</span>
+                    </button>
+                    <button
+                      onClick={() => setOrchardTxsVisible(!orchardTxsVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        orchardTxsVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span className="inline-block w-3 h-3 rounded-sm" style={{ background: "#f59e0b" }} />
+                      <span>Orchard TXs</span>
+                    </button>
+                  </div>
+                )}
+              />
+
+              <Area
+                yAxisId="left"
+                dataKey="totalShieldedSupply"
+                name="Shielded Supply"
+                fill="#3b82f6"
+                stroke="#3b82f6"
+                fillOpacity={0.2}
+                hide={!shieldedSupplyVisible}
+              />
+              <Line
+                yAxisId="left"
+                type="monotone"
+                dataKey="totalLockboxSupply"
+                name="Lockbox Supply"
+                stroke="#8b5cf6"
+                strokeWidth={2}
+                dot={false}
+                hide={!lockboxSupplyVisible}
+              />
+              <Line
+                yAxisId="right"
+                type="monotone"
+                dataKey="totalSaplingTxs"
+                name="Sapling TXs"
+                stroke="#10b981"
+                strokeWidth={2}
+                dot={false}
+                hide={!saplingTxsVisible}
+              />
+              <Line
+                yAxisId="right"
+                type="monotone"
+                dataKey="totalOrchardTxs"
+                name="Orchard TXs"
+                stroke="#f59e0b"
+                strokeWidth={2}
+                dot={false}
+                hide={!orchardTxsVisible}
+              />
             </ComposedChart>
           </ChartWrapper>
         )}
