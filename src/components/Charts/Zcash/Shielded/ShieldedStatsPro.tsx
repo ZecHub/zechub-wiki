@@ -362,7 +362,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 angle={isMobile ? -30 : -45}
                 fontSize={isMobile ? 10 : 12}
                 height={isMobile ? 65 : 80}
-                interval={isMobile ? 5 : 3}
+                interval={isMobile ? 10 : 3}
               />
               <YAxis {...commonAxisProps} tickFormatter={formatValue} />
               <YAxis
@@ -473,7 +473,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 angle={isMobile ? -30 : -45}
                 fontSize={isMobile ? 10 : 12}
                 height={isMobile ? 65 : 80}
-                interval={isMobile ? 5 : 3}
+                interval={isMobile ? 10 : 3}
               />
               <YAxis yAxisId="left" {...commonAxisProps} tickFormatter={formatCurrency} />
               <YAxis yAxisId="right" orientation="right" {...commonAxisProps} tickFormatter={formatCurrency} />
@@ -516,7 +516,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 angle={isMobile ? -30 : -45}
                 fontSize={isMobile ? 10 : 12}
                 height={isMobile ? 65 : 80}
-                interval={isMobile ? 5 : 3}
+                interval={isMobile ? 10 : 3}
               />
               <YAxis {...commonAxisProps} />
               <Tooltip content={<CustomTooltip />} />
@@ -570,7 +570,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 angle={isMobile ? -30 : -45}
                 fontSize={isMobile ? 10 : 12}
                 height={isMobile ? 65 : 80}
-                interval={isMobile ? 5 : 3}
+                interval={isMobile ? 10 : 3}
               />
               <YAxis yAxisId="left" {...commonAxisProps} tickFormatter={formatValue} />
               <YAxis yAxisId="right" orientation="right" {...commonAxisProps} tickFormatter={formatValue} />
