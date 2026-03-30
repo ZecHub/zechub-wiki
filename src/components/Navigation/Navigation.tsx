@@ -473,7 +473,16 @@ const NavLinks = ({
       </div>
 
       {/* CTA buttons - responsive */}
-      <div className="hidden md:flex items-center space-x-8 ml-6">
+      <div className="hidden md:flex items-center space-x-8 ml-7 pl-7 border-l border-slate-400 dark:border-slate-600 gap-4">
+        <Link
+          prefetch
+          href="https://bounties.zechub.wiki/"
+          target="_blank"
+          onClick={handleLinkClick}
+          className="text-cta-primary hover:bg-cta-primary dark:hover:text-white transition-colors duration-200 mr-0"
+        >
+          {t.navigation?.bounties || "Bounties"}
+        </Link>
         <Link
           prefetch
           href="/dashboard"
@@ -544,6 +553,15 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
         <div className="flex flex-col space-y-3 my-8 border-t border-slate-400 dark:border-slate-50 "></div>
         <Link
           prefetch
+          href="https://bounties.zechub.wiki/"
+          target="_blank"
+          onClick={handleLinkClick}
+          className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
+        >
+          {t.navigation?.bounties || "Bounties"}
+        </Link>
+        <Link
+          prefetch
           href="/dashboard"
           onClick={handleLinkClick}
           className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
@@ -608,8 +626,8 @@ const Navigation = () => {
   }, [dark]);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-[200]">
-      <div className="mx-auto w-full max-w-7xl px-2 md:px-4">
+    <header className="sticky top-0 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-200">
+      <div className="mx-auto w-full max-w-372 px-2 md:px-4">
         <div className="flex items-center justify-between py-3 md:py-4">
           {/* Logo */}
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
@@ -673,7 +691,7 @@ const Navigation = () => {
 
               <SheetContent
                 side="left"
-                className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-50 dark:bg-slate-900"
+                className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-50 dark:bg-slate-900 z-201"
               >
                 <MobileNav closeMenu={() => setIsOpen(false)} />
               </SheetContent>

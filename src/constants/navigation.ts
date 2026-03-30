@@ -8,7 +8,7 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench } from "lucide-react";
+import { Wrench, Map } from "lucide-react";
 
 import {
   RiGithubFill as Github,
@@ -154,51 +154,8 @@ export const navigations: Array<NavigationItem> = [
     ],
   },
   {
-    name: "Zcash Organizations",
-    label: "Organizations",
-    links: [
-      {
-        name: "ZODL",
-        path: "/zcash-organizations/ZODL",
-      },
-      {
-        name: "Electric Coin Company",
-        path: "/zcash-organizations/electric-coin-company",
-      },
-      {
-        name: "Zcash Foundation",
-        path: "/zcash-organizations/zcash-foundation",
-      },
-      {
-        name: "Zcash Community Grants",
-        path: "/zcash-organizations/zcash-community-grants",
-      },
-      {
-        name: "Financial Privacy Foundation",
-        path: "/zcash-organizations/financial-privacy-foundation",
-      },
-      {
-        name: "Shielded Labs",
-        path: "/zcash-organizations/shielded-labs",
-      },
-      {
-        name: "Zingo Labs",
-        path: "/zcash-organizations/zingo-labs",
-      },
-      {
-        name: "Brand",
-        path: "/zcash-organizations/brand",
-        icon: BrandIcon,
-      },
-      {
-        name: "ZKAV Club",
-        path: "/zcash-organizations/zkav",
-        icon: "zkav-club.png",
-      },
-    ],
-  },
-  {
     name: "Guides",
+    label: "Guides",
     links: [
       {
         name: "Zgo Payment Processor",
@@ -303,6 +260,50 @@ export const navigations: Array<NavigationItem> = [
     ],
   },
   {
+    name: "Zcash Organizations",
+    label: "Organizations",
+    links: [
+      {
+        name: "ZODL",
+        path: "/zcash-organizations/ZODL",
+      },
+      {
+        name: "Electric Coin Company",
+        path: "/zcash-organizations/electric-coin-company",
+      },
+      {
+        name: "Zcash Foundation",
+        path: "/zcash-organizations/zcash-foundation",
+      },
+      {
+        name: "Zcash Community Grants",
+        path: "/zcash-organizations/zcash-community-grants",
+      },
+      {
+        name: "Financial Privacy Foundation",
+        path: "/zcash-organizations/financial-privacy-foundation",
+      },
+      {
+        name: "Shielded Labs",
+        path: "/zcash-organizations/shielded-labs",
+      },
+      {
+        name: "Zingo Labs",
+        path: "/zcash-organizations/zingo-labs",
+      },
+      {
+        name: "Brand",
+        path: "/zcash-organizations/brand",
+        icon: BrandIcon,
+      },
+      {
+        name: "ZKAV Club",
+        path: "/zcash-organizations/zkav",
+        icon: "zkav-club.png",
+      },
+    ],
+  },
+  {
     name: "DAO",
     path: "/dao",
     icon: RiCommunityLine,
@@ -333,6 +334,11 @@ export const navigations: Array<NavigationItem> = [
     path: "/visualizer",
     icon: BsPlay,
   },
+  {
+    name: "Sitemap",
+    path: "/sitemap",
+    icon: Map,
+  },
 ];
 
 export const socialNav = [
@@ -357,8 +363,3 @@ export const socialMedia = [
   { name: "DAO", link: "https://vote.zechub.xyz/" },
   { name: "Store", link: "https://zechub.store/" },
 ];
-
-
-
-
-

@@ -4,7 +4,7 @@ import { DarkModeProvider } from "@/provider/DarkModeProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
-import FloatingExplore from '@/components/FloatingExplore';
+import FloatingExplore from "@/components/FloatingExplore";
 import Script from "next/script";
 import "./globals.css";
 
@@ -48,7 +48,13 @@ export default function RootLayout({
         {/* Hidden Google Translate mount — must be inside <body> */}
         <div
           id="google_translate_element"
-          style={{ position: 'absolute', top: -9999, left: -9999, width: 300, height: 60 }}
+          style={{
+            position: "absolute",
+            top: -9999,
+            left: -9999,
+            width: 300,
+            height: 60,
+          }}
         />
 
         <LanguageProvider>
@@ -58,7 +64,11 @@ export default function RootLayout({
               <Navigation />
               <FloatingExplore />
               <div className="flex flex-col justify-between flex-grow">
-                <div style={{ margin: "0 0 48px 0" }}>{children}</div>
+                <div
+                //  style={{ margin: "0 0 48px 0" }}
+                >
+                  {children}
+                </div>
               </div>
             </div>
             <Footer />
