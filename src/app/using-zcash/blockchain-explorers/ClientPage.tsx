@@ -1,24 +1,36 @@
 "use client";
-import { Card } from '@/components/Card/Card';
-import { blockchainExplorers } from '@/constants/blockchainExplorers';
-import { useLanguage } from '@/context/LanguageContext';
+import ExplorerDirectoryCard from "@/app/using-zcash/blockchain-explorers/ExplorerDirectoryCard";
+import { blockchainExplorers } from "@/constants/blockchainExplorers";
+import { useLanguage } from "@/context/LanguageContext";
 
 const BlockchainExplorersClient = () => {
   const { t } = useLanguage();
-  const title = t?.pages?.usingZcash?.blockchainExplorers?.title ?? 'Blockchain Explorers';
+  const title = t?.pages?.usingZcash?.blockchainExplorers?.title ?? "Blockchain Explorers";
   const description =
     t?.pages?.usingZcash?.blockchainExplorers?.description ??
-    'A blockchain explorer is a search engine that allows users to explore the blockchain of a cryptocurrency. It provides a user-friendly interface to view transaction details, block information, and address histories.';
-  const cta = t?.common?.readMore ?? 'Read More';
+    "A blockchain explorer is a search engine that lets you inspect blocks, transactions, addresses, and network activity across the Zcash ecosystem.";
+  const cta = t?.common?.readMore ?? "Read More";
 
   return (
-    <div className='container mx-auto px-4'>
-      <h1 className='text-4xl my-12 font-semibold flex justify-center'>{title}</h1>
-      <p className='text-xl text-center text-slate-600 mb-12'>{description}</p>
+    <section className="container mx-auto px-4 py-8 md:py-12">
+      <div className="mx-auto mb-10 max-w-4xl text-center md:mb-14">
+        <h1 className="mb-4 text-balance text-3xl font-semibold text-slate-900 md:text-5xl dark:text-white">
+          {title}
+        </h1>
+        <p className="mx-auto max-w-3xl text-pretty text-base leading-7 text-slate-600 md:text-lg dark:text-slate-300">
+          {description}
+        </p>
+      </div>
 
-      <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
+      <div className="mb-6 flex items-center justify-between">
+        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
+          {blockchainExplorers.length} explorers
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {blockchainExplorers.map((itm, i) => (
-          <Card
+          <ExplorerDirectoryCard
             thumbnailImage={itm.thumbnailImage}
             description={itm.description}
             title={itm.title}
@@ -29,7 +41,7 @@ const BlockchainExplorersClient = () => {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
