@@ -298,9 +298,32 @@ export default function SheetTreasuryTab() {
                     ))}
                   </Pie>
                   <Tooltip
-                    formatter={(v: any) =>
-                      v != null ? `${v.toLocaleString()} ZEC` : "—"
-                    }
+                    content={({ active, payload }) => {
+                      if (active && payload?.length) {
+                        const item = payload[0];
+                        const color = item.payload.fill;
+                        return (
+                          <div
+                            className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg p-3"
+                            style={{
+                              borderLeftColor: color,
+                              borderLeftWidth: 3,
+                            }}
+                          >
+                            <p
+                              className="text-sm font-medium"
+                              style={{ color }}
+                            >
+                              {item.name}
+                            </p>
+                            <p className="text-sm text-slate-500 dark:text-slate-400">
+                              {item.value.toLocaleString()} ZEC
+                            </p>
+                          </div>
+                        );
+                      }
+                      return null;
+                    }}
                   />
                 </PieChart>
               </ResponsiveContainer>
@@ -343,9 +366,32 @@ export default function SheetTreasuryTab() {
                     ))}
                   </Pie>
                   <Tooltip
-                    formatter={(v: any) =>
-                      v != null ? `$${v.toLocaleString()}` : "—"
-                    }
+                    content={({ active, payload }) => {
+                      if (active && payload?.length) {
+                        const item = payload[0];
+                        const color = item.payload.fill;
+                        return (
+                          <div
+                            className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg p-3"
+                            style={{
+                              borderLeftColor: color,
+                              borderLeftWidth: 3,
+                            }}
+                          >
+                            <p
+                              className="text-sm font-medium"
+                              style={{ color }}
+                            >
+                              {item.name}
+                            </p>
+                            <p className="text-sm text-slate-500 dark:text-slate-400">
+                              ${item.value.toLocaleString()}
+                            </p>
+                          </div>
+                        );
+                      }
+                      return null;
+                    }}
                   />
                 </PieChart>
               </ResponsiveContainer>

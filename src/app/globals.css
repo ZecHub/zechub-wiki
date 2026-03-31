@@ -86,6 +86,14 @@
   --radius-sm: calc(var(--radius) - 4px);
 }
 
+*:focus {
+  outline: none !important;
+}
+
+*:focus-visible {
+  outline: none !important;
+}
+
 .btn-brand {
   @apply text-white border-brand bg-brand hover:bg-brand-hover hover:text-white py-2 px-4;
 }
@@ -99,9 +107,9 @@ html {
   scroll-behavior: smooth;
 }
 
-body[data-scroll-locked] {
+/* body[data-scroll-locked] {
   padding: 0 1.5rem !important;
-}
+} */
 
 /* body {
   background: #fff9f9;
@@ -732,5 +740,16 @@ code::-webkit-scrollbar-track {
   }
   .wl-drawer-overlay .wl-drawer {
     display: block;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
   }
 }

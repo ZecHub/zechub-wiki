@@ -3310,5 +3310,65 @@
     "sapling": 211,
     "orchard": 1085,
     "timestamp": "03/25/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 180,
+    "orchard": 947,
+    "timestamp": "03/26/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 189,
+    "orchard": 936,
+    "timestamp": "03/27/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 164,
+    "orchard": 925,
+    "timestamp": "03/28/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 193,
+    "orchard": 867,
+    "timestamp": "03/29/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 223,
+    "orchard": 838,
+    "timestamp": "03/29/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 264,
+    "orchard": 976,
+    "timestamp": "03/30/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 263,
+    "orchard": 976,
+    "timestamp": "03/30/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 236,
+    "orchard": 1117,
+    "timestamp": "03/31/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 241,
+    "orchard": 1200,
+    "timestamp": "03/31/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 240,
+    "orchard": 1201,
+    "timestamp": "03/31/2026"
   }
 ]

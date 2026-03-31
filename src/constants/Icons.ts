@@ -271,6 +271,7 @@ const iconsForMenu: IconsFor = {
     "Shielded Labs": BordererShield,
     "Financial Privacy Foundation": MdFoundation,
     "Zingo Labs": GiSoapExperiment,
+    "ZKAV": "zkav-club.png",
   },
   "Zcash Community": {
     "Community Links": LinkSimpleBold,

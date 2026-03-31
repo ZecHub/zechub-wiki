@@ -1,102 +1,106 @@
-[
-    {
-        "title": "Crosslink Milestone #4c Workshop and Q&A Session",
-        "video_id": "gFYTFckJzbs",
-        "views": 57
-    },
-    {
-        "title": "Crosslink Workshop (Jan 2026): Mac Installation",
-        "video_id": "C5o5W2sRKVM",
-        "views": 13
-    },
-    {
-        "title": "Crosslink Workshop (Jan 2026): Windows Installation",
-        "video_id": "cO-5Oa4B1Tk",
-        "views": 11
-    },
-    {
-        "title": "Crosslink Workshop (Jan 2026): Linux Installation",
-        "video_id": "i8AABDUS_iM",
-        "views": 11
-    },
-    {
-        "title": "Crosslink Milestone #4b Workshop",
-        "video_id": "2MevEb-CgHU",
-        "views": 65
-    },
-    {
-        "title": "Crosslink Milestone #4a Workshop",
-        "video_id": "c12416G_CFw",
-        "views": 32
-    },
-    {
-        "title": "Crosslink Milestone #4 | Permissionlessly Joining the Roster and Accumulating Stake",
-        "video_id": "FSeyWwUsEKY",
-        "views": 18
-    },
-    {
-        "title": "Crosslink Milestone #3 Workshop",
-        "video_id": "57vjVzG1Qx4",
-        "views": 32
-    },
-    {
-        "title": "Shielded Dialogues: Should The Transparent Pool Be Deprecated?",
-        "video_id": "t0AF-aTiBCw",
-        "views": 131
-    },
-    {
-        "title": "Crosslink Milestone #3 | Is that THE Crosslink?!",
-        "video_id": "A0PUmThne_M",
-        "views": 57
-    },
-    {
-        "title": "Shielded Dialogues: Gen Z & Memetic Warfare",
-        "video_id": "WY-bPSijB1E",
-        "views": 130
-    },
-    {
-        "title": "Crosslink Milestone #3 Demo",
-        "video_id": "ctF7W-FlLrA",
-        "views": 31
-    },
-    {
-        "title": "Crosslink Milestone #2 Workshop",
-        "video_id": "tw_bqa2ys14",
-        "views": 70
-    },
-    {
-        "title": "Shielded Dialogues: Dev Fund & Funding Model Results",
-        "video_id": "kdKu0xLtjcw",
-        "views": 39
-    },
-    {
-        "title": "Crosslink Milestone #2 | Linking to PoW from PoS",
-        "video_id": "plS_gb6mvo8",
-        "views": 20
-    },
-    {
-        "title": "Crosslink Milestone #2 | BFT Chat App and Sidechain Visualization",
-        "video_id": "YCbYN2bwFV4",
-        "views": 49
-    },
-    {
-        "title": "Shielded Dialogues: Coinholder Voting",
-        "video_id": "sPQgX9Cuc_Y",
-        "views": 80
-    },
-    {
-        "title": "Crosslink Milestone #2 | GUI Chain Visualizer",
-        "video_id": "NFAtuniwdcs",
-        "views": 38
-    },
-    {
-        "title": "Shielded Dialogues: Why the NSM Belongs in NU7",
-        "video_id": "kpBuhL2B904",
-        "views": 172
-    },
-    {
-        "title": "Crosslink: Milestone #1 Demo",
-        "video_id": "aOozuD0rt6A",
-        "views": 47
-    }
-]
+{
+    "channelName": "Shielded Labs",
+    "channelIcon": "https://yt3.ggpht.com/c4r_jVCLWXVdDy7lIzra0a6MqNTqx4GxsTqkoK8GGAxK4QfCs4clJCAcS4D8lgBWhij9houN=s800-c-k-c0x00ffffff-no-rj",
+    "videos": [
+        {
+            "title": "Crosslink Milestone #4c Workshop and Q&A Session",
+            "video_id": "gFYTFckJzbs",
+            "views": 57
+        },
+        {
+            "title": "Crosslink Workshop (Jan 2026): Mac Installation",
+            "video_id": "C5o5W2sRKVM",
+            "views": 14
+        },
+        {
+            "title": "Crosslink Workshop (Jan 2026): Windows Installation",
+            "video_id": "cO-5Oa4B1Tk",
+            "views": 11
+        },
+        {
+            "title": "Crosslink Workshop (Jan 2026): Linux Installation",
+            "video_id": "i8AABDUS_iM",
+            "views": 11
+        },
+        {
+            "title": "Crosslink Milestone #4b Workshop",
+            "video_id": "2MevEb-CgHU",
+            "views": 65
+        },
+        {
+            "title": "Crosslink Milestone #4a Workshop",
+            "video_id": "c12416G_CFw",
+            "views": 32
+        },
+        {
+            "title": "Crosslink Milestone #4 | Permissionlessly Joining the Roster and Accumulating Stake",
+            "video_id": "FSeyWwUsEKY",
+            "views": 18
+        },
+        {
+            "title": "Crosslink Milestone #3 Workshop",
+            "video_id": "57vjVzG1Qx4",
+            "views": 32
+        },
+        {
+            "title": "Shielded Dialogues: Should The Transparent Pool Be Deprecated?",
+            "video_id": "t0AF-aTiBCw",
+            "views": 131
+        },
+        {
+            "title": "Crosslink Milestone #3 | Is that THE Crosslink?!",
+            "video_id": "A0PUmThne_M",
+            "views": 57
+        },
+        {
+            "title": "Shielded Dialogues: Gen Z & Memetic Warfare",
+            "video_id": "WY-bPSijB1E",
+            "views": 130
+        },
+        {
+            "title": "Crosslink Milestone #3 Demo",
+            "video_id": "ctF7W-FlLrA",
+            "views": 31
+        },
+        {
+            "title": "Crosslink Milestone #2 Workshop",
+            "video_id": "tw_bqa2ys14",
+            "views": 70
+        },
+        {
+            "title": "Shielded Dialogues: Dev Fund & Funding Model Results",
+            "video_id": "kdKu0xLtjcw",
+            "views": 39
+        },
+        {
+            "title": "Crosslink Milestone #2 | Linking to PoW from PoS",
+            "video_id": "plS_gb6mvo8",
+            "views": 20
+        },
+        {
+            "title": "Crosslink Milestone #2 | BFT Chat App and Sidechain Visualization",
+            "video_id": "YCbYN2bwFV4",
+            "views": 49
+        },
+        {
+            "title": "Shielded Dialogues: Coinholder Voting",
+            "video_id": "sPQgX9Cuc_Y",
+            "views": 80
+        },
+        {
+            "title": "Crosslink Milestone #2 | GUI Chain Visualizer",
+            "video_id": "NFAtuniwdcs",
+            "views": 38
+        },
+        {
+            "title": "Shielded Dialogues: Why the NSM Belongs in NU7",
+            "video_id": "kpBuhL2B904",
+            "views": 172
+        },
+        {
+            "title": "Crosslink: Milestone #1 Demo",
+            "video_id": "aOozuD0rt6A",
+            "views": 47
+        }
+    ]
+}

@@ -18,11 +18,12 @@ export const Tabs = ({ children, defaultValue, value, onValueChange }: any) => {
 };
 
 export const TabsList = ({ children }: any) => (
-  <div className="flex space-x-1 rounded-lg bg-muted dark:bg-gray-800 bg-slate-100 p-1 mb-4 overflow-x-auto">
+  <div className="flex flex-wrap gap-1 bg-muted dark:bg-gray-800 bg-slate-100 p-1.5 rounded-2xl mb-6">
     {children}
   </div>
 );
 
+// Kept for backward compatibility
 export const TabsList2 = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -33,24 +34,21 @@ export const TabsList2 = React.forwardRef<
     {...props}
   />
 ));
-
-TabsList2.displayName = "CardHeader";
+TabsList2.displayName = "TabsList2";
 
 export const TabsTrigger = ({
   value,
   children,
   activeTab,
   setActiveTab,
-  borderBottom,
 }: any) => (
   <button
-    className={`cursor-pointer px-3 py-2 text-sm inline-flex flex-shrink-0 font-medium rounded-md transition-colors ${
+    className={cn(
+      "cursor-pointer px-3 py-1.5 text-xs font-medium rounded-xl transition-all flex-shrink-0 whitespace-nowrap min-w-[65px]",
       activeTab === value
-        ? "bg-background text-foreground shadow-sm"
-        : "text-muted-foreground hover:text-slate-600"
-    }
-    ${borderBottom && activeTab === value ? "border-b-2 dark:border-primary rounded-none" : ""}
-    `}
+        ? "bg-white dark:bg-slate-700 shadow-sm text-foreground"
+        : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-slate-700",
+    )}
     onClick={() => setActiveTab(value)}
   >
     {children}
