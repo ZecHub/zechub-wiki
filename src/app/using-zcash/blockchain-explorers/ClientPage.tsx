@@ -9,7 +9,7 @@ const BlockchainExplorersClient = () => {
   const description =
     t?.pages?.usingZcash?.blockchainExplorers?.description ??
     "A blockchain explorer is a search engine that lets you inspect blocks, transactions, addresses, and network activity across the Zcash ecosystem.";
-  const cta = t?.common?.readMore ?? "Read More";
+  const cta = "Visit Site";
 
   return (
     <section className="container mx-auto px-4 py-8 md:py-12">
