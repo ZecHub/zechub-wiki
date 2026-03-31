@@ -34,7 +34,11 @@ const ZCGDashboard = dynamic(() => import("@/app/zips-grants/page"), {
 
 type ViewType = "dashboard" | "proposals" | "zcg" | "youtube";
 type SubViewType = "top" | "latest";
-type ChannelType = "ZecHub" | "Zcash Foundation" | "Shielded Labs" | "Zcash Media";
+type ChannelType =
+  | "ZecHub"
+  | "Zcash Foundation"
+  | "Shielded Labs"
+  | "Zcash Media";
 
 type DashboardDictionary = {
   pages?: {
@@ -146,9 +150,22 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
 
   const changeView = (view: ViewType) => {
     setCurrentView(view);
+
     const nextParams = new URLSearchParams(window.location.search);
-    nextParams.set("tab", view);
-    router.replace(`${pathname}?${nextParams.toString()}`, { scroll: false });
+
+    if (view === "dashboard") {
+      nextParams.delete("tab");
+    } else {
+      nextParams.set("tab", view);
+    }
+
+    if (!pathname) return;
+
+    const queryString = nextParams.toString();
+    const url = queryString ? `${pathname}?${queryString}` : pathname;
+
+    router.replace(url, { scroll: false });
+
     if (view !== "youtube") {
       setSubView("top");
       setLatestSortByViews(false);
@@ -157,11 +174,16 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
 
   useEffect(() => {
     const tab = new URLSearchParams(window.location.search).get("tab");
-    if (!tab) return;
+
+    if (!tab) {
+      setCurrentView("dashboard");
+      return;
+    }
+
     if (allowedTabs.includes(tab as ViewType)) {
       setCurrentView(tab as ViewType);
     }
-  }, []);
+  }, [pathname]);
 
   const tabs = [
     {
@@ -188,22 +210,22 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
 
   // Select correct data for current channel
   const currentSorted =
-  currentChannel === "ZecHub"
-    ? zecSorted
-    : currentChannel === "Shielded Labs"
-      ? slSorted
-      : currentChannel === "Zcash Media"
-        ? zmSorted
-        : zfSorted;
+    currentChannel === "ZecHub"
+      ? zecSorted
+      : currentChannel === "Shielded Labs"
+        ? slSorted
+        : currentChannel === "Zcash Media"
+          ? zmSorted
+          : zfSorted;
 
   const currentDate =
-  currentChannel === "ZecHub"
-    ? zecDate
-    : currentChannel === "Shielded Labs"
-      ? slDate
-      : currentChannel === "Zcash Media"
-        ? zmDate
-        : zfDate;
+    currentChannel === "ZecHub"
+      ? zecDate
+      : currentChannel === "Shielded Labs"
+        ? slDate
+        : currentChannel === "Zcash Media"
+          ? zmDate
+          : zfDate;
 
   const filteredSorted = currentSorted.filter((v) =>
     v.title.toLowerCase().includes(searchTerm.toLowerCase()),
