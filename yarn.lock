@@ -305,6 +305,11 @@
   resolved "https://registry.npmjs.org/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
+"@elemental-zcash/zaddr_wasm_parser@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@elemental-zcash/zaddr_wasm_parser/-/zaddr_wasm_parser-0.2.0.tgz#d2482cacb21abf83b68a87022d4e0096d074a5da"
+  integrity sha512-SBKx72zdX9kxkqImBZLhm3N5dG7zXQZFUFOpwL/n3PSUhwQgpckovxOeqWR4FqHBtEBjqWA/c9MUUzP3nsYxrQ==
+
 "@emnapi/core@^1.7.1", "@emnapi/core@^1.8.1":
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/@emnapi/core/-/core-1.8.1.tgz#fd9efe721a616288345ffee17a1f26ac5dd01349"
