@@ -43,7 +43,7 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Tools",
-        path: "/tools/converter",
+        path: "/tools",
         icon: Wrench,
       },
       {

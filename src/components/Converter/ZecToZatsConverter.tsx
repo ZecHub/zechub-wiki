@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Copy, Check, ArrowUpDown } from 'lucide-react';
 
 const ZEC_TO_ZATS = 100_000_000;
 
@@ -20,7 +19,6 @@ export default function ZecToZatsConverter() {
 
   const handleTopChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value;
-    
     if (topUnit === 'ZEC') {
       if (val === '' || /^\d*\.?\d{0,8}$/.test(val)) {
         setTopValue(val);
@@ -37,7 +35,6 @@ export default function ZecToZatsConverter() {
 
   const handleBottomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value;
-
     if (bottomUnit === 'ZEC') {
       if (val === '' || /^\d*\.?\d{0,8}$/.test(val)) {
         setBottomValue(val);
@@ -74,83 +71,115 @@ export default function ZecToZatsConverter() {
   const displayBottom = bottomUnit === 'Zats' ? formatZats(bottomValue) : bottomValue;
 
   return (
-    <div className="max-w-[420px] mx-auto">
-      <div className="bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-emerald-600 to-teal-600 px-8 py-7 text-white">
-          <h3 className="text-2xl font-bold tracking-tight flex items-center gap-3">
-            ZEC ↔ Zats
-            <span className="text-xs bg-white/20 px-3 py-1 rounded-full font-mono">1 ZEC = 100M Zats</span>
-          </h3>
+    <div className="w-full space-y-4">
+      {/* Rate badge */}
+      <div className="flex justify-center mb-1">
+        <span className="text-xs font-semibold tracking-wide text-[#F4B728] bg-[#F4B728]/10 border border-[#F4B728]/15 px-3 py-1.5 rounded-full">
+          1 ZEC = 100,000,000 Zats
+        </span>
+      </div>
+
+      {/* Top input */}
+      <div>
+        <label className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1">
+          {topUnit}
+        </label>
+        <div className="relative">
+          <input
+            type="text"
+            inputMode={topUnit === 'ZEC' ? 'decimal' : 'numeric'}
+            value={displayTop}
+            onChange={handleTopChange}
+            className="w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]
+                       focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/15
+                       rounded-xl px-5 py-4 pr-16 text-2xl sm:text-3xl font-bold outline-none
+                       transition-all duration-200 text-zinc-900 dark:text-white
+                       placeholder-zinc-300 dark:placeholder-[#2d3e50]"
+            placeholder={topUnit === 'ZEC' ? '0.00000000' : '0'}
+          />
+          <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-[#4a5a6e] pointer-events-none">
+            {topUnit}
+          </span>
         </div>
+      </div>
 
-        <div className="p-8 space-y-8">
-          {/* Top Input */}
-          <div>
-            <label className="block text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-2">
-              {topUnit}
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                value={displayTop}
-                onChange={handleTopChange}
-                className="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 focus:border-emerald-500 rounded-2xl px-6 py-5 text-4xl font-semibold outline-none transition-all"
-                placeholder={topUnit === 'ZEC' ? "0.00000000" : "0"}
-              />
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 font-bold text-zinc-400">
-                {topUnit}
-              </div>
-            </div>
-          </div>
-
-          {/* Swap Button */}
-          <div className="flex justify-center">
-            <button
-              onClick={swap}
-              className="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 p-4 rounded-2xl hover:border-emerald-500 transition-all active:scale-95 shadow-sm"
-            >
-              <ArrowUpDown className="w-6 h-6 text-zinc-500" />
-            </button>
-          </div>
-
-          {/* Bottom Input */}
-          <div>
-            <label className="block text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-2">
-              {bottomUnit}
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                value={displayBottom}
-                onChange={handleBottomChange}
-                className="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 focus:border-emerald-500 rounded-2xl px-6 py-5 text-4xl font-semibold outline-none transition-all"
-                placeholder={bottomUnit === 'ZEC' ? "0.00000000" : "0"}
-              />
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 font-bold text-zinc-400">
-                {bottomUnit}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Copy Buttons */}
-        <div className="px-8 pb-8 grid grid-cols-2 gap-4">
-          <button
-            onClick={() => copyValue(topValue, true)}
-            className="flex items-center justify-center gap-2 py-4 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 rounded-2xl font-medium transition-all"
+      {/* Swap */}
+      <div className="flex justify-center -my-1">
+        <button
+          onClick={swap}
+          aria-label="Swap units"
+          className="group p-2.5 rounded-xl bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]
+                     hover:border-[#F4B728]/50 hover:bg-[#F4B728]/5 active:scale-95
+                     transition-all duration-200"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-zinc-400 dark:text-[#4a5a6e] group-hover:text-[#F4B728] transition-colors stroke-current"
           >
-            {copiedTop ? <Check className="w-5 h-5 text-emerald-500" /> : <Copy className="w-5 h-5" />}
-            Copy {topUnit}
-          </button>
-          <button
-            onClick={() => copyValue(bottomValue, false)}
-            className="flex items-center justify-center gap-2 py-4 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 rounded-2xl font-medium transition-all"
-          >
-            {copiedBottom ? <Check className="w-5 h-5 text-emerald-500" /> : <Copy className="w-5 h-5" />}
-            Copy {bottomUnit}
-          </button>
+            <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Bottom input */}
+      <div>
+        <label className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1">
+          {bottomUnit}
+        </label>
+        <div className="relative">
+          <input
+            type="text"
+            inputMode={bottomUnit === 'ZEC' ? 'decimal' : 'numeric'}
+            value={displayBottom}
+            onChange={handleBottomChange}
+            className="w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]
+                       focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/15
+                       rounded-xl px-5 py-4 pr-16 text-2xl sm:text-3xl font-bold outline-none
+                       transition-all duration-200 text-zinc-900 dark:text-white
+                       placeholder-zinc-300 dark:placeholder-[#2d3e50]"
+            placeholder={bottomUnit === 'ZEC' ? '0.00000000' : '0'}
+          />
+          <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-[#4a5a6e] pointer-events-none">
+            {bottomUnit}
+          </span>
         </div>
+      </div>
+
+      {/* Copy buttons */}
+      <div className="grid grid-cols-2 gap-3 pt-2">
+        {[
+          { copied: copiedTop, unit: topUnit, val: topValue, isTop: true },
+          { copied: copiedBottom, unit: bottomUnit, val: bottomValue, isTop: false },
+        ].map(({ copied, unit, val, isTop }) => (
+          <button
+            key={unit}
+            onClick={() => copyValue(val, isTop)}
+            className={`flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold
+                        transition-all duration-200 active:scale-[0.97] border ${
+                          copied
+                            ? 'bg-[#F4B728] border-[#F4B728] text-[#0f1720]'
+                            : 'bg-zinc-50 dark:bg-[#0f1720] border-zinc-200 dark:border-[#243040] text-zinc-500 dark:text-[#5a6a7e] hover:border-[#F4B728]/50 hover:text-[#F4B728]'
+                        }`}
+          >
+            {copied ? (
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            ) : (
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+            )}
+            {copied ? 'Copied!' : `Copy ${unit}`}
+          </button>
+        ))}
       </div>
     </div>
   );
