@@ -12,7 +12,7 @@ import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 
 import { matchIcons } from "@/constants/Icons";
-import { ChevronDown, Menu, Moon, Search, Sun } from "lucide-react";
+import { ChevronDown, Menu, Moon, Search, Sun, ShoppingBag } from "lucide-react";
 import { Button } from "../UI/button";
 import { Icon } from "../UI/Icon";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
@@ -673,42 +673,44 @@ const Navigation = () => {
               )}
             </Button>
 
-            {/* Desktop donation button */}
-            <div
-              className="hidden xl:flex relative"
-              onMouseEnter={() => setShowShop(true)}
-              onMouseLeave={() => setShowShop(false)}
-            >
-              <DonationBtn />
-              {showShop && (
-                <div
-                  className="absolute top-8.5 left-0 w-full z-50"
-                  style={{ marginTop: "-2px" }} // overlap slightly so there's no gap
-                >
-                  <Link
-                    prefetch
-                    href="https://zechub.store/"
-                    target="_blank"
-                    className="
-          block w-full text-center text-sm font-semibold
-          px-4 py-2
-          bg-slate-100 text-slate-600 dark:bg-slate-900 
-          rounded-md
-          shadow-md shadow-black/20
-          border-t border-yellow-600/30
-          transition-all duration-150
-          hover:brightness-110
-          animate-[slideDown_0.12s_ease-out]
-        "
-                    style={{
-                      transformOrigin: "top center",
-                    }}
-                  >
-                    Shop
-                  </Link>
-                </div>
-              )}
-            </div>
+	<div
+	  className="hidden xl:flex relative"
+	  onMouseEnter={() => setShowShop(true)}
+	  onMouseLeave={() => setShowShop(false)}
+	>
+	  <DonationBtn />
+
+	  {showShop && (
+	    <div
+	      className="absolute top-8.5 left-0 w-full z-50"
+	      style={{ marginTop: "-2px" }} // overlap slightly so there's no gap
+	    >
+	      <Link
+		prefetch
+		href="https://zechub.store/"
+		target="_blank"
+		className="
+		  flex items-center justify-center gap-2
+		  w-full text-center text-sm font-semibold
+		  px-4 py-2
+		  bg-slate-100 text-slate-600 dark:bg-slate-900 
+		  rounded-md
+		  shadow-md shadow-black/20
+		  border-t border-yellow-600/30
+		  transition-all duration-150
+		  hover:brightness-110
+		  animate-[slideDown_0.12s_ease-out]
+		"
+		style={{
+		  transformOrigin: "top center",
+		}}
+	      >
+		<ShoppingBag className="h-4 w-4" />
+		Shop
+	      </Link>
+	    </div>
+	  )}
+	</div>
 
             {/* Mobile menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
