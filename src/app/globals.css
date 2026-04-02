@@ -743,6 +743,14 @@ code::-webkit-scrollbar-track {
   }
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+input[type="search"]::-ms-clear {
+  cursor: pointer;
+}
+
 @keyframes slideDown {
   from {
     opacity: 0;
