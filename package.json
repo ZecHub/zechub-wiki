@@ -15,6 +15,7 @@
   "proxy": "https://explorer.zec.rocks",
   "dependencies": {
     "@connectrpc/connect": "^1.6.1",
+    "@elemental-zcash/zaddr_wasm_parser": "^0.2.0",
     "@formatjs/intl-localematcher": "^0.8.1",
     "@headlessui/react": "^2.0.0",
     "@heroicons/react": "^2.2.0",

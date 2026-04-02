@@ -11,7 +11,11 @@ export const blockchainExplorers = [
     title: 'MESSARI',
     description:
       'Messari brings transparency to the cryptoeconomy; helping investors, regulators, and the public make sense of this revolutionary new asset class...',
-    features: [],
+    features: [
+      'Market intelligence',
+      'asset profiles',
+      'research and insights',
+    ],
     url: 'https://messari.io/project/zcash',
     thumbnailImage: '/explorer/messari.io.png',
   },
@@ -19,7 +23,11 @@ export const blockchainExplorers = [
     title: '3xpl',
     description:
       '3xpl is a super-fast, universal explorer for most popular public blockchains.',
-    features: [],
+    features: [
+      'Multi-chain explorer',
+      'fast transaction lookup',
+      'address and block search',
+    ],
     url: 'https://3xpl.com/zcash',
     thumbnailImage: '/explorer/3xpl.png',
   },
