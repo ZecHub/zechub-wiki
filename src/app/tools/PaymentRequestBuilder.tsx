@@ -1,63 +1,19 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-
-function encodeQR(text: string): boolean[][] {
-  const size = 29;
-  const m: boolean[][] = Array.from({ length: size }, () => Array(size).fill(false));
-  const finder = (ox: number, oy: number) => {
-    for (let y = 0; y < 7; y++)
-      for (let x = 0; x < 7; x++)
-        m[oy + y][ox + x] =
-          y === 0 || y === 6 || x === 0 || x === 6 || (x >= 2 && x <= 4 && y >= 2 && y <= 4);
-  };
-  finder(0, 0);
-  finder(size - 7, 0);
-  finder(0, size - 7);
-  for (let i = 8; i < size - 8; i++) {
-    m[6][i] = i % 2 === 0;
-    m[i][6] = i % 2 === 0;
-  }
-  let seed = 0;
-  for (let i = 0; i < text.length; i++) seed = ((seed << 5) - seed + text.charCodeAt(i)) | 0;
-  seed = Math.abs(seed);
-  const rand = () => {
-    seed = (seed * 16807 + 12345) & 0x7fffffff;
-    return seed;
-  };
-  for (let y = 0; y < size; y++)
-    for (let x = 0; x < size; x++) {
-      const inF = (x < 8 && y < 8) || (x >= size - 8 && y < 8) || (x < 8 && y >= size - 8);
-      if (!inF && x !== 6 && y !== 6) m[y][x] = rand() % 3 !== 0;
-    }
-  return m;
-}
+import { QRCodeSVG } from 'qrcode.react';
 
 function QRCode({ value, size = 176 }: { value: string; size?: number }) {
-  const modules = encodeQR(value);
-  const cell = size / modules.length;
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="rounded-lg">
-      <rect width={size} height={size} fill="white" rx="6" />
-      {modules.map((row, y) =>
-        row.map((on, x) =>
-          on ? (
-            <rect
-              key={`${y}-${x}`}
-              x={x * cell + cell * 0.08}
-              y={y * cell + cell * 0.08}
-              width={cell * 0.84}
-              height={cell * 0.84}
-              rx={cell * 0.12}
-              fill="#151e29"
-            />
-          ) : null
-        )
-      )}
-    </svg>
+    <QRCodeSVG
+      value={value}
+      size={size}
+      bgColor="#ffffff"
+      fgColor="#151e29"
+      level="M"
+    />
   );
 }
-
 const INPUT_CLASS = [
   'w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]',
   'focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/15',
