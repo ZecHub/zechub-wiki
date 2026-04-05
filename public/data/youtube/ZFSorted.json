@@ -80,7 +80,7 @@
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1225
+      "views": 1226
     },
     {
       "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
@@ -555,7 +555,7 @@
     {
       "title": "Zconnaissance - Sketching a Shielded Assets Future by Vivek Arte: Zcon4",
       "video_id": "VFQHJGqO_bY",
-      "views": 332
+      "views": 333
     },
     {
       "title": "The State of UX in the Zcash Ecosystem: #Zcon2Lite",
@@ -880,7 +880,7 @@
     {
       "title": "Zebra",
       "video_id": "142IudaOXUU",
-      "views": 216
+      "views": 217
     },
     {
       "title": "Design a Proof Of Solvency protocol with Halo2 Workshop by Enrico: Zcon4",
@@ -1115,7 +1115,7 @@
     {
       "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
       "video_id": "he_j9O5INVk",
-      "views": 170
+      "views": 171
     },
     {
       "title": "Zcon0 Day 2 Opening Remarks",
@@ -1238,14 +1238,14 @@
       "views": 149
     },
     {
-      "title": "Zcash Arborist Call 11/14/2024",
-      "video_id": "JldVJO79Qlk",
+      "title": "Targeting Deployment for ZSAs in Zcash",
+      "video_id": "4t6YBnqjZ3c",
       "views": 148
     },
     {
-      "title": "Targeting Deployment for ZSAs in Zcash",
-      "video_id": "4t6YBnqjZ3c",
-      "views": 147
+      "title": "Zcash Arborist Call 11/14/2024",
+      "video_id": "JldVJO79Qlk",
+      "views": 148
     },
     {
       "title": "U.S. Policy and Regulatory Update with Paul Brigner- ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -1305,11 +1305,6 @@
     {
       "title": "Zcash Arborist Call 04-03-2025",
       "video_id": "XxQx6vt7OmE",
-      "views": 141
-    },
-    {
-      "title": "Zcash Arborist Call 04-02-2026",
-      "video_id": "-4GDsezfilc",
       "views": 141
     },
     {
@@ -1448,6 +1443,11 @@
       "views": 127
     },
     {
+      "title": "Zcash Arborist Call 04-02-2026",
+      "video_id": "-4GDsezfilc",
+      "views": 125
+    },
+    {
       "title": "The GDPR and Privacy Impact of Using Zcash Shielded Transactions for SaaS - Silvan Jongerius",
       "video_id": "sJGWLlGDccM",
       "views": 123
@@ -1455,7 +1455,7 @@
     {
       "title": "Zcomm: Designing Engaging Workshops & Roundtables: Tools for Inclusive, Action-Driven Sessions #DWeb",
       "video_id": "m20tP1iqBRQ",
-      "views": 122
+      "views": 123
     },
     {
       "title": "Educational Challenges in the Ever-Evolving Space of Zero-Knowledge with Luís Brandão & Mary Maller",
