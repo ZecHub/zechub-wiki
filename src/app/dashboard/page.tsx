@@ -40,6 +40,7 @@ type DashboardDictionary = {
         tabs?: {
           zechubDashboard?: string;
           daodaoDashboard?: string;
+          treasuryDashboard?: string;
           zcgDashboard?: string;
           youtubeDashboard?: string;
         };
@@ -52,3 +53,5 @@ export default async function DashboardPage() {
   const dict = (await getDictionary()) as DashboardDictionary;
   return <Dashboard dict={dict} />;
 }
+
+export const dynamic = 'force-dynamic';

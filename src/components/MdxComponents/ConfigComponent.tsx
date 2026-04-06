@@ -5,160 +5,92 @@ import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import type { MDXComponents } from "mdx/types";
 
 const MdxComponents = {
-  code: (props: HTMLProps<HTMLElement>): JSX.Element => (
-    <code
-      {...props}
-      className={`
-      bg-neutral-200
-      dark:bg-neutral-800 dark:text-neutral-100
-    `}
-    >
-      {props.children}
-    </code>
-  ),
-  Video: (props: React.VideoHTMLAttributes<HTMLVideoElement>) => (
-    <video {...props} />
-  ),
-  img: (props: HTMLProps<HTMLImageElement>): JSX.Element => {
-    if (props.src?.startsWith("/"))
-      props.src = "https://github.com/ZecHub/zechub/tree/main" + props.src;
+  // INLINE CODE (single backticks)
+  code: (props: HTMLProps<HTMLElement> & { className?: string }): JSX.Element => {
+    const isBlockCode = props.className?.includes("language-") ?? false;
+
+    if (isBlockCode) {
+      // Force inner code to be transparent so pre's background wins
+      return (
+        <code
+          className={`font-mono text-sm bg-transparent !bg-transparent !p-0 !m-0 block w-full ${props.className || ""}`}
+          style={{ backgroundColor: "transparent" }}
+          {...props}
+        />
+      );
+    }
+
+    // Single backticks (inline)
     return (
-      <img
-        src={
-          props.src?.startsWith("/")
-            ? "https://github.com/ZecHub/zechub/tree/main" + props.src
-            : props.src || ""
-        }
-        alt={props.alt || "Image for wiki docs"}
-        height={200}
-        width={300}
-        // layout="responsive"
-        loading="lazy"
+      <code
+        className="font-mono text-sm !inline-block !translate-y-[16px]"
+        {...props}
       />
     );
   },
 
-  a: (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.Element => {
+  // CODE BLOCKS
+  pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => {
     return (
-      <Link
-        href={
-          props.href?.startsWith("/site")
-            ? transformGithubFilePathToWikiLink(props.href)
-            : props.href!
-        }
-        target={props.href?.startsWith("/site") ? "" : "_blank"}
-        className=" 
-        inline
-          font-medium
-          text-blue-700
-          hover:text-blue-800
-          underline
-          decoration-dashed
-          underline-offset-2
-          decoration-[0.5px]
-          decoration-slate-600 /* light mode color */
-          dark:text-blue-300
-          dark:decoration-slate-400 /* dark mode color */
-          dark:hover:text-blue-200"
-      >
-        {props.children}{" "}
-      </Link>
+      <div className="relative group my-6">
+        {/* Fixed header for ALL code blocks */}
+        <div className="absolute -top-3 left-4 z-10 px-3 py-1 
+          bg-amber-50 dark:bg-amber-950 
+          text-amber-800 dark:text-amber-300 
+          text-xs font-mono tracking-widest rounded border border-amber-200 dark:border-amber-800 shadow-sm">
+          Code-highlight
+        </div>
+
+        {/* Tan background */}
+        <pre
+          className="bg-amber-50 dark:bg-amber-950 !bg-amber-50 dark:!bg-amber-950 text-neutral-900 dark:text-neutral-100 p-5 pt-8 rounded-2xl overflow-x-auto border border-amber-200 dark:border-amber-900 font-mono text-sm leading-relaxed shadow-xl"
+          {...props}
+        />
+      </div>
     );
   },
 
-  pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => (
-    <pre {...props}>{props.children}</pre>
+  img: (props: HTMLProps<HTMLImageElement>): JSX.Element => (
+    <img
+      src={props.src?.startsWith("/") ? "https://github.com/ZecHub/zechub/tree/main" + props.src : props.src || ""}
+      alt={props.alt || "Image"}
+      className="rounded-lg my-4"
+      loading="lazy"
+    />
   ),
-
-  em: (props: HTMLProps<HTMLSpanElement>): JSX.Element => (
-    <em {...props}>{props.children}</em>
-  ),
-
-  blockquote: (props: HTMLProps<HTMLQuoteElement>): JSX.Element => (
-    <blockquote className="text-base text-justify my-2" {...props}>
+  a: (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.Element => (
+    <Link
+      href={props.href?.startsWith("/site") ? transformGithubFilePathToWikiLink(props.href) : props.href!}
+      target={props.href?.startsWith("/site") ? "" : "_blank"}
+      className="font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 underline decoration-dashed"
+    >
       {props.children}
-    </blockquote>
+    </Link>
   ),
-
-  ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => (
-    <ul {...props} className="list-outside">
-      {props.children}
-    </ul>
-  ),
-
-  li: (props: HTMLProps<HTMLLIElement>): JSX.Element => (
-    <li {...props}>{props.children}</li>
-  ),
-
-  h1: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h1 className="text-4xl font-bold my-4" {...props}>
-      {props.children}
-    </h1>
-  ),
-
-  h2: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h2 className="text-4xl font-bold my-4" {...props}>
-      {props.children}
-    </h2>
-  ),
-
-  h3: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h3 className="text-3xl font-bold my-4" {...props}>
-      {props.children}
-    </h3>
-  ),
-
-  h4: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h4 className="text-2xl text-lg font-bold my-4" {...props}>
-      {props.children}
-    </h4>
-  ),
-
-  h5: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h5 className="text-xl font-bold my-4" {...props}>
-      {props.children}
-    </h5>
-  ),
-
-  h6: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => (
-    <h6 className="text-lg font-bold my-4" {...props}>
-      {props.children}
-    </h6>
-  ),
-
-  p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => (
-    <p className="text-base text-left my-4" {...props}>
-      {props.children}
-    </p>
-  ),
-  strong: (props: HTMLProps<HTMLHtmlElement>): JSX.Element => (
-    <strong className="font-bold">{props.children}</strong>
-  ),
-
   table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
-    <table className="table-fixed">{props.children}</table>
+    <div className="overflow-x-auto my-6">
+      <table className="min-w-full border-collapse text-sm" {...props} />
+    </div>
   ),
-
   thead: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
-    <thead>{props.children}</thead>
+    <thead className="bg-emerald-600 text-white dark:bg-emerald-700" {...props} />
   ),
-
   tr: (props: HTMLProps<HTMLTableRowElement>): JSX.Element => (
-    <tr className="p-3 py-3 border-2">{props.children}</tr>
+    <tr className="border-b border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800" {...props} />
   ),
-
-  tbody: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
-    <tbody className="p-3 ">{props.children}</tbody>
-  ),
-
   th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
-    <th>{props.children}</th>
+    <th className="px-4 py-3 text-left font-semibold" {...props} />
   ),
   td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
-    <td className="p-3">{props.children}</td>
+    <td className="px-4 py-3" {...props} />
   ),
-  br: () => <br />,
-  hr: () => <hr />,
+  ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc pl-6 my-4" {...props} />,
+  ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal pl-6 my-4" {...props} />,
+  li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props} />,
+  p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => <p className="my-4" {...props} />,
+  h1: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => <h1 className="text-4xl font-bold my-6" {...props} />,
+  h2: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => <h2 className="text-3xl font-bold my-6" {...props} />,
+  h3: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => <h3 className="text-2xl font-bold my-5" {...props} />,
 } as MDXComponents;
 
 export default MdxComponents;

@@ -3268,5 +3268,143 @@
     "sapling": 194,
     "orchard": 1173,
     "timestamp": "03/19/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 261,
+    "orchard": 1042,
+    "timestamp": "03/20/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 262,
+    "orchard": 1001,
+    "timestamp": "03/20/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 229,
+    "orchard": 902,
+    "timestamp": "03/22/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 236,
+    "orchard": 1073,
+    "timestamp": "03/23/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 215,
+    "orchard": 1063,
+    "timestamp": "03/23/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 228,
+    "orchard": 978,
+    "timestamp": "03/24/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 211,
+    "orchard": 1085,
+    "timestamp": "03/25/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 180,
+    "orchard": 947,
+    "timestamp": "03/26/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 189,
+    "orchard": 936,
+    "timestamp": "03/27/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 164,
+    "orchard": 925,
+    "timestamp": "03/28/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 193,
+    "orchard": 867,
+    "timestamp": "03/29/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 223,
+    "orchard": 838,
+    "timestamp": "03/29/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 264,
+    "orchard": 976,
+    "timestamp": "03/30/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 263,
+    "orchard": 976,
+    "timestamp": "03/30/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 236,
+    "orchard": 1117,
+    "timestamp": "03/31/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 241,
+    "orchard": 1200,
+    "timestamp": "03/31/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 240,
+    "orchard": 1201,
+    "timestamp": "03/31/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 219,
+    "orchard": 1196,
+    "timestamp": "04/01/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 215,
+    "orchard": 1009,
+    "timestamp": "04/02/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 185,
+    "orchard": 969,
+    "timestamp": "04/03/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 164,
+    "orchard": 976,
+    "timestamp": "04/04/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 204,
+    "orchard": 889,
+    "timestamp": "04/05/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 225,
+    "orchard": 928,
+    "timestamp": "04/06/2026"
   }
 ]

@@ -251,7 +251,10 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
 
         {/* ── Mobile filter drawer ── */}
         {isFilterVisible && (
-          <div className="wl-drawer-overlay open" onClick={handleToggleFilter}>
+          <div
+            className="wl-drawer-overlay open cursor-pointer"
+            onClick={handleToggleFilter}
+          >
             <div className="wl-drawer" onClick={(e) => e.stopPropagation()}>
               <div className="wl-drawer-handle" />
               <div className="wl-drawer-top">

@@ -246,7 +246,7 @@ const RewardChart = (props: RewardChartProps) => {
         <p className="font-medium">{error}</p>
         <button
           onClick={() => window.location.reload()}
-          className="mt-2 px-3 py-1 bg-red-100 hover:bg-red-200 rounded"
+          className="cursor-pointer mt-2 px-3 py-1 bg-red-100 hover:bg-red-200 rounded"
         >
           Retry
         </button>
@@ -280,11 +280,13 @@ const RewardChart = (props: RewardChartProps) => {
               setTimeRange(value as any);
             }}
           >
-            <SelectTrigger className="w-48 border dark:border-slate-700">
+            <SelectTrigger className="w-48 cursor-pointer border dark:border-slate-700">
               <SelectValue placeholder="All Tokens" />
             </SelectTrigger>
             <SelectContent className="border dark:border-slate-700">
-              <SelectItem value="all">All Tokens</SelectItem>
+              <SelectItem value="all" className="cursor-pointer">
+                All Tokens
+              </SelectItem>
               {[
                 { label: "Last 7 days", value: "7d" },
                 { label: "Last 30 days", value: "30d" },

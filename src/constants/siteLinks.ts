@@ -44,6 +44,44 @@ export const SITE_LINKS: SiteLinkSection[] = [
         href: "https://youtube.com/@zechub",
         target: "_blank",
       },
+      {
+        label: "Bounties",
+        href: "https://bounties.zechub.wiki/",
+        target: "_blank",
+      },
+    ],
+  },
+  {
+    title: "Organizations",
+    icon: Building2,
+    links: [
+      {
+        label: "ZODL",
+        href: "/zcash-organizations/ZODL",
+      },
+      {
+        label: "Electric Coin Company",
+        href: "/zcash-organizations/electric-coin-company",
+      },
+      {
+        label: "Zcash Foundation",
+        href: "/zcash-organizations/zcash-foundation",
+      },
+      {
+        label: "Zcash Community Grants",
+        href: "/zcash-organizations/zcash-community-grants",
+      },
+      {
+        label: "Financial Privacy Foundation",
+        href: "/zcash-organizations/financial-privacy-foundation",
+      },
+      {
+        label: "Shielded Labs",
+        href: "/zcash-organizations/shielded-labs",
+      },
+      { label: "Zingo Labs", href: "/zcash-organizations/zingo-labs" },
+      { label: "Brand", href: "/zcash-organizations/brand" },
+      { label: "ZKAV Club", href: "/zcash-organizations/zkav" },
     ],
   },
   {
@@ -80,7 +118,7 @@ export const SITE_LINKS: SiteLinkSection[] = [
       { label: "Blockchain Explorers", href: "/guides/blockchain-explorers" },
       { label: "Brave Wallet", href: "/guides/brave-wallet-guide" },
       {
-        label: "BTCPayServer Plugin",
+        label: "BTCPayServer Zcash Plugin",
         href: "/guides/btcpayserver-zcash-plugin",
       },
       {
@@ -174,35 +212,6 @@ export const SITE_LINKS: SiteLinkSection[] = [
         href: "/zcash-community/cypherpunk-zero-nft",
       },
       { label: "Zcon Archive", href: "/zcash-community/zcon-archive" },
-    ],
-  },
-  {
-    title: "Organizations",
-    icon: Building2,
-    links: [
-      {
-        label: "Electric Coin Company",
-        href: "/zcash-organizations/electric-coin-company",
-      },
-      {
-        label: "Zcash Foundation",
-        href: "/zcash-organizations/zcash-foundation",
-      },
-      {
-        label: "Zcash Community Grants",
-        href: "/zcash-organizations/zcash-community-grants",
-      },
-      {
-        label: "Financial Privacy Foundation",
-        href: "/zcash-organizations/financial-privacy-foundation",
-      },
-      {
-        label: "Shielded Labs",
-        href: "/zcash-organizations/shielded-labs",
-      },
-      { label: "Zingo Labs", href: "/zcash-organizations/zingo-labs" },
-      { label: "Brand", href: "/zcash-organizations/brand" },
-      { label: "ZKAV Club", href: "/zcash-organizations/zkav" },
     ],
   },
 ];

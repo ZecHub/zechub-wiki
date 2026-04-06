@@ -9,7 +9,13 @@
     "getStarted": "Get Started",
     "readMore": "Read More",
     "search": "Search",
-    "close": "Close"
+    "close": "Close",
+    "searchModalTitle": "Search ZecHub Wiki",
+    "searchHint": "Search by page title, topic, or path. Use arrow keys to choose, Enter to open.",
+    "searchNoResults": "No matching pages",
+    "searchTryDifferent": "Try shorter queries, synonyms, or different words.",
+    "searchSuggested": "Suggested pages",
+    "searchResultsLabel": "Results"
   },
   "navigation": {
     "wallets": "Wallets",
@@ -421,6 +427,7 @@
         "tabs": {
           "zechubDashboard": "ZecHub Dashboard",
           "daodaoDashboard": "DaoDao Dashboard",
+          "treasuryDashboard": "Treasury",
           "zcgDashboard": "ZCG Dashboard",
           "youtubeDashboard": "YouTube Dashboard"
         }

@@ -12,7 +12,7 @@ import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 
 import { matchIcons } from "@/constants/Icons";
-import { ChevronDown, Menu, Moon, Search, Sun } from "lucide-react";
+import { ChevronDown, Menu, Moon, Search, Sun, ShoppingBag } from "lucide-react";
 import { Button } from "../UI/button";
 import { Icon } from "../UI/Icon";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
@@ -473,12 +473,21 @@ const NavLinks = ({
       </div>
 
       {/* CTA buttons - responsive */}
-      <div className="hidden md:flex items-center space-x-8 ml-6">
+      <div className="hidden md:flex items-center space-x-8 ml-7 pl-7 border-l border-slate-400 dark:border-slate-600 gap-4">
+        <Link
+          prefetch
+          href="https://bounties.zechub.wiki/"
+          target="_blank"
+          onClick={handleLinkClick}
+          className="text-cta-primary hover:bg-cta-primary dark:hover:text-white transition-colors duration-200 mr-0"
+        >
+          {t.navigation?.bounties || "Bounties"}
+        </Link>
         <Link
           prefetch
           href="/dashboard"
           onClick={handleLinkClick}
-          className="text-cta-primary hover:bg-cta-primary hover:text-white transition-colors duration-200"
+          className="text-cta-primary hover:bg-cta-primary dark:hover:text-white transition-colors duration-200"
         >
           {t.navigation?.dashboard || "Dashboard"}
         </Link>
@@ -544,6 +553,15 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
         <div className="flex flex-col space-y-3 my-8 border-t border-slate-400 dark:border-slate-50 "></div>
         <Link
           prefetch
+          href="https://bounties.zechub.wiki/"
+          target="_blank"
+          onClick={handleLinkClick}
+          className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
+        >
+          {t.navigation?.bounties || "Bounties"}
+        </Link>
+        <Link
+          prefetch
           href="/dashboard"
           onClick={handleLinkClick}
           className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
@@ -574,6 +592,7 @@ const Navigation = () => {
   const { dark, setDark } = useDarkModeContext();
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [showShop, setShowShop] = useState(false);
 
   useEffect(() => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
@@ -608,8 +627,8 @@ const Navigation = () => {
   }, [dark]);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-[200]">
-      <div className="mx-auto w-full max-w-7xl px-2 md:px-4">
+    <header className="sticky top-0 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-200">
+      <div className="mx-auto w-full max-w-372 px-2 md:px-4">
         <div className="flex items-center justify-between py-3 md:py-4">
           {/* Logo */}
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
@@ -634,7 +653,7 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setOpenSearch(true)}
-              className="p-2 hover:bg-nav-hover-bg cursor-pointer"
+              className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
             >
               <Search className="h-5 w-5 md:h-6 md:w-6" />
             </Button>
@@ -645,7 +664,7 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setDark(!dark)}
-              className="p-2 hover:bg-nav-hover-bg cursor-pointer"
+              className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
             >
               {dark ? (
                 <Sun className="h-5 w-5 md:h-6 md:w-6" />
@@ -654,10 +673,44 @@ const Navigation = () => {
               )}
             </Button>
 
-            {/* Desktop donation button */}
-            <div className="hidden xl:flex">
-              <DonationBtn />
-            </div>
+	<div
+	  className="hidden xl:flex relative"
+	  onMouseEnter={() => setShowShop(true)}
+	  onMouseLeave={() => setShowShop(false)}
+	>
+	  <DonationBtn />
+
+	  {showShop && (
+	    <div
+	      className="absolute top-8.5 left-0 w-full z-50"
+	      style={{ marginTop: "-2px" }} // overlap slightly so there's no gap
+	    >
+	      <Link
+		prefetch
+		href="https://zechub.store/"
+		target="_blank"
+		className="
+		  flex items-center justify-center gap-2
+		  w-full text-center text-sm font-semibold
+		  px-4 py-2
+		  bg-slate-100 text-slate-600 dark:bg-slate-900 
+		  rounded-md
+		  shadow-md shadow-black/20
+		  border-t border-yellow-600/30
+		  transition-all duration-150
+		  hover:brightness-110
+		  animate-[slideDown_0.12s_ease-out]
+		"
+		style={{
+		  transformOrigin: "top center",
+		}}
+	      >
+		<ShoppingBag className="h-4 w-4" />
+		Shop
+	      </Link>
+	    </div>
+	  )}
+	</div>
 
             {/* Mobile menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -665,7 +718,7 @@ const Navigation = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-2 hover:bg-nav-hover-bg"
+                  className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
                 >
                   <Menu className="h-10 w-10" />
                 </Button>
@@ -673,7 +726,7 @@ const Navigation = () => {
 
               <SheetContent
                 side="left"
-                className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-50 dark:bg-slate-900"
+                className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-50 dark:bg-slate-900 z-201"
               >
                 <MobileNav closeMenu={() => setIsOpen(false)} />
               </SheetContent>

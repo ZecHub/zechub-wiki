@@ -271,6 +271,7 @@ export function ProposalsListClient({ proposals }: ProposalsListClientProps) {
             onClick={() => setTopTab(tab)}
             className={cn(
               "px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px",
+              "cursor-pointer",
               topTab === tab
                 ? "border-primary text-primary"
                 : "border-transparent text-muted-foreground hover:text-foreground hover:border-border",
@@ -335,6 +336,7 @@ export function ProposalsListClient({ proposals }: ProposalsListClientProps) {
                   onClick={() => setFilter(s)}
                   className={cn(
                     "px-2.5 py-1 rounded-md text-xs font-medium transition-colors",
+                    "cursor-pointer",
                     filter === s
                       ? "bg-slate-300 dark:bg-primary/15 text-primary"
                       : "text-muted-foreground hover:text-foreground hover:bg-slate-100 dark:hover:bg-muted",
@@ -359,7 +361,7 @@ export function ProposalsListClient({ proposals }: ProposalsListClientProps) {
             {search && (
               <button
                 onClick={() => setSearch("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="Clear search"
               >
                 <X className="h-4 w-4" />
