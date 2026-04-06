@@ -1,7 +1,9 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { QRCodeSVG } from 'qrcode.react';
+import { QRCodeSVG } from "qrcode.react";
+import { useCallback, useEffect, useState } from "react";
+import { useWasm } from "./hooks/useWasm";
+import WasmInitStatus from "./WasmInitStatus";
 
 function QRCode({ value, size = 176 }: { value: string; size?: number }) {
   return (
@@ -15,26 +17,78 @@ function QRCode({ value, size = 176 }: { value: string; size?: number }) {
   );
 }
 const INPUT_CLASS = [
-  'w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]',
-  'focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/15',
-  'rounded-xl px-4 py-3.5 text-[15px] font-medium outline-none transition-all duration-200',
-  'text-zinc-900 dark:text-white placeholder-zinc-300 dark:placeholder-[#2d3e50]',
-].join(' ');
+  "w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]",
+  "focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/15",
+  "rounded-xl px-4 py-3.5 text-[15px] font-medium outline-none transition-all duration-200",
+  "text-zinc-900 dark:text-white placeholder-zinc-300 dark:placeholder-[#2d3e50]",
+].join(" ");
 
 const LABEL_CLASS =
-  'block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1';
+  "block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1";
 
 export default function PaymentRequestBuilder() {
-  const [address, setAddress] = useState('');
-  const [amount, setAmount] = useState('');
-  const [memo, setMemo] = useState('');
-  const [message, setMessage] = useState('');
-  const [label, setLabel] = useState('');
+  const [address, setAddress] = useState("");
+  const [amount, setAmount] = useState("");
+  const [memo, setMemo] = useState("");
+  const [message, setMessage] = useState("");
+  const [label, setLabel] = useState("");
   const [copied, setCopied] = useState(false);
   const [showQR, setShowQR] = useState(false);
 
+  const { wasmError, wasmMmoduleRef, wasmReady } = useWasm();
+  const [loading, setLoading] = useState(false);
+  const [addressType, setAddressType] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  /* ── Validate when input changes ── */
+  const validateAddress = useCallback(() => {
+    setError(null);
+    setAddressType(null);
+
+    const addr = address.trim();
+    if (!addr || !wasmMmoduleRef.current) return;
+
+    setLoading(true);
+    try {
+      const mod = wasmMmoduleRef.current;
+
+      const validateAddress =
+        mod.isZcashAddressValid ?? mod.is_valid_zcash_address;
+      const typeFn = mod.getZcashAddressType ?? mod.get_zcash_address_type;
+
+      if (!validateAddress) {
+        setError("WASM module loaded but expected functions not found");
+        setLoading(false);
+        return;
+      }
+
+      if (!validateAddress(addr)) {
+        setError("Not a valid Zcash address");
+        setLoading(false);
+        return;
+      }
+
+      if (typeFn) {
+        setAddressType(typeFn(addr));
+      }
+    } catch (err: unknown) {
+      setError(
+        err instanceof Error ? err.message : "Failed to validate address",
+      );
+    } finally {
+      setLoading(false);
+    }
+  }, [address, wasmMmoduleRef]);
+
+  useEffect(() => {
+    if (!wasmReady) return;
+    const t = setTimeout(validateAddress, 200);
+
+    return () => clearTimeout(t);
+  }, [address, validateAddress, wasmReady]);
+
   const buildURI = useCallback((): string => {
-    if (!address) return '';
+    if (!address) return "";
     const parts: string[] = [];
     if (amount) parts.push(`amount=${amount}`);
     if (label) parts.push(`label=${encodeURIComponent(label)}`);
@@ -42,16 +96,18 @@ export default function PaymentRequestBuilder() {
     if (memo) {
       try {
         const b64 = btoa(unescape(encodeURIComponent(memo)));
-        parts.push(`memo=${b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')}`);
+        parts.push(
+          `memo=${b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "")}`,
+        );
       } catch {
         // invalid memo, skip
       }
     }
-    return `zcash:${address}${parts.length ? '?' + parts.join('&') : ''}`;
+    return `zcash:${address}${parts.length ? "?" + parts.join("&") : ""}`;
   }, [address, amount, memo, message, label]);
 
   const uri = buildURI();
-  const isShielded = address.startsWith('zs') || address.startsWith('u1');
+  const isShielded = address.startsWith("zs") || address.startsWith("u1");
 
   useEffect(() => {
     setShowQR(false);
@@ -73,22 +129,31 @@ export default function PaymentRequestBuilder() {
     <div className="w-full space-y-4">
       {/* Address */}
       <div>
-        <label className={LABEL_CLASS}>Recipient Address</label>
+        <label className={LABEL_CLASS}>
+          Recipient Address: (Mainnet or Testnet)
+        </label>
         <input
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          placeholder="t1..., zs1..., or u1... address"
+          placeholder="t1..., zs1..., u1..., utest..., or tm... address"
           className={INPUT_CLASS}
         />
         {address && (
           <p className="mt-1.5 ml-1 text-[11px] font-mono text-[#5a6a7e]">
             {isShielded
-              ? '✦ Shielded — encrypted memo enabled'
-              : address.startsWith('t')
-                ? '◇ Transparent address'
-                : ''}
+              ? "✦ Shielded — encrypted memo enabled"
+              : address.startsWith("t")
+                ? "◇ Transparent address"
+                : ""}
           </p>
+        )}
+
+        {/* Error */}
+        {error && (
+          <div className="rounded-xl bg-red-500/5 border border-red-500/15 px-4 py-3">
+            <p className="text-[13px] text-red-400 font-medium">{error}</p>
+          </div>
         )}
       </div>
 
@@ -153,11 +218,11 @@ export default function PaymentRequestBuilder() {
         <div
           className={`relative rounded-xl px-4 py-3.5 font-mono text-[13px] leading-relaxed break-all min-h-[48px] transition-all duration-300 ${
             uri
-              ? 'bg-[#F4B728]/5 border border-[#F4B728]/20 text-[#F4B728]'
-              : 'border border-dashed border-zinc-200 dark:border-[#243040] text-zinc-400 dark:text-[#3d4e60]'
+              ? "bg-[#F4B728]/5 border border-[#F4B728]/20 text-[#F4B728]"
+              : "border border-dashed border-zinc-200 dark:border-[#243040] text-zinc-400 dark:text-[#3d4e60]"
           }`}
         >
-          {uri || 'Enter an address to generate a payment URI...'}
+          {uri || "Enter an address to generate a payment URI..."}
           {uri && (
             <span className="absolute top-2.5 right-3 text-[9px] font-bold uppercase tracking-wider bg-[#F4B728]/15 text-[#F4B728] px-2 py-0.5 rounded">
               ZIP-321
@@ -181,12 +246,18 @@ export default function PaymentRequestBuilder() {
         disabled={!uri}
         className={`w-full py-3.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200 active:scale-[0.98] ${
           uri
-            ? 'bg-gradient-to-r from-[#F4B728] to-[#d9a520] text-[#151e29] hover:shadow-lg hover:shadow-[#F4B728]/15 hover:-translate-y-0.5 cursor-pointer'
-            : 'bg-zinc-100 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040] text-zinc-400 dark:text-[#3d4e60] cursor-not-allowed'
+            ? "bg-gradient-to-r from-[#F4B728] to-[#d9a520] text-[#151e29] hover:shadow-lg hover:shadow-[#F4B728]/15 hover:-translate-y-0.5 cursor-pointer"
+            : "bg-zinc-100 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040] text-zinc-400 dark:text-[#3d4e60] cursor-not-allowed"
         }`}
       >
-        {copied ? '✓ Copied to clipboard!' : uri ? 'Copy Payment URI' : 'Enter an address to continue'}
+        {copied
+          ? "✓ Copied to clipboard!"
+          : uri
+            ? "Copy Payment URI"
+            : "Enter an address to continue"}
       </button>
+
+
     </div>
   );
 }
