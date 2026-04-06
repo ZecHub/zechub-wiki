@@ -1,7 +1,7 @@
 "use client";
 
 import { QRCodeSVG } from "qrcode.react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useWasm } from "./hooks/useWasm";
 import WasmInitStatus from "./WasmInitStatus";
 
@@ -26,6 +26,13 @@ const INPUT_CLASS = [
 const LABEL_CLASS =
   "block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1";
 
+// State type
+type ValidationState =
+  | { status: "idle" }
+  | { status: "validating" }
+  | { status: "valid"; addressType?: string }
+  | { status: "invalid"; error: string };
+
 export default function PaymentRequestBuilder() {
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
@@ -36,64 +43,94 @@ export default function PaymentRequestBuilder() {
   const [showQR, setShowQR] = useState(false);
 
   const { wasmError, wasmMmoduleRef, wasmReady } = useWasm();
+
   const [loading, setLoading] = useState(false);
-  const [addressType, setAddressType] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [validation, setValidation] = useState<ValidationState>({
+    status: "idle",
+  });
 
   /* ── Validate when input changes ── */
-  const validateAddress = useCallback(() => {
-    setError(null);
-    setAddressType(null);
+  const validateAddr = useCallback(
+    (addr: string) => {
+      addr = addr.trim();
 
-    const addr = address.trim();
-    if (!addr || !wasmMmoduleRef.current) return;
+      if (!addr || !wasmMmoduleRef.current) {
+        setValidation({ status: "idle" });
 
-    setLoading(true);
-    try {
-      const mod = wasmMmoduleRef.current;
-
-      const validateAddress =
-        mod.isZcashAddressValid ?? mod.is_valid_zcash_address;
-      const typeFn = mod.getZcashAddressType ?? mod.get_zcash_address_type;
-
-      if (!validateAddress) {
-        setError("WASM module loaded but expected functions not found");
-        setLoading(false);
         return;
       }
 
-      if (!validateAddress(addr)) {
-        setError("Not a valid Zcash address");
-        setLoading(false);
-        return;
-      }
+      setValidation({ status: "validating" });
 
-      if (typeFn) {
-        setAddressType(typeFn(addr));
+      setLoading(true);
+      try {
+        const mod = wasmMmoduleRef.current;
+
+        const validateAddress =
+          mod.isZcashAddressValid ?? mod.is_valid_zcash_address;
+        const typeFn = mod.getZcashAddressType ?? mod.get_zcash_address_type;
+
+        if (!validateAddress) {
+          setValidation({
+            status: "invalid",
+            error: "WASM validation functions missing",
+          });
+
+          return;
+        }
+
+        if (!validateAddress(addr)) {
+          setValidation({
+            status: "invalid",
+            error: "Not a valid Zcash address",
+          });
+
+          return;
+        }
+
+        const addressType = typeFn ? typeFn(addr) : undefined;
+
+        setValidation({ status: "valid", addressType });
+      } catch (err: unknown) {
+        setValidation({
+          status: "invalid",
+          error: err instanceof Error ? err.message : "Validation failed",
+        });
+      } finally {
+        setLoading(false);
       }
-    } catch (err: unknown) {
-      setError(
-        err instanceof Error ? err.message : "Failed to validate address",
-      );
-    } finally {
-      setLoading(false);
-    }
-  }, [address, wasmMmoduleRef]);
+    },
+    [wasmMmoduleRef],
+  );
 
   useEffect(() => {
     if (!wasmReady) return;
-    const t = setTimeout(validateAddress, 200);
+    const currentAddress = address.trim();
+
+    const t = setTimeout(() => {
+      validateAddr(currentAddress);
+    }, 200);
 
     return () => clearTimeout(t);
-  }, [address, validateAddress, wasmReady]);
+  }, [validateAddr, wasmReady, address]);
 
-  const buildURI = useCallback((): string => {
-    if (!address) return "";
+  // Flags
+  const isValid = validation.status === "valid";
+  const isInvalid = validation.status === "invalid";
+  const isLoading = validation.status === "validating";
+
+  const isShielded = address.startsWith("zs") || address.startsWith("u1");
+
+  const uri = useMemo(() => {
+    if (!isValid) return null;
+
     const parts: string[] = [];
+
     if (amount) parts.push(`amount=${amount}`);
     if (label) parts.push(`label=${encodeURIComponent(label)}`);
     if (message) parts.push(`message=${encodeURIComponent(message)}`);
-    if (memo) {
+
+    if (memo && isShielded) {
       try {
         const b64 = btoa(unescape(encodeURIComponent(memo)));
         parts.push(
@@ -104,21 +141,20 @@ export default function PaymentRequestBuilder() {
       }
     }
     return `zcash:${address}${parts.length ? "?" + parts.join("&") : ""}`;
-  }, [address, amount, memo, message, label]);
-
-  const uri = buildURI();
-  const isShielded = address.startsWith("zs") || address.startsWith("u1");
+  }, [isValid, isShielded, address, amount, memo, message, label]);
 
   useEffect(() => {
     setShowQR(false);
-    if (uri) {
-      const t = setTimeout(() => setShowQR(true), 100);
-      return () => clearTimeout(t);
-    }
+
+    if (!uri) return;
+
+    const t = setTimeout(() => setShowQR(true), 100);
+    return () => clearTimeout(t);
   }, [uri]);
 
   const copyURI = () => {
     if (!uri) return;
+
     navigator.clipboard.writeText(uri).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -129,9 +165,14 @@ export default function PaymentRequestBuilder() {
     <div className="w-full space-y-4">
       {/* Address */}
       <div>
-        <label className={LABEL_CLASS}>
-          Recipient Address: (Mainnet or Testnet)
-        </label>
+        <div className="flex justify-between">
+          <label className={LABEL_CLASS}>Recipient Address:</label>
+          {isValid && (
+            <span className={LABEL_CLASS}>
+              Address Type: {validation.addressType}
+            </span>
+          )}
+        </div>
         <input
           type="text"
           value={address}
@@ -149,10 +190,17 @@ export default function PaymentRequestBuilder() {
           </p>
         )}
 
-        {/* Error */}
-        {error && (
-          <div className="rounded-xl bg-red-500/5 border border-red-500/15 px-4 py-3">
-            <p className="text-[13px] text-red-400 font-medium">{error}</p>
+        {isInvalid && (
+          <div className="mt-2 rounded-xl bg-red-500/5 border border-red-500/15 px-4 py-3">
+            <p className="text-[13px] text-red-400 font-medium">
+              {validation.error}
+            </p>
+          </div>
+        )}
+
+        {isLoading && (
+          <div className="mt-1.5 rounded-xl bg-red-500/5 border border-red-500/15 px-4 py-3">
+            <p className="text-[13px] text-red-500 font-medium">Validating…</p>
           </div>
         )}
       </div>
@@ -162,8 +210,7 @@ export default function PaymentRequestBuilder() {
         <div>
           <label className={LABEL_CLASS}>Amount (ZEC)</label>
           <input
-            disabled={error ? true : false}
-            style={{ cursor: error ? "not-allowed" : "none" }}
+            disabled={!isValid}
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
@@ -176,8 +223,7 @@ export default function PaymentRequestBuilder() {
         <div>
           <label className={LABEL_CLASS}>Label</label>
           <input
-            disabled={error ? true : false}
-            style={{ cursor: error ? "not-allowed" : "none" }}
+            disabled={!isValid}
             type="text"
             value={label}
             onChange={(e) => setLabel(e.target.value)}
@@ -191,8 +237,7 @@ export default function PaymentRequestBuilder() {
       <div>
         <label className={LABEL_CLASS}>Message (public note)</label>
         <input
-          disabled={error ? true : false}
-          style={{ cursor: error ? "not-allowed" : "none" }}
+          disabled={!isValid}
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -206,6 +251,7 @@ export default function PaymentRequestBuilder() {
         <div>
           <label className={LABEL_CLASS}>Encrypted Memo</label>
           <textarea
+            disabled={!isValid}
             value={memo}
             onChange={(e) => setMemo(e.target.value)}
             placeholder="Private memo — only the recipient reads this"
@@ -238,7 +284,7 @@ export default function PaymentRequestBuilder() {
       </div>
 
       {/* QR */}
-      {uri && showQR && (
+      {isValid && uri && (
         <div className="flex justify-center pt-1">
           <div className="p-4 bg-white rounded-2xl shadow-xl shadow-black/10 dark:shadow-[#F4B728]/5 border border-zinc-100 dark:border-[#243040]">
             <QRCode value={uri} />
@@ -249,7 +295,7 @@ export default function PaymentRequestBuilder() {
       {/* Copy button */}
       <button
         onClick={copyURI}
-        disabled={!uri}
+        disabled={!isValid}
         className={`w-full py-3.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200 active:scale-[0.98] ${
           uri
             ? "bg-gradient-to-r from-[#F4B728] to-[#d9a520] text-[#151e29] hover:shadow-lg hover:shadow-[#F4B728]/15 hover:-translate-y-0.5 cursor-pointer"
