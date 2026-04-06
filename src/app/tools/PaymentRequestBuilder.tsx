@@ -257,7 +257,7 @@ export default function PaymentRequestBuilder() {
             : "Enter an address to continue"}
       </button>
 
-
+      <WasmInitStatus wasmReady={wasmReady} />
     </div>
   );
 }
