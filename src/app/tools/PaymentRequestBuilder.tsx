@@ -162,6 +162,8 @@ export default function PaymentRequestBuilder() {
         <div>
           <label className={LABEL_CLASS}>Amount (ZEC)</label>
           <input
+            disabled={error ? true : false}
+            style={{ cursor: error ? "not-allowed" : "none" }}
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
@@ -174,6 +176,8 @@ export default function PaymentRequestBuilder() {
         <div>
           <label className={LABEL_CLASS}>Label</label>
           <input
+            disabled={error ? true : false}
+            style={{ cursor: error ? "not-allowed" : "none" }}
             type="text"
             value={label}
             onChange={(e) => setLabel(e.target.value)}
@@ -187,6 +191,8 @@ export default function PaymentRequestBuilder() {
       <div>
         <label className={LABEL_CLASS}>Message (public note)</label>
         <input
+          disabled={error ? true : false}
+          style={{ cursor: error ? "not-allowed" : "none" }}
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
