@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2190
+      "views": 2192
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -968,6 +968,11 @@
       "views": 204
     },
     {
+      "title": "Zcash Arborist Call 04-02-2026",
+      "video_id": "-4GDsezfilc",
+      "views": 204
+    },
+    {
       "title": "Community Call with ZCG Candidates 12/17/2024",
       "video_id": "ODW01XSGOXA",
       "views": 203
@@ -1108,13 +1113,13 @@
       "views": 172
     },
     {
-      "title": "How Zcash Can Adapt and Thrive in a Hostile Regulatory Environment? ZconV: Zcash Unified 2024 #Zcash",
-      "video_id": "85S50f-gXOg",
-      "views": 171
-    },
-    {
       "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
       "video_id": "he_j9O5INVk",
+      "views": 172
+    },
+    {
+      "title": "How Zcash Can Adapt and Thrive in a Hostile Regulatory Environment? ZconV: Zcash Unified 2024 #Zcash",
+      "video_id": "85S50f-gXOg",
       "views": 171
     },
     {
@@ -1441,11 +1446,6 @@
       "title": "Zcash Arborist Call 9/7/23",
       "video_id": "lM07BI3k54g",
       "views": 127
-    },
-    {
-      "title": "Zcash Arborist Call 04-02-2026",
-      "video_id": "-4GDsezfilc",
-      "views": 125
     },
     {
       "title": "The GDPR and Privacy Impact of Using Zcash Shielded Transactions for SaaS - Silvan Jongerius",
