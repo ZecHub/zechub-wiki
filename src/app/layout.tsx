@@ -14,6 +14,16 @@ export const metadata: Metadata = {
   title: "ZecHub Wiki",
   description: "An open source education hub for Zcash",
   icons: "/ZecHubBlue.png",
+  alternates: {
+    types: {
+      "application/rss+xml": [
+        {
+          url: "https://zechub.wiki/rss.xml",
+          title: "ZecHub Dashboard Updates",
+        },
+      ],
+    },
+  },
 };
 
 export default function RootLayout({
@@ -43,6 +53,14 @@ export default function RootLayout({
             box-shadow: none !important;
           }
         `}</style>
+
+        {/* Manual RSS link as backup for better feed detection (Brave, Feedly, etc.) */}
+        <link 
+          rel="alternate" 
+          type="application/rss+xml" 
+          title="ZecHub Dashboard Updates" 
+          href="https://zechub.wiki/rss.xml" 
+        />
       </head>
       <body className={`px-0 ${inter.className}`}>
         {/* Hidden Google Translate mount — must be inside <body> */}
@@ -56,7 +74,6 @@ export default function RootLayout({
             height: 60,
           }}
         />
-
         <LanguageProvider>
           <DarkModeProvider>
             <div className="min-h-screen mx-auto">
@@ -64,9 +81,7 @@ export default function RootLayout({
               <Navigation />
               <FloatingExplore />
               <div className="flex flex-col justify-between flex-grow">
-                <div
-                //  style={{ margin: "0 0 48px 0" }}
-                >
+                <div>
                   {children}
                 </div>
               </div>
@@ -74,7 +89,6 @@ export default function RootLayout({
             <Footer />
           </DarkModeProvider>
         </LanguageProvider>
-
         {/* Google Translate init — runs after page is interactive */}
         <Script
           id="google-translate-init"

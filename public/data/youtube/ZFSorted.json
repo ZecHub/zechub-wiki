@@ -115,7 +115,7 @@
     {
       "title": "The [Private, Shielded] Path to Better Payments with Trevor Filter from Flexa - ZconVI #zcash",
       "video_id": "b05GsvcV5BI",
-      "views": 1088
+      "views": 1095
     },
     {
       "title": "User Defined Assets (UDAs): #Zcon2Lite",
@@ -310,7 +310,7 @@
     {
       "title": "Arti: ZF + ZCG Call w/ the Tor Project",
       "video_id": "E7g9dKBOYEI",
-      "views": 505
+      "views": 506
     },
     {
       "title": "ECC Update with Josh Swihart - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -370,7 +370,7 @@
     {
       "title": "Beyond ZEC: Expanding Zcash's Use Case Panel w Brave, Maya, QEDIT, Penumbra, red·bridge & Namada",
       "video_id": "CrWHNThDmaw",
-      "views": 433
+      "views": 434
     },
     {
       "title": "Money at the Edge: How PeopleStay Afloat in Venezuela - Alejandro Machado",
@@ -415,7 +415,7 @@
     {
       "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
       "video_id": "bRdNvepJVXM",
-      "views": 410
+      "views": 411
     },
     {
       "title": "Cultivating Sapling at Zcon0 (2018) by Sean Bowe",
@@ -775,7 +775,7 @@
     {
       "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
       "video_id": "5gvQF5oFT8E",
-      "views": 244
+      "views": 246
     },
     {
       "title": "Secure Distributed Storage by Anca Nitulescu: Zcon4",
@@ -830,7 +830,7 @@
     {
       "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
       "video_id": "DU7wIy3Ywm4",
-      "views": 225
+      "views": 227
     },
     {
       "title": "A Road Map for Lookup Tables by Arantxa: Zcon4",
@@ -863,6 +863,11 @@
       "views": 220
     },
     {
+      "title": "Zcash Arborist Call 04-02-2026",
+      "video_id": "-4GDsezfilc",
+      "views": 220
+    },
+    {
       "title": "Agoric, Smart Contracts, and Confidentiality - Dean Tribble",
       "video_id": "EAGaYg3hq88",
       "views": 219
@@ -870,7 +875,7 @@
     {
       "title": "ZecWallet Lite on Linux #1",
       "video_id": "iY1P1AgcIRw",
-      "views": 218
+      "views": 219
     },
     {
       "title": "Protecting Civil Liberties With Privacy-Enhancing Technology - Kurt Opsahl at Zcon3",
@@ -965,11 +970,6 @@
     {
       "title": "Zcash Arborist Call 02-05-2026",
       "video_id": "22YcmN1PPsc",
-      "views": 204
-    },
-    {
-      "title": "Zcash Arborist Call 04-02-2026",
-      "video_id": "-4GDsezfilc",
       "views": 204
     },
     {
@@ -1093,13 +1093,18 @@
       "views": 174
     },
     {
+      "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
+      "video_id": "65GdSSlDG3A",
+      "views": 174
+    },
+    {
       "title": "Town Hall - Technical Roadmap for Zcash: Zcon4",
       "video_id": "ZH44eP6Co-o",
       "views": 173
     },
     {
-      "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
-      "video_id": "65GdSSlDG3A",
+      "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
+      "video_id": "he_j9O5INVk",
       "views": 173
     },
     {
@@ -1110,11 +1115,6 @@
     {
       "title": "Sanctions Implications for Zcash with Peter Van Valkenburgh- ZconV: Zcash Unified 2024 #Zcash #ZEC",
       "video_id": "x8QSYpN9IxM",
-      "views": 172
-    },
-    {
-      "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
-      "video_id": "he_j9O5INVk",
       "views": 172
     },
     {
@@ -1383,13 +1383,13 @@
       "views": 133
     },
     {
-      "title": "Zcash Arborist Call 02-06-2025",
-      "video_id": "zgoArHP-1ps",
-      "views": 132
-    },
-    {
       "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
       "video_id": "2zmtTwrHUXA",
+      "views": 133
+    },
+    {
+      "title": "Zcash Arborist Call 02-06-2025",
+      "video_id": "zgoArHP-1ps",
       "views": 132
     },
     {
@@ -1448,13 +1448,13 @@
       "views": 127
     },
     {
-      "title": "The GDPR and Privacy Impact of Using Zcash Shielded Transactions for SaaS - Silvan Jongerius",
-      "video_id": "sJGWLlGDccM",
-      "views": 123
-    },
-    {
       "title": "Zcomm: Designing Engaging Workshops & Roundtables: Tools for Inclusive, Action-Driven Sessions #DWeb",
       "video_id": "m20tP1iqBRQ",
+      "views": 124
+    },
+    {
+      "title": "The GDPR and Privacy Impact of Using Zcash Shielded Transactions for SaaS - Silvan Jongerius",
+      "video_id": "sJGWLlGDccM",
       "views": 123
     },
     {
