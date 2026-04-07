@@ -66,12 +66,6 @@ const Validation = {
 };
 
 export default function PaymentRequestBuilder() {
-  // const [address, setAddress] = useState("");
-  // const [amount, setAmount] = useState("");
-  // const [memo, setMemo] = useState("");
-  // const [message, setMessage] = useState("");
-  // const [label, setLabel] = useState("");
-  // const [showQR, setShowQR] = useState(false);
   const [copied, setCopied] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -279,7 +273,9 @@ export default function PaymentRequestBuilder() {
           return (
             <div
               key={i}
-              ref={(el) => (itemRefs.current[i] = el)}
+              ref={(el) => {
+                itemRefs.current[i] = el;
+              }}
               className="rounded space-y-2 border-b border-zinc-100 dark:border-[#1e2d3d]"
             >
               {payments.length > 1 && (
@@ -307,7 +303,7 @@ export default function PaymentRequestBuilder() {
                 <>
                   {/* Address */}
                   <div
-                    className={`transition-all duration-300 ease-in-out overflow-hidden ${isActive ? "max-h-[700px] opacity-100" : "max-h-0 opacity-0"}`}
+                    className={`transition-all duration-300 ease-in-out overflow-hidden ${isActive ? "max-h-175 opacity-100" : "max-h-0 opacity-0"}`}
                   >
                     <div className="flex justify-between">
                       <label className={LABEL_CLASS}>Recipient Address:</label>
