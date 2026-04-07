@@ -4,6 +4,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useWasm } from "./hooks/useWasm";
 import WasmInitStatus from "./WasmInitStatus";
+import { detectZcashNetwork, type ZcashNetwork } from "./helper";
 
 function QRCode({ value, size = 176 }: { value: string; size?: number }) {
   return (
@@ -30,7 +31,7 @@ const LABEL_CLASS =
 type ValidationState =
   | { status: "idle" }
   | { status: "validating" }
-  | { status: "valid"; addressType?: string }
+  | { status: "valid"; addressType?: string; network: ZcashNetwork }
   | { status: "invalid"; error: string };
 
 export default function PaymentRequestBuilder() {
@@ -89,8 +90,9 @@ export default function PaymentRequestBuilder() {
         }
 
         const addressType = typeFn ? typeFn(addr) : undefined;
+        const network = detectZcashNetwork(addr);
 
-        setValidation({ status: "valid", addressType });
+        setValidation({ status: "valid", addressType, network });
       } catch (err: unknown) {
         setValidation({
           status: "invalid",
@@ -167,9 +169,10 @@ export default function PaymentRequestBuilder() {
       <div>
         <div className="flex justify-between">
           <label className={LABEL_CLASS}>Recipient Address:</label>
-          {isValid && (
+          {validation.status === "valid" && (
             <span className={LABEL_CLASS}>
-              Address Type: {validation.addressType}
+              {validation.network === "mainnet" ? "🟢 Mainnet" : "🟡 Testnet"} ·{" "}
+              {validation.addressType}
             </span>
           )}
         </div>
