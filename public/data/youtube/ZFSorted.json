@@ -310,7 +310,7 @@
     {
       "title": "Arti: ZF + ZCG Call w/ the Tor Project",
       "video_id": "E7g9dKBOYEI",
-      "views": 506
+      "views": 507
     },
     {
       "title": "ECC Update with Josh Swihart - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -843,6 +843,11 @@
       "views": 223
     },
     {
+      "title": "Zcash Arborist Call 04-02-2026",
+      "video_id": "-4GDsezfilc",
+      "views": 223
+    },
+    {
       "title": "MGRC Candidate Q&A Live Streams: Time Slot #3",
       "video_id": "cyjPxpe4cvs",
       "views": 221
@@ -860,11 +865,6 @@
     {
       "title": "Zcash Wallet with Metamask Snaps (Demo) with Ivan Rubido from ChainSafe - ZconVI #zcash",
       "video_id": "vEI3-9Y4tco",
-      "views": 220
-    },
-    {
-      "title": "Zcash Arborist Call 04-02-2026",
-      "video_id": "-4GDsezfilc",
       "views": 220
     },
     {
@@ -1405,7 +1405,7 @@
     {
       "title": "Zebra Launcher Demo + Q&A",
       "video_id": "ZGcaZQs_i0Y",
-      "views": 130
+      "views": 131
     },
     {
       "title": "Zcash Arborist Call 05-01-2025",
