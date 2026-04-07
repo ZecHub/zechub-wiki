@@ -456,7 +456,7 @@ export default function PaymentRequestBuilder() {
           >
             {uri || "Enter an address to generate a payment URI..."}
             {uri && (
-              <span className="absolute top-2.5 right-3 text-[9px] font-bold uppercase tracking-wider bg-[#F4B728]/15 text-[#F4B728] px-2 py-0.5 rounded">
+              <span className="absolute top-1.5 right-3 text-[9px] font-bold uppercase tracking-wider bg-[#F4B728]/15 text-[#F4B728] px-2 py-0.5 rounded">
                 ZIP-321
               </span>
             )}
