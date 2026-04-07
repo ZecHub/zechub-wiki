@@ -23,3 +23,12 @@ export function detectZcashNetwork(addr: string): ZcashNetwork {
 
   return "unknown";
 }
+
+export function encodeMemo(memo: string) {
+  try {
+    const b64 = btoa(unescape(encodeURIComponent(memo)));
+    return b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  } catch {
+    return undefined;
+  }
+}
