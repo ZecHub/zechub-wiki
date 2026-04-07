@@ -282,24 +282,26 @@ export default function PaymentRequestBuilder() {
               ref={(el) => (itemRefs.current[i] = el)}
               className="rounded space-y-2 border-b border-zinc-100 dark:border-[#1e2d3d]"
             >
-              <div
-                onClick={() => setActiveIndex(i)}
-                className="flex justify-between items-center cursor-pointer dark:bg-slate-600 p-2.5 mb-4"
-              >
+              {payments.length > 1 && (
                 <div
-                  className={`text-xs font-mono block text-[11px] font-semibold uppercase tracking-widest text-zinc-400 dark:text-slate-400`}
+                  onClick={() => setActiveIndex(i)}
+                  className="flex justify-between items-center cursor-pointer dark:bg-slate-600 p-2.5 mb-4"
                 >
-                  {p.address
-                    ? `${p.address.slice(0, 12)}...`
-                    : `Recipient ${i + 1}`}
-                </div>
+                  <div
+                    className={`text-xs font-mono block text-[11px] font-semibold uppercase tracking-widest text-zinc-400 dark:text-slate-400`}
+                  >
+                    {p.address
+                      ? `${p.address.slice(0, 12)}...`
+                      : `Recipient ${i + 1}`}
+                  </div>
 
-                <div className="text-xs">
-                  {v.status === "valid" && "✓"}
-                  {v.status === "invalid" && "⚠"}
-                  {v.status === "validating" && "..."}
+                  <div className="text-xs">
+                    {v.status === "valid" && "✓"}
+                    {v.status === "invalid" && "⚠"}
+                    {v.status === "validating" && "..."}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {isActive && (
                 <>
