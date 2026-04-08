@@ -42,7 +42,7 @@ const MdxComponents = {
       <Link
         href={href.startsWith("/site") ? transformGithubFilePathToWikiLink(href) : href}
         target={href.startsWith("/site") ? "" : "_blank"}
-        className="font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 underline decoration-dashed"
+        className="font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 hover:underline"
       >
         {props.children}
       </Link>
