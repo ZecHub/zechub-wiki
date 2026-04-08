@@ -451,6 +451,22 @@ export default function DeveloperPage() {
 
                 <li>
                   <a
+                    href="https://github.com/Frontier-Compute/zcash-ika"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    zcash-ika
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Split-key custody for Zcash and multi-chain agents via
+                    2PC-MPC. On-chain spend policy, privacy attestation, ZIP 244
+                    transaction builder.
+                  </p>
+                </li>
+
+                <li>
+                  <a
                     href="https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html"
                     target="_blank"
                     rel="noopener noreferrer"
