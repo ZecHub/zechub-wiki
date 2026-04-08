@@ -24,6 +24,7 @@ import { PrivacyUseCasesVisualizer } from "./PrivacyUsecases";
 import { GovernanceVisualizer } from "./Governance";
 import { QuizCard, QuizModule, type QuizQuestion } from "./QuizModule";
 import { DAOProposalVisualizer } from "./DAOProposals";
+import { BuildShieldedTransactionVisualizer } from "./BuildShieldedTransaction";
 
 const QUIZ_BEGINNER: QuizQuestion[] = [
   {
@@ -79,6 +80,21 @@ const QUIZ_INTERMEDIATE: QuizQuestion[] = [
     options: ["Mining rewards only", "Integrity, commitments, and binding data", "Only for addresses", "Display names"],
     correctIndex: 1,
   },
+  {
+    question: "In a shielded Zcash transaction, what does the zk-SNARK proof allow a sender to demonstrate?",
+    options: [
+      "Their full wallet balance to the recipient",
+      "Valid ownership and transaction correctness without revealing private inputs",
+      "The memo contents to all network observers",
+      "Which pool the funds originated from",
+    ],
+    correctIndex: 1,
+  },
+  {
+    question: "Which Zcash address pool offers the strongest privacy with no trusted setup requirement?",
+    options: ["Transparent (t-addr)", "Sapling (zs-addr)", "Orchard (u-addr)", "All pools are equally private"],
+    correctIndex: 2,
+  },
 ];
 
 const QUIZ_CONTRIBUTORS: QuizQuestion[] = [
@@ -133,7 +149,8 @@ type VisualizerType =
   | "dao-proposal"
   | "zcash-community-grants"
   | "coinholder-grants"
-  | "open-source-repos";
+  | "open-source-repos"
+  | "build-shielded-transaction";
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -193,6 +210,12 @@ const ADVANCED_VISUALIZERS: VisualizerInfo[] = [
     title: "zk-SNARKs",
     description: "Interactive demonstration of shielded transactions",
     component: ZKSNARKProofVisualizer,
+  },
+  {
+    id: "build-shielded-transaction",
+    title: "Build a Shielded Transaction",
+    description: "Step-by-step construction of a shielded transaction",
+    component: BuildShieldedTransactionVisualizer,
   },
   {
     id: "zcash-key",
