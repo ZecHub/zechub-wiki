@@ -37,7 +37,6 @@ const FilterToggle: React.FC<FilterToggleProps> = ({
                     className="sr-only peer"
                     checked={activeFilters.includes(`${category}:${value}`)}
                     onChange={() => {
-                      handleToggleFilter();
                       toggleFilter(category, value);
                     }}
                   />

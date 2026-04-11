@@ -1,6 +1,5 @@
 // src/lib/parseMarkdown.ts
 // Robust parser for Wallets.md — no more fragile line indexing
-
 export function parseMarkdown(md: string) {
   // Clean the markdown exactly like parseProcessorMarkdown.ts does
   const cleanedMd = md
@@ -11,7 +10,6 @@ export function parseMarkdown(md: string) {
 
   const items = cleanedMd.split('---').map((section: string) => {
     const lines = section.trim().split('\n');
-
     let title = '';
     let url = '';
     let imageUrl = '';
@@ -19,6 +17,8 @@ export function parseMarkdown(md: string) {
     const devices: string[] = [];
     const pools: string[] = [];
     const features: string[] = [];
+    const operatingSystem: string[] = [];     // ← NEW
+    const walletSupport: string[] = [];       // ← NEW
 
     lines.forEach(line => {
       // Title & URL
@@ -39,10 +39,20 @@ export function parseMarkdown(md: string) {
         const value = line.split(': ')[1];
         if (value) devices.push(...value.split(' | ').map(s => s.trim()));
       }
+      // Operating System  ← NEW
+      else if (line.startsWith('- Operating System:')) {
+        const value = line.split(': ')[1];
+        if (value) operatingSystem.push(...value.split(' | ').map(s => s.trim()));
+      }
       // Pools
       else if (line.startsWith('- Pools:')) {
         const value = line.split(': ')[1];
         if (value) pools.push(...value.split(' | ').map(s => s.trim()));
+      }
+      // Wallet Support  ← NEW
+      else if (line.startsWith('- Wallet Support:')) {
+        const value = line.split(': ')[1];
+        if (value) walletSupport.push(...value.split(' | ').map(s => s.trim()));
       }
       // Features
       else if (line.startsWith('- Features:')) {
@@ -63,6 +73,8 @@ export function parseMarkdown(md: string) {
       devices,
       pools,
       features,
+      operatingSystem,     
+      walletSupport,       
       syncSpeed,
     };
   });
