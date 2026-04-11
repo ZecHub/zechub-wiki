@@ -291,16 +291,6 @@ export default function LockboxChart(props: LockboxChartProps) {
           </p>
         </div>
       </div>
-
-      {/* SINGLE FOOTER */}
-      <div className="flex items-center justify-between mt-6 text-sm">
-        <p className="text-slate-400 dark:text-slate-500">
-          Last updated: 3/29/2026
-        </p>
-        <button className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-xl transition-colors">
-          Export PNG
-        </button>
-      </div>
     </ErrorBoundary>
   );
 }
