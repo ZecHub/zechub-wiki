@@ -47,7 +47,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [saplingSupplyData, setSaplingSupplyData] = useState<SupplyData[]>([]);
   const [sproutSupplyData, setSproutSupplyData] = useState<SupplyData[]>([]);
 
-  // Toggle visibility for each pool (used when "All Pools" is selected)
   const [sproutVisible, setSproutVisible] = useState(true);
   const [saplingVisible, setSaplingVisible] = useState(true);
   const [orchardVisible, setOrchardVisible] = useState(true);
@@ -74,7 +73,8 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
       }
     };
 
-    setTimeout(() => fetchAllData(), 2000);
+    fetchAllData(); // ← no more delay
+
     return () => controller.abort();
   }, []);
 
@@ -175,10 +175,11 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
         title={
           selectedPool === "all"
             ? "Shielded Supply Overview"
-            : `${capitalize(selectedPool)} Pool Supply`
+            : `${selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool Supply`
         }
       >
         <div className="grid gap-2 imd:flex justify-between imd:gap-16 py-4 md:py-0 items-center">
+          {/* Only Year selector remains */}
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Year</label>
             <DefaultSelect
@@ -188,21 +189,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               className="w-28 dark:border-slate-700"
               optionClassName="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
               renderOption={(year) => (year === "all" ? "All" : year)}
-            />
-          </div>
-
-          <div className="flex gap-2 items-center">
-            <label className="text-sm font-medium">Pool</label>
-            <DefaultSelect
-              value={selectedPool}
-              onChange={(v) => setSelectedPool(v as PoolKey)}
-              options={POOL_OPTIONS.map((opt) => opt.value)}
-              className="w-36 dark:border-slate-700"
-              optionClassName="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
-              renderOption={(value) => {
-                const label = POOL_OPTIONS.find((opt) => opt.value === value)?.label;
-                return label ?? value;
-              }}
             />
           </div>
 
@@ -252,9 +238,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               <stop offset="95%" stopColor="hsl(var(--chart-3))" stopOpacity={0.05} />
             </linearGradient>
           </defs>
-
           <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-
           <XAxis
             dataKey="close"
             tick={{ fontSize: fontSize * 0.75, fill: "#94a3b8" }}
@@ -263,15 +247,11 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             textAnchor="end"
             height={70}
           />
-
           <YAxis
             tick={{ fontSize, fill: "#94a3b8" }}
             tickFormatter={(val: any) => formatNumberShort(val)}
           />
-
           <Tooltip content={CustomTooltip} />
-
-          {/* Clickable Legend */}
           <Legend
             content={
               <div className="flex justify-center gap-8 text-sm mt-4 flex-wrap">
@@ -284,7 +264,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                       <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-1))]" />
                       <span className="font-medium">Sprout</span>
                     </button>
-
                     <button
                       onClick={() => setSaplingVisible(!saplingVisible)}
                       className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingVisible ? "" : "opacity-40 line-through"}`}
@@ -292,7 +271,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                       <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-2))]" />
                       <span className="font-medium">Sapling</span>
                     </button>
-
                     <button
                       onClick={() => setOrchardVisible(!orchardVisible)}
                       className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardVisible ? "" : "opacity-40 line-through"}`}
@@ -302,9 +280,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                     </button>
                   </>
                 ) : (
-                  <button
-                    className="flex items-center gap-2 cursor-pointer"
-                  >
+                  <button className="flex items-center gap-2 cursor-pointer">
                     <span
                       className="inline-block w-3 h-3 rounded-full"
                       style={{ background: `hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : 3}))` }}
@@ -317,7 +293,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               </div>
             }
           />
-
           {selectedPool === "all" ? (
             <>
               <Area
