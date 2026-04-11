@@ -11,6 +11,8 @@ interface Wallet {
   devices: string[];
   pools: string[];
   features: string[];
+  operatingSystem: string[];
+  walletSupport: string[];
   syncSpeed: string;
 }
 
@@ -47,25 +49,29 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   useEffect(() => {
     const fetchLikes = async () => {
       const devicesSet = new Set<string>();
+      const operatingSystemSet = new Set<string>();
       const poolsSet = new Set<string>();
+      const walletSupportSet = new Set<string>();
       const featuresSet = new Set<string>();
 
       allWallets.forEach((wallet) => {
         wallet.devices.forEach((d) => devicesSet.add(d.trim()));
+        wallet.operatingSystem?.forEach((os) => operatingSystemSet.add(os.trim()));
         wallet.pools.forEach((p) => poolsSet.add(p.trim()));
+        wallet.walletSupport?.forEach((ws) => walletSupportSet.add(ws.trim()));
         wallet.features.forEach((f) => featuresSet.add(f.trim()));
       });
 
       setFilters({
-        Devices: new Set(
-          Array.from(devicesSet).sort((a, b) => a.localeCompare(b)),
+        Devices: new Set(Array.from(devicesSet).sort((a, b) => a.localeCompare(b))),
+        "Operating System": new Set(
+          Array.from(operatingSystemSet).sort((a, b) => a.localeCompare(b)),
         ),
-        "Operating System": new Set<string>(),
         Pools: new Set(Array.from(poolsSet).sort((a, b) => a.localeCompare(b))),
-        "Wallet Support": new Set<string>(),
-        Features: new Set(
-          Array.from(featuresSet).sort((a, b) => a.localeCompare(b)),
+        "Wallet Support": new Set(
+          Array.from(walletSupportSet).sort((a, b) => a.localeCompare(b)),
         ),
+        Features: new Set(Array.from(featuresSet).sort((a, b) => a.localeCompare(b))),
       });
 
       let initialLikes: { [key: string]: number } = {};
@@ -146,9 +152,11 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     activeFilters.every((filter) => {
       const [category, value] = filter.split(":");
       if (category === "Devices") return wallet.devices.includes(value);
+      if (category === "Operating System") return wallet.operatingSystem?.includes(value) ?? false;
       if (category === "Pools") return wallet.pools.includes(value);
+      if (category === "Wallet Support") return wallet.walletSupport?.includes(value) ?? false;
       if (category === "Features") return wallet.features.includes(value);
-      return false;
+      return true;
     }),
   );
 
@@ -158,18 +166,12 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
 
   return (
     <>
-      {/* Inject scoped styles */}
-      {/* <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
-
-      `}</style> */}
-
       <div className="wl-root">
-        {/* ── Mobile header ── */}
+        {/* Mobile header */}
         <div className="wl-mobile-header">
           <span className="wl-mobile-title">{filtersLabel}</span>
           <button className="wl-btn" onClick={handleToggleFilter}>
-            <span className="wl-btn-icon">⚙</span>
+            <span className="wl-btn-icon">Settings</span>
             {showNavLabel}
             {activeFilters.length > 0 && (
               <span className="wl-active-count">{activeFilters.length}</span>
@@ -177,7 +179,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           </button>
         </div>
 
-        {/* ── Active filter chips (mobile) ── */}
+        {/* Active filter chips */}
         {activeFilters.length > 0 && (
           <div className="wl-active-chips">
             {activeFilters.map((item, i) => (
@@ -190,15 +192,14 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                 }}
               >
                 {item.split(":")[1]}
-                <span className="wl-chip-x">✕</span>
+                <span className="wl-chip-x">Close</span>
               </span>
             ))}
           </div>
         )}
 
-        {/* ── Main layout ── */}
         <div className="wl-layout">
-          {/* Sidebar (desktop) */}
+          {/* Desktop sidebar */}
           <aside className="wl-sidebar">
             <p className="wl-sidebar-title">{filtersLabel}</p>
             <div className="wl-sidebar-panel">
@@ -211,34 +212,28 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
             </div>
           </aside>
 
-          {/* Results */}
+          {/* Results - 3-column grid + correct tags format */}
           <section className="wl-results">
             <div className="wl-results-meta">
               <span className="wl-results-count">
-                {sortedWallets.length} wallet
-                {sortedWallets.length !== 1 ? "s" : ""}
-                {activeFilters.length > 0 && (
-                  <span className="wl-active-count">
-                    {activeFilters.length}
-                  </span>
-                )}
+                {sortedWallets.length} wallet{sortedWallets.length !== 1 ? "s" : ""}
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div className="wl-wallet-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {sortedWallets.map((wallet) => (
                 <WalletItem
                   key={wallet.title}
                   title={wallet.title}
                   link={wallet.url}
-                  logo={wallet.imageUrl.trim()}
+                  logo={wallet.imageUrl}
                   tags={[
-                    { category: "Devices", values: [...wallet.devices] },
-                    { category: "Pools", values: [...wallet.pools] },
-                    { category: "Features", values: [...wallet.features] },
+                    { category: "Devices", values: wallet.devices },
+                    { category: "Pools", values: wallet.pools },
+                    { category: "Features", values: wallet.features },
                   ]}
+                  likes={likes[wallet.title] || 0}
                   syncSpeed={wallet.syncSpeed}
-                  likes={likes[wallet.title]}
                   onLike={() => handleLike(wallet.title)}
                   onDislike={() => handleDislike(wallet.title)}
                   error={error[wallet.title]}
@@ -249,39 +244,22 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           </section>
         </div>
 
-        {/* ── Mobile filter drawer ── */}
+        {/* Mobile drawer */}
         {isFilterVisible && (
-          <div
-            className="wl-drawer-overlay open cursor-pointer"
-            onClick={handleToggleFilter}
-          >
-            <div className="wl-drawer" onClick={(e) => e.stopPropagation()}>
-              <div className="wl-drawer-handle" />
-              <div className="wl-drawer-top">
-                <span className="wl-drawer-title">{filtersLabel}</span>
-                <button
-                  className="wl-drawer-close"
-                  onClick={handleToggleFilter}
-                >
-                  {closeLabel}
-                </button>
-              </div>
-              {/* Pass a no-op so FilterToggle cannot close the drawer on its own */}
+          <div className="wl-mobile-drawer">
+            <div className="wl-drawer-header">
+              <span>{filtersLabel}</span>
+              <button className="wl-btn" onClick={handleToggleFilter}>
+                {closeLabel}
+              </button>
+            </div>
+            <div className="wl-drawer-content">
               <FilterToggle
                 filters={filters}
                 activeFilters={activeFilters}
                 toggleFilter={toggleFilter}
-                handleToggleFilter={() => {}}
+                handleToggleFilter={handleToggleFilter}
               />
-              {/* Done button — closes drawer and shows results */}
-              <button
-                className="wl-btn wl-btn-done"
-                onClick={handleToggleFilter}
-              >
-                {activeFilters.length > 0
-                  ? `Show ${sortedWallets.length} wallet${sortedWallets.length !== 1 ? "s" : ""}`
-                  : "Done"}
-              </button>
             </div>
           </div>
         )}
