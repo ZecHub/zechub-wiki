@@ -170,7 +170,10 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         {/* Mobile header */}
         <div className="wl-mobile-header">
           <span className="wl-mobile-title">{filtersLabel}</span>
-          <button className="wl-btn" onClick={handleToggleFilter}>
+          <button 
+            className="wl-btn" 
+            onClick={handleToggleFilter}
+          >
             <span className="wl-btn-icon">Settings</span>
             {showNavLabel}
             {activeFilters.length > 0 && (
@@ -246,20 +249,29 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
 
         {/* Mobile drawer */}
         {isFilterVisible && (
-          <div className="wl-mobile-drawer">
-            <div className="wl-drawer-header">
-              <span>{filtersLabel}</span>
-              <button className="wl-btn" onClick={handleToggleFilter}>
-                {closeLabel}
-              </button>
-            </div>
-            <div className="wl-drawer-content">
-              <FilterToggle
-                filters={filters}
-                activeFilters={activeFilters}
-                toggleFilter={toggleFilter}
-                handleToggleFilter={handleToggleFilter}
-              />
+          <div className="wl-mobile-drawer fixed inset-0 z-50 bg-black/60 flex items-end">
+            <div 
+              className="bg-white dark:bg-slate-900 w-full max-h-[85vh] rounded-t-3xl overflow-hidden shadow-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="wl-drawer-header px-6 py-4 border-b flex items-center justify-between">
+                <span className="text-lg font-semibold">{filtersLabel}</span>
+                <button 
+                  className="wl-btn text-sm font-medium"
+                  onClick={handleToggleFilter}
+                >
+                  {closeLabel}
+                </button>
+              </div>
+              
+              <div className="wl-drawer-content p-6 overflow-y-auto max-h-[calc(85vh-65px)]">
+                <FilterToggle
+                  filters={filters}
+                  activeFilters={activeFilters}
+                  toggleFilter={toggleFilter}
+                  handleToggleFilter={handleToggleFilter}
+                />
+              </div>
             </div>
           </div>
         )}
