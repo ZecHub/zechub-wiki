@@ -17,6 +17,7 @@ export function GrantList(props: Props) {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [categoryFilter, setCategoryFilter] = useState("All");
+  const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest"); // ← new state
 
   const CATEGORY_FILTER = props.grants
     .map((d) => d.category)
@@ -45,24 +46,26 @@ export function GrantList(props: Props) {
 
         return matchesSearch && matchesStatus && matchesCategory;
       })
-      // NEW: Sort by newest grant first (type-safe)
+      // Sort by newest/oldest
       .sort((a, b) => {
-        // Try common date fields safely
         const getDate = (g: Grant) =>
           (g as any).date ||
           (g as any).createdAt ||
           (g as any).updatedAt ||
-          (g as any).created ||
-          (g as any).updated ||
+          (g as any).fundingDate ||
+          (g as any).startDate ||
           0;
 
         const dateA = new Date(getDate(a)).getTime();
         const dateB = new Date(getDate(b)).getTime();
 
-        // If dates are equal or missing, keep original order
-        return dateB - dateA || 0;
+        if (sortOrder === "newest") {
+          return dateB - dateA; // newest first
+        } else {
+          return dateA - dateB; // oldest first
+        }
       });
-  }, [props.grants, search, statusFilter, categoryFilter]);
+  }, [props.grants, search, statusFilter, categoryFilter, sortOrder]);
 
   return (
     <section>
@@ -76,6 +79,21 @@ export function GrantList(props: Props) {
             ({filteredGrants.length})
           </span>
         )}
+      </div>
+
+      {/* Sort toggle */}
+      <div className="flex items-center gap-2 mb-4">
+        <span className="text-sm font-medium text-muted-foreground">Sort:</span>
+        <button
+          onClick={() => setSortOrder(sortOrder === "newest" ? "oldest" : "newest")}
+          className={`px-4 py-1 text-sm font-medium rounded-xl transition-colors ${
+            sortOrder === "newest"
+              ? "bg-white dark:bg-slate-700 shadow-sm text-foreground"
+              : "bg-slate-100 dark:bg-slate-800 text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {sortOrder === "newest" ? "Newest first" : "Oldest first"}
+        </button>
       </div>
 
       <SearchFilter
