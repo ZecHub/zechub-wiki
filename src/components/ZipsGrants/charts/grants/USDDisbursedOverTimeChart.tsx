@@ -1,4 +1,3 @@
-import { Button } from "@/components/UI/shadcn/button";
 import {
   Card,
   CardContent,
@@ -6,23 +5,9 @@ import {
   CardTitle,
 } from "@/components/UI/shadcn/card";
 import {
-  BarChart3,
-  CheckCircle,
-  Coins,
-  DollarSign,
-  TrendingUp,
-  Upload,
-} from "lucide-react";
-import { useCallback, useMemo } from "react";
-import {
   Area,
   AreaChart,
-  Bar,
-  BarChart,
   CartesianGrid,
-  Cell,
-  Line,
-  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -44,9 +29,12 @@ export function USDDisbursedOverTimeChart(props: Props) {
           USD Disbursed Over Time
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <ResponsiveContainer width="100%" height={320}>
-          <AreaChart data={props.timeData}>
+      <CardContent className="px-6 py-8">
+        <ResponsiveContainer width="100%" height={380}>
+          <AreaChart
+            data={props.timeData}
+            margin={{ top: 10, right: 20, bottom: 10, left: 10 }}
+          >
             <defs>
               <linearGradient id="gradArea" x1="0" y1="0" x2="0" y2="1">
                 <stop
@@ -61,12 +49,16 @@ export function USDDisbursedOverTimeChart(props: Props) {
                 />
               </linearGradient>
             </defs>
+
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(230, 15%, 20%)" />
+
             <XAxis
               dataKey="month"
               tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }}
             />
+
             <YAxis
+              domain={[0, "auto"]}          
               tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }}
               tickFormatter={(v) => `$${(v / 1e3).toFixed(0)}K`}
             />
@@ -76,7 +68,7 @@ export function USDDisbursedOverTimeChart(props: Props) {
               dataKey="amount"
               stroke="hsl(47, 100%, 55%)"
               fill="url(#gradArea)"
-              strokeWidth={2}
+              strokeWidth={2.5}
             />
 
             <Tooltip
