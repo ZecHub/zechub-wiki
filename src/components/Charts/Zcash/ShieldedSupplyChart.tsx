@@ -21,7 +21,7 @@ import {
 import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
 import { useInMobile } from "@/hooks/useInMobile";
-import DefaultSelect from "@/components/DefaultSelect";
+import DefaultSelect from "@/components/DefaultSelect";   // ← restored
 
 type PoolKey = "all" | PoolType;
 
@@ -68,7 +68,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     return () => controller.abort();
   }, []);
 
-  // Stable helper functions
   const extractYear = useCallback((dateStr: string) => {
     return new Date(dateStr).getFullYear().toString();
   }, []);
@@ -95,7 +94,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     for (const date of dateArray) {
       dataMap[date] = { close: date, sprout: 0, sapling: 0, orchard: 0 };
     }
-
     for (const d of sprout) if (dataMap[d.close]) dataMap[d.close].sprout = d.supply;
     for (const d of sapling) if (dataMap[d.close]) dataMap[d.close].sapling = d.supply;
     for (const d of orchard) if (dataMap[d.close]) dataMap[d.close].orchard = d.supply;
@@ -105,7 +103,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     );
   }, [sproutSupplyData, saplingSupplyData, orchardSupplyData, selectedYear, extractYear]);
 
-  // Memoized data
   const combinedPoolData = useMemo(() => normalizePools(), [normalizePools]);
 
   const poolData = useMemo(() => {
@@ -122,11 +119,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   }, [selectedPool, combinedPoolData, sproutSupplyData, saplingSupplyData, orchardSupplyData, selectedYear, extractYear]);
 
   const getAvailableYears = useCallback((poolKey: PoolKey) => {
-    const dataByPool = {
-      sprout: sproutSupplyData,
-      sapling: saplingSupplyData,
-      orchard: orchardSupplyData,
-    };
+    const dataByPool = { sprout: sproutSupplyData, sapling: saplingSupplyData, orchard: orchardSupplyData };
     const data = poolKey === "all"
       ? [...sproutSupplyData, ...saplingSupplyData, ...orchardSupplyData]
       : dataByPool[poolKey];
