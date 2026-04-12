@@ -8,7 +8,7 @@ import {
   PoolType,
 } from "@/lib/chart/helpers";
 import { SupplyData } from "@/lib/chart/types";
-import { RefObject, useEffect, useMemo, useState } from "react";
+import { RefObject, useCallback, useEffect, useMemo, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -44,10 +44,36 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [saplingVisible, setSaplingVisible] = useState(true);
   const [orchardVisible, setOrchardVisible] = useState(true);
 
-  // Helper functions (moved to top so they can be used in useMemo)
-  const extractYear = (dateStr: string) => new Date(dateStr).getFullYear().toString();
+  // Fetch data once
+  useEffect(() => {
+    const controller = new AbortController();
+    const fetchAllData = async () => {
+      setLoading(true);
+      try {
+        const [sprout, sapling, orchard] = await Promise.all([
+          getSupplyData(DATA_URL.sproutUrl, controller.signal),
+          getSupplyData(DATA_URL.saplingUrl, controller.signal),
+          getSupplyData(DATA_URL.orchardUrl, controller.signal),
+        ]);
+        if (sprout) setSproutSupplyData(sprout);
+        if (sapling) setSaplingSupplyData(sapling);
+        if (orchard) setOrchardSupplyData(orchard);
+      } catch (err) {
+        console.error("Error fetching dashboard data:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAllData();
+    return () => controller.abort();
+  }, []);
 
-  const normalizePools = () => {
+  // Stable helper functions
+  const extractYear = useCallback((dateStr: string) => {
+    return new Date(dateStr).getFullYear().toString();
+  }, []);
+
+  const normalizePools = useCallback(() => {
     const normalizeDate = (dateStr: string) => {
       const [month, day, year] = dateStr.split("/");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
@@ -77,39 +103,10 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     return Object.values(dataMap).filter((d: any) =>
       selectedYear === "all" ? true : extractYear(d.close) === selectedYear
     );
-  };
+  }, [sproutSupplyData, saplingSupplyData, orchardSupplyData, selectedYear, extractYear]);
 
-  // Fetch data once
-  useEffect(() => {
-    const controller = new AbortController();
-    const fetchAllData = async () => {
-      setLoading(true);
-      try {
-        const [sprout, sapling, orchard] = await Promise.all([
-          getSupplyData(DATA_URL.sproutUrl, controller.signal),
-          getSupplyData(DATA_URL.saplingUrl, controller.signal),
-          getSupplyData(DATA_URL.orchardUrl, controller.signal),
-        ]);
-        if (sprout) setSproutSupplyData(sprout);
-        if (sapling) setSaplingSupplyData(sapling);
-        if (orchard) setOrchardSupplyData(orchard);
-      } catch (err) {
-        console.error("Error fetching dashboard data:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchAllData();
-    return () => controller.abort();
-  }, []);
-
-  // Memoized heavy computations
-  const combinedPoolData = useMemo(() => normalizePools(), [
-    sproutSupplyData,
-    saplingSupplyData,
-    orchardSupplyData,
-    selectedYear,
-  ]);
+  // Memoized data
+  const combinedPoolData = useMemo(() => normalizePools(), [normalizePools]);
 
   const poolData = useMemo(() => {
     if (selectedPool === "all") return combinedPoolData;
@@ -122,16 +119,20 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     return map[selectedPool].filter((d) =>
       selectedYear === "all" ? true : extractYear(d.close) === selectedYear
     );
-  }, [selectedPool, combinedPoolData, sproutSupplyData, saplingSupplyData, orchardSupplyData, selectedYear]);
+  }, [selectedPool, combinedPoolData, sproutSupplyData, saplingSupplyData, orchardSupplyData, selectedYear, extractYear]);
 
-  const getAvailableYears = (poolKey: PoolKey) => {
-    const dataByPool = { sprout: sproutSupplyData, sapling: saplingSupplyData, orchard: orchardSupplyData };
+  const getAvailableYears = useCallback((poolKey: PoolKey) => {
+    const dataByPool = {
+      sprout: sproutSupplyData,
+      sapling: saplingSupplyData,
+      orchard: orchardSupplyData,
+    };
     const data = poolKey === "all"
       ? [...sproutSupplyData, ...saplingSupplyData, ...orchardSupplyData]
       : dataByPool[poolKey];
     const years = [...new Set(data.map((d) => extractYear(d.close)))].sort();
     return ["all", ...years];
-  };
+  }, [sproutSupplyData, saplingSupplyData, orchardSupplyData, extractYear]);
 
   const latest = combinedPoolData[combinedPoolData.length - 1] || {};
   const latestTotals = {
@@ -170,7 +171,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             : `${selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool Supply`
         }
       >
-        {/* Year selector only (pool dropdown removed as requested) */}
         <div className="grid gap-2 imd:flex justify-between imd:gap-16 py-4 md:py-0 items-center">
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Year</label>
