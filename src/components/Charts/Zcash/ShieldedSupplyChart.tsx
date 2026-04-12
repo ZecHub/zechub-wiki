@@ -21,7 +21,7 @@ import {
 import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
 import { useInMobile } from "@/hooks/useInMobile";
-import DefaultSelect from "@/components/DefaultSelect";   // ← restored
+import DefaultSelect from "@/components/DefaultSelect";
 
 type PoolKey = "all" | PoolType;
 
@@ -137,6 +137,47 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const calculateTotalShielded = () =>
     latestTotals.orchard + latestTotals.sapling + latestTotals.sprout;
 
+  // Memoized legend (prevents re-creation on every render)
+  const legendContent = useMemo(() => (
+    <div className="flex justify-center gap-8 text-sm mt-4 flex-wrap">
+      {selectedPool === "all" ? (
+        <>
+          <button
+            onClick={() => setSproutVisible(!sproutVisible)}
+            className={`flex items-center gap-2 cursor-pointer transition-colors ${sproutVisible ? "" : "opacity-40 line-through"}`}
+          >
+            <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-1))]" />
+            <span className="font-medium">Sprout</span>
+          </button>
+          <button
+            onClick={() => setSaplingVisible(!saplingVisible)}
+            className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingVisible ? "" : "opacity-40 line-through"}`}
+          >
+            <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-2))]" />
+            <span className="font-medium">Sapling</span>
+          </button>
+          <button
+            onClick={() => setOrchardVisible(!orchardVisible)}
+            className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardVisible ? "" : "opacity-40 line-through"}`}
+          >
+            <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-3))]" />
+            <span className="font-medium">Orchard</span>
+          </button>
+        </>
+      ) : (
+        <button className="flex items-center gap-2 cursor-pointer">
+          <span
+            className="inline-block w-3 h-3 rounded-full"
+            style={{ background: `hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : 3}))` }}
+          />
+          <span className="font-medium">
+            {selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool
+          </span>
+        </button>
+      )}
+    </div>
+  ), [selectedPool, sproutVisible, saplingVisible, orchardVisible]);
+
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (!active || !payload?.length) return null;
     return (
@@ -223,47 +264,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             tickFormatter={(val: any) => formatNumberShort(val)}
           />
           <Tooltip content={CustomTooltip} />
-          <Legend
-            content={
-              <div className="flex justify-center gap-8 text-sm mt-4 flex-wrap">
-                {selectedPool === "all" ? (
-                  <>
-                    <button
-                      onClick={() => setSproutVisible(!sproutVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${sproutVisible ? "" : "opacity-40 line-through"}`}
-                    >
-                      <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-1))]" />
-                      <span className="font-medium">Sprout</span>
-                    </button>
-                    <button
-                      onClick={() => setSaplingVisible(!saplingVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingVisible ? "" : "opacity-40 line-through"}`}
-                    >
-                      <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-2))]" />
-                      <span className="font-medium">Sapling</span>
-                    </button>
-                    <button
-                      onClick={() => setOrchardVisible(!orchardVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardVisible ? "" : "opacity-40 line-through"}`}
-                    >
-                      <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-3))]" />
-                      <span className="font-medium">Orchard</span>
-                    </button>
-                  </>
-                ) : (
-                  <button className="flex items-center gap-2 cursor-pointer">
-                    <span
-                      className="inline-block w-3 h-3 rounded-full"
-                      style={{ background: `hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : 3}))` }}
-                    />
-                    <span className="font-medium">
-                      {selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool
-                    </span>
-                  </button>
-                )}
-              </div>
-            }
-          />
+          <Legend content={legendContent} />
 
           {selectedPool === "all" ? (
             <>
