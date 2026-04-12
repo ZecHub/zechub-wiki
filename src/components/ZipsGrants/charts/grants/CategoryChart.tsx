@@ -4,7 +4,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/UI/shadcn/card";
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import type { Payload } from "recharts/types/component/DefaultTooltipContent";
 
 type Props = {
@@ -17,61 +17,49 @@ type Props = {
 };
 
 export function CategoryChart(props: Props) {
-  // Custom label that pushes text further out + proper alignment
-  const renderCustomizedLabel = (entry: any) => {
-    const {
-      cx,
-      cy,
-      midAngle,
-      innerRadius,
-      outerRadius,
-      percent,
-      name,
-      fill, // this gives the nice colored text that matches each slice
-    } = entry;
-
-    const radius = outerRadius + 35; // ← this is the key fix (more space)
-    const x = cx + radius * Math.cos(-midAngle * Math.PI / 180);
-    const y = cy + radius * Math.sin(-midAngle * Math.PI / 180);
-
-    return (
-      <text
-        x={x}
-        y={y}
-        fill={fill}
-        textAnchor={x > cx ? "start" : "end"} // prevents cutoff on edges
-        dominantBaseline="central"
-        fontSize="10px"
-        fontWeight={700}
-      >
-        {`${name} ${(percent * 100).toFixed(0)}%`}
-      </text>
-    );
-  };
-
   return (
     <Card className="border-border/30 dark:bg-slate-800/90 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="text-lg font-bold">Grants by Category</CardTitle>
       </CardHeader>
-      <CardContent>
-        <ResponsiveContainer width="100%" height={400}> 
-          <PieChart>
+      <CardContent className="px-6 py-8">
+        <ResponsiveContainer width="100%" height={420}>
+          <PieChart
+            margin={{ top: 20, right: 160, bottom: 20, left: 20 }} // space for legend
+          >
             <Pie
               data={props.catData}
               cx="50%"
               cy="50%"
               innerRadius={65}
-              outerRadius={115}           
+              outerRadius={110}
               paddingAngle={3}
               dataKey="value"
-              label={renderCustomizedLabel}
-              labelLine={true}            
+              // No labels or labelLine — legend handles everything
             >
               {props.catData.map((entry, i) => (
-                <Cell key={i} fill={entry.fill} />
+                <Cell key={`cell-${i}`} fill={entry.fill} />
               ))}
             </Pie>
+
+            {/* Clean vertical legend on the right */}
+            <Legend
+              layout="vertical"
+              align="right"
+              verticalAlign="middle"
+              iconType="rect"
+              iconSize={14}
+              formatter={(value: string, entry: any) => {
+                const percent = (entry.payload?.percent ?? 0) * 100;
+                return [`${value} ${percent.toFixed(0)}%`];
+              }}
+              wrapperStyle={{
+                fontSize: "13px",
+                fontWeight: 600,
+                lineHeight: "1.4",
+                paddingLeft: "12px",
+              }}
+            />
 
             <Tooltip
               contentStyle={{
