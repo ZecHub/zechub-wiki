@@ -30,15 +30,15 @@ export function USDDisbursedOverTimeChart(props: Props) {
         </CardTitle>
       </CardHeader>
       <CardContent className="px-6 py-8">
-        <ResponsiveContainer width="100%" height={400}>
+        <ResponsiveContainer width="100%" height={420}>
           <AreaChart
             data={props.timeData}
-            margin={{ top: 20, right: 30, bottom: 10, left: 10 }}
+            margin={{ top: 20, right: 30, bottom: 10, left: 15 }}
           >
             <defs>
               <linearGradient id="gradArea" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="hsl(47, 100%, 55%)" stopOpacity={0.65} />
-                <stop offset="100%" stopColor="hsl(47, 100%, 55%)" stopOpacity={0.25} />
+                <stop offset="0%" stopColor="hsl(47, 100%, 55%)" stopOpacity={0.7} />
+                <stop offset="100%" stopColor="hsl(47, 100%, 55%)" stopOpacity={0.15} />
               </linearGradient>
             </defs>
 
@@ -50,8 +50,9 @@ export function USDDisbursedOverTimeChart(props: Props) {
             />
 
             <YAxis
-              domain={[0, "dataMax"]}          
-              allowDataOverflow={false}     
+              domain={[0, "dataMax"]}       
+              allowDataOverflow={true}    
+              tickCount={6}                
               tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }}
               tickFormatter={(v) => `$${(v / 1e3).toFixed(0)}K`}
             />
