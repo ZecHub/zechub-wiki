@@ -33,8 +33,8 @@ export function CategoryChart(props: Props) {
           <PieChart margin={{ top: 20, right: 40, bottom: 220, left: 40 }}>
             <Pie
               data={dataWithPercent}
-              cx="50%"                    {/* perfectly centered */}
-              cy="42%"                    {/* slightly raised so legend has room below */}
+              cx="50%"                    
+              cy="42%"                   
               innerRadius={72}
               outerRadius={125}
               paddingAngle={4}
