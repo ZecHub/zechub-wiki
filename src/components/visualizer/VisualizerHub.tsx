@@ -237,7 +237,7 @@ const ADVANCED_VISUALIZERS: VisualizerInfo[] = [
   },
   {
     id: "mining-halo",
-    title: "Zcash Mining & Halo 2",
+    title: "Zcash Mining",
     description:
       "Understanding Equihash mining and recursive zero-knowledge proofs",
     component: MiningHaloVisualizer,

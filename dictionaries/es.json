@@ -234,7 +234,7 @@
       "description": "¿Cómo cientos de nodos llegan a un acuerdo sobre el estado de la cadena?"
     },
     "miningHalo": {
-      "title": "Minería de Zcash y Halo 2",
+      "title": "Minería de Zcash",
       "description": "Entendiendo la minería Equihash y las pruebas de conocimiento cero recursivas"
     },
     "privacyUseCases": {

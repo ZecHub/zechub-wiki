@@ -240,7 +240,7 @@
       "description": "How do hundreds of nodes agree on chain state?"
     },
     "miningHalo": {
-      "title": "Zcash Mining & Halo 2",
+      "title": "Zcash Mining",
       "description": "Understanding Equihash mining and recursive zero-knowledge proofs"
     },
     "privacyUseCases": {

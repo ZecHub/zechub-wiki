@@ -101,7 +101,7 @@ export const MiningHaloVisualizer = ({
             <Pickaxe className="w-5 h-5 text-white" />
           </motion.div>
           <h1 className="text-2xl font-bold text-foreground">
-            Zcash Mining & Halo 2
+            Zcash Mining
           </h1>
           <motion.div
             animate={{ scale: [1, 1.2, 1] }}
