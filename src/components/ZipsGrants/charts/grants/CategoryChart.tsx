@@ -5,7 +5,6 @@ import {
   CardTitle,
 } from "@/components/UI/shadcn/card";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
-import type { Payload } from "recharts/types/component/DefaultTooltipContent";
 
 type Props = {
   catData: {
@@ -17,48 +16,61 @@ type Props = {
 };
 
 export function CategoryChart(props: Props) {
+  // Pre-calculate percentages — this fixes the 0% bug forever
+  const total = props.catData.reduce((sum, item) => sum + item.value, 0);
+  const dataWithPercent = props.catData.map((item) => ({
+    ...item,
+    percent: total > 0 ? item.value / total : 0,
+  }));
+
   return (
     <Card className="border-border/30 dark:bg-slate-800/90 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="text-lg font-bold">Grants by Category</CardTitle>
       </CardHeader>
-      <CardContent className="px-6 py-8">
-        <ResponsiveContainer width="100%" height={420}>
-          <PieChart
-            margin={{ top: 20, right: 160, bottom: 20, left: 20 }} // space for legend
-          >
+      <CardContent className="px-8 py-10">
+        <ResponsiveContainer width="100%" height={460}>
+          <PieChart margin={{ top: 10, right: 240, bottom: 10, left: 10 }}>
             <Pie
-              data={props.catData}
-              cx="50%"
+              data={dataWithPercent}
+              cx="42%"                   
               cy="50%"
-              innerRadius={65}
-              outerRadius={110}
-              paddingAngle={3}
+              innerRadius={68}
+              outerRadius={118}
+              paddingAngle={4}
               dataKey="value"
-              // No labels or labelLine — legend handles everything
             >
-              {props.catData.map((entry, i) => (
-                <Cell key={`cell-${i}`} fill={entry.fill} />
+              {dataWithPercent.map((entry, i) => (
+                <Cell key={i} fill={entry.fill} />
               ))}
             </Pie>
 
-            {/* Clean vertical legend on the right */}
+            {/* Clean custom legend on the right */}
             <Legend
               layout="vertical"
               align="right"
               verticalAlign="middle"
-              iconType="rect"
-              iconSize={14}
-              formatter={(value: string, entry: any) => {
-                const percent = (entry.payload?.percent ?? 0) * 100;
-                return [`${value} ${percent.toFixed(0)}%`];
-              }}
-              wrapperStyle={{
-                fontSize: "13px",
-                fontWeight: 600,
-                lineHeight: "1.4",
-                paddingLeft: "12px",
-              }}
+              content={({ payload }) => (
+                <ul className="text-[13px] font-medium space-y-3 pl-4">
+                  {payload?.map((entry: any, index: number) => {
+                    const percent = Math.round((entry.payload?.percent ?? 0) * 100);
+                    return (
+                      <li key={index} className="flex items-center gap-2.5">
+                        <div
+                          className="w-3.5 h-3.5 rounded flex-shrink-0"
+                          style={{ backgroundColor: entry.color }}
+                        />
+                        <span className="text-gray-700 dark:text-gray-300">
+                          {entry.value}
+                        </span>
+                        <span className="text-gray-500 dark:text-gray-400 font-mono text-xs ml-auto">
+                          {percent}%
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             />
 
             <Tooltip
