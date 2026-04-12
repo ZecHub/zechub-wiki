@@ -23,7 +23,7 @@ type Props = {
 
 export function USDDisbursedOverTimeChart(props: Props) {
   return (
-    <Card className="border-border/30 dark:bg-slate-800/90 backdrop-blur-sm">
+    <Card className="border-border/30 bg-slate-100 dark:bg-slate-800/90 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="text-lg font-bold">
           USD Disbursed Over Time
