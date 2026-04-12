@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/components/UI/shadcn/button";
 import {
   BarChart3,
@@ -10,7 +11,7 @@ import {
   Eye,
   Rss,
 } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, startTransition } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "next/navigation";
@@ -149,8 +150,12 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // UPDATED changeView with startTransition (this eliminates the tab flash on Vercel)
   const changeView = (view: ViewType) => {
-    setCurrentView(view);
+    startTransition(() => {
+      setCurrentView(view);
+    });
+
     const nextParams = new URLSearchParams(window.location.search);
     if (view === "dashboard") {
       nextParams.delete("tab");
@@ -161,6 +166,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
     const queryString = nextParams.toString();
     const url = queryString ? `${pathname}?${queryString}` : pathname;
     router.replace(url, { scroll: false });
+
     if (view !== "youtube") {
       setSubView("top");
       setLatestSortByViews(false);
@@ -261,7 +267,6 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
             <h1 className="text-3xl font-bold text-foreground">
               {t?.headerTitle || "Dashboard(s)"}
             </h1>
-
             {/* RSS Icon */}
             <a
               href="/rss.xml"
@@ -619,6 +624,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
             )}
           </>
         )}
+
         {currentView === "proposals" && <ProposalsList />}
         {currentView === "zcg" && <ZCGDashboard />}
       </div>
