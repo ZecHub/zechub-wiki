@@ -16,7 +16,7 @@ type Props = {
 };
 
 export function CategoryChart(props: Props) {
-  // Pre-calculate percentages — this fixes the 0% bug forever
+  // Pre-calculate percentages so they always show correctly
   const total = props.catData.reduce((sum, item) => sum + item.value, 0);
   const dataWithPercent = props.catData.map((item) => ({
     ...item,
@@ -28,16 +28,18 @@ export function CategoryChart(props: Props) {
       <CardHeader>
         <CardTitle className="text-lg font-bold">Grants by Category</CardTitle>
       </CardHeader>
-      <CardContent className="px-8 py-10">
-        <ResponsiveContainer width="100%" height={460}>
-          <PieChart margin={{ top: 10, right: 240, bottom: 10, left: 10 }}>
+      <CardContent className="px-6 py-8">
+        <ResponsiveContainer width="100%" height={480}>
+          <PieChart
+            margin={{ top: 20, right: 280, bottom: 20, left: 10 }} // ← maximized right space, minimal left
+          >
             <Pie
               data={dataWithPercent}
-              cx="42%"                   
+              cx="36%"                    // ← pushed pie as far left as possible
               cy="50%"
-              innerRadius={68}
-              outerRadius={118}
-              paddingAngle={4}
+              innerRadius={72}
+              outerRadius={125}
+              paddingAngle={3}
               dataKey="value"
             >
               {dataWithPercent.map((entry, i) => (
@@ -45,25 +47,25 @@ export function CategoryChart(props: Props) {
               ))}
             </Pie>
 
-            {/* Clean custom legend on the right */}
+            {/* Legend far right */}
             <Legend
               layout="vertical"
               align="right"
               verticalAlign="middle"
               content={({ payload }) => (
-                <ul className="text-[13px] font-medium space-y-3 pl-4">
+                <ul className="text-sm font-medium space-y-3.5">
                   {payload?.map((entry: any, index: number) => {
                     const percent = Math.round((entry.payload?.percent ?? 0) * 100);
                     return (
-                      <li key={index} className="flex items-center gap-2.5">
+                      <li key={index} className="flex items-center gap-3">
                         <div
-                          className="w-3.5 h-3.5 rounded flex-shrink-0"
+                          className="w-4 h-4 rounded flex-shrink-0"
                           style={{ backgroundColor: entry.color }}
                         />
-                        <span className="text-gray-700 dark:text-gray-300">
+                        <span className="text-gray-700 dark:text-gray-300 leading-tight">
                           {entry.value}
                         </span>
-                        <span className="text-gray-500 dark:text-gray-400 font-mono text-xs ml-auto">
+                        <span className="ml-auto font-mono text-xs text-gray-500 dark:text-gray-400">
                           {percent}%
                         </span>
                       </li>
@@ -78,9 +80,8 @@ export function CategoryChart(props: Props) {
                 backgroundColor: "hsl(230, 20%, 12%)",
                 border: "1px solid hsl(230, 15%, 20%)",
                 borderRadius: "8px",
-                fontSize: "12px",
+                fontSize: "12.5px",
               }}
-              itemStyle={{ color: "hsl(210, 40%, 96%)" }}
               formatter={(value, name, item) => {
                 const safeValue = value ?? 0;
                 const totalUSD = item?.payload?.totalUSD ?? 0;
