@@ -77,6 +77,6 @@ export const contentBanners = [
   },
   {
     name: "contribute_Dark",
-    url: "/content-banners/contribute_Dark.jpg",
+    url: "/content-banners/Contribute_Dark.jpg",
   },
 ];

@@ -3382,5 +3382,71 @@
     "sapling": 215,
     "orchard": 1009,
     "timestamp": "04/02/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 185,
+    "orchard": 969,
+    "timestamp": "04/03/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 164,
+    "orchard": 976,
+    "timestamp": "04/04/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 204,
+    "orchard": 889,
+    "timestamp": "04/05/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 225,
+    "orchard": 928,
+    "timestamp": "04/06/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 198,
+    "orchard": 1000,
+    "timestamp": "04/06/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 182,
+    "orchard": 1101,
+    "timestamp": "04/07/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 379,
+    "orchard": 1660,
+    "timestamp": "04/08/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 319,
+    "orchard": 1332,
+    "timestamp": "04/09/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 208,
+    "orchard": 1362,
+    "timestamp": "04/10/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 202,
+    "orchard": 1183,
+    "timestamp": "04/10/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 219,
+    "orchard": 1054,
+    "timestamp": "04/11/2026"
   }
 ]

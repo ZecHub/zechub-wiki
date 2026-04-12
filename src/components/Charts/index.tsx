@@ -8,6 +8,7 @@ import {
   Youtube,
   Play,
   Eye,
+  Rss,
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
@@ -150,22 +151,16 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
 
   const changeView = (view: ViewType) => {
     setCurrentView(view);
-
     const nextParams = new URLSearchParams(window.location.search);
-
     if (view === "dashboard") {
       nextParams.delete("tab");
     } else {
       nextParams.set("tab", view);
     }
-
     if (!pathname) return;
-
     const queryString = nextParams.toString();
     const url = queryString ? `${pathname}?${queryString}` : pathname;
-
     router.replace(url, { scroll: false });
-
     if (view !== "youtube") {
       setSubView("top");
       setLatestSortByViews(false);
@@ -174,12 +169,10 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
 
   useEffect(() => {
     const tab = new URLSearchParams(window.location.search).get("tab");
-
     if (!tab) {
       setCurrentView("dashboard");
       return;
     }
-
     if (allowedTabs.includes(tab as ViewType)) {
       setCurrentView(tab as ViewType);
     }
@@ -208,7 +201,6 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
     },
   ];
 
-  // New JSON format handler
   const getChannelData = (channel: ChannelType, isDate = false) => {
     const map = isDate
       ? {
@@ -223,7 +215,6 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
           "Zcash Foundation": zfSorted,
           "Zcash Media": zmSorted,
         };
-
     const data = map[channel] || { videos: [], channelIcon: "" };
     return {
       videos: data.videos || [],
@@ -239,7 +230,6 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
     (v: any) =>
       v?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false,
   );
-
   const filteredDate = currentDate.filter(
     (v: any) =>
       v?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false,
@@ -265,11 +255,24 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
   return (
     <div className="min-h-screen p-4 md:p-6">
       <div className="max-w-7xl mx-auto space-y-8 relative">
-        {/* HEADER */}
+        {/* HEADER - Updated with RSS icon */}
         <div className="mt-12 text-center">
-          <h1 className="text-3xl font-bold text-foreground">
-            {t?.headerTitle || "Dashboard(s)"}
-          </h1>
+          <div className="flex items-center justify-center gap-4">
+            <h1 className="text-3xl font-bold text-foreground">
+              {t?.headerTitle || "Dashboard(s)"}
+            </h1>
+
+            {/* RSS Icon */}
+            <a
+              href="/rss.xml"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Subscribe to ZecHub Dashboard RSS Feed"
+              className="text-orange-500 hover:text-orange-600 transition-colors p-2 rounded-lg hover:bg-orange-100 dark:hover:bg-orange-950"
+            >
+              <Rss size={28} strokeWidth={2.5} />
+            </a>
+          </div>
           <p className="text-muted-foreground">
             {t?.headerSubtitle || "Analyze Zcash network metrics and trends"}
           </p>

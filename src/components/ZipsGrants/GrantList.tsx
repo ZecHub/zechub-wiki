@@ -17,6 +17,7 @@ export function GrantList(props: Props) {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [categoryFilter, setCategoryFilter] = useState("All");
+  const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
 
   const CATEGORY_FILTER = props.grants
     .map((d) => d.category)
@@ -27,24 +28,46 @@ export function GrantList(props: Props) {
     .filter((s, i, arr) => arr.indexOf(s) === i);
 
   const filteredGrants = useMemo(() => {
-    if (!props.grants) return [];
+    if (!props.grants?.length) return [];
 
-    return props.grants.filter((grant, i) => {
-      const matchesSearch =
-        grant.grantee?.toLowerCase().includes(search.toLowerCase()) ||
-        grant.project.includes(search);
+    return props.grants
+      .filter((grant) => {
+        const matchesSearch =
+          grant.grantee?.toLowerCase().includes(search.toLowerCase()) ||
+          grant.project.toLowerCase().includes(search.toLowerCase());
 
-      const matchesStatus =
-        statusFilter === "All" ||
-        grant.status.toLowerCase().includes(statusFilter.toLowerCase());
+        const matchesStatus =
+          statusFilter === "All" ||
+          grant.status.toLowerCase().includes(statusFilter.toLowerCase());
 
-      const matchesCategory =
-        categoryFilter === "All" ||
-        grant.category?.toLowerCase().includes(categoryFilter.toLowerCase());
+        const matchesCategory =
+          categoryFilter === "All" ||
+          grant.category?.toLowerCase().includes(categoryFilter.toLowerCase());
 
-      return matchesSearch && matchesStatus && matchesCategory;
-    });
-  }, [props.grants, search, statusFilter, categoryFilter]);
+        return matchesSearch && matchesStatus && matchesCategory;
+      })
+      // Sort by newest or oldest using latest paidOutDate from milestones
+      .sort((a, b) => {
+        // Get the most recent paidOutDate from any milestone
+        const getLatestDate = (grant: Grant) => {
+          if (!grant.milestones?.length) return 0;
+          const dates = grant.milestones
+            .map((m) => new Date(m.paidOutDate || 0).getTime())
+            .filter((d) => d > 0);
+          return dates.length ? Math.max(...dates) : 0;
+        };
+
+        const dateA = getLatestDate(a);
+        const dateB = getLatestDate(b);
+
+        if (sortOrder === "newest") {
+          return dateB - dateA;
+        } else {
+          return dateA - dateB;
+        }
+      });
+  }, [props.grants, search, statusFilter, categoryFilter, sortOrder]);
+
   return (
     <section>
       <div className="flex items-center gap-2 mb-4">
@@ -52,13 +75,28 @@ export function GrantList(props: Props) {
         <h2 className="text-lg font-semibold text-foreground">
           Grants & Funding
         </h2>
-
         {filteredGrants && (
           <span className="text-xs text-muted-foreground ml-1">
             ({filteredGrants.length})
           </span>
         )}
       </div>
+
+      {/* Sort toggle button */}
+      <div className="flex items-center gap-2 mb-4">
+        <span className="text-sm font-medium text-muted-foreground">Sort by:</span>
+        <button
+          onClick={() => setSortOrder(sortOrder === "newest" ? "oldest" : "newest")}
+          className={`px-4 py-1 text-sm font-medium rounded-xl transition-colors ${
+            sortOrder === "newest"
+              ? "bg-white dark:bg-slate-700 shadow-sm text-foreground"
+              : "bg-slate-100 dark:bg-slate-800 text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {sortOrder === "newest" ? "Newest first" : "Oldest first"}
+        </button>
+      </div>
+
       <SearchFilter
         search={search}
         onSearchChange={setSearch}

@@ -17,35 +17,62 @@ type Props = {
 };
 
 export function CategoryChart(props: Props) {
+  // Custom label that pushes text further out + proper alignment
+  const renderCustomizedLabel = (entry: any) => {
+    const {
+      cx,
+      cy,
+      midAngle,
+      innerRadius,
+      outerRadius,
+      percent,
+      name,
+      fill, // this gives the nice colored text that matches each slice
+    } = entry;
+
+    const radius = outerRadius + 35; // ← this is the key fix (more space)
+    const x = cx + radius * Math.cos(-midAngle * Math.PI / 180);
+    const y = cy + radius * Math.sin(-midAngle * Math.PI / 180);
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill={fill}
+        textAnchor={x > cx ? "start" : "end"} // prevents cutoff on edges
+        dominantBaseline="central"
+        fontSize="10px"
+        fontWeight={700}
+      >
+        {`${name} ${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
+
   return (
     <Card className="border-border/30 dark:bg-slate-800/90 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="text-lg font-bold">Grants by Category</CardTitle>
       </CardHeader>
       <CardContent>
-        <ResponsiveContainer width="100%" height={320}>
+        <ResponsiveContainer width="100%" height={400}> 
           <PieChart>
             <Pie
               data={props.catData}
               cx="50%"
               cy="50%"
-              innerRadius={70}
-              outerRadius={120}
+              innerRadius={65}
+              outerRadius={115}           
               paddingAngle={3}
               dataKey="value"
-              label={({ name, percent }) =>
-                `${name} ${(percent! * 100).toFixed(0)}%`
-              }
-              labelLine={false}
-              style={{
-                fontSize: "10px",
-                fontWeight: 700,
-              }}
+              label={renderCustomizedLabel}
+              labelLine={true}            
             >
               {props.catData.map((entry, i) => (
                 <Cell key={i} fill={entry.fill} />
               ))}
             </Pie>
+
             <Tooltip
               contentStyle={{
                 backgroundColor: "hsl(230, 20%, 12%)",
@@ -57,7 +84,6 @@ export function CategoryChart(props: Props) {
               formatter={(value, name, item) => {
                 const safeValue = value ?? 0;
                 const totalUSD = item?.payload?.totalUSD ?? 0;
-
                 return [
                   `${safeValue} grants — $${(totalUSD / 1e3).toFixed(0)}K`,
                   name,

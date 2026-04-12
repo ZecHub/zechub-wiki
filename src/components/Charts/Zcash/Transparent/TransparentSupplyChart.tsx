@@ -5,7 +5,7 @@ import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { formatNumberShort, getSupplyData } from "@/lib/chart/helpers";
 import { SupplyData } from "@/lib/chart/types";
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, useCallback, useEffect, useMemo, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -21,86 +21,63 @@ type TransparentSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
 
-export default function TransparentSupplyChart(
-  props: TransparentSupplyChartProps
-) {
+export default function TransparentSupplyChart(props: TransparentSupplyChartProps) {
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState("all");
   const [supplyData, setSupplyData] = useState<SupplyData[]>([]);
-
   const fontSize = useResponsiveFontSize();
   const isMobile = useInMobile();
 
+  // Fetch data once (no artificial delay)
   useEffect(() => {
     const controller = new AbortController();
-
     const fetchSupplyData = async () => {
       setLoading(true);
-
       try {
         const supply = await getSupplyData(
           DATA_URL.transparentSupplyUrl,
           controller.signal
         );
         setSupplyData(supply || []);
-        setLoading(false);
       } catch (err) {
-        setLoading(false);
         console.error("Error fetching supply data:", err);
+      } finally {
+        setLoading(false);
       }
     };
-
-    setTimeout(() => {
-      fetchSupplyData();
-    }, 2000);
-
-    return () => {
-      controller.abort();
-    };
+    fetchSupplyData();
+    return () => controller.abort();
   }, []);
 
-  useEffect(() => {
-    const years = getAvailableYears();
-    if (!years.includes(selectedYear)) {
-      setSelectedYear("all");
-    }
-  }, [selectedYear, supplyData]);
-
-  const extractYear = (dateStr: string) => {
+  const extractYear = useCallback((dateStr: string) => {
     const parsed = new Date(dateStr);
     return parsed.getFullYear().toString();
-  };
+  }, []);
 
-  const getAvailableYears = () => {
-    // Filter out invalid dates and ensure we have data
+  const getAvailableYears = useCallback(() => {
     const validData = supplyData.filter(
       (d) => d && d.close && !isNaN(new Date(d.close).getTime())
     );
-
-    if (validData.length === 0) {
-      return ["all"];
-    }
-
-    const years = [
-      ...new Set(validData.map((d) => extractYear(d.close))),
-    ].sort();
+    if (validData.length === 0) return ["all"];
+    const years = [...new Set(validData.map((d) => extractYear(d.close)))].sort();
     return ["all", ...years];
-  };
+  }, [supplyData, extractYear]);
 
-  // Filter data by selected year
-  const filteredData =
-    selectedYear === "all"
+  // Memoized filtered data for instant year switching
+  const filteredData = useMemo(() => {
+    return selectedYear === "all"
       ? supplyData
       : supplyData.filter((d) => extractYear(d.close) === selectedYear);
+  }, [supplyData, selectedYear, extractYear]);
 
   // Get latest supply from filtered data
   const latestSupply = filteredData[filteredData.length - 1]?.supply || 0;
 
   return (
-    <ErrorBoundary fallback={"Failed to load Shielded Supply Chart"}>
+    <ErrorBoundary fallback={"Failed to load Transparent Supply Chart"}>
       <ChartHeader title="Transparent Supply Overview">
         <div className="flex flex-wrap gap-16 items-center">
-          {/*  Year Dropdown */}
+          {/* Year Dropdown */}
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium">Year</label>
             <DefaultSelect
@@ -112,7 +89,6 @@ export default function TransparentSupplyChart(
               renderOption={(year) => (year === "all" ? "All" : year)}
             />
           </div>
-
           <div className="text-sm">
             <span className="font-medium">Total Transparent:</span>{" "}
             {latestSupply.toLocaleString()} ZEC
@@ -124,19 +100,10 @@ export default function TransparentSupplyChart(
         <AreaChart data={filteredData}>
           <defs>
             <linearGradient id="supplyGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop
-                offset="5%"
-                stopColor="hsl(var(--chart-7))"
-                stopOpacity={0.6}
-              />
-              <stop
-                offset="95%"
-                stopColor="hsl(var(--chart-7))"
-                stopOpacity={0.05}
-              />
+              <stop offset="5%" stopColor="hsl(var(--chart-7))" stopOpacity={0.6} />
+              <stop offset="95%" stopColor="hsl(var(--chart-7))" stopOpacity={0.05} />
             </linearGradient>
           </defs>
-
           <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
           <XAxis
             dataKey="close"
@@ -152,7 +119,6 @@ export default function TransparentSupplyChart(
           <Tooltip
             content={({ active, payload, label }) => {
               if (!active || !payload?.length) return null;
-
               return (
                 <div
                   className="rounded-md px-3 py-2 shadow-md border text-sm"
@@ -176,7 +142,6 @@ export default function TransparentSupplyChart(
               );
             }}
           />
-
           <Area
             type="monotone"
             dataKey="supply"
