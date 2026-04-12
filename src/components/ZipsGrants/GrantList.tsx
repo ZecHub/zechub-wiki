@@ -29,22 +29,41 @@ export function GrantList(props: Props) {
   const filteredGrants = useMemo(() => {
     if (!props.grants) return [];
 
-    return props.grants.filter((grant, i) => {
-      const matchesSearch =
-        grant.grantee?.toLowerCase().includes(search.toLowerCase()) ||
-        grant.project.includes(search);
+    return props.grants
+      .filter((grant) => {
+        const matchesSearch =
+          grant.grantee?.toLowerCase().includes(search.toLowerCase()) ||
+          grant.project.toLowerCase().includes(search.toLowerCase());
 
-      const matchesStatus =
-        statusFilter === "All" ||
-        grant.status.toLowerCase().includes(statusFilter.toLowerCase());
+        const matchesStatus =
+          statusFilter === "All" ||
+          grant.status.toLowerCase().includes(statusFilter.toLowerCase());
 
-      const matchesCategory =
-        categoryFilter === "All" ||
-        grant.category?.toLowerCase().includes(categoryFilter.toLowerCase());
+        const matchesCategory =
+          categoryFilter === "All" ||
+          grant.category?.toLowerCase().includes(categoryFilter.toLowerCase());
 
-      return matchesSearch && matchesStatus && matchesCategory;
-    });
+        return matchesSearch && matchesStatus && matchesCategory;
+      })
+      // NEW: Sort by newest grant first (type-safe)
+      .sort((a, b) => {
+        // Try common date fields safely
+        const getDate = (g: Grant) =>
+          (g as any).date ||
+          (g as any).createdAt ||
+          (g as any).updatedAt ||
+          (g as any).created ||
+          (g as any).updated ||
+          0;
+
+        const dateA = new Date(getDate(a)).getTime();
+        const dateB = new Date(getDate(b)).getTime();
+
+        // If dates are equal or missing, keep original order
+        return dateB - dateA || 0;
+      });
   }, [props.grants, search, statusFilter, categoryFilter]);
+
   return (
     <section>
       <div className="flex items-center gap-2 mb-4">
@@ -52,13 +71,13 @@ export function GrantList(props: Props) {
         <h2 className="text-lg font-semibold text-foreground">
           Grants & Funding
         </h2>
-
         {filteredGrants && (
           <span className="text-xs text-muted-foreground ml-1">
             ({filteredGrants.length})
           </span>
         )}
       </div>
+
       <SearchFilter
         search={search}
         onSearchChange={setSearch}
