@@ -5,7 +5,7 @@ import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { formatNumberShort, getTotalSupplyData } from "@/lib/chart/helpers";
 import { totalSupply } from "@/lib/chart/types";
-import { RefObject, useEffect, useState } from "react";
+import { RefObject, useCallback, useEffect, useMemo, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -25,73 +25,51 @@ export default function TotalSupplyChart(props: TotalSupplyChartProps) {
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState("all");
   const [totalSupplyData, setTotalSupplyData] = useState<totalSupply[]>([]);
-
   const fontSize = useResponsiveFontSize();
   const isMobile = useInMobile();
 
+  // Fetch data once (no artificial delay)
   useEffect(() => {
     const controller = new AbortController();
-
     const fetchSupplyData = async () => {
       setLoading(true);
-
       try {
         const supply = await getTotalSupplyData(
           DATA_URL.totalSupplyUrl,
           controller.signal
         );
         setTotalSupplyData(supply || []);
-        setLoading(false);
       } catch (err) {
-        setLoading(false);
         console.error("Error fetching total supply data:", err);
+      } finally {
+        setLoading(false);
       }
     };
-
-    setTimeout(() => {
-      fetchSupplyData();
-    }, 2000);
-
-    return () => {
-      controller.abort();
-    };
+    fetchSupplyData();
+    return () => controller.abort();
   }, []);
 
-  useEffect(() => {
-    const years = getAvailableYears();
-    if (!years.includes(selectedYear)) {
-      setSelectedYear("all");
-    }
-  }, [selectedYear, totalSupplyData]);
-
-  const extractYear = (dateStr: string) => {
+  const extractYear = useCallback((dateStr: string) => {
     const parsed = new Date(dateStr);
     return parsed.getFullYear().toString();
-  };
+  }, []);
 
-  const getAvailableYears = () => {
-    // Filter out invalid dates and ensure we have data
+  const getAvailableYears = useCallback(() => {
     const validData = totalSupplyData.filter(
       (d) => d && d.close && !isNaN(new Date(d.close).getTime())
     );
-
-    if (validData.length === 0) {
-      return ["all"];
-    }
-
-    const years = [
-      ...new Set(validData.map((d) => extractYear(d.close))),
-    ].sort();
+    if (validData.length === 0) return ["all"];
+    const years = [...new Set(validData.map((d) => extractYear(d.close)))].sort();
     return ["all", ...years];
-  };
+  }, [totalSupplyData, extractYear]);
 
-  // Filter data by selected year
-  const filteredData =
-    selectedYear === "all"
+  // Memoized filtered data → instant year switching
+  const filteredData = useMemo(() => {
+    return selectedYear === "all"
       ? totalSupplyData
       : totalSupplyData.filter((d) => extractYear(d.close) === selectedYear);
+  }, [totalSupplyData, selectedYear, extractYear]);
 
-  // Get latest supply from filtered data
   const latestSupply = filteredData[filteredData.length - 1]?.supply || 0;
 
   return (
@@ -110,7 +88,6 @@ export default function TotalSupplyChart(props: TotalSupplyChartProps) {
               renderOption={(year) => (year === "all" ? "All" : year)}
             />
           </div>
-
           <div className="text-sm">
             <span className="font-medium">Total Supply:</span>{" "}
             {latestSupply.toLocaleString()} ZEC
@@ -122,19 +99,10 @@ export default function TotalSupplyChart(props: TotalSupplyChartProps) {
         <AreaChart data={filteredData}>
           <defs>
             <linearGradient id="totalSupplyGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop
-                offset="5%"
-                stopColor="hsl(var(--chart-4))"
-                stopOpacity={0.6}
-              />
-              <stop
-                offset="95%"
-                stopColor="hsl(var(--chart-4))"
-                stopOpacity={0.05}
-              />
+              <stop offset="5%" stopColor="hsl(var(--chart-4))" stopOpacity={0.6} />
+              <stop offset="95%" stopColor="hsl(var(--chart-4))" stopOpacity={0.05} />
             </linearGradient>
           </defs>
-
           <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
           <XAxis
             dataKey="close"
@@ -150,7 +118,6 @@ export default function TotalSupplyChart(props: TotalSupplyChartProps) {
           <Tooltip
             content={({ active, payload, label }) => {
               if (!active || !payload?.length) return null;
-
               return (
                 <div
                   className="rounded-md px-3 py-2 shadow-md border text-sm"
@@ -174,7 +141,6 @@ export default function TotalSupplyChart(props: TotalSupplyChartProps) {
               );
             }}
           />
-
           <Area
             type="monotone"
             dataKey="supply"
