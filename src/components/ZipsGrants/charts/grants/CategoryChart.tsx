@@ -64,7 +64,7 @@ export function CategoryChart(props: Props) {
   const PieWithActive = Pie as any;
 
   return (
-    <Card className="border-border/30 dark:bg-slate-800/90 backdrop-blur-sm">
+    <Card className="border-border/30 bg-slate-100 dark:bg-slate-800/90 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="text-lg font-bold">Grants by Category</CardTitle>
       </CardHeader>
