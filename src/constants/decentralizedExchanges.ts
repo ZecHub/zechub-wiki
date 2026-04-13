@@ -52,14 +52,14 @@ export const decentralizedExchanges = [
   description:
     "Decentralized peer-to-peer exchange enabling direct crypto transactions with enhanced privacy and user control.",
   url: "https://peer.xyz/",
-  image: "/peer-logo.png",
+  image: "/peer-logo.jpg",
 },
 {
   title: "RocketX",
   description:
     "Hybrid DEX aggregator enabling cross-chain swaps across multiple blockchains with optimal routing and competitive rates.",
   url: "https://rocketx.exchange/",
-  image: "/rocketx-logo.png",
+  image: "/rocketx-logo.jpg",
 },
 ];
 
