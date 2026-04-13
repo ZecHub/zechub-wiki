@@ -88,7 +88,7 @@ const DonationComp = () => {
   };
 
   return (
-    <div className="flex md:h-[90vh] h-[100vh] flex-col relative w-full items-center justify-center gap-16 overflow-hidden">
+    <div className="flex md:h-[90vh] h-[100vh] flex-col relative w-full items-center justify-start gap-16 overflow-hidden">
       <div className="md:w-[600px] w-[90%] flex bg- dark:bg-gray-800 shadow-md  rounded-[100px] h-[50px]">
         <div
           onClick={() => handleOnClick("zcash")}
@@ -146,7 +146,7 @@ const DonationComp = () => {
           )}
         </div>
       </div>
-      <div className="md:h-[65%] h-[70%] flex-col w-full flex justify-center items-center">
+      <div className="md:h-[65%] h-[70%] flex-col w-full flex justify-start items-center">
         <div className="bg-white dark:bg-gray-800  relative flex justify-center items-center shadow-md rounded-lg h-full md:w-[600px] w-[90%]">
           <div className="absolute rounded-full left-[50%] -top-[5%] -translate-x-[50%] flex justify-center items-center bg-[#1984c7] w-[50px] h-[50px] shadow-md">
             <BsQrCodeScan color="white" />

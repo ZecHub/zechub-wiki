@@ -1,99 +1,55 @@
 'use client';
 
 import { useState } from 'react';
-import DonationComp from "@/components/Donation/Donation";
+import DonationComp from '@/components/Donation/Donation';
 import ZcashUAZArt from './ZcashUAZArt';
 
-const DonationClientWrapper = () => {
-  const [showZArt, setShowZArt] = useState(true);
+type DonationVersion = 'v0' | 'v1';
 
-  // ================== SLIDER COLOR ==================
-  const sliderColor = '#00A3FF';           // ← Change this line
-  // ZecHub colors you can use:
-  // Blue:  '#00A3FF'  (recommended)
-  // Green: '#00FF9F'
-  // Gold:  '#F4B400'  (original orange)
-  // ===============================================
+const DonationClientWrapper = () => {
+  const [version, setVersion] = useState<DonationVersion>('v1');
 
   return (
     <>
-      <h1 style={{ 
-        textAlign: 'center', 
-        marginBottom: '40px', 
-        fontSize: '2.3rem' 
-      }}>
+      <h1
+        className="text-center pt-8 sm:pt-10 mb-8 sm:mb-10 text-[1.75rem] sm:text-[2.3rem] font-bold tracking-tight text-zinc-900 dark:text-white"
+      >
         Donate to ZecHub
       </h1>
 
-      {/* Nice Slider Toggle */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: '45px'
-      }}>
-        <label style={{
-          position: 'relative',
-          display: 'inline-flex',
-          alignItems: 'center',
-          cursor: 'pointer',
-          userSelect: 'none'
-        }}>
-          <input
-            type="checkbox"
-            checked={showZArt}
-            onChange={() => setShowZArt(!showZArt)}
-            style={{ display: 'none' }}
-          />
-
-          <div style={{
-            width: '220px',
-            height: '22px',
-            background: '#99ccff',
-            borderRadius: '50px',
-            position: 'relative',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
-          }}>
-            {/* Sliding knob — color controlled by the variable above */}
-            <div style={{
-              position: 'absolute',
-              top: '6px',
-              left: showZArt ? '6px' : 'calc(100% - 25px)',
-              width: '20px',
-              height: '10px',
-              background: sliderColor,
-              borderRadius: '50px',
-              transition: 'left 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              boxShadow: `0 4px 12px ${sliderColor}80`
-            }} />
-
-            {/* Labels */}
-            <div style={{
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              right: '0',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: '0 30px',
-              fontSize: '15.5px',
-              fontWeight: '600',
-              zIndex: 2,
-              pointerEvents: 'none'
-            }}>
-              <span style={{ color: !showZArt ? '#111' : '#111' }}>
-                v0
-              </span>
-              <span style={{ color: showZArt ? '#111' : '#111' }}>
-                v1
-              </span>
-            </div>
-          </div>
-        </label>
+      <div className="flex justify-center mb-8 sm:mb-11 px-4">
+        <div
+          className="flex w-full max-w-[320px] bg-zinc-100 dark:bg-[#0f1720] rounded-xl p-1 border border-zinc-200 dark:border-[#1e2d3d]"
+          role="tablist"
+          aria-label="Donation page version"
+        >
+          {(['v0', 'v1'] as const).map((v) => {
+            const isActive = version === v;
+            return (
+              <button
+                key={v}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                id={`donation-version-${v}`}
+                onClick={() => setVersion(v)}
+                className={`
+                  flex-1 relative py-2.5 sm:py-3 rounded-lg text-sm font-semibold
+                  transition-all duration-200 ease-out cursor-pointer
+                  ${isActive
+                    ? 'bg-gradient-to-r from-[#F4B728] to-[#d9a520] text-[#151e29] shadow-md shadow-[#F4B728]/15'
+                    : 'text-zinc-500 dark:text-[#5a6a7e] hover:text-zinc-700 dark:hover:text-[#8a9aae]'
+                  }
+                `}
+              >
+                {v}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {showZArt ? <ZcashUAZArt /> : <DonationComp />}
+      {version === 'v0' ? <ZcashUAZArt /> : <DonationComp />}
     </>
   );
 };
