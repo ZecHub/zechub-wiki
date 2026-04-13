@@ -47,6 +47,20 @@ export const decentralizedExchanges = [
     url: "https://app.routerprotocol.com/",
     image: "/routerProtocolLogo.png",
   },
+  {
+  title: "Peer",
+  description:
+    "Decentralized peer-to-peer exchange enabling direct crypto transactions with enhanced privacy and user control.",
+  url: "https://peer.xyz/",
+  image: "/peer-logo.png",
+},
+{
+  title: "RocketX",
+  description:
+    "Hybrid DEX aggregator enabling cross-chain swaps across multiple blockchains with optimal routing and competitive rates.",
+  url: "https://rocketx.exchange/",
+  image: "/rocketx-logo.png",
+},
 ];
 
 
