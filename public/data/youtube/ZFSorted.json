@@ -80,16 +80,16 @@
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1226
-    },
-    {
-      "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
-      "video_id": "h0PUVR0s6Vg",
-      "views": 1219
+      "views": 1227
     },
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
       "video_id": "O4wQi_i7k0I",
+      "views": 1221
+    },
+    {
+      "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
+      "video_id": "h0PUVR0s6Vg",
       "views": 1219
     },
     {
@@ -105,7 +105,7 @@
     {
       "title": "Flyclient: Super-Light Clients for Cryptocurrencies - Benedikt Bünz",
       "video_id": "vuzYwutBqjY",
-      "views": 1133
+      "views": 1134
     },
     {
       "title": "State of Electric Coin Company - Zooko Wilcox",
@@ -195,7 +195,7 @@
     {
       "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
       "video_id": "cAfTTfblzoU",
-      "views": 769
+      "views": 770
     },
     {
       "title": "Overview of Tendermint/IBC/Cosmos Stack w/ Christopher Goes",
@@ -408,13 +408,13 @@
       "views": 420
     },
     {
-      "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
-      "video_id": "bRdNvepJVXM",
+      "title": "ZSAs and Swaps--A Status Report with Vivek Arte and Pablo Kogan - ZconV: Zcash Unified 2024 #Zcash",
+      "video_id": "L_ZtZCUvDqw",
       "views": 414
     },
     {
-      "title": "ZSAs and Swaps--A Status Report with Vivek Arte and Pablo Kogan - ZconV: Zcash Unified 2024 #Zcash",
-      "video_id": "L_ZtZCUvDqw",
+      "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
+      "video_id": "bRdNvepJVXM",
       "views": 413
     },
     {
@@ -450,7 +450,7 @@
     {
       "title": "Dedicated Zcash Arborist Call ( ZSAs, NU6, & NU7)",
       "video_id": "C_S5e2WNIe8",
-      "views": 378
+      "views": 377
     },
     {
       "title": "Agoric: Zcon Overview with Dean Tribble: Zcon3",
@@ -520,7 +520,7 @@
     {
       "title": "Zcash Arborist Call 01-08-2026",
       "video_id": "8eye-YoqtDk",
-      "views": 350
+      "views": 348
     },
     {
       "title": "Current State of Zcash Wallets - Linda Lee",
@@ -545,7 +545,7 @@
     {
       "title": "Zconnaissance - Sketching a Shielded Assets Future by Vivek Arte: Zcon4",
       "video_id": "VFQHJGqO_bY",
-      "views": 336
+      "views": 335
     },
     {
       "title": "Technical Roadmap Panel w/ engineers from ZF, ECC, QEDIT, Shielded Labs & Zingo Labs - ZconVI #zcash",
@@ -735,7 +735,7 @@
     {
       "title": "Zcash Arborist Call 10-30-2025",
       "video_id": "8c_6UiciAuU",
-      "views": 266
+      "views": 265
     },
     {
       "title": "Zebra Showcase w/ ZFND Engineering Team",
@@ -753,6 +753,11 @@
       "views": 257
     },
     {
+      "title": "Zcash Arborist Call 04-02-2026",
+      "video_id": "-4GDsezfilc",
+      "views": 256
+    },
+    {
       "title": "ZOMG-ZIP 1014 Independent Review Committee Nov. 10, 2021",
       "video_id": "CW-_mb0pfTA",
       "views": 255
@@ -760,12 +765,7 @@
     {
       "title": "Zcash Arborist Call 1/11/24",
       "video_id": "JozYhvCv6bQ",
-      "views": 254
-    },
-    {
-      "title": "Zcash Arborist Call 04-02-2026",
-      "video_id": "-4GDsezfilc",
-      "views": 251
+      "views": 253
     },
     {
       "title": "Pool Retirement - Nate Wilcox at Zcon3",
@@ -798,13 +798,18 @@
       "views": 238
     },
     {
-      "title": "Zcash Arborist Call 1/25/24",
-      "video_id": "wREfP2QAFCc",
-      "views": 235
+      "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
+      "video_id": "DU7wIy3Ywm4",
+      "views": 236
     },
     {
       "title": "Preparing for Zcash Open Major Grants (ZOMG) Elections - Zcash Foundation Community Call 9.1.21",
       "video_id": "nb-ducSiDCg",
+      "views": 234
+    },
+    {
+      "title": "Zcash Arborist Call 1/25/24",
+      "video_id": "wREfP2QAFCc",
       "views": 234
     },
     {
@@ -815,11 +820,6 @@
     {
       "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
       "video_id": "hzUdmwq23ac",
-      "views": 233
-    },
-    {
-      "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
-      "video_id": "DU7wIy3Ywm4",
       "views": 233
     },
     {
@@ -838,14 +838,19 @@
       "views": 227
     },
     {
-      "title": "Zcash Arborist Call 8/8/24",
-      "video_id": "PyMbhnnqeE4",
-      "views": 225
-    },
-    {
       "title": "A Road Map for Lookup Tables by Arantxa: Zcon4",
       "video_id": "mqoOBMa4zRo",
       "views": 223
+    },
+    {
+      "title": "Zcash Arborist Call 8/8/24",
+      "video_id": "PyMbhnnqeE4",
+      "views": 223
+    },
+    {
+      "title": "Zcash Wallet with Metamask Snaps (Demo) with Ivan Rubido from ChainSafe - ZconVI #zcash",
+      "video_id": "vEI3-9Y4tco",
+      "views": 222
     },
     {
       "title": "MGRC Candidate Q&A Live Streams: Time Slot #3",
@@ -855,11 +860,6 @@
     {
       "title": "Securely Scaling Decentralized Governance - Michael Lewellen at Zcon3",
       "video_id": "w0CvFtMLQKU",
-      "views": 221
-    },
-    {
-      "title": "Zcash Wallet with Metamask Snaps (Demo) with Ivan Rubido from ChainSafe - ZconVI #zcash",
-      "video_id": "vEI3-9Y4tco",
       "views": 221
     },
     {
@@ -1073,8 +1073,8 @@
       "views": 179
     },
     {
-      "title": "Zcash Arborist Call 01-23-2025",
-      "video_id": "hKRk9O2Rki0",
+      "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
+      "video_id": "he_j9O5INVk",
       "views": 179
     },
     {
@@ -1083,8 +1083,8 @@
       "views": 178
     },
     {
-      "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
-      "video_id": "he_j9O5INVk",
+      "title": "Zcash Arborist Call 01-23-2025",
+      "video_id": "hKRk9O2Rki0",
       "views": 177
     },
     {
@@ -1093,13 +1093,13 @@
       "views": 176
     },
     {
-      "title": "Reworking the Network Upgrade Pipeline (NUP): #Zcon2Lite",
-      "video_id": "cZ0HkR5t_Ko",
-      "views": 174
-    },
-    {
       "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
       "video_id": "65GdSSlDG3A",
+      "views": 175
+    },
+    {
+      "title": "Reworking the Network Upgrade Pipeline (NUP): #Zcon2Lite",
+      "video_id": "cZ0HkR5t_Ko",
       "views": 174
     },
     {
@@ -1123,16 +1123,6 @@
       "views": 171
     },
     {
-      "title": "Zcash Arborist Call 03-20-2025",
-      "video_id": "ksBEOo2Zja8",
-      "views": 169
-    },
-    {
-      "title": "Zcash Arborist Call 08-21-2025",
-      "video_id": "cwp6y9gHBVk",
-      "views": 169
-    },
-    {
       "title": "Zcon0 Day 2 Opening Remarks",
       "video_id": "f-Z3YIjLdPQ",
       "views": 168
@@ -1143,6 +1133,11 @@
       "views": 168
     },
     {
+      "title": "Zcash Arborist Call 08-21-2025",
+      "video_id": "cwp6y9gHBVk",
+      "views": 168
+    },
+    {
       "title": "Zcon0 Closing Remarks",
       "video_id": "si1LnCwxkuA",
       "views": 167
@@ -1150,6 +1145,11 @@
     {
       "title": "Zebrad for Linux Tutorial #2",
       "video_id": "4w6pquJObWE",
+      "views": 167
+    },
+    {
+      "title": "Zcash Arborist Call 03-20-2025",
+      "video_id": "ksBEOo2Zja8",
       "views": 167
     },
     {
@@ -1190,16 +1190,16 @@
     {
       "title": "Zcash Arborist Call 11-13-2025",
       "video_id": "ksuYg_kmalE",
-      "views": 160
-    },
-    {
-      "title": "Zcash Arborist Call 09/05/24",
-      "video_id": "PAayYqN9mLw",
-      "views": 156
+      "views": 159
     },
     {
       "title": "The Future of ZSAs with Constance Beguier - ZconVI #zcash",
       "video_id": "WgTiqPF7YxE",
+      "views": 155
+    },
+    {
+      "title": "Zcash Arborist Call 03-19-2026",
+      "video_id": "LtdKAhi6l7s",
       "views": 155
     },
     {
@@ -1208,13 +1208,8 @@
       "views": 154
     },
     {
-      "title": "Zcash Arborist Call 6/27/24",
-      "video_id": "KtVvt3lis6o",
-      "views": 154
-    },
-    {
-      "title": "Zcash Arborist Call 03-19-2026",
-      "video_id": "LtdKAhi6l7s",
+      "title": "Zcash Arborist Call 09/05/24",
+      "video_id": "PAayYqN9mLw",
       "views": 154
     },
     {
@@ -1233,9 +1228,9 @@
       "views": 153
     },
     {
-      "title": "Zcash Arborist Call 11/14/2024",
-      "video_id": "JldVJO79Qlk",
-      "views": 150
+      "title": "Zcash Arborist Call 6/27/24",
+      "video_id": "KtVvt3lis6o",
+      "views": 152
     },
     {
       "title": "Marketing ZEC - Chris Tomeo at Zcon3",
@@ -1253,18 +1248,8 @@
       "views": 149
     },
     {
-      "title": "Zcash Arborist Call 09/19/2024",
-      "video_id": "I8jHbDYb-_Q",
-      "views": 149
-    },
-    {
-      "title": "Zcash Arborist Call 2/22/2024",
-      "video_id": "Sf5_40G00GA",
-      "views": 148
-    },
-    {
-      "title": "Zcash Arborist Call 3/21/2024",
-      "video_id": "ftTmSqlyixk",
+      "title": "Zcash Arborist Call 11/14/2024",
+      "video_id": "JldVJO79Qlk",
       "views": 148
     },
     {
@@ -1273,8 +1258,13 @@
       "views": 147
     },
     {
-      "title": "Zcash Arborist Call 8/22/24",
-      "video_id": "sSEH1Wau-Hs",
+      "title": "Zcash Arborist Call 09/19/2024",
+      "video_id": "I8jHbDYb-_Q",
+      "views": 147
+    },
+    {
+      "title": "Zcash Arborist Call 2/22/2024",
+      "video_id": "Sf5_40G00GA",
       "views": 146
     },
     {
@@ -1283,8 +1273,8 @@
       "views": 145
     },
     {
-      "title": "Zcash Arborist Call 4/18/24",
-      "video_id": "c9LY1Rptt5c",
+      "title": "Zcash Arborist Call 3/21/2024",
+      "video_id": "ftTmSqlyixk",
       "views": 145
     },
     {
@@ -1293,13 +1283,18 @@
       "views": 145
     },
     {
-      "title": "Zcash Arborist Call 10-02-2025",
-      "video_id": "hq8Vigg3RxQ",
+      "title": "Zcash Arborist Call 4/18/24",
+      "video_id": "c9LY1Rptt5c",
       "views": 144
     },
     {
-      "title": "Zcash Arborist Call 04-03-2025",
-      "video_id": "XxQx6vt7OmE",
+      "title": "Zcash Arborist Call 8/22/24",
+      "video_id": "sSEH1Wau-Hs",
+      "views": 144
+    },
+    {
+      "title": "Zcash Arborist Call 10-02-2025",
+      "video_id": "hq8Vigg3RxQ",
       "views": 143
     },
     {
@@ -1308,13 +1303,18 @@
       "views": 142
     },
     {
-      "title": "Zcash Arborist Call 10-16-2025",
-      "video_id": "G6P-k2I-7kU",
-      "views": 142
-    },
-    {
       "title": "Guide to Asia Go-to-Market and Blockchain Community Formation - Joyce Yang",
       "video_id": "7SmkR6TJzyw",
+      "views": 141
+    },
+    {
+      "title": "Zcash Arborist Call 04-03-2025",
+      "video_id": "XxQx6vt7OmE",
+      "views": 141
+    },
+    {
+      "title": "Zcash Arborist Call 10-16-2025",
+      "video_id": "G6P-k2I-7kU",
       "views": 141
     },
     {
@@ -1358,11 +1358,6 @@
       "views": 136
     },
     {
-      "title": "Zcash Arborist Call 7/25/24",
-      "video_id": "t1L8ARXZ4r4",
-      "views": 136
-    },
-    {
       "title": "Zcash Arborist Call 03-05-2026",
       "video_id": "uBsaOLUepB0",
       "views": 136
@@ -1373,13 +1368,13 @@
       "views": 135
     },
     {
-      "title": "Zcash Arborist Call 01-09-2025",
-      "video_id": "BG8C1Rf4jXg",
+      "title": "Zcash Arborist Call 7/25/24",
+      "video_id": "t1L8ARXZ4r4",
       "views": 135
     },
     {
-      "title": "Zcash Arborist Call 02-06-2025",
-      "video_id": "zgoArHP-1ps",
+      "title": "Zcash Arborist Call 01-09-2025",
+      "video_id": "BG8C1Rf4jXg",
       "views": 135
     },
     {
@@ -1393,8 +1388,8 @@
       "views": 133
     },
     {
-      "title": "Zcash Arborist Call 05-01-2025",
-      "video_id": "VgFpg-U_CbI",
+      "title": "Zcash Arborist Call 02-06-2025",
+      "video_id": "zgoArHP-1ps",
       "views": 132
     },
     {
@@ -1413,8 +1408,8 @@
       "views": 131
     },
     {
-      "title": "Zcash Arborist Call 6/13/24",
-      "video_id": "laDMlsgO-Z0",
+      "title": "Zcash Arborist Call 05-01-2025",
+      "video_id": "VgFpg-U_CbI",
       "views": 130
     },
     {
@@ -1440,6 +1435,11 @@
     {
       "title": "Zcomm: Designing Engaging Workshops & Roundtables: Tools for Inclusive, Action-Driven Sessions #DWeb",
       "video_id": "m20tP1iqBRQ",
+      "views": 129
+    },
+    {
+      "title": "Zcash Arborist Call 6/13/24",
+      "video_id": "laDMlsgO-Z0",
       "views": 128
     },
     {
@@ -1463,24 +1463,24 @@
       "views": 121
     },
     {
-      "title": "Zcash Arborist Call 07-24-2025",
-      "video_id": "uFz_5pzgRlQ",
-      "views": 121
-    },
-    {
       "title": "Zcash Protocol Hangout Major Grants Review Committee Q&A 2020-08-18",
       "video_id": "Ipb2ENV_REs",
+      "views": 120
+    },
+    {
+      "title": "Wallets Working Session with Aditya Bharadwaj, Pacu & Joël: Zcon4",
+      "video_id": "mGV_d5IqDvk",
+      "views": 120
+    },
+    {
+      "title": "Zcash Arborist Call 07-24-2025",
+      "video_id": "uFz_5pzgRlQ",
       "views": 120
     },
     {
       "title": "Zcash Arborist Call 09-18-2025",
       "video_id": "2tENS3Sb_jM",
       "views": 120
-    },
-    {
-      "title": "Wallets Working Session with Aditya Bharadwaj, Pacu & Joël: Zcon4",
-      "video_id": "mGV_d5IqDvk",
-      "views": 118
     },
     {
       "title": "First Zebra Block!",
@@ -1498,23 +1498,18 @@
       "views": 117
     },
     {
-      "title": "Zcash Arborist Call 10/31/2024",
-      "video_id": "aNXZ9ctjW-w",
-      "views": 117
-    },
-    {
-      "title": "Zcash Arborist Call 2/8/2024",
-      "video_id": "cQ_Pcgrme1c",
-      "views": 116
-    },
-    {
       "title": "Zcash Arborist Call 02-20-2025",
       "video_id": "TmHv3_qhzQo",
       "views": 116
     },
     {
-      "title": "Zcash Arborist Call 5/30/24",
-      "video_id": "bZvWrKnSszM",
+      "title": "Zcash Arborist Call 10/31/2024",
+      "video_id": "aNXZ9ctjW-w",
+      "views": 115
+    },
+    {
+      "title": "Zcash Arborist Call 2/8/2024",
+      "video_id": "cQ_Pcgrme1c",
       "views": 114
     },
     {
@@ -1523,9 +1518,9 @@
       "views": 113
     },
     {
-      "title": "Zcash Arborist Call 04-17-2025",
-      "video_id": "MBU-wfZM2a4",
-      "views": 113
+      "title": "Zcash Arborist Call 5/30/24",
+      "video_id": "bZvWrKnSszM",
+      "views": 112
     },
     {
       "title": "ZF Community Call -  Sept 4, 2020, MGRC Candidates Part 2",
@@ -1545,6 +1540,11 @@
     {
       "title": "Brazilian CBDC Vs Privacy Implications with Michae2xl & Casta - ZconVI #zcash",
       "video_id": "Bmx-Z3qnKdo",
+      "views": 111
+    },
+    {
+      "title": "Zcash Arborist Call 04-17-2025",
+      "video_id": "MBU-wfZM2a4",
       "views": 111
     },
     {
@@ -1595,7 +1595,7 @@
     {
       "title": "Zcash Arborist Call 4/4/24",
       "video_id": "fkqcekg2BWs",
-      "views": 99
+      "views": 98
     },
     {
       "title": "Tips and Tricks for Improved User Experience with ZKPs - Bryant Eisenbach",
@@ -1683,11 +1683,6 @@
       "views": 81
     },
     {
-      "title": "Zcash Arborist Call 06-12-2025",
-      "video_id": "Yev7T34rMlM",
-      "views": 81
-    },
-    {
       "title": "Ziggurat by Mark Henderson: Zcon4",
       "video_id": "DAHlU7k2Vjg",
       "views": 80
@@ -1705,6 +1700,11 @@
     {
       "title": "Protecting the Fundamental Rights to Privacy and Civil Liberties by Kurt Opsahl: Zcon4",
       "video_id": "LIj7UI18bkk",
+      "views": 79
+    },
+    {
+      "title": "Zcash Arborist Call 06-12-2025",
+      "video_id": "Yev7T34rMlM",
       "views": 79
     },
     {
@@ -1760,7 +1760,7 @@
     {
       "title": "Zcash Arborist Call 8/24/23",
       "video_id": "O00X_2cKBAY",
-      "views": 62
+      "views": 61
     },
     {
       "title": "Str4d on Risks of Delays deploying ZSAs in NU6",
