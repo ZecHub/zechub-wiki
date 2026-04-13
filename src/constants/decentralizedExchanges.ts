@@ -47,6 +47,19 @@ export const decentralizedExchanges = [
     url: "https://app.routerprotocol.com/",
     image: "/routerProtocolLogo.png",
   },
+  {
+    title: "peer",
+    description:
+      "Privacy-first DEX with shielded trading. Swap Zcash and other assets without revealing transaction details.",
+    url: "https://peer.zec hub.org/",
+    image: "/peer.png",
+  },
+  {
+    title: "RocketX",
+    description:
+      "Cross-chain swap platform supporting 50+ blockchains. Trade between Bitcoin, Ethereum, Zcash, and other major assets with competitive rates.",
+    url: "https://rocketx.exchange/",
+    image: "/rocketx.png",
+  },
 ];
-
 
