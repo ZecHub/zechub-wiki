@@ -47,6 +47,18 @@ export const decentralizedExchanges = [
     url: "https://app.routerprotocol.com/",
     image: "/routerProtocolLogo.png",
   },
+  {
+    title: "RocketX",
+    description:
+      "Hybrid CEX and DEX aggregator supporting 180+ networks. Swap any token to any chain at the best price with ultra-fast execution.",
+    url: "https://rocketx.exchange",
+    image: "/rocketx-logo.png",
+  },
+  {
+    title: "peer",
+    description:
+      "Peer-to-peer crypto exchange. Buy and sell instantly with the best rates. No middlemen, no barriers — fast, fair, and private P2P transactions.",
+    url: "https://www.peer.xyz/",
+    image: "/peer-logo.png",
+  },
 ];
-
-
