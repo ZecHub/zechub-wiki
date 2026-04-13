@@ -78,53 +78,52 @@ export default async function MdxContainer({
         {hasSideMenu && (
           <div className="relative w-auto xl:w-2/5">{sideMenu}</div>
         )}
-        <div
-          className={`flex min-w-0 flex-1 flex-col gap-10 lg:gap-12 ${
-            isResearchArticle ? "xl:flex-row xl:items-start" : ""
-          }`}
-        >
+        {isResearchArticle && researchMeta ? (
+          <div className="flex min-w-0 flex-1 flex-col gap-10 lg:gap-12 xl:flex-row xl:items-start">
+            <section
+              style={{ margin: "auto" }}
+              className="h-auto w-full border-t p-3 dark:border-slate-400 xl:flex-1 xl:border-l"
+            >
+              <nav
+                className="mb-6 text-xs font-medium text-muted-foreground"
+                aria-label="Breadcrumb"
+              >
+                <ol className="flex flex-wrap items-center gap-1.5">
+                  <li>
+                    <Link href="/" className="transition-colors hover:text-foreground">
+                      Wiki
+                    </Link>
+                  </li>
+                  <li aria-hidden className="text-muted-foreground/80">
+                    /
+                  </li>
+                  <li>
+                    <Link href="/research" className="transition-colors hover:text-foreground">
+                      Research
+                    </Link>
+                  </li>
+                  <li aria-hidden className="text-muted-foreground/80">
+                    /
+                  </li>
+                  <li className="text-foreground/90">{researchMeta.breadcrumbLabel}</li>
+                </ol>
+              </nav>
+              <div className="research-article-mdx max-w-none [&_img]:max-w-full [&_img]:rounded-lg">
+                {children}
+              </div>
+            </section>
+            <ResearchArticleAside title={researchMeta.pageTitle} shareUrl={researchMeta.shareUrl} />
+          </div>
+        ) : (
           <section
             style={{ margin: "auto" }}
             className={`h-auto w-full border-t p-3 dark:border-slate-400 ${
               hasSideMenu ? "xl:border-l" : ""
-            } ${isResearchArticle ? "xl:flex-1" : ""}`}
+            }`}
           >
-            {isResearchArticle && researchMeta ? (
-              <>
-                <nav
-                  className="mb-6 text-xs font-medium text-muted-foreground"
-                  aria-label="Breadcrumb"
-                >
-                  <ol className="flex flex-wrap items-center gap-1.5">
-                    <li>
-                      <Link href="/" className="transition-colors hover:text-foreground">
-                        Wiki
-                      </Link>
-                    </li>
-                    <li aria-hidden className="text-muted-foreground/80">
-                      /
-                    </li>
-                    <li>
-                      <Link href="/research" className="transition-colors hover:text-foreground">
-                        Research
-                      </Link>
-                    </li>
-                    <li aria-hidden className="text-muted-foreground/80">
-                      /
-                    </li>
-                    <li className="text-foreground/90">{researchMeta.breadcrumbLabel}</li>
-                  </ol>
-                </nav>
-                <div className="max-w-none [&_img]:max-w-full [&_img]:rounded-lg">{children}</div>
-              </>
-            ) : (
-              children
-            )}
+            {children}
           </section>
-          {isResearchArticle && researchMeta ? (
-            <ResearchArticleAside title={researchMeta.pageTitle} shareUrl={researchMeta.shareUrl} />
-          ) : null}
-        </div>
+        )}
       </div>
     </main>
   );

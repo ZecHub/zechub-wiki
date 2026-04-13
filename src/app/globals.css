@@ -761,3 +761,8 @@ input[type="search"]::-ms-clear {
     transform: scaleY(1);
   }
 }
+
+/* Research articles: hide upstream "Edit on GitHub" badge from site/Research/*.md */
+.research-article-mdx a[href*="github.com"][href*="/edit/"] {
+  display: none;
+}
