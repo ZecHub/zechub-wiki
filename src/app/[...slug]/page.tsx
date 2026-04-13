@@ -1,4 +1,5 @@
 import MdxContainer from "@/components/MdxContainer";
+import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
@@ -61,11 +62,38 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   const imgUrl = getBanner(slug[0]) || "";
   const imgUrlDark = getBanner(`${slug[0]}-dark`) || imgUrl;
 
+  const showSideMenu = slug[0] !== "research" && roots.length > 0;
+
+  const slugToTitle = (segment: string) =>
+    segment
+      .split("-")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+
+  const isResearchArticle =
+    slug[0] === "research" && slug.length > 1 && Boolean(markdown);
+  const researchSegment = slug.length > 1 ? slug[slug.length - 1] : "";
+  const researchBreadcrumbLabel = researchSegment ? slugToTitle(researchSegment) : "";
+  const canonicalWikiUrl = `https://zechub.wiki/${slug.join("/")}`;
+
+  if (slug.length === 1 && slug[0] === "research") {
+    return (
+      <MdxContainer
+        hasSideMenu={showSideMenu}
+        sideMenu={showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null}
+        roots={roots}
+        heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
+      >
+        <ResearchIndexGrid roots={roots} />
+      </MdxContainer>
+    );
+  }
+
   if (!markdown) {
     return (
       <MdxContainer
-        hasSideMenu={roots.length > 0}
-        sideMenu={roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null}
+        hasSideMenu={showSideMenu}
+        sideMenu={showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null}
         roots={roots}
         heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
       >
@@ -90,10 +118,20 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
 
   return (
     <MdxContainer
-      hasSideMenu={roots.length > 0}
-      sideMenu={roots.length > 0 ? <SideMenu folder={slug[0]} roots={roots} /> : null}
+      hasSideMenu={showSideMenu}
+      sideMenu={showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null}
       roots={roots}
       heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
+      layoutVariant={isResearchArticle ? "research" : "default"}
+      researchMeta={
+        isResearchArticle
+          ? {
+              breadcrumbLabel: researchBreadcrumbLabel,
+              shareUrl: canonicalWikiUrl,
+              pageTitle: researchBreadcrumbLabel,
+            }
+          : undefined
+      }
     >
       <Suspense fallback={<span className="text-center text-3xl">Loading...</span>}>
         <LazyMdxComponent source={serializedSource} />
