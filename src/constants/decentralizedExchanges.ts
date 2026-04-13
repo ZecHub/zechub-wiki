@@ -59,7 +59,7 @@ export const decentralizedExchanges = [
   description:
     "Hybrid DEX aggregator enabling cross-chain swaps across multiple blockchains with optimal routing and competitive rates.",
   url: "https://rocketx.exchange/",
-  image: "/rocketx-logo.jpg",
+  image: "/Rocketx-logo.jpg",
 },
 ];
 
