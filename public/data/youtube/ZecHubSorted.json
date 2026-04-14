@@ -30,7 +30,7 @@
     {
       "title": "Reviewing all Zcash Shielded Wallets #privacy #cryptocurrency",
       "video_id": "6IIRRZ17Q74",
-      "views": 1667
+      "views": 1668
     },
     {
       "title": "How to Buy and use Zcash Orchard 🌳",
@@ -45,7 +45,7 @@
     {
       "title": "Private Cross-Chain Payments with Zashi CrossPay",
       "video_id": "G1vnpxGInqs",
-      "views": 1518
+      "views": 1519
     },
     {
       "title": "Zcash Explained: Zcash Shielded Transactions",
@@ -65,7 +65,7 @@
     {
       "title": "Crosschain Swaps with Zcash x NEAR Intents",
       "video_id": "mKVvXY4yjjA",
-      "views": 1397
+      "views": 1398
     },
     {
       "title": "How to use ZEC on Metamask",
@@ -90,7 +90,7 @@
     {
       "title": "Shield your ZEC from a transparent to shielded address",
       "video_id": "W2msuzrxr3s",
-      "views": 1062
+      "views": 1064
     },
     {
       "title": "Zcash Explained: Namada-Zcash Strategic Alliance🤝",
@@ -430,7 +430,7 @@
     {
       "title": "No KYC: ZEC → NEAR Crypto Swap in Seconds",
       "video_id": "jHPBw0Au3aU",
-      "views": 332
+      "views": 333
     },
     {
       "title": "What is Pirate Chain? $ARRR",
@@ -493,14 +493,19 @@
       "views": 278
     },
     {
+      "title": "Installing Free2Z Social App! #shorts #zcash #cryptocurrency #defi #privacy #socialmedia",
+      "video_id": "Gle5rKx5etk",
+      "views": 274
+    },
+    {
       "title": "NEAR x Zcash: Intents, AI Agents, and Cross‑Chain Privacy with Shai & Guille",
       "video_id": "J5WZ2yDyl4E",
       "views": 274
     },
     {
-      "title": "Installing Free2Z Social App! #shorts #zcash #cryptocurrency #defi #privacy #socialmedia",
-      "video_id": "Gle5rKx5etk",
-      "views": 273
+      "title": "How Zgo brings Zcash payments to vendors 🏬 #crypto #zcash #shielded #defi #privacy",
+      "video_id": "pz571Ct7hQs",
+      "views": 269
     },
     {
       "title": "Sending a private crypto transaction",
@@ -510,11 +515,6 @@
     {
       "title": "using cash in a free society 💵 #cryptocurrency #zcash #financialfreedom #privacy #defi #shielded",
       "video_id": "14DvYo3WVz0",
-      "views": 267
-    },
-    {
-      "title": "How Zgo brings Zcash payments to vendors 🏬 #crypto #zcash #shielded #defi #privacy",
-      "video_id": "pz571Ct7hQs",
       "views": 267
     },
     {
@@ -610,7 +610,7 @@
     {
       "title": "How to make Payment Requests with Zcash ⚙️",
       "video_id": "l5auYQIzYsQ",
-      "views": 228
+      "views": 229
     },
     {
       "title": "Non-Linear Syncing in Zingo 2.0",
@@ -858,13 +858,13 @@
       "views": 150
     },
     {
-      "title": "Firo DEX Installation and Demo",
-      "video_id": "Pdj857X6UuA",
-      "views": 149
-    },
-    {
       "title": "The Shielded Ecosystem: Sending USDC to Penumbra",
       "video_id": "-n79sAk14mI",
+      "views": 150
+    },
+    {
+      "title": "Firo DEX Installation and Demo",
+      "video_id": "Pdj857X6UuA",
       "views": 149
     },
     {
@@ -915,7 +915,7 @@
     {
       "title": "How to Enable Testnet ZEC (TAZ) on Zingo",
       "video_id": "To7WAkiBldA",
-      "views": 132
+      "views": 133
     },
     {
       "title": "Zebrad: installazione tramite docker 🦓",
@@ -1053,6 +1053,11 @@
       "views": 99
     },
     {
+      "title": "What's the main goal of Web3 Privacy?",
+      "video_id": "X2EuEyW0gk4",
+      "views": 98
+    },
+    {
       "title": "Decred x Zcash Community discussion hosted by ZecHub",
       "video_id": "2RStHBiWNDk",
       "views": 96
@@ -1156,11 +1161,6 @@
       "title": "Zcash 9th Birthday Call | 2025",
       "video_id": "Zb2HTM0nZgo",
       "views": 78
-    },
-    {
-      "title": "What's the main goal of Web3 Privacy?",
-      "video_id": "X2EuEyW0gk4",
-      "views": 77
     },
     {
       "title": "ZecDaily #13",
@@ -1413,6 +1413,11 @@
       "views": 34
     },
     {
+      "title": "Z|ECC Summit 2025 | Kit Sturgeon",
+      "video_id": "xztgA0M0ftY",
+      "views": 34
+    },
+    {
       "title": "ZecHub Sync Meet 21-01-2025",
       "video_id": "d_RGLcJFGzI",
       "views": 33
@@ -1420,11 +1425,6 @@
     {
       "title": "ZecHub Sync Meet 04-02-2025",
       "video_id": "64TwuCmueV4",
-      "views": 33
-    },
-    {
-      "title": "Z|ECC Summit 2025 | Kit Sturgeon",
-      "video_id": "xztgA0M0ftY",
       "views": 33
     },
     {
@@ -1545,7 +1545,7 @@
     {
       "title": "ZecHub Updates | 07/04/2026",
       "video_id": "q50T_5ItKLA",
-      "views": 13
+      "views": 14
     }
   ]
 }
