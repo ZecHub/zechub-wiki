@@ -106,6 +106,10 @@ export const navigations: Array<NavigationItem> = [
         path: "/zcash-community/arborist-calls",
       },
       {
+        name: "Zcash Governance",
+        path: "/zcash-community/zcash-governance",
+      },
+      {
         name: "Community Blogs",
         path: "/zcash-community/community-blogs",
       },
