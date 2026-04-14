@@ -49,7 +49,7 @@ import {
   GiBorderedShield as BordererShield,
   GiCableStayedBridge as CableStayedBridge,
   GiCheckedShield as CheckedShield,
-  GiMeshBall,
+  GiMeshBall as MeshBall,
   GiSoapExperiment,
   GiMayanPyramid as MayanPyramid,
   GiSpellBook as SpellBook,
