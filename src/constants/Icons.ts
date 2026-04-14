@@ -58,6 +58,7 @@ import {
   GiTrade as Swap,
   GiFox as ShapeShift,
   GiBugNet as Testnet,
+  GiSwordsEmblem as Governance,
 } from "react-icons/gi";
 import { GoSync as Go } from "react-icons/go";
 import {
@@ -285,6 +286,7 @@ const iconsForMenu: IconsFor = {
     "Zcash Media": Play,
     "Zcash Podcasts": MdOutlinePodcasts,
     "Zcon Archive": PresentationChar,
+    "Zcash Governance": Governance,
   },
   "ZFAV Club": {
     "AV Club Background": LiaHorseHeadSolid,
@@ -329,7 +331,7 @@ const iconsForMenu: IconsFor = {
   Contribute: {
     "Community Infrastructure": Infra,
     "Help build ZecHub": IoConstructOutline,
-    "ZecHub DAO": GiMeshBall,
+    "ZecHub DAO": MeshBall,
     "Contributing Guide": LiveHelp,
     "ZecWeekly Newsletter": Newspaper,
     "Style Guide": Style,
