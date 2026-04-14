@@ -77,7 +77,7 @@ export const exploreFolders = [
         imgDark: '/explore/dark/research.png',
         description: '',
         name: 'Research',
-        url: '/research/social-media-data-collection'
+        url: '/research'
     },
     {
         img: '/FAQ-12.png',
