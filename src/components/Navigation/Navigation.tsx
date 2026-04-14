@@ -72,6 +72,8 @@ const getTranslatedLabel = (
   const communityMap: Record<string, string> = {
     "Arborist Calls":
       t.navigation?.zcashCommunity?.arboristCalls || "Arborist Calls",
+	"Zcash Governance":
+	  t.navigation?.zcashCommunity?.zcashGovernance || "Zcash Governance",
     "Community Blogs":
       t.navigation?.zcashCommunity?.communityBlogs || "Community Blogs",
     "Community Links":
