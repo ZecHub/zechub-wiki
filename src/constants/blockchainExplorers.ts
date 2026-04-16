@@ -78,4 +78,19 @@ export const blockchainExplorers = [
     url: 'https://www.zypherscan.com/',
     thumbnailImage: '/explorer/Zypherscan.png',
   },
+  {
+      title: 'zcashinfo.com',
+      description:
+        'Zcash blockchain explorer featuring block details, transaction lookup, address search, network statistics, value pool distribution, and mempool monitoring.',
+      features: [
+        'Block explorer',
+        'Transaction lookup',
+        'Address search',
+        'Network statistics',
+        'Value pool distribution',
+        'Mempool monitoring',
+      ],
+      url: 'https://zcashinfo.com/',
+      thumbnailImage: '/explorer/zcashinfo.png',
+    },
 ];
