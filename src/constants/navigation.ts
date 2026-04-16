@@ -5,7 +5,7 @@ import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import {
   MdOutlineOndemandVideo as AudioVideo,
   MdForum as Forum,
-  MdDeveloperMode,
+  MdDeveloperMode, MdModelTraining,
 } from "react-icons/md";
 
 import { Wrench, Map } from "lucide-react";
@@ -303,15 +303,27 @@ export const navigations: Array<NavigationItem> = [
       },
     ],
   },
+
+{
+  name: "Governance",
+  label: "Governance",
+  links: [
+    {
+      name: "Governance",
+      path: "/governance/how-to",
+      icon: RiGovernmentLine,
+    },
+    {
+      name: "ZIPs Simulator",
+      path: "/governance/zip-simulator",
+      icon: MdModelTraining,
+    },
+  ]
+},
   {
     name: "DAO",
     path: "/dao",
     icon: RiCommunityLine,
-  },
-  {
-    name: "Governance",
-    path: "/governance-howto",
-    icon: RiGovernmentLine,
   },
   {
     name: "Tutorials",
