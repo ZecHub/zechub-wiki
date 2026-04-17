@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2198
+      "views": 2199
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -95,7 +95,7 @@
     {
       "title": "The State of Privacy in Cryptocurrencies - Ian Miers",
       "video_id": "AJGLhaUV8QM",
-      "views": 1204
+      "views": 1206
     },
     {
       "title": "An Overview Of Governance In Blockchains",
@@ -740,7 +740,7 @@
     {
       "title": "Zcash Arborist Call 04-02-2026",
       "video_id": "-4GDsezfilc",
-      "views": 261
+      "views": 263
     },
     {
       "title": "Zebra Showcase w/ ZFND Engineering Team",
@@ -788,13 +788,13 @@
       "views": 242
     },
     {
-      "title": "FROST Demo: Zcon4",
-      "video_id": "xvzESdDtczo",
-      "views": 240
-    },
-    {
       "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
       "video_id": "DU7wIy3Ywm4",
+      "views": 241
+    },
+    {
+      "title": "FROST Demo: Zcon4",
+      "video_id": "xvzESdDtczo",
       "views": 240
     },
     {
@@ -1811,6 +1811,11 @@
       "title": "Become a Creator on Free2z and Publish Your First Page Workshop w/Jonathan Bird and Skylar Saveland",
       "video_id": "_380qP3mHYk",
       "views": 28
+    },
+    {
+      "title": "Zcash Arborist Call 04-16-2026",
+      "video_id": "cmPQexrzn_o",
+      "views": 5
     }
   ]
 }
