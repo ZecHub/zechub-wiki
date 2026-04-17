@@ -175,7 +175,7 @@
     {
       "title": "Zcon1 Opening Keynote - Andrew Miller",
       "video_id": "Ob0ajGPMLuE",
-      "views": 785
+      "views": 786
     },
     {
       "title": "The State of the STARK - Eli Ben-Sasson",
@@ -310,7 +310,7 @@
     {
       "title": "Arti: ZF + ZCG Call w/ the Tor Project",
       "video_id": "E7g9dKBOYEI",
-      "views": 508
+      "views": 509
     },
     {
       "title": "ECC Update with Josh Swihart - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -740,7 +740,7 @@
     {
       "title": "Zcash Arborist Call 04-02-2026",
       "video_id": "-4GDsezfilc",
-      "views": 263
+      "views": 264
     },
     {
       "title": "Zebra Showcase w/ ZFND Engineering Team",
@@ -1788,6 +1788,11 @@
       "views": 53
     },
     {
+      "title": "Zcash Arborist Call 04-16-2026",
+      "video_id": "cmPQexrzn_o",
+      "views": 41
+    },
+    {
       "title": "Free2Z Caterpillars with Jonathan Bird and Skylar Saveland: Zcon4",
       "video_id": "h0dQWq9ZJKg",
       "views": 36
@@ -1811,11 +1816,6 @@
       "title": "Become a Creator on Free2z and Publish Your First Page Workshop w/Jonathan Bird and Skylar Saveland",
       "video_id": "_380qP3mHYk",
       "views": 28
-    },
-    {
-      "title": "Zcash Arborist Call 04-16-2026",
-      "video_id": "cmPQexrzn_o",
-      "views": 5
     }
   ]
 }
