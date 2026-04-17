@@ -3,9 +3,14 @@
     "channelIcon": "https://yt3.ggpht.com/ytc/AIdro_ny5D-44bCL6VlY2QqkYr1-AWIeaJmymKKH1DrFBVk5IA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Zcash Arborist Call 04-16-2026",
+            "video_id": "cmPQexrzn_o",
+            "views": 5
+        },
+        {
             "title": "Zcash Arborist Call 04-02-2026",
             "video_id": "-4GDsezfilc",
-            "views": 261
+            "views": 263
         },
         {
             "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
@@ -25,7 +30,7 @@
         {
             "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
             "video_id": "DU7wIy3Ywm4",
-            "views": 240
+            "views": 241
         },
         {
             "title": "Zcash Arborist Call 03-19-2026",
@@ -250,7 +255,7 @@
         {
             "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
             "video_id": "T2B5f297d-Y",
-            "views": 2198
+            "views": 2199
         },
         {
             "title": "Making $ZEC Cross Chain with Maya with Aaluxx Myth - ZconVI #zcash",
@@ -1650,7 +1655,7 @@
         {
             "title": "The State of Privacy in Cryptocurrencies - Ian Miers",
             "video_id": "AJGLhaUV8QM",
-            "views": 1204
+            "views": 1206
         },
         {
             "title": "Transaction Linkability in Zcash: Portrait of a Miner in a Landscape - Daniel Feher",
