@@ -1,5 +1,4 @@
 const required = [
-  "OPENAI_API_KEY",
   "SUPABASE_URL",
   "SUPABASE_ANON_KEY",
   "SUPABASE_SERVICE_ROLE_KEY",
@@ -15,8 +14,13 @@ function getEnv(key: RequiredEnvKey): string {
   return value;
 }
 
+function getOptionalEnv(key: string): string | undefined {
+  const value = process.env[key];
+  return value || undefined;
+}
+
 export const aiEnv = {
-  OPENAI_API_KEY: getEnv("OPENAI_API_KEY"),
+  OPENAI_API_KEY: getOptionalEnv("OPENAI_API_KEY"),
   SUPABASE_URL: getEnv("SUPABASE_URL"),
   SUPABASE_ANON_KEY: getEnv("SUPABASE_ANON_KEY"),
   SUPABASE_SERVICE_ROLE_KEY: getEnv("SUPABASE_SERVICE_ROLE_KEY"),
