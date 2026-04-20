@@ -25,7 +25,7 @@
     {
       "title": "Crosslink Milestone #4c Workshop and Q&A Session",
       "video_id": "gFYTFckJzbs",
-      "views": 74
+      "views": 75
     },
     {
       "title": "Crosslink Milestone #2 Workshop",
@@ -35,7 +35,7 @@
     {
       "title": "Crosslink Milestone #4b Workshop",
       "video_id": "2MevEb-CgHU",
-      "views": 65
+      "views": 67
     },
     {
       "title": "Crosslink Milestone #3 | Is that THE Crosslink?!",
@@ -45,17 +45,17 @@
     {
       "title": "Crosslink Workshop (Jan 2026): Mac Installation",
       "video_id": "C5o5W2sRKVM",
-      "views": 53
+      "views": 56
     },
     {
       "title": "Crosslink: Milestone #1 Demo",
       "video_id": "aOozuD0rt6A",
-      "views": 49
+      "views": 50
     },
     {
       "title": "Crosslink Milestone #2 | BFT Chat App and Sidechain Visualization",
       "video_id": "YCbYN2bwFV4",
-      "views": 49
+      "views": 50
     },
     {
       "title": "Shielded Dialogues: Dev Fund & Funding Model Results",
@@ -68,13 +68,18 @@
       "views": 38
     },
     {
-      "title": "Crosslink Milestone #4a Workshop",
-      "video_id": "c12416G_CFw",
-      "views": 34
-    },
-    {
       "title": "Crosslink Workshop (Jan 2026): Linux Installation",
       "video_id": "i8AABDUS_iM",
+      "views": 37
+    },
+    {
+      "title": "Crosslink Workshop (Jan 2026): Windows Installation",
+      "video_id": "cO-5Oa4B1Tk",
+      "views": 37
+    },
+    {
+      "title": "Crosslink Milestone #4a Workshop",
+      "video_id": "c12416G_CFw",
       "views": 34
     },
     {
@@ -88,19 +93,24 @@
       "views": 31
     },
     {
-      "title": "Crosslink Workshop (Jan 2026): Windows Installation",
-      "video_id": "cO-5Oa4B1Tk",
-      "views": 31
+      "title": "Crosslink Feature Net: Season 1 - Quick Start Guide",
+      "video_id": "amej5wEiFFo",
+      "views": 24
     },
     {
       "title": "Crosslink Milestone #2 | Linking to PoW from PoS",
       "video_id": "plS_gb6mvo8",
-      "views": 20
+      "views": 21
     },
     {
       "title": "Crosslink Milestone #4 | Permissionlessly Joining the Roster and Accumulating Stake",
       "video_id": "FSeyWwUsEKY",
       "views": 18
+    },
+    {
+      "title": "Crosslink Feature Net: Season 1 Workshop",
+      "video_id": "OJxvzgl_vAc",
+      "views": 11
     }
   ]
 }
