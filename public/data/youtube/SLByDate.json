@@ -3,29 +3,39 @@
     "channelIcon": "https://yt3.ggpht.com/c4r_jVCLWXVdDy7lIzra0a6MqNTqx4GxsTqkoK8GGAxK4QfCs4clJCAcS4D8lgBWhij9houN=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Crosslink Feature Net: Season 1 Workshop",
+            "video_id": "OJxvzgl_vAc",
+            "views": 11
+        },
+        {
+            "title": "Crosslink Feature Net: Season 1 - Quick Start Guide",
+            "video_id": "amej5wEiFFo",
+            "views": 24
+        },
+        {
             "title": "Crosslink Milestone #4c Workshop and Q&A Session",
             "video_id": "gFYTFckJzbs",
-            "views": 74
+            "views": 75
         },
         {
             "title": "Crosslink Workshop (Jan 2026): Mac Installation",
             "video_id": "C5o5W2sRKVM",
-            "views": 53
+            "views": 56
         },
         {
             "title": "Crosslink Workshop (Jan 2026): Windows Installation",
             "video_id": "cO-5Oa4B1Tk",
-            "views": 31
+            "views": 37
         },
         {
             "title": "Crosslink Workshop (Jan 2026): Linux Installation",
             "video_id": "i8AABDUS_iM",
-            "views": 34
+            "views": 37
         },
         {
             "title": "Crosslink Milestone #4b Workshop",
             "video_id": "2MevEb-CgHU",
-            "views": 65
+            "views": 67
         },
         {
             "title": "Crosslink Milestone #4a Workshop",
@@ -75,12 +85,12 @@
         {
             "title": "Crosslink Milestone #2 | Linking to PoW from PoS",
             "video_id": "plS_gb6mvo8",
-            "views": 20
+            "views": 21
         },
         {
             "title": "Crosslink Milestone #2 | BFT Chat App and Sidechain Visualization",
             "video_id": "YCbYN2bwFV4",
-            "views": 49
+            "views": 50
         },
         {
             "title": "Shielded Dialogues: Coinholder Voting",
@@ -100,7 +110,7 @@
         {
             "title": "Crosslink: Milestone #1 Demo",
             "video_id": "aOozuD0rt6A",
-            "views": 49
+            "views": 50
         }
     ]
 }
