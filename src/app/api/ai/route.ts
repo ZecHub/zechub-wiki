@@ -2,7 +2,7 @@ import "server-only";
 
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { CHAT_MODEL, openai } from "@/lib/ai/openai";
+import { CHAT_MODEL, getOpenAIClient, hasOpenAIApiKey } from "@/lib/ai/openai";
 import { searchDocs } from "@/lib/ai/vectorSearch";
 import { checkRateLimit } from "@/lib/ai/rateLimit";
 import type { ChatMessage, RetrievedDocChunk } from "@/lib/ai/types";
@@ -155,6 +155,16 @@ export async function POST(req: NextRequest) {
 
   const { message, pageUrl, history = [] } = parsed.data;
 
+  if (!hasOpenAIApiKey()) {
+    return NextResponse.json(
+      {
+        error:
+          "The AI assistant is temporarily unavailable because OPENAI_API_KEY is not configured on the server.",
+      },
+      { status: 503 }
+    );
+  }
+
   const sensitiveMatch = containsSensitiveData(message);
   if (sensitiveMatch) {
     return NextResponse.json(
@@ -207,6 +217,7 @@ export async function POST(req: NextRequest) {
         ];
 
         const llmStart = Date.now();
+        const openai = getOpenAIClient();
         const response = await openai.responses.create({
           model: CHAT_MODEL,
           input: messages,
