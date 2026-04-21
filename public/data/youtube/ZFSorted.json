@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2199
+      "views": 2200
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -145,7 +145,7 @@
     {
       "title": "Good SNARKS Are Here Needed",
       "video_id": "QII1xq9J7NY",
-      "views": 909
+      "views": 910
     },
     {
       "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
@@ -163,14 +163,14 @@
       "views": 864
     },
     {
-      "title": "The Orchard Shielded Pool, feat. Halo2: #Zcon2Lite",
-      "video_id": "acl_RjBUoRE",
+      "title": "Sonic: Nearly Trustless SNARK Setups - Sean Bowe",
+      "video_id": "oTRAg6Km1os",
       "views": 846
     },
     {
-      "title": "Sonic: Nearly Trustless SNARK Setups - Sean Bowe",
-      "video_id": "oTRAg6Km1os",
-      "views": 845
+      "title": "The Orchard Shielded Pool, feat. Halo2: #Zcon2Lite",
+      "video_id": "acl_RjBUoRE",
+      "views": 846
     },
     {
       "title": "Zcon1 Opening Keynote - Andrew Miller",
@@ -185,7 +185,7 @@
     {
       "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
       "video_id": "eero6i2WTxo",
-      "views": 773
+      "views": 774
     },
     {
       "title": "Auditing Cryptography: #Zcon2Lite",
@@ -260,7 +260,7 @@
     {
       "title": "Proof Carrying Data - Pratyush Mishra at Zcon3",
       "video_id": "7MtzoVM6e6w",
-      "views": 638
+      "views": 641
     },
     {
       "title": "Electric Coin Company: Proof of Stake - Nate Wilcox at Zcon3",
@@ -380,7 +380,7 @@
     {
       "title": "The State of ECC with Josh Swihart - ZconVI #zcash",
       "video_id": "XlKADl3bhVo",
-      "views": 429
+      "views": 430
     },
     {
       "title": "Why Financial Privacy Is Important, and How to Achieve It With Technology",
@@ -410,7 +410,7 @@
     {
       "title": "ZSAs and Swaps--A Status Report with Vivek Arte and Pablo Kogan - ZconV: Zcash Unified 2024 #Zcash",
       "video_id": "L_ZtZCUvDqw",
-      "views": 414
+      "views": 416
     },
     {
       "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
@@ -430,7 +430,7 @@
     {
       "title": "A Forest of Levers: The Performance of Orchard - Jack Grigg (Str4d) at Zcon3",
       "video_id": "kkQWubFae7Y",
-      "views": 396
+      "views": 397
     },
     {
       "title": "Recent Advances in Zero-Knowledge: #Zcon2Lite",
@@ -490,7 +490,7 @@
     {
       "title": "Zcash Ecosystem Updates with Zooko Wilcox, Jon Rouach, Jason McGee, Jack Gavigan: Zcon4",
       "video_id": "xEcDf5LSndc",
-      "views": 358
+      "views": 359
     },
     {
       "title": "SoK: Programmable Privacy in Zcash with Ying Tong and Daniel Benarroch: Zcon4",
@@ -783,14 +783,14 @@
       "views": 246
     },
     {
+      "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
+      "video_id": "DU7wIy3Ywm4",
+      "views": 243
+    },
+    {
       "title": "Secure Distributed Storage by Anca Nitulescu: Zcon4",
       "video_id": "dn5Ui9kWQ7w",
       "views": 242
-    },
-    {
-      "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
-      "video_id": "DU7wIy3Ywm4",
-      "views": 241
     },
     {
       "title": "FROST Demo: Zcon4",
@@ -953,14 +953,14 @@
       "views": 207
     },
     {
-      "title": "Zcash Arborist Call 02-05-2026",
-      "video_id": "22YcmN1PPsc",
+      "title": "Zcon4 Opening Address by Jack Gavigan: Zcash",
+      "video_id": "I5h6Y_5XSJA",
       "views": 206
     },
     {
-      "title": "Zcon4 Opening Address by Jack Gavigan: Zcash",
-      "video_id": "I5h6Y_5XSJA",
-      "views": 205
+      "title": "Zcash Arborist Call 02-05-2026",
+      "video_id": "22YcmN1PPsc",
+      "views": 206
     },
     {
       "title": "Governance Panel at Zcon3",
@@ -1163,6 +1163,11 @@
       "views": 165
     },
     {
+      "title": "The Case for Vertically Integrated Stack with Zaki Manian - ZconVI #zcash",
+      "video_id": "sdszXWMwuLc",
+      "views": 164
+    },
+    {
       "title": "Zebra Update - Teor at Zcon3",
       "video_id": "eLb9ZAKi_4g",
       "views": 163
@@ -1170,11 +1175,6 @@
     {
       "title": "Zcash Arborist Call 10/03/2024",
       "video_id": "0lRFmXxuRq4",
-      "views": 163
-    },
-    {
-      "title": "The Case for Vertically Integrated Stack with Zaki Manian - ZconVI #zcash",
-      "video_id": "sdszXWMwuLc",
       "views": 163
     },
     {
@@ -1338,6 +1338,11 @@
       "views": 139
     },
     {
+      "title": "Zcash Arborist Call 04-16-2026",
+      "video_id": "cmPQexrzn_o",
+      "views": 139
+    },
+    {
       "title": "red·bridge (ZavaX) with Kit Sturgeon - ZconVI #zcash",
       "video_id": "O6RxGsNJx2A",
       "views": 138
@@ -1370,11 +1375,6 @@
     {
       "title": "Zcash Arborist Call 01-09-2025",
       "video_id": "BG8C1Rf4jXg",
-      "views": 135
-    },
-    {
-      "title": "Zcash Arborist Call 04-16-2026",
-      "video_id": "cmPQexrzn_o",
       "views": 135
     },
     {
