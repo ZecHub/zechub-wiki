@@ -766,3 +766,25 @@ input[type="search"]::-ms-clear {
 .research-article-mdx a[href*="github.com"][href*="/edit/"] {
   display: none;
 }
+
+@layer components {
+  .zebra-hover {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+
+  .zebra-hover:hover {
+    color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    background-image: radial-gradient(
+      circle 90px at var(--mouse-x) var(--mouse-y),
+      #ffeb3b 0%,      /* super hot yellow center */
+      #f59e0b 35%,     /* orange heat */
+      #0ea5e9 65%,     /* Zcash blue fade */
+      #0ea5e9 100%     /* base blue */
+    );
+    background-size: 200% 200%;
+  }
+}
