@@ -475,24 +475,59 @@ const NavLinks = ({
       </div>
 
       {/* CTA buttons - responsive */}
-      <div className="hidden md:flex items-center space-x-8 ml-7 pl-7 border-l border-slate-400 dark:border-slate-600 gap-4">
-        <Link
-          prefetch
-          href="https://bounties.zechub.wiki/"
-          target="_blank"
-          onClick={handleLinkClick}
-          className="text-cta-primary hover:bg-cta-primary dark:hover:text-white transition-colors duration-200 mr-0"
+     <div className="hidden md:flex items-center gap-3 ml-7 pl-7 border-l border-slate-400 dark:border-slate-600">
+        <Button 
+          asChild 
+          variant="default" 
+          size="default"
+          className="zebra-hover bg-brand hover:bg-brand-hover text-white font-medium shadow-sm"
+          onMouseMove={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            e.currentTarget.style.setProperty('--mouse-x', `${x}%`);
+            e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.setProperty('--mouse-x', '50%');
+            e.currentTarget.style.setProperty('--mouse-y', '50%');
+          }}
         >
-          {t.navigation?.bounties || "Bounties"}
-        </Link>
-        <Link
-          prefetch
-          href="/dashboard"
-          onClick={handleLinkClick}
-          className="text-cta-primary hover:bg-cta-primary dark:hover:text-white transition-colors duration-200"
+          <Link
+            prefetch
+            href="https://bounties.zechub.wiki/"
+            target="_blank"
+            onClick={handleLinkClick}
+          >
+            {t.navigation?.bounties || "Bounties"}
+          </Link>
+        </Button>
+
+        <Button 
+          asChild 
+          variant="default" 
+          size="default"
+          className="zebra-hover bg-brand hover:bg-brand-hover text-white font-medium shadow-sm"
+          onMouseMove={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            e.currentTarget.style.setProperty('--mouse-x', `${x}%`);
+            e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.setProperty('--mouse-x', '50%');
+            e.currentTarget.style.setProperty('--mouse-y', '50%');
+          }}
         >
-          {t.navigation?.dashboard || "Dashboard"}
-        </Link>
+          <Link
+            prefetch
+            href="/dashboard"
+            onClick={handleLinkClick}
+          >
+            {t.navigation?.dashboard || "Dashboard"}
+          </Link>
+        </Button>
       </div>
     </div>
   );
