@@ -1,6 +1,11 @@
 import "server-only";
 
-import { EMBEDDING_DIMENSIONS, EMBEDDING_MODEL, openai } from "./openai";
+import {
+  EMBEDDING_DIMENSIONS,
+  EMBEDDING_MODEL,
+  getOpenAIClient,
+  hasOpenAIApiKey,
+} from "./openai";
 import { getSupabaseAdminClient } from "./supabase";
 import type { RetrievedDocChunk } from "./types";
 
@@ -181,9 +186,15 @@ export async function searchDocs(
     return { chunks: [], searchAvailable: true, outOfScope: false };
   }
 
+  if (!hasOpenAIApiKey()) {
+    console.warn("[vectorSearch] OPENAI_API_KEY missing; skipping semantic search");
+    return { chunks: [], searchAvailable: null, outOfScope: false };
+  }
+
   let queryEmbedding: number[];
   const embedStart = Date.now();
   try {
+    const openai = getOpenAIClient();
     const embeddingRes = await openai.embeddings.create({
       model: EMBEDDING_MODEL,
       input: trimmed,

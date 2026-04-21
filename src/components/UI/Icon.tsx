@@ -1,14 +1,18 @@
 'use client';
 
+import type { LucideIcon } from "lucide-react";
 import { IconType } from "react-icons";
 import { IconBaseProps } from "react-icons/lib";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 
 type Size = "tiny" | "small" | "medium" | "large";
 
+/** React Icons + Lucide both render as SVG components with className/size. */
+type AnySvgIcon = IconType | LucideIcon;
+
 interface Props extends Omit<IconBaseProps, "size"> {
   size?: Size | number;
-  icon?: IconType | string | null;   // supports custom PNGs
+  icon?: AnySvgIcon | string | null; // supports custom PNGs
 }
 
 const ICON_SIZE: Record<Size, number> = {
