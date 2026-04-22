@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 27,
-    "proposal_count": 144,
+    "proposal_count": 145,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6009,6 +6009,41 @@
         "createdAt": "2026-03-18T20:34:05.578Z",
         "completedAt": "2026-03-25T19:28:51.000Z",
         "closedAt": "2026-03-25T19:28:51.000Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 145,
+        "proposal": {
+          "msgs": [],
+          "title": "Virtual Zcash Developer Workshop & IRL Developer Roundtable",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1777303501443606960"
+          },
+          "description": " The Zcash ecosystem is built on advanced privacy technology powered by zero-knowledge proofs. While the technology is robust, onboarding new developers remains challenging due to fragmented learning resources and a lack of structured entry points.\nCurrently, many developers interested in Zcash struggle to:\n\n* Understand its architecture and privacy model\n\n* Set up and interact with the network\n\n* Transition from learning to building\n\nTo address this gap, we designed a structured training approach by drafting a curriculum that starts with foundational knowledge and moves to hands-on engagement.\n\n### Curriculum Summary:\n\nPhase 1: Fundamentals of Blockchain systems & Zcash Architecture\n\nPhase 2: Programming with Zcash SDKs & APIs\n\nPhase 3: Application Development & Use Cases\n\nPhase 4: Hands-On Product Development Workshops\n\nPhase 5: Testing, Debugging & Security Best Practices\n\nPhase 6: Open Source Contribution\n\nYou can check here for the full curriculum: https://docs.google.com/document/d/1PxlJ46ThAhhH5rcKflBLZXB40KM8m_Io_AWOHXyg_L4/edit?usp=sharing \n\n----\n\nThis proposal is driven by the need to strengthen the Zcash developer pipeline\n\n### Reasons \n\n* There are a few structured programs dedicated to training Zcash developers\n\n* Many developers drop off before building real applications\n\n* Limited awareness of Zcash-specific tools and infrastructure\n\n* Need for more real-world applications within the ecosystem\n\n* Need for more innovative entries during Zcash-themed hackathons and contests.\n\n* Opportunity to grow a regional and global developer community\n\nAdditionally:\n\nVirtual programs allow global accessibility\n\nIn-person events foster deeper engagement and collaboration\n\nCombining both creates a balanced and effective developer onboarding model.\n\n-----\n\n### TEAM \n\nDre: Dre is a project manager, community builder and ecosystem contributor who has led different developer campaigns across Africa. These experiences led to the founding of Nesthub Developer Community, where he trains web2 developers into web3 developers and builders. He's an active contributor in the Zcash ecosystem, driven by a passion to see privacy thrive and scale in emerging regions like Africa.\n\nBlackadam: Blackadam is a Smart Contract Engineer & Security Researcher with 3+ years of experience building secure, gas-optimized, and scalable on-chain applications. Skilled in Solidity, Cairo, Foundry, TypeScript, and modern Web3 tooling. Experienced in audits (Code4rena, Cantina, CodeHawks, Immunefi) with multiple valid findings across protocols. Passionate about decentralization, ZK technologies, and secure smart contract architecture. He tutors Solidity at Nesthub Developer Community.\n\nLevai: Levai is a blockchain developer and documentation engineer with expertise in TypeScript, Rust, and Solidity. She has contributed extensively to open source blockchain projects across multiple ecosystems, focusing on building developer tools and creating comprehensive technical documentation. She works in developer relations roles, helping regional projects scale through strategic developer engagement, providing technical support, and hosting interactive technical workshops. She tutors Rust at Nesthub Developer Community.\n\n#### We'll also be having different guest sessions with a couple of Zcash engineers handling special topics. \n\n----\n\nProposal\n\nThis proposal includes a hybrid developer onboarding initiative consisting of:\n\n#### 6-week Virtual Zcash Developer Workshop\n\nA structured, hands-on training program designed to take developers from beginner level to building real applications.\n\nKey Features:\n\n* 12 live workshops (3 sessions max per week)\n* Practical, project-based learning\n* Continuous support and assignments\n* Focus on real-world Zcash use cases\n\nCurriculum Highlights:\n\n* Foundations of blockchain, privacy, and Zcash architecture\n\n* Understanding zk-SNARKs and shielded transactions\n\n* Setting up and interacting with Zcash nodes\n\n* Using SDKs and APIs (Zingolib, Lightwallet API, JSON-RPC)\n\n* Building applications (wallets, payment gateways, privacy tools)\n\n* Testing, debugging, and deployment\n\n* Introduction to open-source contribution on Zcash\n\nExpected Output:\n* Functional prototypes (wallets, payment tools, coin voting platforms, privacy apps) \n* Developers capable of interacting with the Zcash infrastructure\n* Contributors ready to engage with ecosystem repositories\n\n\n#### IRL Developer Roundtable (Key Addition)\n\nTo complement the virtual sessions, an in-person developer roundtable will be hosted. With plans to have 50 - 60 attendees consisting of developers, builders, blockchain professionals, etc\n\nFocus:\n* Discussions on privacy, Zcash technology, and zk-proofs\n* Fireside chats with experienced developers on privacy in Africa\n* Exploring how Zcash can be integrated into existing products .\n\n### Budget\nVirtual Workshop\n* Node Setup: $300\n* Internet Support: $100\n\nIRL Developer Roundtable: $950\n\n* Venue: $200\n* Refreshments: $300\n* Photography& Cinematography: $150\n* Merch: $100\n* Banners and MFZ Excerpts: $100\n* Logistics: $100\n\nCompensation \n\n* Dre (project lead): $20/hr x 15hrs x 2 months = $600\n* Tutor Compensation: $20/hr x 15hrs x 2 Tutors x 2 months= $1200\n\n#### TOTAL: $3150\n\n\n----\n\nUpon successful approval, the following steps will be executed:\n\nStep 1: Preparation (1–2 Weeks)\n* Finalize curriculum and materials\n* Finalize workshop dates\n* Finalize in-person event date and location \n* Set up communication channels (Discord/Telegram)\n* Onboard participants\n\nStep 2: Virtual Workshop (6 weeks)\n* Conduct 12 live sessions(tentatively from May 18th - June 24th)\n* Assign weekly tasks and projects\n* Finalise the Zcash's core stack as production-ready\n* Host the in-person event immediately after the first 3 workshops (tentatively May 23rd)\n* Provide mentorship and support\n\nStep 3: Discussion and mentorship\n* Encourage Hackathon participation and submission \n* Facilitate discussions and networking\n\nStep 4: Post-Program Engagement\n* Encourage open-source contributions\n* Support continued development of projects\n\n#### Conclusion\n\nThis proposal aims to establish a structured developer training funnel for Zcash by combining:\n* Scalable virtual education\n* Hands-on product development\n* Real-world community engagement\n\n#### By investing in developer education, the Zcash ecosystem can unlock:\n\n* More privacy tech developers and builders\n* More applications\n* Stronger long-term developer pipeline\n\n",
+          "total_power": "27",
+          "start_height": 37218769,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-04-22T15:25:01.443Z"
       }
     ]
   },
