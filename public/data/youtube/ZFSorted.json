@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2200
+      "views": 2201
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -175,7 +175,7 @@
     {
       "title": "Zcon1 Opening Keynote - Andrew Miller",
       "video_id": "Ob0ajGPMLuE",
-      "views": 786
+      "views": 788
     },
     {
       "title": "The State of the STARK - Eli Ben-Sasson",
@@ -373,13 +373,13 @@
       "views": 435
     },
     {
-      "title": "Money at the Edge: How PeopleStay Afloat in Venezuela - Alejandro Machado",
-      "video_id": "I3p4QttEOf0",
-      "views": 430
-    },
-    {
       "title": "The State of ECC with Josh Swihart - ZconVI #zcash",
       "video_id": "XlKADl3bhVo",
+      "views": 432
+    },
+    {
+      "title": "Money at the Edge: How PeopleStay Afloat in Venezuela - Alejandro Machado",
+      "video_id": "I3p4QttEOf0",
       "views": 430
     },
     {
@@ -410,12 +410,12 @@
     {
       "title": "ZSAs and Swaps--A Status Report with Vivek Arte and Pablo Kogan - ZconV: Zcash Unified 2024 #Zcash",
       "video_id": "L_ZtZCUvDqw",
-      "views": 416
+      "views": 418
     },
     {
       "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
       "video_id": "bRdNvepJVXM",
-      "views": 412
+      "views": 413
     },
     {
       "title": "Cultivating Sapling at Zcon0 (2018) by Sean Bowe",
@@ -628,13 +628,13 @@
       "views": 306
     },
     {
-      "title": "Interoperability Between Chains: #Zcon2Lite",
-      "video_id": "BV9fPzYzqrs",
-      "views": 304
-    },
-    {
       "title": "Advancing Human Rights With Tor - Isabela Fernandes at Zcon3",
       "video_id": "qWcoO1LmsZo",
+      "views": 305
+    },
+    {
+      "title": "Interoperability Between Chains: #Zcon2Lite",
+      "video_id": "BV9fPzYzqrs",
       "views": 304
     },
     {
@@ -725,7 +725,7 @@
     {
       "title": "Zcash Arborist Call 04-02-2026",
       "video_id": "-4GDsezfilc",
-      "views": 269
+      "views": 270
     },
     {
       "title": "Zcash Protocol Hangout: Discussion about the NUP",
@@ -785,7 +785,7 @@
     {
       "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
       "video_id": "DU7wIy3Ywm4",
-      "views": 243
+      "views": 244
     },
     {
       "title": "Secure Distributed Storage by Anca Nitulescu: Zcon4",
@@ -1213,6 +1213,11 @@
       "views": 154
     },
     {
+      "title": "Zcash Arborist Call 03-19-2026",
+      "video_id": "LtdKAhi6l7s",
+      "views": 154
+    },
+    {
       "title": "Presentations Of Day 2 Workshops",
       "video_id": "BWpOmqSz3is",
       "views": 153
@@ -1220,11 +1225,6 @@
     {
       "title": "Zcon0 Day 3 Opening Remarks",
       "video_id": "m8gv8rvcV08",
-      "views": 153
-    },
-    {
-      "title": "Zcash Arborist Call 03-19-2026",
-      "video_id": "LtdKAhi6l7s",
       "views": 153
     },
     {
@@ -1303,6 +1303,11 @@
       "views": 142
     },
     {
+      "title": "Zcash Arborist Call 04-16-2026",
+      "video_id": "cmPQexrzn_o",
+      "views": 142
+    },
+    {
       "title": "Guide to Asia Go-to-Market and Blockchain Community Formation - Joyce Yang",
       "video_id": "7SmkR6TJzyw",
       "views": 141
@@ -1335,11 +1340,6 @@
     {
       "title": "Coin Voting 2.0 with Hanh - ZconVI #zcash",
       "video_id": "VfQTSLpoH40",
-      "views": 139
-    },
-    {
-      "title": "Zcash Arborist Call 04-16-2026",
-      "video_id": "cmPQexrzn_o",
       "views": 139
     },
     {
@@ -1380,7 +1380,7 @@
     {
       "title": "Zcash Arborist Call 03-05-2026",
       "video_id": "uBsaOLUepB0",
-      "views": 134
+      "views": 135
     },
     {
       "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
