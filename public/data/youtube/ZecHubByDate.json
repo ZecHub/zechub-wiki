@@ -3,34 +3,84 @@
     "channelIcon": "https://yt3.ggpht.com/um9IjNE_SKaPzTnZ6BvCIj1I9pzVtgfAzI2AapNei8CCVXSiv9-1vRBHTY9b7LU0e3F5k3JErws=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "How to Make Zcash Hackathons Even Better  \ud83d\udee0\ufe0f",
+            "video_id": "0VNY3vHKL7Q",
+            "views": 9
+        },
+        {
+            "title": "Blockchain Privacy Isn't Optional \u2014 It's the Future",
+            "video_id": "qvUwledKiZg",
+            "views": 12
+        },
+        {
+            "title": "This Hackathon Project Made Zcash Work on Solana \ud83e\udd2f",
+            "video_id": "I57T9cXTwrg",
+            "views": 12
+        },
+        {
+            "title": "How the Biggest Privacy Hackathon in the World Was Built",
+            "video_id": "zNaumDCrxEg",
+            "views": 103
+        },
+        {
+            "title": "Shy but Effective: How Introverts Can Become Great Workshop Facilitators",
+            "video_id": "nHKopBdRVKc",
+            "views": 196
+        },
+        {
+            "title": "3 Tricks to Balance Participation in Any Group Setting",
+            "video_id": "ixko7nTNE3w",
+            "views": 26
+        },
+        {
+            "title": "3 Ways to Get Quiet People Talking in Your Workshop",
+            "video_id": "NF-8P_pmIWg",
+            "views": 90
+        },
+        {
+            "title": "What Makes a Workshop Truly Rewarding",
+            "video_id": "pxr-KjLE0-I",
+            "views": 148
+        },
+        {
+            "title": "How to Facilitate Virtual and In-Person Meetings Effectively",
+            "video_id": "LnH6FRYru-I",
+            "views": 149
+        },
+        {
+            "title": "What makes the Zcash Community Unique Among Crypto Privacy Projects?",
+            "video_id": "Mr01-eZs5sc",
+            "views": 7
+        },
+        {
             "title": "Stop Being Shy at Crypto Events \u2014 Everyone Is Human",
             "video_id": "Bp-ZhzPlZrg",
-            "views": 2
+            "views": 84
         },
         {
             "title": "No Bullshit.",
             "video_id": "Ite7bX837DU",
-            "views": 85
+            "views": 89
         },
         {
             "title": "What's the main goal of Web3 Privacy?",
             "video_id": "X2EuEyW0gk4",
-            "views": 106
+            "views": 107
         },
         {
             "title": "ZecHub Updates | 07/04/2026",
             "video_id": "q50T_5ItKLA",
-            "views": 29
+            "views": 31
         },
         {
             "title": "Zcash x Meile dVPN | Community Call + Demo",
             "video_id": "wK3ObCkyBOY",
-            "views": 33
+            "views": 34
         },
         {
             "title": "How to Buy Meile dVPN with Zcash (ZEC)",
             "video_id": "MFwEn7SjWIo",
-            "views": 56
+            "views": 58
         },
         {
             "title": "Z|ECC Summit | Arya Solhi",
@@ -60,12 +110,12 @@
         {
             "title": "What Will Crosslink Staking Rewards Be at Launch?",
             "video_id": "mvd2tTqajXg",
-            "views": 118
+            "views": 119
         },
         {
             "title": "How Does Crosslink Preserve Unstoppable Private Money?",
             "video_id": "jB9s572F6qE",
-            "views": 173
+            "views": 174
         },
         {
             "title": "Zcash x ShapeShift | X Spaces",
@@ -75,7 +125,7 @@
         {
             "title": "What's Red Bridge?",
             "video_id": "xKyKgmEAVpg",
-            "views": 119
+            "views": 120
         },
         {
             "title": "Z|ECC Summit 2025 | Kit Sturgeon",
@@ -85,7 +135,7 @@
         {
             "title": "Are there features that will allow larger issuers to use ZSAs?",
             "video_id": "FdN45NcfuK0",
-            "views": 625
+            "views": 626
         },
         {
             "title": "Where Do ZEC Staking Rewards Come From? (Issuance vs Fees)",
@@ -485,7 +535,7 @@
         {
             "title": "What is Pirate Chain? $ARRR",
             "video_id": "-RgpK7eyoNQ",
-            "views": 326
+            "views": 327
         },
         {
             "title": "Zcash x Pirate Chain \ud835\udd4f Spaces",
@@ -515,7 +565,7 @@
         {
             "title": "Keystone X Zashi Tutorial",
             "video_id": "ktYf7josJKM",
-            "views": 1086
+            "views": 1088
         },
         {
             "title": "Iron Fish Network's Next Big Initiative",
@@ -560,7 +610,7 @@
         {
             "title": "HOW TO: Ywallet Pool Transfer",
             "video_id": "Gg90f6_JoC4",
-            "views": 353
+            "views": 354
         },
         {
             "title": "Zcash Coin Voting 2.0 Demo",
@@ -830,7 +880,7 @@
         {
             "title": "Private comments on Free2Z with Nighthawk! \ud83e\udd85",
             "video_id": "3htk_ZeM7qA",
-            "views": 146
+            "views": 149
         },
         {
             "title": "We compare Zcash Shielded Wallets! \ud83d\udcf1",
@@ -925,7 +975,7 @@
         {
             "title": "Unstoppable Wallet for Zcash | Shielded-by-Default \ud83d\udee1\ufe0f",
             "video_id": "B9tpkgVRsq4",
-            "views": 752
+            "views": 754
         },
         {
             "title": "How to Buy and use Zcash Orchard \ud83c\udf33",
@@ -935,7 +985,7 @@
         {
             "title": "Post Comments on Free2Z using Zenith CLI",
             "video_id": "HtorP8TJ5vk",
-            "views": 101
+            "views": 102
         },
         {
             "title": "Zcash for Purchasing VPN Subscription \ud83d\udee1\ufe0f",
@@ -965,7 +1015,7 @@
         {
             "title": "How to spend your \u24e9 Zcash on Everyday Items \ud83e\uddfe",
             "video_id": "pMNk2A3NcKw",
-            "views": 1454
+            "views": 1455
         },
         {
             "title": "new services & business accepting zcash! \ud83d\udd30\ud83c\udfea #crypto #giftcards #privacy #defi #shielded #zec #zcash",
@@ -1035,7 +1085,7 @@
         {
             "title": "Join the conversation with ZecHub & Free2Z! \ud83d\udcac #zcash #cryptocurrency #zec #privacy #defi #shielded",
             "video_id": "8gV9XEzmPgI",
-            "views": 174
+            "views": 176
         },
         {
             "title": "Using Zcash with Non-Custodial Exchanges",
@@ -1220,7 +1270,7 @@
         {
             "title": "Useful Tips when using Zcash \ud83d\udd12",
             "video_id": "tEfQaYPV0UE",
-            "views": 2093
+            "views": 2094
         },
         {
             "title": "Zcash Explained: Zcash Shielded Transactions",
@@ -1260,12 +1310,12 @@
         {
             "title": "Installing Free2Z Social App! #shorts #zcash #cryptocurrency #defi #privacy #socialmedia",
             "video_id": "Gle5rKx5etk",
-            "views": 276
+            "views": 281
         },
         {
             "title": "learn \ud83d\udee1\ufe0fZcash shielded wallets! #shorts #zcash #crytocurrency #DeFi #privacy",
             "video_id": "R-krX1UpsIg",
-            "views": 713
+            "views": 714
         },
         {
             "title": "Zcash Explained: Bitcoin's Fungibility Problem",
@@ -1350,7 +1400,7 @@
         {
             "title": "YWallet Cold Storage Tutorial",
             "video_id": "hJaAccp-77k",
-            "views": 822
+            "views": 824
         },
         {
             "title": "Exchange ANY crypto into Shielded Zcash",
