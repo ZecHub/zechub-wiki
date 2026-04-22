@@ -33,7 +33,8 @@ type ChannelType =
   | "ZecHub"
   | "Zcash Foundation"
   | "Shielded Labs"
-  | "Zcash Media";
+  | "Zcash Media"
+  | "Zcash Brasil";
 
 interface ChannelConfig {
   value: ChannelType;
@@ -45,6 +46,7 @@ const channelConfigs: ChannelConfig[] = [
   { value: "Zcash Foundation", name: "Zcash Foundation" },
   { value: "Shielded Labs", name: "Shielded Labs" },
   { value: "Zcash Media", name: "Zcash Media" },
+  { value: "Zcash Brasil", name: "Zcash Brasil" },
 ];
 
 type DashboardDictionary = {
@@ -100,6 +102,8 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
   const [zfDate, setZfDate] = useState<any>({ videos: [] });
   const [zmSorted, setZmSorted] = useState<any>({ videos: [] });
   const [zmDate, setZmDate] = useState<any>({ videos: [] });
+  const [zbSorted, setZbSorted] = useState<any>({ videos: [] });
+  const [zbDate, setZbDate] = useState<any>({ videos: [] });
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -136,6 +140,12 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
       fetch("/data/youtube/ZMByDate.json")
         .then((r) => r.json())
         .then(setZmDate);
+      fetch("/data/youtube/ZBSorted.json")
+        .then((r) => r.json())
+        .then(setZbSorted);
+      fetch("/data/youtube/ZBByDate.json")
+        .then((r) => r.json())
+        .then(setZbDate);
     }
   }, [currentView]);
 
@@ -214,12 +224,14 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
           "Shielded Labs": slDate,
           "Zcash Foundation": zfDate,
           "Zcash Media": zmDate,
+          "Zcash Brasil": zbDate,
         }
       : {
           ZecHub: zecSorted,
           "Shielded Labs": slSorted,
           "Zcash Foundation": zfSorted,
           "Zcash Media": zmSorted,
+          "Zcash Brasil": zbSorted,
         };
     const data = map[channel] || { videos: [], channelIcon: "" };
     return {
