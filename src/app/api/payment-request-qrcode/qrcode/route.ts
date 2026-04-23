@@ -1,5 +1,7 @@
+import { is_valid_zcash_address } from "@elemental-zcash/zaddr_wasm_parser";
 import { NextRequest, NextResponse } from "next/server";
 import QRCode from "qrcode";
+import { qrCodeBodySchema } from "./schema/qrcode.schema";
 
 export async function GET(req: NextRequest) {
   const data = req.nextUrl.searchParams.get("data");
@@ -26,5 +28,27 @@ export async function GET(req: NextRequest) {
       err instanceof Error ? err.message : "Failed to generate QRCode";
 
     return NextResponse.json({ error: msg }, { status: 500 });
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+
+    const { amount, address, label, memo,  } = qrCodeBodySchema.parse(body);
+
+    if (!is_valid_zcash_address(address)) {
+      return NextResponse.json({ error: "Invalid Zcash address!" }, { status: 400 });
+    }
+
+    return NextResponse.json(
+      { message: "Created", data: body },
+      { status: 200 },
+    );
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Failed";
+
+    console.log({ msg: JSON.parse(msg) });
+    return NextResponse.json({ error: JSON.parse(msg) }, { status: 500 });
   }
 }
