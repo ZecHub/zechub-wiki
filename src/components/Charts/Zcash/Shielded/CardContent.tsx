@@ -1,6 +1,6 @@
 "use client";
 
-import React, { RefObject, useState, useCallback, useEffect } from "react";
+import React, { RefObject, useCallback } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import ChartFooter from "../../ChartFooter";
@@ -18,6 +18,7 @@ import ShieldedStats from "./ShieldedStatsPro";
 import { HalvingMeter } from "@/components/HalvingMeter/halving-meter";
 import BlockFeesChart from "../BlockFeesChart";
 import NetworkSolpsChart from "../NetworkSolpsChart";
+import { startTransition } from "react";
 
 type ZcashChartProps = {
   divChartRef: RefObject<HTMLDivElement | null>;
@@ -38,37 +39,27 @@ const CardContentShielded = (props: ZcashChartProps) => {
   const { t } = useLanguage();
   const tabT = t?.pages?.dashboard?.charts?.zcashShieldedTabs;
 
-  // === LOCAL STATE (instant clicks) + URL SYNC ===
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [activeTab, setActiveTab] = useState<string>(() => {
-    return searchParams?.get("tab") || "supply";
-  });
+  // URL is now the single source of truth (no local state)
+  const activeTab = searchParams?.get("tab") || "supply";
 
-  // Sync from URL when someone pastes a link / hits Enter / refreshes
-  useEffect(() => {
-    const urlTab = searchParams?.get("tab") || "supply";
-    if (urlTab !== activeTab) {
-      setActiveTab(urlTab);
-    }
-  }, [searchParams, activeTab]);
-
-  // Click handler — instant UI change + URL update
+  // Only update URL (startTransition keeps it smooth, exactly like the top tabs)
   const handleTabChange = useCallback(
     (newTab: string) => {
-      setActiveTab(newTab);
-
-      const params = new URLSearchParams(searchParams?.toString() || "");
-      if (newTab && newTab !== "supply") {
-        params.set("tab", newTab);
-      } else {
-        params.delete("tab");
-      }
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      startTransition(() => {
+        const params = new URLSearchParams(searchParams?.toString() || "");
+        if (newTab && newTab !== "supply") {
+          params.set("tab", newTab);
+        } else {
+          params.delete("tab");
+        }
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      });
     },
-    [router, pathname, searchParams],
+    [router, pathname, searchParams]
   );
 
   const tabs = [
@@ -88,11 +79,10 @@ const CardContentShielded = (props: ZcashChartProps) => {
 
   return (
     <CardContent>
-      {/* Key forces Tabs to remount when URL tab changes → fixes Enter/refresh */}
+      {/* key forces clean remount when URL changes (keeps refresh/back-button behavior perfect) */}
       <Tabs
         key={activeTab}
         value={activeTab}
-        defaultValue={activeTab}
         onValueChange={handleTabChange}
       >
         {({ activeTab: currentTab }: any) => (
