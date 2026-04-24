@@ -8,6 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { config } from "./config";
 import { detectZcashNetwork, encodeMemo, type ZcashNetwork } from "./helper";
 import { useWasm } from "./hooks/useWasm";
 import WasmInitStatus from "./WasmInitStatus";
@@ -22,6 +23,8 @@ const INPUT_CLASS = [
 const LABEL_CLASS =
   "block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1";
 
+const WIDGET_API_BASE_URL = config.env.NEXT_PUBLIC_WIDGET_API_BASE_URL;
+
 // State type
 type ValidationState =
   | { status: "idle" }
@@ -33,8 +36,8 @@ type Payment = {
   address: string;
   amount: string;
   label: string;
-  message: string;
-  memo: string;
+  // message: string;
+  // memo: string;
   validation: ValidationState;
 };
 
@@ -44,7 +47,7 @@ type GeneratedConfig = {
   theme: string;
   target: string;
   disabled: boolean;
-};
+} & Payment;
 
 const Validation = {
   idle(): ValidationState {
@@ -66,6 +69,7 @@ interface Props {
 }
 
 export default function PaymentRequestWidget(props: Props) {
+  const [theme, setTheme] = useState("light");
   const [loading, setLoading] = useState(false);
   const [currency, setCurrency] = useState("usd");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -75,16 +79,14 @@ export default function PaymentRequestWidget(props: Props) {
   const [validation, setValidation] = useState<ValidationState>({
     status: "idle",
   });
-  const [payments, setPayments] = useState<Payment[]>([
-    {
-      address: "",
-      amount: "",
-      label: "",
-      message: "",
-      memo: "",
-      validation: { status: "idle" },
-    },
-  ]);
+  const [payment, setPayment] = useState<Payment>({
+    address: "",
+    amount: "",
+    label: "",
+    // message: "",
+    // memo: "",
+    validation: { status: "idle" },
+  });
 
   /* ── Validate when input changes ── */
   const validateAddr = useCallback(
@@ -158,45 +160,46 @@ export default function PaymentRequestWidget(props: Props) {
     );
 
     return () => timers.forEach(clearTimeout);
-  }, [payments, wasmReady, validateAddr]);
+  }, [payment, wasmReady, validateAddr]);
 
   // Flags
   const isLoading = validation.status === "validating";
 
   const allValid =
-    payments.length > 0 &&
-    payments.every((p) => p.validation.status === "valid");
+    payment.address !== "" &&
+    parseFloat(payment.amount) > 0 &&
+    payment.validation.status === "valid";
 
-  const uri = useMemo(() => {
-    if (!allValid) return null;
+  // const uri = useMemo(() => {
+  //   if (!allValid) return null;
 
-    const parts: string[] = [];
+  //   const parts: string[] = [];
 
-    payments.forEach((p, i) => {
-      const idx = i === 0 ? "" : `.${i}`;
+  //   payments.forEach((p, i) => {
+  //     const idx = i === 0 ? "" : `.${i}`;
 
-      parts.push(`address${idx}=${p.address}`);
-      if (p.amount) parts.push(`amount${idx}=${p.amount}`);
-      if (p.label) parts.push(`label${idx}=${encodeURIComponent(p.label)}`);
-      if (p.message)
-        parts.push(`message${idx}=${encodeURIComponent(p.message)}`);
+  //     parts.push(`address${idx}=${p.address}`);
+  //     if (p.amount) parts.push(`amount${idx}=${p.amount}`);
+  //     if (p.label) parts.push(`label${idx}=${encodeURIComponent(p.label)}`);
+  //     if (p.message)
+  //       parts.push(`message${idx}=${encodeURIComponent(p.message)}`);
 
-      const isShielded =
-        p.address.startsWith("zs") ||
-        p.address.startsWith("u1") ||
-        p.address.startsWith("utest1");
+  //     const isShielded =
+  //       p.address.startsWith("zs") ||
+  //       p.address.startsWith("u1") ||
+  //       p.address.startsWith("utest1");
 
-      if (p.memo && isShielded) {
-        const m = encodeMemo(p.memo);
+  //     if (p.memo && isShielded) {
+  //       const m = encodeMemo(p.memo);
 
-        if (m) parts.push(`memo${idx}=${m}`);
-      }
-    });
+  //       if (m) parts.push(`memo${idx}=${m}`);
+  //     }
+  //   });
 
-    return `zcash:?${parts.join("&")}`;
-  }, [payments, allValid]);
+  //   return `zcash:?${parts.join("&")}`;
+  // }, [payment, allValid]);
 
-  const deferredURI = useDeferredValue(uri);
+  // const deferredURI = useDeferredValue(uri);
 
   const updatePayment = (i: number, field: keyof Payment, value: string) => {
     setPayments((prev) => {
@@ -244,13 +247,68 @@ export default function PaymentRequestWidget(props: Props) {
     });
   };
 
-  console.log({ payments });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
+    try {
+      setPriceDataSource("");
 
+      const res =
+        process.env.NODE_ENV === "development"
+          ? { json: () => ({ amount: 350, source: "diadata.org" }), ok: true }
+          : await fetch(
+              `${WIDGET_API_BASE_URL}/payment-request-qrcode/zcash-price-feed`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  amount: parseFloat(payment.amount),
+                  from: currency,
+                  to: "zec",
+                }),
+              },
+            );
+
+      if (!res.ok) {
+        throw new Error("PriceConversion: Price conversion failed!");
+      }
+
+      const data = await res.json();
+
+      if (!data.amount) {
+        throw new Error("PriceConversion: Invalid price data");
+      }
+
+      setPriceDataSource(data.source);
+
+      const qrRes = await fetch(`${WIDGET_API_BASE_URL}/qr`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ address: payment.address, amount: data.amount, label:payment.label }),
+      });
+
+      const qrData = await qrRes.json();
+
+      props.onGenerated({
+        address: payment.address,
+        label: payment.label,
+        qrData,
+        theme,
+        amount: data.amount,
+        apiBase: WIDGET_API_BASE_URL,
+        target: "#payment-request-container",
+        disabled: data.amount < 0,
+        validation: payment.validation,
+      });
+
+    } catch (err) {
+      console.error(err);
+      alert("Failed to generate. Check inputs or API connection.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
