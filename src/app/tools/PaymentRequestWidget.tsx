@@ -395,7 +395,11 @@ export default function PaymentRequestWidget(props: Props) {
           )}
         </button>
 
-
+        {priceDataSource && (
+          <div className="text-slate-400 text-xs">
+            Price Data Source: {priceDataSource}
+          </div>
+        )}
 
         <WasmInitStatus wasmReady={wasmReady} />
       </div>
