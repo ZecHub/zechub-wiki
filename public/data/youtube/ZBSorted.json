@@ -180,7 +180,7 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 479
+      "views": 480
     },
     {
       "title": "História da evolução das criptomoedas",
@@ -225,7 +225,7 @@
     {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
-      "views": 374
+      "views": 375
     },
     {
       "title": "A Ilusão da Capacidade iIimitada",
@@ -385,7 +385,7 @@
     {
       "title": "Tutorial Zingo! Carteira para Zcash",
       "video_id": "gg6YKmdrxAs",
-      "views": 222
+      "views": 223
     },
     {
       "title": "Vitalik explica porque defende a privacidade.",
@@ -435,7 +435,7 @@
     {
       "title": "Comprando Zcash no PIX na Coinbase usando a carteira Zashi!",
       "video_id": "7eUzfSeCk5k",
-      "views": 199
+      "views": 201
     },
     {
       "title": "Unstoppable Private Money | Zcash Soundtrack",
@@ -738,13 +738,18 @@
       "views": 134
     },
     {
-      "title": "O Controle Invisível das Grandes Corporações",
-      "video_id": "NDWL37DktwU",
-      "views": 131
+      "title": "Tutorial Shielded Zcash na Metamask",
+      "video_id": "Et8d-rM7YXQ",
+      "views": 132
     },
     {
       "title": "Zcash Vibe | Zcash Soundtrack",
       "video_id": "FDcKJuLMypw",
+      "views": 132
+    },
+    {
+      "title": "O Controle Invisível das Grandes Corporações",
+      "video_id": "NDWL37DktwU",
       "views": 131
     },
     {
@@ -755,11 +760,6 @@
     {
       "title": "Expansão Monetária:  Um Perigo Oculto",
       "video_id": "dbS_HwZI7Bo",
-      "views": 130
-    },
-    {
-      "title": "Tutorial Shielded Zcash na Metamask",
-      "video_id": "Et8d-rM7YXQ",
       "views": 130
     },
     {
@@ -883,6 +883,11 @@
       "views": 112
     },
     {
+      "title": "Zcash na Cake Wallet - Tutorial Completo",
+      "video_id": "ngzYYqcRa84",
+      "views": 112
+    },
+    {
       "title": "Alternativas Tecnológicas.",
       "video_id": "0BXjya39zVg",
       "views": 111
@@ -893,18 +898,13 @@
       "views": 111
     },
     {
-      "title": "Zcash na Cake Wallet - Tutorial Completo",
-      "video_id": "ngzYYqcRa84",
+      "title": "Compreendendo o Tachyon e seus gargalos",
+      "video_id": "-gDK7iPUX68",
       "views": 111
     },
     {
       "title": "Zcon4 Overview",
       "video_id": "8FWKkySHbuM",
-      "views": 110
-    },
-    {
-      "title": "Compreendendo o Tachyon e seus gargalos",
-      "video_id": "-gDK7iPUX68",
       "views": 110
     },
     {
@@ -938,13 +938,13 @@
       "views": 107
     },
     {
-      "title": "Tutorial #ZEC Faucet: A #liberdade começa conhecimento com  e um pouco de #Zcash.",
-      "video_id": "aWK956D8M1w",
-      "views": 106
-    },
-    {
       "title": "Segurança no Mundo de Agentes: Como Pensar Defesa Agora",
       "video_id": "IPwLtOF9BhQ",
+      "views": 107
+    },
+    {
+      "title": "Tutorial #ZEC Faucet: A #liberdade começa conhecimento com  e um pouco de #Zcash.",
+      "video_id": "aWK956D8M1w",
       "views": 106
     },
     {
@@ -2298,6 +2298,11 @@
       "views": 33
     },
     {
+      "title": "A Origem do Tor",
+      "video_id": "wTpGcCvXfD0",
+      "views": 33
+    },
+    {
       "title": "Recupere Moedas Perdidas | Zenith Wallet",
       "video_id": "LFRGQ_sRZbY",
       "views": 33
@@ -2325,11 +2330,6 @@
     {
       "title": "Fim do Trademark Zcash! -  WEEKLYCALL #14",
       "video_id": "xHKo6wKiYWQ",
-      "views": 32
-    },
-    {
-      "title": "A Origem do Tor",
-      "video_id": "wTpGcCvXfD0",
       "views": 32
     },
     {
@@ -2483,6 +2483,11 @@
       "views": 29
     },
     {
+      "title": "FROST Multisig: Carteiras Familiares e Regras de Assinatura",
+      "video_id": "RjKV4Rj9psw",
+      "views": 29
+    },
+    {
       "title": "Meteora vs Finanças Tradicionais: O Que Muda de Verdade.",
       "video_id": "TvzpnlQJ3pY",
       "views": 29
@@ -2540,11 +2545,6 @@
     {
       "title": "Privacidade: O Último Bastião da Liberdade",
       "video_id": "gIjPVJicDdg",
-      "views": 27
-    },
-    {
-      "title": "FROST Multisig: Carteiras Familiares e Regras de Assinatura",
-      "video_id": "RjKV4Rj9psw",
       "views": 27
     },
     {
@@ -3090,6 +3090,11 @@
     {
       "title": "A ilusão da liberdade de escolha. #ai #podcast #privacidade",
       "video_id": "1GN-SBduulA",
+      "views": 13
+    },
+    {
+      "title": "Como a Zcash Foundation Se Sustenta Sem Recompensa de Bloco",
+      "video_id": "1dHN_J1vGWs",
       "views": 13
     },
     {
