@@ -37,8 +37,6 @@ type Payment = {
   address: string;
   amount: string;
   label: string;
-  // message: string;
-  // memo: string;
   validation: ValidationState;
 };
 
@@ -80,8 +78,6 @@ export default function PaymentRequestWidget(props: Props) {
     address: "",
     amount: "",
     label: "",
-    // message: "",
-    // memo: "",
     validation: {
       status: "idle",
     },
