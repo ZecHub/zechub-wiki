@@ -10,7 +10,7 @@
     {
       "title": "ZK Rollup: Ethereum Scalability with ZKPs - Alex Gluchowski",
       "video_id": "QyM9qdFKsEA",
-      "views": 3695
+      "views": 3696
     },
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
@@ -240,7 +240,7 @@
     {
       "title": "Opening Remarks at Zcon0 (2018) by Josh Cincinnati",
       "video_id": "ywAcyQ4Qtuo",
-      "views": 665
+      "views": 666
     },
     {
       "title": "Zero Knowledge In The Enterprise World at Zcon0 (2018) by Jonathan Rouach",
@@ -425,7 +425,7 @@
     {
       "title": "A Forest of Levers: The Performance of Orchard - Jack Grigg (Str4d) at Zcon3",
       "video_id": "kkQWubFae7Y",
-      "views": 398
+      "views": 400
     },
     {
       "title": "ZEXE: Enabling Decentralized Private Computation - Pratyush Mishra",
@@ -545,7 +545,7 @@
     {
       "title": "Zconnaissance - Sketching a Shielded Assets Future by Vivek Arte: Zcon4",
       "video_id": "VFQHJGqO_bY",
-      "views": 337
+      "views": 338
     },
     {
       "title": "Technical Roadmap Panel w/ engineers from ZF, ECC, QEDIT, Shielded Labs & Zingo Labs - ZconVI #zcash",
@@ -643,13 +643,13 @@
       "views": 298
     },
     {
-      "title": "Constructing a Fast Prime-Order Group - Henry de Valence",
-      "video_id": "pG-IZ_7NbR8",
-      "views": 293
-    },
-    {
       "title": "Zebrad for Linux Tutorial #1",
       "video_id": "7cPKf4hobeI",
+      "views": 294
+    },
+    {
+      "title": "Constructing a Fast Prime-Order Group - Henry de Valence",
+      "video_id": "pG-IZ_7NbR8",
       "views": 293
     },
     {
@@ -725,7 +725,7 @@
     {
       "title": "Zcash Arborist Call 04-02-2026",
       "video_id": "-4GDsezfilc",
-      "views": 272
+      "views": 273
     },
     {
       "title": "Zcash Protocol Hangout: Discussion about the NUP",
@@ -780,7 +780,7 @@
     {
       "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
       "video_id": "5gvQF5oFT8E",
-      "views": 247
+      "views": 248
     },
     {
       "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
@@ -878,24 +878,24 @@
       "views": 219
     },
     {
+      "title": "Zebra",
+      "video_id": "142IudaOXUU",
+      "views": 218
+    },
+    {
       "title": "Protecting Civil Liberties With Privacy-Enhancing Technology - Kurt Opsahl at Zcon3",
       "video_id": "d5dvlkWflsE",
       "views": 217
     },
     {
-      "title": "Zebra",
-      "video_id": "142IudaOXUU",
+      "title": "Design a Proof Of Solvency protocol with Halo2 Workshop by Enrico: Zcon4",
+      "video_id": "P7w6LWXkwns",
       "views": 217
     },
     {
       "title": "Zcash Arborist Call 01-22-2026",
       "video_id": "zVu2yxxUMCs",
       "views": 217
-    },
-    {
-      "title": "Design a Proof Of Solvency protocol with Halo2 Workshop by Enrico: Zcon4",
-      "video_id": "P7w6LWXkwns",
-      "views": 216
     },
     {
       "title": "ZecHub Zcash Education with Tecnopapapi, Dismad, & Squirrel - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -1088,13 +1088,13 @@
       "views": 177
     },
     {
-      "title": "Gemini: Elastic SNARKs for Diverse Environments - Michele Orru at Zcon3",
-      "video_id": "onRiyf160fs",
-      "views": 176
-    },
-    {
       "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
       "video_id": "65GdSSlDG3A",
+      "views": 177
+    },
+    {
+      "title": "Gemini: Elastic SNARKs for Diverse Environments - Michele Orru at Zcon3",
+      "video_id": "onRiyf160fs",
       "views": 176
     },
     {
@@ -1123,6 +1123,11 @@
       "views": 171
     },
     {
+      "title": "Zebrad for Linux Tutorial #2",
+      "video_id": "4w6pquJObWE",
+      "views": 169
+    },
+    {
       "title": "Zcon0 Day 2 Opening Remarks",
       "video_id": "f-Z3YIjLdPQ",
       "views": 168
@@ -1140,11 +1145,6 @@
     {
       "title": "Zcon0 Closing Remarks",
       "video_id": "si1LnCwxkuA",
-      "views": 167
-    },
-    {
-      "title": "Zebrad for Linux Tutorial #2",
-      "video_id": "4w6pquJObWE",
       "views": 167
     },
     {
@@ -1185,6 +1185,11 @@
     {
       "title": "Zcash Arborist Call 02-19-2026",
       "video_id": "63K9NUXicfI",
+      "views": 160
+    },
+    {
+      "title": "Zcash Arborist Call 04-16-2026",
+      "video_id": "cmPQexrzn_o",
       "views": 160
     },
     {
@@ -1230,11 +1235,6 @@
     {
       "title": "Zcash Arborist Call 6/27/24",
       "video_id": "KtVvt3lis6o",
-      "views": 152
-    },
-    {
-      "title": "Zcash Arborist Call 04-16-2026",
-      "video_id": "cmPQexrzn_o",
       "views": 152
     },
     {
@@ -1603,6 +1603,11 @@
       "views": 98
     },
     {
+      "title": "DevOps demo: Using Zebra with Docker and CI/CD",
+      "video_id": "oPZqvRCC-Pg",
+      "views": 98
+    },
+    {
       "title": "Tips and Tricks for Improved User Experience with ZKPs - Bryant Eisenbach",
       "video_id": "KSGFI8sSero",
       "views": 97
@@ -1610,11 +1615,6 @@
     {
       "title": "Zcash Arborist Call 10/19/23",
       "video_id": "YNlqL41kEJ4",
-      "views": 97
-    },
-    {
-      "title": "DevOps demo: Using Zebra with Docker and CI/CD",
-      "video_id": "oPZqvRCC-Pg",
       "views": 97
     },
     {
@@ -1815,7 +1815,7 @@
     {
       "title": "Become a Creator on Free2z and Publish Your First Page Workshop w/Jonathan Bird and Skylar Saveland",
       "video_id": "_380qP3mHYk",
-      "views": 28
+      "views": 29
     }
   ]
 }
