@@ -19,8 +19,6 @@ interface Props {
 export function PaymentRequestWidgetPreview(props: Props) {
   const { config: cfg } = props;
 
-  console.log({config})
-
   const containerRef = useRef<HTMLDivElement>(null);
   const scriptRef = useRef<HTMLScriptElement | null>(null);
   const target = cfg.target.replace("#", "");
@@ -58,7 +56,6 @@ export function PaymentRequestWidgetPreview(props: Props) {
 
   return (
     <>
-    <button className="p-2 bg-accent">Btn One</button>
       {/* required container for the embed script */}
       <div id={target} ref={containerRef}></div>
     </>
