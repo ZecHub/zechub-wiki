@@ -35,20 +35,34 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const { amount, address, label, memo,  } = qrCodeBodySchema.parse(body);
+    const { amount, address, label, memo } = qrCodeBodySchema.parse(body);
 
     if (!is_valid_zcash_address(address)) {
-      return NextResponse.json({ error: "Invalid Zcash address!" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid Zcash address!" },
+        { status: 400 },
+      );
     }
 
-    return NextResponse.json(
-      { message: "Created", data: body },
-      { status: 200 },
-    );
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : "Failed";
+    // Zcash URI format: zcash:<address>?amount=1.23&memo=...
+    let uri = `zcash:${address}`;
+    const params = new URLSearchParams();
 
-    console.log({ msg: JSON.parse(msg) });
+    if (amount) params.append("amount", amount.toString());
+    if (label) params.append("label", label);
+    if (memo) params.append("memo", memo);
+
+    const paramsStr = params.toString();
+    if (paramsStr) {
+      uri += `?${paramsStr}`;
+    }
+
+    const qrData = await QRCode.toDataURL(uri, { margin: 1, scale: 6 });
+
+    return NextResponse.json({ data: { uri, qrData } }, { status: 200 });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Failed process payment uri.";
+
     return NextResponse.json({ error: JSON.parse(msg) }, { status: 500 });
   }
 }
