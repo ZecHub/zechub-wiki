@@ -4,14 +4,11 @@ import { getZcashPrice } from "./utils/get-zec-price";
 
 const priceFeedUrl = String(process.env.BASE_URL_ZCASH_PRICE_FEED);
 
-export async function GET(req: NextRequest) {
-  return NextResponse.json({ data: "Hello World!" });
-}
-
 export async function POST(req: NextRequest) {
-  console.log("called price feed!");
   try {
-    const { amount, from, to } = priceFeedBodySchema.parse(req.body);
+    const body = await req.json();
+
+    const { amount, from, to } = priceFeedBodySchema.parse(body);
     const { price, source } = await getZcashPrice(priceFeedUrl);
 
     let result: number;
@@ -25,9 +22,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ data: { amount: result, rate: price, source } });
   } catch (err) {
-    console.error(err);
     const errMsg = err instanceof Error ? err.message : "Invalid request";
 
-    return NextResponse.json({ error: errMsg }, { status: 400 });
+    return NextResponse.json({ error: JSON.parse(errMsg) }, { status: 500 });
   }
 }
