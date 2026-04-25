@@ -20,7 +20,10 @@ export async function POST(req: NextRequest) {
       result = amount;
     }
 
-    return NextResponse.json({ data: { amount: result, rate: price, source } });
+    return NextResponse.json(
+      { data: { amount: result, rate: price, source } },
+      { status: 200 },
+    );
   } catch (err) {
     const errMsg = err instanceof Error ? err.message : "Invalid request";
 
