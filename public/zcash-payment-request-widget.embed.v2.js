@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-/*! pay-with-zcash.embed.js v0.1.1 | (c) PayWithZcash Widget | Dual-mode: auto + programmatic */
+/*! zcash-payment-request-widget.embed.v2.js | (c) PayWithZcash Widget | Dual-mode: auto + programmatic */
 (function () {
   // ---------- Configuration ----------
   const DEFAULT_API_BASE =
