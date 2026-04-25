@@ -12,6 +12,7 @@ import { useWasm } from "./hooks/useWasm";
 import { GeneratedConfig } from "./ToolTabs";
 import WasmInitStatus from "./WasmInitStatus";
 import WidgetButtonTrigger from "./WidgetButtonTrigger";
+import PaymentRequestWidgetCodeSnippet from "./PaymentRequestWidgetCodeSnippet";
 
 const INPUT_CLASS = [
   "w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]",
@@ -66,21 +67,13 @@ interface Props {
 }
 
 export default function PaymentRequestWidget() {
-  const [amount, setAmount] = useState("");
+  const { wasmMmoduleRef, wasmReady } = useWasm();
   const [theme, setTheme] = useState("light");
   const [loading, setLoading] = useState(false);
   const [currency, setCurrency] = useState("usd");
   const [priceFeedDataSource, setPriceFeedDataSource] = useState({
     rate: "",
     source: "",
-  });
-  const { wasmError, wasmMmoduleRef, wasmReady } = useWasm();
-
-  const [validation, setValidation] = useState<TValidationState>({
-    status: "idle",
-    addressType: "",
-    error: "",
-    network: undefined,
   });
 
   const [payment, setPayment] = useState<Payment>({
@@ -147,7 +140,7 @@ export default function PaymentRequestWidget() {
   );
 
   // Flags
-  const isLoading = validation.status === "validating";
+  const isLoading = payment.validation.status === "validating";
 
   const allValid =
     payment.address !== "" &&
@@ -195,7 +188,7 @@ export default function PaymentRequestWidget() {
 
       handleGenerated({
         theme,
-        qrData,
+        qrData: qrData.data,
         amount: data.amount,
         label: payment.label,
         address: payment.address,
@@ -263,10 +256,10 @@ export default function PaymentRequestWidget() {
                 </p>
               )}
 
-              {validation.status === "invalid" && (
+              {payment.validation.status === "invalid" && (
                 <div className="mt-2 rounded-xl bg-red-500/5 border border-red-500/15 px-4 py-3">
                   <p className="text-[13px] text-red-400 font-medium">
-                    {validation.error}
+                    {payment.validation.error}
                   </p>
                 </div>
               )}
@@ -390,9 +383,9 @@ export default function PaymentRequestWidget() {
       </form>
 
       {/* Generator Section */}
-      <div className="grid lg:grid-cols-2 gap-8 mb-16">
+      <div className="my-8">
         {/* Widget Demo Section */}
-        {/* <WidgetButtonTrigger config={generatedConfig} /> */}
+        <WidgetButtonTrigger config={generatedConfig} />
       </div>
 
       {/* Code Snippet Section */}
