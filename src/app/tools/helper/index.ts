@@ -39,12 +39,29 @@ export async function fetchZecPrice(
   currency: string,
 ) {
   return await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          amount: parseFloat(amount),
-          from: currency,
-          to: "zec",
-        }),
-      });
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      amount: parseFloat(amount),
+      from: currency,
+      to: "zec",
+    }),
+  });
+}
+
+export async function resolveQRCode(
+  url: string,
+  address: string,
+  amount: string,
+  label?: string,
+) {
+  return await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      address,
+      amount,
+      label,
+    }),
+  });
 }
