@@ -63,6 +63,7 @@
     .zwg-x:hover{background:var(--zwg-surface);color:var(--zwg-text)}
     .zwg-x svg{width:16px;height:16px}
     .zwg-disabled{opacity:0.5;cursor:none;}
+    .zwg-footer{display:flex;justify-content:center;margin-top:24px;font-size:12px;text-align:center;opacity:0.7;}
     @media(max-width:480px){.zwg-modal{padding:22px;border-radius:24px}.zwg-acts{flex-direction:column}}
   `;
   document.head.appendChild(style);
@@ -140,8 +141,7 @@
           <button class="zwg-x" aria-label="Close">${ic.x}</button>
           <div class="zwg-head">
             <div class="zwg-icon">Z</div>
-            <h2 class="zwg-title">Pay with Zcash</h2>
-            ${label ? `<p class="zwg-label">${label}</p>` : ""}
+            ${label ? `<h2 class="zwg-title">${label}</h2>` : "Pay with Zcash"}
           </div>
 
           <div class="zwg-qr">
@@ -184,7 +184,9 @@
           </div>
 
           <a href="${uri}" class="zwg-link">${ic.ext} Open in Wallet</a>
+          <footer class="zwg-footer"> ${new Date().getFullYear()} Pay with Zcash</footer>
         </div>
+
       `;
 
       document.body.appendChild(overlay);
