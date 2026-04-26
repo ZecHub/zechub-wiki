@@ -18,7 +18,6 @@ export async function POST(req: NextRequest) {
 
     const url = req.url.split("/api")[0];
     const shortUrl = `${url}/api/payment-request-uri/shorten/${shortId}`;
-    console.log({ shortUrl });
     
     return NextResponse.json({ shortUrl }, { status: 200 });
   } catch (err) {
