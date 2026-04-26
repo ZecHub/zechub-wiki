@@ -4,8 +4,7 @@ import ZecToZatsConverter from "@/components/Converter/ZecToZatsConverter";
 import { useState } from "react";
 import AddressDecoder from "./AddressDecoder";
 import PaymentRequestBuilder from "./PaymentRequestBuilder";
-import PaymentRequestWidget from "./PaymentRequestWidget";
-import { config } from "./config";
+import PaymentRequestWidget from "./zcash-payment-widget/PaymentRequestWidget";
 
 type TabId = "converter" | "payment" | "decoder" | "payment-request-widget";
 
