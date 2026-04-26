@@ -1,5 +1,5 @@
 export const config = {
-  WIDGET_CONTAINER: "#payment-request-container",
+  ZCASH_PAYMENT_WIDGET_TARGET: "#zcash-payment-widget-target",
   env: {
     ACCESS_CONTROL_ALLOW_ORIGIN: String(
       process.env.ACCESS_CONTROL_ALLOW_ORIGIN,

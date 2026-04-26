@@ -80,7 +80,7 @@ export default function PaymentRequestWidget() {
     label: "",
     apiBase: "",
     theme: "",
-    target: config.WIDGET_CONTAINER,
+    target: config.ZCASH_PAYMENT_WIDGET_TARGET,
     disabled: true,
   });
 
@@ -176,7 +176,7 @@ export default function PaymentRequestWidget() {
         disabled: data.amount < 0,
         apiBase: WIDGET_API_BASE_URL,
         validation: payment.validation,
-        target: "#payment-request-container",
+        target: config.ZCASH_PAYMENT_WIDGET_TARGET
       });
     } catch (err) {
       console.error("handleSubmit::error:", err);
