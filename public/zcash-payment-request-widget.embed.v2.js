@@ -87,7 +87,7 @@
 
     if (!container) {
       console.error(
-        `[Pay-with-Zcash] Container not found for selector: ${selector}`,
+        `[Zcash-Payment-URI-Widget] Container not found for selector: ${selector}`,
       );
       return null;
     }
@@ -98,11 +98,11 @@
     const theme = opts.theme || "light";
     const memo = opts.memo || "";
     const apiBase = opts.apiBase || DEFAULT_API_BASE;
-    const isDisabled = opts.disabled === "true";
+    const isDisabled = opts.disabled === true || opts.disabled === "true";
 
     if (!address || !amount) {
       console.error(
-        "[Pay-with-Zcash] Missing required fields: address or amount.",
+        "[Zcash-Payment-URI-Widget] Missing required fields: address or amount.",
       );
       return null;
     }
@@ -278,34 +278,44 @@
   //   AUTO-MOUNT HANDLING
   // ------------------------------
   const script = document.currentScript;
-  if (script) {
-    const target = script.dataset.target;
 
-    if (target) {
-      const address = script.dataset.address;
-      const amount = script.dataset.amount;
+  if (
+    script &&
+    script.dataset &&
+    script.dataset.target &&
+    script.dataset.address &&
+    script.dataset.amount
+  ) {
+    const inst = renderZcashButton(target, {
+      address,
+      amount,
+      label: script.dataset.label,
+      theme: script.dataset.theme,
+      memo: script.dataset.memo,
+      apiBase: script.dataset.apiBase || DEFAULT_API_BASE,
+      disabled: script.dataset.disabled,
+    });
 
-      if (!address || !amount) {
-        console.error("[Pay-with-Zcash] Auto-mount missing address or amount.");
-        return;
-      }
+    window.__zcash_paymet_uri_widget_autoinstance = inst;
 
-      const inst = renderZcashButton(target, {
-        address,
-        amount,
-        label: script.dataset.label,
-        theme: script.dataset.theme,
-        memo: script.dataset.memo,
-        apiBase: script.dataset.apiBase || DEFAULT_API_BASE,
-        disabled: script.dataset.disabled,
-      });
+    // const target = script.dataset.target;
+    // console.log({ target });
 
-      window.__pwz_autoinstance = inst;
-    } else {
-      console.error(
-        "[Pay-with-Zcash] Auto-mount missing target element/div whose value is attached to the `data-target` atrribute on the script tag to amount on.",
-      );
-      return;
-    }
+    // if (target) {
+    //   const address = script.dataset.address;
+    //   const amount = script.dataset.amount;
+
+    //   if (!address || !amount) {
+    //     console.error(
+    //       "[Zcash-Payment-URI-Widget] Auto-mount missing address or amount.",
+    //     );
+    //     return;
+    //   }
   }
+  //else {
+  //   console.error(
+  //     "[Zcash-Payment-URI-Widget] Auto-mount missing target element/div whose value is attached to the `data-target` attribute on the script tag to amount on.",
+  //   );
+  //   return;
+  // }
 })();
