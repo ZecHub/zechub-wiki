@@ -1,8 +1,9 @@
 import { useEffect, useId, useRef } from "react";
+import { config } from "../../config";
 import { loadZcashPaymentUriWidget } from "../loadZcashPaymentWidget";
 import { ZcashPaymentURIConfig, ZcashPaymentURIInstance } from "../types";
 
-interface Props extends ZcashPaymentURIConfig {}
+interface Props extends Omit<ZcashPaymentURIConfig, "target"> {}
 
 export function ZcashPaymentURI(props: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -15,7 +16,7 @@ export function ZcashPaymentURI(props: Props) {
     let mounted = true;
 
     loadZcashPaymentUriWidget(
-      "http://localhost:3000/zcash-payment-request-widget.embed.v2.js",
+      config.env.NEXT_PUBLIC_API_BASE_URL_EMBED_CODE,
     ).then(() => {
       if (!mounted || !window.renderZcashButton) return;
 
@@ -43,7 +44,6 @@ export function ZcashPaymentURI(props: Props) {
     props.memo,
     props.apiBase,
     props.disabled,
-    props.target,
   ]);
 
   return <div id={`zpw-${id}`} ref={containerRef} />;
