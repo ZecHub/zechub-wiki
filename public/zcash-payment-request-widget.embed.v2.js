@@ -145,7 +145,7 @@
           </div>
 
           <div class="zwg-qr">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(uri)}&bgcolor=ffffff&color=1a1a1a&margin=0"/>
+             <img src="${apiBase}/payment-request-uri/qrcode?data=${encodeURIComponent(uri)}&size=240x240" alt="QR Code "/>
           </div>
 
           <div class="zwg-amt">
@@ -213,7 +213,7 @@
         shortBtn.innerHTML = `<span class="zwg-spin"></span>`;
 
         try {
-          const res = await fetch(`${apiBase}/shorten`, {
+          const res = await fetch(`${apiBase}/payment-request-uri/shorten`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ uri }),
