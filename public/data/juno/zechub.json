@@ -6018,9 +6018,9 @@
           "msgs": [],
           "title": "Virtual Zcash Developer Workshop & IRL Developer Roundtable",
           "votes": {
-            "no": "0",
-            "yes": "0",
-            "abstain": "0"
+            "no": "1",
+            "yes": "2",
+            "abstain": "2"
           },
           "status": "open",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",

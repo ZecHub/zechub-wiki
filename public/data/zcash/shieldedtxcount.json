@@ -3538,5 +3538,35 @@
     "sapling": 181,
     "orchard": 925,
     "timestamp": "04/22/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 195,
+    "orchard": 974,
+    "timestamp": "04/23/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 206,
+    "orchard": 976,
+    "timestamp": "04/23/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 214,
+    "orchard": 1074,
+    "timestamp": "04/24/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 197,
+    "orchard": 1042,
+    "timestamp": "04/24/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 174,
+    "orchard": 1113,
+    "timestamp": "04/25/2026"
   }
 ]
