@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2205
+      "views": 2206
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -65,7 +65,7 @@
     {
       "title": "Zcash Scalability with Sean Bowe - ZconVI #zcash",
       "video_id": "-m3JCgi3kiU",
-      "views": 1386
+      "views": 1387
     },
     {
       "title": "Zcash Protocol Hangout  Halo: Jan 14, 2021",
@@ -163,13 +163,13 @@
       "views": 864
     },
     {
-      "title": "Sonic: Nearly Trustless SNARK Setups - Sean Bowe",
-      "video_id": "oTRAg6Km1os",
-      "views": 846
-    },
-    {
       "title": "The Orchard Shielded Pool, feat. Halo2: #Zcon2Lite",
       "video_id": "acl_RjBUoRE",
+      "views": 847
+    },
+    {
+      "title": "Sonic: Nearly Trustless SNARK Setups - Sean Bowe",
+      "video_id": "oTRAg6Km1os",
       "views": 846
     },
     {
@@ -260,7 +260,7 @@
     {
       "title": "Proof Carrying Data - Pratyush Mishra at Zcon3",
       "video_id": "7MtzoVM6e6w",
-      "views": 641
+      "views": 642
     },
     {
       "title": "Electric Coin Company: Proof of Stake - Nate Wilcox at Zcon3",
@@ -708,6 +708,11 @@
       "views": 274
     },
     {
+      "title": "Zcash Arborist Call 04-02-2026",
+      "video_id": "-4GDsezfilc",
+      "views": 274
+    },
+    {
       "title": "Free2z: Peer-to-Peer Giving - Skylar Saveland & Jonathan Bird at Zcon3",
       "video_id": "grF_ifpCiAQ",
       "views": 273
@@ -720,11 +725,6 @@
     {
       "title": "Regulatory Perspective-Peter Van Valkenburgh, Paul Brigner, Kurt Opsahl, JW Verret, & Michele Korver",
       "video_id": "vYfSO14UP5o",
-      "views": 273
-    },
-    {
-      "title": "Zcash Arborist Call 04-02-2026",
-      "video_id": "-4GDsezfilc",
       "views": 273
     },
     {
@@ -768,6 +768,11 @@
       "views": 253
     },
     {
+      "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
+      "video_id": "5gvQF5oFT8E",
+      "views": 250
+    },
+    {
       "title": "Pool Retirement - Nate Wilcox at Zcon3",
       "video_id": "bRuly9lyRO8",
       "views": 249
@@ -778,11 +783,6 @@
       "views": 249
     },
     {
-      "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
-      "video_id": "5gvQF5oFT8E",
-      "views": 248
-    },
-    {
       "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
       "video_id": "DU7wIy3Ywm4",
       "views": 247
@@ -790,7 +790,7 @@
     {
       "title": "Secure Distributed Storage by Anca Nitulescu: Zcon4",
       "video_id": "dn5Ui9kWQ7w",
-      "views": 242
+      "views": 243
     },
     {
       "title": "FROST Demo: Zcon4",
@@ -808,6 +808,11 @@
       "views": 234
     },
     {
+      "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
+      "video_id": "hzUdmwq23ac",
+      "views": 234
+    },
+    {
       "title": "Zcash Arborist Call 1/25/24",
       "video_id": "wREfP2QAFCc",
       "views": 234
@@ -815,11 +820,6 @@
     {
       "title": "Zondax HW wallet support: from 0 to Hero - Francesco Dainese & Ida Tucker at Zcon3",
       "video_id": "E6kX__vLJrM",
-      "views": 233
-    },
-    {
-      "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
-      "video_id": "hzUdmwq23ac",
       "views": 233
     },
     {
@@ -1133,6 +1133,11 @@
       "views": 168
     },
     {
+      "title": "Zcon0 Closing Remarks",
+      "video_id": "si1LnCwxkuA",
+      "views": 168
+    },
+    {
       "title": "Zcash Community Grants Committee Election Call (6/16/23)",
       "video_id": "4jLG0niVqRE",
       "views": 168
@@ -1141,11 +1146,6 @@
       "title": "Zcash Arborist Call 08-21-2025",
       "video_id": "cwp6y9gHBVk",
       "views": 168
-    },
-    {
-      "title": "Zcon0 Closing Remarks",
-      "video_id": "si1LnCwxkuA",
-      "views": 167
     },
     {
       "title": "Zcash Arborist Call 03-20-2025",
@@ -1160,6 +1160,11 @@
     {
       "title": "Empowering Privacy: Unleashing the Power of Human Dignity and Control",
       "video_id": "CkFTPu-70oQ",
+      "views": 165
+    },
+    {
+      "title": "Zcash Arborist Call 04-16-2026",
+      "video_id": "cmPQexrzn_o",
       "views": 165
     },
     {
@@ -1185,11 +1190,6 @@
     {
       "title": "Zcash Arborist Call 02-19-2026",
       "video_id": "63K9NUXicfI",
-      "views": 160
-    },
-    {
-      "title": "Zcash Arborist Call 04-16-2026",
-      "video_id": "cmPQexrzn_o",
       "views": 160
     },
     {
