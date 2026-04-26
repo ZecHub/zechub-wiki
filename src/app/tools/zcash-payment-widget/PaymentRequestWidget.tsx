@@ -1,17 +1,17 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { config } from "./config";
 import {
   detectZcashNetwork,
   fetchZecPrice,
   resolveQRCode,
   type ZcashNetwork,
-} from "./helper";
-import { useWasm } from "./hooks/useWasm";
-import { GeneratedConfig } from "./ToolTabs";
-import WasmInitStatus from "./WasmInitStatus";
+} from "../helper";
+import { useWasm } from "../hooks/useWasm";
+import { GeneratedConfig } from "../ToolTabs";
+import WasmInitStatus from "../WasmInitStatus";
 import WidgetButtonTrigger from "./WidgetButtonTrigger";
+import { config } from "./config";
 
 const INPUT_CLASS = [
   "w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]",

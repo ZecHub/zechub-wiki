@@ -3,7 +3,7 @@ import PaymentRequestWidgetCodeSnippet, {
   Modal,
 } from "./PaymentRequestWidgetCodeSnippet";
 import PaymentRequestWidgetPreview from "./PaymentRequestWidgetPreview";
-import { GeneratedConfig } from "./ToolTabs";
+import { GeneratedConfig } from "../ToolTabs";
 
 interface Props {
   config: GeneratedConfig;
