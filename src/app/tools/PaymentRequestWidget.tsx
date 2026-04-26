@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { config } from "./config";
 import {
   detectZcashNetwork,
@@ -12,7 +12,6 @@ import { useWasm } from "./hooks/useWasm";
 import { GeneratedConfig } from "./ToolTabs";
 import WasmInitStatus from "./WasmInitStatus";
 import WidgetButtonTrigger from "./WidgetButtonTrigger";
-import PaymentRequestWidgetCodeSnippet from "./PaymentRequestWidgetCodeSnippet";
 
 const INPUT_CLASS = [
   "w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]",
@@ -25,13 +24,6 @@ const LABEL_CLASS =
   "block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1";
 
 const WIDGET_API_BASE_URL = config.env.NEXT_PUBLIC_WIDGET_API_BASE_URL;
-
-type TValidationState = {
-  status: "idle" | "validating" | "valid" | "invalid";
-  error?: string;
-  addressType?: string;
-  network?: ZcashNetwork;
-};
 
 // State type
 type ValidationState =
@@ -62,14 +54,11 @@ const Validation = {
   },
 };
 
-interface Props {
-  onGenerated: (config: GeneratedConfig) => void;
-}
-
 export default function PaymentRequestWidget() {
-  const { wasmMmoduleRef, wasmReady } = useWasm();
   const [theme, setTheme] = useState("light");
   const [loading, setLoading] = useState(false);
+  const { wasmMmoduleRef, wasmReady } = useWasm();
+  const [isValidating, setIsValidating] = useState(false);
   const [currency, setCurrency] = useState("usd");
   const [priceFeedDataSource, setPriceFeedDataSource] = useState({
     rate: "",
@@ -94,10 +83,6 @@ export default function PaymentRequestWidget() {
     target: config.WIDGET_CONTAINER,
     disabled: true,
   });
-
-  const handleGenerated = (config: GeneratedConfig) => {
-    setGeneratedConfig(config);
-  };
 
   /* ── Validate when input changes ── */
   const validateAddr = useCallback(
@@ -152,8 +137,6 @@ export default function PaymentRequestWidget() {
     setLoading(true);
 
     try {
-      setPriceFeedDataSource((pf) => ({ ...pf, rate: "", source: "" }));
-
       const res = await fetchZecPrice(
         `${WIDGET_API_BASE_URL}/payment-request-uri/zcash-price-feed`,
         payment.amount,
@@ -170,12 +153,6 @@ export default function PaymentRequestWidget() {
         throw new Error("PriceConversion: Invalid price data");
       }
 
-      setPriceFeedDataSource((pf) => ({
-        ...pf,
-        rate: data.rate,
-        source: data.source,
-      }));
-
       const qrRes = await resolveQRCode(
         `${WIDGET_API_BASE_URL}/payment-request-uri/qrcode`,
         payment.address,
@@ -184,9 +161,13 @@ export default function PaymentRequestWidget() {
       );
 
       const qrData = await qrRes.json();
-      console.log({ data, qrData });
 
-      handleGenerated({
+      setPriceFeedDataSource({
+        rate: data.rate,
+        source: data.source,
+      });
+
+      setGeneratedConfig({
         theme,
         qrData: qrData.data,
         amount: data.amount,
@@ -210,6 +191,25 @@ export default function PaymentRequestWidget() {
     payment.address.startsWith("zs") ||
     payment.address.startsWith("u1") ||
     payment.address.startsWith("utest1");
+
+  useEffect(() => {
+    if (!payment.address) return;
+
+    setIsValidating(true);
+
+    const timer = setTimeout(() => {
+      const result = validateAddr(payment.address);
+
+      setPayment((p) => ({
+        ...p,
+        validation: result,
+      }));
+
+      setIsValidating(false);
+    }, 300); // debounce delay
+
+    return () => clearTimeout(timer);
+  }, [payment.address, validateAddr]);
 
   return (
     <>
@@ -235,12 +235,9 @@ export default function PaymentRequestWidget() {
                 type="text"
                 value={payment.address}
                 onChange={(e) => {
-                  const validationResult = validateAddr(e.target.value);
-
                   setPayment((p) => ({
                     ...p,
                     address: e.target.value,
-                    validation: validationResult,
                   }));
                 }}
                 placeholder="t1..., zs1..., u1..., utest..., or tm... address"
@@ -264,7 +261,7 @@ export default function PaymentRequestWidget() {
                 </div>
               )}
 
-              {isLoading && (
+              {isValidating && (
                 <div className="mt-1.5 rounded-xl bg-red-500/5 border border-red-500/15 px-4 py-3">
                   <p className="text-[13px] text-red-500 font-medium">
                     Validating…
@@ -371,27 +368,24 @@ export default function PaymentRequestWidget() {
             )}
           </button>
 
-          {priceFeedDataSource.source && (
-            <div className="text-slate-400 text-xs">
-              Source: {priceFeedDataSource.source} - ZEC/USD: {"$"}
-              {parseFloat(priceFeedDataSource.rate).toFixed(2)}
-            </div>
-          )}
+          <div className="text-slate-400 text-xs min-h-4">
+            {priceFeedDataSource.source
+              ? `Source: ${priceFeedDataSource.source} - ZEC/USD: $${parseFloat(priceFeedDataSource.rate).toFixed(2)}`
+              : ""}
+          </div>
 
           <WasmInitStatus wasmReady={wasmReady} />
         </div>
       </form>
 
-      {/* Generator Section */}
-      <div className="my-8">
-        {/* Widget Demo Section */}
-        <WidgetButtonTrigger config={generatedConfig} />
-      </div>
-
-      {/* Code Snippet Section */}
-      <div className="max-w-3xl mx-auto mb-16">
-        {/* <PaymentRequestWidgetCodeSnippet config={generatedConfig} /> */}
-      </div>
+      {!generatedConfig.disabled && (
+        <>
+          {/* Generator Section */}
+          <div className="my-8">
+            <WidgetButtonTrigger config={generatedConfig} />
+          </div>
+        </>
+      )}
     </>
   );
 }
