@@ -161,7 +161,7 @@ export default function PaymentRequestWidgetCodeSnippet({ config }: Props) {
         </div>
 
         {/* Help text */}
-        <p className="text-xs text-slate-700 dark:text-slate-800">
+        <p className="text-md text-slate-800">
           Paste this code snippet into your website's HTML to add the payment
           button.
         </p>
