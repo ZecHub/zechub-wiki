@@ -38,7 +38,8 @@
     "jest.config.js",
     "jest-setup.js",
     ".next/dev/types/**/*.ts",
-    "src/app/tools/converter/ZcashTools.jsx"
+    "src/app/tools/converter/ZcashTools.jsx",
+    ".next/dev/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

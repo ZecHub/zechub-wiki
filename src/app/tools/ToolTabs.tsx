@@ -1,11 +1,12 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import ZecToZatsConverter from '@/components/Converter/ZecToZatsConverter';
-import PaymentRequestBuilder from './PaymentRequestBuilder';
-import AddressDecoder from './AddressDecoder';
+import ZecToZatsConverter from "@/components/Converter/ZecToZatsConverter";
+import { useState } from "react";
+import AddressDecoder from "./AddressDecoder";
+import PaymentRequestBuilder from "./PaymentRequestBuilder";
+import PaymentRequestWidget from "./zcash-payment-widget/PaymentRequestWidget";
 
-type TabId = 'converter' | 'payment' | 'decoder';
+type TabId = "converter" | "payment" | "decoder" | "payment-request-widget";
 
 interface Tab {
   id: TabId;
@@ -18,33 +19,53 @@ interface Tab {
 
 const TABS: Tab[] = [
   {
-    id: 'converter',
-    label: 'ZEC ↔ Zats',
-    shortLabel: 'Converter',
-    badge: 'Converter',
-    title: 'ZEC ↔ Zats',
-    subtitle: 'Precise conversion between ZEC and Zatoshi',
+    id: "converter",
+    label: "ZEC ↔ Zats",
+    shortLabel: "Converter",
+    badge: "Converter",
+    title: "ZEC ↔ Zats",
+    subtitle: "Precise conversion between ZEC and Zatoshi",
   },
   {
-    id: 'payment',
-    label: 'Payment Request',
-    shortLabel: 'Payment',
-    badge: 'ZIP-321',
-    title: 'Payment Request Builder',
-    subtitle: 'Generate zcash: URIs with QR codes for easy payment requests',
+    id: "payment",
+    label: "Payment Request",
+    shortLabel: "Payment",
+    badge: "ZIP-321",
+    title: "Payment Request Builder",
+    subtitle: "Generate zcash: URIs with QR codes for easy payment requests",
   },
   {
-    id: 'decoder',
-    label: 'Address Decoder',
-    shortLabel: 'Decoder',
-    badge: 'Unified Address',
-    title: 'Address Decoder',
-    subtitle: 'Extract transparent, sapling & orchard receivers from a UA',
+    id: "payment-request-widget",
+    label: "PR Widget",
+    shortLabel: "Payment",
+    badge: "ZIP-321",
+    title: "Payment Request Widget",
+    subtitle: "Generate zcash: URIs with QR codes for easy payment requests",
+  },
+  {
+    id: "decoder",
+    label: "Address Decoder",
+    shortLabel: "Decoder",
+    badge: "Unified Address",
+    title: "Address Decoder",
+    subtitle: "Extract transparent, sapling & orchard receivers from a UA",
   },
 ];
 
+export interface GeneratedConfig {
+  address: string;
+  amount: number;
+  label: string;
+  apiBase: string;
+  qrData?: unknown;
+  theme: string;
+  target: string;
+  disabled: boolean;
+  [index: string]: any;
+}
+
 export default function ToolTabs() {
-  const [active, setActive] = useState<TabId>('converter');
+  const [active, setActive] = useState<TabId>("converter");
 
   const current = TABS.find((t) => t.id === active)!;
 
@@ -61,9 +82,10 @@ export default function ToolTabs() {
               className={`
                 flex-1 relative py-2.5 sm:py-3 rounded-lg text-[13px] sm:text-sm font-semibold
                 transition-all duration-200 ease-out
-                ${isActive
-                  ? 'bg-gradient-to-r from-[#F4B728] to-[#d9a520] text-[#151e29] shadow-md shadow-[#F4B728]/15'
-                  : 'text-zinc-400 dark:text-[#4a5a6e] hover:text-zinc-600 dark:hover:text-[#7a8a9e]'
+                ${
+                  isActive
+                    ? "bg-gradient-to-r from-[#F4B728] to-[#d9a520] text-[#151e29] shadow-md shadow-[#F4B728]/15"
+                    : "text-zinc-400 dark:text-[#4a5a6e] hover:text-zinc-600 dark:hover:text-[#7a8a9e]"
                 }
               `}
             >
@@ -91,9 +113,10 @@ export default function ToolTabs() {
 
         {/* Card body */}
         <div className="px-5 py-6 sm:px-7 sm:py-7">
-          {active === 'converter' && <ZecToZatsConverter />}
-          {active === 'payment' && <PaymentRequestBuilder />}
-          {active === 'decoder' && <AddressDecoder />}
+          {active === "converter" && <ZecToZatsConverter />}
+          {active === "payment" && <PaymentRequestBuilder />}
+          {active === "payment-request-widget" && <PaymentRequestWidget />}
+          {active === "decoder" && <AddressDecoder />}
         </div>
       </div>
     </div>

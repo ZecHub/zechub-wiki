@@ -32,3 +32,36 @@ export function encodeMemo(memo: string) {
     return undefined;
   }
 }
+
+export async function fetchZecPrice(
+  url: string,
+  amount: string,
+  currency: string,
+) {
+  return await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      amount: parseFloat(amount),
+      from: currency,
+      to: "zec",
+    }),
+  });
+}
+
+export async function resolveQRCode(
+  url: string,
+  address: string,
+  amount: string,
+  label?: string,
+) {
+  return await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      address,
+      amount,
+      label,
+    }),
+  });
+}
