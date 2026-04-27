@@ -95,7 +95,7 @@ export const ambassadorProjects = [
   {
     name: "Zcash India",
     flag: "🇮🇳",
-    twitter: "https://x.com/ZcashIndia",
+    twitter: "https://x.com/ZcashIND",
     description: "Zcash community and advocacy in India",
     projectSite: "https://zcashindia.org",
     image:
