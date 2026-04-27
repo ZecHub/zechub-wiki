@@ -35,3 +35,20 @@ export function loadZcashPaymentUriWidget(src: string): Promise<void> {
 
   return widgetPromise;
 }
+
+async function loadWithRetry(loader: any, retries = 2, delay = 1000) {
+  let lastError;
+
+  for (let i = 0; (i = retries); i++) {
+    try {
+      return await loader();
+    } catch (err) {
+      lastError = err;
+      if (i < retries) {
+        await new Promise((res) => setTimeout(res, delay));
+      }
+    }
+  }
+
+  throw lastError;
+}
