@@ -36,6 +36,7 @@ export default function DefaultSelect<T extends string>({
           focus:outline-none focus:ring-1 focus:ring-slate-400 dark:focus:ring-slate-600
           hover:border-slate-400 dark:hover:border-slate-600
           appearance-none cursor-pointer
+          ${className}
         `}
       >
         {options.map((opt:any) => (
