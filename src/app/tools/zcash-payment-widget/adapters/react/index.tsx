@@ -20,18 +20,21 @@ export function ZcashPaymentURI(props: Props) {
     let mounted = true;
 
     async function init() {
-  
+      logZcashPaymentWidgetEvent('zcash_payment_widget_load_start');
+      
       try {
         setStatue("loading");
-
+        
+        
+        
         await loadZcashPaymentWidget(scriptSrc);
- 
-
+        logZcashPaymentWidgetEvent('zcash_payment_widget_loaded');
+        
         if (!mounted || !window.renderZcashButton) return;
-
+        
         // Cleanup existing instance
         instanceRef.current?.destroy();
-
+        
         instanceRef.current = window.renderZcashButton(
           `#${containerRef.current!.id}`,
           {
@@ -39,11 +42,13 @@ export function ZcashPaymentURI(props: Props) {
             target: `#${containerRef.current!.id}`,
           },
         );
-
+        
         setStatue("ready");
-      } catch (err: any) {
+      } catch (err:any) {
         console.error("[Zcash Payment Widget] Loading failed:", err);
-
+        
+        logZcashPaymentWidgetEvent('zcash_payment_widget_load_failed', {error:err.message});
+        
         if (mounted) setStatue("error");
       }
     }
