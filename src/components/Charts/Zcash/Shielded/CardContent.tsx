@@ -18,6 +18,7 @@ import ShieldedStats from "./ShieldedStatsPro";
 import { HalvingMeter } from "@/components/HalvingMeter/halving-meter";
 import BlockFeesChart from "../BlockFeesChart";
 import NetworkSolpsChart from "../NetworkSolpsChart";
+import MiningPoolsDominanceChart from "../MiningPoolsDominanceChart";
 import { startTransition } from "react";
 
 type ZcashChartProps = {
@@ -74,6 +75,7 @@ const CardContentShielded = (props: ZcashChartProps) => {
     { value: "shielded stats", label: tabT?.shieldedStats || "Shielded Stats" },
     { value: "block fees", label: tabT?.blockFees || "Block Fees" },
     { value: "network solps", label: tabT?.networkSolps || "Network Solps" },
+    { value: "mining pools", label: tabT?.miningPools || "Mining Pools" },
     { value: "halving meter", label: tabT?.halvingMeter || "Halving Meter" },
   ];
 
@@ -147,6 +149,10 @@ const CardContentShielded = (props: ZcashChartProps) => {
 
             <TabsContent value="network solps" activeTab={currentTab}>
               <NetworkSolpsChart chartRef={props.divChartRef} />
+            </TabsContent>
+
+            <TabsContent value="mining pools" activeTab={currentTab}>
+              <MiningPoolsDominanceChart chartRef={props.divChartRef} />
             </TabsContent>
 
             <TabsContent value="halving meter" activeTab={currentTab}>
