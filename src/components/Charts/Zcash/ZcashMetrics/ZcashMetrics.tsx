@@ -34,16 +34,11 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
       setLoading(true);
 
       try {
-        const [chainData, circulationInfo, shieldedTxCount] = await Promise.all(
-          [
-            getBlockchainData(DATA_URL.blockchairUrl, controller.signal),
-            getZcashCirculationCount(
-              DATA_URL.blockchainInfoUrl,
-              controller.signal
-            ),
-            getShieldedTxCount(DATA_URL.shieldedTxCountUrl, controller.signal),
-          ]
-        );
+        const [chainData, circulationInfo, shieldedTxCount] = await Promise.all([
+          getBlockchainData(DATA_URL.blockchairUrl, controller.signal),
+          getZcashCirculationCount(DATA_URL.blockchainInfoUrl, controller.signal),
+          getShieldedTxCount(DATA_URL.shieldedTxCountUrl, controller.signal),
+        ]);
 
         if (chainData) {
           setBlockchainInfo(chainData);

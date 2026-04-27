@@ -416,7 +416,15 @@
           "shieldedStats": "Shielded Stats",
           "blockFees": "Block Fees",
           "networkSolps": "Network Solps",
+          "miningPools": "Mining Pools",
           "halvingMeter": "Halving Meter"
+        },
+        "miningPoolsChart": {
+          "title": "Mining Pool Dominance",
+          "loadError": "Failed to load Mining Pools",
+          "rangeLabel": "Range",
+          "rangeAriaLabel": "Select mining range",
+          "noData": "No mining pool data available."
         },
         "difficultyChart": {
           "title": "Mining Difficulty Over Time",
