@@ -25,8 +25,6 @@ export function ZcashPaymentURI(props: Props) {
       try {
         setStatue("loading");
         
-        
-        
         await loadZcashPaymentWidget(scriptSrc);
         logZcashPaymentWidgetEvent('zcash_payment_widget_loaded');
         
@@ -67,7 +65,7 @@ export function ZcashPaymentURI(props: Props) {
         <p>Zcash payment widget not available.</p>
         <button
           onClick={() => {
-            // Trigger retryu by force re-render
+            // Trigger retry to force re-render
             setStatue("loading");
           }}
         >
@@ -80,7 +78,7 @@ export function ZcashPaymentURI(props: Props) {
   return (
     <>
       {status === "loading" && <p>Loading Zcash payment widget</p>}
-      <div id={`zpw-${id}`} ref={containerRef} />;
+      <div id={`zpw-${id}`} ref={containerRef} />
     </>
   );
 }
