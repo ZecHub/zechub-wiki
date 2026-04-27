@@ -13,6 +13,7 @@ interface Props {
     theme: string;
     target: string;
     disabled: boolean;
+    zecUsdRate:number;
   };
 }
 
@@ -57,6 +58,7 @@ function PaymentRequestWidgetPreview(props: Props) {
         theme: cfg.theme,
         apiBase: cfg.apiBase,
         disabled: cfg.disabled,
+        zecUsdRate: cfg.zecUsdRate,
         target,
       });
     }

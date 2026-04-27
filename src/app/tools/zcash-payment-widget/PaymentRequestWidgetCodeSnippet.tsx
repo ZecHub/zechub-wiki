@@ -9,6 +9,7 @@ interface Config {
   theme: string;
   target: string;
   disabled: boolean;
+  zecUsdRate: number
 }
 
 interface Props {
@@ -26,6 +27,7 @@ export default function PaymentRequestWidgetCodeSnippet({ config }: Props) {
   src=${API_BASE_URL_EMBED_CODE} 
   data-address="${config.address}"
   data-amount="${config.amount}"
+  data-zec-usd-rate="${config.zecUsdRate}"
   data-label="${config.label}"
   data-theme="${config.theme}"
   data-target="${config.target}"
@@ -141,6 +143,10 @@ export default function PaymentRequestWidgetCodeSnippet({ config }: Props) {
               {"  "}
               <span className="text-zcash-gold">data-amount</span>=
               <span className="text-green-400">"{config.amount}"</span>
+              {"\n"}
+              {"  "}
+              <span className="text-zcash-gold">data-zec-usd-rate</span>=
+              <span className="text-green-400">"{config.zecUsdRate}"</span>
               {"\n"}
               {"  "}
               <span className="text-zcash-gold">data-label</span>=

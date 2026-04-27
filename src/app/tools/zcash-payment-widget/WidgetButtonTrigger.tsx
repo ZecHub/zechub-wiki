@@ -33,6 +33,7 @@ function WidgetButtonTrigger({ config }: Props) {
             config={{
               address: config.address,
               amount: Number(config.amount),
+              zecUsdRate: config.zecUsdRate,
               label: config.label,
               apiBase: config.apiBase,
               theme: config.theme,
@@ -56,7 +57,7 @@ function WidgetButtonTrigger({ config }: Props) {
                 active:scale-[0.98]`}
               onClick={() => setOpen(true)}
             >
-             Preview Widget Snippet
+              Preview Widget Snippet
             </button>
 
             <Modal isOpen={open} onClose={() => setOpen(false)}>
