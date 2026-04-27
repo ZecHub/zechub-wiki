@@ -406,8 +406,6 @@
           "blocks": "Bloques",
           "transactions24h": "Transacciones en 24 h",
           "shieldedTx24h": "TX blindadas (24 h)",
-          "foundryShare24h": "Cuota de Foundry (24 h)",
-          "foundryHashrate24h": "Hashrate estimado de Foundry (24 h)",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc"
         },

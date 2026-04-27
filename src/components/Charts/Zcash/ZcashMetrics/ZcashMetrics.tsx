@@ -2,17 +2,10 @@ import { useInMobile } from "@/hooks/useInMobile";
 import { DATA_URL } from "@/lib/chart/data-url";
 import {
   getBlockchainData,
-  getMiningHistory,
-  getMiningPools,
   getShieldedTxCount,
   getZcashCirculationCount,
 } from "@/lib/chart/helpers";
-import {
-  BlockchainInfo,
-  MiningHistoryResponse,
-  MiningPoolsResponse,
-  ShieldedTxCount,
-} from "@/lib/chart/types";
+import { BlockchainInfo, ShieldedTxCount } from "@/lib/chart/types";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { ErrorBoundary } from "../../../ErrorBoundary/ErrorBoundary";
@@ -33,10 +26,6 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
   const [shieldedTxCount, setShieldedTxCount] = useState<
     ShieldedTxCount[] | null
   >([]);
-  const [miningHistory, setMiningHistory] = useState<MiningHistoryResponse | null>(
-    null
-  );
-  const [miningPools, setMiningPools] = useState<MiningPoolsResponse | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -45,18 +34,10 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
       setLoading(true);
 
       try {
-        const [
-          chainData,
-          circulationInfo,
-          shieldedTxCount,
-          miningHistoryData,
-          miningPoolsData,
-        ] = await Promise.all([
+        const [chainData, circulationInfo, shieldedTxCount] = await Promise.all([
           getBlockchainData(DATA_URL.blockchairUrl, controller.signal),
           getZcashCirculationCount(DATA_URL.blockchainInfoUrl, controller.signal),
           getShieldedTxCount(DATA_URL.shieldedTxCountUrl, controller.signal),
-          getMiningHistory(DATA_URL.miningHistoryUrl, "24h", controller.signal),
-          getMiningPools(DATA_URL.miningPoolsUrl, "24h", controller.signal),
         ]);
 
         if (chainData) {
@@ -69,14 +50,6 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
 
         if (shieldedTxCount) {
           setShieldedTxCount(shieldedTxCount);
-        }
-
-        if (miningHistoryData) {
-          setMiningHistory(miningHistoryData);
-        }
-
-        if (miningPoolsData) {
-          setMiningPools(miningPoolsData);
         }
 
         setLoading(false);
@@ -92,17 +65,6 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
       controller.abort();
     };
   }, []);
-
-  const latestMiningBucket = miningHistory?.buckets?.at(-1);
-  const foundryPool = miningPools?.pools?.find((pool) => {
-    const name = pool.pool_name?.toLowerCase() ?? "";
-    return name.includes("foundry");
-  });
-  const foundrySharePct = foundryPool?.share_percentage ?? null;
-  const foundryEstimatedHashrateGsols =
-    latestMiningBucket && typeof foundrySharePct === "number"
-      ? latestMiningBucket.avg_network_hashrate_gsols * (foundrySharePct / 100)
-      : null;
 
   const metricsObj = [
     {
@@ -150,20 +112,6 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
             .at(-1)!
             .orchard.toLocaleString()}`
         : notAvailable,
-    },
-    {
-      label: metricT?.foundryShare24h || "Foundry Share (24h)",
-      value:
-        typeof foundrySharePct === "number"
-          ? `${foundrySharePct.toFixed(2)}%`
-          : notAvailable,
-    },
-    {
-      label: metricT?.foundryHashrate24h || "Foundry Est. Hashrate (24h)",
-      value:
-        typeof foundryEstimatedHashrateGsols === "number"
-          ? `${foundryEstimatedHashrateGsols.toFixed(2)} GSol/s`
-          : notAvailable,
     },
   ];
 
