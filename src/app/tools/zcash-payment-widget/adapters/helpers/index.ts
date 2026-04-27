@@ -52,3 +52,14 @@ async function loadWithRetry(loader: any, retries = 2, delay = 1000) {
 
   throw lastError;
 }
+
+export async function loadZcashPaymentWidget(src: string) {
+  return loadWithRetry(() =>
+    Promise.race([
+      loadZcashPaymentUriWidget(src),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Widget loading timeout")), 8000),
+      ),
+    ]),
+  );
+}
