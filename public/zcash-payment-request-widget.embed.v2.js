@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /*! zcash-payment-request-widget.embed.v2.js | (c) PayWithZcash Widget | Dual-mode: auto + programmatic */
-(function () {
+(async function () {
   // ---------- Configuration ----------
   const DEFAULT_API_BASE =
     typeof window !== "undefined" &&
@@ -76,11 +76,29 @@
     ext: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>`,
   };
 
+  async function getZecUsdRate(zecUsdRate, apiBase) {
+    const url = `${apiBase}/payment-request-uri/zcash-price-feed`;
+
+    if (zecUsdRate != null) return zecUsdRate;
+
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      const rate = data.rate ?? data.price ?? data?.data?.rate ?? null;
+
+      return rate;
+    } catch (err) {
+      console.error("Failed to fetch rate", err);
+      return null;
+    }
+  }
+
   // ------------------------------
   //   MAIN RENDER FUNCTION
   // ------------------------------
 
-  function renderZcashButton(selector, opts) {
+  async function renderZcashButton(selector, opts) {
     const container = document.querySelector(selector);
 
     if (!container) {
@@ -97,6 +115,16 @@
     const memo = opts.memo || "";
     const apiBase = opts.apiBase || DEFAULT_API_BASE;
     const isDisabled = opts.disabled === true || opts.disabled === "true";
+
+    const zecUsdRate =
+      opts.zecUsdRate != null
+        ? opts.zecUsdRate
+        : await getZecUsdRate(opts.zecUsdRate, apiBase);
+
+    const usdValue =
+      zecUsdRate && !isNaN(zecUsdRate)
+        ? (amount * Number(zecUsdRate)).toFixed(2)
+        : null;
 
     if (!address || !amount) {
       console.error(
@@ -148,7 +176,13 @@
 
           <div class="zwg-amt">
             <p class="zwg-amt-lbl">Amount Due</p>
-            <p class="zwg-amt-val"><b>${Number(amount).toFixed(3)}</b><small>ZEC</small></p>
+            <p class="zwg-amt-val"><b>${Number(amount).toFixed(3)}</b><small>ZEC</small></p>${
+              usdValue
+                ? `<p style="margin-top:4px;font-size:12px;font-style:italic;color:var(--zwg-muted)">
+         ≈ $${usdValue} USD
+       </p>`
+                : ""
+            }
           </div>
 
           <div class="zwg-fld">
@@ -289,6 +323,7 @@
     const inst = renderZcashButton(target, {
       address: script.dataset.address,
       amount: script.dataset.amount,
+      zecUsdRate: zecUsdRate || script.dataset.zecUsdRate,
       label: script.dataset.label,
       theme: script.dataset.theme,
       memo: script.dataset.memo,
