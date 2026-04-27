@@ -23,6 +23,9 @@ export const DATA_URL = {
   blockFeesUrl: "/data/zcash/blockFeesZEC.json",
   networkSolpsUrl: "/data/zcash/networksolps.json",
   daoProps: "/data/juno/zechub.json",
+  miningHistoryUrl: "/api/mining-history",
+  miningPoolsUrl: "/api/mining-pools",
+  miningPoolsDominanceUrl: "/api/mining-pools-dominance",
 } as const;
 
 export const DATE_URL = {

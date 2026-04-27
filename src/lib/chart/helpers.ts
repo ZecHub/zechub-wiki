@@ -13,6 +13,9 @@ import {
   SupplyData,
   BlockFees,
   NetworkSolps,
+  MiningHistoryResponse,
+  MiningPoolDominanceResponse,
+  MiningPoolsResponse,
 } from "./types";
 
 export async function getBlockchainData(
@@ -122,6 +125,7 @@ export function getCommitUrlForTab(tabLabel: string): string {
     rewards: DATE_URL.namadaRewardUrl,
     transparent: DATE_URL.transparentSupplyUrl,
     "shielded stats": DATE_URL.zcashShieldedStatsUrl,
+    "mining pools": "",
     "Halving Meter": "",
     "total supply": DATE_URL.totalSupplyUrl,
   };
@@ -139,6 +143,54 @@ export async function getShieldedTxCount(
     });
     if (!res.ok) return null;
     return (await res.json()) as ShieldedTxCount[];
+  } catch {
+    return null;
+  }
+}
+
+export async function getMiningHistory(
+  url: string,
+  range: string,
+  signal?: AbortSignal,
+): Promise<MiningHistoryResponse | null> {
+  try {
+    const res = await fetch(`${url}?range=${encodeURIComponent(range)}`, {
+      signal,
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as MiningHistoryResponse;
+  } catch {
+    return null;
+  }
+}
+
+export async function getMiningPools(
+  url: string,
+  interval: string,
+  signal?: AbortSignal,
+): Promise<MiningPoolsResponse | null> {
+  try {
+    const res = await fetch(`${url}?interval=${encodeURIComponent(interval)}`, {
+      signal,
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as MiningPoolsResponse;
+  } catch {
+    return null;
+  }
+}
+
+export async function getMiningPoolsDominance(
+  url: string,
+  range: string,
+  signal?: AbortSignal,
+): Promise<MiningPoolDominanceResponse | null> {
+  try {
+    const res = await fetch(`${url}?range=${encodeURIComponent(range)}`, {
+      signal,
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as MiningPoolDominanceResponse;
   } catch {
     return null;
   }

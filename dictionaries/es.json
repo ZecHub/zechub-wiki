@@ -430,7 +430,15 @@
           "shieldedStats": "Estadisticas blindadas",
           "blockFees": "Comisiones por bloque",
           "networkSolps": "Solps de la red",
+          "miningPools": "Pools de mineria",
           "halvingMeter": "Medidor de halving"
+        },
+        "miningPoolsChart": {
+          "title": "Dominancia de pools de mineria",
+          "loadError": "No se pudieron cargar los pools de mineria",
+          "rangeLabel": "Rango",
+          "rangeAriaLabel": "Seleccionar rango de mineria",
+          "noData": "No hay datos de pools de mineria disponibles."
         },
         "difficultyChart": {
           "title": "Dificultad de mineria a lo largo del tiempo",
