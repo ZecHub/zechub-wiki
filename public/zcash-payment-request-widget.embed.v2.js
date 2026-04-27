@@ -286,9 +286,11 @@
     script.dataset.address &&
     script.dataset.amount
   ) {
+    const target = script.dataset.target;
+
     const inst = renderZcashButton(target, {
-      address,
-      amount,
+      address: script.dataset.address,
+      amount: script.dataset.amount,
       label: script.dataset.label,
       theme: script.dataset.theme,
       memo: script.dataset.memo,
@@ -297,25 +299,5 @@
     });
 
     window.__zcash_paymet_uri_widget_autoinstance = inst;
-
-    // const target = script.dataset.target;
-    // console.log({ target });
-
-    // if (target) {
-    //   const address = script.dataset.address;
-    //   const amount = script.dataset.amount;
-
-    //   if (!address || !amount) {
-    //     console.error(
-    //       "[Zcash-Payment-URI-Widget] Auto-mount missing address or amount.",
-    //     );
-    //     return;
-    //   }
   }
-  //else {
-  //   console.error(
-  //     "[Zcash-Payment-URI-Widget] Auto-mount missing target element/div whose value is attached to the `data-target` attribute on the script tag to amount on.",
-  //   );
-  //   return;
-  // }
 })();
