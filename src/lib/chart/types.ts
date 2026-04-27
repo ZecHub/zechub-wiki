@@ -14,6 +14,39 @@ export type ShieldedTxCount = {
   orchard: number;
   timestamp: string;
 };
+export type MiningHistoryBucket = {
+  avg_difficulty: number;
+  avg_network_hashrate_gsols: number;
+  avg_network_hashrate_sols: number;
+  block_count: number;
+  max_height: number;
+  min_height: number;
+  timestamp: number;
+};
+export type MiningHistoryResponse = {
+  buckets: MiningHistoryBucket[];
+  range: string;
+};
+export type MiningPool = {
+  block_count: number;
+  pool_name: string | null;
+  share_percentage: number;
+};
+export type MiningPoolsResponse = {
+  interval: string;
+  pools: MiningPool[];
+  total_blocks: number;
+};
+export type MiningPoolDominanceBucket = {
+  timestamp: number;
+  total_blocks: number;
+  pools: MiningPool[];
+};
+export type MiningPoolDominanceResponse = {
+  buckets: MiningPoolDominanceBucket[];
+  range: string;
+  slug: string | null;
+};
 export type NodeCountData = { Date: string; nodecount: string };
 
 /**
