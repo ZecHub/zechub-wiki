@@ -1,5 +1,6 @@
 export const config = {
   ZCASH_PAYMENT_WIDGET_TARGET: "#zcash-payment-widget-target",
+  ZCASH_PAYMENT_WIDGET_EVENT_ENDPOINT: "/api/payment-request-uri",
   env: {
     ACCESS_CONTROL_ALLOW_ORIGIN: String(
       process.env.ACCESS_CONTROL_ALLOW_ORIGIN,
