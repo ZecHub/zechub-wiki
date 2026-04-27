@@ -6022,7 +6022,7 @@
             "yes": "3",
             "abstain": "4"
           },
-          "status": "open",
+          "status": "rejected",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
           "threshold": {
             "threshold_quorum": {
