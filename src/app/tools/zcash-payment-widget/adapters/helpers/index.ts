@@ -1,3 +1,5 @@
+import { config } from "../../config";
+
 let widgetPromise: Promise<void> | null = null;
 
 export function loadZcashPaymentUriWidget(src: string): Promise<void> {
@@ -62,4 +64,22 @@ export async function loadZcashPaymentWidget(src: string) {
       ),
     ]),
   );
+}
+
+
+/**
+ * A minimal telemetry hook
+ * @param event 
+ * @param data 
+ */
+export function logZcashPaymentWidgetEvent(event: string, data?: any) {
+  try {
+    console.log(`[ZPW] ${event}`, data);
+    fetch(config.ZCASH_PAYMENT_WIDGET_EVENT_ENDPOINT, {
+      method: "POST",
+      body: JSON.stringify({ event, data }),
+    });
+  } catch (err) {
+    console.error(`[ZPW Event log]: failed!`, err);
+  }
 }
