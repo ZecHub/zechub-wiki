@@ -392,6 +392,8 @@
           "blocks": "Blocks",
           "transactions24h": "24h Transactions",
           "shieldedTx24h": "Shielded TX (24h)",
+          "foundryShare24h": "Foundry Share (24h)",
+          "foundryHashrate24h": "Foundry Est. Hashrate (24h)",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc"
         },
@@ -416,7 +418,15 @@
           "shieldedStats": "Shielded Stats",
           "blockFees": "Block Fees",
           "networkSolps": "Network Solps",
+          "miningPools": "Mining Pools",
           "halvingMeter": "Halving Meter"
+        },
+        "miningPoolsChart": {
+          "title": "Mining Pool Dominance",
+          "loadError": "Failed to load Mining Pools",
+          "rangeLabel": "Range",
+          "rangeAriaLabel": "Select mining range",
+          "noData": "No mining pool data available."
         },
         "difficultyChart": {
           "title": "Mining Difficulty Over Time",

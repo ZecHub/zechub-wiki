@@ -406,6 +406,8 @@
           "blocks": "Bloques",
           "transactions24h": "Transacciones en 24 h",
           "shieldedTx24h": "TX blindadas (24 h)",
+          "foundryShare24h": "Cuota de Foundry (24 h)",
+          "foundryHashrate24h": "Hashrate estimado de Foundry (24 h)",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc"
         },
@@ -430,7 +432,15 @@
           "shieldedStats": "Estadisticas blindadas",
           "blockFees": "Comisiones por bloque",
           "networkSolps": "Solps de la red",
+          "miningPools": "Pools de mineria",
           "halvingMeter": "Medidor de halving"
+        },
+        "miningPoolsChart": {
+          "title": "Dominancia de pools de mineria",
+          "loadError": "No se pudieron cargar los pools de mineria",
+          "rangeLabel": "Rango",
+          "rangeAriaLabel": "Seleccionar rango de mineria",
+          "noData": "No hay datos de pools de mineria disponibles."
         },
         "difficultyChart": {
           "title": "Dificultad de mineria a lo largo del tiempo",
