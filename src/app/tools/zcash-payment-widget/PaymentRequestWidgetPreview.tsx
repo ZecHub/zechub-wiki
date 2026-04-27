@@ -20,46 +20,56 @@ function PaymentRequestWidgetPreview(props: Props) {
   const { config: cfg } = props;
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const scriptRef = useRef<HTMLScriptElement | null>(null);
-  const target = cfg.target.replace("#", "");
+  const instanceRef = useRef<any>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // clear previous mount;
-    containerRef.current.innerHTML = "";
+    const target = `#${containerRef.current!.id}`;
+    let mounted = true;
 
-    // remove previous script
-    if (scriptRef.current) {
-      scriptRef.current.remove();
+    async function init() {
+      // Load script if not present
+      if (!window.renderZcashButton) {
+        await new Promise<void>((resolve, reject) => {
+          // create new script
+          const script = document.createElement("script");
+          script.src = config.env.NEXT_PUBLIC_API_BASE_URL_EMBED_CODE;
+          script.async = true;
+
+          script.onload = () => resolve();
+          script.onerror = reject;
+
+          document.body.appendChild(script);
+        });
+      }
+
+      if (!mounted || !window.renderZcashButton) return;
+
+      // Destroy previouse instance
+      instanceRef.current?.destroy();
+
+      // Mount new instance
+      instanceRef.current = window.renderZcashButton(target, {
+        address: cfg.address,
+        amount: cfg.amount,
+        label: cfg.label,
+        theme: cfg.theme,
+        apiBase: cfg.apiBase,
+        disabled: cfg.disabled,
+        target,
+      });
     }
 
-    // create new script
-    const script = document.createElement("script");
-    script.src = config.env.NEXT_PUBLIC_API_BASE_URL_EMBED_CODE;
-    script.async = true;
+    init();
 
-    // required deterministic widget mount container
-    script.setAttribute("data-target", cfg.target);
-
-    script.setAttribute("data-address", cfg.address);
-    script.setAttribute("data-amount", cfg.amount.toString());
-    script.setAttribute("data-label", cfg.label!);
-    script.setAttribute("data-theme", cfg.theme);
-    script.setAttribute("data-api-base", cfg.apiBase);
-    script.setAttribute("data-disabled", String(cfg.disabled));
-
-    scriptRef.current = script;
-
-    containerRef.current.appendChild(script);
+    return () => {
+      mounted = false;
+      instanceRef.current?.destroy();
+    };
   }, [cfg]);
 
-  return (
-    <>
-      {/* required container for the embed script */}
-      <div id={target} ref={containerRef}></div>
-    </>
-  );
+  return <div id={cfg.target.replace("#", "")} ref={containerRef}></div>;
 }
 
 export default memo(PaymentRequestWidgetPreview);
