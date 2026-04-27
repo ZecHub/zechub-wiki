@@ -65,7 +65,7 @@
     {
       "title": "Zcash Scalability with Sean Bowe - ZconVI #zcash",
       "video_id": "-m3JCgi3kiU",
-      "views": 1387
+      "views": 1388
     },
     {
       "title": "Zcash Protocol Hangout  Halo: Jan 14, 2021",
@@ -185,7 +185,7 @@
     {
       "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
       "video_id": "eero6i2WTxo",
-      "views": 775
+      "views": 776
     },
     {
       "title": "Auditing Cryptography: #Zcon2Lite",
@@ -210,7 +210,7 @@
     {
       "title": "Proof of Stake Panel with Shielded Labs, Ethereum Foundation, ECC, Penumbra & Namada - ZconVI #zcash",
       "video_id": "jAcvrKa5hiw",
-      "views": 709
+      "views": 710
     },
     {
       "title": "Ethereum's Governance Model",
@@ -295,7 +295,7 @@
     {
       "title": "The Future of Zcash Panel - Daniel Benarroch, Nate Wilcox, Zaki Manian, Matthew Green at Zcon3",
       "video_id": "bytv6_dmlpI",
-      "views": 556
+      "views": 557
     },
     {
       "title": "Empirical Analysis of the Zcash Blockchain at Zcon0 (2018) by Mary Maller",
@@ -415,7 +415,7 @@
     {
       "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
       "video_id": "bRdNvepJVXM",
-      "views": 413
+      "views": 414
     },
     {
       "title": "Cultivating Sapling at Zcon0 (2018) by Sean Bowe",
@@ -425,7 +425,7 @@
     {
       "title": "A Forest of Levers: The Performance of Orchard - Jack Grigg (Str4d) at Zcon3",
       "video_id": "kkQWubFae7Y",
-      "views": 401
+      "views": 402
     },
     {
       "title": "ZEXE: Enabling Decentralized Private Computation - Pratyush Mishra",
@@ -545,7 +545,7 @@
     {
       "title": "Zconnaissance - Sketching a Shielded Assets Future by Vivek Arte: Zcon4",
       "video_id": "VFQHJGqO_bY",
-      "views": 338
+      "views": 339
     },
     {
       "title": "Technical Roadmap Panel w/ engineers from ZF, ECC, QEDIT, Shielded Labs & Zingo Labs - ZconVI #zcash",
@@ -703,13 +703,13 @@
       "views": 275
     },
     {
-      "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
-      "video_id": "hdd5X2z7O3o",
-      "views": 274
-    },
-    {
       "title": "Zcash Arborist Call 04-02-2026",
       "video_id": "-4GDsezfilc",
+      "views": 275
+    },
+    {
+      "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
+      "video_id": "hdd5X2z7O3o",
       "views": 274
     },
     {
@@ -785,7 +785,7 @@
     {
       "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
       "video_id": "DU7wIy3Ywm4",
-      "views": 247
+      "views": 248
     },
     {
       "title": "Secure Distributed Storage by Anca Nitulescu: Zcon4",
@@ -1200,7 +1200,7 @@
     {
       "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
       "video_id": "fgkFrxiB14g",
-      "views": 155
+      "views": 156
     },
     {
       "title": "The Future of ZSAs with Constance Beguier - ZconVI #zcash",
@@ -1528,6 +1528,11 @@
       "views": 113
     },
     {
+      "title": "ZF Community Call: FROST Server Demo",
+      "video_id": "Z4N2TDFxdFA",
+      "views": 112
+    },
+    {
       "title": "ZF Community Call -  Sept 4, 2020, MGRC Candidates Part 2",
       "video_id": "JxyTKcGXGmg",
       "views": 111
@@ -1540,11 +1545,6 @@
     {
       "title": "Zcash Arborist Call 11/16/23",
       "video_id": "rxr4Gvna680",
-      "views": 111
-    },
-    {
-      "title": "ZF Community Call: FROST Server Demo",
-      "video_id": "Z4N2TDFxdFA",
       "views": 111
     },
     {
