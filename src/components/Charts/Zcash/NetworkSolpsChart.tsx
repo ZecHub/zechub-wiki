@@ -139,7 +139,7 @@ export default function NetworkSolpsChart(props: NetworkSolpsChartProps) {
                 <div className="flex items-center gap-2">
                   <span
                     className="w-3 h-3 inline-block rounded-sm"
-                    style={{ background: "#3b82f6" }}
+                    style={{ backgroundColor: "hsl(var(--chart-17))" }}
                   />
                   <p>Network Solps</p>
                 </div>
