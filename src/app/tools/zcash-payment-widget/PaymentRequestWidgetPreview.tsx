@@ -51,7 +51,7 @@ function PaymentRequestWidgetPreview(props: Props) {
       instanceRef.current?.destroy();
 
       // Mount new instance
-      instanceRef.current = window.renderZcashButton(target, {
+      instanceRef.current = await window.renderZcashButton(target, {
         address: cfg.address,
         amount: cfg.amount,
         label: cfg.label,
