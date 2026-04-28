@@ -5,7 +5,6 @@ import { useLanguage } from "@/context/LanguageContext";
 import { LuExternalLink, LuTwitter } from "react-icons/lu";
 
 // ── Banner ─────────────────────────────────────────────────────────────────
-// Fixed 16:7 aspect ratio — covers regardless of source image dimensions.
 function AmbassadorBanner({
   src,
   alt,
@@ -17,7 +16,7 @@ function AmbassadorBanner({
 }) {
   return (
     <div
-      className="relative w-full overflow-hidden rounded-t-lg bg-muted"
+      className="relative w-full overflow-hidden rounded-t-2xl bg-muted group-hover:scale-[1.02] transition-transform duration-300"
       style={{ aspectRatio: "16 / 7" }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -41,7 +40,7 @@ function AmbassadorBanner({
   );
 }
 
-// ── Card ───────────────────────────────────────────────────────────────────
+// ── Card (now with modern pop-out effect) ───────────────────────────────────
 function AmbassadorCard({
   project,
   followLabel,
@@ -52,7 +51,7 @@ function AmbassadorCard({
   projectSiteLabel: string;
 }) {
   return (
-    <div className="flex flex-col rounded-lg border border-border bg-card shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+    <div className="group flex flex-col bg-white dark:bg-slate-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
       <AmbassadorBanner
         src={project.image}
         alt={`${project.name} banner`}
