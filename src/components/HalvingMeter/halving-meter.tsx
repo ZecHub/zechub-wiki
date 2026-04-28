@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import type { RefObject } from 'react';
 
 const api = ['https://api.blockchair.com/zcash/stats'];
 
@@ -22,7 +23,11 @@ function fetchData(url: any) {
   });
 }
 
-export const HalvingMeter = () => {
+type HalvingMeterProps = {
+  chartRef?: RefObject<HTMLDivElement | null>;
+};
+
+export const HalvingMeter = (props: HalvingMeterProps) => {
   const [halvingDate, setHalvingDate] = useState(0);
   const [currentBlock, setCurrentBlock] = useState(0);
   const [blocksToHalving, setBlocksToHalving] = useState(0);
@@ -124,6 +129,7 @@ export const HalvingMeter = () => {
 
   return (
     <div
+      ref={props.chartRef}
       className='flex flex-col my-8 space-y-4 p-4'
       id='halving-meter'
     >
@@ -194,20 +200,7 @@ export const HalvingMeter = () => {
           >
             https://zips.z.cash/zip-0234
           </a>
-          <br />
-          <a 
-            href='https://shieldedlabs.net/nsm/' 
-            target='_blank' 
-            rel='noopener noreferrer'
-            className='text-blue-600 hover:text-blue-800 underline'
-          >
-            https://shieldedlabs.net/nsm/
-          </a>
         </div>
-      </div>
-
-      <div className='text-sm dark:text-gray-300 text-gray-600 mt-2'>
-        <p>Progress from Block {previousHalvingBlock.toLocaleString()} (Previous Halving - 2024) to Block {nextHalvingBlock.toLocaleString()} (Next Halving - 2028)</p>
       </div>
     </div>
   );

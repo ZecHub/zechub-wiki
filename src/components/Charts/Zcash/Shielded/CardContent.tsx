@@ -156,7 +156,7 @@ const CardContentShielded = (props: ZcashChartProps) => {
             </TabsContent>
 
             <TabsContent value="halving meter" activeTab={currentTab}>
-              <HalvingMeter />
+              <HalvingMeter chartRef={props.divChartRef} />
             </TabsContent>
 
             <ChartFooter

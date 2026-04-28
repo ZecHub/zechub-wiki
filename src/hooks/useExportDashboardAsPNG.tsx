@@ -8,91 +8,76 @@ export const PoolsType = {
   ord: "orchard",
 };
 
-/// This hook is use to handle the export of the dashboard chart
+/// This hook is used to handle the export of the dashboard chart
 const useExportDashboardAsPNG = () => {
   const divChartRef = useRef<HTMLDivElement>(null);
 
   const handleSaveToPng = async (label: string) => {
+    if (!divChartRef.current) {
+      console.warn("Export failed: No chart container ref found");
+      alert("Could not find chart to export. Try switching tabs and try again.");
+      return;
+    }
+
+    // Small delay ensures Recharts SVG + custom components (Privacy Set, Halving Meter, etc.) are fully painted
+    await new Promise((resolve) => setTimeout(resolve, 350));
+
+    const isDark = document.documentElement.classList.contains("dark");
+
     try {
-      const canvas = await html2canvas(divChartRef.current!, {
-        scale: 3, // renders at 3x resolution
+      console.log(`Exporting ${label} chart...`);
+
+      const canvas = await html2canvas(divChartRef.current, {
+        scale: 3,                    // High-resolution PNG
         useCORS: true,
+        allowTaint: true,
+        backgroundColor: isDark ? "#0f172a" : "#ffffff",
+        width: divChartRef.current.offsetWidth,
+        height: divChartRef.current.offsetHeight,
+        logging: false,
+
+        // 🔥 STRONG FIX for Tailwind v4 lab()/oklab() colors
+        onclone: (clonedDoc) => {
+          // 1. Inject global style override with !important to neutralize ALL modern color functions
+          const style = clonedDoc.createElement("style");
+          style.textContent = `
+            * {
+              color: ${isDark ? "#e2e8f0" : "#111827"} !important;
+              background-color: ${isDark ? "#0f172a" : "#ffffff"} !important;
+              border-color: ${isDark ? "#334155" : "#e5e7eb"} !important;
+            }
+            .recharts-text,
+            .recharts-label,
+            text,
+            .recharts-cartesian-axis-tick-value {
+              fill: ${isDark ? "#e2e8f0" : "#111827"} !important;
+            }
+          `;
+          clonedDoc.head.appendChild(style);
+
+          // 2. Additional cleanup for any remaining inline lab/oklab styles
+          const elements = clonedDoc.querySelectorAll("*");
+          elements.forEach((el) => {
+            const element = el as HTMLElement;
+            if (element.style.color?.includes("lab") || element.style.color?.includes("oklab")) {
+              element.style.color = isDark ? "#e2e8f0" : "#111827";
+            }
+            if (element.style.backgroundColor?.includes("lab") || element.style.backgroundColor?.includes("oklab")) {
+              element.style.backgroundColor = isDark ? "#0f172a" : "#ffffff";
+            }
+          });
+        },
       });
 
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
-      link.download = `${label}-chart.png`;
+      link.download = `${label.replace(/\s+/g, "-")}-zechub-chart.png`;
       link.click();
 
+      console.log(`✅ ${label} chart exported successfully`);
     } catch (err) {
-      alert("Error exporting chart!");
-      console.error("Error saving chart: ", err);
-    }
-  };
-
-  return { divChartRef, handleSaveToPng };
-};
-
-const useExportDashboardAsPNGBackup = () => {
-  const divChartRef = useRef<HTMLDivElement>(null);
-
-  const handleSaveToPng = async (
-    poolType: string,
-    poolData:
-      | Record<string, { timestamp: string; supply: number } | null>
-      | string,
-    toolType: string
-  ) => {
-    const poolQty = document.createTextNode("");
-
-    if (typeof poolData != "string") {
-      if (poolType == PoolsType.sprout) {
-        poolQty.textContent = `${poolData[
-          "sproutSupply"
-        ]?.supply.toLocaleString()} ZEC in Sprout Pool`;
-      } else if (poolType == PoolsType.ord) {
-        poolQty.textContent = `${poolData[
-          "orchardSupply"
-        ]?.supply.toLocaleString()} ZEC in Orchard Pool`;
-      } else if (poolType == PoolsType.sap) {
-        poolQty.textContent = `${poolData[
-          "saplingSupply"
-        ]?.supply.toLocaleString()} ZEC in Sapling Pool`;
-      } else {
-        poolQty.textContent = "";
-      }
-    }
-
-    const span = document.createElement("span");
-    span.style.color = "#eee";
-    span.style.position = "absolute";
-    span.style.top = "20px";
-    span.style.paddingLeft = "24px";
-    span.style.zIndex = "1000";
-    span.appendChild(poolQty);
-
-    // if (divChartRef.current && toolType == "supply") {
-    //   divChartRef.current.appendChild(span);
-    // }
-
-    try {
-      const canvas = await html2canvas(divChartRef.current!, {
-        scale: 3, // renders at 3x resolution
-        useCORS: true,
-      });
-
-      const link = document.createElement("a");
-
-      link.href = canvas.toDataURL("image/png");
-      // if(toolType == 'supply') link.download = `zcash-${poolType}-pool-chart.png`;
-      // else link.download = `zcash-${poolType}-transaction-chart.png`;
-      link.download = `${poolType}-chart.png`;
-      link.click();
-
-      // Clean up
-      // divChartRef.current?.removeChild(span);
-    } catch (err) {
-      console.error("Error saving chart: ", err);
+      console.error("Error saving chart:", err);
+      alert("Export failed. Check console (F12) for details.");
     }
   };
 
