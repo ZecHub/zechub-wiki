@@ -41,20 +41,20 @@ export default function HeroPopoverTabs({
   ];
 
   return (
-    <div className="relative bg-card border border-border rounded-3xl px-4 py-5 sm:px-8 sm:py-6 shadow-sm mx-2 sm:mx-0">
+    <div className="relative bg-card border border-border rounded-3xl px-8 py-6 sm:px-10 sm:py-7 shadow-sm mx-6 sm:mx-0">
       {/* Top row - All Tabs + Hero Pill */}
-      <div className="flex items-center justify-center gap-4 sm:gap-6">
-        {/* All Tabs trigger */}
+      <div className="flex items-center justify-center gap-3 sm:gap-6">
+        {/* All Tabs trigger - smaller on mobile + more left padding */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-3 px-5 py-3 bg-muted hover:bg-accent border border-border rounded-3xl text-muted-foreground hover:text-foreground transition-all duration-200 font-medium text-sm sm:text-base whitespace-nowrap"
+          className="flex items-center ml-3 gap-0 px-5 py-3 bg-muted hover:bg-accent border border-border rounded-3xl text-muted-foreground hover:text-foreground transition-all duration-200 font-medium text-sm sm:text-base whitespace-nowrap"
         >
           <List className="w-5 h-5" />
           <span>All Tabs</span>
           <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
         </button>
 
-        {/* Large Hero Pill - balanced on mobile */}
+        {/* Large Hero Pill */}
         <div className="flex-1 max-w-md">
           <div className="px-8 py-4 sm:px-10 sm:py-5 bg-primary text-primary-foreground rounded-3xl text-xl sm:text-2xl font-semibold text-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] border border-primary/30">
             {activeTabData.label}
@@ -62,12 +62,12 @@ export default function HeroPopoverTabs({
         </div>
 
         {/* Spacer for visual balance */}
-        <div className="w-28 sm:w-[148px]" />
+        <div className="w-24 sm:w-[148px]" />
       </div>
 
-      {/* Supply buttons - perfectly centered on mobile */}
+      {/* Supply buttons - centered */}
       {activeTab === "supply" && (
-        <div className="flex flex-wrap justify-center gap-2 mt-5 sm:mt-6">
+        <div className="flex flex-wrap justify-center gap-2 mt-6">
           {supplyOptions.map((option) => (
             <button
               key={option.value}
