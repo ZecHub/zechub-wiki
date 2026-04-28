@@ -180,12 +180,12 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
         }
       />
 
-      {/* MOBILE-FRIENDLY TOP BAR */}
-      <div className="px-4 sm:px-8 mt-3 mb-6">
-        <div className="flex flex-col items-center sm:flex-row sm:justify-between gap-5 sm:gap-0">
+      {/* MOBILE STACKED TOP BAR - Pool, Year, Total Shielded vertically centered */}
+      <div className="px-4 sm:px-8 mt-4 mb-6">
+        <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-between">
           
-          {/* Pool selector - centered on mobile */}
-          <div className="flex items-center gap-3">
+          {/* Pool selector */}
+          <div className="flex items-center gap-3 w-full md:w-auto justify-center md:justify-start">
             <label className="text-sm font-medium whitespace-nowrap">Pool:</label>
             <DefaultSelect
               value={selectedPool}
@@ -193,27 +193,25 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               options={["all", "sprout", "sapling", "orchard"]}
               className="w-44"
               renderOption={(val) =>
-                val === "all"
-                  ? "All Pools"
-                  : val.charAt(0).toUpperCase() + val.slice(1)
+                val === "all" ? "All Pools" : val.charAt(0).toUpperCase() + val.slice(1)
               }
             />
           </div>
 
-          {/* Year selector - centered on mobile */}
-          <div className="flex items-center gap-3">
+          {/* Year selector */}
+          <div className="flex items-center gap-3 w-full md:w-auto justify-center md:justify-start">
             <label className="text-sm font-medium whitespace-nowrap">Year</label>
             <DefaultSelect
               value={selectedYear}
               onChange={setSelectedYear}
               options={getAvailableYears(selectedPool).map((year) => year.toString())}
-              className="w-35"
+              className="w-28"
               renderOption={(year) => (year === "all" ? "All" : year)}
             />
           </div>
 
-          {/* Total Shielded label - centered on mobile */}
-          <div className="text-sm font-medium whitespace-nowrap text-center">
+          {/* Total Shielded label */}
+          <div className="text-sm font-medium whitespace-nowrap text-center w-full md:w-auto">
             Total Shielded: {calculateTotalShielded().toLocaleString()} ZEC
           </div>
         </div>
