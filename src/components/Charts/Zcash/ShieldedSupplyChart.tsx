@@ -24,6 +24,7 @@ import { useInMobile } from "@/hooks/useInMobile";
 import DefaultSelect from "@/components/DefaultSelect";
 
 type PoolKey = "all" | PoolType;
+
 type ShieldedSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
@@ -78,14 +79,12 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     const sprout = sproutSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
     const sapling = saplingSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
     const orchard = orchardSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
-
     const allDates = new Set([
       ...sprout.map((d) => d.close),
       ...sapling.map((d) => d.close),
       ...orchard.map((d) => d.close),
     ]);
     const dateArray = Array.from(allDates).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-
     const dataMap: Record<string, any> = {};
     for (const date of dateArray) {
       dataMap[date] = { close: date, sprout: 0, sapling: 0, orchard: 0 };
@@ -93,7 +92,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     for (const d of sprout) if (dataMap[d.close]) dataMap[d.close].sprout = d.supply;
     for (const d of sapling) if (dataMap[d.close]) dataMap[d.close].sapling = d.supply;
     for (const d of orchard) if (dataMap[d.close]) dataMap[d.close].orchard = d.supply;
-
     return Object.values(dataMap).filter((d: any) =>
       selectedYear === "all" ? true : extractYear(d.close) === selectedYear
     );
@@ -182,8 +180,8 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
         }
       />
 
-      {/* TOP BAR - Pool on LEFT, Year + Total on RIGHT with gap-16 */}
-      <div className="flex justify-between items-center px-8 mt-3 mb-6">
+      {/* FIXED TOP BAR - Pool left, Year + Total right, balanced on mobile */}
+      <div className="flex justify-between items-center px-4 sm:px-8 mt-3 mb-6">
         {/* LEFT: Pool selector */}
         <div className="flex items-center gap-3">
           <label className="text-sm font-medium whitespace-nowrap">Pool:</label>
@@ -200,20 +198,20 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
           />
         </div>
 
-        {/* RIGHT: Year dropdown + Total Shielded (using gap-16 as requested) */}
-        <div className="flex flex-wrap gap-16 items-center">
+        {/* RIGHT: Year + Total Shielded */}
+        <div className="flex items-center gap-4 sm:gap-6">
           <div className="flex items-center gap-3">
             <label className="text-sm font-medium whitespace-nowrap">Year</label>
             <DefaultSelect
               value={selectedYear}
               onChange={setSelectedYear}
               options={getAvailableYears(selectedPool).map((year) => year.toString())}
-              className="w-28"
+              className="w-35"
               renderOption={(year) => (year === "all" ? "All" : year)}
             />
           </div>
 
-          <div className="text-sm font-medium whitespace-nowrap">
+          <div className="text-sm font-medium whitespace-nowrap text-right">
             Total Shielded: {calculateTotalShielded().toLocaleString()} ZEC
           </div>
         </div>
