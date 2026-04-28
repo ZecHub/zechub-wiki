@@ -180,26 +180,27 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
         }
       />
 
-      {/* FIXED TOP BAR - Pool left, Year + Total right, balanced on mobile */}
-      <div className="flex justify-between items-center px-4 sm:px-8 mt-3 mb-6">
-        {/* LEFT: Pool selector */}
-        <div className="flex items-center gap-3">
-          <label className="text-sm font-medium whitespace-nowrap">Pool:</label>
-          <DefaultSelect
-            value={selectedPool}
-            onChange={setSelectedPool}
-            options={["all", "sprout", "sapling", "orchard"]}
-            className="w-44"
-            renderOption={(val) =>
-              val === "all"
-                ? "All Pools"
-                : val.charAt(0).toUpperCase() + val.slice(1)
-            }
-          />
-        </div>
+      {/* MOBILE-FRIENDLY TOP BAR */}
+      <div className="px-4 sm:px-8 mt-3 mb-6">
+        <div className="flex flex-col items-center sm:flex-row sm:justify-between gap-5 sm:gap-0">
+          
+          {/* Pool selector - centered on mobile */}
+          <div className="flex items-center gap-3">
+            <label className="text-sm font-medium whitespace-nowrap">Pool:</label>
+            <DefaultSelect
+              value={selectedPool}
+              onChange={setSelectedPool}
+              options={["all", "sprout", "sapling", "orchard"]}
+              className="w-44"
+              renderOption={(val) =>
+                val === "all"
+                  ? "All Pools"
+                  : val.charAt(0).toUpperCase() + val.slice(1)
+              }
+            />
+          </div>
 
-        {/* RIGHT: Year + Total Shielded */}
-        <div className="flex items-center gap-4 sm:gap-6">
+          {/* Year selector - centered on mobile */}
           <div className="flex items-center gap-3">
             <label className="text-sm font-medium whitespace-nowrap">Year</label>
             <DefaultSelect
@@ -211,7 +212,8 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             />
           </div>
 
-          <div className="text-sm font-medium whitespace-nowrap text-right">
+          {/* Total Shielded label - centered on mobile */}
+          <div className="text-sm font-medium whitespace-nowrap text-center">
             Total Shielded: {calculateTotalShielded().toLocaleString()} ZEC
           </div>
         </div>
