@@ -1,10 +1,7 @@
 "use client";
 
-import React, { RefObject, useCallback } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useLanguage } from "@/context/LanguageContext";
+import React, { RefObject } from "react";
 import ChartFooter from "../../ChartFooter";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../Tabs";
 import DifficultyChart from "../DifficultyChart";
 import IssuanceChart from "../IssuanceChart";
 import LockboxChart from "../LockboxChart";
@@ -19,154 +16,44 @@ import { HalvingMeter } from "@/components/HalvingMeter/halving-meter";
 import BlockFeesChart from "../BlockFeesChart";
 import NetworkSolpsChart from "../NetworkSolpsChart";
 import MiningPoolsDominanceChart from "../MiningPoolsDominanceChart";
-import { startTransition } from "react";
 
 type ZcashChartProps = {
   divChartRef: RefObject<HTMLDivElement | null>;
   handleSaveToPng: (
     poolType: string,
-    poolData: Record<
-      string,
-      {
-        timestamp: string;
-        supply: number;
-      } | null
-    >,
+    poolData: Record<string, { timestamp: string; supply: number } | null>,
     toolType: string,
   ) => Promise<void>;
+  activeTab: string;
+  onTabChange: (newTab: string) => void;
 };
 
 const CardContentShielded = (props: ZcashChartProps) => {
-  const { t } = useLanguage();
-  const tabT = t?.pages?.dashboard?.charts?.zcashShieldedTabs;
-
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  // URL is now the single source of truth (no local state)
-  const activeTab = searchParams?.get("tab") || "supply";
-
-  // Only update URL (startTransition keeps it smooth, exactly like the top tabs)
-  const handleTabChange = useCallback(
-    (newTab: string) => {
-      startTransition(() => {
-        const params = new URLSearchParams(searchParams?.toString() || "");
-        if (newTab && newTab !== "supply") {
-          params.set("tab", newTab);
-        } else {
-          params.delete("tab");
-        }
-        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-      });
-    },
-    [router, pathname, searchParams]
-  );
-
-  const tabs = [
-    { value: "supply", label: tabT?.supply || "Supply" },
-    { value: "difficulty", label: tabT?.difficulty || "Difficulty" },
-    { value: "issuance", label: tabT?.issuance || "Issuance" },
-    { value: "lockbox", label: tabT?.lockbox || "Lockbox" },
-    { value: "flows", label: tabT?.flows || "Flows" },
-    { value: "node count", label: tabT?.nodeCount || "Node Count" },
-    { value: "tx summary", label: tabT?.txSummary || "TX Summary" },
-    { value: "privacy set", label: tabT?.privacySet || "Privacy Set" },
-    { value: "shielded stats", label: tabT?.shieldedStats || "Shielded Stats" },
-    { value: "block fees", label: tabT?.blockFees || "Block Fees" },
-    { value: "network solps", label: tabT?.networkSolps || "Network Solps" },
-    { value: "mining pools", label: tabT?.miningPools || "Mining Pools" },
-    { value: "halving meter", label: tabT?.halvingMeter || "Halving Meter" },
-  ];
+  const { activeTab, onTabChange } = props;   // receive from parent
 
   return (
     <CardContent>
-      {/* key forces clean remount when URL changes (keeps refresh/back-button behavior perfect) */}
-      <Tabs
-        key={activeTab}
-        value={activeTab}
-        onValueChange={handleTabChange}
-      >
-        {({ activeTab: currentTab }: any) => (
-          <>
-            <TabsList>
-              {tabs.map((tab) => (
-                <TabsTrigger
-                  key={tab.value}
-                  value={tab.value}
-                  activeTab={currentTab}
-                  setActiveTab={handleTabChange}
-                >
-                  {tab.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
+      <div className="mt-8">
+        {activeTab === "supply" && <ShieldedSupplyChart chartRef={props.divChartRef} />}
+        {activeTab === "difficulty" && <DifficultyChart chartRef={props.divChartRef} />}
+        {activeTab === "issuance" && <IssuanceChart chartRef={props.divChartRef} />}
+        {activeTab === "lockbox" && <LockboxChart chartRef={props.divChartRef} />}
+        {activeTab === "flows" && <NetInflowsOutflowsChart color="red" chartRef={props.divChartRef} />}
+        {activeTab === "node count" && <NodeCountChart color="red" chartRef={props.divChartRef} />}
+        {activeTab === "tx summary" && <TransactionsSummaryChart chartRef={props.divChartRef} />}
+        {activeTab === "privacy set" && <PrivacySetVisualizationChart chartRef={props.divChartRef} />}
+        {activeTab === "shielded stats" && <ShieldedStats chartRef={props.divChartRef} />}
+        {activeTab === "block fees" && <BlockFeesChart chartRef={props.divChartRef} />}
+        {activeTab === "network solps" && <NetworkSolpsChart chartRef={props.divChartRef} />}
+        {activeTab === "mining pools" && <MiningPoolsDominanceChart chartRef={props.divChartRef} />}
+        {activeTab === "halving meter" && <HalvingMeter chartRef={props.divChartRef} />}
+      </div>
 
-            <TabsContent value="supply" activeTab={currentTab}>
-              <ShieldedSupplyChart chartRef={props.divChartRef} />
-            </TabsContent>
-
-            <TabsContent value="difficulty" activeTab={currentTab}>
-              <DifficultyChart chartRef={props.divChartRef} />
-            </TabsContent>
-
-            <TabsContent value="issuance" activeTab={currentTab}>
-              {currentTab === "issuance" && (
-                <IssuanceChart chartRef={props.divChartRef} />
-              )}
-            </TabsContent>
-
-            <TabsContent value="lockbox" activeTab={currentTab}>
-              <LockboxChart chartRef={props.divChartRef} />
-            </TabsContent>
-
-            <TabsContent value="flows" activeTab={currentTab}>
-              <NetInflowsOutflowsChart
-                color="red"
-                chartRef={props.divChartRef}
-              />
-            </TabsContent>
-
-            <TabsContent value="node count" activeTab={currentTab}>
-              <NodeCountChart color="red" chartRef={props.divChartRef} />
-            </TabsContent>
-
-            <TabsContent value="tx summary" activeTab={currentTab}>
-              <TransactionsSummaryChart chartRef={props.divChartRef} />
-            </TabsContent>
-
-            <TabsContent value="privacy set" activeTab={currentTab}>
-              <PrivacySetVisualizationChart chartRef={props.divChartRef} />
-            </TabsContent>
-
-            <TabsContent value="shielded stats" activeTab={currentTab}>
-              <ShieldedStats chartRef={props.divChartRef} />
-            </TabsContent>
-
-            <TabsContent value="block fees" activeTab={currentTab}>
-              <BlockFeesChart chartRef={props.divChartRef} />
-            </TabsContent>
-
-            <TabsContent value="network solps" activeTab={currentTab}>
-              <NetworkSolpsChart chartRef={props.divChartRef} />
-            </TabsContent>
-
-            <TabsContent value="mining pools" activeTab={currentTab}>
-              <MiningPoolsDominanceChart chartRef={props.divChartRef} />
-            </TabsContent>
-
-            <TabsContent value="halving meter" activeTab={currentTab}>
-              <HalvingMeter chartRef={props.divChartRef} />
-            </TabsContent>
-
-            <ChartFooter
-              imgLabel={currentTab}
-              handleSaveToPng={props.handleSaveToPng}
-              lastUpdatedDate={currentTab}
-            />
-          </>
-        )}
-      </Tabs>
+      <ChartFooter
+        imgLabel={activeTab}
+        handleSaveToPng={props.handleSaveToPng}
+        lastUpdatedDate={activeTab}
+      />
     </CardContent>
   );
 };

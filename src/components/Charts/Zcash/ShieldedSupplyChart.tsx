@@ -24,7 +24,6 @@ import { useInMobile } from "@/hooks/useInMobile";
 import DefaultSelect from "@/components/DefaultSelect";
 
 type PoolKey = "all" | PoolType;
-
 type ShieldedSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
@@ -44,7 +43,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [saplingVisible, setSaplingVisible] = useState(true);
   const [orchardVisible, setOrchardVisible] = useState(true);
 
-  // Fetch data once
   useEffect(() => {
     const controller = new AbortController();
     const fetchAllData = async () => {
@@ -77,7 +75,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
       const [month, day, year] = dateStr.split("/");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     };
-
     const sprout = sproutSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
     const sapling = saplingSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
     const orchard = orchardSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
@@ -87,7 +84,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
       ...sapling.map((d) => d.close),
       ...orchard.map((d) => d.close),
     ]);
-
     const dateArray = Array.from(allDates).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 
     const dataMap: Record<string, any> = {};
@@ -107,7 +103,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
   const poolData = useMemo(() => {
     if (selectedPool === "all") return combinedPoolData;
-
     const map = {
       sprout: sproutSupplyData,
       sapling: saplingSupplyData,
@@ -133,46 +128,30 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     sapling: latest.sapling || 0,
     orchard: latest.orchard || 0,
   };
-
   const calculateTotalShielded = () =>
     latestTotals.orchard + latestTotals.sapling + latestTotals.sprout;
 
-  // Memoized legend (prevents re-creation on every render)
   const legendContent = useMemo(() => (
     <div className="flex justify-center gap-8 text-sm mt-4 flex-wrap">
       {selectedPool === "all" ? (
         <>
-          <button
-            onClick={() => setSproutVisible(!sproutVisible)}
-            className={`flex items-center gap-2 cursor-pointer transition-colors ${sproutVisible ? "" : "opacity-40 line-through"}`}
-          >
+          <button onClick={() => setSproutVisible(!sproutVisible)} className={`flex items-center gap-2 cursor-pointer transition-colors ${sproutVisible ? "" : "opacity-40 line-through"}`}>
             <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-1))]" />
             <span className="font-medium">Sprout</span>
           </button>
-          <button
-            onClick={() => setSaplingVisible(!saplingVisible)}
-            className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingVisible ? "" : "opacity-40 line-through"}`}
-          >
+          <button onClick={() => setSaplingVisible(!saplingVisible)} className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingVisible ? "" : "opacity-40 line-through"}`}>
             <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-2))]" />
             <span className="font-medium">Sapling</span>
           </button>
-          <button
-            onClick={() => setOrchardVisible(!orchardVisible)}
-            className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardVisible ? "" : "opacity-40 line-through"}`}
-          >
+          <button onClick={() => setOrchardVisible(!orchardVisible)} className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardVisible ? "" : "opacity-40 line-through"}`}>
             <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-3))]" />
             <span className="font-medium">Orchard</span>
           </button>
         </>
       ) : (
         <button className="flex items-center gap-2 cursor-pointer">
-          <span
-            className="inline-block w-3 h-3 rounded-full"
-            style={{ background: `hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : 3}))` }}
-          />
-          <span className="font-medium">
-            {selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool
-          </span>
+          <span className="inline-block w-3 h-3 rounded-full" style={{ background: `hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : 3}))` }} />
+          <span className="font-medium">{selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool</span>
         </button>
       )}
     </div>
@@ -181,10 +160,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (!active || !payload?.length) return null;
     return (
-      <div
-        className="rounded-md px-3 py-2 shadow-md border text-sm"
-        style={{ backgroundColor: "#1e293b", borderColor: "#334155", color: "#f1f5f9" }}
-      >
+      <div className="rounded-md px-3 py-2 shadow-md border text-sm" style={{ backgroundColor: "#1e293b", borderColor: "#334155", color: "#f1f5f9" }}>
         <p className="text-slate-100 font-semibold mb-2">{label}</p>
         {payload.map((entry: any, idx: number) => (
           <div key={idx} className="flex justify-between gap-4" style={{ color: entry.color }}>
@@ -204,35 +180,44 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             ? "Shielded Supply Overview"
             : `${selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool Supply`
         }
-      >
-        <div className="grid gap-2 imd:flex justify-between imd:gap-16 py-4 md:py-0 items-center">
-          <div className="flex gap-2 items-center">
-            <label className="text-sm font-medium">Year</label>
+      />
+
+      {/* TOP BAR - Pool on LEFT, Year + Total on RIGHT with gap-16 */}
+      <div className="flex justify-between items-center px-8 mt-3 mb-6">
+        {/* LEFT: Pool selector */}
+        <div className="flex items-center gap-3">
+          <label className="text-sm font-medium whitespace-nowrap">Pool:</label>
+          <DefaultSelect
+            value={selectedPool}
+            onChange={setSelectedPool}
+            options={["all", "sprout", "sapling", "orchard"]}
+            className="w-44"
+            renderOption={(val) =>
+              val === "all"
+                ? "All Pools"
+                : val.charAt(0).toUpperCase() + val.slice(1)
+            }
+          />
+        </div>
+
+        {/* RIGHT: Year dropdown + Total Shielded (using gap-16 as requested) */}
+        <div className="flex flex-wrap gap-16 items-center">
+          <div className="flex items-center gap-3">
+            <label className="text-sm font-medium whitespace-nowrap">Year</label>
             <DefaultSelect
               value={selectedYear}
               onChange={setSelectedYear}
               options={getAvailableYears(selectedPool).map((year) => year.toString())}
-              className="w-28 dark:border-slate-700"
-              optionClassName="hover:cursor-pointer bg-slate-50 dark:bg-slate-800"
+              className="w-28"
               renderOption={(year) => (year === "all" ? "All" : year)}
             />
           </div>
 
-          <div className="md:flex hidden text-sm">
-            {selectedPool === "all" ? (
-              <>
-                <span className="font-medium">Total Shielded:</span>{" "}
-                {calculateTotalShielded().toLocaleString()} ZEC
-              </>
-            ) : (
-              <span className="ml-1">
-                {selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)}:{" "}
-                {latestTotals[selectedPool as keyof typeof latestTotals]?.toLocaleString?.() ?? "0"} ZEC
-              </span>
-            )}
+          <div className="text-sm font-medium whitespace-nowrap">
+            Total Shielded: {calculateTotalShielded().toLocaleString()} ZEC
           </div>
         </div>
-      </ChartHeader>
+      </div>
 
       <ChartContainer ref={props.chartRef} loading={loading}>
         <AreaChart data={poolData}>
@@ -259,41 +244,14 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             textAnchor="end"
             height={70}
           />
-          <YAxis
-            tick={{ fontSize, fill: "#94a3b8" }}
-            tickFormatter={(val: any) => formatNumberShort(val)}
-          />
+          <YAxis tick={{ fontSize, fill: "#94a3b8" }} tickFormatter={(val: any) => formatNumberShort(val)} />
           <Tooltip content={CustomTooltip} />
           <Legend content={legendContent} />
-
           {selectedPool === "all" ? (
             <>
-              <Area
-                type="monotone"
-                dataKey="sprout"
-                stroke={getColorForPool("sprout")}
-                fill="url(#sproutGradient)"
-                name="Sprout Pool"
-                hide={!sproutVisible}
-              />
-              <Area
-                type="monotone"
-                dataKey="sapling"
-                stroke={getColorForPool("sapling")}
-                fill="url(#saplingGradient)"
-                name="Sapling Pool"
-                hide={!saplingVisible}
-                dot={false}
-                connectNulls={true}
-              />
-              <Area
-                type="monotone"
-                dataKey="orchard"
-                stroke={getColorForPool("orchard")}
-                fill="url(#orchardGradient)"
-                name="Orchard Pool"
-                hide={!orchardVisible}
-              />
+              <Area type="monotone" dataKey="sprout" stroke={getColorForPool("sprout")} fill="url(#sproutGradient)" name="Sprout Pool" hide={!sproutVisible} />
+              <Area type="monotone" dataKey="sapling" stroke={getColorForPool("sapling")} fill="url(#saplingGradient)" name="Sapling Pool" hide={!saplingVisible} dot={false} connectNulls={true} />
+              <Area type="monotone" dataKey="orchard" stroke={getColorForPool("orchard")} fill="url(#orchardGradient)" name="Orchard Pool" hide={!orchardVisible} />
             </>
           ) : (
             <Area
