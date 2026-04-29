@@ -33,8 +33,7 @@ export const ambassadorProjects = [
     twitter: "https://x.com/zcashbrazil",
     description: "Zcash community and advocacy in Brazil",
     projectSite: null,
-    image:
-      "https://pbs.twimg.com/profile_images/2022785112505552896/GtMH0QZr_400x400.jpg",
+    image: "zcashBrazil.jpg",
     blog: null,
   },
   {
@@ -52,8 +51,7 @@ export const ambassadorProjects = [
     twitter: "https://x.com/zcashesp",
     description: "Zcash community and advocacy in Spanish-speaking regions",
     projectSite: null,
-    image:
-      "https://pbs.twimg.com/profile_images/2009020983043117056/P33Vac7s_400x400.jpg",
+    image: "/zccashEspanol.jpg",
     blog: "https://privacidad.me/@zcashesp",
   },
   {
@@ -98,8 +96,7 @@ export const ambassadorProjects = [
     twitter: "https://x.com/ZcashIND",
     description: "Zcash community and advocacy in India",
     projectSite: "https://zcashindia.org",
-    image:
-      "https://pbs.twimg.com/profile_images/1982399854014758912/syEzQvXo_400x400.jpg",
+    image: "/zcashIndia.jpg",
     blog: "https://zcashindia.org/blog",
   },
 ];
