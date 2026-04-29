@@ -100,6 +100,15 @@ const exchanges: Exchange[] = [
     logo: "https://logowik.com/content/uploads/images/t_bybit5549.jpg",
     altText: "Bybit Logo",
   },
+  {
+    name: "Robinhood",
+    url: "https://robinhood.com",
+    pairs: "USD/ZEC | EUR/ZEC",
+    support: "Transparent",
+    depositTime: "N/A",
+    logo: "https://i.ibb.co/gLsHYNQ3/IMG-5725.png",
+    altText: "Robinhood Logo",
+  },
 ];
 
 export default exchanges;
