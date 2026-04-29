@@ -20,7 +20,7 @@ export default function ZcashPaymentClient() {
         apiBase={API_BASE_URL}
         address="zs1r3pp4354ewt5g970uc5r6gu4g8p0egmwwrrd6a0dsduvx92jxj0j9zcjjrkyx9wphf5ggux9ssg"
         amount={0.0337276205547219}
-        label="Donate to us"
+        label="Donate with Zcash"
         theme="dark"
         disabled={false}
       />

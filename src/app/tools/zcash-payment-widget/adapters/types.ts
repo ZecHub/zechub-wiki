@@ -1,6 +1,7 @@
 export interface ZcashPaymentURIConfig {
   address: string;
   amount: string | number;
+  zecUsdRate?: string | number;
   label?: string;
   theme?: "light" | "dark";
   memo?: string;

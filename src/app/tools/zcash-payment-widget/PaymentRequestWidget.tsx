@@ -77,6 +77,7 @@ export default function PaymentRequestWidget() {
   const [generatedConfig, setGeneratedConfig] = useState<GeneratedConfig>({
     address: "xxxxxxxxxxxxxxxx...",
     amount: 0,
+    zecUsdRate: 0,
     label: "",
     apiBase: "",
     theme: "",
@@ -171,6 +172,7 @@ export default function PaymentRequestWidget() {
         theme,
         qrData: qrData.data,
         amount: data.amount,
+        zecUsdRate: data.rate,
         label: payment.label,
         address: payment.address,
         disabled: data.amount < 0,

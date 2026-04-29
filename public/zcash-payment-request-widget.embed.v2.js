@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 /*! zcash-payment-request-widget.embed.v2.js | (c) PayWithZcash Widget | Dual-mode: auto + programmatic */
-(function () {
+(async function () {
   // ---------- Configuration ----------
   const DEFAULT_API_BASE =
     typeof window !== "undefined" &&
@@ -14,10 +14,8 @@
   const style = document.createElement("style");
   style.textContent = `
     .zwg-btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:linear-gradient(135deg,#F4B728 0%,#E5A420 100%);color:#1a1a1a;font:600 15px/1 system-ui,-apple-system,sans-serif;border:0;border-radius:14px;cursor:pointer;box-shadow:0 4px 24px -4px rgba(244,183,40,0.5),inset 0 1px 0 rgba(255,255,255,0.3);transition:all .2s ease;overflow:hidden}
-    .zwg-btn:hover{transform:translateY(0);box-shadow:0 8px 32px -4px rgba(244,183,40,0.6),inset 0 1px 0 rgba(255,255,255,0.3)}
     .zwg-btn:active{transform:translateY(0) scale(.98)}
     .zwg-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:translateX(-100%);transition:transform .6s}
-    .zwg-btn:hover::after{transform:translateX(100%)}
     .zwg-btn svg{width:18px;height:18px}
     .zwg-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:99999;padding:20px;animation:zwg-fade .25s ease}
     @keyframes zwg-fade{from{opacity:0}to{opacity:1}}
@@ -78,11 +76,29 @@
     ext: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>`,
   };
 
+  async function getZecUsdRate(zecUsdRate, apiBase) {
+    const url = `${apiBase}/payment-request-uri/zcash-price-feed`;
+
+    if (zecUsdRate != null) return zecUsdRate;
+
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      const rate = data.rate ?? data.price ?? data?.data?.rate ?? null;
+
+      return rate;
+    } catch (err) {
+      console.error("Failed to fetch rate", err);
+      return null;
+    }
+  }
+
   // ------------------------------
   //   MAIN RENDER FUNCTION
   // ------------------------------
 
-  function renderZcashButton(selector, opts) {
+  async function renderZcashButton(selector, opts) {
     const container = document.querySelector(selector);
 
     if (!container) {
@@ -99,6 +115,16 @@
     const memo = opts.memo || "";
     const apiBase = opts.apiBase || DEFAULT_API_BASE;
     const isDisabled = opts.disabled === true || opts.disabled === "true";
+
+    const zecUsdRate =
+      opts.zecUsdRate != null
+        ? opts.zecUsdRate
+        : await getZecUsdRate(opts.zecUsdRate, apiBase);
+
+    const usdValue =
+      zecUsdRate && !isNaN(zecUsdRate)
+        ? (amount * Number(zecUsdRate)).toFixed(2)
+        : null;
 
     if (!address || !amount) {
       console.error(
@@ -150,7 +176,13 @@
 
           <div class="zwg-amt">
             <p class="zwg-amt-lbl">Amount Due</p>
-            <p class="zwg-amt-val"><b>${Number(amount).toFixed(3)}</b><small>ZEC</small></p>
+            <p class="zwg-amt-val"><b>${Number(amount).toFixed(3)}</b><small>ZEC</small></p>${
+              usdValue
+                ? `<p style="margin-top:4px;font-size:12px;font-style:italic;color:var(--zwg-muted)">
+         ≈ $${usdValue} USD
+       </p>`
+                : ""
+            }
           </div>
 
           <div class="zwg-fld">
@@ -286,9 +318,12 @@
     script.dataset.address &&
     script.dataset.amount
   ) {
+    const target = script.dataset.target;
+
     const inst = renderZcashButton(target, {
-      address,
-      amount,
+      address: script.dataset.address,
+      amount: script.dataset.amount,
+      zecUsdRate: zecUsdRate || script.dataset.zecUsdRate,
       label: script.dataset.label,
       theme: script.dataset.theme,
       memo: script.dataset.memo,
@@ -297,25 +332,5 @@
     });
 
     window.__zcash_paymet_uri_widget_autoinstance = inst;
-
-    // const target = script.dataset.target;
-    // console.log({ target });
-
-    // if (target) {
-    //   const address = script.dataset.address;
-    //   const amount = script.dataset.amount;
-
-    //   if (!address || !amount) {
-    //     console.error(
-    //       "[Zcash-Payment-URI-Widget] Auto-mount missing address or amount.",
-    //     );
-    //     return;
-    //   }
   }
-  //else {
-  //   console.error(
-  //     "[Zcash-Payment-URI-Widget] Auto-mount missing target element/div whose value is attached to the `data-target` attribute on the script tag to amount on.",
-  //   );
-  //   return;
-  // }
 })();

@@ -55,6 +55,7 @@ const TABS: Tab[] = [
 export interface GeneratedConfig {
   address: string;
   amount: number;
+  zecUsdRate: number;
   label: string;
   apiBase: string;
   qrData?: unknown;

@@ -4,6 +4,21 @@ import { getZcashPrice } from "./utils/get-zec-price";
 
 const priceFeedUrl = String(process.env.BASE_URL_ZCASH_PRICE_FEED);
 
+export async function GET(req: NextRequest) {
+  try {
+    const { price, source } = await getZcashPrice(priceFeedUrl);
+
+    return NextResponse.json(
+      { data: { rate: price, source } },
+      { status: 200 },
+    );
+  } catch (err) {
+    const errMsg = err instanceof Error ? err.message : "Invalid request";
+
+    return NextResponse.json({ error: JSON.parse(errMsg) }, { status: 500 });
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
