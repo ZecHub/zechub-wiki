@@ -14,8 +14,7 @@ export const ambassadorProjects = [
     twitter: "https://x.com/ZcashRussia?s=20",
     description: "Zcash community and advocacy in Russia",
     projectSite: null,
-    image:
-      "https://pbs.twimg.com/profile_images/1678862190051246080/GAloqOL9_400x400.jpg",
+    image: "/zcashRussia.jpg",
     blog: "https://pro.zcash.ru/",
   },
   {
