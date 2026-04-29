@@ -15,7 +15,7 @@ type ZcashChartProps = {
         supply: number;
       } | null
     >,
-    toolType: string
+    toolType: string,
   ) => Promise<void>;
 };
 
@@ -25,10 +25,10 @@ const CardContentTxn = (props: ZcashChartProps) => {
   const tabLabels = ["Supply"];
   return (
     <CardContent>
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
-        {({ activeTab, setActiveTab }: any) => (
-          <>
-            <TabsList>
+      {/* <Tabs value={activeTab} onValueChange={setActiveTab}>
+        {({ activeTab, setActiveTab }: any) => ( */}
+      <>
+        {/* <TabsList>
               {tabLabels.map((label) => (
                 <TabsTrigger
                   key={label}
@@ -39,20 +39,20 @@ const CardContentTxn = (props: ZcashChartProps) => {
                   {label}
                 </TabsTrigger>
               ))}
-            </TabsList>
+            </TabsList> */}
 
-            <TabsContent value="supply" activeTab={activeTab}>
-              <TransparentSupplyChart chartRef={props.divChartRef} />
-            </TabsContent>
-            
-            <ChartFooter
-              imgLabel={activeTab}
-              handleSaveToPng={props.handleSaveToPng}
-              lastUpdatedDate={"transparent"}
-            />
-          </>
-        )}
-      </Tabs>
+        {/* <TabsContent value="supply" activeTab={activeTab}> */}
+        <TransparentSupplyChart chartRef={props.divChartRef} />
+        {/* </TabsContent> */}
+
+        <ChartFooter
+          imgLabel={activeTab}
+          handleSaveToPng={props.handleSaveToPng}
+          lastUpdatedDate={"transparent"}
+        />
+      </>
+      {/* )}
+      </Tabs> */}
     </CardContent>
   );
 };
