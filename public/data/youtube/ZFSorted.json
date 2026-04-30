@@ -5,7 +5,7 @@
     {
       "title": "Peter Van Valkenburgh, of Coin Center, on the OFAC Tornado Cash SDN listing at Zcon3",
       "video_id": "XpTrCA3tEKM",
-      "views": 7690
+      "views": 7692
     },
     {
       "title": "ZK Rollup: Ethereum Scalability with ZKPs - Alex Gluchowski",
@@ -425,12 +425,12 @@
     {
       "title": "A Forest of Levers: The Performance of Orchard - Jack Grigg (Str4d) at Zcon3",
       "video_id": "kkQWubFae7Y",
-      "views": 402
+      "views": 403
     },
     {
       "title": "ZEXE: Enabling Decentralized Private Computation - Pratyush Mishra",
       "video_id": "fXWRJUsq8Ok",
-      "views": 398
+      "views": 399
     },
     {
       "title": "Recent Advances in Zero-Knowledge: #Zcon2Lite",
@@ -615,7 +615,7 @@
     {
       "title": "The Path to Shielded Programmability with Ying Tong Lai and Bryan Gillespie - ZconV: Zcash Unified",
       "video_id": "lCiw_3qMjcw",
-      "views": 311
+      "views": 312
     },
     {
       "title": "Zecwallet Lite on Windows Tutorial #2",
@@ -643,13 +643,13 @@
       "views": 299
     },
     {
-      "title": "Constructing a Fast Prime-Order Group - Henry de Valence",
-      "video_id": "pG-IZ_7NbR8",
-      "views": 294
-    },
-    {
       "title": "Zebrad for Linux Tutorial #1",
       "video_id": "7cPKf4hobeI",
+      "views": 295
+    },
+    {
+      "title": "Constructing a Fast Prime-Order Group - Henry de Valence",
+      "video_id": "pG-IZ_7NbR8",
       "views": 294
     },
     {
@@ -1023,14 +1023,19 @@
       "views": 190
     },
     {
-      "title": "Zcash Has No Morals by Ian Sagstetter: Zcon4",
-      "video_id": "u8PrPrLT600",
-      "views": 189
+      "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
+      "video_id": "he_j9O5INVk",
+      "views": 190
     },
     {
       "title": "Scaling Zcash Governance - Josh Cincinnati",
       "video_id": "utSG9tqkot0",
-      "views": 188
+      "views": 189
+    },
+    {
+      "title": "Zcash Has No Morals by Ian Sagstetter: Zcon4",
+      "video_id": "u8PrPrLT600",
+      "views": 189
     },
     {
       "title": "ZF Community Call:  ZOMG and Conflicts of Interest",
@@ -1041,11 +1046,6 @@
       "title": "Town Hall: The Future of Zcash Funding & Decentralization: Zcon4",
       "video_id": "uBeEqhvPS3s",
       "views": 187
-    },
-    {
-      "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
-      "video_id": "he_j9O5INVk",
-      "views": 186
     },
     {
       "title": "Zcash Sustainability Fund with Eiger and Shielded Labs - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -1303,6 +1303,11 @@
       "views": 144
     },
     {
+      "title": "Guide to Asia Go-to-Market and Blockchain Community Formation - Joyce Yang",
+      "video_id": "7SmkR6TJzyw",
+      "views": 143
+    },
+    {
       "title": "The Mobile Wallet Tarpit - Justin Smith",
       "video_id": "cyGGJXvuHtQ",
       "views": 142
@@ -1311,11 +1316,6 @@
       "title": "Can we have privacy and compliance at the same time? with Jonathan Rouach- ZconV: Zcash Unified 2024",
       "video_id": "TMV1qKA6ox4",
       "views": 142
-    },
-    {
-      "title": "Guide to Asia Go-to-Market and Blockchain Community Formation - Joyce Yang",
-      "video_id": "7SmkR6TJzyw",
-      "views": 141
     },
     {
       "title": "Zcash Arborist Call 04-03-2025",
