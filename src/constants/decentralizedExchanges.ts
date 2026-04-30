@@ -61,6 +61,20 @@ export const decentralizedExchanges = [
   url: "https://rocketx.exchange/",
   image: "/rocketx-logo.jpg",
 },
+{
+  title: "THORChain",
+  description:
+    "Decentralized Layer 1 cross-chain exchange. Swap native assets like ZEC, BTC, and ETH directly without bridges, wrapped tokens, or intermediaries.",
+  url: "https://swap.thorchain.org/",
+  image: "/thorchain-logo.jpg"
+},
+{
+  title: "Loofta",
+  description:
+    "Non-custodial private payment and swap platform. Send and receive crypto privately across chains, with Zcash as the settlement layer for enhanced financial privacy.",
+  url: "https://loofta.xyz/",
+  image: "/loofta-logo.svg"
+},
 ];
 
 
