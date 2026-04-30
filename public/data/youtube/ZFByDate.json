@@ -3,9 +3,14 @@
     "channelIcon": "https://yt3.ggpht.com/ytc/AIdro_ny5D-44bCL6VlY2QqkYr1-AWIeaJmymKKH1DrFBVk5IA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Zcash Arborist Call 04-30-2026",
+            "video_id": "qfIS6wORZIA",
+            "views": 2
+        },
+        {
             "title": "Zcash Arborist Call 04-16-2026",
             "video_id": "cmPQexrzn_o",
-            "views": 169
+            "views": 170
         },
         {
             "title": "Zcash Arborist Call 04-02-2026",
@@ -605,7 +610,7 @@
         {
             "title": "The Path to Shielded Programmability with Ying Tong Lai and Bryan Gillespie - ZconV: Zcash Unified",
             "video_id": "lCiw_3qMjcw",
-            "views": 312
+            "views": 313
         },
         {
             "title": "ZSAs and Swaps--A Status Report with Vivek Arte and Pablo Kogan - ZconV: Zcash Unified 2024 #Zcash",
@@ -1190,7 +1195,7 @@
         {
             "title": "A Forest of Levers: The Performance of Orchard - Jack Grigg (Str4d) at Zcon3",
             "video_id": "kkQWubFae7Y",
-            "views": 403
+            "views": 405
         },
         {
             "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
@@ -1345,12 +1350,12 @@
         {
             "title": "Everyone has Something to Hide: Measuring Privacy & Conference Closing: #Zcon2Lite",
             "video_id": "y8iju6yjf4g",
-            "views": 318
+            "views": 319
         },
         {
             "title": "Governance Across Ecosystems: #Zcon2Lite",
             "video_id": "kHMjRon5nWk",
-            "views": 320
+            "views": 321
         },
         {
             "title": "Network Privacy: #Zcon2Lite",
@@ -1360,17 +1365,17 @@
         {
             "title": "Interoperability Between Chains: #Zcon2Lite",
             "video_id": "BV9fPzYzqrs",
-            "views": 304
+            "views": 305
         },
         {
             "title": "Auditing Cryptography: #Zcon2Lite",
             "video_id": "g7VwzTRWNZM",
-            "views": 772
+            "views": 773
         },
         {
             "title": "SNARKs on Other Ecosystems: #Zcon2Lite",
             "video_id": "flPJEfyN5Rw",
-            "views": 257
+            "views": 258
         },
         {
             "title": "From Theory to Deployment: Security Evaluation of State-of-the-Art ZKP Systems #Zcon2Lite",
