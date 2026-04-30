@@ -80,7 +80,7 @@ export default function FloatingExplore() {
     "Zcash Community": "/zcash-community/community-links#content",
     "ZKAV Club": "https://zkav.club/",
     "Privacy Tools": "/privacy-tools/2fa-hardware-devices#content",
-    Research: "/research/social-media-data-collection#content",
+    Research: "/research",
     "Glossary & FAQs": "/glossary-and-faqs/zcash-library#content",
     Contribute: "/contribute/help-build-zechub#content",
   };
