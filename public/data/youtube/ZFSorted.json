@@ -323,14 +323,14 @@
       "views": 489
     },
     {
-      "title": "Build on Zcash",
-      "video_id": "DaEWasYlUbg",
+      "title": "A Selection of Pairing Based zk-SNARKs - Mary Maller",
+      "video_id": "O8Cn2X2nWxw",
       "views": 486
     },
     {
-      "title": "A Selection of Pairing Based zk-SNARKs - Mary Maller",
-      "video_id": "O8Cn2X2nWxw",
-      "views": 483
+      "title": "Build on Zcash",
+      "video_id": "DaEWasYlUbg",
+      "views": 486
     },
     {
       "title": "Decoupling the Zcash Memo Field from the Economic Outputs (Draft ZIP-231)",
@@ -388,13 +388,13 @@
       "views": 430
     },
     {
-      "title": "Diving Into Bolt; A Privacy-Preserving Layer Two Approach",
-      "video_id": "z2l5NqJ6sOI",
-      "views": 427
-    },
-    {
       "title": "Zashi: A Year in Review & Roadmap with Andrea Kobrlova and Josh Swihart - ZconVI #zcash",
       "video_id": "rcbE7YptSHc",
+      "views": 428
+    },
+    {
+      "title": "Diving Into Bolt; A Privacy-Preserving Layer Two Approach",
+      "video_id": "z2l5NqJ6sOI",
       "views": 427
     },
     {
@@ -548,14 +548,14 @@
       "views": 340
     },
     {
-      "title": "Technical Roadmap Panel w/ engineers from ZF, ECC, QEDIT, Shielded Labs & Zingo Labs - ZconVI #zcash",
-      "video_id": "kVNBWz4QWho",
+      "title": "Zcon3: Code alone doesn't cut it! Opening Address by Jack Gavigan",
+      "video_id": "MnEazS7XNW4",
       "views": 334
     },
     {
-      "title": "Zcon3: Code alone doesn't cut it! Opening Address by Jack Gavigan",
-      "video_id": "MnEazS7XNW4",
-      "views": 333
+      "title": "Technical Roadmap Panel w/ engineers from ZF, ECC, QEDIT, Shielded Labs & Zingo Labs - ZconVI #zcash",
+      "video_id": "kVNBWz4QWho",
+      "views": 334
     },
     {
       "title": "The State of UX in the Zcash Ecosystem: #Zcon2Lite",
@@ -1105,7 +1105,7 @@
     {
       "title": "Zcash Arborist Call 04-16-2026",
       "video_id": "cmPQexrzn_o",
-      "views": 174
+      "views": 175
     },
     {
       "title": "Responsible Disclosure in Cryptocurrencies - Benjamin Winston",
@@ -1448,6 +1448,11 @@
       "views": 128
     },
     {
+      "title": "Zcash Arborist Call 04-30-2026",
+      "video_id": "qfIS6wORZIA",
+      "views": 128
+    },
+    {
       "title": "The Zcash Foundation AudioVisual Club: Empowering and Amplifying the Zcash Community by Ryan Taylor",
       "video_id": "LEE-vP0-j4Q",
       "views": 127
@@ -1561,11 +1566,6 @@
       "title": "Zcash Arborist Call 08-07-2025",
       "video_id": "79pNSvju05g",
       "views": 111
-    },
-    {
-      "title": "Zcash Arborist Call 04-30-2026",
-      "video_id": "qfIS6wORZIA",
-      "views": 109
     },
     {
       "title": "Zcash Grants Committee (ZCG) Panel: Past, Present, and Future at Zcon3",
