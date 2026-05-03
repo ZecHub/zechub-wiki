@@ -2908,5 +2908,45 @@
         "Date": "04/26/2026",
         "lockbox": 32802.1875,
         "coinholders_fund": 78183.40930000
+    },
+    {
+        "Date": "04/27/2026",
+        "lockbox": 32994.1875,
+        "coinholders_fund": 78183.40930000
+    },
+    {
+        "Date": "04/27/2026",
+        "lockbox": 33186.1875,
+        "coinholders_fund": 78183.40930000
+    },
+    {
+        "Date": "04/28/2026",
+        "lockbox": 33378.1875,
+        "coinholders_fund": 78183.40930000
+    },
+    {
+        "Date": "04/29/2026",
+        "lockbox": 33570.1875,
+        "coinholders_fund": 78183.40930000
+    },
+    {
+        "Date": "04/30/2026",
+        "lockbox": 33762.1875,
+        "coinholders_fund": 78183.40930000
+    },
+    {
+        "Date": "05/01/2026",
+        "lockbox": 33954.1875,
+        "coinholders_fund": 78183.40930000
+    },
+    {
+        "Date": "05/02/2026",
+        "lockbox": 34146.1875,
+        "coinholders_fund": 78183.40930000
+    },
+    {
+        "Date": "05/03/2026",
+        "lockbox": 34338.1875,
+        "coinholders_fund": 78183.40930000
     }
 ]
