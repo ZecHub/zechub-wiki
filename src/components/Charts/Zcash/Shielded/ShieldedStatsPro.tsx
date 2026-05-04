@@ -331,7 +331,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
       {/* Tabs */}
       <div className="flex flex-wrap gap-2">
         {[
-          { key: "transactions" as TabKey, label: "Transactions" },
+          { key: "transactions" as TabKey, label: "Transfer Transactions" },
           { key: "price" as TabKey, label: "Price & Market Cap" },
           { key: "nodes" as TabKey, label: "Network Nodes" },
           { key: "shielded" as TabKey, label: "Shielded Metrics" },
