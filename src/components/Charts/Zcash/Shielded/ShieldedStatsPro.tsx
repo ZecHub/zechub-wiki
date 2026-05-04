@@ -141,7 +141,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
         const processed = rawData.map((item) => ({
           date: item.Dates,
           transactions: parseInt10(item.Transactions),
-          transparentTxs: parseInt10(item.Total_Transparent_TXs),
+          transparentTxs: parseInt10(item.Transparent_Transfer_TXs),
           saplingTxs: parseInt10(item.Sapling_Transfer_TXs),
           orchardTxs: parseInt10(item.Orchard_Transfer_TXs),
           totalTransferTxs: parseInt10(item.Total_Transfer_TXs),
