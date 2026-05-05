@@ -17,6 +17,18 @@
 
 @variant dark (&:where(.dark, .dark *));
 
+:root {
+  --viz-bg: oklch(0.16 0.02 265);
+  --viz-surface: oklch(0.22 0.03 265);
+  --viz-ink: oklch(0.98 0.005 250);
+  --viz-mute: oklch(0.7 0.02 260);
+  --viz-cyan: oklch(0.82 0.16 210);
+  --viz-violet: oklch(0.7 0.2 300);
+  --viz-amber: oklch(0.82 0.17 75);
+  --viz-emerald: oklch(0.78 0.17 160);
+  --viz-rose: oklch(0.7 0.22 20);
+}
+
 @theme {
   /* Screens */
   --breakpoint-sm: 300px;
