@@ -65,7 +65,7 @@
     {
       "title": "Motivations of Proof of Stake: Zooko Wilcox at Zcon3",
       "video_id": "IB9Vh1kEeWs",
-      "views": 1391
+      "views": 1392
     },
     {
       "title": "Zcash Protocol Hangout  Halo: Jan 14, 2021",
@@ -85,7 +85,7 @@
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
       "video_id": "O4wQi_i7k0I",
-      "views": 1224
+      "views": 1225
     },
     {
       "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
@@ -210,7 +210,7 @@
     {
       "title": "Proof of Stake Panel with Shielded Labs, Ethereum Foundation, ECC, Penumbra & Namada - ZconVI #zcash",
       "video_id": "jAcvrKa5hiw",
-      "views": 710
+      "views": 711
     },
     {
       "title": "Ethereum's Governance Model",
@@ -483,14 +483,14 @@
       "views": 362
     },
     {
-      "title": "Zcash Ecosystem Updates with Zooko Wilcox, Jon Rouach, Jason McGee, Jack Gavigan: Zcon4",
-      "video_id": "xEcDf5LSndc",
+      "title": "Developing X Wallet, A Privacy Focused Mobile Wallet",
+      "video_id": "4buh1quMbr4",
       "views": 360
     },
     {
-      "title": "Developing X Wallet, A Privacy Focused Mobile Wallet",
-      "video_id": "4buh1quMbr4",
-      "views": 359
+      "title": "Zcash Ecosystem Updates with Zooko Wilcox, Jon Rouach, Jason McGee, Jack Gavigan: Zcon4",
+      "video_id": "xEcDf5LSndc",
+      "views": 360
     },
     {
       "title": "SoK: Programmable Privacy in Zcash with Ying Tong and Daniel Benarroch: Zcon4",
@@ -728,6 +728,11 @@
       "views": 273
     },
     {
+      "title": "Zcash Arborist Call 04-30-2026",
+      "video_id": "qfIS6wORZIA",
+      "views": 270
+    },
+    {
       "title": "Zcash Protocol Hangout: Discussion about the NUP",
       "video_id": "-0eg_VZtrjk",
       "views": 268
@@ -741,11 +746,6 @@
       "title": "Zcash Arborist Call 10-30-2025",
       "video_id": "8c_6UiciAuU",
       "views": 264
-    },
-    {
-      "title": "Zcash Arborist Call 04-30-2026",
-      "video_id": "qfIS6wORZIA",
-      "views": 263
     },
     {
       "title": "Zebra Showcase w/ ZFND Engineering Team",
@@ -780,7 +780,7 @@
     {
       "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
       "video_id": "5gvQF5oFT8E",
-      "views": 252
+      "views": 253
     },
     {
       "title": "Pool Retirement - Nate Wilcox at Zcon3",
@@ -1075,7 +1075,7 @@
     {
       "title": "Emergence of Chasqui with Za from ZingoLabs- ZconVI #zcash",
       "video_id": "sKoE2aG1QsM",
-      "views": 181
+      "views": 182
     },
     {
       "title": "ZK for the Enterprise - Quod Erit Demonstrandum (What Will Need to be Proven)",
@@ -1083,13 +1083,13 @@
       "views": 180
     },
     {
-      "title": "MGRC Candidate Q&A Live Streams: Time Slot #2",
-      "video_id": "SbA_AN05nUU",
-      "views": 178
-    },
-    {
       "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
       "video_id": "65GdSSlDG3A",
+      "views": 179
+    },
+    {
+      "title": "MGRC Candidate Q&A Live Streams: Time Slot #2",
+      "video_id": "SbA_AN05nUU",
       "views": 178
     },
     {
@@ -1190,7 +1190,7 @@
     {
       "title": "Zcash Community Grants - AMA with ZCG: Jason McGee, GGuy, Artkor & Zerodartz- ZconVI #zcash",
       "video_id": "1ywNgCH4njw",
-      "views": 161
+      "views": 162
     },
     {
       "title": "Zcash Arborist Call 02-19-2026",
@@ -1338,19 +1338,19 @@
       "views": 140
     },
     {
+      "title": "Coin Voting 2.0 with Hanh - ZconVI #zcash",
+      "video_id": "VfQTSLpoH40",
+      "views": 140
+    },
+    {
       "title": "Zcash Foundation Grant Program Overview",
       "video_id": "UrvJA8Gibgg",
       "views": 139
     },
     {
-      "title": "Coin Voting 2.0 with Hanh - ZconVI #zcash",
-      "video_id": "VfQTSLpoH40",
-      "views": 139
-    },
-    {
       "title": "red·bridge (ZavaX) with Kit Sturgeon - ZconVI #zcash",
       "video_id": "O6RxGsNJx2A",
-      "views": 138
+      "views": 139
     },
     {
       "title": "Zcash Arborist Call 09-04-2025",
