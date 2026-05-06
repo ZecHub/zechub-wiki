@@ -377,7 +377,6 @@ export default function WelcomePage() {
           padding: "1.75rem 3rem",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
         }}
       >
         <span
