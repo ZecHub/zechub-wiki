@@ -1,6 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import localFont from "next/font/local";
+
+const myFont = localFont({
+  src: "../../../public/fonts/Gebuk_tf_ZEC.ttf",
+  display: "swap",
+});
 
 export default function WelcomePage() {
   const router = useRouter();
@@ -146,7 +152,6 @@ export default function WelcomePage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 3rem",
           height: 64,
           borderBottom: `1px solid ${scrolled ? "var(--wlc-border)" : "transparent"}`,
           background: scrolled
@@ -155,7 +160,7 @@ export default function WelcomePage() {
           backdropFilter: scrolled ? "blur(18px)" : "none",
           transition: "all .35s ease",
         }}
-        className="flex-row-reverse"
+        className="flex-row-reverse px-4 imd:px-12"
       >
         {mounted && (
           <button
@@ -239,11 +244,11 @@ export default function WelcomePage() {
             style={{ filter: t.imgFilter }}
           />
         </div>
-        <div className="my-4">
+        <div className="my-4 flex flex-col items-center justify-center">
           <h1
             className="transition-colors duration-500"
             style={{
-              fontFamily: "'Georgia', 'Times New Roman', serif",
+              fontFamily: myFont.style.fontFamily,
               fontSize: "clamp(2.5rem, 8vw, 6rem)",
               fontWeight: 400,
               lineHeight: 1.02,
@@ -275,7 +280,7 @@ export default function WelcomePage() {
           <p
             className="transition-colors duration-500"
             style={{
-              fontFamily: "'Georgia', 'Times New Roman', serif",
+              fontFamily: myFont.style.fontFamily,
               fontSize: "1.05rem",
               lineHeight: 1.8,
               fontWeight: 300,
@@ -312,7 +317,7 @@ export default function WelcomePage() {
                 borderRadius: 9,
                 background: t.btnBg,
                 color: t.btnText,
-                fontFamily: "inherit",
+                fontFamily: myFont.style.fontFamily,
                 fontSize: 14,
                 fontWeight: 600,
                 letterSpacing: "0.01em",
@@ -362,12 +367,12 @@ export default function WelcomePage() {
         ════════════════════════════════════════════ */}
 
       <footer
-        className="wlc-footer"
+        className="flex items-center justify-center imd:justify-between"
         style={{
-          marginTop: "auto", // ← this is the key addition
+          marginTop: "auto",
           position: "relative",
           zIndex: 5,
-          width: "100%", // ← ensure full width
+          width: "100%",
           borderTop: "1px solid var(--wlc-border)",
           padding: "1.75rem 3rem",
           display: "flex",
