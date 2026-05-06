@@ -3,7 +3,7 @@ import { SlideProps } from "..";
 
 export default function SlideOutro(props: SlideProps) {
   return (
-    <div className="relative grid h-full place-items-center overflow-hidden roun3 border border-white/5 bg-gredient-to-b from-white/[0.03] to-transparent p-12 text-center">
+    <div className="relative grid h-full place-items-center overflow-hidden rounded-3xl border border-white/5 bg-gredient-to-b from-white/[0.03] to-transparent p-12 text-center">
       <div className="max-w-3xl">
         <motion.div
           initial={{ opacity: 0, letterSpacing: "0.2em" }}
@@ -26,7 +26,7 @@ export default function SlideOutro(props: SlideProps) {
           .
           <br />
           Blockchain win on{" "}
-          <span className="bg-gradient-to-t from-[var(--viz-emerald)] to-[var(--viz-cyan)] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[var(--viz-emerald)] to-[var(--viz-cyan)] bg-clip-text text-transparent">
             trustlessness
           </span>{" "}
           - at a real cost.
