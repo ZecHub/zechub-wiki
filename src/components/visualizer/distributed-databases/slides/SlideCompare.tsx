@@ -90,6 +90,26 @@ export default function SlideCompare(props: SlideProps) {
           </svg>
         </motion.div>
 
+        {/* Comparison table */}
+        <div className="col-span-6 rounded-2xl border border-white/10 bg-black/20 p-2">
+          {ROWS.map((r, i) => (
+            <motion.div
+              key={r.label}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.15 + i * 0.1 }}
+              className="grid grid-cols-12 items-center gap-2 border-b border-white/5 px-3 py-2.5 last:border-b-0"
+            >
+              <div className="col-span-4 text-xs uppercase tracking-wider text-[var(--viz-mute)]">
+                {r.label}
+              </div>
+              <div className="col-span-4 text-sm text-white/90">{r.a}</div>
+              <div className="col-span-4 text-sm text-[var(--viz-emerald)]">
+                {r.b}
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
       </div>
     </div>
