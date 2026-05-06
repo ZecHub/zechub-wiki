@@ -227,7 +227,7 @@ export default function WelcomePage() {
 
       {/* ── HERO SECTION ──────────────────────────────────────── */}
       <section
-        className="relative z-10 w-full flex flex-col items-center justify-center text-center py-20 px-0 mt-auto"
+        className="relative z-10 w-full flex flex-col items-center justify-center text-center py-20 px-0"
         style={{ minHeight: "52vh" }}
       >
         <div>
@@ -280,7 +280,7 @@ export default function WelcomePage() {
           <p
             className="transition-colors duration-500 px-5"
             style={{
-              fontFamily: myFont.style.fontFamily,
+              fontFamily: "serif",
               fontSize: "1.05rem",
               lineHeight: 1.8,
               fontWeight: 300,
