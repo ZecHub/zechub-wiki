@@ -111,6 +111,66 @@ export default function SlideCompare(props: SlideProps) {
           ))}
         </div>
 
+        {/* Right visual: chain */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="col-span-3 rounded-2xl border border-white/10 bg-black/20 p-5"
+        >
+          <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--viz-emerald)]">
+            Blockchain
+          </div>
+          <svg viewBox="0 0 100 80" className="w-full">
+            {[0, 1, 2, 3].map((i) => (
+              <motion.g
+                key={i}
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 + i * 0.2 }}
+              >
+                <rect
+                  x="10"
+                  y={8 + i * 16}
+                  width="80"
+                  height="12"
+                  rx="2"
+                  fill="var(--viz-surface)"
+                  stroke="var(--viz-emerald)"
+                  strokeWidth="0.6"
+                />
+                <text
+                  x="14"
+                  y={16 + i * 16}
+                  fontSize="3.2"
+                  fill="var(--viz-emerald)"
+                  fontWeight="600"
+                >
+                  block #{i + 1}
+                </text>
+                <text
+                  x="86"
+                  y={16 + i * 16}
+                  fontSize="2.6"
+                  fill="var(--viz-mute)"
+                  textAnchor="end"
+                >
+                  0x{(0xab12 + i * 17).toString(16)}
+                </text>
+                {i < 3 && (
+                  <line
+                    x1="50"
+                    y1={20 + i * 16}
+                    x2="50"
+                    y2={24 + i * 16}
+                    stroke="var(--viz-emerald)"
+                    strokeWidth="0.6"
+                  />
+                )}
+              </motion.g>
+            ))}
+          </svg>
+        </motion.div> 
       </div>
     </div>
   );
