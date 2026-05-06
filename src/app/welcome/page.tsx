@@ -23,6 +23,16 @@ export default function WelcomePage() {
   >([]);
   const [scrolled, setScrolled] = useState(false);
 
+  // ── 3. Floating particles drifting upward ───────────────────────────────
+  const [risingParticles, setRisingParticles] = useState<
+    {
+      x: number;
+      size: number;
+      duration: number;
+      delay: number;
+    }[]
+  >([]);
+
   useEffect(() => {
     const checkDark = () =>
       setIsDark(document.documentElement.classList.contains("dark"));
@@ -49,13 +59,22 @@ export default function WelcomePage() {
       })),
     );
 
+    // ── 3. Rising particles from bottom ──────────────────────────────────
+    setRisingParticles(
+      Array.from({ length: 18 }, () => ({
+        x: Math.random() * 100,
+        size: Math.random() * 3 + 1,
+        duration: Math.random() * 8 + 6,
+        delay: Math.random() * 8,
+      })),
+    );
+
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // ── Theme toggle handler ─────────────────────────────────────────────────
   const toggleTheme = () => {
     document.documentElement.classList.toggle("dark");
   };
@@ -89,12 +108,17 @@ export default function WelcomePage() {
     btnGlow: isDark
       ? "0 0 28px rgba(244,183,40,0.5)"
       : "0 0 20px rgba(244,183,40,0.45)",
-
-    // Theme toggle button tokens
     toggleBg: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)",
     toggleBgHover: isDark ? "rgba(255,255,255,0.14)" : "rgba(0,0,0,0.1)",
     toggleBorder: isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.1)",
     toggleText: isDark ? "rgba(255,255,255,0.75)" : "rgba(0,0,0,0.55)",
+    glowBg: isDark
+      ? "radial-gradient(circle, rgba(244,183,40,0.12) 0%, transparent 68%)"
+      : "radial-gradient(circle, rgba(180,130,0,0.18) 0%, transparent 68%)",
+    ringBorder: isDark
+      ? "1px solid rgba(244,183,40,0.15)"
+      : "1px solid rgba(180,130,0,0.3)",
+    risingParticleBg: isDark ? "rgba(244,183,40,0.5)" : "rgba(180,130,0,0.35)",
   } as const;
 
   return (
@@ -122,6 +146,59 @@ export default function WelcomePage() {
           backgroundSize: "48px 48px",
         }}
       />
+
+      {/* ── 1. Breathing gold glow behind hero ─────────────────── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "10%",
+          left: "50%",
+          marginLeft: -350,
+          width: 700,
+          height: 700,
+          borderRadius: "50%",
+          background: t.glowBg,
+          animation: "wlc-breathe 6s ease-in-out infinite",
+        }}
+      />
+
+      {/* ── 2. Expanding rings (blockchain ripple) ──────────────── */}
+      {[0, 1.3, 2.6].map((delay, i) => (
+        <div
+          key={i}
+          className="absolute pointer-events-none rounded-full"
+          style={{
+            top: "30%",
+            left: "50%",
+            width: 400,
+            height: 400,
+            marginLeft: -200,
+            marginTop: -200,
+            border: t.ringBorder,
+            opacity: 0,
+            animation: `wlc-ring-expand 4s ease-out ${delay}s infinite`,
+          }}
+        />
+      ))}
+
+      {/* ── 3. Rising particles from bottom ────────────────────── */}
+      {mounted &&
+        risingParticles.map((p, i) => (
+          <span
+            key={`r-${i}`}
+            className="absolute rounded-full pointer-events-none"
+            style={{
+              left: `${p.x}%`,
+              bottom: "0%",
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              background: t.risingParticleBg,
+              animation: `wlc-rise-up ${p.duration}s ease-in-out ${p.delay}s infinite`,
+            }}
+          />
+        ))}
+
+      {/* ── existing floating particles ────────────────────────── */}
       {mounted &&
         particles.map((p, i) => (
           <span
@@ -250,7 +327,7 @@ export default function WelcomePage() {
           }}
         >
           {Array.from({ length: 6 })
-            .concat(Array.from({ length: 6 })) // duplicate for seamless loop
+            .concat(Array.from({ length: 6 }))
             .map((_, i) => (
               <span
                 key={i}
@@ -321,13 +398,17 @@ export default function WelcomePage() {
             }}
           >
             Start your{" "}
+            {/* ── 4. Gold shimmer on "journey" ─────────────────── */}
             <em
               style={{
                 fontStyle: "italic",
-                background: "linear-gradient(105deg, #F4B728 0%, #ffe082 100%)",
+                background:
+                  "linear-gradient(105deg, #F4B728 0%, #ffe082 40%, #F4B728 100%)",
+                backgroundSize: "200% 100%",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
+                animation: "wlc-shimmer 3.5s ease-in-out infinite",
               }}
             >
               journey
@@ -369,6 +450,7 @@ export default function WelcomePage() {
                 : "none",
             }}
           >
+            {/* ── 5. Button sheen ──────────────────────────────── */}
             <button
               onClick={() => router.push("/")}
               style={{
@@ -386,6 +468,8 @@ export default function WelcomePage() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
+                position: "relative",
+                overflow: "hidden",
               }}
               onMouseEnter={(e) => {
                 const btn = e.currentTarget as HTMLButtonElement;
@@ -400,13 +484,25 @@ export default function WelcomePage() {
                 btn.style.background = t.btnBg;
               }}
             >
+              {/* sheen overlay */}
+              <span
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%)",
+                  animation: "wlc-sheen 3s ease-in-out 1.5s infinite",
+                  pointerEvents: "none",
+                }}
+              />
               Visit the Wiki
               <svg
                 width="14"
                 height="14"
                 viewBox="0 0 16 16"
                 fill="none"
-                style={{ transition: "transform 0.2s" }}
+                style={{ transition: "transform 0.2s", position: "relative" }}
               >
                 <path
                   d="M3 8h10M9 4l4 4-4 4"
@@ -424,7 +520,6 @@ export default function WelcomePage() {
       {/* ════════════════════════════════════════════
             FOOTER
         ════════════════════════════════════════════ */}
-
       <footer
         className="flex items-center justify-center imd:justify-between"
         style={{
@@ -466,6 +561,39 @@ export default function WelcomePage() {
         @keyframes ticker-scroll {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
+        }
+
+        /* 1. Breathing gold glow */
+        @keyframes wlc-breathe {
+          0%, 100% { opacity: 0.8; transform: scale(1); }
+          50%       { opacity: 0.4; transform: scale(1.14); }
+        }
+
+        /* 2. Expanding rings — scale up from center, no translate needed */
+        @keyframes wlc-ring-expand {
+          0%   { opacity: 0.5; transform: scale(0.2); }
+          100% { opacity: 0;   transform: scale(3); }
+        }
+
+        /* 3. Rising particles */
+        @keyframes wlc-rise-up {
+          0%   { transform: translateY(0)      scale(1);   opacity: 0; }
+          10%  { opacity: 0.5; }
+          90%  { opacity: 0.1; }
+          100% { transform: translateY(-80vh)  scale(0.3); opacity: 0; }
+        }
+
+        /* 4. Gold shimmer — animates background-position */
+        @keyframes wlc-shimmer {
+          0%        { background-position: 0%   50%; }
+          50%       { background-position: 100% 50%; }
+          100%      { background-position: 0%   50%; }
+        }
+
+        /* 5. Button sheen */
+        @keyframes wlc-sheen {
+          0%        { transform: translateX(-100%); }
+          30%, 100% { transform: translateX(150%); }
         }
       `}</style>
     </main>
