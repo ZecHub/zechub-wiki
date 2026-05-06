@@ -222,135 +222,138 @@ export default function WelcomePage() {
 
       {/* ── HERO SECTION ──────────────────────────────────────── */}
       <section
-        className="relative z-10 w-full flex flex-col items-center justify-center text-center py-20 px-6"
+        className="relative z-10 w-full flex flex-col items-center justify-center text-center py-20 px-0 m-auto"
         style={{ minHeight: "52vh" }}
       >
-        <img
-          src="/welcome/zcash_prop_banner_TRANS_B.png"
-          alt="Welcome to Zcash"
-          className="block dark:hidden max-w-full h-auto transition-all duration-500"
-          style={{ filter: t.imgFilter }}
-        />
-        <img
-          src="/welcome/zcash_prop_banner_copy.png"
-          alt="Welcome to Zcash"
-          className="hidden dark:block max-w-full h-auto transition-all duration-500"
-          style={{ filter: t.imgFilter }}
-        />
-
-        <h1
-          className="transition-colors duration-500"
-          style={{
-            fontFamily: "'Georgia', 'Times New Roman', serif",
-            fontSize: "clamp(2.5rem, 8vw, 6rem)",
-            fontWeight: 400,
-            lineHeight: 1.02,
-            letterSpacing: "-0.025em",
-            color: t.headline,
-            marginBottom: "1.6rem",
-            opacity: 0,
-            animation: mounted
-              ? "wlc-rise .9s cubic-bezier(.22,1,.36,1) .28s forwards"
-              : "none",
-          }}
-        >
-          Start your{" "}
-          <em
+        <div>
+          <img
+            src="/welcome/zcash_prop_banner_TRANS_B.png"
+            alt="Welcome to Zcash"
+            className="block dark:hidden max-w-full h-auto transition-all duration-500"
+            style={{ filter: t.imgFilter }}
+          />
+          <img
+            src="/welcome/zcash_prop_banner_copy.png"
+            alt="Welcome to Zcash"
+            className="hidden dark:block max-w-full h-auto transition-all duration-500"
+            style={{ filter: t.imgFilter }}
+          />
+        </div>
+        <div className="my-4">
+          <h1
+            className="transition-colors duration-500"
             style={{
-              fontStyle: "italic",
-              background: "linear-gradient(105deg, #F4B728 0%, #ffe082 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              fontFamily: "'Georgia', 'Times New Roman', serif",
+              fontSize: "clamp(2.5rem, 8vw, 6rem)",
+              fontWeight: 400,
+              lineHeight: 1.02,
+              letterSpacing: "-0.025em",
+              color: t.headline,
+              marginBottom: "1.6rem",
+              opacity: 0,
+              animation: mounted
+                ? "wlc-rise .9s cubic-bezier(.22,1,.36,1) .28s forwards"
+                : "none",
             }}
           >
-            journey
-          </em>
-          <br />
-          learning.
-        </h1>
-
-        <p
-          className="transition-colors duration-500"
-          style={{
-            fontFamily: "'Georgia', 'Times New Roman', serif",
-            fontSize: "1.05rem",
-            lineHeight: 1.8,
-            fontWeight: 300,
-            color: t.subtitle,
-            maxWidth: 520,
-            marginBottom: "2.8rem",
-            opacity: 0,
-            animation: mounted
-              ? "wlc-rise .9s cubic-bezier(.22,1,.36,1) .42s forwards"
-              : "none",
-          }}
-        >
-          Here you can find guides, resources, community updates, tools, and
-          helpful links for getting involved.
-        </p>
-
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            opacity: 0,
-            animation: mounted
-              ? "wlc-rise .9s cubic-bezier(.22,1,.36,1) .56s forwards"
-              : "none",
-          }}
-        >
-          <button
-            onClick={() => router.push("/")}
-            style={{
-              padding: "14px 28px",
-              borderRadius: 9,
-              background: t.btnBg,
-              color: t.btnText,
-              fontFamily: "inherit",
-              fontSize: 14,
-              fontWeight: 600,
-              letterSpacing: "0.01em",
-              border: "none",
-              cursor: "pointer",
-              transition: "all 0.2s ease",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-            }}
-            onMouseEnter={(e) => {
-              const btn = e.currentTarget as HTMLButtonElement;
-              btn.style.transform = "translateY(-1px)";
-              btn.style.boxShadow = t.btnGlow;
-              btn.style.background = t.btnBgHover;
-            }}
-            onMouseLeave={(e) => {
-              const btn = e.currentTarget as HTMLButtonElement;
-              btn.style.transform = "translateY(0)";
-              btn.style.boxShadow = "none";
-              btn.style.background = t.btnBg;
-            }}
-          >
-            Visit the Wiki
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 16 16"
-              fill="none"
-              style={{ transition: "transform 0.2s" }}
+            Start your{" "}
+            <em
+              style={{
+                fontStyle: "italic",
+                background: "linear-gradient(105deg, #F4B728 0%, #ffe082 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
-              <path
-                d="M3 8h10M9 4l4 4-4 4"
-                stroke="#000000"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+              journey
+            </em>
+            <br />
+            learning.
+          </h1>
+
+          <p
+            className="transition-colors duration-500"
+            style={{
+              fontFamily: "'Georgia', 'Times New Roman', serif",
+              fontSize: "1.05rem",
+              lineHeight: 1.8,
+              fontWeight: 300,
+              color: t.subtitle,
+              maxWidth: 520,
+              marginBottom: "2.8rem",
+              opacity: 0,
+              animation: mounted
+                ? "wlc-rise .9s cubic-bezier(.22,1,.36,1) .42s forwards"
+                : "none",
+            }}
+          >
+            Here you can find guides, resources, community updates, tools, and
+            helpful links for getting involved.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "1rem",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              opacity: 0,
+              animation: mounted
+                ? "wlc-rise .9s cubic-bezier(.22,1,.36,1) .56s forwards"
+                : "none",
+            }}
+          >
+            <button
+              onClick={() => router.push("/")}
+              style={{
+                padding: "14px 28px",
+                borderRadius: 9,
+                background: t.btnBg,
+                color: t.btnText,
+                fontFamily: "inherit",
+                fontSize: 14,
+                fontWeight: 600,
+                letterSpacing: "0.01em",
+                border: "none",
+                cursor: "pointer",
+                transition: "all 0.2s ease",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+              onMouseEnter={(e) => {
+                const btn = e.currentTarget as HTMLButtonElement;
+                btn.style.transform = "translateY(-1px)";
+                btn.style.boxShadow = t.btnGlow;
+                btn.style.background = t.btnBgHover;
+              }}
+              onMouseLeave={(e) => {
+                const btn = e.currentTarget as HTMLButtonElement;
+                btn.style.transform = "translateY(0)";
+                btn.style.boxShadow = "none";
+                btn.style.background = t.btnBg;
+              }}
+            >
+              Visit the Wiki
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                style={{ transition: "transform 0.2s" }}
+              >
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="#000000"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </section>
 
