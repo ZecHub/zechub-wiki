@@ -341,10 +341,10 @@ export default function WelcomePage() {
                 }}
               >
                 This is the new landing page for{" "}
-                <a
-                  href="https://z.cash"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <span
+                  // href="https://z.cash"
+                  // target="_blank"
+                  // rel="noopener noreferrer"
                   style={{
                     color: isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.6)",
                     textDecoration: "none",
@@ -355,7 +355,7 @@ export default function WelcomePage() {
                   }}
                 >
                   z.cash
-                </a>
+                </span>
               </span>
             ))}
         </div>
