@@ -5,12 +5,34 @@ import { useEffect, useState } from "react";
 export default function WelcomePage() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const [particles, setParticles] = useState<
-    { x: number; y: number; size: number; opacity: number; duration: number }[]
+    {
+      x: number;
+      y: number;
+      size: number;
+      opacity: number;
+      duration: number;
+    }[]
   >([]);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    const checkDark = () =>
+      setIsDark(document.documentElement.classList.contains("dark"));
+
+    checkDark();
+
+    const observer = new MutationObserver(checkDark);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
     setMounted(true);
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+
     setParticles(
       Array.from({ length: 18 }, () => ({
         x: Math.random() * 100,
@@ -20,67 +42,80 @@ export default function WelcomePage() {
         duration: Math.random() * 6 + 4,
       })),
     );
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
+  // ── Theme toggle handler ─────────────────────────────────────────────────
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle("dark");
+  };
+
+  const t = {
+    pageBg: isDark
+      ? "linear-gradient(135deg, #000000 0%, #0d0d0d 50%, #000000 100%)"
+      : "linear-gradient(135deg, #ffffff 0%, #fafafa 50%, #f5f5f5 100%)",
+    orb1: isDark
+      ? "radial-gradient(circle, rgba(244,183,40,0.13) 0%, transparent 70%)"
+      : "radial-gradient(circle, rgba(244,183,40,0.22) 0%, transparent 70%)",
+    orb2: isDark
+      ? "radial-gradient(circle, rgba(244,183,40,0.08) 0%, transparent 70%)"
+      : "radial-gradient(circle, rgba(244,183,40,0.14) 0%, transparent 70%)",
+    grid: isDark
+      ? "linear-gradient(rgba(244,183,40,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(244,183,40,0.04) 1px, transparent 1px)"
+      : "linear-gradient(rgba(180,130,0,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(180,130,0,0.09) 1px, transparent 1px)",
+    particle: (opacity: number) =>
+      isDark
+        ? `rgba(244,183,40,${opacity})`
+        : `rgba(180,130,0,${opacity * 0.65})`,
+    eyebrow: isDark ? "#F4B728" : "#b38200",
+    headline: isDark ? "#FFFFFF" : "#0a0a0a",
+    subtitle: isDark ? "rgba(255,255,255,0.52)" : "rgba(0,0,0,0.48)",
+    imgFilter: isDark
+      ? "brightness(1) saturate(1.05)"
+      : "brightness(0.95) saturate(1.1)",
+    btnBg: "#F4B728",
+    btnBgHover: isDark ? "#ffe082" : "#d4a000",
+    btnText: "#000000",
+    btnGlow: isDark
+      ? "0 0 28px rgba(244,183,40,0.5)"
+      : "0 0 20px rgba(244,183,40,0.45)",
+
+    // Theme toggle button tokens
+    toggleBg: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)",
+    toggleBgHover: isDark ? "rgba(255,255,255,0.14)" : "rgba(0,0,0,0.1)",
+    toggleBorder: isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.1)",
+    toggleText: isDark ? "rgba(255,255,255,0.75)" : "rgba(0,0,0,0.55)",
+  } as const;
+
   return (
-    <main className="relative min-h-screen flex flex-col items-center overflow-hidden transition-colors duration-500 bg-[#e8f4fd] dark:bg-[#0a0f1e]">
-      {/* ── Ambient background ────────────────────────────────── */}
-
-      {/* Light-mode soft gradient overlay */}
+    <main
+      className="relative min-h-screen flex flex-col items-center overflow-hidden transition-colors duration-500"
+      style={{ background: isDark ? "#000000" : "#ffffff" }}
+    >
+      {/* ── Ambient background ─────────────────────────────────── */}
       <div
-        className="absolute inset-0 pointer-events-none dark:hidden"
-        style={{
-          background:
-            "linear-gradient(135deg, #e8f4fd 0%, #f4faff 50%, #ddf0fb 100%)",
-        }}
+        className="absolute inset-0 pointer-events-none transition-all duration-500"
+        style={{ background: t.pageBg }}
       />
-      {/* Dark-mode deep gradient overlay */}
       <div
-        className="absolute inset-0 pointer-events-none hidden dark:block"
-        style={{
-          background:
-            "linear-gradient(135deg, #0a0f1e 0%, #0d1a2e 50%, #0a1628 100%)",
-        }}
+        className="absolute top-[-120px] left-[-80px] w-[500px] h-[500px] rounded-full pointer-events-none transition-all duration-500"
+        style={{ background: t.orb1, filter: "blur(40px)" }}
       />
-
-      {/* Orb 1 — top-left */}
       <div
-        className="absolute top-[-120px] left-[-80px] w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(25,132,199,0.15) 0%, transparent 70%)",
-          filter: "blur(40px)",
-        }}
+        className="absolute bottom-[-100px] right-[-60px] w-[400px] h-[400px] rounded-full pointer-events-none transition-all duration-500"
+        style={{ background: t.orb2, filter: "blur(50px)" }}
       />
-      {/* Orb 2 — bottom-right */}
       <div
-        className="absolute bottom-[-100px] right-[-60px] w-[400px] h-[400px] rounded-full pointer-events-none"
+        className="absolute inset-0 pointer-events-none transition-all duration-500"
         style={{
-          background:
-            "radial-gradient(circle, rgba(99,230,200,0.09) 0%, transparent 70%)",
-          filter: "blur(50px)",
-        }}
-      />
-
-      {/* Grid lines — lighter in light mode */}
-      <div
-        className="absolute inset-0 pointer-events-none dark:hidden"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(25,132,199,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(25,132,199,0.07) 1px, transparent 1px)",
+          backgroundImage: t.grid,
           backgroundSize: "48px 48px",
         }}
       />
-      <div
-        className="absolute inset-0 pointer-events-none hidden dark:block"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(25,132,199,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(25,132,199,0.04) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
-
-      {/* Floating particles */}
       {mounted &&
         particles.map((p, i) => (
           <span
@@ -91,65 +126,127 @@ export default function WelcomePage() {
               top: `${p.y}%`,
               width: `${p.size}px`,
               height: `${p.size}px`,
-              background: `rgba(25,132,199,${p.opacity})`,
+              background: t.particle(p.opacity),
               animation: `wlc-float ${p.duration}s ease-in-out infinite alternate`,
               animationDelay: `${i * 0.3}s`,
             }}
           />
         ))}
 
-      {/* ── BANNER ────────────────────────────────────────────── */}
+      {/* ════════════════════════════════════════════
+            NAV
+        ════════════════════════════════════════════ */}
+      <nav
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "0 3rem",
+          height: 64,
+          borderBottom: `1px solid ${scrolled ? "var(--wlc-border)" : "transparent"}`,
+          background: scrolled
+            ? "color-mix(in srgb, var(--wlc-bg) 88%, transparent)"
+            : "transparent",
+          backdropFilter: scrolled ? "blur(18px)" : "none",
+          transition: "all .35s ease",
+        }}
+        className="flex-row-reverse"
+      >
+        {mounted && (
+          <button
+            onClick={toggleTheme}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              borderRadius: 6,
+              background: t.toggleBg,
+              border: `0.5px solid ${t.toggleBorder}`,
+              color: t.toggleText,
+              fontFamily: "'Courier New', Courier, monospace",
+              fontSize: 11,
+              fontWeight: 500,
+              letterSpacing: "0.08em",
+              cursor: "pointer",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLButtonElement).style.background =
+                t.toggleBgHover)
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLButtonElement).style.background =
+                t.toggleBg)
+            }
+            className="p-1"
+          >
+            {isDark ? (
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+            ) : (
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+              </svg>
+            )}
+          </button>
+        )}
+      </nav>
+
+      {/* ── HERO SECTION ──────────────────────────────────────── */}
       <section
         className="relative z-10 w-full flex flex-col items-center justify-center text-center py-20 px-6"
         style={{ minHeight: "52vh" }}
       >
-        {/* Banner image — slightly dimmed in light mode */}
         <img
           src="/welcome/zcash_prop_banner_TRANS_B.png"
           alt="Welcome to Zcash"
-          className="max-w-full h-auto transition-all duration-500 dark:brightness-100 brightness-90 saturate-110"
+          className="block dark:hidden max-w-full h-auto transition-all duration-500"
+          style={{ filter: t.imgFilter }}
+        />
+        <img
+          src="/welcome/zcash_prop_banner_copy.png"
+          alt="Welcome to Zcash"
+          className="hidden dark:block max-w-full h-auto transition-all duration-500"
+          style={{ filter: t.imgFilter }}
         />
 
-        {/* Eyebrow */}
-        <div
-          className="transition-colors duration-500 text-[#1984c7] dark:text-[#19b48c]"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 12,
-            fontFamily: "'Courier New', Courier, monospace",
-            fontSize: 11,
-            fontWeight: 500,
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            marginTop: "1.5rem",
-            marginBottom: "1.75rem",
-            opacity: 0,
-            animation: mounted
-              ? "wlc-rise .8s cubic-bezier(.22,1,.36,1) .15s forwards"
-              : "none",
-          }}
-        >
-          <span
-            className="opacity-50 bg-[#1984c7] dark:bg-[#19b48c]"
-            style={{ width: 28, height: 1 }}
-          />
-          Welcome to Zcash!
-          <span
-            className="opacity-50 bg-[#1984c7] dark:bg-[#19b48c]"
-            style={{ width: 28, height: 1 }}
-          />
-        </div>
-
-        {/* Main headline */}
         <h1
-          className="transition-colors duration-500 text-[#071525] dark:text-white"
+          className="transition-colors duration-500"
           style={{
             fontFamily: "'Georgia', 'Times New Roman', serif",
             fontSize: "clamp(2.5rem, 8vw, 6rem)",
             fontWeight: 400,
             lineHeight: 1.02,
             letterSpacing: "-0.025em",
+            color: t.headline,
             marginBottom: "1.6rem",
             opacity: 0,
             animation: mounted
@@ -161,7 +258,7 @@ export default function WelcomePage() {
           <em
             style={{
               fontStyle: "italic",
-              background: "linear-gradient(105deg,#1984c7 0%,#19b48c 100%)",
+              background: "linear-gradient(105deg, #F4B728 0%, #ffe082 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -173,14 +270,14 @@ export default function WelcomePage() {
           learning.
         </h1>
 
-        {/* Subtitle */}
         <p
-          className="transition-colors duration-500 text-[rgba(7,21,37,0.58)] dark:text-[rgba(255,255,255,0.52)]"
+          className="transition-colors duration-500"
           style={{
             fontFamily: "'Georgia', 'Times New Roman', serif",
             fontSize: "1.05rem",
             lineHeight: 1.8,
             fontWeight: 300,
+            color: t.subtitle,
             maxWidth: 520,
             marginBottom: "2.8rem",
             opacity: 0,
@@ -193,7 +290,6 @@ export default function WelcomePage() {
           helpful links for getting involved.
         </p>
 
-        {/* CTAs */}
         <div
           style={{
             display: "flex",
@@ -209,70 +305,84 @@ export default function WelcomePage() {
         >
           <button
             onClick={() => router.push("/")}
-            className="wlc-btn-primary group flex items-center gap-2 transition-all duration-200 hover:-translate-y-px hover:shadow-[0_0_24px_rgba(25,132,199,0.45)]"
             style={{
               padding: "14px 28px",
               borderRadius: 9,
-              background: "#1984c7",
-              color: "#fff",
+              background: t.btnBg,
+              color: t.btnText,
               fontFamily: "inherit",
               fontSize: 14,
-              fontWeight: 500,
+              fontWeight: 600,
               letterSpacing: "0.01em",
               border: "none",
               cursor: "pointer",
+              transition: "all 0.2s ease",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+            onMouseEnter={(e) => {
+              const btn = e.currentTarget as HTMLButtonElement;
+              btn.style.transform = "translateY(-1px)";
+              btn.style.boxShadow = t.btnGlow;
+              btn.style.background = t.btnBgHover;
+            }}
+            onMouseLeave={(e) => {
+              const btn = e.currentTarget as HTMLButtonElement;
+              btn.style.transform = "translateY(0)";
+              btn.style.boxShadow = "none";
+              btn.style.background = t.btnBg;
             }}
           >
             Visit the Wiki
             <svg
-              className="transition-transform duration-200 group-hover:translate-x-1"
               width="14"
               height="14"
               viewBox="0 0 16 16"
               fill="none"
+              style={{ transition: "transform 0.2s" }}
             >
               <path
                 d="M3 8h10M9 4l4 4-4 4"
-                stroke="white"
+                stroke="#000000"
                 strokeWidth="1.8"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
           </button>
-
-          {/* <button
-            onClick={() =>
-              document
-                .getElementById("features")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-            className="
-              transition-all duration-200
-              text-[rgba(7,21,37,0.55)] border-[rgba(7,21,37,0.18)]
-              dark:text-[rgba(255,255,255,0.5)] dark:border-[rgba(255,255,255,0.15)]
-              hover:text-[#071525] hover:border-[rgba(7,21,37,0.4)]
-              dark:hover:text-white dark:hover:border-[rgba(255,255,255,0.35)]
-            "
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "13px 24px",
-              borderRadius: 9,
-              background: "transparent",
-              fontFamily: "inherit",
-              fontSize: 14,
-              fontWeight: 400,
-              letterSpacing: "0.01em",
-              cursor: "pointer",
-              border: "1px solid",
-            }}
-          >
-            Learn more
-          </button> */}
         </div>
       </section>
+
+      {/* ════════════════════════════════════════════
+            FOOTER
+        ════════════════════════════════════════════ */}
+
+      <footer
+        className="wlc-footer"
+        style={{
+          marginTop: "auto", // ← this is the key addition
+          position: "relative",
+          zIndex: 5,
+          width: "100%", // ← ensure full width
+          borderTop: "1px solid var(--wlc-border)",
+          padding: "1.75rem 3rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "var(--wlc-&&)",
+            fontSize: 11,
+            color: "var(--wlc-subtle)",
+            letterSpacing: "0.04em",
+          }}
+        >
+          © {new Date().getFullYear()} ZecHub · Built by the community
+        </span>
+      </footer>
 
       <style>{`
         @keyframes wlc-fade-up {
