@@ -1,0 +1,97 @@
+import { motion } from "framer-motion";
+import { SlideProps } from "..";
+
+const ROWS = [
+  {
+    label: "Trust model",
+    a: "Institutional / admin",
+    b: "Cryptographic / consensus",
+  },
+  { label: "Throughput", a: "Very high (10k+ TPS)", b: "Limited (10–10k TPS)" },
+  { label: "Mutability", a: "Read · write · delete", b: "Append-only ledger" },
+  {
+    label: "Failure mode",
+    a: "Single point of failure",
+    b: "Byzantine fault tolerant",
+  },
+  {
+    label: "Cost / latency",
+    a: "Low, milliseconds",
+    b: "Higher, seconds–minutes",
+  },
+  {
+    label: "Best for",
+    a: "Internal apps & analytics",
+    b: "Trustless value & audit",
+  },
+];
+
+export default function SlideCompare(props: SlideProps) {
+  return (
+    <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-b from-white/[0.03] to-transparent p-10">
+      <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--viz-cyan)]">
+        Chapter 04
+      </div>
+      <h1 className="text-5xl font-semibold tracking-tight">
+        Centralized DB <span className="text-[var(--viz-mute)]">vs</span>{" "}
+        <span className="bg-gradient-to-r from-[var(--viz-violet)] to-[var(--viz-emerald)] bg-clip-text text-transparent">
+          Blockchain
+        </span>
+      </h1>
+      <p className="mt-3 max-w-3xl text-sm text-[var(--viz-mute)]">
+        Both store data. They differ on who you must trust, how change is
+        allowed, and what happens when actors misbehave.
+      </p>
+
+      <div className="mt-8 grid grid-cols-12 gap-6">
+        {/* Left visual */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="col-span-3 rounded-2xl border border-white/10 bg-black/20 p-5"
+        >
+          <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-[var(--viz-cyan)]">
+            Centralized DB
+          </div>
+          <svg viewBox="0 0 100 80" className="w-full">
+            <rect
+              x="35"
+              y="25"
+              width="30"
+              height="36"
+              rx="3"
+              fill="var(--viz-surface)"
+              stroke="var(--viz-cyan)"
+              strokeWidth="0.8"
+            />
+            {[0, 1, 2].map((i) => (
+              <rect
+                key={i}
+                x="40"
+                y={30 + i * 8}
+                width="20"
+                height="3"
+                rx="1"
+                fill="var(--viz-cyan)"
+                opacity="0.5"
+              />
+            ))}
+            <circle cx="50" cy="15" r="3" fill="var(--viz-amber)" />
+            <text
+              x="50"
+              y="74"
+              textAnchor="middle"
+              fontSize="4"
+              fill="var(--viz-mute)"
+            >
+              admin key
+            </text>
+          </svg>
+        </motion.div>
+
+
+      </div>
+    </div>
+  );
+}
