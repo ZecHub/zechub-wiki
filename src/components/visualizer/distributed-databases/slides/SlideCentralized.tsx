@@ -75,7 +75,7 @@ export default function SlideCentralized(props: SlideProps) {
         />
         <text
           x={50}
-          y={52.5}
+          y={51.5}
           textAnchor="middle"
           fontSize={3.2}
           fill="var(--viz-ink)"
@@ -101,7 +101,7 @@ export default function SlideCentralized(props: SlideProps) {
       </svg>
       {
         failed && (
-          <motion.div initial={{opacity: 0, y:8}} animate={{opacity: 1, y: 0}} className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-[var(--viz-rose)]/59 bg-[var(--viz-rose)]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[var(--viz-rose)]">
+          <motion.div initial={{opacity: 0, y:8}} animate={{opacity: 1, y: 0}} className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-[var(--viz-rose)]/50 bg-[var(--viz-rose)]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[var(--viz-rose)]">
             Single Point of Failure 
           </motion.div>
         )
