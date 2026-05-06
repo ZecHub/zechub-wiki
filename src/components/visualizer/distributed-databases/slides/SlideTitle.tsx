@@ -67,8 +67,8 @@ export default function SlideTitle(props: SlideProps) {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="mb-4 text-[11px] font-semibold tracking-tight"
+            transition={{ duration: 0.7, delay: 0.2}}
+            className="text-7xl font-semibold tracking-tight"
           >
             Distributed <br />
             <span className="bg-gradient-to-r from-[var(--viz-cyan)] via-[var(--viz-violet)] to-[var(--viz-violet)] to-[var(--viz-emerald)] bg-clip-text text-transparent">
