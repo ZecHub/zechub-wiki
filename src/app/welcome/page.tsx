@@ -225,6 +225,65 @@ export default function WelcomePage() {
         )}
       </nav>
 
+      {/* ── Announcement Ticker ──────────────────────────────────── */}
+      <div
+        className="relative imd:fixed"
+        style={{
+          top: 64,
+          left: 0,
+          right: 0,
+          zIndex: 40,
+          padding: "9px 0",
+          overflow: "hidden",
+          maskImage:
+            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            width: "max-content",
+            animation: "ticker-scroll 28s linear infinite",
+            willChange: "transform",
+          }}
+        >
+          {Array.from({ length: 6 })
+            .concat(Array.from({ length: 6 })) // duplicate for seamless loop
+            .map((_, i) => (
+              <span
+                key={i}
+                style={{
+                  fontSize: 12,
+                  fontWeight: 400,
+                  letterSpacing: "0.04em",
+                  color: "#F4B728",
+                  paddingRight: "6rem",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                This is the new landing page for{" "}
+                <a
+                  href="https://z.cash"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.6)",
+                    textDecoration: "none",
+                    borderBottom: `1px solid ${
+                      isDark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.2)"
+                    }`,
+                    paddingBottom: 1,
+                  }}
+                >
+                  z.cash
+                </a>
+              </span>
+            ))}
+        </div>
+      </div>
+
       {/* ── HERO SECTION ──────────────────────────────────────── */}
       <section
         className="relative z-10 w-full flex flex-col items-center justify-center text-center py-20 px-0"
@@ -403,6 +462,10 @@ export default function WelcomePage() {
         @keyframes wlc-float {
           from { transform: translateY(0px) scale(1); }
           to   { transform: translateY(-18px) scale(1.3); }
+        }
+        @keyframes ticker-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
         }
       `}</style>
     </main>
