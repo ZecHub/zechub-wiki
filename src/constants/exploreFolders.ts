@@ -61,7 +61,7 @@ export const exploreFolders = [
         imgDark: '/explore/dark/zkav-club.png',
         description: '',
         name: 'ZKAV_Club',
-        url: 'https://www.zkav.club'
+        url: 'https://zkav.club'
     },
     {
         img: '/PrivacyTools.png',

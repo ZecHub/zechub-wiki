@@ -2,7 +2,7 @@ export const cardsConfig = [
     {
       title: 'startHere',
       content: 'startHereContent',
-      url: 'visualizer',
+      url: '/start-here',
       image: '/LearnZcash.png',
       imageLight: '/explore/light/start-here.png',
       imageDark: '/explore/dark/start-here.png',

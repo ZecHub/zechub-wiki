@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 import FloatingExplore from "@/components/FloatingExplore";
 import Script from "next/script";
 import "./globals.css";
+import NavigationWrapper from "@/components/NavigationWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -55,11 +56,11 @@ export default function RootLayout({
         `}</style>
 
         {/* Manual RSS link as backup for better feed detection (Brave, Feedly, etc.) */}
-        <link 
-          rel="alternate" 
-          type="application/rss+xml" 
-          title="ZecHub Dashboard Updates" 
-          href="https://zechub.wiki/rss.xml" 
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="ZecHub Dashboard Updates"
+          href="https://zechub.wiki/rss.xml"
         />
       </head>
       <body className={`px-0 ${inter.className}`}>
@@ -76,17 +77,7 @@ export default function RootLayout({
         />
         <LanguageProvider>
           <DarkModeProvider>
-            <div className="min-h-screen mx-auto">
-              <ProgressBar />
-              <Navigation />
-              <FloatingExplore />
-              <div className="flex flex-col justify-between flex-grow">
-                <div>
-                  {children}
-                </div>
-              </div>
-            </div>
-            <Footer />
+            <NavigationWrapper>{children}</NavigationWrapper>
           </DarkModeProvider>
         </LanguageProvider>
         {/* Google Translate init — runs after page is interactive */}
