@@ -384,7 +384,7 @@ export default function WelcomePage() {
           <h1
             className="transition-colors duration-500"
             style={{
-              fontFamily: myFont.style.fontFamily,
+              fontFamily: "serif",
               fontSize: "clamp(2.5rem, 8vw, 6rem)",
               fontWeight: 400,
               lineHeight: 1.02,
@@ -401,7 +401,7 @@ export default function WelcomePage() {
             {/* ── 4. Gold shimmer on "journey" ─────────────────── */}
             <em
               style={{
-                fontStyle: "italic",
+                fontStyle: "normal",
                 background:
                   "linear-gradient(105deg, #F4B728 0%, #ffe082 40%, #F4B728 100%)",
                 backgroundSize: "200% 100%",
@@ -536,12 +536,12 @@ export default function WelcomePage() {
         <span
           style={{
             fontFamily: "var(--wlc-&&)",
-            fontSize: 11,
+            fontSize: 12,
             color: "var(--wlc-subtle)",
             letterSpacing: "0.04em",
           }}
         >
-          © {new Date().getFullYear()} ZecHub · Built by the community
+          © {new Date().getFullYear()} Built by the Zcash community
         </span>
       </footer>
 
