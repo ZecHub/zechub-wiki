@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { SlideProps } from "..";
+import { SlideProps } from "../DistributedDatabaseVisualizer";
 
 const ROWS = [
   {
@@ -170,7 +170,7 @@ export default function SlideCompare(props: SlideProps) {
               </motion.g>
             ))}
           </svg>
-        </motion.div> 
+        </motion.div>
       </div>
     </div>
   );

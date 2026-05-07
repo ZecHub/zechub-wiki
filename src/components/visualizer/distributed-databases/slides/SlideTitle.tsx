@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { SlideProps } from "..";
+import { SlideProps } from "../DistributedDatabaseVisualizer";
 
 export default function SlideTitle(props: SlideProps) {
   const nodes = Array.from({ length: 9 }).map((_, i) => {
@@ -67,7 +67,7 @@ export default function SlideTitle(props: SlideProps) {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2}}
+            transition={{ duration: 0.7, delay: 0.2 }}
             className="text-7xl font-semibold tracking-tight"
           >
             Distributed <br />

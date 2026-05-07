@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { SlideProps } from "..";
+import { SlideProps } from "../DistributedDatabaseVisualizer";
 import { SlideFrame } from "./SlideFrame";
+import FailedComp from "./Failed";
 
 export default function SlideCentralized(props: SlideProps) {
   const failed = props.progress > 0.7;
@@ -99,13 +100,12 @@ export default function SlideCentralized(props: SlideProps) {
           </g>
         ))}
       </svg>
-      {
-        failed && (
-          <motion.div initial={{opacity: 0, y:8}} animate={{opacity: 1, y: 0}} className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-[var(--viz-rose)]/50 bg-[var(--viz-rose)]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[var(--viz-rose)]">
-            Single Point of Failure 
-          </motion.div>
-        )
-      }
+      {failed && (
+        <FailedComp
+          label="Single Point of Failure"
+          css="border-[var(--viz-rose)]/50 bg-[var(--viz-rose)]/10 text-[var(--viz-rose)]"
+        />
+      )}
     </SlideFrame>
   );
 }

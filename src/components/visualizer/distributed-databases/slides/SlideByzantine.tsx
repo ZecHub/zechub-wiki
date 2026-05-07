@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { SlideProps } from "..";
+import { SlideProps } from "../DistributedDatabaseVisualizer";
 import { SlideFrame } from "./SlideFrame";
 
 export default function SlideByzantine(props: SlideProps) {
@@ -95,7 +95,7 @@ export default function SlideByzantine(props: SlideProps) {
         >
           city
         </text>
-        
+
         {generals.map((g) => {
           const isTraitor = showTraitors && g.traitor;
           return (
@@ -132,7 +132,7 @@ export default function SlideByzantine(props: SlideProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="absolute bottom-4 left-4 right-4 flex items-center gap-4 rounded-2xl border border-white/10 bg-black/30 p-4 backdrop-blur"
+        className="absolute bottom-4 left-4 right-4 flex items-center gap-4 rounded-2xl border border-white/10 bg-black/30 p-4 backdrop-blur text-center md:-bottom-2.5 flex-col md:flex-row w-full"
       >
         <div className="flex items-center gap-2 text-xs">
           <span className="h-2 w-2 rounded-full bg-[var(--viz-emerald)]" />{" "}

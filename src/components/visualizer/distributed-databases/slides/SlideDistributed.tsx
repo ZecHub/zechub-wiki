@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { SlideProps } from "..";
+import { SlideProps } from "../DistributedDatabaseVisualizer";
 import { SlideFrame } from "./SlideFrame";
+import FailedComp from "./Failed";
 
 export default function SlideDistributed(props: SlideProps) {
   const failedIdx = 2;
@@ -115,13 +116,10 @@ export default function SlideDistributed(props: SlideProps) {
         })}
       </svg>
       {isFailed && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-[var(--viz-emerald)]/50 bg-[var(--viz-emerald)]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[var(--viz-emerald)]"
-        >
-          Node failed · Cluster healthy
-        </motion.div>
+        <FailedComp
+          label="Node failed · Cluster healthy"
+          css="border-[var(--viz-emerald)]/50 bg-[var(--viz-emerald)]/10  text-[var(--viz-emerald)]"
+        />
       )}
     </SlideFrame>
   );

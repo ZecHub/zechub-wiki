@@ -10,15 +10,15 @@ type SlideFrameProps = {
 };
 export function SlideFrame(props: SlideFrameProps) {
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-b from-white/[0.03] to-transparent">
-      <div className="grid h-full grid-cols-12 gap-6 p-10">
-        <div className="col-span-4 flex flex-col justify-center">
+    <div className="relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-b from-white/[0.03] to-transparent">
+      <div className="grid grid-cols-12 mx-auto gap-10 p-18">
+        <div className="col-span-6 flex flex-col justify-center ">
           {props.eyebrow && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-4 text-[11px] font-semibold uppercase tracking-[0.3em] text[var(--viz-cyan)]"
+              className="mb-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--viz-cyan)]"
             >
               {props.eyebrow}
             </motion.div>
@@ -27,7 +27,7 @@ export function SlideFrame(props: SlideFrameProps) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="text-5xl font-semibold leading-[0.05] tracking-tight"
+            className="text-5xl font-semibold leading-[1.05] tracking-tight"
           >
             {props.title}
           </motion.h1>
@@ -50,7 +50,7 @@ export function SlideFrame(props: SlideFrameProps) {
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                  className="flex items-center gap-3 text-sm text-white/80"
+                  className="flex items-start gap-3 text-sm text-white/80"
                 >
                   <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-[var(--viz-cyan)]" />
                   <span>{b}</span>
@@ -59,7 +59,7 @@ export function SlideFrame(props: SlideFrameProps) {
             </ul>
           )}
         </div>
-        <div className="relative col-span-8">{props.children}</div>
+        <div className="relative col-span-6">{props.children}</div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { SlideProps } from "..";
+import { SlideProps } from "../DistributedDatabaseVisualizer";
 
 export default function SlideOutro(props: SlideProps) {
   return (
