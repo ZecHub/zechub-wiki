@@ -250,7 +250,7 @@ export default function DistributedDatabaseVisualizer() {
     <div
       ref={stageRef}
       onMouseMove={bumpControls}
-      className="relative h-280 w-[90%] mx-auto overflow-hidden bg-[var(--viz-bg)] text-[var(--viz-ink)]"
+      className="relative h-320 w-[90%] mx-auto overflow-hidden bg-[var(--viz-bg)] text-[var(--viz-ink)]"
       style={{ fontFamily: "Inter, system-ui, sans-serif" }}
     >
       {/* Backdrop grid */}
@@ -275,8 +275,8 @@ export default function DistributedDatabaseVisualizer() {
       />
 
       {/* Stage 16:9 */}
-      <div className="absolute inset-0 flex items-center justify-center p-6">
-        <div className="relative aspect-video w-full max-w-[1600px]">
+      <div className="  inset-0 flex items-center justify-center p-6">
+        <div className="relative aspect-video w-full max-w-[1600px] top-24">
           <AnimatePresence mode="wait">
             <motion.div
               key={slide.id}
@@ -307,7 +307,7 @@ export default function DistributedDatabaseVisualizer() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 30, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="absolute bottom-6 left-1/2 z-20 w-[min(960px,92vw)] -translate-x-1/2 rounded-2xl border border-white/10 bg-black/40 p-4 backdrop-blur-xl"
+            className="absolute bottom-56 left-1/2 z-20 w-[min(960px,92vw)] -translate-x-1/2 rounded-2xl border border-white/10 bg-black/40 p-4 backdrop-blur-xl"
           >
             {/* progress */}
             <div className="mb-3 flex gap-1">
