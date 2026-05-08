@@ -8,7 +8,7 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench, Map } from "lucide-react";
+import { Wrench, Map, FileText } from "lucide-react";
 
 import {
   RiGithubFill as Github,
@@ -45,6 +45,11 @@ export const navigations: Array<NavigationItem> = [
         name: "Tools",
         path: "/tools",
         icon: Wrench,
+      },
+      {
+        name: "ZIP Tracker",
+        path: "/zips",
+        icon: FileText,
       },
       {
         name: "Wallets",
