@@ -14,6 +14,10 @@ import {
   Tooltip,
 } from "recharts";
 import { cn } from "@/lib/util";
+import {
+  MetricCard,
+  MetricCardSkeleton,
+} from "../Charts/Zcash/ZcashMetrics/MetricCard";
 
 const COLORS = {
   yes: "#4ade80",
@@ -96,28 +100,6 @@ const CHART_TABS = [
 ] as const;
 
 type ChartTab = (typeof CHART_TABS)[number];
-
-// ── Metric card ───────────────────────────────────────────────────────────────
-
-export const MetricCard = ({
-  label,
-  value,
-}: {
-  label: string;
-  value: string | number;
-}) => (
-  <div className="bg-slate-100 dark:bg-transparent shadow-sm border border-gray-200 dark:border-slate-700 rounded-md p-4 transition hover:shadow-sm">
-    <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{label}</p>
-    <p className="font-medium text-slate-700 dark:text-white">{value}</p>
-  </div>
-);
-
-export const MetricCardSkeleton = () => (
-  <div className="bg-white dark:bg-transparent shadow-sm border border-gray-200 dark:border-slate-700 rounded-md p-4 animate-pulse">
-    <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded w-24 mb-2" />
-    <div className="h-6 bg-gray-300 dark:bg-slate-600 rounded w-32" />
-  </div>
-);
 
 // ── Main component ────────────────────────────────────────────────────────────
 
@@ -315,7 +297,12 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
           {metrics.map(({ label, value }) => (
-            <MetricCard label={label} value={value} key={label} />
+            <MetricCard
+              label={label}
+              value={value}
+              key={label}
+              height="h-auto"
+            />
           ))}
         </div>
       </div>
