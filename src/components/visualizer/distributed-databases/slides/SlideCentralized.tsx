@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { SlideProps } from "../DistributedDatabaseVisualizer";
+import FailedComp from "./CallOut";
 import { SlideFrame } from "./SlideFrame";
-import FailedComp from "./Failed";
 
 export default function SlideCentralized(props: SlideProps) {
   const failed = props.progress > 0.7;
