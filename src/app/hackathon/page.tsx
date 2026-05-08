@@ -1,5 +1,6 @@
 import Hackathon from "@/components/Hackathon/Hackathon";
 import { genMetadata } from "@/lib/helpers";
+import { fetchHackathonGithubProjects } from "@/lib/fetchHackathonGithubProjects";
 import { Metadata } from "next";
 import { getDictionary } from '@/lib/getDictionary';
 
@@ -17,6 +18,22 @@ export async function generateMetadata(): Promise<Metadata> {
   }) as Metadata;
 }
 
-export default function page() {
-  return <Hackathon />;
+export default async function page() {
+  let githubProjects: Awaited<ReturnType<typeof fetchHackathonGithubProjects>> =
+    [];
+  let githubProjectsError: string | undefined;
+
+  try {
+    githubProjects = await fetchHackathonGithubProjects();
+  } catch (e) {
+    githubProjectsError =
+      e instanceof Error ? e.message : "Could not load GitHub listing.";
+  }
+
+  return (
+    <Hackathon
+      githubProjects={githubProjects}
+      githubProjectsError={githubProjectsError}
+    />
+  );
 }

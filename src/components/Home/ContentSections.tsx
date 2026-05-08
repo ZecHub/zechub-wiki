@@ -116,7 +116,7 @@ const ContentSections = () => {
           },
           {
             href: "https://zechub.wiki/map",
-            label: t.home?.sections?.payWithZcash?.mapLink || "SPEDN",
+            label: t.home?.sections?.payWithZcash?.mapLink || "Flexa",
           },
         ]}
       />
