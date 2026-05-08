@@ -4,7 +4,7 @@ type FailedProps = {
   label: string;
   css?: string;
 };
-export default function FailedComp(props: FailedProps) {
+export default function CallOut(props: FailedProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
