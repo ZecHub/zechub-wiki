@@ -151,7 +151,8 @@ type VisualizerType =
   | "zcash-community-grants"
   | "coinholder-grants"
   | "open-source-repos"
-  | "build-shielded-transaction";
+  | "build-shielded-transaction"
+  | "distributed-database";
 
 interface VisualizerInfo {
   id: VisualizerType;
