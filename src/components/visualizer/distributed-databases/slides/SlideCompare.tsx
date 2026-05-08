@@ -32,7 +32,7 @@ export default function SlideCompare(props: SlideProps) {
       <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--viz-cyan)]">
         Chapter 04
       </div>
-      <h1 className="text-5xl font-semibold tracking-tight">
+      <h1 className="md:text-5xl text-[38px] font-semibold tracking-tight">
         Centralized DB <span className="text-[var(--viz-mute)]">vs</span>{" "}
         <span className="bg-gradient-to-r from-[var(--viz-violet)] to-[var(--viz-emerald)] bg-clip-text text-transparent">
           Blockchain
