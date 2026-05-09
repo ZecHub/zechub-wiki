@@ -1,3 +1,5 @@
+"use client";
+
 import { useInMobile } from "@/hooks/useInMobile";
 import { DATA_URL } from "@/lib/chart/data-url";
 import {
@@ -11,9 +13,19 @@ import { useLanguage } from "@/context/LanguageContext";
 import { ErrorBoundary } from "../../../ErrorBoundary/ErrorBoundary";
 import { MetricCard, MetricCardSkeleton } from "./MetricCard";
 
+// Icons
+import {
+  DollarSign,
+  Coins,
+  TrendingUp,
+  Bitcoin,
+  Cuboid,
+  Activity,
+  ShieldCheck,
+} from "lucide-react";
+
 interface ZcashStatisticsPorps {}
 
-/* Metrics */
 export function ZcashMetrics(props: ZcashStatisticsPorps) {
   const isMobile = useInMobile();
   const { t } = useLanguage();
@@ -72,18 +84,21 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
       value: blockchainInfo?.market_cap_usd
         ? `$${blockchainInfo?.market_cap_usd.toLocaleString()}`
         : notAvailable,
+      icon: <DollarSign size={18} />,
     },
     {
       label: metricT?.circulation || "Circulation",
       value: circulation
         ? `${circulation?.toLocaleString()} ZEC`
         : notAvailable,
+      icon: <Coins size={18} />,
     },
     {
       label: metricT?.marketPriceUsd || "Market Price (USD)",
       value: blockchainInfo?.market_price_usd
         ? `$${blockchainInfo?.market_price_usd.toFixed(2)}`
         : notAvailable,
+      icon: <TrendingUp size={18} />,
     },
     {
       label: metricT?.marketPriceBtc || "Market Price (BTC)",
@@ -92,26 +107,27 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
           ? Number(blockchainInfo?.market_price_btc).toFixed(4)
           : Number(blockchainInfo?.market_price_btc).toFixed(8)
         : notAvailable,
+      icon: <Bitcoin size={18} />,
     },
     {
       label: metricT?.blocks || "Blocks",
       value: blockchainInfo?.blocks
         ? blockchainInfo?.blocks.toLocaleString()
         : notAvailable,
+      icon: <Cuboid size={18} />,
     },
     {
       label: metricT?.transactions24h || "24h Transactions",
       value: blockchainInfo?.transactions_24h.toLocaleString() ?? notAvailable,
+      icon: <Activity size={18} />,
     },
     {
       label: metricT?.shieldedTx24h || "Shielded TX (24h)",
       value: shieldedTxCount?.length
-        ? `${metricT?.saplingAbbrev || "Sap"}: ${shieldedTxCount
-            .at(-1)!
-            .sapling.toLocaleString()} | ${metricT?.orchardAbbrev || "Orc"}: ${shieldedTxCount
-            .at(-1)!
-            .orchard.toLocaleString()}`
+        ? `Sapling: ${shieldedTxCount.at(-1)!.sapling.toLocaleString()}\nOrchard: ${shieldedTxCount.at(-1)!.orchard.toLocaleString()}`
         : notAvailable,
+      icon: <ShieldCheck size={18} />,
+      isShielded: true,
     },
   ];
 
@@ -123,13 +139,20 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
         <h2 className="font-bold text-xl text-slate-700 dark:text-slate-100">
           {metricT?.title || "Zcash Metrics"}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-8">
           {loading
-            ? metricsObj.map(({ label, value }) => (
+            ? metricsObj.map(({ label }) => (
                 <MetricCardSkeleton key={label} />
               ))
-            : metricsObj.map(({ label, value }) => (
-                <MetricCard label={label} value={value} key={label} />
+            : metricsObj.map((metric) => (
+                <MetricCard
+                  key={metric.label}
+                  label={metric.label}
+                  value={metric.value}
+                  icon={metric.icon}
+                  isShielded={metric.isShielded}
+                />
               ))}
         </div>
       </div>
