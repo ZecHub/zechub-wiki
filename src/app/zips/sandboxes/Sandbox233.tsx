@@ -70,7 +70,7 @@ export default function Sandbox233() {
   const isNetDeflationary = annualBurn > ANNUAL_ISSUANCE_NOW;
 
   return (
-    <div className="max-w-[1100px] mx-auto px-4 sm:px-9 pt-7 pb-16">
+    <div className="max-w-[1100px] mx-auto px-4 md:px-9 pt-7 pb-16">
       <SandboxDisclaim>
         ZIP 233 is fundamentally about <strong>user behaviour</strong>, which we cannot predict. These are <em>scenarios</em>, not forecasts. The spec adds an opt-in voluntary burn mechanism — how much actually gets burned depends entirely on whether users choose to use it.
       </SandboxDisclaim>

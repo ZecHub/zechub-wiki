@@ -1,8 +1,3 @@
-/**
- * Curated short summaries for the drawer. The upstream README.template
- * carries no descriptions, so we maintain a small map of plain-English
- * one-liners for the highest-traffic ZIPs.
- */
 
 export const SUMMARIES: Record<number, string> = {
   0: "Documents the Zcash Improvement Proposal process itself — how ZIPs are written, reviewed, and ratified.",

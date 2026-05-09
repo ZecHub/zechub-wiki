@@ -46,7 +46,7 @@ export default function Sandbox230() {
   const dailyV6 = v6Total * TODAY_TX_VOL;
 
   return (
-    <div className="max-w-[1100px] mx-auto px-4 sm:px-9 pt-7 pb-16">
+    <div className="max-w-[1100px] mx-auto px-4 md:px-9 pt-7 pb-16">
       <SandboxDisclaim>
         ZIP 230 is the v6 transaction format that bundles ZSAs (226/227), memo bundles (231), explicit fees (2002), and quantum recoverability (2005). v6 is only larger than v5 when its optional fields are actually used — toggle features to see the per-tx size.
       </SandboxDisclaim>

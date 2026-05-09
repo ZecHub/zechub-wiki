@@ -44,7 +44,7 @@ export default function Sandbox226() {
   const maxY = Math.max(...poolCurve) * 1.05;
 
   return (
-    <div className="max-w-[1100px] mx-auto px-4 sm:px-9 pt-7 pb-16">
+    <div className="max-w-[1100px] mx-auto px-4 md:px-9 pt-7 pb-16">
       <SandboxDisclaim>
         ZIP 226 adds multi-asset shielded notes to Orchard. The interesting trade-off is privacy: from outside the pool ZSAs are indistinguishable from ZEC, but a holder of asset X only mixes (in some senses) with other holders of X.
       </SandboxDisclaim>

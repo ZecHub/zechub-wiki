@@ -88,7 +88,7 @@ export default function Sandbox234() {
   const diff = finalSmoothed - finalToday;
 
   return (
-    <div className="max-w-[1100px] mx-auto px-4 sm:px-9 pt-7 pb-16">
+    <div className="max-w-[1100px] mx-auto px-4 md:px-9 pt-7 pb-16">
       <SandboxDisclaim>
         ZIP 234 replaces Bitcoin-style halving cliffs with a smooth exponential decay reaching the same 21M cap. With ZIP 233 burns, recycled ZEC re-enters the future issuance schedule.
       </SandboxDisclaim>

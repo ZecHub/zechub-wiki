@@ -4,9 +4,6 @@ import { parseZipsIndex } from "./parse-zips-index";
 import { SUMMARIES } from "./zip-overlay";
 import { FALLBACK_ZIPS } from "./fallback";
 
-// Canonical rendered index. Generated from each ZIP's frontmatter on
-// every commit to zcash/zips, so it's always in sync with what's been
-// merged. The upstream README.template no longer carries the table.
 const SOURCE_URL = "https://zips.z.cash/";
 
 const REVALIDATE_SECONDS = 3600; // 1 hour

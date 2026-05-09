@@ -35,7 +35,7 @@ export default function Sandbox227() {
   const stateCurve = xs.map((a) => a * perAsset);
 
   return (
-    <div className="max-w-[1100px] mx-auto px-4 sm:px-9 pt-7 pb-16">
+    <div className="max-w-[1100px] mx-auto px-4 md:px-9 pt-7 pb-16">
       <SandboxDisclaim>
         ZIP 227 defines how new shielded assets get created. Every issued asset adds to a global state map that all nodes maintain. At scale this matters for node operators — explore the storage cost.
       </SandboxDisclaim>

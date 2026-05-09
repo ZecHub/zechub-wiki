@@ -38,7 +38,7 @@ export default function Sandbox235() {
   const series30 = Array.from({ length: 30 }, (_, i) => dailyBurnZec * (i + 1));
 
   return (
-    <div className="max-w-[1100px] mx-auto px-4 sm:px-9 pt-7 pb-16">
+    <div className="max-w-[1100px] mx-auto px-4 md:px-9 pt-7 pb-16">
       <SandboxDisclaim>
         ZIP 235 burns 60% of every transaction fee. Drag sliders to explore how the size of that effect depends on network volume — at today's mainnet activity it is small; at higher volumes it becomes meaningful.
       </SandboxDisclaim>

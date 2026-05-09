@@ -15,6 +15,7 @@ export interface ZipTrackerProps {
   zips: Zip[];
   lastSyncedAt: string;
   source: "live" | "fallback";
+  embedded?: boolean;
 }
 
 type SortKey = "number-desc" | "number-asc" | "title" | "status";
@@ -76,7 +77,7 @@ function highlight(text: string, q: string) {
   );
 }
 
-export default function ZipTracker({ zips, lastSyncedAt, source }: ZipTrackerProps) {
+export default function ZipTracker({ zips, lastSyncedAt, source, embedded = false }: ZipTrackerProps) {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState<ZipStatus | "all">("all");
   const [cat, setCat] = useState<string>("all");
@@ -150,36 +151,33 @@ export default function ZipTracker({ zips, lastSyncedAt, source }: ZipTrackerPro
 
   return (
     <div
-      className="bg-zinc-50 dark:bg-[#111b27] text-zinc-900 dark:text-zinc-100 min-h-screen"
+      className={`text-zinc-900 dark:text-zinc-100 ${embedded ? "" : "bg-zinc-50 dark:bg-[#111b27] min-h-screen"}`}
       data-zips-source={source}
       data-zips-count={zips.length}
       data-zips-synced-at={lastSyncedAt}
     >
-      {/* TOPBAR */}
-      <div className="sticky top-0 z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-[#0f1720]/95 backdrop-blur-md px-4 sm:px-8 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2.5 text-[13px] font-medium text-zinc-500 dark:text-zinc-400">
-          <a href="/" className="hover:text-[#1984c7] dark:hover:text-[#3fa3e0] transition-colors">ZecHub</a>
-          <span className="opacity-40">/</span>
-          <a href="/tools" className="hover:text-[#1984c7] dark:hover:text-[#3fa3e0] transition-colors">Tools</a>
-          <span className="opacity-40">/</span>
-          <span className="text-zinc-900 dark:text-zinc-100">ZIP Tracker</span>
+      {!embedded && (
+        <div className="sticky top-0 z-50 border-b border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-[#0f1720]/95 backdrop-blur-md px-4 md:px-8 py-3 flex items-center justify-end">
+          <div className="hidden md:flex items-center gap-4">
+            <SyncIndicator source={source} lastSyncedAt={lastSyncedAt} />
+            <a
+              href="https://github.com/zcash/zips"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[13px] text-zinc-600 dark:text-zinc-300 hover:text-[#1984c7] dark:hover:text-[#3fa3e0]"
+            >
+              GitHub ↗
+            </a>
+          </div>
         </div>
-        <div className="hidden sm:flex items-center gap-4">
-          <SyncIndicator source={source} lastSyncedAt={lastSyncedAt} />
+      )}
 
-          <a
-            href="https://github.com/zcash/zips"
-            target="_blank"
-            rel="noreferrer"
-            className="text-[13px] text-zinc-600 dark:text-zinc-300 hover:text-[#1984c7] dark:hover:text-[#3fa3e0]"
-          >
-            GitHub ↗
-          </a>
-        </div>
-      </div>
+      {embedded && (
+        <EmbeddedHeader counts={counts} total={zips.length} source={source} lastSyncedAt={lastSyncedAt} />
+      )}
 
-      {/* HERO */}
-      <section className="relative max-w-[1320px] mx-auto px-4 sm:px-8 pt-12 sm:pt-16 pb-8 sm:pb-10 border-b border-zinc-200 dark:border-zinc-800">
+      {!embedded && (
+      <section className="relative max-w-[1320px] mx-auto px-4 md:px-8 pt-12 md:pt-16 pb-8 md:pb-10 border-b border-zinc-200 dark:border-zinc-800">
         <div
           className="pointer-events-none absolute top-7 right-7 w-56 h-56 rounded-full opacity-20 blur-3xl"
           style={{ background: "radial-gradient(circle, #F4B728, transparent 65%)" }}
@@ -195,18 +193,18 @@ export default function ZipTracker({ zips, lastSyncedAt, source }: ZipTrackerPro
           Every Zcash<br />Improvement Proposal,<br />
           <em className="not-italic italic text-[#1984c7] dark:text-[#3fa3e0]">in one place.</em>
         </h1>
-        <p className="text-[16px] sm:text-[17px] text-zinc-600 dark:text-zinc-300 max-w-[680px] leading-relaxed mb-7">
+        <p className="text-[16px] md:text-[17px] text-zinc-600 dark:text-zinc-300 max-w-[680px] leading-relaxed mb-7">
           Track every ZIP from Draft to Final. Filter by category, search by keyword, and follow what's queued for the next network upgrade — all kept in sync with the canonical{" "}
           <a href="https://github.com/zcash/zips" className="text-[#1984c7] dark:text-[#3fa3e0] hover:underline">zcash/zips</a> repository.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-y-5 sm:gap-y-0 mt-8 pt-7 border-t border-zinc-200 dark:border-zinc-800">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-y-5 md:gap-y-0 mt-8 pt-7 border-t border-zinc-200 dark:border-zinc-800">
           {(["Final", "Active", "Proposed", "Draft", "Reserved"] as const).map((k, i) => (
             <div
               key={k}
-              className={`px-0 sm:px-6 ${i > 0 ? "sm:border-l sm:border-zinc-200 dark:sm:border-zinc-800" : ""}`}
+              className={`px-0 md:px-6 ${i > 0 ? "md:border-l md:border-zinc-200 dark:md:border-zinc-800" : ""}`}
             >
               <div
-                className={`text-[34px] sm:text-[38px] tracking-tight leading-none mb-2 font-medium ${STATUS_NUM_TINT[k] ?? ""}`}
+                className={`text-[34px] md:text-[38px] tracking-tight leading-none mb-2 font-medium ${STATUS_NUM_TINT[k] ?? ""}`}
                 style={{ fontFamily: "'Fraunces', serif" }}
               >
                 {counts[k] ?? 0}
@@ -218,10 +216,11 @@ export default function ZipTracker({ zips, lastSyncedAt, source }: ZipTrackerPro
           ))}
         </div>
       </section>
+      )}
 
       {/* NU7 BAND */}
       <section
-        className="text-zinc-100 px-4 sm:px-8 py-9 relative overflow-hidden"
+        className={`text-zinc-100 py-7 md:py-9 relative overflow-hidden ${embedded ? "rounded-md px-4 md:px-6" : "px-4 md:px-8"}`}
         style={{ background: "linear-gradient(135deg, #0f1827 0%, #142943 100%)" }}
       >
         <div
@@ -233,7 +232,7 @@ export default function ZipTracker({ zips, lastSyncedAt, source }: ZipTrackerPro
         <div className="relative max-w-[1320px] mx-auto">
           <div className="flex justify-between items-baseline mb-5 flex-wrap gap-4">
             <div>
-              <div className="text-[24px] sm:text-[28px] tracking-tight font-medium" style={{ fontFamily: "'Fraunces', serif" }}>
+              <div className="text-[24px] md:text-[28px] tracking-tight font-medium" style={{ fontFamily: "'Fraunces', serif" }}>
                 <span className="font-mono text-[11px] font-semibold bg-[#F4B728] text-zinc-900 px-2.5 py-1 rounded-sm align-middle mr-3 tracking-wider">
                   NU7
                 </span>
@@ -273,7 +272,7 @@ export default function ZipTracker({ zips, lastSyncedAt, source }: ZipTrackerPro
       </section>
 
       {/* CONTROLS */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-8 pt-7 pb-3 flex flex-col gap-4">
+      <section className={`max-w-[1320px] mx-auto pt-7 pb-3 flex flex-col gap-4 ${embedded ? "px-0 mt-6" : "px-4 md:px-8"}`}>
         <div className="flex gap-3 items-center">
           <div className="flex-1 flex items-center gap-2.5 px-4 py-3 rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-[#0f1720] focus-within:border-[#1984c7] dark:focus-within:border-[#3fa3e0] focus-within:ring-2 focus-within:ring-[#1984c7]/15 dark:focus-within:ring-[#3fa3e0]/20 transition">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-400 shrink-0">
@@ -352,7 +351,7 @@ export default function ZipTracker({ zips, lastSyncedAt, source }: ZipTrackerPro
       </section>
 
       {/* LIST */}
-      <section className="max-w-[1320px] mx-auto px-4 sm:px-8 pt-2 pb-20">
+      <section className={`max-w-[1320px] mx-auto pt-2 ${embedded ? "px-0 pb-8" : "px-4 md:px-8 pb-20"}`}>
         <div className="hidden md:grid grid-cols-[80px_1fr_180px_140px_120px] gap-6 px-3 py-3 font-mono text-[10px] uppercase tracking-[0.14em] text-zinc-500 dark:text-zinc-400 font-semibold border-b border-zinc-200 dark:border-zinc-800">
           <div>ZIP</div>
           <div>Title</div>
@@ -398,6 +397,58 @@ export default function ZipTracker({ zips, lastSyncedAt, source }: ZipTrackerPro
         onClose={() => setSandboxNum(null)}
       />
     </div>
+  );
+}
+
+// --------- Embedded header ---------
+function EmbeddedHeader({
+  counts,
+  total,
+  source,
+  lastSyncedAt,
+}: {
+  counts: Record<string, number>;
+  total: number;
+  source: "live" | "fallback";
+  lastSyncedAt: string;
+}) {
+  return (
+    <section className="mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div className="flex items-center gap-2.5">
+          <SyncIndicator source={source} lastSyncedAt={lastSyncedAt} />
+          <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-500 dark:text-zinc-400 font-semibold">
+            {total} proposals tracked · zcash/zips
+          </span>
+        </div>
+        <a
+          href="https://github.com/zcash/zips"
+          target="_blank"
+          rel="noreferrer"
+          className="text-[12px] text-zinc-600 dark:text-zinc-300 hover:text-[#1984c7] dark:hover:text-[#3fa3e0]"
+        >
+          GitHub ↗
+        </a>
+      </div>
+      <div className="grid grid-cols-3 md:grid-cols-5 gap-y-3 md:gap-y-0 rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900/40 px-1 md:px-2 py-3">
+        {(["Final", "Active", "Proposed", "Draft", "Reserved"] as const).map((k, i) => (
+          <div
+            key={k}
+            className={`px-3 md:px-5 ${i > 0 ? "md:border-l md:border-zinc-200 dark:md:border-zinc-800" : ""}`}
+          >
+            <div
+              className={`text-[22px] md:text-[24px] font-medium leading-none mb-1 ${STATUS_NUM_TINT[k] ?? ""}`}
+              style={{ fontFamily: "'Fraunces', serif" }}
+            >
+              {counts[k] ?? 0}
+            </div>
+            <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400 font-medium">
+              {k}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -535,9 +586,9 @@ function Drawer({
         onClick={onClose}
       />
       <aside
-        className={`fixed top-0 right-0 bottom-0 w-full sm:w-[560px] bg-white dark:bg-[#0f1720] z-[301] overflow-y-auto shadow-2xl transition-transform duration-300 ${open ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 bottom-0 w-full md:w-[560px] bg-white dark:bg-[#0f1720] z-[301] overflow-y-auto shadow-2xl transition-transform duration-300 ${open ? "translate-x-0" : "translate-x-full"}`}
       >
-        <div className="px-7 pt-6 pb-5 border-b border-zinc-200 dark:border-zinc-800 sticky top-0 bg-white dark:bg-[#0f1720] z-[2]">
+        <div className="px-5 md:px-7 pt-5 md:pt-6 pb-5 border-b border-zinc-200 dark:border-zinc-800 sticky top-0 bg-white dark:bg-[#0f1720] z-[2]">
           <button
             onClick={onClose}
             aria-label="Close"
@@ -550,7 +601,7 @@ function Drawer({
           <div className="font-mono text-[12px] text-[#1984c7] dark:text-[#3fa3e0] mb-2 font-semibold tracking-wide">
             ZIP {fmtZipNum(zip.num)}
           </div>
-          <div className="text-[24px] sm:text-[26px] font-medium leading-tight tracking-tight mb-4 pr-8" style={{ fontFamily: "'Fraunces', serif" }}>
+          <div className="text-[20px] md:text-[26px] font-medium leading-tight tracking-tight mb-4 pr-10 break-words" style={{ fontFamily: "'Fraunces', serif" }}>
             {zip.title}
           </div>
           <div className="flex gap-2 flex-wrap items-center">
@@ -566,7 +617,7 @@ function Drawer({
           </div>
         </div>
 
-        <div className="px-7 py-7 space-y-7">
+        <div className="px-5 md:px-7 py-6 md:py-7 space-y-7">
           <Section title="Summary">
             <p className="text-[14px] leading-relaxed text-zinc-600 dark:text-zinc-300">
               {zip.summary ??
@@ -614,11 +665,11 @@ function Drawer({
           </Section>
         </div>
 
-        <div className="px-7 py-5 flex gap-2.5 flex-wrap border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40">
+        <div className="px-5 md:px-7 py-5 flex flex-col md:flex-row gap-2.5 md:flex-wrap border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40">
           {hasSandbox(zip.num) && (
             <button
               onClick={() => onOpenSandbox(zip.num)}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-[13px] font-medium border border-transparent transition shadow-sm"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-[13px] font-medium border border-transparent transition shadow-sm w-full md:w-auto"
               style={{ background: "linear-gradient(135deg, #F4B728, #e8a418)", color: "#0e1116" }}
             >
               ⚗ Open Sandbox
@@ -628,7 +679,7 @@ function Drawer({
             href={zipUrl(zip.num)}
             target="_blank"
             rel="noreferrer"
-            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-[13px] font-medium border transition ${
+            className={`inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-[13px] font-medium border transition w-full md:w-auto ${
               hasSandbox(zip.num)
                 ? "border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-500"
                 : "bg-[#1984c7] hover:bg-[#1574af] text-white border-[#1984c7]"
@@ -640,7 +691,7 @@ function Drawer({
             href={zipGithubUrl(zip.num)}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-[13px] font-medium border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-500 transition"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-[13px] font-medium border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-500 transition w-full md:w-auto"
           >
             View on GitHub ↗
           </a>
@@ -681,11 +732,11 @@ function SandboxModal({
       <div
         role="dialog"
         aria-modal="true"
-        className={`fixed inset-0 sm:inset-6 bg-zinc-50 dark:bg-[#0f1720] z-[401] sm:rounded-lg overflow-hidden flex flex-col shadow-2xl transition-all duration-300 ${
+        className={`fixed inset-0 md:inset-6 bg-zinc-50 dark:bg-[#0f1720] z-[401] md:rounded-lg overflow-hidden flex flex-col shadow-2xl transition-all duration-300 ${
           open ? "scale-100 opacity-100 pointer-events-auto" : "scale-[0.97] opacity-0 pointer-events-none"
         }`}
       >
-        <div className="px-5 sm:px-7 py-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between gap-4 shrink-0 bg-white dark:bg-[#0f1720]">
+        <div className="px-5 md:px-7 py-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between gap-4 shrink-0 bg-white dark:bg-[#0f1720]">
           <div className="flex items-center gap-3.5 min-w-0">
             <div
               className="w-9 h-9 rounded-md inline-flex items-center justify-center text-zinc-900 text-base shrink-0"
@@ -698,7 +749,7 @@ function SandboxModal({
                 {zip ? `ZIP ${fmtZipNum(zip.num)} · NU7 candidate · ${zip.status}` : ""}
               </div>
               <div
-                className="text-[20px] sm:text-[22px] font-medium leading-tight tracking-tight text-zinc-900 dark:text-zinc-100 truncate"
+                className="text-[20px] md:text-[22px] font-medium leading-tight tracking-tight text-zinc-900 dark:text-zinc-100 truncate"
                 style={{ fontFamily: "'Fraunces', serif" }}
               >
                 {zip?.title ?? "Sandbox"}
@@ -712,7 +763,7 @@ function SandboxModal({
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 6 6 18M6 6l12 12" />
             </svg>
-            <span className="hidden sm:inline">Close</span>
+            <span className="hidden md:inline">Close</span>
           </button>
         </div>
 
@@ -727,7 +778,7 @@ function SandboxModal({
 
 function PlaceholderSandbox({ num, title }: { num: number; title: string }) {
   return (
-    <div className="max-w-[1100px] mx-auto px-9 pt-7 pb-16">
+    <div className="max-w-[1100px] mx-auto px-4 md:px-9 pt-7 pb-16">
       <div className="rounded-md border border-dashed border-zinc-300 dark:border-zinc-700 px-8 py-16 text-center max-w-[540px] mx-auto mt-12 bg-white dark:bg-[#0f1720]">
         <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-2xl opacity-60">
           🚧

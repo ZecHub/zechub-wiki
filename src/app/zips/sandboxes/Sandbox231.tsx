@@ -44,7 +44,7 @@ export default function Sandbox231() {
   const z231MemoFee = padded === 0 ? 0 : Math.ceil(padded / 256) * 5000;
 
   return (
-    <div className="max-w-[1100px] mx-auto px-4 sm:px-9 pt-7 pb-16">
+    <div className="max-w-[1100px] mx-auto px-4 md:px-9 pt-7 pb-16">
       <SandboxDisclaim>
         This explores ZIP 231 with simplified assumptions. Drag sliders to see how memo size and adoption shape the trade-offs. Real mainnet behaviour will differ; assumptions are listed below each chart.
       </SandboxDisclaim>

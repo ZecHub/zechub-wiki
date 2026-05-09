@@ -8,7 +8,7 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench, Map, FileText } from "lucide-react";
+import { Wrench, Map } from "lucide-react";
 
 import {
   RiGithubFill as Github,
@@ -45,11 +45,6 @@ export const navigations: Array<NavigationItem> = [
         name: "Tools",
         path: "/tools",
         icon: Wrench,
-      },
-      {
-        name: "ZIP Tracker",
-        path: "/zips",
-        icon: FileText,
       },
       {
         name: "Wallets",
@@ -319,8 +314,18 @@ export const navigations: Array<NavigationItem> = [
   },
   {
     name: "Governance",
-    path: "/governance-howto",
+    label: "Governance",
     icon: RiGovernmentLine,
+    links: [
+      {
+        name: "How to Participate",
+        path: "/governance-howto",
+      },
+      {
+        name: "ZIPs & Grants",
+        path: "/zips-grants",
+      },
+    ],
   },
   {
     name: "Tutorials",
