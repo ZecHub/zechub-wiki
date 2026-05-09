@@ -54,7 +54,8 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
     ]);
     markdown = md;
     roots = Array.isArray(rootsRaw) ? rootsRaw : [];
-  } catch {
+  } catch (e) {
+    console.error('Failed to fetch and parse .md file: ', e)
     markdown = null;
     roots = [];
   }
