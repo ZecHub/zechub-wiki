@@ -10,13 +10,13 @@ const fadeDownAnimation = () => ({
     y: 0,
     opacity: 1,
     transition: {
-      type: "spring",
       duration: 1.25,
+      type: "spring",
       delayChildren: 1,
       staggerChildren: 1,
     },
   },
-});
+} as any);
 
 export const FadeInAnimation = ({
   children,
