@@ -1963,13 +1963,7 @@
     "supply": 63141,
     "close": "07/10/2017"
   },
-  {,
   {
-    "sprout": 227,
-    "sapling": 1291,
-    "orchard": ,
-    "timestamp": "1518"
-  }
     "supply": 61453,
     "close": "07/11/2017"
   },
@@ -4281,13 +4275,7 @@
     "supply": 258791,
     "close": "05/09/2018"
   },
-  {,
   {
-    "sprout": 227,
-    "sapling": 1291,
-    "orchard": ,
-    "timestamp": "1518"
-  }
     "supply": 259001,
     "close": "05/10/2018"
   },
