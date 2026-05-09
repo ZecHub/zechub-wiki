@@ -552,7 +552,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
   const folder = dark ? "dark" : "light";
   const handleLinkClick = () => closeMenu();
 
-  // Exact icon mapping style used by FloatingExplore.tsx
+  // Exact icon mapping from FloatingExplore.tsx
   const iconMap: Record<string, string> = {
     "Use Zcash": `/explore/${folder}/using-zcash.png`,
     "Ecosystem": `/explore/${folder}/zcash-tech.png`,
@@ -565,7 +565,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
     "Contribute": `/explore/${folder}/contribute.png`,
     "Visualizer": `/explore/${folder}/zcash-tech.png`,
     "Sitemap": `/explore/${folder}/start-here.png`,
-    "Bounties": `/explore/${folder}/contribute.png`, // fallback
+    "Bounties": `/explore/${folder}/contribute.png`,
   };
 
   const getExploreIcon = (name: string) => {
@@ -574,7 +574,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
 
   return (
     <div className="flex flex-col space-y-1 font-normal">
-      {/* Side-by-side Quick Access – Bounties | Dashboard (compact version you liked) */}
+      {/* Side-by-side Quick Access – Bounties | Dashboard (no badge) */}
       <div className="grid grid-cols-2 gap-3 mb-8 px-1">
         {/* Bounties */}
         <Link
@@ -591,25 +591,22 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
           {t.navigation?.bounties || "Bounties"}
         </Link>
 
-        {/* Dashboard */}
+        {/* Dashboard – badge removed */}
         <Link
           prefetch
           href="/dashboard"
           onClick={handleLinkClick}
-          className="flex flex-col items-center justify-center gap-2 px-4 py-4 rounded-2xl bg-white/5 dark:bg-white/5 border border-amber-200 dark:border-amber-800 hover:bg-yellow-300 dark:hover:bg-yellow-500 hover:border-amber-400 transition-all duration-200 group font-semibold text-base relative"
+          className="flex flex-col items-center justify-center gap-2 px-4 py-4 rounded-2xl bg-white/5 dark:bg-white/5 border border-amber-200 dark:border-amber-800 hover:bg-yellow-300 dark:hover:bg-yellow-500 hover:border-amber-400 transition-all duration-200 group font-semibold text-base"
         >
           <Icon
             icon={LayoutDashboard}
             className="w-5 h-5 text-amber-500 dark:text-amber-400 group-active:scale-110 transition-transform"
           />
           {t.navigation?.dashboard || "Dashboard"}
-          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-medium w-5 h-5 flex items-center justify-center rounded-full ring-2 ring-background shadow-sm">
-            N
-          </span>
         </Link>
       </div>
 
-      {/* Main menu items – now perfectly matched to Floating Z menu */}
+      {/* Main menu items with branded PNG icons (matched to Floating Z menu) */}
       {navigations.map((item, i) => {
         const iconSrc = getExploreIcon(item.name || item.label || "");
 
@@ -669,7 +666,6 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
     </div>
   );
 };
-
 const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => {
   return (
     <div className="flex flex-col h-[90%] ">
