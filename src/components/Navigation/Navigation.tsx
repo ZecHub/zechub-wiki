@@ -17,6 +17,12 @@ import { Button } from "../UI/button";
 import { Icon } from "../UI/Icon";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 
+import { DarkModeContext } from "@/context/DarkModeContext";
+import Image from "next/image";
+import { Trophy, LayoutDashboard } from "lucide-react";
+
+
+
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
 
 // Translation helper function
@@ -533,40 +539,106 @@ const NavLinks = ({
   );
 };
 
+const getExploreIcon = (name: string) => {
+  const theme = "dark"; // Replace with your actual theme hook: useTheme() or whatever you use
+  const cleanName = name.toLowerCase().replace(/\s+/g, "-");
+  return `/explore/${theme}/${cleanName}.png`;
+};
+
+
 const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
   const { t } = useLanguage();
+  const { dark } = useDarkModeContext();
+  const folder = dark ? "dark" : "light";
   const handleLinkClick = () => closeMenu();
+
+  // Exact icon mapping style used by FloatingExplore.tsx
+  const iconMap: Record<string, string> = {
+    "Use Zcash": `/explore/${folder}/using-zcash.png`,
+    "Ecosystem": `/explore/${folder}/zcash-tech.png`,
+    "Guides": `/explore/${folder}/guides.png`,
+    "Organizations": `/explore/${folder}/zcash-organizations.png`,
+    "DAO": `/explore/${folder}/contribute.png`,
+    "Governance": `/explore/${folder}/contribute.png`,
+    "Tutorials": `/explore/${folder}/tutorials.png`,
+    "Developers": `/explore/${folder}/contribute.png`,
+    "Contribute": `/explore/${folder}/contribute.png`,
+    "Visualizer": `/explore/${folder}/zcash-tech.png`,
+    "Sitemap": `/explore/${folder}/start-here.png`,
+    "Bounties": `/explore/${folder}/contribute.png`, // fallback
+  };
+
+  const getExploreIcon = (name: string) => {
+    return iconMap[name] || `/explore/${folder}/start-here.png`;
+  };
+
   return (
     <div className="flex flex-col space-y-1 font-normal">
-      {navigations.map((item, i) =>
-        item.links ? (
+      {/* Side-by-side Quick Access – Bounties | Dashboard (compact version you liked) */}
+      <div className="grid grid-cols-2 gap-3 mb-8 px-1">
+        {/* Bounties */}
+        <Link
+          prefetch
+          href="https://bounties.zechub.wiki/"
+          target="_blank"
+          onClick={handleLinkClick}
+          className="flex flex-col items-center justify-center gap-2 px-4 py-4 rounded-2xl bg-white/5 dark:bg-white/5 border border-amber-200 dark:border-amber-800 hover:bg-yellow-300 dark:hover:bg-yellow-500 hover:border-amber-400 transition-all duration-200 group font-semibold text-base"
+        >
+          <Icon
+            icon={Trophy}
+            className="w-5 h-5 text-amber-500 dark:text-amber-400 group-active:scale-110 transition-transform"
+          />
+          {t.navigation?.bounties || "Bounties"}
+        </Link>
+
+        {/* Dashboard */}
+        <Link
+          prefetch
+          href="/dashboard"
+          onClick={handleLinkClick}
+          className="flex flex-col items-center justify-center gap-2 px-4 py-4 rounded-2xl bg-white/5 dark:bg-white/5 border border-amber-200 dark:border-amber-800 hover:bg-yellow-300 dark:hover:bg-yellow-500 hover:border-amber-400 transition-all duration-200 group font-semibold text-base relative"
+        >
+          <Icon
+            icon={LayoutDashboard}
+            className="w-5 h-5 text-amber-500 dark:text-amber-400 group-active:scale-110 transition-transform"
+          />
+          {t.navigation?.dashboard || "Dashboard"}
+          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-medium w-5 h-5 flex items-center justify-center rounded-full ring-2 ring-background shadow-sm">
+            N
+          </span>
+        </Link>
+      </div>
+
+      {/* Main menu items – now perfectly matched to Floating Z menu */}
+      {navigations.map((item, i) => {
+        const iconSrc = getExploreIcon(item.name || item.label || "");
+
+        return item.links ? (
           <DropdownMobile
             label={getTranslatedLabel(item.name, item.label, t, item.label)}
             key={`${item.name}-${i}`}
           >
-            {item.links.map((link, i) => {
-              return (
-                <Link
-                  prefetch
-                  key={`${link.name}-${i}`}
-                  href={link.path ?? "#"}
-                  onClick={handleLinkClick}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 text-sm ${liStyle} text-slate-700`}
-                  {...(link.newTab && {
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                  })}
-                >
-                  {(link.icon || matchIcons(item.name, link.name)) && (
-                    <Icon
-                      icon={link.icon ?? matchIcons(item.name, link.name)}
-                      className="xl:w-6 w-4 h-4 xl:h-6"
-                    />
-                  )}
-                  {getTranslatedLabel(item.name, link.name, t, link.label)}
-                </Link>
-              );
-            })}
+            {item.links.map((link, idx) => (
+              <Link
+                prefetch
+                key={`${link.name}-${idx}`}
+                href={link.path ?? "#"}
+                onClick={handleLinkClick}
+                className={`flex items-center gap-2 px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 text-sm ${liStyle} text-slate-700`}
+                {...(link.newTab && {
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                })}
+              >
+                {(link.icon || matchIcons(item.name, link.name)) && (
+                  <Icon
+                    icon={link.icon ?? matchIcons(item.name, link.name)}
+                    className="xl:w-6 w-4 h-4 xl:h-6"
+                  />
+                )}
+                {getTranslatedLabel(item.name, link.name, t, link.label)}
+              </Link>
+            ))}
           </DropdownMobile>
         ) : (
           <Link
@@ -574,38 +646,23 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
             key={`${item.name}-${i}`}
             href={item.path ?? "#"}
             onClick={handleLinkClick}
-            className={`px-3 py-2 rounded-md text-nav-foreground hover:bg-nav-hover-bg transition-colors duration-200 ${liStyle} dark:text-white`}
-            {...(item.newTab && {
-              target: "_blank",
-              rel: "noopener noreferrer",
-            })}
+            className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all hover:bg-yellow-400 hover:text-black dark:hover:bg-amber-600 font-medium"
           >
+            <Image
+              src={iconSrc}
+              alt=""
+              width={24}
+              height={24}
+              className="h-6 w-6 object-contain flex-shrink-0"
+              quality={85}
+            />
             {getTranslatedLabel(item.name, item.label, t, item.label)}
           </Link>
-        ),
-      )}
+        );
+      })}
 
-      {/* Mobile CTA buttons */}
-      <div className="flex flex-col">
-        <div className="flex flex-col space-y-3 my-8 border-t border-slate-400 dark:border-slate-50 "></div>
-        <Link
-          prefetch
-          href="https://bounties.zechub.wiki/"
-          target="_blank"
-          onClick={handleLinkClick}
-          className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
-        >
-          {t.navigation?.bounties || "Bounties"}
-        </Link>
-        <Link
-          prefetch
-          href="/dashboard"
-          onClick={handleLinkClick}
-          className={`hover:text-white transition-colors duration-200 p-2 w-full justify-start ${liStyle}`}
-        >
-          {t.navigation?.dashboard || "Dashboard"}
-        </Link>
-      </div>
+      {/* Original separator + DonationBtn */}
+      <div className="flex flex-col space-y-3 my-8 border-t border-slate-400 dark:border-slate-50"></div>
       <div className="py-12">
         <DonationBtn />
       </div>
