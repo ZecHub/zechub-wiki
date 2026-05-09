@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/UI/Card";
 import {
@@ -13,6 +12,9 @@ import {
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { fetchTreasuryFromSheet } from "@/lib/parseTreasurySheet";
 
+// NEW: Live ZEC price from the exact same Blockchair API used on the main ZecHub dashboard
+const BLOCKCHAIR_ZEC_STATS_URL = "https://api.blockchair.com/zcash/stats";
+
 const PIE_COLORS = [
   "#3b82f6",
   "#22c55e",
@@ -22,17 +24,12 @@ const PIE_COLORS = [
   "#06b6d4",
   "#f97316",
 ];
-
 const TREASURY_CARD =
   "border-slate-300/50 dark:border-slate-600/40 shadow-none";
-
 const TREASURY_INNER_TILE = "border-slate-300/45 dark:border-slate-600/35";
-
 const TREASURY_TABLE_HEAD =
   "[&_tr]:border-b [&_tr]:border-slate-300/50 dark:[&_tr]:border-slate-600/40";
-
 const TREASURY_TABLE_ROW = "border-slate-300/50 dark:border-slate-600/40";
-
 const TREASURY_ROW_DIVIDE =
   "divide-y divide-slate-300/50 dark:divide-slate-600/40";
 
@@ -81,7 +78,6 @@ function formatTreasuryFieldDisplay(
     }
     return value === "" ? "" : `$${value}`;
   }
-
   if (fieldKey.endsWith(" Price")) {
     const n =
       typeof value === "number"
@@ -95,8 +91,34 @@ function formatTreasuryFieldDisplay(
     }
     return value === "" ? "" : `$${value}`;
   }
-
   if (typeof value === "number") return formatTreasuryNumber(value);
+  return value;
+}
+
+// NEW: Helper to scale any USD field using live price ratio (so Total USD Value, USD Reserved, etc. update live)
+function applyLivePriceToUSD(
+  fieldKey: string,
+  value: string | number,
+  multiplier: number
+): string | number {
+  if (multiplier === 1 || multiplier <= 0) return value;
+
+  // Only adjust fields that represent current USD values
+  const keyLower = fieldKey.toLowerCase();
+  if (
+    fieldKey === "Total USD Value" ||
+    fieldKey === "USD Reserved" ||
+    keyLower.includes("usd") ||
+    keyLower.includes("total usd")
+  ) {
+    const n =
+      typeof value === "number"
+        ? value
+        : Number(String(value).replace(/,/g, "").replace(/\$/g, ""));
+    if (Number.isFinite(n)) {
+      return n * multiplier;
+    }
+  }
   return value;
 }
 
@@ -107,11 +129,9 @@ function extractSections(data: unknown[]) {
   const pairSections: PairSection[] = [];
   let paidOut: Record<string, string> | null = null;
   let toBePaid: Record<string, string> | null = null;
-
   for (const item of data) {
     if (!item || typeof item !== "object" || Array.isArray(item)) continue;
     const o = item as Record<string, unknown>;
-
     if (
       "FPF" in o &&
       o.FPF &&
@@ -137,7 +157,6 @@ function extractSections(data: unknown[]) {
       fpfNumericBlocks.push(o as Record<string, number>);
       continue;
     }
-
     const keys = Object.keys(o);
     if (keys.length === 1) {
       const title = keys[0];
@@ -151,7 +170,6 @@ function extractSections(data: unknown[]) {
       }
     }
   }
-
   return { header, fpf, fpfNumericBlocks, pairSections, paidOut, toBePaid };
 }
 
@@ -203,6 +221,11 @@ export default function SheetTreasuryTab() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // NEW: Live ZEC price state (added exactly as used on main ZecHub dashboard)
+  const [liveZecPrice, setLiveZecPrice] = useState<number | null>(null);
+  const [priceLoading, setPriceLoading] = useState(true);
+  const [priceError, setPriceError] = useState<string | null>(null);
+
   useEffect(() => {
     let cancelled = false;
     fetchTreasuryFromSheet()
@@ -223,8 +246,97 @@ export default function SheetTreasuryTab() {
     };
   }, []);
 
+  // NEW: Live ZEC price fetch (exact same Blockchair endpoint + pattern as main ZecHub dashboard price label)
+  useEffect(() => {
+    let cancelled = false;
+    const controller = new AbortController();
+
+    fetch(BLOCKCHAIR_ZEC_STATS_URL, { signal: controller.signal })
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        if (!cancelled) {
+          const price = data?.data?.market_price_usd;
+          if (typeof price === "number" && Number.isFinite(price)) {
+            setLiveZecPrice(price);
+            setPriceError(null);
+          } else {
+            setPriceError("Invalid price data");
+          }
+        }
+      })
+      .catch((e) => {
+        if (!cancelled) {
+          console.warn("Live ZEC price fetch failed (non-blocking):", e);
+          setPriceError(e instanceof Error ? e.message : "Failed to fetch live price");
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setPriceLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, []);
+
   const { header, fpf, fpfNumericBlocks, pairSections, paidOut, toBePaid } =
     useMemo(() => extractSections(rows ?? []), [rows]);
+
+  // NEW: Sheet price + multiplier so ALL other $ prices scale to live ZEC price
+  const sheetZecPrice = useMemo(() => {
+    if (!header) return 0;
+    const p = header["Zcash Price"];
+    const num = typeof p === "number" ? p : Number(String(p).replace(/[^0-9.]/g, ""));
+    return Number.isFinite(num) ? num : 0;
+  }, [header]);
+
+  const priceMultiplier = useMemo(() => {
+    if (liveZecPrice === null || sheetZecPrice <= 0) return 1;
+    return liveZecPrice / sheetZecPrice;
+  }, [liveZecPrice, sheetZecPrice]);
+
+  // NEW: Override Zcash Price + scale every other USD field in header (Total USD Value, USD Reserved, etc.)
+  const displayHeader = useMemo(() => {
+    if (!header) return null;
+    const adjusted: Record<string, string | number> = { ...header };
+    // live price override (exactly as before)
+    if (liveZecPrice !== null) {
+      adjusted["Zcash Price"] = liveZecPrice.toString();
+    }
+    // scale every USD field with live multiplier
+    Object.keys(adjusted).forEach((k) => {
+      adjusted[k] = applyLivePriceToUSD(k, adjusted[k], priceMultiplier);
+    });
+    return adjusted;
+  }, [header, liveZecPrice, priceMultiplier]);
+
+  // NEW: Scale USD fields inside FPF balances & reserves blocks too
+  const adjustedFpfNumericBlocks = useMemo(() => {
+    if (priceMultiplier === 1) return fpfNumericBlocks;
+    return fpfNumericBlocks.map((block) => {
+      const adjustedBlock: Record<string, number> = { ...block };
+      Object.keys(adjustedBlock).forEach((k) => {
+        adjustedBlock[k] = Number(applyLivePriceToUSD(k, adjustedBlock[k], priceMultiplier)) as number;
+      });
+      return adjustedBlock;
+    });
+  }, [fpfNumericBlocks, priceMultiplier]);
+
+  // NEW: Scale USD fields inside pair sections too
+  const adjustedPairSections = useMemo(() => {
+    if (priceMultiplier === 1) return pairSections;
+    return pairSections.map(({ title, body }) => {
+      const adjustedBody: Record<string, string> = { ...body };
+      Object.keys(adjustedBody).forEach((k) => {
+        adjustedBody[k] = String(applyLivePriceToUSD(k, adjustedBody[k], priceMultiplier));
+      });
+      return { title, body: adjustedBody };
+    });
+  }, [pairSections, priceMultiplier]);
 
   const fpfPie = useMemo(() => (fpf ? fpfPieRows(fpf) : []), [fpf]);
   const paidPie = useMemo(
@@ -249,17 +361,16 @@ export default function SheetTreasuryTab() {
       </div>
     );
   }
-
   return (
     <div className="space-y-8">
-      {header && (
+      {displayHeader && (
         <Card className={TREASURY_CARD}>
           <CardHeader>
             <CardTitle>Treasury overview</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-              {Object.entries(header).map(([k, v]) => (
+              {Object.entries(displayHeader).map(([k, v]) => (
                 <div
                   key={k}
                   className={`rounded-xl border bg-muted/30 p-4 ${TREASURY_INNER_TILE}`}
@@ -274,7 +385,6 @@ export default function SheetTreasuryTab() {
           </CardContent>
         </Card>
       )}
-
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {fpfPie.length > 0 && (
           <Card className={TREASURY_CARD}>
@@ -337,7 +447,6 @@ export default function SheetTreasuryTab() {
             </CardContent>
           </Card>
         )}
-
         {paidPie.length > 0 && (
           <Card className={TREASURY_CARD}>
             <CardHeader className="imd:flex-row imd:items-center justify-between">
@@ -406,7 +515,6 @@ export default function SheetTreasuryTab() {
           </Card>
         )}
       </div>
-
       {fpf && (
         <Card className={TREASURY_CARD}>
           <CardHeader>
@@ -442,14 +550,13 @@ export default function SheetTreasuryTab() {
           </CardContent>
         </Card>
       )}
-
-      {fpfNumericBlocks.length > 0 && (
+      {adjustedFpfNumericBlocks.length > 0 && (  // NEW: now uses adjusted blocks so USD fields update live
         <div>
           <h3 className="text-lg font-semibold mb-4">
             FPF balances &amp; reserves
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {fpfNumericBlocks.map((block, i) => (
+            {adjustedFpfNumericBlocks.map((block, i) => (
               <Card key={i} className={TREASURY_CARD}>
                 <CardContent className={`pt-6 ${TREASURY_ROW_DIVIDE}`}>
                   {Object.entries(block).map(([k, v]) => (
@@ -469,10 +576,9 @@ export default function SheetTreasuryTab() {
           </div>
         </div>
       )}
-
-      {pairSections.length > 0 && (
+      {adjustedPairSections.length > 0 && (  // NEW: now uses adjusted sections so any USD fields update live
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {pairSections.map(({ title, body }) => (
+          {adjustedPairSections.map(({ title, body }) => (
             <Card key={title} className={TREASURY_CARD}>
               <CardHeader>
                 <CardTitle className="text-lg">{title}</CardTitle>
@@ -494,7 +600,6 @@ export default function SheetTreasuryTab() {
           ))}
         </div>
       )}
-
       {paidOut && (
         <Card className={TREASURY_CARD}>
           <CardHeader>
@@ -522,7 +627,6 @@ export default function SheetTreasuryTab() {
           </CardContent>
         </Card>
       )}
-
       {toBePaid && (
         <Card className={TREASURY_CARD}>
           <CardHeader>
