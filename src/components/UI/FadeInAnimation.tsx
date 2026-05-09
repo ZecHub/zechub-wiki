@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ReactNode } from "react";
 
-const fadeDownAnimation = () => ({
+const fadeDownAnimation = (): Variants => ({
   hidden: {
     y: 20,
     opacity: 0,
@@ -16,7 +16,7 @@ const fadeDownAnimation = () => ({
       staggerChildren: 1,
     },
   },
-} as any);
+} );
 
 export const FadeInAnimation = ({
   children,
