@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ReactNode } from "react";
 
-const fadeDownAnimation = () => ({
+const fadeDownAnimation = (): Variants => ({
   hidden: {
     y: 20,
     opacity: 0,
@@ -10,13 +10,13 @@ const fadeDownAnimation = () => ({
     y: 0,
     opacity: 1,
     transition: {
-      type: "spring",
       duration: 1.25,
+      type: "spring",
       delayChildren: 1,
       staggerChildren: 1,
     },
   },
-});
+} );
 
 export const FadeInAnimation = ({
   children,
