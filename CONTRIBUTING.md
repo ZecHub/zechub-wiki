@@ -15,11 +15,44 @@ To get an overview of ZecHub Wiki, read the [README](/README.md).
 
 First, join the conversation in the [Zcash Global discord](https://discord.gg/zcash). There's a ZecHub section where we chat about all things ZecHub :smile:
 
-<small> Don’t forget to add the ZecHub role in <a href="https://discord.com/channels/978714252934258779/983468150861484093">#lang-menu channel</a>! </small>
+<small> Don't forget to add the ZecHub role in <a href="https://discord.com/channels/978714252934258779/983468150861484093">#lang-menu channel</a>! </small>
 
 ## Bounty
 
 If you're familiar with Next.js, we offer paid bounty for ZecHub Wiki through dework. Go to [dework.zechub.org](https://dework.zechub.org/) to find and apply for active bounties.
+
+## Bug Bounty Program
+
+ZecHub operates a bug bounty program to help identify and fix security vulnerabilities and bugs in our platform. We welcome security researchers and developers to responsibly report issues.
+
+### Scope
+
+Our bug bounty program covers:
+- Security vulnerabilities in the ZecHub Wiki application
+- Critical bugs that affect user experience or data integrity
+- Performance issues that significantly impact the platform
+
+### How to Report
+
+1. **Security Issues**: For security vulnerabilities, please report privately by emailing us or contacting us through Discord rather than creating public issues
+2. **General Bugs**: Create an issue in our [GitHub repository](https://github.com/zechub/zechub-wiki/issues) with detailed reproduction steps
+3. **Include**: Clear description, steps to reproduce, expected vs actual behavior, and any relevant screenshots or logs
+
+### Rewards
+
+Rewards are determined based on:
+- Severity and impact of the issue
+- Quality of the report and reproduction steps
+- Responsible disclosure practices
+
+Rewards are paid in ZEC to your unified address. Include your UA in the bug report for payment.
+
+### Guidelines
+
+- Test against the latest version of the application
+- Do not access or modify data that doesn't belong to you
+- Report issues promptly and follow responsible disclosure
+- One issue per report for better tracking
 
 ## Issues
 
@@ -29,7 +62,7 @@ If you spot a problem with ZecHub Wiki app, [search if an issue already exists](
 
 ### Solve an issue
 
-Scan through our [existing issues](https://github.com/zechub/zechub-wiki/issues) to find one that interests you. You can narrow down the search using `labels` as filters. As a general rule, we don’t assign issues to anyone. If you find an issue to work on, you are welcome to open a PR with a fix.
+Scan through our [existing issues](https://github.com/zechub/zechub-wiki/issues) to find one that interests you. You can narrow down the search using `labels` as filters. As a general rule, we don't assign issues to anyone. If you find an issue to work on, you are welcome to open a PR with a fix.
 
 ## Make Changes
 
