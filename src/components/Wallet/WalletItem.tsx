@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   MdThumbDown as Dislike,
   MdThumbUp as Like,
@@ -8,6 +8,7 @@ import {
   MdDevices,
   MdPool,
   MdOpenInNew as OpenNew,
+  MdKeyboardArrowDown,
 } from "react-icons/md";
 import { Icon } from "../UI/Icon";
 
@@ -66,6 +67,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
 }) => {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
+  const [featuresOpen, setFeaturesOpen] = useState(false);
 
   const handleLike = () => {
     onLike();
@@ -86,6 +88,20 @@ const WalletItem: React.FC<WalletItemProps> = ({
   const isFeatureLink = (value: any): value is FeatureLink => {
     return typeof value === 'object' && 'name' in value && 'url' in value;
   };
+
+  const featureValues = useMemo(() => {
+    const values = tags.find((t) => t.category === "Features")?.values ?? [];
+    return values.map((v) => (typeof v === "string" ? v : v.name));
+  }, [tags]);
+
+  const hasTransparent = useMemo(
+    () => featureValues.some((v) => v.toLowerCase() === "transparent"),
+    [featureValues],
+  );
+  const hasShielded = useMemo(
+    () => featureValues.some((v) => v.toLowerCase() === "shielded"),
+    [featureValues],
+  );
 
   return (
     <div className="wallet-item h-full flex flex-col border rounded-2xl shadow-lg bg-white dark:bg-gray-800 overflow-hidden transition-all hover:shadow-xl">
@@ -154,32 +170,90 @@ const WalletItem: React.FC<WalletItemProps> = ({
         {tags.some((t) => t.category === "Features") && (
           <>
             <hr className="my-3 border-slate-200 dark:border-slate-700" />
-            <div className="flex flex-wrap gap-2">
-              <Icon
-                icon={MdChecklist}
-                title="Features"
-                className="text-slate-500 mt-1"
-                size="medium"
-              />
-              {tags
-                .find((t) => t.category === "Features")
-                ?.values.map((value, index) => {
-                  const displayValue = typeof value === "string" ? value : (value as FeatureLink).name;
-                  const linkUrl = typeof value === "string" ? getFeatureLink(value) : (value as FeatureLink).url;
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-2">
+                <Icon
+                  icon={MdChecklist}
+                  title="Features"
+                  className="text-slate-500"
+                  size="medium"
+                />
 
-                  return (
-                    <Link
-                      key={index}
-                      href={linkUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
-                    >
-                      {displayValue}
-                    </Link>
-                  );
-                })}
+                {hasShielded ? (
+                  <Link
+                    href={getFeatureLink("Shielded")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
+                  >
+                    Shielded
+                  </Link>
+                ) : null}
+                {hasTransparent ? (
+                  <Link
+                    href={getFeatureLink("Transparent")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
+                  >
+                    Transparent
+                  </Link>
+                ) : null}
+
+                {!hasShielded && !hasTransparent ? (
+                  <span className="text-sm text-slate-500 dark:text-slate-400">
+                    Feature details
+                  </span>
+                ) : null}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setFeaturesOpen((v) => !v)}
+                className="inline-flex items-center gap-1 rounded-lg border border-slate-300 px-2.5 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700 cursor-pointer"
+                aria-expanded={featuresOpen}
+                aria-controls={`${title}-features`}
+              >
+                <span>{featuresOpen ? "Hide" : "Show"}</span>
+                <Icon
+                  icon={MdKeyboardArrowDown}
+                  className={`transition ${featuresOpen ? "rotate-180" : ""}`}
+                  size="small"
+                />
+              </button>
             </div>
+
+            {featuresOpen ? (
+              <div
+                id={`${title}-features`}
+                className="mt-3 flex flex-wrap gap-2"
+              >
+                {tags
+                  .find((t) => t.category === "Features")
+                  ?.values.map((value, index) => {
+                    const displayValue =
+                      typeof value === "string"
+                        ? value
+                        : (value as FeatureLink).name;
+                    const linkUrl =
+                      typeof value === "string"
+                        ? getFeatureLink(value)
+                        : (value as FeatureLink).url;
+
+                    return (
+                      <Link
+                        key={index}
+                        href={linkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
+                      >
+                        {displayValue}
+                      </Link>
+                    );
+                  })}
+              </div>
+            ) : null}
           </>
         )}
       </div>
