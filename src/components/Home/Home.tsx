@@ -15,7 +15,7 @@ type HomeProps = {
 
 const Home = ({ text }: HomeProps) => {
   const { t } = useLanguage();
-  
+
   return (
     <main className="flex flex-col">
       <section id="hero" className=" bg-slate-100 my-24">
@@ -66,10 +66,14 @@ const Home = ({ text }: HomeProps) => {
           <div className="flex flex-col md:flex-row md:flex-wrap gap-8 justify-between items-stretch">
             {cardsConfig &&
               cardsConfig.map((items) => {
-                const cardKey = items.title as 'startHere' | 'pickWallet' | 'resources';
+                const cardKey = items.title as
+                  | "startHere"
+                  | "pickWallet"
+                  | "resources";
                 const title = t.home?.cards?.[cardKey]?.title || items.title;
-                const content = t.home?.cards?.[cardKey]?.content || items.content;
-                
+                const content =
+                  t.home?.cards?.[cardKey]?.content || items.content;
+
                 return (
                   <Cards
                     key={items.title}
@@ -78,8 +82,8 @@ const Home = ({ text }: HomeProps) => {
                     url={items.url}
                     image={items.image}
                     imageLight={items.imageLight}
-                  imageDark={items.imageDark}
-                />
+                    imageDark={items.imageDark}
+                  />
                 );
               })}
           </div>
