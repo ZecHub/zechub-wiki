@@ -5,7 +5,7 @@
     {
       "title": "Peter Van Valkenburgh, of Coin Center, on the OFAC Tornado Cash SDN listing at Zcon3",
       "video_id": "XpTrCA3tEKM",
-      "views": 7692
+      "views": 7693
     },
     {
       "title": "ZK Rollup: Ethereum Scalability with ZKPs - Alex Gluchowski",
@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2212
+      "views": 2213
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -25,7 +25,7 @@
     {
       "title": "Understanding the Moon Math of ZK Snarks workshop led by Anna Kaplan and Liz Steininger",
       "video_id": "gaXiYRBnBPE",
-      "views": 1857
+      "views": 1859
     },
     {
       "title": "Boosting Zcash Security w/ Zebra",
@@ -55,7 +55,7 @@
     {
       "title": "Zcash Scalability with Sean Bowe - ZconVI #zcash",
       "video_id": "-m3JCgi3kiU",
-      "views": 1407
+      "views": 1410
     },
     {
       "title": "Sapling Activation Party Livestream",
@@ -80,12 +80,12 @@
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1232
+      "views": 1234
     },
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
       "video_id": "O4wQi_i7k0I",
-      "views": 1232
+      "views": 1233
     },
     {
       "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
@@ -185,12 +185,12 @@
     {
       "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
       "video_id": "cAfTTfblzoU",
-      "views": 776
+      "views": 777
     },
     {
       "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
       "video_id": "eero6i2WTxo",
-      "views": 776
+      "views": 777
     },
     {
       "title": "Auditing Cryptography: #Zcon2Lite",
@@ -648,14 +648,14 @@
       "views": 295
     },
     {
-      "title": "Zebrad for Linux Tutorial #1",
-      "video_id": "7cPKf4hobeI",
+      "title": "Zcash Foundation Board of Directors Members: Marta Belcher & J.W. Verret",
+      "video_id": "D_M1QqhRk8E",
       "views": 295
     },
     {
-      "title": "Zcash Foundation Board of Directors Members: Marta Belcher & J.W. Verret",
-      "video_id": "D_M1QqhRk8E",
-      "views": 293
+      "title": "Zebrad for Linux Tutorial #1",
+      "video_id": "7cPKf4hobeI",
+      "views": 295
     },
     {
       "title": "HSMs and Hardware Wallets: #Zcon2Lite",
@@ -668,6 +668,11 @@
       "views": 290
     },
     {
+      "title": "Zcash Arborist Call 04-30-2026",
+      "video_id": "qfIS6wORZIA",
+      "views": 286
+    },
+    {
       "title": "State of Legislation, Regulation and Policy with Paul, Kurt, Peter & Jack at Zcon3",
       "video_id": "h8pKG2OhJ4w",
       "views": 285
@@ -675,11 +680,6 @@
     {
       "title": "Zcash Arborist Call 04-02-2026",
       "video_id": "-4GDsezfilc",
-      "views": 284
-    },
-    {
-      "title": "Zcash Arborist Call 04-30-2026",
-      "video_id": "qfIS6wORZIA",
       "views": 284
     },
     {
@@ -698,6 +698,11 @@
       "views": 277
     },
     {
+      "title": "Orchard Shielded Assets - Daniel Benarroch & Pablo Kogan at Zcon3",
+      "video_id": "vpHFMCppRYk",
+      "views": 276
+    },
+    {
       "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
       "video_id": "hdd5X2z7O3o",
       "views": 276
@@ -705,11 +710,6 @@
     {
       "title": "FROST Engineering Updates - Deirdre Connolly and Conrado Gouvêa",
       "video_id": "VE-1aTuwpzI",
-      "views": 275
-    },
-    {
-      "title": "Orchard Shielded Assets - Daniel Benarroch & Pablo Kogan at Zcon3",
-      "video_id": "vpHFMCppRYk",
       "views": 275
     },
     {
@@ -768,14 +768,14 @@
       "views": 255
     },
     {
-      "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
-      "video_id": "DU7wIy3Ywm4",
+      "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
+      "video_id": "5gvQF5oFT8E",
       "views": 255
     },
     {
-      "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
-      "video_id": "5gvQF5oFT8E",
-      "views": 254
+      "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
+      "video_id": "DU7wIy3Ywm4",
+      "views": 255
     },
     {
       "title": "Zcash Arborist Call 1/11/24",
@@ -983,6 +983,11 @@
       "views": 203
     },
     {
+      "title": "Zecwallet Lite on Windows Tutorial #3",
+      "video_id": "A8nmkcHkeW4",
+      "views": 200
+    },
+    {
       "title": "How to use FROST (incl. Demo) with Conrado Gouvêa and Deirdre Connolly: Zcon4",
       "video_id": "wjj94SYVzxs",
       "views": 200
@@ -990,11 +995,6 @@
     {
       "title": "Community Call: Introducing ZOMG Candidates",
       "video_id": "kzDA0XwoLYM",
-      "views": 199
-    },
-    {
-      "title": "Zecwallet Lite on Windows Tutorial #3",
-      "video_id": "A8nmkcHkeW4",
       "views": 199
     },
     {
@@ -1088,13 +1088,13 @@
       "views": 180
     },
     {
-      "title": "MGRC Candidate Q&A Live Streams: Time Slot #2",
-      "video_id": "SbA_AN05nUU",
-      "views": 178
-    },
-    {
       "title": "Zcash Arborist Call 04-16-2026",
       "video_id": "cmPQexrzn_o",
+      "views": 179
+    },
+    {
+      "title": "MGRC Candidate Q&A Live Streams: Time Slot #2",
+      "video_id": "SbA_AN05nUU",
       "views": 178
     },
     {
@@ -1363,6 +1363,11 @@
       "views": 137
     },
     {
+      "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
+      "video_id": "2zmtTwrHUXA",
+      "views": 137
+    },
+    {
       "title": "Contribute Ideas to Zcash",
       "video_id": "eseOez6nKe8",
       "views": 136
@@ -1385,11 +1390,6 @@
     {
       "title": "Zcash Arborist Call 01-09-2025",
       "video_id": "BG8C1Rf4jXg",
-      "views": 135
-    },
-    {
-      "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
-      "video_id": "2zmtTwrHUXA",
       "views": 135
     },
     {
