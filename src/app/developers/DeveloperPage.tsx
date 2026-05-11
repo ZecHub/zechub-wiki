@@ -29,6 +29,7 @@ export default function DeveloperPage() {
         t?.pages?.developers?.cards?.learnContent ??
         "Explore the official documentation and learn the basics of Zcash technology.",
       url: "https://zcash.readthedocs.io/",
+      blank: true,
       svg: (
         <svg
           className="w-12 h-12 text-blue-500"
@@ -55,6 +56,7 @@ export default function DeveloperPage() {
         t?.pages?.developers?.cards?.tutorialsContent ??
         "Follow step-by-step tutorials to build on Zcash, from creating wallets to integrating Zcash into your applications.",
       url: "https://www.youtube.com/playlist?list=PL6_epn0lASLFF28ePj7P5TvtMG_WE7p3O",
+      blank: true,
       svg: (
         <svg
           className="w-12 h-12 text-green-500"
@@ -143,6 +145,7 @@ export default function DeveloperPage() {
                   </p>
                   <a
                     href={card.url}
+                    target={card.blank ? "_blank" : "_self"}
                     className="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
                   >
                     {card.buttonText}

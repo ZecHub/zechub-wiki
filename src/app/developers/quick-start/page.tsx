@@ -3,33 +3,50 @@
 import React from "react";
 import { ReactNode } from "react";
 import TabsPage from "@/components/TabsPage/TabsPage";
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from "@/context/LanguageContext";
 
 const Zebrad = () => {
   const { t } = useLanguage();
-  const tableOfContents = t?.developers?.quickStart?.tableOfContents ?? "Table of Contents";
+  const tableOfContents =
+    t?.developers?.quickStart?.tableOfContents ?? "Table of Contents";
   const toc1 = t?.developers?.quickStart?.toc1 ?? "1. Installing Zebrad";
   const toc2 = t?.developers?.quickStart?.toc2 ?? "2. Running zebrad";
-  const toc3 = t?.developers?.quickStart?.toc3 ?? "3. Connecting with lightwalletd";
-  const installingHeading = t?.developers?.quickStart?.installingHeading ?? "1. Installing Zebrad";
-  const runningHeading = t?.developers?.quickStart?.runningHeading ?? "2. Running zebrad";
-  const connectingHeading = t?.developers?.quickStart?.connectingHeading ?? "3. Connecting with lightwalletd";
-  const systemRequirements = t?.developers?.quickStart?.systemRequirements ?? "System Requirements";
-  const sysList1 = t?.developers?.quickStart?.sysList1 ?? "Linux, macOS, or Windows";
-  const sysList2 = t?.developers?.quickStart?.sysList2 ?? "At least 4GB RAM (8GB recommended)";
-  const sysList3 = t?.developers?.quickStart?.sysList3 ?? "250GB free disk space for full node";
-  const sysList4 = t?.developers?.quickStart?.sysList4 ?? "Stable internet connection";
+  const toc3 =
+    t?.developers?.quickStart?.toc3 ?? "3. Connecting with lightwalletd";
+  const installingHeading =
+    t?.developers?.quickStart?.installingHeading ?? "1. Installing Zebrad";
+  const runningHeading =
+    t?.developers?.quickStart?.runningHeading ?? "2. Running zebrad";
+  const connectingHeading =
+    t?.developers?.quickStart?.connectingHeading ??
+    "3. Connecting with lightwalletd";
+  const systemRequirements =
+    t?.developers?.quickStart?.systemRequirements ?? "System Requirements";
+  const sysList1 =
+    t?.developers?.quickStart?.sysList1 ?? "Linux, macOS, or Windows";
+  const sysList2 =
+    t?.developers?.quickStart?.sysList2 ?? "At least 4GB RAM (8GB recommended)";
+  const sysList3 =
+    t?.developers?.quickStart?.sysList3 ??
+    "250GB free disk space for full node";
+  const sysList4 =
+    t?.developers?.quickStart?.sysList4 ?? "Stable internet connection";
   const linux = t?.developers?.quickStart?.linux ?? "Linux";
-   const initialSetup = t?.developers?.quickStart?.initialSetup ?? "Initial Setup";
-   const startingZebrad = t?.developers?.quickStart?.startingZebrad ?? "Starting zebrad";
-  const ubuntuDebian = t?.developers?.quickStart?.ubuntuDebian ?? "Ubuntu/Debian:";
+  const initialSetup =
+    t?.developers?.quickStart?.initialSetup ?? "Initial Setup";
+  const startingZebrad =
+    t?.developers?.quickStart?.startingZebrad ?? "Starting zebrad";
+  const ubuntuDebian =
+    t?.developers?.quickStart?.ubuntuDebian ?? "Ubuntu/Debian:";
   const fromSource = t?.developers?.quickStart?.fromSource ?? "From Source:";
   const macos = t?.developers?.quickStart?.macos ?? "macOS";
   const homebrew = t?.developers?.quickStart?.homebrew ?? "Homebrew:";
   const windows = t?.developers?.quickStart?.windows ?? "Windows";
-  const importantNotes = t?.developers?.quickStart?.importantNotes ?? "Important Notes";
+  const importantNotes =
+    t?.developers?.quickStart?.importantNotes ?? "Important Notes";
   const nextSteps = t?.developers?.quickStart?.nextSteps ?? "Next Steps";
-  const readyToBuild = t?.developers?.quickStart?.readyToBuild ?? "Ready to Build?";
+  const readyToBuild =
+    t?.developers?.quickStart?.readyToBuild ?? "Ready to Build?";
   const needHelp = t?.developers?.quickStart?.needHelp ?? "Need Help?";
 
   return (
@@ -97,10 +114,12 @@ const Zebrad = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Linux Installation */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                <h3 className="text-xl font-semibold mb-4">{linux}</h3>
+              <h3 className="text-xl font-semibold mb-4">{linux}</h3>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-semibold text-green-600">{ubuntuDebian}</h4>
+                  <h4 className="font-semibold text-green-600">
+                    {ubuntuDebian}
+                  </h4>
                   <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
                     {`sudo apt update \ncargo install --locked zebrad`}
                   </pre>
@@ -108,7 +127,15 @@ const Zebrad = () => {
                 <div>
                   <h4 className="font-semibold text-green-600">{fromSource}</h4>
                   <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`git clone https://github.com/ZcashFoundation/zebra.git \ncd zebra \ngit checkout v2.4.0 \ncargo build  --release --bin zebrad \ntarget/release/zebrad start`}
+                    {`git clone https://github.com/ZcashFoundation/zebra.git \ncd zebra \ngit checkout v4.4.1 \ncargo build  --release --bin zebrad \ntarget/release/zebrad start`}
+                  </pre>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-green-600">
+                    {"Alternatively"}
+                  </h4>
+                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
+                    {`cargo install --git https://github.com/ZcashFoundation/zebra --tag v4.4.1 zebrad`}
                   </pre>
                 </div>
               </div>
@@ -129,7 +156,15 @@ const Zebrad = () => {
                     Manual Download:
                   </h4>
                   <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
-                    {`git clone https://github.com/ZcashFoundation/zebra.git \ncd zebra \ngit checkout v2.4.0 \ncargo build  --release --bin zebrad \ntarget/release/zebrad start`}
+                    {`git clone https://github.com/ZcashFoundation/zebra.git \ncd zebra \ngit checkout v4.4.1 \ncargo build  --release --bin zebrad \ntarget/release/zebrad start`}
+                  </pre>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-green-600">
+                    {"Alternatively"}
+                  </h4>
+                  <pre className="bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm overflow-x-auto">
+                    {`cargo install --git https://github.com/ZcashFoundation/zebra --tag v4.4.1 zebrad`}
                   </pre>
                 </div>
               </div>
