@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 27,
-    "proposal_count": 147,
+    "proposal_count": 148,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6093,7 +6093,7 @@
           "title": "Zcash East Africa Community Presence at Kenya Blockchain and Cryptocurrency Conference(KBCC) 2026",
           "votes": {
             "no": "0",
-            "yes": "2",
+            "yes": "3",
             "abstain": "0"
           },
           "status": "open",
@@ -6118,6 +6118,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-05-09T22:23:17.836Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 148,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash Expansion and Community Launch in South Africa.",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno134vfu8fhxcnq3wlnpjnnx4r5hun9yjnzeqfgnq",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1778920907242748217"
+          },
+          "description": "1. Introduction \n\nGreetings Zechub DAO members,\n\n We are excited to present and launch Zcash South Africa, as we continue to expand and build a strong, adoption-driven ecosystem. Our mission is to position Zcash as a trusted, secure, and widely used digital wallet across Africa.\nAfrica, with its predominantly young and tech-savvy population, represents one of the fastest-growing markets for digital finance. The demand for secure, privacy-focused, and reliable crypto solutions continues to rise, making this the ideal time to drive Zcash adoption in the region.\n\nObjectives:\nOur primary goal is to execute a structured launch campaign that:\n\n- Drives awareness of Zcash across key academic institutions,\n\n- Onboards new users into the ecosystem,\nBuilds a grassroots referral network for sustained growth; and\n\n- Encourages real-world usage through student and business adoption.\n\nMeet our team:\n\nInspire -  Zcash South Africa lead\n\nPraiseGod mas ( @kinel20 on discord) - Event coordinator/lead Zcash South Africa team\n\nJuju ( @juju214099608_  on discord) - Event coordinator/ support team\n\n\n\n\n2. Target Locations\n\nWe have identified Tshwane (Pretoria), the capital city of South Africa, as our primary launch hub due to its high concentration of universities and innovation-driven communities.\n\nTarget Institutions includes:\n\nUniversity of Pretoria\n\nTshwane University of Technology\n\nSefako Makgatho Health Sciences University\n\nUniversity of South Africa (UNISA)\n\nThese institutions provide direct access to a large pool of students who are early adopters of technology and active participants in Web3 ecosystems.\n\n\n3.  Execution Strategy\n\n(i) Campus Activation Campaigns\n\nWe will conduct:\nPhysical seminars,\nWebinars for broader reach (post campaign),\nInteractive onboarding sessions.\n\nThese engagements will focus on:\n\n.  Educating students about Zcash and privacy in crypto\n\n.  Demonstrating wallet usage\n\n.  Encouraging immediate sign-ups\n\n(ii) Community Growth & Referral System\nRecruit at least 3 student ambassadors per institution\n\nEach ambassador will act as an affiliate, onboarding peers\nIncentivize referrals to create viral growth within campuses\n\n(iii) Marketing Channels\nSocial media outreach (Twitter, Telegram, WhatsApp groups)\nWord-of-mouth marketing through student ambassadors.\n\n(iv) Business Adoption\nWe will also engage:\nLocal businesses\nSmall merchants already exploring crypto payments\n\nThe goal is to:\nIntroduce Zcash as a payment option\nEncourage real-world utility and transaction usage\n\n\n\n4.  Budget Breakdown\n\nPromotional Materials (T-shirts, giveaways, branding, Flyers/posters) -  R8,000 (~$470)\n\nTransportation (Campus visits) - R1,870(~$110)\n\nProjector, Generator/power backup, Internet/WiFi setup - R2,550 (~$150)\n\nHall / venue permit  - R5,440 (~ $320)\n\nPhotographer/videographer - R850 (~$50)\n \nRefreshments - R2,040 (~$120)\n\nVolunteers support (10$ * 5 volunteers) - R850 (~$50)\n \nMiscellaneous (Giveaways & More) - R1,020 (~$60)\n\nTotal Estimated Budget: \nR22,790 (~$1330)\n\n\n5. Expected Outcomes\n\nOnboard 150 - 200 active users across institutions, wallet downloads and onboarding to Zcash discord server/ South African telegram group.\n\nEstablish a sustainable student ambassador network\n\nIncrease awareness and visibility of Zcash in South Africa\n\nLay the foundation for long-term ecosystem growth\n\n6. Conclusion\n\nThis initiative is designed not just as a one-time launch, but as a scalable growth model for Zcash adoption across Africa. By focusing on youth communities, education, and real-world usage, we aim to create a strong and self-sustaining ecosystem.\nWith the right support, this campaign will position Zcash as a leading privacy-first digital payment solution in South Africa and beyond.\n\nSocials: \n\nhttps://x.com/Zcash_SA\n          \n     https://t.me/zcashSA\n",
+          "total_power": "27",
+          "start_height": 37800929,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-05-11T08:41:47.242Z"
       }
     ]
   },
