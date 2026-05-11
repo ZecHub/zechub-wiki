@@ -145,7 +145,7 @@
     {
       "title": "Vitalik Buterin fala sobre ZKP #zcash #zkp",
       "video_id": "O9uwBEI6bIk",
-      "views": 576
+      "views": 578
     },
     {
       "title": "Se você conhece #satoshi, as regras de estacionamento não se aplicam",
@@ -170,7 +170,7 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 500
+      "views": 501
     },
     {
       "title": "Evolução da Privacidade,  do #bitcoin até #zcash.",
@@ -193,13 +193,13 @@
       "views": 439
     },
     {
-      "title": "A evolução da privacidade em criptomoedas: de Zerocoin a Zcash",
-      "video_id": "uXkhjM_NxYQ",
-      "views": 419
-    },
-    {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
+      "views": 422
+    },
+    {
+      "title": "A evolução da privacidade em criptomoedas: de Zerocoin a Zcash",
+      "video_id": "uXkhjM_NxYQ",
       "views": 419
     },
     {
@@ -383,14 +383,14 @@
       "views": 231
     },
     {
-      "title": "Informação Direcionada e Política.  #ai #podcast #privacidade",
-      "video_id": "2ZUQM5CoC04",
+      "title": "Tutorial Zingo! Carteira para Zcash",
+      "video_id": "gg6YKmdrxAs",
       "views": 226
     },
     {
-      "title": "Tutorial Zingo! Carteira para Zcash",
-      "video_id": "gg6YKmdrxAs",
-      "views": 225
+      "title": "Informação Direcionada e Política.  #ai #podcast #privacidade",
+      "video_id": "2ZUQM5CoC04",
+      "views": 226
     },
     {
       "title": "Vitalik explica porque defende a privacidade.",
@@ -503,6 +503,11 @@
       "views": 183
     },
     {
+      "title": "Sistema Híbrido: Como a Zcash Equilibra Voz e Consenso",
+      "video_id": "KlRLH7RnyP0",
+      "views": 178
+    },
+    {
       "title": "O impacto da coleta de dados. #rastreabilidade #blockchain #zcash",
       "video_id": "-eRPR-EFDkI",
       "views": 177
@@ -515,11 +520,6 @@
     {
       "title": "Do baile a blockchain a transição de carreira de Solange",
       "video_id": "qRoxY7-TOzQ",
-      "views": 176
-    },
-    {
-      "title": "Sistema Híbrido: Como a Zcash Equilibra Voz e Consenso",
-      "video_id": "KlRLH7RnyP0",
       "views": 176
     },
     {
@@ -1383,6 +1383,11 @@
       "views": 75
     },
     {
+      "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Ameaças Quânticas | Engineering #3",
+      "video_id": "R6916H2IMKI",
+      "views": 75
+    },
+    {
       "title": "O Vício das Redes Sociais.",
       "video_id": "QowU5avjhiY",
       "views": 74
@@ -1460,11 +1465,6 @@
     {
       "title": "Irreversibilidade na blockchain, responsabilidade total.",
       "video_id": "73HjLcEYODE",
-      "views": 71
-    },
-    {
-      "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Ameaças Quânticas | Engineering #3",
-      "video_id": "R6916H2IMKI",
       "views": 71
     },
     {
@@ -1908,6 +1908,11 @@
       "views": 45
     },
     {
+      "title": "Memo Bundles e On-chain Storage: Dados Privados na Zcash Sem Virar Dump Público | Engineering #4",
+      "video_id": "0ec6O4W6MhU",
+      "views": 45
+    },
+    {
       "title": "Zcash Inside: Mineração, Dev Fund e Governança Híbrida.",
       "video_id": "HY2-Eoo1DhM",
       "views": 45
@@ -1925,11 +1930,6 @@
     {
       "title": "Por que o Bitcoin pode nunca adotar a privacidade avançada",
       "video_id": "ziYj86zatlA",
-      "views": 44
-    },
-    {
-      "title": "Memo Bundles e On-chain Storage: Dados Privados na Zcash Sem Virar Dump Público | Engineering #4",
-      "video_id": "0ec6O4W6MhU",
       "views": 44
     },
     {
@@ -2313,6 +2313,11 @@
       "views": 34
     },
     {
+      "title": "Zashi Agora é ZODL: Nova Carteira Zcash no iOS e Android com Privacidade por Padrão",
+      "video_id": "NkpD4kCPwdI",
+      "views": 34
+    },
+    {
       "title": "Zcash Society e Network State: Como Comunidades Cripto se Organizam | Engineering #6",
       "video_id": "1AV3oAjXSRs",
       "views": 34
@@ -2350,11 +2355,6 @@
     {
       "title": "Zcash faz 9 anos | 1 Ledger Nano S Plus",
       "video_id": "keJUSZ53s1M",
-      "views": 33
-    },
-    {
-      "title": "Zashi Agora é ZODL: Nova Carteira Zcash no iOS e Android com Privacidade por Padrão",
-      "video_id": "NkpD4kCPwdI",
       "views": 33
     },
     {
@@ -2728,6 +2728,11 @@
       "views": 24
     },
     {
+      "title": "Zcon Vozes 2 e Novidades do Tachyon | Zec Insider",
+      "video_id": "3G3Z9W93k7o",
+      "views": 24
+    },
+    {
       "title": "Pilares da Zcash - Segurança e Descentralização",
       "video_id": "H355v9_puGI",
       "views": 23
@@ -3068,11 +3073,6 @@
       "views": 16
     },
     {
-      "title": "Zcon Vozes 2 e Novidades do Tachyon | Zec Insider",
-      "video_id": "3G3Z9W93k7o",
-      "views": 16
-    },
-    {
       "title": "Sorteio Zcash - Camisetas e Canetas",
       "video_id": "EciRJQdW6L8",
       "views": 15
@@ -3368,6 +3368,11 @@
       "views": 8
     },
     {
+      "title": "Balaji: Zcash é Bipartidario e Pode Ser um Projeto Para o Mundo",
+      "video_id": "5zVg57PRu1s",
+      "views": 8
+    },
+    {
       "title": "WEEKLYCALL #18 - Eleição para o Comitê + ZCAP",
       "video_id": "CixY2m3Gaow",
       "views": 7
@@ -3445,11 +3450,6 @@
     {
       "title": "Transmissão ao vivo de Zcash Brasil",
       "video_id": "BVvnEMEorpA",
-      "views": 0
-    },
-    {
-      "title": "Balaji: Zcash é Bipartidario e Pode Ser um Projeto Para o Mundo",
-      "video_id": "5zVg57PRu1s",
       "views": 0
     }
   ]
