@@ -17,6 +17,7 @@ import {
   Tooltip,
   XAxis,
   YAxis,
+  Line,
 } from "recharts";
 import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
@@ -43,6 +44,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [sproutVisible, setSproutVisible] = useState(true);
   const [saplingVisible, setSaplingVisible] = useState(true);
   const [orchardVisible, setOrchardVisible] = useState(true);
+  const [totalVisible, setTotalVisible] = useState(false); // ← NEW: default OFF
 
   useEffect(() => {
     const controller = new AbortController();
@@ -76,22 +78,37 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
       const [month, day, year] = dateStr.split("/");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     };
+
     const sprout = sproutSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
     const sapling = saplingSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
     const orchard = orchardSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
+
     const allDates = new Set([
       ...sprout.map((d) => d.close),
       ...sapling.map((d) => d.close),
       ...orchard.map((d) => d.close),
     ]);
+
     const dateArray = Array.from(allDates).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+
     const dataMap: Record<string, any> = {};
     for (const date of dateArray) {
-      dataMap[date] = { close: date, sprout: 0, sapling: 0, orchard: 0 };
+      dataMap[date] = { close: date, sprout: 0, sapling: 0, orchard: 0, total: 0 };
     }
+
     for (const d of sprout) if (dataMap[d.close]) dataMap[d.close].sprout = d.supply;
     for (const d of sapling) if (dataMap[d.close]) dataMap[d.close].sapling = d.supply;
     for (const d of orchard) if (dataMap[d.close]) dataMap[d.close].orchard = d.supply;
+
+    for (const date of dateArray) {
+      if (dataMap[date]) {
+        dataMap[date].total =
+          (dataMap[date].sprout || 0) +
+          (dataMap[date].sapling || 0) +
+          (dataMap[date].orchard || 0);
+      }
+    }
+
     return Object.values(dataMap).filter((d: any) =>
       selectedYear === "all" ? true : extractYear(d.close) === selectedYear
     );
@@ -101,11 +118,13 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
   const poolData = useMemo(() => {
     if (selectedPool === "all") return combinedPoolData;
+
     const map = {
       sprout: sproutSupplyData,
       sapling: saplingSupplyData,
       orchard: orchardSupplyData,
     };
+
     return map[selectedPool].filter((d) =>
       selectedYear === "all" ? true : extractYear(d.close) === selectedYear
     );
@@ -116,6 +135,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     const data = poolKey === "all"
       ? [...sproutSupplyData, ...saplingSupplyData, ...orchardSupplyData]
       : dataByPool[poolKey];
+
     const years = [...new Set(data.map((d) => extractYear(d.close)))].sort();
     return ["all", ...years];
   }, [sproutSupplyData, saplingSupplyData, orchardSupplyData, extractYear]);
@@ -126,39 +146,101 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     sapling: latest.sapling || 0,
     orchard: latest.orchard || 0,
   };
+
   const calculateTotalShielded = () =>
     latestTotals.orchard + latestTotals.sapling + latestTotals.sprout;
+
+  // Toggle handlers with mutual exclusivity
+  const toggleSprout = () => {
+    const newValue = !sproutVisible;
+    setSproutVisible(newValue);
+    if (newValue) setTotalVisible(false);
+  };
+
+  const toggleSapling = () => {
+    const newValue = !saplingVisible;
+    setSaplingVisible(newValue);
+    if (newValue) setTotalVisible(false);
+  };
+
+  const toggleOrchard = () => {
+    const newValue = !orchardVisible;
+    setOrchardVisible(newValue);
+    if (newValue) setTotalVisible(false);
+  };
+
+  const toggleTotal = () => {
+    const newValue = !totalVisible;
+    setTotalVisible(newValue);
+    if (newValue) {
+      setSproutVisible(false);
+      setSaplingVisible(false);
+      setOrchardVisible(false);
+    }
+  };
 
   const legendContent = useMemo(() => (
     <div className="flex justify-center gap-8 text-sm mt-4 flex-wrap">
       {selectedPool === "all" ? (
         <>
-          <button onClick={() => setSproutVisible(!sproutVisible)} className={`flex items-center gap-2 cursor-pointer transition-colors ${sproutVisible ? "" : "opacity-40 line-through"}`}>
+          <button
+            onClick={toggleSprout}
+            className={`flex items-center gap-2 cursor-pointer transition-colors ${sproutVisible ? "" : "opacity-40 line-through"}`}
+          >
             <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-1))]" />
             <span className="font-medium">Sprout</span>
           </button>
-          <button onClick={() => setSaplingVisible(!saplingVisible)} className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingVisible ? "" : "opacity-40 line-through"}`}>
+
+          <button
+            onClick={toggleSapling}
+            className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingVisible ? "" : "opacity-40 line-through"}`}
+          >
             <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-2))]" />
             <span className="font-medium">Sapling</span>
           </button>
-          <button onClick={() => setOrchardVisible(!orchardVisible)} className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardVisible ? "" : "opacity-40 line-through"}`}>
+
+          <button
+            onClick={toggleOrchard}
+            className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardVisible ? "" : "opacity-40 line-through"}`}
+          >
             <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-3))]" />
             <span className="font-medium">Orchard</span>
+          </button>
+
+          {/* Total Shielded Toggle */}
+          <button
+            onClick={toggleTotal}
+            className={`flex items-center gap-2 cursor-pointer transition-colors ${totalVisible ? "" : "opacity-40 line-through"}`}
+            style={{ color: totalVisible ? "#06B6D4" : undefined }}
+          >
+            <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: "#06B6D4" }} />
+            <span className="font-medium">Total Shielded</span>
           </button>
         </>
       ) : (
         <button className="flex items-center gap-2 cursor-pointer">
-          <span className="inline-block w-3 h-3 rounded-full" style={{ background: `hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : 3}))` }} />
-          <span className="font-medium">{selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool</span>
+          <span
+            className="inline-block w-3 h-3 rounded-full"
+            style={{
+              background: `hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : 3}))`,
+            }}
+          />
+          <span className="font-medium">
+            {selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool
+          </span>
         </button>
       )}
     </div>
-  ), [selectedPool, sproutVisible, saplingVisible, orchardVisible]);
+  ), [selectedPool, sproutVisible, saplingVisible, orchardVisible, totalVisible]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (!active || !payload?.length) return null;
+
     return (
-      <div className="rounded-md px-3 py-2 shadow-md border text-sm" style={{ backgroundColor: "#1e293b", borderColor: "#334155", color: "#f1f5f9" }}>
+      <div
+        className="rounded-md px-3 py-2 shadow-md border text-sm"
+        style={{ backgroundColor: "#1e293b", borderColor: "#334155", color: "#f1f5f9" }}
+      >
         <p className="text-slate-100 font-semibold mb-2">{label}</p>
         {payload.map((entry: any, idx: number) => (
           <div key={idx} className="flex justify-between gap-4" style={{ color: entry.color }}>
@@ -180,11 +262,8 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
         }
       />
 
-      {/* MOBILE STACKED TOP BAR - Pool, Year, Total Shielded vertically centered */}
       <div className="px-4 sm:px-8 mt-4 mb-6">
         <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-between">
-          
-          {/* Pool selector */}
           <div className="flex items-center gap-3 w-full md:w-auto justify-center md:justify-start">
             <label className="text-sm font-medium whitespace-nowrap">Pool:</label>
             <DefaultSelect
@@ -198,7 +277,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             />
           </div>
 
-          {/* Year selector */}
           <div className="flex items-center gap-3 w-full md:w-auto justify-center md:justify-start">
             <label className="text-sm font-medium whitespace-nowrap">Year</label>
             <DefaultSelect
@@ -210,7 +288,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             />
           </div>
 
-          {/* Total Shielded label */}
           <div className="text-sm font-medium whitespace-nowrap text-center w-full md:w-auto">
             Total Shielded: {calculateTotalShielded().toLocaleString()} ZEC
           </div>
@@ -232,8 +309,16 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               <stop offset="5%" stopColor="hsl(var(--chart-3))" stopOpacity={0.6} />
               <stop offset="95%" stopColor="hsl(var(--chart-3))" stopOpacity={0.05} />
             </linearGradient>
+
+            {/* Cyan gradient for Total */}
+            <linearGradient id="totalGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#06B6D4" stopOpacity={0.5} />
+              <stop offset="95%" stopColor="#06B6D4" stopOpacity={0.08} />
+            </linearGradient>
           </defs>
+
           <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+
           <XAxis
             dataKey="close"
             tick={{ fontSize: fontSize * 0.75, fill: "#94a3b8" }}
@@ -242,15 +327,68 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             textAnchor="end"
             height={70}
           />
+
           <YAxis tick={{ fontSize, fill: "#94a3b8" }} tickFormatter={(val: any) => formatNumberShort(val)} />
+
           <Tooltip content={CustomTooltip} />
           <Legend content={legendContent} />
+
           {selectedPool === "all" ? (
-            <>
-              <Area type="monotone" dataKey="sprout" stroke={getColorForPool("sprout")} fill="url(#sproutGradient)" name="Sprout Pool" hide={!sproutVisible} />
-              <Area type="monotone" dataKey="sapling" stroke={getColorForPool("sapling")} fill="url(#saplingGradient)" name="Sapling Pool" hide={!saplingVisible} dot={false} connectNulls={true} />
-              <Area type="monotone" dataKey="orchard" stroke={getColorForPool("orchard")} fill="url(#orchardGradient)" name="Orchard Pool" hide={!orchardVisible} />
-            </>
+            totalVisible ? (
+              // TOTAL ONLY MODE
+              <>
+                <Area
+                  type="monotone"
+                  dataKey="total"
+                  stroke="#06B6D4"
+                  fill="url(#totalGradient)"
+                  name="Total Shielded"
+                  strokeWidth={2}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="total"
+                  stroke="#06B6D4"
+                  strokeWidth={3.5}
+                  dot={false}
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  style={{
+                    filter: 'drop-shadow(0 0 8px #06B6D4) drop-shadow(0 0 16px #06B6D440)',
+                  }}
+                />
+              </>
+            ) : (
+              // BREAKDOWN MODE (stacked pools)
+              <>
+                <Area
+                  type="monotone"
+                  dataKey="sprout"
+                  stroke={getColorForPool("sprout")}
+                  fill="url(#sproutGradient)"
+                  name="Sprout Pool"
+                  hide={!sproutVisible}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="sapling"
+                  stroke={getColorForPool("sapling")}
+                  fill="url(#saplingGradient)"
+                  name="Sapling Pool"
+                  hide={!saplingVisible}
+                  dot={false}
+                  connectNulls={true}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="orchard"
+                  stroke={getColorForPool("orchard")}
+                  fill="url(#orchardGradient)"
+                  name="Orchard Pool"
+                  hide={!orchardVisible}
+                />
+              </>
+            )
           ) : (
             <Area
               type="monotone"
