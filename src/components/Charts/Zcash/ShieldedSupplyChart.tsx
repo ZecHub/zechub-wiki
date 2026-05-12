@@ -44,7 +44,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [sproutVisible, setSproutVisible] = useState(true);
   const [saplingVisible, setSaplingVisible] = useState(true);
   const [orchardVisible, setOrchardVisible] = useState(true);
-  const [totalVisible, setTotalVisible] = useState(false); // ← NEW: default OFF
+  const [totalVisible, setTotalVisible] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -141,7 +141,7 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   }, [sproutSupplyData, saplingSupplyData, orchardSupplyData, extractYear]);
 
   const latest = combinedPoolData[combinedPoolData.length - 1] || {};
-  const latestTotals = {
+  const latestTotals: Record<"sprout" | "sapling" | "orchard", number> = {
     sprout: latest.sprout || 0,
     sapling: latest.sapling || 0,
     orchard: latest.orchard || 0,
@@ -149,6 +149,50 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
   const calculateTotalShielded = () =>
     latestTotals.orchard + latestTotals.sapling + latestTotals.sprout;
+
+  // === DYNAMIC LABEL LOGIC ===
+  const getCurrentDisplay = () => {
+    // Single pool mode (from dropdown)
+    if (selectedPool !== "all") {
+      const poolName = selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1);
+      return {
+        label: `${poolName} Shielded`,
+        value: latestTotals[selectedPool],
+      };
+    }
+
+    // All Pools mode
+    if (totalVisible) {
+      return { label: "Total Shielded", value: calculateTotalShielded() };
+    }
+
+    const visible: ("sprout" | "sapling" | "orchard")[] = [];
+    if (sproutVisible) visible.push("sprout");
+    if (saplingVisible) visible.push("sapling");
+    if (orchardVisible) visible.push("orchard");
+
+    const count = visible.length;
+
+    if (count === 3 || count === 0) {
+      return { label: "Total Shielded", value: calculateTotalShielded() };
+    }
+
+    if (count === 1) {
+      const pool = visible[0];
+      const name = pool.charAt(0).toUpperCase() + pool.slice(1);
+      return { label: `${name} Shielded`, value: latestTotals[pool] };
+    }
+
+    // count === 2
+    const sorted = [...visible].sort();
+    const name = sorted
+      .map((p) => p.charAt(0).toUpperCase() + p.slice(1))
+      .join(" and ");
+    const value = sorted.reduce((sum, p) => sum + latestTotals[p], 0);
+    return { label: `${name} Shielded`, value };
+  };
+
+  const display = getCurrentDisplay();
 
   // Toggle handlers with mutual exclusivity
   const toggleSprout = () => {
@@ -207,7 +251,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             <span className="font-medium">Orchard</span>
           </button>
 
-          {/* Total Shielded Toggle */}
           <button
             onClick={toggleTotal}
             className={`flex items-center gap-2 cursor-pointer transition-colors ${totalVisible ? "" : "opacity-40 line-through"}`}
@@ -288,8 +331,9 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             />
           </div>
 
+          {/* DYNAMIC LABEL */}
           <div className="text-sm font-medium whitespace-nowrap text-center w-full md:w-auto">
-            Total Shielded: {calculateTotalShielded().toLocaleString()} ZEC
+            {display.label}: {display.value.toLocaleString()} ZEC
           </div>
         </div>
       </div>
@@ -309,8 +353,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               <stop offset="5%" stopColor="hsl(var(--chart-3))" stopOpacity={0.6} />
               <stop offset="95%" stopColor="hsl(var(--chart-3))" stopOpacity={0.05} />
             </linearGradient>
-
-            {/* Cyan gradient for Total */}
             <linearGradient id="totalGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#06B6D4" stopOpacity={0.5} />
               <stop offset="95%" stopColor="#06B6D4" stopOpacity={0.08} />
@@ -335,7 +377,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
 
           {selectedPool === "all" ? (
             totalVisible ? (
-              // TOTAL ONLY MODE
               <>
                 <Area
                   type="monotone"
@@ -359,7 +400,6 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
                 />
               </>
             ) : (
-              // BREAKDOWN MODE (stacked pools)
               <>
                 <Area
                   type="monotone"
