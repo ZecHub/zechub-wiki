@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
   if (!path || !ALLOWED_PATHS.includes(path)) {
     return NextResponse.json(
       { error: "Invalid or disallowed path" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -27,18 +27,27 @@ export async function GET(req: NextRequest) {
       {
         error: "Missing env variables!",
       },
-      { status: 5000 }
+      { status: 5000 },
     );
   }
 
   const octokit = new Octokit({ auth: GITHUB_TOKEN });
 
-  const res = await octokit.rest.repos.getContent({
-    owner: OWNER,
-    repo: REPO,
-    path,
-    ref: BRANCH,
-  });
+  try {
+    const res = await octokit.rest.repos.getContent({
+      owner: OWNER,
+      repo: REPO,
+      path,
+      ref: BRANCH,
+    });
 
-  return NextResponse.json(res.data);
+    return NextResponse.json(res.data);
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: `Failed to fetch ${OWNER}/${REPO}`,
+      },
+      { status: 5000 },
+    );
+  }
 }

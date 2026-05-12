@@ -12,9 +12,11 @@ const octokit = new Octokit({ auth: authUser });
 
 // Normalize string for fuzzy matching
 function normalize(str: string): string {
-  return str.replace(/\.md$/i, "").toLowerCase().replace(/[-_ ]+/g, "");
+  return str
+    .replace(/\.md$/i, "")
+    .toLowerCase()
+    .replace(/[-_ ]+/g, "");
 }
-
 export const getFileContentCached = unstable_cache(
   async (path: string) => {
     try {
@@ -28,8 +30,12 @@ export const getFileContentCached = unstable_cache(
         });
         // @ts-ignore
         return atob(res.data?.content || "");
-      } catch {
-        // Direct path failed → fuzzy fallback
+      } catch (err: any) {
+        console.log({
+          // Direct path failed → fuzzy fallback
+          "Error! Status": err.status,
+          Message: err.response.data.message,
+        });
       }
 
       // Fuzzy fallback: list real files in the folder and match by slug
@@ -41,7 +47,10 @@ export const getFileContentCached = unstable_cache(
         const normalizedSlug = normalize(slugPart);
 
         for (const file of realFiles) {
-          if (normalize(file) === normalizedSlug || normalize(file).includes(normalizedSlug)) {
+          if (
+            normalize(file) === normalizedSlug ||
+            normalize(file).includes(normalizedSlug)
+          ) {
             const res = await octokit.rest.repos.getContent({
               owner,
               repo,
@@ -60,10 +69,10 @@ export const getFileContentCached = unstable_cache(
     }
   },
   ["github-file-content-cache"],
-  { 
-    revalidate: false,          // ← FIXED: This is what Next.js accepts
-    tags: ["github-content"] 
-  }
+  {
+    revalidate: false, // ← FIXED: This is what Next.js accepts
+    tags: ["github-content"],
+  },
 );
 
 export const getRootCached = unstable_cache(
@@ -79,15 +88,20 @@ export const getRootCached = unstable_cache(
     return elements.filter((item: string) => item.endsWith(".md"));
   },
   ["github-root-md-cache"],
-  { 
-    revalidate: 30, 
-    tags: ["github-content"] 
-  }
+  {
+    revalidate: 30,
+    tags: ["github-content"],
+  },
 );
 
 export async function getSiteFolders(path: string) {
   try {
-    const res = await octokit.rest.repos.getContent({ owner, repo, path, ref: BRANCH });
+    const res = await octokit.rest.repos.getContent({
+      owner,
+      repo,
+      path,
+      ref: BRANCH,
+    });
     const data = res.data;
     const elements = getFiles(data);
     return elements;

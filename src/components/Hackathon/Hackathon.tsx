@@ -29,7 +29,7 @@ import {
 } from "@/components/UI/shadcn/card";
 
 const HACKATHON_START_DATE_UTC = "2026-05-25T00:00:00Z";
-const HACKATHON_END_DATE_UTC = "2026-10-02T23:59:59Z";
+const HACKATHON_END_DATE_UTC = "2026-07-15T23:59:59Z";
 
 const PREVIOUS_PROJECTS_REPO =
   "https://github.com/ZecHub/zechub/tree/main/Hackathon";
@@ -279,7 +279,7 @@ const Hackathon = ({
               your work. Official kickoff{" "}
               <span className="font-semibold text-white">May 25, 2026</span>{" "}
               (UTC); submissions close{" "}
-              <span className="font-semibold text-white">October 2, 2026</span>{" "}
+              <span className="font-semibold text-white">July 15, 2026</span>{" "}
               (UTC).
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -339,13 +339,13 @@ const Hackathon = ({
                 Starts{" "}
                 <span className="font-medium text-slate-300">May 25, 2026</span>{" "}
                 (UTC). Submissions close{" "}
-                <span className="font-medium text-slate-300">October 2, 2026</span>{" "}
+                <span className="font-medium text-slate-300">July 15, 2026</span>{" "}
                 (UTC).
               </p>
             ) : (
               <p className="mt-4 text-center text-xs text-slate-400">
                 Submissions close on{" "}
-                <span className="font-medium text-slate-300">October 2, 2026</span>{" "}
+                <span className="font-medium text-slate-300">July 15, 2026</span>{" "}
                 (UTC).
               </p>
             )}

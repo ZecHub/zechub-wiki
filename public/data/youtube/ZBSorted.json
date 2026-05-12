@@ -80,7 +80,7 @@
     {
       "title": "Casta Estuda - Bitcoin X Zcash",
       "video_id": "X2iDTlijlc0",
-      "views": 758
+      "views": 762
     },
     {
       "title": "A Frustração e a Competitividade",
@@ -100,7 +100,7 @@
     {
       "title": "O crescimento das criptomoedas revelou seu verdadeiro valor",
       "video_id": "pT-uz5UJ7ZY",
-      "views": 716
+      "views": 718
     },
     {
       "title": "O futuro das provas de conhecimento zero.",
@@ -145,7 +145,7 @@
     {
       "title": "Vitalik Buterin fala sobre ZKP #zcash #zkp",
       "video_id": "O9uwBEI6bIk",
-      "views": 574
+      "views": 578
     },
     {
       "title": "Se você conhece #satoshi, as regras de estacionamento não se aplicam",
@@ -170,7 +170,7 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 500
+      "views": 501
     },
     {
       "title": "Evolução da Privacidade,  do #bitcoin até #zcash.",
@@ -185,12 +185,17 @@
     {
       "title": "História da evolução das criptomoedas",
       "video_id": "Yz-U_DuXSok",
-      "views": 479
+      "views": 480
     },
     {
       "title": "Zcash UX & Monero",
       "video_id": "y8facw4Gd10",
-      "views": 437
+      "views": 439
+    },
+    {
+      "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
+      "video_id": "9C9Tnc8dEGI",
+      "views": 422
     },
     {
       "title": "A evolução da privacidade em criptomoedas: de Zerocoin a Zcash",
@@ -200,11 +205,6 @@
     {
       "title": "Por que a privacidade em cripto é importante.",
       "video_id": "wJ33Cr7blLU",
-      "views": 418
-    },
-    {
-      "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
-      "video_id": "9C9Tnc8dEGI",
       "views": 418
     },
     {
@@ -245,7 +245,7 @@
     {
       "title": "Vitalik Buterin - Privacidade  LEGENDADO",
       "video_id": "iqIzkQI8HeU",
-      "views": 329
+      "views": 330
     },
     {
       "title": "O resgate da colaboração na web 3 e o papel da educação.",
@@ -265,7 +265,7 @@
     {
       "title": "Barry Silbert fala sobre os primeiros dias do Bitcoin.",
       "video_id": "B4hbk0366W8",
-      "views": 314
+      "views": 315
     },
     {
       "title": "Por Que Assinaturas Agregadas Podem Revolucionar a Escalabilidade em Blockchain.",
@@ -330,7 +330,7 @@
     {
       "title": "Tutorial Ywallet - Carteira para Zcash",
       "video_id": "3bLcUI4XeII",
-      "views": 266
+      "views": 267
     },
     {
       "title": "Duas propriedades necessárias para a civilização... #Privacidade #Cripto #Zcash #direitohumano #IA",
@@ -383,14 +383,14 @@
       "views": 231
     },
     {
-      "title": "Informação Direcionada e Política.  #ai #podcast #privacidade",
-      "video_id": "2ZUQM5CoC04",
+      "title": "Tutorial Zingo! Carteira para Zcash",
+      "video_id": "gg6YKmdrxAs",
       "views": 226
     },
     {
-      "title": "Tutorial Zingo! Carteira para Zcash",
-      "video_id": "gg6YKmdrxAs",
-      "views": 225
+      "title": "Informação Direcionada e Política.  #ai #podcast #privacidade",
+      "video_id": "2ZUQM5CoC04",
+      "views": 226
     },
     {
       "title": "Vitalik explica porque defende a privacidade.",
@@ -503,6 +503,11 @@
       "views": 183
     },
     {
+      "title": "Sistema Híbrido: Como a Zcash Equilibra Voz e Consenso",
+      "video_id": "KlRLH7RnyP0",
+      "views": 178
+    },
+    {
       "title": "O impacto da coleta de dados. #rastreabilidade #blockchain #zcash",
       "video_id": "-eRPR-EFDkI",
       "views": 177
@@ -573,11 +578,6 @@
       "views": 165
     },
     {
-      "title": "Sistema Híbrido: Como a Zcash Equilibra Voz e Consenso",
-      "video_id": "KlRLH7RnyP0",
-      "views": 165
-    },
-    {
       "title": "#Zcash é privado por padrão com opt-in transparente",
       "video_id": "z9hiMp0eoyU",
       "views": 164
@@ -628,6 +628,11 @@
       "views": 154
     },
     {
+      "title": "Bitcoin não funciona como pagamento sem privacidade — Josh Swihart",
+      "video_id": "8YeRTgX55BE",
+      "views": 154
+    },
+    {
       "title": "Victor Valente destacou que a entrada das instituições no ecossistema mostra a maturidade do setor.",
       "video_id": "KJGkyBnouKQ",
       "views": 153
@@ -663,24 +668,19 @@
       "views": 149
     },
     {
-      "title": "Bitcoin não funciona como pagamento sem privacidade — Josh Swihart",
-      "video_id": "8YeRTgX55BE",
-      "views": 149
-    },
-    {
       "title": "A Previsão do Que Você Vai Comprar. #rastreabilidade #blockchain #zcash",
       "video_id": "a25WNb6ybpk",
       "views": 147
     },
     {
-      "title": "Zcash, resistência quântica e narrativa contra instituições.",
-      "video_id": "uh2OmBlZhzk",
+      "title": "NSM e Taxas Dinâmicas",
+      "video_id": "fqMm851VfFo",
       "views": 146
     },
     {
-      "title": "NSM e Taxas Dinâmicas",
-      "video_id": "fqMm851VfFo",
-      "views": 145
+      "title": "Zcash, resistência quântica e narrativa contra instituições.",
+      "video_id": "uh2OmBlZhzk",
+      "views": 146
     },
     {
       "title": "Uso Ilegal de #Dados para #Treinamento de #IA",
@@ -835,7 +835,7 @@
     {
       "title": "Zcash na Cake Wallet - Tutorial Completo",
       "video_id": "ngzYYqcRa84",
-      "views": 119
+      "views": 120
     },
     {
       "title": "Zcash -  Trazendo liberdade para todos.",
@@ -873,6 +873,11 @@
       "views": 116
     },
     {
+      "title": "Edward Snowden, o sexto criador da Zcash | Zebra Talk",
+      "video_id": "5XN1xtsLmSo",
+      "views": 116
+    },
+    {
       "title": "Responsabilidade na Web 3",
       "video_id": "fBp4nbjBubA",
       "views": 115
@@ -880,11 +885,6 @@
     {
       "title": "Segurança no Mundo de Agentes: Como Pensar Defesa Agora",
       "video_id": "IPwLtOF9BhQ",
-      "views": 115
-    },
-    {
-      "title": "Edward Snowden, o sexto criador da Zcash | Zebra Talk",
-      "video_id": "5XN1xtsLmSo",
       "views": 115
     },
     {
@@ -1293,6 +1293,11 @@
       "views": 82
     },
     {
+      "title": "As Faces da Zcash que você não conhece",
+      "video_id": "Pic-vktppSk",
+      "views": 82
+    },
+    {
       "title": "A Zoe - Mineração e Dev-Fund na #Zcash",
       "video_id": "VTmAQVwVSNw",
       "views": 81
@@ -1325,11 +1330,6 @@
     {
       "title": "Zcash: Dinheiro Digital Criptografado com Privacidade Real por Padrão | Encrypted Electronic Cash",
       "video_id": "tvSFbP4ZMFk",
-      "views": 81
-    },
-    {
-      "title": "As Faces da Zcash que você não conhece",
-      "video_id": "Pic-vktppSk",
       "views": 81
     },
     {
@@ -1380,6 +1380,11 @@
     {
       "title": "Propriedade Privada – O que é Nosso Enquanto Propriedade",
       "video_id": "zerIygjn1HE",
+      "views": 75
+    },
+    {
+      "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Ameaças Quânticas | Engineering #3",
+      "video_id": "R6916H2IMKI",
       "views": 75
     },
     {
@@ -1470,11 +1475,6 @@
     {
       "title": "Balaji explica por que a próxima fase do mercado cripto é a privacidade.",
       "video_id": "yJDZv7JNLyU",
-      "views": 70
-    },
-    {
-      "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Ameaças Quânticas | Engineering #3",
-      "video_id": "R6916H2IMKI",
       "views": 70
     },
     {
@@ -1613,6 +1613,11 @@
       "views": 60
     },
     {
+      "title": "Os acontecimentos que promovem a expansão da privacidade financeira no Brasil.",
+      "video_id": "dx4NSTIoytA",
+      "views": 60
+    },
+    {
       "title": "A realidade do P2P versus segurança institucional",
       "video_id": "64MEvY1n3oo",
       "views": 59
@@ -1643,11 +1648,6 @@
       "views": 57
     },
     {
-      "title": "Os acontecimentos que promovem a expansão da privacidade financeira no Brasil.",
-      "video_id": "dx4NSTIoytA",
-      "views": 57
-    },
-    {
       "title": "AI | Interação Humana e Maquina",
       "video_id": "EbIZVaVYQCw",
       "views": 56
@@ -1673,6 +1673,11 @@
       "views": 56
     },
     {
+      "title": "O que o ex-CEO do Goldman Sachs falou sobre Zcash",
+      "video_id": "AsiSVLndB-k",
+      "views": 56
+    },
+    {
       "title": "Quais os danos ao sacrificar a privacidade? #zcash",
       "video_id": "lkzbnoZJs64",
       "views": 55
@@ -1685,11 +1690,6 @@
     {
       "title": "O Bitcoin como dinheiro nativo da internet.",
       "video_id": "0Qc6ezTax30",
-      "views": 55
-    },
-    {
-      "title": "O que o ex-CEO do Goldman Sachs falou sobre Zcash",
-      "video_id": "AsiSVLndB-k",
       "views": 55
     },
     {
@@ -1908,6 +1908,11 @@
       "views": 45
     },
     {
+      "title": "Memo Bundles e On-chain Storage: Dados Privados na Zcash Sem Virar Dump Público | Engineering #4",
+      "video_id": "0ec6O4W6MhU",
+      "views": 45
+    },
+    {
       "title": "Zcash Inside: Mineração, Dev Fund e Governança Híbrida.",
       "video_id": "HY2-Eoo1DhM",
       "views": 45
@@ -1925,11 +1930,6 @@
     {
       "title": "Por que o Bitcoin pode nunca adotar a privacidade avançada",
       "video_id": "ziYj86zatlA",
-      "views": 44
-    },
-    {
-      "title": "Memo Bundles e On-chain Storage: Dados Privados na Zcash Sem Virar Dump Público | Engineering #4",
-      "video_id": "0ec6O4W6MhU",
       "views": 44
     },
     {
@@ -2303,8 +2303,18 @@
       "views": 34
     },
     {
+      "title": "A jornada de Arjun Kamani rumo a Zcash da filosofia à criptomoeda",
+      "video_id": "t7tWckhWB40",
+      "views": 34
+    },
+    {
       "title": "Redes de consenso: as regras do Bitcoin podem realmente ser alteradas?",
       "video_id": "MLNpPUL4RqY",
+      "views": 34
+    },
+    {
+      "title": "Zashi Agora é ZODL: Nova Carteira Zcash no iOS e Android com Privacidade por Padrão",
+      "video_id": "NkpD4kCPwdI",
       "views": 34
     },
     {
@@ -2343,18 +2353,8 @@
       "views": 33
     },
     {
-      "title": "A jornada de Arjun Kamani rumo a Zcash da filosofia à criptomoeda",
-      "video_id": "t7tWckhWB40",
-      "views": 33
-    },
-    {
       "title": "Zcash faz 9 anos | 1 Ledger Nano S Plus",
       "video_id": "keJUSZ53s1M",
-      "views": 33
-    },
-    {
-      "title": "Zashi Agora é ZODL: Nova Carteira Zcash no iOS e Android com Privacidade por Padrão",
-      "video_id": "NkpD4kCPwdI",
       "views": 33
     },
     {
@@ -2703,6 +2703,11 @@
       "views": 25
     },
     {
+      "title": "Como a IA abriu portas inesperadas depois da Uniswap",
+      "video_id": "LNpTAW2kbS0",
+      "views": 25
+    },
+    {
       "title": "Zebra, Zaino e Zallet | Zcash Z3",
       "video_id": "9S2yAu_QnQE",
       "views": 24
@@ -2723,8 +2728,8 @@
       "views": 24
     },
     {
-      "title": "Como a IA abriu portas inesperadas depois da Uniswap",
-      "video_id": "LNpTAW2kbS0",
+      "title": "Zcon Vozes 2 e Novidades do Tachyon | Zec Insider",
+      "video_id": "3G3Z9W93k7o",
       "views": 24
     },
     {
@@ -3233,11 +3238,6 @@
       "views": 12
     },
     {
-      "title": "Zcon Vozes 2 e Novidades do Tachyon | Zec Insider",
-      "video_id": "3G3Z9W93k7o",
-      "views": 12
-    },
-    {
       "title": "Por que a privacidade importa?",
       "video_id": "w01RslUnJH0",
       "views": 11
@@ -3365,6 +3365,11 @@
     {
       "title": "Privacidade e Exposição",
       "video_id": "ubaCvuDN8Rw",
+      "views": 8
+    },
+    {
+      "title": "Balaji: Zcash é Bipartidario e Pode Ser um Projeto Para o Mundo",
+      "video_id": "5zVg57PRu1s",
       "views": 8
     },
     {

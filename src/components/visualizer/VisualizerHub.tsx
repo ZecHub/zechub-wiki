@@ -16,6 +16,7 @@ import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
 import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
 import { ZcashKeyVisualizer } from "./zcash-key-visualizer";
 import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
+import DistributedDatabaseVisualize  from "./distributed-databases/DistributedDatabaseVisualizer";
 import { WalletVisualizer } from "./zcash-wallet";
 import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
 import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
@@ -150,7 +151,8 @@ type VisualizerType =
   | "zcash-community-grants"
   | "coinholder-grants"
   | "open-source-repos"
-  | "build-shielded-transaction";
+  | "build-shielded-transaction"
+  | "distributed-database";
 
 interface VisualizerInfo {
   id: VisualizerType;
@@ -200,6 +202,12 @@ const BASIC_VISUALIZERS: VisualizerInfo[] = [
     title: "Zcash Blockchain Fundamentals",
     description: "Understanding Zcash Blockchain Foundation",
     component: BlockchainFoundationVisualizer,
+  },
+  {
+    id: "distributed-database",
+    title: "Distributed DatabaseVisualize",
+    description: "Compare centralized databases with blockchains",
+    component: DistributedDatabaseVisualize,
   },
 ];
 

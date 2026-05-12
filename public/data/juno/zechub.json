@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 27,
-    "proposal_count": 146,
+    "proposal_count": 148,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6059,7 +6059,7 @@
             "yes": "11",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno1tldl44lqjdrq6lkcdf5rzxjjddxa6v2wdxafjs",
           "threshold": {
             "threshold_quorum": {
@@ -6080,7 +6080,79 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-05-04T21:02:51.301Z"
+        "createdAt": "2026-05-04T21:02:51.301Z",
+        "completedAt": "2026-05-09T22:38:39.000Z",
+        "executedAt": "2026-05-09T22:38:39.000Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 147,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash East Africa Community Presence at Kenya Blockchain and Cryptocurrency Conference(KBCC) 2026",
+          "votes": {
+            "no": "0",
+            "yes": "3",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1778797397836850173"
+          },
+          "description": "The Zcash East Africa Community would like to participate in the Kenya Blockchain and Cryptocurrency Conference 2026 as a grassroots community initiative focused on blockchain education, privacy awareness, and the growth of the open-source ecosystem across East Africa. \nOur goal is to engage directly with conference attendees, introduce them to the Zcash ecosystem, onboard new users into privacy-preserving financial technology, and establish a stronger regional presence for Zcash within the African blockchain ecosystem.\n#### What is Kenya Blockchain and Crypto Conference(KBCC).\n\nThe Kenya Blockchain & Crypto Conference is one of East Africa’s leading gatherings focused on blockchain innovation, cryptocurrency adoption, digital payments, and the future of decentralized technology in Africa. The 2026 Edition, which is scheduled to take place on 14–15 May 2026 in Nairobi, Kenya, brings together a diverse mix of industry leaders, regulators, developers, startups, investors, fintech companies, policymakers, and blockchain enthusiasts from across the continent and beyond.\n\nNow in its fourth edition, KBCC has grown into a major platform for conversations around digital finance, stablecoins, blockchain infrastructure, Web3 innovation, and enterprise adoption. The conference aims to bridge the gap between traditional finance and emerging decentralized technologies by creating an environment for collaboration, education, networking, and policy discussions.\n\nThe 2026 edition is themed “Stablecoins, Payments & the Next Phase of Africa’s Digital Economy,” highlighting the increasing role blockchain technology is playing in reshaping financial systems across Africa. The event will feature keynote sessions, panel discussions, exhibitions, technical workshops, startup showcases, networking opportunities, and conversations on regulation, financial inclusion, and real-world blockchain applications.\n\nPrevious editions of the conference have attracted over 1,500 attendees, with participation from global crypto exchanges, fintech companies, infrastructure providers, developers, and government stakeholders. The event has also become recognized for promoting blockchain education, innovation, and ecosystem growth within Kenya and the broader African tech landscape.\n\nThis is the link to the event: https://kenyablockchainandcryptoconference.co.ke\n\n### About Zcash East Africa\n\nZcash East Africa is a growing regional blockchain community focused on:\n\n* blockchain education\n* financial privacy awareness\n* open-source developer onboarding\n* university and youth engagement\n* decentralized technology adoption across East Africa\n\nWe are currently building a community of students, developers, creators, and blockchain enthusiasts across Kenya and the broader East African region.\nOur mission is to make privacy-preserving technologies more accessible while helping young Africans participate in the global open-source economy.\n\n### Objectives of Participation\n\n1. Community Awareness & Ecosystem Visibility\n\nOur presence at the conference is aimed at strengthening Zcash's visibility within the East African blockchain ecosystem and demonstrating that an active, growing regional community is already being built locally.\n\n2. Wallet Onboarding & User Education\n\nWe plan to engage attendees directly through hands-on onboarding experiences designed to simplify their introduction to Zcash and privacy-focused finance.\n\n3. Grassroots Ecosystem Growth & Developer Engagement\n\nWhile we have been able to grow the community gradually with zero marketing Campaign, we believe the conference presents a key opportunity to grow a more sustainable ecosystem of contributors, developers, and community members across East Africa. We plan to onboard new community members, identify contributors, and encourage more builders to explore the development of privacy-focused applications and products. In the long term, we believe this contributes to a stronger regional ecosystem of innovators building technologies that prioritize user freedom, security, and digital privacy.\n\n### Why This Matters\n\nAfrica represents one of the fastest-growing regions for blockchain adoption, youth innovation, and mobile-first digital finance.\n\nBy establishing a stronger community presence now, Zcash East Africa has the opportunity to:\n\n* support early blockchain education\n* foster open-source contributors\n* build long-term ecosystem loyalty\n* become part of the region’s growing decentralized technology movement.\n\n\n### Proposed Activities During the Conference\n\nAs we are not participating as official sponsors of the conference, we do not intend to host a formal session or speaking panel during the event. Instead, our approach is focused on grassroots community engagement and direct one-on-one interactions with attendees throughout the conference.\n\nDuring the event, our team plans to:\n\n* meet and engage attendees individually\n* introduce participants to the Zcash ecosystem\n* help new users download and set up their first Zcash wallet\n* guide attendees through basic wallet usage and onboarding\n* encourage interested participants to join the Zcash East Africa community\n* share excerpts and educational materials (pamphlets or handbills)\n* connect and network with developers, founders, students, and ecosystem leaders attending the conference\n\nOur primary objective is to create meaningful conversations and accessible onboarding experiences that help attendees better understand the importance of financial privacy and the role Zcash East Africa will play within the African blockchain ecosystem.\nWe believe this direct community-focused approach is a cost-effective and impactful way to grow awareness, strengthen regional presence, and begin building long-term relationships within the East African blockchain community.\n\nExpected Impact\n\nWe believe this initiative can:\n\n* significantly increase awareness of Zcash in East Africa\n* Onboard 70-80 new users into the ecosystem\n* create new community relationships\n* strengthen regional blockchain education efforts\n* establish a visible African presence for the Zcash ecosystem\n* Encourage interaction with ZK Technologies\n\n#### Proposed Budget\n\nTo successfully execute this community activation and educational initiative during the Kenya Blockchain and Cryptocurrency Conference 2026, we are requesting a modest operational budget of $1,000.\n\nThe budget will support:\n\n* Attendee onboarding activities\n* Educational materials and branding\n* Photography coverage of activities\n* community engagement resources\n* transportation and coordination costs for the local team\n* basic community activation needs, where applicable\n\nThis initiative is designed to be a highly cost-effective grassroots effort focused on long-term ecosystem awareness, education, and community growth across East Africa. We are excited about the opportunity to represent and grow the Zcash ecosystem at the Kenya Blockchain and Cryptocurrency Conference 2026. \n\nCommunity \n\nTelegram: https://t.me/ZcashEastAfrica\n\nX(twitter): https://x.com/ZcashEastAfrica\n\nThrough direct engagement, onboarding, and education, we hope to contribute meaningfully to blockchain adoption and community growth across East Africa while helping expand awareness around the importance of digital privacy and privacy-preserving technologies.\nWe look forward to collaborating and participating in this important event.\nThank you for your consideration. For feedback, you can reach out to any of the team members\n\nsonnie: t.me//Sonnie001\n\ndre: t.me//DreKal0 ",
+          "total_power": "27",
+          "start_height": 37756368,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-05-09T22:23:17.836Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 148,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash Expansion and Community Launch in South Africa.",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno134vfu8fhxcnq3wlnpjnnx4r5hun9yjnzeqfgnq",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1778920907242748217"
+          },
+          "description": "1. Introduction \n\nGreetings Zechub DAO members,\n\n We are excited to present and launch Zcash South Africa, as we continue to expand and build a strong, adoption-driven ecosystem. Our mission is to position Zcash as a trusted, secure, and widely used digital wallet across Africa.\nAfrica, with its predominantly young and tech-savvy population, represents one of the fastest-growing markets for digital finance. The demand for secure, privacy-focused, and reliable crypto solutions continues to rise, making this the ideal time to drive Zcash adoption in the region.\n\nObjectives:\nOur primary goal is to execute a structured launch campaign that:\n\n- Drives awareness of Zcash across key academic institutions,\n\n- Onboards new users into the ecosystem,\nBuilds a grassroots referral network for sustained growth; and\n\n- Encourages real-world usage through student and business adoption.\n\nMeet our team:\n\nInspire -  Zcash South Africa lead\n\nPraiseGod mas ( @kinel20 on discord) - Event coordinator/lead Zcash South Africa team\n\nJuju ( @juju214099608_  on discord) - Event coordinator/ support team\n\n\n\n\n2. Target Locations\n\nWe have identified Tshwane (Pretoria), the capital city of South Africa, as our primary launch hub due to its high concentration of universities and innovation-driven communities.\n\nTarget Institutions includes:\n\nUniversity of Pretoria\n\nTshwane University of Technology\n\nSefako Makgatho Health Sciences University\n\nUniversity of South Africa (UNISA)\n\nThese institutions provide direct access to a large pool of students who are early adopters of technology and active participants in Web3 ecosystems.\n\n\n3.  Execution Strategy\n\n(i) Campus Activation Campaigns\n\nWe will conduct:\nPhysical seminars,\nWebinars for broader reach (post campaign),\nInteractive onboarding sessions.\n\nThese engagements will focus on:\n\n.  Educating students about Zcash and privacy in crypto\n\n.  Demonstrating wallet usage\n\n.  Encouraging immediate sign-ups\n\n(ii) Community Growth & Referral System\nRecruit at least 3 student ambassadors per institution\n\nEach ambassador will act as an affiliate, onboarding peers\nIncentivize referrals to create viral growth within campuses\n\n(iii) Marketing Channels\nSocial media outreach (Twitter, Telegram, WhatsApp groups)\nWord-of-mouth marketing through student ambassadors.\n\n(iv) Business Adoption\nWe will also engage:\nLocal businesses\nSmall merchants already exploring crypto payments\n\nThe goal is to:\nIntroduce Zcash as a payment option\nEncourage real-world utility and transaction usage\n\n\n\n4.  Budget Breakdown\n\nPromotional Materials (T-shirts, giveaways, branding, Flyers/posters) -  R8,000 (~$470)\n\nTransportation (Campus visits) - R1,870(~$110)\n\nProjector, Generator/power backup, Internet/WiFi setup - R2,550 (~$150)\n\nHall / venue permit  - R5,440 (~ $320)\n\nPhotographer/videographer - R850 (~$50)\n \nRefreshments - R2,040 (~$120)\n\nVolunteers support (10$ * 5 volunteers) - R850 (~$50)\n \nMiscellaneous (Giveaways & More) - R1,020 (~$60)\n\nTotal Estimated Budget: \nR22,790 (~$1330)\n\n\n5. Expected Outcomes\n\nOnboard 150 - 200 active users across institutions, wallet downloads and onboarding to Zcash discord server/ South African telegram group.\n\nEstablish a sustainable student ambassador network\n\nIncrease awareness and visibility of Zcash in South Africa\n\nLay the foundation for long-term ecosystem growth\n\n6. Conclusion\n\nThis initiative is designed not just as a one-time launch, but as a scalable growth model for Zcash adoption across Africa. By focusing on youth communities, education, and real-world usage, we aim to create a strong and self-sustaining ecosystem.\nWith the right support, this campaign will position Zcash as a leading privacy-first digital payment solution in South Africa and beyond.\n\nSocials: \n\nhttps://x.com/Zcash_SA\n          \n     https://t.me/zcashSA\n",
+          "total_power": "27",
+          "start_height": 37800929,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-05-11T08:41:47.242Z"
       }
     ]
   },

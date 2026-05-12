@@ -666,7 +666,6 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
     </div>
   );
 };
-
 const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => {
   return (
     <div className="flex flex-col h-[90%] ">
