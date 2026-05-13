@@ -103,7 +103,6 @@ export default function TotalSupplyChart(props: TotalSupplyChartProps) {
               <stop offset="95%" stopColor="hsl(var(--chart-4))" stopOpacity={0.05} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
           <XAxis
             dataKey="close"
             tick={{ fontSize, fill: "#94a3b8" }}
