@@ -106,10 +106,11 @@ export default function TransparentSupplyChart(props: TransparentSupplyChartProp
           </defs>
           <XAxis
             dataKey="close"
-            tick={{ fontSize, fill: "#94a3b8" }}
-            interval={isMobile ? 10 : "preserveStartEnd"}
-            minTickGap={isMobile ? 10 : 30}
-            tickCount={isMobile ? 4 : 8}
+            tick={{ fontSize: fontSize * 0.75, fill: "#94a3b8" }}
+            interval={Math.max(1, Math.floor(filteredData.length / 10))}
+            angle={-45}
+            textAnchor="end"
+            height={70}
           />
           <YAxis
             tick={{ fontSize, fill: "#94a3b8" }}
