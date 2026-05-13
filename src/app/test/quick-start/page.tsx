@@ -181,7 +181,7 @@ const CodeBlock = ({ code, language = "bash" }: CodeBlockProps) => {
           color: "#e2e8f0",
         }}
       >
-        <code>{code.trim()}</code>
+        <code style={{ maxWidth: "750PX" }}>{code.trim()}</code>
       </pre>
     </div>
   );
@@ -276,7 +276,7 @@ const SubLabel = ({
   className?: string;
 }) => (
   <p
-    className={`text-[11px] tracking-[0.1em] uppercase text-slate-400 dark:text-slate-600 mb-2 ${className}`}
+    className={`text-[11px] tracking-[0.1em] uppercase text-slate-900 dark:text-slate-600 mb-2 ${className}`}
   >
     {children}
   </p>
@@ -313,7 +313,7 @@ const ZebradTab = () => {
             <a
               key={href}
               href={href}
-              className="text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-sm no-underline flex items-center gap-2 max-w-fit transition-colors"
+              className="text-slate-900 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm no-underline flex items-center gap-2 max-w-fit transition-colors"
             >
               <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600 inline-block" />
               {label}
@@ -325,7 +325,7 @@ const ZebradTab = () => {
       {/* Step 1 — Installing */}
       <SectionCard title="Installation">
         {/* OS Tab bar */}
-        <div className="flex gap-1 border-b border-black/8 dark:border-white/8 mb-6">
+        <div className="grid grid-cols-2 imd:flex gap-1 border-b border-black/8 dark:border-white/8 mb-6">
           {(
             [
               { id: "linux", icon: FcLinux, label: "Linux", color: null },
@@ -362,11 +362,11 @@ const ZebradTab = () => {
           <>
             <SubLabel className="mt-[14px]">Dependencies</SubLabel>
             <CodeBlock
-              code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm`}
+              code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm`}
             />
             <SubLabel className="mt-[14px]">From Source</SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v4.4.1\ncargo build --release --bin zebrad\ntarget/release/zebrad start`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v4.4.1\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">Alternatively</SubLabel>
             <CodeBlock
@@ -379,11 +379,11 @@ const ZebradTab = () => {
           <>
             <SubLabel className="mt-[14px]">Dependencies</SubLabel>
             <CodeBlock
-              code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm`}
+              code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm`}
             />
             <SubLabel className="mt-[14px]">Manual Download</SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v4.4.1\ncargo build --release --bin zebrad\ntarget/release/zebrad start`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v4.4.1\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">Alternatively</SubLabel>
             <CodeBlock
@@ -398,11 +398,11 @@ const ZebradTab = () => {
             <CodeBlock code={`wsl --install`} />
             <SubLabel className="mt-[14px]">Dependencies</SubLabel>
             <CodeBlock
-              code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm`}
+              code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm\nsource $HOME/.cargo/env\nexport CXXFLAGS="$CXXFLAGS -include cstdint"`}
             />
             <SubLabel className="mt-[14px]">From Source</SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v4.4.1\nexport CXXFLAGS="$CXXFLAGS -include cstdint"\ncargo build --release --bin zebrad\ntarget/release/zebrad start`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v4.4.1\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">Alternatively</SubLabel>
             <CodeBlock
@@ -449,7 +449,7 @@ cookie_dir = "/home/your_username/.cache/zebra"
 enable_cookie_auth = false
 
 [state]
-cache_dir = "/home/your_username/.cache/zebra"
+cache_dir = "/home/your_username/.cache/zebra" # (Change to store in external SSD)
 delete_old_database = true
 ephemeral = false
 
@@ -473,7 +473,7 @@ use_color = true`}
           <SectionCard title="Starting zebrad">
             <SubLabel>Command Line</SubLabel>
             <CodeBlock
-              code={`zebrad start\n# Or with specific config\nzebrad -c /path/to/zebrad.toml start`}
+              code={`zebrad start\n# Or with specific config\nzebrad -c ~/.config/zebrad.toml start`}
             />
           </SectionCard>
 
@@ -751,10 +751,7 @@ export default function QuickStartPage() {
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
       `}</style>
 
-      <div
-        className="min-h-screen bg-white dark:bg-[#030712] text-slate-800 dark:text-slate-200"
-        style={{ fontFamily: "'Syne', sans-serif" }}
-      >
+      <div className="min-h-screen bg-white dark:bg-[#030712] text-slate-800 dark:text-slate-200">
         {/* Hero */}
         <div
           className="relative overflow-hidden px-10 pt-20 pb-[72px] text-center
@@ -810,7 +807,7 @@ export default function QuickStartPage() {
 
             <h1
               className="text-[clamp(36px,6vw,72px)] font-extrabold leading-[1.05] tracking-tight m-0 mb-5
-                bg-gradient-to-br from-slate-800 to-slate-500
+                bg-gradient-to-br from-slate-900 to-slate-600
                 dark:from-slate-100 dark:to-slate-400
                 bg-clip-text text-transparent"
               style={{
@@ -823,7 +820,7 @@ export default function QuickStartPage() {
               Quick Start
             </h1>
 
-            <p className="text-[17px] text-slate-500 dark:text-slate-500 max-w-[480px] mx-auto leading-[1.7]">
+            <p className="text-[17px] text-slate-600 dark:text-slate-500 max-w-[480px] mx-auto leading-[1.7]">
               Get up and running with Zcash development. Choose your stack and
               follow the guide.
             </p>
