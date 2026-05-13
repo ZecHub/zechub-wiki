@@ -104,7 +104,6 @@ export default function TransparentSupplyChart(props: TransparentSupplyChartProp
               <stop offset="95%" stopColor="hsl(var(--chart-7))" stopOpacity={0.05} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
           <XAxis
             dataKey="close"
             tick={{ fontSize, fill: "#94a3b8" }}
