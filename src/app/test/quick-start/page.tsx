@@ -539,7 +539,7 @@ sudo apt install golang-go
           <SectionCard title="Configuration">
             <SubLabel>Basic Setup</SubLabel>
             <CodeBlock
-              code={`cat > lightwalletd.conf << EOF
+              code={`cat > ~/.config/zcash.conf << EOF
 zebrad-rpcuser=your_rpc_username
 zebrad-rpcpass=your_rpc_password
 zebrad-rpcbind=127.0.0.1
