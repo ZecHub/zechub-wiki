@@ -42,6 +42,10 @@ export const navigations: Array<NavigationItem> = [
         path: "/using-zcash/faucets",
       },
       {
+        name: "Testnet"
+        path: "/using-zcash/testnet",
+      },
+      {
         name: "Tools",
         path: "/tools",
         icon: Wrench,
