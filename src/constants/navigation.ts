@@ -42,7 +42,7 @@ export const navigations: Array<NavigationItem> = [
         path: "/using-zcash/faucets",
       },
       {
-        name: "Testnet"
+        name: "Testnet",
         path: "/using-zcash/testnet",
       },
       {
