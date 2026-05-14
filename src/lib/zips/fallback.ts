@@ -7,7 +7,7 @@
  * Snapshot date: 2026-05 (post-NU6.1).
  */
 
-import type { Zip, ZipStatus } from "../types";
+import type { Zip, ZipStatus } from "@/app/zips/types";
 
 type ZipTuple = [number, string, ZipStatus, string[]];
 

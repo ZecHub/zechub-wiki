@@ -1,5 +1,5 @@
 import "server-only";
-import type { Zip } from "../types";
+import type { Zip } from "@/app/zips/types";
 import { parseZipsIndex } from "./parse-zips-index";
 import { SUMMARIES } from "./zip-overlay";
 import { FALLBACK_ZIPS } from "./fallback";
