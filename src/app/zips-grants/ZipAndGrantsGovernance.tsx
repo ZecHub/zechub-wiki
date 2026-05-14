@@ -11,22 +11,31 @@ import * as config from "../../config";
 import { getZCGrantsData } from "../actions/google-sheets.action";
 import { ZipAndGrantsChart } from "@/components/ZipsGrants/charts";
 import { GrantList } from "@/components/ZipsGrants/GrantList";
-import { ZIPList } from "@/components/ZipsGrants/ZIPList";
-import { useZIPs } from "@/hooks/use-zips";
+import ZipTracker from "../zips/ZipTracker";
+import type { Zip } from "../zips/types";
 import { Grant } from "@/types/grants";
 
 const queryClient = new QueryClient();
 
-export const ZipAndGrantsGovernance = () => {
+export interface ZipsData {
+  zips: Zip[];
+  lastSyncedAt: string;
+  source: "live" | "fallback";
+}
+
+interface ZipAndGrantsGovernanceProps {
+  zipsData: ZipsData;
+}
+
+export const ZipAndGrantsGovernance = ({ zipsData }: ZipAndGrantsGovernanceProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ZipAndGrants />
+      <ZipAndGrants zipsData={zipsData} />
     </QueryClientProvider>
   );
 };
 
-function ZipAndGrants() {
-  const { data: zips, isLoading: isLoadingZip, error: zipError } = useZIPs();
+function ZipAndGrants({ zipsData }: ZipAndGrantsGovernanceProps) {
   const [grants, setGrants] = useState<Grant[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [grantError, setGrantError] = useState("");
@@ -87,10 +96,11 @@ function ZipAndGrants() {
             </TabsList2>
             <div className="mt-8">
               <TabsContent value="zips" activeTab={activeTab}>
-                <ZIPList
-                  error={zipError}
-                  isLoading={isLoadingZip}
-                  zips={zips}
+                <ZipTracker
+                  embedded
+                  zips={zipsData.zips}
+                  lastSyncedAt={zipsData.lastSyncedAt}
+                  source={zipsData.source}
                 />
               </TabsContent>
 

@@ -314,8 +314,18 @@ export const navigations: Array<NavigationItem> = [
   },
   {
     name: "Governance",
-    path: "/governance-howto",
+    label: "Governance",
     icon: RiGovernmentLine,
+    links: [
+      {
+        name: "How to Participate",
+        path: "/governance-howto",
+      },
+      {
+        name: "ZIPs & Grants",
+        path: "/zips-grants",
+      },
+    ],
   },
   {
     name: "Tutorials",
