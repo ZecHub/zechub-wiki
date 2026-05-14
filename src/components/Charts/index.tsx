@@ -23,9 +23,17 @@ import PenumbraChart from "./Penumbra/PenumbraChart";
 import ZcashChart from "./Zcash/ZcashChart";
 import { ProposalsList } from "@/components/Proposals";
 
-const ZCGDashboard = dynamic(() => import("@/app/zips-grants/page"), {
-  ssr: false,
-});
+// Import the CLIENT component, not the server page — the page is async
+// and calls `loadZips()` which imports `server-only`. Pulling the page
+// into a client bundle (via `dynamic` here) breaks the build. The
+// component fetches `/api/zips` on mount when no `zipsData` is passed.
+const ZCGDashboard = dynamic(
+  () =>
+    import("@/app/zips-grants/ZipAndGrantsGovernance").then((m) => ({
+      default: m.ZipAndGrantsGovernance,
+    })),
+  { ssr: false },
+);
 
 type ViewType = "dashboard" | "proposals" | "zcg" | "youtube";
 type SubViewType = "top" | "latest";

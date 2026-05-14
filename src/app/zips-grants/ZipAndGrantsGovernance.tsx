@@ -24,7 +24,14 @@ export interface ZipsData {
 }
 
 interface ZipAndGrantsGovernanceProps {
-  zipsData: ZipsData;
+  /**
+   * Pre-fetched zips payload. Provided by the server-rendered
+   * `/zips-grants` page so the tracker hydrates with live data
+   * immediately. When the component is mounted from a non-SSR
+   * context (e.g. the Dashboard's dynamic-imported ZCG tab), this
+   * prop is omitted and the component fetches `/api/zips` on mount.
+   */
+  zipsData?: ZipsData;
 }
 
 export const ZipAndGrantsGovernance = ({ zipsData }: ZipAndGrantsGovernanceProps) => {
@@ -36,10 +43,27 @@ export const ZipAndGrantsGovernance = ({ zipsData }: ZipAndGrantsGovernanceProps
 };
 
 function ZipAndGrants({ zipsData }: ZipAndGrantsGovernanceProps) {
+  const [zips, setZips] = useState<ZipsData | undefined>(zipsData);
   const [grants, setGrants] = useState<Grant[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [grantError, setGrantError] = useState("");
   const [activeTab, setActiveTab] = useState("zips");
+
+  // Client-side fallback fetch for non-SSR mounts (e.g. dashboard tab).
+  // Skipped when `zipsData` was already provided by the server.
+  useEffect(() => {
+    if (zips) return;
+    let cancelled = false;
+    fetch("/api/zips")
+      .then((r) => r.json())
+      .then((d: ZipsData) => {
+        if (!cancelled) setZips(d);
+      })
+      .catch((err) => console.error("[zips-grants] /api/zips fetch failed:", err));
+    return () => {
+      cancelled = true;
+    };
+  }, [zips]);
 
   useEffect(() => {
     const handleFetchZCGrants = async () => {
@@ -96,12 +120,18 @@ function ZipAndGrants({ zipsData }: ZipAndGrantsGovernanceProps) {
             </TabsList2>
             <div className="mt-8">
               <TabsContent value="zips" activeTab={activeTab}>
-                <ZipTracker
-                  embedded
-                  zips={zipsData.zips}
-                  lastSyncedAt={zipsData.lastSyncedAt}
-                  source={zipsData.source}
-                />
+                {zips ? (
+                  <ZipTracker
+                    embedded
+                    zips={zips.zips}
+                    lastSyncedAt={zips.lastSyncedAt}
+                    source={zips.source}
+                  />
+                ) : (
+                  <div className="py-12 text-center text-sm text-muted-foreground">
+                    Loading ZIPs from zcash/zips…
+                  </div>
+                )}
               </TabsContent>
 
               <TabsContent value="grants" activeTab={activeTab}>
