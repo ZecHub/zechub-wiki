@@ -308,11 +308,6 @@ export const navigations: Array<NavigationItem> = [
     ],
   },
   {
-    name: "DAO",
-    path: "/dao",
-    icon: RiCommunityLine,
-  },
-  {
     name: "Governance",
     label: "Governance",
     icon: RiGovernmentLine,
@@ -326,6 +321,11 @@ export const navigations: Array<NavigationItem> = [
         path: "/zips-grants",
       },
     ],
+  },
+  {
+    name: "DAO",
+    path: "/dao",
+    icon: RiCommunityLine,
   },
   {
     name: "Tutorials",

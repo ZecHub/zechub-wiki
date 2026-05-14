@@ -1,6 +1,6 @@
 
 import * as cheerio from "cheerio";
-import type { Zip, ZipStatus } from "../types";
+import type { Zip, ZipStatus } from "@/app/zips/types";
 
 const STATUS_KEYWORDS: ZipStatus[] = [
   "Final",
