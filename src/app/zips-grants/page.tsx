@@ -1,5 +1,5 @@
 import { ZipAndGrantsGovernance } from "./ZipAndGrantsGovernance";
-import { loadZips } from "@/lib/zips/load-zips";
+import { loadZips } from "@/lib/zips/load-zips.server";
 
 export const revalidate = 3600;
 
