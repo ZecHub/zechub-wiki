@@ -3,6 +3,7 @@ import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
+import { normalizeMdx } from "@/lib/normalizeMdx";
 import { Metadata } from "next";
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
@@ -111,7 +112,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   }
 
   // ← UPDATED: Now supports tables everywhere
-  const serializedSource = await serialize(String(markdown || ""), {
+  const serializedSource = await serialize(normalizeMdx(String(markdown || "")), {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
     },

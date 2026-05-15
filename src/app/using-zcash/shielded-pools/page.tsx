@@ -2,6 +2,7 @@ import MdxContainer from "@/components/MdxContainer";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner } from "@/lib/helpers";
+import { normalizeMdx } from "@/lib/normalizeMdx";
 import { Metadata } from "next";
 import DynamicComponent from "next/dynamic";
 import { serialize } from 'next-mdx-remote/serialize';
@@ -29,7 +30,7 @@ export default async function Page() {
   const content = markdown ? markdown : "No Data or Wrong file";
 
   // ← This fixes the MDXRemote error
-  const mdxSource = await serialize(String(content), {});
+  const mdxSource = await serialize(normalizeMdx(String(content)), {});
 
   return (
     <MdxContainer
