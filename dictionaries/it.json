@@ -1,0 +1,124 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "Informazioni",
+    "contact": "Contatti",
+    "language": "Lingua",
+    "clickToExplore": "Clicca per esplorare →",
+    "learnMore": "Scopri di più",
+    "getStarted": "Inizia",
+    "readMore": "Leggi di più",
+    "search": "Cerca",
+    "close": "Chiudi",
+    "searchModalTitle": "Cerca in ZecHub Wiki",
+    "searchHint": "Cerca per titolo, argomento o percorso. Usa le frecce per scegliere, Invio per aprire.",
+    "searchNoResults": "Nessuna pagina trovata",
+    "searchTryDifferent": "Prova query più brevi, sinonimi o parole diverse.",
+    "searchSuggested": "Pagine suggerite",
+    "searchResultsLabel": "Risultati"
+  },
+  "navigation": {
+    "wallets": "Wallet",
+    "guides": "Guide",
+    "tutorials": "Tutorial",
+    "governance": "Governance",
+    "visualizer": "Visualizer",
+    "dao": "DAO",
+    "newsletter": "Newsletter",
+    "donate": "Dona",
+    "explore": "Esplora",
+    "developers": "Sviluppatori",
+    "community": "Community",
+    "contribute": "Contribuisci",
+    "dashboard": "Dashboard",
+    "more": "Altro",
+    "usingZcash": {
+      "label": "Usare Zcash",
+      "buyingZec": "Comprare ZEC",
+      "faucets": "Faucet",
+      "wallets": "Wallet",
+      "metamaskSnap": "Metamask Snap",
+      "exchanges": "Exchange",
+      "blockExplorers": "Block explorer",
+      "shieldedPools": "Shielded pool",
+      "transparentExchangeAddresses": "Indirizzi trasparenti degli exchange",
+      "transactions": "Transazioni",
+      "memos": "Memo",
+      "mobileTopUps": "Ricariche mobile",
+      "paymentRequestUris": "URI di richiesta pagamento",
+      "paymentProcessors": "Payment processor",
+      "recoveringFunds": "Recuperare fondi"
+    },
+    "zcashCommunity": {
+      "label": "Ecosistema",
+      "arboristCalls": "Arborist Calls",
+      "communityBlogs": "Blog della community",
+      "communityLinks": "Link della community",
+      "communityForum": "Forum della community",
+      "communityProjects": "Progetti della community",
+      "globalAmbassadors": "Zcash Global Ambassadors",
+      "zcashMedia": "Zcash Media",
+      "zcap": "ZCAP",
+      "zcashPodcasts": "Podcast Zcash",
+      "ecosystemSecurity": "Sicurezza dell'ecosistema Zcash",
+      "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
+      "zconArchive": "Archivio Zcon"
+    },
+    "organizations": {
+      "label": "Organizzazioni",
+      "electricCoinCompany": "Electric Coin Company",
+      "zcashFoundation": "Zcash Foundation",
+      "communityGrants": "Zcash Community Grants",
+      "financialPrivacyFoundation": "Financial Privacy Foundation",
+      "shieldedLabs": "Shielded Labs",
+      "zingoLabs": "Zingo Labs",
+      "brand": "Brand",
+      "zkavClub": "ZKAV Club"
+    }
+  },
+  "home": {
+    "heroTitle": "Benvenuto su ZecHub",
+    "heroSubtitle": "Un hub educativo open source per Zcash",
+    "heroDescription": "Scopri la tecnologia di privacy di Zcash, esplora visualizer interattivi e contribuisci all'ecosistema",
+    "description": "ZecHub è l'hub educativo guidato dalla community per la criptovaluta Zcash (ZEC). Zcash è una valuta digitale per pagamenti resistenti alla censura, sicuri e privati.",
+    "featuredSection": "Risorse in evidenza",
+    "latestUpdates": "Ultimi aggiornamenti",
+    "getInvolved": "Partecipa",
+    "exploreEcosystem": "Esplora l'ecosistema",
+    "exploreZcash": "Esplora Zcash",
+    "cards": {
+      "startHere": {
+        "title": "Inizia da qui",
+        "content": "Scopri cos'è Zcash e quali sono gli usi di ZEC"
+      },
+      "pickWallet": {
+        "title": "Scegli un wallet",
+        "content": "Trova il wallet Zcash adatto alle tue esigenze"
+      },
+      "useZecPrivately": {
+        "title": "Usa ZEC in modo privato",
+        "content": "Impara a usare le funzionalità di privacy di Zcash"
+      }
+    }
+  },
+  "visualizer": {
+    "title": "Visualizer Zcash",
+    "description": "Strumenti educativi interattivi per capire la tecnologia di privacy, l'infrastruttura e le prove a conoscenza zero di Zcash",
+    "playAll": "Riproduci tutti i visualizer",
+    "basic": "Base",
+    "basicDescription": "Concetti fondamentali e funzionalità essenziali di Zcash",
+    "advanced": "Avanzato",
+    "advancedDescription": "Approfondimenti tecnici su crittografia, consenso e infrastruttura",
+    "contributors": "Contributori",
+    "contributorsDescription": "Modi per contribuire all'ecosistema Zcash e ottenere ricompense"
+  },
+  "dao": {
+    "title": "ZecHub DAO",
+    "description": "Governance decentralizzata per ZecHub",
+    "proposals": "Proposte",
+    "vote": "Vota",
+    "createProposal": "Crea proposta",
+    "activeProposals": "Proposte attive",
+    "pastProposals": "Proposte passate"
+  }
+}

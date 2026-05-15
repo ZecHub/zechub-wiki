@@ -22,6 +22,7 @@ export const LANGUAGES: Language[] = [
   { code: 'es',  label: 'Spanish',    nativeLabel: 'Español',    flag: '🇪🇸', googleCode: 'es'    },
   { code: 'fr',  label: 'French',     nativeLabel: 'Français',   flag: '🇫🇷', googleCode: 'fr'    },
   { code: 'de',  label: 'German',     nativeLabel: 'Deutsch',    flag: '🇩🇪', googleCode: 'de'    },
+  { code: 'it',  label: 'Italian',    nativeLabel: 'Italiano',   flag: '🇮🇹', googleCode: 'it'    },
   { code: 'pt',  label: 'Portuguese', nativeLabel: 'Português',  flag: '🇧🇷', googleCode: 'pt'    },
   { code: 'ar',  label: 'Arabic',     nativeLabel: 'العربية',    flag: '🇸🇦', googleCode: 'ar',   dir: 'rtl' },
   { code: 'zh',  label: 'Chinese',    nativeLabel: '中文',        flag: '🇨🇳', googleCode: 'zh-CN' },
