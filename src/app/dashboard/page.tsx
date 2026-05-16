@@ -1,7 +1,8 @@
 import Dashboard from "@/components/Charts";
 import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
-import { getDictionary } from '@/lib/getDictionary';
+import { getDictionary } from "@/lib/getDictionary";
+import { loadZips } from "@/lib/zips/load-zips.server";
 
 export async function generateMetadata(): Promise<Metadata> {
   const dict = (await getDictionary()) as {
@@ -50,8 +51,12 @@ type DashboardDictionary = {
 };
 
 export default async function DashboardPage() {
-  const dict = (await getDictionary()) as DashboardDictionary;
-  return <Dashboard dict={dict} />;
+  const [dict, zipsData] = await Promise.all([
+    getDictionary() as Promise<DashboardDictionary>,
+    loadZips(),
+  ]);
+
+  return <Dashboard dict={dict} zipsData={zipsData} />;
 }
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";

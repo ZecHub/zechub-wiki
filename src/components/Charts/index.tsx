@@ -22,10 +22,15 @@ import NamadaChart from "./Namada/NamadaChart";
 import PenumbraChart from "./Penumbra/PenumbraChart";
 import ZcashChart from "./Zcash/ZcashChart";
 import { ProposalsList } from "@/components/Proposals";
+import type { ZipsData } from "@/app/zips-grants/ZipAndGrantsGovernance";
 
-const ZCGDashboard = dynamic(() => import("@/app/zips-grants/page"), {
-  ssr: false,
-});
+const ZCGDashboard = dynamic(
+  () =>
+    import("@/app/zips-grants/ZipAndGrantsGovernance").then(
+      (m) => m.ZipAndGrantsGovernance,
+    ),
+  { ssr: false },
+);
 
 type ViewType = "dashboard" | "proposals" | "zcg" | "youtube";
 type SubViewType = "top" | "latest";
@@ -79,7 +84,13 @@ type DashboardDictionary = {
   };
 };
 
-const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
+const Dashboard = ({
+  dict,
+  zipsData,
+}: {
+  dict?: DashboardDictionary;
+  zipsData: ZipsData;
+}) => {
   const router = useRouter();
   const pathname = usePathname();
   const { t: languageDict } = useLanguage();
@@ -638,7 +649,7 @@ const Dashboard = ({ dict }: { dict?: DashboardDictionary }) => {
         )}
 
         {currentView === "proposals" && <ProposalsList />}
-        {currentView === "zcg" && <ZCGDashboard />}
+        {currentView === "zcg" && <ZCGDashboard zipsData={zipsData} />}
       </div>
     </div>
   );
