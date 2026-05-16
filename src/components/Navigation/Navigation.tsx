@@ -2,7 +2,7 @@
 import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
 import Logo from "../UI/Logo";
@@ -12,7 +12,15 @@ import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 
 import { matchIcons } from "@/constants/Icons";
-import { ChevronDown, Menu, Moon, Search, Sun, ShoppingBag } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronRight,
+  Menu,
+  Moon,
+  Search,
+  Sun,
+  ShoppingBag,
+} from "lucide-react";
 import { Button } from "../UI/button";
 import { Icon } from "../UI/Icon";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
@@ -20,8 +28,6 @@ import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 import { DarkModeContext } from "@/context/DarkModeContext";
 import Image from "next/image";
 import { Trophy, LayoutDashboard } from "lucide-react";
-
-
 
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
 
@@ -32,10 +38,6 @@ const getTranslatedLabel = (
   t: any,
   originalLabel?: string,
 ): string => {
-  // if (originalLabel && originalLabel !== itemName) {
-  //   return originalLabel;
-  // }
-
   // Main navigation items
   const mainNavMap: Record<string, string> = {
     DAO: t.navigation?.dao || "DAO",
@@ -78,8 +80,8 @@ const getTranslatedLabel = (
   const communityMap: Record<string, string> = {
     "Arborist Calls":
       t.navigation?.zcashCommunity?.arboristCalls || "Arborist Calls",
-	"Zcash Governance":
-	  t.navigation?.zcashCommunity?.zcashGovernance || "Zcash Governance",
+    "Zcash Governance":
+      t.navigation?.zcashCommunity?.zcashGovernance || "Zcash Governance",
     "Community Blogs":
       t.navigation?.zcashCommunity?.communityBlogs || "Community Blogs",
     "Community Links":
@@ -252,6 +254,114 @@ const Dropdown = ({
   );
 };
 
+/**
+ * A flyout menu item used inside the desktop "More" dropdown.
+ * Items WITHOUT sub-links render as a plain link.
+ * Items WITH sub-links open a right-side flyout panel on hover.
+ */
+const MoreMenuItem = ({
+  item,
+  t,
+  onLinkClick,
+}: {
+  item: (typeof navigations)[number];
+  t: any;
+  onLinkClick: () => void;
+}) => {
+  const [flyoutOpen, setFlyoutOpen] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openFlyout = () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    setFlyoutOpen(true);
+  };
+  const closeFlyout = () => {
+    timerRef.current = setTimeout(() => setFlyoutOpen(false), 80);
+  };
+
+  const label = getTranslatedLabel(item.name, item.label, t, item.label);
+
+  if (!item.links) {
+    // Plain link — no sub-menu
+    return (
+      <Link
+        prefetch
+        href={item.path ?? "#"}
+        onClick={onLinkClick}
+        className={`flex items-center gap-2 text-sm w-full px-3 py-2 rounded-sm text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
+        {...(item.newTab && { target: "_blank", rel: "noopener noreferrer" })}
+      >
+        {(item.icon || matchIcons(item.name, item.name)) && (
+          <Icon
+            icon={item.icon ?? matchIcons(item.name, item.name)}
+            className="xl:w-5 w-4 h-4 xl:h-5 shrink-0"
+          />
+        )}
+        {label}
+      </Link>
+    );
+  }
+
+  // Has sub-links — render as a flyout trigger
+  return (
+    <div
+      className="relative"
+      onMouseEnter={openFlyout}
+      onMouseLeave={closeFlyout}
+    >
+      {/* Trigger row */}
+      <div
+        className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
+      >
+        <span className="flex items-center gap-2">
+          {(item.icon || matchIcons(item.name, item.name)) && (
+            <Icon
+              icon={item.icon ?? matchIcons(item.name, item.name)}
+              className="xl:w-5 w-4 h-4 xl:h-5 shrink-0"
+            />
+          )}
+          {label}
+        </span>
+        <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60" />
+      </div>
+
+      {/* Flyout panel — opens to the right */}
+      {flyoutOpen && (
+        <div
+          className="absolute left-full top-0 z-[60]
+            bg-slate-100 dark:bg-slate-900
+            shadow-xl border border-slate-200 dark:border-slate-700
+            min-w-[220px] p-1.5 rounded-sm"
+          onMouseEnter={openFlyout}
+          onMouseLeave={closeFlyout}
+        >
+          {item.links.map((link, idx) => (
+            <Link
+              prefetch
+              key={`${link.name}-${idx}`}
+              href={link.path ?? "#"}
+              onClick={onLinkClick}
+              className={`flex items-center gap-2 text-sm w-full px-3 py-2 rounded-sm text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
+              {...(link.newTab && {
+                target: "_blank",
+                rel: "noopener noreferrer",
+              })}
+            >
+              {(link.icon || matchIcons(item.name, link.name)) && (
+                <Icon
+                  icon={link.icon ?? matchIcons(item.name, link.name)}
+                  className="xl:w-5 w-4 h-4 xl:h-5 shrink-0"
+                />
+              )}
+              {getTranslatedLabel(item.name, link.name, t, link.label)}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const NavLinks = ({
   classes,
   closeMenu,
@@ -321,35 +431,13 @@ const NavLinks = ({
           ),
         )}
 
-        {/* Overflow nav in a More dropdown for desktop */}
+        {/* Overflow nav in a "More" dropdown for desktop — supports nested flyouts */}
         {navigations.length > 4 && (
-          <Dropdown label={t.navigation?.more || "More"}>
-            {navigations.slice(4).map((item, i) => (
-              <div
-                key={`${item.name}-${i}`}
-                className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
-              >
-                <Link
-                  prefetch
-                  href={item.path ?? "#"}
-                  onClick={handleLinkClick}
-                  className={`flex items-center gap-2 text-sm w-full text-nav-foreground `}
-                  {...(item.newTab && {
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                  })}
-                >
-                  {(item.icon || matchIcons(item.name, item.name)) && (
-                    <Icon
-                      icon={item.icon ?? matchIcons(item.name, item.name)}
-                      className="xl:w-6 w-4 h-4 xl:h-6"
-                    />
-                  )}
-                  {getTranslatedLabel(item.name, item.label, t, item.label)}
-                </Link>
-              </div>
-            ))}
-          </Dropdown>
+          <MoreDropdown
+            items={navigations.slice(4)}
+            t={t}
+            onLinkClick={handleLinkClick}
+          />
         )}
       </div>
 
@@ -392,7 +480,7 @@ const NavLinks = ({
           <Dropdown label={t.navigation?.more || "More"}>
             <div onMouseLeave={() => setOpenIndex(null)}>
               {navigations.slice(3).map((item, i) => {
-                const isOpen = openIndex === i; // check if current item is open
+                const isOpen = openIndex === i;
 
                 return (
                   <div
@@ -481,22 +569,22 @@ const NavLinks = ({
       </div>
 
       {/* CTA buttons - responsive */}
-     <div className="hidden md:flex items-center gap-3 ml-7 pl-7 border-l border-slate-400 dark:border-slate-600">
-        <Button 
-          asChild 
-          variant="default" 
+      <div className="hidden md:flex items-center gap-3 ml-7 pl-7 border-l border-slate-400 dark:border-slate-600">
+        <Button
+          asChild
+          variant="default"
           size="default"
           className="zebra-hover bg-brand hover:bg-brand-hover text-white font-medium shadow-sm"
           onMouseMove={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
             const y = ((e.clientY - rect.top) / rect.height) * 100;
-            e.currentTarget.style.setProperty('--mouse-x', `${x}%`);
-            e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
+            e.currentTarget.style.setProperty("--mouse-x", `${x}%`);
+            e.currentTarget.style.setProperty("--mouse-y", `${y}%`);
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.setProperty('--mouse-x', '50%');
-            e.currentTarget.style.setProperty('--mouse-y', '50%');
+            e.currentTarget.style.setProperty("--mouse-x", "50%");
+            e.currentTarget.style.setProperty("--mouse-y", "50%");
           }}
         >
           <Link
@@ -509,28 +597,24 @@ const NavLinks = ({
           </Link>
         </Button>
 
-        <Button 
-          asChild 
-          variant="default" 
+        <Button
+          asChild
+          variant="default"
           size="default"
           className="zebra-hover bg-brand hover:bg-brand-hover text-white font-medium shadow-sm"
           onMouseMove={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
             const y = ((e.clientY - rect.top) / rect.height) * 100;
-            e.currentTarget.style.setProperty('--mouse-x', `${x}%`);
-            e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
+            e.currentTarget.style.setProperty("--mouse-x", `${x}%`);
+            e.currentTarget.style.setProperty("--mouse-y", `${y}%`);
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.setProperty('--mouse-x', '50%');
-            e.currentTarget.style.setProperty('--mouse-y', '50%');
+            e.currentTarget.style.setProperty("--mouse-x", "50%");
+            e.currentTarget.style.setProperty("--mouse-y", "50%");
           }}
         >
-          <Link
-            prefetch
-            href="/dashboard"
-            onClick={handleLinkClick}
-          >
+          <Link prefetch href="/dashboard" onClick={handleLinkClick}>
             {t.navigation?.dashboard || "Dashboard"}
           </Link>
         </Button>
@@ -539,12 +623,63 @@ const NavLinks = ({
   );
 };
 
+/**
+ * The desktop "More" dropdown panel.
+ * Renders a single-column list of MoreMenuItems, each of which can
+ * open its own right-side flyout if it has sub-links.
+ */
+const MoreDropdown = ({
+  items,
+  t,
+  onLinkClick,
+}: {
+  items: typeof navigations;
+  t: any;
+  onLinkClick: () => void;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      {/* Trigger */}
+      <div className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2">
+        {t.navigation?.more || "More"}
+        <ChevronDown
+          className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+        />
+      </div>
+
+      {/* Panel */}
+      {isOpen && (
+        <div
+          className="absolute top-full left-0 z-50
+            bg-slate-100 dark:bg-slate-900
+            shadow-lg border border-slate-200 dark:border-slate-700
+            min-w-[200px] mt-0 p-1.5 rounded-sm"
+        >
+          {items.map((item, i) => (
+            <MoreMenuItem
+              key={`${item.name}-${i}`}
+              item={item}
+              t={t}
+              onLinkClick={onLinkClick}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const getExploreIcon = (name: string) => {
-  const theme = "dark"; // Replace with your actual theme hook: useTheme() or whatever you use
+  const theme = "dark";
   const cleanName = name.toLowerCase().replace(/\s+/g, "-");
   return `/explore/${theme}/${cleanName}.png`;
 };
-
 
 const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
   const { t } = useLanguage();
@@ -552,20 +687,19 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
   const folder = dark ? "dark" : "light";
   const handleLinkClick = () => closeMenu();
 
-  // Exact icon mapping from FloatingExplore.tsx
   const iconMap: Record<string, string> = {
     "Use Zcash": `/explore/${folder}/using-zcash.png`,
-    "Ecosystem": `/explore/${folder}/zcash-tech.png`,
-    "Guides": `/explore/${folder}/guides.png`,
-    "Organizations": `/explore/${folder}/zcash-organizations.png`,
-    "DAO": `/explore/${folder}/contribute.png`,
-    "Governance": `/explore/${folder}/contribute.png`,
-    "Tutorials": `/explore/${folder}/tutorials.png`,
-    "Developers": `/explore/${folder}/contribute.png`,
-    "Contribute": `/explore/${folder}/contribute.png`,
-    "Visualizer": `/explore/${folder}/zcash-tech.png`,
-    "Sitemap": `/explore/${folder}/start-here.png`,
-    "Bounties": `/explore/${folder}/contribute.png`,
+    Ecosystem: `/explore/${folder}/zcash-tech.png`,
+    Guides: `/explore/${folder}/guides.png`,
+    Organizations: `/explore/${folder}/zcash-organizations.png`,
+    DAO: `/explore/${folder}/contribute.png`,
+    Governance: `/explore/${folder}/contribute.png`,
+    Tutorials: `/explore/${folder}/tutorials.png`,
+    Developers: `/explore/${folder}/contribute.png`,
+    Contribute: `/explore/${folder}/contribute.png`,
+    Visualizer: `/explore/${folder}/zcash-tech.png`,
+    Sitemap: `/explore/${folder}/start-here.png`,
+    Bounties: `/explore/${folder}/contribute.png`,
   };
 
   const getExploreIcon = (name: string) => {
@@ -763,23 +897,23 @@ const Navigation = () => {
               )}
             </Button>
 
-	<div
-	  className="hidden xl:flex relative"
-	  onMouseEnter={() => setShowShop(true)}
-	  onMouseLeave={() => setShowShop(false)}
-	>
-	  <DonationBtn />
+            <div
+              className="hidden xl:flex relative"
+              onMouseEnter={() => setShowShop(true)}
+              onMouseLeave={() => setShowShop(false)}
+            >
+              <DonationBtn />
 
-	  {showShop && (
-	    <div
-	      className="absolute top-8.5 left-0 w-full z-50"
-	      style={{ marginTop: "-2px" }} // overlap slightly so there's no gap
-	    >
-	      <Link
-		prefetch
-		href="https://zechub.store/"
-		target="_blank"
-		className="
+              {showShop && (
+                <div
+                  className="absolute top-8.5 left-0 w-full z-50"
+                  style={{ marginTop: "-2px" }}
+                >
+                  <Link
+                    prefetch
+                    href="https://zechub.store/"
+                    target="_blank"
+                    className="
 		  flex items-center justify-center gap-2
 		  w-full text-center text-sm font-semibold
 		  px-4 py-2
@@ -791,16 +925,16 @@ const Navigation = () => {
 		  hover:brightness-110
 		  animate-[slideDown_0.12s_ease-out]
 		"
-		style={{
-		  transformOrigin: "top center",
-		}}
-	      >
-		<ShoppingBag className="h-4 w-4" />
-		Shop
-	      </Link>
-	    </div>
-	  )}
-	</div>
+                    style={{
+                      transformOrigin: "top center",
+                    }}
+                  >
+                    <ShoppingBag className="h-4 w-4" />
+                    Shop
+                  </Link>
+                </div>
+              )}
+            </div>
 
             {/* Mobile menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
