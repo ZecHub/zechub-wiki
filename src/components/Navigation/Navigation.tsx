@@ -817,6 +817,11 @@ const Navigation = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [showShop, setShowShop] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
@@ -937,24 +942,37 @@ const Navigation = () => {
             </div>
 
             {/* Mobile menu */}
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger className="xl:hidden" asChild>
+            {mounted ? (
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <SheetTrigger className="xl:hidden" asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
+                  >
+                    <Menu className="h-10 w-10" />
+                  </Button>
+                </SheetTrigger>
+
+                <SheetContent
+                  side="left"
+                  className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-50 dark:bg-slate-900 z-201"
+                >
+                  <MobileNav closeMenu={() => setIsOpen(false)} />
+                </SheetContent>
+              </Sheet>
+            ) : (
+              <div className="xl:hidden">
                 <Button
                   variant="ghost"
                   size="sm"
                   className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
+                  aria-label="Open menu"
                 >
                   <Menu className="h-10 w-10" />
                 </Button>
-              </SheetTrigger>
-
-              <SheetContent
-                side="left"
-                className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-50 dark:bg-slate-900 z-201"
-              >
-                <MobileNav closeMenu={() => setIsOpen(false)} />
-              </SheetContent>
-            </Sheet>
+              </div>
+            )}
           </div>
         </div>
       </div>
