@@ -3,19 +3,24 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Josh: Privacidade \u00e9 Ag\u00eancia, e Bitcoin N\u00e3o Entregou Isso",
+            "video_id": "q4k4gMgjyBc",
+            "views": 317
+        },
+        {
             "title": "IA em Wallets: Tradu\u00e7\u00e3o ou Muleta Para Quem N\u00e3o Entende o B\u00e1sico?",
             "video_id": "x9qDWEvmzZ8",
-            "views": 206
+            "views": 218
         },
         {
             "title": "Shielded Mark e Note Traceability Set, Por Que Zcash \u00e9 Diferente",
             "video_id": "N_01N1STojo",
-            "views": 194
+            "views": 195
         },
         {
             "title": "Protocol Study #2: Addresses, Keys, and the Privacy Onion | Engineering #9",
             "video_id": "z6V-NhTWE3Q",
-            "views": 19
+            "views": 22
         },
         {
             "title": "Zcash Escalando: A Tese do Sean Bowe Sobre Pagamentos Baratos",
@@ -30,12 +35,12 @@
         {
             "title": "Sistema H\u00edbrido: Como a Zcash Equilibra Voz e Consenso",
             "video_id": "KlRLH7RnyP0",
-            "views": 181
+            "views": 182
         },
         {
             "title": "Zcon Vozes 2 e Novidades do Tachyon | Zec Insider",
             "video_id": "3G3Z9W93k7o",
-            "views": 27
+            "views": 28
         },
         {
             "title": "Bitcoin n\u00e3o funciona como pagamento sem privacidade \u2014 Josh Swihart",
@@ -55,7 +60,7 @@
         {
             "title": "O que o ex-CEO do Goldman Sachs falou sobre Zcash",
             "video_id": "AsiSVLndB-k",
-            "views": 56
+            "views": 57
         },
         {
             "title": "Zcash Protocol Walkthroug \u00a71.1\u20131.2 | Engineering #8",
@@ -105,7 +110,7 @@
         {
             "title": "Foundry na Zcash: Hashrate, Distribui\u00e7\u00e3o e Descentraliza\u00e7\u00e3o.",
             "video_id": "aYOgp0i8m1E",
-            "views": 43
+            "views": 46
         },
         {
             "title": "Liberdade, Soberania e Sustentabilidade com Shielded Labs",
@@ -325,7 +330,7 @@
         {
             "title": "Zashi Agora \u00e9 ZODL: Nova Carteira Zcash no iOS e Android com Privacidade por Padr\u00e3o",
             "video_id": "NkpD4kCPwdI",
-            "views": 34
+            "views": 36
         },
         {
             "title": "Zcash Merkle Tree - Como a Blockchain \u201cProva\u201d Transa\u00e7\u00f5es?",
@@ -525,7 +530,7 @@
         {
             "title": "Zcash na Cake Wallet - Tutorial Completo",
             "video_id": "ngzYYqcRa84",
-            "views": 124
+            "views": 136
         },
         {
             "title": "Chat criptografado precisa de dinheiro criptografado.",
@@ -1720,7 +1725,7 @@
         {
             "title": "O Maior Hack da Hist\u00f3ria: O Que Isso Tem a Ver com Voc\u00ea?",
             "video_id": "WPX1iiide2w",
-            "views": 236
+            "views": 238
         },
         {
             "title": "Apresentando o Protocolo Crosslink",
@@ -2220,7 +2225,7 @@
         {
             "title": "Duas propriedades necess\u00e1rias para a civiliza\u00e7\u00e3o... #Privacidade #Cripto #Zcash #direitohumano #IA",
             "video_id": "iR6Zdc09OFo",
-            "views": 266
+            "views": 268
         },
         {
             "title": "Valocracia e o futuro das DAOs com CastaCrypto",
@@ -2540,7 +2545,7 @@
         {
             "title": "Casta Estuda - Bitcoin X Zcash",
             "video_id": "X2iDTlijlc0",
-            "views": 769
+            "views": 770
         },
         {
             "title": "Marketing e Consumo",
@@ -2900,7 +2905,7 @@
         {
             "title": "Zooko privacidade \u00e9 importante sim. #zcash #bitcoin #crypto #privacidade #blockchain #interview #zec",
             "video_id": "pMLjLlo-yGw",
-            "views": 285
+            "views": 286
         },
         {
             "title": "WEEKLYCALL #17 - Debatendo o Dev Fund",
@@ -3070,7 +3075,7 @@
         {
             "title": "Vitalik Buterin fala sobre ZKP #zcash #zkp",
             "video_id": "O9uwBEI6bIk",
-            "views": 579
+            "views": 580
         },
         {
             "title": "TheSmith - DAOS e seus desafios.",
@@ -3120,7 +3125,7 @@
         {
             "title": "Vitalik Buterin - Governan\u00e7a On Chain  LEGENDADO",
             "video_id": "p4GDfsjAf5g",
-            "views": 204
+            "views": 205
         },
         {
             "title": "WEEKLYCALL #6 - Parceria Brave e NYM",
@@ -3195,7 +3200,7 @@
         {
             "title": "Jack Gavigan - JP Morgan e Desintermedia\u00e7\u00e3o LEGENDADO",
             "video_id": "ig1IVBq8y4k",
-            "views": 29
+            "views": 30
         },
         {
             "title": "WEEKLYCALL #3  - ZeBoot e novo Gerente de Produto da ECC.",
