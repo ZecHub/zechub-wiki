@@ -90,7 +90,7 @@ export default function RootLayout({
                 new google.translate.TranslateElement(
                   {
                     pageLanguage: 'en',
-                    includedLanguages: 'en,fr,de,es,pt,ar,zh-CN,hi,ru,ja,ko,tr,uk,sw,yo,ig,ak,ee',
+                    includedLanguages: 'en,fr,de,it,es,pt,ar,zh-CN,hi,ru,ja,ko,tr,uk,sw,yo,ig,ak,ee',
                     layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
                     autoDisplay: false,
                   },
