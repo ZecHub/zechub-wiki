@@ -181,7 +181,7 @@ const CodeBlock = ({ code, language = "bash" }: CodeBlockProps) => {
           color: "#e2e8f0",
         }}
       >
-        <code style={{ maxWidth: "750PX" }}>{code.trim()}</code>
+        <code style={{ maxWidth: "750px" }}>{code.trim()}</code>
       </pre>
     </div>
   );
@@ -532,7 +532,7 @@ sudo apt install golang-go
             />
             <SubLabel className="mt-[14px]">Build lightwalletd</SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/zcash/lightwalletd.git\ncd lightwalletd\ngo build`}
+              code={`git clone https://github.com/zcash/lightwalletd.git\ncd lightwalletd\ngo build\nmake\nmake install\nexport PATH=$PATH:~/go/bin`}
             />
           </SectionCard>
 
@@ -550,7 +550,7 @@ EOF`}
             />
             <SubLabel className="mt-[14px]">Run</SubLabel>
             <CodeBlock
-              code={`./lightwalletd --config-file=lightwalletd.conf`}
+              code={`lightwalletd --zcash-conf-path ~/.config/zcash.conf --data-dir ~/data/zebrad/.cache/lightwalletd --log-file ~/.local/state/lwd.log --no-tls-very-insecure`}
             />
           </SectionCard>
         </div>
