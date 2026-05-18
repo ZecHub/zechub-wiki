@@ -12,6 +12,19 @@ The goal is to keep wiki translations accurate and consistent. Some terms are pr
 - During translation review, compare translated pages against `src/constants/protectedTranslationTerms.ts`.
 - Future UI work can use this list to wrap generated labels with `translate="no"` or `className="notranslate"`.
 
+## What Should Be Protected
+
+Protect terms that behave like names or identifiers:
+
+- Brands and projects: `Zcash`, `ZecHub`, `Free2Z`, `Zcash.Me`.
+- Organizations and programs: `Electric Coin Company`, `Zcash Foundation`, `ZCG`, `Arborist Calls`.
+- Protocol eras and network upgrades: `Sapling`, `Orchard`, `NU5`, `NU6`.
+- Software and commands: `Zebra`, `zebrad`, `zcashd`, `lightwalletd`, `Zaino`.
+- Acronyms and governance labels: `ZEC`, `ZIP`, `ZCAP`, `FROST`.
+- Address and key primitives where literal translation can change the expected technical term: `Unified Address`, `Viewing Key`, `t-address`.
+
+Do not protect normal descriptive words by themselves unless they are part of a fixed term. For example, `shielded`, `transparent`, `memo`, `wallet`, `transaction`, and `address` should usually be translatable in regular prose. Protect a fixed phrase only when the English phrase is the expected product, page, or protocol term.
+
 ## Examples
 
 Preferred:
