@@ -114,6 +114,20 @@ function applyGoogleTranslate(googleCode: string): boolean {
   return true;
 }
 
+function scheduleGoogleTranslate(googleCode: string, maxAttempts = 10): () => void {
+  let attempts = 0;
+  const iv = setInterval(() => {
+    attempts++;
+    const applied = applyGoogleTranslate(googleCode);
+
+    if (applied || attempts > maxAttempts) {
+      clearInterval(iv);
+    }
+  }, 200);
+
+  return () => clearInterval(iv);
+}
+
 function resetGoogleTranslateToEnglish(): boolean {
   const select = getGTSelect();
   if (!select) return false;
@@ -142,6 +156,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const restoredRef = useRef(false);
 
   const userSelectedRef = useRef(false);
+  const currentLanguageRef = useRef<Language>(LANGUAGES[0]);
 
   useEffect(() => {
     let cancelled = false;
@@ -232,6 +247,22 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const currentLanguage = LANGUAGES.find(l => l.code === locale) ?? LANGUAGES[0];
+
+  useEffect(() => {
+    currentLanguageRef.current = currentLanguage;
+  }, [currentLanguage]);
+
+  useEffect(() => {
+    const handleMdxReady = () => {
+      const lang = currentLanguageRef.current;
+      if (lang.code === 'en') return;
+
+      scheduleGoogleTranslate(lang.googleCode);
+    };
+
+    window.addEventListener('zechub:mdx-ready', handleMdxReady);
+    return () => window.removeEventListener('zechub:mdx-ready', handleMdxReady);
+  }, []);
 
   const contextValue = useMemo(
     () => ({ locale, setLocale, currentLanguage, t: dictionary }),
