@@ -5,18 +5,17 @@ import {
   ArrowUpRight,
   BookOpen,
   Calculator,
-  Code2,
   ExternalLink,
   FolderOpen,
   Gamepad2,
   Github,
   HelpCircle,
   KeyRound,
-  Layers,
   LogIn,
   Puzzle,
   Server,
   Sparkles,
+  Trophy,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { HackathonGithubProject } from "@/lib/fetchHackathonGithubProjects";
@@ -74,32 +73,11 @@ const getPhase = (now: number, start: Date, end: Date): HackathonPhase => {
 
 const devToolsDocs = [
   {
-    title: "Zcash Core Documentation",
+    title: "ZecHub Developer Quick Start",
     description:
-      "Understand core concepts, node operations, and configuration details.",
-    href: "https://zcash.readthedocs.io/en/latest/",
+      "Find the essential tools, references, and setup steps for building on Zcash.",
+    href: "https://zechub.wiki/developers/quick-start",
     icon: BookOpen,
-  },
-  {
-    title: "Zcash RPC Reference",
-    description:
-      "Explore RPC methods to query chain data and interact with zcashd.",
-    href: "https://zcash.github.io/rpc/",
-    icon: Code2,
-  },
-  {
-    title: "Run a Node on Akash",
-    description:
-      "Step-by-step guide for deploying a Zcash node with Akash infrastructure.",
-    href: "/guides/akash-network",
-    icon: Server,
-  },
-  {
-    title: "Build on Zcash",
-    description:
-      "Reference ideas and infrastructure notes for Zcash-powered applications.",
-    href: "https://github.com/ZecHub/zechub/blob/main/site/contribute/Community_Infrastructure.md",
-    icon: Layers,
   },
 ] as const;
 
@@ -160,7 +138,7 @@ const faqItems = [
   {
     question: "What are the tracks?",
     answer:
-      "This year’s themes are Infrastructure, Games, FROST, Zcash Login, and Accounting. Pick the track that best matches your build—you can still combine ideas across tracks.",
+      "This year’s themes are Infrastructure, Games, FROST, Zcash Login, and Accounting. Pick the track that best matches your build, you can still combine ideas across tracks.",
   },
 ];
 
@@ -275,7 +253,7 @@ const Hackathon = ({
               </span>
             </h1>
             <p className="text-balance text-lg leading-relaxed text-slate-300 md:text-xl">
-              Build across five tracks—from infra to games—then document and demo
+              Build across five tracks, from infra to games, then document and demo
               your work. Official kickoff{" "}
               <span className="font-semibold text-white">May 25, 2026</span>{" "}
               (UTC); submissions close{" "}
@@ -332,7 +310,7 @@ const Hackathon = ({
             </div>
             {phase === "post" ? (
               <p className="mt-4 text-center text-sm font-medium text-emerald-300">
-                This hackathon window has ended—thanks to everyone who took part.
+                This hackathon window has ended, thanks to everyone who took part.
               </p>
             ) : phase === "pre" ? (
               <p className="mt-4 text-center text-xs text-slate-400">
@@ -356,7 +334,7 @@ const Hackathon = ({
       <section className="mb-12">
         <SectionTitle eyebrow="2026 event">Tracks</SectionTitle>
         <p className="-mt-2 mb-6 max-w-2xl text-muted-foreground">
-          Align your project with a track for clarity when you submit—judges and
+          Align your project with a track for clarity when you submit, judges and
           the community use them to browse entries.
         </p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -383,8 +361,25 @@ const Hackathon = ({
       </section>
 
       <section className="mb-12">
+        <SectionTitle eyebrow="Rewards">Prizes</SectionTitle>
+        <Card className="overflow-hidden border-amber-500/30 bg-gradient-to-br from-amber-50 to-white shadow-sm dark:border-amber-500/25 dark:from-amber-950/30 dark:to-slate-900">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-2xl">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/15 text-amber-700 ring-1 ring-amber-500/25 dark:text-amber-300">
+                <Trophy className="h-6 w-6" aria-hidden />
+              </span>
+              25 ZEC Prize pool
+            </CardTitle>
+            <CardDescription>
+              Build, submit, and compete for the community prize pool.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </section>
+
+      <section className="mb-12">
         <SectionTitle eyebrow="Start here">Devtools &amp; documentation</SectionTitle>
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid max-w-3xl gap-5">
           {devToolsDocs.map((tool) => {
             const Icon = tool.icon;
             const isInternal = tool.href.startsWith("/");
