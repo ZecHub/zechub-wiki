@@ -192,6 +192,21 @@ function applyGoogleTranslate(googleCode: string): boolean {
   return true;
 }
 
+function forceGoogleTranslate(googleCode: string): boolean {
+  const select = getGTSelect();
+  if (!select) return false;
+
+  select.value = '';
+  select.dispatchEvent(new Event('change'));
+
+  window.setTimeout(() => {
+    select.value = googleCode;
+    select.dispatchEvent(new Event('change'));
+  }, 50);
+
+  return true;
+}
+
 function scheduleGoogleTranslate(googleCode: string, maxAttempts = 25): () => void {
   let cancelled = false;
   let interval: ReturnType<typeof setInterval> | null = null;
@@ -300,15 +315,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.dir = lang?.dir ?? 'ltr';
 
     if (code === 'en') {
-      const widgetReady = resetGoogleTranslateToEnglish();
-      if (!widgetReady) {
-        clearGTCookies();
-      }
+      currentLanguageRef.current = LANGUAGES[0];
+      resetGoogleTranslateToEnglish();
+      clearGTCookiesAndReload();
       return;
     }
 
     if (lang) {
-      scheduleGoogleTranslate(lang.googleCode);
+      currentLanguageRef.current = lang;
+      scheduleGoogleTranslate(lang.googleCode, 25);
     }
   }, []);
 
