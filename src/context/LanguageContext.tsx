@@ -114,6 +114,35 @@ function applyGoogleTranslate(googleCode: string): boolean {
   return true;
 }
 
+function forceGoogleTranslate(googleCode: string): boolean {
+  const select = getGTSelect();
+  if (!select) return false;
+
+  select.value = '';
+  select.dispatchEvent(new Event('change'));
+
+  window.setTimeout(() => {
+    select.value = googleCode;
+    select.dispatchEvent(new Event('change'));
+  }, 50);
+
+  return true;
+}
+
+function scheduleGoogleTranslate(googleCode: string, maxAttempts = 10): () => void {
+  let attempts = 0;
+  const iv = setInterval(() => {
+    attempts++;
+    const applied = forceGoogleTranslate(googleCode);
+
+    if (applied || attempts > maxAttempts) {
+      clearInterval(iv);
+    }
+  }, 200);
+
+  return () => clearInterval(iv);
+}
+
 function resetGoogleTranslateToEnglish(): boolean {
   const select = getGTSelect();
   if (!select) return false;
@@ -142,6 +171,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const restoredRef = useRef(false);
 
   const userSelectedRef = useRef(false);
+  const currentLanguageRef = useRef<Language>(LANGUAGES[0]);
 
   useEffect(() => {
     let cancelled = false;
@@ -205,33 +235,35 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.dir = lang?.dir ?? 'ltr';
 
     if (code === 'en') {
-      const widgetReady = resetGoogleTranslateToEnglish();
-      if (!widgetReady) {
-        let attempts = 0;
-        const iv = setInterval(() => {
-          attempts++;
-          const ok = resetGoogleTranslateToEnglish();
-          if (ok || attempts > 10) {
-            clearInterval(iv);
-            if (!ok) clearGTCookiesAndReload();
-          }
-        }, 200);
-      }
+      currentLanguageRef.current = LANGUAGES[0];
+      resetGoogleTranslateToEnglish();
+      clearGTCookiesAndReload();
       return;
     }
 
     if (lang) {
-      if (!applyGoogleTranslate(lang.googleCode)) {
-        let attempts = 0;
-        const iv = setInterval(() => {
-          attempts++;
-          if (applyGoogleTranslate(lang.googleCode) || attempts > 25) clearInterval(iv);
-        }, 200);
-      }
+      currentLanguageRef.current = lang;
+      scheduleGoogleTranslate(lang.googleCode, 25);
     }
   }, []);
 
   const currentLanguage = LANGUAGES.find(l => l.code === locale) ?? LANGUAGES[0];
+
+  useEffect(() => {
+    currentLanguageRef.current = currentLanguage;
+  }, [currentLanguage]);
+
+  useEffect(() => {
+    const handleMdxReady = () => {
+      const lang = currentLanguageRef.current;
+      if (lang.code === 'en') return;
+
+      scheduleGoogleTranslate(lang.googleCode);
+    };
+
+    window.addEventListener('zechub:mdx-ready', handleMdxReady);
+    return () => window.removeEventListener('zechub:mdx-ready', handleMdxReady);
+  }, []);
 
   const contextValue = useMemo(
     () => ({ locale, setLocale, currentLanguage, t: dictionary }),
