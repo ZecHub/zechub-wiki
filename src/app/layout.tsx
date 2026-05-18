@@ -5,7 +5,6 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import FloatingExplore from "@/components/FloatingExplore";
-import Script from "next/script";
 import "./globals.css";
 import NavigationWrapper from "@/components/NavigationWrapper";
 
@@ -80,38 +79,6 @@ export default function RootLayout({
             <NavigationWrapper>{children}</NavigationWrapper>
           </DarkModeProvider>
         </LanguageProvider>
-        {/* Google Translate init — runs after page is interactive */}
-        <Script
-          id="google-translate-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              function googleTranslateElementInit() {
-                new google.translate.TranslateElement(
-                  {
-                    pageLanguage: 'en',
-                    includedLanguages: 'en,fr,de,it,es,pt,ar,zh-CN,hi,ru,ja,ko,tr,uk,sw,yo,ig,ak,ee',
-                    layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
-                    autoDisplay: false,
-                  },
-                  'google_translate_element'
-                );
-                const killBanner = () => {
-                  const b = document.querySelector('.goog-te-banner-frame');
-                  if (b) b.style.setProperty('display', 'none', 'important');
-                  document.body.style.setProperty('top', '0', 'important');
-                  document.body.style.setProperty('position', 'static', 'important');
-                };
-                setTimeout(killBanner, 500);
-                setTimeout(killBanner, 1500);
-              }
-            `,
-          }}
-        />
-        <Script
-          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );
