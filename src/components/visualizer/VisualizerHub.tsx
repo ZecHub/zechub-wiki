@@ -26,6 +26,7 @@ import { GovernanceVisualizer } from "./Governance";
 import { QuizCard, QuizModule, type QuizQuestion } from "./QuizModule";
 import { DAOProposalVisualizer } from "./DAOProposals";
 import { BuildShieldedTransactionVisualizer } from "./BuildShieldedTransaction";
+import CrosslinkProtocolVisualizer from "./CrosslinkProtocol";
 
 const QUIZ_BEGINNER: QuizQuestion[] = [
   {
@@ -152,6 +153,7 @@ type VisualizerType =
   | "coinholder-grants"
   | "open-source-repos"
   | "build-shielded-transaction"
+  | "CrossLink-Protocol"
   | "distributed-database";
 
 interface VisualizerInfo {
@@ -224,6 +226,12 @@ const ADVANCED_VISUALIZERS: VisualizerInfo[] = [
     title: "Build a Shielded Transaction",
     description: "Step-by-step construction of a shielded transaction",
     component: BuildShieldedTransactionVisualizer,
+  },
+  {
+    id: "CrossLink-Protocol",
+    title: "CrossLink Protocol",
+    description: "Hybrid PoW + BFT finality: How Crosslink seals Zcash blocks",
+    component: CrosslinkProtocolVisualizer,
   },
   {
     id: "zcash-key",
