@@ -194,12 +194,12 @@ const faqItems = [
   {
     question: "What must a valid submission include?",
     answer:
-      "A working prototype or demo, basic documentation, and an explanation of how it uses the Zcash network.",
+      "A working prototype, video demo, basic documentation, and an explanation of how it uses the Zcash network.",
   },
   {
     question: "Where do we submit projects?",
     answer:
-      "Share your entry in the Zcash Global Discord and include any relevant repository or demo links.",
+      "Share your video demo in the Zcash Global Discord and include any relevant repository or demo links.",
   },
   {
     question: "How are winners selected?",
