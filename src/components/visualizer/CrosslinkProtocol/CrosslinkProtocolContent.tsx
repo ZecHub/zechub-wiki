@@ -45,7 +45,7 @@ export const STAGES: StageConfig[] = [
     id: "bft-layer",
     title: "The BFT Finality Layer",
     subtitle: "Step 4 · Finalizers vote",
-    description: "Up to 100 staked finalizers run Malachite (Rust Tendermint). They don't validate transactions; they vote on which PoW blocks become final.",
+    description: "Up to 100 staked finalizers run Tenderlink (Shielded Labs' Tendermint-style BFT). They don't validate transactions; they vote on which PoW blocks become final.",
     icon: Vote,
   },
   {
@@ -66,7 +66,7 @@ export const STAGES: StageConfig[] = [
     id: "staking",
     title: "Staking & Finalizers",
     subtitle: "Step 7 · Delegate, earn, get slashed",
-    description: "Holders stake ZEC (in powers of 10) to finalizers. Top 100 by weight form the active set. 90% of issuance to stakers, 10% commission.",
+    description: "Holders stake ZEC from the Orchard pool in quantized buckets (1, 10, 100, 1k, 10k). Top 100 by weight form the active set. Current design targets a ~40/40 issuance split between miners and stakers.",
     icon: Coins,
   },
   {
@@ -606,7 +606,7 @@ export const BftLayerStage = () => {
         animate={{ opacity: 1, y: 0 }}
         className="text-sm text-zinc-400 leading-relaxed"
       >
-        Finalizers are nodes staked with ZEC running <span className="text-emerald-300 font-mono">Malachite</span> (a Rust port of Tendermint). They never validate transactions; they vote on which PoW block to mark final. A block is finalized when <span className="text-emerald-300 font-semibold">⅔ of staked weight</span> votes for it.
+        Finalizers are nodes staked with ZEC running <span className="text-emerald-300 font-mono">Tenderlink</span>, Shielded Labs' Tendermint-style BFT (a fork from the earlier Malachite prototype). They never validate transactions; they vote on which PoW block to mark final. A block is finalized when <span className="text-emerald-300 font-semibold">⅔ of staked weight</span> votes for it.
       </motion.p>
 
       <div className="rounded-2xl border border-emerald-500/30 bg-zinc-950/40 p-5">
@@ -1007,7 +1007,7 @@ export const StakingStage = () => {
         animate={{ opacity: 1, y: 0 }}
         className="text-sm text-zinc-400 leading-relaxed"
       >
-        ZEC holders delegate stake (in <span className="font-mono text-emerald-300">powers of 10</span>) to finalizers. Top 100 by weight form the active set. Stakers earn <span className="text-emerald-300 font-medium">90%</span> of new issuance; finalizers take a commission.
+        ZEC holders delegate stake from the <span className="text-emerald-300 font-medium">Orchard shielded pool</span> in quantized buckets (<span className="font-mono text-emerald-300">1, 10, 100, 1k, 10k</span>) to preserve privacy. Top 100 by weight form the active set. Current design targets a roughly <span className="text-emerald-300 font-medium">40/40</span> issuance split between miners and stakers, with the rest reserved for other ecosystem elements. Unbonding takes <span className="text-amber-300 font-medium">~1 epoch (5–10 days)</span>.
       </motion.p>
 
       {/* Finalizer cards */}
@@ -1089,9 +1089,20 @@ export const StakingStage = () => {
         </div>
       </div>
 
-      <p className="text-[10px] text-zinc-500 text-center leading-relaxed">
-        Numbers are illustrative; final tokenomics are under design in Milestone 4 of the Crosslink roadmap.
-      </p>
+      <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3">
+        <p className="text-[10px] text-zinc-400 text-center leading-relaxed">
+          Tokenomics, parameters (issuance split, σ depth, slashing), and implementation details are under active refinement on Crosslink&apos;s incentivized featurenet (Season 1). See{" "}
+          <a
+            href="https://shieldedlabs.net/crosslink-roadmap-q1-2025/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-emerald-400 hover:text-emerald-300 underline underline-offset-2"
+          >
+            Shielded Labs
+          </a>
+          {" "}for the latest.
+        </p>
+      </div>
     </div>
   );
 };
