@@ -8,13 +8,14 @@ import Link from "next/link";
 import Explorer from "../Explorer/Explorer";
 import { FadeInAnimation } from "../UI/FadeInAnimation";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTranslations } from "next-intl";
 
 type HomeProps = {
   text: string;
 };
 
 const Home = ({ text }: HomeProps) => {
-  const { t } = useLanguage();
+  const t = useTranslations('home');
 
   return (
     <main className="flex flex-col">
@@ -35,7 +36,7 @@ const Home = ({ text }: HomeProps) => {
             </FadeInAnimation>
             <FadeInAnimation>
               <h1 className="text-4xl text-center font-bold mb-3">
-                {t.home?.heroTitle || "Welcome to ZecHub"}
+                {t('heroTitle') || "Welcome to ZecHub"}
               </h1>
             </FadeInAnimation>
             <div className="flex flex-col w-[90%] items-center justify-center m-auto">
@@ -51,7 +52,7 @@ const Home = ({ text }: HomeProps) => {
                     href="#explore"
                     className="transition duration-400 border-2 border-[#1984c7] font-bold rounded-md py-4 px-10 text-white  bg-[#1984c7] hover:bg-[#1574af] hover:text-white shadow-lg transform hover:scale-104"
                   >
-                    {t.home?.exploreEcosystem || "Explore Zcash"}
+                    {t('exploreEcosystem') || "Explore Zcash"}
                   </Link>
                 </FadeInAnimation>
               </div>
@@ -70,9 +71,9 @@ const Home = ({ text }: HomeProps) => {
                   | "startHere"
                   | "pickWallet"
                   | "resources";
-                const title = t.home?.cards?.[cardKey]?.title || items.title;
+                const title = t(`cards.${cardKey}.title`) || items.title;
                 const content =
-                  t.home?.cards?.[cardKey]?.content || items.content;
+                  t(`cards.${cardKey}.content`) || items.content;
 
                 return (
                   <Cards

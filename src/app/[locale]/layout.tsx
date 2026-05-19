@@ -7,6 +7,10 @@ import { Inter } from "next/font/google";
 import FloatingExplore from "@/components/FloatingExplore";
 import "./globals.css";
 import NavigationWrapper from "@/components/NavigationWrapper";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { routing } from "@/i18n/routing";
+import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,11 +30,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{locale: string}>
 }) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+
   return (
     <html lang="en-US">
       <head>
@@ -74,11 +87,13 @@ export default function RootLayout({
             height: 60,
           }}
         />
-        <LanguageProvider>
-          <DarkModeProvider>
-            <NavigationWrapper>{children}</NavigationWrapper>
-          </DarkModeProvider>
-        </LanguageProvider>
+        <NextIntlClientProvider>
+          <LanguageProvider params={{ locale }}>
+            <DarkModeProvider>
+              <NavigationWrapper>{children}</NavigationWrapper>
+            </DarkModeProvider>
+          </LanguageProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
