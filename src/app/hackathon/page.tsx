@@ -592,7 +592,7 @@ const Hackathon = ({
         </section>
 
         <section className="mb-12">
-          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-6 flex flex-col gap-4 imd:flex-row imd:items-end sm:justify-between">
             <div>
               <SectionTitle eyebrow="Past editions">
                 Previous hackathons
