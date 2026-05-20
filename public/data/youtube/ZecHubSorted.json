@@ -10,12 +10,12 @@
     {
       "title": "Coinbase + Zashi: Buy Zcash & Shield Instantly",
       "video_id": "Avweu5V9QRc",
-      "views": 2280
+      "views": 2282
     },
     {
       "title": "Useful Tips when using Zcash 🔒",
       "video_id": "tEfQaYPV0UE",
-      "views": 2228
+      "views": 2231
     },
     {
       "title": "Zcashd Wallet Tool - Generate & Import Private Key",
@@ -35,7 +35,7 @@
     {
       "title": "How to Buy and use Zcash Orchard 🌳",
       "video_id": "3xyKKer1Qvk",
-      "views": 1621
+      "views": 1622
     },
     {
       "title": "A great reason to migrate $ZEC into 🌳Orchard Pool! #shorts #zcash #cryptocurrency #defi #privacy",
@@ -45,7 +45,7 @@
     {
       "title": "Private Cross-Chain Payments with Zashi CrossPay",
       "video_id": "G1vnpxGInqs",
-      "views": 1554
+      "views": 1555
     },
     {
       "title": "Zcash Explained: Zcash Shielded Transactions",
@@ -70,12 +70,12 @@
     {
       "title": "How to use ZEC on Metamask",
       "video_id": "UJh9Ilkohdw",
-      "views": 1367
+      "views": 1368
     },
     {
       "title": "Guide: Using Shielded Zcash (ZEC) on Brave",
       "video_id": "D0uSI5sYD7I",
-      "views": 1353
+      "views": 1355
     },
     {
       "title": "The Beginners Guide to Keplr Wallet",
@@ -125,7 +125,7 @@
     {
       "title": "Comparing On-Chain Privacy Technologies ⚖️",
       "video_id": "U7QkhNkmgZk",
-      "views": 920
+      "views": 922
     },
     {
       "title": "Using Zcash Zebra Node with Lightwalletd: TUTORIAL",
@@ -170,7 +170,7 @@
     {
       "title": "Unstoppable Wallet for Zcash | Shielded-by-Default 🛡️",
       "video_id": "B9tpkgVRsq4",
-      "views": 770
+      "views": 771
     },
     {
       "title": "Why Namada is a Breakthrough in on-chain Privacy",
@@ -190,7 +190,7 @@
     {
       "title": "how to spend zcash on real world items 💵🌎 #zcash #defi #zec #shielded #cryptocurrency #privacycoin",
       "video_id": "z9UDOxHb8mg",
-      "views": 687
+      "views": 688
     },
     {
       "title": "Dean Tribble explains the Agoric - Zcash Bridge #shorts #zcash #crypto #privacy #shielded",
@@ -215,7 +215,7 @@
     {
       "title": "Private Crypto Transactions with Zashi  #cryptocurrency",
       "video_id": "JHyM3j9BiF8",
-      "views": 658
+      "views": 659
     },
     {
       "title": "Demo | Introducing ZEC-Pay",
@@ -280,7 +280,7 @@
     {
       "title": "How to use ZEC on Brave",
       "video_id": "TNcHY-GXFVo",
-      "views": 499
+      "views": 500
     },
     {
       "title": "Install a Nym Mixnet Node: TUTORIAL",
@@ -483,13 +483,13 @@
       "views": 289
     },
     {
-      "title": "inviting vendors to use zcash payments ✅ #crypto #shielded #zcash #defi #privacycoin #payments",
-      "video_id": "ZvOeY7Y7k9A",
-      "views": 286
-    },
-    {
       "title": "New Zcash Wallet feature! Spend before Sync ⚡",
       "video_id": "ng2K28edQy4",
+      "views": 287
+    },
+    {
+      "title": "inviting vendors to use zcash payments ✅ #crypto #shielded #zcash #defi #privacycoin #payments",
+      "video_id": "ZvOeY7Y7k9A",
       "views": 286
     },
     {
@@ -1543,6 +1543,11 @@
       "views": 33
     },
     {
+      "title": "ZecHub Updates | 5/05/2026",
+      "video_id": "lZldZzbiLLM",
+      "views": 33
+    },
+    {
       "title": "The Current Landscape of Private Stablecoins",
       "video_id": "FZYIjCE5UjQ",
       "views": 32
@@ -1550,11 +1555,6 @@
     {
       "title": "ZecHub | Sync Meet (12/02/2025)",
       "video_id": "uS2QVHWlbNA",
-      "views": 32
-    },
-    {
-      "title": "ZecHub Updates | 5/05/2026",
-      "video_id": "lZldZzbiLLM",
       "views": 32
     },
     {
@@ -1656,6 +1656,11 @@
       "title": "ZecHub | Sync Meet (09/02/2025)",
       "video_id": "VLrGqKKx04g",
       "views": 15
+    },
+    {
+      "title": "How to Install Zebrad on Windows",
+      "video_id": "qM0JWciwnNE",
+      "views": 4
     }
   ]
 }
