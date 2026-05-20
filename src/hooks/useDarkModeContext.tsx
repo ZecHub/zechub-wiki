@@ -1,13 +1,15 @@
 "use client";
-import { DarkModeContext } from "@/context/DarkModeContext";
-import { useContext } from "react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export const useDarkModeContext = () => {
-  const context = useContext(DarkModeContext);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  if (!context) {
-    throw new Error("useDarkMode must be use within a DarkModeProvider");
-  }
 
-  return context;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return { dark: (mounted && theme === 'dark'), setDark: (isDark: boolean) => setTheme(isDark ? 'dark' : 'light')};
 };
