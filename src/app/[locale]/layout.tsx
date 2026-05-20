@@ -11,6 +11,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,7 +46,7 @@ export default async function RootLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang="en-US">
+    <html lang="en-US" suppressHydrationWarning>
       <head>
         <style>{`
           .goog-te-banner-frame,
@@ -75,7 +76,7 @@ export default async function RootLayout({
           href="https://zechub.wiki/rss.xml"
         />
       </head>
-      <body className={`px-0 ${inter.className}`}>
+      <body className={`px-0 ${inter.className} dark:bg-slate-900 dark:text-white`}>
         {/* Hidden Google Translate mount — must be inside <body> */}
         <div
           id="google_translate_element"
@@ -87,13 +88,21 @@ export default async function RootLayout({
             height: 60,
           }}
         />
-        <NextIntlClientProvider>
-          <LanguageProvider params={{ locale }}>
-            <DarkModeProvider>
-              <NavigationWrapper>{children}</NavigationWrapper>
-            </DarkModeProvider>
-          </LanguageProvider>
-        </NextIntlClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={true}
+          disableTransitionOnChange={true}
+          enableColorScheme={true}
+        >
+          <NextIntlClientProvider>
+            <LanguageProvider params={{ locale }}>
+              <DarkModeProvider>
+                <NavigationWrapper>{children}</NavigationWrapper>
+              </DarkModeProvider>
+            </LanguageProvider>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

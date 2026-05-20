@@ -7,16 +7,101 @@ import { ThemeImage } from "../UI/ThemeImage";
 import { useTranslations } from "next-intl";
 
 const ContentSections = () => {
-  const t = useTranslations('home');
-  
+  const { t } = useLanguage();
+
   return (
     <section className="flex space-y-24 flex-col w-full ">
       {/* Zcash Section */}
+      {/* <section id="zcash-me" className="px-4 my-24">
+                <FadeInAnimation>
+                  <div className="flex flex-col md:flex-row border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden">
+                    <div className="flex flex-1 items-center justify-center bg-slate-100 dark:bg-slate-800 p-6">
+                      <FadeInAnimation>
+                        <Image
+                          src="/Zcash-me.png"
+                          alt="Zcash.me"
+                          width={500}
+                          height={500}
+                          className="max-w-full h-auto"
+                          unoptimized
+                        />
+                      </FadeInAnimation>
+                    </div>
+      
+                    <div className="flex flex-col flex-1 p-6 space-y-6 items-center md:items-start justify-center text-center md:text-left">
+                      <FadeInAnimation>
+                        <h2 className="text-3xl mb-4 font-semibold text-slate-900 dark:text-slate-300">
+                          Zcash.me
+                        </h2>
+                      </FadeInAnimation>
+      
+                      <FadeInAnimation>
+                        <p className="mb-5 text-slate-700 dark:text-gray-400 leading-relaxed">
+                          Zcash.Me is a public directory of Zcash users featuring
+                          private messaging, leaderboards, and verified users.
+                          Connect, explore, and interact with the Zcash community.
+                        </p>
+                      </FadeInAnimation>
+      
+                      <FadeInAnimation className="w-full mt-auto">
+                        <div className="flex flex-col sm:flex-row gap-4 w-full">
+                          <Link
+                            href="https://zcash.me"
+                            className="flex-1 inline-flex justify-center items-center px-4 py-4 text-md font-bold rounded-lg text-white bg-brand hover:bg-brand-hover focus:ring-4 focus:outline-none focus:ring-brand"
+                          >
+                            Visit Zcash.Me
+                          </Link>
+                        </div>
+                      </FadeInAnimation>
+                    </div>
+                  </div>
+                </FadeInAnimation>
+              </section> */}
 
       <InfoCard
+        id="hackathon"
+        title={t.home?.sections?.hackathon?.title || "Join the Hackathon"}
+        description={
+          t.home?.sections?.hackathon?.description ||
+          "Build, collaborate, and ship impactful ideas with the Zcash community. Compete across five innovative tracks: Infrastructure for nodes and indexers, Games for interactive experiences, FROST for threshold signing, Zcash Login for authentication solutions, and Accounting for financial workflows. May 25 - July 15, 2026. 25 ZEC prize pool awaits."
+        }
+        image="/hackathon_new.png"
+        imageLight="/explore/dark/zechub_hackathon.svg"
+        imageDark="/explore/light/zechub_hackathon.svg"
+        links={[
+          {
+            href: "/hackathon",
+            label:
+              t.home?.sections?.hackathon?.mainLink || "Join the Hackathon",
+            primary: true,
+          },
+        ]}
+      />
+      <InfoCard
+        id="zcash-me"
+        title={t.home?.sections?.zcashMe?.title || "Zcash.me"}
+        description={
+          t.home?.sections?.zcashMe?.description ||
+          "Zcash.Me is a public directory of Zcash users featuring private messaging, leaderboards, and verified users. Connect, explore, and interact with the Zcash community."
+        }
+        image="/Zcash-me.png"
+        imageLight="/Zcash-me.png"
+        imageDark="/Zcash-me.png"
+        links={[
+          {
+            href: "https://zcash.me",
+            label: t.home?.sections?.zcashMe?.link || "Visit Zcash.Me",
+            primary: true,
+          },
+        ]}
+      />
+      <InfoCard
         id="what-is-zcash"
-        title={t('sections.whatIsZcash.title') || "What is Zcash?"}
-        description={t('sections.whatIsZcash.description') || "It is an open-source, blockchain ledger that features a sophisticated zero-knowledge proving system. It specializes in offering a higher standard of privacy through its proving system preserving confidentiality of transaction metadata. At its core, Zcash is private data ownership that is permissionlessly transferred when transactions are made."}
+        title={t.home?.sections?.whatIsZcash?.title || "What is Zcash?"}
+        description={
+          t.home?.sections?.whatIsZcash?.description ||
+          "It is an open-source, blockchain ledger that features a sophisticated zero-knowledge proving system. It specializes in offering a higher standard of privacy through its proving system preserving confidentiality of transaction metadata. At its core, Zcash is private data ownership that is permissionlessly transferred when transactions are made."
+        }
         image="/Zcashcard.png"
         imageLight="/explore/light/what-is-zcash.png"
         imageDark="/explore/dark/what-is-zcash.png"
@@ -28,7 +113,8 @@ const ContentSections = () => {
           },
           {
             href: "/zcash-tech/zk-snarks",
-            label: t('sections.whatIsZcash.techLink') || "Zcash Technology",
+            label:
+              t.home?.sections?.whatIsZcash?.techLink || "Zcash Technology",
           },
         ]}
       />
@@ -37,8 +123,11 @@ const ContentSections = () => {
       <InfoCard
         id="zcashme"
         reverse={true}
-        title={t('sections.zcashMe.title') || "Zcash.me"}
-        description={t('sections.zcashMe.description') || "Zcash.Me is a public directory of Zcash users featuring private messaging, leaderboards, and verified users. Connect, explore, and interact with the Zcash community."}
+        title={t.home?.sections?.zcashMe?.title || "Zcash.me"}
+        description={
+          t.home?.sections?.zcashMe?.description ||
+          "Zcash.Me is a public directory of Zcash users featuring private messaging, leaderboards, and verified users. Connect, explore, and interact with the Zcash community."
+        }
         image="/Zcash-me.png"
         imageLight="/explore/light/zcash-me.png"
         imageDark="/explore/dark/zcash-me.png"
@@ -53,24 +142,35 @@ const ContentSections = () => {
       {/* Global Ambassadors Section */}
       <InfoCard
         id="global-ambassadors"
-        title={t('sections.globalAmbassadors.title') || "Zcash Global Ambassadors"}
-        description={t('sections.globalAmbassadors.description') || "Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions."}
+        title={
+          t.home?.sections?.globalAmbassadors?.title ||
+          "Zcash Global Ambassadors"
+        }
+        description={
+          t.home?.sections?.globalAmbassadors?.description ||
+          "Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions."
+        }
         image="/zcash-global-ambassadors.png"
         imageLight="/explore/light/zga.png"
         imageDark="/explore/dark/zga.png"
         links={[
           {
             href: "/zcash-global-ambassadors",
-            label: t('sections.globalAmbassadors.link') || "Meet the Ambassadors",
-            primary: true
+            label:
+              t.home?.sections?.globalAmbassadors?.link ||
+              "Meet the Ambassadors",
+            primary: true,
           },
         ]}
       />
       {/* Shielded Newsletter Section */}
       <InfoCard
         id="shielded-newsletter"
-        title={t('sections.newsletter.title') || "Shielded Newsletter"}
-        description={t('sections.newsletter.description') || "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!"}
+        title={t.home?.sections?.newsletter?.title || "Shielded Newsletter"}
+        description={
+          t.home?.sections?.newsletter?.description ||
+          "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!"
+        }
         image="/zcash_newsletter.gif"
         imageLight="/explore/light/shielded-newsletter.png"
         imageDark="/explore/dark/shielded-newsletter.png"
@@ -87,8 +187,11 @@ const ContentSections = () => {
       <InfoCard
         id="Free2Z"
         reverse={true}
-        title={t('sections.free2z.title') || "Free2Z"}
-        description={t('sections.free2z.description') || "Free2Z is a social platform powered by Zcash. With peer-to-peer donations, a revenue sharing program, advanced creative tools and a massive online global community."}
+        title={t.home?.sections?.free2z?.title || "Free2Z"}
+        description={
+          t.home?.sections?.free2z?.description ||
+          "Free2Z is a social platform powered by Zcash. With peer-to-peer donations, a revenue sharing program, advanced creative tools and a massive online global community."
+        }
         image="/Free2z_Banner.gif"
         imageLight="/explore/light/free2z.png"
         imageDark="/explore/dark/free2z.png"
@@ -104,8 +207,11 @@ const ContentSections = () => {
       {/* Pay with Zcash Section */}
       <InfoCard
         id="pay-with-zcash"
-        title={t('sections.payWithZcash.title') || "Pay with Zcash"}
-        description={t('sections.payWithZcash.description') || "This website is an answer to the question: Where can I pay with Zcash? The directory is free to use. The items listed are for informational purposes only, and not endorsements of any kind. Enjoy!"}
+        title={t.home?.sections?.payWithZcash?.title || "Pay with Zcash"}
+        description={
+          t.home?.sections?.payWithZcash?.description ||
+          "This website is an answer to the question: Where can I pay with Zcash? The directory is free to use. The items listed are for informational purposes only, and not endorsements of any kind. Enjoy!"
+        }
         image="/paywithzcash.png"
         imageLight="/explore/light/pay-with-zcash.png"
         imageDark="/explore/dark/pay-with-zcash.png"
@@ -121,7 +227,6 @@ const ContentSections = () => {
           },
         ]}
       />
-
     </section>
   );
 };
@@ -219,8 +324,9 @@ function InfoCard({
   return (
     <div
       id={id}
-      className={`flex flex-col md:flex-row border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden ${reverse ? "md:flex-row-reverse" : ""
-        }`}
+      className={`flex flex-col md:flex-row border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden ${
+        reverse ? "md:flex-row-reverse" : ""
+      }`}
     >
       {/* Left Column - Image */}
       <div className="flex flex-1 items-center justify-center  bg-slate-100 dark:bg-slate-800 p-6 min-h-[250px] ">
@@ -270,9 +376,10 @@ function InfoCard({
                 key={index}
                 href={link.href}
                 className={`flex-1 inline-flex justify-center items-center px-4 py-4 text-md font-medium rounded-lg focus:ring-4 focus:outline-none
-                  ${link.primary
-                    ? "font-bold text-white bg-[#1984c7] hover:bg-[#1574af] focus:ring-[#1984c7]"
-                    : "text-blue-400 border border-blue-300 hover:bg-blue-800 hover:text-white dark:border-[#1574af] dark:text-blue-300 dark:hover:bg-[#1574af]  focus:ring-blue-300 dark:focus:ring-[#1574af]"
+                  ${
+                    link.primary
+                      ? "font-bold text-white bg-[#1984c7] hover:bg-[#1574af] focus:ring-[#1984c7]"
+                      : "text-blue-400 border border-blue-300 hover:bg-blue-800 hover:text-white dark:border-[#1574af] dark:text-blue-300 dark:hover:bg-[#1574af]  focus:ring-blue-300 dark:focus:ring-[#1574af]"
                   }
                 `}
               >

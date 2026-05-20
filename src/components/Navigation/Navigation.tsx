@@ -28,6 +28,7 @@ import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 import { DarkModeContext } from "@/context/DarkModeContext";
 import Image from "next/image";
 import { Trophy, LayoutDashboard } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
 
@@ -813,47 +814,18 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => {
 };
 
 const Navigation = () => {
-  const { dark, setDark } = useDarkModeContext();
+  const { theme, setTheme } = useTheme();
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [showShop, setShowShop] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  const isDark = theme === 'dark';
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-    setDark(prefersDark.matches);
-
-    const listener = (e: MediaQueryListEvent) => setDark(e.matches);
-    prefersDark.addEventListener("change", listener);
-
-    return () => prefersDark.removeEventListener("change", listener);
-  }, []);
-
-  useEffect(() => {
-    const html: HTMLElement = document.querySelector("html")!;
-    const body: HTMLBodyElement = document.querySelector("body")!;
-    if (dark) {
-      html.classList.add("dark");
-      body.classList.add(
-        "bg-slate-900",
-        "text-white",
-        "transition",
-        "duration-500",
-      );
-    } else {
-      html.classList.remove("dark");
-      body.classList.remove(
-        "bg-slate-900",
-        "text-white",
-        "transition",
-        "duration-500",
-      );
-    }
-  }, [dark]);
 
   return (
     <header className="sticky top-0 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-200">
@@ -861,7 +833,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between py-3 md:py-4">
           {/* Logo */}
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
-            <Logo theme={dark} />
+            <Logo theme={mounted && isDark} />
           </Link>
 
           {/* Desktop & Tablet Nav */}
@@ -892,10 +864,10 @@ const Navigation = () => {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setDark(!dark)}
+              onClick={() => setTheme(!isDark ? 'dark' : 'light')}
               className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
             >
-              {dark ? (
+              {mounted && isDark ? (
                 <Sun className="h-5 w-5 md:h-6 md:w-6" />
               ) : (
                 <Moon className="h-5 w-5 md:h-6 md:w-6" />
