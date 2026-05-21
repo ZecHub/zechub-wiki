@@ -8,6 +8,54 @@ export type CommunityProject = {
 
 export const communityProjects: CommunityProject[] = [
   {
+    title: "ZShieldHer",
+    description: "A Zcash education site for domestic violence survivors.",
+    url: "https://zshieldher.com/",
+    thumbnailImage: "/community-projects/zshieldher.png",
+  },
+  {
+    title: "ZECPublish",
+    description: "Censorship-resistant, Zcash blockchain-powered social media. It includes a directory of Zcash users and an anonymous message board powered by Zcash.",
+    url: "https://www.zecpublish.com",
+    thumbnailImage: "/community-projects/zechpublish.png",
+  },
+  {
+    title: "Zlink",
+    description: "The simplest way to find any link, tool, or information you need about Zcash's ecosystem.",
+    url: "https://zlink.click",
+    thumbnailImage: "",
+  },
+  {
+    title: "Zimppy",
+    description: "The Machine Payment Protocol (MPP) payment method for Zcash, designed for AI agents and automated machine-to-machine workflows. Deposit once on-chain, then make unlimited instant bearer requests with no per-request blockchain interaction. Supports fully shielded Zcash (Orchard) payments.",
+    url: "https://zimppy.xyz/",
+    thumbnailImage: "/community-projects/zimmpy.png",
+  },
+  {
+    title: "CipherScan",
+    description: "Privacy-first Zcash blockchain explorer. Built with Next.js 15, TypeScript, and Rust/WASM. Look up blocks, transactions, and addresses without leaking query metadata.",
+    url: "https://cipherscan.app/",
+    thumbnailImage: "/community-projects/CipherScan.png",
+  },
+  {
+    title: "ZcashNames",
+    description: "Human-readable names for Zcash shielded addresses. Register a memorable name (e.g., alice.zec) that resolves to your Unified Address.",
+    url: "https://www.zcashnames.com/",
+    thumbnailImage: "/community-projects/zcashNames.png",
+  },
+  {
+    title: "Cypherpunk",
+    description: "A company dedicated to privacy, self-sovereignty, and cypherpunk values. Builds tools for individuals who need to protect their digital lives.",
+    url: "https://cypherpunk.com/",
+    thumbnailImage: "/community-projects/cypherPunk.png",
+  },
+  {
+    title: "Cipherpay",
+    description: "Enables private payments for the internet. Accept Zcash in minutes — non-custodial, no KYC required. Merchants receive ZEC directly to shielded addresses.",
+    url: "https://www.cipherpay.app/en",
+    thumbnailImage: "/community-projects/Cipherpay.png",
+  },
+  {
     title: "ZECping",
     description: "See the gRPC response times of Zcash Lightwalletd nodes.",
     url: "https://github.com/emersonian/zecping",
