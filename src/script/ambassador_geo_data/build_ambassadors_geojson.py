@@ -20,6 +20,7 @@ import argparse
 import json
 from pathlib import Path
 import logging
+from geo_json_builder import build_geojson
 
 
 def main():
@@ -53,8 +54,6 @@ def main():
 
     input_path = Path(args.input)
     output_path = Path(args.output)
-    print(input_path)
-    print(output_path)
 
     if not input_path.exists():
         raise FileNotFoundError(f" Input file not found: {input_path}")
@@ -62,7 +61,37 @@ def main():
     with open(input_path, encoding="utf-8") as f:
         ambassadors = json.load(f)
 
-        print(ambassadors)
+    logging.info(f"Loaded {len(ambassadors)} ambassador(s) from {input_path}")
+
+    use_nominatim = not args.no_nominatim
+    if use_nominatim:
+        logging.info(
+            "Nominatim disabled - using hardcoded fallback coords only - WARMING: Coords might not be complete..."
+        )
+    else:
+        logging.info("Geocoding via Nominatim (1 req/sec)...")
+
+    geojson = build_geojson(ambassadors)
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(geojson, f, indent=2, ensure_ascii=False)
+
+    n = geojson["metadata"]["total_features"]
+    skipped = len(ambassadors) - n
+
+    print("\n" + "-" * 52)
+    print(" ambassadors.geojson built")
+    print("-" * 52)
+    print(f" Input ambassador: {len(ambassadors)}")
+    print(f" Features written: {n}")
+
+    if skipped:
+        print(
+            f" Skipped (no coords): {skipped} <- add to FALLBACK_COORDS in fallback_coords.py "
+        )
+
+    print(f" Output : {output_path}")
+    print("-" * 52 + "\n")
 
 
 if __name__ == "__main__":
