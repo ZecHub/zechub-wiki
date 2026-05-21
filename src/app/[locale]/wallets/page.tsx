@@ -1,7 +1,7 @@
 // src/app/wallets/page.tsx
 import React from "react";
 import Image from "next/image";
-import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
+import { getFileContent, getFileContentCached, getMarkdownFiles, getRootCached } from "@/lib/authAndFetch";
 import { getDictionary } from "@/lib/getDictionary";
 import { getBanner } from "@/lib/helpers";
 import { parseMarkdown } from "@/lib/parseMarkdown";
@@ -31,16 +31,16 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page(props: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string, locale: string }>;
 }) {
   const params = await props.params;
-  const { slug } = params;
+  const { slug, locale } = params;
   const url = `/site/Using_Zcash/Wallets.md`;
   const urlRoot = `/site/using-zcash`;
 
   const [markdown, roots] = await Promise.all([
-    getFileContentCached(url),
-    getRootCached(urlRoot),
+    getFileContent(url, locale),
+    getMarkdownFiles(urlRoot),
   ]);
 
   const dict = (await getDictionary()) as WalletsDictionary;

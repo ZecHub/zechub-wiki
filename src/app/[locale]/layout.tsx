@@ -7,6 +7,10 @@ import { Inter } from "next/font/google";
 import FloatingExplore from "@/components/FloatingExplore";
 import "./globals.css";
 import NavigationWrapper from "@/components/NavigationWrapper";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { routing } from "@/i18n/routing";
+import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -29,9 +33,18 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{locale: string}>
 }) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+
   return (
     <html lang="en-US" suppressHydrationWarning>
       <head>
@@ -82,11 +95,13 @@ export default async function RootLayout({
           disableTransitionOnChange={true}
           enableColorScheme={true}
         >
-          <LanguageProvider>
-            <DarkModeProvider>
-              <NavigationWrapper>{children}</NavigationWrapper>
-            </DarkModeProvider>
-          </LanguageProvider>
+          <NextIntlClientProvider>
+            <LanguageProvider params={{ locale }}>
+              <DarkModeProvider>
+                <NavigationWrapper>{children}</NavigationWrapper>
+              </DarkModeProvider>
+            </LanguageProvider>
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

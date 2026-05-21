@@ -1,6 +1,7 @@
 import createMDX from "@next/mdx";
 import rehypePlugins from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
+import createNextIntlPlugin from 'next-intl/plugin';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -66,4 +67,6 @@ if (mdxConfig.experimental?.turbo) {
   delete mdxConfig.experimental.turbo;
 }
 
-export default mdxConfig;
+const withNextIntl = createNextIntlPlugin();
+
+export default withNextIntl(mdxConfig);

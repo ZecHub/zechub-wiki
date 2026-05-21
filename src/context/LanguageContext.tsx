@@ -7,37 +7,8 @@ import {
   useEffect, useCallback, useRef, useMemo, ReactNode,
 } from 'react';
 import { getDictionary } from '@/lib/getDictionary';
-
-export interface Language {
-  code: string;
-  label: string;
-  nativeLabel: string;
-  flag: string;
-  googleCode: string;
-  dir?: 'ltr' | 'rtl';
-}
-
-export const LANGUAGES: Language[] = [
-  { code: 'en',  label: 'English',    nativeLabel: 'English',    flag: '🇺🇸', googleCode: 'en'    },
-  { code: 'es',  label: 'Spanish',    nativeLabel: 'Español',    flag: '🇪🇸', googleCode: 'es'    },
-  { code: 'fr',  label: 'French',     nativeLabel: 'Français',   flag: '🇫🇷', googleCode: 'fr'    },
-  { code: 'de',  label: 'German',     nativeLabel: 'Deutsch',    flag: '🇩🇪', googleCode: 'de'    },
-  { code: 'it',  label: 'Italian',    nativeLabel: 'Italiano',   flag: '🇮🇹', googleCode: 'it'    },
-  { code: 'pt',  label: 'Portuguese', nativeLabel: 'Português',  flag: '🇧🇷', googleCode: 'pt'    },
-  { code: 'ar',  label: 'Arabic',     nativeLabel: 'العربية',    flag: '🇸🇦', googleCode: 'ar',   dir: 'rtl' },
-  { code: 'zh',  label: 'Chinese',    nativeLabel: '中文',        flag: '🇨🇳', googleCode: 'zh-CN' },
-  { code: 'hi',  label: 'Hindi',      nativeLabel: 'हिन्दी',      flag: '🇮🇳', googleCode: 'hi'    },
-  { code: 'ru',  label: 'Russian',    nativeLabel: 'Русский',    flag: '🇷🇺', googleCode: 'ru'    },
-  { code: 'ja',  label: 'Japanese',   nativeLabel: '日本語',      flag: '🇯🇵', googleCode: 'ja'    },
-  { code: 'ko',  label: 'Korean',     nativeLabel: '한국어',      flag: '🇰🇷', googleCode: 'ko'    },
-  { code: 'tr',  label: 'Turkish',    nativeLabel: 'Türkçe',     flag: '🇹🇷', googleCode: 'tr'    },
-  { code: 'uk',  label: 'Ukrainian',  nativeLabel: 'Українська', flag: '🇺🇦', googleCode: 'uk'    },
-  { code: 'sw',  label: 'Swahili',    nativeLabel: 'Kiswahili',  flag: '🇰🇪', googleCode: 'sw'    },
-  { code: 'yo',  label: 'Yorùbá',     nativeLabel: 'Yorùbá',     flag: '🇳🇬', googleCode: 'yo'    },
-  { code: 'ig',  label: 'Igbo',       nativeLabel: 'Igbo',       flag: '🇳🇬', googleCode: 'ig'    },
-  { code: 'ak',  label: 'Twi (Akan)', nativeLabel: 'Twi',        flag: '🇬🇭', googleCode: 'ak'    },
-  { code: 'ee',  label: 'Ewe',        nativeLabel: 'Eʋegbe',     flag: '🇬🇭', googleCode: 'ee'    },
-];
+import { usePathname, useRouter } from '@/i18n/navigation';
+import { Language, LANGUAGES } from '@/i18n/config';
 
 export type Locale = string;
 
@@ -115,114 +86,114 @@ function getGTSelect(): HTMLSelectElement | null {
   return document.querySelector<HTMLSelectElement>('.goog-te-combo');
 }
 
-let googleTranslateScriptPromise: Promise<void> | null = null;
+// let googleTranslateScriptPromise: Promise<void> | null = null;
 
-function killGoogleTranslateBanner() {
-  const banner = document.querySelector<HTMLElement>('.goog-te-banner-frame');
-  if (banner) banner.style.setProperty('display', 'none', 'important');
-  document.body.style.setProperty('top', '0', 'important');
-  document.body.style.setProperty('position', 'static', 'important');
-}
+// function killGoogleTranslateBanner() {
+//   const banner = document.querySelector<HTMLElement>('.goog-te-banner-frame');
+//   if (banner) banner.style.setProperty('display', 'none', 'important');
+//   document.body.style.setProperty('top', '0', 'important');
+//   document.body.style.setProperty('position', 'static', 'important');
+// }
 
-function initGoogleTranslate() {
-  if (!window.google?.translate?.TranslateElement || getGTSelect()) {
-    return;
-  }
+// function initGoogleTranslate() {
+//   if (!window.google?.translate?.TranslateElement || getGTSelect()) {
+//     return;
+//   }
 
-  new window.google.translate.TranslateElement(
-    {
-      pageLanguage: 'en',
-      includedLanguages: GOOGLE_TRANSLATE_INCLUDED_LANGUAGES,
-      layout: window.google.translate.TranslateElement.InlineLayout.HORIZONTAL,
-      autoDisplay: false,
-    },
-    'google_translate_element'
-  );
+//   new window.google.translate.TranslateElement(
+//     {
+//       pageLanguage: 'en',
+//       includedLanguages: GOOGLE_TRANSLATE_INCLUDED_LANGUAGES,
+//       layout: window.google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+//       autoDisplay: false,
+//     },
+//     'google_translate_element'
+//   );
 
-  setTimeout(killGoogleTranslateBanner, 500);
-  setTimeout(killGoogleTranslateBanner, 1500);
-}
+//   setTimeout(killGoogleTranslateBanner, 500);
+//   setTimeout(killGoogleTranslateBanner, 1500);
+// }
 
-function ensureGoogleTranslateScript(): Promise<void> {
-  if (typeof window === 'undefined') {
-    return Promise.resolve();
-  }
+// function ensureGoogleTranslateScript(): Promise<void> {
+//   if (typeof window === 'undefined') {
+//     return Promise.resolve();
+//   }
 
-  if (getGTSelect()) {
-    return Promise.resolve();
-  }
+//   if (getGTSelect()) {
+//     return Promise.resolve();
+//   }
 
-  if (window.google?.translate?.TranslateElement) {
-    initGoogleTranslate();
-    return Promise.resolve();
-  }
+//   if (window.google?.translate?.TranslateElement) {
+//     initGoogleTranslate();
+//     return Promise.resolve();
+//   }
 
-  if (googleTranslateScriptPromise) {
-    return googleTranslateScriptPromise;
-  }
+//   if (googleTranslateScriptPromise) {
+//     return googleTranslateScriptPromise;
+//   }
 
-  googleTranslateScriptPromise = new Promise((resolve, reject) => {
-    window.googleTranslateElementInit = () => {
-      initGoogleTranslate();
-      resolve();
-    };
+//   googleTranslateScriptPromise = new Promise((resolve, reject) => {
+//     window.googleTranslateElementInit = () => {
+//       initGoogleTranslate();
+//       resolve();
+//     };
 
-    const existing = document.getElementById(GOOGLE_TRANSLATE_SCRIPT_ID);
-    if (existing) {
-      resolve();
-      return;
-    }
+//     const existing = document.getElementById(GOOGLE_TRANSLATE_SCRIPT_ID);
+//     if (existing) {
+//       resolve();
+//       return;
+//     }
 
-    const script = document.createElement('script');
-    script.id = GOOGLE_TRANSLATE_SCRIPT_ID;
-    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    script.async = true;
-    script.onerror = () => reject(new Error('Failed to load Google Translate'));
-    document.body.appendChild(script);
-  });
+//     const script = document.createElement('script');
+//     script.id = GOOGLE_TRANSLATE_SCRIPT_ID;
+//     script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+//     script.async = true;
+//     script.onerror = () => reject(new Error('Failed to load Google Translate'));
+//     document.body.appendChild(script);
+//   });
 
-  return googleTranslateScriptPromise;
-}
+//   return googleTranslateScriptPromise;
+// }
 
-function applyGoogleTranslate(googleCode: string): boolean {
-  const select = getGTSelect();
-  if (!select) return false;
-  select.value = googleCode;
-  select.dispatchEvent(new Event('change'));
-  return true;
-}
+// function applyGoogleTranslate(googleCode: string): boolean {
+//   const select = getGTSelect();
+//   if (!select) return false;
+//   select.value = googleCode;
+//   select.dispatchEvent(new Event('change'));
+//   return true;
+// }
 
-function scheduleGoogleTranslate(googleCode: string, maxAttempts = 25): () => void {
-  let cancelled = false;
-  let interval: ReturnType<typeof setInterval> | null = null;
+// function scheduleGoogleTranslate(googleCode: string, maxAttempts = 25): () => void {
+//   let cancelled = false;
+//   let interval: ReturnType<typeof setInterval> | null = null;
 
-  ensureGoogleTranslateScript().then(() => {
-    if (cancelled) return;
+//   ensureGoogleTranslateScript().then(() => {
+//     if (cancelled) return;
 
-    let attempts = 0;
-    const tryApply = () => {
-      attempts++;
-      const applied = applyGoogleTranslate(googleCode);
+//     let attempts = 0;
+//     const tryApply = () => {
+//       attempts++;
+//       const applied = applyGoogleTranslate(googleCode);
 
-      if (applied || attempts > maxAttempts) {
-        if (interval) clearInterval(interval);
-        interval = null;
-      }
-    };
+//       if (applied || attempts > maxAttempts) {
+//         if (interval) clearInterval(interval);
+//         interval = null;
+//       }
+//     };
 
-    tryApply();
-    if (!getGTSelect()) {
-      interval = setInterval(tryApply, 200);
-    }
-  }).catch((error) => {
-    console.error(error);
-  });
+//     tryApply();
+//     if (!getGTSelect()) {
+//       interval = setInterval(tryApply, 200);
+//     }
+//   }).catch((error) => {
+//     console.error(error);
+//   });
 
-  return () => {
-    cancelled = true;
-    if (interval) clearInterval(interval);
-  };
-}
+//   return () => {
+//     cancelled = true;
+//     if (interval) clearInterval(interval);
+//   };
+// }
 
 function resetGoogleTranslateToEnglish(): boolean {
   const select = getGTSelect();
@@ -244,9 +215,11 @@ function clearGTCookies() {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('en');
+export function LanguageProvider({ children, params }: { children: ReactNode, params: { locale: string } }) {
+  const [locale, setLocaleState] = useState<Locale>(params.locale);
   const [dictionary, setDictionary] = useState<Record<string, any>>({});
+  const router = useRouter();
+  const pathname = usePathname();
 
   const restoredRef = useRef(false);
 
@@ -285,7 +258,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
     setLocaleState(saved);
 
-    return scheduleGoogleTranslate(savedLang.googleCode, 50);
+    // return scheduleGoogleTranslate(savedLang.googleCode, 50);
   }, []);
 
   const setLocale = useCallback((code: Locale) => {
@@ -298,18 +271,26 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const lang = LANGUAGES.find(l => l.code === code);
     document.documentElement.dir = lang?.dir ?? 'ltr';
 
-    if (code === 'en') {
-      const widgetReady = resetGoogleTranslateToEnglish();
-      if (!widgetReady) {
-        clearGTCookies();
-      }
-      return;
-    }
+    // if (code === 'en') {
+    //   const widgetReady = resetGoogleTranslateToEnglish();
+    //   if (!widgetReady) {
+    //     clearGTCookies();
+    //   }
+    //   return;
+    // }
 
-    if (lang) {
-      scheduleGoogleTranslate(lang.googleCode);
-    }
-  }, []);
+    router.replace(
+        // @ts-expect-error -- TypeScript will validate that only known `params`
+        // are used in combination with a given `pathname`. Since the two will
+        // always match for the current route, we can skip runtime checks.
+        {pathname, params},
+        {locale: code}
+      );
+
+    // if (lang) {
+    //   scheduleGoogleTranslate(lang.googleCode);
+    // }
+  }, [pathname, params, router]);
 
   const currentLanguage = LANGUAGES.find(l => l.code === locale) ?? LANGUAGES[0];
 
