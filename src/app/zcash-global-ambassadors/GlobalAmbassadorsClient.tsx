@@ -1,6 +1,6 @@
 "use client";
 
-import { ambassadorProjects } from "@/constants/ambassadorProjects";
+import ambassadorProjects from './ambassador_list.json'
 import { useLanguage } from "@/context/LanguageContext";
 import { LuExternalLink, LuTwitter } from "react-icons/lu";
 
