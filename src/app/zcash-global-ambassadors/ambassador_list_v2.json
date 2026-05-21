@@ -4,11 +4,11 @@
     "flag": "🇰🇷",
     "twitter": "https://x.com/zcashkorea",
     "description": "Zcash community and advocacy in Korea",
-    "projectSite": "",
+    "projectSite": null,
     "image": "/zcashKorea.jpg",
     "blog": null,
     "countryCode": "KR",
-    "regions": "asia",
+    "region": "asia",
     "language": "Korean",
     "geo_query": "South Korea",
     "pin_note": "Geographic centre of South Korea"
@@ -22,7 +22,7 @@
     "image": "/zcashRussia.jpg",
     "blog": "https://pro.zcash.ru/",
     "countryCode": "RU",
-    "regions": "europe",
+    "region": "europe",
     "language": "Russian",
     "geo_query": "Russia",
     "pin_note": "Geographic centre of Russia"
@@ -31,15 +31,15 @@
     "name": "Zcash Arabia",
     "flag": "🇸🇦",
     "twitter": "https://x.com/ZcashArabia",
-    "description": "Zcash community and advocacy in Arabic-speaking regions",
-    "projectSite": "",
+    "description": "Zcash community and advocacy in Arabic-speaking region",
+    "projectSite": null,
     "image": "/zcashArabia.jpg",
     "blog": null,
     "countryCode": "SA",
-    "regions": "asia",
+    "region": "asia",
     "language": "Arabic",
     "geo_query": "Saudi Arabia",
-    "pin_note": "Representative pin for Arabic-speaking regions; centred on Saudi Arabia"
+    "pin_note": "Representative pin for Arabic-speaking region; centred on Saudi Arabia"
   },
   {
     "name": "Zcash Brazil",
@@ -50,7 +50,7 @@
     "image": "zcashBrazil.jpg",
     "blog": null,
     "countryCode": "BR",
-    "regions": "americas",
+    "region": "americas",
     "language": "Portuguese",
     "geo_query": "Brazil",
     "pin_note": "Geographic centre of Brazil"
@@ -64,7 +64,7 @@
     "image": "/zcashGhana.jpg",
     "blog": null,
     "countryCode": "GH",
-    "regions": "africa",
+    "region": "africa",
     "geo_query": "Ghana",
     "pin_note": "Geographic centre of Ghana"
   },
@@ -72,26 +72,26 @@
     "name": "Zcash Español",
     "flag": "🇪🇸",
     "twitter": "https://x.com/zcashesp",
-    "description": "Zcash community and advocacy in Spanish-speaking regions",
+    "description": "Zcash community and advocacy in Spanish-speaking region",
     "projectSite": null,
     "image": "/zccashEspanol.jpg",
     "blog": "https://privacidad.me/@zcashesp",
     "countryCode": "ES",
-    "regions": "europe",
+    "region": "europe",
     "language": "Spanish",
     "geo_query": "Spain",
-    "pin_note": "Representative pin for Spanish-speaking regions; centred on Spain"
+    "pin_note": "Representative pin for Spanish-speaking region; centred on Spain"
   },
   {
     "name": "Zcash Nigeria",
     "flag": "🇳🇬",
     "twitter": "https://x.com/ZcashNigeria",
     "description": "Zcash community and advocacy in Nigeria",
-    "projectSite": "",
+    "projectSite": null,
     "image": "/zcashNigeria.jpg",
     "blog": null,
     "countryCode":"NG",
-    "regions":"africa",
+    "region":"africa",
     "language": "English",
     "geo_query":"Nigeria",
     "pin_note":"Geographic centre of Nigeria"
@@ -105,7 +105,7 @@
     "image": "/zcashUkraine.jpg",
     "blog": null,
     "countryCode":"UA",
-    "regions":"europe",
+    "region":"europe",
     "language":"Ukrainian",
     "geo_query":"Ukraine",
     "pin_note":"Geographic centre of Ukraine"
@@ -119,7 +119,7 @@
     "image": "/zcashTurkey.jpg",
     "blog": null,
     "countryCode":"TR",
-    "regions":"europe",
+    "region":"europe",
     "language":"Turkish",
     "geo_query":"Turkey",
     "pin_note":"Geographic centre of Turkey"
@@ -133,7 +133,7 @@
     "image": "/zcashKenya.jpg",
     "blog": null,
     "countryCode":"KE",
-    "regions":"africa",
+    "region":"africa",
     "language":"English",
     "geo_query":"Kenya",
     "pin_note":"Geographic centre of Kenya"
@@ -147,7 +147,7 @@
     "image": "/zcashIndia.jpg",
     "blog": "https://zcashindia.org/blog",
     "countryCode":"IN",
-    "regions":"asia",
+    "region":"asia",
     "language":"Hindi / English",
     "geo_query":"India",
     "pin_note":"Geographic centre of India"
