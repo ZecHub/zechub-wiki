@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { Globe } from 'lucide-react';
-import { useLanguage, LANGUAGES } from '@/context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
+import { LANGUAGES } from '@/i18n/config';
 
 export function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);

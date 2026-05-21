@@ -1,7 +1,7 @@
 import MdxContainer from "@/components/MdxContainer";
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
-import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
+import { getFileContent, getFileContentCached, getMarkdownFiles, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
 import { normalizeMdx } from "@/lib/normalizeMdx";
 import { Metadata } from "next";
@@ -32,12 +32,14 @@ export async function generateMetadata({
   return genMetadata({ title, url: `https://zechub.wiki/${slug.join("/")}` });
 }
 
-export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
+export default async function Page(props: { params: Promise<{ slug: string[], locale: string }> }) {
   headers();
   let slug: string[] = [];
+  let locale = '';
   try {
     const resolved = await props.params;
     slug = resolved.slug || [];
+    locale = resolved.locale;
   } catch {
     return notFound();
   }
@@ -50,8 +52,8 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   let roots: any[] = [];
   try {
     const [md, rootsRaw] = await Promise.all([
-      getFileContentCached(url).catch(() => null),
-      getRootCached(urlRoot).catch(() => []),
+      getFileContent(url, locale).catch(() => null),
+      getMarkdownFiles(urlRoot).catch(() => []),
     ]);
     markdown = md;
     roots = Array.isArray(rootsRaw) ? rootsRaw : [];
