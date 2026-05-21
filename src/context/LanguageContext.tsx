@@ -290,7 +290,7 @@ export function LanguageProvider({ children, params }: { children: ReactNode, pa
     // if (lang) {
     //   scheduleGoogleTranslate(lang.googleCode);
     // }
-  }, []);
+  }, [pathname, params, router]);
 
   const currentLanguage = LANGUAGES.find(l => l.code === locale) ?? LANGUAGES[0];
 
