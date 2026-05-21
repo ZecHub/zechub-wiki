@@ -7,7 +7,7 @@ from fallback_coords import FALLBACK_COORDS
 from build_feature import build_feature
 
 
-def build_geojson(ambassadors: list[dict], use_nominatim: bool) -> dict:
+def build_geojson(ambassadors: list[dict]) -> dict:
     """Build the geojson for the map geodata
 
     Args:
@@ -22,7 +22,7 @@ def build_geojson(ambassadors: list[dict], use_nominatim: bool) -> dict:
     for amb in ambassadors:
         name = amb.get("name", "unknown")
         geo_query = amb.get("geo_query")
-        country_code = amb.get("country_code", "")
+        country_code = str(amb.get("countryCode"))
 
         logging.info(f"Processing: {name}")
 
@@ -30,7 +30,7 @@ def build_geojson(ambassadors: list[dict], use_nominatim: bool) -> dict:
         source = "fallback"
 
         # --- Try Nominatim
-        if use_nominatim and geo_query:
+        if geo_query:
             coords = nominatim_lookup(geo_query)
             if coords:
                 source = "nominatim"
@@ -58,11 +58,11 @@ def build_geojson(ambassadors: list[dict], use_nominatim: bool) -> dict:
         "metadata": {
             "schema_version": "1.0",
             "generated": str(date.today()),
-            "source": "ambassadorProjects.json + build_ambassador_geojson.py",
+            "source": "ambassador_list.json + build_ambassadors_geojson.py",
             "total_features": len(features),
             "note": (
                 "This file is auto-geneated. "
-                "Edit ambassadorProjects.json to add or update ambassadors,"
+                "Edit ambassador_list.json to add or update ambassadors, "
                 "then re-run build_ambassadors_geojson.py."
             ),
         },
