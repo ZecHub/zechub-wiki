@@ -11,7 +11,6 @@ interface PinDetailsProps {
 
 export function PinDetails(props: PinDetailsProps) {
   const { ambassador, onClose } = props;
-    console.log(ambassador);
 
   if (!ambassador) return null;
 
@@ -86,6 +85,7 @@ export function PinDetails(props: PinDetailsProps) {
           style={{
             position: "absolute",
             top: 14,
+            left: 12,
             width: 32,
             height: 32,
             borderRadius: "50%",
@@ -97,10 +97,16 @@ export function PinDetails(props: PinDetailsProps) {
             alignItems: "center",
             justifyContent: "center",
             fontSize: 16,
-            lineHeight: 1,
           }}
         >
-          *
+          <span
+            style={{
+              position: "absolute",
+              top: 2,
+            }}
+          >
+            x
+          </span>
         </button>
         {/* Name + flag */}
         <div
@@ -217,7 +223,10 @@ export function PinDetails(props: PinDetailsProps) {
         >
           <MetaRow label="Country" value={ambassador.country_code} />
           <MetaRow label="Pin" value={ambassador.pin_note} />
-          <MetaRow label="Coords source" value={ambassador.coords_source} />
+          <MetaRow
+            label="Coords source"
+            value={ambassador.coords_source.toUpperCase()}
+          />
           <MetaRow label="Last updated" value={ambassador.last_update} />
         </div>
       </div>
