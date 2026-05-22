@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --panel-bg: #0D1117;
+    --panel-border: #1E2A38;
+    --text-primary: #CBD5E1;
+    --text-secondary: #8B9EB7;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700;800&display=swap');
+
+
+.leaflet-container {
+    background: #070C10 !important;
+}
+
+.leaflet-control-zoom a {
+    background: rgba(13, 17, 23, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    color: #8B9EB7 !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background: rgba(29, 174, 238, 0.15) !important;
+    color: #1DAEEE !important;
+}
+
+.leaflet-control-attribution {
+    background: rgba(13, 17, 23, 0.7) !important;
+    color: #4A5568 !important;
+    font-size: 10px !important;
+    border-radius: 4px 0 0 0 !important;
+}
+
+.leaflet-control-attribution a {
+    color: #5A6A80 !important;
+}
+
+.zechum-tooltip {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.zechum-tooltip::before {
+    display: none !important;
+}
+
+.amb-pin:hover {
+    transform: scale(1.18) translateY(-2px) !important;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
