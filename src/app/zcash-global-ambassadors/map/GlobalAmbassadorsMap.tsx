@@ -161,7 +161,7 @@ export default function GlobalAmbassadorsMap() {
       const color = REGION_COLORS[p.region] ?? BASE_COLOR;
 
       // Custom SVG pin marker
-      const svgIcon = L.divICo({
+      const svgIcon = L.divIcon({
         className: "",
         iconSize: [36, 36],
         iconAnchor: [18, 16],
@@ -231,7 +231,7 @@ export default function GlobalAmbassadorsMap() {
   // Fly to selected
   useEffect(() => {
     if (!selected || !mapRef.current) return;
-    
+
     const feature = ambassadors.find(
       (amb) => amb.properties.id === selected.id,
     );
