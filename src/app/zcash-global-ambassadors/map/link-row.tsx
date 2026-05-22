@@ -10,6 +10,7 @@ export function LinkRow(props: LinkRowProps) {
     <a
       href={href}
       rel="noopener noreferrer"
+      target="_blank"
       style={{
         display: "flex",
         alignItems: "center",
