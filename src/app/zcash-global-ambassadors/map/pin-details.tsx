@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { REGION_COLORS, REGION_LABELS, RegionFilter } from "./constants";
 import { AmbassadorProps } from "./GlobalAmbassadorsMap";
+import { LinkRow } from "./link-row";
+import { MetaRow } from "./meta-row";
 
 interface PinDetailsProps {
   ambassador: AmbassadorProps;
@@ -8,9 +10,11 @@ interface PinDetailsProps {
 }
 
 export function PinDetails(props: PinDetailsProps) {
-  if (!props.ambassador) return null;
+  const { ambassador, onClose } = props;
 
-  const regionColor = REGION_COLORS[props.ambassador.region] ?? "#1DAEEE";
+  if (!ambassador) return null;
+
+  const regionColor = REGION_COLORS[ambassador.region] ?? "#1DAEEE";
 
   return (
     <div
@@ -40,8 +44,10 @@ export function PinDetails(props: PinDetailsProps) {
       >
         {/* Gradient overlay on image */}
         <Image
-          src={props.ambassador.image}
-          alt={props.ambassador.name}
+          src={ambassador.image}
+          alt={ambassador.name}
+          width={100}
+          height={100}
           style={{
             width: "100%",
             height: "100%",
@@ -74,7 +80,7 @@ export function PinDetails(props: PinDetailsProps) {
 
         {/* Close */}
         <button
-          onClick={props.onClose}
+          onClick={onClose}
           aria-label="Close panel"
           style={{
             position: "absolute",
@@ -110,7 +116,7 @@ export function PinDetails(props: PinDetailsProps) {
               marginBottom: 4,
             }}
           >
-            {props.ambassador.flag}
+            {ambassador.flag}
           </div>
           <div
             style={{
@@ -121,7 +127,7 @@ export function PinDetails(props: PinDetailsProps) {
               lineHeight: 1.2,
             }}
           >
-            {props.ambassador.name}
+            {ambassador.name}
           </div>
           <div
             style={{
@@ -133,41 +139,86 @@ export function PinDetails(props: PinDetailsProps) {
               letterSpacing: "0.08em",
             }}
           >
-            {REGION_LABELS[props.ambassador.region as RegionFilter] ??
-              props.ambassador.region}
+            {REGION_LABELS[ambassador.region as RegionFilter] ??
+              ambassador.region}
             {" . "}
-            {props.ambassador.language}
+            {ambassador.language}
           </div>
         </div>
       </div>
 
       {/* Body */}
-      <div style={{
-        flex:1,
-        overflow:'auto',
-        padding: '20px 18px',
-        display:'flex',
-        flexDirection:'column',
-        gap:20
-      }}>
+      <div
+        style={{
+          flex: 1,
+          overflow: "auto",
+          padding: "20px 18px",
+          display: "flex",
+          flexDirection: "column",
+          gap: 20,
+        }}
+      >
         {/* Description */}
-        <p style={{
-            fontSize:13.5,
-            color:'var(--text-primary-secondary, #8B9EB7)',
-            lineHeight:1.65,
-            margin:0,
-        }}>
-            {props.ambassador.description}
+        <p
+          style={{
+            fontSize: 13.5,
+            color: "var(--text-secondary, #8B9EB7)",
+            lineHeight: 1.65,
+            margin: 0,
+          }}
+        >
+          {ambassador.description}
         </p>
 
-    {/* Links */}
-    <div style={{
-        display:'flex', flexDirection:'column', gap:10
-    }}>
-        
+        {/* Links */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 10,
+          }}
+        >
+          <LinkRow
+            href={ambassador.twitter}
+            label="Follow on X"
+            icon="𝕏"
+            color={regionColor}
+          />
 
-        {/* TODO: */}
-    </div>
+          {ambassador.blog && (
+            <LinkRow
+              href={ambassador.blog}
+              label="Read the blog"
+              icon="✦"
+              color={regionColor}
+            />
+          )}
+
+          {ambassador.projectSite && (
+            <LinkRow
+              href={ambassador.projectSite}
+              label="Project site"
+              icon="⬡"
+              color={regionColor}
+            />
+          )}
+        </div>
+
+        {/* Meta */}
+        <div
+          style={{
+            borderTop: "1px solid var(--panel-border, #1E2A38)",
+            paddingTop: 16,
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
+          }}
+        >
+          <MetaRow label="Country" value={ambassador.countryCode} />
+          <MetaRow label="Pin" value={ambassador.pinNote} />
+          <MetaRow label="Coords source" value={ambassador.coordsSource} />
+          <MetaRow label="Last updated" value={ambassador.lastUpdate} />
+        </div>
       </div>
     </div>
   );
