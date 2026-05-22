@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 import FloatingExplore from "@/components/FloatingExplore";
 import "./globals.css";
 import NavigationWrapper from "@/components/NavigationWrapper";
+import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,13 +27,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-US">
+    <html lang="en-US" suppressHydrationWarning>
       <head>
         <style>{`
           .goog-te-banner-frame,
@@ -62,7 +63,7 @@ export default function RootLayout({
           href="https://zechub.wiki/rss.xml"
         />
       </head>
-      <body className={`px-0 ${inter.className}`}>
+      <body className={`px-0 ${inter.className} dark:bg-slate-900 dark:text-white`}>
         {/* Hidden Google Translate mount — must be inside <body> */}
         <div
           id="google_translate_element"
@@ -74,11 +75,19 @@ export default function RootLayout({
             height: 60,
           }}
         />
-        <LanguageProvider>
-          <DarkModeProvider>
-            <NavigationWrapper>{children}</NavigationWrapper>
-          </DarkModeProvider>
-        </LanguageProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={true}
+          disableTransitionOnChange={true}
+          enableColorScheme={true}
+        >
+          <LanguageProvider>
+            <DarkModeProvider>
+              <NavigationWrapper>{children}</NavigationWrapper>
+            </DarkModeProvider>
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

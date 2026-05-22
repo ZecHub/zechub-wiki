@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 27,
-    "proposal_count": 149,
+    "proposal_count": 150,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6167,8 +6167,8 @@
           "title": "Improve ZecHub privacy and translation quality",
           "votes": {
             "no": "4",
-            "yes": "3",
-            "abstain": "1"
+            "yes": "10",
+            "abstain": "3"
           },
           "status": "open",
           "proposer": "juno154mrflyu7zz97ajvy5p44rlredfxgjrtdqrmqv",
@@ -6192,6 +6192,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-05-18T10:10:27.361Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 150,
+        "proposal": {
+          "msgs": [],
+          "title": "DAO Membership Reaffirmation & Activity Reset",
+          "votes": {
+            "no": "0",
+            "yes": "14",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1j4mk48awm674a6rq7mrmk5sa2dnwfkdd8fdtap",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1779807563943282928"
+          },
+          "description": "## Summary\n\nThis proposal introduces a DAO membership reaffirmation process aimed at improving governance participation and ensuring membership positions are held by active and willing contributors.\n\nRecent voting participation across proposals has been consistently low, making it difficult for the DAO to make representative decisions efficiently. This proposal seeks to identify members who are still interested in actively participating in governance.\n\n## Motivation\n\nDAO membership carries both privileges and responsibilities. However, when a significant number of members remain inactive or do not participate in governance, it reduces voting effectiveness and limits opportunities for newer or more engaged contributors to participate meaningfully.\n\nRather than maintaining inactive membership slots indefinitely, this proposal allows members to reaffirm their interest in remaining part of the DAO.\n\n## Proposal\n\nAll current DAO members must vote on this proposal to confirm continued membership.\n\nTo remain a DAO member, a member must:\n\n- Vote **YES** before the voting deadline.\n\nMembers who:\n\n- Vote **NO**, or\n\n- Fail to vote before the deadline\n\nwill be considered inactive and will be removed from DAO membership following the end of the vote.\n\nVacated positions may subsequently be made available to active contributors and community members who demonstrate consistent engagement and interest in DAO governance.\n\n## Voting Options\n\n- **YES** — I want to remain an active member of the DAO.\n\n- **NO** — I do not wish to remain a member of the DAO.\n\n## Expected Outcome\n\nThis proposal is expected to:\n\n- Increase governance participation rates\n\n- Improve decision-making efficiency\n\n- Ensure membership reflects active community involvement\n\n- Create opportunities for more engaged contributors to participate in governance\n\n## Implementation\n\nAfter the voting period:\n\n- Members who voted **YES** will retain membership status.\n\n- Members who voted **NO** or did not vote will be removed from the DAO member roster and associated governance permissions.\n\n## Closing Statement\n\nThis proposal is not intended as a punishment, but as a reset toward a more active, accountable, and participatory DAO structure. Governance works best when membership reflects contributors who are present, responsive, and willing to engage in shaping the DAO’s future.",
+          "total_power": "27",
+          "start_height": 38120180,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-05-21T14:59:23.943Z"
       }
     ]
   },

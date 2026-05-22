@@ -592,7 +592,7 @@ const Hackathon = ({
         </section>
 
         <section className="mb-12">
-          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-6 flex flex-col gap-4 imd:flex-row imd:items-end sm:justify-between">
             <div>
               <SectionTitle eyebrow="Past editions">
                 Previous hackathons
@@ -641,7 +641,7 @@ const Hackathon = ({
                   className="overflow-hidden border-slate-200/80 bg-white/85 shadow-sm backdrop-blur-sm dark:border-slate-700/80 dark:bg-slate-900/85"
                 >
                   <CardHeader className="border-b border-slate-200/70 bg-gradient-to-br from-slate-50 via-sky-50/70 to-emerald-50/60 dark:border-slate-700/80 dark:from-slate-950 dark:via-sky-950/40 dark:to-emerald-950/30">
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex flex-col imd:flex-row gap-4 sm:items-center sm:justify-between">
                       <div className="flex items-center gap-3">
                         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-sky-500/15 text-sky-700 ring-1 ring-sky-500/25 dark:text-sky-300">
                           <FolderOpen className="h-6 w-6" aria-hidden />

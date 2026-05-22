@@ -5,6 +5,7 @@ import AnimationHome from "@/components/UI/AnimationHome";
 import Cards from "@/components/UI/Cards";
 import { cardsConfig } from "@/constants/cardsConfig";
 import Link from "next/link";
+import Image from "next/image";
 import Explorer from "../Explorer/Explorer";
 import { FadeInAnimation } from "../UI/FadeInAnimation";
 import { useLanguage } from "@/context/LanguageContext";
@@ -88,6 +89,8 @@ const Home = ({ text }: HomeProps) => {
               })}
           </div>
         </section>
+
+      
 
         <section id="content" className="px-4 my-24">
           <ContentSections />
