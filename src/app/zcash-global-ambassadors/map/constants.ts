@@ -22,3 +22,5 @@ export const REGION_COLORS: Record<Exclude<RegionFilter, "all"> | string, string
   europe: "#BD10E0",
   oceania: "#50E3C2",
 };
+
+export const BASE_COLOR = "#1DAEEE";
