@@ -218,6 +218,11 @@ export default function GlobalAmbassadorsMap() {
 
   // TODO: Re-rencder markers when Leaflet is ready and data is loaded
 
+  const handleClose = useCallback(() => {
+    setSelected(null);
+    mapRef.current?.flyTo([20, 20], 2, { duration: 1.0 });
+  }, []);
+  
   return (
     <>
       <Head>
@@ -373,11 +378,14 @@ export default function GlobalAmbassadorsMap() {
 
           {/* Stats */}
           {!loading && (
-            <StatsBar total={ambassadors.length} visible={visibleAmbassadors.length}/>
+            <StatsBar
+              total={ambassadors.length}
+              visible={visibleAmbassadors.length}
+            />
           )}
 
           {/* Details panel */}
-          <PinDetails ambassador={selected!} onClose={handleClose}/>
+          <PinDetails ambassador={selected!} onClose={handleClose} />
         </div>
       </div>
     </>
