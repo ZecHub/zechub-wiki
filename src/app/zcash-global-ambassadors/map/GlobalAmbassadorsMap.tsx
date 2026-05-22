@@ -228,7 +228,18 @@ export default function GlobalAmbassadorsMap() {
     });
   }, [renderMarkers]);
 
+  // Fly to selected
+  useEffect(() => {
+    if (!selected || !mapRef.current) return;
+    
+    const feature = ambassadors.find(
+      (amb) => amb.properties.id === selected.id,
+    );
+    if (!feature) return;
 
+    const [lon, lat] = feature.geometry.coordinates;
+    mapRef.current.flyTo([lon, lat], 5, { duration: 1.2, easeLinearity: 0.3 });
+  }, [selected, ambassadors]);
 
   const handleClose = useCallback(() => {
     setSelected(null);
