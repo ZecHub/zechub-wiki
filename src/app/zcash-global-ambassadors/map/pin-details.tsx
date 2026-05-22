@@ -11,6 +11,7 @@ interface PinDetailsProps {
 
 export function PinDetails(props: PinDetailsProps) {
   const { ambassador, onClose } = props;
+    console.log(ambassador);
 
   if (!ambassador) return null;
 
@@ -214,10 +215,10 @@ export function PinDetails(props: PinDetailsProps) {
             gap: 8,
           }}
         >
-          <MetaRow label="Country" value={ambassador.countryCode} />
-          <MetaRow label="Pin" value={ambassador.pinNote} />
-          <MetaRow label="Coords source" value={ambassador.coordsSource} />
-          <MetaRow label="Last updated" value={ambassador.lastUpdate} />
+          <MetaRow label="Country" value={ambassador.country_code} />
+          <MetaRow label="Pin" value={ambassador.pin_note} />
+          <MetaRow label="Coords source" value={ambassador.coords_source} />
+          <MetaRow label="Last updated" value={ambassador.last_update} />
         </div>
       </div>
     </div>
