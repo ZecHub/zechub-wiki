@@ -337,6 +337,29 @@ export default function GlobalAmbassadorsMap() {
               </div>
             </div>
           )}
+
+          {/* Error state */}
+          {error && (
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%,-50%)",
+                background: "rgba(13,17,23,0.95)",
+                border: "1px solide rgba(255,80,80,0.3)",
+                borderRadius: 12,
+                padding: "20px 28px",
+                color: "#ff6b6b",
+                zIndex: 11000,
+                textAlign: "center",
+              }}
+            >
+              {error}
+            </div>
+          )}
+
+          {/* Filter */}
         </div>
       </div>
     </>
