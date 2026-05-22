@@ -7,8 +7,9 @@ import {
   RegionFilter,
 } from "./constants";
 import { FilterBar } from "./filter-bar";
-import { StatsBar } from "./stats-bar";
 import { PinDetails } from "./pin-details";
+import { StatsBar } from "./stats-bar";
+import "./style.css";
 
 export interface AmbassadorProps {
   id: string;
@@ -216,13 +217,24 @@ export default function GlobalAmbassadorsMap() {
     });
   }, [visibleAmbassadors]);
 
-  // TODO: Re-rencder markers when Leaflet is ready and data is loaded
+  // Re-render markers when Leaflet is ready and data is loaded
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    import("leaflet").then((L) => {
+      (window as any).L = L;
+
+      renderMarkers();
+    });
+  }, [renderMarkers]);
+
+
 
   const handleClose = useCallback(() => {
     setSelected(null);
     mapRef.current?.flyTo([20, 20], 2, { duration: 1.0 });
   }, []);
-  
+
   return (
     <>
       <Head>
