@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700;800&display=swap');
 * {
     box-sizing: border-box;
 }
@@ -9,7 +10,6 @@
     --text-secondary: #8B9EB7;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700;800&display=swap');
 
 
 .leaflet-container {
