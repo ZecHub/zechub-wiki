@@ -28,6 +28,7 @@ export interface AmbassadorProps {
   coordsSource: string;
   active: boolean;
   lastUpdate: string;
+  [index: string]: any;
 }
 
 interface AmbassadorFeature {
