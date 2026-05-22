@@ -6,6 +6,9 @@ import {
   REGION_LABELS,
   RegionFilter,
 } from "./constants";
+import { FilterBar } from "./filter-bar";
+import { StatsBar } from "./stats-bar";
+import { PinDetails } from "./pin-details";
 
 export interface AmbassadorProps {
   id: string;
@@ -360,6 +363,21 @@ export default function GlobalAmbassadorsMap() {
           )}
 
           {/* Filter */}
+          {!loading && (
+            <FilterBar
+              active={regionFilter}
+              counts={regionCounts}
+              onChange={setRegionFilter}
+            />
+          )}
+
+          {/* Stats */}
+          {!loading && (
+            <StatsBar total={ambassadors.length} visible={visibleAmbassadors.length}/>
+          )}
+
+          {/* Details panel */}
+          <PinDetails ambassador={selected!} onClose={handleClose}/>
         </div>
       </div>
     </>
