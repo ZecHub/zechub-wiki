@@ -1,8 +1,9 @@
 "use client";
 
-import { ambassadorProjects } from "@/constants/ambassadorProjects";
+import ambassadorProjects from "./ambassador_list.json";
 import { useLanguage } from "@/context/LanguageContext";
 import { LuExternalLink, LuTwitter } from "react-icons/lu";
+import GlobalAmbassadorsMap from "./map/GlobalAmbassadorsMap";
 
 // ── Banner ─────────────────────────────────────────────────────────────────
 function AmbassadorBanner({
@@ -210,6 +211,8 @@ export default function GlobalAmbassadorsClient() {
           <p className="text-sm text-muted-foreground">{footerInfo}</p>
         </div>
       </div>
+
+      <GlobalAmbassadorsMap />
     </main>
   );
 }

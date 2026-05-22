@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Zcash Korea",
+    "flag": "🇰🇷",
+    "twitter": "https://x.com/zcashkorea",
+    "description": "Zcash community and advocacy in Korea",
+    "projectSite": "",
+    "image": "/zcashKorea.jpg",
+    "blog": ""
+  },
+  {
+    "name": "Zcash Russia",
+    "flag": "🇷🇺",
+    "twitter": "https://x.com/ZcashRussia?s=20",
+    "description": "Zcash community and advocacy in Russia",
+    "projectSite": "",
+    "image": "/zcashRussia.jpg",
+    "blog": "https://pro.zcash.ru/"
+  },
+  {
+    "name": "Zcash Arabia",
+    "flag": "🇸🇦",
+    "twitter": "https://x.com/ZcashArabia",
+    "description": "Zcash community and advocacy in Arabic-speaking regions",
+    "projectSite": "",
+    "image": "/zcashArabia.jpg",
+    "blog": ""
+  },
+  {
+    "name": "Zcash Brazil",
+    "flag": "🇧🇷",
+    "twitter": "https://x.com/zcashbrazil",
+    "description": "Zcash community and advocacy in Brazil",
+    "projectSite": "",
+    "image": "/zcashBrazil.jpg",
+    "blog": ""
+  },
+  {
+    "name": "Zcash Ghana",
+    "flag": "🇬🇭",
+    "twitter": "https://x.com/ZcashGH",
+    "description": "Zcash community and advocacy in Ghana",
+    "projectSite": "",
+    "image": "/zcashGhana.jpg",
+    "blog": ""
+  },
+  {
+    "name": "Zcash Español",
+    "flag": "🇪🇸",
+    "twitter": "https://x.com/zcashesp",
+    "description": "Zcash community and advocacy in Spanish-speaking regions",
+    "projectSite": "",
+    "image": "/zccashEspanol.jpg",
+    "blog": "https://privacidad.me/@zcashesp"
+  },
+  {
+    "name": "Zcash Nigeria",
+    "flag": "🇳🇬",
+    "twitter": "https://x.com/ZcashNigeria",
+    "description": "Zcash community and advocacy in Nigeria",
+    "projectSite": "",
+    "image": "/zcashNigeria.jpg",
+    "blog": ""
+  },
+  {
+    "name": "Zcash Ukraine",
+    "flag": "🇺🇦",
+    "twitter": "https://x.com/Zcash_ua",
+    "description": "Zcash community and advocacy in Ukraine",
+    "projectSite": "",
+    "image": "/zcashUkraine.jpg",
+    "blog": ""
+  },
+  {
+    "name": "Zcash Turkey",
+    "flag": "🇹🇷",
+    "twitter": "https://x.com/ZcashTR",
+    "description": "Zcash community and advocacy in Turkey",
+    "projectSite": "",
+    "image": "/zcashTurkey.jpg",
+    "blog": ""
+  },
+  {
+    "name": "Zcash Kenya",
+    "flag": "🇰🇪",
+    "twitter": "https://x.com/ZcashKenya",
+    "description": "Zcash community and advocacy in Kenya",
+    "projectSite": "",
+    "image": "/zcashKenya.jpg",
+    "blog": ""
+  },
+  {
+    "name": "Zcash India",
+    "flag": "🇮🇳",
+    "twitter": "https://x.com/ZcashIND",
+    "description": "Zcash community and advocacy in India",
+    "projectSite": "https://zcashindia.org",
+    "image": "/zcashIndia.jpg",
+    "blog": "https://zcashindia.org/blog"
+  }
+]
