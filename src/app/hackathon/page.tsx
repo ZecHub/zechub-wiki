@@ -314,7 +314,7 @@ const Hackathon = ({
   return (
     <main className="relative isolate min-h-screen w-full overflow-hidden px-4 py-10 text-slate-900 dark:text-slate-100">
       <div
-        className="pointer-events-none absolute inset-0 -z-20 bg-slate-950 bg-cover bg-center bg-no-repeat md:bg-fixed"
+        className="pointer-events-none absolute inset-0 -z-20 bg-slate-950 bg-cover bg-center bg-no-repeat bg-fixed"
         style={{ backgroundImage: `url(${HACKATHON_BACKGROUND_IMAGE})` }}
         aria-hidden
       />
