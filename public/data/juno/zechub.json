@@ -6170,7 +6170,7 @@
             "yes": "12",
             "abstain": "3"
           },
-          "status": "passed",
+          "status": "executed",
           "proposer": "juno154mrflyu7zz97ajvy5p44rlredfxgjrtdqrmqv",
           "threshold": {
             "threshold_quorum": {
@@ -6191,7 +6191,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-05-18T10:10:27.361Z"
+        "createdAt": "2026-05-18T10:10:27.361Z",
+        "completedAt": "2026-05-23T15:12:41.000Z",
+        "executedAt": "2026-05-23T15:12:41.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
