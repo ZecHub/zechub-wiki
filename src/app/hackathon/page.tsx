@@ -314,7 +314,7 @@ const Hackathon = ({
   return (
     <main className="relative isolate min-h-screen w-full overflow-hidden px-4 py-10 text-slate-900 dark:text-slate-100">
       <div
-        className="pointer-events-none absolute inset-0 -z-20 bg-slate-950 bg-cover bg-center bg-no-repeat bg-fixed"
+        className="pointer-events-none absolute inset-0 -z-20 bg-slate-950 bg-cover bg-center bg-no-repeat imd:bg-fixed"
         style={{ backgroundImage: `url(${HACKATHON_BACKGROUND_IMAGE})` }}
         aria-hidden
       />
@@ -338,7 +338,7 @@ const Hackathon = ({
             aria-hidden
           />
 
-          <div className="relative flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+          <div className="relative flex flex-col gap-8 imd:flex-row imd:items-start imd:justify-between">
             <div className="max-w-xl">
               <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider ring-1 ring-white/15 backdrop-blur-sm">
                 <Sparkles className="h-3.5 w-3.5 text-amber-300" aria-hidden />
