@@ -225,6 +225,88 @@ const rules = [
   "Respect privacy, security, and community guidelines in both code and content.",
 ];
 
+const submissionSteps = [
+  {
+    step: 1,
+    title: "Build your project",
+    description:
+      "Create a working prototype that interacts with the Zcash mainnet. Pick a track and keep a development log as you go.",
+    color: "sky",
+  },
+  {
+    step: 2,
+    title: "Record a video demo",
+    description:
+      "Capture a short walkthrough showing your project in action. Clearly explain what it does and how it uses the Zcash network.",
+    color: "emerald",
+  },
+  {
+    step: 3,
+    title: "Document your work",
+    description:
+      "Write a README with setup instructions, usage notes, and your open-source license. Push everything to a public GitHub repo.",
+    color: "violet",
+  },
+  {
+    step: 4,
+    title: "Upload your code",
+    description: (
+      <>
+        Push your project to the{" "}
+        <a
+          href="https://github.com/ZecHub/zechub/tree/main/Hackathon"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 font-semibold text-[#1984c7] underline-offset-2 hover:underline"
+        >
+          Hackathon repo <ExternalLink className="h-3 w-3" />
+        </a>{" "}
+        on GitHub so the community can review your work.
+      </>
+    ),
+    color: "blue",
+  },
+  {
+    step: 5,
+    title: "Share in Discord",
+    description:
+      "Post your video demo in the Zcash Global Discord with your repo and demo links before July 15, 2026 (UTC).",
+    color: "amber",
+  },
+] as const;
+
+const stepColorMap = {
+  sky: {
+    badge:
+      "bg-sky-500/15 text-sky-700 ring-1 ring-sky-500/25 dark:text-sky-300",
+    border: "border-sky-500/20 hover:border-sky-500/40 dark:border-sky-500/15",
+  },
+  emerald: {
+    badge:
+      "bg-emerald-500/15 text-emerald-700 ring-1 ring-emerald-500/25 dark:text-emerald-300",
+    border:
+      "border-emerald-500/20 hover:border-emerald-500/40 dark:border-emerald-500/15",
+  },
+  violet: {
+    badge:
+      "bg-violet-500/15 text-violet-700 ring-1 ring-violet-500/25 dark:text-violet-300",
+    border:
+      "border-violet-500/20 hover:border-violet-500/40 dark:border-violet-500/15",
+  },
+  blue: {
+    badge:
+      "bg-blue-500/15 text-blue-700 ring-1 ring-blue-500/25 dark:text-blue-300",
+    border:
+      "border-blue-500/20 hover:border-blue-500/40 dark:border-blue-500/15",
+  },
+  amber: {
+    badge:
+      "bg-amber-500/15 text-amber-700 ring-1 ring-amber-500/25 dark:text-amber-300",
+    border:
+      "border-amber-500/20 hover:border-amber-500/40 dark:border-amber-500/15",
+  },
+} as const;
+
 function SectionTitle({
   children,
   eyebrow,
@@ -332,6 +414,7 @@ const Hackathon = ({
           aria-hidden
         />
 
+        {/* ── Hero ── */}
         <section className="relative mb-12 overflow-hidden rounded-3xl border border-sky-500/25 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 p-8 text-white shadow-xl shadow-slate-900/20 ring-1 ring-white/10 md:p-12">
           <div
             className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-cyan-500/20 blur-3xl"
@@ -440,6 +523,7 @@ const Hackathon = ({
           </div>
         </section>
 
+        {/* ── Tracks ── */}
         <section className="mb-12">
           <SectionTitle eyebrow="2026 event">Tracks</SectionTitle>
           <p className="-mt-2 mb-6 max-w-2xl text-muted-foreground">
@@ -469,6 +553,7 @@ const Hackathon = ({
           </div>
         </section>
 
+        {/* ── Prizes ── */}
         <section className="mb-12">
           <SectionTitle eyebrow="Rewards">Prizes</SectionTitle>
           <Card className="overflow-hidden border-amber-500/30 bg-gradient-to-br from-amber-50 to-white shadow-sm dark:border-amber-500/25 dark:from-amber-950/30 dark:to-slate-900">
@@ -486,6 +571,7 @@ const Hackathon = ({
           </Card>
         </section>
 
+        {/* ── Dev tools ── */}
         <section className="mb-12">
           <SectionTitle eyebrow="Start here">
             Devtools &amp; documentation
@@ -535,6 +621,7 @@ const Hackathon = ({
           </div>
         </section>
 
+        {/* ── Rules + FAQ ── */}
         <section className="mb-12 grid gap-6 lg:grid-cols-2">
           <Card className="border-slate-200/80 shadow-sm dark:border-slate-700/80">
             <CardHeader>
@@ -561,7 +648,6 @@ const Hackathon = ({
               </ul>
             </CardContent>
           </Card>
-
           <Card className="border-slate-200/80 shadow-sm dark:border-slate-700/80">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-2xl">
@@ -595,6 +681,62 @@ const Hackathon = ({
           </Card>
         </section>
 
+        {/* ── How to submit ── */}
+        <section className="mb-12">
+          <SectionTitle eyebrow="Participation">How to submit</SectionTitle>
+          <p className="-mt-2 mb-6 max-w-2xl text-muted-foreground">
+            Follow these five steps to get your project from idea to official
+            entry.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {submissionSteps.map(({ step, title, description, color }) => {
+              const c = stepColorMap[color];
+              return (
+                <Card
+                  key={step}
+                  className={`border-slate-200/80 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md dark:border-slate-700/80 ${c.border}`}
+                >
+                  <CardHeader className="pb-3">
+                    <div
+                      className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${c.badge}`}
+                    >
+                      <span className="text-base font-black">{step}</span>
+                    </div>
+                    <CardTitle className="text-lg leading-snug">
+                      {title}
+                    </CardTitle>
+                    <CardDescription className="text-sm leading-relaxed">
+                      {description}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              );
+            })}
+          </div>
+          <div className="mt-6 rounded-2xl border border-sky-500/25 bg-sky-50/70 px-5 py-4 dark:border-sky-500/20 dark:bg-sky-950/30">
+            <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+              <span className="font-semibold text-slate-900 dark:text-white">
+                Deadline:
+              </span>{" "}
+              All submissions must be posted in Discord by{" "}
+              <span className="font-semibold text-slate-900 dark:text-white">
+                July 15, 2026 (UTC)
+              </span>
+              . Winners are selected via a public community vote in ZecHub DAO
+              channels shortly after submissions close.{" "}
+              <a
+                href="https://discord.gg/zcash"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-semibold text-[#1984c7] underline-offset-2 hover:underline"
+              >
+                Join the Discord <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </p>
+          </div>
+        </section>
+
+        {/* ── Previous hackathons ── */}
         <section className="mb-12">
           <div className="mb-6 flex flex-col gap-4 imd:flex-row imd:items-end sm:justify-between">
             <div>
@@ -701,6 +843,7 @@ const Hackathon = ({
           ) : null}
         </section>
 
+        {/* ── Need help ── */}
         <section className="relative overflow-hidden rounded-3xl border border-sky-500/20 bg-gradient-to-br from-slate-50 to-sky-50/80 p-8 dark:from-slate-900 dark:to-sky-950/40 md:p-10">
           <div
             className="pointer-events-none absolute right-0 top-0 h-40 w-40 translate-x-1/4 -translate-y-1/4 rounded-full bg-sky-400/15 blur-2xl dark:bg-sky-500/10"
