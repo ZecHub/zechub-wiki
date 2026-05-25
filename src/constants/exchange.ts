@@ -109,6 +109,33 @@ const exchanges: Exchange[] = [
     logo: "https://i.ibb.co/gLsHYNQ3/IMG-5725.png",
     altText: "Robinhood Logo",
   },
+  {
+    name: "Bitstamp",
+    url: "https://www.bitstamp.net",
+    pairs: "USD/ZEC",
+    support: "Transparent",
+    depositTime: "N/A",
+    logo: "https://assets.coingecko.com/markets/images/9/small/bitstamp.jpg",
+    altText: "Bitstamp Logo",
+  },
+  {
+    name: "YoBit",
+    url: "https://yobit.net",
+    pairs: "ALL/ZEC",
+    support: "Transparent",
+    depositTime: "N/A",
+    logo: "https://assets.coingecko.com/markets/images/46/small/yobit.png",
+    altText: "YoBit Logo",
+  },
+  {
+    name: "Backpack",
+    url: "https://backpack.exchange",
+    pairs: "USDC/ZEC",
+    support: "Transparent",
+    depositTime: "N/A",
+    logo: "https://logo.svgcdn.com/token-branded/backpack.png",
+    altText: "Backpack Logo",
+  },
 ];
 
 export default exchanges;
