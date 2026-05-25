@@ -254,7 +254,7 @@ const submissionSteps = [
       <>
         Push your project to the{" "}
         <a
-          href="https://github.com/ZecHub/zechub/tree/main/Hackathon"
+          href="https://github.com/ZecHub/zechub/tree/main/Hackathon/2026"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 font-semibold text-[#1984c7] underline-offset-2 hover:underline"
