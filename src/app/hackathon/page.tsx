@@ -38,50 +38,54 @@ const FALLBACK_PREVIOUS_PROJECTS = [
   {
     name: "Anino",
     slugPath: "Hackathon/Anino",
-    htmlUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/Anino",
+    htmlUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/2025/Anino",
   },
   {
     name: "BananaBetting",
     slugPath: "Hackathon/BananaBetting",
     htmlUrl:
-      "https://github.com/ZecHub/zechub/tree/main/Hackathon/BananaBetting",
+      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2025/BananaBetting",
   },
   {
     name: "ZECA",
     slugPath: "Hackathon/ZECA",
-    htmlUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/ZECA",
+    htmlUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/2025/ZECA",
   },
   {
     name: "ZecRotor",
     slugPath: "Hackathon/ZecRotor",
-    htmlUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/ZecRotor",
+    htmlUrl:
+      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2025/ZecRotor",
   },
   {
     name: "Zechostream",
     slugPath: "Hackathon/Zechostream",
-    htmlUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/Zechostream",
+    htmlUrl:
+      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2025/Zechostream",
   },
   {
     name: "zatboard",
     slugPath: "Hackathon/zatboard",
-    htmlUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/zatboard",
+    htmlUrl:
+      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2025/zatboard",
   },
   {
     name: "zec-bounties",
     slugPath: "Hackathon/zec-bounties",
     htmlUrl:
-      "https://github.com/ZecHub/zechub/tree/main/Hackathon/zec-bounties",
+      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2025/zec-bounties",
   },
   {
     name: "zecdonations",
     slugPath: "Hackathon/zecdonations",
     htmlUrl:
-      "https://github.com/ZecHub/zechub/tree/main/Hackathon/zecdonations",
+      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2025/zecdonations",
   },
   {
     name: "zyberquest",
     slugPath: "Hackathon/zyberquest",
-    htmlUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/zyberquest",
+    htmlUrl:
+      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2025/zyberquest",
   },
   {
     name: "zchat",
