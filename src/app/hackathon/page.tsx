@@ -688,7 +688,7 @@ const Hackathon = ({
             Follow these five steps to get your project from idea to official
             entry.
           </p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 grid-cols-1 imd:grid-cols-2 lg:grid-cols-4">
             {submissionSteps.map(({ step, title, description, color }) => {
               const c = stepColorMap[color];
               return (
@@ -824,7 +824,7 @@ const Hackathon = ({
                             </div>
                             <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-sky-600" />
                           </div>
-                          <h3 className="text-lg font-bold leading-snug text-slate-900 transition group-hover:text-sky-700 dark:text-white dark:group-hover:text-sky-300">
+                          <h3 className="text-[16px] imd:text-lg font-bold leading-snug text-slate-900 transition group-hover:text-sky-700 dark:text-white dark:group-hover:text-sky-300">
                             {p.name}
                           </h3>
                           <p className="mt-2 break-all font-mono text-xs leading-relaxed text-slate-500 dark:text-slate-400">
