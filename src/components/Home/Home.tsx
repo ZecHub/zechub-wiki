@@ -108,7 +108,7 @@ const HackathonBanner = ({ onDismiss }: { onDismiss: () => void }) => {
             {[
               { label: "Prize Pool", value: "25 ZEC" },
               { label: "Start", value: "May 25" },
-              { label: "End", value: "July 31" },
+              { label: "End", value: "July 15" },
             ].map((s) => (
               <div
                 key={s.label}
