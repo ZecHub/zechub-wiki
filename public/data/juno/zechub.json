@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 27,
-    "proposal_count": 151,
+    "proposal_count": 152,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6204,10 +6204,10 @@
           "title": "DAO Membership Reaffirmation & Activity Reset",
           "votes": {
             "no": "0",
-            "yes": "19",
+            "yes": "23",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno1j4mk48awm674a6rq7mrmk5sa2dnwfkdd8fdtap",
           "threshold": {
             "threshold_quorum": {
@@ -6228,7 +6228,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-05-21T14:59:23.943Z"
+        "createdAt": "2026-05-21T14:59:23.943Z",
+        "completedAt": "2026-05-26T18:03:34.000Z",
+        "executedAt": "2026-05-26T18:03:34.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6239,7 +6241,7 @@
           "title": "Zcash India — Proposal | June to August 2026",
           "votes": {
             "no": "0",
-            "yes": "3",
+            "yes": "14",
             "abstain": "0"
           },
           "status": "open",
@@ -6264,6 +6266,51 @@
           "min_voting_period": null
         },
         "createdAt": "2026-05-25T12:31:13.788Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 152,
+        "proposal": {
+          "msgs": [
+            {
+              "wasm": {
+                "execute": {
+                  "msg": "eyJ1cGRhdGVfbWVtYmVycyI6eyJhZGQiOltdLCJyZW1vdmUiOlsianVubzFsbWNwZ2pxZnN5OHlwamZ5am43endtY3l6d2RnenJ1ZjZhamMwZiIsImp1bm8xZjRqdHR5OXpsNjMzNjk0cXRsd256cGF1c2xlamc5cHM3ejNwdm0iLCJqdW5vMTZ3ZWtrZnZxcGp2N2pmcGcwM245c2xsbHJtNWV0OTNmZjhjdTdmIiwianVubzE1bjY5ODg5eWZnYW5zc2h5dGY3eXhkanNodnIwcnNkczh0YXc1ZSJdfX0=",
+                  "funds": [],
+                  "contract_addr": "juno1re0pu5hdafdcexmvuvdngn0d5sttkp6wz4wfjdd3p9cwfhmg8h9s8ek80w"
+                }
+              }
+            }
+          ],
+          "title": "Remove Inactive Members",
+          "votes": {
+            "no": "0",
+            "yes": "4",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1dgtmcp7jerprg3grdl6qg47sv394txfcevqfcn",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1780262097235232990"
+          },
+          "description": "# Background\n\nProposal A150 introduced a DAO membership reaffirmation process \naimed at improving governance participation and ensuring membership positions\nare held by active and willing contributors.\n\nHere were the results:\n\n```\nZerodartz  | Yes\nLowo       | Yes\n1337bytes  | Yes\nSpeedFox   | Yes\njasonmcgee | Yes\nAidenJeon  | Yes\nchidi      | Yes\nyoditar    | Yes\nEdicksonjga| Yes\ndismad     | Yes\nMine       | Yes\nvito       | Yes\niAmTron    | Yes\nRobmar     | Yes\nzksquirrel | Yes\nTecnopapapi| Yes\ntheKroy    | Yes\nZolder     | Yes\nMichae2xl  | Yes\njames_katz | Yes\nru_zcash   | Yes\nBlakiat    | Yes\ngordonesTV | Yes\n```\n\nDAO members Wizard, Jay, Tokidoki, and decentralistdan did not vote.\n\n\n# Why?\n\nDAO membership carries both privileges and responsibilities. However, when a significant number of members\nremain inactive or do not participate in governance, it reduces voting effectiveness and limits \nopportunities for newer or more engaged contributors to participate meaningfully.\n\nRather than maintaining inactive membership slots indefinitely,\nProposal A150 filtered active from inactive DAO members.\n\n# Proposal\n\nPer DAO consensus, this proposol will remove DAO members: Wizard, Jay, Tokidoki, and decentralistdan. \nAny of these members can re-apply to join the DAO in the future if they so choose. The DAO thanks them for their service <3.\n\n# Action\n\nRemove the following inactive DAO member addresses:\n\n* Wizard          | juno15n69889yfgansshytf7yxdjshvr0rsds8taw5e\n* Jay             | juno16wekkfvqpjv7jfpg03n9slllrm5et93ff8cu7f\n* Tokidoki        | juno1f4jtty9zl633694qtlwnzpauslejg9ps7z3pvm\n* decentralistdan | juno1lmcpgjqfsy8ypjfyjn7zwmcyzwdgzruf6ajc0f\n\n\n\n\n",
+          "total_power": "27",
+          "start_height": 38283207,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-05-26T21:14:57.235Z"
       }
     ]
   },
