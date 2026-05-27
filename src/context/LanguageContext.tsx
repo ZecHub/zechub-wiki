@@ -316,8 +316,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
     if (code === 'en') {
       currentLanguageRef.current = LANGUAGES[0];
-      resetGoogleTranslateToEnglish();
-      clearGTCookiesAndReload();
+      const widgetReady = resetGoogleTranslateToEnglish();
+      if (!widgetReady) {
+        clearGTCookies();
+      }
       return;
     }
 
