@@ -145,7 +145,7 @@
     {
       "title": "Vitalik Buterin fala sobre ZKP #zcash #zkp",
       "video_id": "O9uwBEI6bIk",
-      "views": 590
+      "views": 592
     },
     {
       "title": "Se você conhece #satoshi, as regras de estacionamento não se aplicam",
@@ -165,7 +165,7 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 521
+      "views": 523
     },
     {
       "title": "Impactos das guerras globais na economia brasileira",
@@ -190,12 +190,12 @@
     {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
-      "views": 449
+      "views": 450
     },
     {
       "title": "Zcash UX & Monero",
       "video_id": "y8facw4Gd10",
-      "views": 441
+      "views": 442
     },
     {
       "title": "A evolução da privacidade em criptomoedas: de Zerocoin a Zcash",
@@ -205,6 +205,11 @@
     {
       "title": "Zcash Escalando: A Tese do Sean Bowe Sobre Pagamentos Baratos",
       "video_id": "KaV9cISNaj0",
+      "views": 419
+    },
+    {
+      "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endereço Shielded",
+      "video_id": "YTFIW4S2c0A",
       "views": 419
     },
     {
@@ -258,6 +263,11 @@
       "views": 322
     },
     {
+      "title": "Barry Silbert fala sobre os primeiros dias do Bitcoin.",
+      "video_id": "B4hbk0366W8",
+      "views": 321
+    },
+    {
       "title": "Josh: Privacidade é Agência, e Bitcoin Não Entregou Isso",
       "video_id": "q4k4gMgjyBc",
       "views": 321
@@ -273,18 +283,8 @@
       "views": 319
     },
     {
-      "title": "Barry Silbert fala sobre os primeiros dias do Bitcoin.",
-      "video_id": "B4hbk0366W8",
-      "views": 319
-    },
-    {
       "title": "Por Que Assinaturas Agregadas Podem Revolucionar a Escalabilidade em Blockchain.",
       "video_id": "AMrV7oQ5akg",
-      "views": 315
-    },
-    {
-      "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endereço Shielded",
-      "video_id": "YTFIW4S2c0A",
       "views": 315
     },
     {
@@ -465,7 +465,7 @@
     {
       "title": "Unstoppable Private Money | Zcash Soundtrack",
       "video_id": "Nx8kS23T_0o",
-      "views": 200
+      "views": 201
     },
     {
       "title": "Como o Zcash usa provas de conhecimento zero para privacidade.",
@@ -843,6 +843,11 @@
       "views": 122
     },
     {
+      "title": "Barry Silbert & Pomp: Privacidade no Bitcoin e o Futuro das Moedas de Privacidade",
+      "video_id": "hNsU_-h3AyI",
+      "views": 121
+    },
+    {
       "title": "Swap com Zcash na Near Intents",
       "video_id": "5icV7qah7w8",
       "views": 120
@@ -866,11 +871,6 @@
       "title": "Facilidade e acessibilidade na blockchain.",
       "video_id": "0LeTEyquwD8",
       "views": 120
-    },
-    {
-      "title": "Barry Silbert & Pomp: Privacidade no Bitcoin e o Futuro das Moedas de Privacidade",
-      "video_id": "hNsU_-h3AyI",
-      "views": 119
     },
     {
       "title": "Zcash -  Trazendo liberdade para todos.",
@@ -958,6 +958,11 @@
       "views": 110
     },
     {
+      "title": "Trocar SOL por ZEC na Solswap: Tutorial Completo",
+      "video_id": "YEccCDMsOa0",
+      "views": 110
+    },
+    {
       "title": "Privacidade como escolha. #zcash",
       "video_id": "aGH7Dn8pOnw",
       "views": 110
@@ -965,11 +970,6 @@
     {
       "title": "Facilidade de Uso do Navegador Tor",
       "video_id": "M4BU4Kcszv4",
-      "views": 109
-    },
-    {
-      "title": "Trocar SOL por ZEC na Solswap: Tutorial Completo",
-      "video_id": "YEccCDMsOa0",
       "views": 109
     },
     {
@@ -1953,6 +1953,11 @@
       "views": 45
     },
     {
+      "title": "Novas Carteiras para Zcash em 2026: O Que Mudou e O Que Esperar | Zec Insider",
+      "video_id": "kic84xvApK0",
+      "views": 45
+    },
+    {
       "title": "Não foi só o protocolo Zcash que cresceu, a comunidade também.",
       "video_id": "qoX_DvFaDwE",
       "views": 45
@@ -1980,11 +1985,6 @@
     {
       "title": "Por que o Bitcoin pode nunca adotar a privacidade avançada",
       "video_id": "ziYj86zatlA",
-      "views": 44
-    },
-    {
-      "title": "Novas Carteiras para Zcash em 2026: O Que Mudou e O Que Esperar | Zec Insider",
-      "video_id": "kic84xvApK0",
       "views": 44
     },
     {
@@ -2638,6 +2638,11 @@
       "views": 27
     },
     {
+      "title": "Protocol Study #2: Addresses, Keys, and the Privacy Onion | Engineering #9",
+      "video_id": "z6V-NhTWE3Q",
+      "views": 27
+    },
+    {
       "title": "Zooko - O Visionário por trás da #Zcash",
       "video_id": "ekCUOdqyLyg",
       "views": 26
@@ -2760,11 +2765,6 @@
     {
       "title": "Balaji: Zcash é Bipartidario e Pode Ser um Projeto Para o Mundo",
       "video_id": "5zVg57PRu1s",
-      "views": 25
-    },
-    {
-      "title": "Protocol Study #2: Addresses, Keys, and the Privacy Onion | Engineering #9",
-      "video_id": "z6V-NhTWE3Q",
       "views": 25
     },
     {
@@ -3053,6 +3053,11 @@
       "views": 17
     },
     {
+      "title": "Importancia do Bitcoin - Especial CBDC BLKC",
+      "video_id": "gfUosQeE1yM",
+      "views": 17
+    },
+    {
       "title": "A Jornada no Software Livre",
       "video_id": "juMrmUX1JkI",
       "views": 17
@@ -3100,11 +3105,6 @@
     {
       "title": "DREX e o PIX - Especial CBDC BLKC",
       "video_id": "uFkxwuqJ1Xc",
-      "views": 16
-    },
-    {
-      "title": "Importancia do Bitcoin - Especial CBDC BLKC",
-      "video_id": "gfUosQeE1yM",
       "views": 16
     },
     {
@@ -3485,6 +3485,11 @@
     {
       "title": "Zcash Shielded Call Vol.3 - ZIPS da NU7 Revelados",
       "video_id": "W8devS2w0xA",
+      "views": 5
+    },
+    {
+      "title": "Spcil Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
+      "video_id": "jrWNz29nHKk",
       "views": 5
     },
     {
