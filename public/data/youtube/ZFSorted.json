@@ -5,7 +5,7 @@
     {
       "title": "Peter Van Valkenburgh, of Coin Center, on the OFAC Tornado Cash SDN listing at Zcon3",
       "video_id": "XpTrCA3tEKM",
-      "views": 7694
+      "views": 7695
     },
     {
       "title": "ZK Rollup: Ethereum Scalability with ZKPs - Alex Gluchowski",
@@ -48,14 +48,14 @@
       "views": 1478
     },
     {
+      "title": "Zcash Scalability with Sean Bowe - ZconVI #zcash",
+      "video_id": "-m3JCgi3kiU",
+      "views": 1435
+    },
+    {
       "title": "Zcon0 Keynote Panel: Cryptocurrency Governance",
       "video_id": "ioV7mBt7SMA",
       "views": 1433
-    },
-    {
-      "title": "Zcash Scalability with Sean Bowe - ZconVI #zcash",
-      "video_id": "-m3JCgi3kiU",
-      "views": 1432
     },
     {
       "title": "Sapling Activation Party Livestream",
@@ -85,7 +85,7 @@
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
       "video_id": "O4wQi_i7k0I",
-      "views": 1242
+      "views": 1243
     },
     {
       "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
@@ -155,7 +155,7 @@
     {
       "title": "The State of Zcash in 2025 with Jack Gavigan - ZconVI 2025 #zcash",
       "video_id": "El59GnEA1FY",
-      "views": 890
+      "views": 893
     },
     {
       "title": "Scalable Privacy - Daira Hopwood",
@@ -325,7 +325,7 @@
     {
       "title": "Zcash and the Regulatory/Policy Environment Sessions - ZconV: Zcash Unified 2024 #Zcash #ZEC",
       "video_id": "pfd6yi54kqU",
-      "views": 489
+      "views": 490
     },
     {
       "title": "A Selection of Pairing Based zk-SNARKs - Mary Maller",
@@ -335,7 +335,7 @@
     {
       "title": "Decoupling the Zcash Memo Field from the Economic Outputs (Draft ZIP-231)",
       "video_id": "SBwJKYpZ520",
-      "views": 479
+      "views": 480
     },
     {
       "title": "Zcon Vozes - Parte 1",
@@ -445,7 +445,7 @@
     {
       "title": "Zcash Arborist Call 04-30-2026",
       "video_id": "qfIS6wORZIA",
-      "views": 393
+      "views": 394
     },
     {
       "title": "Semaphore Roadmap for Ethereum - Barry Whitehat",
@@ -480,7 +480,7 @@
     {
       "title": "“Financial privacy is not about evading legality, but about affirming liberty.”",
       "video_id": "_g94z10ECWw",
-      "views": 365
+      "views": 366
     },
     {
       "title": "Community workshop presentations - Day 1 at Zcon0 (2018)",
@@ -950,7 +950,7 @@
     {
       "title": "Targeting Deployment for ZSAs in Zcash",
       "video_id": "OGROkdDCoKs",
-      "views": 209
+      "views": 210
     },
     {
       "title": "AMA with ZF Executive Director Jack Gavigan",
@@ -993,13 +993,13 @@
       "views": 200
     },
     {
-      "title": "Making $ZEC Cross Chain with Maya with Aaluxx Myth - ZconVI #zcash",
-      "video_id": "1t2PMekCrjo",
-      "views": 200
-    },
-    {
       "title": "Community Call: Introducing ZOMG Candidates",
       "video_id": "kzDA0XwoLYM",
+      "views": 199
+    },
+    {
+      "title": "Making $ZEC Cross Chain with Maya with Aaluxx Myth - ZconVI #zcash",
+      "video_id": "1t2PMekCrjo",
       "views": 199
     },
     {
@@ -1008,13 +1008,13 @@
       "views": 198
     },
     {
-      "title": "Zcash Community Grants Candidate Call 12/14/23",
-      "video_id": "KbIM4yNRxts",
-      "views": 195
-    },
-    {
       "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
       "video_id": "he_j9O5INVk",
+      "views": 196
+    },
+    {
+      "title": "Zcash Community Grants Candidate Call 12/14/23",
+      "video_id": "KbIM4yNRxts",
       "views": 195
     },
     {
@@ -1210,7 +1210,7 @@
     {
       "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
       "video_id": "fgkFrxiB14g",
-      "views": 157
+      "views": 158
     },
     {
       "title": "Targeting Deployment for ZSAs in Zcash",
@@ -1493,6 +1493,11 @@
       "views": 119
     },
     {
+      "title": "Str4d on Risks of Delays deploying ZSAs in NU6",
+      "video_id": "Axedp0cjcl0",
+      "views": 119
+    },
+    {
       "title": "Zcash Arborist Call 07-24-2025",
       "video_id": "uFz_5pzgRlQ",
       "views": 119
@@ -1501,11 +1506,6 @@
       "title": "Nighthawks Roadmap for Zcash with Aditya Bharadwaj and Matthew Watt: Zcon4",
       "video_id": "qRuKTkDvAk4",
       "views": 118
-    },
-    {
-      "title": "Str4d on Risks of Delays deploying ZSAs in NU6",
-      "video_id": "Axedp0cjcl0",
-      "views": 117
     },
     {
       "title": "Zcash Arborist Call 02-20-2025",
@@ -1575,7 +1575,7 @@
     {
       "title": "Johnny Zcash live at Zcon4",
       "video_id": "G_jBeOL8H-o",
-      "views": 107
+      "views": 108
     },
     {
       "title": "Zcash Global Ambassador Lightning Talks: Zcon4",
