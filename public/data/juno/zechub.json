@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 27,
-    "proposal_count": 152,
+    "proposal_count": 153,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6241,7 +6241,7 @@
           "title": "Zcash India — Proposal | June to August 2026",
           "votes": {
             "no": "0",
-            "yes": "17",
+            "yes": "18",
             "abstain": "0"
           },
           "status": "open",
@@ -6286,7 +6286,7 @@
           "title": "Remove Inactive Members",
           "votes": {
             "no": "0",
-            "yes": "12",
+            "yes": "16",
             "abstain": "0"
           },
           "status": "open",
@@ -6311,6 +6311,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-05-26T21:14:57.235Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 153,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash East Africa (June -July 2026)",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1780506500443922405"
+          },
+          "description": "# Zcash East Africa (June-July 2026) \n\n## Overview\n\nZcash East Africa is a Community initiative focused on expanding awareness, education, and community adoption of Zcash and financial privacy technologies across East Africa.\n\nThe region represents a strong opportunity for Zcash growth due to:\n\n* rapidly increasing crypto adoption,\n* widespread mobile payment usage,\n* a growing youth and developer population,\n* and increasing conversations around digital identity, financial freedom, and privacy.\n\nOver the past month, we have started building meaningful momentum for Zcash in the region through community-led initiatives, educational outreach, translations, and ecosystem representation.\n\nThis proposal seeks funding support for the next two months to continue and expand these efforts in a more structured and sustainable way.\n\n---\n\n# What We Have Accomplished So Far\n\nDespite operating with limited resources, Zcash East Africa has already demonstrated strong early traction and ecosystem commitment.\n\n## 1. KBCC 2026 Representation\n\nThrough previous grant support, we successfully represented Zcash at KBCC 2026, where we introduced attendees to:\n\n* Zcash’s privacy-first mission,\n* shielded transactions,\n* zero-knowledge technology,\n* and the broader importance of financial privacy.\n\nThis helped expose new audiences and builders to the Zcash ecosystem while establishing an early regional presence.\n\n---\n\n## 2. Community Growth & Educational Content\n\nWe have consistently published educational and ecosystem-focused content through the official Zcash East Africa channels.\n\nOur content efforts include:\n\n* educational X posts,\n* ecosystem updates,\n* privacy education threads,\n* simplified onboarding content\n* educational Memes\n* and localized narratives focused on African users.\n\nThe community has grown organically through consistent engagement and educational outreach.\n\n## Community Growth Metrics\n\n| Platform              | At Launch      | Today                  |\n| --------------------- | ---------------------------- | ------------------------------- |\n| X (Zcash East Africa) | 10 followers | 93 followers |\n| Telegram Community    | 4 members | 75 members  |\n\n\n\nThe growth we have achieved so far has been entirely community-driven and organic, demonstrating genuine interest in privacy education and the Zcash ecosystem across East Africa.\n\n\n---\n\n## 3. Swahili Ecosystem Translations\n\nTo improve accessibility and regional inclusion, we translated parts of the ZecHub ecosystem digest into Swahili.\n\nThis is an important step toward:\n\n* onboarding non-English-speaking users,\n* increasing regional accessibility,\n* and making privacy education more culturally relevant across East Africa.\n\nLocalization remains a major pillar of our strategy.\n\n---\n\n## 4. First Zcash East Africa Meetup\n\nUsing the grant support, we successfully hosted our first Zcash East Africa meetup at Egerton University.\n\nThe meetup focused on:\n\n* introducing participants to Zcash,\n* discussing financial privacy,\n* onboarding newcomers,\n* and strengthening community connections.\n\nThe event was well-received by the Students and demonstrated strong local interest in privacy-focused technologies and community-driven education.\n\n---\n\n## The Team\n\n### Sarah Wahinya(Sonnie)- Community lead:\nprev. Led Stellar East Africa and led builder onboarding, grant pipelines, regulator engagement, and multi-country execution. She pairs deep local networks (founders, regulators, the Virtual Assets Chamber) with operator discipline,  currently handles events, community, and roadmap compliance at Zcash East Africa.\n\n### Damilare Kalejaiye, Growth lead:\nAn active ecosystem contributor who has actively contributed to the growth of local communities in Africa. will handle community engagements, partnerships, developers and builders support and onboarding campaigns\n\n### Segs Haliu: \nis a creative visual designer and blockchain content creator with over two years in the Web3 space, A 17× bounty winner (Design and Content bounties) across leading ecosystems. handles graphics design, content strategy and support.\n\n\n# Community Goals (Next 2 Months)\n\nThe goal of this proposal is to continue building sustainable momentum for Zcash adoption and education across East Africa.\n\n## Core Focus Areas\n\n### 1. Educational Content Expansion\n\nWe will continue producing:\n\n* educational threads,\n* simplified privacy explainers,\n* ecosystem updates,\n* visual content for X and YouTube\n* and beginner-friendly onboarding materials.\n\nContent will remain focused on:\n\n* financial privacy,\n* user control,\n* digital identity,\n* and real-world relevance for African users.\n\n---\n\n### 2. Regional Localization\n\nWe plan to expand Swahili translations and localized educational content to improve accessibility for East African audiences.\n\nThis includes:\n\n* translated ecosystem updates,\n* educational graphics,\n* simplified explainers videos,\n* and regional storytelling.\n\n---\n\n### 3. Community Growth\n\nWe will continue growing the Zcash East Africa community through:\n\n* X/Twitter engagement,\n* Telegram community expansion,\n* community discussions,\n* and consistent onboarding efforts.\n\n---\n\n### 4. Meetups & Community Events\n\nWe plan to organize additional community meetups and online educational sessions focused on:\n\n* Zcash onboarding,\n* privacy education,\n* shielded transactions,\n* and ecosystem awareness.\n\nThese events will help strengthen grassroots participation and long-term community retention.\n\n---\n\n### 5. International Ecosystem Representation\n\nAs part of these continued efforts, we're positioning Zcash East Africa to represent the ecosystem at major international blockchain and developer events later this year.\n\nWe are particularly looking toward participation and visibility opportunities at:\n\n* EthSafari 2026 (September)\n* African Blockchain Festival 2026 (October)\n\nThese events represent valuable opportunities to:\n\n* introduce Zcash to wider African and global audiences\n* connect with developers and ecosystem builders\n* strengthen partnerships\n* and establish a stronger regional presence for Zcash within Africa’s growing blockchain ecosystem.\n\nOur goal is to ensure that Zcash has visible grassroots representation within major African Web3 conversations.\n\n\n# Expected Outcomes\n\nBy the end of the proposed two-month period, we aim to achieve:\n\n* Continued organic growth across social platforms\n* Increased awareness of Zcash within East Africa\n* Expanded Swahili educational resources\n* More community-led engagement and discussions\n* Additional onboarding of new users into the ecosystem\n* Stronger regional visibility for Zcash\n* An active YouTube  channel\n\n---\nCommunity Channels( proofs)\n\nCommunity forum thread: https://forum.zcashcommunity.com/t/zcash-east-africa-community/55909\n\nX account: https://x.com/ZcashEastAfrica\n\nTelegram: https://t.me/ZcashEastAfrica\n\nSubstack: https://zcasheastafrica.substack.com/\n\n---\n\n# Why This Matters\n\nFinancial privacy conversations are becoming increasingly important across Africa as more people adopt digital finance, mobile payments, and cryptocurrencies.\n\nZcash East Africa aims to ensure that the conversation around financial freedom in Africa also includes:\n\n* privacy,\n* user choice,\n* and digital dignity.\n\nWe believe East Africa can become an important region for grassroots Zcash adoption and education, and we are committed to continuing to build that foundation.\n\n---\n\n\n| Item             | Cost      | \n| --------------------- | ---------------------------- |\n| IRL university workshop (venue, branded materials, logistics) | $550 | \n| Content Support   | $100 |\n| Online meetup | $80 |\n| Community Bounty | $100  |\n| Team compensation (Sonnie, Dare, Segs) | $650 |\n|\n| Total |$1480| \n\n### Total for 2 months: $1480 x 2 months = $2960\n\n\n# Conclusion\n\nZcash East Africa has already demonstrated meaningful progress through:\n\n* ecosystem representation,\n* educational outreach,\n* localized translations,\n* organic community building,\n* and successful meetups.\n\nWith continued support, we can expand these efforts into a more sustainable and impactful regional initiative over the coming months.\n\nWe are excited to continue building awareness and community around Zcash and financial privacy across East Africa 🌍🛡️\n",
+          "total_power": "27",
+          "start_height": 38371402,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-05-29T17:08:20.443Z"
       }
     ]
   },
