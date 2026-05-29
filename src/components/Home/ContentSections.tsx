@@ -10,53 +10,6 @@ const ContentSections = () => {
 
   return (
     <section className="flex space-y-24 flex-col w-full ">
-      {/* Zcash Section */}
-      {/* <section id="zcash-me" className="px-4 my-24">
-                <FadeInAnimation>
-                  <div className="flex flex-col md:flex-row border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden">
-                    <div className="flex flex-1 items-center justify-center bg-slate-100 dark:bg-slate-800 p-6">
-                      <FadeInAnimation>
-                        <Image
-                          src="/Zcash-me.png"
-                          alt="Zcash.me"
-                          width={500}
-                          height={500}
-                          className="max-w-full h-auto"
-                          unoptimized
-                        />
-                      </FadeInAnimation>
-                    </div>
-      
-                    <div className="flex flex-col flex-1 p-6 space-y-6 items-center md:items-start justify-center text-center md:text-left">
-                      <FadeInAnimation>
-                        <h2 className="text-3xl mb-4 font-semibold text-slate-900 dark:text-slate-300">
-                          Zcash.me
-                        </h2>
-                      </FadeInAnimation>
-      
-                      <FadeInAnimation>
-                        <p className="mb-5 text-slate-700 dark:text-gray-400 leading-relaxed">
-                          Zcash.Me is a public directory of Zcash users featuring
-                          private messaging, leaderboards, and verified users.
-                          Connect, explore, and interact with the Zcash community.
-                        </p>
-                      </FadeInAnimation>
-      
-                      <FadeInAnimation className="w-full mt-auto">
-                        <div className="flex flex-col sm:flex-row gap-4 w-full">
-                          <Link
-                            href="https://zcash.me"
-                            className="flex-1 inline-flex justify-center items-center px-4 py-4 text-md font-bold rounded-lg text-white bg-brand hover:bg-brand-hover focus:ring-4 focus:outline-none focus:ring-brand"
-                          >
-                            Visit Zcash.Me
-                          </Link>
-                        </div>
-                      </FadeInAnimation>
-                    </div>
-                  </div>
-                </FadeInAnimation>
-              </section> */}
-
       <InfoCard
         id="hackathon"
         title={t.home?.sections?.hackathon?.title || "Join the Hackathon"}
@@ -65,8 +18,8 @@ const ContentSections = () => {
           "Build, collaborate, and ship impactful ideas with the Zcash community. Compete across five innovative tracks: Infrastructure for nodes and indexers, Games for interactive experiences, FROST for threshold signing, Zcash Login for authentication solutions, and Accounting for financial workflows. May 25 - July 15, 2026. 25 ZEC prize pool awaits."
         }
         image="/hackathon_new.png"
-        imageLight="/explore/dark/zechub_hackathon.svg"
-        imageDark="/explore/light/zechub_hackathon.svg"
+        imageLight="/explore/dark/Hackathon_b.png"
+        imageDark="/explore/light/Hackathon_w.png"
         links={[
           {
             href: "/hackathon",
@@ -77,25 +30,8 @@ const ContentSections = () => {
         ]}
       />
       <InfoCard
-        id="zcash-me"
-        title={t.home?.sections?.zcashMe?.title || "Zcash.me"}
-        description={
-          t.home?.sections?.zcashMe?.description ||
-          "Zcash.Me is a public directory of Zcash users featuring private messaging, leaderboards, and verified users. Connect, explore, and interact with the Zcash community."
-        }
-        image="/Zcash-me.png"
-        imageLight="/Zcash-me.png"
-        imageDark="/Zcash-me.png"
-        links={[
-          {
-            href: "https://zcash.me",
-            label: t.home?.sections?.zcashMe?.link || "Visit Zcash.Me",
-            primary: true,
-          },
-        ]}
-      />
-      <InfoCard
         id="what-is-zcash"
+        reverse={true}
         title={t.home?.sections?.whatIsZcash?.title || "What is Zcash?"}
         description={
           t.home?.sections?.whatIsZcash?.description ||
@@ -121,7 +57,6 @@ const ContentSections = () => {
       {/* Hackathon Section */}
       <InfoCard
         id="zcashme"
-        reverse={true}
         title={t.home?.sections?.zcashMe?.title || "Zcash.me"}
         description={
           t.home?.sections?.zcashMe?.description ||
@@ -141,6 +76,7 @@ const ContentSections = () => {
       {/* Global Ambassadors Section */}
       <InfoCard
         id="global-ambassadors"
+        reverse={true}
         title={
           t.home?.sections?.globalAmbassadors?.title ||
           "Zcash Global Ambassadors"
