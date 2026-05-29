@@ -3,19 +3,24 @@
     "channelIcon": "https://yt3.ggpht.com/ytc/AIdro_ny5D-44bCL6VlY2QqkYr1-AWIeaJmymKKH1DrFBVk5IA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Zcash Arborist Call 05-28-2026",
+            "video_id": "h76Ngomx8kk",
+            "views": 120
+        },
+        {
             "title": "Zcash Arborist Call 04-30-2026",
             "video_id": "qfIS6wORZIA",
-            "views": 394
+            "views": 404
         },
         {
             "title": "Zcash Arborist Call 04-16-2026",
             "video_id": "cmPQexrzn_o",
-            "views": 192
+            "views": 193
         },
         {
             "title": "Zcash Arborist Call 04-02-2026",
             "video_id": "-4GDsezfilc",
-            "views": 292
+            "views": 293
         },
         {
             "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
@@ -230,7 +235,7 @@
         {
             "title": "Proof of Stake Panel with Shielded Labs, Ethereum Foundation, ECC, Penumbra & Namada - ZconVI #zcash",
             "video_id": "jAcvrKa5hiw",
-            "views": 714
+            "views": 717
         },
         {
             "title": "ATH in Collaboration! with Pacu - ZconVI #zcash",
@@ -260,7 +265,7 @@
         {
             "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
             "video_id": "T2B5f297d-Y",
-            "views": 2236
+            "views": 2239
         },
         {
             "title": "Making $ZEC Cross Chain with Maya with Aaluxx Myth - ZconVI #zcash",
@@ -295,12 +300,12 @@
         {
             "title": "Technical Roadmap Panel w/ engineers from ZF, ECC, QEDIT, Shielded Labs & Zingo Labs - ZconVI #zcash",
             "video_id": "kVNBWz4QWho",
-            "views": 334
+            "views": 335
         },
         {
             "title": "Zcash Scalability with Sean Bowe - ZconVI #zcash",
             "video_id": "-m3JCgi3kiU",
-            "views": 1435
+            "views": 1436
         },
         {
             "title": "Regulatory Perspective-Peter Van Valkenburgh, Paul Brigner, Kurt Opsahl, JW Verret, & Michele Korver",
@@ -315,7 +320,7 @@
         {
             "title": "The State of Zcash in 2025 with Jack Gavigan - ZconVI 2025 #zcash",
             "video_id": "El59GnEA1FY",
-            "views": 893
+            "views": 894
         },
         {
             "title": "Zcash Wallet with Metamask Snaps (Demo) with Ivan Rubido from ChainSafe - ZconVI #zcash",
@@ -350,7 +355,7 @@
         {
             "title": "Zcash Arborist Call 01-23-2025",
             "video_id": "hKRk9O2Rki0",
-            "views": 178
+            "views": 179
         },
         {
             "title": "Zcash Arborist Call 01-09-2025",
@@ -570,7 +575,7 @@
         {
             "title": "User Research: Zcash Payments Are Normal with Tatyana - ZconV: Zcash Unified 2024 #Zcash #ZEC",
             "video_id": "eFN8mUktXVQ",
-            "views": 356
+            "views": 358
         },
         {
             "title": "Zenith, a full node wallet for Zebra with Rene Vergara  - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -980,7 +985,7 @@
         {
             "title": "Zconnaissance - Sketching a Shielded Assets Future by Vivek Arte: Zcon4",
             "video_id": "VFQHJGqO_bY",
-            "views": 348
+            "views": 352
         },
         {
             "title": "Town Hall - Technical Roadmap for Zcash: Zcon4",
@@ -1200,7 +1205,7 @@
         {
             "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
             "video_id": "f6UToqiIdeY",
-            "views": 1246
+            "views": 1248
         },
         {
             "title": "Securely Scaling Decentralized Governance - Michael Lewellen at Zcon3",
@@ -1265,7 +1270,7 @@
         {
             "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
             "video_id": "cAfTTfblzoU",
-            "views": 780
+            "views": 781
         },
         {
             "title": "Proof Carrying Data - Pratyush Mishra at Zcon3",
@@ -1295,7 +1300,7 @@
         {
             "title": "Building a world class UX for ZEC - Josh Swihart at Zcon3",
             "video_id": "yJ91V6_k5oo",
-            "views": 220
+            "views": 221
         },
         {
             "title": "Understanding the Moon Math of ZK Snarks workshop led by Anna Kaplan and Liz Steininger",
@@ -1445,7 +1450,7 @@
         {
             "title": "Zcash Protocol Hangout  Halo: Jan 14, 2021",
             "video_id": "UXURIvr_sk0",
-            "views": 1385
+            "views": 1386
         },
         {
             "title": "Zcash Protocol Hangout: Discussion about the NUP",
@@ -1455,7 +1460,7 @@
         {
             "title": "ZF Community Call - Sept 4, 2020, MGRC Candidates Part 1",
             "video_id": "Kred_7CU3s8",
-            "views": 190
+            "views": 191
         },
         {
             "title": "ZF Community Call -  Sept 4, 2020, MGRC Candidates Part 2",
