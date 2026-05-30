@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 27,
-    "proposal_count": 153,
+    "proposal_count": 154,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6244,7 +6244,7 @@
             "yes": "18",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "passed",
           "proposer": "juno1fuz6z8l6w93yrehtf97zfvpz5f5snnx47mt9qf",
           "threshold": {
             "threshold_quorum": {
@@ -6321,8 +6321,8 @@
           "title": "Zcash East Africa (June -July 2026)",
           "votes": {
             "no": "0",
-            "yes": "0",
-            "abstain": "0"
+            "yes": "2",
+            "abstain": "2"
           },
           "status": "open",
           "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
@@ -6346,6 +6346,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-05-29T17:08:20.443Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 154,
+        "proposal": {
+          "msgs": [],
+          "title": "[Proposal] Zcash Korean Global Ambassador - Q3 2026 Expansion",
+          "votes": {
+            "no": "0",
+            "yes": "3",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno18cq4kpcgyp3k5nelaq52mlwcfqk9v6dhs00ytt",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1780529805046439828"
+          },
+          "description": "Background & Track Record\n\nSince February 2025, I have served as the Korean Global Ambassador for Zcash, focusing on building visibility, accessibility, and deep community engagement in South Korea. Thanks to the continued support of the ZecHub DAO, we have transformed a quiet market into a highly active, privacy-centric hub in Asia.\n\nOur previous initiatives have yielded compounding results, proving that consistent local advocacy drives real adoption:\n\n•\tX (Twitter) Growth: Zcash Korea grew from 12 followers (Feb 2025) to 310 (Sep 2025), and through sustained momentum, the Zcash Korea X account has now reached 465 followers, with steady engagement per post.\n•\tDAO Member Recruitment Success: A key objective of our previous proposal was to recruit Korean builders into the global ecosystem. I am thrilled to report the successful onboarding of zolder (X: @Insightnerd, 2,280+ followers) as a new Korean ZecHub DAO member. His onboarding significantly amplifies our local reach and technical marketing capabilities.\n•\tStronghold on KakaoTalk & Telegram: The Zcash Korea KakaoTalk community has surged to 338 active members, becoming a prime space for real-time discussions, troubleshooting, and ecosystem updates driven by the recent growth in Zcash holders.\n\nProblem Statement & Opportunity\n\nWhile the global Zcash ecosystem benefits from positive price performance and technological milestones, localizing this momentum is critical. The Korean market is highly reactive to market growth, resulting in a fresh influx of new Zcash holders who need proper onboarding, education, and exposure to the utility of shielded transactions.\nWithout localized, high-trust leadership, these new holders remain transactional rather than becoming long-term community aligned. Continuity in our ambassador program is vital to locking in these gains.\n\nTeam Structure & Synergy\n\nTo maximize our impact during this crucial growth phase, the Zcash Korea initiative will operate as a dual-ambassador model for Q3:\n•\tAiden (Korea Global Ambassador): Will continue to oversee community operations, manage core channels (KakaoTalk/Telegram), host monthly interactive campaigns, and handle DAO reporting.\n•\tzolder (@Insightnerd - Zechub DAO member): Will leverage his established 2.2k+ Web3 audience to drive high-funnel awareness, produce advanced technical/privacy-centric content, and expand Zcash’s B2B and developer network in Korea.\n\nObjectives (Q3: 3 Months)\n\n1.\tSolidify Asia’s Premier Zcash Hub: Capitalize on the current market momentum to further scale the KakaoTalk, Telegram, and X channels.\n2.\tExecute Dual-Channel Marketing: Combine Aiden's community-building track record with zolder's marketing reach to run sophisticated campaigns bridging mainstream crypto users with technical privacy.\n3.\tOnboard New Holders to Shielded Wallets: Shift new exchange-based holders toward self-custody and active shielded address usage.\n\nProposed Activities\n\n•\tOnboarding New Users to Shielded Wallets: Actively assist newcomers in downloading and setting up their first Zcash wallet. We will launch targeted campaigns, such as a \"Wallet Setup & Twitter Verification\" event, drawing 10 participants monthly to receive 0.01 ZEC upon successfully generating and shielding a ZODL wallet address.\n•\tEducational Content & Media Production: Create high-quality educational guides and video content covering Zcash’s privacy features and real-world applications. This content will be cross-posted and highlighted across the Zcash Korea Naver Cafe and the official Zcash Korea X account highlights.\n•\tLocalization & Translation: Provide timely, high-fidelity Korean translations of Zcash network upgrades, ecosystem reports, and ZecHub documentation to remove linguistic barriers for Korean users.\n•\tOmnichannel Engagement (On/Offline): Drive continuous user influx through regular online X Spaces, Korean-tailored AMAs, and casual quiz/airdrop events. We will compile and manage a monthly list of community Q&As, provide comprehensive answers, and archive them publicly on the Naver Cafe.\n•\tNurturing Technical Contributors: Actively scout and mentor Korean developers and open-source contributors who are interested in Zcash ecosystem grants or contributing directly to Zcash open-source repositories.\n\nBudget\n\nWe are requesting a total of $1,000 per month to support the expanded operations of two dedicated contributors for the 3 months of Q3, ensuring comprehensive coverage across community management, technical content creation, and ecosystem growth.\n•\tAiden (Korea Global Ambassador): $500 / month (Including X Verification Badge fee)\n•\tzolder (Zechub DAO member): $500 / month (Including X Verification Badge fee)\n•\tTotal Monthly Budget: $1,000 / month\n•\tTotal Proposal Request (3 Months - Q3): $3,000\n\nClosing\n\nThis proposal represents a major step forward for Zcash Korea. By combining our foundational community base with zolder's expanded reach and an aggressive focus on wallet onboarding and developer scouting, we are fully equipped to capture the surging interest in the Korean market. This budget directly empowers a dedicated two-man team to lock in sustainable, long-term growth for Zcash in Asia.\nThank you for your trust and continued support. Together with the DAO, we will continue to build the most vibrant privacy community in Asia.",
+          "total_power": "27",
+          "start_height": 38379810,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-05-29T23:36:45.046Z"
       }
     ]
   },
