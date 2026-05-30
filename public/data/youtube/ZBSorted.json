@@ -130,7 +130,7 @@
     {
       "title": "O futuro distópico da moeda digital",
       "video_id": "7X_4N947k2E",
-      "views": 620
+      "views": 621
     },
     {
       "title": "Soberania Econômica e Blockchain.",
@@ -165,7 +165,7 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 523
+      "views": 525
     },
     {
       "title": "Impactos das guerras globais na economia brasileira",
@@ -188,14 +188,14 @@
       "views": 480
     },
     {
-      "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endereço Shielded",
-      "video_id": "YTFIW4S2c0A",
+      "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
+      "video_id": "9C9Tnc8dEGI",
       "views": 456
     },
     {
-      "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
-      "video_id": "9C9Tnc8dEGI",
-      "views": 453
+      "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endereço Shielded",
+      "video_id": "YTFIW4S2c0A",
+      "views": 455
     },
     {
       "title": "Zcash UX & Monero",
@@ -401,6 +401,11 @@
       "title": "Tutorial Zingo! Carteira para Zcash",
       "video_id": "gg6YKmdrxAs",
       "views": 230
+    },
+    {
+      "title": "A cultura da Zcash é diferente.",
+      "video_id": "NGazTgYWZvg",
+      "views": 228
     },
     {
       "title": "Informação Direcionada e Política.  #ai #podcast #privacidade",
@@ -623,13 +628,13 @@
       "views": 162
     },
     {
-      "title": "Rodando Seu Próprio Nó Zcash no Linux — Zebrad + Firewall + RPC + Systemd (Guia Completo)",
-      "video_id": "Cbz1BTuKRUo",
-      "views": 161
-    },
-    {
       "title": "A Golden Year for Zcash | Christimas Zcash Soundtrack",
       "video_id": "hSBTvWw8bUI",
+      "views": 162
+    },
+    {
+      "title": "Rodando Seu Próprio Nó Zcash no Linux — Zebrad + Firewall + RPC + Systemd (Guia Completo)",
+      "video_id": "Cbz1BTuKRUo",
       "views": 161
     },
     {
@@ -653,6 +658,11 @@
       "views": 155
     },
     {
+      "title": "Zcash na Cake Wallet - Tutorial Completo",
+      "video_id": "ngzYYqcRa84",
+      "views": 155
+    },
+    {
       "title": "Victor Valente destacou que a entrada das instituições no ecossistema mostra a maturidade do setor.",
       "video_id": "KJGkyBnouKQ",
       "views": 154
@@ -660,11 +670,6 @@
     {
       "title": "Mundo em Mudança - O grande Reset com Casta Crypto.",
       "video_id": "lNKn-eP8OiA",
-      "views": 154
-    },
-    {
-      "title": "Zcash na Cake Wallet - Tutorial Completo",
-      "video_id": "ngzYYqcRa84",
       "views": 154
     },
     {
@@ -793,13 +798,13 @@
       "views": 133
     },
     {
-      "title": "Educar Mais: De Coletivo de Leitura a Ponte para Tecnologia",
-      "video_id": "TaTRPNOJZkk",
-      "views": 133
-    },
-    {
       "title": "Os riscos da dependência da IA.  #ai #podcast #privacidade",
       "video_id": "dD6amdW_TOA",
+      "views": 132
+    },
+    {
+      "title": "Educar Mais: De Coletivo de Leitura a Ponte para Tecnologia",
+      "video_id": "TaTRPNOJZkk",
       "views": 132
     },
     {
@@ -2313,6 +2318,11 @@
       "views": 35
     },
     {
+      "title": "A Origem do Tor",
+      "video_id": "wTpGcCvXfD0",
+      "views": 35
+    },
+    {
       "title": "Shielded Call | ZKool: A nova wallet",
       "video_id": "s0EMYuLekEg",
       "views": 35
@@ -2340,11 +2350,6 @@
     {
       "title": "Zcash Ceremony - Legendado Português",
       "video_id": "LwyQogHZbSI",
-      "views": 34
-    },
-    {
-      "title": "A Origem do Tor",
-      "video_id": "wTpGcCvXfD0",
       "views": 34
     },
     {
@@ -2710,6 +2715,11 @@
     {
       "title": "Mert explica como é bom para o protocolo Zcash o caso da ECC.",
       "video_id": "R3e37ugZ74s",
+      "views": 26
+    },
+    {
+      "title": "Zcon Vozes 2 | Juntos Construimos o Futuro. FIAP São Paulo",
+      "video_id": "X6_VgYW9gJ0",
       "views": 26
     },
     {
@@ -3378,6 +3388,11 @@
       "views": 10
     },
     {
+      "title": "Special Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
+      "video_id": "jrWNz29nHKk",
+      "views": 10
+    },
+    {
       "title": "WEEKLYCALL #10 - Node para Windows, MacOS e Debian.",
       "video_id": "fFlP1pwa0LQ",
       "views": 9
@@ -3483,11 +3498,6 @@
       "views": 6
     },
     {
-      "title": "Special Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
-      "video_id": "jrWNz29nHKk",
-      "views": 6
-    },
-    {
       "title": "Call de comemoração de 1 ano de Zcon Vozes",
       "video_id": "w3M8Tg0JzfQ",
       "views": 5
@@ -3508,9 +3518,9 @@
       "views": 3
     },
     {
-      "title": "Zcon Vozes 2 | Juntos Construimos o Futuro. FIAP São Paulo",
-      "video_id": "X6_VgYW9gJ0",
-      "views": 0
+      "title": "Zcon Vozes 2 | Juntos Construimos o Futuro teste",
+      "video_id": "BVvnEMEorpA",
+      "views": 1
     }
   ]
 }
