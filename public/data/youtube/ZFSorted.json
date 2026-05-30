@@ -5,7 +5,7 @@
     {
       "title": "Peter Van Valkenburgh, of Coin Center, on the OFAC Tornado Cash SDN listing at Zcon3",
       "video_id": "XpTrCA3tEKM",
-      "views": 7695
+      "views": 7696
     },
     {
       "title": "ZK Rollup: Ethereum Scalability with ZKPs - Alex Gluchowski",
@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2239
+      "views": 2244
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -80,7 +80,7 @@
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1248
+      "views": 1249
     },
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
@@ -125,7 +125,7 @@
     {
       "title": "Halo 2 Community Showcase - Ying Tong at Zcon3",
       "video_id": "JJi2TT2Ahp0",
-      "views": 996
+      "views": 997
     },
     {
       "title": "A History of Zcash at Zcon0 (2018) by Nathan Wilcox",
@@ -135,7 +135,7 @@
     {
       "title": "Zecwallet Lite on Windows Tutorial #1",
       "video_id": "4v_wr6DBY48",
-      "views": 951
+      "views": 952
     },
     {
       "title": "Tooling for building zkEVM: PIL and Circom - Jordi Baylina at Zcon3",
@@ -310,7 +310,7 @@
     {
       "title": "Arti: ZF + ZCG Call w/ the Tor Project",
       "video_id": "E7g9dKBOYEI",
-      "views": 510
+      "views": 511
     },
     {
       "title": "ECC Update with Josh Swihart - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -320,7 +320,7 @@
     {
       "title": "Build on Zcash",
       "video_id": "DaEWasYlUbg",
-      "views": 490
+      "views": 491
     },
     {
       "title": "Zcash and the Regulatory/Policy Environment Sessions - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -430,7 +430,7 @@
     {
       "title": "Zcash Arborist Call 04-30-2026",
       "video_id": "qfIS6wORZIA",
-      "views": 404
+      "views": 405
     },
     {
       "title": "ZEXE: Enabling Decentralized Private Computation - Pratyush Mishra",
@@ -498,14 +498,14 @@
       "views": 361
     },
     {
+      "title": "User Research: Zcash Payments Are Normal with Tatyana - ZconV: Zcash Unified 2024 #Zcash #ZEC",
+      "video_id": "eFN8mUktXVQ",
+      "views": 360
+    },
+    {
       "title": "SoK: Programmable Privacy in Zcash with Ying Tong and Daniel Benarroch: Zcon4",
       "video_id": "PBE0YAeiMa4",
       "views": 359
-    },
-    {
-      "title": "User Research: Zcash Payments Are Normal with Tatyana - ZconV: Zcash Unified 2024 #Zcash #ZEC",
-      "video_id": "eFN8mUktXVQ",
-      "views": 358
     },
     {
       "title": "The Technical Road Ahead with ZF, ECC, and QEDIT - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -1020,7 +1020,7 @@
     {
       "title": "Zebra Walkthrough for Zcash Developers",
       "video_id": "aV93Ux3j4Gw",
-      "views": 193
+      "views": 195
     },
     {
       "title": "Zcash Arborist Call 04-16-2026",
@@ -1100,6 +1100,11 @@
     {
       "title": "MGRC Candidate Q&A Live Streams: Time Slot #2",
       "video_id": "SbA_AN05nUU",
+      "views": 178
+    },
+    {
+      "title": "Zcash Arborist Call 05-28-2026",
+      "video_id": "h76Ngomx8kk",
       "views": 178
     },
     {
@@ -1488,11 +1493,6 @@
       "views": 120
     },
     {
-      "title": "Zcash Arborist Call 05-28-2026",
-      "video_id": "h76Ngomx8kk",
-      "views": 120
-    },
-    {
       "title": "First Zebra Block!",
       "video_id": "zzRH_R8bha0",
       "views": 119
@@ -1580,7 +1580,7 @@
     {
       "title": "Johnny Zcash live at Zcon4",
       "video_id": "G_jBeOL8H-o",
-      "views": 108
+      "views": 109
     },
     {
       "title": "Zcash Global Ambassador Lightning Talks: Zcon4",
@@ -1698,6 +1698,11 @@
       "views": 81
     },
     {
+      "title": "ATH in Collaboration! with Pacu - ZconVI #zcash",
+      "video_id": "w84GZxmzp7Y",
+      "views": 81
+    },
+    {
       "title": "ZconVI Community Recap Hosted by ZK AV Club- ZconVI #zcash",
       "video_id": "N8yO0gsHsO0",
       "views": 81
@@ -1705,11 +1710,6 @@
     {
       "title": "Zcash Arborist Call 10/5/23",
       "video_id": "jmeQayEd3zw",
-      "views": 80
-    },
-    {
-      "title": "ATH in Collaboration! with Pacu - ZconVI #zcash",
-      "video_id": "w84GZxmzp7Y",
       "views": 80
     },
     {
