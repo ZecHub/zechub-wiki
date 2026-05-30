@@ -5,22 +5,32 @@
         {
             "title": "Zcon Vozes 2 | Juntos Construimos o Futuro. FIAP S\u00e3o Paulo",
             "video_id": "X6_VgYW9gJ0",
-            "views": 0
+            "views": 26
+        },
+        {
+            "title": "Zcon Vozes 2 | Juntos Construimos o Futuro teste",
+            "video_id": "BVvnEMEorpA",
+            "views": 1
+        },
+        {
+            "title": "A cultura da Zcash \u00e9 diferente.",
+            "video_id": "NGazTgYWZvg",
+            "views": 228
         },
         {
             "title": "Educar Mais: De Coletivo de Leitura a Ponte para Tecnologia",
             "video_id": "TaTRPNOJZkk",
-            "views": 133
+            "views": 132
         },
         {
             "title": "Special Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
             "video_id": "jrWNz29nHKk",
-            "views": 6
+            "views": 10
         },
         {
             "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endere\u00e7o Shielded",
             "video_id": "YTFIW4S2c0A",
-            "views": 456
+            "views": 455
         },
         {
             "title": "Vota\u00e7\u00e3o pela Zodl e Novas Wallets | Zec Insider",
@@ -565,7 +575,7 @@
         {
             "title": "Zcash na Cake Wallet - Tutorial Completo",
             "video_id": "ngzYYqcRa84",
-            "views": 154
+            "views": 155
         },
         {
             "title": "Chat criptografado precisa de dinheiro criptografado.",
@@ -740,7 +750,7 @@
         {
             "title": "A Golden Year for Zcash | Christimas Zcash Soundtrack",
             "video_id": "hSBTvWw8bUI",
-            "views": 161
+            "views": 162
         },
         {
             "title": "Resistencia mental, a maior doen\u00e7a que impede o aprendizado.",
@@ -870,7 +880,7 @@
         {
             "title": "Conhe\u00e7a a P2P.me: Plataforma para comprar e vender USDC de forma an\u00f4nima",
             "video_id": "9C9Tnc8dEGI",
-            "views": 453
+            "views": 456
         },
         {
             "title": "Incertezas financeiras e o salto do DeFi.",
@@ -1185,7 +1195,7 @@
         {
             "title": "Por que a Zcash \u00e9 melhor que a Monero para privacidade.",
             "video_id": "XW53tyjerd4",
-            "views": 523
+            "views": 525
         },
         {
             "title": "O tripe do poder atual- governos, mega corpora\u00e7\u00f5es e bancos",
@@ -2160,7 +2170,7 @@
         {
             "title": "O futuro dist\u00f3pico da moeda digital",
             "video_id": "7X_4N947k2E",
-            "views": 620
+            "views": 621
         },
         {
             "title": "Shielded Call | FROST: a nova era das multisigs privadas",
@@ -2490,7 +2500,7 @@
         {
             "title": "A Origem do Tor",
             "video_id": "wTpGcCvXfD0",
-            "views": 34
+            "views": 35
         },
         {
             "title": "A Era da Vigil\u00e2ncia e a Liberdade.",
