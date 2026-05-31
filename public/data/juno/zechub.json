@@ -6244,7 +6244,7 @@
             "yes": "18",
             "abstain": "0"
           },
-          "status": "passed",
+          "status": "executed",
           "proposer": "juno1fuz6z8l6w93yrehtf97zfvpz5f5snnx47mt9qf",
           "threshold": {
             "threshold_quorum": {
@@ -6265,7 +6265,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-05-25T12:31:13.788Z"
+        "createdAt": "2026-05-25T12:31:13.788Z",
+        "completedAt": "2026-05-31T14:00:44.000Z",
+        "executedAt": "2026-05-31T14:00:44.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6322,7 +6324,7 @@
           "votes": {
             "no": "0",
             "yes": "2",
-            "abstain": "2"
+            "abstain": "3"
           },
           "status": "open",
           "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
@@ -6357,7 +6359,7 @@
           "votes": {
             "no": "0",
             "yes": "3",
-            "abstain": "0"
+            "abstain": "2"
           },
           "status": "open",
           "proposer": "juno18cq4kpcgyp3k5nelaq52mlwcfqk9v6dhs00ytt",
