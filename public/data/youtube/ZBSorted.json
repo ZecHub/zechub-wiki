@@ -70,7 +70,7 @@
     {
       "title": "Casta Estuda - Bitcoin X Zcash",
       "video_id": "X2iDTlijlc0",
-      "views": 791
+      "views": 796
     },
     {
       "title": "Quanto você tem?",
@@ -145,7 +145,7 @@
     {
       "title": "Vitalik Buterin fala sobre ZKP #zcash #zkp",
       "video_id": "O9uwBEI6bIk",
-      "views": 592
+      "views": 593
     },
     {
       "title": "Se você conhece #satoshi, as regras de estacionamento não se aplicam",
@@ -165,7 +165,7 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 525
+      "views": 528
     },
     {
       "title": "Impactos das guerras globais na economia brasileira",
@@ -190,12 +190,12 @@
     {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
-      "views": 456
+      "views": 457
     },
     {
       "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endereço Shielded",
       "video_id": "YTFIW4S2c0A",
-      "views": 455
+      "views": 456
     },
     {
       "title": "Zcash UX & Monero",
@@ -255,7 +255,7 @@
     {
       "title": "Vitalik Buterin - Privacidade  LEGENDADO",
       "video_id": "iqIzkQI8HeU",
-      "views": 331
+      "views": 332
     },
     {
       "title": "Josh: Privacidade é Agência, e Bitcoin Não Entregou Isso",
@@ -403,11 +403,6 @@
       "views": 230
     },
     {
-      "title": "A cultura da Zcash é diferente.",
-      "video_id": "NGazTgYWZvg",
-      "views": 228
-    },
-    {
       "title": "Informação Direcionada e Política.  #ai #podcast #privacidade",
       "video_id": "2ZUQM5CoC04",
       "views": 227
@@ -463,14 +458,19 @@
       "views": 205
     },
     {
+      "title": "Unstoppable Private Money | Zcash Soundtrack",
+      "video_id": "Nx8kS23T_0o",
+      "views": 204
+    },
+    {
+      "title": "A cultura da Zcash é diferente.",
+      "video_id": "NGazTgYWZvg",
+      "views": 204
+    },
+    {
       "title": "Comprando Zcash no PIX na Coinbase usando a carteira Zashi!",
       "video_id": "7eUzfSeCk5k",
       "views": 203
-    },
-    {
-      "title": "Unstoppable Private Money | Zcash Soundtrack",
-      "video_id": "Nx8kS23T_0o",
-      "views": 201
     },
     {
       "title": "Como o Zcash usa provas de conhecimento zero para privacidade.",
@@ -613,6 +613,11 @@
       "views": 165
     },
     {
+      "title": "A Golden Year for Zcash | Christimas Zcash Soundtrack",
+      "video_id": "hSBTvWw8bUI",
+      "views": 165
+    },
+    {
       "title": "A Ilusão do Dinheiro Fictício",
       "video_id": "qhnJIOc2ln4",
       "views": 163
@@ -625,11 +630,6 @@
     {
       "title": "Zebra Talk | A Fronteira Financeira liderada por elas. #DeFi",
       "video_id": "FWZR2DJHl0U",
-      "views": 162
-    },
-    {
-      "title": "A Golden Year for Zcash | Christimas Zcash Soundtrack",
-      "video_id": "hSBTvWw8bUI",
       "views": 162
     },
     {
@@ -653,13 +653,13 @@
       "views": 156
     },
     {
-      "title": "Adoção crescente da privacidade por meio da Zcash Shielded Pool.",
-      "video_id": "YqhigOJhfHE",
-      "views": 155
-    },
-    {
       "title": "Zcash na Cake Wallet - Tutorial Completo",
       "video_id": "ngzYYqcRa84",
+      "views": 156
+    },
+    {
+      "title": "Adoção crescente da privacidade por meio da Zcash Shielded Pool.",
+      "video_id": "YqhigOJhfHE",
       "views": 155
     },
     {
@@ -748,19 +748,29 @@
       "views": 139
     },
     {
+      "title": "Tutorial Shielded Zcash na Metamask",
+      "video_id": "Et8d-rM7YXQ",
+      "views": 139
+    },
+    {
       "title": "Rejeição de indicadores e foco no Smart Money.",
       "video_id": "0v8uLGupUm4",
       "views": 139
     },
     {
-      "title": "Tutorial Shielded Zcash na Metamask",
-      "video_id": "Et8d-rM7YXQ",
-      "views": 138
-    },
-    {
       "title": "A mentalidade colaborativa da web 3 versus a advocacia tradicional",
       "video_id": "DShxo0L5ud4",
       "views": 138
+    },
+    {
+      "title": "Zcash Vibe | Zcash Soundtrack",
+      "video_id": "FDcKJuLMypw",
+      "views": 137
+    },
+    {
+      "title": "Intent to Connect | Zcash Soundtrack",
+      "video_id": "mdizWdKz57Q",
+      "views": 136
     },
     {
       "title": "Privacidade = Liberdade de escolher o que compartilhar",
@@ -793,11 +803,6 @@
       "views": 134
     },
     {
-      "title": "Zcash Vibe | Zcash Soundtrack",
-      "video_id": "FDcKJuLMypw",
-      "views": 133
-    },
-    {
       "title": "Os riscos da dependência da IA.  #ai #podcast #privacidade",
       "video_id": "dD6amdW_TOA",
       "views": 132
@@ -813,11 +818,6 @@
       "views": 131
     },
     {
-      "title": "Intent to Connect | Zcash Soundtrack",
-      "video_id": "mdizWdKz57Q",
-      "views": 131
-    },
-    {
       "title": "Expansão Monetária:  Um Perigo Oculto",
       "video_id": "dbS_HwZI7Bo",
       "views": 130
@@ -826,6 +826,11 @@
       "title": "O fracasso da adoção do Bitcoin em El Salvador",
       "video_id": "Ly81zdZGW2w",
       "views": 129
+    },
+    {
+      "title": "Zcon Vozes 2 | Juntos Construimos o Futuro. FIAP São Paulo",
+      "video_id": "X6_VgYW9gJ0",
+      "views": 126
     },
     {
       "title": "A nova moeda global #dadospessoais #podcast #privacidade",
@@ -1513,6 +1518,11 @@
       "views": 70
     },
     {
+      "title": "Tachyon Sky | Zcash Soundtrack",
+      "video_id": "Y0uosmq4Uo8",
+      "views": 70
+    },
+    {
       "title": "Balaji explica por que a próxima fase do mercado cripto é a privacidade.",
       "video_id": "yJDZv7JNLyU",
       "views": 70
@@ -1568,11 +1578,6 @@
       "views": 67
     },
     {
-      "title": "Tachyon Sky | Zcash Soundtrack",
-      "video_id": "Y0uosmq4Uo8",
-      "views": 67
-    },
-    {
       "title": "A ilusão de privacidade nas mídias sociais e transações digitais",
       "video_id": "0XDXYtzgDqY",
       "views": 66
@@ -1593,6 +1598,16 @@
       "views": 66
     },
     {
+      "title": "9 Years of Privacy | Zcash Soundtrack",
+      "video_id": "T218FMzR_C0",
+      "views": 66
+    },
+    {
+      "title": "Tachyon com Sean Bowe: Sincronização Instantânea e Escalabilidade na Zcash | Engineering #5",
+      "video_id": "uB7Tf4LlGoA",
+      "views": 66
+    },
+    {
       "title": "As amarras invisíveis da liberdade moderna.",
       "video_id": "5kQEfyNMrZc",
       "views": 65
@@ -1610,11 +1625,6 @@
     {
       "title": "Zec Insider - Trezor e Zcash Shielded",
       "video_id": "rGd0H1Qc5V4",
-      "views": 65
-    },
-    {
-      "title": "Tachyon com Sean Bowe: Sincronização Instantânea e Escalabilidade na Zcash | Engineering #5",
-      "video_id": "uB7Tf4LlGoA",
       "views": 65
     },
     {
@@ -1640,11 +1650,6 @@
     {
       "title": "Por que a privacidade é importante, por Sean Bowe.",
       "video_id": "xf7PJXEooYM",
-      "views": 62
-    },
-    {
-      "title": "9 Years of Privacy | Zcash Soundtrack",
-      "video_id": "T218FMzR_C0",
       "views": 62
     },
     {
@@ -2563,6 +2568,11 @@
       "views": 30
     },
     {
+      "title": "Protocol Study #2: Addresses, Keys, and the Privacy Onion | Engineering #9",
+      "video_id": "z6V-NhTWE3Q",
+      "views": 30
+    },
+    {
       "title": "Zcash Brasil - Weekly Call - 4 Edição",
       "video_id": "IpkriXHzcI4",
       "views": 29
@@ -2605,11 +2615,6 @@
     {
       "title": "Reconhecimento Facial em Eventos: O Alerta do Massive Attack",
       "video_id": "2tMj-7cnORw",
-      "views": 29
-    },
-    {
-      "title": "Protocol Study #2: Addresses, Keys, and the Privacy Onion | Engineering #9",
-      "video_id": "z6V-NhTWE3Q",
       "views": 29
     },
     {
@@ -2715,11 +2720,6 @@
     {
       "title": "Mert explica como é bom para o protocolo Zcash o caso da ECC.",
       "video_id": "R3e37ugZ74s",
-      "views": 26
-    },
-    {
-      "title": "Zcon Vozes 2 | Juntos Construimos o Futuro. FIAP São Paulo",
-      "video_id": "X6_VgYW9gJ0",
       "views": 26
     },
     {
@@ -3520,7 +3520,7 @@
     {
       "title": "Zcon Vozes 2 | Juntos Construimos o Futuro teste",
       "video_id": "BVvnEMEorpA",
-      "views": 1
+      "views": 3
     }
   ]
 }
