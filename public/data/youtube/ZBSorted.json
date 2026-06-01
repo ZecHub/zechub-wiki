@@ -35,7 +35,7 @@
     {
       "title": "Conheça Zooko, a maior fã da Zcash! #https #privacidade #blockchain  #criptomoedas",
       "video_id": "eGrvVLhYBSw",
-      "views": 1008
+      "views": 1009
     },
     {
       "title": "Inclusão tecnológica e educação sobre privacidade andam juntas.",
@@ -140,7 +140,7 @@
     {
       "title": "Bitcoin deveria adotar um nível de proteção semelhante ao da Zcash.",
       "video_id": "NDGvB_IgD-A",
-      "views": 600
+      "views": 601
     },
     {
       "title": "Vitalik Buterin fala sobre ZKP #zcash #zkp",
@@ -165,7 +165,7 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 529
+      "views": 530
     },
     {
       "title": "Impactos das guerras globais na economia brasileira",
@@ -633,14 +633,19 @@
       "views": 162
     },
     {
+      "title": "Zcon Vozes 2 | Juntos Construimos o Futuro. FIAP São Paulo",
+      "video_id": "X6_VgYW9gJ0",
+      "views": 162
+    },
+    {
       "title": "Rodando Seu Próprio Nó Zcash no Linux — Zebrad + Firewall + RPC + Systemd (Guia Completo)",
       "video_id": "Cbz1BTuKRUo",
       "views": 161
     },
     {
-      "title": "Zcon Vozes 2 | Juntos Construimos o Futuro. FIAP São Paulo",
-      "video_id": "X6_VgYW9gJ0",
-      "views": 161
+      "title": "Bitcoin não funciona como pagamento sem privacidade — Josh Swihart",
+      "video_id": "8YeRTgX55BE",
+      "views": 160
     },
     {
       "title": "Cripto invisível no dia a dia.",
@@ -648,18 +653,13 @@
       "views": 159
     },
     {
-      "title": "Bitcoin não funciona como pagamento sem privacidade — Josh Swihart",
-      "video_id": "8YeRTgX55BE",
-      "views": 159
+      "title": "Zcash na Cake Wallet - Tutorial Completo",
+      "video_id": "ngzYYqcRa84",
+      "views": 157
     },
     {
       "title": "Alpha de verdade: Uma jornada além do financeiro.",
       "video_id": "x2HRlQRprIU",
-      "views": 156
-    },
-    {
-      "title": "Zcash na Cake Wallet - Tutorial Completo",
-      "video_id": "ngzYYqcRa84",
       "views": 156
     },
     {
@@ -923,14 +923,14 @@
       "views": 115
     },
     {
-      "title": "Segurança no Mundo de Agentes: Como Pensar Defesa Agora",
-      "video_id": "IPwLtOF9BhQ",
+      "title": "Compreendendo o Tachyon e seus gargalos",
+      "video_id": "-gDK7iPUX68",
       "views": 115
     },
     {
-      "title": "Compreendendo o Tachyon e seus gargalos",
-      "video_id": "-gDK7iPUX68",
-      "views": 114
+      "title": "Segurança no Mundo de Agentes: Como Pensar Defesa Agora",
+      "video_id": "IPwLtOF9BhQ",
+      "views": 115
     },
     {
       "title": "Competitividade Saudável vs Tóxica",
@@ -2123,11 +2123,6 @@
       "views": 41
     },
     {
-      "title": "Zcash Protocol Walkthroug §1.1–1.2 | Engineering #8",
-      "video_id": "gLqT_0B4tSU",
-      "views": 41
-    },
-    {
       "title": "Como comprar algo com Zcash!",
       "video_id": "XH5xAMxl2EM",
       "views": 40
@@ -2165,6 +2160,11 @@
     {
       "title": "Educação Financeira Antes de Investir em Cripto",
       "video_id": "Pkn_87aUuC8",
+      "views": 40
+    },
+    {
+      "title": "Zcash Protocol Walkthroug §1.1–1.2 | Engineering #8",
+      "video_id": "gLqT_0B4tSU",
       "views": 40
     },
     {
@@ -2283,6 +2283,11 @@
       "views": 37
     },
     {
+      "title": "Zcon4 - Zcash Brazil #zcash",
+      "video_id": "EA9pvC_5Qf0",
+      "views": 36
+    },
+    {
       "title": "Eran Tromer - Perspectivas de Criptografia LEGENDADO",
       "video_id": "qB2STXs5R-o",
       "views": 36
@@ -2316,11 +2321,6 @@
       "title": "Recuperação Pós-Quântica: Mover Fundos Sem Nova Chave",
       "video_id": "6j6On2Kd-VQ",
       "views": 36
-    },
-    {
-      "title": "Zcon4 - Zcash Brazil #zcash",
-      "video_id": "EA9pvC_5Qf0",
-      "views": 35
     },
     {
       "title": "A Origem do Tor",
@@ -3313,6 +3313,11 @@
       "views": 12
     },
     {
+      "title": "Special Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
+      "video_id": "jrWNz29nHKk",
+      "views": 12
+    },
+    {
       "title": "Vitor - Tornado Cash & Privacidade",
       "video_id": "yY4Zab-gfWI",
       "views": 11
@@ -3385,11 +3390,6 @@
     {
       "title": "ZODL: Novidades da Carteira Zcash e Roadmap do Tachyon | Zec Insider",
       "video_id": "EuR8GDapVls",
-      "views": 10
-    },
-    {
-      "title": "Special Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
-      "video_id": "jrWNz29nHKk",
       "views": 10
     },
     {
