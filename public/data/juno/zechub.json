@@ -3,7 +3,7 @@
     "dao_address": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
-    "member_count": 27,
+    "member_count": 23,
     "proposal_count": 154,
     "config": {
       "name": "ZecHub",
@@ -6291,7 +6291,7 @@
             "yes": "16",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno1dgtmcp7jerprg3grdl6qg47sv394txfcevqfcn",
           "threshold": {
             "threshold_quorum": {
@@ -6312,7 +6312,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-05-26T21:14:57.235Z"
+        "createdAt": "2026-05-26T21:14:57.235Z",
+        "completedAt": "2026-06-01T10:47:19.000Z",
+        "executedAt": "2026-06-01T10:47:19.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6323,7 +6325,7 @@
           "title": "Zcash East Africa (June -July 2026)",
           "votes": {
             "no": "0",
-            "yes": "2",
+            "yes": "9",
             "abstain": "3"
           },
           "status": "open",
@@ -6358,8 +6360,8 @@
           "title": "[Proposal] Zcash Korean Global Ambassador - Q3 2026 Expansion",
           "votes": {
             "no": "0",
-            "yes": "3",
-            "abstain": "2"
+            "yes": "9",
+            "abstain": "4"
           },
           "status": "open",
           "proposer": "juno18cq4kpcgyp3k5nelaq52mlwcfqk9v6dhs00ytt",
