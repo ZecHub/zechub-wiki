@@ -70,7 +70,7 @@
     {
       "title": "Casta Estuda - Bitcoin X Zcash",
       "video_id": "X2iDTlijlc0",
-      "views": 796
+      "views": 797
     },
     {
       "title": "Quanto você tem?",
@@ -165,7 +165,7 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 528
+      "views": 529
     },
     {
       "title": "Impactos das guerras globais na economia brasileira",
@@ -190,7 +190,7 @@
     {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
-      "views": 457
+      "views": 460
     },
     {
       "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endereço Shielded",
@@ -638,6 +638,11 @@
       "views": 161
     },
     {
+      "title": "Zcon Vozes 2 | Juntos Construimos o Futuro. FIAP São Paulo",
+      "video_id": "X6_VgYW9gJ0",
+      "views": 161
+    },
+    {
       "title": "Cripto invisível no dia a dia.",
       "video_id": "ntEpdtc2uZ4",
       "views": 159
@@ -826,11 +831,6 @@
       "title": "O fracasso da adoção do Bitcoin em El Salvador",
       "video_id": "Ly81zdZGW2w",
       "views": 129
-    },
-    {
-      "title": "Zcon Vozes 2 | Juntos Construimos o Futuro. FIAP São Paulo",
-      "video_id": "X6_VgYW9gJ0",
-      "views": 126
     },
     {
       "title": "A nova moeda global #dadospessoais #podcast #privacidade",
@@ -2123,6 +2123,11 @@
       "views": 41
     },
     {
+      "title": "Zcash Protocol Walkthroug §1.1–1.2 | Engineering #8",
+      "video_id": "gLqT_0B4tSU",
+      "views": 41
+    },
+    {
       "title": "Como comprar algo com Zcash!",
       "video_id": "XH5xAMxl2EM",
       "views": 40
@@ -2160,11 +2165,6 @@
     {
       "title": "Educação Financeira Antes de Investir em Cripto",
       "video_id": "Pkn_87aUuC8",
-      "views": 40
-    },
-    {
-      "title": "Zcash Protocol Walkthroug §1.1–1.2 | Engineering #8",
-      "video_id": "gLqT_0B4tSU",
       "views": 40
     },
     {
@@ -3515,11 +3515,6 @@
     {
       "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
       "video_id": "XgtJXKqv-ZE",
-      "views": 3
-    },
-    {
-      "title": "Zcon Vozes 2 | Juntos Construimos o Futuro teste",
-      "video_id": "BVvnEMEorpA",
       "views": 3
     }
   ]
