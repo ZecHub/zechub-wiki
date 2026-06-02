@@ -8,7 +8,14 @@ import { getMiningPoolsDominance } from "@/lib/chart/helpers";
 import { MiningPoolDominanceResponse } from "@/lib/chart/types";
 import * as dateFns from "date-fns";
 import { RefObject, useEffect, useMemo, useState } from "react";
-import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import ChartContainer from "./ChartContainer";
 
 type MiningPoolsDominanceChartProps = {
@@ -28,7 +35,7 @@ const COLORS = [
 ];
 
 export default function MiningPoolsDominanceChart(
-  props: MiningPoolsDominanceChartProps
+  props: MiningPoolsDominanceChartProps,
 ) {
   const { t } = useLanguage();
   const miningT = t?.pages?.dashboard?.charts?.miningPoolsChart;
@@ -36,9 +43,8 @@ export default function MiningPoolsDominanceChart(
   const isMobile = useInMobile();
   const [loading, setLoading] = useState(true);
   const [range, setRange] = useState<MiningRange>("3m");
-  const [dominance, setDominance] = useState<MiningPoolDominanceResponse | null>(
-    null
-  );
+  const [dominance, setDominance] =
+    useState<MiningPoolDominanceResponse | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -49,7 +55,7 @@ export default function MiningPoolsDominanceChart(
         const data = await getMiningPoolsDominance(
           DATA_URL.miningPoolsDominanceUrl,
           range,
-          controller.signal
+          controller.signal,
         );
         setDominance(data);
       } catch (err) {
@@ -65,7 +71,7 @@ export default function MiningPoolsDominanceChart(
 
   const { chartData, seriesKeys } = useMemo(() => {
     const buckets = [...(dominance?.buckets ?? [])].sort(
-      (a, b) => a.timestamp - b.timestamp
+      (a, b) => a.timestamp - b.timestamp,
     );
     if (!buckets.length) return { chartData: [], seriesKeys: [] as string[] };
 
@@ -73,7 +79,10 @@ export default function MiningPoolsDominanceChart(
     for (const bucket of buckets) {
       for (const pool of bucket.pools) {
         const name = pool.pool_name ?? "Unknown";
-        totalsByPool.set(name, (totalsByPool.get(name) ?? 0) + pool.block_count);
+        totalsByPool.set(
+          name,
+          (totalsByPool.get(name) ?? 0) + pool.block_count,
+        );
       }
     }
 
@@ -92,8 +101,9 @@ export default function MiningPoolsDominanceChart(
 
       for (const poolName of topPools) {
         const share =
-          bucket.pools.find((pool) => (pool.pool_name ?? "Unknown") === poolName)
-            ?.share_percentage ?? 0;
+          bucket.pools.find(
+            (pool) => (pool.pool_name ?? "Unknown") === poolName,
+          )?.share_percentage ?? 0;
         row[poolName] = Number(share.toFixed(2));
         topTotal += share;
       }
@@ -110,28 +120,32 @@ export default function MiningPoolsDominanceChart(
     if (range === "1w") return dateFns.format(date, "MMM d");
     if (range === "1m") return dateFns.format(date, "MMM d");
     if (range === "all") return dateFns.format(date, "yyyy");
-    return isMobile ? dateFns.format(date, "MMM yy") : dateFns.format(date, "MMM yyyy");
+    return isMobile
+      ? dateFns.format(date, "MMM yy")
+      : dateFns.format(date, "MMM yyyy");
   };
 
   return (
-    <ErrorBoundary fallback={miningT?.loadError || "Failed to load Mining Pools"}>
+    <ErrorBoundary
+      fallback={miningT?.loadError || "Failed to load Mining Pools"}
+    >
       <div className="space-y-3 mt-12 mb-6">
         <h3 className="md:text-lg text-md font-semibold">
           {miningT?.title || "Mining Pool Dominance"}
         </h3>
         <div className="w-full flex justify-end pr-5">
           <div className="inline-flex items-center gap-2 rounded-md">
-          <label className="text-sm font-medium">
-            {miningT?.rangeLabel || "Range"}
-          </label>
-          <DefaultSelect
-            value={range}
-            onChange={(v) => setRange(v as MiningRange)}
-            options={RANGE_OPTIONS}
-            className="w-20 sm:w-24 dark:border-slate-700"
-            renderOption={(option) => option}
-            ariaLabel={miningT?.rangeAriaLabel || "Select mining range"}
-          />
+            <label className="text-sm font-medium">
+              {miningT?.rangeLabel || "Range"}
+            </label>
+            <DefaultSelect
+              value={range}
+              onChange={(v) => setRange(v as MiningRange)}
+              options={RANGE_OPTIONS}
+              className="w-20 sm:w-24 dark:border-slate-700"
+              renderOption={(option) => option}
+              ariaLabel={miningT?.rangeAriaLabel || "Select mining range"}
+            />
           </div>
         </div>
       </div>
@@ -159,9 +173,9 @@ export default function MiningPoolsDominanceChart(
             width={56}
           />
           <Tooltip
-            formatter={(value: number, name: string) => [
-              `${Number(value).toFixed(2)}%`,
-              name,
+            formatter={(value, name) => [
+              `${Number(value ?? 0).toFixed(2)}%`,
+              String(name),
             ]}
             labelFormatter={(value) =>
               dateFns.format(new Date(`${String(value)}T00:00:00Z`), "PPP")

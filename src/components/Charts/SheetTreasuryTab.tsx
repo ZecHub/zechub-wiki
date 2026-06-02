@@ -427,7 +427,7 @@ export default function SheetTreasuryTab() {
                               {item.name}
                             </p>
                             <p className="text-sm text-slate-500 dark:text-slate-400">
-                              {item.value.toLocaleString()} ZEC
+                             {item?.value != null ? item.value.toLocaleString() : "0"} ZEC
                             </p>
                           </div>
                         );
@@ -494,7 +494,7 @@ export default function SheetTreasuryTab() {
                               {item.name}
                             </p>
                             <p className="text-sm text-slate-500 dark:text-slate-400">
-                              ${item.value.toLocaleString()}
+                              ${item?.value != null ? item.value.toLocaleString() : "0"} ZEC
                             </p>
                           </div>
                         );

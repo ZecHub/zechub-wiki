@@ -131,7 +131,7 @@ export default function DifficultyChart(props: DifficultyChartProps) {
                     >
                       <span>{entry.name}</span>
                       <span className="text-slate-50">
-                        {formatVal(entry.value)}
+                        {formatVal(Number(entry.value ?? 0))}{" "}
                       </span>
                     </div>
                   ))}
