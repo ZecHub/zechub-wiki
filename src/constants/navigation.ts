@@ -8,7 +8,7 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench, Map } from "lucide-react";
+import { Wrench, Map, Gem } from "lucide-react";
 
 import {
   RiGithubFill as Github,
@@ -356,6 +356,11 @@ export const navigations: Array<NavigationItem> = [
     name: "Sitemap",
     path: "/sitemap",
     icon: Map,
+  },
+  {
+    name: "Visual Identity",
+    path: "/visual-identity",
+    icon: Gem,
   },
 ];
 
