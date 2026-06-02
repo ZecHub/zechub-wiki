@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 
 // Configure PDF.js worker for Next.js
@@ -10,17 +10,32 @@ export default function VisualIdentityPage() {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [isFlipping, setIsFlipping] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(800);
+  const [pageWidth, setPageWidth] = useState<number>(800);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Handle window resize
+  // Handle window resize and container width
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(Math.min(Math.max(window.innerWidth - 40, 500), 1000));
+    const updateWidth = () => {
+      if (containerRef.current) {
+        // Get the actual container width and subtract padding
+        const containerWidth = containerRef.current.clientWidth;
+        setPageWidth(containerWidth - 32); // Subtract 32px for padding (16px on each side)
+      }
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    
+    // Use ResizeObserver to watch for container size changes
+    const resizeObserver = new ResizeObserver(updateWidth);
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+
+    return () => {
+      window.removeEventListener("resize", updateWidth);
+      resizeObserver.disconnect();
+    };
   }, []);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
@@ -220,23 +235,27 @@ export default function VisualIdentityPage() {
                 </div>
               </div>
 
-              {/* PDF Viewer Area */}
-              <div className="relative p-4 md:p-8">
-                {/* Page Flip Animation Container */}
-                <div className="relative bg-white rounded-lg shadow-2xl overflow-hidden min-h-[500px] md:min-h-[700px]">
+              {/* PDF Viewer Area - Added ref and padding removal */}
+              <div className="relative p-4 md:p-6">
+                {/* Page Flip Animation Container - Removed fixed min-height, made responsive */}
+                <div 
+                  ref={containerRef}
+                  className="relative bg-white rounded-lg shadow-2xl overflow-hidden w-full"
+                >
                   {/* Animated Page */}
                   <div
                     className={`
                       animate-in fade-in duration-300
                       ${isFlipping ? "opacity-0 scale-95" : "opacity-100 scale-100"}
                       transition-all duration-300 ease-in-out
+                      flex justify-center
                     `}
                   >
                     <Document
                       file="/zecHub-visual-identity.pdf"
                       onLoadSuccess={onDocumentLoadSuccess}
                       loading={
-                        <div className="flex items-center justify-center min-h-[500px] md:min-h-[700px]">
+                        <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
                           <div className="text-center">
                             <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-yellow-500 mx-auto mb-4"></div>
                             <p className="text-gray-600 font-medium">
@@ -246,7 +265,7 @@ export default function VisualIdentityPage() {
                         </div>
                       }
                       error={
-                        <div className="flex items-center justify-center min-h-[500px] md:min-h-[700px]">
+                        <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
                           <div className="text-center">
                             <svg
                               className="w-16 h-16 text-red-400 mx-auto mb-4"
@@ -274,12 +293,12 @@ export default function VisualIdentityPage() {
                     >
                       <Page
                         pageNumber={pageNumber}
-                        width={windowWidth}
+                        width={pageWidth}
                         renderTextLayer={false}
                         renderAnnotationLayer={false}
-                        className="flex justify-center"
+                        className="flex justify-center w-full"
                         loading={
-                          <div className="flex items-center justify-center min-h-[500px] md:min-h-[700px]">
+                          <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
                             <div className="animate-pulse text-gray-400">
                               Loading page {pageNumber}...
                             </div>
