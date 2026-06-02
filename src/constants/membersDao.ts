@@ -1,23 +1,21 @@
 import { socialIcons } from "@/components/UI/SvgIcons";
 
 export const daoMembers = [
-    {
-    imgUrl:
-      "/speedfox.png",
+  {
+    imgUrl: "/speedfox.png",
     name: "Speedfox",
-    description:
-      "Zcash Contributor, Developer and Graphic Design professional",
+    description: "Zcash Contributor, Developer and Graphic Design professional",
     social: [
       {
         name: "Twitter",
         url: "https://x.com/am_ochuko",
         icon: socialIcons.x,
       },
-   ],
+    ],
     zcashAddress: "u",
     role: "Member",
   },
-    {
+  {
     imgUrl:
       "https://pbs.twimg.com/profile_images/2024714746025664512/qWshr051_400x400.jpg",
     name: "Zolder",
@@ -144,24 +142,25 @@ export const daoMembers = [
     zcashAddress: "",
     role: "",
   },
+  // {
+  //   imgUrl:
+  //     "https://ipfs.daodao.zone/ipfs/QmWFUqQNeQNiMv9dD8u5uLDD34NbPPqJ5d9e2qJNHqFoyg",
+  //   name: "Wizard",
+  //   description: `I am the admin of Zeal Center, a Mastodon and Mobilizon instance created for the Zcash community`,
+  //   social: [
+  //     {
+  //       name: "Mastodon",
+  //       url: "https://blog.zeal.center",
+  //       icon: socialIcons.mastodon,
+  //     },
+  //   ],
+  //   zcashAddress:
+  //     "u1tpz82axhqjm5hz54l3jkuv5djvqkfhga0mptactcx6mue0ajy9pwe65zyncd6k9xazmc9m5cu6je55lxshkplutk7guxmd67ygzpm8h86nwj2efr5mq3rrfrycmdyspp3jhqq2vnw4ydvyzfscwep0lxurng6suudg3jql4nmkwlgt5ea2356a9tcknen606hp74t2nf72vyc30la53",
+  //   role: "",
+  // },
   {
     imgUrl:
-      "https://ipfs.daodao.zone/ipfs/QmWFUqQNeQNiMv9dD8u5uLDD34NbPPqJ5d9e2qJNHqFoyg",
-    name: "Wizard",
-    description: `I am the admin of Zeal Center, a Mastodon and Mobilizon instance created for the Zcash community`,
-    social: [
-      {
-        name: "Mastodon",
-        url: "https://blog.zeal.center",
-        icon: socialIcons.mastodon,
-      },
-    ],
-    zcashAddress:
-      "u1tpz82axhqjm5hz54l3jkuv5djvqkfhga0mptactcx6mue0ajy9pwe65zyncd6k9xazmc9m5cu6je55lxshkplutk7guxmd67ygzpm8h86nwj2efr5mq3rrfrycmdyspp3jhqq2vnw4ydvyzfscwep0lxurng6suudg3jql4nmkwlgt5ea2356a9tcknen606hp74t2nf72vyc30la53",
-    role: "",
-  },
-  {
-    imgUrl: "https://pbs.twimg.com/profile_images/1694282200735252480/rIyFjLbF_400x400.jpg",
+      "https://pbs.twimg.com/profile_images/1694282200735252480/rIyFjLbF_400x400.jpg",
     name: "RuZcash",
     description: `I'm the creator of prozcash.ru website, which I fill with translations into Russian of press releases from
         official sources of Zcash developers, as well as my own articles about the coin. My goal is for the
@@ -275,24 +274,24 @@ export const daoMembers = [
       "u1dqfmplyjqma4r66m22xrh6tsm3t3wmvcqpu0f3u4kvp6v7wm0es5rh2g4dm040g89jnm0g4dsvs2hfltxqct39ktg3mj6flxnjfs2h0ludjjljce0ptm0ctntv7a2tjlk2n73tf72s5z5ydesqx2mh5k6xex5nn43f4ugagv24xkmw8jldudm78yqhd5ymlqeyx8gu6jzq7k55m6ypf",
     role: "",
   },
-  {
-    imgUrl: "https://pbs.twimg.com/profile_images/1829533580017754112/sbJI5vQn_400x400.jpg",
-    name: "Tokidoki",
-    description: `Tokidoki is the community manager of ZecHub. He is a software engineer from Indonesia who also teaches
-        programming and has mentored hundreds of junior developers at a coding bootcamp.`,
-    linkName: "Twitter",
-    urlLink: "https://twitter.com/luckytokidoki",
-    social: [
-      {
-        name: "Twitter",
-        url: "https://twitter.com/luckytokidoki",
-        icon: socialIcons.x,
-      },
-    ],
-    zcashAddress:
-      "u19fwcakcfyep82fyp0vhh0j6p6enr4dgtx5kpprls5zxxts5vact8pffeyh53j3ujf49yj670x972hcuq3tssuzpt47aezw7dfnttkpaxte6vdnwq9w20w843ukqrdvd5dn4q9wrnp9gmxfqj8jys7yzpyc542l4my5q3qwseacxymwwsw7dens2fts3ecgtjzvdjhc69u6v9sczq9tz",
-    role: "",
-  },
+  // {
+  //   imgUrl: "https://pbs.twimg.com/profile_images/1829533580017754112/sbJI5vQn_400x400.jpg",
+  //   name: "Tokidoki",
+  //   description: `Tokidoki is the community manager of ZecHub. He is a software engineer from Indonesia who also teaches
+  //       programming and has mentored hundreds of junior developers at a coding bootcamp.`,
+  //   linkName: "Twitter",
+  //   urlLink: "https://twitter.com/luckytokidoki",
+  //   social: [
+  //     {
+  //       name: "Twitter",
+  //       url: "https://twitter.com/luckytokidoki",
+  //       icon: socialIcons.x,
+  //     },
+  //   ],
+  //   zcashAddress:
+  //     "u19fwcakcfyep82fyp0vhh0j6p6enr4dgtx5kpprls5zxxts5vact8pffeyh53j3ujf49yj670x972hcuq3tssuzpt47aezw7dfnttkpaxte6vdnwq9w20w843ukqrdvd5dn4q9wrnp9gmxfqj8jys7yzpyc542l4my5q3qwseacxymwwsw7dens2fts3ecgtjzvdjhc69u6v9sczq9tz",
+  //   role: "",
+  // },
   {
     imgUrl: "https://i.ibb.co/kQk5sG7/image-2023-11-17-170857858.png",
     name: "Tecnopapapi",
@@ -369,24 +368,24 @@ export const daoMembers = [
       "u1h5pajxdsa0zfm747v0rs82z45y2z2nqmsxyqku2fpkfryple9r5m6660h00hql8nffljunq7mz2d0auemxm83pjy8ptpyurxnncedftvf0z3xwcff2efslz2stzdenpzzvv25n5fql2uxn4k8cffdeya3ugkf0s6d55ar9z0jawpqzmz9jyg7x7zvssu9d26lxkswp657uq2cwkc45n",
     role: "",
   },
-  {
-    imgUrl:
-      "https://pbs.twimg.com/profile_images/1940210940449783808/_yRuRWlp_400x400.jpg",
-    name: "Decentralistdan",
-    description: "ᙇecosystem relations @ZcashFoundation",
-    linkName: "Twitter",
-    urlLink: "https://twitter.com/decentralistdan",
-    social: [
-      {
-        name: "Twitter",
-        url: "https://twitter.com/decentralistdan",
-        icon: socialIcons.x,
-      },
-    ],
-    zcashAddress:
-      "u1kgwgt0suhaymfn99ffelnsy8afl74g6p3cw9p20xmcmqhvyv023h0y5wgweqdhzju2l0v705m7jx8q4hxp53tskmwstcc6sdm0rdqc455v4jdnxnlvflzmwzzceneqld8xnhzjv0gqqgpgnajlav0w9eqrmwks2pdap6pgj8m5hjkcn40g3dmnz24azshesaf0lkke67szxzsgdv0wd",
-    role: "",
-  },
+  // {
+  //   imgUrl:
+  //     "https://pbs.twimg.com/profile_images/1940210940449783808/_yRuRWlp_400x400.jpg",
+  //   name: "Decentralistdan",
+  //   description: "ᙇecosystem relations @ZcashFoundation",
+  //   linkName: "Twitter",
+  //   urlLink: "https://twitter.com/decentralistdan",
+  //   social: [
+  //     {
+  //       name: "Twitter",
+  //       url: "https://twitter.com/decentralistdan",
+  //       icon: socialIcons.x,
+  //     },
+  //   ],
+  //   zcashAddress:
+  //     "u1kgwgt0suhaymfn99ffelnsy8afl74g6p3cw9p20xmcmqhvyv023h0y5wgweqdhzju2l0v705m7jx8q4hxp53tskmwstcc6sdm0rdqc455v4jdnxnlvflzmwzzceneqld8xnhzjv0gqqgpgnajlav0w9eqrmwks2pdap6pgj8m5hjkcn40g3dmnz24azshesaf0lkke67szxzsgdv0wd",
+  //   role: "",
+  // },
   {
     imgUrl:
       "https://pbs.twimg.com/profile_images/1822034761214504961/vdE9iWGS_400x400.jpg",
@@ -423,23 +422,23 @@ export const daoMembers = [
       "zs1wrydakfyjclqp7h42tjnrulu7wrvwxqr4ey8hh299z0j4j3kxs23u29lxdt0cs9l3xddcg2qtjf",
     role: "",
   },
-  {
-    imgUrl: "https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png",
-    name: "Jay",
-    description: `Privacy, Cryptography and Encryption.`,
-    linkName: "Twitter",
-    urlLink: "https://t.me/Zcash_Community",
-    social: [
-      {
-        name: "Telegram",
-        url: "https://t.me/Zcash_Community",
-        icon: socialIcons.telegram,
-      },
-    ],
-    zcashAddress:
-      "u14fv86hd6eqehj7w40xw5wen47qp2muk4ulk7660ty8z7wuv6k5cg9tqhnp8p8qjltzw6a4v4nscltzar5q2k75vrxsq65fda459kc79r",
-    role: "",
-  },
+  // {
+  //   imgUrl: "https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png",
+  //   name: "Jay",
+  //   description: `Privacy, Cryptography and Encryption.`,
+  //   linkName: "Twitter",
+  //   urlLink: "https://t.me/Zcash_Community",
+  //   social: [
+  //     {
+  //       name: "Telegram",
+  //       url: "https://t.me/Zcash_Community",
+  //       icon: socialIcons.telegram,
+  //     },
+  //   ],
+  //   zcashAddress:
+  //     "u14fv86hd6eqehj7w40xw5wen47qp2muk4ulk7660ty8z7wuv6k5cg9tqhnp8p8qjltzw6a4v4nscltzar5q2k75vrxsq65fda459kc79r",
+  //   role: "",
+  // },
   {
     imgUrl:
       "https://pbs.twimg.com/profile_images/2031426052212281344/TLC71_rH_400x400.jpg",
