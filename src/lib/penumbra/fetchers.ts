@@ -11,10 +11,17 @@ export const fetchAddress = async (
   account: number
 ): Promise<AddressView | undefined> => {
   const viewService = client.service(ViewService);
-  const res = await viewService.addressByIndex({ addressIndex: { account } });
-  if (!res?.address) {
-    return undefined;
-  }
+const res = await viewService.addressByIndex({
+  addressIndex: { account },
+});
+
+if (
+  !res ||
+  typeof res !== "object" ||
+  !("address" in res)
+) {
+  return undefined;
+}
   return new AddressView({
     addressView: {
       case: "decoded",
@@ -27,9 +34,9 @@ export const fetchBalances = async (
   account: number
 ): Promise<BalancesResponse[]> => {
   const viewService = client.service(ViewService);
-  const iterable = viewService.balances({
-    accountFilter: { account: account },
-  });
+const iterable = await viewService.balances({
+  accountFilter: { account },
+}) as unknown as AsyncIterable<BalancesResponse>;
 
   const balances = [];
   

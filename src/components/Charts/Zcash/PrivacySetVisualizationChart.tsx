@@ -237,7 +237,7 @@ function PrivacySetVisualizationChart({
                       >
                         <span>{entry.name}</span>
                         <span className="text-slate-50">
-                          {formatVal(entry.value)} ZEC
+                         {formatVal(Number(entry.value ?? 0))} ZEC
                         </span>
                       </div>
                     ))}
