@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 156,
+    "proposal_count": 157,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6325,7 +6325,7 @@
           "title": "Zcash East Africa (June -July 2026)",
           "votes": {
             "no": "0",
-            "yes": "10",
+            "yes": "14",
             "abstain": "3"
           },
           "status": "open",
@@ -6360,7 +6360,7 @@
           "title": "[Proposal] Zcash Korean Global Ambassador - Q3 2026 Expansion",
           "votes": {
             "no": "0",
-            "yes": "11",
+            "yes": "15",
             "abstain": "4"
           },
           "status": "open",
@@ -6394,9 +6394,9 @@
           "msgs": [],
           "title": "NU7 Education Content – Five Wiki Pages",
           "votes": {
-            "no": "1",
+            "no": "8",
             "yes": "0",
-            "abstain": "0"
+            "abstain": "1"
           },
           "status": "open",
           "proposer": "juno1jru9wr64xvjy5s9wnrz4jaa22grjdwehqw7lc5",
@@ -6429,9 +6429,9 @@
           "msgs": [],
           "title": "ZecHub Wiki – SEO & Performance Improvements",
           "votes": {
-            "no": "0",
+            "no": "7",
             "yes": "0",
-            "abstain": "0"
+            "abstain": "1"
           },
           "status": "open",
           "proposer": "juno1jru9wr64xvjy5s9wnrz4jaa22grjdwehqw7lc5",
@@ -6455,6 +6455,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-06-01T19:29:52.073Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 157,
+        "proposal": {
+          "msgs": [],
+          "title": "ZECHUB SOCIAL MEDIA MANAGEMENT  & CONTENT PROPOSAL",
+          "votes": {
+            "no": "0",
+            "yes": "4",
+            "abstain": "1"
+          },
+          "status": "open",
+          "proposer": "juno140c5hg6nf4updyxfdxwrx48xrct40uqeem62mf",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1780840064658371848"
+          },
+          "description": "**ZecHub TikTok & Instagram Growth**\n\n\n**Submitted by: Omega Wolf**\n\n**Proposal Period: June - August 2026**\n\n**Email: omegawolftlw@gmail.com**\n\n**Discord: omegaonchain**\n\n\n\n\n**ABOUT ME**\n\nI am Omega Wolf, a video editor, content creator, and social media manager with over three years of experience in crypto. I create short-form videos that teach people about blockchain, grow communities, and bring in new users.\n\nI've worked with notable projects like Alldomains, Sonic SVM, Solana Gaming and Chiliz.\n \nIn recent times, I’ve been active and contributing to the Zcash ecosystem while managing and creating content for zechub’s TikTok and Instagram pages since January 2026.\n\n\n**My Contributions to Date:**\n\n\n- Creating content for and managing ZecHub's Tiktok and Instagram\n\n- Women In DeFi Summit: I helped in planning, organising and covering Zcash's presence at the summit. This included recording builder interviews.\n\n- Community Engagement: Regular attendance at Discord calls and meetings, building relationships with community members and learning from ecosystem contributors\n\n- Organic Advocacy: Sharing Zcash’s message on X and educating others about the importance of financial privacy\n\n\n\n\n \n**TRACK RECORD & METRICS**\n\nOver the past five (5) months, I revitalized ZecHub’s presence on TikTok and Instagram with consistent, high-quality educational content.\n\n\n**Performance Metrics**\n\nTotal Videos Posted: 34 videos\n\n\nInstagram\n\n- Starting Followers: 79\n\n- Current Followers: 100+\n\n- 2,700+ views\n\n- 85+ likes, 10 shares, 6 comments\n\n- 1,300+ audience reach\n\n- 95+ profile visits\n\n\nTikTok\n\n- Starting Followers: 36\n\n- Current Followers: 56\n\n- 5,400+ views\n\n- 151+ likes\n\n- 3,800+ audience reach\n\n- 110+ profile visits\n\n- 36+ shares, 8+ comments\n\n\nMetrics file:\n\nhttps://drive.google.com/drive/folders/1Vp5kKFf3zCsgY1zSdcxnLhe9CPMyCOdY\n\n\n\n\n\n**PROPOSAL**\n\nTikTok and Instagram are essential channels to spread Zcash awareness to millions who need financial privacy but don’t know it exists yet.\n\nInstead of standalone videos each month, content will now be organized into a monthly theme. All 12 videos connect into one clear arc.\nThis helps viewers come back, saves get boosted, and the channel builds a strong identity.\n\n\nMy responsibilities include:\n\n**Content Strategy & Planning**\n\n- Develop monthly content calendars aligned with ZecHub’s educational mission\n\n- Identify trending topics in crypto/privacy/blockchain to capitalize on\n\n- Create content strategies to grow followers and convert them into active Zcash contributors\n\n\n**Content Creation**\n\n- Write, shoot and edit all educational videos (45-120 seconds)\n\n\n- Create supplementary content (carousel posts, stories, reels)\n\n- Repurpose long-form content from community members into short, viral-friendly clips\n\n\n**Content Distribution & Optimization**\n\n- Post content consistently (3 videos per week)\n\n- Optimize posting times for maximum reach\n\n- Cross-post strategically between platforms\n\n\n**Community Engagement & Growth**\n\n- Reply to comments and DMs to build community\n\n- Engage with crypto and Zcash-related pages and influencers to boost reach\n\n- Participate in trending conversations within the crypto/privacy space\n\n- Amplify ZecHub team members and community voices\n\n\n**Reporting & Analytics**\n\n- Track key metrics (followers, engagement rate, reach, profile visits, link clicks)\n\n- Provide monthly performance reports\n\n- Adjust strategy based on data insights\n\n\n**June Content Calendar:**\n\nhttps://docs.google.com/document/d/15U7mzX26NHxfyG5q7RY7N5NUVmpr0U0oMIv1grujfuE/edit?usp=drivesdk \n\n\n\n\n\n\n**DELIVERABLES**\n\n- 48 videos\n- 3 monthly content calendars\n- 3 monthly reports\n\n\n\n\n**COMPENSATION & RESOURCES**\n\n**Monthly Compensation**\n\n$83.3 per video\n3 videos per week\n12 videos per month \n$83.3  X 12 = $1000 per month\n\n\n**Contents Tools**\n\nTo maintain professional production quality, I request coverage for the following software subscriptions:\n\nAdobe Creative Suite: $35\n\nTotal = $1,035\n\n**Grand Total**\n\nMonthly = $1,035\nJune-August 2026 =$3,105\n\n\n\n\n**CONCLUSION**\n\nThis proposal is a means to put a formal structure on my ongoing contributions to ZecHub, in order to give the team and DAO full accountability through monthly reports. \n\nThank you for your consideration. I look forward to continuing to serve the ZecHub and Zcash community.\n\n\n\n",
+          "total_power": "23",
+          "start_height": 38491228,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-06-02T13:47:44.658Z"
       }
     ]
   },
