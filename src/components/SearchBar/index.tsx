@@ -59,16 +59,14 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
     t.common?.searchHint ||
     "Search by page title, topic, or path. Use ↑↓ to choose, Enter to open.";
 
-  const noResultsTitle =
-    t.common?.searchNoResults || "No matching pages";
+  const noResultsTitle = t.common?.searchNoResults || "No matching pages";
   const noResultsTry =
     t.common?.searchTryDifferent ||
     "Try shorter queries, synonyms, or different words.";
   const askAiLabel = t.common?.searchAskAi || "Answer with AI";
   const askAiHint =
     t.common?.searchAskAiHint || "Get a synthesized answer with sources.";
-  const suggestedTitle =
-    t.common?.searchSuggested || "Suggested pages";
+  const suggestedTitle = t.common?.searchSuggested || "Suggested pages";
   const resultsTitle = t.common?.searchResultsLabel || "Results";
   const modalTitle = t.common?.searchModalTitle || "Search ZecHub Wiki";
   const aiModeTitle = t.common?.searchAiTitle || "Answer with AI";
@@ -108,27 +106,30 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
     setOpenSearch(false);
   }, [setOpenSearch]);
 
-  const askAiForQuery = useCallback((force = false) => {
-    if (!hasQuery) {
+  const askAiForQuery = useCallback(
+    (force = false) => {
+      if (!hasQuery) {
+        setMode("ai");
+        setAiHasUnreadReply(false);
+        return;
+      }
+
+      const normalizedQuery = trimmedQuery.toLowerCase();
+      if (!force && lastAutoAskedQueryRef.current === normalizedQuery) {
+        setMode("ai");
+        setAiHasUnreadReply(false);
+        return;
+      }
+
+      ignoreNextDialogCloseRef.current = true;
+      setAiAutoSendQuery(trimmedQuery);
+      setAiAutoSendNonce((n) => n + 1);
+      lastAutoAskedQueryRef.current = normalizedQuery;
       setMode("ai");
       setAiHasUnreadReply(false);
-      return;
-    }
-
-    const normalizedQuery = trimmedQuery.toLowerCase();
-    if (!force && lastAutoAskedQueryRef.current === normalizedQuery) {
-      setMode("ai");
-      setAiHasUnreadReply(false);
-      return;
-    }
-
-    ignoreNextDialogCloseRef.current = true;
-    setAiAutoSendQuery(trimmedQuery);
-    setAiAutoSendNonce((n) => n + 1);
-    lastAutoAskedQueryRef.current = normalizedQuery;
-    setMode("ai");
-    setAiHasUnreadReply(false);
-  }, [hasQuery, trimmedQuery]);
+    },
+    [hasQuery, trimmedQuery],
+  );
 
   const handleDialogClose = useCallback(() => {
     if (ignoreNextDialogCloseRef.current) {
@@ -219,10 +220,11 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
                       <button
                         type="button"
                         onClick={() => setMode("search")}
-                        className={`relative pb-1 text-sm font-medium transition cursor-pointer ${mode === "search"
+                        className={`relative pb-1 text-sm font-medium transition cursor-pointer ${
+                          mode === "search"
                             ? "text-slate-900 dark:text-white"
                             : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
-                          }`}
+                        }`}
                       >
                         Search
                         {mode === "search" ? (
@@ -244,11 +246,16 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
                           }
                           setMode("ai");
                         }}
-                        className={`relative pb-1 text-sm font-medium transition cursor-pointer ${mode === "ai"
+                        className={`relative pb-1 text-sm font-medium transition cursor-pointer ${
+                          mode === "ai"
                             ? "text-slate-900 dark:text-white"
                             : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
-                          }`}
-                        aria-label={hasQuery ? `${askAiLabel}: ${trimmedQuery}` : askAiLabel}
+                        }`}
+                        aria-label={
+                          hasQuery
+                            ? `${askAiLabel}: ${trimmedQuery}`
+                            : askAiLabel
+                        }
                       >
                         {aiModeTitle}
                         {aiHasUnreadReply && mode !== "ai" ? (
@@ -322,10 +329,11 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
                                   className="block rounded-xl outline-none transition focus-visible:ring-2 focus-visible:ring-blue-500"
                                 >
                                   <div
-                                    className={`flex cursor-pointer items-start gap-3 border px-3 py-3 text-left transition sm:px-4 ${selected
+                                    className={`flex cursor-pointer items-start gap-3 border px-3 py-3 text-left transition sm:px-4 ${
+                                      selected
                                         ? "border-blue-500 bg-blue-50 ring-1 ring-blue-500/30 dark:border-blue-400/60 dark:bg-blue-950/40 dark:ring-blue-400/25"
                                         : "border-transparent bg-white hover:border-slate-200 hover:bg-white dark:bg-slate-900 dark:hover:border-slate-600 dark:hover:bg-slate-800/90"
-                                      }`}
+                                    }`}
                                   >
                                     <div className="min-w-0 flex-1">
                                       <div className="flex flex-wrap items-center gap-2">

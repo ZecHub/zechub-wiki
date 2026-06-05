@@ -1,7 +1,7 @@
 export interface Links {
   name: string;
   path: string;
-  icon : any;
+  icon: any;
 }
 
 export interface MenuExp {
@@ -18,20 +18,20 @@ export interface Socials {
 }
 
 export interface Path {
-  path: string
+  path: string;
 }
 
 export interface Sublinks {
-  name: string
-  path: string
-  icon : any
+  name: string;
+  path: string;
+  icon: any;
 }
 
 export interface SearchInputProps {
-  searchInput: string
-  handleSearch: (e: ChangeEvent<HTMLInputElement>) => void
-  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void
-  id?: string
+  searchInput: string;
+  handleSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  id?: string;
 }
 
 export interface SearchBarProps {
@@ -40,9 +40,10 @@ export interface SearchBarProps {
 }
 
 export interface Searcher {
-  name: string
-  desc: string
-  url: string
+  name: string;
+  desc: string;
+  url: string;
+  aliases?: string[];
 }
 
 export declare var self: ServiceWorkerGlobalScope;
