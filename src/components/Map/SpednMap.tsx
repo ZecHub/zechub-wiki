@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { parseStores } from "./helpers";
 
 interface RawLocaion {
@@ -52,7 +52,7 @@ export default function SPEDNMap() {
 
   //   load data
   useEffect(() => {
-    fetch("/data/spedn.json")
+    fetch("/spedn/locations.json")
       .then((r) => r.json())
       .then((raw: RawData) => {
         setAllStores(parseStores(raw));
@@ -144,4 +144,5 @@ export default function SPEDNMap() {
       mapRef.current = null;
     };
   }, []);
+
 }
