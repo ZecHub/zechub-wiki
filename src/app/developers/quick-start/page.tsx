@@ -654,15 +654,23 @@ const ZingolibTab = () => (
         <SectionCard title="Installation">
           <SubLabel>Build Zingo CLI</SubLabel>
           <CodeBlock
-            code={`git clone https://github.com/zingolabs/zingolib.git\ncd zingolib\ncargo build --release --package zingo-cli`}
+            code={`git clone https://github.com/zingolabs/zingolib.git\ncd zingolib\ngit checkout tags/zingolib_v4.0.0\ncargo build --release --package zingo-cli\ncp target/release/zingo-cli ~/.cargo/bin/`}
           />
         </SectionCard>
 
         <SectionCard title="Running">
-          <SubLabel>Start Zingo CLI</SubLabel>
-          <CodeBlock
-            code={`cd ~/zingolib/target\n./zingo-cli \\\n  --server http://127.0.0.1:8137 \\\n  --data-dir /path/to/your/zaino/data`}
-          />
+          <div className="pb-4">
+            <SubLabel>Start Zingo CLI (Default)</SubLabel>
+            <CodeBlock
+              code={`zingo-cli --data-dir /path/to/your/wallet/data`}
+            />
+          </div>
+          <div>
+            <SubLabel>Start Zingo CLI (Custom)</SubLabel>
+            <CodeBlock
+              code={`zingo-cli --chain mainnet --server http://127.0.0.1:8137 --data-dir /path/to/your/zaino/data`}
+            />
+          </div>
           <div className="mt-[14px] p-[12px_14px] rounded-lg text-[13px] leading-relaxed bg-amber-500/[0.06] border border-amber-500/20 text-amber-600 dark:text-amber-400">
             ⚠ This will perform a full sync on first run, similar to
             lightwalletd.
