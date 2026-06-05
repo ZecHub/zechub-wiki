@@ -74,6 +74,33 @@ export function DetailPanel(props: DetailPanelProps) {
       >
         {props.store?.address}
       </p>
+
+      {/*  */}
+      {[
+        {
+          icon: "📍",
+          label: `${props.store?.lat.toFixed(4)}, ${props.store?.lng.toFixed(4)}`,
+        },
+        { icon: "💳", label: "Accepts ZEC via Flexa" },
+        ...(props.store?.country !== "United States"
+          ? [{ icon: "🌎", label: props.store?.country }]
+          : []),
+      ].map((m) => (
+        <div
+          style={{
+            display: "flex",
+            gap: 7,
+            alignItems: "flex-start",
+            fontSize: 12,
+            color: "var(--color-text-secondary)",
+            marginBottom: 5,
+          }}
+          key={m.label}
+        >
+          <span style={{ flexShrink: 0 }}>{m.icon}</span>
+          <span style={{ flexShrink: 1.4 }}>{m.label}</span>
+        </div>
+      ))}
     </div>
   );
 }
