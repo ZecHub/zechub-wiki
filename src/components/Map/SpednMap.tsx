@@ -38,7 +38,7 @@ const BRAND_COLORS: Record<string, string> = {
 const DEFAULT_PIN_COLOR = "#888780";
 
 export default function SPEDNMap() {
-  const mapContainer = useRef<HTMLDivElement>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<any>(null);
   const markerRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
@@ -94,5 +94,54 @@ export default function SPEDNMap() {
   );
 
   // init Leaflet
+  useEffect(() => {
+    if (!mapContainerRef.current || mapRef.current) return;
 
+    import("leaflet").then((L) => {
+      if (mapRef.current) return;
+
+      const map = L.map(mapContainerRef.current!, {
+        center: [37.5, -96],
+        zoom: 4,
+        zoomControl: false,
+        attributionControl: false,
+      });
+
+      // Tile Layer
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+        {
+          maxZoom: 19,
+          subdomains: "abcd",
+        },
+      ).addTo(map);
+
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png",
+        {
+          maxZoom: 19,
+          subdomains: "abcd",
+          opacity: 0.6,
+        },
+      ).addTo(map);
+
+      L.control
+        .attribution({ position: "bottomright", prefix: false })
+        .addAttribution(
+          '© <a href="https://carto.com">CARTO</a> · © <a href="https://openstreetmap.org">OSM</a>',
+        )
+        .addTo(map);
+
+      L.control.zoom({ position: "bottomright" }).addTo(map);
+
+      layerRef.current = L.layerGroup().addTo(map);
+      mapRef.current = map;
+      setMapReady(true);
+    });
+
+    return () => {
+      mapRef.current?.remove();
+      mapRef.current = null;
+    };
+  }, []);
 }
