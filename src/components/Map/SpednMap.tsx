@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { parseStores } from "./helpers";
 
@@ -145,4 +146,25 @@ export default function SPEDNMap() {
     };
   }, []);
 
+  // Sync markers wiht filtered stores
+  const handleSelectedStore = useCallback((id: string) => {
+    setSelectedId((prev) => (prev === id ? null : id));
+  }, []);
+
+  return (
+    <>
+      <Head>
+        <title>SPEDN Store Locator - ZecHub</title>
+        <meta
+          name="description"
+          content="Find stores where you can pay with Zcash using the Flexa/SPEDN netword"
+        />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          crossOrigin=""
+        />
+      </Head>
+    </>
+  );
 }
