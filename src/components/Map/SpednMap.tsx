@@ -3,7 +3,7 @@
 import Head from "next/head";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StoreListItem } from "./components/store-list-item";
-import { parseStores } from "./helpers";
+import { BRAND_COLORS, parseStores } from "./helpers";
 
 interface RawLocaion {
   address: string;
@@ -363,6 +363,43 @@ export default function SPEDNMap() {
                 />
               ))
             )}
+          </div>
+
+          {/* Legend */}
+          <div
+            style={{
+              padding: "10px 14px",
+              borderTop: "0.5px solid var(--color-border-tertiary)",
+              display: "flex",
+              gap: 8,
+              flexWrap: "wrap",
+            }}
+          >
+            {Object.entries(BRAND_COLORS)
+              .slice(0, 6)
+              .map(([brand, color]) => (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 5,
+                    fontSize: 10,
+                    color: "var(--color-text-secondary)",
+                  }}
+                  key={brand}
+                >
+                  <span
+                    style={{
+                      width: 7,
+                      height: 7,
+                      borderRadius: "50%",
+                      background: color,
+                      flexShrink: 0,
+                    }}
+                  />
+                  {brand}
+                </div>
+              ))}
           </div>
         </div>
       </div>
