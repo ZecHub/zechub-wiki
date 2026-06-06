@@ -1,13 +1,15 @@
+"use client";
+
 import Head from "next/head";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { parseStores } from "./helpers";
 
 interface RawLocaion {
   address: string;
-  coordinates: { lat: number; lon: number };
+  coordinates: { latitude: number; longitude: number };
 }
 
-type RawData = Record<string, Record<string, Record<string, RawLocaion[]>>>;
+export type RawData = Record<string, Record<string, Record<string, RawLocaion[]>>>;
 
 export interface StoreEntry {
   id: string;
@@ -20,23 +22,6 @@ export interface StoreEntry {
   country: string;
 }
 
-const BRAND_COLORS: Record<string, string> = {
-  BancoAgricola: "#1D9E75",
-  "Barnes & Noble": "#185FA5",
-  "Baskin-Robbins": "#D4537E",
-  "CoCo Bubble Tea": "#BA7517",
-  "Famous Footwear": "#D85A30",
-  Fresh: "#639922",
-  GameStop: "#E24B4A",
-  "International Shoppes": "#7F77DD",
-  Nordstrom: "#185FA5",
-  "Nordstrom Rack": "#0C447C",
-  Regal: "#7F77DD",
-  Sheetz: "#BA7517",
-  "Ulta Beauty": "#D4537E",
-};
-
-const DEFAULT_PIN_COLOR = "#888780";
 
 export default function SPEDNMap() {
   const mapContainerRef = useRef<HTMLDivElement>(null);
@@ -165,6 +150,72 @@ export default function SPEDNMap() {
           crossOrigin=""
         />
       </Head>
+
+      {/* Header */}
+      <div
+        style={{
+          padding: "28px 28px 20px",
+          borderBottom: "0.5px solid var(--color-border-tertiary)",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 900,
+            margin: "0 auto",
+          }}
+        >
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 7,
+              background: "var(--color-background-success)",
+              color: "var(--color-text-success)",
+              border: "0.5px solid var(--color-border-success)",
+              borderRadius: 20,
+              padding: "3px 11px",
+              fontSize: 11,
+              fontWeight: 500,
+              letterSpacing: "0.05em",
+              marginBottom: 12,
+            }}
+          >
+            <span
+              style={{
+                width: 5,
+                height: 5,
+                borderRadius: "50%",
+                background: "var(--color-text-success)",
+              }}
+            />
+            SPEDN · FLEXA NETWORK
+          </div>
+          <h1
+            style={{
+              fontSize: "clamp(20px, 3.5vw, 30px)",
+              fontWeight: 700,
+              letterSpacing: "-0.025em",
+              margin: "0 0 6px",
+              lineHeight: 1.15,
+              color: "var(--color-text-primary)",
+            }}
+          >
+            Pay with ZEC in-store
+          </h1>
+          <p
+            style={{
+              fontSize: 14,
+              color: "var(--color-text-secondary)",
+              margin: 0,
+              lineHeight: 1.6,
+            }}
+          >
+            {allStores.length} locations across{" "}
+            {[...new Set(allStores.map((s) => s.country))].join(", ")} accepting
+            ZEC via Flexa
+          </p>
+        </div>
+      </div>
     </>
   );
 }
