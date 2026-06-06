@@ -2,6 +2,7 @@
 
 import Head from "next/head";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { StoreListItem } from "./components/store-list-item";
 import { parseStores } from "./helpers";
 
 interface RawLocaion {
@@ -9,7 +10,10 @@ interface RawLocaion {
   coordinates: { latitude: number; longitude: number };
 }
 
-export type RawData = Record<string, Record<string, Record<string, RawLocaion[]>>>;
+export type RawData = Record<
+  string,
+  Record<string, Record<string, RawLocaion[]>>
+>;
 
 export interface StoreEntry {
   id: string;
@@ -21,7 +25,6 @@ export interface StoreEntry {
   lng: number;
   country: string;
 }
-
 
 export default function SPEDNMap() {
   const mapContainerRef = useRef<HTMLDivElement>(null);
@@ -214,6 +217,153 @@ export default function SPEDNMap() {
             {[...new Set(allStores.map((s) => s.country))].join(", ")} accepting
             ZEC via Flexa
           </p>
+        </div>
+      </div>
+
+      {/* Main */}
+      <div
+        style={{
+          display: "flex",
+          border: "0.5px solid var(--color-border-tertiary)",
+          borderRadius: "0.5px solid var(--border-radius-lg)",
+          overflow: "hidden",
+          margin: "20px",
+          height: "calc(100vh-200px)",
+          minHeight: 480,
+        }}
+      >
+        {/* Sidebar */}
+        <div
+          style={{
+            width: 200,
+            flexShrink: 0,
+            display: "flex",
+            flexDirection: "column",
+            borderRight: "0.5px solid var(--color-border-tertiary)",
+            background: "var(--color-background-primary)",
+          }}
+        >
+          {/* Search */}
+          <div
+            style={{
+              padding: "10px 12px",
+              borderBottom: "0.5px solid var(--color-border-tertiary)",
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
+            }}
+          >
+            <div style={{ position: "relative" }}>
+              <span
+                style={{
+                  position: "absolute",
+                  left: 10,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  fontSize: 14,
+                  color: "var(--color-text-tertiary)",
+                  pointerEvents: "none",
+                }}
+              >
+                🔍
+              </span>
+              <input
+                type="text"
+                placeholder="Search brand, city, state..."
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+
+                  setSelectedId(null);
+                }}
+                aria-label="Filter by brand"
+                style={{
+                  width: "100%",
+                  padding: "7px 10px 7px 32px",
+                  fontSize: 13,
+                  borderRadius: "var(--border-radius-md)",
+                  border: "0.5px solid var(--color-border-secondary",
+                  color: "var(--color-text-primary)",
+                }}
+              />
+            </div>
+            <select
+              value={brandFilter}
+              onChange={(e) => {
+                setBrandFilter(e.target.value);
+                setSelectedId(null);
+              }}
+              aria-label="filter by brand"
+              style={{
+                width: "100%",
+                padding: "7px 10px",
+                fontSize: 13,
+                borderRadius: "var(--border-radius-md)",
+                border: "0.5px solid var(--color-border-secondary)",
+                background: "var(--color-background-secondary)",
+                color: "var(--color-text-primary)",
+                cursor: "pointer",
+              }}
+            >
+              <option value="">All brands</option>
+              {brands.map((b) => (
+                <option key={b} value={b}>
+                  {b}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Count */}
+          <div
+            style={{
+              padding: "7px 14px",
+              fontSize: 11,
+              color: "var(--color-text-tertiary)",
+              borderBottom: "0.5px solid var(--color-border-tertiary)",
+            }}
+          >
+            {filteredStores.length} locations
+            {filteredStores.length !== 1 ? "s" : ""}
+            {brandFilter || search ? "matching" : ""}
+          </div>
+
+          {/* Store list */}
+          <div style={{ flex: 1, overflow: "auto" }} role="list">
+            {loading ? (
+              <div
+                style={{
+                  padding: 24,
+                  textAlign: "center",
+                  fontSize: 13,
+                  color: "var(--color-text-secondary)",
+                }}
+              >
+                {" "}
+                Loging stores...
+              </div>
+            ) : filteredStores.length === 0 ? (
+              <div
+                style={{
+                  padding: 32,
+                  textAlign: "center",
+                  fontSize: 13,
+                  color: "var(--color-text-secondary)",
+                }}
+              >
+                No stores match your search
+              </div>
+            ) : (
+              filteredStores.map((s) => (
+                <StoreListItem
+                  key={s.id}
+                  isActive={s.id === selectedId}
+                  onClick={() => handleSelectedStore(s.id)}
+                  store={s}
+                />
+              ))
+            )}
+          </div>
         </div>
       </div>
     </>
