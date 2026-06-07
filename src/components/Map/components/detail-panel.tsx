@@ -23,6 +23,7 @@ export function DetailPanel(props: DetailPanelProps) {
     >
       {/* close */}
       <button
+        onClick={props.onClose}
         style={{
           position: "absolute",
           top: 10,
@@ -98,7 +99,7 @@ export function DetailPanel(props: DetailPanelProps) {
           key={m.label + "_" + i}
         >
           <span style={{ flexShrink: 0 }}>{m.icon}</span>
-          <span style={{ flexShrink: 1.4 }}>{m.label}</span>
+          <span style={{ lineHeight: 1.4 }}>{m.label}</span>
         </div>
       ))}
     </div>
