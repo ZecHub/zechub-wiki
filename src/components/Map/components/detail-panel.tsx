@@ -85,7 +85,7 @@ export function DetailPanel(props: DetailPanelProps) {
         ...(props.store?.country !== "United States"
           ? [{ icon: "🌎", label: props.store?.country }]
           : []),
-      ].map((m) => (
+      ].map((m, i) => (
         <div
           style={{
             display: "flex",
@@ -95,7 +95,7 @@ export function DetailPanel(props: DetailPanelProps) {
             color: "var(--color-text-secondary)",
             marginBottom: 5,
           }}
-          key={m.label}
+          key={m.label + "_" + i}
         >
           <span style={{ flexShrink: 0 }}>{m.icon}</span>
           <span style={{ flexShrink: 1.4 }}>{m.label}</span>
