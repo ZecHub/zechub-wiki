@@ -1,5 +1,6 @@
 import { getBrandColor } from "../helpers";
 import { StoreEntry } from "../SpednMap";
+import { Badge } from "./badge";
 
 interface StoreListItemProps {
   store: StoreEntry;
@@ -78,6 +79,17 @@ export function StoreListItem(props: StoreListItemProps) {
         }}
       >
         {props.store.city}, {props.store.state}
+      </div>
+
+      {/* Badge */}
+      <div
+        style={{ display: "flex", gap: 5, marginLeft: 15, flexWrap: "wrap" }}
+      >
+        <Badge label="ZEC" variant="teal" />
+        <Badge label="Flexa" variant="blue" />
+        {props.store.country !== "United States" && (
+          <Badge label={props.store.country} variant="amber" />
+        )}
       </div>
     </div>
   );
