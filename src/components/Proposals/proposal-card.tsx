@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { FlatProposal } from "@/components/Proposals/proposals-list-client";
 import { VoteTally } from "@/components/Proposals/vote-tally";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, CheckCircle, XCircle, AlertTriangle, Clock } from "lucide-react";
 import { cn } from "@/lib/util";
 
 function StatusBadge({ status }: { status: string }) {
@@ -11,6 +11,7 @@ function StatusBadge({ status }: { status: string }) {
     executed: { label: "Executed", className: "bg-vote-yes/10 text-vote-yes" },
     passed: { label: "Passed", className: "bg-vote-yes/10 text-vote-yes" },
     rejected: { label: "Rejected", className: "bg-vote-no/10 text-vote-no" },
+    closed: { label: "Closed", className: "bg-muted text-muted-foreground" },
     open: { label: "Open", className: "bg-primary/10 text-primary" },
   };
   const c = config[status.toLowerCase()] ?? {
@@ -49,17 +50,64 @@ function getQuorumPercent(p: FlatProposal["proposal"]) {
   return Math.round(((yes + no + abstain) / total) * 100);
 }
 
+// ── NEW: Calculate if proposal passed quorum + threshold ───────────────────
+function getProposalOutcome(proposal: FlatProposal["proposal"]) {
+  const yes = parseInt(proposal.votes?.yes || "0", 10);
+  const no = parseInt(proposal.votes?.no || "0", 10);
+  const abstain = parseInt(proposal.votes?.abstain || "0", 10);
+  const totalPower = parseInt(proposal.total_power || "0", 10);
+
+  if (totalPower === 0) {
+    return { label: "Unknown", icon: null, color: "text-muted-foreground" };
+  }
+
+  const participation = (yes + no + abstain) / totalPower;
+  const approvalRate = (yes + no + abstain) > 0 
+    ? yes / (yes + no + abstain) 
+    : 0;
+
+  const requiredQuorum = parseFloat(
+    proposal.threshold?.threshold_quorum?.quorum?.percent || "0"
+  );
+  const requiredThreshold = parseFloat(
+    proposal.threshold?.threshold_quorum?.threshold?.percent || "0"
+  );
+
+  const passedQuorum = participation >= requiredQuorum;
+  const passedThreshold = approvalRate >= requiredThreshold;
+
+  if (proposal.status.toLowerCase() === "open") {
+    return { label: "Voting Open", icon: Clock, color: "text-primary" };
+  }
+
+  if (passedQuorum && passedThreshold) {
+    return { label: "Passed", icon: CheckCircle, color: "text-vote-yes" };
+  } else if (!passedQuorum) {
+    return { label: "Failed Quorum", icon: XCircle, color: "text-vote-no" };
+  } else {
+    return { label: "Failed Threshold", icon: AlertTriangle, color: "text-orange-400" };
+  }
+}
+
 export function ProposalCard({ data }: { data: FlatProposal }) {
   const [expanded, setExpanded] = useState(false);
   const { proposal } = data;
   const quorum = getQuorumPercent(proposal);
+  const outcome = getProposalOutcome(proposal);
 
-  // Threshold may be absent in some proposal shapes — guard gracefully
+  const yes = parseInt(proposal.votes.yes, 10);
+  const no = parseInt(proposal.votes.no, 10);
+  const abstain = parseInt(proposal.votes.abstain, 10);
+  const totalPower = parseInt(proposal.total_power, 10);
+
+  // Threshold display
   const thresholdPct = proposal.threshold?.threshold_quorum?.threshold?.percent
     ? Math.round(
         parseFloat(proposal.threshold.threshold_quorum.threshold.percent) * 100,
       )
     : null;
+
+  const OutcomeIcon = outcome.icon;
 
   return (
     <div
@@ -86,12 +134,20 @@ export function ProposalCard({ data }: { data: FlatProposal }) {
             {proposal.title}
           </h3>
           <StatusBadge status={proposal.status} />
+
+          {/* NEW: Outcome indicator with icon */}
+          {OutcomeIcon && (
+            <div className={`flex items-center gap-1 text-xs font-medium ${outcome.color}`}>
+              <OutcomeIcon className="h-3.5 w-3.5" />
+              <span>{outcome.label}</span>
+            </div>
+          )}
         </div>
 
         <VoteTally
-          yes={parseInt(proposal.votes.yes, 10)}
-          no={parseInt(proposal.votes.no, 10)}
-          abstain={parseInt(proposal.votes.abstain, 10)}
+          yes={yes}
+          no={no}
+          abstain={abstain}
         />
 
         <ChevronDown
@@ -151,8 +207,9 @@ export function ProposalCard({ data }: { data: FlatProposal }) {
               : proposal.description}
           </p>
 
+          {/* Participation bar */}
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">Turnout</span>
+            <span className="text-sm text-muted-foreground">Participation</span>
             <div className="flex-1 h-1 rounded-full bg-slate-300 dark:bg-muted overflow-hidden">
               <div
                 className="h-full rounded-full bg-yellow-500 dark:bg-primary/60 transition-all"

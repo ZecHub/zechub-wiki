@@ -7,11 +7,14 @@ import {
   Area,
   BarChart,
   Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
   Tooltip,
+  Legend,
 } from "recharts";
 import { cn } from "@/lib/util";
 import {
@@ -102,7 +105,6 @@ const CHART_TABS = [
 type ChartTab = (typeof CHART_TABS)[number];
 
 // ── Main component ────────────────────────────────────────────────────────────
-
 export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
   const [activeChart, setActiveChart] = useState<ChartTab>("Submissions");
 
@@ -116,7 +118,6 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
   );
 
   // ── derived data ──────────────────────────────────────────────────────────
-
   const submissionsData = useMemo(() => {
     const byMonth = new Map<string, number>();
     sorted.forEach((p) => {
@@ -204,22 +205,25 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
     );
   }, [sorted]);
 
-  const powerData = useMemo(() => {
-    const byMonth = new Map<string, number>();
-    sorted.forEach((p) => {
-      const key = formatMonth(p.createdAt);
-      const totalPower = parseInt(p.proposal.total_power, 10);
-      const votingPower = totalPower > 0 ? 100 / totalPower : 0;
-      byMonth.set(key, Math.max(byMonth.get(key) ?? 0, votingPower));
-    });
-    return Array.from(byMonth.entries()).map(([month, power]) => ({
-      month,
-      power,
-    }));
+  // ── NEW: Power by Proposal (for Voting Power tab) ────────────────────────
+  const powerByProposal = useMemo(() => {
+    return sorted
+      .map((p) => {
+        const totalPower = parseInt(p.proposal.total_power || "0", 10);
+        const yes = parseInt(p.proposal.votes?.yes || "0", 10);
+        const no = parseInt(p.proposal.votes?.no || "0", 10);
+        const abstain = parseInt(p.proposal.votes?.abstain || "0", 10);
+
+        return {
+          id: p.id,
+          totalPower,
+          votesCast: yes + no + abstain,
+        };
+      })
+      .sort((a, b) => a.id - b.id);
   }, [sorted]);
 
   // ── summary metrics ───────────────────────────────────────────────────────
-
   const metrics = useMemo(() => {
     const totalProposals = proposals.length;
     const uniqueProposers = new Set(proposals.map((p) => p.proposal.proposer))
@@ -249,9 +253,9 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
           ).toFixed(1) + "%"
         : "—";
 
-    const maxPower = powerData.length
-      ? Math.max(...powerData.map((d) => d.power)).toLocaleString() + "%"
-      : "—";
+    const maxPower = powerByProposal.length
+      ? Math.max(...powerByProposal.map((d) => d.totalPower))
+      : 0;
 
     return [
       { label: "Total Proposals", value: totalProposals },
@@ -263,7 +267,7 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
       { label: "Avg Turnout", value: avgTurnout },
       { label: "Peak Voting Power", value: maxPower },
     ];
-  }, [proposals, approvalData, turnoutData, powerData]);
+  }, [proposals, approvalData, turnoutData, powerByProposal]);
 
   const chartMeta: Record<ChartTab, { title: string; subtitle: string }> = {
     Submissions: {
@@ -283,8 +287,8 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
       subtitle: "Average votes cast as % of total voting power per month",
     },
     "Voting Power": {
-      title: "Voting Power Over Time",
-      subtitle: "Peak total voting power recorded per month",
+      title: "Voting Power by Proposal",
+      subtitle: "Total available voting power vs actual votes cast per proposal",
     },
   };
 
@@ -336,6 +340,7 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
         </div>
 
         <div className="w-full px-2 pb-6">
+          {/* All other tabs remain unchanged */}
           {activeChart === "Submissions" && (
             <ResponsiveContainer width="100%" height={460}>
               <AreaChart
@@ -344,240 +349,107 @@ export function AnalyticsDashboard({ proposals }: AnalyticsDashboardProps) {
               >
                 <defs>
                   <linearGradient id="submGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop
-                      offset="5%"
-                      stopColor={COLORS.primary}
-                      stopOpacity={0.35}
-                    />
-                    <stop
-                      offset="95%"
-                      stopColor={COLORS.primary}
-                      stopOpacity={0}
-                    />
+                    <stop offset="5%" stopColor={COLORS.primary} stopOpacity={0.35} />
+                    <stop offset="95%" stopColor={COLORS.primary} stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid
-                  stroke={COLORS.gridStroke}
-                  strokeDasharray="3 3"
-                  vertical={false}
-                />
-                <XAxis
-                  dataKey="month"
-                  tick={AXIS_STYLE}
-                  axisLine={false}
-                  tickLine={false}
-                  minTickGap={40}
-                />
-                <YAxis
-                  tick={AXIS_STYLE}
-                  axisLine={false}
-                  tickLine={false}
-                  width={44}
-                />
+                <CartesianGrid stroke={COLORS.gridStroke} strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="month" tick={AXIS_STYLE} axisLine={false} tickLine={false} minTickGap={40} />
+                <YAxis tick={AXIS_STYLE} axisLine={false} tickLine={false} width={44} />
                 <Tooltip content={<CustomTooltip />} />
-                <Area
-                  type="monotone"
-                  dataKey="cumulative"
-                  stroke={COLORS.primary}
-                  strokeWidth={2}
-                  fill="url(#submGrad)"
-                  name="Total"
-                  dot={false}
-                  activeDot={{ r: 5, strokeWidth: 0 }}
-                />
+                <Area type="monotone" dataKey="cumulative" stroke={COLORS.primary} strokeWidth={2} fill="url(#submGrad)" name="Total" dot={false} activeDot={{ r: 5, strokeWidth: 0 }} />
               </AreaChart>
             </ResponsiveContainer>
           )}
 
           {activeChart === "Members" && (
             <ResponsiveContainer width="100%" height={460}>
-              <AreaChart
-                data={membersData}
-                margin={{ top: 10, right: 24, left: 0, bottom: 0 }}
-              >
+              <AreaChart data={membersData} margin={{ top: 10, right: 24, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="membGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop
-                      offset="5%"
-                      stopColor={COLORS.yes}
-                      stopOpacity={0.35}
-                    />
+                    <stop offset="5%" stopColor={COLORS.yes} stopOpacity={0.35} />
                     <stop offset="95%" stopColor={COLORS.yes} stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid
-                  stroke={COLORS.gridStroke}
-                  strokeDasharray="3 3"
-                  vertical={false}
-                />
-                <XAxis
-                  dataKey="month"
-                  tick={AXIS_STYLE}
-                  axisLine={false}
-                  tickLine={false}
-                  minTickGap={40}
-                />
-                <YAxis
-                  tick={AXIS_STYLE}
-                  axisLine={false}
-                  tickLine={false}
-                  width={44}
-                />
+                <CartesianGrid stroke={COLORS.gridStroke} strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="month" tick={AXIS_STYLE} axisLine={false} tickLine={false} minTickGap={40} />
+                <YAxis tick={AXIS_STYLE} axisLine={false} tickLine={false} width={44} />
                 <Tooltip content={<CustomTooltip />} />
-                <Area
-                  type="monotone"
-                  dataKey="members"
-                  stroke={COLORS.yes}
-                  strokeWidth={2}
-                  fill="url(#membGrad)"
-                  name="Members"
-                  dot={false}
-                  activeDot={{ r: 5, strokeWidth: 0 }}
-                />
+                <Area type="monotone" dataKey="members" stroke={COLORS.yes} strokeWidth={2} fill="url(#membGrad)" name="Members" dot={false} activeDot={{ r: 5, strokeWidth: 0 }} />
               </AreaChart>
             </ResponsiveContainer>
           )}
 
           {activeChart === "Approval Rate" && (
             <ResponsiveContainer width="100%" height={460}>
-              <BarChart
-                data={approvalData}
-                margin={{ top: 10, right: 24, left: 0, bottom: 0 }}
-              >
-                <CartesianGrid
-                  stroke={COLORS.gridStroke}
-                  strokeDasharray="3 3"
-                  vertical={false}
-                />
-                <XAxis
-                  dataKey="month"
-                  tick={AXIS_STYLE}
-                  axisLine={false}
-                  tickLine={false}
-                  minTickGap={20}
-                />
-                <YAxis
-                  tick={AXIS_STYLE}
-                  axisLine={false}
-                  tickLine={false}
-                  domain={[0, 100]}
-                  unit="%"
-                  width={44}
-                />
+              <BarChart data={approvalData} margin={{ top: 10, right: 24, left: 0, bottom: 0 }}>
+                <CartesianGrid stroke={COLORS.gridStroke} strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="month" tick={AXIS_STYLE} axisLine={false} tickLine={false} minTickGap={20} />
+                <YAxis tick={AXIS_STYLE} axisLine={false} tickLine={false} domain={[0, 100]} unit="%" width={44} />
                 <Tooltip content={<CustomTooltip />} />
-                <Bar
-                  dataKey="approval"
-                  fill={COLORS.yes}
-                  radius={[3, 3, 0, 0]}
-                  name="Approval Rate"
-                  maxBarSize={36}
-                />
+                <Bar dataKey="approval" fill={COLORS.yes} radius={[3, 3, 0, 0]} name="Approval Rate" maxBarSize={36} />
               </BarChart>
             </ResponsiveContainer>
           )}
 
           {activeChart === "Voter Turnout" && (
             <ResponsiveContainer width="100%" height={460}>
-              <AreaChart
-                data={turnoutData}
-                margin={{ top: 10, right: 24, left: 0, bottom: 0 }}
-              >
+              <AreaChart data={turnoutData} margin={{ top: 10, right: 24, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="turnoutGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop
-                      offset="5%"
-                      stopColor={COLORS.abstain}
-                      stopOpacity={0.35}
-                    />
-                    <stop
-                      offset="95%"
-                      stopColor={COLORS.abstain}
-                      stopOpacity={0}
-                    />
+                    <stop offset="5%" stopColor={COLORS.abstain} stopOpacity={0.35} />
+                    <stop offset="95%" stopColor={COLORS.abstain} stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid
-                  stroke={COLORS.gridStroke}
-                  strokeDasharray="3 3"
-                  vertical={false}
-                />
-                <XAxis
-                  dataKey="month"
-                  tick={AXIS_STYLE}
-                  axisLine={false}
-                  tickLine={false}
-                  minTickGap={40}
-                />
-                <YAxis
-                  tick={AXIS_STYLE}
-                  axisLine={false}
-                  tickLine={false}
-                  domain={[0, 100]}
-                  unit="%"
-                  width={44}
-                />
+                <CartesianGrid stroke={COLORS.gridStroke} strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="month" tick={AXIS_STYLE} axisLine={false} tickLine={false} minTickGap={40} />
+                <YAxis tick={AXIS_STYLE} axisLine={false} tickLine={false} domain={[0, 100]} unit="%" width={44} />
                 <Tooltip content={<CustomTooltip />} />
-                <Area
-                  type="monotone"
-                  dataKey="turnout"
-                  stroke={COLORS.abstain}
-                  strokeWidth={2}
-                  fill="url(#turnoutGrad)"
-                  name="Avg Turnout"
-                  dot={{ r: 3, fill: COLORS.abstain, strokeWidth: 0 }}
-                  activeDot={{ r: 5, strokeWidth: 0 }}
-                />
+                <Area type="monotone" dataKey="turnout" stroke={COLORS.abstain} strokeWidth={2} fill="url(#turnoutGrad)" name="Avg Turnout" dot={{ r: 3, fill: COLORS.abstain, strokeWidth: 0 }} activeDot={{ r: 5, strokeWidth: 0 }} />
               </AreaChart>
             </ResponsiveContainer>
           )}
 
+          {/* ========== NEW VOTING POWER TAB ========== */}
           {activeChart === "Voting Power" && (
-            <ResponsiveContainer width="100%" height={460}>
-              <AreaChart
-                data={powerData}
-                margin={{ top: 10, right: 24, left: 0, bottom: 0 }}
+            <ResponsiveContainer width="100%" height={480}>
+              <LineChart
+                data={powerByProposal}
+                margin={{ top: 10, right: 30, left: 10, bottom: 20 }}
               >
-                <defs>
-                  <linearGradient id="powerGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop
-                      offset="5%"
-                      stopColor={COLORS.no}
-                      stopOpacity={0.25}
-                    />
-                    <stop offset="95%" stopColor={COLORS.no} stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid
-                  stroke={COLORS.gridStroke}
-                  strokeDasharray="3 3"
-                  vertical={false}
-                />
+                <CartesianGrid strokeDasharray="3 3" stroke={COLORS.gridStroke} />
                 <XAxis
-                  dataKey="month"
-                  tick={AXIS_STYLE}
-                  axisLine={false}
-                  tickLine={false}
-                  minTickGap={40}
+                  dataKey="id"
+                  tick={{ fill: "#888", fontSize: 11 }}
+                  interval={Math.floor(powerByProposal.length / 14)}
                 />
                 <YAxis
-                  tick={AXIS_STYLE}
-                  axisLine={false}
-                  tickLine={false}
-                  unit="%"
-                  width={44}
+                  tick={{ fill: "#888", fontSize: 11 }}
+                  domain={[0, "dataMax + 3"]}
                 />
                 <Tooltip content={<CustomTooltip />} />
-                <Area
+                <Legend />
+
+                {/* Total Voting Power (available) */}
+                <Line
                   type="monotone"
-                  dataKey="power"
-                  stroke={COLORS.no}
-                  strokeWidth={2}
-                  fill="url(#powerGrad)"
-                  dot={{ r: 3, fill: COLORS.no, strokeWidth: 0 }}
-                  activeDot={{ r: 5, fill: COLORS.no, strokeWidth: 0 }}
-                  name="Voting Power"
+                  dataKey="totalPower"
+                  stroke="#3b82f6"
+                  strokeWidth={2.5}
+                  dot={false}
+                  name="Total Voting Power"
                 />
-              </AreaChart>
+
+                {/* Actual Votes Cast */}
+                <Line
+                  type="monotone"
+                  dataKey="votesCast"
+                  stroke="#f59e0b"
+                  strokeWidth={2}
+                  dot={false}
+                  name="Votes Cast"
+                />
+              </LineChart>
             </ResponsiveContainer>
           )}
         </div>
