@@ -4,7 +4,8 @@ import Head from "next/head";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DetailPanel } from "./components/detail-panel";
 import { StoreListItem } from "./components/store-list-item";
-import { BRAND_COLORS, parseStores } from "./helpers";
+import { BRAND_COLORS, getBrandColor, parseStores } from "./helpers";
+import { makePinSVG } from "./makePinSVG";
 import "./style.css";
 
 interface RawLocaion {
@@ -31,7 +32,7 @@ export interface StoreEntry {
 export default function SPEDNMap() {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<any>(null);
-  const markerRef = useRef<any>(null);
+  const markersRef = useRef<any>(null);
   const layerRef = useRef<any>(null);
 
   const [allStores, setAllStores] = useState<StoreEntry[]>([]);
@@ -141,6 +142,50 @@ export default function SPEDNMap() {
     setSelectedId((prev) => (prev === id ? null : id));
   }, []);
 
+  useEffect(() => {
+    if (!mapReady || !mapRef.current || !layerRef.current) {
+      return;
+    }
+
+    import("leaflet").then((L) => {
+      layerRef.current.clearLayers();
+      markersRef.current = [];
+
+      filteredStores.forEach((store) => {
+        const icon = L.divIcon({
+          className: "",
+          iconSize: [22, 28],
+          iconAnchor: [11, 28],
+          html: `<div style="width:22px;height:28px">${makePinSVG(getBrandColor(store.brand))}</div>`,
+        });
+
+        const marker = L.marker([store.lat, store.lng], { icon });
+        marker.on("click", () => handleSelectedStore(store.id));
+
+        marker.bindTooltip(
+          `<div style="font-size:12px;font-weight:500">${store.brand}</div>
+           <div style="font-size:11px;opacity:0.7;margin-top:2px">${store.city}, ${store.state}</div>`,
+          { direction: "top", offset: [0, 12] },
+        );
+
+        layerRef.current.addLayer(marker);
+        markersRef.current.push({ id: store.id, marker });
+      });
+    });
+  }, [filteredStores, mapReady, handleSelectedStore]);
+
+  //   Jump to selected store
+  useEffect(() => {
+    if (!mapRef.current || !selectedStore) {
+      return;
+    }
+
+    mapRef.current.flyTo([selectedStore.lat, selectedStore.lng], 14, {
+      duration: 0.9,
+      easrLinearity: 0.35,
+    });
+  }, [selectedStore]);
+
   return (
     <>
       <Head>
@@ -227,7 +272,7 @@ export default function SPEDNMap() {
         style={{
           display: "flex",
           border: "0.5px solid var(--color-border-tertiary)",
-          borderRadius: "0.5px solid var(--border-radius-lg)",
+          borderRadius: "var(--border-radius-lg)",
           overflow: "hidden",
           margin: "20px",
           height: "calc(100vh-200px)",
@@ -331,7 +376,7 @@ export default function SPEDNMap() {
           </div>
 
           {/* Store list */}
-          <div style={{ flex: 1, overflow: "auto" }} role="list">
+          <div style={{ flex: 1, overflowY: "auto" }} role="list">
             {loading ? (
               <div
                 style={{
