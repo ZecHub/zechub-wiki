@@ -116,10 +116,50 @@ function applyFilters(
   filter: string,
   search: string,
 ): FlatProposal[] {
-  if (filter !== "All")
+  // ── Status filters ─────────────────────────────────────────────────────
+  if (filter === "Executed") {
     list = list.filter(
-      (p) => p.proposal.status.toLowerCase() === filter.toLowerCase(),
+      (p) => p.proposal.status.toLowerCase() === "executed"
     );
+  }
+
+  if (filter === "Rejected") {
+    list = list.filter(
+      (p) => p.proposal.status.toLowerCase() === "rejected"
+    );
+  }
+
+  // ── NEW: "Passed" filter = proposals that actually met quorum + threshold
+  if (filter === "Passed") {
+    list = list.filter((p) => {
+      const proposal = p.proposal;
+
+      const yes = parseInt(proposal.votes?.yes || "0", 10);
+      const no = parseInt(proposal.votes?.no || "0", 10);
+      const abstain = parseInt(proposal.votes?.abstain || "0", 10);
+      const totalPower = parseInt(proposal.total_power || "0", 10);
+
+      if (totalPower === 0) return false;
+
+      const participation = (yes + no + abstain) / totalPower;
+      const approvalRate =
+        yes + no + abstain > 0 ? yes / (yes + no + abstain) : 0;
+
+      const requiredQuorum = parseFloat(
+        proposal.threshold?.threshold_quorum?.quorum?.percent || "0"
+      );
+      const requiredThreshold = parseFloat(
+        proposal.threshold?.threshold_quorum?.threshold?.percent || "0"
+      );
+
+      const passedQuorum = participation >= requiredQuorum;
+      const passedThreshold = approvalRate >= requiredThreshold;
+
+      return passedQuorum && passedThreshold;
+    });
+  }
+
+  // ── Search filter ──────────────────────────────────────────────────────
   if (search.trim()) {
     const q = search.trim().toLowerCase();
     list = list.filter(
@@ -129,6 +169,7 @@ function applyFilters(
         p.proposal.title.toLowerCase().includes(q),
     );
   }
+
   return list;
 }
 

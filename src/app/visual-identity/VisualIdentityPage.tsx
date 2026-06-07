@@ -1,10 +1,23 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
 
-// Configure PDF.js worker for Next.js
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+// Dynamically import the PDF rendering part (fixes DOMMatrix error)
+const PDFContent = dynamic(
+  () => import("./PDFViewer"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-yellow-500 mx-auto mb-4"></div>
+          <p className="text-gray-600 font-medium">Loading flipbook...</p>
+        </div>
+      </div>
+    ),
+  }
+);
 
 export default function VisualIdentityPage() {
   const [numPages, setNumPages] = useState<number>(0);
@@ -17,16 +30,14 @@ export default function VisualIdentityPage() {
   useEffect(() => {
     const updateWidth = () => {
       if (containerRef.current) {
-        // Get the actual container width and subtract padding
         const containerWidth = containerRef.current.clientWidth;
-        setPageWidth(containerWidth - 32); // Subtract 32px for padding (16px on each side)
+        setPageWidth(containerWidth - 32);
       }
     };
 
     updateWidth();
     window.addEventListener("resize", updateWidth);
-    
-    // Use ResizeObserver to watch for container size changes
+
     const resizeObserver = new ResizeObserver(updateWidth);
     if (containerRef.current) {
       resizeObserver.observe(containerRef.current);
@@ -60,7 +71,7 @@ export default function VisualIdentityPage() {
         }, 500);
       }
     },
-    [isFlipping, pageNumber, numPages],
+    [isFlipping, pageNumber, numPages]
   );
 
   // Handle keyboard navigation
@@ -176,7 +187,6 @@ export default function VisualIdentityPage() {
       <section className="pb-16 px-4 md:px-6">
         <div className="container mx-auto max-w-7xl">
           <div className="relative max-w-6xl mx-auto">
-            {/* Book Container */}
             <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl overflow-hidden">
               {/* Top Navigation Bar */}
               <div className="relative z-30 flex items-center justify-between p-4 md:p-6 border-b border-white/10">
@@ -201,7 +211,6 @@ export default function VisualIdentityPage() {
                       />
                     </svg>
                   </button>
-
                   <button
                     onClick={() => flipPage("next")}
                     disabled={pageNumber >= numPages || isFlipping}
@@ -235,14 +244,12 @@ export default function VisualIdentityPage() {
                 </div>
               </div>
 
-              {/* PDF Viewer Area - Added ref and padding removal */}
+              {/* PDF Viewer Area */}
               <div className="relative p-4 md:p-6">
-                {/* Page Flip Animation Container - Removed fixed min-height, made responsive */}
-                <div 
+                <div
                   ref={containerRef}
                   className="relative bg-white rounded-lg shadow-2xl overflow-hidden w-full"
                 >
-                  {/* Animated Page */}
                   <div
                     className={`
                       animate-in fade-in duration-300
@@ -251,61 +258,12 @@ export default function VisualIdentityPage() {
                       flex justify-center
                     `}
                   >
-                    <Document
-                      file="/zecHub-visual-identity.pdf"
+                    {/* Dynamically loaded PDF Content */}
+                    <PDFContent
+                      pageNumber={pageNumber}
                       onLoadSuccess={onDocumentLoadSuccess}
-                      loading={
-                        <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
-                          <div className="text-center">
-                            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-yellow-500 mx-auto mb-4"></div>
-                            <p className="text-gray-600 font-medium">
-                              Loading flipbook...
-                            </p>
-                          </div>
-                        </div>
-                      }
-                      error={
-                        <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
-                          <div className="text-center">
-                            <svg
-                              className="w-16 h-16 text-red-400 mx-auto mb-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"
-                              />
-                            </svg>
-                            <p className="text-red-500 font-medium">
-                              Failed to load PDF
-                            </p>
-                            <p className="text-gray-500 text-sm mt-2">
-                              Please make sure the PDF file exists in the public
-                              folder
-                            </p>
-                          </div>
-                        </div>
-                      }
-                    >
-                      <Page
-                        pageNumber={pageNumber}
-                        width={pageWidth}
-                        renderTextLayer={false}
-                        renderAnnotationLayer={false}
-                        className="flex justify-center w-full"
-                        loading={
-                          <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
-                            <div className="animate-pulse text-gray-400">
-                              Loading page {pageNumber}...
-                            </div>
-                          </div>
-                        }
-                      />
-                    </Document>
+                      pageWidth={pageWidth}
+                    />
                   </div>
                 </div>
 
@@ -393,7 +351,6 @@ export default function VisualIdentityPage() {
                   >
                     First
                   </button>
-
                   <div className="flex items-center gap-2">
                     <input
                       type="number"
@@ -413,7 +370,6 @@ export default function VisualIdentityPage() {
                       of {numPages}
                     </span>
                   </div>
-
                   <button
                     onClick={() => setPageNumber(numPages)}
                     disabled={pageNumber === numPages}
