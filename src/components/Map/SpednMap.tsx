@@ -2,8 +2,10 @@
 
 import Head from "next/head";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { DetailPanel } from "./components/detail-panel";
 import { StoreListItem } from "./components/store-list-item";
 import { BRAND_COLORS, parseStores } from "./helpers";
+import "./style.css";
 
 interface RawLocaion {
   address: string;
@@ -401,6 +403,44 @@ export default function SPEDNMap() {
                 </div>
               ))}
           </div>
+        </div>
+
+        {/* Map */}
+
+        <div
+          style={{
+            flex: 1,
+            position: "relative",
+          }}
+        >
+          {loading && (
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                zIndex: 10,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background: "var(--color-background-secondary)",
+                fontSize: 13,
+                color: "var(--color-text-secondary) ",
+              }}
+            >
+              Loading map...
+            </div>
+          )}
+          <div
+            ref={mapContainerRef}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
+          <DetailPanel
+            store={selectedStore}
+            onClose={() => setSelectedId(null)}
+          />
         </div>
       </div>
     </>
