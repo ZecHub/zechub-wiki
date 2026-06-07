@@ -1,0 +1,27 @@
+.leaflet-container {
+    background: #f0ebe3 !important
+}
+
+.leaflet-control-zoom a {
+    background: var(--color-background-primary) !important;
+    border-color: var(--color-border-secondary) !important;
+    color: var(--color-text-secondary) !important;
+}
+
+.leaflet-control-attribution {
+    font-size: 10px !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+}
+
+.leaflet-tooltip {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: 6px;
+    padding: 6px 10px;
+    box-shadow: none;
+    color: var(--color-text-primary);
+}
+
+.leaflet-tooltip::before {
+    display: none;
+}
