@@ -1,6 +1,6 @@
 import { RawData, StoreEntry } from "./SpednMap";
 
-const BRAND_COLORS: Record<string, string> = {
+export const BRAND_COLORS: Record<string, string> = {
   BancoAgricola: "#1D9E75",
   "Barnes & Noble": "#185FA5",
   "Baskin-Robbins": "#D4537E",
