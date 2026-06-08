@@ -76,6 +76,7 @@ export function StoreListItem(props: StoreListItemProps) {
           marginLeft: 15,
           whiteSpace: "nowrap",
           textOverflow: "ellipsis",
+          overflow:'hidden'
         }}
       >
         {props.store.city}, {props.store.state}
