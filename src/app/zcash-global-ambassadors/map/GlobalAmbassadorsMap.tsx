@@ -54,6 +54,7 @@ export default function GlobalAmbassadorsMap() {
   const [regionFilter, setRegionFilter] = useState<RegionFilter>("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [mapReady, setMapReady] = useState(false);
 
   // Ambassadors per region for filter bar
   const regionCounts = ambassadors.reduce<Record<string, number>>((acc, f) => {
@@ -84,6 +85,7 @@ export default function GlobalAmbassadorsMap() {
         setLoading(false);
         console.error(err);
       });
+    console.log("role...");
   }, []);
 
   // Init Leaflet map
@@ -138,8 +140,11 @@ export default function GlobalAmbassadorsMap() {
 
       // Zoom control
       L.control.zoom({ position: "bottomright" }).addTo(map);
+
       layerGroupRef.current = L.layerGroup().addTo(map);
       mapRef.current = map;
+
+      setMapReady(true);
     });
 
     return () => {
@@ -220,14 +225,10 @@ export default function GlobalAmbassadorsMap() {
 
   // Re-render markers when Leaflet is ready and data is loaded
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (!mapReady) return;
 
-    import("leaflet").then((L) => {
-      (window as any).L = L;
-
-      renderMarkers();
-    });
-  }, [renderMarkers]);
+    renderMarkers();
+  }, [mapReady, renderMarkers]);
 
   // Fly to selected
   useEffect(() => {
