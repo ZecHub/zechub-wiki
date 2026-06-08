@@ -1,5 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+
+    --spedn-bg: #ffffff;
+    --spedn-bg-card: #f8f8f7;
+    --spedn-bg-hover: #f2f1ef;
+    --spedn-bg-active: #eaf4ff;
+    --spedn-text-primary: #111111;
+    --spedn-text-secondary: #111111;
+    --spedn-text-muted: #555555;
+    --spedn-text-faint: #999999;
+    --spedn-border: rgba(0, 0, 0, 0.09);
+    --spedn-border-strong: rgba(0, 0, 0, 0.18);
+}
+
 .leaflet-container {
-    background: #f0ebe3 !important
+    background: #e8e0d8 !important
 }
 
 .leaflet-control-zoom a {
