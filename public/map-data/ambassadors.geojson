@@ -2,9 +2,9 @@
   "type": "FeatureCollection",
   "metadata": {
     "schema_version": "1.0",
-    "generated": "2026-05-22",
+    "generated": "2026-06-08",
     "source": "ambassador_list.json + build_ambassadors_geojson.py",
-    "total_features": 11,
+    "total_features": 12,
     "note": "This file is auto-geneated. Edit ambassador_list.json to add or update ambassadors, then re-run build_ambassadors_geojson.py."
   },
   "features": [
@@ -33,7 +33,7 @@
         "pin_note": "Geographic centre of South Korea",
         "coords_source": "nominatim",
         "active": true,
-        "last_update": "2026-05-22"
+        "last_update": "2026-06-08"
       }
     },
     {
@@ -61,7 +61,7 @@
         "pin_note": "Geographic centre of Russia",
         "coords_source": "nominatim",
         "active": true,
-        "last_update": "2026-05-22"
+        "last_update": "2026-06-08"
       }
     },
     {
@@ -89,7 +89,7 @@
         "pin_note": "Representative pin for Arabic-speaking region; centred on Saudi Arabia",
         "coords_source": "nominatim",
         "active": true,
-        "last_update": "2026-05-22"
+        "last_update": "2026-06-08"
       }
     },
     {
@@ -117,7 +117,7 @@
         "pin_note": "Geographic centre of Brazil",
         "coords_source": "nominatim",
         "active": true,
-        "last_update": "2026-05-22"
+        "last_update": "2026-06-08"
       }
     },
     {
@@ -145,7 +145,7 @@
         "pin_note": "Geographic centre of Ghana",
         "coords_source": "nominatim",
         "active": true,
-        "last_update": "2026-05-22"
+        "last_update": "2026-06-08"
       }
     },
     {
@@ -173,7 +173,7 @@
         "pin_note": "Representative pin for Spanish-speaking region; centred on Spain",
         "coords_source": "nominatim",
         "active": true,
-        "last_update": "2026-05-22"
+        "last_update": "2026-06-08"
       }
     },
     {
@@ -201,7 +201,7 @@
         "pin_note": "Geographic centre of Nigeria",
         "coords_source": "nominatim",
         "active": true,
-        "last_update": "2026-05-22"
+        "last_update": "2026-06-08"
       }
     },
     {
@@ -229,7 +229,7 @@
         "pin_note": "Geographic centre of Ukraine",
         "coords_source": "nominatim",
         "active": true,
-        "last_update": "2026-05-22"
+        "last_update": "2026-06-08"
       }
     },
     {
@@ -257,7 +257,7 @@
         "pin_note": "Geographic centre of Turkey",
         "coords_source": "nominatim",
         "active": true,
-        "last_update": "2026-05-22"
+        "last_update": "2026-06-08"
       }
     },
     {
@@ -285,7 +285,7 @@
         "pin_note": "Geographic centre of Kenya",
         "coords_source": "nominatim",
         "active": true,
-        "last_update": "2026-05-22"
+        "last_update": "2026-06-08"
       }
     },
     {
@@ -313,7 +313,35 @@
         "pin_note": "Geographic centre of India",
         "coords_source": "nominatim",
         "active": true,
-        "last_update": "2026-05-22"
+        "last_update": "2026-06-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.7578122,
+          11.5024338
+        ]
+      },
+      "properties": {
+        "id": "amb_east_africa",
+        "name": "Zcash East Africa",
+        "flag": "",
+        "description": "Zcash East Africa is dedicated to promoting digital privacy, financial freedom, and blockchain innovation through education, community events, technical workshops, and ecosystem development. The initiative aims to create a regional hub where individuals can explore privacy enhancing technologies, learn about zero knowledge proofs, and participate in the growing global Zcash network.",
+        "image": "/ZcashEastAfricaBanner.jpg",
+        "twitter": "https://x.com/zcasheastafrica",
+        "x_handle": "zcasheastafrica",
+        "project_site": null,
+        "blog": "https://substack.com/@zcasheastafrica",
+        "country_code": "EAC",
+        "region": "east africa",
+        "language": "English & Swahili",
+        "pin_note": "Geographic centre of East Africa",
+        "coords_source": "nominatim",
+        "active": true,
+        "last_update": "2026-06-08"
       }
     }
   ]
