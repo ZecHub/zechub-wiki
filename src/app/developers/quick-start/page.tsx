@@ -523,7 +523,7 @@ use_color = true`}
         </InfoBox>
 
         <div
-          className="grid grid-cols-2 gap-5"
+          className="grid grid-cols-1 imd:grid-cols-2 gap-5"
           // style={{
           //   gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
           // }}
@@ -873,7 +873,7 @@ export default function QuickStartPage() {
         </div>
 
         {/* Content */}
-        <main className="max-w-[1024px] mx-auto px-10 pt-12 pb-20">
+        <main className="max-w-[1024px] mx-auto px-4 imd:px-10 pt-12 pb-20">
           {tabContent[activeTab]}
         </main>
       </div>
