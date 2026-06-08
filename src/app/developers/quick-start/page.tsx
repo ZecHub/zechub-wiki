@@ -10,6 +10,7 @@ import { BsWindows } from "react-icons/bs";
 interface CodeBlockProps {
   code: string;
   language?: string;
+  width?: string;
 }
 
 interface SectionCardProps {
@@ -75,7 +76,11 @@ const ExternalLinkIcon = () => (
 // ── Components ───────────────────────────────────────────────────────────────
 
 // CodeBlock intentionally stays dark (terminal aesthetic) in both modes
-const CodeBlock = ({ code, language = "bash" }: CodeBlockProps) => {
+const CodeBlock = ({
+  code,
+  language = "bash",
+  width = "750px",
+}: CodeBlockProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -181,7 +186,7 @@ const CodeBlock = ({ code, language = "bash" }: CodeBlockProps) => {
           color: "#e2e8f0",
         }}
       >
-        <code style={{ maxWidth: "750px" }}>{code.trim()}</code>
+        <code style={{ maxWidth: width }}>{code.trim()}</code>
       </pre>
     </div>
   );
@@ -518,10 +523,10 @@ use_color = true`}
         </InfoBox>
 
         <div
-          className="grid gap-5"
-          style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          }}
+          className="grid grid-cols-2 gap-5"
+          // style={{
+          //   gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          // }}
         >
           <SectionCard title="Installation">
             <SubLabel>Prerequisites</SubLabel>
@@ -537,23 +542,34 @@ sudo apt install golang-go
           </SectionCard>
 
           <SectionCard title="Configuration">
-            <SubLabel>Basic Setup</SubLabel>
+            <SubLabel>Basic Setup (Mainnet)</SubLabel>
             <CodeBlock
               code={`cat > ~/.config/zcash.conf << EOF
-zebrad-rpcuser=your_rpc_username
-zebrad-rpcpass=your_rpc_password
-zebrad-rpcbind=127.0.0.1
-zebrad-rpcport=8232
-grpc-bind-addr=127.0.0.1:9067
-log-file=lightwalletd.log
+rpcport=8232
+rpcbind=127.0.0.1
+rpcuser=your_rpc_username
+rpcpassword=your_rpc_password
 EOF`}
             />
-            <SubLabel className="mt-[14px]">Run</SubLabel>
+            <SubLabel className="pt-4">Basic Setup (Testnet)</SubLabel>
             <CodeBlock
-              code={`lightwalletd --zcash-conf-path ~/.config/zcash.conf --data-dir ~/data/zebrad/.cache/lightwalletd --log-file ~/.local/state/lwd.log --no-tls-very-insecure`}
+              code={`cat > ~/.config/zcash.conf << EOF
+testnet=1
+rpcport=18238
+rpcbind=127.0.0.1
+rpcuser=your_rpc_username
+rpcpassword=your_rpc_password
+EOF`}
             />
           </SectionCard>
         </div>
+
+        <SectionCard className="mt-6" title="Run">
+          <CodeBlock
+            width="fit-content"
+            code={`lightwalletd --zcash-conf-path ~/.config/zcash.conf --data-dir ~/data/zebrad/.cache/lightwalletd --log-file ~/.local/state/lwd.log --no-tls-very-insecure`}
+          />
+        </SectionCard>
       </section>
 
       <ResourcesSection />
