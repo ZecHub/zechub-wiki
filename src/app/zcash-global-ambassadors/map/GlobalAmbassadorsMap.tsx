@@ -240,7 +240,7 @@ export default function GlobalAmbassadorsMap() {
     if (!feature) return;
 
     const [lon, lat] = feature.geometry.coordinates;
-    mapRef.current.flyTo([lon, lat], 5, { duration: 1.2, easeLinearity: 0.3 });
+    mapRef.current.flyTo([lat, lon], 5, { duration: 1.2, easeLinearity: 0.3 });
   }, [selected, ambassadors]);
 
   const handleClose = useCallback(() => {
