@@ -6,6 +6,8 @@ interface DetailPanelProps {
   onClose: () => void;
 }
 export function DetailPanel(props: DetailPanelProps) {
+  if (!props.store) return null;
+
   return (
     <div
       style={{
@@ -15,7 +17,7 @@ export function DetailPanel(props: DetailPanelProps) {
         width: 250,
         background: "var(--color-background-primary)",
         border: "0.5px solid var(--color-border-secondary)",
-        borderRadius: "var(--border-radius-lg)",
+        borderRadius: 10,
         padding: "14px 14px 16px",
         zIndex: 900,
         boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
@@ -42,6 +44,9 @@ export function DetailPanel(props: DetailPanelProps) {
       {/* Brand name */}
       <div
         style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 7,
           fontSize: 13,
           fontWeight: 500,
           color: "var(--color-text-primary)",
@@ -51,16 +56,23 @@ export function DetailPanel(props: DetailPanelProps) {
       >
         <span
           style={{
-            display: "inline-block",
             width: 8,
             height: 8,
             borderRadius: "50%",
             background: getBrandColor(props.store?.brand!),
-            marginRight: 7,
             flexShrink: 0,
           }}
         />
-        {props.store?.brand}
+
+        <span
+          style={{
+            fontSize: 13,
+            color: "var(--color-text-primary)",
+            fontWeight: 500,
+          }}
+        >
+          {props.store?.brand}
+        </span>
       </div>
 
       {/* Address */}
@@ -98,7 +110,7 @@ export function DetailPanel(props: DetailPanelProps) {
           }}
           key={m.label + "_" + i}
         >
-          <span style={{ flexShrink: 0 }}>{m.icon}</span>
+          <span style={{ flexShrink: 0, lineHeight: 1.5 }}>{m.icon}</span>
           <span style={{ lineHeight: 1.4 }}>{m.label}</span>
         </div>
       ))}
