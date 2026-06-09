@@ -236,6 +236,24 @@ export const networkUpgrades: NetworkUpgrade[] = [
     ],
     privacyLevel: 92,
     privacyLabel: "Community-Governed Privacy",
+    status: "past",
+    eraColor: "60 95% 55%",
+  },
+  {
+    id: "nu6_2",
+    name: "NU6.2",
+    subtitle:
+      "Resolving a critical soundness vulnerability in the Orchard shielded transaction pool",
+    date: "Jun 2, 2026",
+    blockHeight: 3363426,
+    description:
+      "NU6.2 started with a Zebra 4.5.3 the soft fork implementation that temporarily disables Orchard actions so that the soundness bug issue in the implementation of the Orchard zero-knowledge proof circuit in the halo2_gadgets crate was resolved and patched by engineers from both Shielded Labs and ZODL. And On Wednesday, June 3, at 00:05 EDT, the NU6.2 hard-fork network upgrade activated successfully, re-enabling Orchard with the corrected circuit. This was the second security-driven protocol upgrade in Zcash history since its launch in 2016",
+    features: [
+      "Zebra 4.5.3 and 5.0.0: Emergency Soft Fork and NU6.2 Activation",
+    ],
+    zips: [],
+    privacyLevel: 100,
+    privacyLabel: "soundness bug",
     status: "current",
     eraColor: "60 95% 55%",
   },
