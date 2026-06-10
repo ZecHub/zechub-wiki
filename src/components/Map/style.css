@@ -5,8 +5,8 @@
 :root {
     --spedn-bg: #ffffff;
     --spedn-bg-card: #fafafa;
-    --spedn-bg-hover: #f5f7fa;
-    --spedn-bg-active: #edf4ff;
+    --spedn-bg-hover: rgba(245, 247, 250, .25);
+    --spedn-bg-active: rgba(237, 244, 255, 0.75);
     --spedn-bg-secondary: #f7f9fc;
 
     --spedn-bg-info: #d7e7ff;
@@ -14,11 +14,12 @@
 
     --spedn-text-primary: #d8ded2;
     --spedn-text-secondary: #475467;
+    --spedn-text-tertiary: rgba(71, 84, 103, .6);
     --spedn-text-muted: #667085;
     --spedn-text-faint: #98a2b3;
 
-    --spedn-border: #eaecf0;
-    --spedn-border-strong: #d0d5dd;
+    --spedn-border: rgba(234, 236, 240, 0.15);
+    --spedn-border-strong: rgba(234, 236, 240, 0.75);
 
     --spedn-selected-ring: rgba(31, 111, 235, 0.15);
 }
