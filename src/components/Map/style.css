@@ -60,6 +60,15 @@
     pointer-events: none;
 }
 
-.spedn-input  input[type=text] {
+.spedn-input input[type=text] {
     color: var(--spedn-text-muted)
+}
+
+.zec-map a {
+    text-decoration: dotted;
+    color: #dacb55;
+}
+
+.zec-map a:hover {
+    text-decoration: underline;
 }
