@@ -258,7 +258,7 @@ export default function SPEDNMap() {
                 background: "#1D9E75",
               }}
             />
-            SPEDN · FLEXA NETWORK
+            FLEXA STORE LOCATOR
           </div>
           <h1
             style={{
@@ -282,7 +282,12 @@ export default function SPEDNMap() {
           >
             {allStores.length} locations across{" "}
             {[...new Set(allStores.map((s) => s.country))].join(", ")} accepting
-            ZEC via Flexa
+            ZEC via Flexa and more at{" "}
+            <span className="zec-map">
+              <a href="https://zecmap.com" target="_blank">
+                Zec Map
+              </a>
+            </span>
           </p>
         </header>
 
