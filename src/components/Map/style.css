@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --spedn-bg: #ffffff;
+    --spedn-bg-card: #fafafa;
+    --spedn-bg-hover: rgba(245, 247, 250, .25);
+    --spedn-bg-active: rgba(237, 244, 255, 0.75);
+    --spedn-bg-secondary: #f7f9fc;
+
+    --spedn-bg-info: #d7e7ff;
+    --spedn-text-info: #1f6feb;
+
+    --spedn-text-primary: #d8ded2;
+    --spedn-text-secondary: #475467;
+    --spedn-text-tertiary: rgba(71, 84, 103, .6);
+    --spedn-text-muted: #667085;
+    --spedn-text-faint: #98a2b3;
+
+    --spedn-border: rgba(234, 236, 240, 0.15);
+    --spedn-border-strong: rgba(234, 236, 240, 0.75);
+
+    --spedn-selected-ring: rgba(31, 111, 235, 0.15);
+}
+
+.leaflet-container {
+    background: #e8e0d8 !important
+}
+
+.leaflet-control-zoom a {
+    background: var(--color-background-primary) !important;
+    border-color: var(--color-border-secondary) !important;
+    color: var(--color-text-secondary) !important;
+}
+
+.leaflet-control-attribution {
+    font-size: 10px !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+}
+
+.leaflet-tooltip {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: 6px;
+    padding: 6px 10px;
+    box-shadow: none;
+    color: var(--color-text-primary);
+}
+
+.leaflet-tooltip::before {
+    display: none;
+}
+
+.spedn-tooltip {
+    background: rgba(9, 9, 9, 0.8);
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 6px 10px;
+    pointer-events: none;
+}
+
+.spedn-input input[type=text] {
+    color: var(--spedn-text-muted)
+}
+
+.zec-map a {
+    text-decoration: dotted;
+    color: #dacb55;
+}
+
+.zec-map a:hover {
+    text-decoration: underline;
+}
