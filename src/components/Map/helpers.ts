@@ -9,10 +9,15 @@ export const BRAND_COLORS: Record<string, string> = {
   Fresh: "#639922",
   GameStop: "#E24B4A",
   "International Shoppes": "#7F77DD",
+  "Kiehl's": "#4A90D9",
+  "London Jewelers": "#B8860B",
+  "Luxury Beauty Store": "#9B59B6",
+  Mikimoto: "#2C3E50",
   Nordstrom: "#185FA5",
   "Nordstrom Rack": "#0C447C",
   Regal: "#7F77DD",
   Sheetz: "#BA7517",
+  "The Coffee Bean & Tea Leaf": "#6B3A2A",
   "Ulta Beauty": "#D4537E",
 };
 
