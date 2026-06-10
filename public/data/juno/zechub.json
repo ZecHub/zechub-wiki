@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 157,
+    "proposal_count": 158,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6325,10 +6325,10 @@
           "title": "Zcash East Africa (June -July 2026)",
           "votes": {
             "no": "0",
-            "yes": "14",
-            "abstain": "3"
+            "yes": "15",
+            "abstain": "4"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
           "threshold": {
             "threshold_quorum": {
@@ -6349,7 +6349,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-05-29T17:08:20.443Z"
+        "createdAt": "2026-05-29T17:08:20.443Z",
+        "completedAt": "2026-06-03T22:51:35.000Z",
+        "executedAt": "2026-06-03T22:51:35.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6363,7 +6365,7 @@
             "yes": "15",
             "abstain": "4"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno18cq4kpcgyp3k5nelaq52mlwcfqk9v6dhs00ytt",
           "threshold": {
             "threshold_quorum": {
@@ -6384,7 +6386,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-05-29T23:36:45.046Z"
+        "createdAt": "2026-05-29T23:36:45.046Z",
+        "completedAt": "2026-06-04T13:39:26.000Z",
+        "executedAt": "2026-06-04T13:39:26.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6394,11 +6398,11 @@
           "msgs": [],
           "title": "NU7 Education Content – Five Wiki Pages",
           "votes": {
-            "no": "8",
+            "no": "15",
             "yes": "0",
             "abstain": "1"
           },
-          "status": "open",
+          "status": "closed",
           "proposer": "juno1jru9wr64xvjy5s9wnrz4jaa22grjdwehqw7lc5",
           "threshold": {
             "threshold_quorum": {
@@ -6419,7 +6423,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-06-01T15:31:37.821Z"
+        "createdAt": "2026-06-01T15:31:37.821Z",
+        "completedAt": "2026-06-06T19:12:26.000Z",
+        "closedAt": "2026-06-06T19:12:26.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6429,11 +6435,11 @@
           "msgs": [],
           "title": "ZecHub Wiki – SEO & Performance Improvements",
           "votes": {
-            "no": "7",
+            "no": "16",
             "yes": "0",
             "abstain": "1"
           },
-          "status": "open",
+          "status": "closed",
           "proposer": "juno1jru9wr64xvjy5s9wnrz4jaa22grjdwehqw7lc5",
           "threshold": {
             "threshold_quorum": {
@@ -6454,7 +6460,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-06-01T19:29:52.073Z"
+        "createdAt": "2026-06-01T19:29:52.073Z",
+        "completedAt": "2026-06-06T22:23:47.000Z",
+        "closedAt": "2026-06-06T22:23:47.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6464,11 +6472,11 @@
           "msgs": [],
           "title": "ZECHUB SOCIAL MEDIA MANAGEMENT  & CONTENT PROPOSAL",
           "votes": {
-            "no": "0",
-            "yes": "4",
-            "abstain": "1"
+            "no": "5",
+            "yes": "9",
+            "abstain": "6"
           },
-          "status": "open",
+          "status": "closed",
           "proposer": "juno140c5hg6nf4updyxfdxwrx48xrct40uqeem62mf",
           "threshold": {
             "threshold_quorum": {
@@ -6489,7 +6497,44 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-06-02T13:47:44.658Z"
+        "createdAt": "2026-06-02T13:47:44.658Z",
+        "completedAt": "2026-06-07T18:58:34.000Z",
+        "closedAt": "2026-06-07T18:58:34.000Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 158,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash University Tour: University of Abuja Edition",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1c5sv4hk0ysezc5znwnwv6rkc0ex6eld53nafmr",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1781528926377209098"
+          },
+          "description": "Executive Summary: \nThe Zcash University Tour: University of Abuja Edition is a flagship educational and developer-focused event designed to introduce students, builders, and crypto enthusiasts to the principles of financial privacy, decentralized technologies, and the Zcash ecosystem.\n\nHosted by CollegeDAO in partnership with the University of Abuja blockchain community, this event will serve as a practical demonstration of our ability to execute high-impact ecosystem initiatives while simultaneously growing awareness and adoption of Zcash among one of Nigeria's largest student populations.\n\nThe organizing team brings prior experience executing successful university blockchain events, including the Kaspa Education Series at the University of Abuja, which attracted more than 200 participants and demonstrated strong demand for high-quality blockchain education among students.\n\nThe event combines a traditional crypto meetup format with dedicated technical sessions for developers, creating a balanced experience for both newcomers and experienced builders.\n\nMore importantly, this initiative serves as a pilot program for future Zcash educational initiatives across Nigerian universities, providing measurable data, community growth, and ecosystem engagement metrics that can inform larger-scale efforts.\n\nWhy University of Abuja?\n\nThe University of Abuja is one of Nigeria's largest federal institutions and serves as a strategic hub for technology-driven students, developers, entrepreneurs, and blockchain enthusiasts within Nigeria's capital city.\n\nThe institution provides access to:\n1. Thousands of students across technology-related disciplines.\n2. Emerging developers interested in privacy-preserving technologies.\n3. Existing Web3 communities and student leaders.\n4. Strong potential for long-term ecosystem development.\n\nThe event is strategically positioned to establish Zcash as the leading privacy-focused cryptocurrency among the next generation of African builders, users, and advocates.\n\nObjectives\n1. Community Education:\nEducate students and crypto enthusiasts on:\n- The importance of financial privacy.\n- The role of zero-knowledge cryptography.\n- How Zcash differs from traditional cryptocurrencies.\n- Real-world use cases of private digital money.\n\n2. Developer Engagement:\nProvide a dedicated technical track introducing:\n- Zcash architecture.\n- Shielded transactions.\n- Privacy technologies.\n- Developer opportunities within the Zcash ecosystem.\n- Pathways to contribute to Zcash-related initiatives.\n\n3. Ecosystem Growth\n- Onboard new community members.\n- Increase awareness of Zcash in Nigeria.\n- Create a pipeline of future contributors and advocates.\n- Strengthen Zcash's presence within African university communities.\n\n4. Demonstrate Execution Capacity\n- Deliver a professionally organized event with measurable outcomes that showcase the team's readiness to manage larger ecosystem initiatives in the future.\n\nEvent Structure\nSession 1: Welcome & Ecosystem Introduction\n- Opening remarks.\n- Introduction to Zcash.\n- Understanding the Zcash mission.\n- Why privacy matters in the digital age.\n\nSession 2: Understanding Financial Privacy\nTopics include:\n- Why privacy is a fundamental human right.\n- Practical implications of digital privacy.\nZcash's approach to privacy-preserving transactions.\n\nSession 3: Developer Workshop\nDedicated technical session covering:\n- Introduction to Zcash technology.\n- Understanding zero-knowledge proofs.\n- Shielded transaction mechanics.\n- Building within privacy-focused ecosystems.\n- Developer opportunities within the Zcash ecosystem.\n- Resources for continued learning.\n\nSession 4: Community Networking\nNetworking session.\n- Open Q&A.\n- Contributor onboarding.\n\nCommunity growth opportunities.\nExpected Outcomes\n1. Attendance\nTarget: 150–250 participants.\n2. Community Growth\n100+ new community members onboarded.\n3. Increased awareness of Zcash among students and developers.\n4. Creation of a University of Abuja Zcash interest group.\n5. Growth of local Zcash-focused community channels.\n\nDeveloper Pipeline\n- 10–20 developers attending technical sessions.\n- Identification of potential contributors.\n- Establishment of future developer engagement channels.\n\nContent Distribution\nPost-event:\n- Professional photo coverage.\n- Educational content recap.\n- Social media campaign.\n- Ecosystem reporting.\n\nSuccess Metrics\nSuccess will be measured using both quantitative and qualitative indicators:\n\nA.Quantitative Metrics\n- Total attendees.\n- Number of developers participating.\n- Community sign-ups.\n- Telegram and social channel growth.\n- Social media reach and engagement.\n\nB. Qualitative Metrics\n- Attendee feedback.\n- Knowledge retention surveys.\n- Community sentiment.\n- Developer interest levels.\n\nProject Timeline\nPhase 1: Planning & Community Mobilization (Weeks 1–2)\nActivities:\n1. Confirm venue and event logistics.\n2. Finalize speaker lineup.\n3. Launch registration campaign.\n4. Begin social media awareness campaign.\n5. Coordinate with student communities and Web3 groups.\n6. Produce promotional materials.\n\nDeliverables:\n- Event registration portal live.\n- Marketing materials published.\n- Initial participant sign-ups.\n\nPhase 2: Event Execution (Week 3)\nActivities:\n1. Host the University of Abuja Zcash Meetup.\n2. Deliver educational and developer-focused sessions.\n3. Conduct onboarding activities.\n4. Capture media and documentation.\n\nDeliverables:\n- Successful event execution.\n- Attendance records.\n- Photo and video documentation.\n- Community onboarding metrics.\n\nPhase 3: Reporting & Follow-Up (Week 4)\nActivities:\n1. Publish event recap.\n2. Submit final report to ZEC Hub.\n3. Share attendee and engagement metrics.\n4. Maintain communication channels for ongoing engagement.\n\nDeliverables:\n- Comprehensive event report.\n- Impact analysis.\n- Media assets.\n- Community growth metrics.\n\nMarketing & Outreach Strategy\nTo maximize attendance and ecosystem impact, the event will utilize a multi-channel outreach strategy.\n\nA. Campus Outreach\n- Physical awareness campaigns across faculties.\n- Collaboration with student leaders.\n- Partnerships with technology and entrepreneurship communities.\n\nB. Digital Marketing\n- X (Twitter) campaign.\n- Telegram community outreach.\n- WhatsApp community distribution.\n- Community partner amplification.\n\nC. Ecosystem Promotion\n- Promotion through Zcash ecosystem channels (ZCG Forum)\n- Cross-posting by ecosystem contributors.\n- Engagement with African Web3 communities.\n\nTarget Reach\n1. 10,000+ social media impressions.\n2. 300+ registrations.\n3. 150–250 attendees.\n\nOperational Readiness Demonstration:\nThis initiative is intentionally designed as more than a community meetup. It serves as a practical demonstration of the operational capabilities required to execute larger ecosystem initiatives within the Zcash community.\nThrough this pilot initiative, CollegeDAO will demonstrate its ability to:\n\n1. Event Operations\n- Coordinate venue logistics.\n- Manage event timelines.\n- Execute attendee onboarding.\n- Deliver a professional participant experience.\n- Manage event staff and volunteers effectively.\n\n2. Community Development\n- Attract and educate new users.\n- Engage developers through technical programming.\n- Build sustainable community channels beyond the event itself.\n- Maintain post-event ecosystem engagement.\n\n3. Financial Accountability\n- Operate within a defined budget.\n- Maintain transparent expenditure records.\n- Deliver measurable outcomes relative to funding received.\n- Provide accountability through reporting and documentation.\n\n4. Reporting & Documentation\n- Produce detailed post-event reports.\n- Deliver attendance and engagement metrics.\n- Provide professional media assets.\n- Document lessons learned and future opportunities.\n\nThe processes, reporting standards, and operational frameworks utilized during this event will establish a foundation for future ecosystem initiatives and provide a measurable benchmark for evaluating larger community-building programs.\n\n\n\n\nBudget Breakdown ($1,200)\n\n   Category                                    Amount\n- Venue & Event Logistics.           $250\n- Branding & Event Materials.      $150\n- Marketing & Promotion.             $150\n- Refreshments.                            $250\n- Media Coverage &\n   Documentation.                          $150\n- Speaker & Facilitator Support.   $150\n- Contingency & Miscellaneous.   $100\n\n- Total Funding Requested.        $1,200\n\n\nSustainability & Future Growth\nThis initiative is designed to establish a foundation for long-term Zcash ecosystem growth in Nigeria.\nFollowing the event, we intend to:\n- Maintain participant communication channels.\n- Organize follow-up educational sessions.\n- Identify developers interested in deeper ecosystem involvement.\n- Build a network of Zcash advocates within Nigerian universities.\n- Support interested participants in becoming long-term ecosystem contributors.\nThe University of Abuja edition serves as the first step toward a scalable university engagement model that can be replicated across other institutions in Nigeria and eventually across Africa.\n\nBy supporting this initiative, ZecHub is not only funding a single event but investing in a framework for sustained Zcash awareness, developer engagement, and grassroots ecosystem expansion.\n\nWhy CollegeDAO?\nCollegeDAO has successfully organized and supported educational blockchain initiatives across Nigerian tertiary institutions, with a strong focus on onboarding students, educating emerging builders, and creating sustainable Web3 communities.\nA notable example is the Kaspa Education Series hosted at the University of Abuja and in other institutions nationwide, where CollegeDAO successfully organized and executed a large-scale educational event that attracted over 200 attendees. The event introduced students and blockchain enthusiasts to the Kaspa ecosystem, facilitated meaningful community engagement, and demonstrated the team's ability to coordinate logistics, manage stakeholders, and deliver measurable educational outcomes.\nThis successful execution provides a proven foundation for the proposed Zcash University Tour and highlights CollegeDAO's capacity to attract participants, create engaging educational experiences, and produce transparent post-event reporting. (Find Excerpts here: https://x.com/i/status/1974906388611465619)\n\nOur experience spans:\n- Student onboarding campaigns.\n- Blockchain education programs.\n- Community-building initiatives.\n- Multi-campus ecosystem engagement efforts.\n- Event logistics and execution.\n- Developer-focused workshops and technical sessions.\n\nThe proposed University of Abuja Zcash Meetup builds upon this track record and represents an opportunity to introduce one of the world's leading privacy-preserving blockchain ecosystems to a highly engaged student audience.\n\nRather than a standalone event, this initiative is intended to serve as a replicable model for university-based Zcash education and community development across Nigeria and eventually the broader African region.\n\nConclusion: \nThe growth of the Zcash ecosystem depends on sustained education, grassroots community development, and the cultivation of future contributors.\n\nThe University of Abuja Zcash Meetup is designed to deliver immediate value through education and developer engagement while establishing a measurable framework for future ecosystem initiatives.\n\nBy supporting this pilot initiative, ZEC Hub will help introduce a new generation of students, developers, and advocates to the importance of financial privacy while enabling the creation of a sustainable Zcash presence within one of Nigeria's most influential academic institutions.\n\nWe welcome the opportunity to contribute meaningfully to Zcash adoption, education, and ecosystem growth across Nigeria and Africa.",
+          "total_power": "23",
+          "start_height": 38738776,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-06-10T13:08:46.377Z"
       }
     ]
   },
