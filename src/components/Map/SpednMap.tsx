@@ -2,7 +2,6 @@
 
 import Head from "next/head";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { DetailPanel } from "./components/detail-panel";
 import { StoreListItem } from "./components/store-list-item";
 import { BRAND_COLORS, getBrandColor, parseStores } from "./helpers";
 import { makePinSVG } from "./makePinSVG";
@@ -101,16 +100,16 @@ export default function SPEDNMap() {
 
       // Tile Layer
       L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
         {
           maxZoom: 19,
           subdomains: "abcd",
-          opacity: 0.7,
+          // opacity: 0.7,
         },
       ).addTo(map);
 
       L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png",
+        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png",
         {
           maxZoom: 19,
           subdomains: "abcd",
@@ -223,31 +222,30 @@ export default function SPEDNMap() {
       </Head>
 
       <div
-        className="spedn-root"
-        style={{ display: "flex", flexDirection: "column", height: "100%" }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100vh",
+          overflow: "hidden",
+        }}
       >
         {/* Header */}
-        <div
+        <header
           style={{
             padding: "28px 28px 20px",
-            borderBottom: "0.5px solid var(--color-border-tertiary)",
+            borderBottom: "0.5px solid var(--spedn-border-tertiary)",
             flexShrink: 0,
+            // background: 'red'
           }}
         >
-          {/* <div
-            style={{
-              maxWidth: 900,
-              margin: "0 auto",
-            }}
-          > */}
           <div
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: 7,
-              background: "var(--color-background-success)",
-              color: "var(--color-text-success)",
-              border: "0.5px solid var(--color-border-success)",
+              background: "var(--spedn-background-success)",
+              color: "var(--spedn-text-success)",
+              border: "0.5px solid var(--spedn-border-success)",
               borderRadius: 20,
               padding: "3px 11px",
               fontSize: 11,
@@ -290,41 +288,36 @@ export default function SPEDNMap() {
             {[...new Set(allStores.map((s) => s.country))].join(", ")} accepting
             ZEC via Flexa
           </p>
-        </div>
-        {/* </div> */}
+        </header>
 
         {/* Main */}
-        <div
+        <main
           style={{
             display: "flex",
+            flexDirection: "row",
             flex: 1,
-            overflow: "hidden",
             minHeight: 0,
-
-            // border: "0.5px solid var(--color-border-tertiary)",
-            // borderRadius: "var(--border-radius-lg)",
-            // margin: "20px",
-            // height: "calc(100vh-200px)",
+            overflow: "hidden",
           }}
         >
           {/* Sidebar */}
-          <div
+          <aside
             style={{
-              width: 200,
+              width: 240,
               flexShrink: 0,
               display: "flex",
               flexDirection: "column",
-              borderRight: "0.5px solid var(--color-border-tertiary)",
-              background: "var(--color-background-primary)",
-              height: 900,
-              overflow:'scroll'
+              height: "100%",
+              minHeight: 0,
+              borderRight: "0.5px solid var(--spedn-border-tertiary)",
+              background: "var(--spedn-background-primary)",
             }}
           >
             {/* Search */}
             <div
               style={{
                 padding: "10px 12px",
-                borderBottom: "0.5px solid var(--color-border-tertiary)",
+                borderBottom: "0.5px solid var(--spedn-border-tertiary)",
                 display: "flex",
                 flexDirection: "column",
                 gap: 8,
@@ -339,7 +332,7 @@ export default function SPEDNMap() {
                     top: "50%",
                     transform: "translateY(-50%)",
                     fontSize: 14,
-                    color: "var(--color-text-tertiary)",
+                    color: "var(--spedn-text-tertiary)",
                     pointerEvents: "none",
                   }}
                 >
@@ -402,19 +395,19 @@ export default function SPEDNMap() {
                 justifyContent: "space-between",
                 padding: "7px 14px",
                 fontSize: 11,
-                color: "var(--color-text-tertiary)",
-                borderBottom: "0.5px solid var(--color-border-tertiary)",
+                color: "var(--spedn-text-tertiary)",
+                borderBottom: "0.5px solid var(--spedn-border-tertiary)",
               }}
             >
-              {filteredStores.length} locations
-              {filteredStores.length !== 1 ? "s" : ""}
+              {filteredStores.length} location
+              {filteredStores.length !== 1 ? "s" : ""}{" "}
               {brandFilter || search ? "matching" : ""}
               {(search || brandFilter) && (
                 <button
                   onClick={clearFilters}
                   style={{
                     fontSize: 11,
-                    color: "var(--color-text-tertiary)",
+                    color: "var(--spedn-text-tertiary)",
                     background: "none",
                     border: "none",
                     cursor: "pointer",
@@ -428,7 +421,11 @@ export default function SPEDNMap() {
 
             {/* Store list */}
             <div
-              style={{ flex: 1, overflowY: "auto", minHeight: 0 }}
+              style={{
+                flex: 1,
+                minHeight: 0,
+                overflowY: "scroll",
+              }}
               role="list"
             >
               {loading ? (
@@ -437,7 +434,7 @@ export default function SPEDNMap() {
                     padding: 24,
                     textAlign: "center",
                     fontSize: 13,
-                    color: "var(--color-text-secondary)",
+                    color: "var(--spedn-text-secondary)",
                   }}
                 >
                   {" "}
@@ -449,7 +446,7 @@ export default function SPEDNMap() {
                     padding: 32,
                     textAlign: "center",
                     fontSize: 13,
-                    color: "var(--color-text-secondary)",
+                    color: "var(--spedn-text-secondary)",
                   }}
                 >
                   No stores match your search
@@ -472,8 +469,11 @@ export default function SPEDNMap() {
                 padding: "10px 14px",
                 borderTop: "0.5px solid var(--color-border-tertiary)",
                 display: "flex",
-                gap: 8,
+                gap: 12,
+                flexDirection: "row",
+                margin: "12px 0",
                 flexWrap: "wrap",
+                flexShrink: 0,
               }}
             >
               {Object.entries(BRAND_COLORS)
@@ -502,49 +502,22 @@ export default function SPEDNMap() {
                   </div>
                 ))}
             </div>
-          </div>
+          </aside>
 
           {/* Map */}
-
           <div
+            id="map-container"
             style={{
               flex: 1,
-              position: "relative",
               minHeight: 0,
+              minWidth: 0,
+              overflow: "hidden",
+              backgroundColor: "beige",
             }}
           >
-            {loading && (
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  zIndex: 10,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "var(--color-background-secondary)",
-                  fontSize: 13,
-                  color: "var(--color-text-secondary) ",
-                }}
-              >
-                Loading map...
-              </div>
-            )}
-            <div
-              ref={mapContainerRef}
-              style={{
-                // width: "100%",
-                // height: "100%",
-                position: "absolute",
-                inset: 0,
-              }}
-            />
-            <DetailPanel
-              store={selectedStore}
-              onClose={() => setSelectedId(null)}
-            />
+            <h1>Map Container</h1>
           </div>
-        </div>
+        </main>
       </div>
     </>
   );
