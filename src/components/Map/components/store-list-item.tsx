@@ -17,23 +17,22 @@ export function StoreListItem(props: StoreListItemProps) {
       style={{
         padding: "11px 14px",
         cursor: "pointer",
-        borderBottom: "0.5px solid var(--color-border-tertiary)",
-        background: props.isActive
-          ? "var(--color-background-info)"
-          : "transparent",
+        borderBottom: "0.25px solid var(--spedn-border)",
+        background: props.isActive ? "var(--spedn-bg-hover)" : "transparent",
         borderLeft: props.isActive
-          ? "2px solid var(--color-text-info)"
-          : "2px solid transparent",
+          ? "3px solid var(--spedn-text-info)"
+          : "transparent",
         transition: "background 0.1s",
+        outline: "none",
       }}
       onMouseEnter={(e) => {
         if (!props.isActive) {
           (e.currentTarget as HTMLDivElement).style.background =
-            "var(--color-background-secondary)";
+            "var(--spedn-bg-hover)";
         }
       }}
       onMouseLeave={(e) => {
-        if (props.isActive) {
+        if (!props.isActive) {
           (e.currentTarget as HTMLDivElement).style.background = "transparent";
         }
       }}
@@ -60,7 +59,7 @@ export function StoreListItem(props: StoreListItemProps) {
           style={{
             fontSize: 12,
             fontWeight: 500,
-            color: "var(--color-text-primary)",
+            color: "var(--spedn-text-primary)",
           }}
         >
           {props.store.brand}
@@ -71,12 +70,12 @@ export function StoreListItem(props: StoreListItemProps) {
       <div
         style={{
           fontSize: 11,
-          color: "var(--color-text-secondary)",
+          color: "var(--spedn-text-faint)",
           marginBottom: 6,
           marginLeft: 15,
           whiteSpace: "nowrap",
           textOverflow: "ellipsis",
-          overflow:'hidden'
+          overflow: "hidden",
         }}
       >
         {props.store.city}, {props.store.state}

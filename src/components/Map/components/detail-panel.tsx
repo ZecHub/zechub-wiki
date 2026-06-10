@@ -12,11 +12,11 @@ export function DetailPanel(props: DetailPanelProps) {
     <div
       style={{
         position: "absolute",
-        bottom: 14,
+        bottom: 240,
         right: 14,
         width: 250,
-        background: "var(--color-background-primary)",
-        border: "0.5px solid var(--color-border-secondary)",
+        background: "var(--spedn-bg-secondary)",
+        border: "0.5px solid var(--spedn-border-secondary)",
         borderRadius: 10,
         padding: "14px 14px 16px",
         zIndex: 900,
@@ -33,7 +33,7 @@ export function DetailPanel(props: DetailPanelProps) {
           background: "none",
           border: "none",
           cursor: "pointer",
-          color: "var(--color-text-secondary)",
+          color: "var(--spedn-text-secondary)",
           fontSize: 14,
           padding: 2,
         }}
@@ -49,7 +49,6 @@ export function DetailPanel(props: DetailPanelProps) {
           gap: 7,
           fontSize: 13,
           fontWeight: 500,
-          color: "var(--color-text-primary)",
           marginBottom: 5,
           paddingRight: 20,
         }}
@@ -67,7 +66,7 @@ export function DetailPanel(props: DetailPanelProps) {
         <span
           style={{
             fontSize: 13,
-            color: "var(--color-text-primary)",
+            color: "var(--spedn-text-secondary)",
             fontWeight: 500,
           }}
         >
@@ -79,7 +78,7 @@ export function DetailPanel(props: DetailPanelProps) {
       <p
         style={{
           fontSize: 12,
-          color: "var(--color-text-secondary)",
+          color: "var(--spedn-text-secondary)",
           lineHeight: 1.55,
           marginBottom: 10,
           paddingLeft: 15,
@@ -105,7 +104,7 @@ export function DetailPanel(props: DetailPanelProps) {
             gap: 7,
             alignItems: "flex-start",
             fontSize: 12,
-            color: "var(--color-text-secondary)",
+            color: "var(--spedn-text-secondary)",
             marginBottom: 5,
           }}
           key={m.label + "_" + i}
