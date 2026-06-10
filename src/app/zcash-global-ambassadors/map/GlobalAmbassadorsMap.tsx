@@ -54,6 +54,7 @@ export default function GlobalAmbassadorsMap() {
   const [regionFilter, setRegionFilter] = useState<RegionFilter>("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [mapReady, setMapReady] = useState(false);
 
   // Ambassadors per region for filter bar
   const regionCounts = ambassadors.reduce<Record<string, number>>((acc, f) => {
@@ -84,6 +85,7 @@ export default function GlobalAmbassadorsMap() {
         setLoading(false);
         console.error(err);
       });
+    console.log("role...");
   }, []);
 
   // Init Leaflet map
@@ -138,8 +140,11 @@ export default function GlobalAmbassadorsMap() {
 
       // Zoom control
       L.control.zoom({ position: "bottomright" }).addTo(map);
+
       layerGroupRef.current = L.layerGroup().addTo(map);
       mapRef.current = map;
+
+      setMapReady(true);
     });
 
     return () => {
@@ -170,16 +175,16 @@ export default function GlobalAmbassadorsMap() {
         html: `
           <div style='
           width:36px;height:36px;position:relative;
-          filter:drop-shadow(0 4px 12px ${color}66;
+          filter:drop-shadow(0 4px 12px ${color}66);
           cursor:pointer;
           transition:transform 0.15s;
           ' class='amb-pin'>
-          <svg viewbox='0 0 36 42' fill='none' xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox='0 0 36 42' fill='none' xmlns="http://www.w3.org/2000/svg">
                <path d="M18 2C10.268 2 4 8.268 4 16c0 10 14 26 14 26s14-16 14-26c0-7.732-6.268-14-14-14z"
                 fill="${color}" opacity="0.92"/>
               <circle cx="18" cy="16" r="6" fill="white" opacity="0.9"/>
           </div>
-          <div style="position:absolute;top:7px;left:50%;transform:translatedX(-50%);font-size:13px;line-height:1;">${p.flag}</div>
+          <div style="position:absolute;top:7px;left:50%;transform:translateX(-50%);font-size:13px;line-height:1;">${p.flag}</div>
         `,
       });
 
@@ -199,7 +204,7 @@ export default function GlobalAmbassadorsMap() {
           pointer-events:none;
           ">
           ${p.flag}${" "}${p.name}
-          <div style='font-size=11px;color:${color};margin-top:2px;font-weight:400'>
+          <div style='font-size:11px;color:${color};margin-top:2px;font-weight:400'>
             ${p.language} · ${REGION_LABELS[p.region as RegionFilter] ?? p.region}
             </div> 
           </div>
@@ -220,14 +225,10 @@ export default function GlobalAmbassadorsMap() {
 
   // Re-render markers when Leaflet is ready and data is loaded
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (!mapReady) return;
 
-    import("leaflet").then((L) => {
-      (window as any).L = L;
-
-      renderMarkers();
-    });
-  }, [renderMarkers]);
+    renderMarkers();
+  }, [mapReady, renderMarkers]);
 
   // Fly to selected
   useEffect(() => {
@@ -239,7 +240,7 @@ export default function GlobalAmbassadorsMap() {
     if (!feature) return;
 
     const [lon, lat] = feature.geometry.coordinates;
-    mapRef.current.flyTo([lon, lat], 5, { duration: 1.2, easeLinearity: 0.3 });
+    mapRef.current.flyTo([lat, lon], 5, { duration: 1.2, easeLinearity: 0.3 });
   }, [selected, ambassadors]);
 
   const handleClose = useCallback(() => {

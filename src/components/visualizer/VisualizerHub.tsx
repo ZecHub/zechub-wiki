@@ -27,6 +27,7 @@ import { QuizCard, QuizModule, type QuizQuestion } from "./QuizModule";
 import { DAOProposalVisualizer } from "./DAOProposals";
 import { BuildShieldedTransactionVisualizer } from "./BuildShieldedTransaction";
 import CrosslinkProtocolVisualizer from "./CrosslinkProtocol";
+import { FrostMultisigVisualizer } from "./frost-multisig";
 
 const QUIZ_BEGINNER: QuizQuestion[] = [
   {
@@ -97,6 +98,26 @@ const QUIZ_INTERMEDIATE: QuizQuestion[] = [
     options: ["Transparent (t-addr)", "Sapling (zs-addr)", "Orchard (u-addr)", "All pools are equally private"],
     correctIndex: 2,
   },
+  {
+    question: "In a FROST t-of-n threshold signature scheme, how many participants must cooperate to produce a valid signature?",
+    options: [
+      "All n participants every time",
+      "At least t participants",
+      "Exactly one trusted coordinator",
+      "A simple majority, regardless of t",
+    ],
+    correctIndex: 1,
+  },
+  {
+    question: "What makes a FROST signature private on Zcash?",
+    options: [
+      "It hides the transaction amount on its own",
+      "It is indistinguishable from an ordinary single-key Schnorr signature, so observers can't tell a group signed",
+      "It publishes each signer's share on-chain",
+      "It only works with transparent addresses",
+    ],
+    correctIndex: 1,
+  },
 ];
 
 const QUIZ_CONTRIBUTORS: QuizQuestion[] = [
@@ -154,6 +175,7 @@ type VisualizerType =
   | "open-source-repos"
   | "build-shielded-transaction"
   | "CrossLink-Protocol"
+  | "frost-multisig"
   | "distributed-database";
 
 interface VisualizerInfo {
@@ -270,6 +292,12 @@ const ADVANCED_VISUALIZERS: VisualizerInfo[] = [
     description:
       "Community-driven development and decentralized decision making",
     component: GovernanceVisualizer,
+  },
+  {
+    id: "frost-multisig",
+    title: "FROST & Private Multi Signatures",
+    description: "Secure multisig without a single point of failure",
+    component: FrostMultisigVisualizer,
   },
 ];
 

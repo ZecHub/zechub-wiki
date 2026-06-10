@@ -1,6 +1,6 @@
 "use client";
 
-import ambassadorProjects from "./ambassador_list.json";
+import ambassadorProjects from "./ambassador_list_v2.json";
 import { useLanguage } from "@/context/LanguageContext";
 import { LuExternalLink, LuTwitter } from "react-icons/lu";
 import GlobalAmbassadorsMap from "./map/GlobalAmbassadorsMap";
@@ -134,6 +134,7 @@ export default function GlobalAmbassadorsClient() {
 
   return (
     <main className="min-h-screen bg-background">
+      <GlobalAmbassadorsMap />
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="mb-12">
@@ -211,8 +212,6 @@ export default function GlobalAmbassadorsClient() {
           <p className="text-sm text-muted-foreground">{footerInfo}</p>
         </div>
       </div>
-
-      <GlobalAmbassadorsMap />
     </main>
   );
 }

@@ -151,5 +151,19 @@
     "language":"Hindi / English",
     "geo_query":"India",
     "pin_note":"Geographic centre of India"
-  }
+  },
+    {
+      "name": "Zcash East Africa",
+      "flag": "",
+      "twitter": "https://x.com/zcasheastafrica",
+      "description": "Zcash East Africa is dedicated to promoting digital privacy, financial freedom, and blockchain innovation through education, community events, technical workshops, and ecosystem development. The initiative aims to create a regional hub where individuals can explore privacy enhancing technologies, learn about zero knowledge proofs, and participate in the growing global Zcash network.",
+      "projectSite": null,
+      "image": "/ZcashEastAfricaBanner.jpg",
+      "blog": "https://substack.com/@zcasheastafrica",
+      "countryCode": "EAC",
+      "region": "africa",
+      "language": "English & Swahili",
+      "geo_query": "africa",
+      "pin_note": "Geographic centre of East Africa"
+    }
 ]

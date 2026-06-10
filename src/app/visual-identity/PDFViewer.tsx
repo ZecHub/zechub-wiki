@@ -1,94 +1,55 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 
-// Configure PDF.js worker
+// Configure PDF.js worker (only runs on client)
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 interface PDFViewerProps {
   pageNumber: number;
-  onDocumentLoadSuccess: ({ numPages }: { numPages: number }) => void;
+  onLoadSuccess: (data: { numPages: number }) => void;
+  pageWidth: number;
 }
 
-export default function PDFViewer({ pageNumber, onDocumentLoadSuccess }: PDFViewerProps) {
-  const [pageWidth, setPageWidth] = useState<number>(800);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const updateWidth = () => {
-      if (containerRef.current) {
-        const containerWidth = containerRef.current.clientWidth;
-        setPageWidth(containerWidth - 32);
-      }
-    };
-
-    updateWidth();
-    window.addEventListener("resize", updateWidth);
-    
-    const resizeObserver = new ResizeObserver(updateWidth);
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
-    }
-
-    return () => {
-      window.removeEventListener("resize", updateWidth);
-      resizeObserver.disconnect();
-    };
-  }, []);
-
+export default function PDFViewer({ pageNumber, onLoadSuccess, pageWidth }: PDFViewerProps) {
   return (
-    <div ref={containerRef} className="w-full">
-      <Document
-        file="/zecHub-visual-identity.pdf"
-        onLoadSuccess={onDocumentLoadSuccess}
+    <Document
+      file="/zecHub-visual-identity.pdf"
+      onLoadSuccess={onLoadSuccess}
+      loading={
+        <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-yellow-500 mx-auto mb-4"></div>
+            <p className="text-gray-600 font-medium">Loading flipbook...</p>
+          </div>
+        </div>
+      }
+      error={
+        <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
+          <div className="text-center">
+            <p className="text-red-500 font-medium">Failed to load PDF</p>
+            <p className="text-gray-500 text-sm mt-2">
+              Please make sure the PDF file exists in the public folder
+            </p>
+          </div>
+        </div>
+      }
+    >
+      <Page
+        pageNumber={pageNumber}
+        width={pageWidth}
+        renderTextLayer={false}
+        renderAnnotationLayer={false}
+        className="flex justify-center w-full"
         loading={
           <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-yellow-500 mx-auto mb-4"></div>
-              <p className="text-gray-600 font-medium">Loading flipbook...</p>
+            <div className="animate-pulse text-gray-400">
+              Loading page {pageNumber}...
             </div>
           </div>
         }
-        error={
-          <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
-            <div className="text-center">
-              <svg
-                className="w-16 h-16 text-red-400 mx-auto mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"
-                />
-              </svg>
-              <p className="text-red-500 font-medium">Failed to load PDF</p>
-              <p className="text-gray-500 text-sm mt-2">
-                Please make sure the PDF file exists in the public folder
-              </p>
-            </div>
-          </div>
-        }
-      >
-        <Page
-          pageNumber={pageNumber}
-          width={pageWidth}
-          renderTextLayer={false}
-          renderAnnotationLayer={false}
-          className="flex justify-center w-full"
-          loading={
-            <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
-              <div className="animate-pulse text-gray-400">
-                Loading page {pageNumber}...
-              </div>
-            </div>
-          }
-        />
-      </Document>
-    </div>
+      />
+    </Document>
   );
 }

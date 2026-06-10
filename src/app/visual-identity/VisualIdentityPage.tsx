@@ -1,25 +1,53 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
 import dynamic from "next/dynamic";
+import { useState, useEffect, useCallback, useRef } from "react";
 
-// Dynamically import react-pdf components with SSR disabled
-const PDFViewer = dynamic(() => import("./PDFViewer"), {
-  ssr: false,
-  loading: () => (
-    <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-yellow-500 mx-auto mb-4"></div>
-        <p className="text-gray-600 font-medium">Loading flipbook...</p>
+// Dynamically import the PDF rendering part (fixes DOMMatrix error)
+const PDFContent = dynamic(
+  () => import("./PDFViewer"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex items-center justify-center min-h-[400px] md:min-h-[600px]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-yellow-500 mx-auto mb-4"></div>
+          <p className="text-gray-600 font-medium">Loading flipbook...</p>
+        </div>
       </div>
-    </div>
-  ),
-});
+    ),
+  }
+);
 
 export default function VisualIdentityPage() {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [isFlipping, setIsFlipping] = useState(false);
+  const [pageWidth, setPageWidth] = useState<number>(800);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Handle window resize and container width
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.clientWidth;
+        setPageWidth(containerWidth - 32);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+
+    const resizeObserver = new ResizeObserver(updateWidth);
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+
+    return () => {
+      window.removeEventListener("resize", updateWidth);
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
@@ -43,7 +71,7 @@ export default function VisualIdentityPage() {
         }, 500);
       }
     },
-    [isFlipping, pageNumber, numPages],
+    [isFlipping, pageNumber, numPages]
   );
 
   // Handle keyboard navigation
@@ -159,7 +187,6 @@ export default function VisualIdentityPage() {
       <section className="pb-16 px-4 md:px-6">
         <div className="container mx-auto max-w-7xl">
           <div className="relative max-w-6xl mx-auto">
-            {/* Book Container */}
             <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl overflow-hidden">
               {/* Top Navigation Bar */}
               <div className="relative z-30 flex items-center justify-between p-4 md:p-6 border-b border-white/10">
@@ -184,7 +211,6 @@ export default function VisualIdentityPage() {
                       />
                     </svg>
                   </button>
-
                   <button
                     onClick={() => flipPage("next")}
                     disabled={pageNumber >= numPages || isFlipping}
@@ -220,7 +246,10 @@ export default function VisualIdentityPage() {
 
               {/* PDF Viewer Area */}
               <div className="relative p-4 md:p-6">
-                <div className="relative bg-white rounded-lg shadow-2xl overflow-hidden w-full">
+                <div
+                  ref={containerRef}
+                  className="relative bg-white rounded-lg shadow-2xl overflow-hidden w-full"
+                >
                   <div
                     className={`
                       animate-in fade-in duration-300
@@ -229,9 +258,11 @@ export default function VisualIdentityPage() {
                       flex justify-center
                     `}
                   >
-                    <PDFViewer
+                    {/* Dynamically loaded PDF Content */}
+                    <PDFContent
                       pageNumber={pageNumber}
-                      onDocumentLoadSuccess={onDocumentLoadSuccess}
+                      onLoadSuccess={onDocumentLoadSuccess}
+                      pageWidth={pageWidth}
                     />
                   </div>
                 </div>
@@ -320,7 +351,6 @@ export default function VisualIdentityPage() {
                   >
                     First
                   </button>
-
                   <div className="flex items-center gap-2">
                     <input
                       type="number"
@@ -340,7 +370,6 @@ export default function VisualIdentityPage() {
                       of {numPages}
                     </span>
                   </div>
-
                   <button
                     onClick={() => setPageNumber(numPages)}
                     disabled={pageNumber === numPages}
