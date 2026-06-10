@@ -45,7 +45,7 @@ export function parseStores(raw: RawData): StoreEntry[] {
 
           out.push({
             id: `store-${seq++}`,
-            brand,
+            brand: brand.replace(/([A-Z])/g, " $1").trim(),
             state,
             city,
             address: addr,
