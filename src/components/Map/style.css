@@ -3,17 +3,24 @@
 }
 
 :root {
-
     --spedn-bg: #ffffff;
-    --spedn-bg-card: #f8f8f7;
-    --spedn-bg-hover: #f2f1ef;
-    --spedn-bg-active: #eaf4ff;
-    --spedn-text-primary: #111111;
-    --spedn-text-secondary: #111111;
-    --spedn-text-muted: #555555;
-    --spedn-text-faint: #999999;
-    --spedn-border: rgba(0, 0, 0, 0.09);
-    --spedn-border-strong: rgba(0, 0, 0, 0.18);
+    --spedn-bg-card: #fafafa;
+    --spedn-bg-hover: #f5f7fa;
+    --spedn-bg-active: #edf4ff;
+    --spedn-bg-secondary: #f7f9fc;
+
+    --spedn-bg-info: #d7e7ff;
+    --spedn-text-info: #1f6feb;
+
+    --spedn-text-primary: #d8ded2;
+    --spedn-text-secondary: #475467;
+    --spedn-text-muted: #667085;
+    --spedn-text-faint: #98a2b3;
+
+    --spedn-border: #eaecf0;
+    --spedn-border-strong: #d0d5dd;
+
+    --spedn-selected-ring: rgba(31, 111, 235, 0.15);
 }
 
 .leaflet-container {
@@ -42,4 +49,12 @@
 
 .leaflet-tooltip::before {
     display: none;
+}
+
+.spedn-tooltip {
+    background: rgba(9, 9, 9, 0.8);
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 6px 10px;
+    pointer-events: none;
 }
