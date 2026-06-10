@@ -59,3 +59,7 @@
     padding: 6px 10px;
     pointer-events: none;
 }
+
+.spedn-input  input[type=text] {
+    color: var(--spedn-text-muted)
+}
