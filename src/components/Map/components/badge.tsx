@@ -32,6 +32,7 @@ export function Badge(props: BadgeProps) {
         background: s.bg,
         color: s.color,
         flexShrink: 0,
+        lineHeight: 1.6
       }}
     >
       {props.label}
