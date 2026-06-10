@@ -1,7 +1,9 @@
 "use client";
 
+import "leaflet/dist/leaflet.css";
 import Head from "next/head";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { DetailPanel } from "./components/detail-panel";
 import { StoreListItem } from "./components/store-list-item";
 import { BRAND_COLORS, getBrandColor, parseStores } from "./helpers";
 import { makePinSVG } from "./makePinSVG";
@@ -104,7 +106,7 @@ export default function SPEDNMap() {
         {
           maxZoom: 19,
           subdomains: "abcd",
-          // opacity: 0.7,
+          opacity: 0.7,
         },
       ).addTo(map);
 
@@ -168,9 +170,9 @@ export default function SPEDNMap() {
         marker.bindTooltip(
           `<div class="spedn-tooltip">
             <div style="font-size:12px;font-weight:500">${store.brand}</div>
-            <div style="font-size:11px;opacity:0.7;margin-top:2px">${store.city}, ${store.state}</div>
+            <div style="font-size:11px;opacity:0.9;margin-top:2px">${store.city}, ${store.state}</div>
            </div>`,
-          { direction: "top", offset: [0, 12] },
+          { direction: "top", offset: [0, -16] },
         );
 
         layerRef.current.addLayer(marker);
@@ -214,11 +216,6 @@ export default function SPEDNMap() {
           name="description"
           content="Find stores where you can pay with Zcash using the Flexa/SPEDN netword"
         />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          crossOrigin=""
-        />
       </Head>
 
       <div
@@ -235,7 +232,6 @@ export default function SPEDNMap() {
             padding: "28px 28px 20px",
             borderBottom: "0.5px solid var(--spedn-border-tertiary)",
             flexShrink: 0,
-            // background: 'red'
           }}
         >
           <div
@@ -247,7 +243,7 @@ export default function SPEDNMap() {
               color: "var(--spedn-text-success)",
               border: "0.5px solid var(--spedn-border-success)",
               borderRadius: 20,
-              padding: "3px 11px",
+              padding: "3px 0",
               fontSize: 11,
               fontWeight: 500,
               letterSpacing: "0.05em",
@@ -259,7 +255,7 @@ export default function SPEDNMap() {
                 width: 5,
                 height: 5,
                 borderRadius: "50%",
-                background: "var(--color-text-success)",
+                background: "#1D9E75",
               }}
             />
             SPEDN · FLEXA NETWORK
@@ -271,7 +267,7 @@ export default function SPEDNMap() {
               letterSpacing: "-0.025em",
               margin: "0 0 6px",
               lineHeight: 1.15,
-              color: "var(--color-text-primary)",
+              color: "var(--spedn-text-primary)",
             }}
           >
             Pay with ZEC in-store
@@ -279,7 +275,7 @@ export default function SPEDNMap() {
           <p
             style={{
               fontSize: 14,
-              color: "var(--color-text-secondary)",
+              color: "var(--spedn-text-faint)",
               margin: 0,
               lineHeight: 1.6,
             }}
@@ -316,7 +312,7 @@ export default function SPEDNMap() {
             {/* Search */}
             <div
               style={{
-                padding: "10px 12px",
+                padding: "0 12px",
                 borderBottom: "0.5px solid var(--spedn-border-tertiary)",
                 display: "flex",
                 flexDirection: "column",
@@ -324,7 +320,7 @@ export default function SPEDNMap() {
                 flexShrink: 0,
               }}
             >
-              <div style={{ position: "relative" }}>
+              <div className="spedn-input" style={{ position: "relative" }}>
                 <span
                   style={{
                     position: "absolute",
@@ -353,8 +349,7 @@ export default function SPEDNMap() {
                     padding: "7px 10px 7px 32px",
                     fontSize: 13,
                     borderRadius: "var(--border-radius-md)",
-                    border: "0.5px solid var(--color-border-secondary",
-                    color: "var(--color-text-primary)",
+                    border: "0.5px solid var(--spedn-border-secondary)",
                   }}
                 />
               </div>
@@ -371,14 +366,13 @@ export default function SPEDNMap() {
                   width: "100%",
                   padding: "7px 10px",
                   fontSize: 13,
-                  borderRadius: "var(--border-radius-md)",
-                  border: "0.5px solid var(--color-border-secondary)",
-                  background: "var(--color-background-secondary)",
-                  color: "var(--color-text-primary)",
+                  border: "0.5px solid var(--spedn-border-secondary)",
+                  background: "var(--spedn-bg-secondary)",
+                  color: "var(--spedn-text-secondary)",
                   cursor: "pointer",
                 }}
               >
-                <option value="">All brands</option>
+                <option value="">--- Select brand --- </option>
                 {brands.map((b) => (
                   <option key={b} value={b}>
                     {b}
@@ -393,9 +387,9 @@ export default function SPEDNMap() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                padding: "7px 14px",
+                padding: "24px 14px",
                 fontSize: 11,
-                color: "var(--spedn-text-tertiary)",
+                color: "var(--spedn-text-primary)",
                 borderBottom: "0.5px solid var(--spedn-border-tertiary)",
               }}
             >
@@ -407,7 +401,7 @@ export default function SPEDNMap() {
                   onClick={clearFilters}
                   style={{
                     fontSize: 11,
-                    color: "var(--spedn-text-tertiary)",
+                    color: "var(--spedn-text-primary)",
                     background: "none",
                     border: "none",
                     cursor: "pointer",
@@ -467,7 +461,7 @@ export default function SPEDNMap() {
             <div
               style={{
                 padding: "10px 14px",
-                borderTop: "0.5px solid var(--color-border-tertiary)",
+                borderTop: "0.5px solid var(--spedn-border-tertiary)",
                 display: "flex",
                 gap: 12,
                 flexDirection: "row",
@@ -485,7 +479,7 @@ export default function SPEDNMap() {
                       alignItems: "center",
                       gap: 5,
                       fontSize: 10,
-                      color: "var(--color-text-secondary)",
+                      color: "var(--spedn-text-secondary)",
                     }}
                     key={brand}
                   >
@@ -512,10 +506,49 @@ export default function SPEDNMap() {
               minHeight: 0,
               minWidth: 0,
               overflow: "hidden",
-              backgroundColor: "beige",
             }}
           >
-            <h1>Map Container</h1>
+            <div
+              style={{
+                position: "relative",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              {loading && (
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    zIndex: 10,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "var(--spedn-background-secondary)",
+                    fontSize: 13,
+                    color: "var(--spedn-text-secondary) ",
+                  }}
+                >
+                  Loading map...
+                </div>
+              )}
+
+              <div
+                ref={mapContainerRef}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                  inset: 0,
+                }}
+              />
+
+              <DetailPanel
+                store={selectedStore}
+                onClose={() => setSelectedId(null)}
+              />
+            </div>
           </div>
         </main>
       </div>
