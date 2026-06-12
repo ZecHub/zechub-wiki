@@ -35,7 +35,7 @@
     {
       "title": "Conheça Zooko, a maior fã da Zcash! #https #privacidade #blockchain  #criptomoedas",
       "video_id": "eGrvVLhYBSw",
-      "views": 1033
+      "views": 1035
     },
     {
       "title": "Inclusão tecnológica e educação sobre privacidade andam juntas.",
@@ -638,6 +638,11 @@
       "views": 163
     },
     {
+      "title": "Privacidade é Normal: Aamandita no Palco do Tokenation",
+      "video_id": "Cdd3Erv4xv0",
+      "views": 163
+    },
+    {
       "title": "Zebra Talk | A Fronteira Financeira liderada por elas. #DeFi",
       "video_id": "FWZR2DJHl0U",
       "views": 162
@@ -928,6 +933,11 @@
       "views": 115
     },
     {
+      "title": "Zcash: Dinheiro Privado Que Ninguém Consegue Censurar ou Parar | Unstoppable Private Money",
+      "video_id": "19i1g1Wo6uE",
+      "views": 115
+    },
+    {
       "title": "Segurança no Mundo de Agentes: Como Pensar Defesa Agora",
       "video_id": "IPwLtOF9BhQ",
       "views": 115
@@ -955,11 +965,6 @@
     {
       "title": "Propriedade intelectual descentralizada na Web3",
       "video_id": "vq0eMki-UmU",
-      "views": 113
-    },
-    {
-      "title": "Zcash: Dinheiro Privado Que Ninguém Consegue Censurar ou Parar | Unstoppable Private Money",
-      "video_id": "19i1g1Wo6uE",
       "views": 113
     },
     {
@@ -1150,11 +1155,6 @@
     {
       "title": "Zebra Talk | Casta na Zona Z",
       "video_id": "-vLcAq72jAA",
-      "views": 96
-    },
-    {
-      "title": "Privacidade é Normal: Aamandita no Palco do Tokenation",
-      "video_id": "Cdd3Erv4xv0",
       "views": 96
     },
     {
@@ -1863,6 +1863,11 @@
       "views": 51
     },
     {
+      "title": "Zcash Brasil no Tokenation 2026.",
+      "video_id": "I12nggKv8rg",
+      "views": 51
+    },
+    {
       "title": "Mesmo nível de privacidade quando você está fazendo transações que você faz quando está navegando.",
       "video_id": "-__hc3XC0tA",
       "views": 50
@@ -2325,11 +2330,6 @@
     {
       "title": "Recuperação Pós-Quântica: Mover Fundos Sem Nova Chave",
       "video_id": "6j6On2Kd-VQ",
-      "views": 36
-    },
-    {
-      "title": "Zcash Brasil no Tokenation 2026.",
-      "video_id": "I12nggKv8rg",
       "views": 36
     },
     {
@@ -2798,6 +2798,11 @@
       "views": 25
     },
     {
+      "title": "Protocol Study #3.5: Notes, commitments and nullifier | Engineering #11",
+      "video_id": "q-AS5IpnycU",
+      "views": 25
+    },
+    {
       "title": "Zebra, Zaino e Zallet | Zcash Z3",
       "video_id": "9S2yAu_QnQE",
       "views": 24
@@ -2815,11 +2820,6 @@
     {
       "title": "Privacidade não é esconder: é escolher.",
       "video_id": "zvWiB8_ystw",
-      "views": 24
-    },
-    {
-      "title": "Protocol Study #3.5: Notes, commitments and nullifier | Engineering #11",
-      "video_id": "q-AS5IpnycU",
       "views": 24
     },
     {
@@ -2958,6 +2958,11 @@
       "views": 21
     },
     {
+      "title": "Dynamic Fees: por que o mercado de taxas importa para a Zcash",
+      "video_id": "3JZF1B6aNEM",
+      "views": 21
+    },
+    {
       "title": "WEEKLYCALL #8 - Zcash RodMap 2024/2025",
       "video_id": "Q3ujfxHYRxs",
       "views": 20
@@ -3000,11 +3005,6 @@
     {
       "title": "Como Comprar ZEC com Fiat e Fazer Doações Privadas com Cipherpay | Zec Insider",
       "video_id": "cQ5FvbijzMI",
-      "views": 20
-    },
-    {
-      "title": "Dynamic Fees: por que o mercado de taxas importa para a Zcash",
-      "video_id": "3JZF1B6aNEM",
       "views": 20
     },
     {
@@ -3541,6 +3541,11 @@
       "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
       "video_id": "XgtJXKqv-ZE",
       "views": 3
+    },
+    {
+      "title": "Zcon Vozes 2 | FIAP São Paulo",
+      "video_id": "Vf4Mjq_YIhQ",
+      "views": 0
     }
   ]
 }
