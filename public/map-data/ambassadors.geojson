@@ -2,20 +2,17 @@
   "type": "FeatureCollection",
   "metadata": {
     "schema_version": "1.0",
-    "generated": "2026-06-08",
-    "source": "ambassador_list.json + build_ambassadors_geojson.py",
-    "total_features": 12,
-    "note": "This file is auto-geneated. Edit ambassador_list.json to add or update ambassadors, then re-run build_ambassadors_geojson.py."
+    "generated": "2026-06-12",
+    "source": "manual update from ambassador_list_v2.json",
+    "total_features": 13,
+    "note": "Drop-in GeoJSON for the Zcash Ambassador Map. Keep region values lowercase: africa, asia, americas, europe."
   },
   "features": [
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          127.6961188,
-          36.638392
-        ]
+        "coordinates": [127.6961188, 36.638392]
       },
       "properties": {
         "id": "amb_korea",
@@ -31,19 +28,16 @@
         "region": "asia",
         "language": "Korean",
         "pin_note": "Geographic centre of South Korea",
-        "coords_source": "nominatim",
+        "coords_source": "manual",
         "active": true,
-        "last_update": "2026-06-08"
+        "last_update": "2026-06-12"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          97.7453061,
-          64.6863136
-        ]
+        "coordinates": [97.7453061, 64.6863136]
       },
       "properties": {
         "id": "amb_russia",
@@ -59,19 +53,16 @@
         "region": "europe",
         "language": "Russian",
         "pin_note": "Geographic centre of Russia",
-        "coords_source": "nominatim",
+        "coords_source": "manual",
         "active": true,
-        "last_update": "2026-06-08"
+        "last_update": "2026-06-12"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          42.3528328,
-          25.6242618
-        ]
+        "coordinates": [42.3528328, 25.6242618]
       },
       "properties": {
         "id": "amb_arabia",
@@ -87,19 +78,16 @@
         "region": "asia",
         "language": "Arabic",
         "pin_note": "Representative pin for Arabic-speaking region; centred on Saudi Arabia",
-        "coords_source": "nominatim",
+        "coords_source": "manual",
         "active": true,
-        "last_update": "2026-06-08"
+        "last_update": "2026-06-12"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -53.2,
-          -10.3333333
-        ]
+        "coordinates": [-53.2, -10.3333333]
       },
       "properties": {
         "id": "amb_brazil",
@@ -115,19 +103,16 @@
         "region": "americas",
         "language": "Portuguese",
         "pin_note": "Geographic centre of Brazil",
-        "coords_source": "nominatim",
+        "coords_source": "manual",
         "active": true,
-        "last_update": "2026-06-08"
+        "last_update": "2026-06-12"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -1.0800271,
-          8.0300284
-        ]
+        "coordinates": [-1.0800271, 8.0300284]
       },
       "properties": {
         "id": "amb_ghana",
@@ -143,22 +128,19 @@
         "region": "africa",
         "language": null,
         "pin_note": "Geographic centre of Ghana",
-        "coords_source": "nominatim",
+        "coords_source": "manual",
         "active": true,
-        "last_update": "2026-06-08"
+        "last_update": "2026-06-12"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -4.8379791,
-          39.3260685
-        ]
+        "coordinates": [-4.8379791, 39.3260685]
       },
       "properties": {
-        "id": "amb_español",
+        "id": "amb_espanol_spain",
         "name": "Zcash Español",
         "flag": "🇪🇸",
         "description": "Zcash community and advocacy in Spanish-speaking region",
@@ -171,19 +153,41 @@
         "region": "europe",
         "language": "Spanish",
         "pin_note": "Representative pin for Spanish-speaking region; centred on Spain",
-        "coords_source": "nominatim",
+        "coords_source": "manual",
         "active": true,
-        "last_update": "2026-06-08"
+        "last_update": "2026-06-12"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          7.9999721,
-          9.6000359
-        ]
+        "coordinates": [-66.1109318, 7.1232245]
+      },
+      "properties": {
+        "id": "amb_espanol_venezuela",
+        "name": "Zcash Español",
+        "flag": "🇻🇪",
+        "description": "Zcash community and advocacy in Spanish-speaking region",
+        "image": "/zccashEspanol.jpg",
+        "twitter": "https://x.com/zcashesp",
+        "x_handle": "zcashesp",
+        "project_site": null,
+        "blog": "https://privacidad.me/@zcashesp",
+        "country_code": "VE",
+        "region": "americas",
+        "language": "Spanish",
+        "pin_note": "Representative pin for Spanish-speaking regions in Latin America; centred on Venezuela",
+        "coords_source": "manual",
+        "active": true,
+        "last_update": "2026-06-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [7.9999721, 9.6000359]
       },
       "properties": {
         "id": "amb_nigeria",
@@ -199,19 +203,16 @@
         "region": "africa",
         "language": "English",
         "pin_note": "Geographic centre of Nigeria",
-        "coords_source": "nominatim",
+        "coords_source": "manual",
         "active": true,
-        "last_update": "2026-06-08"
+        "last_update": "2026-06-12"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          31.2718321,
-          49.4871968
-        ]
+        "coordinates": [31.2718321, 49.4871968]
       },
       "properties": {
         "id": "amb_ukraine",
@@ -227,19 +228,16 @@
         "region": "europe",
         "language": "Ukrainian",
         "pin_note": "Geographic centre of Ukraine",
-        "coords_source": "nominatim",
+        "coords_source": "manual",
         "active": true,
-        "last_update": "2026-06-08"
+        "last_update": "2026-06-12"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          35.2316631,
-          39.294076
-        ]
+        "coordinates": [35.2316631, 39.294076]
       },
       "properties": {
         "id": "amb_turkey",
@@ -255,47 +253,16 @@
         "region": "europe",
         "language": "Turkish",
         "pin_note": "Geographic centre of Turkey",
-        "coords_source": "nominatim",
+        "coords_source": "manual",
         "active": true,
-        "last_update": "2026-06-08"
+        "last_update": "2026-06-12"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          38.4313975,
-          1.4419683
-        ]
-      },
-      "properties": {
-        "id": "amb_kenya",
-        "name": "Zcash Kenya",
-        "flag": "🇰🇪",
-        "description": "Zcash community and advocacy in Kenya",
-        "image": "/zcashKenya.jpg",
-        "twitter": "https://x.com/ZcashKenya",
-        "x_handle": "ZcashKenya",
-        "project_site": null,
-        "blog": null,
-        "country_code": "KE",
-        "region": "africa",
-        "language": "English",
-        "pin_note": "Geographic centre of Kenya",
-        "coords_source": "nominatim",
-        "active": true,
-        "last_update": "2026-06-08"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          78.6677428,
-          22.3511148
-        ]
+        "coordinates": [78.6677428, 22.3511148]
       },
       "properties": {
         "id": "amb_india",
@@ -311,19 +278,16 @@
         "region": "asia",
         "language": "Hindi / English",
         "pin_note": "Geographic centre of India",
-        "coords_source": "nominatim",
+        "coords_source": "manual",
         "active": true,
-        "last_update": "2026-06-08"
+        "last_update": "2026-06-12"
       }
     },
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          17.7578122,
-          11.5024338
-        ]
+        "coordinates": [37.906193, 0.023559]
       },
       "properties": {
         "id": "amb_east_africa",
@@ -338,10 +302,35 @@
         "country_code": "EAC",
         "region": "africa",
         "language": "English & Swahili",
-        "pin_note": "Geographic centre of East Africa",
-        "coords_source": "nominatim",
+        "pin_note": "Representative pin for East Africa; centred on Kenya",
+        "coords_source": "manual",
         "active": true,
-        "last_update": "2026-06-08"
+        "last_update": "2026-06-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.991639, -28.8166236]
+      },
+      "properties": {
+        "id": "amb_south_africa",
+        "name": "Zcash South Africa",
+        "flag": "🇿🇦",
+        "description": "Privacy🛡️. Freedom. Zcash 🦓 Community for South African region",
+        "image": "https://pbs.twimg.com/profile_images/2045292206081400832/2kJ3y8BV_400x400.jpg",
+        "twitter": "https://x.com/zcash_sa",
+        "x_handle": "zcash_sa",
+        "project_site": null,
+        "blog": "https://medium.com/@zcashsouthafrica",
+        "country_code": "ZA",
+        "region": "africa",
+        "language": "English",
+        "pin_note": "Geographic centre of South Africa",
+        "coords_source": "manual",
+        "active": true,
+        "last_update": "2026-06-12"
       }
     }
   ]
