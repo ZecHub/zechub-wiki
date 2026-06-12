@@ -80,7 +80,21 @@
     "region": "europe",
     "language": "Spanish",
     "geo_query": "Spain",
-    "pin_note": "Representative pin for Spanish-speaking region; centred on Spain"
+    "pin_note": "Representative pin for Spanish-speaking regions"
+  },
+  {
+    "name": "Zcash Español",
+    "flag": "🇪🇸",
+    "twitter": "https://x.com/zcashesp",
+    "description": "Zcash community and advocacy in Spanish-speaking region",
+    "projectSite": null,
+    "image": "/zccashEspanol.jpg",
+    "blog": "https://privacidad.me/@zcashesp",
+    "countryCode": "🇻🇪",
+    "region": "South America",
+    "language": "Spanish",
+    "geo_query": "Venezuela",
+    "pin_note": "Representative pin for Spanish-speaking regions in Latin America"
   },
   {
     "name": "Zcash Nigeria",
@@ -125,20 +139,6 @@
     "pin_note":"Geographic centre of Turkey"
   },
   {
-    "name": "Zcash Kenya",
-    "flag": "🇰🇪",
-    "twitter": "https://x.com/ZcashKenya",
-    "description": "Zcash community and advocacy in Kenya",
-    "projectSite": null,
-    "image": "/zcashKenya.jpg",
-    "blog": null,
-    "countryCode":"KE",
-    "region":"africa",
-    "language":"English",
-    "geo_query":"Kenya",
-    "pin_note":"Geographic centre of Kenya"
-  },
-  {
     "name": "Zcash India",
     "flag": "🇮🇳",
     "twitter": "https://x.com/ZcashIND",
@@ -152,7 +152,7 @@
     "geo_query":"India",
     "pin_note":"Geographic centre of India"
   },
-    {
+  {
       "name": "Zcash East Africa",
       "flag": "",
       "twitter": "https://x.com/zcasheastafrica",
@@ -163,7 +163,21 @@
       "countryCode": "EAC",
       "region": "africa",
       "language": "English & Swahili",
-      "geo_query": "africa",
+      "geo_query": "Kenya",
       "pin_note": "Geographic centre of East Africa"
+    },
+    {
+      "name": "Zcash South Africa",
+      "flag": "🇿🇦",
+      "twitter": "https://x.com/zcash_sa",
+      "description": "Privacy🛡️. Freedom. Zcash 🦓 Community for South African region",
+      "projectSite": null,
+      "image": "https://pbs.twimg.com/profile_images/2045292206081400832/2kJ3y8BV_400x400.jpg",
+      "blog": "https://medium.com/@zcashsouthafrica",
+      "countryCode": "ZA",
+      "region": "africa",
+      "language": "English",
+      "geo_query": "South Africa",
+      "pin_note": "Geographic centre of South Africa"
     }
 ]
