@@ -7,9 +7,13 @@ import {
   RegionFilter,
 } from "./constants";
 import { FilterBar } from "./filter-bar";
+import Globe from "./Globe";
+import { Globe2, Map as MapIcon } from "lucide-react";
 import { PinDetails } from "./pin-details";
 import { StatsBar } from "./stats-bar";
 import "./style.css";
+
+type ViewMode = "globe" | "map";
 
 export interface AmbassadorProps {
   id: string;
@@ -55,6 +59,7 @@ export default function GlobalAmbassadorsMap() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [mapReady, setMapReady] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>("globe");
 
   // Ambassadors per region for filter bar
   const regionCounts = ambassadors.reduce<Record<string, number>>((acc, f) => {
@@ -81,25 +86,28 @@ export default function GlobalAmbassadorsMap() {
         setLoading(false);
       })
       .catch((err) => {
-        setError("Could not load ambassaor data.");
+        setError("Could not load ambassador data.");
         setLoading(false);
         console.error(err);
       });
     console.log("role...");
   }, []);
 
-  // Init Leaflet map
+  // Init Leaflet map (only for the "map" view)
   useEffect(() => {
+    if (viewMode !== "map") return;
     if (!mapContainRef.current || mapRef.current) return;
+
+    let cancelled = false;
 
     // Import Leaflet dynamically
     Promise.all([
       import("leaflet"),
       import("leaflet/dist/leaflet.css" as any).catch(console.error),
     ]).then(([L]) => {
-      if (mapRef.current) return;
+      if (cancelled || mapRef.current || !mapContainRef.current) return;
 
-      // Override default icon pahts
+      // Override default icon paths
       delete (L.Icon.Default.prototype as any)._getIconUrl;
       L.Icon.Default.mergeOptions({
         iconRetinaUrl:
@@ -118,7 +126,7 @@ export default function GlobalAmbassadorsMap() {
         attributionControl: false,
       });
 
-      // Dark styled tiles vai CartoDB dark matter
+      // Dark styled tiles via CartoDB dark matter
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png",
         { maxZoom: 19 },
@@ -148,10 +156,12 @@ export default function GlobalAmbassadorsMap() {
     });
 
     return () => {
+      cancelled = true;
       mapRef.current?.remove();
       mapRef.current = null;
+      setMapReady(false);
     };
-  }, []);
+  }, [viewMode]);
 
   // Render
   const renderMarkers = useCallback(() => {
@@ -276,57 +286,117 @@ export default function GlobalAmbassadorsMap() {
       >
         {/* Page header */}
         <div style={{ padding: "32px 32px 24px" }}>
-          <div style={{ margin: "0 auto" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+              gap: 16,
+              flexWrap: "wrap",
+            }}
+          >
+            <div>
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "rgba(29,174,238,0.1)",
+                  border: "1px solid rgba(29,174,238,0.25)",
+                  borderRadius: 20,
+                  padding: "4px 12px",
+                  fontSize: 12,
+                  color: BASE_COLOR,
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  marginBottom: 14,
+                }}
+              >
+                <span
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: "50%",
+                    background: BASE_COLOR,
+                  }}
+                />
+                GLOBAL NETWORK
+              </div>
+
+              <h1
+                style={{
+                  fontSize: "clamp(24px, 4vw, 36px)",
+                  fontWeight: 800,
+                  letterSpacing: "-0.03em",
+                  margin: "0 0 8px",
+                  lineHeight: 1.1,
+                }}
+              >
+                Zcash Ambassador {viewMode === "globe" ? "Globe" : "Map"}
+              </h1>
+              <p
+                style={{
+                  fontSize: 15,
+                  color: "#8B9EB7",
+                  margin: 0,
+                  maxWidth: 560,
+                  lineHeight: 1.6,
+                }}
+              >
+                Community-led Zcash advocacy across {ambassadors.length}{" "}
+                active communities.
+              </p>
+            </div>
+
+            {/* View toggle: Globe / Map */}
             <div
               style={{
                 display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                background: "rgba(29,174,238,0.1)",
-                border: "1px solid rgba(29,174,238,0.25)",
-                borderRadius: 20,
-                padding: "4px 12px",
-                fontSize: 12,
-                color: BASE_COLOR,
-                fontWeight: 500,
-                letterSpacing: "0.05em",
-                marginBottom: 14,
+                gap: 4,
+                padding: 4,
+                background: "rgba(13,17,23,0.82)",
+                border: "1px solid rgba(255,255,255,0.12)",
+                borderRadius: 12,
+                backdropFilter: "blur(8px)",
+                flexShrink: 0,
               }}
             >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: BASE_COLOR,
-                }}
-              />
-              GLOBAL NETWORK
-            </div>
+              {(["globe", "map"] as ViewMode[]).map((mode) => {
+                const isActive = viewMode === mode;
 
-            <h1
-              style={{
-                fontSize: "clamp(24px, 4vw, 36px)",
-                fontWeight: 800,
-                letterSpacing: "-0.03em",
-                margin: "0 0 8px",
-                lineHeight: 1.1,
-              }}
-            >
-              Zcash Ambassador Map
-            </h1>
-            <p
-              style={{
-                fontSize: 15,
-                color: "#8B9EB7",
-                margin: 0,
-                maxWidth: 560,
-                lineHeight: 1.6,
-              }}
-            >
-              Community-led Zcash advocay across {ambassadors.length} regions.
-              Click a pin to explore.
-            </p>
+                return (
+                  <button
+                    key={mode}
+                    onClick={() => setViewMode(mode)}
+                    title={mode === "globe" ? "Globe view" : "Map view"}
+                    aria-pressed={isActive}
+                    aria-label={mode === "globe" ? "Globe view" : "Map view"}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 6,
+                      padding: "6px 14px",
+                      borderRadius: 8,
+                      border: "none",
+                      cursor: "pointer",
+                      fontSize: 13,
+                      fontWeight: 600,
+                      letterSpacing: "0.01em",
+                      transition: "all 0.15s",
+                      background: isActive ? BASE_COLOR : "transparent",
+                      color: isActive ? "#06121A" : "rgba(255,255,255,0.65)",
+                    }}
+                  >
+                    {mode === "globe" ? (
+                      <Globe2 size={15} strokeWidth={2.2} aria-hidden />
+                    ) : (
+                      <MapIcon size={15} strokeWidth={2.2} aria-hidden />
+                    )}
+                    {mode === "globe" ? "Globe" : "Map"}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -338,8 +408,20 @@ export default function GlobalAmbassadorsMap() {
             minHeight: "calc(100vh - 160px)",
           }}
         >
-          {/* Leaflet mount point */}
-          <div ref={mapContainRef} style={{ position: "absolute", inset: 0 }} />
+          {/* Globe (cobe) or Leaflet mount point */}
+          {viewMode === "globe" ? (
+            <Globe
+              ambassadors={visibleAmbassadors}
+              selected={selected}
+              onSelect={setSelected}
+              regionFilter={regionFilter}
+            />
+          ) : (
+            <div
+              ref={mapContainRef}
+              style={{ position: "absolute", inset: 0 }}
+            />
+          )}
 
           {/* Loading overlay */}
           {loading && (
@@ -380,7 +462,7 @@ export default function GlobalAmbassadorsMap() {
                 left: "50%",
                 transform: "translate(-50%,-50%)",
                 background: "rgba(13,17,23,0.95)",
-                border: "1px solide rgba(255,80,80,0.3)",
+                border: "1px solid rgba(255,80,80,0.3)",
                 borderRadius: 12,
                 padding: "20px 28px",
                 color: "#ff6b6b",

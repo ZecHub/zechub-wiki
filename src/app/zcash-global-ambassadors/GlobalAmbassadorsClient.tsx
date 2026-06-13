@@ -131,6 +131,8 @@ export default function GlobalAmbassadorsClient() {
     "The Zcash Global Ambassadors program supports community-led initiatives to promote privacy-focused technology adoption. Each ambassador project operates independently while contributing to the broader Zcash ecosystem.";
 
   const projectsWithBlogs = ambassadorProjects.filter((p) => p.blog);
+  const getProjectKey = (project: (typeof ambassadorProjects)[number]) =>
+    `${project.name}-${project.geo_query ?? project.countryCode}`;
 
   return (
     <main className="min-h-screen bg-background">
@@ -150,7 +152,7 @@ export default function GlobalAmbassadorsClient() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {ambassadorProjects.map((project) => (
               <AmbassadorCard
-                key={project.name}
+                key={getProjectKey(project)}
                 project={project}
                 followLabel={followLabel}
                 projectSiteLabel={projectSiteLabel}
@@ -169,7 +171,7 @@ export default function GlobalAmbassadorsClient() {
               <div className="space-y-1">
                 {projectsWithBlogs.map((project) => (
                   <div
-                    key={project.name}
+                    key={getProjectKey(project)}
                     className="flex items-center justify-between py-2.5 border-b border-border last:border-b-0"
                   >
                     <span className="font-medium text-foreground flex items-center gap-2">

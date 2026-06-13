@@ -38,14 +38,14 @@
     color: #5A6A80 !important;
 }
 
-.zechum-tooltip {
+.zechub-tooltip {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     padding: 0 !important;
 }
 
-.zechum-tooltip::before {
+.zechub-tooltip::before {
     display: none !important;
 }
 

@@ -17,7 +17,7 @@ export function StatsBar(props: StatsBarProps) {
         zIndex: 900,
         background: "rgba(13,17,23,0.88)",
         borderRadius: 10,
-        border: "1px solide rgba(255,255,255,0.1",
+        border: "1px solid rgba(255,255,255,0.1)",
         padding: "8px 14px",
         backdropFilter: "blur(10px)",
         display: "flex",
