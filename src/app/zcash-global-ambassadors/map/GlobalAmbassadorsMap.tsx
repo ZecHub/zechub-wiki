@@ -276,7 +276,7 @@ export default function GlobalAmbassadorsMap() {
       >
         {/* Page header */}
         <div style={{ padding: "32px 32px 24px" }}>
-          <div style={{ minWidth: 900, margin: "0 auto" }}>
+          <div style={{ margin: "0 auto" }}>
             <div
               style={{
                 display: "inline-flex",
