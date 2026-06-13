@@ -190,7 +190,7 @@
     {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
-      "views": 468
+      "views": 471
     },
     {
       "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endereço Shielded",
@@ -323,6 +323,11 @@
       "views": 306
     },
     {
+      "title": "Privacidade é Normal: Aamandita no Palco do Tokenation",
+      "video_id": "Cdd3Erv4xv0",
+      "views": 292
+    },
+    {
       "title": "Zooko privacidade é importante sim. #zcash #bitcoin #crypto #privacidade #blockchain #interview #zec",
       "video_id": "pMLjLlo-yGw",
       "views": 291
@@ -388,6 +393,11 @@
       "views": 239
     },
     {
+      "title": "A inovação do Zooko que protege a rede e incentiva o staking.",
+      "video_id": "UGbqnjzxl3o",
+      "views": 232
+    },
+    {
       "title": "Tutorial Zingo! Carteira para Zcash",
       "video_id": "gg6YKmdrxAs",
       "views": 231
@@ -395,11 +405,6 @@
     {
       "title": "O Futuro das Stablecoins.",
       "video_id": "WxmQKeJAz34",
-      "views": 231
-    },
-    {
-      "title": "A inovação do Zooko que protege a rede e incentiva o staking.",
-      "video_id": "UGbqnjzxl3o",
       "views": 231
     },
     {
@@ -485,7 +490,7 @@
     {
       "title": "Zcon Vozes 2 | Juntos Construimos o Futuro. FIAP São Paulo",
       "video_id": "X6_VgYW9gJ0",
-      "views": 196
+      "views": 198
     },
     {
       "title": "Antes de investir em cripto:  Busque educação Financeira",
@@ -575,7 +580,7 @@
     {
       "title": "Zcash na Cake Wallet - Tutorial Completo",
       "video_id": "ngzYYqcRa84",
-      "views": 171
+      "views": 172
     },
     {
       "title": "Web3 Security: Ética, Lei e Limites em Testes de Vulnerabilidade",
@@ -635,11 +640,6 @@
     {
       "title": "Como #zcash protege suas mensagens.",
       "video_id": "NcHf-mPWBAc",
-      "views": 163
-    },
-    {
-      "title": "Privacidade é Normal: Aamandita no Palco do Tokenation",
-      "video_id": "Cdd3Erv4xv0",
       "views": 163
     },
     {
@@ -723,14 +723,14 @@
       "views": 146
     },
     {
-      "title": "Zcash, resistência quântica e narrativa contra instituições.",
-      "video_id": "uh2OmBlZhzk",
+      "title": "Uso Ilegal de #Dados para #Treinamento de #IA",
+      "video_id": "-i2oHBPMeo4",
       "views": 146
     },
     {
-      "title": "Uso Ilegal de #Dados para #Treinamento de #IA",
-      "video_id": "-i2oHBPMeo4",
-      "views": 145
+      "title": "Zcash, resistência quântica e narrativa contra instituições.",
+      "video_id": "uh2OmBlZhzk",
+      "views": 146
     },
     {
       "title": "NEAR trouxe um aumento massivo de ZEC na Shielded Pool",
@@ -753,13 +753,13 @@
       "views": 142
     },
     {
-      "title": "Novo Ouro Digital?",
-      "video_id": "sFIPO72uxR8",
-      "views": 139
-    },
-    {
       "title": "Tutorial Shielded Zcash na Metamask",
       "video_id": "Et8d-rM7YXQ",
+      "views": 142
+    },
+    {
+      "title": "Novo Ouro Digital?",
+      "video_id": "sFIPO72uxR8",
       "views": 139
     },
     {
@@ -815,7 +815,7 @@
     {
       "title": "Educar Mais: De Coletivo de Leitura a Ponte para Tecnologia",
       "video_id": "TaTRPNOJZkk",
-      "views": 133
+      "views": 134
     },
     {
       "title": "Os riscos da dependência da IA.  #ai #podcast #privacidade",
@@ -1338,6 +1338,11 @@
       "views": 83
     },
     {
+      "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Ameaças Quânticas | Engineering #3",
+      "video_id": "R6916H2IMKI",
+      "views": 83
+    },
+    {
       "title": "Bitcoin e Cartão de Crédito: Hackeados, vazados e expostos.",
       "video_id": "hzmcfrppWHo",
       "views": 82
@@ -1345,11 +1350,6 @@
     {
       "title": "Privacidade como um recurso: Por que a moeda ideal se assemelha ao dinheiro",
       "video_id": "tfe-REk-BRQ",
-      "views": 82
-    },
-    {
-      "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Ameaças Quânticas | Engineering #3",
-      "video_id": "R6916H2IMKI",
       "views": 82
     },
     {
@@ -1663,6 +1663,11 @@
       "views": 62
     },
     {
+      "title": "Zcash Brasil no Tokenation 2026.",
+      "video_id": "I12nggKv8rg",
+      "views": 62
+    },
+    {
       "title": "Be Free - A utilidade das transações blindadas #Zcash",
       "video_id": "DjcQylI96_s",
       "views": 61
@@ -1860,11 +1865,6 @@
     {
       "title": "Pagamentos Divididos com Zcash, Privacidade Total.",
       "video_id": "Qblvjc02wAE",
-      "views": 51
-    },
-    {
-      "title": "Zcash Brasil no Tokenation 2026.",
-      "video_id": "I12nggKv8rg",
       "views": 51
     },
     {
@@ -2108,6 +2108,11 @@
       "views": 42
     },
     {
+      "title": "Atualização ZODL e Josh no Ipê City: o Que Está Chegando na Zcash | Zec Insider",
+      "video_id": "3G_vJmoPg4M",
+      "views": 42
+    },
+    {
       "title": "Gasto Duplo: Como a Rede Detecta em Tempo Real",
       "video_id": "q1qnm_I2GaE",
       "views": 42
@@ -2140,11 +2145,6 @@
     {
       "title": "ZIP NSM, o que é?",
       "video_id": "N9I36Y0IApQ",
-      "views": 41
-    },
-    {
-      "title": "Atualização ZODL e Josh no Ipê City: o Que Está Chegando na Zcash | Zec Insider",
-      "video_id": "3G_vJmoPg4M",
       "views": 41
     },
     {
@@ -2181,6 +2181,11 @@
       "title": "Educação Financeira Antes de Investir em Cripto",
       "video_id": "Pkn_87aUuC8",
       "views": 40
+    },
+    {
+      "title": "Linda Xie - Rastreabilidade do Bitcoin LEGENDADO",
+      "video_id": "83wyFIZTxDQ",
+      "views": 39
     },
     {
       "title": "A influencia feminina nas decisões financeiras",
@@ -2300,11 +2305,6 @@
     {
       "title": "Eran Tromer - Perspectivas de Criptografia LEGENDADO",
       "video_id": "qB2STXs5R-o",
-      "views": 36
-    },
-    {
-      "title": "Linda Xie - Rastreabilidade do Bitcoin LEGENDADO",
-      "video_id": "83wyFIZTxDQ",
       "views": 36
     },
     {
@@ -2803,6 +2803,11 @@
       "views": 25
     },
     {
+      "title": "Zcon Vozes 2 | FIAP São Paulo",
+      "video_id": "Vf4Mjq_YIhQ",
+      "views": 25
+    },
+    {
       "title": "Zebra, Zaino e Zallet | Zcash Z3",
       "video_id": "9S2yAu_QnQE",
       "views": 24
@@ -2908,6 +2913,11 @@
       "views": 22
     },
     {
+      "title": "Dynamic Fees: por que o mercado de taxas importa para a Zcash",
+      "video_id": "3JZF1B6aNEM",
+      "views": 22
+    },
+    {
       "title": "ZAVAX - Conectando Zcash e Avalanche",
       "video_id": "NzC-Z1OpUes",
       "views": 21
@@ -2955,11 +2965,6 @@
     {
       "title": "Cypherpunk: Por Que Privacidade Vem Primeiro",
       "video_id": "ub_3ZgGNafo",
-      "views": 21
-    },
-    {
-      "title": "Dynamic Fees: por que o mercado de taxas importa para a Zcash",
-      "video_id": "3JZF1B6aNEM",
       "views": 21
     },
     {
@@ -3093,6 +3098,11 @@
       "views": 18
     },
     {
+      "title": "Privacidade Na Indústria On-chain | Tokenation 2026",
+      "video_id": "rEqCsY0GpCo",
+      "views": 18
+    },
+    {
       "title": "ZconV: Zcash Unified Dia 5 LEGENDADO",
       "video_id": "kokFjApP0Jg",
       "views": 17
@@ -3133,6 +3143,11 @@
       "views": 17
     },
     {
+      "title": "Empoderamento de jovens da periferia atraves do blockchain | Educar+",
+      "video_id": "eC87gPympLc",
+      "views": 17
+    },
+    {
       "title": "Web Summit 2023 - Encontro da Comunidade",
       "video_id": "1DPsqvZMcws",
       "views": 16
@@ -3160,11 +3175,6 @@
     {
       "title": "Privacidade e Controle",
       "video_id": "fltNwq2rffs",
-      "views": 16
-    },
-    {
-      "title": "Empoderamento de jovens da periferia atraves do blockchain | Educar+",
-      "video_id": "eC87gPympLc",
       "views": 16
     },
     {
@@ -3250,6 +3260,11 @@
     {
       "title": "Provas de validade explicadas: até onde vai a privacidade.",
       "video_id": "tAthR9Fx884",
+      "views": 14
+    },
+    {
+      "title": "O que são ZIPs e por que eles importam para a Zcash",
+      "video_id": "lvOcj0M6PPw",
       "views": 14
     },
     {
@@ -3543,8 +3558,13 @@
       "views": 3
     },
     {
-      "title": "Zcon Vozes 2 | FIAP São Paulo",
-      "video_id": "Vf4Mjq_YIhQ",
+      "title": "As Raízes, Os Riscos e Revoluções da Privacidade",
+      "video_id": "asGy0nZTvo0",
+      "views": 0
+    },
+    {
+      "title": "Ironwood e Atualizações da Visor e Noir Wallet | Zec Insider",
+      "video_id": "gLRkmBOAwPE",
       "views": 0
     }
   ]
