@@ -58,6 +58,7 @@
     "chartjs-adapter-date-fns": "^3.0.0",
     "cheerio": "^1.2.0",
     "class-variance-authority": "^0.7.0",
+    "cobe": "^2.0.1",
     "date-fns": "^4.1.0",
     "entities": "^7.0.1",
     "eslint": "8.48.0",
