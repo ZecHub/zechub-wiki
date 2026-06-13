@@ -3,29 +3,49 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Ironwood e Atualiza\u00e7\u00f5es da Visor e Noir Wallet | Zec Insider",
+            "video_id": "gLRkmBOAwPE",
+            "views": 0
+        },
+        {
+            "title": "O que s\u00e3o ZIPs e por que eles importam para a Zcash",
+            "video_id": "lvOcj0M6PPw",
+            "views": 14
+        },
+        {
+            "title": "As Ra\u00edzes, Os Riscos e Revolu\u00e7\u00f5es da Privacidade",
+            "video_id": "asGy0nZTvo0",
+            "views": 0
+        },
+        {
+            "title": "Privacidade Na Ind\u00fastria On-chain | Tokenation 2026",
+            "video_id": "rEqCsY0GpCo",
+            "views": 18
+        },
+        {
             "title": "Zcon Vozes 2 | FIAP S\u00e3o Paulo",
             "video_id": "Vf4Mjq_YIhQ",
-            "views": 0
+            "views": 25
         },
         {
             "title": "Zcash Brasil no Tokenation 2026.",
             "video_id": "I12nggKv8rg",
-            "views": 51
+            "views": 62
         },
         {
             "title": "Privacidade \u00e9 Normal: Aamandita no Palco do Tokenation",
             "video_id": "Cdd3Erv4xv0",
-            "views": 163
+            "views": 292
         },
         {
             "title": "Dynamic Fees: por que o mercado de taxas importa para a Zcash",
             "video_id": "3JZF1B6aNEM",
-            "views": 21
+            "views": 22
         },
         {
             "title": "Empoderamento de jovens da periferia atraves do blockchain | Educar+",
             "video_id": "eC87gPympLc",
-            "views": 16
+            "views": 17
         },
         {
             "title": "Protocol Study #3.5: Notes, commitments and nullifier | Engineering #11",
@@ -35,7 +55,7 @@
         {
             "title": "Zcon Vozes 2 | Juntos Construimos o Futuro. FIAP S\u00e3o Paulo",
             "video_id": "X6_VgYW9gJ0",
-            "views": 196
+            "views": 198
         },
         {
             "title": "A cultura da Zcash \u00e9 diferente.",
@@ -45,7 +65,7 @@
         {
             "title": "Educar Mais: De Coletivo de Leitura a Ponte para Tecnologia",
             "video_id": "TaTRPNOJZkk",
-            "views": 133
+            "views": 134
         },
         {
             "title": "Special Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
@@ -255,7 +275,7 @@
         {
             "title": "Atualiza\u00e7\u00e3o ZODL e Josh no Ip\u00ea City: o Que Est\u00e1 Chegando na Zcash | Zec Insider",
             "video_id": "3G_vJmoPg4M",
-            "views": 41
+            "views": 42
         },
         {
             "title": "Zcash Society e Network State: Como Comunidades Cripto se Organizam | Engineering #6",
@@ -420,7 +440,7 @@
         {
             "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Amea\u00e7as Qu\u00e2nticas | Engineering #3",
             "video_id": "R6916H2IMKI",
-            "views": 82
+            "views": 83
         },
         {
             "title": "A Zcash criou o movimento de privacidade 2.0",
@@ -600,7 +620,7 @@
         {
             "title": "Zcash na Cake Wallet - Tutorial Completo",
             "video_id": "ngzYYqcRa84",
-            "views": 171
+            "views": 172
         },
         {
             "title": "Chat criptografado precisa de dinheiro criptografado.",
@@ -905,7 +925,7 @@
         {
             "title": "Conhe\u00e7a a P2P.me: Plataforma para comprar e vender USDC de forma an\u00f4nima",
             "video_id": "9C9Tnc8dEGI",
-            "views": 468
+            "views": 471
         },
         {
             "title": "Incertezas financeiras e o salto do DeFi.",
@@ -1020,7 +1040,7 @@
         {
             "title": "A inova\u00e7\u00e3o do Zooko que protege a rede e incentiva o staking.",
             "video_id": "UGbqnjzxl3o",
-            "views": 231
+            "views": 232
         },
         {
             "title": "Zec Insider - Roadmap ECC 2025 e Crosslink: Staking.",
@@ -1395,7 +1415,7 @@
         {
             "title": "Tutorial Shielded Zcash na Metamask",
             "video_id": "Et8d-rM7YXQ",
-            "views": 139
+            "views": 142
         },
         {
             "title": "Impactos das guerras globais na economia brasileira",
@@ -2245,7 +2265,7 @@
         {
             "title": "Uso Ilegal de #Dados para #Treinamento de #IA",
             "video_id": "-i2oHBPMeo4",
-            "views": 145
+            "views": 146
         },
         {
             "title": "Da Web 2 para a Web 3 - Responsabilidade e Autonomia.",
@@ -3135,7 +3155,7 @@
         {
             "title": "Linda Xie - Rastreabilidade do Bitcoin LEGENDADO",
             "video_id": "83wyFIZTxDQ",
-            "views": 36
+            "views": 39
         },
         {
             "title": "WEEKLYCALL #9 - Stable Coins no ZSA.",
