@@ -371,11 +371,11 @@ const ZebradTab = () => {
             />
             <SubLabel className="mt-[14px]">From Source</SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v5.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v5.1.1\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">Alternatively</SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v5.0.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v5.1.1 zebrad`}
             />
           </>
         )}
@@ -388,11 +388,11 @@ const ZebradTab = () => {
             />
             <SubLabel className="mt-[14px]">Manual Download</SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v5.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v5.1.1\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">Alternatively</SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v5.0.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v5.1.1 zebrad`}
             />
           </>
         )}
@@ -407,11 +407,11 @@ const ZebradTab = () => {
             />
             <SubLabel className="mt-[14px]">From Source</SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v5.0.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v5.1.1\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">Alternatively</SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v5.0.0 zebrad`}
+              code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v5.1.1 zebrad`}
             />
           </>
         )}
