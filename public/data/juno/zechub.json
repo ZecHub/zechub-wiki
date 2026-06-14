@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 158,
+    "proposal_count": 159,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6509,7 +6509,7 @@
           "msgs": [],
           "title": "Zcash University Tour: University of Abuja Edition",
           "votes": {
-            "no": "9",
+            "no": "12",
             "yes": "1",
             "abstain": "1"
           },
@@ -6535,6 +6535,60 @@
           "min_voting_period": null
         },
         "createdAt": "2026-06-10T13:08:46.377Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 159,
+        "proposal": {
+          "msgs": [
+            {
+              "wasm": {
+                "execute": {
+                  "msg": "eyJ1cGRhdGVfY29uZmlnIjp7ImNvbmZpZyI6eyJuYW1lIjoiWmVjSHViIiwiZGFvX3VyaSI6bnVsbCwiaW1hZ2VfdXJsIjoiaXBmczovL1FtUWJoZENuNTNRNmJuN0J1SlJZNVdHV01waldmNG90QVFBNEdEb1pxYmFmWTgiLCJkZXNjcmlwdGlvbiI6IlplY0h1YiBwcm92aWRlcyBhbiBvcGVuIHNvdXJjZSBlZHVjYXRpb25hbCBwbGF0Zm9ybSB3aGVyZSBjb21tdW5pdHkgbWVtYmVycyBjYW4gd29yayB0b2dldGhlciBvbiBjcmVhdGluZywgdmFsaWRhdGluZywgYW5kIHByb21vdGluZyBjb250ZW50IHRoYXQgc3VwcG9ydHMgdGhlIFpjYXNoIGVjb3N5c3RlbS4gWmVjSHViIGJlbGlldmVzOlxuXG4qIFByaXZhY3kgaXMgYSBodW1hbiByaWdodFxuKiBFZHVjYXRpb24gc2hvdWxkIGJlIG9wZW4tc291cmNlIGFuZCBhY2Nlc3NpYmxlIHdvcmxkd2lkZVxuKiBDb21tdW5pdHkgbWVtYmVycyBoYXZlIGEgcmlnaHQgdG8gZWFybiBaRUMgcHJpdmF0ZWx5IiwiYXV0b21hdGljYWxseV9hZGRfY3cyMHMiOnRydWUsImF1dG9tYXRpY2FsbHlfYWRkX2N3NzIxcyI6dHJ1ZX19fQ==",
+                  "funds": [],
+                  "contract_addr": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y"
+                }
+              }
+            },
+            {
+              "wasm": {
+                "execute": {
+                  "msg": "eyJzZXRfaXRlbSI6eyJrZXkiOiJiYW5uZXIiLCJ2YWx1ZSI6ImlwZnM6Ly9RbVJSTFlLek1oYzhkZ1ZTV1NuQ0dZUVo0Y21IRkFaMUtSblFkMWtwZEUyN0s0In19",
+                  "funds": [],
+                  "contract_addr": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y"
+                }
+              }
+            }
+          ],
+          "title": "Logo Update on DAODAO to Align with the Updated Brand Identity",
+          "votes": {
+            "no": "0",
+            "yes": "3",
+            "abstain": "1"
+          },
+          "status": "open",
+          "proposer": "juno1tqs76f9jzgpxq5a6k88g6jrpsy54qh08c83g8r",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1781822083817134927"
+          },
+          "description": "This proposal recommends updating the DAO logo to align with the recently established brand identity guidelines. The objective is not to alter the core identity of the DAO, but to refine and modernize its visual representation so it remains consistent with the updated brand visual guidelines.\n\nThe logo would ensure visual consistency across all brand touchpoints and strengthen recognition within the ecosystem.\n\na 'yes' vote approves the proposed logo update and adoption of the revised logo as the official visual identity of the DAO.",
+          "total_power": "23",
+          "start_height": 38844395,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-06-13T22:34:43.817Z"
       }
     ]
   },
