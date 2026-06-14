@@ -1,0 +1,56 @@
+[
+  {
+    "id": "5ba81b19",
+    "name": "Overwinter",
+    "activationHeight": 347500,
+    "status": "active"
+  },
+  {
+    "id": "76b809bb",
+    "name": "Sapling",
+    "activationHeight": 419200,
+    "status": "active"
+  },
+  {
+    "id": "2bb40e60",
+    "name": "Blossom",
+    "activationHeight": 653600,
+    "status": "active"
+  },
+  {
+    "id": "f5b9230b",
+    "name": "Heartwood",
+    "activationHeight": 903000,
+    "status": "active"
+  },
+  {
+    "id": "e9ff75a6",
+    "name": "Canopy",
+    "activationHeight": 1046400,
+    "status": "active"
+  },
+  {
+    "id": "c2d6d0b4",
+    "name": "NU5",
+    "activationHeight": 1687104,
+    "status": "active"
+  },
+  {
+    "id": "c8e71055",
+    "name": "NU6",
+    "activationHeight": 2726400,
+    "status": "active"
+  },
+  {
+    "id": "4dec4df0",
+    "name": "NU6.1",
+    "activationHeight": 3146400,
+    "status": "active"
+  },
+  {
+    "id": "5437f330",
+    "name": "NU6.2",
+    "activationHeight": 3364600,
+    "status": "active"
+  }
+]
