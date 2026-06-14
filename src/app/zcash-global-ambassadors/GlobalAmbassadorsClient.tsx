@@ -122,7 +122,7 @@ export default function GlobalAmbassadorsClient() {
     t?.pages?.zcashGlobalAmbassadors?.projectSitesHeading ??
     "Project Sites & Blogs";
   const followLabel =
-    t?.pages?.zcashGlobalAmbassadors?.followOnX ?? "Follow on X";
+    t?.pages?.zcashGlobalAmbassadors?.followOnX ?? "Follow on X/BS";
   const projectSiteLabel =
     t?.pages?.zcashGlobalAmbassadors?.projectSiteLabel ?? "Project Site";
   const linkLabel = t?.pages?.zcashGlobalAmbassadors?.linkLabel ?? "Link";
