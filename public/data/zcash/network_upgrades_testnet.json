@@ -5,63 +5,63 @@
       "name": "Overwinter",
       "activationHeight": 207500,
       "status": "active",
-      "activationDate": "Wed 21 Mar 2018 02:05:10 PM CDT"
+      "activationDate": "Wed Mar 21 19:05:10 2018"
     },
     {
       "id": "76b809bb",
       "name": "Sapling",
       "activationHeight": 280000,
       "status": "active",
-      "activationDate": "Sun 26 Aug 2018 12:44:53 AM CDT"
+      "activationDate": "Sun Aug 26 05:44:53 2018"
     },
     {
       "id": "2bb40e60",
       "name": "Blossom",
       "activationHeight": 584000,
       "status": "active",
-      "activationDate": "Mon 26 Aug 2019 10:21:11 AM CDT"
+      "activationDate": "Mon Aug 26 15:21:11 2019"
     },
     {
       "id": "f5b9230b",
       "name": "Heartwood",
       "activationHeight": 903800,
       "status": "active",
-      "activationDate": "Mon 04 May 2020 03:29:09 PM CDT"
+      "activationDate": "Mon May 04 20:29:09 2020"
     },
     {
       "id": "e9ff75a6",
       "name": "Canopy",
       "activationHeight": 1028500,
       "status": "active",
-      "activationDate": "Mon 03 Aug 2020 03:59:28 PM CDT"
+      "activationDate": "Mon Aug 03 20:59:28 2020"
     },
     {
       "id": "c2d6d0b4",
       "name": "NU5",
       "activationHeight": 1842420,
       "status": "active",
-      "activationDate": "Tue 19 Apr 2022 04:29:12 AM CDT"
+      "activationDate": "Tue Apr 19 09:29:12 2022"
     },
     {
       "id": "c8e71055",
       "name": "NU6",
       "activationHeight": 2976000,
       "status": "active",
-      "activationDate": "Wed 28 Aug 2024 12:37:30 PM CDT"
+      "activationDate": "Wed Aug 28 17:37:30 2024"
     },
     {
       "id": "4dec4df0",
       "name": "NU6.1",
       "activationHeight": 3536500,
       "status": "active",
-      "activationDate": "Sun 10 Aug 2025 06:04:55 AM CDT"
+      "activationDate": "Sun Aug 10 11:04:55 2025"
     },
     {
       "id": "5437f330",
       "name": "NU6.2",
       "activationHeight": 4052000,
       "status": "active",
-      "activationDate": "Sun 07 Jun 2026 05:46:21 AM CDT"
+      "activationDate": "Sun Jun 07 10:46:21 2026"
     }
   ],
   "lastUpdated": "2026-06-14",
