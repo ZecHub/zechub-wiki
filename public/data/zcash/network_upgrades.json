@@ -1,56 +1,69 @@
-[
-  {
-    "id": "5ba81b19",
-    "name": "Overwinter",
-    "activationHeight": 347500,
-    "status": "active"
-  },
-  {
-    "id": "76b809bb",
-    "name": "Sapling",
-    "activationHeight": 419200,
-    "status": "active"
-  },
-  {
-    "id": "2bb40e60",
-    "name": "Blossom",
-    "activationHeight": 653600,
-    "status": "active"
-  },
-  {
-    "id": "f5b9230b",
-    "name": "Heartwood",
-    "activationHeight": 903000,
-    "status": "active"
-  },
-  {
-    "id": "e9ff75a6",
-    "name": "Canopy",
-    "activationHeight": 1046400,
-    "status": "active"
-  },
-  {
-    "id": "c2d6d0b4",
-    "name": "NU5",
-    "activationHeight": 1687104,
-    "status": "active"
-  },
-  {
-    "id": "c8e71055",
-    "name": "NU6",
-    "activationHeight": 2726400,
-    "status": "active"
-  },
-  {
-    "id": "4dec4df0",
-    "name": "NU6.1",
-    "activationHeight": 3146400,
-    "status": "active"
-  },
-  {
-    "id": "5437f330",
-    "name": "NU6.2",
-    "activationHeight": 3364600,
-    "status": "active"
-  }
-]
+{
+  "upgrades": [
+    {
+      "id": "5ba81b19",
+      "name": "Overwinter",
+      "activationHeight": 347500,
+      "status": "active",
+      "activationDate": "Mon Jun 25 18:37:31 2018"
+    },
+    {
+      "id": "76b809bb",
+      "name": "Sapling",
+      "activationHeight": 419200,
+      "status": "active",
+      "activationDate": "Sun Oct 28 19:15:37 2018"
+    },
+    {
+      "id": "2bb40e60",
+      "name": "Blossom",
+      "activationHeight": 653600,
+      "status": "active",
+      "activationDate": "Wed Dec 11 13:50:05 2019"
+    },
+    {
+      "id": "f5b9230b",
+      "name": "Heartwood",
+      "activationHeight": 903000,
+      "status": "active",
+      "activationDate": "Thu Jul 16 03:56:08 2020"
+    },
+    {
+      "id": "e9ff75a6",
+      "name": "Canopy",
+      "activationHeight": 1046400,
+      "status": "active",
+      "activationDate": "Wed Nov 18 04:34:16 2020"
+    },
+    {
+      "id": "c2d6d0b4",
+      "name": "NU5",
+      "activationHeight": 1687104,
+      "status": "active",
+      "activationDate": "Tue May 31 10:50:05 2022"
+    },
+    {
+      "id": "c8e71055",
+      "name": "NU6",
+      "activationHeight": 2726400,
+      "status": "active",
+      "activationDate": "Sat Nov 23 03:02:59 2024"
+    },
+    {
+      "id": "4dec4df0",
+      "name": "NU6.1",
+      "activationHeight": 3146400,
+      "status": "active",
+      "activationDate": "Mon Nov 24 11:56:42 2025"
+    },
+    {
+      "id": "5437f330",
+      "name": "NU6.2",
+      "activationHeight": 3364600,
+      "status": "active",
+      "activationDate": "Tue Jun 2 21:03:08 2026"
+    }
+  ],
+  "lastUpdated": "2026-06-14",
+  "source": "getblockchaininfo"
+}
