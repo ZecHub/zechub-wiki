@@ -6,7 +6,7 @@ import { useContext } from "react";
 import Link from "next/link";
 import { Button } from "@/components/UI/button";
 import { exploreMenu } from "@/constants/explore-menu";
-import Image from 'next/image';
+import Image from "next/image";
 
 export default function FloatingExplore() {
   const [open, setOpen] = useState(false);
@@ -24,10 +24,10 @@ export default function FloatingExplore() {
   //Preload Icons for performance
   useEffect(() => {
     const iconsToPreload = Object.values(iconMap);
-    iconsToPreload.forEach(src => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
+    iconsToPreload.forEach((src) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
       link.href = src;
       document.head.appendChild(link);
     });
@@ -137,7 +137,7 @@ export default function FloatingExplore() {
 
         {open && (
           <div
-            className="fixed md:absolute bottom-20 left-4 right-4 md:left-auto md:right-0 md:bottom-full md:mb-4 w-full max-w-[280px] md:w-72 max-h-[65vh] md:max-h-[75vh] overflow-hidden bg-slate-50 dark:bg-card border border-border shadow-2xl rounded-3xl p-4 text-sm backdrop-blur-2xl z-50 transition-all duration-200 flex flex-col"
+            className="fixed md:absolute bottom-20 left-4 right-4 md:left-auto md:right-0 md:bottom-full md:mb-4 w-full max-w-[280px] md:w-72 max-h-[65vh] md:max-h-[75vh] overflow-hidden border border-border shadow-2xl rounded-3xl p-4 text-sm backdrop-blur-2xl z-50 transition-all duration-200 flex flex-col"
             onMouseEnter={() => {
               if (!isMobile && timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
@@ -174,15 +174,15 @@ export default function FloatingExplore() {
                       className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all hover:bg-yellow-400 hover:text-black dark:hover:bg-amber-600 active:bg-yellow-300 active:scale-[0.98] font-medium text-foreground touch-manipulation"
                     >
                       <Image
-                			  src={iconSrc}
-                			  alt={item.label}
-                			  width={24}
-                			  height={24}
-                			  className="h-6 w-6 object-contain flex-shrink-0"
-                			  quality={85}           // good balance for icons
-                			  loading="eager"        // critical: load immediately when menu opens
-                			  priority={false}       // only true if you want first 2-3 preloaded extra hard
-		                  />
+                        src={iconSrc}
+                        alt={item.label}
+                        width={24}
+                        height={24}
+                        className="h-6 w-6 object-contain flex-shrink-0"
+                        quality={85} // good balance for icons
+                        loading="eager" // critical: load immediately when menu opens
+                        priority={false} // only true if you want first 2-3 preloaded extra hard
+                      />
                       {item.label}
                     </Link>
                   );
