@@ -10,6 +10,15 @@ interface Upgrade {
 
 type Network = "mainnet" | "testnet";
 
+// Helper to create URL-friendly slugs matching the Evolution page
+const createSlug = (name: string): string => {
+  return name
+    .toLowerCase()
+    .replace(/\./g, "_")     // NU6.2 → nu6_2
+    .replace(/\s+/g, "_")    // NU 6.1 → nu_6_1
+    .replace(/-/g, "_");
+};
+
 export default function NetworkUpgradesChart() {
   const [network, setNetwork] = useState<Network>("mainnet");
   const [upgrades, setUpgrades] = useState<Upgrade[]>([]);
@@ -53,7 +62,7 @@ export default function NetworkUpgradesChart() {
   };
 
   useEffect(() => {
-    fetchUpgrades(network, true); // initial load
+    fetchUpgrades(network, true);
   }, []);
 
   const handleNetworkChange = (newNetwork: Network) => {
@@ -84,7 +93,7 @@ export default function NetworkUpgradesChart() {
           </p>
         </div>
 
-        {/* Network Toggle */}
+        {/* Mainnet / Testnet Toggle */}
         <div className="inline-flex rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-1 shadow-sm">
           <button
             onClick={() => handleNetworkChange("mainnet")}
@@ -151,8 +160,16 @@ export default function NetworkUpgradesChart() {
                   key={index}
                   className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
                 >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-slate-100">
-                    {u.name}
+                  {/* Clickable Upgrade Name (uses slug matching Evolution page) */}
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <a
+                      href={`/zcash-evolution#${createSlug(u.name)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-slate-900 dark:text-slate-100 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    >
+                      {u.name}
+                    </a>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-slate-700 dark:text-slate-300">
                     {u.activationHeight.toLocaleString()}
