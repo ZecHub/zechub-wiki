@@ -1,11 +1,14 @@
+"use client";
+
 import { cn } from "@/lib/util";
 import { Blocks, Calendar, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NetworkUpgrade } from "./networkUpgrade";
 
 interface EvolutinCardProps {
   upgrade: NetworkUpgrade;
   index: number;
+  id?: string;
 }
 
 export function EvolutinCard(props: EvolutinCardProps) {
@@ -13,8 +16,34 @@ export function EvolutinCard(props: EvolutinCardProps) {
   const isCurrent = props.upgrade.status === "current";
   const isFuture = props.upgrade.status === "future";
 
+  // Auto-expand and scroll when URL hash matches this card's ID
+  useEffect(() => {
+    if (!props.id || typeof window === "undefined") return;
+
+    const hash = window.location.hash.replace("#", "");
+
+    if (hash && hash === props.id) {
+      setExpanded(true);
+
+      // Wait for the card to expand before scrolling
+      setTimeout(() => {
+        const element = document.getElementById(props.id!);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 400);
+    }
+  }, [props.id]);
+
   return (
-    <div className="relative flex gap-4 md:gap-8">
+    <div
+      id={props.id}
+      className="relative flex gap-4 md:gap-8 scroll-mt-24"
+    >
+      {/* Timeline */}
       <div className="flex flex-col items-center shrink-0">
         <div
           className={cn(
@@ -32,8 +61,7 @@ export function EvolutinCard(props: EvolutinCardProps) {
         <div
           className={cn(
             "w-0.5 flex-1 min-h-8",
-            isFuture &&
-              "border-1-2 border-dashed border-muted-foreground/30 w-0",
+            isFuture && "border-dashed border-muted-foreground/30",
           )}
           style={
             !isFuture
@@ -43,6 +71,7 @@ export function EvolutinCard(props: EvolutinCardProps) {
         />
       </div>
 
+      {/* Card Content */}
       <button
         onClick={() => setExpanded(!expanded)}
         className={cn(
@@ -53,11 +82,6 @@ export function EvolutinCard(props: EvolutinCardProps) {
         )}
         style={{
           animationDelay: `${props.index * 80}ms`,
-          borderColor: isCurrent
-            ? undefined
-            : expanded
-              ? `hsl(${props.upgrade.eraColor}/ 0.5)`
-              : undefined,
         }}
       >
         <div className="flex items-center justify-between gap-3">
@@ -72,7 +96,6 @@ export function EvolutinCard(props: EvolutinCardProps) {
                 Coming Soon
               </span>
             )}
-
             <h3
               className="text-base md:text-lg font-bold"
               style={{ color: `hsl(${props.upgrade.eraColor})` }}
@@ -85,12 +108,14 @@ export function EvolutinCard(props: EvolutinCardProps) {
           </div>
           <ChevronDown
             className={cn(
-              "h-4 w-4 text-muted-foreground shrink-0 transition-transform mt-1 hover:cursor-pointer",
+              "h-4 w-4 text-muted-foreground shrink-0 transition-transform mt-1",
               expanded && "rotate-180",
             )}
           />
         </div>
-        <div className="flex flex-wrap gap-3 mt-3 text-sm to-muted-foreground text-slate-500 dark:text-slate-400">
+
+        {/* Meta Info */}
+        <div className="flex flex-wrap gap-3 mt-3 text-sm text-muted-foreground text-slate-500 dark:text-slate-400">
           <span className="flex items-center gap-1">
             <Calendar className="h-3 w-3" />
             {props.upgrade.date}
@@ -102,26 +127,24 @@ export function EvolutinCard(props: EvolutinCardProps) {
             </span>
           )}
         </div>
-        <p className="text-sm font-semibold  text-slate-700 dark:text-slate-200 mt-3 leading-relaxed">
+
+        {/* Description */}
+        <p className="text-sm font-semibold text-slate-700 dark:text-slate-200 mt-3 leading-relaxed">
           {props.upgrade.description}
         </p>
+
+        {/* Expanded Key Features */}
         {expanded && (
           <div className="mt-6">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
               Key Features
             </h4>
-
             <ul className="space-y-1.5">
-              {props.upgrade.features.map((f) => (
-                <li
-                  key={f}
-                  className="flex items-start gap-2 text-sm text-foreground"
-                >
+              {props.upgrade.features.map((f, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-foreground">
                   <span
                     className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0"
-                    style={{
-                      backgroundColor: `hsl(${props.upgrade.eraColor})`,
-                    }}
+                    style={{ backgroundColor: `hsl(${props.upgrade.eraColor})` }}
                   />
                   {f}
                 </li>

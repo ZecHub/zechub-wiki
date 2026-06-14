@@ -16,13 +16,19 @@ export function ZcashUpgradEvolution() {
           currentEra={currentEra}
           networkUpgrades={networkUpgrades}
         />
+
         <div className="relative">
           {networkUpgrades.map((u, i) => (
-            <EvolutinCard key={u.id + i} upgrade={u} index={i} />
+            <EvolutinCard
+              key={u.id + i}
+              upgrade={u}
+              index={i}
+              id={u.id}                    // ← Added: enables anchor linking from dashboard
+            />
           ))}
         </div>
 
-        <PrivacyMeter networkUpgrades={networkUpgrades}/>
+        <PrivacyMeter networkUpgrades={networkUpgrades} />
       </main>
     </div>
   );

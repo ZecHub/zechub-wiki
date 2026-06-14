@@ -236,7 +236,7 @@ export const networkUpgrades: NetworkUpgrade[] = [
     ],
     privacyLevel: 92,
     privacyLabel: "Community-Governed Privacy",
-    status: "current",
+    status: "past",
     eraColor: "60 95% 55%",
   },
   {
@@ -256,7 +256,7 @@ export const networkUpgrades: NetworkUpgrade[] = [
     zips: [],
     privacyLevel: 94,
     privacyLabel: "Restored Orchard Privacy",
-    status: "past",
+    status: "current",
     eraColor: "50 95% 58%",
   },
   {
