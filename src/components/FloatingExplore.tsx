@@ -137,7 +137,7 @@ export default function FloatingExplore() {
 
         {open && (
           <div
-            className="fixed md:absolute bottom-20 left-4 right-4 md:left-auto md:right-0 md:bottom-full md:mb-4 w-full max-w-[280px] md:w-72 max-h-[65vh] md:max-h-[75vh] overflow-hidden border border-border shadow-2xl rounded-3xl p-4 text-sm backdrop-blur-2xl z-50 transition-all duration-200 flex flex-col"
+            className="fixed md:absolute bottom-20 left-4 right-4 md:left-auto md:right-0 md:bottom-full md:mb-4 w-full max-w-[280px] md:w-72 max-h-[65vh] md:max-h-[75vh] overflow-hidden bg-slate-50 dark:bg-card border border-border shadow-2xl rounded-3xl p-4 text-sm backdrop-blur-2xl z-50 transition-all duration-200 flex flex-col"
             onMouseEnter={() => {
               if (!isMobile && timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
