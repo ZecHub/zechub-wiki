@@ -6,6 +6,7 @@ import CardContentTxn from "./Transparent/CardContent";
 import { ZcashMetrics } from "./ZcashMetrics/ZcashMetrics";
 import CardContentSupply from "./Supply/CardContentSupply";
 import HeroPopoverTabs from "../HeroPopoverTabs";
+import NetworkUpgradesChart from "./NetworkUpgradesChart";
 
 type ZcashChartProps = {
   divChartRef: RefObject<HTMLDivElement | null>;
@@ -39,6 +40,7 @@ function ZcashChart(props: ZcashChartProps) {
     { value: "network solps", label: chartT?.networkSolps || "Network Solps" },
     { value: "mining pools", label: chartT?.miningPools || "Mining Pools" },
     { value: "halving meter", label: chartT?.halvingMeter || "Halving Meter" },
+    { value: "network upgrades", label: "Network Upgrades" },
   ];
 
   const handleTabChange = (newTab: string) => {
@@ -51,7 +53,6 @@ function ZcashChart(props: ZcashChartProps) {
   return (
     <div className="space-y-6">
       <ZcashMetrics />
-
       <Card className="shadow-sm border border-gray-200 dark:border-slate-700">
         <CardHeader className="mb-4">
           <CardTitle className="text-xl">
@@ -64,9 +65,10 @@ function ZcashChart(props: ZcashChartProps) {
           activeTab={activeTab}
           onTabChange={handleTabChange}
           supplyTab={supplyTab}
-          setSupplyTab={(tab) => setSupplyTab(tab as SupplyType)}   // ← safe cast
+          setSupplyTab={(tab) => setSupplyTab(tab as SupplyType)}
         />
 
+        {/* Supply sub-tabs */}
         {supplyTab === "shielded" && (
           <CardContentShielded
             {...props}
@@ -76,6 +78,9 @@ function ZcashChart(props: ZcashChartProps) {
         )}
         {supplyTab === "transparent" && <CardContentTxn {...props} />}
         {supplyTab === "totalSupply" && <CardContentSupply {...props} />}
+
+        {/* New standalone tab */}
+        {activeTab === "network upgrades" && <NetworkUpgradesChart />}
       </Card>
     </div>
   );
