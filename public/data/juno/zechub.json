@@ -6509,11 +6509,11 @@
           "msgs": [],
           "title": "Zcash University Tour: University of Abuja Edition",
           "votes": {
-            "no": "12",
-            "yes": "1",
+            "no": "15",
+            "yes": "2",
             "abstain": "1"
           },
-          "status": "open",
+          "status": "rejected",
           "proposer": "juno1c5sv4hk0ysezc5znwnwv6rkc0ex6eld53nafmr",
           "threshold": {
             "threshold_quorum": {
@@ -6564,7 +6564,7 @@
           "title": "Logo Update on DAODAO to Align with the Updated Brand Identity",
           "votes": {
             "no": "0",
-            "yes": "5",
+            "yes": "9",
             "abstain": "1"
           },
           "status": "open",
