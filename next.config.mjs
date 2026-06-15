@@ -4,6 +4,12 @@ import remarkGfm from "remark-gfm";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  allowedDevOrigins: [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    // Add the exact origin from your error, or your LAN IP for phone testing
+    // 'http://192.168.1.42:3000',
+  ],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "i.ibb.co", pathname: "/**" },
