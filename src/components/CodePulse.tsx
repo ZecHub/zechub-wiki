@@ -47,7 +47,7 @@ export default function CodePulse() {
     return <div className="p-8 text-center text-red-500">No data available yet.</div>;
   }
 
-  // Prepare data for trends chart
+  // Prepare trend data
   const trendData = currentHistory.map((entry: any) => {
     const proj = entry.projects?.[0] || {};
     return {
@@ -78,7 +78,7 @@ export default function CodePulse() {
         )}
       </div>
 
-      {/* Toggle */}
+      {/* Toggle Pills */}
       <div className="inline-flex rounded-lg border bg-muted p-0.5 text-sm">
         <button
           onClick={() => setView('radicle')}
@@ -155,7 +155,7 @@ function RadicleView({ data }: { data: any }) {
         <MetricCard label="Total Patches" value={summary.total_patches || 0} color="text-blue-500" />
       </div>
 
-      {/* Table */}
+      {/* Projects Table */}
       <div className="rounded-xl border overflow-hidden bg-card">
         <table className="w-full text-sm">
           <thead className="bg-muted">
@@ -180,7 +180,9 @@ function RadicleView({ data }: { data: any }) {
                 <td className="text-center p-4">{p.delegates} / {p.threshold}</td>
                 <td className="text-center p-4">{p.issues_open} / {p.issues_total}</td>
                 <td className="text-center p-4">{p.patches_open} / {p.patches_merged}</td>
-                <td className="text-center p-4 font-mono text-xs text-muted-foreground">{p.head?.slice(0, 8)}</td>
+                <td className="text-center p-4 font-mono text-xs text-muted-foreground">
+                  {p.head?.slice(0, 8)}
+                </td>
                 <td className="text-right p-4">
                   <a href={p.explorer_url} target="_blank" className="text-primary hover:underline text-sm font-medium">
                     View →
@@ -214,7 +216,7 @@ function GitHubView({ data }: { data: any }) {
         <MetricCard label="Merged PRs" value={totalMergedPRs} color="text-purple-500" />
       </div>
 
-      {/* Table */}
+      {/* Projects Table */}
       <div className="rounded-xl border overflow-hidden bg-card">
         <table className="w-full text-sm">
           <thead className="bg-muted">
