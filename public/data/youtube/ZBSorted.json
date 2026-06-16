@@ -35,7 +35,7 @@
     {
       "title": "Conheça Zooko, a maior fã da Zcash! #https #privacidade #blockchain  #criptomoedas",
       "video_id": "eGrvVLhYBSw",
-      "views": 1040
+      "views": 1041
     },
     {
       "title": "Inclusão tecnológica e educação sobre privacidade andam juntas.",
@@ -190,7 +190,7 @@
     {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
-      "views": 477
+      "views": 478
     },
     {
       "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endereço Shielded",
@@ -245,7 +245,7 @@
     {
       "title": "Como criptografar seus Bitcoin com a Zashi",
       "video_id": "HBv_oTkgWHM",
-      "views": 357
+      "views": 358
     },
     {
       "title": "Nate Wilcox explica como será a mudança de consenso da #Zcash para Proof of Stake",
@@ -355,7 +355,7 @@
     {
       "title": "Tutorial Ywallet - Carteira para Zcash",
       "video_id": "3bLcUI4XeII",
-      "views": 270
+      "views": 271
     },
     {
       "title": "Desacelerar na Vida",
@@ -393,14 +393,14 @@
       "views": 240
     },
     {
-      "title": "A inovação do Zooko que protege a rede e incentiva o staking.",
-      "video_id": "UGbqnjzxl3o",
+      "title": "Tutorial Zingo! Carteira para Zcash",
+      "video_id": "gg6YKmdrxAs",
       "views": 232
     },
     {
-      "title": "Tutorial Zingo! Carteira para Zcash",
-      "video_id": "gg6YKmdrxAs",
-      "views": 231
+      "title": "A inovação do Zooko que protege a rede e incentiva o staking.",
+      "video_id": "UGbqnjzxl3o",
+      "views": 232
     },
     {
       "title": "O Futuro das Stablecoins.",
@@ -1643,14 +1643,14 @@
       "views": 64
     },
     {
-      "title": "Os acontecimentos que promovem a expansão da privacidade financeira no Brasil.",
-      "video_id": "dx4NSTIoytA",
+      "title": "Zashi Agora é ZODL: Nova Carteira Zcash no iOS e Android com Privacidade por Padrão",
+      "video_id": "NkpD4kCPwdI",
       "views": 64
     },
     {
-      "title": "Zashi Agora é ZODL: Nova Carteira Zcash no iOS e Android com Privacidade por Padrão",
-      "video_id": "NkpD4kCPwdI",
-      "views": 63
+      "title": "Os acontecimentos que promovem a expansão da privacidade financeira no Brasil.",
+      "video_id": "dx4NSTIoytA",
+      "views": 64
     },
     {
       "title": "Zcash Brasil no Tokenation 2026.",
@@ -2053,6 +2053,11 @@
       "views": 43
     },
     {
+      "title": "Privacidade Na Indústria On-chain | Tokenation 2026",
+      "video_id": "rEqCsY0GpCo",
+      "views": 43
+    },
+    {
       "title": "Ariel Gabizon - Zcash Sapling LEGENDADO",
       "video_id": "Ua7mb3hVEMg",
       "views": 42
@@ -2148,9 +2153,9 @@
       "views": 41
     },
     {
-      "title": "Privacidade Na Indústria On-chain | Tokenation 2026",
-      "video_id": "rEqCsY0GpCo",
-      "views": 41
+      "title": "Linda Xie - Rastreabilidade do Bitcoin LEGENDADO",
+      "video_id": "83wyFIZTxDQ",
+      "views": 40
     },
     {
       "title": "Zcash Shielded Assets está pronto!",
@@ -2186,11 +2191,6 @@
       "title": "Educação Financeira Antes de Investir em Cripto",
       "video_id": "Pkn_87aUuC8",
       "views": 40
-    },
-    {
-      "title": "Linda Xie - Rastreabilidade do Bitcoin LEGENDADO",
-      "video_id": "83wyFIZTxDQ",
-      "views": 39
     },
     {
       "title": "A influencia feminina nas decisões financeiras",
@@ -2658,6 +2658,11 @@
       "views": 28
     },
     {
+      "title": "A Linha Esquecida da Cripto: Privacidade, Cypherpunks e Zcash.",
+      "video_id": "6h8iJesmBZU",
+      "views": 28
+    },
+    {
       "title": "ZecHub Extras + Sorteio NFT + Quiz",
       "video_id": "6nlm--G6q-U",
       "views": 27
@@ -2695,11 +2700,6 @@
     {
       "title": "Tesouraria, Custódia e Governança: DAT, Grayscale e o Lockbox",
       "video_id": "rrs5xULsIcY",
-      "views": 27
-    },
-    {
-      "title": "A Linha Esquecida da Cripto: Privacidade, Cypherpunks e Zcash.",
-      "video_id": "6h8iJesmBZU",
       "views": 27
     },
     {
@@ -2978,6 +2978,11 @@
       "views": 21
     },
     {
+      "title": "Zcash.me e Zcash Names: Pagamentos Privados com Endereços Legíveis | Engineering #7",
+      "video_id": "Fd5N0QshWng",
+      "views": 21
+    },
+    {
       "title": "WEEKLYCALL #8 - Zcash RodMap 2024/2025",
       "video_id": "Q3ujfxHYRxs",
       "views": 20
@@ -2985,6 +2990,11 @@
     {
       "title": "ZconV: Zcash Unified Dia 2 Pt2",
       "video_id": "iCpIbHAfe-c",
+      "views": 20
+    },
+    {
+      "title": "Mini Workshop 2 - Zingo! e Cabochon (Arte e Crypto)",
+      "video_id": "-lS35CyvSfA",
       "views": 20
     },
     {
@@ -3018,11 +3028,6 @@
       "views": 20
     },
     {
-      "title": "Zcash.me e Zcash Names: Pagamentos Privados com Endereços Legíveis | Engineering #7",
-      "video_id": "Fd5N0QshWng",
-      "views": 20
-    },
-    {
       "title": "Como Comprar ZEC com Fiat e Fazer Doações Privadas com Cipherpay | Zec Insider",
       "video_id": "cQ5FvbijzMI",
       "views": 20
@@ -3030,11 +3035,6 @@
     {
       "title": "Sebastian Wain - Visão Geral Segurança na Web3",
       "video_id": "IkRLf2xATbw",
-      "views": 19
-    },
-    {
-      "title": "Mini Workshop 2 - Zingo! e Cabochon (Arte e Crypto)",
-      "video_id": "-lS35CyvSfA",
       "views": 19
     },
     {
@@ -3368,6 +3368,11 @@
       "views": 12
     },
     {
+      "title": "RWA: A Nova Infraestrutura Global do Capital | Marcos Crivelaro | Zcon Vozes 2",
+      "video_id": "6d1sk0stmc0",
+      "views": 12
+    },
+    {
       "title": "Vitor - Tornado Cash & Privacidade",
       "video_id": "yY4Zab-gfWI",
       "views": 11
@@ -3498,11 +3503,6 @@
       "views": 8
     },
     {
-      "title": "RWA: A Nova Infraestrutura Global do Capital | Marcos Crivelaro | Zcon Vozes 2",
-      "video_id": "6d1sk0stmc0",
-      "views": 8
-    },
-    {
       "title": "WEEKLYCALL #18 - Eleição para o Comitê + ZCAP",
       "video_id": "CixY2m3Gaow",
       "views": 7
@@ -3570,6 +3570,11 @@
     {
       "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
       "video_id": "XgtJXKqv-ZE",
+      "views": 3
+    },
+    {
+      "title": "Protocol Study #4: Transactions Unpacked: JoinSplit to Actions | Engineering #12",
+      "video_id": "ZmA57p318rI",
       "views": 3
     },
     {
