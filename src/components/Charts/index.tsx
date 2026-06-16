@@ -10,6 +10,7 @@ import {
   Play,
   Eye,
   Rss,
+  Activity,
 } from "lucide-react";
 import { useEffect, useState, useRef, startTransition } from "react";
 import Link from "next/link";
@@ -23,6 +24,7 @@ import PenumbraChart from "./Penumbra/PenumbraChart";
 import ZcashChart from "./Zcash/ZcashChart";
 import { ProposalsList } from "@/components/Proposals";
 import type { ZipsData } from "@/app/zips-grants/ZipAndGrantsGovernance";
+import CodePulse from "@/components/CodePulse";
 
 const ZCGDashboard = dynamic(
   () =>
@@ -32,7 +34,7 @@ const ZCGDashboard = dynamic(
   { ssr: false },
 );
 
-type ViewType = "dashboard" | "proposals" | "zcg" | "youtube";
+type ViewType = "dashboard" | "proposals" | "zcg" | "youtube" | "codepulse";
 type SubViewType = "top" | "latest";
 type ChannelType =
   | "ZecHub"
@@ -78,6 +80,7 @@ type DashboardDictionary = {
           treasuryDashboard?: string;
           zcgDashboard?: string;
           youtubeDashboard?: string;
+          codePulse?: string;
         };
       };
     };
@@ -94,6 +97,7 @@ const Dashboard = ({
   const router = useRouter();
   const pathname = usePathname();
   const { t: languageDict } = useLanguage();
+
   const [selectedCrypto, setSelectedCrypto] = useState("zcash");
   const [open, setOpen] = useState(false);
   const [currentView, setCurrentView] = useState<ViewType>("dashboard");
@@ -103,8 +107,9 @@ const Dashboard = ({
   const [channelModalOpen, setChannelModalOpen] = useState(false);
   const [channelSearchTerm, setChannelSearchTerm] = useState("");
 
-  const allowedTabs: ViewType[] = ["dashboard", "proposals", "zcg", "youtube"];
+  const allowedTabs: ViewType[] = ["dashboard", "proposals", "zcg", "youtube", "codepulse"];
 
+  // YouTube state
   const [zecSorted, setZecSorted] = useState<any>({ videos: [] });
   const [zecDate, setZecDate] = useState<any>({ videos: [] });
   const [slSorted, setSlSorted] = useState<any>({ videos: [] });
@@ -115,63 +120,39 @@ const Dashboard = ({
   const [zmDate, setZmDate] = useState<any>({ videos: [] });
   const [zbSorted, setZbSorted] = useState<any>({ videos: [] });
   const [zbDate, setZbDate] = useState<any>({ videos: [] });
-
   const [searchTerm, setSearchTerm] = useState("");
 
-  const t =
-    languageDict?.pages?.dashboard?.charts || dict?.pages?.dashboard?.charts;
+  const t = languageDict?.pages?.dashboard?.charts || dict?.pages?.dashboard?.charts;
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-  // Load data
+  // Load YouTube data
   useEffect(() => {
     if (currentView === "youtube") {
-      fetch("/data/youtube/ZecHubSorted.json")
-        .then((r) => r.json())
-        .then(setZecSorted);
-      fetch("/data/youtube/ZecHubByDate.json")
-        .then((r) => r.json())
-        .then(setZecDate);
-      fetch("/data/youtube/SLSorted.json")
-        .then((r) => r.json())
-        .then(setSlSorted);
-      fetch("/data/youtube/SLByDate.json")
-        .then((r) => r.json())
-        .then(setSlDate);
-      fetch("/data/youtube/ZFSorted.json")
-        .then((r) => r.json())
-        .then(setZfSorted);
-      fetch("/data/youtube/ZFByDate.json")
-        .then((r) => r.json())
-        .then(setZfDate);
-      fetch("/data/youtube/ZMSorted.json")
-        .then((r) => r.json())
-        .then(setZmSorted);
-      fetch("/data/youtube/ZMByDate.json")
-        .then((r) => r.json())
-        .then(setZmDate);
-      fetch("/data/youtube/ZBSorted.json")
-        .then((r) => r.json())
-        .then(setZbSorted);
-      fetch("/data/youtube/ZBByDate.json")
-        .then((r) => r.json())
-        .then(setZbDate);
+      fetch("/data/youtube/ZecHubSorted.json").then((r) => r.json()).then(setZecSorted);
+      fetch("/data/youtube/ZecHubByDate.json").then((r) => r.json()).then(setZecDate);
+      fetch("/data/youtube/SLSorted.json").then((r) => r.json()).then(setSlSorted);
+      fetch("/data/youtube/SLByDate.json").then((r) => r.json()).then(setSlDate);
+      fetch("/data/youtube/ZFSorted.json").then((r) => r.json()).then(setZfSorted);
+      fetch("/data/youtube/ZFByDate.json").then((r) => r.json()).then(setZfDate);
+      fetch("/data/youtube/ZMSorted.json").then((r) => r.json()).then(setZmSorted);
+      fetch("/data/youtube/ZMByDate.json").then((r) => r.json()).then(setZmDate);
+      fetch("/data/youtube/ZBSorted.json").then((r) => r.json()).then(setZbSorted);
+      fetch("/data/youtube/ZBByDate.json").then((r) => r.json()).then(setZbDate);
     }
   }, [currentView]);
 
-  // Close dropdown
+  // Close dropdown on outside click
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       const target = event.target as Node;
-      if (dropdownRef.current && !dropdownRef.current.contains(target))
-        setOpen(false);
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) setOpen(false);
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // UPDATED changeView with startTransition (this eliminates the tab flash on Vercel)
   const changeView = (view: ViewType) => {
     startTransition(() => {
       setCurrentView(view);
@@ -183,6 +164,7 @@ const Dashboard = ({
     } else {
       nextParams.set("tab", view);
     }
+
     if (!pathname) return;
     const queryString = nextParams.toString();
     const url = queryString ? `${pathname}?${queryString}` : pathname;
@@ -226,8 +208,14 @@ const Dashboard = ({
       label: t?.tabs?.youtubeDashboard || "YouTube Dashboard",
       icon: <Youtube className="w-5 h-5" />,
     },
+    {
+      key: "codepulse" as const,
+      label: t?.tabs?.codePulse || "Code Pulse",
+      icon: <Activity className="w-5 h-5" />,
+    },
   ];
 
+  // YouTube helper functions
   const getChannelData = (channel: ChannelType, isDate = false) => {
     const map = isDate
       ? {
@@ -244,6 +232,7 @@ const Dashboard = ({
           "Zcash Media": zmSorted,
           "Zcash Brasil": zbSorted,
         };
+
     const data = map[channel] || { videos: [], channelIcon: "" };
     return {
       videos: data.videos || [],
@@ -251,46 +240,38 @@ const Dashboard = ({
     };
   };
 
-  const { videos: currentSorted, icon: currentChannelIcon } =
-    getChannelData(currentChannel);
+  const { videos: currentSorted, icon: currentChannelIcon } = getChannelData(currentChannel);
   const { videos: currentDate } = getChannelData(currentChannel, true);
 
   const filteredSorted = currentSorted.filter(
-    (v: any) =>
-      v?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false,
+    (v: any) => v?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false,
   );
   const filteredDate = currentDate.filter(
-    (v: any) =>
-      v?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false,
+    (v: any) => v?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false,
   );
 
   const displayedVideos =
     subView === "top"
       ? filteredSorted.slice(0, 15)
       : latestSortByViews
-        ? filteredDate
-            .slice(0, 15)
-            .sort((a: any, b: any) => (b.views || 0) - (a.views || 0))
-        : filteredDate.slice(0, 15);
+      ? filteredDate.slice(0, 15).sort((a: any, b: any) => (b.views || 0) - (a.views || 0))
+      : filteredDate.slice(0, 15);
 
   const totalVideos = currentSorted.length;
-  const totalViews = currentSorted.reduce(
-    (sum: number, v: any) => sum + (v?.views || 0),
-    0,
-  );
+  const totalViews = currentSorted.reduce((sum: number, v: any) => sum + (v?.views || 0), 0);
   const mostViewed = currentSorted[0] || {};
+
   const formatViews = (views: number) => views.toLocaleString();
 
   return (
     <div className="min-h-screen p-4 md:p-6">
       <div className="max-w-7xl mx-auto space-y-8 relative">
-        {/* HEADER - Updated with RSS icon */}
+        {/* HEADER */}
         <div className="mt-12 text-center">
           <div className="flex items-center justify-center gap-4">
             <h1 className="text-3xl font-bold text-foreground">
               {t?.headerTitle || "Dashboard(s)"}
             </h1>
-            {/* RSS Icon */}
             <a
               href="/rss.xml"
               target="_blank"
@@ -306,15 +287,15 @@ const Dashboard = ({
           </p>
         </div>
 
-        {/* MAIN TABS */}
-        <div className="grid grid-cols-1 imd:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 justify-center gap-2">
+        {/* MAIN TABS - Made more compact for mobile */}
+        <div className="flex flex-wrap justify-center gap-2">
           {tabs.map((tab) => (
             <Button
               key={tab.key}
-              className={`cursor-pointer px-6 py-2.5 md:px-9 md:py-3.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-sm md:text-base flex-1 md:flex-none min-w-[140px] md:min-w-0 justify-center bg-slate-100 dark:bg-slate-800 ${
+              className={`cursor-pointer px-4 py-2 md:px-6 md:py-2.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-xs md:text-sm flex-1 md:flex-none min-w-[110px] justify-center ${
                 currentView === tab.key
                   ? "bg-purple-700 text-white shadow-lg dark:bg-purple-800"
-                  : "text-slate-700 dark:text-slate-300 hover:bg-purple-700 dark:hover:bg-purple-800 hover:text-white"
+                  : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-purple-700 dark:hover:bg-purple-800 hover:text-white"
               }`}
               onClick={() => changeView(tab.key)}
             >
@@ -324,11 +305,8 @@ const Dashboard = ({
           ))}
         </div>
 
-        {/* Shielded Networks */}
-        <div
-          className="flex justify-end md:absolute md:top-6 md:right-6 z-50"
-          ref={dropdownRef}
-        >
+        {/* Shielded Networks Dropdown */}
+        <div className="flex justify-end md:absolute md:top-6 md:right-6 z-50" ref={dropdownRef}>
           <Button
             size="icon"
             className="cursor-pointer bg-purple-600 hover:bg-purple-700 text-white h-11 w-11 rounded-2xl shadow-lg"
@@ -355,10 +333,17 @@ const Dashboard = ({
           )}
         </div>
 
-        {/* === YOUTUBE SECTION === */}
+        {/* CODE PULSE */}
+        {currentView === "codepulse" && (
+          <div className="max-w-7xl mx-auto">
+            <CodePulse />
+          </div>
+        )}
+
+        {/* YOUTUBE SECTION - FULL ORIGINAL CODE */}
         {currentView === "youtube" && (
           <div className="space-y-8">
-            {/* Persistent Selector Bar with real YouTube icons */}
+            {/* Persistent Selector Bar */}
             <div className="flex items-center bg-card border border-border rounded-2xl px-5 py-3 mb-6 shadow-sm">
               <div className="flex-1 flex items-center justify-center gap-3">
                 {currentChannelIcon ? (
@@ -372,8 +357,7 @@ const Dashboard = ({
                   />
                 ) : (
                   <div className="w-8 h-8 bg-purple-600 rounded-2xl flex items-center justify-center text-white text-xl font-medium shadow-inner">
-                    {channelConfigs.find((c) => c.value === currentChannel)
-                      ?.name[0] || "Y"}
+                    {channelConfigs.find((c) => c.value === currentChannel)?.name[0] || "Y"}
                   </div>
                 )}
                 <div className="text-center">
@@ -381,8 +365,7 @@ const Dashboard = ({
                     CURRENT CHANNEL
                   </p>
                   <p className="text-xl font-semibold text-foreground">
-                    {channelConfigs.find((c) => c.value === currentChannel)
-                      ?.name || currentChannel}
+                    {channelConfigs.find((c) => c.value === currentChannel)?.name || currentChannel}
                   </p>
                 </div>
               </div>
@@ -399,7 +382,7 @@ const Dashboard = ({
               </Button>
             </div>
 
-            {/* Channel Selection Modal with real icons */}
+            {/* Channel Selection Modal */}
             {channelModalOpen && (
               <div
                 className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
@@ -431,20 +414,14 @@ const Dashboard = ({
                   <div className="flex-1 overflow-auto p-3">
                     {channelConfigs
                       .filter((ch) =>
-                        ch.name
-                          .toLowerCase()
-                          .includes(channelSearchTerm.toLowerCase()),
+                        ch.name.toLowerCase().includes(channelSearchTerm.toLowerCase()),
                       )
                       .map((ch) => {
                         const chData = getChannelData(ch.value);
                         return (
                           <Button
                             key={ch.value}
-                            variant={
-                              currentChannel === ch.value
-                                ? "secondary"
-                                : "ghost"
-                            }
+                            variant={currentChannel === ch.value ? "secondary" : "ghost"}
                             className="w-full justify-start h-14 text-left mb-1 rounded-2xl"
                             onClick={() => {
                               setCurrentChannel(ch.value);
@@ -464,9 +441,7 @@ const Dashboard = ({
                                   {ch.name[0]}
                                 </div>
                               )}
-                              <span className="text-base font-medium">
-                                {ch.name}
-                              </span>
+                              <span className="text-base font-medium">{ch.name}</span>
                             </div>
                           </Button>
                         );
@@ -514,12 +489,9 @@ const Dashboard = ({
                     />
                   </div>
                 )}
-                <p className="text-base font-medium truncate">
-                  {mostViewed.title || "—"}
-                </p>
+                <p className="text-base font-medium truncate">{mostViewed.title || "—"}</p>
                 <p className="text-purple-600 font-bold">
-                  {formatViews(mostViewed.views || 0)}{" "}
-                  {t?.viewsSuffix || "views"}
+                  {formatViews(mostViewed.views || 0)} {t?.viewsSuffix || "views"}
                 </p>
               </div>
             </div>
@@ -580,16 +552,12 @@ const Dashboard = ({
                 {subView === "top"
                   ? t?.top15VideosByViews || "Top 15 Videos by Views"
                   : latestSortByViews
-                    ? t?.latest15VideosSortedByViews ||
-                      "Latest 15 Videos (Sorted by Views)"
-                    : t?.latest15Videos || "Latest 15 Videos"}
+                  ? t?.latest15VideosSortedByViews || "Latest 15 Videos (Sorted by Views)"
+                  : t?.latest15Videos || "Latest 15 Videos"}
               </h2>
               <div className="space-y-5 md:space-y-6">
                 {displayedVideos.map((video: any) => (
-                  <div
-                    key={video.video_id}
-                    className="flex items-center gap-4 md:gap-6 group"
-                  >
+                  <div key={video.video_id} className="flex items-center gap-4 md:gap-6 group">
                     <a
                       href={`https://youtube.com/watch?v=${video.video_id}`}
                       target="_blank"
@@ -631,16 +599,10 @@ const Dashboard = ({
         {currentView === "dashboard" && (
           <>
             {selectedCrypto === "zcash" && (
-              <ZcashChart
-                divChartRef={divChartRef}
-                handleSaveToPng={handleSaveToPng}
-              />
+              <ZcashChart divChartRef={divChartRef} handleSaveToPng={handleSaveToPng} />
             )}
             {selectedCrypto === "namada" && (
-              <NamadaChart
-                divChartRef={divChartRef}
-                handleSaveToPng={handleSaveToPng}
-              />
+              <NamadaChart divChartRef={divChartRef} handleSaveToPng={handleSaveToPng} />
             )}
             {selectedCrypto === "penumbra" && (
               <PenumbraChart divChartRef={divChartRef} />
