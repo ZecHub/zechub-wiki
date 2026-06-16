@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 159,
+    "proposal_count": 160,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6564,7 +6564,7 @@
           "title": "Logo Update on DAODAO to Align with the Updated Brand Identity",
           "votes": {
             "no": "0",
-            "yes": "9",
+            "yes": "14",
             "abstain": "1"
           },
           "status": "open",
@@ -6589,6 +6589,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-06-13T22:34:43.817Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 160,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash Awareness Campaign at Sports Bonanza 2026 – Dodoma, Tanzania",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "2"
+          },
+          "status": "open",
+          "proposer": "juno1nxpw7j9w5cy5hr5yw7sux7czdev6qe6yehnwzj",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1781995097815145183"
+          },
+          "description": "OVERVIEW:\n\nWe seek support to represent Zcash at the Sports Bonanza Event taking place on June 20, 2026, at Jamhuri Stadium, Dodoma, Tanzania.\nThis is a nationwide event expected to attract participants, spectators, organizations, and distinguished guests from across Tanzania, as well as neighboring Burundi. The event presents a unique opportunity to introduce Zcash to a broad audience while increasing awareness of financial privacy and digital sovereignty.\nTo maximize visibility and engagement, our team will operate a dedicated Zcash booth that serves as an educational and interaction hub throughout the event.\n\nEAST AFRICA'S GROWING DIGITAL FUTURE:\n\nTanzania and Burundi are emerging technology markets characterized by growing internet penetration, increasing smartphone adoption, and a youthful population eager to embrace digital innovation. As digital finance and blockchain awareness continue to expand across East Africa, establishing an early Zcash presence can help introduce privacy-preserving technologies to future users, developers, entrepreneurs, and decision-makers.\n\nBy participating in a high-profile national event, Zcash gains an opportunity to engage directly with the public while also reaching influential stakeholders who can help drive awareness and adoption of innovative digital technologies across the region.\n\nCONNECTING WITH ATTENDEES:\n\nA team of 10 volunteers will:\n- Operate a dedicated Zcash information booth.\n- Educate attendees about Zcash and the importance of financial privacy.\n- Distribute Swahili-language educational materials.\n- Engage with community leaders, professionals, and high-profile guests.\n- Capture photos and media content for community reporting and social media outreach.\n\n\nTHE ZCASH EXPERIENCE BOOTH:\nThe Zcash booth will feature:\n- A full-size branded backdrop banner for visibility and event photography.\n- One roll-up banner highlighting Zcash and the importance of financial privacy.\n- Swahili-language educational flyers (an overview of Zcash flyer translated into swahili)\n- Zcash-branded team apparel.\n- Educational materials explaining Zcash in a simple and accessible manner.\n- A canopy to provide a visible and comfortable workspace for outreach activities.\n\nThe booth will serve as a central point for conversations, learning, networking, and content creation throughout the event.\n\n\nOUTREACH MATERIALS AND BRANDING:\nDeliverables include:\n\n- 10 Zcash-branded T-shirts.\n- 500 Swahili educational flyers.\n- 1 full-size backdrop banner.\n- 1 roll-up banner.\n- 1 outreach canopy.\n- Educational booth materials and displays.\n- Event photography and social media coverage.\n\nBUDGET BREAKDOWN\n- Item\tCost (USD)\n- 10 Zcash T-Shirts\t$120\n- Swahili Flyer Design & Printing\t$100\n- Full-Size Banner & Roll-Up Banner\t$80\n- Canopy for Booth Operations\t$60\n- Educational Posters & Display Materials\t$40\n- Transportation & Logistics\t$50\n- Documentation & Media\t$30\n- Total\t$480\n\n\nMEASURING SUCCESS:\nWe aim to achieve:\n\n- Direct engagement with 500–1,000 attendees.\n- Increased awareness of Zcash and financial privacy among a nationwide audience.\n- Strong Zcash visibility through a dedicated booth presence.\n- Exposure to influential guests from Tanzania and Burundi.\n- Creation of media content that can be shared across the broader Zcash community and ecosystem.\n\n\nEXPANDING ZCASH AWARENESS IN EAST AFRICA:\n\nThis initiative provides a highly cost-effective opportunity to showcase Zcash at a major national event while establishing visibility in two promising East African markets. Through education, community engagement, and strategic outreach, we aim to introduce new audiences to the value of financial privacy and strengthen Zcash’s presence in the region.\n\nWe believe this event can serve as an important first step toward building a stronger Zcash community in East Africa and creating new opportunities for future engagement, education, and ecosystem growth.",
+          "total_power": "23",
+          "start_height": 38906898,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-06-15T22:38:17.815Z"
       }
     ]
   },
