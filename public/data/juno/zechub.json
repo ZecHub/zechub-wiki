@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 160,
+    "proposal_count": 161,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6598,7 +6598,7 @@
           "msgs": [],
           "title": "Zcash Awareness Campaign at Sports Bonanza 2026 – Dodoma, Tanzania",
           "votes": {
-            "no": "0",
+            "no": "3",
             "yes": "0",
             "abstain": "2"
           },
@@ -6624,6 +6624,51 @@
           "min_voting_period": null
         },
         "createdAt": "2026-06-15T22:38:17.815Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 161,
+        "proposal": {
+          "msgs": [
+            {
+              "wasm": {
+                "execute": {
+                  "msg": "eyJleGVjdXRlIjp7Im1zZ3MiOltdLCJ0aW1lb3V0X3NlY29uZHMiOiIyNTkyMDAiLCJjYWxsYmFjayI6eyJtc2ciOiJia1pDVkRkek1UVXdPV1ppZVVNeU1XWXpZa2xqIiwicmVjZWl2ZXIiOiJqdW5vMWdqdDlmdTN5NTlkY2g1NDZ2enJrdHl3Z211ZWt5em5qYzZ5N2s2djlxZHJza2EwOGRrc3MydmRmZXMifX19",
+                  "funds": [],
+                  "contract_addr": "juno1hwuzgtg682yelk75yvxv8vfqunqvvv5ztwytvvvtenram6rccffs4gkdsg"
+                }
+              }
+            }
+          ],
+          "title": "Zcash Ethiopia Community Activation & Adoption Initiative – Ethiopian Blockchain Week 2026",
+          "votes": {
+            "no": "3",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1vnan32g4nufdqppjnl84xzxlvyeactttf8f4nc",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1782062758434174844"
+          },
+          "description": "\nZcash Sponsorship Proposal for Ethiopian Blockchain Week 2026\nSubmitted By\n\nGriffins Oduol\nFounder, (Umojaverse Devs)\n\nX (Twitter): https://x.com/GriffinOduol\n\nOrganization: https://x.com/UmojaverseDevs\n\nEvent Website: https://etbw.online/\n\nEvent Dates: July 31 – August 1, 2026\n\nFunding Requested: $7,500 USD\n\nExecutive Summary\n\nWe are seeking sponsorship support from the Zcash ecosystem to support educational and community-building initiatives during Ethiopian Blockchain Week 2026.\n\nEthiopian Blockchain Week is one of Ethiopia's leading blockchain gatherings, bringing together developers, entrepreneurs, students, investors, researchers, ecosystem leaders, and technology enthusiasts to explore the future of blockchain innovation and digital infrastructure.\n\nAs blockchain adoption continues to grow in Ethiopia, there is a significant opportunity to introduce privacy-preserving technologies and educate builders on the importance of financial privacy, digital sovereignty, and zero-knowledge cryptography.\n\nWhile many blockchain ecosystems have focused their efforts on payments, trading, and decentralized finance, there remains a substantial educational gap surrounding privacy technologies. Zcash has an opportunity to become a leading voice in this space by supporting educational initiatives and establishing a long-term community presence within Ethiopia.\n\nThrough this partnership, Zcash will gain visibility among one of the country's fastest-growing blockchain communities while supporting meaningful education and ecosystem development aligned with its mission.\n\nAbout Ethiopian Blockchain Week 2026\n\nEthiopian Blockchain Week is a premier conference focused on advancing blockchain adoption, innovation, and collaboration across Ethiopia.\n\nThe event serves as a meeting point for:\n\nDevelopers and engineers\nStartup founders\nStudents and researchers\nCommunity leaders\nBlockchain organizations\nInvestors and ecosystem partners\n\nThe conference aims to foster meaningful discussions around blockchain technology while creating opportunities for networking, education, and ecosystem growth.\n\nBy gathering stakeholders from across the industry, Ethiopian Blockchain Week plays a critical role in shaping the future of blockchain adoption within Ethiopia.\n\nWhy Ethiopia\n\nEthiopia is emerging as one of the most promising blockchain markets on the continent.\n\nSeveral factors contribute to this growth:\n\nGrowing Developer Ecosystem\n\nThe country continues to produce talented developers through universities, innovation hubs, and technology communities. Interest in blockchain development has increased significantly among students and young professionals seeking opportunities in emerging technologies.\n\nRapid Technology Adoption\n\nThe growth of digital technologies and increasing participation in blockchain communities demonstrate strong demand for educational opportunities and ecosystem engagement.\n\nUntapped Privacy Education Opportunity\n\nDespite growing awareness of blockchain technologies, education surrounding privacy-preserving infrastructure remains limited.\n\nThis presents a strategic opportunity for Zcash to establish itself as a leader in privacy-focused blockchain education and become one of the first ecosystems actively supporting privacy awareness within Ethiopia.\n\nLong-Term Growth Potential\n\nIntroducing Zcash at this stage allows the ecosystem to build relationships with developers, founders, and community leaders before privacy technologies become mainstream discussion topics.\n\nWhy Zcash\n\nZcash is widely recognized as one of the pioneers of privacy-preserving blockchain technology.\n\nThrough innovations in zero-knowledge cryptography, Zcash has demonstrated how blockchain systems can provide both transparency and privacy while empowering users with greater control over their financial information.\n\nAs blockchain adoption expands globally, conversations around privacy are becoming increasingly important.\n\nSupporting Ethiopian Blockchain Week allows Zcash to:\n\nPromote financial privacy education.\nIncrease awareness of zero-knowledge technologies.\nEngage directly with developers and innovators.\nExpand ecosystem visibility.\nBuild a sustainable local community.\nEstablish long-term ecosystem presence within Ethiopia.\n\nThis initiative aligns closely with the Zcash mission of advancing privacy, freedom, and user empowerment through decentralized technologies.\n\nProject Objectives\n\nThe primary objectives of this initiative are:\n\n1. Introduce Zcash to Ethiopia's Blockchain Community\n\nProvide attendees with a comprehensive introduction to Zcash, its technology, mission, and ecosystem.\n\n2. Promote Privacy Education\n\nEducate participants about:\n\nFinancial privacy\nDigital sovereignty\nZero-knowledge proofs\nPrivacy-preserving blockchain infrastructure\nReal-world use cases for privacy technologies\n3. Engage Developers\n\nIntroduce developers to privacy-focused blockchain concepts and encourage deeper exploration of Zcash technology and future ecosystem opportunities.\n\n4. Launch a Zcash Ethiopia Community\n\nEstablish a dedicated community initiative that will continue beyond the conference and serve as a hub for education, engagement, and ecosystem growth.\n\nProposed Activities\nZcash Ecosystem Presentation\n\nA dedicated session introducing:\n\nThe history of Zcash\nThe importance of privacy in blockchain\nZero-knowledge cryptography\nZcash use cases\nFuture opportunities within the ecosystem\nEducational Workshop\n\nAn interactive session focused on:\n\nUnderstanding privacy-preserving technologies\nWhy privacy matters in decentralized systems\nApplications of zero-knowledge proofs\nCommunity Engagement\n\nDirect interaction with attendees through educational discussions, networking activities, and ecosystem awareness initiatives.\n\nContent Campaign\n\nPre-event, live-event, and post-event content highlighting:\n\nZcash technology\nEducational insights\nEvent participation\nCommunity growth activities\nLaunch of the Zcash Ethiopia Community\n\nA major outcome of this initiative will be the establishment of the Zcash Ethiopia Community.\n\nThe community will focus on:\n\nPrivacy education\nDeveloper engagement\nCommunity discussions\nEcosystem awareness\nWorkshops and meetups\nLong-term ecosystem participation\n\nThis initiative ensures that Zcash's impact extends well beyond the duration of the conference.\n\nExpected Outcomes\n\nThrough this sponsorship, we expect to achieve:\n\nAwareness\n\nIntroduction of Zcash and privacy-preserving blockchain technologies to hundreds of attendees.\n\nCommunity Formation\n\nCreation of a dedicated Zcash community capable of supporting ongoing education and engagement.\n\nDeveloper Engagement\n\nIncreased awareness among developers regarding privacy technologies and the broader Zcash ecosystem.\n\nEducational Impact\n\nImproved understanding of financial privacy, digital sovereignty, and zero-knowledge cryptography.\n\nEcosystem Growth\n\nLong-term expansion of Zcash visibility and community participation within Ethiopia.\n\nSuccess Metrics\n\nThe success of this initiative will be measured through:\n\n300+ attendees exposed to Zcash educational content.\n100+ new members onboarded to the Zcash Ethiopia Community.\n50+ developers participating in educational activities.\nDedicated Zcash educational session delivered during the event.\nEducational content published before, during, and after the conference.\nPost-event impact report documenting outcomes and engagement.\n\nBudget Breakdown\n\nThe funding request of $7,500 USD will be allocated as follows:\n\n$3,000 will support the Ethiopian Blockchain Week sponsorship or partnership package to secure official participation, visibility, and access to the wider blockchain community.\n\n$2,400 will be used for booth setup, branding materials, banners, and educational resources to create an effective Zcash presence during the event.\n\n$1,200 will support the Zcash Ethiopia Community Launch Meetup, including venue, refreshments, logistics, and community engagement activities.\n\n\n\n$900 will support compensation for the full project execution work, including planning, coordination, community management, event preparation, partner communication, and post-event follow-up activities.\n~@~@~@~\n{\"version\":1,\"memo\":\"juno1vnan32g4nufdqppjnl84xzxlvyeactttf8f4nc\"}",
+          "total_power": "23",
+          "start_height": 38931377,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-06-16T17:25:58.434Z"
       }
     ]
   },
