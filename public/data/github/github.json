@@ -1,111 +1,30 @@
 {
-  "version": 1,
-  "period": "May 1, 2026 – June 1, 2026",
-  "generated_at": "2026-06-16T19:18:00Z",
-  "summary": {
-    "total_active_pull_requests": 72,
-    "total_active_issues": 20,
-    "total_merged_pull_requests": 19,
-    "total_open_pull_requests": 53,
-    "total_new_issues": 17
-  },
+  "generated_at": "2026-06-16T02:55:34.167218592+00:00",
   "projects": [
     {
+      "forks": 177,
+      "last_updated": "2026-06-14T20:51:46Z",
       "name": "zechub",
-      "active_pull_requests": 72,
-      "active_issues": 20,
-      "merged_pull_requests": 19,
-      "open_pull_requests": 53,
-      "closed_issues": 3,
-      "new_issues": 17,
-      "commits": {
-        "authors": 12,
-        "commits_to_main": 37,
-        "commits_to_all_branches": 37,
-        "files_changed": 1660,
-        "additions": 2229,
-        "deletions": 189
-      },
-      "top_committers": [
-        {
-          "login": "dismad",
-          "commits": 9,
-          "avatar_url": "https://avatars.githubusercontent.com/u/xxxxxx?v=4"
-        },
-        {
-          "login": "contributor1",
-          "commits": 6,
-          "avatar_url": "https://avatars.githubusercontent.com/u/xxxxxx?v=4"
-        },
-        {
-          "login": "contributor2",
-          "commits": 5,
-          "avatar_url": "https://avatars.githubusercontent.com/u/xxxxxx?v=4"
-        }
-      ]
+      "open_issues": 27,
+      "stars": 55,
+      "watchers": 55
     },
     {
+      "forks": 68,
+      "last_updated": "2026-06-16T02:19:51Z",
       "name": "zechub-wiki",
-      "active_pull_requests": 12,
-      "active_issues": 8,
-      "merged_pull_requests": 7,
-      "open_pull_requests": 5,
-      "closed_issues": 2,
-      "new_issues": 4,
-      "commits": {
-        "authors": 5,
-        "commits_to_main": 18,
-        "commits_to_all_branches": 21,
-        "files_changed": 420,
-        "additions": 680,
-        "deletions": 95
-      },
-      "top_committers": [
-        {
-          "login": "dismad",
-          "commits": 11,
-          "avatar_url": "https://avatars.githubusercontent.com/u/xxxxxx?v=4"
-        },
-        {
-          "login": "contributor3",
-          "commits": 4,
-          "avatar_url": "https://avatars.githubusercontent.com/u/xxxxxx?v=4"
-        }
-      ]
+      "open_issues": 1,
+      "stars": 13,
+      "watchers": 13
     },
     {
-      "name": "namada",
-      "active_pull_requests": 28,
-      "active_issues": 15,
-      "merged_pull_requests": 14,
-      "open_pull_requests": 14,
-      "closed_issues": 5,
-      "new_issues": 9,
-      "commits": {
-        "authors": 9,
-        "commits_to_main": 52,
-        "commits_to_all_branches": 61,
-        "files_changed": 890,
-        "additions": 1450,
-        "deletions": 210
-      },
-      "top_committers": [
-        {
-          "login": "contributor4",
-          "commits": 14,
-          "avatar_url": "https://avatars.githubusercontent.com/u/xxxxxx?v=4"
-        },
-        {
-          "login": "dismad",
-          "commits": 9,
-          "avatar_url": "https://avatars.githubusercontent.com/u/xxxxxx?v=4"
-        },
-        {
-          "login": "contributor5",
-          "commits": 7,
-          "avatar_url": "https://avatars.githubusercontent.com/u/xxxxxx?v=4"
-        }
-      ]
+      "forks": 3,
+      "last_updated": "2026-06-13T17:26:32Z",
+      "name": "Namada",
+      "open_issues": 1,
+      "stars": 1,
+      "watchers": 1
     }
-  ]
+  ],
+  "version": 1
 }
