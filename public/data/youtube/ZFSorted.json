@@ -5,12 +5,12 @@
     {
       "title": "Peter Van Valkenburgh, of Coin Center, on the OFAC Tornado Cash SDN listing at Zcon3",
       "video_id": "XpTrCA3tEKM",
-      "views": 7698
+      "views": 7699
     },
     {
       "title": "ZK Rollup: Ethereum Scalability with ZKPs - Alex Gluchowski",
       "video_id": "QyM9qdFKsEA",
-      "views": 3697
+      "views": 3698
     },
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
@@ -35,7 +35,7 @@
     {
       "title": "Envisioning Zcash at Global Scale - Nathan Wilcox",
       "video_id": "tKGAs8RuZfk",
-      "views": 1540
+      "views": 1542
     },
     {
       "title": "Privacy is Crucial",
@@ -55,7 +55,7 @@
     {
       "title": "Zcon0 Keynote Panel: Cryptocurrency Governance",
       "video_id": "ioV7mBt7SMA",
-      "views": 1441
+      "views": 1443
     },
     {
       "title": "Sapling Activation Party Livestream",
@@ -75,17 +75,17 @@
     {
       "title": "ZKVM: Fast, Confidential Smart Contracts",
       "video_id": "J9OGAwt_f_c",
-      "views": 1374
+      "views": 1376
     },
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1276
+      "views": 1277
     },
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
       "video_id": "O4wQi_i7k0I",
-      "views": 1259
+      "views": 1260
     },
     {
       "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
@@ -95,12 +95,12 @@
     {
       "title": "The State of Privacy in Cryptocurrencies - Ian Miers",
       "video_id": "AJGLhaUV8QM",
-      "views": 1209
+      "views": 1210
     },
     {
       "title": "An Overview Of Governance In Blockchains",
       "video_id": "D1NeTN_AR18",
-      "views": 1164
+      "views": 1166
     },
     {
       "title": "The [Private, Shielded] Path to Better Payments with Trevor Filter from Flexa - ZconVI #zcash",
@@ -115,12 +115,12 @@
     {
       "title": "State of Electric Coin Company - Zooko Wilcox",
       "video_id": "LrcA4vh_uxM",
-      "views": 1134
+      "views": 1136
     },
     {
       "title": "User Defined Assets (UDAs): #Zcon2Lite",
       "video_id": "PmA0rC83X-A",
-      "views": 1063
+      "views": 1064
     },
     {
       "title": "Halo 2 Community Showcase - Ying Tong at Zcon3",
@@ -130,12 +130,12 @@
     {
       "title": "A History of Zcash at Zcon0 (2018) by Nathan Wilcox",
       "video_id": "Mi4IUEzTyVw",
-      "views": 960
+      "views": 961
     },
     {
       "title": "Zecwallet Lite on Windows Tutorial #1",
       "video_id": "4v_wr6DBY48",
-      "views": 954
+      "views": 955
     },
     {
       "title": "Tooling for building zkEVM: PIL and Circom - Jordi Baylina at Zcon3",
@@ -145,22 +145,22 @@
     {
       "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
       "video_id": "sDeDNDh-1ko",
-      "views": 917
+      "views": 922
     },
     {
       "title": "Good SNARKS Are Here Needed",
       "video_id": "QII1xq9J7NY",
-      "views": 914
+      "views": 916
     },
     {
       "title": "The State of Zcash in 2025 with Jack Gavigan - ZconVI 2025 #zcash",
       "video_id": "El59GnEA1FY",
-      "views": 902
+      "views": 903
     },
     {
       "title": "Scalable Privacy - Daira Hopwood",
       "video_id": "HNSf2Bw_YmM",
-      "views": 871
+      "views": 873
     },
     {
       "title": "The Orchard Shielded Pool, feat. Halo2: #Zcon2Lite",
@@ -175,7 +175,7 @@
     {
       "title": "Zcon1 Opening Keynote - Andrew Miller",
       "video_id": "Ob0ajGPMLuE",
-      "views": 796
+      "views": 802
     },
     {
       "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
@@ -205,7 +205,7 @@
     {
       "title": "State of the Network Keynote at Zcon0 (2018) by Zooko Wilcox",
       "video_id": "IVjHDEDw_DQ",
-      "views": 749
+      "views": 753
     },
     {
       "title": "Proof of Stake Panel with Shielded Labs, Ethereum Foundation, ECC, Penumbra & Namada - ZconVI #zcash",
@@ -215,7 +215,12 @@
     {
       "title": "Ethereum's Governance Model",
       "video_id": "NSOfmMyfz90",
-      "views": 709
+      "views": 711
+    },
+    {
+      "title": "Opening Remarks at Zcon0 (2018) by Josh Cincinnati",
+      "video_id": "ywAcyQ4Qtuo",
+      "views": 687
     },
     {
       "title": "A Bulletproof Update",
@@ -228,24 +233,19 @@
       "views": 683
     },
     {
-      "title": "Opening Remarks at Zcon0 (2018) by Josh Cincinnati",
-      "video_id": "ywAcyQ4Qtuo",
-      "views": 681
-    },
-    {
       "title": "Sia's Experience With ASICs",
       "video_id": "uwew58aXYU8",
-      "views": 678
+      "views": 682
     },
     {
       "title": "Opening Address: #Zcon2Lite",
       "video_id": "jyZDUcLbUtc",
-      "views": 675
+      "views": 677
     },
     {
       "title": "Zero Knowledge In The Enterprise World at Zcon0 (2018) by Jonathan Rouach",
       "video_id": "OTO4JCJZD2o",
-      "views": 670
+      "views": 671
     },
     {
       "title": "Zcash Protocol Hangout, Dev Fund Edition",
@@ -285,12 +285,12 @@
     {
       "title": "A Conversation with Zcash Open Major Grants (ZOMG): #Zcon2Lite",
       "video_id": "7SFBP5fYBls",
-      "views": 604
+      "views": 605
     },
     {
       "title": "Zcon1 Privacy Panel with Monero Konferenco",
       "video_id": "DWPELgmS2uA",
-      "views": 572
+      "views": 573
     },
     {
       "title": "The Future of Zcash Panel - Daniel Benarroch, Nate Wilcox, Zaki Manian, Matthew Green at Zcon3",
@@ -325,7 +325,7 @@
     {
       "title": "Zcash and the Regulatory/Policy Environment Sessions - ZconV: Zcash Unified 2024 #Zcash #ZEC",
       "video_id": "pfd6yi54kqU",
-      "views": 493
+      "views": 492
     },
     {
       "title": "A Selection of Pairing Based zk-SNARKs - Mary Maller",
@@ -350,7 +350,7 @@
     {
       "title": "Fireside Chat: #Zcon2Lite",
       "video_id": "a8bWtWvwHCA",
-      "views": 471
+      "views": 472
     },
     {
       "title": "Making Zcash Shine with Rust - Deirdre Connolly & Anna Kaplan",
@@ -373,6 +373,11 @@
       "views": 438
     },
     {
+      "title": "Why Financial Privacy Is Important, and How to Achieve It With Technology",
+      "video_id": "YNW3p6jCE5E",
+      "views": 436
+    },
+    {
       "title": "The State of ECC with Josh Swihart - ZconVI #zcash",
       "video_id": "XlKADl3bhVo",
       "views": 435
@@ -381,11 +386,6 @@
       "title": "Zashi: A Year in Review & Roadmap with Andrea Kobrlova and Josh Swihart - ZconVI #zcash",
       "video_id": "rcbE7YptSHc",
       "views": 435
-    },
-    {
-      "title": "Why Financial Privacy Is Important, and How to Achieve It With Technology",
-      "video_id": "YNW3p6jCE5E",
-      "views": 434
     },
     {
       "title": "Money at the Edge: How PeopleStay Afloat in Venezuela - Alejandro Machado",
@@ -435,7 +435,7 @@
     {
       "title": "Defining and Proving Security of the Sapling Protocol at Zcon0 (2018) by Ariel Gabizon",
       "video_id": "pnz14dGItUs",
-      "views": 400
+      "views": 401
     },
     {
       "title": "Recent Advances in Zero-Knowledge: #Zcon2Lite",
@@ -495,7 +495,7 @@
     {
       "title": "Developing X Wallet, A Privacy Focused Mobile Wallet",
       "video_id": "4buh1quMbr4",
-      "views": 362
+      "views": 363
     },
     {
       "title": "Zcash Ecosystem Updates with Zooko Wilcox, Jon Rouach, Jason McGee, Jack Gavigan: Zcon4",
@@ -535,7 +535,7 @@
     {
       "title": "Current State of Zcash Wallets - Linda Lee",
       "video_id": "blR2E1buiXE",
-      "views": 347
+      "views": 348
     },
     {
       "title": "Dev Fund 2.0 / The Future of Zcash Ecosystem Funding - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -548,13 +548,13 @@
       "views": 343
     },
     {
-      "title": "Zcon3: Code alone doesn't cut it! Opening Address by Jack Gavigan",
-      "video_id": "MnEazS7XNW4",
-      "views": 342
-    },
-    {
       "title": "Zcash Protocol Hangout, Dev Fund Edition #3",
       "video_id": "WmPe5pPxzd8",
+      "views": 340
+    },
+    {
+      "title": "Zcon3: Code alone doesn't cut it! Opening Address by Jack Gavigan",
+      "video_id": "MnEazS7XNW4",
       "views": 340
     },
     {
@@ -565,7 +565,7 @@
     {
       "title": "The State of UX in the Zcash Ecosystem: #Zcon2Lite",
       "video_id": "57dTzAlmeqs",
-      "views": 331
+      "views": 333
     },
     {
       "title": "Zokrates Updates",
@@ -588,14 +588,14 @@
       "views": 326
     },
     {
-      "title": "Zcash Wallet Landscape - ZconV: Zcash Unified 2024 #Zcash #ZEC",
-      "video_id": "Mi4OPfWLd2k",
+      "title": "Governance: how to lose friends and alienate people - Panel",
+      "video_id": "xJ1QBaQlN54",
       "views": 325
     },
     {
-      "title": "Governance: how to lose friends and alienate people - Panel",
-      "video_id": "xJ1QBaQlN54",
-      "views": 324
+      "title": "Zcash Wallet Landscape - ZconV: Zcash Unified 2024 #Zcash #ZEC",
+      "video_id": "Mi4OPfWLd2k",
+      "views": 325
     },
     {
       "title": "Governance Across Ecosystems: #Zcon2Lite",
@@ -610,12 +610,12 @@
     {
       "title": "The Path to Shielded Programmability with Ying Tong Lai and Bryan Gillespie - ZconV: Zcash Unified",
       "video_id": "lCiw_3qMjcw",
-      "views": 318
+      "views": 319
     },
     {
       "title": "Zecwallet Lite on Windows Tutorial #2",
       "video_id": "NX168gEXZco",
-      "views": 316
+      "views": 317
     },
     {
       "title": "Transaction Linkability in Zcash: Portrait of a Miner in a Landscape - Daniel Feher",
@@ -675,7 +675,7 @@
     {
       "title": "HSMs and Hardware Wallets: #Zcon2Lite",
       "video_id": "PescZy3QZTI",
-      "views": 290
+      "views": 292
     },
     {
       "title": "Zcash Community Grants Candidates for December 2022 ZCG Elections",
@@ -685,7 +685,7 @@
     {
       "title": "State of Legislation, Regulation and Policy with Paul, Kurt, Peter & Jack at Zcon3",
       "video_id": "h8pKG2OhJ4w",
-      "views": 285
+      "views": 286
     },
     {
       "title": "Cryptocurrency startups and community adoption 👀 Interview with Guarda CMO Maria Carola",
@@ -703,13 +703,13 @@
       "views": 278
     },
     {
-      "title": "ZOMG-ZIP 1014 Independent Review Committee Community Call- Oct 20, 2021",
-      "video_id": "KpDcdqVqO_M",
-      "views": 277
-    },
-    {
       "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
       "video_id": "hdd5X2z7O3o",
+      "views": 278
+    },
+    {
+      "title": "ZOMG-ZIP 1014 Independent Review Committee Community Call- Oct 20, 2021",
+      "video_id": "KpDcdqVqO_M",
       "views": 277
     },
     {
@@ -723,14 +723,14 @@
       "views": 276
     },
     {
-      "title": "Zcash’s Core Strength",
-      "video_id": "Hit012FD4uY",
+      "title": "Free2z: Peer-to-Peer Giving - Skylar Saveland & Jonathan Bird at Zcon3",
+      "video_id": "grF_ifpCiAQ",
       "views": 275
     },
     {
-      "title": "Free2z: Peer-to-Peer Giving - Skylar Saveland & Jonathan Bird at Zcon3",
-      "video_id": "grF_ifpCiAQ",
-      "views": 274
+      "title": "Zcash’s Core Strength",
+      "video_id": "Hit012FD4uY",
+      "views": 275
     },
     {
       "title": "Zcash Foundation Community Call: Nominees for ZF Board Nov 2024",
@@ -933,6 +933,11 @@
       "views": 216
     },
     {
+      "title": "The ZEF",
+      "video_id": "FY4JrU7bSFk",
+      "views": 215
+    },
+    {
       "title": "From Theory to Deployment: Security Evaluation of State-of-the-Art ZKP Systems #Zcon2Lite",
       "video_id": "7ToHh2JYwgA",
       "views": 215
@@ -943,13 +948,13 @@
       "views": 215
     },
     {
-      "title": "The ZEF",
-      "video_id": "FY4JrU7bSFk",
-      "views": 212
-    },
-    {
       "title": "Hiring for Zero-Thousand Dollars: Building the Contributor Community #Zcon2Lite",
       "video_id": "kFq1JT9lhBs",
+      "views": 213
+    },
+    {
+      "title": "Zcash Arborist Call 06-11-2026",
+      "video_id": "SKNivdDz9qI",
       "views": 211
     },
     {
@@ -998,13 +1003,13 @@
       "views": 202
     },
     {
-      "title": "How to use FROST (incl. Demo) with Conrado Gouvêa and Deirdre Connolly: Zcon4",
-      "video_id": "wjj94SYVzxs",
-      "views": 201
-    },
-    {
       "title": "Zcomm: Building Online Communities Around Privacy and Shared Values #nbtv",
       "video_id": "he_j9O5INVk",
+      "views": 202
+    },
+    {
+      "title": "How to use FROST (incl. Demo) with Conrado Gouvêa and Deirdre Connolly: Zcon4",
+      "video_id": "wjj94SYVzxs",
       "views": 201
     },
     {
@@ -1031,11 +1036,6 @@
       "title": "Zebra Walkthrough for Zcash Developers",
       "video_id": "aV93Ux3j4Gw",
       "views": 195
-    },
-    {
-      "title": "Zcash Arborist Call 06-11-2026",
-      "video_id": "SKNivdDz9qI",
-      "views": 194
     },
     {
       "title": "ZF Community Call - Sept 4, 2020, MGRC Candidates Part 1",
@@ -1123,14 +1123,14 @@
       "views": 176
     },
     {
-      "title": "Reworking the Network Upgrade Pipeline (NUP): #Zcon2Lite",
-      "video_id": "cZ0HkR5t_Ko",
+      "title": "Zcon0 Closing Remarks",
+      "video_id": "si1LnCwxkuA",
       "views": 175
     },
     {
-      "title": "Zcon0 Closing Remarks",
-      "video_id": "si1LnCwxkuA",
-      "views": 173
+      "title": "Reworking the Network Upgrade Pipeline (NUP): #Zcon2Lite",
+      "video_id": "cZ0HkR5t_Ko",
+      "views": 175
     },
     {
       "title": "Responsible Disclosure in Cryptocurrencies - Benjamin Winston",
@@ -1725,7 +1725,7 @@
     {
       "title": "Zcash On and Off Ramps In Nigeria with Chidi Olisa - ZconVI #zcash",
       "video_id": "-oJ2Cjvjamk",
-      "views": 79
+      "views": 80
     },
     {
       "title": "Zcash Arborist Call 06-12-2025",
@@ -1745,12 +1745,12 @@
     {
       "title": "AMA: Exploring SIV for Future ZCAP Voting",
       "video_id": "BVfMrd5mI9g",
-      "views": 73
+      "views": 74
     },
     {
       "title": "Zcash Arborist Call 5/2/24",
       "video_id": "2K_hmx3obf4",
-      "views": 69
+      "views": 70
     },
     {
       "title": "Governance and Security Concerns - Ryan Lackey",
