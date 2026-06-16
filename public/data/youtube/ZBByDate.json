@@ -3,14 +3,19 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Protocol Study #4: Transactions Unpacked: JoinSplit to Actions | Engineering #12",
+            "video_id": "ZmA57p318rI",
+            "views": 3
+        },
+        {
             "title": "A Linha Esquecida da Cripto: Privacidade, Cypherpunks e Zcash.",
             "video_id": "6h8iJesmBZU",
-            "views": 27
+            "views": 28
         },
         {
             "title": "RWA: A Nova Infraestrutura Global do Capital | Marcos Crivelaro | Zcon Vozes 2",
             "video_id": "6d1sk0stmc0",
-            "views": 8
+            "views": 12
         },
         {
             "title": "Ironwood e Atualiza\u00e7\u00f5es da Visor e Noir Wallet | Zec Insider",
@@ -30,7 +35,7 @@
         {
             "title": "Privacidade Na Ind\u00fastria On-chain | Tokenation 2026",
             "video_id": "rEqCsY0GpCo",
-            "views": 41
+            "views": 43
         },
         {
             "title": "Zcon Vozes 2 | FIAP S\u00e3o Paulo",
@@ -245,7 +250,7 @@
         {
             "title": "Zcash.me e Zcash Names: Pagamentos Privados com Endere\u00e7os Leg\u00edveis | Engineering #7",
             "video_id": "Fd5N0QshWng",
-            "views": 20
+            "views": 21
         },
         {
             "title": "Tesouraria, Cust\u00f3dia e Governan\u00e7a: DAT, Grayscale e o Lockbox",
@@ -430,7 +435,7 @@
         {
             "title": "Zashi Agora \u00e9 ZODL: Nova Carteira Zcash no iOS e Android com Privacidade por Padr\u00e3o",
             "video_id": "NkpD4kCPwdI",
-            "views": 63
+            "views": 64
         },
         {
             "title": "Zcash Merkle Tree - Como a Blockchain \u201cProva\u201d Transa\u00e7\u00f5es?",
@@ -800,7 +805,7 @@
         {
             "title": "Como criptografar seus Bitcoin com a Zashi",
             "video_id": "HBv_oTkgWHM",
-            "views": 357
+            "views": 358
         },
         {
             "title": "A Golden Year for Zcash | Christimas Zcash Soundtrack",
@@ -935,7 +940,7 @@
         {
             "title": "Conhe\u00e7a a P2P.me: Plataforma para comprar e vender USDC de forma an\u00f4nima",
             "video_id": "9C9Tnc8dEGI",
-            "views": 477
+            "views": 478
         },
         {
             "title": "Incertezas financeiras e o salto do DeFi.",
@@ -2335,7 +2340,7 @@
         {
             "title": "Conhe\u00e7a Zooko, a maior f\u00e3 da Zcash! #https #privacidade #blockchain  #criptomoedas",
             "video_id": "eGrvVLhYBSw",
-            "views": 1040
+            "views": 1041
         },
         {
             "title": "Consci\u00eancia sobre manipula\u00e7\u00e3o de massa.",
@@ -2990,7 +2995,7 @@
         {
             "title": "Mini Workshop 2 - Zingo! e Cabochon (Arte e Crypto)",
             "video_id": "-lS35CyvSfA",
-            "views": 19
+            "views": 20
         },
         {
             "title": "Vitalik Buterin - Privacidade  LEGENDADO",
@@ -3165,7 +3170,7 @@
         {
             "title": "Linda Xie - Rastreabilidade do Bitcoin LEGENDADO",
             "video_id": "83wyFIZTxDQ",
-            "views": 39
+            "views": 40
         },
         {
             "title": "WEEKLYCALL #9 - Stable Coins no ZSA.",
@@ -3210,7 +3215,7 @@
         {
             "title": "Tutorial Zingo! Carteira para Zcash",
             "video_id": "gg6YKmdrxAs",
-            "views": 231
+            "views": 232
         },
         {
             "title": "ZPACE Zcash e Brave - PARCERIA",
@@ -3295,7 +3300,7 @@
         {
             "title": "Tutorial Ywallet - Carteira para Zcash",
             "video_id": "3bLcUI4XeII",
-            "views": 270
+            "views": 271
         },
         {
             "title": "Jack Gavigan - JP Morgan e Desintermedia\u00e7\u00e3o LEGENDADO",
