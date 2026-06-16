@@ -109,7 +109,7 @@ const Dashboard = ({
 
   const allowedTabs: ViewType[] = ["dashboard", "proposals", "zcg", "youtube", "codepulse"];
 
-  // YouTube state
+  // YouTube state variables
   const [zecSorted, setZecSorted] = useState<any>({ videos: [] });
   const [zecDate, setZecDate] = useState<any>({ videos: [] });
   const [slSorted, setSlSorted] = useState<any>({ videos: [] });
@@ -157,14 +157,12 @@ const Dashboard = ({
     startTransition(() => {
       setCurrentView(view);
     });
-
     const nextParams = new URLSearchParams(window.location.search);
     if (view === "dashboard") {
       nextParams.delete("tab");
     } else {
       nextParams.set("tab", view);
     }
-
     if (!pathname) return;
     const queryString = nextParams.toString();
     const url = queryString ? `${pathname}?${queryString}` : pathname;
@@ -232,7 +230,6 @@ const Dashboard = ({
           "Zcash Media": zmSorted,
           "Zcash Brasil": zbSorted,
         };
-
     const data = map[channel] || { videos: [], channelIcon: "" };
     return {
       videos: data.videos || [],
@@ -260,7 +257,6 @@ const Dashboard = ({
   const totalVideos = currentSorted.length;
   const totalViews = currentSorted.reduce((sum: number, v: any) => sum + (v?.views || 0), 0);
   const mostViewed = currentSorted[0] || {};
-
   const formatViews = (views: number) => views.toLocaleString();
 
   return (
@@ -287,12 +283,12 @@ const Dashboard = ({
           </p>
         </div>
 
-        {/* MAIN TABS - Made more compact for mobile */}
+        {/* MAIN TABS - Improved mobile styling */}
         <div className="flex flex-wrap justify-center gap-2">
           {tabs.map((tab) => (
             <Button
               key={tab.key}
-              className={`cursor-pointer px-4 py-2 md:px-6 md:py-2.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-xs md:text-sm flex-1 md:flex-none min-w-[110px] justify-center ${
+              className={`cursor-pointer px-3 py-2 md:px-5 md:py-2.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-sm flex-1 md:flex-none justify-center ${
                 currentView === tab.key
                   ? "bg-purple-700 text-white shadow-lg dark:bg-purple-800"
                   : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-purple-700 dark:hover:bg-purple-800 hover:text-white"
@@ -340,10 +336,10 @@ const Dashboard = ({
           </div>
         )}
 
-        {/* YOUTUBE SECTION - FULL ORIGINAL CODE */}
+        {/* YOUTUBE SECTION - FULL */}
         {currentView === "youtube" && (
           <div className="space-y-8">
-            {/* Persistent Selector Bar */}
+            {/* Persistent Selector Bar with real YouTube icons */}
             <div className="flex items-center bg-card border border-border rounded-2xl px-5 py-3 mb-6 shadow-sm">
               <div className="flex-1 flex items-center justify-center gap-3">
                 {currentChannelIcon ? (
@@ -382,7 +378,7 @@ const Dashboard = ({
               </Button>
             </div>
 
-            {/* Channel Selection Modal */}
+            {/* Channel Selection Modal with real icons */}
             {channelModalOpen && (
               <div
                 className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
@@ -557,7 +553,10 @@ const Dashboard = ({
               </h2>
               <div className="space-y-5 md:space-y-6">
                 {displayedVideos.map((video: any) => (
-                  <div key={video.video_id} className="flex items-center gap-4 md:gap-6 group">
+                  <div
+                    key={video.video_id}
+                    className="flex items-center gap-4 md:gap-6 group"
+                  >
                     <a
                       href={`https://youtube.com/watch?v=${video.video_id}`}
                       target="_blank"
