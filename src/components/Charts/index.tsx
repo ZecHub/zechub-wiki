@@ -11,6 +11,8 @@ import {
   Eye,
   Rss,
   Activity,
+  ChevronDown,
+  Check,
 } from "lucide-react";
 import { useEffect, useState, useRef, startTransition } from "react";
 import Link from "next/link";
@@ -106,8 +108,15 @@ const Dashboard = ({
   const [currentChannel, setCurrentChannel] = useState<ChannelType>("ZecHub");
   const [channelModalOpen, setChannelModalOpen] = useState(false);
   const [channelSearchTerm, setChannelSearchTerm] = useState("");
+  const [mobileTabOpen, setMobileTabOpen] = useState(false);
 
-  const allowedTabs: ViewType[] = ["dashboard", "proposals", "zcg", "youtube", "codepulse"];
+  const allowedTabs: ViewType[] = [
+    "dashboard",
+    "proposals",
+    "zcg",
+    "youtube",
+    "codepulse",
+  ];
 
   // YouTube state variables
   const [zecSorted, setZecSorted] = useState<any>({ videos: [] });
@@ -122,7 +131,8 @@ const Dashboard = ({
   const [zbDate, setZbDate] = useState<any>({ videos: [] });
   const [searchTerm, setSearchTerm] = useState("");
 
-  const t = languageDict?.pages?.dashboard?.charts || dict?.pages?.dashboard?.charts;
+  const t =
+    languageDict?.pages?.dashboard?.charts || dict?.pages?.dashboard?.charts;
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
@@ -130,16 +140,36 @@ const Dashboard = ({
   // Load YouTube data
   useEffect(() => {
     if (currentView === "youtube") {
-      fetch("/data/youtube/ZecHubSorted.json").then((r) => r.json()).then(setZecSorted);
-      fetch("/data/youtube/ZecHubByDate.json").then((r) => r.json()).then(setZecDate);
-      fetch("/data/youtube/SLSorted.json").then((r) => r.json()).then(setSlSorted);
-      fetch("/data/youtube/SLByDate.json").then((r) => r.json()).then(setSlDate);
-      fetch("/data/youtube/ZFSorted.json").then((r) => r.json()).then(setZfSorted);
-      fetch("/data/youtube/ZFByDate.json").then((r) => r.json()).then(setZfDate);
-      fetch("/data/youtube/ZMSorted.json").then((r) => r.json()).then(setZmSorted);
-      fetch("/data/youtube/ZMByDate.json").then((r) => r.json()).then(setZmDate);
-      fetch("/data/youtube/ZBSorted.json").then((r) => r.json()).then(setZbSorted);
-      fetch("/data/youtube/ZBByDate.json").then((r) => r.json()).then(setZbDate);
+      fetch("/data/youtube/ZecHubSorted.json")
+        .then((r) => r.json())
+        .then(setZecSorted);
+      fetch("/data/youtube/ZecHubByDate.json")
+        .then((r) => r.json())
+        .then(setZecDate);
+      fetch("/data/youtube/SLSorted.json")
+        .then((r) => r.json())
+        .then(setSlSorted);
+      fetch("/data/youtube/SLByDate.json")
+        .then((r) => r.json())
+        .then(setSlDate);
+      fetch("/data/youtube/ZFSorted.json")
+        .then((r) => r.json())
+        .then(setZfSorted);
+      fetch("/data/youtube/ZFByDate.json")
+        .then((r) => r.json())
+        .then(setZfDate);
+      fetch("/data/youtube/ZMSorted.json")
+        .then((r) => r.json())
+        .then(setZmSorted);
+      fetch("/data/youtube/ZMByDate.json")
+        .then((r) => r.json())
+        .then(setZmDate);
+      fetch("/data/youtube/ZBSorted.json")
+        .then((r) => r.json())
+        .then(setZbSorted);
+      fetch("/data/youtube/ZBByDate.json")
+        .then((r) => r.json())
+        .then(setZbDate);
     }
   }, [currentView]);
 
@@ -147,7 +177,8 @@ const Dashboard = ({
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       const target = event.target as Node;
-      if (dropdownRef.current && !dropdownRef.current.contains(target)) setOpen(false);
+      if (dropdownRef.current && !dropdownRef.current.contains(target))
+        setOpen(false);
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -237,25 +268,33 @@ const Dashboard = ({
     };
   };
 
-  const { videos: currentSorted, icon: currentChannelIcon } = getChannelData(currentChannel);
+  const { videos: currentSorted, icon: currentChannelIcon } =
+    getChannelData(currentChannel);
   const { videos: currentDate } = getChannelData(currentChannel, true);
 
   const filteredSorted = currentSorted.filter(
-    (v: any) => v?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false,
+    (v: any) =>
+      v?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false,
   );
   const filteredDate = currentDate.filter(
-    (v: any) => v?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false,
+    (v: any) =>
+      v?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false,
   );
 
   const displayedVideos =
     subView === "top"
       ? filteredSorted.slice(0, 15)
       : latestSortByViews
-      ? filteredDate.slice(0, 15).sort((a: any, b: any) => (b.views || 0) - (a.views || 0))
-      : filteredDate.slice(0, 15);
+        ? filteredDate
+            .slice(0, 15)
+            .sort((a: any, b: any) => (b.views || 0) - (a.views || 0))
+        : filteredDate.slice(0, 15);
 
   const totalVideos = currentSorted.length;
-  const totalViews = currentSorted.reduce((sum: number, v: any) => sum + (v?.views || 0), 0);
+  const totalViews = currentSorted.reduce(
+    (sum: number, v: any) => sum + (v?.views || 0),
+    0,
+  );
   const mostViewed = currentSorted[0] || {};
   const formatViews = (views: number) => views.toLocaleString();
 
@@ -284,13 +323,14 @@ const Dashboard = ({
         </div>
 
         {/* MAIN TABS - Improved mobile styling */}
-        <div className="flex flex-wrap justify-center gap-2">
+        {/* DESKTOP TABS — hidden on mobile */}
+        <div className="hidden md:flex flex-wrap justify-center gap-2">
           {tabs.map((tab) => (
             <Button
               key={tab.key}
               className={`cursor-pointer px-3 py-2 md:px-5 md:py-2.5 rounded-3xl font-semibold flex items-center gap-2 transition-all text-sm flex-1 md:flex-none justify-center ${
                 currentView === tab.key
-                  ? "bg-purple-700 text-white shadow-lg dark:bg-purple-800"
+                  ? "bg-purple-700 text-white shadow-lg dark:bg-purple-800 hover:bg-purple-700 dark:hover:bg-purple-800"
                   : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-purple-700 dark:hover:bg-purple-800 hover:text-white"
               }`}
               onClick={() => changeView(tab.key)}
@@ -301,8 +341,74 @@ const Dashboard = ({
           ))}
         </div>
 
+        {/* MOBILE TABS — collapsible dropdown, hidden on desktop */}
+        <div className="md:hidden relative z-50">
+          <div className="border border-slate-200 dark:border-slate-700 rounded-2xl overflow-visible bg-slate-50 dark:bg-slate-900">
+            <button
+              onClick={() => setMobileTabOpen((prev) => !prev)}
+              className="flex items-center gap-3 w-full px-4 py-3 cursor-pointer"
+              aria-expanded={mobileTabOpen}
+            >
+              <div className="w-8 h-8 rounded-xl bg-purple-800 flex items-center justify-center text-white flex-shrink-0 [&>svg]:w-4 [&>svg]:h-4">
+                {tabs.find((t) => t.key === currentView)?.icon}
+              </div>
+              <div className="flex-1 text-left">
+                <p className="text-[10px] text-muted-foreground">
+                  Current view
+                </p>
+                <p className="text-sm font-medium text-foreground">
+                  {tabs.find((t) => t.key === currentView)?.label}
+                </p>
+              </div>
+              <ChevronDown
+                className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${mobileTabOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+          </div>
+
+          {mobileTabOpen && (
+            <div className="absolute top-full left-0 right-0 mt-1 border border-slate-200 dark:border-slate-700 rounded-2xl bg-slate-50 dark:bg-slate-900 overflow-hidden">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.key}
+                  onClick={() => {
+                    changeView(tab.key);
+                    setMobileTabOpen(false);
+                  }}
+                  className="flex items-center gap-3 w-full px-4 py-3 border-b last:border-b-0 border-slate-100 dark:border-slate-800 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800"
+                >
+                  <div
+                    className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 [&>svg]:w-4 [&>svg]:h-4 ${
+                      currentView === tab.key
+                        ? "bg-purple-800 text-white"
+                        : "bg-slate-100 dark:bg-slate-800 text-slate-500"
+                    }`}
+                  >
+                    {tab.icon}
+                  </div>
+                  <span
+                    className={`text-sm ${
+                      currentView === tab.key
+                        ? "font-medium text-purple-700 dark:text-purple-400"
+                        : "text-foreground"
+                    }`}
+                  >
+                    {tab.label}
+                  </span>
+                  {currentView === tab.key && (
+                    <Check className="w-4 h-4 ml-auto text-purple-700 dark:text-purple-400" />
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* Shielded Networks Dropdown */}
-        <div className="flex justify-end md:absolute md:top-6 md:right-6 z-50" ref={dropdownRef}>
+        <div
+          className="flex justify-end md:absolute md:top-6 md:right-6 z-50"
+          ref={dropdownRef}
+        >
           <Button
             size="icon"
             className="cursor-pointer bg-purple-600 hover:bg-purple-700 text-white h-11 w-11 rounded-2xl shadow-lg"
@@ -353,7 +459,8 @@ const Dashboard = ({
                   />
                 ) : (
                   <div className="w-8 h-8 bg-purple-600 rounded-2xl flex items-center justify-center text-white text-xl font-medium shadow-inner">
-                    {channelConfigs.find((c) => c.value === currentChannel)?.name[0] || "Y"}
+                    {channelConfigs.find((c) => c.value === currentChannel)
+                      ?.name[0] || "Y"}
                   </div>
                 )}
                 <div className="text-center">
@@ -361,7 +468,8 @@ const Dashboard = ({
                     CURRENT CHANNEL
                   </p>
                   <p className="text-xl font-semibold text-foreground">
-                    {channelConfigs.find((c) => c.value === currentChannel)?.name || currentChannel}
+                    {channelConfigs.find((c) => c.value === currentChannel)
+                      ?.name || currentChannel}
                   </p>
                 </div>
               </div>
@@ -410,14 +518,20 @@ const Dashboard = ({
                   <div className="flex-1 overflow-auto p-3">
                     {channelConfigs
                       .filter((ch) =>
-                        ch.name.toLowerCase().includes(channelSearchTerm.toLowerCase()),
+                        ch.name
+                          .toLowerCase()
+                          .includes(channelSearchTerm.toLowerCase()),
                       )
                       .map((ch) => {
                         const chData = getChannelData(ch.value);
                         return (
                           <Button
                             key={ch.value}
-                            variant={currentChannel === ch.value ? "secondary" : "ghost"}
+                            variant={
+                              currentChannel === ch.value
+                                ? "secondary"
+                                : "ghost"
+                            }
                             className="w-full justify-start h-14 text-left mb-1 rounded-2xl"
                             onClick={() => {
                               setCurrentChannel(ch.value);
@@ -437,7 +551,9 @@ const Dashboard = ({
                                   {ch.name[0]}
                                 </div>
                               )}
-                              <span className="text-base font-medium">{ch.name}</span>
+                              <span className="text-base font-medium">
+                                {ch.name}
+                              </span>
                             </div>
                           </Button>
                         );
@@ -485,9 +601,12 @@ const Dashboard = ({
                     />
                   </div>
                 )}
-                <p className="text-base font-medium truncate">{mostViewed.title || "—"}</p>
+                <p className="text-base font-medium truncate">
+                  {mostViewed.title || "—"}
+                </p>
                 <p className="text-purple-600 font-bold">
-                  {formatViews(mostViewed.views || 0)} {t?.viewsSuffix || "views"}
+                  {formatViews(mostViewed.views || 0)}{" "}
+                  {t?.viewsSuffix || "views"}
                 </p>
               </div>
             </div>
@@ -548,8 +667,9 @@ const Dashboard = ({
                 {subView === "top"
                   ? t?.top15VideosByViews || "Top 15 Videos by Views"
                   : latestSortByViews
-                  ? t?.latest15VideosSortedByViews || "Latest 15 Videos (Sorted by Views)"
-                  : t?.latest15Videos || "Latest 15 Videos"}
+                    ? t?.latest15VideosSortedByViews ||
+                      "Latest 15 Videos (Sorted by Views)"
+                    : t?.latest15Videos || "Latest 15 Videos"}
               </h2>
               <div className="space-y-5 md:space-y-6">
                 {displayedVideos.map((video: any) => (
@@ -598,10 +718,16 @@ const Dashboard = ({
         {currentView === "dashboard" && (
           <>
             {selectedCrypto === "zcash" && (
-              <ZcashChart divChartRef={divChartRef} handleSaveToPng={handleSaveToPng} />
+              <ZcashChart
+                divChartRef={divChartRef}
+                handleSaveToPng={handleSaveToPng}
+              />
             )}
             {selectedCrypto === "namada" && (
-              <NamadaChart divChartRef={divChartRef} handleSaveToPng={handleSaveToPng} />
+              <NamadaChart
+                divChartRef={divChartRef}
+                handleSaveToPng={handleSaveToPng}
+              />
             )}
             {selectedCrypto === "penumbra" && (
               <PenumbraChart divChartRef={divChartRef} />

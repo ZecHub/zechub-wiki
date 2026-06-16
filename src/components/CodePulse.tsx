@@ -1,24 +1,34 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { Activity } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
+import { useState, useEffect } from "react";
+import { Activity } from "lucide-react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
 
-type View = 'radicle' | 'github';
+type View = "radicle" | "github";
 
 export default function CodePulse() {
-  const [view, setView] = useState<View>('radicle');
+  const [view, setView] = useState<View>("radicle");
   const [radicleHistory, setRadicleHistory] = useState<any[]>([]);
   const [githubHistory, setGithubHistory] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedMetric, setSelectedMetric] = useState<'seeding' | 'open_issues' | 'merged_prs' | 'stars' | 'forks'>('seeding');
+  const [selectedMetric, setSelectedMetric] = useState<
+    "seeding" | "open_issues" | "merged_prs" | "stars" | "forks"
+  >("seeding");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [radRes, gitRes] = await Promise.all([
-          fetch('/data/radicle/radicle.json'),
-          fetch('/data/github/github.json'),
+          fetch("/data/radicle/radicle.json"),
+          fetch("/data/github/github.json"),
         ]);
 
         const radData = await radRes.json();
@@ -37,27 +47,50 @@ export default function CodePulse() {
   }, []);
 
   if (loading) {
-    return <div className="p-8 text-center text-muted-foreground">Loading Code Pulse...</div>;
+    return (
+      <div className="p-8 text-center text-muted-foreground">
+        Loading Code Pulse...
+      </div>
+    );
   }
 
-  const currentHistory = view === 'radicle' ? radicleHistory : githubHistory;
-  const current = currentHistory.length > 0 ? currentHistory[currentHistory.length - 1] : null;
+  const currentHistory = view === "radicle" ? radicleHistory : githubHistory;
+  const current =
+    currentHistory.length > 0
+      ? currentHistory[currentHistory.length - 1]
+      : null;
 
   if (!current) {
-    return <div className="p-8 text-center text-red-500">No data available yet.</div>;
+    return (
+      <div className="p-8 text-center text-red-500">No data available yet.</div>
+    );
   }
 
   const trendData = currentHistory.map((entry: any) => {
     const proj = entry.projects?.[0] || {};
-    return {
-      date: entry.date,
-      seeding: proj.seeding || 0,
-      open_issues: proj.open_issues || 0,
-      merged_prs: proj.merged_pull_requests || 0,
-      stars: proj.stars || 0,
-      forks: proj.forks || 0,
-    };
+    return view === "radicle"
+      ? {
+          date: entry.date,
+          seeding: proj.seeding || 0,
+          open_issues: proj.issues_open || 0,
+          merged_prs: proj.patches_merged || 0,
+          stars: 0,
+          forks: 0,
+        }
+      : {
+          date: entry.date,
+          seeding: 0,
+          open_issues: proj.open_issues || 0,
+          merged_prs: proj.merged_pull_requests || 0,
+          stars: proj.stars || 0,
+          forks: proj.forks || 0,
+        };
   });
+
+  const handleViewChange = (v: View) => {
+    setView(v);
+    setSelectedMetric(v === "radicle" ? "seeding" : "stars");
+  };
 
   return (
     <div className="space-y-6">
@@ -80,21 +113,21 @@ export default function CodePulse() {
       {/* Toggle - Fixed Colors */}
       <div className="inline-flex rounded-xl border bg-muted p-1 text-sm">
         <button
-          onClick={() => setView('radicle')}
+          onClick={() => handleViewChange("radicle")}
           className={`px-5 py-1.5 rounded-lg font-medium transition-all ${
-            view === 'radicle'
-              ? 'bg-white text-black shadow-sm'
-              : 'text-white/70 hover:bg-white/10 active:bg-white/20'
+            view === "radicle"
+              ? "bg-background text-foreground shadow-sm border border-border"
+              : "text-muted-foreground hover:bg-muted/60"
           }`}
         >
           Radicle
         </button>
         <button
-          onClick={() => setView('github')}
+          onClick={() => handleViewChange("github")}
           className={`px-5 py-1.5 rounded-lg font-medium transition-all ${
-            view === 'github'
-              ? 'bg-white text-black shadow-sm'
-              : 'text-white/70 hover:bg-white/10 active:bg-white/20'
+            view === "github"
+              ? "bg-background text-foreground shadow-sm border border-border"
+              : "text-muted-foreground hover:bg-muted/60"
           }`}
         >
           GitHub
@@ -102,7 +135,7 @@ export default function CodePulse() {
       </div>
 
       {/* Current View */}
-      {view === 'radicle' ? (
+      {view === "radicle" ? (
         <RadicleView data={current} />
       ) : (
         <GitHubView data={current} />
@@ -115,7 +148,7 @@ export default function CodePulse() {
           <select
             value={selectedMetric}
             onChange={(e) => setSelectedMetric(e.target.value as any)}
-            className="bg-background border rounded-lg px-3 py-1 text-sm"
+            className="bg-background border rounded-lg px-3 py-1 text-sm min-w-32.5"
           >
             <option value="seeding">Seeding</option>
             <option value="open_issues">Open Issues</option>
@@ -132,12 +165,12 @@ export default function CodePulse() {
               <XAxis dataKey="date" />
               <YAxis />
               <Tooltip />
-              <Line 
-                type="monotone" 
-                dataKey={selectedMetric} 
-                stroke="#7c3aed" 
-                strokeWidth={2.5} 
-                dot={{ r: 3 }} 
+              <Line
+                type="monotone"
+                dataKey={selectedMetric}
+                stroke="#7c3aed"
+                strokeWidth={2.5}
+                dot={{ r: 3 }}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -155,14 +188,29 @@ function RadicleView({ data }: { data: any }) {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <MetricCard label="Projects" value={summary.total_projects || projects.length} />
-        <MetricCard label="Total Seeding" value={summary.total_seeding || 0} color="text-green-600" />
-        <MetricCard label="Total Issues" value={summary.total_issues || 0} color="text-orange-600" />
-        <MetricCard label="Total Patches" value={summary.total_patches || 0} color="text-blue-600" />
+        <MetricCard
+          label="Projects"
+          value={summary.total_projects || projects.length}
+        />
+        <MetricCard
+          label="Total Seeding"
+          value={summary.total_seeding || 0}
+          color="text-green-600"
+        />
+        <MetricCard
+          label="Total Issues"
+          value={summary.total_issues || 0}
+          color="text-orange-600"
+        />
+        <MetricCard
+          label="Total Patches"
+          value={summary.total_patches || 0}
+          color="text-blue-600"
+        />
       </div>
 
       <div className="overflow-x-auto rounded-xl border bg-card">
-        <table className="w-full text-sm min-w-[620px]">
+        <table className="w-full text-sm imd:min-w-[620px]">
           <thead className="bg-muted">
             <tr>
               <th className="text-left p-4">Project</th>
@@ -178,14 +226,28 @@ function RadicleView({ data }: { data: any }) {
               <tr key={i} className="hover:bg-muted/50 transition-colors">
                 <td className="p-4">
                   <div className="font-medium">{p.name}</div>
-                  <div className="text-xs text-muted-foreground line-clamp-1">{p.description}</div>
+                  <div className="text-xs text-muted-foreground line-clamp-1">
+                    {p.description}
+                  </div>
                 </td>
-                <td className="text-center p-4 font-semibold text-green-600">{p.seeding}</td>
-                <td className="text-center p-4">{p.delegates} / {p.threshold}</td>
-                <td className="text-center p-4">{p.issues_open} / {p.issues_total}</td>
-                <td className="text-center p-4">{p.patches_open} / {p.patches_merged}</td>
+                <td className="text-center p-4 font-semibold text-green-600">
+                  {p.seeding}
+                </td>
+                <td className="text-center p-4">
+                  {p.delegates} / {p.threshold}
+                </td>
+                <td className="text-center p-4">
+                  {p.issues_open} / {p.issues_total}
+                </td>
+                <td className="text-center p-4">
+                  {p.patches_open} / {p.patches_merged}
+                </td>
                 <td className="text-right p-4">
-                  <a href={p.explorer_url} target="_blank" className="text-primary hover:underline text-sm font-medium">
+                  <a
+                    href={p.explorer_url}
+                    target="_blank"
+                    className="text-primary hover:underline text-sm font-medium"
+                  >
                     View →
                   </a>
                 </td>
@@ -202,22 +264,50 @@ function RadicleView({ data }: { data: any }) {
 function GitHubView({ data }: { data: any }) {
   const projects = data.projects || [];
 
-  const totalStars = projects.reduce((sum: number, p: any) => sum + (p.stars || 0), 0);
-  const totalForks = projects.reduce((sum: number, p: any) => sum + (p.forks || 0), 0);
-  const totalOpenIssues = projects.reduce((sum: number, p: any) => sum + (p.open_issues || 0), 0);
-  const totalMergedPRs = projects.reduce((sum: number, p: any) => sum + (p.merged_pull_requests || 0), 0);
+  const totalStars = projects.reduce(
+    (sum: number, p: any) => sum + (p.stars || 0),
+    0,
+  );
+  const totalForks = projects.reduce(
+    (sum: number, p: any) => sum + (p.forks || 0),
+    0,
+  );
+  const totalOpenIssues = projects.reduce(
+    (sum: number, p: any) => sum + (p.open_issues || 0),
+    0,
+  );
+  const totalMergedPRs = projects.reduce(
+    (sum: number, p: any) => sum + (p.merged_pull_requests || 0),
+    0,
+  );
 
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <MetricCard label="Total Stars" value={totalStars} color="text-yellow-600" />
-        <MetricCard label="Total Forks" value={totalForks} color="text-emerald-600" />
-        <MetricCard label="Open Issues" value={totalOpenIssues} color="text-orange-600" />
-        <MetricCard label="Merged PRs" value={totalMergedPRs} color="text-purple-600" />
+        <MetricCard
+          label="Total Stars"
+          value={totalStars}
+          color="text-yellow-600"
+        />
+        <MetricCard
+          label="Total Forks"
+          value={totalForks}
+          color="text-emerald-600"
+        />
+        <MetricCard
+          label="Open Issues"
+          value={totalOpenIssues}
+          color="text-orange-600"
+        />
+        <MetricCard
+          label="Merged PRs"
+          value={totalMergedPRs}
+          color="text-purple-600"
+        />
       </div>
 
       <div className="overflow-x-auto rounded-xl border bg-card">
-        <table className="w-full text-sm min-w-[620px]">
+        <table className="w-full text-sm imd:min-w-[620px]">
           <thead className="bg-muted">
             <tr>
               <th className="text-left p-4">Project</th>
@@ -232,12 +322,22 @@ function GitHubView({ data }: { data: any }) {
             {projects.map((p: any, i: number) => (
               <tr key={i} className="hover:bg-muted/50 transition-colors">
                 <td className="p-4 font-medium">{p.name}</td>
-                <td className="text-center p-4 font-semibold text-yellow-600">{p.stars}</td>
+                <td className="text-center p-4 font-semibold text-yellow-600">
+                  {p.stars}
+                </td>
                 <td className="text-center p-4 text-emerald-600">{p.forks}</td>
-                <td className="text-center p-4 text-orange-600">{p.open_issues}</td>
-                <td className="text-center p-4 text-purple-600">{p.merged_pull_requests}</td>
+                <td className="text-center p-4 text-orange-600">
+                  {p.open_issues}
+                </td>
+                <td className="text-center p-4 text-purple-600">
+                  {p.merged_pull_requests}
+                </td>
                 <td className="text-right p-4">
-                  <a href={`https://github.com/ZecHub/${p.name}`} target="_blank" className="text-primary hover:underline text-sm font-medium">
+                  <a
+                    href={`https://github.com/ZecHub/${p.name}`}
+                    target="_blank"
+                    className="text-primary hover:underline text-sm font-medium"
+                  >
                     View →
                   </a>
                 </td>
@@ -250,9 +350,19 @@ function GitHubView({ data }: { data: any }) {
   );
 }
 
-function MetricCard({ label, value, color = "" }: { label: string; value: number | string; color?: string }) {
+function MetricCard({
+  label,
+  value,
+  color = "",
+}: {
+  label: string;
+  value: number | string;
+  color?: string;
+}) {
   return (
-    <div className={`rounded-2xl border bg-card p-5 transition-all hover:scale-[1.02] hover:shadow-md ${color}`}>
+    <div
+      className={`rounded-2xl border bg-card p-5 transition-all hover:scale-[1.02] hover:shadow-md ${color}`}
+    >
       <div className="text-sm text-muted-foreground">{label}</div>
       <div className="text-3xl font-semibold mt-1 tracking-tight">{value}</div>
     </div>
