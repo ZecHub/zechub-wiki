@@ -10,6 +10,7 @@ import {
 
 import { Wrench, Map, Gem } from "lucide-react";
 import { FcVoicePresentation } from "react-icons/fc";
+import { FaUserAstronaut } from "react-icons/fa";
 
 import {
   RiGithubFill as Github,
@@ -34,6 +35,21 @@ export const navigations: Array<NavigationItem> = [
     name: "Using Zcash",
     label: "Use Zcash",
     links: [
+      {
+        name: "Use Cases",
+        path: "/zcash-use-cases",
+        icon: FaUserAstronaut,
+        links: [
+          {
+            name: "Start Here",
+            path: "/about",
+          },
+          {
+            name: "Accept Payments",
+            path: "/accept-payments-as-a-merchant",
+          },
+        ],
+      },
       {
         name: "Buying ZEC",
         path: "/using-zcash/buying-zec",
