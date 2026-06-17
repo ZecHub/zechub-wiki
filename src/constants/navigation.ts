@@ -159,6 +159,10 @@ export const navigations: Array<NavigationItem> = [
         name: "Zcon Archive",
         path: "/zcash-community/zcon-archive",
       },
+      {
+        name: "Zcon Vozes Archive",
+        path: "/zcash-community/zcon-vozes",
+      },
     ],
   },
   {
