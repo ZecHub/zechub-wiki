@@ -37,7 +37,7 @@ export const navigations: Array<NavigationItem> = [
     links: [
       {
         name: "Use Cases",
-        path: "/zcash-use-cases",
+        path: "/zcash-use-cases/",
         icon: FaUserAstronaut,
         links: [
           {
