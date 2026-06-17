@@ -33,6 +33,7 @@ import {
 } from "react-icons/fa6";
 import {
   FcCurrencyExchange as CurrencyExchange,
+  FcVoicePresentation,
   FcGallery,
   FcProcess,
   FcGlobe as Globe,
@@ -287,6 +288,7 @@ const iconsForMenu: IconsFor = {
     "Zcash Podcasts": MdOutlinePodcasts,
     "Zcon Archive": PresentationChar,
     "Zcash Governance": Governance,
+    "Zcon Vozes": FcVoicePresentation,
   },
   "ZFAV Club": {
     "AV Club Background": LiaHorseHeadSolid,
