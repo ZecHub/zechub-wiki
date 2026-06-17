@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 
 import { Wrench, Map, Gem } from "lucide-react";
+import { FcVoicePresentation } from "react-icons/fc";
 
 import {
   RiGithubFill as Github,
@@ -162,6 +163,7 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Zcon Vozes Archive",
         path: "/zcash-community/zcon-vozes",
+        icon: FcVoicePresentation,
       },
     ],
   },
