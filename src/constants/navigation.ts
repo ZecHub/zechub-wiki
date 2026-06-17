@@ -42,35 +42,35 @@ export const navigations: Array<NavigationItem> = [
         links: [
           {
             name: "Start Here",
-            path: "/about",
+            path: "/zcash-use-cases/about",
           },
           {
             name: "Accept Payments",
-            path: "/accept-payments-as-a-merchant",
+            path: "/zcash-use-cases/accept-payments-as-a-merchant",
           },
           {
             name: "Freelance Privacy",
-            path: "/freelance-privacy-setup",
+            path: "/zcash-use-cases/freelance-privacy-setup",
           },
           {
             name: "Journalist Privacy",
-            path: "/journalist-privacy-setup",
+            path: "/zcash-use-cases/journalist-privacy-setup",
           },
           {
             name: "Keeping Records",
-            path: "/keeping-records-with-shielded-zec",
+            path: "/zcash-use-cases/keeping-records-with-shielded-zec",
           },
           {
             name: "Private Community Treasury",
-            path: "/private-community-treasury",
+            path: "/zcash-use-cases/private-community-treasury",
           },
           {
             name: "Donations",
-            path: "/receive-donations-privately",
+            path: "/zcash-use-cases/receive-donations-privately",
           },
           {
             name: "Send Money Privately",
-            path: "/send-money-without-linking-identity",
+            path: "/zcash-use-cases/send-money-without-linking-identity",
           },
         ],
       },
