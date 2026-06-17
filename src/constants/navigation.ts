@@ -48,6 +48,30 @@ export const navigations: Array<NavigationItem> = [
             name: "Accept Payments",
             path: "/accept-payments-as-a-merchant",
           },
+          {
+            name: "Freelance Privacy",
+            path: "/freelance-privacy-setup",
+          },
+          {
+            name: "Journalist Privacy",
+            path: "/journalist-privacy-setup",
+          },
+          {
+            name: "Keeping Records",
+            path: "/keeping-records-with-shielded-zec",
+          },
+          {
+            name: "Private Community Treasury",
+            path: "/private-community-treasury",
+          },
+          {
+            name: "Donations",
+            path: "/receive-donations-privately",
+          },
+          {
+            name: "Send Money Privately",
+            path: "/send-money-without-linking-identity",
+          },
         ],
       },
       {
