@@ -15,7 +15,7 @@
     {
       "title": "Useful Tips when using Zcash 🔒",
       "video_id": "tEfQaYPV0UE",
-      "views": 2347
+      "views": 2348
     },
     {
       "title": "Zcashd Wallet Tool - Generate & Import Private Key",
@@ -35,7 +35,7 @@
     {
       "title": "How to Buy and use Zcash Orchard 🌳",
       "video_id": "3xyKKer1Qvk",
-      "views": 1726
+      "views": 1728
     },
     {
       "title": "Zcash Explained: Zcash Shielded Transactions",
@@ -45,7 +45,7 @@
     {
       "title": "How to spend your ⓩ Zcash on Everyday Items 🧾",
       "video_id": "pMNk2A3NcKw",
-      "views": 1593
+      "views": 1595
     },
     {
       "title": "Private Cross-Chain Payments with Zashi CrossPay",
@@ -60,12 +60,12 @@
     {
       "title": "Crosschain Swaps with Zcash x NEAR Intents",
       "video_id": "mKVvXY4yjjA",
-      "views": 1563
+      "views": 1564
     },
     {
       "title": "How to compile Zcash Node on Raspberry Pi!",
       "video_id": "SGYrzhs1l2k",
-      "views": 1518
+      "views": 1519
     },
     {
       "title": "How to use ZEC on Metamask",
@@ -75,7 +75,7 @@
     {
       "title": "Guide: Using Shielded Zcash (ZEC) on Brave",
       "video_id": "D0uSI5sYD7I",
-      "views": 1425
+      "views": 1426
     },
     {
       "title": "The Beginners Guide to Keplr Wallet",
@@ -125,7 +125,7 @@
     {
       "title": "Comparing On-Chain Privacy Technologies ⚖️",
       "video_id": "U7QkhNkmgZk",
-      "views": 957
+      "views": 958
     },
     {
       "title": "Brave Wallet Tutorial : Defi with Near Intents and Shielded Zcash",
@@ -248,14 +248,14 @@
       "views": 604
     },
     {
+      "title": "Z|ECC Summit 2025 | Daira-Emma Hopwood",
+      "video_id": "EECpPZxq7B0",
+      "views": 597
+    },
+    {
       "title": "being able pay for everything with zcash 💖 #crypto #zcash #defi #shielded #zec #privacy",
       "video_id": "7xWRBwK58RU",
       "views": 592
-    },
-    {
-      "title": "Z|ECC Summit 2025 | Daira-Emma Hopwood",
-      "video_id": "EECpPZxq7B0",
-      "views": 589
     },
     {
       "title": "Importing Zcash Viewkey with Zingo Wallet",
@@ -330,7 +330,7 @@
     {
       "title": "How to Submit a ZCG Grant Proposal",
       "video_id": "ItEwc1lzvzc",
-      "views": 456
+      "views": 457
     },
     {
       "title": "How to use Atomic DEX | Decentralised Exchange 🔁",
@@ -340,7 +340,7 @@
     {
       "title": "HOW TO: Ywallet Pool Transfer",
       "video_id": "Gg90f6_JoC4",
-      "views": 443
+      "views": 445
     },
     {
       "title": "Zcon Sessions: Nate Wilcox on Zcash Proof-of-Stake",
@@ -435,7 +435,7 @@
     {
       "title": "What is Pirate Chain? $ARRR",
       "video_id": "-RgpK7eyoNQ",
-      "views": 362
+      "views": 364
     },
     {
       "title": "Installing Free2Z Social App! #shorts #zcash #cryptocurrency #defi #privacy #socialmedia",
@@ -490,7 +490,7 @@
     {
       "title": "Iron Fish Network's Next Big Initiative",
       "video_id": "mp5VgtA6Suk",
-      "views": 295
+      "views": 296
     },
     {
       "title": "How to Try Zcash Shielded Transactions 🔥",
@@ -515,7 +515,7 @@
     {
       "title": "Zkool Demo | The Successor to Ywallet",
       "video_id": "eagkCIv3BlQ",
-      "views": 279
+      "views": 280
     },
     {
       "title": "Sending a private crypto transaction",
@@ -600,7 +600,7 @@
     {
       "title": "Zcash Coin Voting 2.0 Demo",
       "video_id": "BPb1nI5iWrA",
-      "views": 241
+      "views": 242
     },
     {
       "title": "private, uncensorable digital cash is worth fighting for! 🛡️ #zcash #crypto #zec #defi #shielded",
@@ -1618,6 +1618,11 @@
       "views": 28
     },
     {
+      "title": "Zcash Contributor Workshop #2 | June 9, 2026",
+      "video_id": "L6cAehzpV3c",
+      "views": 28
+    },
+    {
       "title": "ZecDaily #3",
       "video_id": "XqsZsaGlTGE",
       "views": 27
@@ -1635,11 +1640,6 @@
     {
       "title": "ZecHub Updates | 03/02/2026",
       "video_id": "fxF4EjLh_w4",
-      "views": 27
-    },
-    {
-      "title": "Zcash Contributor Workshop #2 | June 9, 2026",
-      "video_id": "L6cAehzpV3c",
       "views": 27
     },
     {
@@ -1706,6 +1706,11 @@
       "title": "ZecHub | Sync Meet (09/02/2025)",
       "video_id": "VLrGqKKx04g",
       "views": 15
+    },
+    {
+      "title": "ZecHub Updates | 6-16-26",
+      "video_id": "25GTeCiLARQ",
+      "views": 6
     }
   ]
 }
