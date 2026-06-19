@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2324
+      "views": 2325
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -275,7 +275,7 @@
     {
       "title": "Town Hall at Zcon3",
       "video_id": "ZOvbZWy3aug",
-      "views": 618
+      "views": 619
     },
     {
       "title": "Zcash Protocol Hangout, Dev Fund Edition #2",
@@ -770,7 +770,7 @@
     {
       "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
       "video_id": "5gvQF5oFT8E",
-      "views": 260
+      "views": 261
     },
     {
       "title": "SNARKs on Other Ecosystems: #Zcon2Lite",
@@ -798,14 +798,14 @@
       "views": 249
     },
     {
-      "title": "ZF Engineering Update w/ FROST demo with Zcash Foundation Engineers & Manager - ZconVI #zcash",
-      "video_id": "lfXIHxx5P5s",
+      "title": "Secure Distributed Storage by Anca Nitulescu: Zcon4",
+      "video_id": "dn5Ui9kWQ7w",
       "views": 248
     },
     {
-      "title": "Secure Distributed Storage by Anca Nitulescu: Zcon4",
-      "video_id": "dn5Ui9kWQ7w",
-      "views": 247
+      "title": "ZF Engineering Update w/ FROST demo with Zcash Foundation Engineers & Manager - ZconVI #zcash",
+      "video_id": "lfXIHxx5P5s",
+      "views": 248
     },
     {
       "title": "FROST Demo: Zcon4",
@@ -965,7 +965,7 @@
     {
       "title": "Targeting Deployment for ZSAs in Zcash",
       "video_id": "OGROkdDCoKs",
-      "views": 210
+      "views": 212
     },
     {
       "title": "AMA with ZF Executive Director Jack Gavigan",
@@ -1493,6 +1493,11 @@
       "views": 121
     },
     {
+      "title": "Str4d on Risks of Delays deploying ZSAs in NU6",
+      "video_id": "Axedp0cjcl0",
+      "views": 121
+    },
+    {
       "title": "Zcash Arborist Call 09-18-2025",
       "video_id": "2tENS3Sb_jM",
       "views": 120
@@ -1505,11 +1510,6 @@
     {
       "title": "First Zebra Block!",
       "video_id": "zzRH_R8bha0",
-      "views": 119
-    },
-    {
-      "title": "Str4d on Risks of Delays deploying ZSAs in NU6",
-      "video_id": "Axedp0cjcl0",
       "views": 119
     },
     {
