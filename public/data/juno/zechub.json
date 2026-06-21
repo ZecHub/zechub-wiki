@@ -6606,7 +6606,7 @@
             "yes": "0",
             "abstain": "3"
           },
-          "status": "open",
+          "status": "rejected",
           "proposer": "juno1nxpw7j9w5cy5hr5yw7sux7czdev6qe6yehnwzj",
           "threshold": {
             "threshold_quorum": {
