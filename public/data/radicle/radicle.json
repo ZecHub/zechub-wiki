@@ -1,73 +1,13 @@
 [
   {
-    "date": "2026-06-16",
-    "generated_at": "2026-06-16T05:22:53.014442629+00:00",
-    "projects": [
-      {
-        "delegates": 0,
-        "description": "",
-        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:zad2NSrsw3NYdkvx1sTn6EYAqRHc",
-        "head": "",
-        "issues_closed": 0,
-        "issues_open": 0,
-        "issues_total": 0,
-        "name": "unknown",
-        "patches_merged": 0,
-        "patches_open": 0,
-        "patches_total": 0,
-        "rid": "rad:zad2NSrsw3NYdkvx1sTn6EYAqRHc",
-        "seeding": 0,
-        "threshold": 1
-      },
-      {
-        "delegates": 0,
-        "description": "",
-        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
-        "head": "",
-        "issues_closed": 0,
-        "issues_open": 0,
-        "issues_total": 0,
-        "name": "unknown",
-        "patches_merged": 0,
-        "patches_open": 0,
-        "patches_total": 0,
-        "rid": "rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
-        "seeding": 0,
-        "threshold": 1
-      },
-      {
-        "delegates": 0,
-        "description": "",
-        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z4Wg7andG6uee1EAyWEhCuivji41V",
-        "head": "",
-        "issues_closed": 0,
-        "issues_open": 0,
-        "issues_total": 0,
-        "name": "unknown",
-        "patches_merged": 0,
-        "patches_open": 0,
-        "patches_total": 0,
-        "rid": "rad:z4Wg7andG6uee1EAyWEhCuivji41V",
-        "seeding": 0,
-        "threshold": 1
-      }
-    ],
-    "summary": {
-      "total_issues": 0,
-      "total_patches": 0,
-      "total_projects": 3,
-      "total_seeding": 0
-    }
-  },
-  {
-    "date": "2026-06-16",
-    "generated_at": "2026-06-16T05:57:16.007683417+00:00",
+    "date": "2026-06-21",
+    "generated_at": "2026-06-21T17:07:43.170850713+00:00",
     "projects": [
       {
         "delegates": 1,
         "description": "A decentralized education hub for Zcash",
         "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:zad2NSrsw3NYdkvx1sTn6EYAqRHc",
-        "head": "d34e5f1fb10a52d9c22320391df808f71adec574",
+        "head": "2d70186d6936f5878d96be03e439e23d0dac1397",
         "issues_closed": 0,
         "issues_open": 0,
         "issues_total": 0,
@@ -83,126 +23,6 @@
         "delegates": 1,
         "description": "Educational wiki for Zcash and privacy",
         "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
-        "head": "5ee73e334fc9f5fe45be8e6962fca78cfcefe913",
-        "issues_closed": 0,
-        "issues_open": 0,
-        "issues_total": 0,
-        "name": "zechub-wiki",
-        "patches_merged": 0,
-        "patches_open": 0,
-        "patches_total": 0,
-        "rid": "rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
-        "seeding": 25,
-        "threshold": 1
-      },
-      {
-        "delegates": 1,
-        "description": "Namada governance and network metrics dashboard",
-        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z4Wg7andG6uee1EAyWEhCuivji41V",
-        "head": "46b38083abd69d619c89f1afda95e0faa7bb3436",
-        "issues_closed": 0,
-        "issues_open": 0,
-        "issues_total": 0,
-        "name": "namada",
-        "patches_merged": 0,
-        "patches_open": 0,
-        "patches_total": 0,
-        "rid": "rad:z4Wg7andG6uee1EAyWEhCuivji41V",
-        "seeding": 14,
-        "threshold": 1
-      }
-    ],
-    "summary": {
-      "total_issues": 0,
-      "total_patches": 0,
-      "total_projects": 3,
-      "total_seeding": 51
-    }
-  },
-  {
-    "date": "2026-06-18",
-    "generated_at": "2026-06-18T05:06:56.670906455+00:00",
-    "projects": [
-      {
-        "delegates": 1,
-        "description": "A decentralized education hub for Zcash",
-        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:zad2NSrsw3NYdkvx1sTn6EYAqRHc",
-        "head": "2d70186d6936f5878d96be03e439e23d0dac1397",
-        "issues_closed": 0,
-        "issues_open": 0,
-        "issues_total": 0,
-        "name": "zechub",
-        "patches_merged": 0,
-        "patches_open": 0,
-        "patches_total": 0,
-        "rid": "rad:zad2NSrsw3NYdkvx1sTn6EYAqRHc",
-        "seeding": 22,
-        "threshold": 1
-      },
-      {
-        "delegates": 1,
-        "description": "Educational wiki for Zcash and privacy",
-        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
-        "head": "8ea435b8f5b4a905fc11c90e66eae4136ccb0f37",
-        "issues_closed": 0,
-        "issues_open": 0,
-        "issues_total": 0,
-        "name": "zechub-wiki",
-        "patches_merged": 0,
-        "patches_open": 0,
-        "patches_total": 0,
-        "rid": "rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
-        "seeding": 31,
-        "threshold": 1
-      },
-      {
-        "delegates": 1,
-        "description": "Namada governance and network metrics dashboard",
-        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z4Wg7andG6uee1EAyWEhCuivji41V",
-        "head": "7e3162d67880ddc2f72a52d1242f22aa246cd3e2",
-        "issues_closed": 0,
-        "issues_open": 0,
-        "issues_total": 0,
-        "name": "namada",
-        "patches_merged": 0,
-        "patches_open": 0,
-        "patches_total": 0,
-        "rid": "rad:z4Wg7andG6uee1EAyWEhCuivji41V",
-        "seeding": 24,
-        "threshold": 1
-      }
-    ],
-    "summary": {
-      "total_issues": 0,
-      "total_patches": 0,
-      "total_projects": 3,
-      "total_seeding": 77
-    }
-  },
-  {
-    "date": "2026-06-20",
-    "generated_at": "2026-06-20T14:53:04.131744538+00:00",
-    "projects": [
-      {
-        "delegates": 1,
-        "description": "A decentralized education hub for Zcash",
-        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:zad2NSrsw3NYdkvx1sTn6EYAqRHc",
-        "head": "2d70186d6936f5878d96be03e439e23d0dac1397",
-        "issues_closed": 0,
-        "issues_open": 0,
-        "issues_total": 0,
-        "name": "zechub",
-        "patches_merged": 0,
-        "patches_open": 0,
-        "patches_total": 0,
-        "rid": "rad:zad2NSrsw3NYdkvx1sTn6EYAqRHc",
-        "seeding": 15,
-        "threshold": 1
-      },
-      {
-        "delegates": 1,
-        "description": "Educational wiki for Zcash and privacy",
-        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
         "head": "7dfe819c73de770fe51881c2ccf1e82331d3073c",
         "issues_closed": 0,
         "issues_open": 0,
@@ -212,7 +32,7 @@
         "patches_open": 0,
         "patches_total": 0,
         "rid": "rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
-        "seeding": 14,
+        "seeding": 18,
         "threshold": 1
       },
       {
@@ -228,7 +48,7 @@
         "patches_open": 0,
         "patches_total": 0,
         "rid": "rad:z4Wg7andG6uee1EAyWEhCuivji41V",
-        "seeding": 11,
+        "seeding": 15,
         "threshold": 1
       }
     ],
@@ -236,7 +56,7 @@
       "total_issues": 0,
       "total_patches": 0,
       "total_projects": 3,
-      "total_seeding": 40
+      "total_seeding": 45
     }
   }
 ]
