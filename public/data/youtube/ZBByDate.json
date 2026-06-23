@@ -3,6 +3,16 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Desenvolvendo produtos digitais na nova economia. | Camila Nicolaus",
+            "video_id": "TqMSytKLe_4",
+            "views": 8
+        },
+        {
+            "title": "Privacidade n\u00e3o \u00e9 anonimato. \u00c9 soberania.",
+            "video_id": "UVXhKRFVU4I",
+            "views": 62
+        },
+        {
             "title": "Privacidade Para Jovens: A Li\u00e7\u00e3o da Zcash no Chapad\u00e3o",
             "video_id": "NpmoKWIWZlA",
             "views": 72
@@ -10,22 +20,22 @@
         {
             "title": "Mundo em Mudan\u00e7a: Por Que Estamos em Caos? | Rafael Castaneda | Zcon Vozes 2",
             "video_id": "Six9DE25QWM",
-            "views": 24
+            "views": 25
         },
         {
             "title": "As Ra\u00edzes, Os Riscos e Revolu\u00e7\u00f5es da Privacidade",
             "video_id": "asGy0nZTvo0",
-            "views": 128
+            "views": 132
         },
         {
             "title": "Privacidade de Mentirinha em Cripto: Seu Endere\u00e7o Entrega Tudo.",
             "video_id": "1TKctbsACzw",
-            "views": 316
+            "views": 317
         },
         {
             "title": "Protocol Study #4: Transactions Unpacked: JoinSplit to Actions | Engineering #12",
             "video_id": "ZmA57p318rI",
-            "views": 15
+            "views": 18
         },
         {
             "title": "A Linha Esquecida da Cripto: Privacidade, Cypherpunks e Zcash.",
@@ -100,7 +110,7 @@
         {
             "title": "Special Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
             "video_id": "jrWNz29nHKk",
-            "views": 17
+            "views": 18
         },
         {
             "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endere\u00e7o Shielded",
@@ -395,7 +405,7 @@
         {
             "title": "Memo Bundles e On-chain Storage: Dados Privados na Zcash Sem Virar Dump P\u00fablico | Engineering #4",
             "video_id": "0ec6O4W6MhU",
-            "views": 46
+            "views": 47
         },
         {
             "title": "Educa\u00e7\u00e3o Financeira Antes de Investir em Cripto",
@@ -450,7 +460,7 @@
         {
             "title": "Zashi Agora \u00e9 ZODL: Nova Carteira Zcash no iOS e Android com Privacidade por Padr\u00e3o",
             "video_id": "NkpD4kCPwdI",
-            "views": 66
+            "views": 67
         },
         {
             "title": "Zcash Merkle Tree - Como a Blockchain \u201cProva\u201d Transa\u00e7\u00f5es?",
@@ -470,7 +480,7 @@
         {
             "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Amea\u00e7as Qu\u00e2nticas | Engineering #3",
             "video_id": "R6916H2IMKI",
-            "views": 83
+            "views": 84
         },
         {
             "title": "A Zcash criou o movimento de privacidade 2.0",
@@ -1780,7 +1790,7 @@
         {
             "title": "Um d\u00f3lar ou um presente misterioso?",
             "video_id": "YiKFFpuwk2w",
-            "views": 402
+            "views": 403
         },
         {
             "title": "Press\u00e3o do Dolar e Risco de Quebra",
@@ -2275,7 +2285,7 @@
         {
             "title": "O capitalismo de vigil\u00e2ncia",
             "video_id": "qXjJJuiHPvQ",
-            "views": 176
+            "views": 177
         },
         {
             "title": "\u00c9 \"ok\" verificar as transa\u00e7\u00f5es cripto do seu namorado?",
@@ -2340,7 +2350,7 @@
         {
             "title": "Qual o valor da sua privacidade? #Privacidade #Cripto #Zcash",
             "video_id": "SRJXi3B5f3w",
-            "views": 937
+            "views": 938
         },
         {
             "title": "Duas propriedades necess\u00e1rias para a civiliza\u00e7\u00e3o... #Privacidade #Cripto #Zcash #direitohumano #IA",
@@ -2355,7 +2365,7 @@
         {
             "title": "Conhe\u00e7a Zooko, a maior f\u00e3 da Zcash! #https #privacidade #blockchain  #criptomoedas",
             "video_id": "eGrvVLhYBSw",
-            "views": 1045
+            "views": 1047
         },
         {
             "title": "Consci\u00eancia sobre manipula\u00e7\u00e3o de massa.",
@@ -2665,7 +2675,7 @@
         {
             "title": "Casta Estuda - Bitcoin X Zcash",
             "video_id": "X2iDTlijlc0",
-            "views": 840
+            "views": 841
         },
         {
             "title": "Marketing e Consumo",
@@ -3195,7 +3205,7 @@
         {
             "title": "Vitalik Buterin fala sobre ZKP #zcash #zkp",
             "video_id": "O9uwBEI6bIk",
-            "views": 605
+            "views": 608
         },
         {
             "title": "TheSmith - DAOS e seus desafios.",
