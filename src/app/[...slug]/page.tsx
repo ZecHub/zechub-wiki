@@ -1,15 +1,27 @@
 import MdxContainer from "@/components/MdxContainer";
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
-import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
-import { genMetadata, getBanner, getDynamicRoute } from "@/lib/helpers";
+import {
+  getFileContentCached,
+  getRootCached,
+  getAllMarkdownRecursively,
+  getSiteFolders,
+} from "@/lib/authAndFetch";
+import {
+  genMetadata,
+  getBanner,
+  getDynamicRoute,
+  transformUri,
+  transformGithubFilePathToWikiLink,
+} from "@/lib/helpers";
 import { normalizeMdx } from "@/lib/normalizeMdx";
 import { Metadata } from "next";
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { serialize } from 'next-mdx-remote/serialize';
-import remarkGfm from 'remark-gfm';   // ← NEW: enables GitHub-style tables
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 const LazyMdxComponent = React.lazy(() =>
   import("@/components/MdxRenderer")
@@ -46,75 +58,188 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
 
   const url = getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
+
+  const isResearchIndex = slug.length === 1 && slug[0] === "research";
+  const isResearchSeries = slug.length === 2 && slug[0] === "research";
+  const isResearchArticle = slug[0] === "research" && slug.length > 1;
+
+  let contentUrl = url;
+  if (isResearchArticle) {
+    const subPath = slug.slice(1).join("/");
+    contentUrl = `site/Research/${subPath}.md`;
+  }
+
   let markdown: any = null;
   let roots: any[] = [];
+  let dynamicCovers: Record<string, { src: string; alt: string }> = {};
+
   try {
-    const [md, rootsRaw] = await Promise.all([
-      getFileContentCached(url).catch(() => null),
-      getRootCached(urlRoot).catch(() => []),
-    ]);
-    markdown = md;
-    roots = Array.isArray(rootsRaw) ? rootsRaw : [];
+    if (isResearchIndex) {
+      const topLevel = await getRootCached(urlRoot).catch(() => []);
+      let seriesArticles: string[] = [];
+      try {
+        seriesArticles = await getAllMarkdownRecursively("site/Research/zcash-foundations-series");
+      } catch {}
+      roots = [...topLevel, ...seriesArticles];
+      markdown = null;
+    } 
+    else if (isResearchSeries) {
+      const seriesName = slug[1];
+      const basePath = `site/Research/${seriesName}`;
+
+      const collectArticles = async (path: string): Promise<string[]> => {
+        try {
+          const items = await getSiteFolders(path).catch(() => []);
+          let mds: string[] = [];
+          for (const item of items) {
+            if (item.endsWith(".md")) mds.push(item);
+            else if (!item.includes(".") && !item.endsWith(".md")) {
+              const sub = await collectArticles(item);
+              mds = mds.concat(sub);
+            }
+          }
+          return mds;
+        } catch { return []; }
+      };
+
+      const articlePaths = await collectArticles(basePath);
+
+      await Promise.all(
+        articlePaths.map(async (filePath) => {
+          try {
+            const content = await getFileContentCached(filePath);
+            if (!content) return;
+
+            const imgMatch = content.match(
+              /!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/
+            );
+            if (imgMatch) {
+              let imgSrc = imgMatch[1] || imgMatch[2];
+              if (imgSrc && !imgSrc.startsWith("http")) {
+                const dir = filePath.substring(0, filePath.lastIndexOf("/"));
+                imgSrc = `https://raw.githubusercontent.com/ZecHub/zechub/main/${dir}/${imgSrc}`;
+              }
+              const wikiSlug = transformGithubFilePathToWikiLink(filePath.replace(/\.md$/i, ""));
+              dynamicCovers[wikiSlug] = { src: imgSrc, alt: "Article thumbnail" };
+            }
+          } catch {}
+        })
+      );
+
+      roots = articlePaths;
+      markdown = null;
+    } 
+    else {
+      const [md, rootsRaw] = await Promise.all([
+        getFileContentCached(contentUrl).catch(() => null),
+        getRootCached(urlRoot).catch(() => []),
+      ]);
+      markdown = md;
+      roots = Array.isArray(rootsRaw) ? rootsRaw : [];
+    }
   } catch (e) {
-    console.error('Failed to fetch and parse .md file: ', e)
+    console.error('Failed to fetch and parse .md file: ', e);
     markdown = null;
     roots = [];
   }
 
+  // Preprocessing
+  let processedMarkdown = String(markdown || "");
+
+  if (isResearchArticle && processedMarkdown) {
+    const articleDir = `site/Research/${slug.slice(1, -1).join("/")}`;
+
+    // Image rewriting
+    processedMarkdown = processedMarkdown.replace(
+      /!\[([^\]]*)\]\(([^)]+?)\)/g,
+      (match, alt, src) => {
+        if (src.startsWith("http") || src.startsWith("/") || src.startsWith("#")) return match;
+        return `![${alt}](https://raw.githubusercontent.com/ZecHub/zechub/main/${articleDir}/${src})`;
+      }
+    );
+
+    // Much stronger <details> handling
+    // 1. Add blank lines before any <details> tag
+    processedMarkdown = processedMarkdown.replace(
+      /([^\n])\n?<details>/g,
+      '$1\n\n<details>'
+    );
+
+    // 2. Targeted fix for the exact "Answer" pattern your articles use (case-insensitive + flexible whitespace)
+    processedMarkdown = processedMarkdown.replace(
+      /<details>\s*<summary>\s*Answer\s*<\/summary>/gi,
+      '\n\n<details>\n<summary>Answer</summary>\n\n'
+    );
+
+    // 3. Ensure </details> has proper separation after it
+    processedMarkdown = processedMarkdown.replace(
+      /<\/details>([^\n])/g,
+      '</details>\n\n$1'
+    );
+  }
+
   const imgUrl = getBanner(slug[0]) || "";
   const imgUrlDark = getBanner(`${slug[0]}-dark`) || imgUrl;
-
   const showSideMenu = slug[0] !== "research" && roots.length > 0;
 
   const slugToTitle = (segment: string) =>
-    segment
-      .split("-")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ");
+    segment.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
-  const isResearchArticle =
-    slug[0] === "research" && slug.length > 1 && Boolean(markdown);
   const researchSegment = slug.length > 1 ? slug[slug.length - 1] : "";
   const researchBreadcrumbLabel = researchSegment ? slugToTitle(researchSegment) : "";
   const canonicalWikiUrl = `https://zechub.wiki/${slug.join("/")}`;
 
-  if (slug.length === 1 && slug[0] === "research") {
+  if (isResearchIndex) {
     return (
-      <MdxContainer
-        hasSideMenu={showSideMenu}
-        sideMenu={showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null}
-        roots={roots}
-        heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
-      >
-        <ResearchIndexGrid roots={roots} />
+      <MdxContainer hasSideMenu={showSideMenu} sideMenu={showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null} roots={roots} heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}>
+        <ResearchIndexGrid roots={roots.filter(r => !r.includes("zcash-foundations-series"))} />
+
+        <div className="px-2 pb-12">
+          <h2 className="mb-6 text-3xl font-bold">Series</h2>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            <a href="/research/zcash-foundations-series" className="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-background transition-shadow hover:shadow-md dark:border-slate-600">
+              <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-muted flex items-center justify-center">
+                <div className="text-center"><div className="text-4xl mb-2">📚</div><p className="text-lg font-semibold">Zcash Foundations Series</p></div>
+              </div>
+              <div className="flex flex-1 flex-col p-5">
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Research Series</p>
+                <h3 className="mt-1 text-lg font-bold text-foreground group-hover:underline">Zcash Foundations Series</h3>
+                <p className="mt-2 text-sm text-muted-foreground line-clamp-3">Foundational articles on Zcash shielded transactions, privacy, and protocol design.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </MdxContainer>
+    );
+  }
+
+  if (isResearchSeries) {
+    return (
+      <MdxContainer hasSideMenu={false} sideMenu={null} roots={roots} heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}>
+        <div className="px-2 pb-8">
+          <h1 className="text-4xl font-bold mb-2">Zcash Foundations Series</h1>
+          <p className="text-muted-foreground mb-8">Articles in this series</p>
+        </div>
+        <ResearchIndexGrid roots={roots} dynamicCovers={dynamicCovers} />
       </MdxContainer>
     );
   }
 
   if (!markdown) {
     return (
-      <MdxContainer
-        hasSideMenu={showSideMenu}
-        sideMenu={showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null}
-        roots={roots}
-        heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
-      >
+      <MdxContainer hasSideMenu={showSideMenu} sideMenu={showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null} roots={roots} heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}>
         <div className="px-6 py-12 text-center">
-          <h1 className="text-5xl font-bold mb-6 capitalize">
-            {slug[0].replace(/-/g, " ")}
-          </h1>
-          <p className="text-xl text-muted-foreground">
-            Browse the articles using the sidebar on the left 👈
-          </p>
+          <h1 className="text-5xl font-bold mb-6 capitalize">{slug[0].replace(/-/g, " ")}</h1>
+          <p className="text-xl text-muted-foreground">Browse the articles using the sidebar on the left 👈</p>
         </div>
       </MdxContainer>
     );
   }
 
-  // ← UPDATED: Now supports tables everywhere
-  const serializedSource = await serialize(normalizeMdx(String(markdown || "")), {
+  const serializedSource = await serialize(normalizeMdx(processedMarkdown), {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
+      rehypePlugins: [[rehypeRaw, { passThrough: ['mdxJsxFlowElement', 'mdxFlowExpression', 'mdxJsxTextElement', 'mdxTextExpression'] }]],
     },
   });
 
@@ -125,15 +250,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
       roots={roots}
       heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
       layoutVariant={isResearchArticle ? "research" : "default"}
-      researchMeta={
-        isResearchArticle
-          ? {
-              breadcrumbLabel: researchBreadcrumbLabel,
-              shareUrl: canonicalWikiUrl,
-              pageTitle: researchBreadcrumbLabel,
-            }
-          : undefined
-      }
+      researchMeta={isResearchArticle ? { breadcrumbLabel: researchBreadcrumbLabel, shareUrl: canonicalWikiUrl, pageTitle: researchBreadcrumbLabel } : undefined}
     >
       <Suspense fallback={<span className="text-center text-3xl">Loading...</span>}>
         <LazyMdxComponent source={serializedSource} />

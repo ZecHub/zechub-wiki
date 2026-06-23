@@ -10,17 +10,16 @@ const repo = REPO || "";
 
 const octokit = new Octokit({ auth: authUser });
 
-// Normalize string for fuzzy matching
 function normalize(str: string): string {
   return str
     .replace(/\.md$/i, "")
     .toLowerCase()
     .replace(/[-_ ]+/g, "");
 }
+
 export const getFileContentCached = unstable_cache(
   async (path: string) => {
     try {
-      // Try the exact transformed path first
       try {
         const res = await octokit.rest.repos.getContent({
           owner,
@@ -31,48 +30,31 @@ export const getFileContentCached = unstable_cache(
         // @ts-ignore
         return atob(res.data?.content || "");
       } catch (err: any) {
-        console.log({
-          // Direct path failed → fuzzy fallback
-          "Error! Status": err.status,
-          Message: err.response.data.message,
-        });
+        console.log({ "Error! Status": err.status, Message: err.response?.data?.message });
       }
 
-      // Fuzzy fallback: list real files in the folder and match by slug
       const folderPath = path.split("/").slice(0, -1).join("/");
       const realFiles = await getRootCached(folderPath);
-
-      if (realFiles && realFiles.length > 0) {
+      if (realFiles?.length) {
         const slugPart = path.split("/").pop()?.replace(/\.md$/i, "") || "";
         const normalizedSlug = normalize(slugPart);
-
         for (const file of realFiles) {
-          if (
-            normalize(file) === normalizedSlug ||
-            normalize(file).includes(normalizedSlug)
-          ) {
+          if (normalize(file) === normalizedSlug || normalize(file).includes(normalizedSlug)) {
             const res = await octokit.rest.repos.getContent({
-              owner,
-              repo,
-              path: file,
-              ref: BRANCH,
+              owner, repo, path: file, ref: BRANCH,
             });
             // @ts-ignore
             return atob(res.data?.content || "");
           }
         }
       }
-
       return null;
     } catch {
       return null;
     }
   },
   ["github-file-content-cache"],
-  {
-    revalidate: false, // ← FIXED: This is what Next.js accepts
-    tags: ["github-content"],
-  },
+  { revalidate: false, tags: ["github-content"] },
 );
 
 export const getRootCached = unstable_cache(
@@ -88,23 +70,13 @@ export const getRootCached = unstable_cache(
     return elements.filter((item: string) => item.endsWith(".md"));
   },
   ["github-root-md-cache"],
-  {
-    revalidate: 30,
-    tags: ["github-content"],
-  },
+  { revalidate: 30, tags: ["github-content"] },
 );
 
 export async function getSiteFolders(path: string) {
   try {
-    const res = await octokit.rest.repos.getContent({
-      owner,
-      repo,
-      path,
-      ref: BRANCH,
-    });
-    const data = res.data;
-    const elements = getFiles(data);
-    return elements;
+    const res = await octokit.rest.repos.getContent({ owner, repo, path, ref: BRANCH });
+    return getFiles(res.data);
   } catch {
     return [];
   }
@@ -122,11 +94,51 @@ export async function getRootFileName(path: string) {
     const elements = getFiles(data);
     return elements
       .filter((item: string) => item.endsWith(".md"))
-      .map((item: string) => {
-        const fileName = item.split("/").pop() || "";
-        return fileName.replace(/\.md$/, "");
-      });
+      .map((item: string) => item.split("/").pop()?.replace(/\.md$/, "") || "");
   } catch {
     return [];
   }
 }
+
+/**
+ * Recursive version that preserves the exact same first-call transformation
+ * as the original working getRootCached, then uses raw GitHub paths for subdirs.
+ */
+export const getAllMarkdownRecursively = unstable_cache(
+  async (initialPath: string): Promise<string[]> => {
+    const results: string[] = [];
+
+    const walk = async (currentPath: string, isInitial: boolean) => {
+      try {
+        const apiPath = isInitial
+          ? transformUri(currentPath).replace("/Site", "/site")
+          : currentPath; // raw path from GitHub (correct casing)
+
+        const res = await octokit.rest.repos.getContent({
+          owner,
+          repo,
+          path: apiPath,
+          ref: BRANCH,
+        });
+
+        const items = Array.isArray(res.data) ? res.data : [res.data];
+
+        for (const item of items) {
+          if (!item?.path) continue;
+          if (item.type === "file" && item.path.endsWith(".md")) {
+            results.push(item.path);
+          } else if (item.type === "dir") {
+            await walk(item.path, false);
+          }
+        }
+      } catch {
+        // ignore individual subdirectory failures
+      }
+    };
+
+    await walk(initialPath, true);
+    return results;
+  },
+  ["github-all-md-recursive-final"],
+  { revalidate: 60, tags: ["github-content"] },
+);

@@ -9,6 +9,7 @@ const RESEARCH_IMG_DARK = "/explore/dark/research.png";
 
 type Props = {
   roots: string[];
+  dynamicCovers?: Record<string, { src: string; alt?: string }>;
 };
 
 function descriptionForWikiPath(wikiPath: string): string {
@@ -17,7 +18,7 @@ function descriptionForWikiPath(wikiPath: string): string {
   return hit?.desc?.trim() ?? "";
 }
 
-export default function ResearchIndexGrid({ roots }: Props) {
+export default function ResearchIndexGrid({ roots, dynamicCovers = {} }: Props) {
   const articles = roots
     .filter((p) => p.endsWith(".md"))
     .map((filePath) => {
@@ -45,7 +46,9 @@ export default function ResearchIndexGrid({ roots }: Props) {
       </p>
       <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
         {articles.map(({ wikiSlug, title, desc, key }) => {
-          const cover = getResearchCardCover(wikiSlug);
+          const staticCover = getResearchCardCover(wikiSlug);
+          const cover = staticCover || dynamicCovers[wikiSlug];
+
           return (
             <li key={key}>
               <Link
@@ -56,7 +59,7 @@ export default function ResearchIndexGrid({ roots }: Props) {
                   {cover ? (
                     <Image
                       src={cover.src}
-                      alt={cover.alt}
+                      alt={cover.alt || title}
                       width={800}
                       height={450}
                       className="h-full w-full object-cover"
