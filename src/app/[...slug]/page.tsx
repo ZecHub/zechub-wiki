@@ -22,7 +22,6 @@ import { headers } from "next/headers";
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-
 const LazyMdxComponent = React.lazy(() =>
   import("@/components/MdxRenderer")
 );
@@ -60,15 +59,10 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   const urlRoot = `/site/${slug[0]}`;
 
   const isResearchIndex = slug.length === 1 && slug[0] === "research";
-  const isResearchSeries = slug.length === 2 && slug[0] === "research";
+  const isResearchSeries = slug.length === 2 && slug[0] === "research" && slug[1] === "zcash-foundations-series";
   const isResearchArticle = slug[0] === "research" && slug.length > 1;
 
   let contentUrl = url;
-  if (isResearchArticle) {
-    const subPath = slug.slice(1).join("/");
-    contentUrl = `site/Research/${subPath}.md`;
-  }
-
   let markdown: any = null;
   let roots: any[] = [];
   let dynamicCovers: Record<string, { src: string; alt: string }> = {};
@@ -82,11 +76,10 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
       } catch {}
       roots = [...topLevel, ...seriesArticles];
       markdown = null;
-    } 
+    }
     else if (isResearchSeries) {
       const seriesName = slug[1];
       const basePath = `site/Research/${seriesName}`;
-
       const collectArticles = async (path: string): Promise<string[]> => {
         try {
           const items = await getSiteFolders(path).catch(() => []);
@@ -101,15 +94,12 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
           return mds;
         } catch { return []; }
       };
-
       const articlePaths = await collectArticles(basePath);
-
       await Promise.all(
         articlePaths.map(async (filePath) => {
           try {
             const content = await getFileContentCached(filePath);
             if (!content) return;
-
             const imgMatch = content.match(
               /!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/
             );
@@ -125,17 +115,34 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
           } catch {}
         })
       );
-
       roots = articlePaths;
       markdown = null;
-    } 
+    }
     else {
-      const [md, rootsRaw] = await Promise.all([
-        getFileContentCached(contentUrl).catch(() => null),
-        getRootCached(urlRoot).catch(() => []),
-      ]);
-      markdown = md;
+      const rootsRaw = await getRootCached(urlRoot).catch(() => []);
       roots = Array.isArray(rootsRaw) ? rootsRaw : [];
+
+      if (isResearchArticle && !isResearchSeries) {
+        const lastSegment = slug[slug.length - 1];
+        const norm = (s: string) => s.toLowerCase().replace(/[-_ ]/g, "");
+        const target = norm(lastSegment);
+
+        const match = roots.find((r: string) => {
+          if (typeof r !== "string" || !r.endsWith(".md")) return false;
+          const base = r.split("/").pop()!.replace(/\.md$/i, "");
+          return norm(base) === target;
+        });
+
+        if (match) {
+          contentUrl = match;
+        } else {
+          const subPath = slug.slice(1).join("/");
+          contentUrl = `site/Research/${subPath}.md`;
+        }
+      }
+
+      const md = await getFileContentCached(contentUrl).catch(() => null);
+      markdown = md;
     }
   } catch (e) {
     console.error('Failed to fetch and parse .md file: ', e);
@@ -145,11 +152,8 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
 
   // Preprocessing
   let processedMarkdown = String(markdown || "");
-
   if (isResearchArticle && processedMarkdown) {
     const articleDir = `site/Research/${slug.slice(1, -1).join("/")}`;
-
-    // Image rewriting
     processedMarkdown = processedMarkdown.replace(
       /!\[([^\]]*)\]\(([^)]+?)\)/g,
       (match, alt, src) => {
@@ -157,21 +161,14 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         return `![${alt}](https://raw.githubusercontent.com/ZecHub/zechub/main/${articleDir}/${src})`;
       }
     );
-
-    // Much stronger <details> handling
-    // 1. Add blank lines before any <details> tag
     processedMarkdown = processedMarkdown.replace(
       /([^\n])\n?<details>/g,
       '$1\n\n<details>'
     );
-
-    // 2. Targeted fix for the exact "Answer" pattern your articles use (case-insensitive + flexible whitespace)
     processedMarkdown = processedMarkdown.replace(
       /<details>\s*<summary>\s*Answer\s*<\/summary>/gi,
       '\n\n<details>\n<summary>Answer</summary>\n\n'
     );
-
-    // 3. Ensure </details> has proper separation after it
     processedMarkdown = processedMarkdown.replace(
       /<\/details>([^\n])/g,
       '</details>\n\n$1'
@@ -181,10 +178,8 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   const imgUrl = getBanner(slug[0]) || "";
   const imgUrlDark = getBanner(`${slug[0]}-dark`) || imgUrl;
   const showSideMenu = slug[0] !== "research" && roots.length > 0;
-
   const slugToTitle = (segment: string) =>
     segment.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-
   const researchSegment = slug.length > 1 ? slug[slug.length - 1] : "";
   const researchBreadcrumbLabel = researchSegment ? slugToTitle(researchSegment) : "";
   const canonicalWikiUrl = `https://zechub.wiki/${slug.join("/")}`;
@@ -193,7 +188,6 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
     return (
       <MdxContainer hasSideMenu={showSideMenu} sideMenu={showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null} roots={roots} heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}>
         <ResearchIndexGrid roots={roots.filter(r => !r.includes("zcash-foundations-series"))} />
-
         <div className="px-2 pb-12">
           <h2 className="mb-6 text-3xl font-bold">Series</h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
