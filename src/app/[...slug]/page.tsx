@@ -110,15 +110,14 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
       roots = [...topLevel, ...seriesArticles];
 
       return (
-        <MdxContainer hasSideMenu={false} sideMenu={null} roots={roots} heroImage={{ src: getBanner(slug[0]) || "", darkSrc: getBanner(`${slug[0]}-dark`) || getBanner(slug[0]) || "" }}>
-          <ResearchIndexGrid 
-            roots={nonSeriesRoots} 
-            dynamicCovers={indexDynamicCovers} 
-            showHeader={true} 
-          />
-
-          {/* Improved Series promotional card - better on desktop */}
-          <div className="px-2 pb-12 pt-6 border-t border-border/60">
+        <MdxContainer 
+          hasSideMenu={false} 
+          sideMenu={null} 
+          roots={roots} 
+          heroImage={{ src: getBanner(slug[0]) || "", darkSrc: getBanner(`${slug[0]}-dark`) || getBanner(slug[0]) || "" }}
+        >
+          {/* === Series Section (On Top) === */}
+          <div className="px-2 pb-10">
             <div className="mb-5 px-1">
               <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Series</h2>
               <p className="mt-1.5 text-[15px] text-muted-foreground">
@@ -131,10 +130,14 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
                 href="/research/zcash-foundations-series" 
                 className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all active:scale-[0.985] sm:hover:border-slate-300 sm:hover:shadow-lg dark:border-slate-700 dark:sm:hover:border-slate-600"
               >
-                <div className="relative w-full shrink-0 overflow-hidden bg-gradient-to-br from-zinc-700 to-zinc-500 border border-slate-700 dark:border-zinc-500 flex items-center justify-center 
+                {/* Series Banner - Dark mode friendly */}
+                <div className="relative w-full shrink-0 overflow-hidden 
+                                bg-gradient-to-br from-zinc-700 to-zinc-500 
+                                border-b border-zinc-700
+                                flex items-center justify-center 
                                 aspect-[16/9] sm:aspect-[2.2/1] lg:aspect-[2.5/1]">
                   <div className="text-center px-6">
-                    <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10">
+                    <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/10">
                       <span className="text-5xl">📚</span>
                     </div>
                     <p className="text-2xl font-semibold text-white tracking-tight">Zcash Foundations Series</p>
@@ -162,6 +165,22 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
                 </div>
               </a>
             </div>
+          </div>
+
+          {/* === Research Articles Section === */}
+          <div className="px-2 pb-12">
+            <div className="mb-5 px-1">
+              <h2 className="text-2xl font-bold tracking-tight">Research Articles</h2>
+              <p className="mt-1.5 text-[15px] text-muted-foreground">
+                Articles and notes from the ZecHub community.
+              </p>
+            </div>
+
+            <ResearchIndexGrid 
+              roots={nonSeriesRoots} 
+              dynamicCovers={indexDynamicCovers} 
+              showHeader={false} 
+            />
           </div>
         </MdxContainer>
       );
