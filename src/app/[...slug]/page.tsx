@@ -112,17 +112,47 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
       return (
         <MdxContainer hasSideMenu={false} sideMenu={null} roots={roots} heroImage={{ src: getBanner(slug[0]) || "", darkSrc: getBanner(`${slug[0]}-dark`) || getBanner(slug[0]) || "" }}>
           <ResearchIndexGrid roots={nonSeriesRoots} dynamicCovers={indexDynamicCovers} />
-          <div className="px-2 pb-12">
-            <h2 className="mb-6 text-3xl font-bold">Series</h2>
+
+          {/* Improved Series promotional section */}
+          <div className="px-2 pb-12 pt-8 border-t border-border/60">
+            <div className="mb-6">
+              <h2 className="text-3xl font-bold tracking-tight">Series</h2>
+              <p className="mt-2 text-muted-foreground">Deep dives into core Zcash concepts</p>
+            </div>
+
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-              <a href="/research/zcash-foundations-series" className="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-background transition-shadow hover:shadow-md dark:border-slate-600">
-                <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-muted flex items-center justify-center">
-                  <div className="text-center"><div className="text-4xl mb-2">📚</div><p className="text-lg font-semibold">Zcash Foundations Series</p></div>
+              <a 
+                href="/research/zcash-foundations-series" 
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-700 dark:hover:border-slate-600"
+              >
+                <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center">
+                  <div className="text-center px-6">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur">
+                      <span className="text-5xl">📚</span>
+                    </div>
+                    <p className="text-2xl font-semibold text-white tracking-tight">Zcash Foundations Series</p>
+                  </div>
                 </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Research Series</p>
-                  <h3 className="mt-1 text-lg font-bold text-foreground group-hover:underline">Zcash Foundations Series</h3>
-                  <p className="mt-2 text-sm text-muted-foreground line-clamp-3">Foundational articles on Zcash shielded transactions, privacy, and protocol design.</p>
+                
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                      Core Series
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground group-hover:underline">
+                    Zcash Foundations Series
+                  </h3>
+                  
+                  <p className="mt-3 line-clamp-3 text-[15px] leading-relaxed text-muted-foreground">
+                    Foundational articles on shielded transactions, privacy models, 
+                    protocol design, and the core concepts that power Zcash.
+                  </p>
+                  
+                  <div className="mt-auto pt-5 text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                    Explore the series →
+                  </div>
                 </div>
               </a>
             </div>
@@ -163,6 +193,30 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
       );
       roots = articlePaths;
       markdown = null;
+
+      return (
+        <MdxContainer hasSideMenu={false} sideMenu={null} roots={roots} heroImage={{ src: getBanner(slug[0]) || "", darkSrc: getBanner(`${slug[0]}-dark`) || getBanner(slug[0]) || "" }}>
+          <div className="px-2 pb-8">
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-4xl">📚</span>
+                <h1 className="text-4xl font-bold">Zcash Foundations Series</h1>
+              </div>
+              <p className="max-w-3xl text-lg text-muted-foreground">
+                A collection of foundational articles covering Zcash shielded transactions, 
+                privacy models, protocol design, and core concepts that power the network.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                <span className="rounded-full bg-muted px-3 py-1">Shielded Transactions</span>
+                <span className="rounded-full bg-muted px-3 py-1">Privacy Models</span>
+                <span className="rounded-full bg-muted px-3 py-1">Protocol Design</span>
+                <span className="rounded-full bg-muted px-3 py-1">Zero Knowledge</span>
+              </div>
+            </div>
+          </div>
+          <ResearchIndexGrid roots={roots} dynamicCovers={dynamicCovers} />
+        </MdxContainer>
+      );
     }
     else {
       const rootsRaw = await getRootCached(urlRoot).catch(() => []);
@@ -229,18 +283,6 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   const researchSegment = slug.length > 1 ? slug[slug.length - 1] : "";
   const researchBreadcrumbLabel = researchSegment ? slugToTitle(researchSegment) : "";
   const canonicalWikiUrl = `https://zechub.wiki/${slug.join("/")}`;
-
-  if (isResearchSeries) {
-    return (
-      <MdxContainer hasSideMenu={false} sideMenu={null} roots={roots} heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}>
-        <div className="px-2 pb-8">
-          <h1 className="text-4xl font-bold mb-2">Zcash Foundations Series</h1>
-          <p className="text-muted-foreground mb-8">Articles in this series</p>
-        </div>
-        <ResearchIndexGrid roots={roots} dynamicCovers={dynamicCovers} />
-      </MdxContainer>
-    );
-  }
 
   if (!markdown) {
     return (
