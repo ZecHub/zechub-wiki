@@ -111,46 +111,52 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
 
       return (
         <MdxContainer hasSideMenu={false} sideMenu={null} roots={roots} heroImage={{ src: getBanner(slug[0]) || "", darkSrc: getBanner(`${slug[0]}-dark`) || getBanner(slug[0]) || "" }}>
-          <ResearchIndexGrid roots={nonSeriesRoots} dynamicCovers={indexDynamicCovers} />
+          <ResearchIndexGrid 
+            roots={nonSeriesRoots} 
+            dynamicCovers={indexDynamicCovers} 
+            showHeader={true} 
+          />
 
-          {/* Improved Series promotional section */}
-          <div className="px-2 pb-12 pt-8 border-t border-border/60">
-            <div className="mb-6">
-              <h2 className="text-3xl font-bold tracking-tight">Series</h2>
-              <p className="mt-2 text-muted-foreground">Deep dives into core Zcash concepts</p>
+          {/* Improved Series promotional card - better on desktop */}
+          <div className="px-2 pb-12 pt-6 border-t border-border/60">
+            <div className="mb-5 px-1">
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Series</h2>
+              <p className="mt-1.5 text-[15px] text-muted-foreground">
+                Deep dives into core Zcash concepts
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="max-w-2xl">
               <a 
                 href="/research/zcash-foundations-series" 
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all hover:border-slate-300 hover:shadow-lg dark:border-slate-700 dark:hover:border-slate-600"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all active:scale-[0.985] sm:hover:border-slate-300 sm:hover:shadow-lg dark:border-slate-700 dark:sm:hover:border-slate-600"
               >
-                <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center">
+                <div className="relative w-full shrink-0 overflow-hidden bg-gradient-to-br from-zinc-700 to-zinc-500 border border-slate-700 dark:border-zinc-500 flex items-center justify-center 
+                                aspect-[16/9] sm:aspect-[2.2/1] lg:aspect-[2.5/1]">
                   <div className="text-center px-6">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur">
+                    <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10">
                       <span className="text-5xl">📚</span>
                     </div>
                     <p className="text-2xl font-semibold text-white tracking-tight">Zcash Foundations Series</p>
                   </div>
                 </div>
-                
+
                 <div className="flex flex-1 flex-col p-6">
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="mb-2">
                     <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
                       Core Series
                     </span>
                   </div>
-                  
-                  <h3 className="text-xl font-semibold tracking-tight text-foreground group-hover:underline">
+
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground">
                     Zcash Foundations Series
                   </h3>
-                  
-                  <p className="mt-3 line-clamp-3 text-[15px] leading-relaxed text-muted-foreground">
-                    Foundational articles on shielded transactions, privacy models, 
-                    protocol design, and the core concepts that power Zcash.
+
+                  <p className="mt-3 text-[15px] text-muted-foreground">
+                    Foundational articles on shielded transactions, privacy models, and protocol design.
                   </p>
-                  
-                  <div className="mt-auto pt-5 text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+
+                  <div className="mt-auto pt-5 text-sm font-medium text-muted-foreground group-active:text-foreground transition-colors">
                     Explore the series →
                   </div>
                 </div>
@@ -214,7 +220,12 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
               </div>
             </div>
           </div>
-          <ResearchIndexGrid roots={roots} dynamicCovers={dynamicCovers} />
+
+          <ResearchIndexGrid 
+            roots={roots} 
+            dynamicCovers={dynamicCovers} 
+            showHeader={false} 
+          />
         </MdxContainer>
       );
     }
