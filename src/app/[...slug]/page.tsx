@@ -26,6 +26,21 @@ const LazyMdxComponent = React.lazy(() =>
   import("@/components/MdxRenderer")
 );
 
+function extractFirstContentImage(content: string, filePath: string): string | null {
+  const matches = content.match(/!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/g) || [];
+  for (const m of matches) {
+    const single = m.match(/!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/);
+    if (!single) continue;
+    const src = single[1] || single[2];
+    if (src && !/shields\.io|badge|edit/i.test(src)) {
+      if (src.startsWith("http")) return src;
+      const dir = filePath.substring(0, filePath.lastIndexOf("/"));
+      return `https://raw.githubusercontent.com/ZecHub/zechub/main/${dir}/${src}`;
+    }
+  }
+  return null;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -83,15 +98,8 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
           try {
             const content = await getFileContentCached(filePath);
             if (!content) return;
-            const imgMatch = content.match(
-              /!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/
-            );
-            if (imgMatch) {
-              let imgSrc = imgMatch[1] || imgMatch[2];
-              if (imgSrc && !imgSrc.startsWith("http")) {
-                const dir = filePath.substring(0, filePath.lastIndexOf("/"));
-                imgSrc = `https://raw.githubusercontent.com/ZecHub/zechub/main/${dir}/${imgSrc}`;
-              }
+            const imgSrc = extractFirstContentImage(content, filePath);
+            if (imgSrc) {
               const wikiSlug = transformGithubFilePathToWikiLink(filePath.replace(/\.md$/i, ""));
               indexDynamicCovers[wikiSlug] = { src: imgSrc, alt: "Article thumbnail" };
             }
@@ -145,15 +153,8 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
           try {
             const content = await getFileContentCached(filePath);
             if (!content) return;
-            const imgMatch = content.match(
-              /!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/
-            );
-            if (imgMatch) {
-              let imgSrc = imgMatch[1] || imgMatch[2];
-              if (imgSrc && !imgSrc.startsWith("http")) {
-                const dir = filePath.substring(0, filePath.lastIndexOf("/"));
-                imgSrc = `https://raw.githubusercontent.com/ZecHub/zechub/main/${dir}/${imgSrc}`;
-              }
+            const imgSrc = extractFirstContentImage(content, filePath);
+            if (imgSrc) {
               const wikiSlug = transformGithubFilePathToWikiLink(filePath.replace(/\.md$/i, ""));
               dynamicCovers[wikiSlug] = { src: imgSrc, alt: "Article thumbnail" };
             }
