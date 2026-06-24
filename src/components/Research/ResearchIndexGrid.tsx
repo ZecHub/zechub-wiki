@@ -10,6 +10,9 @@ const RESEARCH_IMG_DARK = "/explore/dark/research.png";
 type Props = {
   roots: string[];
   dynamicCovers?: Record<string, { src: string; alt?: string }>;
+  showHeader?: boolean;
+  title?: string;
+  subtitle?: string;
 };
 
 function descriptionForWikiPath(wikiPath: string): string {
@@ -18,15 +21,21 @@ function descriptionForWikiPath(wikiPath: string): string {
   return hit?.desc?.trim() ?? "";
 }
 
-export default function ResearchIndexGrid({ roots, dynamicCovers = {} }: Props) {
+export default function ResearchIndexGrid({
+  roots,
+  dynamicCovers = {},
+  showHeader = true,
+  title = "Research",
+  subtitle = "Articles and notes from the ZecHub community.",
+}: Props) {
   const articles = roots
     .filter((p) => p.endsWith(".md"))
     .map((filePath) => {
       const pathNoExt = filePath.replace(/\.md$/i, "");
       const wikiSlug = transformGithubFilePathToWikiLink(pathNoExt);
-      const title = getName(pathNoExt);
+      const titleText = getName(pathNoExt);
       const desc = descriptionForWikiPath(wikiSlug);
-      return { wikiSlug, title, desc, key: filePath };
+      return { wikiSlug, title: titleText, desc, key: filePath };
     })
     .sort((a, b) => a.title.localeCompare(b.title));
 
@@ -39,13 +48,16 @@ export default function ResearchIndexGrid({ roots, dynamicCovers = {} }: Props) 
   }
 
   return (
-    <div className="px-2 pb-12">
-      <h1 className="mb-2 text-4xl font-bold capitalize">Research</h1>
-      <p className="mb-10 text-lg text-muted-foreground">
-        Articles and notes from the ZecHub community.
-      </p>
-      <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-        {articles.map(({ wikiSlug, title, desc, key }) => {
+    <div className="px-2 pb-8">
+      {showHeader && (
+        <>
+          <h1 className="mb-2 text-4xl font-bold capitalize">{title}</h1>
+          <p className="mb-10 text-lg text-muted-foreground">{subtitle}</p>
+        </>
+      )}
+
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {articles.map(({ wikiSlug, title: articleTitle, desc, key }) => {
           const staticCover = getResearchCardCover(wikiSlug);
           const cover = staticCover || dynamicCovers[wikiSlug];
 
@@ -53,47 +65,30 @@ export default function ResearchIndexGrid({ roots, dynamicCovers = {} }: Props) 
             <li key={key}>
               <Link
                 href={`/${wikiSlug}#content`}
-                className="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-background transition-shadow hover:shadow-md dark:border-slate-600"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all active:scale-[0.985] sm:hover:border-slate-300 sm:hover:shadow-lg dark:border-slate-700 dark:sm:hover:border-slate-600"
               >
                 <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-muted">
                   {cover ? (
                     <Image
                       src={cover.src}
-                      alt={cover.alt || title}
+                      alt={cover.alt || articleTitle}
                       width={800}
                       height={450}
                       className="h-full w-full object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   ) : (
                     <>
-                      <Image
-                        src={RESEARCH_IMG_LIGHT}
-                        alt=""
-                        width={640}
-                        height={360}
-                        className="h-full w-full object-cover dark:hidden"
-                      />
-                      <Image
-                        src={RESEARCH_IMG_DARK}
-                        alt=""
-                        width={640}
-                        height={360}
-                        className="hidden h-full w-full object-cover dark:block"
-                      />
+                      <Image src={RESEARCH_IMG_LIGHT} alt="" width={640} height={360} className="h-full w-full object-cover dark:hidden" />
+                      <Image src={RESEARCH_IMG_DARK} alt="" width={640} height={360} className="hidden h-full w-full object-cover dark:block" />
                     </>
                   )}
                 </div>
+
                 <div className="flex flex-1 flex-col p-5">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    Research
-                  </p>
-                  <h2 className="mt-1 text-lg font-bold text-foreground group-hover:underline">
-                    {title}
-                  </h2>
-                  {desc ? (
-                    <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{desc}</p>
-                  ) : null}
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Research</p>
+                  <h2 className="mt-1 text-lg font-bold text-foreground group-hover:underline">{articleTitle}</h2>
+                  {desc ? <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{desc}</p> : null}
                 </div>
               </Link>
             </li>
