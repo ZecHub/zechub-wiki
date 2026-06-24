@@ -30,10 +30,8 @@ export default function CodePulse() {
           fetch("/data/radicle/radicle.json"),
           fetch("/data/github/github.json"),
         ]);
-
         const radData = await radRes.json();
         const gitData = await gitRes.json();
-
         setRadicleHistory(Array.isArray(radData) ? radData : []);
         setGithubHistory(Array.isArray(gitData) ? gitData : []);
       } catch (error) {
@@ -42,7 +40,6 @@ export default function CodePulse() {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
@@ -66,25 +63,46 @@ export default function CodePulse() {
     );
   }
 
+  const metricOptions =
+    view === "radicle"
+      ? [
+          { value: "seeding", label: "Seeding" },
+          { value: "open_issues", label: "Open Issues" },
+          { value: "merged_prs", label: "Merged Patches" },
+        ]
+      : [
+          { value: "stars", label: "Stars" },
+          { value: "forks", label: "Forks" },
+          { value: "open_issues", label: "Open Issues" },
+          { value: "merged_prs", label: "Merged PRs" },
+        ];
+
+  const currentMetricLabel =
+    metricOptions.find((m) => m.value === selectedMetric)?.label || selectedMetric;
+
   const trendData = currentHistory.map((entry: any) => {
-    const proj = entry.projects?.[0] || {};
-    return view === "radicle"
-      ? {
-          date: entry.date,
-          seeding: proj.seeding || 0,
-          open_issues: proj.issues_open || 0,
-          merged_prs: proj.patches_merged || 0,
-          stars: 0,
-          forks: 0,
-        }
-      : {
-          date: entry.date,
-          seeding: 0,
-          open_issues: proj.open_issues || 0,
-          merged_prs: proj.merged_pull_requests || 0,
-          stars: proj.stars || 0,
-          forks: proj.forks || 0,
-        };
+    const s = entry.summary || {};
+    const projects = entry.projects || [];
+
+    if (view === "radicle") {
+      return {
+        date: entry.date,
+        seeding: s.total_seeding ?? projects.reduce((sum: number, p: any) => sum + (p.seeding || 0), 0),
+        open_issues: s.total_issues ?? projects.reduce((sum: number, p: any) => sum + (p.issues_open || 0), 0),
+        merged_prs: s.total_patches ?? projects.reduce((sum: number, p: any) => sum + (p.patches_merged || 0), 0),
+        stars: 0,
+        forks: 0,
+      };
+    } else {
+      return {
+        date: entry.date,
+        seeding: 0,
+        open_issues: s.total_open_issues ?? projects.reduce((sum: number, p: any) => sum + (p.open_issues || 0), 0),
+        merged_prs: s.total_merged_prs ?? projects.reduce((sum: number, p: any) => sum + (p.merged_pull_requests || 0), 0),
+        stars: s.total_stars ?? projects.reduce((sum: number, p: any) => sum + (p.stars || 0), 0),
+        forks: s.total_forks ?? projects.reduce((sum: number, p: any) => sum + (p.forks || 0), 0),
+      };
+    }
   });
 
   const handleViewChange = (v: View) => {
@@ -110,7 +128,7 @@ export default function CodePulse() {
         )}
       </div>
 
-      {/* Toggle - Fixed Colors */}
+      {/* Toggle */}
       <div className="inline-flex rounded-xl border bg-muted p-1 text-sm">
         <button
           onClick={() => handleViewChange("radicle")}
@@ -144,20 +162,19 @@ export default function CodePulse() {
       {/* Trends */}
       <div className="pt-6 border-t">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold">Trends Over Time</h3>
+          <h3 className="text-lg font-semibold">Trends Over Time — {currentMetricLabel}</h3>
           <select
             value={selectedMetric}
             onChange={(e) => setSelectedMetric(e.target.value as any)}
             className="bg-background border rounded-lg px-3 py-1 text-sm min-w-32.5"
           >
-            <option value="seeding">Seeding</option>
-            <option value="open_issues">Open Issues</option>
-            <option value="merged_prs">Merged PRs</option>
-            <option value="stars">Stars</option>
-            <option value="forks">Forks</option>
+            {metricOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
           </select>
         </div>
-
         <div className="h-80 w-full rounded-xl border bg-card p-4">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={trendData}>
@@ -184,7 +201,6 @@ export default function CodePulse() {
 function RadicleView({ data }: { data: any }) {
   const projects = data.projects || [];
   const summary = data.summary || {};
-
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -208,9 +224,8 @@ function RadicleView({ data }: { data: any }) {
           color="text-blue-600"
         />
       </div>
-
       <div className="overflow-x-auto rounded-xl border bg-card">
-        <table className="w-full text-sm imd:min-w-[620px]">
+        <table className="w-full text-sm md:min-w-[620px]">
           <thead className="bg-muted">
             <tr>
               <th className="text-left p-4">Project</th>
@@ -263,7 +278,6 @@ function RadicleView({ data }: { data: any }) {
 // GitHub View
 function GitHubView({ data }: { data: any }) {
   const projects = data.projects || [];
-
   const totalStars = projects.reduce(
     (sum: number, p: any) => sum + (p.stars || 0),
     0,
@@ -280,7 +294,6 @@ function GitHubView({ data }: { data: any }) {
     (sum: number, p: any) => sum + (p.merged_pull_requests || 0),
     0,
   );
-
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -305,9 +318,8 @@ function GitHubView({ data }: { data: any }) {
           color="text-purple-600"
         />
       </div>
-
       <div className="overflow-x-auto rounded-xl border bg-card">
-        <table className="w-full text-sm imd:min-w-[620px]">
+        <table className="w-full text-sm md:min-w-[620px]">
           <thead className="bg-muted">
             <tr>
               <th className="text-left p-4">Project</th>
