@@ -298,5 +298,65 @@
       "total_projects": 3,
       "total_seeding": 48
     }
+  },
+  {
+    "date": "2026-06-26",
+    "generated_at": "2026-06-26T12:26:47.703872264+00:00",
+    "projects": [
+      {
+        "delegates": 1,
+        "description": "A decentralized education hub for Zcash",
+        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:zad2NSrsw3NYdkvx1sTn6EYAqRHc",
+        "head": "34ec5857d8698f1a5c5a30ebecec0604742513f2",
+        "issues_closed": 0,
+        "issues_open": 0,
+        "issues_total": 0,
+        "name": "zechub",
+        "patches_merged": 0,
+        "patches_open": 0,
+        "patches_total": 0,
+        "rid": "rad:zad2NSrsw3NYdkvx1sTn6EYAqRHc",
+        "seeding": 13,
+        "threshold": 1
+      },
+      {
+        "delegates": 1,
+        "description": "Educational wiki for Zcash and privacy",
+        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
+        "head": "82a3ee44c073c8edb0511e08f2319a4ca013f175",
+        "issues_closed": 0,
+        "issues_open": 0,
+        "issues_total": 0,
+        "name": "zechub-wiki",
+        "patches_merged": 0,
+        "patches_open": 0,
+        "patches_total": 0,
+        "rid": "rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
+        "seeding": 13,
+        "threshold": 1
+      },
+      {
+        "delegates": 1,
+        "description": "Namada governance and network metrics dashboard",
+        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z4Wg7andG6uee1EAyWEhCuivji41V",
+        "head": "51e2afc982dbfb9e038a8ac8a6e9d2a9404da959",
+        "issues_closed": 0,
+        "issues_open": 0,
+        "issues_total": 0,
+        "name": "namada",
+        "patches_merged": 0,
+        "patches_open": 0,
+        "patches_total": 0,
+        "rid": "rad:z4Wg7andG6uee1EAyWEhCuivji41V",
+        "seeding": 15,
+        "threshold": 1
+      }
+    ],
+    "summary": {
+      "total_issues": 0,
+      "total_patches": 0,
+      "total_projects": 3,
+      "total_seeding": 41
+    }
   }
 ]
