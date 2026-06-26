@@ -8,7 +8,7 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench, Map, Gem } from "lucide-react";
+import { Wrench, Map, Gem, BookOpenText } from "lucide-react";
 import { FcVoicePresentation } from "react-icons/fc";
 import { FaUserAstronaut } from "react-icons/fa";
 
@@ -407,6 +407,11 @@ export const navigations: Array<NavigationItem> = [
     name: "Visual Identity",
     path: "/visual-identity",
     icon: Gem,
+  },
+  {
+    name: "Research",
+    path: "/research",
+    icon: BookOpenText,
   },
 ];
 
