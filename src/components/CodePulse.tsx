@@ -78,7 +78,8 @@ export default function CodePulse() {
         ];
 
   const currentMetricLabel =
-    metricOptions.find((m) => m.value === selectedMetric)?.label || selectedMetric;
+    metricOptions.find((m) => m.value === selectedMetric)?.label ||
+    selectedMetric;
 
   const trendData = currentHistory.map((entry: any) => {
     const s = entry.summary || {};
@@ -87,9 +88,21 @@ export default function CodePulse() {
     if (view === "radicle") {
       return {
         date: entry.date,
-        seeding: s.total_seeding ?? projects.reduce((sum: number, p: any) => sum + (p.seeding || 0), 0),
-        open_issues: s.total_issues ?? projects.reduce((sum: number, p: any) => sum + (p.issues_open || 0), 0),
-        merged_prs: s.total_patches ?? projects.reduce((sum: number, p: any) => sum + (p.patches_merged || 0), 0),
+        seeding:
+          s.total_seeding ??
+          projects.reduce((sum: number, p: any) => sum + (p.seeding || 0), 0),
+        open_issues:
+          s.total_issues ??
+          projects.reduce(
+            (sum: number, p: any) => sum + (p.issues_open || 0),
+            0,
+          ),
+        merged_prs:
+          s.total_patches ??
+          projects.reduce(
+            (sum: number, p: any) => sum + (p.patches_merged || 0),
+            0,
+          ),
         stars: 0,
         forks: 0,
       };
@@ -97,10 +110,24 @@ export default function CodePulse() {
       return {
         date: entry.date,
         seeding: 0,
-        open_issues: s.total_open_issues ?? projects.reduce((sum: number, p: any) => sum + (p.open_issues || 0), 0),
-        merged_prs: s.total_merged_prs ?? projects.reduce((sum: number, p: any) => sum + (p.merged_pull_requests || 0), 0),
-        stars: s.total_stars ?? projects.reduce((sum: number, p: any) => sum + (p.stars || 0), 0),
-        forks: s.total_forks ?? projects.reduce((sum: number, p: any) => sum + (p.forks || 0), 0),
+        open_issues:
+          s.total_open_issues ??
+          projects.reduce(
+            (sum: number, p: any) => sum + (p.open_issues || 0),
+            0,
+          ),
+        merged_prs:
+          s.total_merged_prs ??
+          projects.reduce(
+            (sum: number, p: any) => sum + (p.merged_pull_requests || 0),
+            0,
+          ),
+        stars:
+          s.total_stars ??
+          projects.reduce((sum: number, p: any) => sum + (p.stars || 0), 0),
+        forks:
+          s.total_forks ??
+          projects.reduce((sum: number, p: any) => sum + (p.forks || 0), 0),
       };
     }
   });
@@ -162,11 +189,13 @@ export default function CodePulse() {
       {/* Trends */}
       <div className="pt-6 border-t">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold">Trends Over Time — {currentMetricLabel}</h3>
+          <h3 className="text-lg font-semibold">
+            Trends Over Time — {currentMetricLabel}
+          </h3>
           <select
             value={selectedMetric}
             onChange={(e) => setSelectedMetric(e.target.value as any)}
-            className="bg-background border rounded-lg px-3 py-1 text-sm min-w-32.5"
+            className="bg-background border rounded-lg px-3 py-1 text-sm min-w-37"
           >
             {metricOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -181,7 +210,32 @@ export default function CodePulse() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
               <YAxis />
-              <Tooltip />
+              <Tooltip
+                content={({ active, payload, label }) => {
+                  if (!active || !payload?.length) return null;
+
+                  const { date } = payload[0].payload;
+
+                  return (
+                    <div className="rounded-md px-3 py-2 shadow-md border text-sm bg-slate-50 dark:bg-slate-800 border-slate-700 dark:text-slate-100">
+                      <p className="font-semibold">{date}</p>
+
+                      {payload.map((entry, idx) => (
+                        <div
+                          key={idx}
+                          className="flex justify-betwezen text-base gap-4"
+                          style={{ color: entry.color }}
+                        >
+                          <span>{entry.name}:</span>
+                          <span className="text-slate-800 dark:text-slate-50">
+                            {entry.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }}
+              />
               <Line
                 type="monotone"
                 dataKey={selectedMetric}
