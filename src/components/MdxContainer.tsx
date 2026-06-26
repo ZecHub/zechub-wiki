@@ -47,7 +47,7 @@ export default async function MdxContainer({
   return (
     <main>
       {!isResearchArticle ? (
-        <div className="mb-5 flex w-full justify-center rounded bg-transparent pb-4">
+        <div className="mb-5 flex w-full justify-center rounded bg-transparent pb-0 imd:pb-4">
           {/* Light mode image */}
           <Image
             className="mb-5 w-full object-cover dark:hidden"
@@ -90,7 +90,10 @@ export default async function MdxContainer({
               >
                 <ol className="flex flex-wrap items-center gap-1.5">
                   <li>
-                    <Link href="/" className="transition-colors hover:text-foreground">
+                    <Link
+                      href="/"
+                      className="transition-colors hover:text-foreground"
+                    >
                       Wiki
                     </Link>
                   </li>
@@ -98,26 +101,34 @@ export default async function MdxContainer({
                     /
                   </li>
                   <li>
-                    <Link href="/research" className="transition-colors hover:text-foreground">
+                    <Link
+                      href="/research"
+                      className="transition-colors hover:text-foreground"
+                    >
                       Research
                     </Link>
                   </li>
                   <li aria-hidden className="text-muted-foreground/80">
                     /
                   </li>
-                  <li className="text-foreground/90">{researchMeta.breadcrumbLabel}</li>
+                  <li className="text-foreground/90">
+                    {researchMeta.breadcrumbLabel}
+                  </li>
                 </ol>
               </nav>
               <div className="research-article-mdx max-w-none [&_img]:max-w-full [&_img]:rounded-lg">
                 {children}
               </div>
             </section>
-            <ResearchArticleAside title={researchMeta.pageTitle} shareUrl={researchMeta.shareUrl} />
+            <ResearchArticleAside
+              title={researchMeta.pageTitle}
+              shareUrl={researchMeta.shareUrl}
+            />
           </div>
         ) : (
           <section
             style={{ margin: "auto" }}
-            className={`h-auto w-full border-t p-3 dark:border-slate-400 ${
+            className={`h-auto w-full p-3 dark:border-slate-400 ${
               hasSideMenu ? "xl:border-l" : ""
             }`}
           >
