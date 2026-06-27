@@ -135,7 +135,7 @@
     {
       "title": "Vitalik Buterin fala sobre ZKP #zcash #zkp",
       "video_id": "O9uwBEI6bIk",
-      "views": 608
+      "views": 609
     },
     {
       "title": "Soberania Econômica e Blockchain.",
@@ -155,7 +155,7 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 561
+      "views": 563
     },
     {
       "title": "A verdade sobre a privacidade no mundo digital!",
@@ -273,6 +273,11 @@
       "views": 321
     },
     {
+      "title": "Privacidade de Mentirinha em Cripto: Seu Endereço Entrega Tudo.",
+      "video_id": "1TKctbsACzw",
+      "views": 320
+    },
+    {
       "title": "A luta pelo acesso ao dolar",
       "video_id": "5XGc5wSc1Qg",
       "views": 319
@@ -281,11 +286,6 @@
       "title": "O futuro será liberdade… ou vigilância on-chain?",
       "video_id": "1GvgQaNYyq4",
       "views": 319
-    },
-    {
-      "title": "Privacidade de Mentirinha em Cripto: Seu Endereço Entrega Tudo.",
-      "video_id": "1TKctbsACzw",
-      "views": 318
     },
     {
       "title": "Por Que Assinaturas Agregadas Podem Revolucionar a Escalabilidade em Blockchain.",
@@ -638,6 +638,11 @@
       "views": 165
     },
     {
+      "title": "Zebra Talk | A Fronteira Financeira liderada por elas. #DeFi",
+      "video_id": "FWZR2DJHl0U",
+      "views": 164
+    },
+    {
       "title": "A Ilusão do Dinheiro Fictício",
       "video_id": "qhnJIOc2ln4",
       "views": 163
@@ -648,14 +653,9 @@
       "views": 163
     },
     {
-      "title": "Zebra Talk | A Fronteira Financeira liderada por elas. #DeFi",
-      "video_id": "FWZR2DJHl0U",
-      "views": 163
-    },
-    {
       "title": "Rodando Seu Próprio Nó Zcash no Linux — Zebrad + Firewall + RPC + Systemd (Guia Completo)",
       "video_id": "Cbz1BTuKRUo",
-      "views": 162
+      "views": 163
     },
     {
       "title": "Bitcoin não funciona como pagamento sem privacidade — Josh Swihart",
@@ -1493,6 +1493,16 @@
       "views": 73
     },
     {
+      "title": "Privacidade Para Jovens: A Lição da Zcash no Chapadão",
+      "video_id": "NpmoKWIWZlA",
+      "views": 73
+    },
+    {
+      "title": "Zcash Engineering Office Hours: Zcash Names and Edge Wallet",
+      "video_id": "ySE70XuDudk",
+      "views": 73
+    },
+    {
       "title": "Como a integração da Flexa e Zashi protege a privacidade do consumidor",
       "video_id": "lHeTVBu3Tik",
       "views": 72
@@ -1505,11 +1515,6 @@
     {
       "title": "Zcash Brasil no Modular Carnival",
       "video_id": "PVhkCQawMkA",
-      "views": 72
-    },
-    {
-      "title": "Privacidade Para Jovens: A Lição da Zcash no Chapadão",
-      "video_id": "NpmoKWIWZlA",
       "views": 72
     },
     {
@@ -1553,6 +1558,11 @@
       "views": 70
     },
     {
+      "title": "Privacidade não é anonimato. É soberania.",
+      "video_id": "UVXhKRFVU4I",
+      "views": 70
+    },
+    {
       "title": "Michael Del Castilho da Forbes fala sobre a cerimônia Zcash e ZKPs",
       "video_id": "A9AoEH2bs7k",
       "views": 69
@@ -1570,11 +1580,6 @@
     {
       "title": "Tachyon com Sean Bowe: Sincronização Instantânea e Escalabilidade na Zcash | Engineering #5",
       "video_id": "uB7Tf4LlGoA",
-      "views": 69
-    },
-    {
-      "title": "Privacidade não é anonimato. É soberania.",
-      "video_id": "UVXhKRFVU4I",
       "views": 69
     },
     {
@@ -1690,11 +1695,6 @@
     {
       "title": "O que o ex-CEO do Goldman Sachs falou sobre Zcash",
       "video_id": "AsiSVLndB-k",
-      "views": 62
-    },
-    {
-      "title": "Zcash Engineering Office Hours: Zcash Names and Edge Wallet",
-      "video_id": "ySE70XuDudk",
       "views": 62
     },
     {
@@ -1988,6 +1988,11 @@
       "views": 47
     },
     {
+      "title": "Privacidade Na Indústria On-chain | Tokenation 2026",
+      "video_id": "rEqCsY0GpCo",
+      "views": 47
+    },
+    {
       "title": "Atenção com a segurança das mensagens.  #ai #podcast #privacidade",
       "video_id": "U843cPCoLAo",
       "views": 46
@@ -1995,11 +2000,6 @@
     {
       "title": "Provas de Conhecimento Zero Recursivas um divisor de aguas.",
       "video_id": "d35v9ddPgYw",
-      "views": 46
-    },
-    {
-      "title": "Privacidade Na Indústria On-chain | Tokenation 2026",
-      "video_id": "rEqCsY0GpCo",
       "views": 46
     },
     {
@@ -2503,6 +2503,16 @@
       "views": 33
     },
     {
+      "title": "Desenvolvendo produtos digitais na nova economia. | Camila Nicolaus",
+      "video_id": "TqMSytKLe_4",
+      "views": 33
+    },
+    {
+      "title": "Zcash e o futuro da privacidade regulada",
+      "video_id": "6cYI-2-hSNA",
+      "views": 33
+    },
+    {
       "title": "Zcash Brasil - Weekly Call - 2 Edição",
       "video_id": "T7G4DoPWB_U",
       "views": 32
@@ -2535,11 +2545,6 @@
     {
       "title": "Privacidade + Statelessness: O Que é Oblivious Sync",
       "video_id": "AjNyd512Mds",
-      "views": 32
-    },
-    {
-      "title": "Desenvolvendo produtos digitais na nova economia. | Camila Nicolaus",
-      "video_id": "TqMSytKLe_4",
       "views": 32
     },
     {
@@ -2748,6 +2753,11 @@
       "views": 27
     },
     {
+      "title": "Mundo em Mudança: Por Que Estamos em Caos? | Rafael Castaneda | Zcon Vozes 2",
+      "video_id": "Six9DE25QWM",
+      "views": 27
+    },
+    {
       "title": "Zooko - O Visionário por trás da #Zcash",
       "video_id": "ekCUOdqyLyg",
       "views": 26
@@ -2790,16 +2800,6 @@
     {
       "title": "Primeira Community Call da Zcash Brasil em 2026: Planos, Missão e Comunidade",
       "video_id": "TGu6fRBDfyw",
-      "views": 26
-    },
-    {
-      "title": "Mundo em Mudança: Por Que Estamos em Caos? | Rafael Castaneda | Zcon Vozes 2",
-      "video_id": "Six9DE25QWM",
-      "views": 26
-    },
-    {
-      "title": "Zcash e o futuro da privacidade regulada",
-      "video_id": "6cYI-2-hSNA",
       "views": 26
     },
     {
@@ -2893,6 +2893,16 @@
       "views": 24
     },
     {
+      "title": "Do Corporativo ao Cripto: Atitudes e Aprendizados de uma Transição Real | Ana Westfal | Zcon Vozes 2",
+      "video_id": "PkHj3W3eS14",
+      "views": 24
+    },
+    {
+      "title": "De Ouro a Swiss Banks: Por Que ZEC Muda a História da Reserva de Valor",
+      "video_id": "_TXZGFUbBrU",
+      "views": 24
+    },
+    {
       "title": "Pilares da Zcash - Segurança e Descentralização",
       "video_id": "H355v9_puGI",
       "views": 23
@@ -2935,11 +2945,6 @@
     {
       "title": "Dynamic Fees: por que o mercado de taxas importa para a Zcash",
       "video_id": "3JZF1B6aNEM",
-      "views": 23
-    },
-    {
-      "title": "De Ouro a Swiss Banks: Por Que ZEC Muda a História da Reserva de Valor",
-      "video_id": "_TXZGFUbBrU",
       "views": 23
     },
     {
@@ -3030,11 +3035,6 @@
     {
       "title": "Cypherpunk: Por Que Privacidade Vem Primeiro",
       "video_id": "ub_3ZgGNafo",
-      "views": 21
-    },
-    {
-      "title": "Do Corporativo ao Cripto: Atitudes e Aprendizados de uma Transição Real | Ana Westfal | Zcon Vozes 2",
-      "video_id": "PkHj3W3eS14",
       "views": 21
     },
     {
@@ -3428,6 +3428,11 @@
       "views": 12
     },
     {
+      "title": "Privacidade, Autonomia e o futuro de trading alavancado | Marcos Lustosa | Zcon Vozes 2",
+      "video_id": "R6dKFT0nOK8",
+      "views": 12
+    },
+    {
       "title": "Vitor - Tornado Cash & Privacidade",
       "video_id": "yY4Zab-gfWI",
       "views": 11
@@ -3503,6 +3508,11 @@
       "views": 10
     },
     {
+      "title": "Zingo Wallet Beta e App Zec Map | Zec Insider",
+      "video_id": "x73tDR-zNHE",
+      "views": 10
+    },
+    {
       "title": "WEEKLYCALL #10 - Node para Windows, MacOS e Debian.",
       "video_id": "fFlP1pwa0LQ",
       "views": 9
@@ -3525,11 +3535,6 @@
     {
       "title": "Quando Você Não Tem Opções: Da Facilidade ao Pesadelo.",
       "video_id": "0vY85k15TSA",
-      "views": 9
-    },
-    {
-      "title": "Privacidade, Autonomia e o futuro de trading alavancado | Marcos Lustosa | Zcon Vozes 2",
-      "video_id": "R6dKFT0nOK8",
       "views": 9
     },
     {
@@ -3560,6 +3565,11 @@
     {
       "title": "Privacidade e Exposição",
       "video_id": "ubaCvuDN8Rw",
+      "views": 8
+    },
+    {
+      "title": "O Básico da Web3 Que Pode Mudar Sua Jornada | José Santos e Ruan Antony | Zcon Vozes 2",
+      "video_id": "_NaiW_jcdY8",
       "views": 8
     },
     {
@@ -3630,11 +3640,6 @@
     {
       "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
       "video_id": "XgtJXKqv-ZE",
-      "views": 3
-    },
-    {
-      "title": "O Básico da Web3 Que Pode Mudar Sua Jornada | José Santos e Ruan Antony | Zcon Vozes 2",
-      "video_id": "_NaiW_jcdY8",
       "views": 3
     },
     {
