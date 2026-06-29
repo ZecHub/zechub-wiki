@@ -25,7 +25,7 @@ export const communityProjects: CommunityProject[] = [
     description:
       "The simplest way to find any link, tool, or information you need about Zcash's ecosystem.",
     url: "https://zlink.click",
-    thumbnailImage: "",
+    thumbnailImage: "https://i.postimg.cc/wjCxj2BF/ZEC-PRICE-20260629-182513-0002.png",
   },
   {
     title: "Zimppy",
@@ -197,28 +197,28 @@ export const communityProjects: CommunityProject[] = [
     description:
       "Map interface displaying Zcash-accepting merchants and community locations.",
     url: "https://zecmap.com",
-    thumbnailImage: "/community-projects/zecmap.png",
+    thumbnailImage: "https://i.postimg.cc/DZBKLP7d/20260629-154810.jpg",
   },
   {
     title: "ZecStats",
     description:
       "Dashboard for real-time Zcash network statistics and shielding metrics.",
     url: "https://zecstats.com",
-    thumbnailImage: "/community-projects/zecstats.png",
+    thumbnailImage: "https://i.postimg.cc/Yq4wLFZY/Screenshot-2026-06-29-15-56-11-822-com-android-chrome-edit.jpg",
   },
   {
     title: "zecprice",
     description:
       "Tracking and data metrics tool for Zcash market price performance.",
     url: "https://zecprice.com",
-    thumbnailImage: "/community-projects/zecprice.png",
+    thumbnailImage: "https://i.postimg.cc/HL8JSjr2/ZEC-PRICE-20260629-182513-0000.png",
   },
   {
     title: "Overpay.com",
     description:
       "Payment gateway solutions supporting Zcash ecosystem integrations.",
     url: "https://overpay.com",
-    thumbnailImage: "/community-projects/overpay.png",
+    thumbnailImage: "https://i.postimg.cc/bwWr28mS/ZEC-PRICE-20260629-182513-0001.png",
   },
 
   // Applications that Utilize Zcash
@@ -247,7 +247,7 @@ export const communityProjects: CommunityProject[] = [
     description:
       "Orchard-focused Zcash wallet built for Zebrad, supporting fully shielded transactions and secure key management.",
     url: "https://github.com/LEONINE-DAO/Nozy-wallet",
-    thumbnailImage: "",
+    thumbnailImage: "https://i.postimg.cc/pVfjb9sb/ZEC-PRICE-20260629-182842-0000.png",
   },
 
   // Wider Ecosystem Utilizing Zero-Knowledge Proofs
