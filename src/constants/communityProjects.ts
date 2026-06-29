@@ -104,12 +104,6 @@ export const communityProjects: CommunityProject[] = [
     thumbnailImage: "/community-projects/my-first-zcash.png",
   },
   {
-    title: "Nighthawk Wallet",
-    description: "Private money in your wallet using ZEC with autoshielding capability.",
-    url: "https://nighthawkwallet.com/",
-    thumbnailImage: "/community-projects/nighthawk-wallet.png",
-  },
-  {
     title: "Warp Engine",
     description: "YWallet's upcoming synchronization engine with improved sync and transaction building.",
     url: "https://forum.zcashcommunity.com/t/warp-the-next-engine-for-ywallet/48722",
@@ -175,6 +169,30 @@ export const communityProjects: CommunityProject[] = [
     url: "https://zcashesp.com/zk-radio/",
     thumbnailImage: "/community-projects/zk-radio.png",
   },
+  {
+    title: "ZecMap",
+    description: "Map interface displaying Zcash-accepting merchants and community locations.",
+    url: "https://zecmap.com",
+    thumbnailImage: "/community-projects/zecmap.png",
+  },
+  {
+    title: "ZecStats",
+    description: "Dashboard for real-time Zcash network statistics and shielding metrics.",
+    url: "https://zecstats.com",
+    thumbnailImage: "/community-projects/zecstats.png",
+  },
+  {
+    title: "zecprice",
+    description: "Tracking and data metrics tool for Zcash market price performance.",
+    url: "https://zecprice.com",
+    thumbnailImage: "/community-projects/zecprice.png",
+  },
+  {
+    title: "Overpay.com",
+    description: "Payment gateway solutions supporting Zcash ecosystem integrations.",
+    url: "https://overpay.com",
+    thumbnailImage: "/community-projects/overpay.png",
+  },
   // Applications that Utilize Zcash
   {
     title: "aftok",
@@ -213,22 +231,7 @@ export const communityProjects: CommunityProject[] = [
     url: "https://dark.fi",
     thumbnailImage: "/community-projects/darkfi.png",
   },
-  {
-    title: "Espresso Systems",
-    description: "High-throughput EVM-compatible blockchain with low fees and better privacy.",
-    url: "https://www.espressosys.com",
-    thumbnailImage: "/community-projects/espresso.png",
-  },
-  {
-    title: "OffShift",
-    description: "On-chain, non-custodial privacy platform powered by XFT token.",
-    url: "https://offshift.io/",
-    thumbnailImage: "/community-projects/offshift.png",
-  },
-  {
-    title: "RAILGUN",
-    description: "Full privacy for transfers, trading, leverage, and dApps using zk-SNARKs.",
-    url: "https://railgun.org/",
-    thumbnailImage: "/community-projects/railgun.png",
-  },
 ];
+
+```
+
