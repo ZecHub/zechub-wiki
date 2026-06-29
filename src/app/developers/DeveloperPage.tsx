@@ -45,7 +45,7 @@ export default function DeveloperPage() {
             d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
           />
         </svg>
-      ), // SVG for "Learn Zcash Development"
+      ),
       buttonText: t?.pages?.developers?.cards?.learnButton ?? "Read the Docs",
     },
     {
@@ -72,7 +72,7 @@ export default function DeveloperPage() {
             d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
           />
         </svg>
-      ), // SVG for "Learn Through Tutorials"
+      ),
       buttonText:
         t?.pages?.developers?.cards?.tutorialsButton ?? "View Tutorials",
     },
@@ -98,7 +98,7 @@ export default function DeveloperPage() {
             d="M13 10V3L4 14h7v7l9-11h-7z"
           />
         </svg>
-      ), // SVG for "Quick Start Guide"
+      ),
       buttonText:
         t?.pages?.developers?.cards?.quickStartButton ?? "Quick Start Guide",
     },
@@ -234,6 +234,21 @@ export default function DeveloperPage() {
                     Understanding the lightwalletd project—a scalable server
                     written in Go that efficiently serves compact blockchain
                     data to Zcash light clients via gRPC.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zcash.github.io/zallet/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    The Zallet Book
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Introduction to Zallet, a full-node Zcash wallet written in
+                    Rust and designed as a replacement for the zcashd wallet.
                   </p>
                 </li>
 
@@ -449,6 +464,21 @@ export default function DeveloperPage() {
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     A JavaScript/TypeScript library for building Zcash-enabled
                     web applications using WebAssembly.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/NoirWallet/noir-wallet-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Noir Wallet SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    TypeScript SDK and example dApp for integrating Zcash
+                    applications with the Noir Wallet browser extension.
                   </p>
                 </li>
 
