@@ -2,18 +2,18 @@
 @import "nprogress/nprogress.css";
 @plugin "flowbite/plugin";
 @plugin "tailwindcss-animate";
-@import "../components/Charts/index.css";
-@import "../components/Sitemap/sitemap.css";
-@import "../components/visualizer/index.css";
-@import "../components/visualizer/consensus-visualizer/index.css";
-@import "../components/visualizer/contribution-visualizer/index.css";
-@import "../components/visualizer/hash-function-visualizer/index.css";
-@import "../components/visualizer/zcash-key-visualizer/index.css";
-@import "../components/visualizer/zcash-pool-visualizer/index.css";
-@import "../components/visualizer/zcash-wallet/index.css";
-@import "../components/visualizer/zk-SNARK-proof/index.css";
-@import "../components/Proposals/index.css";
-@import "../components/ZipsGrants/governance.css";
+@import "../../components/Charts/index.css";
+@import "../../components/Sitemap/sitemap.css";
+@import "../../components/visualizer/index.css";
+@import "../../components/visualizer/consensus-visualizer/index.css";
+@import "../../components/visualizer/contribution-visualizer/index.css";
+@import "../../components/visualizer/hash-function-visualizer/index.css";
+@import "../../components/visualizer/zcash-key-visualizer/index.css";
+@import "../../components/visualizer/zcash-pool-visualizer/index.css";
+@import "../../components/visualizer/zcash-wallet/index.css";
+@import "../../components/visualizer/zk-SNARK-proof/index.css";
+@import "../../components/Proposals/index.css";
+@import "../../components/ZipsGrants/governance.css";
 
 @variant dark (&:where(.dark, .dark *));
 

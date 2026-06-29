@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import localFont from "next/font/local";
 
 const myFont = localFont({
-  src: "../../../public/fonts/Gebuk_tf_ZEC.ttf",
+  src: "../../../../public/fonts/Gebuk_tf_ZEC.ttf",
   display: "swap",
 });
 

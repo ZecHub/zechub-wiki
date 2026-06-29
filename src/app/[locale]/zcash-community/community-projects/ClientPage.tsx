@@ -1,14 +1,15 @@
 "use client";
-import ExplorerDirectoryCard from "@/app/using-zcash/blockchain-explorers/ExplorerDirectoryCard";
-import { blockchainExplorers } from "@/constants/blockchainExplorers";
+import ExplorerDirectoryCard from "@/app/[locale]/using-zcash/blockchain-explorers/ExplorerDirectoryCard";
+import { communityProjects } from "@/constants/communityProjects";
 import { useLanguage } from "@/context/LanguageContext";
 
-const BlockchainExplorersClient = () => {
+const CommunityProjectsClient = () => {
   const { t } = useLanguage();
-  const title = t?.pages?.usingZcash?.blockchainExplorers?.title ?? "Blockchain Explorers";
+  const title = t?.pages?.zcashCommunity?.communityProjects?.title ?? "Community Projects";
   const description =
-    t?.pages?.usingZcash?.blockchainExplorers?.description ??
-    "A blockchain explorer is a search engine that lets you inspect blocks, transactions, addresses, and network activity across the Zcash ecosystem.";
+    t?.pages?.zcashCommunity?.communityProjects?.description ??
+    "Discover tools, wallets, applications, libraries, and ecosystem initiatives built by the Zcash community and the wider zero-knowledge proof world.";
+
   const cta = "Visit Site";
 
   return (
@@ -21,15 +22,13 @@ const BlockchainExplorersClient = () => {
           {description}
         </p>
       </div>
-
       <div className="mb-6 flex items-center justify-between">
         <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
-          {blockchainExplorers.length} explorers
+          {communityProjects.length} projects
         </p>
       </div>
-
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {blockchainExplorers.map((itm, i) => (
+        {communityProjects.map((itm, i) => (
           <ExplorerDirectoryCard
             thumbnailImage={itm.thumbnailImage}
             description={itm.description}
@@ -45,4 +44,4 @@ const BlockchainExplorersClient = () => {
   );
 };
 
-export default BlockchainExplorersClient;
+export default CommunityProjectsClient;

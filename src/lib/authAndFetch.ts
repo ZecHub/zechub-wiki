@@ -57,6 +57,32 @@ export const getFileContentCached = unstable_cache(
   { revalidate: false, tags: ["github-content"] },
 );
 
+/**
+ * Locale-aware content fetch using a mirror-tree layout.
+ *
+ * For the default locale (`en`) this is identical to `getFileContentCached`.
+ * For any other locale we first try the mirror path
+ * `translations/<locale>/<filePath>` (e.g. `translations/it/site/start-here/...`)
+ * and transparently fall back to the original (English) `filePath` when no
+ * translation exists yet. The fallback keeps every page renderable while the
+ * translated content tree is still being populated.
+ */
+export async function getLocalizedFileContentCached(
+  filePath: string,
+  locale: string,
+): Promise<string | null> {
+  const normalizedPath = filePath.replace(/^\/+/, "");
+
+  if (locale && locale !== "en") {
+    const localized = await getFileContentCached(
+      `translations/${locale}/${normalizedPath}`,
+    ).catch(() => null);
+    if (localized) return localized;
+  }
+
+  return getFileContentCached(filePath).catch(() => null);
+}
+
 export const getRootCached = unstable_cache(
   async (path: string) => {
     const res = await octokit.rest.repos.getContent({

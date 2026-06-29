@@ -26,7 +26,7 @@ import ChartFooter from "@/components/Charts/ChartFooter";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { DATA_URL } from "@/lib/chart/data-url";
 import { getLastUpdatedDate } from "@/lib/chart/helpers";
-import "../../../components/Charts/index.css";
+import "@/components/Charts/index.css";
 
 function ZcashEmbedContent() {
   const searchParams = useSearchParams();
