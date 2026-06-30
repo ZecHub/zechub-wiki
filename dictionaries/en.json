@@ -1,4 +1,22 @@
 {
+  "exploreMenu": {
+    "Full Explore": "Full Explore",
+    "Start Here": "Start Here",
+    "Tutorials": "Tutorials",
+    "Using Zcash": "Using Zcash",
+    "Guides": "Guides",
+    "Zcash Tech": "Zcash Tech",
+    "Zcash Organizations": "Zcash Organizations",
+    "Zcash Community": "Zcash Community",
+    "ZKAV Club": "ZKAV Club",
+    "Privacy Tools": "Privacy Tools",
+    "Research": "Research",
+    "Glossary & FAQs": "Glossary & FAQs",
+    "Contribute": "Contribute",
+    "For Forks & Maintainers": "For Forks & Maintainers",
+    "Fork zechub-wiki": "Fork zechub-wiki",
+    "Fork zechub": "Fork zechub"
+  },
   "common": {
     "home": "Home",
     "about": "About",
