@@ -104,11 +104,11 @@
     "projectSite": null,
     "image": "/zcashNigeria.jpg",
     "blog": null,
-    "countryCode":"NG",
-    "region":"africa",
+    "countryCode": "NG",
+    "region": "africa",
     "language": "English",
-    "geo_query":"Nigeria",
-    "pin_note":"Geographic centre of Nigeria"
+    "geo_query": "Nigeria",
+    "pin_note": "Geographic centre of Nigeria"
   },
   {
     "name": "Zcash Ukraine",
@@ -118,11 +118,11 @@
     "projectSite": null,
     "image": "/zcashUkraine.jpg",
     "blog": null,
-    "countryCode":"UA",
-    "region":"europe",
-    "language":"Ukrainian",
-    "geo_query":"Ukraine",
-    "pin_note":"Geographic centre of Ukraine"
+    "countryCode": "UA",
+    "region": "europe",
+    "language": "Ukrainian",
+    "geo_query": "Ukraine",
+    "pin_note": "Geographic centre of Ukraine"
   },
   {
     "name": "Zcash Turkey",
@@ -132,11 +132,11 @@
     "projectSite": null,
     "image": "/zcashTurkey.jpg",
     "blog": null,
-    "countryCode":"TR",
-    "region":"europe",
-    "language":"Turkish",
-    "geo_query":"Turkey",
-    "pin_note":"Geographic centre of Turkey"
+    "countryCode": "TR",
+    "region": "europe",
+    "language": "Turkish",
+    "geo_query": "Turkey",
+    "pin_note": "Geographic centre of Turkey"
   },
   {
     "name": "Zcash India",
@@ -146,38 +146,66 @@
     "projectSite": "https://zcashindia.org",
     "image": "/zcashIndia.jpg",
     "blog": "https://zcashindia.org/blog",
-    "countryCode":"IN",
-    "region":"asia",
-    "language":"Hindi / English",
-    "geo_query":"India",
-    "pin_note":"Geographic centre of India"
+    "countryCode": "IN",
+    "region": "asia",
+    "language": "Hindi / English",
+    "geo_query": "India",
+    "pin_note": "Geographic centre of India"
   },
   {
-      "name": "Zcash East Africa",
-      "flag": "",
-      "twitter": "https://x.com/zcasheastafrica",
-      "description": "Zcash East Africa is dedicated to promoting digital privacy, financial freedom, and blockchain innovation through education, community events, technical workshops, and ecosystem development. The initiative aims to create a regional hub where individuals can explore privacy enhancing technologies, learn about zero knowledge proofs, and participate in the growing global Zcash network.",
-      "projectSite": null,
-      "image": "/ZcashEastAfricaBanner.jpg",
-      "blog": "https://substack.com/@zcasheastafrica",
-      "countryCode": "EAC",
-      "region": "africa",
-      "language": "English & Swahili",
-      "geo_query": "Kenya",
-      "pin_note": "Geographic centre of East Africa"
-    },
-    {
-      "name": "Zcash South Africa",
-      "flag": "🇿🇦",
-      "twitter": "https://x.com/zcash_sa",
-      "description": "Privacy🛡️. Freedom. Zcash 🦓 Community for South African region",
-      "projectSite": null,
-      "image": "https://pbs.twimg.com/profile_images/2045292206081400832/2kJ3y8BV_400x400.jpg",
-      "blog": "https://medium.com/@zcashsouthafrica",
-      "countryCode": "ZA",
-      "region": "africa",
-      "language": "English",
-      "geo_query": "South Africa",
-      "pin_note": "Geographic centre of South Africa"
-    }
+    "name": "Zcash East Africa",
+    "flag": "",
+    "twitter": "https://x.com/zcasheastafrica",
+    "description": "Zcash East Africa is dedicated to promoting digital privacy, financial freedom, and blockchain innovation through education, community events, technical workshops, and ecosystem development. The initiative aims to create a regional hub where individuals can explore privacy enhancing technologies, learn about zero knowledge proofs, and participate in the growing global Zcash network.",
+    "projectSite": null,
+    "image": "/ZcashEastAfricaBanner.jpg",
+    "blog": "https://substack.com/@zcasheastafrica",
+    "countryCode": "EAC",
+    "region": "africa",
+    "language": "English & Swahili",
+    "geo_query": "Kenya",
+    "pin_note": "Geographic centre of East Africa"
+  },
+  {
+    "name": "Zcash South Africa",
+    "flag": "🇿🇦",
+    "twitter": "https://x.com/zcash_sa",
+    "description": "Privacy🛡️. Freedom. Zcash 🦓 Community for South African region",
+    "projectSite": null,
+    "image": "https://pbs.twimg.com/profile_images/2045292206081400832/2kJ3y8BV_400x400.jpg",
+    "blog": "https://medium.com/@zcashsouthafrica",
+    "countryCode": "ZA",
+    "region": "africa",
+    "language": "English",
+    "geo_query": "South Africa",
+    "pin_note": "Geographic centre of South Africa"
+  },
+  {
+    "name": "Zcash Indonesia",
+    "flag": "🇮🇩",
+    "twitter": "https://x.com/ZcashIdn",
+    "description": "Zcash community and advocacy in Indonesia",
+    "projectSite": "https://substack.com/@zcashidn",
+    "image": "https://pbs.twimg.com/profile_images/1986522005538299904/UHgmG1PY.jpg",
+    "blog": "https://substack.com/@zcashidn/posts",
+    "countryCode": "ID",
+    "region": "asia",
+    "language": "Indonesian",
+    "geo_query": "Indonesia",
+    "pin_note": "Geographic centre of Indonesia"
+  },
+  {
+    "name": "Club Zcash Querétaro | Mexico",
+    "flag": "🇲🇽",
+    "twitter": "https://x.com/zcashqro",
+    "description": "Zcash community and advocacy in Mexico",
+    "projectSite": "https://free2z.cash/palmar/zpage/5th-meetup-of-the-zcash-club-queretaro-mexico",
+    "image": "https://pbs.twimg.com/profile_images/2056577785729056768/4S31k_G7_400x400.jpg",
+    "blog": "https://free2z.cash/palmar/zpage/5th-meetup-of-the-zcash-club-queretaro-mexico",
+    "countryCode": "MX",
+    "region": "North America",
+    "language": "Spanish",
+    "geo_query": "Mexico",
+    "pin_note": "Geographic centre of Mexico"
+  }
 ]
