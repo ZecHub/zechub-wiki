@@ -209,11 +209,4 @@ export const communityProjects: CommunityProject[] = [
     url: "https://free2z.cash",
     thumbnailImage: "/community-projects/free2z.png",
   },
-  {
-    title: "ZK Global Credit",
-    description:
-      "Zcash-native credit and voting infrastructure for selective disclosure, settlement readiness, cross-border reputation, and shielded governance workflows.",
-    url: "https://voting.zkglobalcredit.tech/",
-    thumbnailImage: "/community-projects/zkglobalcredit.png",
-  },
 ];
