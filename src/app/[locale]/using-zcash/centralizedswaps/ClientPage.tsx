@@ -10,7 +10,8 @@ import { useLocale } from "next-intl";
 const DEXListingClient = () => {
   const { t } = useLanguage();
   const locale = useLocale();
-  const dexList = locale === "it" ? dexListingConfigIt : dexListingConfig;
+  const byLocale: Record<string, typeof dexListingConfig> = { it: dexListingConfigIt };
+  const dexList = byLocale[locale] ?? dexListingConfig;
   const title = t?.pages?.dex?.centralizedTitle ?? "Centralized Swap Platforms";
   const dexLabel = t?.pages?.dex?.title ?? "DEX Platforms";
   const disclaimer = t?.pages?.dex?.disclaimer ?? "ZecHub does not endorse any particular exchange service, please do your own research.";

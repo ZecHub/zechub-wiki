@@ -93,7 +93,8 @@
     "Zgo Payment Processor": "Zgo Payment Processor",
     "Zingo Labs": "Zingo Labs",
     "Zingolib and Zaino Tutorial": "Tutorial Zingolib e Zaino",
-    "Zkool Multisig": "Zkool Multisig"
+    "Zkool Multisig": "Zkool Multisig",
+    "Custodial Exchanges": "Exchange custodial"
   },
   "exploreMenu": {
     "Full Explore": "Esplora tutto",
@@ -201,7 +202,9 @@
       "zingoLabs": "Zingo Labs",
       "brand": "Brand",
       "zkavClub": "ZKAV Club"
-    }
+    },
+    "overview": "Panoramica",
+    "shop": "Negozio"
   },
   "home": {
     "heroTitle": "Benvenuto su ZecHub",
@@ -350,7 +353,7 @@
       "commandLine": "Riga di comando",
       "importantNotes": "Note importanti",
       "noteDownloadsBlockchain": "Al primo avvio viene scaricata l'intera blockchain (~250 GB)",
-      "noteInitialSync": "La sincronizzazione iniziale puo richiedere diverse ore",
+      "noteInitialSync": "La sincronizzazione iniziale può richiedere diverse ore",
       "noteKeepSecure": "Mantieni il tuo zebrad.toml sicuro e privato",
       "connectingLightwalletdHeading": "Connettersi con lightwalletd",
       "lightwalletdInfo": "e un server che fornisce un'interfaccia leggera alla blockchain Zcash, progettato per wallet mobile e desktop che non hanno bisogno di eseguire un nodo completo.",
@@ -399,13 +402,13 @@
       "acquireJuno": "Procurati JUNO",
       "acquireJunoDesc": "Ottieni token JUNO per interagire con il contratto daodao. Contatta i membri del core team per assistenza.",
       "viewOpenProposals": "Vedi le proposte aperte",
-      "viewOpenProposalsDesc": "Dai un'occhiata alle proposte attuali e alle opportunita di voto",
+      "viewOpenProposalsDesc": "Dai un'occhiata alle proposte attuali e alle opportunità di voto",
       "visitVotingPortal": "Visita il portale di voto",
       "formatNote": "Formato: le proposte possono essere scritte in formato .Md o .txt",
       "recommendedStructure": "Struttura consigliata in 4 fasi:",
       "stageBackground": "Contesto",
       "stageBackgroundDesc": "Fornisci un po' di storia sull'argomento o servizio generale",
-      "stageWhy": "Perche?",
+      "stageWhy": "Perché?",
       "stageWhyDesc": "Presenta la ragione principale della tua proposta. Puoi usare elenchi puntati",
       "stageProposal": "Proposta",
       "stageProposalDesc": "Descrivi chiaramente la tua proposta per intero",
@@ -461,7 +464,7 @@
         },
         "zcashLogin": {
           "name": "Zcash Login",
-          "description": "Flussi di autenticazione e identita che usano le primitive di Zcash per l'accesso."
+          "description": "Flussi di autenticazione e identità che usano le primitive di Zcash per l'accesso."
         },
         "accounting": {
           "name": "Contabilita",
@@ -486,7 +489,7 @@
       "rulesDesc": "Mantieni le candidature eque e facili da valutare.",
       "rules": {
         "mainnet": "I progetti devono interagire con la rete mainnet di Zcash.",
-        "oneProject": "Ogni team puo inviare un solo progetto finale.",
+        "oneProject": "Ogni team può inviare un solo progetto finale.",
         "docs": "Tutte le candidature devono includere documentazione chiara su configurazione e utilizzo.",
         "openSource": "Usa una licenza open-source.",
         "respect": "Rispetta le linee guida di privacy, sicurezza e community sia nel codice sia nei contenuti."
@@ -495,7 +498,7 @@
       "faqDesc": "Risposte rapide prima di iniziare.",
       "faq": {
         "whoCanParticipate": {
-          "question": "Chi puo partecipare?",
+          "question": "Chi può partecipare?",
           "answer": "Possono partecipare tutti: sviluppatori, designer e team multidisciplinari."
         },
         "validSubmission": {
@@ -535,7 +538,7 @@
           "title": "Carica il tuo codice",
           "descPrefix": "Carica il tuo progetto nella",
           "repoLabel": "repo dell'Hackathon",
-          "descSuffix": "su GitHub cosi la community puo esaminare il tuo lavoro."
+          "descSuffix": "su GitHub così la community può esaminare il tuo lavoro."
         },
         "share": {
           "title": "Condividi su Discord",
@@ -563,11 +566,11 @@
       "supportDonation": "Sostieni con una donazione",
       "popup": {
         "liveNow": "Ora in corso",
-        "subtitle": "Costruisci applicazioni privacy-first su Zcash. Competi per i premi, guadagna ZEC e dai forma al futuro della liberta finanziaria.",
+        "subtitle": "Costruisci applicazioni privacy-first su Zcash. Competi per i premi, guadagna ZEC e dai forma al futuro della libertà finanziaria.",
         "prizePool": "Montepremi",
         "start": "Inizio",
         "end": "Fine",
-        "learnMore": "Scopri di piu →",
+        "learnMore": "Scopri di più →",
         "dismiss": "Chiudi"
       }
     },
@@ -628,17 +631,17 @@
       },
       "sybil": {
         "problemTitle": "Il problema dell attacco Sybil",
-        "problemDesc": "In una rete in cui il voto determina la verita, un malintenzionato potrebbe creare milioni di identita false per superare nel voto i partecipanti legittimi.",
+        "problemDesc": "In una rete in cui il voto determina la verità, un malintenzionato potrebbe creare milioni di identità false per superare nel voto i partecipanti legittimi.",
         "realUsers": "3 utenti reali",
         "vs": "contro",
         "attacker": "1 malintenzionato (6 falsi)",
         "solutionTitle": "Come Zcash previene gli attacchi Sybil",
         "powTitle": "Proof of Work",
-        "powDesc": "Il mining richiede risorse computazionali reali. Creare identita false non conferisce maggior potere di voto: solo il lavoro reale lo fa.",
+        "powDesc": "Il mining richiede risorse computazionali reali. Creare identità false non conferisce maggior potere di voto: solo il lavoro reale lo fa.",
         "costTitle": "Costo economico",
-        "costDesc": "Attaccare la rete richiede un investimento enorme in hardware ed elettricita, rendendo gli attacchi economicamente irrazionali.",
+        "costDesc": "Attaccare la rete richiede un investimento enorme in hardware ed elettricità, rendendo gli attacchi economicamente irrazionali.",
         "insightLabel": "Punto chiave:",
-        "insightDesc": "La resistenza Sybil lega il potere di voto a risorse scarse (calcolo, stake) anziche a identita facilmente create."
+        "insightDesc": "La resistenza Sybil lega il potere di voto a risorse scarse (calcolo, stake) anziche a identità facilmente create."
       },
       "saplingKey": {
         "spendingKeyName": "Spending Key (sk)",
@@ -663,7 +666,7 @@
         "fieldPreviousHash": "Hash precedente",
         "fieldMerkleRoot": "Radice di Merkle",
         "fieldTimestamp": "Timestamp",
-        "fieldDifficulty": "Difficolta",
+        "fieldDifficulty": "Difficoltà",
         "fieldNonce": "Nonce",
         "blockHeader": "Intestazione del blocco",
         "transactionList": "Elenco delle transazioni",
@@ -676,14 +679,14 @@
         "targetBlockTime": "Tempo di blocco previsto",
         "bitcoinBlockTime": "10 minuti",
         "forComparison": "Per confronto",
-        "adjustmentTitle": "Aggiustamento della difficolta",
+        "adjustmentTitle": "Aggiustamento della difficoltà",
         "hashrateIncreases": "L hashrate aumenta",
-        "difficultyUp": "La difficolta aumenta",
+        "difficultyUp": "La difficoltà aumenta",
         "target": "Obiettivo: 75 sec",
         "staysConstant": "Resta costante",
         "hashrateDecreases": "L hashrate diminuisce",
-        "difficultyDown": "La difficolta diminuisce",
-        "summary": "La rete regola automaticamente la difficolta di mining per mantenere tempi di blocco costanti, indipendentemente da quanti miner competono."
+        "difficultyDown": "La difficoltà diminuisce",
+        "summary": "La rete regola automaticamente la difficoltà di mining per mantenere tempi di blocco costanti, indipendentemente da quanti miner competono."
       }
     },
     "usingZcash": {
@@ -704,7 +707,23 @@
     },
     "dashboard": {
       "title": "Dashboard | ZecHub"
-    }
+    },
+    "research": {
+      "seriesHeading": "Serie",
+      "seriesSubheading": "Approfondimenti sui concetti fondamentali di Zcash",
+      "foundationsSeriesTitle": "Zcash Foundations Series",
+      "coreSeriesBadge": "Serie principale",
+      "foundationsSeriesCardDescription": "Articoli fondamentali su transazioni schermate, modelli di privacy e progettazione del protocollo.",
+      "exploreSeries": "Esplora la serie →",
+      "articlesHeading": "Articoli di ricerca",
+      "articlesSubheading": "Articoli e note dalla comunità ZecHub.",
+      "foundationsSeriesDescription": "Una raccolta di articoli fondamentali che trattano le transazioni schermate di Zcash, i modelli di privacy, la progettazione del protocollo e i concetti chiave che alimentano la rete.",
+      "tagShieldedTransactions": "Transazioni schermate",
+      "tagPrivacyModels": "Modelli di privacy",
+      "tagProtocolDesign": "Progettazione del protocollo",
+      "tagZeroKnowledge": "Zero Knowledge"
+    },
+    "browseSidebar": "Sfoglia gli articoli usando la barra laterale a sinistra 👈"
   },
   "components": {
     "newsletter": {
@@ -724,7 +743,7 @@
       "box1Title": "Che cos è questo servizio?",
       "box1Desc": "Ricevi notizie sull ecosistema Zcash e statistiche di rete direttamente tramite la rete Zcash usando memo cifrati.",
       "box2Title": "Come funziona",
-      "box2DescPre": "Inviamo le newsletter una volta a settimana a piu destinatari in un unica transazione schermata usando il",
+      "box2DescPre": "Inviamo le newsletter una volta a settimana a più destinatari in un unica transazione schermata usando il",
       "box2DescPost": "metodo RPC.",
       "box3Title": "Come ricevere gli aggiornamenti",
       "box3DescPre": "Inserisci il tuo",
@@ -764,5 +783,13 @@
         "Cosa sono gli zk-SNARKs?"
       ]
     }
+  },
+  "sideMenu": {
+    "navigation": "Navigazione",
+    "explore": "Esplora"
+  },
+  "meta": {
+    "title": "ZecHub Wiki",
+    "description": "Un hub educativo open source per Zcash"
   }
 }

@@ -17,21 +17,32 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: "ZecHub Wiki",
-  description: "An open source education hub for Zcash",
-  icons: "/ZecHubBlue.png",
-  alternates: {
-    types: {
-      "application/rss+xml": [
-        {
-          url: "https://zechub.wiki/rss.xml",
-          title: "ZecHub Dashboard Updates",
-        },
-      ],
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale)) as Record<string, any>;
+  const title = dict?.meta?.title ?? "ZecHub Wiki";
+  const description =
+    dict?.meta?.description ?? "An open source education hub for Zcash";
+  return {
+    title,
+    description,
+    icons: "/ZecHubBlue.png",
+    alternates: {
+      types: {
+        "application/rss+xml": [
+          {
+            url: "https://zechub.wiki/rss.xml",
+            title: "ZecHub Dashboard Updates",
+          },
+        ],
+      },
     },
-  },
-};
+  };
+}
 
 export default async function RootLayout({
   children,

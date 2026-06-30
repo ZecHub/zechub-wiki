@@ -93,7 +93,8 @@
     "Zgo Payment Processor": "Zgo Payment Processor",
     "Zingo Labs": "Zingo Labs",
     "Zingolib and Zaino Tutorial": "Zingolib and Zaino Tutorial",
-    "Zkool Multisig": "Zkool Multisig"
+    "Zkool Multisig": "Zkool Multisig",
+    "Custodial Exchanges": "Custodial Exchanges"
   },
   "exploreMenu": {
     "Full Explore": "Full Explore",
@@ -227,7 +228,9 @@
       "zingolibAndZainoTutorial": "Zingolib and Zaino Tutorial",
       "zenithInstallation": "Zenith Installation",
       "zeroKnowledgeVsDecoys": "Zero Knowledge vs Decoy Systems"
-    }
+    },
+    "overview": "Overview",
+    "shop": "Shop"
   },
   "home": {
     "heroTitle": "Welcome to ZecHub",
@@ -1014,7 +1017,23 @@
       "communityProjects": {
         "title": "Community Projects"
       }
-    }
+    },
+    "research": {
+      "seriesHeading": "Series",
+      "seriesSubheading": "Deep dives into core Zcash concepts",
+      "foundationsSeriesTitle": "Zcash Foundations Series",
+      "coreSeriesBadge": "Core Series",
+      "foundationsSeriesCardDescription": "Foundational articles on shielded transactions, privacy models, and protocol design.",
+      "exploreSeries": "Explore the series →",
+      "articlesHeading": "Research Articles",
+      "articlesSubheading": "Articles and notes from the ZecHub community.",
+      "foundationsSeriesDescription": "A collection of foundational articles covering Zcash shielded transactions, privacy models, protocol design, and core concepts that power the network.",
+      "tagShieldedTransactions": "Shielded Transactions",
+      "tagPrivacyModels": "Privacy Models",
+      "tagProtocolDesign": "Protocol Design",
+      "tagZeroKnowledge": "Zero Knowledge"
+    },
+    "browseSidebar": "Browse the articles using the sidebar on the left 👈"
   },
   "developers": {
     "quickStart": {
@@ -1096,5 +1115,13 @@
         "What are zk-SNARKs?"
       ]
     }
+  },
+  "sideMenu": {
+    "navigation": "Navigation",
+    "explore": "Explore"
+  },
+  "meta": {
+    "title": "ZecHub Wiki",
+    "description": "An open source education hub for Zcash"
   }
 }

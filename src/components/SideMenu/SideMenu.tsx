@@ -3,7 +3,8 @@ import { matchIcons } from "@/constants/Icons";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import { Link } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
-import { pageTitlesIt } from "@/constants/pageTitles.it";
+import { pageTitles } from "@/constants/pageTitles";
+import { useLanguage } from "@/context/LanguageContext";
 import { useState } from "react";
 import {
   BiRightArrowAlt as Arrow,
@@ -53,11 +54,16 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const locale = useLocale();
+  const { t } = useLanguage();
+  // Localized chrome label helper: prefer the curated menuLabels dict, fall
+  // back to the English source name.
+  const chromeLabel = (name: string) => t?.menuLabels?.[name] ?? name;
   // Localized display label for a side-menu item (falls back to the English
   // filename-derived name). getName stays the source of truth for icon/filter
-  // matching below.
+  // matching below. Locale-keyed so adding a curated locale needs only data +
+  // registration in `pageTitles`, no logic changes here.
   const menuLabel = (item: string) =>
-    locale === "it" ? pageTitlesIt[item] ?? getName(item) : getName(item);
+    pageTitles[locale]?.[item] ?? getName(item);
   const root = roots.map((item) => item.slice(0, -3));
   const name = folder[0].toUpperCase() + folder.slice(1);
   const fold = getName(name);
@@ -66,7 +72,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
     <div className="relative flex flex-wrap items-center xl:items-start order-1 justify-between xl:flex-col">
       <button onClick={toggleMenu} className="xl:hidden flex cursor-pointer">
         <BurgerMenuIcon size={24} />{" "}
-        <h3 className="ms-2 font-bold">Navigation</h3>
+        <h3 className="ms-2 font-bold">{t?.sideMenu?.navigation ?? "Navigation"}</h3>
       </button>
 
       <div className="flex justify-end xl:justify-center w-auto order-2 xl:order-3">
@@ -80,7 +86,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
             color: "white",
           }}
         >
-          Explore
+          {t?.sideMenu?.explore ?? "Explore"}
           <Icon size={"medium"} icon={Arrow} />
         </Link>
       </div>
@@ -140,7 +146,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium ">Wallets</p>
+                      <p className="text-sm font-medium ">{chromeLabel("Wallets")}</p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold ">
                       <Icon icon={Arrow} size={16} />
@@ -163,7 +169,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium ">Custodial Exchanges</p>
+                      <p className="text-sm font-medium ">{chromeLabel("Custodial Exchanges")}</p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold ">
                       <Icon icon={Arrow} size={16} />
@@ -185,7 +191,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium ">Payment Processors</p>
+                      <p className="text-sm font-medium ">{chromeLabel("Payment Processors")}</p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold ">
                       <Icon icon={Arrow} size={16} />

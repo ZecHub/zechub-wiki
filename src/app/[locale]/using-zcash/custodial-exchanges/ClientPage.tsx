@@ -11,7 +11,8 @@ import { useLocale } from "next-intl";
 const CustodialExchangesClient: React.FC = () => {
   const { t } = useLanguage();
   const locale = useLocale();
-  const exchangeList = locale === "it" ? exchangesIt : exchanges;
+  const byLocale: Record<string, typeof exchanges> = { it: exchangesIt };
+  const exchangeList = byLocale[locale] ?? exchanges;
   const title = t?.pages?.dex?.custodial ?? "Custodial Exchanges";
   const dexLabel = t?.pages?.dex?.title ?? "DEX platforms";
 

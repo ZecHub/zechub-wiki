@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useLocale } from "next-intl";
 import { SITE_LINKS } from "@/constants/siteLinks";
 import { useLanguage } from "@/context/LanguageContext";
-import { pageTitlesIt } from "@/constants/pageTitles.it";
+import { pageTitles } from "@/constants/pageTitles";
 
 // Map a SITE_LINKS section title to the `site/<Category>` segment used by the
 // pageTitlesIt keys. Only wiki-content sections map to a category; the "Pages"
@@ -49,9 +49,10 @@ export default function SitemapPage() {
   // SideMenu approach): curated pageTitlesIt for `it` -> pages.sitemap.links
   // dictionary -> the English source label.
   const linkLabel = (sectionTitle: string, href: string, label: string) => {
-    if (locale === "it") {
+    const curated = pageTitles[locale];
+    if (curated) {
       const key = derivePageTitleKey(SECTION_CATEGORY[sectionTitle], href);
-      if (key && pageTitlesIt[key]) return pageTitlesIt[key];
+      if (key && curated[key]) return curated[key];
     }
     return s?.links?.[label] ?? label;
   };

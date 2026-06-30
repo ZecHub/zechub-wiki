@@ -16,6 +16,7 @@ import {
   transformGithubFilePathToWikiLink,
 } from "@/lib/helpers";
 import { normalizeMdx } from "@/lib/normalizeMdx";
+import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
@@ -50,11 +51,17 @@ function extractFirstContentImage(
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string[] }>;
+  params: Promise<{ slug: string[]; locale: string }>;
 }): Promise<Metadata> {
-  const { slug = [] } = await params;
+  const { slug = [], locale = "en" } = await params;
+  // English is served unprefixed at the root; other locales carry a /<locale>
+  // prefix in the canonical URL (matches localePrefix: "as-needed").
+  const localePrefix = locale && locale !== "en" ? `/${locale}` : "";
   if (slug.length === 0) {
-    return genMetadata({ title: "Zechub", url: "https://zechub.wiki" });
+    return genMetadata({
+      title: "Zechub",
+      url: `https://zechub.wiki${localePrefix || ""}`,
+    });
   }
   const folder = slug[0] || "";
   const capitalized =
@@ -63,7 +70,10 @@ export async function generateMetadata({
     slug.length > 1 && slug[1]
       ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
       : `Zechub - ${capitalized}`;
-  return genMetadata({ title, url: `https://zechub.wiki/${slug.join("/")}` });
+  return genMetadata({
+    title,
+    url: `https://zechub.wiki${localePrefix}/${slug.join("/")}`,
+  });
 }
 
 export default async function Page(props: {
@@ -81,6 +91,11 @@ export default async function Page(props: {
   }
   if (slug.length === 0) return notFound();
   if (slug[0] === ".well-known") return null;
+
+  // Server-side dictionary load so the research index/series chrome renders in
+  // the active locale (the surrounding page is a server component).
+  const dict = (await getDictionary(locale)) as Record<string, any>;
+  const r = dict?.pages?.research ?? {};
 
   const url = getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
@@ -148,10 +163,10 @@ export default async function Page(props: {
           <div className="px-2 pb-10">
             <div className="mb-5 px-1">
               <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                Series
+                {r.seriesHeading ?? "Series"}
               </h2>
               <p className="mt-1.5 text-[15px] text-muted-foreground">
-                Deep dives into core Zcash concepts
+                {r.seriesSubheading ?? "Deep dives into core Zcash concepts"}
               </p>
             </div>
 
@@ -173,7 +188,7 @@ export default async function Page(props: {
                       <span className="text-5xl">📚</span>
                     </div>
                     <p className="text-2xl font-semibold text-white tracking-tight">
-                      Zcash Foundations Series
+                      {r.foundationsSeriesTitle ?? "Zcash Foundations Series"}
                     </p>
                   </div>
                 </div>
@@ -181,21 +196,21 @@ export default async function Page(props: {
                 <div className="flex flex-1 flex-col p-6">
                   <div className="mb-2">
                     <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                      Core Series
+                      {r.coreSeriesBadge ?? "Core Series"}
                     </span>
                   </div>
 
                   <h3 className="text-xl font-semibold tracking-tight text-foreground">
-                    Zcash Foundations Series
+                    {r.foundationsSeriesTitle ?? "Zcash Foundations Series"}
                   </h3>
 
                   <p className="mt-3 text-[15px] text-muted-foreground">
-                    Foundational articles on shielded transactions, privacy
-                    models, and protocol design.
+                    {r.foundationsSeriesCardDescription ??
+                      "Foundational articles on shielded transactions, privacy models, and protocol design."}
                   </p>
 
                   <div className="mt-auto pt-5 text-sm font-medium text-muted-foreground group-active:text-foreground transition-colors">
-                    Explore the series →
+                    {r.exploreSeries ?? "Explore the series →"}
                   </div>
                 </div>
               </a>
@@ -206,10 +221,11 @@ export default async function Page(props: {
           <div className="px-2 pb-12">
             <div className="mb-5 px-1">
               <h2 className="text-2xl font-bold tracking-tight">
-                Research Articles
+                {r.articlesHeading ?? "Research Articles"}
               </h2>
               <p className="mt-1.5 text-[15px] text-muted-foreground">
-                Articles and notes from the ZecHub community.
+                {r.articlesSubheading ??
+                  "Articles and notes from the ZecHub community."}
               </p>
             </div>
 
@@ -277,26 +293,25 @@ export default async function Page(props: {
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-4xl">📚</span>
                 <h1 className="text-2xl imd:text-4xl font-bold">
-                  Zcash Foundations Series
+                  {r.foundationsSeriesTitle ?? "Zcash Foundations Series"}
                 </h1>
               </div>
               <p className="max-w-3xl text-base text-muted-foreground">
-                A collection of foundational articles covering Zcash shielded
-                transactions, privacy models, protocol design, and core concepts
-                that power the network.
+                {r.foundationsSeriesDescription ??
+                  "A collection of foundational articles covering Zcash shielded transactions, privacy models, protocol design, and core concepts that power the network."}
               </p>
               <div className="mt-4 flex flex-wrap gap-2 text-sm">
                 <span className="rounded-full bg-muted px-3 py-1">
-                  Shielded Transactions
+                  {r.tagShieldedTransactions ?? "Shielded Transactions"}
                 </span>
                 <span className="rounded-full bg-muted px-3 py-1">
-                  Privacy Models
+                  {r.tagPrivacyModels ?? "Privacy Models"}
                 </span>
                 <span className="rounded-full bg-muted px-3 py-1">
-                  Protocol Design
+                  {r.tagProtocolDesign ?? "Protocol Design"}
                 </span>
                 <span className="rounded-full bg-muted px-3 py-1">
-                  Zero Knowledge
+                  {r.tagZeroKnowledge ?? "Zero Knowledge"}
                 </span>
               </div>
             </div>
@@ -402,7 +417,8 @@ export default async function Page(props: {
             {slug[0].replace(/-/g, " ")}
           </h1>
           <p className="text-xl text-muted-foreground">
-            Browse the articles using the sidebar on the left 👈
+            {dict?.pages?.browseSidebar ??
+              "Browse the articles using the sidebar on the left 👈"}
           </p>
         </div>
       </MdxContainer>

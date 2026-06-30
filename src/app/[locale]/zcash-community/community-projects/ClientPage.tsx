@@ -8,7 +8,8 @@ import { useLocale } from "next-intl";
 const CommunityProjectsClient = () => {
   const { t } = useLanguage();
   const locale = useLocale();
-  const projects = locale === "it" ? communityProjectsIt : communityProjects;
+  const byLocale: Record<string, typeof communityProjects> = { it: communityProjectsIt };
+  const projects = byLocale[locale] ?? communityProjects;
   const title = t?.pages?.zcashCommunity?.communityProjects?.title ?? "Community Projects";
   const description =
     t?.pages?.zcashCommunity?.communityProjects?.description ??
