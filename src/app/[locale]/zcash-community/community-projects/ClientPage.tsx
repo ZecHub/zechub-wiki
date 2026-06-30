@@ -1,10 +1,14 @@
 "use client";
 import ExplorerDirectoryCard from "@/app/[locale]/using-zcash/blockchain-explorers/ExplorerDirectoryCard";
 import { communityProjects } from "@/constants/communityProjects";
+import { communityProjectsIt } from "@/constants/communityProjects.it";
 import { useLanguage } from "@/context/LanguageContext";
+import { useLocale } from "next-intl";
 
 const CommunityProjectsClient = () => {
   const { t } = useLanguage();
+  const locale = useLocale();
+  const projects = locale === "it" ? communityProjectsIt : communityProjects;
   const title = t?.pages?.zcashCommunity?.communityProjects?.title ?? "Community Projects";
   const description =
     t?.pages?.zcashCommunity?.communityProjects?.description ??
@@ -24,11 +28,11 @@ const CommunityProjectsClient = () => {
       </div>
       <div className="mb-6 flex items-center justify-between">
         <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
-          {communityProjects.length} projects
+          {projects.length} projects
         </p>
       </div>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {communityProjects.map((itm, i) => (
+        {projects.map((itm, i) => (
           <ExplorerDirectoryCard
             thumbnailImage={itm.thumbnailImage}
             description={itm.description}

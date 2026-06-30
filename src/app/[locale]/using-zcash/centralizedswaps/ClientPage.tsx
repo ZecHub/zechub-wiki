@@ -1,12 +1,16 @@
 "use client";
 import { Card } from "@/components/Card/Card";
 import { dexListingConfig } from "@/constants/dex-listing-config";
+import { dexListingConfigIt } from "@/constants/dex-listing-config.it";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
+import { useLocale } from "next-intl";
 
 const DEXListingClient = () => {
   const { t } = useLanguage();
+  const locale = useLocale();
+  const dexList = locale === "it" ? dexListingConfigIt : dexListingConfig;
   const title = t?.pages?.dex?.centralizedTitle ?? "Centralized Swap Platforms";
   const dexLabel = t?.pages?.dex?.title ?? "DEX Platforms";
   const disclaimer = t?.pages?.dex?.disclaimer ?? "ZecHub does not endorse any particular exchange service, please do your own research.";
@@ -34,7 +38,7 @@ const DEXListingClient = () => {
       </div>
       <p className="dark:text-slate-300 text-gray-600 text-lg my-12">{disclaimer}</p>
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {dexListingConfig.map((itm, i) => (
+        {dexList.map((itm, i) => (
           <Card
             thumbnailImage={itm.image}
             description={itm.description}
