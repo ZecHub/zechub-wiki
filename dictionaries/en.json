@@ -802,6 +802,65 @@
       },
       "zksnark": {
         "title": "ZK-SNARK Proof Visualizer"
+      },
+      "sybil": {
+        "problemTitle": "The Sybil Attack Problem",
+        "problemDesc": "In a network where voting determines truth, an attacker could create millions of fake identities to outvote legitimate participants.",
+        "realUsers": "3 Real Users",
+        "vs": "vs",
+        "attacker": "1 Attacker (6 fakes)",
+        "solutionTitle": "How Zcash Prevents Sybil Attacks",
+        "powTitle": "Proof of Work",
+        "powDesc": "Mining requires real computational resources. Creating fake identities doesn't give more voting power — only real work does.",
+        "costTitle": "Economic Cost",
+        "costDesc": "Attacking the network requires massive investment in hardware and electricity, making attacks economically irrational.",
+        "insightLabel": "Key Insight:",
+        "insightDesc": "Sybil resistance ties voting power to scarce resources (computation, stake) rather than easily-created identities."
+      },
+      "saplingKey": {
+        "spendingKeyName": "Spending Key (sk)",
+        "spendingKeyDesc": "Master secret for spending",
+        "expandedSpendingKeyName": "Expanded Spending Key",
+        "expandedSpendingKeyDesc": "ask, nsk, ovk",
+        "fullViewingKeyName": "Full Viewing Key (fvk)",
+        "fullViewingKeyDesc": "ak, nk, ovk",
+        "incomingViewingKeyName": "Incoming Viewing Key (ivk)",
+        "incomingViewingKeyDesc": "View incoming transactions",
+        "diversifiedAddressName": "Diversified Address",
+        "diversifiedAddressDesc": "zs1... (unlimited per key)",
+        "derivationTitle": "Sapling Key Derivation",
+        "addressFormatTitle": "Address Format",
+        "addressFormatDesc": "78 characters, Bech32 encoding",
+        "keyFeatureTitle": "Key Feature",
+        "keyFeatureBold": "Diversified addresses",
+        "keyFeatureDesc": "— Generate unlimited unique addresses from one key"
+      },
+      "blockAnatomy": {
+        "fieldVersion": "Version",
+        "fieldPreviousHash": "Previous Hash",
+        "fieldMerkleRoot": "Merkle Root",
+        "fieldTimestamp": "Timestamp",
+        "fieldDifficulty": "Difficulty",
+        "fieldNonce": "Nonce",
+        "blockHeader": "Block Header",
+        "transactionList": "Transaction List",
+        "coinbaseTx": "Tx #1 (Coinbase)",
+        "merkleTree": "Merkle Tree",
+        "merkleRoot": "Merkle Root"
+      },
+      "difficulty": {
+        "zcashBlockTime": "75 seconds",
+        "targetBlockTime": "Target block time",
+        "bitcoinBlockTime": "10 minutes",
+        "forComparison": "For comparison",
+        "adjustmentTitle": "Difficulty Adjustment",
+        "hashrateIncreases": "Hashrate Increases",
+        "difficultyUp": "Difficulty goes up",
+        "target": "Target: 75 sec",
+        "staysConstant": "Stays constant",
+        "hashrateDecreases": "Hashrate Decreases",
+        "difficultyDown": "Difficulty goes down",
+        "summary": "The network automatically adjusts mining difficulty to maintain consistent block times, regardless of how many miners are competing."
       }
     },
     "paymentProcessors": {
@@ -950,6 +1009,11 @@
         "Community Forum": "Community Forum",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }
+    },
+    "zcashCommunity": {
+      "communityProjects": {
+        "title": "Community Projects"
+      }
     }
   },
   "developers": {
@@ -972,6 +1036,65 @@
       "nextSteps": "Next Steps",
       "readyToBuild": "Ready to Build?",
       "needHelp": "Need Help?"
+    }
+  },
+  "components": {
+    "newsletter": {
+      "title": "ZecHub Shielded Newsletter",
+      "subtitle": "Subscribe to updates by entering your Unified Address.",
+      "feeLine": "A one-time 0.05 ZEC subscription fee",
+      "feeLineRest": "is required to cover transaction costs.",
+      "categoryEcosystem": "Ecosystem News",
+      "categoryStats": "Network Stats",
+      "addressPlaceholder": "Enter your Zcash Unified Address",
+      "invalidAddressInline": "Invalid address. Must start with \"u\" or \"z\".",
+      "invalidAddressAlert": "Please enter a valid shielded Zcash address.",
+      "generating": "Generating...",
+      "subscribe": "Subscribe",
+      "doNotEditMemo": "Do not edit the memo generated in your wallet.",
+      "downloadQR": "Download QR Code",
+      "box1Title": "What is This Service?",
+      "box1Desc": "Receive Zcash ecosystem news and network stats directly via the Zcash network using encrypted memos.",
+      "box2Title": "How It Works",
+      "box2DescPre": "We send newsletters once per week to multiple recipients in one shielded transaction using the",
+      "box2DescPost": "RPC method.",
+      "box3Title": "How to Receive Updates",
+      "box3DescPre": "Enter your",
+      "box3DescBold": "shielded Zcash address",
+      "box3DescPost": "Weekly updates delivered on-chain. No email required.",
+      "unsubscribe": "Unsubscribe",
+      "cancelUnsubscribe": "Cancel Unsubscribe",
+      "unsubscribePlaceholder": "Enter your Unified Address to unsubscribe",
+      "confirmUnsubscribe": "Confirm Unsubscribe"
+    },
+    "aiAssistant": {
+      "copyResponse": "Copy response",
+      "copied": "Copied",
+      "copy": "Copy",
+      "botName": "ZecHub AI",
+      "thinking": "ZecHub AI is thinking...",
+      "privacyNotice": "Questions are processed by OpenAI. Never share seed phrases, private keys, or wallet addresses.",
+      "clearConversation": "Clear conversation",
+      "clear": "Clear",
+      "getStarted": "Get started with a question:",
+      "sensitiveWarning": "This looks like sensitive wallet data. Never share private keys or seed phrases with any service.",
+      "inputPlaceholder": "Ask a question... (Enter to send, Shift+Enter for new line)",
+      "sendMessage": "Send message",
+      "enterHint": "Enter to send, Shift+Enter for a new line",
+      "messageTooLong": "Message too long (max {max} chars).",
+      "unknownError": "Unknown error.",
+      "serverError": "Server error {status}",
+      "somethingWrong": "Something went wrong.",
+      "quickQuestions": [
+        "What is Zcash?",
+        "What is ZecHub?",
+        "How do shielded transactions work?",
+        "What wallets support Zcash?",
+        "What is a z-address vs t-address?",
+        "How do I get started with ZEC?",
+        "What is the Zcash development fund?",
+        "What are zk-SNARKs?"
+      ]
     }
   }
 }

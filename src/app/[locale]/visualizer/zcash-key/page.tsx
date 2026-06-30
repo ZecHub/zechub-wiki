@@ -13,8 +13,9 @@ type Dictionary = {
   };
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const dict = (await getDictionary()) as Dictionary;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale)) as Dictionary;
   return genMetadata({
     title: dict.pages?.visualizer?.zcashKey?.title || 'Zcash Key Visualizer',
     url: 'https://zechub.wiki/visualizer/zcash-key',

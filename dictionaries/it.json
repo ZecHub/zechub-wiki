@@ -610,6 +610,159 @@
         "Community Forum": "Forum della community",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }
+    },
+    "dex": {
+      "custodial": "Exchange custodial",
+      "centralizedTitle": "Elenco delle piattaforme di swap centralizzate"
+    },
+    "visualizer": {
+      "title": "Visualizzatori Zcash",
+      "hashFunction": {
+        "title": "Visualizzatore di funzioni hash"
+      },
+      "zcashKey": {
+        "title": "Visualizzatore di chiavi Zcash"
+      },
+      "zksnark": {
+        "title": "Visualizzatore di prove ZK-SNARK"
+      },
+      "sybil": {
+        "problemTitle": "Il problema dell attacco Sybil",
+        "problemDesc": "In una rete in cui il voto determina la verita, un malintenzionato potrebbe creare milioni di identita false per superare nel voto i partecipanti legittimi.",
+        "realUsers": "3 utenti reali",
+        "vs": "contro",
+        "attacker": "1 malintenzionato (6 falsi)",
+        "solutionTitle": "Come Zcash previene gli attacchi Sybil",
+        "powTitle": "Proof of Work",
+        "powDesc": "Il mining richiede risorse computazionali reali. Creare identita false non conferisce maggior potere di voto: solo il lavoro reale lo fa.",
+        "costTitle": "Costo economico",
+        "costDesc": "Attaccare la rete richiede un investimento enorme in hardware ed elettricita, rendendo gli attacchi economicamente irrazionali.",
+        "insightLabel": "Punto chiave:",
+        "insightDesc": "La resistenza Sybil lega il potere di voto a risorse scarse (calcolo, stake) anziche a identita facilmente create."
+      },
+      "saplingKey": {
+        "spendingKeyName": "Spending Key (sk)",
+        "spendingKeyDesc": "Segreto principale per spendere",
+        "expandedSpendingKeyName": "Expanded Spending Key",
+        "expandedSpendingKeyDesc": "ask, nsk, ovk",
+        "fullViewingKeyName": "Full Viewing Key (fvk)",
+        "fullViewingKeyDesc": "ak, nk, ovk",
+        "incomingViewingKeyName": "Incoming Viewing Key (ivk)",
+        "incomingViewingKeyDesc": "Visualizza le transazioni in entrata",
+        "diversifiedAddressName": "Indirizzo diversificato",
+        "diversifiedAddressDesc": "zs1... (illimitati per chiave)",
+        "derivationTitle": "Derivazione delle chiavi Sapling",
+        "addressFormatTitle": "Formato indirizzo",
+        "addressFormatDesc": "78 caratteri, codifica Bech32",
+        "keyFeatureTitle": "Caratteristica chiave",
+        "keyFeatureBold": "Indirizzi diversificati",
+        "keyFeatureDesc": "— Genera indirizzi unici illimitati da una sola chiave"
+      },
+      "blockAnatomy": {
+        "fieldVersion": "Versione",
+        "fieldPreviousHash": "Hash precedente",
+        "fieldMerkleRoot": "Radice di Merkle",
+        "fieldTimestamp": "Timestamp",
+        "fieldDifficulty": "Difficolta",
+        "fieldNonce": "Nonce",
+        "blockHeader": "Intestazione del blocco",
+        "transactionList": "Elenco delle transazioni",
+        "coinbaseTx": "Tx #1 (Coinbase)",
+        "merkleTree": "Albero di Merkle",
+        "merkleRoot": "Radice di Merkle"
+      },
+      "difficulty": {
+        "zcashBlockTime": "75 secondi",
+        "targetBlockTime": "Tempo di blocco previsto",
+        "bitcoinBlockTime": "10 minuti",
+        "forComparison": "Per confronto",
+        "adjustmentTitle": "Aggiustamento della difficolta",
+        "hashrateIncreases": "L hashrate aumenta",
+        "difficultyUp": "La difficolta aumenta",
+        "target": "Obiettivo: 75 sec",
+        "staysConstant": "Resta costante",
+        "hashrateDecreases": "L hashrate diminuisce",
+        "difficultyDown": "La difficolta diminuisce",
+        "summary": "La rete regola automaticamente la difficolta di mining per mantenere tempi di blocco costanti, indipendentemente da quanti miner competono."
+      }
+    },
+    "usingZcash": {
+      "blockchainExplorers": {
+        "title": "Block explorer"
+      }
+    },
+    "zcashCommunity": {
+      "communityProjects": {
+        "title": "Progetti della comunità"
+      }
+    },
+    "wallets": {
+      "title": "Wallet | ZecHub"
+    },
+    "zcashProjects": {
+      "title": "Progetti Zcash | ZecHub"
+    },
+    "dashboard": {
+      "title": "Dashboard | ZecHub"
+    }
+  },
+  "components": {
+    "newsletter": {
+      "title": "Newsletter schermata di ZecHub",
+      "subtitle": "Iscriviti agli aggiornamenti inserendo il tuo Unified Address.",
+      "feeLine": "È richiesta una commissione di iscrizione una tantum di 0,05 ZEC",
+      "feeLineRest": "per coprire i costi di transazione.",
+      "categoryEcosystem": "Notizie dell ecosistema",
+      "categoryStats": "Statistiche di rete",
+      "addressPlaceholder": "Inserisci il tuo Zcash Unified Address",
+      "invalidAddressInline": "Indirizzo non valido. Deve iniziare con \"u\" o \"z\".",
+      "invalidAddressAlert": "Inserisci un indirizzo Zcash schermato valido.",
+      "generating": "Generazione in corso...",
+      "subscribe": "Iscriviti",
+      "doNotEditMemo": "Non modificare il memo generato nel tuo wallet.",
+      "downloadQR": "Scarica il codice QR",
+      "box1Title": "Che cos è questo servizio?",
+      "box1Desc": "Ricevi notizie sull ecosistema Zcash e statistiche di rete direttamente tramite la rete Zcash usando memo cifrati.",
+      "box2Title": "Come funziona",
+      "box2DescPre": "Inviamo le newsletter una volta a settimana a piu destinatari in un unica transazione schermata usando il",
+      "box2DescPost": "metodo RPC.",
+      "box3Title": "Come ricevere gli aggiornamenti",
+      "box3DescPre": "Inserisci il tuo",
+      "box3DescBold": "indirizzo Zcash schermato",
+      "box3DescPost": "Aggiornamenti settimanali consegnati on-chain. Nessuna email richiesta.",
+      "unsubscribe": "Annulla iscrizione",
+      "cancelUnsubscribe": "Annulla operazione",
+      "unsubscribePlaceholder": "Inserisci il tuo Unified Address per annullare l iscrizione",
+      "confirmUnsubscribe": "Conferma annullamento"
+    },
+    "aiAssistant": {
+      "copyResponse": "Copia la risposta",
+      "copied": "Copiato",
+      "copy": "Copia",
+      "botName": "ZecHub AI",
+      "thinking": "ZecHub AI sta pensando...",
+      "privacyNotice": "Le domande sono elaborate da OpenAI. Non condividere mai frasi seed, chiavi private o indirizzi wallet.",
+      "clearConversation": "Cancella conversazione",
+      "clear": "Cancella",
+      "getStarted": "Inizia con una domanda:",
+      "sensitiveWarning": "Questi sembrano dati sensibili del wallet. Non condividere mai chiavi private o frasi seed con alcun servizio.",
+      "inputPlaceholder": "Fai una domanda... (Invio per inviare, Shift+Invio per andare a capo)",
+      "sendMessage": "Invia messaggio",
+      "enterHint": "Invio per inviare, Shift+Invio per andare a capo",
+      "messageTooLong": "Messaggio troppo lungo (massimo {max} caratteri).",
+      "unknownError": "Errore sconosciuto.",
+      "serverError": "Errore del server {status}",
+      "somethingWrong": "Qualcosa è andato storto.",
+      "quickQuestions": [
+        "Che cos è Zcash?",
+        "Che cos è ZecHub?",
+        "Come funzionano le transazioni schermate?",
+        "Quali wallet supportano Zcash?",
+        "Qual è la differenza tra z-address e indirizzo-t?",
+        "Come inizio a usare ZEC?",
+        "Che cos è il fondo di sviluppo Zcash?",
+        "Cosa sono gli zk-SNARKs?"
+      ]
     }
   }
 }

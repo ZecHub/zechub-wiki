@@ -13,8 +13,9 @@ type Dictionary = {
   };
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const dict = (await getDictionary()) as Dictionary;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale)) as Dictionary;
   return genMetadata({
     title: dict.pages?.zcashCommunity?.communityProjects?.title ?? 'Community Projects',
     url: 'https://zechub.wiki/zcash-community/community-projects',

@@ -3,8 +3,9 @@ import { genMetadata } from '@/lib/helpers';
 import { getDictionary } from '@/lib/getDictionary';
 import { Metadata } from 'next';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = await getDictionary(locale);
   const pages = (dict.pages ?? {}) as Record<string, any>;
   return genMetadata({
     title: pages.dex?.custodial ?? 'Custodial Exchanges',

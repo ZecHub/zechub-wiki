@@ -21,8 +21,9 @@ type WalletsDictionary = {
   };
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const dict = (await getDictionary()) as WalletsDictionary;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale)) as WalletsDictionary;
   return genMetadata({
     title: dict.pages?.wallets?.title || "Wallets | Zechub",
     url: "https://zechub.wiki/wallets",
@@ -43,7 +44,7 @@ export default async function Page(props: {
     getRootCached(urlRoot),
   ]);
 
-  const dict = (await getDictionary()) as WalletsDictionary;
+  const dict = (await getDictionary(locale)) as WalletsDictionary;
   const content = markdown
     ? markdown
     : (dict.pages?.wallets?.noData ?? "No Data or Wrong file");

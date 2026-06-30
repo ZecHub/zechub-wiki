@@ -11,8 +11,9 @@ type ProjectsDictionary = {
   };
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const dict = (await getDictionary()) as ProjectsDictionary;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale)) as ProjectsDictionary;
   return genMetadata({
     title: dict.pages?.zcashProjects?.title || "Zcash Projects | ZecHub",
     url: "https://zechub.wiki/zcash-projects",
