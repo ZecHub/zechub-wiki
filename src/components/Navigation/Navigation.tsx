@@ -231,6 +231,10 @@ const getTranslatedLabel = (
   const searchName = linkName || itemName;
 
   return (
+    // Comprehensive catch-all keyed by the English menu name (covers every
+    // item in navigation.ts at any depth). Consulted first so a missing entry
+    // in a specific map can never leak an English label.
+    t.menuLabels?.[searchName] ||
     mainNavMap[searchName] ||
     useCasesMap[searchName] ||
     usingZcashMap[searchName] ||
