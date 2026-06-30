@@ -202,10 +202,37 @@ const getTranslatedLabel = (
     Guides: t.navigation?.guides || "Guides",
   };
 
+  const useCasesMap: Record<string, string> = {
+    "Use Cases": t.navigation?.usingZcash?.useCases || "Use Cases",
+    "Start Here":
+      t.navigation?.usingZcash?.useCasesSubmenu?.startHere || "Start Here",
+    "Accept Payments":
+      t.navigation?.usingZcash?.useCasesSubmenu?.acceptPayments ||
+      "Accept Payments",
+    "Freelance Privacy":
+      t.navigation?.usingZcash?.useCasesSubmenu?.freelancePrivacy ||
+      "Freelance Privacy",
+    "Journalist Privacy":
+      t.navigation?.usingZcash?.useCasesSubmenu?.journalistPrivacy ||
+      "Journalist Privacy",
+    "Keeping Records":
+      t.navigation?.usingZcash?.useCasesSubmenu?.keepingRecords ||
+      "Keeping Records",
+    "Private Community Treasury":
+      t.navigation?.usingZcash?.useCasesSubmenu?.privateCommunityTreasury ||
+      "Private Community Treasury",
+    Donations:
+      t.navigation?.usingZcash?.useCasesSubmenu?.donations || "Donations",
+    "Send Money Privately":
+      t.navigation?.usingZcash?.useCasesSubmenu?.sendMoneyPrivately ||
+      "Send Money Privately",
+  };
+
   const searchName = linkName || itemName;
 
   return (
     mainNavMap[searchName] ||
+    useCasesMap[searchName] ||
     usingZcashMap[searchName] ||
     communityMap[searchName] ||
     organizationsMap[searchName] ||

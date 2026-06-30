@@ -47,7 +47,20 @@
       "mobileTopUps": "Mobile Top Ups",
       "paymentRequestUris": "Payment Request URIs",
       "paymentProcessors": "Payment Processors",
-      "recoveringFunds": "Recovering Funds"
+      "recoveringFunds": "Recovering Funds",
+      "testnet": "Testnet",
+      "tools": "Tools",
+      "useCases": "Use Cases",
+      "useCasesSubmenu": {
+        "startHere": "Start Here",
+        "acceptPayments": "Accept Payments",
+        "freelancePrivacy": "Freelance Privacy",
+        "journalistPrivacy": "Journalist Privacy",
+        "keepingRecords": "Keeping Records",
+        "privateCommunityTreasury": "Private Community Treasury",
+        "donations": "Donations",
+        "sendMoneyPrivately": "Send Money Privately"
+      }
     },
     "zcashCommunity": {
       "label": "Ecosystem",

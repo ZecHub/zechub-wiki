@@ -47,7 +47,20 @@
       "mobileTopUps": "Ricariche mobile",
       "paymentRequestUris": "URI di richiesta pagamento",
       "paymentProcessors": "Payment processor",
-      "recoveringFunds": "Recuperare fondi"
+      "recoveringFunds": "Recuperare fondi",
+      "testnet": "Testnet",
+      "tools": "Strumenti",
+      "useCases": "Casi d'uso",
+      "useCasesSubmenu": {
+        "startHere": "Inizia qui",
+        "acceptPayments": "Accetta pagamenti",
+        "freelancePrivacy": "Privacy per freelance",
+        "journalistPrivacy": "Privacy per giornalisti",
+        "keepingRecords": "Conservare i registri",
+        "privateCommunityTreasury": "Tesoreria di comunità privata",
+        "donations": "Donazioni",
+        "sendMoneyPrivately": "Inviare denaro privatamente"
+      }
     },
     "zcashCommunity": {
       "label": "Ecosistema",
