@@ -265,15 +265,7 @@ export default function DeveloperPage() {
                     Links to Zcash further Technical Documentation.
                   </p>
                 </li>
-              </ul>
-            </div>
 
-            {/* Fundamentals Column */}
-            <div className="flex-1">
-              <h3 className="text-3xl font-semibold mb-4">
-                {t?.pages?.developers?.fundamentalsTitle ?? "Fundamentals"}
-              </h3>
-              <ul className="space-y-3">
                 <li>
                   <a
                     href="https://zips.z.cash/protocol/protocol.pdf#5.6%20Encodings%20of%20Addresses%20and%20Keys"
@@ -371,7 +363,174 @@ export default function DeveloperPage() {
                     Explore Zcash blockchains using block explorers.
                   </p>
                 </li>
+              </ul>
+            </div>
 
+            {/* Software Development Kits Column */}
+            <div className="flex-1">
+              <h3 className="text-3xl font-semibold mb-4">
+                {t?.pages?.developers?.softwareDevelopmentKitsTitle ??
+                  "Software Development Kits"}
+              </h3>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href="https://github.com/zcash/zcash-android-wallet-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Android Wallet SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Native Android SDK for building Zcash light-client wallet
+                    functionality, including shielded sends and receives.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/zcash/zcash-swift-wallet-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Swift Wallet SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    iOS light-client framework for integrating Zcash wallet
+                    functionality into Swift applications.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/ChainSafe/WebZjs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    WebZjs SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    A JavaScript/TypeScript library for building Zcash-enabled
+                    web applications using WebAssembly.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/NoirWallet/noir-wallet-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Noir Wallet SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    TypeScript SDK and example dApp for integrating Zcash
+                    applications with the Noir Wallet browser extension.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/zingolabs/zingolib"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zingolib
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Rust wallet library and tooling for building Zcash clients
+                    that interact with lightwalletd.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/zcash/librustzcash"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    librustzcash
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Core Rust crates for working with Zcash protocol data, keys,
+                    transactions, and light-client components.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/nufi-official/zcash-router-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Router SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Modular TypeScript SDK for managing swaps to and from Zcash,
+                    including routing, quotes, and transaction state.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/ruzcash/zaddr-wasm-parser"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    zaddr-wasm-parser
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    WebAssembly utility for parsing, validating, and classifying
+                    Zcash addresses, including Unified Addresses.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/zodl-inc/zodl-android"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zodl Android Reference Wallet
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Android reference wallet implementation for Zodl and Zcash
+                    mobile development.
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/zodl-inc/zodl-ios"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zodl iOS Reference Wallet
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    iOS reference wallet implementation for Zodl and Zcash
+                    mobile development.
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            {/* Advanced Column */}
+            <div className="flex-1">
+              <h3 className="text-3xl font-semibold mb-4">
+                {t?.pages?.developers?.advancedTitle ?? "Advanced"}
+              </h3>
+              <ul className="space-y-3">
                 <li>
                   <a
                     href="https://fringe-brow-647.notion.site/Shade-Agents-19a09959836d8091bb8febb318cc09fd"
@@ -388,15 +547,7 @@ export default function DeveloperPage() {
                     multichain transactions independently.
                   </p>
                 </li>
-              </ul>
-            </div>
 
-            {/* Advanced Column */}
-            <div className="flex-1">
-              <h3 className="text-3xl font-semibold mb-4">
-                {t?.pages?.developers?.advancedTitle ?? "Advanced"}
-              </h3>
-              <ul className="space-y-3">
                 <li>
                   <a
                     href="https://zcash.readthedocs.io/en/latest/rtd_pages/librustzcash_arch.html"
@@ -434,51 +585,6 @@ export default function DeveloperPage() {
                       Zcash Community Wishlist
                     </a>
                     .
-                  </p>
-                </li>
-
-                <li>
-                  <a
-                    href="https://github.com/zingolabs/zingolib"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Intro to Zingolib
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Understanding the zingolib repository—a Rust-based API and
-                    CLI for interacting with zcashd via Lightwalletd.
-                  </p>
-                </li>
-
-                <li>
-                  <a
-                    href="https://github.com/ChainSafe/WebZjs"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    WebZjs
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    A JavaScript/TypeScript library for building Zcash-enabled
-                    web applications using WebAssembly.
-                  </p>
-                </li>
-
-                <li>
-                  <a
-                    href="https://github.com/NoirWallet/noir-wallet-sdk"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Noir Wallet SDK
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    TypeScript SDK and example dApp for integrating Zcash
-                    applications with the Noir Wallet browser extension.
                   </p>
                 </li>
 
