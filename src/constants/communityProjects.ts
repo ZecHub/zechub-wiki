@@ -21,14 +21,6 @@ export const communityProjects: CommunityProject[] = [
     thumbnailImage: "/community-projects/zechpublish.png",
   },
   {
-    title: "Zlink",
-    description:
-      "The simplest way to find any link, tool, or information you need about Zcash's ecosystem.",
-    url: "https://zlink.click",
-    thumbnailImage:
-      "https://i.postimg.cc/wjCxj2BF/ZEC-PRICE-20260629-182513-0002.png",
-  },
-  {
     title: "Zimppy",
     description:
       "The Machine Payment Protocol (MPP) payment method for Zcash, designed for AI agents and automated machine-to-machine workflows. Deposit once on-chain, then make unlimited instant bearer requests with no per-request blockchain interaction. Supports fully shielded Zcash (Orchard) payments.",
@@ -184,7 +176,7 @@ export const communityProjects: CommunityProject[] = [
     description:
       "Map interface displaying Zcash-accepting merchants and community locations.",
     url: "https://zecmap.com",
-    thumbnailImage: "/community-projects/ZECMap.png",
+    thumbnailImage: "/community-projects/ZECMap.jpg",
   },
   {
     title: "ZecStats",
@@ -222,13 +214,13 @@ export const communityProjects: CommunityProject[] = [
       "Orchard-focused Zcash wallet built for Zebrad, supporting fully shielded transactions and secure key management.",
     url: "https://github.com/LEONINE-DAO/Nozy-wallet",
     thumbnailImage:
-      "https://i.postimg.cc/pVfjb9sb/ZEC-PRICE-20260629-182842-0000.png",
+      "/community-projects/nozy.jpg",
   },
   {
     title: "Zafu Wallet",
     description:
       "Open-source privacy wallet for Zcash and Penumbra. Built as a browser extension with client-side proving, verified light-client architecture, cold signing, FROST multisig, and no view key leaving the device.",
     url: "https://chromewebstore.google.com/detail/zafu-wallet-beta/bhlogefpcebekhjpomlodifcelldoimn?pli=1",
-    thumbnailImage: "/community-projects/zafu-wallet.png",
+    thumbnailImage: "/community-projects/zafu.png",
   },
 ];
