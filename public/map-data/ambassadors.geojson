@@ -4,7 +4,7 @@
     "schema_version": "1.0",
     "generated": "2026-06-12",
     "source": "manual update from ambassador_list_v2.json",
-    "total_features": 13,
+    "total_features": 15,
     "note": "Drop-in GeoJSON for the Zcash Ambassador Map. Keep region values lowercase: africa, asia, americas, europe."
   },
   "features": [
@@ -331,6 +331,56 @@
         "coords_source": "manual",
         "active": true,
         "last_update": "2026-06-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [117.8902853, -2.4833826]
+      },
+      "properties": {
+        "id": "amb_indonesia",
+        "name": "Zcash Indonesia",
+        "flag": "🇮🇩",
+        "description": "Zcash community and advocacy in Indonesia",
+        "image": "https://pbs.twimg.com/profile_images/1986522005538299904/UHgmG1PY.jpg",
+        "twitter": "https://x.com/ZcashIdn",
+        "x_handle": "ZcashIdn",
+        "project_site": "https://substack.com/@zcashidn",
+        "blog": "https://substack.com/@zcashidn/posts",
+        "country_code": "ID",
+        "region": "asia",
+        "language": "Indonesian",
+        "pin_note": "Geographic centre of Indonesia",
+        "coords_source": "manual",
+        "active": true,
+        "last_update": "2026-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-102.0077097, 23.6585116]
+      },
+      "properties": {
+        "id": "amb_mexico",
+        "name": "Club Zcash Querétaro | Mexico",
+        "flag": "🇲🇽",
+        "description": "Zcash community and advocacy in Mexico",
+        "image": "https://pbs.twimg.com/profile_images/2056577785729056768/4S31k_G7.jpg",
+        "twitter": "https://x.com/zcashqro",
+        "x_handle": "zcashqro",
+        "project_site": "https://free2z.cash/palmar/zpage/5th-meetup-of-the-zcash-club-queretaro-mexico",
+        "blog": "https://free2z.cash/palmar/zpage/5th-meetup-of-the-zcash-club-queretaro-mexico",
+        "country_code": "MX",
+        "region": "americas",
+        "language": "Spanish",
+        "pin_note": "Geographic centre of Mexico",
+        "coords_source": "manual",
+        "active": true,
+        "last_update": "2026-06-30"
       }
     }
   ]
