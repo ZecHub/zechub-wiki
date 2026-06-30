@@ -25,7 +25,8 @@ export const communityProjects: CommunityProject[] = [
     description:
       "The simplest way to find any link, tool, or information you need about Zcash's ecosystem.",
     url: "https://zlink.click",
-    thumbnailImage: "https://i.postimg.cc/wjCxj2BF/ZEC-PRICE-20260629-182513-0002.png",
+    thumbnailImage:
+      "https://i.postimg.cc/wjCxj2BF/ZEC-PRICE-20260629-182513-0002.png",
   },
   {
     title: "Zimppy",
@@ -61,6 +62,20 @@ export const communityProjects: CommunityProject[] = [
       "Enables private payments for the internet. Accept Zcash in minutes — non-custodial, no KYC required. Merchants receive ZEC directly to shielded addresses.",
     url: "https://www.cipherpay.app/en",
     thumbnailImage: "/community-projects/Cipherpay.png",
+  },
+  {
+    title: "OpenZcash",
+    description:
+      "Public transparency dashboard for the Zcash Dev Fund, including ZCG and FPF grant accounting, the live Lockbox, governance, disbursements, and ecosystem funding data.",
+    url: "https://openzcash.org/",
+    thumbnailImage: "/community-projects/openzcash.png",
+  },
+  {
+    title: "ZK Global Credit",
+    description:
+      "Zcash-native credit and voting infrastructure for selective disclosure, settlement readiness, cross-border reputation, and shielded governance workflows.",
+    url: "https://voting.zkglobalcredit.tech/",
+    thumbnailImage: "/community-projects/zkglobalcredit.png",
   },
   {
     title: "ZECping",
@@ -117,13 +132,6 @@ export const communityProjects: CommunityProject[] = [
     thumbnailImage: "/community-projects/my-first-zcash.png",
   },
   {
-    title: "Warp Engine",
-    description:
-      "YWallet's upcoming synchronization engine with improved sync and transaction building.",
-    url: "https://forum.zcashcommunity.com/t/warp-the-next-engine-for-ywallet/48722",
-    thumbnailImage: "/community-projects/warp-engine.png",
-  },
-  {
     title: "Ywallet",
     description:
       "Multi-feature privacy wallet supporting Zcash and Ycash with fast warp-sync.",
@@ -138,24 +146,10 @@ export const communityProjects: CommunityProject[] = [
     thumbnailImage: "/community-projects/zapp.png",
   },
   {
-    title: "Zodl",
-    description:
-      "Open-source, self-custodial shielded Zcash wallet built for private payments.",
-    url: "https://electriccoin.co/zashi/",
-    thumbnailImage: "/community-projects/zodl.png",
-  },
-  {
     title: "Zcash Block Explorer",
     description: "Comprehensive Zcash block explorer from Nighthawk Apps.",
     url: "https://mainnet.zcashexplorer.app/",
     thumbnailImage: "/community-projects/zcash-block-explorer.png",
-  },
-  {
-    title: "Zebra",
-    description:
-      "Independent, consensus-compatible Zcash node implementation by the Zcash Foundation.",
-    url: "https://zfnd.org/zebra/",
-    thumbnailImage: "/community-projects/zebra.png",
   },
   {
     title: "ZECpages",
@@ -177,13 +171,6 @@ export const communityProjects: CommunityProject[] = [
       "Zcash Register enabling vendors and merchants to accept Zcash payments.",
     url: "https://zgo.cash",
     thumbnailImage: "/community-projects/z-go.png",
-  },
-  {
-    title: "Zcash CLI JSON RPC",
-    description:
-      "Open-source automated documentation website for zcashd JSON-RPC.",
-    url: "https://zcash-rpc.vercel.app/",
-    thumbnailImage: "/community-projects/zcash-rpc.png",
   },
   {
     title: "ZK Radio",
@@ -218,7 +205,7 @@ export const communityProjects: CommunityProject[] = [
     description:
       "Payment gateway solutions supporting Zcash ecosystem integrations.",
     url: "https://overpay.com",
-    thumbnailImage: "h/community-projects/overpay.png",
+    thumbnailImage: "/community-projects/overpay.png",
   },
 
   // Applications that Utilize Zcash
@@ -230,39 +217,18 @@ export const communityProjects: CommunityProject[] = [
     thumbnailImage: "/community-projects/aftok.png",
   },
   {
-    title: "Brave Wallet",
-    description:
-      "Secure crypto wallet integrated into Brave Browser with Zcash transparent support.",
-    url: "https://brave.com/wallet/",
-    thumbnailImage: "/community-projects/brave-wallet.png",
-  },
-  {
-    title: "DCRDEX",
-    description: "Decentralized exchange built by the Decred Project.",
-    url: "https://dex.decred.org",
-    thumbnailImage: "/community-projects/dcrdex.png",
-  },
-  {
     title: "Nozy Wallet",
     description:
       "Orchard-focused Zcash wallet built for Zebrad, supporting fully shielded transactions and secure key management.",
     url: "https://github.com/LEONINE-DAO/Nozy-wallet",
-    thumbnailImage: "https://i.postimg.cc/pVfjb9sb/ZEC-PRICE-20260629-182842-0000.png",
-  },
-
-  // Wider Ecosystem Utilizing Zero-Knowledge Proofs
-  {
-    title: "Aztec",
-    description:
-      "Private Ethereum rollup with up to 100x cost savings and strong privacy guarantees.",
-    url: "https://aztec.network/",
-    thumbnailImage: "/community-projects/aztec.png",
+    thumbnailImage:
+      "https://i.postimg.cc/pVfjb9sb/ZEC-PRICE-20260629-182842-0000.png",
   },
   {
-    title: "Darkfi",
+    title: "Zafu Wallet",
     description:
-      "Anonymous Layer 1 DeFi network with zero-knowledge smart contracts.",
-    url: "https://dark.fi",
-    thumbnailImage: "/community-projects/darkfi.png",
+      "Open-source privacy wallet for Zcash and Penumbra. Built as a browser extension with client-side proving, verified light-client architecture, cold signing, FROST multisig, and no view key leaving the device.",
+    url: "https://chromewebstore.google.com/detail/zafu-wallet-beta/bhlogefpcebekhjpomlodifcelldoimn?pli=1",
+    thumbnailImage: "/community-projects/zafu-wallet.png",
   },
 ];
