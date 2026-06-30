@@ -475,8 +475,7 @@
     "subscribeButton": "Subscribe Now",
     "latestIssue": "Latest Issue",
     "archive": "Archive"
-  }
-  ,
+  },
   "pages": {
     "wallets": {
       "title": "Wallets | ZecHub",
@@ -488,7 +487,9 @@
       "custodial": "Custodial Exchanges"
     },
     "usingZcash": {
-      "blockchainExplorers": { "title": "Blockchain Explorers" }
+      "blockchainExplorers": {
+        "title": "Blockchain Explorers"
+      }
     },
     "dashboard": {
       "title": "Dashboard | ZecHub",
@@ -569,25 +570,386 @@
       }
     },
     "hackathon": {
-      "title": "ZecHub Hackathon"
+      "title": "ZecHub Hackathon",
+      "heroEyebrow": "Build · Document · Submit",
+      "heroIntro": "Build across five tracks, from infra to games, then document and demo your work. Official kickoff",
+      "heroKickoffSep": "(UTC); submissions close",
+      "countdownStartsIn": "Hackathon starts in",
+      "countdownTimeUntilClose": "Time until submissions close",
+      "countdownEnded": "Hackathon ended",
+      "days": "Days",
+      "hours": "Hours",
+      "mins": "Mins",
+      "secs": "Secs",
+      "endedNote": "This hackathon window has ended, thanks to everyone who took part.",
+      "preStarts": "Starts",
+      "preCloseSep": "(UTC). Submissions close",
+      "activeCloseOn": "Submissions close on",
+      "tracksEyebrow": "2026 event",
+      "tracksTitle": "Tracks",
+      "tracksIntro": "Align your project with a track for clarity when you submit, judges and the community use them to browse entries.",
+      "tracks": {
+        "infrastructure": {
+          "name": "Infrastructure",
+          "description": "ZSA GUI, Node Launcher, Zallet web dashboard etc."
+        },
+        "games": {
+          "name": "Games",
+          "description": "Wiki Article game similar to catfishing.net, ZEC Poker, Battleship etc."
+        },
+        "frost": {
+          "name": "FROST",
+          "description": "Threshold signing wallets, Shielded ZEC Escrow, Social Recovery"
+        },
+        "zcashLogin": {
+          "name": "Zcash Login",
+          "description": "Auth and identity flows that use Zcash primitives for sign-in or access."
+        },
+        "accounting": {
+          "name": "Accounting",
+          "description": "Reporting, workflows for teams handling ZEC, Payment management system."
+        }
+      },
+      "prizesEyebrow": "Rewards",
+      "prizesTitle": "Prizes",
+      "prizePoolTitle": "25 ZEC Prize pool",
+      "prizePoolDesc": "Build, submit, and compete for the community prize pool.",
+      "devToolsEyebrow": "Start here",
+      "devToolsTitle": "Devtools & documentation",
+      "devTools": {
+        "quickStart": {
+          "title": "ZecHub Developer Quick Start",
+          "description": "Find the essential tools, references, and setup steps for building on Zcash."
+        }
+      },
+      "openGuide": "Open guide",
+      "openDocs": "Open docs",
+      "rulesTitle": "Rules",
+      "rulesDesc": "Keep submissions fair and easy to judge.",
+      "rules": {
+        "mainnet": "Projects must interact with the Zcash mainnet network.",
+        "oneProject": "Teams can submit only one final project per team.",
+        "docs": "All submissions must include clear setup and usage documentation.",
+        "openSource": "Use open-source licensing.",
+        "respect": "Respect privacy, security, and community guidelines in both code and content."
+      },
+      "faqTitle": "FAQ",
+      "faqDesc": "Quick answers before you dive in.",
+      "faq": {
+        "whoCanParticipate": {
+          "question": "Who can participate?",
+          "answer": "Anyone can join: developers, designers and multidisciplinary teams."
+        },
+        "validSubmission": {
+          "question": "What must a valid submission include?",
+          "answer": "A working prototype, video demo, basic documentation, and an explanation of how it uses the Zcash network."
+        },
+        "whereSubmit": {
+          "question": "Where do we submit projects?",
+          "answer": "Share your video demo in the Zcash Global Discord and include any relevant repository or demo links."
+        },
+        "winnersSelected": {
+          "question": "How are winners selected?",
+          "answer": "A public community process is run via ZecHub DAO channels after submissions close."
+        },
+        "whatTracks": {
+          "question": "What are the tracks?",
+          "answer": "This hackathon's themes are Infrastructure, Games, FROST, Zcash Login, and Accounting. Pick the track that best matches your build, you can still submit a project not defined within tracks."
+        }
+      },
+      "submitEyebrow": "Participation",
+      "submitTitle": "How to submit",
+      "submitIntro": "Follow these five steps to get your project from idea to official entry.",
+      "steps": {
+        "build": {
+          "title": "Build your project",
+          "description": "Create a working prototype that interacts with the Zcash mainnet. Pick a track and keep a development log as you go."
+        },
+        "record": {
+          "title": "Record a video demo",
+          "description": "Capture a short walkthrough showing your project in action. Clearly explain what it does and how it uses the Zcash network."
+        },
+        "document": {
+          "title": "Document your work",
+          "description": "Write a README with setup instructions, usage notes, and your open-source license. Push everything to a public GitHub repo."
+        },
+        "upload": {
+          "title": "Upload your code",
+          "descPrefix": "Push your project to the",
+          "repoLabel": "Hackathon repo",
+          "descSuffix": "on GitHub so the community can review your work."
+        },
+        "share": {
+          "title": "Share in Discord",
+          "description": "Post your video demo in the Zcash Global Discord with your repo and demo links before July 15, 2026 (UTC)."
+        }
+      },
+      "deadlineLabel": "Deadline:",
+      "deadlinePrefix": "All submissions must be posted in Discord by",
+      "deadlineSuffix": ". Winners are selected via a public community vote in ZecHub DAO channels shortly after submissions close.",
+      "joinTheDiscord": "Join the Discord",
+      "previousEyebrow": "Past editions",
+      "previousTitle": "Previous hackathons",
+      "previousIntro": "Browse earlier ZecHub hackathon builds by edition. Each project card links directly to its GitHub folder for code, notes, and demos where available.",
+      "browseAllProjects": "Browse all projects",
+      "errorCouldNotLoad": "Could not load live project list",
+      "errorShowingSaved": "Showing the saved previous hackathon project list instead.",
+      "noProjects": "No project folders were returned. Open the repo tree to verify structure.",
+      "projectsArchivedOne": "{count} project archived from this edition.",
+      "projectsArchivedMany": "{count} projects archived from this edition.",
+      "buildsCount": "{count} builds",
+      "viewProject": "View project",
+      "needHelpTitle": "Need help?",
+      "needHelpDesc": "The Zcash Global Discord is the best place for build questions, infra tips, and hackathon chatter.",
+      "joinDiscord": "Join Discord",
+      "supportDonation": "Support with a donation",
+      "popup": {
+        "liveNow": "Live Now",
+        "subtitle": "Build privacy-first applications on Zcash. Compete for prizes, earn ZEC, and shape the future of financial freedom.",
+        "prizePool": "Prize Pool",
+        "start": "Start",
+        "end": "End",
+        "learnMore": "Learn More →",
+        "dismiss": "Dismiss"
+      }
     },
     "developers": {
-      "title": "Zcash Developer Resources"
+      "title": "Zcash Developer Resources",
+      "heroImageAlt": "Zcash Developer Resources",
+      "cardSectionTitle": "How would you like to get started?",
+      "cards": {
+        "learnTitle": "Learn Zcash Development",
+        "learnContent": "Explore the official documentation and learn the basics of Zcash technology.",
+        "learnButton": "Read the Docs",
+        "tutorialsTitle": "Learn Through Tutorials",
+        "tutorialsContent": "Follow step-by-step tutorials to build on Zcash, from creating wallets to integrating Zcash into your applications.",
+        "tutorialsButton": "View Tutorials",
+        "quickStartTitle": "Quick Start Guide",
+        "quickStartContent": "Get up and running with Zcash development quickly. Learn installation, configuration, and basic operations.",
+        "quickStartButton": "Quick Start Guide"
+      },
+      "exploreDocsTitle": "Explore the Documentation",
+      "introductionsTitle": "Introductions",
+      "fundamentalsTitle": "Fundamentals",
+      "advancedTitle": "Advanced",
+      "introLinks": {
+        "introToZcash": "Intro to Zcash",
+        "introToZcashDesc": "Learn about Zcash, its history, and its core principles.",
+        "introToZec": "Intro to ZEC",
+        "introToZecDesc": "Discover the use cases and benefits of ZEC, Zcash native cryptocurrency.",
+        "introToZebra": "Intro to Zebra",
+        "introToZebraDesc": "Understanding how Zebra powers the Zcash network with a modular and secure Rust-based implementation",
+        "introToLightwalletd": "Intro to Lightwalletd",
+        "introToLightwalletdDesc": "Understanding the lightwalletd project—a scalable server written in Go that efficiently serves compact blockchain data to Zcash light clients via gRPC.",
+        "zalletBook": "The Zallet Book",
+        "zalletBookDesc": "Introduction to Zallet, a full-node Zcash wallet written in Rust and designed as a replacement for the zcashd wallet.",
+        "developerResources": "Developer Resources",
+        "developerResourcesDesc": "Links to Zcash further Technical Documentation."
+      },
+      "fundamentalsLinks": {
+        "addressEncoding": "Address Encoding",
+        "addressEncodingDesc": "Learn how Zcash addresses and keys are encoded.",
+        "transactions": "Transactions",
+        "transactionsDesc": "Understand how transactions work in Zcash.",
+        "fees": "Fees",
+        "feesDesc": "Learn about transaction fees and how they are calculated.",
+        "nodesZcashd": "Nodes (zcashd)",
+        "nodesZcashdDesc": "Set up and manage Zcash nodes using zcashd.",
+        "nodesZebrad": "Nodes (zebrad)",
+        "nodesZebradDesc": "Explore Zebra, an alternative Zcash node implementation.",
+        "lightwalletServers": "Lightwallet Servers",
+        "lightwalletServersDesc": "Learn about lightwalletd, a lightweight Zcash wallet server.",
+        "blockExplorers": "Block Explorers",
+        "blockExplorersDesc": "Explore Zcash blockchains using block explorers.",
+        "shadeAgent": "Shade Agent - Notion",
+        "shadeAgentDesc": "Learn about Shade Agents—the first truly autonomous AI agents on NEAR—powered by secure TEEs and decentralized Chain Signatures to manage assets, access LLMs, and execute multichain transactions independently."
+      },
+      "advancedLinks": {
+        "introToStack": "Intro to the Stack",
+        "introToStackDesc": "Understand the architecture and components of the Zcash stack.",
+        "zecDev": "ZecDev",
+        "zecDevDesc": "Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant. See also the",
+        "zcashCommunityWishlist": "Zcash Community Wishlist",
+        "introToZingolib": "Intro to Zingolib",
+        "introToZingolibDesc": "Understanding the zingolib repository—a Rust-based API and CLI for interacting with zcashd via Lightwalletd.",
+        "webZjs": "WebZjs",
+        "webZjsDesc": "A JavaScript/TypeScript library for building Zcash-enabled web applications using WebAssembly.",
+        "noirWalletSdk": "Noir Wallet SDK",
+        "noirWalletSdkDesc": "TypeScript SDK and example dApp for integrating Zcash applications with the Noir Wallet browser extension.",
+        "zcashIka": "zcash-ika",
+        "zcashIkaDesc": "Split-key custody for Zcash and multi-chain agents via 2PC-MPC. On-chain spend policy, privacy attestation, ZIP 244 transaction builder.",
+        "developmentGuidelines": "Development Guidelines",
+        "developmentGuidelinesDesc": "Follow best practices for developing on Zcash.",
+        "arboristCalls": "Arborist Calls Page",
+        "arboristCallsDesc": "The Zcash Arborist Calls are bi-weekly protocol development meetings focused on tracking upcoming protocol deployment logistics, consensus node implementation issues, and protocol research."
+      },
+      "feedbackTitle": "Was this page helpful?",
+      "feedbackYes": "Yes",
+      "feedbackNo": "No",
+      "feedbackHelpful": "Thank you for your feedback! Make this page even better by answering a few questions. If you need help, you can reach out to the community on our",
+      "feedbackNotHelpful": "Sorry to hear that. Please let us know how we can improve this page. You can reach out to the community on our"
     },
     "zcashProjects": {
       "title": "Zcash Projects | ZecHub"
     },
     "visualizer": {
       "title": "Zcash Visualizers",
-      "hashFunction": { "title": "Hash Function Visualizer" },
-      "zcashKey": { "title": "Zcash Key Visualizer" },
-      "zksnark": { "title": "ZK-SNARK Proof Visualizer" }
-    }
-    ,
+      "hashFunction": {
+        "title": "Hash Function Visualizer"
+      },
+      "zcashKey": {
+        "title": "Zcash Key Visualizer"
+      },
+      "zksnark": {
+        "title": "ZK-SNARK Proof Visualizer"
+      }
+    },
     "paymentProcessors": {
       "title": "Payment Processors | ZecHub",
       "noData": "No Data or Wrong file",
       "bannerAlt": "wiki-banner"
+    },
+    "developersQuickStart": {
+      "heroBadge": "Developer Quick Start",
+      "heroTitleLine1": "Zcash Dev",
+      "heroTitleLine2": "Quick Start",
+      "heroSubtitle": "Get up and running with Zcash development. Choose your stack and follow the guide.",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "onThisPage": "On this page",
+      "tocInstallingZebrad": "Installing Zebrad",
+      "tocRunningZebrad": "Running zebrad",
+      "tocConnectingLightwalletd": "Connecting with lightwalletd",
+      "installation": "Installation",
+      "configuration": "Configuration",
+      "dependencies": "Dependencies",
+      "fromSource": "From Source",
+      "alternatively": "Alternatively",
+      "manualDownload": "Manual Download",
+      "wslRecommended": "WSL (Recommended)",
+      "runningZebradHeading": "Running zebrad",
+      "initialSetup": "Initial Setup",
+      "createConfigDir": "Create Configuration Directory",
+      "startingZebrad": "Starting zebrad",
+      "commandLine": "Command Line",
+      "importantNotes": "Important Notes",
+      "noteDownloadsBlockchain": "First run downloads the entire blockchain (~250 GB)",
+      "noteInitialSync": "Initial sync can take several hours",
+      "noteKeepSecure": "Keep your zebrad.toml secure and private",
+      "connectingLightwalletdHeading": "Connecting with lightwalletd",
+      "lightwalletdInfo": "is a server that provides a lightweight interface to the Zcash blockchain, designed for mobile and desktop wallets that don't need to run a full node.",
+      "prerequisites": "Prerequisites",
+      "buildLightwalletd": "Build lightwalletd",
+      "basicSetupMainnet": "Basic Setup (Mainnet)",
+      "basicSetupTestnet": "Basic Setup (Testnet)",
+      "run": "Run",
+      "installingZaino": "Installing Zaino",
+      "zainoInfo": "is a Rust-based indexer for the Zcash blockchain. It serves both light clients (wallets that don't store the full history) and full clients / block explorers, providing access to finalized chain, the non-finalized best chain, and the mempool.",
+      "buildZaino": "Build Zaino",
+      "configure": "Configure",
+      "runZainod": "Run zainod",
+      "installingZingoCli": "Installing Zingo CLI",
+      "zingoCliInfo": "is a command-line lightwalletd-proxy client built in Rust. Releases are currently provisional — this guide covers compiling from source.",
+      "buildZingoCli": "Build Zingo CLI",
+      "running": "Running",
+      "startZingoCliDefault": "Start Zingo CLI (Default)",
+      "startZingoCliCustom": "Start Zingo CLI (Custom)",
+      "zingoSyncWarning": "⚠ This will perform a full sync on first run, similar to lightwalletd.",
+      "nextStepsResources": "Next Steps & Resources",
+      "readyToBuild": "Ready to Build?",
+      "officialDocumentation": "Official Documentation",
+      "zcashDiscordCommunity": "Zcash Discord Community",
+      "githubRepositories": "GitHub Repositories",
+      "zcashImprovementProposals": "Zcash Improvement Proposals",
+      "needHelp": "Need Help?",
+      "zcashCommunityForum": "Zcash Community Forum",
+      "githubIssues": "GitHub Issues",
+      "troubleshootingGuide": "Troubleshooting Guide",
+      "stackOverflow": "Stack Overflow"
+    },
+    "governanceHowto": {
+      "pageTitle": "ZecHub DAO Governance",
+      "pageSubtitle": "A comprehensive guide to participating in ZecHub DAO governance",
+      "stepOf": "Step {current} of {total}",
+      "firstSteps": "First Steps",
+      "firstStepsDesc": "Get set up to participate in DAO governance",
+      "draftProposal": "Draft Proposal",
+      "draftProposalDesc": "Structure and prepare your proposal for submission",
+      "submittingProposal": "Submitting Proposal",
+      "submittingProposalDesc": "Submit and promote your proposal",
+      "installKeplr": "Install Keplr Wallet",
+      "installKeplrDesc": "Set up your Keplr wallet to interact with the DAO",
+      "keplrVideoTitle": "Keplr Wallet Setup Guide",
+      "acquireJuno": "Acquire JUNO",
+      "acquireJunoDesc": "Get JUNO tokens to interact with the daodao contract. Contact core-team members for assistance.",
+      "viewOpenProposals": "View Open Proposals",
+      "viewOpenProposalsDesc": "Check out current proposals and voting opportunities",
+      "visitVotingPortal": "Visit Voting Portal",
+      "formatNote": "Format: Proposals may be written in .Md or .txt format",
+      "recommendedStructure": "Recommended 4-Stage Structure:",
+      "stageBackground": "Background",
+      "stageBackgroundDesc": "Provide some history of the general topic / service",
+      "stageWhy": "Why?",
+      "stageWhyDesc": "Present the driving reason for your proposal. May use bullet points",
+      "stageProposal": "Proposal",
+      "stageProposalDesc": "Clearly detail your proposal in full",
+      "stageAction": "Action",
+      "stageActionDesc": "What happens upon successful vote - may provide timeline of actions",
+      "getFeedback": "Get Feedback",
+      "getFeedbackDesc": "Share your draft in the ZecHub #proposals channel on Discord for early feedback",
+      "joinDiscord": "Join Discord",
+      "walkthroughTitle": "Proposal Walkthrough Video",
+      "walkthroughDesc": "Watch a full walkthrough of how to write and structure a proposal",
+      "walkthroughIframeTitle": "Proposal Walkthrough",
+      "postInDiscord": "Post in Discord",
+      "postInDiscordDesc": "Share your final proposal in #proposals and tag @core-team",
+      "openDiscord": "Open Discord",
+      "submitOnPortal": "Submit on Voting Portal",
+      "submitOnPortalDesc": "Use the official ZecHub voting site to create your proposal",
+      "submitNow": "Submit Now",
+      "loginNote": "⚠️ You need to login with either Keplr or Keplr Mobile",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "sitemap": {
+      "heading": "Site Navigation",
+      "subheading": "Complete overview of all pages and resources available on the Zechub Wiki",
+      "guidesCount": "{count} guides",
+      "sections": {
+        "Pages": "Pages",
+        "Organizations": "Organizations",
+        "Guides": "Guides",
+        "Use Zcash": "Use Zcash",
+        "Ecosystem": "Ecosystem"
+      },
+      "links": {
+        "Homepage": "Homepage",
+        "Dashboard": "Dashboard",
+        "Donation": "Donation",
+        "Contribute": "Contribute",
+        "DAO": "DAO",
+        "Developers": "Developers",
+        "Brand": "Brand",
+        "Wallets": "Wallets",
+        "Sitemap": "Sitemap",
+        "Tutorials": "Tutorials",
+        "Bounties": "Bounties",
+        "Buying ZEC": "Buying ZEC",
+        "Faucets": "Faucets",
+        "Exchanges": "Exchanges",
+        "Block Explorers": "Block Explorers",
+        "Shielded Pools": "Shielded Pools",
+        "Transparent Exchange Addresses": "Transparent Exchange Addresses",
+        "Transactions": "Transactions",
+        "Memos": "Memos",
+        "Mobile Top Ups": "Mobile Top Ups",
+        "Payment Request URIs": "Payment Request URIs",
+        "Payment Processors": "Payment Processors",
+        "Recovering Funds": "Recovering Funds",
+        "Metamask Snap": "Metamask Snap",
+        "Community Forum": "Community Forum",
+        "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
+      }
     }
   },
   "developers": {

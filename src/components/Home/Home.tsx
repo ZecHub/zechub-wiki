@@ -16,6 +16,8 @@ type HomeProps = {
 };
 
 const HackathonBanner = ({ onDismiss }: { onDismiss: () => void }) => {
+  const { t } = useLanguage();
+  const hp = t?.pages?.hackathon?.popup;
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -84,7 +86,7 @@ const HackathonBanner = ({ onDismiss }: { onDismiss: () => void }) => {
           <div className="inline-flex items-center gap-1.5 bg-[var(--color-brand)]/10 border border-[var(--color-brand)]/30 rounded-full px-3 py-1 mb-5">
             <span className="hk-pulse w-2 h-2 rounded-full bg-[var(--color-brand)] inline-block" />
             <span className="text-[11px] font-semibold uppercase tracking-widest text-[var(--color-brand)]">
-              Live Now
+              {hp?.liveNow ?? "Live Now"}
             </span>
           </div>
 
@@ -99,16 +101,16 @@ const HackathonBanner = ({ onDismiss }: { onDismiss: () => void }) => {
 
           {/* Subtitle */}
           <p className="text-base text-muted-foreground leading-relaxed mb-7">
-            Build privacy-first applications on Zcash. Compete for prizes, earn
-            ZEC, and shape the future of financial freedom.
+            {hp?.subtitle ??
+              "Build privacy-first applications on Zcash. Compete for prizes, earn ZEC, and shape the future of financial freedom."}
           </p>
 
           {/* Stats */}
           <div className="grid grid-cols-3 gap-3 mb-7">
             {[
-              { label: "Prize Pool", value: "25 ZEC" },
-              { label: "Start", value: "May 25" },
-              { label: "End", value: "July 15" },
+              { label: hp?.prizePool ?? "Prize Pool", value: "25 ZEC" },
+              { label: hp?.start ?? "Start", value: "May 25" },
+              { label: hp?.end ?? "End", value: "July 15" },
             ].map((s) => (
               <div
                 key={s.label}
@@ -131,13 +133,13 @@ const HackathonBanner = ({ onDismiss }: { onDismiss: () => void }) => {
               onClick={handleDismiss}
               className="btn-brand flex-1 flex items-center justify-center rounded-lg font-bold text-[13px] imd:text-sm py-3 px-5 transition-colors"
             >
-              Learn More →
+              {hp?.learnMore ?? "Learn More →"}
             </a>
             <button
               onClick={handleDismiss}
               className="flex-1 bg-transparent border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 font-semibold text-[13px] imd:text-sm py-3 px-5 rounded-lg transition-colors cursor-pointer"
             >
-              Dismiss
+              {hp?.dismiss ?? "Dismiss"}
             </button>
           </div>
         </div>
