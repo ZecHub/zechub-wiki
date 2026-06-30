@@ -1,7 +1,7 @@
 'use client';
 import { matchIcons } from "@/constants/Icons";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useState } from "react";
 import {
   BiRightArrowAlt as Arrow,
