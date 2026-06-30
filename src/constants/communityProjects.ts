@@ -197,28 +197,28 @@ export const communityProjects: CommunityProject[] = [
     description:
       "Map interface displaying Zcash-accepting merchants and community locations.",
     url: "https://zecmap.com",
-    thumbnailImage: "https://i.postimg.cc/DZBKLP7d/20260629-154810.jpg",
+    thumbnailImage: "/community-projects/ZECMap.png",
   },
   {
     title: "ZecStats",
     description:
       "Dashboard for real-time Zcash network statistics and shielding metrics.",
     url: "https://zecstats.com",
-    thumbnailImage: "https://i.postimg.cc/Yq4wLFZY/Screenshot-2026-06-29-15-56-11-822-com-android-chrome-edit.jpg",
+    thumbnailImage: "/community-projects/zecstats.jpg",
   },
   {
     title: "zecprice",
     description:
       "Tracking and data metrics tool for Zcash market price performance.",
     url: "https://zecprice.com",
-    thumbnailImage: "https://i.postimg.cc/HL8JSjr2/ZEC-PRICE-20260629-182513-0000.png",
+    thumbnailImage: "/community-projects/zecprice.png",
   },
   {
     title: "Overpay.com",
     description:
       "Payment gateway solutions supporting Zcash ecosystem integrations.",
     url: "https://overpay.com",
-    thumbnailImage: "https://i.postimg.cc/bwWr28mS/ZEC-PRICE-20260629-182513-0001.png",
+    thumbnailImage: "h/community-projects/overpay.png",
   },
 
   // Applications that Utilize Zcash
