@@ -307,8 +307,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
     setLocaleState(saved);
 
-    // Curated locales serve their own content — don't invoke Google Translate.
-    if (CURATED_LOCALES.has(saved)) return;
+    // Curated locales serve their own content — don't invoke Google Translate,
+    // and clear any stale googtrans cookie so a prior GT session can't
+    // re-translate the curated page on load.
+    if (CURATED_LOCALES.has(saved)) {
+      clearGTCookies();
+      return;
+    }
 
     return scheduleGoogleTranslate(savedLang.googleCode, 50);
   }, []);
