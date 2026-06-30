@@ -181,6 +181,7 @@ export const communityProjects: CommunityProject[] = [
   },
 
 
+
   // Developer, Testing, and Infrastructure
 
   {
@@ -207,6 +208,14 @@ export const communityProjects: CommunityProject[] = [
     url: "https://voting.zkglobalcredit.tech/",
     thumbnailImage: "/community-projects/zkglobalcredit.png",
   },
+  {
+    title: "Zentat",
+    description:
+      "Zentat converts fiat currency prices to Zcash (ZEC) in real-time as you browse the web.",
+    url: "https://chromewebstore.google.com/detail/zentat/lpndbahladndclecodadoljlplfaldac",
+    thumbnailImage: "/community-projects/zentat.png",
+  },
+
   {
     title: "Free2z",
     description:
