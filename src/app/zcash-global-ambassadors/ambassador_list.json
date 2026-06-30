@@ -97,5 +97,23 @@
     "projectSite": "https://zcashindia.org",
     "image": "/zcashIndia.jpg",
     "blog": "https://zcashindia.org/blog"
+  },
+  {
+    "name": "Zcash Indonesia",
+    "flag": "🇮🇩",
+    "twitter": "https://x.com/ZcashIdn",
+    "description": "Zcash community and advocacy in Indonesia",
+    "projectSite": "https://substack.com/@zcashidn",
+    "image": "https://x.com/ZcashIdn/photo",
+    "blog": "https://substack.com/@zcashidn/posts"
+  },
+  {
+    "name": "Club Zcash Querétaro | Mexico",
+    "flag": "🇲🇽",
+    "twitter": "https://x.com/zcashqro",
+    "description": "Zcash community and advocacy in Mexico",
+    "projectSite": "https://free2z.cash/palmar/zpage/5th-meetup-of-the-zcash-club-queretaro-mexico",
+    "image": "https://x.com/zcashqro/photo",
+    "blog": "https://free2z.cash/palmar/zpage/5th-meetup-of-the-zcash-club-queretaro-mexico"
   }
 ]
