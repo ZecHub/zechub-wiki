@@ -1,6 +1,7 @@
 import MdxContainer from "@/components/MdxContainer";
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
+import { Link } from "@/i18n/navigation";
 import {
   getFileContentCached,
   getLocalizedFileContentCached,
@@ -171,7 +172,7 @@ export default async function Page(props: {
             </div>
 
             <div className="max-w-2xl">
-              <a
+              <Link
                 href="/research/zcash-foundations-series"
                 className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all active:scale-[0.985] sm:hover:border-slate-300 sm:hover:shadow-lg dark:border-slate-700 dark:sm:hover:border-slate-600"
               >
@@ -213,7 +214,7 @@ export default async function Page(props: {
                     {r.exploreSeries ?? "Explore the series →"}
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -400,7 +401,8 @@ export default async function Page(props: {
   const researchBreadcrumbLabel = researchSegment
     ? slugToTitle(researchSegment)
     : "";
-  const canonicalWikiUrl = `https://zechub.wiki/${slug.join("/")}`;
+  const localeUrlPrefix = locale && locale !== "en" ? `/${locale}` : "";
+  const canonicalWikiUrl = `https://zechub.wiki${localeUrlPrefix}/${slug.join("/")}`;
 
   if (!markdown) {
     return (

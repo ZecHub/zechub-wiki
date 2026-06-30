@@ -117,7 +117,12 @@ async function fuzzyLocalizedFile(itPath: string): Promise<string | null> {
     for (const e of entries) {
       if (e.type !== "file" || !e.name.endsWith(".md")) continue;
       const n = normalize(e.name.replace(/\.md$/i, ""));
-      if (n === wantSlug || n.includes(wantSlug)) {
+      // Exact normalized match only. normalize() already collapses casing and
+      // -/_/space separators, so this still handles casing differences (e.g.
+      // ZODL.md vs a "Zodl"-derived slug) without the substring `.includes()`
+      // matching, which could return the WRONG file when one slug is a
+      // substring of a sibling (e.g. "zcash" matching "zcashfoundation").
+      if (n === wantSlug) {
         // Short-TTL probe: this is a translations/<locale>/... path, so a miss
         // must not be cached forever (see getTranslationProbeCached).
         return await getTranslationProbeCached(e.path).catch(() => null);
@@ -140,9 +145,11 @@ export async function getLocalizedFileContentCached(
     // Use the short-TTL probe so a not-yet-existing translation isn't cached as
     // a permanent miss; the English fallback below keeps its long-lived cache.
     const exact = await getTranslationProbeCached(itPath).catch(() => null);
-    if (exact) return exact;
+    // Use `!== null` rather than truthiness so a legitimately empty translated
+    // file ("") is still served instead of silently falling back to English.
+    if (exact !== null) return exact;
     const fuzzy = await fuzzyLocalizedFile(itPath).catch(() => null);
-    if (fuzzy) return fuzzy;
+    if (fuzzy !== null) return fuzzy;
   }
 
   return getFileContentCached(filePath).catch(() => null);

@@ -39,8 +39,13 @@ const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:te
 // they render as a plain anchor (defaulting to a new tab).
 type LinkProps = ComponentProps<typeof IntlLink>;
 
+// External = anything with a URL scheme (http:, https:, mailto:, tel:, ipfs:…)
+// or a protocol-relative "//host" URL. Internal app paths ("/foo") have no
+// leading scheme and must go through the locale-aware IntlLink. Protocol-
+// relative URLs start with "/" but must NOT be locale-prefixed.
 const isExternalHref = (href: unknown): href is string =>
-  typeof href === "string" && /^https?:\/\//i.test(href);
+  typeof href === "string" &&
+  (/^[a-z][a-z0-9+.-]*:/i.test(href) || href.startsWith("//"));
 
 const Link = ({ href, prefetch, children, ...rest }: LinkProps) => {
   if (isExternalHref(href)) {
@@ -59,6 +64,7 @@ const Link = ({ href, prefetch, children, ...rest }: LinkProps) => {
     } = rest as Record<string, unknown>;
     return (
       <a
+        {...(anchorRest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
         href={href}
         className={className as string | undefined}
         onClick={onClick as React.MouseEventHandler<HTMLAnchorElement> | undefined}
