@@ -266,9 +266,19 @@ function clearGTCookies() {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('en');
-  const [dictionary, setDictionary] = useState<Record<string, any>>({});
+export function LanguageProvider({
+  children,
+  initialLocale,
+  initialDictionary,
+}: {
+  children: ReactNode;
+  initialLocale?: Locale;
+  initialDictionary?: Record<string, any>;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale ?? 'en');
+  const [dictionary, setDictionary] = useState<Record<string, any>>(
+    initialDictionary ?? {},
+  );
 
   const restoredRef = useRef(false);
 

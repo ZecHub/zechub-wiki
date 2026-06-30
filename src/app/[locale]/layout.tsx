@@ -1,5 +1,6 @@
 import { DarkModeProvider } from "@/provider/DarkModeProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -46,6 +47,10 @@ export default async function RootLayout({
 
   // Enable static rendering for this locale.
   setRequestLocale(locale);
+
+  // Preload the locale dictionary on the server so the UI chrome renders in the
+  // correct language during SSR (no English flash before client hydration).
+  const initialDictionary = await getDictionary(locale);
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -98,7 +103,10 @@ export default async function RootLayout({
             disableTransitionOnChange={true}
             enableColorScheme={true}
           >
-            <LanguageProvider>
+            <LanguageProvider
+              initialLocale={locale}
+              initialDictionary={initialDictionary}
+            >
               <DarkModeProvider>
                 <NavigationWrapper>{children}</NavigationWrapper>
               </DarkModeProvider>
