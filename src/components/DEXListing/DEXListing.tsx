@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { FadeInAnimation } from "../UI/FadeInAnimation";
 import "./DexListing.css";
 

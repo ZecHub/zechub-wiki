@@ -2,7 +2,7 @@
 
 import { VideoCard } from "@/components/VideoCard/VideoCard";
 import { omniflixMedia } from "@/constants/omniflixMedia";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function OmniflixClient() {

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Card } from "@/components/Card/Card";
 import { decentralizedExchanges } from "@/constants/decentralizedExchanges";
 import { useLanguage } from '@/context/LanguageContext';

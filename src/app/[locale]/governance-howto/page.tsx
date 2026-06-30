@@ -8,7 +8,7 @@ import {
   ListCardsHeader,
   ListCardsTitle,
 } from "@/components/UI/GovHowTo/ListCards/ListCards";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { FaWallet, FaDiscord, FaExternalLinkAlt, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdHowToVote } from "react-icons/md";
 import { BsChatDots } from "react-icons/bs";

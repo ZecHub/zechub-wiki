@@ -3,7 +3,7 @@ import ExchangeCard from "@/components/ExchangeCard/ExchangeCard";
 import exchanges from "@/constants/exchange";
 import exchangesIt from "@/constants/exchange.it";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useLocale } from "next-intl";

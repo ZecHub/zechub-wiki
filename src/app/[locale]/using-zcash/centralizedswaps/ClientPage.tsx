@@ -3,7 +3,7 @@ import { Card } from "@/components/Card/Card";
 import { dexListingConfig } from "@/constants/dex-listing-config";
 import { dexListingConfigIt } from "@/constants/dex-listing-config.it";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { useLocale } from "next-intl";
 

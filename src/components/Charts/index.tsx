@@ -15,9 +15,9 @@ import {
   Check,
 } from "lucide-react";
 import { useEffect, useState, useRef, startTransition } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import "./index.css";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { useLanguage } from "@/context/LanguageContext";

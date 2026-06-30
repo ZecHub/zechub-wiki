@@ -4,7 +4,7 @@ import ContentSections from "@/components/Home/ContentSections";
 import AnimationHome from "@/components/UI/AnimationHome";
 import Cards from "@/components/UI/Cards";
 import { cardsConfig } from "@/constants/cardsConfig";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import Explorer from "../Explorer/Explorer";
 import { FadeInAnimation } from "../UI/FadeInAnimation";
