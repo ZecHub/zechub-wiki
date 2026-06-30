@@ -215,7 +215,6 @@ export const communityProjects: CommunityProject[] = [
     url: "https://chromewebstore.google.com/detail/zentat/lpndbahladndclecodadoljlplfaldac",
     thumbnailImage: "/community-projects/zentat.png",
   },
-
   {
     title: "Free2z",
     description:
