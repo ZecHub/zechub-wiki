@@ -28,7 +28,7 @@ export const getFileContentCached = unstable_cache(
           ref: BRANCH,
         });
         // @ts-ignore
-        return atob(res.data?.content || "");
+        return Buffer.from(res.data?.content || "", "base64").toString("utf-8");
       } catch (err: any) {
         console.log({ "Error! Status": err.status, Message: err.response?.data?.message });
       }
@@ -44,7 +44,7 @@ export const getFileContentCached = unstable_cache(
               owner, repo, path: file, ref: BRANCH,
             });
             // @ts-ignore
-            return atob(res.data?.content || "");
+            return Buffer.from(res.data?.content || "", "base64").toString("utf-8");
           }
         }
       }
