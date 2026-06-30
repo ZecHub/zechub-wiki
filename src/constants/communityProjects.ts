@@ -34,7 +34,12 @@ export const communityProjects: CommunityProject[] = [
     url: "https://zshieldher.com/",
     thumbnailImage: "/community-projects/zshieldher.png",
   },
-
+  {
+    title: "ZecForge",
+    description: "ACreator forge for the Zcash ecosystem. Onboarding, Creator Development, Content Distribution.",
+    url: "https://x.com/zec_forge",
+    thumbnailImage: "/community-projects/zecforge.jpg",
+  },
 
   // Wallets and Payment Tools
   {
