@@ -4,7 +4,7 @@ import { EvolutinCard } from "./data/EvolutionCard";
 import { networkUpgrades } from "./data/networkUpgrade";
 import { PrivacyMeter } from "./data/PrivacyMeter";
 import { UpgradEvolutionHero } from "./data/UpgradEvolutionHero";
-import "../../app/globals.css";
+import "../globals.css";
 
 export function ZcashUpgradEvolution() {
   const currentEra = networkUpgrades.find((u) => u.status === "current");

@@ -1,7 +1,7 @@
 "use server";
 
 import { google } from "googleapis";
-import * as config from "../../config";
+import * as config from "@/config";
 import { parseReponseData } from "@/lib/zips/parseReponseData";
 import { transformGrantData } from "@/lib/zips/transformGrantData";
 

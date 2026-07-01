@@ -3,6 +3,7 @@ import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import {
   getFileContentCached,
+  getLocalizedFileContentCached,
   getRootCached,
   getAllMarkdownRecursively,
   getSiteFolders,
@@ -66,13 +67,15 @@ export async function generateMetadata({
 }
 
 export default async function Page(props: {
-  params: Promise<{ slug: string[] }>;
+  params: Promise<{ slug: string[]; locale: string }>;
 }) {
   headers();
   let slug: string[] = [];
+  let locale = "en";
   try {
     const resolved = await props.params;
     slug = resolved.slug || [];
+    locale = resolved.locale || "en";
   } catch {
     return notFound();
   }
@@ -329,7 +332,9 @@ export default async function Page(props: {
         }
       }
 
-      const md = await getFileContentCached(contentUrl).catch(() => null);
+      const md = await getLocalizedFileContentCached(contentUrl, locale).catch(
+        () => null,
+      );
       markdown = md;
     }
   } catch (e) {

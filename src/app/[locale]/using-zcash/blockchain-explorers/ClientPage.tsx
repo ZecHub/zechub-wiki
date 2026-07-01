@@ -1,15 +1,14 @@
 "use client";
-import ExplorerDirectoryCard from "@/app/using-zcash/blockchain-explorers/ExplorerDirectoryCard";
-import { communityProjects } from "@/constants/communityProjects";
+import ExplorerDirectoryCard from "@/app/[locale]/using-zcash/blockchain-explorers/ExplorerDirectoryCard";
+import { blockchainExplorers } from "@/constants/blockchainExplorers";
 import { useLanguage } from "@/context/LanguageContext";
 
-const CommunityProjectsClient = () => {
+const BlockchainExplorersClient = () => {
   const { t } = useLanguage();
-  const title = t?.pages?.zcashCommunity?.communityProjects?.title ?? "Community Projects";
+  const title = t?.pages?.usingZcash?.blockchainExplorers?.title ?? "Blockchain Explorers";
   const description =
-    t?.pages?.zcashCommunity?.communityProjects?.description ??
-    "Discover tools, wallets, applications, libraries, and ecosystem initiatives built by the Zcash community and the wider zero-knowledge proof world.";
-
+    t?.pages?.usingZcash?.blockchainExplorers?.description ??
+    "A blockchain explorer is a search engine that lets you inspect blocks, transactions, addresses, and network activity across the Zcash ecosystem.";
   const cta = "Visit Site";
 
   return (
@@ -22,13 +21,15 @@ const CommunityProjectsClient = () => {
           {description}
         </p>
       </div>
+
       <div className="mb-6 flex items-center justify-between">
         <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
-          {communityProjects.length} projects
+          {blockchainExplorers.length} explorers
         </p>
       </div>
+
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {communityProjects.map((itm, i) => (
+        {blockchainExplorers.map((itm, i) => (
           <ExplorerDirectoryCard
             thumbnailImage={itm.thumbnailImage}
             description={itm.description}
@@ -44,4 +45,4 @@ const CommunityProjectsClient = () => {
   );
 };
 
-export default CommunityProjectsClient;
+export default BlockchainExplorersClient;

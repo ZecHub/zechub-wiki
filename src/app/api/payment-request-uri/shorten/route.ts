@@ -1,5 +1,5 @@
 
-import { config } from "@/app/tools/zcash-payment-widget/config";
+import { config } from "@/app/[locale]/tools/zcash-payment-widget/config";
 import { nanoid } from "nanoid";
 import { NextRequest, NextResponse } from "next/server";
 
