@@ -159,6 +159,7 @@ import {
   TbDeviceMobileShare,
   TbSquareRoundedLetterY,
   TbTopologyRing as TopologyRing,
+  TbCircleKey as CircleKey,
 } from "react-icons/tb";
 import { TfiServer as Tfi } from "react-icons/tfi";
 import { AiOutlineCloudServer as Akash } from "react-icons/ai";
@@ -274,6 +275,7 @@ const iconsForMenu: IconsFor = {
     "Financial Privacy Foundation": MdFoundation,
     "Zingo Labs": GiSoapExperiment,
     "ZKAV": "zkav-club.png",
+    "Sovright": CircleKey,
   },
   "Zcash Community": {
     "Community Links": LinkSimpleBold,

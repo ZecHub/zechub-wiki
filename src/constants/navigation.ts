@@ -342,6 +342,10 @@ export const navigations: Array<NavigationItem> = [
         path: "/zcash-organizations/shielded-labs",
       },
       {
+        name: "Sovright",
+        path: "/zcash-organizations/sovright",
+      },
+      {
         name: "Zingo Labs",
         path: "/zcash-organizations/zingo-labs",
       },
