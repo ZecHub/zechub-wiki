@@ -3,29 +3,34 @@
     "channelIcon": "https://yt3.ggpht.com/um9IjNE_SKaPzTnZ6BvCIj1I9pzVtgfAzI2AapNei8CCVXSiv9-1vRBHTY9b7LU0e3F5k3JErws=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Zcash Developer Workshop | Builder Series: Open Source Contribution on Zcash",
+            "video_id": "56m_-dPETjo",
+            "views": 16
+        },
+        {
             "title": "Zcash Developer Workshop | Builder Series: Nozy Wallet",
             "video_id": "eanY3M64pbU",
-            "views": 39
+            "views": 53
         },
         {
             "title": "ZecHub x Noir Wallet | X Space",
             "video_id": "c2aViUSZoPU",
-            "views": 25
+            "views": 30
         },
         {
             "title": "Zcash Contributor Workshop #3 | June 10th, 2026",
             "video_id": "Lp5z2GI-Wwk",
-            "views": 16
+            "views": 22
         },
         {
             "title": "Zcash Developer Workshop #4 | Zcash RPC Usage",
             "video_id": "OQ274eMSw34",
-            "views": 80
+            "views": 89
         },
         {
             "title": "Zcash Developer Workshop #3 | Zcash Architecture",
             "video_id": "L1Qh13xip2g",
-            "views": 98
+            "views": 106
         },
         {
             "title": "ZecHub Updates | 6-16-26",
@@ -40,12 +45,12 @@
         {
             "title": "Zcash Contributor Workshop #1 | June 8, 2026",
             "video_id": "C97vDboM158",
-            "views": 37
+            "views": 41
         },
         {
             "title": "Vizor Wallet: An Introduction",
             "video_id": "X3HB6qTPFXA",
-            "views": 47
+            "views": 52
         },
         {
             "title": "ZecHub Updates | 2026-06-02",
@@ -55,7 +60,7 @@
         {
             "title": "How to Buy $ZEC P2P with Peer",
             "video_id": "WVKkqn9EZDw",
-            "views": 76
+            "views": 78
         },
         {
             "title": "Shielded ZEC swaps on LeoDex",
@@ -65,12 +70,12 @@
         {
             "title": "ZecHub x LeoDex | X Spaces",
             "video_id": "vcOrXzkFMKU",
-            "views": 86
+            "views": 87
         },
         {
             "title": "End-to-End Encrypted P2P File Transfer Over The NYM Mixnet | Tutorial",
             "video_id": "wTTrs_W2WOw",
-            "views": 74
+            "views": 75
         },
         {
             "title": "ZecHub Updates | 19/05/2026",
@@ -80,7 +85,7 @@
         {
             "title": "How to Install Zebrad on Windows",
             "video_id": "qM0JWciwnNE",
-            "views": 95
+            "views": 96
         },
         {
             "title": "ZecHub Updates | 5/05/2026",
@@ -125,7 +130,7 @@
         {
             "title": "Exploring Zcash Shielded Assets with QEDIT",
             "video_id": "fvMKccfYR7c",
-            "views": 100
+            "views": 102
         },
         {
             "title": "ZecHub Updates | 21/04/2026",
@@ -210,7 +215,7 @@
         {
             "title": "How to Buy Meile dVPN with Zcash (ZEC)",
             "video_id": "MFwEn7SjWIo",
-            "views": 112
+            "views": 113
         },
         {
             "title": "Z|ECC Summit | Arya Solhi",
@@ -220,7 +225,7 @@
         {
             "title": "How to Enable Testnet ZEC (TAZ) on Zingo",
             "video_id": "To7WAkiBldA",
-            "views": 175
+            "views": 176
         },
         {
             "title": "ZecHub Updates | 17/03/2026",
@@ -300,7 +305,7 @@
         {
             "title": "Z|ECC Summit 2025 | Antoine Rondelet",
             "video_id": "6LqpDWy0nXE",
-            "views": 170
+            "views": 171
         },
         {
             "title": "ZecHub Updates | 03/02/2026",
@@ -335,7 +340,7 @@
         {
             "title": "Zcash & Unstoppable Wallet with iBek",
             "video_id": "0S6sfumwFq8",
-            "views": 169
+            "views": 170
         },
         {
             "title": "Z|ECC Summit 2025 | Daira-Emma Hopwood",
@@ -355,7 +360,7 @@
         {
             "title": "How to swap Shielded ZEC for SOL using Zashi and Solflare",
             "video_id": "uS9ZDgEFCAs",
-            "views": 697
+            "views": 699
         },
         {
             "title": "Z|ECC Summit 2025 | Alex Shevchenko",
@@ -380,7 +385,7 @@
         {
             "title": "Brave Wallet Tutorial : Defi with Near Intents and Shielded Zcash",
             "video_id": "AmTMa5HXa2w",
-            "views": 950
+            "views": 952
         },
         {
             "title": "NEAR x Zcash: Intents, AI Agents, and Cross\u2011Chain Privacy with Shai & Guille",
@@ -400,7 +405,7 @@
         {
             "title": "Coinbase + Zashi: Buy Zcash & Shield Instantly",
             "video_id": "Avweu5V9QRc",
-            "views": 2447
+            "views": 2452
         },
         {
             "title": "How to Buy NymVPN with Zcash (ZEC)",
@@ -445,7 +450,7 @@
         {
             "title": "Private Cross-Chain Payments with Zashi CrossPay",
             "video_id": "G1vnpxGInqs",
-            "views": 1586
+            "views": 1588
         },
         {
             "title": "ZecHub Sync Meet | (09/16/2025)",
@@ -500,7 +505,7 @@
         {
             "title": "No KYC: ZEC \u2192 NEAR Crypto Swap in Seconds",
             "video_id": "jHPBw0Au3aU",
-            "views": 376
+            "views": 379
         },
         {
             "title": "How to use ZEC on Brave",
@@ -525,7 +530,7 @@
         {
             "title": "Non-Linear Syncing in Zingo 2.0",
             "video_id": "kaTl9NKBTF8",
-            "views": 227
+            "views": 228
         },
         {
             "title": "Using RPC's with Zebrad + Zenith",
@@ -545,7 +550,7 @@
         {
             "title": "How to use ZEC on Metamask",
             "video_id": "UJh9Ilkohdw",
-            "views": 1474
+            "views": 1475
         },
         {
             "title": "LightWalletd Utilities | Demo",
@@ -590,12 +595,12 @@
         {
             "title": "What's Citrea?",
             "video_id": "apBASWab42c",
-            "views": 541
+            "views": 542
         },
         {
             "title": "Zkool Demo | The Successor to Ywallet",
             "video_id": "eagkCIv3BlQ",
-            "views": 285
+            "views": 288
         },
         {
             "title": "Citrea x Zcash \ud835\udd4f Spaces",
@@ -690,12 +695,12 @@
         {
             "title": "Guide: Using Shielded Zcash (ZEC) on Brave",
             "video_id": "D0uSI5sYD7I",
-            "views": 1437
+            "views": 1439
         },
         {
             "title": "Keystone X Zashi Tutorial",
             "video_id": "ktYf7josJKM",
-            "views": 1257
+            "views": 1258
         },
         {
             "title": "Iron Fish Network's Next Big Initiative",
@@ -735,7 +740,7 @@
         {
             "title": "How to Submit a ZCG Grant Proposal",
             "video_id": "ItEwc1lzvzc",
-            "views": 464
+            "views": 469
         },
         {
             "title": "HOW TO: Ywallet Pool Transfer",
@@ -770,12 +775,12 @@
         {
             "title": "PREVIEW: Shielded Zcash on Brave Nightly #privacy #cryptocurrency",
             "video_id": "2Crd9s9ljp0",
-            "views": 272
+            "views": 275
         },
         {
             "title": "Private Crypto Transactions with Zashi  #cryptocurrency",
             "video_id": "JHyM3j9BiF8",
-            "views": 671
+            "views": 672
         },
         {
             "title": "Using Transparent MutliSig with Zcash",
@@ -785,12 +790,12 @@
         {
             "title": "Zcash Shielded Assets Demo",
             "video_id": "PeDPJ7OqIiI",
-            "views": 434
+            "views": 436
         },
         {
             "title": "Crosschain Swaps with Zcash x NEAR Intents",
             "video_id": "mKVvXY4yjjA",
-            "views": 1572
+            "views": 1575
         },
         {
             "title": "ZecHub Sync Meet 04-02-2025",
@@ -805,7 +810,7 @@
         {
             "title": "How to Spread Privacy Awareness! #shorts",
             "video_id": "cUUtWMIeNgQ",
-            "views": 62
+            "views": 63
         },
         {
             "title": "FROST + Ywallet Transaction Demo",
@@ -815,7 +820,7 @@
         {
             "title": "How to Earn Crypto with ZecHub & Zcash!  #cryptocurrency",
             "video_id": "fT_nXc8TspU",
-            "views": 125
+            "views": 126
         },
         {
             "title": "ZecHub Sync Meet 21-01-2025",
@@ -830,7 +835,7 @@
         {
             "title": "Reviewing all Zcash Shielded Wallets #privacy #cryptocurrency",
             "video_id": "6IIRRZ17Q74",
-            "views": 1880
+            "views": 1883
         },
         {
             "title": "Running a Zcash Node Boosts Your Privacy!  #cryptocurrency",
@@ -880,7 +885,7 @@
         {
             "title": "Install a Nym Mixnet Node: TUTORIAL",
             "video_id": "Lwssl6Nu3V4",
-            "views": 496
+            "views": 497
         },
         {
             "title": "Zcash Genesis 8th Anniversary Event",
@@ -945,7 +950,7 @@
         {
             "title": "Meet Zashi A Brand New Wallet for Zcash!",
             "video_id": "G92zBIr-Wms",
-            "views": 2029
+            "views": 2031
         },
         {
             "title": "Exchange Zcash into Ubiq #defi #ZEC #shielded #MATIC #UBQ",
@@ -970,7 +975,7 @@
         {
             "title": "Using Zcash Zebra Node with Lightwalletd: TUTORIAL",
             "video_id": "FfH5jiX8pT0",
-            "views": 930
+            "views": 931
         },
         {
             "title": "Ywallet Multipay Feature  \u2194\ufe0f",
@@ -990,7 +995,7 @@
         {
             "title": "Introducing the Zcash Shielded Asset Protocol!",
             "video_id": "RcHwLaFyzQQ",
-            "views": 2438
+            "views": 2442
         },
         {
             "title": "Auto-Shield Zcash with Edge Wallet \ud83d\udee1\ufe0f",
@@ -1045,12 +1050,12 @@
         {
             "title": "Learn how ZK Email works! \ud83d\udce7",
             "video_id": "b5wyyouSSwg",
-            "views": 232
+            "views": 233
         },
         {
             "title": "Fully Homomorphic Encryption explained! (FHE) \ud83d\udd12",
             "video_id": "Hg97cxwEnLI",
-            "views": 533
+            "views": 534
         },
         {
             "title": "Zcash Community Call with Zooko Wilcox",
@@ -1110,7 +1115,7 @@
         {
             "title": "How to Buy and use Zcash Orchard \ud83c\udf33",
             "video_id": "3xyKKer1Qvk",
-            "views": 1750
+            "views": 1755
         },
         {
             "title": "Post Comments on Free2Z using Zenith CLI",
@@ -1145,12 +1150,12 @@
         {
             "title": "How to spend your \u24e9 Zcash on Everyday Items \ud83e\uddfe",
             "video_id": "pMNk2A3NcKw",
-            "views": 1608
+            "views": 1613
         },
         {
             "title": "new services & business accepting zcash! \ud83d\udd30\ud83c\udfea #crypto #giftcards #privacy #defi #shielded #zec #zcash",
             "video_id": "ZOc9YorlJe4",
-            "views": 119
+            "views": 120
         },
         {
             "title": "use flexa and spedn app to pay with zcash! \ud83d\udcb3\ud83d\udecd\ufe0f #crypto #zcash #zec #defi #shielded #privacy",
@@ -1160,7 +1165,7 @@
         {
             "title": "how to spend zcash on real world items \ud83d\udcb5\ud83c\udf0e #zcash #defi #zec #shielded #cryptocurrency #privacycoin",
             "video_id": "z9UDOxHb8mg",
-            "views": 753
+            "views": 755
         },
         {
             "title": "Naira \ud83c\uddf3\ud83c\uddec Mobile Top-Up using Zcash \ud83d\udcf2 | How-to guide",
@@ -1190,12 +1195,12 @@
         {
             "title": "being able pay for everything with zcash \ud83d\udc96 #crypto #zcash #defi #shielded #zec #privacy",
             "video_id": "7xWRBwK58RU",
-            "views": 595
+            "views": 600
         },
         {
             "title": "private, uncensorable digital cash is worth fighting for! \ud83d\udee1\ufe0f #zcash #crypto #zec #defi #shielded",
             "video_id": "kg7QDaZ_WqA",
-            "views": 241
+            "views": 242
         },
         {
             "title": "inviting vendors to use zcash payments \u2705 #crypto #shielded #zcash #defi #privacycoin #payments",
@@ -1365,12 +1370,12 @@
         {
             "title": "Using Zcashd - The Practical Guide \ud83d\udcd6",
             "video_id": "KNhd1KC0Bqk",
-            "views": 511
+            "views": 512
         },
         {
             "title": "Comparing On-Chain Privacy Technologies \u2696\ufe0f",
             "video_id": "U7QkhNkmgZk",
-            "views": 967
+            "views": 971
         },
         {
             "title": "The Missing Piece to Drive Crypto Adoption \ud83d\ude80 #shorts #zcash #cryptocurrency #defi #privacy",
@@ -1395,22 +1400,22 @@
         {
             "title": "How to Update Zcashd on Raspberry Pi 4",
             "video_id": "YjAkaseEqAE",
-            "views": 172
+            "views": 173
         },
         {
             "title": "Useful Tips when using Zcash \ud83d\udd12",
             "video_id": "tEfQaYPV0UE",
-            "views": 2381
+            "views": 2382
         },
         {
             "title": "Zcash Explained: Zcash Shielded Transactions",
             "video_id": "bZM3o_eIovU",
-            "views": 1655
+            "views": 1657
         },
         {
             "title": "YWallet: La guida completa al miglior wallet per Zcash",
             "video_id": "YCEwkfKMGA8",
-            "views": 154
+            "views": 155
         },
         {
             "title": "Don't share identifying info \ud83d\ude4a #shorts #zcash #cryptocurrency #defi #privacy #bestpractice",
@@ -1430,22 +1435,22 @@
         {
             "title": "Try to avoid KYC platforms #shorts #zcash #cryptocurrency #defi #privacy",
             "video_id": "7kj1PjO-WiE",
-            "views": 607
+            "views": 610
         },
         {
             "title": "How to compile Zcash Node on Raspberry Pi!",
             "video_id": "SGYrzhs1l2k",
-            "views": 1524
+            "views": 1527
         },
         {
             "title": "Installing Free2Z Social App! #shorts #zcash #cryptocurrency #defi #privacy #socialmedia",
             "video_id": "Gle5rKx5etk",
-            "views": 364
+            "views": 365
         },
         {
             "title": "learn \ud83d\udee1\ufe0fZcash shielded wallets! #shorts #zcash #crytocurrency #DeFi #privacy",
             "video_id": "R-krX1UpsIg",
-            "views": 890
+            "views": 895
         },
         {
             "title": "Zcash Explained: Bitcoin's Fungibility Problem",
@@ -1530,7 +1535,7 @@
         {
             "title": "YWallet Cold Storage Tutorial",
             "video_id": "hJaAccp-77k",
-            "views": 868
+            "views": 869
         },
         {
             "title": "Exchange ANY crypto into Shielded Zcash",
@@ -1545,7 +1550,7 @@
         {
             "title": "Zingo! Mobile Wallet Tutorial",
             "video_id": "xZyzMfY9X9A",
-            "views": 723
+            "views": 725
         },
         {
             "title": "Introdu\u00e7\u00e3o ao Zcash Desktop & Mobile Carteiras",
@@ -1570,17 +1575,17 @@
         {
             "title": "Zcash Security and Lightwalletd with Taylor Hornby",
             "video_id": "18-xowScNpw",
-            "views": 384
+            "views": 386
         },
         {
             "title": "How to do private DeFi swaps on your phone",
             "video_id": "-MJTh9tQ5jg",
-            "views": 223
+            "views": 226
         },
         {
             "title": "Zcash FUD with Josh Swihart",
             "video_id": "a6TQt6rmwXU",
-            "views": 387
+            "views": 388
         },
         {
             "title": "Zcash Brasil's latest grant proposal with Samara",
@@ -1600,7 +1605,7 @@
         {
             "title": "zl;dr #3 - Self-Custody",
             "video_id": "frTzwCWRNLs",
-            "views": 115
+            "views": 116
         },
         {
             "title": "zl;dr #2 - Censorship Resistance",
@@ -1645,7 +1650,7 @@
         {
             "title": "Access your ZEC in Ywallet",
             "video_id": "XyxFNx4zQ_c",
-            "views": 1026
+            "views": 1027
         },
         {
             "title": "ZecDaily #10",
