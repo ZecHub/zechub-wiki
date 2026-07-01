@@ -99,6 +99,6 @@ export const blockchainExplorers = [
       ' A Zcash-only explorer and API that tries to be precise about what public chain data can show, what is private by design, and what a client can safely depend on',
     features: ['Block Explorer', 'Transaction Explorer', 'Search Functionality', 'Address Lookup', 'Mempool / Pending Transactions', 'Network Stats'],
     url: 'https://zexplorer.app/testnet/',
-    thumbnailImage: '/explorer/Zexplorer.png',
+    thumbnailImage: '/explorer/zexplorer.png',
     },
 ];
