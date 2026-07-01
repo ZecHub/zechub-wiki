@@ -2,7 +2,7 @@
 import MemberCards from "@/components/UI/MemberCards";
 import { daoMembers } from "@/constants/membersDao";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import React from "react";
 import { FadeInAnimation } from "../UI/FadeInAnimation";
 

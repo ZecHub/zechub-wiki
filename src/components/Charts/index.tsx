@@ -15,9 +15,9 @@ import {
   Check,
 } from "lucide-react";
 import { useEffect, useState, useRef, startTransition } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import "./index.css";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { useLanguage } from "@/context/LanguageContext";
@@ -25,12 +25,12 @@ import NamadaChart from "./Namada/NamadaChart";
 import PenumbraChart from "./Penumbra/PenumbraChart";
 import ZcashChart from "./Zcash/ZcashChart";
 import { ProposalsList } from "@/components/Proposals";
-import type { ZipsData } from "@/app/zips-grants/ZipAndGrantsGovernance";
+import type { ZipsData } from "@/app/[locale]/zips-grants/ZipAndGrantsGovernance";
 import CodePulse from "@/components/CodePulse";
 
 const ZCGDashboard = dynamic(
   () =>
-    import("@/app/zips-grants/ZipAndGrantsGovernance").then(
+    import("@/app/[locale]/zips-grants/ZipAndGrantsGovernance").then(
       (m) => m.ZipAndGrantsGovernance,
     ),
   { ssr: false },

@@ -1,5 +1,5 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import { Footer, Navigation } from "@/components";
 import FloatingExplore from "@/components/FloatingExplore";
 import ProgressBar from "@/components/UI/ProgressBar";

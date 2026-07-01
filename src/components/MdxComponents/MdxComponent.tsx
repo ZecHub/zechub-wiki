@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import React, { HTMLProps, JSX } from "react";
 import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
@@ -38,14 +38,27 @@ const MdxComponents = {
         />
       );
     }
+    const resolved = href.startsWith("/site")
+      ? transformGithubFilePathToWikiLink(href)
+      : href;
+    // Protocol-relative URLs ("//host/...") start with "/" but are external;
+    // only single-leading-slash app paths are internal.
+    const isInternal = resolved.startsWith("/") && !resolved.startsWith("//");
+    const className =
+      "font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 underline decoration-dashed";
+    // Internal links use the locale-aware next-intl Link so navigation stays
+    // within the active locale (e.g. /it/...). External links open in a new tab.
+    if (isInternal) {
+      return (
+        <Link href={resolved} className={className}>
+          {props.children}
+        </Link>
+      );
+    }
     return (
-      <Link
-        href={href.startsWith("/site") ? transformGithubFilePathToWikiLink(href) : href}
-        target={href.startsWith("/site") ? "" : "_blank"}
-        className="font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 underline decoration-dashed"
-      >
+      <a href={resolved} target="_blank" rel="noreferrer" className={className}>
         {props.children}
-      </Link>
+      </a>
     );
   },
 

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FaDiscord, FaLinkedin, FaReddit, FaTelegram } from "react-icons/fa";
 

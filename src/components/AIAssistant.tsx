@@ -10,6 +10,7 @@ import {
 } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Message {
   role: "user" | "assistant";
@@ -48,6 +49,8 @@ function looksLikeSensitive(text: string): boolean {
 }
 
 function CopyButton({ text }: { text: string }) {
+  const { t } = useLanguage();
+  const s = t?.components?.aiAssistant ?? {};
   const [copied, setCopied] = useState(false);
 
   async function handleCopy() {
@@ -63,7 +66,7 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      aria-label="Copy response"
+      aria-label={s.copyResponse ?? "Copy response"}
       className="mt-1 flex items-center gap-1 text-[10px] text-slate-500 transition-colors hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 cursor-pointer"
     >
       {copied ? (
@@ -71,7 +74,7 @@ function CopyButton({ text }: { text: string }) {
           <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
           </svg>
-          Copied
+          {s.copied ?? "Copied"}
         </>
       ) : (
         <>
@@ -79,7 +82,7 @@ function CopyButton({ text }: { text: string }) {
             <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
             <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
           </svg>
-          Copy
+          {s.copy ?? "Copy"}
         </>
       )}
     </button>
@@ -87,6 +90,8 @@ function CopyButton({ text }: { text: string }) {
 }
 
 function MessageBubble({ msg }: { msg: Message }) {
+  const { t } = useLanguage();
+  const s = t?.components?.aiAssistant ?? {};
   const isUser = msg.role === "user";
 
   if (isUser) {
@@ -104,7 +109,7 @@ function MessageBubble({ msg }: { msg: Message }) {
       <div className="max-w-[88%]">
         <div className="flex items-center gap-1.5 mb-1">
           <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#F4B728] text-black text-[9px] font-bold shrink-0">Z</span>
-          <span className="text-[10px] text-slate-500 dark:text-slate-400">ZecHub AI</span>
+          <span className="text-[10px] text-slate-500 dark:text-slate-400">{s.botName ?? "ZecHub AI"}</span>
         </div>
         <div className="rounded-2xl rounded-tl-none border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 leading-relaxed break-words dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
           <ReactMarkdown
@@ -195,6 +200,9 @@ export default function AIAssistantPanel({
   onLoadingChange,
   onAssistantReply,
 }: AIAssistantPanelProps) {
+  const { t } = useLanguage();
+  const s = t?.components?.aiAssistant ?? {};
+  const quickQuestions: string[] = Array.isArray(s.quickQuestions) ? s.quickQuestions : QUICK_QUESTIONS;
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>(() => {
     if (typeof window === "undefined") return [];
@@ -265,7 +273,7 @@ export default function AIAssistantPanel({
     const trimmed = (overrideText ?? input).trim();
     if (!trimmed || isLoading) return;
     if (trimmed.length > MAX_MESSAGE_LENGTH) {
-      setError(`Message too long (max ${MAX_MESSAGE_LENGTH} chars).`);
+      setError((s.messageTooLong ?? "Message too long (max {max} chars).").replace("{max}", String(MAX_MESSAGE_LENGTH)));
       return;
     }
 
@@ -294,15 +302,15 @@ export default function AIAssistantPanel({
       });
 
       if (!res.ok) {
-        const data: ApiError = await res.json().catch(() => ({ error: "Unknown error." }));
-        throw new Error(data.error ?? `Server error ${res.status}`);
+        const data: ApiError = await res.json().catch(() => ({ error: s.unknownError ?? "Unknown error." }));
+        throw new Error(data.error ?? (s.serverError ?? "Server error {status}").replace("{status}", String(res.status)));
       }
 
       const data: { answer: string } = await res.json();
       setMessages((prev) => [...prev, { role: "assistant", content: data.answer }]);
       onAssistantReply?.();
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Something went wrong.";
+      const msg = err instanceof Error ? err.message : (s.somethingWrong ?? "Something went wrong.");
       setError(msg);
       setMessages((prev) => prev.slice(0, -1));
       if (!overrideText) setInput(trimmed);
@@ -353,16 +361,16 @@ export default function AIAssistantPanel({
     <div className="flex h-full min-h-0 flex-col bg-slate-50 dark:bg-slate-900">
       <div className="flex items-center justify-between gap-3 border-b border-slate-200 bg-slate-100 px-4 py-2 dark:border-slate-800 dark:bg-slate-950/50">
         <p className="text-[10px] text-slate-500 leading-tight dark:text-slate-400">
-          Questions are processed by OpenAI. Never share seed phrases, private keys, or wallet addresses.
+          {s.privacyNotice ?? "Questions are processed by OpenAI. Never share seed phrases, private keys, or wallet addresses."}
         </p>
         {messages.length > 0 && (
           <button
             onClick={clearConversation}
-            aria-label="Clear conversation"
-            title="Clear conversation"
+            aria-label={s.clearConversation ?? "Clear conversation"}
+            title={s.clearConversation ?? "Clear conversation"}
             className="shrink-0 rounded-md px-2 py-1 text-[10px] text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
           >
-            Clear
+            {s.clear ?? "Clear"}
           </button>
         )}
       </div>
@@ -371,10 +379,10 @@ export default function AIAssistantPanel({
         {showQuickQuestions ? (
           <div className="flex flex-col gap-3">
             <p className="text-center text-xs text-slate-500 dark:text-slate-400 pt-2 pb-1">
-              Get started with a question:
+              {s.getStarted ?? "Get started with a question:"}
             </p>
             <div className="flex flex-wrap gap-2">
-              {QUICK_QUESTIONS.map((q) => (
+              {quickQuestions.map((q) => (
                 <button
                   key={q}
                   onClick={() => sendMessage(q)}
@@ -394,7 +402,7 @@ export default function AIAssistantPanel({
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#F4B728] text-black text-[9px] font-bold shrink-0">Z</span>
-                <span className="text-[10px] text-slate-500 dark:text-slate-400">ZecHub AI is thinking...</span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400">{s.thinking ?? "ZecHub AI is thinking..."}</span>
               </div>
             </div>
           </div>
@@ -405,7 +413,7 @@ export default function AIAssistantPanel({
       {sensitiveWarning && (
         <div className="mx-3 mb-1 flex items-start gap-2 rounded-lg border border-amber-300 bg-amber-50 px-2.5 py-1.5 dark:border-amber-700/50 dark:bg-amber-900/40">
           <p className="text-[10px] text-amber-700 leading-snug dark:text-amber-300">
-            This looks like sensitive wallet data. Never share private keys or seed phrases with any service.
+            {s.sensitiveWarning ?? "This looks like sensitive wallet data. Never share private keys or seed phrases with any service."}
           </p>
         </div>
       )}
@@ -427,7 +435,7 @@ export default function AIAssistantPanel({
               value={input}
               onChange={(e) => handleInputChange(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask a question... (Enter to send, Shift+Enter for new line)"
+              placeholder={s.inputPlaceholder ?? "Ask a question... (Enter to send, Shift+Enter for new line)"}
               rows={1}
               maxLength={MAX_MESSAGE_LENGTH}
               disabled={isLoading}
@@ -437,7 +445,7 @@ export default function AIAssistantPanel({
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
-              aria-label="Send message"
+              aria-label={s.sendMessage ?? "Send message"}
               className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F4B728] text-black transition hover:brightness-95 disabled:opacity-40"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -447,7 +455,7 @@ export default function AIAssistantPanel({
           </div>
           <div className="mt-1.5 flex items-center justify-between">
             <p className="text-[10px] text-slate-500 dark:text-slate-400">
-              Enter to send, Shift+Enter for a new line
+              {s.enterHint ?? "Enter to send, Shift+Enter for a new line"}
             </p>
             <p className="text-[10px] tabular-nums text-slate-500 dark:text-slate-400">
               {input.length}/{MAX_MESSAGE_LENGTH}

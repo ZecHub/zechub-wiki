@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { PoolContainer } from "./PoolContainer";
 import { POOLS, PoolType, Stage } from "./types";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 export const PoolContent = ({ stage }: { stage: Stage }) => {
   if (!stage.focusPool) return null;

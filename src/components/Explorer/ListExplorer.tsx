@@ -1,7 +1,7 @@
 "use client";
 import { getName } from "@/lib/helpers";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 
 interface Props {
