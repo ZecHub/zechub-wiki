@@ -2,8 +2,11 @@
 
 import React, { useState } from "react";
 import QRCodeComponent from "@/components/QRComponent/QRCodeComponent";
+import { useLanguage } from "@/context/LanguageContext";
 
 const NewsLetter: React.FC = () => {
+  const { t } = useLanguage();
+  const s = t?.components?.newsletter ?? {};
   const [loading, setLoading] = useState(false);
   const [unifiedAddress, setUnifiedAddress] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Ecosystem News");
@@ -35,7 +38,7 @@ const NewsLetter: React.FC = () => {
   // Subscribe Function
   const handleSubmit = () => {
     if (!isValidAddress) {
-      alert("Please enter a valid shielded Zcash address.");
+      alert(s.invalidAddressAlert ?? "Please enter a valid shielded Zcash address.");
       return;
     }
     const memoText = `Subscription: ${selectedCategory} | Address: ${unifiedAddress}`;
@@ -49,7 +52,7 @@ const NewsLetter: React.FC = () => {
   // Unsubscribe Function
   const handleUnsubscribe = () => {
     if (!isValidUnsubAddress) {
-      alert("Please enter a valid shielded Zcash address.");
+      alert(s.invalidAddressAlert ?? "Please enter a valid shielded Zcash address.");
       return;
     }
     const memoText = `UNSUBSCRIBE | Address: ${unsubscribeAddress}`;
@@ -74,12 +77,12 @@ const NewsLetter: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-slate-900 p-6">
-      <h1 className="text-3xl font-bold mb-4 text-center">ZecHub Shielded Newsletter</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center">{s.title ?? "ZecHub Shielded Newsletter"}</h1>
       <p className="text-gray-700 dark:text-gray-300 text-center mb-4">
-        Subscribe to updates by entering your Unified Address.
+        {s.subtitle ?? "Subscribe to updates by entering your Unified Address."}
       </p>
       <p className="text-gray-600 dark:text-gray-400 text-center mb-8">
-        A one-time <strong>0.05 ZEC subscription fee</strong> is required to cover transaction costs.
+        <strong>{s.feeLine ?? "A one-time 0.05 ZEC subscription fee"}</strong> {s.feeLineRest ?? "is required to cover transaction costs."}
       </p>
       {/* Category Selection Buttons */}
       <div className="space-y-4 md:space-x-4 space-x-2">
@@ -91,7 +94,7 @@ const NewsLetter: React.FC = () => {
               : "bg-[#1984c7] text-white"
           }`}
         >
-          📰 Ecosystem News
+          📰 {s.categoryEcosystem ?? "Ecosystem News"}
         </button>
         <button
           onClick={() => setSelectedCategory("Network Stats")}
@@ -101,14 +104,14 @@ const NewsLetter: React.FC = () => {
               : "bg-[#1984c7] text-white"
           }`}
         >
-          📊 Network Stats
+          📊 {s.categoryStats ?? "Network Stats"}
         </button>
       </div>
 
       {/* Address Input */}
       <input
         type="text"
-        placeholder="Enter your Zcash Unified Address"
+        placeholder={s.addressPlaceholder ?? "Enter your Zcash Unified Address"}
         value={unifiedAddress}
         onChange={handleAddressChange}
         className={`w-full max-w-md mt-6 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white dark:bg-gray-800 text-black dark:text-white ${
@@ -117,7 +120,7 @@ const NewsLetter: React.FC = () => {
       />
       {unifiedAddress && !isValidAddress && (
         <p className="text-red-500 mt-2 text-sm">
-          Invalid address. Must start with &quot;u&quot; or &quot;z&quot;.
+          {s.invalidAddressInline ?? 'Invalid address. Must start with "u" or "z".'}
         </p>
       )}
 
@@ -131,7 +134,7 @@ const NewsLetter: React.FC = () => {
         }`}
         disabled={!isValidAddress || loading}
       >
-        {loading ? "Generating..." : "Subscribe"}
+        {loading ? (s.generating ?? "Generating...") : (s.subscribe ?? "Subscribe")}
       </button>
 
       {/* QR Code Display for Subscription */}
@@ -142,13 +145,13 @@ const NewsLetter: React.FC = () => {
             memo={subscriptionData.memo}
           />
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            <strong>Do not edit the memo generated in your wallet.</strong>
+            <strong>{s.doNotEditMemo ?? "Do not edit the memo generated in your wallet."}</strong>
           </p>
           <button
             onClick={() => downloadQRCode("subscription_qr.png")}
             className="cursor-pointer mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            Download QR Code
+            {s.downloadQR ?? "Download QR Code"}
           </button>
         </div>
       )}
@@ -156,22 +159,22 @@ const NewsLetter: React.FC = () => {
       {/* Information Boxes */}
       <div className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">What is This Service?</h2>
+          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">{s.box1Title ?? "What is This Service?"}</h2>
           <p className="text-gray-700 dark:text-gray-300">
-            Receive Zcash ecosystem news and network stats directly via the Zcash network using encrypted memos.
+            {s.box1Desc ?? "Receive Zcash ecosystem news and network stats directly via the Zcash network using encrypted memos."}
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How It Works</h2>
+          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">{s.box2Title ?? "How It Works"}</h2>
           <p className="text-gray-700 dark:text-gray-300">
-            We send newsletters once per week to multiple recipients in one shielded transaction using the{" "}
-            <strong>z_sendmany</strong> RPC method.
+            {s.box2DescPre ?? "We send newsletters once per week to multiple recipients in one shielded transaction using the"}{" "}
+            <strong>z_sendmany</strong> {s.box2DescPost ?? "RPC method."}
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">How to Receive Updates</h2>
+          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">{s.box3Title ?? "How to Receive Updates"}</h2>
           <p className="text-gray-700 dark:text-gray-300">
-            Enter your <strong>shielded Zcash address</strong>. Weekly updates delivered on-chain. No email required.
+            {s.box3DescPre ?? "Enter your"} <strong>{s.box3DescBold ?? "shielded Zcash address"}</strong>. {s.box3DescPost ?? "Weekly updates delivered on-chain. No email required."}
           </p>
         </div>
       </div>
@@ -182,7 +185,7 @@ const NewsLetter: React.FC = () => {
           onClick={() => setShowUnsubscribe(!showUnsubscribe)}
           className="cursor-pointer px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700"
         >
-          {showUnsubscribe ? "Cancel Unsubscribe" : "Unsubscribe"}
+          {showUnsubscribe ? (s.cancelUnsubscribe ?? "Cancel Unsubscribe") : (s.unsubscribe ?? "Unsubscribe")}
         </button>
       </div>
 
@@ -190,7 +193,7 @@ const NewsLetter: React.FC = () => {
         <div className="mt-6 text-center">
           <input
             type="text"
-            placeholder="Enter your Unified Address to unsubscribe"
+            placeholder={s.unsubscribePlaceholder ?? "Enter your Unified Address to unsubscribe"}
             value={unsubscribeAddress}
             onChange={handleUnsubscribeAddressChange}
             className="w-full max-w-md px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-black dark:text-white"
@@ -200,7 +203,7 @@ const NewsLetter: React.FC = () => {
             className="mt-4 px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 disabled:cursor-not-allowed cursor-pointer"
             disabled={!isValidUnsubAddress}
           >
-            Confirm Unsubscribe
+            {s.confirmUnsubscribe ?? "Confirm Unsubscribe"}
           </button>
           {unsubscribeData && (
             <div className="mt-6">
@@ -212,7 +215,7 @@ const NewsLetter: React.FC = () => {
                 onClick={() => downloadQRCode("unsubscribe_qr.png")}
                 className="cursor-pointer mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
               >
-                Download QR Code
+                {s.downloadQR ?? "Download QR Code"}
               </button>
             </div>
           )}

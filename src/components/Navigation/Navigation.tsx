@@ -1,8 +1,9 @@
 "use client";
 import DonationBtn from "@/components/UI/DonationBtn";
 import { navigations } from "@/constants/navigation";
-import Link from "next/link";
+import { Link as IntlLink } from "@/i18n/navigation";
 import { useEffect, useState, useRef } from "react";
+import type { ComponentProps } from "react";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import SearchBar from "../SearchBar";
 import Logo from "../UI/Logo";
@@ -31,6 +32,57 @@ import { Trophy, LayoutDashboard } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
+
+// Locale-aware internal link wrapper. Internal routes go through next-intl's
+// Link so hrefs auto-prefix to the active locale (e.g. /dashboard -> /it/dashboard
+// on /it/...). Absolute http(s) URLs are external and must NOT be prefixed, so
+// they render as a plain anchor (defaulting to a new tab).
+type LinkProps = ComponentProps<typeof IntlLink>;
+
+// External = anything with a URL scheme (http:, https:, mailto:, tel:, ipfs:…)
+// or a protocol-relative "//host" URL. Internal app paths ("/foo") have no
+// leading scheme and must go through the locale-aware IntlLink. Protocol-
+// relative URLs start with "/" but must NOT be locale-prefixed.
+const isExternalHref = (href: unknown): href is string =>
+  typeof href === "string" &&
+  (/^[a-z][a-z0-9+.-]*:/i.test(href) || href.startsWith("//"));
+
+const Link = ({ href, prefetch, children, ...rest }: LinkProps) => {
+  if (isExternalHref(href)) {
+    const {
+      className,
+      onClick,
+      target,
+      rel,
+      style,
+      "aria-label": ariaLabel,
+      // Drop next-intl-only props that aren't valid anchor attributes.
+      replace: _replace,
+      scroll: _scroll,
+      locale: _locale,
+      ...anchorRest
+    } = rest as Record<string, unknown>;
+    return (
+      <a
+        {...(anchorRest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        href={href}
+        className={className as string | undefined}
+        onClick={onClick as React.MouseEventHandler<HTMLAnchorElement> | undefined}
+        style={style as React.CSSProperties | undefined}
+        aria-label={ariaLabel as string | undefined}
+        target={(target as string | undefined) ?? "_blank"}
+        rel={(rel as string | undefined) ?? "noopener noreferrer"}
+      >
+        {children}
+      </a>
+    );
+  }
+  return (
+    <IntlLink href={href} prefetch={prefetch} {...rest}>
+      {children}
+    </IntlLink>
+  );
+};
 
 // Translation helper function
 const getTranslatedLabel = (
@@ -202,10 +254,41 @@ const getTranslatedLabel = (
     Guides: t.navigation?.guides || "Guides",
   };
 
+  const useCasesMap: Record<string, string> = {
+    "Use Cases": t.navigation?.usingZcash?.useCases || "Use Cases",
+    "Start Here":
+      t.navigation?.usingZcash?.useCasesSubmenu?.startHere || "Start Here",
+    "Accept Payments":
+      t.navigation?.usingZcash?.useCasesSubmenu?.acceptPayments ||
+      "Accept Payments",
+    "Freelance Privacy":
+      t.navigation?.usingZcash?.useCasesSubmenu?.freelancePrivacy ||
+      "Freelance Privacy",
+    "Journalist Privacy":
+      t.navigation?.usingZcash?.useCasesSubmenu?.journalistPrivacy ||
+      "Journalist Privacy",
+    "Keeping Records":
+      t.navigation?.usingZcash?.useCasesSubmenu?.keepingRecords ||
+      "Keeping Records",
+    "Private Community Treasury":
+      t.navigation?.usingZcash?.useCasesSubmenu?.privateCommunityTreasury ||
+      "Private Community Treasury",
+    Donations:
+      t.navigation?.usingZcash?.useCasesSubmenu?.donations || "Donations",
+    "Send Money Privately":
+      t.navigation?.usingZcash?.useCasesSubmenu?.sendMoneyPrivately ||
+      "Send Money Privately",
+  };
+
   const searchName = linkName || itemName;
 
   return (
+    // Comprehensive catch-all keyed by the English menu name (covers every
+    // item in navigation.ts at any depth). Consulted first so a missing entry
+    // in a specific map can never leak an English label.
+    t.menuLabels?.[searchName] ||
     mainNavMap[searchName] ||
+    useCasesMap[searchName] ||
     usingZcashMap[searchName] ||
     communityMap[searchName] ||
     organizationsMap[searchName] ||
@@ -804,7 +887,7 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
                           t,
                           link.label,
                         )}{" "}
-                        — Overview
+                        — {t.navigation?.overview || "Overview"}
                       </Link>
                     )}
                     {link.links.map((child, cidx) => (
@@ -899,6 +982,7 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
 
 const Navigation = () => {
   const { theme, setTheme } = useTheme();
+  const { t } = useLanguage();
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [showShop, setShowShop] = useState(false);
@@ -966,7 +1050,7 @@ const Navigation = () => {
                     className="flex items-center justify-center gap-2 w-full text-center text-sm font-semibold px-4 py-2 bg-slate-100 text-slate-600 dark:bg-slate-900 rounded-md shadow-md shadow-black/20 border-t border-yellow-600/30 transition-all duration-150 hover:brightness-110 animate-[slideDown_0.12s_ease-out]"
                     style={{ transformOrigin: "top center" }}
                   >
-                    <ShoppingBag className="h-4 w-4" /> Shop
+                    <ShoppingBag className="h-4 w-4" /> {t.navigation?.shop || "Shop"}
                   </Link>
                 </div>
               )}

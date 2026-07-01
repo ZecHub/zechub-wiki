@@ -3,10 +3,14 @@
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { Globe } from 'lucide-react';
 import { useLanguage, LANGUAGES } from '@/context/LanguageContext';
+import { useRouter, usePathname } from '@/i18n/navigation';
+import { routing } from '@/i18n/routing';
 
 export function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const { locale, setLocale } = useLanguage();
+  const router = useRouter();
+  const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
   const desktopLabelRef = useRef<HTMLSpanElement>(null);
   const mobileFlagRef = useRef<HTMLSpanElement>(null);
@@ -37,6 +41,13 @@ export function LanguageSwitcher() {
   const handleSelect = (code: string) => {
     setLocale(code);
     setIsOpen(false);
+    // For URL-routed locales (those with curated content / next-intl routing,
+    // e.g. en + it), navigate to the locale-prefixed path so the server serves
+    // curated content. Other locales (es, fr, ...) have no curated routes and
+    // rely on the Google Translate fallback applied to the current page.
+    if ((routing.locales as readonly string[]).includes(code)) {
+      router.replace(pathname, { locale: code as (typeof routing.locales)[number] });
+    }
   };
 
   return (

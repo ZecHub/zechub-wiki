@@ -1,0 +1,726 @@
+"use client";
+import React, { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { genMetadata } from "@/lib/helpers";
+import { Metadata } from "next";
+
+export const metadata: Metadata = genMetadata({
+  title: "Zcash Developer Resources",
+  url: "https://zechub.wiki/using-zcash/blockchain-explorers",
+});
+
+export default function DeveloperPage() {
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+  const [isHelpful, setIsHelpful] = useState(false);
+  const { t } = useLanguage();
+
+  // Handle feedback submission
+  const handleFeedback = (helpful: boolean) => {
+    setIsHelpful(helpful);
+    setFeedbackSubmitted(true);
+  };
+
+  // Card data with custom button text and SVG icons
+  const cardsConfig = [
+    {
+      title:
+        t?.pages?.developers?.cards?.learnTitle ?? "Learn Zcash Development",
+      content:
+        t?.pages?.developers?.cards?.learnContent ??
+        "Explore the official documentation and learn the basics of Zcash technology.",
+      url: "https://zcash.readthedocs.io/",
+      blank: true,
+      svg: (
+        <svg
+          className="w-12 h-12 text-blue-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+          />
+        </svg>
+      ),
+      buttonText: t?.pages?.developers?.cards?.learnButton ?? "Read the Docs",
+    },
+    {
+      title:
+        t?.pages?.developers?.cards?.tutorialsTitle ??
+        "Learn Through Tutorials",
+      content:
+        t?.pages?.developers?.cards?.tutorialsContent ??
+        "Follow step-by-step tutorials to build on Zcash, from creating wallets to integrating Zcash into your applications.",
+      url: "https://www.youtube.com/playlist?list=PL6_epn0lASLFF28ePj7P5TvtMG_WE7p3O",
+      blank: true,
+      svg: (
+        <svg
+          className="w-12 h-12 text-green-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+          />
+        </svg>
+      ),
+      buttonText:
+        t?.pages?.developers?.cards?.tutorialsButton ?? "View Tutorials",
+    },
+    {
+      title:
+        t?.pages?.developers?.cards?.quickStartTitle ?? "Quick Start Guide",
+      content:
+        t?.pages?.developers?.cards?.quickStartContent ??
+        "Get up and running with Zcash development quickly. Learn installation, configuration, and basic operations.",
+      url: "/developers/quick-start",
+      svg: (
+        <svg
+          className="w-12 h-12 text-orange-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M13 10V3L4 14h7v7l9-11h-7z"
+          />
+        </svg>
+      ),
+      buttonText:
+        t?.pages?.developers?.cards?.quickStartButton ?? "Quick Start Guide",
+    },
+  ];
+
+  return (
+    <>
+      {/* Hero Section */}
+      <div className="flex 2xl:h-[60vh] flex-col md:flex-row relative overflow-hidden">
+        <img
+          src="/developer_resources_white.jpg"
+          alt={t?.pages?.developers?.heroImageAlt ?? "Zcash Developer Resources"}
+          className=" inset-0 w-full h-full object-contain 2xl:object-cover dark:hidden"
+        />
+        <img
+          src="/developer_resources_dark.jpg"
+          alt={t?.pages?.developers?.heroImageAlt ?? "Zcash Developer Resources"}
+          className=" inset-0 w-full h-full object-contain 2xl:object-cover hidden dark:block"
+        />
+      </div>
+
+      {/* Cards Section */}
+      <section id="cardLinks" className="bg-gray-100 dark:bg-gray-800 py-12">
+        <div className="container mx-auto px-8">
+          <h2 className="text-4xl font-bold mb-12">
+            {t?.pages?.developers?.cardSectionTitle ??
+              "How would you like to get started?"}
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {cardsConfig.map((card, index) => (
+              <div
+                key={index}
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
+              >
+                <div className="flex items-center justify-center p-6">
+                  {card.svg}
+                </div>
+
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
+                  <p className="dark:text-gray-300 text-gray-700 mb-4 h-[100px]">
+                    {card.content}
+                  </p>
+                  <a
+                    href={card.url}
+                    target={card.blank ? "_blank" : "_self"}
+                    className="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+                  >
+                    {card.buttonText}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Documentation Section */}
+      <section
+        id="exploreDocumentation"
+        className="bg-white dark:bg-gray-800 py-12"
+      >
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold mb-12">
+            {t?.pages?.developers?.exploreDocsTitle ??
+              "Explore the Documentation"}
+          </h2>
+
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Introductions Column */}
+            <div className="flex-1">
+              <h3 className="text-3xl font-semibold mb-4">
+                {t?.pages?.developers?.introductionsTitle ?? "Introductions"}
+              </h3>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href="https://zechub.wiki/start-here/what-is-zec-and-zcash#content"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.introLinks?.introToZcash ||
+                      "Intro to Zcash"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.introLinks?.introToZcashDesc ??
+                      "Learn about Zcash, its history, and its core principles."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zechub.wiki/start-here/zec-use-cases#content"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.introLinks?.introToZec ||
+                      "Intro to ZEC"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.introLinks?.introToZecDesc ??
+                      "Discover the use cases and benefits of ZEC, Zcash native cryptocurrency."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zebra.zfnd.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.introLinks?.introToZebra ??
+                      "Intro to Zebra"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.introLinks?.introToZebraDesc ??
+                      "Understanding how Zebra powers the Zcash network with a modular and secure Rust-based implementation"}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/zcash/lightwalletd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.introLinks?.introToLightwalletd ??
+                      "Intro to Lightwalletd"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.introLinks?.introToLightwalletdDesc ??
+                      "Understanding the lightwalletd project—a scalable server written in Go that efficiently serves compact blockchain data to Zcash light clients via gRPC."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zcash.github.io/zallet/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.introLinks?.zalletBook ??
+                      "The Zallet Book"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.introLinks?.zalletBookDesc ??
+                      "Introduction to Zallet, a full-node Zcash wallet written in Rust and designed as a replacement for the zcashd wallet."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/ZecHub/zechub/blob/main/site/Start_Here/Developer_Resources.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.introLinks?.developerResources ??
+                      "Developer Resources"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.introLinks?.developerResourcesDesc ??
+                      "Links to Zcash further Technical Documentation."}
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            {/* Fundamentals Column */}
+            <div className="flex-1">
+              <h3 className="text-3xl font-semibold mb-4">
+                {t?.pages?.developers?.fundamentalsTitle ?? "Fundamentals"}
+              </h3>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href="https://zips.z.cash/protocol/protocol.pdf#5.6%20Encodings%20of%20Addresses%20and%20Keys"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.fundamentalsLinks?.addressEncoding ??
+                      "Address Encoding"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.fundamentalsLinks
+                      ?.addressEncodingDesc ??
+                      "Learn how Zcash addresses and keys are encoded."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zechub.wiki/using-zcash/transactions"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.fundamentalsLinks?.transactions ??
+                      "Transactions"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.fundamentalsLinks
+                      ?.transactionsDesc ??
+                      "Understand how transactions work in Zcash."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zips.z.cash/zip-0317"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.fundamentalsLinks?.fees ?? "Fees"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.fundamentalsLinks?.feesDesc ??
+                      "Learn about transaction fees and how they are calculated."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zcash.github.io/zcash/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.fundamentalsLinks?.nodesZcashd ??
+                      "Nodes (zcashd)"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.fundamentalsLinks?.nodesZcashdDesc ??
+                      "Set up and manage Zcash nodes using zcashd."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zebra.zfnd.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.fundamentalsLinks?.nodesZebrad ??
+                      "Nodes (zebrad)"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.fundamentalsLinks?.nodesZebradDesc ??
+                      "Explore Zebra, an alternative Zcash node implementation."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zcash.readthedocs.io/en/latest/lightwalletd/index.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.fundamentalsLinks
+                      ?.lightwalletServers ?? "Lightwallet Servers"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.fundamentalsLinks
+                      ?.lightwalletServersDesc ??
+                      "Learn about lightwalletd, a lightweight Zcash wallet server."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/nighthawk-apps/zcash-explorer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.fundamentalsLinks?.blockExplorers ??
+                      "Block Explorers"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.fundamentalsLinks
+                      ?.blockExplorersDesc ??
+                      "Explore Zcash blockchains using block explorers."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://fringe-brow-647.notion.site/Shade-Agents-19a09959836d8091bb8febb318cc09fd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.fundamentalsLinks?.shadeAgent ??
+                      "Shade Agent - Notion"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.fundamentalsLinks?.shadeAgentDesc ??
+                      "Learn about Shade Agents—the first truly autonomous AI agents on NEAR—powered by secure TEEs and decentralized Chain Signatures to manage assets, access LLMs, and execute multichain transactions independently."}
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            {/* Advanced Column */}
+            <div className="flex-1">
+              <h3 className="text-3xl font-semibold mb-4">
+                {t?.pages?.developers?.advancedTitle ?? "Advanced"}
+              </h3>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/librustzcash_arch.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.introToStack ??
+                      "Intro to the Stack"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.introToStackDesc ??
+                      "Understand the architecture and components of the Zcash stack."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zecdev.github.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.zecDev ?? "ZecDev"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.zecDevDesc ??
+                      "Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant. See also the"}{" "}
+                    <a
+                      href="https://zecdev.github.io/community"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:underline"
+                    >
+                      {t?.pages?.developers?.advancedLinks
+                        ?.zcashCommunityWishlist ?? "Zcash Community Wishlist"}
+                    </a>
+                    .
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/zingolabs/zingolib"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.introToZingolib ??
+                      "Intro to Zingolib"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.introToZingolibDesc ??
+                      "Understanding the zingolib repository—a Rust-based API and CLI for interacting with zcashd via Lightwalletd."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/ChainSafe/WebZjs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.webZjs ?? "WebZjs"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.webZjsDesc ??
+                      "A JavaScript/TypeScript library for building Zcash-enabled web applications using WebAssembly."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/NoirWallet/noir-wallet-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.noirWalletSdk ??
+                      "Noir Wallet SDK"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.noirWalletSdkDesc ??
+                      "TypeScript SDK and example dApp for integrating Zcash applications with the Noir Wallet browser extension."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/Frontier-Compute/zcash-ika"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.zcashIka ??
+                      "zcash-ika"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.zcashIkaDesc ??
+                      "Split-key custody for Zcash and multi-chain agents via 2PC-MPC. On-chain spend policy, privacy attestation, ZIP 244 transaction builder."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks
+                      ?.developmentGuidelines ?? "Development Guidelines"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks
+                      ?.developmentGuidelinesDesc ??
+                      "Follow best practices for developing on Zcash."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/ZcashCommunityGrants/arboretum-notes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.arboristCalls ??
+                      "Arborist Calls Page"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.arboristCallsDesc ??
+                      "The Zcash Arborist Calls are bi-weekly protocol development meetings focused on tracking upcoming protocol deployment logistics, consensus node implementation issues, and protocol research."}
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zcash/zcash-android-wallet-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Android Wallet SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Native Android SDK for building Zcash light-client wallet
+                    functionality, including shielded sends and receives.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zcash/zcash-swift-wallet-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Swift Wallet SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    iOS light-client framework for integrating Zcash wallet
+                    functionality into Swift applications.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zcash/librustzcash"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    librustzcash
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Core Rust crates for working with Zcash protocol data, keys,
+                    transactions, and light-client components.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/nufi-official/zcash-router-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Router SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Modular TypeScript SDK for managing swaps to and from Zcash,
+                    including routing, quotes, and transaction state.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/ruzcash/zaddr-wasm-parser"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    zaddr-wasm-parser
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    WebAssembly utility for parsing, validating, and classifying
+                    Zcash addresses, including Unified Addresses.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zodl-inc/zodl-android"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zodl Android Reference Wallet
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Android reference wallet implementation for Zodl and Zcash
+                    mobile development.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zodl-inc/zodl-ios"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zodl iOS Reference Wallet
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    iOS reference wallet implementation for Zodl and Zcash
+                    mobile development.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feedback Section */}
+      <section
+        id="feedback"
+        className="bg-gray-100 dark:bg-gray-800 py-12 mt-6"
+      >
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold mb-4">
+            {t?.pages?.developers?.feedbackTitle ?? "Was this page helpful?"}
+          </h2>
+
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={() => handleFeedback(true)}
+              className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer"
+            >
+              <span>👍</span>
+              <span>{t?.pages?.developers?.feedbackYes ?? "Yes"}</span>
+            </button>
+
+            <button
+              onClick={() => handleFeedback(false)}
+              className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300 cursor-pointer"
+            >
+              <span>👎</span>
+              <span>{t?.pages?.developers?.feedbackNo ?? "No"}</span>
+            </button>
+          </div>
+
+          {feedbackSubmitted && (
+            <div className="mt-4">
+              {isHelpful ? (
+                <p className="text-green-600">
+                  {t?.pages?.developers?.feedbackHelpful ??
+                    "Thank you for your feedback! Make this page even better by answering a few questions. If you need help, you can reach out to the community on our"}{" "}
+                  <a
+                    href="https://discord.gg/zcash"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Discord
+                  </a>
+                  .
+                </p>
+              ) : (
+                <p className="text-red-600">
+                  {t?.pages?.developers?.feedbackNotHelpful ??
+                    "Sorry to hear that. Please let us know how we can improve this page. You can reach out to the community on our"}{" "}
+                  <a
+                    href="https://discord.gg/zcash"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Discord
+                  </a>
+                  .
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+    </>
+  );
+}

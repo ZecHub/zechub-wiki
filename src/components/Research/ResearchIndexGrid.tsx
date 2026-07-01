@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import { searcher } from "@/constants/searcher";
 import { getResearchCardCover } from "@/constants/researchCardCovers";

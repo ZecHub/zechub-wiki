@@ -1,7 +1,7 @@
 // components/ProjectRow.tsx
 import React from "react";
 import styles from "./SiteLinks.module.css";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 const SiteLinks: React.FC = () => {
   return (
