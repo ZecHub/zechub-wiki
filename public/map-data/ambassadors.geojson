@@ -4,7 +4,7 @@
     "schema_version": "1.0",
     "generated": "2026-06-12",
     "source": "manual update from ambassador_list_v2.json",
-    "total_features": 13,
+    "total_features": 15,
     "note": "Drop-in GeoJSON for the Zcash Ambassador Map. Keep region values lowercase: africa, asia, americas, europe."
   },
   "features": [
@@ -318,7 +318,7 @@
         "id": "amb_south_africa",
         "name": "Zcash South Africa",
         "flag": "🇿🇦",
-        "description": "Privacy🛡️. Freedom. Zcash 🦓 Community for South African region",
+        "description": "Privacy\u00df\ufe0f. Freedom. Zcash \ud83e\udd93 Community for South African region",
         "image": "https://pbs.twimg.com/profile_images/2045292206081400832/2kJ3y8BV_400x400.jpg",
         "twitter": "https://x.com/zcash_sa",
         "x_handle": "zcash_sa",
@@ -331,6 +331,56 @@
         "coords_source": "manual",
         "active": true,
         "last_update": "2026-06-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [113.921327, -0.789275]
+      },
+      "properties": {
+        "id": "amb_indonesia",
+        "name": "Zcash Indonesia",
+        "flag": "🇮🇩",
+        "description": "Zcash community and advocacy in Indonesia",
+        "image": "/zcashIndonesia.jpg",
+        "twitter": "https://x.com/ZcashIdn",
+        "x_handle": "ZcashIdn",
+        "project_site": null,
+        "blog": "https://substack.com/@zcashidn",
+        "country_code": "ID",
+        "region": "asia",
+        "language": "Indonesian",
+        "pin_note": "Geographic centre of Indonesia",
+        "coords_source": "manual",
+        "active": true,
+        "last_update": "2026-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-100.389889, 20.588793]
+      },
+      "properties": {
+        "id": "amb_queretaro",
+        "name": "Club Zcash Quer\u00e9taro",
+        "flag": "🇲🇽",
+        "description": "Zcash community and advocacy in Quer\u00e9taro, Mexico",
+        "image": "/clubZcashQueretaro.jpg",
+        "twitter": "https://x.com/zcashqro",
+        "x_handle": "zcashqro",
+        "project_site": null,
+        "blog": null,
+        "country_code": "MX",
+        "region": "americas",
+        "language": "Spanish",
+        "pin_note": "Quer\u00e9taro, Mexico",
+        "coords_source": "manual",
+        "active": true,
+        "last_update": "2026-06-30"
       }
     }
   ]

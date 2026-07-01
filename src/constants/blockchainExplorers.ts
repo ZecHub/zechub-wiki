@@ -8,6 +8,37 @@ export const blockchainExplorers = [
     thumbnailImage: '/explorer/Blockchair.png',
   },
   {
+    title: 'Cipherscan',
+    description:
+      'Zcash blockchain explorer that decodes the blockchain where privacy meets transparency. Features privacy metrics dashboard, shielded activity tracking, and real-time block monitoring.',
+    features: ['Privacy score metrics', 'shielded pool statistics', 'mainnet & testnet', 'live block updates', 'Orchard support'],
+    url: 'https://cipherscan.app/',
+    thumbnailImage: '/explorer/Cipherscan.png',
+  },
+  {
+      title: 'zcashinfo.com',
+      description:
+        'Zcash blockchain explorer featuring block details, transaction lookup, address search, network statistics, value pool distribution, and mempool monitoring.',
+      features: [
+        'Block explorer',
+        'Transaction lookup',
+        'Address search',
+        'Network statistics',
+        'Value pool distribution',
+        'Mempool monitoring',
+      ],
+      url: 'https://zcashinfo.com/',
+      thumbnailImage: '/explorer/zcashinfo.png',
+    },
+    {
+    title: 'Zexplorer',
+    description:
+      ' A Zcash-only explorer and API that tries to be precise about what public chain data can show, what is private by design, and what a client can safely depend on',
+    features: ['Block Explorer', 'Transaction Explorer', 'Search Functionality', 'Address Lookup', 'Mempool / Pending Transactions', 'Network Stats'],
+    url: 'https://zexplorer.app/testnet/',
+    thumbnailImage: '/explorer/zexplorer.png',
+    },
+  {
     title: 'MESSARI',
     description:
       'Messari brings transparency to the cryptoeconomy; helping investors, regulators, and the public make sense of this revolutionary new asset class...',
@@ -63,14 +94,6 @@ export const blockchainExplorers = [
     thumbnailImage: '/explorer/Bitquery.png',
   },
   {
-    title: 'Cipherscan',
-    description:
-      'Zcash blockchain explorer that decodes the blockchain where privacy meets transparency. Features privacy metrics dashboard, shielded activity tracking, and real-time block monitoring.',
-    features: ['Privacy score metrics', 'shielded pool statistics', 'mainnet & testnet', 'live block updates', 'Orchard support'],
-    url: 'https://cipherscan.app/',
-    thumbnailImage: '/explorer/Cipherscan.png',
-  },
-  {
     title: 'Zypherscan',
     description:
       'Privacy-first blockchain explorer for Zcash. Explore shielded transactions by bringing your own viewing keys for a seamless, view-only explorer of private ZCash history.',
@@ -78,27 +101,4 @@ export const blockchainExplorers = [
     url: 'https://www.zypherscan.com/',
     thumbnailImage: '/explorer/Zypherscan.png',
   },
-  {
-      title: 'zcashinfo.com',
-      description:
-        'Zcash blockchain explorer featuring block details, transaction lookup, address search, network statistics, value pool distribution, and mempool monitoring.',
-      features: [
-        'Block explorer',
-        'Transaction lookup',
-        'Address search',
-        'Network statistics',
-        'Value pool distribution',
-        'Mempool monitoring',
-      ],
-      url: 'https://zcashinfo.com/',
-      thumbnailImage: '/explorer/zcashinfo.png',
-    },
-    {
-    title: 'Zexplorer',
-    description:
-      ' A Zcash-only explorer and API that tries to be precise about what public chain data can show, what is private by design, and what a client can safely depend on',
-    features: ['Block Explorer', 'Transaction Explorer', 'Search Functionality', 'Address Lookup', 'Mempool / Pending Transactions', 'Network Stats'],
-    url: 'https://zexplorer.app/testnet/',
-    thumbnailImage: '/explorer/Zexplorer.png',
-    },
 ];
