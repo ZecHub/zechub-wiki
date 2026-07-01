@@ -1,7 +1,9 @@
 'use client';
 import { matchIcons } from "@/constants/Icons";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
+import { pageTitlesIt } from "@/constants/pageTitles.it";
 import { useState } from "react";
 import {
   BiRightArrowAlt as Arrow,
@@ -50,6 +52,12 @@ interface MenuProps {
 const SideMenu = ({ folder, roots }: MenuProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const locale = useLocale();
+  // Localized display label for a side-menu item (falls back to the English
+  // filename-derived name). getName stays the source of truth for icon/filter
+  // matching below.
+  const menuLabel = (item: string) =>
+    locale === "it" ? pageTitlesIt[item] ?? getName(item) : getName(item);
   const root = roots.map((item) => item.slice(0, -3));
   const name = folder[0].toUpperCase() + folder.slice(1);
   const fold = getName(name);
@@ -107,7 +115,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium ">
-                          {item ? getName(item) : ""}
+                          {item ? menuLabel(item) : ""}
                         </p>
                       </div>
                       <div className="inline-flex items-center text-base font-semibold ">
