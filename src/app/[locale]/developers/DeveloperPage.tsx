@@ -554,6 +554,104 @@ export default function DeveloperPage() {
                       "The Zcash Arborist Calls are bi-weekly protocol development meetings focused on tracking upcoming protocol deployment logistics, consensus node implementation issues, and protocol research."}
                   </p>
                 </li>
+                <li>
+                  <a
+                    href="https://github.com/zcash/zcash-android-wallet-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Android Wallet SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Native Android SDK for building Zcash light-client wallet
+                    functionality, including shielded sends and receives.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zcash/zcash-swift-wallet-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Swift Wallet SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    iOS light-client framework for integrating Zcash wallet
+                    functionality into Swift applications.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zcash/librustzcash"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    librustzcash
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Core Rust crates for working with Zcash protocol data, keys,
+                    transactions, and light-client components.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/nufi-official/zcash-router-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zcash Router SDK
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Modular TypeScript SDK for managing swaps to and from Zcash,
+                    including routing, quotes, and transaction state.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/ruzcash/zaddr-wasm-parser"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    zaddr-wasm-parser
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    WebAssembly utility for parsing, validating, and classifying
+                    Zcash addresses, including Unified Addresses.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zodl-inc/zodl-android"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zodl Android Reference Wallet
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Android reference wallet implementation for Zodl and Zcash
+                    mobile development.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/zodl-inc/zodl-ios"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zodl iOS Reference Wallet
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    iOS reference wallet implementation for Zodl and Zcash
+                    mobile development.
+                  </p>
+                </li>
               </ul>
             </div>
           </div>
