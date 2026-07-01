@@ -25,12 +25,12 @@ import NamadaChart from "./Namada/NamadaChart";
 import PenumbraChart from "./Penumbra/PenumbraChart";
 import ZcashChart from "./Zcash/ZcashChart";
 import { ProposalsList } from "@/components/Proposals";
-import type { ZipsData } from "@/app/zips-grants/ZipAndGrantsGovernance";
+import type { ZipsData } from "@/app/[locale]/zips-grants/ZipAndGrantsGovernance";
 import CodePulse from "@/components/CodePulse";
 
 const ZCGDashboard = dynamic(
   () =>
-    import("@/app/zips-grants/ZipAndGrantsGovernance").then(
+    import("@/app/[locale]/zips-grants/ZipAndGrantsGovernance").then(
       (m) => m.ZipAndGrantsGovernance,
     ),
   { ssr: false },

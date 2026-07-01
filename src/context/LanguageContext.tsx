@@ -49,6 +49,12 @@ interface LanguageContextType {
 }
 
 const STORAGE_KEY = 'zechub_language';
+// Locales served by curated next-intl content (translations/<locale>/site/...).
+// Google Translate must NOT run for these — the page is already in the target
+// language, so the widget would re-translate curated text and corrupt proper
+// nouns (e.g. "Paradigm" -> "Paradigma"). GT stays only as a fallback for
+// locales WITHOUT curated content.
+const CURATED_LOCALES = new Set<string>(['it']);
 const GOOGLE_TRANSLATE_SCRIPT_ID = 'google-translate-script';
 const GOOGLE_TRANSLATE_INCLUDED_LANGUAGES = LANGUAGES.map((l) => l.googleCode).join(',');
 
@@ -301,6 +307,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
     setLocaleState(saved);
 
+    // Curated locales serve their own content — don't invoke Google Translate,
+    // and clear any stale googtrans cookie so a prior GT session can't
+    // re-translate the curated page on load.
+    if (CURATED_LOCALES.has(saved)) {
+      clearGTCookies();
+      return;
+    }
+
     return scheduleGoogleTranslate(savedLang.googleCode, 50);
   }, []);
 
@@ -323,6 +337,17 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    // Curated locale: show the served (curated) content as-is; ensure Google
+    // Translate is reset to the original so it never re-translates our text.
+    if (lang && CURATED_LOCALES.has(code)) {
+      currentLanguageRef.current = lang;
+      const widgetReady = resetGoogleTranslateToEnglish();
+      if (!widgetReady) {
+        clearGTCookies();
+      }
+      return;
+    }
+
     if (lang) {
       currentLanguageRef.current = lang;
       scheduleGoogleTranslate(lang.googleCode, 25);
@@ -338,7 +363,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const handleMdxReady = () => {
       const lang = currentLanguageRef.current;
-      if (lang.code === 'en') return;
+      if (lang.code === 'en' || CURATED_LOCALES.has(lang.code)) return;
 
       scheduleGoogleTranslate(lang.googleCode);
     };

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import locations from '../../app/map/locations.json';
+import locations from '../../app/[locale]/map/locations.json';
 
 // Define types for the location data structure
 type Coordinates = {
