@@ -8,6 +8,7 @@ const dictionaries: Record<string, () => Promise<Dictionary>> = {
   de: () => import('../../dictionaries/de.json').then((m) => (m && m.default) || m),
   fr: () => import('../../dictionaries/fr.json').then((m) => (m && m.default) || m),
   it: () => import('../../dictionaries/it.json').then((m) => (m && m.default) || m),
+  ar: () => import('../../dictionaries/ar.json').then((m) => (m && m.default) || m),
   ja: () => import('../../dictionaries/ja.json').then((m) => (m && m.default) || m),
   ru: () => import('../../dictionaries/ru.json').then((m) => (m && m.default) || m),
   zh: () => import('../../dictionaries/zh.json').then((m) => (m && m.default) || m),
