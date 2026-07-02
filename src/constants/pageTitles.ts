@@ -5,7 +5,9 @@
 // Consumers resolve `pageTitles[locale]?.[item] ?? getName(item)`, so any
 // locale absent from this map transparently falls back to the English label.
 import { pageTitlesIt } from "@/constants/pageTitles.it";
+import { pageTitlesFr } from "@/constants/pageTitles.fr";
 
 export const pageTitles: Record<string, Record<string, string>> = {
   it: pageTitlesIt,
+  fr: pageTitlesFr,
 };
