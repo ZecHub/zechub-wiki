@@ -1303,6 +1303,11 @@
       "views": 86
     },
     {
+      "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Ameaças Quânticas | Engineering #3",
+      "video_id": "R6916H2IMKI",
+      "views": 86
+    },
+    {
       "title": "A proteção do dinheiro em tempos de crise",
       "video_id": "BW5jtRe17ws",
       "views": 85
@@ -1310,11 +1315,6 @@
     {
       "title": "Quebrando Barreiras Contribuições de Sean Bowe para Zcash",
       "video_id": "fjpSO5ZHVbE",
-      "views": 85
-    },
-    {
-      "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Ameaças Quânticas | Engineering #3",
-      "video_id": "R6916H2IMKI",
       "views": 85
     },
     {
@@ -1358,6 +1358,11 @@
       "views": 83
     },
     {
+      "title": "A Zoe - Mineração e Dev-Fund na #Zcash",
+      "video_id": "VTmAQVwVSNw",
+      "views": 82
+    },
+    {
       "title": "Bitcoin e Cartão de Crédito: Hackeados, vazados e expostos.",
       "video_id": "hzmcfrppWHo",
       "views": 82
@@ -1366,11 +1371,6 @@
       "title": "Privacidade como um recurso: Por que a moeda ideal se assemelha ao dinheiro",
       "video_id": "tfe-REk-BRQ",
       "views": 82
-    },
-    {
-      "title": "A Zoe - Mineração e Dev-Fund na #Zcash",
-      "video_id": "VTmAQVwVSNw",
-      "views": 81
     },
     {
       "title": "O poder dos Coin Holders",
@@ -1913,6 +1913,11 @@
       "views": 50
     },
     {
+      "title": "Blockchain e IA no Mundo Real",
+      "video_id": "414IObiEjX0",
+      "views": 50
+    },
+    {
       "title": "Liberação Através das Criptomoedas",
       "video_id": "r7JnFEok3Tk",
       "views": 49
@@ -2010,11 +2015,6 @@
     {
       "title": "Zcon Vozes 2 | FIAP São Paulo",
       "video_id": "Vf4Mjq_YIhQ",
-      "views": 46
-    },
-    {
-      "title": "Blockchain e IA no Mundo Real",
-      "video_id": "414IObiEjX0",
       "views": 46
     },
     {
@@ -2468,6 +2468,11 @@
       "views": 34
     },
     {
+      "title": "Protocol Study #5: Merkle Trees and How the Chain Remembers",
+      "video_id": "rUMVoXjrUBk",
+      "views": 34
+    },
+    {
       "title": "Zcash x NYM Brasil - Twitter Spaces",
       "video_id": "CwQKrMYCo-g",
       "views": 33
@@ -2630,11 +2635,6 @@
     {
       "title": "Protocol Study #2: Addresses, Keys, and the Privacy Onion | Engineering #9",
       "video_id": "z6V-NhTWE3Q",
-      "views": 31
-    },
-    {
-      "title": "Protocol Study #5: Merkle Trees and How the Chain Remembers",
-      "video_id": "rUMVoXjrUBk",
       "views": 31
     },
     {
@@ -3378,6 +3378,11 @@
       "views": 13
     },
     {
+      "title": "Zcash Shielded Call Vol.6 - Auditoria do Protocolo Orchard ZSA",
+      "video_id": "RfmjMo0FeTM",
+      "views": 13
+    },
+    {
       "title": "A Coleta Invisível de Dados.",
       "video_id": "l6E74eQrBQI",
       "views": 13
@@ -3435,11 +3440,6 @@
     {
       "title": "Zcash Shielded Call Vol.4 - Halving & NU6",
       "video_id": "of9VRz1I8IU",
-      "views": 12
-    },
-    {
-      "title": "Zcash Shielded Call Vol.6 - Auditoria do Protocolo Orchard ZSA",
-      "video_id": "RfmjMo0FeTM",
       "views": 12
     },
     {
@@ -3638,6 +3638,16 @@
       "views": 6
     },
     {
+      "title": "Zcash + Fedi BTC: Diferentes Caminhos Para Soberania Financeira",
+      "video_id": "VVN18ZFJKsA",
+      "views": 6
+    },
+    {
+      "title": "Quando o compliance vira vigilância?",
+      "video_id": "JGoLizC1x84",
+      "views": 6
+    },
+    {
       "title": "Call de comemoração de 1 ano de Zcon Vozes",
       "video_id": "w3M8Tg0JzfQ",
       "views": 5
@@ -3648,18 +3658,13 @@
       "views": 5
     },
     {
-      "title": "Shielded Call | Zenith, Z3 e ZCG.",
-      "video_id": "ob2I0KL_NBE",
-      "views": 4
-    },
-    {
-      "title": "Zcash + Fedi BTC: Diferentes Caminhos Para Soberania Financeira",
-      "video_id": "VVN18ZFJKsA",
-      "views": 4
-    },
-    {
       "title": "Soluções de Privacidade na Near | Vini B | Zcon Vozes 2",
       "video_id": "_CHBvf00nDM",
+      "views": 5
+    },
+    {
+      "title": "Shielded Call | Zenith, Z3 e ZCG.",
+      "video_id": "ob2I0KL_NBE",
       "views": 4
     },
     {
