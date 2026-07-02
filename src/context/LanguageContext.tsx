@@ -6,6 +6,7 @@ import {
   createContext, useContext, useState,
   useEffect, useCallback, useRef, useMemo, ReactNode,
 } from 'react';
+import { useLocale } from 'next-intl';
 import { getDictionary } from '@/lib/getDictionary';
 
 export interface Language {
@@ -273,6 +274,23 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const userSelectedRef = useRef(false);
   const currentLanguageRef = useRef<Language>(LANGUAGES[0]);
+
+  // Keep the UI-chrome locale in sync with the URL for curated locales: a fresh
+  // visit to /it/... should show Italian chrome (menu, dictionary) immediately,
+  // not English-until-you-touch-the-switcher. Unprefixed (en) URLs are left
+  // alone so Google-Translate-only locales (es, fr, ...) keep their state.
+  const urlLocale = useLocale();
+  useEffect(() => {
+    if (CURATED_LOCALES.has(urlLocale) && urlLocale !== locale) {
+      setLocaleState(urlLocale as Locale);
+      localStorage.setItem(STORAGE_KEY, urlLocale);
+      document.documentElement.lang = urlLocale;
+      const lang = LANGUAGES.find((l) => l.code === urlLocale);
+      if (lang) currentLanguageRef.current = lang;
+      clearGTCookies();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlLocale]);
 
   useEffect(() => {
     let cancelled = false;
