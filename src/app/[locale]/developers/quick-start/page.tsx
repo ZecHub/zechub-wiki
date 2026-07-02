@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect, ReactNode } from "react";
 import { FcLinux } from "react-icons/fc";
 import { PiAppleLogoDuotone } from "react-icons/pi";
 import { BsWindows } from "react-icons/bs";
+import { useLanguage } from "@/context/LanguageContext";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -81,6 +82,7 @@ const CodeBlock = ({
   language = "bash",
   width = "750px",
 }: CodeBlockProps) => {
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -171,7 +173,9 @@ const CodeBlock = ({
           }}
         >
           {copied ? <CheckIcon /> : <CopyIcon />}
-          {copied ? "Copied!" : "Copy"}
+          {copied
+            ? t?.pages?.developersQuickStart?.copied ?? "Copied!"
+            : t?.pages?.developersQuickStart?.copy ?? "Copy"}
         </button>
       </div>
 
@@ -301,19 +305,24 @@ const InfoBox = ({ children }: { children: ReactNode }) => (
 // ── Tab content ──────────────────────────────────────────────────────────────
 
 const ZebradTab = () => {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
   const [osTab, setOsTab] = useState<"linux" | "macos" | "windows">("linux");
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
       {/* TOC */}
       <div className="rounded-xl px-7 py-6 bg-sky-500/[0.04] dark:bg-sky-500/[0.06] border border-sky-500/20">
         <p className="text-[11px] tracking-[0.15em] uppercase text-sky-500 mb-[14px] font-semibold">
-          On this page
+          {qs?.onThisPage ?? "On this page"}
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           {[
-            ["#installing-zcash", "Installing Zebrad"],
-            ["#running-zebrad", "Running zebrad"],
-            ["#connecting-lightwalletd", "Connecting with lightwalletd"],
+            ["#installing-zcash", qs?.tocInstallingZebrad ?? "Installing Zebrad"],
+            ["#running-zebrad", qs?.tocRunningZebrad ?? "Running zebrad"],
+            [
+              "#connecting-lightwalletd",
+              qs?.tocConnectingLightwalletd ?? "Connecting with lightwalletd",
+            ],
           ].map(([href, label]) => (
             <a
               key={href}
@@ -328,7 +337,7 @@ const ZebradTab = () => {
       </div>
 
       {/* Step 1 — Installing */}
-      <SectionCard title="Installation">
+      <SectionCard title={qs?.installation ?? "Installation"}>
         {/* OS Tab bar */}
         <div className="grid grid-cols-2 imd:flex gap-1 border-b border-black/8 dark:border-white/8 mb-6">
           {(
@@ -365,15 +374,21 @@ const ZebradTab = () => {
 
         {osTab === "linux" && (
           <>
-            <SubLabel className="mt-[14px]">Dependencies</SubLabel>
+            <SubLabel className="mt-[14px]">
+              {qs?.dependencies ?? "Dependencies"}
+            </SubLabel>
             <CodeBlock
               code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm`}
             />
-            <SubLabel className="mt-[14px]">From Source</SubLabel>
+            <SubLabel className="mt-[14px]">
+              {qs?.fromSource ?? "From Source"}
+            </SubLabel>
             <CodeBlock
               code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v5.2.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
             />
-            <SubLabel className="mt-[14px]">Alternatively</SubLabel>
+            <SubLabel className="mt-[14px]">
+              {qs?.alternatively ?? "Alternatively"}
+            </SubLabel>
             <CodeBlock
               code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v5.2.0 zebrad`}
             />
@@ -382,15 +397,21 @@ const ZebradTab = () => {
 
         {osTab === "macos" && (
           <>
-            <SubLabel className="mt-[14px]">Dependencies</SubLabel>
+            <SubLabel className="mt-[14px]">
+              {qs?.dependencies ?? "Dependencies"}
+            </SubLabel>
             <CodeBlock
               code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm`}
             />
-            <SubLabel className="mt-[14px]">Manual Download</SubLabel>
+            <SubLabel className="mt-[14px]">
+              {qs?.manualDownload ?? "Manual Download"}
+            </SubLabel>
             <CodeBlock
               code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v5.2.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
             />
-            <SubLabel className="mt-[14px]">Alternatively</SubLabel>
+            <SubLabel className="mt-[14px]">
+              {qs?.alternatively ?? "Alternatively"}
+            </SubLabel>
             <CodeBlock
               code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v5.2.0 zebrad`}
             />
@@ -399,17 +420,23 @@ const ZebradTab = () => {
 
         {osTab === "windows" && (
           <>
-            <SubLabel>WSL (Recommended)</SubLabel>
+            <SubLabel>{qs?.wslRecommended ?? "WSL (Recommended)"}</SubLabel>
             <CodeBlock code={`wsl --install`} />
-            <SubLabel className="mt-[14px]">Dependencies</SubLabel>
+            <SubLabel className="mt-[14px]">
+              {qs?.dependencies ?? "Dependencies"}
+            </SubLabel>
             <CodeBlock
               code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm\nsource $HOME/.cargo/env\nexport CXXFLAGS="$CXXFLAGS -include cstdint"`}
             />
-            <SubLabel className="mt-[14px]">From Source</SubLabel>
+            <SubLabel className="mt-[14px]">
+              {qs?.fromSource ?? "From Source"}
+            </SubLabel>
             <CodeBlock
               code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v5.2.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
             />
-            <SubLabel className="mt-[14px]">Alternatively</SubLabel>
+            <SubLabel className="mt-[14px]">
+              {qs?.alternatively ?? "Alternatively"}
+            </SubLabel>
             <CodeBlock
               code={`cargo install --git https://github.com/ZcashFoundation/zebra --tag v5.2.0 zebrad`}
             />
@@ -424,12 +451,14 @@ const ZebradTab = () => {
         <div className="flex items-center gap-[14px] mb-7">
           <StepBadge number={2} />
           <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
-            Running zebrad
+            {qs?.runningZebradHeading ?? "Running zebrad"}
           </h2>
         </div>
 
-        <SectionCard title="Initial Setup" className="mb-6">
-          <SubLabel>Create Configuration Directory</SubLabel>
+        <SectionCard title={qs?.initialSetup ?? "Initial Setup"} className="mb-6">
+          <SubLabel>
+            {qs?.createConfigDir ?? "Create Configuration Directory"}
+          </SubLabel>
           <CodeBlock code={`zebrad generate -o ~/.config/zebrad.toml`} />
           <SubLabel className="mt-[18px]">zebrad.toml</SubLabel>
           <CodeBlock
@@ -475,19 +504,22 @@ use_color = true`}
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
           }}
         >
-          <SectionCard title="Starting zebrad">
-            <SubLabel>Command Line</SubLabel>
+          <SectionCard title={qs?.startingZebrad ?? "Starting zebrad"}>
+            <SubLabel>{qs?.commandLine ?? "Command Line"}</SubLabel>
             <CodeBlock
               code={`zebrad start\n# Or with specific config\nzebrad -c ~/.config/zebrad.toml start`}
             />
           </SectionCard>
 
-          <SectionCard title="Important Notes">
+          <SectionCard title={qs?.importantNotes ?? "Important Notes"}>
             <ul className="flex flex-col gap-[10px] list-none p-0 m-0">
               {[
-                "First run downloads the entire blockchain (~250 GB)",
-                "Initial sync can take several hours",
-                "Keep your zebrad.toml secure and private",
+                qs?.noteDownloadsBlockchain ??
+                  "First run downloads the entire blockchain (~250 GB)",
+                qs?.noteInitialSync ??
+                  "Initial sync can take several hours",
+                qs?.noteKeepSecure ??
+                  "Keep your zebrad.toml secure and private",
               ].map((note, i) => (
                 <li
                   key={i}
@@ -509,7 +541,8 @@ use_color = true`}
         <div className="flex items-center gap-[14px] mb-7">
           <StepBadge number={3} />
           <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
-            Connecting with lightwalletd
+            {qs?.connectingLightwalletdHeading ??
+              "Connecting with lightwalletd"}
           </h2>
         </div>
 
@@ -517,9 +550,8 @@ use_color = true`}
           <strong className="text-indigo-400 dark:text-indigo-300">
             lightwalletd
           </strong>{" "}
-          is a server that provides a lightweight interface to the Zcash
-          blockchain, designed for mobile and desktop wallets that don't need to
-          run a full node.
+          {qs?.lightwalletdInfo ??
+            "is a server that provides a lightweight interface to the Zcash blockchain, designed for mobile and desktop wallets that don't need to run a full node."}
         </InfoBox>
 
         <div
@@ -528,21 +560,23 @@ use_color = true`}
           //   gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
           // }}
         >
-          <SectionCard title="Installation">
-            <SubLabel>Prerequisites</SubLabel>
+          <SectionCard title={qs?.installation ?? "Installation"}>
+            <SubLabel>{qs?.prerequisites ?? "Prerequisites"}</SubLabel>
             <CodeBlock
               code={`# Install Go
 sudo apt install golang-go
 # Or download from golang.org`}
             />
-            <SubLabel className="mt-[14px]">Build lightwalletd</SubLabel>
+            <SubLabel className="mt-[14px]">
+              {qs?.buildLightwalletd ?? "Build lightwalletd"}
+            </SubLabel>
             <CodeBlock
               code={`git clone https://github.com/zcash/lightwalletd.git\ncd lightwalletd\ngo build\nmake\nmake install\nexport PATH=$PATH:~/go/bin`}
             />
           </SectionCard>
 
-          <SectionCard title="Configuration">
-            <SubLabel>Basic Setup (Mainnet)</SubLabel>
+          <SectionCard title={qs?.configuration ?? "Configuration"}>
+            <SubLabel>{qs?.basicSetupMainnet ?? "Basic Setup (Mainnet)"}</SubLabel>
             <CodeBlock
               code={`cat > ~/.config/zcash.conf << EOF
 rpcport=8232
@@ -551,7 +585,9 @@ rpcuser=your_rpc_username
 rpcpassword=your_rpc_password
 EOF`}
             />
-            <SubLabel className="pt-4">Basic Setup (Testnet)</SubLabel>
+            <SubLabel className="pt-4">
+              {qs?.basicSetupTestnet ?? "Basic Setup (Testnet)"}
+            </SubLabel>
             <CodeBlock
               code={`cat > ~/.config/zcash.conf << EOF
 testnet=1
@@ -564,7 +600,7 @@ EOF`}
           </SectionCard>
         </div>
 
-        <SectionCard className="mt-6" title="Run">
+        <SectionCard className="mt-6" title={qs?.run ?? "Run"}>
           <CodeBlock
             width="fit-content"
             code={`lightwalletd --zcash-conf-path ~/.config/zcash.conf --data-dir ~/data/zebrad/.cache/lightwalletd --log-file ~/.local/state/lwd.log --no-tls-very-insecure`}
@@ -577,40 +613,43 @@ EOF`}
   );
 };
 
-const ZainodTab = () => (
+const ZainodTab = () => {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
+  return (
   <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
     <section id="installing-zaino">
       <div className="flex items-center gap-[14px] mb-7">
         <StepBadge number={1} />
         <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
-          Installing Zaino
+          {qs?.installingZaino ?? "Installing Zaino"}
         </h2>
       </div>
 
       <InfoBox>
         <strong className="text-indigo-400 dark:text-indigo-300">Zaino</strong>{" "}
-        is a Rust-based indexer for the Zcash blockchain. It serves both light
-        clients (wallets that don't store the full history) and full clients /
-        block explorers, providing access to finalized chain, the non-finalized
-        best chain, and the mempool.
+        {qs?.zainoInfo ??
+          "is a Rust-based indexer for the Zcash blockchain. It serves both light clients (wallets that don't store the full history) and full clients / block explorers, providing access to finalized chain, the non-finalized best chain, and the mempool."}
       </InfoBox>
 
       <div
         className="grid gap-5"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}
       >
-        <SectionCard title="Installation">
-          <SubLabel>Build Zaino</SubLabel>
+        <SectionCard title={qs?.installation ?? "Installation"}>
+          <SubLabel>{qs?.buildZaino ?? "Build Zaino"}</SubLabel>
           <CodeBlock
             code={`git clone https://github.com/zingolabs/zaino.git\ncd zaino\ncargo build --release\nPATH=$PATH:~/zaino/target/release/`}
           />
-          <SubLabel className="mt-[14px]">Configure</SubLabel>
+          <SubLabel className="mt-[14px]">
+            {qs?.configure ?? "Configure"}
+          </SubLabel>
           <CodeBlock
             code={`cd ~/zaino/zainod\nsudo nano zindexer.toml\n# Adjust port to 8232 for mainnet`}
           />
         </SectionCard>
 
-        <SectionCard title="Configuration">
+        <SectionCard title={qs?.configuration ?? "Configuration"}>
           <SubLabel>zindexer.toml</SubLabel>
           <CodeBlock
             language="toml"
@@ -635,7 +674,9 @@ max_queue_size = 1024
 max_worker_pool_size = 64
 idle_worker_pool_size = 4`}
           />
-          <SubLabel className="mt-[14px]">Run zainod</SubLabel>
+          <SubLabel className="mt-[14px]">
+            {qs?.runZainod ?? "Run zainod"}
+          </SubLabel>
           <CodeBlock code={`zainod --config zindexer.toml`} />
         </SectionCard>
       </div>
@@ -643,15 +684,19 @@ idle_worker_pool_size = 4`}
 
     <ResourcesSection />
   </div>
-);
+  );
+};
 
-const ZingolibTab = () => (
+const ZingolibTab = () => {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
+  return (
   <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
     <section id="installing-zingo">
       <div className="flex items-center gap-[14px] mb-7">
         <StepBadge number={1} />
         <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
-          Installing Zingo CLI
+          {qs?.installingZingoCli ?? "Installing Zingo CLI"}
         </h2>
       </div>
 
@@ -659,37 +704,41 @@ const ZingolibTab = () => (
         <strong className="text-indigo-400 dark:text-indigo-300">
           Zingo-cli
         </strong>{" "}
-        is a command-line lightwalletd-proxy client built in Rust. Releases are
-        currently provisional — this guide covers compiling from source.
+        {qs?.zingoCliInfo ??
+          "is a command-line lightwalletd-proxy client built in Rust. Releases are currently provisional — this guide covers compiling from source."}
       </InfoBox>
 
       <div
         className="grid gap-5"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}
       >
-        <SectionCard title="Installation">
-          <SubLabel>Build Zingo CLI</SubLabel>
+        <SectionCard title={qs?.installation ?? "Installation"}>
+          <SubLabel>{qs?.buildZingoCli ?? "Build Zingo CLI"}</SubLabel>
           <CodeBlock
             code={`git clone https://github.com/zingolabs/zingolib.git\ncd zingolib\ngit checkout tags/zingolib_v4.0.0\ncargo build --release --package zingo-cli\ncp target/release/zingo-cli ~/.cargo/bin/`}
           />
         </SectionCard>
 
-        <SectionCard title="Running">
+        <SectionCard title={qs?.running ?? "Running"}>
           <div className="pb-4">
-            <SubLabel>Start Zingo CLI (Default)</SubLabel>
+            <SubLabel>
+              {qs?.startZingoCliDefault ?? "Start Zingo CLI (Default)"}
+            </SubLabel>
             <CodeBlock
               code={`zingo-cli --data-dir /path/to/your/wallet/data`}
             />
           </div>
           <div>
-            <SubLabel>Start Zingo CLI (Custom)</SubLabel>
+            <SubLabel>
+              {qs?.startZingoCliCustom ?? "Start Zingo CLI (Custom)"}
+            </SubLabel>
             <CodeBlock
               code={`zingo-cli --chain mainnet --server http://127.0.0.1:8137 --data-dir /path/to/your/zaino/data`}
             />
           </div>
           <div className="mt-[14px] p-[12px_14px] rounded-lg text-[13px] leading-relaxed bg-amber-500/[0.06] border border-amber-500/20 text-amber-600 dark:text-amber-400">
-            ⚠ This will perform a full sync on first run, similar to
-            lightwalletd.
+            {qs?.zingoSyncWarning ??
+              "⚠ This will perform a full sync on first run, similar to lightwalletd."}
           </div>
         </SectionCard>
       </div>
@@ -697,12 +746,16 @@ const ZingolibTab = () => (
 
     <ResourcesSection />
   </div>
-);
+  );
+};
 
-const ResourcesSection = () => (
+const ResourcesSection = () => {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
+  return (
   <section className="rounded-[14px] p-8 mt-2 bg-sky-500/[0.03] dark:bg-sky-500/[0.05] border border-sky-500/15">
     <h3 className="text-slate-900 dark:text-slate-100 text-[18px] font-bold mb-6">
-      Next Steps &amp; Resources
+      {qs?.nextStepsResources ?? "Next Steps & Resources"}
     </h3>
     <div
       className="grid gap-6"
@@ -710,45 +763,46 @@ const ResourcesSection = () => (
     >
       <div>
         <p className="text-[11px] tracking-[0.12em] uppercase text-cyan-500 dark:text-cyan-400 mb-3 font-semibold">
-          Ready to Build?
+          {qs?.readyToBuild ?? "Ready to Build?"}
         </p>
         <div className="flex flex-col gap-2">
           <ResourceLink href="https://zebra.zfnd.org/index.html">
-            Official Documentation
+            {qs?.officialDocumentation ?? "Official Documentation"}
           </ResourceLink>
           <ResourceLink href="https://discord.gg/zcash">
-            Zcash Discord Community
+            {qs?.zcashDiscordCommunity ?? "Zcash Discord Community"}
           </ResourceLink>
           <ResourceLink href="https://github.com/zcash">
-            GitHub Repositories
+            {qs?.githubRepositories ?? "GitHub Repositories"}
           </ResourceLink>
           <ResourceLink href="https://zips.z.cash/">
-            Zcash Improvement Proposals
+            {qs?.zcashImprovementProposals ?? "Zcash Improvement Proposals"}
           </ResourceLink>
         </div>
       </div>
       <div>
         <p className="text-[11px] tracking-[0.12em] uppercase text-cyan-500 dark:text-cyan-400 mb-3 font-semibold">
-          Need Help?
+          {qs?.needHelp ?? "Need Help?"}
         </p>
         <div className="flex flex-col gap-2">
           <ResourceLink href="https://forum.zcashcommunity.com/">
-            Zcash Community Forum
+            {qs?.zcashCommunityForum ?? "Zcash Community Forum"}
           </ResourceLink>
           <ResourceLink href="https://github.com/zcash/zcash/issues">
-            GitHub Issues
+            {qs?.githubIssues ?? "GitHub Issues"}
           </ResourceLink>
           <ResourceLink href="https://zcash.readthedocs.io/en/latest/rtd_pages/troubleshooting.html">
-            Troubleshooting Guide
+            {qs?.troubleshootingGuide ?? "Troubleshooting Guide"}
           </ResourceLink>
           <ResourceLink href="https://stackoverflow.com/questions/tagged/zcash">
-            Stack Overflow
+            {qs?.stackOverflow ?? "Stack Overflow"}
           </ResourceLink>
         </div>
       </div>
     </div>
   </section>
-);
+  );
+};
 
 // ── Main Page ────────────────────────────────────────────────────────────────
 
@@ -756,6 +810,8 @@ const TABS = ["Zebrad", "Zaino", "Zingolib"] as const;
 type Tab = (typeof TABS)[number];
 
 export default function QuickStartPage() {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
   const [activeTab, setActiveTab] = useState<Tab>("Zebrad");
 
   const tabContent: Record<Tab, ReactNode> = {
@@ -826,7 +882,7 @@ export default function QuickStartPage() {
                   boxShadow: "0 0 6px #22c55e",
                 }}
               />
-              Developer Quick Start
+              {qs?.heroBadge ?? "Developer Quick Start"}
             </div>
 
             <h1
@@ -839,14 +895,14 @@ export default function QuickStartPage() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Zcash Dev
+              {qs?.heroTitleLine1 ?? "Zcash Dev"}
               <br />
-              Quick Start
+              {qs?.heroTitleLine2 ?? "Quick Start"}
             </h1>
 
             <p className="text-[17px] text-slate-600 dark:text-slate-500 max-w-[480px] mx-auto leading-[1.7]">
-              Get up and running with Zcash development. Choose your stack and
-              follow the guide.
+              {qs?.heroSubtitle ??
+                "Get up and running with Zcash development. Choose your stack and follow the guide."}
             </p>
           </div>
         </div>

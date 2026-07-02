@@ -1,5 +1,6 @@
 import { DarkModeProvider } from "@/provider/DarkModeProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -16,21 +17,32 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: "ZecHub Wiki",
-  description: "An open source education hub for Zcash",
-  icons: "/ZecHubBlue.png",
-  alternates: {
-    types: {
-      "application/rss+xml": [
-        {
-          url: "https://zechub.wiki/rss.xml",
-          title: "ZecHub Dashboard Updates",
-        },
-      ],
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale)) as Record<string, any>;
+  const title = dict?.meta?.title ?? "ZecHub Wiki";
+  const description =
+    dict?.meta?.description ?? "An open source education hub for Zcash";
+  return {
+    title,
+    description,
+    icons: "/ZecHubBlue.png",
+    alternates: {
+      types: {
+        "application/rss+xml": [
+          {
+            url: "https://zechub.wiki/rss.xml",
+            title: "ZecHub Dashboard Updates",
+          },
+        ],
+      },
     },
-  },
-};
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -46,6 +58,10 @@ export default async function RootLayout({
 
   // Enable static rendering for this locale.
   setRequestLocale(locale);
+
+  // Preload the locale dictionary on the server so the UI chrome renders in the
+  // correct language during SSR (no English flash before client hydration).
+  const initialDictionary = await getDictionary(locale);
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -98,7 +114,10 @@ export default async function RootLayout({
             disableTransitionOnChange={true}
             enableColorScheme={true}
           >
-            <LanguageProvider>
+            <LanguageProvider
+              initialLocale={locale}
+              initialDictionary={initialDictionary}
+            >
               <DarkModeProvider>
                 <NavigationWrapper>{children}</NavigationWrapper>
               </DarkModeProvider>

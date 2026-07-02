@@ -11,8 +11,9 @@ type VisualizerDictionary = {
   };
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const dict = (await getDictionary()) as VisualizerDictionary;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale)) as VisualizerDictionary;
   return genMetadata({
     title: dict.pages?.visualizer?.title || "Zcash Visualizers",
     url: "https://zechub.wiki/visualizer",

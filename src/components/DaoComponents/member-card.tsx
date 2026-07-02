@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import MemberModal from "./member-modal";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";   // ← NEW
 
 interface MemberCardProps {

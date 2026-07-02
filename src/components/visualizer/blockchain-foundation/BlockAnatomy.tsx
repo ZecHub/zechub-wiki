@@ -1,15 +1,21 @@
 import { motion } from "framer-motion";
 import { FileText, Hash, Layers } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const BlockAnatomy = () => {
+  const { t } = useLanguage();
+  const s = t?.pages?.visualizer?.blockAnatomy ?? {};
+
   const headerFields = [
-    { name: 'Version', value: '4', color: 'text-pool-transparent' },
-    { name: 'Previous Hash', value: '0x7c1d...9f8a', color: 'text-pool-sapling' },
-    { name: 'Merkle Root', value: '0xa2b3...c4d5', color: 'text-pool-orchard' },
-    { name: 'Timestamp', value: '1699234567', color: 'text-primary' },
-    { name: 'Difficulty', value: '0x1c0d3fa3', color: 'text-muted-foreground' },
-    { name: 'Nonce', value: '2147483647', color: 'text-destructive' },
+    { name: s.fieldVersion ?? 'Version', value: '4', color: 'text-pool-transparent' },
+    { name: s.fieldPreviousHash ?? 'Previous Hash', value: '0x7c1d...9f8a', color: 'text-pool-sapling' },
+    { name: s.fieldMerkleRoot ?? 'Merkle Root', value: '0xa2b3...c4d5', color: 'text-pool-orchard' },
+    { name: s.fieldTimestamp ?? 'Timestamp', value: '1699234567', color: 'text-primary' },
+    { name: s.fieldDifficulty ?? 'Difficulty', value: '0x1c0d3fa3', color: 'text-muted-foreground' },
+    { name: s.fieldNonce ?? 'Nonce', value: '2147483647', color: 'text-destructive' },
   ];
+
+  const coinbaseTx = s.coinbaseTx ?? "Tx #1 (Coinbase)";
 
   return (
     <div className="flex flex-col lg:flex-row gap-6">
@@ -23,7 +29,7 @@ export const BlockAnatomy = () => {
         <div className="bg-primary/10 border-b border-border p-4">
           <div className="flex items-center gap-2 mb-3">
             <Hash className="w-5 h-5 text-primary" />
-            <h3 className="font-bold text-foreground">Block Header</h3>
+            <h3 className="font-bold text-foreground">{s.blockHeader ?? "Block Header"}</h3>
           </div>
           <div className="grid grid-cols-2 gap-2">
             {headerFields.map((field, index) => (
@@ -47,10 +53,10 @@ export const BlockAnatomy = () => {
         <div className="p-4">
           <div className="flex items-center gap-2 mb-3">
             <FileText className="w-5 h-5 text-pool-sapling" />
-            <h3 className="font-bold text-foreground">Transaction List</h3>
+            <h3 className="font-bold text-foreground">{s.transactionList ?? "Transaction List"}</h3>
           </div>
           <div className="space-y-2">
-            {["Tx #1 (Coinbase)", "Tx #2", "Tx #3", "Tx #4"].map(
+            {[coinbaseTx, "Tx #2", "Tx #3", "Tx #4"].map(
               (tx, index) => (
                 <motion.div
                   key={tx}
@@ -83,7 +89,7 @@ export const BlockAnatomy = () => {
       >
         <div className="flex items-center gap-2 mb-4">
           <Layers className="w-5 h-5 text-pool-orchard" />
-          <h3 className="font-bold text-foreground">Merkle Tree</h3>
+          <h3 className="font-bold text-foreground">{s.merkleTree ?? "Merkle Tree"}</h3>
         </div>
 
         <div className="flex flex-col items-center space-y-4">
@@ -99,7 +105,7 @@ export const BlockAnatomy = () => {
             transition={{ duration: 2, repeat: Infinity }}
             className="bg-pool-orchard/20 border border-pool-orchard rounded-lg px-4 py-2"
           >
-            <p className="text-xs font-mono text-pool-orchard">Merkle Root</p>
+            <p className="text-xs font-mono text-pool-orchard">{s.merkleRoot ?? "Merkle Root"}</p>
           </motion.div>
 
           {/* Level 2 */}

@@ -2,8 +2,8 @@
 import { searcher } from "@/constants/searcher";
 import { SearchBarProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Link } from "@/i18n/navigation";
+import { useRouter } from "@/i18n/navigation";
 import {
   useCallback,
   useEffect,

@@ -110,12 +110,12 @@ export default function DeveloperPage() {
       <div className="flex 2xl:h-[60vh] flex-col md:flex-row relative overflow-hidden">
         <img
           src="/developer_resources_white.jpg"
-          alt="Zcash Developer Resources"
+          alt={t?.pages?.developers?.heroImageAlt ?? "Zcash Developer Resources"}
           className=" inset-0 w-full h-full object-contain 2xl:object-cover dark:hidden"
         />
         <img
           src="/developer_resources_dark.jpg"
-          alt="Zcash Developer Resources"
+          alt={t?.pages?.developers?.heroImageAlt ?? "Zcash Developer Resources"}
           className=" inset-0 w-full h-full object-contain 2xl:object-cover hidden dark:block"
         />
       </div>
@@ -186,7 +186,8 @@ export default function DeveloperPage() {
                       "Intro to Zcash"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Learn about Zcash, its history, and its core principles.
+                    {t?.pages?.developers?.introLinks?.introToZcashDesc ??
+                      "Learn about Zcash, its history, and its core principles."}
                   </p>
                 </li>
 
@@ -201,8 +202,8 @@ export default function DeveloperPage() {
                       "Intro to ZEC"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Discover the use cases and benefits of ZEC, Zcash native
-                    cryptocurrency.
+                    {t?.pages?.developers?.introLinks?.introToZecDesc ??
+                      "Discover the use cases and benefits of ZEC, Zcash native cryptocurrency."}
                   </p>
                 </li>
 
@@ -213,11 +214,12 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Intro to Zebra
+                    {t?.pages?.developers?.introLinks?.introToZebra ??
+                      "Intro to Zebra"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Understanding how Zebra powers the Zcash network with a
-                    modular and secure Rust-based implementation
+                    {t?.pages?.developers?.introLinks?.introToZebraDesc ??
+                      "Understanding how Zebra powers the Zcash network with a modular and secure Rust-based implementation"}
                   </p>
                 </li>
 
@@ -228,12 +230,12 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Intro to Lightwalletd
+                    {t?.pages?.developers?.introLinks?.introToLightwalletd ??
+                      "Intro to Lightwalletd"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Understanding the lightwalletd project—a scalable server
-                    written in Go that efficiently serves compact blockchain
-                    data to Zcash light clients via gRPC.
+                    {t?.pages?.developers?.introLinks?.introToLightwalletdDesc ??
+                      "Understanding the lightwalletd project—a scalable server written in Go that efficiently serves compact blockchain data to Zcash light clients via gRPC."}
                   </p>
                 </li>
 
@@ -244,11 +246,12 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    The Zallet Book
+                    {t?.pages?.developers?.introLinks?.zalletBook ??
+                      "The Zallet Book"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Introduction to Zallet, a full-node Zcash wallet written in
-                    Rust and designed as a replacement for the zcashd wallet.
+                    {t?.pages?.developers?.introLinks?.zalletBookDesc ??
+                      "Introduction to Zallet, a full-node Zcash wallet written in Rust and designed as a replacement for the zcashd wallet."}
                   </p>
                 </li>
 
@@ -259,13 +262,23 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Developer Resources
+                    {t?.pages?.developers?.introLinks?.developerResources ??
+                      "Developer Resources"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Links to Zcash further Technical Documentation.
+                    {t?.pages?.developers?.introLinks?.developerResourcesDesc ??
+                      "Links to Zcash further Technical Documentation."}
                   </p>
                 </li>
+              </ul>
+            </div>
 
+            {/* Fundamentals Column */}
+            <div className="flex-1">
+              <h3 className="text-3xl font-semibold mb-4">
+                {t?.pages?.developers?.fundamentalsTitle ?? "Fundamentals"}
+              </h3>
+              <ul className="space-y-3">
                 <li>
                   <a
                     href="https://zips.z.cash/protocol/protocol.pdf#5.6%20Encodings%20of%20Addresses%20and%20Keys"
@@ -273,10 +286,13 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Address Encoding
+                    {t?.pages?.developers?.fundamentalsLinks?.addressEncoding ??
+                      "Address Encoding"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Learn how Zcash addresses and keys are encoded.
+                    {t?.pages?.developers?.fundamentalsLinks
+                      ?.addressEncodingDesc ??
+                      "Learn how Zcash addresses and keys are encoded."}
                   </p>
                 </li>
 
@@ -287,10 +303,13 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Transactions
+                    {t?.pages?.developers?.fundamentalsLinks?.transactions ??
+                      "Transactions"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Understand how transactions work in Zcash.
+                    {t?.pages?.developers?.fundamentalsLinks
+                      ?.transactionsDesc ??
+                      "Understand how transactions work in Zcash."}
                   </p>
                 </li>
 
@@ -301,10 +320,11 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Fees
+                    {t?.pages?.developers?.fundamentalsLinks?.fees ?? "Fees"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Learn about transaction fees and how they are calculated.
+                    {t?.pages?.developers?.fundamentalsLinks?.feesDesc ??
+                      "Learn about transaction fees and how they are calculated."}
                   </p>
                 </li>
 
@@ -315,10 +335,12 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Nodes (zcashd)
+                    {t?.pages?.developers?.fundamentalsLinks?.nodesZcashd ??
+                      "Nodes (zcashd)"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Set up and manage Zcash nodes using zcashd.
+                    {t?.pages?.developers?.fundamentalsLinks?.nodesZcashdDesc ??
+                      "Set up and manage Zcash nodes using zcashd."}
                   </p>
                 </li>
 
@@ -329,10 +351,12 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Nodes (zebrad)
+                    {t?.pages?.developers?.fundamentalsLinks?.nodesZebrad ??
+                      "Nodes (zebrad)"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Explore Zebra, an alternative Zcash node implementation.
+                    {t?.pages?.developers?.fundamentalsLinks?.nodesZebradDesc ??
+                      "Explore Zebra, an alternative Zcash node implementation."}
                   </p>
                 </li>
 
@@ -343,10 +367,13 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Lightwallet Servers
+                    {t?.pages?.developers?.fundamentalsLinks
+                      ?.lightwalletServers ?? "Lightwallet Servers"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Learn about lightwalletd, a lightweight Zcash wallet server.
+                    {t?.pages?.developers?.fundamentalsLinks
+                      ?.lightwalletServersDesc ??
+                      "Learn about lightwalletd, a lightweight Zcash wallet server."}
                   </p>
                 </li>
 
@@ -357,22 +384,176 @@ export default function DeveloperPage() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Block Explorers
+                    {t?.pages?.developers?.fundamentalsLinks?.blockExplorers ??
+                      "Block Explorers"}
                   </a>
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Explore Zcash blockchains using block explorers.
+                    {t?.pages?.developers?.fundamentalsLinks
+                      ?.blockExplorersDesc ??
+                      "Explore Zcash blockchains using block explorers."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://fringe-brow-647.notion.site/Shade-Agents-19a09959836d8091bb8febb318cc09fd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.fundamentalsLinks?.shadeAgent ??
+                      "Shade Agent - Notion"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.fundamentalsLinks?.shadeAgentDesc ??
+                      "Learn about Shade Agents—the first truly autonomous AI agents on NEAR—powered by secure TEEs and decentralized Chain Signatures to manage assets, access LLMs, and execute multichain transactions independently."}
                   </p>
                 </li>
               </ul>
             </div>
 
-            {/* Software Development Kits Column */}
+            {/* Advanced Column */}
             <div className="flex-1">
               <h3 className="text-3xl font-semibold mb-4">
-                {t?.pages?.developers?.softwareDevelopmentKitsTitle ??
-                  "Software Development Kits"}
+                {t?.pages?.developers?.advancedTitle ?? "Advanced"}
               </h3>
               <ul className="space-y-3">
+                <li>
+                  <a
+                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/librustzcash_arch.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.introToStack ??
+                      "Intro to the Stack"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.introToStackDesc ??
+                      "Understand the architecture and components of the Zcash stack."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zecdev.github.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.zecDev ?? "ZecDev"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.zecDevDesc ??
+                      "Here you will find projects, resources and tools created and maintained in the context of the (Zcash) Developer Relations Engineer grant. See also the"}{" "}
+                    <a
+                      href="https://zecdev.github.io/community"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:underline"
+                    >
+                      {t?.pages?.developers?.advancedLinks
+                        ?.zcashCommunityWishlist ?? "Zcash Community Wishlist"}
+                    </a>
+                    .
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/zingolabs/zingolib"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.introToZingolib ??
+                      "Intro to Zingolib"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.introToZingolibDesc ??
+                      "Understanding the zingolib repository—a Rust-based API and CLI for interacting with zcashd via Lightwalletd."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/ChainSafe/WebZjs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.webZjs ?? "WebZjs"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.webZjsDesc ??
+                      "A JavaScript/TypeScript library for building Zcash-enabled web applications using WebAssembly."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/NoirWallet/noir-wallet-sdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.noirWalletSdk ??
+                      "Noir Wallet SDK"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.noirWalletSdkDesc ??
+                      "TypeScript SDK and example dApp for integrating Zcash applications with the Noir Wallet browser extension."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/Frontier-Compute/zcash-ika"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.zcashIka ??
+                      "zcash-ika"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.zcashIkaDesc ??
+                      "Split-key custody for Zcash and multi-chain agents via 2PC-MPC. On-chain spend policy, privacy attestation, ZIP 244 transaction builder."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks
+                      ?.developmentGuidelines ?? "Development Guidelines"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks
+                      ?.developmentGuidelinesDesc ??
+                      "Follow best practices for developing on Zcash."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://github.com/ZcashCommunityGrants/arboretum-notes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.advancedLinks?.arboristCalls ??
+                      "Arborist Calls Page"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.advancedLinks?.arboristCallsDesc ??
+                      "The Zcash Arborist Calls are bi-weekly protocol development meetings focused on tracking upcoming protocol deployment logistics, consensus node implementation issues, and protocol research."}
+                  </p>
+                </li>
                 <li>
                   <a
                     href="https://github.com/zcash/zcash-android-wallet-sdk"
@@ -387,7 +568,6 @@ export default function DeveloperPage() {
                     functionality, including shielded sends and receives.
                   </p>
                 </li>
-
                 <li>
                   <a
                     href="https://github.com/zcash/zcash-swift-wallet-sdk"
@@ -402,52 +582,6 @@ export default function DeveloperPage() {
                     functionality into Swift applications.
                   </p>
                 </li>
-
-                <li>
-                  <a
-                    href="https://github.com/ChainSafe/WebZjs"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    WebZjs SDK
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    A JavaScript/TypeScript library for building Zcash-enabled
-                    web applications using WebAssembly.
-                  </p>
-                </li>
-
-                <li>
-                  <a
-                    href="https://github.com/NoirWallet/noir-wallet-sdk"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Noir Wallet SDK
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    TypeScript SDK and example dApp for integrating Zcash
-                    applications with the Noir Wallet browser extension.
-                  </p>
-                </li>
-
-                <li>
-                  <a
-                    href="https://github.com/zingolabs/zingolib"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Zingolib
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Rust wallet library and tooling for building Zcash clients
-                    that interact with lightwalletd.
-                  </p>
-                </li>
-
                 <li>
                   <a
                     href="https://github.com/zcash/librustzcash"
@@ -462,7 +596,6 @@ export default function DeveloperPage() {
                     transactions, and light-client components.
                   </p>
                 </li>
-
                 <li>
                   <a
                     href="https://github.com/nufi-official/zcash-router-sdk"
@@ -477,7 +610,6 @@ export default function DeveloperPage() {
                     including routing, quotes, and transaction state.
                   </p>
                 </li>
-
                 <li>
                   <a
                     href="https://github.com/ruzcash/zaddr-wasm-parser"
@@ -492,7 +624,6 @@ export default function DeveloperPage() {
                     Zcash addresses, including Unified Addresses.
                   </p>
                 </li>
-
                 <li>
                   <a
                     href="https://github.com/zodl-inc/zodl-android"
@@ -507,7 +638,6 @@ export default function DeveloperPage() {
                     mobile development.
                   </p>
                 </li>
-
                 <li>
                   <a
                     href="https://github.com/zodl-inc/zodl-ios"
@@ -520,118 +650,6 @@ export default function DeveloperPage() {
                   <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
                     iOS reference wallet implementation for Zodl and Zcash
                     mobile development.
-                  </p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Advanced Column */}
-            <div className="flex-1">
-              <h3 className="text-3xl font-semibold mb-4">
-                {t?.pages?.developers?.advancedTitle ?? "Advanced"}
-              </h3>
-              <ul className="space-y-3">
-                <li>
-                  <a
-                    href="https://fringe-brow-647.notion.site/Shade-Agents-19a09959836d8091bb8febb318cc09fd"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Shade Agent - Notion
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Learn about Shade Agents—the first truly autonomous AI
-                    agents on NEAR—powered by secure TEEs and decentralized
-                    Chain Signatures to manage assets, access LLMs, and execute
-                    multichain transactions independently.
-                  </p>
-                </li>
-
-                <li>
-                  <a
-                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/librustzcash_arch.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Intro to the Stack
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Understand the architecture and components of the Zcash
-                    stack.
-                  </p>
-                </li>
-
-                <li>
-                  <a
-                    href="https://zecdev.github.io/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    ZecDev
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Here you will find projects, resources and tools created and
-                    maintained in the context of the (Zcash) Developer Relations
-                    Engineer grant. See also the{" "}
-                    <a
-                      href="https://zecdev.github.io/community"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Zcash Community Wishlist
-                    </a>
-                    .
-                  </p>
-                </li>
-
-                <li>
-                  <a
-                    href="https://github.com/Frontier-Compute/zcash-ika"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    zcash-ika
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Split-key custody for Zcash and multi-chain agents via
-                    2PC-MPC. On-chain spend policy, privacy attestation, ZIP 244
-                    transaction builder.
-                  </p>
-                </li>
-
-                <li>
-                  <a
-                    href="https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Development Guidelines
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    Follow best practices for developing on Zcash.
-                  </p>
-                </li>
-
-                <li>
-                  <a
-                    href="https://github.com/ZcashCommunityGrants/arboretum-notes"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    Arborist Calls Page
-                  </a>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
-                    The Zcash Arborist Calls are bi-weekly protocol development
-                    meetings focused on tracking upcoming protocol deployment
-                    logistics, consensus node implementation issues, and
-                    protocol research.
                   </p>
                 </li>
               </ul>
@@ -672,9 +690,8 @@ export default function DeveloperPage() {
             <div className="mt-4">
               {isHelpful ? (
                 <p className="text-green-600">
-                  Thank you for your feedback! Make this page even better by
-                  answering a few questions. If you need help, you can reach out
-                  to the community on our{" "}
+                  {t?.pages?.developers?.feedbackHelpful ??
+                    "Thank you for your feedback! Make this page even better by answering a few questions. If you need help, you can reach out to the community on our"}{" "}
                   <a
                     href="https://discord.gg/zcash"
                     target="_blank"
@@ -687,8 +704,8 @@ export default function DeveloperPage() {
                 </p>
               ) : (
                 <p className="text-red-600">
-                  Sorry to hear that. Please let us know how we can improve this
-                  page. You can reach out to the community on our{" "}
+                  {t?.pages?.developers?.feedbackNotHelpful ??
+                    "Sorry to hear that. Please let us know how we can improve this page. You can reach out to the community on our"}{" "}
                   <a
                     href="https://discord.gg/zcash"
                     target="_blank"

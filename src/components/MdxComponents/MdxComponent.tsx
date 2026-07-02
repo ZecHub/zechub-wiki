@@ -41,7 +41,9 @@ const MdxComponents = {
     const resolved = href.startsWith("/site")
       ? transformGithubFilePathToWikiLink(href)
       : href;
-    const isInternal = resolved.startsWith("/");
+    // Protocol-relative URLs ("//host/...") start with "/" but are external;
+    // only single-leading-slash app paths are internal.
+    const isInternal = resolved.startsWith("/") && !resolved.startsWith("//");
     const className =
       "font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 underline decoration-dashed";
     // Internal links use the locale-aware next-intl Link so navigation stays

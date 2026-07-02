@@ -1,8 +1,8 @@
-import Link from "next/link";
+import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import { searcher } from "@/constants/searcher";
 import { getResearchCardCover } from "@/constants/researchCardCovers";
-import Image from "next/image";
 
 const RESEARCH_IMG_LIGHT = "/explore/light/research.png";
 const RESEARCH_IMG_DARK = "/explore/dark/research.png";

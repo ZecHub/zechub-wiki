@@ -3,8 +3,9 @@ import { genMetadata } from '@/lib/helpers';
 import { getDictionary } from '@/lib/getDictionary';
 import { Metadata } from 'next';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const dict = (await getDictionary()) as {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale)) as {
     pages?: {
       dex?: {
         centralizedTitle?: string;

@@ -4,8 +4,9 @@ import { Metadata } from "next";
 import { getDictionary } from "@/lib/getDictionary";
 import { loadZips } from "@/lib/zips/load-zips.server";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const dict = (await getDictionary()) as {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale)) as {
     pages?: {
       dashboard?: {
         title?: string;
@@ -50,9 +51,10 @@ type DashboardDictionary = {
   };
 };
 
-export default async function DashboardPage() {
+export default async function DashboardPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const [dict, zipsData] = await Promise.all([
-    getDictionary() as Promise<DashboardDictionary>,
+    getDictionary(locale) as Promise<DashboardDictionary>,
     loadZips(),
   ]);
 

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Eye, EyeOff, Shield, Lock } from "lucide-react";
 import { PoolData } from "./types";
 import { cn } from "@/lib/util";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 interface PoolContainerProps {
   pool: PoolData;

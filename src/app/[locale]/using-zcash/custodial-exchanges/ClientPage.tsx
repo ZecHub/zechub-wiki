@@ -3,7 +3,7 @@ import ExchangeCard from "@/components/ExchangeCard/ExchangeCard";
 import exchanges from "@/constants/exchange";
 import exchangesIt from "@/constants/exchange.it";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useLocale } from "next-intl";
@@ -11,7 +11,8 @@ import { useLocale } from "next-intl";
 const CustodialExchangesClient: React.FC = () => {
   const { t } = useLanguage();
   const locale = useLocale();
-  const exchangeList = locale === "it" ? exchangesIt : exchanges;
+  const byLocale: Record<string, typeof exchanges> = { it: exchangesIt };
+  const exchangeList = byLocale[locale] ?? exchanges;
   const title = t?.pages?.dex?.custodial ?? "Custodial Exchanges";
   const dexLabel = t?.pages?.dex?.title ?? "DEX platforms";
 

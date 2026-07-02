@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import {
   ArrowUpRight,
   BookOpen,
@@ -18,6 +18,7 @@ import {
   Trophy,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import type { HackathonGithubProject } from "@/lib/fetchHackathonGithubProjects";
 import {
   Card,
@@ -149,6 +150,7 @@ const getPhase = (now: number, start: Date, end: Date): HackathonPhase => {
 
 const devToolsDocs = [
   {
+    key: "quickStart",
     title: "ZecHub Developer Quick Start",
     description:
       "Find the essential tools, references, and setup steps for building on Zcash.",
@@ -159,29 +161,34 @@ const devToolsDocs = [
 
 const tracks = [
   {
+    key: "infrastructure",
     name: "Infrastructure",
     description: "ZSA GUI, Node Launcher, Zallet web dashboard etc.",
     icon: Server,
   },
   {
+    key: "games",
     name: "Games",
     description:
       "Wiki Article game similar to catfishing.net, ZEC Poker, Battleship etc.",
     icon: Gamepad2,
   },
   {
+    key: "frost",
     name: "FROST",
     description:
       "Threshold signing wallets, Shielded ZEC Escrow, Social Recovery",
     icon: KeyRound,
   },
   {
+    key: "zcashLogin",
     name: "Zcash Login",
     description:
       "Auth and identity flows that use Zcash primitives for sign-in or access.",
     icon: LogIn,
   },
   {
+    key: "accounting",
     name: "Accounting",
     description:
       "Reporting, workflows for teams handling ZEC, Payment management system.",
@@ -191,26 +198,31 @@ const tracks = [
 
 const faqItems = [
   {
+    key: "whoCanParticipate",
     question: "Who can participate?",
     answer:
       "Anyone can join: developers, designers and multidisciplinary teams.",
   },
   {
+    key: "validSubmission",
     question: "What must a valid submission include?",
     answer:
       "A working prototype, video demo, basic documentation, and an explanation of how it uses the Zcash network.",
   },
   {
+    key: "whereSubmit",
     question: "Where do we submit projects?",
     answer:
       "Share your video demo in the Zcash Global Discord and include any relevant repository or demo links.",
   },
   {
+    key: "winnersSelected",
     question: "How are winners selected?",
     answer:
       "A public community process is run via ZecHub DAO channels after submissions close.",
   },
   {
+    key: "whatTracks",
     question: "What are the tracks?",
     answer:
       "This hackathon's themes are Infrastructure, Games, FROST, Zcash Login, and Accounting. Pick the track that best matches your build, you can still submit a project not defined within tracks.",
@@ -218,16 +230,17 @@ const faqItems = [
 ];
 
 const rules = [
-  "Projects must interact with the Zcash mainnet network.",
-  "Teams can submit only one final project per team.",
-  "All submissions must include clear setup and usage documentation.",
-  "Use open-source licensing.",
-  "Respect privacy, security, and community guidelines in both code and content.",
+  { key: "mainnet", text: "Projects must interact with the Zcash mainnet network." },
+  { key: "oneProject", text: "Teams can submit only one final project per team." },
+  { key: "docs", text: "All submissions must include clear setup and usage documentation." },
+  { key: "openSource", text: "Use open-source licensing." },
+  { key: "respect", text: "Respect privacy, security, and community guidelines in both code and content." },
 ];
 
 const submissionSteps = [
   {
     step: 1,
+    key: "build",
     title: "Build your project",
     description:
       "Create a working prototype that interacts with the Zcash mainnet. Pick a track and keep a development log as you go.",
@@ -235,6 +248,7 @@ const submissionSteps = [
   },
   {
     step: 2,
+    key: "record",
     title: "Record a video demo",
     description:
       "Capture a short walkthrough showing your project in action. Clearly explain what it does and how it uses the Zcash network.",
@@ -242,6 +256,7 @@ const submissionSteps = [
   },
   {
     step: 3,
+    key: "document",
     title: "Document your work",
     description:
       "Write a README with setup instructions, usage notes, and your open-source license. Push everything to a public GitHub repo.",
@@ -249,25 +264,14 @@ const submissionSteps = [
   },
   {
     step: 4,
+    key: "upload",
     title: "Upload your code",
-    description: (
-      <>
-        Push your project to the{" "}
-        <a
-          href="https://github.com/ZecHub/zechub/tree/main/Hackathon/2026"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 font-semibold text-[#1984c7] underline-offset-2 hover:underline"
-        >
-          Hackathon repo <ExternalLink className="h-3 w-3" />
-        </a>{" "}
-        on GitHub so the community can review your work.
-      </>
-    ),
+    description: null,
     color: "blue",
   },
   {
     step: 5,
+    key: "share",
     title: "Share in Discord",
     description:
       "Post your video demo in the Zcash Global Discord with your repo and demo links before July 15, 2026 (UTC).",
@@ -332,6 +336,8 @@ const Hackathon = ({
   githubProjects = [],
   githubProjectsError,
 }: HackathonProps) => {
+  const { t } = useLanguage();
+  const h = t?.pages?.hackathon;
   const startDate = useMemo(() => new Date(HACKATHON_START_DATE_UTC), []);
   const endDate = useMemo(() => new Date(HACKATHON_END_DATE_UTC), []);
   const [nowTs, setNowTs] = useState(() => Date.now());
@@ -429,7 +435,7 @@ const Hackathon = ({
             <div className="max-w-xl">
               <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider ring-1 ring-white/15 backdrop-blur-sm">
                 <Sparkles className="h-3.5 w-3.5 text-amber-300" aria-hidden />
-                Build · Document · Submit
+                {h?.heroEyebrow ?? "Build · Document · Submit"}
               </p>
               <h1 className="mb-4 text-4xl font-black tracking-tight md:text-5xl lg:text-6xl">
                 ZecHub{" "}
@@ -438,10 +444,10 @@ const Hackathon = ({
                 </span>
               </h1>
               <p className="text-balance text-lg leading-relaxed text-slate-300 md:text-xl">
-                Build across five tracks, from infra to games, then document and
-                demo your work. Official kickoff{" "}
+                {h?.heroIntro ??
+                  "Build across five tracks, from infra to games, then document and demo your work. Official kickoff"}{" "}
                 <span className="font-semibold text-white">May 25, 2026</span>{" "}
-                (UTC); submissions close{" "}
+                {h?.heroKickoffSep ?? "(UTC); submissions close"}{" "}
                 <span className="font-semibold text-white">July 15, 2026</span>{" "}
                 (UTC).
               </p>
@@ -466,18 +472,19 @@ const Hackathon = ({
             <div className="w-full min-w-[min(100%,280px)] max-w-md rounded-2xl border border-white/15 bg-black/25 p-5 backdrop-blur-md lg:max-w-sm">
               <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
                 {phase === "pre"
-                  ? "Hackathon starts in"
+                  ? h?.countdownStartsIn ?? "Hackathon starts in"
                   : phase === "active"
-                    ? "Time until submissions close"
-                    : "Hackathon ended"}
+                    ? h?.countdownTimeUntilClose ??
+                      "Time until submissions close"
+                    : h?.countdownEnded ?? "Hackathon ended"}
               </p>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                 {(
                   [
-                    { label: "Days", value: countdown.days },
-                    { label: "Hours", value: countdown.hours },
-                    { label: "Mins", value: countdown.minutes },
-                    { label: "Secs", value: countdown.seconds },
+                    { label: h?.days ?? "Days", value: countdown.days },
+                    { label: h?.hours ?? "Hours", value: countdown.hours },
+                    { label: h?.mins ?? "Mins", value: countdown.minutes },
+                    { label: h?.secs ?? "Secs", value: countdown.seconds },
                   ] as const
                 ).map((item) => (
                   <div
@@ -495,16 +502,16 @@ const Hackathon = ({
               </div>
               {phase === "post" ? (
                 <p className="mt-4 text-center text-sm font-medium text-emerald-300">
-                  This hackathon window has ended, thanks to everyone who took
-                  part.
+                  {h?.endedNote ??
+                    "This hackathon window has ended, thanks to everyone who took part."}
                 </p>
               ) : phase === "pre" ? (
                 <p className="mt-4 text-center text-xs text-slate-400">
-                  Starts{" "}
+                  {h?.preStarts ?? "Starts"}{" "}
                   <span className="font-medium text-slate-300">
                     May 25, 2026
                   </span>{" "}
-                  (UTC). Submissions close{" "}
+                  {h?.preCloseSep ?? "(UTC). Submissions close"}{" "}
                   <span className="font-medium text-slate-300">
                     July 15, 2026
                   </span>{" "}
@@ -512,7 +519,7 @@ const Hackathon = ({
                 </p>
               ) : (
                 <p className="mt-4 text-center text-xs text-slate-400">
-                  Submissions close on{" "}
+                  {h?.activeCloseOn ?? "Submissions close on"}{" "}
                   <span className="font-medium text-slate-300">
                     July 15, 2026
                   </span>{" "}
@@ -525,10 +532,12 @@ const Hackathon = ({
 
         {/* ── Tracks ── */}
         <section className="mb-12">
-          <SectionTitle eyebrow="2026 event">Tracks</SectionTitle>
+          <SectionTitle eyebrow={h?.tracksEyebrow ?? "2026 event"}>
+            {h?.tracksTitle ?? "Tracks"}
+          </SectionTitle>
           <p className="-mt-2 mb-6 max-w-2xl text-muted-foreground">
-            Align your project with a track for clarity when you submit, judges
-            and the community use them to browse entries.
+            {h?.tracksIntro ??
+              "Align your project with a track for clarity when you submit, judges and the community use them to browse entries."}
           </p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {tracks.map((track) => {
@@ -542,9 +551,11 @@ const Hackathon = ({
                     <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-700 ring-1 ring-emerald-500/20 dark:text-emerald-400">
                       <Icon className="h-5 w-5" aria-hidden />
                     </div>
-                    <CardTitle className="text-lg">{track.name}</CardTitle>
+                    <CardTitle className="text-lg">
+                      {h?.tracks?.[track.key]?.name ?? track.name}
+                    </CardTitle>
                     <CardDescription className="text-sm leading-relaxed">
-                      {track.description}
+                      {h?.tracks?.[track.key]?.description ?? track.description}
                     </CardDescription>
                   </CardHeader>
                 </Card>
@@ -555,17 +566,20 @@ const Hackathon = ({
 
         {/* ── Prizes ── */}
         <section className="mb-12">
-          <SectionTitle eyebrow="Rewards">Prizes</SectionTitle>
+          <SectionTitle eyebrow={h?.prizesEyebrow ?? "Rewards"}>
+            {h?.prizesTitle ?? "Prizes"}
+          </SectionTitle>
           <Card className="overflow-hidden border-amber-500/30 bg-gradient-to-br from-amber-50 to-white shadow-sm dark:border-amber-500/25 dark:from-amber-950/30 dark:to-slate-900">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-2xl">
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/15 text-amber-700 ring-1 ring-amber-500/25 dark:text-amber-300">
                   <Trophy className="h-6 w-6" aria-hidden />
                 </span>
-                25 ZEC Prize pool
+                {h?.prizePoolTitle ?? "25 ZEC Prize pool"}
               </CardTitle>
               <CardDescription>
-                Build, submit, and compete for the community prize pool.
+                {h?.prizePoolDesc ??
+                  "Build, submit, and compete for the community prize pool."}
               </CardDescription>
             </CardHeader>
           </Card>
@@ -573,13 +587,17 @@ const Hackathon = ({
 
         {/* ── Dev tools ── */}
         <section className="mb-12">
-          <SectionTitle eyebrow="Start here">
-            Devtools &amp; documentation
+          <SectionTitle eyebrow={h?.devToolsEyebrow ?? "Start here"}>
+            {h?.devToolsTitle ?? "Devtools & documentation"}
           </SectionTitle>
           <div className="grid max-w-3xl gap-5">
             {devToolsDocs.map((tool) => {
               const Icon = tool.icon;
               const isInternal = tool.href.startsWith("/");
+              const toolTitle =
+                h?.devTools?.[tool.key]?.title ?? tool.title;
+              const toolDesc =
+                h?.devTools?.[tool.key]?.description ?? tool.description;
               return (
                 <Card
                   key={tool.title}
@@ -590,10 +608,10 @@ const Hackathon = ({
                       <Icon className="h-5 w-5" aria-hidden />
                     </div>
                     <CardTitle className="text-xl transition group-hover:text-sky-600 dark:group-hover:text-sky-400">
-                      {tool.title}
+                      {toolTitle}
                     </CardTitle>
                     <CardDescription className="text-base leading-relaxed">
-                      {tool.description}
+                      {toolDesc}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -602,7 +620,8 @@ const Hackathon = ({
                         href={tool.href}
                         className="inline-flex items-center gap-2 rounded-lg bg-[#1984c7] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1574af]"
                       >
-                        Open guide <ArrowUpRight className="h-4 w-4" />
+                        {h?.openGuide ?? "Open guide"}{" "}
+                        <ArrowUpRight className="h-4 w-4" />
                       </Link>
                     ) : (
                       <a
@@ -611,7 +630,8 @@ const Hackathon = ({
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-lg bg-[#1984c7] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1574af]"
                       >
-                        Open docs <ExternalLink className="h-4 w-4" />
+                        {h?.openDocs ?? "Open docs"}{" "}
+                        <ExternalLink className="h-4 w-4" />
                       </a>
                     )}
                   </CardContent>
@@ -629,20 +649,23 @@ const Hackathon = ({
                 <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500/15 text-amber-700 dark:text-amber-400">
                   <Puzzle className="h-5 w-5" aria-hidden />
                 </span>
-                Rules
+                {h?.rulesTitle ?? "Rules"}
               </CardTitle>
               <CardDescription>
-                Keep submissions fair and easy to judge.
+                {h?.rulesDesc ?? "Keep submissions fair and easy to judge."}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-3 text-slate-700 dark:text-slate-300">
                 {rules.map((rule, i) => (
-                  <li key={rule} className="flex gap-3 text-sm leading-relaxed">
+                  <li
+                    key={rule.key}
+                    className="flex gap-3 text-sm leading-relaxed"
+                  >
                     <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-sky-700 dark:bg-slate-800 dark:text-sky-400">
                       {i + 1}
                     </span>
-                    <span>{rule}</span>
+                    <span>{h?.rules?.[rule.key] ?? rule.text}</span>
                   </li>
                 ))}
               </ul>
@@ -654,26 +677,26 @@ const Hackathon = ({
                 <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-500/15 text-violet-700 dark:text-violet-400">
                   <HelpCircle className="h-5 w-5" aria-hidden />
                 </span>
-                FAQ
+                {h?.faqTitle ?? "FAQ"}
               </CardTitle>
               <CardDescription>
-                Quick answers before you dive in.
+                {h?.faqDesc ?? "Quick answers before you dive in."}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
               {faqItems.map((faq) => (
                 <details
-                  key={faq.question}
+                  key={faq.key}
                   className="group rounded-xl border border-slate-200 bg-slate-50/80 p-4 transition hover:border-sky-500/35 dark:border-slate-700 dark:bg-slate-900/40"
                 >
                   <summary className="cursor-pointer list-none font-medium text-slate-900 outline-none marker:content-none dark:text-white [&::-webkit-details-marker]:hidden">
                     <span className="flex items-start justify-between gap-2">
-                      {faq.question}
+                      {h?.faq?.[faq.key]?.question ?? faq.question}
                       <ArrowUpRight className="mt-0.5 h-4 w-4 shrink-0 opacity-40 transition group-open:rotate-45 group-open:opacity-70" />
                     </span>
                   </summary>
                   <p className="mt-3 border-t border-slate-200/80 pt-3 text-sm leading-relaxed text-slate-700 dark:border-slate-600 dark:text-slate-300">
-                    {faq.answer}
+                    {h?.faq?.[faq.key]?.answer ?? faq.answer}
                   </p>
                 </details>
               ))}
@@ -683,14 +706,18 @@ const Hackathon = ({
 
         {/* ── How to submit ── */}
         <section className="mb-12">
-          <SectionTitle eyebrow="Participation">How to submit</SectionTitle>
+          <SectionTitle eyebrow={h?.submitEyebrow ?? "Participation"}>
+            {h?.submitTitle ?? "How to submit"}
+          </SectionTitle>
           <p className="-mt-2 mb-6 max-w-2xl text-muted-foreground">
-            Follow these five steps to get your project from idea to official
-            entry.
+            {h?.submitIntro ??
+              "Follow these five steps to get your project from idea to official entry."}
           </p>
           <div className="grid gap-4 grid-cols-1 imd:grid-cols-2 lg:grid-cols-4">
-            {submissionSteps.map(({ step, title, description, color }) => {
+            {submissionSteps.map(({ step, key, title, description, color }) => {
               const c = stepColorMap[color];
+              const stepTitle = h?.steps?.[key]?.title ?? title;
+              const stepDesc = h?.steps?.[key]?.description ?? description;
               return (
                 <Card
                   key={step}
@@ -703,10 +730,28 @@ const Hackathon = ({
                       <span className="text-base font-black">{step}</span>
                     </div>
                     <CardTitle className="text-lg leading-snug">
-                      {title}
+                      {stepTitle}
                     </CardTitle>
                     <CardDescription className="text-sm leading-relaxed">
-                      {description}
+                      {key === "upload" ? (
+                        <>
+                          {h?.steps?.upload?.descPrefix ??
+                            "Push your project to the"}{" "}
+                          <a
+                            href="https://github.com/ZecHub/zechub/tree/main/Hackathon/2026"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 font-semibold text-[#1984c7] underline-offset-2 hover:underline"
+                          >
+                            {h?.steps?.upload?.repoLabel ?? "Hackathon repo"}{" "}
+                            <ExternalLink className="h-3 w-3" />
+                          </a>{" "}
+                          {h?.steps?.upload?.descSuffix ??
+                            "on GitHub so the community can review your work."}
+                        </>
+                      ) : (
+                        stepDesc
+                      )}
                     </CardDescription>
                   </CardHeader>
                 </Card>
@@ -716,21 +761,22 @@ const Hackathon = ({
           <div className="mt-6 rounded-2xl border border-sky-500/25 bg-sky-50/70 px-5 py-4 dark:border-sky-500/20 dark:bg-sky-950/30">
             <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
               <span className="font-semibold text-slate-900 dark:text-white">
-                Deadline:
+                {h?.deadlineLabel ?? "Deadline:"}
               </span>{" "}
-              All submissions must be posted in Discord by{" "}
+              {h?.deadlinePrefix ?? "All submissions must be posted in Discord by"}{" "}
               <span className="font-semibold text-slate-900 dark:text-white">
                 July 15, 2026 (UTC)
               </span>
-              . Winners are selected via a public community vote in ZecHub DAO
-              channels shortly after submissions close.{" "}
+              {h?.deadlineSuffix ??
+                ". Winners are selected via a public community vote in ZecHub DAO channels shortly after submissions close."}{" "}
               <a
                 href="https://discord.gg/zcash"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 font-semibold text-[#1984c7] underline-offset-2 hover:underline"
               >
-                Join the Discord <ExternalLink className="h-3.5 w-3.5" />
+                {h?.joinTheDiscord ?? "Join the Discord"}{" "}
+                <ExternalLink className="h-3.5 w-3.5" />
               </a>
             </p>
           </div>
@@ -740,13 +786,12 @@ const Hackathon = ({
         <section className="mb-12">
           <div className="mb-6 flex flex-col gap-4 imd:flex-row imd:items-end sm:justify-between">
             <div>
-              <SectionTitle eyebrow="Past editions">
-                Previous hackathons
+              <SectionTitle eyebrow={h?.previousEyebrow ?? "Past editions"}>
+                {h?.previousTitle ?? "Previous hackathons"}
               </SectionTitle>
               <p className="-mt-2 max-w-2xl text-muted-foreground">
-                Browse earlier ZecHub hackathon builds by edition. Each project
-                card links directly to its GitHub folder for code, notes, and
-                demos where available.
+                {h?.previousIntro ??
+                  "Browse earlier ZecHub hackathon builds by edition. Each project card links directly to its GitHub folder for code, notes, and demos where available."}
               </p>
             </div>
             <a
@@ -755,7 +800,8 @@ const Hackathon = ({
               rel="noopener noreferrer"
               className="inline-flex w-fit items-center gap-2 rounded-xl border border-sky-500/30 bg-white/80 px-4 py-2.5 text-sm font-semibold text-[#1984c7] shadow-sm backdrop-blur-sm transition hover:border-sky-500/60 hover:bg-sky-50 dark:bg-slate-900/70 dark:hover:bg-slate-800"
             >
-              Browse all projects <ExternalLink className="h-4 w-4" />
+              {h?.browseAllProjects ?? "Browse all projects"}{" "}
+              <ExternalLink className="h-4 w-4" />
             </a>
           </div>
 
@@ -764,18 +810,21 @@ const Hackathon = ({
               className="mb-6 rounded-xl border border-amber-500/40 bg-amber-50 px-4 py-3 text-sm text-amber-950 dark:border-amber-500/30 dark:bg-amber-950/30 dark:text-amber-100"
               role="alert"
             >
-              <p className="font-medium">Could not load live project list</p>
+              <p className="font-medium">
+                {h?.errorCouldNotLoad ?? "Could not load live project list"}
+              </p>
               <p className="mt-1 opacity-90">{githubProjectsError}</p>
               <p className="mt-2 opacity-90">
-                Showing the saved previous hackathon project list instead.
+                {h?.errorShowingSaved ??
+                  "Showing the saved previous hackathon project list instead."}
               </p>
             </div>
           ) : null}
 
           {previousProjects.length === 0 ? (
             <p className="mb-6 text-sm text-muted-foreground">
-              No project folders were returned. Open the repo tree to verify
-              structure.
+              {h?.noProjects ??
+                "No project folders were returned. Open the repo tree to verify structure."}
             </p>
           ) : null}
 
@@ -797,14 +846,20 @@ const Hackathon = ({
                             {group.label}
                           </CardTitle>
                           <CardDescription className="mt-1">
-                            {group.projects.length} project
-                            {group.projects.length === 1 ? "" : "s"} archived
-                            from this edition.
+                            {(group.projects.length === 1
+                              ? h?.projectsArchivedOne ??
+                                "{count} project archived from this edition."
+                              : h?.projectsArchivedMany ??
+                                "{count} projects archived from this edition."
+                            ).replace("{count}", String(group.projects.length))}
                           </CardDescription>
                         </div>
                       </div>
                       <span className="w-fit rounded-full bg-slate-900 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-white dark:bg-white dark:text-slate-900">
-                        {group.projects.length} builds
+                        {(h?.buildsCount ?? "{count} builds").replace(
+                          "{count}",
+                          String(group.projects.length),
+                        )}
                       </span>
                     </div>
                   </CardHeader>
@@ -831,7 +886,8 @@ const Hackathon = ({
                             {p.slugPath}
                           </p>
                           <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#1984c7] transition group-hover:gap-2.5 group-hover:underline">
-                            View project <ArrowUpRight className="h-4 w-4" />
+                            {h?.viewProject ?? "View project"}{" "}
+                            <ArrowUpRight className="h-4 w-4" />
                           </span>
                         </a>
                       ))}
@@ -850,10 +906,12 @@ const Hackathon = ({
             aria-hidden
           />
           <div className="relative">
-            <h2 className="mb-2 text-2xl font-bold md:text-3xl">Need help?</h2>
+            <h2 className="mb-2 text-2xl font-bold md:text-3xl">
+              {h?.needHelpTitle ?? "Need help?"}
+            </h2>
             <p className="mb-6 max-w-xl text-slate-600 dark:text-slate-400">
-              The Zcash Global Discord is the best place for build questions,
-              infra tips, and hackathon chatter.
+              {h?.needHelpDesc ??
+                "The Zcash Global Discord is the best place for build questions, infra tips, and hackathon chatter."}
             </p>
             <div className="flex flex-wrap gap-3">
               <a
@@ -862,13 +920,15 @@ const Hackathon = ({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#1984c7] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-sky-900/20 transition hover:bg-[#1574af]"
               >
-                Join Discord <ExternalLink className="h-4 w-4" />
+                {h?.joinDiscord ?? "Join Discord"}{" "}
+                <ExternalLink className="h-4 w-4" />
               </a>
               <Link
                 href="/donation"
                 className="inline-flex items-center gap-2 rounded-xl border-2 border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-sky-500/50 hover:bg-sky-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-800"
               >
-                Support with a donation <ArrowUpRight className="h-4 w-4" />
+                {h?.supportDonation ?? "Support with a donation"}{" "}
+                <ArrowUpRight className="h-4 w-4" />
               </Link>
             </div>
           </div>

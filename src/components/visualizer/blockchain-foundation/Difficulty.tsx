@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { Clock, Gauge, TrendingUp } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const Difficulty = () => {
+  const { t } = useLanguage();
+  const s = t?.pages?.visualizer?.difficulty ?? {};
+
   return (
     <div className="space-y-6">
       {/* Block time comparison */}
@@ -15,10 +19,10 @@ export const Difficulty = () => {
             <Clock className="w-8 h-8 text-primary" />
             <div>
               <h3 className="font-bold text-foreground">Zcash</h3>
-              <p className="text-2xl font-bold text-primary">75 seconds</p>
+              <p className="text-2xl font-bold text-primary">{s.zcashBlockTime ?? "75 seconds"}</p>
             </div>
           </div>
-          <p className="text-sm text-muted-foreground">Target block time</p>
+          <p className="text-sm text-muted-foreground">{s.targetBlockTime ?? "Target block time"}</p>
         </div>
 
         <div className="bg-card border border-border rounded-xl p-6 opacity-60">
@@ -27,11 +31,11 @@ export const Difficulty = () => {
             <div>
               <h3 className="font-bold text-foreground">Bitcoin</h3>
               <p className="text-2xl font-bold text-muted-foreground">
-                10 minutes
+                {s.bitcoinBlockTime ?? "10 minutes"}
               </p>
             </div>
           </div>
-          <p className="text-sm text-muted-foreground">For comparison</p>
+          <p className="text-sm text-muted-foreground">{s.forComparison ?? "For comparison"}</p>
         </div>
       </motion.div>
 
@@ -44,7 +48,7 @@ export const Difficulty = () => {
       >
         <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
           <Gauge className="w-5 h-5 text-primary" />
-          Difficulty Adjustment
+          {s.adjustmentTitle ?? "Difficulty Adjustment"}
         </h3>
 
         <div className="space-y-4">
@@ -53,10 +57,10 @@ export const Difficulty = () => {
             <div className="text-center flex-1">
               <TrendingUp className="w-8 h-8 text-pool-sapling mx-auto mb-2" />
               <p className="text-sm font-semibold text-foreground">
-                Hashrate Increases
+                {s.hashrateIncreases ?? "Hashrate Increases"}
               </p>
               <p className="text-xs text-muted-foreground">
-                Difficulty goes up
+                {s.difficultyUp ?? "Difficulty goes up"}
               </p>
             </div>
             <div className="h-px flex-1 bg-border" />
@@ -68,27 +72,26 @@ export const Difficulty = () => {
                 <Gauge className="w-8 h-8 text-primary mx-auto mb-2" />
               </motion.div>
               <p className="text-sm font-semibold text-foreground">
-                Target: 75 sec
+                {s.target ?? "Target: 75 sec"}
               </p>
-              <p className="text-xs text-muted-foreground">Stays constant</p>
+              <p className="text-xs text-muted-foreground">{s.staysConstant ?? "Stays constant"}</p>
             </div>
             <div className="h-px flex-1 bg-border" />
             <div className="text-center flex-1">
               <TrendingUp className="w-8 h-8 text-destructive mx-auto mb-2 rotate-180" />
               <p className="text-sm font-semibold text-foreground">
-                Hashrate Decreases
+                {s.hashrateDecreases ?? "Hashrate Decreases"}
               </p>
               <p className="text-xs text-muted-foreground">
-                Difficulty goes down
+                {s.difficultyDown ?? "Difficulty goes down"}
               </p>
             </div>
           </div>
 
           <div className="bg-primary/10 rounded-lg p-4 mt-4">
             <p className="text-sm text-foreground">
-              The network automatically adjusts mining difficulty to maintain
-              consistent block times, regardless of how many miners are
-              competing.
+              {s.summary ??
+                "The network automatically adjusts mining difficulty to maintain consistent block times, regardless of how many miners are competing."}
             </p>
           </div>
         </div>

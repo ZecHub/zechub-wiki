@@ -11,8 +11,9 @@ type DevelopersDictionary = {
   };
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const dict = (await getDictionary()) as DevelopersDictionary;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale)) as DevelopersDictionary;
   return genMetadata({
     title: dict.pages?.developers?.title || "Zcash Developer Resources",
     url: "https://zechub.wiki/using-zcash/blockchain-explorers",

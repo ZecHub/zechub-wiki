@@ -3,14 +3,15 @@ import { Card } from "@/components/Card/Card";
 import { dexListingConfig } from "@/constants/dex-listing-config";
 import { dexListingConfigIt } from "@/constants/dex-listing-config.it";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { useLocale } from "next-intl";
 
 const DEXListingClient = () => {
   const { t } = useLanguage();
   const locale = useLocale();
-  const dexList = locale === "it" ? dexListingConfigIt : dexListingConfig;
+  const byLocale: Record<string, typeof dexListingConfig> = { it: dexListingConfigIt };
+  const dexList = byLocale[locale] ?? dexListingConfig;
   const title = t?.pages?.dex?.centralizedTitle ?? "Centralized Swap Platforms";
   const dexLabel = t?.pages?.dex?.title ?? "DEX Platforms";
   const disclaimer = t?.pages?.dex?.disclaimer ?? "ZecHub does not endorse any particular exchange service, please do your own research.";

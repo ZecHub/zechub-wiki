@@ -1,23 +1,35 @@
 import { motion } from "framer-motion";
 import { Shield } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const SaplingKeyContent = () => {
+    const { t } = useLanguage();
+    const s = t?.pages?.visualizer?.saplingKey ?? {};
+
     const keyHierarchy = [
       {
-        name: "Spending Key (sk)",
-        desc: "Master secret for spending",
+        name: s.spendingKeyName ?? "Spending Key (sk)",
+        desc: s.spendingKeyDesc ?? "Master secret for spending",
         level: 0,
       },
-      { name: "Expanded Spending Key", desc: "ask, nsk, ovk", level: 1 },
-      { name: "Full Viewing Key (fvk)", desc: "ak, nk, ovk", level: 2 },
       {
-        name: "Incoming Viewing Key (ivk)",
-        desc: "View incoming transactions",
+        name: s.expandedSpendingKeyName ?? "Expanded Spending Key",
+        desc: s.expandedSpendingKeyDesc ?? "ask, nsk, ovk",
+        level: 1,
+      },
+      {
+        name: s.fullViewingKeyName ?? "Full Viewing Key (fvk)",
+        desc: s.fullViewingKeyDesc ?? "ak, nk, ovk",
+        level: 2,
+      },
+      {
+        name: s.incomingViewingKeyName ?? "Incoming Viewing Key (ivk)",
+        desc: s.incomingViewingKeyDesc ?? "View incoming transactions",
         level: 3,
       },
       {
-        name: "Diversified Address",
-        desc: "zs1... (unlimited per key)",
+        name: s.diversifiedAddressName ?? "Diversified Address",
+        desc: s.diversifiedAddressDesc ?? "zs1... (unlimited per key)",
         level: 4,
       },
     ];
@@ -33,7 +45,7 @@ export const SaplingKeyContent = () => {
         >
           <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
             <Shield className="w-5 h-5 text-pool-sapling" />
-            Sapling Key Derivation
+            {s.derivationTitle ?? "Sapling Key Derivation"}
           </h4>
 
           <div className="space-y-2">
@@ -69,19 +81,19 @@ export const SaplingKeyContent = () => {
           className="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
           <div className="p-4 rounded-lg dark:bg-card dark:border bg-card/10 border/20 border-border">
-            <h5 className="font-medium text-foreground mb-2">Address Format</h5>
+            <h5 className="font-medium text-foreground mb-2">{s.addressFormatTitle ?? "Address Format"}</h5>
             <code className="px-2 py-1 rounded dark:bg-muted bg-muted/20 text-sm font-mono">
               zs1...
             </code>
             <p className="text-sm text-muted-foreground mt-2">
-              78 characters, Bech32 encoding
+              {s.addressFormatDesc ?? "78 characters, Bech32 encoding"}
             </p>
           </div>
           <div className="p-4 rounded-lg dark:bg-card dark:border bg-card/10 border/20 border-border">
-            <h5 className="font-medium text-foreground mb-2">Key Feature</h5>
+            <h5 className="font-medium text-foreground mb-2">{s.keyFeatureTitle ?? "Key Feature"}</h5>
             <p className="text-sm text-muted-foreground">
-              <strong className="text-foreground">Diversified addresses</strong>{" "}
-              — Generate unlimited unique addresses from one key
+              <strong className="text-foreground">{s.keyFeatureBold ?? "Diversified addresses"}</strong>{" "}
+              {s.keyFeatureDesc ?? "— Generate unlimited unique addresses from one key"}
             </p>
           </div>
         </motion.div>
