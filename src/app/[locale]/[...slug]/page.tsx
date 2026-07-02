@@ -59,7 +59,7 @@ export async function generateMetadata({
   }
   const folder = slug[0] || "";
   const capitalized =
-    folder.charAt(0).toUpperCase() + folder.slice(1).replace(/[-/]/g, " "); // ← FIXED
+    folder.charAt(0).toUpperCase() + folder.slice(1).replace(/[-/]/g, " ");
   const title =
     slug.length > 1 && slug[1]
       ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
@@ -92,6 +92,19 @@ export default async function Page(props: {
     slug[0] === "research" &&
     slug[1] === "zcash-foundations-series";
   const isResearchArticle = slug[0] === "research" && slug.length > 1;
+
+  // === STRICTER getHeroImage (prevents empty src/darkSrc) ===
+  const getHeroImage = (slugSegment: string) => {
+    const src = getBanner(slugSegment) || "";
+    const darkSrc = getBanner(`${slugSegment}-dark`) || getBanner(slugSegment) || "";
+
+    if (!src) return undefined;
+
+    return {
+      src,
+      darkSrc: darkSrc || src,
+    };
+  };
 
   let contentUrl = url;
   let markdown: any = null;
@@ -135,15 +148,14 @@ export default async function Page(props: {
 
       roots = [...topLevel, ...seriesArticles];
 
+      const heroImage = getHeroImage(slug[0]);
+
       return (
         <MdxContainer
           hasSideMenu={false}
           sideMenu={null}
           roots={roots}
-          heroImage={{
-            src: getBanner(slug[0]) || "",
-            darkSrc: getBanner(`${slug[0]}-dark`) || getBanner(slug[0]) || "",
-          }}
+          {...(heroImage ? { heroImage } : {})}
         >
           {/* === Series Section (On Top) === */}
           <div className="px-2 pb-10">
@@ -262,15 +274,14 @@ export default async function Page(props: {
       roots = articlePaths;
       markdown = null;
 
+      const heroImage = getHeroImage(slug[0]);
+
       return (
         <MdxContainer
           hasSideMenu={false}
           sideMenu={null}
           roots={roots}
-          heroImage={{
-            src: getBanner(slug[0]) || "",
-            darkSrc: getBanner(`${slug[0]}-dark`) || getBanner(slug[0]) || "",
-          }}
+          {...(heroImage ? { heroImage } : {})}
         >
           <div className="px-2 pb-8">
             <div className="mb-8">
@@ -428,6 +439,8 @@ export default async function Page(props: {
     },
   });
 
+  const heroImage = getHeroImage(slug[0]);
+
   return (
     <MdxContainer
       hasSideMenu={showSideMenu}
@@ -435,7 +448,7 @@ export default async function Page(props: {
         showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null
       }
       roots={roots}
-      heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
+      {...(heroImage ? { heroImage } : {})}
       layoutVariant={isResearchArticle ? "research" : "default"}
       researchMeta={
         isResearchArticle
