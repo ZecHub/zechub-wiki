@@ -1,6 +1,6 @@
 import MdxContainer from "@/components/MdxContainer";
 import SideMenu from "@/components/SideMenu/SideMenu";
-import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
+import { getLocalizedFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { normalizeMdx } from "@/lib/normalizeMdx";
 import { Metadata } from "next";
@@ -20,11 +20,14 @@ export const metadata: Metadata = genMetadata({
   image: getBanner(`using-zcash`),
 });
 
-export default async function Page() {
+export default async function Page(props: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await props.params;
   const url = `/site/Using_Zcash/Shielded_Pools.md`;
   const urlRoot = `/site/using-zcash`;
   const [markdown, roots] = await Promise.all([
-    getFileContentCached(url),
+    getLocalizedFileContentCached(url, locale || "en"),
     getRootCached(urlRoot),
   ]);
   const content = markdown ? markdown : "No Data or Wrong file";

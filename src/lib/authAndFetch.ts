@@ -28,7 +28,7 @@ export const getFileContentCached = unstable_cache(
           ref: BRANCH,
         });
         // @ts-ignore
-        return atob(res.data?.content || "");
+        return Buffer.from(res.data?.content || "", "base64").toString("utf-8");
       } catch (err: any) {
         console.log({ "Error! Status": err.status, Message: err.response?.data?.message });
       }
@@ -44,7 +44,7 @@ export const getFileContentCached = unstable_cache(
               owner, repo, path: file, ref: BRANCH,
             });
             // @ts-ignore
-            return atob(res.data?.content || "");
+            return Buffer.from(res.data?.content || "", "base64").toString("utf-8");
           }
         }
       }
@@ -67,6 +67,35 @@ export const getFileContentCached = unstable_cache(
  * translation exists yet. The fallback keeps every page renderable while the
  * translated content tree is still being populated.
  */
+async function fuzzyLocalizedFile(itPath: string): Promise<string | null> {
+  // Direct fuzzy match within the localized folder. We must NOT route this
+  // through getRootCached -> transformUri, which capitalizes the
+  // "translations/<locale>" prefix (-> "Translations/It/...") and 404s. List
+  // the folder with the path AS-IS, then slug-match the basename (handles
+  // casing differences like ZODL.md vs the transformUri-derived "Zodl.md").
+  const dir = itPath.split("/").slice(0, -1).join("/");
+  const wantSlug = normalize(itPath.split("/").pop()?.replace(/\.md$/i, "") || "");
+  try {
+    const res = await octokit.rest.repos.getContent({
+      owner,
+      repo,
+      path: dir,
+      ref: BRANCH,
+    });
+    const entries = Array.isArray(res.data) ? res.data : [res.data];
+    for (const e of entries) {
+      if (e.type !== "file" || !e.name.endsWith(".md")) continue;
+      const n = normalize(e.name.replace(/\.md$/i, ""));
+      if (n === wantSlug || n.includes(wantSlug)) {
+        return await getFileContentCached(e.path).catch(() => null);
+      }
+    }
+  } catch {
+    // folder missing for this locale → fall back to English
+  }
+  return null;
+}
+
 export async function getLocalizedFileContentCached(
   filePath: string,
   locale: string,
@@ -74,10 +103,11 @@ export async function getLocalizedFileContentCached(
   const normalizedPath = filePath.replace(/^\/+/, "");
 
   if (locale && locale !== "en") {
-    const localized = await getFileContentCached(
-      `translations/${locale}/${normalizedPath}`,
-    ).catch(() => null);
-    if (localized) return localized;
+    const itPath = `translations/${locale}/${normalizedPath}`;
+    const exact = await getFileContentCached(itPath).catch(() => null);
+    if (exact) return exact;
+    const fuzzy = await fuzzyLocalizedFile(itPath).catch(() => null);
+    if (fuzzy) return fuzzy;
   }
 
   return getFileContentCached(filePath).catch(() => null);

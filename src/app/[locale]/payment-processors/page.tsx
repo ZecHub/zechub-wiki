@@ -1,5 +1,5 @@
 import PaymentProcessorList from "@/components/PaymentProcessor/PaymentProcessorList";
-import { getFileContentCached, getRootCached } from "@/lib/authAndFetch";
+import { getLocalizedFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { parseProcessorMarkdown } from "@/lib/parseProcessorMarkdown";
 import { Metadata } from "next";
@@ -16,16 +16,17 @@ export const metadata: Metadata = genMetadata({
 });
 
 export default async function Page(props: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
   headers();   // ← THIS IS THE KEY FIX (prevents icon function serialization error)
 
   const params = await props.params;
+  const locale = params.locale || "en";
   const url = "site/Using_Zcash/Payment_Processors.md";
   const urlRoot = `/site/using-zcash`;
 
   const [markdown, roots, dict] = await Promise.all([
-    getFileContentCached(url),
+    getLocalizedFileContentCached(url, locale),
     getRootCached(urlRoot),
     getDictionary(),
   ] as const);
