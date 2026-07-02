@@ -3,9 +3,19 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Blockchain e IA no Mundo Real",
+            "video_id": "414IObiEjX0",
+            "views": 46
+        },
+        {
+            "title": "Solu\u00e7\u00f5es de Privacidade na Near | Vini B | Zcon Vozes 2",
+            "video_id": "_CHBvf00nDM",
+            "views": 4
+        },
+        {
             "title": "Protocol Study #5: Merkle Trees and How the Chain Remembers",
             "video_id": "rUMVoXjrUBk",
-            "views": 21
+            "views": 31
         },
         {
             "title": "Zcash + Fedi BTC: Diferentes Caminhos Para Soberania Financeira",
@@ -15,22 +25,17 @@
         {
             "title": "Como transcrever e traduzir simultaneamente ao vivo | Akkadu com OBS",
             "video_id": "ujv2IWXKOcY",
-            "views": 36
+            "views": 38
         },
         {
             "title": "Zingo Wallet Beta e App Zec Map | Zec Insider",
             "video_id": "x73tDR-zNHE",
-            "views": 29
+            "views": 30
         },
         {
             "title": "O B\u00e1sico da Web3 Que Pode Mudar Sua Jornada | Jos\u00e9 Santos e Ruan Antony | Zcon Vozes 2",
             "video_id": "_NaiW_jcdY8",
             "views": 16
-        },
-        {
-            "title": "Blockchain e IA no Mundo Real",
-            "video_id": "414IObiEjX0",
-            "views": 0
         },
         {
             "title": "Zcash e o futuro da privacidade regulada",
@@ -45,7 +50,7 @@
         {
             "title": "Zcash Engineering Office Hours: Zcash Names and Edge Wallet",
             "video_id": "ySE70XuDudk",
-            "views": 78
+            "views": 80
         },
         {
             "title": "De Ouro a Swiss Banks: Por Que ZEC Muda a Hist\u00f3ria da Reserva de Valor",
@@ -60,7 +65,7 @@
         {
             "title": "Desenvolvendo produtos digitais na nova economia. | Camila Nicolaus",
             "video_id": "TqMSytKLe_4",
-            "views": 35
+            "views": 36
         },
         {
             "title": "Privacidade n\u00e3o \u00e9 anonimato. \u00c9 soberania.",
@@ -90,7 +95,7 @@
         {
             "title": "Protocol Study #4: Transactions Unpacked: JoinSplit to Actions | Engineering #12",
             "video_id": "ZmA57p318rI",
-            "views": 27
+            "views": 28
         },
         {
             "title": "A Linha Esquecida da Cripto: Privacidade, Cypherpunks e Zcash.",
@@ -115,12 +120,12 @@
         {
             "title": "Privacidade Na Ind\u00fastria On-chain | Tokenation 2026",
             "video_id": "rEqCsY0GpCo",
-            "views": 49
+            "views": 50
         },
         {
             "title": "Zcon Vozes 2 | FIAP S\u00e3o Paulo",
             "video_id": "Vf4Mjq_YIhQ",
-            "views": 45
+            "views": 46
         },
         {
             "title": "Zcash Brasil no Tokenation 2026.",
@@ -930,7 +935,7 @@
         {
             "title": "Zebra Talk | Privacidade e escala infinita, Bem-vindo ao ZTARKNET",
             "video_id": "8GicVD9KfhA",
-            "views": 100
+            "views": 101
         },
         {
             "title": "A influencia feminina nas decis\u00f5es financeiras",
