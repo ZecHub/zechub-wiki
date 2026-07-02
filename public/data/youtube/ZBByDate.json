@@ -3,24 +3,29 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Quando o compliance vira vigil\u00e2ncia?",
+            "video_id": "JGoLizC1x84",
+            "views": 6
+        },
+        {
             "title": "Blockchain e IA no Mundo Real",
             "video_id": "414IObiEjX0",
-            "views": 46
+            "views": 50
         },
         {
             "title": "Solu\u00e7\u00f5es de Privacidade na Near | Vini B | Zcon Vozes 2",
             "video_id": "_CHBvf00nDM",
-            "views": 4
+            "views": 5
         },
         {
             "title": "Protocol Study #5: Merkle Trees and How the Chain Remembers",
             "video_id": "rUMVoXjrUBk",
-            "views": 31
+            "views": 34
         },
         {
             "title": "Zcash + Fedi BTC: Diferentes Caminhos Para Soberania Financeira",
             "video_id": "VVN18ZFJKsA",
-            "views": 4
+            "views": 6
         },
         {
             "title": "Como transcrever e traduzir simultaneamente ao vivo | Akkadu com OBS",
@@ -540,7 +545,7 @@
         {
             "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Amea\u00e7as Qu\u00e2nticas | Engineering #3",
             "video_id": "R6916H2IMKI",
-            "views": 85
+            "views": 86
         },
         {
             "title": "A Zcash criou o movimento de privacidade 2.0",
@@ -2875,7 +2880,7 @@
         {
             "title": "Zcash Shielded Call Vol.6 - Auditoria do Protocolo Orchard ZSA",
             "video_id": "RfmjMo0FeTM",
-            "views": 12
+            "views": 13
         },
         {
             "title": "Descubra o Real Valor do Protocolo Zcash!",
@@ -3535,7 +3540,7 @@
         {
             "title": "A Zoe - Minera\u00e7\u00e3o e Dev-Fund na #Zcash",
             "video_id": "VTmAQVwVSNw",
-            "views": 81
+            "views": 82
         },
         {
             "title": "CBDC (DREX) | Zcash Brasil - Community Call",
