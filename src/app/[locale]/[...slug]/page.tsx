@@ -23,6 +23,7 @@ import { headers } from "next/headers";
 import { serialize } from "next-mdx-remote/serialize";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+
 const LazyMdxComponent = React.lazy(() => import("@/components/MdxRenderer"));
 
 function extractFirstContentImage(
@@ -50,7 +51,7 @@ function extractFirstContentImage(
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string[] }>;
+  params: Promise<{ slug: string[]; locale: string }>;
 }): Promise<Metadata> {
   const { slug = [] } = await params;
   if (slug.length === 0) {
@@ -58,7 +59,7 @@ export async function generateMetadata({
   }
   const folder = slug[0] || "";
   const capitalized =
-    folder.charAt(0).toUpperCase() + folder.slice(1).replace(/-/g, " ");
+    folder.charAt(0).toUpperCase() + folder.slice(1).replace(/[-/]/g, " ");
   const title =
     slug.length > 1 && slug[1]
       ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
@@ -91,6 +92,19 @@ export default async function Page(props: {
     slug[0] === "research" &&
     slug[1] === "zcash-foundations-series";
   const isResearchArticle = slug[0] === "research" && slug.length > 1;
+
+  // === STRICTER getHeroImage (prevents empty src/darkSrc) ===
+  const getHeroImage = (slugSegment: string) => {
+    const src = getBanner(slugSegment) || "";
+    const darkSrc = getBanner(`${slugSegment}-dark`) || getBanner(slugSegment) || "";
+
+    if (!src) return undefined;
+
+    return {
+      src,
+      darkSrc: darkSrc || src,
+    };
+  };
 
   let contentUrl = url;
   let markdown: any = null;
@@ -134,15 +148,14 @@ export default async function Page(props: {
 
       roots = [...topLevel, ...seriesArticles];
 
+      const heroImage = getHeroImage(slug[0]);
+
       return (
         <MdxContainer
           hasSideMenu={false}
           sideMenu={null}
           roots={roots}
-          heroImage={{
-            src: getBanner(slug[0]) || "",
-            darkSrc: getBanner(`${slug[0]}-dark`) || getBanner(slug[0]) || "",
-          }}
+          {...(heroImage ? { heroImage } : {})}
         >
           {/* === Series Section (On Top) === */}
           <div className="px-2 pb-10">
@@ -160,12 +173,11 @@ export default async function Page(props: {
                 href="/research/zcash-foundations-series"
                 className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all active:scale-[0.985] sm:hover:border-slate-300 sm:hover:shadow-lg dark:border-slate-700 dark:sm:hover:border-slate-600"
               >
-                {/* Series Banner - Dark mode friendly */}
                 <div
-                  className="relative w-full shrink-0 overflow-hidden 
-                                bg-gradient-to-br from-zinc-700 to-zinc-500 
+                  className="relative w-full shrink-0 overflow-hidden
+                                bg-gradient-to-br from-zinc-700 to-zinc-500
                                 border-b border-zinc-700
-                                flex items-center justify-center 
+                                flex items-center justify-center
                                 aspect-[16/9] sm:aspect-[2.2/1] lg:aspect-[2.5/1]"
                 >
                   <div className="text-center px-6">
@@ -262,15 +274,14 @@ export default async function Page(props: {
       roots = articlePaths;
       markdown = null;
 
+      const heroImage = getHeroImage(slug[0]);
+
       return (
         <MdxContainer
           hasSideMenu={false}
           sideMenu={null}
           roots={roots}
-          heroImage={{
-            src: getBanner(slug[0]) || "",
-            darkSrc: getBanner(`${slug[0]}-dark`) || getBanner(slug[0]) || "",
-          }}
+          {...(heroImage ? { heroImage } : {})}
         >
           <div className="px-2 pb-8">
             <div className="mb-8">
@@ -428,6 +439,8 @@ export default async function Page(props: {
     },
   });
 
+  const heroImage = getHeroImage(slug[0]);
+
   return (
     <MdxContainer
       hasSideMenu={showSideMenu}
@@ -435,7 +448,7 @@ export default async function Page(props: {
         showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null
       }
       roots={roots}
-      heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
+      {...(heroImage ? { heroImage } : {})}
       layoutVariant={isResearchArticle ? "research" : "default"}
       researchMeta={
         isResearchArticle

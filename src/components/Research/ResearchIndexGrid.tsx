@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import { searcher } from "@/constants/searcher";
 import { getResearchCardCover } from "@/constants/researchCardCovers";
+import Image from "next/image";
 
 const RESEARCH_IMG_LIGHT = "/explore/light/research.png";
 const RESEARCH_IMG_DARK = "/explore/dark/research.png";
@@ -69,26 +69,45 @@ export default function ResearchIndexGrid({
               >
                 <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-muted">
                   {cover ? (
-                    <Image
+                    // Dynamic cover from GitHub → use native <img> to avoid Turbopack panic
+                    <img
                       src={cover.src}
                       alt={cover.alt || articleTitle}
-                      width={800}
-                      height={450}
                       className="h-full w-full object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
                     />
                   ) : (
                     <>
-                      <Image src={RESEARCH_IMG_LIGHT} alt="" width={640} height={360} className="h-full w-full object-cover dark:hidden" />
-                      <Image src={RESEARCH_IMG_DARK} alt="" width={640} height={360} className="hidden h-full w-full object-cover dark:block" />
+                      <Image
+                        src={RESEARCH_IMG_LIGHT}
+                        alt=""
+                        width={640}
+                        height={360}
+                        className="h-full w-full object-cover dark:hidden"
+                      />
+                      <Image
+                        src={RESEARCH_IMG_DARK}
+                        alt=""
+                        width={640}
+                        height={360}
+                        className="hidden h-full w-full object-cover dark:block"
+                      />
                     </>
                   )}
                 </div>
 
                 <div className="flex flex-1 flex-col p-5">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Research</p>
-                  <h2 className="mt-1 text-lg font-bold text-foreground group-hover:underline">{articleTitle}</h2>
-                  {desc ? <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">{desc}</p> : null}
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Research
+                  </p>
+                  <h2 className="mt-1 text-lg font-bold text-foreground group-hover:underline">
+                    {articleTitle}
+                  </h2>
+                  {desc ? (
+                    <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">
+                      {desc}
+                    </p>
+                  ) : null}
                 </div>
               </Link>
             </li>

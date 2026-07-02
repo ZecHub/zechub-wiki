@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 161,
+    "proposal_count": 162,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6677,6 +6677,41 @@
         "createdAt": "2026-06-16T17:25:58.434Z",
         "completedAt": "2026-07-01T10:56:58.000Z",
         "closedAt": "2026-07-01T10:56:58.000Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 162,
+        "proposal": {
+          "msgs": [],
+          "title": " Retroactive Compensation for Hosting the Zcash Developer Workshop",
+          "votes": {
+            "no": "0",
+            "yes": "3",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1783374226696169168"
+          },
+          "description": "\n\n## Overview\n\nI am requesting retroactive compensation from the ZecHub DAO for organizing and hosting the inaugural **Zcash Developer Workshop**, a six-week virtual developer education program designed to onboard developers into the Zcash ecosystem through structured technical training, hands-on learning, and direct engagement with ecosystem builders.\n\nThis initiative was independently conceived, planned, and executed with the goal of addressing one of the ecosystem's long-term needs: creating a repeatable pathway for developers to learn, build, and contribute to Zcash.\n\n## Motivation\n\nDeveloper education is fundamental to the long-term growth of the Zcash ecosystem. While excellent technical documentation and tooling exist, many developers lack a structured entry point that connects foundational concepts with practical application.\n\nTo address this gap, I designed a comprehensive developer curriculum (reviewed and refined with feedback by the zechub team, ShieldedMark and Pacu) centred around the philosophy:\n\n**Learn → Build → Contribute**\n\nThe curriculum was delivered through a six-week virtual workshop that combined technical instruction, live coding sessions, builder talks, and project-based learning.\n\n## Deliverables\n\nDuring the workshop, I delivered:\n\n* A structured multi-week Zcash developer curriculum which was vetted by the Zechub team and Pacu.\n* Organisation and facilitation of 10 live workshop sessions.\n* Coordination of multiple guest speakers from across the ecosystem.\n* Educational materials, announcements, and community outreach.\n* Workshop documentation and supporting resources.\n* Live Recording of each session\n\n## Guest Speakers\n\nThe workshop featured builders and contributors from across the ecosystem, including Guest representatives from:\n\n* Shielded Labs\n* CipherPay\n* Nozy Wallet\n* ZcashNames\n* Zechub Team\n\nThese sessions provided participants with practical insights into building real-world privacy-preserving applications on Zcash. These sessions are currently being  uploaded to the Zechub Youtube channel\n\n## Impact\n\nThe workshop helped:\n\n* Introduce developers to Zcash architecture and modern tooling.\n* Create an easy onboarding pathway for new Developers.\n* Provide hands-on exposure to technologies such as the Z3 Stack, RPCs, and wallet development.\n* Encourage participants to build projects rather than only consume educational content.\n* Strengthen relationships between new developers and experienced ecosystem builders.\n* Provided technical guidance to developers participating in the **ZecHub Hackathon**, reinforcing a **Learn-as-you-Build** model..\n* Validate a structured curriculum that can be reused for future workshops, developer residencies, and educational initiatives.\n\nThe workshop also demonstrated the effectiveness of combining structured learning with ecosystem engagement, creating a stronger onboarding experience than standalone technical talks.\\\n\n## Long-Term Value\n\nBeyond the workshop itself, this work has laid the foundation for a broader developer education initiative.\n\nThe curriculum can be adapted for:\n\n* Future ZecHub workshops\n* Regional ambassador communities (currently being adapted for mini dev workshops by Zcash Ghana)\n* University developer programs\n* Developer residencies\n* A future self-paced Zcash Developer Academy\n\nAs a result, the value created extends well beyond a single cohort.\n---\n\n## Cost Breakdown\n\nThe requested compensation reflects the planning, preparation, coordination, delivery, and documentation required to successfully execute the six-week workshop.\n\n| Item                                    | Amount (USD) \n|---------------- | -----------: |\n| Dre (Project Lead)          |                $500 |\n| BlackAdam (Tutor) |            $300 |\n| VPS Subscription for Node setup (3 months)      |               $75 x3= $225 |\n| **Total**                                     |       **$1,025** |\n\n---\n\n## Compensation Request\n\nI am requesting **$1025 USD (or equivalent in ZEC)** as retroactive compensation for the planning, curriculum development, coordination, facilitation, and successful delivery of the six-week Zcash Developer Workshop.\n\nThis request reflects the time, effort, and educational value invested in creating a reusable developer onboarding framework that benefits the broader Zcash ecosystem.\n\n## Links\n\nComprehensive Report:  https://forum.zcashcommunity.com/t/zcash-developers-workshop/55360/24\n\nRecordings: https://drive.google.com/drive/folders/16U3tTAttBAEg-1tDnBEWCJ13uy1TlTHr?usp=sharing\n\n## Closing\n\nI appreciate the ZecHub DAO's continued support for community-led education and developer growth.\n\nI welcome feedback from the community and look forward to continuing to expand developer education initiatives that strengthen the Zcash ecosystem.\n\n",
+          "total_power": "23",
+          "start_height": 39405029,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-07-01T21:43:46.696Z"
       }
     ]
   },
