@@ -1,36 +1,1130 @@
 {
+  "menuLabels": {
+    "Accept Payments": "接受付款",
+    "Akash Network Zebra": "Akash Network Zebra",
+    "Arborist Calls": "Arborist Calls",
+    "Avalanche RedBridge": "Avalanche RedBridge",
+    "BTCPayServer Zcash Plugin": "BTCPayServer Zcash 插件",
+    "Blockchain Explorers": "区块链浏览器",
+    "Brand": "品牌",
+    "Brave Wallet": "Brave Wallet",
+    "Buying ZEC": "购买 ZEC",
+    "Community Blogs": "社区博客",
+    "Community Forum": "社区论坛",
+    "Community Links": "社区链接",
+    "Community Projects": "社区项目",
+    "Contribute": "参与贡献",
+    "Cypherpunk Zero NFT": "Cypherpunk Zero NFT",
+    "DAO": "DAO",
+    "Developers": "开发者",
+    "Discord": "Discord",
+    "Donations": "捐赠",
+    "Electric Coin Company": "Electric Coin Company",
+    "Exchanges": "交易所",
+    "Extras": "附加内容",
+    "Faucets": "水龙头",
+    "Financial Privacy Foundation": "金融隐私基金会",
+    "Free2z Live": "Free2z Live",
+    "Freelance Privacy": "自由职业隐私",
+    "Github": "Github",
+    "Governance": "治理",
+    "Guides": "指南",
+    "How to Participate": "如何参与",
+    "Journalist Privacy": "记者隐私",
+    "Keeping Records": "保存记录",
+    "Keystone Zashi": "Keystone Zashi",
+    "Maya Protocol": "Maya Protocol",
+    "Memos": "备注",
+    "Metamask Snap": "Metamask Snap",
+    "Mobile Top Ups": "手机充值",
+    "Newsletter": "新闻简报",
+    "Nym VPN": "Nym VPN",
+    "Payment Processors": "支付处理器",
+    "Payment Request URIs": "支付请求 URI",
+    "Podcast": "播客",
+    "Private Community Treasury": "私密社区金库",
+    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 全节点",
+    "Raspberry pi 4 Zebra Node": "Raspberry pi 4 Zebra 节点",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra lightwalletd Zingo",
+    "Recovering Funds": "追回资金",
+    "Research": "研究",
+    "Send Money Privately": "私密转账",
+    "Shielded Labs": "Shielded Labs",
+    "Shielded Pools": "屏蔽池",
+    "Sitemap": "网站地图",
+    "Start Here": "从这里开始",
+    "Store": "商店",
+    "Testnet": "测试网",
+    "Tools": "工具",
+    "Transactions": "交易",
+    "Transparent Exchange Addresses": "透明交易所地址",
+    "Tutorials": "教程",
+    "Twitter": "Twitter",
+    "Use Cases": "使用场景",
+    "Using ZEC Privately": "私密使用 ZEC",
+    "Using ZEC in DeFi": "在 DeFi 中使用 ZEC",
+    "Using Zcash": "使用 Zcash",
+    "Visual Identity": "视觉识别",
+    "Visualizer": "可视化工具",
+    "Visualizing Zcash Addresses": "可视化 Zcash 地址",
+    "Visualizing the Zcash Network": "可视化 Zcash 网络",
+    "Wallets": "钱包",
+    "Youtube": "Youtube",
+    "Ywallet FROST Demo": "Ywallet FROST 演示",
+    "ZCAP": "ZCAP",
+    "ZIPs & Grants": "ZIPs 与资助",
+    "ZKAV Club": "ZKAV Club",
+    "ZODL": "ZODL",
+    "Zcash Community": "Zcash 社区",
+    "Zcash Community Grants": "Zcash Community Grants",
+    "Zcash Devtool": "Zcash 开发工具",
+    "Zcash Ecosystem Security": "Zcash 生态安全",
+    "Zcash Foundation": "Zcash Foundation",
+    "Zcash Global Ambassadors": "Zcash 全球大使",
+    "Zcash Governance": "Zcash 治理",
+    "Zcash Improvement Proposals": "Zcash 改进提案",
+    "Zcash Media": "Zcash 媒体",
+    "Zcash Organizations": "Zcash 组织",
+    "Zcash Podcasts": "Zcash 播客",
+    "Zcon Archive": "Zcon 存档",
+    "Zcon Vozes Archive": "Zcon Vozes 存档",
+    "Zenith Installation": "Zenith 安装",
+    "Zero-Knowledge vs Decoys": "零知识 vs 诱饵",
+    "Zgo Payment Processor": "Zgo 支付处理器",
+    "Zingo Labs": "Zingo Labs",
+    "Zingolib and Zaino Tutorial": "Zingolib 和 Zaino 教程",
+    "Zkool Multisig": "Zkool 多重签名",
+    "Custodial Exchanges": "托管型交易所"
+  },
+  "exploreMenu": {
+    "Full Explore": "完整探索",
+    "Start Here": "从这里开始",
+    "Tutorials": "教程",
+    "Using Zcash": "使用 Zcash",
+    "Guides": "指南",
+    "Zcash Tech": "Zcash 技术",
+    "Zcash Organizations": "Zcash 组织",
+    "Zcash Community": "Zcash 社区",
+    "ZKAV Club": "ZKAV Club",
+    "Privacy Tools": "隐私工具",
+    "Research": "研究",
+    "Glossary & FAQs": "术语表与常见问题",
+    "Contribute": "参与贡献",
+    "For Forks & Maintainers": "面向 Fork 与维护者",
+    "Fork zechub-wiki": "Fork zechub-wiki",
+    "Fork zechub": "Fork zechub"
+  },
   "common": {
     "home": "首页",
     "about": "关于",
-    "contact": "联系",
-    "language": "语言"
+    "contact": "联系我们",
+    "language": "语言",
+    "clickToExplore": "点击探索 →",
+    "learnMore": "了解更多",
+    "getStarted": "开始使用",
+    "readMore": "阅读更多",
+    "search": "搜索",
+    "close": "关闭",
+    "searchModalTitle": "搜索 ZecHub Wiki",
+    "searchHint": "按页面标题、主题或路径搜索。使用方向键选择，按 Enter 打开。",
+    "searchNoResults": "没有匹配的页面",
+    "searchTryDifferent": "请尝试更短的查询词、同义词或其他词语。",
+    "searchSuggested": "推荐页面",
+    "searchResultsLabel": "结果"
   },
   "navigation": {
-    "wallet": "钱包",
+    "wallets": "钱包",
     "guides": "指南",
     "tutorials": "教程",
     "governance": "治理",
-    "visualizer": "可视化工具"
+    "visualizer": "可视化工具",
+    "dao": "DAO",
+    "newsletter": "通讯",
+    "donate": "捐赠",
+    "explore": "探索",
+    "developers": "开发者",
+    "community": "社区",
+    "contribute": "贡献",
+    "dashboard": "仪表盘",
+    "more": "更多",
+    "usingZcash": {
+      "label": "使用 Zcash",
+      "buyingZec": "购买 ZEC",
+      "faucets": "水龙头",
+      "wallets": "钱包",
+      "metamaskSnap": "Metamask Snap",
+      "exchanges": "交易所",
+      "blockExplorers": "区块浏览器",
+      "shieldedPools": "屏蔽池",
+      "transparentExchangeAddresses": "透明交易所地址",
+      "transactions": "交易",
+      "memos": "备注",
+      "mobileTopUps": "手机充值",
+      "paymentRequestUris": "支付请求 URI",
+      "paymentProcessors": "支付处理器",
+      "recoveringFunds": "找回资金",
+      "testnet": "测试网",
+      "tools": "工具",
+      "useCases": "使用场景",
+      "useCasesSubmenu": {
+        "startHere": "从这里开始",
+        "acceptPayments": "接受付款",
+        "freelancePrivacy": "自由职业隐私",
+        "journalistPrivacy": "记者隐私",
+        "keepingRecords": "记录保存",
+        "privateCommunityTreasury": "私密社区金库",
+        "donations": "捐赠",
+        "sendMoneyPrivately": "私密转账"
+      }
+    },
+    "zcashCommunity": {
+      "label": "生态系统",
+      "arboristCalls": "Arborist Calls",
+      "communityBlogs": "社区博客",
+      "communityLinks": "社区链接",
+      "communityForum": "社区论坛",
+      "communityProjects": "社区项目",
+      "globalAmbassadors": "Zcash 全球大使",
+      "zcashMedia": "Zcash 媒体",
+      "zcap": "ZCAP",
+      "zcashPodcasts": "Zcash 播客",
+      "ecosystemSecurity": "Zcash 生态安全",
+      "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
+      "zconArchive": "Zcon 档案"
+    },
+    "organizations": {
+      "label": "组织",
+      "electricCoinCompany": "Electric Coin Company",
+      "zcashFoundation": "Zcash Foundation",
+      "communityGrants": "Zcash 社区资助",
+      "financialPrivacyFoundation": "金融隐私基金会",
+      "shieldedLabs": "Shielded Labs",
+      "zingoLabs": "Zingo Labs",
+      "brand": "品牌",
+      "zkavClub": "ZKAV Club"
+    },
+    "guidesSubmenu": {
+      "zgoPaymentProcessor": "Zgo 支付处理器",
+      "free2zLive": "Free2z Live",
+      "keystoneZashi": "Keystone Zashi",
+      "mayaProtocol": "Maya Protocol",
+      "nymVpn": "Nym VPN",
+      "usingZecInDefi": "在 DeFi 中使用 ZEC",
+      "usingZecPrivately": "私密使用 ZEC",
+      "raspberryPiZcashdNode": "Raspberry Pi zcashd 节点",
+      "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+      "raspberryPiZebraNode": "Raspberry Pi Zebra 节点",
+      "akashNetwork": "Akash Network",
+      "avalancheRedbridge": "Avalanche RedBridge",
+      "zkoolMultisig": "Zkool 多重签名",
+      "ywalletFrostDemo": "YWallet FROST 演示",
+      "blockchainExplorers": "区块链浏览器",
+      "braveWallet": "Brave 钱包",
+      "btcPayServerPlugin": "BTCPayServer 插件",
+      "visualizingZcashNetwork": "Zcash 网络可视化",
+      "visualizingZcashAddresses": "Zcash 地址可视化",
+      "zcashDevtool": "Zcash 开发工具",
+      "zcashImprovementProposals": "Zcash 改进提案",
+      "zingolibAndZainoTutorial": "Zingolib 和 Zaino 教程",
+      "zenithInstallation": "Zenith 安装",
+      "zeroKnowledgeVsDecoys": "零知识与诱饵系统对比"
+    },
+    "overview": "概览",
+    "shop": "商店"
+  },
+  "home": {
+    "heroTitle": "欢迎来到 ZecHub",
+    "heroSubtitle": "面向 Zcash 的开源教育中心",
+    "heroDescription": "了解 Zcash 隐私技术，探索交互式可视化工具，并为生态系统做出贡献",
+    "description": "ZecHub 是由社区推动的 Zcash 加密货币（ZEC）教育中心。Zcash 是一种数字货币，提供抗审查、安全且私密的支付。Zcash Blockchain 在 2022 年 NU5 网络升级后采用了高度先进的“可验证” zk-snarks，无需 Trusted Setup。",
+    "featuredSection": "精选资源",
+    "latestUpdates": "最新动态",
+    "getInvolved": "参与进来",
+    "exploreEcosystem": "探索生态系统",
+    "exploreZcash": "探索 Zcash",
+    "cards": {
+      "startHere": {
+        "title": "从这里开始",
+        "content": "了解什么是 Zcash 以及 ZEC 的使用场景"
+      },
+      "pickWallet": {
+        "title": "选择钱包",
+        "content": "钱包让你能够私密地接收和使用 Zcash。有些钱包还支持加密备忘录"
+      },
+      "resources": {
+        "title": "Zcash 资源",
+        "content": "这里有帮助用户了解 Zcash 全节点、zk-SNARKs 等内容的指南"
+      }
+    },
+    "sections": {
+      "whatIsZcash": {
+        "title": "什么是 Zcash？",
+        "description": "它是一个开源区块链账本，具备复杂的零知识证明系统。它专注于通过其证明系统提供更高标准的隐私，保护交易元数据的机密性。从本质上说，Zcash 就是可在无需许可的情况下通过交易转移的私有数据所有权。",
+        "mainLink": "什么是 Zcash？",
+        "techLink": "Zcash 技术"
+      },
+      "zcashMe": {
+        "title": "Zcash.me",
+        "description": "Zcash.Me 是一个公开的 Zcash 用户目录，提供私密消息、排行榜和已验证用户功能。连接、探索并与 Zcash 社区互动。",
+        "link": "访问 Zcash.Me"
+      },
+      "globalAmbassadors": {
+        "title": "Zcash 全球大使",
+        "description": "Zcash 全球大使是致力于在全球推广以隐私为核心的加密货币采用与教育的社区领袖。每个大使项目都专注于在各自地区提升认知并促进参与。",
+        "link": "认识这些大使"
+      },
+      "newsletter": {
+        "title": "Shielded Newsletter",
+        "description": "使用你的 Unified Address 订阅，将 Zcash 生态更新和网络统计直接以屏蔽方式发送到你的钱包！",
+        "link": "订阅"
+      },
+      "free2z": {
+        "title": "Free2Z",
+        "description": "Free2Z 是一个由 Zcash 驱动的社交平台，提供点对点捐赠、收益分成计划、高级创作工具以及庞大的全球在线社区。",
+        "link": "Free2Z"
+      },
+      "payWithZcash": {
+        "title": "使用 Zcash 支付",
+        "description": "这个网站回答了这样一个问题：哪里可以使用 Zcash 支付？该目录可免费使用。所列项目仅供参考，不构成任何形式的背书。尽情探索吧！",
+        "mainLink": "paywithz.cash",
+        "mapLink": "SPEDN"
+      }
+    },
+    "explore": {
+      "startHere": "Start_Here",
+      "tutorials": "教程",
+      "usingZcash": "Using_Zcash",
+      "guides": "指南",
+      "zcashTech": "Zcash_Tech",
+      "organizations": "Zcash_Organizations",
+      "community": "Zcash_Community",
+      "zkavClub": "ZKAV_Club",
+      "privacyTools": "Privacy_Tools",
+      "research": "研究",
+      "glossary": "Glossary_and_FAQs",
+      "contribute": "贡献"
+    }
+  },
+  "footer": {
+    "description": "一个面向 Zcash 的开源教育中心",
+    "quickLinks": "快捷链接",
+    "resources": "资源",
+    "community": "社区",
+    "followUs": "关注我们",
+    "allRightsReserved": "保留所有权利",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款"
   },
   "visualizer": {
     "title": "Zcash 可视化工具",
-    "description": "交互式教育工具，帮助理解 Zcash 隐私技术、基础设施和零知识证明",
-    "playAll": "播放所有可视化工具",
+    "description": "用于理解 Zcash 隐私技术、基础设施和零知识证明的交互式教育工具",
+    "playAll": "播放全部可视化工具",
     "basic": "基础",
-    "basicDescription": "Zcash 的基本概念和核心功能",
+    "basicDescription": "Zcash 的基础概念和核心功能",
     "advanced": "高级",
-    "advancedDescription": "密码学、共识和基础设施的深入技术探讨",
+    "advancedDescription": "深入探索密码学、共识和基础设施的技术细节",
     "contributors": "贡献者",
-    "contributorsDescription": "为 Zcash 生态系统做出贡献并获得奖励的方式"
-  }
-  ,
+    "contributorsDescription": "为 Zcash 生态系统做贡献并获得奖励的方式",
+    "beginnerQuiz": "初级测验",
+    "intermediateQuiz": "中级测验",
+    "contributorsQuiz": "贡献者测验",
+    "autoPlayNote": "每个可视化工具都会自动运行。可使用控件进行导航或暂停。",
+    "wallets": {
+      "title": "Zcash 钱包简介",
+      "description": "提供屏蔽功能"
+    },
+    "pools": {
+      "title": "价值池与地址类型",
+      "description": "探索 Zcash 隐私池和地址类型"
+    },
+    "payWith": {
+      "title": "使用 Zcash 支付",
+      "description": "了解在哪里以及如何使用 ZEC 进行隐私支付"
+    },
+    "dex": {
+      "title": "Zcash 交易所（DEX）",
+      "description": "通过去中心化交易所无许可、抗审查地获取 ZEC"
+    },
+    "hashFunction": {
+      "title": "哈希函数",
+      "description": "什么是哈希函数？"
+    },
+    "blockchain": {
+      "title": "Zcash 区块链基础",
+      "description": "理解 Zcash 区块链基础"
+    },
+    "zkproof": {
+      "title": "zk-SNARKs",
+      "description": "屏蔽交易的交互式演示"
+    },
+    "keys": {
+      "title": "Zcash 密钥",
+      "description": "理解 Zcash 密钥"
+    },
+    "infrastructure": {
+      "title": "Zcash 基础设施",
+      "description": "了解 Zcash 各组件如何协同工作"
+    },
+    "consensus": {
+      "title": "共识",
+      "description": "数百个节点如何就链状态达成一致？"
+    },
+    "miningHalo": {
+      "title": "Zcash 挖矿",
+      "description": "理解 Equihash 挖矿和递归零知识证明"
+    },
+    "privacyUseCases": {
+      "title": "隐私用例",
+      "description": "隐私技术在 Zcash 上的实际应用"
+    },
+    "governance": {
+      "title": "治理与开发基金",
+      "description": "社区驱动的开发与去中心化决策"
+    },
+    "bounties": {
+      "title": "ZecHub 赏金",
+      "description": "为 ZecHub 做贡献并赚取 ZEC"
+    },
+    "daoProposal": {
+      "title": "DAO 提案",
+      "description": "创建 ZecHub DAO 治理提案的分步指南"
+    },
+    "communityGrants": {
+      "title": "Zcash Community Grants",
+      "description": "为 Zcash 生态项目提供资助"
+    },
+    "coinholderGrants": {
+      "title": "持币者定向资助",
+      "description": "由 ZEC 持有者主导的追溯性资助"
+    },
+    "openSource": {
+      "title": "开源代码库",
+      "description": "为 Zcash 开源项目做贡献"
+    }
+  },
+  "wallets": {
+    "title": "Zcash 钱包",
+    "description": "选择适合你需求的钱包",
+    "desktopWallets": "桌面钱包",
+    "mobileWallets": "移动钱包",
+    "hardwareWallets": "硬件钱包",
+    "webWallets": "网页钱包",
+    "features": "功能",
+    "download": "下载",
+    "visitWebsite": "访问网站",
+    "filters": "筛选",
+    "showNavigation": "显示导航",
+    "close": "关闭",
+    "savedReview": "我们已保存你的评价！",
+    "errorGettingLikes": "获取点赞时出错：",
+    "errorUpdatingRating": "更新评分时出错："
+  },
+  "guides": {
+    "title": "指南",
+    "description": "使用 Zcash 的分步指南",
+    "allGuides": "全部指南",
+    "beginner": "初级",
+    "intermediate": "中级",
+    "advanced": "高级"
+  },
+  "tutorials": {
+    "title": "教程",
+    "description": "通过动手实践教程边做边学",
+    "watchVideo": "观看视频",
+    "readTutorial": "阅读教程",
+    "duration": "时长"
+  },
   "dao": {
     "title": "ZecHub DAO",
     "description": "ZecHub 的去中心化治理",
+    "headerTitle": "ZecHub DAO 与治理",
+    "headerDescription": "一个开源教育平台，社区成员在这里协作创建、验证和推广支持 Zcash 生态系统的内容",
+    "beliefs": [
+      "隐私是一项人权",
+      "教育应当开源且全球可及",
+      "社区成员有权私密地赚取 ZEC",
+      "全球协作推动创新"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "首个 Zcash 生态 DAO",
+        "description": "ZecHub 正在 Zcash 社区开创去中心化治理，资金主要存放于 Zcash 屏蔽资金池中，以实现最高级别的隐私保护。"
+      },
+      {
+        "icon": "🌍",
+        "title": "全球协作",
+        "description": "全球大使、社区资助成员和社区专家携手合作，共同引导 Zcash 与隐私技术教育的发展方向。"
+      },
+      {
+        "icon": "🔄",
+        "title": "SubDAO 框架",
+        "description": "任何团队都可以创建 SubDAO，以组建项目、发起提案，或通过 DAO DAO 模块申请追溯性补偿。"
+      }
+    ],
+    "governanceDescription": "所有 DAO 提案都是公开且透明的。任何人都可以创建提案并发起投票。为支持社区透明度，ZecHub DAO 会在 Zcash Community Forum 的 ZecHub Governance 主题帖中发布所有治理提案。",
+    "membersTitle": "DAO 成员",
     "proposals": "提案",
     "vote": "投票",
     "createProposal": "创建提案",
     "activeProposals": "进行中的提案",
-    "pastProposals": "过去的提案"
+    "pastProposals": "过往提案"
+  },
+  "newsletter": {
+    "title": "新闻通讯",
+    "description": "及时了解最新的 Zcash 新闻",
+    "subscribe": "订阅",
+    "emailPlaceholder": "输入你的邮箱",
+    "subscribeButton": "立即订阅",
+    "latestIssue": "最新一期",
+    "archive": "归档"
+  },
+  "pages": {
+    "wallets": {
+      "title": "钱包 | ZecHub",
+      "noData": "无数据或文件错误",
+      "bannerAlt": "wiki-banner"
+    },
+    "dex": {
+      "title": "去中心化交易所",
+      "subtitle": "ZecHub 不为任何特定的去中心化交易所服务背书，请自行做好研究。",
+      "centralised": "中心化兑换平台",
+      "centralizedTitle": "中心化兑换平台列表",
+      "custodial": "托管型交易所"
+    },
+    "usingZcash": {
+      "blockchainExplorers": {
+        "title": "区块链浏览器"
+      }
+    },
+    "dashboard": {
+      "title": "仪表板 | ZecHub",
+      "charts": {
+        "headerTitle": "仪表板",
+        "headerSubtitle": "分析 Zcash 网络指标和趋势",
+        "shieldedNetworks": "屏蔽网络",
+        "currentYoutubeChannel": "当前 YouTube 频道",
+        "totalVideos": "视频总数",
+        "totalViews": "总观看次数",
+        "mostViewed": "观看次数最多",
+        "viewsSuffix": "次观看",
+        "searchPlaceholder": "搜索视频...",
+        "top15ByViews": "按观看次数排名前 15",
+        "latest15Videos": "最新 15 个视频",
+        "sortByNewest": "↩ 按最新排序",
+        "sortByViews": "↑ 按观看次数排序",
+        "top15VideosByViews": "按观看次数排名前 15 的视频",
+        "latest15VideosSortedByViews": "最新 15 个视频（按观看次数排序）",
+        "zcashMetrics": {
+          "title": "Zcash 指标",
+          "loadError": "加载 Zcash 指标失败",
+          "notAvailable": "N/A",
+          "marketCap": "市值",
+          "circulation": "流通量",
+          "marketPriceUsd": "市场价格（USD）",
+          "marketPriceBtc": "市场价格（BTC）",
+          "blocks": "区块数",
+          "transactions24h": "24 小时交易数",
+          "shieldedTx24h": "屏蔽交易（24 小时）",
+          "saplingAbbrev": "Sap",
+          "orchardAbbrev": "Orc"
+        },
+        "zcashChart": {
+          "title": "分析图表",
+          "supplyTypeAriaLabel": "供应类型",
+          "supplyOptions": {
+            "shielded": "屏蔽",
+            "transparent": "透明",
+            "totalSupply": "总供应量"
+          }
+        },
+        "zcashShieldedTabs": {
+          "supply": "供应量",
+          "difficulty": "难度",
+          "issuance": "发行量",
+          "lockbox": "锁仓",
+          "flows": "流向",
+          "nodeCount": "节点数",
+          "txSummary": "交易摘要",
+          "privacySet": "隐私集合",
+          "shieldedStats": "屏蔽统计",
+          "blockFees": "区块手续费",
+          "networkSolps": "全网 Solps",
+          "miningPools": "矿池",
+          "halvingMeter": "减半进度"
+        },
+        "miningPoolsChart": {
+          "title": "矿池主导率",
+          "loadError": "加载矿池数据失败",
+          "rangeLabel": "范围",
+          "rangeAriaLabel": "选择挖矿范围",
+          "noData": "暂无可用的矿池数据。"
+        },
+        "difficultyChart": {
+          "title": "挖矿难度变化趋势",
+          "loadError": "加载难度图表失败",
+          "legend": "难度",
+          "seriesName": "难度"
+        },
+        "tabs": {
+          "zechubDashboard": "ZecHub 仪表板",
+          "daodaoDashboard": "DaoDao 仪表板",
+          "treasuryDashboard": "国库",
+          "zcgDashboard": "ZCG 仪表板",
+          "youtubeDashboard": "YouTube 仪表板"
+        }
+      }
+    },
+    "hackathon": {
+      "title": "ZecHub 黑客松",
+      "heroEyebrow": "构建 · 文档 · 提交",
+      "heroIntro": "围绕五个赛道进行构建，从基础设施到游戏，然后为你的作品编写文档并进行演示。官方启动时间",
+      "heroKickoffSep": "（UTC）；提交截止时间",
+      "countdownStartsIn": "黑客松开始于",
+      "countdownTimeUntilClose": "距离提交截止还有",
+      "countdownEnded": "黑客松已结束",
+      "days": "天",
+      "hours": "小时",
+      "mins": "分钟",
+      "secs": "秒",
+      "endedNote": "本次黑客松活动已结束，感谢所有参与者。",
+      "preStarts": "开始于",
+      "preCloseSep": "（UTC）。提交截止于",
+      "activeCloseOn": "提交截止于",
+      "tracksEyebrow": "2026 活动",
+      "tracksTitle": "赛道",
+      "tracksIntro": "提交时请将你的项目归入一个赛道，以便更清晰地展示，评委和社区会据此浏览参赛作品。",
+      "tracks": {
+        "infrastructure": {
+          "name": "基础设施",
+          "description": "ZSA GUI、Node Launcher、Zallet 网页仪表盘等。"
+        },
+        "games": {
+          "name": "游戏",
+          "description": "类似 catfishing.net 的 Wiki Article 游戏、ZEC Poker、Battleship 等。"
+        },
+        "frost": {
+          "name": "FROST",
+          "description": "门限签名钱包、Shielded ZEC Escrow、社交恢复"
+        },
+        "zcashLogin": {
+          "name": "Zcash 登录",
+          "description": "使用 Zcash 原语实现登录或访问的认证与身份流程。"
+        },
+        "accounting": {
+          "name": "会计",
+          "description": "报表、处理 ZEC 的团队工作流、支付管理系统。"
+        }
+      },
+      "prizesEyebrow": "奖励",
+      "prizesTitle": "奖项",
+      "prizePoolTitle": "25 ZEC 奖池",
+      "prizePoolDesc": "构建、提交并角逐社区奖池。",
+      "devToolsEyebrow": "从这里开始",
+      "devToolsTitle": "开发工具与文档",
+      "devTools": {
+        "quickStart": {
+          "title": "ZecHub 开发者快速入门",
+          "description": "查找在 Zcash 上开发所需的核心工具、参考资料和配置步骤。"
+        }
+      },
+      "openGuide": "打开指南",
+      "openDocs": "打开文档",
+      "rulesTitle": "规则",
+      "rulesDesc": "让提交作品公平且便于评审。",
+      "rules": {
+        "mainnet": "项目必须与 Zcash 主网交互。",
+        "oneProject": "每个团队只能提交一个最终项目。",
+        "docs": "所有提交作品都必须包含清晰的安装和使用文档。",
+        "openSource": "使用开源许可证。",
+        "respect": "在代码和内容中都要尊重隐私、安全和社区准则。"
+      },
+      "faqTitle": "常见问题",
+      "faqDesc": "开始前的快速解答。",
+      "faq": {
+        "whoCanParticipate": {
+          "question": "谁可以参加？",
+          "answer": "任何人都可以参加：开发者、设计师以及跨学科团队。"
+        },
+        "validSubmission": {
+          "question": "有效提交必须包含什么？",
+          "answer": "可运行的原型、视频演示、基础文档，以及说明它如何使用 Zcash 网络。"
+        },
+        "whereSubmit": {
+          "question": "我们在哪里提交项目？",
+          "answer": "请在 Zcash Global Discord 分享你的视频演示，并附上相关仓库或演示链接。"
+        },
+        "winnersSelected": {
+          "question": "获奖者如何选出？",
+          "answer": "提交截止后，将通过 ZecHub DAO 频道进行公开社区评选。"
+        },
+        "whatTracks": {
+          "question": "有哪些赛道？",
+          "answer": "本次黑客松的主题包括基础设施、游戏、FROST、Zcash 登录和会计。请选择最符合你项目的赛道，未被赛道明确定义的项目也仍然可以提交。"
+        }
+      },
+      "submitEyebrow": "参与方式",
+      "submitTitle": "如何提交",
+      "submitIntro": "按照这五个步骤，将你的项目从想法变成正式参赛作品。",
+      "steps": {
+        "build": {
+          "title": "构建你的项目",
+          "description": "创建一个与 Zcash 主网交互的可运行原型。选择一个赛道，并在开发过程中持续记录开发日志。"
+        },
+        "record": {
+          "title": "录制视频演示",
+          "description": "录制一个简短的演示，展示你的项目如何运行。清楚说明它的功能以及如何使用 Zcash 网络。"
+        },
+        "document": {
+          "title": "记录你的工作",
+          "description": "编写 README，包含安装说明、使用说明和你的开源许可证。将所有内容推送到公开的 GitHub 仓库。"
+        },
+        "upload": {
+          "title": "上传你的代码",
+          "descPrefix": "将你的项目推送到 GitHub 上的",
+          "repoLabel": "黑客松仓库",
+          "descSuffix": "，以便社区审核你的作品。"
+        },
+        "share": {
+          "title": "分享到 Discord",
+          "description": "请在 2026 年 7 月 15 日（UTC）之前，在 Zcash Global Discord 发布你的视频演示，并附上仓库和演示链接。"
+        }
+      },
+      "deadlineLabel": "截止日期：",
+      "deadlinePrefix": "所有提交作品必须在以下时间之前发布到 Discord：",
+      "deadlineSuffix": "。提交截止后不久，获奖者将通过 ZecHub DAO 频道中的公开社区投票选出。",
+      "joinTheDiscord": "加入 Discord",
+      "previousEyebrow": "往届活动",
+      "previousTitle": "往届黑客松",
+      "previousIntro": "按届次浏览历届 ZecHub 黑客松作品。每个项目卡片都会直接链接到其 GitHub 文件夹，以便查看代码、说明和可用的演示。",
+      "browseAllProjects": "浏览所有项目",
+      "errorCouldNotLoad": "无法加载实时项目列表",
+      "errorShowingSaved": "正在显示已保存的往届黑客松项目列表。",
+      "noProjects": "未返回任何项目文件夹。请打开仓库目录树以验证结构。",
+      "projectsArchivedOne": "本届已归档 {count} 个项目。",
+      "projectsArchivedMany": "本届已归档 {count} 个项目。",
+      "buildsCount": "{count} 个构建",
+      "viewProject": "查看项目",
+      "needHelpTitle": "需要帮助？",
+      "needHelpDesc": "Zcash Global Discord 是提问构建问题、获取基础设施建议和交流黑客松话题的最佳场所。",
+      "joinDiscord": "加入 Discord",
+      "supportDonation": "通过捐赠支持",
+      "popup": {
+        "liveNow": "正在进行",
+        "subtitle": "在 Zcash 上构建以隐私为先的应用。角逐奖项、赢取 ZEC，并塑造金融自由的未来。",
+        "prizePool": "奖池",
+        "start": "开始",
+        "end": "结束",
+        "learnMore": "了解更多 →",
+        "dismiss": "关闭"
+      }
+    },
+    "developers": {
+      "title": "Zcash 开发者资源",
+      "heroImageAlt": "Zcash 开发者资源",
+      "cardSectionTitle": "你想如何开始？",
+      "cards": {
+        "learnTitle": "学习 Zcash 开发",
+        "learnContent": "探索官方文档，学习 Zcash 技术基础。",
+        "learnButton": "阅读文档",
+        "tutorialsTitle": "通过教程学习",
+        "tutorialsContent": "按照分步教程在 Zcash 上进行开发，从创建钱包到将 Zcash 集成到你的应用中。",
+        "tutorialsButton": "查看教程",
+        "quickStartTitle": "快速入门指南",
+        "quickStartContent": "快速开始进行 Zcash 开发。学习安装、配置和基本操作。",
+        "quickStartButton": "快速入门指南"
+      },
+      "exploreDocsTitle": "浏览文档",
+      "introductionsTitle": "简介",
+      "fundamentalsTitle": "基础",
+      "advancedTitle": "高级",
+      "introLinks": {
+        "introToZcash": "Zcash 简介",
+        "introToZcashDesc": "了解 Zcash、它的历史以及核心原则。",
+        "introToZec": "ZEC 简介",
+        "introToZecDesc": "了解 ZEC（Zcash 原生加密货币）的使用场景与优势。",
+        "introToZebra": "Zebra 简介",
+        "introToZebraDesc": "了解 Zebra 如何通过模块化且安全的 Rust 实现为 Zcash 网络提供支持",
+        "introToLightwalletd": "Lightwalletd 简介",
+        "introToLightwalletdDesc": "了解 lightwalletd 项目——这是一个用 Go 编写的可扩展服务器，可通过 gRPC 高效地向 Zcash 轻客户端提供紧凑的区块链数据。",
+        "zalletBook": "Zallet 手册",
+        "zalletBookDesc": "介绍 Zallet，这是一款用 Rust 编写的全节点 Zcash 钱包，旨在替代 zcashd 钱包。",
+        "developerResources": "开发者资源",
+        "developerResourcesDesc": "链接到更多 Zcash 技术文档。"
+      },
+      "fundamentalsLinks": {
+        "addressEncoding": "地址编码",
+        "addressEncodingDesc": "了解 Zcash 地址和密钥的编码方式。",
+        "transactions": "交易",
+        "transactionsDesc": "了解 Zcash 中交易的工作原理。",
+        "fees": "手续费",
+        "feesDesc": "了解交易手续费及其计算方式。",
+        "nodesZcashd": "节点（zcashd）",
+        "nodesZcashdDesc": "使用 zcashd 设置和管理 Zcash 节点。",
+        "nodesZebrad": "节点（zebrad）",
+        "nodesZebradDesc": "探索 Zebra，这是一种替代性的 Zcash 节点实现。",
+        "lightwalletServers": "Lightwallet 服务器",
+        "lightwalletServersDesc": "了解 lightwalletd，这是一种轻量级 Zcash 钱包服务器。",
+        "blockExplorers": "区块浏览器",
+        "blockExplorersDesc": "使用区块浏览器浏览 Zcash 区块链。",
+        "shadeAgent": "Shade Agent - Notion",
+        "shadeAgentDesc": "了解 Shade Agents——NEAR 上首批真正自主的 AI 代理——由安全的 TEE 和去中心化 Chain Signatures 提供支持，可独立管理资产、访问 LLM，并执行多链交易。"
+      },
+      "advancedLinks": {
+        "introToStack": "技术栈简介",
+        "introToStackDesc": "了解 Zcash 技术栈的架构与组成部分。",
+        "zecDev": "ZecDev",
+        "zecDevDesc": "你可以在这里找到在（Zcash）Developer Relations Engineer 资助背景下创建并维护的项目、资源和工具。另请参见",
+        "zcashCommunityWishlist": "Zcash 社区愿望清单",
+        "introToZingolib": "Zingolib 简介",
+        "introToZingolibDesc": "了解 zingolib 仓库——一个基于 Rust 的 API 和 CLI，用于通过 Lightwalletd 与 zcashd 交互。",
+        "webZjs": "WebZjs",
+        "webZjsDesc": "一个 JavaScript/TypeScript 库，用于使用 WebAssembly 构建支持 Zcash 的 Web 应用。",
+        "noirWalletSdk": "Noir Wallet SDK",
+        "noirWalletSdkDesc": "用于将 Zcash 应用集成到 Noir Wallet 浏览器扩展中的 TypeScript SDK 和示例 dApp。",
+        "zcashIka": "zcash-ika",
+        "zcashIkaDesc": "通过 2PC-MPC 为 Zcash 和多链代理提供分钥托管。支持链上支出策略、隐私证明和 ZIP 244 交易构建器。",
+        "developmentGuidelines": "开发指南",
+        "developmentGuidelinesDesc": "遵循在 Zcash 上开发的最佳实践。",
+        "arboristCalls": "Arborist Calls 页面",
+        "arboristCallsDesc": "Zcash Arborist Calls 是每两周举行一次的协议开发会议，重点跟踪即将到来的协议部署流程、共识节点实现问题以及协议研究。"
+      },
+      "feedbackTitle": "此页面对你有帮助吗？",
+      "feedbackYes": "有",
+      "feedbackNo": "没有",
+      "feedbackHelpful": "感谢你的反馈！欢迎回答几个问题，帮助我们进一步改进此页面。如果你需要帮助，可以在我们的社区中联系。",
+      "feedbackNotHelpful": "很遗憾听到这个消息。请告诉我们如何改进此页面。你可以在我们的社区中联系。"
+    },
+    "zcashProjects": {
+      "title": "Zcash 项目 | ZecHub"
+    },
+    "visualizer": {
+      "title": "Zcash 可视化工具",
+      "hashFunction": {
+        "title": "哈希函数可视化工具"
+      },
+      "zcashKey": {
+        "title": "Zcash 密钥可视化工具"
+      },
+      "zksnark": {
+        "title": "ZK-SNARK 证明可视化工具"
+      },
+      "sybil": {
+        "problemTitle": "女巫攻击问题",
+        "problemDesc": "在一个由投票决定真相的网络中，攻击者可以创建数百万个虚假身份，以投票压倒合法参与者。",
+        "realUsers": "3 个真实用户",
+        "vs": "vs",
+        "attacker": "1 个攻击者（6 个虚假身份）",
+        "solutionTitle": "Zcash 如何防止女巫攻击",
+        "powTitle": "工作量证明",
+        "powDesc": "挖矿需要真实的计算资源。创建虚假身份并不能获得更多投票权——只有真实的工作量才可以。",
+        "costTitle": "经济成本",
+        "costDesc": "攻击网络需要在硬件和电力上投入巨额成本，因此从经济上来说并不划算。",
+        "insightLabel": "关键洞察：",
+        "insightDesc": "抗女巫能力将投票权与稀缺资源（计算、质押）绑定，而不是与可轻易创建的身份绑定。"
+      },
+      "saplingKey": {
+        "spendingKeyName": "支付密钥 (sk)",
+        "spendingKeyDesc": "用于支付的主密钥",
+        "expandedSpendingKeyName": "扩展支付密钥",
+        "expandedSpendingKeyDesc": "ask, nsk, ovk",
+        "fullViewingKeyName": "完整 Viewing Key (fvk)",
+        "fullViewingKeyDesc": "ak, nk, ovk",
+        "incomingViewingKeyName": "传入 Viewing Key (ivk)",
+        "incomingViewingKeyDesc": "查看传入交易",
+        "diversifiedAddressName": "多样化地址",
+        "diversifiedAddressDesc": "zs1...（每个密钥可无限生成）",
+        "derivationTitle": "Sapling 密钥派生",
+        "addressFormatTitle": "地址格式",
+        "addressFormatDesc": "78 个字符，Bech32 编码",
+        "keyFeatureTitle": "关键特性",
+        "keyFeatureBold": "多样化地址",
+        "keyFeatureDesc": "— 从一个密钥生成无限个唯一地址"
+      },
+      "blockAnatomy": {
+        "fieldVersion": "版本",
+        "fieldPreviousHash": "前一个哈希",
+        "fieldMerkleRoot": "Merkle Root",
+        "fieldTimestamp": "时间戳",
+        "fieldDifficulty": "难度",
+        "fieldNonce": "Nonce",
+        "blockHeader": "区块头",
+        "transactionList": "交易列表",
+        "coinbaseTx": "交易 #1（Coinbase）",
+        "merkleTree": "Merkle 树",
+        "merkleRoot": "Merkle Root"
+      },
+      "difficulty": {
+        "zcashBlockTime": "75 秒",
+        "targetBlockTime": "目标出块时间",
+        "bitcoinBlockTime": "10 分钟",
+        "forComparison": "对比参考",
+        "adjustmentTitle": "难度调整",
+        "hashrateIncreases": "算力上升",
+        "difficultyUp": "难度上升",
+        "target": "目标：75 秒",
+        "staysConstant": "保持不变",
+        "hashrateDecreases": "算力下降",
+        "difficultyDown": "难度下降",
+        "summary": "无论有多少矿工参与竞争，网络都会自动调整挖矿难度，以保持稳定的出块时间。"
+      }
+    },
+    "paymentProcessors": {
+      "title": "支付处理器 | ZecHub",
+      "noData": "无数据或文件错误",
+      "bannerAlt": "wiki-banner"
+    },
+    "developersQuickStart": {
+      "heroBadge": "开发者快速入门",
+      "heroTitleLine1": "Zcash 开发",
+      "heroTitleLine2": "快速入门",
+      "heroSubtitle": "快速开始进行 Zcash 开发。选择你的技术栈并按照指南操作。",
+      "copy": "复制",
+      "copied": "已复制！",
+      "onThisPage": "本页内容",
+      "tocInstallingZebrad": "安装 Zebrad",
+      "tocRunningZebrad": "运行 zebrad",
+      "tocConnectingLightwalletd": "连接 lightwalletd",
+      "installation": "安装",
+      "configuration": "配置",
+      "dependencies": "依赖项",
+      "fromSource": "从源码构建",
+      "alternatively": "或者",
+      "manualDownload": "手动下载",
+      "wslRecommended": "WSL（推荐）",
+      "runningZebradHeading": "运行 zebrad",
+      "initialSetup": "初始设置",
+      "createConfigDir": "创建配置目录",
+      "startingZebrad": "启动 zebrad",
+      "commandLine": "命令行",
+      "importantNotes": "重要说明",
+      "noteDownloadsBlockchain": "首次运行会下载完整区块链（约 250 GB）",
+      "noteInitialSync": "初始同步可能需要数小时",
+      "noteKeepSecure": "请妥善保管你的 zebrad.toml 并确保其私密性",
+      "connectingLightwalletdHeading": "连接 lightwalletd",
+      "lightwalletdInfo": "是一个为 Zcash 区块链提供轻量级接口的服务器，专为无需运行完整节点的移动端和桌面钱包设计。",
+      "prerequisites": "前置条件",
+      "buildLightwalletd": "构建 lightwalletd",
+      "basicSetupMainnet": "基础设置（主网）",
+      "basicSetupTestnet": "基础设置（测试网）",
+      "run": "运行",
+      "installingZaino": "安装 Zaino",
+      "zainoInfo": "是一个基于 Rust 的 Zcash 区块链索引器。它同时服务于轻客户端（不存储完整历史记录的钱包）和完整客户端 / 区块浏览器，提供对已最终确认链、未最终确认的最佳链以及内存池的访问。",
+      "buildZaino": "构建 Zaino",
+      "configure": "配置",
+      "runZainod": "运行 zainod",
+      "installingZingoCli": "安装 Zingo CLI",
+      "zingoCliInfo": "是一个使用 Rust 构建的命令行 lightwalletd 代理客户端。目前发布版本仍为临时版本——本指南介绍如何从源码编译。",
+      "buildZingoCli": "构建 Zingo CLI",
+      "running": "运行",
+      "startZingoCliDefault": "启动 Zingo CLI（默认）",
+      "startZingoCliCustom": "启动 Zingo CLI（自定义）",
+      "zingoSyncWarning": "⚠ 首次运行时将执行完整同步，与 lightwalletd 类似。",
+      "nextStepsResources": "后续步骤与资源",
+      "readyToBuild": "准备开始构建了吗？",
+      "officialDocumentation": "官方文档",
+      "zcashDiscordCommunity": "Zcash Discord 社区",
+      "githubRepositories": "GitHub 仓库",
+      "zcashImprovementProposals": "Zcash Improvement Proposals",
+      "needHelp": "需要帮助？",
+      "zcashCommunityForum": "Zcash 社区论坛",
+      "githubIssues": "GitHub Issues",
+      "troubleshootingGuide": "故障排查指南",
+      "stackOverflow": "Stack Overflow"
+    },
+    "governanceHowto": {
+      "pageTitle": "ZecHub DAO 治理",
+      "pageSubtitle": "参与 ZecHub DAO 治理的完整指南",
+      "stepOf": "第 {current} 步，共 {total} 步",
+      "firstSteps": "入门步骤",
+      "firstStepsDesc": "完成设置以参与 DAO 治理",
+      "draftProposal": "起草提案",
+      "draftProposalDesc": "组织并准备你的提案以便提交",
+      "submittingProposal": "提交提案",
+      "submittingProposalDesc": "提交并推广你的提案",
+      "installKeplr": "安装 Keplr 钱包",
+      "installKeplrDesc": "设置你的 Keplr 钱包以与 DAO 交互",
+      "keplrVideoTitle": "Keplr 钱包设置指南",
+      "acquireJuno": "获取 JUNO",
+      "acquireJunoDesc": "获取 JUNO 代币以与 daodao 合约交互。如需帮助，请联系 core-team 成员。",
+      "viewOpenProposals": "查看开放提案",
+      "viewOpenProposalsDesc": "查看当前提案和投票机会",
+      "visitVotingPortal": "前往投票门户",
+      "formatNote": "格式：提案可采用 .Md 或 .txt 格式撰写",
+      "recommendedStructure": "推荐的 4 阶段结构：",
+      "stageBackground": "背景",
+      "stageBackgroundDesc": "提供该主题 / 服务的一些历史背景",
+      "stageWhy": "为什么？",
+      "stageWhyDesc": "说明你提出此提案的原因。可使用项目符号",
+      "stageProposal": "提案内容",
+      "stageProposalDesc": "清晰完整地详细说明你的提案",
+      "stageAction": "行动",
+      "stageActionDesc": "投票通过后将会发生什么——可提供行动时间线",
+      "getFeedback": "获取反馈",
+      "getFeedbackDesc": "在 Discord 的 ZecHub #proposals 频道分享你的草案，尽早获得反馈",
+      "joinDiscord": "加入 Discord",
+      "walkthroughTitle": "提案讲解视频",
+      "walkthroughDesc": "观看完整讲解，了解如何撰写并组织提案",
+      "walkthroughIframeTitle": "提案讲解",
+      "postInDiscord": "发布到 Discord",
+      "postInDiscordDesc": "在 #proposals 分享你的最终提案，并标记 @core-team",
+      "openDiscord": "打开 Discord",
+      "submitOnPortal": "在投票门户提交",
+      "submitOnPortalDesc": "使用 ZecHub 官方投票网站创建你的提案",
+      "submitNow": "立即提交",
+      "loginNote": "⚠️ 你需要使用 Keplr 或 Keplr Mobile 登录",
+      "previous": "上一步",
+      "next": "下一步"
+    },
+    "sitemap": {
+      "heading": "网站导航",
+      "subheading": "Zechub Wiki 所有页面和可用资源的完整概览",
+      "guidesCount": "{count} 篇指南",
+      "sections": {
+        "Pages": "页面",
+        "Organizations": "组织",
+        "Guides": "指南",
+        "Use Zcash": "使用 Zcash",
+        "Ecosystem": "生态系统"
+      },
+      "links": {
+        "Homepage": "首页",
+        "Dashboard": "仪表板",
+        "Donation": "捐赠",
+        "Contribute": "贡献",
+        "DAO": "DAO",
+        "Developers": "开发者",
+        "Brand": "品牌",
+        "Wallets": "钱包",
+        "Sitemap": "网站地图",
+        "Tutorials": "教程",
+        "Bounties": "赏金",
+        "Buying ZEC": "购买 ZEC",
+        "Faucets": "水龙头",
+        "Exchanges": "交易所",
+        "Block Explorers": "区块浏览器",
+        "Shielded Pools": "屏蔽池",
+        "Transparent Exchange Addresses": "透明交易所地址",
+        "Transactions": "交易",
+        "Memos": "备注",
+        "Mobile Top Ups": "手机充值",
+        "Payment Request URIs": "支付请求 URI",
+        "Payment Processors": "支付处理商",
+        "Recovering Funds": "资金追回",
+        "Metamask Snap": "Metamask Snap",
+        "Community Forum": "社区论坛",
+        "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
+      }
+    },
+    "zcashCommunity": {
+      "communityProjects": {
+        "title": "社区项目"
+      }
+    },
+    "research": {
+      "seriesHeading": "系列",
+      "seriesSubheading": "深入解析 Zcash 核心概念",
+      "foundationsSeriesTitle": "Zcash Foundations 系列",
+      "coreSeriesBadge": "核心系列",
+      "foundationsSeriesCardDescription": "关于屏蔽交易、隐私模型和协议设计的基础文章。",
+      "exploreSeries": "探索该系列 →",
+      "articlesHeading": "研究文章",
+      "articlesSubheading": "来自 ZecHub 社区的文章与笔记。",
+      "foundationsSeriesDescription": "一组基础文章，涵盖 Zcash 屏蔽交易、隐私模型、协议设计以及支撑该网络运行的核心概念。",
+      "tagShieldedTransactions": "屏蔽交易",
+      "tagPrivacyModels": "隐私模型",
+      "tagProtocolDesign": "协议设计",
+      "tagZeroKnowledge": "零知识"
+    },
+    "browseSidebar": "使用左侧边栏浏览文章 👈"
+  },
+  "developers": {
+    "quickStart": {
+      "tableOfContents": "目录",
+      "toc1": "1. 安装 Zebrad",
+      "toc2": "2. 运行 zebrad",
+      "toc3": "3. 连接 lightwalletd",
+      "installingHeading": "1. 安装 Zebrad",
+      "runningHeading": "2. 运行 zebrad",
+      "connectingHeading": "3. 连接 lightwalletd",
+      "systemRequirements": "系统要求",
+      "linux": "Linux",
+      "ubuntuDebian": "Ubuntu/Debian:",
+      "fromSource": "从源码：",
+      "macos": "macOS",
+      "homebrew": "Homebrew:",
+      "windows": "Windows",
+      "importantNotes": "重要说明",
+      "nextSteps": "后续步骤",
+      "readyToBuild": "准备开始构建？",
+      "needHelp": "需要帮助？"
+    }
+  },
+  "components": {
+    "newsletter": {
+      "title": "ZecHub 屏蔽新闻简报",
+      "subtitle": "输入你的 Unified Address 以订阅更新。",
+      "feeLine": "一次性 0.05 ZEC 订阅费用",
+      "feeLineRest": "用于支付交易成本。",
+      "categoryEcosystem": "生态新闻",
+      "categoryStats": "网络统计",
+      "addressPlaceholder": "输入你的 Zcash Unified Address",
+      "invalidAddressInline": "地址无效。必须以“u”或“z”开头。",
+      "invalidAddressAlert": "请输入有效的受屏蔽 Zcash 地址。",
+      "generating": "生成中...",
+      "subscribe": "订阅",
+      "doNotEditMemo": "请勿编辑钱包中生成的 memo。",
+      "downloadQR": "下载二维码",
+      "box1Title": "这是什么服务？",
+      "box1Desc": "通过加密 memo，直接经由 Zcash 网络接收 Zcash 生态新闻和网络统计。",
+      "box2Title": "工作原理",
+      "box2DescPre": "我们每周通过一次受屏蔽交易向多个收件人发送新闻简报，使用的是",
+      "box2DescPost": "RPC 方法。",
+      "box3Title": "如何接收更新",
+      "box3DescPre": "输入你的",
+      "box3DescBold": "受屏蔽 Zcash 地址",
+      "box3DescPost": "每周更新将上链发送。无需电子邮件。",
+      "unsubscribe": "取消订阅",
+      "cancelUnsubscribe": "取消退订",
+      "unsubscribePlaceholder": "输入你的 Unified Address 以取消订阅",
+      "confirmUnsubscribe": "确认取消订阅"
+    },
+    "aiAssistant": {
+      "copyResponse": "复制回复",
+      "copied": "已复制",
+      "copy": "复制",
+      "botName": "ZecHub AI",
+      "thinking": "ZecHub AI 正在思考...",
+      "privacyNotice": "问题由 OpenAI 处理。切勿分享助记词、私钥或钱包地址。",
+      "clearConversation": "清除对话",
+      "clear": "清除",
+      "getStarted": "用一个问题开始：",
+      "sensitiveWarning": "这看起来像敏感的钱包数据。切勿向任何服务分享私钥或助记词。",
+      "inputPlaceholder": "输入问题...（Enter 发送，Shift+Enter 换行）",
+      "sendMessage": "发送消息",
+      "enterHint": "Enter 发送，Shift+Enter 换行",
+      "messageTooLong": "消息过长（最多 {max} 个字符）。",
+      "unknownError": "未知错误。",
+      "serverError": "服务器错误 {status}",
+      "somethingWrong": "出了点问题。",
+      "quickQuestions": [
+        "什么是 Zcash？",
+        "什么是 ZecHub？",
+        "受屏蔽交易是如何运作的？",
+        "哪些钱包支持 Zcash？",
+        "z-address 和 t-address 有什么区别？",
+        "我该如何开始使用 ZEC？",
+        "什么是 Zcash 开发基金？",
+        "什么是 zk-SNARKs？"
+      ]
+    }
+  },
+  "sideMenu": {
+    "navigation": "导航",
+    "explore": "探索"
+  },
+  "meta": {
+    "title": "ZecHub 维基",
+    "description": "一个面向 Zcash 的开源教育中心"
   }
 }
