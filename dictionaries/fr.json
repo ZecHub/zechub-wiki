@@ -486,6 +486,9 @@
       "bannerAlt": "wiki-banner"
     },
     "dex": {
+      "title": "Échanges décentralisés",
+      "subtitle": "ZecHub n’approuve aucun service d’échange décentralisé en particulier, veuillez faire vos propres recherches.",
+      "centralised": "Plateformes d’échange centralisées",
       "centralizedTitle": "Liste des plateformes d'échange centralisées",
       "custodial": "Exchanges dépositaires"
     },
