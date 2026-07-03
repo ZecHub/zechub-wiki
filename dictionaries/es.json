@@ -495,7 +495,20 @@
       "subtitle": "ZecHub no respalda ningún servicio de intercambio descentralizado en particular, por favor haz tu propia investigación.",
       "centralised": "Plataformas de intercambio centralizadas",
       "centralizedTitle": "Listado de plataformas de intercambio centralizado",
-      "custodial": "Exchanges con custodia"
+      "custodial": "Exchanges con custodia",
+      "exchanges": {
+        "Near-intents": "Intercambio rápido con el respaldo de NEAR. Haz depósitos, vende e intercambia, incluidos los populares TRUMP, MELANIA, BERA y otros memes",
+        "Nativeswap": "Trading nativo cross-chain sin barreras a través de Maya Protocol. Opera directamente on-chain sin puentes ni tokens envueltos: disfruta de comisiones bajas dentro de la industria y control total de tus activos.",
+        "Firo DEX": "Swaps descentralizados sin confianza mediante atomic swaps con FiroDEX!.",
+        "LeoDEX": "Una interfaz de intercambio cripto cross-chain para Maya Protocol, Thorchain, ChainFlip y Rango. BTC, ETH, RUNE, DASH, LTC y más",
+        "Bison Wallet": "Intercambia cripto de persona a persona. Sin comisiones de trading. Sin KYC.",
+        "THORSwap": "DEX cross-chain impulsado por THORChain, que permite swaps nativos entre Bitcoin, Ethereum y otros activos principales sin tokens envueltos.",
+        "Router Protocol": "Capa de transporte de liquidez cross-chain que permite la transferencia fluida de activos y datos entre múltiples blockchains.",
+        "Peer": "Exchange descentralizado peer-to-peer que permite transacciones cripto directas con mayor privacidad y control del usuario.",
+        "RocketX": "Agregador DEX híbrido que permite swaps cross-chain entre múltiples blockchains con enrutamiento óptimo y tasas competitivas.",
+        "THORChain": "Exchange cross-chain descentralizado de Capa 1. Intercambia activos nativos como ZEC, BTC y ETH directamente, sin puentes, tokens envueltos ni intermediarios.",
+        "Loofta": "Plataforma privada de pagos y swaps sin custodia. Envía y recibe cripto de forma privada entre cadenas, con Zcash como capa de liquidación para una mayor privacidad financiera."
+      }
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -1050,7 +1063,27 @@
       "followOnX": "Seguir en X/BS",
       "projectSiteLabel": "Sitio del proyecto",
       "linkLabel": "Enlace",
-      "footerInfo": "El programa de Embajadores Globales de Zcash apoya iniciativas impulsadas por la comunidad para promover la adopción de tecnología centrada en la privacidad. Cada proyecto de embajador opera de forma independiente mientras contribuye al ecosistema más amplio de Zcash."
+      "footerInfo": "El programa de Embajadores Globales de Zcash apoya iniciativas impulsadas por la comunidad para promover la adopción de tecnología centrada en la privacidad. Cada proyecto de embajador opera de forma independiente mientras contribuye al ecosistema más amplio de Zcash.",
+      "mapTitle": "Mapa de Embajadores de Zcash",
+      "mapSubtitle": "Promoción de Zcash impulsada por la comunidad en {count} comunidades activas.",
+      "globeView": "Vista de globo",
+      "mapView": "Vista de mapa",
+      "loadError": "No se pudieron cargar los datos de los embajadores.",
+      "projects": {
+        "Zcash Korea": "Comunidad y promoción de Zcash en Corea",
+        "Zcash Russia": "Comunidad y promoción de Zcash en Rusia",
+        "Zcash Arabia": "Comunidad y promoción de Zcash en la región arabohablante",
+        "Zcash Brazil": "Comunidad y promoción de Zcash en Brasil",
+        "Zcash Ghana": "Comunidad y promoción de Zcash en Ghana",
+        "Zcash Español": "Comunidad y promoción de Zcash en la región hispanohablante",
+        "Zcash Nigeria": "Comunidad y promoción de Zcash en Nigeria",
+        "Zcash Ukraine": "Comunidad y promoción de Zcash en Ucrania",
+        "Zcash Turkey": "Comunidad y promoción de Zcash en Turquía",
+        "Zcash India": "Comunidad y promoción de Zcash en India",
+        "Zcash East Africa": "Zcash East Africa está dedicada a promover la privacidad digital, la libertad financiera y la innovación blockchain mediante educación, eventos comunitarios, talleres técnicos y desarrollo del ecosistema. La iniciativa busca crear un centro regional donde las personas puedan explorar tecnologías que mejoran la privacidad, aprender sobre pruebas de conocimiento cero y participar en la creciente red global de Zcash.",
+        "Zcash South Africa": "Privacidad🛡️. Libertad. Comunidad de Zcash 🦓 para la región de Sudáfrica"
+      },
+      "globeTitle": "Globo Embajador de Zcash"
     }
   },
   "developers": {
