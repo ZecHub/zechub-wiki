@@ -486,6 +486,9 @@
       "bannerAlt": "wiki-banner"
     },
     "dex": {
+      "title": "Intercambios descentralizados",
+      "subtitle": "ZecHub no respalda ningún servicio de intercambio descentralizado en particular, por favor haz tu propia investigación.",
+      "centralised": "Plataformas de intercambio centralizadas",
       "centralizedTitle": "Listado de plataformas de intercambio centralizado",
       "custodial": "Exchanges con custodia"
     },
