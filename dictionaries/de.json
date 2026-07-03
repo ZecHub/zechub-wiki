@@ -495,7 +495,20 @@
       "subtitle": "ZecHub unterstützt keinen bestimmten Dienst für dezentrale Börsen; bitte recherchiere selbst.",
       "centralised": "Zentralisierte Swap-Plattformen",
       "centralizedTitle": "Listing auf zentralisierten Swap-Plattformen",
-      "custodial": "Verwahrende Börsen"
+      "custodial": "Verwahrende Börsen",
+      "exchanges": {
+        "Near-intents": "Schneller Tausch mit Unterstützung von NEAR. Einzahlen, verkaufen und tauschen, einschließlich beliebter TRUMP-, MELANIA-, BERA- und anderer Meme-Token",
+        "Nativeswap": "Native Cross-Chain-Trades ohne Barrieren über Maya Protocol. Handle direkt on-chain ohne Brücken oder Wrapped Tokens – mit branchenweit niedrigen Gebühren und voller Kontrolle über deine Assets.",
+        "Firo DEX": "Vertrauenslose dezentrale Swaps mit Atomic Swaps über FiroDEX!",
+        "LeoDEX": "Eine Cross-Chain-Krypto-Swap-Oberfläche für Maya Protocol, Thorchain, ChainFlip und Rango. BTC, ETH, RUNE, DASH, LTC und mehr",
+        "Bison Wallet": "Handle Krypto direkt von Person zu Person. Keine Handelsgebühren. Kein KYC.",
+        "THORSwap": "Cross-Chain-DEX auf Basis von THORChain, die native Swaps zwischen Bitcoin, Ethereum und anderen wichtigen Assets ohne Wrapped Tokens ermöglicht.",
+        "Router Protocol": "Cross-Chain-Liquiditätstransport-Layer, der nahtlose Asset- und Datenübertragungen zwischen mehreren Blockchains ermöglicht.",
+        "Peer": "Dezentrale Peer-to-Peer-Börse, die direkte Krypto-Transaktionen mit mehr Privatsphäre und Nutzerkontrolle ermöglicht.",
+        "RocketX": "Hybrider DEX-Aggregator für Cross-Chain-Swaps über mehrere Blockchains mit optimalem Routing und wettbewerbsfähigen Kursen.",
+        "THORChain": "Dezentrale Layer-1-Cross-Chain-Börse. Tausche native Assets wie ZEC, BTC und ETH direkt – ohne Brücken, Wrapped Tokens oder Vermittler.",
+        "Loofta": "Non-custodial Plattform für private Zahlungen und Swaps. Sende und empfange Krypto privat über verschiedene Chains hinweg, mit Zcash als Settlement-Layer für mehr finanzielle Privatsphäre."
+      }
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -1050,7 +1063,27 @@
       "followOnX": "Auf X/BS folgen",
       "projectSiteLabel": "Projektseite",
       "linkLabel": "Link",
-      "footerInfo": "Das Programm Zcash Global Ambassadors unterstützt community-getragene Initiativen zur Förderung der Verbreitung datenschutzorientierter Technologien. Jedes Ambassador-Projekt arbeitet eigenständig und trägt zugleich zum breiteren Zcash-Ökosystem bei."
+      "footerInfo": "Das Programm Zcash Global Ambassadors unterstützt community-getragene Initiativen zur Förderung der Verbreitung datenschutzorientierter Technologien. Jedes Ambassador-Projekt arbeitet eigenständig und trägt zugleich zum breiteren Zcash-Ökosystem bei.",
+      "mapTitle": "Zcash-Botschafterkarte",
+      "mapSubtitle": "Community-geführte Zcash-Aufklärungsarbeit in {count} aktiven Communities.",
+      "globeView": "Globusansicht",
+      "mapView": "Kartenansicht",
+      "loadError": "Botschafterdaten konnten nicht geladen werden.",
+      "projects": {
+        "Zcash Korea": "Zcash-Community und Aufklärungsarbeit in Korea",
+        "Zcash Russia": "Zcash-Community und Aufklärungsarbeit in Russland",
+        "Zcash Arabia": "Zcash-Community und Aufklärungsarbeit in der arabischsprachigen Region",
+        "Zcash Brazil": "Zcash-Community und Aufklärungsarbeit in Brasilien",
+        "Zcash Ghana": "Zcash-Community und Aufklärungsarbeit in Ghana",
+        "Zcash Español": "Zcash-Community und Aufklärungsarbeit in der spanischsprachigen Region",
+        "Zcash Nigeria": "Zcash-Community und Aufklärungsarbeit in Nigeria",
+        "Zcash Ukraine": "Zcash-Community und Aufklärungsarbeit in der Ukraine",
+        "Zcash Turkey": "Zcash-Community und Aufklärungsarbeit in der Türkei",
+        "Zcash India": "Zcash-Community und Aufklärungsarbeit in Indien",
+        "Zcash East Africa": "Zcash East Africa setzt sich dafür ein, digitale Privatsphäre, finanzielle Freiheit und Blockchain-Innovation durch Bildung, Community-Events, technische Workshops und die Entwicklung des Ökosystems zu fördern. Die Initiative möchte ein regionales Zentrum schaffen, in dem Menschen Privacy-Enhancing-Technologien entdecken, mehr über Zero-Knowledge-Proofs lernen und am wachsenden globalen Zcash-Netzwerk teilnehmen können.",
+        "Zcash South Africa": "Privatsphäre🛡️. Freiheit. Zcash 🦓 Community für die südafrikanische Region"
+      },
+      "globeTitle": "Zcash-Botschafter-Globus"
     }
   },
   "developers": {
