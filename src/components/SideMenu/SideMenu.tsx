@@ -96,7 +96,7 @@ const SideMenu = ({ folder, roots }: MenuProps) => {
           isMenuOpen ? "block mt-7" : "hidden xl:block"
         }`}
       >
-        <h1 className="text-4xl font-bold mb-6"> {fold}: </h1>
+        <h1 className="text-4xl font-bold mb-6"> {chromeLabel(fold)}: </h1>
         <div>
           <ul>
             {root.map((item: any, i: any) => {
