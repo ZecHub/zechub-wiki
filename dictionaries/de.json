@@ -486,6 +486,9 @@
       "bannerAlt": "wiki-banner"
     },
     "dex": {
+      "title": "Dezentrale Börsen",
+      "subtitle": "ZecHub unterstützt keinen bestimmten Dienst für dezentrale Börsen; bitte recherchiere selbst.",
+      "centralised": "Zentralisierte Swap-Plattformen",
       "centralizedTitle": "Listing auf zentralisierten Swap-Plattformen",
       "custodial": "Verwahrende Börsen"
     },
