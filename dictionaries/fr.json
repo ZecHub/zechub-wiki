@@ -94,7 +94,12 @@
     "Zingo Labs": "Zingo Labs",
     "Zingolib and Zaino Tutorial": "Tutoriel Zingolib et Zaino",
     "Zkool Multisig": "Multisig Zkool",
-    "Custodial Exchanges": "Exchanges dépositaires"
+    "Custodial Exchanges": "Exchanges dépositaires",
+    "Zcash Use Cases": "Cas d’usage de Zcash",
+    "Zcash Tech": "Technologie Zcash",
+    "Privacy Tools": "Outils de confidentialité",
+    "Zcash Social Media": "Réseaux sociaux Zcash",
+    "Glossary & FAQ's": "Glossaire et FAQ"
   },
   "exploreMenu": {
     "Full Explore": "Explorer entièrement",
@@ -1036,7 +1041,17 @@
       "tagProtocolDesign": "Conception du protocole",
       "tagZeroKnowledge": "Zero Knowledge"
     },
-    "browseSidebar": "Parcourez les articles avec la barre latérale à gauche 👈"
+    "browseSidebar": "Parcourez les articles avec la barre latérale à gauche 👈",
+    "zcashGlobalAmbassadors": {
+      "title": "Ambassadeurs mondiaux de Zcash",
+      "description": "Les ambassadeurs mondiaux de Zcash sont des leaders de la communauté qui se consacrent à la promotion de l’adoption et de l’éducation autour des cryptomonnaies axées sur la confidentialité à travers le monde. Chaque projet d’ambassadeur met l’accent sur le développement de la notoriété et de l’engagement dans sa région respective.",
+      "activeProjectsHeading": "Projets actifs des ambassadeurs mondiaux",
+      "projectSitesHeading": "Sites et blogs des projets",
+      "followOnX": "Suivre sur X/BS",
+      "projectSiteLabel": "Site du projet",
+      "linkLabel": "Lien",
+      "footerInfo": "Le programme des ambassadeurs mondiaux de Zcash soutient des initiatives menées par la communauté afin de promouvoir l’adoption de technologies axées sur la confidentialité. Chaque projet d’ambassadeur fonctionne de manière indépendante tout en contribuant à l’écosystème Zcash au sens large."
+    }
   },
   "developers": {
     "quickStart": {
