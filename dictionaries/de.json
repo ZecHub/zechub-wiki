@@ -94,7 +94,12 @@
     "Zingo Labs": "Zingo Labs",
     "Zingolib and Zaino Tutorial": "Zingolib und Zaino Tutorial",
     "Zkool Multisig": "Zkool Multisig",
-    "Custodial Exchanges": "Verwahrende Börsen"
+    "Custodial Exchanges": "Verwahrende Börsen",
+    "Zcash Use Cases": "Zcash-Anwendungsfälle",
+    "Zcash Tech": "Zcash-Technologie",
+    "Privacy Tools": "Datenschutz-Tools",
+    "Zcash Social Media": "Zcash in den sozialen Medien",
+    "Glossary & FAQ's": "Glossar & FAQs"
   },
   "exploreMenu": {
     "Full Explore": "Vollständig erkunden",
@@ -1036,7 +1041,17 @@
       "tagProtocolDesign": "Protokolldesign",
       "tagZeroKnowledge": "Zero Knowledge"
     },
-    "browseSidebar": "Durchsuche die Artikel über die linke Seitenleiste 👈"
+    "browseSidebar": "Durchsuche die Artikel über die linke Seitenleiste 👈",
+    "zcashGlobalAmbassadors": {
+      "title": "Zcash Global Ambassadors",
+      "description": "Die Zcash Global Ambassadors sind Community-Leader, die sich weltweit für die Verbreitung und Aufklärung rund um datenschutzorientierte Kryptowährungen einsetzen. Jedes Ambassador-Projekt konzentriert sich darauf, in der jeweiligen Region Bewusstsein, Interesse und Beteiligung zu fördern.",
+      "activeProjectsHeading": "Aktive Global-Ambassador-Projekte",
+      "projectSitesHeading": "Projektseiten & Blogs",
+      "followOnX": "Auf X/BS folgen",
+      "projectSiteLabel": "Projektseite",
+      "linkLabel": "Link",
+      "footerInfo": "Das Programm Zcash Global Ambassadors unterstützt community-getragene Initiativen zur Förderung der Verbreitung datenschutzorientierter Technologien. Jedes Ambassador-Projekt arbeitet eigenständig und trägt zugleich zum breiteren Zcash-Ökosystem bei."
+    }
   },
   "developers": {
     "quickStart": {
