@@ -495,7 +495,20 @@
       "subtitle": "ZecHub 不为任何特定的去中心化交易所服务背书，请自行做好研究。",
       "centralised": "中心化兑换平台",
       "centralizedTitle": "中心化兑换平台列表",
-      "custodial": "托管型交易所"
+      "custodial": "托管型交易所",
+      "exchanges": {
+        "Near-intents": "在 NEAR 支持下进行快速兑换。可充值、卖出、交换，包括热门的 TRUMP、MELANIA、BERA 及其他 meme 代币",
+        "Nativeswap": "通过 Maya Protocol 实现无障碍原生跨链交易。直接在链上交易，无需桥接或包装代币，享受业内低手续费与完整资产控制权。",
+        "Firo DEX": "通过 FiroDEX 使用原子交换进行无需信任的去中心化兑换！",
+        "LeoDEX": "面向 Maya Protocol、Thorchain、ChainFlip 和 Rango 的跨链加密货币兑换界面。支持 BTC、ETH、RUNE、DASH、LTC 等更多资产",
+        "Bison Wallet": "点对点交易加密货币。无交易手续费。无需 KYC。",
+        "THORSwap": "由 THORChain 驱动的跨链 DEX，可在无需包装代币的情况下原生交换 Bitcoin、Ethereum 和其他主流资产。",
+        "Router Protocol": "跨链流动性传输层，支持在多个区块链之间无缝转移资产和数据。",
+        "Peer": "去中心化点对点交易所，支持直接进行加密货币交易，并增强隐私性与用户控制权。",
+        "RocketX": "混合型 DEX 聚合器，支持跨多个区块链进行跨链兑换，提供最优路由和有竞争力的汇率。",
+        "THORChain": "去中心化 Layer 1 跨链交易所。可直接交换 ZEC、BTC、ETH 等原生资产，无需桥接、包装代币或中介。",
+        "Loofta": "非托管的隐私支付与兑换平台。可在不同链之间私密地发送和接收加密货币，并以 Zcash 作为结算层，增强金融隐私。"
+      }
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -1050,7 +1063,27 @@
       "followOnX": "在 X/BS 上关注",
       "projectSiteLabel": "项目网站",
       "linkLabel": "链接",
-      "footerInfo": "Zcash 全球大使计划支持由社区主导的倡议，以推动以隐私为核心的技术采用。各个大使项目独立运作，同时为更广泛的 Zcash 生态作出贡献。"
+      "footerInfo": "Zcash 全球大使计划支持由社区主导的倡议，以推动以隐私为核心的技术采用。各个大使项目独立运作，同时为更广泛的 Zcash 生态作出贡献。",
+      "mapTitle": "Zcash 大使地图",
+      "mapSubtitle": "由社区推动的 Zcash 倡导网络，覆盖 {count} 个活跃社区。",
+      "globeView": "地球视图",
+      "mapView": "地图视图",
+      "loadError": "无法加载大使数据。",
+      "projects": {
+        "Zcash Korea": "韩国的 Zcash 社区与倡导",
+        "Zcash Russia": "俄罗斯的 Zcash 社区与倡导",
+        "Zcash Arabia": "阿拉伯语地区的 Zcash 社区与倡导",
+        "Zcash Brazil": "巴西的 Zcash 社区与倡导",
+        "Zcash Ghana": "加纳的 Zcash 社区与倡导",
+        "Zcash Español": "西班牙语地区的 Zcash 社区与倡导",
+        "Zcash Nigeria": "尼日利亚的 Zcash 社区与倡导",
+        "Zcash Ukraine": "乌克兰的 Zcash 社区与倡导",
+        "Zcash Turkey": "土耳其的 Zcash 社区与倡导",
+        "Zcash India": "印度的 Zcash 社区与倡导",
+        "Zcash East Africa": "Zcash East Africa 致力于通过教育、社区活动、技术研讨会和生态发展，推动数字隐私、金融自由和区块链创新。该计划旨在打造一个区域枢纽，让人们能够探索隐私增强技术、了解零知识证明，并参与不断发展的全球 Zcash 网络。",
+        "Zcash South Africa": "隐私🛡️。自由。面向南非地区的 Zcash 🦓 社区"
+      },
+      "globeTitle": "Zcash 大使地球仪"
     }
   },
   "developers": {
