@@ -94,7 +94,12 @@
     "Zingo Labs": "Zingo Labs",
     "Zingolib and Zaino Tutorial": "دليل Zingolib و Zaino",
     "Zkool Multisig": "تعدد التواقيع في Zkool",
-    "Custodial Exchanges": "منصات تداول وصائية"
+    "Custodial Exchanges": "منصات تداول وصائية",
+    "Zcash Use Cases": "حالات استخدام Zcash",
+    "Zcash Tech": "تقنيات Zcash",
+    "Privacy Tools": "أدوات الخصوصية",
+    "Zcash Social Media": "وسائل التواصل الاجتماعي الخاصة بـ Zcash",
+    "Glossary & FAQ's": "مسرد المصطلحات والأسئلة الشائعة"
   },
   "exploreMenu": {
     "Full Explore": "استكشاف كامل",
@@ -1036,7 +1041,17 @@
       "tagProtocolDesign": "تصميم البروتوكول",
       "tagZeroKnowledge": "المعرفة الصفرية"
     },
-    "browseSidebar": "تصفّح المقالات باستخدام الشريط الجانبي على اليسار 👈"
+    "browseSidebar": "تصفّح المقالات باستخدام الشريط الجانبي على اليسار 👈",
+    "zcashGlobalAmbassadors": {
+      "title": "سفراء Zcash العالميون",
+      "description": "سفراء Zcash العالميون هم قادة مجتمعيون يكرّسون جهودهم لتعزيز اعتماد العملات الرقمية التي تركز على الخصوصية ونشر التوعية بها حول العالم. ويركّز كل مشروع سفير على بناء الوعي وتعزيز التفاعل داخل منطقته.",
+      "activeProjectsHeading": "مشاريع السفراء العالميين النشطة",
+      "projectSitesHeading": "مواقع المشاريع والمدونات",
+      "followOnX": "تابع على X/BS",
+      "projectSiteLabel": "موقع المشروع",
+      "linkLabel": "الرابط",
+      "footerInfo": "يدعم برنامج سفراء Zcash العالميين المبادرات التي يقودها المجتمع لتعزيز اعتماد التقنيات التي تركز على الخصوصية. ويعمل كل مشروع سفير بشكل مستقل مع الإسهام في منظومة Zcash الأوسع."
+    }
   },
   "developers": {
     "quickStart": {
