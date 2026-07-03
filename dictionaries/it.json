@@ -615,6 +615,9 @@
       }
     },
     "dex": {
+      "title": "Exchange decentralizzati",
+      "subtitle": "ZecHub non approva alcun servizio di exchange decentralizzato in particolare; fai le tue ricerche.",
+      "centralised": "Piattaforme di swap centralizzate",
       "custodial": "Exchange custodial",
       "centralizedTitle": "Elenco delle piattaforme di swap centralizzate"
     },

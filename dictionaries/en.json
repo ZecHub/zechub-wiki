@@ -486,6 +486,9 @@
       "bannerAlt": "wiki-banner"
     },
     "dex": {
+      "title": "Decentralised Exchanges",
+      "subtitle": "ZecHub does not endorse any particular Decentralised Exchange service, please do your own research.",
+      "centralised": "Centralised Swap platforms",
       "centralizedTitle": "Centralized Swap Platform Listing",
       "custodial": "Custodial Exchanges"
     },
