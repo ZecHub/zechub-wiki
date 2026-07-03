@@ -94,7 +94,12 @@
     "Zingo Labs": "Zingo Labs",
     "Zingolib and Zaino Tutorial": "Tutorial de Zingolib y Zaino",
     "Zkool Multisig": "Multisig de Zkool",
-    "Custodial Exchanges": "Exchanges con custodia"
+    "Custodial Exchanges": "Exchanges con custodia",
+    "Zcash Use Cases": "Casos de uso de Zcash",
+    "Zcash Tech": "Tecnología de Zcash",
+    "Privacy Tools": "Herramientas de privacidad",
+    "Zcash Social Media": "Redes sociales de Zcash",
+    "Glossary & FAQ's": "Glosario y preguntas frecuentes"
   },
   "exploreMenu": {
     "Full Explore": "Exploración completa",
@@ -1036,7 +1041,17 @@
       "tagProtocolDesign": "Diseño del protocolo",
       "tagZeroKnowledge": "Conocimiento cero"
     },
-    "browseSidebar": "Explora los artículos usando la barra lateral de la izquierda 👈"
+    "browseSidebar": "Explora los artículos usando la barra lateral de la izquierda 👈",
+    "zcashGlobalAmbassadors": {
+      "title": "Embajadores Globales de Zcash",
+      "description": "Los Embajadores Globales de Zcash son líderes de la comunidad dedicados a promover en todo el mundo la adopción y la educación sobre criptomonedas centradas en la privacidad. Cada proyecto de embajador se enfoca en generar conocimiento e impulsar la participación dentro de su región.",
+      "activeProjectsHeading": "Proyectos activos de los Embajadores Globales",
+      "projectSitesHeading": "Sitios de proyectos y blogs",
+      "followOnX": "Seguir en X/BS",
+      "projectSiteLabel": "Sitio del proyecto",
+      "linkLabel": "Enlace",
+      "footerInfo": "El programa de Embajadores Globales de Zcash apoya iniciativas impulsadas por la comunidad para promover la adopción de tecnología centrada en la privacidad. Cada proyecto de embajador opera de forma independiente mientras contribuye al ecosistema más amplio de Zcash."
+    }
   },
   "developers": {
     "quickStart": {
