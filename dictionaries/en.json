@@ -495,7 +495,20 @@
       "subtitle": "ZecHub does not endorse any particular Decentralised Exchange service, please do your own research.",
       "centralised": "Centralised Swap platforms",
       "centralizedTitle": "Centralized Swap Platform Listing",
-      "custodial": "Custodial Exchanges"
+      "custodial": "Custodial Exchanges",
+      "exchanges": {
+        "Near-intents": "Fast exchange with the support of NEAR. Make deposits, sell, swap including popular TRUMP, MELANIA, BERA and other memes",
+        "Nativeswap": "Native Cross-Chain Trading Without Barriers via Maya Protocol. Trade directly on-chain without bridges or wrapped tokens - enjoy industry low fees and complete asset control.",
+        "Firo DEX": "Trustless decentralized swaps using atomic swaps with FiroDEX!.",
+        "LeoDEX": "A crosschain crypto swapping interface for Maya Protocol, Thorchain, ChainFlip and Rango. BTC, ETH, RUNE, DASH, LTC & More",
+        "Bison Wallet": "Trade crypto peer-to-peer. No trading fees. No KYC.",
+        "THORSwap": "Cross-chain DEX powered by THORChain, enabling native swaps between Bitcoin, Ethereum, and other major assets without wrapped tokens.",
+        "Router Protocol": "Cross-chain liquidity transport layer that allows seamless asset and data transfer between multiple blockchains.",
+        "Peer": "Decentralized peer-to-peer exchange enabling direct crypto transactions with enhanced privacy and user control.",
+        "RocketX": "Hybrid DEX aggregator enabling cross-chain swaps across multiple blockchains with optimal routing and competitive rates.",
+        "THORChain": "Decentralized Layer 1 cross-chain exchange. Swap native assets like ZEC, BTC, and ETH directly without bridges, wrapped tokens, or intermediaries.",
+        "Loofta": "Non-custodial private payment and swap platform. Send and receive crypto privately across chains, with Zcash as the settlement layer for enhanced financial privacy."
+      }
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -1050,7 +1063,27 @@
       "followOnX": "Follow on X/BS",
       "projectSiteLabel": "Project Site",
       "linkLabel": "Link",
-      "footerInfo": "The Zcash Global Ambassadors program supports community-led initiatives to promote privacy-focused technology adoption. Each ambassador project operates independently while contributing to the broader Zcash ecosystem."
+      "footerInfo": "The Zcash Global Ambassadors program supports community-led initiatives to promote privacy-focused technology adoption. Each ambassador project operates independently while contributing to the broader Zcash ecosystem.",
+      "mapTitle": "Zcash Ambassador Map",
+      "mapSubtitle": "Community-led Zcash advocacy across {count} active communities.",
+      "globeView": "Globe view",
+      "mapView": "Map view",
+      "loadError": "Could not load ambassador data.",
+      "projects": {
+        "Zcash Korea": "Zcash community and advocacy in Korea",
+        "Zcash Russia": "Zcash community and advocacy in Russia",
+        "Zcash Arabia": "Zcash community and advocacy in Arabic-speaking region",
+        "Zcash Brazil": "Zcash community and advocacy in Brazil",
+        "Zcash Ghana": "Zcash community and advocacy in Ghana",
+        "Zcash Español": "Zcash community and advocacy in Spanish-speaking region",
+        "Zcash Nigeria": "Zcash community and advocacy in Nigeria",
+        "Zcash Ukraine": "Zcash community and advocacy in Ukraine",
+        "Zcash Turkey": "Zcash community and advocacy in Turkey",
+        "Zcash India": "Zcash community and advocacy in India",
+        "Zcash East Africa": "Zcash East Africa is dedicated to promoting digital privacy, financial freedom, and blockchain innovation through education, community events, technical workshops, and ecosystem development. The initiative aims to create a regional hub where individuals can explore privacy enhancing technologies, learn about zero knowledge proofs, and participate in the growing global Zcash network.",
+        "Zcash South Africa": "Privacy🛡️. Freedom. Zcash 🦓 Community for South African region"
+      },
+      "globeTitle": "Zcash Ambassador Globe"
     }
   },
   "developers": {
