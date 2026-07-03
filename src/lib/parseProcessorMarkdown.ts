@@ -29,12 +29,14 @@ export function parseProcessorMarkdown(md: string) {
       }
     }
 
-    // Parse other fields
-    const supportTypeMatch = lines[1]?.match(/- \*\*Support Type\*\*: (.*)/);
-    const descriptionMatch = lines[2]?.match(/- \*\*Description\*\*: (.*)/);
-    
+    // Parse other fields by POSITION with a generic bold label, so translated
+    // field labels (e.g. "Tipo di supporto"/"Descrizione") still parse — the
+    // parser must not depend on English label text.
+    const supportTypeMatch = lines[1]?.match(/- \*\*[^*]+\*\*:\s*(.*)/);
+    const descriptionMatch = lines[2]?.match(/- \*\*[^*]+\*\*:\s*(.*)/);
+
     // Get URL from URL line if not already set from title
-    const urlLineMatch = lines[3]?.match(/- \*\*URL\*\*: \[.*?\]\((.*?)\)/);
+    const urlLineMatch = lines[3]?.match(/- \*\*[^*]+\*\*:\s*\[.*?\]\((.*?)\)/);
     if (!url && urlLineMatch) {
       url = urlLineMatch[1];
     }
