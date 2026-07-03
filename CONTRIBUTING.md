@@ -11,6 +11,11 @@ If you're reading this page, we're really excited that you're considering contri
 
 To get an overview of ZecHub Wiki, read the [README](/README.md).
 
+Translating the wiki or working on multilingual support? See the
+[internationalization (i18n) architecture guide](/docs/i18n.md) — it explains
+the translation workflow and how to add a language without reading the whole
+codebase.
+
 ## Join the conversation
 
 First, join the conversation in the [Zcash Global discord](https://discord.gg/zcash). There's a ZecHub section where we chat about all things ZecHub :smile:
