@@ -486,6 +486,9 @@
       "bannerAlt": "wiki-banner"
     },
     "dex": {
+      "title": "Bolsas Descentralizadas",
+      "subtitle": "A ZecHub não endossa nenhum serviço específico de Bolsa Descentralizada, por favor faça sua própria pesquisa.",
+      "centralised": "Plataformas de troca centralizadas",
       "centralizedTitle": "Listagem em Plataforma de Swap Centralizada",
       "custodial": "Exchanges Custodiais"
     },
