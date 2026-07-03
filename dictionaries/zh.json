@@ -94,7 +94,12 @@
     "Zingo Labs": "Zingo Labs",
     "Zingolib and Zaino Tutorial": "Zingolib 和 Zaino 教程",
     "Zkool Multisig": "Zkool 多重签名",
-    "Custodial Exchanges": "托管型交易所"
+    "Custodial Exchanges": "托管型交易所",
+    "Zcash Use Cases": "Zcash 使用场景",
+    "Zcash Tech": "Zcash 技术",
+    "Privacy Tools": "隐私工具",
+    "Zcash Social Media": "Zcash 社交媒体",
+    "Glossary & FAQ's": "术语表与常见问题"
   },
   "exploreMenu": {
     "Full Explore": "完整探索",
@@ -1036,7 +1041,17 @@
       "tagProtocolDesign": "协议设计",
       "tagZeroKnowledge": "零知识"
     },
-    "browseSidebar": "使用左侧边栏浏览文章 👈"
+    "browseSidebar": "使用左侧边栏浏览文章 👈",
+    "zcashGlobalAmbassadors": {
+      "title": "Zcash 全球大使",
+      "description": "Zcash 全球大使是致力于在世界各地推动以隐私为核心的加密货币采用与教育的社区领袖。每个大使项目都专注于在各自所在地区提升认知度与社区参与度。",
+      "activeProjectsHeading": "正在进行的全球大使项目",
+      "projectSitesHeading": "项目网站与博客",
+      "followOnX": "在 X/BS 上关注",
+      "projectSiteLabel": "项目网站",
+      "linkLabel": "链接",
+      "footerInfo": "Zcash 全球大使计划支持由社区主导的倡议，以推动以隐私为核心的技术采用。各个大使项目独立运作，同时为更广泛的 Zcash 生态作出贡献。"
+    }
   },
   "developers": {
     "quickStart": {
