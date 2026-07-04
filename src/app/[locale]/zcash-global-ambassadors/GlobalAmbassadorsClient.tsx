@@ -44,10 +44,12 @@ function AmbassadorBanner({
 // ── Card (now with modern pop-out effect) ───────────────────────────────────
 function AmbassadorCard({
   project,
+  description,
   followLabel,
   projectSiteLabel,
 }: {
   project: (typeof ambassadorProjects)[number];
+  description: string;
   followLabel: string;
   projectSiteLabel: string;
 }) {
@@ -72,7 +74,7 @@ function AmbassadorCard({
 
         {/* Description */}
         <p className="text-sm text-muted-foreground flex-1 leading-relaxed">
-          {project.description}
+          {description}
         </p>
 
         {/* CTAs */}
@@ -154,6 +156,10 @@ export default function GlobalAmbassadorsClient() {
               <AmbassadorCard
                 key={getProjectKey(project)}
                 project={project}
+                description={
+                  t?.pages?.zcashGlobalAmbassadors?.projects?.[project.name] ??
+                  project.description
+                }
                 followLabel={followLabel}
                 projectSiteLabel={projectSiteLabel}
               />

@@ -11,6 +11,7 @@ import Globe from "./Globe";
 import { Globe2, Map as MapIcon } from "lucide-react";
 import { PinDetails } from "./pin-details";
 import { StatsBar } from "./stats-bar";
+import { useLanguage } from "@/context/LanguageContext";
 import "./style.css";
 
 type ViewMode = "globe" | "map";
@@ -48,6 +49,8 @@ interface GeoJSONData {
 }
 
 export default function GlobalAmbassadorsMap() {
+  const { t } = useLanguage();
+  const amb = t?.pages?.zcashGlobalAmbassadors;
   const mapContainRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<any>(null);
   const markersRef = useRef<any[]>([]);
@@ -86,7 +89,7 @@ export default function GlobalAmbassadorsMap() {
         setLoading(false);
       })
       .catch((err) => {
-        setError("Could not load ambassador data.");
+        setError(amb?.loadError ?? "Could not load ambassador data.");
         setLoading(false);
         console.error(err);
       });
@@ -332,7 +335,9 @@ export default function GlobalAmbassadorsMap() {
                   lineHeight: 1.1,
                 }}
               >
-                Zcash Ambassador {viewMode === "globe" ? "Globe" : "Map"}
+                {viewMode === "globe"
+                  ? (amb?.globeTitle ?? "Zcash Ambassador Globe")
+                  : (amb?.mapTitle ?? "Zcash Ambassador Map")}
               </h1>
               <p
                 style={{
@@ -343,8 +348,11 @@ export default function GlobalAmbassadorsMap() {
                   lineHeight: 1.6,
                 }}
               >
-                Community-led Zcash advocacy across {ambassadors.length}{" "}
-                active communities.
+                {(amb?.mapSubtitle ??
+                  "Community-led Zcash advocacy across {count} active communities.").replace(
+                  "{count}",
+                  String(ambassadors.length),
+                )}
               </p>
             </div>
 
@@ -368,9 +376,9 @@ export default function GlobalAmbassadorsMap() {
                   <button
                     key={mode}
                     onClick={() => setViewMode(mode)}
-                    title={mode === "globe" ? "Globe view" : "Map view"}
+                    title={mode === "globe" ? (amb?.globeView ?? "Globe view") : (amb?.mapView ?? "Map view")}
                     aria-pressed={isActive}
-                    aria-label={mode === "globe" ? "Globe view" : "Map view"}
+                    aria-label={mode === "globe" ? (amb?.globeView ?? "Globe view") : (amb?.mapView ?? "Map view")}
                     style={{
                       display: "inline-flex",
                       alignItems: "center",

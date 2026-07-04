@@ -40,7 +40,7 @@ export default function DexClient() {
         {decentralizedExchanges.map((itm, i) => (
           <Card
             thumbnailImage={itm.image}
-            description={itm.description}
+            description={t?.pages?.dex?.exchanges?.[itm.title] ?? itm.description}
             title={itm.title}
             url={itm.url}
             key={itm.title + "_" + Math.random() / i}
