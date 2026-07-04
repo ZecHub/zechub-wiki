@@ -140,7 +140,7 @@
     {
       "title": "Soberania Econômica e Blockchain.",
       "video_id": "3aWWRJXtZKI",
-      "views": 608
+      "views": 609
     },
     {
       "title": "Bitcoin deveria adotar um nível de proteção semelhante ao da Zcash.",
@@ -510,7 +510,7 @@
     {
       "title": "Sean Bowe sobre Projeto Tachyon",
       "video_id": "BjgEr_ho2OE",
-      "views": 192
+      "views": 193
     },
     {
       "title": "Sistema Híbrido: Como a Zcash Equilibra Voz e Consenso",
@@ -855,7 +855,7 @@
     {
       "title": "Emma Steuer - Dinheiro privado imparável.",
       "video_id": "nNZ9qqkQyoE",
-      "views": 124
+      "views": 125
     },
     {
       "title": "O que privacidade significa para você em uma palavra.",
@@ -1683,6 +1683,11 @@
       "views": 64
     },
     {
+      "title": "A História da Privacidade Antes do Bitcoin | Michael2xl e Aamandita | Zcon Vozes 2",
+      "video_id": "dThpYkr0xg8",
+      "views": 64
+    },
+    {
       "title": "O tripe do poder atual- governos, mega corporações e bancos",
       "video_id": "MwWxvpJdQ6M",
       "views": 63
@@ -1700,11 +1705,6 @@
     {
       "title": "O que o ex-CEO do Goldman Sachs falou sobre Zcash",
       "video_id": "AsiSVLndB-k",
-      "views": 62
-    },
-    {
-      "title": "A História da Privacidade Antes do Bitcoin | Michael2xl e Aamandita | Zcon Vozes 2",
-      "video_id": "dThpYkr0xg8",
       "views": 62
     },
     {
@@ -2178,6 +2178,11 @@
       "views": 42
     },
     {
+      "title": "Desenvolvendo produtos digitais na nova economia. | Camila Nikolaus",
+      "video_id": "TqMSytKLe_4",
+      "views": 42
+    },
+    {
       "title": "Modular Crypto X Zcash Brasil -Twitter Spaces",
       "video_id": "uGG-_Ge_Nq8",
       "views": 41
@@ -2210,11 +2215,6 @@
     {
       "title": "Educação Financeira Antes de Investir em Cripto",
       "video_id": "Pkn_87aUuC8",
-      "views": 41
-    },
-    {
-      "title": "Desenvolvendo produtos digitais na nova economia. | Camila Nikolaus",
-      "video_id": "TqMSytKLe_4",
       "views": 41
     },
     {
@@ -2793,6 +2793,11 @@
       "views": 27
     },
     {
+      "title": "Quando o compliance vira vigilância?",
+      "video_id": "JGoLizC1x84",
+      "views": 27
+    },
+    {
       "title": "Zooko - O Visionário por trás da #Zcash",
       "video_id": "ekCUOdqyLyg",
       "views": 26
@@ -2935,11 +2940,6 @@
     {
       "title": "Zcash.me e Zcash Names: Pagamentos Privados com Endereços Legíveis | Engineering #7",
       "video_id": "Fd5N0QshWng",
-      "views": 24
-    },
-    {
-      "title": "Quando o compliance vira vigilância?",
-      "video_id": "JGoLizC1x84",
       "views": 24
     },
     {
@@ -3673,13 +3673,13 @@
       "views": 4
     },
     {
-      "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
-      "video_id": "XgtJXKqv-ZE",
-      "views": 3
-    },
-    {
       "title": "Como a Solana está Construindo o Seu Ecossistema no Brasil | Pedro “Kuka” | Zcon Vozes 2",
       "video_id": "FFLKQe3ISwo",
+      "views": 4
+    },
+    {
+      "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
+      "video_id": "XgtJXKqv-ZE",
       "views": 3
     }
   ]
