@@ -808,6 +808,11 @@
       "views": 247
     },
     {
+      "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
+      "video_id": "hzUdmwq23ac",
+      "views": 239
+    },
+    {
       "title": "Zcash Arborist Call 06-11-2026",
       "video_id": "SKNivdDz9qI",
       "views": 239
@@ -815,11 +820,6 @@
     {
       "title": "MGRC Candidate Q&A Live Streams: Time Slot #1",
       "video_id": "_CVDdKot54A",
-      "views": 238
-    },
-    {
-      "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
-      "video_id": "hzUdmwq23ac",
       "views": 238
     },
     {
@@ -1063,13 +1063,13 @@
       "views": 191
     },
     {
-      "title": "FROST Implementation Update with Natalie and Conrado - ZconV: Zcash Unified 2024 #Zcash #ZEC",
-      "video_id": "LYisNtBul18",
-      "views": 188
-    },
-    {
       "title": "Zcash Arborist Call 06-25-2026",
       "video_id": "Ni-Bp0p8W4s",
+      "views": 189
+    },
+    {
+      "title": "FROST Implementation Update with Natalie and Conrado - ZconV: Zcash Unified 2024 #Zcash #ZEC",
+      "video_id": "LYisNtBul18",
       "views": 188
     },
     {
@@ -1533,6 +1533,11 @@
       "views": 115
     },
     {
+      "title": "Johnny Zcash live at Zcon4",
+      "video_id": "G_jBeOL8H-o",
+      "views": 115
+    },
+    {
       "title": "Zcash Arborist Call 10/31/2024",
       "video_id": "aNXZ9ctjW-w",
       "views": 115
@@ -1541,11 +1546,6 @@
       "title": "ZF Community Call: FROST Server Demo",
       "video_id": "Z4N2TDFxdFA",
       "views": 115
-    },
-    {
-      "title": "Johnny Zcash live at Zcon4",
-      "video_id": "G_jBeOL8H-o",
-      "views": 114
     },
     {
       "title": "Zcash Arborist Call 2/8/2024",
@@ -1595,7 +1595,7 @@
     {
       "title": "Zcash Global Ambassador Lightning Talks: Zcon4",
       "video_id": "7nn0gq7PG9I",
-      "views": 107
+      "views": 108
     },
     {
       "title": "Programmable Privacy Recommendations for Zcash",
