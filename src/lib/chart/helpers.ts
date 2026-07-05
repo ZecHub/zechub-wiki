@@ -23,9 +23,7 @@ export async function getBlockchainData(
   signal?: AbortSignal,
 ): Promise<BlockchainInfo | null> {
   try {
-    const res = await fetch(url, {
-      signal,
-    });
+    const res = await fetch(url, { signal });
     if (!res.ok) return null;
     const json = await res.json();
     return json.data as BlockchainInfo;
@@ -33,21 +31,21 @@ export async function getBlockchainData(
     return null;
   }
 }
+
 export async function getIssuanceData(
   url: string,
   signal?: AbortSignal,
 ): Promise<IssuanceParsed[] | null> {
   try {
-    const res = await fetch(url, {
-      signal,
-    });
+    const res = await fetch(url, { signal });
     if (!res.ok) return null;
-    const data: Issuance[] = await res.json();
+
+    const data: any[] = await res.json(); // ← use any[] here
 
     const parsed = data.map((entry) => ({
       Date: entry.Date,
-      zecIssuance: parseFloat(entry["ZEC  Supply"]),
-      zecSupply: parseFloat(entry["ZEC  Supply"]),
+      zecIssuance: parseFloat(entry["ZEC Supply"]),
+      zecSupply: parseFloat(entry["ZEC Supply"]),
       inflation: parseFloat(entry["Current Inflation (%)"]),
     }));
 
@@ -62,9 +60,7 @@ export async function getZcashCirculationCount(
   signal?: AbortSignal,
 ): Promise<number | null> {
   try {
-    const res = await fetch(url, {
-      signal,
-    });
+    const res = await fetch(url, { signal });
     if (!res.ok) return null;
     const json = await res.json();
     return parseInt(json.chainSupply.chainValueZat, 10) * 1e-8;
@@ -78,9 +74,7 @@ export async function getSupplyData(
   signal?: AbortSignal,
 ): Promise<SupplyData[]> {
   try {
-    const res = await fetch(url, {
-      signal,
-    });
+    const res = await fetch(url, { signal });
     if (!res.ok) return [];
     return (await res.json()) as SupplyData[];
   } catch {
@@ -100,12 +94,8 @@ export async function getLastUpdatedDate(
         "User-Agent": "ZecHub-App",
       },
     });
-
     if (!res.ok) return "N/A";
     const d = await res.json();
-
-    console.log("d", d);
-
     return d[d.length - 1]?.commit?.committer?.date ?? "N/A";
   } catch {
     return "N/A";
@@ -128,8 +118,8 @@ export function getCommitUrlForTab(tabLabel: string): string {
     "mining pools": "",
     "Halving Meter": "",
     "total supply": DATE_URL.totalSupplyUrl,
+    ironwood: DATE_URL.ironwoodUrl, // ← added
   };
-
   return urlMap[tabLabel] || DATE_URL.defaultUrl;
 }
 
@@ -138,9 +128,7 @@ export async function getShieldedTxCount(
   signal?: AbortSignal,
 ): Promise<ShieldedTxCount[] | null> {
   try {
-    const res = await fetch(url, {
-      signal,
-    });
+    const res = await fetch(url, { signal });
     if (!res.ok) return null;
     return (await res.json()) as ShieldedTxCount[];
   } catch {
@@ -154,9 +142,7 @@ export async function getMiningHistory(
   signal?: AbortSignal,
 ): Promise<MiningHistoryResponse | null> {
   try {
-    const res = await fetch(`${url}?range=${encodeURIComponent(range)}`, {
-      signal,
-    });
+    const res = await fetch(`${url}?range=${encodeURIComponent(range)}`, { signal });
     if (!res.ok) return null;
     return (await res.json()) as MiningHistoryResponse;
   } catch {
@@ -170,9 +156,7 @@ export async function getMiningPools(
   signal?: AbortSignal,
 ): Promise<MiningPoolsResponse | null> {
   try {
-    const res = await fetch(`${url}?interval=${encodeURIComponent(interval)}`, {
-      signal,
-    });
+    const res = await fetch(`${url}?interval=${encodeURIComponent(interval)}`, { signal });
     if (!res.ok) return null;
     return (await res.json()) as MiningPoolsResponse;
   } catch {
@@ -186,9 +170,7 @@ export async function getMiningPoolsDominance(
   signal?: AbortSignal,
 ): Promise<MiningPoolDominanceResponse | null> {
   try {
-    const res = await fetch(`${url}?range=${encodeURIComponent(range)}`, {
-      signal,
-    });
+    const res = await fetch(`${url}?range=${encodeURIComponent(range)}`, { signal });
     if (!res.ok) return null;
     return (await res.json()) as MiningPoolDominanceResponse;
   } catch {
@@ -201,9 +183,7 @@ export async function getNodeCountData(
   signal?: AbortSignal,
 ): Promise<NodeCountData[]> {
   try {
-    const res = await fetch(url, {
-      signal,
-    });
+    const res = await fetch(url, { signal });
     if (!res.ok) return [];
     return (await res.json()) as NodeCountData[];
   } catch {
@@ -217,89 +197,68 @@ export async function getLockboxData(
 ): Promise<LockBox[]> {
   try {
     const res = await fetch(url, { signal });
-
     if (!res.ok) {
       console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
       return [];
     }
-
-    const data: any[] = await res.json();
-    return data;
+    return await res.json();
   } catch (err: any) {
-    if (err.name === "AbortError") {
-      console.warn("Fetch aborted.");
-    } else {
-      console.error(err.message || err);
-    }
+    if (err.name === "AbortError") console.warn("Fetch aborted.");
+    else console.error(err.message || err);
     return [];
   }
 }
+
 export async function getNetInOutflowData(
   url: string,
   signal?: AbortSignal,
 ): Promise<NetInOutflow[]> {
   try {
     const res = await fetch(url, { signal });
-
     if (!res.ok) {
       console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
       return [];
     }
-
-    const data: any[] = await res.json();
-    return data;
+    return await res.json();
   } catch (err: any) {
-    if (err.name === "AbortError") {
-      console.warn("Fetch aborted.");
-    } else {
-      console.error(err.message || err);
-    }
+    if (err.name === "AbortError") console.warn("Fetch aborted.");
+    else console.error(err.message || err);
     return [];
   }
 }
+
 export async function getDifficultyData(
   url: string,
   signal?: AbortSignal,
 ): Promise<Difficulty[]> {
   try {
     const res = await fetch(url, { signal });
-
     if (!res.ok) {
       console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
       return [];
     }
-
-    const data: any[] = await res.json();
-    return data;
+    return await res.json();
   } catch (err: any) {
-    if (err.name === "AbortError") {
-      console.warn("Fetch aborted.");
-    } else {
-      console.error(err.message || err);
-    }
+    if (err.name === "AbortError") console.warn("Fetch aborted.");
+    else console.error(err.message || err);
     return [];
   }
 }
+
 export async function getNetworkSolpsData(
   url: string,
   signal?: AbortSignal,
 ): Promise<NetworkSolps[]> {
   try {
     const res = await fetch(url, { signal });
-
     if (!res.ok) {
       console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
       return [];
     }
-
-    const data: any[] = await res.json();
-    return data;
+    return await res.json();
   } catch (err: any) {
-    if (err.name === "AbortError") {
-      console.warn("Fetch aborted.");
-    } else {
-      console.error(err.message || err);
-    }
+    if (err.name === "AbortError") console.warn("Fetch aborted.");
+    else console.error(err.message || err);
     return [];
   }
 }
@@ -310,20 +269,14 @@ export async function getTotalSupplyData(
 ): Promise<any[]> {
   try {
     const res = await fetch(url, { signal });
-
     if (!res.ok) {
       console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
       return [];
     }
-
-    const data: any[] = await res.json();
-    return data;
+    return await res.json();
   } catch (err: any) {
-    if (err.name === "AbortError") {
-      console.warn("Fetch aborted.");
-    } else {
-      console.error(err.message || err);
-    }
+    if (err.name === "AbortError") console.warn("Fetch aborted.");
+    else console.error(err.message || err);
     return [];
   }
 }
@@ -334,20 +287,14 @@ export async function getBlockFeesData(
 ): Promise<BlockFees[]> {
   try {
     const res = await fetch(url, { signal });
-
     if (!res.ok) {
       console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
       return [];
     }
-
-    const data: any[] = await res.json();
-    return data;
+    return await res.json();
   } catch (err: any) {
-    if (err.name === "AbortError") {
-      console.warn("Fetch aborted.");
-    } else {
-      console.error(err.message || err);
-    }
+    if (err.name === "AbortError") console.warn("Fetch aborted.");
+    else console.error(err.message || err);
     return [];
   }
 }
@@ -358,20 +305,14 @@ export async function getNamadaSupply(
 ): Promise<any[]> {
   try {
     const res = await fetch(url, { signal });
-
     if (!res.ok) {
       console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
       return [];
     }
-
-    const data: any[] = await res.json();
-    return data;
+    return await res.json();
   } catch (err: any) {
-    if (err.name === "AbortError") {
-      console.warn("Fetch aborted.");
-    } else {
-      console.error("Error fetching Namada supply:", err.message || err);
-    }
+    if (err.name === "AbortError") console.warn("Fetch aborted.");
+    else console.error("Error fetching Namada supply:", err.message || err);
     return [];
   }
 }
@@ -382,20 +323,14 @@ export async function getDaoProps(
 ): Promise<any[]> {
   try {
     const res = await fetch(url, { signal });
-
     if (!res.ok) {
       console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
       return [];
     }
-
-    const data: any[] = await res.json();
-    return data;
+    return await res.json();
   } catch (err: any) {
-    if (err.name === "AbortError") {
-      console.warn("Fetch aborted.");
-    } else {
-      console.error("Error fetching Doa Props:", err.message || err);
-    }
+    if (err.name === "AbortError") console.warn("Fetch aborted.");
+    else console.error("Error fetching Doa Props:", err.message || err);
     return [];
   }
 }
@@ -407,10 +342,7 @@ export async function fetchTransactionData(
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
 }
-/**
- * Loads the historic shielded pool data from a public json file in Github repo
- * @returns Promise of shielded pool data
- */
+
 export async function fetchShieldedSupplyData(
   url: string,
   signal?: AbortSignal,
@@ -432,7 +364,10 @@ export function transformSupplyData(
   return d ? { timestamp: d.close, supply: d.supply } : null;
 }
 
-export type PoolType = "sprout" | "sapling" | "orchard";
+// ==================== UPDATED FOR IRONWOOD ====================
+
+export type PoolType = "sprout" | "sapling" | "orchard" | "ironwood";
+
 export const getColorForPool = (poolKey: PoolType): string => {
   switch (poolKey) {
     case "sprout":
@@ -441,20 +376,22 @@ export const getColorForPool = (poolKey: PoolType): string => {
       return "hsl(var(--chart-2))";
     case "orchard":
       return "hsl(var(--chart-3))";
+    case "ironwood":
+      return "hsl(15 82% 50%)"; // Rusty red for Ironwood
     default:
-      return "#999999"; // fallback gray
+      return "#999999";
   }
 };
+
+// ============================================================
 
 export function formatNumberShort(num: number): string {
   const absNum = Math.abs(num);
   const sign = num < 0 ? "-" : "";
-
   if (absNum >= 1_000_000_000)
     return `${sign}${(absNum / 1_000_000_000).toFixed(1)}B`;
   if (absNum >= 1_000_000) return `${sign}${(absNum / 1_000_000).toFixed(1)}M`;
   if (absNum >= 1_000) return `${sign}${(absNum / 1_000).toFixed(1)}k`;
-
   return `${sign}${absNum.toLocaleString()}`;
 }
 

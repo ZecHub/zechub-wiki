@@ -10,6 +10,7 @@ export const DATA_URL = {
   nodecountUrl: "/data/zcash/nodecount.json",
   difficultyUrl: "/data/zcash/difficulty.json",
   lockboxUrl: "/data/zcash/lockbox.json",
+  ironwoodUrl: "/data/zcash/ironwood_supply.json",
   shieldedTxCountUrl: "/data/zcash/shieldedtxcount.json",
   issuanceUrl: "/data/zcash/issuance.json",
   zcashShieldedStatsUrl: "/data/zcash/shieldedStatsJSON",
@@ -49,6 +50,8 @@ export const DATE_URL = {
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/difficulty.json&per_page=1",
   lockboxUrl:
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/lockbox.json&per_page=1",
+  ironwoodUrl: 
+    "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/ironwood_supply.json&per_page=1",
   shieldedTxCountUrl:
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/shieldedtxcount.json&per_page=1",
   issuanceUrl:
