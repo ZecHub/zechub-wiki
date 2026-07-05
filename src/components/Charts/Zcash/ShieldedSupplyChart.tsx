@@ -1,31 +1,18 @@
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import { useResponsiveFontSize } from "@/hooks/useResponsiveFontSize";
 import { DATA_URL } from "@/lib/chart/data-url";
-import {
-  formatNumberShort,
-  getColorForPool,
-  getSupplyData,
-  PoolType,
-} from "@/lib/chart/helpers";
+import { formatNumberShort, getColorForPool, getSupplyData } from "@/lib/chart/helpers";
 import { SupplyData } from "@/lib/chart/types";
 import { RefObject, useCallback, useEffect, useMemo, useState } from "react";
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  Legend,
-  Tooltip,
-  XAxis,
-  YAxis,
-  Line,
-} from "recharts";
+import { Area, AreaChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis, Line } from "recharts";
 import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
 import { useInMobile } from "@/hooks/useInMobile";
 import DefaultSelect from "@/components/DefaultSelect";
 
-type PoolKey = "all" | PoolType;
+type PoolKey = "all" | "sprout" | "sapling" | "orchard" | "ironwood";
 type Network = "mainnet" | "testnet";
+
 type ShieldedSupplyChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
 };
@@ -37,196 +24,204 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
   const [network, setNetwork] = useState<Network>("mainnet");
   const fontSize = useResponsiveFontSize();
   const isMobile = useInMobile();
-  const [orchardSupplyData, setOrchardSupplyData] = useState<SupplyData[]>([]);
-  const [saplingSupplyData, setSaplingSupplyData] = useState<SupplyData[]>([]);
+
   const [sproutSupplyData, setSproutSupplyData] = useState<SupplyData[]>([]);
+  const [saplingSupplyData, setSaplingSupplyData] = useState<SupplyData[]>([]);
+  const [orchardSupplyData, setOrchardSupplyData] = useState<SupplyData[]>([]);
+  const [ironwoodSupplyData, setIronwoodSupplyData] = useState<SupplyData[]>([]);
+
   const [sproutVisible, setSproutVisible] = useState(true);
   const [saplingVisible, setSaplingVisible] = useState(true);
   const [orchardVisible, setOrchardVisible] = useState(true);
+  const [ironwoodVisible, setIronwoodVisible] = useState(true);
   const [totalVisible, setTotalVisible] = useState(false);
 
-  const getPoolUrl = (pool: "sprout" | "sapling" | "orchard") => {
-    const mainUrl =
-      pool === "sprout"
-        ? DATA_URL.sproutUrl
-        : pool === "sapling"
-        ? DATA_URL.saplingUrl
-        : DATA_URL.orchardUrl;
-    if (network === "mainnet") return mainUrl;
-    return mainUrl.replace("/zcash/", "/zcash/testnet/");
-  };
+  const getPoolUrl = useCallback((pool: "sprout" | "sapling" | "orchard" | "ironwood") => {
+    const map: Record<string, string | undefined> = {
+      sprout:   DATA_URL.sproutUrl,
+      sapling:  DATA_URL.saplingUrl,
+      orchard:  DATA_URL.orchardUrl,
+      ironwood: DATA_URL.ironwoodUrl,
+    };
+
+    const mainUrl = map[pool];
+    if (!mainUrl) {
+      console.error(`[ShieldedSupplyChart] Missing DATA_URL.${pool}Url in data-url.ts`);
+      return "";
+    }
+
+    return network === "mainnet" ? mainUrl : mainUrl.replace("/zcash/", "/zcash/testnet/");
+  }, [network]);
 
   useEffect(() => {
     const controller = new AbortController();
+
     const fetchAllData = async () => {
       setLoading(true);
       try {
-        const sproutUrl = getPoolUrl("sprout");
-        const saplingUrl = getPoolUrl("sapling");
-        const orchardUrl = getPoolUrl("orchard");
-        const [sprout, sapling, orchard] = await Promise.all([
-          getSupplyData(sproutUrl, controller.signal),
-          getSupplyData(saplingUrl, controller.signal),
-          getSupplyData(orchardUrl, controller.signal),
+        const [sprout, sapling, orchard, ironwood] = await Promise.all([
+          getSupplyData(getPoolUrl("sprout"), controller.signal),
+          getSupplyData(getPoolUrl("sapling"), controller.signal),
+          getSupplyData(getPoolUrl("orchard"), controller.signal),
+          getSupplyData(getPoolUrl("ironwood"), controller.signal),
         ]);
+
         if (sprout) setSproutSupplyData(sprout);
         if (sapling) setSaplingSupplyData(sapling);
         if (orchard) setOrchardSupplyData(orchard);
+        if (ironwood) setIronwoodSupplyData(ironwood);
       } catch (err) {
         console.error("Error fetching dashboard data:", err);
       } finally {
         setLoading(false);
       }
     };
+
     fetchAllData();
     return () => controller.abort();
-  }, [network]);
+  }, [getPoolUrl]);
 
   useEffect(() => {
     setSelectedYear("all");
   }, [network]);
 
-  const extractYear = useCallback((dateStr: string) => {
-    return new Date(dateStr).getFullYear().toString();
-  }, []);
+  const extractYear = useCallback((dateStr: string) => new Date(dateStr).getFullYear().toString(), []);
 
   const normalizePools = useCallback(() => {
     const normalizeDate = (dateStr: string) => {
-      const [month, day, year] = dateStr.split("/");
-      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+      const [m, d, y] = dateStr.split("/");
+      return `${y}-${m.padStart(2, "0")}-${d.padStart(2, "0")}`;
     };
 
-    const sprout = sproutSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
-    const sapling = saplingSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
-    const orchard = orchardSupplyData.map((d) => ({ ...d, close: normalizeDate(d.close) }));
+    const sprout = sproutSupplyData.map(d => ({ ...d, close: normalizeDate(d.close) }));
+    const sapling = saplingSupplyData.map(d => ({ ...d, close: normalizeDate(d.close) }));
+    const orchard = orchardSupplyData.map(d => ({ ...d, close: normalizeDate(d.close) }));
+    const ironwood = ironwoodSupplyData.map(d => ({ ...d, close: normalizeDate(d.close) }));
 
-    const allDates = new Set([
-      ...sprout.map((d) => d.close),
-      ...sapling.map((d) => d.close),
-      ...orchard.map((d) => d.close),
-    ]);
-
+    const allDates = new Set([...sprout, ...sapling, ...orchard, ...ironwood].map(d => d.close));
     const dateArray = Array.from(allDates).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 
     const dataMap: Record<string, any> = {};
     for (const date of dateArray) {
-      dataMap[date] = { close: date, sprout: 0, sapling: 0, orchard: 0, total: 0 };
+      dataMap[date] = { close: date, sprout: 0, sapling: 0, orchard: 0, ironwood: 0, total: 0 };
     }
 
     for (const d of sprout) if (dataMap[d.close]) dataMap[d.close].sprout = d.supply ?? 0;
     for (const d of sapling) if (dataMap[d.close]) dataMap[d.close].sapling = d.supply ?? 0;
     for (const d of orchard) if (dataMap[d.close]) dataMap[d.close].orchard = d.supply ?? 0;
+    for (const d of ironwood) if (dataMap[d.close]) dataMap[d.close].ironwood = d.supply ?? 0;
 
-    // Forward fill (carry forward last known value)
-    let lastSprout = 0;
-    let lastSapling = 0;
-    let lastOrchard = 0;
-
+    let ls = 0, la = 0, lo = 0, li = 0;
     for (const date of dateArray) {
-      if (dataMap[date].sprout) lastSprout = dataMap[date].sprout;
-      else dataMap[date].sprout = lastSprout;
-
-      if (dataMap[date].sapling) lastSapling = dataMap[date].sapling;
-      else dataMap[date].sapling = lastSapling;
-
-      if (dataMap[date].orchard) lastOrchard = dataMap[date].orchard;
-      else dataMap[date].orchard = lastOrchard;
-
-      dataMap[date].total =
-        (dataMap[date].sprout || 0) +
-        (dataMap[date].sapling || 0) +
-        (dataMap[date].orchard || 0);
+      ls = dataMap[date].sprout || ls; dataMap[date].sprout = ls;
+      la = dataMap[date].sapling || la; dataMap[date].sapling = la;
+      lo = dataMap[date].orchard || lo; dataMap[date].orchard = lo;
+      li = dataMap[date].ironwood || li; dataMap[date].ironwood = li;
+      dataMap[date].total = ls + la + lo + li;
     }
 
     return Object.values(dataMap).filter((d: any) =>
-      selectedYear === "all" ? true : extractYear(d.close) === selectedYear
+      selectedYear === "all" || extractYear(d.close) === selectedYear
     );
-  }, [sproutSupplyData, saplingSupplyData, orchardSupplyData, selectedYear, extractYear]);
+  }, [sproutSupplyData, saplingSupplyData, orchardSupplyData, ironwoodSupplyData, selectedYear, extractYear]);
 
   const combinedPoolData = useMemo(() => normalizePools(), [normalizePools]);
 
   const poolData = useMemo(() => {
     if (selectedPool === "all") return combinedPoolData;
-    const map = {
+    const map: any = {
       sprout: sproutSupplyData,
       sapling: saplingSupplyData,
       orchard: orchardSupplyData,
+      ironwood: ironwoodSupplyData,
     };
-    return map[selectedPool].filter((d) =>
-      selectedYear === "all" ? true : extractYear(d.close) === selectedYear
+    return (map[selectedPool] || []).filter((d: any) =>
+      selectedYear === "all" || extractYear(d.close) === selectedYear
     );
-  }, [selectedPool, combinedPoolData, sproutSupplyData, saplingSupplyData, orchardSupplyData, selectedYear, extractYear]);
+  }, [selectedPool, combinedPoolData, sproutSupplyData, saplingSupplyData, orchardSupplyData, ironwoodSupplyData, selectedYear, extractYear]);
 
-  const getAvailableYears = useCallback((poolKey: PoolKey) => {
-    const dataByPool = { sprout: sproutSupplyData, sapling: saplingSupplyData, orchard: orchardSupplyData };
-    const data = poolKey === "all"
-      ? [...sproutSupplyData, ...saplingSupplyData, ...orchardSupplyData]
-      : dataByPool[poolKey];
-    const years = [...new Set(data.map((d) => extractYear(d.close)))].sort();
-    return ["all", ...years];
-  }, [sproutSupplyData, saplingSupplyData, orchardSupplyData, extractYear]);
+  const getAvailableYears = useCallback((poolKey: PoolKey): string[] => {
+	  const allData = [
+	    ...sproutSupplyData,
+	    ...saplingSupplyData,
+	    ...orchardSupplyData,
+	    ...ironwoodSupplyData,
+	  ];
+
+	  const data =
+	    poolKey === "all"
+	      ? allData
+	      : (
+		  {
+		    sprout: sproutSupplyData,
+		    sapling: saplingSupplyData,
+		    orchard: orchardSupplyData,
+		    ironwood: ironwoodSupplyData,
+		  } as Record<PoolKey, SupplyData[]>
+		)[poolKey] || [];
+
+	  const years = [
+	    ...new Set(data.map((d) => extractYear(d.close))),
+	  ].sort();
+
+	  return ["all", ...years];
+	}, [
+	  sproutSupplyData,
+	  saplingSupplyData,
+	  orchardSupplyData,
+	  ironwoodSupplyData,
+	  extractYear,
+	]);
 
   const latest = combinedPoolData[combinedPoolData.length - 1] || {};
-  const latestTotals: Record<"sprout" | "sapling" | "orchard", number> = {
+  const latestTotals = {
     sprout: latest.sprout || 0,
     sapling: latest.sapling || 0,
     orchard: latest.orchard || 0,
+    ironwood: latest.ironwood || 0,
   };
 
   const calculateTotalShielded = () =>
-    latestTotals.orchard + latestTotals.sapling + latestTotals.sprout;
+    latestTotals.sprout + latestTotals.sapling + latestTotals.orchard + latestTotals.ironwood;
 
   const getCurrentDisplay = () => {
     if (selectedPool !== "all") {
-      const poolName = selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1);
-      return { label: `${poolName} Shielded`, value: latestTotals[selectedPool] };
+      const name = selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1);
+      return { label: `${name} Shielded`, value: (latestTotals as any)[selectedPool] };
     }
-    if (totalVisible) {
-      return { label: "Total Shielded", value: calculateTotalShielded() };
-    }
-    const visible: ("sprout" | "sapling" | "orchard")[] = [];
+    if (totalVisible) return { label: "Total Shielded", value: calculateTotalShielded() };
+
+    const visible: ("sprout" | "sapling" | "orchard" | "ironwood")[] = [];
     if (sproutVisible) visible.push("sprout");
     if (saplingVisible) visible.push("sapling");
     if (orchardVisible) visible.push("orchard");
+    if (ironwoodVisible) visible.push("ironwood");
+
     const count = visible.length;
-    if (count === 3 || count === 0) {
-      return { label: "Total Shielded", value: calculateTotalShielded() };
-    }
+    if (count === 0 || count >= 3) return { label: "Total Shielded", value: calculateTotalShielded() };
     if (count === 1) {
-      const pool = visible[0];
-      const name = pool.charAt(0).toUpperCase() + pool.slice(1);
-      return { label: `${name} Shielded`, value: latestTotals[pool] };
+      const p = visible[0];
+      const name = p.charAt(0).toUpperCase() + p.slice(1);
+      return { label: `${name} Shielded`, value: (latestTotals as any)[p] };
     }
-    const sorted = [...visible].sort();
-    const name = sorted.map((p) => p.charAt(0).toUpperCase() + p.slice(1)).join(" and ");
-    const value = sorted.reduce((sum, p) => sum + latestTotals[p], 0);
+    const name = visible.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(" and ");
+    const value = visible.reduce((sum, p) => sum + (latestTotals as any)[p], 0);
     return { label: `${name} Shielded`, value };
   };
 
   const display = getCurrentDisplay();
 
-  const toggleSprout = () => {
-    const newValue = !sproutVisible;
-    setSproutVisible(newValue);
-    if (newValue) setTotalVisible(false);
+  const toggle = (key: string) => {
+    if (key === "sprout") { const v = !sproutVisible; setSproutVisible(v); if (v) setTotalVisible(false); }
+    if (key === "sapling") { const v = !saplingVisible; setSaplingVisible(v); if (v) setTotalVisible(false); }
+    if (key === "orchard") { const v = !orchardVisible; setOrchardVisible(v); if (v) setTotalVisible(false); }
+    if (key === "ironwood") { const v = !ironwoodVisible; setIronwoodVisible(v); if (v) setTotalVisible(false); }
   };
-  const toggleSapling = () => {
-    const newValue = !saplingVisible;
-    setSaplingVisible(newValue);
-    if (newValue) setTotalVisible(false);
-  };
-  const toggleOrchard = () => {
-    const newValue = !orchardVisible;
-    setOrchardVisible(newValue);
-    if (newValue) setTotalVisible(false);
-  };
+
   const toggleTotal = () => {
-    const newValue = !totalVisible;
-    setTotalVisible(newValue);
-    if (newValue) {
-      setSproutVisible(false);
-      setSaplingVisible(false);
-      setOrchardVisible(false);
+    const v = !totalVisible; setTotalVisible(v);
+    if (v) {
+      setSproutVisible(false); setSaplingVisible(false); setOrchardVisible(false); setIronwoodVisible(false);
     }
   };
 
@@ -234,17 +229,21 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     <div className="flex justify-center gap-8 text-sm mt-4 flex-wrap">
       {selectedPool === "all" ? (
         <>
-          <button onClick={toggleSprout} className={`flex items-center gap-2 cursor-pointer transition-colors ${sproutVisible ? "" : "opacity-40 line-through"}`}>
+          <button onClick={() => toggle("sprout")} className={`flex items-center gap-2 cursor-pointer transition-colors ${sproutVisible ? "" : "opacity-40 line-through"}`}>
             <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-1))]" />
             <span className="font-medium">Sprout</span>
           </button>
-          <button onClick={toggleSapling} className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingVisible ? "" : "opacity-40 line-through"}`}>
+          <button onClick={() => toggle("sapling")} className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingVisible ? "" : "opacity-40 line-through"}`}>
             <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-2))]" />
             <span className="font-medium">Sapling</span>
           </button>
-          <button onClick={toggleOrchard} className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardVisible ? "" : "opacity-40 line-through"}`}>
+          <button onClick={() => toggle("orchard")} className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardVisible ? "" : "opacity-40 line-through"}`}>
             <span className="inline-block w-3 h-3 rounded-full bg-[hsl(var(--chart-3))]" />
             <span className="font-medium">Orchard</span>
+          </button>
+          <button onClick={() => toggle("ironwood")} className={`flex items-center gap-2 cursor-pointer transition-colors ${ironwoodVisible ? "" : "opacity-40 line-through"}`}>
+            <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: "hsl(15 82% 50%)" }} />
+            <span className="font-medium">Ironwood</span>
           </button>
           <button onClick={toggleTotal} className={`flex items-center gap-2 cursor-pointer transition-colors ${totalVisible ? "" : "opacity-40 line-through"}`} style={{ color: totalVisible ? "#06B6D4" : undefined }}>
             <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: "#06B6D4" }} />
@@ -253,12 +252,14 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
         </>
       ) : (
         <button className="flex items-center gap-2 cursor-pointer">
-          <span className="inline-block w-3 h-3 rounded-full" style={{ background: `hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : 3}))` }} />
+          <span className="inline-block w-3 h-3 rounded-full" style={{
+            background: selectedPool === "ironwood" ? "hsl(15 82% 50%)" : `hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : selectedPool === "orchard" ? 3 : 4}))`
+          }} />
           <span className="font-medium">{selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool</span>
         </button>
       )}
     </div>
-  ), [selectedPool, sproutVisible, saplingVisible, orchardVisible, totalVisible]);
+  ), [selectedPool, sproutVisible, saplingVisible, orchardVisible, ironwoodVisible, totalVisible]);
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (!active || !payload?.length) return null;
@@ -275,60 +276,41 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     );
   };
 
-  const chartTitle =
-    (network === "testnet" ? "Testnet " : "") +
-    (selectedPool === "all" ? "Shielded Supply Overview" : `${selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool Supply`);
+  const chartTitle = `${network === "testnet" ? "Testnet " : ""}${selectedPool === "all" ? "Shielded Supply Overview" : `${selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool Supply`}`;
 
   return (
-    <ErrorBoundary fallback={"Failed to load Shielded Supply Chart"}>
+    <ErrorBoundary fallback="Failed to load Shielded Supply Chart">
       <ChartHeader title={chartTitle} />
       <div className="px-4 sm:px-8 mt-4 mb-6">
         <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-between">
-          {/* IMPROVED NETWORK TOGGLE */}
           <div className="flex items-center gap-2">
             <label className="text-xs font-medium text-slate-400 whitespace-nowrap">Network</label>
             <div className="relative inline-flex bg-slate-800/80 rounded-full p-0.5 text-xs font-medium border border-slate-700">
-              <div
-                className={`absolute top-0.5 bottom-0.5 rounded-full transition-all duration-200 shadow-sm ${
-                  network === "mainnet"
-                    ? "bg-emerald-700 left-0.5 right-[calc(50%+2px)]"
-                    : "bg-amber-700 left-[calc(50%+2px)] right-0.5"
-                }`}
-              />
-              <button
-                onClick={() => setNetwork("mainnet")}
-                className={`relative z-10 px-3 py-0.5 rounded-full transition-colors ${network === "mainnet" ? "text-white" : "text-slate-400 hover:text-slate-200"}`}
-              >
-                Mainnet
-              </button>
-              <button
-                onClick={() => setNetwork("testnet")}
-                className={`relative z-10 px-3 py-0.5 rounded-full transition-colors ${network === "testnet" ? "text-white" : "text-slate-400 hover:text-slate-200"}`}
-              >
-                Testnet
-              </button>
+              <div className={`absolute top-0.5 bottom-0.5 rounded-full transition-all duration-200 shadow-sm ${network === "mainnet" ? "bg-emerald-700 left-0.5 right-[calc(50%+2px)]" : "bg-amber-700 left-[calc(50%+2px)] right-0.5"}`} />
+              <button onClick={() => setNetwork("mainnet")} className={`relative z-10 px-3 py-0.5 rounded-full transition-colors ${network === "mainnet" ? "text-white" : "text-slate-400 hover:text-slate-200"}`}>Mainnet</button>
+              <button onClick={() => setNetwork("testnet")} className={`relative z-10 px-3 py-0.5 rounded-full transition-colors ${network === "testnet" ? "text-white" : "text-slate-400 hover:text-slate-200"}`}>Testnet</button>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 w-full md:w-auto justify-center md:justify-start">
+          <div className="flex items-center gap-3">
             <label className="text-sm font-medium whitespace-nowrap">Pool:</label>
             <DefaultSelect
               value={selectedPool}
               onChange={setSelectedPool}
-              options={["all", "sprout", "sapling", "orchard"]}
+              options={["all", "sprout", "sapling", "orchard", "ironwood"]}
               className="w-44"
-              renderOption={(val) => (val === "all" ? "All Pools" : val.charAt(0).toUpperCase() + val.slice(1))}
+              renderOption={(val) => val === "all" ? "All Pools" : val.charAt(0).toUpperCase() + val.slice(1)}
             />
           </div>
 
-          <div className="flex items-center gap-3 w-full md:w-auto justify-center md:justify-start">
+          <div className="flex items-center gap-3">
             <label className="text-sm font-medium whitespace-nowrap">Year</label>
             <DefaultSelect
               value={selectedYear}
               onChange={setSelectedYear}
-              options={getAvailableYears(selectedPool).map((year) => year.toString())}
+              options={getAvailableYears(selectedPool)}
               className="w-28"
-              renderOption={(year) => (year === "all" ? "All" : year)}
+              renderOption={(y) => y === "all" ? "All" : y}
             />
           </div>
 
@@ -353,14 +335,19 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
               <stop offset="5%" stopColor="hsl(var(--chart-3))" stopOpacity={0.6} />
               <stop offset="95%" stopColor="hsl(var(--chart-3))" stopOpacity={0.05} />
             </linearGradient>
+            <linearGradient id="ironwoodGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="hsl(15 82% 50%)" stopOpacity={0.65} />
+              <stop offset="95%" stopColor="hsl(15 82% 50%)" stopOpacity={0.06} />
+            </linearGradient>
             <linearGradient id="totalGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#06B6D4" stopOpacity={0.5} />
               <stop offset="95%" stopColor="#06B6D4" stopOpacity={0.08} />
             </linearGradient>
           </defs>
+
           <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
           <XAxis dataKey="close" tick={{ fontSize: fontSize * 0.75, fill: "#94a3b8" }} interval={Math.max(1, Math.floor(poolData.length / 10))} angle={-45} textAnchor="end" height={70} />
-          <YAxis tick={{ fontSize, fill: "#94a3b8" }} tickFormatter={(val: any) => formatNumberShort(val)} />
+          <YAxis tick={{ fontSize, fill: "#94a3b8" }} tickFormatter={formatNumberShort} />
           <Tooltip content={CustomTooltip} />
           <Legend content={legendContent} />
 
@@ -373,12 +360,19 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
             ) : (
               <>
                 <Area type="monotone" dataKey="sprout" stroke={getColorForPool("sprout")} fill="url(#sproutGradient)" name="Sprout Pool" hide={!sproutVisible} />
-                <Area type="monotone" dataKey="sapling" stroke={getColorForPool("sapling")} fill="url(#saplingGradient)" name="Sapling Pool" hide={!saplingVisible} dot={false} connectNulls={true} />
+                <Area type="monotone" dataKey="sapling" stroke={getColorForPool("sapling")} fill="url(#saplingGradient)" name="Sapling Pool" hide={!saplingVisible} dot={false} connectNulls />
                 <Area type="monotone" dataKey="orchard" stroke={getColorForPool("orchard")} fill="url(#orchardGradient)" name="Orchard Pool" hide={!orchardVisible} />
+                <Area type="monotone" dataKey="ironwood" stroke="hsl(15 82% 50%)" fill="url(#ironwoodGradient)" name="Ironwood Pool" hide={!ironwoodVisible} />
               </>
             )
           ) : (
-            <Area type="monotone" dataKey="supply" stroke={`hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : 3}))`} fill={`url(#${selectedPool}Gradient)`} name={`${selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool`} />
+            <Area
+              type="monotone"
+              dataKey="supply"
+              stroke={selectedPool === "ironwood" ? "hsl(15 82% 50%)" : `hsl(var(--chart-${selectedPool === "sprout" ? 1 : selectedPool === "sapling" ? 2 : selectedPool === "orchard" ? 3 : 4}))`}
+              fill={`url(#${selectedPool}Gradient)`}
+              name={`${selectedPool.charAt(0).toUpperCase() + selectedPool.slice(1)} Pool`}
+            />
           )}
         </AreaChart>
       </ChartContainer>
