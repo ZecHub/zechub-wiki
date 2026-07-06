@@ -293,6 +293,11 @@
         "description": "Este sitio web responde a la pregunta: ¿Dónde puedo pagar con Zcash? El directorio es gratuito. Los elementos listados son solo con fines informativos y no constituyen ningún tipo de respaldo. ¡Disfruta!",
         "mainLink": "paywithz.cash",
         "mapLink": "SPEDN"
+      },
+      "hackathon": {
+        "title": "Únete al Hackathon",
+        "description": "Construye, colabora y lanza ideas de impacto con la comunidad de Zcash. Compite en cinco categorías innovadoras: Infrastructure para nodos e indexadores, Games para experiencias interactivas, FROST para firmas de umbral, Zcash Login para soluciones de autenticación, y Accounting para flujos de trabajo financieros. 25 de mayo - 15 de julio de 2026. Te espera una bolsa de premios de 25 ZEC.",
+        "mainLink": "Únete al Hackathon /no_think"
       }
     },
     "explore": {
