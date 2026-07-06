@@ -1,0 +1,1153 @@
+{
+  "menuLabels": {
+    "Accept Payments": "Ödemeleri Kabul Et",
+    "Akash Network Zebra": "Akash Network Zebra",
+    "Arborist Calls": "Arborist Calls",
+    "Avalanche RedBridge": "Avalanche RedBridge",
+    "BTCPayServer Zcash Plugin": "BTCPayServer Zcash Plugin",
+    "Blockchain Explorers": "Blockchain Gezginleri",
+    "Brand": "Marka",
+    "Brave Wallet": "Brave Wallet",
+    "Buying ZEC": "ZEC Satın Alma",
+    "Community Blogs": "Topluluk Blogları",
+    "Community Forum": "Topluluk Forumu",
+    "Community Links": "Topluluk Bağlantıları",
+    "Community Projects": "Topluluk Projeleri",
+    "Contribute": "Katkıda Bulun",
+    "Cypherpunk Zero NFT": "Cypherpunk Zero NFT",
+    "DAO": "DAO",
+    "Developers": "Geliştiriciler",
+    "Discord": "Discord",
+    "Donations": "Bağışlar",
+    "Electric Coin Company": "Electric Coin Company",
+    "Exchanges": "Borsalar",
+    "Extras": "Ekstralar",
+    "Faucets": "Faucetler",
+    "Financial Privacy Foundation": "Financial Privacy Foundation",
+    "Free2z Live": "Free2z Live",
+    "Freelance Privacy": "Serbest Çalışan Gizliliği",
+    "Github": "Github",
+    "Governance": "Yönetişim",
+    "Guides": "Rehberler",
+    "How to Participate": "Nasıl Katılınır",
+    "Journalist Privacy": "Gazeteci Gizliliği",
+    "Keeping Records": "Kayıt Tutma",
+    "Keystone Zashi": "Keystone Zashi",
+    "Maya Protocol": "Maya Protocol",
+    "Memos": "Notlar",
+    "Metamask Snap": "Metamask Snap",
+    "Mobile Top Ups": "Mobil Kontör Yüklemeleri",
+    "Newsletter": "Bülten",
+    "Nym VPN": "Nym VPN",
+    "Payment Processors": "Ödeme İşleyicileri",
+    "Payment Request URIs": "Ödeme Talebi URI'leri",
+    "Podcast": "Podcast",
+    "Private Community Treasury": "Özel Topluluk Hazinesi",
+    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 Tam Düğüm",
+    "Raspberry pi 4 Zebra Node": "Raspberry pi 4 Zebra Düğümü",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+    "Recovering Funds": "Fonları Kurtarma",
+    "Research": "Araştırma",
+    "Send Money Privately": "Özel Olarak Para Gönder",
+    "Shielded Labs": "Shielded Labs",
+    "Shielded Pools": "Korumalı Havuzlar",
+    "Sitemap": "Site Haritası",
+    "Start Here": "Buradan Başlayın",
+    "Store": "Mağaza",
+    "Testnet": "Testnet",
+    "Tools": "Araçlar",
+    "Transactions": "İşlemler",
+    "Transparent Exchange Addresses": "Şeffaf Borsa Adresleri",
+    "Tutorials": "Eğitimler",
+    "Twitter": "Twitter /no_think",
+    "Use Cases": "Kullanım Alanları",
+    "Using ZEC Privately": "ZEC'i Özel Olarak Kullanma",
+    "Using ZEC in DeFi": "DeFi'de ZEC Kullanımı",
+    "Using Zcash": "Zcash Kullanımı",
+    "Visual Identity": "Görsel Kimlik",
+    "Visualizer": "Görselleştirici",
+    "Visualizing Zcash Addresses": "Zcash Adreslerini Görselleştirme",
+    "Visualizing the Zcash Network": "Zcash Ağını Görselleştirme",
+    "Wallets": "Cüzdanlar",
+    "Youtube": "Youtube",
+    "Ywallet FROST Demo": "Ywallet FROST Demosu",
+    "ZCAP": "ZCAP",
+    "ZIPs & Grants": "ZIP'ler ve Hibeler",
+    "ZKAV Club": "ZKAV Kulübü",
+    "ZODL": "ZODL",
+    "Zcash Community": "Zcash Topluluğu",
+    "Zcash Community Grants": "Zcash Topluluk Hibeleri",
+    "Zcash Devtool": "Zcash Geliştirici Aracı",
+    "Zcash Ecosystem Security": "Zcash Ekosistemi Güvenliği",
+    "Zcash Foundation": "Zcash Foundation",
+    "Zcash Global Ambassadors": "Zcash Küresel Elçileri",
+    "Zcash Governance": "Zcash Yönetişimi",
+    "Zcash Improvement Proposals": "Zcash İyileştirme Önerileri",
+    "Zcash Media": "Zcash Medyası",
+    "Zcash Organizations": "Zcash Kuruluşları",
+    "Zcash Podcasts": "Zcash Podcast'leri",
+    "Zcon Archive": "Zcon Arşivi",
+    "Zcon Vozes Archive": "Zcon Vozes Arşivi",
+    "Zenith Installation": "Zenith Kurulumu",
+    "Zero-Knowledge vs Decoys": "Sıfır Bilgi ve Decoy'lar",
+    "Zgo Payment Processor": "Zgo Ödeme İşlemcisi",
+    "Zingo Labs": "Zingo Labs",
+    "Zingolib and Zaino Tutorial": "Zingolib ve Zaino Eğitimi",
+    "Zkool Multisig": "Zkool Multisig",
+    "Custodial Exchanges": "Saklamalı Borsalar",
+    "Zcash Use Cases": "Zcash Kullanım Alanları",
+    "Zcash Tech": "Zcash Teknolojisi",
+    "Privacy Tools": "Gizlilik Araçları",
+    "Zcash Social Media": "Zcash Sosyal Medyası",
+    "Glossary & FAQ's": "Sözlük ve SSS'ler"
+  },
+  "exploreMenu": {
+    "Full Explore": "Tam Keşfet",
+    "Start Here": "Buradan Başlayın",
+    "Tutorials": "Öğreticiler",
+    "Using Zcash": "Zcash Kullanımı",
+    "Guides": "Rehberler",
+    "Zcash Tech": "Zcash Teknolojisi",
+    "Zcash Organizations": "Zcash Organizasyonları",
+    "Zcash Community": "Zcash Topluluğu",
+    "ZKAV Club": "ZKAV Club",
+    "Privacy Tools": "Gizlilik Araçları",
+    "Research": "Araştırma",
+    "Glossary & FAQs": "Sözlük ve SSS",
+    "Contribute": "Katkıda Bulun",
+    "For Forks & Maintainers": "Fork'lar ve Bakımcılar İçin",
+    "Fork zechub-wiki": "zechub-wiki'yi forkla",
+    "Fork zechub": "zechub'u forkla"
+  },
+  "common": {
+    "home": "Ana Sayfa",
+    "about": "Hakkında",
+    "contact": "İletişim",
+    "language": "Dil",
+    "clickToExplore": "Keşfetmek için tıklayın →",
+    "learnMore": "Daha Fazla Bilgi Edinin",
+    "getStarted": "Başlayın",
+    "readMore": "Daha Fazla Oku",
+    "search": "Ara",
+    "close": "Kapat",
+    "searchModalTitle": "ZecHub Wiki'de Ara",
+    "searchHint": "Sayfa başlığına, konuya veya yola göre arayın. Seçmek için ok tuşlarını kullanın, açmak için Enter'a basın.",
+    "searchNoResults": "Eşleşen sayfa yok",
+    "searchTryDifferent": "Daha kısa sorgular, eş anlamlılar veya farklı kelimeler deneyin.",
+    "searchSuggested": "Önerilen sayfalar",
+    "searchResultsLabel": "Sonuçlar"
+  },
+  "navigation": {
+    "wallets": "Cüzdanlar",
+    "guides": "Rehberler",
+    "tutorials": "Öğreticiler",
+    "governance": "Yönetişim",
+    "visualizer": "Görselleştirici",
+    "dao": "DAO",
+    "newsletter": "Bülten",
+    "donate": "Bağış Yap",
+    "explore": "Keşfet",
+    "developers": "Geliştiriciler",
+    "community": "Topluluk",
+    "contribute": "Katkıda Bulun",
+    "dashboard": "Gösterge Paneli",
+    "more": "Daha Fazla",
+    "usingZcash": {
+      "label": "Zcash Kullan",
+      "buyingZec": "ZEC Satın Alma",
+      "faucets": "Faucet'ler",
+      "wallets": "Cüzdanlar",
+      "metamaskSnap": "Metamask Snap",
+      "exchanges": "Borsalar",
+      "blockExplorers": "Blok Gezginleri",
+      "shieldedPools": "Korumalı Havuzlar",
+      "transparentExchangeAddresses": "Şeffaf Borsa Adresleri",
+      "transactions": "İşlemler",
+      "memos": "Notlar",
+      "mobileTopUps": "Mobil Bakiye Yüklemeleri",
+      "paymentRequestUris": "Ödeme Talep URI'leri",
+      "paymentProcessors": "Ödeme İşlemcileri",
+      "recoveringFunds": "Fonları Kurtarma",
+      "testnet": "Testnet",
+      "tools": "Araçlar",
+      "useCases": "Kullanım Alanları",
+      "useCasesSubmenu": {
+        "startHere": "Buradan Başlayın",
+        "acceptPayments": "Ödeme Kabul Et",
+        "freelancePrivacy": "Serbest Çalışan Gizliliği",
+        "journalistPrivacy": "Gazeteci Gizliliği",
+        "keepingRecords": "Kayıt Tutma",
+        "privateCommunityTreasury": "Özel Topluluk Hazinesi",
+        "donations": "Bağışlar",
+        "sendMoneyPrivately": "Parayı Özel Olarak Gönder"
+      }
+    },
+    "zcashCommunity": {
+      "label": "Ekosistem",
+      "arboristCalls": "Arborist Calls",
+      "communityBlogs": "Topluluk Blogları",
+      "communityLinks": "Topluluk Bağlantıları",
+      "communityForum": "Topluluk Forumu",
+      "communityProjects": "Topluluk Projeleri",
+      "globalAmbassadors": "Zcash Küresel Elçileri",
+      "zcashMedia": "Zcash Medyası",
+      "zcap": "ZCAP",
+      "zcashPodcasts": "Zcash Podcast'leri",
+      "ecosystemSecurity": "Zcash Ekosistemi Güvenliği",
+      "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
+      "zconArchive": "Zcon Arşivi"
+    },
+    "organizations": {
+      "label": "Organizasyonlar",
+      "electricCoinCompany": "Electric Coin Company",
+      "zcashFoundation": "Zcash Foundation",
+      "communityGrants": "Zcash Community Grants",
+      "financialPrivacyFoundation": "Financial Privacy Foundation",
+      "shieldedLabs": "Shielded Labs",
+      "zingoLabs": "Zingo Labs",
+      "brand": "Marka",
+      "zkavClub": "ZKAV Club"
+    },
+    "guidesSubmenu": {
+      "zgoPaymentProcessor": "Zgo Ödeme İşlemcisi",
+      "free2zLive": "Free2z Canlı",
+      "keystoneZashi": "Keystone Zashi",
+      "mayaProtocol": "Maya Protocol",
+      "nymVpn": "Nym VPN",
+      "usingZecInDefi": "DeFi'de ZEC Kullanımı /no_think",
+      "usingZecPrivately": "ZEC'i Özel Olarak Kullanma",
+      "raspberryPiZcashdNode": "Raspberry Pi Zcashd Düğümü",
+      "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+      "raspberryPiZebraNode": "Raspberry Pi Zebra Düğümü",
+      "akashNetwork": "Akash Network",
+      "avalancheRedbridge": "Avalanche RedBridge",
+      "zkoolMultisig": "Zkool Multisig",
+      "ywalletFrostDemo": "Ywallet FROST Demosu",
+      "blockchainExplorers": "Blockchain Gezginleri",
+      "braveWallet": "Brave Wallet",
+      "btcPayServerPlugin": "BTCPayServer Eklentisi",
+      "visualizingZcashNetwork": "Zcash Ağını Görselleştirme",
+      "visualizingZcashAddresses": "Zcash Adreslerini Görselleştirme",
+      "zcashDevtool": "Zcash Geliştirme Aracı",
+      "zcashImprovementProposals": "Zcash İyileştirme Önerileri",
+      "zingolibAndZainoTutorial": "Zingolib ve Zaino Eğitimi",
+      "zenithInstallation": "Zenith Kurulumu",
+      "zeroKnowledgeVsDecoys": "Sıfır Bilgi ve Aldatmaca Sistemleri"
+    },
+    "overview": "Genel Bakış",
+    "shop": "Mağaza /no_think"
+  },
+  "home": {
+    "heroTitle": "ZecHub'a hoş geldiniz",
+    "heroSubtitle": "Zcash için açık kaynaklı bir eğitim merkezi",
+    "heroDescription": "Zcash gizlilik teknolojisi hakkında bilgi edinin, etkileşimli görselleştiricileri keşfedin ve ekosisteme katkıda bulunun",
+    "description": "ZecHub, Zcash kripto para birimi (ZEC) için topluluk tarafından yönlendirilen eğitim merkezidir. Zcash, sansüre dayanıklı, güvenli ve özel ödemeler sağlayan bir dijital para birimidir. Zcash Blockchain, 2022'deki NU5 ağ yükseltmesinin ardından Trusted Setup gerektirmeyen son derece gelişmiş 'verifiable' zk-snarks kullanır.",
+    "featuredSection": "Öne Çıkan Kaynaklar",
+    "latestUpdates": "En Son Güncellemeler",
+    "getInvolved": "Katılın",
+    "exploreEcosystem": "Ekosistemi Keşfedin",
+    "exploreZcash": "Zcash'i Keşfedin",
+    "cards": {
+      "startHere": {
+        "title": "Buradan Başlayın",
+        "content": "Zcash'in ne olduğunu ve ZEC kullanım alanlarını öğrenin"
+      },
+      "pickWallet": {
+        "title": "Bir Cüzdan Seçin",
+        "content": "Cüzdanlar, Zcash'i özel olarak almanıza ve harcamanıza olanak tanır. Bazıları ayrıca şifreli notları da destekler"
+      },
+      "resources": {
+        "title": "Zcash Kaynakları",
+        "content": "İşte kullanıcıların Zcash Full Nodes, zk-SNARKs ve daha fazlasını anlamasına yardımcı olan kılavuzlar"
+      }
+    },
+    "sections": {
+      "whatIsZcash": {
+        "title": "Zcash nedir?",
+        "description": "Bu, gelişmiş bir zero-knowledge proving system içeren açık kaynaklı bir blockchain defteridir. İşlem meta verilerinin gizliliğini koruyan proving system'i sayesinde daha yüksek bir gizlilik standardı sunma konusunda uzmanlaşmıştır. Özünde Zcash, işlemler yapıldığında izinsiz olarak aktarılan özel veri sahipliğidir.",
+        "mainLink": "Zcash nedir?",
+        "techLink": "Zcash Teknolojisi"
+      },
+      "zcashMe": {
+        "title": "Zcash.me /no_think",
+        "description": "Zcash.Me, özel mesajlaşma, sıralamalar ve doğrulanmış kullanıcılar sunan, Zcash kullanıcılarına yönelik herkese açık bir dizindir. Zcash topluluğuyla bağlantı kurun, keşfedin ve etkileşime geçin.",
+        "link": "Zcash.Me'yi ziyaret edin"
+      },
+      "globalAmbassadors": {
+        "title": "Zcash Küresel Elçileri",
+        "description": "Zcash Küresel Elçileri, dünya çapında gizlilik odaklı kripto para benimsenmesini ve eğitimini teşvik etmeye adanmış topluluk liderleridir. Her elçi projesi, kendi bölgesinde farkındalık ve etkileşim oluşturmaya odaklanır.",
+        "link": "Elçilerle Tanışın"
+      },
+      "newsletter": {
+        "title": "Shielded Bülteni",
+        "description": "Cüzdanınıza doğrudan Zcash Ekosistem Güncellemeleri ve Ağ İstatistiklerine shielded erişim almak için Unified Address kullanarak abone olun!",
+        "link": "Abone olun"
+      },
+      "free2z": {
+        "title": "Free2Z",
+        "description": "Free2Z, Zcash tarafından desteklenen bir sosyal platformdur. Eşler arası bağışlar, gelir paylaşım programı, gelişmiş yaratıcı araçlar ve devasa küresel çevrimiçi topluluğuyla.",
+        "link": "Free2Z"
+      },
+      "payWithZcash": {
+        "title": "Zcash ile ödeyin",
+        "description": "Bu web sitesi şu soruya bir yanıttır: Zcash ile nerede ödeme yapabilirim? Dizin ücretsizdir. Listelenen öğeler yalnızca bilgilendirme amaçlıdır ve herhangi bir türde onay anlamına gelmez. Keyfini çıkarın!",
+        "mainLink": "paywithz.cash",
+        "mapLink": "SPEDN"
+      },
+      "hackathon": {
+        "title": "Hackathon'a Katılın",
+        "description": "Zcash topluluğuyla birlikte etkili fikirler geliştirin, iş birliği yapın ve hayata geçirin. Beş yenilikçi kategoride yarışın: düğümler ve indeksleyiciler için Altyapı, etkileşimli deneyimler için Oyunlar, eşik imzalama için FROST, kimlik doğrulama çözümleri için Zcash Login ve finansal iş akışları için Muhasebe. 25 Mayıs - 15 Temmuz 2026. 25 ZEC ödül havuzu sizi bekliyor.",
+        "mainLink": "Hackathon'a Katılın"
+      }
+    },
+    "explore": {
+      "startHere": "Start_Here",
+      "tutorials": "Eğitimler /no_think",
+      "usingZcash": "Zcash Kullanımı",
+      "guides": "Rehberler",
+      "zcashTech": "Zcash_Tech",
+      "organizations": "Zcash Organizasyonları",
+      "community": "Zcash Topluluğu",
+      "zkavClub": "ZKAV_Club",
+      "privacyTools": "Gizlilik Araçları",
+      "research": "Araştırma",
+      "glossary": "Sözlük ve SSS",
+      "contribute": "Katkıda Bulun"
+    }
+  },
+  "footer": {
+    "description": "Zcash için açık kaynaklı bir eğitim merkezi",
+    "quickLinks": "Hızlı Bağlantılar",
+    "resources": "Kaynaklar",
+    "community": "Topluluk",
+    "followUs": "Bizi Takip Edin",
+    "allRightsReserved": "Tüm hakları saklıdır",
+    "privacyPolicy": "Gizlilik Politikası",
+    "termsOfService": "Hizmet Şartları"
+  },
+  "visualizer": {
+    "title": "Zcash Görselleştiricileri",
+    "description": "Zcash gizlilik teknolojisini, altyapısını ve zero-knowledge proofs’u anlamak için etkileşimli eğitim araçları",
+    "playAll": "Tüm Görselleştiricileri Oynat",
+    "basic": "Temel",
+    "basicDescription": "Zcash'in temel kavramları ve başlıca özellikleri",
+    "advanced": "İleri",
+    "advancedDescription": "Kriptografi, uzlaşı ve altyapıya dair derin teknik incelemeler",
+    "contributors": "Katkıda Bulunanlar",
+    "contributorsDescription": "Zcash ekosistemine katkıda bulunmanın ve ödüller kazanmanın yolları",
+    "beginnerQuiz": "Başlangıç Düzeyi Testi",
+    "intermediateQuiz": "Orta Düzey Test",
+    "contributorsQuiz": "Katkıda Bulunanlar Testi",
+    "autoPlayNote": "Her görselleştirici otomatik olarak çalışır. Gezinmek veya duraklatmak için kontrolleri kullanın.",
+    "wallets": {
+      "title": "Zcash Cüzdanlarına Giriş",
+      "description": "Shielded İşlevsellik Sağlama"
+    },
+    "pools": {
+      "title": "Değer Havuzları ve Adres Türleri",
+      "description": "Zcash gizlilik havuzlarını ve adres türlerini keşfedin"
+    },
+    "payWith": {
+      "title": "Zcash ile Öde",
+      "description": "Özel ödemeler için ZEC'i nerede ve nasıl kullanabileceğinizi keşfedin"
+    },
+    "dex": {
+      "title": "Zcash Borsaları (DEX)",
+      "description": "Merkeziyetsiz borsalar kullanarak ZEC'e izinsiz ve sansüre dayanıklı erişim"
+    },
+    "hashFunction": {
+      "title": "Hash Fonksiyonları",
+      "description": "Bir Hash Fonksiyonu nedir?"
+    },
+    "blockchain": {
+      "title": "Zcash Blockchain Temelleri",
+      "description": "Zcash Blockchain Temelini Anlamak"
+    },
+    "zkproof": {
+      "title": "zk-SNARKs",
+      "description": "Shielded işlemlerin etkileşimli gösterimi"
+    },
+    "keys": {
+      "title": "Zcash Anahtarları",
+      "description": "Zcash Anahtarlarını Anlamak"
+    },
+    "infrastructure": {
+      "title": "Zcash Altyapısı",
+      "description": "Zcash bileşenleri birlikte nasıl çalışır?"
+    },
+    "consensus": {
+      "title": "Konsensüs",
+      "description": "Yüzlerce düğüm zincirin durumu üzerinde nasıl anlaşır?"
+    },
+    "miningHalo": {
+      "title": "Zcash Madenciliği",
+      "description": "Equihash madenciliğini ve recursive zero-knowledge proofs'u anlamak"
+    },
+    "privacyUseCases": {
+      "title": "Gizlilik Kullanım Alanları",
+      "description": "Zcash üzerinde gizlilik teknolojisinin gerçek dünya uygulamaları"
+    },
+    "governance": {
+      "title": "Yönetişim ve Geliştirme Fonu",
+      "description": "Topluluk odaklı geliştirme ve merkeziyetsiz karar alma"
+    },
+    "bounties": {
+      "title": "ZecHub Ödülleri",
+      "description": "ZecHub'a katkıda bulun ve ZEC kazan"
+    },
+    "daoProposal": {
+      "title": "DAO Önerileri /no_think",
+      "description": "ZecHub DAO yönetişim önerisi oluşturmak için adım adım rehber"
+    },
+    "communityGrants": {
+      "title": "Zcash Community Grants",
+      "description": "Zcash ekosistemi projeleri için fon"
+    },
+    "coinholderGrants": {
+      "title": "Coinholder Directed Grants",
+      "description": "ZEC sahipleri tarafından yönlendirilen geriye dönük fonlama"
+    },
+    "openSource": {
+      "title": "Açık Kaynak Depoları",
+      "description": "Zcash açık kaynak projelerine katkıda bulunun"
+    }
+  },
+  "wallets": {
+    "title": "Zcash Cüzdanları",
+    "description": "İhtiyaçlarınıza uygun bir cüzdan seçin",
+    "desktopWallets": "Masaüstü Cüzdanlar",
+    "mobileWallets": "Mobil Cüzdanlar",
+    "hardwareWallets": "Donanım Cüzdanları",
+    "webWallets": "Web Cüzdanları",
+    "features": "Özellikler",
+    "download": "İndir",
+    "visitWebsite": "Web Sitesini Ziyaret Et",
+    "filters": "Filtreler",
+    "showNavigation": "Menüyü Göster",
+    "close": "Kapat",
+    "savedReview": "İncelemenizi kaydettik! /no_think",
+    "errorGettingLikes": "Hata beğeniler alınırken:",
+    "errorUpdatingRating": "Hata puan güncellenirken:"
+  },
+  "guides": {
+    "title": "Rehberler",
+    "description": "Zcash kullanımı için adım adım rehberler",
+    "allGuides": "Tüm Rehberler",
+    "beginner": "Başlangıç",
+    "intermediate": "Orta Seviye",
+    "advanced": "İleri Seviye"
+  },
+  "tutorials": {
+    "title": "Eğitimler",
+    "description": "Uygulamalı eğitimlerle yaparak öğrenin",
+    "watchVideo": "Videoyu İzle",
+    "readTutorial": "Eğitimi Oku",
+    "duration": "Süre"
+  },
+  "dao": {
+    "title": "ZecHub DAO",
+    "description": "ZecHub için merkeziyetsiz yönetişim",
+    "headerTitle": "ZecHub DAO ve Yönetişim",
+    "headerDescription": "Topluluk üyelerinin Zcash ekosistemini destekleyen içerikler oluşturmak, doğrulamak ve tanıtmak için birlikte çalıştığı açık kaynaklı bir eğitim platformu",
+    "beliefs": "['Gizlilik bir insan hakkıdır', 'Eğitim açık kaynaklı ve dünya çapında erişilebilir olmalıdır', 'Topluluk üyelerinin özel şekilde ZEC kazanma hakkı vardır', 'Küresel işbirliği yeniliği teşvik eder']",
+    "features": "[{'icon': '🛡️', 'title': 'İlk Zcash Ekosistemi DAO’su', 'description': 'ZecHub, maksimum gizlilik için fonların öncelikle Zcash shielded pool içinde tutulduğu, Zcash topluluğunda merkeziyetsiz yönetişime öncülük ediyor.'}, {'icon': '🌍', 'title': 'Küresel İşbirliği', 'description': 'Global Ambassadors, Community Grants üyeleri ve topluluk uzmanları, Zcash ve Privacy Technology eğitiminin yönünü belirlemek için bir araya geliyor.'}, {'icon': '🔄', 'title': 'SubDAO Çerçevesi', 'description': 'Herhangi bir grup, proje oluşturmak, teklifler hazırlamak veya DAO DAO modülü aracılığıyla Retroactive Compensation talep etmek için SubDAO’lar oluşturabilir.'}]",
+    "governanceDescription": "Tüm DAO teklifleri herkese açık ve şeffaftır. Herkes oylamaya sunulacak bir teklif oluşturabilir. Topluluk şeffaflığını desteklemek amacıyla ZecHub DAO, tüm yönetişim tekliflerini Zcash Community Forum ZecHub Governance başlığında paylaşır.",
+    "membersTitle": "DAO Üyeleri",
+    "proposals": "Öneriler",
+    "vote": "Oyla",
+    "createProposal": "Öneri Oluştur",
+    "activeProposals": "Aktif Öneriler",
+    "pastProposals": "Geçmiş Öneriler"
+  },
+  "newsletter": {
+    "title": "Bülten",
+    "description": "En son Zcash haberleriyle güncel kalın",
+    "subscribe": "Abone Ol",
+    "emailPlaceholder": "E-postanızı girin",
+    "subscribeButton": "Şimdi Abone Ol",
+    "latestIssue": "En Son Sayı",
+    "archive": "Arşiv"
+  },
+  "pages": {
+    "wallets": {
+      "title": "Cüzdanlar | ZecHub",
+      "noData": "Veri Yok veya Yanlış dosya",
+      "bannerAlt": "wiki-banner"
+    },
+    "dex": {
+      "title": "Merkeziyetsiz Borsalar",
+      "subtitle": "ZecHub herhangi bir belirli Merkeziyetsiz Borsa hizmetini desteklemez, lütfen kendi araştırmanızı yapın.",
+      "centralised": "Merkezi Swap platformları",
+      "centralizedTitle": "Merkezi Swap Platformu Listesi /no_think",
+      "custodial": "Saklamalı Borsalar",
+      "exchanges": {
+        "Near-intents": "NEAR desteğiyle hızlı takas. Para yatırın, satın, takas edin; popüler TRUMP, MELANIA, BERA ve diğer meme'ler dahil",
+        "Nativeswap": "Maya Protocol aracılığıyla engeller olmadan yerel zincirler arası alım satım. Köprüler veya sarılmış tokenlar olmadan doğrudan zincir üzerinde işlem yapın - sektörün düşük ücretlerinin ve tam varlık kontrolünün keyfini çıkarın.",
+        "Firo DEX": "FiroDEX! ile atomik takaslar kullanarak güven gerektirmeyen merkeziyetsiz takaslar.",
+        "LeoDEX": "Maya Protocol, Thorchain, ChainFlip ve Rango için bir zincirler arası kripto takas arayüzü. BTC, ETH, RUNE, DASH, LTC ve daha fazlası",
+        "Bison Wallet": "Kriptoyu eşler arası alıp satın. İşlem ücreti yok. KYC yok.",
+        "THORSwap": "THORChain destekli zincirler arası DEX; sarılmış tokenlar olmadan Bitcoin, Ethereum ve diğer büyük varlıklar arasında yerel takasları mümkün kılar.",
+        "Router Protocol": "Birden fazla blokzincir arasında sorunsuz varlık ve veri transferine olanak tanıyan zincirler arası likidite taşıma katmanı.",
+        "Peer": "Geliştirilmiş gizlilik ve kullanıcı kontrolüyle doğrudan kripto işlemlerini mümkün kılan merkeziyetsiz eşler arası borsa.",
+        "RocketX": "En uygun yönlendirme ve rekabetçi oranlarla birden fazla blokzincir arasında zincirler arası takaslar sağlayan hibrit DEX toplayıcısı.",
+        "THORChain": "Merkeliyetsiz Katman 1 zincirler arası borsa. ZEC, BTC ve ETH gibi yerel varlıkları köprüler, sarılmış tokenlar veya aracılar olmadan doğrudan takas edin.",
+        "Loofta": "Saklamasız özel ödeme ve takas platformu. Gelişmiş finansal gizlilik için Zcash'i mutabakat katmanı olarak kullanarak zincirler arasında kriptoyu özel şekilde gönderin ve alın."
+      }
+    },
+    "usingZcash": {
+      "blockchainExplorers": {
+        "title": "Blokzincir Gezginleri"
+      }
+    },
+    "dashboard": {
+      "title": "Kontrol Paneli | ZecHub",
+      "charts": {
+        "headerTitle": "Kontrol Panel(ler)i",
+        "headerSubtitle": "Zcash ağ metriklerini ve eğilimlerini analiz edin",
+        "shieldedNetworks": "Korumalı Ağlar",
+        "currentYoutubeChannel": "Mevcut YouTube Kanalı",
+        "totalVideos": "Toplam Video",
+        "totalViews": "Toplam Görüntülenme /no_think",
+        "mostViewed": "En Çok Görüntülenen",
+        "viewsSuffix": "görüntülenme",
+        "searchPlaceholder": "Videolarda ara...",
+        "top15ByViews": "Görüntülenmeye Göre İlk 15",
+        "latest15Videos": "En Son 15 Video",
+        "sortByNewest": "↩ En Yeniye Göre Sırala",
+        "sortByViews": "↑ Görüntülenmeye Göre Sırala",
+        "top15VideosByViews": "Görüntülenmeye Göre En İyi 15 Video",
+        "latest15VideosSortedByViews": "En Son 15 Video (Görüntülenmeye Göre Sıralanmış)",
+        "zcashMetrics": {
+          "title": "Zcash Metrikleri",
+          "loadError": "Zcash Metrikleri yüklenemedi",
+          "notAvailable": "Yok",
+          "marketCap": "Piyasa Değeri",
+          "circulation": "Dolaşım",
+          "marketPriceUsd": "Piyasa Fiyatı (USD)",
+          "marketPriceBtc": "Piyasa Fiyatı (BTC)",
+          "blocks": "Bloklar",
+          "transactions24h": "24 sa İşlem",
+          "shieldedTx24h": "Korumalı TX (24 sa)",
+          "saplingAbbrev": "Sap /no_think",
+          "orchardAbbrev": "Ork"
+        },
+        "zcashChart": {
+          "title": "Analitik Grafikler",
+          "supplyTypeAriaLabel": "Arz türü",
+          "supplyOptions": {
+            "shielded": "Korumalı",
+            "transparent": "Şeffaf",
+            "totalSupply": "Toplam Arz"
+          }
+        },
+        "zcashShieldedTabs": {
+          "supply": "Arz",
+          "difficulty": "Zorluk",
+          "issuance": "İhraç",
+          "lockbox": "Kilit kutusu",
+          "flows": "Akışlar",
+          "nodeCount": "Düğüm Sayısı",
+          "txSummary": "TX Özeti",
+          "privacySet": "Gizlilik Kümesi",
+          "shieldedStats": "Korumalı İstatistikler",
+          "blockFees": "Blok Ücretleri",
+          "networkSolps": "Ağ Solps",
+          "miningPools": "Madencilik Havuzları",
+          "halvingMeter": "Yarılanma Göstergesi"
+        },
+        "miningPoolsChart": {
+          "title": "Madencilik Havuzu Hakimiyeti",
+          "loadError": "Mining Pool’lar yüklenemedi",
+          "rangeLabel": "Aralık",
+          "rangeAriaLabel": "Madencilik aralığını seçin",
+          "noData": "Madencilik havuzu verisi mevcut değil."
+        },
+        "difficultyChart": {
+          "title": "Zaman İçinde Madencilik Zorluğu",
+          "loadError": "Zorluk Grafiği yüklenemedi",
+          "legend": "Zorluk",
+          "seriesName": "Zorluk"
+        },
+        "tabs": {
+          "zechubDashboard": "ZecHub Panosu",
+          "daodaoDashboard": "DaoDao Panosu",
+          "treasuryDashboard": "Hazine",
+          "zcgDashboard": "ZCG Panosu",
+          "youtubeDashboard": "YouTube Panosu"
+        }
+      }
+    },
+    "hackathon": {
+      "title": "ZecHub Hackathon’u",
+      "heroEyebrow": "Geliştir · Belgele · Gönder",
+      "heroIntro": "Altyapıdan oyunlara kadar beş farklı kulvarda geliştirin, ardından çalışmanızı belgeleyip demo sunun. Resmî açılış",
+      "heroKickoffSep": "(UTC); gönderimler",
+      "countdownStartsIn": "Hackathon’un başlamasına kalan süre",
+      "countdownTimeUntilClose": "Gönderimlerin kapanmasına kalan süre",
+      "countdownEnded": "Hackathon sona erdi",
+      "days": "Gün",
+      "hours": "Saat",
+      "mins": "Dak",
+      "secs": "Sn",
+      "endedNote": "Bu hackathon süresi sona erdi, katılan herkese teşekkürler.",
+      "preStarts": "Başlıyor",
+      "preCloseSep": "(UTC). Başvurular kapanır",
+      "activeCloseOn": "Başvurular şu tarihte kapanır:",
+      "tracksEyebrow": "2026 etkinliği",
+      "tracksTitle": "Kategoriler",
+      "tracksIntro": "Başvururken netlik için projenizi bir kategoriyle eşleştirin; jüri ve topluluk bunları başvurulara göz atmak için kullanır.",
+      "tracks": {
+        "infrastructure": {
+          "name": "Altyapı",
+          "description": "ZSA GUI, Node Launcher, Zallet web gösterge paneli vb."
+        },
+        "games": {
+          "name": "Oyunlar",
+          "description": "catfishing.net benzeri Wiki Article oyunu, ZEC Poker, Amiral Battı vb."
+        },
+        "frost": {
+          "name": "FROST",
+          "description": "Eşik imzalı cüzdanlar, Korumalı ZEC Emaneti, Sosyal Kurtarma"
+        },
+        "zcashLogin": {
+          "name": "Zcash Girişi",
+          "description": "Oturum açma veya erişim için Zcash ilkel yapılarını kullanan kimlik doğrulama ve kimlik akışları."
+        },
+        "accounting": {
+          "name": "Muhasebe /no_think",
+          "description": "Raporlama, ZEC ile çalışan ekipler için iş akışları, ödeme yönetim sistemi."
+        }
+      },
+      "prizesEyebrow": "Ödüller",
+      "prizesTitle": "Ödüller",
+      "prizePoolTitle": "25 ZEC ödül havuzu",
+      "prizePoolDesc": "Topluluk ödül havuzu için oluşturun, gönderin ve yarışın.",
+      "devToolsEyebrow": "Buradan başlayın",
+      "devToolsTitle": "Geliştirici araçları ve dokümantasyon",
+      "devTools": {
+        "quickStart": {
+          "title": "ZecHub Geliştirici Hızlı Başlangıç",
+          "description": "Zcash üzerinde geliştirme yapmak için gerekli temel araçları, referansları ve kurulum adımlarını bulun."
+        }
+      },
+      "openGuide": "Kılavuzu aç",
+      "openDocs": "Dokümanları aç",
+      "rulesTitle": "Kurallar",
+      "rulesDesc": "Gönderimleri adil tutun ve değerlendirmeyi kolaylaştırın.",
+      "rules": {
+        "mainnet": "Projeler Zcash mainnet ağıyla etkileşime girmelidir.",
+        "oneProject": "Ekipler, ekip başına yalnızca bir nihai proje gönderebilir.",
+        "docs": "Tüm gönderimler açık kurulum ve kullanım dokümantasyonu içermelidir.",
+        "openSource": "Açık kaynak lisanslama kullanın.",
+        "respect": "Hem kodda hem içerikte gizlilik, güvenlik ve topluluk yönergelerine saygı gösterin."
+      },
+      "faqTitle": "SSS",
+      "faqDesc": "Derinlemesine başlamadan önce hızlı yanıtlar.",
+      "faq": {
+        "whoCanParticipate": {
+          "question": "Kimler katılabilir?",
+          "answer": "Herkes katılabilir: geliştiriciler, tasarımcılar ve multidisipliner ekipler."
+        },
+        "validSubmission": {
+          "question": "Geçerli bir başvuru neleri içermelidir?",
+          "answer": "Çalışan bir prototip, video demosu, temel dokümantasyon ve Zcash ağını nasıl kullandığına dair bir açıklama."
+        },
+        "whereSubmit": {
+          "question": "Projeleri nereye gönderiyoruz?",
+          "answer": "Video demonuzu Zcash Global Discord'da paylaşın ve ilgili depo veya demo bağlantılarını ekleyin."
+        },
+        "winnersSelected": {
+          "question": "Kazananlar nasıl seçiliyor?",
+          "answer": "Başvurular kapandıktan sonra ZecHub DAO kanalları üzerinden halka açık bir topluluk süreci yürütülür."
+        },
+        "whatTracks": {
+          "question": "Kategoriler nelerdir?",
+          "answer": "Bu hackathon'un temaları Infrastructure, Games, FROST, Zcash Login ve Accounting'dir. Geliştirinize en uygun kategoriyi seçin; yine de kategoriler içinde tanımlanmamış bir proje gönderebilirsiniz."
+        }
+      },
+      "submitEyebrow": "Katılım",
+      "submitTitle": "Nasıl başvurulur",
+      "submitIntro": "Projenizi fikirden resmi başvuruya taşımak için şu beş adımı izleyin.",
+      "steps": {
+        "build": {
+          "title": "Projenizi geliştirin",
+          "description": "Zcash mainnet ile etkileşime giren çalışan bir prototip oluşturun. Bir kategori seçin ve ilerledikçe bir geliştirme günlüğü tutun."
+        },
+        "record": {
+          "title": "Bir video demo kaydedin",
+          "description": "Projenizi çalışırken gösteren kısa bir tanıtım videosu çekin. Ne yaptığını ve Zcash ağını nasıl kullandığını açıkça anlatın."
+        },
+        "document": {
+          "title": "Çalışmanızı belgelendirin",
+          "description": "Kurulum talimatları, kullanım notları ve açık kaynak lisansınızı içeren bir README yazın. Her şeyi herkese açık bir GitHub deposuna gönderin."
+        },
+        "upload": {
+          "title": "Kodunuzu yükleyin /no_think",
+          "descPrefix": "Projenizi şu adrese gönderin:",
+          "repoLabel": "Hackathon deposu",
+          "descSuffix": "çalışmanızın topluluk tarafından incelenebilmesi için GitHub üzerinde."
+        },
+        "share": {
+          "title": "Discord'da paylaşın",
+          "description": "Video demonuzu, repo ve demo bağlantılarınızla birlikte 15 Temmuz 2026'dan (UTC) önce Zcash Global Discord'da paylaşın."
+        }
+      },
+      "deadlineLabel": "Son tarih:",
+      "deadlinePrefix": "Tüm gönderimler şu tarihe kadar Discord'da paylaşılmalıdır:",
+      "deadlineSuffix": ". Kazananlar, gönderimler kapandıktan kısa bir süre sonra ZecHub DAO kanallarında yapılan halka açık bir topluluk oylamasıyla seçilir.",
+      "joinTheDiscord": "Discord'a katılın",
+      "previousEyebrow": "Geçmiş sürümler",
+      "previousTitle": "Önceki hackathonlar",
+      "previousIntro": "Önceki ZecHub hackathon yapımlarına sürüme göre göz atın. Her proje kartı, mevcut olduğunda kod, notlar ve demolara ulaşmak için doğrudan GitHub klasörüne bağlanır.",
+      "browseAllProjects": "Tüm projelere göz atın",
+      "errorCouldNotLoad": "Canlı proje listesi yüklenemedi",
+      "errorShowingSaved": "Bunun yerine kaydedilmiş önceki hackathon proje listesi gösteriliyor.",
+      "noProjects": "Hiç proje klasörü döndürülmedi. Yapıyı doğrulamak için repo ağacını açın.",
+      "projectsArchivedOne": "Bu sürümden arşivlenen {count} proje.",
+      "projectsArchivedMany": "Bu sürümden arşivlenen {count} proje.",
+      "buildsCount": "{count} yapı",
+      "viewProject": "Projeyi görüntüle",
+      "needHelpTitle": "Yardıma mı ihtiyacınız var?",
+      "needHelpDesc": "Zcash Global Discord, geliştirme soruları, altyapı ipuçları ve hackathon sohbetleri için en iyi yerdir.",
+      "joinDiscord": "Discord'a Katıl",
+      "supportDonation": "Bağışla destek olun",
+      "popup": {
+        "liveNow": "Şimdi Canlı",
+        "subtitle": "Zcash üzerinde gizlilik öncelikli uygulamalar geliştirin. Ödüller için yarışın, ZEC kazanın ve finansal özgürlüğün geleceğini şekillendirin.",
+        "prizePool": "Ödül Havuzu",
+        "start": "Başlangıç",
+        "end": "Bitiş",
+        "learnMore": "Daha Fazla Bilgi →",
+        "dismiss": "Kapat"
+      }
+    },
+    "developers": {
+      "title": "Zcash Geliştirici Kaynakları",
+      "heroImageAlt": "Zcash Geliştirici Kaynakları",
+      "cardSectionTitle": "Nasıl başlamak istersiniz?",
+      "cards": {
+        "learnTitle": "Zcash Geliştirmeyi Öğrenin",
+        "learnContent": "Resmi belgeleri keşfedin ve Zcash teknolojisinin temellerini öğrenin.",
+        "learnButton": "Dokümanları Oku",
+        "tutorialsTitle": "Eğitimlerle Öğrenin",
+        "tutorialsContent": "Cüzdan oluşturmaktan uygulamalarınıza Zcash entegrasyonuna kadar, Zcash üzerinde geliştirme yapmak için adım adım eğitimleri takip edin.",
+        "tutorialsButton": "Eğitimleri Görüntüle",
+        "quickStartTitle": "Hızlı Başlangıç Rehberi",
+        "quickStartContent": "Zcash geliştirmeye hızla başlayın. Kurulum, yapılandırma ve temel işlemleri öğrenin.",
+        "quickStartButton": "Hızlı Başlangıç Rehberi"
+      },
+      "exploreDocsTitle": "Dokümantasyonu Keşfedin",
+      "introductionsTitle": "Girişler",
+      "fundamentalsTitle": "Temeller",
+      "advancedTitle": "İleri Düzey",
+      "introLinks": {
+        "introToZcash": "Zcash'e Giriş",
+        "introToZcashDesc": "Zcash, tarihi ve temel ilkeleri hakkında bilgi edinin.",
+        "introToZec": "ZEC'e Giriş",
+        "introToZecDesc": "Zcash'in yerel kripto para birimi olan ZEC'in kullanım alanlarını ve avantajlarını keşfedin.",
+        "introToZebra": "Zebra'ya Giriş",
+        "introToZebraDesc": "Zebra'nın modüler ve güvenli, Rust tabanlı bir uygulama ile Zcash ağını nasıl desteklediğini anlayın",
+        "introToLightwalletd": "Lightwalletd'ye Giriş",
+        "introToLightwalletdDesc": "lightwalletd projesini anlayın — Go ile yazılmış, ölçeklenebilir bir sunucu olup kompakt blokzincir verilerini gRPC aracılığıyla Zcash hafif istemcilerine verimli şekilde sunar.",
+        "zalletBook": "Zallet Kitabı",
+        "zalletBookDesc": "Rust ile yazılmış ve zcashd cüzdanının yerine geçecek şekilde tasarlanmış tam düğüm Zcash cüzdanı Zallet'e giriş.",
+        "developerResources": "Geliştirici Kaynakları",
+        "developerResourcesDesc": "Zcash ile ilgili daha fazla Teknik Dokümantasyon bağlantıları."
+      },
+      "fundamentalsLinks": {
+        "addressEncoding": "Adres Kodlama /no_think",
+        "addressEncodingDesc": "Zcash adreslerinin ve anahtarlarının nasıl kodlandığını öğrenin.",
+        "transactions": "İşlemler",
+        "transactionsDesc": "İşlemlerin Zcash içinde nasıl çalıştığını anlayın.",
+        "fees": "Ücretler",
+        "feesDesc": "İşlem ücretleri ve bunların nasıl hesaplandığı hakkında bilgi edinin.",
+        "nodesZcashd": "Düğümler (zcashd)",
+        "nodesZcashdDesc": "zcashd kullanarak Zcash düğümlerini kurun ve yönetin.",
+        "nodesZebrad": "Düğümler (zebrad)",
+        "nodesZebradDesc": "Alternatif bir Zcash düğüm uygulaması olan Zebra'yı keşfedin.",
+        "lightwalletServers": "Lightwallet Sunucuları",
+        "lightwalletServersDesc": "Hafif bir Zcash cüzdan sunucusu olan lightwalletd hakkında bilgi edinin.",
+        "blockExplorers": "Blok Gezginleri",
+        "blockExplorersDesc": "Blok gezginlerini kullanarak Zcash blok zincirlerini keşfedin.",
+        "shadeAgent": "Shade Agent - Notion",
+        "shadeAgentDesc": "Varlıkları yönetmek, LLM'lere erişmek ve çok zincirli işlemleri bağımsız olarak yürütmek için güvenli TEE'ler ve merkeziyetsiz Chain Signatures ile desteklenen, NEAR üzerindeki ilk gerçekten otonom AI ajanları olan Shade Agents hakkında bilgi edinin."
+      },
+      "advancedLinks": {
+        "introToStack": "Yığına Giriş",
+        "introToStackDesc": "Zcash yığınının mimarisini ve bileşenlerini anlayın.",
+        "zecDev": "ZecDev",
+        "zecDevDesc": "Burada, (Zcash) Developer Relations Engineer hibesi kapsamında oluşturulan ve sürdürülen projeleri, kaynakları ve araçları bulacaksınız. Ayrıca şuraya da bakın:",
+        "zcashCommunityWishlist": "Zcash Community Wishlist /no_think",
+        "introToZingolib": "Zingolib'e Giriş",
+        "introToZingolibDesc": "Zingolib deposunu anlamak — Lightwalletd aracılığıyla zcashd ile etkileşim kurmak için Rust tabanlı bir API ve CLI.",
+        "webZjs": "WebZjs",
+        "webZjsDesc": "WebAssembly kullanarak Zcash özellikli web uygulamaları oluşturmak için bir JavaScript/TypeScript kütüphanesi.",
+        "noirWalletSdk": "Noir Wallet SDK",
+        "noirWalletSdkDesc": "Zcash uygulamalarını Noir Wallet tarayıcı uzantısıyla entegre etmek için TypeScript SDK'sı ve örnek dApp.",
+        "zcashIka": "zcash-ika",
+        "zcashIkaDesc": "2PC-MPC aracılığıyla Zcash ve çok zincirli ajanlar için bölünmüş anahtar saklama. Zincir üstü harcama politikası, gizlilik tasdiki, ZIP 244 işlem oluşturucu.",
+        "developmentGuidelines": "Geliştirme Yönergeleri",
+        "developmentGuidelinesDesc": "Zcash üzerinde geliştirme yapmak için en iyi uygulamaları takip edin.",
+        "arboristCalls": "Arborist Calls Sayfası",
+        "arboristCallsDesc": "Zcash Arborist Calls, yaklaşan protokol dağıtım lojistiğini, konsensüs düğümü uygulama sorunlarını ve protokol araştırmalarını takip etmeye odaklanan, iki haftada bir yapılan protokol geliştirme toplantılarıdır."
+      },
+      "feedbackTitle": "Bu sayfa faydalı oldu mu?",
+      "feedbackYes": "Evet",
+      "feedbackNo": "Hayır",
+      "feedbackHelpful": "Geri bildiriminiz için teşekkür ederiz! Birkaç soruyu yanıtlayarak bu sayfayı daha da iyi hale getirin. Yardıma ihtiyacınız varsa topluluğumuza şu platformumuz üzerinden ulaşabilirsiniz:",
+      "feedbackNotHelpful": "Bunu duyduğumuza üzüldük. Lütfen bu sayfayı nasıl geliştirebileceğimizi bize bildirin. Topluluğumuza şu platformumuz üzerinden ulaşabilirsiniz:"
+    },
+    "zcashProjects": {
+      "title": "Zcash Projeleri | ZecHub"
+    },
+    "visualizer": {
+      "title": "Zcash Görselleştiricileri",
+      "hashFunction": {
+        "title": "Hash Fonksiyonu Görselleştiricisi /no_think"
+      },
+      "zcashKey": {
+        "title": "Zcash Anahtar Görselleştirici"
+      },
+      "zksnark": {
+        "title": "ZK-SNARK Kanıt Görselleştirici"
+      },
+      "sybil": {
+        "problemTitle": "Sybil Saldırısı Problemi",
+        "problemDesc": "Oylamanın gerçeği belirlediği bir ağda, bir saldırgan meşru katılımcılardan daha fazla oy almak için milyonlarca sahte kimlik oluşturabilir.",
+        "realUsers": "3 Gerçek Kullanıcı",
+        "vs": "karşı",
+        "attacker": "1 Saldırgan (6 sahte)",
+        "solutionTitle": "Zcash Sybil Saldırılarını Nasıl Önler",
+        "powTitle": "İş Kanıtı",
+        "powDesc": "Madencilik gerçek hesaplama kaynakları gerektirir. Sahte kimlikler oluşturmak daha fazla oy gücü vermez — bunu yalnızca gerçek çalışma sağlar.",
+        "costTitle": "Ekonomik Maliyet",
+        "costDesc": "Ağa saldırmak, donanım ve elektriğe büyük yatırım gerektirir; bu da saldırıları ekonomik olarak mantıksız hâle getirir.",
+        "insightLabel": "Temel İçgörü:",
+        "insightDesc": "Sybil direnci, oy gücünü kolayca oluşturulabilen kimliklere değil kıt kaynaklara (hesaplama, stake) bağlar."
+      },
+      "saplingKey": {
+        "spendingKeyName": "Harcama Anahtarı (sk)",
+        "spendingKeyDesc": "Harcama için ana gizli anahtar",
+        "expandedSpendingKeyName": "Genişletilmiş Harcama Anahtarı",
+        "expandedSpendingKeyDesc": "ask, nsk, ovk",
+        "fullViewingKeyName": "Tam Görüntüleme Anahtarı (fvk)",
+        "fullViewingKeyDesc": "ak, nk, ovk /no_think",
+        "incomingViewingKeyName": "Gelen Viewing Key (ivk)",
+        "incomingViewingKeyDesc": "Gelen işlemleri görüntüle",
+        "diversifiedAddressName": "Çeşitlendirilmiş Adres",
+        "diversifiedAddressDesc": "zs1... (anahtar başına sınırsız)",
+        "derivationTitle": "Sapling Anahtar Türetimi",
+        "addressFormatTitle": "Adres Biçimi",
+        "addressFormatDesc": "78 karakter, Bech32 kodlaması",
+        "keyFeatureTitle": "Temel Özellik",
+        "keyFeatureBold": "Çeşitlendirilmiş adresler",
+        "keyFeatureDesc": "— Tek bir anahtardan sınırsız sayıda benzersiz adres oluşturun"
+      },
+      "blockAnatomy": {
+        "fieldVersion": "Sürüm",
+        "fieldPreviousHash": "Önceki Hash",
+        "fieldMerkleRoot": "Merkle Kökü",
+        "fieldTimestamp": "Zaman Damgası",
+        "fieldDifficulty": "Zorluk",
+        "fieldNonce": "Nonce",
+        "blockHeader": "Blok Başlığı",
+        "transactionList": "İşlem Listesi",
+        "coinbaseTx": "İşlem #1 (Coinbase)",
+        "merkleTree": "Merkle Ağacı",
+        "merkleRoot": "Merkle Kökü"
+      },
+      "difficulty": {
+        "zcashBlockTime": "75 saniye",
+        "targetBlockTime": "Hedef blok süresi",
+        "bitcoinBlockTime": "10 dakika",
+        "forComparison": "Karşılaştırma için",
+        "adjustmentTitle": "Zorluk Ayarlaması",
+        "hashrateIncreases": "Hashrate Artar",
+        "difficultyUp": "Zorluk artar",
+        "target": "Hedef: 75 sn",
+        "staysConstant": "Sabit kalır",
+        "hashrateDecreases": "Hashrate Azalır",
+        "difficultyDown": "Zorluk azalır",
+        "summary": "Ağ, kaç madencinin rekabet ettiğine bakılmaksızın, tutarlı blok sürelerini korumak için madencilik zorluğunu otomatik olarak ayarlar."
+      }
+    },
+    "paymentProcessors": {
+      "title": "Ödeme İşlemcileri | ZecHub",
+      "noData": "Veri yok veya yanlış dosya",
+      "bannerAlt": "wiki-banner"
+    },
+    "developersQuickStart": {
+      "heroBadge": "Geliştirici Hızlı Başlangıç",
+      "heroTitleLine1": "Zcash Geliştirme",
+      "heroTitleLine2": "Hızlı Başlangıç",
+      "heroSubtitle": "Zcash geliştirmeye başlayın ve çalışır hale gelin. Yığınınızı seçin ve kılavuzu takip edin. /no_think",
+      "copy": "Kopyala",
+      "copied": "Kopyalandı!",
+      "onThisPage": "Bu sayfada",
+      "tocInstallingZebrad": "Zebrad Kurulumu",
+      "tocRunningZebrad": "zebrad Çalıştırma",
+      "tocConnectingLightwalletd": "lightwalletd ile Bağlanma",
+      "installation": "Kurulum",
+      "configuration": "Yapılandırma",
+      "dependencies": "Bağımlılıklar",
+      "fromSource": "Kaynaktan",
+      "alternatively": "Alternatif olarak",
+      "manualDownload": "Manuel İndirme",
+      "wslRecommended": "WSL (Önerilen)",
+      "runningZebradHeading": "zebrad Çalıştırma",
+      "initialSetup": "İlk Kurulum",
+      "createConfigDir": "Yapılandırma Dizini Oluştur",
+      "startingZebrad": "zebrad Başlatma",
+      "commandLine": "Komut Satırı",
+      "importantNotes": "Önemli Notlar",
+      "noteDownloadsBlockchain": "İlk çalıştırma tüm blockchain'i indirir (~250 GB)",
+      "noteInitialSync": "İlk senkronizasyon birkaç saat sürebilir",
+      "noteKeepSecure": "zebrad.toml dosyanızı güvenli ve gizli tutun",
+      "connectingLightwalletdHeading": "lightwalletd ile bağlanma",
+      "lightwalletdInfo": "Zcash blokzinciri için hafif bir arayüz sağlayan, tam düğüm çalıştırması gerekmeyen mobil ve masaüstü cüzdanlar için tasarlanmış bir sunucudur.",
+      "prerequisites": "Ön koşullar",
+      "buildLightwalletd": "lightwalletd derleme",
+      "basicSetupMainnet": "Temel Kurulum (Mainnet)",
+      "basicSetupTestnet": "Temel Kurulum (Testnet)",
+      "run": "Çalıştır",
+      "installingZaino": "Zaino kurulumu",
+      "zainoInfo": "Zcash blokzinciri için Rust tabanlı bir indeksleyicidir. Hem hafif istemcilere (tam geçmişi saklamayan cüzdanlar) hem de tam istemcilere / blok gezginlerine hizmet verir; kesinleşmiş zincire, kesinleşmemiş en iyi zincire ve mempool'a erişim sağlar.",
+      "buildZaino": "Zaino derleme",
+      "configure": "Yapılandır",
+      "runZainod": "zainod çalıştır",
+      "installingZingoCli": "Zingo CLI kurulumu",
+      "zingoCliInfo": "Rust ile geliştirilmiş, komut satırı tabanlı bir lightwalletd-proxy istemcisidir. Sürümler şu anda geçicidir — bu kılavuz kaynaktan derlemeyi kapsar.",
+      "buildZingoCli": "Zingo CLI derleme",
+      "running": "Çalıştırma",
+      "startZingoCliDefault": "Zingo CLI başlat (Varsayılan)",
+      "startZingoCliCustom": "Zingo CLI başlat (Özel) /no_think",
+      "zingoSyncWarning": "⚠ Bu, ilk çalıştırmada lightwalletd benzeri tam bir senkronizasyon gerçekleştirecektir.",
+      "nextStepsResources": "Sonraki Adımlar ve Kaynaklar",
+      "readyToBuild": "İnşa Etmeye Hazır mısınız?",
+      "officialDocumentation": "Resmî Belgeler",
+      "zcashDiscordCommunity": "Zcash Discord Topluluğu",
+      "githubRepositories": "GitHub Depoları",
+      "zcashImprovementProposals": "Zcash İyileştirme Önerileri",
+      "needHelp": "Yardıma mı ihtiyacınız var?",
+      "zcashCommunityForum": "Zcash Topluluk Forumu",
+      "githubIssues": "GitHub Sorunları",
+      "troubleshootingGuide": "Sorun Giderme Kılavuzu",
+      "stackOverflow": "Stack Overflow"
+    },
+    "governanceHowto": {
+      "pageTitle": "ZecHub DAO Yönetişimi",
+      "pageSubtitle": "ZecHub DAO yönetişimine katılmak için kapsamlı bir rehber",
+      "stepOf": "{current} / {total} adım",
+      "firstSteps": "İlk Adımlar",
+      "firstStepsDesc": "DAO yönetişimine katılmak için hazırlanın",
+      "draftProposal": "Taslak Teklif",
+      "draftProposalDesc": "Teklifinizi gönderim için yapılandırın ve hazırlayın",
+      "submittingProposal": "Teklif Gönderme /no_think",
+      "submittingProposalDesc": "Teklifinizi gönderin ve tanıtın",
+      "installKeplr": "Keplr Wallet'ı yükleyin",
+      "installKeplrDesc": "DAO ile etkileşim kurmak için Keplr cüzdanınızı ayarlayın",
+      "keplrVideoTitle": "Keplr Wallet Kurulum Kılavuzu",
+      "acquireJuno": "JUNO edinin",
+      "acquireJunoDesc": "daodao sözleşmesiyle etkileşim kurmak için JUNO tokenları edinin. Yardım için core-team üyeleriyle iletişime geçin.",
+      "viewOpenProposals": "Açık Teklifleri Görüntüleyin",
+      "viewOpenProposalsDesc": "Mevcut tekliflere ve oylama fırsatlarına göz atın",
+      "visitVotingPortal": "Oylama Portalını Ziyaret Edin",
+      "formatNote": "Biçim: Teklifler .Md veya .txt biçiminde yazılabilir",
+      "recommendedStructure": "Önerilen 4 Aşamalı Yapı:",
+      "stageBackground": "Arka Plan",
+      "stageBackgroundDesc": "Genel konu / hizmet hakkında biraz geçmiş bilgi verin",
+      "stageWhy": "Neden?",
+      "stageWhyDesc": "Teklifinizin arkasındaki itici nedeni sunun. Madde işaretleri kullanılabilir",
+      "stageProposal": "Teklif",
+      "stageProposalDesc": "Teklifinizi açık ve eksiksiz şekilde ayrıntılandırın",
+      "stageAction": "Eylem",
+      "stageActionDesc": "Başarılı bir oylamadan sonra ne olur - eylemlerin zaman çizelgesi verilebilir",
+      "getFeedback": "Geri Bildirim Alın /no_think",
+      "getFeedbackDesc": "Taslağınızı erken geri bildirim almak için Discord’daki ZecHub #proposals kanalında paylaşın",
+      "joinDiscord": "Discord’a katılın",
+      "walkthroughTitle": "Proposal Walkthrough Video",
+      "walkthroughDesc": "Bir teklifin nasıl yazılacağını ve yapılandırılacağını adım adım anlatan tam bir videoyu izleyin",
+      "walkthroughIframeTitle": "Proposal Walkthrough",
+      "postInDiscord": "Discord’da paylaşın",
+      "postInDiscordDesc": "Nihai teklifinizi #proposals kanalında paylaşın ve @core-team etiketleyin",
+      "openDiscord": "Discord’u açın",
+      "submitOnPortal": "Voting Portal’da gönderin",
+      "submitOnPortalDesc": "Teklifinizi oluşturmak için resmi ZecHub oylama sitesini kullanın",
+      "submitNow": "Şimdi Gönder",
+      "loginNote": "⚠️ Keplr veya Keplr Mobile ile giriş yapmanız gerekiyor",
+      "previous": "Önceki",
+      "next": "Sonraki"
+    },
+    "sitemap": {
+      "heading": "Site Gezinmesi",
+      "subheading": "Zechub Wiki’de mevcut tüm sayfaların ve kaynakların tam genel görünümü",
+      "guidesCount": "{count} rehber",
+      "sections": {
+        "Pages": "Sayfalar",
+        "Organizations": "Organizasyonlar",
+        "Guides": "Rehberler",
+        "Use Zcash": "Zcash kullan",
+        "Ecosystem": "Ekosistem"
+      },
+      "links": {
+        "Homepage": "Ana sayfa",
+        "Dashboard": "Gösterge Paneli",
+        "Donation": "Bağış",
+        "Contribute": "Katkıda bulun",
+        "DAO": "DAO",
+        "Developers": "Geliştiriciler",
+        "Brand": "Marka",
+        "Wallets": "Cüzdanlar",
+        "Sitemap": "Site haritası",
+        "Tutorials": "Eğitimler",
+        "Bounties": "Ödüller",
+        "Buying ZEC": "ZEC satın alma",
+        "Faucets": "Musluklar",
+        "Exchanges": "Borsalar",
+        "Block Explorers": "Blok gezginleri",
+        "Shielded Pools": "Korumalı Havuzlar",
+        "Transparent Exchange Addresses": "Şeffaf Borsa Adresleri",
+        "Transactions": "İşlemler",
+        "Memos": "Notlar",
+        "Mobile Top Ups": "Mobil Kontör Yüklemeleri",
+        "Payment Request URIs": "Ödeme Talebi URI'leri",
+        "Payment Processors": "Ödeme İşleyicileri",
+        "Recovering Funds": "Fonların Kurtarılması",
+        "Metamask Snap": "Metamask Snap",
+        "Community Forum": "Topluluk Forumu",
+        "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
+      }
+    },
+    "zcashCommunity": {
+      "communityProjects": {
+        "title": "Topluluk Projeleri"
+      }
+    },
+    "research": {
+      "seriesHeading": "Seriler",
+      "seriesSubheading": "Temel Zcash kavramlarına derinlemesine bakışlar",
+      "foundationsSeriesTitle": "Zcash Foundations Serisi",
+      "coreSeriesBadge": "Temel Seri",
+      "foundationsSeriesCardDescription": "Korumalı işlemler, gizlilik modelleri ve protokol tasarımı üzerine temel makaleler.",
+      "exploreSeries": "Seriyi keşfedin →",
+      "articlesHeading": "Araştırma Makaleleri",
+      "articlesSubheading": "ZecHub topluluğundan makaleler ve notlar.",
+      "foundationsSeriesDescription": "Zcash korumalı işlemleri, gizlilik modelleri, protokol tasarımı ve ağı güçlendiren temel kavramları kapsayan temel makalelerden oluşan bir derleme.",
+      "tagShieldedTransactions": "Korumalı İşlemler",
+      "tagPrivacyModels": "Gizlilik Modelleri",
+      "tagProtocolDesign": "Protokol Tasarımı",
+      "tagZeroKnowledge": "Sıfır Bilgi"
+    },
+    "browseSidebar": "Makalelere soldaki kenar çubuğunu kullanarak göz atın 👈",
+    "zcashGlobalAmbassadors": {
+      "title": "Zcash Küresel Elçileri",
+      "description": "Zcash Küresel Elçileri, dünya çapında gizlilik odaklı kripto para benimsenmesini ve eğitimini teşvik etmeye adanmış topluluk liderleridir. Her elçi projesi, kendi bölgesinde farkındalık ve etkileşim oluşturmaya odaklanır.",
+      "activeProjectsHeading": "Aktif Küresel Elçi Projeleri",
+      "projectSitesHeading": "Proje Siteleri ve Bloglar",
+      "followOnX": "X/BS üzerinde takip edin",
+      "projectSiteLabel": "Proje Sitesi",
+      "linkLabel": "Bağlantı",
+      "footerInfo": "Zcash Küresel Elçileri programı, gizlilik odaklı teknoloji benimsenmesini teşvik etmek için topluluk öncülüğündeki girişimleri destekler. Her elçi projesi, daha geniş Zcash ekosistemine katkıda bulunurken bağımsız olarak faaliyet gösterir.",
+      "mapTitle": "Zcash Elçi Haritası",
+      "mapSubtitle": "{count} aktif topluluk genelinde topluluk öncülüğünde Zcash savunuculuğu.",
+      "globeView": "Küre görünümü",
+      "mapView": "Harita görünümü",
+      "loadError": "Elçi verileri yüklenemedi.",
+      "projects": {
+        "Zcash Korea": "Kore'de Zcash topluluğu ve savunuculuğu",
+        "Zcash Russia": "Rusya'da Zcash topluluğu ve savunuculuğu",
+        "Zcash Arabia": "Arapça konuşulan bölgede Zcash topluluğu ve savunuculuğu",
+        "Zcash Brazil": "Brezilya'da Zcash topluluğu ve savunuculuğu",
+        "Zcash Ghana": "Gana'da Zcash topluluğu ve savunuculuğu",
+        "Zcash Español": "İspanyolca konuşulan bölgede Zcash topluluğu ve savunuculuğu",
+        "Zcash Nigeria": "Nijerya'da Zcash topluluğu ve savunuculuğu",
+        "Zcash Ukraine": "Ukrayna'da Zcash topluluğu ve savunuculuğu",
+        "Zcash Turkey": "Türkiye'de Zcash topluluğu ve savunuculuğu",
+        "Zcash India": "Hindistan'da Zcash topluluğu ve savunuculuğu",
+        "Zcash East Africa": "Zcash East Africa, eğitim, topluluk etkinlikleri, teknik atölyeler ve ekosistem geliştirme yoluyla dijital gizliliği, finansal özgürlüğü ve blokzincir inovasyonunu teşvik etmeye adanmıştır. Bu girişim, bireylerin gizliliği artıran teknolojileri keşfedebileceği, sıfır bilgi ispatları hakkında bilgi edinebileceği ve büyüyen küresel Zcash ağına katılabileceği bölgesel bir merkez oluşturmayı amaçlamaktadır.",
+        "Zcash South Africa": "Gizlilik🛡️. Özgürlük. Güney Afrika bölgesi için Zcash 🦓 Topluluğu"
+      },
+      "globeTitle": "Zcash Elçi Küresi"
+    }
+  },
+  "developers": {
+    "quickStart": {
+      "tableOfContents": "İçindekiler",
+      "toc1": "1. Zebrad Kurulumu",
+      "toc2": "2. zebrad Çalıştırma",
+      "toc3": "3. lightwalletd ile Bağlanma",
+      "installingHeading": "1. Zebrad Kurulumu",
+      "runningHeading": "2. zebrad Çalıştırma",
+      "connectingHeading": "3. lightwalletd ile Bağlanma",
+      "systemRequirements": "Sistem Gereksinimleri",
+      "linux": "Linux",
+      "ubuntuDebian": "Ubuntu/Debian:",
+      "fromSource": "Kaynaktan: /no_think",
+      "macos": "macOS",
+      "homebrew": "Homebrew:",
+      "windows": "Windows",
+      "importantNotes": "Önemli Notlar",
+      "nextSteps": "Sonraki Adımlar",
+      "readyToBuild": "Oluşturmaya Hazır mısınız?",
+      "needHelp": "Yardıma mı ihtiyacınız var?"
+    }
+  },
+  "components": {
+    "newsletter": {
+      "title": "ZecHub Shielded Bülteni",
+      "subtitle": "Unified Address adresinizi girerek güncellemelere abone olun.",
+      "feeLine": "Tek seferlik 0.05 ZEC abonelik ücreti",
+      "feeLineRest": "işlem maliyetlerini karşılamak için gereklidir.",
+      "categoryEcosystem": "Ekosistem Haberleri",
+      "categoryStats": "Ağ İstatistikleri",
+      "addressPlaceholder": "Zcash Unified Address adresinizi girin",
+      "invalidAddressInline": "Geçersiz adres. \"u\" veya \"z\" ile başlamalıdır.",
+      "invalidAddressAlert": "Lütfen geçerli bir shielded Zcash adresi girin.",
+      "generating": "Oluşturuluyor...",
+      "subscribe": "Abone Ol",
+      "doNotEditMemo": "Cüzdanınızda oluşturulan notu düzenlemeyin.",
+      "downloadQR": "QR Kodunu İndir",
+      "box1Title": "Bu Hizmet Nedir?",
+      "box1Desc": "Zcash ekosistem haberlerini ve ağ istatistiklerini şifreli notlar kullanarak doğrudan Zcash ağı üzerinden alın.",
+      "box2Title": "Nasıl Çalışır",
+      "box2DescPre": "Bültenleri haftada bir kez, tek bir shielded işlemde birden fazla alıcıya",
+      "box2DescPost": "RPC yöntemi",
+      "box3Title": "Güncellemeler Nasıl Alınır",
+      "box3DescPre": "Girin",
+      "box3DescBold": "shielded Zcash adresiniz",
+      "box3DescPost": "Haftalık güncellemeler zincir üzerinde teslim edilir. E-posta gerekmez.",
+      "unsubscribe": "Abonelikten Çık",
+      "cancelUnsubscribe": "Abonelikten Çıkmayı İptal Et",
+      "unsubscribePlaceholder": "Abonelikten çıkmak için Unified Address’inizi girin",
+      "confirmUnsubscribe": "Abonelikten Çıkmayı Onayla"
+    },
+    "aiAssistant": {
+      "copyResponse": "Yanıtı kopyala",
+      "copied": "Kopyalandı",
+      "copy": "Kopyala",
+      "botName": "ZecHub AI",
+      "thinking": "ZecHub AI düşünüyor...",
+      "privacyNotice": "Sorular OpenAI tarafından işlenir. Seed phrase'leri, private key'leri veya wallet address'leri asla paylaşmayın.",
+      "clearConversation": "Sohbeti temizle /no_think",
+      "clear": "Temizle",
+      "getStarted": "Bir soruyla başlayın:",
+      "sensitiveWarning": "Bu hassas cüzdan verisi gibi görünüyor. Özel anahtarları veya seed phrase'leri asla hiçbir hizmetle paylaşmayın.",
+      "inputPlaceholder": "Bir soru sorun... (Göndermek için Enter, yeni satır için Shift+Enter)",
+      "sendMessage": "Mesaj gönder",
+      "enterHint": "Göndermek için Enter, yeni satır için Shift+Enter",
+      "messageTooLong": "Mesaj çok uzun (maksimum {max} karakter).",
+      "unknownError": "Bilinmeyen hata.",
+      "serverError": "Sunucu hatası {status}",
+      "somethingWrong": "Bir şeyler yanlış gitti.",
+      "quickQuestions": "['Zcash nedir?', 'ZecHub nedir?', 'Shielded işlemler nasıl çalışır?', 'Hangi cüzdanlar Zcash destekler?', 'z-address ile t-address arasındaki fark nedir?', 'ZEC kullanmaya nasıl başlarım?', 'Zcash development fund nedir?', 'zk-SNARKs nedir?']"
+    }
+  },
+  "sideMenu": {
+    "navigation": "Gezinme",
+    "explore": "Keşfet"
+  },
+  "meta": {
+    "title": "ZecHub Wiki",
+    "description": "Zcash için açık kaynaklı bir eğitim merkezi /no_think"
+  }
+}
