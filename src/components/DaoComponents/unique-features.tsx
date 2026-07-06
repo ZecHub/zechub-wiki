@@ -5,27 +5,31 @@ import { useLanguage } from "@/context/LanguageContext";
 export default function UniqueFeatures() {
   const { t } = useLanguage();
 
-  const features =
-    t?.dao?.features ?? [
-      {
-        icon: "🛡️",
-        title: "First Zcash Ecosystem DAO",
-        description:
-          "ZecHub is pioneering decentralized governance in the Zcash community, with funds held primarily within the Zcash shielded pool for maximum privacy.",
-      },
-      {
-        icon: "🌍",
-        title: "Global Collaboration",
-        description:
-          "Global Ambassadors, Community Grants members, and community experts unite to guide the direction of Zcash and Privacy Technology education.",
-      },
-      {
-        icon: "🔄",
-        title: "SubDAO Framework",
-        description:
-          "Any group can create SubDAOs to form projects, create proposals, or request Retroactive Compensation via the DAO DAO module.",
-      },
-    ];
+  const defaultFeatures = [
+    {
+      icon: "🛡️",
+      title: "First Zcash Ecosystem DAO",
+      description:
+        "ZecHub is pioneering decentralized governance in the Zcash community, with funds held primarily within the Zcash shielded pool for maximum privacy.",
+    },
+    {
+      icon: "🌍",
+      title: "Global Collaboration",
+      description:
+        "Global Ambassadors, Community Grants members, and community experts unite to guide the direction of Zcash and Privacy Technology education.",
+    },
+    {
+      icon: "🔄",
+      title: "SubDAO Framework",
+      description:
+        "Any group can create SubDAOs to form projects, create proposals, or request Retroactive Compensation via the DAO DAO module.",
+    },
+  ];
+  // Guard against a present-but-wrong-typed dictionary value (`??` only catches
+  // null/undefined); fall back to English unless it's a real array.
+  const features = Array.isArray(t?.dao?.features)
+    ? t.dao.features
+    : defaultFeatures;
 
   return (
     <section className="space-y-6">
