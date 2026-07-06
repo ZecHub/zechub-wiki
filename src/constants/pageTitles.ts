@@ -1,10 +1,11 @@
-// Locale-keyed curated page titles for the left side-menu and sitemap.
-//
-// Adding a new curated locale requires NO code changes here beyond one line:
-// import its `pageTitles.<locale>.ts` map and register it under its locale key.
-// Consumers resolve `pageTitles[locale]?.[item] ?? getName(item)`, so any
-// locale absent from this map transparently falls back to the English label.
+// Locale-keyed curated page titles (auto-registered).
 import { pageTitlesIt } from "@/constants/pageTitles.it";
+import { pageTitlesFr } from "@/constants/pageTitles.fr";
+import { pageTitlesEs } from "@/constants/pageTitles.es";
+import { pageTitlesDe } from "@/constants/pageTitles.de";
+import { pageTitlesPt } from "@/constants/pageTitles.pt";
+import { pageTitlesAr } from "@/constants/pageTitles.ar";
+import { pageTitlesZh } from "@/constants/pageTitles.zh";
 import { pageTitlesHi } from "@/constants/pageTitles.hi";
 import { pageTitlesRu } from "@/constants/pageTitles.ru";
 import { pageTitlesJa } from "@/constants/pageTitles.ja";
@@ -14,6 +15,12 @@ import { pageTitlesUk } from "@/constants/pageTitles.uk";
 
 export const pageTitles: Record<string, Record<string, string>> = {
   it: pageTitlesIt,
+  fr: pageTitlesFr,
+  es: pageTitlesEs,
+  de: pageTitlesDe,
+  pt: pageTitlesPt,
+  ar: pageTitlesAr,
+  zh: pageTitlesZh,
   hi: pageTitlesHi,
   ru: pageTitlesRu,
   ja: pageTitlesJa,

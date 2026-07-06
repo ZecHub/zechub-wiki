@@ -15,6 +15,8 @@ const dictionaries: Record<string, () => Promise<Dictionary>> = {
   ko: () => import('../../dictionaries/ko.json').then((m) => (m && m.default) || m),
   tr: () => import('../../dictionaries/tr.json').then((m) => (m && m.default) || m),
   uk: () => import('../../dictionaries/uk.json').then((m) => (m && m.default) || m),
+  pt: () => import('../../dictionaries/pt.json').then((m) => (m && m.default) || m),
+  ar: () => import('../../dictionaries/ar.json').then((m) => (m && m.default) || m),
 };
 
 export const getDictionary = async (locale: Locale = i18n.defaultLocale): Promise<Dictionary> => {
