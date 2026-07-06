@@ -293,6 +293,11 @@
         "description": "这个网站回答了这样一个问题：哪里可以使用 Zcash 支付？该目录可免费使用。所列项目仅供参考，不构成任何形式的背书。尽情探索吧！",
         "mainLink": "paywithz.cash",
         "mapLink": "SPEDN"
+      },
+      "hackathon": {
+        "title": "加入黑客松",
+        "description": "与 Zcash 社区一起构建、协作，并发布有影响力的创意。围绕五个创新赛道展开竞赛：面向节点和索引器的基础设施、用于交互式体验的游戏、用于门限签名的 FROST、用于身份验证解决方案的 Zcash Login，以及用于财务工作流的会计。2026 年 5 月 25 日 - 7 月 15 日。25 ZEC 奖池等你来赢取。",
+        "mainLink": "加入黑客松 /no_think"
       }
     },
     "explore": {
