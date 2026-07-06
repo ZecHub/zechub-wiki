@@ -13,7 +13,7 @@ export const DATA_URL = {
   ironwoodUrl: "/data/zcash/ironwood_supply.json",
   shieldedTxCountUrl: "/data/zcash/shieldedtxcount.json",
   issuanceUrl: "/data/zcash/issuance.json",
-  zcashShieldedStatsUrl: "/data/zcash/shieldedStatsJSON",
+  zcashShieldedStatsUrl: "/data/zcash/shieldedStatsJSON.json",
   shieldedUrl:
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/shielded_supply.json",
   namadaSupplyUrl: "/data/namada/namada_supply.json",
@@ -50,7 +50,7 @@ export const DATE_URL = {
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/difficulty.json&per_page=1",
   lockboxUrl:
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/lockbox.json&per_page=1",
-  ironwoodUrl: 
+  ironwoodUrl:
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/ironwood_supply.json&per_page=1",
   shieldedTxCountUrl:
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/shieldedtxcount.json&per_page=1",
@@ -66,7 +66,7 @@ export const DATE_URL = {
   namadaRewardUrl:
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/namada/namada_rewards_rate.json&per_page=1",
   zcashShieldedStatsUrl:
-    "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/shieldedStatsJSON&per_page=1",
+    "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/shieldedStatsJSON.json&per_page=1",
   totalSupplyUrl:
     "https://api.github.com/repos/ZecHub/zechub-wiki/commits?path=public/data/zcash/total_supply.json&per_page=1",
 } as const;
