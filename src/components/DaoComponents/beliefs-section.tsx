@@ -4,14 +4,18 @@ import { useLanguage } from "@/context/LanguageContext";
 
 export default function BeliefsSection() {
   const { t } = useLanguage();
-  console.log("DAO beliefs:", t?.dao?.beliefs);
-  const beliefs: string[] =
-    t?.dao?.beliefs ?? [
-      "Privacy is a human right",
-      "Education should be open-source and accessible worldwide",
-      "Community members have a right to earn ZEC privately",
-      "Global collaboration drives innovation",
-    ];
+  const defaultBeliefs: string[] = [
+    "Privacy is a human right",
+    "Education should be open-source and accessible worldwide",
+    "Community members have a right to earn ZEC privately",
+    "Global collaboration drives innovation",
+  ];
+  // Guard against a dictionary that supplies a present-but-wrong-typed value:
+  // `??` only catches null/undefined, so a mistyped (non-array) key would crash
+  // `.map()` during prerender. Fall back to English unless it's a real array.
+  const beliefs: string[] = Array.isArray(t?.dao?.beliefs)
+    ? t.dao.beliefs
+    : defaultBeliefs;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

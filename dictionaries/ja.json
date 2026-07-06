@@ -79,7 +79,7 @@
     "Zcash Community Grants": "Zcashコミュニティ助成金",
     "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Zcashエコシステムのセキュリティ",
-    "Zcash Foundation": "Zcash Foundation /no_think",
+    "Zcash Foundation": "Zcash Foundation",
     "Zcash Global Ambassadors": "Zcash グローバル・アンバサダー",
     "Zcash Governance": "Zcash ガバナンス",
     "Zcash Improvement Proposals": "Zcash 改善提案",
@@ -99,7 +99,7 @@
     "Zcash Tech": "Zcash 技術",
     "Privacy Tools": "プライバシーツール",
     "Zcash Social Media": "Zcash ソーシャルメディア",
-    "Glossary & FAQ's": "用語集 & FAQ /no_think"
+    "Glossary & FAQ's": "用語集 & FAQ"
   },
   "exploreMenu": {
     "Full Explore": "完全ガイド",
@@ -123,7 +123,7 @@
     "home": "ホーム",
     "about": "概要",
     "contact": "連絡先",
-    "language": "言語 /no_think",
+    "language": "言語",
     "clickToExplore": "探索するにはクリック →",
     "learnMore": "詳細はこちら",
     "getStarted": "始める",
@@ -214,7 +214,7 @@
       "keystoneZashi": "Keystone Zashi",
       "mayaProtocol": "Maya Protocol",
       "nymVpn": "Nym VPN",
-      "usingZecInDefi": "DeFiでZECを使う /no_think",
+      "usingZecInDefi": "DeFiでZECを使う",
       "usingZecPrivately": "ZECをプライベートに使う",
       "raspberryPiZcashdNode": "Raspberry Pi Zcashd ノード",
       "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
@@ -235,7 +235,7 @@
       "zeroKnowledgeVsDecoys": "ゼロ知識とデコイシステムの比較"
     },
     "overview": "概要",
-    "shop": "ショップ /no_think"
+    "shop": "ショップ"
   },
   "home": {
     "heroTitle": "ZecHubへようこそ",
@@ -269,7 +269,7 @@
         "techLink": "Zcashの技術"
       },
       "zcashMe": {
-        "title": "Zcash.me /no_think",
+        "title": "Zcash.me",
         "description": "Zcash.Meは、プライベートメッセージ、リーダーボード、認証済みユーザーを備えた、Zcashユーザー向けの公開ディレクトリです。Zcashコミュニティとつながり、探索し、交流しましょう。",
         "link": "Zcash.Meを見る"
       },
@@ -302,7 +302,7 @@
     },
     "explore": {
       "startHere": "Start_Here",
-      "tutorials": "チュートリアル /no_think",
+      "tutorials": "チュートリアル",
       "usingZcash": "Zcashの利用",
       "guides": "ガイド",
       "zcashTech": "Zcash_Tech",
@@ -327,7 +327,7 @@
   },
   "visualizer": {
     "title": "Zcash Visualizers",
-    "description": "Zcashのプライバシー技術、インフラストラクチャ、およびゼロ知識証明を理解するためのインタラクティブな教育ツール /no_think",
+    "description": "Zcashのプライバシー技術、インフラストラクチャ、およびゼロ知識証明を理解するためのインタラクティブな教育ツール",
     "playAll": "すべてのビジュアライザーを再生",
     "basic": "基本",
     "basicDescription": "Zcashの基礎概念と重要な機能",
@@ -356,7 +356,7 @@
       "description": "分散型取引所を使った、許可不要で検閲耐性のあるZECへのアクセス"
     },
     "hashFunction": {
-      "title": "ハッシュ関数 /no_think",
+      "title": "ハッシュ関数",
       "description": "ハッシュ関数とは何ですか？"
     },
     "blockchain": {
@@ -425,7 +425,7 @@
     "filters": "フィルター",
     "showNavigation": "ナビゲーションを表示",
     "close": "閉じる",
-    "savedReview": "レビューを保存しました！ /no_think",
+    "savedReview": "レビューを保存しました！",
     "errorGettingLikes": "「いいね」の取得エラー:",
     "errorUpdatingRating": "評価の更新エラー:"
   },
@@ -449,8 +449,29 @@
     "description": "ZecHub のための分散型ガバナンス",
     "headerTitle": "ZecHub DAO とガバナンス",
     "headerDescription": "コミュニティメンバーが協力して、Zcash エコシステムを支えるコンテンツの作成、検証、普及を行うオープンソースの教育プラットフォーム",
-    "beliefs": "['プライバシーは人権である', '教育はオープンソースであり、世界中でアクセス可能であるべきだ', 'コミュニティメンバーには ZEC をプライベートに獲得する権利がある', 'グローバルな協力がイノベーションを推進する']",
-    "features": "[{'icon': '🛡️', 'title': '最初の Zcash エコシステム DAO', 'description': 'ZecHub は Zcash コミュニティにおける分散型ガバナンスを先導しており、最大限のプライバシーのために資金は主に Zcash のシールドプール内で保有されています。'}, {'icon': '🌍', 'title': 'グローバルな協力', 'description': 'Global Ambassadors、Community Grants のメンバー、そしてコミュニティの専門家たちが連携し、Zcash とプライバシー技術教育の方向性を導いています。'}, {'icon': '🔄', 'title': 'SubDAO フレームワーク', 'description': 'どのグループでも SubDAO を作成してプロジェクトを形成し、提案を作成し、または DAO DAO モジュールを通じて事後報酬を申請できます。'}]",
+    "beliefs": [
+      "プライバシーは人権である",
+      "教育はオープンソースであり、世界中でアクセス可能であるべきだ",
+      "コミュニティメンバーには ZEC をプライベートに獲得する権利がある",
+      "グローバルな協力がイノベーションを推進する"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "最初の Zcash エコシステム DAO",
+        "description": "ZecHub は Zcash コミュニティにおける分散型ガバナンスを先導しており、最大限のプライバシーのために資金は主に Zcash のシールドプール内で保有されています。"
+      },
+      {
+        "icon": "🌍",
+        "title": "グローバルな協力",
+        "description": "Global Ambassadors、Community Grants のメンバー、そしてコミュニティの専門家たちが連携し、Zcash とプライバシー技術教育の方向性を導いています。"
+      },
+      {
+        "icon": "🔄",
+        "title": "SubDAO フレームワーク",
+        "description": "どのグループでも SubDAO を作成してプロジェクトを形成し、提案を作成し、または DAO DAO モジュールを通じて事後報酬を申請できます。"
+      }
+    ],
     "governanceDescription": "すべての DAO 提案は公開かつ透明です。誰でも投票にかける提案を作成できます。コミュニティの透明性を支えるため、ZecHub DAO はすべてのガバナンス提案を Zcash Community Forum の ZecHub Governance スレッドに投稿しています。",
     "membersTitle": "DAOメンバー",
     "proposals": "提案",
@@ -478,7 +499,7 @@
       "title": "分散型取引所",
       "subtitle": "ZecHubは特定の分散型取引所サービスを推奨していません。ご自身で調査してください。",
       "centralised": "中央集権型スワッププラットフォーム",
-      "centralizedTitle": "中央集権型スワッププラットフォーム一覧 /no_think",
+      "centralizedTitle": "中央集権型スワッププラットフォーム一覧",
       "custodial": "カストディアル取引所",
       "exchanges": {
         "Near-intents": "NEARのサポートによる高速交換。入金、売却、スワップが可能で、人気のTRUMP、MELANIA、BERAやその他のミームも含まれます",
@@ -507,7 +528,7 @@
         "shieldedNetworks": "シールドされたネットワーク",
         "currentYoutubeChannel": "現在のYouTubeチャンネル",
         "totalVideos": "総動画数",
-        "totalViews": "総視聴回数 /no_think",
+        "totalViews": "総視聴回数",
         "mostViewed": "最も閲覧された",
         "viewsSuffix": "閲覧数",
         "searchPlaceholder": "動画を検索...",
@@ -528,7 +549,7 @@
           "blocks": "ブロック",
           "transactions24h": "24時間の取引数",
           "shieldedTx24h": "Shielded TX（24時間）",
-          "saplingAbbrev": "Sap /no_think",
+          "saplingAbbrev": "Sap",
           "orchardAbbrev": "オーク"
         },
         "zcashChart": {
@@ -556,7 +577,7 @@
           "halvingMeter": "半減メーター"
         },
         "miningPoolsChart": {
-          "title": "マイニングプールの支配率 /no_think",
+          "title": "マイニングプールの支配率",
           "loadError": "Mining Pools の読み込みに失敗しました",
           "rangeLabel": "範囲",
           "rangeAriaLabel": "マイニング範囲を選択",
@@ -614,7 +635,7 @@
           "description": "Zcash のプリミティブを使用した、サインインまたはアクセスのための認証およびアイデンティティのフロー。"
         },
         "accounting": {
-          "name": "会計 /no_think",
+          "name": "会計",
           "description": "レポート作成、ZECを扱うチーム向けのワークフロー、支払い管理システム。"
         }
       },
@@ -682,7 +703,7 @@
           "description": "セットアップ手順、使用上の注意、そしてオープンソースライセンスを含むREADMEを書いてください。すべてを公開GitHubリポジトリにpushしてください。"
         },
         "upload": {
-          "title": "コードをアップロードする /no_think",
+          "title": "コードをアップロードする",
           "descPrefix": "あなたのプロジェクトを",
           "repoLabel": "Hackathon repo",
           "descSuffix": "にGitHub上でプッシュして、コミュニティがあなたの作業をレビューできるようにしてください。"
@@ -731,7 +752,7 @@
         "learnButton": "ドキュメントを読む",
         "tutorialsTitle": "チュートリアルで学ぶ",
         "tutorialsContent": "ステップごとのチュートリアルに従って、ウォレットの作成からアプリケーションへの Zcash 統合まで、Zcash 上での構築方法を学びましょう。",
-        "tutorialsButton": "チュートリアルを見る /no_think",
+        "tutorialsButton": "チュートリアルを見る",
         "quickStartTitle": "クイックスタートガイド",
         "quickStartContent": "Zcash開発をすばやく開始しましょう。インストール、設定、基本操作を学びます。",
         "quickStartButton": "クイックスタートガイド"
@@ -755,7 +776,7 @@
         "developerResourcesDesc": "Zcashのさらなる技術文書へのリンク。"
       },
       "fundamentalsLinks": {
-        "addressEncoding": "アドレスエンコーディング /no_think",
+        "addressEncoding": "アドレスエンコーディング",
         "addressEncodingDesc": "Zcashのアドレスと鍵がどのようにエンコードされているかを学びましょう。",
         "transactions": "トランザクション",
         "transactionsDesc": "Zcashでトランザクションがどのように機能するかを理解しましょう。",
@@ -803,7 +824,7 @@
     "visualizer": {
       "title": "Zcash ビジュアライザー",
       "hashFunction": {
-        "title": "ハッシュ関数ビジュアライザー /no_think"
+        "title": "ハッシュ関数ビジュアライザー"
       },
       "zcashKey": {
         "title": "Zcash キービジュアライザー"
@@ -880,7 +901,7 @@
       "heroBadge": "開発者向けクイックスタート",
       "heroTitleLine1": "Zcash Dev",
       "heroTitleLine2": "クイックスタート",
-      "heroSubtitle": "Zcash開発をすぐに始めましょう。使用するスタックを選んで、ガイドに従ってください。 /no_think",
+      "heroSubtitle": "Zcash開発をすぐに始めましょう。使用するスタックを選んで、ガイドに従ってください。",
       "copy": "コピー",
       "copied": "コピーしました！",
       "onThisPage": "このページについて",
@@ -920,7 +941,7 @@
       "buildZingoCli": "Zingo CLI をビルドする",
       "running": "実行",
       "startZingoCliDefault": "Zingo CLI を起動する（デフォルト）",
-      "startZingoCliCustom": "Zingo CLI を起動する（カスタム） /no_think",
+      "startZingoCliCustom": "Zingo CLI を起動する（カスタム）",
       "zingoSyncWarning": "⚠ これは初回実行時に、lightwalletd と同様の完全同期を実行します。",
       "nextStepsResources": "次のステップとリソース",
       "readyToBuild": "準備はできましたか？",
@@ -942,7 +963,7 @@
       "firstStepsDesc": "DAOガバナンスに参加するための準備をしましょう",
       "draftProposal": "提案書の下書き",
       "draftProposalDesc": "提出に向けて提案書を構成し、準備する",
-      "submittingProposal": "提案書を提出する /no_think",
+      "submittingProposal": "提案書を提出する",
       "submittingProposalDesc": "あなたの提案を提出し、周知しましょう",
       "installKeplr": "Keplr Walletをインストールする",
       "installKeplrDesc": "DAOとやり取りするためにKeplr walletを設定する",
@@ -985,7 +1006,7 @@
       "sections": {
         "Pages": "ページ",
         "Organizations": "組織",
-        "Guides": "ガイド /no_think",
+        "Guides": "ガイド",
         "Use Zcash": "Zcashを使う",
         "Ecosystem": "エコシステム"
       },
@@ -1034,7 +1055,7 @@
       "articlesSubheading": "ZecHubコミュニティによる記事とノート。",
       "foundationsSeriesDescription": "Zcashのシールドトランザクション、プライバシーモデル、プロトコル設計、そしてネットワークを支える中核概念を扱う基礎記事のコレクション。",
       "tagShieldedTransactions": "シールドトランザクション",
-      "tagPrivacyModels": "プライバシーモデル /no_think",
+      "tagPrivacyModels": "プライバシーモデル",
       "tagProtocolDesign": "プロトコル設計",
       "tagZeroKnowledge": "ゼロ知識"
     },
@@ -1057,7 +1078,7 @@
         "Zcash Korea": "韓国における Zcash コミュニティとアドボカシー",
         "Zcash Russia": "ロシアにおける Zcash コミュニティとアドボカシー",
         "Zcash Arabia": "アラビア語圏における Zcash コミュニティとアドボカシー",
-        "Zcash Brazil": "ブラジルにおける Zcash コミュニティとアドボカシー /no_think",
+        "Zcash Brazil": "ブラジルにおける Zcash コミュニティとアドボカシー",
         "Zcash Ghana": "ガーナにおけるZcashコミュニティとアドボカシー",
         "Zcash Español": "スペイン語圏地域におけるZcashコミュニティとアドボカシー",
         "Zcash Nigeria": "ナイジェリアにおけるZcashコミュニティとアドボカシー",
@@ -1082,7 +1103,7 @@
       "systemRequirements": "システム要件",
       "linux": "Linux",
       "ubuntuDebian": "Ubuntu/Debian:",
-      "fromSource": "ソースから: /no_think",
+      "fromSource": "ソースから:",
       "macos": "macOS",
       "homebrew": "Homebrew:",
       "windows": "Windows",
@@ -1106,7 +1127,7 @@
       "generating": "生成中...",
       "subscribe": "購読する",
       "doNotEditMemo": "ウォレットで生成されたメモを編集しないでください。",
-      "downloadQR": "QRコードをダウンロード /no_think",
+      "downloadQR": "QRコードをダウンロード",
       "box1Title": "このサービスとは何ですか？",
       "box1Desc": "暗号化メモを使用して、Zcashエコシステムのニュースとネットワーク統計をZcashネットワーク経由で直接受け取れます。",
       "box2Title": "仕組み",
@@ -1128,7 +1149,7 @@
       "botName": "ZecHub AI",
       "thinking": "ZecHub AIは考え中です...",
       "privacyNotice": "質問はOpenAIによって処理されます。シードフレーズ、秘密鍵、またはウォレットアドレスは絶対に共有しないでください。",
-      "clearConversation": "会話をクリア /no_think",
+      "clearConversation": "会話をクリア",
       "clear": "クリア",
       "getStarted": "質問して始めましょう:",
       "sensitiveWarning": "これは機密性の高いウォレットデータのようです。秘密鍵やシードフレーズは、どのサービスとも決して共有しないでください。",
@@ -1139,7 +1160,16 @@
       "unknownError": "不明なエラー。",
       "serverError": "サーバーエラー {status}",
       "somethingWrong": "問題が発生しました。",
-      "quickQuestions": "['Zcashとは何ですか?', 'ZecHubとは何ですか?', 'シールド化トランザクションはどのように機能しますか?', 'どのウォレットがZcashをサポートしていますか?', 'z-address と t-address の違いは何ですか?', 'ZECを始めるにはどうすればよいですか?', 'Zcashの開発資金とは何ですか?', 'zk-SNARKsとは何ですか?']"
+      "quickQuestions": [
+        "Zcashとは何ですか?",
+        "ZecHubとは何ですか?",
+        "シールド化トランザクションはどのように機能しますか?",
+        "どのウォレットがZcashをサポートしていますか?",
+        "z-address と t-address の違いは何ですか?",
+        "ZECを始めるにはどうすればよいですか?",
+        "Zcashの開発資金とは何ですか?",
+        "zk-SNARKsとは何ですか?"
+      ]
     }
   },
   "sideMenu": {
@@ -1148,6 +1178,6 @@
   },
   "meta": {
     "title": "ZecHub Wiki",
-    "description": "Zcashのためのオープンソース教育ハブ /no_think"
+    "description": "Zcashのためのオープンソース教育ハブ"
   }
 }
