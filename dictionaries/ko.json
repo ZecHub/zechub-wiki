@@ -449,8 +449,29 @@
     "description": "ZecHub를 위한 탈중앙화 거버넌스",
     "headerTitle": "ZecHub DAO 및 거버넌스",
     "headerDescription": "커뮤니티 구성원들이 Zcash 생태계를 지원하는 콘텐츠를 만들고, 검증하고, 홍보하는 데 협력하는 오픈 소스 교육 플랫폼",
-    "beliefs": "['프라이버시는 인권이다', '교육은 오픈 소스이며 전 세계에서 접근 가능해야 한다', '커뮤니티 구성원은 ZEC를 비공개로 벌 권리가 있다', '글로벌 협업이 혁신을 이끈다']",
-    "features": "[{'icon': '🛡️', 'title': '최초의 Zcash 생태계 DAO', 'description': 'ZecHub는 Zcash 커뮤니티에서 탈중앙화 거버넌스를 선도하고 있으며, 최대한의 프라이버시를 위해 자금의 대부분이 Zcash 실드 풀 내에 보관됩니다.'}, {'icon': '🌍', 'title': '글로벌 협업', 'description': '글로벌 앰배서더, Community Grants 구성원, 그리고 커뮤니티 전문가들이 함께 힘을 모아 Zcash 및 프라이버시 기술 교육의 방향을 이끕니다.'}, {'icon': '🔄', 'title': 'SubDAO 프레임워크', 'description': '어떤 그룹이든 SubDAOs를 만들어 프로젝트를 구성하고, 제안을 작성하거나, DAO DAO 모듈을 통해 소급 보상을 요청할 수 있습니다.'}]",
+    "beliefs": [
+      "프라이버시는 인권이다",
+      "교육은 오픈 소스이며 전 세계에서 접근 가능해야 한다",
+      "커뮤니티 구성원은 ZEC를 비공개로 벌 권리가 있다",
+      "글로벌 협업이 혁신을 이끈다"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "최초의 Zcash 생태계 DAO",
+        "description": "ZecHub는 Zcash 커뮤니티에서 탈중앙화 거버넌스를 선도하고 있으며, 최대한의 프라이버시를 위해 자금의 대부분이 Zcash 실드 풀 내에 보관됩니다."
+      },
+      {
+        "icon": "🌍",
+        "title": "글로벌 협업",
+        "description": "글로벌 앰배서더, Community Grants 구성원, 그리고 커뮤니티 전문가들이 함께 힘을 모아 Zcash 및 프라이버시 기술 교육의 방향을 이끕니다."
+      },
+      {
+        "icon": "🔄",
+        "title": "SubDAO 프레임워크",
+        "description": "어떤 그룹이든 SubDAOs를 만들어 프로젝트를 구성하고, 제안을 작성하거나, DAO DAO 모듈을 통해 소급 보상을 요청할 수 있습니다."
+      }
+    ],
     "governanceDescription": "모든 DAO 제안은 공개되고 투명합니다. 누구나 투표에 부칠 제안을 만들 수 있습니다. 커뮤니티 투명성을 지원하기 위해, ZecHub DAO는 모든 거버넌스 제안을 Zcash 커뮤니티 포럼의 ZecHub Governance 스레드에 게시합니다.",
     "membersTitle": "DAO 멤버",
     "proposals": "제안",
@@ -1139,7 +1160,16 @@
       "unknownError": "알 수 없는 오류입니다.",
       "serverError": "서버 오류 {status}",
       "somethingWrong": "문제가 발생했습니다.",
-      "quickQuestions": "['Zcash이란 무엇인가요?', 'ZecHub란 무엇인가요?', 'shielded transactions는 어떻게 작동하나요?', '어떤 지갑이 Zcash를 지원하나요?', 'z-address와 t-address의 차이는 무엇인가요?', 'ZEC를 어떻게 시작하나요?', 'Zcash 개발 기금이란 무엇인가요?', 'zk-SNARKs란 무엇인가요?']"
+      "quickQuestions": [
+        "Zcash이란 무엇인가요?",
+        "ZecHub란 무엇인가요?",
+        "shielded transactions는 어떻게 작동하나요?",
+        "어떤 지갑이 Zcash를 지원하나요?",
+        "z-address와 t-address의 차이는 무엇인가요?",
+        "ZEC를 어떻게 시작하나요?",
+        "Zcash 개발 기금이란 무엇인가요?",
+        "zk-SNARKs란 무엇인가요?"
+      ]
     }
   },
   "sideMenu": {

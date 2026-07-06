@@ -449,8 +449,29 @@
     "description": "ZecHub のための分散型ガバナンス",
     "headerTitle": "ZecHub DAO とガバナンス",
     "headerDescription": "コミュニティメンバーが協力して、Zcash エコシステムを支えるコンテンツの作成、検証、普及を行うオープンソースの教育プラットフォーム",
-    "beliefs": "['プライバシーは人権である', '教育はオープンソースであり、世界中でアクセス可能であるべきだ', 'コミュニティメンバーには ZEC をプライベートに獲得する権利がある', 'グローバルな協力がイノベーションを推進する']",
-    "features": "[{'icon': '🛡️', 'title': '最初の Zcash エコシステム DAO', 'description': 'ZecHub は Zcash コミュニティにおける分散型ガバナンスを先導しており、最大限のプライバシーのために資金は主に Zcash のシールドプール内で保有されています。'}, {'icon': '🌍', 'title': 'グローバルな協力', 'description': 'Global Ambassadors、Community Grants のメンバー、そしてコミュニティの専門家たちが連携し、Zcash とプライバシー技術教育の方向性を導いています。'}, {'icon': '🔄', 'title': 'SubDAO フレームワーク', 'description': 'どのグループでも SubDAO を作成してプロジェクトを形成し、提案を作成し、または DAO DAO モジュールを通じて事後報酬を申請できます。'}]",
+    "beliefs": [
+      "プライバシーは人権である",
+      "教育はオープンソースであり、世界中でアクセス可能であるべきだ",
+      "コミュニティメンバーには ZEC をプライベートに獲得する権利がある",
+      "グローバルな協力がイノベーションを推進する"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "最初の Zcash エコシステム DAO",
+        "description": "ZecHub は Zcash コミュニティにおける分散型ガバナンスを先導しており、最大限のプライバシーのために資金は主に Zcash のシールドプール内で保有されています。"
+      },
+      {
+        "icon": "🌍",
+        "title": "グローバルな協力",
+        "description": "Global Ambassadors、Community Grants のメンバー、そしてコミュニティの専門家たちが連携し、Zcash とプライバシー技術教育の方向性を導いています。"
+      },
+      {
+        "icon": "🔄",
+        "title": "SubDAO フレームワーク",
+        "description": "どのグループでも SubDAO を作成してプロジェクトを形成し、提案を作成し、または DAO DAO モジュールを通じて事後報酬を申請できます。"
+      }
+    ],
     "governanceDescription": "すべての DAO 提案は公開かつ透明です。誰でも投票にかける提案を作成できます。コミュニティの透明性を支えるため、ZecHub DAO はすべてのガバナンス提案を Zcash Community Forum の ZecHub Governance スレッドに投稿しています。",
     "membersTitle": "DAOメンバー",
     "proposals": "提案",
@@ -1139,7 +1160,16 @@
       "unknownError": "不明なエラー。",
       "serverError": "サーバーエラー {status}",
       "somethingWrong": "問題が発生しました。",
-      "quickQuestions": "['Zcashとは何ですか?', 'ZecHubとは何ですか?', 'シールド化トランザクションはどのように機能しますか?', 'どのウォレットがZcashをサポートしていますか?', 'z-address と t-address の違いは何ですか?', 'ZECを始めるにはどうすればよいですか?', 'Zcashの開発資金とは何ですか?', 'zk-SNARKsとは何ですか?']"
+      "quickQuestions": [
+        "Zcashとは何ですか?",
+        "ZecHubとは何ですか?",
+        "シールド化トランザクションはどのように機能しますか?",
+        "どのウォレットがZcashをサポートしていますか?",
+        "z-address と t-address の違いは何ですか?",
+        "ZECを始めるにはどうすればよいですか?",
+        "Zcashの開発資金とは何ですか?",
+        "zk-SNARKsとは何ですか?"
+      ]
     }
   },
   "sideMenu": {

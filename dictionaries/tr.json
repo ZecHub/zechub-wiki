@@ -449,8 +449,29 @@
     "description": "ZecHub için merkeziyetsiz yönetişim",
     "headerTitle": "ZecHub DAO ve Yönetişim",
     "headerDescription": "Topluluk üyelerinin Zcash ekosistemini destekleyen içerikler oluşturmak, doğrulamak ve tanıtmak için birlikte çalıştığı açık kaynaklı bir eğitim platformu",
-    "beliefs": "['Gizlilik bir insan hakkıdır', 'Eğitim açık kaynaklı ve dünya çapında erişilebilir olmalıdır', 'Topluluk üyelerinin özel şekilde ZEC kazanma hakkı vardır', 'Küresel işbirliği yeniliği teşvik eder']",
-    "features": "[{'icon': '🛡️', 'title': 'İlk Zcash Ekosistemi DAO’su', 'description': 'ZecHub, maksimum gizlilik için fonların öncelikle Zcash shielded pool içinde tutulduğu, Zcash topluluğunda merkeziyetsiz yönetişime öncülük ediyor.'}, {'icon': '🌍', 'title': 'Küresel İşbirliği', 'description': 'Global Ambassadors, Community Grants üyeleri ve topluluk uzmanları, Zcash ve Privacy Technology eğitiminin yönünü belirlemek için bir araya geliyor.'}, {'icon': '🔄', 'title': 'SubDAO Çerçevesi', 'description': 'Herhangi bir grup, proje oluşturmak, teklifler hazırlamak veya DAO DAO modülü aracılığıyla Retroactive Compensation talep etmek için SubDAO’lar oluşturabilir.'}]",
+    "beliefs": [
+      "Gizlilik bir insan hakkıdır",
+      "Eğitim açık kaynaklı ve dünya çapında erişilebilir olmalıdır",
+      "Topluluk üyelerinin özel şekilde ZEC kazanma hakkı vardır",
+      "Küresel işbirliği yeniliği teşvik eder"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "İlk Zcash Ekosistemi DAO’su",
+        "description": "ZecHub, maksimum gizlilik için fonların öncelikle Zcash shielded pool içinde tutulduğu, Zcash topluluğunda merkeziyetsiz yönetişime öncülük ediyor."
+      },
+      {
+        "icon": "🌍",
+        "title": "Küresel İşbirliği",
+        "description": "Global Ambassadors, Community Grants üyeleri ve topluluk uzmanları, Zcash ve Privacy Technology eğitiminin yönünü belirlemek için bir araya geliyor."
+      },
+      {
+        "icon": "🔄",
+        "title": "SubDAO Çerçevesi",
+        "description": "Herhangi bir grup, proje oluşturmak, teklifler hazırlamak veya DAO DAO modülü aracılığıyla Retroactive Compensation talep etmek için SubDAO’lar oluşturabilir."
+      }
+    ],
     "governanceDescription": "Tüm DAO teklifleri herkese açık ve şeffaftır. Herkes oylamaya sunulacak bir teklif oluşturabilir. Topluluk şeffaflığını desteklemek amacıyla ZecHub DAO, tüm yönetişim tekliflerini Zcash Community Forum ZecHub Governance başlığında paylaşır.",
     "membersTitle": "DAO Üyeleri",
     "proposals": "Öneriler",
@@ -1139,7 +1160,16 @@
       "unknownError": "Bilinmeyen hata.",
       "serverError": "Sunucu hatası {status}",
       "somethingWrong": "Bir şeyler yanlış gitti.",
-      "quickQuestions": "['Zcash nedir?', 'ZecHub nedir?', 'Shielded işlemler nasıl çalışır?', 'Hangi cüzdanlar Zcash destekler?', 'z-address ile t-address arasındaki fark nedir?', 'ZEC kullanmaya nasıl başlarım?', 'Zcash development fund nedir?', 'zk-SNARKs nedir?']"
+      "quickQuestions": [
+        "Zcash nedir?",
+        "ZecHub nedir?",
+        "Shielded işlemler nasıl çalışır?",
+        "Hangi cüzdanlar Zcash destekler?",
+        "z-address ile t-address arasındaki fark nedir?",
+        "ZEC kullanmaya nasıl başlarım?",
+        "Zcash development fund nedir?",
+        "zk-SNARKs nedir?"
+      ]
     }
   },
   "sideMenu": {

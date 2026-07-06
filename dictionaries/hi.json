@@ -449,8 +449,29 @@
     "description": "ZecHub के लिए विकेंद्रीकृत शासन",
     "headerTitle": "ZecHub DAO और शासन",
     "headerDescription": "एक ओपन सोर्स शैक्षिक मंच जहाँ समुदाय के सदस्य Zcash पारिस्थितिकी तंत्र का समर्थन करने वाली सामग्री के निर्माण, सत्यापन और प्रचार में सहयोग करते हैं",
-    "beliefs": "['गोपनीयता एक मानव अधिकार है', 'शिक्षा ओपन-सोर्स और दुनिया भर में सुलभ होनी चाहिए', 'समुदाय के सदस्यों को निजी रूप से ZEC कमाने का अधिकार है', 'वैश्विक सहयोग नवाचार को आगे बढ़ाता है']",
-    "features": "[{'icon': '🛡️', 'title': 'पहला Zcash इकोसिस्टम DAO', 'description': 'ZecHub Zcash समुदाय में विकेंद्रीकृत शासन का अग्रणी है, जहाँ अधिकतम गोपनीयता के लिए धन मुख्य रूप से Zcash shielded pool के भीतर रखा जाता है।'}, {'icon': '🌍', 'title': 'वैश्विक सहयोग', 'description': 'Global Ambassadors, Community Grants के सदस्य, और सामुदायिक विशेषज्ञ Zcash और Privacy Technology शिक्षा की दिशा तय करने के लिए एकजुट होते हैं।'}, {'icon': '🔄', 'title': 'SubDAO फ़्रेमवर्क', 'description': 'कोई भी समूह SubDAOs बना सकता है ताकि परियोजनाएँ बनाई जा सकें, प्रस्ताव तैयार किए जा सकें, या DAO DAO module के माध्यम से पूर्वप्रभावी मुआवज़े का अनुरोध किया जा सके।'}]",
+    "beliefs": [
+      "गोपनीयता एक मानव अधिकार है",
+      "शिक्षा ओपन-सोर्स और दुनिया भर में सुलभ होनी चाहिए",
+      "समुदाय के सदस्यों को निजी रूप से ZEC कमाने का अधिकार है",
+      "वैश्विक सहयोग नवाचार को आगे बढ़ाता है"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "पहला Zcash इकोसिस्टम DAO",
+        "description": "ZecHub Zcash समुदाय में विकेंद्रीकृत शासन का अग्रणी है, जहाँ अधिकतम गोपनीयता के लिए धन मुख्य रूप से Zcash shielded pool के भीतर रखा जाता है।"
+      },
+      {
+        "icon": "🌍",
+        "title": "वैश्विक सहयोग",
+        "description": "Global Ambassadors, Community Grants के सदस्य, और सामुदायिक विशेषज्ञ Zcash और Privacy Technology शिक्षा की दिशा तय करने के लिए एकजुट होते हैं।"
+      },
+      {
+        "icon": "🔄",
+        "title": "SubDAO फ़्रेमवर्क",
+        "description": "कोई भी समूह SubDAOs बना सकता है ताकि परियोजनाएँ बनाई जा सकें, प्रस्ताव तैयार किए जा सकें, या DAO DAO module के माध्यम से पूर्वप्रभावी मुआवज़े का अनुरोध किया जा सके।"
+      }
+    ],
     "governanceDescription": "सभी DAO प्रस्ताव सार्वजनिक और पारदर्शी हैं। कोई भी मतदान के लिए एक प्रस्ताव बना सकता है। सामुदायिक पारदर्शिता के समर्थन में, ZecHub DAO सभी शासन प्रस्तावों को Zcash Community Forum के ZecHub Governance थ्रेड में पोस्ट करता है।",
     "membersTitle": "DAO सदस्य",
     "proposals": "प्रस्ताव",
@@ -1139,7 +1160,16 @@
       "unknownError": "अज्ञात त्रुटि।",
       "serverError": "सर्वर त्रुटि {status}",
       "somethingWrong": "कुछ गलत हो गया।",
-      "quickQuestions": "['Zcash क्या है?', 'ZecHub क्या है?', 'shielded transactions कैसे काम करते हैं?', 'कौन से वॉलेट Zcash को सपोर्ट करते हैं?', 'z-address और t-address में क्या अंतर है?', 'मैं ZEC के साथ शुरुआत कैसे करूँ?', 'Zcash development fund क्या है?', 'zk-SNARKs क्या हैं?']"
+      "quickQuestions": [
+        "Zcash क्या है?",
+        "ZecHub क्या है?",
+        "shielded transactions कैसे काम करते हैं?",
+        "कौन से वॉलेट Zcash को सपोर्ट करते हैं?",
+        "z-address और t-address में क्या अंतर है?",
+        "मैं ZEC के साथ शुरुआत कैसे करूँ?",
+        "Zcash development fund क्या है?",
+        "zk-SNARKs क्या हैं?"
+      ]
     }
   },
   "sideMenu": {
