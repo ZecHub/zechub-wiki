@@ -234,6 +234,45 @@
         "title": "Usa ZEC in modo privato",
         "content": "Impara a usare le funzionalità di privacy di Zcash"
       }
+    },
+    "sections": {
+      "whatIsZcash": {
+        "title": "Che cos'è Zcash?",
+        "description": "È un registro blockchain open-source che presenta un sofisticato sistema di prove a conoscenza zero. È specializzato nell'offrire uno standard più elevato di privacy attraverso il suo sistema di prove, preservando la riservatezza dei metadati delle transazioni. Al suo centro, Zcash è proprietà privata dei dati trasferita senza permesso quando vengono effettuate transazioni.",
+        "mainLink": "Che cos'è Zcash?",
+        "techLink": "Tecnologia Zcash"
+      },
+      "zcashMe": {
+        "title": "Zcash.me",
+        "description": "Zcash.Me è una directory pubblica di utenti Zcash con messaggistica privata, classifiche e utenti verificati. Connettiti, esplora e interagisci con la comunità Zcash.",
+        "link": "Visita Zcash.Me"
+      },
+      "globalAmbassadors": {
+        "title": "Ambasciatori Globali di Zcash",
+        "description": "Gli Ambasciatori Globali di Zcash sono leader della comunità dedicati a promuovere nel mondo l'adozione e l'educazione sulle criptovalute incentrate sulla privacy. Ogni progetto degli ambasciatori si concentra sul creare consapevolezza e coinvolgimento nelle rispettive regioni.",
+        "link": "Conosci gli Ambasciatori"
+      },
+      "newsletter": {
+        "title": "Newsletter Shielded",
+        "description": "Iscriviti usando il tuo Unified Address per ottenere accesso shielded agli aggiornamenti dell'ecosistema Zcash e alle statistiche della rete direttamente nel tuo wallet!",
+        "link": "Iscriviti"
+      },
+      "free2z": {
+        "title": "Free2Z",
+        "description": "Free2Z è una piattaforma sociale alimentata da Zcash. Con donazioni peer-to-peer, un programma di condivisione dei ricavi, strumenti creativi avanzati e una vasta comunità globale online.",
+        "link": "Free2Z"
+      },
+      "payWithZcash": {
+        "title": "Paga con Zcash",
+        "description": "Questo sito web è una risposta alla domanda: Dove posso pagare con Zcash? La directory è gratuita da usare. Gli elementi elencati sono solo a scopo informativo e non costituiscono endorsement di alcun tipo. Buon divertimento!",
+        "mainLink": "paywithz.cash",
+        "mapLink": "SPEDN"
+      },
+      "hackathon": {
+        "title": "Partecipa all'Hackathon",
+        "description": "Costruisci, collabora e pubblica idee d'impatto con la comunità Zcash. Competi in cinque percorsi innovativi: Infrastructure per nodi e indicizzatori, Games per esperienze interattive, FROST per firme a soglia, Zcash Login per soluzioni di autenticazione e Accounting per flussi di lavoro finanziari. 25 maggio - 15 luglio 2026. Ti aspetta un montepremi di 25 ZEC.",
+        "mainLink": "Partecipa all'Hackathon /no_think"
+      }
     }
   },
   "visualizer": {
