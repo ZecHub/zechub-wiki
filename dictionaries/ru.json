@@ -19,7 +19,7 @@
     "Developers": "Разработчики",
     "Discord": "Discord",
     "Donations": "Пожертвования",
-    "Electric Coin Company": "Electric Coin Company /no_think",
+    "Electric Coin Company": "Electric Coin Company",
     "Exchanges": "Биржи",
     "Extras": "Дополнительно",
     "Faucets": "Краны",
@@ -214,7 +214,7 @@
       "keystoneZashi": "Keystone Zashi",
       "mayaProtocol": "Maya Protocol",
       "nymVpn": "Nym VPN",
-      "usingZecInDefi": "Использование ZEC в DeFi /no_think",
+      "usingZecInDefi": "Использование ZEC в DeFi",
       "usingZecPrivately": "Приватное использование ZEC",
       "raspberryPiZcashdNode": "Узел Raspberry Pi Zcashd",
       "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
@@ -235,7 +235,7 @@
       "zeroKnowledgeVsDecoys": "Нулевое разглашение против систем-обманок"
     },
     "overview": "Обзор",
-    "shop": "Магазин /no_think"
+    "shop": "Магазин"
   },
   "home": {
     "heroTitle": "Добро пожаловать в ZecHub",
@@ -269,7 +269,7 @@
         "techLink": "Технология Zcash"
       },
       "zcashMe": {
-        "title": "Zcash.me /no_think",
+        "title": "Zcash.me",
         "description": "Zcash.Me — это публичный каталог пользователей Zcash с личными сообщениями, таблицами лидеров и верифицированными пользователями. Подключайтесь, изучайте и взаимодействуйте с сообществом Zcash.",
         "link": "Посетить Zcash.Me"
       },
@@ -302,7 +302,7 @@
     },
     "explore": {
       "startHere": "Start_Here",
-      "tutorials": "Туториалы /no_think",
+      "tutorials": "Туториалы",
       "usingZcash": "Использование_Zcash",
       "guides": "Руководства",
       "zcashTech": "Технологии_Zcash",
@@ -327,7 +327,7 @@
   },
   "visualizer": {
     "title": "Визуализаторы Zcash",
-    "description": "Интерактивные образовательные инструменты для понимания технологии конфиденциальности Zcash, инфраструктуры и доказательств с нулевым разглашением /no_think",
+    "description": "Интерактивные образовательные инструменты для понимания технологии конфиденциальности Zcash, инфраструктуры и доказательств с нулевым разглашением",
     "playAll": "Воспроизвести все визуализаторы",
     "basic": "Базовый",
     "basicDescription": "Основополагающие концепции и ключевые особенности Zcash",
@@ -356,7 +356,7 @@
       "description": "Не требующий разрешения, устойчивый к цензуре доступ к ZEC с использованием децентрализованных бирж"
     },
     "hashFunction": {
-      "title": "Хеш-функции /no_think",
+      "title": "Хеш-функции",
       "description": "Что такое хеш-функция?"
     },
     "blockchain": {
@@ -425,7 +425,7 @@
     "filters": "Фильтры",
     "showNavigation": "Показать навигацию",
     "close": "Закрыть",
-    "savedReview": "Мы сохранили ваш отзыв! /no_think",
+    "savedReview": "Мы сохранили ваш отзыв!",
     "errorGettingLikes": "Ошибка при получении лайков:",
     "errorUpdatingRating": "Ошибка при обновлении рейтинга:"
   },
@@ -499,7 +499,7 @@
       "title": "Децентрализованные биржи",
       "subtitle": "ZecHub не поддерживает какую-либо конкретную службу децентрализованной биржи, пожалуйста, проведите собственное исследование.",
       "centralised": "Централизованные платформы обмена",
-      "centralizedTitle": "Список централизованных платформ обмена /no_think",
+      "centralizedTitle": "Список централизованных платформ обмена",
       "custodial": "Кастодиальные биржи",
       "exchanges": {
         "Near-intents": "Быстрый обмен при поддержке NEAR. Вносите депозиты, продавайте, обменивайте, включая популярные TRUMP, MELANIA, BERA и другие мемы",
@@ -528,7 +528,7 @@
         "shieldedNetworks": "Экранированные сети",
         "currentYoutubeChannel": "Текущий YouTube-канал",
         "totalVideos": "Всего видео",
-        "totalViews": "Всего просмотров /no_think",
+        "totalViews": "Всего просмотров",
         "mostViewed": "Самые просматриваемые",
         "viewsSuffix": "просмотры",
         "searchPlaceholder": "Поиск видео...",
@@ -549,7 +549,7 @@
           "blocks": "Блоки",
           "transactions24h": "Транзакции за 24 ч",
           "shieldedTx24h": "Экранированные TX (24 ч)",
-          "saplingAbbrev": "Sap /no_think",
+          "saplingAbbrev": "Sap",
           "orchardAbbrev": "Орк"
         },
         "zcashChart": {
@@ -635,7 +635,7 @@
           "description": "Потоки аутентификации и идентификации, которые используют примитивы Zcash для входа или доступа."
         },
         "accounting": {
-          "name": "Бухгалтерия /no_think",
+          "name": "Бухгалтерия",
           "description": "Отчетность, рабочие процессы для команд, работающих с ZEC, система управления платежами."
         }
       },
@@ -703,7 +703,7 @@
           "description": "Напишите README с инструкциями по настройке, примечаниями по использованию и вашей лицензией с открытым исходным кодом. Загрузите все в публичный репозиторий GitHub."
         },
         "upload": {
-          "title": "Загрузите свой код /no_think",
+          "title": "Загрузите свой код",
           "descPrefix": "Отправьте свой проект в",
           "repoLabel": "репозиторий хакатона",
           "descSuffix": "на GitHub, чтобы сообщество могло оценить вашу работу."
@@ -752,7 +752,7 @@
         "learnButton": "Читать документацию",
         "tutorialsTitle": "Учиться по туториалам",
         "tutorialsContent": "Следуйте пошаговым туториалам, чтобы создавать решения на Zcash — от создания кошельков до интеграции Zcash в ваши приложения.",
-        "tutorialsButton": "Посмотреть туториалы /no_think",
+        "tutorialsButton": "Посмотреть туториалы",
         "quickStartTitle": "Краткое руководство по началу работы",
         "quickStartContent": "Быстро начните разработку на Zcash. Изучите установку, конфигурацию и базовые операции.",
         "quickStartButton": "Краткое руководство по началу работы"
@@ -776,7 +776,7 @@
         "developerResourcesDesc": "Ссылки на дополнительную техническую документацию по Zcash."
       },
       "fundamentalsLinks": {
-        "addressEncoding": "Кодирование адресов /no_think",
+        "addressEncoding": "Кодирование адресов",
         "addressEncodingDesc": "Узнайте, как кодируются адреса и ключи Zcash.",
         "transactions": "Транзакции",
         "transactionsDesc": "Поймите, как работают транзакции в Zcash.",
@@ -798,7 +798,7 @@
         "introToStackDesc": "Поймите архитектуру и компоненты стека Zcash.",
         "zecDev": "ZecDev",
         "zecDevDesc": "Здесь вы найдёте проекты, ресурсы и инструменты, созданные и поддерживаемые в контексте гранта (Zcash) Developer Relations Engineer. См. также",
-        "zcashCommunityWishlist": "Список пожеланий сообщества Zcash /no_think",
+        "zcashCommunityWishlist": "Список пожеланий сообщества Zcash",
         "introToZingolib": "Введение в Zingolib",
         "introToZingolibDesc": "Понимание репозитория zingolib — API и CLI на Rust для взаимодействия с zcashd через Lightwalletd.",
         "webZjs": "WebZjs",
@@ -824,7 +824,7 @@
     "visualizer": {
       "title": "Визуализаторы Zcash",
       "hashFunction": {
-        "title": "Визуализатор хеш-функции /no_think"
+        "title": "Визуализатор хеш-функции"
       },
       "zcashKey": {
         "title": "Визуализатор ключей Zcash"
@@ -901,7 +901,7 @@
       "heroBadge": "Быстрый старт для разработчика",
       "heroTitleLine1": "Zcash Dev",
       "heroTitleLine2": "Быстрый старт",
-      "heroSubtitle": "Начните разработку с Zcash. Выберите свой стек и следуйте руководству. /no_think",
+      "heroSubtitle": "Начните разработку с Zcash. Выберите свой стек и следуйте руководству.",
       "copy": "Копировать",
       "copied": "Скопировано!",
       "onThisPage": "На этой странице",
@@ -963,7 +963,7 @@
       "firstStepsDesc": "Подготовьтесь к участию в управлении DAO",
       "draftProposal": "Черновик предложения",
       "draftProposalDesc": "Структурируйте и подготовьте ваше предложение к отправке",
-      "submittingProposal": "Отправка предложения /no_think",
+      "submittingProposal": "Отправка предложения",
       "submittingProposalDesc": "Отправьте и продвигайте своё предложение",
       "installKeplr": "Установите Keplr Wallet",
       "installKeplrDesc": "Настройте свой кошелёк Keplr для взаимодействия с DAO",
@@ -983,7 +983,7 @@
       "stageProposalDesc": "Чётко и подробно изложите своё предложение полностью",
       "stageAction": "Действие",
       "stageActionDesc": "Что произойдёт в случае успешного голосования — можно указать график действий",
-      "getFeedback": "Получите обратную связь /no_think",
+      "getFeedback": "Получите обратную связь",
       "getFeedbackDesc": "Поделитесь своим черновиком в канале ZecHub #proposals в Discord, чтобы получить раннюю обратную связь",
       "joinDiscord": "Присоединиться к Discord",
       "walkthroughTitle": "Видео-разбор предложения",
@@ -1055,7 +1055,7 @@
       "articlesSubheading": "Статьи и заметки от сообщества ZecHub.",
       "foundationsSeriesDescription": "Коллекция основополагающих статей, охватывающих экранированные транзакции Zcash, модели приватности, дизайн протокола и ключевые концепции, лежащие в основе сети.",
       "tagShieldedTransactions": "Экранированные транзакции",
-      "tagPrivacyModels": "Модели приватности /no_think",
+      "tagPrivacyModels": "Модели приватности",
       "tagProtocolDesign": "Дизайн протокола",
       "tagZeroKnowledge": "Нулевое разглашение"
     },
@@ -1103,7 +1103,7 @@
       "systemRequirements": "Системные требования",
       "linux": "Linux",
       "ubuntuDebian": "Ubuntu/Debian:",
-      "fromSource": "Из исходного кода: /no_think",
+      "fromSource": "Из исходного кода:",
       "macos": "macOS",
       "homebrew": "Homebrew:",
       "windows": "Windows",
@@ -1149,7 +1149,7 @@
       "botName": "ZecHub AI",
       "thinking": "ZecHub AI думает...",
       "privacyNotice": "Вопросы обрабатываются OpenAI. Никогда не сообщайте seed-фразы, private key или адреса кошельков.",
-      "clearConversation": "Очистить разговор /no_think",
+      "clearConversation": "Очистить разговор",
       "clear": "Очистить",
       "getStarted": "Начните с вопроса:",
       "sensitiveWarning": "Это похоже на конфиденциальные данные кошелька. Никогда не делитесь приватными ключами или seed phrases с какими-либо сервисами.",
@@ -1178,6 +1178,6 @@
   },
   "meta": {
     "title": "ZecHub Wiki",
-    "description": "Образовательный хаб с открытым исходным кодом для Zcash /no_think"
+    "description": "Образовательный хаб с открытым исходным кодом для Zcash"
   }
 }

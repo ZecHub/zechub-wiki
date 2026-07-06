@@ -79,7 +79,7 @@
     "Zcash Community Grants": "Zcash Community Grants",
     "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Zcash इकोसिस्टम सुरक्षा",
-    "Zcash Foundation": "Zcash Foundation /no_think",
+    "Zcash Foundation": "Zcash Foundation",
     "Zcash Global Ambassadors": "Zcash वैश्विक राजदूत",
     "Zcash Governance": "Zcash शासन",
     "Zcash Improvement Proposals": "Zcash सुधार प्रस्ताव",
@@ -214,7 +214,7 @@
       "keystoneZashi": "Keystone Zashi",
       "mayaProtocol": "Maya Protocol",
       "nymVpn": "Nym VPN",
-      "usingZecInDefi": "DeFi में ZEC का उपयोग /no_think",
+      "usingZecInDefi": "DeFi में ZEC का उपयोग",
       "usingZecPrivately": "ZEC का निजी रूप से उपयोग",
       "raspberryPiZcashdNode": "Raspberry Pi Zcashd Node",
       "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
@@ -235,7 +235,7 @@
       "zeroKnowledgeVsDecoys": "Zero Knowledge बनाम Decoy Systems"
     },
     "overview": "अवलोकन",
-    "shop": "Shop /no_think"
+    "shop": "Shop"
   },
   "home": {
     "heroTitle": "ZecHub में आपका स्वागत है",
@@ -269,7 +269,7 @@
         "techLink": "Zcash Technology"
       },
       "zcashMe": {
-        "title": "Zcash.me /no_think",
+        "title": "Zcash.me",
         "description": "Zcash.Me निजी संदेश, लीडरबोर्ड और सत्यापित उपयोगकर्ताओं के साथ Zcash उपयोगकर्ताओं की एक सार्वजनिक निर्देशिका है। Zcash समुदाय से जुड़ें, खोजें और संवाद करें।",
         "link": "Zcash.Me पर जाएँ"
       },
@@ -302,7 +302,7 @@
     },
     "explore": {
       "startHere": "Start_Here",
-      "tutorials": "ट्यूटोरियल्स /no_think",
+      "tutorials": "ट्यूटोरियल्स",
       "usingZcash": "Using_Zcash",
       "guides": "मार्गदर्शिकाएँ",
       "zcashTech": "Zcash_Tech",
@@ -327,7 +327,7 @@
   },
   "visualizer": {
     "title": "Zcash विज़ुअलाइज़र",
-    "description": "Zcash गोपनीयता तकनीक, अवसंरचना, और zero-knowledge proofs को समझने के लिए इंटरैक्टिव शैक्षिक उपकरण /no_think",
+    "description": "Zcash गोपनीयता तकनीक, अवसंरचना, और zero-knowledge proofs को समझने के लिए इंटरैक्टिव शैक्षिक उपकरण",
     "playAll": "सभी Visualizers चलाएँ",
     "basic": "मूलभूत",
     "basicDescription": "Zcash की आधारभूत अवधारणाएँ और आवश्यक विशेषताएँ",
@@ -356,7 +356,7 @@
       "description": "decentralized exchanges का उपयोग करके ZEC तक permissionless, censorship-resistant पहुँच"
     },
     "hashFunction": {
-      "title": "हैश फ़ंक्शंस /no_think",
+      "title": "हैश फ़ंक्शंस",
       "description": "हैश फ़ंक्शन क्या है?"
     },
     "blockchain": {
@@ -425,7 +425,7 @@
     "filters": "फ़िल्टर",
     "showNavigation": "नेविगेशन दिखाएँ",
     "close": "बंद करें",
-    "savedReview": "हमने आपकी समीक्षा सहेज ली! /no_think",
+    "savedReview": "हमने आपकी समीक्षा सहेज ली!",
     "errorGettingLikes": "लाइक्स प्राप्त करने में त्रुटि:",
     "errorUpdatingRating": "रेटिंग अपडेट करने में त्रुटि:"
   },
@@ -499,7 +499,7 @@
       "title": "विकेंद्रीकृत एक्सचेंज",
       "subtitle": "ZecHub किसी विशेष Decentralised Exchange सेवा का समर्थन नहीं करता, कृपया स्वयं शोध करें।",
       "centralised": "केंद्रीकृत स्वैप प्लेटफ़ॉर्म",
-      "centralizedTitle": "केंद्रीकृत स्वैप प्लेटफ़ॉर्म सूची /no_think",
+      "centralizedTitle": "केंद्रीकृत स्वैप प्लेटफ़ॉर्म सूची",
       "custodial": "कस्टोडियल एक्सचेंज",
       "exchanges": {
         "Near-intents": "NEAR के समर्थन के साथ तेज़ एक्सचेंज। डिपॉज़िट करें, बेचें, स्वैप करें, जिनमें लोकप्रिय TRUMP, MELANIA, BERA और अन्य मीम शामिल हैं",
@@ -528,7 +528,7 @@
         "shieldedNetworks": "शील्डेड नेटवर्क्स",
         "currentYoutubeChannel": "वर्तमान YouTube चैनल",
         "totalVideos": "कुल वीडियो",
-        "totalViews": "कुल व्यूज़ /no_think",
+        "totalViews": "कुल व्यूज़",
         "mostViewed": "सबसे अधिक देखा गया",
         "viewsSuffix": "व्यूज़",
         "searchPlaceholder": "वीडियो खोजें...",
@@ -549,7 +549,7 @@
           "blocks": "ब्लॉक",
           "transactions24h": "24घं लेनदेन",
           "shieldedTx24h": "शील्डेड TX (24घं)",
-          "saplingAbbrev": "Sap /no_think",
+          "saplingAbbrev": "Sap",
           "orchardAbbrev": "ओर्क"
         },
         "zcashChart": {
@@ -577,7 +577,7 @@
           "halvingMeter": "हॉल्विंग मीटर"
         },
         "miningPoolsChart": {
-          "title": "माइनिंग पूल प्रभुत्व /no_think",
+          "title": "माइनिंग पूल प्रभुत्व",
           "loadError": "Mining Pools लोड करने में विफल",
           "rangeLabel": "रेंज",
           "rangeAriaLabel": "माइनिंग रेंज चुनें",
@@ -605,7 +605,7 @@
       "heroKickoffSep": "(UTC); सबमिशन बंद होते हैं",
       "countdownStartsIn": "हैकाथॉन शुरू होने में",
       "countdownTimeUntilClose": "सबमिशन बंद होने तक का समय",
-      "countdownEnded": "हैकाथॉन समाप्त हो गया /no_think",
+      "countdownEnded": "हैकाथॉन समाप्त हो गया",
       "days": "दिन",
       "hours": "घंटे",
       "mins": "मिनट",
@@ -635,7 +635,7 @@
           "description": "ऑथ और पहचान प्रवाह जो साइन-इन या एक्सेस के लिए Zcash प्रिमिटिव्स का उपयोग करते हैं।"
         },
         "accounting": {
-          "name": "लेखांकन /no_think",
+          "name": "लेखांकन",
           "description": "रिपोर्टिंग, ZEC संभालने वाली टीमों के लिए workflows, भुगतान प्रबंधन प्रणाली।"
         }
       },
@@ -703,7 +703,7 @@
           "description": "setup instructions, usage notes, और अपने open-source license के साथ एक README लिखें। सब कुछ एक public GitHub repo में push करें।"
         },
         "upload": {
-          "title": "अपना code upload करें /no_think",
+          "title": "अपना code upload करें",
           "descPrefix": "अपने प्रोजेक्ट को",
           "repoLabel": "Hackathon repo में",
           "descSuffix": "GitHub पर पुश करें ताकि समुदाय आपके काम की समीक्षा कर सके।"
@@ -776,7 +776,7 @@
         "developerResourcesDesc": "Zcash के आगे के तकनीकी दस्तावेज़ों के लिंक।"
       },
       "fundamentalsLinks": {
-        "addressEncoding": "पता एन्कोडिंग /no_think",
+        "addressEncoding": "पता एन्कोडिंग",
         "addressEncodingDesc": "Zcash addresses और keys को कैसे encode किया जाता है, यह सीखें।",
         "transactions": "लेनदेन",
         "transactionsDesc": "समझें कि Zcash में लेनदेन कैसे काम करते हैं।",
@@ -824,7 +824,7 @@
     "visualizer": {
       "title": "Zcash Visualizers",
       "hashFunction": {
-        "title": "Hash Function Visualizer /no_think"
+        "title": "Hash Function Visualizer"
       },
       "zcashKey": {
         "title": "Zcash कुंजी विज़ुअलाइज़र"
@@ -852,7 +852,7 @@
         "expandedSpendingKeyName": "विस्तारित स्पेंडिंग कुंजी",
         "expandedSpendingKeyDesc": "ask, nsk, ovk",
         "fullViewingKeyName": "पूर्ण Viewing Key (fvk)",
-        "fullViewingKeyDesc": "ak, nk, ovk /no_think",
+        "fullViewingKeyDesc": "ak, nk, ovk",
         "incomingViewingKeyName": "आने वाली Viewing Key (ivk)",
         "incomingViewingKeyDesc": "आने वाले लेन-देन देखें",
         "diversifiedAddressName": "Diversified Address",
@@ -901,7 +901,7 @@
       "heroBadge": "डेवलपर क्विक स्टार्ट",
       "heroTitleLine1": "Zcash Dev",
       "heroTitleLine2": "क्विक स्टार्ट",
-      "heroSubtitle": "Zcash डेवलपमेंट के साथ जल्दी शुरू करें। अपना स्टैक चुनें और गाइड का पालन करें। /no_think",
+      "heroSubtitle": "Zcash डेवलपमेंट के साथ जल्दी शुरू करें। अपना स्टैक चुनें और गाइड का पालन करें।",
       "copy": "कॉपी",
       "copied": "कॉपी किया गया!",
       "onThisPage": "इस पेज पर",
@@ -963,7 +963,7 @@
       "firstStepsDesc": "DAO शासन में भाग लेने के लिए अपनी तैयारी करें",
       "draftProposal": "प्रस्ताव का मसौदा",
       "draftProposalDesc": "जमा करने के लिए अपने प्रस्ताव को संरचित करें और तैयार करें",
-      "submittingProposal": "प्रस्ताव जमा करना /no_think",
+      "submittingProposal": "प्रस्ताव जमा करना",
       "submittingProposalDesc": "अपना प्रस्ताव प्रस्तुत करें और उसका प्रचार करें",
       "installKeplr": "Keplr Wallet इंस्टॉल करें",
       "installKeplrDesc": "DAO के साथ इंटरैक्ट करने के लिए अपना Keplr wallet सेट अप करें",
@@ -983,7 +983,7 @@
       "stageProposalDesc": "अपने प्रस्ताव का पूरा विवरण स्पष्ट रूप से दें",
       "stageAction": "कार्रवाई",
       "stageActionDesc": "सफल मतदान के बाद क्या होता है - कार्रवाइयों की समय-रेखा प्रदान की जा सकती है",
-      "getFeedback": "प्रतिक्रिया प्राप्त करें /no_think",
+      "getFeedback": "प्रतिक्रिया प्राप्त करें",
       "getFeedbackDesc": "शुरुआती प्रतिक्रिया के लिए अपना मसौदा Discord पर ZecHub #proposals चैनल में साझा करें",
       "joinDiscord": "Discord से जुड़ें",
       "walkthroughTitle": "प्रस्ताव वॉकथ्रू वीडियो",
@@ -1103,7 +1103,7 @@
       "systemRequirements": "सिस्टम आवश्यकताएँ",
       "linux": "Linux",
       "ubuntuDebian": "Ubuntu/Debian:",
-      "fromSource": "स्रोत से: /no_think",
+      "fromSource": "स्रोत से:",
       "macos": "macOS",
       "homebrew": "Homebrew:",
       "windows": "Windows",
@@ -1149,7 +1149,7 @@
       "botName": "ZecHub AI",
       "thinking": "ZecHub AI सोच रहा है...",
       "privacyNotice": "प्रश्न OpenAI द्वारा संसाधित किए जाते हैं। कभी भी seed phrases, private keys, या wallet addresses साझा न करें।",
-      "clearConversation": "वार्तालाप साफ़ करें /no_think",
+      "clearConversation": "वार्तालाप साफ़ करें",
       "clear": "साफ़ करें",
       "getStarted": "एक प्रश्न के साथ शुरू करें:",
       "sensitiveWarning": "यह संवेदनशील वॉलेट डेटा लगता है। निजी कुंजियाँ या seed phrases कभी भी किसी सेवा के साथ साझा न करें।",
@@ -1178,6 +1178,6 @@
   },
   "meta": {
     "title": "ZecHub Wiki",
-    "description": "Zcash के लिए एक ओपन सोर्स शिक्षा केंद्र /no_think"
+    "description": "Zcash के लिए एक ओपन सोर्स शिक्षा केंद्र"
   }
 }

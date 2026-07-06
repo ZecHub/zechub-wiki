@@ -99,7 +99,7 @@
     "Zcash Tech": "Zcash 기술",
     "Privacy Tools": "프라이버시 도구",
     "Zcash Social Media": "Zcash 소셜 미디어",
-    "Glossary & FAQ's": "용어집 및 FAQ /no_think"
+    "Glossary & FAQ's": "용어집 및 FAQ"
   },
   "exploreMenu": {
     "Full Explore": "전체 둘러보기",
@@ -214,7 +214,7 @@
       "keystoneZashi": "Keystone Zashi",
       "mayaProtocol": "Maya Protocol",
       "nymVpn": "Nym VPN",
-      "usingZecInDefi": "DeFi에서 ZEC 사용하기 /no_think",
+      "usingZecInDefi": "DeFi에서 ZEC 사용하기",
       "usingZecPrivately": "ZEC를 비공개로 사용하기",
       "raspberryPiZcashdNode": "Raspberry Pi Zcashd 노드",
       "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
@@ -269,7 +269,7 @@
         "techLink": "Zcash 기술"
       },
       "zcashMe": {
-        "title": "Zcash.me /no_think",
+        "title": "Zcash.me",
         "description": "Zcash.Me는 비공개 메시지, 리더보드, 인증된 사용자를 제공하는 Zcash 사용자 공개 디렉터리입니다. Zcash 커뮤니티와 연결하고, 탐색하며, 상호작용하세요.",
         "link": "Zcash.Me 방문하기"
       },
@@ -302,7 +302,7 @@
     },
     "explore": {
       "startHere": "Start_Here",
-      "tutorials": "튜토리얼 /no_think",
+      "tutorials": "튜토리얼",
       "usingZcash": "Using_Zcash",
       "guides": "가이드",
       "zcashTech": "Zcash_Tech",
@@ -327,7 +327,7 @@
   },
   "visualizer": {
     "title": "Zcash 시각화 도구",
-    "description": "Zcash 개인정보 보호 기술, 인프라 및 영지식 증명을 이해하기 위한 인터랙티브 교육 도구 /no_think",
+    "description": "Zcash 개인정보 보호 기술, 인프라 및 영지식 증명을 이해하기 위한 인터랙티브 교육 도구",
     "playAll": "모든 비주얼라이저 재생",
     "basic": "기본",
     "basicDescription": "Zcash의 기초 개념과 핵심 기능",
@@ -425,7 +425,7 @@
     "filters": "필터",
     "showNavigation": "탐색 표시",
     "close": "닫기",
-    "savedReview": "리뷰를 저장했습니다! /no_think",
+    "savedReview": "리뷰를 저장했습니다!",
     "errorGettingLikes": "좋아요를 가져오는 중 오류:",
     "errorUpdatingRating": "평점을 업데이트하는 중 오류:"
   },
@@ -499,7 +499,7 @@
       "title": "탈중앙화 거래소",
       "subtitle": "ZecHub는 특정 탈중앙화 거래소 서비스를 보증하지 않으니, 직접 조사해 주세요.",
       "centralised": "중앙화 스왑 플랫폼",
-      "centralizedTitle": "중앙화 스왑 플랫폼 목록 /no_think",
+      "centralizedTitle": "중앙화 스왑 플랫폼 목록",
       "custodial": "수탁형 거래소",
       "exchanges": {
         "Near-intents": "NEAR의 지원으로 빠른 환전. 입금, 판매, 스왑이 가능하며 인기 있는 TRUMP, MELANIA, BERA 및 기타 밈 코인도 포함됩니다",
@@ -528,7 +528,7 @@
         "shieldedNetworks": "Shielded Networks",
         "currentYoutubeChannel": "현재 YouTube 채널",
         "totalVideos": "총 동영상 수",
-        "totalViews": "총 조회수 /no_think",
+        "totalViews": "총 조회수",
         "mostViewed": "가장 많이 본",
         "viewsSuffix": "조회수",
         "searchPlaceholder": "동영상 검색...",
@@ -549,7 +549,7 @@
           "blocks": "블록",
           "transactions24h": "24시간 거래 수",
           "shieldedTx24h": "실드 TX (24시간)",
-          "saplingAbbrev": "Sap /no_think",
+          "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc"
         },
         "zcashChart": {
@@ -635,7 +635,7 @@
           "description": "로그인 또는 접근에 Zcash 프리미티브를 사용하는 인증 및 신원 흐름."
         },
         "accounting": {
-          "name": "회계 /no_think",
+          "name": "회계",
           "description": "리포팅, ZEC를 처리하는 팀을 위한 워크플로, 결제 관리 시스템."
         }
       },
@@ -703,7 +703,7 @@
           "description": "설치 지침, 사용 참고사항, 오픈소스 라이선스를 포함한 README를 작성하세요. 모든 것을 공개 GitHub 저장소에 푸시하세요."
         },
         "upload": {
-          "title": "코드 업로드하기 /no_think",
+          "title": "코드 업로드하기",
           "descPrefix": "프로젝트를 다음으로 푸시하세요",
           "repoLabel": "Hackathon repo",
           "descSuffix": "커뮤니티가 여러분의 작업을 검토할 수 있도록 GitHub에 올리세요."
@@ -727,7 +727,7 @@
       "projectsArchivedOne": "이 에디션에서 {count}개의 프로젝트가 보관되었습니다.",
       "projectsArchivedMany": "이 에디션에서 {count}개의 프로젝트가 보관되었습니다.",
       "buildsCount": "{count}개 빌드",
-      "viewProject": "프로젝트 보기 /no_think",
+      "viewProject": "프로젝트 보기",
       "needHelpTitle": "도움이 필요하신가요?",
       "needHelpDesc": "Zcash Global Discord는 빌드 관련 질문, 인프라 팁, 해커톤 대화를 나누기에 가장 좋은 곳입니다.",
       "joinDiscord": "Discord 참여하기",
@@ -776,7 +776,7 @@
         "developerResourcesDesc": "Zcash의 추가 기술 문서 링크."
       },
       "fundamentalsLinks": {
-        "addressEncoding": "주소 인코딩 /no_think",
+        "addressEncoding": "주소 인코딩",
         "addressEncodingDesc": "Zcash 주소와 키가 어떻게 인코딩되는지 알아보세요.",
         "transactions": "거래",
         "transactionsDesc": "Zcash에서 거래가 어떻게 작동하는지 이해하세요.",
@@ -824,7 +824,7 @@
     "visualizer": {
       "title": "Zcash 시각화 도구",
       "hashFunction": {
-        "title": "해시 함수 시각화 도구 /no_think"
+        "title": "해시 함수 시각화 도구"
       },
       "zcashKey": {
         "title": "Zcash 키 시각화 도구"
@@ -852,7 +852,7 @@
         "expandedSpendingKeyName": "확장된 Spending Key",
         "expandedSpendingKeyDesc": "ask, nsk, ovk",
         "fullViewingKeyName": "전체 Viewing Key (fvk)",
-        "fullViewingKeyDesc": "ak, nk, ovk /no_think",
+        "fullViewingKeyDesc": "ak, nk, ovk",
         "incomingViewingKeyName": "수신 Viewing Key (ivk)",
         "incomingViewingKeyDesc": "수신 거래 보기",
         "diversifiedAddressName": "다양화된 주소",
@@ -901,7 +901,7 @@
       "heroBadge": "개발자 빠른 시작",
       "heroTitleLine1": "Zcash Dev",
       "heroTitleLine2": "빠른 시작",
-      "heroSubtitle": "Zcash 개발을 시작하고 실행해 보세요. 스택을 선택하고 가이드를 따르세요. /no_think",
+      "heroSubtitle": "Zcash 개발을 시작하고 실행해 보세요. 스택을 선택하고 가이드를 따르세요.",
       "copy": "복사",
       "copied": "복사됨!",
       "onThisPage": "이 페이지에서",
@@ -963,7 +963,7 @@
       "firstStepsDesc": "DAO 거버넌스에 참여할 수 있도록 설정하세요",
       "draftProposal": "초안 제안서",
       "draftProposalDesc": "제출을 위해 제안서를 구성하고 준비하세요",
-      "submittingProposal": "제안서 제출 /no_think",
+      "submittingProposal": "제안서 제출",
       "submittingProposalDesc": "제안서를 제출하고 홍보하세요",
       "installKeplr": "Keplr Wallet 설치",
       "installKeplrDesc": "DAO와 상호작용할 수 있도록 Keplr wallet을 설정하세요",
@@ -983,7 +983,7 @@
       "stageProposalDesc": "제안 내용을 전체적으로 명확하게 자세히 설명하세요",
       "stageAction": "실행",
       "stageActionDesc": "투표가 성공적으로 통과되면 어떤 일이 일어나는지 - 실행 일정표를 제공할 수 있습니다",
-      "getFeedback": "피드백 받기 /no_think",
+      "getFeedback": "피드백 받기",
       "getFeedbackDesc": "초기 피드백을 받기 위해 초안을 Discord의 ZecHub #proposals 채널에 공유하세요",
       "joinDiscord": "Discord 참여하기",
       "walkthroughTitle": "제안서 작성 안내 영상",
@@ -1028,7 +1028,7 @@
         "Block Explorers": "블록 탐색기",
         "Shielded Pools": "실드드 풀",
         "Transparent Exchange Addresses": "투명 거래소 주소",
-        "Transactions": "거래 /no_think",
+        "Transactions": "거래",
         "Memos": "메모",
         "Mobile Top Ups": "모바일 충전",
         "Payment Request URIs": "결제 요청 URI",
@@ -1103,7 +1103,7 @@
       "systemRequirements": "시스템 요구 사항",
       "linux": "Linux",
       "ubuntuDebian": "Ubuntu/Debian:",
-      "fromSource": "소스에서: /no_think",
+      "fromSource": "소스에서:",
       "macos": "macOS",
       "homebrew": "Homebrew:",
       "windows": "Windows",
@@ -1149,7 +1149,7 @@
       "botName": "ZecHub AI",
       "thinking": "ZecHub AI가 생각 중입니다...",
       "privacyNotice": "질문은 OpenAI에서 처리됩니다. 시드 구문, 개인 키 또는 지갑 주소는 절대 공유하지 마세요.",
-      "clearConversation": "대화 지우기 /no_think",
+      "clearConversation": "대화 지우기",
       "clear": "지우기",
       "getStarted": "질문으로 시작해 보세요:",
       "sensitiveWarning": "이것은 민감한 지갑 데이터로 보입니다. 개인 키나 시드 구문은 어떤 서비스와도 절대 공유하지 마세요.",
@@ -1178,6 +1178,6 @@
   },
   "meta": {
     "title": "ZecHub Wiki",
-    "description": "Zcash를 위한 오픈 소스 교육 허브 /no_think"
+    "description": "Zcash를 위한 오픈 소스 교육 허브"
   }
 }
