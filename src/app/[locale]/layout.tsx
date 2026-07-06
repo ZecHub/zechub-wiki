@@ -13,6 +13,10 @@ import { routing } from "@/i18n/routing";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// Locales that render right-to-left. Drives the <html dir> attribute so RTL
+// languages (e.g. Arabic) lay out correctly.
+const RTL_LOCALES = new Set<string>(["ar"]);
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -64,7 +68,7 @@ export default async function RootLayout({
   const initialDictionary = await getDictionary(locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} dir={RTL_LOCALES.has(locale) ? "rtl" : "ltr"} suppressHydrationWarning>
       <head>
         <style>{`
           .goog-te-banner-frame,

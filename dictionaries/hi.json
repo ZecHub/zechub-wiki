@@ -1,0 +1,1153 @@
+{
+  "menuLabels": {
+    "Accept Payments": "भुगतान स्वीकार करें",
+    "Akash Network Zebra": "Akash Network Zebra",
+    "Arborist Calls": "Arborist Calls",
+    "Avalanche RedBridge": "Avalanche RedBridge",
+    "BTCPayServer Zcash Plugin": "BTCPayServer Zcash Plugin",
+    "Blockchain Explorers": "ब्लॉकचेन एक्सप्लोरर",
+    "Brand": "ब्रांड",
+    "Brave Wallet": "Brave Wallet",
+    "Buying ZEC": "ZEC खरीदना",
+    "Community Blogs": "समुदाय ब्लॉग",
+    "Community Forum": "समुदाय फ़ोरम",
+    "Community Links": "समुदाय लिंक",
+    "Community Projects": "समुदाय परियोजनाएँ",
+    "Contribute": "योगदान करें",
+    "Cypherpunk Zero NFT": "Cypherpunk Zero NFT",
+    "DAO": "DAO",
+    "Developers": "डेवलपर्स",
+    "Discord": "Discord",
+    "Donations": "दान",
+    "Electric Coin Company": "Electric Coin Company",
+    "Exchanges": "एक्सचेंज",
+    "Extras": "अतिरिक्त",
+    "Faucets": "फॉसेट्स",
+    "Financial Privacy Foundation": "वित्तीय गोपनीयता फाउंडेशन",
+    "Free2z Live": "Free2z Live",
+    "Freelance Privacy": "फ्रीलांस गोपनीयता",
+    "Github": "Github",
+    "Governance": "शासन",
+    "Guides": "मार्गदर्शिकाएँ",
+    "How to Participate": "कैसे भाग लें",
+    "Journalist Privacy": "पत्रकार गोपनीयता",
+    "Keeping Records": "रिकॉर्ड रखना",
+    "Keystone Zashi": "Keystone Zashi",
+    "Maya Protocol": "Maya Protocol",
+    "Memos": "मेमो",
+    "Metamask Snap": "Metamask Snap",
+    "Mobile Top Ups": "मोबाइल टॉप-अप",
+    "Newsletter": "न्यूज़लेटर",
+    "Nym VPN": "Nym VPN",
+    "Payment Processors": "भुगतान प्रोसेसर",
+    "Payment Request URIs": "पेमेंट रिक्वेस्ट URIs",
+    "Podcast": "पॉडकास्ट",
+    "Private Community Treasury": "प्राइवेट कम्युनिटी ट्रेजरी",
+    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 फुल नोड",
+    "Raspberry pi 4 Zebra Node": "Raspberry pi 4 Zebra नोड",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+    "Recovering Funds": "फंड्स की रिकवरी",
+    "Research": "रिसर्च",
+    "Send Money Privately": "निजी रूप से पैसे भेजें",
+    "Shielded Labs": "Shielded Labs",
+    "Shielded Pools": "शील्डेड पूल्स",
+    "Sitemap": "साइटमैप",
+    "Start Here": "यहाँ से शुरू करें",
+    "Store": "स्टोर",
+    "Testnet": "टेस्टनेट",
+    "Tools": "टूल्स",
+    "Transactions": "लेनदेन",
+    "Transparent Exchange Addresses": "पारदर्शी एक्सचेंज पते",
+    "Tutorials": "ट्यूटोरियल्स",
+    "Twitter": "Twitter",
+    "Use Cases": "उपयोग के मामले",
+    "Using ZEC Privately": "ZEC का निजी रूप से उपयोग करना",
+    "Using ZEC in DeFi": "DeFi में ZEC का उपयोग करना",
+    "Using Zcash": "Zcash का उपयोग करना",
+    "Visual Identity": "दृश्य पहचान",
+    "Visualizer": "विज़ुअलाइज़र",
+    "Visualizing Zcash Addresses": "Zcash पतों का विज़ुअलाइज़ेशन",
+    "Visualizing the Zcash Network": "Zcash नेटवर्क का विज़ुअलाइज़ेशन",
+    "Wallets": "वॉलेट्स",
+    "Youtube": "Youtube",
+    "Ywallet FROST Demo": "Ywallet FROST डेमो",
+    "ZCAP": "ZCAP",
+    "ZIPs & Grants": "ZIPs और अनुदान",
+    "ZKAV Club": "ZKAV Club",
+    "ZODL": "ZODL",
+    "Zcash Community": "Zcash समुदाय",
+    "Zcash Community Grants": "Zcash Community Grants",
+    "Zcash Devtool": "Zcash Devtool",
+    "Zcash Ecosystem Security": "Zcash इकोसिस्टम सुरक्षा",
+    "Zcash Foundation": "Zcash Foundation /no_think",
+    "Zcash Global Ambassadors": "Zcash वैश्विक राजदूत",
+    "Zcash Governance": "Zcash शासन",
+    "Zcash Improvement Proposals": "Zcash सुधार प्रस्ताव",
+    "Zcash Media": "Zcash मीडिया",
+    "Zcash Organizations": "Zcash संगठन",
+    "Zcash Podcasts": "Zcash पॉडकास्ट",
+    "Zcon Archive": "Zcon अभिलेखागार",
+    "Zcon Vozes Archive": "Zcon Vozes अभिलेखागार",
+    "Zenith Installation": "Zenith स्थापना",
+    "Zero-Knowledge vs Decoys": "Zero-Knowledge बनाम Decoys",
+    "Zgo Payment Processor": "Zgo भुगतान प्रोसेसर",
+    "Zingo Labs": "Zingo Labs",
+    "Zingolib and Zaino Tutorial": "Zingolib और Zaino ट्यूटोरियल",
+    "Zkool Multisig": "Zkool मल्टीसिग",
+    "Custodial Exchanges": "कस्टोडियल एक्सचेंज",
+    "Zcash Use Cases": "Zcash उपयोग के मामले",
+    "Zcash Tech": "Zcash तकनीक",
+    "Privacy Tools": "गोपनीयता उपकरण",
+    "Zcash Social Media": "Zcash सोशल मीडिया",
+    "Glossary & FAQ's": "शब्दावली और FAQ's"
+  },
+  "exploreMenu": {
+    "Full Explore": "पूरा एक्सप्लोर करें",
+    "Start Here": "यहाँ से शुरू करें",
+    "Tutorials": "ट्यूटोरियल्स",
+    "Using Zcash": "Zcash का उपयोग",
+    "Guides": "मार्गदर्शिकाएँ",
+    "Zcash Tech": "Zcash टेक",
+    "Zcash Organizations": "Zcash संगठन",
+    "Zcash Community": "Zcash समुदाय",
+    "ZKAV Club": "ZKAV Club",
+    "Privacy Tools": "गोपनीयता उपकरण",
+    "Research": "शोध",
+    "Glossary & FAQs": "शब्दावली और FAQs",
+    "Contribute": "योगदान करें",
+    "For Forks & Maintainers": "Forks और Maintainers के लिए",
+    "Fork zechub-wiki": "zechub-wiki को Fork करें",
+    "Fork zechub": "zechub को Fork करें"
+  },
+  "common": {
+    "home": "होम",
+    "about": "परिचय",
+    "contact": "संपर्क",
+    "language": "भाषा",
+    "clickToExplore": "अन्वेषण करने के लिए क्लिक करें →",
+    "learnMore": "और जानें",
+    "getStarted": "शुरू करें",
+    "readMore": "और पढ़ें",
+    "search": "खोजें",
+    "close": "बंद करें",
+    "searchModalTitle": "ZecHub Wiki खोजें",
+    "searchHint": "पृष्ठ शीर्षक, विषय, या पथ से खोजें। चुनने के लिए तीर कुंजियों का उपयोग करें, खोलने के लिए Enter दबाएँ।",
+    "searchNoResults": "कोई मेल खाते पृष्ठ नहीं",
+    "searchTryDifferent": "छोटे प्रश्न, समानार्थी शब्द, या अलग शब्द आज़माएँ।",
+    "searchSuggested": "सुझाए गए पृष्ठ",
+    "searchResultsLabel": "परिणाम"
+  },
+  "navigation": {
+    "wallets": "Wallets",
+    "guides": "मार्गदर्शिकाएँ",
+    "tutorials": "ट्यूटोरियल",
+    "governance": "शासन",
+    "visualizer": "दृश्यकार",
+    "dao": "DAO",
+    "newsletter": "न्यूज़लेटर",
+    "donate": "दान करें",
+    "explore": "अन्वेषण करें",
+    "developers": "डेवलपर्स",
+    "community": "समुदाय",
+    "contribute": "योगदान करें",
+    "dashboard": "डैशबोर्ड",
+    "more": "अधिक",
+    "usingZcash": {
+      "label": "Zcash का उपयोग करें",
+      "buyingZec": "ZEC खरीदना",
+      "faucets": "फॉसेट्स",
+      "wallets": "वॉलेट्स",
+      "metamaskSnap": "Metamask Snap",
+      "exchanges": "एक्सचेंज",
+      "blockExplorers": "ब्लॉक एक्सप्लोरर्स",
+      "shieldedPools": "शील्डेड पूल्स",
+      "transparentExchangeAddresses": "ट्रांसपेरेंट एक्सचेंज पते",
+      "transactions": "लेन-देन",
+      "memos": "मेमोज़",
+      "mobileTopUps": "मोबाइल टॉप-अप्स",
+      "paymentRequestUris": "भुगतान अनुरोध URIs",
+      "paymentProcessors": "पेमेंट प्रोसेसर्स",
+      "recoveringFunds": "फंड्स रिकवर करना",
+      "testnet": "Testnet",
+      "tools": "टूल्स",
+      "useCases": "उपयोग के मामले",
+      "useCasesSubmenu": {
+        "startHere": "यहाँ से शुरू करें",
+        "acceptPayments": "भुगतान स्वीकार करें",
+        "freelancePrivacy": "फ्रीलांस गोपनीयता",
+        "journalistPrivacy": "पत्रकार गोपनीयता",
+        "keepingRecords": "रिकॉर्ड रखना",
+        "privateCommunityTreasury": "निजी सामुदायिक कोष",
+        "donations": "दान",
+        "sendMoneyPrivately": "निजी रूप से पैसे भेजें"
+      }
+    },
+    "zcashCommunity": {
+      "label": "इकोसिस्टम",
+      "arboristCalls": "Arborist Calls",
+      "communityBlogs": "सामुदायिक ब्लॉग",
+      "communityLinks": "सामुदायिक लिंक",
+      "communityForum": "सामुदायिक फोरम",
+      "communityProjects": "सामुदायिक प्रोजेक्ट्स",
+      "globalAmbassadors": "Zcash Global Ambassadors",
+      "zcashMedia": "Zcash मीडिया",
+      "zcap": "ZCAP",
+      "zcashPodcasts": "Zcash पॉडकास्ट",
+      "ecosystemSecurity": "Zcash इकोसिस्टम सुरक्षा",
+      "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
+      "zconArchive": "Zcon आर्काइव"
+    },
+    "organizations": {
+      "label": "संगठन",
+      "electricCoinCompany": "Electric Coin Company",
+      "zcashFoundation": "Zcash Foundation",
+      "communityGrants": "Zcash कम्युनिटी ग्रांट्स",
+      "financialPrivacyFoundation": "वित्तीय गोपनीयता फाउंडेशन",
+      "shieldedLabs": "Shielded Labs",
+      "zingoLabs": "Zingo Labs",
+      "brand": "ब्रांड",
+      "zkavClub": "ZKAV Club"
+    },
+    "guidesSubmenu": {
+      "zgoPaymentProcessor": "Zgo पेमेंट प्रोसेसर",
+      "free2zLive": "Free2z Live",
+      "keystoneZashi": "Keystone Zashi",
+      "mayaProtocol": "Maya Protocol",
+      "nymVpn": "Nym VPN",
+      "usingZecInDefi": "DeFi में ZEC का उपयोग /no_think",
+      "usingZecPrivately": "ZEC का निजी रूप से उपयोग",
+      "raspberryPiZcashdNode": "Raspberry Pi Zcashd Node",
+      "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+      "raspberryPiZebraNode": "Raspberry Pi Zebra Node",
+      "akashNetwork": "Akash Network",
+      "avalancheRedbridge": "Avalanche RedBridge",
+      "zkoolMultisig": "Zkool Multisig",
+      "ywalletFrostDemo": "Ywallet FROST डेमो",
+      "blockchainExplorers": "Blockchain Explorers",
+      "braveWallet": "Brave Wallet",
+      "btcPayServerPlugin": "BTCPayServer Plugin",
+      "visualizingZcashNetwork": "Zcash Network का दृश्यांकन",
+      "visualizingZcashAddresses": "Zcash Addresses का दृश्यांकन",
+      "zcashDevtool": "Zcash Devtool",
+      "zcashImprovementProposals": "Zcash Improvement Proposals",
+      "zingolibAndZainoTutorial": "Zingolib और Zaino ट्यूटोरियल",
+      "zenithInstallation": "Zenith स्थापना",
+      "zeroKnowledgeVsDecoys": "Zero Knowledge बनाम Decoy Systems"
+    },
+    "overview": "अवलोकन",
+    "shop": "Shop /no_think"
+  },
+  "home": {
+    "heroTitle": "ZecHub में आपका स्वागत है",
+    "heroSubtitle": "Zcash के लिए एक open source शिक्षा केंद्र",
+    "heroDescription": "Zcash privacy technology के बारे में जानें, interactive visualizers देखें, और ecosystem में योगदान दें",
+    "description": "ZecHub, Zcash cryptocurrency (ZEC) के लिए community-driven शिक्षा केंद्र है। Zcash एक digital currency है जो censorship resistant, secure और private payments प्रदान करती है। Zcash Blockchain, 2022 में हुए NU5 network upgrade के बाद, ऐसे अत्यंत उन्नत 'verifiable' zk-snarks का उपयोग करती है जिन्हें Trusted Setup की आवश्यकता नहीं होती।",
+    "featuredSection": "प्रमुख संसाधन",
+    "latestUpdates": "नवीनतम अपडेट",
+    "getInvolved": "शामिल हों",
+    "exploreEcosystem": "Ecosystem का अन्वेषण करें",
+    "exploreZcash": "Zcash को जानें",
+    "cards": {
+      "startHere": {
+        "title": "यहाँ से शुरू करें",
+        "content": "जानें कि Zcash क्या है और ZEC के उपयोग के मामले क्या हैं"
+      },
+      "pickWallet": {
+        "title": "एक Wallet चुनें",
+        "content": "Wallets आपको Zcash को निजी रूप से प्राप्त करने और खर्च करने की अनुमति देते हैं। कुछ encrypted memos का भी समर्थन करते हैं"
+      },
+      "resources": {
+        "title": "Zcash संसाधन",
+        "content": "यहाँ ऐसे मार्गदर्शक हैं जो उपयोगकर्ताओं को Zcash Full Nodes, zk-SNARKs और अधिक को समझने में मदद करते हैं"
+      }
+    },
+    "sections": {
+      "whatIsZcash": {
+        "title": "Zcash क्या है?",
+        "description": "यह एक open-source, blockchain ledger है जिसमें एक परिष्कृत zero-knowledge proving system है। यह अपने proving system के माध्यम से लेन-देन के metadata की गोपनीयता बनाए रखते हुए अधिक उच्च स्तर की privacy प्रदान करने में विशेषज्ञ है। अपने मूल में, Zcash private data ownership है, जिसे लेन-देन होने पर permissionlessly transfer किया जाता है।",
+        "mainLink": "Zcash क्या है?",
+        "techLink": "Zcash Technology"
+      },
+      "zcashMe": {
+        "title": "Zcash.me /no_think",
+        "description": "Zcash.Me निजी संदेश, लीडरबोर्ड और सत्यापित उपयोगकर्ताओं के साथ Zcash उपयोगकर्ताओं की एक सार्वजनिक निर्देशिका है। Zcash समुदाय से जुड़ें, खोजें और संवाद करें।",
+        "link": "Zcash.Me पर जाएँ"
+      },
+      "globalAmbassadors": {
+        "title": "Zcash Global Ambassadors",
+        "description": "Zcash Global Ambassadors ऐसे सामुदायिक नेता हैं जो दुनिया भर में गोपनीयता-केंद्रित क्रिप्टोकरेंसी के अपनाने और शिक्षा को बढ़ावा देने के लिए समर्पित हैं। प्रत्येक ambassador परियोजना अपने-अपने क्षेत्रों में जागरूकता और सहभागिता बढ़ाने पर केंद्रित है।",
+        "link": "Ambassadors से मिलें"
+      },
+      "newsletter": {
+        "title": "Shielded Newsletter",
+        "description": "Zcash Ecosystem Updates & Network Stats को सीधे अपने वॉलेट में shielded access के साथ पाने के लिए अपने Unified Address का उपयोग करके सदस्यता लें!",
+        "link": "सदस्यता लें"
+      },
+      "free2z": {
+        "title": "Free2Z",
+        "description": "Free2Z, Zcash द्वारा संचालित एक सामाजिक मंच है। इसमें peer-to-peer donations, एक revenue sharing program, उन्नत creative tools और एक विशाल वैश्विक ऑनलाइन समुदाय है।",
+        "link": "Free2Z"
+      },
+      "payWithZcash": {
+        "title": "Zcash से भुगतान करें",
+        "description": "यह वेबसाइट इस प्रश्न का उत्तर है: मैं Zcash से कहाँ भुगतान कर सकता हूँ? यह निर्देशिका उपयोग के लिए निःशुल्क है। सूचीबद्ध वस्तुएँ केवल जानकारी के उद्देश्य से हैं, किसी भी प्रकार के समर्थन के रूप में नहीं। आनंद लें!",
+        "mainLink": "paywithz.cash",
+        "mapLink": "SPEDN"
+      },
+      "hackathon": {
+        "title": "Hackathon में शामिल हों",
+        "description": "Zcash समुदाय के साथ प्रभावशाली विचारों का निर्माण करें, सहयोग करें और उन्हें जारी करें। पाँच नवोन्मेषी ट्रैक्स में प्रतिस्पर्धा करें: nodes और indexers के लिए Infrastructure, इंटरैक्टिव अनुभवों के लिए Games, threshold signing के लिए FROST, authentication solutions के लिए Zcash Login, और वित्तीय workflows के लिए Accounting। 25 मई - 15 जुलाई, 2026। 25 ZEC का prize pool आपका इंतज़ार कर रहा है।",
+        "mainLink": "Hackathon में शामिल हों"
+      }
+    },
+    "explore": {
+      "startHere": "Start_Here",
+      "tutorials": "ट्यूटोरियल्स /no_think",
+      "usingZcash": "Using_Zcash",
+      "guides": "मार्गदर्शिकाएँ",
+      "zcashTech": "Zcash_Tech",
+      "organizations": "Zcash_Organizations",
+      "community": "Zcash_Community",
+      "zkavClub": "ZKAV_Club",
+      "privacyTools": "गोपनीयता_उपकरण",
+      "research": "अनुसंधान",
+      "glossary": "शब्दावली_और_FAQs",
+      "contribute": "योगदान_करें"
+    }
+  },
+  "footer": {
+    "description": "Zcash के लिए एक ओपन सोर्स शिक्षा हब",
+    "quickLinks": "त्वरित लिंक",
+    "resources": "संसाधन",
+    "community": "समुदाय",
+    "followUs": "हमें फ़ॉलो करें",
+    "allRightsReserved": "सर्वाधिकार सुरक्षित",
+    "privacyPolicy": "गोपनीयता नीति",
+    "termsOfService": "सेवा की शर्तें"
+  },
+  "visualizer": {
+    "title": "Zcash विज़ुअलाइज़र",
+    "description": "Zcash गोपनीयता तकनीक, अवसंरचना, और zero-knowledge proofs को समझने के लिए इंटरैक्टिव शैक्षिक उपकरण /no_think",
+    "playAll": "सभी Visualizers चलाएँ",
+    "basic": "मूलभूत",
+    "basicDescription": "Zcash की आधारभूत अवधारणाएँ और आवश्यक विशेषताएँ",
+    "advanced": "उन्नत",
+    "advancedDescription": "क्रिप्टोग्राफी, consensus, और infrastructure में गहन तकनीकी अध्ययन",
+    "contributors": "योगदानकर्ता",
+    "contributorsDescription": "Zcash ecosystem में योगदान देने और rewards कमाने के तरीके",
+    "beginnerQuiz": "शुरुआती प्रश्नोत्तरी",
+    "intermediateQuiz": "मध्यम स्तर की प्रश्नोत्तरी",
+    "contributorsQuiz": "योगदानकर्ताओं की प्रश्नोत्तरी",
+    "autoPlayNote": "प्रत्येक visualizer अपने-आप चलता है। नेविगेट करने या रोकने के लिए controls का उपयोग करें।",
+    "wallets": {
+      "title": "Zcash Wallets का परिचय",
+      "description": "Shielded Functionality प्रदान करना"
+    },
+    "pools": {
+      "title": "Value Pools और Address Types",
+      "description": "Zcash privacy pools और address types का अन्वेषण करें"
+    },
+    "payWith": {
+      "title": "Zcash से भुगतान करें",
+      "description": "जानें कि private payments के लिए ZEC कहाँ और कैसे उपयोग करें"
+    },
+    "dex": {
+      "title": "Zcash Exchanges (DEX)",
+      "description": "decentralized exchanges का उपयोग करके ZEC तक permissionless, censorship-resistant पहुँच"
+    },
+    "hashFunction": {
+      "title": "हैश फ़ंक्शंस /no_think",
+      "description": "हैश फ़ंक्शन क्या है?"
+    },
+    "blockchain": {
+      "title": "Zcash ब्लॉकचेन के मूल सिद्धांत",
+      "description": "Zcash ब्लॉकचेन की बुनियाद को समझना"
+    },
+    "zkproof": {
+      "title": "zk-SNARKs",
+      "description": "शील्डेड ट्रांज़ैक्शनों का इंटरैक्टिव प्रदर्शन"
+    },
+    "keys": {
+      "title": "Zcash कुंजियाँ",
+      "description": "Zcash कुंजियों को समझना"
+    },
+    "infrastructure": {
+      "title": "Zcash इन्फ्रास्ट्रक्चर",
+      "description": "Zcash के घटक एक साथ कैसे काम करते हैं"
+    },
+    "consensus": {
+      "title": "सहमति",
+      "description": "सैकड़ों नोड्स चेन की स्थिति पर कैसे सहमत होते हैं?"
+    },
+    "miningHalo": {
+      "title": "Zcash माइनिंग",
+      "description": "Equihash माइनिंग और recursive zero-knowledge proofs को समझना"
+    },
+    "privacyUseCases": {
+      "title": "गोपनीयता के उपयोग के मामले",
+      "description": "Zcash पर गोपनीयता तकनीक के वास्तविक दुनिया के अनुप्रयोग"
+    },
+    "governance": {
+      "title": "गवर्नेंस और Dev Fund",
+      "description": "समुदाय-प्रेरित विकास और विकेंद्रीकृत निर्णय-निर्माण"
+    },
+    "bounties": {
+      "title": "ZecHub बाउंटी",
+      "description": "ZecHub में योगदान दें और ZEC कमाएँ"
+    },
+    "daoProposal": {
+      "title": "DAO प्रस्ताव",
+      "description": "ZecHub DAO गवर्नेंस प्रस्ताव बनाने के लिए चरण-दर-चरण मार्गदर्शिका"
+    },
+    "communityGrants": {
+      "title": "Zcash कम्युनिटी ग्रांट्स",
+      "description": "Zcash इकोसिस्टम परियोजनाओं के लिए फंडिंग"
+    },
+    "coinholderGrants": {
+      "title": "कॉइनधारक-निर्देशित ग्रांट्स",
+      "description": "ZEC धारकों द्वारा निर्देशित पूर्वव्यापी फंडिंग"
+    },
+    "openSource": {
+      "title": "ओपन सोर्स रिपॉजिटरीज़",
+      "description": "Zcash ओपन सोर्स परियोजनाओं में योगदान दें"
+    }
+  },
+  "wallets": {
+    "title": "Zcash वॉलेट्स",
+    "description": "ऐसा वॉलेट चुनें जो आपकी आवश्यकताओं के अनुरूप हो",
+    "desktopWallets": "डेस्कटॉप वॉलेट्स",
+    "mobileWallets": "मोबाइल वॉलेट्स",
+    "hardwareWallets": "हार्डवेयर वॉलेट्स",
+    "webWallets": "वेब वॉलेट्स",
+    "features": "विशेषताएँ",
+    "download": "डाउनलोड",
+    "visitWebsite": "वेबसाइट पर जाएँ",
+    "filters": "फ़िल्टर",
+    "showNavigation": "नेविगेशन दिखाएँ",
+    "close": "बंद करें",
+    "savedReview": "हमने आपकी समीक्षा सहेज ली! /no_think",
+    "errorGettingLikes": "लाइक्स प्राप्त करने में त्रुटि:",
+    "errorUpdatingRating": "रेटिंग अपडेट करने में त्रुटि:"
+  },
+  "guides": {
+    "title": "मार्गदर्शिकाएँ",
+    "description": "Zcash का उपयोग करने के लिए चरण-दर-चरण मार्गदर्शिकाएँ",
+    "allGuides": "सभी मार्गदर्शिकाएँ",
+    "beginner": "शुरुआती",
+    "intermediate": "मध्यम",
+    "advanced": "उन्नत"
+  },
+  "tutorials": {
+    "title": "ट्यूटोरियल",
+    "description": "व्यावहारिक ट्यूटोरियल के साथ करके सीखें",
+    "watchVideo": "वीडियो देखें",
+    "readTutorial": "ट्यूटोरियल पढ़ें",
+    "duration": "अवधि"
+  },
+  "dao": {
+    "title": "ZecHub DAO",
+    "description": "ZecHub के लिए विकेंद्रीकृत शासन",
+    "headerTitle": "ZecHub DAO और शासन",
+    "headerDescription": "एक ओपन सोर्स शैक्षिक मंच जहाँ समुदाय के सदस्य Zcash पारिस्थितिकी तंत्र का समर्थन करने वाली सामग्री के निर्माण, सत्यापन और प्रचार में सहयोग करते हैं",
+    "beliefs": "['गोपनीयता एक मानव अधिकार है', 'शिक्षा ओपन-सोर्स और दुनिया भर में सुलभ होनी चाहिए', 'समुदाय के सदस्यों को निजी रूप से ZEC कमाने का अधिकार है', 'वैश्विक सहयोग नवाचार को आगे बढ़ाता है']",
+    "features": "[{'icon': '🛡️', 'title': 'पहला Zcash इकोसिस्टम DAO', 'description': 'ZecHub Zcash समुदाय में विकेंद्रीकृत शासन का अग्रणी है, जहाँ अधिकतम गोपनीयता के लिए धन मुख्य रूप से Zcash shielded pool के भीतर रखा जाता है।'}, {'icon': '🌍', 'title': 'वैश्विक सहयोग', 'description': 'Global Ambassadors, Community Grants के सदस्य, और सामुदायिक विशेषज्ञ Zcash और Privacy Technology शिक्षा की दिशा तय करने के लिए एकजुट होते हैं।'}, {'icon': '🔄', 'title': 'SubDAO फ़्रेमवर्क', 'description': 'कोई भी समूह SubDAOs बना सकता है ताकि परियोजनाएँ बनाई जा सकें, प्रस्ताव तैयार किए जा सकें, या DAO DAO module के माध्यम से पूर्वप्रभावी मुआवज़े का अनुरोध किया जा सके।'}]",
+    "governanceDescription": "सभी DAO प्रस्ताव सार्वजनिक और पारदर्शी हैं। कोई भी मतदान के लिए एक प्रस्ताव बना सकता है। सामुदायिक पारदर्शिता के समर्थन में, ZecHub DAO सभी शासन प्रस्तावों को Zcash Community Forum के ZecHub Governance थ्रेड में पोस्ट करता है।",
+    "membersTitle": "DAO सदस्य",
+    "proposals": "प्रस्ताव",
+    "vote": "मतदान",
+    "createProposal": "प्रस्ताव बनाएं",
+    "activeProposals": "सक्रिय प्रस्ताव",
+    "pastProposals": "पिछले प्रस्ताव"
+  },
+  "newsletter": {
+    "title": "न्यूज़लेटर",
+    "description": "नवीनतम Zcash समाचारों से अपडेट रहें",
+    "subscribe": "सदस्यता लें",
+    "emailPlaceholder": "अपना ईमेल दर्ज करें",
+    "subscribeButton": "अभी सदस्यता लें",
+    "latestIssue": "नवीनतम अंक",
+    "archive": "अभिलेखागार"
+  },
+  "pages": {
+    "wallets": {
+      "title": "वॉलेट्स | ZecHub",
+      "noData": "कोई डेटा नहीं या गलत फ़ाइल",
+      "bannerAlt": "wiki-banner"
+    },
+    "dex": {
+      "title": "विकेंद्रीकृत एक्सचेंज",
+      "subtitle": "ZecHub किसी विशेष Decentralised Exchange सेवा का समर्थन नहीं करता, कृपया स्वयं शोध करें।",
+      "centralised": "केंद्रीकृत स्वैप प्लेटफ़ॉर्म",
+      "centralizedTitle": "केंद्रीकृत स्वैप प्लेटफ़ॉर्म सूची /no_think",
+      "custodial": "कस्टोडियल एक्सचेंज",
+      "exchanges": {
+        "Near-intents": "NEAR के समर्थन के साथ तेज़ एक्सचेंज। डिपॉज़िट करें, बेचें, स्वैप करें, जिनमें लोकप्रिय TRUMP, MELANIA, BERA और अन्य मीम शामिल हैं",
+        "Nativeswap": "Maya Protocol के माध्यम से बिना बाधाओं के नेटिव क्रॉस-चेन ट्रेडिंग। ब्रिज या wrapped tokens के बिना सीधे on-chain ट्रेड करें - उद्योग की कम फीस और पूर्ण asset control का आनंद लें।",
+        "Firo DEX": "FiroDEX! के साथ atomic swaps का उपयोग करते हुए trustless decentralized swaps।",
+        "LeoDEX": "Maya Protocol, Thorchain, ChainFlip और Rango के लिए एक crosschain crypto swapping interface। BTC, ETH, RUNE, DASH, LTC और अधिक",
+        "Bison Wallet": "क्रिप्टो को peer-to-peer ट्रेड करें। कोई trading fees नहीं। कोई KYC नहीं।",
+        "THORSwap": "THORChain द्वारा संचालित cross-chain DEX, जो wrapped tokens के बिना Bitcoin, Ethereum और अन्य प्रमुख assets के बीच native swaps सक्षम करता है।",
+        "Router Protocol": "Cross-chain liquidity transport layer जो multiple blockchains के बीच assets और data के seamless transfer की अनुमति देती है।",
+        "Peer": "Enhanced privacy और user control के साथ direct crypto transactions सक्षम करने वाला decentralized peer-to-peer exchange।",
+        "RocketX": "Hybrid DEX aggregator जो optimal routing और competitive rates के साथ multiple blockchains पर cross-chain swaps सक्षम करता है।",
+        "THORChain": "Decentralized Layer 1 cross-chain exchange। ZEC, BTC और ETH जैसे native assets को सीधे swap करें, बिना bridges, wrapped tokens, या intermediaries के।",
+        "Loofta": "Non-custodial private payment और swap platform। Enhanced financial privacy के लिए Zcash को settlement layer के रूप में उपयोग करते हुए, chains के बीच crypto को निजी रूप से भेजें और प्राप्त करें।"
+      }
+    },
+    "usingZcash": {
+      "blockchainExplorers": {
+        "title": "Blockchain Explorers"
+      }
+    },
+    "dashboard": {
+      "title": "डैशबोर्ड | ZecHub",
+      "charts": {
+        "headerTitle": "डैशबोर्ड",
+        "headerSubtitle": "Zcash नेटवर्क मेट्रिक्स और रुझानों का विश्लेषण करें",
+        "shieldedNetworks": "शील्डेड नेटवर्क्स",
+        "currentYoutubeChannel": "वर्तमान YouTube चैनल",
+        "totalVideos": "कुल वीडियो",
+        "totalViews": "कुल व्यूज़ /no_think",
+        "mostViewed": "सबसे अधिक देखा गया",
+        "viewsSuffix": "व्यूज़",
+        "searchPlaceholder": "वीडियो खोजें...",
+        "top15ByViews": "व्यूज़ के आधार पर शीर्ष 15",
+        "latest15Videos": "नवीनतम 15 वीडियो",
+        "sortByNewest": "↩ नवीनतम के अनुसार क्रमबद्ध करें",
+        "sortByViews": "↑ व्यूज़ के अनुसार क्रमबद्ध करें",
+        "top15VideosByViews": "व्यूज़ के आधार पर शीर्ष 15 वीडियो",
+        "latest15VideosSortedByViews": "नवीनतम 15 वीडियो (व्यूज़ के अनुसार क्रमबद्ध)",
+        "zcashMetrics": {
+          "title": "Zcash मेट्रिक्स",
+          "loadError": "Zcash मेट्रिक्स लोड करने में विफल",
+          "notAvailable": "लागू नहीं",
+          "marketCap": "मार्केट कैप",
+          "circulation": "परिसंचरण",
+          "marketPriceUsd": "बाज़ार मूल्य (USD)",
+          "marketPriceBtc": "बाज़ार मूल्य (BTC)",
+          "blocks": "ब्लॉक",
+          "transactions24h": "24घं लेनदेन",
+          "shieldedTx24h": "शील्डेड TX (24घं)",
+          "saplingAbbrev": "Sap /no_think",
+          "orchardAbbrev": "ओर्क"
+        },
+        "zcashChart": {
+          "title": "एनालिटिक्स चार्ट्स",
+          "supplyTypeAriaLabel": "आपूर्ति का प्रकार",
+          "supplyOptions": {
+            "shielded": "शील्डेड",
+            "transparent": "ट्रांसपेरेंट",
+            "totalSupply": "कुल आपूर्ति"
+          }
+        },
+        "zcashShieldedTabs": {
+          "supply": "आपूर्ति",
+          "difficulty": "कठिनाई",
+          "issuance": "जारीकरण",
+          "lockbox": "लॉकबॉक्स",
+          "flows": "प्रवाह",
+          "nodeCount": "नोड संख्या",
+          "txSummary": "TX सारांश",
+          "privacySet": "प्राइवेसी सेट",
+          "shieldedStats": "शील्डेड आँकड़े",
+          "blockFees": "ब्लॉक शुल्क",
+          "networkSolps": "नेटवर्क Solps",
+          "miningPools": "माइनिंग पूल्स",
+          "halvingMeter": "हॉल्विंग मीटर"
+        },
+        "miningPoolsChart": {
+          "title": "माइनिंग पूल प्रभुत्व /no_think",
+          "loadError": "Mining Pools लोड करने में विफल",
+          "rangeLabel": "रेंज",
+          "rangeAriaLabel": "माइनिंग रेंज चुनें",
+          "noData": "कोई माइनिंग पूल डेटा उपलब्ध नहीं है।"
+        },
+        "difficultyChart": {
+          "title": "समय के साथ माइनिंग कठिनाई",
+          "loadError": "Difficulty Chart लोड करने में विफल",
+          "legend": "कठिनाई",
+          "seriesName": "कठिनाई"
+        },
+        "tabs": {
+          "zechubDashboard": "ZecHub Dashboard",
+          "daodaoDashboard": "DaoDao Dashboard",
+          "treasuryDashboard": "कोषागार",
+          "zcgDashboard": "ZCG Dashboard",
+          "youtubeDashboard": "YouTube Dashboard"
+        }
+      }
+    },
+    "hackathon": {
+      "title": "ZecHub हैकाथॉन",
+      "heroEyebrow": "बनाएँ · दस्तावेज़ करें · सबमिट करें",
+      "heroIntro": "इन्फ्रा से गेम्स तक पाँच ट्रैकों में निर्माण करें, फिर अपने काम का दस्तावेज़ीकरण करें और डेमो दें। आधिकारिक शुरुआत",
+      "heroKickoffSep": "(UTC); सबमिशन बंद होते हैं",
+      "countdownStartsIn": "हैकाथॉन शुरू होने में",
+      "countdownTimeUntilClose": "सबमिशन बंद होने तक का समय",
+      "countdownEnded": "हैकाथॉन समाप्त हो गया /no_think",
+      "days": "दिन",
+      "hours": "घंटे",
+      "mins": "मिनट",
+      "secs": "सेकंड",
+      "endedNote": "यह हैकाथॉन अवधि समाप्त हो चुकी है, भाग लेने वाले सभी लोगों का धन्यवाद।",
+      "preStarts": "शुरू होता है",
+      "preCloseSep": "(UTC)। सबमिशन बंद होते हैं",
+      "activeCloseOn": "सबमिशन बंद होते हैं",
+      "tracksEyebrow": "2026 इवेंट",
+      "tracksTitle": "ट्रैक",
+      "tracksIntro": "जब आप सबमिट करें, तो स्पष्टता के लिए अपने प्रोजेक्ट को किसी ट्रैक के साथ संरेखित करें; जज और समुदाय इन्हीं का उपयोग प्रविष्टियों को ब्राउज़ करने के लिए करते हैं।",
+      "tracks": {
+        "infrastructure": {
+          "name": "इन्फ्रास्ट्रक्चर",
+          "description": "ZSA GUI, Node Launcher, Zallet वेब डैशबोर्ड आदि।"
+        },
+        "games": {
+          "name": "गेम्स",
+          "description": "catfishing.net के समान Wiki Article गेम, ZEC Poker, Battleship आदि।"
+        },
+        "frost": {
+          "name": "FROST",
+          "description": "Threshold signing वॉलेट, Shielded ZEC Escrow, Social Recovery"
+        },
+        "zcashLogin": {
+          "name": "Zcash लॉगिन",
+          "description": "ऑथ और पहचान प्रवाह जो साइन-इन या एक्सेस के लिए Zcash प्रिमिटिव्स का उपयोग करते हैं।"
+        },
+        "accounting": {
+          "name": "लेखांकन /no_think",
+          "description": "रिपोर्टिंग, ZEC संभालने वाली टीमों के लिए workflows, भुगतान प्रबंधन प्रणाली।"
+        }
+      },
+      "prizesEyebrow": "पुरस्कार",
+      "prizesTitle": "इनाम",
+      "prizePoolTitle": "25 ZEC पुरस्कार पूल",
+      "prizePoolDesc": "बनाएँ, जमा करें, और community prize pool के लिए प्रतिस्पर्धा करें।",
+      "devToolsEyebrow": "यहाँ से शुरू करें",
+      "devToolsTitle": "Devtools और documentation",
+      "devTools": {
+        "quickStart": {
+          "title": "ZecHub डेवलपर क्विक स्टार्ट",
+          "description": "Zcash पर निर्माण के लिए आवश्यक tools, references, और setup steps खोजें।"
+        }
+      },
+      "openGuide": "गाइड खोलें",
+      "openDocs": "डॉक्स खोलें",
+      "rulesTitle": "नियम",
+      "rulesDesc": "सबमिशन को निष्पक्ष और जाँचने में आसान रखें।",
+      "rules": {
+        "mainnet": "प्रोजेक्ट्स को Zcash mainnet network के साथ interact करना चाहिए।",
+        "oneProject": "टीमें प्रति टीम केवल एक अंतिम प्रोजेक्ट जमा कर सकती हैं।",
+        "docs": "सभी submissions में स्पष्ट setup और usage documentation शामिल होना चाहिए।",
+        "openSource": "ओपन-सोर्स लाइसेंसिंग का उपयोग करें।",
+        "respect": "कोड और सामग्री दोनों में privacy, security, और community guidelines का सम्मान करें।"
+      },
+      "faqTitle": "अक्सर पूछे जाने वाले सवाल",
+      "faqDesc": "आप शुरू करने से पहले त्वरित उत्तर।",
+      "faq": {
+        "whoCanParticipate": {
+          "question": "कौन भाग ले सकता है?",
+          "answer": "कोई भी जुड़ सकता है: डेवलपर्स, डिज़ाइनर्स और बहु-विषयक टीमें।"
+        },
+        "validSubmission": {
+          "question": "एक वैध सबमिशन में क्या शामिल होना चाहिए?",
+          "answer": "एक काम करने वाला प्रोटोटाइप, वीडियो डेमो, बुनियादी दस्तावेज़ीकरण, और यह स्पष्टीकरण कि यह Zcash नेटवर्क का उपयोग कैसे करता है।"
+        },
+        "whereSubmit": {
+          "question": "हम प्रोजेक्ट कहाँ सबमिट करें?",
+          "answer": "Zcash Global Discord में अपना वीडियो डेमो साझा करें और कोई भी प्रासंगिक repository या demo links शामिल करें।"
+        },
+        "winnersSelected": {
+          "question": "विजेताओं का चयन कैसे किया जाता है?",
+          "answer": "सबमिशन बंद होने के बाद ZecHub DAO channels के माध्यम से एक सार्वजनिक सामुदायिक प्रक्रिया चलाई जाती है।"
+        },
+        "whatTracks": {
+          "question": "ट्रैक क्या हैं?",
+          "answer": "इस हैकाथॉन की थीम हैं Infrastructure, Games, FROST, Zcash Login, और Accounting। वह ट्रैक चुनें जो आपके build से सबसे अच्छा मेल खाता हो; आप फिर भी ऐसा project submit कर सकते हैं जो tracks के भीतर परिभाषित न हो।"
+        }
+      },
+      "submitEyebrow": "भागीदारी",
+      "submitTitle": "सबमिट कैसे करें",
+      "submitIntro": "अपने project को idea से official entry तक पहुँचाने के लिए इन पाँच चरणों का पालन करें।",
+      "steps": {
+        "build": {
+          "title": "अपना project बनाएं",
+          "description": "एक काम करने वाला prototype बनाएं जो Zcash mainnet के साथ इंटरैक्ट करता हो। एक track चुनें और आगे बढ़ते हुए development log बनाए रखें।"
+        },
+        "record": {
+          "title": "एक वीडियो डेमो रिकॉर्ड करें",
+          "description": "एक छोटा walkthrough रिकॉर्ड करें जिसमें आपका project काम करते हुए दिखे। स्पष्ट रूप से बताएं कि यह क्या करता है और Zcash नेटवर्क का उपयोग कैसे करता है।"
+        },
+        "document": {
+          "title": "अपने काम का दस्तावेज़ीकरण करें",
+          "description": "setup instructions, usage notes, और अपने open-source license के साथ एक README लिखें। सब कुछ एक public GitHub repo में push करें।"
+        },
+        "upload": {
+          "title": "अपना code upload करें /no_think",
+          "descPrefix": "अपने प्रोजेक्ट को",
+          "repoLabel": "Hackathon repo में",
+          "descSuffix": "GitHub पर पुश करें ताकि समुदाय आपके काम की समीक्षा कर सके।"
+        },
+        "share": {
+          "title": "Discord में साझा करें",
+          "description": "15 जुलाई, 2026 (UTC) से पहले Zcash Global Discord में अपना वीडियो डेमो अपने repo और demo links के साथ पोस्ट करें।"
+        }
+      },
+      "deadlineLabel": "अंतिम तिथि:",
+      "deadlinePrefix": "सभी submissions को Discord में इस समय तक पोस्ट किया जाना चाहिए",
+      "deadlineSuffix": ". विजेताओं का चयन submissions बंद होने के तुरंत बाद ZecHub DAO channels में सार्वजनिक community vote के माध्यम से किया जाता है।",
+      "joinTheDiscord": "Discord से जुड़ें",
+      "previousEyebrow": "पिछले संस्करण",
+      "previousTitle": "पिछले hackathons",
+      "previousIntro": "संस्करण के अनुसार पहले के ZecHub hackathon builds देखें। प्रत्येक project card, जहाँ उपलब्ध हो, code, notes और demos के लिए सीधे उसके GitHub folder से लिंक करता है।",
+      "browseAllProjects": "सभी projects देखें",
+      "errorCouldNotLoad": "लाइव project list लोड नहीं हो सकी",
+      "errorShowingSaved": "इसके बजाय सहेजी हुई पिछली hackathon project list दिखाई जा रही है।",
+      "noProjects": "कोई project folders वापस नहीं मिले। संरचना सत्यापित करने के लिए repo tree खोलें।",
+      "projectsArchivedOne": "इस संस्करण से {count} project archived है।",
+      "projectsArchivedMany": "इस संस्करण से {count} projects archived हैं।",
+      "buildsCount": "{count} builds",
+      "viewProject": "Project देखें",
+      "needHelpTitle": "मदद चाहिए?",
+      "needHelpDesc": "Zcash Global Discord निर्माण संबंधी प्रश्नों, infra सुझावों और hackathon चर्चाओं के लिए सबसे बेहतरीन जगह है।",
+      "joinDiscord": "Discord से जुड़ें",
+      "supportDonation": "दान के साथ समर्थन करें",
+      "popup": {
+        "liveNow": "अभी लाइव",
+        "subtitle": "Zcash पर privacy-first applications बनाएं। पुरस्कारों के लिए प्रतिस्पर्धा करें, ZEC कमाएँ, और वित्तीय स्वतंत्रता के भविष्य को आकार दें।",
+        "prizePool": "पुरस्कार पूल",
+        "start": "शुरुआत",
+        "end": "समाप्ति",
+        "learnMore": "और जानें →",
+        "dismiss": "खारिज करें"
+      }
+    },
+    "developers": {
+      "title": "Zcash डेवलपर संसाधन",
+      "heroImageAlt": "Zcash डेवलपर संसाधन",
+      "cardSectionTitle": "आप शुरुआत कैसे करना चाहेंगे?",
+      "cards": {
+        "learnTitle": "Zcash डेवलपमेंट सीखें",
+        "learnContent": "आधिकारिक दस्तावेज़ देखें और Zcash तकनीक की मूल बातें सीखें।",
+        "learnButton": "डॉक्स पढ़ें",
+        "tutorialsTitle": "ट्यूटोरियल्स के माध्यम से सीखें",
+        "tutorialsContent": "चरण-दर-चरण ट्यूटोरियल्स का पालन करें ताकि आप Zcash पर निर्माण कर सकें, वॉलेट बनाने से लेकर अपने applications में Zcash को एकीकृत करने तक।",
+        "tutorialsButton": "ट्यूटोरियल्स देखें",
+        "quickStartTitle": "त्वरित प्रारंभ मार्गदर्शिका",
+        "quickStartContent": "Zcash विकास के साथ जल्दी से शुरू करें। स्थापना, कॉन्फ़िगरेशन और बुनियादी संचालन के बारे में जानें।",
+        "quickStartButton": "त्वरित प्रारंभ मार्गदर्शिका"
+      },
+      "exploreDocsTitle": "दस्तावेज़ीकरण का अन्वेषण करें",
+      "introductionsTitle": "परिचय",
+      "fundamentalsTitle": "मूल सिद्धांत",
+      "advancedTitle": "उन्नत",
+      "introLinks": {
+        "introToZcash": "Zcash का परिचय",
+        "introToZcashDesc": "Zcash, उसके इतिहास और उसके मुख्य सिद्धांतों के बारे में जानें।",
+        "introToZec": "ZEC का परिचय",
+        "introToZecDesc": "ZEC, Zcash की मूल क्रिप्टोकरेंसी, के उपयोग के मामलों और लाभों को जानें।",
+        "introToZebra": "Zebra का परिचय",
+        "introToZebraDesc": "समझें कि Zebra एक मॉड्यूलर और सुरक्षित Rust-आधारित इम्प्लीमेंटेशन के साथ Zcash नेटवर्क को कैसे संचालित करता है",
+        "introToLightwalletd": "Lightwalletd का परिचय",
+        "introToLightwalletdDesc": "lightwalletd परियोजना को समझें—यह Go में लिखा गया एक स्केलेबल सर्वर है जो gRPC के माध्यम से Zcash light clients को कुशलतापूर्वक संक्षिप्त blockchain डेटा प्रदान करता है।",
+        "zalletBook": "Zallet पुस्तक",
+        "zalletBookDesc": "Zallet का परिचय, जो Rust में लिखा गया एक full-node Zcash wallet है और zcashd wallet के विकल्प के रूप में डिज़ाइन किया गया है।",
+        "developerResources": "डेवलपर संसाधन",
+        "developerResourcesDesc": "Zcash के आगे के तकनीकी दस्तावेज़ों के लिंक।"
+      },
+      "fundamentalsLinks": {
+        "addressEncoding": "पता एन्कोडिंग /no_think",
+        "addressEncodingDesc": "Zcash addresses और keys को कैसे encode किया जाता है, यह सीखें।",
+        "transactions": "लेनदेन",
+        "transactionsDesc": "समझें कि Zcash में लेनदेन कैसे काम करते हैं।",
+        "fees": "शुल्क",
+        "feesDesc": "लेनदेन शुल्क के बारे में जानें और वे कैसे calculate किए जाते हैं।",
+        "nodesZcashd": "नोड्स (zcashd)",
+        "nodesZcashdDesc": "zcashd का उपयोग करके Zcash नोड्स सेट अप करें और प्रबंधित करें।",
+        "nodesZebrad": "नोड्स (zebrad)",
+        "nodesZebradDesc": "Zebra का अन्वेषण करें, जो Zcash नोड का एक वैकल्पिक implementation है।",
+        "lightwalletServers": "लाइटवॉलेट सर्वर",
+        "lightwalletServersDesc": "lightwalletd के बारे में जानें, जो एक lightweight Zcash wallet server है।",
+        "blockExplorers": "ब्लॉक एक्सप्लोरर्स",
+        "blockExplorersDesc": "ब्लॉक एक्सप्लोरर्स का उपयोग करके Zcash blockchains का अन्वेषण करें।",
+        "shadeAgent": "Shade Agent - Notion",
+        "shadeAgentDesc": "Shade Agents के बारे में जानें—NEAR पर पहले सचमुच autonomous AI agents—जो secure TEEs और decentralized Chain Signatures द्वारा powered हैं, ताकि assets को manage किया जा सके, LLMs तक access किया जा सके, और multichain transactions को independently execute किया जा सके।"
+      },
+      "advancedLinks": {
+        "introToStack": "स्टैक का परिचय",
+        "introToStackDesc": "Zcash stack की architecture और components को समझें।",
+        "zecDev": "ZecDev",
+        "zecDevDesc": "यहाँ आपको (Zcash) Developer Relations Engineer grant के संदर्भ में बनाए गए और maintained projects, resources और tools मिलेंगे। यह भी देखें",
+        "zcashCommunityWishlist": "Zcash Community Wishlist",
+        "introToZingolib": "Zingolib का परिचय",
+        "introToZingolibDesc": "zingolib repository को समझना—lightwalletd के जरिए zcashd के साथ इंटरैक्ट करने के लिए एक Rust-आधारित API और CLI।",
+        "webZjs": "WebZjs",
+        "webZjsDesc": "WebAssembly का उपयोग करके Zcash-सक्षम वेब एप्लिकेशन बनाने के लिए एक JavaScript/TypeScript लाइब्रेरी।",
+        "noirWalletSdk": "Noir Wallet SDK",
+        "noirWalletSdkDesc": "Noir Wallet browser extension के साथ Zcash एप्लिकेशन को इंटीग्रेट करने के लिए TypeScript SDK और उदाहरण dApp।",
+        "zcashIka": "zcash-ika",
+        "zcashIkaDesc": "2PC-MPC के जरिए Zcash और multi-chain agents के लिए split-key custody। On-chain spend policy, privacy attestation, ZIP 244 transaction builder।",
+        "developmentGuidelines": "विकास दिशानिर्देश",
+        "developmentGuidelinesDesc": "Zcash पर विकास के लिए सर्वोत्तम प्रथाओं का पालन करें।",
+        "arboristCalls": "Arborist Calls पेज",
+        "arboristCallsDesc": "Zcash Arborist Calls द्वि-साप्ताहिक protocol development meetings हैं, जिनका फोकस आगामी protocol deployment logistics, consensus node implementation issues, और protocol research पर नज़र रखने पर होता है।"
+      },
+      "feedbackTitle": "क्या यह पेज उपयोगी था?",
+      "feedbackYes": "हाँ",
+      "feedbackNo": "नहीं",
+      "feedbackHelpful": "आपकी प्रतिक्रिया के लिए धन्यवाद! कुछ प्रश्नों के उत्तर देकर इस पेज को और भी बेहतर बनाइए। यदि आपको मदद चाहिए, तो आप हमारे पर समुदाय से संपर्क कर सकते हैं",
+      "feedbackNotHelpful": "यह सुनकर दुख हुआ। कृपया हमें बताइए कि हम इस पेज को कैसे बेहतर बना सकते हैं। आप हमारे पर समुदाय से संपर्क कर सकते हैं"
+    },
+    "zcashProjects": {
+      "title": "Zcash Projects | ZecHub"
+    },
+    "visualizer": {
+      "title": "Zcash Visualizers",
+      "hashFunction": {
+        "title": "Hash Function Visualizer /no_think"
+      },
+      "zcashKey": {
+        "title": "Zcash कुंजी विज़ुअलाइज़र"
+      },
+      "zksnark": {
+        "title": "ZK-SNARK प्रूफ विज़ुअलाइज़र"
+      },
+      "sybil": {
+        "problemTitle": "सिबिल हमले की समस्या",
+        "problemDesc": "ऐसे नेटवर्क में जहाँ मतदान सत्य निर्धारित करता है, एक हमलावर वैध प्रतिभागियों से अधिक मत पाने के लिए लाखों नकली पहचानें बना सकता है।",
+        "realUsers": "3 वास्तविक उपयोगकर्ता",
+        "vs": "बनाम",
+        "attacker": "1 हमलावर (6 नकली पहचानें)",
+        "solutionTitle": "Zcash सिबिल हमलों को कैसे रोकता है",
+        "powTitle": "प्रूफ ऑफ वर्क",
+        "powDesc": "माइनिंग के लिए वास्तविक संगणनात्मक संसाधनों की आवश्यकता होती है। नकली पहचानें बनाने से अधिक मतदान शक्ति नहीं मिलती — केवल वास्तविक काम से मिलती है।",
+        "costTitle": "आर्थिक लागत",
+        "costDesc": "नेटवर्क पर हमला करने के लिए हार्डवेयर और बिजली में भारी निवेश चाहिए, जिससे हमले आर्थिक रूप से अविवेकपूर्ण हो जाते हैं।",
+        "insightLabel": "मुख्य अंतर्दृष्टि:",
+        "insightDesc": "सिबिल प्रतिरोध मतदान शक्ति को आसानी से बनाई जा सकने वाली पहचानों के बजाय दुर्लभ संसाधनों (गणना, स्टेक) से जोड़ता है।"
+      },
+      "saplingKey": {
+        "spendingKeyName": "स्पेंडिंग कुंजी (sk)",
+        "spendingKeyDesc": "खर्च करने के लिए मुख्य रहस्य",
+        "expandedSpendingKeyName": "विस्तारित स्पेंडिंग कुंजी",
+        "expandedSpendingKeyDesc": "ask, nsk, ovk",
+        "fullViewingKeyName": "पूर्ण Viewing Key (fvk)",
+        "fullViewingKeyDesc": "ak, nk, ovk /no_think",
+        "incomingViewingKeyName": "आने वाली Viewing Key (ivk)",
+        "incomingViewingKeyDesc": "आने वाले लेन-देन देखें",
+        "diversifiedAddressName": "Diversified Address",
+        "diversifiedAddressDesc": "zs1... (प्रति key असीमित)",
+        "derivationTitle": "Sapling Key Derivation",
+        "addressFormatTitle": "पता प्रारूप",
+        "addressFormatDesc": "78 वर्ण, Bech32 encoding",
+        "keyFeatureTitle": "मुख्य विशेषता",
+        "keyFeatureBold": "Diversified addresses",
+        "keyFeatureDesc": "— एक key से असीमित अद्वितीय पते बनाएं"
+      },
+      "blockAnatomy": {
+        "fieldVersion": "संस्करण",
+        "fieldPreviousHash": "पिछला Hash",
+        "fieldMerkleRoot": "Merkle Root",
+        "fieldTimestamp": "टाइमस्टैम्प",
+        "fieldDifficulty": "कठिनाई",
+        "fieldNonce": "Nonce",
+        "blockHeader": "ब्लॉक हेडर",
+        "transactionList": "लेन-देन सूची",
+        "coinbaseTx": "Tx #1 (Coinbase)",
+        "merkleTree": "Merkle Tree",
+        "merkleRoot": "मर्कल रूट"
+      },
+      "difficulty": {
+        "zcashBlockTime": "75 सेकंड",
+        "targetBlockTime": "लक्षित ब्लॉक समय",
+        "bitcoinBlockTime": "10 मिनट",
+        "forComparison": "तुलना के लिए",
+        "adjustmentTitle": "कठिनाई समायोजन",
+        "hashrateIncreases": "हैशरेट बढ़ती है",
+        "difficultyUp": "कठिनाई बढ़ जाती है",
+        "target": "लक्ष्य: 75 सेकंड",
+        "staysConstant": "स्थिर रहता है",
+        "hashrateDecreases": "हैशरेट घटती है",
+        "difficultyDown": "कठिनाई घट जाती है",
+        "summary": "नेटवर्क स्वचालित रूप से माइनिंग की कठिनाई को समायोजित करता है ताकि ब्लॉक समय एकसमान बना रहे, चाहे कितने भी माइनर प्रतिस्पर्धा कर रहे हों।"
+      }
+    },
+    "paymentProcessors": {
+      "title": "पेमेंट प्रोसेसर्स | ZecHub",
+      "noData": "कोई डेटा नहीं या गलत फ़ाइल",
+      "bannerAlt": "wiki-banner"
+    },
+    "developersQuickStart": {
+      "heroBadge": "डेवलपर क्विक स्टार्ट",
+      "heroTitleLine1": "Zcash Dev",
+      "heroTitleLine2": "क्विक स्टार्ट",
+      "heroSubtitle": "Zcash डेवलपमेंट के साथ जल्दी शुरू करें। अपना स्टैक चुनें और गाइड का पालन करें। /no_think",
+      "copy": "कॉपी",
+      "copied": "कॉपी किया गया!",
+      "onThisPage": "इस पेज पर",
+      "tocInstallingZebrad": "Zebrad इंस्टॉल करना",
+      "tocRunningZebrad": "zebrad चलाना",
+      "tocConnectingLightwalletd": "lightwalletd के साथ कनेक्ट करना",
+      "installation": "इंस्टॉलेशन",
+      "configuration": "कॉन्फ़िगरेशन",
+      "dependencies": "निर्भरताएँ",
+      "fromSource": "सोर्स से",
+      "alternatively": "वैकल्पिक रूप से",
+      "manualDownload": "मैनुअल डाउनलोड",
+      "wslRecommended": "WSL (अनुशंसित)",
+      "runningZebradHeading": "zebrad चलाना",
+      "initialSetup": "प्रारंभिक सेटअप",
+      "createConfigDir": "कॉन्फ़िगरेशन डायरेक्टरी बनाएँ",
+      "startingZebrad": "zebrad शुरू करना",
+      "commandLine": "कमांड लाइन",
+      "importantNotes": "महत्वपूर्ण नोट्स",
+      "noteDownloadsBlockchain": "पहली बार चलाने पर पूरी ब्लॉकचेन (~250 GB) डाउनलोड होती है",
+      "noteInitialSync": "प्रारंभिक सिंक में कई घंटे लग सकते हैं",
+      "noteKeepSecure": "अपनी zebrad.toml को सुरक्षित और निजी रखें",
+      "connectingLightwalletdHeading": "lightwalletd से कनेक्ट करना",
+      "lightwalletdInfo": "यह एक सर्वर है जो Zcash blockchain के लिए एक हल्का इंटरफ़ेस प्रदान करता है, जिसे मोबाइल और डेस्कटॉप वॉलेट्स के लिए डिज़ाइन किया गया है जिन्हें पूर्ण नोड चलाने की आवश्यकता नहीं होती।",
+      "prerequisites": "पूर्वापेक्षाएँ",
+      "buildLightwalletd": "lightwalletd बनाएं",
+      "basicSetupMainnet": "मूल सेटअप (Mainnet)",
+      "basicSetupTestnet": "मूल सेटअप (Testnet)",
+      "run": "चलाएँ",
+      "installingZaino": "Zaino स्थापित करना",
+      "zainoInfo": "यह Zcash blockchain के लिए एक Rust-आधारित इंडेक्सर है। यह हल्के क्लाइंट्स (वे वॉलेट्स जो पूरा इतिहास संग्रहीत नहीं करते) और पूर्ण क्लाइंट्स / block explorers दोनों को सेवा देता है, तथा finalized chain, non-finalized best chain, और mempool तक पहुँच प्रदान करता है।",
+      "buildZaino": "Zaino बनाएं",
+      "configure": "कॉन्फ़िगर करें",
+      "runZainod": "zainod चलाएँ",
+      "installingZingoCli": "Zingo CLI स्थापित करना",
+      "zingoCliInfo": "यह Rust में निर्मित एक command-line lightwalletd-proxy क्लाइंट है। वर्तमान में रिलीज़ provisional हैं — यह मार्गदर्शिका source से compile करने को कवर करती है।",
+      "buildZingoCli": "Zingo CLI बनाएं",
+      "running": "चलाना",
+      "startZingoCliDefault": "Zingo CLI शुरू करें (डिफ़ॉल्ट)",
+      "startZingoCliCustom": "Zingo CLI शुरू करें (कस्टम)",
+      "zingoSyncWarning": "⚠ यह पहली बार चलाने पर lightwalletd की तरह पूर्ण सिंक करेगा।",
+      "nextStepsResources": "अगले चरण और संसाधन",
+      "readyToBuild": "बनाने के लिए तैयार?",
+      "officialDocumentation": "आधिकारिक दस्तावेज़ीकरण",
+      "zcashDiscordCommunity": "Zcash Discord समुदाय",
+      "githubRepositories": "GitHub रिपॉज़िटरी",
+      "zcashImprovementProposals": "Zcash सुधार प्रस्ताव",
+      "needHelp": "मदद चाहिए?",
+      "zcashCommunityForum": "Zcash सामुदायिक फ़ोरम",
+      "githubIssues": "GitHub इश्यू",
+      "troubleshootingGuide": "समस्या-निवारण मार्गदर्शिका",
+      "stackOverflow": "Stack Overflow"
+    },
+    "governanceHowto": {
+      "pageTitle": "ZecHub DAO शासन",
+      "pageSubtitle": "ZecHub DAO शासन में भाग लेने के लिए एक व्यापक मार्गदर्शिका",
+      "stepOf": "चरण {current} / {total}",
+      "firstSteps": "पहले कदम",
+      "firstStepsDesc": "DAO शासन में भाग लेने के लिए अपनी तैयारी करें",
+      "draftProposal": "प्रस्ताव का मसौदा",
+      "draftProposalDesc": "जमा करने के लिए अपने प्रस्ताव को संरचित करें और तैयार करें",
+      "submittingProposal": "प्रस्ताव जमा करना /no_think",
+      "submittingProposalDesc": "अपना प्रस्ताव प्रस्तुत करें और उसका प्रचार करें",
+      "installKeplr": "Keplr Wallet इंस्टॉल करें",
+      "installKeplrDesc": "DAO के साथ इंटरैक्ट करने के लिए अपना Keplr wallet सेट अप करें",
+      "keplrVideoTitle": "Keplr Wallet सेटअप गाइड",
+      "acquireJuno": "JUNO प्राप्त करें",
+      "acquireJunoDesc": "daodao कॉन्ट्रैक्ट के साथ इंटरैक्ट करने के लिए JUNO टोकन प्राप्त करें। सहायता के लिए core-team सदस्यों से संपर्क करें।",
+      "viewOpenProposals": "खुले प्रस्ताव देखें",
+      "viewOpenProposalsDesc": "वर्तमान प्रस्तावों और मतदान के अवसरों को देखें",
+      "visitVotingPortal": "वोटिंग पोर्टल पर जाएँ",
+      "formatNote": "प्रारूप: प्रस्ताव .Md या .txt प्रारूप में लिखे जा सकते हैं",
+      "recommendedStructure": "अनुशंसित 4-चरणीय संरचना:",
+      "stageBackground": "पृष्ठभूमि",
+      "stageBackgroundDesc": "सामान्य विषय / सेवा का कुछ इतिहास प्रदान करें",
+      "stageWhy": "क्यों?",
+      "stageWhyDesc": "अपने प्रस्ताव के पीछे का प्रेरक कारण प्रस्तुत करें। बुलेट पॉइंट्स का उपयोग किया जा सकता है",
+      "stageProposal": "प्रस्ताव",
+      "stageProposalDesc": "अपने प्रस्ताव का पूरा विवरण स्पष्ट रूप से दें",
+      "stageAction": "कार्रवाई",
+      "stageActionDesc": "सफल मतदान के बाद क्या होता है - कार्रवाइयों की समय-रेखा प्रदान की जा सकती है",
+      "getFeedback": "प्रतिक्रिया प्राप्त करें /no_think",
+      "getFeedbackDesc": "शुरुआती प्रतिक्रिया के लिए अपना मसौदा Discord पर ZecHub #proposals चैनल में साझा करें",
+      "joinDiscord": "Discord से जुड़ें",
+      "walkthroughTitle": "प्रस्ताव वॉकथ्रू वीडियो",
+      "walkthroughDesc": "प्रस्ताव कैसे लिखें और उसकी संरचना कैसे करें, इसका पूरा वॉकथ्रू देखें",
+      "walkthroughIframeTitle": "प्रस्ताव वॉकथ्रू",
+      "postInDiscord": "Discord में पोस्ट करें",
+      "postInDiscordDesc": "अपना अंतिम प्रस्ताव #proposals में साझा करें और @core-team को टैग करें",
+      "openDiscord": "Discord खोलें",
+      "submitOnPortal": "Voting Portal पर सबमिट करें",
+      "submitOnPortalDesc": "अपना प्रस्ताव बनाने के लिए आधिकारिक ZecHub voting site का उपयोग करें",
+      "submitNow": "अभी सबमिट करें",
+      "loginNote": "⚠️ आपको Keplr या Keplr Mobile में से किसी एक से लॉग इन करना होगा",
+      "previous": "पिछला",
+      "next": "अगला"
+    },
+    "sitemap": {
+      "heading": "साइट नेविगेशन",
+      "subheading": "Zechub Wiki पर उपलब्ध सभी पृष्ठों और संसाधनों का पूरा अवलोकन",
+      "guidesCount": "{count} गाइड",
+      "sections": {
+        "Pages": "पृष्ठ",
+        "Organizations": "संगठन",
+        "Guides": "गाइड्स",
+        "Use Zcash": "Zcash का उपयोग करें",
+        "Ecosystem": "पारिस्थितिकी तंत्र"
+      },
+      "links": {
+        "Homepage": "मुखपृष्ठ",
+        "Dashboard": "डैशबोर्ड",
+        "Donation": "दान",
+        "Contribute": "योगदान करें",
+        "DAO": "DAO",
+        "Developers": "डेवलपर्स",
+        "Brand": "ब्रांड",
+        "Wallets": "वॉलेट्स",
+        "Sitemap": "साइटमैप",
+        "Tutorials": "ट्यूटोरियल्स",
+        "Bounties": "बाउंटी",
+        "Buying ZEC": "ZEC खरीदना",
+        "Faucets": "फॉसेट्स",
+        "Exchanges": "एक्सचेंज",
+        "Block Explorers": "ब्लॉक एक्सप्लोरर्स",
+        "Shielded Pools": "शील्डेड पूल्स",
+        "Transparent Exchange Addresses": "पारदर्शी एक्सचेंज पते",
+        "Transactions": "लेन-देन",
+        "Memos": "मेमोज़",
+        "Mobile Top Ups": "मोबाइल टॉप अप्स",
+        "Payment Request URIs": "भुगतान अनुरोध URIs",
+        "Payment Processors": "भुगतान प्रोसेसर",
+        "Recovering Funds": "फंड्स की रिकवरी",
+        "Metamask Snap": "Metamask Snap",
+        "Community Forum": "समुदाय फ़ोरम",
+        "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
+      }
+    },
+    "zcashCommunity": {
+      "communityProjects": {
+        "title": "समुदाय परियोजनाएँ"
+      }
+    },
+    "research": {
+      "seriesHeading": "श्रृंखला",
+      "seriesSubheading": "Zcash की मुख्य अवधारणाओं पर गहन विश्लेषण",
+      "foundationsSeriesTitle": "Zcash Foundations श्रृंखला",
+      "coreSeriesBadge": "मुख्य श्रृंखला",
+      "foundationsSeriesCardDescription": "शील्डेड ट्रांज़ैक्शन्स, गोपनीयता मॉडलों, और प्रोटोकॉल डिज़ाइन पर आधारभूत लेख।",
+      "exploreSeries": "श्रृंखला देखें →",
+      "articlesHeading": "शोध लेख",
+      "articlesSubheading": "ZecHub समुदाय के लेख और नोट्स।",
+      "foundationsSeriesDescription": "Zcash शील्डेड ट्रांज़ैक्शन्स, गोपनीयता मॉडलों, प्रोटोकॉल डिज़ाइन, और नेटवर्क को शक्ति देने वाली मुख्य अवधारणाओं को कवर करने वाले आधारभूत लेखों का एक संग्रह।",
+      "tagShieldedTransactions": "शील्डेड ट्रांज़ैक्शन्स",
+      "tagPrivacyModels": "गोपनीयता मॉडल",
+      "tagProtocolDesign": "प्रोटोकॉल डिज़ाइन",
+      "tagZeroKnowledge": "ज़ीरो नॉलेज"
+    },
+    "browseSidebar": "बाईं ओर के साइडबार का उपयोग करके लेख ब्राउज़ करें 👈",
+    "zcashGlobalAmbassadors": {
+      "title": "Zcash ग्लोबल एम्बेसडर्स",
+      "description": "Zcash ग्लोbal एम्बेसडर्स ऐसे सामुदायिक नेता हैं जो दुनिया भर में गोपनीयता-केंद्रित क्रिप्टोकरेंसी अपनाने और शिक्षा को बढ़ावा देने के लिए समर्पित हैं। प्रत्येक एम्बेसडर परियोजना अपने-अपने क्षेत्रों में जागरूकता और सहभागिता बढ़ाने पर केंद्रित है।",
+      "activeProjectsHeading": "सक्रिय ग्लोबल एम्बेसडर परियोजनाएँ",
+      "projectSitesHeading": "परियोजना साइटें और ब्लॉग",
+      "followOnX": "X/BS पर फ़ॉलो करें",
+      "projectSiteLabel": "परियोजना साइट",
+      "linkLabel": "लिंक",
+      "footerInfo": "Zcash ग्लोबल एम्बेसडर्स कार्यक्रम गोपनीयता-केंद्रित प्रौद्योगिकी अपनाने को बढ़ावा देने के लिए समुदाय-नेतृत्व वाली पहलों का समर्थन करता है। प्रत्येक एम्बेसडर परियोजना व्यापक Zcash पारिस्थितिकी तंत्र में योगदान देते हुए स्वतंत्र रूप से संचालित होती है।",
+      "mapTitle": "Zcash एम्बेसडर मानचित्र",
+      "mapSubtitle": "{count} सक्रिय समुदायों में समुदाय-नेतृत्व वाली Zcash वकालत।",
+      "globeView": "ग्लोब दृश्य",
+      "mapView": "मानचित्र दृश्य",
+      "loadError": "एम्बेसडर डेटा लोड नहीं किया जा सका।",
+      "projects": {
+        "Zcash Korea": "कोरिया में Zcash समुदाय और वकालत",
+        "Zcash Russia": "रूस में Zcash समुदाय और वकालत",
+        "Zcash Arabia": "अरबी-भाषी क्षेत्र में Zcash समुदाय और वकालत",
+        "Zcash Brazil": "ब्राज़ील में Zcash समुदाय और वकालत",
+        "Zcash Ghana": "Zcash समुदाय और घाना में वकालत",
+        "Zcash Español": "Zcash समुदाय और स्पेनिश-भाषी क्षेत्र में वकालत",
+        "Zcash Nigeria": "Zcash समुदाय और नाइजीरिया में वकालत",
+        "Zcash Ukraine": "Zcash समुदाय और यूक्रेन में वकालत",
+        "Zcash Turkey": "Zcash समुदाय और तुर्की में वकालत",
+        "Zcash India": "Zcash समुदाय और भारत में वकालत",
+        "Zcash East Africa": "Zcash East Africa शिक्षा, सामुदायिक कार्यक्रमों, तकनीकी कार्यशालाओं और इकोसिस्टम विकास के माध्यम से डिजिटल गोपनीयता, वित्तीय स्वतंत्रता और ब्लॉकचेन नवाचार को बढ़ावा देने के लिए समर्पित है। इस पहल का उद्देश्य एक क्षेत्रीय केंद्र बनाना है जहाँ लोग गोपनीयता बढ़ाने वाली तकनीकों का अन्वेषण कर सकें, zero knowledge proofs के बारे में सीख सकें, और बढ़ते हुए वैश्विक Zcash नेटवर्क में भाग ले सकें।",
+        "Zcash South Africa": "गोपनीयता🛡️. स्वतंत्रता. दक्षिण अफ्रीकी क्षेत्र के लिए Zcash 🦓 समुदाय"
+      },
+      "globeTitle": "Zcash एम्बेसडर ग्लोब"
+    }
+  },
+  "developers": {
+    "quickStart": {
+      "tableOfContents": "विषय-सूची",
+      "toc1": "1. Zebrad इंस्टॉल करना",
+      "toc2": "2. zebrad चलाना",
+      "toc3": "3. lightwalletd से कनेक्ट करना",
+      "installingHeading": "1. Zebrad इंस्टॉल करना",
+      "runningHeading": "2. zebrad चलाना",
+      "connectingHeading": "3. lightwalletd से कनेक्ट करना",
+      "systemRequirements": "सिस्टम आवश्यकताएँ",
+      "linux": "Linux",
+      "ubuntuDebian": "Ubuntu/Debian:",
+      "fromSource": "स्रोत से: /no_think",
+      "macos": "macOS",
+      "homebrew": "Homebrew:",
+      "windows": "Windows",
+      "importantNotes": "महत्वपूर्ण नोट्स",
+      "nextSteps": "अगले चरण",
+      "readyToBuild": "बिल्ड करने के लिए तैयार?",
+      "needHelp": "मदद चाहिए?"
+    }
+  },
+  "components": {
+    "newsletter": {
+      "title": "ZecHub Shielded न्यूज़लेटर",
+      "subtitle": "अपना Unified Address दर्ज करके अपडेट्स की सदस्यता लें।",
+      "feeLine": "एक बार का 0.05 ZEC सदस्यता शुल्क",
+      "feeLineRest": "लेनदेन लागतों को कवर करने के लिए आवश्यक है।",
+      "categoryEcosystem": "इकोसिस्टम समाचार",
+      "categoryStats": "नेटवर्क आँकड़े",
+      "addressPlaceholder": "अपना Zcash Unified Address दर्ज करें",
+      "invalidAddressInline": "अमान्य पता। \"u\" या \"z\" से शुरू होना चाहिए।",
+      "invalidAddressAlert": "कृपया एक मान्य shielded Zcash पता दर्ज करें।",
+      "generating": "जनरेट किया जा रहा है...",
+      "subscribe": "सदस्यता लें",
+      "doNotEditMemo": "अपने wallet में जनरेट किए गए memo को संपादित न करें।",
+      "downloadQR": "QR Code डाउनलोड करें",
+      "box1Title": "यह सेवा क्या है?",
+      "box1Desc": "एन्क्रिप्टेड मेमो का उपयोग करके Zcash नेटवर्क के माध्यम से सीधे Zcash ecosystem समाचार और नेटवर्क आँकड़े प्राप्त करें।",
+      "box2Title": "यह कैसे काम करता है",
+      "box2DescPre": "हम प्रति सप्ताह एक बार कई प्राप्तकर्ताओं को एक ही शील्डेड ट्रांज़ैक्शन में न्यूज़लेटर भेजते हैं, using the",
+      "box2DescPost": "RPC method.",
+      "box3Title": "अपडेट कैसे प्राप्त करें",
+      "box3DescPre": "अपना दर्ज करें",
+      "box3DescBold": "शील्डेड Zcash address",
+      "box3DescPost": "साप्ताहिक अपडेट on-chain पहुँचाए जाते हैं। ईमेल की आवश्यकता नहीं है।",
+      "unsubscribe": "सदस्यता समाप्त करें",
+      "cancelUnsubscribe": "सदस्यता समाप्ति रद्द करें",
+      "unsubscribePlaceholder": "सदस्यता समाप्त करने के लिए अपना Unified Address दर्ज करें",
+      "confirmUnsubscribe": "सदस्यता समाप्ति की पुष्टि करें"
+    },
+    "aiAssistant": {
+      "copyResponse": "प्रतिक्रिया कॉपी करें",
+      "copied": "कॉपी हो गया",
+      "copy": "कॉपी करें",
+      "botName": "ZecHub AI",
+      "thinking": "ZecHub AI सोच रहा है...",
+      "privacyNotice": "प्रश्न OpenAI द्वारा संसाधित किए जाते हैं। कभी भी seed phrases, private keys, या wallet addresses साझा न करें।",
+      "clearConversation": "वार्तालाप साफ़ करें /no_think",
+      "clear": "साफ़ करें",
+      "getStarted": "एक प्रश्न के साथ शुरू करें:",
+      "sensitiveWarning": "यह संवेदनशील वॉलेट डेटा लगता है। निजी कुंजियाँ या seed phrases कभी भी किसी सेवा के साथ साझा न करें।",
+      "inputPlaceholder": "एक प्रश्न पूछें... (भेजने के लिए Enter, नई पंक्ति के लिए Shift+Enter)",
+      "sendMessage": "संदेश भेजें",
+      "enterHint": "भेजने के लिए Enter, नई पंक्ति के लिए Shift+Enter",
+      "messageTooLong": "संदेश बहुत लंबा है (अधिकतम {max} वर्ण)।",
+      "unknownError": "अज्ञात त्रुटि।",
+      "serverError": "सर्वर त्रुटि {status}",
+      "somethingWrong": "कुछ गलत हो गया।",
+      "quickQuestions": "['Zcash क्या है?', 'ZecHub क्या है?', 'shielded transactions कैसे काम करते हैं?', 'कौन से वॉलेट Zcash को सपोर्ट करते हैं?', 'z-address और t-address में क्या अंतर है?', 'मैं ZEC के साथ शुरुआत कैसे करूँ?', 'Zcash development fund क्या है?', 'zk-SNARKs क्या हैं?']"
+    }
+  },
+  "sideMenu": {
+    "navigation": "नेविगेशन",
+    "explore": "एक्सप्लोर करें"
+  },
+  "meta": {
+    "title": "ZecHub Wiki",
+    "description": "Zcash के लिए एक ओपन सोर्स शिक्षा केंद्र /no_think"
+  }
+}

@@ -1,18 +1,144 @@
 {
+  "menuLabels": {
+    "Accept Payments": "Aceptar pagos",
+    "Akash Network Zebra": "Akash Network Zebra",
+    "Arborist Calls": "Arborist Calls",
+    "Avalanche RedBridge": "Avalanche RedBridge",
+    "BTCPayServer Zcash Plugin": "Plugin de Zcash para BTCPayServer",
+    "Blockchain Explorers": "Exploradores de blockchain",
+    "Brand": "Marca",
+    "Brave Wallet": "Brave Wallet",
+    "Buying ZEC": "Comprar ZEC",
+    "Community Blogs": "Blogs de la comunidad",
+    "Community Forum": "Foro de la comunidad",
+    "Community Links": "Enlaces de la comunidad",
+    "Community Projects": "Proyectos de la comunidad",
+    "Contribute": "Contribuir",
+    "Cypherpunk Zero NFT": "Cypherpunk Zero NFT",
+    "DAO": "DAO",
+    "Developers": "Desarrolladores",
+    "Discord": "Discord",
+    "Donations": "Donaciones",
+    "Electric Coin Company": "Electric Coin Company",
+    "Exchanges": "Exchanges",
+    "Extras": "Extras",
+    "Faucets": "Faucets",
+    "Financial Privacy Foundation": "Fundación para la Privacidad Financiera",
+    "Free2z Live": "Free2z Live",
+    "Freelance Privacy": "Privacidad para freelancers",
+    "Github": "Github",
+    "Governance": "Gobernanza",
+    "Guides": "Guías",
+    "How to Participate": "Cómo participar",
+    "Journalist Privacy": "Privacidad para periodistas",
+    "Keeping Records": "Llevar registros",
+    "Keystone Zashi": "Keystone Zashi",
+    "Maya Protocol": "Maya Protocol",
+    "Memos": "Memos",
+    "Metamask Snap": "Metamask Snap",
+    "Mobile Top Ups": "Recargas móviles",
+    "Newsletter": "Boletín",
+    "Nym VPN": "Nym VPN",
+    "Payment Processors": "Procesadores de pago",
+    "Payment Request URIs": "URIs de solicitud de pago",
+    "Podcast": "Podcast",
+    "Private Community Treasury": "Tesorería comunitaria privada",
+    "Raspberry Pi 4 Full Node": "Nodo completo en Raspberry Pi 4",
+    "Raspberry pi 4 Zebra Node": "Nodo Zebra en Raspberry pi 4",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+    "Recovering Funds": "Recuperación de fondos",
+    "Research": "Investigación",
+    "Send Money Privately": "Enviar dinero en privado",
+    "Shielded Labs": "Shielded Labs",
+    "Shielded Pools": "Pools blindados",
+    "Sitemap": "Mapa del sitio",
+    "Start Here": "Empieza aquí",
+    "Store": "Tienda",
+    "Testnet": "Testnet",
+    "Tools": "Herramientas",
+    "Transactions": "Transacciones",
+    "Transparent Exchange Addresses": "Direcciones transparentes de exchanges",
+    "Tutorials": "Tutoriales",
+    "Twitter": "Twitter",
+    "Use Cases": "Casos de uso",
+    "Using ZEC Privately": "Usar ZEC en privado",
+    "Using ZEC in DeFi": "Usar ZEC en DeFi",
+    "Using Zcash": "Usar Zcash",
+    "Visual Identity": "Identidad visual",
+    "Visualizer": "Visualizador",
+    "Visualizing Zcash Addresses": "Visualizar direcciones de Zcash",
+    "Visualizing the Zcash Network": "Visualizar la red de Zcash",
+    "Wallets": "Carteras",
+    "Youtube": "Youtube",
+    "Ywallet FROST Demo": "Demo de FROST en Ywallet",
+    "ZCAP": "ZCAP",
+    "ZIPs & Grants": "ZIPs y subvenciones",
+    "ZKAV Club": "ZKAV Club",
+    "ZODL": "ZODL",
+    "Zcash Community": "Comunidad de Zcash",
+    "Zcash Community Grants": "Zcash Community Grants",
+    "Zcash Devtool": "Zcash Devtool",
+    "Zcash Ecosystem Security": "Seguridad del ecosistema de Zcash",
+    "Zcash Foundation": "Zcash Foundation",
+    "Zcash Global Ambassadors": "Embajadores Globales de Zcash",
+    "Zcash Governance": "Gobernanza de Zcash",
+    "Zcash Improvement Proposals": "Propuestas de mejora de Zcash",
+    "Zcash Media": "Medios de Zcash",
+    "Zcash Organizations": "Organizaciones de Zcash",
+    "Zcash Podcasts": "Podcasts de Zcash",
+    "Zcon Archive": "Archivo de Zcon",
+    "Zcon Vozes Archive": "Archivo de Zcon Vozes",
+    "Zenith Installation": "Instalación de Zenith",
+    "Zero-Knowledge vs Decoys": "Conocimiento cero vs señuelos",
+    "Zgo Payment Processor": "Procesador de pagos Zgo",
+    "Zingo Labs": "Zingo Labs",
+    "Zingolib and Zaino Tutorial": "Tutorial de Zingolib y Zaino",
+    "Zkool Multisig": "Multisig de Zkool",
+    "Custodial Exchanges": "Exchanges con custodia",
+    "Zcash Use Cases": "Casos de uso de Zcash",
+    "Zcash Tech": "Tecnología de Zcash",
+    "Privacy Tools": "Herramientas de privacidad",
+    "Zcash Social Media": "Redes sociales de Zcash",
+    "Glossary & FAQ's": "Glosario y preguntas frecuentes"
+  },
+  "exploreMenu": {
+    "Full Explore": "Exploración completa",
+    "Start Here": "Empieza aquí",
+    "Tutorials": "Tutoriales",
+    "Using Zcash": "Usar Zcash",
+    "Guides": "Guías",
+    "Zcash Tech": "Tecnología de Zcash",
+    "Zcash Organizations": "Organizaciones de Zcash",
+    "Zcash Community": "Comunidad de Zcash",
+    "ZKAV Club": "ZKAV Club",
+    "Privacy Tools": "Herramientas de privacidad",
+    "Research": "Investigación",
+    "Glossary & FAQs": "Glosario y preguntas frecuentes",
+    "Contribute": "Contribuir",
+    "For Forks & Maintainers": "Para forks y mantenedores",
+    "Fork zechub-wiki": "Hacer fork de zechub-wiki",
+    "Fork zechub": "Hacer fork de zechub"
+  },
   "common": {
     "home": "Inicio",
     "about": "Acerca de",
     "contact": "Contacto",
     "language": "Idioma",
     "clickToExplore": "Haz clic para explorar →",
-    "learnMore": "Aprende más",
+    "learnMore": "Más información",
     "getStarted": "Comenzar",
     "readMore": "Leer más",
     "search": "Buscar",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "searchModalTitle": "Buscar en la Wiki de ZecHub",
+    "searchHint": "Busca por título de página, tema o ruta. Usa las flechas para elegir y Enter para abrir.",
+    "searchNoResults": "No hay páginas coincidentes",
+    "searchTryDifferent": "Prueba consultas más cortas, sinónimos u otras palabras.",
+    "searchSuggested": "Páginas sugeridas",
+    "searchResultsLabel": "Resultados"
   },
   "navigation": {
-    "wallets": "Billeteras",
+    "wallets": "Carteras",
     "guides": "Guías",
     "tutorials": "Tutoriales",
     "governance": "Gobernanza",
@@ -30,22 +156,35 @@
       "label": "Usar Zcash",
       "buyingZec": "Comprar ZEC",
       "faucets": "Faucets",
-      "wallets": "Billeteras",
+      "wallets": "Carteras",
       "metamaskSnap": "Metamask Snap",
-      "exchanges": "Intercambios",
+      "exchanges": "Exchanges",
       "blockExplorers": "Exploradores de bloques",
-      "shieldedPools": "Pools protegidos",
-      "transparentExchangeAddresses": "Direcciones de intercambio transparentes",
+      "shieldedPools": "Pools blindados",
+      "transparentExchangeAddresses": "Direcciones transparentes de exchanges",
       "transactions": "Transacciones",
       "memos": "Memos",
       "mobileTopUps": "Recargas móviles",
       "paymentRequestUris": "URIs de solicitud de pago",
       "paymentProcessors": "Procesadores de pago",
-      "recoveringFunds": "Recuperar fondos"
+      "recoveringFunds": "Recuperación de fondos",
+      "testnet": "Testnet",
+      "tools": "Herramientas",
+      "useCases": "Casos de uso",
+      "useCasesSubmenu": {
+        "startHere": "Empieza aquí",
+        "acceptPayments": "Aceptar pagos",
+        "freelancePrivacy": "Privacidad para freelancers",
+        "journalistPrivacy": "Privacidad para periodistas",
+        "keepingRecords": "Llevar registros",
+        "privateCommunityTreasury": "Tesorería comunitaria privada",
+        "donations": "Donaciones",
+        "sendMoneyPrivately": "Enviar dinero en privado"
+      }
     },
     "zcashCommunity": {
       "label": "Ecosistema",
-      "arboristCalls": "Llamadas de arborista",
+      "arboristCalls": "Arborist Calls",
       "communityBlogs": "Blogs de la comunidad",
       "communityLinks": "Enlaces de la comunidad",
       "communityForum": "Foro de la comunidad",
@@ -54,119 +193,126 @@
       "zcashMedia": "Medios de Zcash",
       "zcap": "ZCAP",
       "zcashPodcasts": "Podcasts de Zcash",
-      "ecosystemSecurity": "Seguridad del ecosistema Zcash",
+      "ecosystemSecurity": "Seguridad del ecosistema de Zcash",
       "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
       "zconArchive": "Archivo de Zcon"
     },
     "organizations": {
       "label": "Organizaciones",
-      "electricCoinCompany": "Compañía Electric Coin",
-      "zcashFoundation": "Fundación Zcash",
-      "communityGrants": "Subvenciones de la comunidad Zcash",
-      "financialPrivacyFoundation": "Fundación de Privacidad Financiera",
-      "shieldedLabs": "Laboratorios Shielded",
-      "zingoLabs": "Laboratorios Zingo",
+      "electricCoinCompany": "Electric Coin Company",
+      "zcashFoundation": "Zcash Foundation",
+      "communityGrants": "Zcash Community Grants",
+      "financialPrivacyFoundation": "Fundación para la Privacidad Financiera",
+      "shieldedLabs": "Shielded Labs",
+      "zingoLabs": "Zingo Labs",
       "brand": "Marca",
-      "zkavClub": "Club ZKAV"
+      "zkavClub": "ZKAV Club"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Procesador de pagos Zgo",
       "free2zLive": "Free2z Live",
       "keystoneZashi": "Keystone Zashi",
-      "mayaProtocol": "Protocolo Maya",
+      "mayaProtocol": "Maya Protocol",
       "nymVpn": "Nym VPN",
       "usingZecInDefi": "Usar ZEC en DeFi",
-      "usingZecPrivately": "Usar ZEC de forma privada",
+      "usingZecPrivately": "Usar ZEC en privado",
       "raspberryPiZcashdNode": "Nodo Zcashd en Raspberry Pi",
       "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
       "raspberryPiZebraNode": "Nodo Zebra en Raspberry Pi",
-      "akashNetwork": "Red Akash",
+      "akashNetwork": "Akash Network",
       "avalancheRedbridge": "Avalanche RedBridge",
-      "zkoolMultisig": "Zkool Multisig",
-      "ywalletFrostDemo": "Demo FROST de Ywallet",
+      "zkoolMultisig": "Multisig de Zkool",
+      "ywalletFrostDemo": "Demo de FROST en Ywallet",
       "blockchainExplorers": "Exploradores de blockchain",
-      "braveWallet": "Billetera Brave",
-      "btcPayServerPlugin": "Plugin BTCPayServer",
-      "visualizingZcashNetwork": "Visualizando la red Zcash",
-      "visualizingZcashAddresses": "Visualizando direcciones Zcash",
+      "braveWallet": "Brave Wallet",
+      "btcPayServerPlugin": "Plugin de BTCPayServer",
+      "visualizingZcashNetwork": "Visualizar la red de Zcash",
+      "visualizingZcashAddresses": "Visualizar direcciones de Zcash",
       "zcashDevtool": "Zcash Devtool",
       "zcashImprovementProposals": "Propuestas de mejora de Zcash",
       "zingolibAndZainoTutorial": "Tutorial de Zingolib y Zaino",
       "zenithInstallation": "Instalación de Zenith",
-      "zeroKnowledgeVsDecoys": "Conocimiento cero vs sistemas de señuelo"
-    }
+      "zeroKnowledgeVsDecoys": "Conocimiento cero vs sistemas señuelo"
+    },
+    "overview": "Resumen",
+    "shop": "Tienda"
   },
   "home": {
     "heroTitle": "Bienvenido a ZecHub",
     "heroSubtitle": "Un centro educativo de código abierto para Zcash",
     "heroDescription": "Aprende sobre la tecnología de privacidad de Zcash, explora visualizadores interactivos y contribuye al ecosistema",
-    "description": "ZecHub es el centro educativo impulsado por la comunidad para la criptomoneda Zcash (ZEC). Zcash es una moneda digital que proporciona pagos seguros y privados resistentes a la censura. La cadena de bloques de Zcash utiliza zk-snarks 'verificables' altamente avanzados que no requieren configuración confiable tras la actualización de red NU5 en 2022.",
+    "description": "ZecHub es el centro educativo impulsado por la comunidad para la criptomoneda Zcash (ZEC). Zcash es una moneda digital que ofrece pagos seguros, privados y resistentes a la censura. La blockchain de Zcash utiliza zk-snarks “verificables” muy avanzados que no requieren Trusted Setup tras la actualización de red NU5 en 2022.",
     "featuredSection": "Recursos destacados",
-    "latestUpdates": "Últimas actualizaciones",
+    "latestUpdates": "Últimas novedades",
     "getInvolved": "Participa",
     "exploreEcosystem": "Explora el ecosistema",
-    "exploreZcash": "Explorar Zcash",
+    "exploreZcash": "Explora Zcash",
     "cards": {
       "startHere": {
-        "title": "Comienza aquí",
+        "title": "Empieza aquí",
         "content": "Descubre qué es Zcash y los casos de uso de ZEC"
       },
       "pickWallet": {
-        "title": "Elige una billetera",
-        "content": "Las billeteras te permiten recibir y gastar Zcash de forma privada. Algunas también admiten memos encriptados"
+        "title": "Elige una cartera",
+        "content": "Las carteras te permiten recibir y gastar Zcash de forma privada. Algunas también admiten memos cifrados"
       },
       "resources": {
         "title": "Recursos de Zcash",
-        "content": "Aquí hay guías que ayudan a los usuarios a comprender los nodos completos de Zcash, zk-SNARKs y más"
+        "content": "Aquí tienes guías que ayudan a los usuarios a entender los nodos completos de Zcash, zk-SNARKs y más"
       }
     },
     "sections": {
       "whatIsZcash": {
         "title": "¿Qué es Zcash?",
-        "description": "Es un libro de contabilidad de blockchain de código abierto que presenta un sofisticado sistema de prueba de conocimiento cero. Se especializa en ofrecer un estándar más alto de privacidad a través de su sistema de pruebas que preserva la confidencialidad de los metadatos de las transacciones. En esencia, Zcash es la propiedad de datos privados que se transfiere sin permisos cuando se realizan transacciones.",
+        "description": "Es un libro mayor blockchain de código abierto que incorpora un sofisticado sistema de pruebas de conocimiento cero. Se especializa en ofrecer un mayor nivel de privacidad mediante su sistema de pruebas, preservando la confidencialidad de los metadatos de las transacciones. En esencia, Zcash es propiedad privada de datos que se transfiere sin permisos cuando se realizan transacciones.",
         "mainLink": "¿Qué es Zcash?",
         "techLink": "Tecnología de Zcash"
       },
       "zcashMe": {
         "title": "Zcash.me",
-        "description": "Zcash.Me es un directorio público de usuarios de Zcash con mensajería privada, tablas de clasificación y usuarios verificados. Conéctate, explora e interactúa con la comunidad de Zcash.",
-        "link": "Visitar Zcash.Me"
+        "description": "Zcash.Me es un directorio público de usuarios de Zcash con mensajería privada, tablas de clasificación y usuarios verificados. Conecta, explora e interactúa con la comunidad de Zcash.",
+        "link": "Visita Zcash.Me"
       },
       "globalAmbassadors": {
         "title": "Embajadores Globales de Zcash",
-        "description": "Los Embajadores Globales de Zcash son líderes comunitarios dedicados a promover la adopción y educación de criptomonedas centradas en la privacidad en todo el mundo. Cada proyecto de embajador se centra en crear conciencia y participación dentro de sus respectivas regiones.",
-        "link": "Conoce a los Embajadores"
+        "description": "Los Embajadores Globales de Zcash son líderes comunitarios dedicados a promover la adopción y educación sobre criptomonedas centradas en la privacidad en todo el mundo. Cada proyecto de embajador se enfoca en crear conciencia y participación dentro de sus respectivas regiones.",
+        "link": "Conoce a los embajadores"
       },
       "newsletter": {
-        "title": "Boletín Protegido",
-        "description": "¡Suscríbete usando tu Dirección Unificada para obtener acceso protegido a Actualizaciones del Ecosistema Zcash y Estadísticas de la Red directamente en tu billetera!",
+        "title": "Shielded Newsletter",
+        "description": "Suscríbete usando tu Unified Address para recibir acceso blindado a actualizaciones del ecosistema de Zcash y estadísticas de la red directamente en tu cartera.",
         "link": "Suscribirse"
       },
       "free2z": {
         "title": "Free2Z",
-        "description": "Free2Z es una plataforma social impulsada por Zcash. Con donaciones entre pares, un programa de reparto de ingresos, herramientas creativas avanzadas y una comunidad global en línea masiva.",
+        "description": "Free2Z es una plataforma social impulsada por Zcash. Con donaciones entre pares, un programa de reparto de ingresos, herramientas creativas avanzadas y una gran comunidad global en línea.",
         "link": "Free2Z"
       },
       "payWithZcash": {
-        "title": "Pagar con Zcash",
-        "description": "Este sitio web es una respuesta a la pregunta: ¿Dónde puedo pagar con Zcash? El directorio es de uso gratuito. Los elementos listados son solo con fines informativos y no son respaldos de ningún tipo. ¡Disfruta!",
+        "title": "Paga con Zcash",
+        "description": "Este sitio web responde a la pregunta: ¿Dónde puedo pagar con Zcash? El directorio es gratuito. Los elementos listados son solo con fines informativos y no constituyen ningún tipo de respaldo. ¡Disfruta!",
         "mainLink": "paywithz.cash",
         "mapLink": "SPEDN"
+      },
+      "hackathon": {
+        "title": "Únete al Hackathon",
+        "description": "Construye, colabora y lanza ideas de impacto con la comunidad de Zcash. Compite en cinco categorías innovadoras: Infrastructure para nodos e indexadores, Games para experiencias interactivas, FROST para firmas de umbral, Zcash Login para soluciones de autenticación, y Accounting para flujos de trabajo financieros. 25 de mayo - 15 de julio de 2026. Te espera una bolsa de premios de 25 ZEC.",
+        "mainLink": "Únete al Hackathon /no_think"
       }
     },
     "explore": {
-      "startHere": "Comienza_Aquí",
-      "tutorials": "Tutoriales",
-      "usingZcash": "Usando_Zcash",
-      "guides": "Guías",
-      "zcashTech": "Tecnología_Zcash",
-      "organizations": "Organizaciones_Zcash",
-      "community": "Comunidad_Zcash",
-      "zkavClub": "Club_ZKAV",
-      "privacyTools": "Herramientas_Privacidad",
-      "research": "Investigación",
-      "glossary": "Glosario_y_Preguntas",
-      "contribute": "Contribuir"
+      "startHere": "Start_Here",
+      "tutorials": "Tutorials",
+      "usingZcash": "Using_Zcash",
+      "guides": "Guides",
+      "zcashTech": "Zcash_Tech",
+      "organizations": "Zcash_Organizations",
+      "community": "Zcash_Community",
+      "zkavClub": "ZKAV_Club",
+      "privacyTools": "Privacy_Tools",
+      "research": "Research",
+      "glossary": "Glossary_and_FAQs",
+      "contribute": "Contribute"
     }
   },
   "footer": {
@@ -181,49 +327,49 @@
   },
   "visualizer": {
     "title": "Visualizadores de Zcash",
-    "description": "Herramientas educativas interactivas para comprender la tecnología de privacidad de Zcash, la infraestructura y las pruebas de conocimiento cero",
+    "description": "Herramientas educativas interactivas para entender la tecnología de privacidad, la infraestructura y las pruebas de conocimiento cero de Zcash",
     "playAll": "Reproducir todos los visualizadores",
     "basic": "Básico",
-    "basicDescription": "Conceptos fundamentales y características esenciales de Zcash",
+    "basicDescription": "Conceptos fundamentales y funciones esenciales de Zcash",
     "advanced": "Avanzado",
-    "advancedDescription": "Inmersiones técnicas profundas en criptografía, consenso e infraestructura",
+    "advancedDescription": "Análisis técnicos profundos sobre criptografía, consenso e infraestructura",
     "contributors": "Colaboradores",
-    "contributorsDescription": "Formas de contribuir al ecosistema Zcash y ganar recompensas",
-    "beginnerQuiz": "Cuestionario para principiantes",
-    "intermediateQuiz": "Cuestionario intermedio",
-    "contributorsQuiz": "Cuestionario de colaboradores",
+    "contributorsDescription": "Formas de contribuir al ecosistema de Zcash y ganar recompensas",
+    "beginnerQuiz": "Quiz para principiantes",
+    "intermediateQuiz": "Quiz intermedio",
+    "contributorsQuiz": "Quiz para colaboradores",
     "autoPlayNote": "Cada visualizador se ejecuta automáticamente. Usa los controles para navegar o pausar.",
     "wallets": {
-      "title": "Introducción a las billeteras Zcash",
-      "description": "Proporcionando funcionalidad protegida"
+      "title": "Introducción a las carteras de Zcash",
+      "description": "Ofreciendo funcionalidad blindada"
     },
     "pools": {
       "title": "Pools de valor y tipos de direcciones",
-      "description": "Explora los pools de privacidad y tipos de direcciones de Zcash"
+      "description": "Explora los pools de privacidad y los tipos de direcciones de Zcash"
     },
     "payWith": {
-      "title": "Pagar con Zcash",
+      "title": "Paga con Zcash",
       "description": "Descubre dónde y cómo usar ZEC para pagos privados"
     },
     "dex": {
-      "title": "Intercambios de Zcash (DEX)",
-      "description": "Acceso sin permisos y resistente a la censura a ZEC usando intercambios descentralizados"
+      "title": "Exchanges de Zcash (DEX)",
+      "description": "Acceso sin permisos y resistente a la censura a ZEC mediante exchanges descentralizados"
     },
     "hashFunction": {
-      "title": "Funciones Hash",
+      "title": "Funciones hash",
       "description": "¿Qué es una función hash?"
     },
     "blockchain": {
       "title": "Fundamentos de la blockchain de Zcash",
-      "description": "Entendiendo la fundación de la blockchain de Zcash"
+      "description": "Comprender la base de la blockchain de Zcash"
     },
     "zkproof": {
       "title": "zk-SNARKs",
-      "description": "Demostración interactiva de transacciones protegidas"
+      "description": "Demostración interactiva de transacciones blindadas"
     },
     "keys": {
       "title": "Claves de Zcash",
-      "description": "Entendiendo las claves de Zcash"
+      "description": "Comprender las claves de Zcash"
     },
     "infrastructure": {
       "title": "Infraestructura de Zcash",
@@ -231,15 +377,15 @@
     },
     "consensus": {
       "title": "Consenso",
-      "description": "¿Cómo cientos de nodos llegan a un acuerdo sobre el estado de la cadena?"
+      "description": "¿Cómo acuerdan cientos de nodos el estado de la cadena?"
     },
     "miningHalo": {
       "title": "Minería de Zcash",
-      "description": "Entendiendo la minería Equihash y las pruebas de conocimiento cero recursivas"
+      "description": "Comprender la minería Equihash y las pruebas recursivas de conocimiento cero"
     },
     "privacyUseCases": {
       "title": "Casos de uso de privacidad",
-      "description": "Aplicaciones del mundo real de la tecnología de privacidad en Zcash"
+      "description": "Aplicaciones reales de la tecnología de privacidad en Zcash"
     },
     "governance": {
       "title": "Gobernanza y fondo de desarrollo",
@@ -251,15 +397,15 @@
     },
     "daoProposal": {
       "title": "Propuestas DAO",
-      "description": "Guía paso a paso para crear una propuesta de gobernanza DAO de ZecHub"
+      "description": "Guía paso a paso para crear una propuesta de gobernanza del DAO de ZecHub"
     },
     "communityGrants": {
-      "title": "Subvenciones de la comunidad Zcash",
-      "description": "Financiamiento para proyectos del ecosistema Zcash"
+      "title": "Zcash Community Grants",
+      "description": "Financiación para proyectos del ecosistema de Zcash"
     },
     "coinholderGrants": {
-      "title": "Subvenciones dirigidas por titulares de monedas",
-      "description": "Financiamiento retroactivo dirigido por titulares de ZEC"
+      "title": "Subvenciones dirigidas por poseedores de monedas",
+      "description": "Financiación retroactiva dirigida por los poseedores de ZEC"
     },
     "openSource": {
       "title": "Repositorios de código abierto",
@@ -267,21 +413,21 @@
     }
   },
   "wallets": {
-    "title": "Billeteras Zcash",
-    "description": "Elige una billetera que se adapte a tus necesidades",
-    "desktopWallets": "Billeteras de escritorio",
-    "mobileWallets": "Billeteras móviles",
-    "hardwareWallets": "Billeteras de hardware",
-    "webWallets": "Billeteras web",
-    "features": "Características",
+    "title": "Carteras de Zcash",
+    "description": "Elige una cartera que se adapte a tus necesidades",
+    "desktopWallets": "Carteras de escritorio",
+    "mobileWallets": "Carteras móviles",
+    "hardwareWallets": "Carteras de hardware",
+    "webWallets": "Carteras web",
+    "features": "Funciones",
     "download": "Descargar",
     "visitWebsite": "Visitar sitio web",
     "filters": "Filtros",
     "showNavigation": "Mostrar navegación",
     "close": "Cerrar",
     "savedReview": "¡Guardamos tu reseña!",
-    "errorGettingLikes": "Error al obtener 'likes':",
-    "errorUpdatingRating": "Error al actualizar la calificación:"
+    "errorGettingLikes": "Error al obtener los me gusta:",
+    "errorUpdatingRating": "Error al actualizar la valoración:"
   },
   "guides": {
     "title": "Guías",
@@ -299,10 +445,10 @@
     "duration": "Duración"
   },
   "dao": {
-    "title": "DAO de ZecHub",
+    "title": "ZecHub DAO",
     "description": "Gobernanza descentralizada para ZecHub",
-    "headerTitle": "DAO de ZecHub y Gobernanza",
-    "headerDescription": "Una plataforma educativa de código abierto donde los miembros de la comunidad colaboran en crear, validar y promover contenido que apoya el ecosistema Zcash",
+    "headerTitle": "ZecHub DAO y gobernanza",
+    "headerDescription": "Una plataforma educativa de código abierto donde los miembros de la comunidad colaboran en la creación, validación y promoción de contenido que apoya al ecosistema de Zcash",
     "beliefs": [
       "La privacidad es un derecho humano",
       "La educación debe ser de código abierto y accesible en todo el mundo",
@@ -312,105 +458,102 @@
     "features": [
       {
         "icon": "🛡️",
-        "title": "Primer DAO del ecosistema Zcash",
-        "description": "ZecHub está a la vanguardia de la gobernanza descentralizada en la comunidad Zcash, con fondos mantenidos principalmente dentro del pool protegido de Zcash para máxima privacidad."
+        "title": "Primer DAO del ecosistema de Zcash",
+        "description": "ZecHub está liderando la gobernanza descentralizada en la comunidad de Zcash, con fondos mantenidos principalmente dentro del pool blindado de Zcash para máxima privacidad."
       },
       {
         "icon": "🌍",
         "title": "Colaboración global",
-        "description": "Embajadores globales, miembros de subvenciones comunitarias y expertos unidos para guiar la dirección de la educación sobre Zcash y tecnología de privacidad."
+        "description": "Embajadores Globales, miembros de Community Grants y expertos de la comunidad se unen para guiar la dirección de la educación sobre Zcash y tecnología de privacidad."
       },
       {
         "icon": "🔄",
-        "title": "Marco de SubDAO",
-        "description": "Cualquier grupo puede crear SubDAOs para formar proyectos, crear propuestas o solicitar Compensación Retroactiva a través del módulo DAO DAO."
+        "title": "Marco SubDAO",
+        "description": "Cualquier grupo puede crear SubDAOs para formar proyectos, crear propuestas o solicitar compensación retroactiva mediante el módulo DAO DAO."
       }
     ],
-    "governanceDescription": "Todas las propuestas del DAO son públicas y transparentes. Cualquiera puede crear una propuesta para votar. En apoyo a la transparencia comunitaria, ZecHub DAO publica todas las propuestas de gobernanza en el hilo ZecHub Governance del Foro de la Comunidad Zcash.",
+    "governanceDescription": "Todas las propuestas DAO son públicas y transparentes. Cualquiera puede crear una propuesta para someterla a votación. En apoyo a la transparencia de la comunidad, ZecHub DAO publica todas las propuestas de gobernanza en el hilo ZecHub Governance del Foro de la Comunidad de Zcash.",
     "membersTitle": "Miembros del DAO",
     "proposals": "Propuestas",
     "vote": "Votar",
     "createProposal": "Crear propuesta",
     "activeProposals": "Propuestas activas",
-    "pastProposals": "Propuestas pasadas"
+    "pastProposals": "Propuestas anteriores"
   },
   "newsletter": {
     "title": "Boletín",
-    "description": "Mantente actualizado con las últimas noticias de Zcash",
+    "description": "Mantente al día con las últimas noticias de Zcash",
     "subscribe": "Suscribirse",
-    "emailPlaceholder": "Ingresa tu correo electrónico",
+    "emailPlaceholder": "Introduce tu correo electrónico",
     "subscribeButton": "Suscribirse ahora",
     "latestIssue": "Última edición",
     "archive": "Archivo"
-  }
-
-  ,
+  },
   "pages": {
-    "dex": {
-      "title": "Intercambios descentralizados",
-      "subtitle": "ZecHub no respalda ningún servicio de intercambio descentralizado en particular; por favor investiga por tu cuenta.",
-      "custodial": "Intercambios custodiales",
-      "centralised": "Plataformas de intercambio centralizadas"
-    },
-    "zcashGlobalAmbassadors": {
-      "title": "Embajadores Globales de Zcash",
-      "description": "Los Embajadores Globales de Zcash son líderes comunitarios dedicados a promover la adopción y educación de criptomonedas centradas en la privacidad en todo el mundo. Cada proyecto de embajador se centra en crear conciencia y participación dentro de sus respectivas regiones.",
-      "activeProjectsHeading": "Proyectos activos de Embajadores Globales",
-      "projectSitesHeading": "Sitios y Blogs del Proyecto",
-      "followOnX": "Seguir en X",
-      "projectSiteLabel": "Sitio del proyecto",
-      "linkLabel": "Enlace",
-      "footerInfo": "El programa Embajadores Globales de Zcash apoya iniciativas lideradas por la comunidad para promover la adopción de tecnología enfocada en la privacidad. Cada proyecto de embajador opera de forma independiente mientras contribuye al ecosistema Zcash en general."
-    },
-    "omniflix": {
-      "title": "Omniflix Media",
-      "paragraphPrefix": "Visita la página oficial de Omniflix de Zechub",
-      "linkLabel": "aquí",
-      "cta": "Ver ahora"
-    }
-    ,
     "wallets": {
-      "title": "Billeteras | ZecHub",
-      "noData": "No hay datos o archivo incorrecto",
+      "title": "Carteras | ZecHub",
+      "noData": "Sin datos o archivo incorrecto",
       "bannerAlt": "wiki-banner"
     },
+    "dex": {
+      "title": "Intercambios descentralizados",
+      "subtitle": "ZecHub no respalda ningún servicio de intercambio descentralizado en particular, por favor haz tu propia investigación.",
+      "centralised": "Plataformas de intercambio centralizadas",
+      "centralizedTitle": "Listado de plataformas de intercambio centralizado",
+      "custodial": "Exchanges con custodia",
+      "exchanges": {
+        "Near-intents": "Intercambio rápido con el respaldo de NEAR. Haz depósitos, vende e intercambia, incluidos los populares TRUMP, MELANIA, BERA y otros memes",
+        "Nativeswap": "Trading nativo cross-chain sin barreras a través de Maya Protocol. Opera directamente on-chain sin puentes ni tokens envueltos: disfruta de comisiones bajas dentro de la industria y control total de tus activos.",
+        "Firo DEX": "Swaps descentralizados sin confianza mediante atomic swaps con FiroDEX!.",
+        "LeoDEX": "Una interfaz de intercambio cripto cross-chain para Maya Protocol, Thorchain, ChainFlip y Rango. BTC, ETH, RUNE, DASH, LTC y más",
+        "Bison Wallet": "Intercambia cripto de persona a persona. Sin comisiones de trading. Sin KYC.",
+        "THORSwap": "DEX cross-chain impulsado por THORChain, que permite swaps nativos entre Bitcoin, Ethereum y otros activos principales sin tokens envueltos.",
+        "Router Protocol": "Capa de transporte de liquidez cross-chain que permite la transferencia fluida de activos y datos entre múltiples blockchains.",
+        "Peer": "Exchange descentralizado peer-to-peer que permite transacciones cripto directas con mayor privacidad y control del usuario.",
+        "RocketX": "Agregador DEX híbrido que permite swaps cross-chain entre múltiples blockchains con enrutamiento óptimo y tasas competitivas.",
+        "THORChain": "Exchange cross-chain descentralizado de Capa 1. Intercambia activos nativos como ZEC, BTC y ETH directamente, sin puentes, tokens envueltos ni intermediarios.",
+        "Loofta": "Plataforma privada de pagos y swaps sin custodia. Envía y recibe cripto de forma privada entre cadenas, con Zcash como capa de liquidación para una mayor privacidad financiera."
+      }
+    },
     "usingZcash": {
-      "blockchainExplorers": { "title": "Exploradores de blockchain" }
+      "blockchainExplorers": {
+        "title": "Exploradores de blockchain"
+      }
     },
     "dashboard": {
       "title": "Panel | ZecHub",
       "charts": {
         "headerTitle": "Panel(es)",
-        "headerSubtitle": "Analiza metricas y tendencias de la red Zcash",
+        "headerSubtitle": "Analiza métricas y tendencias de la red Zcash",
         "shieldedNetworks": "Redes blindadas",
         "currentYoutubeChannel": "Canal actual de YouTube",
         "totalVideos": "Videos totales",
-        "totalViews": "Vistas totales",
-        "mostViewed": "Mas visto",
-        "viewsSuffix": "vistas",
+        "totalViews": "Visualizaciones totales",
+        "mostViewed": "Más visto",
+        "viewsSuffix": "visualizaciones",
         "searchPlaceholder": "Buscar videos...",
-        "top15ByViews": "Top 15 por vistas",
-        "latest15Videos": "Ultimos 15 videos",
-        "sortByNewest": "↩ Ordenar por mas recientes",
-        "sortByViews": "↑ Ordenar por vistas",
-        "top15VideosByViews": "Top 15 videos por vistas",
-        "latest15VideosSortedByViews": "Ultimos 15 videos (ordenados por vistas)",
+        "top15ByViews": "Top 15 por visualizaciones",
+        "latest15Videos": "Últimos 15 videos",
+        "sortByNewest": "↩ Ordenar por más nuevos",
+        "sortByViews": "↑ Ordenar por visualizaciones",
+        "top15VideosByViews": "Top 15 videos por visualizaciones",
+        "latest15VideosSortedByViews": "Últimos 15 videos (ordenados por visualizaciones)",
         "zcashMetrics": {
-          "title": "Metricas de Zcash",
-          "loadError": "No se pudieron cargar las metricas de Zcash",
+          "title": "Métricas de Zcash",
+          "loadError": "No se pudieron cargar las métricas de Zcash",
           "notAvailable": "N/D",
-          "marketCap": "Capitalizacion de mercado",
-          "circulation": "Circulacion",
+          "marketCap": "Capitalización de mercado",
+          "circulation": "Circulación",
           "marketPriceUsd": "Precio de mercado (USD)",
           "marketPriceBtc": "Precio de mercado (BTC)",
           "blocks": "Bloques",
-          "transactions24h": "Transacciones en 24 h",
-          "shieldedTx24h": "TX blindadas (24 h)",
+          "transactions24h": "Transacciones 24h",
+          "shieldedTx24h": "TX blindadas (24h)",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc"
         },
         "zcashChart": {
-          "title": "Graficos de analitica",
+          "title": "Gráficos analíticos",
           "supplyTypeAriaLabel": "Tipo de suministro",
           "supplyOptions": {
             "shielded": "Blindado",
@@ -421,28 +564,28 @@
         "zcashShieldedTabs": {
           "supply": "Suministro",
           "difficulty": "Dificultad",
-          "issuance": "Emision",
+          "issuance": "Emisión",
           "lockbox": "Lockbox",
           "flows": "Flujos",
           "nodeCount": "Cantidad de nodos",
           "txSummary": "Resumen de TX",
           "privacySet": "Conjunto de privacidad",
-          "shieldedStats": "Estadisticas blindadas",
+          "shieldedStats": "Estadísticas blindadas",
           "blockFees": "Comisiones por bloque",
           "networkSolps": "Solps de la red",
-          "miningPools": "Pools de mineria",
+          "miningPools": "Pools de minería",
           "halvingMeter": "Medidor de halving"
         },
         "miningPoolsChart": {
-          "title": "Dominancia de pools de mineria",
-          "loadError": "No se pudieron cargar los pools de mineria",
+          "title": "Dominancia de pools de minería",
+          "loadError": "No se pudieron cargar los pools de minería",
           "rangeLabel": "Rango",
-          "rangeAriaLabel": "Seleccionar rango de mineria",
-          "noData": "No hay datos de pools de mineria disponibles."
+          "rangeAriaLabel": "Selecciona el rango de minería",
+          "noData": "No hay datos disponibles de pools de minería."
         },
         "difficultyChart": {
-          "title": "Dificultad de mineria a lo largo del tiempo",
-          "loadError": "No se pudo cargar el grafico de dificultad",
+          "title": "Dificultad de minería a lo largo del tiempo",
+          "loadError": "No se pudo cargar el gráfico de dificultad",
           "legend": "Dificultad",
           "seriesName": "Dificultad"
         },
@@ -456,36 +599,507 @@
       }
     },
     "hackathon": {
-      "title": "ZecHub Hackathon"
+      "title": "Hackathon de ZecHub",
+      "heroEyebrow": "Construye · Documenta · Envía",
+      "heroIntro": "Construye en cinco categorías, desde infraestructura hasta juegos, luego documenta y muestra tu trabajo. Inicio oficial",
+      "heroKickoffSep": "(UTC); las entregas cierran",
+      "countdownStartsIn": "El hackathon comienza en",
+      "countdownTimeUntilClose": "Tiempo hasta el cierre de entregas",
+      "countdownEnded": "El hackathon terminó",
+      "days": "Días",
+      "hours": "Horas",
+      "mins": "Min",
+      "secs": "Seg",
+      "endedNote": "Esta ventana del hackathon ha finalizado, gracias a todos los que participaron.",
+      "preStarts": "Comienza",
+      "preCloseSep": "(UTC). Las entregas cierran",
+      "activeCloseOn": "Las entregas cierran el",
+      "tracksEyebrow": "Evento 2026",
+      "tracksTitle": "Categorías",
+      "tracksIntro": "Alinea tu proyecto con una categoría para dar claridad al enviarlo; los jueces y la comunidad las usan para explorar las participaciones.",
+      "tracks": {
+        "infrastructure": {
+          "name": "Infraestructura",
+          "description": "ZSA GUI, Node Launcher, panel web de Zallet, etc."
+        },
+        "games": {
+          "name": "Juegos",
+          "description": "Juego de artículos wiki similar a catfishing.net, ZEC Poker, Battleship, etc."
+        },
+        "frost": {
+          "name": "FROST",
+          "description": "Carteras con firma por umbral, escrow de ZEC blindado, recuperación social"
+        },
+        "zcashLogin": {
+          "name": "Zcash Login",
+          "description": "Flujos de autenticación e identidad que usan primitivas de Zcash para iniciar sesión o acceder."
+        },
+        "accounting": {
+          "name": "Contabilidad",
+          "description": "Reportes, flujos de trabajo para equipos que manejan ZEC, sistema de gestión de pagos."
+        }
+      },
+      "prizesEyebrow": "Recompensas",
+      "prizesTitle": "Premios",
+      "prizePoolTitle": "Pool de premios de 25 ZEC",
+      "prizePoolDesc": "Construye, envía y compite por el pool de premios de la comunidad.",
+      "devToolsEyebrow": "Empieza aquí",
+      "devToolsTitle": "Devtools y documentación",
+      "devTools": {
+        "quickStart": {
+          "title": "Inicio rápido para desarrolladores de ZecHub",
+          "description": "Encuentra las herramientas, referencias y pasos de configuración esenciales para construir sobre Zcash."
+        }
+      },
+      "openGuide": "Abrir guía",
+      "openDocs": "Abrir documentación",
+      "rulesTitle": "Reglas",
+      "rulesDesc": "Haz que las entregas sean justas y fáciles de evaluar.",
+      "rules": {
+        "mainnet": "Los proyectos deben interactuar con la red mainnet de Zcash.",
+        "oneProject": "Los equipos solo pueden enviar un proyecto final por equipo.",
+        "docs": "Todas las entregas deben incluir documentación clara de configuración y uso.",
+        "openSource": "Usa una licencia de código abierto.",
+        "respect": "Respeta la privacidad, la seguridad y las pautas de la comunidad tanto en el código como en el contenido."
+      },
+      "faqTitle": "Preguntas frecuentes",
+      "faqDesc": "Respuestas rápidas antes de empezar.",
+      "faq": {
+        "whoCanParticipate": {
+          "question": "¿Quién puede participar?",
+          "answer": "Cualquiera puede unirse: desarrolladores, diseñadores y equipos multidisciplinarios."
+        },
+        "validSubmission": {
+          "question": "¿Qué debe incluir una entrega válida?",
+          "answer": "Un prototipo funcional, demo en video, documentación básica y una explicación de cómo usa la red de Zcash."
+        },
+        "whereSubmit": {
+          "question": "¿Dónde enviamos los proyectos?",
+          "answer": "Comparte tu demo en video en el Discord Global de Zcash e incluye cualquier repositorio o enlace de demo relevante."
+        },
+        "winnersSelected": {
+          "question": "¿Cómo se seleccionan los ganadores?",
+          "answer": "Se realiza un proceso público de la comunidad a través de los canales del ZecHub DAO después de que cierran las entregas."
+        },
+        "whatTracks": {
+          "question": "¿Cuáles son las categorías?",
+          "answer": "Los temas de este hackathon son Infraestructura, Juegos, FROST, Zcash Login y Contabilidad. Elige la categoría que mejor se adapte a tu proyecto; aun así puedes enviar un proyecto no definido dentro de las categorías."
+        }
+      },
+      "submitEyebrow": "Participación",
+      "submitTitle": "Cómo enviar",
+      "submitIntro": "Sigue estos cinco pasos para llevar tu proyecto de la idea a la participación oficial.",
+      "steps": {
+        "build": {
+          "title": "Construye tu proyecto",
+          "description": "Crea un prototipo funcional que interactúe con la mainnet de Zcash. Elige una categoría y lleva un registro de desarrollo mientras avanzas."
+        },
+        "record": {
+          "title": "Graba una demo en video",
+          "description": "Captura un recorrido breve mostrando tu proyecto en acción. Explica claramente qué hace y cómo usa la red de Zcash."
+        },
+        "document": {
+          "title": "Documenta tu trabajo",
+          "description": "Escribe un README con instrucciones de configuración, notas de uso y tu licencia de código abierto. Sube todo a un repositorio público de GitHub."
+        },
+        "upload": {
+          "title": "Sube tu código",
+          "descPrefix": "Sube tu proyecto al",
+          "repoLabel": "repositorio del hackathon",
+          "descSuffix": "en GitHub para que la comunidad pueda revisar tu trabajo."
+        },
+        "share": {
+          "title": "Comparte en Discord",
+          "description": "Publica tu demo en video en el Discord Global de Zcash con los enlaces a tu repo y demo antes del 15 de julio de 2026 (UTC)."
+        }
+      },
+      "deadlineLabel": "Fecha límite:",
+      "deadlinePrefix": "Todas las entregas deben publicarse en Discord antes del",
+      "deadlineSuffix": ". Los ganadores se seleccionan mediante una votación pública de la comunidad en los canales de ZecHub DAO poco después del cierre de entregas.",
+      "joinTheDiscord": "Únete a Discord",
+      "previousEyebrow": "Ediciones anteriores",
+      "previousTitle": "Hackathons anteriores",
+      "previousIntro": "Explora proyectos de hackathons anteriores de ZecHub por edición. Cada tarjeta de proyecto enlaza directamente a su carpeta de GitHub para código, notas y demos cuando estén disponibles.",
+      "browseAllProjects": "Ver todos los proyectos",
+      "errorCouldNotLoad": "No se pudo cargar la lista de proyectos en vivo",
+      "errorShowingSaved": "Se muestra en su lugar la lista guardada de proyectos de hackathons anteriores.",
+      "noProjects": "No se devolvieron carpetas de proyectos. Abre el árbol del repo para verificar la estructura.",
+      "projectsArchivedOne": "{count} proyecto archivado de esta edición.",
+      "projectsArchivedMany": "{count} proyectos archivados de esta edición.",
+      "buildsCount": "{count} builds",
+      "viewProject": "Ver proyecto",
+      "needHelpTitle": "¿Necesitas ayuda?",
+      "needHelpDesc": "El Discord Global de Zcash es el mejor lugar para preguntas sobre builds, consejos de infraestructura y charla del hackathon.",
+      "joinDiscord": "Unirse a Discord",
+      "supportDonation": "Apoyar con una donación",
+      "popup": {
+        "liveNow": "En vivo ahora",
+        "subtitle": "Crea aplicaciones centradas en la privacidad sobre Zcash. Compite por premios, gana ZEC y ayuda a dar forma al futuro de la libertad financiera.",
+        "prizePool": "Pool de premios",
+        "start": "Inicio",
+        "end": "Fin",
+        "learnMore": "Más información →",
+        "dismiss": "Cerrar"
+      }
     },
     "developers": {
-      "title": "Recursos para Desarrolladores de Zcash"
+      "title": "Recursos para desarrolladores de Zcash",
+      "heroImageAlt": "Recursos para desarrolladores de Zcash",
+      "cardSectionTitle": "¿Cómo te gustaría empezar?",
+      "cards": {
+        "learnTitle": "Aprender desarrollo en Zcash",
+        "learnContent": "Explora la documentación oficial y aprende los conceptos básicos de la tecnología de Zcash.",
+        "learnButton": "Leer la documentación",
+        "tutorialsTitle": "Aprender con tutoriales",
+        "tutorialsContent": "Sigue tutoriales paso a paso para construir sobre Zcash, desde crear carteras hasta integrar Zcash en tus aplicaciones.",
+        "tutorialsButton": "Ver tutoriales",
+        "quickStartTitle": "Guía de inicio rápido",
+        "quickStartContent": "Empieza rápidamente con el desarrollo en Zcash. Aprende instalación, configuración y operaciones básicas.",
+        "quickStartButton": "Guía de inicio rápido"
+      },
+      "exploreDocsTitle": "Explora la documentación",
+      "introductionsTitle": "Introducciones",
+      "fundamentalsTitle": "Fundamentos",
+      "advancedTitle": "Avanzado",
+      "introLinks": {
+        "introToZcash": "Introducción a Zcash",
+        "introToZcashDesc": "Aprende sobre Zcash, su historia y sus principios fundamentales.",
+        "introToZec": "Introducción a ZEC",
+        "introToZecDesc": "Descubre los casos de uso y beneficios de ZEC, la criptomoneda nativa de Zcash.",
+        "introToZebra": "Introducción a Zebra",
+        "introToZebraDesc": "Comprende cómo Zebra impulsa la red de Zcash con una implementación modular y segura basada en Rust",
+        "introToLightwalletd": "Introducción a Lightwalletd",
+        "introToLightwalletdDesc": "Comprende el proyecto lightwalletd: un servidor escalable escrito en Go que sirve eficientemente datos compactos de blockchain a clientes ligeros de Zcash mediante gRPC.",
+        "zalletBook": "The Zallet Book",
+        "zalletBookDesc": "Introducción a Zallet, una cartera de nodo completo de Zcash escrita en Rust y diseñada como reemplazo de la cartera de zcashd.",
+        "developerResources": "Recursos para desarrolladores",
+        "developerResourcesDesc": "Enlaces a más documentación técnica de Zcash."
+      },
+      "fundamentalsLinks": {
+        "addressEncoding": "Codificación de direcciones",
+        "addressEncodingDesc": "Aprende cómo se codifican las direcciones y claves de Zcash.",
+        "transactions": "Transacciones",
+        "transactionsDesc": "Entiende cómo funcionan las transacciones en Zcash.",
+        "fees": "Comisiones",
+        "feesDesc": "Aprende sobre las comisiones de transacción y cómo se calculan.",
+        "nodesZcashd": "Nodos (zcashd)",
+        "nodesZcashdDesc": "Configura y gestiona nodos de Zcash usando zcashd.",
+        "nodesZebrad": "Nodos (zebrad)",
+        "nodesZebradDesc": "Explora Zebra, una implementación alternativa de nodo de Zcash.",
+        "lightwalletServers": "Servidores Lightwallet",
+        "lightwalletServersDesc": "Aprende sobre lightwalletd, un servidor ligero de carteras de Zcash.",
+        "blockExplorers": "Exploradores de bloques",
+        "blockExplorersDesc": "Explora blockchains de Zcash usando exploradores de bloques.",
+        "shadeAgent": "Shade Agent - Notion",
+        "shadeAgentDesc": "Aprende sobre Shade Agents, los primeros agentes de IA verdaderamente autónomos en NEAR, impulsados por TEE seguras y Chain Signatures descentralizadas para gestionar activos, acceder a LLMs y ejecutar transacciones multichain de forma independiente."
+      },
+      "advancedLinks": {
+        "introToStack": "Introducción al stack",
+        "introToStackDesc": "Comprende la arquitectura y los componentes del stack de Zcash.",
+        "zecDev": "ZecDev",
+        "zecDevDesc": "Aquí encontrarás proyectos, recursos y herramientas creados y mantenidos en el contexto de la subvención del Engineer de Relaciones con Desarrolladores de (Zcash). Ver también el",
+        "zcashCommunityWishlist": "Lista de deseos de la comunidad de Zcash",
+        "introToZingolib": "Introducción a Zingolib",
+        "introToZingolibDesc": "Comprende el repositorio zingolib: una API y CLI basadas en Rust para interactuar con zcashd a través de Lightwalletd.",
+        "webZjs": "WebZjs",
+        "webZjsDesc": "Una librería JavaScript/TypeScript para crear aplicaciones web habilitadas para Zcash usando WebAssembly.",
+        "noirWalletSdk": "Noir Wallet SDK",
+        "noirWalletSdkDesc": "SDK en TypeScript y dApp de ejemplo para integrar aplicaciones de Zcash con la extensión de navegador Noir Wallet.",
+        "zcashIka": "zcash-ika",
+        "zcashIkaDesc": "Custodia de clave dividida para Zcash y agentes multicadena mediante 2PC-MPC. Política de gasto on-chain, attestación de privacidad, constructor de transacciones ZIP 244.",
+        "developmentGuidelines": "Guías de desarrollo",
+        "developmentGuidelinesDesc": "Sigue las mejores prácticas para desarrollar en Zcash.",
+        "arboristCalls": "Página de Arborist Calls",
+        "arboristCallsDesc": "Las Arborist Calls de Zcash son reuniones quincenales de desarrollo del protocolo centradas en seguir la logística de los próximos despliegues del protocolo, los problemas de implementación de nodos de consenso y la investigación del protocolo."
+      },
+      "feedbackTitle": "¿Te resultó útil esta página?",
+      "feedbackYes": "Sí",
+      "feedbackNo": "No",
+      "feedbackHelpful": "¡Gracias por tus comentarios! Haz que esta página sea aún mejor respondiendo unas pocas preguntas. Si necesitas ayuda, puedes contactar con la comunidad en nuestro",
+      "feedbackNotHelpful": "Lamentamos oír eso. Cuéntanos cómo podemos mejorar esta página. Puedes contactar con la comunidad en nuestro"
     },
     "zcashProjects": {
-      "title": "Proyectos Zcash | ZecHub"
+      "title": "Proyectos de Zcash | ZecHub"
     },
     "visualizer": {
       "title": "Visualizadores de Zcash",
-      "hashFunction": { "title": "Visualizador de Funciones Hash" },
-      "zcashKey": { "title": "Visualizador de Claves Zcash" },
-      "zksnark": { "title": "Visualizador de Pruebas zk-SNARK" }
-    }
-    ,
+      "hashFunction": {
+        "title": "Visualizador de función hash"
+      },
+      "zcashKey": {
+        "title": "Visualizador de claves de Zcash"
+      },
+      "zksnark": {
+        "title": "Visualizador de pruebas ZK-SNARK"
+      },
+      "sybil": {
+        "problemTitle": "El problema del ataque Sybil",
+        "problemDesc": "En una red donde la votación determina la verdad, un atacante podría crear millones de identidades falsas para superar en votos a los participantes legítimos.",
+        "realUsers": "3 usuarios reales",
+        "vs": "vs",
+        "attacker": "1 atacante (6 falsos)",
+        "solutionTitle": "Cómo Zcash previene los ataques Sybil",
+        "powTitle": "Prueba de trabajo",
+        "powDesc": "La minería requiere recursos computacionales reales. Crear identidades falsas no da más poder de voto: solo cuenta el trabajo real.",
+        "costTitle": "Costo económico",
+        "costDesc": "Atacar la red requiere una enorme inversión en hardware y electricidad, lo que hace que los ataques sean económicamente irracionales.",
+        "insightLabel": "Idea clave:",
+        "insightDesc": "La resistencia Sybil vincula el poder de voto a recursos escasos (cómputo, participación) en lugar de identidades fáciles de crear."
+      },
+      "saplingKey": {
+        "spendingKeyName": "Clave de gasto (sk)",
+        "spendingKeyDesc": "Secreto maestro para gastar",
+        "expandedSpendingKeyName": "Clave de gasto expandida",
+        "expandedSpendingKeyDesc": "ask, nsk, ovk",
+        "fullViewingKeyName": "Viewing Key completa (fvk)",
+        "fullViewingKeyDesc": "ak, nk, ovk",
+        "incomingViewingKeyName": "Viewing Key entrante (ivk)",
+        "incomingViewingKeyDesc": "Ver transacciones entrantes",
+        "diversifiedAddressName": "Dirección diversificada",
+        "diversifiedAddressDesc": "zs1... (ilimitadas por clave)",
+        "derivationTitle": "Derivación de claves Sapling",
+        "addressFormatTitle": "Formato de dirección",
+        "addressFormatDesc": "78 caracteres, codificación Bech32",
+        "keyFeatureTitle": "Característica clave",
+        "keyFeatureBold": "Direcciones diversificadas",
+        "keyFeatureDesc": "— Genera direcciones únicas ilimitadas a partir de una sola clave"
+      },
+      "blockAnatomy": {
+        "fieldVersion": "Versión",
+        "fieldPreviousHash": "Hash anterior",
+        "fieldMerkleRoot": "Raíz de Merkle",
+        "fieldTimestamp": "Marca de tiempo",
+        "fieldDifficulty": "Dificultad",
+        "fieldNonce": "Nonce",
+        "blockHeader": "Cabecera del bloque",
+        "transactionList": "Lista de transacciones",
+        "coinbaseTx": "Tx #1 (Coinbase)",
+        "merkleTree": "Árbol de Merkle",
+        "merkleRoot": "Raíz de Merkle"
+      },
+      "difficulty": {
+        "zcashBlockTime": "75 segundos",
+        "targetBlockTime": "Tiempo objetivo por bloque",
+        "bitcoinBlockTime": "10 minutos",
+        "forComparison": "Para comparar",
+        "adjustmentTitle": "Ajuste de dificultad",
+        "hashrateIncreases": "El hashrate aumenta",
+        "difficultyUp": "La dificultad sube",
+        "target": "Objetivo: 75 seg",
+        "staysConstant": "Se mantiene constante",
+        "hashrateDecreases": "El hashrate disminuye",
+        "difficultyDown": "La dificultad baja",
+        "summary": "La red ajusta automáticamente la dificultad de minería para mantener tiempos de bloque constantes, sin importar cuántos mineros estén compitiendo."
+      }
+    },
     "paymentProcessors": {
       "title": "Procesadores de pago | ZecHub",
-      "noData": "No hay datos o archivo incorrecto",
+      "noData": "Sin datos o archivo incorrecto",
       "bannerAlt": "wiki-banner"
+    },
+    "developersQuickStart": {
+      "heroBadge": "Inicio rápido para desarrolladores",
+      "heroTitleLine1": "Zcash Dev",
+      "heroTitleLine2": "Inicio rápido",
+      "heroSubtitle": "Ponte en marcha con el desarrollo en Zcash. Elige tu stack y sigue la guía.",
+      "copy": "Copiar",
+      "copied": "¡Copiado!",
+      "onThisPage": "En esta página",
+      "tocInstallingZebrad": "Instalar Zebrad",
+      "tocRunningZebrad": "Ejecutar zebrad",
+      "tocConnectingLightwalletd": "Conectarse con lightwalletd",
+      "installation": "Instalación",
+      "configuration": "Configuración",
+      "dependencies": "Dependencias",
+      "fromSource": "Desde el código fuente",
+      "alternatively": "Alternativamente",
+      "manualDownload": "Descarga manual",
+      "wslRecommended": "WSL (recomendado)",
+      "runningZebradHeading": "Ejecutar zebrad",
+      "initialSetup": "Configuración inicial",
+      "createConfigDir": "Crear directorio de configuración",
+      "startingZebrad": "Iniciar zebrad",
+      "commandLine": "Línea de comandos",
+      "importantNotes": "Notas importantes",
+      "noteDownloadsBlockchain": "La primera ejecución descarga toda la blockchain (~250 GB)",
+      "noteInitialSync": "La sincronización inicial puede tardar varias horas",
+      "noteKeepSecure": "Mantén tu zebrad.toml seguro y privado",
+      "connectingLightwalletdHeading": "Conectarse con lightwalletd",
+      "lightwalletdInfo": "es un servidor que proporciona una interfaz ligera para la blockchain de Zcash, diseñada para carteras móviles y de escritorio que no necesitan ejecutar un nodo completo.",
+      "prerequisites": "Requisitos previos",
+      "buildLightwalletd": "Compilar lightwalletd",
+      "basicSetupMainnet": "Configuración básica (Mainnet)",
+      "basicSetupTestnet": "Configuración básica (Testnet)",
+      "run": "Ejecutar",
+      "installingZaino": "Instalar Zaino",
+      "zainoInfo": "es un indexador basado en Rust para la blockchain de Zcash. Da servicio tanto a clientes ligeros (carteras que no almacenan el historial completo) como a clientes completos / exploradores de bloques, proporcionando acceso a la cadena finalizada, a la mejor cadena no finalizada y al mempool.",
+      "buildZaino": "Compilar Zaino",
+      "configure": "Configurar",
+      "runZainod": "Ejecutar zainod",
+      "installingZingoCli": "Instalar Zingo CLI",
+      "zingoCliInfo": "es un cliente de línea de comandos tipo proxy de lightwalletd construido en Rust. Las versiones actuales son provisionales: esta guía cubre la compilación desde el código fuente.",
+      "buildZingoCli": "Compilar Zingo CLI",
+      "running": "Ejecución",
+      "startZingoCliDefault": "Iniciar Zingo CLI (predeterminado)",
+      "startZingoCliCustom": "Iniciar Zingo CLI (personalizado)",
+      "zingoSyncWarning": "⚠ Esto realizará una sincronización completa en la primera ejecución, similar a lightwalletd.",
+      "nextStepsResources": "Siguientes pasos y recursos",
+      "readyToBuild": "¿Listo para construir?",
+      "officialDocumentation": "Documentación oficial",
+      "zcashDiscordCommunity": "Comunidad de Discord de Zcash",
+      "githubRepositories": "Repositorios de GitHub",
+      "zcashImprovementProposals": "Propuestas de mejora de Zcash",
+      "needHelp": "¿Necesitas ayuda?",
+      "zcashCommunityForum": "Foro de la comunidad de Zcash",
+      "githubIssues": "Issues de GitHub",
+      "troubleshootingGuide": "Guía de solución de problemas",
+      "stackOverflow": "Stack Overflow"
+    },
+    "governanceHowto": {
+      "pageTitle": "Gobernanza del DAO de ZecHub",
+      "pageSubtitle": "Una guía completa para participar en la gobernanza del DAO de ZecHub",
+      "stepOf": "Paso {current} de {total}",
+      "firstSteps": "Primeros pasos",
+      "firstStepsDesc": "Prepárate para participar en la gobernanza del DAO",
+      "draftProposal": "Borrador de propuesta",
+      "draftProposalDesc": "Estructura y prepara tu propuesta para enviarla",
+      "submittingProposal": "Enviar propuesta",
+      "submittingProposalDesc": "Envía y promociona tu propuesta",
+      "installKeplr": "Instala Keplr Wallet",
+      "installKeplrDesc": "Configura tu cartera Keplr para interactuar con el DAO",
+      "keplrVideoTitle": "Guía de configuración de Keplr Wallet",
+      "acquireJuno": "Consigue JUNO",
+      "acquireJunoDesc": "Obtén tokens JUNO para interactuar con el contrato de daodao. Contacta a miembros del core-team para recibir ayuda.",
+      "viewOpenProposals": "Ver propuestas abiertas",
+      "viewOpenProposalsDesc": "Consulta las propuestas actuales y las oportunidades de votación",
+      "visitVotingPortal": "Visitar portal de votación",
+      "formatNote": "Formato: Las propuestas pueden escribirse en formato .Md o .txt",
+      "recommendedStructure": "Estructura recomendada de 4 etapas:",
+      "stageBackground": "Contexto",
+      "stageBackgroundDesc": "Proporciona algo de historia sobre el tema o servicio general",
+      "stageWhy": "¿Por qué?",
+      "stageWhyDesc": "Presenta la razón principal de tu propuesta. Puede usar viñetas",
+      "stageProposal": "Propuesta",
+      "stageProposalDesc": "Detalla claramente tu propuesta completa",
+      "stageAction": "Acción",
+      "stageActionDesc": "Qué sucede tras una votación exitosa; puede incluir una cronología de acciones",
+      "getFeedback": "Recibe comentarios",
+      "getFeedbackDesc": "Comparte tu borrador en el canal #proposals de ZecHub en Discord para recibir comentarios tempranos",
+      "joinDiscord": "Únete a Discord",
+      "walkthroughTitle": "Video explicativo de la propuesta",
+      "walkthroughDesc": "Mira un recorrido completo sobre cómo redactar y estructurar una propuesta",
+      "walkthroughIframeTitle": "Recorrido de la propuesta",
+      "postInDiscord": "Publica en Discord",
+      "postInDiscordDesc": "Comparte tu propuesta final en #proposals y etiqueta a @core-team",
+      "openDiscord": "Abrir Discord",
+      "submitOnPortal": "Enviar en el portal de votación",
+      "submitOnPortalDesc": "Usa el sitio oficial de votación de ZecHub para crear tu propuesta",
+      "submitNow": "Enviar ahora",
+      "loginNote": "⚠️ Debes iniciar sesión con Keplr o Keplr Mobile",
+      "previous": "Anterior",
+      "next": "Siguiente"
+    },
+    "sitemap": {
+      "heading": "Navegación del sitio",
+      "subheading": "Vista completa de todas las páginas y recursos disponibles en la Wiki de Zechub",
+      "guidesCount": "{count} guías",
+      "sections": {
+        "Pages": "Páginas",
+        "Organizations": "Organizaciones",
+        "Guides": "Guías",
+        "Use Zcash": "Usar Zcash",
+        "Ecosystem": "Ecosistema"
+      },
+      "links": {
+        "Homepage": "Página de inicio",
+        "Dashboard": "Panel",
+        "Donation": "Donación",
+        "Contribute": "Contribuir",
+        "DAO": "DAO",
+        "Developers": "Desarrolladores",
+        "Brand": "Marca",
+        "Wallets": "Carteras",
+        "Sitemap": "Mapa del sitio",
+        "Tutorials": "Tutoriales",
+        "Bounties": "Recompensas",
+        "Buying ZEC": "Comprar ZEC",
+        "Faucets": "Faucets",
+        "Exchanges": "Exchanges",
+        "Block Explorers": "Exploradores de bloques",
+        "Shielded Pools": "Pools blindados",
+        "Transparent Exchange Addresses": "Direcciones transparentes de exchanges",
+        "Transactions": "Transacciones",
+        "Memos": "Memos",
+        "Mobile Top Ups": "Recargas móviles",
+        "Payment Request URIs": "URIs de solicitud de pago",
+        "Payment Processors": "Procesadores de pago",
+        "Recovering Funds": "Recuperación de fondos",
+        "Metamask Snap": "Metamask Snap",
+        "Community Forum": "Foro de la comunidad",
+        "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
+      }
+    },
+    "zcashCommunity": {
+      "communityProjects": {
+        "title": "Proyectos de la comunidad"
+      }
+    },
+    "research": {
+      "seriesHeading": "Series",
+      "seriesSubheading": "Análisis profundos sobre conceptos centrales de Zcash",
+      "foundationsSeriesTitle": "Serie Foundations de Zcash",
+      "coreSeriesBadge": "Serie principal",
+      "foundationsSeriesCardDescription": "Artículos fundamentales sobre transacciones blindadas, modelos de privacidad y diseño del protocolo.",
+      "exploreSeries": "Explorar la serie →",
+      "articlesHeading": "Artículos de investigación",
+      "articlesSubheading": "Artículos y notas de la comunidad de ZecHub.",
+      "foundationsSeriesDescription": "Una colección de artículos fundamentales que cubren transacciones blindadas de Zcash, modelos de privacidad, diseño del protocolo y conceptos centrales que impulsan la red.",
+      "tagShieldedTransactions": "Transacciones blindadas",
+      "tagPrivacyModels": "Modelos de privacidad",
+      "tagProtocolDesign": "Diseño del protocolo",
+      "tagZeroKnowledge": "Conocimiento cero"
+    },
+    "browseSidebar": "Explora los artículos usando la barra lateral de la izquierda 👈",
+    "zcashGlobalAmbassadors": {
+      "title": "Embajadores Globales de Zcash",
+      "description": "Los Embajadores Globales de Zcash son líderes de la comunidad dedicados a promover en todo el mundo la adopción y la educación sobre criptomonedas centradas en la privacidad. Cada proyecto de embajador se enfoca en generar conocimiento e impulsar la participación dentro de su región.",
+      "activeProjectsHeading": "Proyectos activos de los Embajadores Globales",
+      "projectSitesHeading": "Sitios de proyectos y blogs",
+      "followOnX": "Seguir en X/BS",
+      "projectSiteLabel": "Sitio del proyecto",
+      "linkLabel": "Enlace",
+      "footerInfo": "El programa de Embajadores Globales de Zcash apoya iniciativas impulsadas por la comunidad para promover la adopción de tecnología centrada en la privacidad. Cada proyecto de embajador opera de forma independiente mientras contribuye al ecosistema más amplio de Zcash.",
+      "mapTitle": "Mapa de Embajadores de Zcash",
+      "mapSubtitle": "Promoción de Zcash impulsada por la comunidad en {count} comunidades activas.",
+      "globeView": "Vista de globo",
+      "mapView": "Vista de mapa",
+      "loadError": "No se pudieron cargar los datos de los embajadores.",
+      "projects": {
+        "Zcash Korea": "Comunidad y promoción de Zcash en Corea",
+        "Zcash Russia": "Comunidad y promoción de Zcash en Rusia",
+        "Zcash Arabia": "Comunidad y promoción de Zcash en la región arabohablante",
+        "Zcash Brazil": "Comunidad y promoción de Zcash en Brasil",
+        "Zcash Ghana": "Comunidad y promoción de Zcash en Ghana",
+        "Zcash Español": "Comunidad y promoción de Zcash en la región hispanohablante",
+        "Zcash Nigeria": "Comunidad y promoción de Zcash en Nigeria",
+        "Zcash Ukraine": "Comunidad y promoción de Zcash en Ucrania",
+        "Zcash Turkey": "Comunidad y promoción de Zcash en Turquía",
+        "Zcash India": "Comunidad y promoción de Zcash en India",
+        "Zcash East Africa": "Zcash East Africa está dedicada a promover la privacidad digital, la libertad financiera y la innovación blockchain mediante educación, eventos comunitarios, talleres técnicos y desarrollo del ecosistema. La iniciativa busca crear un centro regional donde las personas puedan explorar tecnologías que mejoran la privacidad, aprender sobre pruebas de conocimiento cero y participar en la creciente red global de Zcash.",
+        "Zcash South Africa": "Privacidad🛡️. Libertad. Comunidad de Zcash 🦓 para la región de Sudáfrica"
+      },
+      "globeTitle": "Globo Embajador de Zcash"
     }
   },
   "developers": {
     "quickStart": {
       "tableOfContents": "Tabla de contenidos",
-      "toc1": "1. Instalando Zebrad",
-      "toc2": "2. Ejecutando zebrad",
-      "toc3": "3. Conectando con lightwalletd",
-      "installingHeading": "1. Instalando Zebrad",
-      "runningHeading": "2. Ejecutando zebrad",
-      "connectingHeading": "3. Conectando con lightwalletd",
+      "toc1": "1. Instalar Zebrad",
+      "toc2": "2. Ejecutar zebrad",
+      "toc3": "3. Conectarse con lightwalletd",
+      "installingHeading": "1. Instalar Zebrad",
+      "runningHeading": "2. Ejecutar zebrad",
+      "connectingHeading": "3. Conectarse con lightwalletd",
       "systemRequirements": "Requisitos del sistema",
       "linux": "Linux",
       "ubuntuDebian": "Ubuntu/Debian:",
@@ -495,8 +1109,75 @@
       "windows": "Windows",
       "importantNotes": "Notas importantes",
       "nextSteps": "Siguientes pasos",
-      "readyToBuild": "¿Listo para compilar?",
+      "readyToBuild": "¿Listo para construir?",
       "needHelp": "¿Necesitas ayuda?"
     }
+  },
+  "components": {
+    "newsletter": {
+      "title": "Shielded Newsletter de ZecHub",
+      "subtitle": "Suscríbete a las actualizaciones introduciendo tu Unified Address.",
+      "feeLine": "Se requiere una tarifa única de suscripción de 0.05 ZEC",
+      "feeLineRest": "para cubrir los costos de transacción.",
+      "categoryEcosystem": "Noticias del ecosistema",
+      "categoryStats": "Estadísticas de la red",
+      "addressPlaceholder": "Introduce tu Unified Address de Zcash",
+      "invalidAddressInline": "Dirección no válida. Debe comenzar con \"u\" o \"z\".",
+      "invalidAddressAlert": "Introduce una dirección blindada válida de Zcash.",
+      "generating": "Generando...",
+      "subscribe": "Suscribirse",
+      "doNotEditMemo": "No edites el memo generado en tu cartera.",
+      "downloadQR": "Descargar código QR",
+      "box1Title": "¿Qué es este servicio?",
+      "box1Desc": "Recibe noticias del ecosistema de Zcash y estadísticas de la red directamente a través de la red de Zcash usando memos cifrados.",
+      "box2Title": "Cómo funciona",
+      "box2DescPre": "Enviamos boletines una vez por semana a varios destinatarios en una sola transacción blindada usando el método RPC",
+      "box2DescPost": ".",
+      "box3Title": "Cómo recibir actualizaciones",
+      "box3DescPre": "Introduce tu",
+      "box3DescBold": "dirección blindada de Zcash",
+      "box3DescPost": "Actualizaciones semanales entregadas on-chain. No se requiere correo electrónico.",
+      "unsubscribe": "Cancelar suscripción",
+      "cancelUnsubscribe": "Cancelar la cancelación",
+      "unsubscribePlaceholder": "Introduce tu Unified Address para cancelar la suscripción",
+      "confirmUnsubscribe": "Confirmar cancelación de suscripción"
+    },
+    "aiAssistant": {
+      "copyResponse": "Copiar respuesta",
+      "copied": "Copiado",
+      "copy": "Copiar",
+      "botName": "ZecHub AI",
+      "thinking": "ZecHub AI está pensando...",
+      "privacyNotice": "Las preguntas son procesadas por OpenAI. Nunca compartas frases semilla, claves privadas ni direcciones de cartera.",
+      "clearConversation": "Borrar conversación",
+      "clear": "Borrar",
+      "getStarted": "Empieza con una pregunta:",
+      "sensitiveWarning": "Parece que esto contiene datos sensibles de una cartera. Nunca compartas claves privadas ni frases semilla con ningún servicio.",
+      "inputPlaceholder": "Haz una pregunta... (Enter para enviar, Shift+Enter para nueva línea)",
+      "sendMessage": "Enviar mensaje",
+      "enterHint": "Enter para enviar, Shift+Enter para una nueva línea",
+      "messageTooLong": "Mensaje demasiado largo (máx. {max} caracteres).",
+      "unknownError": "Error desconocido.",
+      "serverError": "Error del servidor {status}",
+      "somethingWrong": "Algo salió mal.",
+      "quickQuestions": [
+        "¿Qué es Zcash?",
+        "¿Qué es ZecHub?",
+        "¿Cómo funcionan las transacciones blindadas?",
+        "¿Qué carteras son compatibles con Zcash?",
+        "¿Qué es una z-address frente a una t-address?",
+        "¿Cómo empiezo con ZEC?",
+        "¿Qué es el fondo de desarrollo de Zcash?",
+        "¿Qué son los zk-SNARKs?"
+      ]
+    }
+  },
+  "sideMenu": {
+    "navigation": "Navegación",
+    "explore": "Explorar"
+  },
+  "meta": {
+    "title": "Wiki de ZecHub",
+    "description": "Un centro educativo de código abierto para Zcash"
   }
 }
