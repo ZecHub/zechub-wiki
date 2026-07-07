@@ -6687,10 +6687,10 @@
           "title": " Retroactive Compensation for Hosting the Zcash Developer Workshop",
           "votes": {
             "no": "0",
-            "yes": "14",
+            "yes": "17",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
           "threshold": {
             "threshold_quorum": {
@@ -6711,7 +6711,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-07-01T21:43:46.696Z"
+        "createdAt": "2026-07-01T21:43:46.696Z",
+        "completedAt": "2026-07-06T22:12:57.000Z",
+        "executedAt": "2026-07-06T22:12:57.000Z"
       }
     ]
   },
