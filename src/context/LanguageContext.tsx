@@ -55,7 +55,7 @@ const STORAGE_KEY = 'zechub_language';
 // language, so the widget would re-translate curated text and corrupt proper
 // nouns (e.g. "Paradigm" -> "Paradigma"). GT stays only as a fallback for
 // locales WITHOUT curated content.
-const CURATED_LOCALES = new Set<string>(['it', 'fr', 'es', 'de', 'pt', 'ar', 'zh', 'hi', 'ru', 'ja', 'ko', 'tr', 'uk']);
+const CURATED_LOCALES = new Set<string>(['it', 'fr', 'es', 'de', 'pt', 'ar', 'zh', 'hi', 'ru', 'ja', 'ko', 'tr', 'uk', 'sw', 'yo', 'ig', 'ak', 'ee']);
 const GOOGLE_TRANSLATE_SCRIPT_ID = 'google-translate-script';
 const GOOGLE_TRANSLATE_INCLUDED_LANGUAGES = LANGUAGES.map((l) => l.googleCode).join(',');
 

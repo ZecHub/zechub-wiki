@@ -1,0 +1,1178 @@
+{
+  "menuLabels": {
+    "Accept Payments": "Kubali Malipo",
+    "Akash Network Zebra": "Akash Mtandao Zebra",
+    "Arborist Calls": "Arborist Calls",
+    "Avalanche RedBridge": "Avalanche RedBridge",
+    "BTCPayServer Zcash Plugin": "BTCPayServer Zcash Plugin",
+    "Blockchain Explorers": "Wachunguzi wa blockchain",
+    "Brand": "Brand",
+    "Brave Wallet": "Mkoba Jasiri",
+    "Buying ZEC": "Kununua ZEC",
+    "Community Blogs": "Blogu za Jumuiya",
+    "Community Forum": "Mkutano wa Jumuiya",
+    "Community Links": "Viungo vya Jumuiya",
+    "Community Projects": "Miradi ya Jumuiya",
+    "Contribute": "Kuchangia",
+    "Cypherpunk Zero NFT": "Cypherpunk Zero NFT",
+    "DAO": "DAO",
+    "Developers": "Watengenezaji",
+    "Discord": "Kutoelewana",
+    "Donations": "Michango",
+    "Electric Coin Company": "Electric Coin Company",
+    "Exchanges": "Mabadilishano",
+    "Extras": "Nyongeza",
+    "Faucets": "Mabomba",
+    "Financial Privacy Foundation": "Msingi wa Faragha ya Kifedha",
+    "Free2z Live": "Free2z Kuishi",
+    "Freelance Privacy": "Faragha ya Freelance",
+    "Github": "Github",
+    "Governance": "Utawala",
+    "Guides": "Miongozo",
+    "How to Participate": "Jinsi ya Kushiriki",
+    "Journalist Privacy": "Faragha ya Mwandishi wa Habari",
+    "Keeping Records": "Kuweka Rekodi",
+    "Keystone Zashi": "Keystone Zashi",
+    "Maya Protocol": "Itifaki ya Maya",
+    "Memos": "Memo",
+    "Metamask Snap": "Metamask Snap",
+    "Mobile Top Ups": "Vifaa vya Kuongezea Vitu Vinavyoweza Kutumiwa",
+    "Newsletter": "Jarida la Habari",
+    "Nym VPN": "Nym VPN",
+    "Payment Processors": "Processors Malipo",
+    "Payment Request URIs": "Maombi ya malipo URI",
+    "Podcast": "Podcast",
+    "Private Community Treasury": "Private Jumuiya ya Hazina",
+    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 Full Node",
+    "Raspberry pi 4 Zebra Node": "Raspberry pi 4 Zebra Node",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+    "Recovering Funds": "Kurudisha Fedha",
+    "Research": "Utafiti",
+    "Send Money Privately": "Tuma Fedha Kibinafsi",
+    "Shielded Labs": "Maabara Shielded",
+    "Shielded Pools": "Vidimbwi Vilivyolindwa",
+    "Sitemap": "Ramani ya Tovuti",
+    "Start Here": "Anza Hapa",
+    "Store": "Hifadhi",
+    "Testnet": "Mtihani wa wavu",
+    "Tools": "Vifaa",
+    "Transactions": "Shughuli",
+    "Transparent Exchange Addresses": "Anwani za Kubadilishana za Uwazi",
+    "Tutorials": "Mafunzo",
+    "Twitter": "Twitter",
+    "Use Cases": "Matumizi ya kesi",
+    "Using ZEC Privately": "Kutumia ZEC binafsi",
+    "Using ZEC in DeFi": "Kutumia ZEC katika DeFi",
+    "Using Zcash": "Kutumia Zcash",
+    "Visual Identity": "Kitambulisho cha Visual",
+    "Visualizer": "Mwonekano",
+    "Visualizing Zcash Addresses": "Kuona Anwani za Zcash",
+    "Visualizing the Zcash Network": "Kuona Network Zcash",
+    "Wallets": "Mkoba",
+    "Youtube": "Youtube",
+    "Ywallet FROST Demo": "Ywallet FROST Demo",
+    "ZCAP": "ZCAP",
+    "ZIPs & Grants": "ZIPs na misaada",
+    "ZKAV Club": "Klabu ya ZKAV",
+    "ZODL": "ZODL",
+    "Zcash Community": "Jumuiya ya Zcash",
+    "Zcash Community Grants": "Zcash Msaada wa Jumuiya",
+    "Zcash Devtool": "Zcash Devtool",
+    "Zcash Ecosystem Security": "Zcash Ecosystem Usalama",
+    "Zcash Foundation": "Zcash Foundation",
+    "Zcash Global Ambassadors": "Zcash Global Mabalozi",
+    "Zcash Governance": "Utawala wa Zcash",
+    "Zcash Improvement Proposals": "Mapendekezo ya Uboreshaji wa Zcash",
+    "Zcash Media": "Zcash Media",
+    "Zcash Organizations": "Mashirika ya Zcash",
+    "Zcash Podcasts": "Zcash Podcasts",
+    "Zcon Archive": "Hifadhi ya Zcon",
+    "Zcon Vozes Archive": "Zcon sauti Archive",
+    "Zenith Installation": "Zenith Ufungaji",
+    "Zero-Knowledge vs Decoys": "Maarifa-Zero dhidi ya Decoys",
+    "Zgo Payment Processor": "Zgo Malipo Processor",
+    "Zingo Labs": "Maabara ya Zingo",
+    "Zingolib and Zaino Tutorial": "Zingolib na Zaino Tutorial",
+    "Zkool Multisig": "Zkool Multisig",
+    "Custodial Exchanges": "Mabadilishano ya Walinzi",
+    "Zcash Use Cases": "Zcash Matumizi ya kesi",
+    "Zcash Tech": "Zcash Tech",
+    "Privacy Tools": "Vifaa vya Faragha",
+    "Zcash Social Media": "Zcash Mitandao ya Jamii",
+    "Glossary & FAQ's": "Glossary & FAQ ya"
+  },
+  "exploreMenu": {
+    "Full Explore": "Kuchunguza Kamili",
+    "Start Here": "Anza Hapa",
+    "Tutorials": "Mafunzo",
+    "Using Zcash": "Kutumia Zcash",
+    "Guides": "Miongozo",
+    "Zcash Tech": "Zcash Tech",
+    "Zcash Organizations": "Mashirika ya Zcash",
+    "Zcash Community": "Jumuiya ya Zcash",
+    "ZKAV Club": "Klabu ya ZKAV",
+    "Privacy Tools": "Vifaa vya Faragha",
+    "Research": "Utafiti",
+    "Glossary & FAQs": "Glossary & FAQs",
+    "Contribute": "Kuchangia",
+    "For Forks & Maintainers": "Kwa Forks & Maintenance",
+    "Fork zechub-wiki": "Fork zechub-wiki",
+    "Fork zechub": "Zechub ya uma"
+  },
+  "common": {
+    "home": "Nyumbani",
+    "about": "Kuhusu",
+    "contact": "Mawasiliano",
+    "language": "Lugha",
+    "clickToExplore": "Bonyeza ili kuchunguza →",
+    "learnMore": "Jifunze Zaidi",
+    "getStarted": "Anza",
+    "readMore": "Soma Zaidi",
+    "search": "Tafuta",
+    "close": "Karibu",
+    "searchModalTitle": "Tafuta ZecHub Wiki",
+    "searchHint": "Tafuta kwa jina la ukurasa, mada, au njia. Tumia funguo za mshale kuchagua, Enter kufungua.",
+    "searchNoResults": "Hakuna kurasa zinazofanana",
+    "searchTryDifferent": "Jaribu maswali mafupi, maneno yanayofanana, au maneno tofauti.",
+    "searchSuggested": "Kurasa zilizopendekezwa",
+    "searchResultsLabel": "Matokeo"
+  },
+  "navigation": {
+    "wallets": "Mkoba",
+    "guides": "Miongozo",
+    "tutorials": "Mafunzo",
+    "governance": "Utawala",
+    "visualizer": "Mwonekano",
+    "dao": "DAO",
+    "newsletter": "Jarida la Habari",
+    "donate": "Toa Msaada",
+    "explore": "Kuchunguza",
+    "developers": "Watengenezaji",
+    "community": "Jumuiya ya",
+    "contribute": "Kuchangia",
+    "dashboard": "Dashboard",
+    "more": "Zaidi",
+    "usingZcash": {
+      "label": "Tumia Zcash",
+      "buyingZec": "Kununua ZEC",
+      "faucets": "Mabomba",
+      "wallets": "Mkoba",
+      "metamaskSnap": "Metamask Snap",
+      "exchanges": "Mabadilishano",
+      "blockExplorers": "Block Explorers",
+      "shieldedPools": "Vidimbwi Vilivyolindwa",
+      "transparentExchangeAddresses": "Anwani za Kubadilishana za Uwazi",
+      "transactions": "Shughuli",
+      "memos": "Memo",
+      "mobileTopUps": "Vifaa vya Kuongezea Vitu Vinavyoweza Kutumiwa",
+      "paymentRequestUris": "Maombi ya malipo URI",
+      "paymentProcessors": "Processors Malipo",
+      "recoveringFunds": "Kurudisha Fedha",
+      "testnet": "Mtihani wa wavu",
+      "tools": "Vifaa",
+      "useCases": "Matumizi ya kesi",
+      "useCasesSubmenu": {
+        "startHere": "Anza Hapa",
+        "acceptPayments": "Kubali Malipo",
+        "freelancePrivacy": "Faragha ya Freelance",
+        "journalistPrivacy": "Faragha ya Mwandishi wa Habari",
+        "keepingRecords": "Kuweka Rekodi",
+        "privateCommunityTreasury": "Private Jumuiya ya Hazina",
+        "donations": "Michango",
+        "sendMoneyPrivately": "Tuma Fedha Kibinafsi"
+      }
+    },
+    "zcashCommunity": {
+      "label": "Mfumo wa Ikolojia",
+      "arboristCalls": "Arborist Calls",
+      "communityBlogs": "Blogu za Jumuiya",
+      "communityLinks": "Viungo vya Jumuiya",
+      "communityForum": "Mkutano wa Jumuiya",
+      "communityProjects": "Miradi ya Jumuiya",
+      "globalAmbassadors": "Zcash Global Mabalozi",
+      "zcashMedia": "Zcash Media",
+      "zcap": "ZCAP",
+      "zcashPodcasts": "Zcash Podcasts",
+      "ecosystemSecurity": "Zcash Ecosystem Usalama",
+      "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
+      "zconArchive": "Hifadhi ya Zcon"
+    },
+    "organizations": {
+      "label": "Mashirika",
+      "electricCoinCompany": "Electric Coin Company",
+      "zcashFoundation": "Zcash Foundation",
+      "communityGrants": "Zcash Msaada wa Jumuiya",
+      "financialPrivacyFoundation": "Msingi wa Faragha ya Kifedha",
+      "shieldedLabs": "Maabara Shielded",
+      "zingoLabs": "Maabara ya Zingo",
+      "brand": "Brand",
+      "zkavClub": "Klabu ya ZKAV"
+    },
+    "guidesSubmenu": {
+      "zgoPaymentProcessor": "Zgo Malipo Processor",
+      "free2zLive": "Free2z Kuishi",
+      "keystoneZashi": "Keystone Zashi",
+      "mayaProtocol": "Itifaki ya Maya",
+      "nymVpn": "Nym VPN",
+      "usingZecInDefi": "Kutumia ZEC katika DeFi",
+      "usingZecPrivately": "Kutumia ZEC binafsi",
+      "raspberryPiZcashdNode": "Raspberry Pi Zcashd Node",
+      "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+      "raspberryPiZebraNode": "Raspberry Pi Zebra Node",
+      "akashNetwork": "Mtandao wa Akash",
+      "avalancheRedbridge": "Avalanche RedBridge",
+      "zkoolMultisig": "Zkool Multisig",
+      "ywalletFrostDemo": "Ywallet FROST Demo",
+      "blockchainExplorers": "Wachunguzi wa blockchain",
+      "braveWallet": "Mkoba Jasiri",
+      "btcPayServerPlugin": "BTCPayServer Plugin",
+      "visualizingZcashNetwork": "Kuona Network Zcash",
+      "visualizingZcashAddresses": "Kuona Anwani za Zcash",
+      "zcashDevtool": "Zcash Devtool",
+      "zcashImprovementProposals": "Mapendekezo ya Uboreshaji wa Zcash",
+      "zingolibAndZainoTutorial": "Zingolib na Zaino Tutorial",
+      "zenithInstallation": "Zenith Ufungaji",
+      "zeroKnowledgeVsDecoys": "Zero Ujuzi dhidi ya Decoy Systems"
+    },
+    "overview": "Maelezo ya jumla",
+    "shop": "Duka"
+  },
+  "home": {
+    "heroTitle": "Karibu ZecHub",
+    "heroSubtitle": "chanzo wazi elimu kitovu kwa ajili ya Zcash",
+    "heroDescription": "Jifunze kuhusu teknolojia ya faragha ya Zcash, chunguza vielelezo vya maingiliano, na uchangie mfumo wa ikolojia",
+    "description": "ZecHub ni kitovu cha elimu kinachoendeshwa na jamii kwa cryptocurrency ya Zcash (ZEC). Zcash ni sarafu ya dijiti inayotoa malipo ya upinzani wa udhibiti, salama na ya kibinafsi. Zcash Blockchain hutumia zk-snarks za hali ya juu 'zinazoweza kuthibitishwa' ambazo hazihitaji Usanidi wa Kuaminika kufuatia uboreshaji wa mtandao wa NU5 mnamo 2022.",
+    "featuredSection": "Rasilimali Zilizoangaziwa",
+    "latestUpdates": "Mwisho Updates",
+    "getInvolved": "Shiriki",
+    "exploreEcosystem": "Kuchunguza Mazingira",
+    "exploreZcash": "Kuchunguza Zcash",
+    "cards": {
+      "startHere": {
+        "title": "Anza Hapa",
+        "content": "Kupata nje nini Zcash ni na ZEC matumizi ya kesi"
+      },
+      "pickWallet": {
+        "title": "Chagua Mkoba",
+        "content": "Wallets kuruhusu kupokea na kutumia Zcash binafsi. Baadhi pia kusaidia kumbukumbu encrypted"
+      },
+      "resources": {
+        "title": "Zcash Rasilimali",
+        "content": "Hapa ni viongozi kwamba kusaidia watumiaji kuelewa Zcash Full Nodes, zk-SNARKs na zaidi"
+      }
+    },
+    "sections": {
+      "whatIsZcash": {
+        "title": "Zcash ni nini?",
+        "description": "It is an open-source, blockchain ledger that features a sophisticated zero-knowledge proving system. It specializes in offering a higher standard of privacy through its proving system preserving confidentiality of transaction metadata. At its core, Zcash is private data ownership that is permissionlessly transferred when transactions are made.",
+        "mainLink": "Zcash ni nini?",
+        "techLink": "Teknolojia ya Zcash"
+      },
+      "zcashMe": {
+        "title": "Zcash.me",
+        "description": "Zcash.Me ni orodha ya umma ya watumiaji wa Zcash inayoonyesha ujumbe wa faragha, bodi za viongozi, na watumizi waliothibitishwa. Unganisha, chunguza, na uingiliane na jamii ya Zcash .",
+        "link": "Tembelea Zcash.Me"
+      },
+      "globalAmbassadors": {
+        "title": "Zcash Global Mabalozi",
+        "description": "Zcash Global Ambassadors ni viongozi wa jamii waliojitolea kukuza kupitishwa na elimu ya cryptocurrency inayolenga faragha ulimwenguni kote. Kila mradi wa balozi unazingatia kujenga ufahamu na ushiriki ndani ya mikoa yao.",
+        "link": "Kutana na Mabalozi"
+      },
+      "newsletter": {
+        "title": "Shielded jarida",
+        "description": "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!",
+        "link": "Jiandikishe"
+      },
+      "free2z": {
+        "title": "Free2Z",
+        "description": "Free2Z ni jukwaa la kijamii powered by Zcash. Pamoja na peer-to-peer michango, mapato ya kugawana mpango, zana za ubunifu wa juu na mkubwa online jamii ya kimataifa.",
+        "link": "Free2Z"
+      },
+      "payWithZcash": {
+        "title": "Kulipa kwa Zcash",
+        "description": "Tovuti hii ni jibu kwa swali: Wapi naweza kulipa na Zcash? directory ni huru kutumia. vitu waliotajwa ni kwa ajili ya habari tu, na si endorsements ya aina yoyote. kufurahia!",
+        "mainLink": "kulipa na z.cash",
+        "mapLink": "SPEDN"
+      }
+    },
+    "explore": {
+      "startHere": "Anza_Hapa",
+      "tutorials": "Mafunzo",
+      "usingZcash": "Using_Zcash",
+      "guides": "Miongozo",
+      "zcashTech": "Zcash_Tech",
+      "organizations": "Zcash_Organisations",
+      "community": "Zcash_Community",
+      "zkavClub": "ZKAV_Club",
+      "privacyTools": "Faragha_Zana",
+      "research": "Utafiti",
+      "glossary": "Glossary_and_FAQs",
+      "contribute": "Kuchangia"
+    }
+  },
+  "footer": {
+    "description": "chanzo wazi elimu kitovu kwa ajili ya Zcash",
+    "quickLinks": "Viungo vya Haraka",
+    "resources": "Rasilimali",
+    "community": "Jumuiya ya",
+    "followUs": "Tufuate",
+    "allRightsReserved": "Haki zote zimehifadhiwa",
+    "privacyPolicy": "Sera ya Faragha",
+    "termsOfService": "Masharti ya Huduma"
+  },
+  "visualizer": {
+    "title": "Zcash visualizers",
+    "description": "Interactive vifaa vya elimu kuelewa Zcash faragha teknolojia, miundombinu, na zero-ujuzi uthibitisho",
+    "playAll": "Kucheza Visualizers zote",
+    "basic": "Msingi",
+    "basicDescription": "Dhana za msingi na sifa muhimu za Zcash",
+    "advanced": "Maendeleo",
+    "advancedDescription": "Deep kiufundi dives katika cryptography, makubaliano, na miundombinu",
+    "contributors": "Wachangiaji",
+    "contributorsDescription": "Njia za kuchangia mfumo wa ikolojia wa Zcash na kupata tuzo",
+    "beginnerQuiz": "Mwanzo Quiz",
+    "intermediateQuiz": "Quiz ya Kati",
+    "contributorsQuiz": "Washiriki Quiz",
+    "autoPlayNote": "Kila vielelezo anaendesha moja kwa moja. Matumizi udhibiti wa navigate au pause.",
+    "wallets": {
+      "title": "Utangulizi kwa Zcash Wallets",
+      "description": "Kutoa utendaji Shielded"
+    },
+    "pools": {
+      "title": "Thamani Pools & Anwani Aina",
+      "description": "Kuchunguza hifadhi ya faragha ya Zcash na aina za anwani"
+    },
+    "payWith": {
+      "title": "Kulipa kwa Zcash",
+      "description": "Kugundua wapi na jinsi ya kutumia ZEC kwa ajili ya malipo binafsi"
+    },
+    "dex": {
+      "title": "Kubadilishana Zcash (DEX)",
+      "description": "Kibali, upinzani-censorship upatikanaji wa ZEC kutumia kubadilishana madaraka"
+    },
+    "hashFunction": {
+      "title": "Kazi za Hash",
+      "description": "Ni nini kazi Hash?"
+    },
+    "blockchain": {
+      "title": "Zcash blockchain misingi",
+      "description": "Kuelewa Zcash blockchain Foundation"
+    },
+    "zkproof": {
+      "title": "zk-SNARKs",
+      "description": "Maonyesho ya maingiliano ya shughuli za ulinzi"
+    },
+    "keys": {
+      "title": "Zcash funguo",
+      "description": "Kuelewa Zcash Keys"
+    },
+    "infrastructure": {
+      "title": "Zcash Miundombinu",
+      "description": "Jinsi vipengele Zcash kazi pamoja"
+    },
+    "consensus": {
+      "title": "Makubaliano",
+      "description": "Jinsi ya mamia ya nodes kukubaliana juu ya hali ya mnyororo?"
+    },
+    "miningHalo": {
+      "title": "Zcash Madini",
+      "description": "Kuelewa Equihash madini na recursive zero-maarifa uthibitisho"
+    },
+    "privacyUseCases": {
+      "title": "Kesi za Matumizi ya Faragha",
+      "description": "Matumizi halisi ya teknolojia ya faragha kwenye Zcash"
+    },
+    "governance": {
+      "title": "Utawala & Dev Mfuko",
+      "description": "Maendeleo yanayoendeshwa na jamii na maamuzi yaliyotengwa"
+    },
+    "bounties": {
+      "title": "ZecHub Bounties",
+      "description": "Kuchangia ZecHub na kupata ZEC"
+    },
+    "daoProposal": {
+      "title": "Mapendekezo DAO",
+      "description": "Hatua kwa hatua mwongozo wa kujenga ZecHub DAO utawala pendekezo"
+    },
+    "communityGrants": {
+      "title": "Zcash Msaada wa Jumuiya",
+      "description": "Fedha kwa ajili ya miradi ya mazingira Zcash"
+    },
+    "coinholderGrants": {
+      "title": "Coinholder Kuelekezwa misaada",
+      "description": "Ufadhili wa kurudi nyuma ulioelekezwa na wamiliki wa ZEC"
+    },
+    "openSource": {
+      "title": "Repositories Chanzo cha wazi",
+      "description": "Kushiriki katika miradi ya chanzo wazi Zcash"
+    }
+  },
+  "wallets": {
+    "title": "Zcash Wallets",
+    "description": "Chagua mkoba unaofaa mahitaji yako",
+    "desktopWallets": "Wallets Desktop",
+    "mobileWallets": "Wallets za Mkono",
+    "hardwareWallets": "Wallets Vifaa",
+    "webWallets": "Pochi za Mtandaoni",
+    "features": "Sifa",
+    "download": "Kupakua",
+    "visitWebsite": "Tembelea tovuti",
+    "filters": "Vichujio",
+    "showNavigation": "Onyesha Navigation",
+    "close": "Karibu",
+    "savedReview": "Tumehifadhi maoni yako!",
+    "errorGettingLikes": "Kosa kupata anapenda:",
+    "errorUpdatingRating": "Kosa updating rating:"
+  },
+  "guides": {
+    "title": "Miongozo",
+    "description": "Mwongozo wa hatua kwa hatua kwa kutumia Zcash",
+    "allGuides": "Viongozi Wote",
+    "beginner": "Mwanzoni",
+    "intermediate": "Kati",
+    "advanced": "Maendeleo"
+  },
+  "tutorials": {
+    "title": "Mafunzo",
+    "description": "Kujifunza kwa kufanya na mikono juu ya tutorials",
+    "watchVideo": "Tazama Video",
+    "readTutorial": "Soma mafunzo",
+    "duration": "Kipindi"
+  },
+  "dao": {
+    "title": "ZecHub DAO",
+    "description": "Utawala madaraka kwa ajili ya ZecHub",
+    "headerTitle": "ZecHub DAO & Utawala",
+    "headerDescription": "Jukwaa la elimu ya chanzo wazi ambapo washiriki wa jamii hushirikiana katika kuunda, kuthibitisha, na kukuza yaliyomo ambayo inasaidia mfumo wa ikolojia wa Zcash",
+    "beliefs": [
+      "Faragha ni haki ya binadamu",
+      "Elimu inapaswa kuwa chanzo wazi na kupatikana duniani kote",
+      "Wanachama wa jumuiya wana haki ya kupata ZEC binafsi",
+      "Ushirikiano wa kimataifa huchochea uvumbuzi"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "Kwanza Zcash Ecosystem DAO",
+        "description": "ZecHub ni uongozi wa utawala wa kujitegemea katika jamii ya Zcash, na fedha zilizofanyika kimsingi ndani ya bwawa la ulinzi wa Zcash kwa faragha ya juu."
+      },
+      {
+        "icon": "🌍",
+        "title": "Ushirikiano Ulimwenguni Pote",
+        "description": "Mabalozi wa Kimataifa, wanachama wa Misaada ya Jamii, na wataalam wa jamii wanaungana kuongoza mwelekeo wa elimu ya Zcash na Teknolojia ya Faragha."
+      },
+      {
+        "icon": "🔄",
+        "title": "SubDAO Mfumo",
+        "description": "Kikundi chochote kinaweza kuunda SubDAOs kuunda miradi, kuunda mapendekezo, au kuomba Fidia ya Retroactive kupitia moduli ya DAO DAO."
+      }
+    ],
+    "governanceDescription": "Mapendekezo yote ya DAO ni ya umma na ya uwazi. Mtu yeyote anaweza kuunda pendekezo la kupiga kura. Kwa msaada wa uwazi wa jamii, ZecHub DAO inachapisha mapendekezo ya utawala wote katika mada ya Usimamizi wa Jamii ya Zcash Zec Hub.",
+    "membersTitle": "Wanachama wa DAO",
+    "proposals": "Mapendekezo",
+    "vote": "Kupiga kura",
+    "createProposal": "Kuunda Pendekezo",
+    "activeProposals": "Mapendekezo Active",
+    "pastProposals": "Mapendekezo ya Zamani"
+  },
+  "newsletter": {
+    "title": "Jarida la Habari",
+    "description": "Kukaa updated na karibuni Zcash habari",
+    "subscribe": "Jiandikishe",
+    "emailPlaceholder": "Ingiza barua pepe yako",
+    "subscribeButton": "Jiandikishe Sasa",
+    "latestIssue": "Toleo la Mwisho",
+    "archive": "Hifadhi"
+  },
+  "pages": {
+    "wallets": {
+      "title": "Wallets. ZecHub",
+      "noData": "Hakuna Data au Faili Mbaya",
+      "bannerAlt": "bendera ya wiki"
+    },
+    "dex": {
+      "title": "Kubadilishana Madaraka",
+      "subtitle": "ZecHub haina endorse yoyote maalum Decentralized Exchange huduma, tafadhali kufanya utafiti wako mwenyewe.",
+      "centralised": "Kituo cha ubadilishaji cha kati",
+      "centralizedTitle": "Kati Swap Jukwaa Orodha",
+      "custodial": "Mabadilishano ya Walinzi",
+      "exchanges": {
+        "Near-intents": "Fast kubadilishana kwa msaada wa NEAR. Kufanya amana, kuuza, kubadilisha ikiwa ni pamoja na maarufu TRUMP, MELANIA, BERA na memes nyingine",
+        "Nativeswap": "Native Cross-Chain Trading Bila Vizuizi kupitia Maya Protocol. Biashara moja kwa moja kwenye mnyororo bila madaraja au ishara zilizopambwa - furahiya ada ya chini ya tasnia na udhibiti kamili wa mali.",
+        "Firo DEX": "Trustless madaraka swaps kutumia atomic swaps na FiroDEX!.",
+        "LeoDEX": "Kiunganishi cha ubadilishaji wa crypto kwa Maya Protocol, Thorchain, ChainFlip na Rango. BTC, ETH, RUNE, DASH, LTC & Zaidi",
+        "Bison Wallet": "Biashara crypto peer-to-peer. Hakuna ada ya biashara. Hakuna KYC.",
+        "THORSwap": "Msalaba-chain DEX powered by THORChain, kuwezesha asili swaps kati ya Bitcoin, Ethereum, na mali nyingine kubwa bila wrapped ishara.",
+        "Router Protocol": "Msalaba-chain usafirishaji wa fedha safu ambayo inaruhusu seamless mali na data uhamisho kati ya blockchains nyingi.",
+        "Peer": "Decentralized peer-to-peer kubadilishana kuwezesha moja kwa moja crypto shughuli na kuimarishwa faragha na udhibiti wa mtumiaji.",
+        "RocketX": "Hybrid DEX aggregator kuwezesha msalaba-chain swaps katika blockchains nyingi na routing bora na viwango vya ushindani.",
+        "THORChain": "Decentralized Layer 1 msalaba-chain kubadilishana. Swap mali asili kama ZEC, BTC, na ETH moja kwa moja bila madaraja, wrapped ishara, au waamuzi.",
+        "Loofta": "Kutuma na kupokea crypto binafsi katika minyororo, na Zcash kama safu ya makazi kwa ajili ya kuimarishwa faragha ya kifedha."
+      }
+    },
+    "usingZcash": {
+      "blockchainExplorers": {
+        "title": "Wachunguzi wa blockchain"
+      }
+    },
+    "dashboard": {
+      "title": "Dashibodi. ZecHub",
+      "charts": {
+        "headerTitle": "Dashibodi ((s)",
+        "headerSubtitle": "Kuchambua Zcash mtandao metrics na mwenendo",
+        "shieldedNetworks": "Mitandao iliyohifadhiwa",
+        "currentYoutubeChannel": "Sasa YouTube Channel",
+        "totalVideos": "Jumla ya Video",
+        "totalViews": "Jumla Views",
+        "mostViewed": "Maonyesho Yanayotazamwa Zaidi",
+        "viewsSuffix": "maoni",
+        "searchPlaceholder": "Tafuta video...",
+        "top15ByViews": "Juu 15 kwa Views",
+        "latest15Videos": "Video 15 za Hivi Karibuni",
+        "sortByNewest": " Panga na Newest",
+        "sortByViews": "↑ Kupanga kwa Maoni",
+        "top15VideosByViews": "Video 15 za Juu kwa Maoni",
+        "latest15VideosSortedByViews": "Video 15 za hivi karibuni (Zilizowekwa kwa Maoni)",
+        "zcashMetrics": {
+          "title": "Zcash Metrics",
+          "loadError": "Imeshindwa kupakia Zcash Metrics",
+          "notAvailable": "N/A",
+          "marketCap": "Kiwango cha soko",
+          "circulation": "Mzunguko",
+          "marketPriceUsd": "Bei ya soko (USD)",
+          "marketPriceBtc": "Bei ya soko (BTC)",
+          "blocks": "Vitalu",
+          "transactions24h": "24h shughuli",
+          "shieldedTx24h": "Shielded TX (24h)",
+          "saplingAbbrev": "Sap",
+          "orchardAbbrev": "Mnyama-mwitu"
+        },
+        "zcashChart": {
+          "title": "Chati za Uchanganuzi",
+          "supplyTypeAriaLabel": "Aina ya usambazaji",
+          "supplyOptions": {
+            "shielded": "Kuhifadhiwa",
+            "transparent": "Uwazi",
+            "totalSupply": "Jumla ya Ugavi"
+          }
+        },
+        "zcashShieldedTabs": {
+          "supply": "Ugavi",
+          "difficulty": "Ugumu",
+          "issuance": "Utoaji",
+          "lockbox": "Kikasha cha kufuli",
+          "flows": "Mito",
+          "nodeCount": "Idadi ya Node",
+          "txSummary": "Muhtasari wa TX",
+          "privacySet": "Faragha Seti",
+          "shieldedStats": "Takwimu za Kulindwa",
+          "blockFees": "Gharama za Kikundi",
+          "networkSolps": "Mtandao Solps",
+          "miningPools": "Vidimbwi vya Kuchimba Madini",
+          "halvingMeter": "Kupunguza Nusu Mita"
+        },
+        "miningPoolsChart": {
+          "title": "Madini Pool Utawala",
+          "loadError": "Imeshindwa kupakia Mining Pools",
+          "rangeLabel": "Umbali",
+          "rangeAriaLabel": "Chagua madini mbalimbali",
+          "noData": "Hakuna data madini pool inapatikana."
+        },
+        "difficultyChart": {
+          "title": "Matatizo ya Uchimbaji wa Madini Baada ya Muda",
+          "loadError": "Imeshindwa kupakia Chati ya Ugumu",
+          "legend": "Ugumu",
+          "seriesName": "Ugumu"
+        },
+        "tabs": {
+          "zechubDashboard": "ZecHub Dashibodi",
+          "daodaoDashboard": "DaoDao Dashibodi",
+          "treasuryDashboard": "Hazina",
+          "zcgDashboard": "ZCG Dashibodi",
+          "youtubeDashboard": "Dashibodi ya YouTube"
+        }
+      }
+    },
+    "hackathon": {
+      "title": "ZecHub Hackathon",
+      "heroEyebrow": "Kujenga · Hati · Kuwasilisha",
+      "heroIntro": "Kujenga katika nyimbo tano, kutoka infra kwa michezo, kisha hati na demo kazi yako.",
+      "heroKickoffSep": "(UTC); kuwasilisha kufunga",
+      "countdownStartsIn": "Hackathon kuanza katika",
+      "countdownTimeUntilClose": "Muda mpaka kuwasilisha kufunga",
+      "countdownEnded": "Hackathon imekamilika",
+      "days": "Siku",
+      "hours": "Masaa",
+      "mins": "Mins",
+      "secs": "Sehemu",
+      "endedNote": "Hii dirisha hackathon imekamilika, shukrani kwa kila mtu ambaye alishiriki.",
+      "preStarts": "Inaanza",
+      "preCloseSep": "(UTC) Mawasilisho kufungwa",
+      "activeCloseOn": "Mawasilisho kufungwa juu ya",
+      "tracksEyebrow": "Tukio la 2026",
+      "tracksTitle": "Nyimbo",
+      "tracksIntro": "Linganisha mradi wako na wimbo kwa uwazi wakati wa kuwasilisha, majaji na jamii huzitumia kuvinjari viingilio.",
+      "tracks": {
+        "infrastructure": {
+          "name": "Miundombinu",
+          "description": "ZSA GUI, Node Launcher, Zallet mtandao dashibodi nk."
+        },
+        "games": {
+          "name": "Michezo",
+          "description": "Wiki Makala mchezo sawa na catfishing.net, ZEC Poker, Battleship nk."
+        },
+        "frost": {
+          "name": "FROST",
+          "description": "Threshold kusaini pochi, Shielded ZEC Escrow, Kijamii Recovery"
+        },
+        "zcashLogin": {
+          "name": "Kuingia kwa Zcash",
+          "description": "Auth na utambulisho mtiririko kwamba kutumia Zcash primitives kwa ajili ya kuingia au upatikanaji."
+        },
+        "accounting": {
+          "name": "Uhasibu",
+          "description": "Ripoti, kazi ya mtiririko kwa ajili ya timu kushughulikia ZEC, mfumo wa usimamizi wa malipo."
+        }
+      },
+      "prizesEyebrow": "Thawabu",
+      "prizesTitle": "Tuzo",
+      "prizePoolTitle": "Zawadi ya 25 ZEC",
+      "prizePoolDesc": "Kujenga, kuwasilisha, na kushindana kwa ajili ya jamii pool tuzo.",
+      "devToolsEyebrow": "Anza hapa",
+      "devToolsTitle": "Devtools & nyaraka",
+      "devTools": {
+        "quickStart": {
+          "title": "ZecHub Developer Kuanza haraka",
+          "description": "Kupata zana muhimu, marejeleo, na hatua za kuanzisha kwa ajili ya kujenga juu ya Zcash."
+        }
+      },
+      "openGuide": "Mwongozo wazi",
+      "openDocs": "Open docs",
+      "rulesTitle": "Kanuni",
+      "rulesDesc": "Weka mawasilisho ya haki na rahisi kuhukumu.",
+      "rules": {
+        "mainnet": "Miradi lazima kuingiliana na Zcash mainnet mtandao.",
+        "oneProject": "Timu zinaweza kuwasilisha mradi mmoja tu wa mwisho kwa kila timu.",
+        "docs": "Mawasilisho yote lazima ni pamoja na kuweka wazi na matumizi ya nyaraka.",
+        "openSource": "Tumia leseni ya chanzo wazi.",
+        "respect": "Heshimu faragha, usalama, na miongozo ya jamii katika nambari na yaliyomo."
+      },
+      "faqTitle": "FAQ",
+      "faqDesc": "Majibu ya haraka kabla ya kuingia ndani.",
+      "faq": {
+        "whoCanParticipate": {
+          "question": "Ni nani wanaoweza kushiriki?",
+          "answer": "Mtu yeyote anaweza kujiunga: watengenezaji, wabunifu na timu mbalimbali."
+        },
+        "validSubmission": {
+          "question": "Ni nini kinachopaswa kuwa sehemu ya ombi linalofaa?",
+          "answer": "Kazi prototype, video demo, nyaraka za msingi, na maelezo ya jinsi inatumia mtandao Zcash."
+        },
+        "whereSubmit": {
+          "question": "Tunatoa wapi miradi?",
+          "answer": "Shiriki demo yako ya video kwenye Zcash Global Discord na ujumuishe hifadhidata yoyote muhimu au viungo vya demo."
+        },
+        "winnersSelected": {
+          "question": "Washindi huchaguliwaje?",
+          "answer": "Mchakato wa jamii ya umma unaendeshwa kupitia njia za ZecHub DAO baada ya kuwasilisha kufungwa."
+        },
+        "whatTracks": {
+          "question": "Ni nini hizo alama?",
+          "answer": "Mandhari ya hackathon hii ni Miundombinu, Michezo, FROST, Zcash Kuingia, na Uhasibu. Chagua wimbo unaofanana na ujenzi wako, bado unaweza kuwasilisha mradi ambao haujafafanuliwa ndani ya nyimbo."
+        }
+      },
+      "submitEyebrow": "Kushiriki",
+      "submitTitle": "Jinsi ya kuwasilisha",
+      "submitIntro": "Fuata hatua hizi tano kupata mradi wako kutoka wazo kwa kuingia rasmi.",
+      "steps": {
+        "build": {
+          "title": "Kujenga mradi wako",
+          "description": "Kujenga kazi prototype kwamba mwingiliano na Zcash mainnet. Pick wimbo na kuweka maendeleo ya kumbukumbu kama wewe kwenda."
+        },
+        "record": {
+          "title": "Rekodi demo video",
+          "description": "Kukamata kifupi walkthrough kuonyesha mradi wako katika hatua. Kueleza wazi ni nini inafanya na jinsi inatumia mtandao Zcash."
+        },
+        "document": {
+          "title": "Andika kazi yako",
+          "description": "Andika README na maelekezo ya kuanzisha, maelezo ya matumizi, na leseni yako ya chanzo wazi. Kusukuma kila kitu kwa umma GitHub repo."
+        },
+        "upload": {
+          "title": "Pakia kificho chako",
+          "descPrefix": "Kusukuma mradi wako kwa",
+          "repoLabel": "Hackathon repo",
+          "descSuffix": "kwenye GitHub ili jamii inaweza kupitia kazi yako."
+        },
+        "share": {
+          "title": "Kushiriki Katika Kutoelewana",
+          "description": "Chapisha demo yako ya video kwenye Zcash Global Discord pamoja na viungo vyako vya repo na demo kabla ya Julai 15, 2026 (UTC)."
+        }
+      },
+      "deadlineLabel": "Tarehe ya mwisho:",
+      "deadlinePrefix": "Mawasilisho yote lazima posted katika Discord na",
+      "deadlineSuffix": "Washindi huchaguliwa kupitia kura ya umma katika njia za ZecHub DAO muda mfupi baada ya kuwasilisha.",
+      "joinTheDiscord": "Kujiunga na Ugomvi",
+      "previousEyebrow": "Matoleo ya zamani",
+      "previousTitle": "Hackathons zilizopita",
+      "previousIntro": "Browse mapema ZecHub hackathon hujenga kwa toleo. Kila kadi ya mradi inaunganisha moja kwa moja kwenye folda yake ya GitHub kwa msimbo, maelezo, na demos ambapo inapatikana.",
+      "browseAllProjects": "Browse miradi yote",
+      "errorCouldNotLoad": "Haikuweza kupakia orodha ya mradi wa kuishi",
+      "errorShowingSaved": "Kuonyesha iliyohifadhiwa awali hackathon orodha ya mradi badala yake.",
+      "noProjects": "Hakuna folders mradi walikuwa akarudi. Fungua mti repo kuthibitisha muundo.",
+      "projectsArchivedOne": "{hesabu} mradi zilizohifadhiwa kutoka toleo hili.",
+      "projectsArchivedMany": "{hesabu} miradi iliyohifadhiwa kutoka toleo hili.",
+      "buildsCount": "{hesabu} hujenga",
+      "viewProject": "Angalia mradi",
+      "needHelpTitle": "Unahitaji msaada?",
+      "needHelpDesc": "Zcash Global Discord ni mahali bora kwa kujenga maswali, vidokezo infra, na hackathon mazungumzo.",
+      "joinDiscord": "Jiunge na Kutoelewana",
+      "supportDonation": "Msaada kwa mchango",
+      "popup": {
+        "liveNow": "Kuishi Sasa",
+        "subtitle": "Kujenga maombi ya faragha-kwanza juu ya Zcash. Kushindana kwa ajili ya zawadi, kupata ZEC, na sura ya baadaye ya uhuru wa kifedha.",
+        "prizePool": "Mkusanyiko wa Tuzo",
+        "start": "Anza",
+        "end": "Mwisho",
+        "learnMore": "Jifunze Zaidi →",
+        "dismiss": "Kuachiliwa kazi"
+      }
+    },
+    "developers": {
+      "title": "Zcash Developer Rasilimali",
+      "heroImageAlt": "Zcash Developer Rasilimali",
+      "cardSectionTitle": "Ungependa kuanzaje?",
+      "cards": {
+        "learnTitle": "Kujifunza Zcash Maendeleo",
+        "learnContent": "Kuchunguza nyaraka rasmi na kujifunza misingi ya teknolojia Zcash.",
+        "learnButton": "Soma Nyaraka",
+        "tutorialsTitle": "Jifunze Kupitia Mafunzo",
+        "tutorialsContent": "Fuata hatua kwa hatua mafunzo ya kujenga juu ya Zcash, kutoka kujenga pochi ya kuunganisha Zcash katika maombi yako.",
+        "tutorialsButton": "Tazama Mafunzo",
+        "quickStartTitle": "Mwongozo wa Kuanza Haraka",
+        "quickStartContent": "Kupata juu na mbio na Zcash maendeleo haraka. Kujifunza ufungaji, Configuration, na shughuli za msingi.",
+        "quickStartButton": "Mwongozo wa Kuanza Haraka"
+      },
+      "exploreDocsTitle": "Kuchunguza Documentation",
+      "introductionsTitle": "Utangulizi",
+      "fundamentalsTitle": "Mambo ya Msingi",
+      "advancedTitle": "Maendeleo",
+      "introLinks": {
+        "introToZcash": "Utangulizi wa Zcash",
+        "introToZcashDesc": "Jifunze kuhusu Zcash, historia yake, na kanuni zake za msingi.",
+        "introToZec": "Utangulizi wa ZEC",
+        "introToZecDesc": "Kugundua matumizi kesi na faida ya ZEC, Zcash asili cryptocurrency.",
+        "introToZebra": "Utangulizi wa Zebra",
+        "introToZebraDesc": "Kuelewa jinsi Zebra nguvu ya mtandao Zcash na utekelezaji modular na salama Rust-msingi",
+        "introToLightwalletd": "Utangulizi wa Lightwalletd",
+        "introToLightwalletdDesc": "Kuelewa lightwalletd mradi  a scalable server written in Go that efficiently serves compact blockchain data to Zcash light clients via gRPC.",
+        "zalletBook": "Kitabu cha Zallet",
+        "zalletBookDesc": "Utangulizi wa Zallet, full-node Zcash mkoba imeandikwa katika kutu na iliyoundwa kama badala ya mkoba zcashd.",
+        "developerResources": "Watengenezaji Resources",
+        "developerResourcesDesc": "Links kwa Zcash zaidi Technical Documentation."
+      },
+      "fundamentalsLinks": {
+        "addressEncoding": "Kuingiza Anwani",
+        "addressEncodingDesc": "Jifunze jinsi anwani za Zcash na funguo zinavyowekwa.",
+        "transactions": "Shughuli",
+        "transactionsDesc": "Kuelewa jinsi shughuli kazi katika Zcash.",
+        "fees": "Malipo",
+        "feesDesc": "Jifunze kuhusu ada za ununuzi na jinsi zinavyohesabiwa.",
+        "nodesZcashd": "Nodes (zcashd)",
+        "nodesZcashdDesc": "Kuanzisha na kusimamia nodes Zcash kutumia zcashd.",
+        "nodesZebrad": "Nodes (zebrad)",
+        "nodesZebradDesc": "Kuchunguza Zebra, mbadala Zcash node utekelezaji.",
+        "lightwalletServers": "Lightwallet Servers",
+        "lightwalletServersDesc": "Kujifunza kuhusu lightwalletd, nyepesi Zcash mkoba server.",
+        "blockExplorers": "Block Explorers",
+        "blockExplorersDesc": "Kuchunguza blockchains Zcash kutumia block explorers.",
+        "shadeAgent": "Shade Agent - Dhana",
+        "shadeAgentDesc": "Jifunze kuhusu Shade Agents - wakala wa kwanza wa kweli wa uhuru wa AI kwenye NEAR - inayotumiwa na TEEs salama na Saini za Mlolongo zilizowekwa ili kusimamia mali, kufikia LLMs, na kutekeleza shughuli za multichain kwa kujitegemea."
+      },
+      "advancedLinks": {
+        "introToStack": "Utangulizi wa Stack",
+        "introToStackDesc": "Kuelewa usanifu na vipengele vya stack Zcash.",
+        "zecDev": "ZecDev",
+        "zecDevDesc": "Hapa utapata miradi, rasilimali na zana kuundwa na kudumishwa katika mazingira ya (Zcash) Developer Mahusiano Mhandisi ruzuku.",
+        "zcashCommunityWishlist": "Zcash Jumuiya ya Wishlist",
+        "introToZingolib": "Utangulizi wa Zingolib",
+        "introToZingolibDesc": "Kuelewa zingolib hazina a Rust-msingi API na CLI kwa kuingiliana na zcashd kupitia Lightwalletd.",
+        "webZjs": "WebZjs",
+        "webZjsDesc": "JavaScript / TypeScript maktaba kwa ajili ya kujenga Zcash-enabled programu za mtandao kwa kutumia WebAssembly.",
+        "noirWalletSdk": "Noir Wallet SDK",
+        "noirWalletSdkDesc": "TypeScript SDK na mfano dApp kwa ajili ya kuunganisha Zcash maombi na Noir Wallet browser ugani.",
+        "zcashIka": "zcash-ika",
+        "zcashIkaDesc": "Split-ufunguo wa kuhifadhi kwa Zcash na mawakala mbalimbali-chain kupitia 2PC-MPC. On-chain kutumia sera, usiri uthibitisho, ZIP 244 manunuzi wajenzi.",
+        "developmentGuidelines": "Miongozo ya Maendeleo",
+        "developmentGuidelinesDesc": "Fuata mazoea bora kwa ajili ya kuendeleza juu ya Zcash.",
+        "arboristCalls": "Arborist Calls Page",
+        "arboristCallsDesc": "Zcash Arborist Calls ni mikutano ya maendeleo ya itifaki ya kila wiki mbili ililenga kufuatilia vifaa vya kupelekwa kwa itifaki, maswala ya utekelezaji wa makubaliano ya makubaliana, na utafiti wa itifaki."
+      },
+      "feedbackTitle": "Je, ukurasa huu umekusaidia?",
+      "feedbackYes": "Ndiyo",
+      "feedbackNo": "No",
+      "feedbackHelpful": "Asante kwa maoni yako! Kufanya ukurasa huu hata bora kwa kujibu maswali machache. Kama unahitaji msaada, unaweza kuwasiliana na jamii juu yetu",
+      "feedbackNotHelpful": "Tafadhali tujulishe jinsi tunavyoweza kuboresha ukurasa huu. Unaweza kuwasiliana na jumuiya kwenye ukurasa wetu wa Facebook."
+    },
+    "zcashProjects": {
+      "title": "Miradi ya Zcash. ZecHub"
+    },
+    "visualizer": {
+      "title": "Zcash visualizers",
+      "hashFunction": {
+        "title": "Hash Kazi Visualizer"
+      },
+      "zcashKey": {
+        "title": "Zcash Key Visualizer"
+      },
+      "zksnark": {
+        "title": "ZK-SNARK uthibitisho Visualizer"
+      },
+      "sybil": {
+        "problemTitle": "Tatizo la Shambulio la Sybil",
+        "problemDesc": "Katika mtandao ambapo kupiga kura huamua ukweli, mshambuliaji anaweza kuunda mamilioni ya vitambulisho bandia ili kuwapiga kura washiriki halali.",
+        "realUsers": "3 Watumiaji Halisi",
+        "vs": "vs",
+        "attacker": "1 mshambuliaji (6 bandia)",
+        "solutionTitle": "Jinsi Zcash Inavyozuia Mashambulizi ya Sybil",
+        "powTitle": "Uthibitisho wa Kazi",
+        "powDesc": "Uchimbaji inahitaji rasilimali halisi ya kompyuta. Kujenga vitambulisho bandia haina kutoa nguvu zaidi ya kupiga kura - tu kazi halisi gani.",
+        "costTitle": "Gharama ya Kiuchumi",
+        "costDesc": "Kushambulia mtandao inahitaji uwekezaji mkubwa katika vifaa na umeme, kufanya mashambulizi kiuchumi haina maana.",
+        "insightLabel": "Ufahamu Muhimu:",
+        "insightDesc": "Upinzani wa Sybil unaunganisha nguvu ya kupiga kura na rasilimali chache (kompyuta, hisa) badala ya vitambulisho vilivyoundwa kwa urahisi."
+      },
+      "saplingKey": {
+        "spendingKeyName": "Gharama muhimu (sk)",
+        "spendingKeyDesc": "Siri kuu ya kutumia pesa",
+        "expandedSpendingKeyName": "Ufunguo wa Matumizi Uliopanuliwa",
+        "expandedSpendingKeyDesc": "kuuliza, nsk, ovk",
+        "fullViewingKeyName": "Full Viewing Key (fvk)",
+        "fullViewingKeyDesc": "ak, nk, ovk",
+        "incomingViewingKeyName": "Incoming Viewing Key (ivk)",
+        "incomingViewingKeyDesc": "Tazama shughuli zinazoingia",
+        "diversifiedAddressName": "Anwani Tofauti",
+        "diversifiedAddressDesc": "zs1... (unlimited kwa ufunguo)",
+        "derivationTitle": "Sapling muhimu Derivation",
+        "addressFormatTitle": "Fomati ya Anwani",
+        "addressFormatDesc": "78 wahusika, Bech32 encoding",
+        "keyFeatureTitle": "Sifa Muhimu",
+        "keyFeatureBold": "Anwani mbalimbali",
+        "keyFeatureDesc": " Kuzalisha unlimited anwani ya kipekee kutoka ufunguo mmoja"
+      },
+      "blockAnatomy": {
+        "fieldVersion": "Toleo",
+        "fieldPreviousHash": "Kilele cha awali",
+        "fieldMerkleRoot": "Chanzo cha Merkle",
+        "fieldTimestamp": "Muda Stamp",
+        "fieldDifficulty": "Ugumu",
+        "fieldNonce": "Mchungaji",
+        "blockHeader": "Kichwa cha Bunge",
+        "transactionList": "Orodha ya shughuli",
+        "coinbaseTx": "Tx #1 (Coinbase)",
+        "merkleTree": "Mti wa Merkle",
+        "merkleRoot": "Chanzo cha Merkle"
+      },
+      "difficulty": {
+        "zcashBlockTime": "Sekunde 75",
+        "targetBlockTime": "Lengo kuzuia wakati",
+        "bitcoinBlockTime": "Dakika 10",
+        "forComparison": "Kwa kulinganisha",
+        "adjustmentTitle": "Marekebisho ya Ugumu",
+        "hashrateIncreases": "Viwango vya Hash Vinaongezeka",
+        "difficultyUp": "Ugumu huongezeka",
+        "target": "Lengo: sekunde 75",
+        "staysConstant": "Inabaki thabiti",
+        "hashrateDecreases": "Kiwango cha Hash Hupungua",
+        "difficultyDown": "Ugumu hupungua",
+        "summary": "Mtandao moja kwa moja kurekebisha ugumu madini kudumisha mara block thabiti, bila kujali jinsi wengi wachimbaji ni kushindana."
+      }
+    },
+    "paymentProcessors": {
+      "title": "Malipo Processors. ZecHub",
+      "noData": "Hakuna Data au Faili Mbaya",
+      "bannerAlt": "bendera ya wiki"
+    },
+    "developersQuickStart": {
+      "heroBadge": "Msanidi programu Anza haraka",
+      "heroTitleLine1": "Zcash Dev",
+      "heroTitleLine2": "Kuanza Haraka",
+      "heroSubtitle": "Kupata juu na mbio na Zcash maendeleo. Chagua stack yako na kufuata mwongozo.",
+      "copy": "Kupokea",
+      "copied": "Nimesikia!",
+      "onThisPage": "Kwenye ukurasa huu",
+      "tocInstallingZebrad": "Kuweka Zebrad",
+      "tocRunningZebrad": "Running zebrad",
+      "tocConnectingLightwalletd": "Kuunganisha na lightwalletd",
+      "installation": "Ufungaji",
+      "configuration": "Configuration (Usanidi)",
+      "dependencies": "Utegemezi",
+      "fromSource": "Kutoka Chanzo",
+      "alternatively": "Vinginevyo",
+      "manualDownload": "Manual Download",
+      "wslRecommended": "WSL (Ilipendekezwa)",
+      "runningZebradHeading": "Running zebrad",
+      "initialSetup": "Usanidi wa awali",
+      "createConfigDir": "Kujenga Configuration Directory",
+      "startingZebrad": "Kuanzia zebrad",
+      "commandLine": "Mstari wa amri",
+      "importantNotes": "Maelezo Muhimu",
+      "noteDownloadsBlockchain": "Kwanza kukimbia downloads blockchain nzima (~ 250 GB)",
+      "noteInitialSync": "awali kulandanisha inaweza kuchukua masaa kadhaa",
+      "noteKeepSecure": "Weka zebrad.toml yako salama na faragha",
+      "connectingLightwalletdHeading": "Kuunganisha na lightwalletd",
+      "lightwalletdInfo": "ni server ambayo hutoa interface nyepesi kwa blockchain Zcash, iliyoundwa kwa ajili ya mkononi na desktop pochi kwamba hawana haja ya kuendesha node kamili.",
+      "prerequisites": "Mahitaji ya awali",
+      "buildLightwalletd": "Kujenga lightwalletd",
+      "basicSetupMainnet": "Msingi Setup (Mainnet)",
+      "basicSetupTestnet": "Msingi Setup (Testnet)",
+      "run": "Kukimbia",
+      "installingZaino": "Kuweka Zaino",
+      "zainoInfo": "ni Rust-msingi indexer kwa Zcash blockchain. Ni mtumishi wote wawili mwanga wateja (pochi kwamba si kuhifadhi historia kamili) na wateja kamili / block explorers, kutoa upatikanaji wa mwisho mlolongo, usio wa mwisho bora mlolango, na mempool.",
+      "buildZaino": "Kujenga Zaino",
+      "configure": "Sanidi",
+      "runZainod": "Run zainod",
+      "installingZingoCli": "Kuweka Zingo CLI",
+      "zingoCliInfo": "ni amri-line lightwalletd-proxy mteja kujengwa katika Rust. releases ni kwa sasa provisional  mwongozo huu inashughulikia kuunganisha kutoka chanzo.",
+      "buildZingoCli": "Kujenga Zingo CLI",
+      "running": "Kukimbia",
+      "startZingoCliDefault": "Kuanza Zingo CLI (Default)",
+      "startZingoCliCustom": "Kuanza Zingo CLI (Custom)",
+      "zingoSyncWarning": " Hii itafanya usawazishaji kamili juu ya kukimbia kwanza, sawa na lightwalletd.",
+      "nextStepsResources": "Hatua zifuatazo na Rasilimali",
+      "readyToBuild": "Je, Uko Tayari Kujenga?",
+      "officialDocumentation": "Nyaraka rasmi",
+      "zcashDiscordCommunity": "Jumuiya ya Zcash Discord",
+      "githubRepositories": "GitHub Repositories",
+      "zcashImprovementProposals": "Mapendekezo ya Uboreshaji wa Zcash",
+      "needHelp": "Unahitaji Msaada?",
+      "zcashCommunityForum": "Zcash Jamii Forum",
+      "githubIssues": "GitHub Matatizo",
+      "troubleshootingGuide": "Troubleshooting Mwongozo",
+      "stackOverflow": "Stack Overflow"
+    },
+    "governanceHowto": {
+      "pageTitle": "ZecHub DAO Utawala",
+      "pageSubtitle": "Mwongozo wa kina wa kushiriki katika utawala wa ZecHub DAO",
+      "stepOf": "Hatua {sasa} ya {jumla}",
+      "firstSteps": "Hatua za Kwanza",
+      "firstStepsDesc": "Kupata kuanzisha kushiriki katika utawala DAO",
+      "draftProposal": "Rasimu ya Pendekezo",
+      "draftProposalDesc": "Muundo na kuandaa pendekezo lako kwa ajili ya kuwasilisha",
+      "submittingProposal": "Kuwasilisha Pendekezo",
+      "submittingProposalDesc": "Kuwasilisha na kukuza pendekezo lako",
+      "installKeplr": "Kufunga Keplr Wallet",
+      "installKeplrDesc": "Kuanzisha mkoba wako Keplr kuingiliana na DAO",
+      "keplrVideoTitle": "Keplr Wallet Setup Mwongozo",
+      "acquireJuno": "Kupata JUNO",
+      "acquireJunoDesc": "Kupata ishara JUNO kuingiliana na mkataba daodao. Wito wa timu ya msingi wa wanachama kwa msaada.",
+      "viewOpenProposals": "Tazama Mapendekezo Open",
+      "viewOpenProposalsDesc": "Angalia mapendekezo ya sasa na fursa za kupiga kura",
+      "visitVotingPortal": "Tembelea Portal ya Kupiga Kura",
+      "formatNote": "Format: Mapendekezo yanaweza kuandikwa katika .Md au .txt format",
+      "recommendedStructure": "Mpangilio wa Hatua Nne Unaopendekezwa:",
+      "stageBackground": "Historia",
+      "stageBackgroundDesc": "Kutoa baadhi ya historia ya mada ya jumla / huduma",
+      "stageWhy": "Kwa sababu gani?",
+      "stageWhyDesc": "Taja sababu za msingi za pendekezo lako.",
+      "stageProposal": "Pendekezo",
+      "stageProposalDesc": "Maelezo ya wazi pendekezo lako katika kamili",
+      "stageAction": "Hatua",
+      "stageActionDesc": "Nini kinatokea baada ya kura ya mafanikio - inaweza kutoa ratiba ya hatua",
+      "getFeedback": "Pata Maoni",
+      "getFeedbackDesc": "Shiriki rasimu yako katika kituo cha ZecHub #proposals kwenye Discord kwa maoni ya mapema",
+      "joinDiscord": "Jiunge na Kutoelewana",
+      "walkthroughTitle": "Pendekezo Walkthrough Video",
+      "walkthroughDesc": "Tazama mwongozo kamili wa jinsi ya kuandika na kuunda pendekezo",
+      "walkthroughIframeTitle": "Pendekezo Walkthrough",
+      "postInDiscord": "Post katika Discord",
+      "postInDiscordDesc": "Shiriki pendekezo lako la mwisho katika #proposals na tag @core-team",
+      "openDiscord": "Kuvunja wazi",
+      "submitOnPortal": "Kuwasilisha juu ya kupiga kura Portal",
+      "submitOnPortalDesc": "Tumia tovuti rasmi ya kupiga kura ZecHub kuunda pendekezo lako",
+      "submitNow": "Tuma Sasa",
+      "loginNote": "️ Unahitaji kuingia na ama Keplr au KeplR Simu ya Mkono",
+      "previous": "Zamani",
+      "next": "Ifuatayo"
+    },
+    "sitemap": {
+      "heading": "Site Navigation",
+      "subheading": "Maelezo kamili ya kurasa zote na rasilimali zinazopatikana kwenye Zechub Wiki",
+      "guidesCount": "{hesabu} viongozi",
+      "sections": {
+        "Pages": "Kurasa",
+        "Organizations": "Mashirika",
+        "Guides": "Miongozo",
+        "Use Zcash": "Tumia Zcash",
+        "Ecosystem": "Mfumo wa Ikolojia"
+      },
+      "links": {
+        "Homepage": "Ukurasa wa kwanza",
+        "Dashboard": "Dashboard",
+        "Donation": "Mchango",
+        "Contribute": "Kuchangia",
+        "DAO": "DAO",
+        "Developers": "Watengenezaji",
+        "Brand": "Brand",
+        "Wallets": "Mkoba",
+        "Sitemap": "Ramani ya Tovuti",
+        "Tutorials": "Mafunzo",
+        "Bounties": "Zawadi",
+        "Buying ZEC": "Kununua ZEC",
+        "Faucets": "Mabomba",
+        "Exchanges": "Mabadilishano",
+        "Block Explorers": "Block Explorers",
+        "Shielded Pools": "Vidimbwi Vilivyolindwa",
+        "Transparent Exchange Addresses": "Anwani za Kubadilishana za Uwazi",
+        "Transactions": "Shughuli",
+        "Memos": "Memo",
+        "Mobile Top Ups": "Vifaa vya Kuongezea Vitu Vinavyoweza Kutumiwa",
+        "Payment Request URIs": "Maombi ya malipo URI",
+        "Payment Processors": "Processors Malipo",
+        "Recovering Funds": "Kurudisha Fedha",
+        "Metamask Snap": "Metamask Snap",
+        "Community Forum": "Mkutano wa Jumuiya",
+        "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
+      }
+    },
+    "zcashCommunity": {
+      "communityProjects": {
+        "title": "Miradi ya Jumuiya"
+      }
+    },
+    "research": {
+      "seriesHeading": "Mfululizo",
+      "seriesSubheading": "Deep dives katika dhana ya msingi Zcash",
+      "foundationsSeriesTitle": "Zcash Msingi Series",
+      "coreSeriesBadge": "Kiini Series",
+      "foundationsSeriesCardDescription": "makala ya msingi juu ya shughuli ulinzi, mifano ya faragha, na itifaki kubuni.",
+      "exploreSeries": "Kuchunguza mfululizo →",
+      "articlesHeading": "Makala za Utafiti",
+      "articlesSubheading": "Makala na maelezo kutoka kwa jamii ya ZecHub.",
+      "foundationsSeriesDescription": "Mkusanyiko wa makala za msingi zinazohusu shughuli za Zcash zilizohifadhiwa, mifano ya faragha, muundo wa itifaki, na dhana za msingi zinazotumia mtandao.",
+      "tagShieldedTransactions": "Shughuli Shielded",
+      "tagPrivacyModels": "Mifano ya faragha",
+      "tagProtocolDesign": "Mpango wa Itifaki",
+      "tagZeroKnowledge": "Maarifa ya sifuri"
+    },
+    "browseSidebar": "Tafuta makala kwa kutumia ubao upande wa kushoto ",
+    "zcashGlobalAmbassadors": {
+      "title": "Zcash Global Mabalozi",
+      "description": "Zcash Global Ambassadors ni viongozi wa jamii waliojitolea kukuza kupitishwa na elimu ya cryptocurrency inayolenga faragha ulimwenguni kote. Kila mradi wa balozi unazingatia kujenga ufahamu na ushiriki ndani ya mikoa yao.",
+      "activeProjectsHeading": "Miradi ya Balozi wa Kimataifa",
+      "projectSitesHeading": "Tovuti ya Mradi na Blogu",
+      "followOnX": "Fuata juu ya X / BS",
+      "projectSiteLabel": "Mahali pa Mradi",
+      "linkLabel": "Kiungo",
+      "footerInfo": "Mpango wa Balozi wa Kimataifa wa Zcash unasaidia mipango inayoongozwa na jamii ili kukuza kupitishwa kwa teknolojia inayolenga faragha. Kila mradi wa balozi hufanya kazi kwa kujitegemea wakati unachangia mfumo mpana wa ikolojia wa zcash.",
+      "mapTitle": "Zcash Balozi Ramani",
+      "mapSubtitle": "Jamii inayoongozwa na utetezi wa Zcash katika {hesabu} jamii zinazofanya kazi.",
+      "globeView": "Mtazamo wa dunia",
+      "mapView": "Mtazamo wa ramani",
+      "loadError": "Haikuweza kupakia data ya balozi.",
+      "projects": {
+        "Zcash Korea": "Jumuiya ya Zcash na utetezi nchini Korea",
+        "Zcash Russia": "Zcash jamii na utetezi katika Urusi",
+        "Zcash Arabia": "Jamii ya Zcash na utetezi katika mkoa unaozungumza Kiarabu",
+        "Zcash Brazil": "Jamii ya Zcash na utetezi nchini Brazil",
+        "Zcash Ghana": "Jumuiya ya Zcash na utetezi nchini Ghana",
+        "Zcash Español": "Jamii ya Zcash na utetezi katika mkoa wa lugha ya Kihispania",
+        "Zcash Nigeria": "Jumuiya ya Zcash na utetezi nchini Nigeria",
+        "Zcash Ukraine": "Zcash jamii na utetezi katika Ukraine",
+        "Zcash Turkey": "Zcash jamii na utetezi katika Uturuki",
+        "Zcash India": "Jumuiya ya Zcash na utetezi nchini India",
+        "Zcash East Africa": "Zcash Afrika Mashariki imejitolea kukuza faragha ya dijiti, uhuru wa kifedha, na uvumbuzi wa blockchain kupitia elimu, hafla za jamii, semina za kiufundi, na maendeleo ya ikolojia. Mpango huo unakusudia kuunda kitovu cha kikanda ambapo watu wanaweza kuchunguza teknolojia za kuongeza faragha, kujifunza juu ya uthibitisho wa maarifa sifuri, na kushiriki katika mtandao unaokua wa Zcash ulimwenguni.",
+        "Zcash South Africa": "Faragha️. Uhuru. Zcash  Jumuiya ya mkoa wa Afrika Kusini"
+      },
+      "globeTitle": "Zcash Balozi Globe"
+    }
+  },
+  "developers": {
+    "quickStart": {
+      "tableOfContents": "Habari Zilizo Ndani",
+      "toc1": "1. Kuweka Zebrad",
+      "toc2": "2. Running zebrad",
+      "toc3": "3. Kuunganisha na lightwalletd",
+      "installingHeading": "1. Kuweka Zebrad",
+      "runningHeading": "2. Running zebrad",
+      "connectingHeading": "3. Kuunganisha na lightwalletd",
+      "systemRequirements": "Mahitaji ya Mfumo",
+      "linux": "Linux",
+      "ubuntuDebian": "Ubuntu/Debian:",
+      "fromSource": "Chanzo:",
+      "macos": "macOS",
+      "homebrew": "Kileo cha nyumbani:",
+      "windows": "Madirisha",
+      "importantNotes": "Maelezo Muhimu",
+      "nextSteps": "Hatua Zifuatazo",
+      "readyToBuild": "Je, Uko Tayari Kujenga?",
+      "needHelp": "Unahitaji Msaada?"
+    }
+  },
+  "components": {
+    "newsletter": {
+      "title": "ZecHub Shielded jarida",
+      "subtitle": "Subscribe to updates by entering your Unified Address.",
+      "feeLine": "Ada ya usajili ya mara moja ya ZEC 0.05",
+      "feeLineRest": "inahitajika ili kufidia gharama za shughuli.",
+      "categoryEcosystem": "Habari Kuhusu Mazingira",
+      "categoryStats": "Takwimu za Mtandao",
+      "addressPlaceholder": "Enter your Zcash Unified Address",
+      "invalidAddressInline": "Anwani batili. lazima kuanza na \"u\" au \"z\".",
+      "invalidAddressAlert": "Tafadhali ingiza anwani halali ya Zcash iliyohifadhiwa.",
+      "generating": "Kuzalisha...",
+      "subscribe": "Jiandikishe",
+      "doNotEditMemo": "Je, si hariri memo yanayotokana katika mkoba wako.",
+      "downloadQR": "Pakua Nambari ya QR",
+      "box1Title": "Huduma Hii Ni Nini?",
+      "box1Desc": "Kupokea Zcash mazingira habari na mtandao takwimu moja kwa moja kupitia mtandao Zcash kutumia memo encrypted.",
+      "box2Title": "Jinsi Inavyofanya Kazi",
+      "box2DescPre": "Sisi kutuma jarida mara moja kwa wiki kwa wapokeaji mbalimbali katika moja ya ulinzi shughuli kwa kutumia",
+      "box2DescPost": "Njia RPC.",
+      "box3Title": "Jinsi ya Kupata Habari za Karibuni",
+      "box3DescPre": "Ingiza yako",
+      "box3DescBold": "anwani ya Zcash iliyohifadhiwa",
+      "box3DescPost": "updates Weekly mikononi on-chain. Hakuna barua pepe required.",
+      "unsubscribe": "Ondoa usajili",
+      "cancelUnsubscribe": "Kufuta Kujiandikisha",
+      "unsubscribePlaceholder": "Enter your Unified Address to unsubscribe",
+      "confirmUnsubscribe": "Thibitisha Usijiandikishe"
+    },
+    "aiAssistant": {
+      "copyResponse": "Nakala ya majibu",
+      "copied": "Imekamilika",
+      "copy": "Kupokea",
+      "botName": "ZecHub AI",
+      "thinking": "ZecHub AI ni kufikiri...",
+      "privacyNotice": "Maswali ni kusindika na OpenAI. Kamwe kushiriki maneno mbegu, funguo binafsi, au anwani mkoba.",
+      "clearConversation": "Mazungumzo ya wazi",
+      "clear": "Safi",
+      "getStarted": "Anza na swali:",
+      "sensitiveWarning": "Hii inaonekana kama data nyeti mkoba. Kamwe kushiriki funguo binafsi au maneno mbegu na huduma yoyote.",
+      "inputPlaceholder": "Kuuliza swali... (Ingiza kutuma, Shift + Ingiza kwa ajili ya mstari mpya)",
+      "sendMessage": "Tuma ujumbe",
+      "enterHint": "Ingiza kutuma, Shift+Ingiza kwa mstari mpya",
+      "messageTooLong": "Ujumbe mrefu mno (max {max} wahusika).",
+      "unknownError": "Hitilafu haijulikani.",
+      "serverError": "Kosa la seva {hali}",
+      "somethingWrong": "Jambo fulani lilienda vibaya.",
+      "quickQuestions": [
+        "Zcash ni nini?",
+        "ZecHub ni nini?",
+        "Matumizi ya fedha yaliyofichwa hufanywaje?",
+        "Ni mikoba gani inayounga mkono Zcash?",
+        "Nini ni z-anwani dhidi ya anwani t?",
+        "Ninaanzaje na ZEC?",
+        "Mfuko wa maendeleo ya Zcash ni nini?",
+        "Zk-SNARKs ni nini?"
+      ]
+    }
+  },
+  "sideMenu": {
+    "navigation": "Usafiri",
+    "explore": "Kuchunguza"
+  },
+  "meta": {
+    "title": "ZecHub Wiki",
+    "description": "chanzo wazi elimu kitovu kwa ajili ya Zcash"
+  }
+}
