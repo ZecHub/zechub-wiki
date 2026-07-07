@@ -174,8 +174,8 @@ const CodeBlock = ({
         >
           {copied ? <CheckIcon /> : <CopyIcon />}
           {copied
-            ? t?.pages?.developersQuickStart?.copied ?? "Copied!"
-            : t?.pages?.developersQuickStart?.copy ?? "Copy"}
+            ? (t?.pages?.developersQuickStart?.copied ?? "Copied!")
+            : (t?.pages?.developersQuickStart?.copy ?? "Copy")}
         </button>
       </div>
 
@@ -317,7 +317,10 @@ const ZebradTab = () => {
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           {[
-            ["#installing-zcash", qs?.tocInstallingZebrad ?? "Installing Zebrad"],
+            [
+              "#installing-zcash",
+              qs?.tocInstallingZebrad ?? "Installing Zebrad",
+            ],
             ["#running-zebrad", qs?.tocRunningZebrad ?? "Running zebrad"],
             [
               "#connecting-lightwalletd",
@@ -455,7 +458,10 @@ const ZebradTab = () => {
           </h2>
         </div>
 
-        <SectionCard title={qs?.initialSetup ?? "Initial Setup"} className="mb-6">
+        <SectionCard
+          title={qs?.initialSetup ?? "Initial Setup"}
+          className="mb-6"
+        >
           <SubLabel>
             {qs?.createConfigDir ?? "Create Configuration Directory"}
           </SubLabel>
@@ -516,8 +522,7 @@ use_color = true`}
               {[
                 qs?.noteDownloadsBlockchain ??
                   "First run downloads the entire blockchain (~250 GB)",
-                qs?.noteInitialSync ??
-                  "Initial sync can take several hours",
+                qs?.noteInitialSync ?? "Initial sync can take several hours",
                 qs?.noteKeepSecure ??
                   "Keep your zebrad.toml secure and private",
               ].map((note, i) => (
@@ -576,7 +581,9 @@ sudo apt install golang-go
           </SectionCard>
 
           <SectionCard title={qs?.configuration ?? "Configuration"}>
-            <SubLabel>{qs?.basicSetupMainnet ?? "Basic Setup (Mainnet)"}</SubLabel>
+            <SubLabel>
+              {qs?.basicSetupMainnet ?? "Basic Setup (Mainnet)"}
+            </SubLabel>
             <CodeBlock
               code={`cat > ~/.config/zcash.conf << EOF
 rpcport=8232
@@ -617,43 +624,47 @@ const ZainodTab = () => {
   const { t } = useLanguage();
   const qs = t?.pages?.developersQuickStart;
   return (
-  <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
-    <section id="installing-zaino">
-      <div className="flex items-center gap-[14px] mb-7">
-        <StepBadge number={1} />
-        <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
-          {qs?.installingZaino ?? "Installing Zaino"}
-        </h2>
-      </div>
+    <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+      <section id="installing-zaino">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={1} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            {qs?.installingZaino ?? "Installing Zaino"}
+          </h2>
+        </div>
 
-      <InfoBox>
-        <strong className="text-indigo-400 dark:text-indigo-300">Zaino</strong>{" "}
-        {qs?.zainoInfo ??
-          "is a Rust-based indexer for the Zcash blockchain. It serves both light clients (wallets that don't store the full history) and full clients / block explorers, providing access to finalized chain, the non-finalized best chain, and the mempool."}
-      </InfoBox>
+        <InfoBox>
+          <strong className="text-indigo-400 dark:text-indigo-300">
+            Zaino
+          </strong>{" "}
+          {qs?.zainoInfo ??
+            "is a Rust-based indexer for the Zcash blockchain. It serves both light clients (wallets that don't store the full history) and full clients / block explorers, providing access to finalized chain, the non-finalized best chain, and the mempool."}
+        </InfoBox>
 
-      <div
-        className="grid gap-5"
-        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}
-      >
-        <SectionCard title={qs?.installation ?? "Installation"}>
-          <SubLabel>{qs?.buildZaino ?? "Build Zaino"}</SubLabel>
-          <CodeBlock
-            code={`git clone https://github.com/zingolabs/zaino.git\ncd zaino\ncargo build --release\nPATH=$PATH:~/zaino/target/release/`}
-          />
-          <SubLabel className="mt-[14px]">
-            {qs?.configure ?? "Configure"}
-          </SubLabel>
-          <CodeBlock
-            code={`cd ~/zaino/zainod\nsudo nano zindexer.toml\n# Adjust port to 8232 for mainnet`}
-          />
-        </SectionCard>
+        <div
+          className="grid gap-5"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          }}
+        >
+          <SectionCard title={qs?.installation ?? "Installation"}>
+            <SubLabel>{qs?.buildZaino ?? "Build Zaino"}</SubLabel>
+            <CodeBlock
+              code={`git clone https://github.com/zingolabs/zaino.git\ncd zaino\ncargo build --release\nPATH=$PATH:~/zaino/target/release/`}
+            />
+            <SubLabel className="mt-[14px]">
+              {qs?.configure ?? "Configure"}
+            </SubLabel>
+            <CodeBlock
+              code={`cd ~/zaino/zainod\nsudo nano zindexer.toml\n# Adjust port to 8232 for mainnet`}
+            />
+          </SectionCard>
 
-        <SectionCard title={qs?.configuration ?? "Configuration"}>
-          <SubLabel>zindexer.toml</SubLabel>
-          <CodeBlock
-            language="toml"
-            code={`# TcpIngestor status
+          <SectionCard title={qs?.configuration ?? "Configuration"}>
+            <SubLabel>zindexer.toml</SubLabel>
+            <CodeBlock
+              language="toml"
+              code={`# TcpIngestor status
 tcp_active = true
 
 # Listen port
@@ -673,17 +684,17 @@ node_password = "xxxxxx"
 max_queue_size = 1024
 max_worker_pool_size = 64
 idle_worker_pool_size = 4`}
-          />
-          <SubLabel className="mt-[14px]">
-            {qs?.runZainod ?? "Run zainod"}
-          </SubLabel>
-          <CodeBlock code={`zainod --config zindexer.toml`} />
-        </SectionCard>
-      </div>
-    </section>
+            />
+            <SubLabel className="mt-[14px]">
+              {qs?.runZainod ?? "Run zainod"}
+            </SubLabel>
+            <CodeBlock code={`zainod --config zindexer.toml`} />
+          </SectionCard>
+        </div>
+      </section>
 
-    <ResourcesSection />
-  </div>
+      <ResourcesSection />
+    </div>
   );
 };
 
@@ -691,61 +702,63 @@ const ZingolibTab = () => {
   const { t } = useLanguage();
   const qs = t?.pages?.developersQuickStart;
   return (
-  <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
-    <section id="installing-zingo">
-      <div className="flex items-center gap-[14px] mb-7">
-        <StepBadge number={1} />
-        <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
-          {qs?.installingZingoCli ?? "Installing Zingo CLI"}
-        </h2>
-      </div>
+    <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+      <section id="installing-zingo">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={1} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            {qs?.installingZingoCli ?? "Installing Zingo CLI"}
+          </h2>
+        </div>
 
-      <InfoBox>
-        <strong className="text-indigo-400 dark:text-indigo-300">
-          Zingo-cli
-        </strong>{" "}
-        {qs?.zingoCliInfo ??
-          "is a command-line lightwalletd-proxy client built in Rust. Releases are currently provisional — this guide covers compiling from source."}
-      </InfoBox>
+        <InfoBox>
+          <strong className="text-indigo-400 dark:text-indigo-300">
+            Zingo-cli
+          </strong>{" "}
+          {qs?.zingoCliInfo ??
+            "is a command-line lightwalletd-proxy client built in Rust. Releases are currently provisional — this guide covers compiling from source."}
+        </InfoBox>
 
-      <div
-        className="grid gap-5"
-        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}
-      >
-        <SectionCard title={qs?.installation ?? "Installation"}>
-          <SubLabel>{qs?.buildZingoCli ?? "Build Zingo CLI"}</SubLabel>
-          <CodeBlock
-            code={`git clone https://github.com/zingolabs/zingolib.git\ncd zingolib\ngit checkout tags/zingolib_v4.0.0\ncargo build --release --package zingo-cli\ncp target/release/zingo-cli ~/.cargo/bin/`}
-          />
-        </SectionCard>
-
-        <SectionCard title={qs?.running ?? "Running"}>
-          <div className="pb-4">
-            <SubLabel>
-              {qs?.startZingoCliDefault ?? "Start Zingo CLI (Default)"}
-            </SubLabel>
+        <div
+          className="grid gap-5"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          }}
+        >
+          <SectionCard title={qs?.installation ?? "Installation"}>
+            <SubLabel>{qs?.buildZingoCli ?? "Build Zingo CLI"}</SubLabel>
             <CodeBlock
-              code={`zingo-cli --data-dir /path/to/your/wallet/data`}
+              code={`git clone https://github.com/zingolabs/zingolib.git\ncd zingolib\ngit checkout tags/zingolib_v5.0.0\ncargo build --release --package zingo-cli\ncp target/release/zingo-cli ~/.cargo/bin/`}
             />
-          </div>
-          <div>
-            <SubLabel>
-              {qs?.startZingoCliCustom ?? "Start Zingo CLI (Custom)"}
-            </SubLabel>
-            <CodeBlock
-              code={`zingo-cli --chain mainnet --server http://127.0.0.1:8137 --data-dir /path/to/your/zaino/data`}
-            />
-          </div>
-          <div className="mt-[14px] p-[12px_14px] rounded-lg text-[13px] leading-relaxed bg-amber-500/[0.06] border border-amber-500/20 text-amber-600 dark:text-amber-400">
-            {qs?.zingoSyncWarning ??
-              "⚠ This will perform a full sync on first run, similar to lightwalletd."}
-          </div>
-        </SectionCard>
-      </div>
-    </section>
+          </SectionCard>
 
-    <ResourcesSection />
-  </div>
+          <SectionCard title={qs?.running ?? "Running"}>
+            <div className="pb-4">
+              <SubLabel>
+                {qs?.startZingoCliDefault ?? "Start Zingo CLI (Default)"}
+              </SubLabel>
+              <CodeBlock
+                code={`zingo-cli --data-dir /path/to/your/wallet/data`}
+              />
+            </div>
+            <div>
+              <SubLabel>
+                {qs?.startZingoCliCustom ?? "Start Zingo CLI (Custom)"}
+              </SubLabel>
+              <CodeBlock
+                code={`zingo-cli --chain mainnet --server http://127.0.0.1:8137 --data-dir /path/to/your/zaino/data`}
+              />
+            </div>
+            <div className="mt-[14px] p-[12px_14px] rounded-lg text-[13px] leading-relaxed bg-amber-500/[0.06] border border-amber-500/20 text-amber-600 dark:text-amber-400">
+              {qs?.zingoSyncWarning ??
+                "⚠ This will perform a full sync on first run, similar to lightwalletd."}
+            </div>
+          </SectionCard>
+        </div>
+      </section>
+
+      <ResourcesSection />
+    </div>
   );
 };
 
@@ -753,54 +766,54 @@ const ResourcesSection = () => {
   const { t } = useLanguage();
   const qs = t?.pages?.developersQuickStart;
   return (
-  <section className="rounded-[14px] p-8 mt-2 bg-sky-500/[0.03] dark:bg-sky-500/[0.05] border border-sky-500/15">
-    <h3 className="text-slate-900 dark:text-slate-100 text-[18px] font-bold mb-6">
-      {qs?.nextStepsResources ?? "Next Steps & Resources"}
-    </h3>
-    <div
-      className="grid gap-6"
-      style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}
-    >
-      <div>
-        <p className="text-[11px] tracking-[0.12em] uppercase text-cyan-500 dark:text-cyan-400 mb-3 font-semibold">
-          {qs?.readyToBuild ?? "Ready to Build?"}
-        </p>
-        <div className="flex flex-col gap-2">
-          <ResourceLink href="https://zebra.zfnd.org/index.html">
-            {qs?.officialDocumentation ?? "Official Documentation"}
-          </ResourceLink>
-          <ResourceLink href="https://discord.gg/zcash">
-            {qs?.zcashDiscordCommunity ?? "Zcash Discord Community"}
-          </ResourceLink>
-          <ResourceLink href="https://github.com/zcash">
-            {qs?.githubRepositories ?? "GitHub Repositories"}
-          </ResourceLink>
-          <ResourceLink href="https://zips.z.cash/">
-            {qs?.zcashImprovementProposals ?? "Zcash Improvement Proposals"}
-          </ResourceLink>
+    <section className="rounded-[14px] p-8 mt-2 bg-sky-500/[0.03] dark:bg-sky-500/[0.05] border border-sky-500/15">
+      <h3 className="text-slate-900 dark:text-slate-100 text-[18px] font-bold mb-6">
+        {qs?.nextStepsResources ?? "Next Steps & Resources"}
+      </h3>
+      <div
+        className="grid gap-6"
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}
+      >
+        <div>
+          <p className="text-[11px] tracking-[0.12em] uppercase text-cyan-500 dark:text-cyan-400 mb-3 font-semibold">
+            {qs?.readyToBuild ?? "Ready to Build?"}
+          </p>
+          <div className="flex flex-col gap-2">
+            <ResourceLink href="https://zebra.zfnd.org/index.html">
+              {qs?.officialDocumentation ?? "Official Documentation"}
+            </ResourceLink>
+            <ResourceLink href="https://discord.gg/zcash">
+              {qs?.zcashDiscordCommunity ?? "Zcash Discord Community"}
+            </ResourceLink>
+            <ResourceLink href="https://github.com/zcash">
+              {qs?.githubRepositories ?? "GitHub Repositories"}
+            </ResourceLink>
+            <ResourceLink href="https://zips.z.cash/">
+              {qs?.zcashImprovementProposals ?? "Zcash Improvement Proposals"}
+            </ResourceLink>
+          </div>
+        </div>
+        <div>
+          <p className="text-[11px] tracking-[0.12em] uppercase text-cyan-500 dark:text-cyan-400 mb-3 font-semibold">
+            {qs?.needHelp ?? "Need Help?"}
+          </p>
+          <div className="flex flex-col gap-2">
+            <ResourceLink href="https://forum.zcashcommunity.com/">
+              {qs?.zcashCommunityForum ?? "Zcash Community Forum"}
+            </ResourceLink>
+            <ResourceLink href="https://github.com/zcash/zcash/issues">
+              {qs?.githubIssues ?? "GitHub Issues"}
+            </ResourceLink>
+            <ResourceLink href="https://zcash.readthedocs.io/en/latest/rtd_pages/troubleshooting.html">
+              {qs?.troubleshootingGuide ?? "Troubleshooting Guide"}
+            </ResourceLink>
+            <ResourceLink href="https://stackoverflow.com/questions/tagged/zcash">
+              {qs?.stackOverflow ?? "Stack Overflow"}
+            </ResourceLink>
+          </div>
         </div>
       </div>
-      <div>
-        <p className="text-[11px] tracking-[0.12em] uppercase text-cyan-500 dark:text-cyan-400 mb-3 font-semibold">
-          {qs?.needHelp ?? "Need Help?"}
-        </p>
-        <div className="flex flex-col gap-2">
-          <ResourceLink href="https://forum.zcashcommunity.com/">
-            {qs?.zcashCommunityForum ?? "Zcash Community Forum"}
-          </ResourceLink>
-          <ResourceLink href="https://github.com/zcash/zcash/issues">
-            {qs?.githubIssues ?? "GitHub Issues"}
-          </ResourceLink>
-          <ResourceLink href="https://zcash.readthedocs.io/en/latest/rtd_pages/troubleshooting.html">
-            {qs?.troubleshootingGuide ?? "Troubleshooting Guide"}
-          </ResourceLink>
-          <ResourceLink href="https://stackoverflow.com/questions/tagged/zcash">
-            {qs?.stackOverflow ?? "Stack Overflow"}
-          </ResourceLink>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
   );
 };
 
