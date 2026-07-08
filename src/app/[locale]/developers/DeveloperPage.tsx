@@ -225,6 +225,37 @@ export default function DeveloperPage() {
 
                 <li>
                   <a
+                    href="https://github.com/zecrocks/zecd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.introLinks?.zecd ?? "zecd"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.introLinks?.zecdDesc ??
+                      "Explore zecd, a shielded-first Zcash wallet server built on librustzcash and exposed through a Bitcoin Core-style RPC interface."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
+                    href="https://zecd.org/introduction.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    {t?.pages?.developers?.introLinks?.zecdBook ??
+                      "The zecd Book"}
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    {t?.pages?.developers?.introLinks?.zecdBookDesc ??
+                      "Read the zecd documentation for architecture, setup, configuration, deployment, and RPC usage."}
+                  </p>
+                </li>
+
+                <li>
+                  <a
                     href="https://github.com/zcash/lightwalletd"
                     target="_blank"
                     rel="noopener noreferrer"
