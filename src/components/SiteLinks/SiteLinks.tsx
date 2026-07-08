@@ -37,7 +37,7 @@ const SiteLinks: React.FC = () => {
               <Link href="/sitemap/">Sitemap</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-15">
-              <Link target="_blank" href="https://youtube.com/@zechub">
+              <Link target="_blank" href="/tutorials">
                 Tutorials
               </Link>
             </li>

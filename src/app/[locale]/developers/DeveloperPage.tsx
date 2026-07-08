@@ -55,7 +55,7 @@ export default function DeveloperPage() {
       content:
         t?.pages?.developers?.cards?.tutorialsContent ??
         "Follow step-by-step tutorials to build on Zcash, from creating wallets to integrating Zcash into your applications.",
-      url: "https://www.youtube.com/playlist?list=PL6_epn0lASLFF28ePj7P5TvtMG_WE7p3O",
+      url: "/zechub-tutorial",
       blank: true,
       svg: (
         <svg
