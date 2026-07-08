@@ -1,0 +1,44 @@
+.card {
+  display: block;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  text-decoration: none;
+  transition: .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.thumbnail {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.body {
+  padding: 18px;
+}
+
+.category {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(255,255,255,.08);
+}
+
+.body h3 {
+  margin: 0;
+  color: inherit;
+  font-size: 18px;
+}
+
+.body p {
+  margin-top: 16px;
+  color: var(--primary);
+  font-weight: 600;
+}

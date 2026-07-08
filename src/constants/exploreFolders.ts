@@ -13,7 +13,7 @@ export const exploreFolders = [
         imgDark: '/explore/dark/tutorials.png',
         description: '',
         name: 'Tutorials',
-        url: 'https://www.youtube.com/playlist?list=PL6_epn0lASLFF28ePj7P5TvtMG_WE7p3O'
+        url: '/zechub-tutorial'
     },
     {
         img: '/Using_Zcash-07.png',
