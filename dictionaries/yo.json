@@ -1,0 +1,1178 @@
+{
+  "menuLabels": {
+    "Accept Payments": "Gba Àwọn Ìsanwó",
+    "Akash Network Zebra": "Akash Network Zebra[àtúnṣe _ àtúnṣe àmìọ̀rọ̀]",
+    "Arborist Calls": "Arborist Calls",
+    "Avalanche RedBridge": "Avalanche RedBridge[àtúnṣe _ àtúnṣe àmìọ̀rọ̀]",
+    "BTCPayServer Zcash Plugin": "BTCPayServer Zcash Àfikún",
+    "Blockchain Explorers": "Àwọn Olùwádìí Blockchain",
+    "Brand": "Àmì ọ̀pá",
+    "Brave Wallet": "Ojúlówó Wọléètì",
+    "Buying ZEC": "Rírà ZEC",
+    "Community Blogs": "Àwọn Ìkànnì Àwùjọ",
+    "Community Forum": "Àjọ Ìparapọ̀",
+    "Community Links": "Àwọn Ìjápọ̀ Àjọ",
+    "Community Projects": "Àwọn Iṣẹ́ Àjọṣe",
+    "Contribute": "Ṣètìlẹyìn",
+    "Cypherpunk Zero NFT": "Cypherpunk Zero NFT",
+    "DAO": "DAO (ìmọ̀ ọ̀nà)",
+    "Developers": "Àwọn Olùgbéejáde",
+    "Discord": "Àìgbọ́ra-ẹni-yé",
+    "Donations": "Àwọn Ẹ̀bùn",
+    "Electric Coin Company": "Electric Coin Company",
+    "Exchanges": "Ìpàdé",
+    "Extras": "Àwọn àfikún",
+    "Faucets": "Awọn faucets",
+    "Financial Privacy Foundation": "Ẹ̀ka Ìdáàbòbò Ìṣúnná owó",
+    "Free2z Live": "Free2z Ìgbé ayé",
+    "Freelance Privacy": "Ìpamọ́ Ọ̀rọ̀ Òmìnira",
+    "Github": "Github",
+    "Governance": "Ìdarí",
+    "Guides": "Àwọn ìwé atọ́nà",
+    "How to Participate": "Bó O Ṣe Lè Kópa",
+    "Journalist Privacy": "Ìpamọ́ fún Oníròyìn",
+    "Keeping Records": "Fífi Àkọsílẹ̀ Pa Mọ́",
+    "Keystone Zashi": "Keystone Zashi",
+    "Maya Protocol": "Ìlànà Maya",
+    "Memos": "Àwọn ìwé ìrántí",
+    "Metamask Snap": "Àdàkọ Metamask Snap",
+    "Mobile Top Ups": "Àwọn Ohun Èlò Tó Wà Lára Ìtòlẹ́sẹẹsẹ",
+    "Newsletter": "Ìwé ìròyìn",
+    "Nym VPN": "Nym VPN (ì í ë ì ì)",
+    "Payment Processors": "Awọn Oluṣakoso Isanwo",
+    "Payment Request URIs": "Àwọn URI fún Ìbéèrè fún Ìsanwó",
+    "Podcast": "Àwọn ìsọfúnni",
+    "Private Community Treasury": "Ìkáwọ́ Ìpínlẹ̀ Àdáni",
+    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 Full Node (ì í ì ì ì ë ¤)",
+    "Raspberry pi 4 Zebra Node": "Raspberry pi 4 Zebra Node (ìkànnì ìkànnì tí wọ́n ń pè ní Zebra)",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra Lightwalletd Zingo ì í ì ì ë ¤ì ' ì ì í êμ¬ë§¤í ì ì ' ë ¤.",
+    "Recovering Funds": "Gbígba Owó Pa Dà",
+    "Research": "Ìwádìí",
+    "Send Money Privately": "Fi Owó Ránṣẹ́ Láìsí Ẹnì Kan Tó Mọ",
+    "Shielded Labs": "Àwọn Ilé Iṣẹ́ Ààbò",
+    "Shielded Pools": "Àwọn Erékùṣù Tí Wọ́n Fi Ààbò Bo",
+    "Sitemap": "Àwòrán ojúlé",
+    "Start Here": "Bẹ̀rẹ̀ Níbí",
+    "Store": "Ìpamọ́",
+    "Testnet": "Àyẹ̀wò àwọ̀n",
+    "Tools": "Àwọn irinṣẹ́",
+    "Transactions": "Àwọn Àdéhùn",
+    "Transparent Exchange Addresses": "Àwọn Adirẹsi Àdásílẹ̀",
+    "Tutorials": "Àwọn ẹ̀kọ́",
+    "Twitter": "Twitter (ìkànnì)",
+    "Use Cases": "Lo Àwọn Àkọsílẹ̀",
+    "Using ZEC Privately": "Lílo ZEC ní Ìkọ̀kọ̀",
+    "Using ZEC in DeFi": "Lílo ZEC nínú DeFi",
+    "Using Zcash": "Lílo Zcash",
+    "Visual Identity": "Àwòrán Ìdánimọ̀",
+    "Visualizer": "Àwòrán-ìwòye",
+    "Visualizing Zcash Addresses": "Fífi ojú wo àwọn Adirẹsi Zcash",
+    "Visualizing the Zcash Network": "Ṣíṣe àwòrán Ìpínlẹ̀ Zcash",
+    "Wallets": "Àwọn pọ́ọ̀sì",
+    "Youtube": "Youtube",
+    "Ywallet FROST Demo": "Ywallet FROST Àwòṣe",
+    "ZCAP": "ZCAP",
+    "ZIPs & Grants": "ZIPs & Awọn ẹbun",
+    "ZKAV Club": "Ẹgbẹ́ ZKAV",
+    "ZODL": "ZODL",
+    "Zcash Community": "Ìjọ Zcash",
+    "Zcash Community Grants": "Awọn Ifunni Agbegbe Zcash",
+    "Zcash Devtool": "Zcash Devtool",
+    "Zcash Ecosystem Security": "Ààbò Ìpínlẹ̀ Ọ̀rọ̀-ayé Zcash",
+    "Zcash Foundation": "Zcash Foundation",
+    "Zcash Global Ambassadors": "Àwọn Aṣojú Àgbáyé Zcash",
+    "Zcash Governance": "Ìdarí Zcash",
+    "Zcash Improvement Proposals": "Àwọn Àbá fún Àtúnṣe Zcash",
+    "Zcash Media": "Ìròyìn Zcash",
+    "Zcash Organizations": "Àwọn àjọ Zcash",
+    "Zcash Podcasts": "Àwọn ìtòlẹ́sẹẹsẹ Zcash Podcasts",
+    "Zcon Archive": "Àpamọ́ Zcon",
+    "Zcon Vozes Archive": "Àpamọ́ Ọ̀rọ̀ Zcon",
+    "Zenith Installation": "Ìfipèsè Zenith",
+    "Zero-Knowledge vs Decoys": "Ìmọ̀-Kò-Lójú sí Àwọn Ẹ̀tàn Àgbélébùú",
+    "Zgo Payment Processor": "Olùṣiṣẹ́ Ìsanwó Zgo",
+    "Zingo Labs": "Àwọn ilé-ìwádìí Zingo",
+    "Zingolib and Zaino Tutorial": "Zingolib àti Zaino Tutorial",
+    "Zkool Multisig": "Zkool Multisig",
+    "Custodial Exchanges": "Àwọn Ìpàdé Àdánwò",
+    "Zcash Use Cases": "Àwọn Àpẹẹrẹ Ìlò Zcash",
+    "Zcash Tech": "Zcash Tech",
+    "Privacy Tools": "Àwọn irinṣẹ Ìpamọ́",
+    "Zcash Social Media": "Zcash Àwọn Ìkànnì Orí-Èdè",
+    "Glossary & FAQ's": "Àkójọ ọ̀rọ̀ àti àwọn ìbéèrè tí a sábà máa ń béèrè"
+  },
+  "exploreMenu": {
+    "Full Explore": "Ṣàwárí ní kíkún",
+    "Start Here": "Bẹ̀rẹ̀ Níbí",
+    "Tutorials": "Àwọn ẹ̀kọ́",
+    "Using Zcash": "Lílo Zcash",
+    "Guides": "Àwọn ìwé atọ́nà",
+    "Zcash Tech": "Zcash Tech",
+    "Zcash Organizations": "Àwọn àjọ Zcash",
+    "Zcash Community": "Ìjọ Zcash",
+    "ZKAV Club": "Ẹgbẹ́ ZKAV",
+    "Privacy Tools": "Àwọn irinṣẹ Ìpamọ́",
+    "Research": "Ìwádìí",
+    "Glossary & FAQs": "Àkójọ ọ̀rọ̀ àti FAQs",
+    "Contribute": "Ṣètìlẹyìn",
+    "For Forks & Maintainers": "Fun Forks & Awọn olutọju",
+    "Fork zechub-wiki": "Fork zechub-wiki (ìmọ̀ ọ̀rọ̀)",
+    "Fork zechub": "Ìdákẹ́ńkẹ́ zechub"
+  },
+  "common": {
+    "home": "Ilé",
+    "about": "Nípa",
+    "contact": "Àjọṣe",
+    "language": "Èdè",
+    "clickToExplore": "Tẹ lati ṣawari →",
+    "learnMore": "Kẹ́kọ̀ọ́ Sí I",
+    "getStarted": "Kọ́kọ́ Bẹ̀rẹ̀",
+    "readMore": "Ka siwaju",
+    "search": "Wíwá kiri",
+    "close": "Sún mọ́ ọn",
+    "searchModalTitle": "Wíwá nínú ZecHub Wiki",
+    "searchHint": "Ṣawari nipa akọle ojúewé, àkòrí, tàbí ọ̀nà. Lo àwọn kókó ọfà láti yan, tẹ láti ṣí.",
+    "searchNoResults": "Kò sí ojúewé tó bára mu",
+    "searchTryDifferent": "Gbìyànjú láti lo àwọn ìbéèrè tó ṣe ṣókí, àwọn ọ̀rọ̀ tí wọ́n fi ń ṣàpèjúwe nǹkan, tàbí àwọn èdè mìíràn.",
+    "searchSuggested": "Àwọn ojúewé tí a dábàá",
+    "searchResultsLabel": "Àwọn Àbájáde"
+  },
+  "navigation": {
+    "wallets": "Àwọn pọ́ọ̀sì",
+    "guides": "Àwọn ìwé atọ́nà",
+    "tutorials": "Àwọn ẹ̀kọ́",
+    "governance": "Ìdarí",
+    "visualizer": "Àwòrán-ìwòye",
+    "dao": "DAO (ìmọ̀ ọ̀nà)",
+    "newsletter": "Ìwé ìròyìn",
+    "donate": "Ẹ fi tọrẹ",
+    "explore": "Ṣàwárí",
+    "developers": "Àwọn Olùgbéejáde",
+    "community": "Ìpínlẹ̀",
+    "contribute": "Ṣètìlẹyìn",
+    "dashboard": "Àpótí ìdarí",
+    "more": "Àwọn míì",
+    "usingZcash": {
+      "label": "Lo owó Zcash",
+      "buyingZec": "Rírà ZEC",
+      "faucets": "Awọn faucets",
+      "wallets": "Àwọn pọ́ọ̀sì",
+      "metamaskSnap": "Àdàkọ Metamask Snap",
+      "exchanges": "Ìpàdé",
+      "blockExplorers": "Àwọn Olùwádìí Àpáàdì",
+      "shieldedPools": "Àwọn Erékùṣù Tí Wọ́n Fi Ààbò Bo",
+      "transparentExchangeAddresses": "Àwọn Adirẹsi Àdásílẹ̀",
+      "transactions": "Àwọn Àdéhùn",
+      "memos": "Àwọn ìwé ìrántí",
+      "mobileTopUps": "Àwọn Ohun Èlò Tó Wà Lára Ìtòlẹ́sẹẹsẹ",
+      "paymentRequestUris": "Àwọn URI fún Ìbéèrè fún Ìsanwó",
+      "paymentProcessors": "Awọn Oluṣakoso Isanwo",
+      "recoveringFunds": "Gbígba Owó Pa Dà",
+      "testnet": "Àyẹ̀wò àwọ̀n",
+      "tools": "Àwọn irinṣẹ́",
+      "useCases": "Lo Àwọn Àkọsílẹ̀",
+      "useCasesSubmenu": {
+        "startHere": "Bẹ̀rẹ̀ Níbí",
+        "acceptPayments": "Gba Àwọn Ìsanwó",
+        "freelancePrivacy": "Ìpamọ́ Ọ̀rọ̀ Òmìnira",
+        "journalistPrivacy": "Ìpamọ́ fún Oníròyìn",
+        "keepingRecords": "Fífi Àkọsílẹ̀ Pa Mọ́",
+        "privateCommunityTreasury": "Ìkáwọ́ Ìpínlẹ̀ Àdáni",
+        "donations": "Àwọn Ẹ̀bùn",
+        "sendMoneyPrivately": "Fi Owó Ránṣẹ́ Láìsí Ẹnì Kan Tó Mọ"
+      }
+    },
+    "zcashCommunity": {
+      "label": "Àwọn ohun abẹ̀mí",
+      "arboristCalls": "Arborist Calls",
+      "communityBlogs": "Àwọn Ìkànnì Àwùjọ",
+      "communityLinks": "Àwọn Ìjápọ̀ Àjọ",
+      "communityForum": "Àjọ Ìparapọ̀",
+      "communityProjects": "Àwọn Iṣẹ́ Àjọṣe",
+      "globalAmbassadors": "Àwọn Aṣojú Àgbáyé Zcash",
+      "zcashMedia": "Ìròyìn Zcash",
+      "zcap": "ZCAP",
+      "zcashPodcasts": "Àwọn ìtòlẹ́sẹẹsẹ Zcash Podcasts",
+      "ecosystemSecurity": "Ààbò Ìpínlẹ̀ Ọ̀rọ̀-ayé Zcash",
+      "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
+      "zconArchive": "Àpamọ́ Zcon"
+    },
+    "organizations": {
+      "label": "Àwọn àjọ",
+      "electricCoinCompany": "Electric Coin Company",
+      "zcashFoundation": "Zcash Foundation",
+      "communityGrants": "Awọn Ifunni Agbegbe Zcash",
+      "financialPrivacyFoundation": "Ẹ̀ka Ìdáàbòbò Ìṣúnná owó",
+      "shieldedLabs": "Àwọn Ilé Iṣẹ́ Ààbò",
+      "zingoLabs": "Àwọn ilé-ìwádìí Zingo",
+      "brand": "Àmì ọ̀pá",
+      "zkavClub": "Ẹgbẹ́ ZKAV"
+    },
+    "guidesSubmenu": {
+      "zgoPaymentProcessor": "Olùṣiṣẹ́ Ìsanwó Zgo",
+      "free2zLive": "Free2z Ìgbé ayé",
+      "keystoneZashi": "Keystone Zashi",
+      "mayaProtocol": "Ìlànà Maya",
+      "nymVpn": "Nym VPN (ì í ë ì ì)",
+      "usingZecInDefi": "Lílo ZEC nínú DeFi",
+      "usingZecPrivately": "Lílo ZEC ní Ìkọ̀kọ̀",
+      "raspberryPiZcashdNode": "Raspberry Pi Zcashd Node (ì í ì ì ì ë° ì ì)",
+      "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo ì í ì ì ë ¤ì ' ì ì í êμ¬ë§¤í ì ì ' ë ¤.",
+      "raspberryPiZebraNode": "Raspberry Pi Zebra Node[àtúnṣe _ àtúnṣe àmìọ̀rọ̀]",
+      "akashNetwork": "Àjọ Akash",
+      "avalancheRedbridge": "Avalanche RedBridge[àtúnṣe _ àtúnṣe àmìọ̀rọ̀]",
+      "zkoolMultisig": "Zkool Multisig",
+      "ywalletFrostDemo": "Ywallet FROST Àwòṣe",
+      "blockchainExplorers": "Àwọn Olùwádìí Blockchain",
+      "braveWallet": "Ojúlówó Wọléètì",
+      "btcPayServerPlugin": "BTCPayServer Àwòrán-ìdílé",
+      "visualizingZcashNetwork": "Ṣíṣe àwòrán Ìpínlẹ̀ Zcash",
+      "visualizingZcashAddresses": "Fífi ojú wo àwọn Adirẹsi Zcash",
+      "zcashDevtool": "Zcash Devtool",
+      "zcashImprovementProposals": "Àwọn Àbá fún Àtúnṣe Zcash",
+      "zingolibAndZainoTutorial": "Zingolib àti Zaino Tutorial",
+      "zenithInstallation": "Ìfipèsè Zenith",
+      "zeroKnowledgeVsDecoys": "Ìmọ̀ Nítòkèdì sí Àwọn Ẹ̀rọ Àgbélébùú"
+    },
+    "overview": "Àkópọ̀",
+    "shop": "Ilé ìtajà"
+  },
+  "home": {
+    "heroTitle": "A kí ọ káàbò sí ZecHub",
+    "heroSubtitle": "Aarin ẹkọ orisun ṣiṣi fun Zcash",
+    "heroDescription": "Mọ nipa imọ-ẹrọ aṣiri Zcash, ṣawari awọn oluṣiro ibaraenisepo, ki o si ṣe alabapin si ilolupo eda abemi",
+    "description": "ZecHub jẹ agbegbe ti o jẹ ẹkọ ẹkọ fun cryptocurrency Zcash (ZEC). Zcash jẹ owo oni-nọmba ti o pese awọn isanwo ti o ni idaduro, ailewu & ikọkọ. Zcash Blockchain nlo zk-snarks 'iṣayẹwo' ti o ti ni ilọsiwaju pupọ ti ko nilo Eto Igbẹkẹle lẹhin igbesoke nẹtiwọọki NU5 ni 2022.",
+    "featuredSection": "Àwọn Àlàfo tó Wà",
+    "latestUpdates": "Àwọn Àtúnṣe Tẹ́lẹ̀",
+    "getInvolved": "Kọ́wọ́ Rẹ Dí Nínú Ọ̀ràn Náà",
+    "exploreEcosystem": "Ṣíṣàyẹ̀wò Àyíká",
+    "exploreZcash": "Ṣawari Zcash",
+    "cards": {
+      "startHere": {
+        "title": "Bẹ̀rẹ̀ Níbí",
+        "content": "Mọ ohun ti Zcash jẹ ati awọn ọran lilo ZEC"
+      },
+      "pickWallet": {
+        "title": "Yan Àpamọ́ kan",
+        "content": "Awọn apamọwọ gba ọ laaye lati gba ati lo Zcash ni ikọkọ. Diẹ ninu tun ṣe atilẹyin awọn akọsilẹ ti a fi pamọ"
+      },
+      "resources": {
+        "title": "Awọn orisun Zcash",
+        "content": "Eyi ni awọn itọnisọna ti o ṣe iranlọwọ fun awọn olumulo lati ni oye Zcash Full Nodes, zk-SNARKs ati diẹ sii"
+      }
+    },
+    "sections": {
+      "whatIsZcash": {
+        "title": "Kí ni Zcash?",
+        "description": "O jẹ orisun ṣiṣi, blockchain ledger ti o ni eto idanimọ imọ-aini-imọ ti o dara julọ. O ṣe amọja ni fifunni ni ipele ti o ga julọ ti asiri nipasẹ eto idaniloju rẹ ti o tọju asiri ti metadata iṣowo. Ni ipilẹ rẹ, Zcash jẹ ohun-ini data aladani ti a gbe laisi igbanilaaye nigbati awọn iṣowo ba waye.",
+        "mainLink": "Kí ni Zcash?",
+        "techLink": "Ìmọ̀-ẹ̀rọ Zcash"
+      },
+      "zcashMe": {
+        "title": "Zcash.me",
+        "description": "Zcash.Me jẹ́ ìwé-àkọsílẹ̀ tí ó wà fún gbogbo ènìyàn tí ó ní àwọn oníṣe Zcash tí ó ń fi ìsọfúnni ìdánilẹ́kọ̀ọ́ hàn, àwọn àkọlé-ìdíje, àti àwọn oníṣẹ́ tí wọ́n ti jẹ́rìí sí.",
+        "link": "Lọ sí Zcash.Me"
+      },
+      "globalAmbassadors": {
+        "title": "Àwọn Aṣojú Àgbáyé Zcash",
+        "description": "Zcash Global Ambassadors jẹ awọn oludari agbegbe ti a ṣe iyasọtọ si igbega gbigba ati ẹkọ cryptocurrency ti o ni idojukọ asiri ni kariaye. Iṣẹ akanṣe aṣoju kọọkan fojusi lori kikọ imoye ati adehun laarin awọn agbegbe wọn.",
+        "link": "Mọ Àwọn Aṣojú Náà"
+      },
+      "newsletter": {
+        "title": "Ìwé Ìròyìn Ààbò",
+        "description": "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!",
+        "link": "Ṣàdásílẹ̀"
+      },
+      "free2z": {
+        "title": "Free2Z",
+        "description": "Free2Z jẹ́ ìkànnì àjọṣepọ̀ tí Zcash ń darí. pẹ̀lú àwọn ọrẹ ojú-ọ̀rẹ́, ètò pínpín owó-ìmọ̀, àwọn irinṣẹ́ ìṣèdá tó ti gòkè àgbà àti àwùjọ orí ayélujára ńlá kan.",
+        "link": "Free2Z"
+      },
+      "payWithZcash": {
+        "title": "Sanwó pẹ̀lú Zcash",
+        "description": "Oju opo wẹẹbu yii jẹ idahun si ibeere naa: Nibo ni MO ti le sanwo pẹlu Zcash? Awọn itọsọna jẹ ọfẹ lati lo. Awọn nkan ti a ṣe akojọ ni fun awọn idi alaye nikan, ati kii ṣe awọn ifọwọsi ti eyikeyi iru. Gbadun!",
+        "mainLink": "sanwó pẹ̀lú z. cash",
+        "mapLink": "SPEDN ì ì"
+      }
+    },
+    "explore": {
+      "startHere": "Bẹrẹ níbí",
+      "tutorials": "Àwọn ẹ̀kọ́",
+      "usingZcash": "Lílo_Zcash",
+      "guides": "Àwọn ìwé atọ́nà",
+      "zcashTech": "Zcash_Tech",
+      "organizations": "Àwọn àjọ Zcash_Organizations",
+      "community": "Zcash_Community ì í ì ë ¤",
+      "zkavClub": "ZKAV_Club (Àwùjọ àwọn òṣèré)",
+      "privacyTools": "Ìpamọ́_Àwọn irinṣẹ́",
+      "research": "Ìwádìí",
+      "glossary": "Glossary_and_FAQs",
+      "contribute": "Ṣètìlẹyìn"
+    }
+  },
+  "footer": {
+    "description": "Aarin ẹkọ orisun ṣiṣi fun Zcash",
+    "quickLinks": "Àwọn Ìjápọ̀ Tó Yára",
+    "resources": "Àwọn ohun àmúṣọrọ̀",
+    "community": "Ìpínlẹ̀",
+    "followUs": "Ẹ Tọ̀ Lé Wa",
+    "allRightsReserved": "A dá gbogbo ẹ̀tọ́ sí",
+    "privacyPolicy": "Ìlànà Ìpamọ́",
+    "termsOfService": "Àwọn Òfin Tó Kàn Nípa Iṣẹ́"
+  },
+  "visualizer": {
+    "title": "Àwọn Ẹ̀rọ-ìwòye Zcash",
+    "description": "Awọn irinṣẹ ẹkọ ibanisọrọ lati ni oye imọ-ẹrọ aṣiri Zcash, amayederun, ati awọn ẹri-imọ-nọmba",
+    "playAll": "Ṣiṣẹ́ Gbogbo Àwọn Ẹ̀rọ Ìwòran",
+    "basic": "Ìpilẹ̀kọ",
+    "basicDescription": "Awọn imọran ipilẹ ati awọn ẹya pataki ti Zcash",
+    "advanced": "Àgbàṣe",
+    "advancedDescription": "Ìwádìí tó jinlẹ̀ nínú ìmọ̀ ẹ̀rọ nídìí ẹ̀kọ́ ìkọ̀ǹpútà, ìfọwọ́sowọ́pọ̀, àti àwọn ohun-èlò",
+    "contributors": "Àwọn Olùkópa",
+    "contributorsDescription": "Awọn ọna lati ṣe alabapin si ilolupo eda abemi Zcash ati ki o jo'gun awọn ere",
+    "beginnerQuiz": "Ìdánwò fún Àkọ́kọ́",
+    "intermediateQuiz": "Ìdánwò Àárín",
+    "contributorsQuiz": "Ìdánwò Àwọn Olùkópa",
+    "autoPlayNote": "Olúkúlùkù oníwòran máa ń ṣiṣẹ́ fúnra rẹ̀. Lo àwọn àkóso láti lọ tàbí dúró.",
+    "wallets": {
+      "title": "Ìfilọ̀ sí Àwọn Wàléètì Zcash",
+      "description": "Mímú Iṣẹ́-ṣiṣe Ààbò Wà"
+    },
+    "pools": {
+      "title": "Àwọn Àkójọ Iye àti Àwọn Irú Adirẹsi",
+      "description": "Ṣawari awọn adagun aṣiri Zcash ati awọn oriṣi adirẹsi"
+    },
+    "payWith": {
+      "title": "Sanwó pẹ̀lú Zcash",
+      "description": "Ṣawari ibi ati bi o ṣe le lo ZEC fun awọn sisanwo ti ara ẹni"
+    },
+    "dex": {
+      "title": "Awọn paṣipaarọ Zcash (DEX)",
+      "description": "Wiwọle ti ko ni iyọọda, idaduro-iṣiro si ZEC nipa lilo awọn paṣipaarọ pipin"
+    },
+    "hashFunction": {
+      "title": "Àwọn Àṣiṣẹ́ Hash",
+      "description": "Kí ni Àṣekárími?"
+    },
+    "blockchain": {
+      "title": "Awọn ipilẹ Blockchain Zcash",
+      "description": "Òye Ìpilẹ̀ṣẹ̀ Zcash Blockchain"
+    },
+    "zkproof": {
+      "title": "zk-SNARKs",
+      "description": "Ifihan ibanisọrọ ti awọn iṣowo ti o ni aabo"
+    },
+    "keys": {
+      "title": "Awọn bọtini Zcash",
+      "description": "Mọ̀ nípa àwọn kókó Zcash"
+    },
+    "infrastructure": {
+      "title": "Ìpínlẹ̀ Ìpèsè Zcash",
+      "description": "Bí àwọn ohun tó wà nínú Zcash ṣe ń ṣiṣẹ́ pa pọ̀"
+    },
+    "consensus": {
+      "title": "Ìfohùnṣọ̀kan",
+      "description": "Báwo ni ọgọ́rọ̀ọ̀rún àwọn ìsọ̀rí ṣe ń fohùn ṣọ̀kan lórí ipò ẹ̀ya?"
+    },
+    "miningHalo": {
+      "title": "Ìwakùsà Zcash",
+      "description": "Imọye iwakusa Equihash ati awọn ẹri-imọ-imọ ti ko ni atunṣe"
+    },
+    "privacyUseCases": {
+      "title": "Àwọn Àkọsílẹ̀ Ìlò Ìpamọ́",
+      "description": "Awọn ohun elo gidi-aye ti imọ-ẹrọ aṣiri lori Zcash"
+    },
+    "governance": {
+      "title": "Ìdarí & Ètò Ìdàgbàsókè",
+      "description": "Ìdàgbàsókè tí àwọn aráàlú ń darí àti ṣíṣe ìpinnu láìsí ìpìlẹ̀"
+    },
+    "bounties": {
+      "title": "Àwọn Ìràpadà ZecHub",
+      "description": "Ṣíṣe àfikún sí ZecHub kí o sì gba ZEC"
+    },
+    "daoProposal": {
+      "title": "Àwọn Àbá DAO",
+      "description": "Itọsọna igbesẹ-ni-igbesẹ lati ṣẹda imọran iṣakoso ZecHub DAO"
+    },
+    "communityGrants": {
+      "title": "Awọn Ifunni Agbegbe Zcash",
+      "description": "Iṣowo fun awọn iṣẹ ilolupo eda abemi Zcash"
+    },
+    "coinholderGrants": {
+      "title": "Awọn Ifunni ti o tọ si Olutọju Coin",
+      "description": "Owó tí àwọn olùkópa ZEC fi ń ṣe àtúbọ̀tán"
+    },
+    "openSource": {
+      "title": "Àwọn Àpamọ́ Ìsọfúnni Ọ̀fẹ́",
+      "description": "Ṣe alabapin si awọn iṣẹ akanṣe orisun ṣiṣi Zcash"
+    }
+  },
+  "wallets": {
+    "title": "Àwọn Wàléètì Zcash",
+    "description": "Yan pọ́ọ̀sì tó bá ohun tó o nílò mu",
+    "desktopWallets": "Àwọn Wàléètì orí Àpótí",
+    "mobileWallets": "Àwọn Wàléètì Alágbèéká",
+    "hardwareWallets": "Àwọn Wàléètì Ẹ̀rọ",
+    "webWallets": "Àwọn Wàléètì orí Íńtánẹ́ẹ̀tì",
+    "features": "Àwọn Ànímọ́",
+    "download": "Àtúnyèwò",
+    "visitWebsite": "Lọ sí ojú-ìwé",
+    "filters": "Àwọn àlẹmọ",
+    "showNavigation": "Fi Àwòrán Ìlọsíwájú hàn",
+    "close": "Sún mọ́ ọn",
+    "savedReview": "A ti pa àtúnyẹ̀wò rẹ mọ́!",
+    "errorGettingLikes": "Àṣìṣe tí ó ń gba àwọn ìfẹ́:",
+    "errorUpdatingRating": "Àkọsílẹ̀ àtúnṣe àṣìṣe:"
+  },
+  "guides": {
+    "title": "Àwọn ìwé atọ́nà",
+    "description": "Awọn itọnisọna igbesẹ-ni-igbesẹ fun lilo Zcash",
+    "allGuides": "Gbogbo Àwọn Atọ́nà",
+    "beginner": "Olùbẹ̀rẹ̀",
+    "intermediate": "Àárín-àárín",
+    "advanced": "Àgbàṣe"
+  },
+  "tutorials": {
+    "title": "Àwọn ẹ̀kọ́",
+    "description": "Mọ nipa ṣiṣe pẹlu awọn ẹkọ ọwọ",
+    "watchVideo": "Wo Fidio Náà",
+    "readTutorial": "Ka Ẹ̀kọ́ Ọ̀rọ̀",
+    "duration": "Àkókò tó máa gbà"
+  },
+  "dao": {
+    "title": "ZecHub DAO",
+    "description": "Ìdarí tí a kò dá sí fún ZecHub",
+    "headerTitle": "ZecHub DAO & Ìdarí",
+    "headerDescription": "Ojú-iṣẹ́ ìkọ́nilẹ́kọ̀ọ́ tí a ṣí sílẹ̀ níbi tí àwọn ọmọ ìjọ ti ń fọwọ́sowọ́pọ̀ lórí dídá, àyẹ̀wò, àti gbígbé ìsọfúnni lárugẹ tí ó ń ṣètìlẹ́yìn fún ètò ìsálú ayé Zcash",
+    "beliefs": [
+      "Ẹ̀tọ́ ẹ̀dá ni kéèyàn máa dá wà",
+      "Ẹ̀kọ́ yẹ kí ó jẹ́ ti àpapọ̀-ìmọ̀ àti wíwọlé káàkiri àgbáyé",
+      "Àwọn ọmọ ìjọ ní ẹ̀tọ́ láti gba ZEC ní ìdákọ́ńkọ́",
+      "Ìfọ̀rọ̀wéròpọ̀ kárí ayé ń mú àtúnṣe wá"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "First Zcash Ecosystem DAO ì í ì ì ë ¤ì ' ì ì",
+        "description": "ZecHub jẹ́ aṣáájú-ọ̀nà ètò ìṣàkóso tí a kò pín sí ìkáwọ́ ní agbègbè Zcash, pẹ̀lú owó tí ó wà lábẹ́ ààbò Zcash fún ìpamọ́ tí ó pọ̀jù."
+      },
+      {
+        "icon": "🌍",
+        "title": "Ìfọwọ́sowọ́pọ̀ Lágbàáyé",
+        "description": "Àwọn Aṣojú Àgbáyé, àwọn ọmọ ẹgbẹ Ẹ̀bùn Ìjọ, àti àwọn ògbóǹkangí aráàlú darapọ̀ láti darí ọ̀nà tí ẹ̀kọ́ nípa Zcash àti Ẹ̀rọ Ìpamọ́ ní ń gbà."
+      },
+      {
+        "icon": "🔄",
+        "title": "Àlàfo SubDAO",
+        "description": "Ẹgbẹ eyikeyi le ṣẹda SubDAOs lati ṣe awọn iṣẹ akanṣe, ṣẹda awọn igbero, tabi beere fun isanpada Retroactive nipasẹ DAO DAO module."
+      }
+    ],
+    "governanceDescription": "Gbogbo àwọn ìfilọ̀ DAO jẹ́ ti gbogbo ènìyàn àti ìmọ̀lára. Ẹnikẹ́ni lè dá àbá kan láti dìbò lé lórí. Láti ṣe ìtìlẹ́yìn fún ìmọ̀lẹ̀ láwùjọ, ZecHub DAO fi gbogbo àwọn ìfipèsè ìṣàkóso sínú Zcash Community Forum Zec Hub Governance thread.",
+    "membersTitle": "Àwọn ọmọ ẹgbẹ DAO",
+    "proposals": "Àwọn Àbá",
+    "vote": "Ìdìbò",
+    "createProposal": "Ṣẹda Àbá",
+    "activeProposals": "Àwọn Àmọ̀ràn Tó Wà Nílẹ̀",
+    "pastProposals": "Àwọn Àbá Tẹ́lẹ̀"
+  },
+  "newsletter": {
+    "title": "Ìwé ìròyìn",
+    "description": "Mọ̀ nípa àwọn ìròyìn Zcash tó ṣẹ̀ṣẹ̀ jáde",
+    "subscribe": "Ṣàdásílẹ̀",
+    "emailPlaceholder": "Fi imeeli rẹ sínú",
+    "subscribeButton": "Ṣe Àdásílẹ̀ Bayi",
+    "latestIssue": "Ìtẹ̀jáde Tó Dára Jù Lọ",
+    "archive": "Àpamọ́"
+  },
+  "pages": {
+    "wallets": {
+      "title": "Àwọn àpamọ́ owó. ZecHub",
+      "noData": "Kò sí Ìsọfúnni tàbí Àkọsílẹ̀ tí kò tọ́",
+      "bannerAlt": "àlàfo wiki"
+    },
+    "dex": {
+      "title": "Awọn paṣipaarọ Aladani",
+      "subtitle": "ZecHub kò fọwọ́ sí ọ̀kankan lára àwọn iṣẹ́ Àjọ tí ó ń ṣe àkànṣe, jọ̀wọ́ ṣe ìwádìí tìrẹ.",
+      "centralised": "Awọn pẹpẹ paṣipaarọ ti a ṣe ni aarin",
+      "centralizedTitle": "Àkọsílẹ̀ Àpérò Àdásílẹ̀ Onípò",
+      "custodial": "Àwọn Ìpàdé Àdánwò",
+      "exchanges": {
+        "Near-intents": "Fast paṣipaarọ pẹlu awọn support ti NEAR. Ṣe idogo, ta, paṣiparọ pẹlu gbajumo TRUMP, MELANIA, BERA ati awọn miiran memes",
+        "Nativeswap": "Native Cross-Chain Trading Without Barriers via Maya Protocol. Ṣiṣowo taara lori pq laisi awọn afara tabi awọn ami ti a fi pamọ - gbadun awọn idiyele ile-iṣẹ kekere ati iṣakoso ohun-ini pipe.",
+        "Firo DEX": "Awọn paṣipaarọ ti a ko ni igbẹkẹle ti o lo awọn paṣiparọ atomiki pẹlu FiroDEX!.",
+        "LeoDEX": "Àwòrán-ìmọ̀ràn tí a fi ń pààrọ̀ owó ẹyọ fún Maya Protocol, Thorchain, ChainFlip àti Rango. BTC, ETH, RUNE, DASH, LTC & More",
+        "Bison Wallet": "Ẹnìkan-sí-Ẹnìkan, kò sí owó ìnáwó, kò sì sí KYC.",
+        "THORSwap": "DEX Cross-chain ti o ni agbara nipasẹ THORChain, n jẹ ki awọn paṣipaarọ abinibi laarin Bitcoin, Ethereum, ati awọn ohun-ini pataki miiran laisi awọn ami ti a fi sinu.",
+        "Router Protocol": "Oju opo gbigbe owo-owo ti o gba laaye gbigbe ohun-ini ati gbigbe data lailewu laarin awọn blockchains lọpọlọpọ.",
+        "Peer": "Aṣayan paṣipaarọ ti a ko ni idojukọ ti o jẹ ki awọn iṣowo crypto taara pẹlu aṣiri ti o ni ilọsiwaju ati iṣakoso olumulo.",
+        "RocketX": "Ajọpọ DEX Hybrid ti o jẹ ki awọn paṣipaarọ agbelebu kọja awọn blockchains lọpọlọpọ pẹlu ipa ọna ti o dara julọ ati awọn oṣuwọn ifigagbaga.",
+        "THORChain": "Aṣayan ti a ko ṣe pataki Layer 1 agbelebu paṣipaarọ. Ṣiṣowo awọn ohun-ini abinibi bi ZEC, BTC, ati ETH taara laisi awọn afara, awọn ami ti a fi pamọ, tabi awọn alagbata.",
+        "Loofta": "Owo ti ko ni idaduro ti ara ẹni ati pẹpẹ paṣipaarọ. Firanṣẹ ki o gba crypto ni ikọkọ kọja awọn pq, pẹlu Zcash bi ipele itunṣe fun aṣiri owo ti o pọ si."
+      }
+    },
+    "usingZcash": {
+      "blockchainExplorers": {
+        "title": "Àwọn Olùwádìí Blockchain"
+      }
+    },
+    "dashboard": {
+      "title": "Àkọlé àwòrán ZecHub",
+      "charts": {
+        "headerTitle": "Àpótí ìdarí ((s)",
+        "headerSubtitle": "Ṣe itupalẹ awọn iṣiro nẹtiwọọki Zcash ati awọn aṣa",
+        "shieldedNetworks": "Àwọn Nẹtiwọ́ọ̀sì tí a Ṣójú",
+        "currentYoutubeChannel": "Ìkànnì YouTube Lọwọlọwọ",
+        "totalVideos": "Apapọ Awọn fidio",
+        "totalViews": "Apapọ Awọn wiwo",
+        "mostViewed": "Àwọn Tí Wọ́n Ń Wò Jù Lọ",
+        "viewsSuffix": "àwọn èrò",
+        "searchPlaceholder": "Wá àwọn fídíò...",
+        "top15ByViews": "Top 15 nípa Àwọn Ìwòye",
+        "latest15Videos": "Àwọn Fídíò 15 tó ṣẹ̀ṣẹ̀ jáde",
+        "sortByNewest": " Ṣàtúnṣe nípasẹ̀ Àwọn Tuntun",
+        "sortByViews": "↑ Àdàkọ nípasẹ̀ Àwọn Ìwòye",
+        "top15VideosByViews": "Àwọn Fídíò 15 tí ó gbajúmọ̀ jùlọ nípasẹ̀ Àwọn Àwòran",
+        "latest15VideosSortedByViews": "Àwọn Fídíò 15 tó ṣẹ̀ṣẹ̀ jáde (Látàrí Àwọn Èrò)",
+        "zcashMetrics": {
+          "title": "Àwọn Ìṣirò Zcash",
+          "loadError": "Àìmọ̀ṣe láti gbé Zcash Metrics",
+          "notAvailable": "N/A",
+          "marketCap": "Owó orí ọjà",
+          "circulation": "Ìyíká",
+          "marketPriceUsd": "Iye tí wọ́n ń ta lórí ọjà (USD)",
+          "marketPriceBtc": "Iye Ọjà (BTC)",
+          "blocks": "Àwọn àlàfo",
+          "transactions24h": "24h Àwọn Àdánwò",
+          "shieldedTx24h": "TX tí a fi ààbò ṣe (24h)",
+          "saplingAbbrev": "Òdòdó",
+          "orchardAbbrev": "Ork"
+        },
+        "zcashChart": {
+          "title": "Àwọn Àtẹ Ìṣirò",
+          "supplyTypeAriaLabel": "Irú ìpèsè",
+          "supplyOptions": {
+            "shielded": "Ti a fi ààbò ṣe",
+            "transparent": "Ó mójútó",
+            "totalSupply": "Àpapọ̀ Ìpèsè"
+          }
+        },
+        "zcashShieldedTabs": {
+          "supply": "Ìpèsè",
+          "difficulty": "Ìṣòro",
+          "issuance": "Ìfilọ́lẹ̀",
+          "lockbox": "Àpótí ìdáná",
+          "flows": "Àwọn Ìṣàn",
+          "nodeCount": "Iye àwọn ìsopọ̀",
+          "txSummary": "Àkópọ̀ TX",
+          "privacySet": "Àkójọ Ìpamọ́",
+          "shieldedStats": "Àwọn Àkọsílẹ̀ Ìdáàbòbò",
+          "blockFees": "Àwọn Owó Ẹ̀ẹ̀kan",
+          "networkSolps": "Awọn Solps Nẹtiwọọki",
+          "miningPools": "Àwọn Ẹ̀rọ Ìwakùsà",
+          "halvingMeter": "Ìlàjì Òṣùwọ̀n"
+        },
+        "miningPoolsChart": {
+          "title": "Ìdarí Àgbá Ìwakùsà",
+          "loadError": "Ko ṣaṣeyọri lati fifuye Awọn adagun-odo Mining",
+          "rangeLabel": "Àlàfo",
+          "rangeAriaLabel": "Yan ibiti iwakusa",
+          "noData": "Kò sí ìwífún ìwakùsà tí ó wà."
+        },
+        "difficultyChart": {
+          "title": "Ìṣòro Iṣẹ́ Ìwakùsà Níbàámu Pẹ̀lú Àkókò",
+          "loadError": "Àìmọ̀ṣe láti gbé Àkọsílẹ̀ Ìṣòro",
+          "legend": "Ìṣòro",
+          "seriesName": "Ìṣòro"
+        },
+        "tabs": {
+          "zechubDashboard": "Àkọlé àwòrán ZecHub Dashboard",
+          "daodaoDashboard": "Àkọlé àwòrán DaoDao",
+          "treasuryDashboard": "Ilé ìṣúra",
+          "zcgDashboard": "Àkọlé àwòrán ZCG Dashboard",
+          "youtubeDashboard": "Àkọlé YouTube"
+        }
+      }
+    },
+    "hackathon": {
+      "title": "ZecHub Hackathon[àtúnṣe àmìọ̀rọ̀]",
+      "heroEyebrow": "Ṣẹ̀dá · Àkọsílẹ̀ · Fi sílẹ̀",
+      "heroIntro": "Ṣẹda lori awọn orin marun-un, lati inu inu si awọn ere, lẹhinna ṣe akọsilẹ ati ṣe afihan iṣẹ rẹ.",
+      "heroKickoffSep": "(UTC); ìfilọ́lẹ̀ dí",
+      "countdownStartsIn": "Ìdánwò orí ẹ̀rọ yóò bẹ̀rẹ̀",
+      "countdownTimeUntilClose": "Àkókò tí ó kù kí ìfilọ́lẹ̀ parí",
+      "countdownEnded": "Hackathon parí",
+      "days": "Àwọn ọjọ́",
+      "hours": "Àwọn wákàtí",
+      "mins": "Àwọn Mins",
+      "secs": "Àwọn ẹka",
+      "endedNote": "Àkókò ìjíròrò yìí ti parí, ọpẹ́ ni fún gbogbo àwọn tó kópa.",
+      "preStarts": "Ìbẹ̀rẹ̀",
+      "preCloseSep": "(UTC) Ìfilọ́lẹ̀ ti parí",
+      "activeCloseOn": "Àwọn ìfilọ́lẹ̀ tí a pa ní",
+      "tracksEyebrow": "2026 ìṣẹ̀lẹ̀",
+      "tracksTitle": "Àwọn ojúewé",
+      "tracksIntro": "Ṣe àtúnṣe iṣẹ́ rẹ pẹ̀lú orin kan fún òye nígbàtí o bá fi ránṣẹ́, àwọn adájọ́ àti àwùjọ máa ń lò wọ́n láti wo àwọn àkọsílẹ̀.",
+      "tracks": {
+        "infrastructure": {
+          "name": "Ìpínlẹ̀",
+          "description": "ZSA GUI, Node Launcher, Zallet web dashboard ati bẹbẹ lọ"
+        },
+        "games": {
+          "name": "Àwọn eré ìdárayá",
+          "description": "Àwọn ojúewé tó jápọ̀ mọ́ Catfishing.net, ZEC Poker, Battleship etc."
+        },
+        "frost": {
+          "name": "FROST [ìyẹn ìrì dídì]",
+          "description": "Awọn apamọwọ ti o fi ọwọ si ẹnu-ọna, Idaduro ZEC Escrow, Imularada Awujọ"
+        },
+        "zcashLogin": {
+          "name": "Àkọsílẹ̀ Zcash",
+          "description": "Awọn ṣiṣan idanimọ ati idanimọ ti o lo awọn ipilẹṣẹ Zcash fun ibuwọlu tabi iraye si."
+        },
+        "accounting": {
+          "name": "Ìkáwọ́",
+          "description": "Iroyin, awọn iṣan iṣẹ fun awọn ẹgbẹ ti n ṣakoso ZEC, Eto iṣakoso isanwo."
+        }
+      },
+      "prizesEyebrow": "Àwọn èrè",
+      "prizesTitle": "Àwọn èrè",
+      "prizePoolTitle": "Àkójọ owó ẹ̀bùn 25 ZEC",
+      "prizePoolDesc": "Kọ, fi silẹ, ki o si dije fun ẹbun agbegbe.",
+      "devToolsEyebrow": "Bẹ̀rẹ̀ níbí",
+      "devToolsTitle": "Àwọn ohun èlò ìdàgbàsókè àti àkọsílẹ̀",
+      "devTools": {
+        "quickStart": {
+          "title": "Olùgbéejáde ZecHub Ìbẹ̀rẹ̀ Rírì",
+          "description": "Wá àwọn ohun èlò pàtàkì, àwọn ìsọfúnni, àti àwọn ìgbésẹ̀ ìmúrasílẹ̀ fún kíkọ́lé lórí Zcash."
+        }
+      },
+      "openGuide": "Àkọsílẹ̀ ṣíṣí",
+      "openDocs": "Àwọn ìwé tí a ṣí sílẹ̀",
+      "rulesTitle": "Àwọn Ìlànà",
+      "rulesDesc": "Má ṣe jẹ́ kí wọ́n máa fojú kéré ohun tó o bá sọ, kó o sì jẹ́ kó rọrùn fún wọn láti mọ ohun tó ò ń sọ.",
+      "rules": {
+        "mainnet": "Awọn iṣẹ akanṣe gbọdọ ni ibaraenisepo pẹlu nẹtiwọọki Zcash mainnet.",
+        "oneProject": "Ìgbìmọ̀ kò lè fi àbájáde ìwádìí kan ṣoṣo ránṣẹ́.",
+        "docs": "Gbogbo àwọn ìwé tí wọ́n fi ránṣẹ́ ní láti ní àkọsílẹ̀ tó ṣe kedere nípa bí a ṣe ń gbé e kalẹ̀ àti bó ṣe ń lò ó.",
+        "openSource": "Lo ìwé-àṣẹ tí ó ní orísun-ìmọ̀ ṣílẹ̀.",
+        "respect": "Bọ̀wọ̀ fún ìpamọ́ra, ààbò, àti àwọn ìlànà àwùjọ nínú kóòdì àti àkópọ̀."
+      },
+      "faqTitle": "Àwọn ìbéèrè tí wọ́n sábà máa ń béèrè",
+      "faqDesc": "Wá ìdáhùn kíákíá, kó o tó bẹ̀rẹ̀.",
+      "faq": {
+        "whoCanParticipate": {
+          "question": "Àwọn wo ló lè kópa?",
+          "answer": "Ẹnikẹ́ni lè dara pọ̀ mọ́ wọn: àwọn olùdásílẹ̀, àwọn onímọ̀ ẹ̀rọ àti àwọn ẹgbẹ́ tí ó ní oríṣiríṣi ẹ̀ka nínú."
+        },
+        "validSubmission": {
+          "question": "Kí ló gbọ́dọ̀ wà lára ohun tí wọ́n fi ránṣẹ́?",
+          "answer": "Àwòkọ́ṣe tí ó ń ṣiṣẹ́, fídíò àfihàn, ìwé-ìwé ìpilẹ̀ṣẹ̀, àti àlàyé bí ó ṣe ń lo ẹ̀rọ Zcash."
+        },
+        "whereSubmit": {
+          "question": "Ibo la ti máa ń fi àwọn ìwéwèé ránṣẹ́?",
+          "answer": "Ṣe àfihàn fídíò rẹ ní Zcash Global Discord kí o sì fi ìjápọ̀ ìpamọ́ tàbí ìjábọ̀ tí ó bá yẹ kún un."
+        },
+        "winnersSelected": {
+          "question": "Báwo la ṣe máa ń yan àwọn tó máa gba àmì ẹ̀yẹ?",
+          "answer": "Igbesẹ agbegbe ti gbogbo eniyan ni a nṣiṣẹ nipasẹ awọn ikanni ZecHub DAO lẹhin ti awọn ifisilẹ pari."
+        },
+        "whatTracks": {
+          "question": "Kí ni àwọn àmì náà?",
+          "answer": "Awọn akori hackathon yii ni Infrastructure, Games, FROST, Zcash Login, ati Accounting. Yan orin ti o baamu julọ pẹlu itumọ rẹ, o tun le fi iṣẹ akanṣe ti a ko ṣalaye laarin awọn orin ranṣẹ."
+        }
+      },
+      "submitEyebrow": "Ìkópa",
+      "submitTitle": "Bó o ṣe lè fi ìwé náà ránṣẹ́",
+      "submitIntro": "Tẹle awọn igbesẹ marun wọnyi lati mu iṣẹ akanṣe rẹ lati inu imọran si titẹsi osise.",
+      "steps": {
+        "build": {
+          "title": "Kọ iṣẹ rẹ",
+          "description": "Ṣẹ̀dá àwòkọ́ṣe tó ń ṣiṣẹ́ tí ó ń bá àkànlò Zcash ṣiṣẹ́. Yan orin kan kí o sì tọ́jú àkọsílẹ̀ ìdàgbàsókè bí o ṣe ń lọ."
+        },
+        "record": {
+          "title": "Ṣe àfihàn fídíò",
+          "description": "Ṣàkọsílẹ̀ ìtòlẹ́sẹẹsẹ ṣókí tí ó fi iṣẹ́ rẹ hàn nínú ìgbésẹ̀. Ṣàlàyé kedere ohun tí ó ń ṣe àti bí ó ṣe ń lo nẹ́tàkì Zcash."
+        },
+        "document": {
+          "title": "Ṣe àkọsílẹ̀ iṣẹ́ rẹ",
+          "description": "Kọ README pẹlu awọn itọnisọna iṣeto, awọn akọsilẹ lilo, ati iwe-aṣẹ orisun ṣiṣi rẹ. Tẹ ohun gbogbo si ibi ipamọ GitHub ti gbogbo eniyan."
+        },
+        "upload": {
+          "title": "Fi kóòdì rẹ sílẹ̀",
+          "descPrefix": "Tẹ́ ẹ̀rọ rẹ lọ síbi tó yẹ.",
+          "repoLabel": "Àkójọ owó ìnáwó Hackathon",
+          "descSuffix": "lori GitHub ki awujọ le ṣe atunyẹwo iṣẹ rẹ."
+        },
+        "share": {
+          "title": "Àwọn Tó Wà Ní Ìkùdíẹ̀-káàtó",
+          "description": "Fi àfihàn fídíò rẹ sínú Zcash Global Discord pẹ̀lú àwọn ìjápọ̀ repo àti àfihán rẹ ṣáájú July 15, 2026 (UTC)."
+        }
+      },
+      "deadlineLabel": "Àkókò tí a yàn:",
+      "deadlinePrefix": "Gbogbo ìfilọ gbọdọ wa ni posted ni Discord nipa",
+      "deadlineSuffix": "A yan awọn onigbọwọ nipasẹ idibo agbegbe gbangba ni awọn ikanni ZecHub DAO laipẹ lẹhin ti awọn ifisilẹ pari.",
+      "joinTheDiscord": "Darapọ̀ mọ́ Àríyànjiyàn",
+      "previousEyebrow": "Àwọn ìtẹ̀jáde tó ti kọjá",
+      "previousTitle": "Àwọn eré ìdárayá alágbèéká tó ti kọjá",
+      "previousIntro": "Ṣàwákiri àwọn ìpilẹ̀ṣẹ̀ ZecHub hackathon tí ó ti kọjá nípasẹ̀ ìtúmọ̀. Kọọ̀kọ̀ọ̀kan àwọn káàdì iṣẹ́ ló ń so ní tààràtà sí àpamọ́ GitHub rẹ̀ fún ìlànà, àwọn àlàyé, àti àwọn àfihàn níbi tí ó bá wà.",
+      "browseAllProjects": "Wọ gbogbo àwọn iṣẹ́",
+      "errorCouldNotLoad": "Kò lè fi ìtòlẹ́sẹẹsẹ iṣẹ́ tí ó wà nídìí hàn",
+      "errorShowingSaved": "Fihan akojọ iṣẹ akanṣe hackathon ti o ti fipamọ tẹlẹ dipo.",
+      "noProjects": "Kò sí àwọn àpamọ́ iṣẹ́ tí a dá padà. Ṣí i igi repo láti ṣètọ́jú ìmúdàgba.",
+      "projectsArchivedOne": "{count} project archived from this edition. ì í ì ì ì ë¡ ì ì 'ë¦¬ì ê° ì ë ¤.",
+      "projectsArchivedMany": "{count} àwọn iṣẹ́ tí a fi pamọ́ láti inú ìtẹ̀jáde yìí.",
+      "buildsCount": "{count} ń kọ́lé",
+      "viewProject": "Wo iṣẹ-ṣiṣe",
+      "needHelpTitle": "Ṣé o nílò ìrànlọ́wọ́?",
+      "needHelpDesc": "Zcash Global Discord ni ibi tó dára jùlọ fún àwọn ìbéèrè nípa ìpilẹ̀ṣẹ̀, àwọn ìmọ̀ràn nípa ìsọfúnni, àti ìfọ̀rọ̀wérọ̀ nípa ìdìbò.",
+      "joinDiscord": "Darapọ̀ mọ́ Àríyànjiyàn",
+      "supportDonation": "Ìrànlọ́wọ́ nípa ọrẹ",
+      "popup": {
+        "liveNow": "Máa Gbé Ìgbésí Ayé Rẹ Nìṣó",
+        "subtitle": "Ṣẹ̀dá àwọn ohun èlò tí ó ní ìpamọ́ lákọ̀ọ́kọ́ lórí Zcash. Fi ìdíje fún èrè, gba ZEC, kí o sì ṣe àtúnṣe sí ọjọ́ iwájú òmìnira ìṣúnná owó.",
+        "prizePool": "Àkójọ owó èrè",
+        "start": "Bẹrẹ",
+        "end": "Ìparí",
+        "learnMore": "Mọ Àwọn Ohun Míì →",
+        "dismiss": "Ó yẹ kí wọ́n dá a dúró"
+      }
+    },
+    "developers": {
+      "title": "Awọn orisun Olùgbéejáde Zcash",
+      "heroImageAlt": "Awọn orisun Olùgbéejáde Zcash",
+      "cardSectionTitle": "Báwo lo ṣe fẹ́ ká bẹ̀rẹ̀?",
+      "cards": {
+        "learnTitle": "Kọ ẹkọ Idagbasoke Zcash",
+        "learnContent": "Ṣawari awọn iwe aṣẹ osise ati kọ awọn ipilẹ ti imọ-ẹrọ Zcash.",
+        "learnButton": "Ka Àwọn Àkọsílẹ̀",
+        "tutorialsTitle": "Kẹ́kọ̀ọ́ Látinú Àwọn Ẹ̀kọ́ Àkànṣe",
+        "tutorialsContent": "Tẹlé àwọn ìtọ́ni ìgbésẹ̀-gbésẹ̀ láti kọ́lé lórí Zcash, láti ẹ̀dá àpamọ́ owó títí d'ígbé Zcash sínú àwọn ohun èlò rẹ.",
+        "tutorialsButton": "Wo Àwọn Ẹ̀kọ́",
+        "quickStartTitle": "Atọ́nà Ìbẹ̀rẹ̀ Rere",
+        "quickStartContent": "Gba ìdàgbàsókè Zcash kíákíá, kó o sì máa ṣiṣẹ́. Kọ́ bí a ṣe ń gbé e kalẹ̀, bó ṣe yẹ kó rí, àti àwọn iṣẹ́ pàtàkì.",
+        "quickStartButton": "Atọ́nà Ìbẹ̀rẹ̀ Rere"
+      },
+      "exploreDocsTitle": "Ṣàwárí Àkọsílẹ̀",
+      "introductionsTitle": "Àwọn Ìfilọ́lẹ̀",
+      "fundamentalsTitle": "Àwọn Ìlànà Pàtàkì",
+      "advancedTitle": "Àgbàṣe",
+      "introLinks": {
+        "introToZcash": "Àkọlé sí Zcash",
+        "introToZcashDesc": "Kọ ẹkọ nipa Zcash, itan rẹ, ati awọn ilana ipilẹ rẹ.",
+        "introToZec": "Àkọlé sí ZEC",
+        "introToZecDesc": "Ṣawari awọn ọran lilo ati awọn anfani ti ZEC, cryptocurrency abinibi Zcash.",
+        "introToZebra": "Àkọlé fún Zebra",
+        "introToZebraDesc": "Mọ bi Zebra ṣe n fun agbara si nẹtiwọọki Zcash pẹlu imuse ti o da lori Rust ti o ni aabo ati ti ko ni aabo",
+        "introToLightwalletd": "Àkọlé fún Lightwalletd",
+        "introToLightwalletdDesc": "Imọye ti lightwalletd projecta scalable olupin kọ ni Go ti daradara sin iwapọ blockchain data to Zcash ina awọn onibara nipasẹ gRPC.",
+        "zalletBook": "Ìwé Zallet",
+        "zalletBookDesc": "Ifilọlẹ si Zallet, apamọwọ Zcash ti o ni kikun ti a kọ ni Rust ati ti a ṣe apẹrẹ bi rirọpo fun apamọwọ zcashd.",
+        "developerResources": "Àwọn Ìpèsè fún Olùgbéejáde",
+        "developerResourcesDesc": "Àwọn ìjápọ̀ sí Zcash àti Àkọsílẹ̀ Ìmòye mìíràn."
+      },
+      "fundamentalsLinks": {
+        "addressEncoding": "Àkọsílẹ̀ Adiresi",
+        "addressEncodingDesc": "Mọ bi a ṣe n ṣe àdàkọ adirẹsi Zcash ati awọn bọtini.",
+        "transactions": "Àwọn Àdéhùn",
+        "transactionsDesc": "Mọ bi awọn iṣowo ṣe n ṣiṣẹ ni Zcash.",
+        "fees": "Àwọn owó ọ̀yà",
+        "feesDesc": "Kẹ́kọ̀ọ́ nípa owó tí wọ́n máa ń san fún àwọn oníbàárà àti bó ṣe máa ń díwọ̀n wọn.",
+        "nodesZcashd": "Àwọn ìkànnì (zcashd)",
+        "nodesZcashdDesc": "Ṣeto ati ṣakoso awọn akopọ Zcash nipa lilo zcashd.",
+        "nodesZebrad": "Àwọn kókó (zebrad)",
+        "nodesZebradDesc": "Ṣàwárí Zebra, àtúnṣe ìmúṣẹ Zcash node.",
+        "lightwalletServers": "Àwọn Ìránṣẹ́ Lightwallet",
+        "lightwalletServersDesc": "Kọ ẹkọ nipa lightwalletd, olupin apamọwọ Zcash ti o rọrun.",
+        "blockExplorers": "Àwọn Olùwádìí Àpáàdì",
+        "blockExplorersDesc": "Ṣawari awọn blockchains Zcash nipa lilo awọn aṣawari bulọọki.",
+        "shadeAgent": "Aṣoju Òjìji - Èrò",
+        "shadeAgentDesc": "Mọ nipa Awọn aṣoju Ojiji - awọn aṣoju AI ti ominira akọkọ lori NEAR - ti o ni agbara nipasẹ awọn TEE ailewu ati Awọn Ibuwọlu Chain ti ko ni idojukọ lati ṣakoso awọn ohun-ini, wọle si LLMs, ati ṣiṣe awọn iṣowo multichain ni ominira."
+      },
+      "advancedLinks": {
+        "introToStack": "Àkọlé sí Àpò",
+        "introToStackDesc": "Mọ̀ ẹ̀ka àti àwọn ohun tí ó wà nínú ìdìpò Zcash.",
+        "zecDev": "ZecDev",
+        "zecDevDesc": "Nibi iwọ yoo wa awọn iṣẹ akanṣe, awọn orisun ati awọn irinṣẹ ti a ṣẹda ati ṣetọju ni ipo ti (Zcash) Developer Relations Engineer grant.",
+        "zcashCommunityWishlist": "Àtòjọ àwọn ohun tí àwùjọ Zcash fẹ́",
+        "introToZingolib": "Àkọlé sí Zingolib",
+        "introToZingolibDesc": "Imọye ti ibi ipamọ zingolib a Rust-based API ati CLI fun ibaraenisepo pẹlu zcashd nipasẹ Lightwalletd.",
+        "webZjs": "Àwọn ojúewé",
+        "webZjsDesc": "Àkójọ ìwé JavaScript/TypeScript fún kíkọ àwọn ohun èlò orí ayélujára tí ó jẹ́ kí Zcash ṣiṣẹ́ nípa lílo WebAssembly.",
+        "noirWalletSdk": "Noir Wallet SDK",
+        "noirWalletSdkDesc": "TypeScript SDK ati apẹẹrẹ dApp fun sisopọ awọn ohun elo Zcash pẹlu itẹsiwaju aṣawakiri Noir Wallet.",
+        "zcashIka": "zcash-ika",
+        "zcashIkaDesc": "Ìpamọ́ kókó-ìpín fún Zcash àti àwọn aṣojú ọ̀pọ̀-àlàkalẹ̀ nípasẹ̀ 2PC-MPC. Ìlànà ìnáwó lórí ọ̀pá, ìdánilójú ìpamọ́ra, olùṣàtúnṣe ìsòwò ZIP 244.",
+        "developmentGuidelines": "Àwọn Ìlànà Ìdàgbàsókè",
+        "developmentGuidelinesDesc": "Tẹle awọn ilana ti o dara julọ fun idagbasoke lori Zcash.",
+        "arboristCalls": "Arborist Calls Page",
+        "arboristCallsDesc": "The Zcash Arborist Calls are bi-weekly protocol development meetings focused on tracking upcoming protocol deployment logistics, consensus node implementation issues, and protocol research."
+      },
+      "feedbackTitle": "Ǹjẹ́ ojú ìwé yìí ràn ẹ́ lọ́wọ́?",
+      "feedbackYes": "Bẹ́ẹ̀ ni",
+      "feedbackNo": "No",
+      "feedbackHelpful": "O ṣeun fun awọn esi rẹ! Ṣe oju-iwe yii dara julọ nipa idahun awọn ibeere diẹ. Ti o ba nilo iranlọwọ, o le de ọdọ agbegbe lori wa",
+      "feedbackNotHelpful": "O dun lati gbọ pe. Jọwọ jẹ ki a mọ bi a ṣe le mu oju-iwe yii dara. O le de ọdọ agbegbe lori wa"
+    },
+    "zcashProjects": {
+      "title": "Àwọn iṣẹ́ Zcash. ZecHub"
+    },
+    "visualizer": {
+      "title": "Àwọn Ẹ̀rọ-ìwòye Zcash",
+      "hashFunction": {
+        "title": "Àwòrán Ìṣirò Hash Function"
+      },
+      "zcashKey": {
+        "title": "Zcash Key Visualizer (Ohun tí ó ń fi kókó hàn)"
+      },
+      "zksnark": {
+        "title": "ZK-SNARK Àrídájú Visualizer"
+      },
+      "sybil": {
+        "problemTitle": "Ìṣòro Ìkọlù Sybil",
+        "problemDesc": "Nínú ẹ̀rọ tí ìdìbò fi ń pinnu òtítọ́, aṣekúpani lè dá àràádọ́ta ọ̀kẹ́ orúkọ èké láti fi dí àwọn olùdíje tó bá ṣe é.",
+        "realUsers": "3 Àwọn Tó Ń Lo Oògùn Náà",
+        "vs": "vs",
+        "attacker": "Ọ̀kan lára àwọn tó kọ lù ú (6 àdàkọ)",
+        "solutionTitle": "Bí Zcash ṣe dènà àwọn Ìkọlù Sybil",
+        "powTitle": "Ẹ̀rí Iṣẹ́",
+        "powDesc": "Iṣẹ́ ìwakùsà nílò àwọn ohun àmúṣọrọ̀ ìṣirò gidi. Ṣíṣèdá àwọn ìdánimọ̀ èké kò fúnni ní agbára ìdìbò púpọ̀ - iṣẹ́ gidi nìkan ló ṣe é.",
+        "costTitle": "Owó Tó Ń Náni",
+        "costDesc": "Lílépa ẹ̀rọ náà gba ìnáwó ńlá nínú ohun èlò àti iná mànàmáná, tí ó mú kí àwọn ìkọlù náà jẹ́ èyí tí kò bọ́gbọ́n mu ní ti ọrọ̀ ajé.",
+        "insightLabel": "Ìlàlóye pàtàkì:",
+        "insightDesc": "Ìdènà síbílì so agbára ìdìbò mọ́ àwọn ohun àmúṣọrọ̀ tí kò tó (ìṣirò, ìdókòwò) dípò àwọn ìdánimọ̀ tí ó rọrùn láti dá."
+      },
+      "saplingKey": {
+        "spendingKeyName": "Àkọlé ìnáwó (sk)",
+        "spendingKeyDesc": "Àṣírí tó ṣe pàtàkì jù lọ tó o fi ń náwó",
+        "expandedSpendingKeyName": "Àtọ̀nà Ìṣúnná Owó Tó Gbòòrò Sí I",
+        "expandedSpendingKeyDesc": "béèrè, nsk, ovk",
+        "fullViewingKeyName": "Full Viewing Key (fvk) Àkọsílẹ̀",
+        "fullViewingKeyDesc": "ak, nk, ovk",
+        "incomingViewingKeyName": "Incoming Viewing Key (ivk)",
+        "incomingViewingKeyDesc": "Wo àwọn ìnáwó tí ó wọlé",
+        "diversifiedAddressName": "Adirẹsi Oniruru",
+        "diversifiedAddressDesc": "zs1... (tí kò ní ààlà lórí kókó)",
+        "derivationTitle": "Ìtọ́jú Àkọ́lé Sapling",
+        "addressFormatTitle": "Àdàkọ Adiresi",
+        "addressFormatDesc": "Awọn ohun kikọ 78, ifaminsi Bech32",
+        "keyFeatureTitle": "Àwọn Ànímọ́ Pàtàkì",
+        "keyFeatureBold": "Àwọn àdírẹ́sì tí ó yàtọ̀ síra",
+        "keyFeatureDesc": " Ṣẹda awọn adirẹsi alailẹgbẹ ti ko ni opin lati bọtini kan"
+      },
+      "blockAnatomy": {
+        "fieldVersion": "Ẹ̀dà",
+        "fieldPreviousHash": "Àwọn ojúewé tó ṣáájú",
+        "fieldMerkleRoot": "Gbẹ̀rẹ̀ Merkle",
+        "fieldTimestamp": "Àmì àkókò",
+        "fieldDifficulty": "Ìṣòro",
+        "fieldNonce": "Olùkọ́ni",
+        "blockHeader": "Àkọlé Àgbáyé",
+        "transactionList": "Àtòjọ àwọn ìsọfúnni",
+        "coinbaseTx": "Tx #1 (Coinbase)",
+        "merkleTree": "Igi Merkle",
+        "merkleRoot": "Gbẹ̀rẹ̀ Merkle"
+      },
+      "difficulty": {
+        "zcashBlockTime": "75 ìṣẹ́jú àáyá",
+        "targetBlockTime": "Akoko idaduro afojusun",
+        "bitcoinBlockTime": "Ìṣẹ́jú mẹ́wàá",
+        "forComparison": "Fún ìfiwéra",
+        "adjustmentTitle": "Ìṣòro Tó Yẹ Kó O Borí",
+        "hashrateIncreases": "Àwọn Ìlànà Tí Wọ́n Ń Tẹ̀ Síwájú",
+        "difficultyUp": "Ìṣòro ń lọ sókè",
+        "target": "Àfojúsùn: 75 ìṣẹ́jú",
+        "staysConstant": "Kò yí padà",
+        "hashrateDecreases": "Àwọn Ìyípadà Tó Ń Ṣẹlẹ̀",
+        "difficultyDown": "Ìṣòro ń lọ sílẹ̀",
+        "summary": "Nẹtiwọọki naa ṣe atunṣe iṣoro iwakusa laifọwọyi lati ṣetọju awọn akoko bulọọki ti o ni ibamu, laibikita iye awọn oniwakọ ti o n dije."
+      }
+    },
+    "paymentProcessors": {
+      "title": "Àwọn Ẹ̀rọ Ìsanwó. ZecHub",
+      "noData": "Kò sí Ìsọfúnni tàbí Àkọsílẹ̀ tí kò tọ́",
+      "bannerAlt": "àlàfo wiki"
+    },
+    "developersQuickStart": {
+      "heroBadge": "Àkọsílẹ̀ Àkọ́ṣe",
+      "heroTitleLine1": "Zcash Dev",
+      "heroTitleLine2": "Ìbẹ̀rẹ̀ Kíákíá",
+      "heroSubtitle": "Yọ̀ ọ́ sílẹ̀ kí o sì máa ṣiṣẹ́ pẹ̀lú ìdàgbàsókè Zcash. Yan àpò rẹ kí o si tẹ̀lé ìtọ́ni.",
+      "copy": "Mo gba",
+      "copied": "A gba!",
+      "onThisPage": "Ní ojú ewé yìí",
+      "tocInstallingZebrad": "Bí wọ́n ṣe ń fi Zebrad sínú ọkọ̀",
+      "tocRunningZebrad": "Ẹranko zebrad tó ń sáré",
+      "tocConnectingLightwalletd": "Lílọ sípò pẹ̀lú lightwalletd",
+      "installation": "Iṣẹ́-ṣiṣe",
+      "configuration": "Ìṣètò",
+      "dependencies": "Àwọn agbègbè tó wà lábẹ́ rẹ̀",
+      "fromSource": "Orísun Ọ̀rọ̀",
+      "alternatively": "Àtúnṣe",
+      "manualDownload": "Àtúnṣe ìkápá",
+      "wslRecommended": "WSL (A ṣe iṣeduro)",
+      "runningZebradHeading": "Ẹranko zebrad tó ń sáré",
+      "initialSetup": "Ìpilẹ̀ṣẹ̀ ìmúrasílẹ̀",
+      "createConfigDir": "Ṣẹ̀dá Àkájọ Ìṣètò",
+      "startingZebrad": "Starting zebrad",
+      "commandLine": "Òpó àṣẹ",
+      "importantNotes": "Àwọn Àkíyèsí Pàtàkì",
+      "noteDownloadsBlockchain": "Igbesẹ akọkọ gba gbogbo blockchain (~ 250 GB)",
+      "noteInitialSync": "Ìmúṣiṣẹ́pọ̀ àkọ́kọ́ lè gba ọ̀pọ̀ wákàtí",
+      "noteKeepSecure": "Pa àwo n zebrad.toml rẹ mọ́ ní ààbò àti ní ìkọ̀kọ̀",
+      "connectingLightwalletdHeading": "Lílọ sípò pẹ̀lú lightwalletd",
+      "lightwalletdInfo": "jẹ olupin ti o pese wiwo ti o ni irọrun si blockchain Zcash, ti a ṣe apẹrẹ fun awọn apamọwọ alagbeka ati tabili ti ko nilo lati ṣiṣe node kikun.",
+      "prerequisites": "Àwọn ohun tó pọn dandan",
+      "buildLightwalletd": "Ṣẹ̀dá lightwalletd",
+      "basicSetupMainnet": "Ìtòlẹ́sẹẹsẹ Ìpilẹ̀ṣẹ̀ (Mainnet)",
+      "basicSetupTestnet": "Ìtòlẹ́sẹẹsẹ Ìdásílẹ̀ (Ìdánwò Nẹtiwọọ̀n)",
+      "run": "Ẹ sá lọ",
+      "installingZaino": "Fifi Zaino sori ẹrọ",
+      "zainoInfo": "is a Rust-based indexer for the Zcash blockchain. It serves both light clients (wallets that don't store the full history) and full clients/block explorers, providing access to finalized chain, the non-finalized best chain, and the mempool. ì í ë ì ì ì 'ë 1⁄4ì ì ì ë ì ¤ë¥1⁄4 ì ì í ì ì ê° ì ì ¬ì ì ë ¤ì ì í ê3 ì ì§ ì ì ̧ì ë ¤.",
+      "buildZaino": "Kọ Zaino",
+      "configure": "Ṣiṣeto",
+      "runZainod": "Ẹ sáré lọ bí ẹ ti ń rìn",
+      "installingZingoCli": "Fifi sori ẹrọ Zingo CLI",
+      "zingoCliInfo": "is a command-line lightwalletd-proxy client built in Rust. Àwọn ìfilọ́lẹ̀ wọ̀nyí jẹ́ fúngbà díẹ̀  this guide covers compiling from source.",
+      "buildZingoCli": "Ṣẹda Zingo CLI",
+      "running": "Rírìn",
+      "startZingoCliDefault": "Bẹrẹ Zingo CLI (Awọn Afowoyi)",
+      "startZingoCliCustom": "Bẹrẹ Zingo CLI (Awọn aṣa)",
+      "zingoSyncWarning": " Èyí yóò ṣe àpapọ̀ ìmúṣiṣẹ́pọ̀ ní ìgbà àkọ́kọ́, bíi ti lightwalletd.",
+      "nextStepsResources": "Àwọn Ìgbésẹ̀ Mìíràn àti Àwọn Ohun Ìrànlọ́wọ́",
+      "readyToBuild": "Ṣé O Ti Múra Tán Láti Bẹ̀rẹ̀?",
+      "officialDocumentation": "Àkọsílẹ̀ Ìjọba",
+      "zcashDiscordCommunity": "Ìgbìmọ̀ Zcash Discord",
+      "githubRepositories": "Àwọn Àpamọ́ GitHub",
+      "zcashImprovementProposals": "Àwọn Àbá fún Àtúnṣe Zcash",
+      "needHelp": "Ṣé O Nílò Ìrànlọ́wọ́?",
+      "zcashCommunityForum": "Àjọ Ìjọ Zcash",
+      "githubIssues": "Àwọn Ìṣòro GitHub",
+      "troubleshootingGuide": "Atọ́nà Ìdáhùn Ìṣòro",
+      "stackOverflow": "Àlàfo ìdìpò"
+    },
+    "governanceHowto": {
+      "pageTitle": "Ìdarí ZecHub DAO",
+      "pageSubtitle": "Itọsọna ti o ni kikun lati kopa ninu iṣakoso ZecHub DAO",
+      "stepOf": "Igbesẹ {lóde} ti {apapọ}",
+      "firstSteps": "Àwọn Ìgbésẹ̀ Àkọ́kọ́",
+      "firstStepsDesc": "Ṣeto ara rẹ lati kopa ninu iṣakoso DAO",
+      "draftProposal": "Àkọlé Àbá",
+      "draftProposalDesc": "Ṣètò àti múra àbá rẹ sílẹ̀ láti fi ránṣẹ́",
+      "submittingProposal": "Fífi Àmọ̀ràn Lárugẹ",
+      "submittingProposalDesc": "Fi àbá rẹ sílẹ̀ kó o sì gbé e lárugẹ",
+      "installKeplr": "Fi àpò Keplr sori ẹrọ",
+      "installKeplrDesc": "Ṣeto apamọwọ Keplr rẹ lati ṣepọ pẹlu DAO",
+      "keplrVideoTitle": "Itọsọna Ṣiṣeto apamọwọ Keplr",
+      "acquireJuno": "Gba JUNO",
+      "acquireJunoDesc": "Ẹ gba àwọn ẹyọ owó JUNO láti ṣe àjọṣepọ̀ pẹ̀lú àdéhùn Daodao.",
+      "viewOpenProposals": "Wo Àwọn Àmọ̀ràn Tó Ṣílẹ̀",
+      "viewOpenProposalsDesc": "Wo àwọn àbá tí wọ́n ń gbé kalẹ̀ báyìí àti àǹfààní láti dìbò",
+      "visitVotingPortal": "Ṣabẹwo si Ojú-ìlé Ìdìbò",
+      "formatNote": "Ọ̀nà tí wọ́n gbà kọ ọ́: O lè kọ ọ̀rọ̀ rẹ̀ ní .md tàbí .txt",
+      "recommendedStructure": "Ìtòlẹ́sẹẹsẹ Ìpele mẹ́rin tí a dábàá:",
+      "stageBackground": "Àwọn Ohun Tó Ṣẹlẹ̀",
+      "stageBackgroundDesc": "Pese diẹ ninu awọn itan ti awọn gbogbogbo koko / iṣẹ",
+      "stageWhy": "Kí nìdí tó fi rí bẹ́ẹ̀?",
+      "stageWhyDesc": "Sọ ìdí pàtàkì tó o fi fẹ́ ṣe ìgbéyàwó.",
+      "stageProposal": "Àmọ̀ràn",
+      "stageProposalDesc": "Ṣàlàyé àbá rẹ ní kíkún",
+      "stageAction": "Ìgbésẹ̀",
+      "stageActionDesc": "Ohun tí ó ṣẹlẹ̀ lẹ́yìn ìdìbò tó yọrí sí rere - lè pèsè àkókò ìgbésẹ̀",
+      "getFeedback": "Gba Ìdáhùn",
+      "getFeedbackDesc": "Ṣe àgbéyẹ̀wò rẹ lórí ìkànnì ZecHub #proposals channel lórí Discord fún àlàyé kíákíá",
+      "joinDiscord": "Darapọ̀ mọ́ Àríyànjiyàn",
+      "walkthroughTitle": "Fídíò Ìtòlẹ́sẹẹsẹ Ọ̀rọ̀-ìfiwéra",
+      "walkthroughDesc": "Wo ìtòlẹ́sẹẹsẹ kíkún nípa bí a ṣe ń kọ̀wé àti bí a ti ń gbé àbá kalẹ̀",
+      "walkthroughIframeTitle": "Àlàyé lórí àbá tó wà nínú ìwé náà",
+      "postInDiscord": "Ìsọfúnni nínú Àríyànjiyàn",
+      "postInDiscordDesc": "Ẹ sọ àbá tí ẹ fẹ́ ṣe nínú #proposals kí ẹ sì fi tag sí @core-team",
+      "openDiscord": "Àìfohùnṣọ̀kan",
+      "submitOnPortal": "Ẹ fi ránṣẹ́ lórí ìkànnì ìdìbò",
+      "submitOnPortalDesc": "Lo oju-iwe ibo ZecHub osise lati ṣẹda imọran rẹ",
+      "submitNow": "Fi Ẹ̀rọ sílẹ̀ báyìí",
+      "loginNote": "️ O ní láti wọlé pẹ̀lú Keplr tàbí KeplR Mobile",
+      "previous": "Ti tẹlẹ",
+      "next": "Èkejì"
+    },
+    "sitemap": {
+      "heading": "Ìrìn-àjò ojúlé",
+      "subheading": "Àkópòsí kíkún nípa gbogbo ojúewé àti àwọn ohun àmúṣọrọ̀ tó wà lórí Zechub Wiki",
+      "guidesCount": "{count} àwọn ìtọ́ni",
+      "sections": {
+        "Pages": "Àwọn ojúewé",
+        "Organizations": "Àwọn àjọ",
+        "Guides": "Àwọn ìwé atọ́nà",
+        "Use Zcash": "Lo owó Zcash",
+        "Ecosystem": "Àwọn ohun abẹ̀mí"
+      },
+      "links": {
+        "Homepage": "Ojúewé àkọlé",
+        "Dashboard": "Àpótí ìdarí",
+        "Donation": "Ìfúnni",
+        "Contribute": "Ṣètìlẹyìn",
+        "DAO": "DAO (ìmọ̀ ọ̀nà)",
+        "Developers": "Àwọn Olùgbéejáde",
+        "Brand": "Àmì ọ̀pá",
+        "Wallets": "Àwọn pọ́ọ̀sì",
+        "Sitemap": "Àwòrán ojúlé",
+        "Tutorials": "Àwọn ẹ̀kọ́",
+        "Bounties": "Àwọn ẹ̀bùn",
+        "Buying ZEC": "Rírà ZEC",
+        "Faucets": "Awọn faucets",
+        "Exchanges": "Ìpàdé",
+        "Block Explorers": "Àwọn Olùwádìí Àpáàdì",
+        "Shielded Pools": "Àwọn Erékùṣù Tí Wọ́n Fi Ààbò Bo",
+        "Transparent Exchange Addresses": "Àwọn Adirẹsi Àdásílẹ̀",
+        "Transactions": "Àwọn Àdéhùn",
+        "Memos": "Àwọn ìwé ìrántí",
+        "Mobile Top Ups": "Àwọn Ohun Èlò Tó Wà Lára Ìtòlẹ́sẹẹsẹ",
+        "Payment Request URIs": "Àwọn URI fún Ìbéèrè fún Ìsanwó",
+        "Payment Processors": "Awọn Oluṣakoso Isanwo",
+        "Recovering Funds": "Gbígba Owó Pa Dà",
+        "Metamask Snap": "Àdàkọ Metamask Snap",
+        "Community Forum": "Àjọ Ìparapọ̀",
+        "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
+      }
+    },
+    "zcashCommunity": {
+      "communityProjects": {
+        "title": "Àwọn Iṣẹ́ Àjọṣe"
+      }
+    },
+    "research": {
+      "seriesHeading": "Àtòjọ",
+      "seriesSubheading": "Ìjìnlẹ̀ àyè sí àwọn èròjà Zcash",
+      "foundationsSeriesTitle": "Ìtòlẹ́sẹẹsẹ Ìpilẹ̀ṣẹ̀ Zcash",
+      "coreSeriesBadge": "Ìtòlẹ́sẹẹsẹ Aṣá",
+      "foundationsSeriesCardDescription": "Àwọn àpilẹ̀kọ tí ó jẹ́ ìpìlẹ̀ lórí àwọn ìsòwò tí a fi ààbò bo, àwọn àwòkọ́ṣe ìpamọ́, àti ìpilẹ̀ṣẹ̀ ìlànà.",
+      "exploreSeries": "Ṣàwárí àwọn ìtòlẹ́sẹẹsẹ →",
+      "articlesHeading": "Àwọn Àpilẹ̀kọ Ìwádìí",
+      "articlesSubheading": "Àwọn àpilẹ̀kọ àti àlàyé láti inú àwùjọ ZecHub.",
+      "foundationsSeriesDescription": "Àkójọ àwọn àpilẹ̀kọ tó dá lórí àwọn ìnáwó tí a fi ààbò bo Zcash, àwọn àwòkọ́ṣe ìpamọ́, ìpilẹ̀ṣẹ̀ ìlànà, àti àwọn èrò pàtàkì tí ó jẹ́ kí nẹ́tàkì náà ṣiṣẹ́.",
+      "tagShieldedTransactions": "Àwọn Àdéhùn tí a fi Ààbò bo",
+      "tagPrivacyModels": "Àwọn Àpẹẹrẹ Ìpamọ́",
+      "tagProtocolDesign": "Ètò Àkọsílẹ̀",
+      "tagZeroKnowledge": "Ìmọ̀ Òkú"
+    },
+    "browseSidebar": "Ṣàwákiri àwọn àpilẹ̀kọ náà nípa lílo ọ̀pá ìsàlẹ̀ òsì ",
+    "zcashGlobalAmbassadors": {
+      "title": "Àwọn Aṣojú Àgbáyé Zcash",
+      "description": "Zcash Global Ambassadors jẹ awọn oludari agbegbe ti a ṣe iyasọtọ si igbega gbigba ati ẹkọ cryptocurrency ti o ni idojukọ asiri ni kariaye. Iṣẹ akanṣe aṣoju kọọkan fojusi lori kikọ imoye ati adehun laarin awọn agbegbe wọn.",
+      "activeProjectsHeading": "Àwọn Ìpínlẹ̀ Àgbáyé tó ń Ṣiṣẹ́",
+      "projectSitesHeading": "Àwọn ojúewé Àkànṣe & Àwọn Bólọ́ọ̀sì",
+      "followOnX": "Tẹle lori X/BS",
+      "projectSiteLabel": "Ibi Tí Wọ́n Ti Ṣe Iṣẹ́ Náà",
+      "linkLabel": "Ìjápọ̀",
+      "footerInfo": "Eto Zcash Global Ambassadors n ṣe atilẹyin awọn ipilẹṣẹ ti agbegbe ṣe lati ṣe igbega gbigba imọ-ẹrọ ti o ni idojukọ asiri. Olukuluku iṣẹ aṣoju n ṣiṣẹ ni ominira lakoko ti o ṣe alabapin si ilolupo eda abemi Zcash ti o gbooro.",
+      "mapTitle": "Àwòrán Zcash Ambassador",
+      "mapSubtitle": "Ìgbìmọ̀ tó ń ṣagbátẹrù Zcash ní ààrin àwọn àwùjọ tó ń ṣiṣẹ́.",
+      "globeView": "Ìwòye àgbáyé",
+      "mapView": "Ojúewé àwòrán-àwòrán",
+      "loadError": "Kò lè fi ìsọfúnni aṣojú kún un.",
+      "projects": {
+        "Zcash Korea": "Ẹgbẹ́ Zcash àti ìpolongo ní Korea",
+        "Zcash Russia": "Ẹgbẹ́ Zcash àti ìpolongo ní Russia",
+        "Zcash Arabia": "Ẹgbẹ́ Zcash àti ìpolongo ní agbègbè tí ó ń sọ èdè Arabì",
+        "Zcash Brazil": "Ẹgbẹ́ Zcash àti ìpolongo ní Brazil",
+        "Zcash Ghana": "Ẹgbẹ́ Zcash àti ìpolongo ní Ghana",
+        "Zcash Español": "Ẹgbẹ́ Zcash àti ìpolongo ní agbègbè tí ó ń sọ èdè Spanish",
+        "Zcash Nigeria": "Ẹgbẹ́ Zcash àti ìpolongo ní Nàìjíríà",
+        "Zcash Ukraine": "Ẹgbẹ́ Zcash àti ìpolongo ní Ukraine",
+        "Zcash Turkey": "Ẹgbẹ́ Zcash àti ìpolongo ní Tọki",
+        "Zcash India": "Ẹgbẹ́ Zcash àti ìpolongo ní India",
+        "Zcash East Africa": "Zcash East Africa ti ṣe iyasọtọ si igbega asiri oni-nọmba, ominira owo, ati imotuntun blockchain nipasẹ eto-ẹkọ, awọn iṣẹlẹ agbegbe, awọn idanileko imọ-ẹrọ, ati idagbasoke ilolupo eda abemi. Igbese naa ni ifọkansi lati ṣẹda ibudo agbegbe nibiti awọn eniyan le ṣawari awọn imọ ẹrọ imudarasi asiri, kọ ẹkọ nipa awọn ẹri imoye odo, ati kopa ninu n dagba nẹtiwọọki Zcash kariaye.",
+        "Zcash South Africa": "Ìpamọ́️. Òmìnira. Zcash  Ìjọ fún agbègbè Gúúsù Áfríkà"
+      },
+      "globeTitle": "Zcash Ambassador Àgbáyé"
+    }
+  },
+  "developers": {
+    "quickStart": {
+      "tableOfContents": "Àkópọ̀ Àwọn Ohun Tó Wà Nínú Ìwé Yìí",
+      "toc1": "1. Bí wọ́n ṣe ń gbé Zebrad",
+      "toc2": "2. Running zebrad",
+      "toc3": "3. Asopọmọ pẹlu lightwalletd",
+      "installingHeading": "1. Bí wọ́n ṣe ń gbé Zebrad",
+      "runningHeading": "2. Running zebrad",
+      "connectingHeading": "3. Asopọmọ pẹlu lightwalletd",
+      "systemRequirements": "Àwọn Ohun Tí Ètò Náà Ń Fẹ́",
+      "linux": "Àwọn Linux",
+      "ubuntuDebian": "Ubuntu/Debian:",
+      "fromSource": "Orísun:",
+      "macos": "macOS",
+      "homebrew": "Oúnjẹ ilé:",
+      "windows": "Àwọn fèrèsé",
+      "importantNotes": "Àwọn Àkíyèsí Pàtàkì",
+      "nextSteps": "Àwọn Ìgbésẹ̀ Tó Máa Tẹ̀ Lé E",
+      "readyToBuild": "Ṣé O Ti Múra Tán Láti Bẹ̀rẹ̀?",
+      "needHelp": "Ṣé O Nílò Ìrànlọ́wọ́?"
+    }
+  },
+  "components": {
+    "newsletter": {
+      "title": "ZecHub Ààbò Ìròyìn",
+      "subtitle": "Subscribe to updates by entering your Unified Address.",
+      "feeLine": "Owó ìforúkọsílẹ̀ kan ṣoṣo tó jẹ́ 0.05 ZEC",
+      "feeLineRest": "ó pọn dandan láti sanwó ìnáwó.",
+      "categoryEcosystem": "Àwọn Ìròyìn Nípa Àyíká",
+      "categoryStats": "Àwọn Àkọsílẹ̀ Nẹ́ẹ̀tì",
+      "addressPlaceholder": "Enter your Zcash Unified Address",
+      "invalidAddressInline": "Adirẹsi tí kò lẹ́sẹ̀ nílẹ̀. Ó gbọ́dọ̀ bẹ̀rẹ̀ pẹ̀lú \"u\" tàbí \"z\".",
+      "invalidAddressAlert": "Jọwọ tẹ adirẹsi Zcash ti o ni aabo to wulo.",
+      "generating": "Ó ń mú...",
+      "subscribe": "Ṣàdásílẹ̀",
+      "doNotEditMemo": "Má ṣe àtúnṣe àlàyé tí a ṣe nínú àpamọ́ rẹ.",
+      "downloadQR": "Ṣe igbasilẹ Koodu QR",
+      "box1Title": "Kí Ni Iṣẹ́ Ìsìn Náà?",
+      "box1Desc": "Gba awọn iroyin eto ilolupo Zcash ati awọn iṣiro nẹtiwọọki taara nipasẹ nẹli Zcash nipa lilo awọn akọsilẹ ti a fi pamọ.",
+      "box2Title": "Bí Ó Ṣe Ń Ṣiṣẹ",
+      "box2DescPre": "A fi awọn iwe iroyin ranṣẹ lẹẹkan ni ọsẹ kan si ọpọlọpọ awọn olugba ni iṣowo aabo kan nipa lilo",
+      "box2DescPost": "Ọna RPC.",
+      "box3Title": "Bó O Ṣe Lè Rí Àwọn Ìsọfúnni Tuntun Gbà",
+      "box3DescPre": "Tẹ̀ ẹ́ wọlé",
+      "box3DescBold": "Adirẹsi Zcash tí a fi ààbò bo",
+      "box3DescPost": "Àwọn àtúnṣe ọ̀sọ̀ọ̀sẹ̀ tí a fi ránṣẹ́ lórí ẹ̀rọ-ìpèsè. Kò nílò imeeli.",
+      "unsubscribe": "Fòpin sí ìforúkọsílẹ̀",
+      "cancelUnsubscribe": "Yẹ́ Àdéhùn Kúrò",
+      "unsubscribePlaceholder": "Enter your Unified Address to unsubscribe",
+      "confirmUnsubscribe": "Fọwọsi Yiyọ Ìforúkọsílẹ̀"
+    },
+    "aiAssistant": {
+      "copyResponse": "Ẹ̀dà ìdáhùn",
+      "copied": "Àdàkọ",
+      "copy": "Mo gba",
+      "botName": "ZecHub AI",
+      "thinking": "Àwòrán alágbèéká ZecHub ń ronú...",
+      "privacyNotice": "Àwọn ìbéèrè ni OpenAI ń ṣe. Má ṣe pín àwọn ọ̀rọ̀ ìpilẹ̀ṣẹ̀, àwọn kókó àdáni, tàbí àwọn àdírẹ́sì àpamọ́.",
+      "clearConversation": "Ìjíròrò tó ṣe kedere",
+      "clear": "Ó mójútó",
+      "getStarted": "Bẹrẹ pẹlu ibeere kan:",
+      "sensitiveWarning": "Èyí dàbí ìsọfúnni àpamọ́. Má ṣe pín kókó ìkòkò tàbí àwọn ọ̀rọ̀-ìfiwéra pẹ̀lú iṣẹ́ èyíkéyìí.",
+      "inputPlaceholder": "Beere ibeere kan... (Lọ lati firanṣẹ, Shift+Lọ fun ila tuntun)",
+      "sendMessage": "Fi ifiranṣẹ ranṣẹ",
+      "enterHint": "Tẹ lati firanṣẹ, Shift+Tẹ fun ìlà tuntun",
+      "messageTooLong": "Ìsọfúnni náà gùn jù (ọ̀pọ̀lọpọ̀ {ọ̀pọ̀lọpọ̀} àwọn àmì).",
+      "unknownError": "Àṣìṣe tí a kò mọ̀.",
+      "serverError": "Àṣìṣe Olùbánisọ̀rọ̀",
+      "somethingWrong": "Nǹkan ò lọ bó ṣe yẹ.",
+      "quickQuestions": [
+        "Kí ni Zcash?",
+        "Kí ni ZecHub?",
+        "Báwo ni àwọn ìnáwó tí a fi ààbò bo ṣe ń ṣiṣẹ́?",
+        "Àwọn pọ́ọ̀sì wo ló ń ṣe àtìlẹyìn Zcash?",
+        "Kí ni adirẹsi z lòdì sí t-address?",
+        "Báwo ni mo ṣe lè bẹ̀rẹ̀ sí í lo ZEC?",
+        "Kí ni owó ìdàgbàsókè Zcash?",
+        "Kí ni zk-SNARKs?"
+      ]
+    }
+  },
+  "sideMenu": {
+    "navigation": "Ìrìn-àjò ojú omi",
+    "explore": "Ṣàwárí"
+  },
+  "meta": {
+    "title": "ZecHub Wiki",
+    "description": "Aarin ẹkọ orisun ṣiṣi fun Zcash"
+  }
+}

@@ -1,0 +1,1178 @@
+{
+  "menuLabels": {
+    "Accept Payments": "Nabata Ịkwụ Ụgwọ",
+    "Akash Network Zebra": "Akash Network Zebra",
+    "Arborist Calls": "Arborist Calls",
+    "Avalanche RedBridge": "Avalanche RedBridge",
+    "BTCPayServer Zcash Plugin": "BTCPayServer Zcash Ntinye",
+    "Blockchain Explorers": "Ndị na-enyocha Blockchain",
+    "Brand": "Akara",
+    "Brave Wallet": "Akpa Obi Ike",
+    "Buying ZEC": "Ịzụta ZEC",
+    "Community Blogs": "Blọọgụ Obodo",
+    "Community Forum": "Nzukọ Ndị Isi Obodo",
+    "Community Links": "Njikọ nke Community",
+    "Community Projects": "Ihe Omume Ndị E Nwere n\"Ọgbakọ",
+    "Contribute": "Na-enye aka",
+    "Cypherpunk Zero NFT": "Cypherpunk Zero NFT",
+    "DAO": "DAO",
+    "Developers": "Ndị mmepe",
+    "Discord": "Ịgba aghara",
+    "Donations": "Onyinye E Nyere",
+    "Electric Coin Company": "Electric Coin Company",
+    "Exchanges": "Mmekọrịta",
+    "Extras": "Ihe ndị ọzọ",
+    "Faucets": "Faucets",
+    "Financial Privacy Foundation": "Ụlọ Ọrụ Na-ahụ Maka Nzuzo Ego",
+    "Free2z Live": "Free2z Live",
+    "Freelance Privacy": "Nzuzo nke onwe onye",
+    "Github": "Github",
+    "Governance": "Ọchịchị",
+    "Guides": "Akwụkwọ ntuziaka",
+    "How to Participate": "Ụzọ Isi Kere Òkè",
+    "Journalist Privacy": "Nzuzo nke Onye nta akụkọ",
+    "Keeping Records": "Idebe Ihe ndekọ",
+    "Keystone Zashi": "Keystone Zashi",
+    "Maya Protocol": "Nkwekọrịta Maya",
+    "Memos": "Ihe ncheta",
+    "Metamask Snap": "Metamask Snap",
+    "Mobile Top Ups": "Ngwaọrụ Mobile Top Ups",
+    "Newsletter": "Akwụkwọ akụkọ",
+    "Nym VPN": "Nym VPN",
+    "Payment Processors": "Ndị na-arụ ọrụ ịkwụ ụgwọ",
+    "Payment Request URIs": "Ịkwụ Ụgwọ Arịrịọ URI",
+    "Podcast": "Podcast",
+    "Private Community Treasury": "Ụlọ Akụ nke Onwe Onye",
+    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 Full Node",
+    "Raspberry pi 4 Zebra Node": "Raspberry pi 4 Zebra Node",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+    "Recovering Funds": "Nkwụghachi Ego",
+    "Research": "Nnyocha",
+    "Send Money Privately": "Na-ezipụ Ego n'Ebe Ọ Bụla",
+    "Shielded Labs": "Ụlọ nyocha echedoro",
+    "Shielded Pools": "Ọdọ Mmiri Ndị E Chebere",
+    "Sitemap": "Site map",
+    "Start Here": "Malite Ebe a",
+    "Store": "Ụlọ ahịa",
+    "Testnet": "Nnyocha nyocha",
+    "Tools": "Ngwá ọrụ",
+    "Transactions": "Mmekọrịta",
+    "Transparent Exchange Addresses": "Adreesị Mgbanwerịta Ọcha",
+    "Tutorials": "Nkuzi",
+    "Twitter": "Twitter",
+    "Use Cases": "Jiri Ọnọdụ",
+    "Using ZEC Privately": "Iji ZEC eme ihe na nzuzo",
+    "Using ZEC in DeFi": "Iji ZEC na DeFi",
+    "Using Zcash": "Iji Zcash",
+    "Visual Identity": "Njirimara Anya",
+    "Visualizer": "Onye na-ahụ anya",
+    "Visualizing Zcash Addresses": "Ịhụ Adreesị Zcash",
+    "Visualizing the Zcash Network": "N'ichepụta Netwọk Zcash",
+    "Wallets": "Akpa ego",
+    "Youtube": "Youtube",
+    "Ywallet FROST Demo": "Ywallet FROST Ihe ngosi",
+    "ZCAP": "ZCAP",
+    "ZIPs & Grants": "ZIPs & Enyemaka",
+    "ZKAV Club": "ZKAV Club",
+    "ZODL": "ZODL",
+    "Zcash Community": "Obodo Zcash",
+    "Zcash Community Grants": "Zcash Onyinye Community",
+    "Zcash Devtool": "Zcash Devtool",
+    "Zcash Ecosystem Security": "Nchebe nke Zcash Ecosystem",
+    "Zcash Foundation": "Zcash Foundation",
+    "Zcash Global Ambassadors": "Ndị nnọchi anya Zcash Global",
+    "Zcash Governance": "Ọchịchị Zcash",
+    "Zcash Improvement Proposals": "Nkwupụta Mmezi Zcash",
+    "Zcash Media": "Zcash Mgbasa Ozi",
+    "Zcash Organizations": "Nzukọ Zcash",
+    "Zcash Podcasts": "Zcash Podcasts",
+    "Zcon Archive": "Zcon Archive",
+    "Zcon Vozes Archive": "Zcon Vozes Archives",
+    "Zenith Installation": "Ntinye Zenith",
+    "Zero-Knowledge vs Decoys": "Ihe Ọmụma Na-adịghị Banyere Ya na Ihe A Na-ejighị Ama Mee",
+    "Zgo Payment Processor": "Zgo Nhazi Ịkwụ Ụgwọ",
+    "Zingo Labs": "Ụlọ nyocha Zingo",
+    "Zingolib and Zaino Tutorial": "Ntuziaka Zingolib na Zaino",
+    "Zkool Multisig": "Zkool Multisig",
+    "Custodial Exchanges": "Mgbanwe Ndị Nchebe",
+    "Zcash Use Cases": "Ọnọdụ Ojiji Zcash",
+    "Zcash Tech": "Zcash Tech",
+    "Privacy Tools": "Ngwaọrụ Nzuzo",
+    "Zcash Social Media": "Zcash Social Media",
+    "Glossary & FAQ's": "Glossary & Ajụjụ Ndị A Na-ajụkarị"
+  },
+  "exploreMenu": {
+    "Full Explore": "Nyochaa zuru ezu",
+    "Start Here": "Malite Ebe a",
+    "Tutorials": "Nkuzi",
+    "Using Zcash": "Iji Zcash",
+    "Guides": "Akwụkwọ ntuziaka",
+    "Zcash Tech": "Zcash Tech",
+    "Zcash Organizations": "Nzukọ Zcash",
+    "Zcash Community": "Obodo Zcash",
+    "ZKAV Club": "ZKAV Club",
+    "Privacy Tools": "Ngwaọrụ Nzuzo",
+    "Research": "Nnyocha",
+    "Glossary & FAQs": "Glossary & Ajụjụ Ndị A Na-ajụkarị",
+    "Contribute": "Na-enye aka",
+    "For Forks & Maintainers": "N'ihi na ndụdụ & Maintainers",
+    "Fork zechub-wiki": "Fork zechub-wiki",
+    "Fork zechub": "Fork zechub"
+  },
+  "common": {
+    "home": "Ụlọ",
+    "about": "Banyere",
+    "contact": "Kpọtụrụ",
+    "language": "Asụsụ",
+    "clickToExplore": "Pịa ka inyocha →",
+    "learnMore": "Mụta Ihe Ndị Ọzọ",
+    "getStarted": "Malite Ịgụ Baịbụl",
+    "readMore": "Gụkwuo",
+    "search": "Nchọgharị",
+    "close": "Mechie",
+    "searchModalTitle": "Chọọ ZecHub Wiki",
+    "searchHint": "Chọọ site na aha peeji, isiokwu, ma ọ bụ ụzọ. Jiri igodo akụ iji họrọ, Tinye iji mepee.",
+    "searchNoResults": "Enweghị peeji ndị kwekọrọ",
+    "searchTryDifferent": "Gbalịa jiri ajụjụ ndị dị mkpirikpi, okwu ndị yiri ibe ha, ma ọ bụ okwu ndị ọzọ mee ihe.",
+    "searchSuggested": "Peeji ndị a tụrụ aro",
+    "searchResultsLabel": "Nsonaazụ"
+  },
+  "navigation": {
+    "wallets": "Akpa ego",
+    "guides": "Akwụkwọ ntuziaka",
+    "tutorials": "Nkuzi",
+    "governance": "Ọchịchị",
+    "visualizer": "Onye na-ahụ anya",
+    "dao": "DAO",
+    "newsletter": "Akwụkwọ akụkọ",
+    "donate": "Nye onyinye",
+    "explore": "Nyochaa",
+    "developers": "Ndị mmepe",
+    "community": "Ihe Community",
+    "contribute": "Na-enye aka",
+    "dashboard": "Ogwe njikwa",
+    "more": "Ọzọ",
+    "usingZcash": {
+      "label": "Jiri Zcash",
+      "buyingZec": "Ịzụta ZEC",
+      "faucets": "Faucets",
+      "wallets": "Akpa ego",
+      "metamaskSnap": "Metamask Snap",
+      "exchanges": "Mmekọrịta",
+      "blockExplorers": "Ndị na-enyocha Block",
+      "shieldedPools": "Ọdọ Mmiri Ndị E Chebere",
+      "transparentExchangeAddresses": "Adreesị Mgbanwerịta Ọcha",
+      "transactions": "Mmekọrịta",
+      "memos": "Ihe ncheta",
+      "mobileTopUps": "Ngwaọrụ Mobile Top Ups",
+      "paymentRequestUris": "Ịkwụ Ụgwọ Arịrịọ URI",
+      "paymentProcessors": "Ndị na-arụ ọrụ ịkwụ ụgwọ",
+      "recoveringFunds": "Nkwụghachi Ego",
+      "testnet": "Nnyocha nyocha",
+      "tools": "Ngwá ọrụ",
+      "useCases": "Jiri Ọnọdụ",
+      "useCasesSubmenu": {
+        "startHere": "Malite Ebe a",
+        "acceptPayments": "Nabata Ịkwụ Ụgwọ",
+        "freelancePrivacy": "Nzuzo nke onwe onye",
+        "journalistPrivacy": "Nzuzo nke Onye nta akụkọ",
+        "keepingRecords": "Idebe Ihe ndekọ",
+        "privateCommunityTreasury": "Ụlọ Akụ nke Onwe Onye",
+        "donations": "Onyinye E Nyere",
+        "sendMoneyPrivately": "Na-ezipụ Ego n'Ebe Ọ Bụla"
+      }
+    },
+    "zcashCommunity": {
+      "label": "Ihe Ndị Dị n'Eluigwe",
+      "arboristCalls": "Arborist Calls",
+      "communityBlogs": "Blọọgụ Obodo",
+      "communityLinks": "Njikọ nke Community",
+      "communityForum": "Nzukọ Ndị Isi Obodo",
+      "communityProjects": "Ihe Omume Ndị E Nwere n\"Ọgbakọ",
+      "globalAmbassadors": "Ndị nnọchi anya Zcash Global",
+      "zcashMedia": "Zcash Mgbasa Ozi",
+      "zcap": "ZCAP",
+      "zcashPodcasts": "Zcash Podcasts",
+      "ecosystemSecurity": "Nchebe nke Zcash Ecosystem",
+      "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
+      "zconArchive": "Zcon Archive"
+    },
+    "organizations": {
+      "label": "Ndị otu",
+      "electricCoinCompany": "Electric Coin Company",
+      "zcashFoundation": "Zcash Foundation",
+      "communityGrants": "Zcash Onyinye Community",
+      "financialPrivacyFoundation": "Ụlọ Ọrụ Na-ahụ Maka Nzuzo Ego",
+      "shieldedLabs": "Ụlọ nyocha echedoro",
+      "zingoLabs": "Ụlọ nyocha Zingo",
+      "brand": "Akara",
+      "zkavClub": "ZKAV Club"
+    },
+    "guidesSubmenu": {
+      "zgoPaymentProcessor": "Zgo Nhazi Ịkwụ Ụgwọ",
+      "free2zLive": "Free2z Live",
+      "keystoneZashi": "Keystone Zashi",
+      "mayaProtocol": "Nkwekọrịta Maya",
+      "nymVpn": "Nym VPN",
+      "usingZecInDefi": "Iji ZEC na DeFi",
+      "usingZecPrivately": "Iji ZEC eme ihe na nzuzo",
+      "raspberryPiZcashdNode": "Raspberry Pi Zcashd Node",
+      "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+      "raspberryPiZebraNode": "Raspberry Pi Zebra Node",
+      "akashNetwork": "Akash Network",
+      "avalancheRedbridge": "Avalanche RedBridge",
+      "zkoolMultisig": "Zkool Multisig",
+      "ywalletFrostDemo": "Ywallet FROST Ihe ngosi",
+      "blockchainExplorers": "Ndị na-enyocha Blockchain",
+      "braveWallet": "Akpa Obi Ike",
+      "btcPayServerPlugin": "Ihe mgbakwunye BTCPayServer",
+      "visualizingZcashNetwork": "N'ichepụta Netwọk Zcash",
+      "visualizingZcashAddresses": "Ịhụ Adreesị Zcash",
+      "zcashDevtool": "Zcash Devtool",
+      "zcashImprovementProposals": "Nkwupụta Mmezi Zcash",
+      "zingolibAndZainoTutorial": "Ntuziaka Zingolib na Zaino",
+      "zenithInstallation": "Ntinye Zenith",
+      "zeroKnowledgeVsDecoys": "Ihe Ọmụma efu vs. Decoy Systems"
+    },
+    "overview": "Nkọwapụta",
+    "shop": "Ụlọ ahịa"
+  },
+  "home": {
+    "heroTitle": "Nabata na ZecHub",
+    "heroSubtitle": "Ebe agụmakwụkwọ mepere emepe maka Zcash",
+    "heroDescription": "Mụta maka teknụzụ nzuzo Zcash, nyochaa ihe ngosi mmekọrịta, ma nye aka na gburugburu ebe obibi",
+    "description": "ZecHub bụ ebe agụmakwụkwọ nke obodo na-eduzi maka Zcash cryptocurrency (ZEC). Zcash bụ ego dijitalụ na-enye nkwụsi ike na-eguzogide, nchekwa & ịkwụ ụgwọ nkeonwe. Zcash Blockchain na-eji zk-snarks 'nyocha' dị elu nke na-anaghị achọ Ntọala tụkwasịrị obi mgbe emelitere netwọk NU5 na 2022.",
+    "featuredSection": "Ihe Ndị E Gosiri",
+    "latestUpdates": "Mmelite kachasị ọhụrụ",
+    "getInvolved": "Na-etinye Aka na Ya",
+    "exploreEcosystem": "Na-enyocha Ihe Ndị Dị n'Eluigwe na Ala",
+    "exploreZcash": "Nyochaa Zcash",
+    "cards": {
+      "startHere": {
+        "title": "Malite Ebe a",
+        "content": "Chọpụta ihe Zcash bụ na ZEC jiri ikpe"
+      },
+      "pickWallet": {
+        "title": "Họrọ obere akpa ego",
+        "content": "Wallets na-enye gị ohere ịnata ma jiri Zcash na nzuzo. Ụfọdụ na-akwado akwụkwọ ozi ezoro ezo"
+      },
+      "resources": {
+        "title": "Akụrụngwa Zcash",
+        "content": "Nke a bụ ntuziaka ndị na-enyere ndị ọrụ aka ịghọta Zcash Full Nodes, zk-SNARKs na ndị ọzọ"
+      }
+    },
+    "sections": {
+      "whatIsZcash": {
+        "title": "Gịnị bụ Zcash?",
+        "description": "It is an open-source, blockchain ledger that features a sophisticated zero-knowledge proving system. It specializes in offering a higher standard of privacy through its proving system preserving confidentiality of transaction metadata. At its core, Zcash is private data ownership that is permissionlessly transferred when transactions are made.",
+        "mainLink": "Gịnị bụ Zcash?",
+        "techLink": "Teknụzụ Zcash"
+      },
+      "zcashMe": {
+        "title": "Zcash.me",
+        "description": "Zcash.Me bụ akwụkwọ ndekọ aha ọha nke ndị ọrụ Zcash na-egosipụta ozi nzuzo, ọkwa, na ndị ọrụ enyocha. Jikọọ, nyochaa, ma soro ndị obodo Zcash nwee mmekọrịta.",
+        "link": "Gaa na Zcash.Me"
+      },
+      "globalAmbassadors": {
+        "title": "Ndị nnọchi anya Zcash Global",
+        "description": "Ndị nnọchi anya Zcash Global bụ ndị isi obodo raara onwe ha nye na-akwalite nnabata cryptocurrency na agụmakwụkwọ na-elekwasị anya na nzuzo n'ụwa niile. Onye ọ bụla na-ekwuchitere ọrụ na-etinye uche na iwulite mmata na itinye aka na mpaghara ha.",
+        "link": "Zute Ndị Nnọchiteanya"
+      },
+      "newsletter": {
+        "title": "Akwụkwọ Akụkọ E Chebere",
+        "description": "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!",
+        "link": "Debanye aha"
+      },
+      "free2z": {
+        "title": "Free2Z",
+        "description": "Free2Z bụ usoro mmekọrịta mmadụ na ibe ya nke Zcash kwadoro. Site na onyinye ndị ọgbọ, mmemme ịkekọrịta ego, ngwa ọrụ okike dị elu na nnukwu obodo zuru ụwa ọnụ n'ịntanetị.",
+        "link": "Free2Z"
+      },
+      "payWithZcash": {
+        "title": "Jiri Zcash kwụọ ụgwọ",
+        "description": "Ebe nrụọrụ weebụ a bụ azịza nye ajụjụ: Ebee ka m nwere ike iji Zcash kwụọ ụgwọ? Ndepụta ahụ bụ n'efu iji. Ihe ndị edepụtara bụ maka ebumnuche ozi naanị, ọ bụghị nkwado nke ụdị ọ bụla. Nwee obi ụtọ!",
+        "mainLink": "kwụọ ụgwọz.cash",
+        "mapLink": "SPEDN"
+      }
+    },
+    "explore": {
+      "startHere": "Malite_Ebe a",
+      "tutorials": "Nkuzi",
+      "usingZcash": "Iji_Zcash",
+      "guides": "Akwụkwọ ntuziaka",
+      "zcashTech": "Zcash_Tech",
+      "organizations": "Zcash_Organizations",
+      "community": "Zcash_Community",
+      "zkavClub": "ZKAV_Club",
+      "privacyTools": "Nzuzo_Ngwaọrụ",
+      "research": "Nnyocha",
+      "glossary": "Glossary_and_FAQs",
+      "contribute": "Na-enye aka"
+    }
+  },
+  "footer": {
+    "description": "Ebe agụmakwụkwọ mepere emepe maka Zcash",
+    "quickLinks": "Njikọ ọsọ ọsọ",
+    "resources": "Akụrụngwa",
+    "community": "Ihe Community",
+    "followUs": "Soro Anyị",
+    "allRightsReserved": "Ikike niile echekwara",
+    "privacyPolicy": "Iwu Nzuzo",
+    "termsOfService": "Usoro Ọrụ"
+  },
+  "visualizer": {
+    "title": "Ndị na-ahụ maka Zcash",
+    "description": "Ngwá ọrụ agụmakwụkwọ mmekọrịta iji ghọta teknụzụ nzuzo Zcash, akụrụngwa, na ihe akaebe nke ihe ọmụma efu",
+    "playAll": "Gwuo Ihe Nlere niile",
+    "basic": "Ihe ndị bụ isi",
+    "basicDescription": "Echiche ndị bụ isi na njirimara ndị dị mkpa nke Zcash",
+    "advanced": "Ọganihu dị elu",
+    "advancedDescription": "Deep technical dives na cryptography, nkwekọrịta, na akụrụngwa",
+    "contributors": "Ndị na-enye onyinye",
+    "contributorsDescription": "Ụzọ iji nye aka na gburugburu ebe obibi Zcash ma nweta ụgwọ ọrụ",
+    "beginnerQuiz": "Ajụjụ maka ndị mbido",
+    "intermediateQuiz": "Ajụjụ N'etiti",
+    "contributorsQuiz": "Ajụjụ Ndị Na-enye Aka",
+    "autoPlayNote": "Ihe ngosi ọ bụla na-agba ọsọ na-akpaghị aka. Jiri njikwa ịnyagharịa ma ọ bụ kwụsịtụ.",
+    "wallets": {
+      "title": "Okwu Mmalite na Zcash Wallets",
+      "description": "Inye ọrụ echedoro"
+    },
+    "pools": {
+      "title": "Ngwakọta Ọnụ Ahịa & Ụdị Adreesị",
+      "description": "Nyochaa ọdọ mmiri nzuzo Zcash na ụdị adreesị"
+    },
+    "payWith": {
+      "title": "Jiri Zcash kwụọ ụgwọ",
+      "description": "Chọpụta ebe na otu esi eji ZEC maka ịkwụ ụgwọ nkeonwe"
+    },
+    "dex": {
+      "title": "Zcash Exchanges (DEX)",
+      "description": "Enweghị ikike, nnweta na-eguzogide ọgwụ na ZEC site na iji mgbanwe mgbanwe"
+    },
+    "hashFunction": {
+      "title": "Ọrụ Hash",
+      "description": "Kedu ihe bụ Ọrụ Hash?"
+    },
+    "blockchain": {
+      "title": "Zcash Blockchain Fundamentals",
+      "description": "Ịghọta Zcash Blockchain Foundation"
+    },
+    "zkproof": {
+      "title": "zk-SNARKs",
+      "description": "Interactive ngosi nke kpuchie azụmahịa"
+    },
+    "keys": {
+      "title": "Igodo Zcash",
+      "description": "Ịghọta Igodo Zcash"
+    },
+    "infrastructure": {
+      "title": "Akụrụngwa Zcash",
+      "description": "Otu ihe ndị Zcash si arụkọ ọrụ ọnụ"
+    },
+    "consensus": {
+      "title": "Nkwekọrịta",
+      "description": "Kedụ ka ọtụtụ narị nodes si ekwekọrịta n'ihe banyere ọnọdụ nke agbụ?"
+    },
+    "miningHalo": {
+      "title": "Zcash Mining",
+      "description": "Ịghọta Equihash mining na recursive zero-knowledge proofs"
+    },
+    "privacyUseCases": {
+      "title": "Ọnọdụ Ojiji Nzuzo",
+      "description": "Ngwa ụwa nke teknụzụ nzuzo na Zcash"
+    },
+    "governance": {
+      "title": "Ọchịchị & Dev Fund",
+      "description": "Ọganihu nke obodo na-eduzi na ime mkpebi na-enweghị isi"
+    },
+    "bounties": {
+      "title": "Onyinye ZecHub",
+      "description": "Tinye aka na ZecHub ma nweta ZEC"
+    },
+    "daoProposal": {
+      "title": "DAO na-atụ aro",
+      "description": "Ntuziaka nzọụkwụ site na nzọụkwụ iji mepụta atụmatụ ọchịchị ZecHub DAO"
+    },
+    "communityGrants": {
+      "title": "Zcash Onyinye Community",
+      "description": "Nkwado ego maka ọrụ Zcash ecosystem"
+    },
+    "coinholderGrants": {
+      "title": "Onyinye Ego A Na-enye Ndị Nwere Mkpụrụ Ego",
+      "description": "Ntinye ego azụ nke ndị na-ejide ZEC na-eduzi"
+    },
+    "openSource": {
+      "title": "Ebe nchekwa Open Source",
+      "description": "Na-enye aka na Zcash open source projects"
+    }
+  },
+  "wallets": {
+    "title": "Akpa ego Zcash",
+    "description": "Họrọ obere akpa ego dabara n'ihe ị chọrọ",
+    "desktopWallets": "Akpa ego desktọọpụ",
+    "mobileWallets": "Wallets ndị na-agagharị agagharị",
+    "hardwareWallets": "Akpa ego akụrụngwa",
+    "webWallets": "Wallets Ịntanetị",
+    "features": "Njirimara",
+    "download": "Nbudata",
+    "visitWebsite": "Gaa n'Ịntanet",
+    "filters": "Ihe nzacha",
+    "showNavigation": "Gosi Ntugharị",
+    "close": "Mechie",
+    "savedReview": "Anyị chebere nyocha gị!",
+    "errorGettingLikes": "Njehie na-enweta mmasị:",
+    "errorUpdatingRating": "Nhazi mmelite njehie:"
+  },
+  "guides": {
+    "title": "Akwụkwọ ntuziaka",
+    "description": "Ntuziaka nzọụkwụ site na nzọụkwụ maka iji Zcash",
+    "allGuides": "Ndị Nduzi Nile",
+    "beginner": "Onye mbido",
+    "intermediate": "N'etiti",
+    "advanced": "Ọganihu dị elu"
+  },
+  "tutorials": {
+    "title": "Nkuzi",
+    "description": "Mụta site n'ime ihe na nkuzi aka",
+    "watchVideo": "Lelee Vidio",
+    "readTutorial": "Gụọ nkuzi",
+    "duration": "Ogologo oge"
+  },
+  "dao": {
+    "title": "ZecHub DAO",
+    "description": "Ọchịchị na-enweghị isi maka ZecHub",
+    "headerTitle": "ZecHub DAO & Ọchịchị",
+    "headerDescription": "Ebe a na-emeghe ebe ndị otu obodo na-arụkọ ọrụ na ịmepụta, nyochaa, na ịkwalite ọdịnaya nke na-akwado usoro okike Zcash",
+    "beliefs": [
+      "Nzuzo bụ ikike mmadụ nwere",
+      "Agụmakwụkwọ kwesiri ịbụ nke mepere emepe ma nwee ike ịnweta ya n'ụwa niile",
+      "Ndị otu obodo nwere ikike inweta ZEC n'onwe ha",
+      "Mmekọrịta zuru ụwa ọnụ na-akpali ihe ọhụrụ"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "Mbụ Zcash Ecosystem DAO",
+        "description": "ZecHub bụ onye ọsụ ụzọ na-achịkwa nchịkwa na mpaghara Zcash, yana ego a na-edebe n'ime ọdọ mmiri Zcash echekwara maka nzuzo kachasị."
+      },
+      {
+        "icon": "🌍",
+        "title": "Mmekọrịta Zuru Ụwa Ọnụ",
+        "description": "Ndị nnọchi anya mba ụwa, ndị otu Community Grants, na ndị ọkachamara obodo na-agbakọ aka iduzi ụzọ agụmakwụkwọ Zcash na Teknụzụ Nzuzo."
+      },
+      {
+        "icon": "🔄",
+        "title": "Nchịkọta SubDAO",
+        "description": "Otu ọ bụla nwere ike ịmepụta SubDAOs iji mepụta ọrụ, mepụta atụmatụ, ma ọ bụ rịọ nkwụghachi azụ site na DAO DAO modul."
+      }
+    ],
+    "governanceDescription": "Ihe niile DAO na-atụ aro bụ ọha na eze na nke doro anya. Onye ọ bụla nwere ike ịmepụta atụmatụ ịtụ vootu. Na nkwado nke nghọta obodo, ZecHub DAO biputere atụmatụ ọchịchị niile na Zcash Community Forum Zec Hub Governance thread.",
+    "membersTitle": "Ndị otu DAO",
+    "proposals": "Aro ndị a tụrụ",
+    "vote": "Votu",
+    "createProposal": "Mepụta Nkwupụta",
+    "activeProposals": "Atụmatụ Na-arụsi Ọrụ Ike",
+    "pastProposals": "Aro Ndị E Mere n'Oge Gara Aga"
+  },
+  "newsletter": {
+    "title": "Akwụkwọ akụkọ",
+    "description": "Nọgide na-emelite na akụkọ Zcash kachasị ọhụrụ",
+    "subscribe": "Debanye aha",
+    "emailPlaceholder": "Tinye email gị",
+    "subscribeButton": "Denye aha Ugbu a",
+    "latestIssue": "Mbipụta Kacha Ọhụrụ",
+    "archive": "Ebe nchekwa"
+  },
+  "pages": {
+    "wallets": {
+      "title": "Akpa ego. ZecHub",
+      "noData": "Enweghị data ma ọ bụ faịlụ ezighi ezi",
+      "bannerAlt": "ọkọlọtọ wiki"
+    },
+    "dex": {
+      "title": "Mgbasa Ozi Na-enweghị Nkọwa",
+      "subtitle": "ZecHub anaghị akwado ọrụ Decentralized Exchange ọ bụla, biko mee nyocha nke gị.",
+      "centralised": "Ebe a na-ere ahịa swap",
+      "centralizedTitle": "Nkọwapụta nke Central Swap Platform",
+      "custodial": "Mgbanwe Ndị Nchebe",
+      "exchanges": {
+        "Near-intents": "Mgbanwe ngwa ngwa na nkwado nke NEAR. Mee nkwụnye ego, ree, gbanwee gụnyere ewu ewu TRUMP, MELANIA, BERA na ndị ọzọ memes",
+        "Nativeswap": "Native Cross-Chain Trading Without Barriers via Maya Protocol. Azụmahịa na-aga n'ihu na-enweghị akwa ma ọ bụ ihe nkedo - nwee ụlọ ọrụ ụgwọ dị ala na njikwa akụ zuru ezu.",
+        "Firo DEX": "Ntinye ego na-enweghị ntụkwasị obi site na iji atomic swaps na FiroDEX!.",
+        "LeoDEX": "Otu interface mgbanwe crypto crosschain maka Maya Protocol, Thorchain, ChainFlip na Rango. BTC, ETH, RUNE, DASH, LTC & More",
+        "Bison Wallet": "Na-ere ahịa crypto n'etiti ndị ọgbọ, enweghị ụgwọ azụmahịa, enweghị KYC.",
+        "THORSwap": "Cross-chain DEX nke THORChain kwadoro, na-eme ka ndị nwe obodo gbanwee n'etiti Bitcoin, Ethereum, na ihe ndị ọzọ dị mkpa na-enweghị akara ngosi.",
+        "Router Protocol": "Mkpokọta ngwugwu ngwugwu nke na-enye ohere ka akụ na data na-aga n'ihu na-ebufe n'etiti ọtụtụ blockchains.",
+        "Peer": "Mgbanwe nke ndị ọgbọ na-eme ka azụmahịa crypto na-aga n'ihu na nzuzo na njikwa onye ọrụ.",
+        "RocketX": "Ngwakọta ngwakọ DEX na-enyere aka ịgbagha agbagha n'ofe ọtụtụ blockchains na ụzọ kachasị mma na ọnụego asọmpi.",
+        "THORChain": "Decentralized Layer 1 cross-chain exchange. Gbanwee ihe onwunwe dị ka ZEC, BTC, na ETH ozugbo na-enweghị àkwà mmiri, ngwugwu ngwugwu, ma ọ bụ ndị na-etiti.",
+        "Loofta": "Non-custodial onwe ugwo na swap n'elu ikpo okwu. Zipu ma nata crypto na nzuzo gafee agbụ, na Zcash dị ka nhazi nhazi maka ịkwalite nzuzo ego."
+      }
+    },
+    "usingZcash": {
+      "blockchainExplorers": {
+        "title": "Ndị na-enyocha Blockchain"
+      }
+    },
+    "dashboard": {
+      "title": "Ogwe njikwa. ZecHub",
+      "charts": {
+        "headerTitle": "Dashboard (s)",
+        "headerSubtitle": "Nyochaa metrik netwọk Zcash na usoro",
+        "shieldedNetworks": "Netwọk echedoro",
+        "currentYoutubeChannel": "Ọwa YouTube ugbu a",
+        "totalVideos": "Ngụkọta vidiyo",
+        "totalViews": "Ọnụ ọgụgụ ndị lere ya",
+        "mostViewed": "Ndị A Na-elekarị Anya",
+        "viewsSuffix": "echiche",
+        "searchPlaceholder": "Chọọ vidiyo...",
+        "top15ByViews": "Top 15 site na Echiche",
+        "latest15Videos": "Vidio 15 kacha ọhụrụ",
+        "sortByNewest": " Nhazi site na Ọhụrụ",
+        "sortByViews": "↑ Nhazi site na Echiche",
+        "top15VideosByViews": "Vidio 15 kachasị elu site na nlele",
+        "latest15VideosSortedByViews": "Vidio 15 Ndị Kacha Ọhụrụ (Ahazi Ya Site na Echiche)",
+        "zcashMetrics": {
+          "title": "Zcash Metrics",
+          "loadError": "Enweghi ike ibudata Zcash Metrics",
+          "notAvailable": "N/A",
+          "marketCap": "Ahịa Cap",
+          "circulation": "Mgbasa ozi",
+          "marketPriceUsd": "Ahịa ahịa (USD)",
+          "marketPriceBtc": "Ọnụahịa ahịa (BTC)",
+          "blocks": "Mpempe akwụkwọ",
+          "transactions24h": "24h Azụmahịa",
+          "shieldedTx24h": "TX a na-echebe (24h)",
+          "saplingAbbrev": "Sap",
+          "orchardAbbrev": "Orc"
+        },
+        "zcashChart": {
+          "title": "Chaatị Nnyocha",
+          "supplyTypeAriaLabel": "Ụdị inye ihe",
+          "supplyOptions": {
+            "shielded": "E chebere ya",
+            "transparent": "Ihe na-acha ọcha",
+            "totalSupply": "Ngụkọta Mgbasa Ozi"
+          }
+        },
+        "zcashShieldedTabs": {
+          "supply": "Inye ihe",
+          "difficulty": "Ihe isi ike",
+          "issuance": "Mgbapụta",
+          "lockbox": "Igbe mkpọchi",
+          "flows": "Ọsọ ọsọ",
+          "nodeCount": "Nọmba Node",
+          "txSummary": "TX Nchịkọta",
+          "privacySet": "Ntọala Nzuzo",
+          "shieldedStats": "Akụkọ Nchedo",
+          "blockFees": "Ụgwọ ndị a na-akwụ n'otu oge",
+          "networkSolps": "Network Solps",
+          "miningPools": "Ebe Ndị A Na-egwu Ngwuputa",
+          "halvingMeter": "Ọkara Mita"
+        },
+        "miningPoolsChart": {
+          "title": "Ịchịkwa Mkpokọta Ngwuputa",
+          "loadError": "Enweghi ike ibudata Mining Pools",
+          "rangeLabel": "Ebe dị anya",
+          "rangeAriaLabel": "Họrọ ebe a na-egwupụta akụ",
+          "noData": "Enweghị data ọdọ mmiri na-egwupụta akụ."
+        },
+        "difficultyChart": {
+          "title": "Ihe Ịma Aka nke Ngwuputa Ka Oge Na-aga",
+          "loadError": "Enweghi ike ibu Chart Difficulty",
+          "legend": "Ihe isi ike",
+          "seriesName": "Ihe isi ike"
+        },
+        "tabs": {
+          "zechubDashboard": "ZecHub Dashboard",
+          "daodaoDashboard": "DaoDao Dashboard",
+          "treasuryDashboard": "Ụlọ Akụ",
+          "zcgDashboard": "ZCG Dashboard",
+          "youtubeDashboard": "YouTube Dashboard"
+        }
+      }
+    },
+    "hackathon": {
+      "title": "ZecHub Hackathon",
+      "heroEyebrow": "Wụpụta · Ihe odide · Nyefee",
+      "heroIntro": "Wụpụta n'akụkụ ise, site na infra ruo egwuregwu, wee dekọọ ma gosipụta ọrụ gị.",
+      "heroKickoffSep": "(UTC); ntinye akwụkwọ mechie",
+      "countdownStartsIn": "Hackathon na-amalite n'afọ",
+      "countdownTimeUntilClose": "Oge ruo mgbe a ga-emechi akwụkwọ",
+      "countdownEnded": "Hackathon agwụla",
+      "days": "Ụbọchị",
+      "hours": "Oge awa",
+      "mins": "Mins",
+      "secs": "Nkebi nke",
+      "endedNote": "Oge hackathon a agwụla, ekele dịrị ndị niile sonyere na ya.",
+      "preStarts": "Na-amalite",
+      "preCloseSep": "(UTC) Ntinye akwụkwọ mechiri",
+      "activeCloseOn": "Ntinye akwụkwọ mechiri na",
+      "tracksEyebrow": "Ihe omume 2026",
+      "tracksTitle": "Ụzọ ụgbọ okporo ígwè",
+      "tracksIntro": "Kwekọrịta oru ngo gị na egwu maka nghọta mgbe ị nyefere, ndị ikpe na obodo na-eji ha eme nchọgharị na ndenye.",
+      "tracks": {
+        "infrastructure": {
+          "name": "Akụrụngwa",
+          "description": "ZSA GUI, Node Launcher, Zallet web dashboard wdg."
+        },
+        "games": {
+          "name": "Egwuregwu",
+          "description": "Wiki Isiokwu egwuregwu yiri catfishing.net, ZEC Poker, Battleship wdg."
+        },
+        "frost": {
+          "name": "FROST",
+          "description": "Akpa ego na-edebanye aha, ZEC Escrow Shielded, Nkwado Ọha na Ọha"
+        },
+        "zcashLogin": {
+          "name": "Zcash Nbanye",
+          "description": "Nkwado na njirimara nke na-eji Zcash primitives maka ịbanye ma ọ bụ ịnweta."
+        },
+        "accounting": {
+          "name": "Akwụkwọ ndekọ ego",
+          "description": "Akụkọ, usoro ọrụ maka ndị otu na-ejikwa ZEC, usoro njikwa ịkwụ ụgwọ."
+        }
+      },
+      "prizesEyebrow": "Ụgwọ ọrụ",
+      "prizesTitle": "Ihe nrite",
+      "prizePoolTitle": "Ihe nrite nke 25 ZEC",
+      "prizePoolDesc": "Wụpụta, nyefee, ma sọọ mpi maka ihe nrite obodo.",
+      "devToolsEyebrow": "Malite ebe a",
+      "devToolsTitle": "Ngwaọrụ Dev & akwụkwọ",
+      "devTools": {
+        "quickStart": {
+          "title": "ZecHub Onye Mmepụta Mmalite Ọsọ",
+          "description": "Chọta ngwaọrụ ndị dị mkpa, ntụaka, na usoro nhazi maka iwulite na Zcash."
+        }
+      },
+      "openGuide": "Ntuziaka na-emeghe",
+      "openDocs": "Akwụkwọ ndị a na-emeghe",
+      "rulesTitle": "Ụkpụrụ",
+      "rulesDesc": "Mee ka ihe ndị ị na-ede bụrụ ndị ezi uche dị na ha, meekwa ka ọ dịrị gị mfe ịtụle ha.",
+      "rules": {
+        "mainnet": "Ihe oru ngo ga-emekọrịta ihe na netwọkụ Zcash.",
+        "oneProject": "Ndị otu nwere ike itinye naanị otu ọrụ ikpeazụ maka otu otu.",
+        "docs": "Nkwupụta niile ga-agụnye akwụkwọ doro anya maka nhazi na ojiji.",
+        "openSource": "Jiri ikikere mepere emepe.",
+        "respect": "Na-asọpụrụ nzuzo, nchekwa, na ụkpụrụ nduzi obodo na koodu na ọdịnaya."
+      },
+      "faqTitle": "FAQ",
+      "faqDesc": "Azịza ọsọ ọsọ tupu ị banye n'ime.",
+      "faq": {
+        "whoCanParticipate": {
+          "question": "Ole ndị nwere ike isonye?",
+          "answer": "Onye ọ bụla nwere ike isonyere: ndị mmepe, ndị na-emepụta ihe na ndị otu multidisciplinary."
+        },
+        "validSubmission": {
+          "question": "Gịnị ka ihe e nyere n'iwu kwesịrị ịgụnye?",
+          "answer": "Ihe ngosi nke na-arụ ọrụ, ihe ngosi vidiyo, akwụkwọ ndị bụ isi, na nkọwa nke otu o si eji netwọk Zcash."
+        },
+        "whereSubmit": {
+          "question": "Ebee ka anyị na-eziga ọrụ?",
+          "answer": "Kekọrịta ihe ngosi vidiyo gị na Zcash Global Discord ma tinye ebe nchekwa ma ọ bụ njikọ ngosi ọ bụla dị mkpa."
+        },
+        "winnersSelected": {
+          "question": "Olee otú e si ahọpụta ndị mmeri?",
+          "answer": "A na-agba usoro obodo ọha na eze site na ọwa ZecHub DAO mgbe ntinye akwụkwọ mechiri."
+        },
+        "whatTracks": {
+          "question": "Gịnị bụ ihe ndị a?",
+          "answer": "Isiokwu nke hackathon a bụ Akụrụngwa, Egwuregwu, FROST, Nbanye Zcash, na Akaụntụ. Họrọ egwu nke kachasị dabara na iwu gị, ị ka nwere ike itinye ọrụ akọwapụtara n'ime egwu."
+        }
+      },
+      "submitEyebrow": "Ikere òkè",
+      "submitTitle": "Otú e si enye ya",
+      "submitIntro": "Soro usoro ise a iji mee ka ọrụ gị site n'echiche gaa na ntinye aka.",
+      "steps": {
+        "build": {
+          "title": "Wụpụta ọrụ gị",
+          "description": "Mepụta ihe na-arụ ọrụ nke na-emekọrịta ihe na Zcash mainnet. Họrọ egwu ma debe ndekọ mmepe ka ị na-aga."
+        },
+        "record": {
+          "title": "Dee ihe ngosi vidio",
+          "description": "Jide obere njem na-egosi ọrụ gị n'ọrụ. Kọwaa nke ọma ihe ọ na-eme na otu o si eji netwọk Zcash."
+        },
+        "document": {
+          "title": "Dee ihe ndị ị na- eme n\" akwụkwọ",
+          "description": "Dee akwụkwọ README na ntuziaka ntọala, ihe eji eme ihe, na ikikere isi mmalite gị. Gbanye ihe niile n'ebe ọha na eze GitHub."
+        },
+        "upload": {
+          "title": "Bulite koodu gị",
+          "descPrefix": "Na-akpali oru ngo gị na",
+          "repoLabel": "Hackathon repo",
+          "descSuffix": "na GitHub ka obodo wee nyochaa ọrụ gị."
+        },
+        "share": {
+          "title": "Ikere Òkè n'Eseokwu",
+          "description": "Bipute ihe ngosi vidiyo gị na Zcash Global Discord na njikọ gị na njikọ ngosi tupu July 15, 2026 (UTC)."
+        }
+      },
+      "deadlineLabel": "Oge ikpeazụ:",
+      "deadlinePrefix": "A ga-eziga ozi niile na Discord site na",
+      "deadlineSuffix": "A na-ahọpụta ndị mmeri site na ntuli aka ọha na eze na ZecHub DAO ọwa obere oge mgbe ntinye akwụkwọ mechiri.",
+      "joinTheDiscord": "Jikọọ na Agha ahụ",
+      "previousEyebrow": "Mbipụta ndị gara aga",
+      "previousTitle": "Ndị hackathons gara aga",
+      "previousIntro": "Na-agagharị na mbụ ZecHub hackathon na-ewu site na mbipụta. Kaadị ọrụ ọ bụla jikọtara ya na folda GitHub maka koodu, ndetu, na demos ebe dị.",
+      "browseAllProjects": "Na-agagharị na ọrụ niile",
+      "errorCouldNotLoad": "Enweghi ike ibudata ndepụta ọrụ ndụ",
+      "errorShowingSaved": "Igosi ndepụta ọrụ hackathon gara aga echekwara kama.",
+      "noProjects": "Enweghị nchekwa ọrụ laghachiri. Mepee osisi repo iji nyochaa usoro.",
+      "projectsArchivedOne": "{count} oru ngo archived site na mbipụta a.",
+      "projectsArchivedMany": "{count} oru ngo echekwara site na mbipụta a.",
+      "buildsCount": "{count} na-ewulite",
+      "viewProject": "Lelee oru ngo",
+      "needHelpTitle": "M̀ ga-enyere gị aka?",
+      "needHelpDesc": "Zcash Global Discord bụ ebe kachasị mma maka iwulite ajụjụ, ndụmọdụ infra, na mkparịta ụka hackathon.",
+      "joinDiscord": "Jikọọ Discord",
+      "supportDonation": "Nkwado site n'inye onyinye",
+      "popup": {
+        "liveNow": "Na-ebi Ndụ Ugbu A",
+        "subtitle": "Wụpụta ngwa nzuzo nke mbụ na Zcash. Na-asọ mpi maka ihe nrite, nweta ZEC, ma kpụzie ọdịnihu nke nnwere onwe ego.",
+        "prizePool": "Ihe nrite",
+        "start": "Malite",
+        "end": "Ọgwụgwụ",
+        "learnMore": "Mụtakwuo →",
+        "dismiss": "Ịchụpụ"
+      }
+    },
+    "developers": {
+      "title": "Zcash Onye Mmepụta Akụrụngwa",
+      "heroImageAlt": "Zcash Onye Mmepụta Akụrụngwa",
+      "cardSectionTitle": "Olee otú ị ga-esi malite?",
+      "cards": {
+        "learnTitle": "Mụta Zcash Development",
+        "learnContent": "Nyochaa akwụkwọ gọọmentị ma mụta ihe ndị bụ isi nke teknụzụ Zcash.",
+        "learnButton": "Gụọ Docs",
+        "tutorialsTitle": "Mụta Ihe Site n'Ihe Mmụta Ndị E Nwere",
+        "tutorialsContent": "Soro nkuzi nzọụkwụ site na nzọụkwụ iji wuo na Zcash, site na ịmepụta wallets iji jikọta Zcash n'ime ngwa gị.",
+        "tutorialsButton": "Lelee nkuzi",
+        "quickStartTitle": "Ntuziaka Mmalite Ngwa",
+        "quickStartContent": "Bilie ma na-agba ọsọ na mmepe Zcash ngwa ngwa. Mụta ntinye, nhazi, na ọrụ ndị bụ isi.",
+        "quickStartButton": "Ntuziaka Mmalite Ngwa"
+      },
+      "exploreDocsTitle": "Nyochaa akwụkwọ",
+      "introductionsTitle": "Okwu Mmalite",
+      "fundamentalsTitle": "Ihe ndị bụ́ isi",
+      "advancedTitle": "Ọganihu dị elu",
+      "introLinks": {
+        "introToZcash": "Okwu Mmalite na Zcash",
+        "introToZcashDesc": "Mụta maka Zcash, akụkọ ya, na ụkpụrụ ya.",
+        "introToZec": "Okwu Mmalite na ZEC",
+        "introToZecDesc": "Chọpụta ihe eji eme ihe na uru nke ZEC, Zcash native cryptocurrency.",
+        "introToZebra": "Okwu Mmalite nke Zebra",
+        "introToZebraDesc": "Ịghọta otú Zebra si enye ike netwọk Zcash site na mmejuputa nke dabeere na Rust",
+        "introToLightwalletd": "Okwu Mmalite nke Lightwalletd",
+        "introToLightwalletdDesc": "Ịghọta ọrụ lightwalletd a scalable server e dere na Go nke na-arụ ọrụ nke ọma na-eje ozi kọmpat blockchain data ka Zcash ìhè ahịa site gRPC.",
+        "zalletBook": "Akwụkwọ Zallet",
+        "zalletBookDesc": "Okwu Mmalite na Zallet, obere akpa Zcash zuru oke nke edere na Rust ma hazie dị ka onye nnọchi maka obere akpa zcashd.",
+        "developerResources": "Akụrụngwa Onye Mmepụta",
+        "developerResourcesDesc": "Njikọ na Zcash na akwụkwọ ndị ọzọ gbasara teknụzụ."
+      },
+      "fundamentalsLinks": {
+        "addressEncoding": "Adreesị Encoding",
+        "addressEncodingDesc": "Mụta etu adreesị Zcash na igodo si ede ya.",
+        "transactions": "Mmekọrịta",
+        "transactionsDesc": "Ghọta etu azụmahịa si arụ ọrụ na Zcash.",
+        "fees": "Ụtụ isi",
+        "feesDesc": "Mụta banyere ego ole a na-akwụ ndị na-azụ ahịa nakwa otú e si agụ ha.",
+        "nodesZcashd": "Nodes (zcashd)",
+        "nodesZcashdDesc": "Hazie ma jikwaa oghere Zcash site na iji zcashd.",
+        "nodesZebrad": "Nọmba (zebrad)",
+        "nodesZebradDesc": "Nyochaa Zebra, mmejuputa uzo ozo nke Zcash.",
+        "lightwalletServers": "Ndị ọrụ Lightwallet",
+        "lightwalletServersDesc": "Mụta maka lightwalletd, ihe nkesa obere akpa Zcash dị mfe.",
+        "blockExplorers": "Ndị na-enyocha Block",
+        "blockExplorersDesc": "Nyochaa Zcash blockchains na-eji ndị na-enyocha ihe.",
+        "shadeAgent": "Onye na-eme ihe ndozi - Echiche",
+        "shadeAgentDesc": "Mụta maka Shade Agents - ndị ọrụ AI mbụ nwere onwe ha na NEAR - nke ejiri TEEs echekwa na Decentralized Chain Signatures iji jikwaa akụ, nweta LLMs, ma mepụta azụmahịa multichain n'adabereghị."
+      },
+      "advancedLinks": {
+        "introToStack": "Okwu Mmalite na Stack",
+        "introToStackDesc": "Ghọta ihe owuwu na akụrụngwa nke Zcash stack.",
+        "zecDev": "ZecDev",
+        "zecDevDesc": "N'ebe a, ị ga-ahụ oru ngo, ihe onwunwe na ngwaọrụ ndị e mepụtara ma nọgide na-enwe n'ọnọdụ nke (Zcash) Developer Relations Engineer grant.",
+        "zcashCommunityWishlist": "Zcash Community Wishlist",
+        "introToZingolib": "Okwu Mmalite nke Zingolib",
+        "introToZingolibDesc": "Ịghọta ihe nchekwa zingolib a Rust-based API na CLI maka imekọrịta na zcashd site na Lightwalletd.",
+        "webZjs": "WebZjs",
+        "webZjsDesc": "Ọbá akwụkwọ JavaScript/TypeScript maka iwulite ngwa weebụ na-akwado Zcash site na iji WebAssembly.",
+        "noirWalletSdk": "Noir Wallet SDK",
+        "noirWalletSdkDesc": "TypeScript SDK na ihe atụ dApp maka ijikọta ngwa Zcash na ndọtị ihe nchọgharị Noir Wallet.",
+        "zcashIka": "zcash-ika",
+        "zcashIkaDesc": "Nchebe igodo nkewa maka Zcash na ndị ọrụ multi-chain site na 2PC-MPC. Iwu mmefu n'elu, nkwenye nzuzo, ZIP 244 onye na-ewu azụmahịa.",
+        "developmentGuidelines": "Ntụziaka maka mmepe",
+        "developmentGuidelinesDesc": "Soro usoro kachasị mma maka mmepe na Zcash.",
+        "arboristCalls": "Arborist Calls Page",
+        "arboristCallsDesc": "Zcash Arborist Calls bụ nzukọ mmepe usoro kwa izu na-elekwasị anya na nsuso usoro ntinye usoro na-abịanụ, nsogbu mmejuputa nkwekọrịta, na nyocha usoro."
+      },
+      "feedbackTitle": "Akwụkwọ a ò nyeere gị aka?",
+      "feedbackYes": "Ee e",
+      "feedbackNo": "No",
+      "feedbackHelpful": "Daalụ maka nzaghachi gị! Mee ka ibe a ka mma site n'ịza ajụjụ ole na ole. Ọ bụrụ na ịchọrọ enyemaka, ị nwere ike ịkpọtụrụ obodo na anyị",
+      "feedbackNotHelpful": "Ọ dị m nwute ịnụ nke ahụ. Biko mee ka anyị mara etu anyị nwere ike isi melite ibe a. Ị nwere ike ịkpọtụrụ ndị obodo na anyị"
+    },
+    "zcashProjects": {
+      "title": "Zcash Projects  ZecHub"
+    },
+    "visualizer": {
+      "title": "Ndị na-ahụ maka Zcash",
+      "hashFunction": {
+        "title": "Ihe ngosi Hash Function"
+      },
+      "zcashKey": {
+        "title": "Zcash Key Visualizer"
+      },
+      "zksnark": {
+        "title": "ZK-SNARK Proof Visualizer"
+      },
+      "sybil": {
+        "problemTitle": "Nsogbu nke Mwakpo Sybil",
+        "problemDesc": "N'ime netwọkụ ebe ịtụ vootu na-ekpebi eziokwu, onye na-awakpo nwere ike ịmepụta ọtụtụ nde njirimara adịgboroja iji merie ndị otu ziri ezi.",
+        "realUsers": "3 Ndị Na-eji Ya Eme Ihe n'Ezie",
+        "vs": "vs",
+        "attacker": "1 Onye na-awakpo (6 adịgboroja)",
+        "solutionTitle": "Otu Zcash si egbochi mwakpo Sybil",
+        "powTitle": "Ihe Akaebe nke Ọrụ",
+        "powDesc": "Ngwuputa na-achọ ezigbo akụrụngwa kọmputa. Ịmepụta njirimara adịgboroja anaghị enyekwu ikike ịtụ vootu  naanị ezigbo ọrụ na-eme.",
+        "costTitle": "Ihe Ọ Na-efu n'Ụgwọ",
+        "costDesc": "Ịwakpo netwọk chọrọ nnukwu ego na ngwaike na ọkụ eletrik, na-eme ka mwakpo na-enweghị isi.",
+        "insightLabel": "Isi ihe dị mkpa:",
+        "insightDesc": "Sybil iguzogide na-ejikọta ikike ịtụ vootu na ụkọ ego (kọmputa, osisi) kama ịbụ njirimara ndị e mepụtara ngwa ngwa."
+      },
+      "saplingKey": {
+        "spendingKeyName": "Ihe eji emefu ego (sk)",
+        "spendingKeyDesc": "Isi ihe nzuzo nke imefu ego",
+        "expandedSpendingKeyName": "Ụkpụrụ Mmefu Ndị E Mejupụtara",
+        "expandedSpendingKeyDesc": "jụọ, nsk, ovk",
+        "fullViewingKeyName": "Full Viewing Key (fvk)",
+        "fullViewingKeyDesc": "ak, nk, ovk",
+        "incomingViewingKeyName": "Incoming Viewing Key (ivk)",
+        "incomingViewingKeyDesc": "Lelee azụmahịa ndị na-abata",
+        "diversifiedAddressName": "Adreesị Dị Iche Iche",
+        "diversifiedAddressDesc": "zs1... (na-akparaghị ókè kwa igodo)",
+        "derivationTitle": "Sapling Key Derivation",
+        "addressFormatTitle": "Ụdị Adreesị",
+        "addressFormatDesc": "Ihe odide 78, Bech32 encoding",
+        "keyFeatureTitle": "Isi Ihe Ndị E Ji Mara Ya",
+        "keyFeatureBold": "Adreesị dịgasị iche",
+        "keyFeatureDesc": " Mepụta adreesị pụrụ iche na-enweghị njedebe site na otu igodo"
+      },
+      "blockAnatomy": {
+        "fieldVersion": "Nsụgharị",
+        "fieldPreviousHash": "Nke gara aga Hash",
+        "fieldMerkleRoot": "Mgbọrọgwụ Merkle",
+        "fieldTimestamp": "Oge akara",
+        "fieldDifficulty": "Ihe isi ike",
+        "fieldNonce": "Nọnsi",
+        "blockHeader": "Nchịkọta Isiokwu",
+        "transactionList": "Ndepụta azụmahịa",
+        "coinbaseTx": "Tx #1 (Coinbase)",
+        "merkleTree": "Osisi Merkle",
+        "merkleRoot": "Mgbọrọgwụ Merkle"
+      },
+      "difficulty": {
+        "zcashBlockTime": "75 sekọnd",
+        "targetBlockTime": "Oge ngọngọ ebumnuche",
+        "bitcoinBlockTime": "Nkeji iri",
+        "forComparison": "Maka ntụnyere",
+        "adjustmentTitle": "Ime Mgbanwe Mgbe O Siiri M Ike",
+        "hashrateIncreases": "Hashrate Na-amụba",
+        "difficultyUp": "Ihe isi ike na-arị elu",
+        "target": "Ebumnuche: 75 sec",
+        "staysConstant": "Na-adịgide adịgide",
+        "hashrateDecreases": "Hashrate Na-ebelata",
+        "difficultyDown": "Ihe isi ike na-ebelata",
+        "summary": "Netwọk ahụ na-agbanwe nsogbu nke igwupụta akụ na-akpaghị aka iji nọgide na-enwe oge nkwụsị oge, n'agbanyeghị ole ndị na-egwupụta ego na-asọmpi."
+      }
+    },
+    "paymentProcessors": {
+      "title": "Ndị na-arụ ọrụ ịkwụ ụgwọ. ZecHub",
+      "noData": "Enweghị data ma ọ bụ faịlụ ezighi ezi",
+      "bannerAlt": "ọkọlọtọ wiki"
+    },
+    "developersQuickStart": {
+      "heroBadge": "Onye Mmepụta Mmalite Ọsọ",
+      "heroTitleLine1": "Zcash Dev",
+      "heroTitleLine2": "Mmalite ngwa ngwa",
+      "heroSubtitle": "Bilie ma na-agba ọsọ na mmepe Zcash Họrọ nchịkọta gị ma soro ntuziaka ahụ.",
+      "copy": "Anata ya .",
+      "copied": "Anata ya!",
+      "onThisPage": "Na peeji a",
+      "tocInstallingZebrad": "Ịwụnye Zebrad",
+      "tocRunningZebrad": "Running zebrad",
+      "tocConnectingLightwalletd": "Njikọ na lightwalletd",
+      "installation": "Ntinye",
+      "configuration": "Nhazi",
+      "dependencies": "Ndị na-adabere na ya",
+      "fromSource": "Ebe E Si Nweta Ya",
+      "alternatively": "N'ụzọ ọzọ",
+      "manualDownload": "Ntuziaka Nbudata",
+      "wslRecommended": "WSL (A tụrụ aro ya)",
+      "runningZebradHeading": "Running zebrad",
+      "initialSetup": "Ntọala Mbụ",
+      "createConfigDir": "Mepụta Njikwa Nhazi",
+      "startingZebrad": "Ịmalite zebrad",
+      "commandLine": "Usoro iwu",
+      "importantNotes": "Ihe Ndị Dị Mkpa",
+      "noteDownloadsBlockchain": "Mbụ na-agba ọsọ na-ebudata blockchain dum (~ 250 GB)",
+      "noteInitialSync": "Mmekọrịta mbụ nwere ike were ọtụtụ awa",
+      "noteKeepSecure": "Debe zebrad.toml gị n'ebe dị nchebe na nzuzo",
+      "connectingLightwalletdHeading": "Njikọ na lightwalletd",
+      "lightwalletdInfo": "bụ ihe nkesa nke na-enye interface dị mfe na Zcash blockchain, nke e mere maka obere akpa mkpanaka na desktọọpụ nke anaghị achọ ịgba ọsọ zuru oke.",
+      "prerequisites": "Ihe ndị a chọrọ",
+      "buildLightwalletd": "Wụpụta lightwalletd",
+      "basicSetupMainnet": "Ntọala ntọala (Mainnet)",
+      "basicSetupTestnet": "Ntọala ntọala (Testnet)",
+      "run": "Na-agba ọsọ",
+      "installingZaino": "Ịwụnye Zaino",
+      "zainoInfo": "bụ Rust-based indexer maka Zcash blockchain. Ọ na-eje ozi ma ndị ahịa ọkụ (wallets ndị na-adịghị echekwa akụkọ ihe mere eme zuru ezu) na ndị ahịa zuru oke / ndị nchọpụta ngọngọ, na-enye ohere ịnweta agbụ agbụ, agbụ kachasị mma na-abụghị nke ikpeazụ, na mempool.",
+      "buildZaino": "Wulite Zaino",
+      "configure": "Ịhazi",
+      "runZainod": "Na-agba ọsọ zainod",
+      "installingZingoCli": "Ịwụnye Zingo CLI",
+      "zingoCliInfo": "bụ iwu-akara lightwalletd-proxy onye ahịa wuru na Rust. Nwepụta bụ ugbu a nwa oge  ntuziaka a na-ekpuchi nchịkọta site na isi iyi.",
+      "buildZingoCli": "Wụpụta Zingo CLI",
+      "running": "Ịgba ọsọ",
+      "startZingoCliDefault": "Malite Zingo CLI (Ntọala)",
+      "startZingoCliCustom": "Malite Zingo CLI (Omenala)",
+      "zingoSyncWarning": " Nke a ga-eme nhazi zuru oke na nke mbụ, yiri lightwalletd.",
+      "nextStepsResources": "Nzọụkwụ Ndị Ọzọ na Akụrụngwa",
+      "readyToBuild": "Ì Jikerela Ịrụ Ụlọ?",
+      "officialDocumentation": "Akwụkwọ Ọrụ",
+      "zcashDiscordCommunity": "Obodo Zcash Discord",
+      "githubRepositories": "Ebe nchekwa GitHub",
+      "zcashImprovementProposals": "Nkwupụta Mmezi Zcash",
+      "needHelp": "Enyemaka Ọ̀ Dị Gị Mkpa?",
+      "zcashCommunityForum": "Nzukọ Obodo Zcash",
+      "githubIssues": "Okwu GitHub",
+      "troubleshootingGuide": "Ntuziaka Nchọpụta Nsogbu",
+      "stackOverflow": "Nkọwapụta Stack"
+    },
+    "governanceHowto": {
+      "pageTitle": "ZecHub DAO Ọchịchị",
+      "pageSubtitle": "Ntuziaka zuru ezu maka isonye na ọchịchị ZecHub DAO",
+      "stepOf": "Nzọụkwụ {ugbu a} nke {ngụkọta}",
+      "firstSteps": "Nzọụkwụ Ndị Mbụ",
+      "firstStepsDesc": "Kwadebe maka isonye na ọchịchị DAO",
+      "draftProposal": "Atụmatụ nke Nkwupụta",
+      "draftProposalDesc": "Hazie atụmatụ gị ma kwadebe ya maka itinye akwụkwọ",
+      "submittingProposal": "Ịnyefe Nkwupụta",
+      "submittingProposalDesc": "Nyefee ma kwalite atụmatụ gị",
+      "installKeplr": "Wụnye Keplr Wallet",
+      "installKeplrDesc": "Hazie obere akpa Keplr gị iji soro DAO na-emekọrịta ihe",
+      "keplrVideoTitle": "Ntuziaka Ntọala Keplr Wallet",
+      "acquireJuno": "Nweta JUNO",
+      "acquireJunoDesc": "Nweta akara ngosi JUNO iji soro nkwekọrịta daodao nwee mmekọrịta. Kpọtụrụ ndị otu isi maka enyemaka.",
+      "viewOpenProposals": "Hụ Ntuziaka Na-emeghe",
+      "viewOpenProposalsDesc": "Lelee atụmatụ ndị dị ugbu a na ohere ịtụ vootu",
+      "visitVotingPortal": "Gaa na Portal Voting",
+      "formatNote": "Ọdịdị: Enwere ike ide akwụkwọ na .Md ma ọ bụ .txt",
+      "recommendedStructure": "Nhazi usoro anọ a tụrụ aro:",
+      "stageBackground": "Ihe Ndị Mere Tupu E Mee Ya",
+      "stageBackgroundDesc": "Nye ụfọdụ akụkọ ihe mere eme nke isiokwu / ọrụ ahụ",
+      "stageWhy": "N'ihi gịnị?",
+      "stageWhyDesc": "Kwuo ihe mere i ji chọọ ịlụ ya.",
+      "stageProposal": "Nkwupụta",
+      "stageProposalDesc": "N'ụzọ doro anya, kọwaa atụmatụ gị n'ụzọ zuru ezu",
+      "stageAction": "Ime Ihe",
+      "stageActionDesc": "Ihe na-eme mgbe ntuli aka gara nke ọma - nwere ike inye usoro iheomume",
+      "getFeedback": "Nweta Nzaghachi",
+      "getFeedbackDesc": "Kekọrịta ihe odide gị na ọwa ZecHub #proposals na Discord maka nzaghachi mbụ",
+      "joinDiscord": "Jikọọ Discord",
+      "walkthroughTitle": "Nkwupụta Walkthrough Video",
+      "walkthroughDesc": "Lelee njem zuru ezu banyere otu esi ede ma hazie atụmatụ",
+      "walkthroughIframeTitle": "Ntụziaka Ntuziaka",
+      "postInDiscord": "Post na esemokwu",
+      "postInDiscordDesc": "Kekọrịta atụmatụ ikpeazụ gị na #proposals ma tinye mkpado @core-team",
+      "openDiscord": "Nkwekọrịta na-emeghe",
+      "submitOnPortal": "Tinye na Portal Voting",
+      "submitOnPortalDesc": "Jiri saịtị ntuli aka ZecHub mepụta atụmatụ gị",
+      "submitNow": "Nyefee Ugbu a",
+      "loginNote": "️ Ịkwesịrị ịbanye na Keplr ma ọ bụ KeplR Mobile",
+      "previous": "Nke gara aga",
+      "next": "Onye ọzọ"
+    },
+    "sitemap": {
+      "heading": "Ntugharị saịtị",
+      "subheading": "Nchịkọta zuru ezu nke ibe niile na akụrụngwa dị na Zechub Wiki",
+      "guidesCount": "{ịgụ} nduzi",
+      "sections": {
+        "Pages": "Ibe akwụkwọ",
+        "Organizations": "Ndị otu",
+        "Guides": "Akwụkwọ ntuziaka",
+        "Use Zcash": "Jiri Zcash",
+        "Ecosystem": "Ihe Ndị Dị n'Eluigwe"
+      },
+      "links": {
+        "Homepage": "Peeji mbụ",
+        "Dashboard": "Ogwe njikwa",
+        "Donation": "Inye onyinye",
+        "Contribute": "Na-enye aka",
+        "DAO": "DAO",
+        "Developers": "Ndị mmepe",
+        "Brand": "Akara",
+        "Wallets": "Akpa ego",
+        "Sitemap": "Site map",
+        "Tutorials": "Nkuzi",
+        "Bounties": "Ihe nrite",
+        "Buying ZEC": "Ịzụta ZEC",
+        "Faucets": "Faucets",
+        "Exchanges": "Mmekọrịta",
+        "Block Explorers": "Ndị na-enyocha Block",
+        "Shielded Pools": "Ọdọ Mmiri Ndị E Chebere",
+        "Transparent Exchange Addresses": "Adreesị Mgbanwerịta Ọcha",
+        "Transactions": "Mmekọrịta",
+        "Memos": "Ihe ncheta",
+        "Mobile Top Ups": "Ngwaọrụ Mobile Top Ups",
+        "Payment Request URIs": "Ịkwụ Ụgwọ Arịrịọ URI",
+        "Payment Processors": "Ndị na-arụ ọrụ ịkwụ ụgwọ",
+        "Recovering Funds": "Nkwụghachi Ego",
+        "Metamask Snap": "Metamask Snap",
+        "Community Forum": "Nzukọ Ndị Isi Obodo",
+        "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
+      }
+    },
+    "zcashCommunity": {
+      "communityProjects": {
+        "title": "Ihe Omume Ndị E Nwere n\"Ọgbakọ"
+      }
+    },
+    "research": {
+      "seriesHeading": "Usoro",
+      "seriesSubheading": "Na-abanye n'ime ihe ndị bụ isi nke Zcash",
+      "foundationsSeriesTitle": "Zcash Foundation Series",
+      "coreSeriesBadge": "Isi usoro",
+      "foundationsSeriesCardDescription": "Isiokwu ndị bụ isi gbasara azụmahịa echedoro, ụdị nzuzo, na nhazi usoro.",
+      "exploreSeries": "Nyochaa usoro ahụ →",
+      "articlesHeading": "Isiokwu Ndị E Ji Eme Nchọpụta",
+      "articlesSubheading": "Isiokwu na ndetu site na obodo ZecHub.",
+      "foundationsSeriesDescription": "Nchịkọta nke isiokwu ntọala na-ekpuchi azụmahịa Zcash echekwara, ụdị nzuzo, nhazi usoro, na isi echiche nke na-akwado netwọkụ ahụ.",
+      "tagShieldedTransactions": "Azụmahịa Ndị E Chebere",
+      "tagPrivacyModels": "Ụdị Nzuzo",
+      "tagProtocolDesign": "Nhazi nke Protocol",
+      "tagZeroKnowledge": "Ọmụma efu"
+    },
+    "browseSidebar": "Chọgharịa isiokwu ndị ahụ site na iji sidebar dị n'aka ekpe ",
+    "zcashGlobalAmbassadors": {
+      "title": "Ndị nnọchi anya Zcash Global",
+      "description": "Ndị nnọchi anya Zcash Global bụ ndị isi obodo raara onwe ha nye na-akwalite nnabata cryptocurrency na agụmakwụkwọ na-elekwasị anya na nzuzo n'ụwa niile. Onye ọ bụla na-ekwuchitere ọrụ na-etinye uche na iwulite mmata na itinye aka na mpaghara ha.",
+      "activeProjectsHeading": "Ọrụ Ndị Nnọchiteanya Ụwa Na-arụsi Ọrụ Ike",
+      "projectSitesHeading": "Ebe nrụọrụ weebụ & Blọọgụ",
+      "followOnX": "Soro na X/BS",
+      "projectSiteLabel": "Ebe E Wuru Ụlọ Ọrụ Ahụ",
+      "linkLabel": "Njikọ",
+      "footerInfo": "Zcash Global Ambassadors program na-akwado atụmatụ ndị obodo na-eduzi iji kwalite nnabata teknụzụ na-elekwasị anya na nzuzo. Onye ọ bụla onye nnọchi anya ọrụ na-arụ ọrụ n'adabereghị ma na-enye aka na gburugburu ebe obibi Zcash.",
+      "mapTitle": "Zcash Onye Nnọchiteanya Map",
+      "mapSubtitle": "Nkwado Zcash nke ndị obodo na-eduzi n'ofe {count} obodo ndị na-arụ ọrụ.",
+      "globeView": "Nlele ụwa",
+      "mapView": "Nlele nke map",
+      "loadError": "Enweghi ike ibudata data onye nnọchi anya.",
+      "projects": {
+        "Zcash Korea": "Obodo Zcash na nkwado na Korea",
+        "Zcash Russia": "Obodo Zcash na nkwado na Russia",
+        "Zcash Arabia": "Obodo Zcash na nkwado na mpaghara na-asụ Arabic",
+        "Zcash Brazil": "Obodo Zcash na nkwado na Brazil",
+        "Zcash Ghana": "Obodo Zcash na nkwado na Ghana",
+        "Zcash Español": "Obodo Zcash na nkwado na mpaghara na-asụ Spanish",
+        "Zcash Nigeria": "Obodo Zcash na nkwado na Naijiria",
+        "Zcash Ukraine": "Obodo Zcash na nkwado na Ukraine",
+        "Zcash Turkey": "Obodo Zcash na nkwado na Turkey",
+        "Zcash India": "Obodo Zcash na nkwado na India",
+        "Zcash East Africa": "Zcash East Africa bụ nke a raara nye iji kwalite nzuzo dijitalụ, nnwere onwe ego, na ihe ọhụrụ nke blockchain site na agụmakwụkwọ, mmemme obodo, ụlọ ọrụ teknụzụ, na mmepe gburugburu ebe obibi. Ebumnuche ahụ bụ imepụta mpaghara mpaghara ebe ndị mmadụ nwere ike inyocha teknọzụ na-eme ka nzuzo dịkwuo elu, mụta banyere ihe akaebe ihe ọmụma efu, ma sonye na netwọkụ Zcash zuru ụwa ọnụ na-eto eto.",
+        "Zcash South Africa": "Nzuzo ️. Nnwere onwe. Zcash  Community maka mpaghara South Africa"
+      },
+      "globeTitle": "Zcash Ambassador Globe"
+    }
+  },
+  "developers": {
+    "quickStart": {
+      "tableOfContents": "Isiokwu Ndị Dị n'Ụlọ Nche A",
+      "toc1": "1. Ịwụnye Zebrad",
+      "toc2": "2. Running zebrad",
+      "toc3": "3. Njikọ na lightwalletd",
+      "installingHeading": "1. Ịwụnye Zebrad",
+      "runningHeading": "2. Running zebrad",
+      "connectingHeading": "3. Njikọ na lightwalletd",
+      "systemRequirements": "Ihe Ndị A Chọrọ n'Aka Usoro",
+      "linux": "Linux",
+      "ubuntuDebian": "Ubuntu/Debian:",
+      "fromSource": "Ebe e si nweta ya:",
+      "macos": "macOS",
+      "homebrew": "Ihe a na-eme n'ụlọ:",
+      "windows": "Windows",
+      "importantNotes": "Ihe Ndị Dị Mkpa",
+      "nextSteps": "Nzọụkwụ Ndị Ọzọ",
+      "readyToBuild": "Ì Jikerela Ịrụ Ụlọ?",
+      "needHelp": "Enyemaka Ọ̀ Dị Gị Mkpa?"
+    }
+  },
+  "components": {
+    "newsletter": {
+      "title": "ZecHub Shielded Newsletter",
+      "subtitle": "Subscribe to updates by entering your Unified Address.",
+      "feeLine": "Ego ndebanye aha 0.05 ZEC a na-akwụ otu ugboro",
+      "feeLineRest": "achọrọ iji kpuchie ụgwọ azụmahịa.",
+      "categoryEcosystem": "Akụkọ Gbasara Ihe Ndị Dị n'Eluigwe na Ala",
+      "categoryStats": "Nkọwapụta Ntanetị",
+      "addressPlaceholder": "Enter your Zcash Unified Address",
+      "invalidAddressInline": "Adreesị ezighi ezi. Ọ ga-amalite site na \"u\" ma ọ bụ \"z\".",
+      "invalidAddressAlert": "Biko tinye adreesị Zcash echekwara.",
+      "generating": "Ịmepụta...",
+      "subscribe": "Debanye aha",
+      "doNotEditMemo": "Edezila ihe edeturu na obere akpa gị.",
+      "downloadQR": "Nbudata Koodu QR",
+      "box1Title": "Gịnị Bụ Ọrụ A?",
+      "box1Desc": "Nweta akụkọ gburugburu ebe obibi Zcash na ọnụọgụ netwọkụ ozugbo site na netwọkụ Zcash site na iji memos ezoro ezo.",
+      "box2Title": "Otú O Si Arụ Ọrụ",
+      "box2DescPre": "Anyị na-ezipụ akwụkwọ akụkọ otu ugboro n'izu na ọtụtụ ndị nnata na otu azụmahịa echekwara site na iji",
+      "box2DescPost": "Usoro RPC.",
+      "box3Title": "Otú Ị Ga-esi Nweta Ihe Ndị A Na-emelite",
+      "box3DescPre": "Tinye gị",
+      "box3DescBold": "adreesị Zcash echekwara",
+      "box3DescPost": "A na-eziga mmelite kwa izu na ntanetị. Ọ dịghị mkpa email.",
+      "unsubscribe": "Kwụsị ịdenye aha",
+      "cancelUnsubscribe": "Kwụsịa Idenye aha",
+      "unsubscribePlaceholder": "Enter your Unified Address to unsubscribe",
+      "confirmUnsubscribe": "Kwadoro Wepu aha"
+    },
+    "aiAssistant": {
+      "copyResponse": "Ziga nzaghachi",
+      "copied": "E depụtara ya",
+      "copy": "Anata ya .",
+      "botName": "ZecHub AI",
+      "thinking": "ZecHub AI na-eche echiche...",
+      "privacyNotice": "A na-edozi ajụjụ site na OpenAI. Ekekọrịtala mkpụrụ okwu, igodo nzuzo, ma ọ bụ adreesị wallet.",
+      "clearConversation": "Mkparịta ụka doro anya",
+      "clear": "O doro anya",
+      "getStarted": "Malite site n'ajụjụ:",
+      "sensitiveWarning": "Nke a yiri data akpa ego dị nro. Ekekọrịtala igodo nzuzo ma ọ bụ mkpụrụ okwu na ọrụ ọ bụla.",
+      "inputPlaceholder": "Jụọ ajụjụ... (Tinye iji zipu, Mgbanwe + Tinye maka ahịrị ọhụrụ)",
+      "sendMessage": "Ziga ozi",
+      "enterHint": "Tinye iji zipu, Mgbanwe + Tinye maka ahịrị ọhụrụ",
+      "messageTooLong": "Ozi dị ogologo (max {max} characters).",
+      "unknownError": "Njehie a na-amaghị.",
+      "serverError": "Njehie ihe nkesa {ọnọdụ}",
+      "somethingWrong": "E nwere ihe merenụ.",
+      "quickQuestions": [
+        "Gịnị bụ Zcash?",
+        "Gịnị bụ ZecHub?",
+        "Olee otú azụmahịa ndị e chebere si arụ ọrụ?",
+        "Kedu akpa ego na-akwado Zcash?",
+        "Kedu ihe bụ adreesị z vs. t-adreesị?",
+        "Kedụ ka m ga-esi malite na ZEC?",
+        "Gịnị bụ ego mmepe Zcash?",
+        "Gịnị bụ zk-SNARKs?"
+      ]
+    }
+  },
+  "sideMenu": {
+    "navigation": "Ụgbọ mmiri",
+    "explore": "Nyochaa"
+  },
+  "meta": {
+    "title": "ZecHub Wiki",
+    "description": "Ebe agụmakwụkwọ mepere emepe maka Zcash"
+  }
+}

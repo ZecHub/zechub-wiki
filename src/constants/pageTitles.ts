@@ -12,6 +12,11 @@ import { pageTitlesJa } from "@/constants/pageTitles.ja";
 import { pageTitlesKo } from "@/constants/pageTitles.ko";
 import { pageTitlesTr } from "@/constants/pageTitles.tr";
 import { pageTitlesUk } from "@/constants/pageTitles.uk";
+import { pageTitlesSw } from "@/constants/pageTitles.sw";
+import { pageTitlesYo } from "@/constants/pageTitles.yo";
+import { pageTitlesIg } from "@/constants/pageTitles.ig";
+import { pageTitlesAk } from "@/constants/pageTitles.ak";
+import { pageTitlesEe } from "@/constants/pageTitles.ee";
 
 export const pageTitles: Record<string, Record<string, string>> = {
   it: pageTitlesIt,
@@ -27,4 +32,9 @@ export const pageTitles: Record<string, Record<string, string>> = {
   ko: pageTitlesKo,
   tr: pageTitlesTr,
   uk: pageTitlesUk,
+  sw: pageTitlesSw,
+  yo: pageTitlesYo,
+  ig: pageTitlesIg,
+  ak: pageTitlesAk,
+  ee: pageTitlesEe,
 };

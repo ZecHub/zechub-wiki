@@ -1,0 +1,1178 @@
+{
+  "menuLabels": {
+    "Accept Payments": "Lɔ̃ Ðe Fexexewo Dzi",
+    "Akash Network Zebra": "Akash Network Zebra",
+    "Arborist Calls": "Arborist Calls",
+    "Avalanche RedBridge": "Avalanche ƒe Tɔdzisasrã Dzĩ",
+    "BTCPayServer Zcash Plugin": "BTCPayServer Zcash ƒe Dɔwɔnu",
+    "Blockchain Explorers": "Blockchain ƒe Nukulawo",
+    "Brand": "Nudzadzra ŋkɔ",
+    "Brave Wallet": "Gakotoku Dzinɔameƒotɔe",
+    "Buying ZEC": "ZEC ƒeƒle",
+    "Community Blogs": "Nutoa me Blogwo",
+    "Community Forum": "Nutoa me Takpekpe",
+    "Community Links": "Nutoa Me Kadodowo",
+    "Community Projects": "Nutoa me Dɔwɔnawo",
+    "Contribute": "Dzᴐ nu",
+    "Cypherpunk Zero NFT": "Cypherpunk Zero NFT ƒe agbalẽa",
+    "DAO": "DAO ƒe ŋkɔ",
+    "Developers": "Dɔwɔlawo",
+    "Discord": "Masɔmasɔ",
+    "Donations": "Nudzɔdzɔwo",
+    "Electric Coin Company": "Electric Coin Company",
+    "Exchanges": "Nuwo ɖɔliɖɔli",
+    "Extras": "Nu bubuwo",
+    "Faucets": "Pɔmpiwo",
+    "Financial Privacy Foundation": "Ganyawo Ŋuti Nyatakakawo Ŋuti Ðoɖowɔha",
+    "Free2z Live": "Free2z Live",
+    "Freelance Privacy": "Ame ŋutɔ ƒe Nyatakakawo Ŋuti Nyatakakawo",
+    "Github": "Github ƒe mɔnu",
+    "Governance": "Dziɖuɖu",
+    "Guides": "Mɔfialawo",
+    "How to Participate": "Ale Si Nàkpɔ Gome le Eme",
+    "Journalist Privacy": "Nyadzɔdzɔŋlɔlawo ƒe Nyatakakawo",
+    "Keeping Records": "Nuŋlɔɖiwo Dzraɖoƒe",
+    "Keystone Zashi": "Keystone Zashi ƒe kpe",
+    "Maya Protocol": "Mayawo ƒe Ðoɖowɔɖi",
+    "Memos": "Nuŋlɔɖiwo",
+    "Metamask Snap": "Metamask ƒe Nɔnɔmetata",
+    "Mobile Top Ups": "Asitelefon dzi Top Ups",
+    "Newsletter": "Nyadzɔdzɔgbalẽ",
+    "Nym VPN": "Nym VPN",
+    "Payment Processors": "Fexexe Ŋuti Dɔwɔlawo",
+    "Payment Request URIs": "Fexexe ƒe Biabia ƒe URIwo",
+    "Podcast": "Na",
+    "Private Community Treasury": "Ame ŋutɔ ƒe Nutoa me Gadzɔdzɔ",
+    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 Blibo Node",
+    "Raspberry pi 4 Zebra Node": "Raspberry pi 4 Zebra ƒe Node",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra ƒe Kekeli ƒe Zingo",
+    "Recovering Funds": "Gawo Xɔxɔ",
+    "Research": "Numekuku",
+    "Send Money Privately": "Ðo Ga Ðe Ame Ðokui Si",
+    "Shielded Labs": "Labs Siwo Wotsɔ Akpoxɔnu Wɔe",
+    "Shielded Pools": "Ta Siwo Wotsɔ Akpoxɔnu Wɔe",
+    "Sitemap": "Nyatakakadzraɖoƒe ƒe Nɔnɔmetata",
+    "Start Here": "Dze Egɔme Le Afi Sia",
+    "Store": "Fiase",
+    "Testnet": "Dodokpɔ ƒe mɔ̃",
+    "Tools": "Dɔwɔnuwo",
+    "Transactions": "Adzɔnuwo ƒe asitsatsa",
+    "Transparent Exchange Addresses": "Adrɛs Siwo Wotsɔna Ðoa Nui Siwo Me Kɔkɔe",
+    "Tutorials": "Nufiamewo",
+    "Twitter": "Twitter dzi",
+    "Use Cases": "Zã Nyawo",
+    "Using ZEC Privately": "ZEC Zazã le Adzame",
+    "Using ZEC in DeFi": "ZEC zazã le DeFi me",
+    "Using Zcash": "Zcash zazã",
+    "Visual Identity": "Nukpɔkpɔ ƒe Dzesidede Ame",
+    "Visualizer": "Nukpɔkpɔ ƒe mɔ̃",
+    "Visualizing Zcash Addresses": "Zcash Adrɛswo Kpɔkpɔ le susu me",
+    "Visualizing the Zcash Network": "Zcash Network la kpɔkpɔ le susu me",
+    "Wallets": "Gakotokuwo",
+    "Youtube": "Youtube dzi",
+    "Ywallet FROST Demo": "Ywallet FROST ƒe wɔwɔfia",
+    "ZCAP": "ZCAP ƒe ŋkɔ",
+    "ZIPs & Grants": "ZIPwo & Gakpekpeɖeŋunana",
+    "ZKAV Club": "ZKAV ƒe Habɔbɔ",
+    "ZODL": "ZODL",
+    "Zcash Community": "Zcash Habɔbɔa ƒe Habɔbɔ",
+    "Zcash Community Grants": "Zcash Nutome ƒe Gakpekpeɖeŋunana",
+    "Zcash Devtool": "Zcash Devtool ƒe dɔwɔnu",
+    "Zcash Ecosystem Security": "Zcash Nutoa me ƒe Dedienɔnɔ",
+    "Zcash Foundation": "Zcash Foundation",
+    "Zcash Global Ambassadors": "Zcash Xexeame Katã ƒe Dutanyanyuigblɔlawo",
+    "Zcash Governance": "Zcash Dziɖuɖu",
+    "Zcash Improvement Proposals": "Zcash ƒe Ŋgɔyiyi ƒe Aɖaŋuɖoɖowo",
+    "Zcash Media": "Zcash Nyadzɔdzɔgblɔmɔnuwo",
+    "Zcash Organizations": "Zcash Habɔbɔwo",
+    "Zcash Podcasts": "Zcash ƒe Podcastwo",
+    "Zcon Archive": "Zcon ƒe Nudzraɖoƒe",
+    "Zcon Vozes Archive": "Zcon Vozes ƒe Nudzraɖoƒe",
+    "Zenith Installation": "Zenith ƒe Dɔwɔɖoɖo",
+    "Zero-Knowledge vs Decoys": "Zero-Sidzedze vs Ameflulawo",
+    "Zgo Payment Processor": "Zgo Fexexe Ŋuti Dɔwɔƒe",
+    "Zingo Labs": "Zingo ƒe Dɔwɔƒewo",
+    "Zingolib and Zaino Tutorial": "Zingolib kple Zaino ƒe Nufiame",
+    "Zkool Multisig": "Zkool Multisig ƒe dɔwɔwɔ",
+    "Custodial Exchanges": "Vidzikpɔkpɔ ƒe Asitɔtrɔ",
+    "Zcash Use Cases": "Zcash Zazã ƒe Nyawo",
+    "Zcash Tech": "Zcash Mɔ̃ɖaŋununya",
+    "Privacy Tools": "Dɔwɔnu Siwo Wozãna Ðe Ameŋunyatakakawo Ŋu",
+    "Zcash Social Media": "Zcash Hadomegbenɔnɔ Ŋuti Nyatakakadzraɖoƒe",
+    "Glossary & FAQ's": "Nyagɔmeɖegbalẽ & FAQ's"
+  },
+  "exploreMenu": {
+    "Full Explore": "Dzro Nu Bliboe",
+    "Start Here": "Dze Egɔme Le Afi Sia",
+    "Tutorials": "Nufiamewo",
+    "Using Zcash": "Zcash zazã",
+    "Guides": "Mɔfialawo",
+    "Zcash Tech": "Zcash Mɔ̃ɖaŋununya",
+    "Zcash Organizations": "Zcash Habɔbɔwo",
+    "Zcash Community": "Zcash Habɔbɔa ƒe Habɔbɔ",
+    "ZKAV Club": "ZKAV ƒe Habɔbɔ",
+    "Privacy Tools": "Dɔwɔnu Siwo Wozãna Ðe Ameŋunyatakakawo Ŋu",
+    "Research": "Numekuku",
+    "Glossary & FAQs": "Nyagɔmeɖegbalẽ & Nyabiasewo",
+    "Contribute": "Dzᴐ nu",
+    "For Forks & Maintainers": "Forks & Dzadzraɖolawo",
+    "Fork zechub-wiki": "Fɔklɔ zechub-wiki",
+    "Fork zechub": "Fɔklɔ zechub"
+  },
+  "common": {
+    "home": "Aƒeme",
+    "about": "Ku ɖe",
+    "contact": "Kadodo",
+    "language": "Gbegbᴐgblᴐ",
+    "clickToExplore": "Zi edzi be nàdzro eme →",
+    "learnMore": "Srɔ̃ Nu Geɖe",
+    "getStarted": "Dze Egɔme",
+    "readMore": "Xlẽ Nu Geɖe",
+    "search": "Di",
+    "close": "Tu",
+    "searchModalTitle": "Di ZecHub Wiki",
+    "searchHint": "Di nu le axa ƒe tanya, tanya, alo mɔ dzi. Zã aŋutsrɔewo nàtsɔ atiae, Enter nàtsɔ aʋui.",
+    "searchNoResults": "Axa siwo sɔ kple wo nɔewo aɖeke meli o",
+    "searchTryDifferent": "Te nyabiase kpuiwo, nya siwo sɔ kple wo nɔewo, alo nya vovovowo kpɔ.",
+    "searchSuggested": "Axa siwo wodo ɖa",
+    "searchResultsLabel": "Metsonu"
+  },
+  "navigation": {
+    "wallets": "Gakotokuwo",
+    "guides": "Mɔfialawo",
+    "tutorials": "Nufiamewo",
+    "governance": "Dziɖuɖu",
+    "visualizer": "Nukpɔkpɔ ƒe mɔ̃",
+    "dao": "DAO ƒe ŋkɔ",
+    "newsletter": "Nyadzɔdzɔgbalẽ",
+    "donate": "Na nu",
+    "explore": "Tsa le eme",
+    "developers": "Dɔwɔlawo",
+    "community": "Hatsotso",
+    "contribute": "Dzᴐ nu",
+    "dashboard": "Dashboard ƒe ʋuƒo",
+    "more": "Gawu",
+    "usingZcash": {
+      "label": "Zã Zcash",
+      "buyingZec": "ZEC ƒeƒle",
+      "faucets": "Pɔmpiwo",
+      "wallets": "Gakotokuwo",
+      "metamaskSnap": "Metamask ƒe Nɔnɔmetata",
+      "exchanges": "Nuwo ɖɔliɖɔli",
+      "blockExplorers": "Block Nukulawo",
+      "shieldedPools": "Ta Siwo Wotsɔ Akpoxɔnu Wɔe",
+      "transparentExchangeAddresses": "Adrɛs Siwo Wotsɔna Ðoa Nui Siwo Me Kɔkɔe",
+      "transactions": "Adzɔnuwo ƒe asitsatsa",
+      "memos": "Nuŋlɔɖiwo",
+      "mobileTopUps": "Asitelefon dzi Top Ups",
+      "paymentRequestUris": "Fexexe ƒe Biabia ƒe URIwo",
+      "paymentProcessors": "Fexexe Ŋuti Dɔwɔlawo",
+      "recoveringFunds": "Gawo Xɔxɔ",
+      "testnet": "Dodokpɔ ƒe mɔ̃",
+      "tools": "Dɔwɔnuwo",
+      "useCases": "Zã Nyawo",
+      "useCasesSubmenu": {
+        "startHere": "Dze Egɔme Le Afi Sia",
+        "acceptPayments": "Lɔ̃ Ðe Fexexewo Dzi",
+        "freelancePrivacy": "Ame ŋutɔ ƒe Nyatakakawo Ŋuti Nyatakakawo",
+        "journalistPrivacy": "Nyadzɔdzɔŋlɔlawo ƒe Nyatakakawo",
+        "keepingRecords": "Nuŋlɔɖiwo Dzraɖoƒe",
+        "privateCommunityTreasury": "Ame ŋutɔ ƒe Nutoa me Gadzɔdzɔ",
+        "donations": "Nudzɔdzɔwo",
+        "sendMoneyPrivately": "Ðo Ga Ðe Ame Ðokui Si"
+      }
+    },
+    "zcashCommunity": {
+      "label": "Nu gbagbewo ƒe agbenɔnɔ ƒe ɖoɖo",
+      "arboristCalls": "Arborist Calls",
+      "communityBlogs": "Nutoa me Blogwo",
+      "communityLinks": "Nutoa Me Kadodowo",
+      "communityForum": "Nutoa me Takpekpe",
+      "communityProjects": "Nutoa me Dɔwɔnawo",
+      "globalAmbassadors": "Zcash Xexeame Katã ƒe Dutanyanyuigblɔlawo",
+      "zcashMedia": "Zcash Nyadzɔdzɔgblɔmɔnuwo",
+      "zcap": "ZCAP ƒe ŋkɔ",
+      "zcashPodcasts": "Zcash ƒe Podcastwo",
+      "ecosystemSecurity": "Zcash Nutoa me ƒe Dedienɔnɔ",
+      "cypherpunkZeroNFT": "Cypherpunk Zero NFT ƒe agbalẽa",
+      "zconArchive": "Zcon ƒe Nudzraɖoƒe"
+    },
+    "organizations": {
+      "label": "Habɔbɔwo",
+      "electricCoinCompany": "Electric Coin Company",
+      "zcashFoundation": "Zcash Foundation",
+      "communityGrants": "Zcash Nutome ƒe Gakpekpeɖeŋunana",
+      "financialPrivacyFoundation": "Ganyawo Ŋuti Nyatakakawo Ŋuti Ðoɖowɔha",
+      "shieldedLabs": "Labs Siwo Wotsɔ Akpoxɔnu Wɔe",
+      "zingoLabs": "Zingo ƒe Dɔwɔƒewo",
+      "brand": "Nudzadzra ŋkɔ",
+      "zkavClub": "ZKAV ƒe Habɔbɔ"
+    },
+    "guidesSubmenu": {
+      "zgoPaymentProcessor": "Zgo Fexexe Ŋuti Dɔwɔƒe",
+      "free2zLive": "Free2z Live",
+      "keystoneZashi": "Keystone Zashi ƒe kpe",
+      "mayaProtocol": "Mayawo ƒe Ðoɖowɔɖi",
+      "nymVpn": "Nym VPN",
+      "usingZecInDefi": "ZEC zazã le DeFi me",
+      "usingZecPrivately": "ZEC Zazã le Adzame",
+      "raspberryPiZcashdNode": "Raspberry Pi Zcashd ƒe ƒuƒoƒo",
+      "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra ƒe Kekeli ƒe Zingo",
+      "raspberryPiZebraNode": "Raspberry Pi Zebra Node ƒe ƒuƒoƒo",
+      "akashNetwork": "Akash ƒe Nyatakakadzraɖoƒe",
+      "avalancheRedbridge": "Avalanche ƒe Tɔdzisasrã Dzĩ",
+      "zkoolMultisig": "Zkool Multisig ƒe dɔwɔwɔ",
+      "ywalletFrostDemo": "Ywallet FROST ƒe wɔwɔfia",
+      "blockchainExplorers": "Blockchain ƒe Nukulawo",
+      "braveWallet": "Gakotoku Dzinɔameƒotɔe",
+      "btcPayServerPlugin": "BTCPayServer ƒe Dɔwɔnu",
+      "visualizingZcashNetwork": "Zcash Network la kpɔkpɔ le susu me",
+      "visualizingZcashAddresses": "Zcash Adrɛswo Kpɔkpɔ le susu me",
+      "zcashDevtool": "Zcash Devtool ƒe dɔwɔnu",
+      "zcashImprovementProposals": "Zcash ƒe Ŋgɔyiyi ƒe Aɖaŋuɖoɖowo",
+      "zingolibAndZainoTutorial": "Zingolib kple Zaino ƒe Nufiame",
+      "zenithInstallation": "Zenith ƒe Dɔwɔɖoɖo",
+      "zeroKnowledgeVsDecoys": "Zero Sidzedze vs Decoy Dɔwɔɖoɖowo"
+    },
+    "overview": "Kpɔɖeŋu bliboa",
+    "shop": "Fiase"
+  },
+  "home": {
+    "heroTitle": "Míexɔ mi nyuie ɖe ZecHub",
+    "heroSubtitle": "Hehenaƒe si le ʋuʋu ɖi na Zcash",
+    "heroDescription": "Srɔ̃ nu tso Zcash ƒe ameŋunyatakakawo ŋuti mɔ̃ɖaŋununya ŋu, ku nukpɔkpɔ siwo me wowɔa nu aduadu le me, eye nàkpe asi ɖe lãwo ƒe agbenɔnɔ ƒe ɖoɖoa ŋu",
+    "description": "ZecHub nye hehenaƒe si nutoa me tɔwo kplɔna na Zcash cryptocurrency (ZEC). Zcash nye dijitaal ga si naa censorship tsitretsitsi, dedienɔnɔ & ame ŋutɔ ƒe fexexe. Zcash Blockchain zãa zk-snarks siwo de ŋgɔ ŋutɔ siwo ‘woate ŋu aɖo kpe edzi’ siwo mehiã be woawɔ ɖoɖo si dzi woka ɖo o le NU5 network ƒe tɔtrɔ le ƒe 2022 me megbe.",
+    "featuredSection": "Dɔwɔnu Siwo Woɖe Ðe Go",
+    "latestUpdates": "Nya yeye Siwo Wowɔ",
+    "getInvolved": "De Nu Eme",
+    "exploreEcosystem": "Dzro Nu Gbagbewo ƒe Dɔwɔɖoɖoa Me",
+    "exploreZcash": "Dzro Zcash me",
+    "cards": {
+      "startHere": {
+        "title": "Dze Egɔme Le Afi Sia",
+        "content": "Kpɔ nusi Zcash nye kple ZEC zazã ƒe nɔnɔmewo ɖa"
+      },
+      "pickWallet": {
+        "title": "Tia Gakotoku aɖe",
+        "content": "Gakotokuwo ɖea mɔ na wò be nàxɔ Zcash eye nàzãe le ɖokuiwò si. Wo dometɔ aɖewo hã doa alɔ nuŋlɔɖi siwo wotsɔ nya ɣaɣlawo ŋlɔ"
+      },
+      "resources": {
+        "title": "Zcash Dɔwɔnuwo",
+        "content": "Mɔfiame siwo kpena ɖe ezãlawo ŋu be woase Zcash Full Nodes, zk-SNARKs kple bubuwo gɔmee nye esi"
+      }
+    },
+    "sections": {
+      "whatIsZcash": {
+        "title": "Nukae nye Zcash?",
+        "description": "Enye agbalẽ gã si woate ŋu azã le mɔ gbadza nu, si nye blockchain ledger si me sidzedze zero-sidzedze ƒe kpeɖodziɖoɖo deŋgɔ aɖe le. Ebi ɖe adzamenyawo gbɔ kpɔkpɔ ƒe ɖoɖo si de ŋgɔ wu nana me to eƒe kpeɖodziɖoɖo si kpɔa asitsatsa ŋuti nyatakakawo ƒe nya ɣaɣlawo ta dzi. Le eƒe taɖodzinu vevitɔ me la, Zcash nye ame ŋutɔ ƒe nyatakakawo ƒe amesinɔnɔ si wotsɔna naa ame bubuwo mɔɖeɖe manɔmee ne wole asitsadɔwo wɔm.",
+        "mainLink": "Nukae nye Zcash?",
+        "techLink": "Zcash Mɔ̃ɖaŋununya"
+      },
+      "zcashMe": {
+        "title": "Zcash.me ƒe nyatakakadzraɖoƒea",
+        "description": "Zcash.Me nye Zcash zãlawo ƒe dutoƒo nyatakakadzraɖoƒe si me ame ŋutɔ ƒe gbedasiwo, kplɔlawo, kple zãla siwo ŋu woɖo kpee le. Do ka, ku nu me, eye nàwɔ nu kple Zcash habɔbɔa.",
+        "link": "Yi Zcash.Me dzi"
+      },
+      "globalAmbassadors": {
+        "title": "Zcash Xexeame Katã ƒe Dutanyanyuigblɔlawo",
+        "description": "Zcash Xexeame Katã ƒe Dutanyanyuigblɔlawo nye nutoa me kplɔla siwo tsɔ wo ɖokui na be yewoado cryptocurrency zazã kple hehenana si wotu ɖe ame ŋutɔ ƒe nyawo dzi ɖe ŋgɔ le xexeame katã. Dutadɔnunɔlawo ƒe dɔ ɖesiaɖe léa fɔ ɖe nyanyanana kple nuwɔwɔ aduadu tutuɖo le woƒe nutoawo me ŋu.",
+        "link": "Do go Dutanyanyuigblɔlawo"
+      },
+      "newsletter": {
+        "title": "Nyadzɔdzɔgbalẽ si Wotsɔ Akpoxɔnu Wɔe",
+        "description": "Ŋlɔ ŋkɔ to wò Unified Address zazã me be nàkpɔ mɔ si wokpɔ ta na Zcash Ecosystem Updates & Network Stats tẽe ɖe wò gakotokua me!",
+        "link": "Wɔ nudɔdɔ"
+      },
+      "free2z": {
+        "title": "Free2Z",
+        "description": "Free2Z nye hadomehabɔbɔ si ŋu Zcash le ŋusẽ ɖo. To hatiwo ƒe nudzɔdzɔwo, gakpɔkpɔ mama ƒe ɖoɖo, nutovɛdɔwɔnu deŋgɔwo kple xexeame katã ƒe habɔbɔ gã aɖe si le Internet dzi me.",
+        "link": "Free2Z"
+      },
+      "payWithZcash": {
+        "title": "Fe kple Zcash",
+        "description": "Nyatakakadzraɖoƒe sia nye biabia sia ƒe ŋuɖoɖo: Afikae mate ŋu axe fe le kple Zcash? Woate ŋu azã agbalẽdzraɖoƒea faa. Nyatakakawo ɖeɖeko tae nusiwo woŋlɔ ɖi la nye, eye menye kpeɖodzinana ƒomevi aɖeke o. Kpɔ dzidzɔ nyuie!",
+        "mainLink": "paywithz.ga si woxena",
+        "mapLink": "SPEDN ƑE NUÐEÐEŊUTI"
+      }
+    },
+    "explore": {
+      "startHere": "Dze egɔme_Afi Sia",
+      "tutorials": "Nufiamewo",
+      "usingZcash": "Zcash_zazã",
+      "guides": "Mɔfialawo",
+      "zcashTech": "Zcash_Mɔ̃ɖaŋununya",
+      "organizations": "Zcash_Habɔbɔwo",
+      "community": "Zcash_Nutoa me tɔwo",
+      "zkavClub": "ZKAV_Klub ƒe ƒuƒoƒo",
+      "privacyTools": "Adzamenyawo_Dɔwɔnuwo",
+      "research": "Numekuku",
+      "glossary": "Nyagɔmeɖegbalẽ_kple_Nyabiasewo",
+      "contribute": "Dzᴐ nu"
+    }
+  },
+  "footer": {
+    "description": "Hehenaƒe si le ʋuʋu ɖi na Zcash",
+    "quickLinks": "Kadodo Kabakabawo",
+    "resources": "Nunɔamesiwo",
+    "community": "Hatsotso",
+    "followUs": "Dze Mía Yome",
+    "allRightsReserved": "Gomenɔamesiwo katã le esi",
+    "privacyPolicy": "Ameŋunyatakakawo Ŋuti Ðoɖo",
+    "termsOfService": "Subɔsubɔdɔ ƒe Ðoɖowo"
+  },
+  "visualizer": {
+    "title": "Zcash Nukpɔmɔ̃wo",
+    "description": "Hehenana dɔwɔnu siwo wɔa dɔ aduadu be woase Zcash ƒe ameŋunyatakakawo ŋuti mɔ̃ɖaŋununya, xɔtuɖaŋu, kple sidzedze zero ƒe kpeɖodziwo gɔme",
+    "playAll": "Ƒo Nukpɔmɔ̃wo Katã",
+    "basic": "Gɔmedzenu",
+    "basicDescription": "Gɔmeɖoanyi ƒe nukpɔsusuwo kple Zcash ƒe nɔnɔme veviwo",
+    "advanced": "De ŋgɔ",
+    "advancedDescription": "Mɔ̃ɖaŋununya deto ɖe nya ɣaɣlawo, nukpɔsusu ɖeka, kple xɔtuɖaŋuwo me",
+    "contributors": "Nudzɔlawo",
+    "contributorsDescription": "Mɔ siwo dzi woato akpe asi ɖe Zcash ƒe lãwo ƒe agbenɔnɔ ŋu eye woakpɔ teƒeɖoɖowo",
+    "beginnerQuiz": "Gɔmedzelawo ƒe Nyabiase",
+    "intermediateQuiz": "Titiname Nyabiase",
+    "contributorsQuiz": "Nudzɔlawo ƒe Nyabiase",
+    "autoPlayNote": "Nukpɔmɔ̃ ɖesiaɖe wɔa dɔ le eɖokui si. Zã dziɖunuwo nàtsɔ azɔ mɔ alo atɔ vie.",
+    "wallets": {
+      "title": "Zcash Walets ƒe ŋgɔdonya",
+      "description": "Dɔwɔwɔ si Wotsɔ Akpoxɔnu Nana"
+    },
+    "pools": {
+      "title": "Asixɔxɔ ƒe Tawo & Adrɛs Ƒomeviwo",
+      "description": "Dzro Zcash ƒe ameŋunyatakakawo ƒe ƒuƒoƒo kple adrɛs ƒomeviwo me"
+    },
+    "payWith": {
+      "title": "Fe kple Zcash",
+      "description": "Ke ɖe afisi nàzã ZEC le kple alesi nàzãe hena ame ŋutɔ ƒe fexexe ŋu"
+    },
+    "dex": {
+      "title": "Zcash ƒe Asitsaƒewo (DEX) .",
+      "description": "Mɔɖeɖe manɔmee, si me womeɖe mɔ ɖe eŋu o, mɔɖeɖe ɖe ZEC ŋu to asitɔtrɔ siwo woɖe ɖe vovo zazã me"
+    },
+    "hashFunction": {
+      "title": "Hash ƒe Dɔwɔwɔwo",
+      "description": "Nukae nye Hash Function?"
+    },
+    "blockchain": {
+      "title": "Zcash Blockchain ƒe gɔmeɖosewo",
+      "description": "Zcash Blockchain Foundation gɔmesese"
+    },
+    "zkproof": {
+      "title": "zk-SNARKs ƒe nyawo",
+      "description": "Asitsatsa siwo wokpɔ ta na ƒe wɔwɔfia si me wowɔa nu aduadu le"
+    },
+    "keys": {
+      "title": "Zcash Safuiwo",
+      "description": "Zcash Keys gɔmesese"
+    },
+    "infrastructure": {
+      "title": "Zcash Dɔwɔƒewo ƒe Dɔwɔƒe",
+      "description": "Alesi Zcash ƒe akpawo wɔa dɔ ɖekae"
+    },
+    "consensus": {
+      "title": "Nusiwo dzi woda asi ɖo",
+      "description": "Aleke node alafa geɖe lɔ̃ ɖe kɔsɔkɔsɔ ƒe nɔnɔme dzii?"
+    },
+    "miningHalo": {
+      "title": "Zcash Tomenukuƒe",
+      "description": "Equihash tomenukuƒewo gɔmesese kple sidzedze zero-sidzedze ƒe kpeɖodzi siwo gbugbɔna"
+    },
+    "privacyUseCases": {
+      "title": "Ameŋunyatakakawo Zazã ƒe Nyawo",
+      "description": "Ameŋunyatakakawo ŋuti mɔ̃ɖaŋununya ƒe xexeame ŋutɔŋutɔ ƒe dɔwɔwɔ le Zcash dzi"
+    },
+    "governance": {
+      "title": "Dziɖuɖu & Dev Gaxɔ",
+      "description": "Nutoa me tɔwo ƒe ŋgɔyiyi kple nyametsotsowɔwɔ le teƒe ɖeka"
+    },
+    "bounties": {
+      "title": "ZecHub ƒe Bounties",
+      "description": "Kpe asi ɖe ZecHub ŋu eye nàkpɔ ZEC"
+    },
+    "daoProposal": {
+      "title": "DAO ƒe Aɖaŋuɖoɖowo",
+      "description": "Afɔɖeɖe ɖesiaɖe ƒe mɔfiame na ZecHub DAO ƒe dziɖuɖu ƒe aɖaŋuɖoɖo wɔwɔ"
+    },
+    "communityGrants": {
+      "title": "Zcash Nutome ƒe Gakpekpeɖeŋunana",
+      "description": "Gadodo na Zcash ƒe lãwo ƒe agbenɔnɔ ŋuti dɔwo"
+    },
+    "coinholderGrants": {
+      "title": "Gakpekpeɖeŋunana Siwo Wotsɔ Mɔfiame Na",
+      "description": "Gazazã le megbe si ZEC xɔlawo fia mɔe"
+    },
+    "openSource": {
+      "title": "Nudzraɖoƒe Siwo Woʋu Dzɔtsoƒe",
+      "description": "Kpe asi ɖe Zcash ƒe ʋuʋu ƒe dɔwo ŋu"
+    }
+  },
+  "wallets": {
+    "title": "Zcash Gakotokuwo",
+    "description": "Tia gakotoku si sɔ ɖe wò nuhiahiãwo nu",
+    "desktopWallets": "Gakotoku Siwo Wotsɔna Ðea Dɔwɔɖoɖowo Dzi",
+    "mobileWallets": "Asitelefon dzi Gakotokuwo",
+    "hardwareWallets": "Hardware Gakotokuwo",
+    "webWallets": "Nyatakakadzraɖoƒe ƒe Gakotokuwo",
+    "features": "Ŋutinuwo",
+    "download": "Hee ɖa anyi",
+    "visitWebsite": "Yi Nyatakakadzraɖoƒea",
+    "filters": "Nusiwo wotsɔna tsia nu me",
+    "showNavigation": "Fia Mɔfiamewo",
+    "close": "Tu",
+    "savedReview": "Míedzra wò numetotoa ɖo!",
+    "errorGettingLikes": "Vodada le likes xɔxɔ me:",
+    "errorUpdatingRating": "Vodada le asitɔtrɔ le dzidzedzekpɔkpɔ ŋu:"
+  },
+  "guides": {
+    "title": "Mɔfialawo",
+    "description": "Afɔɖeɖe ɖesiaɖe ƒe mɔfiamewo le Zcash zazã ŋu",
+    "allGuides": "Mɔfialawo Katã",
+    "beginner": "Gɔmedzela",
+    "intermediate": "Dome",
+    "advanced": "De ŋgɔ"
+  },
+  "tutorials": {
+    "title": "Nufiamewo",
+    "description": "Srɔ̃ nu to ewɔwɔ kple asi-le-nufiamewo me",
+    "watchVideo": "Kpɔ Videoa ɖa",
+    "readTutorial": "Xlẽ Nufiame",
+    "duration": "Ɣeyiɣi didime"
+  },
+  "dao": {
+    "title": "ZecHub DAO ƒe amegã",
+    "description": "Dziɖuɖu si woɖe ɖe vovo na ZecHub",
+    "headerTitle": "ZecHub DAO & Dziɖuɖu",
+    "headerDescription": "Hehenana ƒe mɔnu si le ʋuʋu ɖi si me nutoa me tɔwo wɔa dɔ aduadu le le nyatakaka siwo doa alɔ Zcash ƒe lãwo ƒe agbenɔnɔ ƒe ɖoɖoa wɔwɔ, wo dzi dada, kple wo dodo ɖe ŋgɔ me",
+    "beliefs": [
+      "Ame ŋutɔ ƒe gomenɔamesi nye ame ŋutɔ ƒe nyawo gbɔ kpɔkpɔ",
+      "Ele be sukudede nanye esi ŋu woate ŋu aʋu le eye woate ŋu akpɔe le xexeame katã",
+      "Gome le nutoa me tɔwo si be woakpɔ ZEC le wo ɖokui si",
+      "Xexeame katã ƒe nuwɔwɔ aduadu ʋãa nu yeyewo dodo ɖe ŋgɔ"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "Gbãtɔ Zcash Ecosystem DAO",
+        "description": "ZecHub le mɔɖeɖedɔa wɔm le dziɖuɖu si woɖe ɖe vovo me le Zcash nutoa me, eye ga siwo le Zcash ƒe takpɔƒe si wokpɔ ta na la me koŋ hena ame ŋutɔ ƒe nyawo gbɔ kpɔkpɔ geɖe wu."
+      },
+      {
+        "icon": "🌍",
+        "title": "Xexeame Katã ƒe Nuwɔwɔ Ðekae",
+        "description": "Xexeame Katã ƒe Dutanyanyuigblɔlawo, Nutoa me Gakpekpeɖeŋunana me tɔwo, kple nutoa me eŋutinunyalawo wɔ ɖeka be woafia mɔ Zcash kple Ameŋunyatakakawo Ŋuti Mɔ̃ɖaŋununya ƒe hehenana ƒe mɔfiame."
+      },
+      {
+        "icon": "🔄",
+        "title": "SubDAO ƒe Ðoɖowɔɖi",
+        "description": "Ƒuƒoƒo ɖesiaɖe ateŋu awɔ SubDAOwo be woawɔ dɔwo, awɔ aɖaŋuɖoɖowo, alo abia Retroactive Compensation to DAO DAO module dzi."
+      }
+    ],
+    "governanceDescription": "DAO ƒe aɖaŋuɖoɖowo katã nye dutoƒo eye wowɔa wo le gaglãgbe. Ame sia ame ate ŋu awɔ aɖaŋuɖoɖo aɖe si dzi woada akɔ ɖo. Le kpekpeɖeŋu nana nutoa me ƒe nuwɔwɔ le gaglãgbe me la, ZecHub DAO tsɔa dziɖuɖu ƒe aɖaŋuɖoɖowo katã dana ɖe Zcash Community Forum ZecHub Governance thread me.",
+    "membersTitle": "DAO me tɔwo",
+    "proposals": "Aɖaŋuɖoɖowo",
+    "vote": "Da akɔ",
+    "createProposal": "Wɔ Aɖaŋuɖoɖo",
+    "activeProposals": "Aɖaŋuɖoɖo Siwo Le Dɔ Wɔm",
+    "pastProposals": "Aɖaŋuɖoɖo Siwo Va Yi"
+  },
+  "newsletter": {
+    "title": "Nyadzɔdzɔgbalẽ",
+    "description": "Nɔ Zcash nyadzɔdzɔ yeyewo xɔm",
+    "subscribe": "Wɔ nudɔdɔ",
+    "emailPlaceholder": "Ŋlɔ wò e-mail la ɖe eme",
+    "subscribeButton": "Ðo Nudɔdɔ Fifia",
+    "latestIssue": "Tata yeyetɔ",
+    "archive": "Nudzraɖoƒe"
+  },
+  "pages": {
+    "wallets": {
+      "title": "Gakotokuwo | ZecHub ƒe ŋkɔ",
+      "noData": "Data alo Wrong file aɖeke meli o",
+      "bannerAlt": "wiki-aflaga ƒe aflaga"
+    },
+    "dex": {
+      "title": "Asitɔtrɔ le Dɔwɔƒewo ƒe Dɔwɔnawo Ŋu",
+      "subtitle": "ZecHub meda asi ɖe Decentralized Exchange subɔsubɔdɔ aɖeke koŋ dzi o, taflatse wɔ wò ŋutɔ wò numekuku.",
+      "centralised": "Centralized Swap ƒe mɔ̃wo",
+      "centralizedTitle": "Centralized Swap Platform ƒe Ŋkɔwo ƒe Ŋkɔwo",
+      "custodial": "Vidzikpɔkpɔ ƒe Asitɔtrɔ",
+      "exchanges": {
+        "Near-intents": "Nuwo ɖɔliɖɔli kabakaba kple NEAR ƒe kpekpeɖeŋu. Wɔ deposits, dzra, swap siwo dometɔ aɖewoe nye TRUMP, MELANIA, BERA kple meme xɔŋkɔwo",
+        "Nativeswap": "Native Cross-Chain Trading Mɔxenuwo Manɔmee to Maya ƒe Ðoɖowɔɖi dzi. Asitsatsa tẽ le kɔsɔkɔsɔ me tɔdzisasrãwo alo dzesi siwo woxatsa manɔmee - se vivi na dɔwɔƒewo ƒe fe suewo kple nunɔamesiwo dzi kpɔkpɔ bliboe.",
+        "Firo DEX": "Decentralized swaps siwo ŋu kakaɖedzi mele o siwo zãa atɔm swaps kple FiroDEX!.",
+        "LeoDEX": "A crosschain crypto ɖɔliɖɔli ƒe ŋgɔdonya na Maya Protocol, Thorchain, ChainFlip kple Rango. BTC, ETH, RUNE, DASH, LTC & Bubuwo",
+        "Bison Wallet": "Asitsatsa crypto hati-ɖe-hati. Asitsafe aɖeke meli o. KYC aɖeke meli o.",
+        "THORSwap": "Cross-chain DEX si ŋu THORChain le ŋusẽ ɖo, si na be woate ŋu awɔ native swaps le Bitcoin, Ethereum, kple nunɔamesi gã bubuwo dome dzesi siwo woxatsa manɔmee.",
+        "Router Protocol": "Cross-kɔsɔkɔsɔ liquidity transport layer si ɖea mɔ na seamless nunɔamesiwo kple nyatakakawo ƒe asitɔtrɔ le blockchains geɖe dome.",
+        "Peer": "Hatiwo ƒe asitɔtrɔ le teƒe ɖeka si na be woate ŋu awɔ crypto asitsatsa tẽ kple adzamenyawo kple ezãlawo ƒe dziɖuɖu si nyo wu.",
+        "RocketX": "Hybrid DEX aggregator si naa cross-chain swaps le blockchains geɖe me kple mɔfiame nyuitɔ kekeake kple hoʋiʋli ƒe agbɔsɔsɔme.",
+        "THORChain": "Decentralized Layer 1 ƒe atitsoga-kɔsɔkɔsɔ ƒe asitɔtrɔ. Trɔ asi le dzɔdzɔme nunɔamesiwo abe ZEC, BTC, kple ETH ene tẽ tɔdzisasrãwo, dzesi siwo woxatsa, alo domenɔlawo manɔmee.",
+        "Loofta": "Non-custodial ame ŋutɔ ƒe fexexe kple swap platform. Ðo crypto ɖa eye nàxɔe le adzame le kɔsɔkɔsɔwo katã me, eye Zcash nye nyaa gbɔ kpɔkpɔ ƒe ƒuƒoƒo na ganyawo ƒe adzamenyawo si wodo ɖe ŋgɔ."
+      }
+    },
+    "usingZcash": {
+      "blockchainExplorers": {
+        "title": "Blockchain ƒe Nukulawo"
+      }
+    },
+    "dashboard": {
+      "title": "Dashboard ƒe ʋuƒo | ZecHub ƒe ŋkɔ",
+      "charts": {
+        "headerTitle": "Dashboard(wo) .",
+        "headerSubtitle": "Ku Zcash network metrics kple nusiwo le edzi yim me",
+        "shieldedNetworks": "Netwɔƒe Siwo Wokpɔna Akpɔtɔ",
+        "currentYoutubeChannel": "YouTube Channel si li fifia",
+        "totalVideos": "Videowo Katã",
+        "totalViews": "Nukpɔkpɔwo Katã",
+        "mostViewed": "Wokpɔa Ame Geɖe Wu",
+        "viewsSuffix": "nukpɔsusuwo",
+        "searchPlaceholder": "Di videowo...",
+        "top15ByViews": "Top 15 le Nukpɔkpɔwo nu",
+        "latest15Videos": "Video 15 Yeyewo",
+        "sortByNewest": "↩ Ðo wo ɖe ɖoɖo nu le Yeyetɔ nu",
+        "sortByViews": "↑ Ðo wo ɖe ɖoɖo nu le Nukpɔkpɔwo nu",
+        "top15VideosByViews": "Video 15 Nyuitɔwo le Woƒe Nukpɔkpɔwo Nu",
+        "latest15VideosSortedByViews": "Video 15 Yeyewo (Woɖoe Ðe Wo Nɔewo Ðe Wo Nɔewo Nu)",
+        "zcashMetrics": {
+          "title": "Zcash ƒe Metrix",
+          "loadError": "Do kpo Zcash Metrics ƒe agba tsɔtsɔ",
+          "notAvailable": "N/A",
+          "marketCap": "Asi ƒe Tatɔ",
+          "circulation": "Tsitretsitsi",
+          "marketPriceUsd": "Asi ƒe Asixɔxɔ (USD) .",
+          "marketPriceBtc": "Asi ƒe Asixɔxɔ (BTC) .",
+          "blocks": "Blockwo ƒe ƒuƒoƒo",
+          "transactions24h": "24h Asitsatsa",
+          "shieldedTx24h": "TX si wokpɔ ta na (24h) .",
+          "saplingAbbrev": "Sap",
+          "orchardAbbrev": "Orc"
+        },
+        "zcashChart": {
+          "title": "Kukuɖenuŋu ƒe Nɔnɔmetatawo",
+          "supplyTypeAriaLabel": "Nusiwo woatsɔ ana ƒe ƒomevi",
+          "supplyOptions": {
+            "shielded": "Wotsɔ akpoxɔnu na",
+            "transparent": "Si me kɔ",
+            "totalSupply": "Nusiwo Wotsɔ Naa Nuwo Katã"
+          }
+        },
+        "zcashShieldedTabs": {
+          "supply": "Nunana",
+          "difficulty": "Sesẽme",
+          "issuance": "Nuwo ɖeɖe ɖe go",
+          "lockbox": "Lockbox ƒe aɖaka",
+          "flows": "Sisiwo le sisim",
+          "nodeCount": "Node Xexlẽme",
+          "txSummary": "TX Kpuie ko la",
+          "privacySet": "Ameŋunyatakakawo Ŋuti Ðoɖo",
+          "shieldedStats": "Akɔntabubu Siwo Wokpɔna",
+          "blockFees": "Block Fewo ƒe Fewo",
+          "networkSolps": "Netwɔƒe ƒe Solps",
+          "miningPools": "Tomenukuƒewo",
+          "halvingMeter": "Mita si Wotsɔ Ðea Afã"
+        },
+        "miningPoolsChart": {
+          "title": "Tomenukuƒewo ƒe Ŋusẽkpɔɖeamedzi",
+          "loadError": "Do kpo agba tsɔtsɔ de Mining Pools me",
+          "rangeLabel": "Kekeme",
+          "rangeAriaLabel": "Tia tomenukuƒe",
+          "noData": "Tomenukuƒe ŋuti nyatakaka aɖeke meli o."
+        },
+        "difficultyChart": {
+          "title": "Tomenukuƒewo ƒe Sesẽ Le Ɣeyiɣi aɖe megbe",
+          "loadError": "Do kpo Sesẽmewo ƒe Tabla la tsɔtsɔ de eme",
+          "legend": "Sesẽme",
+          "seriesName": "Sesẽme"
+        },
+        "tabs": {
+          "zechubDashboard": "ZecHub ƒe Dashboard",
+          "daodaoDashboard": "DaoDao ƒe Ʋuʋudedi",
+          "treasuryDashboard": "Gaxɔdzikpɔƒe",
+          "zcgDashboard": "ZCG ƒe Dashboard",
+          "youtubeDashboard": "YouTube ƒe Dɔwɔƒe si Kpɔa Dɔwɔnyawo Gbɔ"
+        }
+      }
+    },
+    "hackathon": {
+      "title": "ZecHub ƒe Hackathon ƒe ʋuʋu",
+      "heroEyebrow": "Tu · Nuŋlɔɖi · Tsɔe ɖo ɖa",
+      "heroIntro": "Tu ɖe mɔ atɔ̃ dzi, tso infra dzi va ɖo fefewo dzi, emegbe nàŋlɔ wò dɔa ɖi eye nàwɔ eƒe wɔwɔfia. Dziɖuɖua ƒe gɔmedzedze",
+      "heroKickoffSep": "(UTC) ƒe ŋkɔ; nusiwo woɖo ɖa la wu enu",
+      "countdownStartsIn": "Hackathon dzea egɔme le",
+      "countdownTimeUntilClose": "Ɣeyiɣi si woatsɔ aɖoe ɖa la nawu enu",
+      "countdownEnded": "Hackathon wu enu",
+      "days": "Ŋkekewo",
+      "hours": "Gaƒoƒowo",
+      "mins": "Mins",
+      "secs": "Secs",
+      "endedNote": "Hackathon fesre sia wu enu, akpe na amesiame si kpɔ gome le eme.",
+      "preStarts": "Edzea egɔme",
+      "preCloseSep": "(UTC) ƒe agbalẽ. Nusiwo woɖo ɖa la wu enu",
+      "activeCloseOn": "Nusiwo woɖo ɖa la wu enu",
+      "tracksEyebrow": "ƒe 2026 ƒe wɔna",
+      "tracksTitle": "Tracks ƒe hadzidziwo",
+      "tracksIntro": "Tsɔ wò dɔa sɔ kple track aɖe be eme nakɔ ne èɖoe ɖa, ʋɔnudrɔ̃lawo kple nutoa me tɔwo zãa wo tsɔ ʋua nya siwo nèŋlɔ.",
+      "tracks": {
+        "infrastructure": {
+          "name": "Dɔwɔƒewo ƒe xɔtuɖoɖowo",
+          "description": "ZSA GUI, Node Launcher, Zallet web dashboard kple bubuawo."
+        },
+        "games": {
+          "name": "Fefewo",
+          "description": "Wiki Nyati fefe si sɔ kple catfishing.net, ZEC Poker, Aʋameli kple bubuawo."
+        },
+        "frost": {
+          "name": "FROST ƑE NUÐEÐEŊUTI",
+          "description": "Gakotoku siwo wode asi na agbo nu, Shielded ZEC Escrow, Hadomegbenɔnɔ ƒe Gbɔdzɔe"
+        },
+        "zcashLogin": {
+          "name": "Zcash ƒe gege ɖe eme",
+          "description": "Auth kple identity flows siwo zãa Zcash primitives hena gege ɖe eme alo gege ɖe eme."
+        },
+        "accounting": {
+          "name": "Akɔntabubu",
+          "description": "Nyatakaka nana, dɔwɔwɔ ƒe ɖoɖowo na ƒuƒoƒo siwo kpɔa ZEC, Fexexe dzikpɔkpɔ ƒe ɖoɖo."
+        }
+      },
+      "prizesEyebrow": "Teƒeɖoɖowo",
+      "prizesTitle": "Fetuwo",
+      "prizePoolTitle": "25 ZEC Fetu ƒe ƒuƒoƒo",
+      "prizePoolDesc": "Tu, tsɔe ɖo ɖa, eye nàʋli ho ɖe nutoa me ƒe fetu ta.",
+      "devToolsEyebrow": "Dze egɔme tso afisia",
+      "devToolsTitle": "Devtools & nuŋlɔɖiwo",
+      "devTools": {
+        "quickStart": {
+          "title": "ZecHub Developer Dzedze Kaba",
+          "description": "Di dɔwɔnu veviwo, nufiamewo, kple ɖoɖowɔwɔ ƒe afɔɖeɖewo hena xɔtutu ɖe Zcash dzi."
+        }
+      },
+      "openGuide": "Ʋu mɔfianu",
+      "openDocs": "Ʋu nuŋlɔɖiwo",
+      "rulesTitle": "Sewo",
+      "rulesDesc": "Na nyawo nanɔ dzɔdzɔe eye woadrɔ̃ ʋɔnu wo bɔbɔe.",
+      "rules": {
+        "mainnet": "Ele be dɔwo nawɔ nu kple Zcash mainnet network.",
+        "oneProject": "Dɔ mamlɛtɔ ɖeka koe ƒuƒoƒowo ate ŋu aɖo ɖe ƒuƒoƒo ɖesiaɖe.",
+        "docs": "Ele be ɖoɖo kple zazã ŋuti nuŋlɔɖi siwo me kɔ nanɔ agbalẽ siwo katã woɖo ɖa la me.",
+        "openSource": "Zã mɔɖegbalẽ si woate ŋu azã le mɔ gbadza nu.",
+        "respect": "De bubu ameŋunyatakakawo, dedienɔnɔ, kple nutoa me ƒe mɔfiamewo ŋu le kɔpiwo kple emenyawo siaa me."
+      },
+      "faqTitle": "Nyabiasewo ƒe Nyabiasewo",
+      "faqDesc": "Ŋuɖoɖo kaba hafi nàge ɖe eme.",
+      "faq": {
+        "whoCanParticipate": {
+          "question": "Amekawoe ate ŋu akpɔ gome le eme?",
+          "answer": "Ame sia ame ate ŋu awɔ ɖeka kplii: dɔwɔlawo, aɖaŋuwɔlawo kple dɔ vovovowo wɔwɔ ƒe ƒuƒoƒowo."
+        },
+        "validSubmission": {
+          "question": "Nukae wòle be wòalɔ agbalẽ si wotsɔ ɖo ɖa si sɔ la ɖe eme?",
+          "answer": "Kpɔɖeŋu si le dɔ wɔm, video ƒe wɔwɔfia, nuŋlɔɖi veviwo, kple alesi wòzãa Zcash network la ŋuti numeɖeɖe."
+        },
+        "whereSubmit": {
+          "question": "Afikae míeɖoa dɔwo ɖe?",
+          "answer": "Ma wò video ƒe wɔwɔfia le Zcash Global Discord me eye nàde nudzraɖoƒe alo wɔwɔfia ƒe kadodo ɖesiaɖe si sɔ la eme."
+        },
+        "winnersSelected": {
+          "question": "Aleke wotiaa aʋadziɖulawoe?",
+          "answer": "Wowɔa dutoƒonutoa ƒe ɖoɖo aɖe to ZecHub DAO mɔnuwo dzi le dɔdɔwo wuwu vɔ megbe."
+        },
+        "whatTracks": {
+          "question": "Nukawoe nye haƒoƒoawo?",
+          "answer": "Hackathon sia ƒe tanyawoe nye Dɔwɔƒewo, Fefewo, FROST, Zcash Login, kple Accounting. Tia track si sɔ nyuie wu na wò build, àteŋu aɖo project si womeɖe fia le tracks me o kokoko."
+        }
+      },
+      "submitEyebrow": "Gomekpɔkpɔ le eme",
+      "submitTitle": "Alesi woatsɔe anae",
+      "submitIntro": "Wɔ ɖe afɔɖeɖe atɔ̃ siawo dzi be nàna wò dɔa natso susua dzi va ɖo dziɖuɖua ƒe gege ɖe eme dzi.",
+      "steps": {
+        "build": {
+          "title": "Tu wò dɔa ɖo",
+          "description": "Wɔ kpɔɖeŋu si le dɔ wɔm si wɔa dɔ kple Zcash mainnet. Tia track eye nàwɔ ŋgɔyiyi ŋuti nuŋlɔɖi ne èle yiyim."
+        },
+        "record": {
+          "title": "Lé video aɖe ƒe wɔwɔfia ɖe mɔ̃ dzi",
+          "description": "Lé azɔlizɔzɔ kpui aɖe si ɖe wò dɔa fia le dɔwɔwɔ me. Ðe nusi wòwɔna kple alesi wòzãa Zcash network la me eme nakɔ."
+        },
+        "document": {
+          "title": "Ŋlɔ wò dɔa ɖi",
+          "description": "Ŋlɔ README si me ɖoɖowɔɖi ŋuti mɔfiamewo, zazã ŋuti nuŋlɔɖiwo, kple wò mɔɖegbalẽ si le ʋuʋu ɖi le. Tu nusianu ɖe ​​dutoƒo GitHub repo me."
+        },
+        "upload": {
+          "title": "Tsɔ wò kɔpi la da ɖe Internet dzi",
+          "descPrefix": "Tu wò dɔa ɖe...",
+          "repoLabel": "Hackathon ƒe nuŋlɔɖi",
+          "descSuffix": "le GitHub dzi ale be nutoa me tɔwo nate ŋu ato wò dɔwɔwɔ me."
+        },
+        "share": {
+          "title": "Gomekpɔkpɔ le Masɔmasɔ me",
+          "description": "Da wò video ƒe wɔwɔfia ɖe Zcash Global Discord me kple wò repo kple wɔwɔfia ƒe kadodowo do ŋgɔ na July 15, 2026 (UTC)."
+        }
+      },
+      "deadlineLabel": "Nuwuwu game:",
+      "deadlinePrefix": "Ele be woaɖo nya siwo katã woɖo ɖa la ɖe Discord to",
+      "deadlineSuffix": ". Wotiaa aʋadziɖulawo to dutoƒonutoa ƒe akɔdada dzi le ZecHub DAO ƒe mɔ̃wo dzi le agbalẽ siwo woɖo ɖa vɔ megbe kpuie.",
+      "joinTheDiscord": "Wɔ ɖeka kple Masɔmasɔa",
+      "previousEyebrow": "Tata siwo va yi",
+      "previousTitle": "Hackathon siwo wowɔ va yi",
+      "previousIntro": "Kpɔ ZecHub hackathon xɔ siwo do ŋgɔ le tata nu. Dɔwɔwɔ ƒe kaɖi ɖesiaɖe doa ka kple eƒe GitHub agbalẽdzraɖoƒe tẽ hena kɔda, nuŋlɔɖi, kple wɔwɔfiawo le afisiwo wòle.",
+      "browseAllProjects": "Kpɔ dɔwo katã ɖa",
+      "errorCouldNotLoad": "Mete ŋu tsɔ live project list la de eme o",
+      "errorShowingSaved": "Fia hackathon dɔwɔwɔ ƒe xexlẽdzesi si wodzra ɖo va yi la boŋ.",
+      "noProjects": "Wometrɔ dɔa ƒe agbalẽdzraɖoƒe aɖeke vɛ o. Ʋu repo-ti la be nàɖo kpe wɔwɔme dzi.",
+      "projectsArchivedOne": "{count} project si wodzra ɖo tso tata sia me.",
+      "projectsArchivedMany": "{count} dɔwɔwɔ siwo wodzra ɖo tso tata sia me.",
+      "buildsCount": "{xexlẽ} tua xɔwo",
+      "viewProject": "Kpɔ dɔa ɖa",
+      "needHelpTitle": "Èhiã kpekpeɖeŋua?",
+      "needHelpDesc": "Zcash Global Discord nye teƒe nyuitɔ kekeake na xɔtutu biabia, infra aɖaŋuɖoɖowo, kple hackathon dzeɖoɖo.",
+      "joinDiscord": "Wɔ ɖeka kple Discord",
+      "supportDonation": "Do alɔe kple nudzɔdzɔ",
+      "popup": {
+        "liveNow": "Nɔ Agbe Fifia",
+        "subtitle": "Tu dɔwɔɖoɖo siwo gbãa adzamenyawo gbã ɖe Zcash dzi. Miʋli fetu ta, mikpɔ ZEC, eye miatrɔ asi le ganyawo ƒe ablɔɖe ƒe etsɔme ŋu.",
+        "prizePool": "Fetu Xɔxɔ ƒe Ƒuƒoƒo",
+        "start": "Dze egᴐme",
+        "end": "Nuwuwu",
+        "learnMore": "Srɔ̃ Nu Geɖe →",
+        "dismiss": "Ɖe asi le eŋu"
+      }
+    },
+    "developers": {
+      "title": "Zcash Dɔwɔlawo ƒe Dɔwɔnuwo",
+      "heroImageAlt": "Zcash Dɔwɔlawo ƒe Dɔwɔnuwo",
+      "cardSectionTitle": "Aleke nàdi be yeadze egɔmee?",
+      "cards": {
+        "learnTitle": "Srɔ̃ Zcash Development",
+        "learnContent": "Dzro nuŋlɔɖi siwo dziɖuɖua da asi ɖo me eye nàsrɔ̃ Zcash mɔ̃ɖaŋununya ƒe gɔmedzenufiafiawo.",
+        "learnButton": "Xlẽ Nuŋlɔɖiawo",
+        "tutorialsTitle": "Srɔ̃ Nu To Nufiamewo Me",
+        "tutorialsContent": "Wɔ ɖe afɔɖeɖe ɖesiaɖe ƒe nufiamewo dzi be nàtu Zcash ɖe edzi, tso gakotokuwo wɔwɔ dzi va ɖo Zcash tsɔtsɔ de wò dɔwɔɖoɖowo me dzi.",
+        "tutorialsButton": "Kpɔ Nufiamewo",
+        "quickStartTitle": "Mɔfiame si Ku Ðe Gɔmedzedze Kabakaba Ŋu",
+        "quickStartContent": "Tso eye nàƒu du kple Zcash ƒe ŋgɔyiyi kaba. Srɔ̃ eɖoɖo, ɖoɖowɔwɔ, kple dɔwɔwɔ veviwo.",
+        "quickStartButton": "Mɔfiame si Ku Ðe Gɔmedzedze Kabakaba Ŋu"
+      },
+      "exploreDocsTitle": "Dzro Nuŋlɔɖiawo me",
+      "introductionsTitle": "ŋgɔdonyawo",
+      "fundamentalsTitle": "Nu veviwo",
+      "advancedTitle": "De ŋgɔ",
+      "introLinks": {
+        "introToZcash": "Zcash ƒe ŋgɔdonya",
+        "introToZcashDesc": "Srɔ̃ nu tso Zcash, eƒe ŋutinya, kple eƒe gɔmeɖose veviwo ŋu.",
+        "introToZec": "ZEC ƒe ŋgɔdonya",
+        "introToZecDesc": "Ke ɖe ZEC, Zcash native cryptocurrency ƒe zazã ƒe nɔnɔmewo kple viɖewo ŋu.",
+        "introToZebra": "Zebra ƒe ŋgɔdonya",
+        "introToZebraDesc": "Alesi Zebra doa ŋusẽ Zcash network la gɔmesese kple modular kple dedie Rust-based implementation",
+        "introToLightwalletd": "Lightwalletd ƒe ŋgɔdonya",
+        "introToLightwalletdDesc": "Understanding the lightwalletd project—a scalable server written in Go that efficiently serves compact blockchain data to Zcash light clients via gRPC.",
+        "zalletBook": "Zallet ƒe Agbalẽa",
+        "zalletBookDesc": "Zallet, si nye Zcash gakotoku si ƒe node blibo si woŋlɔ ɖe Rust me eye wowɔe be wòanye zcashd gakotokua teƒe ƒe ŋgɔdonya.",
+        "developerResources": "Dɔwɔlawo ƒe Dɔwɔnuwo",
+        "developerResourcesDesc": "Links to Zcash further Mɔ̃ɖaŋununya ƒe Nuŋlɔɖiwo."
+      },
+      "fundamentalsLinks": {
+        "addressEncoding": "Adrɛs ƒe Encoding",
+        "addressEncodingDesc": "Srɔ̃ alesi woŋlɔa Zcash adrɛswo kple safuiwoe.",
+        "transactions": "Adzɔnuwo ƒe asitsatsa",
+        "transactionsDesc": "Se alesi asitsatsa wɔa dɔe le Zcash me gɔme.",
+        "fees": "Fe siwo woxena",
+        "feesDesc": "Srɔ̃ nu tso asitsatsa ƒe fewo kple alesi wobua woe ŋu.",
+        "nodesZcashd": "Nodes (zcashd) ƒe ƒuƒoƒo .",
+        "nodesZcashdDesc": "Ðo Zcash nodes eye nàkpɔ wo dzi to zcashd zazã me.",
+        "nodesZebrad": "Nodes (zebrad) ƒe ƒuƒoƒo .",
+        "nodesZebradDesc": "Ku Zebra, si nye Zcash node ƒe dɔwɔwɔ bubu.",
+        "lightwalletServers": "Lightwallet ƒe Dɔwɔƒewo",
+        "lightwalletServersDesc": "Srɔ̃ nu tso lightwalletd, si nye Zcash gakotoku ƒe dɔwɔƒe si ƒe kpekpeme le bɔbɔe ŋu.",
+        "blockExplorers": "Block Nukulawo",
+        "blockExplorersDesc": "Dzro Zcash blockchains me to block explorers zazã me.",
+        "shadeAgent": "Vɔvɔli ƒe Dɔwɔla - Nukpɔsusu",
+        "shadeAgentDesc": "Srɔ̃ nu tso Shade Agents ŋu—AI dɔwɔla gbãtɔ siwo le wo ɖokui si vavã le NEAR—siwo ŋu ŋusẽ le tso TEE siwo le dedie kple Chain Signatures siwo woɖe ɖe vovo me be woakpɔ nunɔamesiwo dzi, akpɔ LLMwo, eye woawɔ kɔsɔkɔsɔ geɖe ƒe asitsatsa le wo ɖokui si."
+      },
+      "advancedLinks": {
+        "introToStack": "Intro na Stack la",
+        "introToStackDesc": "Se Zcash stack ƒe xɔtuɖaŋu kple eƒe akpa aɖewo gɔme.",
+        "zecDev": "ZecDev",
+        "zecDevDesc": "Afisiae nàkpɔ dɔwo, nunɔamesiwo kple dɔwɔnu siwo wowɔ eye wolé be na wo le (Zcash) Developer Relations Engineer ƒe kpekpeɖeŋunana ƒe nyawo me. Kpɔ nyati sia hã",
+        "zcashCommunityWishlist": "Zcash Hamea ƒe Didiwo ƒe Ŋkɔwo",
+        "introToZingolib": "Zingolib ƒe ŋgɔdonya",
+        "introToZingolibDesc": "Zingolib nudzraɖoƒe gɔmesese—API kple CLI si wotu ɖe Rust dzi hena nuwɔwɔ kple zcashd to Lightwalletd dzi.",
+        "webZjs": "NyatakakadzraɖoƒeZjs",
+        "webZjsDesc": "JavaScript/TypeScript agbalẽdzraɖoƒe si woatsɔ atu nyatakakadzraɖoƒe dɔwɔɖoɖo siwo Zcash wɔe to WebAssembly zazã me.",
+        "noirWalletSdk": "Noir ƒe Gakotoku SDK",
+        "noirWalletSdkDesc": "TypeScript SDK kple kpɔɖeŋu dApp hena Zcash dɔwɔɖoɖowo ƒoƒo ƒu kple Noir Wallet ƒe web-kpɔkplɔ ƒe kekeɖenudɔwɔwɔ.",
+        "zcashIka": "zcash-ika ƒe ŋkɔ",
+        "zcashIkaDesc": "Split-key custody na Zcash kple multi-chain agents to 2PC-MPC dzi. On-kɔsɔkɔsɔ gazazã ŋuti ɖoɖo, ameŋunyatakakawo ŋuti ɖaseɖiɖi, ZIP 244 asitsatsa tutula.",
+        "developmentGuidelines": "Ŋgɔyiyi ƒe Mɔfiamewo",
+        "developmentGuidelinesDesc": "Wɔ ɖe mɔnu nyuitɔwo dzi hena ŋgɔyiyi le Zcash dzi.",
+        "arboristCalls": "Arborist Calls Page",
+        "arboristCallsDesc": "Zcash Arborist Calls nye kwasiɖa eve ƒe ɖoɖowɔɖi ƒe ŋgɔyiyi ƒe kpekpe siwo me woléa ŋku ɖe ɖoɖowɔɖi ƒe dɔwɔwɔ ƒe ɖoɖo siwo gbɔna, nukpɔsusu ɖeka ƒe node ƒe dɔwɔwɔ ƒe nyawo, kple ɖoɖowɔɖi ŋuti numekuku yometiti ŋu."
+      },
+      "feedbackTitle": "Ðe axa sia kpe ɖe ŋuwòa?",
+      "feedbackYes": "Ɛ̃",
+      "feedbackNo": "No",
+      "feedbackHelpful": "Akpe na mi ɖe miaƒe nyaŋuɖoɖo ta! Na axa sia nanyo ɖe edzi wu ne èɖo biabia ʋɛ aɖewo ŋu. Ne èhiã kpekpeɖeŋu la, àte ŋu aɖo nutoa me tɔwo gbɔ le míaƒe...",
+      "feedbackNotHelpful": "Kpeɖeŋutɔ be mese nya ma. Taflatse na míanya alesi míawɔ ana axa sia nanyo ɖe edzi. Àte ŋu aɖo nutoa me tɔwo gbɔ le míaƒe..."
+    },
+    "zcashProjects": {
+      "title": "Zcash Dɔwɔnawo | ZecHub ƒe ŋkɔ"
+    },
+    "visualizer": {
+      "title": "Zcash Nukpɔmɔ̃wo",
+      "hashFunction": {
+        "title": "Hash Dɔwɔwɔ ƒe Nɔnɔmetata"
+      },
+      "zcashKey": {
+        "title": "Zcash Safui ƒe Nukpɔmɔ̃"
+      },
+      "zksnark": {
+        "title": "ZK-SNARK Kpeɖodzi Nukpɔmɔ̃"
+      },
+      "sybil": {
+        "problemTitle": "Sybil ƒe Amedzidzedze ƒe Kuxia",
+        "problemDesc": "Le network si me akɔdadae afia nyateƒea me la, amedzidzela ate ŋu awɔ aʋatso ame miliɔn geɖe atsɔ ada akɔ wu gomekpɔla siwo le se nu.",
+        "realUsers": "3 Zãla Nyateƒetɔwo",
+        "vs": "vs",
+        "attacker": "1 Amedzidzela (6 alakpanuwo) .",
+        "solutionTitle": "Alesi Zcash Xɔa Mɔ na Sybil ƒe Amedzidzedzewo",
+        "powTitle": "Dɔwɔwɔ ƒe Kpeɖodzi",
+        "powDesc": "Tomenukuƒewo bia akɔntabubumɔnu ŋutɔŋutɔwo. Aʋatso dzesideŋkɔwo wɔwɔ menaa ŋusẽ geɖe wu be woada akɔ o — dɔ ŋutɔŋutɔ koe nana.",
+        "costTitle": "Ganyawo ƒe Gazazã",
+        "costDesc": "Netwɔƒea dzi dzedze bia be woade ga geɖe xɔtunuwo kple elektrikŋusẽ me, si wɔnɛ be susu mele amedzidzedzewo ŋu le ganyawo gome o.",
+        "insightLabel": "Gɔmesese Vevi:",
+        "insightDesc": "Sybil ƒe tsitretsiɖeŋu blaa akɔdada ƒe ŋusẽ ɖe nunɔamesi siwo mebɔ o (akɔntabubu, gadede asi) ŋu tsɔ wu be woatsɔ dzesideŋkɔ siwo woate ŋu awɔ bɔbɔe."
+      },
+      "saplingKey": {
+        "spendingKeyName": "Gazazã ƒe Safui (sk) .",
+        "spendingKeyDesc": "Nya ɣaɣla bibi na gazazã",
+        "expandedSpendingKeyName": "Gazazã ƒe Safui si Wokeke Ðe Edzi",
+        "expandedSpendingKeyDesc": "bia, nsk, ovk",
+        "fullViewingKeyName": "Full Viewing Key (fvk)",
+        "fullViewingKeyDesc": "ak, nk, ovk",
+        "incomingViewingKeyName": "Incoming Viewing Key (ivk)",
+        "incomingViewingKeyDesc": "Kpɔ asitsatsa siwo gbɔna",
+        "diversifiedAddressName": "Adrɛs Vovovowo",
+        "diversifiedAddressDesc": "zs1... (seɖoƒe meli na safui ɖesiaɖe o)",
+        "derivationTitle": "Sapling Key ƒe Dzɔtsoƒe",
+        "addressFormatTitle": "Adrɛs ƒe Nɔnɔme",
+        "addressFormatDesc": "ŋɔŋlɔdzesi 78, Bech32 ƒe nuŋɔŋlɔ",
+        "keyFeatureTitle": "Nu Vevi Siwo Le Eme",
+        "keyFeatureBold": "Adrɛs vovovowo",
+        "keyFeatureDesc": "— Wɔ adrɛs tɔxɛ siwo seɖoƒe meli na o tso safui ɖeka me"
+      },
+      "blockAnatomy": {
+        "fieldVersion": "Nukpɔkpɔ",
+        "fieldPreviousHash": "Hash si do ŋgɔ",
+        "fieldMerkleRoot": "Merkle ƒe Ke",
+        "fieldTimestamp": "Ɣeyiɣi ƒe dzesi",
+        "fieldDifficulty": "Sesẽme",
+        "fieldNonce": "Nonce",
+        "blockHeader": "Block Tanya",
+        "transactionList": "Asitsatsa ƒe Ŋkɔwo",
+        "coinbaseTx": "Tx #1 (Coinbase) ƒe ƒuƒoƒo.",
+        "merkleTree": "Merkle ƒe Ati",
+        "merkleRoot": "Merkle ƒe Ke"
+      },
+      "difficulty": {
+        "zcashBlockTime": "sɛkɛnd 75 sɔŋ",
+        "targetBlockTime": "Taɖodzinu block ɣeyiɣi",
+        "bitcoinBlockTime": "Aɖabaƒoƒo 10 sɔŋ",
+        "forComparison": "Be woatsɔe asɔ kple wo nɔewo",
+        "adjustmentTitle": "Asitɔtrɔ le Sesẽme Ŋu",
+        "hashrateIncreases": "Hashrate Dzina Ðe Edzi",
+        "difficultyUp": "Sesẽnuawo yia dzi",
+        "target": "Taɖodzinu: 75 sec",
+        "staysConstant": "Enɔa anyi ɣesiaɣi",
+        "hashrateDecreases": "Hashrate dzi ɖena kpɔtɔna",
+        "difficultyDown": "Sesẽmea dzi ɖena kpɔtɔna",
+        "summary": "Netwɔƒea trɔa asi le tomenukuƒe ƒe sesẽ ŋu le eɖokui si be wòalé block ɣeyiɣi siwo mewɔa tɔtrɔ o me ɖe asi, eɖanye tomenukulawo nenie le ho ʋlim o."
+      }
+    },
+    "paymentProcessors": {
+      "title": "Fexexe Ŋuti Dɔwɔlawo | ZecHub ƒe ŋkɔ",
+      "noData": "Data alo Wrong file aɖeke meli o",
+      "bannerAlt": "wiki-aflaga ƒe aflaga"
+    },
+    "developersQuickStart": {
+      "heroBadge": "Developer Dzedze Kaba",
+      "heroTitleLine1": "Zcash Dev",
+      "heroTitleLine2": "Dze egɔme Kaba",
+      "heroSubtitle": "Tso eye nàƒu du kple Zcash ƒe ŋgɔyiyi. Tia wò stack eye nàwɔ ɖe mɔfiame la dzi.",
+      "copy": "Kpɔ eƒe kɔpi",
+      "copied": "Wogbugbɔ ŋlɔe!",
+      "onThisPage": "Le axa sia dzi",
+      "tocInstallingZebrad": "Zebrad ƒe ɖoɖowɔwɔ",
+      "tocRunningZebrad": "Running zebrad",
+      "tocConnectingLightwalletd": "Kadodo kple lightwalletd",
+      "installation": "Eɖoɖo ɖe dɔa me",
+      "configuration": "Ðoɖowɔwɔ",
+      "dependencies": "Nusiwo dzi woanɔ te ɖo",
+      "fromSource": "Tso Dzɔtsoƒe",
+      "alternatively": "Alo hã",
+      "manualDownload": "Manual Download",
+      "wslRecommended": "WSL (Woɖo aɖaŋu) .",
+      "runningZebradHeading": "Running zebrad",
+      "initialSetup": "Ðoɖowɔwɔ Gbãtɔ",
+      "createConfigDir": "Wɔ Ðoɖowɔɖiwo ƒe Nyatakakadzraɖoƒe",
+      "startingZebrad": "Starting zebrad",
+      "commandLine": "Sedede ƒe Fli",
+      "importantNotes": "Nya Veviwo",
+      "noteDownloadsBlockchain": "Gbãtɔ ƒe duƒuƒu ɖea blockchain bliboa ƒe kɔpi (~250 GB) .",
+      "noteInitialSync": "Gbãtɔ ƒe wɔwɔ ɖekae ate ŋu axɔ gaƒoƒo geɖe",
+      "noteKeepSecure": "Na wò zebrad.toml nanɔ dedie eye nànɔ ɣaɣla",
+      "connectingLightwalletdHeading": "Kadodo kple lightwalletd",
+      "lightwalletdInfo": "nye server si naa ŋgɔdonya si le bɔbɔe na Zcash blockchain, si wowɔ na asitelefon kple kplɔ̃dzi gakotoku siwo mehiã be woawɔ node blibo o.",
+      "prerequisites": "Nusiwo hiã do ŋgɔ",
+      "buildLightwalletd": "Tu lightwalletd ɖo",
+      "basicSetupMainnet": "Ðoɖowɔwɔ Gbãtɔ (Mainnet) .",
+      "basicSetupTestnet": "Ðoɖowɔwɔ Gbãtɔ (Testnet) .",
+      "run": "Ƒu du",
+      "installingZaino": "Zaino ƒe ɖoɖowɔwɔ",
+      "zainoInfo": "nye Rust-dzi indexer na Zcash blockchain. Esubɔa kekeli asisiwo (gakotoku siwo medzraa ŋutinya bliboa ɖo o) kple asisi blibo / block explorers siaa, si naa mɔnukpɔkpɔ be woakpɔ kɔsɔkɔsɔ si wowu enu, kɔsɔkɔsɔ nyuitɔ kekeake si womewu enu o, kple mempool.",
+      "buildZaino": "Tu Zaino ɖo",
+      "configure": "Ðoɖowɔwɔ ɖe eŋu",
+      "runZainod": "Miƒu du zainod",
+      "installingZingoCli": "Zingo CLI ƒe ɖoɖowɔwɔ",
+      "zingoCliInfo": "nye sedede-fli lightwalletd-proxy client si wotu le Rust me. Nusiwo woɖe ɖe go nye ɣeyiɣi kpui aɖe tɔ fifia — mɔfiame sia ku ɖe nuƒoƒoƒu tso dzɔtsoƒe ŋu.",
+      "buildZingoCli": "Tu Zingo CLI ɖo",
+      "running": "Le du dzi",
+      "startZingoCliDefault": "Dze Zingo CLI (Nu gbãtɔ) gɔme .",
+      "startZingoCliCustom": "Dze Zingo CLI (Tɔtrɔ) gɔme .",
+      "zingoSyncWarning": "⚠ Esia awɔ ɖekawɔwɔ blibo le duƒuƒu gbãtɔ me, abe lightwalletd ene.",
+      "nextStepsResources": "Afɔɖeɖe siwo kplɔe ɖo & Dɔwɔnuwo",
+      "readyToBuild": "Èle klalo be Yeatua?",
+      "officialDocumentation": "Dziɖuɖua ƒe Nuŋlɔɖiwo",
+      "zcashDiscordCommunity": "Zcash Masɔmasɔwo ƒe Habɔbɔ",
+      "githubRepositories": "GitHub Nudzraɖoƒewo",
+      "zcashImprovementProposals": "Zcash ƒe Ŋgɔyiyi ƒe Aɖaŋuɖoɖowo",
+      "needHelp": "Èhiã Kpekpeɖeŋua?",
+      "zcashCommunityForum": "Zcash Nutome Takpekpe",
+      "githubIssues": "GitHub Nyawo",
+      "troubleshootingGuide": "Kuxiwo Gbɔkpɔkpɔ ƒe Mɔfiame",
+      "stackOverflow": "Stack Overflow ƒe ʋuʋu"
+    },
+    "governanceHowto": {
+      "pageTitle": "ZecHub DAO Dziɖuɖu",
+      "pageSubtitle": "Mɔfiame blibo si ku ɖe gomekpɔkpɔ le ZecHub DAO ƒe dziɖuɖu me ŋu",
+      "stepOf": "Afɔɖeɖe {fifia} ƒe {total} .",
+      "firstSteps": "Afɔɖeɖe Gbãtɔwo",
+      "firstStepsDesc": "Miɖoe be miakpɔ gome le DAO ƒe dziɖuɖu me",
+      "draftProposal": "Aɖaŋuɖoɖo si Woŋlɔ",
+      "draftProposalDesc": "Ðo wò aɖaŋuɖoɖoa ɖe ɖoɖo nu eye nàdzrae ɖo be nàtsɔe aɖo ɖa",
+      "submittingProposal": "Aɖaŋuɖoɖoa Ðoɖoɖa",
+      "submittingProposalDesc": "Tsɔ wò aɖaŋuɖoɖoa ɖo ɖa eye nàdoe ɖe ŋgɔ",
+      "installKeplr": "De Keplr Gakotokua me",
+      "installKeplrDesc": "Ðo wò Keplr gakotokua be wòawɔ nu kple DAO",
+      "keplrVideoTitle": "Keplr Gakotoku ƒe Ðoɖowɔwɔ Ŋuti Mɔfiame",
+      "acquireJuno": "Xɔ JUNO",
+      "acquireJunoDesc": "Na JUNO ƒe dzesiwo nawɔ nu kple daodao ƒe nubabla la. Te ɖe core-team me tɔwo ŋu hena kpekpeɖeŋu.",
+      "viewOpenProposals": "Kpɔ Aɖaŋuɖoɖo Siwo Woʋu",
+      "viewOpenProposalsDesc": "Kpɔ aɖaŋuɖoɖo siwo li fifia kple akɔdada ƒe mɔnukpɔkpɔwo ɖa",
+      "visitVotingPortal": "Yi Akɔdada ƒe Nyatakakadzraɖoƒe",
+      "formatNote": "Nɔnɔme: Woate ŋu aŋlɔ aɖaŋuɖoɖowo le .Md alo .txt nɔnɔme me",
+      "recommendedStructure": "Afɔɖeɖe 4 ƒe Dɔwɔɖoɖo si Wokafu:",
+      "stageBackground": "Nu si de megbe",
+      "stageBackgroundDesc": "Na ŋutinya aɖewo tso tanya / subɔsubɔdɔ si le xexeame katã ŋu",
+      "stageWhy": "Nu ka ta?",
+      "stageWhyDesc": "Gblɔ susu si tae nèku ʋua ɖo le wò aɖaŋuɖoɖoa me. Ate ŋu azã tu ƒe dzesiwo",
+      "stageProposal": "Nyadoɖa",
+      "stageProposalDesc": "Gblɔ wò aɖaŋuɖoɖoa tsitotsito eme kɔ nyuie",
+      "stageAction": "Nuwɔwɔ",
+      "stageActionDesc": "Nusi dzɔna le akɔdada dzidzedzetɔe me - ateŋu ana ɣeyiɣi ɖoɖo ɖe nuwɔnawo ŋu",
+      "getFeedback": "Xɔ Nyaŋuɖoɖo",
+      "getFeedbackDesc": "Ma wò draft le ZecHub #proposals channel le Discord hena nyaŋuɖoɖo kaba",
+      "joinDiscord": "Wɔ ɖeka kple Discord",
+      "walkthroughTitle": "Aɖaŋuɖoɖowo ƒe Azɔlizɔzɔ Video",
+      "walkthroughDesc": "Kpɔ alesi woaŋlɔ aɖaŋuɖoɖo aɖe ahaɖoe ɖe ɖoɖo nu ƒe azɔlizɔzɔ blibo",
+      "walkthroughIframeTitle": "Aɖaŋuɖoɖowo ƒe Azɔlizɔzɔ",
+      "postInDiscord": "Post le Masɔmasɔ me",
+      "postInDiscordDesc": "Ma wò aɖaŋuɖoɖo mamlɛtɔ le #proposals me eye nàde dzesi @core-team",
+      "openDiscord": "Ʋu Masɔmasɔ",
+      "submitOnPortal": "Miɖoe ɖe Akɔdada ƒe Nyatakakadzraɖoƒe",
+      "submitOnPortalDesc": "Zã ZecHub ƒe akɔdada ƒe nyatakakadzraɖoƒe si dziɖuɖua da asi ɖo nàtsɔ awɔ wò aɖaŋuɖoɖoa",
+      "submitNow": "Miɖoe ɖa Fifia",
+      "loginNote": "⚠️ Ele be nàge ɖe eme kple Keplr alo Keplr Mobile",
+      "previous": "Si do ŋgᴐ",
+      "next": "Esi kplᴐe ɖo"
+    },
+    "sitemap": {
+      "heading": "Nyatakakadzraɖoƒea Dzi Kpɔkpɔ",
+      "subheading": "Axawo kple dɔwɔnu siwo katã le Zechub Wiki dzi ƒe wɔwɔfia blibo",
+      "guidesCount": "{xexlẽme} mɔfialawo",
+      "sections": {
+        "Pages": "Axawo",
+        "Organizations": "Habɔbɔwo",
+        "Guides": "Mɔfialawo",
+        "Use Zcash": "Zã Zcash",
+        "Ecosystem": "Nu gbagbewo ƒe agbenɔnɔ ƒe ɖoɖo"
+      },
+      "links": {
+        "Homepage": "Nyatakakadzraɖoƒea",
+        "Dashboard": "Dashboard ƒe ʋuƒo",
+        "Donation": "Nudzɔdzɔ",
+        "Contribute": "Dzᴐ nu",
+        "DAO": "DAO ƒe ŋkɔ",
+        "Developers": "Dɔwɔlawo",
+        "Brand": "Nudzadzra ŋkɔ",
+        "Wallets": "Gakotokuwo",
+        "Sitemap": "Nyatakakadzraɖoƒe ƒe Nɔnɔmetata",
+        "Tutorials": "Nufiamewo",
+        "Bounties": "Bounties (Nuwo ƒe agbɔsɔsɔme).",
+        "Buying ZEC": "ZEC ƒeƒle",
+        "Faucets": "Pɔmpiwo",
+        "Exchanges": "Nuwo ɖɔliɖɔli",
+        "Block Explorers": "Block Nukulawo",
+        "Shielded Pools": "Ta Siwo Wotsɔ Akpoxɔnu Wɔe",
+        "Transparent Exchange Addresses": "Adrɛs Siwo Wotsɔna Ðoa Nui Siwo Me Kɔkɔe",
+        "Transactions": "Adzɔnuwo ƒe asitsatsa",
+        "Memos": "Nuŋlɔɖiwo",
+        "Mobile Top Ups": "Asitelefon dzi Top Ups",
+        "Payment Request URIs": "Fexexe ƒe Biabia ƒe URIwo",
+        "Payment Processors": "Fexexe Ŋuti Dɔwɔlawo",
+        "Recovering Funds": "Gawo Xɔxɔ",
+        "Metamask Snap": "Metamask ƒe Nɔnɔmetata",
+        "Community Forum": "Nutoa me Takpekpe",
+        "Cypherpunk Zero NFT": "Cypherpunk Zero NFT ƒe agbalẽa"
+      }
+    },
+    "zcashCommunity": {
+      "communityProjects": {
+        "title": "Nutoa me Dɔwɔnawo"
+      }
+    },
+    "research": {
+      "seriesHeading": "Siwo kplɔ wo nɔewo ɖo",
+      "seriesSubheading": "Deep dives ɖe Zcash nukpɔsusu veviwo me",
+      "foundationsSeriesTitle": "Zcash Gɔmeɖoanyiwo ƒe Series",
+      "coreSeriesBadge": "Nu vevi siwo kplɔ wo nɔewo ɖo",
+      "foundationsSeriesCardDescription": "Gɔmeɖoanyinyati siwo ku ɖe asitsatsa siwo wokpɔ ta na, ameŋunyatakakawo ƒe kpɔɖeŋuwo, kple ɖoɖowɔɖiwo ƒe ɖoɖowɔwɔ ŋu.",
+      "exploreSeries": "Dzro nusiwo kplɔ wo nɔewo ɖo me →",
+      "articlesHeading": "Numekuku Ŋuti Nyatiwo",
+      "articlesSubheading": "Nyatiwo kple nuŋlɔɖi siwo tso ZecHub habɔbɔa gbɔ.",
+      "foundationsSeriesDescription": "Gɔmeɖoanyinyatiwo ƒe ƒuƒoƒo si ƒo nu tso Zcash shielded transactions, adzamenyawo ƒe kpɔɖeŋuwo, ɖoɖowɔɖi ƒe ɖoɖowɔwɔ, kple susu vevi siwo naa ŋusẽ network la ŋu.",
+      "tagShieldedTransactions": "Asitsatsa Siwo Ŋu Wokpɔ Akpoxɔnu Le",
+      "tagPrivacyModels": "Ameŋunyatakakawo Ŋuti Kpɔɖeŋuwo",
+      "tagProtocolDesign": "Protocol Design",
+      "tagZeroKnowledge": "Sidzedze Zero"
+    },
+    "browseSidebar": "Zã axadzinuŋɔŋlɔ si le miame 👈 tsɔ di nyatiawo",
+    "zcashGlobalAmbassadors": {
+      "title": "Zcash Xexeame Katã ƒe Dutanyanyuigblɔlawo",
+      "description": "Zcash Xexeame Katã ƒe Dutanyanyuigblɔlawo nye nutoa me kplɔla siwo tsɔ wo ɖokui na be yewoado cryptocurrency zazã kple hehenana si wotu ɖe ame ŋutɔ ƒe nyawo dzi ɖe ŋgɔ le xexeame katã. Dutadɔnunɔlawo ƒe dɔ ɖesiaɖe léa fɔ ɖe nyanyanana kple nuwɔwɔ aduadu tutuɖo le woƒe nutoawo me ŋu.",
+      "activeProjectsHeading": "Xexeame Katã ƒe Dutanyanyuigblɔlawo ƒe Dɔwɔnawo",
+      "projectSitesHeading": "Dɔa ƒe Nyatakakadzraɖoƒewo & Blogwo",
+      "followOnX": "Dze eyome le X/BS dzi",
+      "projectSiteLabel": "Dɔa ƒe Teƒe",
+      "linkLabel": "Kadodo",
+      "footerInfo": "Zcash Global Ambassadors ɖoɖoa doa alɔ ɖoɖo siwo nutoa me tɔwo kplɔna be woado mɔ̃ɖaŋununya si wotu ɖe ame ŋutɔ ƒe nyawo dzi la zazã ɖe ŋgɔ. Dutadɔnunɔla ƒe dɔ ɖesiaɖe wɔa dɔ le eɖokui si esime wòle asi kpem ɖe Zcash ƒe lãwo ƒe agbenɔnɔ ƒe ɖoɖo si keke ta wu ŋu.",
+      "mapTitle": "Zcash Dutanyanyuigblɔla ƒe Nɔnɔmetata",
+      "mapSubtitle": "Zcash ƒe taʋiʋli si nutoa me tɔwo kplɔna le {count} nuto siwo le dɔ dzi me.",
+      "globeView": "Globe ƒe nukpɔkpɔ",
+      "mapView": "Anyigbatata ƒe dzedzeme",
+      "loadError": "Mete ŋu tsɔ ambassador ƒe nyatakakawo de eme o.",
+      "projects": {
+        "Zcash Korea": "Zcash nutoa me kple taʋiʋli le Korea",
+        "Zcash Russia": "Zcash nutoa me tɔwo kple taʋiʋli le Russia",
+        "Zcash Arabia": "Zcash nutoa me kple taʋiʋli le Arabgbedolawo ƒe nuto me",
+        "Zcash Brazil": "Zcash nutoa me tɔwo kple taʋiʋli le Brazil",
+        "Zcash Ghana": "Zcash habɔbɔ kple taʋiʋli le Ghana",
+        "Zcash Español": "Zcash nutoa me tɔwo kple taʋiʋli le Spaingbedolawo ƒe nuto me",
+        "Zcash Nigeria": "Zcash nutoa me tɔwo kple taʋiʋli le Nigeria",
+        "Zcash Ukraine": "Zcash nutoa me tɔwo kple taʋiʋli le Ukraine",
+        "Zcash Turkey": "Zcash nutoa me kple taʋiʋli le Turkey",
+        "Zcash India": "Zcash nutoa me kple taʋiʋli le India",
+        "Zcash East Africa": "Zcash East Africa tsɔ eɖokui na be yeado dijitaal adzamenyawo, ganyawo ƒe ablɔɖe, kple blockchain nu yeyewo dodo ɖe ŋgɔ to hehenana, nutoa me wɔnawo, mɔ̃ɖaŋudɔwo, kple lãwo ƒe agbenɔnɔ ƒe ŋgɔyiyi me. Afɔɖeɖea ƒe taɖodzinue nye be woawɔ nutome ƒe teƒe aɖe si ame ɖekaɖekawo ate ŋu aku nu me le mɔ̃ɖaŋununya siwo doa ameŋunyatakakawo ŋu, asrɔ̃ nu tso sidzedze zero ƒe kpeɖodziwo ŋu, eye woakpɔ gome le xexeame katã ƒe Zcash ƒe kadodo si le dzidzim ɖe edzi me.",
+        "Zcash South Africa": "Ame ŋutɔ ƒe nyawo🛡️. Ablɔɖe. Zcash 🦓 Habɔbɔ na South Africa nuto"
+      },
+      "globeTitle": "Zcash ƒe Dutanyanyuigblɔla Globe"
+    }
+  },
+  "developers": {
+    "quickStart": {
+      "tableOfContents": "Emenyawo ƒe Tabla",
+      "toc1": "1. Zebrad ƒe ɖoɖowɔwɔ",
+      "toc2": "2. Running zebrad",
+      "toc3": "3. Kadodo kple lightwalletd",
+      "installingHeading": "1. Zebrad ƒe ɖoɖowɔwɔ",
+      "runningHeading": "2. Running zebrad",
+      "connectingHeading": "3. Kadodo kple lightwalletd",
+      "systemRequirements": "Ðoɖo ƒe Nudidiwo",
+      "linux": "Linux",
+      "ubuntuDebian": "Ubuntu/Debian ƒe mɔnu:",
+      "fromSource": "Tso Dzɔtsoƒe:",
+      "macos": "macOS ƒe nyawo",
+      "homebrew": "Aƒeme aha sesẽ:",
+      "windows": "Fesrewo",
+      "importantNotes": "Nya Veviwo",
+      "nextSteps": "Afɔɖeɖe siwo kplɔe ɖo",
+      "readyToBuild": "Èle klalo be Yeatua?",
+      "needHelp": "Èhiã Kpekpeɖeŋua?"
+    }
+  },
+  "components": {
+    "newsletter": {
+      "title": "ZecHub Shielded Nyadzɔdzɔgbalẽ",
+      "subtitle": "Subscribe to updates by entering your Unified Address.",
+      "feeLine": "ZEC ƒe nudɔdɔ ƒe fetu si nye 0.05 zi ɖeka",
+      "feeLineRest": "wobia tso esi be wòaxe asitsatsa ƒe gazazãwo.",
+      "categoryEcosystem": "Nu gbagbewo ƒe agbenɔnɔ ŋuti nyadzɔdzɔwo",
+      "categoryStats": "Network ƒe Akɔntabubuwo",
+      "addressPlaceholder": "Enter your Zcash Unified Address",
+      "invalidAddressInline": "Adrɛs si mesɔ o. Ele be woadze egɔme kple \"u\" alo \"z\".",
+      "invalidAddressAlert": "Taflatse ŋlɔ Zcash adrɛs si wokpɔ ta na si sɔ.",
+      "generating": "Dzidzime...",
+      "subscribe": "Wɔ nudɔdɔ",
+      "doNotEditMemo": "Mègatrɔ asi le nuŋlɔɖi si wowɔ le wò gakotokua me ŋu o.",
+      "downloadQR": "Wɔ QR Code ƒe kɔpi",
+      "box1Title": "Nukae Nye Subɔsubɔdɔ Sia?",
+      "box1Desc": "Xɔ Zcash ecosystem nyadzɔdzɔwo kple network stats tẽ to Zcash network dzi to encrypted memos zazã me.",
+      "box2Title": "Ale Si Wòwɔa Dɔe",
+      "box2DescPre": "Míeɖoa nyadzɔdzɔgbalẽwo zi ɖeka le kwasiɖa me na ame geɖe siwo xɔe le asitsatsa ɖeka si wokpɔ ta na me to...",
+      "box2DescPost": "RPC mɔnu.",
+      "box3Title": "Ale Si Nàwɔ Axɔ Nyatakaka yeyewo",
+      "box3DescPre": "Ŋlɔ wò",
+      "box3DescBold": "Zcash adrɛs si wokpɔ ta na",
+      "box3DescPost": "Kwasiɖa sia kwasiɖa ƒe nyatakaka yeyewo nana le kɔsɔkɔsɔ dzi. Email aɖeke mehiã o.",
+      "unsubscribe": "Ðe asi le nudɔdɔ ŋu",
+      "cancelUnsubscribe": "Te fli ɖe Nudɔdɔ ɖa",
+      "unsubscribePlaceholder": "Ŋlɔ wò Unified Address be nàɖe asi le nudɔdɔa ŋu",
+      "confirmUnsubscribe": "Ðo kpe edzi be Ðe asi le nudɔdɔ ŋu"
+    },
+    "aiAssistant": {
+      "copyResponse": "Kpɔ ŋuɖoɖoa ƒe kɔpi",
+      "copied": "Wowɔ eƒe kɔpi",
+      "copy": "Kpɔ eƒe kɔpi",
+      "botName": "ZecHub AI ƒe dɔwɔwɔ",
+      "thinking": "ZecHub AI le susum be...",
+      "privacyNotice": "OpenAI ye wɔa dɔ tso nyabiasewo ŋu. Mègatsɔ nuku ƒe nyagbewo, ame ŋutɔ ƒe safuiwo, alo gakotoku ƒe adrɛswo na amewo gbeɖe o.",
+      "clearConversation": "Dzeɖoɖo si me kɔ",
+      "clear": "Me kᴐ",
+      "getStarted": "Dze egɔme kple nyabiase aɖe:",
+      "sensitiveWarning": "Esia dze abe gakotoku me nyatakaka veviwo ene. Mègatsɔ ame ŋutɔ ƒe safuiwo alo nuku ƒe nyagbewo na dɔwɔƒe aɖeke gbeɖe o.",
+      "inputPlaceholder": "Bia nya aɖe... (Ge ɖe eme be yeaɖoe ɖa, Shift+Enter na fli yeye)",
+      "sendMessage": "Ðo gbedasi ɖa",
+      "enterHint": "Ge ɖe eme be yeaɖoe ɖa, Shift+Enter na fli yeye",
+      "messageTooLong": "Gbedasi didi akpa (max {max} chars).",
+      "unknownError": "Vodada si womenya o.",
+      "serverError": "Server ƒe vodada {nɔnɔme}.",
+      "somethingWrong": "Nane gblẽ.",
+      "quickQuestions": [
+        "Nukae nye Zcash?",
+        "Nukae nye ZecHub?",
+        "Aleke asitsatsa siwo ŋu wokpɔ ta na wɔa dɔe?",
+        "Gakotoku kawoe doa alɔ Zcash?",
+        "Nukae nye z-adrɛs vs t-adrɛs?",
+        "Aleke mawɔ adze ZEC zazã gɔmee?",
+        "Nukae nye Zcash ƒe ŋgɔyiyi ƒe ga?",
+        "Nukae nye zk-SNARKs?"
+      ]
+    }
+  },
+  "sideMenu": {
+    "navigation": "Tɔdziʋuɖoɖo",
+    "explore": "Tsa le eme"
+  },
+  "meta": {
+    "title": "ZecHub ƒe Wiki",
+    "description": "Hehenaƒe si le ʋuʋu ɖi na Zcash"
+  }
+}
