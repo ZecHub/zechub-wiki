@@ -112,9 +112,15 @@ export const getMenuTitlesCached = unstable_cache(
       // @ts-ignore
       const raw = Buffer.from(res.data?.content || "", "base64").toString("utf-8");
       const parsed = JSON.parse(raw);
-      return parsed && typeof parsed === "object" && !Array.isArray(parsed)
-        ? (parsed as Record<string, string>)
-        : {};
+      if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return {};
+      // Keep only string values — a malformed manifest entry (the content repo is
+      // community-editable) must never reach the menu as a non-string and crash
+      // rendering ("objects are not valid as a React child") for every page.
+      const out: Record<string, string> = {};
+      for (const [k, v] of Object.entries(parsed)) {
+        if (typeof v === "string") out[k] = v;
+      }
+      return out;
     } catch {
       return {};
     }
