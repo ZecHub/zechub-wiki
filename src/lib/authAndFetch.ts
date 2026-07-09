@@ -134,6 +134,46 @@ async function fuzzyLocalizedFile(itPath: string): Promise<string | null> {
   return null;
 }
 
+/**
+ * English-source existence status for the orphan guard, as a tri-state:
+ *   "present" — the English source resolves (exact path, or a fuzzy sibling).
+ *   "absent"  — a DEFINITIVE 404: neither the exact file nor (on exact miss) a
+ *               fuzzy match in the folder exists. Safe to conclude "orphan".
+ *   thrown    — a transient failure (network / 5xx / rate limit). We must NOT
+ *               conclude "absent" from a blip, so the probe throws and the
+ *               caller treats it as "unknown" (serve the translation).
+ * Mirrors getFileContentCached's exact-then-fuzzy resolution. Successful
+ * "present"/"absent" verdicts are cached; a thrown transient error is not.
+ */
+const getEnglishSourceStatusCached = unstable_cache(
+  async (path: string): Promise<"present" | "absent"> => {
+    try {
+      await octokit.rest.repos.getContent({ owner, repo, path, ref: BRANCH });
+      return "present";
+    } catch (err: any) {
+      if (err?.status !== 404) throw err; // transient — propagate, do not cache
+    }
+    // Exact path is a real 404 → mirror the fuzzy folder match before concluding.
+    const folderPath = path.split("/").slice(0, -1).join("/");
+    const wantSlug = normalize(path.split("/").pop()?.replace(/\.md$/i, "") || "");
+    try {
+      const res = await octokit.rest.repos.getContent({ owner, repo, path: folderPath, ref: BRANCH });
+      const entries = Array.isArray(res.data) ? res.data : [res.data];
+      for (const e of entries) {
+        if (e.type !== "file" || !e.name.endsWith(".md")) continue;
+        const n = normalize(e.name.replace(/\.md$/i, ""));
+        if (n === wantSlug || n.includes(wantSlug)) return "present";
+      }
+      return "absent"; // folder listed, no matching English file → source deleted
+    } catch (err: any) {
+      if (err?.status === 404) return "absent"; // folder itself gone → source deleted
+      throw err; // transient — propagate, do not cache
+    }
+  },
+  ["github-english-source-status"],
+  { revalidate: 300, tags: ["github-content"] },
+);
+
 export async function getLocalizedFileContentCached(
   filePath: string,
   locale: string,
@@ -147,9 +187,27 @@ export async function getLocalizedFileContentCached(
     const exact = await getTranslationProbeCached(itPath).catch(() => null);
     // Use `!== null` rather than truthiness so a legitimately empty translated
     // file ("") is still served instead of silently falling back to English.
-    if (exact !== null) return exact;
-    const fuzzy = await fuzzyLocalizedFile(itPath).catch(() => null);
-    if (fuzzy !== null) return fuzzy;
+    const fuzzy = exact !== null ? null : await fuzzyLocalizedFile(itPath).catch(() => null);
+    const translated = exact !== null ? exact : fuzzy;
+
+    if (translated !== null) {
+      // Orphan guard: a translation must never outlive its English source. With
+      // the runtime Google Translate fallback gone, an orphaned translation (the
+      // English page was deleted upstream but the stale translated copy lingers)
+      // would be served to readers forever. Refuse it ONLY when the English
+      // source is DEFINITIVELY gone (a real 404). A transient fetch failure must
+      // NOT masquerade as an orphan — otherwise a rate-limit or network blip on a
+      // cold cache would turn a live page into a site-wide 404. On "unknown" we
+      // serve the translation we already have (the pre-guard behavior).
+      let englishStatus: "present" | "absent" | "unknown";
+      try {
+        englishStatus = await getEnglishSourceStatusCached(filePath);
+      } catch {
+        englishStatus = "unknown";
+      }
+      if (englishStatus === "absent") return null; // orphan → fall through to not-found
+      return translated;
+    }
   }
 
   return getFileContentCached(filePath).catch(() => null);
