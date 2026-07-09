@@ -71,7 +71,7 @@
     "Wallets": "Gakotokuwo",
     "Youtube": "Youtube dzi",
     "Ywallet FROST Demo": "Ywallet FROST ƒe wɔwɔfia",
-    "ZCAP": "ZCAP ƒe ŋkɔ",
+    "ZCAP": "ZCAP",
     "ZIPs & Grants": "ZIPwo & Gakpekpeɖeŋunana",
     "ZKAV Club": "ZKAV ƒe Habɔbɔ",
     "ZODL": "ZODL",
@@ -99,7 +99,15 @@
     "Zcash Tech": "Zcash Mɔ̃ɖaŋununya",
     "Privacy Tools": "Dɔwɔnu Siwo Wozãna Ðe Ameŋunyatakakawo Ŋu",
     "Zcash Social Media": "Zcash Hadomegbenɔnɔ Ŋuti Nyatakakadzraɖoƒe",
-    "Glossary & FAQ's": "Nyagɔmeɖegbalẽ & FAQ's"
+    "Glossary & FAQ's": "Nyagɔmeɖegbalẽ & FAQ's",
+    "Use Zcash": "Zã Zcash",
+    "Block Explorers": "Block Explorerwo",
+    "Ecosystem": "Nu gbagbewo ƒe agbenɔnɔ ƒe ɖoɖo",
+    "Raspberry Pi Zcashd Node": "Raspberry Pi ƒe Zcashd Node",
+    "Raspberry Pi Zebra Node": "Raspberry Pi ƒe Zebra Node",
+    "Zero Knowledge vs Decoy Systems": "Zero Sidzedze vs Decoy Dɔwɔɖoɖowo",
+    "Organizations": "Habɔbɔwo",
+    "Sovright": "Sovright"
   },
   "exploreMenu": {
     "Full Explore": "Dzro Nu Bliboe",

@@ -99,7 +99,15 @@
     "Zcash Tech": "Zcash 기술",
     "Privacy Tools": "프라이버시 도구",
     "Zcash Social Media": "Zcash 소셜 미디어",
-    "Glossary & FAQ's": "용어집 및 FAQ"
+    "Glossary & FAQ's": "용어집 및 FAQ",
+    "Use Zcash": "Zcash 사용하기",
+    "Block Explorers": "블록 탐색기",
+    "Ecosystem": "생태계",
+    "Raspberry Pi Zcashd Node": "Raspberry Pi Zcashd 노드",
+    "Raspberry Pi Zebra Node": "Raspberry Pi Zebra 노드",
+    "Zero Knowledge vs Decoy Systems": "영지식 대 미끼 시스템",
+    "Organizations": "조직",
+    "Sovright": "Sovright"
   },
   "exploreMenu": {
     "Full Explore": "전체 둘러보기",

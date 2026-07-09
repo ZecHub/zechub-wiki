@@ -99,7 +99,15 @@
     "Zcash Tech": "Zcash 技術",
     "Privacy Tools": "プライバシーツール",
     "Zcash Social Media": "Zcash ソーシャルメディア",
-    "Glossary & FAQ's": "用語集 & FAQ"
+    "Glossary & FAQ's": "用語集 & FAQ",
+    "Use Zcash": "Zcashを使う",
+    "Block Explorers": "ブロックエクスプローラー",
+    "Ecosystem": "エコシステム",
+    "Raspberry Pi Zcashd Node": "Raspberry Pi Zcashd ノード",
+    "Raspberry Pi Zebra Node": "Raspberry Pi Zebra ノード",
+    "Zero Knowledge vs Decoy Systems": "ゼロ知識 vs デコイシステム",
+    "Organizations": "組織",
+    "Sovright": "Sovright"
   },
   "exploreMenu": {
     "Full Explore": "完全ガイド",

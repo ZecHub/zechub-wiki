@@ -99,7 +99,15 @@
     "Zcash Tech": "Zcash 技术",
     "Privacy Tools": "隐私工具",
     "Zcash Social Media": "Zcash 社交媒体",
-    "Glossary & FAQ's": "术语表与常见问题"
+    "Glossary & FAQ's": "术语表与常见问题",
+    "Use Zcash": "使用 Zcash",
+    "Block Explorers": "区块浏览器",
+    "Ecosystem": "生态系统",
+    "Raspberry Pi Zcashd Node": "Raspberry Pi Zcashd 节点",
+    "Raspberry Pi Zebra Node": "Raspberry Pi Zebra 节点",
+    "Zero Knowledge vs Decoy Systems": "零知识与诱饵系统对比",
+    "Organizations": "组织",
+    "Sovright": "Sovright"
   },
   "exploreMenu": {
     "Full Explore": "完整探索",

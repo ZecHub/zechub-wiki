@@ -1,0 +1,56 @@
+name: Menu-label coverage
+
+# Fails a PR when an editorial menu change (a new/renamed nav or coin item)
+# leaves a label untranslated in some locale — so menu changes can't merge
+# half-translated. Detection only; no secrets. The complementary fill step is
+# the operator-side C2 menu-label sync. See scripts/check-menu-labels.mjs.
+
+# Least privilege: the gate only reads the tree. Also stops the checkout token
+# from being persisted where PR-controlled code (deps, imported modules) could
+# reach it.
+permissions:
+  contents: read
+
+on:
+  push:
+    paths:
+      - "src/constants/navigation.ts"
+      - "src/constants/explore-menu.ts"
+      - "src/i18n/routing.ts" # CANONICAL_LOCALES is derived from here
+      - "dictionaries/**"
+      - "scripts/check-menu-labels.mjs"
+      - "scripts/lib/**" # the gate's own logic (hasTranslation, brand list, extractor)
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/menu-labels.yml" # can't be weakened without re-running
+  pull_request:
+    paths:
+      - "src/constants/navigation.ts"
+      - "src/constants/explore-menu.ts"
+      - "src/i18n/routing.ts"
+      - "dictionaries/**"
+      - "scripts/check-menu-labels.mjs"
+      - "scripts/lib/**"
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/menu-labels.yml"
+
+jobs:
+  menu-label-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      # TODO: pin actions to full commit SHAs (supply-chain hardening).
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24 # pdfjs-dist@6 requires >=22.13; Node 20 fails install
+          cache: yarn
+      # Install is needed because the check IMPORTS navigation.ts (which pulls
+      # icon deps) via tsx rather than regex-parsing it. --ignore-scripts so a
+      # malicious PR dependency can't run lifecycle code in CI.
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+      - name: Check menu-label coverage
+        run: yarn tsx scripts/check-menu-labels.mjs

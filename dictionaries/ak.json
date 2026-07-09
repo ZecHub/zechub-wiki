@@ -71,7 +71,7 @@
     "Wallets": "Sika kotoku",
     "Youtube": "Youtube so na woayɛ",
     "Ywallet FROST Demo": "Ywallet FROST Nkyerɛkyerɛmu",
-    "ZCAP": "ZCAP na ɛwɔ hɔ",
+    "ZCAP": "ZCAP",
     "ZIPs & Grants": "ZIPs & Ntoboa a Wɔde Ma",
     "ZKAV Club": "ZKAV Kuw no",
     "ZODL": "ZODL",
@@ -99,7 +99,15 @@
     "Zcash Tech": "Zcash Mfiridwuma ho nimdeɛ",
     "Privacy Tools": "Nnwinnade a Wɔde Siesie Kokoam Nsɛm",
     "Zcash Social Media": "Zcash Social Media a ɛwɔ hɔ",
-    "Glossary & FAQ's": "Nsɛmfua Nkyerɛase & FAQ's"
+    "Glossary & FAQ's": "Nsɛmfua Nkyerɛase & FAQ's",
+    "Use Zcash": "Fa Zcash di dwuma",
+    "Block Explorers": "Blook Hwehwɛmufo",
+    "Ecosystem": "Abɔdeɛ mu nhyehyɛe",
+    "Raspberry Pi Zcashd Node": "Raspberry Pi Zcashd Nɔde",
+    "Raspberry Pi Zebra Node": "Raspberry Pi Zebra Nɔde",
+    "Zero Knowledge vs Decoy Systems": "Zero Knowledge ne Decoy Systems",
+    "Organizations": "Ahyehyɛde ahorow",
+    "Sovright": "Sovright"
   },
   "exploreMenu": {
     "Full Explore": "Hwehwɛ Nhwehwɛmu a Edi Mu",
