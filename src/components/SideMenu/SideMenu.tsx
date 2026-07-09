@@ -2,8 +2,6 @@
 import { matchIcons } from "@/constants/Icons";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import { Link } from "@/i18n/navigation";
-import { useLocale } from "next-intl";
-import { pageTitles } from "@/constants/pageTitles";
 import { useLanguage } from "@/context/LanguageContext";
 import { useState } from "react";
 import {
@@ -48,22 +46,30 @@ const images = [
 interface MenuProps {
   folder: string;
   roots: string[];
+  // Localized page titles for the active locale and English, path-keyed by the
+  // site-relative page path (e.g. "guides/Foo.md"). Fetched server-side from the
+  // content repo's menu-titles manifest and passed down (this is a client
+  // component; see getMenuTitlesCached).
+  titles?: Record<string, string>;
+  enTitles?: Record<string, string>;
 }
 
-const SideMenu = ({ folder, roots }: MenuProps) => {
+const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const locale = useLocale();
   const { t } = useLanguage();
   // Localized chrome label helper: prefer the curated menuLabels dict, fall
   // back to the English source name.
   const chromeLabel = (name: string) => t?.menuLabels?.[name] ?? name;
-  // Localized display label for a side-menu item (falls back to the English
-  // filename-derived name). getName stays the source of truth for icon/filter
-  // matching below. Locale-keyed so adding a curated locale needs only data +
-  // registration in `pageTitles`, no logic changes here.
-  const menuLabel = (item: string) =>
-    pageTitles[locale]?.[item] ?? getName(item);
+  // Localized display label for a side-menu item. `item` is the full item path
+  // minus ".md" (e.g. "site/guides/Foo"); the manifest is keyed by the
+  // site-relative path with ".md" (e.g. "guides/Foo.md"). Fallback order:
+  // localized manifest -> English manifest -> filename-derived name. getName
+  // stays the source of truth for icon/filter matching below.
+  const menuLabel = (item: string) => {
+    const key = item.replace(/^site\//, "") + ".md";
+    return titles[key] ?? enTitles[key] ?? getName(item);
+  };
   const root = roots.map((item) => item.slice(0, -3));
   const name = folder[0].toUpperCase() + folder.slice(1);
   const fold = getName(name);

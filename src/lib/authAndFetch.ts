@@ -89,6 +89,41 @@ const getTranslationProbeCached = unstable_cache(
 );
 
 /**
+ * Localized side-menu / sitemap page titles for one locale, read from the
+ * content repo's manifest `translation/menu-titles/<locale>.json` (path-keyed by
+ * the full site-relative page path, e.g. "guides/Foo.md"). A locale only lists
+ * pages it has a title for; a missing manifest or any fetch error yields {} so
+ * callers fall back (localized -> en -> filename-derived name). Call with "en"
+ * for the English manifest.
+ *
+ * revalidate matches getTranslationProbeCached (the translated page-body fetch)
+ * so a menu label and its page body can never skew by more than one window.
+ * Keyed by [locale, BRANCH] (locale is the function arg; BRANCH is in keyParts).
+ */
+export const getMenuTitlesCached = unstable_cache(
+  async (locale: string): Promise<Record<string, string>> => {
+    try {
+      const res = await octokit.rest.repos.getContent({
+        owner,
+        repo,
+        path: `translation/menu-titles/${locale}.json`,
+        ref: BRANCH,
+      });
+      // @ts-ignore
+      const raw = Buffer.from(res.data?.content || "", "base64").toString("utf-8");
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+        ? (parsed as Record<string, string>)
+        : {};
+    } catch {
+      return {};
+    }
+  },
+  ["github-menu-titles", BRANCH ?? ""],
+  { revalidate: 300, tags: ["github-content"] },
+);
+
+/**
  * Locale-aware content fetch using a mirror-tree layout.
  *
  * For the default locale (`en`) this is identical to `getFileContentCached`.
