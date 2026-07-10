@@ -21,8 +21,9 @@ const HEIGHT_YEAR_MAP = [
   { start: 2771015, end: Infinity, year: "2025" },
 ];
 
-const DATA_URL =
-  "https://raw.githubusercontent.com/ZecHub/zechub-wiki/main/public/data/zcash/transaction_summary.json";
+// Served same-origin from the in-repo copy (public/data/zcash/) instead of
+// fetching from raw.githubusercontent.com in the browser.
+const DATA_URL = "/data/zcash/transaction_summary.json";
 
 const PrivacySetVisualization: React.FC = () => {
   const [loading, setLoading] = useState(true);
