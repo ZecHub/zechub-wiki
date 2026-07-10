@@ -2,7 +2,12 @@
 
 import React from 'react';
 import Cards from '@/components/Cards/Cards';
+import LiteYouTube from '@/components/LiteYouTube';
 import styles from './Tutorials.module.css';
+
+// Extract a YouTube id from either an /embed/<id> or a watch?v=<id> URL.
+const youTubeId = (url: string): string =>
+  url.match(/(?:embed\/|[?&]v=)([\w-]+)/)?.[1] ?? '';
 
 const Tutorials: React.FC = () => {
   const exchangeTutorials = [
@@ -43,15 +48,11 @@ const Tutorials: React.FC = () => {
             imageSrc={tutorial.imageSrc}
             link={tutorial.link}
           >
-            <iframe
-              width="560"
-              height="315"
-              src={tutorial.videoSrc}
+            <LiteYouTube
+              videoId={youTubeId(tutorial.videoSrc)}
               title={tutorial.title}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+              style={{ width: 560, height: 315, maxWidth: '100%' }}
+            />
           </Cards>
         ))}
       </div>
