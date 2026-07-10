@@ -3,8 +3,11 @@
 import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 
-// Configure PDF.js worker (only runs on client)
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+// Configure PDF.js worker (only runs on client). Served same-origin from
+// public/ instead of a third-party CDN (unpkg). The file is copied from
+// react-pdf's own pdfjs-dist by scripts/copy-pdf-worker.mjs (predev/prebuild),
+// so its version always matches pdfjs.version.
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
 interface PDFViewerProps {
   pageNumber: number;
