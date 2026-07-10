@@ -66,20 +66,12 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
         setLoading(true);
         setError(null);
 
-        // Fetch CoinGecko data
-        const options = {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-            "x-cg-demo-api-key": "CG-C7uDKWaJaNy8ZTtVb6bWv19d",
-          },
-        };
-
+        // Fetch price data via the same-origin proxy (keeps the CoinGecko key
+        // server-side and the visitor's browser off api.coingecko.com).
         const response = await fetch(
-          `https://api.coingecko.com/api/v3/simple/price?vs_currencies=usd%2Cbtc&names=${encodeURIComponent(
+          `/api/prices/simple?vs_currencies=usd%2Cbtc&names=${encodeURIComponent(
             name.toLowerCase()
-          )}&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true`,
-          options
+          )}&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true`
         );
 
         if (!response.ok) {

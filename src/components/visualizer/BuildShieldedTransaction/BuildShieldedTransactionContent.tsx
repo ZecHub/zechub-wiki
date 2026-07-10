@@ -141,7 +141,7 @@ export function useZecPrice() {
     const fetchPrice = async () => {
       try {
         const res = await fetch(
-          "https://api.coingecko.com/api/v3/simple/price?ids=zcash&vs_currencies=usd",
+          "/api/prices/simple?ids=zcash&vs_currencies=usd",
           { cache: "no-store" }
         );
         const data = await res.json();
