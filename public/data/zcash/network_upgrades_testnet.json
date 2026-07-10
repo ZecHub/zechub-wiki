@@ -5,65 +5,72 @@
       "name": "Overwinter",
       "activationHeight": 207500,
       "status": "active",
-      "activationDate": "Wed Mar 21 19:05:10 2018"
+      "activationDate": "Wed Mar 21 12:05:10 2018"
     },
     {
       "id": "76b809bb",
       "name": "Sapling",
       "activationHeight": 280000,
       "status": "active",
-      "activationDate": "Sun Aug 26 05:44:53 2018"
+      "activationDate": "Sat Aug 25 22:44:53 2018"
     },
     {
       "id": "2bb40e60",
       "name": "Blossom",
       "activationHeight": 584000,
       "status": "active",
-      "activationDate": "Mon Aug 26 15:21:11 2019"
+      "activationDate": "Mon Aug 26 08:21:11 2019"
     },
     {
       "id": "f5b9230b",
       "name": "Heartwood",
       "activationHeight": 903800,
       "status": "active",
-      "activationDate": "Mon May 04 20:29:09 2020"
+      "activationDate": "Mon May 4 13:29:09 2020"
     },
     {
       "id": "e9ff75a6",
       "name": "Canopy",
       "activationHeight": 1028500,
       "status": "active",
-      "activationDate": "Mon Aug 03 20:59:28 2020"
+      "activationDate": "Mon Aug 3 13:59:28 2020"
     },
     {
       "id": "c2d6d0b4",
       "name": "NU5",
       "activationHeight": 1842420,
       "status": "active",
-      "activationDate": "Tue Apr 19 09:29:12 2022"
+      "activationDate": "Tue Apr 19 02:29:12 2022"
     },
     {
       "id": "c8e71055",
       "name": "NU6",
       "activationHeight": 2976000,
       "status": "active",
-      "activationDate": "Wed Aug 28 17:37:30 2024"
+      "activationDate": "Wed Aug 28 10:37:30 2024"
     },
     {
       "id": "4dec4df0",
       "name": "NU6.1",
       "activationHeight": 3536500,
       "status": "active",
-      "activationDate": "Sun Aug 10 11:04:55 2025"
+      "activationDate": "Sun Aug 10 04:04:55 2025"
     },
     {
       "id": "5437f330",
       "name": "NU6.2",
       "activationHeight": 4052000,
       "status": "active",
-      "activationDate": "Sun Jun 07 10:46:21 2026"
+      "activationDate": "Sun Jun 7 03:46:21 2026"
+    },
+    {
+      "id": "37a5165b",
+      "name": "NU6.3",
+      "activationHeight": 4134000,
+      "status": "active",
+      "activationDate": "Sat Jul 4 11:08:30 2026"
     }
   ],
-  "lastUpdated": "2026-06-14",
+  "lastUpdated": "2026-07-10",
   "source": "getblockchaininfo"
 }
