@@ -6,6 +6,7 @@ import {
   getOpenAIClient,
   hasOpenAIApiKey,
 } from "./openai";
+import { hasSupabaseEnv } from "./env";
 import { getSupabaseAdminClient } from "./supabase";
 import type { RetrievedDocChunk } from "./types";
 
@@ -171,6 +172,10 @@ export interface SearchDocsResult {
 // Pre-warm the embedding cache as soon as this module is first imported.
 (function prewarm() {
   if (_cache.data || _cache.promise) return;
+  // Skip when Supabase creds are absent (e.g. `next build` without secrets, or
+  // a deploy where the AI assistant is disabled) — importing this module must
+  // never throw or hit the network.
+  if (!hasSupabaseEnv()) return;
   const supabase = getSupabaseAdminClient();
   loadEmbeddingCache(supabase).catch((err) =>
     console.error("[vectorSearch] prewarm failed:", err)
