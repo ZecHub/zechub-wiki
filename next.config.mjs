@@ -58,6 +58,33 @@ const nextConfig = {
       },
     ];
   },
+  async headers() {
+    // Baseline security headers. These are all safe to enforce immediately and
+    // change no rendering behaviour. A full Content-Security-Policy (and its
+    // frame-ancestors) is deliberately deferred to a later PR, once the
+    // third-party asset/data sources have been localized.
+    const baseline = [
+      // Leak only the origin (never the full path) to cross-origin destinations.
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      // Never let a browser MIME-sniff a response into an executable type.
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      // Disable powerful features the wiki never uses (also opts out of FLoC/Topics).
+      {
+        key: "Permissions-Policy",
+        value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+      },
+    ];
+    return [
+      { source: "/:path*", headers: baseline },
+      {
+        // Clickjacking protection everywhere EXCEPT the embeddable widget under
+        // /embed (and its locale-prefixed form /xx/embed), which is designed to
+        // be framed by third-party sites.
+        source: "/((?!(?:[a-z]{2}/)?embed(?:/|$)).*)",
+        headers: [{ key: "X-Frame-Options", value: "DENY" }],
+      },
+    ];
+  },
 
   // Force correct project root (avoids picking parent package-lock.json)
   turbopack: {
