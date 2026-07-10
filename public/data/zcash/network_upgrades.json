@@ -62,8 +62,15 @@
       "activationHeight": 3364600,
       "status": "active",
       "activationDate": "Tue Jun 2 21:03:08 2026"
+    },
+    {
+      "id": "37a5165b",
+      "name": "NU6.3",
+      "activationHeight": 3428143,
+      "status": "pending",
+      "activationDate": "n/a"
     }
   ],
-  "lastUpdated": "2026-06-14",
+  "lastUpdated": "2026-07-10",
   "source": "getblockchaininfo"
 }
