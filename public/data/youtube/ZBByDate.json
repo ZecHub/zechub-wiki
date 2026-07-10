@@ -3,6 +3,16 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Sean Bowe Explica Por Que Escala e Privacidade Andam Juntas.",
+            "video_id": "Cami0mLnOao",
+            "views": 8
+        },
+        {
+            "title": "Privacidade Nativa com Escolha: O Diferencial da Zcash",
+            "video_id": "rpvdCmjMft4",
+            "views": 24
+        },
+        {
             "title": "Bitcoin \u00e9 Retr\u00f4. A Zcash \u00e9 o Futuro | Frank Braun",
             "video_id": "nc8bDAaKMS8",
             "views": 15
@@ -10,12 +20,12 @@
         {
             "title": "Fedimint Explicado: Privacidade Comunit\u00e1ria para Bitcoin",
             "video_id": "piit1bFeVGc",
-            "views": 18
+            "views": 23
         },
         {
             "title": "A Hist\u00f3ria da Privacidade Antes do Bitcoin | Michael2xl e Aamandita | Zcon Vozes 2",
             "video_id": "dThpYkr0xg8",
-            "views": 74
+            "views": 75
         },
         {
             "title": "Quando o compliance vira vigil\u00e2ncia?",
@@ -25,17 +35,17 @@
         {
             "title": "Blockchain e IA no Mundo Real",
             "video_id": "414IObiEjX0",
-            "views": 59
+            "views": 61
         },
         {
             "title": "Como a Solana est\u00e1 Construindo o Seu Ecossistema no Brasil | Pedro \u201cKuka\u201d | Zcon Vozes 2",
             "video_id": "FFLKQe3ISwo",
-            "views": 4
+            "views": 7
         },
         {
             "title": "Solu\u00e7\u00f5es de Privacidade na Near | Vini B | Zcon Vozes 2",
             "video_id": "_CHBvf00nDM",
-            "views": 14
+            "views": 16
         },
         {
             "title": "Protocol Study #5: Merkle Trees and How the Chain Remembers",
@@ -60,7 +70,7 @@
         {
             "title": "O B\u00e1sico da Web3 Que Pode Mudar Sua Jornada | Jos\u00e9 Santos e Ruan Antony | Zcon Vozes 2",
             "video_id": "_NaiW_jcdY8",
-            "views": 18
+            "views": 22
         },
         {
             "title": "Zcash e o futuro da privacidade regulada",
@@ -1365,7 +1375,7 @@
         {
             "title": "Por que a Zcash \u00e9 melhor que a Monero para privacidade.",
             "video_id": "XW53tyjerd4",
-            "views": 570
+            "views": 572
         },
         {
             "title": "O tripe do poder atual- governos, mega corpora\u00e7\u00f5es e bancos",
@@ -2225,7 +2235,7 @@
         {
             "title": "A d\u00edvida americana e seus efeitos.",
             "video_id": "jAwu9X2C2kg",
-            "views": 93
+            "views": 95
         },
         {
             "title": "Oportunidade de contestar precedentes legais.",
@@ -2450,7 +2460,7 @@
         {
             "title": "Conhe\u00e7a Zooko, a maior f\u00e3 da Zcash! #https #privacidade #blockchain  #criptomoedas",
             "video_id": "eGrvVLhYBSw",
-            "views": 1055
+            "views": 1057
         },
         {
             "title": "Consci\u00eancia sobre manipula\u00e7\u00e3o de massa.",
@@ -2810,7 +2820,7 @@
         {
             "title": "Casta Estuda - Import\u00e2ncia de rodar um Node.",
             "video_id": "wU46szTYJ0M",
-            "views": 86
+            "views": 87
         },
         {
             "title": "ZIP NSM, o que \u00e9?",
@@ -3290,7 +3300,7 @@
         {
             "title": "Vitalik Buterin fala sobre ZKP #zcash #zkp",
             "video_id": "O9uwBEI6bIk",
-            "views": 609
+            "views": 610
         },
         {
             "title": "TheSmith - DAOS e seus desafios.",
@@ -3570,7 +3580,7 @@
         {
             "title": "Zcash UX & Monero",
             "video_id": "y8facw4Gd10",
-            "views": 450
+            "views": 451
         },
         {
             "title": "Brazilian Privacy Alliance l ZecHub l Minor Grants Zcash",
