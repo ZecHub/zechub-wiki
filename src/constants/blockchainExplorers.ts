@@ -101,4 +101,33 @@ export const blockchainExplorers = [
     url: 'https://www.zypherscan.com/',
     thumbnailImage: '/explorer/Zypherscan.png',
   },
+  {
+    title: 'ZecStats',
+    description:
+      'Dashboard for real-time Zcash network statistics, market data, privacy adoption, and shielded pool activity.',
+    features: [
+      'Network statistics',
+      'privacy adoption metrics',
+      'shielded pool data',
+      'market data',
+      'historical charts',
+    ],
+    url: 'https://zecstats.com/',
+    thumbnailImage: '/community-projects/zecstats.jpg',
+  },
+  {
+    title: 'Zecsite',
+    description:
+      'A JavaScript-free guide to Zcash and the case for private digital money, with education, ecosystem news, market data, and node status.',
+    features: [
+      'Zcash education',
+      'ecosystem news',
+      'market data',
+      'node status',
+      'no JavaScript or trackers',
+      'Tor, I2P & IPFS access',
+    ],
+    url: 'https://zecsite.org/',
+    thumbnailImage: '/explorer/zecsite.png',
+  },
 ];

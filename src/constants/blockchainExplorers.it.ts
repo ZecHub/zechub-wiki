@@ -101,4 +101,33 @@ export const blockchainExplorersIt = [
     url: 'https://zexplorer.app/testnet/',
     thumbnailImage: '/explorer/Zexplorer.png',
     },
+  {
+    title: 'ZecStats',
+    description:
+      'Dashboard con statistiche in tempo reale sulla rete Zcash, dati di mercato, adozione della privacy e attività dei pool schermati.',
+    features: [
+      'Statistiche di rete',
+      'metriche sull\'adozione della privacy',
+      'dati dei pool schermati',
+      'dati di mercato',
+      'grafici storici',
+    ],
+    url: 'https://zecstats.com/',
+    thumbnailImage: '/community-projects/zecstats.jpg',
+  },
+  {
+    title: 'Zecsite',
+    description:
+      'Una guida a Zcash e all\'importanza del denaro digitale privato, priva di JavaScript e completa di contenuti educativi, notizie, dati di mercato e stato del nodo.',
+    features: [
+      'Formazione su Zcash',
+      'notizie sull\'ecosistema',
+      'dati di mercato',
+      'stato del nodo',
+      'senza JavaScript né tracker',
+      'accesso Tor, I2P e IPFS',
+    ],
+    url: 'https://zecsite.org/',
+    thumbnailImage: '/explorer/zecsite.png',
+  },
 ];
