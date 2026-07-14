@@ -131,12 +131,13 @@ type Submission = {
   track: string;
   description: string;
   videoEmbedUrl?: string;
+  videoUrl?: string;
+  videoType?: "video/mp4" | "video/quicktime";
   demoUrl?: string;
   repoUrl?: string;
   prUrl?: string;
   articleUrl?: string;
   docsUrl?: string;
-  explorerUrl?: string;
   credentials?: string;
 };
 
@@ -191,6 +192,9 @@ const submissions: Submission[] = [
     track: "Zcash Login",
     description:
       "ZecAuth is a privacy-preserving wallet connection protocol for Zcash. It derives isolated authentication keys through ZIP-32, creates unlinkable per-app identities, signs human-readable challenges with RedPallas, supports capability-based grants, and sends responses directly between wallet and app without a relay.",
+    videoUrl:
+      "https://free2z.cash/uploadz/public/ZecHub/zecauth-demo.mov",
+    videoType: "video/quicktime",
   },
   {
     title: "Zcash Node Launcher",
@@ -208,10 +212,13 @@ const submissions: Submission[] = [
   },
   {
     title: "Z3 Launcher",
-    creator: "Z3 Launcher team",
+    creator: "Jubrilabdulazeez",
     track: "Infrastructure",
     description:
       "Z3 Launcher is a single Go binary that supervises the official Z3 stack through Docker Compose. It manages Zebra, Zaino, and optionally Zallet, adds preflight checks and port conflict handling, supports snapshots for faster startup, and keeps services bound to localhost with no telemetry or key custody.",
+    videoEmbedUrl: "https://www.youtube.com/embed/ttgSmMy-mPg",
+    repoUrl: "https://github.com/Jubrilabdulazeez/z3-launcher",
+    prUrl: "https://github.com/ZecHub/zechub/pull/1811",
   },
   {
     title: "ZEC-OS",
@@ -219,6 +226,9 @@ const submissions: Submission[] = [
     track: "Infrastructure",
     description:
       "ZEC-OS is a privacy-oriented operating system emulator for exploring the Zcash ecosystem. Its windowed interface combines a block explorer, mempool information, block comparisons, miner distribution, historical charts, calculators, games, and a terminal, with customizable themes and accessibility controls.",
+    videoUrl:
+      "https://free2z.cash/uploadz/public/ZecHub/zec-os_hackathon2026_explorer.mp4",
+    videoType: "video/mp4",
     demoUrl: "https://zec-os.com/",
     repoUrl: "https://github.com/orbism/zec-os_hackathon2026",
   },
@@ -240,8 +250,6 @@ const submissions: Submission[] = [
       "Pedalshield rewards real bicycle rides with shielded ZEC while keeping route data entirely on the rider's phone. Its mainnet flow combines on-device anti-cheat checks with autonomous Orchard payouts, creating a new shielded transaction for every paid ride.",
     videoEmbedUrl: "https://www.youtube.com/embed/yNrw9CI24zc",
     repoUrl: "https://github.com/intelligrip/Pedalshield",
-    explorerUrl:
-      "https://mainnet.zcashexplorer.app/transactions/7bb0309585171f6ff977357f991fbbd98668793dc0ef6effdc300d1c230c3595",
   },
   {
     title: "Zaygent",
@@ -260,8 +268,6 @@ const submissions: Submission[] = [
       "Steward is a threshold-custody protocol for shielded Zcash. It splits an Orchard vault's spend authority into t-of-n FROST shares for group custody, social recovery, and inheritance. Guardians co-sign a real transaction sighash on their own devices, while the relay coordinating the signing process holds no keys or shares. Steward has completed a real 2-of-3 threshold-signed shielded transaction on mainnet.",
     videoEmbedUrl: "https://www.youtube.com/embed/JpDBunva2Ek",
     prUrl: "https://github.com/ZecHub/zechub/pull/1832",
-    explorerUrl:
-      "https://mainnet.zcashexplorer.app/transactions/6dfe556827dbdfa8eda7971a3e396d058f2487c81054ff7baa405e631b4ef496",
   },
   {
     title: "ZBooks",
@@ -412,19 +418,19 @@ const Hackathon = ({
   );
 
   return (
-    <div className="relative isolate min-h-screen overflow-hidden bg-slate-950">
+    <div className="relative isolate min-h-screen overflow-hidden bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[52rem] overflow-hidden" aria-hidden>
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.10] dark:opacity-30"
+          style={{ backgroundImage: `url(${HACKATHON_BACKGROUND_IMAGE})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-slate-50/90 to-slate-50 dark:from-slate-950/55 dark:via-slate-950/80 dark:to-slate-950" />
+      </div>
       <div
-        className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `linear-gradient(rgba(2, 6, 23, 0.74), rgba(2, 6, 23, 0.92)), url(${HACKATHON_BACKGROUND_IMAGE})`,
-        }}
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[36rem] bg-[radial-gradient(ellipse_80%_45%_at_50%_0%,rgba(14,165,233,0.16),transparent_72%)] dark:bg-[radial-gradient(ellipse_80%_45%_at_50%_0%,rgba(14,165,233,0.22),transparent_72%)]"
         aria-hidden
       />
-      <div
-        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_45%_at_50%_0%,rgba(14,165,233,0.24),transparent_70%)]"
-        aria-hidden
-      />
-      <main className="relative z-10 mx-auto w-full max-w-6xl px-4 py-10 text-slate-100">
+      <main className="relative z-10 mx-auto w-full max-w-6xl px-4 py-10 text-slate-900 dark:text-slate-100">
 
       <section className="relative mb-12 overflow-hidden rounded-3xl border border-sky-500/25 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 p-8 text-white shadow-xl shadow-slate-900/20 ring-1 ring-white/10 md:p-12">
         <div
@@ -555,7 +561,7 @@ const Hackathon = ({
             return (
               <Card
                 key={track.name}
-                className="border-slate-200/80 bg-card transition-all hover:border-emerald-500/35 hover:shadow-md dark:border-slate-700/80"
+                className="border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm transition-all hover:border-emerald-500/40 hover:shadow-md dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100"
               >
                 <CardHeader className="pb-2">
                   <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-700 ring-1 ring-emerald-500/20 dark:text-emerald-400">
@@ -600,7 +606,7 @@ const Hackathon = ({
             return (
               <Card
                 key={tool.title}
-                className="group h-full overflow-hidden border-slate-200/80 bg-card transition-all hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg dark:border-slate-700/80"
+                className="group h-full overflow-hidden border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100"
               >
                 <CardHeader className="pb-2">
                   <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-sky-500/15 text-sky-600 ring-1 ring-sky-500/25 dark:text-sky-400">
@@ -639,7 +645,7 @@ const Hackathon = ({
       </section>
 
       <section className="mb-12 grid gap-6 lg:grid-cols-2">
-        <Card className="border-slate-200/80 shadow-sm dark:border-slate-700/80">
+        <Card className="border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-2xl">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500/15 text-amber-700 dark:text-amber-400">
@@ -665,7 +671,7 @@ const Hackathon = ({
           </CardContent>
         </Card>
 
-        <Card className="border-slate-200/80 shadow-sm dark:border-slate-700/80">
+        <Card className="border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-2xl">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-500/15 text-violet-700 dark:text-violet-400">
@@ -709,7 +715,7 @@ const Hackathon = ({
           {submissions.map((submission) => (
             <details
               key={submission.title}
-              className="group overflow-hidden rounded-2xl border border-slate-200/80 bg-card shadow-sm transition hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg dark:border-slate-700/80"
+              className="group overflow-hidden rounded-2xl border border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100"
             >
               <summary className="cursor-pointer list-none p-5 outline-none [&::-webkit-details-marker]:hidden">
                 <div className="flex items-start justify-between gap-4">
@@ -733,7 +739,33 @@ const Hackathon = ({
 
               <div className="border-t border-slate-200/80 p-5 dark:border-slate-700/80">
                 <div className="space-y-5">
-                  {submission.videoEmbedUrl ? (
+                  {submission.videoUrl ? (
+                    <div className="space-y-2">
+                      <div className="aspect-video w-full overflow-hidden rounded-xl border border-slate-200 bg-black dark:border-slate-700">
+                        <video
+                          className="h-full w-full bg-black object-contain"
+                          controls
+                          preload="metadata"
+                          playsInline
+                        >
+                          <source
+                            src={submission.videoUrl}
+                            type={submission.videoType}
+                          />
+                          Your browser does not support embedded video.
+                        </video>
+                      </div>
+                      <a
+                        href={submission.videoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-700 hover:underline dark:text-sky-400"
+                      >
+                        Open video directly
+                        <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+                      </a>
+                    </div>
+                  ) : submission.videoEmbedUrl ? (
                     <div className="aspect-video w-full overflow-hidden rounded-xl bg-slate-950">
                       <iframe
                         className="h-full w-full"
@@ -754,11 +786,6 @@ const Hackathon = ({
                     {submission.credentials ? (
                       <p className="mt-4 rounded-lg border border-amber-500/30 bg-amber-50 px-3 py-2 text-sm font-medium text-amber-950 dark:bg-amber-950/30 dark:text-amber-100">
                         {submission.credentials}
-                      </p>
-                    ) : null}
-                    {!submission.videoEmbedUrl ? (
-                      <p className="mt-4 text-sm italic text-muted-foreground">
-                        No YouTube demo was provided with this submission.
                       </p>
                     ) : null}
                     <div className="mt-5 flex flex-wrap gap-3">
@@ -792,12 +819,6 @@ const Hackathon = ({
                         <SubmissionLink
                           href={submission.articleUrl}
                           label="Read article"
-                        />
-                      ) : null}
-                      {submission.explorerUrl ? (
-                        <SubmissionLink
-                          href={submission.explorerUrl}
-                          label="View transaction"
                         />
                       ) : null}
                     </div>
@@ -835,13 +856,13 @@ const Hackathon = ({
         ) : null}
 
         {!githubProjectsError && githubProjects.length === 0 ? (
-          <Card className="mb-8 border-slate-700/80 bg-slate-900/80 shadow-sm backdrop-blur-sm">
+          <Card className="mb-8 border-slate-200/80 bg-white/85 shadow-sm backdrop-blur-sm dark:border-slate-700/80 dark:bg-slate-900/80">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl text-white">
+              <CardTitle className="flex items-center gap-2 text-xl text-slate-900 dark:text-white">
                 <FolderOpen className="h-5 w-5 text-sky-400" aria-hidden />
                 Browse previous hackathons
               </CardTitle>
-              <CardDescription className="text-slate-300">
+              <CardDescription className="text-slate-600 dark:text-slate-300">
                 Previous project folders were not returned to this component.
                 You can still browse every past submission directly on GitHub.
               </CardDescription>
@@ -878,7 +899,7 @@ const Hackathon = ({
                   {group.projects.map((p) => (
                     <Card
                       key={p.slugPath}
-                      className="group flex flex-col overflow-hidden border-slate-200/80 transition-all hover:-translate-y-0.5 hover:border-sky-500/35 hover:shadow-lg dark:border-slate-700/80"
+                      className="group flex flex-col overflow-hidden border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-500/35 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100"
                     >
                       <CardHeader className="pb-2">
                         <div className="mb-2 flex items-start justify-between gap-2">
