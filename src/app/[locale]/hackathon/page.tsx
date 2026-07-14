@@ -191,7 +191,7 @@ const submissions: Submission[] = [
     videoUrl:
       "https://free2z.cash/uploadz/public/ZecHub/zecauth-demo.mp4",
     videoType: "video/mp4",
-    repoURL: "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/ZecAuth",
+    repoUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/ZecAuth",
   },
   {
     title: "Zcash Node Launcher",
