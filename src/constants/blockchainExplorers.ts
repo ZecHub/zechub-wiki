@@ -101,4 +101,18 @@ export const blockchainExplorers = [
     url: 'https://www.zypherscan.com/',
     thumbnailImage: '/explorer/Zypherscan.png',
   },
+  {
+    title: 'Zecstats',
+    description:
+      'A blockchain analytics platform for Zcash that provides real-time network statistics, privacy analytics, market insights, and interactive data visualization.',
+    features: ['Real-Time Zcash Network Dashboard', 'Advanced On-Chain Analytics', 'Privacy & Shielded Pool Analytics', 'Market & Price Analysis', 'Mining & Network Security Monitoring', 'Interactive Data Visualization', 'Ecosystem & Liquidity Tracking', 'Network Comparison & Growth Analysis'],
+    url: 'https://zecstats.com/',
+  },
+  {
+    title: 'Zecsite',
+    description:
+      'A lightweight static website generator designed for the Zcash ecosystem, enabling users to create, publish, and manage decentralized-friendly websites using a simple Java-based architecture.',
+    features: ['Java-Based Static Website Generation', 'Zcash Community News Platform', 'Static Site Architecture', 'Pip-Boy Inspired User Interface', 'Blockchain-Focused Content Organization', 'Lightweight and Efficient Deployment', 'Customizable Website Templates', 'Privacy-Oriented Web Publishing', 'Developer-Friendly Workflow'],
+    url: 'https://zecsite.org/pipboy/en/index.html',
+  },
 ];
