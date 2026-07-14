@@ -30,7 +30,10 @@ import {
 } from "@/components/UI/shadcn/card";
 
 const HACKATHON_START_DATE_UTC = "2026-05-25T00:00:00Z";
-const HACKATHON_END_DATE_UTC = "2026-07-15T23:59:59Z";
+const HACKATHON_END_DATE_UTC = "2026-07-15T12:00:00Z";
+const VOTING_END_DATE_UTC = "2026-07-20T12:00:00Z";
+
+const HACKATHON_BACKGROUND_IMAGE = "/zcash-space.png";
 
 const PREVIOUS_PROJECTS_REPO =
   "https://github.com/ZecHub/zechub/tree/main/Hackathon";
@@ -48,7 +51,7 @@ type Countdown = {
   completed: boolean;
 };
 
-type HackathonPhase = "pre" | "active" | "post";
+type HackathonPhase = "pre" | "active" | "voting" | "post";
 
 const getCountdown = (targetDate: Date): Countdown => {
   const now = new Date().getTime();
@@ -67,9 +70,15 @@ const getCountdown = (targetDate: Date): Countdown => {
   };
 };
 
-const getPhase = (now: number, start: Date, end: Date): HackathonPhase => {
+const getPhase = (
+  now: number,
+  start: Date,
+  submissionEnd: Date,
+  votingEnd: Date,
+): HackathonPhase => {
   if (now < start.getTime()) return "pre";
-  if (now < end.getTime()) return "active";
+  if (now < submissionEnd.getTime()) return "active";
+  if (now < votingEnd.getTime()) return "voting";
   return "post";
 };
 
@@ -116,7 +125,22 @@ const tracks = [
   },
 ] as const;
 
-const submissions = [
+type Submission = {
+  title: string;
+  creator: string;
+  track: string;
+  description: string;
+  videoEmbedUrl?: string;
+  demoUrl?: string;
+  repoUrl?: string;
+  prUrl?: string;
+  articleUrl?: string;
+  docsUrl?: string;
+  explorerUrl?: string;
+  credentials?: string;
+};
+
+const submissions: Submission[] = [
   {
     title: "ZShield",
     creator: "EdCryptoFi",
@@ -138,7 +162,119 @@ const submissions = [
     demoUrl: "https://zpayroll.vercel.app/",
     repoUrl: "https://github.com/MageDee/ZPayroll/",
   },
-] as const;
+  {
+    title: "ZecPass",
+    creator: "devacunetixtech",
+    track: "Zcash Login",
+    description:
+      "ZecPass is a drop-in SDK for adding Sign in with Zcash without exposing user addresses. It uses zingolib to decrypt on-chain mainnet memos in real time and includes setup instructions and a quick start in its README.",
+    videoEmbedUrl: "https://www.youtube.com/embed/M-rnk3Q9YuA",
+    demoUrl: "https://zec-pass-web.vercel.app/",
+    repoUrl:
+      "https://github.com/devacunetixtech/zechub/tree/zecpass-hack26/zecpass-hack26",
+    prUrl: "https://github.com/ZecHub/zechub/pull/1760",
+  },
+  {
+    title: "ZecLedger",
+    creator: "vancube2",
+    track: "Accounting",
+    description:
+      "ZecLedger is a read-only command-line accounting tool for shielded Zcash funds. It works from a viewing key rather than a spending key and produces cost-basis reports, payment reconciliation, ZIP-321 requests, and privacy checks without being able to move funds. It has been verified on mainnet.",
+    videoEmbedUrl: "https://www.youtube.com/embed/7emZKHAH7TQ",
+    demoUrl: "https://zecledger-web.vercel.app/",
+    repoUrl: "https://github.com/vancube2/zecledger",
+    prUrl: "https://github.com/ZecHub/zechub/pull/1777",
+  },
+  {
+    title: "ZecAuth",
+    creator: "ZecAuth team",
+    track: "Zcash Login",
+    description:
+      "ZecAuth is a privacy-preserving wallet connection protocol for Zcash. It derives isolated authentication keys through ZIP-32, creates unlinkable per-app identities, signs human-readable challenges with RedPallas, supports capability-based grants, and sends responses directly between wallet and app without a relay.",
+  },
+  {
+    title: "Zcash Node Launcher",
+    creator: "zcashjava",
+    track: "Infrastructure",
+    description:
+      "Zcash Node Launcher is a management tool for deploying, operating, and monitoring Zcash nodes. It provides automated installation and removal, node lifecycle management, and a real-time geospatial monitoring dashboard.",
+    videoEmbedUrl: "https://www.youtube.com/embed/1tkV1Qd-UdU",
+    demoUrl: "https://demo-zcashnodelauncher.zcashjava.com/",
+    repoUrl: "https://github.com/zcashjava/ZcashNodeLauncher",
+    prUrl: "https://github.com/ZecHub/zechub/pull/1813",
+    docsUrl:
+      "https://github.com/zcashjava/ZcashNodeLauncher/blob/main/README.md",
+    credentials: "Demo login: zcashjava / zcashjava",
+  },
+  {
+    title: "Z3 Launcher",
+    creator: "Z3 Launcher team",
+    track: "Infrastructure",
+    description:
+      "Z3 Launcher is a single Go binary that supervises the official Z3 stack through Docker Compose. It manages Zebra, Zaino, and optionally Zallet, adds preflight checks and port conflict handling, supports snapshots for faster startup, and keeps services bound to localhost with no telemetry or key custody.",
+  },
+  {
+    title: "ZEC-OS",
+    creator: "orbism",
+    track: "Infrastructure",
+    description:
+      "ZEC-OS is a privacy-oriented operating system emulator for exploring the Zcash ecosystem. Its windowed interface combines a block explorer, mempool information, block comparisons, miner distribution, historical charts, calculators, games, and a terminal, with customizable themes and accessibility controls.",
+    demoUrl: "https://zec-os.com/",
+    repoUrl: "https://github.com/orbism/zec-os_hackathon2026",
+  },
+  {
+    title: "ZEC Ledger",
+    creator: "mrwealthking",
+    track: "Accounting",
+    description:
+      "ZEC Ledger is a lightweight accounting tool for Zcash transparent addresses. It uses real mainnet data to provide transaction history, a running balance, and CSV export.",
+    videoEmbedUrl: "https://www.youtube.com/embed/BzU474BuJ9U",
+    repoUrl: "https://github.com/mrwealthking/zec-ledger",
+    prUrl: "https://github.com/ZecHub/zechub/pull/1819",
+  },
+  {
+    title: "Pedalshield",
+    creator: "intelligrip",
+    track: "Games",
+    description:
+      "Pedalshield rewards real bicycle rides with shielded ZEC while keeping route data entirely on the rider's phone. Its mainnet flow combines on-device anti-cheat checks with autonomous Orchard payouts, creating a new shielded transaction for every paid ride.",
+    videoEmbedUrl: "https://www.youtube.com/embed/yNrw9CI24zc",
+    repoUrl: "https://github.com/intelligrip/Pedalshield",
+    explorerUrl:
+      "https://mainnet.zcashexplorer.app/transactions/7bb0309585171f6ff977357f991fbbd98668793dc0ef6effdc300d1c230c3595",
+  },
+  {
+    title: "Zaygent",
+    creator: "Zaygent team",
+    track: "Infrastructure",
+    description:
+      "Zaygent is a privacy-first autonomous crypto trading agent that funds, trades, and settles through Zcash shielded transactions modeled on Zashi CrossPay, with NEAR Intents used for cross-chain settlement. It reads live Zcash mainnet chain data and generates validly encoded transparent mainnet addresses.",
+    videoEmbedUrl: "https://www.youtube.com/embed/uwX-ZH7SrY8",
+    prUrl: "https://github.com/ZecHub/zechub/pull/1833",
+  },
+  {
+    title: "Steward",
+    creator: "Steward team",
+    track: "FROST",
+    description:
+      "Steward is a threshold-custody protocol for shielded Zcash. It splits an Orchard vault's spend authority into t-of-n FROST shares for group custody, social recovery, and inheritance. Guardians co-sign a real transaction sighash on their own devices, while the relay coordinating the signing process holds no keys or shares. Steward has completed a real 2-of-3 threshold-signed shielded transaction on mainnet.",
+    videoEmbedUrl: "https://www.youtube.com/embed/JpDBunva2Ek",
+    prUrl: "https://github.com/ZecHub/zechub/pull/1832",
+    explorerUrl:
+      "https://mainnet.zcashexplorer.app/transactions/6dfe556827dbdfa8eda7971a3e396d058f2487c81054ff7baa405e631b4ef496",
+  },
+  {
+    title: "ZBooks",
+    creator: "AustinChris1",
+    track: "Accounting",
+    description:
+      "ZBooks is a non-custodial accounting and structured batch-payout platform for Zcash teams and DAOs. Built on the Sign in with Zcash (SIWZ) authentication primitive, it supports memo-challenge, signed-message, and experimental MetaMask Snap sign-in flows. Teams can create a single multi-recipient ZIP-321 payout request, require M-of-N treasury approval, automatically reconcile payments through a treasury UFVK, and generate tagged monthly profit-and-loss reports and CSV exports. ZBooks runs on Zcash mainnet and extends the workflow from bounty creation through approval, shielded batch payment, and reconciliation.",
+    videoEmbedUrl: "https://www.youtube.com/embed/An8s-ca0ZxQ",
+    demoUrl: "https://zecbooks.vercel.app/",
+    repoUrl: "https://github.com/AustinChris1/ZBooks-SIWZ",
+    prUrl: "https://github.com/ZecHub/zechub/pull/1831",
+  },
+];
 
 const faqItems = [
   {
@@ -176,6 +312,30 @@ const rules = [
   "Respect privacy, security, and community guidelines in both code and content.",
 ];
 
+function SubmissionLink({
+  href,
+  label,
+  icon,
+}: {
+  href: string;
+  label: string;
+  icon?: "demo" | "github";
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-sky-500/50 hover:bg-sky-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+    >
+      {icon === "demo" ? <PlayCircle className="h-4 w-4" aria-hidden /> : null}
+      {icon === "github" ? <Github className="h-4 w-4" aria-hidden /> : null}
+      {label}
+      <ExternalLink className="h-3.5 w-3.5 opacity-70" />
+    </a>
+  );
+}
+
 function SectionTitle({
   children,
   eyebrow,
@@ -203,6 +363,7 @@ const Hackathon = ({
 }: HackathonProps) => {
   const startDate = useMemo(() => new Date(HACKATHON_START_DATE_UTC), []);
   const endDate = useMemo(() => new Date(HACKATHON_END_DATE_UTC), []);
+  const votingEndDate = useMemo(() => new Date(VOTING_END_DATE_UTC), []);
   const [nowTs, setNowTs] = useState(() => Date.now());
 
   const projectsByGroup = useMemo(() => {
@@ -239,11 +400,12 @@ const Hackathon = ({
   }, []);
 
   const phase = useMemo(
-    () => getPhase(nowTs, startDate, endDate),
-    [nowTs, startDate, endDate],
+    () => getPhase(nowTs, startDate, endDate, votingEndDate),
+    [nowTs, startDate, endDate, votingEndDate],
   );
 
-  const countdownTarget = phase === "pre" ? startDate : endDate;
+  const countdownTarget =
+    phase === "pre" ? startDate : phase === "active" ? endDate : votingEndDate;
   const countdown = useMemo(
     () => getCountdown(countdownTarget),
     [countdownTarget, nowTs],
@@ -251,6 +413,13 @@ const Hackathon = ({
 
   return (
     <main className="relative mx-auto w-full max-w-6xl px-4 py-10 text-slate-900 dark:text-slate-100">
+      <div
+        className="pointer-events-none fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `linear-gradient(rgba(2, 6, 23, 0.82), rgba(2, 6, 23, 0.94)), url(${HACKATHON_BACKGROUND_IMAGE})`,
+        }}
+        aria-hidden
+      />
       <div
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[28rem] bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(14,165,233,0.22),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(34,211,238,0.12),transparent)]"
         aria-hidden
@@ -283,8 +452,14 @@ const Hackathon = ({
               demo your work. Official kickoff{" "}
               <span className="font-semibold text-white">May 25, 2026</span>{" "}
               (UTC); submissions close{" "}
-              <span className="font-semibold text-white">July 15, 2026</span>{" "}
-              (UTC).
+              <span className="font-semibold text-white">
+                July 15, 2026 at 12:00 UTC
+              </span>
+              . Community voting then runs until{" "}
+              <span className="font-semibold text-white">
+                July 20, 2026 at 12:00 UTC
+              </span>
+              .
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
@@ -310,7 +485,9 @@ const Hackathon = ({
                 ? "Hackathon starts in"
                 : phase === "active"
                   ? "Time until submissions close"
-                  : "Hackathon ended"}
+                  : phase === "voting"
+                    ? "Community voting ends in"
+                    : "Voting ended"}
             </p>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {(
@@ -336,26 +513,29 @@ const Hackathon = ({
             </div>
             {phase === "post" ? (
               <p className="mt-4 text-center text-sm font-medium text-emerald-300">
-                This hackathon window has ended, thanks to everyone who took
-                part.
+                Community voting ended July 20, 2026 at 12:00 UTC.
+              </p>
+            ) : phase === "voting" ? (
+              <p className="mt-4 text-center text-xs text-slate-400">
+                Submissions are closed. Voting ends{" "}
+                <span className="font-medium text-slate-300">
+                  Monday, July 20 at 12:00 UTC
+                </span>
+                .
               </p>
             ) : phase === "pre" ? (
               <p className="mt-4 text-center text-xs text-slate-400">
                 Starts{" "}
-                <span className="font-medium text-slate-300">May 25, 2026</span>{" "}
-                (UTC). Submissions close{" "}
-                <span className="font-medium text-slate-300">
-                  July 15, 2026
-                </span>{" "}
-                (UTC).
+                <span className="font-medium text-slate-300">May 25, 2026</span>
+                . Submissions close July 15 at 12:00 UTC.
               </p>
             ) : (
               <p className="mt-4 text-center text-xs text-slate-400">
-                Submissions close on{" "}
+                Submissions close{" "}
                 <span className="font-medium text-slate-300">
-                  July 15, 2026
-                </span>{" "}
-                (UTC).
+                  July 15, 2026 at 12:00 UTC
+                </span>
+                .
               </p>
             )}
           </div>
@@ -524,76 +704,112 @@ const Hackathon = ({
           their creators, demos, source code, and video walkthroughs.
         </p>
 
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="space-y-4">
           {submissions.map((submission) => (
-            <Card
+            <details
               key={submission.title}
-              className="group overflow-hidden border-slate-200/80 bg-card transition-all hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg dark:border-slate-700/80"
+              className="group overflow-hidden rounded-2xl border border-slate-200/80 bg-card shadow-sm transition hover:border-sky-500/40 dark:border-slate-700/80"
             >
-              <div className="aspect-video w-full overflow-hidden bg-slate-950">
-                <iframe
-                  className="h-full w-full"
-                  src={submission.videoEmbedUrl}
-                  title={`${submission.title} video demo`}
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
-              </div>
-
-              <CardHeader className="pb-3">
-                <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-                  <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-700 ring-1 ring-emerald-500/20 dark:text-emerald-300">
-                    {submission.track}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-                    <UserRound className="h-4 w-4" aria-hidden />
-                    Made by {submission.creator}
-                  </span>
+              <summary className="cursor-pointer list-none p-5 outline-none [&::-webkit-details-marker]:hidden md:p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="mb-2 flex flex-wrap items-center gap-2">
+                      <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-700 ring-1 ring-emerald-500/20 dark:text-emerald-300">
+                        {submission.track}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <UserRound className="h-4 w-4" aria-hidden />
+                        Made by {submission.creator}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 transition group-hover:text-sky-700 dark:text-white dark:group-hover:text-sky-400 md:text-2xl">
+                      {submission.title}
+                    </h3>
+                  </div>
+                  <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-slate-400 transition group-open:rotate-45 group-open:text-sky-500" />
                 </div>
-                <CardTitle className="text-2xl transition group-hover:text-sky-700 dark:group-hover:text-sky-400">
-                  {submission.title}
-                </CardTitle>
-                <CardDescription className="text-sm leading-relaxed md:text-base">
-                  {submission.description}
-                </CardDescription>
-              </CardHeader>
+              </summary>
 
-              <CardContent className="flex flex-wrap gap-3">
-                <a
-                  href={submission.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#1984c7] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1574af]"
+              <div className="border-t border-slate-200/80 p-5 dark:border-slate-700/80 md:p-6">
+                <div
+                  className={
+                    submission.videoEmbedUrl
+                      ? "grid gap-6 lg:grid-cols-[1.2fr_1fr]"
+                      : "max-w-3xl"
+                  }
                 >
-                  <PlayCircle className="h-4 w-4" aria-hidden />
-                  Open demo
-                  <ExternalLink className="h-3.5 w-3.5 opacity-75" />
-                </a>
-                <a
-                  href={submission.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-sky-500/50 hover:bg-sky-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
-                >
-                  <Github className="h-4 w-4" aria-hidden />
-                  GitHub
-                  <ExternalLink className="h-3.5 w-3.5 opacity-70" />
-                </a>
-                {"articleUrl" in submission ? (
-                  <a
-                    href={submission.articleUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-sky-500/50 hover:bg-sky-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
-                  >
-                    Read article
-                    <ExternalLink className="h-3.5 w-3.5 opacity-70" />
-                  </a>
-                ) : null}
-              </CardContent>
-            </Card>
+                  {submission.videoEmbedUrl ? (
+                    <div className="aspect-video w-full overflow-hidden rounded-xl bg-slate-950">
+                      <iframe
+                        className="h-full w-full"
+                        src={submission.videoEmbedUrl}
+                        title={`${submission.title} video demo`}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : null}
+
+                  <div>
+                    <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300 md:text-base">
+                      {submission.description}
+                    </p>
+                    {submission.credentials ? (
+                      <p className="mt-4 rounded-lg border border-amber-500/30 bg-amber-50 px-3 py-2 text-sm font-medium text-amber-950 dark:bg-amber-950/30 dark:text-amber-100">
+                        {submission.credentials}
+                      </p>
+                    ) : null}
+                    {!submission.videoEmbedUrl ? (
+                      <p className="mt-4 text-sm italic text-muted-foreground">
+                        No YouTube demo was provided with this submission.
+                      </p>
+                    ) : null}
+                    <div className="mt-5 flex flex-wrap gap-3">
+                      {submission.demoUrl ? (
+                        <SubmissionLink
+                          href={submission.demoUrl}
+                          label="Open demo"
+                          icon="demo"
+                        />
+                      ) : null}
+                      {submission.repoUrl ? (
+                        <SubmissionLink
+                          href={submission.repoUrl}
+                          label="GitHub"
+                          icon="github"
+                        />
+                      ) : null}
+                      {submission.prUrl ? (
+                        <SubmissionLink
+                          href={submission.prUrl}
+                          label="View PR"
+                        />
+                      ) : null}
+                      {submission.docsUrl ? (
+                        <SubmissionLink
+                          href={submission.docsUrl}
+                          label="Documentation"
+                        />
+                      ) : null}
+                      {submission.articleUrl ? (
+                        <SubmissionLink
+                          href={submission.articleUrl}
+                          label="Read article"
+                        />
+                      ) : null}
+                      {submission.explorerUrl ? (
+                        <SubmissionLink
+                          href={submission.explorerUrl}
+                          label="View transaction"
+                        />
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </details>
           ))}
         </div>
       </section>
