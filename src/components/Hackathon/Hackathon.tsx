@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Link } from "@/i18n/navigation";
 import {
@@ -9,6 +9,8 @@ import {
   FolderOpen,
   Gamepad2,
   Github,
+  PlayCircle,
+  UserRound,
   HelpCircle,
   KeyRound,
   LogIn,
@@ -114,6 +116,30 @@ const tracks = [
   },
 ] as const;
 
+const submissions = [
+  {
+    title: "ZShield",
+    creator: "EdCryptoFi",
+    track: "Zcash Login",
+    description:
+      "ZShield turns any Zcash address into a W3C DID and OIDC identity. Users sign a wallet challenge instead of relying on passwords, email addresses, or KYC. It supports ZIP 304 challenge-response authentication, W3C DID v1.1 identities, zero-knowledge claims, and an OIDC bridge for OAuth2-compatible applications.",
+    videoEmbedUrl: "https://www.youtube.com/embed/xqK69d5gwSA",
+    demoUrl: "https://zshield.vercel.app/",
+    repoUrl: "https://github.com/EdCryptoFi/zshield",
+    articleUrl: "https://x.com/EdCriptoFi/status/2061799056246997273",
+  },
+  {
+    title: "ZPayroll",
+    creator: "MageDee",
+    track: "Accounting",
+    description:
+      "ZPayroll is a private payroll application for distributing salaries with Zcash. It executes payroll runs as Orchard shielded transactions, supports Unified Addresses, connects to testnet through lightwalletd and zingo-cli, and derives employer wallets deterministically using browser-generated cryptographic keys and ZIP-32-compatible derivation.",
+    videoEmbedUrl: "https://www.youtube.com/embed/ss6DDuaUMkg",
+    demoUrl: "https://zpayroll.vercel.app/",
+    repoUrl: "https://github.com/MageDee/ZPayroll/",
+  },
+] as const;
+
 const faqItems = [
   {
     question: "Who can participate?",
@@ -189,7 +215,7 @@ const Hackathon = ({
     }
     for (const list of m.values()) {
       list.sort((a, b) =>
-        a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+        a.name.localeCompare(b.name, undefined, { sensitivity: "base" }),
       );
     }
     const keys = [...m.keys()].sort((a, b) => {
@@ -214,13 +240,13 @@ const Hackathon = ({
 
   const phase = useMemo(
     () => getPhase(nowTs, startDate, endDate),
-    [nowTs, startDate, endDate]
+    [nowTs, startDate, endDate],
   );
 
   const countdownTarget = phase === "pre" ? startDate : endDate;
   const countdown = useMemo(
     () => getCountdown(countdownTarget),
-    [countdownTarget, nowTs]
+    [countdownTarget, nowTs],
   );
 
   return (
@@ -253,8 +279,8 @@ const Hackathon = ({
               </span>
             </h1>
             <p className="text-balance text-lg leading-relaxed text-slate-300 md:text-xl">
-              Build across five tracks, from infra to games, then document and demo
-              your work. Official kickoff{" "}
+              Build across five tracks, from infra to games, then document and
+              demo your work. Official kickoff{" "}
               <span className="font-semibold text-white">May 25, 2026</span>{" "}
               (UTC); submissions close{" "}
               <span className="font-semibold text-white">July 15, 2026</span>{" "}
@@ -310,20 +336,25 @@ const Hackathon = ({
             </div>
             {phase === "post" ? (
               <p className="mt-4 text-center text-sm font-medium text-emerald-300">
-                This hackathon window has ended, thanks to everyone who took part.
+                This hackathon window has ended, thanks to everyone who took
+                part.
               </p>
             ) : phase === "pre" ? (
               <p className="mt-4 text-center text-xs text-slate-400">
                 Starts{" "}
                 <span className="font-medium text-slate-300">May 25, 2026</span>{" "}
                 (UTC). Submissions close{" "}
-                <span className="font-medium text-slate-300">July 15, 2026</span>{" "}
+                <span className="font-medium text-slate-300">
+                  July 15, 2026
+                </span>{" "}
                 (UTC).
               </p>
             ) : (
               <p className="mt-4 text-center text-xs text-slate-400">
                 Submissions close on{" "}
-                <span className="font-medium text-slate-300">July 15, 2026</span>{" "}
+                <span className="font-medium text-slate-300">
+                  July 15, 2026
+                </span>{" "}
                 (UTC).
               </p>
             )}
@@ -334,8 +365,8 @@ const Hackathon = ({
       <section className="mb-12">
         <SectionTitle eyebrow="2026 event">Tracks</SectionTitle>
         <p className="-mt-2 mb-6 max-w-2xl text-muted-foreground">
-          Align your project with a track for clarity when you submit, judges and
-          the community use them to browse entries.
+          Align your project with a track for clarity when you submit, judges
+          and the community use them to browse entries.
         </p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {tracks.map((track) => {
@@ -378,7 +409,9 @@ const Hackathon = ({
       </section>
 
       <section className="mb-12">
-        <SectionTitle eyebrow="Start here">Devtools &amp; documentation</SectionTitle>
+        <SectionTitle eyebrow="Start here">
+          Devtools &amp; documentation
+        </SectionTitle>
         <div className="grid max-w-3xl gap-5">
           {devToolsDocs.map((tool) => {
             const Icon = tool.icon;
@@ -433,7 +466,9 @@ const Hackathon = ({
               </span>
               Rules
             </CardTitle>
-            <CardDescription>Keep submissions fair and easy to judge.</CardDescription>
+            <CardDescription>
+              Keep submissions fair and easy to judge.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <ul className="space-y-3 text-slate-700 dark:text-slate-300">
@@ -481,7 +516,92 @@ const Hackathon = ({
       </section>
 
       <section className="mb-12">
-        <SectionTitle eyebrow="Past editions">Previous hackathon projects</SectionTitle>
+        <SectionTitle eyebrow="2026 entries">
+          Hackathon submissions
+        </SectionTitle>
+        <p className="-mt-2 mb-6 max-w-3xl text-muted-foreground">
+          Explore the projects submitted to the 2026 ZecHub Hackathon, including
+          their creators, demos, source code, and video walkthroughs.
+        </p>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          {submissions.map((submission) => (
+            <Card
+              key={submission.title}
+              className="group overflow-hidden border-slate-200/80 bg-card transition-all hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg dark:border-slate-700/80"
+            >
+              <div className="aspect-video w-full overflow-hidden bg-slate-950">
+                <iframe
+                  className="h-full w-full"
+                  src={submission.videoEmbedUrl}
+                  title={`${submission.title} video demo`}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+
+              <CardHeader className="pb-3">
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                  <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-700 ring-1 ring-emerald-500/20 dark:text-emerald-300">
+                    {submission.track}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <UserRound className="h-4 w-4" aria-hidden />
+                    Made by {submission.creator}
+                  </span>
+                </div>
+                <CardTitle className="text-2xl transition group-hover:text-sky-700 dark:group-hover:text-sky-400">
+                  {submission.title}
+                </CardTitle>
+                <CardDescription className="text-sm leading-relaxed md:text-base">
+                  {submission.description}
+                </CardDescription>
+              </CardHeader>
+
+              <CardContent className="flex flex-wrap gap-3">
+                <a
+                  href={submission.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#1984c7] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1574af]"
+                >
+                  <PlayCircle className="h-4 w-4" aria-hidden />
+                  Open demo
+                  <ExternalLink className="h-3.5 w-3.5 opacity-75" />
+                </a>
+                <a
+                  href={submission.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-sky-500/50 hover:bg-sky-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+                >
+                  <Github className="h-4 w-4" aria-hidden />
+                  GitHub
+                  <ExternalLink className="h-3.5 w-3.5 opacity-70" />
+                </a>
+                {"articleUrl" in submission ? (
+                  <a
+                    href={submission.articleUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-sky-500/50 hover:bg-sky-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+                  >
+                    Read article
+                    <ExternalLink className="h-3.5 w-3.5 opacity-70" />
+                  </a>
+                ) : null}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <SectionTitle eyebrow="Past editions">
+          Previous hackathon projects
+        </SectionTitle>
 
         {githubProjectsError ? (
           <div
@@ -515,7 +635,10 @@ const Hackathon = ({
             {projectsByGroup.map((group) => (
               <div key={group.key}>
                 <h3 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400">
-                  <FolderOpen className="h-4 w-4 shrink-0 text-sky-600 dark:text-sky-400" aria-hidden />
+                  <FolderOpen
+                    className="h-4 w-4 shrink-0 text-sky-600 dark:text-sky-400"
+                    aria-hidden
+                  />
                   {group.label}
                   <span className="font-mono text-xs font-normal normal-case tracking-normal text-muted-foreground">
                     ({group.projects.length})
