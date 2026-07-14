@@ -151,11 +151,10 @@ const submissions: Submission[] = [
     videoEmbedUrl: "https://www.youtube.com/embed/xqK69d5gwSA",
     demoUrl: "https://zshield.vercel.app/",
     repoUrl: "https://github.com/EdCryptoFi/zshield",
-    articleUrl: "https://x.com/EdCriptoFi/status/2061799056246997273",
   },
   {
     title: "ZPayroll",
-    creator: "MageDee",
+    creator: "Monsignore",
     track: "Accounting",
     description:
       "ZPayroll is a private payroll application for distributing salaries with Zcash. It executes payroll runs as Orchard shielded transactions, supports Unified Addresses, connects to testnet through lightwalletd and zingo-cli, and derives employer wallets deterministically using browser-generated cryptographic keys and ZIP-32-compatible derivation.",
@@ -171,9 +170,7 @@ const submissions: Submission[] = [
       "ZecPass is a drop-in SDK for adding Sign in with Zcash without exposing user addresses. It uses zingolib to decrypt on-chain mainnet memos in real time and includes setup instructions and a quick start in its README.",
     videoEmbedUrl: "https://www.youtube.com/embed/M-rnk3Q9YuA",
     demoUrl: "https://zec-pass-web.vercel.app/",
-    repoUrl:
-      "https://github.com/devacunetixtech/zechub/tree/zecpass-hack26/zecpass-hack26",
-    prUrl: "https://github.com/ZecHub/zechub/pull/1760",
+    repoUrl: "https://github.com/devacunetixtech/zechub/tree/zecpass-hack26/zecpass-hack26",
   },
   {
     title: "ZecLedger",
@@ -184,17 +181,17 @@ const submissions: Submission[] = [
     videoEmbedUrl: "https://www.youtube.com/embed/7emZKHAH7TQ",
     demoUrl: "https://zecledger-web.vercel.app/",
     repoUrl: "https://github.com/vancube2/zecledger",
-    prUrl: "https://github.com/ZecHub/zechub/pull/1777",
   },
   {
     title: "ZecAuth",
-    creator: "ZecAuth team",
+    creator: "Raydar",
     track: "Zcash Login",
     description:
       "ZecAuth is a privacy-preserving wallet connection protocol for Zcash. It derives isolated authentication keys through ZIP-32, creates unlinkable per-app identities, signs human-readable challenges with RedPallas, supports capability-based grants, and sends responses directly between wallet and app without a relay.",
     videoUrl:
-      "https://free2z.cash/uploadz/public/ZecHub/zecauth-demo.mov",
-    videoType: "video/quicktime",
+      "https://free2z.cash/uploadz/public/ZecHub/zecauth-demo.mp4",
+    videoType: "video/mp4",
+    repoURL: "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/ZecAuth",
   },
   {
     title: "Zcash Node Launcher",
@@ -205,9 +202,7 @@ const submissions: Submission[] = [
     videoEmbedUrl: "https://www.youtube.com/embed/1tkV1Qd-UdU",
     demoUrl: "https://demo-zcashnodelauncher.zcashjava.com/",
     repoUrl: "https://github.com/zcashjava/ZcashNodeLauncher",
-    prUrl: "https://github.com/ZecHub/zechub/pull/1813",
-    docsUrl:
-      "https://github.com/zcashjava/ZcashNodeLauncher/blob/main/README.md",
+    docsUrl: "https://github.com/zcashjava/ZcashNodeLauncher/blob/main/README.md",
     credentials: "Demo login: zcashjava / zcashjava",
   },
   {
@@ -218,11 +213,10 @@ const submissions: Submission[] = [
       "Z3 Launcher is a single Go binary that supervises the official Z3 stack through Docker Compose. It manages Zebra, Zaino, and optionally Zallet, adds preflight checks and port conflict handling, supports snapshots for faster startup, and keeps services bound to localhost with no telemetry or key custody.",
     videoEmbedUrl: "https://www.youtube.com/embed/ttgSmMy-mPg",
     repoUrl: "https://github.com/Jubrilabdulazeez/z3-launcher",
-    prUrl: "https://github.com/ZecHub/zechub/pull/1811",
   },
   {
     title: "ZEC-OS",
-    creator: "orbism",
+    creator: "orb",
     track: "Infrastructure",
     description:
       "ZEC-OS is a privacy-oriented operating system emulator for exploring the Zcash ecosystem. Its windowed interface combines a block explorer, mempool information, block comparisons, miner distribution, historical charts, calculators, games, and a terminal, with customizable themes and accessibility controls.",
@@ -233,14 +227,13 @@ const submissions: Submission[] = [
     repoUrl: "https://github.com/orbism/zec-os_hackathon2026",
   },
   {
-    title: "ZEC Ledger",
+    title: "ZEC Ledger (Transparent)",
     creator: "mrwealthking",
     track: "Accounting",
     description:
       "ZEC Ledger is a lightweight accounting tool for Zcash transparent addresses. It uses real mainnet data to provide transaction history, a running balance, and CSV export.",
     videoEmbedUrl: "https://www.youtube.com/embed/BzU474BuJ9U",
     repoUrl: "https://github.com/mrwealthking/zec-ledger",
-    prUrl: "https://github.com/ZecHub/zechub/pull/1819",
   },
   {
     title: "Pedalshield",
@@ -253,32 +246,31 @@ const submissions: Submission[] = [
   },
   {
     title: "Zaygent",
-    creator: "Zaygent team",
+    creator: "Joshua Onazi",
     track: "Infrastructure",
     description:
       "Zaygent is a privacy-first autonomous crypto trading agent that funds, trades, and settles through Zcash shielded transactions modeled on Zashi CrossPay, with NEAR Intents used for cross-chain settlement. It reads live Zcash mainnet chain data and generates validly encoded transparent mainnet addresses.",
     videoEmbedUrl: "https://www.youtube.com/embed/uwX-ZH7SrY8",
-    prUrl: "https://github.com/ZecHub/zechub/pull/1833",
+    repoUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/zaygent",
   },
   {
     title: "Steward",
-    creator: "Steward team",
+    creator: "Hamid-Alan",
     track: "FROST",
     description:
       "Steward is a threshold-custody protocol for shielded Zcash. It splits an Orchard vault's spend authority into t-of-n FROST shares for group custody, social recovery, and inheritance. Guardians co-sign a real transaction sighash on their own devices, while the relay coordinating the signing process holds no keys or shares. Steward has completed a real 2-of-3 threshold-signed shielded transaction on mainnet.",
     videoEmbedUrl: "https://www.youtube.com/embed/JpDBunva2Ek",
-    prUrl: "https://github.com/ZecHub/zechub/pull/1832",
+    repoUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/Steward",
   },
   {
     title: "ZBooks",
-    creator: "AustinChris1",
+    creator: "Austin Chris",
     track: "Accounting",
     description:
       "ZBooks is a non-custodial accounting and structured batch-payout platform for Zcash teams and DAOs. Built on the Sign in with Zcash (SIWZ) authentication primitive, it supports memo-challenge, signed-message, and experimental MetaMask Snap sign-in flows. Teams can create a single multi-recipient ZIP-321 payout request, require M-of-N treasury approval, automatically reconcile payments through a treasury UFVK, and generate tagged monthly profit-and-loss reports and CSV exports. ZBooks runs on Zcash mainnet and extends the workflow from bounty creation through approval, shielded batch payment, and reconciliation.",
     videoEmbedUrl: "https://www.youtube.com/embed/An8s-ca0ZxQ",
     demoUrl: "https://zecbooks.vercel.app/",
     repoUrl: "https://github.com/AustinChris1/ZBooks-SIWZ",
-    prUrl: "https://github.com/ZecHub/zechub/pull/1831",
   },
 ];
 
