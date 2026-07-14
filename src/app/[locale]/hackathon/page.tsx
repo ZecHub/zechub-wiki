@@ -33,7 +33,7 @@ const HACKATHON_START_DATE_UTC = "2026-05-25T00:00:00Z";
 const HACKATHON_END_DATE_UTC = "2026-07-15T12:00:00Z";
 const VOTING_END_DATE_UTC = "2026-07-20T12:00:00Z";
 
-const HACKATHON_BACKGROUND_IMAGE = "/zcash-space.png";
+const HACKATHON_BACKGROUND_IMAGE = "/hackathon-background.png";
 
 const PREVIOUS_PROJECTS_REPO =
   "https://github.com/ZecHub/zechub/tree/main/Hackathon";
@@ -412,18 +412,19 @@ const Hackathon = ({
   );
 
   return (
-    <main className="relative mx-auto w-full max-w-6xl px-4 py-10 text-slate-900 dark:text-slate-100">
+    <div className="relative isolate min-h-screen overflow-hidden bg-slate-950">
       <div
-        className="pointer-events-none fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+        className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(rgba(2, 6, 23, 0.82), rgba(2, 6, 23, 0.94)), url(${HACKATHON_BACKGROUND_IMAGE})`,
+          backgroundImage: `linear-gradient(rgba(2, 6, 23, 0.74), rgba(2, 6, 23, 0.92)), url(${HACKATHON_BACKGROUND_IMAGE})`,
         }}
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[28rem] bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(14,165,233,0.22),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(34,211,238,0.12),transparent)]"
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_45%_at_50%_0%,rgba(14,165,233,0.24),transparent_70%)]"
         aria-hidden
       />
+      <main className="relative z-10 mx-auto w-full max-w-6xl px-4 py-10 text-slate-100">
 
       <section className="relative mb-12 overflow-hidden rounded-3xl border border-sky-500/25 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 p-8 text-white shadow-xl shadow-slate-900/20 ring-1 ring-white/10 md:p-12">
         <div
@@ -704,13 +705,13 @@ const Hackathon = ({
           their creators, demos, source code, and video walkthroughs.
         </p>
 
-        <div className="space-y-4">
+        <div className="grid items-start gap-4 md:grid-cols-2 xl:grid-cols-3">
           {submissions.map((submission) => (
             <details
               key={submission.title}
-              className="group overflow-hidden rounded-2xl border border-slate-200/80 bg-card shadow-sm transition hover:border-sky-500/40 dark:border-slate-700/80"
+              className="group overflow-hidden rounded-2xl border border-slate-200/80 bg-card shadow-sm transition hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg dark:border-slate-700/80"
             >
-              <summary className="cursor-pointer list-none p-5 outline-none [&::-webkit-details-marker]:hidden md:p-6">
+              <summary className="cursor-pointer list-none p-5 outline-none [&::-webkit-details-marker]:hidden">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -722,7 +723,7 @@ const Hackathon = ({
                         Made by {submission.creator}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 transition group-hover:text-sky-700 dark:text-white dark:group-hover:text-sky-400 md:text-2xl">
+                    <h3 className="text-xl font-bold text-slate-900 transition group-hover:text-sky-700 dark:text-white dark:group-hover:text-sky-400">
                       {submission.title}
                     </h3>
                   </div>
@@ -730,14 +731,8 @@ const Hackathon = ({
                 </div>
               </summary>
 
-              <div className="border-t border-slate-200/80 p-5 dark:border-slate-700/80 md:p-6">
-                <div
-                  className={
-                    submission.videoEmbedUrl
-                      ? "grid gap-6 lg:grid-cols-[1.2fr_1fr]"
-                      : "max-w-3xl"
-                  }
-                >
+              <div className="border-t border-slate-200/80 p-5 dark:border-slate-700/80">
+                <div className="space-y-5">
                   {submission.videoEmbedUrl ? (
                     <div className="aspect-video w-full overflow-hidden rounded-xl bg-slate-950">
                       <iframe
@@ -840,10 +835,29 @@ const Hackathon = ({
         ) : null}
 
         {!githubProjectsError && githubProjects.length === 0 ? (
-          <p className="mb-6 text-sm text-muted-foreground">
-            No project folders were returned. Open the repo tree to verify
-            structure.
-          </p>
+          <Card className="mb-8 border-slate-700/80 bg-slate-900/80 shadow-sm backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-xl text-white">
+                <FolderOpen className="h-5 w-5 text-sky-400" aria-hidden />
+                Browse previous hackathons
+              </CardTitle>
+              <CardDescription className="text-slate-300">
+                Previous project folders were not returned to this component.
+                You can still browse every past submission directly on GitHub.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <a
+                href={PREVIOUS_PROJECTS_REPO}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#1984c7] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1574af]"
+              >
+                Browse previous projects
+                <ExternalLink className="h-4 w-4" aria-hidden />
+              </a>
+            </CardContent>
+          </Card>
         ) : null}
 
         {githubProjects.length > 0 ? (
@@ -931,7 +945,8 @@ const Hackathon = ({
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </div>
   );
 };
 
