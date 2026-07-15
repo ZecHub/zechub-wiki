@@ -442,6 +442,16 @@ const submissions: Submission[] = [
     demoUrl: "https://zclash.vercel.app/",
     repoUrl: "https://github.com/jerydam/Zclash",
   },
+  {
+    title: "FrostVault",
+    creator: "Jatin Sahijwani",
+    track: "FROST",
+    description:
+      "FrostVault is a threshold vault for shielded ZEC built with genuine distributed key generation and rerandomized threshold signing. Its Rust service uses reddsa::frost::redpallas, the same signature scheme used for Orchard spend authorization. No participant, including the backend, ever holds or reconstructs the complete private key, reducing the risk that a single lost or compromised key can permanently expose or lock the vault.",
+    videoEmbedUrl: "https://www.youtube.com/embed/puDKy7F6Y9A",
+    repoUrl:
+      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/frostvault",
+  },
 ];
 
 const faqItems = [
