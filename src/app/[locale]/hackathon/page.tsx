@@ -438,7 +438,7 @@ const submissions: Submission[] = [
     description:
       "ZClash is a 1v1 quiz game where two players stake ZEC and compete across three rounds of AI-generated questions on a chosen topic. Both players fund a shared Zcash escrow address before the match, and the winner receives the full prize pool automatically. The project aims to provide competitive ZEC-based gameplay without a middleman or platform fee.",
     videoEmbedUrl:
-      "https://www.loom.com/share/55b9ec7ef835498cbf35aff7f8760324",
+      "https://free2z.cash/uploadz/public/ZecHub/zclash-builds-competitive-learning-on-zcash.mp4",
     demoUrl: "https://zclash.vercel.app/",
     repoUrl: "https://github.com/jerydam/Zclash",
   },
