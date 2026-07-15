@@ -491,6 +491,16 @@ const submissions: Submission[] = [
   docsUrl:
     "https://github.com/aliiqbal24/ZecAgent/blob/main/QUICKSTART.md",
 },
+{
+  title: "Portal",
+  creator: "IamHarrie-Labs",
+  track: "Zcash Login",
+  description:
+    "Portal enables users to sign in, unlock paid content, and send or receive payments using only a Zcash wallet. A user sends a private shielded transaction containing a one-time code in the memo, which Portal detects on Zcash mainnet to authenticate the user without requiring an email address or password. The same flow supports payment links and gated content while keeping the user's identity private from the application. Portal operates using real Zcash mainnet transactions rather than simulated payments.",
+  videoEmbedUrl: "https://www.youtube.com/embed/UxJZrXAuWY4",
+  demoUrl: "https://tryportal.xyz",
+  repoUrl: "https://github.com/IamHarrie-Labs/portal",
+},
 ];
 
 const faqItems = [
