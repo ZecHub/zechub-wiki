@@ -254,6 +254,14 @@ const submissions: Submission[] = [
     repoUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/zaygent",
   },
   {
+    title: "ZecAgent",
+    creator: "aliiqbal24",
+    track: "Infrastructure",
+    description:
+      "ZecAgent is a local MCP wallet and agent payment approval layer funded by shielded ZEC. It lets agents prepare verified purchases, direct shielded ZEC transfers, and managed CrossPay routes while enforcing local policy, dashboard approval, spend limits, receipt tracking, and confirmation checks.",
+    repoUrl: "https://github.com/aliiqbal24/ZecAgent",
+    docsUrl: "https://github.com/aliiqbal24/ZecAgent/blob/main/QUICKSTART.md",
+  },  {
     title: "Steward",
     creator: "Hamid-Alan",
     track: "FROST",
