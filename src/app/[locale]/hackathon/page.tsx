@@ -301,6 +301,17 @@ const submissions: Submission[] = [
       "https://github.com/Lexiie/ZecGuard/blob/main/HACKATHON_SUBMISSION.md",
   },
   {
+  title: "SAVANNA",
+  creator: "LucasdoCondo",
+  track: "Accounting",
+  description:
+    "SAVANNA is a secure desktop point-of-sale terminal that enables merchants to accept private Orchard-shielded Zcash payments at the counter. It operates using an Incoming Viewing Key rather than a seed phrase or spending key, keeping the terminal read-only and preventing it from authorizing withdrawals. Merchants can monitor and confirm selected incoming shielded payments without exposing wallet spending authority.",
+  videoUrl:
+    "https://free2z.cash/uploadz/public/ZecHub/savanna.mp4",
+  videoType: "video/mp4",
+  repoUrl: "https://github.com/LucasdoCondo/SAVANNA",
+  },
+  {
     title: "Paypunk",
     creator: "blockhackersio",
     track: "Infrastructure",
