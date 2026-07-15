@@ -457,6 +457,18 @@ const submissions: Submission[] = [
     repoUrl:
       "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/frostvault",
   },
+  {
+  title: "Zutility",
+  creator: "DavidIfebueme",
+  track: "Infrastructure",
+  description:
+    "Zutility enables users across Africa to privately pay for airtime, mobile data, cable television, electricity, and school fees using ZEC. It provides live exchange rates, 15-minute price locks, and multi-provider dispatch. Zutility supports Zingolib on Zcash testnet and mainnet, together with a mock Zcash mode for demonstrations.",
+  videoUrl:
+      "https://free2z.cash/uploadz/public/ZecHub/zutility-demo.mp4",
+  videoType: "video/mp4",
+  demoUrl: "https://www.zutility.xyz",
+  repoUrl: "https://github.com/DavidIfebueme/zutility",
+  },
 ];
 
 const faqItems = [
