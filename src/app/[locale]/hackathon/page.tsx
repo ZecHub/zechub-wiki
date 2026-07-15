@@ -304,8 +304,6 @@ const submissions: Submission[] = [
     videoEmbedUrl: "https://www.youtube.com/embed/BTWRUIATk10",
     repoUrl: "https://github.com/blockhackersio/paypunk",
     docsUrl: "https://blockhackersio.github.io/paypunk",
-    quickstartUrl:
-      "https://github.com/blockhackersio/paypunk/blob/master/QUICKSTART.md",
   },
   {
     title: "CYZE",
@@ -315,8 +313,6 @@ const submissions: Submission[] = [
       "CYZE, Coordinate Your Zcash Easily, is a FROST-enabled coordination tool and wallet for teams and groups. Users create a distributed key generation group, choose a signing threshold, and collectively manage an Orchard wallet. Approved participants can coordinate threshold-authorized Orchard transactions on Zcash mainnet without any single participant holding complete signing authority.",
     videoEmbedUrl: "https://www.youtube.com/embed/yrWCumgBuNU",
     repoUrl: "https://github.com/USCMig/Cyze",
-    releaseUrl:
-      "https://github.com/USCMig/Cyze/releases/tag/v0.1.0-rc.14",
   },
   {
     title: "Pendrake Watch",
@@ -326,8 +322,6 @@ const submissions: Submission[] = [
       "Pendrake Watch is a watch-only Zcash desktop wallet for Linux, macOS, and Windows. Users import a Unified Full Viewing Key, after which a background daemon keeps the wallet synchronized and sends desktop notifications when new transactions are detected, even when the main window is closed. It displays transaction history, memos, current balances, and a historical balance chart with USD values. Wallet files are encrypted behind a passphrase, and the application never stores spending keys.",
     videoEmbedUrl: "https://www.youtube.com/embed/Hk5awvFrZuI",
     repoUrl: "https://github.com/auzum197/pendrake-watch",
-    releaseUrl:
-      "https://github.com/auzum197/pendrake-watch/releases/tag/v0.0.1",
   },
   {
     title: "ZHAC",
@@ -348,7 +342,6 @@ const submissions: Submission[] = [
     demoUrl: "https://zbounty.onrender.com/",
     repoUrl:
       "https://github.com/Jay-cey/zechub/tree/hackathon-submission/Hackathon/2026/ZBounty",
-    prUrl: "https://github.com/ZecHub/zechub/pull/1844",
   },
   {
     title: "Gleyo",
