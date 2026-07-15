@@ -480,6 +480,17 @@ const submissions: Submission[] = [
   demoUrl: "https://www.zutility.xyz",
   repoUrl: "https://github.com/DavidIfebueme/zutility",
   },
+  {
+  title: "ZecAgent",
+  creator: "aliiqbal24",
+  track: "Infrastructure",
+  description:
+    "ZecAgent is a local MCP wallet and agent-payment approval layer funded by shielded ZEC. It supports verified agentic purchases, direct shielded ZEC transfers, managed CrossPay routing, dashboard-based payment approval, configurable spending limits, receipts, and transaction confirmation checks. ZecAgent can be connected to Codex through its npm quickstart command.",
+  videoEmbedUrl: "https://www.youtube.com/embed/cv74E_j3Who",
+  repoUrl: "https://github.com/aliiqbal24/ZecAgent",
+  docsUrl:
+    "https://github.com/aliiqbal24/ZecAgent/blob/main/QUICKSTART.md",
+},
 ];
 
 const faqItems = [
