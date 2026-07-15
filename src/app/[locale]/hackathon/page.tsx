@@ -917,11 +917,10 @@ const Hackathon = ({
           <p className="-mt-2 mb-3 max-w-3xl text-slate-600 dark:text-slate-400">
             Explore all {submissions.length} projects submitted to the 2026
             ZecHub Hackathon. Select any project to reveal its description,
-            video, demo, and source code.
+            video, demo site, and source code.
           </p>
           <p className="mb-6 text-sm font-medium text-sky-700 dark:text-sky-400">
-            One project can be open at a time. All project cards remain the same
-            size for easier browsing.
+            One project can be opened at a time. 
           </p>
 
           {selectedSubmission ? (
