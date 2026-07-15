@@ -345,7 +345,7 @@ const submissions: Submission[] = [
   },
   {
     title: "Gleyo",
-    creator: "Gilmorre",
+    creator: "Gilmore",
     track: "Infrastructure",
     description:
       "Gleyo is a Zcash-native quest and community growth platform. Projects can fund a community wallet in ZEC, publish quests, reward contributors directly with shielded ZEC, run community chat, and measure retention from one platform. Quest tasks can include GitHub, Discord, Telegram, YouTube, quizzes, polls, puzzles, and file uploads. Deposits, quest publishing, rewards, and shielded withdrawals are operating end-to-end using real Zcash mainnet transactions through a self-hosted Zebra node and Nozy Wallet.",
@@ -363,6 +363,84 @@ const submissions: Submission[] = [
       "https://www.youtube.com/embed/ynirewTAHeA?start=40",
     demoUrl: "https://auth.zcash.me/demo",
     repoUrl: "https://github.com/zcashme/zns-login",
+  },
+    {
+    title: "ZecSafe",
+    creator: "cyberrockng",
+    track: "FROST",
+    description:
+      "ZecSafe is a recorded proof of concept for FROST-authorized Zcash custody. It demonstrates a threshold-signing session and publishes artifact fingerprints that can be used to verify how a transaction was authorized. The resulting spend is validated by Zcash as a normal transaction because the blockchain does not expose a special FROST marker. ZecSafe is experimental demonstration software and should not be treated as production custody infrastructure.",
+    videoEmbedUrl: "https://www.youtube.com/embed/B16fPtEGfnY",
+    demoUrl: "https://zecsafe.vercel.app/",
+    repoUrl: "https://github.com/cyberrockng/zecsafe",
+  },
+  {
+    title: "Konclave",
+    creator: "deegalabs",
+    track: "FROST",
+    description:
+      "Konclave provides browser-based FROST threshold vaults for Zcash treasurers. Teams can coordinate quorum-approved payments and private payroll without ever reconstructing the complete signing key. Its multi-device distributed key generation and FROST signing flows run in the browser through a blind relay. Konclave has demonstrated a real 2-of-3 threshold-authorized transaction on Zcash mainnet.",
+    demoUrl: "https://konclave-demo.vercel.app/",
+    repoUrl: "https://github.com/deegalabs/konclave",
+  },
+  {
+    title: "Zink",
+    creator: "KaranSinghBisht",
+    track: "Accounting",
+    description:
+      "Zink is a non-custodial, Stripe-style payment-link platform for shielded ZEC. Merchants configure a Unified Full Viewing Key rather than a spending key, and every invoice receives a fresh Orchard-only diversified address. This prevents customers from linking an invoice to the merchant's balance, payment history, or other customers while allowing the merchant to monitor incoming payments.",
+    videoEmbedUrl: "https://www.youtube.com/embed/DI69ZiJnaUA",
+    repoUrl: "https://github.com/KaranSinghBisht/zink",
+  },
+  {
+    title: "ZecVault",
+    creator: "Ridwannurudeen",
+    track: "FROST",
+    description:
+      "ZecVault is a private 2-of-3 shielded escrow protocol for Zcash. A buyer, seller, and neutral arbiter each hold one FROST share controlling a single Orchard address, and any two participants can authorize settlement. On-chain, the resulting payment appears as an ordinary shielded transaction and does not reveal the escrow arrangement, participants, policy, or dispute outcome.",
+    videoEmbedUrl: "https://www.youtube.com/embed/elSUBGYcma8",
+    repoUrl: "https://github.com/Ridwannurudeen/zecvault",
+  },
+  {
+    title: "zk.poker",
+    creator: "rotkonetworks",
+    track: "Games",
+    description:
+      "zk.poker is an end-to-end encrypted peer-to-peer poker implementation using a mental-poker shuffle and 2-of-3 FROST escrow. It supports the complete game loop, including dealing, betting, the flop, showdown, pot settlement, and repeated hands. Games can run through an encrypted blind relay so the server sees only ciphertext and players do not expose their IP addresses to one another. Player actions are signed with Ed25519 to support future automated dispute resolution.",
+    videoEmbedUrl: "https://www.youtube.com/embed/xwmEUOXYE24",
+    repoUrl: "https://github.com/rotkonetworks/zeratul/tree/master/crates",
+  },
+  {
+    title: "Turnstile",
+    creator: "Drey.eth",
+    track: "Infrastructure",
+    description:
+      "Turnstile is an Ironwood migration-readiness companion for Zcash users and ecosystem services. Users can paste a Unified Full Viewing Key to receive a wallet-specific breakdown of visible pool balances and a migration verdict without providing a spending key. Viewing keys are first decoded locally in WebAssembly, and pools that cannot be inspected are clearly marked as unavailable rather than incorrectly reported as zero. Turnstile also includes a live activation countdown, wallet migration guides, shielded-memo alert subscriptions, shielded-pool charts, an ecosystem readiness board, an embeddable countdown widget, and a local command-line checker.",
+    videoEmbedUrl: "https://www.youtube.com/embed/Vp7gKDIvjts",
+    demoUrl: "https://turnstile-xi.vercel.app/",
+    repoUrl:
+      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/Turnstile",
+  },
+  {
+    title: "Bluff Arena",
+    creator: "Kunwar Anirudhsingh",
+    track: "Games",
+    description:
+      "Bluff Arena is a multiplayer bluffing card game built around a real ZEC staking pool on Zcash testnet. Players place cards face-down, declare a rank, and may challenge opponents by calling their bluff. The project is progressing toward requiring a ZEC stake for every game and using FROST threshold signatures so that no single participant or service controls the staking keys.",
+    videoEmbedUrl: "https://www.youtube.com/embed/eZvhazCkFfY",
+    repoUrl:
+      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/bluffgame",
+  },
+  {
+    title: "ZClash",
+    creator: "jerydam",
+    track: "Games",
+    description:
+      "ZClash is a 1v1 quiz game where two players stake ZEC and compete across three rounds of AI-generated questions on a chosen topic. Both players fund a shared Zcash escrow address before the match, and the winner receives the full prize pool automatically. The project aims to provide competitive ZEC-based gameplay without a middleman or platform fee.",
+    videoEmbedUrl:
+      "https://www.loom.com/share/55b9ec7ef835498cbf35aff7f8760324",
+    demoUrl: "https://zclash.vercel.app/",
+    repoUrl: "https://github.com/jerydam/Zclash",
   },
 ];
 
