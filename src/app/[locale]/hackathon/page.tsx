@@ -272,6 +272,105 @@ const submissions: Submission[] = [
     demoUrl: "https://zecbooks.vercel.app/",
     repoUrl: "https://github.com/AustinChris1/ZBooks-SIWZ",
   },
+  {
+    title: "Glasspane Rooms",
+    creator: "dolepee",
+    track: "Accounting",
+    description:
+      "Glasspane Rooms enables selective transparency for shielded Zcash payouts. A treasury can prove chosen recipients, amounts, memos, and totals without sharing a viewing key or exposing unrelated activity. Each selected payout discloses a single Out Cipher Key that reveals only that payment. The prototype has been verified on Zcash mainnet using two real Orchard payouts and rejects tampered receipts.",
+    videoEmbedUrl: "https://www.youtube.com/embed/am9CfcHKQSQ",
+    demoUrl: "https://glasspane-iota.vercel.app",
+    repoUrl: "https://github.com/dolepee/glasspane",
+  },
+  {
+    title: "ZecGuard",
+    creator: "Lexiie",
+    track: "Infrastructure",
+    description:
+      "ZecGuard is a local-first recovery-readiness prototype for Zcash. It explores how users can prepare and coordinate wallet recovery without exposing sensitive recovery material to a hosted service. The demonstration uses Zcash testnet framing and dummy recovery data for safety, while the protocol is intended to support shielded memo coordination on Zcash mainnet.",
+    videoUrl:
+      "https://cdn.jsdelivr.net/gh/Lexiie/ZecGuard@main/assets/demo.mp4",
+    videoType: "video/mp4",
+    repoUrl: "https://github.com/Lexiie/ZecGuard",
+    docsUrl:
+      "https://github.com/Lexiie/ZecGuard/blob/main/HACKATHON_SUBMISSION.md",
+  },
+  {
+    title: "Paypunk",
+    creator: "blockhackersio",
+    track: "Infrastructure",
+    description:
+      "Paypunk is a multi-process, privacy-first wallet framework written in Rust. It separates key management from wallet logic so keys can remain in a dedicated daemon or on an air-gapped device, with signing requests transferred through QR codes. Its protocol abstractions currently support Zcash Orchard and Ethereum, while the same backend powers a CLI, terminal interface, WebSocket bridge, and Tauri mobile signer. Paypunk supports shielded Zcash transactions across regtest, testnet, and mainnet, encrypted wallet storage, wallet restoration, air-gapped signing, and authenticated encrypted IPC. It is alpha software and is not intended for use with real funds.",
+    videoEmbedUrl: "https://www.youtube.com/embed/BTWRUIATk10",
+    repoUrl: "https://github.com/blockhackersio/paypunk",
+    docsUrl: "https://blockhackersio.github.io/paypunk",
+    quickstartUrl:
+      "https://github.com/blockhackersio/paypunk/blob/master/QUICKSTART.md",
+  },
+  {
+    title: "CYZE",
+    creator: "USCMig",
+    track: "FROST",
+    description:
+      "CYZE, Coordinate Your Zcash Easily, is a FROST-enabled coordination tool and wallet for teams and groups. Users create a distributed key generation group, choose a signing threshold, and collectively manage an Orchard wallet. Approved participants can coordinate threshold-authorized Orchard transactions on Zcash mainnet without any single participant holding complete signing authority.",
+    videoEmbedUrl: "https://www.youtube.com/embed/yrWCumgBuNU",
+    repoUrl: "https://github.com/USCMig/Cyze",
+    releaseUrl:
+      "https://github.com/USCMig/Cyze/releases/tag/v0.1.0-rc.14",
+  },
+  {
+    title: "Pendrake Watch",
+    creator: "Dorian",
+    track: "Accounting",
+    description:
+      "Pendrake Watch is a watch-only Zcash desktop wallet for Linux, macOS, and Windows. Users import a Unified Full Viewing Key, after which a background daemon keeps the wallet synchronized and sends desktop notifications when new transactions are detected, even when the main window is closed. It displays transaction history, memos, current balances, and a historical balance chart with USD values. Wallet files are encrypted behind a passphrase, and the application never stores spending keys.",
+    videoEmbedUrl: "https://www.youtube.com/embed/Hk5awvFrZuI",
+    repoUrl: "https://github.com/auzum197/pendrake-watch",
+    releaseUrl:
+      "https://github.com/auzum197/pendrake-watch/releases/tag/v0.0.1",
+  },
+  {
+    title: "ZHAC",
+    creator: "te-mpe-st",
+    track: "Zcash Login",
+    description:
+      "ZHAC, a recursive acronym for ZHAC Has Awesome Cryptography, is a GPG-like cryptographic toolsuite built with modern Zcash primitives. It combines authentication challenges with FROST-based functionality, providing tools for proving control of cryptographic identities and coordinating threshold-authorized operations.",
+    videoEmbedUrl: "https://www.youtube.com/embed/YjsQbOMRvsI",
+    repoUrl: "https://github.com/te-mpe-st/zhac",
+  },
+  {
+    title: "ZBounty",
+    creator: "Jay-cey",
+    track: "Accounting",
+    description:
+      "ZBounty is a privacy-focused bounty platform for individuals and open-source communities. Users can publish tasks and reward contributors through fully shielded Zcash z-to-z transactions. The platform uses Zingo CLI and lightwalletd for real-time mainnet synchronization and includes a gamified Privacy Score that highlights how effectively each bounty flow uses Zcash privacy.",
+    videoEmbedUrl: "https://www.youtube.com/embed/E-yto4ZM668",
+    demoUrl: "https://zbounty.onrender.com/",
+    repoUrl:
+      "https://github.com/Jay-cey/zechub/tree/hackathon-submission/Hackathon/2026/ZBounty",
+    prUrl: "https://github.com/ZecHub/zechub/pull/1844",
+  },
+  {
+    title: "Gleyo",
+    creator: "Gilmorre",
+    track: "Infrastructure",
+    description:
+      "Gleyo is a Zcash-native quest and community growth platform. Projects can fund a community wallet in ZEC, publish quests, reward contributors directly with shielded ZEC, run community chat, and measure retention from one platform. Quest tasks can include GitHub, Discord, Telegram, YouTube, quizzes, polls, puzzles, and file uploads. Deposits, quest publishing, rewards, and shielded withdrawals are operating end-to-end using real Zcash mainnet transactions through a self-hosted Zebra node and Nozy Wallet.",
+    videoEmbedUrl: "https://www.youtube.com/embed/Har9yk9Ep04",
+    demoUrl: "https://gleyo.app/",
+    repoUrl: "https://github.com/gilmorre/gleyo-Zechub-",
+  },
+  {
+    title: "Authentication with ZcashMe",
+    creator: "ZcashMe",
+    track: "Zcash Login",
+    description:
+      "Authentication with ZcashMe provides one-time-password-based Zcash login through a fully OIDC-compatible authentication flow. It can be integrated with OIDC providers such as Clerk, Better Auth, and NextAuth, allowing applications to add Zcash-native sign-in without building a custom identity system. The ZcashMe team also plans to integrate the login flow with PGPZ.",
+    videoEmbedUrl:
+      "https://www.youtube.com/embed/ynirewTAHeA?start=40",
+    demoUrl: "https://auth.zcash.me/demo",
+    repoUrl: "https://github.com/zcashme/zns-login",
+  },
 ];
 
 const faqItems = [
