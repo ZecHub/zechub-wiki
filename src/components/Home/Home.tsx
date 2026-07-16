@@ -154,10 +154,6 @@ const Home = ({ text }: HomeProps) => {
 
   return (
     <main className="flex flex-col">
-      {showHackathon && (
-        <HackathonBanner onDismiss={() => setShowHackathon(false)} />
-      )}
-
       <section id="hero" className="bg-slate-100 my-24">
         <FadeInAnimation>
           <Hero />

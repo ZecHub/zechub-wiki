@@ -11,27 +11,7 @@ const ContentSections = () => {
   return (
     <section className="flex space-y-24 flex-col w-full ">
       <InfoCard
-        id="hackathon"
-        title={t.home?.sections?.hackathon?.title || "Join the Hackathon"}
-        description={
-          t.home?.sections?.hackathon?.description ||
-          "Build, collaborate, and ship impactful ideas with the Zcash community. Compete across five innovative tracks: Infrastructure for nodes and indexers, Games for interactive experiences, FROST for threshold signing, Zcash Login for authentication solutions, and Accounting for financial workflows. May 25 - July 15, 2026. 25 ZEC prize pool awaits."
-        }
-        image="/hackathon_new.png"
-        imageLight="/explore/dark/Hackathon_b.png"
-        imageDark="/explore/light/Hackathon_w.png"
-        links={[
-          {
-            href: "/hackathon",
-            label:
-              t.home?.sections?.hackathon?.mainLink || "Join the Hackathon",
-            primary: true,
-          },
-        ]}
-      />
-      <InfoCard
         id="what-is-zcash"
-        reverse={true}
         title={t.home?.sections?.whatIsZcash?.title || "What is Zcash?"}
         description={
           t.home?.sections?.whatIsZcash?.description ||
@@ -57,6 +37,7 @@ const ContentSections = () => {
       {/* Hackathon Section */}
       <InfoCard
         id="zcashme"
+        reverse={true}
         title={t.home?.sections?.zcashMe?.title || "Zcash.me"}
         description={
           t.home?.sections?.zcashMe?.description ||
@@ -76,7 +57,6 @@ const ContentSections = () => {
       {/* Global Ambassadors Section */}
       <InfoCard
         id="global-ambassadors"
-        reverse={true}
         title={
           t.home?.sections?.globalAmbassadors?.title ||
           "Zcash Global Ambassadors"
@@ -101,6 +81,7 @@ const ContentSections = () => {
       {/* Shielded Newsletter Section */}
       <InfoCard
         id="shielded-newsletter"
+        reverse={true}
         title={t.home?.sections?.newsletter?.title || "Shielded Newsletter"}
         description={
           t.home?.sections?.newsletter?.description ||
@@ -121,7 +102,6 @@ const ContentSections = () => {
       {/* Free2Z Section */}
       <InfoCard
         id="Free2Z"
-        reverse={true}
         title={t.home?.sections?.free2z?.title || "Free2Z"}
         description={
           t.home?.sections?.free2z?.description ||
@@ -142,6 +122,7 @@ const ContentSections = () => {
       {/* Pay with Zcash Section */}
       <InfoCard
         id="pay-with-zcash"
+        reverse={true}
         title={t.home?.sections?.payWithZcash?.title || "Pay with Zcash"}
         description={
           t.home?.sections?.payWithZcash?.description ||
@@ -159,6 +140,25 @@ const ContentSections = () => {
           {
             href: "https://zechub.wiki/map",
             label: t.home?.sections?.payWithZcash?.mapLink || "Flexa",
+          },
+        ]}
+      />
+      <InfoCard
+        id="hackathon"
+        title={t.home?.sections?.hackathon?.title || "Join the Hackathon"}
+        description={
+          t.home?.sections?.hackathon?.description ||
+          "Build, collaborate, and ship impactful ideas with the Zcash community. Compete across five innovative tracks: Infrastructure for nodes and indexers, Games for interactive experiences, FROST for threshold signing, Zcash Login for authentication solutions, and Accounting for financial workflows. May 25 - July 15, 2026. 25 ZEC prize pool awaits."
+        }
+        image="/hackathon_new.png"
+        imageLight="/explore/dark/Hackathon_b.png"
+        imageDark="/explore/light/Hackathon_w.png"
+        links={[
+          {
+            href: "/hackathon",
+            label:
+              t.home?.sections?.hackathon?.mainLink || "Join the Hackathon",
+            primary: true,
           },
         ]}
       />
