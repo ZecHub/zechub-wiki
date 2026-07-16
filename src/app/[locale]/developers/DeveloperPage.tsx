@@ -683,6 +683,49 @@ export default function DeveloperPage() {
                     mobile development.
                   </p>
                 </li>
+                <li>
+                  <a
+                    href="https://github.com/zakura-core/zakura"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zakura
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Open-source Zcash wallet built with modern technologies, serving as a
+                    reference implementation for developers building privacy-focused
+                    applications.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/gustavovalverde/zinder"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Zinder
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Open-source Zcash messaging and wallet application demonstrating private
+                    payments and messaging capabilities for developers.
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/gustavovalverde/zpay"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    ZPay
+                  </a>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-1 mb-2">
+                    Open-source Zcash payment application that showcases how to integrate ZEC
+                    payments into wallets and merchant applications.
+                  </p>
+                </li>
               </ul>
             </div>
           </div>
