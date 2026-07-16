@@ -38,6 +38,22 @@ export const blockchainExplorers = [
     url: 'https://zexplorer.app/testnet/',
     thumbnailImage: '/explorer/zexplorer.png',
     },
+    {
+    title: 'Zecstats',
+    description:
+      'A blockchain analytics platform for Zcash that provides real-time network statistics, privacy analytics, market insights, and interactive data visualization.',
+    features: ['Real-Time Zcash Network Dashboard', 'Advanced On-Chain Analytics', 'Privacy & Shielded Pool Analytics', 'Market & Price Analysis', 'Mining & Network Security Monitoring', 'Interactive Data Visualization', 'Ecosystem & Liquidity Tracking', 'Network Comparison & Growth Analysis'],
+    url: 'https://zecstats.com/',
+    thumbnailImage: '/explorer/zecstats.jpg',
+  },
+  {
+    title: 'Zecsite',
+    description:
+      'A lightweight static website generator designed for the Zcash ecosystem, enabling users to create, publish, and manage decentralized-friendly websites using a simple Java-based architecture.',
+    features: ['Java-Based Static Website Generation', 'Zcash Community News Platform', 'Static Site Architecture', 'Pip-Boy Inspired User Interface', 'Blockchain-Focused Content Organization', 'Lightweight and Efficient Deployment', 'Customizable Website Templates', 'Privacy-Oriented Web Publishing', 'Developer-Friendly Workflow'],
+    url: 'https://zecsite.org/pipboy/en/index.html',
+    thumbnailImage: '/explorer/zecsite.png',
+  },
   {
     title: 'MESSARI',
     description:
@@ -100,19 +116,5 @@ export const blockchainExplorers = [
     features: ['Shielded transactions', 'viewing keys support', 'Orchard & Sapling pools', 'network statistics'],
     url: 'https://www.zypherscan.com/',
     thumbnailImage: '/explorer/Zypherscan.png',
-  },
-  {
-    title: 'Zecstats',
-    description:
-      'A blockchain analytics platform for Zcash that provides real-time network statistics, privacy analytics, market insights, and interactive data visualization.',
-    features: ['Real-Time Zcash Network Dashboard', 'Advanced On-Chain Analytics', 'Privacy & Shielded Pool Analytics', 'Market & Price Analysis', 'Mining & Network Security Monitoring', 'Interactive Data Visualization', 'Ecosystem & Liquidity Tracking', 'Network Comparison & Growth Analysis'],
-    url: 'https://zecstats.com/',
-  },
-  {
-    title: 'Zecsite',
-    description:
-      'A lightweight static website generator designed for the Zcash ecosystem, enabling users to create, publish, and manage decentralized-friendly websites using a simple Java-based architecture.',
-    features: ['Java-Based Static Website Generation', 'Zcash Community News Platform', 'Static Site Architecture', 'Pip-Boy Inspired User Interface', 'Blockchain-Focused Content Organization', 'Lightweight and Efficient Deployment', 'Customizable Website Templates', 'Privacy-Oriented Web Publishing', 'Developer-Friendly Workflow'],
-    url: 'https://zecsite.org/pipboy/en/index.html',
   },
 ];
