@@ -895,5 +895,44 @@
         "watchers": 1
       }
     ]
+  },
+  {
+    "date": "2026-07-17",
+    "generated_at": "2026-07-17T15:41:32.820486523+00:00",
+    "projects": [
+      {
+        "closed_issues": 504,
+        "forks": 215,
+        "last_updated": "2026-07-15T23:57:17Z",
+        "merged_pull_requests": 988,
+        "name": "zechub",
+        "open_issues": 11,
+        "open_pull_requests": 11,
+        "stars": 57,
+        "watchers": 57
+      },
+      {
+        "closed_issues": 7,
+        "forks": 75,
+        "last_updated": "2026-07-16T21:20:31Z",
+        "merged_pull_requests": 555,
+        "name": "zechub-wiki",
+        "open_issues": 5,
+        "open_pull_requests": 5,
+        "stars": 13,
+        "watchers": 13
+      },
+      {
+        "closed_issues": 0,
+        "forks": 3,
+        "last_updated": "2026-07-14T16:08:53Z",
+        "merged_pull_requests": 18,
+        "name": "Namada",
+        "open_issues": 1,
+        "open_pull_requests": 1,
+        "stars": 1,
+        "watchers": 1
+      }
+    ]
   }
 ]
