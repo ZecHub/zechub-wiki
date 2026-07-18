@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 164,
+    "proposal_count": 166,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6723,9 +6723,9 @@
           "msgs": [],
           "title": "Pesa Ya Siri - Bringing Private Digital Cash to Everyday Conversations in Tanzania (East Africa)",
           "votes": {
-            "no": "4",
+            "no": "6",
             "yes": "0",
-            "abstain": "1"
+            "abstain": "2"
           },
           "status": "open",
           "proposer": "juno1nxpw7j9w5cy5hr5yw7sux7czdev6qe6yehnwzj",
@@ -6759,7 +6759,7 @@
           "title": "Zcash Merchant Adoption Pilot – Nairobi",
           "votes": {
             "no": "0",
-            "yes": "0",
+            "yes": "2",
             "abstain": "0"
           },
           "status": "open",
@@ -6784,6 +6784,76 @@
           "min_voting_period": null
         },
         "createdAt": "2026-07-17T12:12:24.437Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 165,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash Merchant Adoption Pilot – Nairobi",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1784754248383198928"
+          },
+          "description": "* Officially launch participating merchants as Zcash-enabled businesses.\n* Install \"ZCASH ACCEPTED HERE\" signage/sticker at participating locations.\n* Organize live demonstration purchases.\n* Promote participating merchants through Zcash East Africa communication channels.\n* Highlight participating businesses across social media.\n* Offer limited first-customer incentives funded through a dedicated ZEC demonstration float.\n* Capture photo and video documentation throughout the campaign.\n\n---\n\n# Deliverables\n\nAt the completion of the pilot, the following deliverables will be provided:\n\n### Merchant Adoption\n\n* 11 merchants successfully onboarded.\n* ZEC payment capability deployed at all participating businesses.\n* Merchant payment QR codes generated and operational.\n\n### Education\n\n* Merchant onboarding guide.\n* Staff training completed for every participating business.\n* Quick-reference payment guides installed at merchant locations.\n\n### Adoption Metrics\n\n* Minimum of 20 completed real-world ZEC transactions during the pilot.\n* Merchant feedback collected through structured interviews.\n* Customer engagement statistics where applicable.\n\n### Documentation\n\n* High-quality photo and video documentation.\n* Social media content highlighting participating merchants.\n* Case studies featuring merchant experiences.\n\n### Final Report\n\nA comprehensive report including:\n\n* Merchant onboarding process.\n* Number of participating businesses.\n* Transaction metrics.\n* Merchant testimonials.\n* Challenges encountered.\n* Lessons learned.\n* Recommendations for scaling the initiative to 50+ merchants across East Africa.\n\n---\n\n# Success Metrics\n\nSuccess will be evaluated using measurable outcomes, including:\n\n* 11 merchants actively accepting ZEC.\n* 100% of participating staff trained.\n* At least 20 completed ZEC transactions.\n* Merchant satisfaction and willingness to continue accepting ZEC.\n* Community engagement generated through promotional content.\n* Documentation published for ecosystem reuse.\n\n---\n# Budget And Compensation\n\n| **Item** | **Cost** |\n|:---|:-----|\n| SIGNAGE design and printing | $200 |\n| Staff training |$250 |\n| Transport and logistics | $150 |\n| Zec Demo Transaction with Customers | $150\n| Promotional Video( pay with Zec) | $100\n| Contingency | $150\n| Team Compensation | $400 |\n| **TOTAL** | **$1400**\n\n\n\n\n---\n\n# Reporting\n\nProgress updates will be shared every two weeks on the Forum and with the Zechub community.\n\nReports will include:\n\n* Merchant outreach progress.\n* Businesses onboarded.\n* Training activities completed.\n* Transaction statistics.\n* Photos and media updates.\n* Challenges and mitigation strategies.\n\n\nA final report will summarize all outcomes, supporting evidence, financial accountability, and recommendations for future expansion.\n\n---\n\n# Expected Impact\n\nThis pilot is intended to serve as more than a one-time merchant campaign. By creating the first visible cluster of Zcash-enabled businesses in East Africa, it will demonstrate that privacy-preserving digital payments can function in everyday commercial environments.\n\nThe project will establish a repeatable framework for merchant outreach, onboarding, training, and activation that other Zcash communities can adapt in their own regions. The insights, documentation, and lessons learned from Nairobi will provide a practical foundation for expanding merchant adoption across Africa while increasing opportunities for real-world ZEC usage.",
+          "total_power": "23",
+          "start_height": 39899040,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-07-17T21:04:08.383Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 166,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash Merchant Adoption Pilot – Nairobi",
+          "votes": {
+            "no": "0",
+            "yes": "1",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1784754603427615430"
+          },
+          "description": "## Summary\n\nThe Zcash Merchant Adoption Pilot is a two-month initiative designed to establish the first visible network of Zcash-accepting merchants in Nairobi, Kenya. The project will onboard at least 11 businesses to accept ZEC as an optional payment method while documenting a repeatable merchant onboarding framework that can be replicated across East Africa.\n\nBeyond onboarding merchants, the initiative aims to demonstrate the practical use of Zcash for everyday commerce, educate businesses about privacy-preserving digital payments, and create real-world examples of ZEC being used for retail transactions.\n\nAt the conclusion of the pilot, the community will receive a comprehensive report detailing adoption metrics, merchant feedback, transaction data, lessons learned, and recommendations for scaling the program to additional cities across Africa.\n\n---\n\n# Motivation\n\nAlthough Zcash has world-class privacy technology, opportunities to spend ZEC in everyday commerce remain limited, particularly across Africa.\n\nEast Africa has one of the fastest-growing digital payment ecosystems in the world. According to Ken Research, Over 91% of Kenyan adults actively use digital financial services. As the country's economic and tech hub, Nairobi records an even higher adoption rate, with 95% to 98% of urban residents using digital payments such as M-Pesa, bank mobile apps, and digital wallets for daily transactions.\n\n However, merchant adoption of cryptocurrency payments continues to focus primarily on Bitcoin and stablecoins, leaving privacy-preserving payment options largely unexplored.\n\nNairobi is an ideal location to pilot a merchant adoption program because of its thriving technology ecosystem, growing number of crypto-friendly businesses, and active blockchain community.\n\nRather than focusing solely on awareness, this initiative seeks to create measurable merchant adoption by enabling businesses to begin accepting ZEC in real commercial settings.\n\n---\n\n# Objectives\n\nThe primary objectives of this initiative are to:\n\n* Onboard 11 Nairobi businesses to accept ZEC as an optional payment method.\n* Create the first recognizable cluster of Zcash-enabled merchants in East Africa.\n* Train merchant owners and staff on accepting and managing ZEC payments.\n* Generate real-world ZEC transactions within participating businesses.\n* Produce documentation and educational resources for future merchant onboarding efforts.\n* Develop a scalable merchant adoption playbook that can be replicated in other African cities.\n\n---\n\n# Scope of Work\n\n## Phase 1 – Merchant Outreach & Recruitment (Weeks 1–3)\n\nThe first phase focuses on identifying and engaging suitable businesses for participation.\n\nPriority will be given to independently owned businesses, as they typically have shorter decision-making processes than franchise or corporate chains requiring head-office approval.\n\nActivities include:\n\n* Identify and qualify prospective merchants.\n* Conduct in-person meetings with business owners and decision-makers.\n* Present the value proposition of accepting ZEC.\n* Address questions relating to privacy, settlement, customer experience, and business operations.\n* Provide a one-page merchant information guide covering:\n\n  * How ZEC payments work.\n  * Wallet setup.\n  * Settlement options.\n  * Customer-controlled privacy.\n* Secure written participation commitments from a minimum of 11 merchants.\n\n---\n\n## Phase 2 – Merchant Onboarding & Training (Weeks 3–6)\n\nOnce merchants have committed to the program, participating businesses will be onboarded into the Zcash ecosystem.\n\nActivities include:\n\n* Install and configure the ZODL Wallet for each merchant.\n* Create payment QR codes for in-store transactions.\n* Conduct test transactions to verify payment flows.\n* Train cashiers and managers on:\n\n  * Receiving payments.\n  * Confirming transactions.\n  * Basic wallet management.\n  * Customer support for ZEC payments.\n* Provide printed quick-reference guides at each point of sale.\n\n---\n\n## Phase 3 – Public Launch & Community Activation (Weeks 6–8)\n\nThe final phase focuses on driving customer awareness and encouraging real-world usage.\n\nActivities include:\n* Officially launch participating merchants as Zcash-enabled businesses.\n* Install \"ZCASH ACCEPTED HERE\" signage/sticker at participating locations.\n* Organize live demonstration purchases.\n* Promote participating merchants through Zcash East Africa communication channels.\n* Highlight participating businesses across social media.\n* Offer limited first-customer incentives funded through a dedicated ZEC demonstration float.\n* Capture photo and video documentation throughout the campaign.\n\n---\n\n# Deliverables\n\nAt the completion of the pilot, the following deliverables will be provided:\n\n### Merchant Adoption\n\n* 11 merchants successfully onboarded.\n* ZEC payment capability deployed at all participating businesses.\n* Merchant payment QR codes generated and operational.\n\n### Education\n\n* Merchant onboarding guide.\n* Staff training completed for every participating business.\n* Quick-reference payment guides installed at merchant locations.\n\n### Adoption Metrics\n\n* Minimum of 20 completed real-world ZEC transactions during the pilot.\n* Merchant feedback collected through structured interviews.\n* Customer engagement statistics where applicable.\n\n### Documentation\n\n* High-quality photo and video documentation.\n* Social media content highlighting participating merchants.\n* Case studies featuring merchant experiences.\n\n### Final Report\n\nA comprehensive report including:\n\n* Merchant onboarding process.\n* Number of participating businesses.\n* Transaction metrics.\n* Merchant testimonials.\n* Challenges encountered.\n* Lessons learned.\n* Recommendations for scaling the initiative to 50+ merchants across East Africa.\n\n---\n\n# Success Metrics\n\nSuccess will be evaluated using measurable outcomes, including:\n\n* 11 merchants actively accepting ZEC.\n* 100% of participating staff trained.\n* At least 20 completed ZEC transactions.\n* Merchant satisfaction and willingness to continue accepting ZEC.\n* Community engagement generated through promotional content.\n* Documentation published for ecosystem reuse.\n\n---\n# Budget And Compensation\n\n| Item | Cost |\n|:---|:-----|\n| SIGNAGE design and printing | $200 |\n| Staff training |$250 |\n| Transport and logistics | $150 |\n| Zec Demo Transaction with Customers | $150\n| Promotional Video( pay with Zec) | $100\n| Contingency | $150\n| Team Compensation | $400 |\n| TOTAL | $1400\n\n\n\n\n---\n\n# Reporting\n\nProgress updates will be shared every two weeks with the Zechub community.\n\nReports will include:\n\n* Merchant outreach progress.\n* Businesses onboarded.\n* Training activities completed.\n* Transaction statistics.\n* Photos and media updates.\n* Challenges and mitigation strategies.\n\nA final report will summarize all outcomes, supporting evidence, financial accountability, and recommendations for future expansion.\n\n---\n\n# Expected Impact\n\nThis pilot is intended to serve as more than a one-time merchant campaign. By creating the first visible cluster of Zcash-enabled businesses in East Africa, it will demonstrate that privacy-preserving digital payments can function in everyday commercial environments.\n\nThe project will establish a repeatable framework for merchant outreach, onboarding, training, and activation that other Zcash communities can adapt in their own regions. The insights, documentation, and lessons learned from Nairobi will provide a practical foundation for expanding merchant adoption across Africa while increasing opportunities for real-world ZEC usage.",
+          "total_power": "23",
+          "start_height": 39899169,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-07-17T21:10:03.427Z"
       }
     ]
   },
