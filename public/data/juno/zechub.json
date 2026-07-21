@@ -6758,7 +6758,7 @@
           "msgs": [],
           "title": "Zcash Merchant Adoption Pilot – Nairobi",
           "votes": {
-            "no": "0",
+            "no": "1",
             "yes": "2",
             "abstain": "1"
           },
@@ -6793,7 +6793,7 @@
           "msgs": [],
           "title": "Zcash Merchant Adoption Pilot – Nairobi",
           "votes": {
-            "no": "0",
+            "no": "1",
             "yes": "1",
             "abstain": "1"
           },
@@ -6828,9 +6828,9 @@
           "msgs": [],
           "title": "Zcash Merchant Adoption Pilot – Nairobi",
           "votes": {
-            "no": "0",
+            "no": "1",
             "yes": "5",
-            "abstain": "1"
+            "abstain": "2"
           },
           "status": "open",
           "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
