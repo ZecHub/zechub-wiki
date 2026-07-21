@@ -216,7 +216,10 @@ const iconsForMenu: IconsFor = {
     "Solswap": Swap,
     "Encifher Swaps": Swap,
     "Creators and Tips": Jar,
-    "Testnet": Testnet
+    "Testnet": Testnet,
+    "Zallet Quick Reference Guide": Guide,   
+    "Zcash Mining Pools": Mining,           
+    "Zimppy": PointOfSale,
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,

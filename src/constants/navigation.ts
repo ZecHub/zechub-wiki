@@ -140,6 +140,10 @@ export const navigations: Array<NavigationItem> = [
         name: "Recovering Funds",
         path: "/using-zcash/recovering-funds",
       },
+      {
+	name: "Zallet Quick Reference Guide",
+        path: "/using-zcash/zallet-quick-reference-guide",
+      }
     ],
   },
   {
