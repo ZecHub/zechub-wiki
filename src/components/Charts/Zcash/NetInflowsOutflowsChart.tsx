@@ -112,7 +112,11 @@ export default function NetInflowsOutflowsChart(
                 ? "Net Orchard Flow"
                 : name,
             ]}
-            labelFormatter={(label) => dateFns.format(new Date(label), "PPP")}
+            labelFormatter={(label) => {
+		  if (label == null) return "";
+		  return dateFns.format(new Date(label as string | number | Date), "PPP");
+		}}
+            
             contentStyle={{
               backgroundColor: "#fff",
               border: "1px solid #e5e7eb",
