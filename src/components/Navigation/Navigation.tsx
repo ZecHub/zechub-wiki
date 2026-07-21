@@ -11,7 +11,6 @@ import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
 import SocialIcons from "../UI/SocialIcons";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
-
 import { matchIcons } from "@/constants/Icons";
 import {
   ChevronDown,
@@ -25,20 +24,16 @@ import {
 import { Button } from "../UI/button";
 import { Icon } from "../UI/Icon";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
-
 import { DarkModeContext } from "@/context/DarkModeContext";
 import Image from "next/image";
 import { Trophy, LayoutDashboard } from "lucide-react";
 import { useTheme } from "next-themes";
-
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
-
 // Locale-aware internal link wrapper. Internal routes go through next-intl's
 // Link so hrefs auto-prefix to the active locale (e.g. /dashboard -> /it/dashboard
 // on /it/...). Absolute http(s) URLs are external and must NOT be prefixed, so
 // they render as a plain anchor (defaulting to a new tab).
 type LinkProps = ComponentProps<typeof IntlLink>;
-
 // External = anything with a URL scheme (http:, https:, mailto:, tel:, ipfs:…)
 // or a protocol-relative "//host" URL. Internal app paths ("/foo") have no
 // leading scheme and must go through the locale-aware IntlLink. Protocol-
@@ -46,7 +41,6 @@ type LinkProps = ComponentProps<typeof IntlLink>;
 const isExternalHref = (href: unknown): href is string =>
   typeof href === "string" &&
   (/^[a-z][a-z0-9+.-]*:/i.test(href) || href.startsWith("//"));
-
 const Link = ({ href, prefetch, children, ...rest }: LinkProps) => {
   if (isExternalHref(href)) {
     const {
@@ -83,7 +77,6 @@ const Link = ({ href, prefetch, children, ...rest }: LinkProps) => {
     </IntlLink>
   );
 };
-
 // Translation helper function
 const getTranslatedLabel = (
   itemName: string,
@@ -99,7 +92,6 @@ const getTranslatedLabel = (
     Contribute: t.navigation?.contribute || "Contribute",
     Visualizer: t.navigation?.visualizer || "Visualizer",
   };
-
   const usingZcashMap: Record<string, string> = {
     "Use Cases": t.navigation?.usingZcash?.useCases || "Use Cases",
     "Buying ZEC": t.navigation?.usingZcash?.buyingZec || "Buying ZEC",
@@ -129,7 +121,6 @@ const getTranslatedLabel = (
     Testnet: t.navigation?.usingZcash?.testnet || "Testnet",
     Tools: t.navigation?.usingZcash?.tools || "Tools",
   };
-
   const communityMap: Record<string, string> = {
     "Arborist Calls":
       t.navigation?.zcashCommunity?.arboristCalls || "Arborist Calls",
@@ -156,9 +147,14 @@ const getTranslatedLabel = (
     "Cypherpunk Zero NFT":
       t.navigation?.zcashCommunity?.cypherpunkZeroNFT || "Cypherpunk Zero NFT",
     "Zcon Archive": t.navigation?.zcashCommunity?.zconArchive || "Zcon Archive",
+    "Zcon Vozes Archive":
+      t.navigation?.zcashCommunity?.zconVozes || "Zcon Vozes Archive",
+    "Zcash Engineering Office Hours":
+      t.navigation?.zcashCommunity?.zcashEngineeringOfficeHours ||
+      "Zcash Engineering Office Hours",
   };
-
   const organizationsMap: Record<string, string> = {
+    ZODL: t.navigation?.organizations?.zodl || "ZODL",
     "Electric Coin Company":
       t.navigation?.organizations?.electricCoinCompany ||
       "Electric Coin Company",
@@ -171,11 +167,11 @@ const getTranslatedLabel = (
       "Financial Privacy Foundation",
     "Shielded Labs":
       t.navigation?.organizations?.shieldedLabs || "Shielded Labs",
+    Sovright: t.navigation?.organizations?.sovright || "Sovright",
     "Zingo Labs": t.navigation?.organizations?.zingoLabs || "Zingo Labs",
     Brand: t.navigation?.organizations?.brand || "Brand",
     "ZKAV Club": t.navigation?.organizations?.zkavClub || "ZKAV Club",
   };
-
   const guidesMap: Record<string, string> = {
     "Zgo Payment Processor":
       t.navigation?.guidesSubmenu?.zgoPaymentProcessor ||
@@ -242,7 +238,6 @@ const getTranslatedLabel = (
       t.navigation?.guidesSubmenu?.zeroKnowledgeVsDecoys ||
       "Zero-Knowledge vs Decoys",
   };
-
   const parentLabels: Record<string, string> = {
     "Using Zcash": t.navigation?.usingZcash?.label || "Use Zcash",
     "Use Zcash": t.navigation?.usingZcash?.label || "Use Zcash",
@@ -253,7 +248,6 @@ const getTranslatedLabel = (
     Organizations: t.navigation?.organizations?.label || "Organizations",
     Guides: t.navigation?.guides || "Guides",
   };
-
   const useCasesMap: Record<string, string> = {
     "Use Cases": t.navigation?.usingZcash?.useCases || "Use Cases",
     "Start Here":
@@ -279,9 +273,7 @@ const getTranslatedLabel = (
       t.navigation?.usingZcash?.useCasesSubmenu?.sendMoneyPrivately ||
       "Send Money Privately",
   };
-
   const searchName = linkName || itemName;
-
   return (
     // Comprehensive catch-all keyed by the English menu name (covers every
     // item in navigation.ts at any depth). Consulted first so a missing entry
@@ -297,7 +289,6 @@ const getTranslatedLabel = (
     searchName
   );
 };
-
 // ─── Flyout sub-menu item (extracted so hooks are always called at top level) ───
 const FlyoutLinkItem = ({
   link,
@@ -312,7 +303,6 @@ const FlyoutLinkItem = ({
 }) => {
   const [flyoutOpen, setFlyoutOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
   const openFlyout = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setFlyoutOpen(true);
@@ -320,9 +310,7 @@ const FlyoutLinkItem = ({
   const closeFlyout = () => {
     timerRef.current = setTimeout(() => setFlyoutOpen(false), 80);
   };
-
   const label = getTranslatedLabel(parentItem.name, link.name, t, link.label);
-
   if (!link.links || link.links.length === 0) {
     return (
       <div
@@ -347,7 +335,6 @@ const FlyoutLinkItem = ({
       </div>
     );
   }
-
   // Has nested children — render with flyout opening to the left
   return (
     <div
@@ -369,7 +356,6 @@ const FlyoutLinkItem = ({
         </span>
         <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60 rotate-180" />
       </div>
-
       {flyoutOpen && (
         <div
           className="absolute right-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
@@ -402,7 +388,6 @@ const FlyoutLinkItem = ({
     </div>
   );
 };
-
 // ─── Primary dropdown (hover) ────────────────────────────────────────────────
 const Dropdown = ({
   label,
@@ -412,7 +397,6 @@ const Dropdown = ({
   children: React.ReactNode;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div
       className="relative"
@@ -433,7 +417,6 @@ const Dropdown = ({
     </div>
   );
 };
-
 // ─── "More" menu item (for items beyond the primary nav slots) ───────────────
 const MoreMenuItem = ({
   item,
@@ -446,7 +429,6 @@ const MoreMenuItem = ({
 }) => {
   const [flyoutOpen, setFlyoutOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
   const openFlyout = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setFlyoutOpen(true);
@@ -454,9 +436,7 @@ const MoreMenuItem = ({
   const closeFlyout = () => {
     timerRef.current = setTimeout(() => setFlyoutOpen(false), 80);
   };
-
   const label = getTranslatedLabel(item.name, item.label, t, item.label);
-
   if (!item.links) {
     return (
       <Link
@@ -476,7 +456,6 @@ const MoreMenuItem = ({
       </Link>
     );
   }
-
   return (
     <div
       className="relative"
@@ -497,7 +476,6 @@ const MoreMenuItem = ({
         </span>
         <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60" />
       </div>
-
       {flyoutOpen && (
         <div
           className="absolute left-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
@@ -530,7 +508,6 @@ const MoreMenuItem = ({
     </div>
   );
 };
-
 // ─── Nav links (desktop) ──────────────────────────────────────────────────────
 const NavLinks = ({
   classes,
@@ -543,9 +520,7 @@ const NavLinks = ({
   const handleLinkClick = () => {
     closeMenu();
   };
-
   const [openIndex, setOpenIndex] = useState<null | number>(null);
-
   return (
     <div className={`flex items-center ${classes}`}>
       {/* Large screens */}
@@ -582,7 +557,6 @@ const NavLinks = ({
             </Link>
           ),
         )}
-
         {navigations.length > 4 && (
           <MoreDropdown
             items={navigations.slice(4)}
@@ -591,7 +565,6 @@ const NavLinks = ({
           />
         )}
       </div>
-
       {/* Medium screens (md–lg) */}
       <div className="hidden md:flex lg:hidden items-center space-x-12">
         {navigations.slice(0, 3).map((item, i) => (
@@ -610,7 +583,6 @@ const NavLinks = ({
             ))}
           </Dropdown>
         ))}
-
         {navigations.length > 2 && (
           <Dropdown label={t.navigation?.more || "More"}>
             <div onMouseLeave={() => setOpenIndex(null)}>
@@ -699,7 +671,6 @@ const NavLinks = ({
           </Dropdown>
         )}
       </div>
-
       {/* CTA buttons */}
       <div className="hidden md:flex items-center gap-3 ml-7 pl-7 border-l border-slate-400 dark:border-slate-600">
         <Button
@@ -728,7 +699,6 @@ const NavLinks = ({
             {t.navigation?.bounties || "Bounties"}
           </Link>
         </Button>
-
         <Button
           asChild
           variant="default"
@@ -754,7 +724,6 @@ const NavLinks = ({
     </div>
   );
 };
-
 // ─── "More" dropdown (overflowing nav items on large screens) ─────────────────
 const MoreDropdown = ({
   items,
@@ -766,7 +735,6 @@ const MoreDropdown = ({
   onLinkClick: () => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div
       className="relative"
@@ -794,14 +762,12 @@ const MoreDropdown = ({
     </div>
   );
 };
-
 // ─── Mobile nav ───────────────────────────────────────────────────────────────
 const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
   const { t } = useLanguage();
   const { dark } = useDarkModeContext();
   const folder = dark ? "dark" : "light";
   const handleLinkClick = () => closeMenu();
-
   const iconMap: Record<string, string> = {
     "Use Zcash": `/explore/${folder}/using-zcash.png`,
     Ecosystem: `/explore/${folder}/zcash-tech.png`,
@@ -816,10 +782,8 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
     Sitemap: `/explore/${folder}/start-here.png`,
     Bounties: `/explore/${folder}/contribute.png`,
   };
-
   const getExploreIcon = (name: string) =>
     iconMap[name] || `/explore/${folder}/start-here.png`;
-
   return (
     <div className="flex flex-col space-y-1 font-normal">
       <div className="grid grid-cols-2 gap-3 mb-8 px-1">
@@ -849,7 +813,6 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
           {t.navigation?.dashboard || "Dashboard"}
         </Link>
       </div>
-
       {navigations.map((item, i) => {
         const iconSrc = getExploreIcon(item.name || item.label || "");
         return item.links ? (
@@ -962,7 +925,6 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
           </Link>
         );
       })}
-
       <div className="flex flex-col space-y-3 my-8 border-t border-slate-400 dark:border-slate-50"></div>
       <div className="py-12">
         <DonationBtn />
@@ -970,7 +932,6 @@ const MobileNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
     </div>
   );
 };
-
 const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
   <div className="flex flex-col h-[90%]">
     <div className="flex-1">
@@ -979,7 +940,6 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
     <SocialIcons newTab={true} />
   </div>
 );
-
 const Navigation = () => {
   const { theme, setTheme } = useTheme();
   const { t } = useLanguage();
@@ -988,11 +948,9 @@ const Navigation = () => {
   const [showShop, setShowShop] = useState(false);
   const [mounted, setMounted] = useState(false);
   const isDark = theme === "dark";
-
   useEffect(() => {
     setMounted(true);
   }, []);
-
   return (
     <header className="sticky top-0 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-200">
       <div className="mx-auto w-full max-w-372 px-2 md:px-4">
@@ -1000,14 +958,12 @@ const Navigation = () => {
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
-
           <nav className="hidden xl:flex flex-1 justify-center max-w-4xl mx-8">
             <NavLinks
               classes="w-full justify-start"
               closeMenu={() => setIsOpen(false)}
             />
           </nav>
-
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
             <LanguageSwitcher />
             <Button
@@ -1031,7 +987,6 @@ const Navigation = () => {
                 <Moon className="h-5 w-5 md:h-6 md:w-6" />
               )}
             </Button>
-
             <div
               className="hidden xl:flex relative"
               onMouseEnter={() => setShowShop(true)}
@@ -1055,7 +1010,6 @@ const Navigation = () => {
                 </div>
               )}
             </div>
-
             {mounted ? (
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger className="xl:hidden" asChild>
@@ -1092,5 +1046,4 @@ const Navigation = () => {
     </header>
   );
 };
-
 export default Navigation;
