@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2339
+      "views": 2340
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -85,7 +85,7 @@
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
       "video_id": "O4wQi_i7k0I",
-      "views": 1283
+      "views": 1284
     },
     {
       "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
@@ -185,7 +185,7 @@
     {
       "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
       "video_id": "cAfTTfblzoU",
-      "views": 795
+      "views": 796
     },
     {
       "title": "State of the Network Keynote at Zcon0 (2018) by Zooko Wilcox",
@@ -958,13 +958,13 @@
       "views": 215
     },
     {
-      "title": "Targeting Deployment for ZSAs in Zcash",
-      "video_id": "OGROkdDCoKs",
-      "views": 214
-    },
-    {
       "title": "Zcash Arborist Call 06-25-2026",
       "video_id": "Ni-Bp0p8W4s",
+      "views": 215
+    },
+    {
+      "title": "Targeting Deployment for ZSAs in Zcash",
+      "video_id": "OGROkdDCoKs",
       "views": 214
     },
     {
@@ -1033,14 +1033,14 @@
       "views": 199
     },
     {
-      "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
-      "video_id": "65GdSSlDG3A",
+      "title": "Zebra Walkthrough for Zcash Developers",
+      "video_id": "aV93Ux3j4Gw",
       "views": 198
     },
     {
-      "title": "Zebra Walkthrough for Zcash Developers",
-      "video_id": "aV93Ux3j4Gw",
-      "views": 197
+      "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
+      "video_id": "65GdSSlDG3A",
+      "views": 198
     },
     {
       "title": "Interactive Design of a Zcash Trailing Finality Layer (Hybrid PoW+PoS) by Nate Wilcox: Zcon4",
