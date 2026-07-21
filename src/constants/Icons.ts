@@ -232,6 +232,7 @@ const iconsForMenu: IconsFor = {
     "Nym VPN": MdVpnLock,
     "Raspberry Pi 4 Full Node": RaspBerry,
     "Raspberry pi5 Zebra Lightwalletd Zingo": RaspBerry,
+    "Hardened Zebrad": CheckedShield,
     "Brave Wallet": SiBrave,
     "Raspberry pi 4 Zebra Node": Zebratechnologies,
     "Ywallet FROST Demo": TbSquareRoundedLetterY,
@@ -291,6 +292,7 @@ const iconsForMenu: IconsFor = {
     "Zcon Archive": PresentationChar,
     "Zcash Governance": Governance,
     "Zcon Vozes": FcVoicePresentation,
+    "Zcash Engineering Office Hours": FaLaptopCode,
   },
   "ZFAV Club": {
     "AV Club Background": LiaHorseHeadSolid,

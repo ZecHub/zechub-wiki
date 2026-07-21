@@ -1,7 +1,11 @@
+import path from "path";
+import { fileURLToPath } from "url";
 import createMDX from "@next/mdx";
 import rehypePlugins from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
 import createNextIntlPlugin from "next-intl/plugin";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -55,8 +59,10 @@ const nextConfig = {
     ];
   },
 
-  // Keeps Turbopack happy
-  turbopack: {},
+  // Force correct project root (avoids picking parent package-lock.json)
+  turbopack: {
+    root: __dirname,
+  },
 };
 
 const withMDX = createMDX({

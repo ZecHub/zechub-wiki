@@ -205,6 +205,10 @@ export const navigations: Array<NavigationItem> = [
         path: "/zcash-community/zcon-vozes",
         icon: FcVoicePresentation,
       },
+      {
+	name: "Zcash Engineering Office Hours",
+	path: "/zcash-community/zcash-engineering-office-hours",
+      },
     ],
   },
   {
