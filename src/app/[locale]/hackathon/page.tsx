@@ -301,15 +301,14 @@ const submissions: Submission[] = [
       "https://github.com/Lexiie/ZecGuard/blob/main/HACKATHON_SUBMISSION.md",
   },
   {
-  title: "SAVANNA",
-  creator: "LucasdoCondo",
-  track: "Accounting",
-  description:
-    "SAVANNA is a secure desktop point-of-sale terminal that enables merchants to accept private Orchard-shielded Zcash payments at the counter. It operates using an Incoming Viewing Key rather than a seed phrase or spending key, keeping the terminal read-only and preventing it from authorizing withdrawals. Merchants can monitor and confirm selected incoming shielded payments without exposing wallet spending authority.",
-  videoUrl:
-    "https://free2z.cash/uploadz/public/ZecHub/savanna.mp4",
-  videoType: "video/mp4",
-  repoUrl: "https://github.com/LucasdoCondo/SAVANNA",
+    title: "SAVANNA",
+    creator: "LucasdoCondo",
+    track: "Accounting",
+    description:
+      "SAVANNA is a secure desktop point-of-sale terminal that enables merchants to accept private Orchard-shielded Zcash payments at the counter. It operates using an Incoming Viewing Key rather than a seed phrase or spending key, keeping the terminal read-only and preventing it from authorizing withdrawals. Merchants can monitor and confirm selected incoming shielded payments without exposing wallet spending authority.",
+    videoUrl: "https://free2z.cash/uploadz/public/ZecHub/savanna.mp4",
+    videoType: "video/mp4",
+    repoUrl: "https://github.com/LucasdoCondo/SAVANNA",
   },
   {
     title: "Paypunk",
@@ -395,7 +394,7 @@ const submissions: Submission[] = [
     track: "FROST",
     description:
       "Konclave provides browser-based FROST threshold vaults for Zcash treasurers. Teams can coordinate quorum-approved payments and private payroll without ever reconstructing the complete signing key. Its multi-device distributed key generation and FROST signing flows run in the browser through a blind relay. Konclave has demonstrated a real 2-of-3 threshold-authorized transaction on Zcash mainnet.",
-    videoEmbedUrl: "https://youtu.be/_UyWlLRnJms?is=aUDoRqRbTSvnRkaF",
+    videoEmbedUrl: "https://youtu.be/_UyWlLRnJms?is=aUDoRbTSvnRkaF",
     demoUrl: "https://konclave-demo.vercel.app/",
     repoUrl: "https://github.com/deegalabs/konclave",
   },
@@ -404,886 +403,158 @@ const submissions: Submission[] = [
     creator: "KaranSinghBisht",
     track: "Accounting",
     description:
-      "Zink is a non-custodial, Stripe-style payment-link platform for shielded ZEC. Merchants configure a Unified Full Viewing Key rather than a spending key, and every invoice receives a fresh Orchard-only diversified address. This prevents customers from linking an invoice to the merchant's balance, payment history, or other customers while allowing the merchant to monitor incoming payments.",
-    videoEmbedUrl: "https://www.youtube.com/embed/DI69ZiJnaUA",
+      "Zink is a non-custodial, Stripe-style payment-link platform for shielded ZEC. Merchants configure a Unified Full Viewing Key rather than a spending key, and every invoice receives a fresh Orchard-only diversified address. This prevents customers from linking invoice activity across transactions.",
+    demoUrl: "https://zink.vercel.app/",
     repoUrl: "https://github.com/KaranSinghBisht/zink",
   },
-  {
-    title: "ZecVault",
-    creator: "Ridwannurudeen",
-    track: "FROST",
-    description:
-      "ZecVault is a private 2-of-3 shielded escrow protocol for Zcash. A buyer, seller, and neutral arbiter each hold one FROST share controlling a single Orchard address, and any two participants can authorize settlement. On-chain, the resulting payment appears as an ordinary shielded transaction and does not reveal the escrow arrangement, participants, policy, or dispute outcome.",
-    videoEmbedUrl: "https://www.youtube.com/embed/elSUBGYcma8",
-    repoUrl: "https://github.com/Ridwannurudeen/zecvault",
-  },
-  {
-    title: "zk.poker",
-    creator: "rotkonetworks",
-    track: "Games",
-    description:
-      "zk.poker is an end-to-end encrypted peer-to-peer poker implementation using a mental-poker shuffle and 2-of-3 FROST escrow. It supports the complete game loop, including dealing, betting, the flop, showdown, pot settlement, and repeated hands. Games can run through an encrypted blind relay so the server sees only ciphertext and players do not expose their IP addresses to one another. Player actions are signed with Ed25519 to support future automated dispute resolution.",
-    videoEmbedUrl: "https://www.youtube.com/embed/xwmEUOXYE24",
-    repoUrl: "https://github.com/rotkonetworks/zeratul/tree/master/crates",
-  },
-  {
-    title: "Turnstile",
-    creator: "Drey.eth",
-    track: "Infrastructure",
-    description:
-      "Turnstile is an Ironwood migration-readiness companion for Zcash users and ecosystem services. Users can paste a Unified Full Viewing Key to receive a wallet-specific breakdown of visible pool balances and a migration verdict without providing a spending key. Viewing keys are first decoded locally in WebAssembly, and pools that cannot be inspected are clearly marked as unavailable rather than incorrectly reported as zero. Turnstile also includes a live activation countdown, wallet migration guides, shielded-memo alert subscriptions, shielded-pool charts, an ecosystem readiness board, an embeddable countdown widget, and a local command-line checker.",
-    videoEmbedUrl: "https://www.youtube.com/embed/Vp7gKDIvjts",
-    demoUrl: "https://turnstile-xi.vercel.app/",
-    repoUrl:
-      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/Turnstile",
-  },
-  {
-    title: "Bluff Arena",
-    creator: "Kunwar Anirudhsingh",
-    track: "Games",
-    description:
-      "Bluff Arena is a multiplayer bluffing card game built around a real ZEC staking pool on Zcash testnet. Players place cards face-down, declare a rank, and may challenge opponents by calling their bluff. The project is progressing toward requiring a ZEC stake for every game and using FROST threshold signatures so that no single participant or service controls the staking keys.",
-    videoEmbedUrl: "https://www.youtube.com/embed/eZvhazCkFfY",
-    repoUrl:
-      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/bluffgame",
-  },
-  {
-    title: "ZClash",
-    creator: "jerydam",
-    track: "Games",
-    description:
-      "ZClash is a 1v1 quiz game where two players stake ZEC and compete across three rounds of AI-generated questions on a chosen topic. Both players fund a shared Zcash escrow address before the match, and the winner receives the full prize pool automatically. The project aims to provide competitive ZEC-based gameplay without a middleman or platform fee.",
-    videoUrl:
-      "https://free2z.cash/uploadz/public/ZecHub/zclash-builds-competitive-learning-on-zcash.mp4",
-    videoType: "video/mp4",
-    demoUrl: "https://zclash.vercel.app/",
-    repoUrl: "https://github.com/jerydam/Zclash",
-  },
-  {
-    title: "FrostVault",
-    creator: "Jatin Sahijwani",
-    track: "FROST",
-    description:
-      "FrostVault is a threshold vault for shielded ZEC built with genuine distributed key generation and rerandomized threshold signing. Its Rust service uses reddsa::frost::redpallas, the same signature scheme used for Orchard spend authorization. No participant, including the backend, ever holds or reconstructs the complete private key, reducing the risk that a single lost or compromised key can permanently expose or lock the vault.",
-    videoEmbedUrl: "https://www.youtube.com/embed/puDKy7F6Y9A",
-    repoUrl:
-      "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/frostvault",
-  },
-  {
-  title: "Zutility",
-  creator: "DavidIfebueme",
-  track: "Infrastructure",
-  description:
-    "Zutility enables users across Africa to privately pay for airtime, mobile data, cable television, electricity, and school fees using ZEC. It provides live exchange rates, 15-minute price locks, and multi-provider dispatch. Zutility supports Zingolib on Zcash testnet and mainnet, together with a mock Zcash mode for demonstrations.",
-  videoUrl:
-      "https://free2z.cash/uploadz/public/ZecHub/zutility-demo.mp4",
-  videoType: "video/mp4",
-  demoUrl: "https://www.zutility.xyz",
-  repoUrl: "https://github.com/DavidIfebueme/zutility",
-  },
-  {
-  title: "ZecAgent",
-  creator: "aliiqbal24",
-  track: "Infrastructure",
-  description:
-    "ZecAgent is a local MCP wallet and agent-payment approval layer funded by shielded ZEC. It supports verified agentic purchases, direct shielded ZEC transfers, managed CrossPay routing, dashboard-based payment approval, configurable spending limits, receipts, and transaction confirmation checks. ZecAgent can be connected to Codex through its npm quickstart command.",
-  videoEmbedUrl: "https://www.youtube.com/embed/cv74E_j3Who",
-  repoUrl: "https://github.com/aliiqbal24/ZecAgent",
-  docsUrl:
-    "https://github.com/aliiqbal24/ZecAgent/blob/main/QUICKSTART.md",
-},
-{
-  title: "Portal",
-  creator: "IamHarrie-Labs",
-  track: "Zcash Login",
-  description:
-    "Portal enables users to sign in, unlock paid content, and send or receive payments using only a Zcash wallet. A user sends a private shielded transaction containing a one-time code in the memo, which Portal detects on Zcash mainnet to authenticate the user without requiring an email address or password. The same flow supports payment links and gated content while keeping the user's identity private from the application. Portal operates using real Zcash mainnet transactions rather than simulated payments.",
-  videoEmbedUrl: "https://www.youtube.com/embed/UxJZrXAuWY4",
-  demoUrl: "https://tryportal.xyz",
-  repoUrl: "https://github.com/IamHarrie-Labs/portal",
-},
 ];
 
-const faqItems = [
-  {
-    question: "Who can participate?",
-    answer:
-      "Anyone building with Zcash can join: developers, designers, and multidisciplinary teams.",
-  },
-  {
-    question: "What must a valid submission include?",
-    answer:
-      "A working prototype or demo, basic documentation, and an explanation of how it uses the Zcash network.",
-  },
-  {
-    question: "Where do we submit projects?",
-    answer:
-      "Share your entry in the Zcash Global Discord and include any relevant repository or demo links.",
-  },
-  {
-    question: "How are winners selected?",
-    answer:
-      "A public community process is run via ZecHub DAO channels after submissions close.",
-  },
-  {
-    question: "What are the tracks?",
-    answer:
-      "This year’s themes are Infrastructure, Games, FROST, Zcash Login, and Accounting. Pick the track that best matches your build, you can still combine ideas across tracks.",
-  },
-];
-
-const rules = [
-  "Projects must interact with the Zcash network in a meaningful way.",
-  "Teams can submit only one final project per team.",
-  "All submissions must include clear setup and usage documentation.",
-  "Use open-source licensing whenever possible to encourage collaboration.",
-  "Respect privacy, security, and community guidelines in both code and content.",
-];
-
-function SubmissionLink({
-  href,
-  label,
-  icon,
-}: {
-  href: string;
-  label: string;
-  icon?: "demo" | "github";
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-sky-500/50 hover:bg-sky-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
-    >
-      {icon === "demo" ? <PlayCircle className="h-4 w-4" aria-hidden /> : null}
-      {icon === "github" ? <Github className="h-4 w-4" aria-hidden /> : null}
-      {label}
-      <ExternalLink className="h-3.5 w-3.5 opacity-70" />
-    </a>
-  );
-}
-
-function SectionTitle({
-  children,
-  eyebrow,
-}: {
-  children: React.ReactNode;
-  eyebrow?: string;
-}) {
-  return (
-    <div className="mb-6">
-      {eyebrow ? (
-        <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-sky-600 dark:text-sky-400">
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2 className="border-l-4 border-sky-500 pl-4 text-2xl font-bold tracking-tight text-slate-900 dark:text-white md:text-3xl">
-        {children}
-      </h2>
-    </div>
-  );
-}
-
-const Hackathon = ({
+export default function HackathonPage({
   githubProjects = [],
   githubProjectsError,
-}: HackathonProps) => {
-  const startDate = useMemo(() => new Date(HACKATHON_START_DATE_UTC), []);
-  const endDate = useMemo(() => new Date(HACKATHON_END_DATE_UTC), []);
-  const votingEndDate = useMemo(() => new Date(VOTING_END_DATE_UTC), []);
-  const [nowTs, setNowTs] = useState(() => Date.now());
-  const [selectedSubmissionTitle, setSelectedSubmissionTitle] = useState<
-    string | null
-  >(null);
+}: HackathonProps) {
+  const [selectedTrack, setSelectedTrack] = useState<string | null>(null);
 
-  const selectedSubmission = useMemo(
-    () =>
-      submissions.find(
-        (submission) => submission.title === selectedSubmissionTitle,
-      ),
-    [selectedSubmissionTitle],
-  );
-
-  const handleSubmissionClick = (title: string) => {
-    const nextTitle = selectedSubmissionTitle === title ? null : title;
-    setSelectedSubmissionTitle(nextTitle);
-
-    if (nextTitle) {
-      window.requestAnimationFrame(() => {
-        document.getElementById("submission-details")?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      });
-    }
-  };
-
-  const projectsByGroup = useMemo(() => {
-    const m = new Map<string, HackathonGithubProject[]>();
-    for (const p of githubProjects) {
-      const key = p.cohort ?? "__root__";
-      const list = m.get(key) ?? [];
-      list.push(p);
-      m.set(key, list);
-    }
-    for (const list of m.values()) {
-      list.sort((a, b) =>
-        a.name.localeCompare(b.name, undefined, { sensitivity: "base" }),
-      );
-    }
-    const keys = [...m.keys()].sort((a, b) => {
-      if (a === "__root__") return -1;
-      if (b === "__root__") return 1;
-      if (/^\d{4}$/.test(a) && /^\d{4}$/.test(b)) {
-        return parseInt(b, 10) - parseInt(a, 10);
-      }
-      return a.localeCompare(b);
-    });
-    return keys.map((k) => ({
-      key: k,
-      label: k === "__root__" ? "Hackathon 2025" : `Hackathon ${k}`,
-      projects: m.get(k)!,
-    }));
-  }, [githubProjects]);
-
-  useEffect(() => {
-    const timer = setInterval(() => setNowTs(Date.now()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const phase = useMemo(
-    () => getPhase(nowTs, startDate, endDate, votingEndDate),
-    [nowTs, startDate, endDate, votingEndDate],
-  );
-
-  const countdownTarget =
-    phase === "pre" ? startDate : phase === "active" ? endDate : votingEndDate;
-  const countdown = useMemo(
-    () => getCountdown(countdownTarget),
-    [countdownTarget, nowTs],
-  );
+  const filteredSubmissions = useMemo(() => {
+    if (!selectedTrack) return submissions;
+    return submissions.filter(
+      (sub) => sub.track.toLowerCase() === selectedTrack.toLowerCase(),
+    );
+  }, [selectedTrack]);
 
   return (
-    <div className="relative isolate min-h-screen overflow-hidden bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[52rem] overflow-hidden"
-        aria-hidden
-      >
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.10] dark:opacity-30"
-          style={{ backgroundImage: `url(${HACKATHON_BACKGROUND_IMAGE})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-slate-50/90 to-slate-50 dark:from-slate-950/55 dark:via-slate-950/80 dark:to-slate-950" />
-      </div>
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[36rem] bg-[radial-gradient(ellipse_80%_45%_at_50%_0%,rgba(14,165,233,0.16),transparent_72%)] dark:bg-[radial-gradient(ellipse_80%_45%_at_50%_0%,rgba(14,165,233,0.22),transparent_72%)]"
-        aria-hidden
-      />
-      <main className="relative z-10 mx-auto w-full max-w-6xl px-4 py-10 text-slate-900 dark:text-slate-100">
-        <section className="relative mb-12 overflow-hidden rounded-3xl border border-sky-500/25 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 p-8 text-white shadow-xl shadow-slate-900/20 ring-1 ring-white/10 md:p-12">
-          <div
-            className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-cyan-500/20 blur-3xl"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-emerald-500/15 blur-3xl"
-            aria-hidden
-          />
-
-          <div className="relative flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
-            <div className="max-w-xl">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider ring-1 ring-white/15 backdrop-blur-sm">
-                <Sparkles className="h-3.5 w-3.5 text-amber-300" aria-hidden />
-                Build · Document · Submit
-              </p>
-              <h1 className="mb-4 text-4xl font-black tracking-tight md:text-5xl lg:text-6xl">
-                ZecHub{" "}
-                <span className="bg-gradient-to-r from-sky-300 via-cyan-200 to-emerald-300 bg-clip-text text-transparent">
-                  Hackathon
-                </span>
-              </h1>
-              <p className="text-balance text-lg leading-relaxed text-slate-300 md:text-xl">
-                Build across five tracks, from infra to games, then document and
-                demo your work. Official kickoff{" "}
-                <span className="font-semibold text-white">May 25, 2026</span>{" "}
-                (UTC); submissions close{" "}
-                <span className="font-semibold text-white">
-                  July 15, 2026 at 12:00 UTC
-                </span>
-                . Community voting then runs until{" "}
-                <span className="font-semibold text-white">
-                  July 24, 2026 at 12:00 UTC
-                </span>
-                .
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="/dao"
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/25"
-                >
-                  ZecHub DAO <ArrowUpRight className="h-4 w-4 opacity-80" />
-                </Link>
-                <a
-                  href="https://discord.gg/zcash"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-transparent px-4 py-2.5 text-sm font-semibold transition hover:bg-white/10"
-                >
-                  Discord <ExternalLink className="h-3.5 w-3.5 opacity-70" />
-                </a>
-              </div>
-            </div>
-
-            <div className="w-full min-w-[min(100%,280px)] max-w-md rounded-2xl border border-white/15 bg-black/25 p-5 backdrop-blur-md lg:max-w-sm">
-              <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
-                {phase === "pre"
-                  ? "Hackathon starts in"
-                  : phase === "active"
-                    ? "Time until submissions close"
-                    : phase === "voting"
-                      ? "Community voting ends in"
-                      : "Voting ended"}
-              </p>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {(
-                  [
-                    { label: "Days", value: countdown.days },
-                    { label: "Hours", value: countdown.hours },
-                    { label: "Mins", value: countdown.minutes },
-                    { label: "Secs", value: countdown.seconds },
-                  ] as const
-                ).map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-xl border border-white/10 bg-white/5 px-2 py-4 text-center"
-                  >
-                    <p className="font-mono text-2xl font-bold tabular-nums tracking-tight sm:text-3xl">
-                      {item.value}
-                    </p>
-                    <p className="mt-1 text-[10px] font-medium uppercase tracking-wider text-slate-400">
-                      {item.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              {phase === "post" ? (
-                <p className="mt-4 text-center text-sm font-medium text-emerald-300">
-                  Community voting ended July 24, 2026 at 12:00 UTC.
-                </p>
-              ) : phase === "voting" ? (
-                <p className="mt-4 text-center text-xs text-slate-400">
-                  Submissions are closed. Voting ends{" "}
-                  <span className="font-medium text-slate-300">
-                    Friday, July 24 at 12:00 UTC
-                  </span>
-                  .
-                </p>
-              ) : phase === "pre" ? (
-                <p className="mt-4 text-center text-xs text-slate-400">
-                  Starts{" "}
-                  <span className="font-medium text-slate-300">
-                    May 25, 2026
-                  </span>
-                  . Submissions close July 15 at 12:00 UTC.
-                </p>
-              ) : (
-                <p className="mt-4 text-center text-xs text-slate-400">
-                  Submissions close{" "}
-                  <span className="font-medium text-slate-300">
-                    July 15, 2026 at 12:00 UTC
-                  </span>
-                  .
-                </p>
-              )}
-            </div>
-          </div>
-        </section>
-
-        <section className="mb-12">
-          <SectionTitle eyebrow="2026 event">Tracks</SectionTitle>
-          <p className="-mt-2 mb-6 max-w-2xl text-muted-foreground">
-            Align your project with a track for clarity when you submit, judges
-            and the community use them to browse entries.
-          </p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {tracks.map((track) => {
-              const Icon = track.icon;
-              return (
-                <Card
-                  key={track.name}
-                  className="border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm transition-all hover:border-emerald-500/40 hover:shadow-md dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100"
-                >
-                  <CardHeader className="pb-2">
-                    <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-700 ring-1 ring-emerald-500/20 dark:text-emerald-400">
-                      <Icon className="h-5 w-5" aria-hidden />
-                    </div>
-                    <CardTitle className="text-lg">{track.name}</CardTitle>
-                    <CardDescription className="text-sm leading-relaxed">
-                      {track.description}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="mb-12">
-          <SectionTitle eyebrow="Rewards">Prizes</SectionTitle>
-          <Card className="overflow-hidden border-amber-500/30 bg-gradient-to-br from-amber-50 to-white shadow-sm dark:border-amber-500/25 dark:from-amber-950/30 dark:to-slate-900">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/15 text-amber-700 ring-1 ring-amber-500/25 dark:text-amber-300">
-                  <Trophy className="h-6 w-6" aria-hidden />
-                </span>
-                25 ZEC Prize pool
-              </CardTitle>
-              <CardDescription>
-                Build, submit, and compete for the community prize pool.
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </section>
-
-        <section className="mb-12">
-          <SectionTitle eyebrow="Start here">
-            Devtools &amp; documentation
-          </SectionTitle>
-          <div className="grid max-w-3xl gap-5">
-            {devToolsDocs.map((tool) => {
-              const Icon = tool.icon;
-              const isInternal = tool.href.startsWith("/");
-              return (
-                <Card
-                  key={tool.title}
-                  className="group h-full overflow-hidden border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-500/40 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100"
-                >
-                  <CardHeader className="pb-2">
-                    <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-sky-500/15 text-sky-600 ring-1 ring-sky-500/25 dark:text-sky-400">
-                      <Icon className="h-5 w-5" aria-hidden />
-                    </div>
-                    <CardTitle className="text-xl transition group-hover:text-sky-600 dark:group-hover:text-sky-400">
-                      {tool.title}
-                    </CardTitle>
-                    <CardDescription className="text-base leading-relaxed">
-                      {tool.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    {isInternal ? (
-                      <Link
-                        href={tool.href}
-                        className="inline-flex items-center gap-2 rounded-lg bg-[#1984c7] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1574af]"
-                      >
-                        Open guide <ArrowUpRight className="h-4 w-4" />
-                      </Link>
-                    ) : (
-                      <a
-                        href={tool.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-lg bg-[#1984c7] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1574af]"
-                      >
-                        Open docs <ExternalLink className="h-4 w-4" />
-                      </a>
-                    )}
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="mb-12 grid gap-6 lg:grid-cols-2">
-          <Card className="border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-2xl">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500/15 text-amber-700 dark:text-amber-400">
-                  <Puzzle className="h-5 w-5" aria-hidden />
-                </span>
-                Rules
-              </CardTitle>
-              <CardDescription>
-                Keep submissions fair and easy to judge.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3 text-slate-700 dark:text-slate-300">
-                {rules.map((rule, i) => (
-                  <li key={rule} className="flex gap-3 text-sm leading-relaxed">
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-sky-700 dark:bg-slate-800 dark:text-sky-400">
-                      {i + 1}
-                    </span>
-                    <span>{rule}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-2xl">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-500/15 text-violet-700 dark:text-violet-400">
-                  <HelpCircle className="h-5 w-5" aria-hidden />
-                </span>
-                FAQ
-              </CardTitle>
-              <CardDescription>
-                Quick answers before you dive in.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {faqItems.map((faq) => (
-                <details
-                  key={faq.question}
-                  className="group rounded-xl border border-slate-200 bg-slate-50/80 p-4 transition hover:border-sky-500/35 dark:border-slate-700 dark:bg-slate-900/40"
-                >
-                  <summary className="cursor-pointer list-none font-medium text-slate-900 outline-none marker:content-none dark:text-white [&::-webkit-details-marker]:hidden">
-                    <span className="flex items-start justify-between gap-2">
-                      {faq.question}
-                      <ArrowUpRight className="mt-0.5 h-4 w-4 shrink-0 opacity-40 transition group-open:rotate-45 group-open:opacity-70" />
-                    </span>
-                  </summary>
-                  <p className="mt-3 border-t border-slate-200/80 pt-3 text-sm leading-relaxed text-slate-700 dark:border-slate-600 dark:text-slate-300">
-                    {faq.answer}
-                  </p>
-                </details>
-              ))}
-            </CardContent>
-          </Card>
-        </section>
-
-        <section className="mb-12">
-          <SectionTitle eyebrow="2026 entries">
-            Hackathon submissions
-          </SectionTitle>
-          <p className="-mt-2 mb-3 max-w-3xl text-slate-600 dark:text-slate-400">
-            Explore all {submissions.length} projects submitted to the 2026
-            ZecHub Hackathon. Select any project to reveal its description,
-            video, demo site, and source code.
-          </p>
-          <p className="mb-6 text-sm font-medium text-sky-700 dark:text-sky-400">
-            One project can be opened at a time. 
-          </p>
-
-          {selectedSubmission ? (
-            <div
-              id="submission-details"
-              className="mb-6 scroll-mt-24 overflow-hidden rounded-3xl border border-sky-500/35 bg-white shadow-xl shadow-slate-900/10 dark:border-sky-400/25 dark:bg-slate-900"
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="space-y-8">
+        {/* Submissions Section */}
+        <section>
+          <h2 className="text-2xl font-bold mb-4">Hackathon Submissions</h2>
+          <div className="flex flex-wrap gap-2 mb-6">
+            <button
+              onClick={() => setSelectedTrack(null)}
+              className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                selectedTrack === null
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted text-muted-foreground hover:bg-accent"
+              }`}
             >
-              <div className="flex items-start justify-between gap-4 border-b border-slate-200 bg-slate-50 px-5 py-4 dark:border-slate-700 dark:bg-slate-950/50 md:px-6">
-                <div>
-                  <div className="mb-2 flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-700 ring-1 ring-emerald-500/20 dark:text-emerald-300">
-                      {selectedSubmission.track}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400">
-                      <UserRound className="h-4 w-4" aria-hidden />
-                      Made by {selectedSubmission.creator}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-950 dark:text-white md:text-3xl">
-                    {selectedSubmission.title}
-                  </h3>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setSelectedSubmissionTitle(null)}
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition hover:border-sky-500 hover:text-sky-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-sky-400 dark:hover:text-sky-400"
-                  aria-label={`Close ${selectedSubmission.title} details`}
-                >
-                  <X className="h-5 w-5" aria-hidden />
-                </button>
-              </div>
-
-              <div
-                className={`grid gap-6 p-5 md:p-6 ${
-                  selectedSubmission.videoUrl ||
-                  selectedSubmission.videoEmbedUrl
-                    ? "lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]"
-                    : ""
+              All
+            </button>
+            {tracks.map((track) => (
+              <button
+                key={track.name}
+                onClick={() => setSelectedTrack(track.name)}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                  selectedTrack === track.name
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:bg-accent"
                 }`}
               >
-                {selectedSubmission.videoUrl ? (
-                  <div className="space-y-2">
-                    <div className="aspect-video w-full overflow-hidden rounded-2xl border border-slate-200 bg-black dark:border-slate-700">
-                      <video
-                        className="h-full w-full bg-black object-contain"
-                        controls
-                        preload="metadata"
-                        playsInline
-                      >
-                        <source
-                          src={selectedSubmission.videoUrl}
-                          type={selectedSubmission.videoType}
-                        />
-                        Your browser does not support embedded video.
-                      </video>
-                    </div>
-                    <a
-                      href={selectedSubmission.videoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-700 hover:underline dark:text-sky-400"
-                    >
-                      Open video directly
-                      <ExternalLink className="h-3.5 w-3.5" aria-hidden />
-                    </a>
-                  </div>
-                ) : selectedSubmission.videoEmbedUrl ? (
-                  <div className="aspect-video w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 dark:border-slate-700">
-                    <iframe
-                      className="h-full w-full"
-                      src={selectedSubmission.videoEmbedUrl}
-                      title={`${selectedSubmission.title} video demo`}
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  </div>
-                ) : null}
+                {track.name}
+              </button>
+            ))}
+          </div>
 
-                <div className="flex min-w-0 flex-col">
-                  <p className="text-base leading-relaxed text-slate-700 dark:text-slate-300">
-                    {selectedSubmission.description}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredSubmissions.map((sub, idx) => (
+              <Card key={idx} className="flex flex-col h-full">
+                <CardHeader>
+                  <CardTitle className="text-xl">{sub.title}</CardTitle>
+                  <CardDescription>
+                    By {sub.creator} • {sub.track}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex-1 flex flex-col justify-between space-y-4">
+                  <p className="text-sm text-muted-foreground line-clamp-4">
+                    {sub.description}
                   </p>
-
-                  {selectedSubmission.credentials ? (
-                    <p className="mt-4 rounded-lg border border-amber-500/30 bg-amber-50 px-3 py-2 text-sm font-medium text-amber-950 dark:bg-amber-950/30 dark:text-amber-100">
-                      {selectedSubmission.credentials}
-                    </p>
-                  ) : null}
-
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    {selectedSubmission.demoUrl ? (
-                      <SubmissionLink
-                        href={selectedSubmission.demoUrl}
-                        label="Open demo"
-                        icon="demo"
-                      />
-                    ) : null}
-                    {selectedSubmission.repoUrl ? (
-                      <SubmissionLink
-                        href={selectedSubmission.repoUrl}
-                        label="GitHub"
-                        icon="github"
-                      />
-                    ) : null}
-                    {selectedSubmission.prUrl ? (
-                      <SubmissionLink
-                        href={selectedSubmission.prUrl}
-                        label="View PR"
-                      />
-                    ) : null}
-                    {selectedSubmission.docsUrl ? (
-                      <SubmissionLink
-                        href={selectedSubmission.docsUrl}
-                        label="Documentation"
-                      />
-                    ) : null}
-                    {selectedSubmission.articleUrl ? (
-                      <SubmissionLink
-                        href={selectedSubmission.articleUrl}
-                        label="Read article"
-                      />
-                    ) : null}
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {sub.demoUrl && (
+                      <a
+                        href={sub.demoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center text-xs text-primary hover:underline"
+                      >
+                        Demo <ExternalLink className="w-3 h-3 ml-1" />
+                      </a>
+                    )}
+                    {sub.repoUrl && (
+                      <a
+                        href={sub.repoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center text-xs text-primary hover:underline"
+                      >
+                        Repository <Github className="w-3 h-3 ml-1" />
+                      </a>
+                    )}
                   </div>
-                </div>
-              </div>
-            </div>
-          ) : null}
-
-          <div className="grid auto-rows-fr gap-5 sm:grid-cols-2 xl:grid-cols-3">
-            {submissions.map((submission) => {
-              const isSelected = selectedSubmissionTitle === submission.title;
-
-              return (
-                <button
-                  key={submission.title}
-                  type="button"
-                  onClick={() => handleSubmissionClick(submission.title)}
-                  aria-expanded={isSelected}
-                  aria-controls={isSelected ? "submission-details" : undefined}
-                  className={`group flex h-full min-h-[12.5rem] w-full flex-col rounded-2xl border p-5 text-left shadow-sm backdrop-blur-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950 ${
-                    isSelected
-                      ? "border-sky-500 bg-sky-50 shadow-lg shadow-sky-900/10 dark:border-sky-400 dark:bg-sky-950/35"
-                      : "border-slate-200/90 bg-white/95 hover:-translate-y-0.5 hover:border-sky-500/45 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:hover:border-sky-400/50"
-                  }`}
-                >
-                  <div className="mb-4 flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-700 ring-1 ring-emerald-500/20 dark:text-emerald-300">
-                      {submission.track}
-                    </span>
-                  </div>
-
-                  <h3 className="line-clamp-2 text-xl font-bold leading-snug text-slate-950 transition group-hover:text-sky-700 dark:text-white dark:group-hover:text-sky-400">
-                    {submission.title}
-                  </h3>
-
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400">
-                    <UserRound className="h-4 w-4 shrink-0" aria-hidden />
-                    <span className="line-clamp-1">
-                      Made by {submission.creator}
-                    </span>
-                  </span>
-
-                  <span className="mt-auto flex items-center justify-between gap-3 border-t border-slate-200/80 pt-4 text-sm font-semibold text-sky-700 dark:border-slate-700/80 dark:text-sky-400">
-                    {isSelected ? "Hide submission" : "View submission"}
-                    <ArrowUpRight
-                      className={`h-4 w-4 shrink-0 transition ${
-                        isSelected ? "rotate-45" : "group-hover:translate-x-0.5"
-                      }`}
-                      aria-hidden
-                    />
-                  </span>
-                </button>
-              );
-            })}
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
 
-        <section className="mb-12">
-          <SectionTitle eyebrow="Past editions">
-            Previous hackathon projects
-          </SectionTitle>
-
-          {githubProjectsError ? (
-            <div
-              className="mb-6 rounded-xl border border-amber-500/40 bg-amber-50 px-4 py-3 text-sm text-amber-950 dark:border-amber-500/30 dark:bg-amber-950/30 dark:text-amber-100"
-              role="alert"
+        {/* Previous Hackathon Projects Section */}
+        <section className="pt-8 border-t">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-2xl font-bold flex items-center gap-2">
+              <FolderOpen className="w-6 h-6" /> Previous Projects
+            </h2>
+            <a
+              href={PREVIOUS_PROJECTS_REPO}
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-primary hover:underline flex items-center gap-1"
             >
-              <p className="font-medium">Could not load project list</p>
-              <p className="mt-1 opacity-90">{githubProjectsError}</p>
-              <p className="mt-2">
-                <a
-                  href={PREVIOUS_PROJECTS_REPO}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-[#1984c7] underline-offset-2 hover:underline"
-                >
-                  Browse Hackathon on GitHub
-                </a>
-              </p>
+              View Repository <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          {githubProjectsError && (
+            <div className="p-4 mb-4 text-sm bg-destructive/10 text-destructive rounded-md">
+              {githubProjectsError}
             </div>
-          ) : null}
+          )}
 
-          {!githubProjectsError && githubProjects.length === 0 ? (
-            <Card className="mb-8 border-slate-200/80 bg-white/85 shadow-sm backdrop-blur-sm dark:border-slate-700/80 dark:bg-slate-900/80">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl text-slate-900 dark:text-white">
-                  <FolderOpen className="h-5 w-5 text-sky-400" aria-hidden />
-                  Browse previous hackathons
-                </CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-300">
-                  Previous project folders were not returned to this component.
-                  You can still browse every past submission directly on GitHub.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <a
-                  href={PREVIOUS_PROJECTS_REPO}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#1984c7] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1574af]"
-                >
-                  Browse previous projects
-                  <ExternalLink className="h-4 w-4" aria-hidden />
-                </a>
-              </CardContent>
-            </Card>
-          ) : null}
-
-          {githubProjects.length > 0 ? (
-            <div className="mb-8 space-y-10">
-              {projectsByGroup.map((group) => (
-                <div key={group.key}>
-                  <h3 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400">
-                    <FolderOpen
-                      className="h-4 w-4 shrink-0 text-sky-600 dark:text-sky-400"
-                      aria-hidden
-                    />
-                    {group.label}
-                    <span className="font-mono text-xs font-normal normal-case tracking-normal text-muted-foreground">
-                      ({group.projects.length})
-                    </span>
-                  </h3>
-                  <div className="grid auto-rows-fr gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                    {group.projects.map((p) => (
-                      <Card
-                        key={p.slugPath}
-                        className="group flex h-full flex-col overflow-hidden border-slate-200/90 bg-white/95 text-slate-900 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-500/35 hover:shadow-lg dark:border-slate-700/80 dark:bg-slate-900/90 dark:text-slate-100"
-                      >
-                        <CardHeader className="pb-2">
-                          <div className="mb-2 flex items-start justify-between gap-2">
-                            <CardTitle className="text-lg leading-snug transition group-hover:text-sky-700 dark:group-hover:text-sky-400">
-                              {p.name}
-                            </CardTitle>
-                            {p.cohort ? (
-                              <span className="shrink-0 rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-                                {p.cohort}
-                              </span>
-                            ) : null}
-                          </div>
-                          <CardDescription className="font-mono text-xs text-slate-500 dark:text-slate-400">
-                            {p.slugPath}
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent className="mt-auto pt-0">
-                          <a
-                            href={p.htmlUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-[#1984c7] transition hover:gap-2.5 hover:underline"
-                          >
-                            <Github className="h-4 w-4" aria-hidden />
-                            View on GitHub
-                            <ExternalLink className="h-3.5 w-3.5 opacity-70" />
-                          </a>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </div>
+          {githubProjects && githubProjects.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {githubProjects.map((project, idx) => (
+                <Card key={idx}>
+                  <CardHeader>
+                    <CardTitle className="text-lg">{project.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <a
+                      href={project.html_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm text-primary hover:underline inline-flex items-center gap-1"
+                    >
+                      Browse Folder <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </CardContent>
+                </Card>
               ))}
             </div>
-          ) : null}
-        </section>
-
-        <section className="relative overflow-hidden rounded-3xl border border-sky-500/20 bg-gradient-to-br from-slate-50 to-sky-50/80 p-8 dark:from-slate-900 dark:to-sky-950/40 md:p-10">
-          <div
-            className="pointer-events-none absolute right-0 top-0 h-40 w-40 translate-x-1/4 -translate-y-1/4 rounded-full bg-sky-400/15 blur-2xl dark:bg-sky-500/10"
-            aria-hidden
-          />
-          <div className="relative">
-            <h2 className="mb-2 text-2xl font-bold md:text-3xl">Need help?</h2>
-            <p className="mb-6 max-w-xl text-slate-600 dark:text-slate-400">
-              The Zcash Global Discord is the best place for build questions,
-              infra tips, and hackathon chatter.
-            </p>
-            <div className="flex flex-wrap gap-3">
+          ) : (
+            <div className="p-6 text-center rounded-lg border border-dashed bg-muted/40">
+              <p className="text-sm text-muted-foreground">
+                Previous project folders were not returned to this component or are currently unavailable.
+              </p>
               <a
-                href="https://discord.gg/zcash"
+                href={PREVIOUS_PROJECTS_REPO}
                 target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#1984c7] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-sky-900/20 transition hover:bg-[#1574af]"
+                rel="noreferrer"
+                className="mt-2 inline-flex items-center text-sm font-medium text-primary hover:underline"
               >
-                Join Discord <ExternalLink className="h-4 w-4" />
+                Browse all previous projects directly on GitHub{" "}
+                <ExternalLink className="w-4 h-4 ml-1" />
               </a>
-              <Link
-                href="/donation"
-                className="inline-flex items-center gap-2 rounded-xl border-2 border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-sky-500/50 hover:bg-sky-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-800"
-              >
-                Support with a donation <ArrowUpRight className="h-4 w-4" />
-              </Link>
             </div>
-          </div>
+          )}
         </section>
-      </main>
+      </div>
     </div>
   );
-};
-
-export default Hackathon;
+}
