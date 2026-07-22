@@ -34,7 +34,11 @@ export default function LiteYouTube({
         style={style}
         src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`}
         title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        // Do not send the ZecHub origin to Google when the reader opts in.
+        referrerPolicy="no-referrer"
+        // Least privilege: only what a YouTube embed needs to play + go fullscreen.
+        sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
         allowFullScreen
       />
     );
@@ -80,7 +84,8 @@ export default function LiteYouTube({
           maxWidth: "34ch",
         }}
       >
-        Click to play · loads youtube-nocookie.com only on tap
+        Click to load from YouTube — Google will receive your IP address and
+        the video ID. Nothing is contacted until you tap.
       </span>
     </button>
   );
