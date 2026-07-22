@@ -14,6 +14,7 @@ import { MdHowToVote } from "react-icons/md";
 import { BsChatDots } from "react-icons/bs";
 import { IoDocumentText } from "react-icons/io5";
 import { useLanguage } from "@/context/LanguageContext";
+import LiteYouTube from "@/components/LiteYouTube";
 
 export default function GovernanceGuide() {
   const { t } = useLanguage();
@@ -70,14 +71,11 @@ export default function GovernanceGuide() {
                   <h3 className="font-semibold mb-3 text-slate-900 dark:text-white">{g?.installKeplr ?? "Install Keplr Wallet"}</h3>
                   <p className="text-slate-600 dark:text-slate-300 mb-4">{g?.installKeplrDesc ?? "Set up your Keplr wallet to interact with the DAO"}</p>
                   <div className="max-w-[420px] mx-auto aspect-video rounded-xl overflow-hidden border border-slate-300 dark:border-slate-600 shadow-sm">
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src="https://www.youtube.com/embed/fWagokTEx-Y"
+                    <LiteYouTube
+                      videoId="fWagokTEx-Y"
                       title={g?.keplrVideoTitle ?? "Keplr Wallet Setup Guide"}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
                       className="rounded-xl"
+                      style={{ width: "100%", height: "100%" }}
                     />
                   </div>
                 </div>
@@ -172,14 +170,11 @@ export default function GovernanceGuide() {
                   <h3 className="font-semibold mb-3 text-slate-900 dark:text-white">{g?.walkthroughTitle ?? "Proposal Walkthrough Video"}</h3>
                   <p className="text-slate-600 dark:text-slate-300 mb-4">{g?.walkthroughDesc ?? "Watch a full walkthrough of how to write and structure a proposal"}</p>
                   <div className="max-w-[420px] mx-auto aspect-video rounded-xl overflow-hidden border border-slate-300 dark:border-slate-600 shadow-sm">
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src="https://www.youtube.com/embed/1zGYmT66MzE"
+                    <LiteYouTube
+                      videoId="1zGYmT66MzE"
                       title={g?.walkthroughIframeTitle ?? "Proposal Walkthrough"}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
                       className="rounded-xl"
+                      style={{ width: "100%", height: "100%" }}
                     />
                   </div>
                 </div>

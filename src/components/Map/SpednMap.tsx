@@ -42,6 +42,8 @@ export default function SPEDNMap() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [mapReady, setMapReady] = useState(false);
+  // Don't contact CARTO (third-party map tiles) until the user opts in.
+  const [mapEnabled, setMapEnabled] = useState(false);
 
   //   load data
   useEffect(() => {
@@ -86,8 +88,9 @@ export default function SPEDNMap() {
     [allStores],
   );
 
-  // init Leaflet
+  // init Leaflet (only after the user opts in to loading CARTO tiles)
   useEffect(() => {
+    if (!mapEnabled) return;
     if (!mapContainerRef.current || mapRef.current) return;
 
     import("leaflet").then((L) => {
@@ -140,7 +143,7 @@ export default function SPEDNMap() {
         layerRef.current = null;
       }
     };
-  }, []);
+  }, [mapEnabled]);
 
   // Sync markers wiht filtered stores
   const handleSelectedStore = useCallback((id: string) => {
@@ -536,6 +539,61 @@ export default function SPEDNMap() {
                   }}
                 >
                   Loading map...
+                </div>
+              )}
+
+              {!mapEnabled && (
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    zIndex: 11,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 12,
+                    padding: 24,
+                    textAlign: "center",
+                    background: "var(--spedn-background-secondary)",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontSize: 14,
+                      fontWeight: 600,
+                      margin: 0,
+                      color: "var(--spedn-text-primary)",
+                    }}
+                  >
+                    Interactive store map
+                  </p>
+                  <p
+                    style={{
+                      fontSize: 12,
+                      margin: 0,
+                      maxWidth: "40ch",
+                      color: "var(--spedn-text-secondary)",
+                    }}
+                  >
+                    Loads map tiles from a third party (CARTO). Click to load.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setMapEnabled(true)}
+                    style={{
+                      cursor: "pointer",
+                      padding: "8px 18px",
+                      borderRadius: 20,
+                      border: "0.5px solid var(--spedn-border-success)",
+                      background: "var(--spedn-background-success)",
+                      color: "var(--spedn-text-success)",
+                      fontSize: 13,
+                      fontWeight: 600,
+                    }}
+                  >
+                    Load interactive map
+                  </button>
                 </div>
               )}
 

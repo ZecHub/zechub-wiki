@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import Image from 'next/image';
+import LiteYouTube from '@/components/LiteYouTube';
 
 const ZebraComponent = () => {
   const [showGuide, setShowGuide] = useState(false);
@@ -24,15 +25,11 @@ const ZebraComponent = () => {
       
       {/* YouTube Video */}
       <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center' }}>
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/ZGcaZQs_i0Y"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        <LiteYouTube
+          videoId="ZGcaZQs_i0Y"
+          title="Zebra: the Rust Zcash node"
+          style={{ width: 560, height: 315, maxWidth: '100%', borderRadius: 8 }}
+        />
       </div>
 
       {/* Zebra Launcher Button */}

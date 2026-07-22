@@ -21,6 +21,7 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import "./index.css";
 import useExportDashboardAsPNG from "@/hooks/useExportDashboardAsPNG";
 import { useLanguage } from "@/context/LanguageContext";
+import LiteYouTube from "@/components/LiteYouTube";
 import NamadaChart from "./Namada/NamadaChart";
 import PenumbraChart from "./Penumbra/PenumbraChart";
 import ZcashChart from "./Zcash/ZcashChart";
@@ -592,11 +593,9 @@ const Dashboard = ({
                 </p>
                 {mostViewed.video_id && (
                   <div className="flex-1 bg-black rounded-2xl overflow-hidden mb-3 relative">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${mostViewed.video_id}`}
+                    <LiteYouTube
+                      videoId={mostViewed.video_id}
                       title={mostViewed.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
                       className="absolute top-0 left-0 w-full h-full"
                     />
                   </div>
