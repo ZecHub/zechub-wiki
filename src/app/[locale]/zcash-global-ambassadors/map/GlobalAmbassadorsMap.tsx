@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { IBM_Plex_Sans } from "next/font/google";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   BASE_COLOR,
@@ -13,6 +14,16 @@ import { PinDetails } from "./pin-details";
 import { StatsBar } from "./stats-bar";
 import { useLanguage } from "@/context/LanguageContext";
 import "./style.css";
+
+// Self-hosted at build time by next/font (no runtime request to Google).
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  // IBM Plex Sans on Google Fonts tops out at 700 (the old @import requested
+  // 800, which Google silently ignored).
+  weight: ["400", "500", "700"],
+  variable: "--font-ibm-plex-sans",
+  display: "swap",
+});
 
 type ViewMode = "globe" | "map";
 
@@ -110,15 +121,8 @@ export default function GlobalAmbassadorsMap() {
     ]).then(([L]) => {
       if (cancelled || mapRef.current || !mapContainRef.current) return;
 
-      // Override default icon paths
-      delete (L.Icon.Default.prototype as any)._getIconUrl;
-      L.Icon.Default.mergeOptions({
-        iconRetinaUrl:
-          "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-        iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-        shadowUrl:
-          "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-      });
+      // Note: markers use L.divIcon (custom SVG pins), so L.Icon.Default is
+      // never instantiated — no marker-image URLs need to be configured.
 
       const map = L.map(mapContainRef.current!, {
         center: [20, 20],
@@ -269,22 +273,18 @@ export default function GlobalAmbassadorsMap() {
           name="description"
           content="Explore the worldwide network of Zcash Ambassador communities"
         />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          crossOrigin=""
-        />
       </Head>
 
       {/* Page wrapper */}
       <div
+        className={ibmPlexSans.variable}
         style={{
           display: "flex",
           flexDirection: "column",
           minHeight: "100vh",
           background: "#070C10",
           color: "#e8edf3",
-          fontFamily: "'IBM Plex Sans', 'Inter', sans-serif",
+          fontFamily: "var(--font-ibm-plex-sans), 'Inter', sans-serif",
         }}
       >
         {/* Page header */}
