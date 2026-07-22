@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import type { RefObject } from 'react';
 
-const api = ['https://api.blockchair.com/zcash/stats'];
+// Same-origin proxy (Blockchair key stays server-side) — see pages/api/blockchain-data.
+const api = ['/api/blockchain-data'];
 
 function fetchData(url: any) {
   return new Promise((resolve, reject) => {

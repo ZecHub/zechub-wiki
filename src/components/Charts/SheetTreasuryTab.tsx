@@ -13,7 +13,8 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { fetchTreasuryFromSheet } from "@/lib/parseTreasurySheet";
 
 // NEW: Live ZEC price from the exact same Blockchair API used on the main ZecHub dashboard
-const BLOCKCHAIR_ZEC_STATS_URL = "https://api.blockchair.com/zcash/stats";
+// Same-origin proxy (Blockchair key stays server-side) — see pages/api/blockchain-data.
+const BLOCKCHAIR_ZEC_STATS_URL = "/api/blockchain-data";
 
 const PIE_COLORS = [
   "#3b82f6",
