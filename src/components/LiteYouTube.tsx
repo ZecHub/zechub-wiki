@@ -34,8 +34,10 @@ export default function LiteYouTube({
         style={style}
         src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`}
         title={title}
-        // Do not send the ZecHub origin to Google when the reader opts in.
-        referrerPolicy="no-referrer"
+        // Send only the origin (never the page path) to Google. no-referrer
+        // makes YouTube's player error out ("video player configuration error"),
+        // so origin-only is the minimum that keeps opt-in playback working.
+        referrerPolicy="strict-origin-when-cross-origin"
         // Least privilege: only what a YouTube embed needs to play + go fullscreen.
         sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
         allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
