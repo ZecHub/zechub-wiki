@@ -64,11 +64,14 @@ const nextConfig = {
     // frame-ancestors) is deliberately deferred to a later PR, once the
     // third-party asset/data sources have been localized.
     const baseline = [
-      // Send no Referer to any destination. Modern browsers already default to
-      // strict-origin-when-cross-origin, so that value was a no-op vs. defaults
-      // and still told every outbound host the reader came from ZecHub. For an
-      // at-risk-reader threat model, no-referrer is the coherent default.
-      { key: "Referrer-Policy", value: "no-referrer" },
+      // Send only the ORIGIN (scheme+host, never the path) to cross-origin
+      // destinations, and nothing on an HTTPS->HTTP downgrade. We do NOT use
+      // no-referrer: YouTube's embed player refuses to play (PlayabilityStatus
+      // ERROR -> "video player configuration error") when it receives no Referer,
+      // so no-referrer broke every embedded video site-wide. Origin-only is the
+      // right balance here — the origin is already visible to the network via
+      // DNS/TLS SNI, while the page path (the sensitive part) is still withheld.
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
       // Never let a browser MIME-sniff a response into an executable type.
       { key: "X-Content-Type-Options", value: "nosniff" },
       // Disable powerful features the wiki never uses (also opts out of FLoC/Topics).
