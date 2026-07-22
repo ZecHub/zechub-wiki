@@ -6762,7 +6762,7 @@
             "yes": "2",
             "abstain": "1"
           },
-          "status": "open",
+          "status": "rejected",
           "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
           "threshold": {
             "threshold_quorum": {
@@ -6828,7 +6828,7 @@
           "msgs": [],
           "title": "Zcash Merchant Adoption Pilot – Nairobi",
           "votes": {
-            "no": "1",
+            "no": "2",
             "yes": "5",
             "abstain": "2"
           },
