@@ -19,9 +19,28 @@ function getOptionalEnv(key: string): string | undefined {
   return value || undefined;
 }
 
+/** True only when every Supabase var required for vector search is present. */
+export function hasSupabaseEnv(): boolean {
+  return required.every((key) => Boolean(process.env[key]));
+}
+
+/**
+ * Lazy accessors. Reading a required Supabase value still throws when it is
+ * missing, but only at call time (request handling) — importing this module
+ * never throws, so `next build` and every non-AI route work without Supabase
+ * credentials configured.
+ */
 export const aiEnv = {
-  OPENAI_API_KEY: getOptionalEnv("OPENAI_API_KEY"),
-  SUPABASE_URL: getEnv("SUPABASE_URL"),
-  SUPABASE_ANON_KEY: getEnv("SUPABASE_ANON_KEY"),
-  SUPABASE_SERVICE_ROLE_KEY: getEnv("SUPABASE_SERVICE_ROLE_KEY"),
+  get OPENAI_API_KEY(): string | undefined {
+    return getOptionalEnv("OPENAI_API_KEY");
+  },
+  get SUPABASE_URL(): string {
+    return getEnv("SUPABASE_URL");
+  },
+  get SUPABASE_ANON_KEY(): string {
+    return getEnv("SUPABASE_ANON_KEY");
+  },
+  get SUPABASE_SERVICE_ROLE_KEY(): string {
+    return getEnv("SUPABASE_SERVICE_ROLE_KEY");
+  },
 } as const;

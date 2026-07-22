@@ -58,6 +58,43 @@ const nextConfig = {
       },
     ];
   },
+  async headers() {
+    // Baseline security headers. These are all safe to enforce immediately and
+    // change no rendering behaviour. A full Content-Security-Policy (and its
+    // frame-ancestors) is deliberately deferred to a later PR, once the
+    // third-party asset/data sources have been localized.
+    const baseline = [
+      // Send no Referer to any destination. Modern browsers already default to
+      // strict-origin-when-cross-origin, so that value was a no-op vs. defaults
+      // and still told every outbound host the reader came from ZecHub. For an
+      // at-risk-reader threat model, no-referrer is the coherent default.
+      { key: "Referrer-Policy", value: "no-referrer" },
+      // Never let a browser MIME-sniff a response into an executable type.
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      // Disable powerful features the wiki never uses (also opts out of FLoC/Topics).
+      {
+        key: "Permissions-Policy",
+        value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+      },
+      // On a first http:// visit a hostile network can observe/modify before the
+      // HTTPS redirect; HSTS closes that gap. Assumes all subdomains are always
+      // HTTPS (verify before relying on includeSubDomains/preload).
+      {
+        key: "Strict-Transport-Security",
+        value: "max-age=63072000; includeSubDomains; preload",
+      },
+    ];
+    return [
+      { source: "/:path*", headers: baseline },
+      {
+        // Clickjacking protection everywhere EXCEPT the embeddable widget under
+        // /embed (and its locale-prefixed form /xx/embed), which is designed to
+        // be framed by third-party sites.
+        source: "/((?!(?:[a-z]{2}/)?embed(?:/|$)).*)",
+        headers: [{ key: "X-Frame-Options", value: "DENY" }],
+      },
+    ];
+  },
 
   // Force correct project root (avoids picking parent package-lock.json)
   turbopack: {
