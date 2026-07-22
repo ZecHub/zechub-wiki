@@ -16,22 +16,34 @@ type GhContentItem = {
 
 const YEAR_DIR = /^\d{4}$/;
 
-const GITHUB_HEADERS = {
-  Accept: "application/vnd.github+json",
-  "User-Agent": "ZecHub-Wiki (hackathon; +https://zechub.wiki/hackathon)",
-} as const;
+// Server-only. GITHUB_TOKEN is optional, but without it GitHub allows just 60
+// requests/hour/IP, which a shared deploy IP burns through quickly and every
+// call then fails with 403.
+function githubHeaders(): Record<string, string> {
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github+json",
+    "User-Agent": "ZecHub-Wiki (hackathon; +https://zechub.wiki/hackathon)",
+  };
+  const token = process.env.GITHUB_TOKEN;
+  if (token) headers.Authorization = `Bearer ${token}`;
+  return headers;
+}
 
 async function fetchDirectoryContents(
   repoPath: string
 ): Promise<GhContentItem[]> {
   const url = `https://api.github.com/repos/ZecHub/zechub/contents/${repoPath}?ref=main`;
   const res = await fetch(url, {
-    headers: GITHUB_HEADERS,
+    headers: githubHeaders(),
     next: { revalidate: 3600 },
   });
 
   if (!res.ok) {
-    throw new Error(`GitHub API ${res.status} for ${repoPath}`);
+    const hint =
+      res.status === 403 || res.status === 429
+        ? " (rate limited; set GITHUB_TOKEN to raise the limit)"
+        : "";
+    throw new Error(`GitHub API ${res.status} for ${repoPath}${hint}`);
   }
 
   const data: unknown = await res.json();
