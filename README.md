@@ -63,4 +63,4 @@ To deepen your understanding of ZecHub, visit the deployed app at [zechub.wiki](
 
 ZecHub wiki is open-source and welcomes your contribution. Read our **[contributing guide](/CONTRIBUTING.md)** for more details on how.
 
-Translating the wiki? See the **[i18n architecture guide](/docs/i18n.md)** for the translation workflow and how to add a language.
+Translating the wiki? See the **[translation guide](/docs/translation-guide.md)** for the translation workflow and how to add a language.

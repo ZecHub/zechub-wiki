@@ -41,13 +41,10 @@ export function LanguageSwitcher() {
   const handleSelect = (code: string) => {
     setLocale(code);
     setIsOpen(false);
-    // For URL-routed locales (those with curated content / next-intl routing,
-    // e.g. en + it), navigate to the locale-prefixed path so the server serves
-    // curated content. Other locales (es, fr, ...) have no curated routes and
-    // rely on the Google Translate fallback applied to the current page.
-    if ((routing.locales as readonly string[]).includes(code)) {
-      router.replace(pathname, { locale: code as (typeof routing.locales)[number] });
-    }
+    // Every language ships curated content and a next-intl route, so always
+    // navigate to the locale-prefixed path (English is served unprefixed at the
+    // root) — the server then renders the curated page for that locale.
+    router.replace(pathname, { locale: code as (typeof routing.locales)[number] });
   };
 
   return (
