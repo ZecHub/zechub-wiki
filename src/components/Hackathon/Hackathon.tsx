@@ -503,6 +503,15 @@ const submissions: Submission[] = [
   demoUrl: "https://tryportal.xyz",
   repoUrl: "https://github.com/IamHarrie-Labs/portal",
 },
+{
+  title: "ZEC Battleship",
+  creator: "Franklynstein",
+  track: "Games",
+  description:
+    "A two-player Battleship game where both players stake shielded ZEC and the winner takes the pot — with anti-cheat board commitments and a threshold-signed escrow that no single party can steal from.",
+  videoEmbedUrl: "https://youtube.com/embed/0Rn2FF0_nxM",
+  repoUrl: "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/ZEC-Battleship",
+},
 ];
 
 const faqItems = [
