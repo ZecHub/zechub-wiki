@@ -1,0 +1,61 @@
+name: Egress check
+
+# Fails if any page contacts a third-party origin on initial load (beyond the
+# documented privacy-respecting allow-list). Structural regression guard for the
+# self-hosted-images + CSP hardening. NOTE: this asserts the finished state, so
+# it stays red until the self-hosting PRs are merged — make it a REQUIRED check
+# only after that.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  egress:
+    timeout-minutes: 25
+    runs-on: ubuntu-latest
+    env:
+      # Dummy values: the site fails closed without real secrets, which is fine —
+      # this test only inspects WHERE the browser sends requests, not live data.
+      NEXT_PUBLIC_SUPABASE_URL: "https://dummy.supabase.co"
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: "dummy"
+      SUPABASE_SERVICE_ROLE_KEY: "dummy"
+      OPENAI_API_KEY: ""
+      NEXT_TELEMETRY_DISABLED: "1"
+      EGRESS_BASE_URL: "http://localhost:3000"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Install Playwright (chromium)
+        run: yarn playwright install --with-deps chromium
+      - name: Build
+        run: yarn build
+      - name: Start server
+        run: |
+          yarn start &
+          # Wait (up to ~60s) for the server to accept connections; FAIL if it
+          # never does (otherwise the egress step would pass vacuously).
+          up=""
+          for i in $(seq 1 60); do
+            if curl -sSf -o /dev/null "http://localhost:3000"; then up=1; echo "server up"; break; fi
+            sleep 1
+          done
+          if [ -z "$up" ]; then echo "server did not start within 60s"; exit 1; fi
+      - name: Egress assertion
+        run: yarn playwright test e2e/egress.spec.ts
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: egress-playwright-report
+          path: playwright-report/
+          retention-days: 7
