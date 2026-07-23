@@ -95,7 +95,7 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
       icon: <Coins size={18} />,
     },
     {
-      label: metricT?.shieldedValue || "Shielded Value (USD)",
+      label: metricT?.shieldedValue || "Shielded Value",
       value:
         blockchainInfo?.shielded_value_zec && price?.usd
           ? `$${Math.round(blockchainInfo.shielded_value_zec * price.usd).toLocaleString()}`
