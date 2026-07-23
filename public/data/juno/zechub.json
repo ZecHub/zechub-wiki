@@ -6762,7 +6762,7 @@
             "yes": "2",
             "abstain": "1"
           },
-          "status": "rejected",
+          "status": "closed",
           "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
           "threshold": {
             "threshold_quorum": {
@@ -6783,7 +6783,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-07-17T12:12:24.437Z"
+        "createdAt": "2026-07-17T12:12:24.437Z",
+        "completedAt": "2026-07-23T10:50:21.000Z",
+        "closedAt": "2026-07-23T10:50:21.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6797,7 +6799,7 @@
             "yes": "1",
             "abstain": "1"
           },
-          "status": "open",
+          "status": "rejected",
           "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
           "threshold": {
             "threshold_quorum": {
@@ -6832,7 +6834,7 @@
             "yes": "5",
             "abstain": "2"
           },
-          "status": "open",
+          "status": "closed",
           "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
           "threshold": {
             "threshold_quorum": {
@@ -6853,7 +6855,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-07-17T21:10:03.427Z"
+        "createdAt": "2026-07-17T21:10:03.427Z",
+        "completedAt": "2026-07-23T10:49:54.000Z",
+        "closedAt": "2026-07-23T10:49:54.000Z"
       }
     ]
   },
