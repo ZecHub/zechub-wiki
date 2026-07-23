@@ -10,6 +10,7 @@ import {
   ShieldedAmountDatum,
   ShieldedTransactionDatum,
   ShieldedTxCount,
+  ZecPrice,
   SupplyData,
   BlockFees,
   NetworkSolps,
@@ -27,6 +28,27 @@ export async function getBlockchainData(
     if (!res.ok) return null;
     const json = await res.json();
     return json.data as BlockchainInfo;
+  } catch {
+    return null;
+  }
+}
+
+// ZEC price + market cap via the cached same-origin CoinGecko proxy.
+export async function getZecPrice(
+  url: string,
+  signal?: AbortSignal,
+): Promise<ZecPrice | null> {
+  try {
+    const res = await fetch(url, { signal });
+    if (!res.ok) return null;
+    const json = await res.json();
+    const z = json?.zcash ?? {};
+    return {
+      usd: typeof z.usd === "number" ? z.usd : null,
+      btc: typeof z.btc === "number" ? z.btc : null,
+      usd_market_cap:
+        typeof z.usd_market_cap === "number" ? z.usd_market_cap : null,
+    };
   } catch {
     return null;
   }
@@ -50,20 +72,6 @@ export async function getIssuanceData(
     }));
 
     return parsed;
-  } catch {
-    return null;
-  }
-}
-
-export async function getZcashCirculationCount(
-  url: string,
-  signal?: AbortSignal,
-): Promise<number | null> {
-  try {
-    const res = await fetch(url, { signal });
-    if (!res.ok) return null;
-    const json = await res.json();
-    return parseInt(json.chainSupply.chainValueZat, 10) * 1e-8;
   } catch {
     return null;
   }

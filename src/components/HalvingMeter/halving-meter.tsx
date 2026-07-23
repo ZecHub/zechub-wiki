@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import type { RefObject } from 'react';
 
-// Same-origin proxy (Blockchair key stays server-side) — see pages/api/blockchain-data.
+// Same-origin proxy for on-chain data (Cipherscan; see pages/api/blockchain-data).
 const api = ['/api/blockchain-data'];
 
 function fetchData(url: any) {
@@ -11,8 +11,11 @@ function fetchData(url: any) {
     xhr.open('GET', url, true);
     xhr.onload = function () {
       if (xhr.status === 200) {
-        const data = JSON.parse(xhr.responseText);
-        resolve(data);
+        try {
+          resolve(JSON.parse(xhr.responseText));
+        } catch {
+          reject(new Error(`Invalid JSON from ${url}`));
+        }
       } else {
         reject(new Error(`API request error: ${xhr.status} ${xhr.statusText}`));
       }
@@ -38,6 +41,7 @@ export const HalvingMeter = (props: HalvingMeterProps) => {
   const [minutes, setMinutes] = useState('00');
   const [seconds, setSeconds] = useState('00');
   const [loading, setLoading] = useState(true);
+  const [unavailable, setUnavailable] = useState(false);
 
   const previousHalvingBlock = 2726400; // Block 2726400 (Nov 28, 2024)
   const nextHalvingBlock = 4406400;     // Block 4406400 (estimated Nov 28, 2028)
@@ -48,7 +52,10 @@ export const HalvingMeter = (props: HalvingMeterProps) => {
       try {
         const apiData = await Promise.all(api.map((url) => fetchData(url)));
         const z_stats: any = apiData[0];
-        const blocks = z_stats.data.blocks;
+        const blocks = z_stats?.data?.blocks;
+        if (typeof blocks !== "number" || !Number.isFinite(blocks)) {
+          throw new Error("Missing block height from blockchain-data");
+        }
         const remaining = nextHalvingBlock - blocks;
         
         setCurrentBlock(blocks);
@@ -62,6 +69,7 @@ export const HalvingMeter = (props: HalvingMeterProps) => {
         setLoading(false);
       } catch (err) {
         console.log('An error occurred:', err);
+        setUnavailable(true);
         setLoading(false);
       }
     };
@@ -124,6 +132,15 @@ export const HalvingMeter = (props: HalvingMeterProps) => {
       <div className='flex flex-col my-8 space-y-4 border-2 border-blue-200 p-4'>
         <h2 className='font-bold'>Halving Meter</h2>
         <p>Loading...</p>
+      </div>
+    );
+  }
+
+  if (unavailable) {
+    return (
+      <div className='flex flex-col my-8 space-y-4 border-2 border-blue-200 p-4'>
+        <h2 className='font-bold'>Halving Meter</h2>
+        <p>Halving data is currently unavailable.</p>
       </div>
     );
   }

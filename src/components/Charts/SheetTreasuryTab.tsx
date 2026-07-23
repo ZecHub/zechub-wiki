@@ -12,9 +12,8 @@ import {
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 import { fetchTreasuryFromSheet } from "@/lib/parseTreasurySheet";
 
-// NEW: Live ZEC price from the exact same Blockchair API used on the main ZecHub dashboard
-// Same-origin proxy (Blockchair key stays server-side) — see pages/api/blockchain-data.
-const BLOCKCHAIR_ZEC_STATS_URL = "/api/blockchain-data";
+// Live ZEC price via the cached same-origin CoinGecko proxy (key stays server-side).
+const ZEC_PRICE_URL = "/api/prices/simple?ids=zcash&vs_currencies=usd";
 
 const PIE_COLORS = [
   "#3b82f6",
@@ -247,19 +246,19 @@ export default function SheetTreasuryTab() {
     };
   }, []);
 
-  // NEW: Live ZEC price fetch (exact same Blockchair endpoint + pattern as main ZecHub dashboard price label)
+  // Live ZEC price fetch via the same-origin CoinGecko proxy (same source as the dashboard price tile).
   useEffect(() => {
     let cancelled = false;
     const controller = new AbortController();
 
-    fetch(BLOCKCHAIR_ZEC_STATS_URL, { signal: controller.signal })
+    fetch(ZEC_PRICE_URL, { signal: controller.signal })
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
       .then((data) => {
         if (!cancelled) {
-          const price = data?.data?.market_price_usd;
+          const price = data?.zcash?.usd;
           if (typeof price === "number" && Number.isFinite(price)) {
             setLiveZecPrice(price);
             setPriceError(null);
