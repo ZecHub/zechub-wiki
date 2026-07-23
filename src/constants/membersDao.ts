@@ -17,7 +17,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/2024714746025664512/qWshr051_400x400.jpg",
+      "/content-images/qWshr051_400x400-bcf2abf904.webp",
     name: "Zolder",
     description:
       "Nerdy.moca 👁👁👁 🐙 Privacy is normal 🙏🖕🏻 Every little bit adds up",
@@ -33,7 +33,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1860844315922051072/VoIFT2pa_400x400.jpg",
+      "/content-images/VoIFT2pa_400x400-95c23fbba0.webp",
     name: "Tron",
     description:
       "Creator of ZEC Bounties, Software Developer | Building with Django, FastAPI, React, and React Native | Electronics & Electrical Engineering (in view) | AI & ML.. ",
@@ -49,7 +49,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1595255841933893632/bqPZFQo0_400x400.jpg",
+      "/content-images/bqPZFQo0_400x400-4cfe6e7d19.webp",
     name: "James Katz",
     description:
       "Developer of Dizzy bot and Zecfaucet.com, Zcash Brazil Team Member",
@@ -65,7 +65,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/2029713081585049600/AksNItPS_400x400.jpg",
+      "/content-images/AksNItPS_400x400-65c3fe3588.webp",
     name: "Blakiat",
     description: `Passionate about technology, advocate for free software, and obsessed with digital security. Here I share tips and discuss the digital future.`,
     social: [
@@ -85,7 +85,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1828110665837387776/xHIp1JO9_400x400.jpg",
+      "/content-images/xHIp1JO9_400x400-eee3c0fb21.webp",
     name: "Robmar",
     description: `Cameraman, Photographer, Master Audio and Video Editor, Advertiser, Graphic Designer... Audiovisual solutions...`,
     social: [
@@ -100,7 +100,7 @@ export const daoMembers = [
     role: "",
   },
   {
-    imgUrl: "https://i.ibb.co/9HkZG5sg/IMG-20250301-114424-340.jpg",
+    imgUrl: "/content-images/IMG-20250301-114424-340-01f8f83540.webp",
     name: "AidenZ",
     description: `Zcash Korea Global Ambassador / I am operating Telegram, KakaoTalk, and Naver Blog to share information about Zcash.`,
     social: [
@@ -115,7 +115,7 @@ export const daoMembers = [
     role: "",
   },
   {
-    imgUrl: "https://i.ibb.co/nsJ0SVP8/Xg-DCz-KYU-400x400.jpg",
+    imgUrl: "/content-images/Xg-DCz-KYU-400x400-2518fff980.webp",
     name: "Kroy!",
     description: `@ZecHub Design SubDAO Contributor | Creativity | Design | Web3 | DAOs`,
     social: [
@@ -129,7 +129,7 @@ export const daoMembers = [
     role: "",
   },
   {
-    imgUrl: "https://i.ibb.co/93pD2H0n/18714-2.png",
+    imgUrl: "/content-images/18714-2-fe74452f0f.webp",
     name: "1337bytes",
     description: `Software Engineer with 8 years professional experience working in web and app development`,
     social: [
@@ -160,7 +160,7 @@ export const daoMembers = [
   // },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1694282200735252480/rIyFjLbF_400x400.jpg",
+      "/content-images/rIyFjLbF_400x400-b4fa33b5ca.webp",
     name: "RuZcash",
     description: `I'm the creator of prozcash.ru website, which I fill with translations into Russian of press releases from
         official sources of Zcash developers, as well as my own articles about the coin. My goal is for the
@@ -180,7 +180,7 @@ export const daoMembers = [
     role: "",
   },
   {
-    imgUrl: "https://i.ibb.co/q5p0YPr/lowo.jpg",
+    imgUrl: "/content-images/lowo-ec0bdb16d0.webp",
     name: "Lowo88",
     description: "Secret Maxi, Leonine DAO launched and managed four DAOs.",
     linkName: "Twitter",
@@ -198,7 +198,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/2023439119796621312/y4S4vhOY_400x400.jpg",
+      "/content-images/y4S4vhOY_400x400-1b7b1d99f8.webp",
     name: "Yoditar",
     description:
       "SpacesHost | Blogger | Crypto community builder: @zcashesp and @libredotorg | Ambassador @Vivaldi_es | Privacy activist",
@@ -217,7 +217,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1821670682637332480/r46lAEy9_400x400.jpg",
+      "/content-images/r46lAEy9_400x400-e26604bba2.webp",
     name: "zerodartz",
     description: `Meme and media creator, ZFAV club contributor, nerd who loves new technology and Shielding everything`,
     linkName: "Twitter",
@@ -235,7 +235,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://free2z.cash/uploadz/public/Edicksonjga/IMG_20230415_142522_715.jpg",
+      "/content-images/IMG_20230415_142522_715-6338c898d2.webp",
     name: "Edickson González",
     description: `T.S.U Construcción Civil - Co-founder of the @mastelegram community on Telegram - moderator on the @zcashesp
         community on Telegram and YouTube channel, Editor of zcashesp.com/blog and Contributor of ZecHub.`,
@@ -254,7 +254,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/2024945609006784512/eLftKSmP_400x400.jpg",
+      "/content-images/eLftKSmP_400x400-b716ffbc5e.webp",
     name: "Mine",
     description: `I am a diagrammer, graphic and packaging designer. My interest in blockchain, NFTs and cryptocurrencies started
         just three years ago. In May 2022 Iogy and I became the design team for Zcash Brasil, and since then I've been
@@ -275,7 +275,7 @@ export const daoMembers = [
     role: "",
   },
   // {
-  //   imgUrl: "https://pbs.twimg.com/profile_images/1829533580017754112/sbJI5vQn_400x400.jpg",
+  //   imgUrl: "/content-images/sbJI5vQn_400x400-35a1325f7d.webp",
   //   name: "Tokidoki",
   //   description: `Tokidoki is the community manager of ZecHub. He is a software engineer from Indonesia who also teaches
   //       programming and has mentored hundreds of junior developers at a coding bootcamp.`,
@@ -293,7 +293,7 @@ export const daoMembers = [
   //   role: "",
   // },
   {
-    imgUrl: "https://i.ibb.co/kQk5sG7/image-2023-11-17-170857858.png",
+    imgUrl: "/content-images/image-2023-11-17-170857858-5aec087b1a.webp",
     name: "Tecnopapapi",
     description:
       "Father, Journalist, Blogger and Podcaster from Venezuela. I like to learn and reach others about computers, smartphones and crypto as a financial alternative",
@@ -312,7 +312,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://sea2.discourse-cdn.com/zcash/user_avatar/forum.zcashcommunity.com/dismad/120/18432_2.png",
+      "/content-images/18432_2-8487829de5.webp",
     name: "Dismad",
     description: `Education, Skateboarding, Mathematics, Computer Science, Ornithology, Meteorology, Music, Automotive,
         Supercross, Cryptocurrencies`,
@@ -332,7 +332,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1935652504642965504/DKZa14WW_400x400.jpg",
+      "/content-images/DKZa14WW_400x400-85bb72c37e.webp",
     name: "Roosevelt Gordones",
     description: `Zcast Podcast en Español, Educator & Media Production.`,
     linkName: "Twitter",
@@ -350,7 +350,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1971660404351791104/ApkpG2Ii_400x400.jpg",
+      "/content-images/ApkpG2Ii_400x400-e7e8a393a4.webp",
     name: "Michae2xl",
     description: `1 year+ as Zcash Brazil ambassador, Software Engineer & Product Owner, known as Michae2xl on social media, has
         been 7+ years in the crypto space, worked for a DAO as a Community Manager in Brazil & Canada for almost 4
@@ -370,15 +370,15 @@ export const daoMembers = [
   },
   // {
   //   imgUrl:
-  //     "https://pbs.twimg.com/profile_images/1940210940449783808/_yRuRWlp_400x400.jpg",
+  //     "/content-images/_yRuRWlp_400x400-8c8fc12e04.webp",
   //   name: "Decentralistdan",
   //   description: "ᙇecosystem relations @ZcashFoundation",
   //   linkName: "Twitter",
-  //   urlLink: "https://twitter.com/decentralistdan",
+  //   urlLink: "/content-images/_unavailable.svg",
   //   social: [
   //     {
   //       name: "Twitter",
-  //       url: "https://twitter.com/decentralistdan",
+  //       url: "/content-images/_unavailable.svg",
   //       icon: socialIcons.x,
   //     },
   //   ],
@@ -388,7 +388,7 @@ export const daoMembers = [
   // },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1822034761214504961/vdE9iWGS_400x400.jpg",
+      "/content-images/vdE9iWGS_400x400-f50a513261.webp",
     name: "Jason McGee",
     description: `Member of Zcash Community Grants Committe and Founder of Shielded Labs.`,
     linkName: "Twitter",
@@ -406,7 +406,7 @@ export const daoMembers = [
   },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/1634614829607538694/7_mFB6_T_400x400.jpg",
+      "/content-images/7_mFB6_T_400x400-5a96a56504.webp",
     name: "Chidi",
     description: `Zcash Nigeria Global Ambassador.`,
     linkName: "Twitter",
@@ -423,7 +423,7 @@ export const daoMembers = [
     role: "",
   },
   // {
-  //   imgUrl: "https://i.ibb.co/gDg75Px/upscale-245339439045212-663968106.png",
+  //   imgUrl: "/content-images/upscale-245339439045212-663968106-6cffc394be.webp",
   //   name: "Jay",
   //   description: `Privacy, Cryptography and Encryption.`,
   //   linkName: "Twitter",
@@ -441,7 +441,7 @@ export const daoMembers = [
   // },
   {
     imgUrl:
-      "https://pbs.twimg.com/profile_images/2031426052212281344/TLC71_rH_400x400.jpg",
+      "/content-images/TLC71_rH_400x400-0d331c3058.webp",
     name: "vito",
     description: `Data Security Analyst & Core Team Member of ZecHub.`,
     linkName: "Twitter",
@@ -458,7 +458,7 @@ export const daoMembers = [
     role: "",
   },
   {
-    imgUrl: "https://i.ibb.co/rbMZ67Y/profile.jpg",
+    imgUrl: "/content-images/profile-e14ab46ef3.webp",
     name: "zksquirrel",
     description: `Core Contributor on ZecHub, Prev. Community Note Taker for Zcash Arborist
         and development of the Zcash ecosystem.`,

@@ -2,7 +2,18 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import React, { HTMLProps, JSX } from "react";
 import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
+import LiteYouTube from "@/components/LiteYouTube";
 import type { MDXComponents } from "mdx/types";
+
+const youTubeId = (src: string): string | null => {
+  if (!/(?:youtube(?:-nocookie)?\.com|youtu\.be)/i.test(src)) return null;
+  const path = src.match(
+    /(?:\/embed\/|\/v\/|\/shorts\/|youtu\.be\/)([A-Za-z0-9_-]{6,})/i,
+  );
+  if (path) return path[1];
+  const q = src.match(/[?&]v=([A-Za-z0-9_-]{6,})/i);
+  return q ? q[1] : null;
+};
 
 const MdxComponents = {
   // INLINE CODE (single backticks)
@@ -51,13 +62,30 @@ const MdxComponents = {
   },
 
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => (
+    // Images are self-hosted under /content-images/ (same-origin) — serve as-is.
     <img
-      src={props.src?.startsWith("/") ? "https://github.com/ZecHub/zechub/tree/main" + props.src : props.src || ""}
+      src={props.src || ""}
       alt={props.alt || "Image"}
       className="rounded-lg my-4"
       loading="lazy"
     />
   ),
+  // Route YouTube <iframe> through the click-to-load facade (no render-time
+  // contact with Google); other iframes pass through.
+  iframe: (props: HTMLProps<HTMLIFrameElement>): JSX.Element => {
+    const src = String(props.src || "");
+    const id = youTubeId(src);
+    if (id) {
+      return (
+        <LiteYouTube
+          videoId={id}
+          title={typeof props.title === "string" ? props.title : undefined}
+          className="rounded-lg my-4 w-full aspect-video"
+        />
+      );
+    }
+    return <iframe {...props} sandbox="allow-same-origin allow-popups allow-forms" />;
+  },
   a: (props: HTMLProps<HTMLHyperlinkElementUtils>): JSX.Element => (
     <Link
       href={props.href?.startsWith("/site") ? transformGithubFilePathToWikiLink(props.href) : props.href!}

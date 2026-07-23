@@ -25,6 +25,47 @@ import { headers } from "next/headers";
 import { serialize } from "next-mdx-remote/serialize";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import { visit, SKIP } from "unist-util-visit";
+
+// Defense-in-depth: content markdown is rendered via rehypeRaw (raw HTML
+// passthrough) with no allow-list sanitizer, so a malicious content-repo change
+// could otherwise inject executable markup. Strip the direct XSS vectors —
+// <script>/<style> elements, on* event-handler attributes, and javascript: URLs.
+// (A full allow-list sanitizer or nonce-based CSP is the complete fix; this
+// closes the obvious holes without risking removal of legitimate content HTML.)
+function rehypeStripDangerous() {
+  return (tree: any) => {
+    (visit as any)(tree, "element", (node: any, index: number | undefined, parent: any) => {
+      if (
+        (node.tagName === "script" || node.tagName === "style") &&
+        parent &&
+        typeof index === "number"
+      ) {
+        parent.children.splice(index, 1);
+        return [SKIP, index];
+      }
+      const props = node.properties || {};
+      for (const key of Object.keys(props)) {
+        const k = key.toLowerCase();
+        // Event handlers, and attributes that can carry an executable document
+        // (srcdoc) or override a form's action to a script URL (formaction).
+        if (k.startsWith("on") || k === "srcdoc" || k === "formaction") {
+          delete props[key];
+          continue;
+        }
+        // Script-executing URL schemes on any URL-bearing attribute.
+        const v = props[key];
+        if (
+          ["href", "src", "xlinkhref", "action", "poster"].includes(k) &&
+          typeof v === "string" &&
+          /^\s*(javascript|vbscript):/i.test(v)
+        ) {
+          delete props[key];
+        }
+      }
+    });
+  };
+}
 
 const LazyMdxComponent = React.lazy(() => import("@/components/MdxRenderer"));
 
@@ -42,7 +83,10 @@ function extractFirstContentImage(
     if (!single) continue;
     const src = single[1] || single[2];
     if (src && !/shields\.io|badge|edit/i.test(src)) {
-      if (src.startsWith("http")) return src;
+      // Self-hosted (/content-images/…) images serve as-is. Guard against
+      // protocol-relative "//host/…" (starts with "/" but is external).
+      if (src.startsWith("http") || (src.startsWith("/") && !src.startsWith("//")))
+        return src;
       const dir = filePath.substring(0, filePath.lastIndexOf("/"));
       return `https://raw.githubusercontent.com/ZecHub/zechub/main/${dir}/${src}`;
     }
@@ -453,6 +497,8 @@ export default async function Page(props: {
             ],
           },
         ],
+        // Runs AFTER rehypeRaw so it sees the parsed raw-HTML nodes.
+        rehypeStripDangerous,
       ],
     },
   });
