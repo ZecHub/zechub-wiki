@@ -2,14 +2,12 @@
 
 import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "lucide-react";
-import { useLocale } from "next-intl";
 import { SITE_LINKS } from "@/constants/siteLinks";
 import { useLanguage } from "@/context/LanguageContext";
-import { pageTitles } from "@/constants/pageTitles";
 
-// Map a SITE_LINKS section title to the `site/<Category>` segment used by the
-// pageTitlesIt keys. Only wiki-content sections map to a category; the "Pages"
-// section is app-route navigation and has no pageTitlesIt entries.
+// Map a SITE_LINKS section title to the `<Category>` segment used by the
+// menu-titles manifest keys. Only wiki-content sections map to a category; the
+// "Pages" section is app-route navigation and has no manifest entries.
 const SECTION_CATEGORY: Record<string, string> = {
   Organizations: "Zcash_Organizations",
   Guides: "Guides",
@@ -17,9 +15,9 @@ const SECTION_CATEGORY: Record<string, string> = {
   Ecosystem: "Zcash_Community",
 };
 
-// Best-effort derivation of a `site/<Category>/<File>` pageTitlesIt key from a
-// wiki-style href like "/using-zcash/buying-zec". Returns null when the href is
-// external, an app route, or otherwise not a wiki-content path.
+// Best-effort derivation of a menu-titles manifest key (`<Category>/<File>.md`)
+// from a wiki-style href like "/using-zcash/buying-zec". Returns null when the
+// href is external, an app route, or otherwise not a wiki-content path.
 const derivePageTitleKey = (
   category: string | undefined,
   href: string,
@@ -30,29 +28,35 @@ const derivePageTitleKey = (
   if (segments.length < 2) return null;
   const file = segments[segments.length - 1];
   if (!file) return null;
-  // pageTitlesIt files use Title_Case_With_Underscores derived from the
-  // original .md filename; wiki hrefs are kebab-case. Convert kebab -> the
-  // capitalized underscore form used by the keys.
+  // The manifest keys derive from the original .md filename
+  // (Title_Case_With_Underscores); wiki hrefs are kebab-case. Convert kebab ->
+  // the capitalized underscore form, then append the site-relative ".md" path.
   const fileKey = file
     .split("-")
     .map((part) => (part ? part[0].toUpperCase() + part.slice(1) : part))
     .join("_");
-  return `site/${category}/${fileKey}`;
+  return `${category}/${fileKey}.md`;
 };
 
-export default function SitemapPage() {
+interface SitemapProps {
+  // Localized + English menu-titles manifests (path-keyed by "<Category>/<File>.md"),
+  // fetched server-side and passed in (this is a client component).
+  titles?: Record<string, string>;
+  enTitles?: Record<string, string>;
+}
+
+export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps) {
   const { t } = useLanguage();
-  const locale = useLocale();
   const s = t?.pages?.sitemap;
 
   // Localized label for a single sitemap link. Preference order (matching the
-  // SideMenu approach): curated pageTitlesIt for `it` -> pages.sitemap.links
-  // dictionary -> the English source label.
+  // SideMenu approach): localized manifest -> English manifest ->
+  // pages.sitemap.links dictionary -> the English source label.
   const linkLabel = (sectionTitle: string, href: string, label: string) => {
-    const curated = pageTitles[locale];
-    if (curated) {
-      const key = derivePageTitleKey(SECTION_CATEGORY[sectionTitle], href);
-      if (key && curated[key]) return curated[key];
+    const key = derivePageTitleKey(SECTION_CATEGORY[sectionTitle], href);
+    if (key) {
+      if (titles[key]) return titles[key];
+      if (enTitles[key]) return enTitles[key];
     }
     return s?.links?.[label] ?? label;
   };

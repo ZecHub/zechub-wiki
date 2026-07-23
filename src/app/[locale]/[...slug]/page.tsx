@@ -8,6 +8,7 @@ import {
   getRootCached,
   getAllMarkdownRecursively,
   getSiteFolders,
+  getMenuTitlesCached,
 } from "@/lib/authAndFetch";
 import {
   genMetadata,
@@ -98,6 +99,13 @@ export default async function Page(props: {
   // the active locale (the surrounding page is a server component).
   const dict = (await getDictionary(locale)) as Record<string, any>;
   const r = dict?.pages?.research ?? {};
+
+  // Localized side-menu titles (content-repo manifest), passed to <SideMenu>
+  // (a client component). English is the cross-locale fallback.
+  const [menuTitles, enMenuTitles] = await Promise.all([
+    getMenuTitlesCached(locale),
+    getMenuTitlesCached("en"),
+  ]);
 
   const url = getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
@@ -420,7 +428,7 @@ export default async function Page(props: {
       <MdxContainer
         hasSideMenu={showSideMenu}
         sideMenu={
-          showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null
+          showSideMenu ? <SideMenu folder={slug[0]} roots={roots} titles={menuTitles} enTitles={enMenuTitles} /> : null
         }
         roots={roots}
         heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
@@ -463,7 +471,7 @@ export default async function Page(props: {
     <MdxContainer
       hasSideMenu={showSideMenu}
       sideMenu={
-        showSideMenu ? <SideMenu folder={slug[0]} roots={roots} /> : null
+        showSideMenu ? <SideMenu folder={slug[0]} roots={roots} titles={menuTitles} enTitles={enMenuTitles} /> : null
       }
       roots={roots}
       {...(heroImage ? { heroImage } : {})}
