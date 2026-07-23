@@ -5,9 +5,9 @@ import { DATA_URL } from "@/lib/chart/data-url";
 import {
   getBlockchainData,
   getShieldedTxCount,
-  getZcashCirculationCount,
+  getZecPrice,
 } from "@/lib/chart/helpers";
-import { BlockchainInfo, ShieldedTxCount } from "@/lib/chart/types";
+import { BlockchainInfo, ShieldedTxCount, ZecPrice } from "@/lib/chart/types";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { ErrorBoundary } from "../../../ErrorBoundary/ErrorBoundary";
@@ -22,6 +22,7 @@ import {
   Cuboid,
   Activity,
   ShieldCheck,
+  Lock,
 } from "lucide-react";
 
 interface ZcashStatisticsPorps {}
@@ -33,7 +34,7 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
   const notAvailable = metricT?.notAvailable || "N/A";
 
   const [loading, setLoading] = useState(true);
-  const [circulation, setCirculation] = useState<number | null>(null);
+  const [price, setPrice] = useState<ZecPrice | null>(null);
   const [blockchainInfo, setBlockchainInfo] = useState<BlockchainInfo | null>();
   const [shieldedTxCount, setShieldedTxCount] = useState<
     ShieldedTxCount[] | null
@@ -46,9 +47,9 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
       setLoading(true);
 
       try {
-        const [chainData, circulationInfo, shieldedTxCount] = await Promise.all([
-          getBlockchainData(DATA_URL.blockchairUrl, controller.signal),
-          getZcashCirculationCount(DATA_URL.blockchainInfoUrl, controller.signal),
+        const [chainData, priceData, shieldedTxCount] = await Promise.all([
+          getBlockchainData(DATA_URL.blockchainDataUrl, controller.signal),
+          getZecPrice(DATA_URL.pricesUrl, controller.signal),
           getShieldedTxCount(DATA_URL.shieldedTxCountUrl, controller.signal),
         ]);
 
@@ -56,8 +57,8 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
           setBlockchainInfo(chainData);
         }
 
-        if (circulationInfo) {
-          setCirculation(circulationInfo);
+        if (priceData) {
+          setPrice(priceData);
         }
 
         if (shieldedTxCount) {
@@ -81,31 +82,37 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
   const metricsObj = [
     {
       label: metricT?.marketCap || "Market Cap",
-      value: blockchainInfo?.market_cap_usd
-        ? `$${blockchainInfo?.market_cap_usd.toLocaleString()}`
+      value: price?.usd_market_cap
+        ? `$${Math.round(price.usd_market_cap).toLocaleString()}`
         : notAvailable,
       icon: <DollarSign size={18} />,
     },
     {
       label: metricT?.circulation || "Circulation",
-      value: circulation
-        ? `${circulation?.toLocaleString()} ZEC`
+      value: blockchainInfo?.circulation
+        ? `${Math.round(blockchainInfo.circulation).toLocaleString()} ZEC`
         : notAvailable,
       icon: <Coins size={18} />,
     },
     {
+      label: metricT?.shieldedValue || "Shielded Value (USD)",
+      value:
+        blockchainInfo?.shielded_value_zec && price?.usd
+          ? `$${Math.round(blockchainInfo.shielded_value_zec * price.usd).toLocaleString()}`
+          : notAvailable,
+      icon: <Lock size={18} />,
+    },
+    {
       label: metricT?.marketPriceUsd || "Market Price (USD)",
-      value: blockchainInfo?.market_price_usd
-        ? `$${blockchainInfo?.market_price_usd.toFixed(2)}`
-        : notAvailable,
+      value: price?.usd ? `$${price.usd.toFixed(2)}` : notAvailable,
       icon: <TrendingUp size={18} />,
     },
     {
       label: metricT?.marketPriceBtc || "Market Price (BTC)",
-      value: blockchainInfo?.market_price_btc
+      value: price?.btc
         ? isMobile
-          ? Number(blockchainInfo?.market_price_btc).toFixed(4)
-          : Number(blockchainInfo?.market_price_btc).toFixed(8)
+          ? Number(price.btc).toFixed(4)
+          : Number(price.btc).toFixed(8)
         : notAvailable,
       icon: <Bitcoin size={18} />,
     },
@@ -118,7 +125,10 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
     },
     {
       label: metricT?.transactions24h || "24h Transactions",
-      value: blockchainInfo?.transactions_24h.toLocaleString() ?? notAvailable,
+      value:
+        blockchainInfo?.transactions_24h != null
+          ? blockchainInfo.transactions_24h.toLocaleString()
+          : notAvailable,
       icon: <Activity size={18} />,
     },
     {

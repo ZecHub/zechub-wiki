@@ -1,9 +1,17 @@
+// On-chain data from /api/blockchain-data (Cipherscan). Price/market-cap live
+// in ZecPrice (from /api/prices/simple), not here.
 export interface BlockchainInfo {
-  blocks: number;
-  transactions_24h: number;
-  market_cap_usd: number;
-  market_price_usd: number;
-  market_price_btc: number;
+  blocks: number | null;
+  circulation: number | null;
+  shielded_value_zec: number | null;
+  transactions_24h: number | null;
+}
+
+// ZEC market data from the CoinGecko proxy (/api/prices/simple).
+export interface ZecPrice {
+  usd: number | null;
+  btc: number | null;
+  usd_market_cap: number | null;
 }
 
 export type PoolKey = "default" | "sprout" | "sapling" | "orchard";

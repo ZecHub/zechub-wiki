@@ -48,7 +48,10 @@ export const HalvingMeter = (props: HalvingMeterProps) => {
       try {
         const apiData = await Promise.all(api.map((url) => fetchData(url)));
         const z_stats: any = apiData[0];
-        const blocks = z_stats.data.blocks;
+        const blocks = z_stats?.data?.blocks;
+        if (typeof blocks !== "number" || !Number.isFinite(blocks)) {
+          throw new Error("Missing block height from blockchain-data");
+        }
         const remaining = nextHalvingBlock - blocks;
         
         setCurrentBlock(blocks);

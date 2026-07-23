@@ -17,9 +17,12 @@ export const DATA_URL = {
   shieldedUrl:
     "/api/data-updated?path=public/data/zcash/shielded_supply.json",
   namadaSupplyUrl: "/data/namada/namada_supply.json",
-  blockchainInfoUrl: "/api/blockchain-info",
-  // Server-side proxy (key stays out of the browser) — see pages/api/blockchain-data.
-  blockchairUrl: "/api/blockchain-data",
+  // On-chain data (blocks, circulation, shielded pool value) via Cipherscan,
+  // server-side + edge-cached — see pages/api/blockchain-data.
+  blockchainDataUrl: "/api/blockchain-data",
+  // Live ZEC price + market cap via the cached CoinGecko proxy (same-origin).
+  pricesUrl:
+    "/api/prices/simple?ids=zcash&vs_currencies=usd%2Cbtc&include_market_cap=true",
   namadaRewardUrl: "/data/namada/namada_rewards_rate.json",
   blockFeesUrl: "/data/zcash/blockFeesZEC.json",
   networkSolpsUrl: "/data/zcash/networksolps.json",
@@ -63,8 +66,7 @@ export const DATE_URL = {
     "/api/data-updated?path=public/data/zcash/shielded_supply.json",
   namadaSupplyUrl:
     "/api/data-updated?path=public/data/namada/namada_supply.json",
-  blockchainInfoUrl: "/api/blockchain-info",
-  blockchairUrl: "/api/blockchain-data",
+  blockchainDataUrl: "/api/blockchain-data",
   namadaRewardUrl:
     "/api/data-updated?path=public/data/namada/namada_rewards_rate.json",
   zcashShieldedStatsUrl:
