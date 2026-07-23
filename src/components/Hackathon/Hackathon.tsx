@@ -395,7 +395,7 @@ const submissions: Submission[] = [
     track: "FROST",
     description:
       "Konclave provides browser-based FROST threshold vaults for Zcash treasurers. Teams can coordinate quorum-approved payments and private payroll without ever reconstructing the complete signing key. Its multi-device distributed key generation and FROST signing flows run in the browser through a blind relay. Konclave has demonstrated a real 2-of-3 threshold-authorized transaction on Zcash mainnet.",
-    videoEmbedUrl: "https://youtu.be/_UyWlLRnJms?is=aUDoRqRbTSvnRkaF",
+    videoEmbedUrl: "https://www.youtube.com/embed/_UyWlLRnJms",
     demoUrl: "https://konclave-demo.vercel.app/",
     repoUrl: "https://github.com/deegalabs/konclave",
   },
