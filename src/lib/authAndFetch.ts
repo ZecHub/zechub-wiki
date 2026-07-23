@@ -118,10 +118,21 @@ export const getMenuTitlesCached = unstable_cache(
       // rendering ("objects are not valid as a React child") for every page.
       const out: Record<string, string> = {};
       for (const [k, v] of Object.entries(parsed)) {
-        if (typeof v === "string") out[k] = v;
+        // Keep only non-empty strings — an empty/whitespace value would, via the
+        // consumers' `?? fallback`, suppress the English/filename fallback and
+        // render a blank menu entry.
+        if (typeof v === "string" && v.trim() !== "") out[k] = v.trim();
       }
       return out;
-    } catch {
+    } catch (err) {
+      // Do NOT fail silently: a missing/broken manifest degrades every localized
+      // menu + sitemap title to English. Log loudly so a wrong deploy order
+      // (this frontend merged before the content-repo manifests exist) is
+      // observable instead of a silent regression.
+      console.error(
+        `[menu-titles] manifest fetch failed for locale "${locale}" — menu/sitemap titles will fall back to English:`,
+        err,
+      );
       return {};
     }
   },
@@ -203,7 +214,11 @@ const getEnglishSourceStatusCached = unstable_cache(
       for (const e of entries) {
         if (e.type !== "file" || !e.name.endsWith(".md")) continue;
         const n = normalize(e.name.replace(/\.md$/i, ""));
-        if (n === wantSlug || n.includes(wantSlug)) return "present";
+        // Exact match only — a substring match (n.includes) would treat a
+        // sibling like "Zcash_Foundation" as the source for a deleted "Zcash",
+        // defeating the guard and serving the orphan forever. Mirrors
+        // fuzzyLocalizedFile's exact-only resolution.
+        if (n === wantSlug) return "present";
       }
       return "absent"; // folder listed, no matching English file → source deleted
     } catch (err: any) {
@@ -211,7 +226,9 @@ const getEnglishSourceStatusCached = unstable_cache(
       throw err; // transient — propagate, do not cache
     }
   },
-  ["github-english-source-status"],
+  // Key by repo coordinates: a branch/repo config change must not reuse a
+  // present/absent verdict computed against the old source.
+  ["github-english-source-status", owner, repo, BRANCH ?? ""],
   { revalidate: 300, tags: ["github-content"] },
 );
 
@@ -246,7 +263,14 @@ export async function getLocalizedFileContentCached(
       } catch {
         englishStatus = "unknown";
       }
-      if (englishStatus === "absent") return null; // orphan → fall through to not-found
+      if (englishStatus === "absent") {
+        // English source is (definitively, or via a cached-stale verdict) gone:
+        // never serve the stale translation. Fall through to the English source
+        // itself — a genuine orphan's English also 404s → null → not-found, while
+        // a false-"absent" (e.g. a stale SWR verdict) degrades to English content
+        // rather than blanking a live page.
+        return getFileContentCached(filePath).catch(() => null);
+      }
       return translated;
     }
   }
