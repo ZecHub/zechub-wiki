@@ -498,7 +498,8 @@ const submissions: Submission[] = [
   track: "Zcash Login",
   description:
     "Portal enables users to sign in, unlock paid content, and send or receive payments using only a Zcash wallet. A user sends a private shielded transaction containing a one-time code in the memo, which Portal detects on Zcash mainnet to authenticate the user without requiring an email address or password. The same flow supports payment links and gated content while keeping the user's identity private from the application. Portal operates using real Zcash mainnet transactions rather than simulated payments.",
-  videoEmbedUrl: "https://www.youtube.com/embed/UxJZrXAuWY4",
+  videoUrl: "https://free2z.cash/uploadz/ZecHub/i-built-portal.mp4",
+  videoType: "video/mp4",
   demoUrl: "https://tryportal.xyz",
   repoUrl: "https://github.com/IamHarrie-Labs/portal",
 },
