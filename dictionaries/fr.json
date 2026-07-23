@@ -99,7 +99,15 @@
     "Zcash Tech": "Technologie Zcash",
     "Privacy Tools": "Outils de confidentialité",
     "Zcash Social Media": "Réseaux sociaux Zcash",
-    "Glossary & FAQ's": "Glossaire et FAQ"
+    "Glossary & FAQ's": "Glossaire et FAQ",
+    "Use Zcash": "Utiliser Zcash",
+    "Block Explorers": "Explorateurs de blocs",
+    "Ecosystem": "Écosystème",
+    "Raspberry Pi Zcashd Node": "Nœud Zcashd Raspberry Pi",
+    "Raspberry Pi Zebra Node": "Nœud Zebra sur Raspberry Pi",
+    "Zero Knowledge vs Decoy Systems": "Zero Knowledge vs systèmes leurres",
+    "Organizations": "Organisations",
+    "Sovright": "Sovright"
   },
   "exploreMenu": {
     "Full Explore": "Explorer entièrement",

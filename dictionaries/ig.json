@@ -99,7 +99,15 @@
     "Zcash Tech": "Zcash Tech",
     "Privacy Tools": "Ngwaọrụ Nzuzo",
     "Zcash Social Media": "Zcash Social Media",
-    "Glossary & FAQ's": "Glossary & Ajụjụ Ndị A Na-ajụkarị"
+    "Glossary & FAQ's": "Glossary & Ajụjụ Ndị A Na-ajụkarị",
+    "Use Zcash": "Jiri Zcash",
+    "Block Explorers": "Ndị Nyocha Blọk",
+    "Ecosystem": "Ekosistem",
+    "Raspberry Pi Zcashd Node": "Noodu Raspberry Pi Zcashd",
+    "Raspberry Pi Zebra Node": "Raspberry Pi Zebra Nodu",
+    "Zero Knowledge vs Decoy Systems": "Ihe ọmụma efu megide Sistemu aghụghọ",
+    "Organizations": "Òtù dị iche iche",
+    "Sovright": "Sovright"
   },
   "exploreMenu": {
     "Full Explore": "Nyochaa zuru ezu",

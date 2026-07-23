@@ -99,7 +99,15 @@
     "Zcash Tech": "Zcash Teknolojisi",
     "Privacy Tools": "Gizlilik Araçları",
     "Zcash Social Media": "Zcash Sosyal Medyası",
-    "Glossary & FAQ's": "Sözlük ve SSS'ler"
+    "Glossary & FAQ's": "Sözlük ve SSS'ler",
+    "Use Zcash": "Zcash kullanın",
+    "Block Explorers": "Blok Gezginleri",
+    "Ecosystem": "Ekosistem",
+    "Raspberry Pi Zcashd Node": "Raspberry Pi Zcashd Düğümü",
+    "Raspberry Pi Zebra Node": "Raspberry Pi Zebra Düğümü",
+    "Zero Knowledge vs Decoy Systems": "Sıfır Bilgi ve Yem Sistemleri",
+    "Organizations": "Organizasyonlar",
+    "Sovright": "Sovright"
   },
   "exploreMenu": {
     "Full Explore": "Tam Keşfet",

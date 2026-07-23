@@ -99,7 +99,15 @@
     "Zcash Tech": "Zcash Tech",
     "Privacy Tools": "Vifaa vya Faragha",
     "Zcash Social Media": "Zcash Mitandao ya Jamii",
-    "Glossary & FAQ's": "Glossary & FAQ ya"
+    "Glossary & FAQ's": "Glossary & FAQ ya",
+    "Use Zcash": "Tumia Zcash",
+    "Block Explorers": "Vichunguzi vya Blocki",
+    "Ecosystem": "Mfumo ikolojia",
+    "Raspberry Pi Zcashd Node": "Nodi ya Raspberry Pi Zcashd",
+    "Raspberry Pi Zebra Node": "Nodi ya Zebra ya Raspberry Pi",
+    "Zero Knowledge vs Decoy Systems": "Maarifa Sifuri dhidi ya Mifumo ya Chambo",
+    "Organizations": "Mashirika",
+    "Sovright": "Sovright"
   },
   "exploreMenu": {
     "Full Explore": "Kuchunguza Kamili",

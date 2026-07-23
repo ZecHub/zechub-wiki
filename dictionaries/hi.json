@@ -99,7 +99,15 @@
     "Zcash Tech": "Zcash तकनीक",
     "Privacy Tools": "गोपनीयता उपकरण",
     "Zcash Social Media": "Zcash सोशल मीडिया",
-    "Glossary & FAQ's": "शब्दावली और FAQ's"
+    "Glossary & FAQ's": "शब्दावली और FAQ's",
+    "Use Zcash": "Zcash का उपयोग करें",
+    "Block Explorers": "ब्लॉक एक्सप्लोरर्स",
+    "Ecosystem": "पारिस्थितिकी तंत्र",
+    "Raspberry Pi Zcashd Node": "Raspberry Pi Zcashd नोड",
+    "Raspberry Pi Zebra Node": "Raspberry Pi Zebra नोड",
+    "Zero Knowledge vs Decoy Systems": "ज़ीरो नॉलेज बनाम डिकॉय सिस्टम्स",
+    "Organizations": "संगठन",
+    "Sovright": "Sovright"
   },
   "exploreMenu": {
     "Full Explore": "पूरा एक्सप्लोर करें",
