@@ -827,6 +827,166 @@ const ResourcesSection = () => {
   );
 };
 
+// ── Node & client comparison ─────────────────────────────────────────────────
+
+interface StackRow {
+  name: string;
+  href: string;
+  role: string;
+  language: string;
+  platforms: string;
+  status: "Active" | "Beta";
+  hardware: string;
+  rpc: string;
+}
+
+const STACK_ROWS: StackRow[] = [
+  {
+    name: "zebrad",
+    href: "https://github.com/ZcashFoundation/zebra",
+    role: "Full node",
+    language: "Rust",
+    platforms: "Linux · macOS · Windows (WSL)",
+    status: "Active",
+    hardware: "4 cores · 16 GB RAM · 300 GB disk",
+    rpc: "JSON-RPC (subset of zcashd methods)",
+  },
+  {
+    name: "Zakura",
+    href: "https://github.com/zakura-core/zakura",
+    role: "Full node (Zebra fork)",
+    language: "Rust",
+    platforms: "Linux · macOS · Windows",
+    status: "Active",
+    hardware: "~11 GB disk pruned · snapshot bootstrap",
+    rpc: "JSON-RPC (zcashd compatibility mode)",
+  },
+  {
+    name: "Zaino",
+    href: "https://github.com/zingolabs/zaino",
+    role: "Indexer for light clients & explorers",
+    language: "Rust",
+    platforms: "Linux · macOS",
+    status: "Beta",
+    hardware: "Light · runs beside a full node",
+    rpc: "gRPC (lightwalletd-compatible)",
+  },
+  {
+    name: "lightwalletd",
+    href: "https://github.com/zcash/lightwalletd",
+    role: "Light client server",
+    language: "Go",
+    platforms: "Linux · macOS",
+    status: "Active",
+    hardware: "Light · needs a synced full node",
+    rpc: "gRPC",
+  },
+  {
+    name: "Zallet",
+    href: "https://github.com/zcash/wallet",
+    role: "Wallet backend (zcashd wallet replacement)",
+    language: "Rust",
+    platforms: "Linux · macOS",
+    status: "Beta",
+    hardware: "Light · pairs with a Zebra node",
+    rpc: "JSON-RPC (zcashd wallet methods)",
+  },
+];
+
+const STATUS_STYLES: Record<StackRow["status"], string> = {
+  Active:
+    "bg-emerald-500/10 border-emerald-500/25 text-emerald-600 dark:text-emerald-400",
+  Beta: "bg-amber-500/10 border-amber-500/25 text-amber-600 dark:text-amber-400",
+};
+
+const StackComparison = () => {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
+
+  const headers = [
+    qs?.compareColSoftware ?? "Software",
+    qs?.compareColRole ?? "Role",
+    qs?.compareColLanguage ?? "Language",
+    qs?.compareColPlatforms ?? "Platforms",
+    qs?.compareColStatus ?? "Status",
+    qs?.compareColHardware ?? "Hardware",
+    qs?.compareColRpc ?? "RPC / API",
+  ];
+
+  return (
+    <div className="max-w-[1024px] mx-auto px-4 imd:px-10 pb-14">
+      <SectionCard title={qs?.compareTitle ?? "Node & Client Comparison"}>
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-0 mb-5">
+          {qs?.compareLead ??
+            "The Zcash stack is made up of a few separate tools. Use this table to work out which one your project needs, then follow the matching guide below."}
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[840px] border-collapse text-[13px] text-left">
+            <thead>
+              <tr>
+                {headers.map((h) => (
+                  <th
+                    key={h}
+                    className="py-[10px] px-3 text-[11px] tracking-[0.1em] uppercase font-semibold text-slate-500 dark:text-slate-500 border-b border-black/10 dark:border-white/10"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {STACK_ROWS.map((row) => (
+                <tr
+                  key={row.name}
+                  className="border-b border-black/[0.06] dark:border-white/[0.06] last:border-b-0 align-top"
+                >
+                  <td className="py-3 px-3 whitespace-nowrap">
+                    <a
+                      href={row.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sky-600 dark:text-sky-400 font-semibold no-underline hover:underline"
+                    >
+                      {row.name}
+                    </a>
+                  </td>
+                  <td className="py-3 px-3 text-slate-700 dark:text-slate-300">
+                    {row.role}
+                  </td>
+                  <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
+                    {row.language}
+                  </td>
+                  <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
+                    {row.platforms}
+                  </td>
+                  <td className="py-3 px-3 whitespace-nowrap">
+                    <span
+                      className={`inline-block px-2 py-[2px] rounded-full border text-[11px] font-semibold ${STATUS_STYLES[row.status]}`}
+                    >
+                      {row.status}
+                    </span>
+                  </td>
+                  <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
+                    {row.hardware}
+                  </td>
+                  <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
+                    {row.rpc}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-[12.5px] text-slate-500 dark:text-slate-500 leading-relaxed mt-4 mb-0">
+          <span className="text-amber-500 mr-1">⚠</span>
+          {qs?.compareFootnote ??
+            "zcashd reached end of life at block 3417100 on July 18, 2026 — new projects should build on the software above."}
+        </p>
+      </SectionCard>
+    </div>
+  );
+};
+
 // ── Main Page ────────────────────────────────────────────────────────────────
 
 const TABS = ["Zebrad", "Zaino", "Zingolib"] as const;
@@ -927,6 +1087,9 @@ export default function QuickStartPage() {
             </p>
           </div>
         </div>
+
+        {/* Node & client comparison */}
+        <StackComparison />
 
         {/* Tab bar */}
         <div className="sticky top-0 z-10 bg-white/90 dark:bg-[#030712]/90 backdrop-blur-[12px] border-b border-black/[0.06] dark:border-white/[0.06] px-10">
