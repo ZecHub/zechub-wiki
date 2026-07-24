@@ -60,6 +60,7 @@ import {
   GiFox as ShapeShift,
   GiBugNet as Testnet,
   GiSwordsEmblem as Governance,
+  GiHorseHead as HorseHead,
 } from "react-icons/gi";
 import { GoSync as Go } from "react-icons/go";
 import {
@@ -280,6 +281,7 @@ const iconsForMenu: IconsFor = {
     "Zingo Labs": GiSoapExperiment,
     "ZKAV": "zkav-club.png",
     "Sovright": CircleKey,
+    "Obscura Labs": HorseHead,
   },
   "Zcash Community": {
     "Community Links": LinkSimpleBold,
