@@ -949,7 +949,17 @@
       "zcashCommunityForum": "Zcash Community Forum",
       "githubIssues": "GitHub Issues",
       "troubleshootingGuide": "Troubleshooting Guide",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareTitle": "Node & Client Comparison",
+      "compareLead": "The Zcash stack is made up of a few separate tools. Use this table to work out which one your project needs, then follow the matching guide below.",
+      "compareColSoftware": "Software",
+      "compareColRole": "Role",
+      "compareColLanguage": "Language",
+      "compareColPlatforms": "Platforms",
+      "compareColStatus": "Status",
+      "compareColHardware": "Hardware",
+      "compareColRpc": "RPC / API",
+      "compareFootnote": "zcashd reached end of life at block 3417100 on July 18, 2026 — new projects should build on the software above."
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAO Governance",
