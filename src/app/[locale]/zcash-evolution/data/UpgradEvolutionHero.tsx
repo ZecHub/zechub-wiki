@@ -1,4 +1,5 @@
 import { Shield } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { NetworkUpgrade } from "./networkUpgrade"
 
 interface HeroProp {
@@ -11,9 +12,9 @@ export function UpgradEvolutionHero(props: HeroProp) {
       <h1 className="text-3xl md:text-4xl font-bold text-foreground">
         The Evolution of <span className="text-gradient-zcash">Privacy</span>
       </h1>
-      <p className="text-muted-foreground mt-3 text-sm max-x-lg mx-auto leading-relaxed">
-        From the first shielded transaction to trustless zero-knowledge proofs —
-        trace Zcash&apos;s journey through {props.networkUpgrades.length - 1}{" "}
+      <p className="text-muted-foreground mt-3 text-sm max-w-lg mx-auto leading-relaxed">
+        From the first shielded transaction to trustless zero-knowledge proofs.
+        Trace Zcash&apos;s journey through {props.networkUpgrades.length - 1}{" "}
         network upgrades and beyond.
       </p>
       {props.currentEra && (
@@ -28,6 +29,14 @@ export function UpgradEvolutionHero(props: HeroProp) {
           </span>
         </div>
       )}
+      <div className="mt-4">
+        <Link
+          href="/start-here/network-upgrades"
+          className="text-sm text-primary hover:underline"
+        >
+          Read the full network upgrades index &rarr;
+        </Link>
+      </div>
     </div>
   );
 }
