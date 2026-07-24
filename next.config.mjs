@@ -59,10 +59,55 @@ const nextConfig = {
     ];
   },
   async headers() {
-    // Baseline security headers. These are all safe to enforce immediately and
-    // change no rendering behaviour. A full Content-Security-Policy (and its
-    // frame-ancestors) is deliberately deferred to a later PR, once the
-    // third-party asset/data sources have been localized.
+    // Baseline security headers (safe to enforce; no rendering change). A full
+    // Content-Security-Policy ships alongside them in REPORT-ONLY mode: the
+    // browser reports violations (console + /api/csp-report) but blocks nothing,
+    // so we can watch a run and close gaps before enforcing. Allow-list notes:
+    //   script 'unsafe-inline'      — Next's inline bootstrap/streaming scripts
+    //   script 'wasm-unsafe-eval'   — zaddr_wasm_parser + Penumbra WASM modules
+    //   style  'unsafe-inline'      — styled-components + pervasive inline styles
+    //   img img.shields.io          — live edit/status badges (kept: privacy-
+    //                                 respecting + dynamic, never vendored)
+    //   img upload.wikimedia.org    — a few exchange logos (kept: privacy-respecting)
+    //   img i.ytimg.com             — YouTube thumbnails (Charts) [proxy candidate]
+    //   img i.postimg.cc            — images in generated DAO-proposal text
+    //   img ipfs.daodao.zone        — DAO logos (plain <img>) [proxy candidate]
+    //   img *.basemaps.cartocdn.com — Leaflet map tiles (consent-gated)
+    //   connect raw.githubusercontent — Namada params client fetch [proxy candidate]
+    //   media  free2z / jsdelivr    — hackathon demo videos (user-initiated)
+    //   frame  youtube(-nocookie)   — click-to-load video embeds
+    // CAVEATS for the enforce flip:
+    //   * frame-ancestors is IGNORED in Report-Only (per CSP spec) — the preview
+    //     yields NO signal for it, so validate /embed separately and give /embed
+    //     its own enforced policy WITHOUT frame-ancestors 'self'.
+    //   * This policy limits EGRESS, not XSS: 'unsafe-inline' (no nonce) + the
+    //     unsanitized rehypeRaw markdown pipeline mean injected inline script
+    //     still runs. Treat XSS via a sanitizer/nonce as separate follow-up work.
+    //   * Preview deploys inject the vercel.live toolbar (violates script/connect/
+    //     frame) — monitor a PRODUCTION deploy, or filter those out.
+    // To ENFORCE: rename the header to "Content-Security-Policy" (+ /embed carve-out).
+    const cspReportOnly = [
+      "default-src 'self'",
+      "base-uri 'self'",
+      "object-src 'none'",
+      "form-action 'self'",
+      "frame-ancestors 'self'",
+      "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob: https://i.ytimg.com https://i.postimg.cc https://*.basemaps.cartocdn.com https://img.shields.io https://upload.wikimedia.org https://ipfs.daodao.zone",
+      "font-src 'self' data:",
+      // raw.githubusercontent: the Namada protocol-parameters page fetches JSON
+      // client-side (candidate to proxy same-origin later).
+      "connect-src 'self' https://raw.githubusercontent.com",
+      "frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com",
+      // free2z / jsdelivr: hackathon submission demo videos (user-initiated).
+      "media-src 'self' https://free2z.cash https://cdn.jsdelivr.net",
+      "worker-src 'self' blob:",
+      "manifest-src 'self'",
+      "report-uri /api/csp-report",
+      "report-to csp-endpoint",
+    ].join("; ");
+
     const baseline = [
       // Send only the ORIGIN (scheme+host, never the path) to cross-origin
       // destinations, and nothing on an HTTPS->HTTP downgrade. We do NOT use
@@ -86,6 +131,12 @@ const nextConfig = {
         key: "Strict-Transport-Security",
         value: "max-age=63072000; includeSubDomains; preload",
       },
+      // Report-only CSP (policy built above). Blocks nothing yet — reports
+      // violations to the console and to /api/csp-report so we can watch a
+      // preview before flipping to the enforcing "Content-Security-Policy".
+      { key: "Content-Security-Policy-Report-Only", value: cspReportOnly },
+      // Declares the endpoint named by the report-to directive (Reporting API).
+      { key: "Reporting-Endpoints", value: 'csp-endpoint="/api/csp-report"' },
     ];
     return [
       { source: "/:path*", headers: baseline },
