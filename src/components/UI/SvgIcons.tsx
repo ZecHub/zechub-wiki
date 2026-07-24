@@ -115,10 +115,10 @@ export const socialIcons: Record<string, ReactElement> = {
   zcash: (
     // <img
     //   className="w-12 h-12"
-    //   src="https://z.cash/wp-content/uploads/2023/11/Secondary-Brandmark-Black.svg"
+    //   src="/content-images/Secondary-Brandmark-Black-3182419eb5.svg"
     // />
     <Image
-      src="https://z.cash/wp-content/uploads/2023/11/Secondary-Brandmark-Black.svg"
+      src="/content-images/Secondary-Brandmark-Black-3182419eb5.svg"
       alt={"Zcash"}
       className="w-12 h-12"
     />

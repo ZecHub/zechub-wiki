@@ -2,7 +2,20 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import React, { HTMLProps, JSX } from "react";
 import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
+import LiteYouTube from "@/components/LiteYouTube";
 import type { MDXComponents } from "mdx/types";
+
+// Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
+// Requires a YouTube host first (no over-match of unrelated iframes).
+const youTubeId = (src: string): string | null => {
+  if (!/(?:youtube(?:-nocookie)?\.com|youtu\.be)/i.test(src)) return null;
+  const path = src.match(
+    /(?:\/embed\/|\/v\/|\/shorts\/|youtu\.be\/)([A-Za-z0-9_-]{6,})/i,
+  );
+  if (path) return path[1];
+  const q = src.match(/[?&]v=([A-Za-z0-9_-]{6,})/i); // watch?v= (v anywhere)
+  return q ? q[1] : null;
+};
 
 // Strong slugify for TOC links (handles parentheses, +, etc.)
 const slugify = (text: string): string => {
@@ -139,13 +152,32 @@ const MdxComponents = {
 
   // Everything else
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => (
+    // Images are self-hosted under /content-images/ (same-origin) — serve as-is.
     <img
-      src={props.src?.startsWith("/") ? "https://github.com/ZecHub/zechub/tree/main" + props.src : props.src || ""}
+      src={props.src || ""}
       alt={props.alt || "Image"}
       className="rounded-lg my-4"
       loading="lazy"
     />
   ),
+  // Raw <iframe> in content markdown: route YouTube through the click-to-load
+  // facade so a page doesn't contact Google on render; other iframes pass through.
+  iframe: (props: HTMLProps<HTMLIFrameElement>): JSX.Element => {
+    const src = String(props.src || "");
+    const id = youTubeId(src);
+    if (id) {
+      return (
+        <LiteYouTube
+          videoId={id}
+          title={typeof props.title === "string" ? props.title : undefined}
+          className="rounded-lg my-4 w-full aspect-video"
+        />
+      );
+    }
+    // Non-YouTube iframes: sandbox without allow-scripts so an injected
+    // <iframe> can't execute script (srcdoc is already stripped upstream).
+    return <iframe {...props} sandbox="allow-same-origin allow-popups allow-forms" />;
+  },
   ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc pl-6 my-4" {...props} />,
   ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal pl-6 my-4" {...props} />,
   li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props} />,

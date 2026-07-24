@@ -15,39 +15,15 @@ const nextConfig = {
     // Add the exact origin from your error, or your LAN IP for phone testing
     // 'http://192.168.1.42:3000',
   ],
+  // Images are self-hosted under /content-images/ and public/ (same-origin).
+  // The only remote host kept is Wikimedia — a privacy-respecting source we
+  // deliberately don't vendor; a few exchange logos load it via next/image.
+  // (shields.io badges render as plain <img>, so they need no remotePattern —
+  // they're allow-listed in the CSP img-src instead.) Everything else is
+  // same-origin, so a stray external <Image> still fails loudly in review.
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "i.ibb.co", pathname: "/**" },
-      { protocol: "https", hostname: "github.com", pathname: "/**" },
-      { protocol: "https", hostname: "objects.githubusercontent.com", pathname: "/**" },
-      { protocol: "https", hostname: "avatars.githubusercontent.com", pathname: "/**" },
-      { protocol: "https", hostname: "pbs.twimg.com", pathname: "/**" },
-      { protocol: "https", hostname: "*.twimg.com", pathname: "/**" },
-      { protocol: "https", hostname: "cdn.discordapp.com", pathname: "/**" },
-      { protocol: "https", hostname: "media.discordapp.net", pathname: "/**" },
-      { protocol: "https", hostname: "free2z.cash", pathname: "/**" },
-      { protocol: "https", hostname: "*.discourse-cdn.com", pathname: "/**" },
-      { protocol: "https", hostname: "ipfs.daodao.zone", pathname: "/**" },
-      { protocol: "https", hostname: "hackmd.io", pathname: "/**" },
-      { protocol: "https", hostname: "user-images.githubusercontent.com", pathname: "/**" },
-      { protocol: "https", hostname: "raw.githubusercontent.com", pathname: "/**" },
-      { protocol: "https", hostname: "logos-world.net", pathname: "/**" },
-      { protocol: "https", hostname: "logowik.com", pathname: "/**" },
-      { protocol: "https", hostname: "www.logo.wine", pathname: "/**" },
       { protocol: "https", hostname: "upload.wikimedia.org", pathname: "/**" },
-      { protocol: "https", hostname: "assets.kraken.com", pathname: "/**" },
-      { protocol: "https", hostname: "www.svgrepo.com", pathname: "/**" },
-      { protocol: "https", hostname: "firo.org", pathname: "/**" },
-      { protocol: "https", hostname: "blockchair.com", pathname: "/**" },
-      { protocol: "https", hostname: "messari.io", pathname: "/**" },
-      { protocol: "https", hostname: "3xpl.com", pathname: "/**" },
-      { protocol: "https", hostname: "blockexplorer.one", pathname: "/**" },
-      { protocol: "https", hostname: "mainnet.zcashexplorer.app", pathname: "/**" },
-      { protocol: "https", hostname: "explorer.bitquery.io", pathname: "/**" },
-      { protocol: "https", hostname: "cipherscan.app", pathname: "/**" },
-      { protocol: "https", hostname: "www.zypherscan.com", pathname: "/**" },
-      { protocol: "https", hostname: "img.shields.io", pathname: "/**" },
-      { protocol: "https", hostname: "images.app.goo.gl", pathname: "/**"},
     ],
   },
   async rewrites() {

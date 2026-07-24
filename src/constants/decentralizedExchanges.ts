@@ -18,7 +18,7 @@ export const decentralizedExchanges = [
     description:
       "Trustless decentralized swaps using atomic swaps with FiroDEX!.",
     url: "https://github.com/firoorg/FiroDEX-Desktop",
-    image: "https://firo.org/blog/assets/firodex-beta-release.png",
+    image: "/content-images/firodex-beta-release-b1958c5adc.webp",
   },
   {
     title: "LeoDEX",
