@@ -29,7 +29,11 @@ const Footer = () => {
           . {t.footer?.allRightsReserved || "All Rights Reserved"}.
         </span>
         <span className="text-sm sm:text-center font-light text-slate-200">
-          <Link href={"/sitemap"}>Sitemap</Link>
+          <Link href={"/sitemap"} className="hover:underline">Sitemap</Link>
+          {" · "}
+          <Link href={"/privacy"} className="hover:underline">
+            {t.footer?.privacy || "Privacy"}
+          </Link>
         </span>
       </div>
       <div className="w-full flex justify-center items-center my-3">
