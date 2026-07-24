@@ -1,0 +1,25 @@
+# Dependabot: automated dependency + GitHub Actions updates with security alerts.
+# NOTE: this file enables version-update PRs. Dependabot *security* alerts +
+# auto security-update PRs must ALSO be turned on in repo Settings →
+# Code security and analysis (maintainer action — can't be set via file).
+version: 2
+updates:
+  - package-ecosystem: "npm" # covers the yarn.lock project
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    groups:
+      # Batch low-risk updates so reviewers aren't flooded; majors stay individual.
+      dev-dependencies:
+        dependency-type: "development"
+        update-types: ["minor", "patch"]
+      production-minor-patch:
+        dependency-type: "production"
+        update-types: ["minor", "patch"]
+    labels: ["dependencies"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels: ["dependencies", "ci"]

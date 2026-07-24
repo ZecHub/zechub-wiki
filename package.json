@@ -78,7 +78,7 @@
     "leaflet.markercluster": "^1.5.3",
     "lucide-react": "^0.536.0",
     "negotiator": "^1.0.0",
-    "next": "^16.1.6",
+    "next": "^16.2.11",
     "next-intl": "^4.13.0",
     "next-mdx-remote": "^6.0.0",
     "next-themes": "^0.4.6",
@@ -111,7 +111,7 @@
     "remark-gfm": "^4.0.1",
     "rss": "^1.2.2",
     "server-only": "^0.0.1",
-    "sharp": "^0.33.5",
+    "sharp": "^0.35.0",
     "styled-components": "^6.1.18",
     "swr": "^2.2.4",
     "tailwindcss": "^4.1.9",
@@ -147,7 +147,9 @@
     "react-dom": "19.2.7",
     "@penumbra-zone/ui/react": "19.2.7",
     "**/react": "19.2.7",
-    "**/react-dom": "19.2.7"
+    "**/react-dom": "19.2.7",
+    "sharp": "0.35.3",
+    "postcss": "^8.5.10"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
