@@ -2,6 +2,7 @@ export const exploreMenu = {
   mainLinks: [
     { icon: "🌐", label: "Full Explore", href: "/explore" },
     { icon: "🏠", label: "Start Here", href: "/start-here" },
+    { icon: "🕰️", label: "Zcash Evolution", href: "/zcash-evolution" },
     { icon: "📚", label: "Tutorials", href: "/tutorials" },
     { icon: "💰", label: "Using Zcash", href: "/using-zcash" },
     { icon: "📖", label: "Guides", href: "/guides" },
