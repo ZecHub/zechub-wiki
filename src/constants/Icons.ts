@@ -286,6 +286,8 @@ const iconsForMenu: IconsFor = {
     "ZODL": EgyptianSphinx,
     "Zcash Foundation": CheckedShield,
     "Zcash Community Grants": HexagonLetterZ,
+    "CoinHolder Directed Retroactive Grants": Stakeholder,
+
     "Shielded Labs": BordererShield,
     "Financial Privacy Foundation": MdFoundation,
     "Zingo Labs": GiSoapExperiment,
@@ -359,7 +361,13 @@ const iconsForMenu: IconsFor = {
   },
 };
 
+
+
 export const matchIcons = (root: string, file: string) => {
+  if (root === "Zcash Organizations") {
+    console.log("Organizations icon lookup →", JSON.stringify(file));
+  }
+
   for (const key in iconsForMenu) {
     if (key === root) {
       for (const innerKey in iconsForMenu[key]) {
@@ -369,4 +377,5 @@ export const matchIcons = (root: string, file: string) => {
       }
     }
   }
+  return undefined;
 };
