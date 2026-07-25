@@ -295,6 +295,18 @@ const iconsForMenu: IconsFor = {
     "Sovright": CircleKey,
     "Obscura Labs": HorseHead,
   },
+  
+  "Zcash Use Cases": {
+    "About": Info,
+    "Accept Payments AS A Merchant": PointOfSale,
+    "Freelance Privacy Setup": PrivacyTip,
+    "Journalist privacy setup": PrivacyTip,
+    "Keeping Records With Shielded ZEC": FileKey,
+    "Private Community treasury": Group,
+    "Receive Donations Privately": Jar,
+    "Send Money Without Linking Identity": ArrowUp,
+  },
+  
   "Zcash Community": {
     "Community Links": LinkSimpleBold,
     "Community Blogs": Blog,
@@ -364,7 +376,7 @@ const iconsForMenu: IconsFor = {
 
 
 export const matchIcons = (root: string, file: string) => {
-  if (root === "Zcash Organizations") {
+  if (root === "Zcash Use Cases") {
     console.log("Organizations icon lookup →", JSON.stringify(file));
   }
 
