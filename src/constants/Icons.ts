@@ -279,6 +279,18 @@ const iconsForMenu: IconsFor = {
     "Zakura Node": ServerSolid,
     "Zebra Full Node": Zebratechnologies,
     "ZAP1 Attestation Protocol": LiaSignatureSolid,
+        "Network Upgrades": Network,
+	    "Sprout": Tree,
+	    "Overwinter": SnowFlake,
+	    "Sapling": Trees,
+	    "Blossom": ShootingStar,
+	    "Heartwood": Tree,
+	    "Canopy": Trees,
+	    "NU5": Circuitry,
+	    "NU6": Network,
+	    "NU6 1": Network,
+	    "NU6 2": Circuitry,
+	    "Ironwood": Tree,
 
   },
   "Zcash Organizations": {
@@ -376,7 +388,7 @@ const iconsForMenu: IconsFor = {
 
 
 export const matchIcons = (root: string, file: string) => {
-  if (root === "Zcash Use Cases") {
+  if (root === "Zcash Tech") {
     console.log("Organizations icon lookup →", JSON.stringify(file));
   }
 
