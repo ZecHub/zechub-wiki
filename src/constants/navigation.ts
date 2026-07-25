@@ -1,6 +1,14 @@
 import { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
 import { BsPlay, BsDiscord as Discord } from "react-icons/bs";
+
+import { FcAbout as Info } from "react-icons/fc";
+import { MdOutlinePointOfSale as PointOfSale, MdOutlinePrivacyTip as PrivacyTip } from "react-icons/md";
+import { LuFileKey as FileKey } from "react-icons/lu";
+import { GrGroup as Group } from "react-icons/gr";
+import { FaJarWheat as Jar } from "react-icons/fa6";
+import { BsFillArrowUpRightCircleFill as ArrowUp } from "react-icons/bs";
+
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import {
   MdOutlineOndemandVideo as AudioVideo,
@@ -40,39 +48,47 @@ export const navigations: Array<NavigationItem> = [
         path: "/zcash-use-cases/",
         icon: FaUserAstronaut,
         links: [
-          {
-            name: "Start Here",
-            path: "/zcash-use-cases/about",
-          },
-          {
-            name: "Accept Payments",
-            path: "/zcash-use-cases/accept-payments-as-a-merchant",
-          },
-          {
-            name: "Freelance Privacy",
-            path: "/zcash-use-cases/freelance-privacy-setup",
-          },
-          {
-            name: "Journalist Privacy",
-            path: "/zcash-use-cases/journalist-privacy-setup",
-          },
-          {
-            name: "Keeping Records",
-            path: "/zcash-use-cases/keeping-records-with-shielded-zec",
-          },
-          {
-            name: "Private Community Treasury",
-            path: "/zcash-use-cases/private-community-treasury",
-          },
-          {
-            name: "Donations",
-            path: "/zcash-use-cases/receive-donations-privately",
-          },
-          {
-            name: "Send Money Privately",
-            path: "/zcash-use-cases/send-money-without-linking-identity",
-          },
-        ],
+	  {
+	    name: "Start Here",
+	    path: "/zcash-use-cases/about",
+	    icon: Info,                       // or CircleInfo
+	  },
+	  {
+	    name: "Accept Payments",
+	    path: "/zcash-use-cases/accept-payments-as-a-merchant",
+	    icon: PointOfSale,
+	  },
+	  {
+	    name: "Freelance Privacy",
+	    path: "/zcash-use-cases/freelance-privacy-setup",
+	    icon: PrivacyTip,
+	  },
+	  {
+	    name: "Journalist Privacy",
+	    path: "/zcash-use-cases/journalist-privacy-setup",
+	    icon: PrivacyTip,
+	  },
+	  {
+	    name: "Keeping Records",
+	    path: "/zcash-use-cases/keeping-records-with-shielded-zec",
+	    icon: FileKey,
+	  },
+	  {
+	    name: "Private Community Treasury",
+	    path: "/zcash-use-cases/private-community-treasury",
+	    icon: Group,
+	  },
+	  {
+	    name: "Donations",
+	    path: "/zcash-use-cases/receive-donations-privately",
+	    icon: Jar,
+	  },
+	  {
+	    name: "Send Money Privately",
+	    path: "/zcash-use-cases/send-money-without-linking-identity",
+	    icon: ArrowUp,
+	  },
+	],
       },
       {
         name: "Buying ZEC",
