@@ -280,7 +280,7 @@ export const networkUpgrades: NetworkUpgrade[] = [
     privacyLevel: 96,
     privacyLabel: "Audited Ironwood Pool",
     status: "current",
-    eraColor: "48 96% 60%",
+    eraColor: "28 90% 42%",
   },
   {
     id: "nu7",
@@ -313,6 +313,6 @@ export const networkUpgrades: NetworkUpgrade[] = [
     privacyLevel: 100,
     privacyLabel: "Programmable Privacy",
     status: "future",
-    eraColor: "45 100% 65%",
+    eraColor: "0 0% 45%",
   },
 ];
