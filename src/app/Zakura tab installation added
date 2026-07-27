@@ -312,7 +312,237 @@ const InfoBox = ({ children }: { children: ReactNode }) => (
   </div>
 );
 
+const ResourcesSection = () => (
+  <SectionCard title="Resources & Links" className="mt-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+      <ResourceLink href="https://github.com/zakura-core/zakura">
+        Zakura GitHub Repository
+      </ResourceLink>
+      <ResourceLink href="https://github.com/ZcashFoundation/zebra">
+        Zebra GitHub Repository
+      </ResourceLink>
+      <ResourceLink href="https://zcash.readthedocs.io/">
+        Zcash Documentation
+      </ResourceLink>
+    </div>
+  </SectionCard>
+);
+
 // ── Tab content ──────────────────────────────────────────────────────────────
+
+const ZakuraTab = () => {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
+  const [osTab, setOsTab] = useState<"linux" | "macos" | "windows">("linux");
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+      {/* TOC */}
+      <div className="rounded-xl px-7 py-6 bg-sky-500/[0.04] dark:bg-sky-500/[0.06] border border-sky-500/20">
+        <p className="text-[11px] tracking-[0.15em] uppercase text-sky-500 mb-[14px] font-semibold">
+          {qs?.onThisPage ?? "On this page"}
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          {[
+            ["#installing-zakura", "Installing Zakura"],
+            ["#running-zakura", "Running Zakura"],
+            ["#configuration-zakura", "Configuration"],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              className="text-slate-900 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm no-underline flex items-center gap-2 max-w-fit transition-colors"
+            >
+              <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600 inline-block" />
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Step 1 — Installing */}
+      <section id="installing-zakura">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={1} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            Installing Zakura
+          </h2>
+        </div>
+
+        <InfoBox>
+          <strong className="text-indigo-400 dark:text-indigo-300">
+            Zakura
+          </strong>{" "}
+          is a lightweight Zcash node implementation focused on reliability and easy node setup.
+        </InfoBox>
+
+        <SectionCard title={qs?.installation ?? "Installation"}>
+          {/* OS Tab bar */}
+          <div className="grid grid-cols-2 imd:flex gap-1 border-b border-black/8 dark:border-white/8 mb-6">
+            {(
+              [
+                { id: "linux", icon: FcLinux, label: "Linux", color: null },
+                {
+                  id: "macos",
+                  icon: PiAppleLogoDuotone,
+                  label: "macOS",
+                  color: null,
+                },
+                {
+                  id: "windows",
+                  icon: BsWindows,
+                  label: "Windows",
+                  color: "#22d3ee",
+                },
+              ] as const
+            ).map(({ id, icon: Icon, label, color }) => (
+              <button
+                key={id}
+                onClick={() => setOsTab(id)}
+                className={`flex items-center gap-2 px-[18px] py-[10px] bg-transparent border-0 border-b-2 cursor-pointer transition-all duration-200 text-sm ${
+                  osTab === id
+                    ? "border-b-sky-500 text-slate-900 dark:text-slate-200 font-semibold"
+                    : "border-b-transparent text-slate-400 dark:text-slate-500 font-normal hover:text-slate-600 dark:hover:text-slate-300"
+                }`}
+              >
+                <Icon size={18} color={color ?? ""} />
+                {label}
+              </button>
+            ))}
+          </div>
+
+          {osTab === "linux" && (
+            <>
+              <SubLabel className="mt-[14px]">
+                {qs?.dependencies ?? "Dependencies"}
+              </SubLabel>
+              <CodeBlock
+                code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install -y build-essential pkg-config libssl-dev git`}
+              />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromSource ?? "From Source"}
+              </SubLabel>
+              <CodeBlock
+                code={`git clone https://github.com/zakura-core/zakura.git\ncd zakura\ncargo build --release\nexport PATH="$PATH:$(pwd)/target/release"`}
+              />
+            </>
+          )}
+
+          {osTab === "macos" && (
+            <>
+              <SubLabel className="mt-[14px]">
+                {qs?.dependencies ?? "Dependencies"}
+              </SubLabel>
+              <CodeBlock
+                code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nbrew install openssl pkg-config git`}
+              />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromSource ?? "From Source"}
+              </SubLabel>
+              <CodeBlock
+                code={`git clone https://github.com/zakura-core/zakura.git\ncd zakura\ncargo build --release\nexport PATH="$PATH:$(pwd)/target/release"`}
+              />
+            </>
+          )}
+
+          {osTab === "windows" && (
+            <>
+              <SubLabel>{qs?.wslRecommended ?? "WSL (Recommended)"}</SubLabel>
+              <CodeBlock code={`wsl --install`} />
+              <SubLabel className="mt-[14px]">
+                {qs?.dependencies ?? "Dependencies"}
+              </SubLabel>
+              <CodeBlock
+                code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install -y build-essential pkg-config libssl-dev git\nsource $HOME/.cargo/env`}
+              />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromSource ?? "From Source"}
+              </SubLabel>
+              <CodeBlock
+                code={`git clone https://github.com/zakura-core/zakura.git\ncd zakura\ncargo build --release\nexport PATH="$PATH:$(pwd)/target/release"`}
+              />
+            </>
+          )}
+        </SectionCard>
+      </section>
+
+      <Divider />
+
+      {/* Step 2 — Running */}
+      <section id="running-zakura">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={2} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            Running Zakura
+          </h2>
+        </div>
+
+        <div
+          className="grid gap-5"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          }}
+        >
+          <SectionCard title="Execution">
+            <SubLabel>{qs?.commandLine ?? "Command Line"}</SubLabel>
+            <CodeBlock
+              code={`# Start default node\nzakura run\n\n# Run with custom config file\nzakura --config ~/.config/zakura.toml run`}
+            />
+          </SectionCard>
+
+          <SectionCard title={qs?.importantNotes ?? "Important Notes"}>
+            <ul className="flex flex-col gap-[10px] list-none p-0 m-0">
+              {[
+                "Ensure network ports are configured to allow P2P sync",
+                "Ensure sufficient disk storage for chain data",
+                "Verify Rust toolchain is up-to-date before compilation",
+              ].map((note, i) => (
+                <li
+                  key={i}
+                  className="flex gap-[10px] text-[13.5px] text-slate-500 dark:text-slate-400 leading-relaxed"
+                >
+                  <span className="text-amber-500 shrink-0 mt-[2px]">⚠</span>
+                  {note}
+                </li>
+              ))}
+            </ul>
+          </SectionCard>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* Step 3 — Configuration */}
+      <section id="configuration-zakura">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={3} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            Configuration
+          </h2>
+        </div>
+
+        <SectionCard title="Configuration File">
+          <SubLabel>zakura.toml</SubLabel>
+          <CodeBlock
+            language="toml"
+            code={`[network]
+listen_addr = "0.0.0.0:8233"
+network = "mainnet"
+
+[rpc]
+listen_addr = "127.0.0.1:8232"
+enable = true
+
+[storage]
+data_dir = "~/.local/share/zakura"`}
+          />
+        </SectionCard>
+      </section>
+
+      <ResourcesSection />
+    </div>
+  );
+};
 
 const ZebradTab = () => {
   const { t } = useLanguage();
@@ -569,12 +799,7 @@ use_color = true`}
             "is a server that provides a lightweight interface to the Zcash blockchain, designed for mobile and desktop wallets that don't need to run a full node."}
         </InfoBox>
 
-        <div
-          className="grid grid-cols-1 imd:grid-cols-2 gap-5"
-          // style={{
-          //   gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          // }}
-        >
+        <div className="grid grid-cols-1 imd:grid-cols-2 gap-5">
           <SectionCard title={qs?.installation ?? "Installation"}>
             <SubLabel>{qs?.prerequisites ?? "Prerequisites"}</SubLabel>
             <CodeBlock
@@ -630,493 +855,4 @@ EOF`}
   );
 };
 
-const ZainodTab = () => {
-  const { t } = useLanguage();
-  const qs = t?.pages?.developersQuickStart;
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
-      <section id="installing-zaino">
-        <div className="flex items-center gap-[14px] mb-7">
-          <StepBadge number={1} />
-          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
-            {qs?.installingZaino ?? "Installing Zaino"}
-          </h2>
-        </div>
-
-        <InfoBox>
-          <strong className="text-indigo-400 dark:text-indigo-300">
-            Zaino
-          </strong>{" "}
-          {qs?.zainoInfo ??
-            "is a Rust-based indexer for the Zcash blockchain. It serves both light clients (wallets that don't store the full history) and full clients / block explorers, providing access to finalized chain, the non-finalized best chain, and the mempool."}
-        </InfoBox>
-
-        <div
-          className="grid gap-5"
-          style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          }}
-        >
-          <SectionCard title={qs?.installation ?? "Installation"}>
-            <SubLabel>{qs?.buildZaino ?? "Build Zaino"}</SubLabel>
-            <CodeBlock
-              code={`git clone https://github.com/zingolabs/zaino.git\ncd zaino\ncargo build --release\nPATH=$PATH:~/zaino/target/release/`}
-            />
-            <SubLabel className="mt-[14px]">
-              {qs?.configure ?? "Configure"}
-            </SubLabel>
-            <CodeBlock
-              code={`cd ~/zaino/zainod\nsudo nano zindexer.toml\n# Adjust port to 8232 for mainnet`}
-            />
-          </SectionCard>
-
-          <SectionCard title={qs?.configuration ?? "Configuration"}>
-            <SubLabel>zindexer.toml</SubLabel>
-            <CodeBlock
-              language="toml"
-              code={`# TcpIngestor status
-tcp_active = true
-
-# Listen port
-listen_port = 8137
-
-# LightWalletD listen port [DEPRECATED]
-lightwalletd_port = 9067
-
-# Full node / validator listen port
-zebrad_port = 8232
-
-# Optional credentials
-node_user = "xxxxxx"
-node_password = "xxxxxx"
-
-# Worker pool settings
-max_queue_size = 1024
-max_worker_pool_size = 64
-idle_worker_pool_size = 4`}
-            />
-            <SubLabel className="mt-[14px]">
-              {qs?.runZainod ?? "Run zainod"}
-            </SubLabel>
-            <CodeBlock code={`zainod --config zindexer.toml`} />
-          </SectionCard>
-        </div>
-      </section>
-
-      <ResourcesSection />
-    </div>
-  );
-};
-
-const ZingolibTab = () => {
-  const { t } = useLanguage();
-  const qs = t?.pages?.developersQuickStart;
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
-      <section id="installing-zingo">
-        <div className="flex items-center gap-[14px] mb-7">
-          <StepBadge number={1} />
-          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
-            {qs?.installingZingoCli ?? "Installing Zingo CLI"}
-          </h2>
-        </div>
-
-        <InfoBox>
-          <strong className="text-indigo-400 dark:text-indigo-300">
-            Zingo-cli
-          </strong>{" "}
-          {qs?.zingoCliInfo ??
-            "is a command-line lightwalletd-proxy client built in Rust. Releases are currently provisional — this guide covers compiling from source."}
-        </InfoBox>
-
-        <div
-          className="grid gap-5"
-          style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          }}
-        >
-          <SectionCard title={qs?.installation ?? "Installation"}>
-            <SubLabel>{qs?.buildZingoCli ?? "Build Zingo CLI"}</SubLabel>
-            <CodeBlock
-              code={`git clone https://github.com/zingolabs/zingolib.git\ncd zingolib\ngit checkout tags/zingolib_v5.0.0\ncargo build --release --package zingo-cli\ncp target/release/zingo-cli ~/.cargo/bin/`}
-            />
-          </SectionCard>
-
-          <SectionCard title={qs?.running ?? "Running"}>
-            <div className="pb-4">
-              <SubLabel>
-                {qs?.startZingoCliDefault ?? "Start Zingo CLI (Default)"}
-              </SubLabel>
-              <CodeBlock
-                code={`zingo-cli --data-dir /path/to/your/wallet/data`}
-              />
-            </div>
-            <div>
-              <SubLabel>
-                {qs?.startZingoCliCustom ?? "Start Zingo CLI (Custom)"}
-              </SubLabel>
-              <CodeBlock
-                code={`zingo-cli --chain mainnet --server http://127.0.0.1:8137 --data-dir /path/to/your/zaino/data`}
-              />
-            </div>
-            <div className="mt-[14px] p-[12px_14px] rounded-lg text-[13px] leading-relaxed bg-amber-500/[0.06] border border-amber-500/20 text-amber-600 dark:text-amber-400">
-              {qs?.zingoSyncWarning ??
-                "⚠ This will perform a full sync on first run, similar to lightwalletd."}
-            </div>
-          </SectionCard>
-        </div>
-      </section>
-
-      <ResourcesSection />
-    </div>
-  );
-};
-
-const ResourcesSection = () => {
-  const { t } = useLanguage();
-  const qs = t?.pages?.developersQuickStart;
-  return (
-    <section className="rounded-[14px] p-8 mt-2 bg-sky-500/[0.03] dark:bg-sky-500/[0.05] border border-sky-500/15">
-      <h3 className="text-slate-900 dark:text-slate-100 text-[18px] font-bold mb-6">
-        {qs?.nextStepsResources ?? "Next Steps & Resources"}
-      </h3>
-      <div
-        className="grid gap-6"
-        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}
-      >
-        <div>
-          <p className="text-[11px] tracking-[0.12em] uppercase text-cyan-500 dark:text-cyan-400 mb-3 font-semibold">
-            {qs?.readyToBuild ?? "Ready to Build?"}
-          </p>
-          <div className="flex flex-col gap-2">
-            <ResourceLink href="https://zebra.zfnd.org/index.html">
-              {qs?.officialDocumentation ?? "Official Documentation"}
-            </ResourceLink>
-            <ResourceLink href="https://discord.gg/zcash">
-              {qs?.zcashDiscordCommunity ?? "Zcash Discord Community"}
-            </ResourceLink>
-            <ResourceLink href="https://github.com/zcash">
-              {qs?.githubRepositories ?? "GitHub Repositories"}
-            </ResourceLink>
-            <ResourceLink href="https://zips.z.cash/">
-              {qs?.zcashImprovementProposals ?? "Zcash Improvement Proposals"}
-            </ResourceLink>
-          </div>
-        </div>
-        <div>
-          <p className="text-[11px] tracking-[0.12em] uppercase text-cyan-500 dark:text-cyan-400 mb-3 font-semibold">
-            {qs?.needHelp ?? "Need Help?"}
-          </p>
-          <div className="flex flex-col gap-2">
-            <ResourceLink href="https://forum.zcashcommunity.com/">
-              {qs?.zcashCommunityForum ?? "Zcash Community Forum"}
-            </ResourceLink>
-            <ResourceLink href="https://github.com/zcash/zcash/issues">
-              {qs?.githubIssues ?? "GitHub Issues"}
-            </ResourceLink>
-            <ResourceLink href="https://zcash.readthedocs.io/en/latest/rtd_pages/troubleshooting.html">
-              {qs?.troubleshootingGuide ?? "Troubleshooting Guide"}
-            </ResourceLink>
-            <ResourceLink href="https://stackoverflow.com/questions/tagged/zcash">
-              {qs?.stackOverflow ?? "Stack Overflow"}
-            </ResourceLink>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ── Node & client comparison ─────────────────────────────────────────────────
-
-interface StackRow {
-  name: string;
-  href: string;
-  role: string;
-  language: string;
-  platforms: string;
-  status: "Active" | "Beta";
-  hardware: string;
-  rpc: string;
-}
-
-const STACK_ROWS: StackRow[] = [
-  {
-    name: "zebrad",
-    href: "https://github.com/ZcashFoundation/zebra",
-    role: "Full node",
-    language: "Rust",
-    platforms: "Linux · macOS · Windows (WSL)",
-    status: "Active",
-    hardware: "4 cores · 16 GB RAM · 300 GB disk",
-    rpc: "JSON-RPC (subset of zcashd methods)",
-  },
-  {
-    name: "Zakura",
-    href: "https://github.com/zakura-core/zakura",
-    role: "Full node (Zebra fork)",
-    language: "Rust",
-    platforms: "Linux · macOS · Windows",
-    status: "Active",
-    hardware: "~11 GB disk pruned · snapshot bootstrap",
-    rpc: "JSON-RPC (zcashd compatibility mode)",
-  },
-  {
-    name: "Zaino",
-    href: "https://github.com/zingolabs/zaino",
-    role: "Indexer for light clients & explorers",
-    language: "Rust",
-    platforms: "Linux · macOS",
-    status: "Beta",
-    hardware: "Light · runs beside a full node",
-    rpc: "gRPC (lightwalletd-compatible)",
-  },
-  {
-    name: "lightwalletd",
-    href: "https://github.com/zcash/lightwalletd",
-    role: "Light client server",
-    language: "Go",
-    platforms: "Linux · macOS",
-    status: "Active",
-    hardware: "Light · needs a synced full node",
-    rpc: "gRPC",
-  },
-  {
-    name: "Zallet",
-    href: "https://github.com/zcash/wallet",
-    role: "Wallet backend (zcashd wallet replacement)",
-    language: "Rust",
-    platforms: "Linux · macOS",
-    status: "Beta",
-    hardware: "Light · pairs with a Zebra node",
-    rpc: "JSON-RPC (zcashd wallet methods)",
-  },
-];
-
-const STATUS_STYLES: Record<StackRow["status"], string> = {
-  Active:
-    "bg-emerald-500/10 border-emerald-500/25 text-emerald-600 dark:text-emerald-400",
-  Beta: "bg-amber-500/10 border-amber-500/25 text-amber-600 dark:text-amber-400",
-};
-
-const StackComparison = () => {
-  const { t } = useLanguage();
-  const qs = t?.pages?.developersQuickStart;
-
-  const headers = [
-    qs?.compareColSoftware ?? "Software",
-    qs?.compareColRole ?? "Role",
-    qs?.compareColLanguage ?? "Language",
-    qs?.compareColPlatforms ?? "Platforms",
-    qs?.compareColStatus ?? "Status",
-    qs?.compareColHardware ?? "Hardware",
-    qs?.compareColRpc ?? "RPC / API",
-  ];
-
-  return (
-    <div className="max-w-[1024px] mx-auto px-4 imd:px-10 pb-14">
-      <SectionCard title={qs?.compareTitle ?? "Node & Client Comparison"}>
-        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-0 mb-5">
-          {qs?.compareLead ??
-            "The Zcash stack is made up of a few separate tools. Use this table to work out which one your project needs, then follow the matching guide below."}
-        </p>
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[840px] border-collapse text-[13px] text-left">
-            <thead>
-              <tr>
-                {headers.map((h) => (
-                  <th
-                    key={h}
-                    className="py-[10px] px-3 text-[11px] tracking-[0.1em] uppercase font-semibold text-slate-500 dark:text-slate-500 border-b border-black/10 dark:border-white/10"
-                  >
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {STACK_ROWS.map((row) => (
-                <tr
-                  key={row.name}
-                  className="border-b border-black/[0.06] dark:border-white/[0.06] last:border-b-0 align-top"
-                >
-                  <td className="py-3 px-3 whitespace-nowrap">
-                    <a
-                      href={row.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sky-600 dark:text-sky-400 font-semibold no-underline hover:underline"
-                    >
-                      {row.name}
-                    </a>
-                  </td>
-                  <td className="py-3 px-3 text-slate-700 dark:text-slate-300">
-                    {row.role}
-                  </td>
-                  <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
-                    {row.language}
-                  </td>
-                  <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
-                    {row.platforms}
-                  </td>
-                  <td className="py-3 px-3 whitespace-nowrap">
-                    <span
-                      className={`inline-block px-2 py-[2px] rounded-full border text-[11px] font-semibold ${STATUS_STYLES[row.status]}`}
-                    >
-                      {row.status}
-                    </span>
-                  </td>
-                  <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
-                    {row.hardware}
-                  </td>
-                  <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
-                    {row.rpc}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="text-[12.5px] text-slate-500 dark:text-slate-500 leading-relaxed mt-4 mb-0">
-          <span className="text-amber-500 mr-1">⚠</span>
-          {qs?.compareFootnote ??
-            "zcashd reached end of life at block 3417100 on July 18, 2026 — new projects should build on the software above."}
-        </p>
-      </SectionCard>
-    </div>
-  );
-};
-
-// ── Main Page ────────────────────────────────────────────────────────────────
-
-const TABS = ["Zebrad", "Zaino", "Zingolib"] as const;
-type Tab = (typeof TABS)[number];
-
-export default function QuickStartPage() {
-  const { t } = useLanguage();
-  const qs = t?.pages?.developersQuickStart;
-  const [activeTab, setActiveTab] = useState<Tab>("Zebrad");
-
-  const tabContent: Record<Tab, ReactNode> = {
-    Zebrad: <ZebradTab />,
-    Zaino: <ZainodTab />,
-    Zingolib: <ZingolibTab />,
-  };
-
-  return (
-    <>
-      <style>{`
-        * { box-sizing: border-box; }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0e17; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
-      `}</style>
-
-      <div className={`min-h-screen bg-white dark:bg-[#030712] text-slate-800 dark:text-slate-200 ${spaceMono.variable}`}>
-        {/* Hero */}
-        <div
-          className="relative overflow-hidden px-10 pt-20 pb-[72px] text-center
-            bg-gradient-to-b from-slate-50 to-white
-            dark:from-[#050d1a] dark:to-[#030712]"
-        >
-          {/* Grid overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage: `
-                linear-gradient(rgba(14,165,233,0.06) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(14,165,233,0.06) 1px, transparent 1px)
-              `,
-              backgroundSize: "40px 40px",
-              maskImage:
-                "radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)",
-            }}
-          />
-
-          {/* Glow */}
-          <div
-            className="absolute pointer-events-none"
-            style={{
-              top: "30%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "600px",
-              height: "300px",
-              background:
-                "radial-gradient(ellipse, rgba(14,165,233,0.10) 0%, transparent 70%)",
-            }}
-          />
-
-          <div style={{ position: "relative" }}>
-            <div
-              className="inline-flex items-center gap-2 px-4 py-[6px] mb-7 rounded-full text-[12px] tracking-[0.12em] uppercase font-[500]
-                bg-sky-500/10 border border-sky-500/25 text-sky-600 dark:text-sky-400"
-              style={{ fontFamily: "var(--font-space-mono), monospace" }}
-            >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: "#22c55e",
-                  display: "inline-block",
-                  boxShadow: "0 0 6px #22c55e",
-                }}
-              />
-              {qs?.heroBadge ?? "Developer Quick Start"}
-            </div>
-
-            <h1
-              className="text-[clamp(36px,6vw,72px)] font-extrabold leading-[1.05] tracking-tight m-0 mb-5
-                bg-gradient-to-br from-slate-900 to-slate-600
-                dark:from-slate-100 dark:to-slate-400
-                bg-clip-text text-transparent"
-              style={{
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              {qs?.heroTitleLine1 ?? "Zcash Dev"}
-              <br />
-              {qs?.heroTitleLine2 ?? "Quick Start"}
-            </h1>
-
-            <p className="text-[17px] text-slate-600 dark:text-slate-500 max-w-[480px] mx-auto leading-[1.7]">
-              {qs?.heroSubtitle ??
-                "Get up and running with Zcash development. Choose your stack and follow the guide."}
-            </p>
-          </div>
-        </div>
-
-        {/* Node & client comparison */}
-        <StackComparison />
-
-        {/* Tab bar */}
-        <div className="sticky top-0 z-10 bg-white/90 dark:bg-[#030712]/90 backdrop-blur-[12px] border-b border-black/[0.06] dark:border-white/[0.06] px-10">
-          <div className="max-w-[1024px] mx-auto flex gap-1">
-            {TABS.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-6 py-4 bg-transparent border-0 border-b-2 cursor-pointer transition-all duration-200 text-sm font-[inherit]
-                  ${
-                    activeTab === tab
-                      ? "border-b-sky-500 text-slate-900 dark:text-slate-100 font-bold"
-                      : "border-b-transparent text-slate-400 dark:text-slate-500 font-normal hover:text-slate-600 dark:hover:text-slate-300"
-                  }`}
-                style={{ letterSpacing: "0.02em" }}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Content */}
-        <main className="max-w-[1024px] mx-auto px-4 imd:px-10 pt-12 pb-20">
-          {tabContent[activeTab]}
-        </main>
-      </div>
-    </>
-  );
-}
+export { ZakuraTab, ZebradTab };
