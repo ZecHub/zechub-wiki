@@ -120,7 +120,8 @@ export default async function Page(props: {
   // === STRICTER getHeroImage (prevents empty src/darkSrc) ===
   const getHeroImage = (slugSegment: string) => {
     const src = getBanner(slugSegment) || "";
-    const darkSrc = getBanner(`${slugSegment}-dark`) || getBanner(slugSegment) || "";
+    const darkSrc =
+      getBanner(`${slugSegment}-dark`) || getBanner(slugSegment) || "";
 
     if (!src) return undefined;
 
@@ -428,7 +429,14 @@ export default async function Page(props: {
       <MdxContainer
         hasSideMenu={showSideMenu}
         sideMenu={
-          showSideMenu ? <SideMenu folder={slug[0]} roots={roots} titles={menuTitles} enTitles={enMenuTitles} /> : null
+          showSideMenu ? (
+            <SideMenu
+              folder={slug[0]}
+              roots={roots}
+              titles={menuTitles}
+              enTitles={enMenuTitles}
+            />
+          ) : null
         }
         roots={roots}
         heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
@@ -446,24 +454,61 @@ export default async function Page(props: {
     );
   }
 
-  const serializedSource = await serialize(normalizeMdx(processedMarkdown), {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [
-        [
-          rehypeRaw,
-          {
-            passThrough: [
-              "mdxJsxFlowElement",
-              "mdxFlowExpression",
-              "mdxJsxTextElement",
-              "mdxTextExpression",
-            ],
-          },
+  let serializedSource;
+  try {
+    serializedSource = await serialize(normalizeMdx(processedMarkdown), {
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        rehypePlugins: [
+          [
+            rehypeRaw,
+            {
+              passThrough: [
+                "mdxJsxFlowElement",
+                "mdxFlowExpression",
+                "mdxJsxTextElement",
+                "mdxTextExpression",
+              ],
+            },
+          ],
         ],
-      ],
-    },
-  });
+      },
+    });
+  } catch (e) {
+    // The content repo is community-edited; a single malformed MDX/JSX block
+    // (e.g. an unclosed tag) would otherwise crash the whole page with a
+    // server error. Fail soft instead: log for diagnosis and show the same
+    // "browse the sidebar" shell used for missing content.
+    console.error(`Failed to compile MDX for ${contentUrl}: `, e);
+    return (
+      <MdxContainer
+        hasSideMenu={showSideMenu}
+        sideMenu={
+          showSideMenu ? (
+            <SideMenu
+              folder={slug[0]}
+              roots={roots}
+              titles={menuTitles}
+              enTitles={enMenuTitles}
+            />
+          ) : null
+        }
+        roots={roots}
+        heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
+      >
+        <div className="px-6 py-12 text-center">
+          <h1 className="text-5xl font-bold mb-6 capitalize">
+            {slug[0].replace(/-/g, " ")}
+          </h1>
+          <p className="text-xl text-muted-foreground">
+            This page has a content formatting issue and couldn&apos;t be
+            displayed. Please check back soon, or browse other articles using
+            the sidebar 👈
+          </p>
+        </div>
+      </MdxContainer>
+    );
+  }
 
   const heroImage = getHeroImage(slug[0]);
 
@@ -471,7 +516,14 @@ export default async function Page(props: {
     <MdxContainer
       hasSideMenu={showSideMenu}
       sideMenu={
-        showSideMenu ? <SideMenu folder={slug[0]} roots={roots} titles={menuTitles} enTitles={enMenuTitles} /> : null
+        showSideMenu ? (
+          <SideMenu
+            folder={slug[0]}
+            roots={roots}
+            titles={menuTitles}
+            enTitles={enMenuTitles}
+          />
+        ) : null
       }
       roots={roots}
       {...(heroImage ? { heroImage } : {})}
