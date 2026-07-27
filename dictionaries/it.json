@@ -107,7 +107,10 @@
     "Raspberry Pi Zebra Node": "Nodo Zebra per Raspberry Pi",
     "Zero Knowledge vs Decoy Systems": "Zero Knowledge vs Sistemi Decoy",
     "Organizations": "Organizzazioni",
-    "Sovright": "Sovright"
+    "Sovright": "Sovright",
+    "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
+    "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
+    "Obscura Labs": "Obscura Labs"
   },
   "exploreMenu": {
     "Full Explore": "Esplora tutto",
@@ -125,7 +128,8 @@
     "Contribute": "Contribuisci",
     "For Forks & Maintainers": "Per fork e manutentori",
     "Fork zechub-wiki": "Fork di zechub-wiki",
-    "Fork zechub": "Fork di zechub"
+    "Fork zechub": "Fork di zechub",
+    "Zcash Evolution": "Zcash Evolution"
   },
   "common": {
     "home": "Home",
