@@ -135,7 +135,7 @@
     {
       "title": "Zecwallet Lite on Windows Tutorial #1",
       "video_id": "4v_wr6DBY48",
-      "views": 957
+      "views": 958
     },
     {
       "title": "Tooling for building zkEVM: PIL and Circom - Jordi Baylina at Zcon3",
@@ -175,7 +175,7 @@
     {
       "title": "Zcon1 Opening Keynote - Andrew Miller",
       "video_id": "Ob0ajGPMLuE",
-      "views": 832
+      "views": 833
     },
     {
       "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
@@ -185,7 +185,7 @@
     {
       "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
       "video_id": "cAfTTfblzoU",
-      "views": 797
+      "views": 798
     },
     {
       "title": "State of the Network Keynote at Zcon0 (2018) by Zooko Wilcox",
@@ -350,7 +350,7 @@
     {
       "title": "Fireside Chat: #Zcon2Lite",
       "video_id": "a8bWtWvwHCA",
-      "views": 473
+      "views": 474
     },
     {
       "title": "Making Zcash Shine with Rust - Deirdre Connolly & Anna Kaplan",
@@ -475,7 +475,7 @@
     {
       "title": "User Research: Zcash Payments Are Normal with Tatyana - ZconV: Zcash Unified 2024 #Zcash #ZEC",
       "video_id": "eFN8mUktXVQ",
-      "views": 373
+      "views": 374
     },
     {
       "title": "ZLiTE: Lightweight Clients for Shielded Zcash Transactions Using Trusted Execution - Karl Wüst",
@@ -858,13 +858,13 @@
       "views": 231
     },
     {
-      "title": "Zcash Foundation Board Candidate Call - 09 November 2022",
-      "video_id": "6tVr5ym4IKE",
-      "views": 227
-    },
-    {
       "title": "Zebra",
       "video_id": "142IudaOXUU",
+      "views": 228
+    },
+    {
+      "title": "Zcash Foundation Board Candidate Call - 09 November 2022",
+      "video_id": "6tVr5ym4IKE",
       "views": 227
     },
     {
@@ -903,6 +903,11 @@
       "views": 221
     },
     {
+      "title": "Zcash Community Call: Meet the ZCG Candidates",
+      "video_id": "3z3E2lhBUH0",
+      "views": 221
+    },
+    {
       "title": "Zcash Arborist Call 06-25-2026",
       "video_id": "Ni-Bp0p8W4s",
       "views": 221
@@ -915,11 +920,6 @@
     {
       "title": "Zcon4 Opening Address by Jack Gavigan: Zcash",
       "video_id": "I5h6Y_5XSJA",
-      "views": 220
-    },
-    {
-      "title": "Zcash Community Call: Meet the ZCG Candidates",
-      "video_id": "3z3E2lhBUH0",
       "views": 220
     },
     {
@@ -1278,6 +1278,11 @@
       "views": 150
     },
     {
+      "title": "Zcash Arborist Call 07-23-2026",
+      "video_id": "mHpMkEk6GGI",
+      "views": 150
+    },
+    {
       "title": "Zcash Arborist Call 09/19/2024",
       "video_id": "I8jHbDYb-_Q",
       "views": 149
@@ -1350,11 +1355,6 @@
     {
       "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
       "video_id": "2zmtTwrHUXA",
-      "views": 142
-    },
-    {
-      "title": "Zcash Arborist Call 07-23-2026",
-      "video_id": "mHpMkEk6GGI",
       "views": 142
     },
     {
@@ -1608,6 +1608,11 @@
       "views": 106
     },
     {
+      "title": "DevOps demo: Using Zebra with Docker and CI/CD",
+      "video_id": "oPZqvRCC-Pg",
+      "views": 104
+    },
+    {
       "title": "Zcash Arborist Call 11/2/23",
       "video_id": "IhLj4vKGuUI",
       "views": 103
@@ -1615,11 +1620,6 @@
     {
       "title": "ZconVI Registration is open: zfnd.org/zconvi",
       "video_id": "rbjdEX3e580",
-      "views": 101
-    },
-    {
-      "title": "DevOps demo: Using Zebra with Docker and CI/CD",
-      "video_id": "oPZqvRCC-Pg",
       "views": 101
     },
     {
