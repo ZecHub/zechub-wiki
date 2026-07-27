@@ -1,10 +1,36 @@
-"use client";
-import HomePage from "@/components/Home/Home"
-import { useLanguage } from "@/context/LanguageContext";
+import { Metadata } from "next";
+import { getDictionary } from "@/lib/getDictionary";
+import { genMetadata } from "@/lib/helpers";
+import { buildAlternates } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
+import HomeClient from "./HomeClient";
+
+// The homepage renders for every locale (localized homepages are verified to
+// serve for all locales), so it gets the same full reciprocal-hreflang set the
+// sitemap gives "/": one alternate per locale + x-default. Canonical + OG are
+// locale-aware.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale)) as {
+    meta?: { title?: string; description?: string };
+  };
+  const alternates = buildAlternates("/", locale, [...routing.locales]);
+  return genMetadata({
+    title: dict?.meta?.title ?? "ZecHub Wiki",
+    description: dict?.meta?.description,
+    url:
+      locale && locale !== routing.defaultLocale
+        ? `https://zechub.wiki/${locale}`
+        : "https://zechub.wiki",
+    locale,
+    alternates,
+  });
+}
 
 export default function Home() {
-  const { t } = useLanguage();
-  const text = t.home?.description || `ZecHub is the community-driven education hub for the Zcash cryptocurrency (ZEC). Zcash is a digital currency providing censorship resistant, secure & private payments. The Zcash Blockchain utilises highly advanced 'verifiable' zk-snarks that do not require Trusted Setup following the NU5 network upgrade in 2022.`;
-
-  return <HomePage text={text} />;
+  return <HomeClient />;
 }

@@ -20,6 +20,8 @@ import {
   extractArticleMeta,
   jsonLdScript,
 } from "@/lib/helpers";
+import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
 import { normalizeMdx } from "@/lib/normalizeMdx";
 import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
@@ -108,9 +110,13 @@ export async function generateMetadata({
   // prefix in the canonical URL (matches localePrefix: "as-needed").
   const localePrefix = locale && locale !== "en" ? `/${locale}` : "";
   if (slug.length === 0) {
+    // The homepage of a locale (defensive — this route normally has a slug).
+    const alternates = buildAlternates("/", locale, [...routing.locales]);
     return genMetadata({
       title: "Zechub",
       url: `https://zechub.wiki${localePrefix || ""}`,
+      locale,
+      alternates,
     });
   }
   const folder = slug[0] || "";
@@ -120,9 +126,22 @@ export async function generateMetadata({
     slug.length > 1 && slug[1]
       ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
       : `Zechub - ${capitalized}`;
+  const path = `/${slug.join("/")}`;
+  // Locale-aware canonical + reciprocal hreflang alternates, using the SAME
+  // manifest-coverage the sitemap uses (localesForPath -> keyToWikiPath over
+  // the cached menu-titles manifests). Never throws — degrades to English-only.
+  // NOTE: description is intentionally left at the site default here. A
+  // page-specific description would require fetching the page markdown inside
+  // generateMetadata (the body is fetched in the Page component, not here);
+  // that extra per-request fetch isn't worth it for the meta description. The
+  // richer, markdown-derived description already ships in the page's JSON-LD.
+  const availableLocales = await localesForPath(path);
+  const alternates = buildAlternates(path, locale, availableLocales);
   return genMetadata({
     title,
     url: `https://zechub.wiki${localePrefix}/${slug.join("/")}`,
+    locale,
+    alternates,
   });
 }
 

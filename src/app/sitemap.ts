@@ -3,38 +3,17 @@ import type { MetadataRoute } from "next";
 import { SITE_LINKS } from "@/constants/siteLinks";
 import { routing } from "@/i18n/routing";
 import { getMenuTitlesCached } from "@/lib/authAndFetch";
-import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
+import { keyToWikiPath, toWikiUrl as toUrl } from "@/lib/localeCoverage";
 
-// Matches src/lib/helpers.ts `metadataBase`. English is served unprefixed at
-// the root; other locales carry a `/<locale>` prefix (routing.localePrefix is
-// "as-needed").
-const BASE_URL = "https://zechub.wiki";
+// keyToWikiPath / toUrl are shared with head-level hreflang alternates
+// (src/lib/localeCoverage.ts) so the sitemap's per-page locale coverage and the
+// pages' <link rel="alternate"> can never drift on either URL shape or path
+// derivation. keyToWikiPath is the proven inverse of `derivePageTitleKey` in
+// src/components/Sitemap/Sitemap.tsx.
 
 // The DAO section is deliberately kept out of both robots.txt and the sitemap.
 const isExcluded = (path: string): boolean =>
   path === "/dao" || path.startsWith("/dao/");
-
-/**
- * Convert a menu-titles manifest key into the wiki URL path the app serves it
- * at. Keys look like "Using_Zcash/Buying_Zec.md"; the app links to
- * "/using-zcash/buying-zec". This reuses the app's own
- * `transformGithubFilePathToWikiLink` (lowercases + underscore→hyphen) — the
- * proven inverse of `derivePageTitleKey` in src/components/Sitemap/Sitemap.tsx —
- * then strips the ".md" suffix and guarantees a single leading slash.
- */
-const keyToWikiPath = (key: string): string => {
-  const wiki = transformGithubFilePathToWikiLink(key).replace(/\.md$/i, "");
-  return "/" + wiki.replace(/^\/+/, "");
-};
-
-// Absolute URL for a page path in a given locale. English (defaultLocale) is
-// unprefixed; every other locale gets the `/<locale>` prefix.
-const toUrl = (locale: string, path: string): string => {
-  const clean = path === "/" ? "" : path;
-  return locale === routing.defaultLocale
-    ? `${BASE_URL}${clean}`
-    : `${BASE_URL}/${locale}${clean}`;
-};
 
 // Normalize a SITE_LINKS href to a clean internal path, or null if it is
 // external (absolute URL or opens in a new tab).

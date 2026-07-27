@@ -7,6 +7,8 @@ import { getBanner } from "@/lib/helpers";
 import { parseMarkdown } from "@/lib/parseMarkdown";
 import WalletList from "@/components/Wallet/WalletList";
 import { genMetadata } from "@/lib/helpers";
+import { buildAlternates } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
 import { Metadata } from "next";
 
 const imgUrl = getBanner(`using-zcash`);
@@ -24,11 +26,15 @@ type WalletsDictionary = {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const dict = (await getDictionary(locale)) as WalletsDictionary;
+  const localePrefix = locale && locale !== routing.defaultLocale ? `/${locale}` : "";
+  // Bespoke app route: English-only in the sitemap -> locale-aware self canonical.
   return genMetadata({
     title: dict.pages?.wallets?.title || "Wallets | Zechub",
-    url: "https://zechub.wiki/wallets",
+    url: `https://zechub.wiki${localePrefix}/wallets`,
     image: imgUrl,
-  }) as Metadata;
+    locale,
+    alternates: buildAlternates("/wallets", locale, [locale]),
+  });
 }
 
 export default async function Page(props: {

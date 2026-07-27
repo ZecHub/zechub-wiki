@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { contentBanners } from "@/constants/contentBanners";
 import { getRootCached } from "./authAndFetch";
 
@@ -15,6 +17,41 @@ export const SITE_DESCRIPTION =
 // Canonical origin, used to resolve site-relative asset paths (banners, covers)
 // into the absolute URLs that structured data requires.
 export const SITE_ORIGIN = "https://zechub.wiki";
+
+// OpenGraph expects `og:locale` in `language_TERRITORY` form (e.g. `en_US`),
+// not the bare BCP-47 language subtag used for hreflang. Map each routing
+// locale to a sensible OG locale; anything unmapped falls back to bare-lower +
+// UPPER (e.g. "xx" -> "xx_XX") which keeps genMetadata total (never throws).
+// NOTE: hreflang (in `alternates.languages`) intentionally keeps the bare codes
+// — that is correct there; only OpenGraph needs the territory form.
+const OG_LOCALE_MAP: Record<string, string> = {
+  en: "en_US",
+  it: "it_IT",
+  fr: "fr_FR",
+  es: "es_ES",
+  de: "de_DE",
+  pt: "pt_PT",
+  ar: "ar_AR",
+  zh: "zh_CN",
+  hi: "hi_IN",
+  ru: "ru_RU",
+  ja: "ja_JP",
+  ko: "ko_KR",
+  tr: "tr_TR",
+  uk: "uk_UA",
+  sw: "sw_KE",
+  yo: "yo_NG",
+  ig: "ig_NG",
+  ak: "ak_GH",
+  ee: "ee_GH",
+};
+
+export const toOgLocale = (locale: string): string => {
+  const mapped = OG_LOCALE_MAP[locale];
+  if (mapped) return mapped;
+  const base = (locale || "").toLowerCase().split(/[-_]/)[0];
+  return base ? `${base}_${base.toUpperCase()}` : "en_US";
+};
 
 // Pass http(s) URLs through untouched; resolve everything else against the
 // canonical origin as a site-root-relative path.
@@ -161,6 +198,12 @@ type MetadataOpts = {
   description?: string;
   image?: string;
   url?: string;
+  // Locale being rendered. When set, emitted as `openGraph.locale` so the OG
+  // card advertises the correct language.
+  locale?: string;
+  // Head-level canonical + hreflang alternates (from buildAlternates). Passed
+  // through untouched when provided.
+  alternates?: Metadata["alternates"];
 };
 
 export const genMetadata = ({
@@ -168,6 +211,8 @@ export const genMetadata = ({
   description,
   image,
   url,
+  locale,
+  alternates,
 }: MetadataOpts) => {
   const defaultImage = "/previews/default-banner.jpg";
   const defaultUrl = "https://zechub.wiki";
@@ -178,6 +223,7 @@ export const genMetadata = ({
     metadataBase: new URL("https://zechub.wiki"),
     title: title || defaultTitle,
     description: description || defaultDescription,
+    ...(alternates ? { alternates } : {}),
     openGraph: {
       title: title,
       description: description || defaultDescription,
@@ -185,6 +231,7 @@ export const genMetadata = ({
       siteName: "ZecHub Wiki",
       type: "website",
       url: url || defaultUrl,
+      ...(locale ? { locale: toOgLocale(locale) } : {}),
     },
     twitter: {
       title: title || defaultTitle,
