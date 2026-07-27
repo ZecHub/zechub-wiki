@@ -630,6 +630,158 @@ EOF`}
   );
 };
 
+const ZakuraTab = () => {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+      {/* TOC */}
+      <div className="rounded-xl px-7 py-6 bg-sky-500/[0.04] dark:bg-sky-500/[0.06] border border-sky-500/20">
+        <p className="text-[11px] tracking-[0.15em] uppercase text-sky-500 mb-[14px] font-semibold">
+          {qs?.onThisPage ?? "On this page"}
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          {[
+            ["#installing-zakura", qs?.tocInstallingZakura ?? "Installing Zakura"],
+            ["#running-zakura", qs?.tocRunningZakura ?? "Running Zakura"],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              className="text-slate-900 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm no-underline flex items-center gap-2 max-w-fit transition-colors"
+            >
+              <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600 inline-block" />
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Step 1: Installing */}
+      <section id="installing-zakura">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={1} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            {qs?.installingZakura ?? "Installing Zakura"}
+          </h2>
+        </div>
+
+        <InfoBox>
+          <strong className="text-indigo-400 dark:text-indigo-300">
+            Zakura
+          </strong>{" "}
+          {qs?.zakuraInfo ??
+            "is a full node for Zcash forked from Zebra, built for faster sync and lower disk usage. It includes a zcashd-compatible RPC mode, native block pruning, and downloadable chain snapshots."}
+        </InfoBox>
+
+        <SectionCard title={qs?.installation ?? "Installation"} className="mb-6">
+          <SubLabel>{qs?.installerScript ?? "Interactive Installer"}</SubLabel>
+          <CodeBlock
+            code={`curl -fsSL https://raw.githubusercontent.com/zakura-core/zakura/main/scripts/install-zakura.sh | bash`}
+          />
+
+          <SubLabel className="mt-[14px]">{qs?.docker ?? "Docker"}</SubLabel>
+          <CodeBlock
+            code={`docker run -d \\\n  --name zakura \\\n  -p 8233:8233 \\\n  -v zakurad-cache:/home/zakura/.cache/zakura \\\n  zakuracore/zakura:latest`}
+          />
+
+          <SubLabel className="mt-[14px]">
+            {qs?.manualInstall ?? "Manual Install"}
+          </SubLabel>
+          <CodeBlock
+            code={`cargo install --locked zakura\n# or, pinned to a release tag:\ncargo install --git https://github.com/zakura-core/zakura --tag v1.0.0 zakura`}
+          />
+        </SectionCard>
+      </section>
+
+      <Divider />
+
+      {/* Step 2: Running */}
+      <section id="running-zakura">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={2} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            {qs?.runningZakuraHeading ?? "Running Zakura"}
+          </h2>
+        </div>
+
+        <SectionCard title={qs?.initialSetup ?? "Initial Setup"} className="mb-6">
+          <SubLabel>
+            {qs?.createConfigFile ?? "Generate a Config File"}
+          </SubLabel>
+          <CodeBlock code={`zakurad generate -o ~/.config/zakura.toml`} />
+          <SubLabel className="mt-[18px]">zakura.toml</SubLabel>
+          <CodeBlock
+            language="toml"
+            code={`[network]
+network = "Mainnet"
+listen_addr = "[::]:8233"
+
+# The peer-to-peer stack to run:
+# - "legacy": the legacy TCP Zcash P2P stack only.
+# - "zakura": the experimental native Zakura P2P v2 stack only.
+# - "dual": both stacks, enabling experimental v2 with legacy fallback.
+# - "default": Zakura's default for this network (currently "legacy" on
+#   Mainnet, "dual" everywhere else).
+p2p_stack = "default"
+cache_dir = "/home/your_username/.cache/zakura"
+
+[rpc]
+listen_addr = "127.0.0.1:8232"
+cookie_dir = "/home/your_username/.cache/zakura"
+enable_cookie_auth = true
+
+[state]
+cache_dir = "/home/your_username/.cache/zakura"
+
+[tracing]
+use_color = true`}
+          />
+        </SectionCard>
+
+        <div
+          className="grid gap-5"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          }}
+        >
+          <SectionCard title={qs?.startingZakura ?? "Starting Zakura"}>
+            <SubLabel>{qs?.commandLine ?? "Command Line"}</SubLabel>
+            <CodeBlock
+              code={`zakurad start\n# Or with a specific config\nzakurad -c ~/.config/zakura.toml start`}
+            />
+          </SectionCard>
+
+          <SectionCard title={qs?.importantNotes ?? "Important Notes"}>
+            <ul className="flex flex-col gap-[10px] list-none p-0 m-0">
+              {[
+                qs?.noteZakuraSnapshots ??
+                  "Bootstrapping from a pruned snapshot (~11 GB) takes under 2 minutes instead of a full sync",
+                qs?.noteZakuraPruning ??
+                  "Native block pruning with configurable retention cuts disk usage substantially",
+                qs?.noteZakuraP2p ??
+                  'The p2p_stack setting controls the experimental P2P v2 layer: "legacy" is the safe default on Mainnet, "zakura" or "dual" opt into it and its known DoS risks',
+                qs?.noteZakuraEnvVars ??
+                  "Every setting can be overridden with a ZAKURA_-prefixed environment variable, e.g. ZAKURA_NETWORK__NETWORK=Testnet",
+              ].map((note, i) => (
+                <li
+                  key={i}
+                  className="flex gap-[10px] text-[13.5px] text-slate-500 dark:text-slate-400 leading-relaxed"
+                >
+                  <span className="text-amber-500 shrink-0 mt-[2px]">⚠</span>
+                  {note}
+                </li>
+              ))}
+            </ul>
+          </SectionCard>
+        </div>
+      </section>
+
+      <ResourcesSection />
+    </div>
+  );
+};
+
 const ZainodTab = () => {
   const { t } = useLanguage();
   const qs = t?.pages?.developersQuickStart;
@@ -989,7 +1141,7 @@ const StackComparison = () => {
 
 // ── Main Page ────────────────────────────────────────────────────────────────
 
-const TABS = ["Zebrad", "Zaino", "Zingolib"] as const;
+const TABS = ["Zebrad", "Zakura", "Zaino", "Zingolib"] as const;
 type Tab = (typeof TABS)[number];
 
 export default function QuickStartPage() {
@@ -999,6 +1151,7 @@ export default function QuickStartPage() {
 
   const tabContent: Record<Tab, ReactNode> = {
     Zebrad: <ZebradTab />,
+    Zakura: <ZakuraTab />,
     Zaino: <ZainodTab />,
     Zingolib: <ZingolibTab />,
   };
