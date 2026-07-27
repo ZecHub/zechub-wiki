@@ -22,7 +22,17 @@ export default async function handler(req, res) {
       ip = "127.0.0.1";
     }
 
-    const ipTitleKey = `${ip}_${title}`;
+    // Salt the IP hash with a server-only secret. Without a salt an unsalted
+    // sha1(ip) is trivially brute-forceable (the IPv4 space is tiny), which would
+    // make the stored value reversible to a visitor's IP. Set WALLET_LIKES_SALT
+    // in the deploy env; if unset this falls back to the prior unsalted behaviour
+    // (dedup still works, but the /privacy "not tied to your identity" claim then
+    // holds only once the salt is configured).
+    // When a salt is configured, prefix it; when it isn't, the key is byte-for-byte
+    // identical to the previous scheme, so existing dedup proofs stay valid (no
+    // accidental one-free-revote reset on deploy).
+    const salt = process.env.WALLET_LIKES_SALT || "";
+    const ipTitleKey = salt ? `${salt}:${ip}_${title}` : `${ip}_${title}`;
     const hashedIpTitleKey = hashSHA1(ipTitleKey);
 
     const client = new Client({
