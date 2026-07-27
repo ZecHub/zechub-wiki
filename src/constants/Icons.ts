@@ -310,7 +310,7 @@ const iconsForMenu: IconsFor = {
   
   "Zcash Use Cases": {
     "About": Info,
-    "Accept Payments Aa A Merchant": PointOfSale,
+    "Accept Payments As A Merchant": PointOfSale,
     "Freelance Privacy Setup": PrivacyTip,
     "Journalist Privacy Setup": PrivacyTip,
     "Keeping Records With Shielded ZEC": FileKey,
