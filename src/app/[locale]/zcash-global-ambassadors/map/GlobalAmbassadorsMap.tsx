@@ -74,6 +74,8 @@ export default function GlobalAmbassadorsMap() {
   const [error, setError] = useState<string | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>("globe");
+  // Don't contact CARTO (third-party map tiles) until the user opts in.
+  const [mapEnabled, setMapEnabled] = useState(false);
 
   // Ambassadors per region for filter bar
   const regionCounts = ambassadors.reduce<Record<string, number>>((acc, f) => {
@@ -107,9 +109,10 @@ export default function GlobalAmbassadorsMap() {
     console.log("role...");
   }, []);
 
-  // Init Leaflet map (only for the "map" view)
+  // Init Leaflet map (only for the "map" view, and only once the user has
+  // opted in to loading third-party CARTO tiles).
   useEffect(() => {
-    if (viewMode !== "map") return;
+    if (viewMode !== "map" || !mapEnabled) return;
     if (!mapContainRef.current || mapRef.current) return;
 
     let cancelled = false;
@@ -168,7 +171,7 @@ export default function GlobalAmbassadorsMap() {
       mapRef.current = null;
       setMapReady(false);
     };
-  }, [viewMode]);
+  }, [viewMode, mapEnabled]);
 
   // Render
   const renderMarkers = useCallback(() => {
@@ -429,6 +432,49 @@ export default function GlobalAmbassadorsMap() {
               ref={mapContainRef}
               style={{ position: "absolute", inset: 0 }}
             />
+          )}
+
+          {/* Click-to-load consent: don't contact CARTO until the user asks. */}
+          {viewMode === "map" && !mapEnabled && (
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                zIndex: 1050,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 12,
+                padding: 24,
+                textAlign: "center",
+                background: "#070C10",
+              }}
+            >
+              <p style={{ fontSize: 14, fontWeight: 600, margin: 0, color: "#E6EDF5" }}>
+                {amb?.mapTitle ?? "Interactive map"}
+              </p>
+              <p style={{ fontSize: 12, margin: 0, maxWidth: "44ch", color: "#8B9EB7" }}>
+                {amb?.mapConsentText ??
+                  "Loads map tiles from a third party (CARTO). Click to load."}
+              </p>
+              <button
+                type="button"
+                onClick={() => setMapEnabled(true)}
+                style={{
+                  cursor: "pointer",
+                  padding: "8px 18px",
+                  borderRadius: 20,
+                  border: `0.5px solid ${BASE_COLOR}`,
+                  background: "rgba(29,174,238,0.12)",
+                  color: "#E6EDF5",
+                  fontSize: 13,
+                  fontWeight: 600,
+                }}
+              >
+                {amb?.mapConsentButton ?? "Load interactive map"}
+              </button>
+            </div>
           )}
 
           {/* Loading overlay */}
