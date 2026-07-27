@@ -107,7 +107,10 @@
     "Raspberry Pi Zebra Node": "Raspberry Pi Zebra नोड",
     "Zero Knowledge vs Decoy Systems": "ज़ीरो नॉलेज बनाम डिकॉय सिस्टम्स",
     "Organizations": "संगठन",
-    "Sovright": "Sovright"
+    "Sovright": "Sovright",
+    "Zallet Quick Reference Guide": "Zallet त्वरित संदर्भ मार्गदर्शिका",
+    "Zcash Engineering Office Hours": "Zcash इंजीनियरिंग कार्यालय समय",
+    "Obscura Labs": "ऑब्स्क्यूरा लैब्स"
   },
   "exploreMenu": {
     "Full Explore": "पूरा एक्सप्लोर करें",
@@ -125,7 +128,8 @@
     "Contribute": "योगदान करें",
     "For Forks & Maintainers": "Forks और Maintainers के लिए",
     "Fork zechub-wiki": "zechub-wiki को Fork करें",
-    "Fork zechub": "zechub को Fork करें"
+    "Fork zechub": "zechub को Fork करें",
+    "Zcash Evolution": "Zcash विकास"
   },
   "common": {
     "home": "होम",

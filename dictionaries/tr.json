@@ -107,7 +107,10 @@
     "Raspberry Pi Zebra Node": "Raspberry Pi Zebra Düğümü",
     "Zero Knowledge vs Decoy Systems": "Sıfır Bilgi ve Yem Sistemleri",
     "Organizations": "Organizasyonlar",
-    "Sovright": "Sovright"
+    "Sovright": "Sovright",
+    "Zallet Quick Reference Guide": "Zallet Hızlı Başvuru Kılavuzu",
+    "Zcash Engineering Office Hours": "Zcash Mühendislik Ofis Saatleri",
+    "Obscura Labs": "Obscura Laboratuvarları"
   },
   "exploreMenu": {
     "Full Explore": "Tam Keşfet",
@@ -125,7 +128,8 @@
     "Contribute": "Katkıda Bulun",
     "For Forks & Maintainers": "Fork'lar ve Bakımcılar İçin",
     "Fork zechub-wiki": "zechub-wiki'yi forkla",
-    "Fork zechub": "zechub'u forkla"
+    "Fork zechub": "zechub'u forkla",
+    "Zcash Evolution": "Zcash Evrimi"
   },
   "common": {
     "home": "Ana Sayfa",

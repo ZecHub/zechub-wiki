@@ -107,7 +107,10 @@
     "Raspberry Pi Zebra Node": "Raspberry Pi Zebra Nodu",
     "Zero Knowledge vs Decoy Systems": "Ihe ọmụma efu megide Sistemu aghụghọ",
     "Organizations": "Òtù dị iche iche",
-    "Sovright": "Sovright"
+    "Sovright": "Sovright",
+    "Zallet Quick Reference Guide": "Nduzi Ntụaka Ngwa Ngwa Zallet",
+    "Zcash Engineering Office Hours": "Oge Ọfịs Injinịa Zcash",
+    "Obscura Labs": "Ụlọ Nnyocha Obscura"
   },
   "exploreMenu": {
     "Full Explore": "Nyochaa zuru ezu",
@@ -125,7 +128,8 @@
     "Contribute": "Na-enye aka",
     "For Forks & Maintainers": "N'ihi na ndụdụ & Maintainers",
     "Fork zechub-wiki": "Fork zechub-wiki",
-    "Fork zechub": "Fork zechub"
+    "Fork zechub": "Fork zechub",
+    "Zcash Evolution": "Mmepe Zcash"
   },
   "common": {
     "home": "Ụlọ",
