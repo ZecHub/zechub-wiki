@@ -16,6 +16,9 @@ import {
   getDynamicRoute,
   transformUri,
   transformGithubFilePathToWikiLink,
+  ORG_ID,
+  extractArticleMeta,
+  jsonLdScript,
 } from "@/lib/helpers";
 import { normalizeMdx } from "@/lib/normalizeMdx";
 import { getDictionary } from "@/lib/getDictionary";
@@ -517,31 +520,96 @@ export default async function Page(props: {
 
   const heroImage = getHeroImage(slug[0]);
 
+  // Per-article structured-data fields derived from the page's own markdown:
+  // real H1 → headline, first prose paragraph → description, frontmatter
+  // published/date → datePublished, frontmatter image/cover (else the folder
+  // banner) → image. Falls back to a slug-derived title only when no H1 exists.
+  const articleMeta = extractArticleMeta(
+    processedMarkdown,
+    slugToTitle(slug[slug.length - 1]),
+    imgUrl,
+  );
+
+  // schema.org structured data for this content page, emitted as a single
+  // @graph: a TechArticle plus a self-contained Organization node (so consumers
+  // that don't merge across <script> blocks still resolve author/publisher) and
+  // a BreadcrumbList derived from the slug segments. Consumed by classic search
+  // and AI answer engines; rendered server-side (SSR route).
+  const breadcrumbItems = [
+    {
+      "@type": "ListItem" as const,
+      position: 1,
+      name: "Home",
+      item: `https://zechub.wiki${localeUrlPrefix}`,
+    },
+    ...slug.map((_, i) => ({
+      "@type": "ListItem" as const,
+      position: i + 2,
+      name: slugToTitle(slug[i]),
+      item: `https://zechub.wiki${localeUrlPrefix}/${slug.slice(0, i + 1).join("/")}`,
+    })),
+  ];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        headline: articleMeta.headline,
+        description: articleMeta.description,
+        inLanguage: locale,
+        url: canonicalWikiUrl,
+        mainEntityOfPage: canonicalWikiUrl,
+        author: { "@id": ORG_ID },
+        publisher: { "@id": ORG_ID },
+        ...(articleMeta.datePublished
+          ? { datePublished: articleMeta.datePublished }
+          : {}),
+        ...(articleMeta.image ? { image: articleMeta.image } : {}),
+      },
+      {
+        "@type": "Organization",
+        "@id": ORG_ID,
+        name: "ZecHub",
+        url: "https://zechub.wiki",
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbItems,
+      },
+    ],
+  };
+
   return (
-    <MdxContainer
-      hasSideMenu={showSideMenu}
-      sideMenu={
-        showSideMenu ? <SideMenu folder={slug[0]} roots={roots} titles={menuTitles} enTitles={enMenuTitles} /> : null
-      }
-      roots={roots}
-      {...(heroImage ? { heroImage } : {})}
-      layoutVariant={isResearchArticle ? "research" : "default"}
-      researchMeta={
-        isResearchArticle
-          ? {
-              breadcrumbLabel: researchBreadcrumbLabel,
-              shareUrl: canonicalWikiUrl,
-              pageTitle: researchBreadcrumbLabel,
-            }
-          : undefined
-      }
-    >
-      <Suspense
-        fallback={<span className="text-center text-3xl">Loading...</span>}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
+      />
+      <MdxContainer
+        hasSideMenu={showSideMenu}
+        sideMenu={
+          showSideMenu ? <SideMenu folder={slug[0]} roots={roots} titles={menuTitles} enTitles={enMenuTitles} /> : null
+        }
+        roots={roots}
+        {...(heroImage ? { heroImage } : {})}
+        layoutVariant={isResearchArticle ? "research" : "default"}
+        researchMeta={
+          isResearchArticle
+            ? {
+                breadcrumbLabel: researchBreadcrumbLabel,
+                shareUrl: canonicalWikiUrl,
+                pageTitle: researchBreadcrumbLabel,
+              }
+            : undefined
+        }
       >
-        <LazyMdxComponent source={serializedSource} />
-      </Suspense>
-    </MdxContainer>
+        <Suspense
+          fallback={<span className="text-center text-3xl">Loading...</span>}
+        >
+          <LazyMdxComponent source={serializedSource} />
+        </Suspense>
+      </MdxContainer>
+    </>
   );
 }
 
