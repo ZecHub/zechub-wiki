@@ -1,0 +1,72 @@
+name: SEO / LLM-discovery guard
+
+# Anti-drift gate for the SEO / LLM-discovery surface (Phases 1-5): llms.txt
+# index, robots AI-crawler rules, sitemap shape, and the canonical/hreflang
+# resolvers. It IMPORTS the real app modules (never regex) and fails a PR that
+# silently degrades discovery — a shrunk index, a dropped AI crawler, a leaked
+# /dao path, or a broken resolver. See scripts/check-seo-discovery.mjs.
+#
+# Runs SECRETLESS by default: unless the repo defines the CONTENT_OWNER /
+# CONTENT_REPO / CONTENT_BRANCH repo-vars, the step below passes no OWNER/REPO/
+# BRANCH, so the script skips the one credentialed check (content-repo
+# manifest-health) and every deterministic structural check still runs and can
+# fail the build.
+#
+# To ALSO exercise the manifest tier, set repo-vars CONTENT_OWNER/CONTENT_REPO/
+# CONTENT_BRANCH (e.g. ZecHub / zechub / main); the step wires them below.
+# ZecHub/zechub is public, so the anonymous raw fetch works and the script
+# treats the token as optional. NB: the default secrets.GITHUB_TOKEN scopes to
+# THIS repo, not the content repo — for a PRIVATE content repo you'd swap it for
+# a content-repo PAT. Harmless when the vars are unset (script → secretless).
+
+# Least privilege: the gate only reads the tree. Also stops the checkout token
+# from being persisted where PR-controlled code (deps, imported modules) could
+# reach it.
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/generate-llms-txt.mjs"
+      - "scripts/check-seo-discovery.mjs" # the gate's own logic
+      - "src/app/sitemap.ts"
+      - "src/app/robots.ts"
+      - "src/lib/localeCoverage.ts"
+      - "src/lib/helpers.ts"
+      - "src/i18n/routing.ts" # defaultLocale/localePrefix drive every alternate URL
+      - "src/lib/authAndFetch.ts" # the manifest fetch the credentialed tier exercises
+      - "src/constants/siteLinks.ts"
+      - "src/app/api/content-md/**" # raw-markdown route feeding llms-full + crawlers
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/seo-discovery.yml" # can't be weakened without re-running
+
+jobs:
+  seo-discovery:
+    runs-on: ubuntu-latest
+    steps:
+      # TODO: pin actions to full commit SHAs (supply-chain hardening).
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24 # matches menu-labels/egress; pdfjs-dist@6 needs >=22.13
+          cache: yarn
+      # Install is needed because the check IMPORTS the app modules (sitemap,
+      # robots, resolvers) via tsx rather than regex-parsing them. --ignore-scripts
+      # so a malicious PR dependency can't run lifecycle code in CI.
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+      - name: Check SEO / LLM-discovery surface
+        # OWNER/REPO/BRANCH come from repo-vars (unset → empty → secretless run,
+        # manifest check SKIPPED). GITHUB_TOKEN scopes to THIS repo; a private
+        # content repo needs a content-repo PAT here instead.
+        env:
+          OWNER: ${{ vars.CONTENT_OWNER }}
+          REPO: ${{ vars.CONTENT_REPO }}
+          BRANCH: ${{ vars.CONTENT_BRANCH }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn tsx scripts/check-seo-discovery.mjs
