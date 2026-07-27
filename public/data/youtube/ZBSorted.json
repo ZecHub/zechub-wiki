@@ -630,7 +630,7 @@
     {
       "title": "Zebra Talk | A Fronteira Financeira liderada por elas. #DeFi",
       "video_id": "FWZR2DJHl0U",
-      "views": 166
+      "views": 167
     },
     {
       "title": "A Golden Year for Zcash | Christimas Zcash Soundtrack",
@@ -2518,6 +2518,11 @@
       "views": 34
     },
     {
+      "title": "Zcon Vozes 2 e Novidades do Tachyon | Zec Insider",
+      "video_id": "3G3Z9W93k7o",
+      "views": 34
+    },
+    {
       "title": "Zcash x NYM Brasil - Twitter Spaces",
       "video_id": "CwQKrMYCo-g",
       "views": 33
@@ -2565,11 +2570,6 @@
     {
       "title": "FROST Multisig: Carteiras Familiares e Regras de Assinatura",
       "video_id": "RjKV4Rj9psw",
-      "views": 33
-    },
-    {
-      "title": "Zcon Vozes 2 e Novidades do Tachyon | Zec Insider",
-      "video_id": "3G3Z9W93k7o",
       "views": 33
     },
     {
@@ -2848,6 +2848,11 @@
       "views": 27
     },
     {
+      "title": "Zaino e Ironwood | Zec Insider",
+      "video_id": "H2SNWHO-eKc",
+      "views": 27
+    },
+    {
       "title": "Zooko - O Visionário por trás da #Zcash",
       "video_id": "ekCUOdqyLyg",
       "views": 26
@@ -2900,11 +2905,6 @@
     {
       "title": "Do Corporativo ao Cripto: Atitudes e Aprendizados de uma Transição Real | Ana Westfal | Zcon Vozes 2",
       "video_id": "PkHj3W3eS14",
-      "views": 26
-    },
-    {
-      "title": "Zaino e Ironwood | Zec Insider",
-      "video_id": "H2SNWHO-eKc",
       "views": 26
     },
     {
@@ -3668,6 +3668,11 @@
       "views": 9
     },
     {
+      "title": "Zcash vai reduzir o tempo de bloco? O plano para blocos mais rápidos.",
+      "video_id": "fs8dFgK0Mmw",
+      "views": 9
+    },
+    {
       "title": "Dev Fund 2.0 / O Futuro do Financiamento do Ecossistema Zcash - ZconV tradução ao vivo",
       "video_id": "_QjZV6EMnz4",
       "views": 8
@@ -3776,11 +3781,6 @@
       "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
       "video_id": "XgtJXKqv-ZE",
       "views": 3
-    },
-    {
-      "title": "Zcash vai reduzir o tempo de bloco? O plano para blocos mais rápidos.",
-      "video_id": "fs8dFgK0Mmw",
-      "views": 2
     }
   ]
 }
