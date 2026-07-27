@@ -100,7 +100,7 @@
     "react-is": "^19.2.8",
     "react-markdown": "^10.1.0",
     "react-pdf": "^10.4.1",
-    "react-resizable-panels": "^2.1.7",
+    "react-resizable-panels": "^4.12.2",
     "react-toastify": "^10.0.4",
     "recharts": "^3.10.1",
     "rehype-img-size": "^1.0.1",
