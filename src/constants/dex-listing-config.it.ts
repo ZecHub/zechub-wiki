@@ -5,7 +5,7 @@ export const dexListingConfigIt = [
     description:
       'Un hub di scambio crypto con oltre 4.500 criptovalute, liquidità profonda, swap cross-chain, on- & off-ramp, DEX, transazioni rapide e sicure.',
     url: 'https://letsexchange.io/',
-    image: 'https://i.ibb.co/JxzSyx6/1500x500-1.jpg',
+    image: '/content-images/1500x500-1-9d3b008870.webp',
   },
   {
     title: 'Near-intents',
@@ -19,7 +19,7 @@ export const dexListingConfigIt = [
     description:
       'Il tuo Wallet. Una sola App. Opportunità infinite · Scambia Bitcoin, Ethereum e altro con le migliori tariffe tra i principali DEX e aggregatori',
     url: 'https://private.shapeshift.com/',
-    image: 'https://i.ibb.co/RkKYVR9N/shapeshift.png',
+    image: '/content-images/shapeshift-27053ae96b.webp',
   },
   {
     title: 'Stealth EX',
@@ -68,7 +68,7 @@ export const dexListingConfigIt = [
     description:
       'Swap decentralizzati e trustless tramite atomic swap con FiroDEX!.',
     url: 'https://github.com/firoorg/FiroDEX-Desktop',
-    image: 'https://firo.org/blog/assets/firodex-beta-release.png',
+    image: '/content-images/firodex-beta-release-b1958c5adc.webp',
   },
   {
     title: 'Changenow',

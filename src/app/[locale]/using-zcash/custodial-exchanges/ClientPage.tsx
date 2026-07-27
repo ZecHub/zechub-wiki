@@ -24,7 +24,7 @@ const CustodialExchangesClient: React.FC = () => {
       <div className="flex justify-between items-center my-6 flex-col imd:flex-row">
         <h1 className="flex justify-center items-center text-2xl imd:text-3xl font-bold mb-4 imd:mb-0 text-center">
           <Image
-            src={"https://i.ibb.co/bmS65xV/image-2024-02-03-173258092.png"}
+            src={"/content-images/image-2024-02-03-173258092-a5440e5ee2.webp"}
             alt={t?.pages?.dex?.imageAlt ?? "Alt Text"}
             width={50}
             height={50}

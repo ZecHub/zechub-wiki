@@ -7,8 +7,8 @@ const exchangesIt: Exchange[] = [
     pairs: "ALL/ZEC",
     support: "Transparent (deposito su indirizzo TEX)",
     depositTime: "20 minuti",
-    // logo: "https://cryptologos.cc/logos/binance-coin-bnb-logo.png",
-    logo: "https://www.logo.wine/a/logo/Binance/Binance-Icon-Logo.wine.svg",
+    // logo: "/content-images/_unavailable.svg",
+    logo: "/content-images/Binance-Icon-Logo.wine-b047212223.svg",
     altText: "Binance Logo",
   },
   {
@@ -26,7 +26,7 @@ const exchangesIt: Exchange[] = [
     pairs: "ALL/ZEC",
     support: "Transparent",
     depositTime: "150 minuti",
-    logo: "https://i.ibb.co/XWkqhdY/coinbase.png",
+    logo: "/content-images/coinbase-8643659341.webp",
     altText: "Coinbase Logo",
   },
   {
@@ -35,7 +35,7 @@ const exchangesIt: Exchange[] = [
     pairs: "ALL/ZEC",
     support: "Transparent | Prelievo Shielded",
     depositTime: "50 minuti",
-    logo: "https://logos-world.net/wp-content/uploads/2023/12/Gemini-Symbol.png",
+    logo: "/content-images/Gemini-Symbol-ddd31ee98b.webp",
     altText: "Gemini Custodian Exchange Logo",
   },
   {
@@ -53,7 +53,7 @@ const exchangesIt: Exchange[] = [
     pairs: "ALL/ZEC",
     support: "Transparent",
     depositTime: "60 minuti",
-    logo: "https://assets.kraken.com/marketing/static/kraken-logo.jpg",
+    logo: "/content-images/kraken-logo-7407ab477f.webp",
     altText: "Kraken Logo",
   },
   {
@@ -62,7 +62,7 @@ const exchangesIt: Exchange[] = [
     pairs: "ALL/ZEC",
     support: "Transparent",
     depositTime: "20 minuti",
-    logo: "https://www.svgrepo.com/show/331460/kucoin.svg",
+    logo: "/content-images/kucoin-ee0c21f9fd.svg",
     altText: "KuCoin Logo",
   },
   {
@@ -80,7 +80,7 @@ const exchangesIt: Exchange[] = [
     pairs: "ALL/ZEC",
     support: "Transparent",
     depositTime: "15 minuti",
-    logo: "https://logowik.com/content/uploads/images/coinex9788.jpg",
+    logo: "/content-images/coinex9788-d638d69e3b.webp",
     altText: "CoinEx Logo",
   },
   {
@@ -89,7 +89,7 @@ const exchangesIt: Exchange[] = [
     pairs: "ALL/ZEC",
     support: "Transparent",
     depositTime: "30 minuti",
-    logo: "https://logowik.com/content/uploads/images/t_bybit5549.jpg",
+    logo: "/content-images/t_bybit5549-0c17d6b645.webp",
     altText: "Bybit Logo",
   },
   {
@@ -98,7 +98,7 @@ const exchangesIt: Exchange[] = [
     pairs: "USD/ZEC | EUR/ZEC",
     support: "Transparent",
     depositTime: "N/A",
-    logo: "https://i.ibb.co/gLsHYNQ3/IMG-5725.png",
+    logo: "/content-images/IMG-5725-7f964c1fdb.webp",
     altText: "Robinhood Logo",
   },
 ];

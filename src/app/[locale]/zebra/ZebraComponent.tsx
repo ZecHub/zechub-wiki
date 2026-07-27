@@ -60,7 +60,7 @@ const ZebraComponent = () => {
         <div style={{ marginTop: '20px', textAlign: 'left' }}>
           <h1>Raspberry Pi 4 Guide for Running Zebra</h1>
           <Image
-            src="https://i.ibb.co/V3rjKwv/image-2023-11-28-172907488.png"
+            src="/content-images/image-2023-11-28-172907488-e7e9fd4ac5.webp"
             alt="raspberry pi"
             width={300}
             height={300}
@@ -127,7 +127,7 @@ const ZebraComponent = () => {
           </ol>
 
           <Image
-            src="https://i.ibb.co/BCtKrGp/image-2023-11-28-173024853.png"
+            src="/content-images/image-2023-11-28-173024853-99540511cf.webp"
             alt="zebra logo"
             width={200}
             height={200}

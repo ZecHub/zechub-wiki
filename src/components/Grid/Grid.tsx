@@ -10,14 +10,14 @@ const projects = [
       "Maya is a decentralized exchange (DEX) system that enables trading of cryptocurrencies across different blockchains",
     link: "https://zechub.wiki/guides/maya-protocol",
     imageUrl:
-      "https://i.ibb.co/ykvrF7p/GL3-I-yn-Wo-AAQc-Oi.png",
+      "/content-images/GL3-I-yn-Wo-AAQc-Oi-23cd8178d9.webp",
   },
   {
     title: "Zcash Avalanche Redbridge",
     description: "The Zcash-Avalanche Red-Bridge is a decentralized bridge that enables interoperability between the Zcash (ZEC) and Avalanche (AVAX) blockchains",
     link: "https://zechub.wiki/guides/Avalanche-RedBridge#content",
     imageUrl:
-      "https://images.ctfassets.net/jg6lo9a2ukvr/27nB85zQBKXGOyMzsGpH6r/0fc7d99bc7a53a90002614480e16f4c9/AVAX-TokenLaunch-Blog-Header.png?fm=webp",
+      "/content-images/AVAX-TokenLaunch-Blog-Header-01b548a89a.webp",
   },
   {
     title: "Zaino Indexer",
@@ -31,56 +31,56 @@ const projects = [
     description: "FROST improves upon the state of the art in Schnorr threshold signature protocols, as it can be safely used without limiting concurrency of signing operations",
     link: "https://zfnd.org/frost/",
     imageUrl:
-      "https://i.ibb.co/YQfXp8r/image-2025-01-02-183754891.png",
+      "/content-images/image-2025-01-02-183754891-54bdc98463.webp",
   },
   {
     title: "Zcash Shielded Assets",
     description:
       "Zcash Shielded Assets (ZSA) are a proposed improvement to the the Zcash protocol that would enable the creation ",
     link: "https://zechub.wiki/zcash-tech/zcash-shielded-assets#content",
-    imageUrl: "https://i.ibb.co/0VfMFB5/image-2023-11-18-160742427.png",
+    imageUrl: "/content-images/image-2023-11-18-160742427-658dda69c0.webp",
   },
   {
     title: "Hybrid Proof of Stake (Crosslink)",
     description:
       "The Crosslink protocol is a proposed design for Zcash hybrid Proof-of-Work/Proof-of-Stake (PoW/PoS) stage",
     link: "https://zechub.wiki/zcash-tech/crosslink-protocol#content",
-    imageUrl: "https://i.ibb.co/6HZpChV/image-2025-01-01-141008115.png",
+    imageUrl: "/content-images/image-2025-01-01-141008115-eec6ada37f.webp",
   },
   {
     title: "Metamask Shielded Snap",
     description:
       "The ongoing maintenance and support of the WebZJS library, Metamask Snap and associated browser wallet (soon in production)",
     link: "https://forum.zcashcommunity.com/t/webzjs-browser-library-and-browser-wallet-maintenance/49717",
-    imageUrl: "https://i.ibb.co/3Sknkjf/metamask-234363-555.png",
+    imageUrl: "/content-images/metamask-234363-555-e98aefe070.webp",
   },
   {
     title: "Brave Browser Shielded Wallet & Messaging Protocol",
     description:
       "Brave, Electric Coin Co. (ECC), and Filecoin Foundation announced that they are teaming up to bring innovative new privacy features to the Brave browser and its integrated Web3 wallet",
     link: "https://brave.com/blog/web3-privacy/",
-    imageUrl: "https://i.ibb.co/rd62mr8/bravezcash.jpg",
+    imageUrl: "/content-images/bravezcash-026d3ef54e.webp",
   },
   {
     title: "Nym Mixnet Network Privacy",
     description:
       "With this Nym integration, Zcash is moving to ensure that transactions are fully protected, even while in transit, by obscuring metadata and patterns of transactions",
     link: "https://blog.nymtech.net/zcash-nym-one-step-closer-to-a-full-privacy-payment-network-8b2276e7a55b",
-    imageUrl: "https://i.ibb.co/CmpwX5V/0-nj-QT1k62y3n-QYfwb.png",
+    imageUrl: "/content-images/0-nj-QT1k62y3n-QYfwb-32815d7b1e.webp",
   },
   {
     title: "Project Tachyon",
     description: 
   "Project Tachyon is a major initiative to dramatically scale Zcash shielded transactions using proof-carrying wallets, oblivious synchronization, and transaction aggregation — enabling faster, lighter, and more private payments.",
     link: "https://hackmd.io/@RhipperBoy/HyRI_UT1gx",
-    imageUrl: "https://raw.githubusercontent.com/TheRhipper/Images/refs/heads/main/file_0000000006a462469eefcc3a38630375_conversation_id%3D68108e26-1b74-800c-92e3-199cd3c0ac36%26message_id%3D4c8b318e-e887-4dc8-ba8e-674bb80a14a4.png",
+    imageUrl: "/content-images/file_0000000006a462469eefcc3a38630375_co-77bb08f2ca.webp",
   },
   {
     title: "ZeWIF",
     description:
       "Zcash Extensible Wallet Interchange Format (ZeWIF) is a collaborative project by Zingo Labs and Blockchain Commons to improve Zcash wallet compatibility and interoperability.",
     link: "https://forum.zcashcommunity.com/t/zewif-is-ready-for-testing/50782",
-    imageUrl: "https://i.ibb.co/wN2PZmzN/ZeWIF.png",
+    imageUrl: "/content-images/ZeWIF-a971bcb63c.webp",
     
   }
 ];
