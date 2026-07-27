@@ -28,6 +28,7 @@ import { DAOProposalVisualizer } from "./DAOProposals";
 import { BuildShieldedTransactionVisualizer } from "./BuildShieldedTransaction";
 import CrosslinkProtocolVisualizer from "./CrosslinkProtocol";
 import { FrostMultisigVisualizer } from "./frost-multisig";
+import { ZkavClubVisualizer } from "./zkav-club";
 
 const QUIZ_BEGINNER: QuizQuestion[] = [
   {
@@ -118,6 +119,26 @@ const QUIZ_INTERMEDIATE: QuizQuestion[] = [
     ],
     correctIndex: 1,
   },
+  {
+    question: "What does a value pool turnstile reveal?",
+    options: [
+      "The sender and receiver of every transaction",
+      "Nothing at all — it is fully shielded",
+      "The amount of value crossing between pools, while sender and receiver stay private",
+      "Each user's total balance",
+    ],
+    correctIndex: 2,
+  },
+  {
+    question: "Why was the Ironwood pool introduced in NU6.3?",
+    options: [
+      "To lower transaction fees",
+      "To open a clean pool and seal Orchard behind a turnstile so supply can be audited after the circuit bug",
+      "To replace proof-of-work with proof-of-stake",
+      "To remove shielded transactions entirely",
+    ],
+    correctIndex: 1,
+  },
 ];
 
 const QUIZ_CONTRIBUTORS: QuizQuestion[] = [
@@ -151,6 +172,36 @@ const QUIZ_CONTRIBUTORS: QuizQuestion[] = [
     options: ["Only by donating money", "Through code, docs, and repos listed in the visualizer", "Only by mining", "You cannot contribute"],
     correctIndex: 1,
   },
+  {
+    question: "Where are ZecHub bounties managed today?",
+    options: [
+      "Dework at dework.zechub.org",
+      "ZEC Bounties at bounties.zechub.wiki",
+      "A Google Sheet",
+      "Only in Discord threads",
+    ],
+    correctIndex: 1,
+  },
+  {
+    question: "How do you tell ZEC Bounties where to send your reward?",
+    options: [
+      "Fill out a separate contributor form",
+      "Post your address in Discord",
+      "Save a Unified Address (u1...) on your ZEC Bounties profile",
+      "Rewards are always sent to an exchange account",
+    ],
+    correctIndex: 2,
+  },
+  {
+    question: "What does the ZKAV Club offer contributors?",
+    options: [
+      "Mining hardware rentals",
+      "Paid audiovisual gigs and coordinator roles for documenting communities",
+      "Exchange listings",
+      "Free ZEC airdrops",
+    ],
+    correctIndex: 1,
+  },
 ];
 
 type VisualizerType =
@@ -173,6 +224,7 @@ type VisualizerType =
   | "zcash-community-grants"
   | "coinholder-grants"
   | "open-source-repos"
+  | "zkav-club"
   | "build-shielded-transaction"
   | "CrossLink-Protocol"
   | "frost-multisig"
@@ -199,7 +251,8 @@ const BASIC_VISUALIZERS: VisualizerInfo[] = [
   {
     id: "pool",
     title: "Value Pools & Address Types",
-    description: "Explore Zcash privacy pools and address types",
+    description:
+      "Explore Zcash privacy pools, address types and the Ironwood migration",
     component: ZcashPoolVisualizer,
   },
   {
@@ -229,7 +282,7 @@ const BASIC_VISUALIZERS: VisualizerInfo[] = [
   },
   {
     id: "distributed-database",
-    title: "Distributed DatabaseVisualize",
+    title: "Distributed Databases",
     description: "Compare centralized databases with blockchains",
     component: DistributedDatabaseVisualize,
   },
@@ -306,7 +359,8 @@ const CONTRIBUTOR_VISUALIZERS: VisualizerInfo[] = [
   {
     id: "zechub-bounties",
     title: "ZecHub Bounties",
-    description: "Contribute to ZecHub and earn ZEC",
+    description:
+      "Claim bounties on bounties.zechub.wiki and get paid natively in ZEC",
     component: ContributionVisualizer,
   },
   {
@@ -332,6 +386,13 @@ const CONTRIBUTOR_VISUALIZERS: VisualizerInfo[] = [
     title: "Open Source Repositories",
     description: "Contribute to Zcash open source projects",
     component: OpenSourceReposVisualizer,
+  },
+  {
+    id: "zkav-club",
+    title: "ZKAV Club Opportunities",
+    description:
+      "Privacy-first audiovisual roles and paid gigs with the Zero-knowledge Audiovisual Club",
+    component: ZkavClubVisualizer,
   },
 ];
 

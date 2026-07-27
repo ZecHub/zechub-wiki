@@ -5,10 +5,11 @@ import { useCallback, useEffect, useState } from "react";
 import { Controls } from "./Controls";
 import { StageContent } from "./StageContent";
 import "./index.css";
-import { STAGES } from "./types";
+import { IRONWOOD_STAGE_TYPES, STAGES } from "./types";
 
 const WELCOME_STAGE_INTERVAL = 1000; // 4 seconds for welcome stage
 const OTHER_STAGES_INTERVAL = 10000; // 10 seconds for other stages
+const IRONWOOD_STAGES_INTERVAL = 16000; // 16 seconds for Ironwood stages
 interface ZcashPoolVisualizerProps {
   onComplete?: () => void;
   autoStart?: boolean;
@@ -47,20 +48,20 @@ export const ZcashPoolVisualizer = ({ onComplete, autoStart = false }: ZcashPool
     setIsAnimating(true);
     setIsPlaying(false);
   }, []);
-  
+
   useEffect(() => {
     if (autoStart) {
       setIsPlaying(true);
     }
   }, [autoStart]);
-  
+
   // Completion logic
   useEffect(() => {
     if (currentStage === STAGES.length - 1 && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
       }, OTHER_STAGES_INTERVAL);
-      
+
       return () => clearTimeout(timer);
     }
   }, [currentStage, onComplete]);
@@ -71,14 +72,18 @@ export const ZcashPoolVisualizer = ({ onComplete, autoStart = false }: ZcashPool
 
     // Use faster interval for welcome stage (stage 0), slower for others
     const interval =
-      currentStage === 0 ? WELCOME_STAGE_INTERVAL : OTHER_STAGES_INTERVAL;
+      currentStage === 0
+        ? WELCOME_STAGE_INTERVAL
+        : IRONWOOD_STAGE_TYPES.includes(stage.type)
+        ? IRONWOOD_STAGES_INTERVAL
+        : OTHER_STAGES_INTERVAL;
 
     const timer = setTimeout(() => {
       goToNext();
     }, interval);
 
     return () => clearTimeout(timer);
-  }, [isPlaying, currentStage, goToNext]);
+  }, [isPlaying, currentStage, stage.type, goToNext]);
 
   return (
     <div className="flex flex-col ">

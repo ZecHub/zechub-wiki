@@ -53,12 +53,28 @@ export interface Stage {
   title: string;
   subtitle: string;
   description: string;
-  type: "welcome" | "intro" | "pool" | "transaction" | "comparison";
+  type:
+    | "welcome"
+    | "intro"
+    | "pool"
+    | "transaction"
+    | "comparison"
+    | "ironwood-why"
+    | "ironwood-turnstile"
+    | "ironwood-migration"
+    | "ironwood-audit";
   focusPool?: PoolType;
   transactionFrom?: PoolType;
   transactionTo?: PoolType;
   amount?: string;
 }
+
+export const IRONWOOD_STAGE_TYPES: Stage["type"][] = [
+  "ironwood-why",
+  "ironwood-turnstile",
+  "ironwood-migration",
+  "ironwood-audit",
+];
 
 export const STAGES: Stage[] = [
   {
@@ -154,5 +170,37 @@ export const STAGES: Stage[] = [
     description:
       "Privacy depends on transaction type. Compare what's visible across all possible transaction combinations.",
     type: "comparison",
+  },
+  {
+    id: 10,
+    title: "Why Ironwood Exists",
+    subtitle: "NU6.3 · Activates 28 July 2026",
+    description:
+      "A soundness bug in the Orchard circuit meant nobody could independently verify the shielded supply. Ironwood is the fix.",
+    type: "ironwood-why",
+  },
+  {
+    id: 11,
+    title: "The Turnstile",
+    subtitle: "Counting without looking inside",
+    description:
+      "A public checkpoint that reveals how much value leaves a pool, while sender and receiver stay private.",
+    type: "ironwood-turnstile",
+  },
+  {
+    id: 12,
+    title: "Orchard → Ironwood Migration",
+    subtitle: "Pool migration flow",
+    description:
+      "Watch funds cross the turnstile, and compare an immediate migration with a privacy-preserving scheduled one.",
+    type: "ironwood-migration",
+  },
+  {
+    id: 13,
+    title: "Supply Audit Logic",
+    subtitle: "Proving nothing was counterfeited",
+    description:
+      "Because the turnstile caps outflows, the community can bound the supply that can ever leave Orchard.",
+    type: "ironwood-audit",
   },
 ];

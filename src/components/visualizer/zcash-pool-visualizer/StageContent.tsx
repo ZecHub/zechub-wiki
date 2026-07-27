@@ -4,7 +4,12 @@ import { WelcomeContent } from "./WelcomeContent";
 import { IntroContent } from "./IntroContent";
 import { PoolContent } from "./PoolConten";
 import { TransactionContent } from "./TransactionContent";
-import { Stage } from "./types";
+import { IronwoodFooter } from "./ironwood/IronwoodFooter";
+import { MigrationFlow } from "./ironwood/MigrationFlow";
+import { SupplyAudit } from "./ironwood/SupplyAudit";
+import { TurnstileExplainer } from "./ironwood/TurnstileExplainer";
+import { WhyIronwood } from "./ironwood/WhyIronwood";
+import { IRONWOOD_STAGE_TYPES, Stage } from "./types";
 
 interface StageContentProps {
   stage: Stage;
@@ -24,10 +29,20 @@ export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
         return <TransactionContent stage={stage} isAnimating={isAnimating} />;
       case "comparison":
         return <ComparisonView />;
+      case "ironwood-why":
+        return <WhyIronwood />;
+      case "ironwood-turnstile":
+        return <TurnstileExplainer />;
+      case "ironwood-migration":
+        return <MigrationFlow />;
+      case "ironwood-audit":
+        return <SupplyAudit />;
       default:
         return null;
     }
   };
+
+  const isIronwoodStage = IRONWOOD_STAGE_TYPES.includes(stage.type);
 
   return (
     <AnimatePresence mode="wait">
@@ -98,7 +113,10 @@ export const StageContent = ({ stage, isAnimating }: StageContentProps) => {
         {stage.type === "welcome" ? (
           ""
         ) : (
-          <div className="mt-24">{renderContent()}</div>
+          <div className={isIronwoodStage ? "mt-10" : "mt-24"}>
+            {renderContent()}
+            {isIronwoodStage && <IronwoodFooter />}
+          </div>
         )}
       </motion.div>
     </AnimatePresence>
