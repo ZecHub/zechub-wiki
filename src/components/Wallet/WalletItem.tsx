@@ -19,6 +19,7 @@ interface WalletItemProps {
   tags: Tag[];
   likes: number;
   syncSpeed: string;
+  ironwood?: string;
   onLike: () => void;
   onDislike: () => void;
   error: string;
@@ -43,6 +44,27 @@ const categoryIcons = {
   Features: MdChecklist,
 };
 
+// NU6.3 "Ironwood" upgrade status → badge colors (status text comes from Wallets.md)
+const ironwoodBadgeStyles: { [key: string]: { pill: string; dot: string } } = {
+  "ready": {
+    pill: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
+    dot: "bg-emerald-500",
+  },
+  "in progress": {
+    pill: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
+    dot: "bg-amber-500",
+  },
+  "not ready": {
+    pill: "bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300",
+    dot: "bg-rose-500",
+  },
+};
+
+const ironwoodFallbackStyle = {
+  pill: "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300",
+  dot: "bg-slate-500",
+};
+
 const featureLinkMap: { [key: string]: string } = {
   "Orchard": "https://zechub.wiki/using-zcash/shielded-pools#orchard",
   "Sapling": "https://zechub.wiki/using-zcash/shielded-pools#sapling",
@@ -59,6 +81,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
   logo,
   tags,
   syncSpeed,
+  ironwood,
   likes,
   onLike,
   onDislike,
@@ -143,6 +166,25 @@ const WalletItem: React.FC<WalletItemProps> = ({
             <Icon icon={OpenNew} className="inline-block ms-2" size="small" />
           </Link>
         </div>
+
+        {/* NU6.3 "Ironwood" readiness badge */}
+        {ironwood && (
+          <div className="mb-4 -mt-1">
+            <span
+              title="NU6.3 Ironwood network upgrade status"
+              className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full ${
+                (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).pill
+              }`}
+            >
+              <span
+                className={`w-1.5 h-1.5 rounded-full ${
+                  (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).dot
+                }`}
+              />
+              Ironwood {ironwood}
+            </span>
+          </div>
+        )}
 
         {/* Devices + Pools (compact pills) */}
         {tags
