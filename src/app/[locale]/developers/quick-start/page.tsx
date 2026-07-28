@@ -620,6 +620,132 @@ EOF`}
   );
 };
 
+const ZakuraTab = () => {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+      <section id="installing-zakura">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={1} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            Installing Zakura
+          </h2>
+        </div>
+
+        <InfoBox>
+          <strong className="text-indigo-400 dark:text-indigo-300">
+            Zakura
+          </strong>{" "}
+          is a next-generation Rust-based Zcash full node derived from Zebra.
+          It supports Ironwood (NU6.3), native pruning, snapshot bootstrapping,
+          and a zcashd-compatible RPC interface.
+        </InfoBox>
+
+        <div
+          className="grid gap-5"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          }}
+        >
+          <SectionCard title="Installation">
+            <SubLabel>Dependencies</SubLabel>
+
+            <CodeBlock
+              code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+sudo apt update
+sudo apt install git clang pkg-config libssl-dev protobuf-compiler`}
+            />
+
+            <SubLabel className="mt-[14px]">
+              Build from Source
+            </SubLabel>
+
+            <CodeBlock
+              code={`git clone https://github.com/zakura-core/zakura.git
+cd zakura
+cargo build --release
+
+export PATH="$PATH:$(pwd)/target/release"`}
+            />
+          </SectionCard>
+
+          <SectionCard title="Configuration">
+            <SubLabel>Generate Config</SubLabel>
+
+            <CodeBlock
+              code={`zakurad generate -o ~/.config/zakura.toml`}
+            />
+
+            <SubLabel className="mt-[14px]">
+              Start the Node
+            </SubLabel>
+
+            <CodeBlock
+              code={`zakurad -c ~/.config/zakura.toml start`}
+            />
+          </SectionCard>
+        </div>
+      </section>
+
+      <Divider />
+
+      <section id="running-zakura">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={2} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            Running Zakura
+          </h2>
+        </div>
+
+        <SectionCard title="Example Configuration">
+          <CodeBlock
+            language="toml"
+            code={`[network]
+network = "Mainnet"
+
+[state]
+ephemeral = false
+
+[rpc]
+listen_addr = "127.0.0.1:8232"
+
+[tracing]
+use_color = true`}
+          />
+        </SectionCard>
+
+        <SectionCard className="mt-6" title="Important Notes">
+          <ul className="flex flex-col gap-[10px] list-none p-0 m-0">
+            <li className="flex gap-[10px] text-[13.5px] text-slate-500 dark:text-slate-400">
+              <span className="text-green-500">✓</span>
+              Supports Ironwood (NU6.3).
+            </li>
+
+            <li className="flex gap-[10px] text-[13.5px] text-slate-500 dark:text-slate-400">
+              <span className="text-green-500">✓</span>
+              Native pruning significantly reduces disk usage.
+            </li>
+
+            <li className="flex gap-[10px] text-[13.5px] text-slate-500 dark:text-slate-400">
+              <span className="text-green-500">✓</span>
+              Snapshot bootstrapping dramatically reduces initial sync time.
+            </li>
+
+            <li className="flex gap-[10px] text-[13.5px] text-slate-500 dark:text-slate-400">
+              <span className="text-green-500">✓</span>
+              Compatible with applications using the zcashd RPC API.
+            </li>
+          </ul>
+        </SectionCard>
+      </section>
+
+      <ResourcesSection />
+    </div>
+  );
+};
+
 const ZainodTab = () => {
   const { t } = useLanguage();
   const qs = t?.pages?.developersQuickStart;
@@ -782,6 +908,9 @@ const ResourcesSection = () => {
             <ResourceLink href="https://zebra.zfnd.org/index.html">
               {qs?.officialDocumentation ?? "Official Documentation"}
             </ResourceLink>
+            <ResourceLink href="https://zakura.com/">
+              Zakura
+            </ResourceLink>
             <ResourceLink href="https://discord.gg/zcash">
               {qs?.zcashDiscordCommunity ?? "Zcash Discord Community"}
             </ResourceLink>
@@ -801,6 +930,9 @@ const ResourcesSection = () => {
             <ResourceLink href="https://forum.zcashcommunity.com/">
               {qs?.zcashCommunityForum ?? "Zcash Community Forum"}
             </ResourceLink>
+            <ResourceLink href="https://github.com/zakura-core/zakura/issues">
+              Zakura GitHub Issues
+            </ResourceLink>
             <ResourceLink href="https://github.com/zcash/zcash/issues">
               {qs?.githubIssues ?? "GitHub Issues"}
             </ResourceLink>
@@ -819,7 +951,7 @@ const ResourcesSection = () => {
 
 // ── Main Page ────────────────────────────────────────────────────────────────
 
-const TABS = ["Zebrad", "Zaino", "Zingolib"] as const;
+const TABS = ["Zebrad", "Zakura", "Zaino", "Zingolib"] as const;
 type Tab = (typeof TABS)[number];
 
 export default function QuickStartPage() {
@@ -829,6 +961,7 @@ export default function QuickStartPage() {
 
   const tabContent: Record<Tab, ReactNode> = {
     Zebrad: <ZebradTab />,
+    Zakura: <ZakuraTab />,
     Zaino: <ZainodTab />,
     Zingolib: <ZingolibTab />,
   };
