@@ -60,8 +60,8 @@ export const TurnstileExplainer = () => (
       transition={{ delay: 0.15 }}
       className="rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm p-6"
     >
-      <div className="flex items-center justify-center gap-4 sm:gap-8">
-        <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-xl border-2 border-purple-500/50 bg-purple-500/10 overflow-hidden">
+      <div className="flex flex-col imd:flex-row items-center justify-center gap-4 imd:gap-8">
+        <div className="relative w-28 h-28 imd:w-36 imd:h-36 rounded-xl border-2 border-purple-500/50 bg-purple-500/10 overflow-hidden">
           <div className="absolute inset-0 backdrop-blur-md" />
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="font-mono text-2xl font-bold text-purple-500">
@@ -126,7 +126,7 @@ export const TurnstileExplainer = () => (
       </div>
     </motion.div>
 
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="grid gap-4 imd:grid-cols-2">
       {KEY_POINTS.map((point, index) => {
         const Icon = point.icon;
         return (
@@ -158,7 +158,7 @@ export const TurnstileExplainer = () => (
       <p className="text-xs uppercase tracking-wide text-muted-foreground mb-3 text-center">
         Turnstiles Zcash has already used
       </p>
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
+      <div className="flex flex-col imd:flex-row items-stretch imd:items-center justify-center gap-3">
         {LINEAGE.map(({ from, to, era }) => (
           <div
             key={`${from}-${to}`}
@@ -179,9 +179,9 @@ export const TurnstileExplainer = () => (
       </div>
     </motion.div>
 
-    <div className="grid gap-3 sm:grid-cols-2">
+    <div className="grid gap-3 imd:grid-cols-2">
       <PoolBadge pool="orchard" status="Sealed by the turnstile" />
-      <PoolBadge pool="ironwood" status="Starts empty, starts clean" pulse />
+      <PoolBadge pool="ironwood" status="Opened empty, clean from block zero" pulse />
     </div>
   </div>
 );

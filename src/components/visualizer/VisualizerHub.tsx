@@ -173,22 +173,22 @@ const QUIZ_CONTRIBUTORS: QuizQuestion[] = [
     correctIndex: 1,
   },
   {
-    question: "Where are ZecHub bounties managed today?",
+    question: "Where are ZecHub bounties managed?",
     options: [
-      "Dework at dework.zechub.org",
+      "A public Google Sheet",
       "ZEC Bounties at bounties.zechub.wiki",
-      "A Google Sheet",
       "Only in Discord threads",
+      "By emailing the ZecHub team",
     ],
     correctIndex: 1,
   },
   {
     question: "How do you tell ZEC Bounties where to send your reward?",
     options: [
-      "Fill out a separate contributor form",
       "Post your address in Discord",
+      "Rewards are sent to an exchange account",
       "Save a Unified Address (u1...) on your ZEC Bounties profile",
-      "Rewards are always sent to an exchange account",
+      "Rewards are claimed in person at an event",
     ],
     correctIndex: 2,
   },

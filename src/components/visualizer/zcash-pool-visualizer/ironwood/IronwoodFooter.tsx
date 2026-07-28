@@ -38,7 +38,7 @@ export const IronwoodFooter = () => (
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 rounded-lg border border-border/60 px-3 py-2 text-sm text-foreground hover:border-amber-500/60 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
       >
-        ZIP 318 — Orchard to Ironwood migration
+        ZIP 318 — Orchard to Ironwood Migration (Draft)
         <ExternalLink className="w-3.5 h-3.5" />
       </a>
     </div>

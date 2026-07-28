@@ -36,7 +36,7 @@ const TIMELINE: TimelineItem[] = [
   {
     when: `${IRONWOOD_ACTIVATION.date} · ${IRONWOOD_ACTIVATION.upgrade}`,
     title: `${IRONWOOD_ACTIVATION.codename} opens a clean pool`,
-    body: `Activating at block ${IRONWOOD_ACTIVATION.blockHeight.toLocaleString()}, Ironwood creates a brand-new shielded pool and seals the old Orchard pool behind a public turnstile.`,
+    body: `Live since block ${IRONWOOD_ACTIVATION.blockHeight.toLocaleString()}, Ironwood adds a brand-new shielded pool and seals the old Orchard pool behind a public turnstile.`,
     icon: Sparkles,
     accent: "from-amber-500 to-yellow-600",
   },
@@ -45,7 +45,7 @@ const TIMELINE: TimelineItem[] = [
 export const WhyIronwood = () => (
   <div className="max-w-4xl mx-auto">
     <div className="relative">
-      <div className="absolute left-[27px] top-4 bottom-4 w-px bg-gradient-to-b from-rose-500/40 via-amber-500/40 to-yellow-500/40 hidden sm:block" />
+      <div className="absolute left-[27px] top-4 bottom-4 w-px bg-gradient-to-b from-rose-500/40 via-amber-500/40 to-yellow-500/40 hidden imd:block" />
 
       <div className="space-y-4">
         {TIMELINE.map((item, index) => {
@@ -56,7 +56,7 @@ export const WhyIronwood = () => (
               initial={{ opacity: 0, x: -24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.15 + index * 0.12 }}
-              className="relative flex flex-col sm:flex-row gap-4"
+              className="relative flex flex-col imd:flex-row gap-4"
             >
               <div
                 className={`relative z-10 flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${item.accent} p-[2px] shadow-lg`}

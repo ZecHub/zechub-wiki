@@ -85,14 +85,14 @@ export const SupplyAudit = () => {
           </motion.div>
         </div>
 
-        <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        <div className="mt-3 grid gap-2 imd:grid-cols-2">
           <p className="text-xs text-muted-foreground">
             <span className={cn("font-medium", POOL_THEMES.orchard.text)}>
               Orchard
             </span>{" "}
             — shrinking, still shielded, still bounded by the turnstile.
           </p>
-          <p className="text-xs text-muted-foreground sm:text-right">
+          <p className="text-xs text-muted-foreground imd:text-right">
             <span className={cn("font-medium", POOL_THEMES.ironwood.text)}>
               Ironwood
             </span>{" "}
@@ -126,7 +126,7 @@ export const SupplyAudit = () => {
         </ul>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 imd:grid-cols-2">
         {AUDIT_POINTS.map((point, index) => (
           <motion.div
             key={point.title}

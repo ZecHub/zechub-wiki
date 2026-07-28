@@ -38,8 +38,8 @@ const slides = [
     icon: LogIn,
     color: "from-purple-500 to-pink-600",
     steps: [
-      "Go to bounties.zechub.wiki — ZecHub's own bounty platform",
-      "Sign in with GitHub (Dework is no longer used)",
+      "Go to bounties.zechub.wiki — ZecHub's bounty platform",
+      "Sign in with your GitHub account",
       "Open your profile and set a nickname",
       "Turn on email notifications for newly posted bounties"
     ],
@@ -54,8 +54,8 @@ const slides = [
     steps: [
       "Open Profile and paste your Mainnet payment address — a unified address starting with u1",
       "Hit Save address; this is where bounty rewards are sent",
-      "Optionally add a Testnet payment address (u or z) for development bounties, then Verify",
-      "This replaces the old contributor form — your profile is the onboarding"
+      "Add a Testnet payment address (u or z) for development bounties, then Verify",
+      "Your profile is all the onboarding you need to start claiming work"
     ],
     link: PROFILE_URL,
     linkText: "Set Payment Address"

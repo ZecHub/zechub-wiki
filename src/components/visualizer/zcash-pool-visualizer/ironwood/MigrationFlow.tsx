@@ -39,10 +39,10 @@ const MODE_COPY: Record<
       "One transfer, the whole balance. Simple, but the amount and its timing make a distinctive fingerprint on-chain.",
   },
   scheduled: {
-    label: "Scheduled migration (ZIP 318)",
+    label: "Scheduled migration",
     icon: Timer,
     blurb:
-      "Balance split into canonical denominations and broadcast at shared anchor heights, so many wallets look alike and timing reveals little.",
+      "The shape wallets are converging on in the draft ZIP 318: split the balance into canonical denominations and broadcast at shared anchor heights, so many wallets look alike and timing reveals little.",
   },
 };
 
@@ -177,8 +177,8 @@ export const MigrationFlow = () => {
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
-        <div className="inline-flex rounded-lg border border-border/60 bg-card/60 p-1 gap-1">
+      <div className="flex flex-col imd:flex-row items-stretch imd:items-center justify-center gap-3">
+        <div className="flex flex-wrap justify-center rounded-lg border border-border/60 bg-card/60 p-1 gap-1">
           {(Object.keys(MODE_COPY) as MigrationMode[]).map((key) => {
             const Icon = MODE_COPY[key].icon;
             return (
@@ -218,7 +218,7 @@ export const MigrationFlow = () => {
       <div className="grid gap-4 lg:grid-cols-3">
         <Column
           title="Orchard"
-          caption="Spend-only after activation — no new deposits, no internal payments."
+          caption="Now spend-only — no new deposits, no internal payments."
           accent={cn(POOL_THEMES.orchard.border, POOL_THEMES.orchard.bg)}
           icon={
             <POOL_THEMES.orchard.icon
@@ -295,10 +295,10 @@ export const MigrationFlow = () => {
               <tr className="border-b border-border/60 text-left">
                 <th className="p-3 font-medium text-muted-foreground">Pool</th>
                 <th className="p-3 font-medium text-muted-foreground">
-                  Before Ironwood
+                  Before activation
                 </th>
                 <th className="p-3 font-medium text-muted-foreground">
-                  After block{" "}
+                  Now — from block{" "}
                   {IRONWOOD_ACTIVATION.blockHeight.toLocaleString()}
                 </th>
               </tr>
@@ -324,7 +324,7 @@ export const MigrationFlow = () => {
                   Ironwood
                 </td>
                 <td className="p-3 text-muted-foreground">
-                  Does not exist
+                  Did not exist
                 </td>
                 <td className="p-3 text-foreground">
                   Default destination for new shielded activity

@@ -7,8 +7,7 @@ import { StageContent } from "./StageContent";
 import "./index.css";
 import { IRONWOOD_STAGE_TYPES, STAGES } from "./types";
 
-const WELCOME_STAGE_INTERVAL = 1000; // 4 seconds for welcome stage
-const OTHER_STAGES_INTERVAL = 10000; // 10 seconds for other stages
+const OTHER_STAGES_INTERVAL = 10000; // 10 seconds for most stages
 const IRONWOOD_STAGES_INTERVAL = 16000; // 16 seconds for Ironwood stages
 interface ZcashPoolVisualizerProps {
   onComplete?: () => void;
@@ -70,13 +69,10 @@ export const ZcashPoolVisualizer = ({ onComplete, autoStart = false }: ZcashPool
   useEffect(() => {
     if (!isPlaying) return;
 
-    // Use faster interval for welcome stage (stage 0), slower for others
-    const interval =
-      currentStage === 0
-        ? WELCOME_STAGE_INTERVAL
-        : IRONWOOD_STAGE_TYPES.includes(stage.type)
-        ? IRONWOOD_STAGES_INTERVAL
-        : OTHER_STAGES_INTERVAL;
+    // Ironwood stages carry more reading, so they linger longer
+    const interval = IRONWOOD_STAGE_TYPES.includes(stage.type)
+      ? IRONWOOD_STAGES_INTERVAL
+      : OTHER_STAGES_INTERVAL;
 
     const timer = setTimeout(() => {
       goToNext();
