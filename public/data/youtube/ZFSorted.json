@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2346
+      "views": 2348
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -893,6 +893,11 @@
       "views": 222
     },
     {
+      "title": "Zcash Arborist Call 06-25-2026",
+      "video_id": "Ni-Bp0p8W4s",
+      "views": 222
+    },
+    {
       "title": "MGRC Candidate Q&A Live Streams: Time Slot #3",
       "video_id": "cyjPxpe4cvs",
       "views": 221
@@ -905,11 +910,6 @@
     {
       "title": "Zcash Community Call: Meet the ZCG Candidates",
       "video_id": "3z3E2lhBUH0",
-      "views": 221
-    },
-    {
-      "title": "Zcash Arborist Call 06-25-2026",
-      "video_id": "Ni-Bp0p8W4s",
       "views": 221
     },
     {
@@ -993,13 +993,13 @@
       "views": 207
     },
     {
-      "title": "Governance Panel at Zcon3",
-      "video_id": "TdlcNU5TXy8",
-      "views": 205
-    },
-    {
       "title": "Community Call with ZCG Candidates 12/17/2024",
       "video_id": "ODW01XSGOXA",
+      "views": 206
+    },
+    {
+      "title": "Governance Panel at Zcon3",
+      "video_id": "TdlcNU5TXy8",
       "views": 205
     },
     {
@@ -1213,14 +1213,14 @@
       "views": 164
     },
     {
+      "title": "Zcash Arborist Call 07-23-2026",
+      "video_id": "mHpMkEk6GGI",
+      "views": 164
+    },
+    {
       "title": "Zcash Arborist Call 03-19-2026",
       "video_id": "LtdKAhi6l7s",
       "views": 163
-    },
-    {
-      "title": "Zcash Arborist Call 07-23-2026",
-      "video_id": "mHpMkEk6GGI",
-      "views": 162
     },
     {
       "title": "Zcash Arborist Call 02-19-2026",
@@ -1338,13 +1338,13 @@
       "views": 144
     },
     {
-      "title": "The Mobile Wallet Tarpit - Justin Smith",
-      "video_id": "cyGGJXvuHtQ",
-      "views": 143
-    },
-    {
       "title": "Coin Voting 2.0 with Hanh - ZconVI #zcash",
       "video_id": "VfQTSLpoH40",
+      "views": 144
+    },
+    {
+      "title": "The Mobile Wallet Tarpit - Justin Smith",
+      "video_id": "cyGGJXvuHtQ",
       "views": 143
     },
     {
