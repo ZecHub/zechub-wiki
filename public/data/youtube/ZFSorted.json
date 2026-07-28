@@ -80,12 +80,12 @@
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1296
+      "views": 1297
     },
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
       "video_id": "O4wQi_i7k0I",
-      "views": 1284
+      "views": 1285
     },
     {
       "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
@@ -1033,13 +1033,13 @@
       "views": 199
     },
     {
-      "title": "Zebra Walkthrough for Zcash Developers",
-      "video_id": "aV93Ux3j4Gw",
-      "views": 198
-    },
-    {
       "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
       "video_id": "65GdSSlDG3A",
+      "views": 199
+    },
+    {
+      "title": "Zebra Walkthrough for Zcash Developers",
+      "video_id": "aV93Ux3j4Gw",
       "views": 198
     },
     {
@@ -1248,6 +1248,11 @@
       "views": 156
     },
     {
+      "title": "Zcash Arborist Call 07-23-2026",
+      "video_id": "mHpMkEk6GGI",
+      "views": 156
+    },
+    {
       "title": "Zcash Arborist Call 09/05/24",
       "video_id": "PAayYqN9mLw",
       "views": 155
@@ -1265,11 +1270,6 @@
     {
       "title": "FROST Demo",
       "video_id": "skeVu0mQNQ0",
-      "views": 151
-    },
-    {
-      "title": "Zcash Arborist Call 07-23-2026",
-      "video_id": "mHpMkEk6GGI",
       "views": 151
     },
     {
@@ -1343,13 +1343,13 @@
       "views": 143
     },
     {
-      "title": "Zcash Arborist Call 10/17/2024",
-      "video_id": "7A5ttZqad5g",
-      "views": 142
-    },
-    {
       "title": "Coin Voting 2.0 with Hanh - ZconVI #zcash",
       "video_id": "VfQTSLpoH40",
+      "views": 143
+    },
+    {
+      "title": "Zcash Arborist Call 10/17/2024",
+      "video_id": "7A5ttZqad5g",
       "views": 142
     },
     {
