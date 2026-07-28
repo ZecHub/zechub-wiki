@@ -45,7 +45,7 @@
     {
       "title": "Qual o valor da sua privacidade? #Privacidade #Cripto #Zcash",
       "video_id": "SRJXi3B5f3w",
-      "views": 955
+      "views": 956
     },
     {
       "title": "Edward Snowden tem dito repetidamente...",
@@ -150,7 +150,7 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 579
+      "views": 580
     },
     {
       "title": "Se você conhece #satoshi, as regras de estacionamento não se aplicam",
@@ -170,7 +170,7 @@
     {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
-      "views": 529
+      "views": 532
     },
     {
       "title": "Impactos das guerras globais na economia brasileira",
@@ -385,7 +385,7 @@
     {
       "title": "Tutorial Zashi Swaps pela Near Intents",
       "video_id": "-Cf09X2TMVw",
-      "views": 243
+      "views": 244
     },
     {
       "title": "A #Ilusão da #Liberdade #Financeira.",
@@ -435,7 +435,7 @@
     {
       "title": "Zcash Vibe | Zcash Soundtrack",
       "video_id": "FDcKJuLMypw",
-      "views": 218
+      "views": 219
     },
     {
       "title": "Vitalik é grande apoiador do Protocolo Zcash",
@@ -508,6 +508,11 @@
       "views": 195
     },
     {
+      "title": "Zcash na Cake Wallet - Tutorial Completo",
+      "video_id": "ngzYYqcRa84",
+      "views": 194
+    },
+    {
       "title": "Shielded Labs e o Devfund",
       "video_id": "n7ve2AWwQ5Y",
       "views": 194
@@ -515,11 +520,6 @@
     {
       "title": "Sean Bowe sobre Projeto Tachyon",
       "video_id": "BjgEr_ho2OE",
-      "views": 193
-    },
-    {
-      "title": "Zcash na Cake Wallet - Tutorial Completo",
-      "video_id": "ngzYYqcRa84",
       "views": 193
     },
     {
@@ -730,7 +730,7 @@
     {
       "title": "Tutorial Shielded Zcash na Metamask",
       "video_id": "Et8d-rM7YXQ",
-      "views": 147
+      "views": 148
     },
     {
       "title": "NSM e Taxas Dinâmicas",
@@ -783,11 +783,6 @@
       "views": 139
     },
     {
-      "title": "Legal Tech & Web3 | Os novos caminhos do direito",
-      "video_id": "tQUjXpv_Ims",
-      "views": 139
-    },
-    {
       "title": "A mentalidade colaborativa da web 3 versus a advocacia tradicional",
       "video_id": "DShxo0L5ud4",
       "views": 138
@@ -795,6 +790,11 @@
     {
       "title": "Intent to Connect | Zcash Soundtrack",
       "video_id": "mdizWdKz57Q",
+      "views": 138
+    },
+    {
+      "title": "Legal Tech & Web3 | Os novos caminhos do direito",
+      "video_id": "tQUjXpv_Ims",
       "views": 138
     },
     {
@@ -883,14 +883,14 @@
       "views": 123
     },
     {
-      "title": "O Preço do Sucesso Material",
-      "video_id": "BzoMtQciu1w",
+      "title": "Swap com Zcash na Near Intents",
+      "video_id": "5icV7qah7w8",
       "views": 122
     },
     {
-      "title": "Swap com Zcash na Near Intents",
-      "video_id": "5icV7qah7w8",
-      "views": 121
+      "title": "O Preço do Sucesso Material",
+      "video_id": "BzoMtQciu1w",
+      "views": 122
     },
     {
       "title": "Barry Silbert & Pomp: Privacidade no Bitcoin e o Futuro das Moedas de Privacidade",
@@ -2303,6 +2303,11 @@
       "views": 39
     },
     {
+      "title": "Privacidade não é esconder dinheiro. É escolher como pagar.",
+      "video_id": "lFMHC_AOlGU",
+      "views": 39
+    },
+    {
       "title": "Peter Van Valkenburgh - Perspectivas da privacidade LEGENDADO",
       "video_id": "fOHhYb-b1uI",
       "views": 38
@@ -2523,6 +2528,11 @@
       "views": 34
     },
     {
+      "title": "Privacidade Nativa com Escolha: O Diferencial da Zcash",
+      "video_id": "rpvdCmjMft4",
+      "views": 34
+    },
+    {
       "title": "Zcash x NYM Brasil - Twitter Spaces",
       "video_id": "CwQKrMYCo-g",
       "views": 33
@@ -2613,18 +2623,8 @@
       "views": 32
     },
     {
-      "title": "Privacidade Nativa com Escolha: O Diferencial da Zcash",
-      "video_id": "rpvdCmjMft4",
-      "views": 32
-    },
-    {
       "title": "Por que reduzir o block time muda toda a experiência da Zcash",
       "video_id": "gV_WZWKeuKI",
-      "views": 32
-    },
-    {
-      "title": "Privacidade não é esconder dinheiro. É escolher como pagar.",
-      "video_id": "lFMHC_AOlGU",
       "views": 32
     },
     {
@@ -3403,6 +3403,16 @@
       "views": 15
     },
     {
+      "title": "Fedimint e Zcash: Confiança Comunitária vs Garantia Criptográfica",
+      "video_id": "2OcBMwx_8Iw",
+      "views": 15
+    },
+    {
+      "title": "Zcash vai reduzir o tempo de bloco? O plano para blocos mais rápidos.",
+      "video_id": "fs8dFgK0Mmw",
+      "views": 15
+    },
+    {
       "title": "Privacidade, o TABU!",
       "video_id": "ToJnKKCj45M",
       "views": 14
@@ -3458,6 +3468,11 @@
       "views": 14
     },
     {
+      "title": "Zakura e Tachyon: O Plano Para Escalar a Zcash",
+      "video_id": "9DLZoA2sxq8",
+      "views": 14
+    },
+    {
       "title": "WeeklyCall #2 Participe!",
       "video_id": "2KdudtdJ4qs",
       "views": 13
@@ -3470,16 +3485,6 @@
     {
       "title": "Zcash Shielded Call Vol.6 - Auditoria do Protocolo Orchard ZSA",
       "video_id": "RfmjMo0FeTM",
-      "views": 13
-    },
-    {
-      "title": "Fedimint e Zcash: Confiança Comunitária vs Garantia Criptográfica",
-      "video_id": "2OcBMwx_8Iw",
-      "views": 13
-    },
-    {
-      "title": "Zakura e Tachyon: O Plano Para Escalar a Zcash",
-      "video_id": "9DLZoA2sxq8",
       "views": 13
     },
     {
@@ -3603,6 +3608,11 @@
       "views": 11
     },
     {
+      "title": "IA, Agentes e Pagamentos Privados: Por Que a Zcash Está Bem Posicionada",
+      "video_id": "bt6u__Z-R0M",
+      "views": 11
+    },
+    {
       "title": "WEEKLYCALL  #7 - Competição de Zemes",
       "video_id": "QYKsw3l1KNI",
       "views": 10
@@ -3668,11 +3678,6 @@
       "views": 9
     },
     {
-      "title": "Zcash vai reduzir o tempo de bloco? O plano para blocos mais rápidos.",
-      "video_id": "fs8dFgK0Mmw",
-      "views": 9
-    },
-    {
       "title": "Dev Fund 2.0 / O Futuro do Financiamento do Ecossistema Zcash - ZconV tradução ao vivo",
       "video_id": "_QjZV6EMnz4",
       "views": 8
@@ -3705,11 +3710,6 @@
     {
       "title": "Zcash + Fedi BTC: Diferentes Caminhos Para Soberania Financeira",
       "video_id": "VVN18ZFJKsA",
-      "views": 8
-    },
-    {
-      "title": "IA, Agentes e Pagamentos Privados: Por Que a Zcash Está Bem Posicionada",
-      "video_id": "bt6u__Z-R0M",
       "views": 8
     },
     {
