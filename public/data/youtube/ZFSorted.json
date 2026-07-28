@@ -495,7 +495,7 @@
     {
       "title": "“Financial privacy is not about evading legality, but about affirming liberty.”",
       "video_id": "_g94z10ECWw",
-      "views": 367
+      "views": 368
     },
     {
       "title": "Zcash Ecosystem Updates with Zooko Wilcox, Jon Rouach, Jason McGee, Jack Gavigan: Zcon4",
@@ -1218,6 +1218,11 @@
       "views": 163
     },
     {
+      "title": "Zcash Arborist Call 07-23-2026",
+      "video_id": "mHpMkEk6GGI",
+      "views": 162
+    },
+    {
       "title": "Zcash Arborist Call 02-19-2026",
       "video_id": "63K9NUXicfI",
       "views": 161
@@ -1235,11 +1240,6 @@
     {
       "title": "Targeting Deployment for ZSAs in Zcash",
       "video_id": "4t6YBnqjZ3c",
-      "views": 158
-    },
-    {
-      "title": "Zcash Arborist Call 07-23-2026",
-      "video_id": "mHpMkEk6GGI",
       "views": 158
     },
     {
@@ -1348,13 +1348,13 @@
       "views": 143
     },
     {
-      "title": "Zcash Arborist Call 10/17/2024",
-      "video_id": "7A5ttZqad5g",
-      "views": 142
-    },
-    {
       "title": "Zcomm: Zypherpunk: How we ran the world's biggest privacy hackathon ever #aztec",
       "video_id": "2zmtTwrHUXA",
+      "views": 143
+    },
+    {
+      "title": "Zcash Arborist Call 10/17/2024",
+      "video_id": "7A5ttZqad5g",
       "views": 142
     },
     {
@@ -1420,7 +1420,7 @@
     {
       "title": "Can Private Proof-of-Stake Blockchains Obtain All of Safety, Liveness, and Privacy? Kartik Nayak",
       "video_id": "7nPak7O4nXs",
-      "views": 133
+      "views": 134
     },
     {
       "title": "Zeal Call: FROST for Zcash + Q&A",
