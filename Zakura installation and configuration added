@@ -559,12 +559,7 @@ use_color = true`}
             "is a server that provides a lightweight interface to the Zcash blockchain, designed for mobile and desktop wallets that don't need to run a full node."}
         </InfoBox>
 
-        <div
-          className="grid grid-cols-1 imd:grid-cols-2 gap-5"
-          // style={{
-          //   gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          // }}
-        >
+        <div className="grid grid-cols-1 imd:grid-cols-2 gap-5">
           <SectionCard title={qs?.installation ?? "Installation"}>
             <SubLabel>{qs?.prerequisites ?? "Prerequisites"}</SubLabel>
             <CodeBlock
@@ -762,6 +757,233 @@ const ZingolibTab = () => {
   );
 };
 
+const ZakuraTab = () => {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
+  const [osTab, setOsTab] = useState<"linux" | "macos" | "windows">("linux");
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+      {/* TOC */}
+      <div className="rounded-xl px-7 py-6 bg-sky-500/[0.04] dark:bg-sky-500/[0.06] border border-sky-500/20">
+        <p className="text-[11px] tracking-[0.15em] uppercase text-sky-500 mb-[14px] font-semibold">
+          {qs?.onThisPage ?? "On this page"}
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          {[
+            [
+              "#installing-zakura",
+              qs?.tocInstallingZakura ?? "Installing Zakura",
+            ],
+            ["#configuring-zakura", qs?.tocConfiguringZakura ?? "Configuring Zakura"],
+            ["#running-zakura", qs?.tocRunningZakura ?? "Running Zakura"],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              className="text-slate-900 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm no-underline flex items-center gap-2 max-w-fit transition-colors"
+            >
+              <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600 inline-block" />
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Step 1 — Installing Zakura */}
+      <section id="installing-zakura">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={1} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            {qs?.installingZakuraHeading ?? "Installing Zakura Node"}
+          </h2>
+        </div>
+
+        <InfoBox>
+          <strong className="text-indigo-400 dark:text-indigo-300">
+            Zakura
+          </strong>{" "}
+          {qs?.zakuraInfo ??
+            "is an alternative full node implementation for the Zcash network, providing high-performance consensus validation and RPC interface capabilities."}
+        </InfoBox>
+
+        <SectionCard title={qs?.installation ?? "Installation"}>
+          {/* OS Tab bar */}
+          <div className="grid grid-cols-2 imd:flex gap-1 border-b border-black/8 dark:border-white/8 mb-6">
+            {(
+              [
+                { id: "linux", icon: FcLinux, label: "Linux", color: null },
+                {
+                  id: "macos",
+                  icon: PiAppleLogoDuotone,
+                  label: "macOS",
+                  color: null,
+                },
+                {
+                  id: "windows",
+                  icon: BsWindows,
+                  label: "Windows",
+                  color: "#22d3ee",
+                },
+              ] as const
+            ).map(({ id, icon: Icon, label, color }) => (
+              <button
+                key={id}
+                onClick={() => setOsTab(id)}
+                className={`flex items-center gap-2 px-[18px] py-[10px] bg-transparent border-0 border-b-2 cursor-pointer transition-all duration-200 text-sm ${
+                  osTab === id
+                    ? "border-b-sky-500 text-slate-900 dark:text-slate-200 font-semibold"
+                    : "border-b-transparent text-slate-400 dark:text-slate-500 font-normal hover:text-slate-600 dark:hover:text-slate-300"
+                }`}
+              >
+                <Icon size={18} color={color ?? ""} />
+                {label}
+              </button>
+            ))}
+          </div>
+
+          {osTab === "linux" && (
+            <>
+              <SubLabel className="mt-[14px]">
+                {qs?.dependencies ?? "Dependencies"}
+              </SubLabel>
+              <CodeBlock
+                code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install build-essential cmake clang pkg-config libssl-dev`}
+              />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromSource ?? "From Source"}
+              </SubLabel>
+              <CodeBlock
+                code={`git clone https://github.com/zakura-core/zakura.git\ncd zakura\ncargo build --release\nexport PATH="$PATH:$(pwd)/target/release"`}
+              />
+            </>
+          )}
+
+          {osTab === "macos" && (
+            <>
+              <SubLabel className="mt-[14px]">
+                {qs?.dependencies ?? "Dependencies"}
+              </SubLabel>
+              <CodeBlock
+                code={`brew install cmake clang pkg-config openssl\ncurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`}
+              />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromSource ?? "From Source"}
+              </SubLabel>
+              <CodeBlock
+                code={`git clone https://github.com/zakura-core/zakura.git\ncd zakura\ncargo build --release\nexport PATH="$PATH:$(pwd)/target/release"`}
+              />
+            </>
+          )}
+
+          {osTab === "windows" && (
+            <>
+              <SubLabel>{qs?.wslRecommended ?? "WSL2 (Recommended)"}</SubLabel>
+              <CodeBlock code={`wsl --install`} />
+              <SubLabel className="mt-[14px]">
+                {qs?.dependencies ?? "Dependencies"}
+              </SubLabel>
+              <CodeBlock
+                code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install build-essential cmake clang pkg-config libssl-dev`}
+              />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromSource ?? "From Source"}
+              </SubLabel>
+              <CodeBlock
+                code={`git clone https://github.com/zakura-core/zakura.git\ncd zakura\ncargo build --release\nexport PATH="$PATH:$(pwd)/target/release"`}
+              />
+            </>
+          )}
+        </SectionCard>
+      </section>
+
+      <Divider />
+
+      {/* Step 2 — Configuration */}
+      <section id="configuring-zakura">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={2} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            {qs?.configuringZakuraHeading ?? "Configuring Zakura"}
+          </h2>
+        </div>
+
+        <SectionCard title={qs?.initialSetup ?? "Configuration File setup"}>
+          <SubLabel>Create Configuration Directory</SubLabel>
+          <CodeBlock code={`mkdir -p ~/.config/zakura`} />
+          <SubLabel className="mt-[18px]">zakura.toml</SubLabel>
+          <CodeBlock
+            language="toml"
+            code={`[network]
+network = "Mainnet"
+listen_addr = "0.0.0.0:8233"
+target_peers = 50
+
+[rpc]
+enable = true
+listen_addr = "127.0.0.1:8232"
+rpc_user = "zakura_user"
+rpc_password = "change_me_secure_password"
+
+[storage]
+data_dir = "~/.local/share/zakura"
+prune = false
+
+[consensus]
+checkpoint_sync = true`}
+          />
+        </SectionCard>
+      </section>
+
+      <Divider />
+
+      {/* Step 3 — Running Zakura */}
+      <section id="running-zakura">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={3} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            {qs?.runningZakuraHeading ?? "Running Zakura"}
+          </h2>
+        </div>
+
+        <div
+          className="grid gap-5"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          }}
+        >
+          <SectionCard title={qs?.startingZakura ?? "Starting the Node"}>
+            <SubLabel>{qs?.commandLine ?? "Command Line"}</SubLabel>
+            <CodeBlock
+              code={`zakura-node --config ~/.config/zakura/zakura.toml`}
+            />
+          </SectionCard>
+
+          <SectionCard title={qs?.importantNotes ?? "Node Operations"}>
+            <ul className="flex flex-col gap-[10px] list-none p-0 m-0">
+              {[
+                "Ensure firewall permits inbound connections on TCP port 8233",
+                "Store RPC credentials securely and restrict RPC address access",
+                "SSD storage is highly recommended for optimal sync performance",
+              ].map((note, i) => (
+                <li
+                  key={i}
+                  className="flex gap-[10px] text-[13.5px] text-slate-500 dark:text-slate-400 leading-relaxed"
+                >
+                  <span className="text-amber-500 shrink-0 mt-[2px]">⚠</span>
+                  {note}
+                </li>
+              ))}
+            </ul>
+          </SectionCard>
+        </div>
+      </section>
+
+      <ResourcesSection />
+    </div>
+  );
+};
+
 const ResourcesSection = () => {
   const { t } = useLanguage();
   const qs = t?.pages?.developersQuickStart;
@@ -785,8 +1007,8 @@ const ResourcesSection = () => {
             <ResourceLink href="https://discord.gg/zcash">
               {qs?.zcashDiscordCommunity ?? "Zcash Discord Community"}
             </ResourceLink>
-            <ResourceLink href="https://github.com/zcash">
-              {qs?.githubRepositories ?? "GitHub Repositories"}
+            <ResourceLink href="https://github.com/zakura-core/zakura">
+              {"Zakura Repository"}
             </ResourceLink>
             <ResourceLink href="https://zips.z.cash/">
               {qs?.zcashImprovementProposals ?? "Zcash Improvement Proposals"}
@@ -801,8 +1023,8 @@ const ResourcesSection = () => {
             <ResourceLink href="https://forum.zcashcommunity.com/">
               {qs?.zcashCommunityForum ?? "Zcash Community Forum"}
             </ResourceLink>
-            <ResourceLink href="https://github.com/zcash/zcash/issues">
-              {qs?.githubIssues ?? "GitHub Issues"}
+            <ResourceLink href="https://github.com/zakura-core/zakura/issues">
+              {"Zakura GitHub Issues"}
             </ResourceLink>
             <ResourceLink href="https://zcash.readthedocs.io/en/latest/rtd_pages/troubleshooting.html">
               {qs?.troubleshootingGuide ?? "Troubleshooting Guide"}
@@ -819,7 +1041,7 @@ const ResourcesSection = () => {
 
 // ── Main Page ────────────────────────────────────────────────────────────────
 
-const TABS = ["Zebrad", "Zaino", "Zingolib"] as const;
+const TABS = ["Zebrad", "Zaino", "Zingolib", "Zakura"] as const;
 type Tab = (typeof TABS)[number];
 
 export default function QuickStartPage() {
@@ -831,6 +1053,7 @@ export default function QuickStartPage() {
     Zebrad: <ZebradTab />,
     Zaino: <ZainodTab />,
     Zingolib: <ZingolibTab />,
+    Zakura: <ZakuraTab />,
   };
 
   return (
@@ -922,12 +1145,12 @@ export default function QuickStartPage() {
 
         {/* Tab bar */}
         <div className="sticky top-0 z-10 bg-white/90 dark:bg-[#030712]/90 backdrop-blur-[12px] border-b border-black/[0.06] dark:border-white/[0.06] px-10">
-          <div className="max-w-[1024px] mx-auto flex gap-1">
+          <div className="max-w-[1024px] mx-auto flex gap-1 overflow-x-auto">
             {TABS.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-4 bg-transparent border-0 border-b-2 cursor-pointer transition-all duration-200 text-sm font-[inherit]
+                className={`px-6 py-4 bg-transparent border-0 border-b-2 cursor-pointer transition-all duration-200 text-sm font-[inherit] whitespace-nowrap
                   ${
                     activeTab === tab
                       ? "border-b-sky-500 text-slate-900 dark:text-slate-100 font-bold"
