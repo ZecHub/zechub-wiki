@@ -620,6 +620,330 @@ EOF`}
   );
 };
 
+const ZakuraTab = () => {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
+  const [osTab, setOsTab] = useState<"linux" | "macos" | "windows">("linux");
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+      {/* TOC */}
+      <div className="rounded-xl px-7 py-6 bg-sky-500/[0.04] dark:bg-sky-500/[0.06] border border-sky-500/20">
+        <p className="text-[11px] tracking-[0.15em] uppercase text-sky-500 mb-[14px] font-semibold">
+          {qs?.onThisPage ?? "On this page"}
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          {[
+            ["#installing-zakura", qs?.tocInstallingZakura ?? "Installing Zakura"],
+            ["#running-zakurad", qs?.tocRunningZakurad ?? "Running zakurad"],
+            [
+              "#zakura-snapshots",
+              qs?.tocZakuraSnapshots ?? "Bootstrapping with snapshots",
+            ],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              className="text-slate-900 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm no-underline flex items-center gap-2 max-w-fit transition-colors"
+            >
+              <span className="w-1 h-1 rounded-full bg-slate-400 dark:bg-slate-600 inline-block" />
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <InfoBox>
+        <strong className="text-indigo-400 dark:text-indigo-300">Zakura</strong>{" "}
+        {qs?.zakuraInfo ??
+          "is a consensus-compatible Zcash full node written in Rust (forked from Zebra), built for scale. It offers ~5× faster sync than Zebra, native block pruning, snapshot bootstrapping (~11 GB pruned), and an optional zcashd compatibility mode for existing wallets and integrations."}
+      </InfoBox>
+
+      {/* Step 1 — Installing */}
+      <section id="installing-zakura">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={1} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            {qs?.installingZakura ?? "Installing Zakura"}
+          </h2>
+        </div>
+
+        <SectionCard title={qs?.installation ?? "Installation"}>
+          {/* OS Tab bar */}
+          <div className="grid grid-cols-2 imd:flex gap-1 border-b border-black/8 dark:border-white/8 mb-6">
+            {(
+              [
+                { id: "linux", icon: FcLinux, label: "Linux", color: null },
+                {
+                  id: "macos",
+                  icon: PiAppleLogoDuotone,
+                  label: "macOS",
+                  color: null,
+                },
+                {
+                  id: "windows",
+                  icon: BsWindows,
+                  label: "Windows",
+                  color: "#22d3ee",
+                },
+              ] as const
+            ).map(({ id, icon: Icon, label, color }) => (
+              <button
+                key={id}
+                onClick={() => setOsTab(id)}
+                className={`flex items-center gap-2 px-[18px] py-[10px] bg-transparent border-0 border-b-2 cursor-pointer transition-all duration-200 text-sm ${
+                  osTab === id
+                    ? "border-b-sky-500 text-slate-900 dark:text-slate-200 font-semibold"
+                    : "border-b-transparent text-slate-400 dark:text-slate-500 font-normal hover:text-slate-600 dark:hover:text-slate-300"
+                }`}
+              >
+                <Icon size={18} color={color ?? ""} />
+                {label}
+              </button>
+            ))}
+          </div>
+
+          <SubLabel>{qs?.quickInstaller ?? "Quick Installer (Recommended)"}</SubLabel>
+          <CodeBlock code={`curl -fsSL https://zakura.com/install.sh | bash`} />
+
+          {osTab === "linux" && (
+            <>
+              <SubLabel className="mt-[14px]">
+                {qs?.dependencies ?? "Dependencies"}
+              </SubLabel>
+              <CodeBlock
+                code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler`}
+              />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromCrates ?? "From crates.io"}
+              </SubLabel>
+              <CodeBlock code={`cargo install --locked zakura`} />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromSource ?? "From Source / GitHub"}
+              </SubLabel>
+              <CodeBlock
+                code={`cargo install --git https://github.com/zakura-core/zakura --tag v1.0.5 zakura`}
+              />
+            </>
+          )}
+
+          {osTab === "macos" && (
+            <>
+              <SubLabel className="mt-[14px]">
+                {qs?.dependencies ?? "Dependencies"}
+              </SubLabel>
+              <CodeBlock
+                code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n# Install Xcode Command Line Tools if needed\nxcode-select --install\nbrew install protobuf  # optional`}
+              />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromCrates ?? "From crates.io"}
+              </SubLabel>
+              <CodeBlock code={`cargo install --locked zakura`} />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromSource ?? "From Source / GitHub"}
+              </SubLabel>
+              <CodeBlock
+                code={`cargo install --git https://github.com/zakura-core/zakura --tag v1.0.5 zakura`}
+              />
+            </>
+          )}
+
+          {osTab === "windows" && (
+            <>
+              <SubLabel>{qs?.wslRecommended ?? "WSL (Recommended)"}</SubLabel>
+              <CodeBlock code={`wsl --install`} />
+              <SubLabel className="mt-[14px]">
+                {qs?.dependencies ?? "Dependencies"}
+              </SubLabel>
+              <CodeBlock
+                code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler\nsource $HOME/.cargo/env\nexport CXXFLAGS="$CXXFLAGS -include cstdint"`}
+              />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromCrates ?? "From crates.io"}
+              </SubLabel>
+              <CodeBlock code={`cargo install --locked zakura`} />
+              <SubLabel className="mt-[14px]">
+                {qs?.fromSource ?? "From Source / GitHub"}
+              </SubLabel>
+              <CodeBlock
+                code={`cargo install --git https://github.com/zakura-core/zakura --tag v1.0.5 zakura`}
+              />
+            </>
+          )}
+
+          <SubLabel className="mt-[14px]">Docker</SubLabel>
+          <CodeBlock
+            code={`docker run -d \\
+  --name zakura \\
+  -p 8233:8233 \\
+  -v zakurad-cache:/home/zakura/.cache/zakura \\
+  zakuracore/zakura:latest`}
+          />
+        </SectionCard>
+      </section>
+
+      <Divider />
+
+      {/* Step 2 — Running */}
+      <section id="running-zakurad">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={2} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            {qs?.runningZakuradHeading ?? "Running zakurad"}
+          </h2>
+        </div>
+
+        <SectionCard
+          title={qs?.initialSetup ?? "Initial Setup"}
+          className="mb-6"
+        >
+          <SubLabel>
+            {qs?.createConfigDir ?? "Create Configuration Directory"}
+          </SubLabel>
+          <CodeBlock
+            code={`# Generate default config (or create manually)
+mkdir -p ~/.config
+# Optional: zakurad generate -o ~/.config/zakura.toml`}
+          />
+          <SubLabel className="mt-[18px]">zakura.toml</SubLabel>
+          <CodeBlock
+            language="toml"
+            code={`[consensus]
+checkpoint_sync = true
+
+[mempool]
+eviction_memory_time = "1h"
+tx_cost_limit = 80000000
+
+[network]
+cache_dir = true
+crawl_new_peer_interval = "1m 1s"
+listen_addr = "[::]:8233"
+network = "Mainnet"
+peerset_initial_target_size = 25
+
+[rpc]
+listen_addr = "127.0.0.1:8232"
+# cookie_dir / auth options as needed
+
+[state]
+cache_dir = "/home/your_username/.cache/zakura"
+storage_mode = "pruned"   # or omit / use archive for full history
+delete_old_database = true
+ephemeral = false
+
+[sync]
+checkpoint_verify_concurrency_limit = 1000
+download_concurrency_limit = 50
+full_verify_concurrency_limit = 20
+
+[tracing]
+buffer_limit = 128000
+use_color = true`}
+          />
+        </SectionCard>
+
+        <div
+          className="grid gap-5"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          }}
+        >
+          <SectionCard title={qs?.startingZakurad ?? "Starting zakurad"}>
+            <SubLabel>{qs?.commandLine ?? "Command Line"}</SubLabel>
+            <CodeBlock
+              code={`zakurad start\n# Or with specific config\nzakurad -c ~/.config/zakura.toml start`}
+            />
+          </SectionCard>
+
+          <SectionCard title={qs?.importantNotes ?? "Important Notes"}>
+            <ul className="flex flex-col gap-[10px] list-none p-0 m-0">
+              {[
+                qs?.noteZakuraPruned ??
+                  "Pruned mode uses ~11 GB; archive mode is ~250+ GB",
+                qs?.noteZakuraSnapshot ??
+                  "Prefer snapshot bootstrap for near-instant start instead of full P2P sync",
+                qs?.noteKeepSecure ??
+                  "Keep your zakura.toml secure and private",
+              ].map((note, i) => (
+                <li
+                  key={i}
+                  className="flex gap-[10px] text-[13.5px] text-slate-500 dark:text-slate-400 leading-relaxed"
+                >
+                  <span className="text-amber-500 shrink-0 mt-[2px]">⚠</span>
+                  {note}
+                </li>
+              ))}
+            </ul>
+          </SectionCard>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* Step 3 — Snapshots */}
+      <section id="zakura-snapshots">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={3} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            {qs?.zakuraSnapshotsHeading ?? "Bootstrapping with snapshots"}
+          </h2>
+        </div>
+
+        <InfoBox>
+          {qs?.zakuraSnapshotsInfo ??
+            "Snapshots let you skip genesis sync. Pruned snapshots (~11 GiB) are ideal for most operators; archive snapshots include full history (~250 GiB). Requires zstd. Check https://zakura.com/snapshots/ for the latest files and checksums."}
+        </InfoBox>
+
+        <div
+          className="grid gap-5"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          }}
+        >
+          <SectionCard title={qs?.prunedSnapshot ?? "Pruned snapshot"}>
+            <CodeBlock
+              code={`# 1. Configure pruned mode
+mkdir -p ~/.config
+cat > ~/.config/zakura.toml <<'EOF'
+[state]
+storage_mode = "pruned"
+EOF
+
+# 2. Download latest pruned snapshot (example — use current URL from zakura.com/snapshots)
+curl -f -L -C - -o zakura-pruned.tar.zst \\
+  https://zakura.valargroup.dev/mainnet-pruned/LATEST.tar.zst
+
+# 3. Extract into cache
+mkdir -p ~/.cache/zakura
+rm -rf ~/.cache/zakura/state
+zstd -dc zakura-pruned.tar.zst | tar -x -C ~/.cache/zakura
+
+# 4. Start
+zakurad start`}
+            />
+          </SectionCard>
+
+          <SectionCard title={qs?.archiveSnapshot ?? "Archive snapshot"}>
+            <CodeBlock
+              code={`# Download (prefer aria2 for large files)
+aria2c -x16 -s16 -o zakura-archive.tar.zst \\
+  https://zakura.valargroup.dev/mainnet/LATEST.tar.zst
+
+mkdir -p ~/.cache/zakura
+rm -rf ~/.cache/zakura/state
+zstd -dc zakura-archive.tar.zst | tar -x -C ~/.cache/zakura
+
+zakurad start`}
+            />
+          </SectionCard>
+        </div>
+      </section>
+
+      <ResourcesSection />
+    </div>
+  );
+};
+
 const ZainodTab = () => {
   const { t } = useLanguage();
   const qs = t?.pages?.developersQuickStart;
@@ -782,6 +1106,9 @@ const ResourcesSection = () => {
             <ResourceLink href="https://zebra.zfnd.org/index.html">
               {qs?.officialDocumentation ?? "Official Documentation"}
             </ResourceLink>
+            <ResourceLink href="https://zakura.com/">
+              Zakura
+            </ResourceLink>
             <ResourceLink href="https://discord.gg/zcash">
               {qs?.zcashDiscordCommunity ?? "Zcash Discord Community"}
             </ResourceLink>
@@ -801,6 +1128,9 @@ const ResourcesSection = () => {
             <ResourceLink href="https://forum.zcashcommunity.com/">
               {qs?.zcashCommunityForum ?? "Zcash Community Forum"}
             </ResourceLink>
+            <ResourceLink href="https://github.com/zakura-core/zakura/issues">
+              Zakura GitHub Issues
+            </ResourceLink>
             <ResourceLink href="https://github.com/zcash/zcash/issues">
               {qs?.githubIssues ?? "GitHub Issues"}
             </ResourceLink>
@@ -819,7 +1149,7 @@ const ResourcesSection = () => {
 
 // ── Main Page ────────────────────────────────────────────────────────────────
 
-const TABS = ["Zebrad", "Zaino", "Zingolib"] as const;
+const TABS = ["Zebrad", "Zakura", "Zaino", "Zingolib"] as const;
 type Tab = (typeof TABS)[number];
 
 export default function QuickStartPage() {
@@ -829,6 +1159,7 @@ export default function QuickStartPage() {
 
   const tabContent: Record<Tab, ReactNode> = {
     Zebrad: <ZebradTab />,
+    Zakura: <ZakuraTab />,
     Zaino: <ZainodTab />,
     Zingolib: <ZingolibTab />,
   };
