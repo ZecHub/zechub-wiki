@@ -24,25 +24,29 @@ type ZcashDashboardProps = {
 // Types
 type ZcashRawData = {
   Dates: string;
-  Transactions: string;
-  Transparent_Transfer_TXs: string;
-  Sapling_Transfer_TXs: string;
-  Orchard_Transfer_TXs: string;
-  Total_Transfer_TXs: string;
-  Total_Transparent_TXs: string;
-  Coinbase_percent: string;
-  Total_Sapling_TXs: string;
-  Net_Sapling_Flow: string;
-  Total_Orchard_TXs: string;
-  Net_Orchard_Flow: string;
-  Total_Shielded_Supply: string;
-  Total_Lockbox_Supply: string;
-  Zebra_Nodes: string;
-  Zcashd_Nodes: string;
-  Total_Node_Count: string;
-  Closing_Price: string;
-  Shielded_Market_Cap: string;
-  Shielded_Transaction_Percentage: string;
+  Transactions: string | number;
+  Transparent_Transfer_TXs: string | number;
+  Sapling_Transfer_TXs: string | number;
+  Orchard_Transfer_TXs: string | number;
+  Ironwood_Transfer_TXs: string | number;
+  Total_Transfer_TXs: string | number;
+  Total_Transparent_TXs: string | number;
+  Coinbase_percent: string | number;
+  Total_Sapling_TXs: string | number;
+  Net_Sapling_Flow: string | number;
+  Total_Orchard_TXs: string | number;
+  Net_Orchard_Flow: string | number;
+  Total_Ironwood_TXs: string | number;
+  Net_Ironwood_Flow: string | number;
+  Total_Shielded_Supply: string | number;
+  Total_Lockbox_Supply: string | number;
+  Zebra_Nodes: string | number;
+  Zcashd_Nodes: string | number;
+  Zakura_Nodes: string | number;
+  Total_Node_Count: string | number;
+  Closing_Price: string | number;
+  Shielded_Market_Cap: string | number;
+  Shielded_Transaction_Percentage: string | number;
 };
 
 type ProcessedData = {
@@ -51,16 +55,20 @@ type ProcessedData = {
   transparentTxs: number;
   saplingTxs: number;
   orchardTxs: number;
+  ironwoodTxs: number;
   totalTransferTxs: number;
   totalTransparentTxs: number;
   totalSaplingTxs: number;
   totalOrchardTxs: number;
+  totalIronwoodTxs: number;
   netSaplingFlow: number;
   netOrchardFlow: number;
+  netIronwoodFlow: number;
   totalShieldedSupply: number;
   totalLockboxSupply: number;
   zebraNodes: number;
   zcashdNodes: number;
+  zakuraNodes: number;
   totalNodes: number;
   closingPrice: number;
   shieldedMarketCap: number;
@@ -90,12 +98,14 @@ const calculateChange = (current: number, previous: number): number => {
   return previous ? ((current - previous) / previous) * 100 : 0;
 };
 
-const parseNumber = (value: string): number => {
+const parseNumber = (value: string | number): number => {
+  if (typeof value === "number") return isNaN(value) ? 0 : value;
   const parsed = parseFloat(value);
   return isNaN(parsed) ? 0 : parsed;
 };
 
-const parseInt10 = (value: string): number => {
+const parseInt10 = (value: string | number): number => {
+  if (typeof value === "number") return isNaN(value) ? 0 : Math.trunc(value);
   const parsed = parseInt(value, 10);
   return isNaN(parsed) ? 0 : parsed;
 };
@@ -103,7 +113,6 @@ const parseInt10 = (value: string): number => {
 // Main Component
 export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
   const isMobile = useInMobile();
-
   const [data, setData] = useState<ProcessedData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -113,16 +122,17 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
   const [transparentVisible, setTransparentVisible] = useState(true);
   const [saplingVisible, setSaplingVisible] = useState(true);
   const [orchardVisible, setOrchardVisible] = useState(true);
+  const [ironwoodVisible, setIronwoodVisible] = useState(true);
   const [shieldedPctVisible, setShieldedPctVisible] = useState(true);
 
   // Price & Market Cap tab toggles
   const [closingPriceVisible, setClosingPriceVisible] = useState(true);
-  const [shieldedMarketCapVisible, setShieldedMarketCapVisible] =
-    useState(true);
+  const [shieldedMarketCapVisible, setShieldedMarketCapVisible] = useState(true);
 
   // Network Nodes tab toggles
   const [zcashdNodesVisible, setZcashdNodesVisible] = useState(true);
   const [zebraNodesVisible, setZebraNodesVisible] = useState(true);
+  const [zakuraNodesVisible, setZakuraNodesVisible] = useState(true);
   const [totalNodesVisible, setTotalNodesVisible] = useState(true);
 
   // Shielded Metrics tab toggles
@@ -130,6 +140,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
   const [lockboxSupplyVisible, setLockboxSupplyVisible] = useState(true);
   const [saplingTxsVisible, setSaplingTxsVisible] = useState(true);
   const [orchardTxsVisible, setOrchardTxsVisible] = useState(true);
+  const [ironwoodTxsVisible, setIronwoodTxsVisible] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -138,27 +149,33 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
         if (!response.ok)
           throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         const rawData: ZcashRawData[] = await response.json();
+
         const processed = rawData.map((item) => ({
           date: item.Dates,
           transactions: parseInt10(item.Transactions),
           transparentTxs: parseInt10(item.Transparent_Transfer_TXs),
           saplingTxs: parseInt10(item.Sapling_Transfer_TXs),
           orchardTxs: parseInt10(item.Orchard_Transfer_TXs),
+          ironwoodTxs: parseInt10(item.Ironwood_Transfer_TXs),
           totalTransferTxs: parseInt10(item.Total_Transfer_TXs),
           totalTransparentTxs: parseInt10(item.Total_Transparent_TXs),
           totalSaplingTxs: parseInt10(item.Total_Sapling_TXs),
           totalOrchardTxs: parseInt10(item.Total_Orchard_TXs),
+          totalIronwoodTxs: parseInt10(item.Total_Ironwood_TXs),
           netSaplingFlow: parseNumber(item.Net_Sapling_Flow),
           netOrchardFlow: parseNumber(item.Net_Orchard_Flow),
+          netIronwoodFlow: parseNumber(item.Net_Ironwood_Flow),
           totalShieldedSupply: parseNumber(item.Total_Shielded_Supply),
           totalLockboxSupply: parseNumber(item.Total_Lockbox_Supply),
           zebraNodes: parseInt10(item.Zebra_Nodes),
           zcashdNodes: parseInt10(item.Zcashd_Nodes),
+          zakuraNodes: parseInt10(item.Zakura_Nodes),
           totalNodes: parseInt10(item.Total_Node_Count),
           closingPrice: parseNumber(item.Closing_Price),
           shieldedMarketCap: parseNumber(item.Shielded_Market_Cap),
           shieldedPercentage: parseNumber(item.Shielded_Transaction_Percentage),
         }));
+
         setData(processed);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load data");
@@ -166,6 +183,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
         setLoading(false);
       }
     };
+
     fetchData();
   }, []);
 
@@ -173,6 +191,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
     if (data.length < 2) return [];
     const latest = data[data.length - 1];
     const previous = data[data.length - 2];
+
     return [
       {
         label: "Price",
@@ -215,6 +234,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (!active || !payload?.length) return null;
+
     return (
       <div className="bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">
@@ -374,7 +394,6 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 tickFormatter={formatPercentage}
               />
               <Tooltip content={<CustomTooltip />} />
-
               <Legend
                 content={() => (
                   <div
@@ -419,6 +438,18 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                       <span>Orchard</span>
                     </button>
                     <button
+                      onClick={() => setIronwoodVisible(!ironwoodVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        ironwoodVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span
+                        className="inline-block w-3 h-3 rounded-sm"
+                        style={{ background: "#0ea5e9" }}
+                      />
+                      <span>Ironwood</span>
+                    </button>
+                    <button
                       onClick={() => setShieldedPctVisible(!shieldedPctVisible)}
                       className={`flex items-center gap-2 cursor-pointer transition-colors ${
                         shieldedPctVisible ? "" : "opacity-40 line-through"
@@ -433,7 +464,6 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                   </div>
                 )}
               />
-
               <Bar
                 dataKey="transparentTxs"
                 name="Transparent"
@@ -458,7 +488,14 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 barSize={isMobile ? 8 : 2}
                 hide={!orchardVisible}
               />
-
+              <Bar
+                dataKey="ironwoodTxs"
+                name="Ironwood"
+                fill="#0ea5e9"
+                opacity={0.9}
+                barSize={isMobile ? 8 : 2}
+                hide={!ironwoodVisible}
+              />
               <Line
                 type="monotone"
                 dataKey="shieldedPercentage"
@@ -501,17 +538,20 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 tickFormatter={formatCurrency}
               />
               <Tooltip content={<CustomTooltip />} />
-
               <Legend
                 content={() => (
                   <div
-                    className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${isMobile ? "gap-3 text-xs" : ""}`}
+                    className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${
+                      isMobile ? "gap-3 text-xs" : ""
+                    }`}
                   >
                     <button
                       onClick={() =>
                         setClosingPriceVisible(!closingPriceVisible)
                       }
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${closingPriceVisible ? "" : "opacity-40 line-through"}`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        closingPriceVisible ? "" : "opacity-40 line-through"
+                      }`}
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
@@ -523,7 +563,11 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                       onClick={() =>
                         setShieldedMarketCapVisible(!shieldedMarketCapVisible)
                       }
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${shieldedMarketCapVisible ? "" : "opacity-40 line-through"}`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        shieldedMarketCapVisible
+                          ? ""
+                          : "opacity-40 line-through"
+                      }`}
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
@@ -534,7 +578,6 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                   </div>
                 )}
               />
-
               <Area
                 yAxisId="left"
                 dataKey="shieldedMarketCap"
@@ -576,15 +619,18 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
               />
               <YAxis {...commonAxisProps} />
               <Tooltip content={<CustomTooltip />} />
-
               <Legend
                 content={() => (
                   <div
-                    className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${isMobile ? "gap-3 text-xs" : ""}`}
+                    className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${
+                      isMobile ? "gap-3 text-xs" : ""
+                    }`}
                   >
                     <button
                       onClick={() => setZcashdNodesVisible(!zcashdNodesVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${zcashdNodesVisible ? "" : "opacity-40 line-through"}`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        zcashdNodesVisible ? "" : "opacity-40 line-through"
+                      }`}
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
@@ -594,7 +640,9 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                     </button>
                     <button
                       onClick={() => setZebraNodesVisible(!zebraNodesVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${zebraNodesVisible ? "" : "opacity-40 line-through"}`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        zebraNodesVisible ? "" : "opacity-40 line-through"
+                      }`}
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
@@ -603,8 +651,22 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                       <span>Zebra Nodes</span>
                     </button>
                     <button
+                      onClick={() => setZakuraNodesVisible(!zakuraNodesVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        zakuraNodesVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span
+                        className="inline-block w-3 h-3 rounded-sm"
+                        style={{ background: "#ec4899" }}
+                      />
+                      <span>Zakura Nodes</span>
+                    </button>
+                    <button
                       onClick={() => setTotalNodesVisible(!totalNodesVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${totalNodesVisible ? "" : "opacity-40 line-through"}`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        totalNodesVisible ? "" : "opacity-40 line-through"
+                      }`}
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
@@ -615,7 +677,6 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                   </div>
                 )}
               />
-
               <Bar
                 dataKey="zcashdNodes"
                 name="Zcashd Nodes"
@@ -629,6 +690,13 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 fill="#10b981"
                 opacity={0.8}
                 hide={!zebraNodesVisible}
+              />
+              <Bar
+                dataKey="zakuraNodes"
+                name="Zakura Nodes"
+                fill="#ec4899"
+                opacity={0.8}
+                hide={!zakuraNodesVisible}
               />
               <Line
                 type="monotone"
@@ -671,17 +739,20 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 tickFormatter={formatValue}
               />
               <Tooltip content={<CustomTooltip />} />
-
               <Legend
                 content={() => (
                   <div
-                    className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${isMobile ? "gap-3 text-xs" : ""}`}
+                    className={`flex flex-wrap justify-center gap-6 text-sm mt-4 ${
+                      isMobile ? "gap-3 text-xs" : ""
+                    }`}
                   >
                     <button
                       onClick={() =>
                         setShieldedSupplyVisible(!shieldedSupplyVisible)
                       }
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${shieldedSupplyVisible ? "" : "opacity-40 line-through"}`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        shieldedSupplyVisible ? "" : "opacity-40 line-through"
+                      }`}
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
@@ -693,7 +764,9 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                       onClick={() =>
                         setLockboxSupplyVisible(!lockboxSupplyVisible)
                       }
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${lockboxSupplyVisible ? "" : "opacity-40 line-through"}`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        lockboxSupplyVisible ? "" : "opacity-40 line-through"
+                      }`}
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
@@ -703,7 +776,9 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                     </button>
                     <button
                       onClick={() => setSaplingTxsVisible(!saplingTxsVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${saplingTxsVisible ? "" : "opacity-40 line-through"}`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        saplingTxsVisible ? "" : "opacity-40 line-through"
+                      }`}
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
@@ -713,7 +788,9 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                     </button>
                     <button
                       onClick={() => setOrchardTxsVisible(!orchardTxsVisible)}
-                      className={`flex items-center gap-2 cursor-pointer transition-colors ${orchardTxsVisible ? "" : "opacity-40 line-through"}`}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        orchardTxsVisible ? "" : "opacity-40 line-through"
+                      }`}
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
@@ -721,10 +798,21 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                       />
                       <span>Orchard TXs</span>
                     </button>
+                    <button
+                      onClick={() => setIronwoodTxsVisible(!ironwoodTxsVisible)}
+                      className={`flex items-center gap-2 cursor-pointer transition-colors ${
+                        ironwoodTxsVisible ? "" : "opacity-40 line-through"
+                      }`}
+                    >
+                      <span
+                        className="inline-block w-3 h-3 rounded-sm"
+                        style={{ background: "#0ea5e9" }}
+                      />
+                      <span>Ironwood TXs</span>
+                    </button>
                   </div>
                 )}
               />
-
               <Area
                 yAxisId="left"
                 dataKey="totalShieldedSupply"
@@ -763,6 +851,16 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 strokeWidth={2}
                 dot={false}
                 hide={!orchardTxsVisible}
+              />
+              <Line
+                yAxisId="right"
+                type="monotone"
+                dataKey="totalIronwoodTxs"
+                name="Ironwood TXs"
+                stroke="#0ea5e9"
+                strokeWidth={2}
+                dot={false}
+                hide={!ironwoodTxsVisible}
               />
             </ComposedChart>
           </ChartWrapper>
