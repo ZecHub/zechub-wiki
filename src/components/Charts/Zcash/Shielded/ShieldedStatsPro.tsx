@@ -457,7 +457,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
-                        style={{ background: "#f59e0b" }}
+                        style={{ background: "#eab308" }}
                       />
                       <span>Shielded %</span>
                     </button>
@@ -500,7 +500,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 type="monotone"
                 dataKey="shieldedPercentage"
                 name="Shielded %"
-                stroke="#f97316"
+                stroke="#eab308"
                 strokeWidth={3}
                 yAxisId="right"
                 dot={false}
