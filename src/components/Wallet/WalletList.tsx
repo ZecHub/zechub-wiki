@@ -14,6 +14,7 @@ interface Wallet {
   operatingSystem: string[];
   walletSupport: string[];
   syncSpeed: string;
+  ironwood: string;
 }
 
 interface Props {
@@ -28,6 +29,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     Pools: new Set<string>(),
     "Wallet Support": new Set<string>(),
     Features: new Set<string>(),
+    Ironwood: new Set<string>(),
   });
   const [likes, setLikes] = useState<{ [key: string]: number }>({});
   const [error, setError] = useState<{ [key: string]: string }>({});
@@ -53,6 +55,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       const poolsSet = new Set<string>();
       const walletSupportSet = new Set<string>();
       const featuresSet = new Set<string>();
+      const ironwoodSet = new Set<string>();
 
       allWallets.forEach((wallet) => {
         wallet.devices.forEach((d) => devicesSet.add(d.trim()));
@@ -60,6 +63,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         wallet.pools.forEach((p) => poolsSet.add(p.trim()));
         wallet.walletSupport?.forEach((ws) => walletSupportSet.add(ws.trim()));
         wallet.features.forEach((f) => featuresSet.add(f.trim()));
+        if (wallet.ironwood) ironwoodSet.add(wallet.ironwood.trim());
       });
 
       setFilters({
@@ -72,6 +76,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           Array.from(walletSupportSet).sort((a, b) => a.localeCompare(b)),
         ),
         Features: new Set(Array.from(featuresSet).sort((a, b) => a.localeCompare(b))),
+        Ironwood: new Set(Array.from(ironwoodSet).sort((a, b) => a.localeCompare(b))),
       });
 
       let initialLikes: { [key: string]: number } = {};
@@ -156,6 +161,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       if (category === "Pools") return wallet.pools.includes(value);
       if (category === "Wallet Support") return wallet.walletSupport?.includes(value) ?? false;
       if (category === "Features") return wallet.features.includes(value);
+      if (category === "Ironwood") return wallet.ironwood === value;
       return true;
     }),
   );
@@ -237,6 +243,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                   ]}
                   likes={likes[wallet.title] || 0}
                   syncSpeed={wallet.syncSpeed}
+                  ironwood={wallet.ironwood}
                   onLike={() => handleLike(wallet.title)}
                   onDislike={() => handleDislike(wallet.title)}
                   error={error[wallet.title]}

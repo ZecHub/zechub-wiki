@@ -107,7 +107,10 @@
     "Raspberry Pi Zebra Node": "Raspberry Pi Zebra 节点",
     "Zero Knowledge vs Decoy Systems": "零知识与诱饵系统对比",
     "Organizations": "组织",
-    "Sovright": "Sovright"
+    "Sovright": "Sovright",
+    "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
+    "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
+    "Obscura Labs": "Obscura Labs"
   },
   "exploreMenu": {
     "Full Explore": "完整探索",
@@ -125,7 +128,8 @@
     "Contribute": "参与贡献",
     "For Forks & Maintainers": "面向 Fork 与维护者",
     "Fork zechub-wiki": "Fork zechub-wiki",
-    "Fork zechub": "Fork zechub"
+    "Fork zechub": "Fork zechub",
+    "Zcash Evolution": "Zcash Evolution"
   },
   "common": {
     "home": "首页",

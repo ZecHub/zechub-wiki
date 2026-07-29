@@ -107,7 +107,10 @@
     "Raspberry Pi Zebra Node": "Raspberry Pi Zebra 노드",
     "Zero Knowledge vs Decoy Systems": "영지식 대 미끼 시스템",
     "Organizations": "조직",
-    "Sovright": "Sovright"
+    "Sovright": "Sovright",
+    "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
+    "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
+    "Obscura Labs": "Obscura Labs"
   },
   "exploreMenu": {
     "Full Explore": "전체 둘러보기",
@@ -125,7 +128,8 @@
     "Contribute": "기여하기",
     "For Forks & Maintainers": "포크 및 유지관리자용",
     "Fork zechub-wiki": "zechub-wiki 포크",
-    "Fork zechub": "zechub 포크"
+    "Fork zechub": "zechub 포크",
+    "Zcash Evolution": "Zcash Evolution"
   },
   "common": {
     "home": "홈",

@@ -8,6 +8,7 @@ interface FilterToggleProps {
     Pools: Set<string>;
     "Wallet Support": Set<string>;
     Features: Set<string>;
+    Ironwood?: Set<string>;
   };
   activeFilters: string[];
   toggleFilter: (filterCategory: string, filterValue: string) => void;
@@ -22,7 +23,9 @@ const FilterToggle: React.FC<FilterToggleProps> = ({
 }) => {
   return (
     <div className="pb-6 imd:block flex flex-wrap justify-between">
-      {Object.entries(filters).map(([category, values]) => (
+      {Object.entries(filters)
+        .filter(([, values]) => values && values.size > 0)
+        .map(([category, values]) => (
         <div key={category}>
           <h4 className="text-xl font-bold mt-6 mb-3">{category}</h4>
           <div className="imd:block flex flex-wrap gap-2">
