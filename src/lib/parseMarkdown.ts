@@ -12,6 +12,7 @@ export function parseMarkdown(md: string) {
     let url = '';
     let imageUrl = '';
     let syncSpeed = '';
+    let ironwood = '';
     const devices: string[] = [];
     const pools: string[] = [];
     const features: string[] = [];
@@ -50,6 +51,10 @@ export function parseMarkdown(md: string) {
         const value = line.split(': ')[1];
         if (value) features.push(...value.split(' | ').map(s => s.trim()));
       }
+      else if (line.startsWith('- Ironwood:')) {
+        const value = line.split(': ')[1];
+        if (value) ironwood = value.trim();
+      }
       else if (line.includes('![syncspeed]')) {
         const match = line.match(/!\[syncspeed\]\((.*?) /);
         if (match) syncSpeed = match[1];
@@ -67,6 +72,7 @@ export function parseMarkdown(md: string) {
       operatingSystem: [...new Set(operatingSystem)],
       walletSupport: [...new Set(walletSupport)],
       syncSpeed,
+      ironwood,
     };
   });
 

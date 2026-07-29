@@ -108,9 +108,9 @@
     "Zero Knowledge vs Decoy Systems": "ゼロ知識 vs デコイシステム",
     "Organizations": "組織",
     "Sovright": "Sovright",
-    "Zallet Quick Reference Guide": "Zallet クイックリファレンスガイド",
-    "Zcash Engineering Office Hours": "Zcash エンジニアリング・オフィスアワー",
-    "Obscura Labs": "オブスキュラ・ラボ"
+    "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
+    "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
+    "Obscura Labs": "Obscura Labs"
   },
   "exploreMenu": {
     "Full Explore": "完全ガイド",
@@ -129,7 +129,7 @@
     "For Forks & Maintainers": "フォークとメンテナー向け",
     "Fork zechub-wiki": "zechub-wiki をフォーク",
     "Fork zechub": "zechub をフォーク",
-    "Zcash Evolution": "Zcashの進化"
+    "Zcash Evolution": "Zcash Evolution"
   },
   "common": {
     "home": "ホーム",

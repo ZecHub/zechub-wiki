@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 166,
+    "proposal_count": 168,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6858,6 +6858,86 @@
         "createdAt": "2026-07-17T21:10:03.427Z",
         "completedAt": "2026-07-23T10:49:54.000Z",
         "closedAt": "2026-07-23T10:49:54.000Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 167,
+        "proposal": {
+          "msgs": [],
+          "title": "DAO member Participation Compensation",
+          "votes": {
+            "no": "6",
+            "yes": "2",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1uu4xqwt0fwlpkxfur6m9sjej6xlvyfs7lvyr00",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1785526096010542406"
+          },
+          "description": "## Summary\n\nThis proposal establishes a standing compensation of **$50 in ZEC per proposal** for every DAO member who casts a vote, applied retroactively to proposal #155, the first proposal decided by the current 23-member roster.\n\nThe retroactive amount owed is **$7,500** across 10 decisions.\n\nThe funds come from the **Donations treasury**, not from the FPF program fund. Compensating members for deliberation is an operating cost of the DAO, not a grant, and it should not compete for budget against the builders the program exists to fund.\n\n## Motivation\n\nIn May 2026 this DAO conducted a membership reset. Proposal **#150 (DAO Membership Reaffirmation & Activity Reset)** passed 23–0, and proposal **#152 (Remove Inactive Members)** passed 16–0. Twenty-three members confirmed they wanted to remain active. The roster has been stable at 23 ever since the on-chain `total_power` has read 23 on every proposal from #155 onward.\n\n## The reset did not fix participation.\n\n**Across the 10 decisions since then, average participation is 65.2%.** More importantly, it is falling. Proposal #157 drew 87% of the membership. The four most recent decisions drew 43%, 17%, 13%, and 39%.\n\n**Three decisions have now died for lack of quorum.** Quorum is 40% of 23 members, which requires 10 votes. Proposal #166, a merchant adoption pilot in Nairobi, closed with **9 votes, 39.1%**. It failed by a single vote. Not because the DAO rejected it: 5 members voted yes and only 2 voted no. It failed because one more person did not open the page.\n\nThat same proposal was submitted three times in a single day (#164, #165, #166) as its author tried to get a decision out of us. All three died.\n\nEvery member on this roster affirmed two months ago that they wanted to be here. What they are being asked to do is read grant applications, evaluate budgets, and take responsibility for spending community money, repeatedly, on no notice, for free. The DAO processes roughly **65 distinct decisions per year** (76 in 2025, 65 in 2026 to date). Reviewing that volume properly is real, sustained work, and it is currently uncompensated.\n\nWe already accept this principle elsewhere. Proposal **#162** paid retroactive compensation for hosting a developer workshop. Reviewing and deciding on the DAO's spending is no less real a contribution than running an event.\n\n--- \n\n## Expected Impact\n\nThe immediate goal is narrow: stop losing legitimate proposals to quorum failure. An applicant who spends weeks preparing a proposal for this DAO should get a decision, including a decision to reject. Three applicants did not get one in the last month.\n\nThe broader effect is to make the DAO's own accountability legible. Participation has been invisible until now the data existed on-chain but nobody assembled it. Publishing it each period, alongside compensation, means members can see what they committed to in May and whether they are delivering on it.\n\nThis does not make anyone a bad member. It makes the expectation explicit and pays for the work it requires.\n\n---\n\n## Specification\n\n### 1. The payable unit is the decision, not the submission\n\nWhen the same proposal is submitted more than once, it counts as **one** payable unit. A member is credited if they voted on **any** submission of that unit.\n\nApplied to the current window, this collapses #164, #165 and #166 into a single unit: **12 on-chain submissions become 10 payable decisions.**\n\n### 2. Abstentions are paid\n\nAn abstention counts toward quorum in DAO DAO and is a legitimate governance act. A member who reviews a proposal and concludes they should not take a side has done the work.\n\nPaying only for yes/no votes would pressure members into manufacturing opinions they do not hold, which is worse for the DAO than an honest abstention.\n\n### 3. Payment depends only on what the member controls\n\nCompensation does not depend on whether the proposal reached quorum or passed. A member controls their own vote; they do not control anyone else's attendance.\n\nWe considered paying only when quorum is reached, to create collective pressure to show up. We rejected it: it would cause members to skip proposals that look doomed, which are precisely the proposals that need votes to survive.\n\n### 4. No payment for voting on your own proposal\n\nA member who is the proposer or a named beneficiary of a proposal is not compensated for voting on that unit. This removes any incentive to submit proposals to generate payable votes.\n\nThis affects exactly one vote in the current window: **theKroy** proposed #159 and abstained on it, the correct behaviour. The rule costs $50 and is worth stating as a principle.\n\n### 5. Members who join mid-period are paid pro rata\n\nA member admitted partway through a period is credited only for decisions opened after their admission.\n\n### 6. Payment runs quarterly, against a published table\n\nPayments are disbursed every 3 months, not per proposal.\n\nA dedicated tab is added to the ZecHub DAO spreadsheet holding the member and voting record: one row per member per quarter, with columns for Zcash Shielded address, decisions in the period, votes cast, turnout, amount owed, and payment status. It is populated directly from DAO DAO vote data and published before any payment is released, so every member can check their own row, and any member can check everyone else's. Nothing is paid that is not first visible in that table.\n\nQuarterly batching keeps this to four disbursements a year. The retroactive window (#155–#166) is treated as the first period.\n\n---\n\n## Budget and Compensation\n\n| Item                                        | Amount               |\n| ------------------------------------------- | -------------------- |\n| Rate per decision                           | **$50**, paid in ZEC |\n| Retroactive payment, decisions #155–#166    | **$7,500**           |\n| Funding source                              | Donations treasury   |\n\nThe retroactive payment represents **3.3% of the Donations treasury**. ZEC is converted at the spot price on the payment date, recorded alongside each payment.\n\n---\n\n## Participation Record -> Decisions #155 to #166\n\nTen payable decisions. Every figure below is taken directly from on-chain vote records on DAO DAO and can be independently verified by any member.\n\nThe final column is the point of this table. Each of these members affirmed in May 2026 that they wanted to remain in this DAO. This is what followed.\n\n| Member      |         Votes | Amount Owed |   Turnout |\n| ----------- | ------------: | ----------: | --------: |\n| AidenJeon   |       10 / 10 |        $500 |      100% |\n| gordonesTV  |       10 / 10 |        $500 |      100% |\n| jasonmcgee  |       10 / 10 |        $500 |      100% |\n| Michae2xl   |       10 / 10 |        $500 |      100% |\n| vito        |       10 / 10 |        $500 |      100% |\n| yoditar     |       10 / 10 |        $500 |      100% |\n| zksquirrel  |        9 / 10 |        $450 |       90% |\n| Blakiat     |        8 / 10 |        $400 |       80% |\n| dismad      |        8 / 10 |        $400 |       80% |\n| Mine        |        8 / 10 |        $400 |       80% |\n| theKroy     |        7 / 10 |        $350 |       70% |\n| Zerodartz   |        7 / 10 |        $350 |       70% |\n| Zolder      |        7 / 10 |        $350 |       70% |\n| chidi       |        6 / 10 |        $300 |       60% |\n| james_katz  |        5 / 10 |        $250 |       50% |\n| Lowo        |        5 / 10 |        $250 |       50% |\n| iAmTron     |        4 / 10 |        $200 |       40% |\n| SpeedFox    |        4 / 10 |        $200 |       40% |\n| Tecnopapapi |        4 / 10 |        $200 |       40% |\n| Robmar      |        3 / 10 |        $150 |       30% |\n| Edicksonjga |        2 / 10 |        $100 |       20% |\n| ru_zcash    |        2 / 10 |        $100 |       20% |\n| 1337bytes   |        1 / 10 |         $50 |       10% |\n| **Total**   | **150 / 230** |  **$7,500** | **65.2%** |\n\n_theKroy's turnout reflects 7 paid votes; he also abstained on #159, his own proposal, which is not compensated under rule 4._\n\n### Quorum failures in this window\n\n| Decision                                     | Votes | Turnout | Outcome                       |\n| -------------------------------------------- | ----: | ------: | ----------------------------- |\n| #164 Zcash Merchant Adoption Pilot – Nairobi |     4 |   17.4% | Failed quorum                 |\n| #165 Zcash Merchant Adoption Pilot – Nairobi |     3 |   13.0% | Failed quorum                 |\n| #166 Zcash Merchant Adoption Pilot – Nairobi |     9 |   39.1% | **Failed quorum by one vote** |\n\n---\n\n## Success Metrics\n\nThis proposal should be reviewed after 1 quarter against the following, all measurable from on-chain data:\n\n- **Quorum failures fall to zero.** Three decisions died in the last two months. That number is the primary target.\n- **Average participation reaches 80%** (currently 65.2%).\n- **No member falls below 50% turnout** across a full quarter.\n- **Cost stays within projection.** If the DAO's proposal volume rises materially above 65 decisions per year, the rate is revisited before the budget is exceeded.\n\n---\n\n## Reporting\n\nA participation and payment record, the table above, regenerated from on-chain vote data is published at the end of each payment period. It requires no manual bookkeeping: every input is already public on DAO DAO and can be reproduced by any member from the chain.\n\n---\n\n_Sources: vote records, roster and quorum data from DAO DAO on Juno (proposal module `juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55`), every figure is independently verifiable on-chain. ZCG compensation and the ZCAP poll: [2025 ZCG Compensation](https://forum.zcashcommunity.com/t/2025-zcg-compensation/49767), [ZFND poll results](https://zfnd.org/results-of-the-zcg-election-dec-2024/). Treasury balances: ZecHub treasury dashboard, 21 July 2026._\n",
+          "total_power": "23",
+          "start_height": 40177424,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-07-26T19:28:16.010Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 168,
+        "proposal": {
+          "msgs": [
+            {
+              "wasm": {
+                "execute": {
+                  "msg": "eyJ1cGRhdGVfbWVtYmVycyI6eyJhZGQiOltdLCJyZW1vdmUiOlsianVubzF1dTR4cXd0MGZ3bHBreGZ1cjZtOXNqZWo2eGx2eWZzN2x2eXIwMCJdfX0=",
+                  "funds": [],
+                  "contract_addr": "juno1re0pu5hdafdcexmvuvdngn0d5sttkp6wz4wfjdd3p9cwfhmg8h9s8ek80w"
+                }
+              }
+            }
+          ],
+          "title": "Stepping down from the ZecHub DAO",
+          "votes": {
+            "no": "0",
+            "yes": "10",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1uu4xqwt0fwlpkxfur6m9sjej6xlvyfs7lvyr00",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1785542215890403832"
+          },
+          "description": "As one of the co-founders of the ZecHub DAO, I am stepping down as a member to put my energy in Zcash Brazil and new projects I am building.\n\nNone of this takes away from what was built here, or from the people who did the work. I was part of the beginning of this, and I am glad I was.\n\nI'll continue building in the Zcash ecosystem. My door is open to anyone here who wants to work together.\n\n## Please vote YES, because it's my wish.\n\nThank you all, good luck in.",
+          "total_power": "23",
+          "start_height": 40183217,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-07-26T23:56:55.890Z"
       }
     ]
   },

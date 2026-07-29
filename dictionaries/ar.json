@@ -108,9 +108,9 @@
     "Zero Knowledge vs Decoy Systems": "Zero Knowledge مقابل أنظمة التضليل",
     "Organizations": "المنظمات",
     "Sovright": "Sovright",
-    "Zallet Quick Reference Guide": "دليل Zallet المرجعي السريع",
-    "Zcash Engineering Office Hours": "ساعات المكتب الهندسية في Zcash",
-    "Obscura Labs": "مختبرات أوبسكورا"
+    "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
+    "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
+    "Obscura Labs": "Obscura Labs"
   },
   "exploreMenu": {
     "Full Explore": "استكشاف كامل",
@@ -129,7 +129,7 @@
     "For Forks & Maintainers": "للتفريعات والمشرفين",
     "Fork zechub-wiki": "Fork zechub-wiki",
     "Fork zechub": "Fork zechub",
-    "Zcash Evolution": "تطور Zcash"
+    "Zcash Evolution": "Zcash Evolution"
   },
   "common": {
     "home": "الرئيسية",

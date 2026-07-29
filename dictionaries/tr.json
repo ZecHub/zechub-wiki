@@ -108,9 +108,9 @@
     "Zero Knowledge vs Decoy Systems": "Sıfır Bilgi ve Yem Sistemleri",
     "Organizations": "Organizasyonlar",
     "Sovright": "Sovright",
-    "Zallet Quick Reference Guide": "Zallet Hızlı Başvuru Kılavuzu",
-    "Zcash Engineering Office Hours": "Zcash Mühendislik Ofis Saatleri",
-    "Obscura Labs": "Obscura Laboratuvarları"
+    "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
+    "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
+    "Obscura Labs": "Obscura Labs"
   },
   "exploreMenu": {
     "Full Explore": "Tam Keşfet",
@@ -129,7 +129,7 @@
     "For Forks & Maintainers": "Fork'lar ve Bakımcılar İçin",
     "Fork zechub-wiki": "zechub-wiki'yi forkla",
     "Fork zechub": "zechub'u forkla",
-    "Zcash Evolution": "Zcash Evrimi"
+    "Zcash Evolution": "Zcash Evolution"
   },
   "common": {
     "home": "Ana Sayfa",

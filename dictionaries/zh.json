@@ -108,9 +108,9 @@
     "Zero Knowledge vs Decoy Systems": "零知识与诱饵系统对比",
     "Organizations": "组织",
     "Sovright": "Sovright",
-    "Zallet Quick Reference Guide": "Zallet 快速参考指南",
-    "Zcash Engineering Office Hours": "Zcash 工程办公时间",
-    "Obscura Labs": "Obscura 实验室"
+    "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
+    "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
+    "Obscura Labs": "Obscura Labs"
   },
   "exploreMenu": {
     "Full Explore": "完整探索",
@@ -129,7 +129,7 @@
     "For Forks & Maintainers": "面向 Fork 与维护者",
     "Fork zechub-wiki": "Fork zechub-wiki",
     "Fork zechub": "Fork zechub",
-    "Zcash Evolution": "Zcash 演进"
+    "Zcash Evolution": "Zcash Evolution"
   },
   "common": {
     "home": "首页",

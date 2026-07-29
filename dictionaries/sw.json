@@ -108,9 +108,9 @@
     "Zero Knowledge vs Decoy Systems": "Maarifa Sifuri dhidi ya Mifumo ya Chambo",
     "Organizations": "Mashirika",
     "Sovright": "Sovright",
-    "Zallet Quick Reference Guide": "Mwongozo wa Marejeleo ya Haraka wa Zallet",
-    "Zcash Engineering Office Hours": "Saa za Ofisi za Uhandisi za Zcash",
-    "Obscura Labs": "Maabara ya Obscura"
+    "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
+    "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
+    "Obscura Labs": "Obscura Labs"
   },
   "exploreMenu": {
     "Full Explore": "Kuchunguza Kamili",
@@ -129,7 +129,7 @@
     "For Forks & Maintainers": "Kwa Forks & Maintenance",
     "Fork zechub-wiki": "Fork zechub-wiki",
     "Fork zechub": "Zechub ya uma",
-    "Zcash Evolution": "Mageuzi ya Zcash"
+    "Zcash Evolution": "Zcash Evolution"
   },
   "common": {
     "home": "Nyumbani",
