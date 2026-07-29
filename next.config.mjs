@@ -32,6 +32,18 @@ const nextConfig = {
         source: "/start-here/network-upgrades",
         destination: "/zcash-evolution",
       },
+      {
+        // Raw-markdown endpoint for LLM/crawler discovery: any content page is
+        // also served at its `.md` URL. `:path(.*)` greedily captures the whole
+        // pre-`.md` path (locale prefix included, e.g. "es/using-zcash/x"),
+        // backtracking so the literal `\.md` binds to the final suffix; the
+        // route handler peels off any leading locale. The strict `\.md$` match
+        // never intercepts the static public/ files (/llms.txt, /llms-full.txt,
+        // /pdf.worker.min.mjs — none end in `.md`). Plain-array rewrites run
+        // after pages + public files, so real static assets always win.
+        source: "/:path(.*)\\.md",
+        destination: "/api/content-md",
+      },
     ];
   },
   async headers() {
