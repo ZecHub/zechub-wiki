@@ -60,6 +60,43 @@ export const getDynamicRoute = (slug: string[]): string => {
     : `/site${transformUri(uri)}.md`;
 };
 
+/**
+ * Resolve the content-repo markdown path a wiki page actually renders from, for
+ * a given URL slug. This is the PURE (no next/cache, no React, no network)
+ * counterpart of the content-path resolution in
+ * src/app/[locale]/[...slug]/page.tsx, so build-time scripts
+ * (scripts/generate-llms-txt.mjs) and API routes (src/app/api/content-md) fetch
+ * exactly what the HTML page fetches.
+ *
+ * PARITY — keep in sync with page.tsx (its `getDynamicRoute` default plus the
+ * research-series special case, ~L154-177 / ~L393-413). Research-series articles
+ * live one folder deeper (site/Research/<series>/…/<article>.md) with
+ * lowercase-hyphen filenames that getDynamicRoute would mangle into
+ * Capitalized_Underscore paths → 404, so for those we preserve the slug's own
+ * casing/hyphens. Top-level research articles (and everything else) use
+ * Capitalized_Underscore filenames that getDynamicRoute already produces, so
+ * they fall through to getDynamicRoute unchanged. page.tsx additionally
+ * fuzzy-matches a fetched directory listing (impure); this function reproduces
+ * its deterministic outcome. These two implementations are REPLICATED, not
+ * shared — when either changes, update the other.
+ */
+export const resolveContentPath = (slug: string[]): string => {
+  const isResearchArticle = slug[0] === "research" && slug.length > 1;
+  const isResearchSeries =
+    slug.length === 2 &&
+    slug[0] === "research" &&
+    slug[1] === "zcash-foundations-series";
+
+  // Nested research (a series article, one or more folders below /research):
+  // preserve raw casing/hyphens — mirrors page.tsx's
+  // `site/Research/${slug.slice(1).join("/")}.md` fallback.
+  if (isResearchArticle && !isResearchSeries && slug.length > 2) {
+    return `site/Research/${slug.slice(1).join("/")}.md`;
+  }
+
+  return getDynamicRoute(slug);
+};
+
 export const getFiles = (data: any) => {
   return data.filter((e: any) => e.path).map((element: any) => element.path);
 };

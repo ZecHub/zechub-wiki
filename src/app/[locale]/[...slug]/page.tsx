@@ -392,6 +392,10 @@ export default async function Page(props: {
       const rootsRaw = await getRootCached(urlRoot).catch(() => []);
       roots = Array.isArray(rootsRaw) ? rootsRaw : [];
 
+      // PARITY: this research-series content-path resolution is replicated (as
+      // a pure, network-free function) by resolveContentPath() in
+      // src/lib/helpers.ts, used by scripts/generate-llms-txt.mjs and
+      // src/app/api/content-md. Keep the two in sync when either changes.
       if (isResearchArticle && !isResearchSeries) {
         const lastSegment = slug[slug.length - 1];
         const norm = (s: string) => s.toLowerCase().replace(/[-_ ]/g, "");
