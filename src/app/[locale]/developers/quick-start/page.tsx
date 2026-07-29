@@ -80,7 +80,7 @@ const ExternalLinkIcon = () => (
 const CodeBlock = ({
   code,
   language = "bash",
-  width = "750px",
+  width = "850px",
 }: CodeBlockProps) => {
   const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
@@ -762,7 +762,6 @@ const ZingolibTab = () => {
   );
 };
 
-
 const ZakuraTab = () => {
   const { t } = useLanguage();
   const qs = t?.pages?.developersQuickStart;
@@ -787,15 +786,19 @@ const ZakuraTab = () => {
 
         <div
           className="grid gap-5"
-          style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          }}
+          // style={{
+          //   gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          // }}
         >
-          <SectionCard title={qs?.recommendedInstaller ?? "Recommended Installer"}>
+          <SectionCard
+            title={qs?.recommendedInstaller ?? "Recommended Installer"}
+          >
             <SubLabel>
               {qs?.interactiveInstaller ?? "Interactive Installer"}
             </SubLabel>
-            <CodeBlock code={`curl -fsSL https://zakura.com/install.sh | bash`} />
+            <CodeBlock
+              code={`curl -fsSL https://zakura.com/install.sh | bash`}
+            />
             <div className="mt-[14px] p-[12px_14px] rounded-lg text-[13px] leading-relaxed bg-sky-500/[0.06] border border-sky-500/20 text-sky-700 dark:text-sky-400">
               {qs?.zakuraInstallerNote ??
                 "The installer can set up either standard Zakura or its zcashd-compatible variant."}
@@ -803,7 +806,9 @@ const ZakuraTab = () => {
           </SectionCard>
 
           <SectionCard title={qs?.cargoInstall ?? "Cargo Installation"}>
-            <SubLabel>{qs?.dependencies ?? "Dependencies (Ubuntu/Debian)"}</SubLabel>
+            <SubLabel>
+              {qs?.dependencies ?? "Dependencies (Ubuntu/Debian)"}
+            </SubLabel>
             <CodeBlock
               code={`sudo apt update
 sudo apt install -y clang libclang-dev build-essential protobuf-compiler
@@ -818,9 +823,7 @@ source "$HOME/.cargo/env"`}
           </SectionCard>
 
           <SectionCard title={qs?.fromSource ?? "From GitHub"}>
-            <SubLabel>
-              {qs?.pinnedRelease ?? "Install Pinned Release"}
-            </SubLabel>
+            <SubLabel>{qs?.pinnedRelease ?? "Install Pinned Release"}</SubLabel>
             <CodeBlock
               code={`cargo install --git https://github.com/zakura-core/zakura --tag v1.0.5 zakura`}
             />
@@ -831,9 +834,7 @@ source "$HOME/.cargo/env"`}
           </SectionCard>
 
           <SectionCard title="Docker">
-            <SubLabel>
-              {qs?.runLatestRelease ?? "Run Latest Release"}
-            </SubLabel>
+            <SubLabel>{qs?.runLatestRelease ?? "Run Latest Release"}</SubLabel>
             <CodeBlock
               code={`docker run -d \
   --name zakura \
@@ -896,7 +897,9 @@ docker start zakura`}
         </h3>
         <div
           className="grid gap-2"
-          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+          }}
         >
           <ResourceLink href="https://zakura.com/">
             {qs?.zakuraWebsite ?? "Zakura Website"}
