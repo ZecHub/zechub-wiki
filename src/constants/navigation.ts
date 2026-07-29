@@ -16,7 +16,7 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench, Map, Gem, BookOpenText } from "lucide-react";
+import { Wrench, Map, Gem, BookOpenText, KeyRound } from "lucide-react";
 import { FcVoicePresentation } from "react-icons/fc";
 import { FaUserAstronaut } from "react-icons/fa";
 
@@ -87,6 +87,11 @@ export const navigations: Array<NavigationItem> = [
 	    name: "Send Money Privately",
 	    path: "/zcash-use-cases/send-money-without-linking-identity",
 	    icon: ArrowUp,
+	  },
+	  {
+	    name: "Zcash Login",
+	    path: "/zcash-use-cases/sign-in-with-zcash",
+	    icon: KeyRound,
 	  },
 	],
       },
