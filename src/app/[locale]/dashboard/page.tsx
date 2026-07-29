@@ -1,5 +1,7 @@
 import Dashboard from "@/components/Charts";
 import { genMetadata } from "@/lib/helpers";
+import { buildAlternates } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
 import { Metadata } from "next";
 import { getDictionary } from "@/lib/getDictionary";
 import { loadZips } from "@/lib/zips/load-zips.server";
@@ -14,10 +16,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     };
   };
 
+  const localePrefix = locale && locale !== routing.defaultLocale ? `/${locale}` : "";
+  // Bespoke app route: English-only in the sitemap -> locale-aware self canonical.
   return genMetadata({
     title: dict.pages?.dashboard?.title || "Dashboard | Zechub",
-    url: "https://zechub.wiki/dashboard",
-  }) as Metadata;
+    url: `https://zechub.wiki${localePrefix}/dashboard`,
+    locale,
+    alternates: buildAlternates("/dashboard", locale, [locale]),
+  });
 }
 
 type DashboardDictionary = {
