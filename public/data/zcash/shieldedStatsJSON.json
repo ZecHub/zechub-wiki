@@ -2307,8 +2307,8 @@
         "Total_Lockbox_Supply": 52480.3125,
         "Zebra_Nodes": 47,
         "Zcashd_Nodes": 8,
-        "Zakura_Nodes": 0,
-        "Total_Node_Count": 56,
+        "Zakura_Nodes": 16,
+        "Total_Node_Count": 71,
         "Closing_Price": 507.8,
         "Shielded_Market_Cap": 2250923028.8,
         "Shielded_Transaction_Percentage": 0.33
