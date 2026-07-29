@@ -2,127 +2,110 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  MessageSquare,
-  CheckCircle,
-  ExternalLink,
+  Archive,
   ArrowRight,
-  Wallet,
-  LayoutGrid,
-  Send,
-  PlusCircle,
-  LogIn
+  BookOpen,
+  Camera,
+  CheckCircle,
+  Coins,
+  ExternalLink,
+  Mic
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
-const BOUNTIES_URL = "https://bounties.zechub.wiki/home";
-const PROFILE_URL = "https://bounties.zechub.wiki/profile";
+const OPPORTUNITIES_URL = "https://zkav.club/opportunities";
 
 const slides = [
   {
-    id: "discord",
-    title: "Join Zcash Discord",
-    icon: MessageSquare,
-    color: "from-blue-500 to-indigo-600",
+    id: "about",
+    title: "What is the ZKAV Club?",
+    icon: Camera,
+    color: "from-violet-500 to-purple-600",
     steps: [
-      "Click the Discord invite link",
-      "Accept the community guidelines",
-      "Add the ZecHub role in #lang-menu channel",
-      "Say hello in the ZecHub channels and ask what needs doing"
+      "A privacy-first audiovisual club for open-source and decentralized communities",
+      "Brings a portable recording station to meetups, conferences and camps",
+      "Creators keep ownership; approved recordings go to a public archive",
+      "Runs on small networks of people who keep recordings usable long after the event"
     ],
-    link: "https://discord.gg/zcash",
-    linkText: "Join Discord Community"
+    link: "https://zkav.club/",
+    linkText: "Visit zkav.club"
   },
   {
-    id: "sign-in",
-    title: "Sign in to ZEC Bounties",
-    icon: LogIn,
-    color: "from-purple-500 to-pink-600",
-    steps: [
-      "Go to bounties.zechub.wiki — ZecHub's bounty platform",
-      "Sign in with your GitHub account",
-      "Open your profile and set a nickname",
-      "Turn on email notifications for newly posted bounties"
-    ],
-    link: BOUNTIES_URL,
-    linkText: "Open ZEC Bounties"
-  },
-  {
-    id: "payment-address",
-    title: "Set Your Payment Address",
-    icon: Wallet,
+    id: "coordinators",
+    title: "Coordinator Roles",
+    icon: Archive,
     color: "from-amber-500 to-orange-600",
     steps: [
-      "Open Profile and paste your Mainnet payment address — a unified address starting with u1",
-      "Hit Save address; this is where bounty rewards are sent",
-      "Add a Testnet payment address (u or z) for development bounties, then Verify",
-      "Your profile is all the onboarding you need to start claiming work"
+      "The Archivist — turns messy recording folders into structured archive items",
+      "The Archivist keeps metadata clean so the archive stays usable long-term",
+      "The Storyteller — adds titles, descriptions, tags and context to recordings",
+      "The Storyteller runs the transcription network and keeps public indexes readable"
     ],
-    link: PROFILE_URL,
-    linkText: "Set Payment Address"
+    link: OPPORTUNITIES_URL,
+    linkText: "Read the Role Descriptions"
   },
   {
-    id: "find-bounty",
-    title: "Find a Bounty",
-    icon: LayoutGrid,
+    id: "gigs",
+    title: "Paid Gigs & Skill Network",
+    icon: Mic,
     color: "from-emerald-500 to-teal-600",
     steps: [
-      "Filter by category: Web Development, Writing and Research, Design and Videos",
-      "Each card shows the reward in ZEC, a difficulty tag and a deadline",
-      "Watch work move across the Todo, In Progress, In Review and Done columns",
-      "Pick one that fits your skills and coordinate in the ZecHub Discord channels"
+      "Workshops — run a hands-on session, publish it and share the recording",
+      "Transcription — turn recorded conversations into accurate transcripts and quotes",
+      "Event production — camera operation, livestream tech, live translation, show calling",
+      "Post-production — long-form edits, social clips, thumbnails and motion graphics"
     ],
-    link: BOUNTIES_URL,
-    linkText: "Browse Open Bounties"
+    link: OPPORTUNITIES_URL,
+    linkText: "See Open Gigs"
   },
   {
-    id: "submit",
-    title: "Submit Work & Get Paid in ZEC",
-    icon: Send,
-    color: "from-cyan-500 to-blue-600",
+    id: "how-it-works",
+    title: "How It Works",
+    icon: Coins,
+    color: "from-yellow-500 to-amber-600",
     steps: [
-      "Your claimed bounty sits under In Progress and is tagged Yours",
-      "Use the submit button on the card to send your deliverable for review",
-      "The bounty moves to In Review, then to Done once a reviewer accepts it",
-      "The reward is paid natively in ZEC to the address saved on your profile"
+      "Most gigs are paid per contribution, whenever work is available",
+      "Payment is in Zcash — work done in a month is paid at the start of the next",
+      "Work appears around events and funding; you get contacted with scope and pay",
+      "Open to anyone who wants to help document these communities while preserving privacy"
     ],
-    link: "https://bounties.zechub.wiki/my-bounties",
-    linkText: "Track My Bounties"
+    link: OPPORTUNITIES_URL,
+    linkText: "Explore Opportunities"
   },
   {
-    id: "create",
-    title: "Create a Bounty",
-    icon: PlusCircle,
-    color: "from-rose-500 to-red-600",
+    id: "join",
+    title: "Join the Club",
+    icon: BookOpen,
+    color: "from-rose-500 to-pink-600",
     steps: [
-      "Click New Bounty to open the Create New Bounty dialog",
-      "Give it a clear Bounty Title and pick a Category",
-      "Set the Reward in ZEC and a Time to Complete date",
-      "Write a Description with deliverables and acceptance criteria, then Create Bounty"
+      "Message the club through the Join the Club links on zkav.club",
+      "Share your skills, timezone and availability",
+      "Add portfolio links and the languages you can work in",
+      "The club reaches out when a gig matches what you do"
     ],
-    link: BOUNTIES_URL,
-    linkText: "Create a Bounty"
+    link: OPPORTUNITIES_URL,
+    linkText: "Join the Club"
   }
 ];
 
 export { slides };
 
-interface ZecHubBountiesContentProps {
+interface ZkavClubContentProps {
   currentSlide: number;
   onSlideChange: (index: number) => void;
   isPlaying: boolean;
 }
 
-export const ZecHubBountiesContent = ({ 
-  currentSlide, 
+export const ZkavClubContent = ({
+  currentSlide,
   onSlideChange,
-  isPlaying 
-}: ZecHubBountiesContentProps) => {
+  isPlaying
+}: ZkavClubContentProps) => {
   const [progress, setProgress] = useState(0);
 
   const slide = slides[currentSlide];
   const Icon = slide.icon;
 
-  // Auto-advance slides when playing
   useEffect(() => {
     if (!isPlaying) {
       setProgress(0);
@@ -146,7 +129,6 @@ export const ZecHubBountiesContent = ({
     return () => clearInterval(timer);
   }, [isPlaying]);
 
-  // Handle slide change when progress reaches 100
   useEffect(() => {
     if (progress >= 100 && isPlaying) {
       const timer = setTimeout(() => {
@@ -156,63 +138,53 @@ export const ZecHubBountiesContent = ({
     }
   }, [progress, isPlaying, currentSlide, onSlideChange]);
 
-  // Reset progress when slide changes
   useEffect(() => {
     setProgress(0);
   }, [currentSlide]);
 
   return (
     <div className="max-w-5xl mx-auto px-4">
-      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
-          ZecHub Bounties
+        <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-violet-400 to-fuchsia-500 bg-clip-text text-transparent">
+          ZKAV Club Opportunities
         </h2>
         <p className="text-muted-foreground text-lg">
-          Contribute to ZecHub and earn ZEC on{" "}
-          <a
-            href={BOUNTIES_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-yellow-500 hover:underline"
-          >
-            bounties.zechub.wiki
-          </a>
+          Privacy-first audiovisual roles and paid gigs with the
+          Zero-knowledge Audiovisual Club
         </p>
       </motion.div>
 
-      {/* Slide Navigation Dots */}
       <div className="flex justify-center gap-2 mb-8">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => onSlideChange(index)}
             className="relative"
+            aria-label={`Go to slide ${index + 1}`}
           >
-            <div 
+            <div
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentSlide 
-                  ? 'bg-yellow-400 w-8' 
-                  : 'bg-slate-400/30 hover:bg-slate-400/50'
+                index === currentSlide
+                  ? "bg-violet-400 w-8"
+                  : "bg-slate-400/30 hover:bg-slate-400/50"
               }`}
             />
             {index === currentSlide && isPlaying && (
               <motion.div
-                className="absolute inset-0 bg-yellow-400 rounded-full"
+                className="absolute inset-0 bg-violet-400 rounded-full"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: progress / 100 }}
-                style={{ transformOrigin: 'left' }}
+                style={{ transformOrigin: "left" }}
               />
             )}
           </button>
         ))}
       </div>
 
-      {/* Main Slide Content */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
@@ -222,32 +194,30 @@ export const ZecHubBountiesContent = ({
           transition={{ duration: 0.5 }}
           className="relative"
         >
-          {/* Icon Header */}
           <div className="flex items-center justify-center mb-8">
             <motion.div
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 200, 
+              transition={{
+                type: "spring",
+                stiffness: 200,
                 damping: 15,
-                delay: 0.2 
+                delay: 0.2
               }}
               className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${slide.color} p-1 shadow-2xl`}
             >
               <div className="w-full h-full bg-background rounded-xl flex items-center justify-center">
                 <Icon className="w-12 h-12 text-foreground" />
               </div>
-              
-              {/* Animated Ring */}
+
               <motion.div
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${slide.color} opacity-50`}
-                animate={{ 
+                animate={{
                   scale: [1, 1.2, 1],
                   opacity: [0.5, 0, 0.5]
                 }}
-                transition={{ 
-                  duration: 2, 
+                transition={{
+                  duration: 2,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
@@ -255,7 +225,6 @@ export const ZecHubBountiesContent = ({
             </motion.div>
           </div>
 
-          {/* Title */}
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -265,7 +234,6 @@ export const ZecHubBountiesContent = ({
             {slide.title}
           </motion.h3>
 
-          {/* Steps */}
           <div className="grid gap-4 mb-8">
             {slide.steps.map((step, index) => (
               <motion.div
@@ -273,12 +241,12 @@ export const ZecHubBountiesContent = ({
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="flex items-start gap-4 bg-card/50 backdrop-blur-sm p-5 rounded-xl border border-border/50 hover:border-yellow-400/50 hover:bg-card/70 transition-all group"
+                className="flex items-start gap-4 bg-card/50 backdrop-blur-sm p-5 rounded-xl border border-border/50 hover:border-violet-400/50 hover:bg-card/70 transition-all group"
               >
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ 
+                  transition={{
                     delay: 0.5 + index * 0.1,
                     type: "spring",
                     stiffness: 200
@@ -288,7 +256,7 @@ export const ZecHubBountiesContent = ({
                   {index + 1}
                 </motion.div>
                 <div className="flex-1 pt-1">
-                  <p className="text-foreground text-lg group-hover:text-yellow-400 transition-colors">
+                  <p className="text-foreground text-lg group-hover:text-violet-400 transition-colors">
                     {step}
                   </p>
                 </div>
@@ -297,7 +265,6 @@ export const ZecHubBountiesContent = ({
             ))}
           </div>
 
-          {/* Action Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -316,7 +283,6 @@ export const ZecHubBountiesContent = ({
             </a>
           </motion.div>
 
-          {/* Decorative Elements */}
           <motion.div
             animate={{
               rotate: [0, 360],
@@ -344,7 +310,6 @@ export const ZecHubBountiesContent = ({
         </motion.div>
       </AnimatePresence>
 
-      {/* Progress Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

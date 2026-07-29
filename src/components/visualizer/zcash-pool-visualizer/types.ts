@@ -53,23 +53,31 @@ export interface Stage {
   title: string;
   subtitle: string;
   description: string;
-  type: "welcome" | "intro" | "pool" | "transaction" | "comparison";
+  type:
+    | "intro"
+    | "pool"
+    | "transaction"
+    | "comparison"
+    | "ironwood-why"
+    | "ironwood-turnstile"
+    | "ironwood-migration"
+    | "ironwood-audit";
   focusPool?: PoolType;
   transactionFrom?: PoolType;
   transactionTo?: PoolType;
   amount?: string;
 }
 
+export const IRONWOOD_STAGE_TYPES: Stage["type"][] = [
+  "ironwood-why",
+  "ironwood-turnstile",
+  "ironwood-migration",
+  "ironwood-audit",
+];
+
 export const STAGES: Stage[] = [
   {
     id: 0,
-    title: "Welcome",
-    subtitle: "Ready to explore Zcash?",
-    description: "Click the play button below to begin!",
-    type: "welcome",
-  },
-  {
-    id: 1,
     title: "Understanding Privacy Pools",
     subtitle: "Introduction",
     description:
@@ -77,7 +85,7 @@ export const STAGES: Stage[] = [
     type: "intro",
   },
   {
-    id: 2,
+    id: 1,
     title: "Transparent Addresses",
     subtitle: "t-addresses",
     description:
@@ -86,7 +94,7 @@ export const STAGES: Stage[] = [
     focusPool: "transparent",
   },
   {
-    id: 3,
+    id: 2,
     title: "Sapling Addresses",
     subtitle: "z-addresses (zs1...)",
     description:
@@ -95,7 +103,7 @@ export const STAGES: Stage[] = [
     focusPool: "sapling",
   },
   {
-    id: 4,
+    id: 3,
     title: "Orchard Protocol",
     subtitle: "Unified Addresses (u1...)",
     description:
@@ -104,7 +112,7 @@ export const STAGES: Stage[] = [
     focusPool: "orchard",
   },
   {
-    id: 5,
+    id: 4,
     title: "Shielding Transaction",
     subtitle: "Transparent → Shielded",
     description:
@@ -115,44 +123,43 @@ export const STAGES: Stage[] = [
     amount: "1.5 ZEC",
   },
   {
-    id: 6,
-    title: "Shielded Transfer",
-    subtitle: "Sapling → Orchard",
-    description:
-      "Cross-pool shielded transaction. Amount is visible on-chain, but sender and receiver remain hidden.",
-    type: "transaction",
-    transactionFrom: "sapling",
-    transactionTo: "orchard",
-    amount: "2.0 ZEC",
-  },
-  {
-    id: 7,
-    title: "Sapling Internal Transfer",
-    subtitle: "Sapling → Sapling",
-    description:
-      "Fully private transaction within the Sapling pool. Sender, receiver, and amount are all encrypted.",
-    type: "transaction",
-    transactionFrom: "sapling",
-    transactionTo: "sapling",
-    amount: "0.5 ZEC",
-  },
-  {
-    id: 8,
-    title: "Orchard Internal Transfer",
-    subtitle: "Orchard → Orchard",
-    description:
-      "Maximum privacy transaction within the Orchard pool. All details fully encrypted with latest cryptography.",
-    type: "transaction",
-    transactionFrom: "orchard",
-    transactionTo: "orchard",
-    amount: "2.30 ZEC",
-  },
-  {
-    id: 9,
+    id: 5,
     title: "Transaction Privacy Matrix",
     subtitle: "Understanding the Nuances",
     description:
-      "Privacy depends on transaction type. Compare what's visible across all possible transaction combinations.",
+      "Privacy depends on transaction type. Compare what is visible across all possible transaction combinations.",
     type: "comparison",
+  },
+  {
+    id: 6,
+    title: "Why Ironwood Exists",
+    subtitle: "NU6.3 · Activated 28 July 2026",
+    description:
+      "A soundness bug in the Orchard circuit meant nobody could independently verify the shielded supply. Ironwood is the fix.",
+    type: "ironwood-why",
+  },
+  {
+    id: 7,
+    title: "The Turnstile",
+    subtitle: "Counting without looking inside",
+    description:
+      "A public checkpoint that reveals how much value leaves a pool, while sender and receiver stay private.",
+    type: "ironwood-turnstile",
+  },
+  {
+    id: 8,
+    title: "Orchard → Ironwood Migration",
+    subtitle: "Pool migration flow",
+    description:
+      "Watch funds cross the turnstile, and compare an immediate migration with a privacy-preserving scheduled one.",
+    type: "ironwood-migration",
+  },
+  {
+    id: 9,
+    title: "Supply Audit Logic",
+    subtitle: "Proving nothing was counterfeited",
+    description:
+      "Because the turnstile caps outflows, the community can bound the supply that can ever leave Orchard.",
+    type: "ironwood-audit",
   },
 ];
