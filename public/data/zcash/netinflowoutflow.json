@@ -2,446 +2,535 @@
   {
     "Date": "2024-11-17",
     "Net Sapling Flow": "70655.9",
-    "Net Orchard Flow": "297273.7"
+    "Net Orchard Flow": "297273.7",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2024-11-24",
     "Net Sapling Flow": "42988.3",
-    "Net Orchard Flow": "-6249.9"
+    "Net Orchard Flow": "-6249.9",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2024-12-01",
     "Net Sapling Flow": "-4982",
-    "Net Orchard Flow": "-15568"
+    "Net Orchard Flow": "-15568",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2024-12-08",
     "Net Sapling Flow": "11848",
-    "Net Orchard Flow": "-3828"
+    "Net Orchard Flow": "-3828",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2024-12-15",
     "Net Sapling Flow": "835",
-    "Net Orchard Flow": "-18126"
+    "Net Orchard Flow": "-18126",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2024-12-22",
     "Net Sapling Flow": "-12170",
-    "Net Orchard Flow": "-63404"
+    "Net Orchard Flow": "-63404",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2024-12-29",
     "Net Sapling Flow": "36776",
-    "Net Orchard Flow": "-134778"
+    "Net Orchard Flow": "-134778",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-01-05",
     "Net Sapling Flow": "5716",
-    "Net Orchard Flow": "-9908"
+    "Net Orchard Flow": "-9908",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-01-12",
     "Net Sapling Flow": "3743",
-    "Net Orchard Flow": "-19902"
+    "Net Orchard Flow": "-19902",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-01-19",
     "Net Sapling Flow": "14580",
-    "Net Orchard Flow": "-12705"
+    "Net Orchard Flow": "-12705",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-01-26",
     "Net Sapling Flow": "4571",
-    "Net Orchard Flow": "-15231"
+    "Net Orchard Flow": "-15231",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-02-02",
     "Net Sapling Flow": "5769",
-    "Net Orchard Flow": "-20276"
+    "Net Orchard Flow": "-20276",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-02-09",
     "Net Sapling Flow": "-11413",
-    "Net Orchard Flow": "-7598"
+    "Net Orchard Flow": "-7598",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-02-16",
     "Net Sapling Flow": "-1760",
-    "Net Orchard Flow": "-13960"
+    "Net Orchard Flow": "-13960",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-02-23",
     "Net Sapling Flow": "3826",
-    "Net Orchard Flow": "-75977"
+    "Net Orchard Flow": "-75977",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-03-02",
     "Net Sapling Flow": "-19634",
-    "Net Orchard Flow": "-84113"
+    "Net Orchard Flow": "-84113",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-03-09",
     "Net Sapling Flow": "-6164",
-    "Net Orchard Flow": "46"
+    "Net Orchard Flow": "46",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-03-16",
     "Net Sapling Flow": "1262",
-    "Net Orchard Flow": "-421597"
+    "Net Orchard Flow": "-421597",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-03-23",
     "Net Sapling Flow": "-6071",
-    "Net Orchard Flow": "-34446"
+    "Net Orchard Flow": "-34446",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-03-30",
     "Net Sapling Flow": "-7954",
-    "Net Orchard Flow": "-142783"
+    "Net Orchard Flow": "-142783",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-04-06",
     "Net Sapling Flow": "25963",
-    "Net Orchard Flow": "-105184"
+    "Net Orchard Flow": "-105184",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-04-13",
     "Net Sapling Flow": "14792",
-    "Net Orchard Flow": "65488"
+    "Net Orchard Flow": "65488",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-04-21",
     "Net Sapling Flow": "8185",
-    "Net Orchard Flow": "-11984"
+    "Net Orchard Flow": "-11984",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-04-26",
     "Net Sapling Flow": "-29",
-    "Net Orchard Flow": "15283"
+    "Net Orchard Flow": "15283",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-05-04",
     "Net Sapling Flow": "241",
-    "Net Orchard Flow": "-71742"
+    "Net Orchard Flow": "-71742",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-05-11",
     "Net Sapling Flow": "4998",
-    "Net Orchard Flow": "-124196"
+    "Net Orchard Flow": "-124196",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-05-18",
     "Net Sapling Flow": "-2775",
-    "Net Orchard Flow": "-42505"
+    "Net Orchard Flow": "-42505",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-05-25",
     "Net Sapling Flow": "5287",
-    "Net Orchard Flow": "-84936"
+    "Net Orchard Flow": "-84936",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-06-01",
     "Net Sapling Flow": "434",
-    "Net Orchard Flow": "-51619"
+    "Net Orchard Flow": "-51619",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-06-08",
     "Net Sapling Flow": "-3578",
-    "Net Orchard Flow": "-25135"
+    "Net Orchard Flow": "-25135",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-06-15",
     "Net Sapling Flow": "-8778",
-    "Net Orchard Flow": "-2926"
+    "Net Orchard Flow": "-2926",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-06-22",
     "Net Sapling Flow": "-394",
-    "Net Orchard Flow": "15838"
+    "Net Orchard Flow": "15838",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-06-29",
     "Net Sapling Flow": "-4968",
-    "Net Orchard Flow": "-526"
+    "Net Orchard Flow": "-526",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-07-06",
     "Net Sapling Flow": "-11023",
-    "Net Orchard Flow": "3793"
+    "Net Orchard Flow": "3793",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-07-13",
     "Net Sapling Flow": "-3110",
-    "Net Orchard Flow": "-8858"
+    "Net Orchard Flow": "-8858",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-07-20",
     "Net Sapling Flow": "-6528",
-    "Net Orchard Flow": "228"
+    "Net Orchard Flow": "228",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-07-27",
     "Net Sapling Flow": "-11035",
-    "Net Orchard Flow": "-10037"
+    "Net Orchard Flow": "-10037",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-08-03",
     "Net Sapling Flow": "-31129",
-    "Net Orchard Flow": "-4191"
+    "Net Orchard Flow": "-4191",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-08-10",
     "Net Sapling Flow": "-3846",
-    "Net Orchard Flow": "-215970"
+    "Net Orchard Flow": "-215970",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-08-17",
     "Net Sapling Flow": "-4658",
-    "Net Orchard Flow": "-131808"
+    "Net Orchard Flow": "-131808",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-08-24",
     "Net Sapling Flow": "-90506",
-    "Net Orchard Flow": "-127792"
+    "Net Orchard Flow": "-127792",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-08-31",
     "Net Sapling Flow": "481",
-    "Net Orchard Flow": "-30961"
+    "Net Orchard Flow": "-30961",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-09-07",
     "Net Sapling Flow": "17885",
-    "Net Orchard Flow": "-84787"
+    "Net Orchard Flow": "-84787",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-09-14",
     "Net Sapling Flow": "2052",
-    "Net Orchard Flow": "-291"
+    "Net Orchard Flow": "-291",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-09-21",
     "Net Sapling Flow": "-3401",
-    "Net Orchard Flow": "8799"
+    "Net Orchard Flow": "8799",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-09-28",
     "Net Sapling Flow": "822",
-    "Net Orchard Flow": "-37502"
+    "Net Orchard Flow": "-37502",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-10-05",
     "Net Sapling Flow": "45183",
-    "Net Orchard Flow": "-11770"
+    "Net Orchard Flow": "-11770",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-10-12",
     "Net Sapling Flow": "20693",
-    "Net Orchard Flow": "-430639"
+    "Net Orchard Flow": "-430639",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-10-19",
     "Net Sapling Flow": "11897",
-    "Net Orchard Flow": "-435377"
+    "Net Orchard Flow": "-435377",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-10-26",
     "Net Sapling Flow": "-2330",
-    "Net Orchard Flow": "-351223"
+    "Net Orchard Flow": "-351223",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-11-02",
     "Net Sapling Flow": "15127",
-    "Net Orchard Flow": "-26438"
+    "Net Orchard Flow": "-26438",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-11-09",
     "Net Sapling Flow": "29715",
-    "Net Orchard Flow": "50834"
+    "Net Orchard Flow": "50834",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-11-16",
     "Net Sapling Flow": "53855",
-    "Net Orchard Flow": "-20192"
+    "Net Orchard Flow": "-20192",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-11-23",
     "Net Sapling Flow": "419",
-    "Net Orchard Flow": "-89407"
+    "Net Orchard Flow": "-89407",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-11-30",
     "Net Sapling Flow": "841",
-    "Net Orchard Flow": "26942"
+    "Net Orchard Flow": "26942",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-12-07",
     "Net Sapling Flow": "3909",
-    "Net Orchard Flow": "-9097"
+    "Net Orchard Flow": "-9097",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-12-14",
     "Net Sapling Flow": "-24",
-    "Net Orchard Flow": "-11987"
+    "Net Orchard Flow": "-11987",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-12-21",
     "Net Sapling Flow": "3560",
-    "Net Orchard Flow": "-7310"
+    "Net Orchard Flow": "-7310",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2025-12-28",
     "Net Sapling Flow": "9596",
-    "Net Orchard Flow": "-232994"
+    "Net Orchard Flow": "-232994",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-01-04",
     "Net Sapling Flow": "-705",
-    "Net Orchard Flow": "194981"
+    "Net Orchard Flow": "194981",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-01-11",
     "Net Sapling Flow": "5393",
-    "Net Orchard Flow": "-21897"
+    "Net Orchard Flow": "-21897",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-01-18",
     "Net Sapling Flow": "1370",
-    "Net Orchard Flow": "-52539"
+    "Net Orchard Flow": "-52539",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-01-25",
     "Net Sapling Flow": "1175",
-    "Net Orchard Flow": "-58411"
+    "Net Orchard Flow": "-58411",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-02-01",
     "Net Sapling Flow": "728",
-    "Net Orchard Flow": "-58080"
+    "Net Orchard Flow": "-58080",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-02-08",
     "Net Sapling Flow": "-3145",
-    "Net Orchard Flow": "24616"
+    "Net Orchard Flow": "24616",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-02-15",
     "Net Sapling Flow": "2782",
-    "Net Orchard Flow": "-22511"
+    "Net Orchard Flow": "-22511",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-02-22",
     "Net Sapling Flow": "-1826",
-    "Net Orchard Flow": "-392"
+    "Net Orchard Flow": "-392",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-03-01",
     "Net Sapling Flow": "553",
-    "Net Orchard Flow": "-11620"
+    "Net Orchard Flow": "-11620",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-03-08",
     "Net Sapling Flow": "2590.45347454",
-    "Net Orchard Flow": "1220.58498752"
+    "Net Orchard Flow": "1220.58498752",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-03-15",
     "Net Sapling Flow": "3968.27889744",
-    "Net Orchard Flow": "-53110.39386983"
+    "Net Orchard Flow": "-53110.39386983",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-03-22",
     "Net Sapling Flow": "-4240.12225529",
-    "Net Orchard Flow": "-42473.28081634"
+    "Net Orchard Flow": "-42473.28081634",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-03-29",
     "Net Sapling Flow": "1600.98301785",
-    "Net Orchard Flow": "2736.79834826"
+    "Net Orchard Flow": "2736.79834826",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-04-05",
     "Net Sapling Flow": "2867.89471825",
-    "Net Orchard Flow": "-24644.83686593"
+    "Net Orchard Flow": "-24644.83686593",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-04-12",
     "Net Sapling Flow": "3155.66912501",
-    "Net Orchard Flow": "-6143.94362494"
+    "Net Orchard Flow": "-6143.94362494",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-04-19",
     "Net Sapling Flow": "9960.66194857",
-    "Net Orchard Flow": "-4689.23328047"
+    "Net Orchard Flow": "-4689.23328047",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-04-26",
     "Net Sapling Flow": "502.93257750",
-    "Net Orchard Flow": "-6353.81675986"
+    "Net Orchard Flow": "-6353.81675986",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-05-03",
     "Net Sapling Flow": "-646.12557833",
-    "Net Orchard Flow": "-7169.29293708"
+    "Net Orchard Flow": "-7169.29293708",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-05-10",
     "Net Sapling Flow": "-793.98523883",
-    "Net Orchard Flow": "4427.58958930"
+    "Net Orchard Flow": "4427.58958930",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-05-17",
     "Net Sapling Flow": "3215.16585845",
-    "Net Orchard Flow": "-8339.78170830"
+    "Net Orchard Flow": "-8339.78170830",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-05-24",
     "Net Sapling Flow": "3713.05060468",
-    "Net Orchard Flow": "531.10003091"
+    "Net Orchard Flow": "531.10003091",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-05-31",
     "Net Sapling Flow": "1367.72790517",
-    "Net Orchard Flow": "30227.20210701"
+    "Net Orchard Flow": "30227.20210701",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-06-10",
     "Net Sapling Flow": "5896.65586374",
-    "Net Orchard Flow": "290530.38342175"
+    "Net Orchard Flow": "290530.38342175",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-06-14",
     "Net Sapling Flow": "-44861.63338507",
-    "Net Orchard Flow": "521877.40761272"
+    "Net Orchard Flow": "521877.40761272",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-06-20",
     "Net Sapling Flow": "-16262.50904278",
-    "Net Orchard Flow": "36026.71700432"
+    "Net Orchard Flow": "36026.71700432",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-06-28",
     "Net Sapling Flow": "2593.64267220",
-    "Net Orchard Flow": "-76754.52175714"
+    "Net Orchard Flow": "-76754.52175714",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-07-05",
     "Net Sapling Flow": "650.53890927",
-    "Net Orchard Flow": "11249.68314369"
+    "Net Orchard Flow": "11249.68314369",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-07-11",
     "Net Sapling Flow": "27213.45965263",
-    "Net Orchard Flow": "1182.39267551"
+    "Net Orchard Flow": "1182.39267551",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-07-19",
     "Net Sapling Flow": "2857.64184670",
-    "Net Orchard Flow": "-4069.91073589"
+    "Net Orchard Flow": "-4069.91073589",
+    "Net Ironwood Flow": "0"
   },
   {
     "Date": "2026-07-26",
     "Net Sapling Flow": "-1328.03799152",
-    "Net Orchard Flow": "972.87354899"
+    "Net Orchard Flow": "972.87354899",
+    "Net Ironwood Flow": "0"
   }
 ]
