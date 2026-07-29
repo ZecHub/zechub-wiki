@@ -10,8 +10,23 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { socialNav } from "@/constants/navigation";
+import { ORG_ID, jsonLdScript } from "@/lib/helpers";
 
 const inter = Inter({ subsets: ["latin"] });
+
+// Organization structured data (schema.org), emitted once site-wide. `sameAs`
+// is sourced from the site's social navigation so it stays in sync with the
+// links we actually render (Discord, YouTube, X/Twitter, GitHub).
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": ORG_ID,
+  name: "ZecHub",
+  url: "https://zechub.wiki",
+  logo: "https://zechub.wiki/zechubLogo.png",
+  sameAs: socialNav.map((s) => s.url),
+};
 
 // Locales that render right-to-left. Drives the <html dir> attribute so RTL
 // languages (e.g. Arabic) lay out correctly.
@@ -76,6 +91,12 @@ export default async function RootLayout({
           type="application/rss+xml"
           title="ZecHub Dashboard Updates"
           href="https://zechub.wiki/rss.xml"
+        />
+        {/* Organization structured data — site-wide, consumed by classic search
+            and AI answer engines. Referenced by @id from per-page article JSON-LD. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationJsonLd) }}
         />
       </head>
       <body className={`px-0 ${inter.className} dark:bg-slate-900 dark:text-white`}>

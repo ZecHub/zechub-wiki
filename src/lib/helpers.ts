@@ -1,6 +1,161 @@
 import { contentBanners } from "@/constants/contentBanners";
 import { getRootCached } from "./authAndFetch";
 
+// Stable @id for the ZecHub Organization node in schema.org structured data.
+// The site-wide Organization JSON-LD (rendered in the locale layout) defines
+// this node; per-page article JSON-LD references it as author/publisher so the
+// graph links up within the same rendered document.
+export const ORG_ID = "https://zechub.wiki/#organization";
+
+// Default site description. Shared between genMetadata (page <meta>/OG fallback)
+// and the article structured data so the two never drift.
+export const SITE_DESCRIPTION =
+  "The goal of ZecHub is to provide an educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash & Privacy technology ecosystems.";
+
+// Canonical origin, used to resolve site-relative asset paths (banners, covers)
+// into the absolute URLs that structured data requires.
+export const SITE_ORIGIN = "https://zechub.wiki";
+
+// Pass http(s) URLs through untouched; resolve everything else against the
+// canonical origin as a site-root-relative path.
+const toAbsoluteUrl = (u: string): string =>
+  /^https?:\/\//i.test(u)
+    ? u
+    : `${SITE_ORIGIN}${u.startsWith("/") ? "" : "/"}${u}`;
+
+// Serialize an object as a JSON-LD payload safe to inline in a <script> tag.
+// Escaping "<" as < prevents a "</script>" sequence inside the data from
+// breaking out of the element — Next.js's documented JSON-LD recommendation.
+export const jsonLdScript = (obj: unknown): string =>
+  JSON.stringify(obj).replace(/</g, "\\u003c");
+
+export type ArticleMeta = {
+  headline: string;
+  description: string;
+  datePublished?: string;
+  image?: string;
+};
+
+// --- markdown line classifiers (used to skip non-prose leading lines) ---
+const isBlankLine = (l: string) => /^\s*$/.test(l);
+const isHeadingLine = (l: string) => /^\s*#{1,6}\s+/.test(l);
+// Opening/closing HTML tag (covers the GitHub "Edit page" badge anchor/img).
+const isHtmlLine = (l: string) => /^\s*<\/?[a-zA-Z!]/.test(l);
+// Line that is only a markdown image/link or a bare URL — not real prose.
+const isLinkOnlyLine = (l: string) =>
+  /^\s*!?\[[^\]]*\]\([^)]*\)\s*$/.test(l) || /^\s*https?:\/\/\S+\s*$/.test(l);
+// Horizontal rule (---, ***, ___).
+const isHrLine = (l: string) => /^\s*([-*_])\1{2,}\s*$/.test(l);
+
+// Strip inline markdown so a paragraph reads cleanly as a plain-text
+// description: images dropped, links reduced to their text, emphasis/code
+// markers removed, whitespace collapsed.
+const stripInlineMd = (s: string) =>
+  s
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/[*_`~]+/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+// Trim to a max length at a word boundary, appending an ellipsis when cut.
+const truncate = (s: string, max: number) => {
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  const lastSpace = cut.lastIndexOf(" ");
+  const base = lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut;
+  return `${base.replace(/[\s.,;:–—-]+$/, "")}…`;
+};
+
+// Normalize a frontmatter date to an ISO string. A bare YYYY-MM-DD is kept as a
+// date-only ISO value (no fabricated time); anything else is parsed and, only if
+// valid, emitted as a full ISO timestamp. Unparseable → undefined (omit).
+const toIsoDate = (v: string): string | undefined => {
+  const dateOnly = /^(\d{4}-\d{2}-\d{2})/.exec(v);
+  if (dateOnly) return dateOnly[1];
+  const d = new Date(v);
+  return isNaN(d.getTime()) ? undefined : d.toISOString();
+};
+
+// Derive per-article structured-data fields from the page's markdown. Strips a
+// leading YAML frontmatter block, skips non-prose leading lines (the GitHub
+// "Edit page" badge, HTML, blank lines), takes the first ATX `# ` heading as the
+// headline and the first prose paragraph as the description. `fallbackHeadline`
+// (a slug-derived title) is used only when no H1 is present; `fallbackImage` (a
+// representative og/banner path) is used only when frontmatter has no image.
+export const extractArticleMeta = (
+  markdown: string,
+  fallbackHeadline: string,
+  fallbackImage?: string,
+): ArticleMeta => {
+  const src = markdown.replace(/^\uFEFF/, "").replace(/\r\n?/g, "\n");
+
+  // Leading YAML frontmatter: `--- ... ---` block of `key: value` scalars.
+  const fm: Record<string, string> = {};
+  let body = src;
+  const fmMatch = /^---\n([\s\S]*?)\n---\n?/.exec(src);
+  if (fmMatch) {
+    for (const line of fmMatch[1].split("\n")) {
+      const kv = /^([A-Za-z0-9_-]+)\s*:\s*(.*)$/.exec(line);
+      if (kv) {
+        fm[kv[1].toLowerCase()] = kv[2]
+          .trim()
+          .replace(/^["']|["']$/g, "")
+          .trim();
+      }
+    }
+    body = src.slice(fmMatch[0].length);
+  }
+
+  const lines = body.split("\n");
+
+  // Headline: first ATX level-1 heading; fall back to the slug-derived title.
+  let headline = fallbackHeadline;
+  let h1Index = -1;
+  for (let i = 0; i < lines.length; i++) {
+    const m = /^#\s+(.+?)\s*$/.exec(lines[i]);
+    if (m) {
+      headline = stripInlineMd(m[1]) || fallbackHeadline;
+      h1Index = i;
+      break;
+    }
+  }
+  headline = truncate(headline, 110);
+
+  // Description: first prose paragraph after the H1 (or from the top if no H1).
+  let description = "";
+  for (let i = h1Index + 1; i < lines.length; i++) {
+    const l = lines[i];
+    if (
+      isBlankLine(l) ||
+      isHeadingLine(l) ||
+      isHtmlLine(l) ||
+      isLinkOnlyLine(l) ||
+      isHrLine(l)
+    ) {
+      continue;
+    }
+    description = truncate(stripInlineMd(l), 160);
+    break;
+  }
+
+  const meta: ArticleMeta = {
+    headline,
+    description: description || SITE_DESCRIPTION,
+  };
+
+  const dateRaw = fm.published || fm.date;
+  if (dateRaw) {
+    const iso = toIsoDate(dateRaw);
+    if (iso) meta.datePublished = iso;
+  }
+
+  const imgRaw = fm.image || fm.cover || (fallbackImage || "").trim();
+  if (imgRaw) meta.image = toAbsoluteUrl(imgRaw);
+
+  return meta;
+};
+
 type MetadataOpts = {
   title?: string;
   description?: string;
@@ -17,8 +172,7 @@ export const genMetadata = ({
   const defaultImage = "/previews/default-banner.jpg";
   const defaultUrl = "https://zechub.wiki";
   const defaultTitle = "ZecHub Wiki";
-  const defaultDescription =
-    "The goal of ZecHub is to provide an educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash & Privacy technology ecosystems.";
+  const defaultDescription = SITE_DESCRIPTION;
 
   return {
     metadataBase: new URL("https://zechub.wiki"),
