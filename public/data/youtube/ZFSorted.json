@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2348
+      "views": 2349
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -483,6 +483,11 @@
       "views": 371
     },
     {
+      "title": "“Financial privacy is not about evading legality, but about affirming liberty.”",
+      "video_id": "_g94z10ECWw",
+      "views": 370
+    },
+    {
       "title": "Community workshop presentations - Day 1 at Zcon0 (2018)",
       "video_id": "GB834x96S1M",
       "views": 368
@@ -490,11 +495,6 @@
     {
       "title": "Developing X Wallet, A Privacy Focused Mobile Wallet",
       "video_id": "4buh1quMbr4",
-      "views": 368
-    },
-    {
-      "title": "“Financial privacy is not about evading legality, but about affirming liberty.”",
-      "video_id": "_g94z10ECWw",
       "views": 368
     },
     {
@@ -650,7 +650,7 @@
     {
       "title": "Zebrad for Linux Tutorial #1",
       "video_id": "7cPKf4hobeI",
-      "views": 305
+      "views": 306
     },
     {
       "title": "FROST: #Zcon2Lite",
@@ -755,7 +755,7 @@
     {
       "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
       "video_id": "5gvQF5oFT8E",
-      "views": 266
+      "views": 267
     },
     {
       "title": "Zashi & SDKs with Andrea Kobrlova and Josh Swihart - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -808,6 +808,11 @@
       "views": 248
     },
     {
+      "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
+      "video_id": "hzUdmwq23ac",
+      "views": 241
+    },
+    {
       "title": "ZF Engineering Update w/ FROST demo with Zcash Foundation Engineers & Manager - ZconVI #zcash",
       "video_id": "lfXIHxx5P5s",
       "views": 241
@@ -816,11 +821,6 @@
       "title": "Zcash Arborist Call 06-11-2026",
       "video_id": "SKNivdDz9qI",
       "views": 241
-    },
-    {
-      "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
-      "video_id": "hzUdmwq23ac",
-      "views": 239
     },
     {
       "title": "MGRC Candidate Q&A Live Streams: Time Slot #1",
@@ -1183,6 +1183,11 @@
       "views": 169
     },
     {
+      "title": "Zcash Arborist Call 07-23-2026",
+      "video_id": "mHpMkEk6GGI",
+      "views": 169
+    },
+    {
       "title": "Zebra Update - Teor at Zcon3",
       "video_id": "eLb9ZAKi_4g",
       "views": 168
@@ -1210,11 +1215,6 @@
     {
       "title": "Zcash Arborist Call 10/03/2024",
       "video_id": "0lRFmXxuRq4",
-      "views": 164
-    },
-    {
-      "title": "Zcash Arborist Call 07-23-2026",
-      "video_id": "mHpMkEk6GGI",
       "views": 164
     },
     {
@@ -1713,6 +1713,11 @@
       "views": 84
     },
     {
+      "title": "Zcash On and Off Ramps In Nigeria with Chidi Olisa - ZconVI #zcash",
+      "video_id": "-oJ2Cjvjamk",
+      "views": 83
+    },
+    {
       "title": "Protecting the Fundamental Rights to Privacy and Civil Liberties by Kurt Opsahl: Zcon4",
       "video_id": "LIj7UI18bkk",
       "views": 82
@@ -1720,11 +1725,6 @@
     {
       "title": "Ziggurat by Mark Henderson: Zcon4",
       "video_id": "DAHlU7k2Vjg",
-      "views": 82
-    },
-    {
-      "title": "Zcash On and Off Ramps In Nigeria with Chidi Olisa - ZconVI #zcash",
-      "video_id": "-oJ2Cjvjamk",
       "views": 82
     },
     {
