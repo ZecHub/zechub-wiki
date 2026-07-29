@@ -445,7 +445,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
-                        style={{ background: "#0ea5e9" }}
+                        style={{ background: "#f97316" }}
                       />
                       <span>Ironwood</span>
                     </button>
@@ -491,7 +491,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
               <Bar
                 dataKey="ironwoodTxs"
                 name="Ironwood"
-                fill="#0ea5e9"
+                fill="#f97316"
                 opacity={0.9}
                 barSize={isMobile ? 8 : 2}
                 hide={!ironwoodVisible}
@@ -500,7 +500,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 type="monotone"
                 dataKey="shieldedPercentage"
                 name="Shielded %"
-                stroke="#f59e0b"
+                stroke="#f97316"
                 strokeWidth={3}
                 yAxisId="right"
                 dot={false}
@@ -806,7 +806,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                     >
                       <span
                         className="inline-block w-3 h-3 rounded-sm"
-                        style={{ background: "#0ea5e9" }}
+                        style={{ background: "#f97316" }}
                       />
                       <span>Ironwood TXs</span>
                     </button>
@@ -857,7 +857,7 @@ export default function ZcashDashboard({ chartRef }: ZcashDashboardProps) {
                 type="monotone"
                 dataKey="totalIronwoodTxs"
                 name="Ironwood TXs"
-                stroke="#0ea5e9"
+                stroke="#f97316"
                 strokeWidth={2}
                 dot={false}
                 hide={!ironwoodTxsVisible}
