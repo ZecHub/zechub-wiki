@@ -3,6 +3,11 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Ironwood ativado na Zcash | Zebra Talks",
+            "video_id": "aB--WqXJiPQ",
+            "views": 0
+        },
+        {
             "title": "Tachyon: Statelessness, Poda de Estado e Privacidade Forte",
             "video_id": "ohtuhXa6P7w",
             "views": 10
@@ -150,7 +155,7 @@
         {
             "title": "Como transcrever e traduzir simultaneamente ao vivo | Akkadu com OBS",
             "video_id": "ujv2IWXKOcY",
-            "views": 53
+            "views": 54
         },
         {
             "title": "Zingo Wallet Beta e App Zec Map | Zec Insider",
@@ -160,7 +165,7 @@
         {
             "title": "O B\u00e1sico da Web3 Que Pode Mudar Sua Jornada | Jos\u00e9 Santos e Ruan Antony | Zcon Vozes 2",
             "video_id": "_NaiW_jcdY8",
-            "views": 139
+            "views": 140
         },
         {
             "title": "Zcash e o futuro da privacidade regulada",
@@ -1075,7 +1080,7 @@
         {
             "title": "Rodando Seu Pr\u00f3prio N\u00f3 Zcash no Linux \u2014 Zebrad + Firewall + RPC + Systemd (Guia Completo)",
             "video_id": "Cbz1BTuKRUo",
-            "views": 164
+            "views": 165
         },
         {
             "title": "Por que a Picnic focou no Brasil",
