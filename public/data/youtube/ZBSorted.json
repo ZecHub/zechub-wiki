@@ -650,7 +650,7 @@
     {
       "title": "Rodando Seu Próprio Nó Zcash no Linux — Zebrad + Firewall + RPC + Systemd (Guia Completo)",
       "video_id": "Cbz1BTuKRUo",
-      "views": 164
+      "views": 165
     },
     {
       "title": "A Ilusão do Dinheiro Fictício",
@@ -773,6 +773,11 @@
       "views": 140
     },
     {
+      "title": "O Básico da Web3 Que Pode Mudar Sua Jornada | José Santos e Ruan Antony | Zcon Vozes 2",
+      "video_id": "_NaiW_jcdY8",
+      "views": 140
+    },
+    {
       "title": "Legal Tech & Web3 | Os novos caminhos do direito",
       "video_id": "tQUjXpv_Ims",
       "views": 140
@@ -785,11 +790,6 @@
     {
       "title": "Rejeição de indicadores e foco no Smart Money.",
       "video_id": "0v8uLGupUm4",
-      "views": 139
-    },
-    {
-      "title": "O Básico da Web3 Que Pode Mudar Sua Jornada | José Santos e Ruan Antony | Zcon Vozes 2",
-      "video_id": "_NaiW_jcdY8",
       "views": 139
     },
     {
@@ -1853,6 +1853,11 @@
       "views": 54
     },
     {
+      "title": "Como transcrever e traduzir simultaneamente ao vivo | Akkadu com OBS",
+      "video_id": "ujv2IWXKOcY",
+      "views": 54
+    },
+    {
       "title": "Como Criar sua Foto de Perfil da Zcash com o Gerador de PFP | Zcash Brasil",
       "video_id": "R7WJPUt2zaY",
       "views": 53
@@ -1865,11 +1870,6 @@
     {
       "title": "Privacidade Na Indústria On-chain | Tokenation 2026",
       "video_id": "rEqCsY0GpCo",
-      "views": 53
-    },
-    {
-      "title": "Como transcrever e traduzir simultaneamente ao vivo | Akkadu com OBS",
-      "video_id": "ujv2IWXKOcY",
       "views": 53
     },
     {
@@ -3791,6 +3791,11 @@
       "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
       "video_id": "XgtJXKqv-ZE",
       "views": 3
+    },
+    {
+      "title": "Ironwood ativado na Zcash | Zebra Talks",
+      "video_id": "aB--WqXJiPQ",
+      "views": 0
     }
   ]
 }
