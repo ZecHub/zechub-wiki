@@ -8,6 +8,27 @@ export type CommunityProject = {
 };
 
 /**
+ * Community Projects – data flow
+ *
+ * Source of truth: 
+ *   zechub repo → site/Zcash_Community/Community_Projects.md
+ *
+ * Flow:
+ *   1. page.tsx fetches the Markdown
+ *   2. parseCommunityProjects() turns it into a typed array
+ *   3. attachImages() adds thumbnail paths from communityProjectImages.ts
+ *   4. ClientPage.tsx renders the cards (grouped by category)
+ *
+ * To add/update a project:
+ *   - Edit Community_Projects.md (title, description, link)
+ *   - Optionally add an image in public/community-projects/
+ *   - Optionally register the image in communityProjectImages.ts
+ *
+ * The old hardcoded files (communityProjects.ts / .it.ts) are deprecated
+ * and can be removed once this flow is stable.
+ */
+
+/**
  * Parses the structured Community_Projects.md into a clean array.
  *
  * Expected format:
