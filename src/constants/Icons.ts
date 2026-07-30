@@ -1,6 +1,7 @@
 'use client';
 
 import { IconType } from "react-icons";
+import { KeyRound } from "lucide-react";
 import {
   BiCheckShield as CheckShield,
   BiLock as Lock,
@@ -317,6 +318,7 @@ const iconsForMenu: IconsFor = {
     "Private Community Treasury": Group,
     "Receive Donations Privately": Jar,
     "Send Money Without Linking Identity": ArrowUp,
+    "Sign in With Zcash": KeyRound,
   },
   
   "Zcash Community": {
