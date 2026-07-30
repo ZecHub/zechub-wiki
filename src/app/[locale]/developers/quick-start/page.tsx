@@ -974,9 +974,181 @@ const ResourcesSection = () => {
   );
 };
 
+interface StackRow {
+  name: string;
+  href: string;
+  role: string;
+  language: string;
+  platforms: string;
+  status: "Active" | "Beta";
+  hardware: string;
+  rpc: string;
+}
+
+const STACK_ROWS: StackRow[] = [
+  {
+    name: "zebrad",
+    href: "https://github.com/ZcashFoundation/zebra",
+    role: "Full node",
+    language: "Rust",
+    platforms: "Linux · macOS · Windows (WSL)",
+    status: "Active",
+    hardware: "4 cores · 16 GB RAM · 300 GB disk",
+    rpc: "JSON-RPC (subset of zcashd methods)",
+  },
+  {
+    name: "Zakura",
+    href: "https://github.com/zakura-core/zakura",
+    role: "Full node (Zebra fork)",
+    language: "Rust",
+    platforms: "Linux · macOS · Windows (WSL)",
+    status: "Active",
+    hardware: "~11 GB disk pruned · snapshot bootstrap",
+    rpc: "JSON-RPC (zcashd compatibility mode)",
+  },
+  {
+    name: "Zaino",
+    href: "https://github.com/zingolabs/zaino",
+    role: "Indexer for light clients & explorers",
+    language: "Rust",
+    platforms: "Linux · macOS · Windows (WSL)",
+    status: "Beta",
+    hardware: "Light · runs beside a full node",
+    rpc: "gRPC (lightwalletd-compatible)",
+  },
+  {
+    name: "lightwalletd",
+    href: "https://github.com/zcash/lightwalletd",
+    role: "Light client server",
+    language: "Go",
+    platforms: "Linux · macOS · Windows (WSL)",
+    status: "Active",
+    hardware: "Light · needs a synced full node",
+    rpc: "gRPC",
+  },
+  {
+    name: "Zallet",
+    href: "https://github.com/zcash/wallet",
+    role: "Wallet backend (zcashd wallet replacement)",
+    language: "Rust",
+    platforms: "Linux · macOS · Windows (WSL)",
+    status: "Beta",
+    hardware: "Light · pairs with a Zebra node",
+    rpc: "JSON-RPC (zcashd wallet methods)",
+  },
+];
+
+const STATUS_STYLES: Record<StackRow["status"], string> = {
+  Active:
+    "bg-emerald-500/10 border-emerald-500/25 text-emerald-600 dark:text-emerald-400",
+  Beta: "bg-amber-500/10 border-amber-500/25 text-amber-600 dark:text-amber-400",
+};
+
+// Now rendered as its own "Compare" tab instead of a fixed section above the
+// tab bar, so it uses the same section/heading rhythm as the other tabs
+// (StepBadge + heading, wrapped in the shared `main` container's max-width).
+const StackComparison = () => {
+  const { t } = useLanguage();
+  const qs = t?.pages?.developersQuickStart;
+
+  const headers = [
+    qs?.compareColSoftware ?? "Software",
+    qs?.compareColRole ?? "Role",
+    qs?.compareColLanguage ?? "Language",
+    qs?.compareColPlatforms ?? "Platforms",
+    qs?.compareColStatus ?? "Status",
+    qs?.compareColHardware ?? "Hardware",
+    qs?.compareColRpc ?? "RPC / API",
+  ];
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+      <section id="stack-comparison">
+        <div className="flex items-center gap-[14px] mb-7">
+          <StepBadge number={1} />
+          <h2 className="text-slate-900 dark:text-slate-100 text-[22px] font-bold m-0">
+            {qs?.compareTitle ?? "Node & Client Comparison"}
+          </h2>
+        </div>
+
+        <SectionCard title={qs?.compareTableTitle ?? "At a Glance"}>
+          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-0 mb-5">
+            {qs?.compareLead ??
+              "The Zcash stack is made up of a few separate tools. Use this table to work out which one your project needs, then follow the matching guide in the tabs above."}
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[840px] border-collapse text-[13px] text-left">
+              <thead>
+                <tr>
+                  {headers.map((h) => (
+                    <th
+                      key={h}
+                      className="py-[10px] px-3 text-[11px] tracking-[0.1em] uppercase font-semibold text-slate-500 dark:text-slate-500 border-b border-black/10 dark:border-white/10"
+                    >
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {STACK_ROWS.map((row) => (
+                  <tr
+                    key={row.name}
+                    className="border-b border-black/[0.06] dark:border-white/[0.06] last:border-b-0 align-top"
+                  >
+                    <td className="py-3 px-3 whitespace-nowrap">
+                      <a
+                        href={row.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sky-600 dark:text-sky-400 font-semibold no-underline hover:underline"
+                      >
+                        {row.name}
+                      </a>
+                    </td>
+                    <td className="py-3 px-3 text-slate-700 dark:text-slate-300">
+                      {row.role}
+                    </td>
+                    <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
+                      {row.language}
+                    </td>
+                    <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
+                      {row.platforms}
+                    </td>
+                    <td className="py-3 px-3 whitespace-nowrap">
+                      <span
+                        className={`inline-block px-2 py-[2px] rounded-full border text-[11px] font-semibold ${STATUS_STYLES[row.status]}`}
+                      >
+                        {row.status}
+                      </span>
+                    </td>
+                    <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
+                      {row.hardware}
+                    </td>
+                    <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
+                      {row.rpc}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-[12.5px] text-slate-500 dark:text-slate-500 leading-relaxed mt-4 mb-0">
+            <span className="text-amber-500 mr-1">⚠</span>
+            {qs?.compareFootnote ??
+              "zcashd reached end of life at block 3417100 on July 18, 2026 — new projects should build on the software above."}
+          </p>
+        </SectionCard>
+      </section>
+
+      <ResourcesSection />
+    </div>
+  );
+};
+
 // ── Main Page ────────────────────────────────────────────────────────────────
 
-const TABS = ["Zebrad", "Zakura", "Zaino", "Zingolib"] as const;
+const TABS = ["Zebrad", "Zakura", "Zaino", "Zingolib", "Compare"] as const;
 type Tab = (typeof TABS)[number];
 
 export default function QuickStartPage() {
@@ -985,6 +1157,7 @@ export default function QuickStartPage() {
   const [activeTab, setActiveTab] = useState<Tab>("Zebrad");
 
   const tabContent: Record<Tab, ReactNode> = {
+    Compare: <StackComparison />,
     Zebrad: <ZebradTab />,
     Zakura: <ZakuraTab />,
     Zaino: <ZainodTab />,
@@ -1079,18 +1252,18 @@ export default function QuickStartPage() {
         </div>
 
         {/* Tab bar */}
-        <div className="sticky top-0 z-10 bg-white/90 dark:bg-[#030712]/90 backdrop-blur-[12px] border-b border-black/[0.06] dark:border-white/[0.06] px-10">
-          <div className="max-w-[1024px] mx-auto flex gap-1">
+        <div className="sticky top-0 z-10 bg-white/90 dark:bg-[#030712]/90 backdrop-blur-[12px] border-b border-black/[0.06] dark:border-white/[0.06] px-4 sam:px-6 lg:px-10">
+          <div className="max-w-[1024px] mx-auto flex gap-1 overflow-x-auto no-scrollbar">
             {TABS.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-4 bg-transparent border-0 border-b-2 cursor-pointer transition-all duration-200 text-sm font-[inherit]
-                  ${
-                    activeTab === tab
-                      ? "border-b-sky-500 text-slate-900 dark:text-slate-100 font-bold"
-                      : "border-b-transparent text-slate-400 dark:text-slate-500 font-normal hover:text-slate-600 dark:hover:text-slate-300"
-                  }`}
+                className={`shrink-0 whitespace-nowrap px-4 py-3 lg:px-6 lg:py-4 bg-transparent border-0 border-b-2 cursor-pointer transition-all duration-200 text-[13px] lg:text-sm font-[inherit]
+          ${
+            activeTab === tab
+              ? "border-b-sky-500 text-slate-900 dark:text-slate-100 font-bold"
+              : "border-b-transparent text-slate-400 dark:text-slate-500 font-normal hover:text-slate-600 dark:hover:text-slate-300"
+          }`}
                 style={{ letterSpacing: "0.02em" }}
               >
                 {tab}
