@@ -17,6 +17,7 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Zcash Network School": "/community-projects/zcash-network-school.png",
   "Zectastic": "/community-projects/zectastic.png",
   "Zec App": "/community-projects/zec-app.png",
+  "PGPZ Community": "/community-projects/pgpz.png",
 
   // Wallets and Payment Tools
   "Cipherpay": "/community-projects/Cipherpay.png",
