@@ -5,7 +5,7 @@ import { BsPlay, BsDiscord as Discord } from "react-icons/bs";
 import { FcAbout as Info } from "react-icons/fc";
 import { MdOutlinePointOfSale as PointOfSale, MdOutlinePrivacyTip as PrivacyTip } from "react-icons/md";
 import { LuFileKey as FileKey } from "react-icons/lu";
-import { GrGroup as Group } from "react-icons/gr";
+import { GrGroup as Group, GrNetwork as Network } from "react-icons/gr";
 import { FaJarWheat as Jar } from "react-icons/fa6";
 import { BsFillArrowUpRightCircleFill as ArrowUp } from "react-icons/bs";
 
@@ -231,9 +231,14 @@ export const navigations: Array<NavigationItem> = [
         icon: FcVoicePresentation,
       },
       {
-	name: "Zcash Engineering Office Hours",
-	path: "/zcash-community/zcash-engineering-office-hours",
+	    name: "Zcash Engineering Office Hours",
+	    path: "/zcash-community/zcash-engineering-office-hours",
       },
+	  {
+		name: "Network Upgrades",
+		path: "/zcash-evolution",
+		icon: Network,
+	  },
     ],
   },
   {
