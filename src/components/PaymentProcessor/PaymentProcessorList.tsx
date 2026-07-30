@@ -35,7 +35,8 @@ const PaymentProcessorList: React.FC<PaymentProcessorListProps> = ({
                 <div className="mr-4 flex-shrink-0 bg-gray-100 h-24 w-24 dark:bg-gray-700 p-2 rounded-lg relative overflow-hidden">
                   <Image
                     src={
-                      processor.logoUrl.startsWith("http")
+                      processor.logoUrl.startsWith("http") ||
+                      processor.logoUrl.startsWith("/")
                         ? processor.logoUrl
                         : `/images/processors/${processor.logoUrl}`
                     }
