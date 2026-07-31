@@ -4018,10 +4018,10 @@
     classnames "^2.3.1"
     prop-types "^15.6.2"
 
-"@visx/mock-data@^3.3.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@visx/mock-data/-/mock-data-3.12.0.tgz#6b65d564142bbb55555813166832ec2f2eb5f7d1"
-  integrity sha512-HI8LKdO3sU2tIBv16ZYRTc2JYsu0Ai/hQc7YUOBqbjhXUW993iCBe98pAgEdHDrSWqK2yvXY4En5ceBTAP34Jw==
+"@visx/mock-data@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@visx/mock-data/-/mock-data-4.0.0.tgz#d021259b95436662ac66dd3ad41ea0c7c715ea0e"
+  integrity sha512-Q246ZWi2pyKdD5WXuvSDJpudNq44RtT4NkKgdF9lS85d/j8gStLvnljG1pYFzv9vPJc8iC31Kz4LY3P7HjDiDA==
   dependencies:
     "@types/d3-random" "^2.2.0"
     d3-random "^2.2.2"
