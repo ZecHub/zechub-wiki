@@ -67,7 +67,7 @@
     "eslint": "8.48.0",
     "eslint-config-next": "^15.5.22",
     "express-session": "^1.18.0",
-    "flowbite": "^1.8.1",
+    "flowbite": "^4.0.2",
     "flowbite-react": "^0.12.17",
     "framer-motion": "^12.38.0",
     "gitlog": "^5.1.0",
