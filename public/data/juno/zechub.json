@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 169,
+    "proposal_count": 170,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6867,9 +6867,9 @@
           "msgs": [],
           "title": "DAO member Participation Compensation",
           "votes": {
-            "no": "9",
+            "no": "10",
             "yes": "5",
-            "abstain": "0"
+            "abstain": "1"
           },
           "status": "open",
           "proposer": "juno1uu4xqwt0fwlpkxfur6m9sjej6xlvyfs7lvyr00",
@@ -6913,7 +6913,7 @@
           "title": "Stepping down from the ZecHub DAO",
           "votes": {
             "no": "0",
-            "yes": "15",
+            "yes": "16",
             "abstain": "1"
           },
           "status": "open",
@@ -6947,8 +6947,8 @@
           "msgs": [],
           "title": " Zcash East Africa Operations: From Awareness to Adoption ( August – October 2026)",
           "votes": {
-            "no": "4",
-            "yes": "1",
+            "no": "5",
+            "yes": "2",
             "abstain": "0"
           },
           "status": "open",
@@ -6973,6 +6973,57 @@
           "min_voting_period": null
         },
         "createdAt": "2026-07-29T16:24:17.817Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 170,
+        "proposal": {
+          "msgs": [
+            {
+              "wasm": {
+                "execute": {
+                  "msg": "eyJzZXRfaXRlbSI6eyJrZXkiOiJ3aWRnZXQ6dmVzdGluZyIsInZhbHVlIjoie1wiZmFjdG9yaWVzXCI6e1wianVuby0xXCI6e1wiYWRkcmVzc1wiOlwianVubzFtazJhMDAyZXljM2R2N3dzMmZsNmowM2M5d2w5dDNlaHM3NnpqNWNxMjN5ajlxam13d2Fxejdmcm5oXCIsXCJ2ZXJzaW9uXCI6Mn19fSJ9fQ==",
+                  "funds": [],
+                  "contract_addr": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y"
+                }
+              }
+            },
+            {
+              "stargate": {
+                "value": "Cj9qdW5vMW5rdHJ1bGhha3dtMG4zd2x5YWpwd3h5ZzU0bjM5eHg0eThoZGFxbHR5N215bWY4NXZ3ZXE3bTZ0MHkSP2p1bm8xbmt0cnVsaGFrd20wbjN3bHlhanB3eHlnNTRuMzl4eDR5OGhkYXFsdHk3bXltZjg1dndlcTdtNnQweRj8JSImVmVzdGluZ0ZhY3RvcnktdjJfanVuby0xXzE3ODU0OTgyNjM0MTcqYnsib3duZXIiOiJqdW5vMW5rdHJ1bGhha3dtMG4zd2x5YWpwd3h5ZzU0bjM5eHg0eThoZGFxbHR5N215bWY4NXZ3ZXE3bTZ0MHkiLCJ2ZXN0aW5nX2NvZGVfaWQiOjQ4NzR9OiZ2ZXN0aW5nX3BheW1lbnRzX1FocmRpUTV2bWdkaUg0VEd1SWJ1UQ==",
+                "type_url": "/cosmwasm.wasm.v1.MsgInstantiateContract2"
+              }
+            }
+          ],
+          "title": "Privacy Education Through SnapChat",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno19qgmukfgq0uv7edqh5s4k5ajnevwjh270a2g00",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1785932519158573690"
+          },
+          "description": "Summary.\n\nThis proposal seeks funding to establish and manage ZecHub's official Snapchat presence, using beginner-friendly educational content to introduce new audiences to Zcash, financial privacy, and the broader ecosystem. The initiative aims to expand ZecHub's educational mission by reaching users on a platform where privacy conversations are still largely absent.\n\nBackground.\n\nMy name is Rems, and for the past year I have been an active contributor to the Zcash ecosystem through ZecHub bounties and community initiatives. During this time, I have contributed educational content, research, designs, the weekly newsletter, and community resources that help make Zcash more accessible to newcomers.\nContributing to ZecHub has shown me that education is one of the most effective ways to grow the ecosystem. However, I've also noticed that much of Zcash's educational content is concentrated on platforms where people are already familiar with cryptocurrency.\nI believe there is an opportunity to take that educational mission beyond existing community channels and introduce Zcash to entirely new audiences.\nHaving used Snapchat for over six years, I understand how people consume content on the platform and how educational storytelling can be adapted to fit its unique format. This experience gives me confidence that Snapchat can become another meaningful entry point into the Zcash ecosystem.\n\nWhy?\n\nI have actively contributed to ZecHub through bounties and educational work. This proposal is my way of taking that contribution beyond individual tasks and into a long-term initiative focused on outreach and education.\nMillions of people use Snapchat every day, yet many have never heard of Zcash or even the concept of financial privacy. Others value privacy in their everyday lives but have never connected those values to digital money.\nI believe Snapchat presents a unique opportunity to bridge that gap by reaching users who may never actively search for cryptocurrency education but regularly engage with short-form, visual content.\nRather than targeting only existing crypto users, this initiative focuses on introducing privacy through relatable, beginner-friendly content before gradually introducing Zcash, its ecosystem, and the tools available to new users.\nThe objective is not simply to grow a social media account but to expand ZecHub's educational mission to an audience that is currently underserved.\n\nGoals.\n\nEstablish and manage ZecHub's official Snapchat presence.\nIntroduce beginners to financial privacy and Zcash through accessible educational content.\nCreate consistent written, visual, and short-form educational content designed specifically for Snapchat.\nHighlight ecosystem news, community achievements, and educational resources.\nEncourage newcomers to explore Zcash wallets, ZecHub resources, and the broader ecosystem.\nBuild a welcoming community where people can ask questions and learn about privacy without needing prior blockchain knowledge.\n\nContent Strategy.\n\nSnapchat is built around private, ephemeral communication and has become a platform where users naturally engage with content in a more personal way. This makes it an ideal place to introduce conversations around digital privacy.\nThroughout this initiative, I will break down technical Zcash concepts into relatable stories and beginner-friendly educational content that is easy to understand, engaging, and relevant to everyday users.\n\nDeliverables.\n\nPublish at least 5 educational Stories each week.\nProduce beginner-focused Spotlight content.\nShare ecosystem news in a Snapchat-native format.\nFeature community-created educational resources (with permission and attribution).\nEngage directly with followers through polls, Q&As, discussions, and fun facts.\nPublish monthly analytics and progress reports.\n\nReporting & Accountability.\n\nTo ensure transparency and demonstrate the impact of this initiative, I will provide a detailed monthly report to the ZecHub DAO, including:\nNumber of educational Stories, Spotlight posts, and other content published.\nSnapchat analytics, including views, reach, engagement, follower growth, and completion rates where available.\nHighlights of ecosystem news and educational campaigns covered during the month.\nCommunity engagement, including responses to questions, polls, and feedback from followers.\nProgress toward onboarding new users to ZecHub resources and the broader Zcash ecosystem.\nChallenges encountered, lessons learned, and plans for improving future content.\nAt the end of the initial three-month period, I will submit a comprehensive report summarizing:\nContent produced.\nPerformance metrics.\nAudience growth and engagement.\nKey achievements.\nLessons learned.\nRecommendations for the next phase of the initiative.\n\nProposed Budget (3 Months).\n\nInitiative Lead (Content Research, Writing, Content Planning, Account Management & Reporting)\n$1,200\nGraphic Design & Short-form Video Editing\n$600\nCommunity Engagement & Campaign Activities\n$150\nSoftware & Creative Tools\n$150\nTotal\n$2,100\n\nConclusion.\n\nBy leveraging Snapchat, I aim to extend ZecHub's educational mission beyond its existing platforms, creating beginner-friendly content that makes privacy more understandable, approachable, and relevant to everyday users.\nI believe this initiative will help expand awareness of Zcash, encourage meaningful engagement with the ecosystem, and create a welcoming pathway for newcomers to discover the value of financial privacy.\nIf approved, I hope this initiative becomes the foundation for a long-term Snapchat presence that continues to educate, onboard, and grow the Zcash community beyond its traditional platforms.\n",
+          "total_power": "23",
+          "start_height": 40322690,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-07-31T12:21:59.158Z"
       }
     ]
   },
