@@ -6871,7 +6871,7 @@
             "yes": "5",
             "abstain": "1"
           },
-          "status": "open",
+          "status": "closed",
           "proposer": "juno1uu4xqwt0fwlpkxfur6m9sjej6xlvyfs7lvyr00",
           "threshold": {
             "threshold_quorum": {
@@ -6892,7 +6892,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-07-26T19:28:16.010Z"
+        "createdAt": "2026-07-26T19:28:16.010Z",
+        "completedAt": "2026-07-31T19:58:11.000Z",
+        "closedAt": "2026-07-31T19:58:11.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6947,8 +6949,8 @@
           "msgs": [],
           "title": " Zcash East Africa Operations: From Awareness to Adoption ( August – October 2026)",
           "votes": {
-            "no": "5",
-            "yes": "2",
+            "no": "6",
+            "yes": "3",
             "abstain": "0"
           },
           "status": "open",
@@ -6998,7 +7000,7 @@
           ],
           "title": "Privacy Education Through SnapChat",
           "votes": {
-            "no": "0",
+            "no": "4",
             "yes": "0",
             "abstain": "0"
           },
