@@ -3,7 +3,7 @@
     "dao_address": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
-    "member_count": 23,
+    "member_count": 22,
     "proposal_count": 170,
     "config": {
       "name": "ZecHub",
@@ -6918,7 +6918,7 @@
             "yes": "16",
             "abstain": "1"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno1uu4xqwt0fwlpkxfur6m9sjej6xlvyfs7lvyr00",
           "threshold": {
             "threshold_quorum": {
@@ -6939,7 +6939,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-07-26T23:56:55.890Z"
+        "createdAt": "2026-07-26T23:56:55.890Z",
+        "completedAt": "2026-08-01T01:23:15.000Z",
+        "executedAt": "2026-08-01T01:23:15.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -6949,7 +6951,7 @@
           "msgs": [],
           "title": " Zcash East Africa Operations: From Awareness to Adoption ( August – October 2026)",
           "votes": {
-            "no": "6",
+            "no": "7",
             "yes": "3",
             "abstain": "0"
           },
@@ -7000,7 +7002,7 @@
           ],
           "title": "Privacy Education Through SnapChat",
           "votes": {
-            "no": "4",
+            "no": "5",
             "yes": "0",
             "abstain": "0"
           },
