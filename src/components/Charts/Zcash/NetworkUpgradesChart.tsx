@@ -10,12 +10,11 @@ interface Upgrade {
 
 type Network = "mainnet" | "testnet";
 
-// Helper to create URL-friendly slugs matching the Evolution page
 const createSlug = (name: string): string => {
   return name
     .toLowerCase()
-    .replace(/\./g, "_")     // NU6.2 → nu6_2
-    .replace(/\s+/g, "_")    // NU 6.1 → nu_6_1
+    .replace(/\./g, "_")
+    .replace(/\s+/g, "_")
     .replace(/-/g, "_");
 };
 
@@ -37,7 +36,7 @@ export default function NetworkUpgradesChart() {
         : "/data/zcash/network_upgrades_testnet.json";
 
     try {
-      const res = await fetch(file, { cache: "force-cache" });
+      const res = await fetch(file, { cache: "no-store" });
       if (!res.ok) throw new Error(`Failed to load ${selectedNetwork} data`);
 
       const json = await res.json();
@@ -72,9 +71,10 @@ export default function NetworkUpgradesChart() {
     }
   };
 
+  const allActive = upgrades.length > 0 && upgrades.every((u) => u.status === "active");
+
   return (
     <div className="p-6">
-      {/* Header */}
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="flex items-center gap-3">
@@ -89,11 +89,19 @@ export default function NetworkUpgradesChart() {
             )}
           </div>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-            Zcash {network} upgrade activation heights. See [here](https://zechub.wiki/start-here/network-upgrades) for more info.
+            Zcash {network} upgrade activation heights. See{" "}
+            <a
+              href="https://zechub.wiki/start-here/network-upgrades"
+              className="text-purple-600 hover:underline dark:text-purple-400"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              here
+            </a>{" "}
+            for more info.
           </p>
         </div>
 
-        {/* Mainnet / Testnet Toggle */}
         <div className="inline-flex rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-1 shadow-sm">
           <button
             onClick={() => handleNetworkChange("mainnet")}
@@ -120,14 +128,12 @@ export default function NetworkUpgradesChart() {
         </div>
       </div>
 
-      {/* Error State */}
       {error && (
         <div className="mb-4 rounded-xl bg-red-50 p-4 text-red-600 dark:bg-red-950/30 dark:text-red-400">
           {error}
         </div>
       )}
 
-      {/* Table */}
       {!loading && upgrades.length > 0 && (
         <div
           className={`overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 transition-opacity duration-200 ${
@@ -155,53 +161,67 @@ export default function NetworkUpgradesChart() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
-              {upgrades.map((u, index) => (
-                <tr
-                  key={index}
-                  className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
-                >
-                  {/* Clickable Upgrade Name (uses slug matching Evolution page) */}
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <a
-                      href={`/zcash-evolution#${createSlug(u.name)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium text-slate-900 dark:text-slate-100 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-                    >
-                      {u.name}
-                    </a>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-slate-700 dark:text-slate-300">
-                    {u.activationHeight.toLocaleString()}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400 font-mono">
-                    {u.activationDate || "—"}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400">
-                      {u.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-xs font-mono text-slate-500 dark:text-slate-400">
-                    {u.id}
-                  </td>
-                </tr>
-              ))}
+              {upgrades.map((u, index) => {
+                const statusClass =
+                  u.status === "active"
+                    ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400"
+                    : u.status === "pending"
+                    ? "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400"
+                    : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400";
+
+                return (
+                  <tr
+                    key={index}
+                    className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
+                  >
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <a
+                        href={`/zcash-evolution#${createSlug(u.name)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-slate-900 dark:text-slate-100 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      >
+                        {u.name}
+                      </a>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-slate-700 dark:text-slate-300">
+                      {u.activationHeight.toLocaleString()}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400 font-mono">
+                      {u.activationDate || "—"}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span
+                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusClass}`}
+                      >
+                        {u.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-xs font-mono text-slate-500 dark:text-slate-400">
+                      {u.id}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
       )}
 
-      {/* Empty State */}
       {!loading && upgrades.length === 0 && !error && (
         <div className="text-slate-500">No upgrade data found.</div>
       )}
 
-      {/* Footer */}
       {!loading && upgrades.length > 0 && (
         <div className="mt-4 flex justify-between text-xs text-slate-500 dark:text-slate-400">
           <div>Source: getblockchaininfo</div>
-          <div>All upgrades currently active on {network}</div>
+          <div>
+            {allActive
+              ? `All upgrades currently active on ${network}`
+              : lastUpdated
+              ? `Last updated: ${lastUpdated}`
+              : `Status varies on ${network}`}
+          </div>
         </div>
       )}
     </div>
