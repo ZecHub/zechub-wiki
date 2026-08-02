@@ -163,6 +163,7 @@ export type NetInOutflow = {
   Date: string;
   "Net Sapling Flow": string;
   "Net Orchard Flow": string;
+  "Net Ironwood Flow": string;
 };
 
 export type LockBox = {
