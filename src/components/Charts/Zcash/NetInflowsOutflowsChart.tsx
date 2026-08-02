@@ -30,7 +30,6 @@ export default function NetInflowsOutflowsChart(
   const [loading, setLoading] = useState(false);
   const [dataFlow, setDataFlow] = useState<NetInOutflow[]>([]);
   const [error, setError] = useState(false);
-
   const fontSize = useResponsiveFontSize();
 
   useEffect(() => {
@@ -38,7 +37,6 @@ export default function NetInflowsOutflowsChart(
 
     const fetchAllData = async () => {
       setLoading(true);
-
       try {
         const [netInOutflow] = await Promise.all([
           getNetInOutflowData(
@@ -46,7 +44,6 @@ export default function NetInflowsOutflowsChart(
             controller.signal
           ),
         ]);
-
         setDataFlow(netInOutflow);
       } catch (err) {
         console.error("Error fetching dashboard data:", err);
@@ -57,27 +54,24 @@ export default function NetInflowsOutflowsChart(
     };
 
     fetchAllData();
-
     return () => controller.abort();
   }, []);
 
   const parsedData = dataFlow.map((item) => ({
     date: item.Date,
-    netSaplingFlow: -parseFloat(item["Net Sapling Flow"]),
-    netOrchardFlow: -parseFloat(item["Net Orchard Flow"]),
+    netSaplingFlow: -parseFloat(item["Net Sapling Flow"] || "0"),
+    netOrchardFlow: -parseFloat(item["Net Orchard Flow"] || "0"),
+    netIronwoodFlow: -parseFloat(item["Net Ironwood Flow"] || "0"),
   }));
-
-  console.log(parsedData);
 
   return (
     <ErrorBoundary fallback={"Failed to load Net Inflows"}>
-      <ChartHeader title="Net Sapling & Orchard Flow" />
+      <ChartHeader title="Net Sapling, Orchard & Ironwood Flow" />
       <ChartContainer ref={props.chartRef} loading={loading}>
         <BarChart
           data={parsedData}
           margin={{ top: 20, right: 20, left: 0, bottom: 40 }}
         >
-          {/* Gradients */}
           <defs>
             <linearGradient id="saplingGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.6} />
@@ -87,15 +81,22 @@ export default function NetInflowsOutflowsChart(
               <stop offset="5%" stopColor="#ec4899" stopOpacity={0.6} />
               <stop offset="95%" stopColor="#ec4899" stopOpacity={0.1} />
             </linearGradient>
+            <linearGradient id="ironwoodGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#14b8a6" stopOpacity={0.6} />
+              <stop offset="95%" stopColor="#14b8a6" stopOpacity={0.1} />
+            </linearGradient>
           </defs>
 
           <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
 
           <XAxis
             dataKey="date"
-            tickFormatter={(date) => dateFns.format(new Date(date), "MMM yyyy")}
+            tickFormatter={(date) =>
+              dateFns.format(new Date(date), "MMM yyyy")
+            }
             tick={{ fontSize, fill: "#94a3b8" }}
           />
+
           <YAxis
             tickFormatter={(v) => formatNumberShort(v)}
             tick={{ fontSize, fill: "#94a3b8" }}
@@ -110,13 +111,17 @@ export default function NetInflowsOutflowsChart(
                 ? "Net Sapling Flow"
                 : name === "netOrchardFlow"
                 ? "Net Orchard Flow"
+                : name === "netIronwoodFlow"
+                ? "Net Ironwood Flow"
                 : name,
             ]}
             labelFormatter={(label) => {
-		  if (label == null) return "";
-		  return dateFns.format(new Date(label as string | number | Date), "PPP");
-		}}
-            
+              if (label == null) return "";
+              return dateFns.format(
+                new Date(label as string | number | Date),
+                "PPP"
+              );
+            }}
             contentStyle={{
               backgroundColor: "#fff",
               border: "1px solid #e5e7eb",
@@ -134,24 +139,28 @@ export default function NetInflowsOutflowsChart(
                 <div className="flex items-center gap-2">
                   <span
                     className="w-3 h-3 inline-block rounded-sm"
-                    style={{
-                      background: "#ec4899",
-                    }}
+                    style={{ background: "#3b82f6" }}
+                  />
+                  <p>Net Sapling Flow</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-3 h-3 inline-block rounded-sm"
+                    style={{ background: "#ec4899" }}
                   />
                   <p>Net Orchard Flow</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <span
                     className="w-3 h-3 inline-block rounded-sm"
-                    style={{
-                      background: "#3b82f6",
-                    }}
+                    style={{ background: "#14b8a6" }}
                   />
-                  <p>Net Sapling Flow</p>
+                  <p>Net Ironwood Flow</p>
                 </div>
               </div>
             )}
           />
+
           <Bar
             dataKey="netSaplingFlow"
             name="Net Sapling Flow"
@@ -165,6 +174,14 @@ export default function NetInflowsOutflowsChart(
             name="Net Orchard Flow"
             fill="url(#orchardGradient)"
             stroke="#ec4899"
+            strokeWidth={1.5}
+            radius={[4, 4, 0, 0]}
+          />
+          <Bar
+            dataKey="netIronwoodFlow"
+            name="Net Ironwood Flow"
+            fill="url(#ironwoodGradient)"
+            stroke="#14b8a6"
             strokeWidth={1.5}
             radius={[4, 4, 0, 0]}
           />
