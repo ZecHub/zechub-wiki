@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 22,
-    "proposal_count": 170,
+    "proposal_count": 171,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -6951,7 +6951,7 @@
           "msgs": [],
           "title": " Zcash East Africa Operations: From Awareness to Adoption ( August – October 2026)",
           "votes": {
-            "no": "7",
+            "no": "8",
             "yes": "3",
             "abstain": "0"
           },
@@ -7002,7 +7002,7 @@
           ],
           "title": "Privacy Education Through SnapChat",
           "votes": {
-            "no": "5",
+            "no": "7",
             "yes": "0",
             "abstain": "0"
           },
@@ -7028,6 +7028,51 @@
           "min_voting_period": null
         },
         "createdAt": "2026-07-31T12:21:59.158Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 171,
+        "proposal": {
+          "msgs": [
+            {
+              "wasm": {
+                "execute": {
+                  "msg": "eyJ1cGRhdGVfbWVtYmVycyI6eyJhZGQiOlt7IndlaWdodCI6MSwiYWRkciI6Imp1bm8xeHRlM2h6N3A1MzNmaHVqcTQzbnV2ajNhZTJjbGpma3huamtscHYifV0sInJlbW92ZSI6W119fQ==",
+                  "funds": [],
+                  "contract_addr": "juno1re0pu5hdafdcexmvuvdngn0d5sttkp6wz4wfjdd3p9cwfhmg8h9s8ek80w"
+                }
+              }
+            }
+          ],
+          "title": "ZecHub DAO Membership Application  ",
+          "votes": {
+            "no": "0",
+            "yes": "2",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1xte3hz7p533fhujq43nuvj3ae2cljfkxnjklpv",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1786036822635061830"
+          },
+          "description": "ZM Everyone,\n\nI’m Adebola (you might know me as Hardaeborla), and I’d love to join the ZecHub DAO.\n\nI’ve been part of the Zcash and ZecHub community for several years now and I'm also one of the earlier contributors. From the start, I’ve stayed focused on helping people understand Zcash, spreading the word about financial privacy, and supporting the ecosystem through creative, community-focused work.\n\nTo me, ZecHub isn’t just another Web3 project. It’s one of the most important places for education in the whole Zcash space. It’s given people all over the world a real chance to learn, work together, and actually contribute to privacy tech. Being involved in that has been one of the best parts of my time in Web3.\n\n**<h2>MY CONTRIBUTIONS</h2>**\n\nOver the years I’ve put energy into a few different areas and i have also attached some of these contributions at the end of this post :\n\n\n* Designing educational infographics that break down complicated Zcash ideas into something easy to grasp\n\n\n* Creating graphics, memes, and visual campaigns for ecosystem updates and network upgrades\n\n* Writing educational threads and social content that promote Zcash and privacy\n\n* Making tutorials and simple onboarding materials for newcomers\n\n* Translating educational content into Yoruba so more people in local communities can access it\n\n* Helping with community engagement through quizzes, campaigns, and learning activities\n\n* Contributing to ZecHub projects and teaming up with others on educational resources\n\nEverything I’ve done has been about making Zcash clearer and more approachable, no matter someone’s technical background. A lot of this work has gone out through ZecHub, Zcash Nigeria, and the wider community, and it’s still helping people learn and get started.\n\n**<h2>WHY I WANT TO JOIN THE DAO</h2>**\n\nI think governance is strongest when the people who’ve been consistently putting in time, creativity, and effort get a seat at the table.\n\nJoining the ZecHub DAO would let me move beyond just creating content. I’d like to take part in governance conversations, strategic planning, funding decisions, and the kinds of initiatives that help shape where ZecHub goes next.\n\nI want to help keep ZecHub focused on:\n\n* Creating top-quality educational resources\n\n* Supporting contributors from all kinds of places\n\n* Growing multilingual education\n\n* Strengthening community involvement\n\n* Raising global awareness of Zcash and financial privacy\n\n\n**<h2>WHAT I BRING</h2>**\n\nI think I bring a solid mix of:\n\n\n* Long-term commitment to the Zcash ecosystem\n\n\n* Strong graphic design and visual communication skills\n\n\n* Experience creating educational content\n\n\n* Community building and engagement\n\n\n* Multilingual outreach\n\n\n* Consistency, reliability, and a collaborative approach\n\nI have both the technical and the educational hurdles that come with introducing people to privacy tech, and I genuinely enjoy turning complicated ideas into simple, engaging content that anyone can follow.\n\n**<h2>VISION</h2>** \n\nIf I join the DAO, I’ll keep pushing for transparency, collaboration, and growth that comes from the community itself—while helping ZecHub stay the go-to educational platform in the Zcash world.\n\nI’ll also keep supporting efforts that grow Zcash adoption, improve educational materials, bring in new contributors, and boost participation from underrepresented regions, especially across Africa.\n\nThank you for taking your time to read this. It would mean a lot to keep serving the community in a bigger way as a ZecHub DAO member.\n\n\nYou can check out some of my contributions via the link below 👇\n\nhttps://drive.proton.me/urls/M5X6Y0K2GW#RxZIdK-RxEyF\n\nhttps://x.com/hardaeborla\n\n\n",
+          "total_power": "22",
+          "start_height": 40360033,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-08-01T17:20:22.635Z"
       }
     ]
   },
