@@ -348,26 +348,6 @@ export const daoMembers = [
       "u1nvhfur5lruk4lzy7v5j4wqs65rvslk7tvgxvcjpe7f8u08vjs98rsg9sralpnwgzzkevtr6k2flh7g9hqqk07m9eff222ljyg9ge2d7upx9ycr9lqzmwmww05npwypmw5t2cvt32tnuylnud4qts3hq2af5w50t3czatklrv5f7spwpfasjdr3rm7qpklpmvv5fc5vpl2spyysvvwra",
     role: "",
   },
-  {
-    imgUrl:
-      "/content-images/ApkpG2Ii_400x400-e7e8a393a4.webp",
-    name: "Michae2xl",
-    description: `1 year+ as Zcash Brazil ambassador, Software Engineer & Product Owner, known as Michae2xl on social media, has
-        been 7+ years in the crypto space, worked for a DAO as a Community Manager in Brazil & Canada for almost 4
-        years, and built an NFT index, good expertise as a leader to building communities.`,
-    linkName: "Twitter",
-    urlLink: "https://twitter.com/michae2xl",
-    social: [
-      {
-        name: "Twitter",
-        url: "https://twitter.com/michae2xl",
-        icon: socialIcons.x,
-      },
-    ],
-    zcashAddress:
-      "u1h5pajxdsa0zfm747v0rs82z45y2z2nqmsxyqku2fpkfryple9r5m6660h00hql8nffljunq7mz2d0auemxm83pjy8ptpyurxnncedftvf0z3xwcff2efslz2stzdenpzzvv25n5fql2uxn4k8cffdeya3ugkf0s6d55ar9z0jawpqzmz9jyg7x7zvssu9d26lxkswp657uq2cwkc45n",
-    role: "",
-  },
   // {
   //   imgUrl:
   //     "/content-images/_yRuRWlp_400x400-8c8fc12e04.webp",
