@@ -80,7 +80,7 @@
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1300
+      "views": 1301
     },
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
@@ -300,7 +300,7 @@
     {
       "title": "The Future of Zcash Panel - Daniel Benarroch, Nate Wilcox, Zaki Manian, Matthew Green at Zcon3",
       "video_id": "bytv6_dmlpI",
-      "views": 557
+      "views": 558
     },
     {
       "title": "Arti: ZF + ZCG Call w/ the Tor Project",
@@ -743,6 +743,11 @@
       "views": 269
     },
     {
+      "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
+      "video_id": "5gvQF5oFT8E",
+      "views": 269
+    },
+    {
       "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
       "video_id": "DU7wIy3Ywm4",
       "views": 269
@@ -750,11 +755,6 @@
     {
       "title": "Zcash Protocol Hangout: Discussion about the NUP",
       "video_id": "-0eg_VZtrjk",
-      "views": 268
-    },
-    {
-      "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
-      "video_id": "5gvQF5oFT8E",
       "views": 268
     },
     {
@@ -893,6 +893,11 @@
       "views": 222
     },
     {
+      "title": "Zcash Community Call: Meet the ZCG Candidates",
+      "video_id": "3z3E2lhBUH0",
+      "views": 222
+    },
+    {
       "title": "Zcash Arborist Call 06-25-2026",
       "video_id": "Ni-Bp0p8W4s",
       "views": 222
@@ -910,11 +915,6 @@
     {
       "title": "Zcon4 Opening Address by Jack Gavigan: Zcash",
       "video_id": "I5h6Y_5XSJA",
-      "views": 221
-    },
-    {
-      "title": "Zcash Community Call: Meet the ZCG Candidates",
-      "video_id": "3z3E2lhBUH0",
       "views": 221
     },
     {
@@ -988,14 +988,14 @@
       "views": 208
     },
     {
-      "title": "Zcash Arborist Call 02-05-2026",
-      "video_id": "22YcmN1PPsc",
+      "title": "Community Call with ZCG Candidates 12/17/2024",
+      "video_id": "ODW01XSGOXA",
       "views": 207
     },
     {
-      "title": "Community Call with ZCG Candidates 12/17/2024",
-      "video_id": "ODW01XSGOXA",
-      "views": 206
+      "title": "Zcash Arborist Call 02-05-2026",
+      "video_id": "22YcmN1PPsc",
+      "views": 207
     },
     {
       "title": "Governance Panel at Zcon3",
@@ -1050,7 +1050,7 @@
     {
       "title": "Zcash Community Grants Candidate Call 12/14/23",
       "video_id": "KbIM4yNRxts",
-      "views": 196
+      "views": 197
     },
     {
       "title": "Scaling Zcash Governance - Josh Cincinnati",
@@ -1058,14 +1058,14 @@
       "views": 192
     },
     {
-      "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
-      "video_id": "fgkFrxiB14g",
+      "title": "ZF Community Call - Sept 4, 2020, MGRC Candidates Part 1",
+      "video_id": "Kred_7CU3s8",
       "views": 192
     },
     {
-      "title": "ZF Community Call - Sept 4, 2020, MGRC Candidates Part 1",
-      "video_id": "Kred_7CU3s8",
-      "views": 191
+      "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
+      "video_id": "fgkFrxiB14g",
+      "views": 192
     },
     {
       "title": "Zcash Has No Morals by Ian Sagstetter: Zcon4",
@@ -1173,13 +1173,13 @@
       "views": 171
     },
     {
-      "title": "Zcon0 Day 2 Opening Remarks",
-      "video_id": "f-Z3YIjLdPQ",
-      "views": 169
-    },
-    {
       "title": "Zcash Community Grants Committee Election Call (6/16/23)",
       "video_id": "4jLG0niVqRE",
+      "views": 170
+    },
+    {
+      "title": "Zcon0 Day 2 Opening Remarks",
+      "video_id": "f-Z3YIjLdPQ",
       "views": 169
     },
     {
