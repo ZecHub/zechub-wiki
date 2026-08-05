@@ -3,14 +3,19 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Zcash Protocol Study #7: Sending, Receiving, and Scanning",
+            "video_id": "cFwhlhIxQek",
+            "views": 5
+        },
+        {
             "title": "Privacidade \u00e9 a \u00daltima Fronteira da Cripto",
             "video_id": "rU_J2l_a5KQ",
-            "views": 13
+            "views": 14
         },
         {
             "title": "Ironwood ativado na Zcash | Zebra Talks",
             "video_id": "aB--WqXJiPQ",
-            "views": 31
+            "views": 36
         },
         {
             "title": "Tachyon: Statelessness, Poda de Estado e Privacidade Forte",
@@ -35,7 +40,7 @@
         {
             "title": "Legal Tech & Web3 | Os novos caminhos do direito",
             "video_id": "tQUjXpv_Ims",
-            "views": 143
+            "views": 147
         },
         {
             "title": "Por que reduzir o block time muda toda a experi\u00eancia da Zcash",
@@ -145,7 +150,7 @@
         {
             "title": "Solu\u00e7\u00f5es de Privacidade na Near | Vini B | Zcon Vozes 2",
             "video_id": "_CHBvf00nDM",
-            "views": 19
+            "views": 20
         },
         {
             "title": "Protocol Study #5: Merkle Trees and How the Chain Remembers",
@@ -520,7 +525,7 @@
         {
             "title": "FROST Multisig: Carteiras Familiares e Regras de Assinatura",
             "video_id": "RjKV4Rj9psw",
-            "views": 33
+            "views": 34
         },
         {
             "title": "ETFs em Cripto: Ado\u00e7\u00e3o ou Captura?",
@@ -855,7 +860,7 @@
         {
             "title": "Zcash na Cake Wallet - Tutorial Completo",
             "video_id": "ngzYYqcRa84",
-            "views": 204
+            "views": 205
         },
         {
             "title": "Chat criptografado precisa de dinheiro criptografado.",
@@ -1160,7 +1165,7 @@
         {
             "title": "Conhe\u00e7a a P2P.me: Plataforma para comprar e vender USDC de forma an\u00f4nima",
             "video_id": "9C9Tnc8dEGI",
-            "views": 537
+            "views": 539
         },
         {
             "title": "Incertezas financeiras e o salto do DeFi.",
@@ -2245,7 +2250,7 @@
         {
             "title": "Compreendendo o Tachyon e seus gargalos",
             "video_id": "-gDK7iPUX68",
-            "views": 117
+            "views": 118
         },
         {
             "title": "Propriedade Privada \u2013 O que \u00e9 Nosso Enquanto Propriedade",
