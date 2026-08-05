@@ -170,7 +170,7 @@
     {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
-      "views": 537
+      "views": 539
     },
     {
       "title": "Impactos das guerras globais na economia brasileira",
@@ -495,7 +495,7 @@
     {
       "title": "Zcash na Cake Wallet - Tutorial Completo",
       "video_id": "ngzYYqcRa84",
-      "views": 204
+      "views": 205
     },
     {
       "title": "Como o Zcash usa provas de conhecimento zero para privacidade.",
@@ -733,6 +733,11 @@
       "views": 148
     },
     {
+      "title": "Legal Tech & Web3 | Os novos caminhos do direito",
+      "video_id": "tQUjXpv_Ims",
+      "views": 147
+    },
+    {
       "title": "NSM e Taxas Dinâmicas",
       "video_id": "fqMm851VfFo",
       "views": 146
@@ -760,11 +765,6 @@
     {
       "title": "A Ilusão do Crédito",
       "video_id": "1kAZ0nhY8GE",
-      "views": 143
-    },
-    {
-      "title": "Legal Tech & Web3 | Os novos caminhos do direito",
-      "video_id": "tQUjXpv_Ims",
       "views": 143
     },
     {
@@ -923,14 +923,14 @@
       "views": 118
     },
     {
-      "title": "Zcash: Dinheiro Privado Que Ninguém Consegue Censurar ou Parar | Unstoppable Private Money",
-      "video_id": "19i1g1Wo6uE",
+      "title": "Compreendendo o Tachyon e seus gargalos",
+      "video_id": "-gDK7iPUX68",
       "views": 118
     },
     {
-      "title": "Compreendendo o Tachyon e seus gargalos",
-      "video_id": "-gDK7iPUX68",
-      "views": 117
+      "title": "Zcash: Dinheiro Privado Que Ninguém Consegue Censurar ou Parar | Unstoppable Private Money",
+      "video_id": "19i1g1Wo6uE",
+      "views": 118
     },
     {
       "title": "Liberdade e Escolhas",
@@ -2458,6 +2458,11 @@
       "views": 36
     },
     {
+      "title": "Ironwood ativado na Zcash | Zebra Talks",
+      "video_id": "aB--WqXJiPQ",
+      "views": 36
+    },
+    {
       "title": "A Origem do Tor",
       "video_id": "wTpGcCvXfD0",
       "views": 35
@@ -2538,6 +2543,11 @@
       "views": 34
     },
     {
+      "title": "FROST Multisig: Carteiras Familiares e Regras de Assinatura",
+      "video_id": "RjKV4Rj9psw",
+      "views": 34
+    },
+    {
       "title": "Zcon Vozes 2 e Novidades do Tachyon | Zec Insider",
       "video_id": "3G3Z9W93k7o",
       "views": 34
@@ -2585,11 +2595,6 @@
     {
       "title": "Unstoppable Swap Bot: Troque ZEC no Telegram Sem KYC e Sem Login | Zcash Brasil",
       "video_id": "Bx7F-DgQApI",
-      "views": 33
-    },
-    {
-      "title": "FROST Multisig: Carteiras Familiares e Regras de Assinatura",
-      "video_id": "RjKV4Rj9psw",
       "views": 33
     },
     {
@@ -2705,11 +2710,6 @@
     {
       "title": "Quando o compliance vira vigilância?",
       "video_id": "JGoLizC1x84",
-      "views": 31
-    },
-    {
-      "title": "Ironwood ativado na Zcash | Zebra Talks",
-      "video_id": "aB--WqXJiPQ",
       "views": 31
     },
     {
@@ -3218,6 +3218,11 @@
       "views": 20
     },
     {
+      "title": "Soluções de Privacidade na Near | Vini B | Zcon Vozes 2",
+      "video_id": "_CHBvf00nDM",
+      "views": 20
+    },
+    {
       "title": "Fedimint e Zcash: Confiança Comunitária vs Garantia Criptográfica",
       "video_id": "2OcBMwx_8Iw",
       "views": 20
@@ -3250,11 +3255,6 @@
     {
       "title": "Privacidade, Autonomia e o futuro de trading alavancado | Marcos Lustosa | Zcon Vozes 2",
       "video_id": "R6dKFT0nOK8",
-      "views": 19
-    },
-    {
-      "title": "Soluções de Privacidade na Near | Vini B | Zcon Vozes 2",
-      "video_id": "_CHBvf00nDM",
       "views": 19
     },
     {
@@ -3488,6 +3488,11 @@
       "views": 14
     },
     {
+      "title": "Privacidade é a Última Fronteira da Cripto",
+      "video_id": "rU_J2l_a5KQ",
+      "views": 14
+    },
+    {
       "title": "WeeklyCall #2 Participe!",
       "video_id": "2KdudtdJ4qs",
       "views": 13
@@ -3510,11 +3515,6 @@
     {
       "title": "Protocol Study #6: Proving Without Revealing (zk-SNARKs in Zcash)",
       "video_id": "rcCHNY6A6zo",
-      "views": 13
-    },
-    {
-      "title": "Privacidade é a Última Fronteira da Cripto",
-      "video_id": "rU_J2l_a5KQ",
       "views": 13
     },
     {
@@ -3790,6 +3790,11 @@
     {
       "title": "Zcash Shielded Call Vol.3 - ZIPS da NU7 Revelados",
       "video_id": "W8devS2w0xA",
+      "views": 5
+    },
+    {
+      "title": "Zcash Protocol Study #7: Sending, Receiving, and Scanning",
+      "video_id": "cFwhlhIxQek",
       "views": 5
     },
     {
