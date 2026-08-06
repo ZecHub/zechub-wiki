@@ -98,4 +98,11 @@ export const dexListingConfig = [
     url: 'https://bitcoinvn.io/?deposit=xmr&settle=zec/',
     image: '/Bitcoinvn.png',
   },
+  {
+    title: 'LeoDex',
+    description:
+      'Crosschain swaps with no account and no KYC. Send BTC, ETH and more from any wallet, exchange or cold storage to a one-time deposit address and receive ZEC — no wallet connection required.',
+    url: 'https://leodex.io/',
+    image: '/leodex-logo.png',
+  },
 ];
