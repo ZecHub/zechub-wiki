@@ -21,9 +21,9 @@ export const decentralizedExchanges = [
     image: "/content-images/firodex-beta-release-b1958c5adc.webp",
   },
   {
-    title: "LeoDEX",
+    title: "LeoDex",
     description:
-      "A crosschain crypto swapping interface for Maya Protocol, Thorchain, ChainFlip and Rango. BTC, ETH, RUNE, DASH, LTC & More",
+      "Crosschain swaps into and out of ZEC, routed across THORChain, Maya Protocol, Chainflip, NEAR Intents, Relay and Rango. No account, no KYC, and no wallet connection needed on supported routes.",
     url: "https://leodex.io",
     image: "/leodex-logo.png",
   },
