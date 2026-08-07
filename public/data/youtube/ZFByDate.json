@@ -3,6 +3,11 @@
     "channelIcon": "https://yt3.ggpht.com/ytc/AIdro_ny5D-44bCL6VlY2QqkYr1-AWIeaJmymKKH1DrFBVk5IA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Zcash Arborist Call 08-06-2026",
+            "video_id": "T93KAOy7GJs",
+            "views": 64
+        },
+        {
             "title": "Zcash Arborist Call 07-23-2026",
             "video_id": "mHpMkEk6GGI",
             "views": 189
@@ -385,7 +390,7 @@
         {
             "title": "Community Call with ZCG Candidates 12/17/2024",
             "video_id": "ODW01XSGOXA",
-            "views": 207
+            "views": 208
         },
         {
             "title": "Zcash Arborist Call 12/12/2024",
@@ -875,7 +880,7 @@
         {
             "title": "\u201cFinancial privacy is not about evading legality, but about affirming liberty.\u201d",
             "video_id": "_g94z10ECWw",
-            "views": 374
+            "views": 375
         },
         {
             "title": "Wallets Working Session with Aditya Bharadwaj, Pacu & Jo\u00ebl: Zcon4",
@@ -1055,7 +1060,7 @@
         {
             "title": "Zcash Has No Morals by Ian Sagstetter: Zcon4",
             "video_id": "u8PrPrLT600",
-            "views": 191
+            "views": 192
         },
         {
             "title": "Town Hall: The Future of Zcash Funding & Decentralization: Zcon4",
@@ -1175,7 +1180,7 @@
         {
             "title": "Arti: ZF + ZCG Call w/ the Tor Project",
             "video_id": "E7g9dKBOYEI",
-            "views": 527
+            "views": 528
         },
         {
             "title": "Free2z: Peer-to-Peer Giving - Skylar Saveland & Jonathan Bird at Zcon3",
@@ -1320,7 +1325,7 @@
         {
             "title": "Understanding the Moon Math of ZK Snarks workshop led by Anna Kaplan and Liz Steininger",
             "video_id": "gaXiYRBnBPE",
-            "views": 1877
+            "views": 1878
         },
         {
             "title": "Gemini: Elastic SNARKs for Diverse Environments - Michele Orru at Zcon3",
