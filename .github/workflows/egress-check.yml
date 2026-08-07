@@ -53,7 +53,7 @@ jobs:
           if [ -z "$up" ]; then echo "server did not start within 60s"; exit 1; fi
       - name: Egress assertion
         run: yarn playwright test e2e/egress.spec.ts
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: egress-playwright-report
