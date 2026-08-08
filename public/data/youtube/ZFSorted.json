@@ -60,7 +60,7 @@
     {
       "title": "Motivations of Proof of Stake: Zooko Wilcox at Zcon3",
       "video_id": "IB9Vh1kEeWs",
-      "views": 1407
+      "views": 1408
     },
     {
       "title": "Sapling Activation Party Livestream",
@@ -810,7 +810,7 @@
     {
       "title": "ZF Engineering Update w/ FROST demo with Zcash Foundation Engineers & Manager - ZconVI #zcash",
       "video_id": "lfXIHxx5P5s",
-      "views": 244
+      "views": 245
     },
     {
       "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
@@ -1018,6 +1018,11 @@
       "views": 202
     },
     {
+      "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
+      "video_id": "fgkFrxiB14g",
+      "views": 201
+    },
+    {
       "title": "How to use FROST (incl. Demo) with Conrado Gouvêa and Deirdre Connolly: Zcon4",
       "video_id": "wjj94SYVzxs",
       "views": 201
@@ -1026,11 +1031,6 @@
       "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
       "video_id": "65GdSSlDG3A",
       "views": 201
-    },
-    {
-      "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
-      "video_id": "fgkFrxiB14g",
-      "views": 200
     },
     {
       "title": "Zcash Arborist Call 04-16-2026",
@@ -1143,6 +1143,11 @@
       "views": 176
     },
     {
+      "title": "Zebrad for Linux Tutorial #2",
+      "video_id": "4w6pquJObWE",
+      "views": 176
+    },
+    {
       "title": "Responsible Disclosure in Cryptocurrencies - Benjamin Winston",
       "video_id": "h7W1u1K2VjQ",
       "views": 175
@@ -1151,11 +1156,6 @@
       "title": "Town Hall - Technical Roadmap for Zcash: Zcon4",
       "video_id": "ZH44eP6Co-o",
       "views": 175
-    },
-    {
-      "title": "Zebrad for Linux Tutorial #2",
-      "video_id": "4w6pquJObWE",
-      "views": 174
     },
     {
       "title": "Sanctions Implications for Zcash with Peter Van Valkenburgh- ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -1280,6 +1280,11 @@
     {
       "title": "Decoupling the Zcash Memo Field from the Economic Outputs (Draft ZIP-231)",
       "video_id": "F4mP0O2-4Hw",
+      "views": 150
+    },
+    {
+      "title": "Zcash Arborist Call 08-06-2026",
+      "video_id": "T93KAOy7GJs",
       "views": 150
     },
     {
@@ -1568,19 +1573,14 @@
       "views": 114
     },
     {
-      "title": "Brazilian CBDC Vs Privacy Implications with Michae2xl & Casta - ZconVI #zcash",
-      "video_id": "Bmx-Z3qnKdo",
+      "title": "ZecWallet Lite on Linux #2",
+      "video_id": "eJt1SmXJkA4",
       "views": 113
     },
     {
-      "title": "ZecWallet Lite on Linux #2",
-      "video_id": "eJt1SmXJkA4",
-      "views": 112
-    },
-    {
-      "title": "Zcash Arborist Call 08-06-2026",
-      "video_id": "T93KAOy7GJs",
-      "views": 112
+      "title": "Brazilian CBDC Vs Privacy Implications with Michae2xl & Casta - ZconVI #zcash",
+      "video_id": "Bmx-Z3qnKdo",
+      "views": 113
     },
     {
       "title": "ZF Community Call -  Sept 4, 2020, MGRC Candidates Part 2",
