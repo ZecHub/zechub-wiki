@@ -5143,5 +5143,12 @@
     "orchard": 795,
     "ironwood": 1407,
     "timestamp": "08/07/2026"
+  },
+  {
+    "sprout": 0,
+    "sapling": 204,
+    "orchard": 999,
+    "ironwood": 1451,
+    "timestamp": "08/08/2026"
   }
 ]
