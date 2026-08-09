@@ -1641,5 +1641,88 @@
         "watchers": 13
       }
     ]
+  },
+  {
+    "date": "2026-08-09",
+    "generated_at": "2026-08-09T18:58:00.908493168+00:00",
+    "projects": [
+      {
+        "closed_issues": 0,
+        "forks": 0,
+        "last_updated": "2023-05-15T13:53:38Z",
+        "merged_pull_requests": 2,
+        "name": "dao",
+        "open_issues": 3,
+        "open_pull_requests": 3,
+        "stars": 0,
+        "watchers": 0
+      },
+      {
+        "closed_issues": 0,
+        "forks": 3,
+        "last_updated": "2026-08-05T15:04:41Z",
+        "merged_pull_requests": 11,
+        "name": "EduZEC",
+        "open_issues": 0,
+        "open_pull_requests": 0,
+        "stars": 2,
+        "watchers": 2
+      },
+      {
+        "closed_issues": 0,
+        "forks": 3,
+        "last_updated": "2026-08-08T20:26:16Z",
+        "merged_pull_requests": 18,
+        "name": "Namada",
+        "open_issues": 1,
+        "open_pull_requests": 1,
+        "stars": 2,
+        "watchers": 2
+      },
+      {
+        "closed_issues": 0,
+        "forks": 2,
+        "last_updated": "2025-02-17T18:07:14Z",
+        "merged_pull_requests": 0,
+        "name": "paywithzcash",
+        "open_issues": 1,
+        "open_pull_requests": 1,
+        "stars": 0,
+        "watchers": 0
+      },
+      {
+        "closed_issues": 2,
+        "forks": 8,
+        "last_updated": "2026-08-09T08:30:32Z",
+        "merged_pull_requests": 129,
+        "name": "zec-bounties",
+        "open_issues": 1,
+        "open_pull_requests": 1,
+        "stars": 7,
+        "watchers": 7
+      },
+      {
+        "closed_issues": 505,
+        "forks": 225,
+        "last_updated": "2026-08-09T18:43:27Z",
+        "merged_pull_requests": 1032,
+        "name": "zechub",
+        "open_issues": 19,
+        "open_pull_requests": 17,
+        "stars": 59,
+        "watchers": 59
+      },
+      {
+        "closed_issues": 8,
+        "forks": 80,
+        "last_updated": "2026-08-09T18:32:35Z",
+        "merged_pull_requests": 616,
+        "name": "zechub-wiki",
+        "open_issues": 14,
+        "open_pull_requests": 14,
+        "stars": 13,
+        "watchers": 13
+      }
+    ]
   }
 ]
