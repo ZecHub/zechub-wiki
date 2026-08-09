@@ -2338,5 +2338,81 @@
       "total_projects": 3,
       "total_seeding": 32
     }
+  },
+  {
+    "date": "2026-08-09",
+    "generated_at": "2026-08-09T18:17:19.853779158+00:00",
+    "projects": [
+      {
+        "delegates": 1,
+        "description": "A decentralized education hub for Zcash",
+        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:zad2NSrsw3NYdkvx1sTn6EYAqRHc",
+        "head": "0bd0129ee1811137f0ffffef2e6b9ef2ff38dbee",
+        "issues_closed": 0,
+        "issues_open": 0,
+        "issues_total": 0,
+        "name": "zechub",
+        "patches_merged": 0,
+        "patches_open": 0,
+        "patches_total": 0,
+        "rid": "rad:zad2NSrsw3NYdkvx1sTn6EYAqRHc",
+        "seeding": 30,
+        "threshold": 1
+      },
+      {
+        "delegates": 1,
+        "description": "Educational wiki for Zcash and privacy",
+        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
+        "head": "e06d6195518dfce7c02c300c89bf9b4ccf15d585",
+        "issues_closed": 0,
+        "issues_open": 0,
+        "issues_total": 0,
+        "name": "zechub-wiki",
+        "patches_merged": 0,
+        "patches_open": 0,
+        "patches_total": 0,
+        "rid": "rad:z2cawajJ9dAqR35UhHQvSxuFNA6SL",
+        "seeding": 13,
+        "threshold": 1
+      },
+      {
+        "delegates": 1,
+        "description": "Namada governance and network metrics dashboard",
+        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z4Wg7andG6uee1EAyWEhCuivji41V",
+        "head": "506bd4b3f0348590a4611125f7297532657de9c0",
+        "issues_closed": 0,
+        "issues_open": 0,
+        "issues_total": 0,
+        "name": "namada",
+        "patches_merged": 0,
+        "patches_open": 0,
+        "patches_total": 0,
+        "rid": "rad:z4Wg7andG6uee1EAyWEhCuivji41V",
+        "seeding": 16,
+        "threshold": 1
+      },
+      {
+        "delegates": 1,
+        "description": "Bounty Platform with Native ZEC Payments",
+        "explorer_url": "https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z26j8nK8Mu6ksH6Wettko11kMDdLE",
+        "head": "58a9d0ca7735a68ebca71cbf56431b700fbbf16a",
+        "issues_closed": 0,
+        "issues_open": 0,
+        "issues_total": 0,
+        "name": "zec-bounties",
+        "patches_merged": 0,
+        "patches_open": 0,
+        "patches_total": 0,
+        "rid": "rad:z26j8nK8Mu6ksH6Wettko11kMDdLE",
+        "seeding": 7,
+        "threshold": 1
+      }
+    ],
+    "summary": {
+      "total_issues": 0,
+      "total_patches": 0,
+      "total_projects": 4,
+      "total_seeding": 66
+    }
   }
 ]
