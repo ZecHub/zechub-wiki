@@ -28,6 +28,7 @@ import { DarkModeContext } from "@/context/DarkModeContext";
 import Image from "next/image";
 import { Trophy, LayoutDashboard } from "lucide-react";
 import { useTheme } from "next-themes";
+import type { Searcher } from "@/types";
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
 // Locale-aware internal link wrapper. Internal routes go through next-intl's
 // Link so hrefs auto-prefix to the active locale (e.g. /dashboard -> /it/dashboard
@@ -940,7 +941,7 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
     <SocialIcons newTab={true} />
   </div>
 );
-const Navigation = () => {
+const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
   const { theme, setTheme } = useTheme();
   const { t } = useLanguage();
   const [openSearch, setOpenSearch] = useState(false);
@@ -974,7 +975,11 @@ const Navigation = () => {
             >
               <Search className="h-5 w-5 md:h-6 md:w-6" />
             </Button>
-            <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
+            <SearchBar
+              openSearch={openSearch}
+              setOpenSearch={setOpenSearch}
+              searchItems={searchItems}
+            />
             <Button
               variant="ghost"
               size="sm"

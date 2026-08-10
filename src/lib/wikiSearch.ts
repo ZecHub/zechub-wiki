@@ -5,7 +5,13 @@ export function escapeRegExp(s: string): string {
 }
 
 export function normalizeQuery(q: string): string {
-  return q.normalize("NFKD").replace(/\s+/g, " ").trim().toLowerCase();
+  return q
+    .normalize("NFKD")
+    .replace(/\p{M}+/gu, "")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
 }
 
 export function tokenizeQuery(q: string): string[] {
@@ -99,15 +105,15 @@ export function scoreItem(
   normalizedFull: string,
   tokens: string[],
 ): number {
-  const nameRaw = item.name.toLowerCase();
-  const descRaw = item.desc.toLowerCase();
-  const urlRaw = item.url.toLowerCase().replace(/[-/]/g, " ");
+  const nameRaw = normalizeQuery(item.name);
+  const descRaw = normalizeQuery(item.desc);
+  const urlRaw = normalizeQuery(item.url);
 
   const nameWords = nameRaw.split(/\s+/).filter(Boolean);
   const descWords = descRaw.split(/\s+/).filter(Boolean);
   const urlWords = urlRaw.split(/\s+/).filter(Boolean);
 
-  const aliasText = item.aliases?.join(" ").toLowerCase() ?? "";
+  const aliasText = normalizeQuery(item.aliases?.join(" ") ?? "");
   const aliasWords = aliasText.split(/\s+/).filter(Boolean);
 
   let coverageScore = 0;

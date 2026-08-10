@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 
 import { routing } from "@/i18n/routing";
 import { getMenuTitlesCached } from "@/lib/authAndFetch";
-import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
+import { keyToWikiPath } from "@/lib/wikiPaths";
+
+export { keyToWikiPath };
 
 // Canonical origin. Matches src/lib/helpers.ts `metadataBase` and the sitemap's
 // URL construction. English is served unprefixed at the root; other locales
@@ -36,17 +38,9 @@ export const toWikiUrl = (locale: string, path: string): string => {
 
 /**
  * Convert a menu-titles manifest key into the wiki URL path the app serves it
- * at. Keys look like "Using_Zcash/Buying_Zec.md"; the app links to
- * "/using-zcash/buying-zec". Reuses the app's own
- * `transformGithubFilePathToWikiLink` (lowercases + underscore->hyphen), then
- * strips the ".md" suffix and guarantees a single leading slash. Shared with
- * src/app/sitemap.ts (moved here from there) so the sitemap's per-page locale
- * coverage and the head-level hreflang alternates resolve paths identically.
+ * at. Re-exported from the dependency-free wikiPaths module so the sitemap,
+ * locale coverage and server-built search index cannot drift on route shape.
  */
-export const keyToWikiPath = (key: string): string => {
-  const wiki = transformGithubFilePathToWikiLink(key).replace(/\.md$/i, "");
-  return "/" + wiki.replace(/^\/+/, "");
-};
 
 // Normalize an arbitrary wiki path to the lowercase, single-leading-slash,
 // no-trailing-slash form that keyToWikiPath emits, so path comparisons match.
