@@ -53,6 +53,24 @@ describe("searchWiki", () => {
     expect(searchWiki(items, "ironwod upgrade")).toEqual([items[0]]);
   });
 
+  it("recognizes a complete query across a title, path, and alias", () => {
+    const items: Searcher[] = [
+      {
+        name: "Payment guide",
+        desc: "How to receive funds.",
+        url: "/using-zcash/mobile-top-up",
+        aliases: ["payment request"],
+      },
+      {
+        name: "Mobile wallet",
+        desc: "Wallet information.",
+        url: "/wallets/mobile",
+      },
+    ];
+
+    expect(searchWiki(items, "mobile payment request")).toEqual([items[0]]);
+  });
+
   it("does not match a much shorter word embedded in the query", () => {
     const items: Searcher[] = [
       {
