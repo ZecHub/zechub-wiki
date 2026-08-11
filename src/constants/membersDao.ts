@@ -2,6 +2,20 @@ import { socialIcons } from "@/components/UI/SvgIcons";
 
 export const daoMembers = [
   {
+    imgUrl: "/content-images/Hardaeborla.webp",
+    name: "Hardaeborla",
+    description: "Zcash Nigeria Team Member, Writer and Researcher ",
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/hardaeborla",
+        icon: socialIcons.x,
+      },
+    ],
+    zcashAddress: "zs1ysf8uhtkxza0ayu9sqts96l76m4ytsa2eevnt60v59xvgsw4k03nyd3n05mse7t0w8gdvqpw2fj",
+    role: "Member",
+  },
+  {
     imgUrl: "/speedfox.png",
     name: "Speedfox",
     description: "Zcash Contributor, Developer and Graphic Design professional",
