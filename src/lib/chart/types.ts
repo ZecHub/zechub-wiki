@@ -18,8 +18,10 @@ export type PoolKey = "default" | "sprout" | "sapling" | "orchard";
 export type NamadaAsset = { id: string; totalSupply: string };
 export type SupplyData = { close: string; supply: number };
 export type ShieldedTxCount = {
+  sprout: number;
   sapling: number;
   orchard: number;
+  ironwood: number;
   timestamp: string;
 };
 export type MiningHistoryBucket = {
@@ -163,6 +165,7 @@ export type NetInOutflow = {
   Date: string;
   "Net Sapling Flow": string;
   "Net Orchard Flow": string;
+  "Net Ironwood Flow": string;
 };
 
 export type LockBox = {

@@ -2,7 +2,7 @@
   "dao_address": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
   "chain_id": "juno-1",
   "name": "ZecHub",
-  "timestamp": "2026-07-31T21:03:18Z",
+  "timestamp": "2026-08-11T06:25:24Z",
   "treasury": {
     "juno_native_balances": [
       {
@@ -12,17 +12,17 @@
       },
       {
         "denom": "ibc/5FBE215F19468B01245B0CDECF453E7615305FAE8C7556C2982C75CF1A6E4BC4",
-        "ticker": "FLIX",
+        "ticker": "UFLIX",
         "amount": "95250000"
       },
       {
         "denom": "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
-        "ticker": "ATOM",
+        "ticker": "UATOM",
         "amount": "3650000"
       },
       {
         "denom": "ibc/EAC38D55372F38F1AFD68DF7FE9EF762DCF69F26520643CF3F9D292A738D8034",
-        "ticker": "USDC",
+        "ticker": "UUSDC",
         "amount": "59782"
       },
       {

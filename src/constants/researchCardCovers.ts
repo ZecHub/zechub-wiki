@@ -12,15 +12,19 @@ export type ResearchCardCover = {
 /** `wikiSlug` is the path from transformGithubFilePathToWikiLink, e.g. `research/social-media-data-collection`. */
 const COVERS: Record<string, ResearchCardCover> = {
   "research/cbdc": {
-    src: "/research-covers/cbdc.webp",
+    src: "/research-covers/cbdc.jpg",
     alt: "Central bank digital currency concept",
+  },
+    "research/zcash-foundations-series": {
+    src: "/research-covers/zcashfoundations.jpg",
+    alt: "7 Articles learning Zcash from First Principles",
   },
   "research/dash-zcash-orchard-integration": {
     src: "/research-covers/dash-zcash-orchard.jpg",
     alt: "Team collaboration representing cross-chain integration",
   },
   "research/namadabestpractices": {
-    src: "/research-covers/namada-best-practices.jpg",
+    src: "/research-covers/namada-best.jpg",
     alt: "Mobile device and security concept for privacy practices",
   },
   "research/social-media-data-collection": {

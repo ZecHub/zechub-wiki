@@ -23542,5 +23542,95 @@
     "orchard_filter": 1180,
     "transactions": 1426,
     "transactions_filter": 1424
+  },
+  {
+    "height": 3432960,
+    "sapling": 217,
+    "sapling_filter": 217,
+    "orchard": 989,
+    "orchard_filter": 988,
+    "transactions": 1206,
+    "transactions_filter": 1205
+  },
+  {
+    "height": 3434112,
+    "sapling": 213,
+    "sapling_filter": 213,
+    "orchard": 849,
+    "orchard_filter": 849,
+    "transactions": 1061,
+    "transactions_filter": 1061
+  },
+  {
+    "height": 3435264,
+    "sapling": 237,
+    "sapling_filter": 237,
+    "orchard": 923,
+    "orchard_filter": 921,
+    "transactions": 1157,
+    "transactions_filter": 1155
+  },
+  {
+    "height": 3436416,
+    "sapling": 242,
+    "sapling_filter": 242,
+    "orchard": 1055,
+    "orchard_filter": 1054,
+    "transactions": 1297,
+    "transactions_filter": 1296
+  },
+  {
+    "height": 3437568,
+    "sapling": 220,
+    "sapling_filter": 220,
+    "orchard": 914,
+    "orchard_filter": 914,
+    "transactions": 1134,
+    "transactions_filter": 1134
+  },
+  {
+    "height": 3438720,
+    "sapling": 230,
+    "sapling_filter": 230,
+    "orchard": 697,
+    "orchard_filter": 697,
+    "transactions": 925,
+    "transactions_filter": 925
+  },
+  {
+    "height": 3439872,
+    "sapling": 243,
+    "sapling_filter": 243,
+    "orchard": 802,
+    "orchard_filter": 801,
+    "transactions": 1044,
+    "transactions_filter": 1043
+  },
+  {
+    "height": 3441024,
+    "sapling": 205,
+    "sapling_filter": 205,
+    "orchard": 1108,
+    "orchard_filter": 1107,
+    "transactions": 1310,
+    "transactions_filter": 1309
+  },
+  {
+    "height": 3442176,
+    "sapling": 186,
+    "sapling_filter": 186,
+    "orchard": 1221,
+    "orchard_filter": 1220,
+    "transactions": 1404,
+    "transactions_filter": 1403
+  },
+  {
+    "height": 3443328,
+    "sapling": 218,
+    "sapling_filter": 218,
+    "orchard": 1027,
+    "orchard_filter": 1025,
+    "transactions": 1245,
+    "transactions_filter": 1243
   }
 ]

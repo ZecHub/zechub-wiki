@@ -132,12 +132,17 @@ export function ZcashMetrics(props: ZcashStatisticsPorps) {
       icon: <Activity size={18} />,
     },
     {
-      label: metricT?.shieldedTx24h || "Shielded TX (24h)",
-      value: shieldedTxCount?.length
-        ? `Sapling: ${shieldedTxCount.at(-1)!.sapling.toLocaleString()}\nOrchard: ${shieldedTxCount.at(-1)!.orchard.toLocaleString()}`
-        : notAvailable,
-      icon: <ShieldCheck size={18} />,
-      isShielded: true,
+	  label: metricT?.shieldedTx24h || "Shielded TX (24h)",
+	  value: shieldedTxCount?.length
+	    ? [
+		`Sprout: ${(shieldedTxCount.at(-1)!.sprout ?? 0).toLocaleString()}`,
+		`Sapling: ${(shieldedTxCount.at(-1)!.sapling ?? 0).toLocaleString()}`,
+		`Orchard: ${(shieldedTxCount.at(-1)!.orchard ?? 0).toLocaleString()}`,
+		`Ironwood: ${(shieldedTxCount.at(-1)!.ironwood ?? 0).toLocaleString()}`,
+	      ].join("\n")
+	    : notAvailable,
+	  icon: <ShieldCheck size={18} />,
+	  isShielded: true,
     },
   ];
 
