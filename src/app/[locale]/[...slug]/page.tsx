@@ -22,7 +22,7 @@ import {
 } from "@/lib/helpers";
 import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
-import { normalizeMdx } from "@/lib/normalizeMdx";
+import { normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
 import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
 import React, { Suspense } from "react";
@@ -464,18 +464,7 @@ export default async function Page(props: {
         return `![${alt}](https://raw.githubusercontent.com/ZecHub/zechub/main/${articleDir}/${src})`;
       },
     );
-    processedMarkdown = processedMarkdown.replace(
-      /([^\n])\n?<details>/g,
-      "$1\n\n<details>",
-    );
-    processedMarkdown = processedMarkdown.replace(
-      /<details>\s*<summary>\s*Answer\s*<\/summary>/gi,
-      "\n\n<details>\n<summary>Answer</summary>\n\n",
-    );
-    processedMarkdown = processedMarkdown.replace(
-      /<\/details>([^\n])/g,
-      "</details>\n\n$1",
-    );
+    processedMarkdown = normalizeResearchMdx(processedMarkdown);
   }
 
   const imgUrl = getBanner(slug[0]) || "";
