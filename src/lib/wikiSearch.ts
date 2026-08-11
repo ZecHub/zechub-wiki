@@ -5,7 +5,13 @@ export function escapeRegExp(s: string): string {
 }
 
 export function normalizeQuery(q: string): string {
-  return q.normalize("NFKD").replace(/\s+/g, " ").trim().toLowerCase();
+  return q
+    .normalize("NFKD")
+    .replace(/\p{M}+/gu, "")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
 }
 
 export function tokenizeQuery(q: string): string[] {
@@ -67,7 +73,18 @@ function tokenWordSim(t: string, w: string): number {
   if (w === t) return 1.0;
   if (w.startsWith(t)) return 0.88;
   if (w.includes(t) && t.length >= 3) return 0.72;
-  if (t.includes(w) && w.length >= 3) return 0.65;
+
+  // Allow close inflections such as "upgrade" / "upgrades", but not a
+  // short word hidden inside a much longer query (for example, "right" in
+  // "sovright"). The latter creates unrelated fuzzy matches.
+  const queryContainsWord = t.includes(w);
+  if (
+    queryContainsWord &&
+    (w.length < 4 || t.length - w.length > 2)
+  ) {
+    return 0;
+  }
+  if (queryContainsWord) return 0.65;
 
   const tSim = trigramSim(t, w);
   if (tSim >= 0.42) return 0.45 + 0.45 * tSim;
@@ -94,20 +111,25 @@ function bestTokenSim(t: string, fieldWords: string[]): number {
 
 const FIELD_W = { name: 1.8, desc: 1.0, url: 0.55 } as const;
 
-export function scoreItem(
+type ItemScore = {
+  hardMisses: number;
+  score: number;
+};
+
+function scoreSearchItem(
   item: Searcher,
   normalizedFull: string,
   tokens: string[],
-): number {
-  const nameRaw = item.name.toLowerCase();
-  const descRaw = item.desc.toLowerCase();
-  const urlRaw = item.url.toLowerCase().replace(/[-/]/g, " ");
+): ItemScore {
+  const nameRaw = normalizeQuery(item.name);
+  const descRaw = normalizeQuery(item.desc);
+  const urlRaw = normalizeQuery(item.url);
 
   const nameWords = nameRaw.split(/\s+/).filter(Boolean);
   const descWords = descRaw.split(/\s+/).filter(Boolean);
   const urlWords = urlRaw.split(/\s+/).filter(Boolean);
 
-  const aliasText = item.aliases?.join(" ").toLowerCase() ?? "";
+  const aliasText = normalizeQuery(item.aliases?.join(" ") ?? "");
   const aliasWords = aliasText.split(/\s+/).filter(Boolean);
 
   let coverageScore = 0;
@@ -128,7 +150,9 @@ export function scoreItem(
     coverageScore += best;
   }
 
-  if (tokens.length > 0 && hardMisses === tokens.length) return -1;
+  if (tokens.length > 0 && hardMisses === tokens.length) {
+    return { score: -1, hardMisses };
+  }
 
   if (hardMisses > 0) coverageScore *= Math.pow(0.35, hardMisses);
 
@@ -154,7 +178,18 @@ export function scoreItem(
 
   const lengthPenalty = Math.min(nameRaw.length, 48) * 0.35;
 
-  return avgCoverage * 300 + bonus - lengthPenalty;
+  return {
+    hardMisses,
+    score: avgCoverage * 300 + bonus - lengthPenalty,
+  };
+}
+
+export function scoreItem(
+  item: Searcher,
+  normalizedFull: string,
+  tokens: string[],
+): number {
+  return scoreSearchItem(item, normalizedFull, tokens).score;
 }
 
 export function searchWiki(
@@ -168,9 +203,22 @@ export function searchWiki(
     return [...items];
   }
 
-  return items
-    .map((item) => ({ item, score: scoreItem(item, normalizedFull, tokens) }))
-    .filter((x) => x.score >= 0)
-    .sort((a, b) => b.score - a.score)
-    .map((x) => x.item);
+  const scored = items
+    .map((item) => ({
+      item,
+      ...scoreSearchItem(item, normalizedFull, tokens),
+    }))
+    .filter((result) => result.score >= 0);
+
+  // A multiword query should not let a strong match on only one word outrank
+  // a page that covers the whole query. Keep partial matches as a useful
+  // fallback when no page covers every word, which preserves typo tolerance
+  // and the existing one-word search behavior.
+  const completeMatches =
+    tokens.length > 1
+      ? scored.filter((result) => result.hardMisses === 0)
+      : [];
+  const results = completeMatches.length > 0 ? completeMatches : scored;
+
+  return results.sort((a, b) => b.score - a.score).map((result) => result.item);
 }

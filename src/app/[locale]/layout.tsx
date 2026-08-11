@@ -12,6 +12,9 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { socialNav } from "@/constants/navigation";
 import { ORG_ID, jsonLdScript } from "@/lib/helpers";
+import { getMenuTitlesCached } from "@/lib/authAndFetch";
+import { searcher } from "@/constants/searcher";
+import { buildSearchIndex } from "@/lib/searchIndex";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -80,7 +83,18 @@ export default async function RootLayout({
 
   // Preload the locale dictionary on the server so the UI chrome renders in the
   // correct language during SSR (no English flash before client hydration).
-  const initialDictionary = await getDictionary(locale);
+  const [initialDictionary, englishTitles, localizedTitles] = await Promise.all([
+    getDictionary(locale),
+    getMenuTitlesCached("en"),
+    locale === "en"
+      ? Promise.resolve({})
+      : getMenuTitlesCached(locale),
+  ]);
+  const searchItems = buildSearchIndex({
+    englishTitles,
+    localizedTitles,
+    staticEntries: searcher,
+  });
 
   return (
     <html lang={locale} dir={RTL_LOCALES.has(locale) ? "rtl" : "ltr"} suppressHydrationWarning>
@@ -113,7 +127,9 @@ export default async function RootLayout({
               initialDictionary={initialDictionary}
             >
               <DarkModeProvider>
-                <NavigationWrapper>{children}</NavigationWrapper>
+                <NavigationWrapper searchItems={searchItems}>
+                  {children}
+                </NavigationWrapper>
               </DarkModeProvider>
             </LanguageProvider>
           </ThemeProvider>

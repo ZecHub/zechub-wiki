@@ -1,5 +1,4 @@
 "use client";
-import { searcher } from "@/constants/searcher";
 import { SearchBarProps } from "@/types";
 import { Dialog, Transition } from "@headlessui/react";
 import { Link } from "@/i18n/navigation";
@@ -26,7 +25,11 @@ import AIAssistantPanel from "../AIAssistant";
 const SUGGESTED_COUNT = 8;
 type SearchMode = "search" | "ai";
 
-const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
+const SearchBar = ({
+  openSearch,
+  setOpenSearch,
+  searchItems,
+}: SearchBarProps) => {
   const { t } = useLanguage();
   const router = useRouter();
   const [searchInput, setSearchInput] = useState("");
@@ -47,10 +50,13 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
 
   const searchResults = useMemo(() => {
     if (!hasQuery) return [];
-    return searchWiki(searcher, trimmedQuery);
-  }, [trimmedQuery, hasQuery]);
+    return searchWiki(searchItems, trimmedQuery);
+  }, [trimmedQuery, hasQuery, searchItems]);
 
-  const suggested = useMemo(() => searcher.slice(0, SUGGESTED_COUNT), []);
+  const suggested = useMemo(
+    () => searchItems.slice(0, SUGGESTED_COUNT),
+    [searchItems],
+  );
 
   const listToShow = hasQuery ? searchResults : suggested;
   const showEmpty = hasQuery && searchResults.length === 0;

@@ -37,6 +37,7 @@ export interface SearchInputProps {
 export interface SearchBarProps {
   openSearch: boolean;
   setOpenSearch: (e: boolean) => void;
+  searchItems: readonly Searcher[];
 }
 
 export interface Searcher {
