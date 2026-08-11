@@ -50,7 +50,7 @@
     {
       "title": "Zcash Scalability with Sean Bowe - ZconVI #zcash",
       "video_id": "-m3JCgi3kiU",
-      "views": 1478
+      "views": 1479
     },
     {
       "title": "Zcon0 Keynote Panel: Cryptocurrency Governance",
@@ -200,7 +200,7 @@
     {
       "title": "Auditing Cryptography: #Zcon2Lite",
       "video_id": "g7VwzTRWNZM",
-      "views": 785
+      "views": 786
     },
     {
       "title": "Overview of Tendermint/IBC/Cosmos Stack w/ Christopher Goes",
@@ -270,7 +270,7 @@
     {
       "title": "Electric Coin Company: Proof of Stake - Nate Wilcox at Zcon3",
       "video_id": "WRZkqGD5kFg",
-      "views": 627
+      "views": 628
     },
     {
       "title": "Town Hall at Zcon3",
@@ -280,7 +280,7 @@
     {
       "title": "Zcash Protocol Hangout, Dev Fund Edition #2",
       "video_id": "NVyZSYMLTDU",
-      "views": 612
+      "views": 613
     },
     {
       "title": "A Conversation with Zcash Open Major Grants (ZOMG): #Zcon2Lite",
@@ -463,6 +463,11 @@
       "views": 379
     },
     {
+      "title": "“Financial privacy is not about evading legality, but about affirming liberty.”",
+      "video_id": "_g94z10ECWw",
+      "views": 377
+    },
+    {
       "title": "Dedicated Zcash Arborist Call ( ZSAs, NU6, & NU7)",
       "video_id": "C_S5e2WNIe8",
       "views": 377
@@ -471,11 +476,6 @@
       "title": "User Research: Zcash Payments Are Normal with Tatyana - ZconV: Zcash Unified 2024 #Zcash #ZEC",
       "video_id": "eFN8mUktXVQ",
       "views": 377
-    },
-    {
-      "title": "“Financial privacy is not about evading legality, but about affirming liberty.”",
-      "video_id": "_g94z10ECWw",
-      "views": 375
     },
     {
       "title": "Agoric: Zcon Overview with Dean Tribble: Zcon3",
@@ -873,13 +873,13 @@
       "views": 225
     },
     {
-      "title": "Agoric, Smart Contracts, and Confidentiality - Dean Tribble",
-      "video_id": "EAGaYg3hq88",
-      "views": 223
-    },
-    {
       "title": "Design a Proof Of Solvency protocol with Halo2 Workshop by Enrico: Zcon4",
       "video_id": "P7w6LWXkwns",
+      "views": 224
+    },
+    {
+      "title": "Agoric, Smart Contracts, and Confidentiality - Dean Tribble",
+      "video_id": "EAGaYg3hq88",
       "views": 223
     },
     {
@@ -891,6 +891,11 @@
       "title": "Zcash Arborist Call 8/8/24",
       "video_id": "PyMbhnnqeE4",
       "views": 223
+    },
+    {
+      "title": "MGRC Candidate Q&A Live Streams: Time Slot #3",
+      "video_id": "cyjPxpe4cvs",
+      "views": 222
     },
     {
       "title": "Building a world class UX for ZEC - Josh Swihart at Zcon3",
@@ -911,11 +916,6 @@
       "title": "Zcon4 Opening Address by Jack Gavigan: Zcash",
       "video_id": "I5h6Y_5XSJA",
       "views": 222
-    },
-    {
-      "title": "MGRC Candidate Q&A Live Streams: Time Slot #3",
-      "video_id": "cyjPxpe4cvs",
-      "views": 221
     },
     {
       "title": "Protecting Civil Liberties With Privacy-Enhancing Technology - Kurt Opsahl at Zcon3",
@@ -988,14 +988,14 @@
       "views": 208
     },
     {
-      "title": "Community Call with ZCG Candidates 12/17/2024",
-      "video_id": "ODW01XSGOXA",
+      "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
+      "video_id": "fgkFrxiB14g",
       "views": 208
     },
     {
-      "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
-      "video_id": "fgkFrxiB14g",
-      "views": 207
+      "title": "Community Call with ZCG Candidates 12/17/2024",
+      "video_id": "ODW01XSGOXA",
+      "views": 208
     },
     {
       "title": "Zcash Arborist Call 02-05-2026",
@@ -1053,24 +1053,24 @@
       "views": 198
     },
     {
+      "title": "Zcash Arborist Call 08-06-2026",
+      "video_id": "T93KAOy7GJs",
+      "views": 198
+    },
+    {
       "title": "Zcash Community Grants Candidate Call 12/14/23",
       "video_id": "KbIM4yNRxts",
       "views": 197
     },
     {
+      "title": "Zcash Arborist Call 07-23-2026",
+      "video_id": "mHpMkEk6GGI",
+      "views": 195
+    },
+    {
       "title": "Scaling Zcash Governance - Josh Cincinnati",
       "video_id": "utSG9tqkot0",
       "views": 194
-    },
-    {
-      "title": "Zcash Arborist Call 07-23-2026",
-      "video_id": "mHpMkEk6GGI",
-      "views": 194
-    },
-    {
-      "title": "Zcash Arborist Call 08-06-2026",
-      "video_id": "T93KAOy7GJs",
-      "views": 193
     },
     {
       "title": "ZF Community Call - Sept 4, 2020, MGRC Candidates Part 1",
@@ -1738,14 +1738,14 @@
       "views": 81
     },
     {
-      "title": "Zcash Arborist Call 10/5/23",
-      "video_id": "jmeQayEd3zw",
+      "title": "Zebrad for Linux Tutorial #3",
+      "video_id": "FBL_tGEE2zA",
       "views": 80
     },
     {
-      "title": "Zebrad for Linux Tutorial #3",
-      "video_id": "FBL_tGEE2zA",
-      "views": 78
+      "title": "Zcash Arborist Call 10/5/23",
+      "video_id": "jmeQayEd3zw",
+      "views": 80
     },
     {
       "title": "Zcash Arborist Call 06-12-2025",

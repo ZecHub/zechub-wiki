@@ -1,0 +1,32 @@
+name: Unit tests
+
+# Least privilege: this job only reads the tree.
+permissions:
+  contents: read
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lib-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24 # matches seo-discovery/menu-labels/egress
+          cache: yarn
+      - name: Install dependencies
+        # --ignore-scripts so a malicious PR dependency cannot run lifecycle code.
+        run: yarn install --frozen-lockfile --ignore-scripts
+      - name: Run library unit tests
+        # Scoped to src/lib deliberately. The two component/hook suites under
+        # src/components and src/hooks import @testing-library/react and
+        # @testing-library/user-event, which are declared in neither
+        # package.json nor yarn.lock, so they cannot run. That is pre-existing
+        # rot; widening this job means declaring those deps first.
+        run: npx jest src/lib --ci
