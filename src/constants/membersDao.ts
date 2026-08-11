@@ -2,20 +2,6 @@ import { socialIcons } from "@/components/UI/SvgIcons";
 
 export const daoMembers = [
   {
-    imgUrl: "/content-images/Hardaeborla.webp",
-    name: "Hardaeborla",
-    description: "Zcash Nigeria Team Member, Writer and Researcher ",
-    social: [
-      {
-        name: "Twitter",
-        url: "https://x.com/hardaeborla",
-        icon: socialIcons.x,
-      },
-    ],
-    zcashAddress: "zs1ysf8uhtkxza0ayu9sqts96l76m4ytsa2eevnt60v59xvgsw4k03nyd3n05mse7t0w8gdvqpw2fj",
-    role: "Member",
-  },
-  {
     imgUrl: "/speedfox.png",
     name: "Speedfox",
     description: "Zcash Contributor, Developer and Graphic Design professional",
@@ -468,5 +454,19 @@ export const daoMembers = [
     zcashAddress:
       "u1n6sscrlxhz8a9wlvfa076rux7q00lff48jt62kje09ds5ntynlp2hcrsf3emtprts3z59yt99cvzwvnz7lvzgrpdxqrj3kxfx98y2pt46qry87rqcfuj02x3xsj0jqqnehhzd8hy090tntqwsx8ncatsckzmnw43yqqntuv668av4vhqf2p6payrz94cstm2v465f4nllmpawp5jcat",
     role: "",
+  },
+  {
+    imgUrl: "/content-images/Hardaeborla.webp",
+    name: "Hardaeborla",
+    description: " Zcash Nigeria Team Member | Writer |Privacy Enthusiast | Web3 | Graphic Designer |Researcher|",
+    social: [
+      {
+        name: "Twitter",
+        url: "https://x.com/hardaeborla",
+        icon: socialIcons.x,
+      },
+    ],
+    zcashAddress: "u1c8rm4a8uqcwehf2xplapa9qftq2a5796j4c3ch9fl37r5dsqsntzulm0gxz7dfa3cv9ank3xuqankvgu385ru7uyp43nxclrd3j3uzcwv4jsvk20zta2y9lghygr6gv0mwv68rdfmjlrks75hnj3l0hj57220nr26ag8028pgq0wpkmv",
+    role: "Member",
   },
 ];
