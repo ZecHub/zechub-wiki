@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 172,
+    "proposal_count": 173,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -7086,8 +7086,8 @@
           "msgs": [],
           "title": "Zcash East Africa Operations: From Awareness to Adoption ( August – October 2026)",
           "votes": {
-            "no": "2",
-            "yes": "6",
+            "no": "3",
+            "yes": "13",
             "abstain": "0"
           },
           "status": "open",
@@ -7112,6 +7112,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-08-07T03:17:52.928Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 173,
+        "proposal": {
+          "msgs": [],
+          "title": "Multilingual Wiki Maintenance (18 Languages)",
+          "votes": {
+            "no": "0",
+            "yes": "2",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno17mfs26ytgpxtmlezxyx8xh3sjz9a46spaavuse",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1786883243959937761"
+          },
+          "description": "**Author:** bloxster\n\n**Date:** 2026-07-07\n\n**Type:** Recurring maintenance grant (renewable)\n\n**Duration:** 12 months\n\n**Requested:** **$5,000 USD** (disbursed in ZEC), milestone-gated quarterly\n\n**Repos:** `ZecHub/zechub` (content) · `ZecHub/zechub-wiki` (frontend)\n\n---\n\n## TL;DR\n\nThe ZecHub wiki is now published in **18 curated languages** (≈181 pages each). The initial translation and the sync automation were delivered under the **separate, prior grant A149** — this proposal does **not** re-fund that work. What it funds is the one thing that build cannot do by itself: **keep those 18 languages in sync with the English source over the next 12 months**, so the multilingual wiki does not silently rot the moment the source changes.\n\nAsk: **$5,000 for 12 months**, paid quarterly against public, verifiable deliverables.\n\n---\n\n## Background\n\nZecHub content changes continuously on `main`. Each curated translation is a point-in-time snapshot of the English source; when an English page changes, every locale's copy of that page silently goes stale. Under the prior grant we delivered:\n\n- **18-language curated corpus** — it, fr, es, pt, de, ar, zh, hi, ru, ja, ko, tr, uk, sw, yo, ig, ak, ee.\n- **Removal of the runtime Google Translate widget** — a privacy win: page content is no longer sent to Google for on-the-fly translation.\n- **The translation-sync infrastructure** — deterministic staleness detection, a manifest, consistency-invariant CI, and an operator-run sync agent (detect → translate the English delta → automated quality gates → reviewable PR).\n\nThat foundation is built. It does not, however, run itself.\n\n## Why maintenance needs its own, ongoing funding\n\n1. **Staleness is continuous and invisible.** English changes weekly; without a funded, recurring process each of 18 locales drifts out of sync, page by page, with no one accountable for catching it.\n2. **The stakes are now higher, by design.** With the Google Translate runtime widget removed for privacy, **curated content is the only translation a user ever sees.** A stale curated page is *what the reader gets* — permanently — until someone re-syncs it. There is no automatic runtime fallback anymore.\n3. **The infra is not the labor.** Detection is automated; *acting on it* is not. Triaging the staleness dashboard, running the sync agent, reviewing its output, and shepherding weekly PRs to merge is recurring work. Unfunded, it stops — and the whole multilingual investment quietly degrades (the bus-factor problem this proposal exists to solve).\n\n## Scope\n\n**In scope (this proposal funds):**\n\n- **Weekly sync operation** across all 18 locales: run detection, generate diff-aware / regenerated translations for stale pages, pass the protected-terms + structure-parity gates, prepare one reviewable PR per weekly window, merge on green.\n- **Staleness dashboard upkeep**: keep the public dashboard current; classify and prioritize stale / deleted / renamed / missing pages; delete orphaned translations of removed English pages.\n- **Safety-critical fast path**: out-of-band sync when an English change removes a security/deprecation/scam warning, so no locale keeps serving a dangerous stale instruction.\n- **LLM API / compute costs** for the translation step.\n\n**Out of scope (not requested here):**\n\n- Initial 18-language curated corpus — *funded under the prior grant.*\n- Sync automation build (detection, manifest, invariant CI, sync agent) — *funded under the prior grant.*\n- Google Translate removal and related privacy work — *funded under the prior grant.*\n- **Native-speaker linguistic review** — deliberately excluded. This proposal maintains the translations at their established machine/curated quality and keeps them *in sync*; it does not commit to a human-language review round, which requires native speakers per language and is better run as a separate, community-driven effort (e.g. via ZecHub ambassadors) or a future dedicated proposal.\n\n## Deliverables\n\n- A **public staleness dashboard** (pinned GitHub issue) kept current — the community can verify sync health at any time.\n- **Weekly `i18n sync` PRs** (or an explicit \"no changes this window\" when the source is quiet) — each capped for reviewability and carrying a per-page/per-locale summary table (mode, engine, gate result, changed-line count).\n- A **quarterly maintenance report**: pages synced, median staleness window, API spend, and any incidents.\n\n## Milestones & Budget\n\nDenominated in **USD**, disbursed in **ZEC** at each milestone (spot at the disbursement date, or a short trailing average — DAO's choice). Paid **only on delivery**.\n\n| Milestone | Window | Deliverables                                                                          | USD        |\n| --------- | ------ | ------------------------------------------------------------------------------------- | ---------- |\n| **M1**    | Q1     | Sync operation live for the quarter · dashboard current · infra · quarterly report    | **$1,250** |\n| **M2**    | Q2     | Sync operation · dashboard current · quarterly report                                 | **$1,250** |\n| **M3**    | Q3     | Sync operation · dashboard current · quarterly report                                 | **$1,250** |\n| **M4**    | Q4     | Sync operation · dashboard current · **annual report** + sustainability/handover note | **$1,250** |\n|           |        | **Total (12 months)**                                                                 | **$5,000** |\n\n**Line-item basis (for transparency):**\n\n| Item                  | Basis                              | USD        |\n| --------------------- | ---------------------------------- | ---------- |\n| Weekly sync operation | ~4 hrs/week × 12 months (≈208 hrs) | $4,500     |\n| LLM API / infra       | 12 months                          | $500       |\n| **Total**             |                                    | **$5,000** |\n\n## Success metrics (KPIs)\n\n- **Median staleness window < 10 days** for changed curated pages.\n- **Zero orphaned translations** serving content whose English source was deleted.\n- **Public dashboard live and current** throughout — independently verifiable, not self-reported.\n- **Weekly cadence held** (a sync PR, or a documented no-op, every window).\n\n## Sustainability / exit\n\nThis grant is the *ownership answer for one year*. The end-state is **Phase B**: lift-and-shift the sync executor into ZecHub-owned CI with an org-funded API key, at which point weekly translation runs automatically and this recurring human line shrinks to light oversight. Funding and key-custody for Phase B are a separate, later decision — this proposal keeps the languages healthy in the meantime and de-risks that transition.\n\n## About the contributor\n\nbloxster — delivered the ZecHub multilingual foundation (18-language corpus, next-intl frontend, Google Translate removal, and the translation-sync infrastructure) under the prior grant, working directly against the ZecHub content and frontend repos via fork→upstream PRs. Ongoing Zcash-ecosystem contributor.\n\n---\n\n### Notes for the DAO reviewer\n\n- **No double-funding:** the initial translation, the automation, and the privacy work are explicitly excluded — this covers *operation only*.\n- **Scoped to what one person can deliver:** automated sync + dashboard upkeep. No promises that depend on recruiting others.\n- **Verifiable, not trust-based:** every deliverable (dashboard, sync PRs, reports) is public in the ZecHub repos.\n- **Renewable, not open-ended:** 12 months, milestone-gated; the DAO can decline renewal or move to Phase B at the end without stranding anything.",
+          "total_power": "23",
+          "start_height": 40666396,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-08-11T12:27:23.959Z"
       }
     ]
   },
