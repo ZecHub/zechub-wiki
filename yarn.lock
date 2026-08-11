@@ -3465,13 +3465,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/hast@^2.0.0":
-  version "2.3.10"
-  resolved "https://registry.yarnpkg.com/@types/hast/-/hast-2.3.10.tgz#5c9d9e0b304bbb8879b857225c5ebab2d81d7643"
-  integrity sha512-McWspRw8xx8J9HurkVBfYj0xKoE25tOFlHGdx4MJ5xORQrMGZNqJhVQWaIbm6Oyla5kYOXtDiopzKRJzEOkwJw==
-  dependencies:
-    "@types/unist" "^2"
-
 "@types/hast@^3.0.0":
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/@types/hast/-/hast-3.0.5.tgz#48020de4c0e63492f4ca9db42068c108f68b7f8f"
@@ -9693,11 +9686,6 @@ prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.6.0, prop-types@^15.6.1,
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
-property-information@^6.0.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/property-information/-/property-information-6.5.0.tgz#6212fbb52ba757e92ef4fb9d657563b933b7ffec"
-  integrity sha512-PgTgs/BlvHxOu8QuEN7wi5A0OmXaBcHpmCSTehcs6Uuu9IkDIEo13Hy7n898RHfrQ49vKCoGeWZSaAK01nwVig==
-
 property-information@^7.0.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/property-information/-/property-information-7.2.0.tgz#0809b34264e995c0bfcd3227028a1e35210af80a"
@@ -11878,10 +11866,15 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod@^3.22.4, zod@^3.23.8:
+zod@^3.23.8:
   version "3.25.76"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.76.tgz#26841c3f6fd22a6a2760e7ccb719179768471e34"
   integrity sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==
+
+zod@^4.4.3:
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-4.4.3.tgz#b680f172885d18bbebf21a834ea25e55a1bbf356"
+  integrity sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==
 
 zwitch@^2.0.0:
   version "2.0.4"
