@@ -7086,11 +7086,11 @@
           "msgs": [],
           "title": "Zcash East Africa Operations: From Awareness to Adoption ( August – October 2026)",
           "votes": {
-            "no": "3",
-            "yes": "13",
+            "no": "4",
+            "yes": "15",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "passed",
           "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
           "threshold": {
             "threshold_quorum": {
@@ -7121,8 +7121,8 @@
           "msgs": [],
           "title": "Multilingual Wiki Maintenance (18 Languages)",
           "votes": {
-            "no": "0",
-            "yes": "2",
+            "no": "1",
+            "yes": "5",
             "abstain": "0"
           },
           "status": "open",
