@@ -7090,7 +7090,7 @@
             "yes": "15",
             "abstain": "0"
           },
-          "status": "passed",
+          "status": "executed",
           "proposer": "juno1wtdjwwe9azxr2fp26j62xgk4l3mpg305rydyh8",
           "threshold": {
             "threshold_quorum": {
@@ -7111,7 +7111,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-08-07T03:17:52.928Z"
+        "createdAt": "2026-08-07T03:17:52.928Z",
+        "completedAt": "2026-08-12T03:35:40.000Z",
+        "executedAt": "2026-08-12T03:35:40.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7122,7 +7124,7 @@
           "title": "Multilingual Wiki Maintenance (18 Languages)",
           "votes": {
             "no": "1",
-            "yes": "5",
+            "yes": "7",
             "abstain": "0"
           },
           "status": "open",
