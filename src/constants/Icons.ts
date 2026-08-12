@@ -222,6 +222,7 @@ const iconsForMenu: IconsFor = {
     "Zallet Quick Reference Guide": Guide,   
     "Zcash Mining Pools": Mining,           
     "Zimppy": PointOfSale,
+	"Zecmap": Globe,
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
