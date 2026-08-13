@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "nprogress/nprogress.css";
-@plugin "flowbite/plugin";
+@plugin "flowbite/plugin" {
+  charts: false;
+}
 @plugin "tailwindcss-animate";
 @import "../../components/Charts/index.css";
 @import "../../components/Sitemap/sitemap.css";
