@@ -357,6 +357,10 @@ const specialWordsMap = {
   Faq: "FAQ",
   ZECHub: "ZecHub",
   ZEChub: "ZecHub",
+  // After whole-segment rules, "Zec" no longer rewrites inside ZecHub /
+  // ZecWeekly. Map the remaining mixed-case forms to the on-disk names.
+  Zechub: "ZecHub",
+  Zecweekly: "ZecWeekly",
   Av_Club: "AV_Club",
   guides_For_Creators: "Guides_for_Creators",
   Grapheneos: "GrapheneOS",
@@ -381,19 +385,34 @@ const specialWordsMap = {
   zkav: "ZKAV",
 };
 
+/**
+ * Apply a word list only to whole path segments.
+ *
+ * Segments are bounded by start/end of string, `/`, or `_`. This prevents
+ * prefix collisions such as "Zec" matching inside "Zecmap" / "ZecHub" (which
+ * previously rewrote Zecmap → ZECmap and 404'd the content lookup).
+ */
+function replaceWholeSegments(
+  input: string,
+  word: string,
+  replacement: string,
+): string {
+  const re = new RegExp(`(^|[_/])${word}(?=[_/]|$)`, "g");
+  return input.replace(re, (_m, boundary: string) => boundary + replacement);
+}
+
 export const transformUri = (uri: string, ignoreLowerCase = false) => {
   let transformed = uri
     .replace(/\b\w/g, (l) => l.toUpperCase())
     .replace(/-/g, "_");
 
-  if (!ignoreLowerCase)
+  if (!ignoreLowerCase) {
     lowercaseWords.forEach((word) => {
-      if (transformed.includes(word))
-        transformed = transformed.replace(word, word.toLowerCase());
+      transformed = replaceWholeSegments(transformed, word, word.toLowerCase());
     });
+  }
   uppercaseWords.forEach((word) => {
-    if (transformed.includes(word))
-      transformed = transformed.replace(word, word.toUpperCase());
+    transformed = replaceWholeSegments(transformed, word, word.toUpperCase());
   });
   Object.entries(specialWordsMap).forEach(([word, targetWord]) => {
     if (transformed.includes(word))

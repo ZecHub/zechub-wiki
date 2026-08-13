@@ -16,6 +16,35 @@ function cleanPath(path: string): string {
   return path.replace(/^\/+/, "");
 }
 
+/**
+ * Normalize a path for the GitHub contents API under the content repo.
+ *
+ * Callers pass mixed forms:
+ *   - wiki slug roots like `/site/using-zcash` (need transformUri)
+ *   - already-transformed content paths like `site/Using_Zcash` (must NOT
+ *     re-run transformUri — that would turn `site/` into `Site/` and break
+ *     the case-insensitive file fallback folder listing)
+ *
+ * Detection: content-repo paths contain uppercase letters (e.g. Using_Zcash).
+ * Wiki slug paths are lowercase with hyphens (e.g. using-zcash). Only the
+ * latter go through transformUri.
+ */
+function toGithubPath(path: string): string {
+  const p = cleanPath(path);
+  const hasSitePrefix = /^site\//i.test(p);
+  const rest = hasSitePrefix ? p.slice(p.indexOf("/") + 1) : p;
+
+  // Already a content-repo path (Capitalized_Underscore segments).
+  if (hasSitePrefix && /[A-Z]/.test(rest)) {
+    return "site/" + rest;
+  }
+
+  // Wiki slug path — run transformUri on the slug portion.
+  const withSlash = rest.startsWith("/") ? rest : `/${rest}`;
+  const transformed = transformUri(withSlash); // e.g. "/Using_Zcash"
+  return cleanPath("site" + transformed);
+}
+
 function assertRepoConfig(): boolean {
   if (!owner || !repo) {
     console.error(
@@ -306,7 +335,7 @@ export const getRootCached = unstable_cache(
     const res = await octokit.rest.repos.getContent({
       owner,
       repo,
-      path: cleanPath(transformUri(path).replace("/Site", "/site")),
+      path: toGithubPath(path),
       ref: branch,
     });
     const data = res.data;
@@ -338,7 +367,7 @@ export async function getRootFileName(path: string) {
     const res = await octokit.rest.repos.getContent({
       owner,
       repo,
-      path: cleanPath(transformUri(path).replace("/Site", "/site")),
+      path: toGithubPath(path),
       ref: branch,
     });
     const data = res.data;
@@ -358,7 +387,7 @@ export const getAllMarkdownRecursively = unstable_cache(
     const walk = async (currentPath: string, isInitial: boolean) => {
       try {
         const apiPath = isInitial
-          ? cleanPath(transformUri(currentPath).replace("/Site", "/site"))
+          ? toGithubPath(currentPath)
           : cleanPath(currentPath);
         const res = await octokit.rest.repos.getContent({
           owner,
