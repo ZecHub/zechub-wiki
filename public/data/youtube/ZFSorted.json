@@ -95,7 +95,7 @@
     {
       "title": "The State of Privacy in Cryptocurrencies - Ian Miers",
       "video_id": "AJGLhaUV8QM",
-      "views": 1215
+      "views": 1216
     },
     {
       "title": "An Overview Of Governance In Blockchains",
@@ -223,13 +223,13 @@
       "views": 708
     },
     {
-      "title": "A Bulletproof Update",
-      "video_id": "LulbpwY_xM0",
-      "views": 686
-    },
-    {
       "title": "Taiga: A dark forest of zero-knowledge programmability - Christopher Goes at Zcon3",
       "video_id": "C7jHjpRtUzA",
+      "views": 687
+    },
+    {
+      "title": "A Bulletproof Update",
+      "video_id": "LulbpwY_xM0",
       "views": 686
     },
     {
@@ -305,7 +305,7 @@
     {
       "title": "Arti: ZF + ZCG Call w/ the Tor Project",
       "video_id": "E7g9dKBOYEI",
-      "views": 528
+      "views": 529
     },
     {
       "title": "ZconV: Trailer May 6-10, 2024 #Zcash #ZEC #ZconV",
@@ -368,6 +368,11 @@
       "views": 447
     },
     {
+      "title": "Zashi: A Year in Review & Roadmap with Andrea Kobrlova and Josh Swihart - ZconVI #zcash",
+      "video_id": "rcbE7YptSHc",
+      "views": 444
+    },
+    {
       "title": "Beyond ZEC: Expanding Zcash's Use Case Panel w Brave, Maya, QEDIT, Penumbra, red·bridge & Namada",
       "video_id": "CrWHNThDmaw",
       "views": 444
@@ -375,11 +380,6 @@
     {
       "title": "Zcash Protocol Hangout — Blossom and NU3 ZIPs",
       "video_id": "3FnwW6VvSho",
-      "views": 442
-    },
-    {
-      "title": "Zashi: A Year in Review & Roadmap with Andrea Kobrlova and Josh Swihart - ZconVI #zcash",
-      "video_id": "rcbE7YptSHc",
       "views": 442
     },
     {
@@ -463,14 +463,14 @@
       "views": 379
     },
     {
-      "title": "“Financial privacy is not about evading legality, but about affirming liberty.”",
-      "video_id": "_g94z10ECWw",
-      "views": 378
-    },
-    {
       "title": "Dedicated Zcash Arborist Call ( ZSAs, NU6, & NU7)",
       "video_id": "C_S5e2WNIe8",
       "views": 378
+    },
+    {
+      "title": "“Financial privacy is not about evading legality, but about affirming liberty.”",
+      "video_id": "_g94z10ECWw",
+      "views": 377
     },
     {
       "title": "User Research: Zcash Payments Are Normal with Tatyana - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -488,13 +488,13 @@
       "views": 371
     },
     {
-      "title": "Community workshop presentations - Day 1 at Zcon0 (2018)",
-      "video_id": "GB834x96S1M",
-      "views": 368
-    },
-    {
       "title": "Developing X Wallet, A Privacy Focused Mobile Wallet",
       "video_id": "4buh1quMbr4",
+      "views": 369
+    },
+    {
+      "title": "Community workshop presentations - Day 1 at Zcon0 (2018)",
+      "video_id": "GB834x96S1M",
       "views": 368
     },
     {
@@ -810,7 +810,7 @@
     {
       "title": "ZF Engineering Update w/ FROST demo with Zcash Foundation Engineers & Manager - ZconVI #zcash",
       "video_id": "lfXIHxx5P5s",
-      "views": 245
+      "views": 246
     },
     {
       "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
@@ -1615,7 +1615,7 @@
     {
       "title": "DevOps demo: Using Zebra with Docker and CI/CD",
       "video_id": "oPZqvRCC-Pg",
-      "views": 105
+      "views": 106
     },
     {
       "title": "Zcash Arborist Call 11/2/23",
