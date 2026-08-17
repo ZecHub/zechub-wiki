@@ -7127,7 +7127,7 @@
             "yes": "14",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno17mfs26ytgpxtmlezxyx8xh3sjz9a46spaavuse",
           "threshold": {
             "threshold_quorum": {
@@ -7148,7 +7148,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-08-11T12:27:23.959Z"
+        "createdAt": "2026-08-11T12:27:23.959Z",
+        "completedAt": "2026-08-17T08:20:04.000Z",
+        "executedAt": "2026-08-17T08:20:04.000Z"
       }
     ]
   },
