@@ -304,12 +304,21 @@ const FlyoutLinkItem = ({
 }) => {
   const [flyoutOpen, setFlyoutOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const openFlyout = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setFlyoutOpen(true);
   };
   const closeFlyout = () => {
     timerRef.current = setTimeout(() => setFlyoutOpen(false), 80);
+  };
+  // Close the flyout on Escape and return focus to the trigger button.
+  const handleFlyoutKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Escape" && flyoutOpen) {
+      e.preventDefault();
+      closeFlyout();
+      triggerRef.current?.focus();
+    }
   };
   const label = getTranslatedLabel(parentItem.name, link.name, t, link.label);
   if (!link.links || link.links.length === 0) {
@@ -343,7 +352,12 @@ const FlyoutLinkItem = ({
       onMouseEnter={openFlyout}
       onMouseLeave={closeFlyout}
     >
-      <div
+      <button
+        ref={triggerRef}
+        type="button"
+        onKeyDown={handleFlyoutKeyDown}
+        aria-haspopup="menu"
+        aria-expanded={flyoutOpen}
         className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
       >
         <span className="flex items-center gap-2">
@@ -356,7 +370,7 @@ const FlyoutLinkItem = ({
           {label}
         </span>
         <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60 rotate-180" />
-      </div>
+      </button>
       {flyoutOpen && (
         <div
           className="absolute right-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
@@ -398,18 +412,39 @@ const Dropdown = ({
   children: React.ReactNode;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+  const handleTriggerKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    // Escape closes the menu and returns focus to the trigger button.
+    if (e.key === "Escape" && isOpen) {
+      e.preventDefault();
+      closeMenu();
+      triggerRef.current?.focus();
+    }
+  };
   return (
     <div
       className="relative"
       onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      // Guarded so closing the menu via Escape/click isn't immediately undone by
+      // a synthetic mouseleave during keyboard interaction.
+      onMouseLeave={() => closeMenu()}
     >
-      <div className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2">
+      <button
+        ref={triggerRef}
+        type="button"
+        className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
+        onKeyDown={handleTriggerKeyDown}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+      >
         {label}
         <ChevronDown
           className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
-      </div>
+      </button>
       {isOpen && (
         <div className="absolute top-full left-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[600px] mt-0 grid grid-cols-2 gap-2 p-2 transition-all duration-150">
           {children}
@@ -430,12 +465,21 @@ const MoreMenuItem = ({
 }) => {
   const [flyoutOpen, setFlyoutOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const openFlyout = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setFlyoutOpen(true);
   };
   const closeFlyout = () => {
     timerRef.current = setTimeout(() => setFlyoutOpen(false), 80);
+  };
+  // Close the flyout on Escape and return focus to the trigger button.
+  const handleFlyoutKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Escape" && flyoutOpen) {
+      e.preventDefault();
+      closeFlyout();
+      triggerRef.current?.focus();
+    }
   };
   const label = getTranslatedLabel(item.name, item.label, t, item.label);
   if (!item.links) {
@@ -463,7 +507,12 @@ const MoreMenuItem = ({
       onMouseEnter={openFlyout}
       onMouseLeave={closeFlyout}
     >
-      <div
+      <button
+        ref={triggerRef}
+        type="button"
+        onKeyDown={handleFlyoutKeyDown}
+        aria-haspopup="menu"
+        aria-expanded={flyoutOpen}
         className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
       >
         <span className="flex items-center gap-2">
@@ -476,7 +525,7 @@ const MoreMenuItem = ({
           {label}
         </span>
         <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60" />
-      </div>
+      </button>
       {flyoutOpen && (
         <div
           className="absolute left-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
@@ -596,9 +645,19 @@ const NavLinks = ({
                   >
                     {item.links ? (
                       <>
-                        <div
+                        <button
+                          type="button"
                           className="flex items-center gap-1 text-white hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
                           onClick={() => setOpenIndex(isOpen ? null : i)}
+                          onKeyDown={(e) => {
+                            // Escape collapses the nested submenu.
+                            if (e.key === "Escape" && isOpen) {
+                              e.preventDefault();
+                              setOpenIndex(null);
+                            }
+                          }}
+                          aria-haspopup="menu"
+                          aria-expanded={isOpen}
                         >
                           {getTranslatedLabel(
                             item.name,
@@ -609,7 +668,7 @@ const NavLinks = ({
                           <ChevronDown
                             className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                           />
-                        </div>
+                        </button>
                         {isOpen &&
                           item.links.map((link, j) => (
                             <div
@@ -736,18 +795,34 @@ const MoreDropdown = ({
   onLinkClick: () => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeMenu = () => setIsOpen(false);
+  const handleTriggerKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Escape" && isOpen) {
+      e.preventDefault();
+      closeMenu();
+      triggerRef.current?.focus();
+    }
+  };
   return (
     <div
       className="relative"
       onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onMouseLeave={() => closeMenu()}
     >
-      <div className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2">
+      <button
+        ref={triggerRef}
+        type="button"
+        className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2"
+        onKeyDown={handleTriggerKeyDown}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+      >
         {t.navigation?.more || "More"}
         <ChevronDown
           className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
-      </div>
+      </button>
       {isOpen && (
         <div className="absolute top-full left-0 z-50 bg-slate-100 dark:bg-slate-900 shadow-lg border border-slate-200 dark:border-slate-700 min-w-[200px] mt-0 p-1.5 rounded-sm">
           {items.map((item, i) => (
@@ -972,6 +1047,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               size="sm"
               onClick={() => setOpenSearch(true)}
               className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
+              aria-label="Search"
             >
               <Search className="h-5 w-5 md:h-6 md:w-6" />
             </Button>
@@ -985,6 +1061,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               size="sm"
               onClick={() => setTheme(!isDark ? "dark" : "light")}
               className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
+              aria-label={isDark ? "Toggle to light theme" : "Toggle to dark theme"}
             >
               {mounted && isDark ? (
                 <Sun className="h-5 w-5 md:h-6 md:w-6" />
@@ -996,6 +1073,15 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               className="hidden xl:flex relative"
               onMouseEnter={() => setShowShop(true)}
               onMouseLeave={() => setShowShop(false)}
+              // Open on focus so the Shop menu is reachable by keyboard, and
+              // keep it visible while focus remains within the group. It closes
+              // again when focus leaves (matching the hover behaviour).
+              onFocus={() => setShowShop(true)}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget)) {
+                  setShowShop(false);
+                }
+              }}
             >
               <DonationBtn />
               {showShop && (
@@ -1022,6 +1108,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                     variant="ghost"
                     size="sm"
                     className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
+                    aria-label={isOpen ? "Close menu" : "Open menu"}
                   >
                     <Menu className="h-10 w-10" />
                   </Button>
