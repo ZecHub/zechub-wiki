@@ -825,7 +825,7 @@ source "$HOME/.cargo/env"`}
           <SectionCard title={qs?.fromSource ?? "From GitHub"}>
             <SubLabel>{qs?.pinnedRelease ?? "Install Pinned Release"}</SubLabel>
             <CodeBlock
-              code={`cargo install --git https://github.com/zakura-core/zakura --tag v1.0.5 zakura`}
+              code={`cargo install --git https://github.com/zakura-core/zakura --tag v1.2.0 zakura`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.verifyInstallation ?? "Verify Installation"}
