@@ -30,7 +30,7 @@
     {
       "title": "Boosting Zcash Security w/ Zebra",
       "video_id": "02N5uP5-7uo",
-      "views": 1785
+      "views": 1786
     },
     {
       "title": "Envisioning Zcash at Global Scale - Nathan Wilcox",
@@ -135,7 +135,7 @@
     {
       "title": "Zecwallet Lite on Windows Tutorial #1",
       "video_id": "4v_wr6DBY48",
-      "views": 960
+      "views": 961
     },
     {
       "title": "Tooling for building zkEVM: PIL and Circom - Jordi Baylina at Zcon3",
@@ -180,7 +180,7 @@
     {
       "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
       "video_id": "eero6i2WTxo",
-      "views": 809
+      "views": 810
     },
     {
       "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
@@ -250,7 +250,7 @@
     {
       "title": "Proof Carrying Data - Pratyush Mishra at Zcon3",
       "video_id": "7MtzoVM6e6w",
-      "views": 649
+      "views": 650
     },
     {
       "title": "Zcash Foundation Update with ZF Executive Director Jack Gavigan - ZconV: Zcash Unified 2024 #Zcash",
@@ -265,7 +265,7 @@
     {
       "title": "Zcash For Every(One|Where): Creating Shielded Transactions on All The Things! - Jack Grigg",
       "video_id": "OrL7aaQj63g",
-      "views": 633
+      "views": 634
     },
     {
       "title": "Electric Coin Company: Proof of Stake - Nate Wilcox at Zcon3",
@@ -370,7 +370,7 @@
     {
       "title": "Zashi: A Year in Review & Roadmap with Andrea Kobrlova and Josh Swihart - ZconVI #zcash",
       "video_id": "rcbE7YptSHc",
-      "views": 446
+      "views": 447
     },
     {
       "title": "Beyond ZEC: Expanding Zcash's Use Case Panel w Brave, Maya, QEDIT, Penumbra, red·bridge & Namada",
@@ -618,6 +618,11 @@
       "views": 318
     },
     {
+      "title": "Zecwallet Lite on Windows Tutorial #2",
+      "video_id": "NX168gEXZco",
+      "views": 318
+    },
+    {
       "title": "What makes Zcash Incredibly Interesting?!",
       "video_id": "gRA7qMVnVbU",
       "views": 318
@@ -628,14 +633,9 @@
       "views": 318
     },
     {
-      "title": "Zecwallet Lite on Windows Tutorial #2",
-      "video_id": "NX168gEXZco",
-      "views": 317
-    },
-    {
       "title": "Zebrad for Linux Tutorial #1",
       "video_id": "7cPKf4hobeI",
-      "views": 316
+      "views": 317
     },
     {
       "title": "Bridging ZEC for DeFi and Payments with Kit Sturgeon - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -690,7 +690,7 @@
     {
       "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
       "video_id": "hdd5X2z7O3o",
-      "views": 288
+      "views": 289
     },
     {
       "title": "Cryptocurrency startups and community adoption 👀 Interview with Guarda CMO Maria Carola",
@@ -740,7 +740,7 @@
     {
       "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
       "video_id": "5gvQF5oFT8E",
-      "views": 270
+      "views": 271
     },
     {
       "title": "Zcon Vozes - Parte 2",
@@ -770,7 +770,7 @@
     {
       "title": "Zebra Showcase w/ ZFND Engineering Team",
       "video_id": "WLzywPoFwsM",
-      "views": 262
+      "views": 263
     },
     {
       "title": "SNARKs on Other Ecosystems: #Zcon2Lite",
@@ -813,13 +813,13 @@
       "views": 246
     },
     {
-      "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
-      "video_id": "hzUdmwq23ac",
-      "views": 242
-    },
-    {
       "title": "Zcash Arborist Call 06-11-2026",
       "video_id": "SKNivdDz9qI",
+      "views": 243
+    },
+    {
+      "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
+      "video_id": "hzUdmwq23ac",
       "views": 242
     },
     {
@@ -863,6 +863,11 @@
       "views": 230
     },
     {
+      "title": "Zcash Arborist Call 08-06-2026",
+      "video_id": "T93KAOy7GJs",
+      "views": 229
+    },
+    {
       "title": "Zebra",
       "video_id": "142IudaOXUU",
       "views": 228
@@ -871,11 +876,6 @@
       "title": "Zcash Foundation Board Candidate Call - 09 November 2022",
       "video_id": "6tVr5ym4IKE",
       "views": 227
-    },
-    {
-      "title": "Zcash Arborist Call 08-06-2026",
-      "video_id": "T93KAOy7GJs",
-      "views": 225
     },
     {
       "title": "Design a Proof Of Solvency protocol with Halo2 Workshop by Enrico: Zcon4",
@@ -1015,7 +1015,7 @@
     {
       "title": "Zecwallet Lite on Windows Tutorial #3",
       "video_id": "A8nmkcHkeW4",
-      "views": 204
+      "views": 205
     },
     {
       "title": "Decentralization: Past, Present, and Future Panel - ZconVI #zcash",
