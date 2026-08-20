@@ -30,7 +30,7 @@
     {
       "title": "Conheça Zooko, a maior fã da Zcash! #https #privacidade #blockchain  #criptomoedas",
       "video_id": "eGrvVLhYBSw",
-      "views": 1088
+      "views": 1089
     },
     {
       "title": "Aquietinvestor foi visto dirigindo um Cybertruck da Zcash amarelo #automobile #money #memes",
@@ -40,7 +40,7 @@
     {
       "title": "Qual o valor da sua privacidade? #Privacidade #Cripto #Zcash",
       "video_id": "SRJXi3B5f3w",
-      "views": 963
+      "views": 964
     },
     {
       "title": "Inclusão tecnológica e educação sobre privacidade andam juntas.",
@@ -160,7 +160,7 @@
     {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
-      "views": 548
+      "views": 553
     },
     {
       "title": "A verdade sobre a privacidade no mundo digital!",
@@ -1308,6 +1308,11 @@
       "views": 87
     },
     {
+      "title": "Zcash Engineering Office Hours: Zcash Names and Edge Wallet",
+      "video_id": "ySE70XuDudk",
+      "views": 87
+    },
+    {
       "title": "DEX é a melhor forma para resistir ao KYC.",
       "video_id": "f5tNDgKO1Lc",
       "views": 86
@@ -1315,11 +1320,6 @@
     {
       "title": "Orchard Quantum Recoverability: Como a Zcash se Prepara para Ameaças Quânticas | Engineering #3",
       "video_id": "R6916H2IMKI",
-      "views": 86
-    },
-    {
-      "title": "Zcash Engineering Office Hours: Zcash Names and Edge Wallet",
-      "video_id": "ySE70XuDudk",
       "views": 86
     },
     {
@@ -2398,6 +2398,11 @@
       "views": 38
     },
     {
+      "title": "Zcash Brasil no Blockchain Rio 2026 | Privacy Is Normal",
+      "video_id": "GV357YejpFg",
+      "views": 38
+    },
+    {
       "title": "Hoje é a censura da mídia, e amanhã será a censura do dinheiro💰#blockchain #privacy #money #bitcoin",
       "video_id": "GSa5ztRm9Uw",
       "views": 37
@@ -2570,11 +2575,6 @@
     {
       "title": "Zcon Vozes 2 e Novidades do Tachyon | Zec Insider",
       "video_id": "3G3Z9W93k7o",
-      "views": 34
-    },
-    {
-      "title": "Zcash Brasil no Blockchain Rio 2026 | Privacy Is Normal",
-      "video_id": "GV357YejpFg",
       "views": 34
     },
     {
@@ -2913,6 +2913,11 @@
       "views": 26
     },
     {
+      "title": "Sean Bowe - Privacidade e Regulamentação  LEGENDADO",
+      "video_id": "4FYJ8kUSAdQ",
+      "views": 26
+    },
+    {
       "title": "Privacidade em primeiro lugar, depois usabilidade e escalabilidade.",
       "video_id": "Wz5HPFN2K7U",
       "views": 26
@@ -2965,11 +2970,6 @@
     {
       "title": "Ian Sagstetter - Zcash Protetor da Liberdade.",
       "video_id": "xPamcSalm1g",
-      "views": 25
-    },
-    {
-      "title": "Sean Bowe - Privacidade e Regulamentação  LEGENDADO",
-      "video_id": "4FYJ8kUSAdQ",
       "views": 25
     },
     {
@@ -3348,6 +3348,11 @@
       "views": 18
     },
     {
+      "title": "Zcash Brasil no Blockchain Rio 2026 | Privacidade de Pessoa para Pessoa",
+      "video_id": "M1kUCAzc-FQ",
+      "views": 18
+    },
+    {
       "title": "ZconV: Zcash Unified Dia 5 LEGENDADO",
       "video_id": "kokFjApP0Jg",
       "views": 17
@@ -3643,6 +3648,11 @@
       "views": 12
     },
     {
+      "title": "Aamandita Pós-Palco no Blockchain Rio",
+      "video_id": "-JV0696pGDI",
+      "views": 12
+    },
+    {
       "title": "Vitor - Tornado Cash & Privacidade",
       "video_id": "yY4Zab-gfWI",
       "views": 11
@@ -3718,8 +3728,13 @@
       "views": 10
     },
     {
-      "title": "Aamandita Pós-Palco no Blockchain Rio",
-      "video_id": "-JV0696pGDI",
+      "title": "Milca0: Web3 é Sobre Direitos, Privacidade e Descentralização.",
+      "video_id": "DX21lBwNmh8",
+      "views": 10
+    },
+    {
+      "title": "Atualizações do Ironwood | Zec Insider",
+      "video_id": "U9LFJNHT_5g",
       "views": 10
     },
     {
@@ -3780,11 +3795,6 @@
     {
       "title": "Privacidade Não é Passiva, Você Precisa Buscar",
       "video_id": "1X71VCJQPYM",
-      "views": 8
-    },
-    {
-      "title": "Milca0: Web3 é Sobre Direitos, Privacidade e Descentralização.",
-      "video_id": "DX21lBwNmh8",
       "views": 8
     },
     {
@@ -3856,11 +3866,6 @@
       "title": "WEEKLYCALL #21 - Votação Blindada para Holders",
       "video_id": "XgtJXKqv-ZE",
       "views": 3
-    },
-    {
-      "title": "Atualizações do Ironwood | Zec Insider",
-      "video_id": "U9LFJNHT_5g",
-      "views": 2
     }
   ]
 }
