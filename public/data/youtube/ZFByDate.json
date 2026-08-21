@@ -3,14 +3,19 @@
     "channelIcon": "https://yt3.ggpht.com/ytc/AIdro_ny5D-44bCL6VlY2QqkYr1-AWIeaJmymKKH1DrFBVk5IA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Arborist Call 08-20-2026",
+            "video_id": "doDbR0i9zZA",
+            "views": 13
+        },
+        {
             "title": "Zcash Arborist Call 08-06-2026",
             "video_id": "T93KAOy7GJs",
-            "views": 234
+            "views": 235
         },
         {
             "title": "Zcash Arborist Call 07-23-2026",
             "video_id": "mHpMkEk6GGI",
-            "views": 203
+            "views": 204
         },
         {
             "title": "Zcash Arborist Call 06-25-2026",
@@ -345,7 +350,7 @@
         {
             "title": "Zcash Wallet with Metamask Snaps (Demo) with Ivan Rubido from ChainSafe - ZconVI #zcash",
             "video_id": "vEI3-9Y4tco",
-            "views": 237
+            "views": 238
         },
         {
             "title": "Zcash Arborist Call 02-20-2025",
@@ -1035,7 +1040,7 @@
         {
             "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
             "video_id": "hdd5X2z7O3o",
-            "views": 291
+            "views": 294
         },
         {
             "title": "State of Legislation, Regulation and Policy with Jack Gavigan, Paul Brigner, and Kurt Opsahl: Zcon4",
@@ -1225,7 +1230,7 @@
         {
             "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
             "video_id": "f6UToqiIdeY",
-            "views": 1309
+            "views": 1310
         },
         {
             "title": "Securely Scaling Decentralized Governance - Michael Lewellen at Zcon3",
@@ -1440,7 +1445,7 @@
         {
             "title": "Hiring for Zero-Thousand Dollars: Building the Contributor Community #Zcon2Lite",
             "video_id": "kFq1JT9lhBs",
-            "views": 213
+            "views": 214
         },
         {
             "title": "The State of UX in the Zcash Ecosystem: #Zcon2Lite",
@@ -1515,7 +1520,7 @@
         {
             "title": "Zcash Protocol Hangout, Dev Fund Edition #2",
             "video_id": "NVyZSYMLTDU",
-            "views": 618
+            "views": 619
         },
         {
             "title": "Zcash Protocol Hangout, Dev Fund Edition",
@@ -1725,7 +1730,7 @@
         {
             "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
             "video_id": "sDeDNDh-1ko",
-            "views": 949
+            "views": 955
         },
         {
             "title": "Opening Remarks at Zcon0 (2018) by Josh Cincinnati",
