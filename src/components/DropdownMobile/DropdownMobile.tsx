@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./dropdown.mobile.css";
 
 interface DropdownMobileProps {
@@ -9,14 +9,32 @@ interface DropdownMobileProps {
 
 const DropdownMobile: React.FC<DropdownMobileProps> = ({ label, children }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   const handleClick = () => {
     setIsOpen((prev) => !prev);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    // Escape closes the menu and returns focus to the trigger button.
+    if (event.key === "Escape" && isOpen) {
+      event.preventDefault();
+      setIsOpen(false);
+      triggerRef.current?.focus();
+    }
+  };
+
   return (
     <div className="dropdown-mobile">
-      <div className="dropdown-mobile-label" onClick={handleClick}>
+      <button
+        ref={triggerRef}
+        type="button"
+        className="dropdown-mobile-label"
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
+      >
         <span className="py-2">{label}</span>
         <span className={`arrow ${isOpen ? "rotate" : ""}`}>
           <svg
@@ -25,6 +43,8 @@ const DropdownMobile: React.FC<DropdownMobileProps> = ({ label, children }) => {
             height="9"
             viewBox="0 0 10 9"
             fill="none"
+            aria-hidden="true"
+            focusable="false"
           >
             <path
               d="M8.5 2.5L4.92667 6.073C4.90348 6.09622 4.87594 6.11464 4.84563 6.12721C4.81531 6.13978 4.78282 6.14625 4.75 6.14625C4.71718 6.14625 4.68469 6.13978 4.65437 6.12721C4.62406 6.11464 4.59652 6.09622 4.57333 6.073L1 2.5"
@@ -35,8 +55,14 @@ const DropdownMobile: React.FC<DropdownMobileProps> = ({ label, children }) => {
             />
           </svg>
         </span>
-      </div>
-      <div className={`dropdown-mobile-content ${isOpen ? "open" : ""}`}>
+      </button>
+      {/* When closed, inert removes the panel (and all its links) from the tab
+          order and from the accessibility tree. When open, the links become
+          reachable. inert is supported in all current browsers. */}
+      <div
+        className={`dropdown-mobile-content ${isOpen ? "open" : ""}`}
+        inert={isOpen ? undefined : true}
+      >
         {children}
       </div>
     </div>
