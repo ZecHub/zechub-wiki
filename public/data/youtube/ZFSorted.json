@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2360
+      "views": 2361
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -80,7 +80,7 @@
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1310
+      "views": 1311
     },
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
@@ -273,14 +273,14 @@
       "views": 628
     },
     {
-      "title": "Town Hall at Zcon3",
-      "video_id": "ZOvbZWy3aug",
+      "title": "Zcash Protocol Hangout, Dev Fund Edition #2",
+      "video_id": "NVyZSYMLTDU",
       "views": 620
     },
     {
-      "title": "Zcash Protocol Hangout, Dev Fund Edition #2",
-      "video_id": "NVyZSYMLTDU",
-      "views": 619
+      "title": "Town Hall at Zcon3",
+      "video_id": "ZOvbZWy3aug",
+      "views": 620
     },
     {
       "title": "A Conversation with Zcash Open Major Grants (ZOMG): #Zcon2Lite",
@@ -598,13 +598,13 @@
       "views": 328
     },
     {
-      "title": "Governance Across Ecosystems: #Zcon2Lite",
-      "video_id": "kHMjRon5nWk",
-      "views": 322
-    },
-    {
       "title": "Everyone has Something to Hide: Measuring Privacy & Conference Closing: #Zcon2Lite",
       "video_id": "y8iju6yjf4g",
+      "views": 323
+    },
+    {
+      "title": "Governance Across Ecosystems: #Zcon2Lite",
+      "video_id": "kHMjRon5nWk",
       "views": 322
     },
     {
@@ -835,7 +835,7 @@
     {
       "title": "Zcash Arborist Call 08-06-2026",
       "video_id": "T93KAOy7GJs",
-      "views": 236
+      "views": 237
     },
     {
       "title": "Preparing for Zcash Open Major Grants (ZOMG) Elections - Zcash Foundation Community Call 9.1.21",
@@ -1563,6 +1563,11 @@
       "views": 115
     },
     {
+      "title": "ZecWallet Lite on Linux #2",
+      "video_id": "eJt1SmXJkA4",
+      "views": 114
+    },
+    {
       "title": "Zcash Arborist Call 2/8/2024",
       "video_id": "cQ_Pcgrme1c",
       "views": 114
@@ -1571,11 +1576,6 @@
       "title": "Zcash Arborist Call 5/30/24",
       "video_id": "bZvWrKnSszM",
       "views": 114
-    },
-    {
-      "title": "ZecWallet Lite on Linux #2",
-      "video_id": "eJt1SmXJkA4",
-      "views": 113
     },
     {
       "title": "Brazilian CBDC Vs Privacy Implications with Michae2xl & Casta - ZconVI #zcash",
@@ -1825,7 +1825,7 @@
     {
       "title": "Arborist Call 08-20-2026",
       "video_id": "doDbR0i9zZA",
-      "views": 46
+      "views": 48
     },
     {
       "title": "Communities Have Power: Zcash en Español '20-'24 - English Dubbed - ZconVI #zcash",
