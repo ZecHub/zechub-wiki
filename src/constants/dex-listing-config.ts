@@ -105,4 +105,11 @@ export const dexListingConfig = [
     url: 'https://leodex.io/',
     image: '/leodex-logo.png',
   },
+  {
+    title: 'EIDEX',
+    description:
+      'Route screener for cross-chain swaps. Compares live quotes from 33+ sources - DEX aggregators, bridges and no-KYC instant exchangers - and ranks them by how much you receive. Non-custodial, no account, the swap happens on the provider side.',
+    url: 'https://eidex.io/screener',
+    image: '/eidex.png',
+  },
 ];
