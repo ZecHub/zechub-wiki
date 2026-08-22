@@ -7160,11 +7160,11 @@
           "msgs": [],
           "title": "Zcash Global Ambassador — Developer Education & Ecosystem Onboarding",
           "votes": {
-            "no": "5",
-            "yes": "10",
-            "abstain": "0"
+            "no": "6",
+            "yes": "11",
+            "abstain": "2"
           },
-          "status": "open",
+          "status": "closed",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
           "threshold": {
             "threshold_quorum": {
@@ -7185,7 +7185,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-08-17T19:07:22.213Z"
+        "createdAt": "2026-08-17T19:07:22.213Z",
+        "completedAt": "2026-08-22T19:57:14.000Z",
+        "closedAt": "2026-08-22T19:57:14.000Z"
       }
     ]
   },
