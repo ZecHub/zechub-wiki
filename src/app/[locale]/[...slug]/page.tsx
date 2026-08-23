@@ -483,6 +483,16 @@ export default async function Page(props: {
   const canonicalWikiUrl = `https://zechub.wiki${localeUrlPrefix}/${slug.join("/")}`;
 
   if (!markdown) {
+    // A null `markdown` has two very different causes. Section landing pages
+    // (e.g. /guides, /start-here) have no single article file but DO have a
+    // populated `roots` folder listing, and correctly render the browse view
+    // below. A genuinely missing URL (e.g. /qwerty-nonsense) has neither an
+    // article NOR a folder to browse — `getRootCached` caught its 404 and
+    // returned []. Only that second case is a real 404; return notFound() so
+    // the app stops serving HTTP 200 empty placeholder pages for dead URLs.
+    if (roots.length === 0) {
+      return notFound();
+    }
     return (
       <MdxContainer
         hasSideMenu={showSideMenu}
