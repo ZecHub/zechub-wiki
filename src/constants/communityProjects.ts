@@ -36,7 +36,7 @@ export const communityProjects: CommunityProject[] = [
   },
   {
     title: "ZecForge",
-    description: "ACreator forge for the Zcash ecosystem. Onboarding, Creator Development, Content Distribution.",
+    description: "A Creator forge for the Zcash ecosystem. Onboarding, Creator Development, Content Distribution.",
     url: "https://x.com/zec_forge",
     thumbnailImage: "/community-projects/zecforge.jpg",
   },
@@ -89,7 +89,7 @@ export const communityProjects: CommunityProject[] = [
     description:
       "The Machine Payment Protocol (MPP) payment method for Zcash, designed for AI agents and automated machine-to-machine workflows. Deposit once on-chain, then make unlimited instant bearer requests with no per-request blockchain interaction. Supports fully shielded Zcash (Orchard) payments.",
     url: "https://zimppy.xyz/",
-    thumbnailImage: "/community-projects/zimmpy.png",
+    thumbnailImage: "/community-projects/zimppy.png",
   },
   {
     title: "Dizzy Wallet",
