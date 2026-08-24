@@ -10,7 +10,6 @@ import PrivacySetVisualizationChart from "../PrivacySetVisualizationChart";
 import ShieldedSupplyChart from "../ShieldedSupplyChart";
 import TransactionsSummaryChart from "../TransactionSummaryChart";
 import { CardContent } from "@/components/UI/shadcn/card";
-import NodeCountChart from "../NodeCountChart";
 import ShieldedStats from "./ShieldedStatsPro";
 import { HalvingMeter } from "@/components/HalvingMeter/halving-meter";
 import BlockFeesChart from "../BlockFeesChart";
@@ -39,7 +38,6 @@ const CardContentShielded = (props: ZcashChartProps) => {
         {activeTab === "issuance" && <IssuanceChart chartRef={props.divChartRef} />}
         {activeTab === "lockbox" && <LockboxChart chartRef={props.divChartRef} />}
         {activeTab === "flows" && <NetInflowsOutflowsChart color="red" chartRef={props.divChartRef} />}
-        {activeTab === "node count" && <NodeCountChart color="red" chartRef={props.divChartRef} />}
         {activeTab === "tx summary" && <TransactionsSummaryChart chartRef={props.divChartRef} />}
         {activeTab === "privacy set" && <PrivacySetVisualizationChart chartRef={props.divChartRef} />}
         {activeTab === "shielded stats" && <ShieldedStats chartRef={props.divChartRef} />}

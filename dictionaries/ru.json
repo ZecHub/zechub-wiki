@@ -581,7 +581,6 @@
           "issuance": "Эмиссия",
           "lockbox": "Локбокс",
           "flows": "Потоки",
-          "nodeCount": "Количество узлов",
           "txSummary": "Сводка TX",
           "privacySet": "Набор приватности",
           "shieldedStats": "Статистика Shielded",

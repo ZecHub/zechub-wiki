@@ -581,7 +581,6 @@
           "issuance": "Емісія",
           "lockbox": "Lockbox",
           "flows": "Потоки",
-          "nodeCount": "Кількість вузлів",
           "txSummary": "Підсумок TX",
           "privacySet": "Набір приватності",
           "shieldedStats": "Статистика захищених транзакцій",

@@ -565,7 +565,6 @@
           "issuance": "Issuance",
           "lockbox": "Lockbox",
           "flows": "Flows",
-          "nodeCount": "Node Count",
           "txSummary": "TX Summary",
           "privacySet": "Privacy Set",
           "shieldedStats": "Shielded Stats",

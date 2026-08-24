@@ -581,7 +581,6 @@
           "issuance": "İhraç",
           "lockbox": "Kilit kutusu",
           "flows": "Akışlar",
-          "nodeCount": "Düğüm Sayısı",
           "txSummary": "TX Özeti",
           "privacySet": "Gizlilik Kümesi",
           "shieldedStats": "Korumalı İstatistikler",

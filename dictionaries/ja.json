@@ -581,7 +581,6 @@
           "issuance": "発行量",
           "lockbox": "ロックボックス",
           "flows": "フロー",
-          "nodeCount": "ノード数",
           "txSummary": "TXサマリー",
           "privacySet": "プライバシーセット",
           "shieldedStats": "シールド統計",
