@@ -2335,7 +2335,7 @@
         "Zcashd_Nodes": 6,
         "Zakura_Nodes": 20,
         "Total_Node_Count": 105,
-        "Closing_Price": 488.82,
+        "Closing_Price": 489.35,
         "Shielded_Market_Cap": 2140631235.3,
         "Shielded_Transaction_Percentage": 0.44
     },
@@ -2361,7 +2361,7 @@
         "Zcashd_Nodes": 3,
         "Zakura_Nodes": 23,
         "Total_Node_Count": 106,
-        "Closing_Price": 508.88,
+        "Closing_Price": 509.52,
         "Shielded_Market_Cap": 2251241707.01,
         "Shielded_Transaction_Percentage": 0.42
     },
@@ -2390,5 +2390,31 @@
         "Closing_Price": 485.77,
         "Shielded_Market_Cap": 2158306853.29,
         "Shielded_Transaction_Percentage": 0.42
+    },
+    {
+        "Dates": "2026/08/23",
+        "Transactions": 47445,
+        "Transparent_Transfer_TXs": 70619,
+        "Sapling_Transfer_TXs": 3161,
+        "Orchard_Transfer_TXs": 35194,
+        "Ironwood_Transfer_TXs": 30988,
+        "Total_Transfer_TXs": 139962,
+        "Total_Transparent_TXs": 30307,
+        "Coinbase_percent": 17.0,
+        "Total_Sapling_TXs": 1596,
+        "Net_Sapling_Flow": 3158.2688397,
+        "Total_Orchard_TXs": 6195,
+        "Net_Orchard_Flow": 302517.07235253,
+        "Total_Ironwood_TXs": 13722,
+        "Net_Ironwood_Flow": -599298.86548052,
+        "Total_Shielded_Supply": 4738261.91374425,
+        "Total_Lockbox_Supply": 58419.1875,
+        "Zebra_Nodes": 82,
+        "Zcashd_Nodes": 3,
+        "Zakura_Nodes": 16,
+        "Total_Node_Count": 101,
+        "Closing_Price": 855.12,
+        "Shielded_Market_Cap": 4051782524.48,
+        "Shielded_Transaction_Percentage": 0.36
     }
 ]
