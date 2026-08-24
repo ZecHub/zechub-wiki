@@ -581,7 +581,6 @@
           "issuance": "发行量",
           "lockbox": "锁仓",
           "flows": "流向",
-          "nodeCount": "节点数",
           "txSummary": "交易摘要",
           "privacySet": "隐私集合",
           "shieldedStats": "屏蔽统计",

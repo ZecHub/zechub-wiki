@@ -581,7 +581,6 @@
           "issuance": "Émission",
           "lockbox": "Lockbox",
           "flows": "Flux",
-          "nodeCount": "Nombre de nœuds",
           "txSummary": "Résumé TX",
           "privacySet": "Ensemble de confidentialité",
           "shieldedStats": "Statistiques blindées",

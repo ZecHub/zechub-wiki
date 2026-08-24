@@ -7,7 +7,6 @@ export const DATA_URL = {
   txsummaryUrl: "/data/zcash/transaction_summary.json",
   transparentSupplyUrl: "/data/zcash/transparent_supply.json",
   netInflowsOutflowsUrl: "/data/zcash/netinflowoutflow.json",
-  nodecountUrl: "/data/zcash/nodecount.json",
   difficultyUrl: "/data/zcash/difficulty.json",
   lockboxUrl: "/data/zcash/lockbox.json",
   ironwoodUrl: "/data/zcash/ironwood_supply.json",
@@ -50,8 +49,6 @@ export const DATE_URL = {
     "/api/data-updated?path=public/data/zcash/transparent_supply.json",
   netInflowsOutflowsUrl:
     "/api/data-updated?path=public/data/zcash/netinflowoutflow.json",
-  nodecountUrl:
-    "/api/data-updated?path=public/data/zcash/nodecount.json",
   difficultyUrl:
     "/api/data-updated?path=public/data/zcash/difficulty.json",
   lockboxUrl:

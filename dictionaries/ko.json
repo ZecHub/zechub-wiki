@@ -581,7 +581,6 @@
           "issuance": "발행량",
           "lockbox": "락박스",
           "flows": "흐름",
-          "nodeCount": "노드 수",
           "txSummary": "TX 요약",
           "privacySet": "프라이버시 세트",
           "shieldedStats": "실드형 통계",

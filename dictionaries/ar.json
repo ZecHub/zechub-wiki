@@ -581,7 +581,6 @@
           "issuance": "الإصدار",
           "lockbox": "صندوق القفل",
           "flows": "التدفقات",
-          "nodeCount": "عدد العقد",
           "txSummary": "ملخص المعاملات",
           "privacySet": "مجموعة الخصوصية",
           "shieldedStats": "إحصاءات المحمي",
