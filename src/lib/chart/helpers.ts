@@ -6,7 +6,6 @@ import {
   IssuanceParsed,
   LockBox,
   NetInOutflow,
-  NodeCountData,
   ShieldedAmountDatum,
   ShieldedTransactionDatum,
   ShieldedTxCount,
@@ -117,7 +116,6 @@ export function getCommitUrlForTab(tabLabel: string): string {
     issuance: DATE_URL.issuanceUrl,
     lockbox: DATE_URL.lockboxUrl,
     flows: DATE_URL.netInflowsOutflowsUrl,
-    "node count": DATE_URL.nodecountUrl,
     "tx summary": DATE_URL.txsummaryUrl,
     "privacy set": DATE_URL.shieldedTxCountUrl,
     rewards: DATE_URL.namadaRewardUrl,
@@ -183,19 +181,6 @@ export async function getMiningPoolsDominance(
     return (await res.json()) as MiningPoolDominanceResponse;
   } catch {
     return null;
-  }
-}
-
-export async function getNodeCountData(
-  url: string,
-  signal?: AbortSignal,
-): Promise<NodeCountData[]> {
-  try {
-    const res = await fetch(url, { signal });
-    if (!res.ok) return [];
-    return (await res.json()) as NodeCountData[];
-  } catch {
-    return [];
   }
 }
 
