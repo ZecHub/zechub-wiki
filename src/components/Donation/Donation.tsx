@@ -7,20 +7,18 @@ import "./donation.css";
 import { BsQrCodeScan } from "react-icons/bs";
 import { MdOutlineCopyAll } from "react-icons/md";
 
-// Define token and symbol types for clarity
-type Token = "zcash" | "penumbra" | "ycash" | "namada";
-type Symbol = "zec" | "um" | "yec" | "nam";
+type Token = "zcash" | "penumbra" | "ycash" | "namada" | "dash";
+type Symbol = "zec" | "um" | "yec" | "nam" | "dash";
 
-// Import images (using static paths)
 const images = {
   zcash: "/donation-isometric/i4_zcash_-_isometric.png",
   namada: "/donation-isometric/i2_Namada_-_Isometric.png",
   ycash: "/donation-isometric/i3_Ycash_-_Isometric.png",
   penumbra: "/donation-isometric/i1_Penumbra_-_Isometric.png",
+  dash: "/donation-isometric/i5_Dash_-_Isometric.png",
 };
 
 const DonationComp = () => {
-  // State for selected currency and its UI details
   const [selectedCurrency, setSelectedCurrency] = useState<Token>("zcash");
   const [selectedSymbol, setSelectedSymbol] = useState<Symbol>("zec");
   const [imgLogo, setImgLogo] = useState(images.zcash);
@@ -28,7 +26,6 @@ const DonationComp = () => {
   const [isPenumbraVisible, setIsPenumbraVisible] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  // Static donation addresses
   const zcashAddress =
     "u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89";
   const ycashAddress =
@@ -37,13 +34,12 @@ const DonationComp = () => {
     "znam1qp9v3gvs6dx576wx938kns0xx5ancxgv7z8athjq3gp7qp4uxk9qzdqdwqycpkyp0emtlsg9wlzzr";
   const penumbraDonationAddress =
     "penumbra1jy08usn0vmp05amty8d74c3xt5kv4dg36snzql9ndp2xefmvk3fwmrzytrfdpvxduaak8t76gsdggtgtscd26tknjnkwkxh8us3pprjv0nknmkqmx9h4xermdsw3dl7ev36sx7";
+  const dashAddress = ""; // TODO: add shielded Dash address
 
-  // Update Penumbra-specific UI as needed
   useEffect(() => {
     setIsPenumbraVisible(selectedCurrency === "penumbra");
   }, [selectedCurrency]);
 
-  // Return the donation address based on the selected currency
   const getDonationAddress = () => {
     switch (selectedCurrency) {
       case "zcash":
@@ -54,128 +50,149 @@ const DonationComp = () => {
         return namadaAddress;
       case "penumbra":
         return penumbraDonationAddress;
+      case "dash":
+        return dashAddress;
       default:
         return "";
     }
   };
 
-  // Handle clicking on a currency button to update the displayed QR code and image
   const handleOnClick = (tokenName: Token) => {
     setImgFade(true);
     let tokenSymbol: Symbol;
-    if (tokenName === "zcash") {
-      tokenSymbol = "zec";
-    } else if (tokenName === "penumbra") {
-      tokenSymbol = "um";
-    } else if (tokenName === "ycash") {
-      tokenSymbol = "yec";
-    } else {
-      tokenSymbol = "nam";
+
+    switch (tokenName) {
+      case "zcash":
+        tokenSymbol = "zec";
+        break;
+      case "penumbra":
+        tokenSymbol = "um";
+        break;
+      case "ycash":
+        tokenSymbol = "yec";
+        break;
+      case "dash":
+        tokenSymbol = "dash";
+        break;
+      default:
+        tokenSymbol = "nam";
     }
+
     setTimeout(() => {
       setSelectedSymbol(tokenSymbol);
       setSelectedCurrency(tokenName);
       setImgLogo(images[tokenName]);
       setImgFade(false);
-    }, 500);
+    }, 400);
   };
 
   const handleCopy = (text: string) => {
+    if (!text) return;
     navigator.clipboard.writeText(text);
-
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
-  return (
-    <div className="flex md:h-[90vh] h-[100vh] flex-col relative w-full items-center justify-start gap-16 overflow-hidden">
-      <div className="md:w-[600px] w-[90%] flex bg- dark:bg-gray-800 shadow-md  rounded-[100px] h-[50px]">
-        <div
-          onClick={() => handleOnClick("zcash")}
-          className={`${
-            selectedCurrency === "zcash"
-              ? "bg-[#1984c7] shadow-lg"
-              : "bg-transparent"
-          } flex cursor-pointer gap-2 justify-center items-center w-[150px] h-[50px] rounded-[100px] animate-fade-in-out`}
-        >
-          <Image src={"/zcash-logo.png"} alt="Zcash" width={32} height={32} />
-          <span className="text-white md:block hidden">Zcash</span>
-        </div>
-        <div
-          onClick={() => handleOnClick("ycash")}
-          className={`${
-            selectedCurrency === "ycash"
-              ? "bg-[#1984c7] shadow-lg"
-              : "bg-transparent"
-          } flex cursor-pointer gap-2 justify-center items-center w-[150px] h-[50px] rounded-[100px] animate-fade-in-out`}
-        >
-          <Image src={"/ycash-logo.png"} alt="Ycash" width={32} height={32} />
-          {selectedCurrency === "ycash" && (
-            <span className="text-white md:block hidden">Ycash</span>
-          )}
-        </div>
-        <div
-          onClick={() => handleOnClick("namada")}
-          className={`${
-            selectedCurrency === "namada"
-              ? "bg-[#1984c7] shadow-lg"
-              : "bg-transparent"
-          } flex cursor-pointer gap-2 justify-center items-center w-[150px] h-[50px] rounded-[100px] animate-fade-in-out`}
-        >
-          <Image src={"/namada-logo.png"} alt="Namada" width={32} height={32} />
-          {selectedCurrency === "namada" && (
-            <span className="text-white md:block hidden">Namada</span>
-          )}
-        </div>
-        <div
-          onClick={() => handleOnClick("penumbra")}
-          className={`${
-            selectedCurrency === "penumbra"
-              ? "bg-[#1984c7] shadow-lg"
-              : "bg-transparent"
-          } flex cursor-pointer gap-2 justify-center items-center w-[150px] h-[50px] rounded-[100px] animate-fade-in-out`}
-        >
-          <Image
-            src={"/penumbra-logo.png"}
-            alt="Penumbra"
-            width={32}
-            height={32}
-          />
-          {selectedCurrency === "penumbra" && (
-            <span className="text-white md:block hidden">Penumbra</span>
-          )}
-        </div>
-      </div>
-      <div className="md:h-[65%] h-[70%] flex-col w-full flex justify-start items-center">
-        <div className="bg-white dark:bg-gray-800  relative flex justify-center items-center shadow-md rounded-lg h-full md:w-[600px] w-[90%]">
-          <div className="absolute rounded-full left-[50%] -top-[5%] -translate-x-[50%] flex justify-center items-center bg-[#1984c7] w-[50px] h-[50px] shadow-md">
-            <BsQrCodeScan color="white" />
-          </div>
-          <div className="flex justify-center items-center">
-            <QRCode value={getDonationAddress()} size={380} />
-          </div>
-        </div>
-        <div className="flex flex-wrap justify-between items-center md:w-[600px] w-[90%] h-[50px] mt-6">
-          <input
-            disabled
-            value={getDonationAddress()}
-            className="bg-white dark:bg-gray-800 p-2 py-4 relative flex justify-center items-center h-full shadow-lg rounded-lg md:w-[530px] w-[85%]"
-          />
+  const currencies: { id: Token; label: string; logo: string }[] = [
+    { id: "zcash", label: "Zcash", logo: "/zcash-logo.png" },
+    { id: "ycash", label: "Ycash", logo: "/ycash-logo.png" },
+    { id: "namada", label: "Namada", logo: "/namada-logo.png" },
+    { id: "penumbra", label: "Penumbra", logo: "/penumbra-logo.png" },
+    { id: "dash", label: "Dash", logo: "/dash-logo.png" },
+  ];
 
-          <div
-            onClick={() => handleCopy(getDonationAddress())}
-            className="w-[50px] cursor-pointer bg-[#1984c7] h-full  flex justify-center items-center rounded-md"
-          >
-            <MdOutlineCopyAll color="white" size={"20"} />
+  return (
+    <div className="flex flex-col items-center w-full min-h-[90vh] px-4 pt-8 pb-12 gap-10">
+      {/* Currency selector */}
+      <div className="w-full max-w-[720px] bg-gray-100 dark:bg-gray-800/80 rounded-full p-1.5 flex flex-wrap justify-center gap-1 shadow-sm">
+        {currencies.map((c) => {
+          const isActive = selectedCurrency === c.id;
+          return (
+            <button
+              key={c.id}
+              onClick={() => handleOnClick(c.id)}
+              className={`
+                flex items-center justify-center gap-2
+                px-4 py-2.5 rounded-full text-sm font-medium
+                transition-all duration-200 ease-out
+                min-w-[110px]
+                ${
+                  isActive
+                    ? "bg-[#1984c7] text-white shadow-md"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                }
+              `}
+            >
+              <Image
+                src={c.logo}
+                alt={c.label}
+                width={22}
+                height={22}
+                className="shrink-0"
+              />
+              <span className="hidden sm:inline">{c.label}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* QR + Address card */}
+      <div className="w-full max-w-[520px] flex flex-col items-center gap-5">
+        <div className="relative w-full bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-8 flex flex-col items-center">
+          <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[#1984c7] flex items-center justify-center shadow-md">
+            <BsQrCodeScan color="white" size={18} />
           </div>
+
+          <div className="mt-2 mb-1">
+            <QRCode
+              value={getDonationAddress() || " "}
+              size={280}
+              level="M"
+              includeMargin={false}
+              bgColor="transparent"
+              fgColor="currentColor"
+              className="text-gray-900 dark:text-white"
+            />
+          </div>
+
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-3 uppercase tracking-wider">
+            {selectedCurrency} address
+          </p>
+        </div>
+
+        {/* Address + copy */}
+        <div className="w-full relative">
+          <div className="flex items-stretch gap-2">
+            <div className="flex-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3.5 shadow-sm overflow-hidden">
+              <p className="text-[13px] font-mono text-gray-800 dark:text-gray-200 break-all leading-relaxed select-all">
+                {getDonationAddress() || "Address coming soon…"}
+              </p>
+            </div>
+
+            <button
+              onClick={() => handleCopy(getDonationAddress())}
+              disabled={!getDonationAddress()}
+              className="shrink-0 w-12 rounded-xl bg-[#1984c7] hover:bg-[#1573b0] disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors shadow-sm"
+              title="Copy address"
+            >
+              <MdOutlineCopyAll color="white" size={20} />
+            </button>
+          </div>
+
           {copied && (
-            <div className="bg-green-500 mt-5 w-full text-white px-3 py-3 rounded-md text-sm animate-fade-in-out">
-              Wallet address copied to clipboard!
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-green-500"></div>
+            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-md animate-fade-in-out whitespace-nowrap">
+              Copied to clipboard
             </div>
           )}
         </div>
       </div>
+
+      {/* Penumbra special case (kept for compatibility) */}
+      {isPenumbraVisible && (
+        <div className="w-full max-w-[520px]">
+          <PenumbraWalletConnect />
+        </div>
+      )}
     </div>
   );
 };
