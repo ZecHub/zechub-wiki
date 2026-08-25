@@ -222,4 +222,33 @@ export const communityProjects: CommunityProject[] = [
     url: "https://free2z.cash",
     thumbnailImage: "/community-projects/free2z.png",
   },
-];
+
+// New Community Projects
+  {
+    title: "ZecBuy",
+    description:
+      "A privacy-focused marketplace where users can purchase digital goods and services using shielded ZEC.",
+    url: "https://zecbuy.com",
+    thumbnailImage: "/community-projects/zecbuy.png",
+  },
+  {
+    title: "0xRamp Labs",
+    description:
+      "Infrastructure for connecting Zcash with fiat on-ramps and off-ramps.",
+    url: "https://0xramp.app",
+    thumbnailImage: "/community-projects/0xramp-labs.png",
+  },
+  {
+    title: "Zcash Labs",
+    description:
+      "An organization supporting Zcash adoption through ecosystem development, integrations, and infrastructure.",
+    url: "https://zcashlabs.org",
+    thumbnailImage: "/community-projects/zcash-labs.png",
+  },
+  {
+    title: "Zaino Indexer",
+    description:
+      "A Rust-based Zcash blockchain indexer providing data services for wallets, light clients, and block explorers.",
+    url: "https://github.com/zingolabs/zaino",
+    thumbnailImage: "/community-projects/zaino.png",
+  },
