@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2363
+      "views": 2364
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -80,7 +80,7 @@
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1314
+      "views": 1315
     },
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
@@ -135,7 +135,7 @@
     {
       "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
       "video_id": "sDeDNDh-1ko",
-      "views": 966
+      "views": 968
     },
     {
       "title": "Zecwallet Lite on Windows Tutorial #1",
@@ -193,13 +193,13 @@
       "views": 791
     },
     {
-      "title": "The State of the STARK - Eli Ben-Sasson",
-      "video_id": "vWqWM6Un48k",
-      "views": 788
-    },
-    {
       "title": "Auditing Cryptography: #Zcon2Lite",
       "video_id": "g7VwzTRWNZM",
+      "views": 789
+    },
+    {
+      "title": "The State of the STARK - Eli Ben-Sasson",
+      "video_id": "vWqWM6Un48k",
       "views": 788
     },
     {
@@ -828,13 +828,13 @@
       "views": 239
     },
     {
-      "title": "MGRC Candidate Q&A Live Streams: Time Slot #1",
-      "video_id": "_CVDdKot54A",
-      "views": 238
-    },
-    {
       "title": "Zcash Arborist Call 08-06-2026",
       "video_id": "T93KAOy7GJs",
+      "views": 239
+    },
+    {
+      "title": "MGRC Candidate Q&A Live Streams: Time Slot #1",
+      "video_id": "_CVDdKot54A",
       "views": 238
     },
     {
@@ -1118,6 +1118,11 @@
       "views": 184
     },
     {
+      "title": "Zebrad for Linux Tutorial #2",
+      "video_id": "4w6pquJObWE",
+      "views": 183
+    },
+    {
       "title": "Zcash Arborist Call 01-23-2025",
       "video_id": "hKRk9O2Rki0",
       "views": 183
@@ -1126,11 +1131,6 @@
       "title": "ZK for the Enterprise - Quod Erit Demonstrandum (What Will Need to be Proven)",
       "video_id": "aj1Y1yLghUs",
       "views": 182
-    },
-    {
-      "title": "Zebrad for Linux Tutorial #2",
-      "video_id": "4w6pquJObWE",
-      "views": 181
     },
     {
       "title": "Gemini: Elastic SNARKs for Diverse Environments - Michele Orru at Zcon3",
@@ -1768,6 +1768,11 @@
       "views": 70
     },
     {
+      "title": "Arborist Call 08-20-2026",
+      "video_id": "doDbR0i9zZA",
+      "views": 69
+    },
+    {
       "title": "Governance and Security Concerns - Ryan Lackey",
       "video_id": "EyblvjjRi7I",
       "views": 68
@@ -1790,11 +1795,6 @@
     {
       "title": "ZGo: Year One by Rene Vergara: Zcon4",
       "video_id": "jOxQOsPXMBU",
-      "views": 63
-    },
-    {
-      "title": "Arborist Call 08-20-2026",
-      "video_id": "doDbR0i9zZA",
       "views": 63
     },
     {
