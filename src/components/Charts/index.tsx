@@ -223,7 +223,14 @@ const Dashboard = ({
       setCurrentView(tab as ViewType);
     }
   }, [pathname]);
-
+  if (loadingDashboard) {
+    return (
+      <div className="flex h-64 items-center justify-center text-slate-400 font-medium animate-pulse">
+        Loading dashboard metrics...
+      </div>
+    );
+    }
+    
   const tabs = [
     {
       key: "dashboard" as const,
