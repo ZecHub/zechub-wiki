@@ -110,6 +110,7 @@ const Dashboard = ({
   const [channelModalOpen, setChannelModalOpen] = useState(false);
   const [channelSearchTerm, setChannelSearchTerm] = useState("");
   const [mobileTabOpen, setMobileTabOpen] = useState(false);
+  const [loadingDashboard, setLoadingDashboard] = useState(true);
 
   const allowedTabs: ViewType[] = [
     "dashboard",
@@ -138,7 +139,7 @@ const Dashboard = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { divChartRef, handleSaveToPng } = useExportDashboardAsPNG();
 
-  // Load YouTube data
+  // Load YouTube data & manage safe dashboard render timing
   useEffect(() => {
     if (currentView === "youtube") {
       fetch("/data/youtube/ZecHubSorted.json")
@@ -172,6 +173,11 @@ const Dashboard = ({
         .then((r) => r.json())
         .then(setZbDate);
     }
+    
+    // Give charts a brief loading window so numbers don't flash 0 ZEC
+    setLoadingDashboard(true);
+    const timer = setTimeout(() => setLoadingDashboard(false), 1500);
+    return () => clearTimeout(timer);
   }, [currentView]);
 
   // Close dropdown on outside click
@@ -207,6 +213,7 @@ const Dashboard = ({
   };
 
   useEffect(() => {
+
     const tab = new URLSearchParams(window.location.search).get("tab");
     if (!tab) {
       setCurrentView("dashboard");
