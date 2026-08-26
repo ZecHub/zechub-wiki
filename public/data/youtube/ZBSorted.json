@@ -150,7 +150,7 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 587
+      "views": 588
     },
     {
       "title": "Se você conhece #satoshi, as regras de estacionamento não se aplicam",
@@ -673,13 +673,13 @@
       "views": 159
     },
     {
-      "title": "Alpha de verdade: Uma jornada além do financeiro.",
-      "video_id": "x2HRlQRprIU",
-      "views": 157
-    },
-    {
       "title": "Legal Tech & Web3 | Os novos caminhos do direito",
       "video_id": "tQUjXpv_Ims",
+      "views": 158
+    },
+    {
+      "title": "Alpha de verdade: Uma jornada além do financeiro.",
+      "video_id": "x2HRlQRprIU",
       "views": 157
     },
     {
@@ -948,6 +948,11 @@
       "views": 117
     },
     {
+      "title": "Competitividade Saudável vs Tóxica",
+      "video_id": "T5mV2LpeAvo",
+      "views": 117
+    },
+    {
       "title": "As Consequências da Competitividade Desleal",
       "video_id": "V_aIY_Uu7qE",
       "views": 117
@@ -971,11 +976,6 @@
       "title": "Responsabilidade na Web 3",
       "video_id": "fBp4nbjBubA",
       "views": 115
-    },
-    {
-      "title": "Competitividade Saudável vs Tóxica",
-      "video_id": "T5mV2LpeAvo",
-      "views": 114
     },
     {
       "title": "Importância da privacidade e defesa pessoal na era digital",
@@ -2863,11 +2863,6 @@
       "views": 28
     },
     {
-      "title": "Privacidade é Normal: Zcash Brasil no Blockchain Rio",
-      "video_id": "2NvQebRacFY",
-      "views": 28
-    },
-    {
       "title": "Mini Workshop 3 - Gift Card & Swaps Descentralizados",
       "video_id": "ijsbYgKHvoo",
       "views": 27
@@ -2918,6 +2913,11 @@
       "views": 27
     },
     {
+      "title": "Privacidade é Normal: Zcash Brasil no Blockchain Rio",
+      "video_id": "2NvQebRacFY",
+      "views": 27
+    },
+    {
       "title": "Zooko - O Visionário por trás da #Zcash",
       "video_id": "ekCUOdqyLyg",
       "views": 26
@@ -2945,6 +2945,11 @@
     {
       "title": "Primeira Community Call da Zcash Brasil em 2026: Planos, Missão e Comunidade",
       "video_id": "TGu6fRBDfyw",
+      "views": 26
+    },
+    {
+      "title": "Zcash.me e Zcash Names: Pagamentos Privados com Endereços Legíveis | Engineering #7",
+      "video_id": "Fd5N0QshWng",
       "views": 26
     },
     {
@@ -3023,11 +3028,6 @@
       "views": 25
     },
     {
-      "title": "Zcash.me e Zcash Names: Pagamentos Privados com Endereços Legíveis | Engineering #7",
-      "video_id": "Fd5N0QshWng",
-      "views": 25
-    },
-    {
       "title": "Dynamic Fees: por que o mercado de taxas importa para a Zcash",
       "video_id": "3JZF1B6aNEM",
       "views": 25
@@ -3070,6 +3070,11 @@
     {
       "title": "Zero-Index e 0xramp pra BRL | Zec Insider",
       "video_id": "XL9nanDnLZQ",
+      "views": 24
+    },
+    {
+      "title": "Privacidade On-chain: De Direito Individual a Requisito Institucional",
+      "video_id": "baYmY6olWxg",
       "views": 24
     },
     {
@@ -3283,11 +3288,6 @@
       "views": 20
     },
     {
-      "title": "Privacidade On-chain: De Direito Individual a Requisito Institucional",
-      "video_id": "baYmY6olWxg",
-      "views": 20
-    },
-    {
       "title": "Sebastian Wain - Visão Geral Segurança na Web3",
       "video_id": "IkRLf2xATbw",
       "views": 19
@@ -3478,6 +3478,11 @@
       "views": 16
     },
     {
+      "title": "Atualizações do Ironwood | Zec Insider",
+      "video_id": "U9LFJNHT_5g",
+      "views": 16
+    },
+    {
       "title": "Sorteio Zcash - Camisetas e Canetas",
       "video_id": "EciRJQdW6L8",
       "views": 15
@@ -3510,11 +3515,6 @@
     {
       "title": "Zcash Protocol Study #7: Sending, Receiving, and Scanning",
       "video_id": "cFwhlhIxQek",
-      "views": 15
-    },
-    {
-      "title": "Atualizações do Ironwood | Zec Insider",
-      "video_id": "U9LFJNHT_5g",
       "views": 15
     },
     {
@@ -3580,6 +3580,11 @@
     {
       "title": "Fungibilidade, Quantum Recovery e Escala: Por Que Zcash é Diferente",
       "video_id": "FezXrfM8EL8",
+      "views": 14
+    },
+    {
+      "title": "Zcash Brasil no Blockchain Rio 2026 | Zebrão, Comunidade e Privacidade",
+      "video_id": "nONTAzPAIbs",
       "views": 14
     },
     {
@@ -3875,6 +3880,11 @@
     {
       "title": "Zcash Shielded Call Vol.3 - ZIPS da NU7 Revelados",
       "video_id": "W8devS2w0xA",
+      "views": 5
+    },
+    {
+      "title": "Como votar usando ZEC em menos de 1 minuto | Coinholder Voting NU7",
+      "video_id": "J9QVQXbE_vI",
       "views": 5
     },
     {
