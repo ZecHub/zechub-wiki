@@ -208,7 +208,7 @@ export const communityProjects: CommunityProject[] = [
     url: "https://voting.zkglobalcredit.tech/",
     thumbnailImage: "/community-projects/zkglobalcredit.png",
   },
-  {
+    {
     title: "Zentat",
     description:
       "Zentat converts fiat currency prices to Zcash (ZEC) in real-time as you browse the web.",
@@ -222,4 +222,28 @@ export const communityProjects: CommunityProject[] = [
     url: "https://free2z.cash",
     thumbnailImage: "/community-projects/free2z.png",
   },
-];
+  {
+    title: "ZecBuy",
+    description: "Description for ZecBuy goes here.",
+    url: "https://example.com",
+    thumbnailImage: "/community-projects/zecbuy.png",
+  },
+  {
+    title: "0xRamp Labs",
+    description: "Description for 0xRamp Labs goes here.",
+    url: "https://example.com",
+    thumbnailImage: "/community-projects/0xramp-labs.png",
+  },
+  {
+    title: "Zcash Labs",
+    description: "Description for Zcash Labs goes here.",
+    url: "https://example.com",
+    thumbnailImage: "/community-projects/zcash-labs.png",
+  },
+  {
+    title: "Zaino Indexer",
+    description: "Description for Zaino Indexer goes here.",
+    url: "https://example.com",
+    thumbnailImage: "/community-projects/zaino-indexer.png",
+  },
+]
