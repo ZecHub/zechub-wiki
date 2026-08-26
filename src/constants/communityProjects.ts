@@ -212,7 +212,7 @@ export const communityProjects: CommunityProject[] = [
     title: "Zentat",
     description:
       "Zentat converts fiat currency prices to Zcash (ZEC) in real-time as you browse the web.",
-    url: "https://google.com",
+    url: "https://chromewebstore.google.com/detail/zentat/lpndbahladndclecodadoljlplfaldac",
     thumbnailImage: "/community-projects/zentat.png",
   },
   {
@@ -224,26 +224,30 @@ export const communityProjects: CommunityProject[] = [
   },
   {
     title: "ZecBuy",
-    description: "Description for ZecBuy goes here.",
-    url: "https://example.com",
+    description:
+      "A platform for buying and spending Zcash, making ZEC accessible for everyday purchases and real-world use.",
+    url: "https://zecbuy.org",
     thumbnailImage: "/community-projects/zecbuy.png",
   },
   {
     title: "0xRamp Labs",
-    description: "Description for 0xRamp Labs goes here.",
-    url: "https://example.com",
+    description:
+      "Infrastructure and tooling lab building on-ramp and off-ramp solutions for the Zcash ecosystem.",
+    url: "https://0xramplabs.com",
     thumbnailImage: "/community-projects/0xramp-labs.png",
   },
   {
     title: "Zcash Labs",
-    description: "Description for Zcash Labs goes here.",
-    url: "https://example.com",
+    description:
+      "Research and development organization contributing to Zcash protocol advancement and ecosystem growth.",
+    url: "https://zecashlabs.com",
     thumbnailImage: "/community-projects/zcash-labs.png",
   },
   {
     title: "Zaino Indexer",
-    description: "Description for Zaino Indexer goes here.",
-    url: "https://example.com",
-    thumbnailImage: "/community-projects/zaino-indexer.png",
+    description:
+      "A high-performance indexing service for the Zcash blockchain, enabling fast and reliable data access for wallets and applications.",
+    url: "https://github.com/zingolabs/zaino",
+    thumbnailImage: "/community-projects/zaino.png",
   },
 ];
