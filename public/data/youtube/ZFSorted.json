@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2364
+      "views": 2366
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -50,7 +50,7 @@
     {
       "title": "Zcash Scalability with Sean Bowe - ZconVI #zcash",
       "video_id": "-m3JCgi3kiU",
-      "views": 1488
+      "views": 1490
     },
     {
       "title": "Zcon0 Keynote Panel: Cryptocurrency Governance",
@@ -85,7 +85,7 @@
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
       "video_id": "O4wQi_i7k0I",
-      "views": 1292
+      "views": 1293
     },
     {
       "title": "O(1) Labs Presents Snarky, a DSL for Writing SNARKs",
@@ -140,7 +140,7 @@
     {
       "title": "Zecwallet Lite on Windows Tutorial #1",
       "video_id": "4v_wr6DBY48",
-      "views": 962
+      "views": 965
     },
     {
       "title": "Tooling for building zkEVM: PIL and Circom - Jordi Baylina at Zcon3",
@@ -305,7 +305,7 @@
     {
       "title": "Arti: ZF + ZCG Call w/ the Tor Project",
       "video_id": "E7g9dKBOYEI",
-      "views": 529
+      "views": 531
     },
     {
       "title": "ZconV: Trailer May 6-10, 2024 #Zcash #ZEC #ZconV",
@@ -403,19 +403,19 @@
       "views": 428
     },
     {
-      "title": "ZSAs and Swaps--A Status Report with Vivek Arte and Pablo Kogan - ZconV: Zcash Unified 2024 #Zcash",
-      "video_id": "L_ZtZCUvDqw",
-      "views": 425
-    },
-    {
       "title": "Cultivating Sapling at Zcon0 (2018) by Sean Bowe",
       "video_id": "t5krRSD-GYM",
-      "views": 424
+      "views": 425
     },
     {
       "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
       "video_id": "bRdNvepJVXM",
-      "views": 424
+      "views": 425
+    },
+    {
+      "title": "ZSAs and Swaps--A Status Report with Vivek Arte and Pablo Kogan - ZconV: Zcash Unified 2024 #Zcash",
+      "video_id": "L_ZtZCUvDqw",
+      "views": 425
     },
     {
       "title": "Bitcoin's Severe Flaw",
@@ -493,14 +493,14 @@
       "views": 370
     },
     {
+      "title": "Zcash Ecosystem Updates with Zooko Wilcox, Jon Rouach, Jason McGee, Jack Gavigan: Zcon4",
+      "video_id": "xEcDf5LSndc",
+      "views": 369
+    },
+    {
       "title": "Community workshop presentations - Day 1 at Zcon0 (2018)",
       "video_id": "GB834x96S1M",
       "views": 368
-    },
-    {
-      "title": "Zcash Ecosystem Updates with Zooko Wilcox, Jon Rouach, Jason McGee, Jack Gavigan: Zcon4",
-      "video_id": "xEcDf5LSndc",
-      "views": 367
     },
     {
       "title": "SoK: Programmable Privacy in Zcash with Ying Tong and Daniel Benarroch: Zcon4",
@@ -710,7 +710,7 @@
     {
       "title": "Orchard Shielded Assets - Daniel Benarroch & Pablo Kogan at Zcon3",
       "video_id": "vpHFMCppRYk",
-      "views": 280
+      "views": 279
     },
     {
       "title": "Regulatory Perspective-Peter Van Valkenburgh, Paul Brigner, Kurt Opsahl, JW Verret, & Michele Korver",
@@ -730,7 +730,7 @@
     {
       "title": "Zcash’s Core Strength",
       "video_id": "Hit012FD4uY",
-      "views": 276
+      "views": 277
     },
     {
       "title": "Zcash Foundation Community Call: Nominees for ZF Board Nov 2024",
@@ -740,7 +740,7 @@
     {
       "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
       "video_id": "5gvQF5oFT8E",
-      "views": 271
+      "views": 272
     },
     {
       "title": "Zcon Vozes - Parte 2",
@@ -823,13 +823,13 @@
       "views": 244
     },
     {
-      "title": "Zcash Wallet with Metamask Snaps (Demo) with Ivan Rubido from ChainSafe - ZconVI #zcash",
-      "video_id": "vEI3-9Y4tco",
-      "views": 239
-    },
-    {
       "title": "Zcash Arborist Call 08-06-2026",
       "video_id": "T93KAOy7GJs",
+      "views": 240
+    },
+    {
+      "title": "Zcash Wallet with Metamask Snaps (Demo) with Ivan Rubido from ChainSafe - ZconVI #zcash",
+      "video_id": "vEI3-9Y4tco",
       "views": 239
     },
     {
@@ -880,7 +880,7 @@
     {
       "title": "ZecWallet Lite on Linux #1",
       "video_id": "iY1P1AgcIRw",
-      "views": 225
+      "views": 226
     },
     {
       "title": "Design a Proof Of Solvency protocol with Halo2 Workshop by Enrico: Zcon4",
@@ -988,6 +988,11 @@
       "views": 211
     },
     {
+      "title": "Zecwallet Lite on Windows Tutorial #3",
+      "video_id": "A8nmkcHkeW4",
+      "views": 209
+    },
+    {
       "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
       "video_id": "fgkFrxiB14g",
       "views": 209
@@ -1006,11 +1011,6 @@
       "title": "Zcash Arborist Call 02-05-2026",
       "video_id": "22YcmN1PPsc",
       "views": 207
-    },
-    {
-      "title": "Zecwallet Lite on Windows Tutorial #3",
-      "video_id": "A8nmkcHkeW4",
-      "views": 206
     },
     {
       "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
@@ -1260,7 +1260,7 @@
     {
       "title": "Zcash Arborist Call 6/27/24",
       "video_id": "KtVvt3lis6o",
-      "views": 155
+      "views": 156
     },
     {
       "title": "Zcash Arborist Call 09/05/24",
@@ -1523,6 +1523,11 @@
       "views": 121
     },
     {
+      "title": "Johnny Zcash live at Zcon4",
+      "video_id": "G_jBeOL8H-o",
+      "views": 119
+    },
+    {
       "title": "Zcash Arborist Call 07-24-2025",
       "video_id": "uFz_5pzgRlQ",
       "views": 119
@@ -1530,11 +1535,6 @@
     {
       "title": "Nighthawks Roadmap for Zcash with Aditya Bharadwaj and Matthew Watt: Zcon4",
       "video_id": "qRuKTkDvAk4",
-      "views": 118
-    },
-    {
-      "title": "Johnny Zcash live at Zcon4",
-      "video_id": "G_jBeOL8H-o",
       "views": 118
     },
     {
@@ -1765,7 +1765,7 @@
     {
       "title": "Arborist Call 08-20-2026",
       "video_id": "doDbR0i9zZA",
-      "views": 72
+      "views": 75
     },
     {
       "title": "Zcash Arborist Call 5/2/24",
