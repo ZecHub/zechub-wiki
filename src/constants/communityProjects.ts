@@ -256,19 +256,19 @@ export const communityProjects: CommunityProject[] = [
       "A service that makes it easier to convert Zcash to fiat through peer-to-peer payment rails.",
     url: "https://zcashto.cash",
     thumbnailImage: "/community-projects/zcashtocash.png",
- },  
- {
+  },  
+  {
     title: "Zakura",
     description:
       "A consensus-compatible Zcash full node built for scale, with faster synchronization, pruning, zcashd compatibility, and high-performance networking.",
     url: "https://zakura.com",
     thumbnailImage: "/community-projects/zakura.png",
- },
- {
+  },
+  {
     title: "Zipher",
     description:
       "A privacy-first Zcash wallet for humans and AI agents, with mobile and headless interfaces powered by a shared Rust engine.",
     url: "https://zipher.to",
     thumbnailImage: "/community-projects/zipher.png",
-  },
-  ];
+  }
+];
