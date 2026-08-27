@@ -270,5 +270,28 @@ export const communityProjects: CommunityProject[] = [
       "A privacy-first Zcash wallet for humans and AI agents, with mobile and headless interfaces powered by a shared Rust engine.",
     url: "https://zipher.to",
     thumbnailImage: "/community-projects/zipher.png",
+  },
+  {
+    title: "Zecd",
+    description:
+      "An open-source, shielded-first Zcash wallet server alternative to zcashd that speaks Bitcoin Core's JSON-RPC dialect, designed for easy enterprise integration.",
+    url: "https://zecd.org",
+    thumbnailImage: "/community-projects/zecd.png",
+  },
+  {
+    title: "Vizor",
+    description:
+      "A beautiful, open-source self-custody Zcash wallet built by the Keplr team featuring multi-account support, Keystone hardware compatibility, and default privacy.",
+    url: "https://vizor.cash",
+    thumbnailImage: "/community-projects/vizor.png",
+  },
+  {
+    title: "Zero Indexer",
+    description:
+      "A privacy-preserving light-client indexer framework by Shielded Labs that routes shielded transactions through attested enclaves to obscure user IP metadata.",
+    url: "https://github.com/ShieldedLabs/zero/tree/main/zeronym",
+    thumbnailImage: "/community-projects/zero-indexer.png",
   }
 ];
+
+ 
