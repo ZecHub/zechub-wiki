@@ -145,10 +145,10 @@ const ContentSections = () => {
       />
       <InfoCard
         id="hackathon"
-        title={t.home?.sections?.hackathon?.title || "Join the Hackathon"}
+        title={t.home?.sections?.hackathon?.title || "ZecHub Hackathon Archive"}
         description={
           t.home?.sections?.hackathon?.description ||
-          "Build, collaborate, and ship impactful ideas with the Zcash community. Compete across five innovative tracks: Infrastructure for nodes and indexers, Games for interactive experiences, FROST for threshold signing, Zcash Login for authentication solutions, and Accounting for financial workflows. May 25 - July 15, 2026. 25 ZEC prize pool awaits."
+          "The 2026 ZecHub Hackathon has ended. Explore the projects submitted across Infrastructure, Games, FROST, Zcash Login, and Accounting."
         }
         image="/hackathon_new.png"
         imageLight="/explore/dark/Hackathon_b.png"
@@ -157,7 +157,7 @@ const ContentSections = () => {
           {
             href: "/hackathon",
             label:
-              t.home?.sections?.hackathon?.mainLink || "Join the Hackathon",
+              t.home?.sections?.hackathon?.mainLink || "View projects",
             primary: true,
           },
         ]}
