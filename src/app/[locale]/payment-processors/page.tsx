@@ -4,21 +4,37 @@ import { genMetadata, getBanner } from "@/lib/helpers";
 import { parseProcessorMarkdown } from "@/lib/parseProcessorMarkdown";
 import { Metadata } from "next";
 import Image from "next/image";
-import { headers } from "next/headers";   // ← forces dynamic rendering
+import { headers } from "next/headers";
+import { buildAlternates } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
+import { getDictionary } from "@/lib/getDictionary";
 
-import { getDictionary } from '@/lib/getDictionary';
 const imgUrl = getBanner(`using-zcash`);
 
-export const metadata: Metadata = genMetadata({
-  title: "Payment Processors | Zechub",
-  url: "https://zechub.wiki/using-zcash/using-zcash/payment-processors",
-  image: imgUrl,
-});
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const localePrefix =
+    locale && locale !== routing.defaultLocale ? `/${locale}` : "";
+
+  return genMetadata({
+    title: "Zcash Payment Processors & POS Integrations | ZecHub",
+    description:
+      "Explore non-custodial and custodial crypto payment gateways supporting shielded and transparent Zcash (ZEC) payments for e-commerce and merchants.",
+    url: `https://zechub.wiki${localePrefix}/payment-processors`,
+    image: imgUrl || "/content-banners/usingzcash.png",
+    locale,
+    alternates: buildAlternates("/payment-processors", locale, [locale]),
+  });
+}
 
 export default async function Page(props: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
-  headers();   // ← THIS IS THE KEY FIX (prevents icon function serialization error)
+  headers();
 
   const params = await props.params;
   const locale = params.locale || "en";
@@ -28,7 +44,7 @@ export default async function Page(props: {
   const [markdown, roots, dict] = await Promise.all([
     getLocalizedFileContentCached(url, locale),
     getRootCached(urlRoot),
-    getDictionary(),
+    getDictionary(locale),
   ] as const);
   const typedDict = dict as { pages?: { paymentProcessors?: { noData?: string } } };
   const content = markdown ?? (typedDict?.pages?.paymentProcessors?.noData ?? "No Data or Wrong file");
@@ -59,4 +75,4 @@ export default async function Page(props: {
   );
 }
 
-export const dynamic = "force-dynamic";   // ← permanent fix for this page
+export const dynamic = "force-dynamic";

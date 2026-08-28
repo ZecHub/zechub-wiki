@@ -18,6 +18,8 @@ import {
   transformGithubFilePathToWikiLink,
   ORG_ID,
   extractArticleMeta,
+  extractFirstContentImage,
+  getSectionDescription,
   jsonLdScript,
 } from "@/lib/helpers";
 import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
@@ -75,31 +77,6 @@ function rehypeStripDangerous() {
 
 const LazyMdxComponent = React.lazy(() => import("@/components/MdxRenderer"));
 
-function extractFirstContentImage(
-  content: string,
-  filePath: string,
-): string | null {
-  const matches =
-    content.match(/!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/g) ||
-    [];
-  for (const m of matches) {
-    const single = m.match(
-      /!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/,
-    );
-    if (!single) continue;
-    const src = single[1] || single[2];
-    if (src && !/shields\.io|badge|edit/i.test(src)) {
-      // Self-hosted (/content-images/…) images serve as-is. Guard against
-      // protocol-relative "//host/…" (starts with "/" but is external).
-      if (src.startsWith("http") || (src.startsWith("/") && !src.startsWith("//")))
-        return src;
-      const dir = filePath.substring(0, filePath.lastIndexOf("/"));
-      return `https://raw.githubusercontent.com/ZecHub/zechub/main/${dir}/${src}`;
-    }
-  }
-  return null;
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -109,37 +86,128 @@ export async function generateMetadata({
   // English is served unprefixed at the root; other locales carry a /<locale>
   // prefix in the canonical URL (matches localePrefix: "as-needed").
   const localePrefix = locale && locale !== "en" ? `/${locale}` : "";
+  const path = `/${slug.join("/")}`;
+  const canonicalUrl = `https://zechub.wiki${localePrefix}${path}`;
+  const availableLocales = await localesForPath(path);
+  const alternates = buildAlternates(path, locale, availableLocales);
+
   if (slug.length === 0) {
-    // The homepage of a locale (defensive — this route normally has a slug).
-    const alternates = buildAlternates("/", locale, [...routing.locales]);
     return genMetadata({
-      title: "Zechub",
+      title: "ZecHub Wiki",
       url: `https://zechub.wiki${localePrefix || ""}`,
       locale,
       alternates,
     });
   }
+
+  const isResearchIndex = slug.length === 1 && slug[0] === "research";
+  const isResearchSeries =
+    slug.length === 2 &&
+    slug[0] === "research" &&
+    slug[1] === "zcash-foundations-series";
+  const isResearchArticle = slug[0] === "research" && slug.length > 1;
+
   const folder = slug[0] || "";
-  const capitalized =
-    folder.charAt(0).toUpperCase() + folder.slice(1).replace(/[-/]/g, " ");
-  const title =
-    slug.length > 1 && slug[1]
-      ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
-      : `Zechub - ${capitalized}`;
-  const path = `/${slug.join("/")}`;
-  // Locale-aware canonical + reciprocal hreflang alternates, using the SAME
-  // manifest-coverage the sitemap uses (localesForPath -> keyToWikiPath over
-  // the cached menu-titles manifests). Never throws — degrades to English-only.
-  // NOTE: description is intentionally left at the site default here. A
-  // page-specific description would require fetching the page markdown inside
-  // generateMetadata (the body is fetched in the Page component, not here);
-  // that extra per-request fetch isn't worth it for the meta description. The
-  // richer, markdown-derived description already ships in the page's JSON-LD.
-  const availableLocales = await localesForPath(path);
-  const alternates = buildAlternates(path, locale, availableLocales);
+  const sectionBanner = getBanner(folder);
+
+  const dict = (await getDictionary(locale).catch(() => ({}))) as Record<string, any>;
+  const r = dict?.pages?.research ?? {};
+
+  if (isResearchIndex) {
+    return genMetadata({
+      title: r.articlesHeading
+        ? `${r.articlesHeading} | ZecHub`
+        : "Zcash Research Articles | ZecHub",
+      description:
+        r.articlesSubheading ??
+        "In-depth research articles, notes, and technical analysis on Zcash privacy technology, zero-knowledge proofs, and protocol design.",
+      url: canonicalUrl,
+      image: sectionBanner || "/content-banners/bannerResearch.jpg",
+      locale,
+      alternates,
+    });
+  }
+
+  if (isResearchSeries) {
+    return genMetadata({
+      title: r.foundationsSeriesTitle
+        ? `${r.foundationsSeriesTitle} | ZecHub`
+        : "Zcash Foundations Series | ZecHub",
+      description:
+        r.foundationsSeriesDescription ??
+        "Foundational articles covering Zcash shielded transactions, privacy models, protocol design, and core concepts that power the network.",
+      url: canonicalUrl,
+      image: sectionBanner || "/content-banners/bannerResearch.jpg",
+      locale,
+      alternates,
+    });
+  }
+
+  let contentUrl = getDynamicRoute(slug);
+  if (isResearchArticle && !isResearchSeries) {
+    const rootsRaw = await getRootCached(`/site/${slug[0]}`).catch(() => []);
+    const roots = Array.isArray(rootsRaw) ? rootsRaw : [];
+    const lastSegment = slug[slug.length - 1];
+    const norm = (s: string) => s.toLowerCase().replace(/[-_ ]/g, "");
+    const target = norm(lastSegment);
+    const match = roots.find((r: string) => {
+      if (typeof r !== "string" || !r.endsWith(".md")) return false;
+      const base = r.split("/").pop()!.replace(/\.md$/i, "");
+      return norm(base) === target;
+    });
+
+    if (match) {
+      contentUrl = match;
+    } else {
+      const subPath = slug.slice(1).join("/");
+      contentUrl = `site/Research/${subPath}.md`;
+    }
+  }
+
+  const slugToTitle = (segment: string) =>
+    segment
+      .split("-")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+
+  const lastSegment = slug[slug.length - 1];
+  const fallbackHeadline = slugToTitle(lastSegment);
+
+  const md = await getLocalizedFileContentCached(contentUrl, locale).catch(
+    () => null,
+  );
+
+  if (md) {
+    const articleMeta = extractArticleMeta(
+      md,
+      fallbackHeadline,
+      sectionBanner,
+      contentUrl,
+    );
+
+    const title = articleMeta.headline.toLowerCase().includes("zechub")
+      ? articleMeta.headline
+      : `${articleMeta.headline} | ZecHub`;
+
+    return genMetadata({
+      title,
+      description: articleMeta.description,
+      image: articleMeta.image || sectionBanner,
+      url: canonicalUrl,
+      locale,
+      type: "article",
+      alternates,
+    });
+  }
+
+  const sectionTitle = slugToTitle(slug[0]);
+  const sectionDesc = getSectionDescription(slug[0]);
+
   return genMetadata({
-    title,
-    url: `https://zechub.wiki${localePrefix}/${slug.join("/")}`,
+    title: `${sectionTitle} | ZecHub`,
+    description: sectionDesc,
+    image: sectionBanner,
+    url: canonicalUrl,
     locale,
     alternates,
   });
@@ -546,6 +614,7 @@ export default async function Page(props: {
     processedMarkdown,
     slugToTitle(slug[slug.length - 1]),
     imgUrl,
+    contentUrl,
   );
 
   // schema.org structured data for this content page, emitted as a single

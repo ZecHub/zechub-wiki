@@ -2,10 +2,12 @@ import MdxContainer from "@/components/MdxContainer";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { getLocalizedFileContentCached, getRootCached, getMenuTitlesCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner } from "@/lib/helpers";
+import { buildAlternates } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
 import { normalizeMdx } from "@/lib/normalizeMdx";
 import { Metadata } from "next";
 import DynamicComponent from "next/dynamic";
-import { serialize } from 'next-mdx-remote/serialize';
+import { serialize } from "next-mdx-remote/serialize";
 
 const MdxComponent = DynamicComponent(
   () => import("@/components/MdxRenderer"),
@@ -14,11 +16,25 @@ const MdxComponent = DynamicComponent(
   }
 );
 
-export const metadata: Metadata = genMetadata({
-  title: "Shielded pools",
-  url: "https://zechub.wiki/using-zcash/shielded-pools",
-  image: getBanner(`using-zcash`),
-});
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const localePrefix =
+    locale && locale !== routing.defaultLocale ? `/${locale}` : "";
+
+  return genMetadata({
+    title: "Zcash Shielded Pools (Sprout, Sapling, Orchard) | ZecHub",
+    description:
+      "Learn about the evolution of Zcash shielded pools: Sprout, Sapling, and Orchard, their zero-knowledge cryptography, and how privacy is maintained.",
+    url: `https://zechub.wiki${localePrefix}/using-zcash/shielded-pools`,
+    image: getBanner("using-zcash") || "/content-banners/usingzcash.png",
+    locale,
+    alternates: buildAlternates("/using-zcash/shielded-pools", locale, [locale]),
+  });
+}
 
 export default async function Page(props: {
   params: Promise<{ locale: string }>;
@@ -34,7 +50,6 @@ export default async function Page(props: {
   ]);
   const content = markdown ? markdown : "No Data or Wrong file";
 
-  // ← This fixes the MDXRemote error
   const mdxSource = await serialize(normalizeMdx(String(content)), {});
 
   return (

@@ -55,13 +55,13 @@ export const toOgLocale = (locale: string): string => {
 
 // Pass http(s) URLs through untouched; resolve everything else against the
 // canonical origin as a site-root-relative path.
-const toAbsoluteUrl = (u: string): string =>
+export const toAbsoluteUrl = (u: string): string =>
   /^https?:\/\//i.test(u)
     ? u
     : `${SITE_ORIGIN}${u.startsWith("/") ? "" : "/"}${u}`;
 
 // Serialize an object as a JSON-LD payload safe to inline in a <script> tag.
-// Escaping "<" as < prevents a "</script>" sequence inside the data from
+// Escaping "<" as \u003c prevents a "</script>" sequence inside the data from
 // breaking out of the element — Next.js's documented JSON-LD recommendation.
 export const jsonLdScript = (obj: unknown): string =>
   JSON.stringify(obj).replace(/</g, "\\u003c");
@@ -87,7 +87,7 @@ const isHrLine = (l: string) => /^\s*([-*_])\1{2,}\s*$/.test(l);
 // Strip inline markdown so a paragraph reads cleanly as a plain-text
 // description: images dropped, links reduced to their text, emphasis/code
 // markers removed, whitespace collapsed.
-const stripInlineMd = (s: string) =>
+export const stripInlineMd = (s: string) =>
   s
     .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
     .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
@@ -96,12 +96,72 @@ const stripInlineMd = (s: string) =>
     .trim();
 
 // Trim to a max length at a word boundary, appending an ellipsis when cut.
-const truncate = (s: string, max: number) => {
+export const truncate = (s: string, max: number) => {
   if (s.length <= max) return s;
   const cut = s.slice(0, max);
   const lastSpace = cut.lastIndexOf(" ");
   const base = lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut;
   return `${base.replace(/[\s.,;:–—-]+$/, "")}…`;
+};
+
+// Extract first image from markdown content
+export function extractFirstContentImage(
+  content: string,
+  filePath?: string,
+): string | null {
+  const matches =
+    content.match(/!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/g) ||
+    [];
+  for (const m of matches) {
+    const single = m.match(
+      /!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/,
+    );
+    if (!single) continue;
+    const src = single[1] || single[2];
+    if (src && !/shields\.io|badge|edit/i.test(src)) {
+      if (src.startsWith("http") || (src.startsWith("/") && !src.startsWith("//")))
+        return src;
+      if (filePath) {
+        const dir = filePath.substring(0, filePath.lastIndexOf("/"));
+        return `https://raw.githubusercontent.com/ZecHub/zechub/main/${dir}/${src}`;
+      }
+    }
+  }
+  return null;
+}
+
+// Section descriptions for directory index pages
+const SECTION_DESCRIPTIONS: Record<string, string> = {
+  "start-here":
+    "Start your journey with Zcash. Essential guides, core concepts, and introductory resources for beginners.",
+  "using-zcash":
+    "Learn how to use Zcash for private digital payments, explore wallets, exchanges, and shielded transactions.",
+  guides:
+    "Step-by-step guides and technical walkthroughs for setting up nodes, mining, integrations, and tools on Zcash.",
+  tutorials:
+    "Practical hands-on tutorials and video guides for the Zcash ecosystem.",
+  "zcash-tech":
+    "Technical specifications, cryptography, zero-knowledge proofs (zk-SNARKs), and protocol architecture of Zcash.",
+  "zcash-community":
+    "Community initiatives, grants, global ambassadors, and grassroots projects supporting Zcash.",
+  "zcash-organizations":
+    "Key organizations advancing the Zcash ecosystem including Electric Coin Company, Zcash Foundation, and Zcash Community Grants.",
+  "privacy-tools":
+    "Curated privacy-preserving tools, secure operating systems, VPNs, and communications software.",
+  "glossary-and-faqs":
+    "Comprehensive glossary of Zcash terminology, acronyms, and frequently asked questions.",
+  contribute:
+    "How to contribute to ZecHub and the Zcash ecosystem — documentation, code, translation, and governance.",
+  research:
+    "Research articles, protocol analysis, and deep dives into zero-knowledge cryptography and privacy models.",
+};
+
+export const getSectionDescription = (section: string): string => {
+  const normalized = section.toLowerCase().replace(/_/g, "-");
+  return (
+    SECTION_DESCRIPTIONS[normalized] ||
+    `Explore ${section.replace(/[-_]/g, " ")} educational resources, guides, and documentation on ZecHub.`
+  );
 };
 
 // Normalize a frontmatter date to an ISO string. A bare YYYY-MM-DD is kept as a
@@ -124,6 +184,7 @@ export const extractArticleMeta = (
   markdown: string,
   fallbackHeadline: string,
   fallbackImage?: string,
+  filePath?: string,
 ): ArticleMeta => {
   const src = markdown.replace(/^\uFEFF/, "").replace(/\r\n?/g, "\n");
 
@@ -176,9 +237,11 @@ export const extractArticleMeta = (
     break;
   }
 
+  const contentImage = extractFirstContentImage(body, filePath);
+
   const meta: ArticleMeta = {
-    headline,
-    description: description || SITE_DESCRIPTION,
+    headline: fm.title || headline,
+    description: fm.description || description || SITE_DESCRIPTION,
   };
 
   const dateRaw = fm.published || fm.date;
@@ -187,7 +250,7 @@ export const extractArticleMeta = (
     if (iso) meta.datePublished = iso;
   }
 
-  const imgRaw = fm.image || fm.cover || (fallbackImage || "").trim();
+  const imgRaw = fm.image || fm.cover || contentImage || (fallbackImage || "").trim();
   if (imgRaw) meta.image = toAbsoluteUrl(imgRaw);
 
   return meta;
@@ -201,6 +264,7 @@ type MetadataOpts = {
   // Locale being rendered. When set, emitted as `openGraph.locale` so the OG
   // card advertises the correct language.
   locale?: string;
+  type?: "website" | "article";
   // Head-level canonical + hreflang alternates (from buildAlternates). Passed
   // through untouched when provided.
   alternates?: Metadata["alternates"];
@@ -212,33 +276,39 @@ export const genMetadata = ({
   image,
   url,
   locale,
+  type = "website",
   alternates,
-}: MetadataOpts) => {
+}: MetadataOpts): Metadata => {
   const defaultImage = "/previews/default-banner.jpg";
   const defaultUrl = "https://zechub.wiki";
   const defaultTitle = "ZecHub Wiki";
   const defaultDescription = SITE_DESCRIPTION;
 
+  const resolvedTitle = title || defaultTitle;
+  const resolvedDescription = description || defaultDescription;
+  const resolvedImage = image || defaultImage;
+  const resolvedUrl = url || defaultUrl;
+
   return {
     metadataBase: new URL("https://zechub.wiki"),
-    title: title || defaultTitle,
-    description: description || defaultDescription,
+    title: resolvedTitle,
+    description: resolvedDescription,
     ...(alternates ? { alternates } : {}),
     openGraph: {
-      title: title,
-      description: description || defaultDescription,
-      images: image || defaultImage,
+      title: resolvedTitle,
+      description: resolvedDescription,
+      images: resolvedImage,
       siteName: "ZecHub Wiki",
-      type: "website",
-      url: url || defaultUrl,
+      type,
+      url: resolvedUrl,
       ...(locale ? { locale: toOgLocale(locale) } : {}),
     },
     twitter: {
-      title: title || defaultTitle,
+      title: resolvedTitle,
       card: "summary_large_image",
-      description: description || defaultDescription,
-      image: image || defaultImage,
-      url: url || defaultUrl,
+      description: resolvedDescription,
+      images: [resolvedImage],
+      site: "@ZecHub",
     },
   };
 };

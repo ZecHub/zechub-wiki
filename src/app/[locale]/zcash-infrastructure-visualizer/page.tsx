@@ -1,11 +1,28 @@
-import { ZcashInfrastructureVisualizer } from "@/components/visualizer/zcash-infrastructure-visualizer";
-import { genMetadata } from "@/lib/helpers";
 import { Metadata } from "next";
+import { genMetadata, getBanner } from "@/lib/helpers";
+import { buildAlternates } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
+import { ZcashInfrastructureVisualizer } from "@/components/visualizer/zcash-infrastructure-visualizer";
 
-export const metadata: Metadata = genMetadata({
-  title: "Zechub Tutorial",
-  url: "https://zechub.wiki/zcash-infrastructure-visualizer",
-});
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const localePrefix =
+    locale && locale !== routing.defaultLocale ? `/${locale}` : "";
+
+  return genMetadata({
+    title: "Zcash Infrastructure & Node Visualizer | ZecHub",
+    description:
+      "Explore the architecture of the Zcash network, full nodes (zcashd, Zebra), lightwalletd servers, wallet clients, and mining nodes.",
+    url: `https://zechub.wiki${localePrefix}/zcash-infrastructure-visualizer`,
+    image: getBanner("zcash-tech") || "/content-banners/bannertech.jpg",
+    locale,
+    alternates: buildAlternates("/zcash-infrastructure-visualizer", locale, [locale]),
+  });
+}
 
 export default function ZcashInfrastructureVisualizerPage() {
   return (

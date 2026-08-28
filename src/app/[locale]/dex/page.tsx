@@ -1,14 +1,39 @@
-import { genMetadata } from "@/lib/helpers";
+import { genMetadata, getBanner } from "@/lib/helpers";
 import { Metadata } from "next";
+import { buildAlternates } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
+import { getDictionary } from "@/lib/getDictionary";
 import DexClient from "./DexClient";
 
-export const metadata: Metadata = genMetadata({
-  title: "Decentralised Exchanges",
-  url: "https://zechub.wiki/using-zcash/dex",
-});
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = (await getDictionary(locale).catch(() => ({}))) as Record<string, any>;
+  const pages = (dict.pages ?? {}) as Record<string, any>;
+  const localePrefix =
+    locale && locale !== routing.defaultLocale ? `/${locale}` : "";
 
-// Render the locale-aware client so the DEX page picks up dictionary strings
-// (pages.dex.*) instead of hardcoded English. Metadata stays server-rendered.
+  const title = pages.dex?.dex
+    ? `${pages.dex.dex} | ZecHub`
+    : "Decentralized Exchanges (DEXs) Supporting Zcash | ZecHub";
+
+  const description =
+    pages.dex?.dexDesc ??
+    "Discover non-custodial and decentralized exchanges (DEXs), atomic swap protocols, and cross-chain bridges for Zcash (ZEC).";
+
+  return genMetadata({
+    title,
+    description,
+    url: `https://zechub.wiki${localePrefix}/dex`,
+    image: getBanner("using-zcash") || "/content-banners/usingzcash.png",
+    locale,
+    alternates: buildAlternates("/dex", locale, [locale]),
+  });
+}
+
 const DecentralisedExchanges = () => <DexClient />;
 
 export default DecentralisedExchanges;
