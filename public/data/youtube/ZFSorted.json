@@ -95,7 +95,7 @@
     {
       "title": "The State of Privacy in Cryptocurrencies - Ian Miers",
       "video_id": "AJGLhaUV8QM",
-      "views": 1217
+      "views": 1219
     },
     {
       "title": "An Overview Of Governance In Blockchains",
@@ -130,17 +130,17 @@
     {
       "title": "A History of Zcash at Zcon0 (2018) by Nathan Wilcox",
       "video_id": "Mi4IUEzTyVw",
-      "views": 982
+      "views": 983
     },
     {
       "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
       "video_id": "sDeDNDh-1ko",
-      "views": 970
+      "views": 971
     },
     {
       "title": "Zecwallet Lite on Windows Tutorial #1",
       "video_id": "4v_wr6DBY48",
-      "views": 965
+      "views": 967
     },
     {
       "title": "Tooling for building zkEVM: PIL and Circom - Jordi Baylina at Zcon3",
@@ -160,7 +160,7 @@
     {
       "title": "The Orchard Shielded Pool, feat. Halo2: #Zcon2Lite",
       "video_id": "acl_RjBUoRE",
-      "views": 885
+      "views": 886
     },
     {
       "title": "Scalable Privacy - Daira Hopwood",
@@ -355,7 +355,7 @@
     {
       "title": "Why Financial Privacy Is Important, and How to Achieve It With Technology",
       "video_id": "YNW3p6jCE5E",
-      "views": 466
+      "views": 467
     },
     {
       "title": "Making Zcash Shine with Rust - Deirdre Connolly & Anna Kaplan",
@@ -365,7 +365,7 @@
     {
       "title": "Zashi: A Year in Review & Roadmap with Andrea Kobrlova and Josh Swihart - ZconVI #zcash",
       "video_id": "rcbE7YptSHc",
-      "views": 450
+      "views": 451
     },
     {
       "title": "Update on Zcash Implementations and Protocol: #Zcon2Lite",
@@ -405,7 +405,7 @@
     {
       "title": "Cultivating Sapling at Zcon0 (2018) by Sean Bowe",
       "video_id": "t5krRSD-GYM",
-      "views": 425
+      "views": 426
     },
     {
       "title": "ZSA Interaction Workshop with Pablo Kogan, Vivek Arte, and Alexey Koren: Zcon4",
@@ -683,14 +683,14 @@
       "views": 293
     },
     {
-      "title": "Zcash Community Grants Candidates for December 2022 ZCG Elections",
-      "video_id": "ZsB4KkPltTw",
+      "title": "State of Legislation, Regulation and Policy with Paul, Kurt, Peter & Jack at Zcon3",
+      "video_id": "h8pKG2OhJ4w",
       "views": 291
     },
     {
-      "title": "State of Legislation, Regulation and Policy with Paul, Kurt, Peter & Jack at Zcon3",
-      "video_id": "h8pKG2OhJ4w",
-      "views": 289
+      "title": "Zcash Community Grants Candidates for December 2022 ZCG Elections",
+      "video_id": "ZsB4KkPltTw",
+      "views": 291
     },
     {
       "title": "Cryptocurrency startups and community adoption 👀 Interview with Guarda CMO Maria Carola",
@@ -815,7 +815,7 @@
     {
       "title": "The Zcash UniFFI Library by Luca Campobasso: Zcon4",
       "video_id": "hzUdmwq23ac",
-      "views": 244
+      "views": 245
     },
     {
       "title": "Zcash Arborist Call 06-11-2026",
@@ -873,14 +873,14 @@
       "views": 230
     },
     {
+      "title": "ZecWallet Lite on Linux #1",
+      "video_id": "iY1P1AgcIRw",
+      "views": 228
+    },
+    {
       "title": "Zcash Foundation Board Candidate Call - 09 November 2022",
       "video_id": "6tVr5ym4IKE",
       "views": 227
-    },
-    {
-      "title": "ZecWallet Lite on Linux #1",
-      "video_id": "iY1P1AgcIRw",
-      "views": 226
     },
     {
       "title": "Zcash Community Call: Meet the ZCG Candidates",
@@ -990,12 +990,12 @@
     {
       "title": "Zecwallet Lite on Windows Tutorial #3",
       "video_id": "A8nmkcHkeW4",
-      "views": 209
+      "views": 210
     },
     {
       "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
       "video_id": "fgkFrxiB14g",
-      "views": 209
+      "views": 210
     },
     {
       "title": "AMA with ZF Executive Director Jack Gavigan",
@@ -1008,14 +1008,14 @@
       "views": 208
     },
     {
-      "title": "Zcash Arborist Call 02-05-2026",
-      "video_id": "22YcmN1PPsc",
+      "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
+      "video_id": "65GdSSlDG3A",
       "views": 207
     },
     {
-      "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
-      "video_id": "65GdSSlDG3A",
-      "views": 206
+      "title": "Zcash Arborist Call 02-05-2026",
+      "video_id": "22YcmN1PPsc",
+      "views": 207
     },
     {
       "title": "Zcash Arborist Call 07-23-2026",
@@ -1305,7 +1305,7 @@
     {
       "title": "Coin Voting 2.0 with Hanh - ZconVI #zcash",
       "video_id": "VfQTSLpoH40",
-      "views": 147
+      "views": 148
     },
     {
       "title": "Zcash Arborist Call 2/22/2024",
@@ -1723,6 +1723,11 @@
       "views": 85
     },
     {
+      "title": "Arborist Call 08-20-2026",
+      "video_id": "doDbR0i9zZA",
+      "views": 85
+    },
+    {
       "title": "ZconVI Community Recap Hosted by ZK AV Club- ZconVI #zcash",
       "video_id": "N8yO0gsHsO0",
       "views": 84
@@ -1741,11 +1746,6 @@
       "title": "Ziggurat by Mark Henderson: Zcon4",
       "video_id": "DAHlU7k2Vjg",
       "views": 82
-    },
-    {
-      "title": "Arborist Call 08-20-2026",
-      "video_id": "doDbR0i9zZA",
-      "views": 81
     },
     {
       "title": "Zcash Arborist Call 10/5/23",
