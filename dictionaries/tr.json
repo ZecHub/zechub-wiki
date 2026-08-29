@@ -934,7 +934,7 @@
       "startingZebrad": "zebrad Başlatma",
       "commandLine": "Komut Satırı",
       "importantNotes": "Önemli Notlar",
-      "noteDownloadsBlockchain": "İlk çalıştırma tüm blockchain'i indirir (~250 GB)",
+      "noteDownloadsBlockchain": "İlk çalıştırma tüm blockchain'i indirir (~300 GB)",
       "noteInitialSync": "İlk senkronizasyon birkaç saat sürebilir",
       "noteKeepSecure": "zebrad.toml dosyanızı güvenli ve gizli tutun",
       "connectingLightwalletdHeading": "lightwalletd ile bağlanma",

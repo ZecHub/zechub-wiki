@@ -929,7 +929,7 @@
       "startingZebrad": "Kuanzia zebrad",
       "commandLine": "Mstari wa amri",
       "importantNotes": "Maelezo Muhimu",
-      "noteDownloadsBlockchain": "Kwanza kukimbia downloads blockchain nzima (~ 250 GB)",
+      "noteDownloadsBlockchain": "Kwanza kukimbia downloads blockchain nzima (~ 300 GB)",
       "noteInitialSync": "awali kulandanisha inaweza kuchukua masaa kadhaa",
       "noteKeepSecure": "Weka zebrad.toml yako salama na faragha",
       "connectingLightwalletdHeading": "Kuunganisha na lightwalletd",
