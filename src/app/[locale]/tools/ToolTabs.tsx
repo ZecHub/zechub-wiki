@@ -1,12 +1,18 @@
 "use client";
 
 import ZecToZatsConverter from "@/components/Converter/ZecToZatsConverter";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import AddressDecoder from "./AddressDecoder";
 import PaymentRequestBuilder from "./PaymentRequestBuilder";
 import PaymentRequestWidget from "./zcash-payment-widget/PaymentRequestWidget";
 
-type TabId = "converter" | "payment" | "decoder" | "payment-request-widget";
+// Tab ids double as the public URL slug, e.g. /tools?tool=address-decoder.
+// Renaming one changes a shareable link, so treat them as part of the API.
+type TabId =
+  | "converter"
+  | "payment-request"
+  | "payment-request-widget"
+  | "address-decoder";
 
 interface Tab {
   id: TabId;
@@ -27,7 +33,7 @@ const TABS: Tab[] = [
     subtitle: "Precise conversion between ZEC and Zatoshi",
   },
   {
-    id: "payment",
+    id: "payment-request",
     label: "Payment Request",
     shortLabel: "Payment",
     badge: "ZIP-321",
@@ -43,7 +49,7 @@ const TABS: Tab[] = [
     subtitle: "Generate zcash: URIs with QR codes for easy payment requests",
   },
   {
-    id: "decoder",
+    id: "address-decoder",
     label: "Address Decoder",
     shortLabel: "Decoder",
     badge: "Unified Address",
@@ -51,6 +57,15 @@ const TABS: Tab[] = [
     subtitle: "Extract transparent, sapling & orchard receivers from a UA",
   },
 ];
+
+const TOOL_PARAM = "tool";
+const DEFAULT_TAB: TabId = TABS[0].id;
+
+function tabIdFromParam(requested: string | null): TabId {
+  return TABS.some((t) => t.id === requested)
+    ? (requested as TabId)
+    : DEFAULT_TAB;
+}
 
 export interface GeneratedConfig {
   address: string;
@@ -66,7 +81,20 @@ export interface GeneratedConfig {
 }
 
 export default function ToolTabs() {
-  const [active, setActive] = useState<TabId>("converter");
+  // `?tool=` is the only source of truth for which tool is open: it makes each
+  // one linkable, survives a refresh, and moves with Back/Forward for free.
+  const searchParams = useSearchParams();
+  const active = tabIdFromParam(searchParams?.get(TOOL_PARAM) ?? null);
+
+  const selectTab = (id: TabId) => {
+    if (id === active) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set(TOOL_PARAM, id);
+    // pushState rather than router.push: switching tools stays instant and
+    // local instead of round-tripping to the server, and Back/Forward still get
+    // a real history entry. Next keeps useSearchParams in sync with it.
+    window.history.pushState(null, "", url);
+  };
 
   const current = TABS.find((t) => t.id === active)!;
 
@@ -79,7 +107,8 @@ export default function ToolTabs() {
           return (
             <button
               key={tab.id}
-              onClick={() => setActive(tab.id)}
+              onClick={() => selectTab(tab.id)}
+              aria-current={isActive ? "page" : undefined}
               className={`
                 flex-1 relative py-2.5 sm:py-3 rounded-lg text-[13px] sm:text-sm font-semibold
                 transition-all duration-200 ease-out
@@ -115,9 +144,9 @@ export default function ToolTabs() {
         {/* Card body */}
         <div className="px-5 py-6 sm:px-7 sm:py-7">
           {active === "converter" && <ZecToZatsConverter />}
-          {active === "payment" && <PaymentRequestBuilder />}
+          {active === "payment-request" && <PaymentRequestBuilder />}
           {active === "payment-request-widget" && <PaymentRequestWidget />}
-          {active === "decoder" && <AddressDecoder />}
+          {active === "address-decoder" && <AddressDecoder />}
         </div>
       </div>
     </div>

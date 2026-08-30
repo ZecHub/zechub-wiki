@@ -1,5 +1,10 @@
 import ToolTabs from './ToolTabs'
 
+// Which tool is open comes from `?tool=`, so this page can't be prerendered as
+// one static document — rendering per request is what lets a shared link land
+// on the right tool instead of flipping to it after hydration.
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Zcash Developer Tools | ZecHub',
   description:
