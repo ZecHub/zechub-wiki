@@ -34,7 +34,7 @@ const DonationComp = () => {
     "znam1qp9v3gvs6dx576wx938kns0xx5ancxgv7z8athjq3gp7qp4uxk9qzdqdwqycpkyp0emtlsg9wlzzr";
   const penumbraDonationAddress =
     "penumbra1jy08usn0vmp05amty8d74c3xt5kv4dg36snzql9ndp2xefmvk3fwmrzytrfdpvxduaak8t76gsdggtgtscd26tknjnkwkxh8us3pprjv0nknmkqmx9h4xermdsw3dl7ev36sx7";
-  const dashAddress = ""; // TODO: add shielded Dash address
+  const dashAddress = "dash1zqe06svxpmrnegzd20htgqa0gxkcurhdg8u4r3vxpxyhuyzjx7lq4nap9vzm7wcf5ndv6pqcegyh5"; 
 
   useEffect(() => {
     setIsPenumbraVisible(selectedCurrency === "penumbra");
