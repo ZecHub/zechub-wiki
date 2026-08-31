@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+import { useWasm } from './hooks/useWasm';
 
 /*
  * UNIFIED ADDRESS DECODER
@@ -15,17 +16,6 @@ interface AddressReceivers {
   sapling: string | null;
   orchard: string | null;
   tex: string | null;
-}
-
-interface ZaddrModuleAny {
-  initWasm?: () => Promise<void>;
-  isZcashAddressValid?: (addr: string) => boolean;
-  getZcashAddressType?: (addr: string) => string;
-  getAddressReceivers?: (addr: string) => AddressReceivers;
-  is_valid_zcash_address?: (addr: string) => boolean;
-  get_zcash_address_type?: (addr: string) => string;
-  get_address_receivers?: (addr: string) => AddressReceivers;
-  [key: string]: unknown;
 }
 
 function QRCode({ value, size = 176 }: { value: string; size?: number }) {
@@ -64,43 +54,11 @@ export default function AddressDecoder() {
   const [receivers, setReceivers] = useState<Array<{ key: string; address: string }>>([]);
   const [addressType, setAddressType] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [wasmReady, setWasmReady] = useState(false);
-  const [wasmError, setWasmError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [selectedQR, setSelectedQR] = useState<string | null>(null);
 
-  const moduleRef = useRef<ZaddrModuleAny | null>(null);
-
-  /* ── Load WASM on mount ── */
-  useEffect(() => {
-    let cancelled = false;
-
-    async function loadWasm() {
-      try {
-        const mod: ZaddrModuleAny = await import('@elemental-zcash/zaddr_wasm_parser');
-
-        if (typeof mod.initWasm === 'function') {
-          await mod.initWasm();
-        }
-
-        if (!cancelled) {
-          moduleRef.current = mod;
-          setWasmReady(true);
-        }
-      } catch (err: unknown) {
-        console.error('[AddressDecoder] WASM load failed:', err);
-        if (!cancelled) {
-          setWasmError(err instanceof Error ? err.message : 'Failed to load WASM module');
-        }
-      }
-    }
-
-    loadWasm();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const { wasmError, wasmMmoduleRef: moduleRef, wasmReady, wasmState, retryWasm } = useWasm();
 
   /* ── Decode when input changes ── */
   const decode = useCallback(() => {
@@ -152,7 +110,7 @@ export default function AddressDecoder() {
     } finally {
       setLoading(false);
     }
-  }, [input]);
+  }, [input, moduleRef]);
 
   useEffect(() => {
     if (!wasmReady) return;
@@ -174,8 +132,8 @@ export default function AddressDecoder() {
     <div className="w-full space-y-4">
       {/* WASM load error */}
       {wasmError && (
-        <div className="rounded-xl bg-amber-500/5 border border-amber-500/15 px-4 py-3.5 space-y-2.5">
-          <p className="text-[13px] text-amber-400 font-semibold">Failed to initialize WASM decoder</p>
+        <div role="alert" className="rounded-xl bg-amber-500/5 border border-amber-500/15 px-4 py-3.5 space-y-2.5">
+          <p className="text-[13px] text-amber-400 font-semibold">Address decoder unavailable</p>
           <p className="text-[12px] text-zinc-500 dark:text-[#5a6a7e] leading-relaxed">
             This tool requires{' '}
             <code className="text-[#F4B728]/80 text-[11px]">@elemental-zcash/zaddr_wasm_parser</code> to
@@ -189,12 +147,15 @@ export default function AddressDecoder() {
               {wasmError}
             </pre>
           </details>
+          <button type="button" onClick={retryWasm} className="min-h-11 rounded-lg bg-[#F4B728] px-4 py-2 text-xs font-bold text-[#151e29] hover:bg-[#ffd15c] focus:outline-none focus:ring-2 focus:ring-[#F4B728] focus:ring-offset-2 focus:ring-offset-[#151e29]">
+            Retry loading decoder
+          </button>
         </div>
       )}
 
       {/* WASM ready */}
       {wasmReady && (
-        <div className="flex items-center gap-2 ml-1">
+        <div role="status" aria-live="polite" className="flex items-center gap-2 ml-1">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-[11px] font-mono text-emerald-400/70">WASM decoder ready</span>
         </div>
@@ -202,8 +163,9 @@ export default function AddressDecoder() {
 
       {/* Input */}
       <div>
-        <label className={LABEL_CLASS}>Zcash Address</label>
+        <label htmlFor="zcash-address-decoder-input" className={LABEL_CLASS}>Zcash Address</label>
         <input
+          id="zcash-address-decoder-input"
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -215,15 +177,21 @@ export default function AddressDecoder() {
                 : 'Loading WASM decoder...'
           }
           disabled={!wasmReady}
+          aria-describedby="zcash-address-help"
+          autoComplete="off"
+          spellCheck={false}
           className={`${INPUT_CLASS} ${!wasmReady ? 'opacity-50 cursor-not-allowed' : ''}`}
         />
+        <p id="zcash-address-help" className="mt-2 px-1 text-xs text-zinc-400 dark:text-[#5a6a7e]">
+          Supports transparent, Sapling, Unified, Orchard, and TEX addresses.
+        </p>
       </div>
 
       {/* Loading WASM */}
       {!wasmReady && !wasmError && (
-        <div className="flex items-center gap-2.5 px-1">
+        <div role="status" aria-live="polite" className="flex items-center gap-2.5 px-1">
           <div className="w-4 h-4 border-2 border-[#F4B728]/20 border-t-[#F4B728] rounded-full animate-spin" />
-          <span className="text-[12px] text-zinc-400 dark:text-[#4a5a6e]">Initializing WASM decoder...</span>
+          <span className="text-[12px] text-zinc-400 dark:text-[#4a5a6e]">{wasmState === 'retrying' ? 'Retrying WASM decoder...' : 'Initializing WASM decoder...'}</span>
         </div>
       )}
 
@@ -275,6 +243,16 @@ export default function AddressDecoder() {
             return (
               <div
                 key={r.key}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isOpen}
+                aria-label={`${isOpen ? 'Hide' : 'Show'} QR code for ${meta.label}`}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    setSelectedQR(isOpen ? null : r.key);
+                  }
+                }}
                 onClick={() => setSelectedQR(isOpen ? null : r.key)}
                 className={`rounded-xl border transition-all duration-200 cursor-pointer ${
                   isOpen
