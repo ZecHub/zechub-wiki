@@ -126,7 +126,7 @@ export const searcher: Searcher[] = [
   {
     name: "Akash Network",
     desc: "Guide to using Zcash on the Akash decentralized cloud computing network.",
-    url: "/guides/akash-network",
+    url: "/guides/akash-network-zebra",
   },
   {
     name: "Avalanche RedBridge",
@@ -491,19 +491,9 @@ export const searcher: Searcher[] = [
 
   // ZFAV Club
   {
-    name: "ZFAV Club Background",
-    desc: "Supported by The Zcash Foundation this ambitious grassroots project aims...",
-    url: "/zfav-club/av-club-background",
-  },
-  {
     name: "Guides for Creators",
     desc: "Guides for creators...",
     url: "/zfav-club/guides-for-creators",
-  },
-  {
-    name: "Youtube Channel",
-    desc: "Youtube Channel...",
-    url: "/zfav-club/youtube-channel",
   },
 
   // Glossary & FAQs
@@ -549,7 +539,7 @@ export const searcher: Searcher[] = [
   {
     name: "Brand",
     desc: "ZecHub brand assets, logos, and guidelines.",
-    url: "/brand",
+    url: "/zcash-organizations/brand",
   },
   { name: "Dashboard", desc: "Check the charts for ZEC", url: "/dashboard" },
   { name: "DAO", desc: "List of ZecHub DAO members", url: "/dao" },
@@ -592,7 +582,7 @@ export const searcher: Searcher[] = [
   {
     name: "Tutorials",
     desc: "How to buy ZEC in Gemini",
-    url: "/tutorials/buy-zec-in-gemini",
+    url: "/tutorials/exchanges",
   },
   {
     name: "Full Node Tutorials",
@@ -602,7 +592,7 @@ export const searcher: Searcher[] = [
   {
     name: "Shielding ZEC",
     desc: "This video was created to show users how to shield their ZEC.",
-    url: "/tutorials/shielding-zec",
+    url: "/tutorials/using-zcash",
   },
   {
     name: "Wallet Tutorials",
