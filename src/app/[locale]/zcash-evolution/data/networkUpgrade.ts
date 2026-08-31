@@ -11,6 +11,12 @@ export interface NetworkUpgrade {
   privacyLabel: string;
   status: "past" | "current" | "future";
   eraColor: string; // HSL string for accent
+  /**
+   * Official upgrade logo, served from /content-images.
+   * Only Sapling, Blossom, Heartwood and Canopy were ever given one on
+   * z.cash/upgrade; the others intentionally have no logo.
+   */
+  logo?: string;
 }
 
 export const networkUpgrades: NetworkUpgrade[] = [
@@ -84,6 +90,7 @@ export const networkUpgrades: NetworkUpgrade[] = [
     privacyLabel: "Efficient Privacy",
     status: "past",
     eraColor: "45 90% 50%",
+    logo: "/content-images/upgrade-sapling.png",
   },
   {
     id: "blossom",
@@ -111,6 +118,7 @@ export const networkUpgrades: NetworkUpgrade[] = [
     privacyLabel: "Faster Privacy",
     status: "past",
     eraColor: "330 60% 55%",
+    logo: "/content-images/upgrade-blossom.png",
   },
   {
     id: "heartwood",
@@ -135,6 +143,7 @@ export const networkUpgrades: NetworkUpgrade[] = [
     privacyLabel: "Deep Privacy",
     status: "past",
     eraColor: "15 70% 50%",
+    logo: "/content-images/upgrade-heartwood.png",
   },
   {
     id: "canopy",
@@ -159,6 +168,7 @@ export const networkUpgrades: NetworkUpgrade[] = [
     privacyLabel: "Governed Privacy",
     status: "past",
     eraColor: "260 50% 55%",
+    logo: "/content-images/upgrade-canopy.png",
   },
   {
     id: "nu5",
