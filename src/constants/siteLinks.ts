@@ -36,7 +36,7 @@ export const SITE_LINKS: SiteLinkSection[] = [
       { label: "Contribute", href: "/contribute/help-build-zechub" },
       { label: "DAO", href: "/dao" },
       { label: "Developers", href: "/developers" },
-      { label: "Brand", href: "/brand/" },
+      { label: "Brand", href: "/zcash-organizations/brand" },
       { label: "Wallets", href: "/wallets" },
       { label: "Sitemap", href: "/sitemap/" },
       {
@@ -111,7 +111,7 @@ export const SITE_LINKS: SiteLinkSection[] = [
         href: "https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5",
         target: "_blank",
       },
-      { label: "Akash Network", href: "/guides/akash-network" },
+      { label: "Akash Network", href: "/guides/akash-network-zebra" },
       { label: "Avalanche RedBridge", href: "/guides/avalanche-redbridge" },
       { label: "Zkool Multisig", href: "/guides/zkool-multisig" },
       { label: "Ywallet FROST Demo", href: "/guides/ywallet-frost-demo" },
