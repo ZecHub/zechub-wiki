@@ -3,7 +3,7 @@ import SitemapComp from "@/components/Sitemap/Sitemap";
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { getMenuTitlesCached } from "@/lib/authAndFetch";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -22,7 +22,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/sitemap`,
     image: getBanner("start-here") || "/content-banners/bannerstart.png",
     locale,
-    alternates: buildAlternates("/sitemap", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/sitemap", locale),
   });
 }
 

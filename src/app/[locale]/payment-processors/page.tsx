@@ -5,7 +5,7 @@ import { parseProcessorMarkdown } from "@/lib/parseProcessorMarkdown";
 import { Metadata } from "next";
 import Image from "next/image";
 import { headers } from "next/headers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { getDictionary } from "@/lib/getDictionary";
 
@@ -27,7 +27,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/payment-processors`,
     image: imgUrl || "/content-banners/usingzcash.png",
     locale,
-    alternates: buildAlternates("/payment-processors", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/payment-processors", locale),
   });
 }
 

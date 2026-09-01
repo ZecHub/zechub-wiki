@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -15,13 +15,17 @@ export async function generateMetadata({
   return genMetadata({
     title: "Privacy Policy & Tracking Statement | ZecHub",
     description:
-      "Learn how ZecHub protects your privacy. No trackers, no ad networks, no cookies, and zero surveillance on the open-source Zcash wiki.",
+      "No analytics, no ad networks, no tracking cookies, no fingerprinting.",
     url: `https://zechub.wiki${localePrefix}/privacy`,
     image: getBanner("privacy-tools") || "/content-banners/bannerprivacy.jpg",
     locale,
-    alternates: buildAlternates("/privacy", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/privacy", locale),
   });
 }
+
+// English-first. Fold into the translation-sync routine for the other locales.
+// This page states the *current* observable behaviour of the site; keep it in
+// sync when the observer surface changes (embeds, the AI assistant, hosting).
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

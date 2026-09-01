@@ -2,7 +2,7 @@ import Client from "./ClientPage";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -29,7 +29,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/using-zcash/centralizedswaps`,
     image: getBanner("using-zcash") || "/content-banners/usingzcash.png",
     locale,
-    alternates: buildAlternates("/using-zcash/centralizedswaps", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/using-zcash/centralizedswaps", locale),
   });
 }
 

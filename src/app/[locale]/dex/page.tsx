@@ -1,6 +1,6 @@
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { Metadata } from "next";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { getDictionary } from "@/lib/getDictionary";
 import DexClient from "./DexClient";
@@ -30,7 +30,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/dex`,
     image: getBanner("using-zcash") || "/content-banners/usingzcash.png",
     locale,
-    alternates: buildAlternates("/dex", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/dex", locale),
   });
 }
 

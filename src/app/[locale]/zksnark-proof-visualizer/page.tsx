@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { getDictionary } from "@/lib/getDictionary";
 import ZKSNARKProofVisualizer from "@/components/visualizer/zk-SNARK-proof/ZK-SNARKProofVisualizer";
@@ -41,7 +41,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/zksnark-proof-visualizer`,
     image: getBanner("zcash-tech") || "/content-banners/bannertech.jpg",
     locale,
-    alternates: buildAlternates("/zksnark-proof-visualizer", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/zksnark-proof-visualizer", locale),
   });
 }
 

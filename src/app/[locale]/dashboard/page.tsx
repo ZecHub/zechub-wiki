@@ -1,6 +1,6 @@
 import Dashboard from "@/components/Charts";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { Metadata } from "next";
 import { getDictionary } from "@/lib/getDictionary";
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     url: `https://zechub.wiki${localePrefix}/dashboard`,
     image: getBanner("tools") || "/content-banners/bannertech.jpg",
     locale,
-    alternates: buildAlternates("/dashboard", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/dashboard", locale),
   });
 }
 

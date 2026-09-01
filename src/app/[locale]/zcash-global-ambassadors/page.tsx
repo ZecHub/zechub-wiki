@@ -1,6 +1,6 @@
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { Metadata } from "next";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import GlobalAmbassadorsClient from "./GlobalAmbassadorsClient";
 
@@ -20,7 +20,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/zcash-global-ambassadors`,
     image: getBanner("zcash-community") || "/content-banners/bannercommunity.jpg",
     locale,
-    alternates: buildAlternates("/zcash-global-ambassadors", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/zcash-global-ambassadors", locale),
   });
 }
 

@@ -2,7 +2,7 @@ import ZcashProjectsComp from "@/components/ZcashProjects/ZcashProjects";
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { getDictionary } from "@/lib/getDictionary";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
 type ProjectsDictionary = {
@@ -39,7 +39,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/zcash-projects`,
     image: getBanner("zcash-community") || "/content-banners/bannercommunity.jpg",
     locale,
-    alternates: buildAlternates("/zcash-projects", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/zcash-projects", locale),
   });
 }
 

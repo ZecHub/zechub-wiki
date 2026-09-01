@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { ZcashPaymentURINextJs } from "../tools/zcash-payment-widget/adapters/nextjs";
 
@@ -25,7 +25,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/zcash-payment-uri`,
     image: getBanner("tools") || "/content-banners/bannertech.jpg",
     locale,
-    alternates: buildAlternates("/zcash-payment-uri", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/zcash-payment-uri", locale),
   });
 }
 

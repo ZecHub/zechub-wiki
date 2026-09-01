@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import ArboristCallsPage from "./ArboristCallsPage";
 
@@ -20,7 +20,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/aborist-calls`,
     image: getBanner("zcash-tech") || "/content-banners/bannertech.jpg",
     locale,
-    alternates: buildAlternates("/aborist-calls", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/aborist-calls", locale),
   });
 }
 

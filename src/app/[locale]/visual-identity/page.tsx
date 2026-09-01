@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import VisualIdentityPage from "./VisualIdentityPage";
 
@@ -20,7 +20,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/visual-identity`,
     image: getBanner("zcash-organizations") || "/content-banners/bannerorgs.jpg",
     locale,
-    alternates: buildAlternates("/visual-identity", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/visual-identity", locale),
   });
 }
 

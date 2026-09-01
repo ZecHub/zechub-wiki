@@ -2,7 +2,7 @@ import MdxContainer from "@/components/MdxContainer";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { getLocalizedFileContentCached, getRootCached, getMenuTitlesCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { normalizeMdx } from "@/lib/normalizeMdx";
 import { Metadata } from "next";
@@ -32,7 +32,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/using-zcash/shielded-pools`,
     image: getBanner("using-zcash") || "/content-banners/usingzcash.png",
     locale,
-    alternates: buildAlternates("/using-zcash/shielded-pools", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/using-zcash/shielded-pools", locale),
   });
 }
 

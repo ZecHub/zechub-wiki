@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import DonationClientWrapper from "@/components/DonationClientWrapper";
 
@@ -20,7 +20,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/donation`,
     image: getBanner("zcash-community") || "/content-banners/bannercommunity.jpg",
     locale,
-    alternates: buildAlternates("/donation", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/donation", locale),
   });
 }
 

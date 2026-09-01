@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { getDictionary } from "@/lib/getDictionary";
 import GovernanceHowtoClient from "./GovernanceHowtoClient";
@@ -30,7 +30,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/governance-howto`,
     image: getBanner("governance") || "/content-banners/bannerorgs.jpg",
     locale,
-    alternates: buildAlternates("/governance-howto", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/governance-howto", locale),
   });
 }
 

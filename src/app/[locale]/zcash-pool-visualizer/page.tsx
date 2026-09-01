@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { ZcashPoolVisualizer } from "@/components/visualizer/zcash-pool-visualizer";
 
@@ -20,7 +20,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/zcash-pool-visualizer`,
     image: getBanner("zcash-tech") || "/content-banners/bannertech.jpg",
     locale,
-    alternates: buildAlternates("/zcash-pool-visualizer", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/zcash-pool-visualizer", locale),
   });
 }
 

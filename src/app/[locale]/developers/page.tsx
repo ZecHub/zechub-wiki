@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import DeveloperPage from "./DeveloperPage";
 import { getDictionary } from "@/lib/getDictionary";
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     url: `https://zechub.wiki${localePrefix}/developers`,
     image: getBanner("developers") || "/content-banners/bannertech.jpg",
     locale,
-    alternates: buildAlternates("/developers", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/developers", locale),
   });
 }
 

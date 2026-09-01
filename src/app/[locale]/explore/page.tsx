@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { Metadata } from "next";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -20,7 +20,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/explore`,
     image: getBanner("start-here") || "/content-banners/bannerstart.png",
     locale,
-    alternates: buildAlternates("/explore", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/explore", locale),
   });
 }
 

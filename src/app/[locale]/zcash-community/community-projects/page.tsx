@@ -4,7 +4,7 @@ import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
 import { parseCommunityProjects } from "@/lib/parseCommunityProjects";
 import { attachImages } from "@/lib/communityProjectImages";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
 type Dictionary = {
@@ -43,7 +43,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/zcash-community/community-projects`,
     image: getBanner("zcash-community") || "/content-banners/bannercommunity.jpg",
     locale,
-    alternates: buildAlternates("/zcash-community/community-projects", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/zcash-community/community-projects", locale),
   });
 }
 

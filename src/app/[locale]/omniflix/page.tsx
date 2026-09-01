@@ -1,6 +1,6 @@
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { Metadata } from "next";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import OmniflixClient from "./OmniflixClient";
 
@@ -20,7 +20,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/omniflix`,
     image: getBanner("tutorials") || "/content-banners/bannertutorials.jpg",
     locale,
-    alternates: buildAlternates("/omniflix", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/omniflix", locale),
   });
 }
 

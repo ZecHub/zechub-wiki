@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import SPEDNMap from "@/components/Map/SpednMap";
 
@@ -20,7 +20,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/map`,
     image: getBanner("using-zcash") || "/content-banners/usingzcash.png",
     locale,
-    alternates: buildAlternates("/map", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/map", locale),
   });
 }
 

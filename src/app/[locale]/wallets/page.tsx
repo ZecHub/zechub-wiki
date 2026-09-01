@@ -6,7 +6,7 @@ import { getBanner } from "@/lib/helpers";
 import { parseMarkdown } from "@/lib/parseMarkdown";
 import WalletList from "@/components/Wallet/WalletList";
 import { genMetadata } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { Metadata } from "next";
 
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     url: `https://zechub.wiki${localePrefix}/wallets`,
     image: imgUrl || "/content-banners/usingzcash.png",
     locale,
-    alternates: buildAlternates("/wallets", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/wallets", locale),
   });
 }
 

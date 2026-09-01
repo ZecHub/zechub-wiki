@@ -1,10 +1,19 @@
 "use client";
 
 import React, { useState, useRef, useEffect, ReactNode } from "react";
+import { Space_Mono } from "next/font/google";
 import { FcLinux } from "react-icons/fc";
 import { PiAppleLogoDuotone } from "react-icons/pi";
 import { BsWindows } from "react-icons/bs";
 import { useLanguage } from "@/context/LanguageContext";
+
+// Self-hosted at build time by next/font (no runtime request to Google).
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
+  display: "swap",
+});
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -1155,16 +1164,14 @@ export default function QuickStartClient() {
 
   return (
     <>
-      {/* Google Fonts */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap');
         * { box-sizing: border-box; }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #0a0e17; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
       `}</style>
 
-      <div className="min-h-screen bg-white dark:bg-[#030712] text-slate-800 dark:text-slate-200">
+      <div className={`min-h-screen bg-white dark:bg-[#030712] text-slate-800 dark:text-slate-200 ${spaceMono.variable}`}>
         {/* Hero */}
         <div
           className="relative overflow-hidden px-10 pt-20 pb-[72px] text-center
@@ -1203,7 +1210,7 @@ export default function QuickStartClient() {
             <div
               className="inline-flex items-center gap-2 px-4 py-[6px] mb-7 rounded-full text-[12px] tracking-[0.12em] uppercase font-[500]
                 bg-sky-500/10 border border-sky-500/25 text-sky-600 dark:text-sky-400"
-              style={{ fontFamily: "'Space Mono', monospace" }}
+              style={{ fontFamily: "var(--font-space-mono), monospace" }}
             >
               <span
                 style={{

@@ -5,7 +5,7 @@ import GovernanceSection from "@/components/DaoComponents/governance-section";
 import MembersSection from "@/components/DaoComponents/members-section";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { Metadata } from "next";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -24,7 +24,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/dao`,
     image: getBanner("governance") || "/content-banners/bannerorgs.jpg",
     locale,
-    alternates: buildAlternates("/dao", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/dao", locale),
   });
 }
 

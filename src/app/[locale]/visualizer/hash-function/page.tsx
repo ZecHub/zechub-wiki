@@ -2,7 +2,7 @@ import { HashFunctionVisualizer } from "@/components/visualizer/hash-function-vi
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { Metadata } from "next";
 import { getDictionary } from "@/lib/getDictionary";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
 type Dictionary = {
@@ -41,7 +41,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/visualizer/hash-function`,
     image: getBanner("zcash-tech") || "/content-banners/bannertech.jpg",
     locale,
-    alternates: buildAlternates("/visualizer/hash-function", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/visualizer/hash-function", locale),
   });
 }
 

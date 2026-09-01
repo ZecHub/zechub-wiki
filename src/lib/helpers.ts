@@ -104,6 +104,17 @@ export const truncate = (s: string, max: number) => {
   return `${base.replace(/[\s.,;:–—-]+$/, "")}…`;
 };
 
+// Strip markdown link/image title text and query fragments from a captured src.
+const normalizeImageSrc = (raw: string): string =>
+  raw.trim().split(/\s+/)[0]?.replace(/^["']|["']$/g, "") ?? "";
+
+// Off-site og:image URLs must look like images; on-site paths are always OK.
+const isUsableOgImage = (src: string): boolean => {
+  if (src.startsWith("/") && !src.startsWith("//")) return true;
+  if (src.startsWith(SITE_ORIGIN)) return true;
+  return /\.(webp|png|jpe?g|gif|svg|avif)(\?|#|$)/i.test(src);
+};
+
 // Extract first image from markdown content
 export function extractFirstContentImage(
   content: string,
@@ -117,8 +128,8 @@ export function extractFirstContentImage(
       /!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/,
     );
     if (!single) continue;
-    const src = single[1] || single[2];
-    if (src && !/shields\.io|badge|edit/i.test(src)) {
+    const src = normalizeImageSrc(single[1] || single[2] || "");
+    if (src && !/shields\.io|badge|edit/i.test(src) && isUsableOgImage(src)) {
       if (src.startsWith("http") || (src.startsWith("/") && !src.startsWith("//")))
         return src;
       if (filePath) {
@@ -240,8 +251,10 @@ export const extractArticleMeta = (
   const contentImage = extractFirstContentImage(body, filePath);
 
   const meta: ArticleMeta = {
-    headline: fm.title || headline,
-    description: fm.description || description || SITE_DESCRIPTION,
+    headline: fm.title ? truncate(stripInlineMd(fm.title), 110) : headline,
+    description: fm.description
+      ? truncate(stripInlineMd(fm.description), 160)
+      : description || SITE_DESCRIPTION,
   };
 
   const dateRaw = fm.published || fm.date;
@@ -250,8 +263,10 @@ export const extractArticleMeta = (
     if (iso) meta.datePublished = iso;
   }
 
-  const imgRaw = fm.image || fm.cover || contentImage || (fallbackImage || "").trim();
-  if (imgRaw) meta.image = toAbsoluteUrl(imgRaw);
+  const imgRaw = normalizeImageSrc(
+    fm.image || fm.cover || contentImage || (fallbackImage || "").trim(),
+  );
+  if (imgRaw && isUsableOgImage(imgRaw)) meta.image = toAbsoluteUrl(imgRaw);
 
   return meta;
 };
@@ -279,7 +294,7 @@ export const genMetadata = ({
   type = "website",
   alternates,
 }: MetadataOpts): Metadata => {
-  const defaultImage = "/previews/default-banner.jpg";
+  const defaultImage = "/content-banners/bannertech.jpg";
   const defaultUrl = "https://zechub.wiki";
   const defaultTitle = "ZecHub Wiki";
   const defaultDescription = SITE_DESCRIPTION;
@@ -331,6 +346,28 @@ export const getDynamicRoute = (slug: string[]): string => {
     : `/site${transformUri(uri)}.md`;
 };
 
+const normSlugSegment = (s: string) => s.toLowerCase().replace(/[-_ ]/g, "");
+
+/**
+ * Resolve a research article's content-repo path from a slug plus the fetched
+ * directory listing under site/Research. Shared by page.tsx (render +
+ * generateMetadata) so the fuzzy filename match and fallback stay in one place.
+ */
+export function resolveResearchArticleContentUrl(
+  slug: string[],
+  roots: string[],
+): string {
+  const lastSegment = slug[slug.length - 1];
+  const target = normSlugSegment(lastSegment);
+  const match = roots.find((r: string) => {
+    if (typeof r !== "string" || !r.endsWith(".md")) return false;
+    const base = r.split("/").pop()!.replace(/\.md$/i, "");
+    return normSlugSegment(base) === target;
+  });
+  if (match) return match;
+  return `site/Research/${slug.slice(1).join("/")}.md`;
+}
+
 /**
  * Resolve the content-repo markdown path a wiki page actually renders from, for
  * a given URL slug. This is the PURE (no next/cache, no React, no network)
@@ -339,17 +376,11 @@ export const getDynamicRoute = (slug: string[]): string => {
  * (scripts/generate-llms-txt.mjs) and API routes (src/app/api/content-md) fetch
  * exactly what the HTML page fetches.
  *
- * PARITY — keep in sync with page.tsx (its `getDynamicRoute` default plus the
- * research-series special case, ~L154-177 / ~L393-413). Research-series articles
- * live one folder deeper (site/Research/<series>/…/<article>.md) with
- * lowercase-hyphen filenames that getDynamicRoute would mangle into
- * Capitalized_Underscore paths → 404, so for those we preserve the slug's own
- * casing/hyphens. Top-level research articles (and everything else) use
- * Capitalized_Underscore filenames that getDynamicRoute already produces, so
- * they fall through to getDynamicRoute unchanged. page.tsx additionally
- * fuzzy-matches a fetched directory listing (impure); this function reproduces
- * its deterministic outcome. These two implementations are REPLICATED, not
- * shared — when either changes, update the other.
+ * PARITY — keep in sync with page.tsx (getDynamicRoute default plus
+ * resolveResearchArticleContentUrl when a directory listing is available).
+ * Nested research-series articles preserve slug casing/hyphens; top-level
+ * research articles fuzzy-match against roots in page.tsx via
+ * resolveResearchArticleContentUrl().
  */
 export const resolveContentPath = (slug: string[]): string => {
   const isResearchArticle = slug[0] === "research" && slug.length > 1;
@@ -358,11 +389,8 @@ export const resolveContentPath = (slug: string[]): string => {
     slug[0] === "research" &&
     slug[1] === "zcash-foundations-series";
 
-  // Nested research (a series article, one or more folders below /research):
-  // preserve raw casing/hyphens — mirrors page.tsx's
-  // `site/Research/${slug.slice(1).join("/")}.md` fallback.
   if (isResearchArticle && !isResearchSeries && slug.length > 2) {
-    return `site/Research/${slug.slice(1).join("/")}.md`;
+    return resolveResearchArticleContentUrl(slug, []);
   }
 
   return getDynamicRoute(slug);

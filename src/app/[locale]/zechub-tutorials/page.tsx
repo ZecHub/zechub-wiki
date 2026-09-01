@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { getRootCached } from "@/lib/authAndFetch";
 import { getBanner, genMetadata } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import ListTutorial from "./ListTutorial";
 
@@ -23,7 +23,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/zechub-tutorials`,
     image: getBanner("tutorials") || "/content-banners/bannertutorials.jpg",
     locale,
-    alternates: buildAlternates("/zechub-tutorials", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/zechub-tutorials", locale),
   });
 }
 

@@ -2,7 +2,7 @@ import Client from "./ClientPage";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
 type Dictionary = {
@@ -41,7 +41,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/using-zcash/blockchain-explorers`,
     image: getBanner("using-zcash") || "/content-banners/usingzcash.png",
     locale,
-    alternates: buildAlternates("/using-zcash/blockchain-explorers", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/using-zcash/blockchain-explorers", locale),
   });
 }
 

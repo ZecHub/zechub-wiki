@@ -21,6 +21,7 @@ import {
   extractFirstContentImage,
   getSectionDescription,
   jsonLdScript,
+  resolveResearchArticleContentUrl,
 } from "@/lib/helpers";
 import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
@@ -147,21 +148,7 @@ export async function generateMetadata({
   if (isResearchArticle && !isResearchSeries) {
     const rootsRaw = await getRootCached(`/site/${slug[0]}`).catch(() => []);
     const roots = Array.isArray(rootsRaw) ? rootsRaw : [];
-    const lastSegment = slug[slug.length - 1];
-    const norm = (s: string) => s.toLowerCase().replace(/[-_ ]/g, "");
-    const target = norm(lastSegment);
-    const match = roots.find((r: string) => {
-      if (typeof r !== "string" || !r.endsWith(".md")) return false;
-      const base = r.split("/").pop()!.replace(/\.md$/i, "");
-      return norm(base) === target;
-    });
-
-    if (match) {
-      contentUrl = match;
-    } else {
-      const subPath = slug.slice(1).join("/");
-      contentUrl = `site/Research/${subPath}.md`;
-    }
+    contentUrl = resolveResearchArticleContentUrl(slug, roots);
   }
 
   const slugToTitle = (segment: string) =>
@@ -482,27 +469,9 @@ export default async function Page(props: {
       const rootsRaw = await getRootCached(urlRoot).catch(() => []);
       roots = Array.isArray(rootsRaw) ? rootsRaw : [];
 
-      // PARITY: this research-series content-path resolution is replicated (as
-      // a pure, network-free function) by resolveContentPath() in
-      // src/lib/helpers.ts, used by scripts/generate-llms-txt.mjs and
-      // src/app/api/content-md. Keep the two in sync when either changes.
+      // Research article path resolution lives in resolveResearchArticleContentUrl().
       if (isResearchArticle && !isResearchSeries) {
-        const lastSegment = slug[slug.length - 1];
-        const norm = (s: string) => s.toLowerCase().replace(/[-_ ]/g, "");
-        const target = norm(lastSegment);
-
-        const match = roots.find((r: string) => {
-          if (typeof r !== "string" || !r.endsWith(".md")) return false;
-          const base = r.split("/").pop()!.replace(/\.md$/i, "");
-          return norm(base) === target;
-        });
-
-        if (match) {
-          contentUrl = match;
-        } else {
-          const subPath = slug.slice(1).join("/");
-          contentUrl = `site/Research/${subPath}.md`;
-        }
+        contentUrl = resolveResearchArticleContentUrl(slug, roots);
       }
 
       const md = await getLocalizedFileContentCached(contentUrl, locale).catch(

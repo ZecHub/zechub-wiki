@@ -2,7 +2,7 @@ import React from "react";
 import BrandComp from "@/components/Brand/Brand";
 import { Metadata } from "next";
 import { genMetadata, getBanner } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -21,7 +21,7 @@ export async function generateMetadata({
     url: `https://zechub.wiki${localePrefix}/zcash-organizations/brand`,
     image: getBanner("zcash-organizations") || "/content-banners/bannerorgs.jpg",
     locale,
-    alternates: buildAlternates("/zcash-organizations/brand", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/zcash-organizations/brand", locale),
   });
 }
 
