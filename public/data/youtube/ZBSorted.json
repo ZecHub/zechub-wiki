@@ -150,12 +150,12 @@
     {
       "title": "Por que a Zcash é melhor que a Monero para privacidade.",
       "video_id": "XW53tyjerd4",
-      "views": 591
+      "views": 592
     },
     {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
-      "views": 569
+      "views": 571
     },
     {
       "title": "Se você conhece #satoshi, as regras de estacionamento não se aplicam",
@@ -410,7 +410,7 @@
     {
       "title": "Zcash na Cake Wallet - Tutorial Completo",
       "video_id": "ngzYYqcRa84",
-      "views": 237
+      "views": 239
     },
     {
       "title": "A inovação do Zooko que protege a rede e incentiva o staking.",
@@ -633,14 +633,14 @@
       "views": 167
     },
     {
-      "title": "A Golden Year for Zcash | Christimas Zcash Soundtrack",
-      "video_id": "hSBTvWw8bUI",
+      "title": "Rodando Seu Próprio Nó Zcash no Linux — Zebrad + Firewall + RPC + Systemd (Guia Completo)",
+      "video_id": "Cbz1BTuKRUo",
       "views": 167
     },
     {
-      "title": "Rodando Seu Próprio Nó Zcash no Linux — Zebrad + Firewall + RPC + Systemd (Guia Completo)",
-      "video_id": "Cbz1BTuKRUo",
-      "views": 166
+      "title": "A Golden Year for Zcash | Christimas Zcash Soundtrack",
+      "video_id": "hSBTvWw8bUI",
+      "views": 167
     },
     {
       "title": "#Zcash é privado por padrão com opt-in transparente",
@@ -670,7 +670,7 @@
     {
       "title": "Tutorial Shielded Zcash na Metamask",
       "video_id": "Et8d-rM7YXQ",
-      "views": 160
+      "views": 161
     },
     {
       "title": "Cripto invisível no dia a dia.",
@@ -1168,6 +1168,11 @@
       "views": 99
     },
     {
+      "title": "Privacidade é Normal: Zcash Brasil no Blockchain Rio",
+      "video_id": "2NvQebRacFY",
+      "views": 99
+    },
+    {
       "title": "O que são Endereços Unificados (UAs) - Zcash",
       "video_id": "Rvfh3faK3jQ",
       "views": 98
@@ -1195,11 +1200,6 @@
     {
       "title": "A Verdadeira Amarra",
       "video_id": "mCkOpZJvGDM",
-      "views": 96
-    },
-    {
-      "title": "Privacidade é Normal: Zcash Brasil no Blockchain Rio",
-      "video_id": "2NvQebRacFY",
       "views": 96
     },
     {
@@ -1518,6 +1518,11 @@
       "views": 75
     },
     {
+      "title": "Zero-Index e 0xramp pra BRL | Zec Insider",
+      "video_id": "XL9nanDnLZQ",
+      "views": 75
+    },
+    {
       "title": "Descubra o Real Valor do Protocolo Zcash!",
       "video_id": "s0S8sfl7ezA",
       "views": 74
@@ -1605,11 +1610,6 @@
     {
       "title": "Privacidade não é anonimato. É soberania.",
       "video_id": "UVXhKRFVU4I",
-      "views": 71
-    },
-    {
-      "title": "Zero-Index e 0xramp pra BRL | Zec Insider",
-      "video_id": "XL9nanDnLZQ",
       "views": 71
     },
     {
@@ -1808,6 +1808,11 @@
       "views": 58
     },
     {
+      "title": "Zcash Proof-of-Stake: Crosslink Workshop 2",
+      "video_id": "F83naIyrdK0",
+      "views": 57
+    },
+    {
       "title": "Quais os danos ao sacrificar a privacidade? #zcash",
       "video_id": "lkzbnoZJs64",
       "views": 56
@@ -1855,11 +1860,6 @@
     {
       "title": "O Bitcoin como dinheiro nativo da internet.",
       "video_id": "0Qc6ezTax30",
-      "views": 55
-    },
-    {
-      "title": "Zcash Proof-of-Stake: Crosslink Workshop 2",
-      "video_id": "F83naIyrdK0",
       "views": 55
     },
     {
@@ -2083,6 +2083,11 @@
       "views": 47
     },
     {
+      "title": "Zcash Protocol Walkthroug §1.1–1.2 | Engineering #8",
+      "video_id": "gLqT_0B4tSU",
+      "views": 47
+    },
+    {
       "title": "A coleta de dados e privacidade. #podcast #noticias #entrevista",
       "video_id": "78n_f9jovpE",
       "views": 46
@@ -2098,8 +2103,8 @@
       "views": 46
     },
     {
-      "title": "Zcash Protocol Walkthroug §1.1–1.2 | Engineering #8",
-      "video_id": "gLqT_0B4tSU",
+      "title": "Zcash Brasil no Blockchain Rio 2026 | Privacy Is Normal",
+      "video_id": "GV357YejpFg",
       "views": 46
     },
     {
@@ -2160,11 +2165,6 @@
     {
       "title": "Zcash e o futuro da privacidade regulada",
       "video_id": "6cYI-2-hSNA",
-      "views": 44
-    },
-    {
-      "title": "Zcash Brasil no Blockchain Rio 2026 | Privacy Is Normal",
-      "video_id": "GV357YejpFg",
       "views": 44
     },
     {
@@ -2608,6 +2608,11 @@
       "views": 34
     },
     {
+      "title": "Protocol Study #4: Transactions Unpacked: JoinSplit to Actions | Engineering #12",
+      "video_id": "ZmA57p318rI",
+      "views": 34
+    },
+    {
       "title": "Zcash x NYM Brasil - Twitter Spaces",
       "video_id": "CwQKrMYCo-g",
       "views": 33
@@ -2760,11 +2765,6 @@
     {
       "title": "Protocol Study #2: Addresses, Keys, and the Privacy Onion | Engineering #9",
       "video_id": "z6V-NhTWE3Q",
-      "views": 31
-    },
-    {
-      "title": "Protocol Study #4: Transactions Unpacked: JoinSplit to Actions | Engineering #12",
-      "video_id": "ZmA57p318rI",
       "views": 31
     },
     {
@@ -3855,6 +3855,11 @@
     {
       "title": "Privacidade e Exposição",
       "video_id": "ubaCvuDN8Rw",
+      "views": 8
+    },
+    {
+      "title": "Zcash Protocol Study #8: Signatures, Balance, and Binding",
+      "video_id": "h2OGrjLxfZI",
       "views": 8
     },
     {
