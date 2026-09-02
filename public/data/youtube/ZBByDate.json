@@ -3,6 +3,11 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Zcash Protocol Study #8: Signatures, Balance, and Binding",
+            "video_id": "h2OGrjLxfZI",
+            "views": 8
+        },
+        {
             "title": "Michael Explica Por Que Privacidade Importa",
             "video_id": "g3hyyK1X820",
             "views": 24
@@ -20,7 +25,7 @@
         {
             "title": "Zcash Proof-of-Stake: Crosslink Workshop 2",
             "video_id": "F83naIyrdK0",
-            "views": 55
+            "views": 57
         },
         {
             "title": "Coinholder Voting NU7 \ud83d\uddf3\ufe0f | Como votar usando ZEC em menos de 1 minuto com a Zodl.",
@@ -50,12 +55,12 @@
         {
             "title": "Privacidade \u00e9 Normal: Zcash Brasil no Blockchain Rio",
             "video_id": "2NvQebRacFY",
-            "views": 96
+            "views": 99
         },
         {
             "title": "Zero-Index e 0xramp pra BRL | Zec Insider",
             "video_id": "XL9nanDnLZQ",
-            "views": 71
+            "views": 75
         },
         {
             "title": "Se Atacam Sua Privacidade, Querem Atacar Sua Liberdade",
@@ -80,7 +85,7 @@
         {
             "title": "Zcash Brasil no Blockchain Rio 2026 | Privacy Is Normal",
             "video_id": "GV357YejpFg",
-            "views": 44
+            "views": 46
         },
         {
             "title": "Milca0: Web3 \u00e9 Sobre Direitos, Privacidade e Descentraliza\u00e7\u00e3o.",
@@ -355,7 +360,7 @@
         {
             "title": "Protocol Study #4: Transactions Unpacked: JoinSplit to Actions | Engineering #12",
             "video_id": "ZmA57p318rI",
-            "views": 31
+            "views": 34
         },
         {
             "title": "A Linha Esquecida da Cripto: Privacidade, Cypherpunks e Zcash.",
@@ -520,7 +525,7 @@
         {
             "title": "Zcash Protocol Walkthroug \u00a71.1\u20131.2 | Engineering #8",
             "video_id": "gLqT_0B4tSU",
-            "views": 46
+            "views": 47
         },
         {
             "title": "Edward Snowden, o sexto criador da Zcash | Zebra Talk",
@@ -980,7 +985,7 @@
         {
             "title": "Zcash na Cake Wallet - Tutorial Completo",
             "video_id": "ngzYYqcRa84",
-            "views": 237
+            "views": 239
         },
         {
             "title": "Chat criptografado precisa de dinheiro criptografado.",
@@ -1210,7 +1215,7 @@
         {
             "title": "Rodando Seu Pr\u00f3prio N\u00f3 Zcash no Linux \u2014 Zebrad + Firewall + RPC + Systemd (Guia Completo)",
             "video_id": "Cbz1BTuKRUo",
-            "views": 166
+            "views": 167
         },
         {
             "title": "Por que a Picnic focou no Brasil",
@@ -1285,7 +1290,7 @@
         {
             "title": "Conhe\u00e7a a P2P.me: Plataforma para comprar e vender USDC de forma an\u00f4nima",
             "video_id": "9C9Tnc8dEGI",
-            "views": 569
+            "views": 571
         },
         {
             "title": "Incertezas financeiras e o salto do DeFi.",
@@ -1600,7 +1605,7 @@
         {
             "title": "Por que a Zcash \u00e9 melhor que a Monero para privacidade.",
             "video_id": "XW53tyjerd4",
-            "views": 591
+            "views": 592
         },
         {
             "title": "O tripe do poder atual- governos, mega corpora\u00e7\u00f5es e bancos",
@@ -1775,7 +1780,7 @@
         {
             "title": "Tutorial Shielded Zcash na Metamask",
             "video_id": "Et8d-rM7YXQ",
-            "views": 160
+            "views": 161
         },
         {
             "title": "Impactos das guerras globais na economia brasileira",
