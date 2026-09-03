@@ -1,9 +1,15 @@
 "use client";
 
+import { useMemo } from "react";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "lucide-react";
-import { SITE_LINKS } from "@/constants/siteLinks";
+import {
+  CONTENT_SECTIONS,
+  SITE_LINKS,
+  type SiteLink,
+} from "@/constants/siteLinks";
 import { useLanguage } from "@/context/LanguageContext";
+import { buildSitemapSections } from "@/lib/sitemapSections";
 
 // Map a SITE_LINKS section title to the `<Category>` segment used by the
 // menu-titles manifest keys. Only wiki-content sections map to a category; the
@@ -49,16 +55,35 @@ export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps
   const { t } = useLanguage();
   const s = t?.pages?.sitemap;
 
+  // The curated sections supply ordering, icons, app routes and external links;
+  // the English manifest supplies coverage for every wiki content route. Built
+  // here rather than in the server page because a section carries its Lucide
+  // icon component, which cannot cross the server/client boundary as a prop.
+  const sections = useMemo(
+    () =>
+      buildSitemapSections({
+        englishTitles: enTitles,
+        localizedTitles: titles,
+        staticSections: SITE_LINKS,
+        sectionDefs: CONTENT_SECTIONS,
+      }),
+    [enTitles, titles],
+  );
+
   // Localized label for a single sitemap link. Preference order (matching the
   // SideMenu approach): localized manifest -> English manifest ->
   // pages.sitemap.links dictionary -> the English source label.
-  const linkLabel = (sectionTitle: string, href: string, label: string) => {
-    const key = derivePageTitleKey(SECTION_CATEGORY[sectionTitle], href);
+  const linkLabel = (sectionTitle: string, link: SiteLink) => {
+    // Generated links carry their manifest key; curated ones fall back to
+    // deriving it from the href.
+    const key =
+      link.titleKey ??
+      derivePageTitleKey(SECTION_CATEGORY[sectionTitle], link.href);
     if (key) {
       if (titles[key]) return titles[key];
       if (enTitles[key]) return enTitles[key];
     }
-    return s?.links?.[label] ?? label;
+    return s?.links?.[link.label] ?? link.label;
   };
 
   // Localized section / subsection title.
@@ -82,7 +107,7 @@ export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps
       {/* Main Content */}
       <main className="container mx-auto px-6 py-12">
         <div className="space-y-16">
-          {SITE_LINKS.map((section) => {
+          {sections.map((section) => {
             const Icon = section.icon;
             const isGuidesSection = section.title === "Guides";
 
@@ -114,7 +139,7 @@ export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps
                   >
                     {section.links.map((link) => (
                       <Link
-                        key={link.label}
+                        key={link.href}
                         href={link.href}
                         target={link.target}
                         className={
@@ -124,7 +149,7 @@ export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps
                         }
                       >
                         <span className="text-foreground flex-1 leading-snug">
-                          {linkLabel(section.title, link.href, link.label)}
+                          {linkLabel(section.title, link)}
                         </span>
                         <ArrowRight className="h-3.5 w-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                       </Link>
@@ -143,13 +168,13 @@ export default function SitemapPage({ titles = {}, enTitles = {} }: SitemapProps
                         <nav className="space-y-2">
                           {subsection.links.map((link) => (
                             <Link
-                              key={link.label}
+                              key={link.href}
                               href={link.href}
                               target={link.target}
                               className="group flex items-center gap-2 py-2 px-3 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-500 transition-colors"
                             >
                               <span className="text-foreground text-sm flex-1 leading-snug">
-                                {linkLabel(section.title, link.href, link.label)}
+                                {linkLabel(section.title, link)}
                               </span>
                               <ArrowRight className="h-3.5 w-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                             </Link>
