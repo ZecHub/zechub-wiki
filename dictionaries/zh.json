@@ -149,7 +149,8 @@
     "searchNoResults": "没有匹配的页面",
     "searchTryDifferent": "请尝试更短的查询词、同义词或其他词语。",
     "searchSuggested": "推荐页面",
-    "searchResultsLabel": "结果"
+    "searchResultsLabel": "结果",
+    "skipToContent": "跳到内容"
   },
   "navigation": {
     "wallets": "钱包",

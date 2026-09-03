@@ -149,7 +149,8 @@
     "searchNoResults": "Nessuna pagina trovata",
     "searchTryDifferent": "Prova query più brevi, sinonimi o parole diverse.",
     "searchSuggested": "Pagine suggerite",
-    "searchResultsLabel": "Risultati"
+    "searchResultsLabel": "Risultati",
+    "skipToContent": "Vai al contenuto"
   },
   "navigation": {
     "wallets": "Wallet",

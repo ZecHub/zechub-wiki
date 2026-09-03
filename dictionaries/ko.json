@@ -149,7 +149,8 @@
     "searchNoResults": "일치하는 페이지 없음",
     "searchTryDifferent": "더 짧은 검색어, 동의어 또는 다른 단어를 사용해 보세요.",
     "searchSuggested": "추천 페이지",
-    "searchResultsLabel": "결과"
+    "searchResultsLabel": "결과",
+    "skipToContent": "본문 바로가기"
   },
   "navigation": {
     "wallets": "지갑",

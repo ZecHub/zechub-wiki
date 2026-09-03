@@ -149,7 +149,8 @@
     "searchNoResults": "Aucune page correspondante",
     "searchTryDifferent": "Essayez des requêtes plus courtes, des synonymes ou d'autres mots.",
     "searchSuggested": "Pages suggérées",
-    "searchResultsLabel": "Résultats"
+    "searchResultsLabel": "Résultats",
+    "skipToContent": "Aller au contenu"
   },
   "navigation": {
     "wallets": "Portefeuilles",
