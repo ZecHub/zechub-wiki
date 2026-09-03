@@ -149,7 +149,8 @@
     "searchNoResults": "Eşleşen sayfa yok",
     "searchTryDifferent": "Daha kısa sorgular, eş anlamlılar veya farklı kelimeler deneyin.",
     "searchSuggested": "Önerilen sayfalar",
-    "searchResultsLabel": "Sonuçlar"
+    "searchResultsLabel": "Sonuçlar",
+    "skipToContent": "İçeriğe atla"
   },
   "navigation": {
     "wallets": "Cüzdanlar",
