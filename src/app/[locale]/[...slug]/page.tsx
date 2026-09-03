@@ -2,6 +2,7 @@ import MdxContainer from "@/components/MdxContainer";
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { Link } from "@/i18n/navigation";
+import { isKnownContentPath } from "@/lib/contentPaths";
 import {
   getFileContentCached,
   getLocalizedFileContentCached,
@@ -172,6 +173,9 @@ export default async function Page(props: {
     getMenuTitlesCached(locale),
     getMenuTitlesCached("en"),
   ]);
+  // English keys are the full content-file list; a localized manifest only
+  // covers what has been translated, so it would under-report folders.
+  const manifestPaths = Object.keys(enMenuTitles ?? {});
 
   const url = getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
@@ -490,7 +494,13 @@ export default async function Page(props: {
     // article NOR a folder to browse — `getRootCached` caught its 404 and
     // returned []. Only that second case is a real 404; return notFound() so
     // the app stops serving HTTP 200 empty placeholder pages for dead URLs.
-    if (roots.length === 0) {
+    //
+    // A dead article URL under a real section (e.g. /zcash-tech/light-wallet-
+    // node) passes the `roots` check, because `roots` lists the section rather
+    // than the article. isKnownContentPath tells the two apart from the
+    // manifest: anything naming a real file or folder keeps the behaviour it
+    // has today, and only a URL the manifest has never heard of becomes a 404.
+    if (roots.length === 0 || !isKnownContentPath(slug, manifestPaths)) {
       return notFound();
     }
     return (
