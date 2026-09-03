@@ -3,9 +3,14 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Maxime Desalle: A Governan\u00e7a da Zcash Est\u00e1 em Debate",
+            "video_id": "IFRsnNEd46s",
+            "views": 6
+        },
+        {
             "title": "ZK Dragon: Por Que a Privacidade Precisa Estar na Camada Base",
             "video_id": "XbwxmeNk3Ws",
-            "views": 10
+            "views": 18
         },
         {
             "title": "Zcash Protocol Study #8: Signatures, Balance, and Binding",
@@ -15,12 +20,12 @@
         {
             "title": "Michael Explica Por Que Privacidade Importa",
             "video_id": "g3hyyK1X820",
-            "views": 27
+            "views": 29
         },
         {
             "title": "Como Usar a Vizor Wallet Para Zcash",
             "video_id": "SqPIYvzsg5M",
-            "views": 129
+            "views": 132
         },
         {
             "title": "Aamandita: Sua Privacidade Financeira Deve Vir Primeiro",
@@ -35,12 +40,12 @@
         {
             "title": "Coinholder Voting NU7 \ud83d\uddf3\ufe0f | Como votar usando ZEC em menos de 1 minuto com a Zodl.",
             "video_id": "TZ1FKv8qvXc",
-            "views": 14
+            "views": 15
         },
         {
             "title": "Direito Tecnol\u00f3gico: Muito Al\u00e9m da LGPD.",
             "video_id": "CMdbBjmLsrA",
-            "views": 25
+            "views": 26
         },
         {
             "title": "Zcash Brasil no Blockchain Rio 2026 | Zebr\u00e3o, Comunidade e Privacidade",
@@ -60,7 +65,7 @@
         {
             "title": "Privacidade \u00e9 Normal: Zcash Brasil no Blockchain Rio",
             "video_id": "2NvQebRacFY",
-            "views": 112
+            "views": 113
         },
         {
             "title": "Zero-Index e 0xramp pra BRL | Zec Insider",
@@ -440,7 +445,7 @@
         {
             "title": "Special Edition: THERE IS NO BACKDOOR | Zcash Office Hours",
             "video_id": "jrWNz29nHKk",
-            "views": 30
+            "views": 31
         },
         {
             "title": "Key Derivation na Zcash: Como Sua Spending Key Vira Endere\u00e7o Shielded",
@@ -990,7 +995,7 @@
         {
             "title": "Zcash na Cake Wallet - Tutorial Completo",
             "video_id": "ngzYYqcRa84",
-            "views": 240
+            "views": 241
         },
         {
             "title": "Chat criptografado precisa de dinheiro criptografado.",
@@ -2790,7 +2795,7 @@
         {
             "title": "Tutorial #ZEC Faucet: A #liberdade come\u00e7a conhecimento com  e um pouco de #Zcash.",
             "video_id": "aWK956D8M1w",
-            "views": 118
+            "views": 120
         },
         {
             "title": "A nova moeda global #dadospessoais #podcast #privacidade",
