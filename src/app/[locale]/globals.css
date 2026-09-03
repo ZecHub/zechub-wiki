@@ -855,3 +855,34 @@ h2:has(img.processor-logo) > a:hover {
 .processor-note p {
   margin: 0;
 }
+
+/* ---------------------------------------------------------------------------
+   Reduced motion.
+
+   Framer Motion is handled separately, site-wide, by MotionProvider
+   (reducedMotion="user"). This block covers everything Framer does not: CSS
+   transitions, CSS keyframes, and the smooth scrolling set on html above.
+
+   Durations collapse rather than animations being removed, so an element that
+   fades in with CSS still ends up visible - the same reason MotionProvider
+   keeps opacity animating.
+
+   .animate-spin is deliberately exempt. A spinner reports that something is
+   still happening, and freezing one part-way through a rotation reads as a
+   broken page rather than a calmer one.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *:not(.animate-spin),
+  *:not(.animate-spin)::before,
+  *:not(.animate-spin)::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+}
