@@ -135,12 +135,12 @@
     {
       "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
       "video_id": "sDeDNDh-1ko",
-      "views": 974
+      "views": 977
     },
     {
       "title": "Zecwallet Lite on Windows Tutorial #1",
       "video_id": "4v_wr6DBY48",
-      "views": 969
+      "views": 974
     },
     {
       "title": "Tooling for building zkEVM: PIL and Circom - Jordi Baylina at Zcon3",
@@ -305,7 +305,7 @@
     {
       "title": "Arti: ZF + ZCG Call w/ the Tor Project",
       "video_id": "E7g9dKBOYEI",
-      "views": 533
+      "views": 534
     },
     {
       "title": "ZconV: Trailer May 6-10, 2024 #Zcash #ZEC #ZconV",
@@ -613,14 +613,14 @@
       "views": 322
     },
     {
-      "title": "Zebrad for Linux Tutorial #1",
-      "video_id": "7cPKf4hobeI",
+      "title": "Zecwallet Lite on Windows Tutorial #2",
+      "video_id": "NX168gEXZco",
       "views": 321
     },
     {
-      "title": "Zecwallet Lite on Windows Tutorial #2",
-      "video_id": "NX168gEXZco",
-      "views": 320
+      "title": "Zebrad for Linux Tutorial #1",
+      "video_id": "7cPKf4hobeI",
+      "views": 321
     },
     {
       "title": "Zcash Arborist Call 05-28-2026",
@@ -745,7 +745,7 @@
     {
       "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
       "video_id": "DU7wIy3Ywm4",
-      "views": 271
+      "views": 272
     },
     {
       "title": "Zcon Vozes - Parte 2",
@@ -988,14 +988,14 @@
       "views": 212
     },
     {
-      "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
-      "video_id": "fgkFrxiB14g",
+      "title": "Zecwallet Lite on Windows Tutorial #3",
+      "video_id": "A8nmkcHkeW4",
       "views": 211
     },
     {
-      "title": "Zecwallet Lite on Windows Tutorial #3",
-      "video_id": "A8nmkcHkeW4",
-      "views": 210
+      "title": "Security Engineering: Zcash Ecosystem Security and Learning From Safety-Critical Disciplines: Zcon4",
+      "video_id": "fgkFrxiB14g",
+      "views": 211
     },
     {
       "title": "ZecHub: An Education Hub for the Shielded Ecosystem - ZconVI #zcash",
@@ -1033,14 +1033,14 @@
       "views": 204
     },
     {
-      "title": "Making $ZEC Cross Chain with Maya with Aaluxx Myth - ZconVI #zcash",
-      "video_id": "1t2PMekCrjo",
+      "title": "How to use FROST (incl. Demo) with Conrado Gouvêa and Deirdre Connolly: Zcon4",
+      "video_id": "wjj94SYVzxs",
       "views": 203
     },
     {
-      "title": "How to use FROST (incl. Demo) with Conrado Gouvêa and Deirdre Connolly: Zcon4",
-      "video_id": "wjj94SYVzxs",
-      "views": 202
+      "title": "Making $ZEC Cross Chain with Maya with Aaluxx Myth - ZconVI #zcash",
+      "video_id": "1t2PMekCrjo",
+      "views": 203
     },
     {
       "title": "Zebra Walkthrough for Zcash Developers",
@@ -1543,6 +1543,11 @@
       "views": 117
     },
     {
+      "title": "ZecWallet Lite on Linux #2",
+      "video_id": "eJt1SmXJkA4",
+      "views": 116
+    },
+    {
       "title": "ZF Community Call: FROST Server Demo",
       "video_id": "Z4N2TDFxdFA",
       "views": 116
@@ -1561,11 +1566,6 @@
       "title": "Zcash Grants Committee (ZCG) Panel: Past, Present, and Future at Zcon3",
       "video_id": "V7pFnzbg2-E",
       "views": 115
-    },
-    {
-      "title": "ZecWallet Lite on Linux #2",
-      "video_id": "eJt1SmXJkA4",
-      "views": 114
     },
     {
       "title": "Zcash Arborist Call 2/8/2024",
@@ -1705,7 +1705,7 @@
     {
       "title": "ZecWallet Lite on Linux #3",
       "video_id": "DTJK3Cw9DIk",
-      "views": 86
+      "views": 87
     },
     {
       "title": "How the ZconV App Works",
