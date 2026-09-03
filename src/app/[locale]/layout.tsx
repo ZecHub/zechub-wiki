@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavigationWrapper from "@/components/NavigationWrapper";
 import SkipToContent from "@/components/SkipToContent";
+import MotionProvider from "@/components/MotionProvider";
 import { ThemeProvider } from "next-themes";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
@@ -135,9 +136,11 @@ export default async function RootLayout({
               initialDictionary={initialDictionary}
             >
               <DarkModeProvider>
-                <NavigationWrapper searchItems={searchItems}>
-                  {children}
-                </NavigationWrapper>
+                <MotionProvider>
+                  <NavigationWrapper searchItems={searchItems}>
+                    {children}
+                  </NavigationWrapper>
+                </MotionProvider>
               </DarkModeProvider>
             </LanguageProvider>
           </ThemeProvider>
