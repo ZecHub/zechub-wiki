@@ -20,6 +20,7 @@ import {
   extractArticleMeta,
   jsonLdScript,
 } from "@/lib/helpers";
+import { buildBreadcrumbs } from "@/lib/breadcrumbs";
 import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
@@ -481,6 +482,15 @@ export default async function Page(props: {
     : "";
   const localeUrlPrefix = locale && locale !== "en" ? `/${locale}` : "";
   const canonicalWikiUrl = `https://zechub.wiki${localeUrlPrefix}/${slug.join("/")}`;
+  // One trail for both the visible breadcrumb and the BreadcrumbList below, so
+  // what a reader sees and what a crawler reads cannot drift apart. Research
+  // articles keep the trail their own layout already renders.
+  const breadcrumbTrail = buildBreadcrumbs({
+    slug,
+    titles: menuTitles,
+    enTitles: enMenuTitles,
+    menuLabels: dict?.menuLabels ?? {},
+  });
 
   if (!markdown) {
     // A null `markdown` has two very different causes. Section landing pages
@@ -501,6 +511,7 @@ export default async function Page(props: {
         }
         roots={roots}
         heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
+        breadcrumbs={breadcrumbTrail}
       >
         <div className="px-6 py-12 text-center">
           <h1 className="text-5xl font-bold mb-6 capitalize">
@@ -553,20 +564,12 @@ export default async function Page(props: {
   // that don't merge across <script> blocks still resolve author/publisher) and
   // a BreadcrumbList derived from the slug segments. Consumed by classic search
   // and AI answer engines; rendered server-side (SSR route).
-  const breadcrumbItems = [
-    {
-      "@type": "ListItem" as const,
-      position: 1,
-      name: "Home",
-      item: `https://zechub.wiki${localeUrlPrefix}`,
-    },
-    ...slug.map((_, i) => ({
-      "@type": "ListItem" as const,
-      position: i + 2,
-      name: slugToTitle(slug[i]),
-      item: `https://zechub.wiki${localeUrlPrefix}/${slug.slice(0, i + 1).join("/")}`,
-    })),
-  ];
+  const breadcrumbItems = breadcrumbTrail.map((crumb, i) => ({
+    "@type": "ListItem" as const,
+    position: i + 1,
+    name: crumb.label,
+    item: `https://zechub.wiki${localeUrlPrefix}${crumb.href === "/" ? "" : crumb.href}`,
+  }));
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -610,6 +613,7 @@ export default async function Page(props: {
         }
         roots={roots}
         {...(heroImage ? { heroImage } : {})}
+        breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={
           isResearchArticle
