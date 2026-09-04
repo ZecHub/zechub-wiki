@@ -381,13 +381,13 @@ const ZebradTab = () => {
               {qs?.dependencies ?? "Dependencies"}
             </SubLabel>
             <CodeBlock
-              code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm`}
+              code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm\n# GCC 15 (Arch, Ubuntu 25+) needs this rocksdb workaround before building\nexport CXXFLAGS="$CXXFLAGS -include cstdint"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.fromSource ?? "From Source"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
@@ -404,13 +404,13 @@ const ZebradTab = () => {
               {qs?.dependencies ?? "Dependencies"}
             </SubLabel>
             <CodeBlock
-              code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm`}
+              code={`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\nsudo apt update\nsudo apt install libclang-dev clang pkg-config openssl protobuf-compiler npm\n# If rocksdb fails to compile (GCC 15 / recent clang), run this first\nexport CXXFLAGS="$CXXFLAGS -include cstdint"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.manualDownload ?? "Manual Download"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
@@ -435,7 +435,7 @@ const ZebradTab = () => {
               {qs?.fromSource ?? "From Source"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
@@ -520,8 +520,12 @@ use_color = true`}
           <SectionCard title={qs?.importantNotes ?? "Important Notes"}>
             <ul className="flex flex-col gap-[10px] list-none p-0 m-0">
               {[
+                qs?.noteHardwareRecommended ??
+                  "Recommended: 4 CPU cores, 16 GB RAM, 300 GB free disk (zebra.zfnd.org/user/requirements.html)",
+                qs?.noteHardwareMinimum ??
+                  "Minimum: 2 CPU cores, 4 GB RAM, 300 GB free disk",
                 qs?.noteDownloadsBlockchain ??
-                  "First run downloads the entire blockchain (~250 GB)",
+                  "First run downloads the entire blockchain (~300 GB) and needs ~300 GB of free disk space (zebra.zfnd.org/user/requirements.html)",
                 qs?.noteInitialSync ?? "Initial sync can take several hours",
                 qs?.noteKeepSecure ??
                   "Keep your zebrad.toml secure and private",

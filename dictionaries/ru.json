@@ -934,7 +934,7 @@
       "startingZebrad": "Запуск zebrad",
       "commandLine": "Командная строка",
       "importantNotes": "Важные примечания",
-      "noteDownloadsBlockchain": "При первом запуске загружается весь блокчейн (~250 GB)",
+      "noteDownloadsBlockchain": "При первом запуске загружается весь блокчейн (~300 GB)",
       "noteInitialSync": "Первоначальная синхронизация может занять несколько часов",
       "noteKeepSecure": "Храните ваш zebrad.toml в безопасности и не разглашайте его",
       "connectingLightwalletdHeading": "Подключение к lightwalletd",

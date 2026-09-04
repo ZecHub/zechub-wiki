@@ -934,7 +934,7 @@
       "startingZebrad": "zebrad starten",
       "commandLine": "Befehlszeile",
       "importantNotes": "Wichtige Hinweise",
-      "noteDownloadsBlockchain": "Beim ersten Start wird die gesamte Blockchain heruntergeladen (~250 GB)",
+      "noteDownloadsBlockchain": "Beim ersten Start wird die gesamte Blockchain heruntergeladen (~300 GB)",
       "noteInitialSync": "Die erste Synchronisierung kann mehrere Stunden dauern",
       "noteKeepSecure": "Bewahre deine zebrad.toml sicher und privat auf",
       "connectingLightwalletdHeading": "Mit lightwalletd verbinden",

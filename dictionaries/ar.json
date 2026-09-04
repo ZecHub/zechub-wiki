@@ -934,7 +934,7 @@
       "startingZebrad": "بدء zebrad",
       "commandLine": "سطر الأوامر",
       "importantNotes": "ملاحظات مهمة",
-      "noteDownloadsBlockchain": "يقوم التشغيل الأول بتنزيل سلسلة الكتل بالكامل (~250 GB)",
+      "noteDownloadsBlockchain": "يقوم التشغيل الأول بتنزيل سلسلة الكتل بالكامل (~300 GB)",
       "noteInitialSync": "قد تستغرق المزامنة الأولية عدة ساعات",
       "noteKeepSecure": "احتفظ بملف zebrad.toml آمناً وخاصاً",
       "connectingLightwalletdHeading": "الاتصال باستخدام lightwalletd",

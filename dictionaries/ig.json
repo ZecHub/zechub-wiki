@@ -929,7 +929,7 @@
       "startingZebrad": "Ịmalite zebrad",
       "commandLine": "Usoro iwu",
       "importantNotes": "Ihe Ndị Dị Mkpa",
-      "noteDownloadsBlockchain": "Mbụ na-agba ọsọ na-ebudata blockchain dum (~ 250 GB)",
+      "noteDownloadsBlockchain": "Mbụ na-agba ọsọ na-ebudata blockchain dum (~ 300 GB)",
       "noteInitialSync": "Mmekọrịta mbụ nwere ike were ọtụtụ awa",
       "noteKeepSecure": "Debe zebrad.toml gị n'ebe dị nchebe na nzuzo",
       "connectingLightwalletdHeading": "Njikọ na lightwalletd",

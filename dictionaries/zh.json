@@ -934,7 +934,7 @@
       "startingZebrad": "启动 zebrad",
       "commandLine": "命令行",
       "importantNotes": "重要说明",
-      "noteDownloadsBlockchain": "首次运行会下载完整区块链（约 250 GB）",
+      "noteDownloadsBlockchain": "首次运行会下载完整区块链（约 300 GB）",
       "noteInitialSync": "初始同步可能需要数小时",
       "noteKeepSecure": "请妥善保管你的 zebrad.toml 并确保其私密性",
       "connectingLightwalletdHeading": "连接 lightwalletd",

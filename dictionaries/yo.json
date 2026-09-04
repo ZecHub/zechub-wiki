@@ -929,7 +929,7 @@
       "startingZebrad": "Starting zebrad",
       "commandLine": "Òpó àṣẹ",
       "importantNotes": "Àwọn Àkíyèsí Pàtàkì",
-      "noteDownloadsBlockchain": "Igbesẹ akọkọ gba gbogbo blockchain (~ 250 GB)",
+      "noteDownloadsBlockchain": "Igbesẹ akọkọ gba gbogbo blockchain (~ 300 GB)",
       "noteInitialSync": "Ìmúṣiṣẹ́pọ̀ àkọ́kọ́ lè gba ọ̀pọ̀ wákàtí",
       "noteKeepSecure": "Pa àwo n zebrad.toml rẹ mọ́ ní ààbò àti ní ìkọ̀kọ̀",
       "connectingLightwalletdHeading": "Lílọ sípò pẹ̀lú lightwalletd",

@@ -934,7 +934,7 @@
       "startingZebrad": "zebrad शुरू करना",
       "commandLine": "कमांड लाइन",
       "importantNotes": "महत्वपूर्ण नोट्स",
-      "noteDownloadsBlockchain": "पहली बार चलाने पर पूरी ब्लॉकचेन (~250 GB) डाउनलोड होती है",
+      "noteDownloadsBlockchain": "पहली बार चलाने पर पूरी ब्लॉकचेन (~300 GB) डाउनलोड होती है",
       "noteInitialSync": "प्रारंभिक सिंक में कई घंटे लग सकते हैं",
       "noteKeepSecure": "अपनी zebrad.toml को सुरक्षित और निजी रखें",
       "connectingLightwalletdHeading": "lightwalletd से कनेक्ट करना",

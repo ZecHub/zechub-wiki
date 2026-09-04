@@ -934,7 +934,7 @@
       "startingZebrad": "zebrad の起動",
       "commandLine": "コマンドライン",
       "importantNotes": "重要な注意事項",
-      "noteDownloadsBlockchain": "初回実行ではブロックチェーン全体（約250 GB）がダウンロードされます",
+      "noteDownloadsBlockchain": "初回実行ではブロックチェーン全体（約300 GB）がダウンロードされます",
       "noteInitialSync": "初回同期には数時間かかることがあります",
       "noteKeepSecure": "zebrad.toml を安全かつ非公開に保ってください",
       "connectingLightwalletdHeading": "lightwalletd に接続する",
