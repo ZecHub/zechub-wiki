@@ -28,7 +28,7 @@ const SiteLinks: React.FC = () => {
               <Link href="/dao">Dao</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5668">
-              <Link href="/brand/">Brand</Link>
+              <Link href="/zcash-organizations/brand">Brand</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-page page_item page-item-5470">
               <Link href="/wallets">Wallets</Link>
@@ -68,7 +68,7 @@ const SiteLinks: React.FC = () => {
               </Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-question page_item page-item-5989">
-              <Link href="/guides/akash-network">Akash Network</Link>
+              <Link href="/guides/akash-network-zebra">Akash Network</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-question page_item page-item-5987">
               <Link href="/guides/visualizing-zcash-addresses">
