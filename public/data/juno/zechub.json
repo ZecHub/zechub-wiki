@@ -7198,10 +7198,10 @@
           "title": "Zcash India — Proposal | September to December 2026",
           "votes": {
             "no": "0",
-            "yes": "13",
+            "yes": "14",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno1fuz6z8l6w93yrehtf97zfvpz5f5snnx47mt9qf",
           "threshold": {
             "threshold_quorum": {
@@ -7222,7 +7222,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-08-27T10:54:02.910Z"
+        "createdAt": "2026-08-27T10:54:02.910Z",
+        "completedAt": "2026-09-01T14:25:32.000Z",
+        "executedAt": "2026-09-01T14:25:32.000Z"
       }
     ]
   },
