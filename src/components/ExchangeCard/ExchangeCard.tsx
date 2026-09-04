@@ -7,6 +7,7 @@ interface ExchangeCardProps {
   pairs: string;
   support: string;
   depositTime: string;
+  ironwood?: string;
   logo: string;
   altText: string;
 }
@@ -17,6 +18,7 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
   pairs,
   support,
   depositTime,
+  ironwood,
   logo,
   altText,
 }) => (
@@ -59,6 +61,12 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
             <span className="font-semibold text-zinc-500 w-20">Deposit Time:</span>
             <span>{depositTime}</span>
           </div>
+          {ironwood && (
+            <div className="flex flex-col md:flex-row md:gap-2">
+              <span className="font-semibold text-zinc-500 w-20">Ironwood:</span>
+              <span>{ironwood}</span>
+            </div>
+          )}
         </div>
       </div>
     </div>
