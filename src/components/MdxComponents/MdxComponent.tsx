@@ -29,6 +29,16 @@ const slugify = (text: string): string => {
     .replace(/^-+|-+$/g, '');
 };
 
+const getHeadingText = (children: React.ReactNode): string => {
+  return React.Children.toArray(children)
+    .map((child) =>
+      React.isValidElement<{ children?: React.ReactNode }>(child)
+        ? getHeadingText(child.props.children)
+        : child,
+    )
+    .join("");
+};
+
 const MdxComponents = {
   // TOC LINKS — underline on hover only (no dashed line)
   a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {
@@ -77,17 +87,17 @@ const MdxComponents = {
 
   // Headings with IDs
   h1: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
-    const text = React.Children.toArray(props.children).join('').trim();
+    const text = getHeadingText(props.children).trim();
     const id = slugify(text);
     return <h1 id={id} className="text-4xl font-bold my-6 scroll-mt-20" {...props} />;
   },
   h2: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
-    const text = React.Children.toArray(props.children).join('').trim();
+    const text = getHeadingText(props.children).trim();
     const id = slugify(text);
     return <h2 id={id} className="text-3xl font-bold my-6 scroll-mt-20" {...props} />;
   },
   h3: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
-    const text = React.Children.toArray(props.children).join('').trim();
+    const text = getHeadingText(props.children).trim();
     const id = slugify(text);
     return <h3 id={id} className="text-2xl font-bold my-5 scroll-mt-20" {...props} />;
   },
