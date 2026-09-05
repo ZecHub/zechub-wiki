@@ -5,6 +5,9 @@ jest.mock(
   () => ({
     __wbg_set_wasm: jest.fn(),
     __wbindgen_start: jest.fn(),
+    is_valid_zcash_address: jest.fn(),
+    get_zcash_address_type: jest.fn(),
+    get_address_receivers: jest.fn(),
   }),
 );
 
@@ -55,5 +58,17 @@ describe("loadZaddrWasm", () => {
     } as Response);
 
     await expect(loadZaddrWasm(fetchMock)).rejects.toThrow("WASM asset was empty");
+  }, 5000);
+
+  it("rejects a successful HTML response before WebAssembly compilation", async () => {
+    const fetchMock = jest.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      arrayBuffer: async () => new Uint8Array([60, 104, 116, 109, 108]).buffer,
+    } as Response);
+
+    await expect(loadZaddrWasm(fetchMock)).rejects.toThrow(
+      "WASM asset is not a valid WebAssembly binary",
+    );
   }, 5000);
 });

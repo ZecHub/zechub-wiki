@@ -243,46 +243,62 @@ export default function AddressDecoder() {
             return (
               <div
                 key={r.key}
-                role="button"
-                tabIndex={0}
-                aria-expanded={isOpen}
-                aria-label={`${isOpen ? 'Hide' : 'Show'} QR code for ${meta.label}`}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    setSelectedQR(isOpen ? null : r.key);
-                  }
-                }}
-                onClick={() => setSelectedQR(isOpen ? null : r.key)}
                 className={`rounded-xl border transition-all duration-200 cursor-pointer ${
                   isOpen
                     ? 'bg-zinc-50 dark:bg-[#0f1720] border-[#F4B728]/25'
                     : 'bg-zinc-50 dark:bg-[#111b27] border-zinc-200 dark:border-[#1e2d3d] hover:border-zinc-300 dark:hover:border-[#2d3e50]'
                 }`}
               >
-                <div className="flex items-center gap-3 px-4 py-3">
-                  <span
-                    className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg text-base"
-                    style={{ backgroundColor: `${meta.accent}12`, color: meta.accent }}
+                <div className="flex items-center gap-2 px-3 py-3 sm:gap-3 sm:px-4">
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-label={`${isOpen ? 'Hide' : 'Show'} QR code for ${meta.label}`}
+                    onClick={() => setSelectedQR(isOpen ? null : r.key)}
+                    className="flex min-w-0 flex-1 items-center gap-3 rounded-lg text-left focus:outline-none focus:ring-2 focus:ring-[#F4B728] focus:ring-inset"
                   >
-                    {meta.icon}
-                  </span>
+                    <span
+                      className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg text-base"
+                      style={{ backgroundColor: `${meta.accent}12`, color: meta.accent }}
+                      aria-hidden="true"
+                    >
+                      {meta.icon}
+                    </span>
 
-                  <div className="flex-1 min-w-0">
-                    <div className="text-[13px] font-semibold" style={{ color: meta.accent }}>
-                      {meta.label}
-                    </div>
-                    <div className="text-[11px] font-mono text-zinc-400 dark:text-[#3d4e60] truncate mt-0.5">
-                      {r.address}
-                    </div>
-                  </div>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[13px] font-semibold" style={{ color: meta.accent }}>
+                        {meta.label}
+                      </span>
+                      <span className="mt-0.5 block truncate text-[11px] font-mono text-zinc-400 dark:text-[#3d4e60]">
+                        {r.address}
+                      </span>
+                    </span>
+
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                      className={`flex-shrink-0 text-zinc-300 dark:text-[#2d3e50] transition-transform duration-200 stroke-current ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
 
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       copy(r.address, r.key);
                     }}
-                    className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all duration-200 border ${
+                    type="button"
+                    aria-label={`Copy ${meta.label} address`}
+                    className={`min-h-11 flex-shrink-0 rounded-lg border px-3 py-1.5 text-[11px] font-bold transition-all duration-200 ${
                       isCopied
                         ? 'bg-[#F4B728] border-[#F4B728] text-[#151e29]'
                         : 'bg-transparent border-zinc-200 dark:border-[#1e2d3d] text-zinc-400 dark:text-[#4a5a6e] hover:border-[#F4B728]/50 hover:text-[#F4B728]'
@@ -290,21 +306,6 @@ export default function AddressDecoder() {
                   >
                     {isCopied ? '✓ Copied' : 'Copy'}
                   </button>
-
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className={`flex-shrink-0 text-zinc-300 dark:text-[#2d3e50] transition-transform duration-200 stroke-current ${
-                      isOpen ? 'rotate-180' : ''
-                    }`}
-                  >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
                 </div>
 
                 {isOpen && (

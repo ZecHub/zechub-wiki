@@ -45,13 +45,33 @@ export async function loadZaddrWasm(
         throw new Error("WASM asset was empty");
       }
 
+      // A reverse proxy can return a successful HTML error page. Checking the
+      // WebAssembly magic bytes gives users a useful error and avoids a vague
+      // compile/instantiate failure in production.
+      const header = new Uint8Array(bytes.slice(0, 4));
+      if (header.length !== 4 || header.some((value, index) => value !== [0, 97, 115, 109][index])) {
+        throw new Error("WASM asset is not a valid WebAssembly binary");
+      }
+
       // wasm-bindgen names its JavaScript imports after the generated glue
       // module, so provide that namespace when instantiating manually.
       const { instance } = await WebAssembly.instantiate(bytes, {
         "./zaddr_wasm_parser_bg.js": glue,
       });
       glue.__wbg_set_wasm(instance.exports);
-      instance.exports.__wbindgen_start();
+      const start = instance.exports.__wbindgen_start;
+      if (typeof start !== "function") {
+        throw new Error("WASM module is missing its initialization export");
+      }
+      start();
+
+      if (
+        typeof glue.is_valid_zcash_address !== "function" ||
+        typeof glue.get_zcash_address_type !== "function" ||
+        typeof glue.get_address_receivers !== "function"
+      ) {
+        throw new Error("WASM module is missing Zcash address functions");
+      }
       return glue;
     } catch (error) {
       lastError = error;
