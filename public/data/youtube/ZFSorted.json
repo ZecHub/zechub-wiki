@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2373
+      "views": 2374
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -80,7 +80,7 @@
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1321
+      "views": 1322
     },
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
@@ -95,7 +95,7 @@
     {
       "title": "The State of Privacy in Cryptocurrencies - Ian Miers",
       "video_id": "AJGLhaUV8QM",
-      "views": 1219
+      "views": 1220
     },
     {
       "title": "An Overview Of Governance In Blockchains",
@@ -130,17 +130,17 @@
     {
       "title": "A History of Zcash at Zcon0 (2018) by Nathan Wilcox",
       "video_id": "Mi4IUEzTyVw",
-      "views": 989
+      "views": 992
     },
     {
       "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
       "video_id": "sDeDNDh-1ko",
-      "views": 981
+      "views": 986
     },
     {
       "title": "Zecwallet Lite on Windows Tutorial #1",
       "video_id": "4v_wr6DBY48",
-      "views": 974
+      "views": 975
     },
     {
       "title": "Tooling for building zkEVM: PIL and Circom - Jordi Baylina at Zcon3",
@@ -150,7 +150,7 @@
     {
       "title": "The State of Zcash in 2025 with Jack Gavigan - ZconVI 2025 #zcash",
       "video_id": "El59GnEA1FY",
-      "views": 933
+      "views": 934
     },
     {
       "title": "Good SNARKS Are Here Needed",
@@ -293,14 +293,14 @@
       "views": 575
     },
     {
+      "title": "The Future of Zcash Panel - Daniel Benarroch, Nate Wilcox, Zaki Manian, Matthew Green at Zcon3",
+      "video_id": "bytv6_dmlpI",
+      "views": 564
+    },
+    {
       "title": "Empirical Analysis of the Zcash Blockchain at Zcon0 (2018) by Mary Maller",
       "video_id": "dP4dH_aHbdM",
       "views": 563
-    },
-    {
-      "title": "The Future of Zcash Panel - Daniel Benarroch, Nate Wilcox, Zaki Manian, Matthew Green at Zcon3",
-      "video_id": "bytv6_dmlpI",
-      "views": 562
     },
     {
       "title": "Arti: ZF + ZCG Call w/ the Tor Project",
@@ -603,6 +603,11 @@
       "views": 323
     },
     {
+      "title": "Zecwallet Lite on Windows Tutorial #2",
+      "video_id": "NX168gEXZco",
+      "views": 323
+    },
+    {
       "title": "Governance Across Ecosystems: #Zcon2Lite",
       "video_id": "kHMjRon5nWk",
       "views": 322
@@ -611,11 +616,6 @@
       "title": "The Path to Shielded Programmability with Ying Tong Lai and Bryan Gillespie - ZconV: Zcash Unified",
       "video_id": "lCiw_3qMjcw",
       "views": 322
-    },
-    {
-      "title": "Zecwallet Lite on Windows Tutorial #2",
-      "video_id": "NX168gEXZco",
-      "views": 321
     },
     {
       "title": "Zebrad for Linux Tutorial #1",
@@ -733,6 +733,11 @@
       "views": 277
     },
     {
+      "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
+      "video_id": "DU7wIy3Ywm4",
+      "views": 276
+    },
+    {
       "title": "zcash-devtool: the Zcash development multitool with Kris Nuttycombe - ZconVI #zcash",
       "video_id": "5gvQF5oFT8E",
       "views": 275
@@ -741,11 +746,6 @@
       "title": "Zcash Foundation Community Call: Nominees for ZF Board Nov 2024",
       "video_id": "zKxVZa-SMTA",
       "views": 274
-    },
-    {
-      "title": "Zcomm: How to Build Strong Partnerships with Aligned Communities and Organizations #Web3Privacy Now",
-      "video_id": "DU7wIy3Ywm4",
-      "views": 273
     },
     {
       "title": "Zcon Vozes - Parte 2",
@@ -885,7 +885,7 @@
     {
       "title": "Zcash Community Call: Meet the ZCG Candidates",
       "video_id": "3z3E2lhBUH0",
-      "views": 226
+      "views": 227
     },
     {
       "title": "Zcon4 Opening Address by Jack Gavigan: Zcash",
@@ -1408,6 +1408,11 @@
       "views": 137
     },
     {
+      "title": "Arborist Call 08-20-2026",
+      "video_id": "doDbR0i9zZA",
+      "views": 137
+    },
+    {
       "title": "Zcash Arborist Call 7/25/24",
       "video_id": "t1L8ARXZ4r4",
       "views": 136
@@ -1436,11 +1441,6 @@
       "title": "Zcash Arborist Call 02-06-2025",
       "video_id": "zgoArHP-1ps",
       "views": 134
-    },
-    {
-      "title": "Arborist Call 08-20-2026",
-      "video_id": "doDbR0i9zZA",
-      "views": 133
     },
     {
       "title": "Chilling Effects of Recent US AML Prosecutions with J.W. Verret- ZconV: Zcash Unified 2024 #Zcash",
@@ -1768,6 +1768,11 @@
       "views": 75
     },
     {
+      "title": "Arborist Call 09-3-2026",
+      "video_id": "POkZ42EgXNQ",
+      "views": 73
+    },
+    {
       "title": "Zcash Arborist Call 5/2/24",
       "video_id": "2K_hmx3obf4",
       "views": 70
@@ -1800,11 +1805,6 @@
     {
       "title": "ZGo: Year One by Rene Vergara: Zcon4",
       "video_id": "jOxQOsPXMBU",
-      "views": 63
-    },
-    {
-      "title": "Arborist Call 09-3-2026",
-      "video_id": "POkZ42EgXNQ",
       "views": 63
     },
     {
