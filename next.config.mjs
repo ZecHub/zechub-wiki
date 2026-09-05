@@ -127,6 +127,13 @@ const nextConfig = {
       { key: "Reporting-Endpoints", value: 'csp-endpoint="/api/csp-report"' },
     ];
     return [
+      {
+        source: "/wasm/:path*",
+        headers: [
+          { key: "Content-Type", value: "application/wasm" },
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
       { source: "/:path*", headers: baseline },
       {
         // Clickjacking protection everywhere EXCEPT the embeddable widget under

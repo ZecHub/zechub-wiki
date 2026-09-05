@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import AddressDecoder from "./AddressDecoder";
 import PaymentRequestBuilder from "./PaymentRequestBuilder";
 import PaymentRequestWidget from "./zcash-payment-widget/PaymentRequestWidget";
+import FaucetClaim from "./FaucetClaim";
 
 // Tab ids double as the public URL slug, e.g. /tools?tool=address-decoder.
 // Renaming one changes a shareable link, so treat them as part of the API.
@@ -12,7 +13,8 @@ type TabId =
   | "converter"
   | "payment-request"
   | "payment-request-widget"
-  | "address-decoder";
+  | "address-decoder"
+  | "faucet";
 
 interface Tab {
   id: TabId;
@@ -24,6 +26,14 @@ interface Tab {
 }
 
 const TABS: Tab[] = [
+  {
+    id: "faucet",
+    label: "Testnet Faucet",
+    shortLabel: "Faucet",
+    badge: "Testnet ZEC",
+    title: "Request Testnet ZEC",
+    subtitle: "Get testnet ZEC for wallet and integration testing",
+  },
   {
     id: "converter",
     label: "ZEC ↔ Zats",
@@ -99,19 +109,26 @@ export default function ToolTabs() {
   const current = TABS.find((t) => t.id === active)!;
 
   return (
-    <div>
+    <div className="lg:grid lg:grid-cols-[176px_minmax(0,1fr)] lg:items-start lg:gap-5">
       {/* Tab bar */}
-      <div className="flex bg-zinc-100 dark:bg-[#0f1720] rounded-xl p-1 border border-zinc-200 dark:border-[#1e2d3d] mb-6">
+      <div
+        role="tablist"
+        aria-label="Zcash tools"
+        className="mb-6 flex w-full snap-x snap-mandatory gap-1 overflow-x-auto rounded-xl border border-zinc-200 bg-zinc-100 p-1 dark:border-[#1e2d3d] dark:bg-[#0f1720] lg:mb-0 lg:flex-col lg:overflow-visible"
+      >
         {TABS.map((tab) => {
           const isActive = active === tab.id;
           return (
             <button
               key={tab.id}
               onClick={() => selectTab(tab.id)}
-              aria-current={isActive ? "page" : undefined}
+              id={`tool-tab-${tab.id}`}
+              role="tab"
+              aria-selected={isActive}
+              aria-controls={`tool-panel-${tab.id}`}
               className={`
-                flex-1 relative py-2.5 sm:py-3 rounded-lg text-[13px] sm:text-sm font-semibold
-                transition-all duration-200 ease-out
+                relative min-h-14 w-[142px] flex-none snap-start rounded-lg px-3 py-2 text-center text-[12px] leading-tight font-semibold whitespace-nowrap
+                transition-all duration-200 ease-out sm:min-h-16 sm:w-[156px] sm:px-3 sm:py-3 sm:text-[13px] lg:min-h-12 lg:w-full lg:px-2 lg:py-2.5 lg:text-left
                 ${
                   isActive
                     ? "bg-gradient-to-r from-[#F4B728] to-[#d9a520] text-[#151e29] shadow-md shadow-[#F4B728]/15"
@@ -119,8 +136,8 @@ export default function ToolTabs() {
                 }
               `}
             >
-              <span className="hidden sm:inline">{tab.label}</span>
               <span className="sm:hidden">{tab.shortLabel}</span>
+              <span className="hidden sm:inline">{tab.label}</span>
             </button>
           );
         })}
@@ -142,11 +159,18 @@ export default function ToolTabs() {
         </div>
 
         {/* Card body */}
-        <div className="px-5 py-6 sm:px-7 sm:py-7">
+        <div
+          id={`tool-panel-${active}`}
+          role="tabpanel"
+          aria-labelledby={`tool-tab-${active}`}
+          tabIndex={0}
+          className="px-5 py-6 outline-none sm:px-7 sm:py-7"
+        >
           {active === "converter" && <ZecToZatsConverter />}
           {active === "payment-request" && <PaymentRequestBuilder />}
           {active === "payment-request-widget" && <PaymentRequestWidget />}
           {active === "address-decoder" && <AddressDecoder />}
+          {active === "faucet" && <FaucetClaim />}
         </div>
       </div>
     </div>
