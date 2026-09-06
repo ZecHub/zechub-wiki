@@ -149,7 +149,8 @@
     "searchNoResults": "لا توجد صفحات مطابقة",
     "searchTryDifferent": "جرّب استعلامات أقصر أو مرادفات أو كلمات مختلفة.",
     "searchSuggested": "الصفحات المقترحة",
-    "searchResultsLabel": "النتائج"
+    "searchResultsLabel": "النتائج",
+    "skipToContent": "تخطي إلى المحتوى"
   },
   "navigation": {
     "wallets": "المحافظ",

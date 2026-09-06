@@ -137,7 +137,8 @@
     "searchNoResults": "No matching pages",
     "searchTryDifferent": "Try shorter queries, synonyms, or different words.",
     "searchSuggested": "Suggested pages",
-    "searchResultsLabel": "Results"
+    "searchResultsLabel": "Results",
+    "skipToContent": "Skip to content"
   },
   "navigation": {
     "wallets": "Wallets",
