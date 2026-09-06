@@ -60,7 +60,7 @@
     {
       "title": "Motivations of Proof of Stake: Zooko Wilcox at Zcon3",
       "video_id": "IB9Vh1kEeWs",
-      "views": 1411
+      "views": 1413
     },
     {
       "title": "Sapling Activation Party Livestream",
@@ -80,7 +80,7 @@
     {
       "title": "Explaining the Security of Zcash - Daira Hopwood at Zcon3",
       "video_id": "f6UToqiIdeY",
-      "views": 1323
+      "views": 1324
     },
     {
       "title": "Crosslink and Possible Futures of Proof-of-Stake in Zcash with Daira - ZconV: Zcash Unified 2024",
@@ -135,7 +135,7 @@
     {
       "title": "From Zerocoin To Zcash at Zcon0 (2018) by Matthew Green",
       "video_id": "sDeDNDh-1ko",
-      "views": 988
+      "views": 990
     },
     {
       "title": "Zecwallet Lite on Windows Tutorial #1",
@@ -180,7 +180,7 @@
     {
       "title": "The Essentials of Practical Privacy by Naomi Brockwell: Zcon4",
       "video_id": "eero6i2WTxo",
-      "views": 812
+      "views": 813
     },
     {
       "title": "FROST Research Updates - Chelsea Komlo & Elizabeth Crites at Zcon3",
@@ -315,7 +315,7 @@
     {
       "title": "Build on Zcash",
       "video_id": "DaEWasYlUbg",
-      "views": 502
+      "views": 503
     },
     {
       "title": "Zcash and the Regulatory/Policy Environment Sessions - ZconV: Zcash Unified 2024 #Zcash #ZEC",
@@ -668,14 +668,14 @@
       "views": 297
     },
     {
-      "title": "Zcash Arborist Call 04-02-2026",
-      "video_id": "-4GDsezfilc",
+      "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
+      "video_id": "hdd5X2z7O3o",
       "views": 295
     },
     {
-      "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
-      "video_id": "hdd5X2z7O3o",
-      "views": 294
+      "title": "Zcash Arborist Call 04-02-2026",
+      "video_id": "-4GDsezfilc",
+      "views": 295
     },
     {
       "title": "HSMs and Hardware Wallets: #Zcon2Lite",
@@ -720,7 +720,7 @@
     {
       "title": "Zcash’s Core Strength",
       "video_id": "Hit012FD4uY",
-      "views": 278
+      "views": 279
     },
     {
       "title": "ZOMG-ZIP 1014 Independent Review Committee Community Call- Oct 20, 2021",
@@ -1368,6 +1368,11 @@
       "views": 142
     },
     {
+      "title": "Arborist Call 08-20-2026",
+      "video_id": "doDbR0i9zZA",
+      "views": 142
+    },
+    {
       "title": "Zcash Arborist Call 04-03-2025",
       "video_id": "XxQx6vt7OmE",
       "views": 141
@@ -1385,11 +1390,6 @@
     {
       "title": "Zcash Arborist Call 09-04-2025",
       "video_id": "1T5zIlLNCz8",
-      "views": 138
-    },
-    {
-      "title": "Arborist Call 08-20-2026",
-      "video_id": "doDbR0i9zZA",
       "views": 138
     },
     {
@@ -1728,6 +1728,11 @@
       "views": 85
     },
     {
+      "title": "Arborist Call 09-3-2026",
+      "video_id": "POkZ42EgXNQ",
+      "views": 85
+    },
+    {
       "title": "ZconVI Community Recap Hosted by ZK AV Club- ZconVI #zcash",
       "video_id": "N8yO0gsHsO0",
       "views": 84
@@ -1746,11 +1751,6 @@
       "title": "Ziggurat by Mark Henderson: Zcon4",
       "video_id": "DAHlU7k2Vjg",
       "views": 82
-    },
-    {
-      "title": "Arborist Call 09-3-2026",
-      "video_id": "POkZ42EgXNQ",
-      "views": 81
     },
     {
       "title": "Zcash Arborist Call 10/5/23",
