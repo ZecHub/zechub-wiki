@@ -1,13 +1,30 @@
 import React from "react";
 import SitemapComp from "@/components/Sitemap/Sitemap";
 import { Metadata } from "next";
-import { genMetadata } from "@/lib/helpers";
+import { genMetadata, getBanner } from "@/lib/helpers";
 import { getMenuTitlesCached } from "@/lib/authAndFetch";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
 
-export const metadata: Metadata = genMetadata({
-  title: "Sitemap | ZecHub",
-  url: "https://zechub.wiki/sitemap",
-});
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const localePrefix =
+    locale && locale !== routing.defaultLocale ? `/${locale}` : "";
+
+  return genMetadata({
+    title: "Complete ZecHub Wiki Sitemap | ZecHub",
+    description:
+      "Browse the complete hierarchy of guides, tutorials, research, developer documentation, and ecosystem resources on ZecHub.",
+    url: `https://zechub.wiki${localePrefix}/sitemap`,
+    image: getBanner("start-here") || "/content-banners/bannerstart.png",
+    locale,
+    alternates: buildAlternatesAllLocales("/sitemap", locale),
+  });
+}
 
 const ZcashProject = async ({
   params,
@@ -15,7 +32,6 @@ const ZcashProject = async ({
   params: Promise<{ locale: string }>;
 }) => {
   const { locale = "en" } = await params;
-  // Localized sitemap link titles from the content-repo manifest (client comp).
   const [titles, enTitles] = await Promise.all([
     getMenuTitlesCached(locale),
     getMenuTitlesCached("en"),
