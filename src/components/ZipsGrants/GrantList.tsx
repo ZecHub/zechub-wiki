@@ -127,13 +127,7 @@ export function GrantList(props: Props) {
         </div>
       )}
 
-      {search !== "" && filteredGrants.length === 0 && !props.isLoading && (
-        <p className="text-center py-8 text-muted-foreground text-sm">
-          Unable to fetch grants!
-        </p>
-      )}
-
-      {filteredGrants.length > 0 && (
+      {props.grants.length > 0 && (
         <div className="my-8">
           <div className="flex flex-row gap-2 flex-wrap mt-3">
             {[...CATEGORY_FILTER, "All"].sort().map((cf, i) => (
@@ -158,9 +152,11 @@ export function GrantList(props: Props) {
         </div>
       </div>
 
-      {search !== "" && filteredGrants.length === 0 && !props.isLoading && (
+      {filteredGrants.length === 0 && !props.isLoading && !props.error && (
         <p className="text-center py-8 text-muted-foreground text-sm">
-          No Grant(s) match your search!
+          {props.grants.length === 0
+            ? "No grants available."
+            : "No grants match your search or filters."}
         </p>
       )}
     </section>
