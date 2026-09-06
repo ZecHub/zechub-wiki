@@ -1,10 +1,20 @@
 // data/siteLinks.ts
 import {
-  Grid3x3,
+  BookMarked,
   BookOpen,
-  Wallet,
-  Users,
   Building2,
+  Clapperboard,
+  Compass,
+  Cpu,
+  FlaskConical,
+  GraduationCap,
+  Grid3x3,
+  HeartHandshake,
+  Lightbulb,
+  Share2,
+  ShieldCheck,
+  Users,
+  Wallet,
   type LucideIcon,
 } from "lucide-react";
 
@@ -13,7 +23,46 @@ export interface SiteLink {
   href: string;
   target?: string;
   children?: SiteLink[];
+  /**
+   * The menu-titles manifest key (`<Category>/<File>.md`) this link's page is
+   * published under, when it has one. Lets the sitemap look the localized title
+   * up directly instead of re-deriving a key from the href, which is lossy for
+   * nested paths such as `Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md`.
+   */
+  titleKey?: string;
 }
+
+/**
+ * Which menu-titles category belongs in which sitemap section.
+ *
+ * The first four titles match sections already defined in SITE_LINKS, so those
+ * pages are appended to the curated list. The rest name sections that only
+ * exist once the manifest is read. A category missing from this list still
+ * renders — buildSitemapSections titles a section from the category name — so
+ * adding a content directory to the wiki cannot silently drop it from the page.
+ */
+export interface ContentSectionDef {
+  category: string;
+  title: string;
+  icon: LucideIcon;
+}
+
+export const CONTENT_SECTIONS: ContentSectionDef[] = [
+  { category: "Zcash_Organizations", title: "Organizations", icon: Building2 },
+  { category: "guides", title: "Guides", icon: BookOpen },
+  { category: "Using_Zcash", title: "Use Zcash", icon: Wallet },
+  { category: "Zcash_Community", title: "Ecosystem", icon: Users },
+  { category: "Start_Here", title: "Start Here", icon: Compass },
+  { category: "Zcash_Tech", title: "Zcash Tech", icon: Cpu },
+  { category: "Zcash_Use_Cases", title: "Use Cases", icon: Lightbulb },
+  { category: "Privacy_Tools", title: "Privacy Tools", icon: ShieldCheck },
+  { category: "Research", title: "Research", icon: FlaskConical },
+  { category: "Glossary_and_FAQs", title: "Glossary & FAQs", icon: BookMarked },
+  { category: "Zcash_Social_Media", title: "Social Media", icon: Share2 },
+  { category: "ZFAV_Club", title: "ZFAV Club", icon: Clapperboard },
+  { category: "tutorials", title: "Tutorials", icon: GraduationCap },
+  { category: "contribute", title: "Contribute", icon: HeartHandshake },
+];
 
 export interface SiteLinkSection {
   title: string;
