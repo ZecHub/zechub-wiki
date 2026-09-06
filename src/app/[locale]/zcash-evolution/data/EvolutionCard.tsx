@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/util";
 import { Blocks, Calendar, ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { NetworkUpgrade } from "./networkUpgrade";
 
@@ -85,26 +86,38 @@ export function EvolutinCard(props: EvolutinCardProps) {
         }}
       >
         <div className="flex items-center justify-between gap-3">
-          <div className="min-w-0">
-            {isCurrent && (
-              <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-primary mb-1">
-                ● You Are Here
-              </span>
+          <div className="flex items-center gap-3 min-w-0">
+            {props.upgrade.logo && (
+              <Image
+                src={props.upgrade.logo}
+                alt=""
+                aria-hidden="true"
+                width={40}
+                height={40}
+                className="h-10 w-10 shrink-0 object-contain"
+              />
             )}
-            {isFuture && (
-              <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1">
-                Coming Soon
-              </span>
-            )}
-            <h3
-              className="text-base md:text-lg font-bold"
-              style={{ color: `hsl(${props.upgrade.eraColor})` }}
-            >
-              {props.upgrade.name}
-            </h3>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              {props.upgrade.subtitle}
-            </p>
+            <div className="min-w-0">
+              {isCurrent && (
+                <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-primary mb-1">
+                  ● You Are Here
+                </span>
+              )}
+              {isFuture && (
+                <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1">
+                  Coming Soon
+                </span>
+              )}
+              <h3
+                className="text-base md:text-lg font-bold"
+                style={{ color: `hsl(${props.upgrade.eraColor})` }}
+              >
+                {props.upgrade.name}
+              </h3>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                {props.upgrade.subtitle}
+              </p>
+            </div>
           </div>
           <ChevronDown
             className={cn(
