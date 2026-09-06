@@ -3,6 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import RangeSlider from "@/components/RangeSlider";
 import { QuizCard } from "@/components/visualizer/QuizModule";
+import ZecToZatsConverter from "@/components/Converter/ZecToZatsConverter";
 
 jest.mock("@/context/LanguageContext", () => ({
   useLanguage: () => ({ t: {} }),
@@ -116,5 +117,44 @@ describe("RangeSlider", () => {
     );
     expect(slider).toHaveValue("200");
     expect(slider).toHaveAttribute("step", "1");
+  });
+});
+
+describe("ZecToZatsConverter", () => {
+  it("names each input by its unit and focuses it when its label is clicked", async () => {
+    const user = userEvent.setup();
+    render(<ZecToZatsConverter />);
+
+    const zec = screen.getByRole("textbox", { name: "ZEC" });
+    const zats = screen.getByRole("textbox", { name: "Zats" });
+    expect(zec).not.toBe(zats);
+
+    await user.click(screen.getByText("ZEC", { selector: "label" }));
+    expect(zec).toHaveFocus();
+    await user.click(screen.getByText("Zats", { selector: "label" }));
+    expect(zats).toHaveFocus();
+  });
+
+  it("preserves conversion and keeps labels attached to the correct inputs after swapping", async () => {
+    const user = userEvent.setup();
+    render(<ZecToZatsConverter />);
+
+    const top = screen.getByRole("textbox", { name: "ZEC" });
+    const bottom = screen.getByRole("textbox", { name: "Zats" });
+    await user.clear(top);
+    await user.type(top, "1.25");
+    expect(top).toHaveValue("1.25");
+    expect(bottom).toHaveValue("125,000,000");
+
+    await user.click(screen.getByRole("button", { name: "Swap units" }));
+
+    expect(screen.getByRole("textbox", { name: "Zats" })).toBe(top);
+    expect(screen.getByRole("textbox", { name: "ZEC" })).toBe(bottom);
+    expect(top).toHaveValue("125,000,000");
+    expect(bottom).toHaveValue("1.25");
+    await user.click(screen.getByText("ZEC", { selector: "label" }));
+    expect(bottom).toHaveFocus();
+    await user.click(screen.getByText("Zats", { selector: "label" }));
+    expect(top).toHaveFocus();
   });
 });
