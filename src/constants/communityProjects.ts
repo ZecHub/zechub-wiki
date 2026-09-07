@@ -209,89 +209,87 @@ export const communityProjects: CommunityProject[] = [
     thumbnailImage: "/community-projects/zkglobalcredit.png",
   },
   {
-    title: "Zentat",
-    description:
-      "Zentat converts fiat currency prices to Zcash (ZEC) in real-time as you browse the web.",
-    url: "https://chromewebstore.google.com/detail/zentat/lpndbahladndclecodadoljlplfaldac",
-    thumbnailImage: "/community-projects/zentat.png",
-  },
-  {
-    title: "Free2z",
-    description:
-      "Tool for anonymous content creation and private donations powered by Zcash.",
-    url: "https://free2z.cash",
-    thumbnailImage: "/community-projects/free2z.png",
-  },
-  {
-    title: "ZecBuy",
-    description:
-      "A platform for buying and spending Zcash, making ZEC accessible for everyday purchases and real-world use.",
-    url: "https://zecbuy.org",
-    thumbnailImage: "/community-projects/zecbuy.png",
-  },
-  {
-    title: "0xRamp Labs",
-    description:
-      "Infrastructure and tooling lab building on-ramp and off-ramp solutions for the Zcash ecosystem.",
-    url: "https://0xramplabs.com",
-    thumbnailImage: "/community-projects/0xramp-labs.png",
-  },
-  {
-    title: "Zcash Labs",
-    description:
-      "Research and development organization contributing to Zcash protocol advancement and ecosystem growth.",
-    url: "https://zecashlabs.com",
-    thumbnailImage: "/community-projects/zcash-labs.png",
-  },
-  {
-    title: "Zaino Indexer",
-    description:
-      "A high-performance indexing service for the Zcash blockchain, enabling fast and reliable data access for wallets and applications.",
-    url: "https://github.com/zingolabs/zaino",
-    thumbnailImage: "/community-projects/zaino.png",
-  },
-  {
-    title: "ZcashToCash",
-    description:
-      "A service that makes it easier to convert Zcash to fiat through peer-to-peer payment rails.",
-    url: "https://zcashto.cash",
-    thumbnailImage: "/community-projects/zcashtocash.png",
-  },  
-  {
-    title: "Zakura",
-    description:
-      "A consensus-compatible Zcash full node built for scale, with faster synchronization, pruning, zcashd compatibility, and high-performance networking.",
-    url: "https://zakura.com",
-    thumbnailImage: "/community-projects/zakura.png",
-  },
-  {
-    title: "Zipher",
-    description:
-      "A privacy-first Zcash wallet for humans and AI agents, with mobile and headless interfaces powered by a shared Rust engine.",
-    url: "https://zipher.to",
-    thumbnailImage: "/community-projects/zipher.png",
-  },
-  {
-    title: "Zecd",
-    description:
-      "An open-source, shielded-first Zcash wallet server alternative to zcashd that speaks Bitcoin Core's JSON-RPC dialect, designed for easy enterprise integration.",
-    url: "https://zecd.org",
-    thumbnailImage: "/community-projects/zecd.png",
-  },
-  {
-    title: "Vizor",
-    description:
-      "A beautiful, open-source self-custody Zcash wallet built by the Keplr team featuring multi-account support, Keystone hardware compatibility, and default privacy.",
-    url: "https://vizor.cash",
-    thumbnailImage: "/community-projects/vizor.png",
-  },
-  {
-    title: "Zero Indexer",
-    description:
-      "A privacy-preserving light-client indexer framework by Shielded Labs that routes shielded transactions through attested enclaves to obscure user IP metadata.",
-    url: "https://github.com/ShieldedLabs/zero/tree/main/zeronym",
-    thumbnailImage: "/community-projects/zero-indexer.png",
-  }
+  title: "Zentat",
+  description:
+    "Zentat converts fiat currency prices to Zcash (ZEC) in real-time as you browse the web.",
+  url: "https://chromewebstore.google.com/detail/zentat/lpndbahladndclecodadoljlplfaldac",
+  thumbnailImage: "/content-images/zentat.png",
+},
+{
+  title: "Free2z",
+  description:
+    "Tool for anonymous content creation and private donations powered by Zcash.",
+  url: "https://free2z.cash",
+  thumbnailImage: "/content-images/free2z.png",
+},
+{
+  title: "ZecBuy",
+  description:
+    "A platform for buying and spending Zcash, making ZEC accessible for everyday purchases and real-world use.",
+  url: "https://zecbuy.com",
+  thumbnailImage: "/content-images/zecbuy.png",
+},
+{
+  title: "0xRamp Labs",
+  description:
+    "Infrastructure and tooling lab building on-ramp and off-ramp solutions for the Zcash ecosystem.",
+  url: "https://0xramp.app",
+  thumbnailImage: "/content-images/0xramp-labs.png",
+},
+{
+  title: "Zcash Labs",
+  description:
+    "Research and development organization contributing to Zcash protocol advancement and ecosystem growth.",
+  url: "https://zcashlabs.org",
+  thumbnailImage: "/content-images/zcash-labs.png",
+},
+{
+  title: "Zaino Indexer",
+  description:
+    "A high-performance indexing service for the Zcash blockchain, enabling fast and reliable data access for wallets and applications.",
+  url: "https://zingolabs.github.io/zaino/",
+  thumbnailImage: "/content-images/zaino.png",
+},
+{
+  title: "ZcashToCash",
+  description:
+    "A service that makes it easier to convert Zcash to fiat through peer-to-peer payment rails.",
+  url: "https://zcashto.cash",
+  thumbnailImage: "/content-images/zcashtocash.png",
+},
+{
+  title: "Zakura",
+  description:
+    "A consensus-compatible Zcash full node built for scale, with faster synchronization, pruning, zcashd compatibility, and high-performance networking.",
+  url: "https://zakura.com",
+  thumbnailImage: "/content-images/zakura.png",
+},
+{
+  title: "Zipher",
+  description:
+    "A privacy-first Zcash wallet for humans and AI agents, with mobile and headless interfaces powered by a shared Rust engine.",
+  url: "https://zipher.to",
+  thumbnailImage: "/content-images/zipher.png",
+},
+{
+  title: "Zecd",
+  description:
+    "An open-source, shielded-first Zcash wallet server alternative to zcashd that speaks Bitcoin Core's JSON-RPC dialect, designed for easy enterprise integration.",
+  url: "https://zecd.org",
+  thumbnailImage: "/content-images/zecd.png",
+},
+{
+  title: "Vizor",
+  description:
+    "A beautiful, open-source self-custody Zcash wallet built by the Keplr team featuring multi-account support, Keystone hardware compatibility, and default privacy.",
+  url: "https://vizor.cash",
+  thumbnailImage: "/content-images/vizor.png",
+},
+{
+  title: "Zero Indexer",
+  description:
+    "A privacy-preserving light-client indexer framework by Shielded Labs that routes shielded transactions through attested enclaves to obscure user IP metadata.",
+  url: "https://shieldedlabs.net/zero/",
+  thumbnailImage: "/content-images/zero-indexer.png",
+}
 ];
-
- 

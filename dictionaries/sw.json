@@ -149,7 +149,8 @@
     "searchNoResults": "Hakuna kurasa zinazofanana",
     "searchTryDifferent": "Jaribu maswali mafupi, maneno yanayofanana, au maneno tofauti.",
     "searchSuggested": "Kurasa zilizopendekezwa",
-    "searchResultsLabel": "Matokeo"
+    "searchResultsLabel": "Matokeo",
+    "skipToContent": "Nenda kwenye maudhui"
   },
   "navigation": {
     "wallets": "Mkoba",

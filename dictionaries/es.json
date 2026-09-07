@@ -149,7 +149,8 @@
     "searchNoResults": "No hay páginas coincidentes",
     "searchTryDifferent": "Prueba consultas más cortas, sinónimos u otras palabras.",
     "searchSuggested": "Páginas sugeridas",
-    "searchResultsLabel": "Resultados"
+    "searchResultsLabel": "Resultados",
+    "skipToContent": "Saltar al contenido"
   },
   "navigation": {
     "wallets": "Carteras",

@@ -8,10 +8,18 @@ import {
   Activity, Binary, Fingerprint, Link2, Hash,
   ShieldCheck, Layers, FileCode2, Network, ChevronDown, Info,
 } from "lucide-react";
+import {
+  GRACE_ACTIONS,
+  MARGINAL_FEE_ZATOSHIS,
+  type Pool,
+  conventionalFee,
+  logicalActions,
+  simpleTransfer,
+} from "@/lib/zip317";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-export type Pool = "transparent" | "sapling" | "orchard";
+export type { Pool };
 
 export interface StageConfig {
   id: string;
@@ -118,19 +126,6 @@ export const POOL_META: Record<Pool, {
     desc: "Maximum privacy via Halo2 proofs. No trusted setup.",
   },
 };
-
-// ─── ZIP 317 fee calculation ──────────────────────────────────────────────────
-
-export function calculateZip317Fee(
-  transparentInputs = 0,
-  transparentOutputs = 0,
-  shieldedActions = 1
-): number {
-  const baseFee = 10000;
-  const marginalFee = 10000;
-  const logicalActions = 1 + transparentInputs + transparentOutputs + shieldedActions;
-  return baseFee + marginalFee * Math.max(0, logicalActions - 1);
-}
 
 // ─── Live ZEC price hook ──────────────────────────────────────────────────────
 
@@ -1335,12 +1330,19 @@ export const BuilderStage = () => {
   const gradeColor = score >= 90 ? "#34d399" : score >= 70 ? "#fbbf24" : score >= 40 ? "#f97316" : "#f87171";
   const strokeColor = gradeColor;
 
-  const feeZat = calculateZip317Fee(
-    fromPool === "transparent" ? 1 : 0,
-    toPool === "transparent" ? 1 : 0,
-    toPool !== "transparent" ? 1 : 0
-  );
+  // ZIP 317 prices a transaction by its logical actions, one contribution per
+  // pool, so the pools chosen above decide the fee.
+  const tx = simpleTransfer(fromPool, toPool);
+  const actions = logicalActions(tx);
+  const feeZat = conventionalFee(tx);
   const feeZEC = (feeZat / 100_000_000).toFixed(8);
+  const actionsByPool = [
+    actions.transparent > 0 && `${actions.transparent} transparent`,
+    actions.sapling > 0 && `${actions.sapling} Sapling`,
+    actions.orchard > 0 && `${actions.orchard} Orchard`,
+  ]
+    .filter(Boolean)
+    .join(" + ");
   const change = Math.max(0, amount - parseFloat(feeZEC)).toFixed(5);
   const usd = zecPrice ? (amount * zecPrice).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : null;
 
@@ -1491,7 +1493,7 @@ export const BuilderStage = () => {
             {/* Stats */}
             <div className="grid grid-cols-2 gap-2">
               {[
-                { label: "Est. Fee", value: feeZEC + " ZEC", sub: "ZIP 317" },
+                { label: "Est. Fee", value: feeZEC + " ZEC", sub: `ZIP 317 · ${actions.billed} actions` },
                 { label: "Change",   value: change + " ZEC", sub: "returned to sender" },
                 { label: "From pool",value: POOL_META[fromPool].label, sub: POOL_META[fromPool].tag },
                 { label: "To pool",  value: POOL_META[toPool].label,   sub: POOL_META[toPool].tag },
@@ -1505,6 +1507,12 @@ export const BuilderStage = () => {
                 </motion.div>
               ))}
             </div>
+
+            <p className="text-[9px] text-zinc-600 leading-relaxed">
+              Fee = {MARGINAL_FEE_ZATOSHIS.toLocaleString("en-US")} zats ×
+              max({GRACE_ACTIONS} grace actions, {actions.total} logical actions)
+              {actionsByPool && <> · {actionsByPool}</>}
+            </p>
 
             <motion.button onClick={() => setShowModal(true)}
               whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(52,211,153,0.22)" }}

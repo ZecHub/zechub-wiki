@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import ResearchArticleAside from "@/components/Research/ResearchArticleAside";
+import type { BreadcrumbItem } from "@/lib/breadcrumbs";
 
 type MdxContainerProps = {
   roots: any;
@@ -13,6 +15,11 @@ type MdxContainerProps = {
     width?: number;
     height?: number;
   };
+  /**
+   * Trail shown above the article, so a reader landing on a deep page can see
+   * where it sits. Research pages render their own inside the variant below.
+   */
+  breadcrumbs?: BreadcrumbItem[];
   /** BitMEX-style editorial layout for research article pages. */
   layoutVariant?: "default" | "research";
   researchMeta?: {
@@ -35,6 +42,7 @@ export default async function MdxContainer({
   roots = [],
   hasSideMenu = false,
   children,
+  breadcrumbs,
   layoutVariant = "default",
   researchMeta,
 }: MdxContainerProps) {
@@ -132,6 +140,7 @@ export default async function MdxContainer({
               hasSideMenu ? "xl:border-l" : ""
             }`}
           >
+            {breadcrumbs ? <Breadcrumbs items={breadcrumbs} /> : null}
             {children}
           </section>
         )}

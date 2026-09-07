@@ -137,7 +137,8 @@
     "searchNoResults": "No matching pages",
     "searchTryDifferent": "Try shorter queries, synonyms, or different words.",
     "searchSuggested": "Suggested pages",
-    "searchResultsLabel": "Results"
+    "searchResultsLabel": "Results",
+    "skipToContent": "Skip to content"
   },
   "navigation": {
     "wallets": "Wallets",
@@ -1015,7 +1016,17 @@
         "Organizations": "Organizations",
         "Guides": "Guides",
         "Use Zcash": "Use Zcash",
-        "Ecosystem": "Ecosystem"
+        "Ecosystem": "Ecosystem",
+        "Start Here": "Start Here",
+        "Zcash Tech": "Zcash Tech",
+        "Use Cases": "Use Cases",
+        "Privacy Tools": "Privacy Tools",
+        "Research": "Research",
+        "Glossary & FAQs": "Glossary & FAQs",
+        "Social Media": "Social Media",
+        "ZFAV Club": "ZFAV Club",
+        "Tutorials": "Tutorials",
+        "Contribute": "Contribute"
       },
       "links": {
         "Homepage": "Homepage",

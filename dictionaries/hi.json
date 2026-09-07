@@ -149,7 +149,8 @@
     "searchNoResults": "कोई मेल खाते पृष्ठ नहीं",
     "searchTryDifferent": "छोटे प्रश्न, समानार्थी शब्द, या अलग शब्द आज़माएँ।",
     "searchSuggested": "सुझाए गए पृष्ठ",
-    "searchResultsLabel": "परिणाम"
+    "searchResultsLabel": "परिणाम",
+    "skipToContent": "सामग्री पर जाएँ"
   },
   "navigation": {
     "wallets": "Wallets",

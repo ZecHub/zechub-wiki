@@ -149,7 +149,8 @@
     "searchNoResults": "Немає сторінок, що збігаються",
     "searchTryDifferent": "Спробуйте коротші запити, синоніми або інші слова.",
     "searchSuggested": "Рекомендовані сторінки",
-    "searchResultsLabel": "Результати"
+    "searchResultsLabel": "Результати",
+    "skipToContent": "Перейти до вмісту"
   },
   "navigation": {
     "wallets": "Гаманці",

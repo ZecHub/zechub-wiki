@@ -1,4 +1,3 @@
-// src/app/wallets/page.tsx
 import React from "react";
 import Image from "next/image";
 import { getLocalizedFileContentCached, getRootCached } from "@/lib/authAndFetch";
@@ -7,7 +6,7 @@ import { getBanner } from "@/lib/helpers";
 import { parseMarkdown } from "@/lib/parseMarkdown";
 import WalletList from "@/components/Wallet/WalletList";
 import { genMetadata } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { Metadata } from "next";
 
@@ -17,6 +16,7 @@ type WalletsDictionary = {
   pages?: {
     wallets?: {
       title?: string;
+      description?: string;
       noData?: string;
       bannerAlt?: string;
     };
@@ -25,15 +25,19 @@ type WalletsDictionary = {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = (await getDictionary(locale)) as WalletsDictionary;
+  const dict = (await getDictionary(locale).catch(() => ({}))) as WalletsDictionary;
   const localePrefix = locale && locale !== routing.defaultLocale ? `/${locale}` : "";
-  // Bespoke app route: English-only in the sitemap -> locale-aware self canonical.
+  const w = dict.pages?.wallets;
+
   return genMetadata({
-    title: dict.pages?.wallets?.title || "Wallets | Zechub",
+    title: w?.title ? `${w.title} | ZecHub` : "Zcash Wallets Directory (Mobile, Desktop, Hardware) | ZecHub",
+    description:
+      w?.description ??
+      "Find and compare secure Zcash wallets supporting shielded addresses, unified addresses, and privacy features on mobile, desktop, and hardware devices.",
     url: `https://zechub.wiki${localePrefix}/wallets`,
-    image: imgUrl,
+    image: imgUrl || "/content-banners/usingzcash.png",
     locale,
-    alternates: buildAlternates("/wallets", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/wallets", locale),
   });
 }
 
@@ -50,7 +54,7 @@ export default async function Page(props: {
     getRootCached(urlRoot),
   ]);
 
-  const dict = (await getDictionary(locale)) as WalletsDictionary;
+  const dict = (await getDictionary(locale).catch(() => ({}))) as WalletsDictionary;
   const content = markdown
     ? markdown
     : (dict.pages?.wallets?.noData ?? "No Data or Wrong file");
@@ -58,9 +62,9 @@ export default async function Page(props: {
 
   return (
     <main>
-      <div className="flex justify-center w-full  mb-5 bg-transparent rounded pb-4">
+      <div className="flex justify-center w-full mb-5 bg-transparent rounded pb-4">
         <Image
-          className="w-full mb-5 object-cover "
+          className="w-full mb-5 object-cover"
           alt={dict.pages?.wallets?.bannerAlt || "wiki-banner"}
           width={800}
           height={50}

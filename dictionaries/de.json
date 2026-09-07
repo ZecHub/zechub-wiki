@@ -149,7 +149,8 @@
     "searchNoResults": "Keine passenden Seiten",
     "searchTryDifferent": "Versuche kürzere Suchanfragen, Synonyme oder andere Wörter.",
     "searchSuggested": "Vorgeschlagene Seiten",
-    "searchResultsLabel": "Ergebnisse"
+    "searchResultsLabel": "Ergebnisse",
+    "skipToContent": "Zum Inhalt springen"
   },
   "navigation": {
     "wallets": "Wallets",

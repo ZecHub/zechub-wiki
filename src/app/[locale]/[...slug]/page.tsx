@@ -2,6 +2,7 @@ import MdxContainer from "@/components/MdxContainer";
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { Link } from "@/i18n/navigation";
+import { isKnownContentPath } from "@/lib/contentPaths";
 import {
   getFileContentCached,
   getLocalizedFileContentCached,
@@ -18,8 +19,12 @@ import {
   transformGithubFilePathToWikiLink,
   ORG_ID,
   extractArticleMeta,
+  extractFirstContentImage,
+  getSectionDescription,
   jsonLdScript,
+  resolveResearchArticleContentUrl,
 } from "@/lib/helpers";
+import { buildBreadcrumbs } from "@/lib/breadcrumbs";
 import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
@@ -75,31 +80,6 @@ function rehypeStripDangerous() {
 
 const LazyMdxComponent = React.lazy(() => import("@/components/MdxRenderer"));
 
-function extractFirstContentImage(
-  content: string,
-  filePath: string,
-): string | null {
-  const matches =
-    content.match(/!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/g) ||
-    [];
-  for (const m of matches) {
-    const single = m.match(
-      /!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/,
-    );
-    if (!single) continue;
-    const src = single[1] || single[2];
-    if (src && !/shields\.io|badge|edit/i.test(src)) {
-      // Self-hosted (/content-images/…) images serve as-is. Guard against
-      // protocol-relative "//host/…" (starts with "/" but is external).
-      if (src.startsWith("http") || (src.startsWith("/") && !src.startsWith("//")))
-        return src;
-      const dir = filePath.substring(0, filePath.lastIndexOf("/"));
-      return `https://raw.githubusercontent.com/ZecHub/zechub/main/${dir}/${src}`;
-    }
-  }
-  return null;
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -109,37 +89,114 @@ export async function generateMetadata({
   // English is served unprefixed at the root; other locales carry a /<locale>
   // prefix in the canonical URL (matches localePrefix: "as-needed").
   const localePrefix = locale && locale !== "en" ? `/${locale}` : "";
+  const path = `/${slug.join("/")}`;
+  const canonicalUrl = `https://zechub.wiki${localePrefix}${path}`;
+  const availableLocales = await localesForPath(path);
+  const alternates = buildAlternates(path, locale, availableLocales);
+
   if (slug.length === 0) {
-    // The homepage of a locale (defensive — this route normally has a slug).
-    const alternates = buildAlternates("/", locale, [...routing.locales]);
     return genMetadata({
-      title: "Zechub",
+      title: "ZecHub Wiki",
       url: `https://zechub.wiki${localePrefix || ""}`,
       locale,
       alternates,
     });
   }
+
+  const isResearchIndex = slug.length === 1 && slug[0] === "research";
+  const isResearchSeries =
+    slug.length === 2 &&
+    slug[0] === "research" &&
+    slug[1] === "zcash-foundations-series";
+  const isResearchArticle = slug[0] === "research" && slug.length > 1;
+
   const folder = slug[0] || "";
-  const capitalized =
-    folder.charAt(0).toUpperCase() + folder.slice(1).replace(/[-/]/g, " ");
-  const title =
-    slug.length > 1 && slug[1]
-      ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
-      : `Zechub - ${capitalized}`;
-  const path = `/${slug.join("/")}`;
-  // Locale-aware canonical + reciprocal hreflang alternates, using the SAME
-  // manifest-coverage the sitemap uses (localesForPath -> keyToWikiPath over
-  // the cached menu-titles manifests). Never throws — degrades to English-only.
-  // NOTE: description is intentionally left at the site default here. A
-  // page-specific description would require fetching the page markdown inside
-  // generateMetadata (the body is fetched in the Page component, not here);
-  // that extra per-request fetch isn't worth it for the meta description. The
-  // richer, markdown-derived description already ships in the page's JSON-LD.
-  const availableLocales = await localesForPath(path);
-  const alternates = buildAlternates(path, locale, availableLocales);
+  const sectionBanner = getBanner(folder);
+
+  const dict = (await getDictionary(locale).catch(() => ({}))) as Record<string, any>;
+  const r = dict?.pages?.research ?? {};
+
+  if (isResearchIndex) {
+    return genMetadata({
+      title: r.articlesHeading
+        ? `${r.articlesHeading} | ZecHub`
+        : "Zcash Research Articles | ZecHub",
+      description:
+        r.articlesSubheading ??
+        "In-depth research articles, notes, and technical analysis on Zcash privacy technology, zero-knowledge proofs, and protocol design.",
+      url: canonicalUrl,
+      image: sectionBanner || "/content-banners/bannerResearch.jpg",
+      locale,
+      alternates,
+    });
+  }
+
+  if (isResearchSeries) {
+    return genMetadata({
+      title: r.foundationsSeriesTitle
+        ? `${r.foundationsSeriesTitle} | ZecHub`
+        : "Zcash Foundations Series | ZecHub",
+      description:
+        r.foundationsSeriesDescription ??
+        "Foundational articles covering Zcash shielded transactions, privacy models, protocol design, and core concepts that power the network.",
+      url: canonicalUrl,
+      image: sectionBanner || "/content-banners/bannerResearch.jpg",
+      locale,
+      alternates,
+    });
+  }
+
+  let contentUrl = getDynamicRoute(slug);
+  if (isResearchArticle && !isResearchSeries) {
+    const rootsRaw = await getRootCached(`/site/${slug[0]}`).catch(() => []);
+    const roots = Array.isArray(rootsRaw) ? rootsRaw : [];
+    contentUrl = resolveResearchArticleContentUrl(slug, roots);
+  }
+
+  const slugToTitle = (segment: string) =>
+    segment
+      .split("-")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+
+  const lastSegment = slug[slug.length - 1];
+  const fallbackHeadline = slugToTitle(lastSegment);
+
+  const md = await getLocalizedFileContentCached(contentUrl, locale).catch(
+    () => null,
+  );
+
+  if (md) {
+    const articleMeta = extractArticleMeta(
+      md,
+      fallbackHeadline,
+      sectionBanner,
+      contentUrl,
+    );
+
+    const title = articleMeta.headline.toLowerCase().includes("zechub")
+      ? articleMeta.headline
+      : `${articleMeta.headline} | ZecHub`;
+
+    return genMetadata({
+      title,
+      description: articleMeta.description,
+      image: articleMeta.image || sectionBanner,
+      url: canonicalUrl,
+      locale,
+      type: "article",
+      alternates,
+    });
+  }
+
+  const sectionTitle = slugToTitle(slug[0]);
+  const sectionDesc = getSectionDescription(slug[0]);
+
   return genMetadata({
-    title,
-    url: `https://zechub.wiki${localePrefix}/${slug.join("/")}`,
+    title: `${sectionTitle} | ZecHub`,
+    description: sectionDesc,
+    image: sectionBanner,
+    url: canonicalUrl,
     locale,
     alternates,
   });
@@ -172,6 +229,9 @@ export default async function Page(props: {
     getMenuTitlesCached(locale),
     getMenuTitlesCached("en"),
   ]);
+  // English keys are the full content-file list; a localized manifest only
+  // covers what has been translated, so it would under-report folders.
+  const manifestPaths = Object.keys(enMenuTitles ?? {});
 
   const url = getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
@@ -414,27 +474,9 @@ export default async function Page(props: {
       const rootsRaw = await getRootCached(urlRoot).catch(() => []);
       roots = Array.isArray(rootsRaw) ? rootsRaw : [];
 
-      // PARITY: this research-series content-path resolution is replicated (as
-      // a pure, network-free function) by resolveContentPath() in
-      // src/lib/helpers.ts, used by scripts/generate-llms-txt.mjs and
-      // src/app/api/content-md. Keep the two in sync when either changes.
+      // Research article path resolution lives in resolveResearchArticleContentUrl().
       if (isResearchArticle && !isResearchSeries) {
-        const lastSegment = slug[slug.length - 1];
-        const norm = (s: string) => s.toLowerCase().replace(/[-_ ]/g, "");
-        const target = norm(lastSegment);
-
-        const match = roots.find((r: string) => {
-          if (typeof r !== "string" || !r.endsWith(".md")) return false;
-          const base = r.split("/").pop()!.replace(/\.md$/i, "");
-          return norm(base) === target;
-        });
-
-        if (match) {
-          contentUrl = match;
-        } else {
-          const subPath = slug.slice(1).join("/");
-          contentUrl = `site/Research/${subPath}.md`;
-        }
+        contentUrl = resolveResearchArticleContentUrl(slug, roots);
       }
 
       const md = await getLocalizedFileContentCached(contentUrl, locale).catch(
@@ -481,6 +523,15 @@ export default async function Page(props: {
     : "";
   const localeUrlPrefix = locale && locale !== "en" ? `/${locale}` : "";
   const canonicalWikiUrl = `https://zechub.wiki${localeUrlPrefix}/${slug.join("/")}`;
+  // One trail for both the visible breadcrumb and the BreadcrumbList below, so
+  // what a reader sees and what a crawler reads cannot drift apart. Research
+  // articles keep the trail their own layout already renders.
+  const breadcrumbTrail = buildBreadcrumbs({
+    slug,
+    titles: menuTitles,
+    enTitles: enMenuTitles,
+    menuLabels: dict?.menuLabels ?? {},
+  });
 
   if (!markdown) {
     // A null `markdown` has two very different causes. Section landing pages
@@ -490,7 +541,13 @@ export default async function Page(props: {
     // article NOR a folder to browse — `getRootCached` caught its 404 and
     // returned []. Only that second case is a real 404; return notFound() so
     // the app stops serving HTTP 200 empty placeholder pages for dead URLs.
-    if (roots.length === 0) {
+    //
+    // A dead article URL under a real section (e.g. /zcash-tech/light-wallet-
+    // node) passes the `roots` check, because `roots` lists the section rather
+    // than the article. isKnownContentPath tells the two apart from the
+    // manifest: anything naming a real file or folder keeps the behaviour it
+    // has today, and only a URL the manifest has never heard of becomes a 404.
+    if (roots.length === 0 || !isKnownContentPath(slug, manifestPaths)) {
       return notFound();
     }
     return (
@@ -501,6 +558,7 @@ export default async function Page(props: {
         }
         roots={roots}
         heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
+        breadcrumbs={breadcrumbTrail}
       >
         <div className="px-6 py-12 text-center">
           <h1 className="text-5xl font-bold mb-6 capitalize">
@@ -546,6 +604,7 @@ export default async function Page(props: {
     processedMarkdown,
     slugToTitle(slug[slug.length - 1]),
     imgUrl,
+    contentUrl,
   );
 
   // schema.org structured data for this content page, emitted as a single
@@ -553,20 +612,12 @@ export default async function Page(props: {
   // that don't merge across <script> blocks still resolve author/publisher) and
   // a BreadcrumbList derived from the slug segments. Consumed by classic search
   // and AI answer engines; rendered server-side (SSR route).
-  const breadcrumbItems = [
-    {
-      "@type": "ListItem" as const,
-      position: 1,
-      name: "Home",
-      item: `https://zechub.wiki${localeUrlPrefix}`,
-    },
-    ...slug.map((_, i) => ({
-      "@type": "ListItem" as const,
-      position: i + 2,
-      name: slugToTitle(slug[i]),
-      item: `https://zechub.wiki${localeUrlPrefix}/${slug.slice(0, i + 1).join("/")}`,
-    })),
-  ];
+  const breadcrumbItems = breadcrumbTrail.map((crumb, i) => ({
+    "@type": "ListItem" as const,
+    position: i + 1,
+    name: crumb.label,
+    item: `https://zechub.wiki${localeUrlPrefix}${crumb.href === "/" ? "" : crumb.href}`,
+  }));
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -610,6 +661,7 @@ export default async function Page(props: {
         }
         roots={roots}
         {...(heroImage ? { heroImage } : {})}
+        breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={
           isResearchArticle

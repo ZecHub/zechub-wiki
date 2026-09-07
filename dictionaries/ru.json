@@ -149,7 +149,8 @@
     "searchNoResults": "Нет совпадающих страниц",
     "searchTryDifferent": "Попробуйте более короткие запросы, синонимы или другие слова.",
     "searchSuggested": "Рекомендуемые страницы",
-    "searchResultsLabel": "Результаты"
+    "searchResultsLabel": "Результаты",
+    "skipToContent": "Перейти к содержимому"
   },
   "navigation": {
     "wallets": "Кошельки",

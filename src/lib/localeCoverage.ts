@@ -131,3 +131,11 @@ export function buildAlternates(
 
   return { canonical, languages, types: RSS_ALTERNATE_TYPES };
 }
+
+/** Static app routes that render for every shipped locale. */
+export function buildAlternatesAllLocales(
+  path: string,
+  currentLocale: string,
+): Metadata["alternates"] {
+  return buildAlternates(path, currentLocale, [...routing.locales]);
+}

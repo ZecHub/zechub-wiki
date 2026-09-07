@@ -32,6 +32,9 @@ export interface SearchInputProps {
   handleSearch: (e: ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   id?: string;
+  /** Element describing the input. Lets a second instance avoid a duplicate id. */
+  hintId?: string;
+  placeholder?: string;
 }
 
 export interface SearchBarProps {

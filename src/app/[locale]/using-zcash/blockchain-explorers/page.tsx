@@ -1,25 +1,48 @@
-import Client from './ClientPage';
-import { genMetadata } from '@/lib/helpers';
-import { getDictionary } from '@/lib/getDictionary';
-import { Metadata } from 'next';
+import Client from "./ClientPage";
+import { genMetadata, getBanner } from "@/lib/helpers";
+import { getDictionary } from "@/lib/getDictionary";
+import { Metadata } from "next";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
 
 type Dictionary = {
   pages?: {
     usingZcash?: {
       blockchainExplorers?: {
         title?: string;
+        description?: string;
       };
     };
   };
 };
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
   const { locale } = await params;
-  const dict = (await getDictionary(locale)) as Dictionary;
+  const dict = (await getDictionary(locale).catch(() => ({}))) as Dictionary;
+  const be = dict.pages?.usingZcash?.blockchainExplorers;
+  const localePrefix =
+    locale && locale !== routing.defaultLocale ? `/${locale}` : "";
+
+  const title = be?.title
+    ? `${be.title} | ZecHub`
+    : "Zcash Blockchain Explorers | ZecHub";
+
+  const description =
+    be?.description ??
+    "Discover block explorers for analyzing Zcash transparent transactions, shielded pool statistics, network hash rate, and difficulty.";
+
   return genMetadata({
-    title: dict.pages?.usingZcash?.blockchainExplorers?.title ?? 'Blockchain Explorers',
-    url: 'https://zechub.wiki/using-zcash/blockchain-explorers',
-  }) as Metadata;
+    title,
+    description,
+    url: `https://zechub.wiki${localePrefix}/using-zcash/blockchain-explorers`,
+    image: getBanner("using-zcash") || "/content-banners/usingzcash.png",
+    locale,
+    alternates: buildAlternatesAllLocales("/using-zcash/blockchain-explorers", locale),
+  });
 }
 
 export default function Page() {
