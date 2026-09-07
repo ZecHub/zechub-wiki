@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { contentBanners } from "@/constants/contentBanners";
+import { isResearchSeriesSlug } from "@/constants/researchSeries";
 import { getRootCached } from "./authAndFetch";
 
 // Stable @id for the ZecHub Organization node in schema.org structured data.
@@ -384,10 +385,7 @@ export function resolveResearchArticleContentUrl(
  */
 export const resolveContentPath = (slug: string[]): string => {
   const isResearchArticle = slug[0] === "research" && slug.length > 1;
-  const isResearchSeries =
-    slug.length === 2 &&
-    slug[0] === "research" &&
-    slug[1] === "zcash-foundations-series";
+  const isResearchSeries = isResearchSeriesSlug(slug);
 
   if (isResearchArticle && !isResearchSeries && slug.length > 2) {
     return resolveResearchArticleContentUrl(slug, []);

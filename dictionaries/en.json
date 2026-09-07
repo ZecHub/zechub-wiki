@@ -1075,7 +1075,11 @@
       "tagShieldedTransactions": "Shielded Transactions",
       "tagPrivacyModels": "Privacy Models",
       "tagProtocolDesign": "Protocol Design",
-      "tagZeroKnowledge": "Zero Knowledge"
+      "tagZeroKnowledge": "Zero Knowledge",
+      "formalVerificationSeriesTitle": "Zcash Formal Verification Series",
+      "formalVerificationSeriesCardDescription": "What formal verification is, the 2026 Orchard soundness bug, and how Ironwood answered it with a machine-checked proof.",
+      "formalVerificationSeriesDescription": "A three-part series that explains formal verification from first principles, walks through the 2026 Orchard soundness bug, and shows how Ironwood answered it with a machine-checked mathematical proof.",
+      "newSeriesBadge": "New Series"
     },
     "browseSidebar": "Browse the articles using the sidebar on the left 👈",
     "zcashGlobalAmbassadors": {
