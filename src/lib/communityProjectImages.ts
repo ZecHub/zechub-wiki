@@ -18,6 +18,8 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Zectastic": "/community-projects/zectastic.png",
   "Zec App": "/community-projects/zec-app.png",
   "PGPZ Community": "/community-projects/pgpz.png",
+  "Gleyo": "/community-projects/gleyo.png",
+  "Zcash Grants Hub": "/community-projects/zcash-grants-hub.png",
 
   // Wallets and Payment Tools
   "Cipherpay": "/community-projects/Cipherpay.png",
@@ -35,6 +37,8 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "MonteZecret": "/community-projects/montezecret.png",
   "Gem Wallet": "/community-projects/gem-wallet.png",
   "TIPZ": "/community-projects/tipz.png",
+  "CYZE": "/community-projects/cyze.png",
+  "Pendrake Watch": "/community-projects/pendrake-watch.png",
 
   // Explorers, Data, and Network Dashboards
   "CipherScan": "/community-projects/CipherScan.png",
@@ -47,6 +51,9 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "ZecStats": "/community-projects/zecstats.jpg",
   "zecprice": "/community-projects/zecprice.png",
   "Zlink": "/community-projects/zlink.png",
+  "Zecmarket": "/community-projects/zecmarket.png",
+  "Zecsite": "/community-projects/zecsite.png",
+  "ZEC-OS": "/community-projects/zec-os.png",
 
   // Identity, Names, and User Experience
   "ZcashNames": "/community-projects/zcashNames.png",
@@ -54,11 +61,14 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Zentat": "/community-projects/zentat.png",
   "Shielded Wall": "/community-projects/shielded-wall.png",
   "Ztrash": "/community-projects/ztrash.png",
+  "LiveZEC": "/community-projects/livezec.png",
+  "ZecLedger": "/community-projects/zecledger.png",
+  "Authentication with ZcashMe": "/community-projects/authentication-with-zcashme.png",
 
   // Developer, Testing, and Infrastructure
   "Ziggurat": "/community-projects/ziggurat.png",
   "ZecDev": "/community-projects/zecdev.png",
-  "Zebra Coverage-Guided Fuzzing Infrastructure": "/community-projects/zebra-fuzzing.png",
+  "Zebra Coverage-Guided Fuzzing Infrastructure": "/community-projects/zebra.png",
   "Frost": "/community-projects/frost.png",
   "MonteZcret Benchmark": "/community-projects/montezcret-benchmark.png",
 
@@ -70,6 +80,8 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "BazaarSwap": "/community-projects/bazaarswap.jpg",
   "DCRDEX": "/community-projects/dcrdex.png",
   "Brave Wallet": "/community-projects/brave-wallet.png",
+  "Nano-GPT": "/community-projects/nano-gpt.png",
+  "zk.poker": "/community-projects/zk-poker.png",
 
   // Organizations & Labs
   "Shielded Labs": "/community-projects/Sl.png",
