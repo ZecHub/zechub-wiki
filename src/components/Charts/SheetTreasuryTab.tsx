@@ -176,7 +176,7 @@ function extractSections(data: unknown[]) {
 function fpfPieRows(fpf: FPFData) {
   return fpf.Category.map((name, i) => ({
     name,
-    value: fpf.Allocation[i] ?? fpf["Amount (ZEC)"][i] ?? 0,
+    value: fpf["Amount (ZEC)"][i] ?? 0,
   })).filter((r) => r.value > 0);
 }
 
