@@ -37,6 +37,10 @@ export const metadata: Metadata = genMetadata({
   url: "https://zechub.wiki/aborist-calls",
 });
 
+const availableYears = [
+  ...new Set(arboristCalls.map((call) => call.date.slice(-4))),
+].sort((a, b) => Number(b) - Number(a));
+
 export default function ArboristCallsPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
@@ -50,7 +54,7 @@ export default function ArboristCallsPage() {
     const matchesStatus =
       statusFilter === "all" || call.status.toLowerCase() === statusFilter;
 
-    const callYear = call.date.includes("2025") ? "2025" : "2024";
+    const callYear = call.date.slice(-4);
     const matchesYear = yearFilter === "all" || callYear === yearFilter;
 
     return matchesSearch && matchesStatus && matchesYear;
@@ -150,9 +154,11 @@ export default function ArboristCallsPage() {
               </SelectTrigger>
               <SelectContent className="bg-yellow-300 dark:bg-yellow-500">
                 <SelectItem value="all">All Years</SelectItem>
-                <SelectItem value="2025">2025</SelectItem>
-                <SelectItem value="2024">2024</SelectItem>
-                <SelectItem value="2023">2023</SelectItem>
+                {availableYears.map((year) => (
+                  <SelectItem key={year} value={year}>
+                    {year}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
