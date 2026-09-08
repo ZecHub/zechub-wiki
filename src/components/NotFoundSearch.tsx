@@ -65,6 +65,9 @@ export default function NotFoundSearch({ searchItems }: NotFoundSearchProps) {
   // Enter opens the top hit. SearchInput swallows form submission, so the key
   // has to be handled here or it would do nothing at all.
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    // Let IME candidate confirmation finish without opening a result.
+    if (e.nativeEvent.isComposing || e.nativeEvent.keyCode === 229) return;
+
     if (e.key !== "Enter") return;
     e.preventDefault();
     const first = list[0];
