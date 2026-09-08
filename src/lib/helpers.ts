@@ -92,6 +92,7 @@ export const stripInlineMd = (s: string) =>
   s
     .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
     .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/<[^>]+>/g, "")
     .replace(/[*_`~]+/g, "")
     .replace(/\s+/g, " ")
     .trim();
