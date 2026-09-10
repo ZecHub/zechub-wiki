@@ -57,7 +57,7 @@ export default async function Page(props: {
       hasSideMenu={true}
       sideMenu={<SideMenu folder={urlRoot} roots={roots} titles={menuTitles} enTitles={enMenuTitles} />}
       roots={roots}
-      heroImage={{ src: getBanner(`using-zcash`) }}
+      liveHero="using-zcash"
     >
       <MdxComponent source={mdxSource} />
     </MdxContainer>

@@ -1,10 +1,10 @@
 import React from "react";
-import Image from "next/image";
 import { getLocalizedFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { getDictionary } from "@/lib/getDictionary";
 import { getBanner } from "@/lib/helpers";
 import { parseMarkdown } from "@/lib/parseMarkdown";
 import WalletList from "@/components/Wallet/WalletList";
+import WikiSectionBanner from "@/components/WikiSectionBanner/WikiSectionBanner";
 import { genMetadata } from "@/lib/helpers";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
@@ -62,15 +62,7 @@ export default async function Page(props: {
 
   return (
     <main>
-      <div className="flex justify-center w-full mb-5 bg-transparent rounded pb-4">
-        <Image
-          className="w-full mb-5 object-cover"
-          alt={dict.pages?.wallets?.bannerAlt || "wiki-banner"}
-          width={800}
-          height={50}
-          src={imgUrl != undefined ? imgUrl : "/wiki-banner.avif"}
-        />
-      </div>
+      <WikiSectionBanner id="using-zcash" />
 
       <div
         id="content"

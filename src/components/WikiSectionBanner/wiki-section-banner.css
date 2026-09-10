@@ -1,0 +1,567 @@
+.wiki-hero {
+  --wiki-ink: #152036;
+  --wiki-mute: #5c6b80;
+  --wiki-accent: #1984c7;
+  --wiki-bar: #3d9ee8;
+  --wiki-surface: #eef3f8;
+  --wiki-grid: rgb(21 32 54 / 0.07);
+  --wiki-ring: rgb(21 32 54 / 0.16);
+  --wiki-sat: 3.35rem;
+  --wiki-hub: 3.8rem;
+  --wiki-orbit: 5.15rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem 2.5rem;
+  width: 100%;
+  min-height: 13.5rem;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  padding: 1.5rem 2rem 1.5rem 2.75rem;
+  background-color: var(--wiki-surface);
+  background-image:
+    linear-gradient(to right, var(--wiki-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--wiki-grid) 1px, transparent 1px);
+  background-size: 44px 44px;
+  background-position: center;
+}
+
+:where(.dark, .dark *) .wiki-hero {
+  --wiki-ink: #eef3fa;
+  --wiki-mute: #8b9cb3;
+  --wiki-accent: #6eb4e6;
+  --wiki-bar: #4aa3ea;
+  --wiki-surface: #152036;
+  --wiki-grid: rgb(255 255 255 / 0.065);
+  --wiki-ring: rgb(255 255 255 / 0.14);
+}
+
+.wiki-hero--zfav {
+  --wiki-ink: #f4f4f5;
+  --wiki-mute: #b8b8bc;
+  --wiki-accent: #ff4d4f;
+  --wiki-bar: #e10600;
+  --wiki-surface: #0b0b0d;
+  --wiki-grid: rgb(255 255 255 / 0.04);
+}
+
+.wiki-hero--ecosystem {
+  --wiki-accent: #3d9a6a;
+  --wiki-bar: #4aad78;
+  --wiki-ring: rgb(74 173 120 / 0.28);
+}
+
+:where(.dark, .dark *) .wiki-hero--ecosystem {
+  --wiki-accent: #7dcea0;
+  --wiki-bar: #5fbf86;
+}
+
+.wiki-hero--organizations {
+  --wiki-sat: 2.15rem;
+  --wiki-hub: 2.5rem;
+  --wiki-orbit: 3.85rem;
+  min-height: 11.5rem;
+}
+
+.wiki-hero__copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.wiki-hero__kicker {
+  margin: 0 0 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--wiki-accent);
+}
+
+.wiki-hero__title-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.85rem;
+}
+
+.wiki-hero__title {
+  margin: 0;
+  font-size: clamp(2.35rem, 5vw, 4.05rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.038em;
+  color: var(--wiki-ink);
+}
+
+.wiki-hero__title--md {
+  font-size: clamp(1.95rem, 4.2vw, 3.35rem);
+}
+
+.wiki-hero__bar {
+  display: block;
+  width: 0.72rem;
+  min-height: 2.55rem;
+  border-radius: 2px;
+  background: var(--wiki-bar);
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.wiki-hero__dashes {
+  display: flex;
+  gap: 0.28rem;
+  margin: 0.55rem 0 0.7rem;
+}
+
+.wiki-hero__dashes span {
+  display: block;
+  width: 0.7rem;
+  height: 3px;
+  border-radius: 1px;
+  background: var(--wiki-bar);
+}
+
+.wiki-hero__sub {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--wiki-mute);
+}
+
+.wiki-hero__art {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  margin: 0 0.5rem 0 0;
+}
+
+.wiki-hero__bob {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  animation: wiki-bob var(--wiki-dur, 4.4s) var(--wiki-delay, 0s) ease-in-out
+    infinite;
+}
+
+.wiki-hero__bob:focus-visible {
+  outline: 2px solid var(--wiki-accent);
+  outline-offset: 3px;
+}
+
+.wiki-hero__orbit {
+  --cluster: calc(var(--wiki-orbit) * 2 + var(--wiki-sat) + 0.75rem);
+  position: relative;
+  width: var(--cluster);
+  height: var(--cluster);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wiki-hero__rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wiki-hero__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border: 1px solid var(--wiki-ring);
+  border-radius: 50%;
+}
+
+.wiki-hero__ring--inner {
+  width: calc(var(--wiki-hub) + 1.35rem);
+  height: calc(var(--wiki-hub) + 1.35rem);
+}
+
+.wiki-hero__ring--outer {
+  width: calc(var(--wiki-orbit) * 2);
+  height: calc(var(--wiki-orbit) * 2);
+}
+
+.wiki-hero__logo {
+  --s: var(--wiki-sat);
+  --r: var(--wiki-orbit);
+  position: absolute;
+  z-index: 1;
+  left: calc(50% + cos(var(--a, 0deg)) * var(--r) - var(--s) / 2);
+  top: calc(50% + sin(var(--a, 0deg)) * var(--r) - var(--s) / 2);
+  display: grid;
+  place-items: center;
+  width: var(--s);
+  height: var(--s);
+  border-radius: 999px;
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 6px 14px -6px rgb(0 0 0 / 0.45);
+}
+
+.wiki-hero__logo--hub {
+  --s: var(--wiki-hub);
+  z-index: 2;
+}
+
+.wiki-hero__logo img,
+.wiki-hero__logo svg {
+  display: block;
+  width: 62%;
+  height: 62%;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+}
+
+.wiki-hero__logo--fill img,
+.wiki-hero__logo--fill svg,
+.wiki-hero__logo--hub img,
+.wiki-hero__logo--hub svg {
+  width: 100%;
+  height: 100%;
+}
+
+.wiki-hero__logo--invert img {
+  filter: invert(1);
+}
+
+.wiki-hero__logo--shield {
+  background: #0d1117;
+}
+
+.wiki-hero__logo--ecc {
+  background: #160808;
+}
+
+.wiki-hero__logo--globe {
+  background: #152036;
+}
+
+.wiki-hero__logo--chip {
+  border: 1px solid color-mix(in srgb, var(--wiki-accent) 42%, transparent);
+  background: #fff;
+}
+
+.wiki-hero__logo--chip svg {
+  width: 46%;
+  height: 46%;
+  color: var(--wiki-accent);
+}
+
+:where(.dark, .dark *) .wiki-hero__logo--chip {
+  background: #101820;
+}
+
+:where(.dark, .dark *) .wiki-hero__logo--chip svg {
+  color: #e7eef8;
+}
+
+.wiki-hero__logo--hub.wiki-hero__logo--chip svg {
+  width: 58%;
+  height: 58%;
+}
+
+.wiki-hero__logo:hover .wiki-hero__bob {
+  transform: translateY(-2px) scale(1.06);
+  animation: none;
+}
+
+.wiki-hero__path {
+  position: relative;
+  width: 16.5rem;
+  height: 11.5rem;
+  color: var(--wiki-accent);
+}
+
+.wiki-hero__path svg.wiki-hero__path-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.wiki-hero__node {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  gap: 0.28rem;
+  width: 3.1rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.wiki-hero__node-mark {
+  display: grid;
+  place-items: center;
+  width: 2.55rem;
+  height: 2.55rem;
+  border-radius: 999px;
+  border: 2px solid var(--wiki-accent);
+  background: var(--wiki-surface);
+  color: var(--wiki-accent);
+  box-shadow: 0 8px 16px -10px rgb(0 0 0 / 0.45);
+}
+
+.wiki-hero__node-mark svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.wiki-hero__node--start .wiki-hero__node-mark {
+  width: auto;
+  height: 1.7rem;
+  padding: 0 0.55rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--wiki-ink);
+  background: var(--wiki-surface);
+}
+
+.wiki-hero__node span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--wiki-mute);
+}
+
+.wiki-hero__node--start {
+  width: auto;
+  left: 0.2rem;
+  top: 6.35rem;
+}
+
+.wiki-hero__node--learn {
+  left: 6.1rem;
+  top: 3.05rem;
+}
+
+.wiki-hero__node--build {
+  left: 12.35rem;
+  top: 0.15rem;
+}
+
+.wiki-hero__book,
+.wiki-hero__mag,
+.wiki-hero__play {
+  width: 9.25rem;
+  height: 9.25rem;
+  color: var(--wiki-accent);
+}
+
+.wiki-hero__book svg,
+.wiki-hero__mag svg,
+.wiki-hero__play svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 10px 18px rgb(0 0 0 / 0.18));
+}
+
+.wiki-hero__flow {
+  width: 22rem;
+  height: 9.5rem;
+  color: var(--wiki-accent);
+}
+
+.wiki-hero__flow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.wiki-hero__flow-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-dasharray: 5 7;
+  opacity: 0.85;
+  animation: wiki-flow 14s linear infinite;
+}
+
+.wiki-hero__flow-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  fill: var(--wiki-mute);
+}
+
+.wiki-hero__faq {
+  position: relative;
+  width: 16.5rem;
+  height: 10.25rem;
+}
+
+.wiki-hero__card {
+  position: absolute;
+  width: 11.5rem;
+  height: 4.6rem;
+  padding: 0.85rem 1rem 0.75rem 1.1rem;
+  border-radius: 1.1rem;
+  box-shadow: 0 10px 22px -12px rgb(0 0 0 / 0.45);
+}
+
+.wiki-hero__card--back {
+  left: 0.15rem;
+  top: 0.35rem;
+  background: color-mix(in srgb, var(--wiki-surface) 70%, #8aa7c4);
+}
+
+.wiki-hero__card--front {
+  left: 3.6rem;
+  top: 3.35rem;
+  background: #4aa3ea;
+}
+
+:where(.dark, .dark *) .wiki-hero__card--back {
+  background: #3d536c;
+}
+
+.wiki-hero__card-line {
+  display: block;
+  height: 0.45rem;
+  margin-bottom: 0.45rem;
+  border-radius: 99px;
+  background: rgb(255 255 255 / 0.55);
+}
+
+.wiki-hero__card-line:last-child {
+  width: 64%;
+  margin-bottom: 0;
+}
+
+.wiki-hero__pill {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--wiki-surface) 92%, #000);
+  color: var(--wiki-ink);
+  box-shadow: 0 6px 14px -8px rgb(0 0 0 / 0.4);
+}
+
+.wiki-hero__pill--term {
+  right: 0;
+  top: 0;
+}
+
+.wiki-hero__pill--ok {
+  left: 1.4rem;
+  bottom: 0.15rem;
+  color: #3d9a6a;
+}
+
+.wiki-hero__dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 99px;
+  background: currentColor;
+}
+
+.wiki-hero__zfav {
+  position: relative;
+  width: 13.5rem;
+  height: 11.5rem;
+}
+
+.wiki-hero__zfav-arc {
+  position: absolute;
+  right: -4.5rem;
+  top: -2.5rem;
+  width: 14rem;
+  height: 16rem;
+  border-radius: 50%;
+  border: 1.15rem solid #e10600;
+  pointer-events: none;
+}
+
+.wiki-hero__zfav-mark {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6.5rem;
+  height: 6.5rem;
+  margin: 2.1rem 0 0 1.2rem;
+  color: #fff;
+}
+
+.wiki-hero__zfav-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes wiki-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes wiki-flow {
+  to {
+    stroke-dashoffset: -180;
+  }
+}
+
+@media (max-width: 900px) {
+  .wiki-hero__flow {
+    width: 18rem;
+  }
+
+  .wiki-hero__orbit {
+    --wiki-sat: 2.95rem;
+    --wiki-hub: 3.35rem;
+    --wiki-orbit: 4.45rem;
+  }
+
+  .wiki-hero--organizations .wiki-hero__orbit {
+    --wiki-sat: 2.05rem;
+    --wiki-hub: 2.35rem;
+    --wiki-orbit: 3.55rem;
+  }
+}
+
+@media (max-width: 724px) {
+  .wiki-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.35rem 1.15rem 1.5rem;
+    min-height: 0;
+  }
+
+  .wiki-hero__art {
+    align-self: center;
+    margin: 0.4rem auto 0;
+    transform: scale(0.88);
+    transform-origin: center top;
+  }
+
+  .wiki-hero__title,
+  .wiki-hero__title--md {
+    font-size: clamp(2rem, 10vw, 2.7rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiki-hero__bob,
+  .wiki-hero__logo:hover .wiki-hero__bob,
+  .wiki-hero__flow-line {
+    animation: none;
+    transform: none;
+  }
+}
