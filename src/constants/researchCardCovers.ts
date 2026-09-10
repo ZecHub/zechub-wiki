@@ -19,6 +19,10 @@ const COVERS: Record<string, ResearchCardCover> = {
     src: "/research-covers/zcashfoundations.jpg",
     alt: "7 Articles learning Zcash from First Principles",
   },
+  "research/zcash-formal-verification-series": {
+    src: "/research-covers/zcash-formal-verification.jpg",
+    alt: "Formal verification of the Zcash shielded protocol",
+  },
   "research/dash-zcash-orchard-integration": {
     src: "/research-covers/dash-zcash-orchard.jpg",
     alt: "Team collaboration representing cross-chain integration",

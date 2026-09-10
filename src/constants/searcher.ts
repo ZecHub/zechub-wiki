@@ -402,6 +402,26 @@ export const searcher: Searcher[] = [
 
   // Research
   {
+    name: "Zcash Formal Verification Series",
+    desc: "What formal verification is, the 2026 Orchard soundness bug, and how Ironwood answered it with a machine-checked proof.",
+    url: "/research/zcash-formal-verification-series",
+  },
+  {
+    name: "What Is Formal Verification?",
+    desc: "Introduction to proving software correct instead of only testing it.",
+    url: "/research/zcash-formal-verification-series/article-0/article-0-what-is-formal-verification",
+  },
+  {
+    name: "The Orchard Bug: When a Proof System Has a Hole",
+    desc: "Case study of the 2026 under-constrained Orchard circuit.",
+    url: "/research/zcash-formal-verification-series/article-1/article-1-the-orchard-bug",
+  },
+  {
+    name: "Ironwood: Proving Money Cannot Be Faked",
+    desc: "How Zcash answered the Orchard bug with a machine-checked proof.",
+    url: "/research/zcash-formal-verification-series/article-2/article-2-ironwood-proving-money-cannot-be-faked",
+  },
+  {
     name: "Dash Zcash Orchard Integration",
     desc: "Research into the integration of Zcash Orchard shielded pool technology with the Dash blockchain.",
     url: "/research/dash-zcash-orchard-integration",

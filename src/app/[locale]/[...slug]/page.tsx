@@ -29,6 +29,12 @@ import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
 import { getDictionary } from "@/lib/getDictionary";
+import {
+  RESEARCH_SERIES,
+  getResearchSeries,
+  isResearchSeriesPath,
+  isResearchSeriesSlug,
+} from "@/constants/researchSeries";
 import { Metadata } from "next";
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
@@ -104,10 +110,7 @@ export async function generateMetadata({
   }
 
   const isResearchIndex = slug.length === 1 && slug[0] === "research";
-  const isResearchSeries =
-    slug.length === 2 &&
-    slug[0] === "research" &&
-    slug[1] === "zcash-foundations-series";
+  const isResearchSeries = isResearchSeriesSlug(slug);
   const isResearchArticle = slug[0] === "research" && slug.length > 1;
 
   const folder = slug[0] || "";
@@ -132,13 +135,10 @@ export async function generateMetadata({
   }
 
   if (isResearchSeries) {
+    const series = getResearchSeries(slug[1]);
     return genMetadata({
-      title: r.foundationsSeriesTitle
-        ? `${r.foundationsSeriesTitle} | ZecHub`
-        : "Zcash Foundations Series | ZecHub",
-      description:
-        r.foundationsSeriesDescription ??
-        "Foundational articles covering Zcash shielded transactions, privacy models, protocol design, and core concepts that power the network.",
+      title: series ? `${series.title} | ZecHub` : "Research Series | ZecHub",
+      description: series?.pageDescription ?? "",
       url: canonicalUrl,
       image: sectionBanner || "/content-banners/bannerResearch.jpg",
       locale,
@@ -237,10 +237,7 @@ export default async function Page(props: {
   const urlRoot = `/site/${slug[0]}`;
 
   const isResearchIndex = slug.length === 1 && slug[0] === "research";
-  const isResearchSeries =
-    slug.length === 2 &&
-    slug[0] === "research" &&
-    slug[1] === "zcash-foundations-series";
+  const isResearchSeries = isResearchSeriesSlug(slug);
   const isResearchArticle = slug[0] === "research" && slug.length > 1;
 
   // === STRICTER getHeroImage (prevents empty src/darkSrc) ===
@@ -265,14 +262,15 @@ export default async function Page(props: {
     if (isResearchIndex) {
       const topLevel = await getRootCached(urlRoot).catch(() => []);
       let seriesArticles: string[] = [];
-      try {
-        seriesArticles = await getAllMarkdownRecursively(
-          "site/Research/zcash-foundations-series",
-        );
-      } catch {}
+      for (const series of RESEARCH_SERIES) {
+        try {
+          const found = await getAllMarkdownRecursively(series.contentDir);
+          seriesArticles = seriesArticles.concat(found);
+        } catch {}
+      }
 
       const nonSeriesRoots = topLevel.filter(
-        (p: string) => !p.includes("zcash-foundations-series"),
+        (p: string) => !isResearchSeriesPath(p),
       );
 
       const indexDynamicCovers: Record<string, { src: string; alt: string }> =
@@ -318,49 +316,49 @@ export default async function Page(props: {
               </p>
             </div>
 
-            <div className="max-w-2xl">
-              <Link
-                href="/research/zcash-foundations-series"
-                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all active:scale-[0.985] sm:hover:border-slate-300 sm:hover:shadow-lg dark:border-slate-700 dark:sm:hover:border-slate-600"
-              >
-                <div
-                  className="relative w-full shrink-0 overflow-hidden
-                                bg-gradient-to-br from-zinc-700 to-zinc-500
-                                border-b border-zinc-700
-                                flex items-center justify-center
-                                aspect-[16/9] sm:aspect-[2.2/1] lg:aspect-[2.5/1]"
+            <div className="grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-2">
+              {RESEARCH_SERIES.map((series) => (
+                <Link
+                  key={series.id}
+                  href={series.href}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all active:scale-[0.985] sm:hover:border-slate-300 sm:hover:shadow-lg dark:border-slate-700 dark:sm:hover:border-slate-600"
                 >
-                  <div className="text-center px-6">
-                    <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/10">
-                      <span className="text-5xl">📚</span>
+                  <div
+                    className="relative flex aspect-[16/9] w-full shrink-0 items-center justify-center overflow-hidden
+                                  border-b border-zinc-700 bg-gradient-to-br from-zinc-700 to-zinc-500
+                                  sm:aspect-[2.2/1]"
+                  >
+                    <div className="px-6 text-center">
+                      <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/10">
+                        <span className="text-5xl">{series.emoji}</span>
+                      </div>
+                      <p className="text-2xl font-semibold tracking-tight text-white">
+                        {series.title}
+                      </p>
                     </div>
-                    <p className="text-2xl font-semibold text-white tracking-tight">
-                      {r.foundationsSeriesTitle ?? "Zcash Foundations Series"}
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="mb-2">
+                      <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                        {series.badge}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-semibold tracking-tight text-foreground">
+                      {series.title}
+                    </h3>
+
+                    <p className="mt-3 text-[15px] text-muted-foreground">
+                      {series.cardDescription}
                     </p>
+
+                    <div className="mt-auto pt-5 text-sm font-medium text-muted-foreground group-active:text-foreground transition-colors">
+                      {r.exploreSeries ?? "Explore the series →"}
+                    </div>
                   </div>
-                </div>
-
-                <div className="flex flex-1 flex-col p-6">
-                  <div className="mb-2">
-                    <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                      {r.coreSeriesBadge ?? "Core Series"}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-semibold tracking-tight text-foreground">
-                    {r.foundationsSeriesTitle ?? "Zcash Foundations Series"}
-                  </h3>
-
-                  <p className="mt-3 text-[15px] text-muted-foreground">
-                    {r.foundationsSeriesCardDescription ??
-                      "Foundational articles on shielded transactions, privacy models, and protocol design."}
-                  </p>
-
-                  <div className="mt-auto pt-5 text-sm font-medium text-muted-foreground group-active:text-foreground transition-colors">
-                    {r.exploreSeries ?? "Explore the series →"}
-                  </div>
-                </div>
-              </Link>
+                </Link>
+              ))}
             </div>
           </div>
 
@@ -386,6 +384,7 @@ export default async function Page(props: {
       );
     } else if (isResearchSeries) {
       const seriesName = slug[1];
+      const series = getResearchSeries(seriesName);
       const basePath = `site/Research/${seriesName}`;
       const collectArticles = async (path: string): Promise<string[]> => {
         try {
@@ -437,28 +436,20 @@ export default async function Page(props: {
           <div className="px-2 pb-8">
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-4xl">📚</span>
+                <span className="text-4xl">{series?.emoji ?? "📚"}</span>
                 <h1 className="text-2xl imd:text-4xl font-bold">
-                  {r.foundationsSeriesTitle ?? "Zcash Foundations Series"}
+                  {series?.title ?? "Research Series"}
                 </h1>
               </div>
               <p className="max-w-3xl text-base text-muted-foreground">
-                {r.foundationsSeriesDescription ??
-                  "A collection of foundational articles covering Zcash shielded transactions, privacy models, protocol design, and core concepts that power the network."}
+                {series?.pageDescription ?? ""}
               </p>
               <div className="mt-4 flex flex-wrap gap-2 text-sm">
-                <span className="rounded-full bg-muted px-3 py-1">
-                  {r.tagShieldedTransactions ?? "Shielded Transactions"}
-                </span>
-                <span className="rounded-full bg-muted px-3 py-1">
-                  {r.tagPrivacyModels ?? "Privacy Models"}
-                </span>
-                <span className="rounded-full bg-muted px-3 py-1">
-                  {r.tagProtocolDesign ?? "Protocol Design"}
-                </span>
-                <span className="rounded-full bg-muted px-3 py-1">
-                  {r.tagZeroKnowledge ?? "Zero Knowledge"}
-                </span>
+                {(series?.tags ?? []).map((tag) => (
+                  <span key={tag} className="rounded-full bg-muted px-3 py-1">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </div>

@@ -30,6 +30,20 @@ import { Trophy, LayoutDashboard } from "lucide-react";
 import { useTheme } from "next-themes";
 import type { Searcher } from "@/types";
 const liStyle = `hover:bg-yellow-300 dark:hover:bg-yellow-500 rounded-sm dark:text-slate-300 hover:text-slate-900 dark:hover:text-white`;
+const PRIMARY_NAV_COUNT = 4;
+const overflowNavigations = navigations.slice(PRIMARY_NAV_COUNT);
+const MORE_ROW_ORDER = [
+  "Tutorials",
+  "Developers",
+  "Research",
+  "DAO",
+  "How to Participate",
+  "ZIPs & Grants",
+  "Contribute",
+  "Visualizer",
+  "Visual Identity",
+  "Sitemap",
+];
 // Locale-aware internal link wrapper. Internal routes go through next-intl's
 // Link so hrefs auto-prefix to the active locale (e.g. /dashboard -> /it/dashboard
 // on /it/...). Absolute http(s) URLs are external and must NOT be prefixed, so
@@ -418,108 +432,116 @@ const Dropdown = ({
     </div>
   );
 };
-// ─── "More" menu item (for items beyond the primary nav slots) ───────────────
-const MoreMenuItem = ({
-  item,
-  t,
+// ─── "More" toggle (opens a second header row) ───────────────────────────────
+const MoreToggle = ({
+  moreOpen,
+  onToggle,
+}: {
+  moreOpen: boolean;
+  onToggle: () => void;
+}) => {
+  const { t } = useLanguage();
+  return (
+    <button
+      type="button"
+      aria-expanded={moreOpen}
+      aria-controls="nav-more-row"
+      onClick={onToggle}
+      className={`flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2 ${
+        moreOpen ? "text-nav-hover" : ""
+      }`}
+    >
+      {t.navigation?.more || "More"}
+      <ChevronDown
+        className={`h-4 w-4 transition-transform duration-200 ${moreOpen ? "rotate-180" : ""}`}
+      />
+    </button>
+  );
+};
+
+const MoreRow = ({
+  items,
   onLinkClick,
 }: {
-  item: (typeof navigations)[number];
-  t: any;
+  items: typeof navigations;
   onLinkClick: () => void;
 }) => {
-  const [flyoutOpen, setFlyoutOpen] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const openFlyout = () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    setFlyoutOpen(true);
-  };
-  const closeFlyout = () => {
-    timerRef.current = setTimeout(() => setFlyoutOpen(false), 80);
-  };
-  const label = getTranslatedLabel(item.name, item.label, t, item.label);
-  if (!item.links) {
-    return (
-      <Link
-        prefetch
-        href={item.path ?? "#"}
-        onClick={onLinkClick}
-        className={`flex items-center gap-2 text-sm w-full px-3 py-2 rounded-sm text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
-        {...(item.newTab && { target: "_blank", rel: "noopener noreferrer" })}
-      >
-        {(item.icon || matchIcons(item.name, item.name)) && (
-          <Icon
-            icon={item.icon ?? matchIcons(item.name, item.name)}
-            className="xl:w-5 w-4 h-4 xl:h-5 shrink-0"
-          />
-        )}
-        {label}
-      </Link>
-    );
-  }
+  const { t } = useLanguage();
+  const entries = items
+    .flatMap((item) =>
+      item.links && item.links.length > 0
+        ? item.links.map((link) => ({
+            key: `${item.name}-${link.name}`,
+            href: link.path ?? "#",
+            newTab: link.newTab,
+            icon: link.icon ?? item.icon ?? matchIcons(item.name, link.name),
+            parentName: item.name,
+            name: link.name,
+            label: link.label,
+          }))
+        : [
+            {
+              key: item.name,
+              href: item.path ?? "#",
+              newTab: item.newTab,
+              icon: item.icon ?? matchIcons(item.name, item.name),
+              parentName: item.name,
+              name: item.name,
+              label: item.label,
+            },
+          ],
+    )
+    .sort((a, b) => {
+      const ai = MORE_ROW_ORDER.indexOf(a.name);
+      const bi = MORE_ROW_ORDER.indexOf(b.name);
+      return (ai === -1 ? MORE_ROW_ORDER.length : ai) -
+        (bi === -1 ? MORE_ROW_ORDER.length : bi);
+    });
   return (
     <div
-      className="relative"
-      onMouseEnter={openFlyout}
-      onMouseLeave={closeFlyout}
+      id="nav-more-row"
+      className="hidden xl:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
     >
-      <div
-        className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
-      >
-        <span className="flex items-center gap-2">
-          {(item.icon || matchIcons(item.name, item.name)) && (
-            <Icon
-              icon={item.icon ?? matchIcons(item.name, item.name)}
-              className="xl:w-5 w-4 h-4 xl:h-5 shrink-0"
-            />
-          )}
-          {label}
-        </span>
-        <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60" />
-      </div>
-      {flyoutOpen && (
-        <div
-          className="absolute left-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
-          onMouseEnter={openFlyout}
-          onMouseLeave={closeFlyout}
+      {entries.map((entry) => (
+        <Link
+          prefetch
+          key={entry.key}
+          href={entry.href}
+          onClick={onLinkClick}
+          className={`flex items-center gap-1.5 text-sm whitespace-nowrap px-2 py-1 rounded-sm text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
+          {...(entry.newTab && {
+            target: "_blank",
+            rel: "noopener noreferrer",
+          })}
         >
-          {item.links.map((link, idx) => (
-            <Link
-              prefetch
-              key={`${link.name}-${idx}`}
-              href={link.path ?? "#"}
-              onClick={onLinkClick}
-              className={`flex items-center gap-2 text-sm w-full px-3 py-2 rounded-sm text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
-              {...(link.newTab && {
-                target: "_blank",
-                rel: "noopener noreferrer",
-              })}
-            >
-              {(link.icon || matchIcons(item.name, link.name)) && (
-                <Icon
-                  icon={link.icon ?? matchIcons(item.name, link.name)}
-                  className="xl:w-5 w-4 h-4 xl:h-5 shrink-0"
-                />
-              )}
-              {getTranslatedLabel(item.name, link.name, t, link.label)}
-            </Link>
-          ))}
-        </div>
-      )}
+          {entry.icon && (
+            <Icon icon={entry.icon} className="w-4 h-4 shrink-0" />
+          )}
+          {getTranslatedLabel(entry.parentName, entry.name, t, entry.label)}
+        </Link>
+      ))}
     </div>
   );
 };
+
 // ─── Nav links (desktop) ──────────────────────────────────────────────────────
 const NavLinks = ({
   classes,
   closeMenu,
+  moreOpen,
+  onMoreToggle,
+  onMoreClose,
 }: {
   classes: string;
   closeMenu: () => void;
+  moreOpen: boolean;
+  onMoreToggle: () => void;
+  onMoreClose: () => void;
 }) => {
   const { t } = useLanguage();
   const handleLinkClick = () => {
     closeMenu();
+    onMoreClose();
   };
   const [openIndex, setOpenIndex] = useState<null | number>(null);
   return (
@@ -558,12 +580,8 @@ const NavLinks = ({
             </Link>
           ),
         )}
-        {navigations.length > 4 && (
-          <MoreDropdown
-            items={navigations.slice(4)}
-            t={t}
-            onLinkClick={handleLinkClick}
-          />
+        {overflowNavigations.length > 0 && (
+          <MoreToggle moreOpen={moreOpen} onToggle={onMoreToggle} />
         )}
       </div>
       {/* Medium screens (md–lg) */}
@@ -722,44 +740,6 @@ const NavLinks = ({
           </Link>
         </Button>
       </div>
-    </div>
-  );
-};
-// ─── "More" dropdown (overflowing nav items on large screens) ─────────────────
-const MoreDropdown = ({
-  items,
-  t,
-  onLinkClick,
-}: {
-  items: typeof navigations;
-  t: any;
-  onLinkClick: () => void;
-}) => {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <div
-      className="relative"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
-    >
-      <div className="flex items-center gap-1 text-nav-foreground hover:text-nav-hover transition-colors duration-200 cursor-pointer py-2">
-        {t.navigation?.more || "More"}
-        <ChevronDown
-          className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-        />
-      </div>
-      {isOpen && (
-        <div className="absolute top-full left-0 z-50 bg-slate-100 dark:bg-slate-900 shadow-lg border border-slate-200 dark:border-slate-700 min-w-[200px] mt-0 p-1.5 rounded-sm">
-          {items.map((item, i) => (
-            <MoreMenuItem
-              key={`${item.name}-${i}`}
-              item={item}
-              t={t}
-              onLinkClick={onLinkClick}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 };
@@ -946,14 +926,37 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
   const { t } = useLanguage();
   const [openSearch, setOpenSearch] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [showShop, setShowShop] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const isDark = theme === "dark";
   useEffect(() => {
     setMounted(true);
   }, []);
+  useEffect(() => {
+    if (!moreOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMoreOpen(false);
+    };
+    const onPointer = (e: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onPointer);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onPointer);
+    };
+  }, [moreOpen]);
+  const closeMore = () => setMoreOpen(false);
   return (
-    <header className="sticky top-0 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-200">
+    <header
+      ref={headerRef}
+      className="sticky top-0 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-200"
+    >
       <div className="mx-auto w-full max-w-372 px-2 md:px-4">
         <div className="flex items-center justify-between py-3 md:py-4">
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
@@ -963,6 +966,9 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             <NavLinks
               classes="w-full justify-start"
               closeMenu={() => setIsOpen(false)}
+              moreOpen={moreOpen}
+              onMoreToggle={() => setMoreOpen((open) => !open)}
+              onMoreClose={closeMore}
             />
           </nav>
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
@@ -1047,6 +1053,15 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             )}
           </div>
         </div>
+        {moreOpen && (
+          <MoreRow
+            items={overflowNavigations}
+            onLinkClick={() => {
+              setMoreOpen(false);
+              setIsOpen(false);
+            }}
+          />
+        )}
       </div>
     </header>
   );
