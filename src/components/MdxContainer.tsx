@@ -88,18 +88,18 @@ export default async function MdxContainer({
         id="content"
         className={`container m-auto flex h-auto flex-col space-y-5 px-2 pt-5 ${
           hasSideMenu && roots && roots.length > 0
-            ? "xl:flex-row xl:space-x-12"
-            : "xl:flex-col"
+            ? "min-[1280px]:flex-row min-[1280px]:space-x-12"
+            : "min-[1280px]:flex-col"
         }`}
       >
         {hasSideMenu && (
-          <div className="relative w-auto xl:w-2/5">{sideMenu}</div>
+          <div className="relative w-auto min-[1280px]:w-2/5">{sideMenu}</div>
         )}
         {isResearchArticle && researchMeta ? (
-          <div className="flex min-w-0 flex-1 flex-col gap-10 lg:gap-12 xl:flex-row xl:items-start">
+          <div className="flex min-w-0 flex-1 flex-col gap-10 lg:gap-12 min-[1280px]:flex-row min-[1280px]:items-start">
             <section
               style={{ margin: "auto" }}
-              className="h-auto w-full border-t p-3 dark:border-slate-400 xl:flex-1 xl:border-l"
+              className="h-auto w-full border-t p-3 dark:border-slate-400 min-[1280px]:flex-1 min-[1280px]:border-l"
             >
               <nav
                 className="mb-6 text-xs font-medium text-muted-foreground"
@@ -146,7 +146,7 @@ export default async function MdxContainer({
           <section
             style={{ margin: "auto" }}
             className={`h-auto w-full p-3 dark:border-slate-400 ${
-              hasSideMenu ? "xl:border-l" : ""
+              hasSideMenu ? "min-[1280px]:border-l" : ""
             }`}
           >
             {breadcrumbs ? <Breadcrumbs items={breadcrumbs} /> : null}

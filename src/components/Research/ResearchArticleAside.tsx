@@ -43,7 +43,7 @@ export default function ResearchArticleAside({ title, shareUrl }: Props) {
   }, [title, shareUrl]);
 
   return (
-    <aside className="w-full shrink-0 space-y-10 border-t border-slate-200 pt-8 dark:border-slate-400 xl:w-[min(100%,280px)] xl:border-t-0 xl:border-l xl:border-slate-200 xl:pl-8 xl:pt-0 dark:xl:border-slate-400">
+    <aside className="w-full shrink-0 space-y-10 border-t border-slate-200 pt-8 dark:border-slate-400 min-[1280px]:w-[min(100%,280px)] min-[1280px]:border-t-0 min-[1280px]:border-l min-[1280px]:border-slate-200 min-[1280px]:pl-8 min-[1280px]:pt-0 dark:min-[1280px]:border-slate-400">
       <div>
         <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Share post

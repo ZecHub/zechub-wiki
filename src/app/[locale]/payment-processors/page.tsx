@@ -1,9 +1,9 @@
 import PaymentProcessorList from "@/components/PaymentProcessor/PaymentProcessorList";
-import WikiSectionBanner from "@/components/WikiSectionBanner/WikiSectionBanner";
 import { getLocalizedFileContentCached, getRootCached } from "@/lib/authAndFetch";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { parseProcessorMarkdown } from "@/lib/parseProcessorMarkdown";
 import { Metadata } from "next";
+import Image from "next/image";
 import { headers } from "next/headers";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
@@ -53,7 +53,15 @@ export default async function Page(props: {
 
   return (
     <main>
-      <WikiSectionBanner id="using-zcash" />
+      <div className="flex justify-center w-full mb-5 bg-transparent rounded pb-4">
+        <Image
+          className="w-full mb-5 object-cover"
+          alt="wiki-banner"
+          width={800}
+          height={50}
+          src={imgUrl != undefined ? imgUrl : "/wiki-banner.avif"}
+        />
+      </div>
 
       <div
         id="content"

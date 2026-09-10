@@ -1,11 +1,8 @@
 export const LIVE_HERO_IDS = [
   "start-here",
-  "using-zcash",
   "guides",
   "zcash-tech",
   "organizations",
-  "ecosystem",
-  "zfav",
   "privacy-tools",
   "research",
   "glossary",
@@ -17,14 +14,9 @@ export type LiveHeroId = (typeof LIVE_HERO_IDS)[number];
 
 const LIVE_HERO_BY_SLUG: Record<string, LiveHeroId> = {
   "start-here": "start-here",
-  "using-zcash": "using-zcash",
-  "zcash-use-cases": "using-zcash",
   guides: "guides",
   "zcash-tech": "zcash-tech",
   "zcash-organizations": "organizations",
-  "zcash-community": "ecosystem",
-  "zcash-social-media": "ecosystem",
-  "zfav-club": "zfav",
   "privacy-tools": "privacy-tools",
   research: "research",
   "glossary-and-faqs": "glossary",

@@ -14,10 +14,6 @@ const COPY: Record<LiveHeroId, Copy> = {
     title: "Start Here",
     sub: "Begin your Zcash learning journey",
   },
-  "using-zcash": {
-    title: "Using Zcash",
-    sub: "Wallets · Exchanges · Payments",
-  },
   guides: {
     title: "Guides",
     sub: "Structured documentation for understanding Zcash protocols",
@@ -29,14 +25,6 @@ const COPY: Record<LiveHeroId, Copy> = {
   organizations: {
     title: "Organizations",
     sub: "Structure · Governance · Contributors",
-  },
-  ecosystem: {
-    title: "Ecosystem",
-    sub: "Community · Media · Governance",
-  },
-  zfav: {
-    title: "ZF AV",
-    sub: "Zcash Foundation AV Club",
   },
   "privacy-tools": {
     title: "Privacy Tools",
@@ -164,19 +152,6 @@ const ORG_LOGOS: OrbitItem[] = [
     fill: true,
   },
 ];
-
-function IconPin() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <circle cx="12" cy="10" r="2.2" fill="currentColor" />
-    </svg>
-  );
-}
 
 function IconBook() {
   return (
@@ -308,62 +283,12 @@ function IconMegaphone() {
   );
 }
 
-function IconWallet() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3.5" y="7" width="17" height="12" rx="2" stroke="currentColor" strokeWidth="1.7" />
-      <path d="M3.5 10h17M16.5 14.2h2.2" stroke="currentColor" strokeWidth="1.7" />
-    </svg>
-  );
-}
-
-function IconSwap() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M7 8h11l-2.4-2.4M17 16H6l2.4 2.4" stroke="currentColor" strokeWidth="1.7" />
-    </svg>
-  );
-}
-
-function IconUsers() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="9" cy="8" r="2.4" stroke="currentColor" strokeWidth="1.7" />
-      <circle cx="16" cy="9" r="2" stroke="currentColor" strokeWidth="1.7" />
-      <path d="M4.5 18c.4-2.6 2.4-4 4.5-4s4.1 1.4 4.5 4M13 14.2c1.8 0 3.4 1 3.8 3.3" stroke="currentColor" strokeWidth="1.7" />
-    </svg>
-  );
-}
-
-function IconMic() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="9" y="4" width="6" height="10" rx="3" stroke="currentColor" strokeWidth="1.7" />
-      <path d="M7 11.5a5 5 0 0 0 10 0M12 16.5V20" stroke="currentColor" strokeWidth="1.7" />
-    </svg>
-  );
-}
-
 function IconPlay() {
   return (
     <svg viewBox="0 0 88 88" aria-hidden="true">
       <circle cx="44" cy="44" r="30" fill="currentColor" opacity="0.18" />
       <circle cx="44" cy="44" r="22" stroke="currentColor" strokeWidth="2.4" fill="none" />
       <path d="M38 32.5v23L58 44 38 32.5Z" fill="currentColor" />
-    </svg>
-  );
-}
-
-function IconBoltShield() {
-  return (
-    <svg viewBox="0 0 64 64" aria-hidden="true">
-      <path
-        d="M32 6 12 14.5v16c0 12.4 8.2 21.4 20 27.5 11.8-6.1 20-15.1 20-27.5v-16L32 6Z"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="3"
-      />
-      <path d="M35 18 24 34h8l-3 14 13-18h-8l3-12Z" fill="currentColor" />
     </svg>
   );
 }
@@ -668,123 +593,6 @@ function renderArt(id: LiveHeroId) {
             },
           ]}
         />
-      );
-    case "using-zcash":
-      return (
-        <Orbit
-          items={[
-            {
-              id: "zec",
-              href: "/using-zcash/buying-zec",
-              label: "Zcash",
-              src: "/org-banner/zcash-brandmark-yellow.svg",
-              angle: "0deg",
-              hub: true,
-              fill: true,
-              dur: "4.7s",
-              delay: "0s",
-            },
-            {
-              id: "wallets",
-              href: "/wallets",
-              label: "Wallets",
-              angle: "-90deg",
-              dur: "4.2s",
-              delay: "-0.6s",
-              icon: <IconWallet />,
-            },
-            {
-              id: "exchanges",
-              href: "/using-zcash/buying-zec",
-              label: "Exchanges",
-              angle: "0deg",
-              dur: "4.9s",
-              delay: "-1.3s",
-              icon: <IconSwap />,
-            },
-            {
-              id: "pools",
-              href: "/using-zcash/shielded-pools",
-              label: "Shielded pools",
-              angle: "90deg",
-              dur: "5.1s",
-              delay: "-1.9s",
-              icon: <IconShield />,
-            },
-            {
-              id: "map",
-              href: "/map",
-              label: "Map",
-              angle: "180deg",
-              dur: "4.4s",
-              delay: "-0.4s",
-              icon: <IconPin />,
-            },
-          ]}
-        />
-      );
-    case "ecosystem":
-      return (
-        <Orbit
-          items={[
-            {
-              id: "z",
-              href: "/zcash-community/zcash-governance",
-              label: "Zcash Community",
-              src: "/org-banner/zcash-secondary-yellow.svg",
-              angle: "0deg",
-              hub: true,
-              fill: true,
-              dur: "4.8s",
-              delay: "0s",
-            },
-            {
-              id: "people",
-              href: "/zcash-community/community-projects",
-              label: "Community projects",
-              angle: "-90deg",
-              dur: "4.2s",
-              delay: "-0.7s",
-              icon: <IconUsers />,
-            },
-            {
-              id: "forum",
-              href: "/zcash-community/community-links",
-              label: "Community links",
-              angle: "0deg",
-              dur: "4.9s",
-              delay: "-1.4s",
-              icon: <IconChat />,
-            },
-            {
-              id: "media",
-              href: "/zcash-community/zcash-podcasts",
-              label: "Podcasts",
-              angle: "90deg",
-              dur: "5s",
-              delay: "-0.3s",
-              icon: <IconMic />,
-            },
-            {
-              id: "world",
-              href: "/zcash-global-ambassadors",
-              label: "Global ambassadors",
-              angle: "180deg",
-              dur: "4.5s",
-              delay: "-1.8s",
-              icon: <IconGlobe />,
-            },
-          ]}
-        />
-      );
-    case "zfav":
-      return (
-        <div className="wiki-hero__zfav">
-          <span className="wiki-hero__zfav-arc" aria-hidden="true" />
-          <div className="wiki-hero__zfav-mark wiki-hero__bob" style={{ "--wiki-dur": "5s" } as CSSProperties}>
-            <IconBoltShield />
-          </div>
-        </div>
       );
     case "tutorials":
       return (
