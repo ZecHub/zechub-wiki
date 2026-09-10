@@ -44,10 +44,6 @@ export const contentBanners = [
     url: "/content-banners/bannerecosystem2.png",
   },
   {
-    name: "Zcash_Social_Media",
-    url: "/content-banners/bannerecosystem2.png",
-  },
-  {
     name: "ZFAV_Club",
     url: "/content-banners/ZFAVbanner.png",
   },
