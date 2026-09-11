@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 176,
+    "proposal_count": 177,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -7235,7 +7235,7 @@
           "title": "[Proposal] Zcash Korean Global Ambassador - Q4 2026 Expansion (Sept – Dec 2026)",
           "votes": {
             "no": "0",
-            "yes": "6",
+            "yes": "10",
             "abstain": "0"
           },
           "status": "open",
@@ -7260,6 +7260,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-09-09T11:08:22.334Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 177,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash Developer Sprint X Nodo Serrano(Retroactive)",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1789542424890420244"
+          },
+          "description": "\n##  Summary\n\nI am submitting this retroactive proposal to request compensation for organizing and delivering a **Zcash Developers Sprint in partnership with Nodo Serrano in Argentina**.\n\nThe sprint was part of my ongoing effort to create practical pathways for developers to discover the Zcash ecosystem, understand its technology stack, and move from learning to building.\n\nRather than running another long-form workshop, I adapted the developer education model into a focused **two-day sprint** designed to introduce developers to Zcash and give them a practical starting point for building privacy-preserving applications.\n\nThe sprint followed the principle:\n\n> **Build. Learn. Ship.**\n\nThis format is intended to complement the longer-form Zcash developer curriculum and make developer onboarding easier to replicate across different communities, universities, and regions.\n\n---\n\n##  Why Nodo Serrano?\n\nOne of the challenges I identified through my previous developer education work is that Zcash developer onboarding needs to move beyond a single community or region.\n\nI have been working toward a model where the Zcash Developers Sprint can be taken directly to existing blockchain and developer communities, giving developers an opportunity to learn about Zcash without requiring them to first find their way through the ecosystem independently.\n\nNodo Serrano provided an opportunity to extend this approach to **Argentina and the Latin American developer community**.\n\nThe collaboration allowed us to introduce developers to Zcash through a localised, community-driven format while also testing how transferable the sprint structure is across different communities.\n\n---\n\n#  What Was Delivered\n\nThe sprint was conducted over **two days**, with sessions structured around practical developer onboarding.\n\n### Day 1: Understanding Zcash\n\nThe first day focused on establishing the foundation required to understand the Zcash ecosystem.\n\nTopics included:\n\n* Blockchain fundamentals\n* Introduction to Zcash\n* The problem Zcash is designed to solve\n* Financial privacy\n* Shielded and transparent transactions\n* How privacy fits into blockchain applications\n* Introduction to the Zcash ecosystem and developer landscape\n\nThe objective was to ensure that participants had enough context to understand **why Zcash exists before learning how to build with it**.\n\n### Day 2: Building on Zcash\n\nThe second day moved from concepts into the technical ecosystem.\n\nThe focus included:\n\n* The Zcash developer stack\n* Z3 stack\n* Running and interacting with a Zcash node\n* RPC concepts and usage\n* Developer tooling\n* Practical exploration of how applications can interact with Zcash infrastructure\n* Building as a way of reinforcing the concepts covered during the sprint\n\nThis was designed to reduce the gap between *\"I understand Zcash\"* and *\"I can start building with Zcash.\"*\n\n---\n\n#  The Developer Education Model\n\nThe Nodo Serrano sprint builds on the developer education model I have been developing through my previous Zcash work.\n\nMy approach has been to avoid treating developer education as a purely theoretical exercise.\n\nInstead, I use a progression:\n\n**Understand → Explore → Build → Ship**\n\nThe objective is not simply to increase the number of developers who have attended a Zcash session, but to create developers who have actually interacted with the ecosystem and have a clear path toward building further.\n\nThe sprint format makes this model easier to replicate.\n\nA two-day sprint can serve as an entry point, after which developers can continue through deeper curriculum, tooling, community support, bounties, hackathons, and ecosystem contributions.\n\n---\n\n#  Continuation of My Zcash Developer Onboarding Work\n\nThis sprint was not an isolated event.\n\nIt builds on the developer workshops and sprint initiatives I have previously organized around Zcash.\n\nMy broader work has included:\n\n* Designing a beginner-friendly Zcash developer curriculum.\n* Hosting a multi-week Zcash Developers Workshop.\n* Bringing Zcash engineers and ecosystem builders into technical guest sessions.\n* Organizing  Zcash Developers Sprints\n* Creating practical build challenges to encourage developers to apply what they learn.\n* Working with university blockchain communities to establish developer education partnerships.\n* Reaching out to additional blockchain and developer communities for future Zcash onboarding.\n* Developing a more scalable **Build → Learn → Ship** model for Zcash developer education.\n\nThe Nodo Serrano sprint represents another step in testing and expanding this model internationally.\n\n---\n\n#  Outcomes\n\nThe primary outcome of the initiative was the delivery of a focused developer onboarding experience for the Nodo Serrano community.\n\n### Key outcomes\n\n* Introduced developers to the Zcash ecosystem.\n* Provided foundational education around blockchain and financial privacy.\n* Introduced participants to Zcash's developer infrastructure.\n* Provided practical exposure to the Z3 stack and node/RPC concepts.\n* Created a pathway for developers to continue learning beyond the sprint.\n* Expanded Zcash developer education into another geographic developer community.\n* Tested the portability of the two-day sprint format outside the communities where it was initially developed.\n\n### Metrics\n\n| Metric                                 |       Result |\n| -------------------------------------- | -----------: |\n| Sprint duration                        |       2 days |\n| Sessions delivered                     |          2 |\n| Registered participants                |          28 |\n| Active participants                    |          17 |\n| Developers completing both days        |          11 |\n| Projects/builds produced               |          TBA |\n| Community reached                      | Nodo Serrano |\n| Country                                |    Argentina |\n\n---\n\n# Why Retroactive Compensation?\n\nThe sprint therefore represents **event delivery and ecosystem development work**.\n\nI am requesting retroactive compensation to recognize the time, coordination, educational work, and ecosystem-building effort invested in delivering the initiative.\n\n---\n\n# Requested Compensation\n\nI am requesting **$850 USD** in retroactive compensation for the delivery of the Nodo Serrano Zcash Developers Sprint.\n\n### Proposed breakdown\n\n| Work                                          |       Amount |\n| --------------------------------------------- | -----------: |\n|Compensation |         $400 |\n| Community/partner coordination                |         $150 |\n| Mini build challenge      | $300|\n| **Total**                                     | **$850** |\n\nThe requested amount is intended as compensation for the work already done rather than as a request for a future event budget.\n\n---\n\n# Long-Term Value\n\nThe most important value of this initiative goes beyond the two-day event.\n\nThe sprint format has gradually become a **repeatable developer onboarding mechanism for Zcash**.\n\nInstead of creating a completely new program for every community, the existing curriculum has been adapted into a two-day format and can be delivered through:\n\n* University blockchain clubs\n* Developer communities\n* Regional Zcash communities\n* Web3 communities\n* Blockchain conferences\n* Local developer meetups\n* Technical communities across emerging markets\n\nThis creates a scalable funnel:\n\n**Community → Developers Sprint → Deeper Learning → Building → Ecosystem Contribution**\n\nMy goal is to continue improving this funnel so that developer education becomes an ongoing pipeline rather than a series of isolated events.\n\n---\n\n# Future Direction\n\nMy next focus is to continue working with blockchain clubs and developer communities to create more entry points into the Zcash ecosystem.\n\nThe longer-term vision is to connect:\n\n**Builders Learning Website + Developer Scaffolder/SDK + Developers Sprints + Build Challenges + Ecosystem Contributions**\n\nThe learning website and technical scaffolder/SDK are **still in development**, but the sprints provide the human onboarding layer that can eventually direct developers into these resources.\n\n---\n\n# Conclusion\n\nThe Nodo Serrano Developers Sprint was another step toward building a stronger and more accessible developer pipeline for Zcash.\n\nThe objective was simple: **make it easier for developers to discover Zcash, understand the technology, and take their first steps toward building.**\n\n**Build. Learn. Ship.** \n\n---",
+          "total_power": "23",
+          "start_height": 41650906,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-09-11T07:07:04.890Z"
       }
     ]
   },
