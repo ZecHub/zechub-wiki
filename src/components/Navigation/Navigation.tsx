@@ -500,7 +500,7 @@ const MoreRow = ({
   return (
     <div
       id="nav-more-row"
-      className="hidden xl:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
+      className="hidden min-[1280px]:flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 pb-3 border-t border-slate-300 dark:border-slate-600"
     >
       {entries.map((entry) => (
         <Link
@@ -547,7 +547,7 @@ const NavLinks = ({
   return (
     <div className={`flex items-center ${classes}`}>
       {/* Large screens */}
-      <div className="hidden lg:flex items-center space-x-10">
+      <div className="hidden lg:flex items-center space-x-5 xl:space-x-10">
         {navigations.slice(0, 4).map((item, i) =>
           item.links ? (
             <Dropdown
@@ -691,7 +691,7 @@ const NavLinks = ({
         )}
       </div>
       {/* CTA buttons */}
-      <div className="hidden md:flex items-center gap-3 ml-7 pl-7 border-l border-slate-400 dark:border-slate-600">
+      <div className="hidden md:flex items-center gap-2 xl:gap-3 ml-4 pl-4 xl:ml-7 xl:pl-7 border-l border-slate-400 dark:border-slate-600">
         <Button
           asChild
           variant="default"
@@ -962,7 +962,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
-          <nav className="hidden xl:flex flex-1 justify-center max-w-4xl mx-8">
+          <nav className="hidden min-[1280px]:flex flex-1 justify-center max-w-4xl mx-3 min-[1280px]:mx-4 xl:mx-8">
             <NavLinks
               classes="w-full justify-start"
               closeMenu={() => setIsOpen(false)}
@@ -999,7 +999,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               )}
             </Button>
             <div
-              className="hidden xl:flex relative"
+              className="hidden min-[1280px]:flex relative"
               onMouseEnter={() => setShowShop(true)}
               onMouseLeave={() => setShowShop(false)}
             >
@@ -1023,7 +1023,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             </div>
             {mounted ? (
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger className="xl:hidden" asChild>
+                <SheetTrigger className="min-[1280px]:hidden" asChild>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -1040,7 +1040,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                 </SheetContent>
               </Sheet>
             ) : (
-              <div className="xl:hidden">
+              <div className="min-[1280px]:hidden">
                 <Button
                   variant="ghost"
                   size="sm"
