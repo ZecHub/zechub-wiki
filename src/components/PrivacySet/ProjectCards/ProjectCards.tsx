@@ -21,7 +21,15 @@ const ProjectCards: React.FC<CardsProps> = ({
   return (
     <div className={`${styles.card } dark:bg-slate-800`}>
       <div className={styles.header}>
-        <Image src={imageSrc} alt={title} className={styles.image} />
+        <div className={styles.imageFrame}>
+          <Image
+            src={imageSrc}
+            alt={title}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 600px) 50vw, 100vw"
+            className={styles.image}
+          />
+        </div>
         <h2 className={`dark:text-slate-300 ${styles.title}`}>{title}</h2>
       </div>
       <div className={styles.body}>
@@ -41,4 +49,3 @@ const ProjectCards: React.FC<CardsProps> = ({
 };
 
 export default ProjectCards;
- 
