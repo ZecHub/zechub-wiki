@@ -396,7 +396,7 @@ const ZebradTab = () => {
               {qs?.fromSource ?? "From Source"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
@@ -419,7 +419,7 @@ const ZebradTab = () => {
               {qs?.manualDownload ?? "Manual Download"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
@@ -444,7 +444,7 @@ const ZebradTab = () => {
               {qs?.fromSource ?? "From Source"}
             </SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:(pwd)/target/release"`}
+              code={`git clone https://github.com/ZcashFoundation/zebra.git\ncd zebra\ngit checkout v6.3.0\ncargo build --release --bin zebrad\nexport PATH="$PATH:$(pwd)/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.alternatively ?? "Alternatively"}
