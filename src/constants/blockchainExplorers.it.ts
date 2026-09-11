@@ -71,14 +71,6 @@ export const blockchainExplorersIt = [
     thumbnailImage: '/explorer/Cipherscan.png',
   },
   {
-    title: 'Zypherscan',
-    description:
-      'Esploratore della blockchain privacy-first per Zcash. Esplora le transazioni schermate utilizzando le tue chiavi di visualizzazione per un esploratore in sola lettura e senza soluzione di continuità della cronologia privata di ZCash.',
-    features: ['Transazioni schermate', 'supporto per chiavi di visualizzazione', 'pool Orchard e Sapling', 'statistiche di rete'],
-    url: 'https://www.zypherscan.com/',
-    thumbnailImage: '/explorer/Zypherscan.png',
-  },
-  {
       title: 'zcashinfo.com',
       description:
         'Esploratore della blockchain Zcash che offre dettagli sui blocchi, ricerca delle transazioni, ricerca degli indirizzi, statistiche di rete, distribuzione dei value pool e monitoraggio della mempool.',
