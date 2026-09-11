@@ -25,7 +25,7 @@ export const PlaybackControls = (props: ControlsProps) => {
       className="flex items-center justify-center gap-2"
     >
       {/* Restart */}
-      <Button variant={"ghost"} size={"icon"} onClick={props.onRestart}>
+      <Button variant={"ghost"} size={"icon"} onClick={props.onRestart} aria-label="Restart">
         <RotateCcw className="w-4 h-4" />
       </Button>
 
