@@ -2,6 +2,7 @@ import { is_valid_zcash_address } from "@elemental-zcash/zaddr_wasm_parser";
 import { NextRequest, NextResponse } from "next/server";
 import QRCode from "qrcode";
 import { qrCodeBodySchema } from "./schema/qrcode.schema";
+import { buildZip321Uri, validateZip321Payment } from "@/lib/zip321";
 
 export async function GET(req: NextRequest) {
   const data = req.nextUrl.searchParams.get("data");
@@ -17,7 +18,6 @@ export async function GET(req: NextRequest) {
       margin: 1,
       scale: 10,
       width: dim ? parseInt(dim) : 240,
-
     });
     const base64 = qrCode.split(",")[1];
     const buffer = Buffer.from(base64, "base64");
@@ -31,9 +31,9 @@ export async function GET(req: NextRequest) {
     });
   } catch (err) {
     console.error(err);
-    
+
     return NextResponse.json(
-      { error: '"Failed to generate QR code"' },
+      { error: "Failed to generate QR code" },
       { status: 500 },
     );
   }
@@ -43,7 +43,15 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const { amount, address, label, memo } = qrCodeBodySchema.parse(body);
+    const parsed = qrCodeBodySchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.issues[0]?.message || "Invalid request payload" },
+        { status: 400 },
+      );
+    }
+
+    const { amount, address, label, message, memo } = parsed.data;
 
     if (!is_valid_zcash_address(address)) {
       return NextResponse.json(
@@ -52,26 +60,38 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Zcash URI format: zcash:<address>?amount=1.23&memo=...
-    let uri = `zcash:${address}`;
-    const params = new URLSearchParams();
+    const validation = validateZip321Payment({
+      address,
+      amount,
+      label,
+      message,
+      memo,
+    });
 
-    if (amount) params.append("amount", amount.toString());
-    if (label) params.append("label", label);
-    if (memo) params.append("memo", memo);
-
-    const paramsStr = params.toString();
-    if (paramsStr) {
-      uri += `?${paramsStr}`;
+    if (!validation.valid) {
+      return NextResponse.json(
+        { error: validation.error },
+        { status: 400 },
+      );
     }
+
+    const uri = buildZip321Uri([
+      {
+        address,
+        amount,
+        label,
+        message,
+        memo,
+      },
+    ]);
 
     const qrData = await QRCode.toDataURL(uri, { margin: 1, scale: 6 });
 
     return NextResponse.json({ data: { uri, qrData } }, { status: 200 });
   } catch (err) {
-    const msg =
-      err instanceof Error ? err.message : "Failed process payment uri.";
+    const errorMsg =
+      err instanceof Error ? err.message : "Failed to process payment URI.";
 
-    return NextResponse.json({ error: JSON.parse(msg) }, { status: 500 });
+    return NextResponse.json({ error: errorMsg }, { status: 500 });
   }
 }
