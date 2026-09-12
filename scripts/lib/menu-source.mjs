@@ -37,7 +37,7 @@ export const MENU_BRANDS = new Set([
   // the corpus was split 9 locales translating it against 9 keeping it — a tie
   // that had to be broken one way, and English matches how Russian and Arabic
   // technical writing usually renders it.
-  "Financial Privacy Foundation", "ZKAV Club", "Zcash Global Ambassadors",
+  "Financial Privacy Foundation", "ZKAV Club", "ZFAV Club", "Zcash Global Ambassadors",
   "Zcash Community Grants", "Zcash Login", "Zcash Devtool", "Testnet",
   // SUBSTRINGS, not whole labels, per the conservative rule above: these appear
   // inside labels whose remainder is descriptive and SHOULD stay localised —
