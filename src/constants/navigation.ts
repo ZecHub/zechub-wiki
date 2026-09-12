@@ -211,6 +211,11 @@ export const navigations: Array<NavigationItem> = [
         path: "/zcash-community/zcash-media",
       },
       {
+        name: "Zcash Social Media",
+        path: "/zcash-social-media/zero-to-zero-knowledge",
+        icon: Twitter,
+      },
+      {
         name: "ZCAP",
         path: "/zcash-community/zcap",
       },
@@ -252,6 +257,11 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Free2z Live",
         path: "/guides/free2z-live",
+      },
+      {
+        name: "ZFAV Club",
+        path: "/zfav-club/guides-for-creators",
+        icon: AudioVideo,
       },
       {
         name: "Keystone Zashi",
