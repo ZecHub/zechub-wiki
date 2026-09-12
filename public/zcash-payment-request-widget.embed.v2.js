@@ -76,6 +76,30 @@
     ext: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>`,
   };
 
+  // DOM helpers. Host-supplied values (label, address, memo, URI) and API
+  // responses are only ever inserted as text nodes or element properties,
+  // never parsed as HTML.
+  function el(tag, className, ...children) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    for (const child of children) {
+      if (child == null || child === false) continue;
+      node.append(
+        typeof child === "string" || typeof child === "number"
+          ? document.createTextNode(String(child))
+          : child,
+      );
+    }
+    return node;
+  }
+
+  // Only ever called with the constant SVG strings from `ic` above.
+  function svg(markup) {
+    const tpl = document.createElement("template");
+    tpl.innerHTML = markup;
+    return tpl.content.firstElementChild;
+  }
+
   async function getZecUsdRate(zecUsdRate, apiBase) {
     const url = `${apiBase}/payment-request-uri/zcash-price-feed`;
 
@@ -136,7 +160,7 @@
     // Create trigger button
     const btn = document.createElement("button");
     btn.className = "zwg-btn";
-    btn.innerHTML = `${ic.z}<span>${label}</span>`;
+    btn.append(svg(ic.z), el("span", null, label));
     container.appendChild(btn);
 
     if (isDisabled) {
@@ -162,64 +186,92 @@
 
       const cls = theme === "dark" ? "zwg-dark" : "zwg-light";
 
-      overlay.innerHTML = `
-        <div class="zwg-modal ${cls}">
-          <button class="zwg-x" aria-label="Close">${ic.x}</button>
-          <div class="zwg-head">
-            <div class="zwg-icon">Z</div>
-            ${label ? `<h2 class="zwg-title">${label}</h2>` : "Pay with Zcash"}
-          </div>
+      const closeX = el("button", "zwg-x", svg(ic.x));
+      closeX.setAttribute("aria-label", "Close");
 
-          <div class="zwg-qr">
-             <img src="${apiBase}/payment-request-uri/qrcode?data=${encodeURIComponent(uri)}&size=240x240" alt="QR Code "/>
-          </div>
+      const qrImg = el("img");
+      qrImg.src = `${apiBase}/payment-request-uri/qrcode?data=${encodeURIComponent(uri)}&size=240x240`;
+      qrImg.alt = "QR Code ";
 
-          <div class="zwg-amt">
-            <p class="zwg-amt-lbl">Amount Due</p>
-            <p class="zwg-amt-val"><b>${Number(amount).toFixed(3)}</b><small>ZEC</small></p>${
-              usdValue
-                ? `<p style="margin-top:4px;font-size:12px;font-style:italic;color:var(--zwg-muted)">
-         ≈ $${usdValue} USD
-       </p>`
-                : ""
-            }
-          </div>
+      let usdEl = null;
+      if (usdValue) {
+        usdEl = el("p", null, `≈ $${usdValue} USD`);
+        usdEl.style.cssText =
+          "margin-top:4px;font-size:12px;font-style:italic;color:var(--zwg-muted)";
+      }
 
-          <div class="zwg-fld">
-            <span class="zwg-fld-lbl">Address</span>
-            <div class="zwg-fld-row">
-              <p class="zwg-fld-txt">${address}</p>
-              <button class="zwg-copy" data-c="${address}">${ic.cp}</button>
-            </div>
-          </div>
+      const addressCopy = el("button", "zwg-copy", svg(ic.cp));
+      addressCopy.dataset.c = address;
 
-          ${
-            memo
-              ? `<div class="zwg-fld">
-                   <span class="zwg-fld-lbl">Memo</span>
-                   <div class="zwg-memo">${memo}</div>
-                 </div>`
-              : ""
-          }
+      const uriInput = el("input", "zwg-fld-inp");
+      uriInput.value = uri;
+      uriInput.readOnly = true;
 
-          <div class="zwg-fld">
-            <span class="zwg-fld-lbl">Payment URI</span>
-            <div class="zwg-fld-row">
-              <input class="zwg-fld-inp" value="${uri}" readonly />
-              <button class="zwg-copy" data-c="${uri}">${ic.cp}</button>
-            </div>
-          </div>
+      const uriCopy = el("button", "zwg-copy", svg(ic.cp));
+      uriCopy.dataset.c = uri;
 
-          <div class="zwg-acts">
-            <button class="zwg-btn2 zwg-sec zwg-close">Close</button>
-            <button class="zwg-btn2 zwg-pri zwg-short">${ic.lnk} Short URL</button>
-          </div>
+      const walletLink = el("a", "zwg-link", svg(ic.ext), " Open in Wallet");
+      walletLink.href = uri;
 
-          <a href="${uri}" class="zwg-link">${ic.ext} Open in Wallet</a>
-          <footer class="zwg-footer"> ${new Date().getFullYear()} Pay with Zcash</footer>
-        </div>
-
-      `;
+      overlay.append(
+        el(
+          "div",
+          `zwg-modal ${cls}`,
+          closeX,
+          el(
+            "div",
+            "zwg-head",
+            el("div", "zwg-icon", "Z"),
+            label ? el("h2", "zwg-title", label) : "Pay with Zcash",
+          ),
+          el("div", "zwg-qr", qrImg),
+          el(
+            "div",
+            "zwg-amt",
+            el("p", "zwg-amt-lbl", "Amount Due"),
+            el(
+              "p",
+              "zwg-amt-val",
+              el("b", null, Number(amount).toFixed(3)),
+              el("small", null, "ZEC"),
+            ),
+            usdEl,
+          ),
+          el(
+            "div",
+            "zwg-fld",
+            el("span", "zwg-fld-lbl", "Address"),
+            el(
+              "div",
+              "zwg-fld-row",
+              el("p", "zwg-fld-txt", address),
+              addressCopy,
+            ),
+          ),
+          memo
+            ? el(
+                "div",
+                "zwg-fld",
+                el("span", "zwg-fld-lbl", "Memo"),
+                el("div", "zwg-memo", memo),
+              )
+            : null,
+          el(
+            "div",
+            "zwg-fld",
+            el("span", "zwg-fld-lbl", "Payment URI"),
+            el("div", "zwg-fld-row", uriInput, uriCopy),
+          ),
+          el(
+            "div",
+            "zwg-acts",
+            el("button", "zwg-btn2 zwg-sec zwg-close", "Close"),
+            el("button", "zwg-btn2 zwg-pri zwg-short", svg(ic.lnk), " Short URL"),
+          ),
+          walletLink,
+          el("footer", "zwg-footer", ` ${new Date().getFullYear()} Pay with Zcash`),
+        ),
+      );
 
       document.body.appendChild(overlay);
 
@@ -256,15 +308,19 @@
           const { shortUrl } = await res.json();
           shortBtn.innerHTML = `${ic.ok} Done`;
 
-          const fld = document.createElement("div");
-          fld.className = "zwg-fld";
-          fld.innerHTML = `
-            <span class="zwg-fld-lbl">Short URL</span>
-            <div class="zwg-fld-row">
-              <input class="zwg-fld-inp" value="${shortUrl}" readonly />
-              <button class="zwg-copy" data-c="${shortUrl}">${ic.cp}</button>
-            </div>
-          `;
+          const shortInput = el("input", "zwg-fld-inp");
+          shortInput.value = shortUrl;
+          shortInput.readOnly = true;
+
+          const shortCopy = el("button", "zwg-copy", svg(ic.cp));
+          shortCopy.dataset.c = shortUrl;
+
+          const fld = el(
+            "div",
+            "zwg-fld",
+            el("span", "zwg-fld-lbl", "Short URL"),
+            el("div", "zwg-fld-row", shortInput, shortCopy),
+          );
 
           overlay.querySelector(".zwg-acts").before(fld);
 
