@@ -81,7 +81,7 @@ export default function PaymentRequestBuilder() {
     },
   ]);
 
-  const { wasmError, wasmMmoduleRef, wasmReady, retryWasm } = useWasm();
+  const { wasmError, wasmMmoduleRef, wasmReady } = useWasm();
 
   const [loading, setLoading] = useState(false);
   const [validation, setValidation] = useState<ValidationState>({
@@ -489,7 +489,7 @@ export default function PaymentRequestBuilder() {
               : "Enter an address to continue"}
         </button>
 
-        <WasmInitStatus wasmReady={wasmReady} wasmError={wasmError} onRetry={retryWasm} />
+        <WasmInitStatus wasmReady={wasmReady} />
       </div>
     </div>
   );
