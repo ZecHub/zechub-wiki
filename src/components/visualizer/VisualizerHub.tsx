@@ -825,9 +825,10 @@ function VisualizerCard(props: CardProps) {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      <div
+      <button
+        type="button"
         onClick={() => goToVisualizer(v.id)}
-        className="cursor-pointer group"
+        className="cursor-pointer group w-full text-left rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
           <div className="flex-1 text-center">
@@ -843,7 +844,7 @@ function VisualizerCard(props: CardProps) {
             <span className="text-sm font-medium">{t.common?.clickToExplore || "Click to explore →"}</span>
           </div>
         </div>
-      </div>
+      </button>
     </motion.div>
   ));
 }
