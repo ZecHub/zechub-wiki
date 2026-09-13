@@ -76,6 +76,122 @@
     ext: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>`,
   };
 
+  // ---------- ZIP-321 request validation ----------
+  // Mirrors src/lib/zip321.ts (amount formatting, transparent-address memo
+  // prohibition, 512-byte UTF-8 memo limit, unpadded base64url memo
+  // encoding). Reimplemented locally rather than imported because this file
+  // is shipped as a single dependency-free static script with no build
+  // step. Keep in sync with src/lib/zip321.ts; parity is covered by tests.
+  const ZIP321_MAX_ZEC_SUPPLY = 21_000_000;
+  const ZIP321_MAX_MEMO_BYTES = 512;
+  const ZIP321_ZATOSHI_DECIMALS = 8;
+
+  function isTransparentZcashAddress(address) {
+    if (!address) return false;
+    const trimmed = String(address).trim();
+    return (
+      trimmed.startsWith("t1") ||
+      trimmed.startsWith("t3") ||
+      trimmed.startsWith("tm")
+    );
+  }
+
+  // Formats a ZEC amount into a valid ZIP-321 decimal string: no scientific
+  // notation, positive, at most 8 decimal places, within max supply.
+  function formatZip321Amount(amount) {
+    if (amount === undefined || amount === null || amount === "") {
+      throw new Error("Amount is required");
+    }
+
+    let str;
+    if (typeof amount === "number") {
+      if (isNaN(amount) || !isFinite(amount)) {
+        throw new Error("Invalid amount: must be a finite number");
+      }
+      if (amount <= 0) {
+        throw new Error("Invalid amount: must be greater than zero");
+      }
+      str = amount.toFixed(8);
+    } else {
+      str = String(amount).trim();
+      if (/e/i.test(str)) {
+        const num = Number(str);
+        if (isNaN(num) || !isFinite(num) || num <= 0) {
+          throw new Error("Invalid amount: must be greater than zero");
+        }
+        str = num.toFixed(8);
+      }
+    }
+
+    if (!/^\d+(\.\d+)?$/.test(str)) {
+      throw new Error("Invalid amount format: must be a positive decimal number");
+    }
+
+    const parts = str.split(".");
+    let intPart = parts[0];
+    const fracPart = parts[1] || "";
+
+    if (fracPart.length > ZIP321_ZATOSHI_DECIMALS) {
+      throw new Error(
+        `Invalid amount: exceeds maximum ${ZIP321_ZATOSHI_DECIMALS} decimal places (zatoshi precision)`,
+      );
+    }
+
+    intPart = intPart.replace(/^0+(?=\d)/, "") || "0";
+
+    const numVal = parseFloat(`${intPart}${fracPart ? "." + fracPart : ""}`);
+    if (numVal <= 0) {
+      throw new Error("Invalid amount: must be greater than zero");
+    }
+    if (numVal > ZIP321_MAX_ZEC_SUPPLY) {
+      throw new Error(
+        `Invalid amount: exceeds maximum ZEC supply (${ZIP321_MAX_ZEC_SUPPLY})`,
+      );
+    }
+
+    if (fracPart) {
+      const trimmedFrac = fracPart.replace(/0+$/, "");
+      return trimmedFrac ? `${intPart}.${trimmedFrac}` : intPart;
+    }
+
+    return intPart;
+  }
+
+  // Validates and base64url-encodes (no '=' padding) a memo per ZIP-321.
+  // Throws if the memo is attached to a transparent address or its UTF-8
+  // byte length exceeds 512.
+  function encodeZip321MemoLocal(memo, address) {
+    if (!memo) return "";
+
+    if (address && isTransparentZcashAddress(address)) {
+      throw new Error(
+        "Memos are not supported for transparent addresses in ZIP 321",
+      );
+    }
+
+    const bytes = new TextEncoder().encode(memo);
+    if (bytes.length > ZIP321_MAX_MEMO_BYTES) {
+      throw new Error(
+        `Memo exceeds ${ZIP321_MAX_MEMO_BYTES}-byte limit (actual: ${bytes.length} bytes)`,
+      );
+    }
+
+    let binary = "";
+    for (let i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+
+    const base64 = btoa(binary);
+    return base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+
+  // True for the QR encoder's own capacity failure, distinct from a ZIP-321
+  // validation error -- see the comment at its call site in open().
+  function isQrCapacityError(err) {
+    return err instanceof RangeError && /data too long/i.test(err.message || "");
+  }
+  // ---------- End ZIP-321 request validation ----------
+
   async function getZecUsdRate(zecUsdRate, apiBase) {
     const url = `${apiBase}/payment-request-uri/zcash-price-feed`;
 
@@ -133,6 +249,25 @@
       return null;
     }
 
+    // ZIP-321 validation up front: a widget that can never produce a valid
+    // payment request should not render a clickable button, matching the
+    // existing missing-address/amount behavior above.
+    let formattedAmount;
+    try {
+      formattedAmount = formatZip321Amount(amount);
+    } catch (err) {
+      console.error("[Zcash-Payment-URI-Widget] Invalid amount:", err.message);
+      return null;
+    }
+
+    let encodedMemo;
+    try {
+      encodedMemo = encodeZip321MemoLocal(memo, address);
+    } catch (err) {
+      console.error("[Zcash-Payment-URI-Widget] Invalid memo:", err.message);
+      return null;
+    }
+
     // Create trigger button
     const btn = document.createElement("button");
     btn.className = "zwg-btn";
@@ -150,13 +285,66 @@
     // Create modal overlay (hidden initially)
     let overlay = null;
 
+    // Renders a minimal error state using the same overlay/modal classes,
+    // for failures that can only be known once open() runs (currently: the
+    // QR encoder's own capacity limit -- see the try/catch below). This is
+    // defence in depth, not a substitute for the ZIP-321 validation above:
+    // it never runs for a memo/amount/address that already failed that
+    // validation, since renderZcashButton returned null before a button
+    // could even be created.
+    function openError(message) {
+      if (overlay) return;
+
+      overlay = document.createElement("div");
+      overlay.className = "zwg-overlay";
+
+      const cls = theme === "dark" ? "zwg-dark" : "zwg-light";
+
+      overlay.innerHTML = `
+        <div class="zwg-modal ${cls}">
+          <button class="zwg-x" aria-label="Close">${ic.x}</button>
+          <div class="zwg-head">
+            <div class="zwg-icon">Z</div>
+            <h2 class="zwg-title">Unable to create payment request</h2>
+          </div>
+          <p class="zwg-label">${message}</p>
+        </div>
+      `;
+
+      document.body.appendChild(overlay);
+      overlay.onclick = (e) => e.target === overlay && close();
+      overlay.querySelector(".zwg-x").onclick = close;
+    }
+
     function open() {
       if (overlay) return;
 
-      const uri = `zcash:${address}?amount=${amount}${
-        memo ? `&memo=${encodeURIComponent(memo)}` : ""
+      const uri = `zcash:${address}?amount=${formattedAmount}${
+        encodedMemo ? `&memo=${encodedMemo}` : ""
       }`;
 
+      // The vendored QR encoder (introduced alongside client-side QR
+      // generation) throws RangeError("Data too long") when a payload,
+      // even one that already passed ZIP-321 validation above, exceeds
+      // what a QR code can physically hold. That is a QR-capacity limit,
+      // not the 512-byte ZIP-321 memo rule, and is handled here rather
+      // than treated as an additional protocol limit.
+      try {
+        openModal(uri);
+      } catch (err) {
+        overlay = null;
+        if (isQrCapacityError(err)) {
+          openError(
+            "This payment request is too large to display as a QR code. Try a shorter memo.",
+          );
+        } else {
+          console.error("[Zcash-Payment-URI-Widget] Failed to open:", err);
+          openError("Something went wrong while creating this payment request.");
+        }
+      }
+    }
+
+    function openModal(uri) {
       overlay = document.createElement("div");
       overlay.className = "zwg-overlay";
 
