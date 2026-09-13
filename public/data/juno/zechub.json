@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 177,
+    "proposal_count": 178,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -7235,7 +7235,7 @@
           "title": "[Proposal] Zcash Korean Global Ambassador - Q4 2026 Expansion (Sept – Dec 2026)",
           "votes": {
             "no": "0",
-            "yes": "10",
+            "yes": "14",
             "abstain": "0"
           },
           "status": "open",
@@ -7270,7 +7270,7 @@
           "title": "Zcash Developer Sprint X Nodo Serrano(Retroactive)",
           "votes": {
             "no": "0",
-            "yes": "0",
+            "yes": "2",
             "abstain": "0"
           },
           "status": "open",
@@ -7295,6 +7295,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-09-11T07:07:04.890Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 178,
+        "proposal": {
+          "msgs": [],
+          "title": "Club Zcash Querétaro - Zcash México (October-November 2026)",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno10qxtcj94dczkt2jckkx8cs9vxs45vhu05p3x04",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1789677149903075665"
+          },
+          "description": "## Summary\n\nThis proposal aims to request funding to continue and grow the work of the “Club Zcash Querétaro” (CZQ) and mark the beginning of the transition toward “Zcash México” in order to expand and cover in-person events in the main cities of the country, such as Mexico City, Puebla, and Querétaro, with the purpose of accelerating the adoption and use of Zcash and ZEC within the Mexican context.\n\n## Context\n\nMexico is the tenth most populous country in the world with 130 million inhabitants and is the second-largest and most important economy in Latam, after Brazil, with a GDP of $2.12T, ranking 13th in the world.\n\nDespite this strategic position, Mexico faces two fundamental problems that Zcash can solve.\n\n- Privacy: Mexico is one of the countries with the highest rate of journalist kidnappings, derived from structural problems related to organized crime and drug trafficking. It also has very weak cybersecurity infrastructure, so government agencies and private companies frequently suffer security breaches and citizens’ data is sold on the dark web. Zcash represents a solution to this problem because private financial transactions can safeguard the security of certain profiles who handle sensitive information for which they may be persecuted, as well as protect the human rights of ordinary citizens.\n\n- Store of value and digital cash: In Mexico there is neither a solid investment culture nor a deep understanding of the problem of central banks and fiat money. Zcash can help here thanks to its decentralized, private approach and, in particular, its tokenomics that only allow a maximum supply of 21 million coins. The only way to understand Zcash as the solution to a problem is by recognizing that the problem exists and deciphering how Zcash fills the gap. This is the path to forming conscious and active Zcashers.\n\nThe Club Zcash Querétaro was born on 24/Nov/24 with the purpose of creating a community space around Zcash in the city of Querétaro, Mexico, Therefore, we are not a new community. At the beginning it was a closed, invitation-only community that met in members’ homes to talk about economics, privacy, and cryptocurrencies, as well as to learn how to use Zcash wallets and send and receive transactions with encrypted memos. From our 6th meetup onward we began accepting more people, and we are currently open to the general public and make public calls. We currently focus on holding high-quality events, taking care of every aesthetic and content detail. We want to focus primarily on in-person events, which generally require more time, dedication, and production. Our educational approach seeks to onboard users to Zcash while simultaneously building a community centered on a culture of privacy in Mexico.\n\nReports of our 8 meetups can be found on Free2Z and on the community forum:\n\n8th meetup: https://forum.zcashcommunity.com/t/zcash-club-queretaro-mexico-advancing-financial-privacy-in-mexico/55764/14\n\n7th meetup: https://free2z.cash/palmar/7th-meetup-zcash-club-queretaro\n\n6th meetup: https://free2z.cash/palmar/6th-meetup-of-the-zcash-club-queretaro-mexico\n\n5th meetup: https://free2z.cash/palmar/5th-meetup-of-the-zcash-club-queretaro-mexico\n\n4th meetups: https://free2z.cash/palmar/club-zcash-queretaro-mexico-4to-meetup\n\n1st - 3rd meetups: https://free2z.cash/palmar/club-zcash-queretaro-mexico-1er-aniversario\n\n\n## The team\n\nFrom the 1st to the 5th meetup the team consisted of a single person (Palmar). From the 6th meetup Eric joined the team on a voluntary basis to produce audiovisual records, and from the 8th meetup Diana HR joined the team, so we are currently 3 people residing in two of the most important cities in Mexico (Puebla and Querétaro). Below is a brief profile of each one.\n\n- Palmar: Leader and founder of Club Zcash Querétaro. Zcasher since 2022 and one of the most active Spanish-speaking voices of Zcash. He participated in the last ZCG elections (June 2026), obtaining 4th place among 14 candidates. He is in charge of strategy, administration, communications, and supervision of the work. Host and producer of the Spaces on X and the podcast, writing of articles, management of social networks, and responsible for meetups in Querétaro https://x.com/palmarzk.\n\n\n- Diana HR: Founder of EsBlockchain, current official ambassador of NYM (VPN - Mixnet) for two years, she is one of the main promoters of blockchain and privacy-related events in Puebla and Mexico. She is in charge of community management and growth, relations with universities and external communities, events, content creation, writing of articles, and host of Spaces on X. Responsible for meetups in Puebla. https://x.com/_le_cygne y https://x.com/3sBlockchain\n\n- Eric: He joined the team after attending 2 CZQ meetups. He is an artist, photographer, videographer, designer, and editor. He is in charge of all graphic aspects of the project as well as the audiovisual recording of all activities. https://www.youtube.com/@elgcinema y https://drive.google.com/drive/folders/1aResRHmddEva2jjjXsr8IqDbkCdjkiJ9\n\n## Club Zcash Querétaro - Zcash México (October-November)\n\nBelow we detail the activities we will carry out during this period:\n\n- 2 monthly meetups: One meetup will be held in Querétaro and another in Puebla each month. Eventually the funds from both events can be used to finance a single monthly event in Mexico City (or another city as long as the budget allows), since this requires higher expenses such as travel, lodging, and food. Includes venue rental, equipment, snacks and drinks, advertising, logistics, and a trivia with prizes in ZEC.\n\n- 1 monthly videopodcast: This activity consists of producing, recording, and publishing an in-person videopodcast with prominent guests related to privacy, economics, Zcash, cybersecurity, cryptocurrencies, regulation and compliance, and other related topics. In each episode a ZEC transfer will be sent to the guest and the transaction will be shown on screen. We share a reference link to give an idea of the type of podcast we will produce: https://www.youtube.com/watch?v=_dvc0GTtVMY.\n\n- 2 monthly Spaces on X: We will hold two Spaces on X (Twitter) for the Spanish-speaking community. We share the first Space we held, which had 26 attendees: https://x.com/zcashqro/status/2087252855103107360.\n\n- 2 threads per month on X: This activity consists of publishing two threads with relevant information related to Zcash.\n\n- 1 monthly article: We will write and publish one article each month related to Zcash within the Mexican context. It will be published on Free2Z or on the Zcash in Spanish website.\n\n- Social media management: X, Instagram, YouTube, Signal, and Telegram.\n\n- Merch distribution at our events: stickers, t-shirts, mugs, etc.\n\n- Content creation: All photo and video records of our in-person activities (meetups and podcast) will be used for content creation and published on Instagram, X, and YouTube. In addition, we manage a Telegram group where we hold community trivias. We share some examples of content published on X: https://x.com/zcashqro/status/2076686479217090961, https://x.com/zcashqro/status/2096624740790108300, https://x.com/zcashqro/status/2095527864921714702, https://x.com/zcashqro/status/2094842832993313196, https://x.com/zcashqro/status/2087946589725774175.\n\n- Luma management for our events: https://luma.com/ZcashMx?period=past.\n\n- Zcash México will be part of “México Tech Week” on October 31, 2026, the most important event in the country that brings together Tech, AI, Blockchain, and more. You can see our activity “Zcash Privacy Gathering” and the program by going to https://www.mexicotechweek.mx/events (Mexico City) and selecting the date of October 31. However, this event falls outside this grant since we will seek funding through another way.\n\n## Budget\n\nBelow we detail the budget required for the development of our activities:\n\n- 2 meetups: $650 monthly\n- 1 videopodcast: $400 monthly.\n- 2 Spaces on X: $50 monthly.\n- 2 threads on X: $25 monthly.\n- 1 article: $25 monthly.\n- Content creation: $50 monthly.\n- Merch: $300 monthly.\n- Team compensation: $1,400 monthly.\n\nTotal per month: $2,900.\n\nTotal grant: $5,800.\n\nNote: Funds are required at the beginning of the month to cover operating expenses.\n\n## Conclusion\n\nWe are committed to sharing a monthly report featuring social media metrics, in-person event attendance figures, and photo and video documentation. To date, we have operated on a small scale with very limited funding, yet we have made an impact on over 30 people who have downloaded Zodl and Zingo wallets. Our X account was created in May and has 103 organic followers, including several leaders in the Mexican blockchain space.\n\nAs a team we consider that we have operational capacity, experience and understanding of Zcash necessary to successfully carry out all our activities and increase the conscious adoption of Zcash in Mexico. For this, funding is important as it will allow us to scale and dedicate more time to the development of the activities.\n\nThank you all.\n\n¡Vamos!",
+          "total_power": "23",
+          "start_height": 41699506,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-09-12T20:32:29.903Z"
       }
     ]
   },
