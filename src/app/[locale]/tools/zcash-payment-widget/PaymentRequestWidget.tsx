@@ -57,7 +57,7 @@ const Validation = {
 export default function PaymentRequestWidget() {
   const [theme, setTheme] = useState("light");
   const [loading, setLoading] = useState(false);
-  const { wasmMmoduleRef, wasmReady, wasmError, retryWasm } = useWasm();
+  const { wasmMmoduleRef, wasmReady } = useWasm();
   const [isValidating, setIsValidating] = useState(false);
   const [currency, setCurrency] = useState("usd");
   const [priceFeedDataSource, setPriceFeedDataSource] = useState({
@@ -376,7 +376,7 @@ export default function PaymentRequestWidget() {
               : ""}
           </div>
 
-          <WasmInitStatus wasmReady={wasmReady} wasmError={wasmError} onRetry={retryWasm} />
+          <WasmInitStatus wasmReady={wasmReady} />
         </div>
       </form>
 
