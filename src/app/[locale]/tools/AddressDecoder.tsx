@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+import { useWasm } from './hooks/useWasm';
 
 /*
  * UNIFIED ADDRESS DECODER
@@ -15,17 +16,6 @@ interface AddressReceivers {
   sapling: string | null;
   orchard: string | null;
   tex: string | null;
-}
-
-interface ZaddrModuleAny {
-  initWasm?: () => Promise<void>;
-  isZcashAddressValid?: (addr: string) => boolean;
-  getZcashAddressType?: (addr: string) => string;
-  getAddressReceivers?: (addr: string) => AddressReceivers;
-  is_valid_zcash_address?: (addr: string) => boolean;
-  get_zcash_address_type?: (addr: string) => string;
-  get_address_receivers?: (addr: string) => AddressReceivers;
-  [key: string]: unknown;
 }
 
 function QRCode({ value, size = 176 }: { value: string; size?: number }) {
@@ -64,43 +54,11 @@ export default function AddressDecoder() {
   const [receivers, setReceivers] = useState<Array<{ key: string; address: string }>>([]);
   const [addressType, setAddressType] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [wasmReady, setWasmReady] = useState(false);
-  const [wasmError, setWasmError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [selectedQR, setSelectedQR] = useState<string | null>(null);
 
-  const moduleRef = useRef<ZaddrModuleAny | null>(null);
-
-  /* ── Load WASM on mount ── */
-  useEffect(() => {
-    let cancelled = false;
-
-    async function loadWasm() {
-      try {
-        const mod: ZaddrModuleAny = await import('@elemental-zcash/zaddr_wasm_parser');
-
-        if (typeof mod.initWasm === 'function') {
-          await mod.initWasm();
-        }
-
-        if (!cancelled) {
-          moduleRef.current = mod;
-          setWasmReady(true);
-        }
-      } catch (err: unknown) {
-        console.error('[AddressDecoder] WASM load failed:', err);
-        if (!cancelled) {
-          setWasmError(err instanceof Error ? err.message : 'Failed to load WASM module');
-        }
-      }
-    }
-
-    loadWasm();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const { wasmError, wasmMmoduleRef: moduleRef, wasmReady, wasmState, retryWasm } = useWasm();
 
   /* ── Decode when input changes ── */
   const decode = useCallback(() => {
@@ -152,7 +110,7 @@ export default function AddressDecoder() {
     } finally {
       setLoading(false);
     }
-  }, [input]);
+  }, [input, moduleRef]);
 
   useEffect(() => {
     if (!wasmReady) return;
@@ -174,8 +132,8 @@ export default function AddressDecoder() {
     <div className="w-full space-y-4">
       {/* WASM load error */}
       {wasmError && (
-        <div className="rounded-xl bg-amber-500/5 border border-amber-500/15 px-4 py-3.5 space-y-2.5">
-          <p className="text-[13px] text-amber-400 font-semibold">Failed to initialize WASM decoder</p>
+        <div role="alert" className="rounded-xl bg-amber-500/5 border border-amber-500/15 px-4 py-3.5 space-y-2.5">
+          <p className="text-[13px] text-amber-400 font-semibold">Address decoder unavailable</p>
           <p className="text-[12px] text-zinc-500 dark:text-[#5a6a7e] leading-relaxed">
             This tool requires{' '}
             <code className="text-[#F4B728]/80 text-[11px]">@elemental-zcash/zaddr_wasm_parser</code> to
@@ -189,12 +147,15 @@ export default function AddressDecoder() {
               {wasmError}
             </pre>
           </details>
+          <button type="button" onClick={retryWasm} className="min-h-11 rounded-lg bg-[#F4B728] px-4 py-2 text-xs font-bold text-[#151e29] hover:bg-[#ffd15c] focus:outline-none focus:ring-2 focus:ring-[#F4B728] focus:ring-offset-2 focus:ring-offset-[#151e29]">
+            Retry loading decoder
+          </button>
         </div>
       )}
 
       {/* WASM ready */}
       {wasmReady && (
-        <div className="flex items-center gap-2 ml-1">
+        <div role="status" aria-live="polite" className="flex items-center gap-2 ml-1">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-[11px] font-mono text-emerald-400/70">WASM decoder ready</span>
         </div>
@@ -202,8 +163,9 @@ export default function AddressDecoder() {
 
       {/* Input */}
       <div>
-        <label className={LABEL_CLASS}>Zcash Address</label>
+        <label htmlFor="zcash-address-decoder-input" className={LABEL_CLASS}>Zcash Address</label>
         <input
+          id="zcash-address-decoder-input"
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -215,15 +177,21 @@ export default function AddressDecoder() {
                 : 'Loading WASM decoder...'
           }
           disabled={!wasmReady}
+          aria-describedby="zcash-address-help"
+          autoComplete="off"
+          spellCheck={false}
           className={`${INPUT_CLASS} ${!wasmReady ? 'opacity-50 cursor-not-allowed' : ''}`}
         />
+        <p id="zcash-address-help" className="mt-2 px-1 text-xs text-zinc-400 dark:text-[#5a6a7e]">
+          Supports transparent, Sapling, Unified, Orchard, and TEX addresses.
+        </p>
       </div>
 
       {/* Loading WASM */}
       {!wasmReady && !wasmError && (
-        <div className="flex items-center gap-2.5 px-1">
+        <div role="status" aria-live="polite" className="flex items-center gap-2.5 px-1">
           <div className="w-4 h-4 border-2 border-[#F4B728]/20 border-t-[#F4B728] rounded-full animate-spin" />
-          <span className="text-[12px] text-zinc-400 dark:text-[#4a5a6e]">Initializing WASM decoder...</span>
+          <span className="text-[12px] text-zinc-400 dark:text-[#4a5a6e]">{wasmState === 'retrying' ? 'Retrying WASM decoder...' : 'Initializing WASM decoder...'}</span>
         </div>
       )}
 
@@ -275,36 +243,62 @@ export default function AddressDecoder() {
             return (
               <div
                 key={r.key}
-                onClick={() => setSelectedQR(isOpen ? null : r.key)}
                 className={`rounded-xl border transition-all duration-200 cursor-pointer ${
                   isOpen
                     ? 'bg-zinc-50 dark:bg-[#0f1720] border-[#F4B728]/25'
                     : 'bg-zinc-50 dark:bg-[#111b27] border-zinc-200 dark:border-[#1e2d3d] hover:border-zinc-300 dark:hover:border-[#2d3e50]'
                 }`}
               >
-                <div className="flex items-center gap-3 px-4 py-3">
-                  <span
-                    className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-lg text-base"
-                    style={{ backgroundColor: `${meta.accent}12`, color: meta.accent }}
+                <div className="flex items-center gap-2 px-3 py-3 sm:gap-3 sm:px-4">
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-label={`${isOpen ? 'Hide' : 'Show'} QR code for ${meta.label}`}
+                    onClick={() => setSelectedQR(isOpen ? null : r.key)}
+                    className="flex min-w-0 flex-1 items-center gap-3 rounded-lg text-left focus:outline-none focus:ring-2 focus:ring-[#F4B728] focus:ring-inset"
                   >
-                    {meta.icon}
-                  </span>
+                    <span
+                      className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg text-base"
+                      style={{ backgroundColor: `${meta.accent}12`, color: meta.accent }}
+                      aria-hidden="true"
+                    >
+                      {meta.icon}
+                    </span>
 
-                  <div className="flex-1 min-w-0">
-                    <div className="text-[13px] font-semibold" style={{ color: meta.accent }}>
-                      {meta.label}
-                    </div>
-                    <div className="text-[11px] font-mono text-zinc-400 dark:text-[#3d4e60] truncate mt-0.5">
-                      {r.address}
-                    </div>
-                  </div>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[13px] font-semibold" style={{ color: meta.accent }}>
+                        {meta.label}
+                      </span>
+                      <span className="mt-0.5 block truncate text-[11px] font-mono text-zinc-400 dark:text-[#3d4e60]">
+                        {r.address}
+                      </span>
+                    </span>
+
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                      className={`flex-shrink-0 text-zinc-300 dark:text-[#2d3e50] transition-transform duration-200 stroke-current ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </button>
 
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       copy(r.address, r.key);
                     }}
-                    className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all duration-200 border ${
+                    type="button"
+                    aria-label={`Copy ${meta.label} address`}
+                    className={`min-h-11 flex-shrink-0 rounded-lg border px-3 py-1.5 text-[11px] font-bold transition-all duration-200 ${
                       isCopied
                         ? 'bg-[#F4B728] border-[#F4B728] text-[#151e29]'
                         : 'bg-transparent border-zinc-200 dark:border-[#1e2d3d] text-zinc-400 dark:text-[#4a5a6e] hover:border-[#F4B728]/50 hover:text-[#F4B728]'
@@ -312,21 +306,6 @@ export default function AddressDecoder() {
                   >
                     {isCopied ? '✓ Copied' : 'Copy'}
                   </button>
-
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className={`flex-shrink-0 text-zinc-300 dark:text-[#2d3e50] transition-transform duration-200 stroke-current ${
-                      isOpen ? 'rotate-180' : ''
-                    }`}
-                  >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
                 </div>
 
                 {isOpen && (

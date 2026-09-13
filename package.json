@@ -3,14 +3,14 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/copy-pdf-worker.mjs",
+    "predev": "node scripts/copy-pdf-worker.mjs && node scripts/copy-zaddr-wasm.mjs",
     "dev": "node --max-old-space-size=4096 node_modules/next/dist/bin/next dev --turbo",
-    "prebuild": "node scripts/copy-pdf-worker.mjs && tsx scripts/generate-llms-txt.mjs",
+    "prebuild": "node scripts/copy-pdf-worker.mjs && node scripts/copy-zaddr-wasm.mjs && tsx scripts/generate-llms-txt.mjs",
     "build": "node --max-old-space-size=4096 node_modules/next/dist/bin/next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "test:coverage": "jest --coverage",
-    "test": "jest --watch",
+    "test": "jest --runInBand && node scripts/test-zaddr-wasm.mjs",
     "test:e2e": "npx playwright test",
     "test:e2e:ui": "npx playwright test --ui"
   },

@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: 'Zcash Developer Tools | ZecHub',
   description:
-    'ZEC/Zats converter, ZIP-321 payment request builder, and unified address decoder.',
+    'ZEC/Zats converter, ZIP-321 payment request builder, address decoder, and testnet faucet.',
   openGraph: {
     title: 'Zcash Developer Tools',
     description:
@@ -24,7 +24,7 @@ export default function ToolsPage() {
         aria-hidden
       />
 
-      <div className="relative max-w-xl mx-auto px-4 sm:px-6 pt-12 pb-16 sm:pt-16 sm:pb-24">
+      <div className="relative mx-auto max-w-xl px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-24 lg:max-w-4xl">
         <div className="text-center mb-8 sm:mb-10">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-[#F4B728] to-[#d9a520] shadow-lg shadow-[#F4B728]/15 mb-4">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
