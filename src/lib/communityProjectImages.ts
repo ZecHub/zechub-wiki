@@ -18,6 +18,8 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Zectastic": "/community-projects/zectastic.png",
   "Zec App": "/community-projects/zec-app.png",
   "PGPZ Community": "/community-projects/pgpz.png",
+  "Gleyo": "/community-projects/gleyo.png",
+  "Zcash Grants Hub": "/community-projects/zcash-grants-hub.png",
 
   // Wallets and Payment Tools
   "Cipherpay": "/community-projects/Cipherpay.png",
@@ -26,7 +28,7 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Overpay.com": "/community-projects/overpay.png",
   "Zafu Wallet": "/community-projects/zafu.png",
   "ZGo": "/community-projects/z-go.png",
-  "Zimppy": "/community-projects/zimmpy.png",
+  "Zimppy": "/community-projects/zimppy.png",
   "Dizzy Wallet": "/community-projects/dizzy-wallet.png",
   "ZODL": "/community-projects/zodl.png",
   "Noir Wallet": "/community-projects/noir-wallet.png",
@@ -35,6 +37,11 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "MonteZecret": "/community-projects/montezecret.png",
   "Gem Wallet": "/community-projects/gem-wallet.png",
   "TIPZ": "/community-projects/tipz.png",
+  "CYZE": "/community-projects/cyze.png",
+  "Pendrake Watch": "/community-projects/pendrake-watch.png",
+  "Zakura": "/community-projects/zakura.png",
+  "Zipher": "/community-projects/zipher.png",
+  "Vizor": "/community-projects/vizor.png",
 
   // Explorers, Data, and Network Dashboards
   "CipherScan": "/community-projects/CipherScan.png",
@@ -47,6 +54,9 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "ZecStats": "/community-projects/zecstats.jpg",
   "zecprice": "/community-projects/zecprice.png",
   "Zlink": "/community-projects/zlink.png",
+  "Zecmarket": "/community-projects/zecmarket.png",
+  "Zecsite": "/community-projects/zecsite.png",
+  "ZEC-OS": "/community-projects/zec-os.png",
 
   // Identity, Names, and User Experience
   "ZcashNames": "/community-projects/zcashNames.png",
@@ -54,6 +64,9 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Zentat": "/community-projects/zentat.png",
   "Shielded Wall": "/community-projects/shielded-wall.png",
   "Ztrash": "/community-projects/ztrash.png",
+  "LiveZEC": "/community-projects/livezec.png",
+  "ZecLedger": "/community-projects/zecledger.png",
+  "Authentication with ZcashMe": "/community-projects/zcashme-auth.png",
 
   // Developer, Testing, and Infrastructure
   "Ziggurat": "/community-projects/ziggurat.png",
@@ -61,6 +74,8 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Zebra Coverage-Guided Fuzzing Infrastructure": "/community-projects/zebra-fuzzing.png",
   "Frost": "/community-projects/frost.png",
   "MonteZcret Benchmark": "/community-projects/montezcret-benchmark.png",
+  "Zaino Indexer": "/community-projects/zaino.png",
+  "Zecd": "/community-projects/zecd.png",
 
   // Wider Applications Utilizing Zcash
   "aftok": "/community-projects/aftok.png",
@@ -70,10 +85,17 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "BazaarSwap": "/community-projects/bazaarswap.jpg",
   "DCRDEX": "/community-projects/dcrdex.png",
   "Brave Wallet": "/community-projects/brave-wallet.png",
+  "Nano-GPT": "/community-projects/nano-gpt.png",
+  "zk.poker": "/community-projects/zk-poker.png",
+  "ZcashToCash": "/community-projects/zcashtocash.png",
 
   // Organizations & Labs
   "Shielded Labs": "/community-projects/Sl.png",
   "Cypherpunk": "/community-projects/cypherPunk.png",
+  "ZecBuy": "/community-projects/zecbuy.png",
+  "0xRamp Labs": "/community-projects/0xramp-labs.png",
+  "Zcash Labs": "/community-projects/zcash-labs.png",
+  "Zero Indexer": "/community-projects/zero-indexer.png",
 };
 
 export function attachImages(
