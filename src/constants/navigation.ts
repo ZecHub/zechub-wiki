@@ -259,7 +259,7 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/free2z-live",
       },
       {
-        name: "ZFAV Club",
+        name: "ZKAV Club",
         path: "/zfav-club/guides-for-creators",
         icon: AudioVideo,
       },

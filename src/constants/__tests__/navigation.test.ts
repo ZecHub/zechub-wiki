@@ -22,10 +22,10 @@ describe("navigation section entry points", () => {
     );
   });
 
-  it("links ZFAV Club from the Guides menu", () => {
+  it("links the ZKAV Club creator guides from the Guides menu", () => {
     expect(findSection("Guides")?.links).toContainEqual(
       expect.objectContaining({
-        name: "ZFAV Club",
+        name: "ZKAV Club",
         path: "/zfav-club/guides-for-creators",
       }),
     );
