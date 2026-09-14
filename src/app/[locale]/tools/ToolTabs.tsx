@@ -121,7 +121,7 @@ export default function ToolTabs() {
               onClick={() => selectTab(tab.id)}
               aria-current={isActive ? "page" : undefined}
               className={`
-                w-[100px] min-w-[88px] flex-none md:min-w-0 md:flex-1 relative px-2 md:px-3 py-2 md:py-2.5 rounded-lg text-center md:text-left text-[16px] md:text-sm font-semibold
+                w-[100px] md:w-full min-w-[88px] flex-none md:min-w-0 md:flex-1 relative px-2 md:px-3 py-2 md:py-2.5 rounded-lg text-center md:text-left text-[16px] md:text-sm font-semibold
                 transition-all duration-200 ease-out
                 ${
                   isActive
