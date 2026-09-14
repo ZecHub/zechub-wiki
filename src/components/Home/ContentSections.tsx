@@ -34,7 +34,7 @@ const ContentSections = () => {
         ]}
       />
 
-      {/* Hackathon Section */}
+      {/* Zcash.me Section */}
       <InfoCard
         id="zcashme"
         reverse={true}
@@ -54,6 +54,7 @@ const ContentSections = () => {
           },
         ]}
       />
+
       {/* Global Ambassadors Section */}
       <InfoCard
         id="global-ambassadors"
@@ -78,22 +79,23 @@ const ContentSections = () => {
           },
         ]}
       />
-      {/* Shielded Newsletter Section */}
+
+      {/* ZecHub Visualizer (Replaced Shielded Newsletter) */}
       <InfoCard
-        id="shielded-newsletter"
+        id="tech-visualizer"
         reverse={true}
-        title={t.home?.sections?.newsletter?.title || "Shielded Newsletter"}
+        title={t.home?.sections?.visualizer?.title || "ZecHub Visualizer"}
         description={
-          t.home?.sections?.newsletter?.description ||
-          "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!"
+          t.home?.sections?.visualizer?.description ||
+          "Explore real-time data, network activity, and visual analytics for the Zcash ecosystem directly through interactive charts and transaction flows."
         }
-        image="/zcash_newsletter.gif"
-        imageLight="/explore/light/shielded-newsletter.png"
-        imageDark="/explore/dark/shielded-newsletter.png"
+        image="/tech_visualizer.png"
+        imageLight="/explore/light/visualizer.png"
+        imageDark="/explore/dark/visualizer.png"
         links={[
           {
-            href: "/newsletter",
-            label: t.home?.sections?.newsletter?.link || "Subscribe",
+            href: "https://visualizer.zechub.wiki",
+            label: t.home?.sections?.visualizer?.link || "Open Visualizer",
             primary: true,
           },
         ]}
@@ -119,10 +121,28 @@ const ContentSections = () => {
         ]}
       />
 
+      {/* ZecMap Section (With Provided Logo Image Asset) */}
+      <InfoCard
+        id="zecmap"
+        reverse={true}
+        title={t.home?.sections?.zecmap?.title || "ZecMap"}
+        description={
+          t.home?.sections?.zecmap?.description ||
+          "Discover global merchants, community hubs, and physical locations accepting Zcash around the world through an interactive community map."
+        }
+        image="https://github.com/user-attachments/assets/7a860584-4cef-497a-ad17-24dbdd0792d7"
+        links={[
+          {
+            href: "https://map.zechub.wiki",
+            label: t.home?.sections?.zecmap?.link || "Explore ZecMap",
+            primary: true,
+          },
+        ]}
+      />
+
       {/* Pay with Zcash Section */}
       <InfoCard
         id="pay-with-zcash"
-        reverse={true}
         title={t.home?.sections?.payWithZcash?.title || "Pay with Zcash"}
         description={
           t.home?.sections?.payWithZcash?.description ||
@@ -143,8 +163,11 @@ const ContentSections = () => {
           },
         ]}
       />
+
+      {/* Hackathon Section */}
       <InfoCard
         id="hackathon"
+        reverse={true}
         title={t.home?.sections?.hackathon?.title || "ZecHub Hackathon Archive"}
         description={
           t.home?.sections?.hackathon?.description ||
