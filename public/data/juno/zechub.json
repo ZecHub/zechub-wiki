@@ -7238,7 +7238,7 @@
             "yes": "14",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "executed",
           "proposer": "juno18cq4kpcgyp3k5nelaq52mlwcfqk9v6dhs00ytt",
           "threshold": {
             "threshold_quorum": {
@@ -7259,7 +7259,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-09-09T11:08:22.334Z"
+        "createdAt": "2026-09-09T11:08:22.334Z",
+        "completedAt": "2026-09-14T11:53:34.000Z",
+        "executedAt": "2026-09-14T11:53:34.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7270,8 +7272,8 @@
           "title": "Zcash Developer Sprint X Nodo Serrano(Retroactive)",
           "votes": {
             "no": "0",
-            "yes": "2",
-            "abstain": "0"
+            "yes": "3",
+            "abstain": "2"
           },
           "status": "open",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
@@ -7305,7 +7307,7 @@
           "title": "Club Zcash Querétaro - Zcash México (October-November 2026)",
           "votes": {
             "no": "0",
-            "yes": "0",
+            "yes": "4",
             "abstain": "0"
           },
           "status": "open",
