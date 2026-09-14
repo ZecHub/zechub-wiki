@@ -53,6 +53,7 @@ next-env.d.ts
 /playwright/.cache/
 
 
+/public/wasm/
 
 src/lib/chart/networks.ts
 src/lib/chart/pool-color-map.ts
