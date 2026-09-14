@@ -24,7 +24,7 @@ export default function ToolsPage() {
         aria-hidden
       />
 
-      <div className="relative max-w-xl mx-auto px-4 sm:px-6 pt-12 pb-16 sm:pt-16 sm:pb-24">
+      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 sm:pt-16 sm:pb-24">
         <div className="text-center mb-8 sm:mb-10">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-[#F4B728] to-[#d9a520] shadow-lg shadow-[#F4B728]/15 mb-4">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -52,7 +52,7 @@ export default function ToolsPage() {
             Zcash Tools
           </h1>
           <p className="mt-2 text-sm sm:text-base text-zinc-500 dark:text-[#5a6a7e] max-w-sm mx-auto">
-            Convert, build payment requests &amp; decode addresses.
+            Convert, build payment requests, decode addresses &amp; claim testnet ZEC.
           </p>
         </div>
 

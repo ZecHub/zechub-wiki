@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import AddressDecoder from "./AddressDecoder";
 import PaymentRequestBuilder from "./PaymentRequestBuilder";
 import PaymentRequestWidget from "./zcash-payment-widget/PaymentRequestWidget";
+import Faucet from "./Faucet";
 
 // Tab ids double as the public URL slug, e.g. /tools?tool=address-decoder.
 // Renaming one changes a shareable link, so treat them as part of the API.
@@ -12,7 +13,8 @@ type TabId =
   | "converter"
   | "payment-request"
   | "payment-request-widget"
-  | "address-decoder";
+  | "address-decoder"
+  | "faucet";
 
 interface Tab {
   id: TabId;
@@ -55,6 +57,14 @@ const TABS: Tab[] = [
     badge: "Unified Address",
     title: "Address Decoder",
     subtitle: "Extract transparent, sapling & orchard receivers from a UA",
+  },
+  {
+    id: "faucet",
+    label: "Testnet Faucet",
+    shortLabel: "Faucet",
+    badge: "Testnet",
+    title: "Zcash Testnet Faucet",
+    subtitle: "Request testnet ZEC and track your claim until confirmation",
   },
 ];
 
@@ -101,7 +111,8 @@ export default function ToolTabs() {
   return (
     <div>
       {/* Tab bar */}
-      <div className="flex bg-zinc-100 dark:bg-[#0f1720] rounded-xl p-1 border border-zinc-200 dark:border-[#1e2d3d] mb-6">
+      <div className="flex w-full flex-col md:flex-row gap-2 md:gap-5">
+      <div className="flex w-full shrink-0 flex-row overflow-x-auto md:w-52 md:flex-col md:overflow-visible bg-zinc-100 dark:bg-[#0f1720] rounded-xl p-1 border border-zinc-200 dark:border-[#1e2d3d] self-start">
         {TABS.map((tab) => {
           const isActive = active === tab.id;
           return (
@@ -110,7 +121,7 @@ export default function ToolTabs() {
               onClick={() => selectTab(tab.id)}
               aria-current={isActive ? "page" : undefined}
               className={`
-                flex-1 relative py-2.5 sm:py-3 rounded-lg text-[13px] sm:text-sm font-semibold
+                w-[100px] min-w-[88px] flex-none md:min-w-0 md:flex-1 relative px-2 md:px-3 py-2 md:py-2.5 rounded-lg text-center md:text-left text-[16px] md:text-sm font-semibold
                 transition-all duration-200 ease-out
                 ${
                   isActive
@@ -119,15 +130,15 @@ export default function ToolTabs() {
                 }
               `}
             >
-              <span className="hidden sm:inline">{tab.label}</span>
-              <span className="sm:hidden">{tab.shortLabel}</span>
+              <span className="hidden md:inline">{tab.label}</span>
+              <span className="md:hidden">{tab.shortLabel}</span>
             </button>
           );
         })}
       </div>
 
       {/* Card */}
-      <div className="rounded-2xl border border-zinc-200 dark:border-[#1e2d3d] bg-white dark:bg-[#151e29] overflow-hidden shadow-sm dark:shadow-none">
+      <div className="min-w-0 flex-1 rounded-2xl border border-zinc-200 dark:border-[#1e2d3d] bg-white dark:bg-[#151e29] overflow-hidden shadow-sm dark:shadow-none">
         {/* Card header */}
         <div className="px-5 pt-5 pb-4 sm:px-7 sm:pt-7 sm:pb-5 border-b border-zinc-100 dark:border-[#1e2d3d]">
           <span className="inline-block text-[10px] font-bold uppercase tracking-[0.12em] text-[#F4B728] bg-[#F4B728]/10 border border-[#F4B728]/15 px-2 py-1 rounded mb-3">
@@ -147,7 +158,9 @@ export default function ToolTabs() {
           {active === "payment-request" && <PaymentRequestBuilder />}
           {active === "payment-request-widget" && <PaymentRequestWidget />}
           {active === "address-decoder" && <AddressDecoder />}
+          {active === "faucet" && <Faucet />}
         </div>
+      </div>
       </div>
     </div>
   );
