@@ -26,7 +26,10 @@ export default function ZecToZatsConverter() {
         setBottomValue(Math.round(num * ZEC_TO_ZATS).toString());
       }
     } else {
-      val = val.replace(/[^0-9]/g, '');
+      // Remove display grouping only; reject input that would change amount
+      // if a decimal point, sign, or other character were silently stripped.
+      val = val.replace(/,/g, '');
+      if (!/^\d*$/.test(val)) return;
       setTopValue(val);
       const num = parseFloat(val) || 0;
       setBottomValue((num / ZEC_TO_ZATS).toFixed(8));
@@ -42,7 +45,8 @@ export default function ZecToZatsConverter() {
         setTopValue(Math.round(num * ZEC_TO_ZATS).toString());
       }
     } else {
-      val = val.replace(/[^0-9]/g, '');
+      val = val.replace(/,/g, '');
+      if (!/^\d*$/.test(val)) return;
       setBottomValue(val);
       const num = parseFloat(val) || 0;
       setTopValue((num / ZEC_TO_ZATS).toFixed(8));
