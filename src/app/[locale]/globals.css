@@ -100,12 +100,13 @@
   --radius-sm: calc(var(--radius) - 4px);
 }
 
-*:focus {
-  outline: none !important;
+*:focus:not(:focus-visible) {
+  outline: none;
 }
 
 *:focus-visible {
-  outline: none !important;
+  outline: 2px solid #f4b728;
+  outline-offset: 2px;
 }
 
 .btn-brand {
