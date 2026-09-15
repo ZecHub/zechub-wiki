@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import * as bindings from "@elemental-zcash/zaddr_wasm_parser/zaddr_wasm_parser_bg.js";
 
 export interface ZaddrModuleAny {
   initWasm?: () => Promise<void>;
@@ -19,6 +20,22 @@ export interface AddressReceivers {
   tex: string | null;
 }
 
+let wasmPromise: Promise<ZaddrModuleAny> | null = null;
+function loadWasmModule() {
+  if (wasmPromise) return wasmPromise;
+  wasmPromise = (async () => {
+    const response = await fetch("/wasm/zaddr_wasm_parser_bg.wasm");
+    if (!response.ok) throw new Error(`WASM asset request failed (${response.status})`);
+    const { instance } = await WebAssembly.instantiate(await response.arrayBuffer(), {
+      "./zaddr_wasm_parser_bg.js": bindings,
+    });
+    bindings.__wbg_set_wasm(instance.exports);
+    (instance.exports as WebAssembly.Exports & { __wbindgen_start: () => void }).__wbindgen_start();
+    return bindings as ZaddrModuleAny;
+  })().catch((error) => { wasmPromise = null; throw error; });
+  return wasmPromise;
+}
+
 export function useWasm() {
   const [wasmReady, setWasmReady] = useState(false);
   const [wasmError, setWasmError] = useState<string | null>(null);
@@ -31,12 +48,7 @@ export function useWasm() {
 
     async function loadWasm() {
       try {
-        const mod: ZaddrModuleAny =
-          await import("@elemental-zcash/zaddr_wasm_parser");
-
-        if (typeof mod.initWasm === "function") {
-          await mod.initWasm();
-        }
+        const mod = await loadWasmModule();
 
         if (!cancelled) {
           wasmMmoduleRef.current = mod;
