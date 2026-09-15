@@ -41,6 +41,13 @@ const CustodialExchangesClient: React.FC = () => {
         </Link>
       </div>
 
+      <p className="mb-8 max-w-4xl text-sm text-zinc-600 dark:text-zinc-400">
+        Ironwood is the shielded pool that arrived with the July 2026 network upgrade.
+        Exchanges that only handle transparent t-addresses never touch it, so those are
+        marked not applicable. Where an exchange does handle shielded addresses but has
+        not said which pool it uses, the line says so rather than guessing.
+      </p>
+
       <div className="grid grid-cols-1 sm:grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-6">
         {exchangeList.map((exchange) => (
           <ExchangeCard
@@ -50,6 +57,7 @@ const CustodialExchangesClient: React.FC = () => {
             pairs={exchange.pairs}
             support={exchange.support}
             depositTime={exchange.depositTime}
+            ironwood={exchange.ironwood}
             logo={exchange.logo}
             altText={exchange.altText}
           />
