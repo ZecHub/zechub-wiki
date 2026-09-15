@@ -29,6 +29,7 @@ import { BuildShieldedTransactionVisualizer } from "./BuildShieldedTransaction";
 import CrosslinkProtocolVisualizer from "./CrosslinkProtocol";
 import { FrostMultisigVisualizer } from "./frost-multisig";
 import { ZkavClubVisualizer } from "./zkav-club";
+import { visualizerCardCopy } from "./visualizerCardCopy";
 
 const QUIZ_BEGINNER: QuizQuestion[] = [
   {
@@ -816,7 +817,9 @@ function VisualizerCard(props: CardProps) {
   const { data, goToVisualizer, startDelay = 0.3 } = props;
   const { t } = useLanguage();
 
-  return data.map((v, index) => (
+  return data.map((v, index) => {
+    const copy = visualizerCardCopy(t, v);
+    return (
     <motion.div
       key={v.id}
       initial={{ opacity: 0, y: 20 }}
@@ -832,10 +835,10 @@ function VisualizerCard(props: CardProps) {
         <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
           <div className="flex-1 text-center">
             <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
-              {t?.components?.visualizer?.[v.id]?.title ?? v.title}
+              {copy.title}
             </h3>
             <p className="text-muted-foreground group-hover:text-muted-foreground transition-colors">
-              {t?.components?.visualizer?.[v.id]?.description ?? v.description}
+              {copy.description}
             </p>
           </div>
 
@@ -845,5 +848,6 @@ function VisualizerCard(props: CardProps) {
         </div>
       </div>
     </motion.div>
-  ));
+    );
+  });
 }
