@@ -8,8 +8,11 @@ type WidgetStatus = "loading" | "ready" | "error";
 
 const scriptSrc = config.env.NEXT_PUBLIC_API_BASE_URL_EMBED_CODE;
 export function ZcashPaymentURI(props: Props) {
+  const { address, amount, zecUsdRate, label, theme, memo, apiBase, disabled } =
+    props;
+
   const containerRef = useRef<HTMLDivElement>(null);
-  const instanceRef = useRef<ZcashPaymentURIInstance | null>(null);
+  const instanceRef = useRef<ZcashPaymentURIInstance | null | undefined>(null);
   const id = useId();
 
   const [status, setStatue] = useState<WidgetStatus>("loading");
@@ -33,21 +36,36 @@ export function ZcashPaymentURI(props: Props) {
         // Cleanup existing instance
         instanceRef.current?.destroy();
 
-        instanceRef.current = window.renderZcashButton(
+        instanceRef.current = await window.renderZcashButton(
           `#${containerRef.current!.id}`,
           {
-            ...props,
+            address,
+            amount,
+            zecUsdRate,
+            label,
+            theme,
+            memo,
+            apiBase,
+            disabled,
             target: `#${containerRef.current!.id}`,
           },
         );
 
-        setStatue("ready");
-      } catch (err: any) {
+        if (mounted) setStatue("ready");
+      } catch (err) {
+        // err may be `undefined` (loadZcashPaymentUriWidget's error-event
+        // listener rejects with no reason) or an ErrorEvent/non-Error value
+        // (script.onerror), never assume it has a `.message`.
+        const message = err instanceof Error ? err.message : String(err);
         console.error("[Zcash Payment Widget] Loading failed:", err);
 
-        logZcashPaymentWidgetEvent("zcash_payment_widget_load_failed", {
-          error: err.message,
-        });
+        try {
+          logZcashPaymentWidgetEvent("zcash_payment_widget_load_failed", {
+            error: message,
+          });
+        } catch (logErr) {
+          console.error("[Zcash Payment Widget] Failed to log event:", logErr);
+        }
 
         if (mounted) setStatue("error");
       }
@@ -59,7 +77,7 @@ export function ZcashPaymentURI(props: Props) {
       mounted = false;
       instanceRef.current?.destroy();
     };
-  }, [props]);
+  }, [address, amount, zecUsdRate, label, theme, memo, apiBase, disabled]);
 
   if (status === "error") {
     return (
