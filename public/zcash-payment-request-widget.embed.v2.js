@@ -323,7 +323,7 @@
     const inst = renderZcashButton(target, {
       address: script.dataset.address,
       amount: script.dataset.amount,
-      zecUsdRate: zecUsdRate || script.dataset.zecUsdRate,
+      zecUsdRate: script.dataset.zecUsdRate,
       label: script.dataset.label,
       theme: script.dataset.theme,
       memo: script.dataset.memo,
