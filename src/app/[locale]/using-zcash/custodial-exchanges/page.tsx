@@ -4,6 +4,8 @@ import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
+import exchanges from "@/constants/exchange";
+import { exchangesToVenues, getVenuesFromMarkdown } from "@/lib/venueListings";
 
 export async function generateMetadata({
   params,
@@ -34,6 +36,16 @@ export async function generateMetadata({
   });
 }
 
-export default function Page() {
-  return <Client />;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const venues = await getVenuesFromMarkdown(
+    "custodial",
+    locale,
+    exchangesToVenues(exchanges),
+  );
+  return <Client venues={venues} />;
 }

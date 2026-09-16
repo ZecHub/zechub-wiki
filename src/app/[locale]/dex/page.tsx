@@ -4,6 +4,8 @@ import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { getDictionary } from "@/lib/getDictionary";
 import DexClient from "./DexClient";
+import { decentralizedExchanges } from "@/constants/decentralizedExchanges";
+import { cardsToVenues, getVenuesFromMarkdown } from "@/lib/venueListings";
 
 export async function generateMetadata({
   params,
@@ -34,6 +36,16 @@ export async function generateMetadata({
   });
 }
 
-const DecentralisedExchanges = () => <DexClient />;
-
-export default DecentralisedExchanges;
+export default async function DecentralisedExchanges({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const venues = await getVenuesFromMarkdown(
+    "dex",
+    locale,
+    cardsToVenues(decentralizedExchanges),
+  );
+  return <DexClient venues={venues} />;
+}

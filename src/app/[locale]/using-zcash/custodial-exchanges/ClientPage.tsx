@@ -1,18 +1,13 @@
 "use client";
 import ExchangeCard from "@/components/ExchangeCard/ExchangeCard";
-import exchanges from "@/constants/exchange";
-import exchangesIt from "@/constants/exchange.it";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { useLocale } from "next-intl";
+import type { Venue } from "@/lib/parseVenueMarkdown";
 
-const CustodialExchangesClient: React.FC = () => {
+const CustodialExchangesClient: React.FC<{ venues: Venue[] }> = ({ venues }) => {
   const { t } = useLanguage();
-  const locale = useLocale();
-  const byLocale: Record<string, typeof exchanges> = { it: exchangesIt };
-  const exchangeList = byLocale[locale] ?? exchanges;
   const title = t?.pages?.dex?.custodial ?? "Custodial Exchanges";
   const dexLabel = t?.pages?.dex?.title ?? "DEX platforms";
 
@@ -42,7 +37,7 @@ const CustodialExchangesClient: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-6">
-        {exchangeList.map((exchange) => (
+        {venues.map((exchange) => (
           <ExchangeCard
             key={exchange.name}
             name={exchange.name}
@@ -50,6 +45,7 @@ const CustodialExchangesClient: React.FC = () => {
             pairs={exchange.pairs}
             support={exchange.support}
             depositTime={exchange.depositTime}
+            ironwood={exchange.ironwood}
             logo={exchange.logo}
             altText={exchange.altText}
           />
