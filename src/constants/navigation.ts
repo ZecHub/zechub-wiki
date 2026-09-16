@@ -376,6 +376,18 @@ export const navigations: Array<NavigationItem> = [
         path: "/zcash-organizations/shielded-labs",
       },
       {
+        name: "Valar Group",
+        path: "/zcash-organizations/valar-group",
+      },
+      {
+        name: "Zcash Labs",
+        path: "/zcash-organizations/zcash-labs",
+      },
+      {
+        name: "CoinHolder Directed Retroactive Grants",
+        path: "/zcash-organizations/coinholder-directed-retroactive-grants",
+      },
+      {
         name: "Sovright",
         path: "/zcash-organizations/sovright",
       },

@@ -304,6 +304,8 @@ const iconsForMenu: IconsFor = {
 
     "Shielded Labs": BordererShield,
     "Financial Privacy Foundation": MdFoundation,
+    "Valar Group": FaLaptopCode,
+    "Zcash Labs": HiOutlineBuildingLibrary,
     "Zingo Labs": GiSoapExperiment,
     "ZKAV": "zkav-club.png",
     "Sovright": CircleKey,

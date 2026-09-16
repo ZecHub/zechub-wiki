@@ -182,7 +182,16 @@ const getTranslatedLabel = (
       "Financial Privacy Foundation",
     "Shielded Labs":
       t.navigation?.organizations?.shieldedLabs || "Shielded Labs",
+    "Valar Group":
+      t.navigation?.organizations?.valarGroup || "Valar Group",
+    "Zcash Labs":
+      t.navigation?.organizations?.zcashLabs || "Zcash Labs",
+    "CoinHolder Directed Retroactive Grants":
+      t.navigation?.organizations?.coinholderDirectedRetroactiveGrants ||
+      "CoinHolder Directed Retroactive Grants",
     Sovright: t.navigation?.organizations?.sovright || "Sovright",
+    "Obscura Labs":
+      t.navigation?.organizations?.obscuraLabs || "Obscura Labs",
     "Zingo Labs": t.navigation?.organizations?.zingoLabs || "Zingo Labs",
     Brand: t.navigation?.organizations?.brand || "Brand",
     "ZKAV Club": t.navigation?.organizations?.zkavClub || "ZKAV Club",
