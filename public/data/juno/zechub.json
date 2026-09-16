@@ -7272,10 +7272,10 @@
           "title": "Zcash Developer Sprint X Nodo Serrano(Retroactive)",
           "votes": {
             "no": "0",
-            "yes": "7",
-            "abstain": "2"
+            "yes": "11",
+            "abstain": "4"
           },
-          "status": "open",
+          "status": "passed",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
           "threshold": {
             "threshold_quorum": {
@@ -7307,7 +7307,7 @@
           "title": "Club Zcash Querétaro - Zcash México (October-November 2026)",
           "votes": {
             "no": "0",
-            "yes": "7",
+            "yes": "14",
             "abstain": "0"
           },
           "status": "open",
