@@ -209,7 +209,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "Brand",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "zodl": "ZODL",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "coinholderDirectedRetroactiveGrants": "CoinHolder Directed Retroactive Grants",
+      "sovright": "Sovright",
+      "obscuraLabs": "Obscura Labs"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo Payment Processor",

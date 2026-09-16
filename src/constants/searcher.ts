@@ -342,6 +342,31 @@ export const searcher: Searcher[] = [
     desc: "ZODL is a Zcash ecosystem organization supporting development and adoption.",
     url: "/zcash-organizations/ZODL",
   },
+  {
+    name: "Valar Group",
+    desc: "Independent engineering organization focused on scaling Zcash, private coinholder voting, and full-node software.",
+    url: "/zcash-organizations/valar-group",
+  },
+  {
+    name: "Zcash Labs",
+    desc: "Independent organization focused on Zcash implementation, integration, and adoption.",
+    url: "/zcash-organizations/zcash-labs",
+  },
+  {
+    name: "CoinHolder Directed Retroactive Grants",
+    desc: "Coinholder-directed retroactive grants program for completed Zcash ecosystem work.",
+    url: "/zcash-organizations/coinholder-directed-retroactive-grants",
+  },
+  {
+    name: "Sovright",
+    desc: "Zcash ecosystem organization.",
+    url: "/zcash-organizations/sovright",
+  },
+  {
+    name: "Obscura Labs",
+    desc: "Zcash ecosystem organization building private infrastructure.",
+    url: "/zcash-organizations/obscura-labs",
+  },
 
   // Privacy Tools
   {

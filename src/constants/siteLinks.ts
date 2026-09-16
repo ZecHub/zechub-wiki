@@ -128,6 +128,20 @@ export const SITE_LINKS: SiteLinkSection[] = [
         label: "Shielded Labs",
         href: "/zcash-organizations/shielded-labs",
       },
+      {
+        label: "Valar Group",
+        href: "/zcash-organizations/valar-group",
+      },
+      {
+        label: "Zcash Labs",
+        href: "/zcash-organizations/zcash-labs",
+      },
+      {
+        label: "CoinHolder Directed Retroactive Grants",
+        href: "/zcash-organizations/coinholder-directed-retroactive-grants",
+      },
+      { label: "Sovright", href: "/zcash-organizations/sovright" },
+      { label: "Obscura Labs", href: "/zcash-organizations/obscura-labs" },
       { label: "Zingo Labs", href: "/zcash-organizations/zingo-labs" },
       { label: "Brand", href: "/zcash-organizations/brand" },
       { label: "ZKAV Club", href: "/zcash-organizations/zkav" },
