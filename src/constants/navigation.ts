@@ -254,6 +254,10 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/free2z-live",
       },
       {
+        name: "Free2Z Livestreaming",
+        path: "/guides/free2z-livestreaming",
+      },
+      {
         name: "Keystone Zashi",
         path: "/guides/keystone-zashi",
       },
@@ -285,8 +289,15 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Raspberry pi 4 Zebra Node",
         label: "Raspberry Pi Zebra Node",
-        path: "https://free2z.com/ZecHub/zpage/zcash-101-zebra-lightwalletd-sync-journal-on-raspberry-pi-5",
-        newTab: true,
+        path: "/guides/raspberry-pi-4-zebra-node",
+      },
+      {
+        name: "Hardened Zebrad",
+        path: "/guides/hardened-zebrad",
+      },
+      {
+        name: "Akash Network Zcashd",
+        path: "/guides/akash-network-zcashd",
       },
       {
         name: "Akash Network Zebra",
@@ -309,8 +320,28 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/blockchain-explorers",
       },
       {
-        name: "Brave Wallet",
+        name: "Brave Wallet Guide",
         path: "/guides/brave-wallet-guide",
+      },
+      {
+        name: "ShapeShift Zcash",
+        path: "/guides/shapeshift-zcash",
+      },
+      {
+        name: "Migration Guide Zcashd To Zebrad Zallet",
+        path: "/guides/migration-guide-zcashd-to-zebrad-zallet",
+      },
+      {
+        name: "My First Zcash Workbook",
+        path: "/guides/my-first-zcash-workbook",
+      },
+      {
+        name: "Verifying Zcash Releases",
+        path: "/guides/verifying-zcash-releases",
+      },
+      {
+        name: "Viewing Key Transaction Export",
+        path: "/guides/viewing-key-transaction-export",
       },
       {
         name: "BTCPayServer Zcash Plugin",
