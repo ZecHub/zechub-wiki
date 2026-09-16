@@ -261,6 +261,36 @@ const getTranslatedLabel = (
     "Zero-Knowledge vs Decoys":
       t.navigation?.guidesSubmenu?.zeroKnowledgeVsDecoys ||
       "Zero-Knowledge vs Decoys",
+    "Akash Network Zcashd":
+      t.navigation?.guidesSubmenu?.akashNetworkZcashd ||
+      "Akash Network Zcashd",
+    "Akash Network Zebra":
+      t.navigation?.guidesSubmenu?.akashNetworkZebra ||
+      "Akash Network Zebra",
+    "Free2Z Livestreaming":
+      t.navigation?.guidesSubmenu?.free2zLivestreaming ||
+      "Free2Z Livestreaming",
+    "Hardened Zebrad":
+      t.navigation?.guidesSubmenu?.hardenedZebrad ||
+      "Hardened Zebrad",
+    "Migration Guide Zcashd To Zebrad Zallet":
+      t.navigation?.guidesSubmenu?.migrationGuideZcashdToZebradZallet ||
+      "Migration Guide Zcashd To Zebrad Zallet",
+    "My First Zcash Workbook":
+      t.navigation?.guidesSubmenu?.myFirstZcashWorkbook ||
+      "My First Zcash Workbook",
+    "ShapeShift Zcash":
+      t.navigation?.guidesSubmenu?.shapeShiftZcash ||
+      "ShapeShift Zcash",
+    "Verifying Zcash Releases":
+      t.navigation?.guidesSubmenu?.verifyingZcashReleases ||
+      "Verifying Zcash Releases",
+    "Viewing Key Transaction Export":
+      t.navigation?.guidesSubmenu?.viewingKeyTransactionExport ||
+      "Viewing Key Transaction Export",
+    "BTCPayServer Zcash Plugin":
+      t.navigation?.guidesSubmenu?.btcPayServerPlugin ||
+      "BTCPayServer Zcash Plugin",
   };
   const parentLabels: Record<string, string> = {
     "Using Zcash": t.navigation?.usingZcash?.label || "Use Zcash",

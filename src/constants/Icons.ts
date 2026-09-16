@@ -257,6 +257,8 @@ const iconsForMenu: IconsFor = {
     "Migration Guide Zcashd To Zebrad Zallet": Guide,
     "Brave Wallet Guide": Brave,
     "ShapeShift Zcash": ShapeShift,
+    "Verifying Zcash Releases": CheckShield,
+    "Viewing Key Transaction Export": FileKey,
   },
         "Zcash Tech": {
 
