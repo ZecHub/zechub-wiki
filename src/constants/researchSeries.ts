@@ -12,6 +12,17 @@ export type ResearchSeriesDef = {
   pageDescription: string;
   badge: string;
   emoji: string;
+  /**
+   * Dictionary keys under `pages.research` for the fields a reader sees. The
+   * English values above stay the fallback, so a locale missing a key renders
+   * exactly as before rather than blank.
+   */
+  i18nKeys: {
+    title: string;
+    cardDescription: string;
+    pageDescription: string;
+    badge: string;
+  };
   tags: string[];
   cover?: { src: string; alt: string };
 };
@@ -28,6 +39,12 @@ export const RESEARCH_SERIES: ResearchSeriesDef[] = [
     pageDescription:
       "A collection of foundational articles covering Zcash shielded transactions, privacy models, protocol design, and core concepts that power the network.",
     badge: "Core Series",
+    i18nKeys: {
+      title: "foundationsSeriesTitle",
+      cardDescription: "foundationsSeriesCardDescription",
+      pageDescription: "foundationsSeriesDescription",
+      badge: "coreSeriesBadge",
+    },
     emoji: "📚",
     tags: [
       "Shielded Transactions",
@@ -51,6 +68,12 @@ export const RESEARCH_SERIES: ResearchSeriesDef[] = [
     pageDescription:
       "A three-part series that explains formal verification from first principles, walks through the 2026 Orchard soundness bug, and shows how Ironwood answered it with a machine-checked mathematical proof.",
     badge: "New Series",
+    i18nKeys: {
+      title: "formalVerificationSeriesTitle",
+      cardDescription: "formalVerificationSeriesCardDescription",
+      pageDescription: "formalVerificationSeriesDescription",
+      badge: "newSeriesBadge",
+    },
     emoji: "🔎",
     tags: [
       "Formal Verification",

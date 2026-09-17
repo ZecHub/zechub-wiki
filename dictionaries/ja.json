@@ -1085,7 +1085,11 @@
       "tagShieldedTransactions": "シールドトランザクション",
       "tagPrivacyModels": "プライバシーモデル",
       "tagProtocolDesign": "プロトコル設計",
-      "tagZeroKnowledge": "ゼロ知識"
+      "tagZeroKnowledge": "ゼロ知識",
+      "formalVerificationSeriesTitle": "Zcash形式検証シリーズ",
+      "formalVerificationSeriesCardDescription": "形式検証とは何か、2026年のOrchard健全性バグ、そしてIronwoodが機械検証済みの証明でどう対応したか。",
+      "formalVerificationSeriesDescription": "形式検証を基本原理から解説し、2026年のOrchard健全性バグをたどり、Ironwoodが機械検証済みの数学的証明でどう対応したかを示す全3回のシリーズ。",
+      "newSeriesBadge": "新シリーズ"
     },
     "browseSidebar": "左側のサイドバーを使って記事を閲覧してください 👈",
     "zcashGlobalAmbassadors": {

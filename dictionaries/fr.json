@@ -1085,7 +1085,11 @@
       "tagShieldedTransactions": "Transactions blindées",
       "tagPrivacyModels": "Modèles de confidentialité",
       "tagProtocolDesign": "Conception du protocole",
-      "tagZeroKnowledge": "Zero Knowledge"
+      "tagZeroKnowledge": "Zero Knowledge",
+      "formalVerificationSeriesTitle": "Série de vérification formelle Zcash",
+      "formalVerificationSeriesCardDescription": "Ce qu'est la vérification formelle, le bug de solidité d'Orchard de 2026 et comment Ironwood y a répondu avec une preuve vérifiée par machine.",
+      "formalVerificationSeriesDescription": "Une série en trois parties qui explique la vérification formelle à partir des principes fondamentaux, revient sur le bug de solidité d'Orchard de 2026 et montre comment Ironwood y a répondu avec une preuve mathématique vérifiée par machine.",
+      "newSeriesBadge": "Nouvelle série"
     },
     "browseSidebar": "Parcourez les articles avec la barre latérale à gauche 👈",
     "zcashGlobalAmbassadors": {

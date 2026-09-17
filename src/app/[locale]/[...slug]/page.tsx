@@ -137,8 +137,13 @@ export async function generateMetadata({
   if (isResearchSeries) {
     const series = getResearchSeries(slug[1]);
     return genMetadata({
-      title: series ? `${series.title} | ZecHub` : "Research Series | ZecHub",
-      description: series?.pageDescription ?? "",
+      title: series
+        ? `${r[series.i18nKeys.title] ?? series.title} | ZecHub`
+        : "Research Series | ZecHub",
+      description:
+        (series && r[series.i18nKeys.pageDescription]) ??
+        series?.pageDescription ??
+        "",
       url: canonicalUrl,
       image: sectionBanner || "/content-banners/bannerResearch.jpg",
       locale,
@@ -333,7 +338,7 @@ export default async function Page(props: {
                         <span className="text-5xl">{series.emoji}</span>
                       </div>
                       <p className="text-2xl font-semibold tracking-tight text-white">
-                        {series.title}
+                        {r[series.i18nKeys.title] ?? series.title}
                       </p>
                     </div>
                   </div>
@@ -341,16 +346,16 @@ export default async function Page(props: {
                   <div className="flex flex-1 flex-col p-6">
                     <div className="mb-2">
                       <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                        {series.badge}
+                        {r[series.i18nKeys.badge] ?? series.badge}
                       </span>
                     </div>
 
                     <h3 className="text-xl font-semibold tracking-tight text-foreground">
-                      {series.title}
+                      {r[series.i18nKeys.title] ?? series.title}
                     </h3>
 
                     <p className="mt-3 text-[15px] text-muted-foreground">
-                      {series.cardDescription}
+                      {r[series.i18nKeys.cardDescription] ?? series.cardDescription}
                     </p>
 
                     <div className="mt-auto pt-5 text-sm font-medium text-muted-foreground group-active:text-foreground transition-colors">
@@ -442,7 +447,9 @@ export default async function Page(props: {
                 </h1>
               </div>
               <p className="max-w-3xl text-base text-muted-foreground">
-                {series?.pageDescription ?? ""}
+                {(series && r[series.i18nKeys.pageDescription]) ??
+                  series?.pageDescription ??
+                  ""}
               </p>
               <div className="mt-4 flex flex-wrap gap-2 text-sm">
                 {(series?.tags ?? []).map((tag) => (

@@ -1085,7 +1085,11 @@
       "tagShieldedTransactions": "المعاملات المحمية",
       "tagPrivacyModels": "نماذج الخصوصية",
       "tagProtocolDesign": "تصميم البروتوكول",
-      "tagZeroKnowledge": "المعرفة الصفرية"
+      "tagZeroKnowledge": "المعرفة الصفرية",
+      "formalVerificationSeriesTitle": "سلسلة التحقق الرسمي من Zcash",
+      "formalVerificationSeriesCardDescription": "ما هو التحقق الرسمي، وخلل سلامة Orchard لعام 2026، وكيف عالجه Ironwood بإثبات تم التحقق منه آليًا.",
+      "formalVerificationSeriesDescription": "سلسلة من ثلاثة أجزاء تشرح التحقق الرسمي من المبادئ الأولى، وتستعرض خلل سلامة Orchard لعام 2026، وتبيّن كيف عالجه Ironwood ببرهان رياضي تم التحقق منه آليًا.",
+      "newSeriesBadge": "سلسلة جديدة"
     },
     "browseSidebar": "تصفّح المقالات باستخدام الشريط الجانبي على اليسار 👈",
     "zcashGlobalAmbassadors": {

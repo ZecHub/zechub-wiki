@@ -1079,7 +1079,11 @@
       "tagShieldedTransactions": "Azụmahịa Ndị E Chebere",
       "tagPrivacyModels": "Ụdị Nzuzo",
       "tagProtocolDesign": "Nhazi nke Protocol",
-      "tagZeroKnowledge": "Ọmụma efu"
+      "tagZeroKnowledge": "Ọmụma efu",
+      "formalVerificationSeriesTitle": "Usoro Nkwenye Iwu nke Zcash",
+      "formalVerificationSeriesCardDescription": "Ihe nkwenye iwu bụ, njehie nkwụsi ike Orchard nke 2026, na otú Ironwood siri jiri ihe akaebe igwe nyochara zaa ya.",
+      "formalVerificationSeriesDescription": "Usoro nwere akụkụ atọ nke na-akọwa nkwenye iwu site n'ụkpụrụ mbụ, na-agafe njehie nkwụsi ike Orchard nke 2026, ma na-egosi otú Ironwood siri jiri ihe akaebe mgbakọ na mwepụ nke igwe nyochara zaa ya.",
+      "newSeriesBadge": "Usoro ọhụrụ"
     },
     "browseSidebar": "Chọgharịa isiokwu ndị ahụ site na iji sidebar dị n'aka ekpe ",
     "zcashGlobalAmbassadors": {

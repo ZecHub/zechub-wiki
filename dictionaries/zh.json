@@ -1085,7 +1085,11 @@
       "tagShieldedTransactions": "屏蔽交易",
       "tagPrivacyModels": "隐私模型",
       "tagProtocolDesign": "协议设计",
-      "tagZeroKnowledge": "零知识"
+      "tagZeroKnowledge": "零知识",
+      "formalVerificationSeriesTitle": "Zcash 形式化验证系列",
+      "formalVerificationSeriesCardDescription": "了解什么是形式化验证、2026 年 Orchard 健全性漏洞，以及 Ironwood 如何通过机器验证的证明予以回应。",
+      "formalVerificationSeriesDescription": "一个由三部分组成的系列，从基本原理解释形式化验证，深入讲解 2026 年 Orchard 健全性漏洞，并展示 Ironwood 如何通过机器验证的数学证明予以回应。",
+      "newSeriesBadge": "新系列"
     },
     "browseSidebar": "使用左侧边栏浏览文章 👈",
     "zcashGlobalAmbassadors": {
