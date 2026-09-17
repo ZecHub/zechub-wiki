@@ -1,4 +1,4 @@
-export type PoolType = "transparent" | "sapling" | "orchard";
+export type PoolType = "transparent" | "sapling" | "orchard" | "ironwood";
 
 export interface PoolData {
   type: PoolType;
@@ -39,7 +39,18 @@ export const POOLS: Record<PoolType, PoolData> = {
     type: "orchard",
     name: "Orchard",
     description:
-      "Latest shielded protocol with enhanced privacy. Uses Unified Addresses for maximum anonymity.",
+      "The previous primary shielded pool, with enhanced privacy and now spend-only. Uses Unified Addresses for maximum anonymity.",
+    exampleAddress: "u1rl84p7l9xq3cxu2yh2cks9v8qcgrpf25h4hgn0...unified",
+    addressPrefix: "u1",
+    privacyLevel: "full",
+    color: "pool-orchard",
+    glowColor: "pool-orchard-glow",
+  },
+  ironwood: {
+    type: "ironwood",
+    name: "Ironwood",
+    description:
+      "Zcash Ironwood (NU6.3) is the latest and  critical network upgrade that replaced the vulnerable Orchard shielded pool with a new, formally verified pool to eliminate the risk of undetectable counterfeiting ",
     exampleAddress: "u1rl84p7l9xq3cxu2yh2cks9v8qcgrpf25h4hgn0...unified",
     addressPrefix: "u1",
     privacyLevel: "full",
