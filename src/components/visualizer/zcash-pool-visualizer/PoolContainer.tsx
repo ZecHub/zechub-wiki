@@ -72,8 +72,6 @@ export const PoolContainer = ({
   const styles = getPoolStyles();
 
   return (
-
-
     <motion.div
       layout
       initial={{ opacity: 0, scale: 0.9 }}
@@ -189,7 +187,11 @@ export const PoolContainer = ({
           exit={{ opacity: 0, height: 0 }}
           className="mt-4 space-y-3"
         >
-          <p className="text-sm text-muted-foreground">{pool.description}</p>
+          <p className="text-sm text-muted-foreground">
+            {isFocused
+              ? pool.description
+              : pool.description.slice(0, 30) + "..."}
+          </p>
 
           <div className="space-y-1">
             <p className="text-xs text-muted-foreground">Example Address:</p>
