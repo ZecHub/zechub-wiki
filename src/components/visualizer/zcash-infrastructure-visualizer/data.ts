@@ -24,7 +24,7 @@ export const STAGES: Stage[] = [
     highlight: ["zebra"],
   },
   {
-    id: 11,
+    id: 2,
     title:
       "Zakura: A consensus-compatible Zcash full node, built for scale.",
     description:
@@ -32,42 +32,42 @@ export const STAGES: Stage[] = [
     highlight: ["zakura"],
   },
   {
-    id: 2,
+    id: 3,
     title: "Zaino Indexers: Modern Bridge",
     description:
       "Zaino indexers process blockchain data from Zebra nodes, providing optimized, fast access for light wallets without requiring full blockchain downloads.",
     highlight: ["zebra", "zaino", "zakura"],
   },
   {
-    id: 3,
+    id: 4,
     title: "Lightwalletd: Traditional Approach",
     description:
       "Lightwalletd servers offer an alternative, time-tested interface between full nodes and wallets, enabling lightweight client access with proven reliability.",
     highlight: ["zebra", "zakura", "lightwalletd"],
   },
   {
-    id: 4,
+    id: 5,
     title: "Mobile Wallets: Privacy On-The-Go",
     description:
       "Mobile wallets connect to indexers or light wallet servers, empowering users to send and receive shielded Zcash transactions securely from anywhere.",
     highlight: ["zaino", "lightwalletd", "mobile"],
   },
   {
-    id: 5,
+    id: 6,
     title: "Desktop Wallets: Power User Tools",
     description:
       "Desktop wallets provide advanced features and granular control, connecting to indexers for enhanced privacy and comprehensive transaction management.",
     highlight: ["zaino", "lightwalletd", "desktop"],
   },
   {
-    id: 6,
+    id: 7,
     title: "Web Wallets: Browser-Based Access",
     description:
       "Web wallets deliver convenient browser-based access to Zcash, connecting through indexers or servers for seamless, cross-platform transaction capabilities.",
     highlight: ["zaino", "lightwalletd", "web"],
   },
   {
-    id: 7,
+    id: 8,
     title: "The Complete Ecosystem",
     description:
       "All layers working in harmony: Full nodes validate and secure, indexers optimize data access, and wallets provide intuitive interfaces for private, permissionless transactions.",
