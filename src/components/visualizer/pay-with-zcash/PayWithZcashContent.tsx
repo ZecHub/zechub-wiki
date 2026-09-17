@@ -1,19 +1,18 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
-  CreditCard,
-  Shield,
-  ShoppingCart,
-  Globe,
-  Store,
-  ExternalLink,
   ArrowRight,
   CheckCircle,
+  ExternalLink,
   Lock,
+  Shield,
+  ShoppingCart,
+  Store,
   Zap,
+  Map
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const slides = [
   {
@@ -75,6 +74,21 @@ const slides = [
     ],
     link: "https://nymtech.net/",
     linkText: "Explore Nym VPN",
+  },
+  {
+    id: "zecmap",
+    title: "ZecMap",
+    icon: Map,
+    color: "from-amber-500 to-orange-600",
+    steps: [
+      "ZecMap is a community-driven directory that helps you find businesses acception Zcash (ZEC) on a map",
+      "Explore on a map: see Zcash-friendly businesses near you",
+      "Search and filter by category",
+      "Business details: address, contact, website and Zcash address with QR code",
+      "Community verification: keep listings fresh together",
+    ],
+    link: "https://zecmap.com/",
+    linkText: "Explore ZecMap",
   },
   {
     id: "accept-payments",
