@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "Sanwó fún AI"
+    "Pay for AI": "Sanwó fún AI",
+    "Spend Zcash": "Na Zcash lọwọ",
+    "Places to Spend ZEC": "Àwọn ibi láti ná ZEC",
+    "Free2Z Livestreaming": "Free2Z igbohunsafefe taara",
+    "Hardened Zebrad": "Zebrad tí a ti mú kí ó lágbára",
+    "Migration Guide Zcashd To Zebrad Zallet": "Ìtọ́sọ́nà Ìṣíkiri Zcashd sí Zebrad Zallet",
+    "My First Zcash Workbook": "Ìwé iṣẹ́ Zcash àkọ́kọ́ mi",
+    "Verifying Zcash Releases": "Ṣíṣe àyẹ̀wò àwọn ìtújáde Zcash",
+    "Viewing Key Transaction Export": "Gbigbejade Iṣowo Viewing Key",
+    "Brave Wallet Guide": "Ìtọ́sọ́nà Brave Wallet",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Nẹtiwọki Akash Zcashd",
+    "CoinHolder Directed Retroactive Grants": "Awọn Ẹbun Ipadà Sẹ́yìn tí CoinHolder Darí"
   },
   "exploreMenu": {
     "Full Explore": "Ṣàwárí ní kíkún",
@@ -1065,7 +1079,11 @@
       "tagShieldedTransactions": "Àwọn Àdéhùn tí a fi Ààbò bo",
       "tagPrivacyModels": "Àwọn Àpẹẹrẹ Ìpamọ́",
       "tagProtocolDesign": "Ètò Àkọsílẹ̀",
-      "tagZeroKnowledge": "Ìmọ̀ Òkú"
+      "tagZeroKnowledge": "Ìmọ̀ Òkú",
+      "formalVerificationSeriesTitle": "Ìtòlẹ́sẹẹsẹ Ìjẹ́rìísí Ìlànà Zcash",
+      "formalVerificationSeriesCardDescription": "Kí ni ìjẹ́rìísí ìlànà jẹ́, àṣìṣe ìdánilójú Orchard ti ọdún 2026, àti bí Ironwood ṣe dáhùn sí i pẹ̀lú ẹ̀rí tí ẹ̀rọ ṣàyẹ̀wò.",
+      "formalVerificationSeriesDescription": "Ìtòlẹ́sẹẹsẹ apá mẹ́ta tí ó ṣàlàyé ìjẹ́rìísí ìlànà láti ìpilẹ̀ṣẹ̀, tí ó ń rìn nípasẹ̀ àṣìṣe ìdánilójú Orchard ti ọdún 2026, tí ó sì fi hàn bí Ironwood ṣe dáhùn sí i pẹ̀lú ẹ̀rí ìṣirò tí ẹ̀rọ ṣàyẹ̀wò.",
+      "newSeriesBadge": "Ìtòlẹ́sẹẹsẹ Tuntun"
     },
     "browseSidebar": "Ṣàwákiri àwọn àpilẹ̀kọ náà nípa lílo ọ̀pá ìsàlẹ̀ òsì ",
     "zcashGlobalAmbassadors": {

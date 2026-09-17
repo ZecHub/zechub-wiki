@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "AI için Öde"
+    "Pay for AI": "AI için Öde",
+    "Spend Zcash": "Zcash Harca",
+    "Places to Spend ZEC": "ZEC Harcanabilecek Yerler",
+    "Free2Z Livestreaming": "Free2Z Canlı Yayın",
+    "Hardened Zebrad": "Güçlendirilmiş Zebrad",
+    "Migration Guide Zcashd To Zebrad Zallet": "Zcashd'den Zebrad Zallet'e Geçiş Kılavuzu",
+    "My First Zcash Workbook": "İlk Zcash Çalışma Kitabım",
+    "Verifying Zcash Releases": "Zcash Sürümleri Doğrulanıyor",
+    "Viewing Key Transaction Export": "Viewing Key İşlem Dışa Aktarımı",
+    "Brave Wallet Guide": "Brave Wallet Rehberi",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Akash Network Zcashd",
+    "CoinHolder Directed Retroactive Grants": "CoinHolder Yönlendirmeli Geriye Dönük Hibeler"
   },
   "exploreMenu": {
     "Full Explore": "Tam Keşfet",
@@ -1071,7 +1085,11 @@
       "tagShieldedTransactions": "Korumalı İşlemler",
       "tagPrivacyModels": "Gizlilik Modelleri",
       "tagProtocolDesign": "Protokol Tasarımı",
-      "tagZeroKnowledge": "Sıfır Bilgi"
+      "tagZeroKnowledge": "Sıfır Bilgi",
+      "formalVerificationSeriesTitle": "Zcash Biçimsel Doğrulama Serisi",
+      "formalVerificationSeriesCardDescription": "Biçimsel doğrulamanın ne olduğu, 2026 Orchard sağlamlık hatası ve Ironwood’un makine tarafından denetlenmiş bir kanıtla buna nasıl yanıt verdiği.",
+      "formalVerificationSeriesDescription": "Biçimsel doğrulamayı ilk ilkelerden açıklayan, 2026 Orchard sağlamlık hatasını ele alan ve Ironwood’un makine tarafından denetlenmiş matematiksel bir kanıtla buna nasıl yanıt verdiğini gösteren üç bölümlük bir seri.",
+      "newSeriesBadge": "Yeni Seri"
     },
     "browseSidebar": "Makalelere soldaki kenar çubuğunu kullanarak göz atın 👈",
     "zcashGlobalAmbassadors": {

@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "AI के लिए भुगतान"
+    "Pay for AI": "AI के लिए भुगतान",
+    "Spend Zcash": "Zcash खर्च करें",
+    "Places to Spend ZEC": "ZEC खर्च करने की जगहें",
+    "Free2Z Livestreaming": "Free2Z लाइवस्ट्रीमिंग",
+    "Hardened Zebrad": "सुदृढ़ीकृत Zebrad",
+    "Migration Guide Zcashd To Zebrad Zallet": "Zcashd से Zebrad Zallet माइग्रेशन गाइड",
+    "My First Zcash Workbook": "मेरी पहली Zcash कार्यपुस्तिका",
+    "Verifying Zcash Releases": "Zcash रिलीज़ों का सत्यापन",
+    "Viewing Key Transaction Export": "Viewing Key लेनदेन निर्यात",
+    "Brave Wallet Guide": "Brave Wallet गाइड",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Akash Network Zcashd",
+    "CoinHolder Directed Retroactive Grants": "कॉइनहोल्डर द्वारा निर्देशित पूर्वव्यापी अनुदान"
   },
   "exploreMenu": {
     "Full Explore": "पूरा एक्सप्लोर करें",
@@ -1071,7 +1085,11 @@
       "tagShieldedTransactions": "शील्डेड ट्रांज़ैक्शन्स",
       "tagPrivacyModels": "गोपनीयता मॉडल",
       "tagProtocolDesign": "प्रोटोकॉल डिज़ाइन",
-      "tagZeroKnowledge": "ज़ीरो नॉलेज"
+      "tagZeroKnowledge": "ज़ीरो नॉलेज",
+      "formalVerificationSeriesTitle": "Zcash औपचारिक सत्यापन श्रृंखला",
+      "formalVerificationSeriesCardDescription": "औपचारिक सत्यापन क्या है, 2026 का Orchard साउंडनेस बग, और Ironwood ने मशीन-जाँचे गए प्रमाण के साथ इसका समाधान कैसे किया।",
+      "formalVerificationSeriesDescription": "तीन भागों की एक श्रृंखला जो मूल सिद्धांतों से औपचारिक सत्यापन को समझाती है, 2026 के Orchard साउंडनेस बग पर चर्चा करती है, और दिखाती है कि Ironwood ने मशीन-जाँचे गए गणितीय प्रमाण के साथ इसका समाधान कैसे किया।",
+      "newSeriesBadge": "नई श्रृंखला"
     },
     "browseSidebar": "बाईं ओर के साइडबार का उपयोग करके लेख ब्राउज़ करें 👈",
     "zcashGlobalAmbassadors": {

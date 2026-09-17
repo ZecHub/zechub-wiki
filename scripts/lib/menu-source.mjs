@@ -39,12 +39,41 @@ export const MENU_BRANDS = new Set([
   // technical writing usually renders it.
   "Financial Privacy Foundation", "ZKAV Club", "Zcash Global Ambassadors",
   "Zcash Community Grants", "Zcash Login", "Zcash Devtool", "Testnet",
+  // Organisations and programmes added 2026-09-17. Each was translated by the
+  // sync in most locales because the descriptive-looking word carries the name:
+  // "Zcash Labs" -> "Laboratorios Zcash", "Valar Group" -> "Gruppo Valar",
+  // "CoinHolder ... Grants" three different ways across 18 locales. Same class
+  // as Financial Privacy Foundation and Zcash Community Grants above.
+  //
+  // "ShapeShift Zcash" is listed as the FULL label. The set has no type
+  // distinction -- every entry is both a gate whole-label key and a sync
+  // keep-verbatim substring -- so what changes is only whether an entry happens
+  // to equal a whole label, and therefore self-maps. Listing only "ShapeShift"
+  // left the remainder "Zcash", itself a brand, with nothing to localise, and
+  // the label emitted a self-equal advisory in all 18 locales.
+  //
+  // "Akash Network Zcashd" and "CoinHolder Directed Retroactive Grants" were
+  // tried here and deliberately removed. Both have a genuinely descriptive
+  // remainder, and protecting the whole label discarded sound translations --
+  // "Rete Akash Zcashd", "Mtandao wa Akash Zcashd" -- in favour of English.
+  // They stay translatable; Akash keeps its name via the substring entry below.
+  // Six locales (de, hi, ja, ru, tr, zh) still return "Akash Network Zcashd"
+  // unchanged, treating the product name as indivisible; that is the
+  // translator's judgement per language, not a gap the list can close.
+  "Valar Group", "Zcash Labs", "ShapeShift Zcash",
   // SUBSTRINGS, not whole labels, per the conservative rule above: these appear
   // inside labels whose remainder is descriptive and SHOULD stay localised —
   // "BTCPayServer Zcash Plugin" (plugin), "Fork zechub-wiki" (fork). Listing the
   // name alone keeps the name verbatim without flattening the whole label to
   // English, exactly as "Raspberry Pi" does above.
   "BTCPayServer", "zechub", "zechub-wiki",
+  // Added 2026-09-17: unprotected, these were transliterated into non-Latin
+  // scripts -- Brave -> "\u092c\u094d\u0930\u0947\u0935" (hi), Akash -> "\u0906\u0915\u093e\u0936" (hi) / "\u30a2\u30ab\u30b7\u30e5" (ja) --
+  // while the descriptive remainder ("Wallet Guide") should stay localised.
+  // "Zebrad" is listed in this exact capitalisation: the content glossary
+  // carries only "zebrad" and "Zebra", and the prompt asks for terms EXACTLY as
+  // written, so ko rendered "Zebrad" as "\uc81c\ube0c\ub77c\ub4dc" inside the migration-guide label.
+  "Akash", "Brave", "ShapeShift", "Zebrad",
 ]);
 
 // NOT added, deliberately, though both were flagged as untranslated in some

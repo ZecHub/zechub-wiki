@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "Payer l'IA"
+    "Pay for AI": "Payer l'IA",
+    "Spend Zcash": "Dépenser des Zcash",
+    "Places to Spend ZEC": "Où dépenser ZEC",
+    "Free2Z Livestreaming": "Free2Z Diffusion en direct",
+    "Hardened Zebrad": "Zebrad renforcé",
+    "Migration Guide Zcashd To Zebrad Zallet": "Guide de migration de Zcashd vers Zebrad Zallet",
+    "My First Zcash Workbook": "Mon premier cahier d’exercices Zcash",
+    "Verifying Zcash Releases": "Vérification des versions de Zcash",
+    "Viewing Key Transaction Export": "Exportation des transactions de Viewing Key",
+    "Brave Wallet Guide": "Guide du portefeuille Brave",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Réseau Akash Zcashd",
+    "CoinHolder Directed Retroactive Grants": "Subventions rétroactives dirigées par CoinHolder"
   },
   "exploreMenu": {
     "Full Explore": "Explorer entièrement",
@@ -1071,7 +1085,11 @@
       "tagShieldedTransactions": "Transactions blindées",
       "tagPrivacyModels": "Modèles de confidentialité",
       "tagProtocolDesign": "Conception du protocole",
-      "tagZeroKnowledge": "Zero Knowledge"
+      "tagZeroKnowledge": "Zero Knowledge",
+      "formalVerificationSeriesTitle": "Série de vérification formelle Zcash",
+      "formalVerificationSeriesCardDescription": "Ce qu'est la vérification formelle, le bug de solidité d'Orchard de 2026 et comment Ironwood y a répondu avec une preuve vérifiée par machine.",
+      "formalVerificationSeriesDescription": "Une série en trois parties qui explique la vérification formelle à partir des principes fondamentaux, revient sur le bug de solidité d'Orchard de 2026 et montre comment Ironwood y a répondu avec une preuve mathématique vérifiée par machine.",
+      "newSeriesBadge": "Nouvelle série"
     },
     "browseSidebar": "Parcourez les articles avec la barre latérale à gauche 👈",
     "zcashGlobalAmbassadors": {
