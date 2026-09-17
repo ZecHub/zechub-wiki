@@ -124,6 +124,14 @@ export const STAGES: Stage[] = [
   },
   {
     id: 4,
+    title: "Ironwood Protocol",
+    subtitle: "Unified Addresses (u1...)",
+    description: POOLS["ironwood"].description,
+    type: "pool",
+    focusPool: POOLS["ironwood"].type,
+  },
+  {
+    id: 5,
     title: "Why Ironwood Exists",
     subtitle: "NU6.3 · Activated 28 July 2026",
     description:
@@ -131,7 +139,7 @@ export const STAGES: Stage[] = [
     type: "ironwood-why",
   },
   {
-    id: 5,
+    id: 6,
     title: "Shielding Transaction",
     subtitle: "Transparent → Shielded",
     description:
@@ -142,7 +150,7 @@ export const STAGES: Stage[] = [
     amount: "1.5 ZEC",
   },
   {
-    id: 6,
+    id: 7,
     title: "Transaction Privacy Matrix",
     subtitle: "Understanding the Nuances",
     description:
@@ -151,7 +159,7 @@ export const STAGES: Stage[] = [
   },
 
   {
-    id: 7,
+    id: 8,
     title: "The Turnstile",
     subtitle: "Counting without looking inside",
     description:
@@ -159,7 +167,7 @@ export const STAGES: Stage[] = [
     type: "ironwood-turnstile",
   },
   {
-    id: 8,
+    id: 9,
     title: "Orchard → Ironwood Migration",
     subtitle: "Pool migration flow",
     description:
@@ -167,7 +175,7 @@ export const STAGES: Stage[] = [
     type: "ironwood-migration",
   },
   {
-    id: 9,
+    id: 10,
     title: "Supply Audit Logic",
     subtitle: "Proving nothing was counterfeited",
     description:
