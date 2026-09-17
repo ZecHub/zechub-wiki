@@ -1071,7 +1071,11 @@
       "tagShieldedTransactions": "शील्डेड ट्रांज़ैक्शन्स",
       "tagPrivacyModels": "गोपनीयता मॉडल",
       "tagProtocolDesign": "प्रोटोकॉल डिज़ाइन",
-      "tagZeroKnowledge": "ज़ीरो नॉलेज"
+      "tagZeroKnowledge": "ज़ीरो नॉलेज",
+      "formalVerificationSeriesTitle": "Zcash औपचारिक सत्यापन श्रृंखला",
+      "formalVerificationSeriesCardDescription": "औपचारिक सत्यापन क्या है, 2026 का Orchard साउंडनेस बग, और Ironwood ने मशीन-जाँचे गए प्रमाण के साथ इसका समाधान कैसे किया।",
+      "formalVerificationSeriesDescription": "तीन भागों की एक श्रृंखला जो मूल सिद्धांतों से औपचारिक सत्यापन को समझाती है, 2026 के Orchard साउंडनेस बग पर चर्चा करती है, और दिखाती है कि Ironwood ने मशीन-जाँचे गए गणितीय प्रमाण के साथ इसका समाधान कैसे किया।",
+      "newSeriesBadge": "नई श्रृंखला"
     },
     "browseSidebar": "बाईं ओर के साइडबार का उपयोग करके लेख ब्राउज़ करें 👈",
     "zcashGlobalAmbassadors": {

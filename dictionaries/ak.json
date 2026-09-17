@@ -1065,7 +1065,11 @@
       "tagShieldedTransactions": "Nkitahodi a Wɔabɔ Ho Ban",
       "tagPrivacyModels": "Kokoam Nsɛm Ho Nhwɛsode",
       "tagProtocolDesign": "Protocol Nsusuwii",
-      "tagZeroKnowledge": "Nimdeɛ a Ɛyɛ Zero"
+      "tagZeroKnowledge": "Nimdeɛ a Ɛyɛ Zero",
+      "formalVerificationSeriesTitle": "Zcash Formal Verification Ntoatoaso",
+      "formalVerificationSeriesCardDescription": "Dɛn ne formal verification, Orchard soundness mfomsoɔ a ɛbae wɔ 2026 mu, ne sɛnea Ironwood de adanse a kɔmputa ahwɛ mu bua ho.",
+      "formalVerificationSeriesDescription": "Ntoatoaso a ɛwɔ afa atọ a ɛkyerɛ formal verification fi ne fapem mu, fa wo fa Orchard soundness mfomsoɔ a ɛbae wɔ 2026 mu, na ɛkyerɛ sɛnea Ironwood de akontaabu mu adanse a kɔmputa ahwɛ mu bua ho.",
+      "newSeriesBadge": "Ntoatoaso Foforo"
     },
     "browseSidebar": "Browse nsɛm no denam sidebar a ɛwɔ benkum so 👈 no so",
     "zcashGlobalAmbassadors": {

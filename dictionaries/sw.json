@@ -1066,7 +1066,11 @@
       "tagShieldedTransactions": "Shughuli Shielded",
       "tagPrivacyModels": "Mifano ya faragha",
       "tagProtocolDesign": "Mpango wa Itifaki",
-      "tagZeroKnowledge": "Maarifa ya sifuri"
+      "tagZeroKnowledge": "Maarifa ya sifuri",
+      "formalVerificationSeriesTitle": "Zcash Mfululizo wa Uthibitishaji Rasmi",
+      "formalVerificationSeriesCardDescription": "Uthibitishaji rasmi ni nini, hitilafu ya usahihi ya Orchard ya 2026, na jinsi Ironwood ilivyoijibu kwa uthibitisho uliothibitishwa na mashine.",
+      "formalVerificationSeriesDescription": "Mfululizo wa sehemu tatu unaoeleza uthibitishaji rasmi kuanzia misingi yake, unapitia hitilafu ya usahihi ya Orchard ya 2026, na kuonyesha jinsi Ironwood ilivyoijibu kwa uthibitisho wa kihisabati uliothibitishwa na mashine.",
+      "newSeriesBadge": "Mfululizo Mpya"
     },
     "browseSidebar": "Tafuta makala kwa kutumia ubao upande wa kushoto ",
     "zcashGlobalAmbassadors": {

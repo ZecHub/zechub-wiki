@@ -1065,7 +1065,11 @@
       "tagShieldedTransactions": "Asitsatsa Siwo Ŋu Wokpɔ Akpoxɔnu Le",
       "tagPrivacyModels": "Ameŋunyatakakawo Ŋuti Kpɔɖeŋuwo",
       "tagProtocolDesign": "Protocol Design",
-      "tagZeroKnowledge": "Sidzedze Zero"
+      "tagZeroKnowledge": "Sidzedze Zero",
+      "formalVerificationSeriesTitle": "Zcash ƒe Dzodzro Kɔkɔe ƒe Series",
+      "formalVerificationSeriesCardDescription": "Nusi nye dzodzro kɔkɔe, Orchard ƒe 2026 me soundness bug, kple ale si Ironwood ɖo eŋu kple akɔntaɖoɖo ƒe kpekpeɖeŋu si kɔmpiuta de dzesi la.",
+      "formalVerificationSeriesDescription": "Series si me akpa etɔ le, si ɖe dzodzro kɔkɔe ƒe gɔmeɖoanyiwo fia, yi to Orchard ƒe 2026 me soundness bug me, eye wofia ale si Ironwood ɖo eŋu kple akɔntaɖoɖo ƒe kpekpeɖeŋu si kɔmpiuta de dzesi la.",
+      "newSeriesBadge": "Series Yeye"
     },
     "browseSidebar": "Zã axadzinuŋɔŋlɔ si le miame 👈 tsɔ di nyatiawo",
     "zcashGlobalAmbassadors": {

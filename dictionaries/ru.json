@@ -1071,7 +1071,11 @@
       "tagShieldedTransactions": "Экранированные транзакции",
       "tagPrivacyModels": "Модели приватности",
       "tagProtocolDesign": "Дизайн протокола",
-      "tagZeroKnowledge": "Нулевое разглашение"
+      "tagZeroKnowledge": "Нулевое разглашение",
+      "formalVerificationSeriesTitle": "Серия о формальной верификации Zcash",
+      "formalVerificationSeriesCardDescription": "Что такое формальная верификация, ошибка корректности Orchard 2026 года и как Ironwood решил проблему с помощью машинно проверяемого доказательства.",
+      "formalVerificationSeriesDescription": "Серия из трёх частей, объясняющая формальную верификацию с первых принципов, рассматривающая ошибку корректности Orchard 2026 года и показывающая, как Ironwood решил проблему с помощью машинно проверяемого математического доказательства.",
+      "newSeriesBadge": "Новая серия"
     },
     "browseSidebar": "Просматривайте статьи с помощью боковой панели слева 👈",
     "zcashGlobalAmbassadors": {
