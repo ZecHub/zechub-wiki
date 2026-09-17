@@ -48,57 +48,69 @@ export const navigations: Array<NavigationItem> = [
         path: "/zcash-use-cases/",
         icon: FaUserAstronaut,
         links: [
-	  {
-	    name: "Start Here",
-	    path: "/zcash-use-cases/about",
-	    icon: Info,                       // or CircleInfo
-	  },
-	  {
-	    name: "Accept Payments",
-	    path: "/zcash-use-cases/accept-payments-as-a-merchant",
-	    icon: PointOfSale,
-	  },
-	  {
-	    name: "Freelance Privacy",
-	    path: "/zcash-use-cases/freelance-privacy-setup",
-	    icon: PrivacyTip,
-	  },
-	  {
-	    name: "Journalist Privacy",
-	    path: "/zcash-use-cases/journalist-privacy-setup",
-	    icon: PrivacyTip,
-	  },
-	  {
-	    name: "Keeping Records",
-	    path: "/zcash-use-cases/keeping-records-with-shielded-zec",
-	    icon: FileKey,
-	  },
-	  {
-	    name: "Private Community Treasury",
-	    path: "/zcash-use-cases/private-community-treasury",
-	    icon: Group,
-	  },
-	  {
-	    name: "Donations",
-	    path: "/zcash-use-cases/receive-donations-privately",
-	    icon: Jar,
-	  },
-	  {
-	    name: "Send Money Privately",
-	    path: "/zcash-use-cases/send-money-without-linking-identity",
-	    icon: ArrowUp,
-	  },
-	  {
-	    name: "Zcash Login",
-	    path: "/zcash-use-cases/sign-in-with-zcash",
-	    icon: KeyRound,
-	  },
-	  {
-	    name: "Pay for AI",
-	    path: "/zcash-use-cases/pay-for-ai-with-shielded-zec",
-	    icon: MdDeveloperMode,
-	  },
-	],
+          {
+            name: "Start Here",
+            path: "/zcash-use-cases/about",
+            icon: Info,
+          },
+          {
+            name: "Accept Payments",
+            path: "/zcash-use-cases/accept-payments-as-a-merchant",
+            icon: PointOfSale,
+          },
+          {
+            name: "Freelance Privacy",
+            path: "/zcash-use-cases/freelance-privacy-setup",
+            icon: PrivacyTip,
+          },
+          {
+            name: "Journalist Privacy",
+            path: "/zcash-use-cases/journalist-privacy-setup",
+            icon: PrivacyTip,
+          },
+          {
+            name: "Keeping Records",
+            path: "/zcash-use-cases/keeping-records-with-shielded-zec",
+            icon: FileKey,
+          },
+          {
+            name: "Private Community Treasury",
+            path: "/zcash-use-cases/private-community-treasury",
+            icon: Group,
+          },
+          {
+            name: "Donations",
+            path: "/zcash-use-cases/receive-donations-privately",
+            icon: Jar,
+          },
+          {
+            name: "Send Money Privately",
+            path: "/zcash-use-cases/send-money-without-linking-identity",
+            icon: ArrowUp,
+          },
+          {
+            name: "Zcash Login",
+            path: "/zcash-use-cases/sign-in-with-zcash",
+            icon: KeyRound,
+          },
+          {
+            name: "Pay for AI",
+            path: "/zcash-use-cases/pay-for-ai-with-shielded-zec",
+            icon: MdDeveloperMode,
+          },
+        ],
+      },
+      {
+        name: "Wallets",
+        path: "/wallets",
+      },
+      {
+        name: "Zallet Quick Reference Guide",
+        path: "/using-zcash/zallet-quick-reference-guide",
+      },
+      {
+        name: "Metamask Snap",
+        path: "/using-zcash/metamask-snap",
       },
       {
         name: "Buying ZEC",
@@ -109,46 +121,24 @@ export const navigations: Array<NavigationItem> = [
         path: "/using-zcash/faucets",
       },
       {
-        name: "Testnet",
-        path: "/using-zcash/testnet",
-      },
-      {
-        name: "Tools",
-        path: "/tools",
-        icon: Wrench,
-      },
-      {
-        name: "Wallets",
-        path: "/wallets",
-      },
-      {
-        name: "Metamask Snap",
-        path: "/using-zcash/metamask-snap",
-      },
-      {
         name: "Exchanges",
         path: "/dex",
       },
       {
-        name: "Blockchain Explorers",
-        label: "Block Explorers",
-        path: "/using-zcash/blockchain-explorers",
+        name: "Spend Zcash",
+        path: "/using-zcash/spend-zcash/top-10-places-to-spend-zec",
+        icon: PointOfSale,
+        links: [
+          {
+            name: "Places to Spend ZEC",
+            path: "/using-zcash/spend-zcash/top-10-places-to-spend-zec",
+            icon: PointOfSale,
+          },
+        ],
       },
       {
-        name: "Shielded Pools",
-        path: "/using-zcash/shielded-pools",
-      },
-      {
-        name: "Transparent Exchange Addresses",
-        path: "/using-zcash/transparent-exchange-addresses",
-      },
-      {
-        name: "Transactions",
-        path: "/using-zcash/transactions",
-      },
-      {
-        name: "Memos",
-        path: "/using-zcash/memos",
+        name: "Payment Processors",
+        path: "/payment-processors",
       },
       {
         name: "Mobile Top Ups",
@@ -159,17 +149,39 @@ export const navigations: Array<NavigationItem> = [
         path: "/using-zcash/payment-request-uris",
       },
       {
-        name: "Payment Processors",
-        path: "/payment-processors",
+        name: "Transactions",
+        path: "/using-zcash/transactions",
+      },
+      {
+        name: "Memos",
+        path: "/using-zcash/memos",
+      },
+      {
+        name: "Shielded Pools",
+        path: "/using-zcash/shielded-pools",
+      },
+      {
+        name: "Transparent Exchange Addresses",
+        path: "/using-zcash/transparent-exchange-addresses",
+      },
+      {
+        name: "Blockchain Explorers",
+        label: "Block Explorers",
+        path: "/using-zcash/blockchain-explorers",
       },
       {
         name: "Recovering Funds",
         path: "/using-zcash/recovering-funds",
       },
       {
-	name: "Zallet Quick Reference Guide",
-        path: "/using-zcash/zallet-quick-reference-guide",
-      }
+        name: "Tools",
+        path: "/tools",
+        icon: Wrench,
+      },
+      {
+        name: "Testnet",
+        path: "/using-zcash/testnet",
+      },
     ],
   },
   {

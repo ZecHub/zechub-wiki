@@ -225,6 +225,10 @@ const iconsForMenu: IconsFor = {
     "Zcash Mining Pools": Mining,           
     "Zimppy": PointOfSale,
 	"Zecmap": Globe,
+    DEX: Swap,
+    "Centralized Swaps": Swap,
+    "Spend Zcash": PointOfSale,
+    "Top 10 Places to spend ZEC": PointOfSale,
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
