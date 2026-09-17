@@ -6,11 +6,11 @@ import {
   CheckCircle,
   ExternalLink,
   Lock,
+  Map,
   Shield,
   ShoppingCart,
   Store,
   Zap,
-  Map
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -89,6 +89,21 @@ const slides = [
     ],
     link: "https://zecmap.com/",
     linkText: "Explore ZecMap",
+  },
+  {
+    id: "zecmarket",
+    title: "ZEC Market",
+    icon: ShoppingCart,
+    color: "from-amber-500 to-orange-300",
+    steps: [
+      "The privacy-first marketplace of the Zcash ecosystem",
+      "Payments settle directly, the platform never holds your funds",
+      "List or find: Publish an item in under a minute, or browse thousands of listings with rich filters.",
+      "Agree the deal: Message the seller, make an offer, and arrange the details, privately.",
+      "Agree the deal: Complete it with a shielded or transparent payment, directly between buyer and seller.",
+    ],
+    link: "https://zecmarket.org/",
+    linkText: "Explore ZEC Market",
   },
   {
     id: "accept-payments",
