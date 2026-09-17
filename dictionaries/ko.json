@@ -117,16 +117,16 @@
     "Places to Spend ZEC": "ZEC 사용처",
     "Free2Z Livestreaming": "Free2Z 라이브 스트리밍",
     "Hardened Zebrad": "강화된 Zebrad",
-    "Migration Guide Zcashd To Zebrad Zallet": "Zcashd에서 제브라드 Zallet으로 마이그레이션 가이드",
     "My First Zcash Workbook": "나의 첫 Zcash 워크북",
     "Verifying Zcash Releases": "Zcash 릴리스 확인 중",
     "Viewing Key Transaction Export": "Viewing Key 거래 내보내기",
-    "CoinHolder Directed Retroactive Grants": "CoinHolder 주도 소급 보조금",
-    "Akash Network Zcashd": "Akash 네트워크 Zcashd",
     "Brave Wallet Guide": "Brave Wallet 가이드",
-    "ShapeShift Zcash": "ShapeShift Zcash",
     "Valar Group": "Valar Group",
-    "Zcash Labs": "Zcash Labs"
+    "Zcash Labs": "Zcash Labs",
+    "Akash Network Zcashd": "Akash Network Zcashd",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Migration Guide Zcashd To Zebrad Zallet": "Zcashd에서 Zebrad Zallet으로의 마이그레이션 가이드",
+    "CoinHolder Directed Retroactive Grants": "CoinHolder Directed Retroactive Grants"
   },
   "exploreMenu": {
     "Full Explore": "전체 둘러보기",

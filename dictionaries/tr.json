@@ -121,12 +121,12 @@
     "My First Zcash Workbook": "İlk Zcash Çalışma Kitabım",
     "Verifying Zcash Releases": "Zcash Sürümleri Doğrulanıyor",
     "Viewing Key Transaction Export": "Viewing Key İşlem Dışa Aktarımı",
-    "CoinHolder Directed Retroactive Grants": "CoinHolder Tarafından Yönlendirilen Geriye Dönük Hibeler",
-    "Akash Network Zcashd": "Akash Network Zcashd",
     "Brave Wallet Guide": "Brave Wallet Rehberi",
-    "ShapeShift Zcash": "ShapeShift Zcash",
     "Valar Group": "Valar Group",
-    "Zcash Labs": "Zcash Labs"
+    "Zcash Labs": "Zcash Labs",
+    "Akash Network Zcashd": "Akash Network Zcashd",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "CoinHolder Directed Retroactive Grants": "CoinHolder Directed Retroactive Grants"
   },
   "exploreMenu": {
     "Full Explore": "Tam Keşfet",

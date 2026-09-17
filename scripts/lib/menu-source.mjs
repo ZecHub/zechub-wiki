@@ -39,23 +39,33 @@ export const MENU_BRANDS = new Set([
   // technical writing usually renders it.
   "Financial Privacy Foundation", "ZKAV Club", "Zcash Global Ambassadors",
   "Zcash Community Grants", "Zcash Login", "Zcash Devtool", "Testnet",
-  // Organisations added 2026-09-17: both were translated by the sync in almost
-  // every locale ("Zcash Labs" -> "Laboratorios Zcash"/"Laboratorii Zcash",
-  // "Valar Group" -> "Gruppo Valar"), because a company name reads as a common
-  // noun once "Labs"/"Group" is left unprotected. Same class as Financial
-  // Privacy Foundation above.
-  "Valar Group", "Zcash Labs",
+  // Organisations and programmes added 2026-09-17. Each was translated by the
+  // sync in most locales because the descriptive-looking word carries the name:
+  // "Zcash Labs" -> "Laboratorios Zcash", "Valar Group" -> "Gruppo Valar",
+  // "CoinHolder ... Grants" three different ways across 18 locales. Same class
+  // as Financial Privacy Foundation and Zcash Community Grants above.
+  //
+  // The last two are whole labels rather than substrings because their
+  // remainder is not descriptive: "ShapeShift Zcash" is two brands, and
+  // "Akash Network Zcashd" is a product plus a binary. Listing only the first
+  // token split the corpus -- 9 locales left the label fully English and 9
+  // localised "Network" -- and the sibling "Akash Network Zebra" is English in
+  // 15 of 18 already, so one name everywhere is the consistent outcome.
+  "Valar Group", "Zcash Labs", "CoinHolder Directed Retroactive Grants",
+  "ShapeShift Zcash", "Akash Network Zcashd",
   // SUBSTRINGS, not whole labels, per the conservative rule above: these appear
   // inside labels whose remainder is descriptive and SHOULD stay localised —
   // "BTCPayServer Zcash Plugin" (plugin), "Fork zechub-wiki" (fork). Listing the
   // name alone keeps the name verbatim without flattening the whole label to
   // English, exactly as "Raspberry Pi" does above.
   "BTCPayServer", "zechub", "zechub-wiki",
-  // Added 2026-09-17 for the same reason: unprotected, these were transliterated
-  // into non-Latin scripts -- Akash -> "\u0906\u0915\u093e\u0936" (hi) / "\u30a2\u30ab\u30b7\u30e5" (ja),
-  // ShapeShift -> "\u0634\u064a\u0628 \u0634\u064a\u0641\u062a" (ar), Brave -> "\u092c\u094d\u0930\u0947\u0935" (hi) -- while the
-  // descriptive remainder ("Network", "Wallet Guide") should stay localised.
-  "Akash", "Brave", "ShapeShift",
+  // Added 2026-09-17: unprotected, these were transliterated into non-Latin
+  // scripts -- Brave -> "\u092c\u094d\u0930\u0947\u0935" (hi), Akash -> "\u0906\u0915\u093e\u0936" (hi) / "\u30a2\u30ab\u30b7\u30e5" (ja) --
+  // while the descriptive remainder ("Wallet Guide") should stay localised.
+  // "Zebrad" is listed in this exact capitalisation: the content glossary
+  // carries only "zebrad" and "Zebra", and the prompt asks for terms EXACTLY as
+  // written, so ko rendered "Zebrad" as "\uc81c\ube0c\ub77c\ub4dc" inside the migration-guide label.
+  "Akash", "Brave", "ShapeShift", "Zebrad",
 ]);
 
 // NOT added, deliberately, though both were flagged as untranslated in some

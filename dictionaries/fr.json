@@ -121,12 +121,12 @@
     "My First Zcash Workbook": "Mon premier cahier d’exercices Zcash",
     "Verifying Zcash Releases": "Vérification des versions de Zcash",
     "Viewing Key Transaction Export": "Exportation des transactions de Viewing Key",
-    "CoinHolder Directed Retroactive Grants": "Subventions rétroactives dirigées par les détenteurs de pièces",
-    "Akash Network Zcashd": "Réseau Akash Zcashd",
     "Brave Wallet Guide": "Guide du portefeuille Brave",
-    "ShapeShift Zcash": "ShapeShift Zcash",
     "Valar Group": "Valar Group",
-    "Zcash Labs": "Zcash Labs"
+    "Zcash Labs": "Zcash Labs",
+    "Akash Network Zcashd": "Akash Network Zcashd",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "CoinHolder Directed Retroactive Grants": "CoinHolder Directed Retroactive Grants"
   },
   "exploreMenu": {
     "Full Explore": "Explorer entièrement",
