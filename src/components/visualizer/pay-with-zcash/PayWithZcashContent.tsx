@@ -79,7 +79,7 @@ const slides = [
     id: "zecmap",
     title: "ZecMap",
     icon: Map,
-    color: "from-amber-500 to-orange-600",
+    color: "from-amber-500 to-orange-300",
     steps: [
       "ZecMap is a community-driven directory that helps you find businesses acception Zcash (ZEC) on a map",
       "Explore on a map: see Zcash-friendly businesses near you",
