@@ -135,6 +135,10 @@ const getTranslatedLabel = (
       t.navigation?.usingZcash?.recoveringFunds || "Recovering Funds",
     Testnet: t.navigation?.usingZcash?.testnet || "Testnet",
     Tools: t.navigation?.usingZcash?.tools || "Tools",
+    "Spend Zcash":
+      t.navigation?.usingZcash?.spendZcash || "Spend Zcash",
+    "Places to Spend ZEC":
+      t.navigation?.usingZcash?.placesToSpendZec || "Places to Spend ZEC",
   };
   const communityMap: Record<string, string> = {
     "Arborist Calls":

@@ -68,7 +68,12 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
   // stays the source of truth for icon/filter matching below.
   const menuLabel = (item: string) => {
     const key = item.replace(/^site\//, "") + ".md";
-    return titles[key] ?? enTitles[key] ?? getName(item);
+    const titled = titles[key] ?? enTitles[key];
+    const fromFile = getName(item);
+    // Manifest titles are often the page H1 and wrap the sidebar.
+    // Prefer the short filename label when the title is much longer.
+    if (titled && titled.length <= 36) return titled;
+    return fromFile;
   };
   const root = roots.map((item) => item.slice(0, -3));
   const name = folder[0].toUpperCase() + folder.slice(1);
@@ -126,7 +131,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium ">
+                        <p className="text-sm font-medium leading-snug line-clamp-2 break-words">
                           {item ? menuLabel(item) : ""}
                         </p>
                       </div>

@@ -84,7 +84,9 @@ export default async function MdxContainer({
         }`}
       >
         {hasSideMenu && (
-          <div className="relative w-auto xl:w-2/5">{sideMenu}</div>
+          <div className="relative w-full shrink-0 xl:w-72 xl:min-w-[18rem] xl:max-w-xs">
+            {sideMenu}
+          </div>
         )}
         {isResearchArticle && researchMeta ? (
           <div className="flex min-w-0 flex-1 flex-col gap-10 lg:gap-12 xl:flex-row xl:items-start">
@@ -135,8 +137,7 @@ export default async function MdxContainer({
           </div>
         ) : (
           <section
-            style={{ margin: "auto" }}
-            className={`h-auto w-full p-3 dark:border-slate-400 ${
+            className={`h-auto min-w-0 w-full overflow-x-auto p-3 dark:border-slate-400 ${
               hasSideMenu ? "xl:border-l" : ""
             }`}
           >
