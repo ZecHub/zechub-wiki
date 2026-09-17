@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "Оплата ШІ"
+    "Pay for AI": "Оплата ШІ",
+    "Spend Zcash": "Витратити Zcash",
+    "Places to Spend ZEC": "Місця, де можна витратити ZEC",
+    "Free2Z Livestreaming": "Free2Z Прямі трансляції",
+    "Hardened Zebrad": "Зміцнений Zebrad",
+    "Migration Guide Zcashd To Zebrad Zallet": "Посібник з міграції Zcashd до Zebrad Zallet",
+    "My First Zcash Workbook": "Мій перший робочий зошит Zcash",
+    "Verifying Zcash Releases": "Перевірка релізів Zcash",
+    "Viewing Key Transaction Export": "Експорт транзакцій Viewing Key",
+    "Brave Wallet Guide": "Посібник із Brave Wallet",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Мережа Akash Zcashd",
+    "CoinHolder Directed Retroactive Grants": "Ретроактивні гранти, спрямовані CoinHolder"
   },
   "exploreMenu": {
     "Full Explore": "Повне дослідження",
@@ -1071,7 +1085,11 @@
       "tagShieldedTransactions": "Екрановані транзакції",
       "tagPrivacyModels": "Моделі приватності",
       "tagProtocolDesign": "Дизайн протоколу",
-      "tagZeroKnowledge": "Нульове знання"
+      "tagZeroKnowledge": "Нульове знання",
+      "formalVerificationSeriesTitle": "Серія про формальну верифікацію Zcash",
+      "formalVerificationSeriesCardDescription": "Що таке формальна верифікація, помилка коректності Orchard у 2026 році та як Ironwood відповів на неї машинно перевіреним доказом.",
+      "formalVerificationSeriesDescription": "Серія з трьох частин, що пояснює формальну верифікацію з перших принципів, розглядає помилку коректності Orchard у 2026 році та показує, як Ironwood відповів на неї машинно перевіреним математичним доказом.",
+      "newSeriesBadge": "Нова серія"
     },
     "browseSidebar": "Переглядайте статті за допомогою бічної панелі ліворуч 👈",
     "zcashGlobalAmbassadors": {
