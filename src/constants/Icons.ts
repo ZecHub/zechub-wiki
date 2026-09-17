@@ -387,6 +387,7 @@ const iconsForMenu: IconsFor = {
     "Zcash Library": LibraryC,
     FAQ: Faq,
     Gallery: FcGallery,
+    "ZecHub Hackathon Builders Guide": Guide,
   },
   Contribute: {
     "Community Infrastructure": Infra,
