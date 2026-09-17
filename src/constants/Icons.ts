@@ -186,6 +186,8 @@ const iconsForMenu: IconsFor = {
     "Zcash Monetary Policy": Graph,
     "What is ZecHub": CircleInfo,
     "Using This Wiki": Wikipedia,
+    "How Zcash Is Organized": Governance,
+    "Who Can See Your Zcash Payment": MagnifyingGlassChart,
   },
   Tutorials: {
     "Full Node Tutorials": Youtube,
