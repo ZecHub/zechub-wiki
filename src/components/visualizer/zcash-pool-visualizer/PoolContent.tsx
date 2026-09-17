@@ -19,7 +19,7 @@ export const PoolContent = ({ stage }: { stage: Stage }) => {
         return "/using-zcash/shielded-pools#sapling";
       case "orchard":
         return "/using-zcash/shielded-pools#orchard";
-        case 'ironwood':
+      case 'ironwood':
         return "/using-zcash/shielded-pools#ironwood";
       default:
         return "/using-zcash/shielded-pools";
