@@ -1,8 +1,7 @@
-import { motion } from "framer-motion";
-import { Eye, EyeOff, Shield, Lock } from "lucide-react";
-import { PoolData } from "./types";
 import { cn } from "@/lib/util";
-import { Link } from "@/i18n/navigation";
+import { motion } from "framer-motion";
+import { Eye, Lock, Shield } from "lucide-react";
+import { PoolData } from "./types";
 
 interface PoolContainerProps {
   pool: PoolData;
@@ -58,18 +57,23 @@ export const PoolContainer = ({
           glow: isFocused ? "glow-orchard" : "",
           text: "text-pool-orchard",
         };
-      case "ironwood":
+
+      default: {
         return {
           border: "border-pool-orchard/50",
           bg: "bg-pool-orchard/10",
           glow: isFocused ? "glow-orchard" : "",
           text: "text-pool-orchard",
         };
+      }
     }
   };
 
   const styles = getPoolStyles();
+
   return (
+
+
     <motion.div
       layout
       initial={{ opacity: 0, scale: 0.9 }}
@@ -79,7 +83,8 @@ export const PoolContainer = ({
       }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
-        "relative rounded-xl border-2 p-6 transition-all duration-300",
+        "relative rounded-md border-2 p-6 transition-all duration-300",
+        "w-full h-full flex flex-col justify-start",
         styles.border,
         styles.bg,
         styles.glow,
@@ -127,10 +132,10 @@ export const PoolContainer = ({
         className={cn(
           "relative h-24 rounded-lg overflow-hidden",
           pool.type === "transparent"
-            ? "bg-gradient-to-b from-pool-transparent/20 to-transparent border border-pool-transparent/30"
+            ? "bg-linear-to-b from-pool-transparent/20 to-transparent border border-pool-transparent/30"
             : pool.type === "sapling"
-              ? "bg-gradient-to-b from-pool-sapling/20 to-pool-sapling/5"
-              : "bg-gradient-to-b from-pool-orchard/20 to-pool-orchard/5",
+              ? "bg-linear-to-b from-pool-sapling/20 border to-pool-sapling/5"
+              : "bg-linear-to-b from-pool-orchard/20 border to-pool-orchard/5",
         )}
       >
         {/* Glass/Frosted effect for shielded pools */}
