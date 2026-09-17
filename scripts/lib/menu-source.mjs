@@ -45,14 +45,17 @@ export const MENU_BRANDS = new Set([
   // "CoinHolder ... Grants" three different ways across 18 locales. Same class
   // as Financial Privacy Foundation and Zcash Community Grants above.
   //
-  // The last two are whole labels rather than substrings because their
-  // remainder is not descriptive: "ShapeShift Zcash" is two brands, and
-  // "Akash Network Zcashd" is a product plus a binary. Listing only the first
-  // token split the corpus -- 9 locales left the label fully English and 9
-  // localised "Network" -- and the sibling "Akash Network Zebra" is English in
-  // 15 of 18 already, so one name everywhere is the consistent outcome.
-  "Valar Group", "Zcash Labs", "CoinHolder Directed Retroactive Grants",
-  "ShapeShift Zcash", "Akash Network Zcashd",
+  // "ShapeShift Zcash" is a whole label rather than a substring because its
+  // remainder is a second brand: there is nothing left to localise, and as a
+  // substring it emitted a self-equal advisory in all 18 locales.
+  //
+  // "Akash Network Zcashd" and "CoinHolder Directed Retroactive Grants" were
+  // tried here and deliberately removed. Both have a genuinely descriptive
+  // remainder, and protecting the whole label discarded sound translations
+  // ("Rete Akash Zcashd", "Subvenciones retroactivas dirigidas por los
+  // titulares de monedas"). They stay translatable; Akash keeps its name via
+  // the substring entry below.
+  "Valar Group", "Zcash Labs", "ShapeShift Zcash",
   // SUBSTRINGS, not whole labels, per the conservative rule above: these appear
   // inside labels whose remainder is descriptive and SHOULD stay localised —
   // "BTCPayServer Zcash Plugin" (plugin), "Fork zechub-wiki" (fork). Listing the
