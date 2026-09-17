@@ -39,12 +39,23 @@ export const MENU_BRANDS = new Set([
   // technical writing usually renders it.
   "Financial Privacy Foundation", "ZKAV Club", "Zcash Global Ambassadors",
   "Zcash Community Grants", "Zcash Login", "Zcash Devtool", "Testnet",
+  // Organisations added 2026-09-17: both were translated by the sync in almost
+  // every locale ("Zcash Labs" -> "Laboratorios Zcash"/"Laboratorii Zcash",
+  // "Valar Group" -> "Gruppo Valar"), because a company name reads as a common
+  // noun once "Labs"/"Group" is left unprotected. Same class as Financial
+  // Privacy Foundation above.
+  "Valar Group", "Zcash Labs",
   // SUBSTRINGS, not whole labels, per the conservative rule above: these appear
   // inside labels whose remainder is descriptive and SHOULD stay localised —
   // "BTCPayServer Zcash Plugin" (plugin), "Fork zechub-wiki" (fork). Listing the
   // name alone keeps the name verbatim without flattening the whole label to
   // English, exactly as "Raspberry Pi" does above.
   "BTCPayServer", "zechub", "zechub-wiki",
+  // Added 2026-09-17 for the same reason: unprotected, these were transliterated
+  // into non-Latin scripts -- Akash -> "\u0906\u0915\u093e\u0936" (hi) / "\u30a2\u30ab\u30b7\u30e5" (ja),
+  // ShapeShift -> "\u0634\u064a\u0628 \u0634\u064a\u0641\u062a" (ar), Brave -> "\u092c\u094d\u0930\u0947\u0935" (hi) -- while the
+  // descriptive remainder ("Network", "Wallet Guide") should stay localised.
+  "Akash", "Brave", "ShapeShift",
 ]);
 
 // NOT added, deliberately, though both were flagged as untranslated in some
