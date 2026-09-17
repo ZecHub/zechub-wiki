@@ -58,6 +58,13 @@ export const PoolContainer = ({
           glow: isFocused ? "glow-orchard" : "",
           text: "text-pool-orchard",
         };
+      case "ironwood":
+        return {
+          border: "border-pool-orchard/50",
+          bg: "bg-pool-orchard/10",
+          glow: isFocused ? "glow-orchard" : "",
+          text: "text-pool-orchard",
+        };
     }
   };
 
@@ -77,7 +84,7 @@ export const PoolContainer = ({
         styles.bg,
         styles.glow,
         isFocused && "z-10",
-        className
+        className,
       )}
     >
       {/* Pool Header */}
@@ -108,7 +115,7 @@ export const PoolContainer = ({
           className={cn(
             "text-xs px-2 py-1 rounded-full text-center",
             styles.bg,
-            styles.text
+            styles.text,
           )}
         >
           {privacyLabels[pool.privacyLevel]}
@@ -122,8 +129,8 @@ export const PoolContainer = ({
           pool.type === "transparent"
             ? "bg-gradient-to-b from-pool-transparent/20 to-transparent border border-pool-transparent/30"
             : pool.type === "sapling"
-            ? "bg-gradient-to-b from-pool-sapling/20 to-pool-sapling/5"
-            : "bg-gradient-to-b from-pool-orchard/20 to-pool-orchard/5"
+              ? "bg-gradient-to-b from-pool-sapling/20 to-pool-sapling/5"
+              : "bg-gradient-to-b from-pool-orchard/20 to-pool-orchard/5",
         )}
       >
         {/* Glass/Frosted effect for shielded pools */}
@@ -184,13 +191,13 @@ export const PoolContainer = ({
             <code
               className={cn(
                 "block text-xs font-mono p-2 rounded bg-secondary/50 break-all",
-                styles.text
+                styles.text,
               )}
             >
               {pool.exampleAddress.length > 40
                 ? `${pool.exampleAddress.slice(
                     0,
-                    20
+                    20,
                   )}...${pool.exampleAddress.slice(-15)}`
                 : pool.exampleAddress}
             </code>

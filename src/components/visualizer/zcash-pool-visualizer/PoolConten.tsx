@@ -8,7 +8,7 @@ export const PoolContent = ({ stage }: { stage: Stage }) => {
 
   const focusedPool = POOLS[stage.focusPool];
   const otherPools: PoolType[] = (
-    ["transparent", "sapling", "orchard"] as PoolType[]
+    ["transparent", "sapling", "orchard", 'ironwood'] as PoolType[]
   ).filter((p) => p !== stage.focusPool);
 
   const getPoolLinks = () => {
@@ -19,6 +19,8 @@ export const PoolContent = ({ stage }: { stage: Stage }) => {
         return "/using-zcash/shielded-pools#sapling";
       case "orchard":
         return "/using-zcash/shielded-pools#orchard";
+        case 'ironwood':
+        return "/using-zcash/shielded-pools#ironwood";
       default:
         return "/using-zcash/shielded-pools";
     }
