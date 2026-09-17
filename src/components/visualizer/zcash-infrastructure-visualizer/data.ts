@@ -96,6 +96,17 @@ export const COMPONENTS: ComponentsMap = {
     docs: "https://zechub.wiki/developers/quick-start#zebrad",
     layer: 1,
   },
+  zakura: {
+    name: "Zakura Node",
+    description: "A consensus-compatible Zcash full node, built for scale.",
+    color: "from-pink-400 via-pink-400 to-pink-500",
+    borderColor: "border-emerald-400/50",
+    glowColor:
+      "shadow-[0_0_40px_rgba(52,211,153,0.4),0_0_80px_rgba(52,211,153,0.2)]",
+    icon: Database,
+    docs: "https://zechub.wiki/developers/quick-start#zakura",
+    layer: 2,
+  },
   zaino: {
     name: "Zaino Indexer",
     description:
