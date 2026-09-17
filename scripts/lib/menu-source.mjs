@@ -54,10 +54,12 @@ export const MENU_BRANDS = new Set([
   //
   // "Akash Network Zcashd" and "CoinHolder Directed Retroactive Grants" were
   // tried here and deliberately removed. Both have a genuinely descriptive
-  // remainder, and protecting the whole label discarded sound translations
-  // ("Rete Akash Zcashd", "Subvenciones retroactivas dirigidas por los
-  // titulares de monedas"). They stay translatable; Akash keeps its name via
-  // the substring entry below.
+  // remainder, and protecting the whole label discarded sound translations --
+  // "Rete Akash Zcashd", "Mtandao wa Akash Zcashd" -- in favour of English.
+  // They stay translatable; Akash keeps its name via the substring entry below.
+  // Six locales (de, hi, ja, ru, tr, zh) still return "Akash Network Zcashd"
+  // unchanged, treating the product name as indivisible; that is the
+  // translator's judgement per language, not a gap the list can close.
   "Valar Group", "Zcash Labs", "ShapeShift Zcash",
   // SUBSTRINGS, not whole labels, per the conservative rule above: these appear
   // inside labels whose remainder is descriptive and SHOULD stay localised —
