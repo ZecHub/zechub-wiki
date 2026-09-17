@@ -124,6 +124,14 @@ export const STAGES: Stage[] = [
   },
   {
     id: 4,
+    title: "Why Ironwood Exists",
+    subtitle: "NU6.3 · Activated 28 July 2026",
+    description:
+      "A soundness bug in the Orchard circuit meant nobody could independently verify the shielded supply. Ironwood is the fix.",
+    type: "ironwood-why",
+  },
+  {
+    id: 5,
     title: "Shielding Transaction",
     subtitle: "Transparent → Shielded",
     description:
@@ -134,21 +142,14 @@ export const STAGES: Stage[] = [
     amount: "1.5 ZEC",
   },
   {
-    id: 5,
+    id: 6,
     title: "Transaction Privacy Matrix",
     subtitle: "Understanding the Nuances",
     description:
       "Privacy depends on transaction type. Compare what is visible across all possible transaction combinations.",
     type: "comparison",
   },
-  {
-    id: 6,
-    title: "Why Ironwood Exists",
-    subtitle: "NU6.3 · Activated 28 July 2026",
-    description:
-      "A soundness bug in the Orchard circuit meant nobody could independently verify the shielded supply. Ironwood is the fix.",
-    type: "ironwood-why",
-  },
+
   {
     id: 7,
     title: "The Turnstile",
