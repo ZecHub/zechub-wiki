@@ -45,9 +45,12 @@ export const MENU_BRANDS = new Set([
   // "CoinHolder ... Grants" three different ways across 18 locales. Same class
   // as Financial Privacy Foundation and Zcash Community Grants above.
   //
-  // "ShapeShift Zcash" is a whole label rather than a substring because its
-  // remainder is a second brand: there is nothing left to localise, and as a
-  // substring it emitted a self-equal advisory in all 18 locales.
+  // "ShapeShift Zcash" is listed as the FULL label. The set has no type
+  // distinction -- every entry is both a gate whole-label key and a sync
+  // keep-verbatim substring -- so what changes is only whether an entry happens
+  // to equal a whole label, and therefore self-maps. Listing only "ShapeShift"
+  // left the remainder "Zcash", itself a brand, with nothing to localise, and
+  // the label emitted a self-equal advisory in all 18 locales.
   //
   // "Akash Network Zcashd" and "CoinHolder Directed Retroactive Grants" were
   // tried here and deliberately removed. Both have a genuinely descriptive
