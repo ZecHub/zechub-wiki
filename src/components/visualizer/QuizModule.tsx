@@ -11,7 +11,7 @@ import {
   X,
   XCircle,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export interface QuizQuestion {
@@ -47,6 +47,7 @@ export function QuizCard({
   className = "",
   onOpen,
 }: QuizCardProps) {
+  const descriptionId = useId();
   const { t } = useLanguage();
   const desc =
     description === DEFAULT_QUIZ_DESCRIPTION
@@ -60,15 +61,16 @@ export function QuizCard({
       transition={{ duration: 0.6, delay: 0.3 }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
+      tabIndex={-1}
       className={`h-full ${className}`}
     >
-      <div onClick={onOpen} className="cursor-pointer group h-full">
-        <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
+      <div className="relative group h-full">
+        <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full group-hover:bg-card/80 group-hover:border-border/50 transition-all duration-300">
           <div className="flex-1 text-center">
             <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
               {title}
             </h3>
-            <p className="text-muted-foreground text-sm sm:text-base group-hover:text-muted-foreground transition-colors">
+            <p id={descriptionId} className="text-muted-foreground text-sm sm:text-base group-hover:text-muted-foreground transition-colors">
               {description}
             </p>
           </div>
@@ -77,6 +79,13 @@ export function QuizCard({
             <span className="text-sm font-medium">{t?.visualizer?.clickToOpenQuiz ?? "Click to open quiz →"}</span>
           </div>
         </div>
+        <button
+          type="button"
+          onClick={onOpen}
+          aria-label={title}
+          aria-describedby={descriptionId}
+          className="absolute inset-0 h-full w-full cursor-pointer rounded-xl border-0 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        />
       </div>
     </motion.div>
   );
