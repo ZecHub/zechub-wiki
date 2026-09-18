@@ -73,13 +73,12 @@ const nextConfig = {
     //     still runs. Treat XSS via a sanitizer/nonce as separate follow-up work.
     //   * Preview deploys inject the vercel.live toolbar (violates script/connect/
     //     frame) — monitor a PRODUCTION deploy, or filter those out.
-    // To ENFORCE: rename the header to "Content-Security-Policy" (+ /embed carve-out).
-    const cspReportOnly = [
+    // Enforced Content-Security-Policy with /embed carve-out for framing
+    const baseCspDirectives = [
       "default-src 'self'",
       "base-uri 'self'",
       "object-src 'none'",
       "form-action 'self'",
-      "frame-ancestors 'self'",
       "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://i.ytimg.com https://i.postimg.cc https://*.basemaps.cartocdn.com https://img.shields.io https://upload.wikimedia.org https://ipfs.daodao.zone",
@@ -94,6 +93,16 @@ const nextConfig = {
       "manifest-src 'self'",
       "report-uri /api/csp-report",
       "report-to csp-endpoint",
+    ];
+
+    const cspEnforced = [
+      ...baseCspDirectives,
+      "frame-ancestors 'self'",
+    ].join("; ");
+
+    const cspEmbed = [
+      ...baseCspDirectives,
+      "frame-ancestors *",
     ].join("; ");
 
     const baseline = [
@@ -119,21 +128,26 @@ const nextConfig = {
         key: "Strict-Transport-Security",
         value: "max-age=63072000; includeSubDomains; preload",
       },
-      // Report-only CSP (policy built above). Blocks nothing yet — reports
-      // violations to the console and to /api/csp-report so we can watch a
-      // preview before flipping to the enforcing "Content-Security-Policy".
-      { key: "Content-Security-Policy-Report-Only", value: cspReportOnly },
       // Declares the endpoint named by the report-to directive (Reporting API).
       { key: "Reporting-Endpoints", value: 'csp-endpoint="/api/csp-report"' },
     ];
     return [
       { source: "/:path*", headers: baseline },
       {
-        // Clickjacking protection everywhere EXCEPT the embeddable widget under
-        // /embed (and its locale-prefixed form /xx/embed), which is designed to
-        // be framed by third-party sites.
+        // Enforce Content-Security-Policy & clickjacking protection everywhere
+        // EXCEPT the embeddable widget under /embed, which is framed by third parties.
         source: "/((?!(?:[a-z]{2}/)?embed(?:/|$)).*)",
-        headers: [{ key: "X-Frame-Options", value: "DENY" }],
+        headers: [
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "Content-Security-Policy", value: cspEnforced },
+        ],
+      },
+      {
+        // Embed routes allow framing from any origin with enforced CSP
+        source: "/((?:[a-z]{2}/)?embed(?:/.*)?)",
+        headers: [
+          { key: "Content-Security-Policy", value: cspEmbed },
+        ],
       },
     ];
   },
