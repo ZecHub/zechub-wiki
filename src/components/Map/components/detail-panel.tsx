@@ -10,6 +10,7 @@ export function DetailPanel(props: DetailPanelProps) {
 
   return (
     <div
+      className="spedn-detail-panel"
       style={{
         position: "absolute",
         bottom: 240,
