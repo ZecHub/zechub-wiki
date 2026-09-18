@@ -287,10 +287,15 @@
         "description": "Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions.",
         "link": "Meet the Ambassadors"
       },
-      "newsletter": {
-        "title": "Shielded Newsletter",
-        "description": "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!",
-        "link": "Subscribe"
+      "visualizer": {
+        "title": "ZecHub Visualizer",
+        "description": "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs",
+        "link": "Open the Visualizer"
+      },
+      "zecMap": {
+        "title": "ZecMap",
+        "description": "ZecMap is a community-maintained world map of merchants, services and ATMs that accept Zcash. Find somewhere to spend ZEC near you, or add a business you know to help grow real-world adoption.",
+        "link": "Visit ZecMap"
       },
       "free2z": {
         "title": "Free2Z",
