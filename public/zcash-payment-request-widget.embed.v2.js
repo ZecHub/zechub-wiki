@@ -10,6 +10,10 @@
       ? window.ZPWZ_CONFIG.apiBase
       : "";
 
+  const FOCUSABLE =
+    'a[href],button,input,select,textarea,[tabindex]:not([tabindex="-1"])';
+  let dialogSeq = 0;
+
   // Load CSS (your original CSS preserved exactly)
   const style = document.createElement("style");
   style.textContent = `
@@ -149,6 +153,9 @@
 
     // Create modal overlay (hidden initially)
     let overlay = null;
+    let opener = null;
+    let onKeyDown = null;
+    let onFocusIn = null;
 
     function open() {
       if (overlay) return;
@@ -227,6 +234,73 @@
       overlay.querySelector(".zwg-x").onclick = close;
       overlay.querySelector(".zwg-close").onclick = close;
 
+      // Dialog semantics + focus management (WAI-ARIA modal dialog pattern).
+      const modal = overlay.querySelector(".zwg-modal");
+      modal.setAttribute("role", "dialog");
+      modal.setAttribute("aria-modal", "true");
+      modal.tabIndex = -1;
+
+      const title = overlay.querySelector(".zwg-title");
+      if (title) {
+        title.id = `zwg-title-${++dialogSeq}`;
+        modal.setAttribute("aria-labelledby", title.id);
+      } else {
+        modal.setAttribute("aria-label", "Pay with Zcash");
+      }
+
+      const copyButtons = overlay.querySelectorAll(".zwg-copy");
+      if (copyButtons[0]) copyButtons[0].setAttribute("aria-label", "Copy address");
+      if (copyButtons[1]) copyButtons[1].setAttribute("aria-label", "Copy payment URI");
+      overlay.querySelectorAll("svg").forEach((s) => s.setAttribute("aria-hidden", "true"));
+
+      const active = document.activeElement;
+      opener =
+        active instanceof HTMLElement && active !== document.body ? active : btn;
+
+      const focusables = () =>
+        Array.from(overlay.querySelectorAll(FOCUSABLE)).filter(
+          (n) => !n.hasAttribute("disabled") && n.getAttribute("aria-hidden") !== "true",
+        );
+
+      onKeyDown = (e) => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          close();
+          return;
+        }
+        if (e.key !== "Tab") return;
+
+        const items = focusables();
+        if (items.length === 0) {
+          e.preventDefault();
+          modal.focus();
+          return;
+        }
+
+        const first = items[0];
+        const last = items[items.length - 1];
+        const current = document.activeElement;
+        const inside = overlay.contains(current);
+
+        if (e.shiftKey && (current === first || !inside || current === modal)) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && (current === last || !inside || current === modal)) {
+          e.preventDefault();
+          first.focus();
+        }
+      };
+
+      onFocusIn = (e) => {
+        if (overlay.contains(e.target)) return;
+        const items = focusables();
+        (items[0] || modal).focus();
+      };
+
+      document.addEventListener("keydown", onKeyDown);
+      document.addEventListener("focusin", onFocusIn);
+      modal.focus();
+
       overlay.querySelectorAll(".zwg-copy").forEach((b) => {
         b.onclick = async () => {
           try {
@@ -267,6 +341,8 @@
           `;
 
           overlay.querySelector(".zwg-acts").before(fld);
+          fld.querySelector(".zwg-copy").setAttribute("aria-label", "Copy short URL");
+          fld.querySelectorAll("svg").forEach((s) => s.setAttribute("aria-hidden", "true"));
 
           fld.querySelector(".zwg-copy").onclick = async function () {
             try {
@@ -289,8 +365,18 @@
 
     function close() {
       if (!overlay) return;
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("focusin", onFocusIn);
+      onKeyDown = null;
+      onFocusIn = null;
       overlay.remove();
       overlay = null;
+
+      const target = opener;
+      opener = null;
+      if (target && target.isConnected && typeof target.focus === "function") {
+        target.focus();
+      }
     }
 
     function destroy() {
@@ -298,6 +384,8 @@
       btn.remove();
     }
 
+    btn.setAttribute("aria-haspopup", "dialog");
+    btn.querySelectorAll("svg").forEach((s) => s.setAttribute("aria-hidden", "true"));
     btn.onclick = open;
 
     return { open, close, destroy };

@@ -44,6 +44,7 @@ function WidgetButtonTrigger({ config }: Props) {
           <div>
             <button
               disabled={config.disabled}
+              aria-haspopup="dialog"
               className={`
                 relative inline-flex items-center gap-2.5
                 px-7 py-3.5
@@ -60,7 +61,11 @@ function WidgetButtonTrigger({ config }: Props) {
               Preview Widget Snippet
             </button>
 
-            <Modal isOpen={open} onClose={() => setOpen(false)}>
+            <Modal
+              isOpen={open}
+              onClose={() => setOpen(false)}
+              label="Embed Code"
+            >
               <PaymentRequestWidgetCodeSnippet
                 config={{
                   ...config,
