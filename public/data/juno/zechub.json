@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 178,
+    "proposal_count": 179,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -7307,10 +7307,10 @@
           "title": "Club Zcash Querétaro - Zcash México (October-November 2026)",
           "votes": {
             "no": "0",
-            "yes": "14",
+            "yes": "15",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "passed",
           "proposer": "juno10qxtcj94dczkt2jckkx8cs9vxs45vhu05p3x04",
           "threshold": {
             "threshold_quorum": {
@@ -7332,6 +7332,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-09-12T20:32:29.903Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 179,
+        "proposal": {
+          "msgs": [],
+          "title": "ZecHub Bounty Community Management and Review Support",
+          "votes": {
+            "no": "0",
+            "yes": "4",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1ns8w360xzw6vurexxjk8vdqdph8cnus6rxzrl5",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1790094321840371761"
+          },
+          "description": "Hello ZecHub community,\n\nMy name is snrdev, and I would like to contribute as a community manager and bounty reviewer for the ZecHub Bounties platform and related bounty activities on DAODAO.\n\nMy goal is to make the bounty process clear, responsive, fair, and accessible to new and existing contributors.\n\nResponsibilities\n\nMy responsibilities will include:\n\nPromoting available bounties and encouraging qualified contributors to participate.\nHelping new contributors understand how to register, apply, submit work, and receive payments.\nAnswering community questions and directing technical issues to the appropriate team members.\nReviewing proposed bounties for clear scope, realistic deadlines, suitable rewards, and measurable acceptance criteria.\nReviewing applications and completed submissions against the published requirements.\nProviding clear feedback when contributors need to revise their submissions.\nFollowing up on inactive or delayed bounties.\nSupporting the review of bounty-related proposals and discussions on DAODAO.\nPublishing regular updates on active bounties, completed work, pending reviews, and unresolved issues.\nCollecting community feedback and recommending improvements to the bounty process.\nReporting and accountability\n\nI will submit a monthly report covering:\n\nNew and active bounties.\nApplications and submissions reviewed.\nApproved, rejected, or revised submissions.\nContributor questions and reported issues.\nOutstanding matters requiring administrative action.\nHours worked and tasks completed.\nRecommendations for improving participation and review times.\nTrial period\n\nI propose an initial trial period of three months. At the end of the trial, the community can assess my performance based on response time, review quality, contributor support, completed bounties, and reporting accuracy.\n\nCompensation\n\nI propose an hourly rate equivalent to $5 in ZEC, with a maximum commitment of 20 hours per month.\n\nUsing a reference price of approximately $1,467.58 per ZEC, the estimated compensation is:\n\nHourly rate: 0.0034 ZEC\nMonthly maximum: 0.0681 ZEC\nThree-month maximum: 0.2044 ZEC\n\nBecause the ZEC market price may change, the final amount should be recalculated from the agreed $5 hourly rate using the ZEC/USD market price at the time of each monthly payment.\n\nI will submit a record of my completed tasks and working hours before requesting payment. Monthly compensation will not exceed the equivalent of $100, and the total three-month trial budget will not exceed the equivalent of $300.\n\nI am committed to conducting fair reviews, communicating respectfully with contributors, and helping ZecHub maintain an efficient and dependable bounty system.\n\nThank you for considering my proposal.\n\nName: snrdev\nRole: Bounty Community Manager and Reviewer\nZecHub/Discord username: snrdev",
+          "total_power": "23",
+          "start_height": 41849194,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-09-17T16:25:21.840Z"
       }
     ]
   },
