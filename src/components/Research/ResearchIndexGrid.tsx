@@ -9,6 +9,17 @@ const RESEARCH_IMG_DARK = "/explore/dark/research.png";
 
 type Props = {
   roots: string[];
+  /**
+   * Localized page titles from translation/menu-titles, keyed by the
+   * site-relative path with ".md" (e.g. "Research/Foo.md"), with the English
+   * manifest as fallback — the same pair SideMenu resolves against elsewhere.
+   * Research routes render no sidebar (showSideMenu excludes them), so without
+   * these the cards are the only page titles a reader sees, and every one was
+   * derived from the filename and stayed English in all 18 locales even though
+   * the translated title already existed in the manifest.
+   */
+  titles?: Record<string, string>;
+  enTitles?: Record<string, string>;
   dynamicCovers?: Record<string, { src: string; alt?: string }>;
   showHeader?: boolean;
   title?: string;
@@ -27,17 +38,32 @@ export default function ResearchIndexGrid({
   showHeader = true,
   title = "Research",
   subtitle = "Articles and notes from the ZecHub community.",
+  titles = {},
+  enTitles = {},
 }: Props) {
   const articles = roots
     .filter((p) => p.endsWith(".md"))
     .map((filePath) => {
       const pathNoExt = filePath.replace(/\.md$/i, "");
       const wikiSlug = transformGithubFilePathToWikiLink(pathNoExt);
-      const titleText = getName(pathNoExt);
+      // Manifest key is the site-relative path with the extension, exactly as
+      // SideMenu builds it. SideMenu additionally prefers the short filename
+      // when a title exceeds 36 chars, because a long one wraps its narrow
+      // column; a card is wider, so the real title is used and clamped to two
+      // lines instead (manifest titles reach 132 chars).
+      const manifestKey = pathNoExt.replace(/^\/?site\//, "") + ".md";
+      const titleText =
+        titles[manifestKey] ?? enTitles[manifestKey] ?? getName(pathNoExt);
       const desc = descriptionForWikiPath(wikiSlug);
       return { wikiSlug, title: titleText, desc, key: filePath };
     })
-    .sort((a, b) => a.title.localeCompare(b.title));
+    // Sort on the FILE PATH, not the displayed title. Titles used to be derived
+    // from the filename, so alphabetical order happened to equal the numbered
+    // order of a series ("Article 0 …", "Article 1 …"). Real manifest titles
+    // break that: sorting a foundations series by its H1 renders 2,1,3,0,4,6,5
+    // in English and a different scramble per locale. Path order is the
+    // author's order and is identical in every language.
+    .sort((a, b) => a.key.localeCompare(b.key));
 
   if (articles.length === 0) {
     return (
@@ -100,7 +126,7 @@ export default function ResearchIndexGrid({
                   <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                     Research
                   </p>
-                  <h2 className="mt-1 text-lg font-bold text-foreground group-hover:underline">
+                  <h2 className="mt-1 line-clamp-2 text-lg font-bold text-foreground group-hover:underline">
                     {articleTitle}
                   </h2>
                   {desc ? (
