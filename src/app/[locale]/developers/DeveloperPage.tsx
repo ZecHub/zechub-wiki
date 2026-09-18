@@ -397,20 +397,26 @@ export default function DeveloperPage() {
     {
       title: "Zakura",
       description:
-        "Open-source Zcash wallet and reference implementation for developers building privacy-focused applications.",
+        "Open-source Zcash full node written in Rust, built for scale.",
       url: "https://github.com/zakura-core/zakura",
     },
     {
       title: "Zinder",
       description:
-        "Open-source Zcash messaging and wallet application demonstrating private payments and messaging capabilities.",
-      url: "https://github.com/gustavovalverde/zinder",
+        "Open-source Zcash chain indexer: indexes the chain once from a Zebra full node and serves wallets over its native WalletQuery API and a lightwalletd-compatible mode.",
+      url: "https://github.com/ZcashFoundation/zinder",
     },
     {
       title: "ZPay",
       description:
-        "Open-source Zcash payment application demonstrating how to integrate ZEC payments into wallet and merchant software.",
+        "Open-source Zcash payments stack for agents and the services they pay, built on the x402 protocol.",
       url: "https://github.com/gustavovalverde/zpay",
+    },
+    {
+      title: "Ztreamer",
+      description:
+        "Heavily optimized open-source Zcash indexer and lightwallet-protocol implementation, backed by an embedded Zakura node.",
+      url: "https://github.com/distractedm1nd/ztreamer",
     },
   ];
 
