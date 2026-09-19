@@ -570,7 +570,7 @@ export default async function Page(props: {
           </h1>
           <p className="text-xl text-muted-foreground">
             {dict?.pages?.browseSidebar ??
-              "Browse the articles using the sidebar on the left 👈"}
+              "Open Navigation to browse the articles in this section."}
           </p>
         </div>
       </MdxContainer>

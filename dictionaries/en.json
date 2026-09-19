@@ -1087,7 +1087,7 @@
       "formalVerificationSeriesDescription": "A three-part series that explains formal verification from first principles, walks through the 2026 Orchard soundness bug, and shows how Ironwood answered it with a machine-checked mathematical proof.",
       "newSeriesBadge": "New Series"
     },
-    "browseSidebar": "Browse the articles using the sidebar on the left 👈",
+    "browseSidebar": "Open Navigation to browse the articles in this section.",
     "zcashGlobalAmbassadors": {
       "title": "Zcash Global Ambassadors",
       "description": "Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions.",
