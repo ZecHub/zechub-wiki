@@ -4,6 +4,8 @@ import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import SPEDNMap from "@/components/Map/SpednMap";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: {
