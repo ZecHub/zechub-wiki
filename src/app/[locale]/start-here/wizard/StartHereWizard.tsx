@@ -13,6 +13,13 @@ type TrackOption = {
   label: string;
   hint: string;
   steps: PathStep[];
+  /**
+   * Cross-track recommendations: pages the wizard infers you need even
+   * though you did not ask for them (missing prerequisites, or the natural
+   * next step after this path). This is what makes the wizard a heuristic
+   * rather than a static lookup table.
+   */
+  alsoRead?: PathStep[];
 };
 
 type Track = {
@@ -62,6 +69,13 @@ const TRACKS: Track[] = [
             note: "Move your ZEC off the exchange into a wallet you control.",
           },
         ],
+        alsoRead: [
+          {
+            title: "Using ZEC, privately",
+            url: "/guides/using-zec-privately",
+            note: "Once your ZEC is in your own wallet, these habits keep it private.",
+          },
+        ],
       },
       {
         label: "With crypto I already hold",
@@ -86,6 +100,13 @@ const TRACKS: Track[] = [
             title: "Wallets",
             url: "/using-zcash/wallets",
             note: "Receive your swapped ZEC in a wallet you control.",
+          },
+        ],
+        alsoRead: [
+          {
+            title: "Using ZEC, privately",
+            url: "/guides/using-zec-privately",
+            note: "Swapped into ZEC? These habits keep it private from here on.",
           },
         ],
       },
@@ -123,6 +144,13 @@ const TRACKS: Track[] = [
             note: "Day-to-day habits that keep your activity private.",
           },
         ],
+        alsoRead: [
+          {
+            title: "Obtaining Zcash",
+            url: "/using-zcash/buying-zec",
+            note: "No ZEC yet? Every way to get some, compared side by side.",
+          },
+        ],
       },
       {
         label: "Understand the privacy first",
@@ -147,6 +175,13 @@ const TRACKS: Track[] = [
             title: "Wallets",
             url: "/using-zcash/wallets",
             note: "Pick your wallet now that you know what to look for.",
+          },
+        ],
+        alsoRead: [
+          {
+            title: "My First Zcash Workbook",
+            url: "/guides/my-first-zcash-workbook",
+            note: "Try a real shielded transaction once the theory clicks.",
           },
         ],
       },
@@ -184,6 +219,13 @@ const TRACKS: Track[] = [
             note: "Self-hosted invoicing with the BTCPay Server Zcash plugin.",
           },
         ],
+        alsoRead: [
+          {
+            title: "Wallets",
+            url: "/using-zcash/wallets",
+            note: "Receive and manage what you earn in a wallet you control.",
+          },
+        ],
       },
       {
         label: "A freelancer or creator",
@@ -208,6 +250,13 @@ const TRACKS: Track[] = [
             title: "Wallets",
             url: "/using-zcash/wallets",
             note: "Receive and manage what you earn.",
+          },
+        ],
+        alsoRead: [
+          {
+            title: "Zcash Payment Processors",
+            url: "/using-zcash/payment-processors",
+            note: "Outgrowing manual invoices? Compare processors that handle ZEC for you.",
           },
         ],
       },
@@ -280,6 +329,71 @@ const TRACKS: Track[] = [
             title: "Full Nodes",
             url: "/zcash-tech/full-nodes",
             note: "Understand what your new node is actually doing.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "explore",
+    label: "I'm just curious for now",
+    blurb: "New to Zcash? Start with the big picture, no commitment.",
+    icon: "🧭",
+    question: "How do you like to learn?",
+    options: [
+      {
+        label: "The big picture first",
+        hint: "What Zcash is and how its privacy works",
+        steps: [
+          {
+            title: "Zcash Basics",
+            url: "/start-here/what-is-zec-and-zcash",
+            note: "What ZEC is and why it exists, in plain language.",
+          },
+          {
+            title: "Who Can See Your Zcash Payment?",
+            url: "/start-here/who-can-see-your-zcash-payment",
+            note: "The core idea: what a shielded payment hides, and from whom.",
+          },
+          {
+            title: "Zcash Value Pools",
+            url: "/using-zcash/shielded-pools",
+            note: "Where shielded ZEC actually lives on the chain.",
+          },
+        ],
+        alsoRead: [
+          {
+            title: "My First Zcash Workbook",
+            url: "/guides/my-first-zcash-workbook",
+            note: "Curious enough to try? Walk through your first shielded transaction.",
+          },
+        ],
+      },
+      {
+        label: "Learn by doing",
+        hint: "Jump into a hands-on walkthrough",
+        steps: [
+          {
+            title: "Zcash Basics",
+            url: "/start-here/what-is-zec-and-zcash",
+            note: "What ZEC is and why it exists, in plain language.",
+          },
+          {
+            title: "My First Zcash Workbook",
+            url: "/guides/my-first-zcash-workbook",
+            note: "A hands-on walkthrough: your first shielded transaction.",
+          },
+          {
+            title: "Wallets",
+            url: "/using-zcash/wallets",
+            note: "Meet the wallets that made that transaction possible.",
+          },
+        ],
+        alsoRead: [
+          {
+            title: "Who Can See Your Zcash Payment?",
+            url: "/start-here/who-can-see-your-zcash-payment",
+            note: "Understand what your first shielded transaction actually hid.",
           },
         ],
       },
@@ -373,11 +487,11 @@ export default function StartHereWizard() {
           <h1 className="text-3xl md:text-4xl font-bold mb-3">
             Your reading path
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 mb-8">
-            Read these in order — each one builds on the last.{" "}
-            <span className="font-medium">
-              {track.label} · {option.label}.
-            </span>
+          <p className="text-gray-600 dark:text-gray-300 mb-2">
+            Read these in order — each one builds on the last.
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
+            Matched because you picked “{track.label}” → “{option.label}”.
           </p>
           <ol className="space-y-4">
             {option.steps.map((step, i) => (
@@ -405,6 +519,35 @@ export default function StartHereWizard() {
               </li>
             ))}
           </ol>
+
+          {option.alsoRead && option.alsoRead.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-xl font-bold mb-1">Worth reading next</h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                The wizard flagged these as your likely next step, based on
+                your answers.
+              </p>
+              <ul className="space-y-3">
+                {option.alsoRead.map((step) => (
+                  <li
+                    key={step.url}
+                    className="p-4 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50"
+                  >
+                    <Link
+                      href={step.url}
+                      className="font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+                    >
+                      {step.title}
+                    </Link>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      {step.note}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <div className="mt-8 flex flex-wrap gap-4">
             <button
               onClick={() => setOption(null)}
