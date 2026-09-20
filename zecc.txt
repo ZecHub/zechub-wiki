@@ -1,0 +1,35 @@
+# ?? ZecHub Start Here Wizard
+
+Welcome to ZecHub! If you are new to Zcash and feeling a bit overwhelmed by the technical details, deep menus, and hundreds of pages, you are in the right place. 
+
+To help you get started quickly, choose the path below that matches what you want to do right now:
+
+---
+
+### 1. ?? I want to Buy or Store ZEC
+* **What you need to know:** Learn how to set up your first secure wallet and where to purchase Zcash.
+* **Recommended Reading:**
+  * [Introduction to Wallets](https://zechub.wiki) *(Link to your preferred wallet guide page)*
+  * [How to Buy Zcash](https://zechub.wiki) *(Link to exchange/buying guide page)*
+
+### 2. ??? I want Financial Privacy & Shielded Transactions
+* **What you need to know:** Discover how Zcash’s zero-knowledge cryptography protects your transaction history using Shielded Pools.
+* **Recommended Reading:**
+  * [Shielded vs. Transparent Addresses](https://zechub.wiki)
+  * [Using Shielded Transactions](https://zechub.wiki)
+
+### 3. ?? I want to Accept Zcash Payments
+* **What you need to know:** If you are a merchant or freelancer looking to accept ZEC for goods and services.
+* **Recommended Reading:**
+  * [Merchant Adoption Guide](https://zechub.wiki)
+  * [Payment Gateways & Tools](https://zechub.wiki)
+
+### 4. ?? I want to Run a Node or Mine
+* **What you need to know:** Help secure the network, validate blocks, or support the decentralized infrastructure.
+* **Recommended Reading:**
+  * [Running a Full Node](https://zechub.wiki)
+  * [Mining Zcash Basics](https://zechub.wiki)
+
+---
+
+*Still lost? Head back to the [ZecHub Main Wiki Home](https://zechub.wiki) or join our community channels for live support!*
