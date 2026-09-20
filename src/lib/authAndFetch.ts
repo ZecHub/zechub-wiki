@@ -75,11 +75,28 @@ function isMissing(err: any): boolean {
   return err?.status === 404;
 }
 
+function isBuildPhase(): boolean {
+  return process.env.NEXT_PHASE === "phase-production-build";
+}
+
+function isRateLimited(err: any): boolean {
+  const status = err?.status;
+  const msg = String(err?.response?.data?.message ?? err?.message ?? "");
+  return (
+    status === 429 ||
+    /quota exhausted|rate limit/i.test(msg) ||
+    (status === 403 && /rate limit|quota exhausted/i.test(msg))
+  );
+}
+
 function rethrowIfTransient(err: any, path: string): void {
   if (isMissing(err)) return;
   console.error(
     `[authAndFetch] transient GitHub failure for ${path} (status ${err?.status}): ${err?.response?.data?.message ?? err?.message}`,
   );
+  // SSG: a GitHub 429 must not abort all ~985 static pages.
+  // Runtime: still throw so unstable_cache does not store null.
+  if (isRateLimited(err) && isBuildPhase()) return;
   throw err;
 }
 
@@ -332,17 +349,22 @@ export async function getLocalizedFileContentCached(
 export const getRootCached = unstable_cache(
   async (path: string) => {
     if (!assertRepoConfig()) return [];
-    const res = await octokit.rest.repos.getContent({
-      owner,
-      repo,
-      path: toGithubPath(path),
-      ref: branch,
-    });
-    const data = res.data;
-    const elements = getFiles(data);
-    return elements.filter((item: string) => item.endsWith(".md"));
+    try {
+      const res = await octokit.rest.repos.getContent({
+        owner,
+        repo,
+        path: toGithubPath(path),
+        ref: branch,
+      });
+      const data = res.data;
+      const elements = getFiles(data);
+      return elements.filter((item: string) => item.endsWith(".md"));
+    } catch (err: any) {
+      rethrowIfTransient(err, toGithubPath(path));
+      return [];
+    }
   },
-  ["github-root-md-cache"],
+  ["github-root-md-cache", owner, repo, branch],
   { revalidate: 30, tags: ["github-content"] },
 );
 

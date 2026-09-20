@@ -383,6 +383,8 @@ export default async function Page(props: {
               roots={nonSeriesRoots}
               dynamicCovers={indexDynamicCovers}
               showHeader={false}
+              titles={menuTitles}
+              enTitles={enMenuTitles}
             />
           </div>
         </MdxContainer>
@@ -443,7 +445,9 @@ export default async function Page(props: {
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-4xl">{series?.emoji ?? "📚"}</span>
                 <h1 className="text-2xl imd:text-4xl font-bold">
-                  {series?.title ?? "Research Series"}
+                  {(series && r[series.i18nKeys.title]) ??
+                    series?.title ??
+                    "Research Series"}
                 </h1>
               </div>
               <p className="max-w-3xl text-base text-muted-foreground">
@@ -465,6 +469,8 @@ export default async function Page(props: {
             roots={roots}
             dynamicCovers={dynamicCovers}
             showHeader={false}
+            titles={menuTitles}
+            enTitles={enMenuTitles}
           />
         </MdxContainer>
       );
@@ -564,7 +570,7 @@ export default async function Page(props: {
           </h1>
           <p className="text-xl text-muted-foreground">
             {dict?.pages?.browseSidebar ??
-              "Browse the articles using the sidebar on the left 👈"}
+              "Open Navigation to browse the articles in this section."}
           </p>
         </div>
       </MdxContainer>
