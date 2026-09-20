@@ -4,9 +4,10 @@ import React from "react";
 interface ExchangeCardProps {
   name: string;
   url: string;
-  pairs: string;
-  support: string;
-  depositTime: string;
+  pairs?: string;
+  support?: string;
+  depositTime?: string;
+  ironwood?: string;
   logo: string;
   altText: string;
 }
@@ -17,6 +18,7 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
   pairs,
   support,
   depositTime,
+  ironwood,
   logo,
   altText,
 }) => (
@@ -47,18 +49,30 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
         </a>
 
         <div className="space-y-3 text-sm text-zinc-600 dark:text-zinc-400">
-          <div className="flex flex-col md:flex-row md:gap-2">
-            <span className="font-semibold text-zinc-500 w-20">Pairs:</span>
-            <span>{pairs}</span>
-          </div>
-          <div className="flex flex-col md:flex-row md:gap-2">
-            <span className="font-semibold text-zinc-500 w-20">Supports:</span>
-            <span>{support}</span>
-          </div>
-          <div className="flex flex-col md:flex-row md:gap-2">
-            <span className="font-semibold text-zinc-500 w-20">Deposit Time:</span>
-            <span>{depositTime}</span>
-          </div>
+          {pairs ? (
+            <div className="flex flex-col md:flex-row md:gap-2">
+              <span className="font-semibold text-zinc-500 w-20">Pairs:</span>
+              <span>{pairs}</span>
+            </div>
+          ) : null}
+          {support ? (
+            <div className="flex flex-col md:flex-row md:gap-2">
+              <span className="font-semibold text-zinc-500 w-20">Supports:</span>
+              <span>{support}</span>
+            </div>
+          ) : null}
+          {depositTime ? (
+            <div className="flex flex-col md:flex-row md:gap-2">
+              <span className="font-semibold text-zinc-500 w-20">Deposit Time:</span>
+              <span>{depositTime}</span>
+            </div>
+          ) : null}
+          {ironwood ? (
+            <div className="flex flex-col md:flex-row md:gap-2">
+              <span className="font-semibold text-zinc-500 w-20">Ironwood:</span>
+              <span>{ironwood}</span>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

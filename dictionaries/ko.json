@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "AI 결제"
+    "Pay for AI": "AI 결제",
+    "Spend Zcash": "Zcash 사용",
+    "Places to Spend ZEC": "ZEC 사용처",
+    "Free2Z Livestreaming": "Free2Z 라이브 스트리밍",
+    "Hardened Zebrad": "강화된 Zebrad",
+    "My First Zcash Workbook": "나의 첫 Zcash 워크북",
+    "Verifying Zcash Releases": "Zcash 릴리스 확인 중",
+    "Viewing Key Transaction Export": "Viewing Key 거래 내보내기",
+    "Brave Wallet Guide": "Brave Wallet 가이드",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Migration Guide Zcashd To Zebrad Zallet": "Zcashd에서 Zebrad Zallet으로의 마이그레이션 가이드",
+    "Akash Network Zcashd": "Akash 네트워크 Zcashd",
+    "CoinHolder Directed Retroactive Grants": "코인 보유자 지정 소급 보조금"
   },
   "exploreMenu": {
     "Full Explore": "전체 둘러보기",
@@ -1071,7 +1085,11 @@
       "tagShieldedTransactions": "차폐 트랜잭션",
       "tagPrivacyModels": "프라이버시 모델",
       "tagProtocolDesign": "프로토콜 설계",
-      "tagZeroKnowledge": "영지식"
+      "tagZeroKnowledge": "영지식",
+      "formalVerificationSeriesTitle": "Zcash 형식 검증 시리즈",
+      "formalVerificationSeriesCardDescription": "형식 검증이 무엇인지, 2026년 Orchard 건전성 버그, 그리고 Ironwood가 기계 검증 증명으로 이에 어떻게 답했는지.",
+      "formalVerificationSeriesDescription": "형식 검증을 첫 원리부터 설명하고, 2026년 Orchard 건전성 버그를 살펴보며, Ironwood가 기계 검증된 수학적 증명으로 이에 어떻게 답했는지 보여주는 3부작 시리즈.",
+      "newSeriesBadge": "새 시리즈"
     },
     "browseSidebar": "왼쪽 사이드바를 사용해 글을 둘러보세요 👈",
     "zcashGlobalAmbassadors": {

@@ -6,6 +6,7 @@ import PenumbraWalletConnect from "../Penumbra/PenumbraWalletConnect";
 import "./donation.css";
 import { BsQrCodeScan } from "react-icons/bs";
 import { MdOutlineCopyAll } from "react-icons/md";
+import useClipboardFeedback from "@/hooks/useClipboardFeedback";
 
 type Token = "zcash" | "penumbra" | "ycash" | "namada" | "dash";
 type Symbol = "zec" | "um" | "yec" | "nam" | "dash";
@@ -24,7 +25,6 @@ const DonationComp = () => {
   const [imgLogo, setImgLogo] = useState(images.zcash);
   const [imgFade, setImgFade] = useState(false);
   const [isPenumbraVisible, setIsPenumbraVisible] = useState(false);
-  const [copied, setCopied] = useState(false);
 
   const zcashAddress =
     "u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89";
@@ -57,7 +57,12 @@ const DonationComp = () => {
     }
   };
 
+  const { copy, status, isCopying, reset } = useClipboardFeedback(
+    getDonationAddress()
+  );
+
   const handleOnClick = (tokenName: Token) => {
+    reset();
     setImgFade(true);
     let tokenSymbol: Symbol;
 
@@ -84,13 +89,6 @@ const DonationComp = () => {
       setImgLogo(images[tokenName]);
       setImgFade(false);
     }, 400);
-  };
-
-  const handleCopy = (text: string) => {
-    if (!text) return;
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
   };
 
   const currencies: { id: Token; label: string; logo: string }[] = [
@@ -164,26 +162,47 @@ const DonationComp = () => {
         <div className="w-full relative">
           <div className="flex items-stretch gap-2">
             <div className="flex-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3.5 shadow-sm overflow-hidden">
-              <p className="text-[13px] font-mono text-gray-800 dark:text-gray-200 break-all leading-relaxed select-all">
-                {getDonationAddress() || "Address coming soon…"}
-              </p>
+              {status === "error" ? (
+                <textarea
+                  aria-label="Donation address"
+                  readOnly
+                  value={getDonationAddress()}
+                  rows={4}
+                  onFocus={(event) => event.currentTarget.select()}
+                  className="block w-full bg-transparent text-[13px] font-mono text-gray-800 dark:text-gray-200 leading-relaxed"
+                />
+              ) : (
+                <p className="text-[13px] font-mono text-gray-800 dark:text-gray-200 break-all leading-relaxed select-all">
+                  {getDonationAddress() || "Address coming soon…"}
+                </p>
+              )}
             </div>
 
             <button
-              onClick={() => handleCopy(getDonationAddress())}
-              disabled={!getDonationAddress()}
+              type="button"
+              onClick={copy}
+              disabled={!getDonationAddress() || isCopying || imgFade}
               className="shrink-0 w-12 rounded-xl bg-[#1984c7] hover:bg-[#1573b0] disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center transition-colors shadow-sm"
               title="Copy address"
+              aria-label="Copy address"
             >
               <MdOutlineCopyAll color="white" size={20} />
             </button>
           </div>
 
-          {copied && (
-            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-md animate-fade-in-out whitespace-nowrap">
-              Copied to clipboard
-            </div>
-          )}
+          <p
+            role="status"
+            aria-live="polite"
+            className="min-h-5 mt-2 text-center text-sm text-gray-700 dark:text-gray-300"
+          >
+            {isCopying
+              ? "Copying…"
+              : status === "copied"
+                ? "Copied to clipboard"
+                : status === "error"
+                  ? "Could not copy. Select and copy the address manually."
+                  : ""}
+          </p>
         </div>
       </div>
 

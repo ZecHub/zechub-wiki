@@ -209,7 +209,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "Brand",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "zodl": "ZODL",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "coinholderDirectedRetroactiveGrants": "CoinHolder Directed Retroactive Grants",
+      "sovright": "Sovright",
+      "obscuraLabs": "Obscura Labs"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo Payment Processor",
@@ -244,7 +250,7 @@
     "heroTitle": "Welcome to ZecHub",
     "heroSubtitle": "An open source education hub for Zcash",
     "heroDescription": "Learn about Zcash privacy technology, explore interactive visualizers, and contribute to the ecosystem",
-    "description": "ZecHub is the community-driven education hub for the Zcash cryptocurrency (ZEC). Zcash is a digital currency providing censorship resistant, secure & private payments. The Zcash Blockchain utilises highly advanced 'verifiable' zk-snarks that do not require Trusted Setup following the NU5 network upgrade in 2022.",
+    "description": "ZecHub is the community-driven education hub for Zcash (ZEC), a decentralized digital currency built for censorship-resistant, secure and private payments. Zcash uses advanced zero-knowledge cryptography to enable transactions whose validity can be verified without revealing sensitive financial information. In 2026 introduced the Ironwood shielded pool, formally verified using machine-checked mathematical proofs it guarantees balance integrity. Project Tachyon is developing a proposed next-generation shielded protocol designed to dramatically improve the scalability of private payments, reduce validator state growth and advance Zcash toward fully post-quantum secure privacy.",
     "featuredSection": "Featured Resources",
     "latestUpdates": "Latest Updates",
     "getInvolved": "Get Involved",
@@ -281,10 +287,15 @@
         "description": "Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions.",
         "link": "Meet the Ambassadors"
       },
-      "newsletter": {
-        "title": "Shielded Newsletter",
-        "description": "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!",
-        "link": "Subscribe"
+      "visualizer": {
+        "title": "ZecHub Visualizer",
+        "description": "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs",
+        "link": "Open the Visualizer"
+      },
+      "zecMap": {
+        "title": "ZecMap",
+        "description": "ZecMap is a community-maintained world map of merchants, services and ATMs that accept Zcash. Find somewhere to spend ZEC near you, or add a business you know to help grow real-world adoption.",
+        "link": "Visit ZecMap"
       },
       "free2z": {
         "title": "Free2Z",
@@ -1081,7 +1092,7 @@
       "formalVerificationSeriesDescription": "A three-part series that explains formal verification from first principles, walks through the 2026 Orchard soundness bug, and shows how Ironwood answered it with a machine-checked mathematical proof.",
       "newSeriesBadge": "New Series"
     },
-    "browseSidebar": "Browse the articles using the sidebar on the left 👈",
+    "browseSidebar": "Open Navigation to browse the articles in this section.",
     "zcashGlobalAmbassadors": {
       "title": "Zcash Global Ambassadors",
       "description": "Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions.",

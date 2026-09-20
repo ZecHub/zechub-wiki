@@ -186,6 +186,8 @@ const iconsForMenu: IconsFor = {
     "Zcash Monetary Policy": Graph,
     "What is ZecHub": CircleInfo,
     "Using This Wiki": Wikipedia,
+    "How Zcash Is Organized": Governance,
+    "Who Can See Your Zcash Payment": MagnifyingGlassChart,
   },
   Tutorials: {
     "Full Node Tutorials": Youtube,
@@ -223,6 +225,10 @@ const iconsForMenu: IconsFor = {
     "Zcash Mining Pools": Mining,           
     "Zimppy": PointOfSale,
 	"Zecmap": Globe,
+    DEX: Swap,
+    "Centralized Swaps": Swap,
+    "Spend Zcash": PointOfSale,
+    "Top 10 Places to spend ZEC": PointOfSale,
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
@@ -257,11 +263,14 @@ const iconsForMenu: IconsFor = {
     "Migration Guide Zcashd To Zebrad Zallet": Guide,
     "Brave Wallet Guide": Brave,
     "ShapeShift Zcash": ShapeShift,
+    "Verifying Zcash Releases": CheckShield,
+    "Viewing Key Transaction Export": FileKey,
   },
         "Zcash Tech": {
 
     "Crosslink Protocol": Stakeholder,
     "FROST": SnowFlake,
+    "FROST Threshold Custody": Group,
     "Full Nodes": Nodes,
     "Halo": NumberCircle,
     "Zingo 2.0 - Pepper Sync": PepperSync,
@@ -276,6 +285,11 @@ const iconsForMenu: IconsFor = {
     "Zk SNARKS": Circuitry,
     "Lightwallet Nodes": ComputerTower,
     "Post Quantum Security": OutlineEnchanceEncryption,
+    "Private Information Retrieval": Magnify,
+    "Project Tachyon": ShootingStar,
+    "The Turnstile": TopologyRing,
+    "Z3 Stack": Infra,
+    "Zallet": Wallet,
     "What a Block Explorer Can See": MagnifyingGlassChart,
     "ZECD": ServerSolid,
     "Zakura Node": ServerSolid,
@@ -304,6 +318,8 @@ const iconsForMenu: IconsFor = {
 
     "Shielded Labs": BordererShield,
     "Financial Privacy Foundation": MdFoundation,
+    "Valar Group": FaLaptopCode,
+    "Zcash Labs": HiOutlineBuildingLibrary,
     "Zingo Labs": GiSoapExperiment,
     "ZKAV": "zkav-club.png",
     "Sovright": CircleKey,
@@ -377,6 +393,7 @@ const iconsForMenu: IconsFor = {
     "Zcash Library": LibraryC,
     FAQ: Faq,
     Gallery: FcGallery,
+    "ZecHub Hackathon Builders Guide": Guide,
   },
   Contribute: {
     "Community Infrastructure": Infra,

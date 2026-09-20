@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "Pagar por IA"
+    "Pay for AI": "Pagar por IA",
+    "Spend Zcash": "Gastar Zcash",
+    "Places to Spend ZEC": "Lugares para gastar ZEC",
+    "Free2Z Livestreaming": "Transmisión en vivo de Free2Z",
+    "Hardened Zebrad": "Zebrad reforzado",
+    "Migration Guide Zcashd To Zebrad Zallet": "Guía de migración de Zcashd a Zebrad Zallet",
+    "My First Zcash Workbook": "Mi primer libro de ejercicios de Zcash",
+    "Verifying Zcash Releases": "Verificando los lanzamientos de Zcash",
+    "Viewing Key Transaction Export": "Exportación de transacciones de Viewing Key",
+    "Brave Wallet Guide": "Guía de Brave Wallet",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Red Akash Zcashd",
+    "CoinHolder Directed Retroactive Grants": "Subvenciones retroactivas dirigidas por CoinHolder"
   },
   "exploreMenu": {
     "Full Explore": "Exploración completa",
@@ -1071,7 +1085,11 @@
       "tagShieldedTransactions": "Transacciones blindadas",
       "tagPrivacyModels": "Modelos de privacidad",
       "tagProtocolDesign": "Diseño del protocolo",
-      "tagZeroKnowledge": "Conocimiento cero"
+      "tagZeroKnowledge": "Conocimiento cero",
+      "formalVerificationSeriesTitle": "Serie de verificación formal de Zcash",
+      "formalVerificationSeriesCardDescription": "Qué es la verificación formal, el bug de solidez de Orchard de 2026 y cómo Ironwood lo resolvió con una prueba verificada por máquina.",
+      "formalVerificationSeriesDescription": "Una serie de tres partes que explica la verificación formal desde sus fundamentos, recorre el bug de solidez de Orchard de 2026 y muestra cómo Ironwood lo resolvió con una prueba matemática verificada por máquina.",
+      "newSeriesBadge": "Nueva serie"
     },
     "browseSidebar": "Explora los artículos usando la barra lateral de la izquierda 👈",
     "zcashGlobalAmbassadors": {

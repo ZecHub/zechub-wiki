@@ -135,6 +135,10 @@ const getTranslatedLabel = (
       t.navigation?.usingZcash?.recoveringFunds || "Recovering Funds",
     Testnet: t.navigation?.usingZcash?.testnet || "Testnet",
     Tools: t.navigation?.usingZcash?.tools || "Tools",
+    "Spend Zcash":
+      t.navigation?.usingZcash?.spendZcash || "Spend Zcash",
+    "Places to Spend ZEC":
+      t.navigation?.usingZcash?.placesToSpendZec || "Places to Spend ZEC",
   };
   const communityMap: Record<string, string> = {
     "Arborist Calls":
@@ -182,7 +186,16 @@ const getTranslatedLabel = (
       "Financial Privacy Foundation",
     "Shielded Labs":
       t.navigation?.organizations?.shieldedLabs || "Shielded Labs",
+    "Valar Group":
+      t.navigation?.organizations?.valarGroup || "Valar Group",
+    "Zcash Labs":
+      t.navigation?.organizations?.zcashLabs || "Zcash Labs",
+    "CoinHolder Directed Retroactive Grants":
+      t.navigation?.organizations?.coinholderDirectedRetroactiveGrants ||
+      "CoinHolder Directed Retroactive Grants",
     Sovright: t.navigation?.organizations?.sovright || "Sovright",
+    "Obscura Labs":
+      t.navigation?.organizations?.obscuraLabs || "Obscura Labs",
     "Zingo Labs": t.navigation?.organizations?.zingoLabs || "Zingo Labs",
     Brand: t.navigation?.organizations?.brand || "Brand",
     "ZKAV Club": t.navigation?.organizations?.zkavClub || "ZKAV Club",
@@ -252,6 +265,36 @@ const getTranslatedLabel = (
     "Zero-Knowledge vs Decoys":
       t.navigation?.guidesSubmenu?.zeroKnowledgeVsDecoys ||
       "Zero-Knowledge vs Decoys",
+    "Akash Network Zcashd":
+      t.navigation?.guidesSubmenu?.akashNetworkZcashd ||
+      "Akash Network Zcashd",
+    "Akash Network Zebra":
+      t.navigation?.guidesSubmenu?.akashNetworkZebra ||
+      "Akash Network Zebra",
+    "Free2Z Livestreaming":
+      t.navigation?.guidesSubmenu?.free2zLivestreaming ||
+      "Free2Z Livestreaming",
+    "Hardened Zebrad":
+      t.navigation?.guidesSubmenu?.hardenedZebrad ||
+      "Hardened Zebrad",
+    "Migration Guide Zcashd To Zebrad Zallet":
+      t.navigation?.guidesSubmenu?.migrationGuideZcashdToZebradZallet ||
+      "Migration Guide Zcashd To Zebrad Zallet",
+    "My First Zcash Workbook":
+      t.navigation?.guidesSubmenu?.myFirstZcashWorkbook ||
+      "My First Zcash Workbook",
+    "ShapeShift Zcash":
+      t.navigation?.guidesSubmenu?.shapeShiftZcash ||
+      "ShapeShift Zcash",
+    "Verifying Zcash Releases":
+      t.navigation?.guidesSubmenu?.verifyingZcashReleases ||
+      "Verifying Zcash Releases",
+    "Viewing Key Transaction Export":
+      t.navigation?.guidesSubmenu?.viewingKeyTransactionExport ||
+      "Viewing Key Transaction Export",
+    "BTCPayServer Zcash Plugin":
+      t.navigation?.guidesSubmenu?.btcPayServerPlugin ||
+      "BTCPayServer Zcash Plugin",
   };
   const parentLabels: Record<string, string> = {
     "Using Zcash": t.navigation?.usingZcash?.label || "Use Zcash",

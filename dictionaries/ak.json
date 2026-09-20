@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "Pay for AI"
+    "Pay for AI": "Pay for AI",
+    "Spend Zcash": "Fa Zcash di dwuma",
+    "Places to Spend ZEC": "Mmeae a wubetumi de ZEC atɔ nneɛma",
+    "Free2Z Livestreaming": "Free2Z Ntease a ɛkɔ so",
+    "Hardened Zebrad": "Zebrad a wɔayɛ no den",
+    "Migration Guide Zcashd To Zebrad Zallet": "Akwankyerɛ a ɛfa Zcashd kɔ Zebrad Zallet",
+    "My First Zcash Workbook": "Me Zcash Adesua Nhoma a Edi Kan",
+    "Verifying Zcash Releases": "Rehwɛ Zcash nkyerɛase ahorow no mu",
+    "Viewing Key Transaction Export": "Viewing Key Nkitahodi Yi",
+    "Brave Wallet Guide": "Brave Wallet Akwankyerɛ",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Akash Nkitahodi Zcashd",
+    "CoinHolder Directed Retroactive Grants": "CoinHolder Mmoa a Wɔde Ma a Wɔkyerɛ Kwan a Ɛfa Bere a Atwam Ho"
   },
   "exploreMenu": {
     "Full Explore": "Hwehwɛ Nhwehwɛmu a Edi Mu",
@@ -1065,7 +1079,11 @@
       "tagShieldedTransactions": "Nkitahodi a Wɔabɔ Ho Ban",
       "tagPrivacyModels": "Kokoam Nsɛm Ho Nhwɛsode",
       "tagProtocolDesign": "Protocol Nsusuwii",
-      "tagZeroKnowledge": "Nimdeɛ a Ɛyɛ Zero"
+      "tagZeroKnowledge": "Nimdeɛ a Ɛyɛ Zero",
+      "formalVerificationSeriesTitle": "Zcash Formal Verification Ntoatoaso",
+      "formalVerificationSeriesCardDescription": "Dɛn ne formal verification, Orchard soundness mfomsoɔ a ɛbae wɔ 2026 mu, ne sɛnea Ironwood de adanse a kɔmputa ahwɛ mu bua ho.",
+      "formalVerificationSeriesDescription": "Ntoatoaso a ɛwɔ afa atọ a ɛkyerɛ formal verification fi ne fapem mu, fa wo fa Orchard soundness mfomsoɔ a ɛbae wɔ 2026 mu, na ɛkyerɛ sɛnea Ironwood de akontaabu mu adanse a kɔmputa ahwɛ mu bua ho.",
+      "newSeriesBadge": "Ntoatoaso Foforo"
     },
     "browseSidebar": "Browse nsɛm no denam sidebar a ɛwɔ benkum so 👈 no so",
     "zcashGlobalAmbassadors": {

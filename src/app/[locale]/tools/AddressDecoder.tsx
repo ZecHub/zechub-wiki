@@ -7,7 +7,11 @@ import { QRCodeSVG } from 'qrcode.react';
  * UNIFIED ADDRESS DECODER
  * Uses @elemental-zcash/zaddr_wasm_parser (Rust → WASM)
  * Browser equivalent of: zcash-cli z_listunifiedreceivers <address>
+ *
+ * Do not import the package root. That file statically imports the .wasm and
+ * hits a Turbopack/Vercel URL bug. Load bg.js + public/wasm ourselves.
  */
+
 
 interface AddressReceivers {
   p2pkh: string | null;
@@ -18,7 +22,7 @@ interface AddressReceivers {
 }
 
 interface ZaddrModuleAny {
-  initWasm?: () => Promise<void>;
+  __wbg_set_wasm?: (val: unknown) => void;
   isZcashAddressValid?: (addr: string) => boolean;
   getZcashAddressType?: (addr: string) => string;
   getAddressReceivers?: (addr: string) => AddressReceivers;
@@ -39,7 +43,7 @@ function QRCode({ value, size = 176 }: { value: string; size?: number }) {
     />
   );
 }
-/* ── Receiver display config ── */
+
 const RECEIVER_META: Record<string, { label: string; icon: string; accent: string }> = {
   p2pkh: { label: 'Transparent (P2PKH)', icon: '◇', accent: '#64748b' },
   p2sh: { label: 'Script (P2SH)', icon: '◈', accent: '#6b7280' },
@@ -59,6 +63,9 @@ const INPUT_CLASS = [
 const LABEL_CLASS =
   'block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1';
 
+const WASM_URL = '/wasm/zaddr_wasm_parser_bg.wasm';
+const WASM_IMPORT_MODULE = './zaddr_wasm_parser_bg.js';
+
 export default function AddressDecoder() {
   const [input, setInput] = useState('');
   const [receivers, setReceivers] = useState<Array<{ key: string; address: string }>>([]);
@@ -72,20 +79,46 @@ export default function AddressDecoder() {
 
   const moduleRef = useRef<ZaddrModuleAny | null>(null);
 
-  /* ── Load WASM on mount ── */
   useEffect(() => {
     let cancelled = false;
 
     async function loadWasm() {
       try {
-        const mod: ZaddrModuleAny = await import('@elemental-zcash/zaddr_wasm_parser');
+        const res = await fetch(WASM_URL);
+        if (!res.ok) {
+          throw new Error(`wasm fetch ${res.status} ${WASM_URL}`);
+        }
+        const bytes = await res.arrayBuffer();
 
-        if (typeof mod.initWasm === 'function') {
-          await mod.initWasm();
+        const bg: ZaddrModuleAny = await import(
+          '@elemental-zcash/zaddr_wasm_parser/zaddr_wasm_parser_bg.js'
+        );
+        if (typeof bg.__wbg_set_wasm !== 'function') {
+          throw new Error('zaddr_wasm_parser_bg.js missing __wbg_set_wasm');
         }
 
+        const compiled = await WebAssembly.compile(bytes);
+        const importMods = [
+          ...new Set(WebAssembly.Module.imports(compiled).map((i) => i.module)),
+        ];
+        const importObject: Record<string, ZaddrModuleAny> = {};
+        for (const name of importMods) {
+          importObject[name] = bg;
+        }
+        if (importMods.length === 0) {
+          importObject[WASM_IMPORT_MODULE] = bg;
+        }
+
+       const instance = await WebAssembly.instantiate(
+          compiled,
+          importObject as unknown as WebAssembly.Imports,
+        );
+        bg.__wbg_set_wasm(instance.exports);
+        const start = (instance.exports as { __wbindgen_start?: () => void }).__wbindgen_start;
+        if (typeof start === 'function') start();
+
         if (!cancelled) {
-          moduleRef.current = mod;
+          moduleRef.current = bg;
           setWasmReady(true);
         }
       } catch (err: unknown) {
@@ -102,7 +135,6 @@ export default function AddressDecoder() {
     };
   }, []);
 
-  /* ── Decode when input changes ── */
   const decode = useCallback(() => {
     setError(null);
     setReceivers([]);
@@ -115,7 +147,6 @@ export default function AddressDecoder() {
     setLoading(true);
     try {
       const mod = moduleRef.current;
-
       const validateFn = mod.isZcashAddressValid ?? mod.is_valid_zcash_address;
       const typeFn = mod.getZcashAddressType ?? mod.get_zcash_address_type;
       const receiversFn = mod.getAddressReceivers ?? mod.get_address_receivers;
@@ -137,7 +168,6 @@ export default function AddressDecoder() {
       }
 
       const result: AddressReceivers = receiversFn(addr);
-
       const list: Array<{ key: string; address: string }> = [];
       if (result.p2pkh) list.push({ key: 'p2pkh', address: result.p2pkh });
       if (result.p2sh) list.push({ key: 'p2sh', address: result.p2sh });
@@ -145,7 +175,6 @@ export default function AddressDecoder() {
       if (result.orchard) list.push({ key: 'orchard', address: result.orchard });
       if (result.tex) list.push({ key: 'tex', address: result.tex });
       list.push({ key: 'full', address: addr });
-
       setReceivers(list);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Failed to decode address');
@@ -172,7 +201,6 @@ export default function AddressDecoder() {
 
   return (
     <div className="w-full space-y-4">
-      {/* WASM load error */}
       {wasmError && (
         <div className="rounded-xl bg-amber-500/5 border border-amber-500/15 px-4 py-3.5 space-y-2.5">
           <p className="text-[13px] text-amber-400 font-semibold">Failed to initialize WASM decoder</p>
@@ -192,7 +220,6 @@ export default function AddressDecoder() {
         </div>
       )}
 
-      {/* WASM ready */}
       {wasmReady && (
         <div className="flex items-center gap-2 ml-1">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -200,7 +227,6 @@ export default function AddressDecoder() {
         </div>
       )}
 
-      {/* Input */}
       <div>
         <label className={LABEL_CLASS}>Zcash Address</label>
         <input
@@ -219,7 +245,6 @@ export default function AddressDecoder() {
         />
       </div>
 
-      {/* Loading WASM */}
       {!wasmReady && !wasmError && (
         <div className="flex items-center gap-2.5 px-1">
           <div className="w-4 h-4 border-2 border-[#F4B728]/20 border-t-[#F4B728] rounded-full animate-spin" />
@@ -227,7 +252,6 @@ export default function AddressDecoder() {
         </div>
       )}
 
-      {/* Address type badge */}
       {addressType && (
         <div className="ml-1">
           <span className="text-[10px] font-bold uppercase tracking-wider bg-[#F4B728]/10 border border-[#F4B728]/15 text-[#F4B728] px-2.5 py-1 rounded">
@@ -236,21 +260,18 @@ export default function AddressDecoder() {
         </div>
       )}
 
-      {/* Error */}
       {error && (
         <div className="rounded-xl bg-red-500/5 border border-red-500/15 px-4 py-3">
           <p className="text-[13px] text-red-400 font-medium">{error}</p>
         </div>
       )}
 
-      {/* Decode loading */}
       {loading && (
         <div className="flex justify-center py-4">
           <div className="w-5 h-5 border-2 border-[#F4B728]/30 border-t-[#F4B728] rounded-full animate-spin" />
         </div>
       )}
 
-      {/* Empty state */}
       {!input && wasmReady && (
         <div className="rounded-xl bg-[#F4B728]/5 border border-[#F4B728]/10 px-5 py-4">
           <p className="text-sm text-zinc-500 dark:text-[#5a6a7e] leading-relaxed">
@@ -264,7 +285,6 @@ export default function AddressDecoder() {
         </div>
       )}
 
-      {/* Decoded receivers */}
       {receivers.length > 0 && (
         <div className="space-y-2.5">
           {receivers.map((r) => {
@@ -289,7 +309,6 @@ export default function AddressDecoder() {
                   >
                     {meta.icon}
                   </span>
-
                   <div className="flex-1 min-w-0">
                     <div className="text-[13px] font-semibold" style={{ color: meta.accent }}>
                       {meta.label}
@@ -298,7 +317,6 @@ export default function AddressDecoder() {
                       {r.address}
                     </div>
                   </div>
-
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -312,7 +330,6 @@ export default function AddressDecoder() {
                   >
                     {isCopied ? '✓ Copied' : 'Copy'}
                   </button>
-
                   <svg
                     width="16"
                     height="16"
@@ -328,7 +345,6 @@ export default function AddressDecoder() {
                     <polyline points="6 9 12 15 18 9" />
                   </svg>
                 </div>
-
                 {isOpen && (
                   <div className="flex justify-center pb-4 pt-1">
                     <div className="p-3 bg-white rounded-xl shadow-lg shadow-black/5 border border-zinc-100 dark:border-[#1e2d3d]">

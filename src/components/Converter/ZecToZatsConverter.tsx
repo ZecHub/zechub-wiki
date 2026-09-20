@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 
 const ZEC_TO_ZATS = 100_000_000;
 
 export default function ZecToZatsConverter() {
+  const topInputId = useId();
+  const bottomInputId = useId();
   const [topValue, setTopValue] = useState('1');
   const [bottomValue, setBottomValue] = useState('100000000');
   const [topUnit, setTopUnit] = useState<'ZEC' | 'Zats'>('ZEC');
@@ -26,7 +28,10 @@ export default function ZecToZatsConverter() {
         setBottomValue(Math.round(num * ZEC_TO_ZATS).toString());
       }
     } else {
-      val = val.replace(/[^0-9]/g, '');
+      // Remove display grouping only; reject input that would change amount
+      // if a decimal point, sign, or other character were silently stripped.
+      val = val.replace(/,/g, '');
+      if (!/^\d*$/.test(val)) return;
       setTopValue(val);
       const num = parseFloat(val) || 0;
       setBottomValue((num / ZEC_TO_ZATS).toFixed(8));
@@ -42,7 +47,8 @@ export default function ZecToZatsConverter() {
         setTopValue(Math.round(num * ZEC_TO_ZATS).toString());
       }
     } else {
-      val = val.replace(/[^0-9]/g, '');
+      val = val.replace(/,/g, '');
+      if (!/^\d*$/.test(val)) return;
       setBottomValue(val);
       const num = parseFloat(val) || 0;
       setTopValue((num / ZEC_TO_ZATS).toFixed(8));
@@ -81,11 +87,12 @@ export default function ZecToZatsConverter() {
 
       {/* Top input */}
       <div>
-        <label className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1">
+        <label htmlFor={topInputId} className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1">
           {topUnit}
         </label>
         <div className="relative">
           <input
+            id={topInputId}
             type="text"
             inputMode={topUnit === 'ZEC' ? 'decimal' : 'numeric'}
             value={displayTop}
@@ -129,11 +136,12 @@ export default function ZecToZatsConverter() {
 
       {/* Bottom input */}
       <div>
-        <label className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1">
+        <label htmlFor={bottomInputId} className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e] mb-1.5 ml-1">
           {bottomUnit}
         </label>
         <div className="relative">
           <input
+            id={bottomInputId}
             type="text"
             inputMode={bottomUnit === 'ZEC' ? 'decimal' : 'numeric'}
             value={displayBottom}
