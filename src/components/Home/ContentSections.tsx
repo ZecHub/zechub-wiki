@@ -78,22 +78,22 @@ const ContentSections = () => {
           },
         ]}
       />
-      {/* Shielded Newsletter Section */}
+      {/* ZecHub Visualizer Section */}
       <InfoCard
-        id="shielded-newsletter"
+        id="zechub-visualizer"
         reverse={true}
-        title={t.home?.sections?.newsletter?.title || "Shielded Newsletter"}
+        title={t.home?.sections?.visualizer?.title || "ZecHub Visualizer"}
         description={
-          t.home?.sections?.newsletter?.description ||
-          "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!"
+          t.home?.sections?.visualizer?.description ||
+          "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs"
         }
-        image="/zcash_newsletter.gif"
-        imageLight="/explore/light/shielded-newsletter.png"
-        imageDark="/explore/dark/shielded-newsletter.png"
+        image="/explore/light/research.png"
+        imageLight="/explore/light/research.png"
+        imageDark="/explore/dark/research.png"
         links={[
           {
-            href: "/newsletter",
-            label: t.home?.sections?.newsletter?.link || "Subscribe",
+            href: "/visualizer",
+            label: t.home?.sections?.visualizer?.link || "Open the Visualizer",
             primary: true,
           },
         ]}
@@ -162,6 +162,28 @@ const ContentSections = () => {
           },
         ]}
       />
+
+      {/* ZecMap Section */}
+      <InfoCard
+        id="zecmap"
+        reverse={true}
+        title={t.home?.sections?.zecMap?.title || "ZecMap"}
+        description={
+          t.home?.sections?.zecMap?.description ||
+          "ZecMap is a community-maintained world map of merchants, services and ATMs that accept Zcash. Find somewhere to spend ZEC near you, or add a business you know to help grow real-world adoption."
+        }
+        image="/explore/light/start-here.png"
+        imageLight="/explore/light/start-here.png"
+        imageDark="/explore/dark/start-here.png"
+        links={[
+          {
+            href: "https://zecmap.com",
+            label: t.home?.sections?.zecMap?.link || "Visit ZecMap",
+            primary: true,
+          },
+        ]}
+      />
+
     </section>
   );
 };
