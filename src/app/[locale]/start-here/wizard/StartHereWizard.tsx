@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 
 type PathStep = {
@@ -45,8 +45,8 @@ const TRACKS: Track[] = [
     question: "How would you like to pay for your ZEC?",
     options: [
       {
-        label: "With dollars or euros",
-        hint: "Bank transfer or card on a regular exchange",
+        label: "With regular money",
+        hint: "Bank transfer or card in your own currency, on a regular exchange",
         steps: [
           {
             title: "Zcash Basics",
@@ -129,6 +129,11 @@ const TRACKS: Track[] = [
             note: "What ZEC is and why it exists, in plain language.",
           },
           {
+            title: "Obtaining Zcash",
+            url: "/using-zcash/buying-zec",
+            note: "Every way to get your first ZEC, compared side by side.",
+          },
+          {
             title: "Wallets",
             url: "/using-zcash/wallets",
             note: "Choose a wallet that supports shielded addresses.",
@@ -142,13 +147,6 @@ const TRACKS: Track[] = [
             title: "Using ZEC, privately",
             url: "/guides/using-zec-privately",
             note: "Day-to-day habits that keep your activity private.",
-          },
-        ],
-        alsoRead: [
-          {
-            title: "Obtaining Zcash",
-            url: "/using-zcash/buying-zec",
-            note: "No ZEC yet? Every way to get some, compared side by side.",
           },
         ],
       },
@@ -167,14 +165,14 @@ const TRACKS: Track[] = [
             note: "Where shielded ZEC actually lives on the chain.",
           },
           {
-            title: "Using ZEC, privately",
-            url: "/guides/using-zec-privately",
-            note: "Put the theory into practice, step by step.",
-          },
-          {
             title: "Wallets",
             url: "/using-zcash/wallets",
             note: "Pick your wallet now that you know what to look for.",
+          },
+          {
+            title: "Using ZEC, privately",
+            url: "/guides/using-zec-privately",
+            note: "Put the theory into practice, step by step.",
           },
         ],
         alsoRead: [
@@ -206,8 +204,10 @@ const TRACKS: Track[] = [
           {
             title: "Zcash Payment Processors",
             url: "/using-zcash/payment-processors",
-            note: "Compare processors that handle ZEC for you.",
+            note: "Compare the processors and plugins that handle ZEC for you.",
           },
+        ],
+        alsoRead: [
           {
             title: "ZGo Payment Processor",
             url: "/guides/zgo-payment-processor",
@@ -218,8 +218,6 @@ const TRACKS: Track[] = [
             url: "/guides/btcpayserver-zcash-plugin",
             note: "Self-hosted invoicing with the BTCPay Server Zcash plugin.",
           },
-        ],
-        alsoRead: [
           {
             title: "Wallets",
             url: "/using-zcash/wallets",
@@ -267,7 +265,7 @@ const TRACKS: Track[] = [
     label: "I want to run a node",
     blurb: "Help secure the network and verify your own transactions.",
     icon: "🖥️",
-    question: "What will you run your node on?",
+    question: "Which node path fits you?",
     options: [
       {
         label: "My own computer or server",
@@ -283,6 +281,8 @@ const TRACKS: Track[] = [
             url: "/zcash-tech/zebra-full-node",
             note: "The maintained node software: system requirements and setup.",
           },
+        ],
+        alsoRead: [
           {
             title: "Zakura Node",
             url: "/zcash-tech/zakura-node",
@@ -310,11 +310,23 @@ const TRACKS: Track[] = [
             note: "Reference: network configuration for your Pi.",
           },
         ],
+        alsoRead: [
+          {
+            title: "Raspberry Pi 5: Zebra + Lightwalletd + Zingo",
+            url: "/guides/raspberry-pi5-zebra-lightwalletd-zingo",
+            note: "On a Pi 5? This guide adds a light wallet server to the build.",
+          },
+        ],
       },
       {
         label: "I'm migrating from zcashd",
         hint: "zcashd reached end of support",
         steps: [
+          {
+            title: "Full Nodes",
+            url: "/zcash-tech/full-nodes",
+            note: "A refresher on what your node does before you switch stacks.",
+          },
           {
             title: "Migration Guide: From zcashd to Zebrad/Zallet",
             url: "/guides/migration-guide-zcashd-to-zebrad-zallet",
@@ -324,11 +336,6 @@ const TRACKS: Track[] = [
             title: "Zebra Full Node",
             url: "/zcash-tech/zebra-full-node",
             note: "System requirements and network configuration for Zebra.",
-          },
-          {
-            title: "Full Nodes",
-            url: "/zcash-tech/full-nodes",
-            note: "Understand what your new node is actually doing.",
           },
         ],
       },
@@ -404,6 +411,13 @@ const TRACKS: Track[] = [
 export default function StartHereWizard() {
   const [track, setTrack] = useState<Track | null>(null);
   const [option, setOption] = useState<TrackOption | null>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  // Move keyboard/screen-reader focus to the new question heading whenever
+  // the step changes; otherwise focus stays on the unmounted button.
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, [track, option]);
 
   const restart = () => {
     setTrack(null);
@@ -423,7 +437,11 @@ export default function StartHereWizard() {
 
       {!track && (
         <>
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">
+          <h1
+            ref={headingRef}
+            tabIndex={-1}
+            className="text-3xl md:text-4xl font-bold mb-3 outline-none"
+          >
             Where do you want to start?
           </h1>
           <p className="text-gray-600 dark:text-gray-300 mb-8">
@@ -453,7 +471,11 @@ export default function StartHereWizard() {
 
       {track && !option && (
         <>
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">
+          <h1
+            ref={headingRef}
+            tabIndex={-1}
+            className="text-3xl md:text-4xl font-bold mb-3 outline-none"
+          >
             {track.question}
           </h1>
           <p className="text-gray-600 dark:text-gray-300 mb-8">
@@ -484,7 +506,11 @@ export default function StartHereWizard() {
 
       {track && option && (
         <>
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">
+          <h1
+            ref={headingRef}
+            tabIndex={-1}
+            className="text-3xl md:text-4xl font-bold mb-3 outline-none"
+          >
             Your reading path
           </h1>
           <p className="text-gray-600 dark:text-gray-300 mb-2">
