@@ -203,6 +203,17 @@ export default function GemWallet() {
               Zcash knowledge base (support scope)
             </a>
           </li>
+          <li>
+            <a
+              href="https://github.com/gemwalletcom/wallet"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              GitHub repository
+            </a>{" "}
+            (open-source code)
+          </li>
         </ul>
       </section>
 
