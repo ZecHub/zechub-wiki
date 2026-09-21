@@ -23,14 +23,14 @@ const config: Array<WalletProps> = [
   {
     name: "Hardware Wallets",
     description:
-      "Hardware wallets stores your Zcash securely offline physical device.",
+      "Hardware wallets store your Zcash securely on an offline physical device.",
     path: "/hardware-wallets",
     image: "/content-images/Hardware-Wallets-74bf5c3b6f.webp",
   },
   {
     name: "Web Wallets",
     description:
-      "Web wallets are wallets that you can access from your browser. They give a users a web interface to interact with their funds.",
+      "Web wallets are wallets that you can access from your browser. They give users a web interface to interact with their funds.",
     path: "/web-wallets",
     image: "/content-images/Web-Wallets-d266943ff6.webp",
   },
