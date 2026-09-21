@@ -24,7 +24,7 @@ const WALLETS: WalletRow[] = [
     name: "Zodl (formerly Zashi)",
     kind: "Mobile wallet (iOS / Android)",
     backup: [
-      "Your 24-word BIP-39 secret recovery phrase. It is shown during onboarding (\"Your Secret Recovery Phrase\" then \"Verify Your Backup\") and later under Settings → Backup wallet. Revealing it requires Face ID / Touch ID.",
+      "Your 24-word BIP-39 secret recovery phrase. It is shown during onboarding (\"Your Secret Recovery Phrase\" then \"Verify Your Backup\") and later under Settings → Backup wallet. On iOS, revealing it requires Face ID / Touch ID.",
       "Your wallet birthday height, or at least the rough date you created the wallet. The restore flow includes a birthday-height estimator.",
       "On Android, the encrypted address book is backed up separately through Android Auto Backup to your Google Drive. It is not part of the seed phrase.",
     ],
@@ -33,14 +33,14 @@ const WALLETS: WalletRow[] = [
     ],
     seedMisses: [
       "The address book. On Android it lives in the separate Google Drive backup; on iOS no documented address-book backup was found.",
-      "If you move to a new iPhone using an iCloud device backup, the wallet database transfers but the keys in the iOS keychain do not. You must re-restore from the seed phrase plus birthday height on the new device.",
+      "If you move to a new iPhone using an iCloud device backup, the wallet database transfers but the keys in the iOS keychain do not. Current Zodl versions detect the mismatch, remove the stale database, and re-sync the correct wallet automatically (changelog MOB-1512); on older builds you had to re-restore from the seed phrase plus birthday height manually.",
     ],
     restore: [
       "Install Zodl on the new device, choose restore, enter the 24-word phrase and your wallet birthday height, and let it sync.",
     ],
     notes: [
       "Zashi was rebranded to Zodl in February 2026 when the ECC team formed the Zcash Open Development Lab. Same app, same seed phrase, no new download needed.",
-      "Restoring a Zashi/Zodl seed in a different wallet (for example Cake Wallet) may not show all funds, because wallets can handle change addresses differently.",
+      "Restoring a Zashi/Zodl seed in Cake Wallet will not show all funds, per Cake's own migration tutorial, because wallets can handle change addresses differently.",
       "Zodl can pair with a Keystone hardware wallet, and that flow also asks for the wallet birthday height so history restores correctly.",
     ],
     sources: [
@@ -64,6 +64,31 @@ const WALLETS: WalletRow[] = [
     ],
   },
   {
+    name: "Cake Wallet",
+    kind: "Multi-coin mobile wallet (documents Zashi-seed import for migration)",
+    backup: [
+      "Your Cake Wallet seed phrase, backed up per Cake Wallet's own backup docs.",
+    ],
+    seedRestores: [
+      "Cake's own wallets restore from its seed phrase.",
+    ],
+    seedMisses: [
+      "Not all funds when restoring a Zashi/Zodl seed in Cake Wallet. Cake's own migration tutorial warns that a restored Zashi seed will not show all funds, because wallets can handle change addresses differently.",
+    ],
+    restore: [
+      "Restore from the seed phrase in the app. For a Zashi/Zodl seed, follow Cake's migration tutorial and expect the change-address caveat above.",
+    ],
+    notes: [
+      "Cake appears here as the cross-wallet restore case: it is the wallet whose migration tutorial documents the Zashi-seed caveat.",
+    ],
+    sources: [
+      {
+        label: "Cake Wallet Zashi migration tutorial",
+        url: "https://github.com/cake-tech/cake-docs/blob/HEAD/docs/tutorials/zashi.md",
+      },
+    ],
+  },
+  {
     name: "Zingo",
     kind: "Mobile wallet + zingo-pc (desktop)",
     backup: [
@@ -73,7 +98,6 @@ const WALLETS: WalletRow[] = [
     ],
     seedRestores: [
       "Funds and on-chain transaction data, re-synced from the birthday height.",
-      "A view-only wallet can be rebuilt from a Unified Full Viewing Key (UFVK): it scans the chain, detects received funds and reports balances.",
     ],
     seedMisses: [
       "Local transaction metadata. Restoring from seed forfeits locally stored wallet metadata and forces a full rescan.",
@@ -83,7 +107,7 @@ const WALLETS: WalletRow[] = [
       "Restore from the seed phrase, always supplying the birthday height explicitly. A manual \"Rescan from the Wallet menu\" is also supported in zingo-pc.",
     ],
     notes: [
-      "Zingo documents importing a Unified Full Viewing Key for read-only mode, which makes it one of the few wallets with an explicit watch-only path in its docs.",
+      "Zingo documents rebuilding a view-only wallet from a Unified Full Viewing Key (UFVK): it scans the chain, detects received funds and reports balances. That is a viewing-key path rather than a seed restore, so it lives here in the notes, not in the seed column.",
     ],
     sources: [
       {
@@ -114,20 +138,21 @@ const WALLETS: WalletRow[] = [
     backup: [
       "Your seed phrase (12, 15, 18, 21 or 24 words), plus the optional extra passphrase and the account index if you used them. Back the phrase up before you send any funds to the account; keys live only in the on-device database.",
       "For FROST multisig accounts there is no seed phrase at all. Export the account (\"Export account as encrypted file\") or save the whole database file instead.",
-      "The database is AES-encrypted and holds all application data including account keys. Per-account encrypted export and import is available from the Account Edit page.",
+      "The database holds all application data including account keys. Zkool's own docs recommend enabling the built-in encryption, and per-account encrypted export is available from the Account Edit page. Note the default zkool database is the unencrypted fallback and cannot be encrypted in place.",
     ],
     seedRestores: [
       "The account is rebuilt from seed plus passphrase plus account index, and its transactions sync from the chain.",
-      "View-only accounts can be created from a Unified Viewing Key or Sapling extended viewing key.",
     ],
     seedMisses: [
       "FROST multisig accounts. They cannot be backed up like a regular account; only an account export or the database file preserves them.",
     ],
     restore: [
-      "Restore from seed phrase, entering the birth height if you know roughly when the wallet was first used. Leave it blank and the wallet scans from the start of the chain: slower, but it will not miss anything. If your funds predate the Sapling upgrade (October 2018), leave it blank rather than guessing a later height, or the scan can skip your transactions.",
+      "Restore from seed phrase, entering the birth height if you know roughly when the wallet was first used. Leave it blank and the wallet scans from the start of the chain: slower, but it will not miss anything. Zkool supports Sapling and later pools, but not the legacy Sprout pool. If your funds predate the Sapling upgrade (October 2018) and sit in Sprout addresses, a Zkool restore will not find them: use Argos instead, as the wiki's Recovering Funds guide describes.",
     ],
     notes: [
       "Zkool also restores from a Sapling secret key or a transparent extended key (xpub/xpriv).",
+      "View-only accounts can be created from a Unified Viewing Key or Sapling extended viewing key. That is a viewing-key path rather than a seed restore, so it lives here in the notes.",
+      "Under Advanced Options, Zkool offers a \"Use Internal Change\" toggle (ZIP-316): when restoring from another wallet's seed, it controls which change addresses the scan looks at. The wiki's Recovering Funds guide explains when to switch it.",
       "ZecHub's fund-recovery walkthroughs were rebuilt on Zkool, so its restore screens are the ones pictured in the wiki's recovery guide.",
     ],
     sources: [
@@ -140,7 +165,7 @@ const WALLETS: WalletRow[] = [
         url: "https://hhanh00.github.io/zkool2/guide/start.html",
       },
       {
-        label: "zkool2 QUICKSTART (encrypted export, AES database)",
+        label: "zkool2 QUICKSTART (encrypted export, encryption notes)",
         url: "https://github.com/hhanh00/zkool2/blob/HEAD/QUICKSTART.md",
       },
       {
@@ -148,8 +173,8 @@ const WALLETS: WalletRow[] = [
         url: "https://hhanh00.github.io/zkool2/frost/overview.html",
       },
       {
-        label: "ZecHub Recovering Funds page (birth-height guidance)",
-        url: "https://github.com/dismad/zechub/blob/HEAD/site/Using_Zcash/Recovering_Funds.md",
+        label: "ZecHub Recovering Funds page (birth-height guidance, Sprout recovery)",
+        url: "https://github.com/ZecHub/zechub/blob/main/site/Using_Zcash/Recovering_Funds.md",
       },
       {
         label: "Zkool announcement (successor to YWallet)",
@@ -214,7 +239,7 @@ const WALLETS: WalletRow[] = [
     ],
     notes: [
       "Ledger's integration team reported in August 2026 that native shielded send and receive in Ledger Wallet was complete in internal builds and in QA hardening, with the device app awaiting an independent security audit. Check Ledger's current support pages before relying on this.",
-      "A Zcash forum thread notes that Ledger's rotating transparent addresses mean a plain seed import may not recover everything; its sweep function is the documented fallback.",
+      "Ledger rotates transparent addresses, so a plain seed import may not recover everything. The documented fallback is Zkool's \"Find other transparent addresses\" scan: the wiki's Recovering Funds guide covers sweeping a transparent-only wallet (including Ledger seeds) with Zkool.",
     ],
     sources: [
       {
@@ -224,6 +249,10 @@ const WALLETS: WalletRow[] = [
       {
         label: "Ledger support: no sending to shielded addresses",
         url: "https://support.ledger.com/article/7497812374941-zd",
+      },
+      {
+        label: "ZecHub Recovering Funds page (sweeping transparent-only wallets with Zkool)",
+        url: "https://github.com/ZecHub/zechub/blob/main/site/Using_Zcash/Recovering_Funds.md",
       },
       {
         label: "Crypto Briefing: Zcash Shielded app with Zkool/Vizor companions",
@@ -245,13 +274,14 @@ const WALLETS: WalletRow[] = [
       "Per-account metadata: the seed fingerprint (seedfp), the ZIP-32 account index, the account name, and the birthday height.",
     ],
     seedRestores: [
-      "Only the accounts derived from that mnemonic. Restore path: fresh setup, generate-encryption-identity, init-wallet-encryption, import-mnemonic, then re-create each account with the z_recoveraccounts RPC passing name, seedfp, ZIP-32 account index and birthday height.",
+      "Only the accounts derived from that mnemonic.",
     ],
     seedMisses: [
       "Everything not derived from the seed: spending keys imported with z_importkey, and watch-only material imported with z_importaddress or carried over from a zcashd migration. Those exist only in wallet.db. There is currently no single command or RPC that produces a complete wallet backup.",
     ],
     restore: [
       "Full restore: stop Zallet, place your backed-up wallet.db and encryption-identity file at the configured datadir locations, start Zallet. The wallet resumes from the backed-up state and syncs forward. This is the only restore path that recovers imported keys and watch-only material.",
+      "Mnemonic-only restore: on a fresh setup, run generate-encryption-identity, init-wallet-encryption, then import-mnemonic, then re-create each account with the z_recoveraccounts RPC, passing the account name, seed fingerprint (seedfp), ZIP-32 account index and birthday height.",
     ],
     notes: [
       "wallet.db as a whole is not encrypted: transaction history and viewing keys are stored in the clear, only the key material is age-encrypted. Treat the file accordingly.",
@@ -290,17 +320,18 @@ const WALLETS: WalletRow[] = [
       "The birthday height. It lives inside keys.toml, and it is worth recording alongside the mnemonic.",
     ],
     seedRestores: [
-      "Everything fund-related. Server restore: place keys.toml and identity.txt back in their configured paths and start the daemon; with bootstrap_from_keys on (the default), the account is recreated from keys.toml and the database rebuilds by rescanning from the stored birthday. From-seed restore: zecd init --datadir /var/lib/zecd --restore --birthday <height>.",
-      "Watch-only: zecd init --ufvk \"uview1...\" --birthday <height>.",
+      "Everything fund-related. Server restore: place keys.toml and identity.txt back in their configured paths and start the daemon; with bootstrap_from_keys on (the default), the account is recreated from keys.toml and the database rebuilds by rescanning from the stored birthday.",
     ],
     seedMisses: [
-      "Nothing fund-related. data.sqlite and the blocks cache are disposable and rebuild by rescan; the .cookie file is ephemeral.",
+      "Transparent funds outside the configured gap limit / initial-scan window: shielded funds recover unconditionally from the seed, but transparent funds are only picked up within the configured gap limit, per zecd.org. data.sqlite and the blocks cache are disposable and rebuild by rescan; the .cookie file is ephemeral.",
     ],
     restore: [
-      "Pass --birthday at or before the wallet's first transaction. Without it, the restore scans from Sapling activation: safe, never misses notes, but slow on mainnet. The default birthday is pool-aware (Orchard wallets scan from NU5).",
+      "Server restore: place keys.toml and identity.txt back in their configured paths and start the daemon, as above.",
+      "From-seed restore: zecd init --datadir /var/lib/zecd --restore --birthday <height>. Pass --birthday at or before the wallet's first transaction. Without it, the restore scans from Sapling activation: safe, never misses notes, but slow on mainnet. Balances are not final until /readyz reports ready.",
     ],
     notes: [
-      "ZECD is a wallet daemon, not a full node: it exposes a Bitcoin Core style JSON-RPC interface, is Orchard-by-default, and uses ZIP-317 fees. No rename or rebrand was found; the project is consistently called ZECD.",
+      "Watch-only instance: export the viewing key on the spending wallet with zecd export-ufvk, then run zecd init --ufvk \"uview1...\" --birthday <height> on the watch-only host. A watch-only wallet has no mnemonic; it is fully reconstructable from the UFVK plus birthday, so record both. That is a viewing-key path rather than a seed restore.",
+      "ZECD is a wallet daemon, not a full node: it exposes a Bitcoin Core style JSON-RPC interface, uses Ironwood by default (at the wallet's Orchard receiver), and uses ZIP-317 fees.",
       "A rescan deletes only the wallet database and block cache. keys.toml (seed, network, birthday, UFVK pin) is kept, so the next start rebuilds the account from the seed and rescans from the wallet birthday.",
     ],
     sources: [
@@ -313,8 +344,12 @@ const WALLETS: WalletRow[] = [
         url: "https://github.com/zecrocks/zecd",
       },
       {
+        label: "zecd.org (Ironwood by default, gap-limit recovery, stateless restore)",
+        url: "https://zecd.org",
+      },
+      {
         label: "ZecHub ZECD page (quick-start restore command)",
-        url: "https://github.com/exlier/zechub/blob/HEAD/site/Zcash_Tech/ZECD.md",
+        url: "https://github.com/ZecHub/zechub/blob/main/site/Zcash_Tech/ZECD.md",
       },
     ],
   },
@@ -337,7 +372,7 @@ const WALLETS: WalletRow[] = [
       "Official methods: backupwallet (exact copy, recommended), z_exportwallet / z_importwallet (human-readable bundle of all private keys), or per-key z_exportkey / z_importkey and dumpprivkey / importprivkey.",
     ],
     notes: [
-      "Included here because migration to Zallet starts from a zcashd wallet.dat. Keep the original file even after migrating.",
+      "Included here because migration to Zallet starts from a zcashd wallet.dat. Keep the original file even after migrating. For recovering pre-4.7.0 or Sprout funds, see the wiki's Recovering Funds guide (Argos).",
     ],
     sources: [
       {
@@ -362,7 +397,7 @@ const WALLETS: WalletRow[] = [
       "The birthday height, so the watching wallet knows where to start scanning.",
     ],
     seedRestores: [
-      "Not applicable in the seed sense. Importing the viewing key (z_importviewingkey) restores the ability to see balances and transactions. z_getbalance shows the balance of an imported Sapling viewing key; z_gettotalbalance includes watch-only balances when includeWatchonly is true.",
+      "Not applicable in the seed sense. Importing the viewing key (z_importviewingkey) restores the ability to see balances and transactions. z_getbalance shows the balance of an imported Sapling viewing key; z_gettotalbalance includes watch-only balances when includeWatchonly is true (RPC behavior in the releases fetched for this guide; flags may differ across versions).",
     ],
     seedMisses: [
       "Spend authority, always. A viewing key grants read access, never the ability to spend. That is the entire point of selective disclosure.",
@@ -399,8 +434,8 @@ const WALLETS: WalletRow[] = [
 function BulletList({ items }: { items: string[] }) {
   return (
     <ul className="list-disc pl-5 space-y-1">
-      {items.map((item, i) => (
-        <li key={i}>{item}</li>
+      {items.map((item) => (
+        <li key={item}>{item}</li>
       ))}
     </ul>
   );
@@ -492,17 +527,22 @@ export default function WalletBackupRestoreMatrix() {
       </p>
       <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 mb-10">
         <table className="w-full text-sm min-w-[880px]">
+          <caption className="sr-only">
+            Backup and restore matrix: what each wallet requires you to back
+            up, what a seed phrase restores, what it does not restore, and
+            the fine print.
+          </caption>
           <thead>
             <tr className="bg-gray-100 dark:bg-gray-800 text-left">
-              <th className="p-3 font-semibold align-top">Wallet / setup</th>
-              <th className="p-3 font-semibold align-top">Back up this</th>
-              <th className="p-3 font-semibold align-top">
+              <th scope="col" className="p-3 font-semibold align-top">Wallet / setup</th>
+              <th scope="col" className="p-3 font-semibold align-top">Back up this</th>
+              <th scope="col" className="p-3 font-semibold align-top">
                 Seed phrase restores
               </th>
-              <th className="p-3 font-semibold align-top">
+              <th scope="col" className="p-3 font-semibold align-top">
                 Seed phrase does NOT restore
               </th>
-              <th className="p-3 font-semibold align-top">Fine print</th>
+              <th scope="col" className="p-3 font-semibold align-top">Fine print</th>
             </tr>
           </thead>
           <tbody>
@@ -527,7 +567,7 @@ export default function WalletBackupRestoreMatrix() {
                   <BulletList items={w.seedMisses} />
                 </td>
                 <td className="p-3">
-                  <BulletList items={w.notes.slice(0, 2)} />
+                  <BulletList items={w.notes} />
                 </td>
               </tr>
             ))}
@@ -702,10 +742,11 @@ export default function WalletBackupRestoreMatrix() {
       </h2>
       <p className="text-gray-600 dark:text-gray-300 mb-4">
         A birthday height is simply the block number where your wallet starts
-        looking for your money. The specification (ZIP-326) defines it as a
-        lower bound on the height of the first block in which your account
-        could have received funds. When you restore, the wallet scans the chain
-        from that height forward instead of from the very beginning.
+        looking for your money. ZIP-326 (NU6.3 Consequences for Wallets, a
+        draft ZIP) uses the definition in passing: a lower bound on the height
+        of the first block in which your account could have received funds.
+        When you restore, the wallet scans the chain from that height forward
+        instead of from the very beginning.
       </p>
       <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300 mb-8">
         <li>
@@ -726,7 +767,7 @@ export default function WalletBackupRestoreMatrix() {
         </li>
         <li>
           <strong className="text-gray-900 dark:text-gray-100">
-            Every wallet in this guide asks for it at restore time.
+            Most software wallets in this guide ask for it at restore time.
           </strong>{" "}
           Zodl has a birthday estimator in the restore flow, Zingo requires you
           to supply it explicitly, Zkool lets you enter a birth height (or
@@ -735,6 +776,10 @@ export default function WalletBackupRestoreMatrix() {
             --birthday
           </code>
           , and Zallet&apos;s recovery RPC takes a birthday height per account.
+          Hardware wallets are the exception: Ledger and Keystone restore the
+          phrase on the device itself with no birthday prompt. zcashd&apos;s
+          backupwallet is an exact file copy, so no birthday height is
+          involved there either.
         </li>
         <li>
           <strong className="text-gray-900 dark:text-gray-100">
@@ -905,7 +950,7 @@ export default function WalletBackupRestoreMatrix() {
             https://github.com/zcash/zips/blob/HEAD/zips/zip-0326.md
           </a>{" "}
           <span className="text-gray-500 dark:text-gray-400">
-            — ZIP-326 (birthday height definition)
+            — ZIP-326 (NU6.3 Consequences for Wallets; uses the birthday-height definition in passing)
           </span>
         </li>
         <li className="text-gray-600 dark:text-gray-300">
