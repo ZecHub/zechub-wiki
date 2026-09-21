@@ -46,6 +46,10 @@ const SOURCES: { label: string; url: string }[] = [
       "Freedom Wallet official site (freedomwallet.com): platforms, supported assets, self-custody, swaps, private payroll, sync behavior",
     url: "https://www.freedomwallet.com/",
   },
+  {
+    label: "Freedom Wallet brand kit (freedomwallet.com/brand-kit): official logo",
+    url: "https://www.freedomwallet.com/brand-kit",
+  },
 ];
 
 export default function FreedomWallet() {
@@ -58,17 +62,25 @@ export default function FreedomWallet() {
         go.&rdquo;
       </p>
 
-      <div className="mb-8 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
+      <div className="mb-8 overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-800">
         <Image
-          src="/content-images/FreedomWallet-7b2d9f4a01.webp"
-          alt="Freedom Wallet placeholder card (wiki-made; official logo not yet published)"
-          width={640}
-          height={366}
+          src="/content-images/FreedomWallet-logo.webp"
+          alt="Freedom Wallet official logo"
+          width={1280}
+          height={242}
           className="h-auto w-full object-cover"
         />
         <p className="px-4 py-2 text-xs text-zinc-500 dark:text-zinc-400">
-          Wiki placeholder card. No official logo artwork was available; this
-          card will be replaced if the project publishes one.
+          Official Freedom Wallet logo, from the project&apos;s{" "}
+          <a
+            href="https://www.freedomwallet.com/brand-kit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            brand kit
+          </a>
+          .
         </p>
       </div>
 
@@ -115,7 +127,8 @@ export default function FreedomWallet() {
             Zano and Monero keep transactions confidential by default, and
             Zcash does when you use shielded addresses. Bitcoin and Ethereum
             use public ledgers. In the site&apos;s own words: &ldquo;Using a
-            wallet does not make every asset private.&rdquo;
+            wallet does not make every asset private.&rdquo; The site does not
+            publish which Zcash pools the app itself supports.
           </li>
           <li>
             You hold the keys: your recovery phrase and private keys stay on
