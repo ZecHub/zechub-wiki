@@ -16,8 +16,9 @@ export async function generateMetadata({
   return genMetadata({
     title: "Freedom Wallet | ZecHub",
     description:
-      "Freedom Wallet is a self-custodial multi-asset wallet for iPhone, Android, and desktop, with Zcash support on mobile (shielded addresses).",
+      "Freedom Wallet is a self-custodial multi-asset wallet for iPhone, Android, and desktop, with Zcash support on mobile.",
     url: `https://zechub.wiki${localePrefix}/wallets/freedom-wallet`,
+    image: "/content-images/FreedomWallet-logo.webp",
     locale,
     alternates: buildAlternatesAllLocales("/wallets/freedom-wallet", locale),
   });
