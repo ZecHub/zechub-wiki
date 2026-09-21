@@ -653,13 +653,13 @@ export const searcher: Searcher[] = [
     name: "Gem Wallet",
     desc: "Open-source, self-custodial multi-coin mobile wallet (iOS, Android, APK) with Zcash support. Transparent ZEC addresses only.",
     url: "/wallets/gem-wallet",
-    aliases: ["gem", "gem wallet zcash"],
+    aliases: ["gemwallet", "gem wallet zcash"],
   },
   {
     name: "Freedom Wallet",
     desc: "Self-custodial multi-asset wallet for iPhone, Android, and desktop, with Zcash support on mobile.",
     url: "/wallets/freedom-wallet",
-    aliases: ["freedom", "freedom wallet zcash"],
+    aliases: ["freedomwallet", "freedom wallet zcash"],
   },
   {
     name: "Zcash Global Ambassadors",
