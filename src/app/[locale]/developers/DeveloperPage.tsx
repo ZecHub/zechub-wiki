@@ -403,19 +403,19 @@ export default function DeveloperPage() {
     {
       title: "Zinder",
       description:
-        "Open-source Zcash chain indexer: indexes the chain once from a Zebra full node and serves wallets over its native WalletQuery API and a lightwalletd-compatible mode.",
+        "Alpha-stage open-source Zcash chain indexer: indexes the chain once from a Zebra full node and serves wallets over its native WalletQuery API and a lightwalletd-compatible mode.",
       url: "https://github.com/ZcashFoundation/zinder",
     },
     {
       title: "ZPay",
       description:
-        "Open-source Zcash payments stack for agents and the services they pay, built on the x402 protocol.",
+        "Open-source Zcash payments stack for agents and the services they pay, with x402 v2 and MPP wire adapters over a protocol-neutral core.",
       url: "https://github.com/gustavovalverde/zpay",
     },
     {
       title: "Ztreamer",
       description:
-        "Heavily optimized open-source Zcash indexer and lightwallet-protocol implementation, backed by an embedded Zakura node.",
+        "Zcash indexer and lightwallet-protocol implementation, backed by an embedded Zakura node.",
       url: "https://github.com/distractedm1nd/ztreamer",
     },
   ];
