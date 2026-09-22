@@ -6,7 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -30,22 +30,18 @@
     }
   },
   "include": [
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next-env.d.ts",
     ".next/types/**/*.ts",
+    "public/sw.js",
+    "jest.config.js",
+    "jest-setup.js",
     ".next/dev/types/**/*.ts",
-    "jest-setup.ts",
-    // "public/sw.js",
-    // "jest.config.js",
-    // ".next/dev/types/**/*.ts",
-    // "src/app/tools/converter/ZcashTools.jsx",
-    // ".next/dev/dev/types/**/*.ts"
+    "src/app/tools/converter/ZcashTools.jsx",
+    ".next/dev/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    ".next",
-    "public",
-    "script"
+    "node_modules"
   ]
 }

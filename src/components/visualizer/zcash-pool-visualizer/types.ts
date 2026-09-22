@@ -1,4 +1,4 @@
-export type PoolType = "transparent" | "sapling" | "orchard" | "ironwood";
+export type PoolType = "transparent" | "sapling" | "orchard";
 
 export interface PoolData {
   type: PoolType;
@@ -39,18 +39,7 @@ export const POOLS: Record<PoolType, PoolData> = {
     type: "orchard",
     name: "Orchard",
     description:
-      "The previous primary shielded pool, with enhanced privacy and now spend-only. Uses Unified Addresses for maximum anonymity.",
-    exampleAddress: "u1rl84p7l9xq3cxu2yh2cks9v8qcgrpf25h4hgn0...unified",
-    addressPrefix: "u1",
-    privacyLevel: "full",
-    color: "pool-orchard",
-    glowColor: "pool-orchard-glow",
-  },
-  ironwood: {
-    type: "ironwood",
-    name: "Ironwood",
-    description:
-      "Zcash Ironwood (NU6.3) is the latest and  critical network upgrade that replaced the vulnerable Orchard shielded pool with a new, formally verified pool to eliminate the risk of undetectable counterfeiting ",
+      "Latest shielded protocol with enhanced privacy. Uses Unified Addresses for maximum anonymity.",
     exampleAddress: "u1rl84p7l9xq3cxu2yh2cks9v8qcgrpf25h4hgn0...unified",
     addressPrefix: "u1",
     privacyLevel: "full",
@@ -124,22 +113,6 @@ export const STAGES: Stage[] = [
   },
   {
     id: 4,
-    title: "Ironwood Protocol",
-    subtitle: "Unified Addresses (u1...)",
-    description: POOLS["ironwood"].description,
-    type: "pool",
-    focusPool: POOLS["ironwood"].type,
-  },
-  {
-    id: 5,
-    title: "Why Ironwood Exists",
-    subtitle: "NU6.3 · Activated 28 July 2026",
-    description:
-      "A soundness bug in the Orchard circuit meant nobody could independently verify the shielded supply. Ironwood is the fix.",
-    type: "ironwood-why",
-  },
-  {
-    id: 6,
     title: "Shielding Transaction",
     subtitle: "Transparent → Shielded",
     description:
@@ -150,16 +123,23 @@ export const STAGES: Stage[] = [
     amount: "1.5 ZEC",
   },
   {
-    id: 7,
+    id: 5,
     title: "Transaction Privacy Matrix",
     subtitle: "Understanding the Nuances",
     description:
       "Privacy depends on transaction type. Compare what is visible across all possible transaction combinations.",
     type: "comparison",
   },
-
   {
-    id: 8,
+    id: 6,
+    title: "Why Ironwood Exists",
+    subtitle: "NU6.3 · Activated 28 July 2026",
+    description:
+      "A soundness bug in the Orchard circuit meant nobody could independently verify the shielded supply. Ironwood is the fix.",
+    type: "ironwood-why",
+  },
+  {
+    id: 7,
     title: "The Turnstile",
     subtitle: "Counting without looking inside",
     description:
@@ -167,7 +147,7 @@ export const STAGES: Stage[] = [
     type: "ironwood-turnstile",
   },
   {
-    id: 9,
+    id: 8,
     title: "Orchard → Ironwood Migration",
     subtitle: "Pool migration flow",
     description:
@@ -175,7 +155,7 @@ export const STAGES: Stage[] = [
     type: "ironwood-migration",
   },
   {
-    id: 10,
+    id: 9,
     title: "Supply Audit Logic",
     subtitle: "Proving nothing was counterfeited",
     description:

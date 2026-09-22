@@ -1,18 +1,19 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowRight,
-  CheckCircle,
-  ExternalLink,
-  Lock,
-  Map,
+  CreditCard,
   Shield,
   ShoppingCart,
+  Globe,
   Store,
+  ExternalLink,
+  ArrowRight,
+  CheckCircle,
+  Lock,
   Zap,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 const slides = [
   {
@@ -74,36 +75,6 @@ const slides = [
     ],
     link: "https://nymtech.net/",
     linkText: "Explore Nym VPN",
-  },
-  {
-    id: "zecmap",
-    title: "ZecMap",
-    icon: Map,
-    color: "from-amber-500 to-orange-300",
-    steps: [
-      "ZecMap is a community-driven directory that helps you find businesses acception Zcash (ZEC) on a map",
-      "Explore on a map: see Zcash-friendly businesses near you",
-      "Search and filter by category",
-      "Business details: address, contact, website and Zcash address with QR code",
-      "Community verification: keep listings fresh together",
-    ],
-    link: "https://zecmap.com/",
-    linkText: "Explore ZecMap",
-  },
-  {
-    id: "zecmarket",
-    title: "ZEC Market",
-    icon: ShoppingCart,
-    color: "from-amber-500 to-orange-300",
-    steps: [
-      "The privacy-first marketplace of the Zcash ecosystem",
-      "Payments settle directly, the platform never holds your funds",
-      "List or find: Publish an item in under a minute, or browse thousands of listings with rich filters.",
-      "Agree the deal: Message the seller, make an offer, and arrange the details, privately.",
-      "Agree the deal: Complete it with a shielded or transparent payment, directly between buyer and seller.",
-    ],
-    link: "https://zecmarket.org/",
-    linkText: "Explore ZEC Market",
   },
   {
     id: "accept-payments",

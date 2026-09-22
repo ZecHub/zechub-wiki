@@ -1,9 +1,9 @@
-import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Stage } from "./types";
+import { COMPONENTS } from "./data";
 import { ComponentBox } from "./ComponentBox";
 import { ConnectionLine } from "./ConnectionLine";
-import { COMPONENTS } from "./data";
-import { Stage } from "./types";
 
 interface InfrastructureDiagramProps {
   stage: Stage;
@@ -48,21 +48,13 @@ export const InfrastructureDiagram: React.FC<InfrastructureDiagramProps> = ({
       <div className="w-full flex justify-center">
         <div className="w-full max-w-5xl space-y-2">
           <div className="flex justify-center">
-            <div className="grid grid-cols-2 gap-4">
-              {/* <div className="max-w-[160px]"> */}
+            <div className="max-w-[160px]">
               <ComponentBox
                 id="zebra"
                 component={COMPONENTS.zebra}
                 highlighted
                 compact
               />
-              <ComponentBox
-                id="zakura"
-                component={COMPONENTS.zakura}
-                highlighted
-                compact
-              />
-              {/* </div> */}
             </div>
           </div>
 
@@ -126,18 +118,11 @@ export const InfrastructureDiagram: React.FC<InfrastructureDiagramProps> = ({
         >
           {showLayer2 && !showLayer3 && (
             <>
-              <div className="flex flex-row">
-                <ComponentBox
-                  id="zebra"
-                  component={COMPONENTS.zebra}
-                  highlighted={isHighlighted("zebra")}
-                />
-                <ComponentBox
-                  id="zakura"
-                  component={COMPONENTS.zakura}
-                  highlighted={isHighlighted("zakura")}
-                />
-              </div>
+              <ComponentBox
+                id="zebra"
+                component={COMPONENTS.zebra}
+                highlighted={isHighlighted("zebra")}
+              />
               <ConnectionLine highlighted vertical />
               <div className="grid grid-cols-2 gap-4">
                 <ComponentBox
@@ -145,7 +130,6 @@ export const InfrastructureDiagram: React.FC<InfrastructureDiagramProps> = ({
                   component={COMPONENTS.zaino}
                   highlighted={isHighlighted("zaino")}
                 />
-
                 <ComponentBox
                   id="lightwalletd"
                   component={COMPONENTS.lightwalletd}
