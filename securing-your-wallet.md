@@ -1,15 +1,18 @@
+---
+title: "Securing Your Wallet"
+date: 2026-09-22
+draft: false
+categories: ["Zcash Tech"]
+tags: ["zechub", "security", "wallets", "backup"]
+---
+
 # Securing Your Wallet
 
-Protecting your cryptocurrency assets requires strict adherence to security best practices, proper key management, and constant vigilance against common attack vectors.
+Protecting your digital assets and maintaining financial privacy requires strict security hygiene. 
 
-## Seed Phrase Management
-* **Never Expose Your Seed Phrase:** Your 12-to-24-word recovery phrase is the master key to all your funds. Never type it into websites, share it via chat, or store it in unencrypted cloud notes.
-* **Physical Backup:** Store your recovery phrase physically on paper or etched into metal plates. Keep backups in secure, fireproof locations.
+## Seed Phrase Best Practices
+* **Offline Storage:** Write down your seed phrase on paper or stamp it onto metal. Never store it in digital notes, screenshots, or cloud storage.
+* **Never Share:** No one from ZecHub, support teams, or wallet providers will ever ask for your seed phrase. Keep it private.
 
-## Hardware Wallets vs. Software Wallets
-* **Software Wallets (Hot Wallets):** Convenient for daily transactions and interacting with decentralized applications, but more vulnerable if your device is compromised.
-* **Hardware Wallets (Cold Wallets):** Devices like Ledger or Trezor keep your private keys completely offline, isolated from internet-connected malware. This is the gold standard for long-term storage.
-
-## Threat Prevention Best Practices
-* **Double-Check URLs:** Always verify official project links to avoid phishing scams that mimic popular wallet interfaces or exchanges.
-* **Enable Extra Security Layers:** Use strong, unique passwords, biometric locks, and hardware-based two-factor authentication (2FA) wherever supported.
+## Hardware Integration
+For long-term storage or larger amounts, pair your wallet software with a secure hardware device to ensure your private keys never touch an internet-connected operating system.
