@@ -4,7 +4,7 @@ const createJestConfig = nextJest({ dir: "./" });
 
 /** @type {import('jest').Config} */
 const customJestConfig = {
-  setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
+  setupFilesAfterEnv: ["<rootDir>/jest-setup.js"],
   moduleDirectories: ["node_modules", "<rootDir>/"],
   testPathIgnorePatterns: ["<rootDir>/e2e"],
   testEnvironment: "jest-environment-jsdom",

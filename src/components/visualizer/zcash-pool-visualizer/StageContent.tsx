@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ComparisonView } from "./ComparisonView";
 import { IntroContent } from "./IntroContent";
-import { PoolContent } from "./PoolContent";
+import { PoolContent } from "./PoolConten";
 import { TransactionContent } from "./TransactionContent";
 import { IronwoodFooter } from "./ironwood/IronwoodFooter";
 import { MigrationFlow } from "./ironwood/MigrationFlow";
