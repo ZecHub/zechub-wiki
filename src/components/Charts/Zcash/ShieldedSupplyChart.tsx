@@ -198,13 +198,15 @@ export default function ShieldedSupplyChart(props: ShieldedSupplyChartProps) {
     if (ironwoodVisible) visible.push("ironwood");
 
     const count = visible.length;
-    if (count === 0 || count >= 3) return { label: "Total Shielded", value: calculateTotalShielded() };
+    // Only fall back to the all-pool total when every pool is shown (or none is).
+    if (count === 0 || count === Object.keys(latestTotals).length) return { label: "Total Shielded", value: calculateTotalShielded() };
     if (count === 1) {
       const p = visible[0];
       const name = p.charAt(0).toUpperCase() + p.slice(1);
       return { label: `${name} Shielded`, value: (latestTotals as any)[p] };
     }
-    const name = visible.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(" and ");
+    const names = visible.map(p => p.charAt(0).toUpperCase() + p.slice(1));
+    const name = `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
     const value = visible.reduce((sum, p) => sum + (latestTotals as any)[p], 0);
     return { label: `${name} Shielded`, value };
   };
