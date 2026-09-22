@@ -1,4 +1,5 @@
----
+Add front-matter title
+
 title: "Zcash Node Synchronization"
 ---
 
