@@ -1,5 +1,6 @@
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
 import { DATA_URL } from "@/lib/chart/data-url";
+import { blockHeightToYear } from "@/lib/chart/helpers";
 import { RefObject, useEffect, useState } from "react";
 import {
   CartesianGrid,
@@ -18,17 +19,6 @@ type TransactionSummaryDatum = {
   sapling: number;
   orchard: number;
 };
-
-const HEIGHT_YEAR_MAP = [
-  { start: 0, end: 257775, year: "2018" },
-  { start: 257776, end: 676656, year: "2019" },
-  { start: 676657, end: 1095537, year: "2020" },
-  { start: 1095538, end: 1514418, year: "2021" },
-  { start: 1514419, end: 1933299, year: "2022" },
-  { start: 1933300, end: 2352180, year: "2023" },
-  { start: 2352181, end: 2771014, year: "2024" },
-  { start: 2771015, end: Infinity, year: "2025" },
-];
 
 type YearlyTotals = Record<string, { sapling: number; orchard: number }>;
 
@@ -55,9 +45,7 @@ function PrivacySetVisualizationChart({
 
         const totals: YearlyTotals = {};
         for (const { height, sapling, orchard } of raw) {
-          const year =
-            HEIGHT_YEAR_MAP.find((r) => height >= r.start && height <= r.end)
-              ?.year || "Unknown";
+          const year = String(blockHeightToYear(height));
           if (!totals[year]) totals[year] = { sapling: 0, orchard: 0 };
           totals[year].sapling += sapling;
           totals[year].orchard += orchard;
@@ -237,7 +225,7 @@ function PrivacySetVisualizationChart({
                       >
                         <span>{entry.name}</span>
                         <span className="text-slate-50">
-                         {formatVal(Number(entry.value ?? 0))} ZEC
+                         {formatVal(Number(entry.value ?? 0))}
                         </span>
                       </div>
                     ))}
