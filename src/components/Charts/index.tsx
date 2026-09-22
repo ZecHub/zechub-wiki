@@ -305,6 +305,13 @@ const Dashboard = ({
             .sort((a: any, b: any) => (b.views || 0) - (a.views || 0))
         : filteredDate.slice(0, 15);
 
+  // Bars are relative to the most viewed video in the list; the "Latest"
+  // list is in date order, so that is not necessarily the first one.
+  const maxDisplayedViews = Math.max(
+    1,
+    ...displayedVideos.map((v: any) => v.views || 0),
+  );
+
   const totalVideos = currentSorted.length;
   const totalViews = currentSorted.reduce(
     (sum: number, v: any) => sum + (v?.views || 0),
@@ -715,7 +722,7 @@ const Dashboard = ({
                         <div
                           className="h-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all group-hover:brightness-110"
                           style={{
-                            width: `${Math.max(((video.views || 0) / (displayedVideos[0]?.views || 1)) * 100, 8)}%`,
+                            width: `${Math.max(((video.views || 0) / maxDisplayedViews) * 100, 8)}%`,
                           }}
                         />
                       </div>
