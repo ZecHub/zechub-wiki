@@ -526,7 +526,7 @@
     },
     "dex": {
       "title": "विकेंद्रीकृत एक्सचेंज",
-      "subtitle": "ZecHub किसी विशेष Decentralised Exchange सेवा का समर्थन नहीं करता, कृपया स्वयं शोध करें।",
+      "subtitle": "ZecHub किसी विशेष विकेंद्रीकृत एक्सचेंज सेवा का समर्थन नहीं करता है, कृपया स्वयं शोध करें।",
       "centralised": "केंद्रीकृत स्वैप प्लेटफ़ॉर्म",
       "centralizedTitle": "केंद्रीकृत स्वैप प्लेटफ़ॉर्म सूची",
       "custodial": "कस्टोडियल एक्सचेंज",
@@ -542,7 +542,8 @@
         "RocketX": "Hybrid DEX aggregator जो optimal routing और competitive rates के साथ multiple blockchains पर cross-chain swaps सक्षम करता है।",
         "THORChain": "Decentralized Layer 1 cross-chain exchange। ZEC, BTC और ETH जैसे native assets को सीधे swap करें, बिना bridges, wrapped tokens, या intermediaries के।",
         "Loofta": "Non-custodial private payment और swap platform। Enhanced financial privacy के लिए Zcash को settlement layer के रूप में उपयोग करते हुए, chains के बीच crypto को निजी रूप से भेजें और प्राप्त करें।"
-      }
+      },
+      "disclaimer": "ZecHub किसी विशेष एक्सचेंज सेवा का समर्थन नहीं करता है, कृपया स्वयं शोध करें।"
     },
     "usingZcash": {
       "blockchainExplorers": {

@@ -537,7 +537,8 @@
         "RocketX": "Hybrid DEX aggregator kuwezesha msalaba-chain swaps katika blockchains nyingi na routing bora na viwango vya ushindani.",
         "THORChain": "Decentralized Layer 1 msalaba-chain kubadilishana. Swap mali asili kama ZEC, BTC, na ETH moja kwa moja bila madaraja, wrapped ishara, au waamuzi.",
         "Loofta": "Kutuma na kupokea crypto binafsi katika minyororo, na Zcash kama safu ya makazi kwa ajili ya kuimarishwa faragha ya kifedha."
-      }
+      },
+      "disclaimer": "ZecHub haina kuidhinisha huduma yoyote ya kubadilishana, tafadhali fanya utafiti wako mwenyewe."
     },
     "usingZcash": {
       "blockchainExplorers": {

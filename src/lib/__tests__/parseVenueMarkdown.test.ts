@@ -70,3 +70,78 @@ describe("parseVenueMarkdown", () => {
     expect(parseVenueMarkdown("")).toEqual([]);
   });
 });
+
+// Localized bullet labels.
+//
+// The venue pages ship in 18 locales and their bullet LABELS are translated
+// too. Lookup used to be English-only, which failed in three different ways
+// depending on the locale: fr worked by luck (its translation kept the word
+// "Description"), de rendered cards with no description, and it/es/pt/ar/zh/hi
+// and the rest parsed to zero venues — so the caller fell back to a hardcoded
+// English list and served English cards under every locale prefix.
+describe("parseVenueMarkdown — localized labels", () => {
+  const venue = (labels: Record<string, string>) => `
+### [LetsExchange](https://letsexchange.io)
+
+${Object.entries(labels).map(([k, v]) => `- ${k}: ${v}`).join("\n")}
+___
+`;
+
+  it("parses Italian labels", () => {
+    const [v] = parseVenueMarkdown(venue({
+      "Sito web": "[LetsExchange](https://letsexchange.io)",
+      Coppie: "ZEC/BTC",
+      Descrizione: "Un hub di exchange crypto.",
+    }));
+    expect(v.description).toBe("Un hub di exchange crypto.");
+    expect(v.pairs).toBe("ZEC/BTC");
+  });
+
+  it("parses German labels — the case that rendered empty cards", () => {
+    const [v] = parseVenueMarkdown(venue({
+      Website: "[LetsExchange](https://letsexchange.io)",
+      Beschreibung: "Eine Krypto-Börse.",
+      Handelspaare: "ZEC/BTC",
+    }));
+    expect(v.description).toBe("Eine Krypto-Börse.");
+    expect(v.pairs).toBe("ZEC/BTC");
+  });
+
+  it("parses a full-width colon, which Chinese uses", () => {
+    const md = `
+### [LetsExchange](https://letsexchange.io)
+
+- 网站：[LetsExchange](https://letsexchange.io)
+- 描述：一个加密货币交易平台。
+___
+`;
+    const [v] = parseVenueMarkdown(md);
+    // Before the fix the regex matched the ASCII colon inside "https://", so
+    // the key was "网站：https" and the value a URL fragment.
+    expect(v.url).toBe("https://letsexchange.io");
+    expect(v.description).toBe("一个加密货币交易平台。");
+  });
+
+  it("parses non-Latin labels across scripts", () => {
+    for (const [label, text] of [
+      ["الوصف", "منصة تبادل"],
+      ["説明", "暗号資産取引所"],
+      ["설명", "암호화폐 거래소"],
+      ["Описание", "Криптобиржа"],
+      ["विवरण", "क्रिप्टो एक्सचेंज"],
+    ] as const) {
+      const [v] = parseVenueMarkdown(venue({ [label]: text, Website: "https://x.io" }));
+      expect(v.description).toBe(text);
+    }
+  });
+
+  it("still parses the English labels", () => {
+    const [v] = parseVenueMarkdown(venue({
+      Website: "[LetsExchange](https://letsexchange.io)",
+      Pairs: "ZEC/BTC",
+      Description: "A crypto exchange hub.",
+    }));
+    expect(v.description).toBe("A crypto exchange hub.");
+    expect(v.url).toBe("https://letsexchange.io");
+  });
+});

@@ -520,7 +520,7 @@
     },
     "dex": {
       "title": "Asitɔtrɔ le Dɔwɔƒewo ƒe Dɔwɔnawo Ŋu",
-      "subtitle": "ZecHub meda asi ɖe Decentralized Exchange subɔsubɔdɔ aɖeke koŋ dzi o, taflatse wɔ wò ŋutɔ wò numekuku.",
+      "subtitle": "ZecHub meda asi ɖe Decentralized Exchange ƒe dɔwɔna aɖeke dzi o, taflatse wɔ wò ŋutɔ tɔwòwo.",
       "centralised": "Centralized Swap ƒe mɔ̃wo",
       "centralizedTitle": "Centralized Swap Platform ƒe Ŋkɔwo ƒe Ŋkɔwo",
       "custodial": "Vidzikpɔkpɔ ƒe Asitɔtrɔ",
@@ -536,7 +536,8 @@
         "RocketX": "Hybrid DEX aggregator si naa cross-chain swaps le blockchains geɖe me kple mɔfiame nyuitɔ kekeake kple hoʋiʋli ƒe agbɔsɔsɔme.",
         "THORChain": "Decentralized Layer 1 ƒe atitsoga-kɔsɔkɔsɔ ƒe asitɔtrɔ. Trɔ asi le dzɔdzɔme nunɔamesiwo abe ZEC, BTC, kple ETH ene tẽ tɔdzisasrãwo, dzesi siwo woxatsa, alo domenɔlawo manɔmee.",
         "Loofta": "Non-custodial ame ŋutɔ ƒe fexexe kple swap platform. Ðo crypto ɖa eye nàxɔe le adzame le kɔsɔkɔsɔwo katã me, eye Zcash nye nyaa gbɔ kpɔkpɔ ƒe ƒuƒoƒo na ganyawo ƒe adzamenyawo si wodo ɖe ŋgɔ."
-      }
+      },
+      "disclaimer": "ZecHub meda asi ɖe asitsatsa ƒe dɔwɔna aɖeke dzi o, taflatse wɔ wò ŋutɔ tɔwòwo."
     },
     "usingZcash": {
       "blockchainExplorers": {

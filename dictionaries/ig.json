@@ -536,7 +536,8 @@
         "RocketX": "Ngwakọta ngwakọ DEX na-enyere aka ịgbagha agbagha n'ofe ọtụtụ blockchains na ụzọ kachasị mma na ọnụego asọmpi.",
         "THORChain": "Decentralized Layer 1 cross-chain exchange. Gbanwee ihe onwunwe dị ka ZEC, BTC, na ETH ozugbo na-enweghị àkwà mmiri, ngwugwu ngwugwu, ma ọ bụ ndị na-etiti.",
         "Loofta": "Non-custodial onwe ugwo na swap n'elu ikpo okwu. Zipu ma nata crypto na nzuzo gafee agbụ, na Zcash dị ka nhazi nhazi maka ịkwalite nzuzo ego."
-      }
+      },
+      "disclaimer": "ZecHub anaghị akwado ọrụ mgbanwe ọ bụla, biko mee nyocha nke gị."
     },
     "usingZcash": {
       "blockchainExplorers": {

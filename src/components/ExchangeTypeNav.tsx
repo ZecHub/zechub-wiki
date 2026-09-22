@@ -21,7 +21,7 @@ export default function ExchangeTypeNav() {
       <Link href="/using-zcash/custodial-exchanges" className={btnClass}>
         {custodialLabel}
       </Link>
-      <Link href="/using-zcash/centralizedswaps" className={btnClass}>
+      <Link href="/using-zcash/centralized-swaps" className={btnClass}>
         {centralisedLabel}
       </Link>
     </div>

@@ -12,10 +12,19 @@ export type Venue = {
 
 const DEFAULT_LOGO = "/content-images/_unavailable.svg";
 
-const FIELD_ALIASES: Record<string, keyof Pick<
-  Venue,
-  "pairs" | "support" | "depositTime" | "ironwood" | "description" | "url" | "logo"
->> = {
+const FIELD_ALIASES: Record<
+  string,
+  keyof Pick<
+    Venue,
+    | "pairs"
+    | "support"
+    | "depositTime"
+    | "ironwood"
+    | "description"
+    | "url"
+    | "logo"
+  >
+> = {
   pairs: "pairs",
   pair: "pairs",
   supports: "support",
@@ -31,6 +40,141 @@ const FIELD_ALIASES: Record<string, keyof Pick<
   logo: "logo",
   image: "logo",
   img: "logo",
+
+  // --- localized labels -------------------------------------------------
+  // The venue pages are translated into 18 locales, and the bullet LABELS are
+  // translated with them. Lookup was English-only, so applyField() dropped
+  // every field on a translated page. What that cost, per locale:
+  //
+  //   fr  worked by luck — its translation kept the word "Description"
+  //   de  cards rendered with NO description (the heading still yielded a URL,
+  //       so the venue survived the push guard but had nothing to show)
+  //   it/es/pt/ar/zh/hi/…  parsed to zero venues, so getVenuesFromMarkdown()
+  //       fell back to the hardcoded English dexListingConfig and served
+  //       English cards under every locale prefix
+  //
+  // Derived from the corpus rather than written by hand: every label that
+  // appears in translations/<loc>/site/Using_Zcash/{Custodial_Exchanges,DEX,
+  // Centralized_Swaps}.md, aligned against the English bullet it replaces.
+  // Some locales use more than one word for a field across pages, so several
+  // aliases can map to the same key. Keys are lowercased with JS semantics
+  // (Turkish "İşlem çiftleri" lowercases to "i̇şlem çiftleri", with a combining
+  // dot) because applyField() looks up rawKey.toLowerCase().
+  // url
+  "ebe nrụọrụ weebụ": "url",
+  "intanɛt so": "url",
+  nyatakakadzraɖoƒe: "url",
+  "oju opo wẹẹbu": "url",
+  "ojú-ìwé": "url",
+  "site web": "url",
+  "sitio web": "url",
+  "sito web": "url",
+  tovuti: "url",
+  "web sitesi": "url",
+  weebụsaịtị: "url",
+  wɛbsaet: "url",
+  "веб-сайт": "url",
+  вебсайт: "url",
+  "الموقع الإلكتروني": "url",
+  वेबसाइट: "url",
+  ウェブサイト: "url",
+  网站: "url",
+  웹사이트: "url",
+  // pairs
+  "abụọ abụọ": "pairs",
+  "atsu kple asi": "pairs",
+  coppie: "pairs",
+  handelspaare: "pairs",
+  jozi: "pairs",
+  "nnipa baanu": "pairs",
+  "nnua abien": "pairs",
+  paires: "pairs",
+  pares: "pairs",
+  "àwọn méjì": "pairs",
+  "àwọn méjì-méjì": "pairs",
+  "i̇şlem çiftleri": "pairs",
+  пари: "pairs",
+  пары: "pairs",
+  الأزواج: "pairs",
+  जोड़े: "pairs",
+  交易对: "pairs",
+  取引ペア: "pairs",
+  거래쌍: "pairs",
+  // support
+  "awọn atilẹyin": "support",
+  "compatible con": "support",
+  destekler: "support",
+  inasaidia: "support",
+  kpekpeɖeŋunana: "support",
+  mmoa: "support",
+  nkwado: "support",
+  "nneɛma a wɔboa": "support",
+  "prend en charge": "support",
+  suporta: "support",
+  supporta: "support",
+  unterstützt: "support",
+  usaidizi: "support",
+  "àwọn àtìlẹ́yìn": "support",
+  поддержка: "support",
+  підтримка: "support",
+  يدعم: "support",
+  समर्थित: "support",
+  対応: "support",
+  支持: "support",
+  지원: "support",
+  // depositTime
+  "akoko idogo": "depositTime",
+  "bere a wɔde sie": "depositTime",
+  "bere a wɔde siesie nneɛma": "depositTime",
+  "bere a wɔde sika siesie": "depositTime",
+  "délai de dépôt": "depositTime",
+  einzahlungszeit: "depositTime",
+  "muda wa kuweka amana": "depositTime",
+  "muda wa kuweka pesa": "depositTime",
+  "oge mgbazinye ego": "depositTime",
+  "oge nkwụnye ego": "depositTime",
+  "tempo de depósito": "depositTime",
+  "tempo di deposito": "depositTime",
+  "tiempo de depósito": "depositTime",
+  "yatırma süresi": "depositTime",
+  "àkókò ìdókòwò": "depositTime",
+  "àkókò ìfipamọ́": "depositTime",
+  "ɣeyiɣi si woade gadzraɖoƒe": "depositTime",
+  "ɣeyiɣi si woatsɔ ade asie": "depositTime",
+  "ɣeyiɣi si woatsɔ ade gadzraɖoƒe": "depositTime",
+  "ɣeyiɣi si woatsɔ ga de asi": "depositTime",
+  "ɣeyiɣi si woatsɔ gade asi": "depositTime",
+  "ɣeyiɣi si wotsɔ de gadzraɖoƒe": "depositTime",
+  "время зачисления": "depositTime",
+  "час депозиту": "depositTime",
+  "وقت الإيداع": "depositTime",
+  "जमा समय": "depositTime",
+  充值时间: "depositTime",
+  入金時間: "depositTime",
+  "입금 시간": "depositTime",
+  // ironwood
+  "igi irin": "ironwood",
+  // description
+  açıklama: "description",
+  beschreibung: "description",
+  descripción: "description",
+  descrizione: "description",
+  descrição: "description",
+  maelezo: "description",
+  nkowasi: "description",
+  nkọwa: "description",
+  "nu si wòfia": "description",
+  numeɖeɖe: "description",
+  àlàyé: "description",
+  àpèjúwe: "description",
+  ŋutinya: "description",
+  опис: "description",
+  описание: "description",
+  الوصف: "description",
+  विवरण: "description",
+  描述: "description",
+  説明: "description",
+  설명: "description",
 };
 
 const MD_LINK = /\[([^\]]+)\]\(([^)]+)\)/;
@@ -115,7 +259,11 @@ export function parseVenueMarkdown(markdown: string): Venue[] {
     if (img.altText) venue.altText = img.altText;
 
     for (const line of current.body) {
-      const bullet = line.match(/^\s*[-*]\s+([^:]+):\s*(.*)$/);
+      // Accept the full-width colon too. Chinese writes "网站：https://…", and
+      // with an ASCII-only separator this regex matched the colon inside the
+      // URL instead: the key came out as "网站：https" and the value as a
+      // fragment, so every zh venue lost its fields.
+      const bullet = line.match(/^\s*[-*]\s+([^:：]+)[:：]\s*(.*)$/);
       if (bullet) applyField(venue, bullet[1], bullet[2]);
     }
 
