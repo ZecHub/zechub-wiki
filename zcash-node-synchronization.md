@@ -1,3 +1,7 @@
+---
+title: "Zcash Node Synchronization"
+---
+
 # Zcash Node Synchronization
 
 Synchronizing a node or wallet with the Zcash network ensures that you have an up-to-date view of the blockchain and your balances.
