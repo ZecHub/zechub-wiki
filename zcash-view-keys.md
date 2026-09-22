@@ -1,3 +1,7 @@
+---
+title: "Zcash Viewing Keys"
+---
+
 # Zcash Viewing Keys
 
 Viewing keys provide a powerful tool for transparency and compliance without compromising the security of your core funds.
