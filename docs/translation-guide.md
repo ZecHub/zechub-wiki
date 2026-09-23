@@ -148,6 +148,45 @@ Components read labels through `useLanguage().t` (client) and the dictionary is
 renders during SSR. Any key missing from a locale's dictionary falls back to
 English.
 
+### Checking dictionary-key coverage
+
+That English fallback is why a gap is invisible in review: the page builds, the
+copy reads, and only the locale is wrong. Two checks cover it, and they split
+the dictionary between them:
+
+| Check | Namespaces | Source of truth | On failure |
+|---|---|---|---|
+| `scripts/check-menu-labels.mjs` | `menuLabels`, `exploreMenu` | `src/constants/navigation.ts`, `explore-menu.ts` | fails the PR |
+| `scripts/check-dictionary-keys.mjs` | everything else | `dictionaries/en.json` | reports only |
+
+Run the report locally:
+
+```bash
+yarn check:dictionaries            # per-locale report
+yarn check:dictionaries --json     # machine-readable
+yarn check:dictionaries --strict   # exit 1 on any gap (CI does not pass this)
+```
+
+It reports three things per locale:
+
+- **missing** — the key is in `en.json` and not here. Renders as English.
+  Keys missing from *every* locale are listed once, at the top: those are
+  English keys that were added and never propagated.
+- **extra** — the key is here and not in `en.json`. Left over from an English
+  rename or removal; nothing reads it.
+- **shape** — the key exists on both sides but is not interchangeable: a
+  different leaf type, an array of a different length (`dao.beliefs`,
+  `dao.features`, `components.aiAssistant.quickQuestions`), an empty string, or
+  an object on one side and a leaf on the other.
+
+The menu namespaces are excluded because `en.json` does not own them — they are
+keyed by the English menu label, so comparing them against `en.json` reports
+phantom gaps for menu items the English self-map has not caught up with. The
+menu gate above is the authority there.
+
+CI runs the report on any change under `dictionaries/`, and writes the
+per-locale table to the run's job summary. It never turns a PR red.
+
 ---
 
 ## Invariants (rules that keep i18n working)

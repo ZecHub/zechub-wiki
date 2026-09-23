@@ -9,6 +9,7 @@
     "build": "node --max-old-space-size=4096 node_modules/next/dist/bin/next build",
     "start": "next start",
     "lint": "eslint .",
+    "check:dictionaries": "tsx scripts/check-dictionary-keys.mjs",
     "test:coverage": "jest --coverage",
     "test": "jest --watch",
     "test:e2e": "npx playwright test",
