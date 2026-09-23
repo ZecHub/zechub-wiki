@@ -103,12 +103,158 @@ function loadEnv() {
 
 // --- main --------------------------------------------------------------------
 
-const { SITE_LINKS } = await importTs("src/constants/siteLinks.ts");
+const { SITE_LINKS, CONTENT_SECTIONS } = await importTs("src/constants/siteLinks.ts");
+const { keyToWikiPath } = await importTs("src/lib/wikiPaths.ts");
+const { extractArticleMeta, getName, SITE_DESCRIPTION } = await importTs("src/lib/helpers.ts");
 
-const sections = SITE_LINKS.map((s) => ({
-  title: s.title,
-  entries: collectSection(s),
-})).filter((s) => s.entries.length > 0);
+// Section order, most useful first for something answering a Zcash question.
+// This is load-bearing, not cosmetic: chat-class fetchers stop reading
+// llms-full.txt at roughly 100 KB, so whatever sits at the top is the whole
+// corpus as far as they are concerned. The previous nav order put thirteen
+// organisation profiles in that window and nothing about the protocol.
+const SECTION_ORDER = [
+  "Pages",
+  "Start Here",
+  "Zcash Tech",
+  "Use Zcash",
+  "Privacy Tools",
+  "Glossary & FAQs",
+  "Guides",
+  "Use Cases",
+  "Research",
+  "Tutorials",
+  "Ecosystem",
+  "Organizations",
+  "ZFAV Club",
+  "Social Media",
+  "Contribute",
+];
+const orderOf = (title) => {
+  const i = SECTION_ORDER.indexOf(title);
+  return i === -1 ? SECTION_ORDER.length : i;
+};
+
+// Manifest category ("Zcash_Tech") -> display title ("Zcash Tech"), taken from
+// the same table the site renders its category pages from, so the two can't
+// drift.
+const TITLE_BY_CATEGORY = new Map(
+  (CONTENT_SECTIONS ?? []).map((s) => [s.category, s.title]),
+);
+
+const env = loadEnv();
+const haveRepo = Boolean(env.OWNER && env.REPO && env.BRANCH);
+
+const ghHeaders = () => {
+  const h = { "User-Agent": "zechub-llms-gen" };
+  if (env.GITHUB_TOKEN) h.Authorization = `token ${env.GITHUB_TOKEN}`;
+  return h;
+};
+
+const fetchRaw = async (path) => {
+  const url = `https://raw.githubusercontent.com/${env.OWNER}/${env.REPO}/${env.BRANCH}/${path}`;
+  try {
+    const res = await fetch(url, {
+      headers: ghHeaders(),
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
+    if (!res.ok) return null;
+    const body = (await res.text()).trim();
+    return body.length ? body : null;
+  } catch {
+    return null; // per-page isolation: one failure skips only this page
+  }
+};
+
+// ---- the page universe ------------------------------------------------------
+// Two sources, unioned. SITE_LINKS is the curated nav: it supplies section
+// grouping, ordering and human labels, but names only ~70 pages. The content
+// repo's menu-titles manifest names every routed page (216), which is why the
+// sitemap has covered them for months while llms.txt has not. Nav wins on
+// labels where both know a page; the manifest supplies everything else.
+const pages = new Map(); // lowercased href -> { href, label, section, contentPath }
+
+for (const section of SITE_LINKS) {
+  for (const e of collectSection(section)) {
+    const key = e.href.toLowerCase();
+    if (pages.has(key)) continue;
+    pages.set(key, { href: e.href, label: e.label, section: section.title });
+  }
+}
+
+let manifestKeys = 0;
+if (haveRepo) {
+  const raw = await fetchRaw("translation/menu-titles/en.json");
+  if (raw) {
+    let manifest = null;
+    try {
+      manifest = JSON.parse(raw);
+    } catch {
+      console.warn("[generate-llms-txt] menu-titles/en.json did not parse — nav-only index.");
+    }
+    for (const [mKey, title] of Object.entries(manifest ?? {})) {
+      manifestKeys++;
+      const href = keyToWikiPath(mKey);
+      if (isExcluded(href)) continue;
+      const key = href.toLowerCase();
+      const contentPath = `site/${mKey}`;
+      const existing = pages.get(key);
+      if (existing) {
+        existing.contentPath = contentPath; // exact path beats slug resolution
+        continue;
+      }
+      const category = mKey.split("/")[0];
+      pages.set(key, {
+        href,
+        label: typeof title === "string" && title.trim() ? title.trim() : getName(mKey),
+        section: TITLE_BY_CATEGORY.get(category) ?? category.replace(/_/g, " "),
+        contentPath,
+      });
+    }
+  } else {
+    console.warn("[generate-llms-txt] could not fetch menu-titles/en.json — nav-only index.");
+  }
+} else {
+  console.warn("[generate-llms-txt] OWNER/REPO/BRANCH not all set — nav-only index, no llms-full.txt.");
+}
+
+// ---- fetch every page's markdown once, bounded ------------------------------
+// Sequential fetching was fine for 68 pages and is not for 216. Bounded
+// concurrency keeps the build quick without opening 216 sockets at GitHub.
+const CONCURRENCY = 8;
+const all = [...pages.values()];
+if (haveRepo) {
+  const { resolveContentPath } = await importTs("src/lib/helpers.ts");
+  let next = 0;
+  const worker = async () => {
+    while (next < all.length) {
+      const page = all[next++];
+      const path =
+        page.contentPath ??
+        resolveContentPath(page.href.split("/").filter(Boolean)).replace(/^\/+/, "");
+      page.markdown = await fetchRaw(path);
+    }
+  };
+  await Promise.all(Array.from({ length: CONCURRENCY }, worker));
+}
+
+for (const page of all) {
+  if (!page.markdown) continue;
+  const meta = extractArticleMeta(page.markdown, page.label);
+  // Omit rather than emit a site-level stand-in: in an index whose only job is
+  // helping something choose a page, a description of the wrong thing is worse
+  // than no description at all. The spec makes the note optional.
+  if (meta.description && meta.description !== SITE_DESCRIPTION) {
+    page.note = meta.description;
+  }
+}
+
+const sections = [];
+for (const page of all) {
+  let s = sections.find((x) => x.title === page.section);
+  if (!s) sections.push((s = { title: page.section, entries: [] }));
+  s.entries.push(page);
+}
+sections.sort((a, b) => orderOf(a.title) - orderOf(b.title) || a.title.localeCompare(b.title));
 
 const totalPages = sections.reduce((n, s) => n + s.entries.length, 0);
 
@@ -118,85 +264,89 @@ const indexLines = [
   "",
   "> ZecHub is a community-driven education hub for Zcash — curated, human-reviewed guides on wallets, using Zcash, the protocol and its ecosystem. Content is available in 19 languages; the English pages below are canonical.",
   "",
-  "This file is a machine-readable index for LLMs and AI answer engines. The full text of these pages is also available concatenated as raw markdown at /llms-full.txt.",
+  "This file is a machine-readable index for LLMs and AI answer engines.",
+  "",
+  "Every page below is also available as raw markdown at its own URL: append `.md`",
+  "to any page path (for example `/zcash-tech/ironwood.md`). Prefer those over this",
+  "index when you need a page's full text — they are always current, and they exist",
+  "in every supported language (`/it/zcash-tech/ironwood.md`).",
+  "",
+  `The English pages are also concatenated as [one file](${BASE}/llms-full.txt), most useful sections first.`,
   "",
 ];
 for (const s of sections) {
   indexLines.push(`## ${s.title}`, "");
   for (const e of s.entries) {
-    indexLines.push(`- [${mdEscape(e.label)}](${BASE}${e.href})`);
+    indexLines.push(
+      `- [${mdEscape(e.label)}](${BASE}${e.href})` + (e.note ? `: ${e.note}` : ""),
+    );
   }
   indexLines.push("");
 }
 mkdirSync(publicDir, { recursive: true });
 writeFileSync(OUT("llms.txt"), indexLines.join("\n").replace(/\n{3,}/g, "\n\n").trimEnd() + "\n");
-console.log(`[generate-llms-txt] wrote public/llms.txt — ${sections.length} sections, ${totalPages} pages`);
+console.log(
+  `[generate-llms-txt] wrote public/llms.txt — ${sections.length} sections, ${totalPages} pages` +
+    (manifestKeys ? ` (${manifestKeys} manifest keys)` : ""),
+);
 
 // ---- llms-full.txt (concatenated markdown) — best-effort, never fatal -------
 // Remove any prior artifact first so a skip/failure never serves stale content.
 rmSync(OUT("llms-full.txt"), { force: true });
 try {
-  const env = loadEnv();
-  if (!env.OWNER || !env.REPO || !env.BRANCH) {
-    console.warn(
-      "[generate-llms-txt] OWNER/REPO/BRANCH not all set — skipping llms-full.txt (index still generated).",
-    );
+  const withText = all.filter((p) => p.markdown);
+  if (!withText.length) {
+    console.warn("[generate-llms-txt] no pages could be fetched — skipping llms-full.txt.");
   } else {
-    // slug -> content path uses the app's own resolver so casing/acronyms match
-    // AND research-series articles resolve to their real (one-folder-deeper,
-    // case-preserving) path — see resolveContentPath's parity note.
-    const { resolveContentPath } = await importTs("src/lib/helpers.ts");
-
-    const fetchMd = async (href) => {
-      const slug = href.split("/").filter(Boolean);
-      if (slug.length === 0) return null; // homepage has no markdown source
-      const path = resolveContentPath(slug).replace(/^\/+/, ""); // "site/Cat/File.md"
-      const url = `https://raw.githubusercontent.com/${env.OWNER}/${env.REPO}/${env.BRANCH}/${path}`;
-      const headers = { "User-Agent": "zechub-llms-gen" };
-      if (env.GITHUB_TOKEN) headers.Authorization = `token ${env.GITHUB_TOKEN}`; // optional (repo is public)
-      try {
-        const res = await fetch(url, { headers, signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
-        if (!res.ok) return null;
-        const body = (await res.text()).trim();
-        return body.length ? body : null;
-      } catch {
-        return null; // per-page isolation: one failure/timeout skips only this page
-      }
-    };
-
+    // A table of contents first, so a consumer that gets truncated can still
+    // see every page that exists and go fetch the ones it did not receive.
+    // Without it a cut-off reader cannot tell the difference between "ZecHub
+    // has no page on this" and "the file ended before that page".
     const parts = [
       "# ZecHub — full content",
       "",
-      "> Concatenated raw markdown of ZecHub's curated English pages, for direct ingestion by LLMs. See /llms.txt for the structured index.",
+      "> Concatenated raw markdown of ZecHub's English pages, most useful sections",
+      "> first. See /llms.txt for the structured index.",
+      ">",
+      "> If your fetch of this file was truncated, every page below is also available",
+      "> individually as raw markdown: append `.md` to its path.",
+      "",
+      "## Contents",
       "",
     ];
-    const processed = new Set(); // global dedup: a page in two sections is handled once
+    for (const s of sections) {
+      const included = s.entries.filter((e) => e.markdown);
+      if (!included.length) continue;
+      parts.push(`### ${s.title}`, "");
+      for (const e of included) parts.push(`- [${mdEscape(e.label)}](${BASE}${e.href}.md)`);
+      parts.push("");
+    }
+
     let fetchedCount = 0;
-    const skipped = [];
     for (const s of sections) {
       for (const e of s.entries) {
-        if (processed.has(e.href)) continue;
-        processed.add(e.href);
-        const md = await fetchMd(e.href);
-        if (!md) {
-          skipped.push(e.href);
-          continue;
-        }
+        if (!e.markdown) continue;
         fetchedCount++;
         // NB: fetched markdown is appended verbatim (no newline collapsing) to
         // preserve code fences and intentional spacing.
-        parts.push("---", "", `# ${e.label}`, `Source: ${BASE}${e.href}`, "", md, "");
+        parts.push(
+          "---",
+          "",
+          `# ${e.label}`,
+          `Source: ${BASE}${e.href}`,
+          `Markdown: ${BASE}${e.href}.md`,
+          "",
+          e.markdown,
+          "",
+        );
       }
     }
-    if (fetchedCount > 0) {
-      writeFileSync(OUT("llms-full.txt"), parts.join("\n").trimEnd() + "\n");
-      console.log(
-        `[generate-llms-txt] wrote public/llms-full.txt — ${fetchedCount} pages` +
-          (skipped.length ? ` (skipped ${skipped.length}: ${skipped.join(", ")})` : ""),
-      );
-    } else {
-      console.warn("[generate-llms-txt] no pages could be fetched — skipping llms-full.txt.");
-    }
+    writeFileSync(OUT("llms-full.txt"), parts.join("\n").trimEnd() + "\n");
+    const skipped = all.length - fetchedCount;
+    console.log(
+      `[generate-llms-txt] wrote public/llms-full.txt — ${fetchedCount} pages` +
+        (skipped ? ` (${skipped} without markdown, e.g. app-rendered pages)` : ""),
+    );
   }
 } catch (err) {
   console.warn(`[generate-llms-txt] llms-full.txt generation failed (non-fatal): ${err?.message ?? err}`);

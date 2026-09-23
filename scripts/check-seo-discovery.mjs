@@ -32,24 +32,39 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const importTs = (rel) => import(pathToFileURL(join(root, rel)).href);
 
 const BASE = "https://zechub.wiki";
-const LLMS_LINK_THRESHOLD = 40; // safely below current ~65 — real shrinkage trips it, edits don't
+// Two thresholds, because the generator has two modes and conflating them
+// makes the check useless in one of them. With content creds it unions
+// SITE_LINKS with the 216-key manifest (~226 links), so 150 catches the
+// manifest silently dropping out. Without creds it can only read the nav
+// (~68), so 40 is all that can be asserted — the old single value of 40 would
+// have passed a credentialed run that had lost 150 pages.
+const LLMS_LINK_THRESHOLD = 40;
+const LLMS_LINK_THRESHOLD_CREDENTIALED = 150;
 const MANIFEST_PAGE_THRESHOLD = 100; // healthy English manifest carries ~180-195 pages
 
 // The AI crawlers robots.ts MUST name. Hard-coded here (not imported from
 // robots.ts) on purpose: importing robots' own list would let a deletion pass
 // vacuously. This is the independent contract the gate enforces.
+// Kept in step with src/app/robots.ts and each vendor's own crawler docs.
+// The search-index bots are the load-bearing ones: dropping OAI-SearchBot,
+// Claude-SearchBot, PerplexityBot, MistralAI-Index or Bingbot is what would
+// actually cost ZecHub visibility in an answer engine. `anthropic-ai` and
+// `Claude-Web` were removed — Anthropic's current docs describe exactly three
+// bots and neither of those is among them.
 const REQUIRED_AI_CRAWLERS = [
-  "GPTBot",
   "OAI-SearchBot",
   "ChatGPT-User",
-  "ClaudeBot",
+  "GPTBot",
+  "Claude-SearchBot",
   "Claude-User",
-  "anthropic-ai",
+  "ClaudeBot",
   "PerplexityBot",
   "Perplexity-User",
+  "MistralAI-Index",
+  "MistralAI-User",
   "Google-Extended",
-  "CCBot",
   "Bingbot",
+  "CCBot",
   "Amazonbot",
   "Applebot-Extended",
   "Bytespider",
@@ -92,10 +107,20 @@ function checkLlmsTxt() {
   const sections = lines.filter((l) => l.startsWith("## "));
   assert(sections.length >= 1, `llms.txt: expected at least one "## " section, found ${sections.length}`);
 
-  const linkLines = lines.filter((l) => /^- \[.*\]\(.*\)\s*$/.test(l));
+  // The spec's list-item shape: a required `[name](url)`, then OPTIONALLY a
+  // `:` and notes about the file. The old pattern anchored at `$` right after
+  // the link, so adding the notes (which the spec invites) silently dropped
+  // every annotated entry from this count.
+  const linkLines = lines.filter((l) => /^- \[[^\]]*\]\([^)]*\)(:\s.*)?\s*$/.test(l));
+  const credentialed = Boolean(
+    process.env.OWNER && process.env.REPO && process.env.BRANCH,
+  );
+  const threshold = credentialed
+    ? LLMS_LINK_THRESHOLD_CREDENTIALED
+    : LLMS_LINK_THRESHOLD;
   assert(
-    linkLines.length >= LLMS_LINK_THRESHOLD,
-    `llms.txt: expected >= ${LLMS_LINK_THRESHOLD} index links, found ${linkLines.length} — the curated index may have shrunk`,
+    linkLines.length >= threshold,
+    `llms.txt: expected >= ${threshold} index links (${credentialed ? "credentialed" : "secretless"} run), found ${linkLines.length} — the curated index may have shrunk`,
   );
 
   // Every index link must be an absolute https://zechub.wiki/... URL, and none
@@ -103,7 +128,9 @@ function checkLlmsTxt() {
   const nonAbsolute = [];
   const daoLinks = [];
   for (const l of linkLines) {
-    const m = /\]\((.*?)\)\s*$/.exec(l);
+    // Same reason as the linkLines pattern: the URL is no longer the end of
+    // the line once an entry carries its optional `: notes`.
+    const m = /\]\(([^)]*)\)(?::\s.*)?\s*$/.exec(l);
     const url = m ? m[1] : "";
     if (!url.startsWith(`${BASE}/`)) nonAbsolute.push(url || l);
     else if (hasDao(url.slice(BASE.length))) daoLinks.push(url);
