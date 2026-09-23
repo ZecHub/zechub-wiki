@@ -51,10 +51,15 @@ const collectSiteLinkPaths = (): string[] => {
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // A single build-time timestamp. Per-page commit dates aren't cheaply
-  // available from the manifests, and stamping every URL with the same build
-  // date is a widely-accepted sitemap convention.
-  const lastModified = new Date();
+  // No <lastmod>. Per-page commit dates aren't cheaply available from the
+  // manifests, and the previous behaviour — stamping all 4,132 URLs with the
+  // build time — claimed every page changed on every deploy. Google: "Google
+  // uses the <lastmod> value if it's consistently and verifiably (for example
+  // by comparing to the last modification of the page) accurate."
+  // (developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)
+  // A value that is never accurate is at best ignored and at worst a reason to
+  // distrust the file, so omitting it is strictly better than inventing it.
+  // If real dates become available, add them back here — per URL, not global.
 
   const seen = new Set<string>();
   const entries: MetadataRoute.Sitemap = [];
@@ -81,7 +86,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       for (const loc of Object.keys(languages)) {
         entries.push({
           url: languages[loc],
-          lastModified,
           alternates: { languages: alternates },
         });
       }
@@ -92,7 +96,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // would just repeat the canonical URL as a duplicate).
     entries.push({
       url: toUrl(routing.defaultLocale, path),
-      lastModified,
     });
   };
 
