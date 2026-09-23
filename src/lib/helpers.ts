@@ -84,6 +84,25 @@ const isLinkOnlyLine = (l: string) =>
   /^\s*!?\[[^\]]*\]\([^)]*\)\s*$/.test(l) || /^\s*https?:\/\/\S+\s*$/.test(l);
 // Horizontal rule (---, ***, ___).
 const isHrLine = (l: string) => /^\s*([-*_])\1{2,}\s*$/.test(l);
+// List item (bulleted or ordered) or table row — structure, not prose.
+const isListOrTableLine = (l: string) =>
+  /^\s*[-*+]\s/.test(l) || /^\s*\d+[.)]\s/.test(l) || /^\s*\|/.test(l);
+
+// Whether an already-stripped line reads as a summary sentence rather than a
+// label, a nav run or a stub. Without this the "first paragraph" heuristic
+// happily returns "- Devices: Mobile" (wallets), "Website - GitHub - X/Twitter
+// - Discord" (zodl) or "Beginner - 5 min" (accept-payments-as-a-merchant) — a
+// wrong description is worse than none, because it is what an answer engine
+// reads when deciding whether the page answers a question.
+const MIN_SUMMARY_LEN = 40;
+const isUsableSummary = (text: string) => {
+  if (text.length < MIN_SUMMARY_LEN) return false;
+  // "Series: Zero to Zero Knowledge", "Level: Beginner" — a field, not prose.
+  if (/^[A-Za-z][A-Za-z ]{0,20}:\s/.test(text) && text.length < 80) return false;
+  // Three or more " - " separators is a link run flattened by stripInlineMd.
+  if ((text.match(/ - /g) ?? []).length >= 3) return false;
+  return true;
+};
 
 // Strip inline markdown so a paragraph reads cleanly as a plain-text
 // description: images dropped, links reduced to their text, emphasis/code
@@ -234,19 +253,27 @@ export const extractArticleMeta = (
   headline = truncate(headline, 110);
 
   // Description: first prose paragraph after the H1 (or from the top if no H1).
+  // Keep scanning past structure and stubs rather than taking the first
+  // non-blank line — many pages open with a spec table or a link row, and the
+  // paragraph that actually describes the page comes further down.
   let description = "";
   for (let i = h1Index + 1; i < lines.length; i++) {
-    const l = lines[i];
+    // A blockquote is prose — many pages open with one — but the ">" markers
+    // are syntax, not text, and leak into the rendered description if kept.
+    const l = lines[i].replace(/^\s*(?:>\s?)+/, "");
     if (
       isBlankLine(l) ||
       isHeadingLine(l) ||
       isHtmlLine(l) ||
       isLinkOnlyLine(l) ||
-      isHrLine(l)
+      isHrLine(l) ||
+      isListOrTableLine(l)
     ) {
       continue;
     }
-    description = truncate(stripInlineMd(l), 160);
+    const text = stripInlineMd(l);
+    if (!isUsableSummary(text)) continue;
+    description = truncate(text, 160);
     break;
   }
 
