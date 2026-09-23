@@ -11,6 +11,7 @@ import {
   MdKeyboardArrowDown,
 } from "react-icons/md";
 import { Icon } from "../UI/Icon";
+import { getFeatureLink } from "@/lib/walletFeatureLinks";
 
 interface WalletItemProps {
   title: string;
@@ -65,16 +66,6 @@ const ironwoodFallbackStyle = {
   dot: "bg-slate-500",
 };
 
-const featureLinkMap: { [key: string]: string } = {
-  "Orchard": "https://zechub.wiki/using-zcash/shielded-pools#orchard",
-  "Sapling": "https://zechub.wiki/using-zcash/shielded-pools#sapling",
-  "Transparent": "https://zechub.wiki/using-zcash/shielded-pools#transparent",
-  "Shielded": "https://zechub.wiki/using-zcash/shielded-pools",
-  "Mobile": "https://zechub.wiki/using-zcash/mobile-wallets",
-  "Desktop": "https://zechub.wiki/using-zcash/desktop-wallets",
-  "Web": "https://zechub.wiki/using-zcash/web-wallets",
-};
-
 const WalletItem: React.FC<WalletItemProps> = ({
   title,
   link,
@@ -102,14 +93,6 @@ const WalletItem: React.FC<WalletItemProps> = ({
     onDislike();
     setDisliked(true);
     setLiked(false);
-  };
-
-  const getFeatureLink = (value: string): string => {
-    return featureLinkMap[value] || "https://zechub.wiki/using-zcash/shielded-pools";
-  };
-
-  const isFeatureLink = (value: any): value is FeatureLink => {
-    return typeof value === 'object' && 'name' in value && 'url' in value;
   };
 
   const featureValues = useMemo(() => {
@@ -223,7 +206,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
 
                 {hasShielded ? (
                   <Link
-                    href={getFeatureLink("Shielded")}
+                    href={getFeatureLink("Shielded", link)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
@@ -233,7 +216,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
                 ) : null}
                 {hasTransparent ? (
                   <Link
-                    href={getFeatureLink("Transparent")}
+                    href={getFeatureLink("Transparent", link)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-3 py-1 text-sm bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-full text-slate-600 dark:text-slate-300 transition"
@@ -279,7 +262,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
                         : (value as FeatureLink).name;
                     const linkUrl =
                       typeof value === "string"
-                        ? getFeatureLink(value)
+                        ? getFeatureLink(value, link)
                         : (value as FeatureLink).url;
 
                     return (
