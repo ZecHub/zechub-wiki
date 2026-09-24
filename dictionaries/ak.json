@@ -520,7 +520,7 @@
     },
     "dex": {
       "title": "Nneɛma a Wɔde Sesa Nneɛma a Wɔde Di Dwuma wɔ Decentralized",
-      "subtitle": "ZecHub nnye Decentralized Exchange dwumadie pɔtee biara ntom, yɛsrɛ wo yɛ w’ankasa nhwehwɛmu.",
+      "subtitle": "ZecHub nnye Decentralized Exchange dwumadie biara nni, yɛsrɛ sɛ yɛ w'ankasa nhwehwɛmu.",
       "centralised": "Centralized Swap nhyiam ase",
       "centralizedTitle": "Centralized Swap Platform Nsɛm a Wɔahyehyɛ",
       "custodial": "Nneɛma a Wɔde Sesa Wɔn a Wɔhwɛ Nnipa So",
@@ -536,7 +536,8 @@
         "RocketX": "Hybrid DEX aggregator a ɛma cross-chain swaps tumi fa blockchains pii so a ɛwɔ routing a eye sen biara ne akansi rates.",
         "THORChain": "Decentralized Layer 1 mmeamudua-nkɔnsɔnkɔnsɔn nsakrae. Sesa native agyapade te sɛ ZEC, BTC, ne ETH tẽẽ a enni bridges, wrapped tokens, anaa ntamgyinafo.",
         "Loofta": "Non-custodial kokoam sikatua ne swap platform. Send na gye crypto kokoam wɔ nkɔnsɔnkɔnsɔn nyinaa so, a Zcash yɛ settlement layer ma sikasɛm mu kokoamsɛm a ɛkɔ anim."
-      }
+      },
+      "disclaimer": "ZecHub nnhyɛ da ɛnto nsa mma dwumadie pɔtee biara, yɛsrɛ sɛ yɛ w'ankasa nhwehwɛmu."
     },
     "usingZcash": {
       "blockchainExplorers": {

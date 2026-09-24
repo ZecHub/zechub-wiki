@@ -526,7 +526,7 @@
     },
     "dex": {
       "title": "Dezentrale Börsen",
-      "subtitle": "ZecHub unterstützt keinen bestimmten Dienst für dezentrale Börsen; bitte recherchiere selbst.",
+      "subtitle": "ZecHub empfiehlt keinen bestimmten Dienst für dezentrale Börsen; bitte recherchieren Sie selbst.",
       "centralised": "Zentralisierte Swap-Plattformen",
       "centralizedTitle": "Listing auf zentralisierten Swap-Plattformen",
       "custodial": "Verwahrende Börsen",
@@ -542,7 +542,8 @@
         "RocketX": "Hybrider DEX-Aggregator für Cross-Chain-Swaps über mehrere Blockchains mit optimalem Routing und wettbewerbsfähigen Kursen.",
         "THORChain": "Dezentrale Layer-1-Cross-Chain-Börse. Tausche native Assets wie ZEC, BTC und ETH direkt – ohne Brücken, Wrapped Tokens oder Vermittler.",
         "Loofta": "Non-custodial Plattform für private Zahlungen und Swaps. Sende und empfange Krypto privat über verschiedene Chains hinweg, mit Zcash als Settlement-Layer für mehr finanzielle Privatsphäre."
-      }
+      },
+      "disclaimer": "ZecHub empfiehlt keinen bestimmten Exchange-Service. Bitte recherchiere selbst."
     },
     "usingZcash": {
       "blockchainExplorers": {

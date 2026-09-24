@@ -526,7 +526,7 @@
     },
     "dex": {
       "title": "去中心化交易所",
-      "subtitle": "ZecHub 不为任何特定的去中心化交易所服务背书，请自行做好研究。",
+      "subtitle": "ZecHub 不推荐任何特定的去中心化交易所服务，请自行研究。",
       "centralised": "中心化兑换平台",
       "centralizedTitle": "中心化兑换平台列表",
       "custodial": "托管型交易所",
@@ -542,7 +542,8 @@
         "RocketX": "混合型 DEX 聚合器，支持跨多个区块链进行跨链兑换，提供最优路由和有竞争力的汇率。",
         "THORChain": "去中心化 Layer 1 跨链交易所。可直接交换 ZEC、BTC、ETH 等原生资产，无需桥接、包装代币或中介。",
         "Loofta": "非托管的隐私支付与兑换平台。可在不同链之间私密地发送和接收加密货币，并以 Zcash 作为结算层，增强金融隐私。"
-      }
+      },
+      "disclaimer": "ZecHub 不认可任何特定的交易服务，请自行研究。"
     },
     "usingZcash": {
       "blockchainExplorers": {

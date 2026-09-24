@@ -520,7 +520,7 @@
     },
     "dex": {
       "title": "Awọn paṣipaarọ Aladani",
-      "subtitle": "ZecHub kò fọwọ́ sí ọ̀kankan lára àwọn iṣẹ́ Àjọ tí ó ń ṣe àkànṣe, jọ̀wọ́ ṣe ìwádìí tìrẹ.",
+      "subtitle": "ZecHub kò fọwọ́ sí iṣẹ́ Àjọpín-ìṣàmúlò tí a pín fúnni, jọ̀ọ́ ṣe ìwádìí tìrẹ.",
       "centralised": "Awọn pẹpẹ paṣipaarọ ti a ṣe ni aarin",
       "centralizedTitle": "Àkọsílẹ̀ Àpérò Àdásílẹ̀ Onípò",
       "custodial": "Àwọn Ìpàdé Àdánwò",
@@ -536,7 +536,8 @@
         "RocketX": "Ajọpọ DEX Hybrid ti o jẹ ki awọn paṣipaarọ agbelebu kọja awọn blockchains lọpọlọpọ pẹlu ipa ọna ti o dara julọ ati awọn oṣuwọn ifigagbaga.",
         "THORChain": "Aṣayan ti a ko ṣe pataki Layer 1 agbelebu paṣipaarọ. Ṣiṣowo awọn ohun-ini abinibi bi ZEC, BTC, ati ETH taara laisi awọn afara, awọn ami ti a fi pamọ, tabi awọn alagbata.",
         "Loofta": "Owo ti ko ni idaduro ti ara ẹni ati pẹpẹ paṣipaarọ. Firanṣẹ ki o gba crypto ni ikọkọ kọja awọn pq, pẹlu Zcash bi ipele itunṣe fun aṣiri owo ti o pọ si."
-      }
+      },
+      "disclaimer": "ZecHub kò fọwọ́ sí iṣẹ ìfọwọ̀sí pàtó kankan, jọ̀wọ́ ṣe àyèwò tìrẹ."
     },
     "usingZcash": {
       "blockchainExplorers": {

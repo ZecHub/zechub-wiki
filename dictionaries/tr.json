@@ -526,7 +526,7 @@
     },
     "dex": {
       "title": "Merkeziyetsiz Borsalar",
-      "subtitle": "ZecHub herhangi bir belirli Merkeziyetsiz Borsa hizmetini desteklemez, lütfen kendi araştırmanızı yapın.",
+      "subtitle": "ZecHub belirli bir merkeziyetsiz borsa hizmetini desteklemez; lütfen kendi araştırmanızı yapın.",
       "centralised": "Merkezi Swap platformları",
       "centralizedTitle": "Merkezi Swap Platformu Listesi",
       "custodial": "Saklamalı Borsalar",
@@ -542,7 +542,8 @@
         "RocketX": "En uygun yönlendirme ve rekabetçi oranlarla birden fazla blokzincir arasında zincirler arası takaslar sağlayan hibrit DEX toplayıcısı.",
         "THORChain": "Merkeliyetsiz Katman 1 zincirler arası borsa. ZEC, BTC ve ETH gibi yerel varlıkları köprüler, sarılmış tokenlar veya aracılar olmadan doğrudan takas edin.",
         "Loofta": "Saklamasız özel ödeme ve takas platformu. Gelişmiş finansal gizlilik için Zcash'i mutabakat katmanı olarak kullanarak zincirler arasında kriptoyu özel şekilde gönderin ve alın."
-      }
+      },
+      "disclaimer": "ZecHub herhangi bir belirli borsa hizmetini desteklemez; lütfen kendi araştırmanızı yapın."
     },
     "usingZcash": {
       "blockchainExplorers": {

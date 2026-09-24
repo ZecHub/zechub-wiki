@@ -28,10 +28,10 @@ export async function generateMetadata({
   return genMetadata({
     title,
     description,
-    url: `https://zechub.wiki${localePrefix}/using-zcash/centralizedswaps`,
+    url: `https://zechub.wiki${localePrefix}/using-zcash/centralized-swaps`,
     image: getBanner("using-zcash") || "/content-banners/usingzcash.png",
     locale,
-    alternates: buildAlternatesAllLocales("/using-zcash/centralizedswaps", locale),
+    alternates: buildAlternatesAllLocales("/using-zcash/centralized-swaps", locale),
   });
 }
 
