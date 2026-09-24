@@ -7345,11 +7345,11 @@
           "msgs": [],
           "title": "ZecHub Bounty Community Management and Review Support",
           "votes": {
-            "no": "11",
+            "no": "13",
             "yes": "1",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "rejected",
           "proposer": "juno1ns8w360xzw6vurexxjk8vdqdph8cnus6rxzrl5",
           "threshold": {
             "threshold_quorum": {
