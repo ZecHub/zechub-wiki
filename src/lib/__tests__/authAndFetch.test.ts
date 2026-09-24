@@ -371,6 +371,23 @@ describe("fetchRawFile — URL construction", () => {
     expect(args[1]).toBe(SHA); // the ref is in the cache key, not hidden inside
   });
 
+  it("refuses dot segments instead of letting the URL parser climb out of the repo", async () => {
+    // encodeURIComponent("..") is still "..", so an unguarded slug resolves to
+    // raw.githubusercontent.com/other-owner/private-repo/... — with the token
+    // attached when CONTENT_REPO_PRIVATE is set. Nothing may be requested.
+    const evil = "site/../../../../other-owner/private-repo/main/secret.md";
+    await expect(mod.getFileContentCached(evil)).resolves.toBeNull();
+    await expect(mod.getLocalizedFileContentCached(evil, "it")).resolves.toBeNull();
+    await expect(mod.getFileContentCached("site/./X/../a.md")).resolves.toBeNull();
+    expect(mockFetch).not.toHaveBeenCalled();
+    expect(mockGetContent).not.toHaveBeenCalled();
+  });
+
+  it("still reads a path whose segment merely contains dots", async () => {
+    mockFetch.mockResolvedValueOnce(rawResponse(200, "body"));
+    await expect(mod.getFileContentCached("site/X/v1..2/a.md")).resolves.toBe("body");
+  });
+
   it("sends no Authorization header when the content repo is public", async () => {
     // raw answers a bad or unscoped token with 404, not 401. On a public repo
     // the header buys nothing and would convert an auth fault into a cached
@@ -421,6 +438,48 @@ describe("localized fallback — the directory listing is cached", () => {
     // there. Uncached, 50 views cost 50+ calls.
     expect(afterTen).toBeLessThanOrEqual(2);
     expect(mockGetContent).toHaveBeenCalledTimes(afterTen);
+  });
+});
+
+describe("localized fallback — degraded mode caches nothing", () => {
+  it("does not cache the locale listing or probe miss on the mutable branch ref", async () => {
+    // Same hazard as the English degraded path: `ref` is the branch NAME, so a
+    // cached empty listing (or a cached probe miss) would hide a translation
+    // created while getCommit is still failing, for the whole TTL.
+    mockGetCommit.mockRejectedValue(httpError(500)); // no SHA -> branch ref
+    mockFetch.mockResolvedValue(rawResponse(404));
+    mockGetContent.mockResolvedValue({ data: [] }); // locale folder missing
+    const view = () => mod.getLocalizedFileContentCached("site/X/ai-tools.md", "it");
+    await expect(view()).resolves.toBeNull();
+    // ...the translation is added under a differently-cased filename.
+    mockGetContent.mockImplementation(async ({ path }: { path: string }) => ({
+      data: path.startsWith("translations/it")
+        ? [{ path: "translations/it/site/X/AI_tools.md", type: "file", name: "AI_tools.md" }]
+        : [],
+    }));
+    mockFetch.mockImplementation(async (url: string) =>
+      String(url).endsWith("translations/it/site/X/AI_tools.md")
+        ? rawResponse(200, "TRADOTTO")
+        : String(url).endsWith("site/X/ai-tools.md") && !String(url).includes("translations")
+          ? rawResponse(200) // English source present (HEAD)
+          : rawResponse(404),
+    );
+    await expect(view()).resolves.toBe("TRADOTTO");
+  });
+});
+
+describe("localized fallback — degraded mode, exact path", () => {
+  it("does not cache the exact-path probe miss on the mutable branch ref", async () => {
+    mockGetCommit.mockRejectedValue(httpError(500)); // no SHA -> branch ref
+    mockFetch.mockResolvedValue(rawResponse(404));
+    mockGetContent.mockResolvedValue({ data: [] });
+    const view = () => mod.getLocalizedFileContentCached("site/X/page.md", "it");
+    await expect(view()).resolves.toBeNull();
+    // ...the translation is created at exactly the requested path.
+    mockFetch.mockImplementation(async (url: string) =>
+      rawResponse(200, String(url).includes("translations/it/") ? "TRADOTTO" : "EN"),
+    );
+    await expect(view()).resolves.toBe("TRADOTTO");
   });
 });
 

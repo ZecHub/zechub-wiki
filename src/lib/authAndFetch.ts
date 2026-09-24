@@ -29,6 +29,18 @@ function cleanPath(path: string): string {
  * Wiki slug paths are lowercase with hyphens (e.g. using-zcash). Only the
  * latter go through transformUri.
  */
+/**
+ * True when any segment is `.` or `..`. encodeURIComponent leaves both
+ * untouched, so the URL parser resolves them: a slug such as
+ * `site/../../../../other-owner/private-repo/main/secret.md` would climb out
+ * of this repo's raw URL into another repository — carrying the token when
+ * CONTENT_REPO_PRIVATE is set. No real content path has one, so such a path is
+ * simply absent: callers answer null / [] without making the request.
+ */
+function hasDotSegment(path: string): boolean {
+  return path.split("/").some((seg) => seg === "." || seg === "..");
+}
+
 function toGithubPath(path: string): string {
   const p = cleanPath(path);
   const hasSitePrefix = /^site\//i.test(p);
@@ -245,6 +257,7 @@ async function fetchRawFile(
 ): Promise<string | null> {
   if (!assertRepoConfig()) throw new Error("[authAndFetch] repo not configured");
   const safePath = cleanPath(path);
+  if (hasDotSegment(safePath)) return null;
   const url = `https://raw.githubusercontent.com/${owner}/${repo}/${ref}/${safePath
     .split("/")
     .map(encodeURIComponent)
@@ -368,6 +381,7 @@ async function listDirUncached(
   ref: string,
 ): Promise<string[]> {
   if (!assertRepoConfig()) return [];
+  if (hasDotSegment(dir)) return [];
   try {
     const res = await octokit.rest.repos.getContent({
       owner,
@@ -402,6 +416,16 @@ const listDirAtRefCached = unstable_cache(
   { revalidate: 3600, tags: ["github-content"] },
 );
 
+// Degraded mode (`ref` is the branch NAME, a key no commit rotates): read
+// straight through instead of caching, exactly as readFileAtRef does for
+// English. A cached miss or empty listing there would hide a translation that
+// is created while getCommit is still failing, for the full TTL.
+function translationProbe(path: string, ref: string): Promise<string | null> {
+  return ref === branch
+    ? fetchRawFile(path, ref)
+    : getTranslationProbeAtRefCached(path, ref);
+}
+
 async function fuzzyLocalizedFile(
   itPath: string,
   ref: string,
@@ -411,10 +435,11 @@ async function fuzzyLocalizedFile(
   const wantSlug = normalize(
     itPath.split("/").pop()?.replace(/\.md$/i, "") || "",
   );
-  for (const path of await listDirAtRefCached(dir, ref)) {
+  const listDir = ref === branch ? listDirUncached : listDirAtRefCached;
+  for (const path of await listDir(dir, ref)) {
     const name = (path.split("/").pop() ?? path).replace(/\.md$/i, "");
     if (normalize(name) === wantSlug) {
-      return getTranslationProbeAtRefCached(path, ref).catch(() => null);
+      return translationProbe(path, ref).catch(() => null);
     }
   }
   return null;
@@ -613,9 +638,7 @@ export async function getLocalizedFileContentCached(
 
   if (locale && locale !== "en") {
     const itPath = `translations/${locale}/${normalizedPath}`;
-    const exact = await getTranslationProbeAtRefCached(itPath, ref).catch(
-      () => null,
-    );
+    const exact = await translationProbe(itPath, ref).catch(() => null);
     const fuzzy =
       exact !== null
         ? null
