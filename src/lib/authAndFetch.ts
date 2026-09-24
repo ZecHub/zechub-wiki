@@ -56,6 +56,31 @@ function assertRepoConfig(): boolean {
   return true;
 }
 
+/**
+ * A 404 is a real answer: the file is not there, and `null` is the correct
+ * result to cache. Anything else — 403/429 rate limiting, 5xx, a network blip,
+ * an expired token — is transient, and caching `null` for it would blank the
+ * page for the whole TTL. Those paths throw instead, so nothing is stored and
+ * the next request retries.
+ */
+function isMissing(err: any): boolean {
+  return err?.status === 404;
+}
+
+function isBuildPhase(): boolean {
+  return process.env.NEXT_PHASE === "phase-production-build";
+}
+
+function isRateLimited(err: any): boolean {
+  const status = err?.status;
+  const msg = String(err?.response?.data?.message ?? err?.message ?? "");
+  // GitHub signals a rate limit as 429, or as 403 with the reason in the
+  // message. A third clause testing `403 && /rate limit/` used to follow, but
+  // it could never fire: the message test above already matches it whatever
+  // the status.
+  return status === 429 || /quota exhausted|rate limit/i.test(msg);
+}
+
 function normalize(str: string): string {
   return str
     .replace(/\.md$/i, "")
@@ -199,11 +224,10 @@ const contentRepoIsPrivate = (process.env.CONTENT_REPO_PRIVATE ?? "") === "true"
  *
  * Returns the file's text, or null when GitHub says 404 — which for raw means
  * "no such path on this ref", covering both a missing file and a directory.
- * Any other status goes through rethrowIfTransient, so a 5xx or a network blip
- * is not cached as "this page does not exist". NOTE the one exception that
- * function deliberately makes: a rate-limit during the build phase is
- * swallowed rather than thrown, so a throttled read CAN still surface as null.
- * That predates this change; see the comment on rethrowIfTransient.
+ * Any other status THROWS, including a build-phase rate limit, so a 5xx or a
+ * network blip is never stored as "this page does not exist". Keeping a build
+ * alive through a 429 is `degradeOnBuildRateLimit`'s job, at the public
+ * boundary where returning null caches nothing.
  *
  * FRESHNESS: the URL is pinned to a commit SHA, not to the branch name. raw
  * serves a branch ref through a CDN with `max-age=300`, so a branch URL can
@@ -239,61 +263,32 @@ async function fetchRawFile(
       cache: "no-store",
     });
   } catch (err: any) {
-    // DNS/socket failure — transient by definition, never "missing".
-    rethrowIfTransient({ status: 0, message: err?.message }, safePath);
-    return null;
+    // DNS/socket failure — transient by definition, never "missing". Thrown,
+    // never returned as null, so it is never cached as an absent page.
+    if (err?.status) throw err;
+    throw Object.assign(new Error(err?.message ?? "fetch failed"), { status: 0 });
   }
 
   if (res.status === 404) return null;
   if (!res.ok) {
-    rethrowIfTransient(
-      { status: res.status, message: `raw.githubusercontent returned ${res.status}` },
-      safePath,
+    // Always throws for a non-404, including a build-phase rate limit.
+    // Swallowing HERE returned null from inside the cached reader, which
+    // stored it for the full hour,
+    // so a transient outage became a permanently missing article: the
+    // silent-blank-page failure this module exists to prevent, reappearing in
+    // the exact quota-exhaustion scenario the change is about. The build still
+    // must not abort, so that degradation now happens at the public boundary
+    // (`degradeOnBuildRateLimit`), outside the cache, where nothing is stored.
+    throw Object.assign(
+      new Error(`raw.githubusercontent returned ${res.status} for ${safePath}`),
+      { status: res.status },
     );
-    return null;
   }
   // HEAD proves existence without pulling the body — used by the
   // English-source probe, which runs once per localized page and never needs
   // the text. Returning "" would be indistinguishable from an empty file to a
   // GET caller, so HEAD is only ever called where the caller wants existence.
   return method === "HEAD" ? "" : res.text();
-}
-
-/**
- * A 404 is a real answer: the file is not there, and `null` is the correct
- * result to cache. Anything else — 403/429 rate limiting, 5xx, a network
- * blip, an expired token — is transient, and caching `null` for it would
- * blank the page permanently (these caches are keyed by path and, before
- * this change, never revalidated). Rethrow so `unstable_cache` stores
- * nothing and the next request retries.
- */
-function isMissing(err: any): boolean {
-  return err?.status === 404;
-}
-
-function isBuildPhase(): boolean {
-  return process.env.NEXT_PHASE === "phase-production-build";
-}
-
-function isRateLimited(err: any): boolean {
-  const status = err?.status;
-  const msg = String(err?.response?.data?.message ?? err?.message ?? "");
-  return (
-    status === 429 ||
-    /quota exhausted|rate limit/i.test(msg) ||
-    (status === 403 && /rate limit|quota exhausted/i.test(msg))
-  );
-}
-
-function rethrowIfTransient(err: any, path: string): void {
-  if (isMissing(err)) return;
-  console.error(
-    `[authAndFetch] transient GitHub failure for ${path} (status ${err?.status}): ${err?.response?.data?.message ?? err?.message}`,
-  );
-  // SSG: a GitHub 429 must not abort all ~985 static pages.
-  // Runtime: still throw so unstable_cache does not store null.
-  if (isRateLimited(err) && isBuildPhase()) return;
-  throw err;
 }
 
 // Read one exact path at one exact ref. Nothing else — the case-insensitive
@@ -342,12 +337,12 @@ const getMenuTitlesAtRefCached = unstable_cache(
         if (typeof v === "string" && v.trim() !== "") out[k] = v.trim();
       }
       return out;
-    } catch (err) {
-      console.error(
-        `[menu-titles] manifest fetch failed for locale "${locale}" — menu/sitemap titles will fall back to English:`,
-        err,
-      );
-      return {};
+    } catch (err: any) {
+      // A genuinely absent manifest is {}. Anything else must NOT be stored:
+      // returning {} from in here caches an empty manifest for the TTL, which
+      // blanks the menu and shrinks the sitemap. The caller degrades instead.
+      if (isMissing(err)) return {};
+      throw err;
     }
   },
   ["github-menu-titles", branch],
@@ -368,30 +363,36 @@ const getMenuTitlesAtRefCached = unstable_cache(
 // this change exists to fix.
 //
 // Keyed on (dir, ref) like every sibling, so it moves with the content ref.
+async function listDirUncached(
+  dir: string,
+  ref: string,
+): Promise<string[]> {
+  if (!assertRepoConfig()) return [];
+  try {
+    const res = await octokit.rest.repos.getContent({
+      owner,
+      repo,
+      path: dir,
+      ref,
+    });
+    const entries = Array.isArray(res.data) ? res.data : [res.data];
+    return entries
+      .filter((e: any) => e.type === "file" && e.name.endsWith(".md"))
+      .map((e: any) => e.path);
+  } catch (err: any) {
+    // A missing folder for this locale is a real answer. Anything else is
+    // NOT: swallowing it here returns [] from inside listDirAtRefCached,
+    // which caches the empty listing for the hour TTL and hides every file
+    // in that folder — the same "transient cached as missing" defect this
+    // change removes from the file path. Throw; degradeOnBuildRateLimit at
+    // the public boundary keeps a build alive without storing anything.
+    if (isMissing(err)) return [];
+    throw err;
+  }
+}
+
 const listDirAtRefCached = unstable_cache(
-  async (dir: string, ref: string): Promise<string[]> => {
-    if (!assertRepoConfig()) return [];
-    try {
-      const res = await octokit.rest.repos.getContent({
-        owner,
-        repo,
-        path: dir,
-        ref,
-      });
-      const entries = Array.isArray(res.data) ? res.data : [res.data];
-      return entries
-        .filter((e: any) => e.type === "file" && e.name.endsWith(".md"))
-        .map((e: any) => e.path);
-    } catch (err: any) {
-      // A missing folder for this locale is a real answer; a 403/429/5xx is
-      // not. The bare `catch {}` this replaces swallowed them identically,
-      // with no log — the exact defect class this change exists to remove,
-      // surviving in the one path it had not touched.
-      if (isMissing(err)) return [];
-      rethrowIfTransient(err, dir);
-      return [];
-    }
-  },
+  listDirUncached,
   ["github-dir-listing", owner, repo, branch],
   // An hour, not five minutes. Freshness comes from the `github-content` tag,
   // which the content repo's push webhook clears; the TTL only bounds drift if
@@ -480,8 +481,9 @@ const getEnglishSourceStatusAtRefCached = unstable_cache(
  */
 
 export async function getFileContentCached(path: string): Promise<string | null> {
-  const ref = await resolveContentRef();
-  return readFileAtRef(path, ref);
+  return degradeOnBuildRateLimit(async () =>
+    readFileAtRef(path, await resolveContentRef()),
+  );
 }
 
 /**
@@ -525,6 +527,32 @@ async function readFileAtRef(
   return null;
 }
 
+/**
+ * Keep a build alive through a rate limit without caching the damage.
+ *
+ * A GitHub 429 must not abort all ~985 static pages, so during the build phase
+ * a rate-limited read degrades to null. That degradation belongs HERE, at the
+ * public boundary, and not inside a cached reader: a null returned from inside
+ * `unstable_cache` is stored for the full TTL, turning a transient outage into
+ * a permanently missing article. Outside it, the throw means nothing is
+ * cached, and the next request retries.
+ */
+async function degradeOnBuildRateLimit<T>(
+  read: () => Promise<T | null>,
+): Promise<T | null> {
+  try {
+    return await read();
+  } catch (err: any) {
+    if (isRateLimited(err) && isBuildPhase()) {
+      console.error(
+        `[authAndFetch] rate limited during the build; this page degrades to empty rather than aborting the build: ${err?.message}`,
+      );
+      return null;
+    }
+    throw err;
+  }
+}
+
 /** The degraded-mode read: same semantics, nothing cached. */
 async function readFileAtRefUncached(
   safePath: string,
@@ -536,27 +564,32 @@ async function readFileAtRefUncached(
   const wantSlug = normalize(
     safePath.split("/").pop()?.replace(/\.md$/i, "") || "",
   );
-  for (const file of await listDirAtRefCached(folderPath, ref)) {
+  // listDirUncached, NOT listDirAtRefCached: in degraded mode `ref` is the
+  // branch NAME, so a cached empty listing would stick under a key that no
+  // commit rotates — and once a folder is created, the stale empty listing
+  // would keep the case-insensitive fallback from ever finding it.
+  for (const file of await listDirUncached(folderPath, ref)) {
     const base = file.split("/").pop() ?? file;
     if (normalize(base) === wantSlug) return fetchRawFile(cleanPath(file), ref);
   }
   return null;
 }
 
-async function getTranslationProbeCached(path: string): Promise<string | null> {
-  return getTranslationProbeAtRefCached(path, await resolveContentRef());
-}
-
-async function getEnglishSourceStatusCached(
-  path: string,
-): Promise<"present" | "absent"> {
-  return getEnglishSourceStatusAtRefCached(path, await resolveContentRef());
-}
-
 export async function getMenuTitlesCached(
   locale: string,
 ): Promise<Record<string, string>> {
-  return getMenuTitlesAtRefCached(locale, await resolveContentRef());
+  // Contract src/app/sitemap.ts depends on: this never throws, it degrades to
+  // {}. That degradation lives HERE, outside the cache, so a transient is not
+  // stored as an empty manifest for the whole TTL.
+  try {
+    return await getMenuTitlesAtRefCached(locale, await resolveContentRef());
+  } catch (err: any) {
+    console.error(
+      `[menu-titles] manifest fetch failed for locale "${locale}" — menu/sitemap titles fall back to English:`,
+      err?.message ?? err,
+    );
+    return {};
+  }
 }
 
 export async function getLocalizedFileContentCached(
@@ -604,7 +637,7 @@ export async function getLocalizedFileContentCached(
   return readFileAtRef(filePath, ref).catch(() => null);
 }
 
-export const getRootCached = unstable_cache(
+const getRootAtRefCached = unstable_cache(
   async (path: string) => {
     if (!assertRepoConfig()) return [];
     try {
@@ -618,8 +651,10 @@ export const getRootCached = unstable_cache(
       const elements = getFiles(data);
       return elements.filter((item: string) => item.endsWith(".md"));
     } catch (err: any) {
-      rethrowIfTransient(err, toGithubPath(path));
-      return [];
+      // See listDirUncached: a swallow here would cache [] and blank every
+      // page under this folder.
+      if (isMissing(err)) return [];
+      throw err;
     }
   },
   ["github-root-md-cache", owner, repo, branch],
@@ -634,6 +669,17 @@ export const getRootCached = unstable_cache(
   // tag, which the content repo's push webhook clears.
   { revalidate: 3600, tags: ["github-content"] },
 );
+
+/**
+ * Directory listing for a content folder.
+ *
+ * Carries the build-phase boundary: the cached reader above throws on a
+ * transient so nothing is stored, and this degrades to [] during a build so a
+ * GitHub 429 cannot abort the ~985 static pages.
+ */
+export async function getRootCached(path: string): Promise<string[]> {
+  return (await degradeOnBuildRateLimit(() => getRootAtRefCached(path))) ?? [];
+}
 
 export async function getSiteFolders(path: string) {
   if (!assertRepoConfig()) return [];

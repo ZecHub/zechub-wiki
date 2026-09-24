@@ -165,6 +165,60 @@ describe("getFileContentCached — only a 404 may yield null", () => {
     });
   });
 
+  it("degrades a build-phase rate limit WITHOUT caching it as missing", async () => {
+    // A 429 must not abort ~985 static pages, so during a build it degrades to
+    // null. But if that null came from inside the cached reader it would be
+    // stored for the hour TTL, turning a transient outage into a permanently
+    // missing article — the silent-blank failure, in the exact scenario this
+    // change is about. Degrade at the boundary; cache nothing.
+    process.env.NEXT_PHASE = "phase-production-build";
+    try {
+      mockFetch.mockResolvedValueOnce(rawResponse(429));
+      mockGetContent.mockResolvedValue({ data: [] });
+      await expect(mod.getFileContentCached(PATH)).resolves.toBeNull();
+      // The limit clears; the very next read must really fetch.
+      mockFetch.mockResolvedValueOnce(rawResponse(200, "back online"));
+      await expect(mod.getFileContentCached(PATH)).resolves.toBe("back online");
+    } finally {
+      delete process.env.NEXT_PHASE;
+    }
+  });
+
+  it("does not cache the DIRECTORY LISTING when on the mutable branch ref", async () => {
+    // Degraded mode bypasses the file cache, but the listing was still cached
+    // under the branch name — a key no commit rotates. An empty listing there
+    // would stop the case-insensitive fallback finding a folder once created.
+    mockGetCommit.mockRejectedValue(httpError(500)); // no SHA -> branch ref
+    mockFetch.mockResolvedValue(rawResponse(404)); // exact path always misses
+    mockGetContent.mockResolvedValueOnce({ data: [] }); // folder empty for now
+    await expect(
+      mod.getFileContentCached("site/X/ai-tools.md"),
+    ).resolves.toBeNull();
+    // ...the file is added. A cached empty listing would hide it forever.
+    mockGetContent.mockResolvedValue({
+      data: [{ path: "site/X/AI_tools.md", type: "file", name: "AI_tools.md" }],
+    });
+    mockFetch
+      .mockResolvedValueOnce(rawResponse(404)) // exact path still misses
+      .mockResolvedValueOnce(rawResponse(200, "found via fallback"));
+    await expect(mod.getFileContentCached("site/X/ai-tools.md")).resolves.toBe(
+      "found via fallback",
+    );
+  });
+
+  it("does not cache an empty menu manifest produced by a transient", async () => {
+    // sitemap.ts relies on getMenuTitlesCached never throwing. That degradation
+    // has to live OUTSIDE the cache: returning {} from inside it stores an
+    // empty manifest for the TTL, which blanks the menu and shrinks the
+    // sitemap long after GitHub recovers.
+    mockFetch.mockResolvedValueOnce(rawResponse(500));
+    await expect(mod.getMenuTitlesCached("en")).resolves.toEqual({});
+    mockFetch.mockResolvedValueOnce(rawResponse(200, '{"A/B.md":"Title"}'));
+    await expect(mod.getMenuTitlesCached("en")).resolves.toEqual({
+      "A/B.md": "Title",
+    });
+  });
+
   it("does not cache a 404 when running on the mutable branch ref", async () => {
     // Degraded mode: the SHA could not be resolved, so `ref` is the branch
     // NAME. Caching a 404 under a mutable key outlives the page being created
