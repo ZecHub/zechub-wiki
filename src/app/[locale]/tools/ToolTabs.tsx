@@ -87,7 +87,10 @@ export interface GeneratedConfig {
   theme: string;
   target: string;
   disabled: boolean;
-  [index: string]: any;
+  // Set by PaymentRequestWidget.tsx (PR #810) alongside the fields above;
+  // kept loose here since that file's local validation-state type isn't
+  // exported and this interface must stay compatible with it as-is.
+  validation?: unknown;
 }
 
 export default function ToolTabs() {
