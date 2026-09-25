@@ -176,15 +176,71 @@ export default function PaymentRequestWidgetCodeSnippet({ config }: Props) {
   );
 }
 
-export function Modal({ isOpen, onClose, children }: any) {
-  const modalRef = useRef(null);
+const FOCUSABLE_SELECTOR =
+  'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
-  // Close on Escape key
+export function Modal({ isOpen, onClose, label = "Dialog", children }: any) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  // Escape closes; Tab / Shift+Tab stay inside the panel.
   useEffect(() => {
-    const handleEsc = (e: any) => e.key === "Escape" && onClose();
-    if (isOpen) document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
+    if (!isOpen) return;
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab" || !panelRef.current) return;
+
+      const items = Array.from(
+        panelRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+      );
+      if (items.length === 0) {
+        e.preventDefault();
+        panelRef.current.focus();
+        return;
+      }
+
+      const first = items[0];
+      const last = items[items.length - 1];
+      const current = document.activeElement;
+      const inside = panelRef.current.contains(current);
+
+      if (
+        e.shiftKey &&
+        (current === first || !inside || current === panelRef.current)
+      ) {
+        e.preventDefault();
+        last.focus();
+      } else if (
+        !e.shiftKey &&
+        (current === last || !inside || current === panelRef.current)
+      ) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
   }, [isOpen, onClose]);
+
+  // Move focus into the panel on open; restore it to the opener on close.
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const opener =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
+    panelRef.current?.focus();
+
+    return () => {
+      if (opener && opener.isConnected) opener.focus();
+    };
+  }, [isOpen]);
 
   // Close on backdrop click
   const handleBackdropClick = (e: any) => {
@@ -202,6 +258,11 @@ export function Modal({ isOpen, onClose, children }: any) {
              p-5 animate-fade-in"
     >
       <div
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={label}
+        tabIndex={-1}
         className="w-full max-w-200 bg-white relative
              rounded-[28px] p-7 text-[--zwg-text]
              font-sans
@@ -209,6 +270,8 @@ export function Modal({ isOpen, onClose, children }: any) {
              animate-fade-out"
       >
         <button
+          type="button"
+          aria-label="Close"
           onClick={onClose}
           className="float-right text-gray-500 hover:text-gray-700 text-xl cursor-pointer"
         >
