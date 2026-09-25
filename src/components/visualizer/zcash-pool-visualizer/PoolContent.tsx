@@ -1,14 +1,14 @@
+import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { PoolContainer } from "./PoolContainer";
 import { POOLS, PoolType, Stage } from "./types";
-import { Link } from "@/i18n/navigation";
 
 export const PoolContent = ({ stage }: { stage: Stage }) => {
   if (!stage.focusPool) return null;
 
   const focusedPool = POOLS[stage.focusPool];
   const otherPools: PoolType[] = (
-    ["transparent", "sapling", "orchard"] as PoolType[]
+    ["transparent", "sapling", "orchard", "ironwood"] as PoolType[]
   ).filter((p) => p !== stage.focusPool);
 
   const getPoolLinks = () => {
@@ -19,6 +19,8 @@ export const PoolContent = ({ stage }: { stage: Stage }) => {
         return "/using-zcash/shielded-pools#sapling";
       case "orchard":
         return "/using-zcash/shielded-pools#orchard";
+      case "ironwood":
+        return "/using-zcash/shielded-pools#ironwood";
       default:
         return "/using-zcash/shielded-pools";
     }
@@ -39,7 +41,8 @@ export const PoolContent = ({ stage }: { stage: Stage }) => {
               pool={POOLS[poolType]}
               isActive={false}
               isFocused={false}
-              showDetails={false}
+              showDetails={true}
+              amount="5.25 ZEC"
             />
           </motion.div>
         ))}
