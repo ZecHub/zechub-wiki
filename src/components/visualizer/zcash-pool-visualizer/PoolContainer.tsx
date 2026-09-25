@@ -1,8 +1,7 @@
-import { motion } from "framer-motion";
-import { Eye, EyeOff, Shield, Lock } from "lucide-react";
-import { PoolData } from "./types";
 import { cn } from "@/lib/util";
-import { Link } from "@/i18n/navigation";
+import { motion } from "framer-motion";
+import { Eye, Lock, Shield } from "lucide-react";
+import { PoolData } from "./types";
 
 interface PoolContainerProps {
   pool: PoolData;
@@ -58,10 +57,20 @@ export const PoolContainer = ({
           glow: isFocused ? "glow-orchard" : "",
           text: "text-pool-orchard",
         };
+
+      default: {
+        return {
+          border: "border-pool-orchard/50",
+          bg: "bg-pool-orchard/10",
+          glow: isFocused ? "glow-orchard" : "",
+          text: "text-pool-orchard",
+        };
+      }
     }
   };
 
   const styles = getPoolStyles();
+
   return (
     <motion.div
       layout
@@ -72,12 +81,13 @@ export const PoolContainer = ({
       }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
-        "relative rounded-xl border-2 p-6 transition-all duration-300",
+        "relative rounded-md border-2 p-6 transition-all duration-300",
+        "w-full h-full flex flex-col justify-start",
         styles.border,
         styles.bg,
         styles.glow,
         isFocused && "z-10",
-        className
+        className,
       )}
     >
       {/* Pool Header */}
@@ -108,7 +118,7 @@ export const PoolContainer = ({
           className={cn(
             "text-xs px-2 py-1 rounded-full text-center",
             styles.bg,
-            styles.text
+            styles.text,
           )}
         >
           {privacyLabels[pool.privacyLevel]}
@@ -120,10 +130,10 @@ export const PoolContainer = ({
         className={cn(
           "relative h-24 rounded-lg overflow-hidden",
           pool.type === "transparent"
-            ? "bg-gradient-to-b from-pool-transparent/20 to-transparent border border-pool-transparent/30"
+            ? "bg-linear-to-b from-pool-transparent/20 to-transparent border border-pool-transparent/30"
             : pool.type === "sapling"
-            ? "bg-gradient-to-b from-pool-sapling/20 to-pool-sapling/5"
-            : "bg-gradient-to-b from-pool-orchard/20 to-pool-orchard/5"
+              ? "bg-linear-to-b from-pool-sapling/20 border to-pool-sapling/5"
+              : "bg-linear-to-b from-pool-orchard/20 border to-pool-orchard/5",
         )}
       >
         {/* Glass/Frosted effect for shielded pools */}
@@ -177,20 +187,24 @@ export const PoolContainer = ({
           exit={{ opacity: 0, height: 0 }}
           className="mt-4 space-y-3"
         >
-          <p className="text-sm text-muted-foreground">{pool.description}</p>
+          <p className="text-sm text-muted-foreground">
+            {isFocused
+              ? pool.description
+              : pool.description.slice(0, 30) + "..."}
+          </p>
 
           <div className="space-y-1">
             <p className="text-xs text-muted-foreground">Example Address:</p>
             <code
               className={cn(
                 "block text-xs font-mono p-2 rounded bg-secondary/50 break-all",
-                styles.text
+                styles.text,
               )}
             >
               {pool.exampleAddress.length > 40
                 ? `${pool.exampleAddress.slice(
                     0,
-                    20
+                    20,
                   )}...${pool.exampleAddress.slice(-15)}`
                 : pool.exampleAddress}
             </code>
