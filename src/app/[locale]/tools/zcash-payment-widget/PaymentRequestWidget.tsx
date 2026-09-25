@@ -12,6 +12,7 @@ import { GeneratedConfig } from "../ToolTabs";
 import WasmInitStatus from "../WasmInitStatus";
 import WidgetButtonTrigger from "./WidgetButtonTrigger";
 import { config } from "./config";
+import { formatZecAmount, isShieldedAddress } from "@/lib/zip321";
 
 const INPUT_CLASS = [
   "w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]",
@@ -128,9 +129,22 @@ export default function PaymentRequestWidget() {
   // Flags
   const isLoading = payment.validation.status === "validating";
 
+  const isAmountValid = (() => {
+    if (!payment.amount || parseFloat(payment.amount) <= 0) return false;
+    if (currency === "zec") {
+      try {
+        formatZecAmount(payment.amount);
+        return true;
+      } catch {
+        return false;
+      }
+    }
+    return true;
+  })();
+
   const allValid =
     payment.address !== "" &&
-    parseFloat(payment.amount) > 0 &&
+    isAmountValid &&
     payment.validation.status === "valid";
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -175,7 +189,7 @@ export default function PaymentRequestWidget() {
         zecUsdRate: data.rate,
         label: payment.label,
         address: payment.address,
-        disabled: data.amount < 0,
+        disabled: data.amount <= 0,
         apiBase: WIDGET_API_BASE_URL,
         validation: payment.validation,
         target: config.ZCASH_PAYMENT_WIDGET_TARGET
@@ -189,10 +203,7 @@ export default function PaymentRequestWidget() {
   };
 
   const isValid = payment.validation.status === "valid";
-  const isShielded =
-    payment.address.startsWith("zs") ||
-    payment.address.startsWith("u1") ||
-    payment.address.startsWith("utest1");
+  const isShielded = isShieldedAddress(payment.address);
 
   useEffect(() => {
     if (!payment.address) return;
@@ -324,6 +335,18 @@ export default function PaymentRequestWidget() {
                   step="any"
                   min="0"
                 />
+                {currency === "zec" && payment.amount && (() => {
+                  try {
+                    formatZecAmount(payment.amount);
+                    return null;
+                  } catch (err) {
+                    return (
+                      <p className="mt-1 ml-1 text-[11px] text-red-500 font-medium">
+                        {err instanceof Error ? err.message : "Invalid amount"}
+                      </p>
+                    );
+                  }
+                })()}
               </div>
 
               <div>
