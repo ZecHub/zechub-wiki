@@ -3,8 +3,14 @@
 import { Button } from "@/components/UI/shadcn/button";
 import { motion } from "framer-motion";
 import { Home, Pause, Play, ChevronLeft, ChevronRight } from "lucide-react";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
+import {
+  resolveVisualizerRoute,
+  visualizerQuery,
+  type QuizSection,
+} from "@/lib/visualizerRouting";
 import { CoinholderGrantsVisualizer } from "./coinholder-grants";
 import { ConsensusVisualizer } from "./consensus-visualizer";
 import { ContributionVisualizer } from "./contribution-visualizer";
@@ -403,85 +409,129 @@ const ALL_VISUALIZERS = [
   ...CONTRIBUTOR_VISUALIZERS,
 ];
 
-type OpenQuizSection = "basic" | "advanced" | "contributors" | null;
+type OpenQuizSection = QuizSection | null;
+
+const ALL_VISUALIZER_IDS = ALL_VISUALIZERS.map((v) => v.id);
 
 export const VisualizerHub: React.FC = () => {
-  const [currentVisualizer, setCurrentVisualizer] =
-    useState<VisualizerType>("welcome");
-  const [isPlayingAll, setIsPlayingAll] = useState(false);
-  const [openQuiz, setOpenQuiz] = useState<OpenQuizSection>(null);
+  const searchParams = useSearchParams();
   const { t } = useLanguage();
+
+  // The selected module and open quiz live in the query string, so a
+  // visualizer can be linked to, survives a reload, and the browser's back
+  // button steps through them. Play All stays local: a shared link should open
+  // a visualizer, not start playing the whole sequence at someone.
+  const route = useMemo(
+    () => resolveVisualizerRoute(searchParams, ALL_VISUALIZER_IDS),
+    [searchParams],
+  );
+  const currentVisualizer: VisualizerType = route.module ?? "welcome";
+  const openQuiz: OpenQuizSection = route.quiz;
+  const [isPlayingAll, setIsPlayingAll] = useState(false);
+
+  // Only the query string changes here, never the path. The router is not used
+  // for that: asked to go from /visualizer?module=x to /visualizer it treats
+  // the two as the same route and leaves the stale query in the address bar,
+  // which silently breaks Home and closing a quiz. The history API changes it
+  // reliably, and Next keeps useSearchParams in step with native history
+  // calls, so the hub re-renders from the new URL either way. Reading the path
+  // off window keeps whatever locale prefix is in the address.
+  const navigate = useCallback(
+    (
+      next: { module?: VisualizerType | null; quiz?: OpenQuizSection },
+      mode: "push" | "replace",
+    ) => {
+      const path = window.location.pathname;
+      const target = `${path}${visualizerQuery(next)}`;
+      if (`${path}${window.location.search}` === target) return;
+      if (mode === "push") window.history.pushState(null, "", target);
+      else window.history.replaceState(null, "", target);
+    },
+    [],
+  );
+
+  // An unknown or mis-cased id still renders something real; put the address
+  // bar back in step with it rather than leaving a dead id there to be copied
+  // again.
+  useEffect(() => {
+    if (route.canonical) return;
+    navigate(route, "replace");
+  }, [route, navigate]);
+
+  const select = useCallback(
+    (next: { module?: VisualizerType | null; quiz?: OpenQuizSection }) =>
+      navigate(next, "push"),
+    [navigate],
+  );
+
+  // Play All advances on its own, so it replaces rather than pushes: the back
+  // button should leave the sequence, not walk back through every step it ran.
+  const advanceTo = useCallback(
+    (id: VisualizerType) => navigate({ module: id }, "replace"),
+    [navigate],
+  );
+
+  const setOpenQuiz = useCallback(
+    (quiz: OpenQuizSection) => select({ quiz }),
+    [select],
+  );
+
+  const indexOf = useCallback(
+    (id: VisualizerType) => ALL_VISUALIZERS.findIndex((v) => v.id === id),
+    [],
+  );
 
   const startPlayAll = useCallback(() => {
     setIsPlayingAll(true);
-    setCurrentVisualizer(ALL_VISUALIZERS[0].id);
-  }, []);
+    select({ module: ALL_VISUALIZERS[0].id });
+  }, [select]);
 
   const stopPlayAll = useCallback(() => {
     setIsPlayingAll(false);
   }, []);
 
-  const goToVisualizer = useCallback((visualizerId: VisualizerType) => {
-    setCurrentVisualizer(visualizerId);
-    setIsPlayingAll(false);
-  }, []);
+  const goToVisualizer = useCallback(
+    (visualizerId: VisualizerType) => {
+      setIsPlayingAll(false);
+      select({ module: visualizerId });
+    },
+    [select],
+  );
 
   const goHome = useCallback(() => {
-    setCurrentVisualizer("welcome");
     setIsPlayingAll(false);
-  }, []);
+    select({});
+  }, [select]);
 
   const goToNext = useCallback(() => {
-    setCurrentVisualizer((current) => {
-      const currentIdx = ALL_VISUALIZERS.findIndex((v) => v.id === current);
-      if (currentIdx < ALL_VISUALIZERS.length - 1) {
-        return ALL_VISUALIZERS[currentIdx + 1].id;
-      } else {
-        return current;
-      }
-    });
-
-    setIsPlayingAll((playing) => {
-      if (playing) {
-        setCurrentVisualizer((current) => {
-          const currentIdx = ALL_VISUALIZERS.findIndex((v) => v.id === current);
-          if (currentIdx === ALL_VISUALIZERS.length - 1) {
-            return ALL_VISUALIZERS[0].id;
-          }
-          return current;
-        });
-      }
-      return playing;
-    });
-  }, []);
+    const idx = indexOf(currentVisualizer);
+    if (idx < 0) return;
+    const isLast = idx === ALL_VISUALIZERS.length - 1;
+    // Stepping past the end only wraps while Play All is running, matching the
+    // previous behaviour.
+    if (isLast && !isPlayingAll) return;
+    const next = ALL_VISUALIZERS[isLast ? 0 : idx + 1].id;
+    if (isPlayingAll) advanceTo(next);
+    else select({ module: next });
+  }, [currentVisualizer, indexOf, isPlayingAll, advanceTo, select]);
 
   const goToPrevious = useCallback(() => {
-    setCurrentVisualizer((current) => {
-      const currentIdx = ALL_VISUALIZERS.findIndex((v) => v.id === current);
-      if (currentIdx > 0) {
-        return ALL_VISUALIZERS[currentIdx - 1].id;
-      }
-      return current;
-    });
-  }, []);
+    const idx = indexOf(currentVisualizer);
+    if (idx <= 0) return;
+    const prev = ALL_VISUALIZERS[idx - 1].id;
+    if (isPlayingAll) advanceTo(prev);
+    else select({ module: prev });
+  }, [currentVisualizer, indexOf, isPlayingAll, advanceTo, select]);
 
   const handleVisualizerComplete = useCallback(() => {
-    setIsPlayingAll((playing) => {
-      if (playing) {
-        setCurrentVisualizer((current) => {
-          const currentIdx = ALL_VISUALIZERS.findIndex((v) => v.id === current);
-          const nextIndex = currentIdx + 1;
-
-          if (nextIndex < ALL_VISUALIZERS.length) {
-            return ALL_VISUALIZERS[nextIndex].id;
-          } else {
-            return ALL_VISUALIZERS[0].id;
-          }
-        });
-      }
-      return playing;
-    });
-  }, []);
+    if (!isPlayingAll) return;
+    const idx = indexOf(currentVisualizer);
+    if (idx < 0) return;
+    const nextIndex = idx + 1;
+    advanceTo(
+      ALL_VISUALIZERS[nextIndex < ALL_VISUALIZERS.length ? nextIndex : 0].id,
+    );
+  }, [currentVisualizer, indexOf, isPlayingAll, advanceTo]);
 
   const currentIdx = ALL_VISUALIZERS.findIndex(
     (v) => v.id === currentVisualizer,
