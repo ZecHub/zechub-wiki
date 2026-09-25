@@ -2,7 +2,9 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ResearchArticleAside from "@/components/Research/ResearchArticleAside";
+import WikiSectionBanner from "@/components/WikiSectionBanner/WikiSectionBanner";
 import type { BreadcrumbItem } from "@/lib/breadcrumbs";
+import type { LiveHeroId } from "@/lib/liveHero";
 
 type MdxContainerProps = {
   roots: any;
@@ -20,6 +22,8 @@ type MdxContainerProps = {
    * where it sits. Research pages render their own inside the variant below.
    */
   breadcrumbs?: BreadcrumbItem[];
+  /** Live HTML hero instead of a static section banner image. */
+  liveHero?: LiveHeroId;
   /** BitMEX-style editorial layout for research article pages. */
   layoutVariant?: "default" | "research";
   researchMeta?: {
@@ -43,6 +47,7 @@ export default async function MdxContainer({
   hasSideMenu = false,
   children,
   breadcrumbs,
+  liveHero,
   layoutVariant = "default",
   researchMeta,
 }: MdxContainerProps) {
@@ -55,24 +60,28 @@ export default async function MdxContainer({
   return (
     <main>
       {!isResearchArticle ? (
-        <div className="mb-5 flex w-full justify-center rounded bg-transparent pb-0 imd:pb-4">
-          {/* Light mode image */}
-          <Image
-            className="mb-5 w-full object-cover dark:hidden"
-            alt="wiki-banner"
-            width={width}
-            height={height}
-            src={lightSrc}
-          />
-          {/* Dark mode image */}
-          <Image
-            className="mb-5 hidden w-full object-cover dark:block"
-            alt="wiki-banner"
-            width={width}
-            height={height}
-            src={darkSrc}
-          />
-        </div>
+        liveHero ? (
+          <WikiSectionBanner id={liveHero} />
+        ) : (
+          <div className="mb-5 flex w-full justify-center rounded bg-transparent pb-0 imd:pb-4">
+            {/* Light mode image */}
+            <Image
+              className="mb-5 w-full object-cover dark:hidden"
+              alt="wiki-banner"
+              width={width}
+              height={height}
+              src={lightSrc}
+            />
+            {/* Dark mode image */}
+            <Image
+              className="mb-5 hidden w-full object-cover dark:block"
+              alt="wiki-banner"
+              width={width}
+              height={height}
+              src={darkSrc}
+            />
+          </div>
+        )
       ) : null}
 
       <div
