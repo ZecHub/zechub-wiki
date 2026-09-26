@@ -15,7 +15,14 @@ interface Wallet {
   walletSupport: string[];
   syncSpeed: string;
   ironwood: string;
+  status?: string;
+  statusReason?: string;
+  stage?: string;
 }
+
+// A deprecated wallet (end-of-life, archived, or no longer supports Zcash)
+// leaves the directory — no filters, no counts — and is listed at the bottom.
+const isDeprecated = (w: Wallet) => w.status?.toLowerCase() === "deprecated";
 
 interface Props {
   allWallets: Wallet[];
@@ -46,7 +53,18 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   const errorUpdatingRatingPrefix =
     t?.wallets?.errorUpdatingRating ?? "Error updating rating:";
 
+  const deprecatedTitle =
+    t?.wallets?.deprecatedTitle ?? "Deprecated / no longer supports Zcash";
+  const deprecatedNote =
+    t?.wallets?.deprecatedNote ??
+    "Kept for reference only. Do not use these wallets for new funds.";
+
   const handleToggleFilter = () => setIsFilterVisible((v) => !v);
+
+  const activeWallets = allWallets.filter((w) => !isDeprecated(w));
+  const deprecatedWallets = allWallets
+    .filter(isDeprecated)
+    .sort((a, b) => a.title.localeCompare(b.title));
 
   useEffect(() => {
     const fetchLikes = async () => {
@@ -57,7 +75,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       const featuresSet = new Set<string>();
       const ironwoodSet = new Set<string>();
 
-      allWallets.forEach((wallet) => {
+      allWallets.filter((w) => !isDeprecated(w)).forEach((wallet) => {
         wallet.devices.forEach((d) => devicesSet.add(d.trim()));
         wallet.operatingSystem?.forEach((os) => operatingSystemSet.add(os.trim()));
         wallet.pools.forEach((p) => poolsSet.add(p.trim()));
@@ -153,7 +171,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     }
   };
 
-  const filteredWallets = allWallets.filter((wallet) =>
+  const filteredWallets = activeWallets.filter((wallet) =>
     activeFilters.every((filter) => {
       const [category, value] = filter.split(":");
       if (category === "Devices") return wallet.devices.includes(value);
@@ -244,6 +262,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                   likes={likes[wallet.title] || 0}
                   syncSpeed={wallet.syncSpeed}
                   ironwood={wallet.ironwood}
+                  stage={wallet.stage}
                   onLike={() => handleLike(wallet.title)}
                   onDislike={() => handleDislike(wallet.title)}
                   error={error[wallet.title]}
@@ -251,6 +270,37 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                 />
               ))}
             </div>
+
+            {deprecatedWallets.length > 0 && (
+              <details className="wl-deprecated mt-10 rounded-2xl border border-rose-200 dark:border-rose-900/60">
+                <summary className="cursor-pointer px-5 py-4 font-semibold text-rose-700 dark:text-rose-300">
+                  {deprecatedTitle} ({deprecatedWallets.length})
+                </summary>
+                <p className="px-5 text-sm text-slate-500 dark:text-slate-400">{deprecatedNote}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
+                  {deprecatedWallets.map((wallet) => (
+                    <WalletItem
+                      key={wallet.title}
+                      title={wallet.title}
+                      link={wallet.url}
+                      logo={wallet.imageUrl}
+                      tags={[
+                        { category: "Devices", values: wallet.devices },
+                        { category: "Pools", values: wallet.pools },
+                        { category: "Features", values: wallet.features },
+                      ]}
+                      likes={likes[wallet.title] || 0}
+                      syncSpeed={wallet.syncSpeed}
+                      deprecated={wallet.statusReason ?? ""}
+                      onLike={() => handleLike(wallet.title)}
+                      onDislike={() => handleDislike(wallet.title)}
+                      error={error[wallet.title]}
+                      success={success[wallet.title]}
+                    />
+                  ))}
+                </div>
+              </details>
+            )}
           </section>
         </div>
 
