@@ -45,6 +45,7 @@ describe("WalletList", () => {
     const section = screen
       .getByText(/Deprecated \/ no longer supports Zcash \(1\)/)
       .closest("details") as HTMLElement;
+    expect(section).toHaveAttribute("open");
     expect(within(section).getByText("Gone")).toBeInTheDocument();
     expect(within(section).getByText("End-of-life, no NU6.3 support")).toBeInTheDocument();
     expect(within(section).queryByText("Alive")).not.toBeInTheDocument();

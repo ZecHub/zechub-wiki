@@ -282,7 +282,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
             </div>
 
             {deprecatedWallets.length > 0 && (
-              <details className="wl-deprecated mt-10 rounded-2xl border border-rose-200 dark:border-rose-900/60">
+              <details open className="wl-deprecated mt-10 rounded-2xl border border-rose-200 dark:border-rose-900/60">
                 <summary className="cursor-pointer px-5 py-4 font-semibold text-rose-700 dark:text-rose-300">
                   {deprecatedTitle} ({deprecatedWallets.length})
                 </summary>
