@@ -671,7 +671,7 @@ const getRootAtRefCached = unstable_cache(
         ref: branch,
       });
       const data = res.data;
-      const elements = getFiles(data);
+      const elements = Array.isArray(data) ? getFiles(data) : [];
       return elements.filter((item: string) => item.endsWith(".md"));
     } catch (err: any) {
       // See listDirUncached: a swallow here would cache [] and blank every
@@ -704,52 +704,91 @@ export async function getRootCached(path: string): Promise<string[]> {
   return (await degradeOnBuildRateLimit(() => getRootAtRefCached(path))) ?? [];
 }
 
-export async function getSiteFolders(path: string) {
-  if (!assertRepoConfig()) return [];
+async function listSiteFoldersUncached(
+  path: string,
+  ref: string,
+): Promise<string[]> {
   try {
-    const res = await octokit.rest.repos.getContent({
-      owner,
-      repo,
-      path: cleanPath(path),
-      ref: branch,
-    });
-    return getFiles(res.data);
-  } catch {
-    return [];
+    const res = await octokit.rest.repos.getContent({ owner, repo, path, ref });
+    // A file is not a directory; getFiles itself only accepts arrays.
+    return Array.isArray(res.data) ? getFiles(res.data) : [];
+  } catch (err) {
+    if (isMissing(err)) return [];
+    throw err;
   }
 }
 
-export const getAllMarkdownRecursively = unstable_cache(
-  async (initialPath: string): Promise<string[]> => {
-    if (!assertRepoConfig()) return [];
-    const results: string[] = [];
-    const walk = async (currentPath: string, isInitial: boolean) => {
-      try {
-        const apiPath = isInitial
-          ? toGithubPath(currentPath)
-          : cleanPath(currentPath);
-        const res = await octokit.rest.repos.getContent({
-          owner,
-          repo,
-          path: apiPath,
-          ref: branch,
-        });
-        const items = Array.isArray(res.data) ? res.data : [res.data];
-        for (const item of items) {
-          if (!item?.path) continue;
-          if (item.type === "file" && item.path.endsWith(".md")) {
-            results.push(item.path);
-          } else if (item.type === "dir") {
-            await walk(item.path, false);
-          }
-        }
-      } catch {
-        // ignore individual subdirectory failures
-      }
-    };
-    await walk(initialPath, true);
-    return results;
-  },
-  ["github-all-md-recursive-final"],
-  { revalidate: 60, tags: ["github-content"] },
+const listSiteFoldersAtRefCached = unstable_cache(
+  listSiteFoldersUncached,
+  ["github-site-folders-v1", owner, repo, branch],
+  { revalidate: 3600, tags: ["github-content"] },
 );
+
+export async function getSiteFolders(path: string): Promise<string[]> {
+  if (!assertRepoConfig()) return [];
+  const safePath = cleanPath(path);
+  if (hasDotSegment(safePath)) return [];
+  return (
+    (await degradeOnBuildRateLimit(async () => {
+      const ref = await resolveContentRef();
+      const read = ref === branch
+        ? listSiteFoldersUncached
+        : listSiteFoldersAtRefCached;
+      return read(safePath, ref);
+    })) ?? []
+  );
+}
+
+async function getAllMarkdownRecursivelyUncached(
+  initialPath: string,
+  ref: string,
+): Promise<string[]> {
+  const results: string[] = [];
+  const walk = async (path: string): Promise<void> => {
+    // Only the API call is caught: a child failure must reject the entire
+    // traversal, otherwise a partial article index would be cached for an hour.
+    let data;
+    try {
+      const res = await octokit.rest.repos.getContent({ owner, repo, path, ref });
+      data = res.data;
+    } catch (err) {
+      if (isMissing(err)) return;
+      throw err;
+    }
+    const items = Array.isArray(data) ? data : [data];
+    for (const item of items) {
+      if (!item?.path) continue;
+      if (item.type === "file" && item.path.endsWith(".md")) {
+        results.push(item.path);
+      } else if (item.type === "dir") {
+        await walk(item.path);
+      }
+    }
+  };
+  // One ref for the entire tree, and no nested unstable_cache calls.
+  await walk(initialPath);
+  return results;
+}
+
+const getAllMarkdownRecursivelyAtRefCached = unstable_cache(
+  getAllMarkdownRecursivelyUncached,
+  ["github-all-md-recursive-v2", owner, repo, branch],
+  { revalidate: 3600, tags: ["github-content"] },
+);
+
+export async function getAllMarkdownRecursively(
+  initialPath: string,
+): Promise<string[]> {
+  if (!assertRepoConfig()) return [];
+  if (hasDotSegment(initialPath)) return [];
+  const safePath = toGithubPath(initialPath);
+  return (
+    (await degradeOnBuildRateLimit(async () => {
+      const ref = await resolveContentRef();
+      const read = ref === branch
+        ? getAllMarkdownRecursivelyUncached
+        : getAllMarkdownRecursivelyAtRefCached;
+      return read(safePath, ref);
+    })) ?? []
+  );
+}

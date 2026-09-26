@@ -8,7 +8,6 @@ import {
   getLocalizedFileContentCached,
   getRootCached,
   getAllMarkdownRecursively,
-  getSiteFolders,
   getMenuTitlesCached,
 } from "@/lib/authAndFetch";
 import {
@@ -265,15 +264,9 @@ export default async function Page(props: {
 
   try {
     if (isResearchIndex) {
-      const topLevel = await getRootCached(urlRoot).catch(() => []);
-      let seriesArticles: string[] = [];
-      for (const series of RESEARCH_SERIES) {
-        try {
-          const found = await getAllMarkdownRecursively(series.contentDir);
-          seriesArticles = seriesArticles.concat(found);
-        } catch {}
-      }
-
+      const topLevel = await getRootCached(urlRoot);
+      // Series cards come from RESEARCH_SERIES. Their article trees are only
+      // needed on the individual series pages, not on this index.
       const nonSeriesRoots = topLevel.filter(
         (p: string) => !isResearchSeriesPath(p),
       );
@@ -299,7 +292,7 @@ export default async function Page(props: {
         }),
       );
 
-      roots = [...topLevel, ...seriesArticles];
+      roots = nonSeriesRoots;
 
       const heroImage = getHeroImage(slug[0]);
 
@@ -393,23 +386,7 @@ export default async function Page(props: {
       const seriesName = slug[1];
       const series = getResearchSeries(seriesName);
       const basePath = `site/Research/${seriesName}`;
-      const collectArticles = async (path: string): Promise<string[]> => {
-        try {
-          const items = await getSiteFolders(path).catch(() => []);
-          let mds: string[] = [];
-          for (const item of items) {
-            if (item.endsWith(".md")) mds.push(item);
-            else if (!item.includes(".") && !item.endsWith(".md")) {
-              const sub = await collectArticles(item);
-              mds = mds.concat(sub);
-            }
-          }
-          return mds;
-        } catch {
-          return [];
-        }
-      };
-      const articlePaths = await collectArticles(basePath);
+      const articlePaths = await getAllMarkdownRecursively(basePath);
       await Promise.all(
         articlePaths.map(async (filePath) => {
           try {
@@ -489,6 +466,9 @@ export default async function Page(props: {
       markdown = md;
     }
   } catch (e) {
+    // Listing failures belong to Next's default error boundary; optional
+    // thumbnail failures are handled separately above.
+    if (isResearchIndex || isResearchSeries) throw e;
     console.error("Failed to fetch and parse .md file: ", e);
     markdown = null;
     roots = [];
