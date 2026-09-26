@@ -67,4 +67,39 @@ describe("WalletList", () => {
     expect(screen.getByText("Ironwood Ready")).toBeInTheDocument();
     expect(screen.getByText("Beta")).toBeInTheDocument();
   });
+
+  it("orders Ironwood-ready wallets first, whatever their position in the file", () => {
+    const list = parseMarkdown(`
+## [NoStatus](https://a.example)
+- Devices: Mobile
+
+---
+
+## [Late](https://b.example)
+- Devices: Mobile
+- Ironwood: Not Ready
+
+---
+
+## [Transp](https://c.example)
+- Devices: Mobile
+- Ironwood: Transparent only
+
+---
+
+## [Early](https://d.example)
+- Devices: Mobile
+- Ironwood: Ready
+
+---
+
+## [Busy](https://e.example)
+- Devices: Mobile
+- Ironwood: In Progress
+`);
+    render(<WalletList allWallets={list} />);
+
+    const titles = screen.getAllByRole("heading", { level: 5 }).map((h) => h.textContent);
+    expect(titles).toEqual(["Early", "Busy", "Late", "Transp", "NoStatus"]);
+  });
 });

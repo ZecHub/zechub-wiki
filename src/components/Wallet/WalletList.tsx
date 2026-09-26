@@ -24,6 +24,12 @@ interface Wallet {
 // leaves the directory — no filters, no counts — and is listed at the bottom.
 const isDeprecated = (w: Wallet) => w.status?.toLowerCase() === "deprecated";
 
+const IRONWOOD_ORDER = ["ready", "in progress", "not ready", "transparent only"];
+const ironwoodRank = (w: Wallet) => {
+  const i = IRONWOOD_ORDER.indexOf(w.ironwood?.trim().toLowerCase() ?? "");
+  return i === -1 ? IRONWOOD_ORDER.length : i;
+};
+
 interface Props {
   allWallets: Wallet[];
 }
@@ -184,8 +190,12 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     }),
   );
 
+  // Ironwood-ready wallets first, then In Progress, Not Ready, Transparent only
+  // and wallets without a status; the rating orders wallets within each group.
   const sortedWallets = [...filteredWallets].sort(
-    (a, b) => likes[b.title] - likes[a.title],
+    (a, b) =>
+      ironwoodRank(a) - ironwoodRank(b) ||
+      (likes[b.title] ?? 0) - (likes[a.title] ?? 0),
   );
 
   return (
