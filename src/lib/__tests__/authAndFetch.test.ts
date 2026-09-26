@@ -78,7 +78,9 @@ jest.mock("next/cache", () => ({
 
 jest.mock("@/lib/helpers", () => ({
   getFiles: (data: unknown) =>
-    (data as { path: string }[]).filter((e) => e.path).map((e) => e.path),
+    Array.isArray(data)
+      ? data.filter((e: { path: string }) => e.path).map((e: { path: string }) => e.path)
+      : [],
   transformUri: (uri: string) => uri,
 }));
 
@@ -128,6 +130,7 @@ beforeEach(() => {
   // start cold or it inherits the previous test's resolved ref.
   mockGetCommit.mockResolvedValue({ data: SHA });
   mod.__resetContentRefMemo();
+  mod.__resetListingMemos();
   (globalThis as unknown as { __cacheStore: Map<string, unknown> }).__cacheStore.clear();
 });
 
@@ -560,6 +563,35 @@ describe.each([
     const error = status ? httpError(status) : new Error("network failure");
     mockGetContent.mockRejectedValueOnce(error).mockResolvedValue(listing);
     await expect(read()).rejects.toBe(error);
+    mod.__resetListingMemos();
+    await expect(read()).resolves.toEqual([file]);
+    expect(mockGetContent).toHaveBeenCalledTimes(2);
+  });
+
+  it("does not retry a fresh transient within the failure TTL", async () => {
+    const error = httpError(429);
+    mockGetContent.mockRejectedValue(error);
+    await expect(read()).rejects.toBe(error);
+    await expect(read()).rejects.toBe(error);
+    expect(mockGetContent).toHaveBeenCalledTimes(1);
+  });
+
+  it("coalesces concurrent cold misses", async () => {
+    mockGetContent.mockImplementation(
+      () => new Promise((resolve) => {
+        setTimeout(() => resolve(listing), 20);
+      }),
+    );
+    const [a, b] = await Promise.all([read(), read()]);
+    expect(a).toEqual([file]);
+    expect(b).toEqual([file]);
+    expect(mockGetContent).toHaveBeenCalledTimes(1);
+  });
+
+  it("serves last-good through a transient on the uncached branch fallback", async () => {
+    mockGetCommit.mockRejectedValue(httpError(503));
+    mockGetContent.mockResolvedValueOnce(listing).mockRejectedValue(httpError(503));
+    await expect(read()).resolves.toEqual([file]);
     await expect(read()).resolves.toEqual([file]);
     expect(mockGetContent).toHaveBeenCalledTimes(2);
   });
@@ -569,6 +601,7 @@ describe.each([
     try {
       mockGetContent.mockRejectedValueOnce(httpError(429)).mockResolvedValue(listing);
       await expect(read()).resolves.toEqual([]);
+      mod.__resetListingMemos();
       await expect(read()).resolves.toEqual([file]);
       expect(mockGetContent).toHaveBeenCalledTimes(2);
     } finally {
@@ -619,6 +652,7 @@ describe("recursive article listings", () => {
       { type: "file", path: top }, { type: "dir", path: child },
     ] }).mockRejectedValueOnce(error);
     await expect(mod.getAllMarkdownRecursively(root)).rejects.toBe(error);
+    mod.__resetListingMemos();
     mockGetContent.mockResolvedValueOnce({ data: [
       { type: "file", path: top }, { type: "dir", path: child },
     ] }).mockResolvedValueOnce({ data: [

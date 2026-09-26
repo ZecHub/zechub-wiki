@@ -210,6 +210,61 @@ export function __resetContentRefMemo(): void {
   refInFlight = null;
 }
 
+const LISTING_FAILURE_TTL_MS = 30_000;
+type ListingKind = "site-folders" | "all-md";
+const listingInFlight = new Map<string, Promise<string[]>>();
+const listingFailureAt = new Map<string, { at: number; err: unknown }>();
+const listingLastGood = new Map<string, string[]>();
+
+function listingMemoKey(kind: ListingKind, path: string, ref: string): string {
+  return `${kind}:${path}:${ref}`;
+}
+
+export function __resetListingMemos(): void {
+  listingInFlight.clear();
+  listingFailureAt.clear();
+  listingLastGood.clear();
+}
+
+async function readListing(
+  kind: ListingKind,
+  path: string,
+  ref: string,
+  cached: (path: string, ref: string) => Promise<string[]>,
+  uncached: (path: string, ref: string) => Promise<string[]>,
+): Promise<string[]> {
+  const key = listingMemoKey(kind, path, ref);
+  const failed = listingFailureAt.get(key);
+  if (failed && Date.now() - failed.at < LISTING_FAILURE_TTL_MS) {
+    const stale = listingLastGood.get(key);
+    if (stale) return stale;
+    throw failed.err;
+  }
+
+  const inflight = listingInFlight.get(key);
+  if (inflight) return inflight;
+
+  const read = ref === branch ? uncached : cached;
+  const pending = read(path, ref).then(
+    (value) => {
+      listingFailureAt.delete(key);
+      listingLastGood.set(key, value);
+      return value;
+    },
+    (err: unknown) => {
+      listingFailureAt.set(key, { at: Date.now(), err });
+      const stale = listingLastGood.get(key);
+      if (stale) return stale;
+      throw err;
+    },
+  ).finally(() => {
+    listingInFlight.delete(key);
+  });
+
+  listingInFlight.set(key, pending);
+  return pending;
+}
+
 // Send a credential to raw ONLY for a private content repo, and only when that
 // is declared explicitly. raw answers a bad or unscoped token with 404 — not
 // 401 — so an Authorization header that the contents API accepts but raw
@@ -731,10 +786,13 @@ export async function getSiteFolders(path: string): Promise<string[]> {
   return (
     (await degradeOnBuildRateLimit(async () => {
       const ref = await resolveContentRef();
-      const read = ref === branch
-        ? listSiteFoldersUncached
-        : listSiteFoldersAtRefCached;
-      return read(safePath, ref);
+      return readListing(
+        "site-folders",
+        safePath,
+        ref,
+        listSiteFoldersAtRefCached,
+        listSiteFoldersUncached,
+      );
     })) ?? []
   );
 }
@@ -780,15 +838,18 @@ export async function getAllMarkdownRecursively(
   initialPath: string,
 ): Promise<string[]> {
   if (!assertRepoConfig()) return [];
-  if (hasDotSegment(initialPath)) return [];
   const safePath = toGithubPath(initialPath);
+  if (hasDotSegment(safePath)) return [];
   return (
     (await degradeOnBuildRateLimit(async () => {
       const ref = await resolveContentRef();
-      const read = ref === branch
-        ? getAllMarkdownRecursivelyUncached
-        : getAllMarkdownRecursivelyAtRefCached;
-      return read(safePath, ref);
+      return readListing(
+        "all-md",
+        safePath,
+        ref,
+        getAllMarkdownRecursivelyAtRefCached,
+        getAllMarkdownRecursivelyUncached,
+      );
     })) ?? []
   );
 }
