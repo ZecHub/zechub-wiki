@@ -20,6 +20,10 @@ interface WalletItemProps {
   likes: number;
   syncSpeed: string;
   ironwood?: string;
+  stage?: string;
+  // Set (possibly to "") only for a deprecated wallet: the reason it is listed
+  // as no longer supporting Zcash. Replaces the Ironwood badge.
+  deprecated?: string;
   onLike: () => void;
   onDislike: () => void;
   error: string;
@@ -58,6 +62,11 @@ const ironwoodBadgeStyles: { [key: string]: { pill: string; dot: string } } = {
     pill: "bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300",
     dot: "bg-rose-500",
   },
+  // Wallets that never held shielded ZEC: Ironwood does not apply to them.
+  "transparent only": {
+    pill: "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300",
+    dot: "bg-slate-400",
+  },
 };
 
 const ironwoodFallbackStyle = {
@@ -82,6 +91,8 @@ const WalletItem: React.FC<WalletItemProps> = ({
   tags,
   syncSpeed,
   ironwood,
+  stage,
+  deprecated,
   likes,
   onLike,
   onDislike,
@@ -167,22 +178,44 @@ const WalletItem: React.FC<WalletItemProps> = ({
           </Link>
         </div>
 
-        {/* NU6.3 "Ironwood" readiness badge */}
-        {ironwood && (
+        {/* Deprecated: a red badge and the reason, in place of the Ironwood badge */}
+        {deprecated !== undefined && (
           <div className="mb-4 -mt-1">
-            <span
-              title="NU6.3 Ironwood network upgrade status"
-              className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full ${
-                (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).pill
-              }`}
-            >
-              <span
-                className={`w-1.5 h-1.5 rounded-full ${
-                  (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).dot
-                }`}
-              />
-              Ironwood {ironwood}
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full bg-rose-600 text-white dark:bg-rose-700">
+              Deprecated
             </span>
+            {deprecated && (
+              <p className="mt-2 text-sm text-rose-700 dark:text-rose-300">{deprecated}</p>
+            )}
+          </div>
+        )}
+
+        {/* NU6.3 "Ironwood" readiness badge, plus the release stage when not final */}
+        {deprecated === undefined && (ironwood || stage) && (
+          <div className="mb-4 -mt-1 flex flex-wrap gap-2">
+            {ironwood && (
+              <span
+                title="NU6.3 Ironwood network upgrade status"
+                className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full ${
+                  (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).pill
+                }`}
+              >
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${
+                    (ironwoodBadgeStyles[ironwood.toLowerCase()] ?? ironwoodFallbackStyle).dot
+                  }`}
+                />
+                Ironwood {ironwood}
+              </span>
+            )}
+            {stage && (
+              <span
+                title="Release stage"
+                className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full border border-slate-300 text-slate-600 dark:border-slate-600 dark:text-slate-300"
+              >
+                {stage}
+              </span>
+            )}
           </div>
         )}
 
