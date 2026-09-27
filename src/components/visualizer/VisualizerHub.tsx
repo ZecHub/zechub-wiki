@@ -3,7 +3,7 @@
 import { Button } from "@/components/UI/shadcn/button";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Home, Pause, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import React, { useCallback, useState } from "react";
 import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
 import { BuildShieldedTransactionVisualizer } from "./BuildShieldedTransaction";
@@ -21,6 +21,7 @@ import { OpenSourceReposVisualizer } from "./open-source-repos";
 import { PayWithZcashVisualizer } from "./pay-with-zcash";
 import { PrivacyUseCasesVisualizer } from "./PrivacyUsecases";
 import { QuizCard, QuizModule, type QuizQuestion } from "./QuizModule";
+import { VisualizerNavigationContext } from "./VisualizerNavigationContext";
 import { ZcashCommunityGrantsVisualizer } from "./zcash-community-grants";
 import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
 import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
@@ -585,7 +586,7 @@ export const VisualizerHub: React.FC = () => {
 
     return (
       <div className="relative flex min-h-screen min-w-0 flex-col overflow-hidden">
-        <motion.button
+        {/* <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
@@ -594,7 +595,7 @@ export const VisualizerHub: React.FC = () => {
           aria-label="Back to Visualizer Hub"
         >
           <Home className="w-5 h-5 text-foreground" />
-        </motion.button>
+        </motion.button> */}
 
         {isPlayingAll && (
           <motion.div
@@ -677,10 +678,12 @@ export const VisualizerHub: React.FC = () => {
           </motion.div>
         </div>
 
-        <CurrentComponent
-          onComplete={handleVisualizerComplete}
-          autoStart={isPlayingAll}
-        />
+        <VisualizerNavigationContext.Provider value={{ goHome }}>
+          <CurrentComponent
+            onComplete={handleVisualizerComplete}
+            autoStart={isPlayingAll}
+          />
+        </VisualizerNavigationContext.Provider>
       </div>
     );
   }
