@@ -1,8 +1,12 @@
 import type { CommunityProject } from "./parseCommunityProjects";
 
 /**
- * Maps project titles → image paths in /public/community-projects/
- * Projects without a file will simply render without a thumbnail.
+ * Maps project titles → image paths in /public/content-images/
+ * Titles must match EXACTLY what appears in Community_Projects.md
+ * Projects without a matching file will render without a thumbnail.
+ *
+ * Source of truth for titles:
+ * ZecHub/zechub → site/Zcash_Community/Community_Projects.md
  */
 export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   // Education, Media, and Community
@@ -83,9 +87,20 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Nano-GPT": "/community-projects/nano-gpt.png",
   "zk.poker": "/community-projects/zk-poker.png",
 
-  // Organizations & Labs
-  "Shielded Labs": "/community-projects/Sl.png",
-  "Cypherpunk": "/community-projects/cypherPunk.png",
+  // ── Wider Applications Utilizing Zcash ───────────────────────────
+  "aftok":                                   "/content-images/aftok.webp",
+  "ZK Global Credit":                        "/content-images/zkglobalcredit.webp",
+  "Free2Z":                                  "/content-images/free2z.webp",
+  "Rhea Finance":                            "/content-images/rhea-finance.webp",
+  "BazaarSwap":                              "/content-images/bazaarswap.webp",
+  "DCRDEX":                                  "/content-images/dcrdex.webp",
+  "Brave Wallet":                            "/content-images/brave-wallet.webp",
+  "Nano-GPT":                                "/content-images/nano-gpt.webp",
+  "zk.poker":                                "/content-images/zk-poker.webp",
+
+  // ── Organizations & Labs ─────────────────────────────────────────
+  "Shielded Labs":                           "/content-images/shielded-labs.webp",
+  "Cypherpunk":                              "/content-images/cypherpunk.webp",
 };
 
 export function attachImages(
