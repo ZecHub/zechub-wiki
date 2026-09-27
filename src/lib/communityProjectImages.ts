@@ -76,17 +76,6 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "Frost": "/community-projects/frost.png",
   "MonteZcret Benchmark": "/community-projects/montezcret-benchmark.png",
 
-  // Wider Applications Utilizing Zcash
-  "aftok": "/community-projects/aftok.png",
-  "ZK Global Credit": "/community-projects/zkglobalcredit.png",
-  "Free2z": "/community-projects/free2z.png",
-  "Rhea Finance": "/community-projects/rhea-finance.png",
-  "BazaarSwap": "/community-projects/bazaarswap.jpg",
-  "DCRDEX": "/community-projects/dcrdex.png",
-  "Brave Wallet": "/community-projects/brave-wallet.png",
-  "Nano-GPT": "/community-projects/nano-gpt.png",
-  "zk.poker": "/community-projects/zk-poker.png",
-
   // ── Wider Applications Utilizing Zcash ───────────────────────────
   "aftok":                                   "/content-images/aftok.webp",
   "ZK Global Credit":                        "/content-images/zkglobalcredit.webp",
