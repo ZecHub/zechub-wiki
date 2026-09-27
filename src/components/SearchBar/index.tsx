@@ -158,6 +158,9 @@ const SearchBar = ({
   );
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    // An IME can end composition before its final keydown (keyCode 229).
+    if (e.nativeEvent.isComposing || e.nativeEvent.keyCode === 229) return;
+
     if (e.key === "Escape") {
       return;
     }

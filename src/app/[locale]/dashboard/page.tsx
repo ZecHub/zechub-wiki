@@ -1,6 +1,6 @@
 import Dashboard from "@/components/Charts";
-import { genMetadata } from "@/lib/helpers";
-import { buildAlternates } from "@/lib/localeCoverage";
+import { genMetadata, getBanner } from "@/lib/helpers";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { Metadata } from "next";
 import { getDictionary } from "@/lib/getDictionary";
@@ -8,21 +8,27 @@ import { loadZips } from "@/lib/zips/load-zips.server";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = (await getDictionary(locale)) as {
+  const dict = (await getDictionary(locale).catch(() => ({}))) as {
     pages?: {
       dashboard?: {
         title?: string;
+        description?: string;
       };
     };
   };
 
   const localePrefix = locale && locale !== routing.defaultLocale ? `/${locale}` : "";
-  // Bespoke app route: English-only in the sitemap -> locale-aware self canonical.
+  const d = dict.pages?.dashboard;
+
   return genMetadata({
-    title: dict.pages?.dashboard?.title || "Dashboard | Zechub",
+    title: d?.title ? `${d.title} | ZecHub` : "Zcash & ZecHub Ecosystem Dashboard & Metrics | ZecHub",
+    description:
+      d?.description ??
+      "Live analytics, metrics, shielded pool statistics, DAO treasury status, YouTube stats, and ZCG grants tracking for the Zcash ecosystem.",
     url: `https://zechub.wiki${localePrefix}/dashboard`,
+    image: getBanner("tools") || "/content-banners/bannertech.jpg",
     locale,
-    alternates: buildAlternates("/dashboard", locale, [locale]),
+    alternates: buildAlternatesAllLocales("/dashboard", locale),
   });
 }
 

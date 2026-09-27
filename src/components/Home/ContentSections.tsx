@@ -78,22 +78,22 @@ const ContentSections = () => {
           },
         ]}
       />
-      {/* Shielded Newsletter Section */}
+      {/* ZecHub Visualizer Section */}
       <InfoCard
-        id="shielded-newsletter"
+        id="zechub-visualizer"
         reverse={true}
-        title={t.home?.sections?.newsletter?.title || "Shielded Newsletter"}
+        title={t.home?.sections?.visualizer?.title || "ZecHub Visualizer"}
         description={
-          t.home?.sections?.newsletter?.description ||
-          "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!"
+          t.home?.sections?.visualizer?.description ||
+          "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs"
         }
-        image="/zcash_newsletter.gif"
-        imageLight="/explore/light/shielded-newsletter.png"
-        imageDark="/explore/dark/shielded-newsletter.png"
+        image="/explore/light/research.png"
+        imageLight="/explore/light/research.png"
+        imageDark="/explore/dark/research.png"
         links={[
           {
-            href: "/newsletter",
-            label: t.home?.sections?.newsletter?.link || "Subscribe",
+            href: "/visualizer",
+            label: t.home?.sections?.visualizer?.link || "Open the Visualizer",
             primary: true,
           },
         ]}
@@ -145,10 +145,10 @@ const ContentSections = () => {
       />
       <InfoCard
         id="hackathon"
-        title={t.home?.sections?.hackathon?.title || "Join the Hackathon"}
+        title={t.home?.sections?.hackathon?.title || "ZecHub Hackathon Archive"}
         description={
           t.home?.sections?.hackathon?.description ||
-          "Build, collaborate, and ship impactful ideas with the Zcash community. Compete across five innovative tracks: Infrastructure for nodes and indexers, Games for interactive experiences, FROST for threshold signing, Zcash Login for authentication solutions, and Accounting for financial workflows. May 25 - July 15, 2026. 25 ZEC prize pool awaits."
+          "The 2026 ZecHub Hackathon has ended. Explore the projects submitted across Infrastructure, Games, FROST, Zcash Login, and Accounting."
         }
         image="/hackathon_new.png"
         imageLight="/explore/dark/Hackathon_b.png"
@@ -157,11 +157,33 @@ const ContentSections = () => {
           {
             href: "/hackathon",
             label:
-              t.home?.sections?.hackathon?.mainLink || "Join the Hackathon",
+              t.home?.sections?.hackathon?.mainLink || "View projects",
             primary: true,
           },
         ]}
       />
+
+      {/* ZecMap Section */}
+      <InfoCard
+        id="zecmap"
+        reverse={true}
+        title={t.home?.sections?.zecMap?.title || "ZecMap"}
+        description={
+          t.home?.sections?.zecMap?.description ||
+          "ZecMap is a community-maintained world map of merchants, services and ATMs that accept Zcash. Find somewhere to spend ZEC near you, or add a business you know to help grow real-world adoption."
+        }
+        image="/explore/light/start-here.png"
+        imageLight="/explore/light/start-here.png"
+        imageDark="/explore/dark/start-here.png"
+        links={[
+          {
+            href: "https://zecmap.com",
+            label: t.home?.sections?.zecMap?.link || "Visit ZecMap",
+            primary: true,
+          },
+        ]}
+      />
+
     </section>
   );
 };

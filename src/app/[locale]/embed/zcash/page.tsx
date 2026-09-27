@@ -19,7 +19,6 @@ import DifficultyChart from "@/components/Charts/Zcash/DifficultyChart";
 import IssuanceChart from "@/components/Charts/Zcash/IssuanceChart";
 import LockboxChart from "@/components/Charts/Zcash/LockboxChart";
 import NetInflowsOutflowsChart from "@/components/Charts/Zcash/NetInflowsOutflowsChart";
-import NodeCountChart from "@/components/Charts/Zcash/NodeCountChart";
 import TransactionsSummaryChart from "@/components/Charts/Zcash/TransactionSummaryChart";
 import PrivacySetVisualizationChart from "@/components/Charts/Zcash/PrivacySetVisualizationChart";
 import ChartFooter from "@/components/Charts/ChartFooter";
@@ -64,7 +63,6 @@ function ZcashEmbedContent() {
     "Issuance",
     "Lockbox",
     "Flows",
-    "Node Count",
     "Tx Summary",
     "Privacy Set",
   ];
@@ -195,10 +193,6 @@ function ZcashEmbedContent() {
 
                 <TabsContent value="flows" activeTab={activeTab}>
                   <NetInflowsOutflowsChart color="red" chartRef={divChartRef} />
-                </TabsContent>
-
-                <TabsContent value="node count" activeTab={activeTab}>
-                  <NodeCountChart color="red" chartRef={divChartRef} />
                 </TabsContent>
 
                 <TabsContent value="tx summary" activeTab={activeTab}>

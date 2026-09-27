@@ -5,7 +5,7 @@ export type Tutorial = {
   category: string;
 };
 
-export const tutorials: Tutorial[] = [
+const tutorialData: Tutorial[] = [
   {
     "id": 1,
     "title": "How to Buy $ZEC P2P with Peer",
@@ -535,3 +535,35 @@ export const tutorials: Tutorial[] = [
     "category": "General"
   }
 ];
+
+const categoryRules: Array<[string, RegExp]> = [
+  ["Wallets", /wallet|zashi|zingo|keystone|ywalle?t|metamask|keplr|cake wallet|solflare/i],
+  ["Nodes & development", /zebra|zebrad|zaino|zingolib|full node|lightwalletd|rpc|compile|raspberry|nym mixnet node|metrics|dizzy bot|zchat/i],
+  ["Swaps & DeFi", /swap|dex|defi|exchange|near intents|osmosis|ubiq|agoric|stablecoin|shapeshift/i],
+  ["Privacy & security", /shield|privacy|frost|encrypted|secure|file transfer|dark irc|threshold custody|orchard/i],
+  ["Payments & commerce", /buy|purchase|spend|payment|donation|top-up|vpn subscription|payment processor/i],
+  ["Community & governance", /grant|voting|proposal|daodao|zechub bount|hackathon|newsletter/i],
+];
+
+function correctedTitle(title: string) {
+  return title
+    .replace(/^(TUTORIAL|HOW-TO|DEMO|PREVIEW):?\s*/i, "")
+    .replace(/\s*\|\s*TUTORIAL\s*$/i, "")
+    .replace(/\s*TUTORIAL\s*$/i, "")
+    .replace(/#(?:cryptocurrency|privacy|ZEC|shielded|defi|MATIC|UBQ|DEX)\b/gi, "")
+    .replace(/MutliSig/g, "MultiSig")
+    .replace(/RPC's/g, "RPCs")
+    .replace(/^The Beginners Guide/i, "The Beginner's Guide")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+function categoryFor(title: string) {
+  return categoryRules.find(([, rule]) => rule.test(title))?.[0] ?? "Zcash basics";
+}
+
+export const tutorials: Tutorial[] = tutorialData.map((tutorial) => ({
+  ...tutorial,
+  title: correctedTitle(tutorial.title),
+  category: categoryFor(tutorial.title),
+}));

@@ -17,13 +17,12 @@ workflow and how to add a language without reading the whole codebase.
 
 ## Join the conversation
 
-First, join the conversation in the [Zcash Global discord](https://discord.gg/zcash). There's a ZecHub section where we chat about all things ZecHub :smile:
-
-<small> Don’t forget to add the ZecHub role in <a href="https://discord.com/channels/978714252934258779/983468150861484093">#lang-menu channel</a>! </small>
+First, join the conversation in the [Zcash Global discord](https://discord.gg/zcash). There's a ZecHub channel ( 💭┊zechub ) where we chat about all things ZecHub :smile:
 
 ## Bounty
 
-If you're familiar with Next.js, we offer paid bounty for ZecHub Wiki through dework. Go to [dework.zechub.org](https://dework.zechub.org/) to find and apply for active bounties.
+If you're familiar with Next.js, we offer paid bounty for ZecHub Wiki through ZEC Bounties. Go to [here](https://bounties.zechub.wiki/) to find or create a bounty. Be sure 
+to read the [documentation](https://bounties.zechub.wiki/docs) and verify your profile settings. Also set your UA.
 
 ## Issues
 

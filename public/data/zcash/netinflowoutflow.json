@@ -556,5 +556,35 @@
     "Net Sapling Flow": "3158.26883970",
     "Net Orchard Flow": "302517.07235253",
     "Net Ironwood Flow": "-599298.86548052"
+  },
+  {
+    "Date": "2026-08-30",
+    "Net Sapling Flow": "2677.74843189",
+    "Net Orchard Flow": "59188.02787620",
+    "Net Ironwood Flow": "-236837.01748349"
+  },
+  {
+    "Date": "2026-09-05",
+    "Net Sapling Flow": "4038.08044486",
+    "Net Orchard Flow": "23900.20407020",
+    "Net Ironwood Flow": "-44572.10664883"
+  },
+  {
+    "Date": "2026-09-13",
+    "Net Sapling Flow": "9284.00709968",
+    "Net Orchard Flow": "28660.02433335",
+    "Net Ironwood Flow": "-69339.96126178"
+  },
+  {
+    "Date": "2026-09-20",
+    "Net Sapling Flow": "7268.32728393",
+    "Net Orchard Flow": "7560.25062696",
+    "Net Ironwood Flow": "-30377.68996090"
+  },
+  {
+    "Date": "2026-09-27",
+    "Net Sapling Flow": "1949.04934741",
+    "Net Orchard Flow": "29732.15394861",
+    "Net Ironwood Flow": "-14880.27970203"
   }
 ]

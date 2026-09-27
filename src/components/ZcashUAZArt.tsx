@@ -1,11 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import QRCode from 'qrcode.react';
+import useClipboardFeedback from '@/hooks/useClipboardFeedback';
 
 export default function ZcashUAZArt() {
-  const [copied, setCopied] = useState(false);
-
   const ua = "u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u5533c97affg9jq208du0vf787vfx4vkd6cd0ma4pxkkuc6xe6ue4dlgjvn9dhzacgk9peejwxdn0ksw3v3yf0dy47znruqftfqgf6xpuelle29g2qxquudxsnnen3dvdx8az6w3tggalc4pla3n4jcs8vf4h29ach3zd8enxulush89";
   const zArt = 
   `   u1rl2zw85dmjc8m4dmqvtstcyvdjn23n0ad53u
@@ -28,11 +26,7 @@ export default function ZcashUAZArt() {
       gf6xpuelle29g2qxquudxsnnen3dvdx8az6w3t
       ggalc4pla3n4jcs8vf4h29ach3zd8enxulush89`;
 
-  const copyUA = () => {
-    navigator.clipboard.writeText(ua);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const { copy, status, isCopying } = useClipboardFeedback(ua);
 
   return (
     <div style={{ textAlign: 'center', margin: '50px 0' }}>
@@ -82,7 +76,9 @@ export default function ZcashUAZArt() {
 
       {/* Copy button below the entire box */}
       <button
-        onClick={copyUA}
+        type="button"
+        onClick={copy}
+        disabled={isCopying}
         style={{
           display: 'block',
 	  margin: '35px auto 0',
@@ -93,11 +89,37 @@ export default function ZcashUAZArt() {
           border: 'none',
           borderRadius: '12px',
           fontWeight: 'bold',
-          cursor: 'pointer'
+          cursor: isCopying ? 'wait' : 'pointer',
+          opacity: isCopying ? 0.6 : 1
         }}
       >
-        {copied ? '✅ Copied!' : '📋 Copy Full Unified Address'}
+        {isCopying
+          ? 'Copying…'
+          : status === 'copied'
+            ? '✅ Copied!'
+            : '📋 Copy Full Unified Address'}
       </button>
+      <p role="status" aria-live="polite" style={{ minHeight: '1.5em', marginTop: '12px' }}>
+        {isCopying
+          ? 'Copying…'
+          : status === 'copied'
+            ? 'Copied to clipboard'
+            : status === 'error'
+              ? 'Could not copy. Select and copy the address manually.'
+              : ''}
+      </p>
+      {status === 'error' && (
+        <label style={{ display: 'block', maxWidth: '400px', margin: '0 auto' }}>
+          Full unified address
+          <textarea
+            readOnly
+            value={ua}
+            rows={6}
+            onFocus={(event) => event.currentTarget.select()}
+            style={{ display: 'block', width: '100%', marginTop: '8px', padding: '8px', fontFamily: 'monospace', color: '#111', background: '#fff' }}
+          />
+        </label>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { contentBanners } from "@/constants/contentBanners";
+import { isResearchSeriesSlug } from "@/constants/researchSeries";
 import { getRootCached } from "./authAndFetch";
 
 // Stable @id for the ZecHub Organization node in schema.org structured data.
@@ -55,13 +56,13 @@ export const toOgLocale = (locale: string): string => {
 
 // Pass http(s) URLs through untouched; resolve everything else against the
 // canonical origin as a site-root-relative path.
-const toAbsoluteUrl = (u: string): string =>
+export const toAbsoluteUrl = (u: string): string =>
   /^https?:\/\//i.test(u)
     ? u
     : `${SITE_ORIGIN}${u.startsWith("/") ? "" : "/"}${u}`;
 
 // Serialize an object as a JSON-LD payload safe to inline in a <script> tag.
-// Escaping "<" as < prevents a "</script>" sequence inside the data from
+// Escaping "<" as \u003c prevents a "</script>" sequence inside the data from
 // breaking out of the element — Next.js's documented JSON-LD recommendation.
 export const jsonLdScript = (obj: unknown): string =>
   JSON.stringify(obj).replace(/</g, "\\u003c");
@@ -83,25 +84,116 @@ const isLinkOnlyLine = (l: string) =>
   /^\s*!?\[[^\]]*\]\([^)]*\)\s*$/.test(l) || /^\s*https?:\/\/\S+\s*$/.test(l);
 // Horizontal rule (---, ***, ___).
 const isHrLine = (l: string) => /^\s*([-*_])\1{2,}\s*$/.test(l);
+// List item (bulleted or ordered) or table row — structure, not prose.
+const isListOrTableLine = (l: string) =>
+  /^\s*[-*+]\s/.test(l) || /^\s*\d+[.)]\s/.test(l) || /^\s*\|/.test(l);
+
+// Whether an already-stripped line reads as a summary sentence rather than a
+// label, a nav run or a stub. Without this the "first paragraph" heuristic
+// happily returns "- Devices: Mobile" (wallets), "Website - GitHub - X/Twitter
+// - Discord" (zodl) or "Beginner - 5 min" (accept-payments-as-a-merchant) — a
+// wrong description is worse than none, because it is what an answer engine
+// reads when deciding whether the page answers a question.
+const MIN_SUMMARY_LEN = 40;
+const isUsableSummary = (text: string) => {
+  if (text.length < MIN_SUMMARY_LEN) return false;
+  // "Series: Zero to Zero Knowledge", "Level: Beginner" — a field, not prose.
+  if (/^[A-Za-z][A-Za-z ]{0,20}:\s/.test(text) && text.length < 80) return false;
+  // Three or more " - " separators is a link run flattened by stripInlineMd.
+  if ((text.match(/ - /g) ?? []).length >= 3) return false;
+  return true;
+};
 
 // Strip inline markdown so a paragraph reads cleanly as a plain-text
 // description: images dropped, links reduced to their text, emphasis/code
 // markers removed, whitespace collapsed.
-const stripInlineMd = (s: string) =>
+export const stripInlineMd = (s: string) =>
   s
     .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
     .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/<[^>]+>/g, "")
     .replace(/[*_`~]+/g, "")
     .replace(/\s+/g, " ")
     .trim();
 
 // Trim to a max length at a word boundary, appending an ellipsis when cut.
-const truncate = (s: string, max: number) => {
+export const truncate = (s: string, max: number) => {
   if (s.length <= max) return s;
   const cut = s.slice(0, max);
   const lastSpace = cut.lastIndexOf(" ");
   const base = lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut;
   return `${base.replace(/[\s.,;:–—-]+$/, "")}…`;
+};
+
+// Strip markdown link/image title text and query fragments from a captured src.
+const normalizeImageSrc = (raw: string): string =>
+  raw.trim().split(/\s+/)[0]?.replace(/^["']|["']$/g, "") ?? "";
+
+// Off-site og:image URLs must look like images; on-site paths are always OK.
+const isUsableOgImage = (src: string): boolean => {
+  if (src.startsWith("/") && !src.startsWith("//")) return true;
+  if (src.startsWith(SITE_ORIGIN)) return true;
+  return /\.(webp|png|jpe?g|gif|svg|avif)(\?|#|$)/i.test(src);
+};
+
+// Extract first image from markdown content
+export function extractFirstContentImage(
+  content: string,
+  filePath?: string,
+): string | null {
+  const matches =
+    content.match(/!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/g) ||
+    [];
+  for (const m of matches) {
+    const single = m.match(
+      /!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/,
+    );
+    if (!single) continue;
+    const src = normalizeImageSrc(single[1] || single[2] || "");
+    if (src && !/shields\.io|badge|edit/i.test(src) && isUsableOgImage(src)) {
+      if (src.startsWith("http") || (src.startsWith("/") && !src.startsWith("//")))
+        return src;
+      if (filePath) {
+        const dir = filePath.substring(0, filePath.lastIndexOf("/"));
+        return `https://raw.githubusercontent.com/ZecHub/zechub/main/${dir}/${src}`;
+      }
+    }
+  }
+  return null;
+}
+
+// Section descriptions for directory index pages
+const SECTION_DESCRIPTIONS: Record<string, string> = {
+  "start-here":
+    "Start your journey with Zcash. Essential guides, core concepts, and introductory resources for beginners.",
+  "using-zcash":
+    "Learn how to use Zcash for private digital payments, explore wallets, exchanges, and shielded transactions.",
+  guides:
+    "Step-by-step guides and technical walkthroughs for setting up nodes, mining, integrations, and tools on Zcash.",
+  tutorials:
+    "Practical hands-on tutorials and video guides for the Zcash ecosystem.",
+  "zcash-tech":
+    "Technical specifications, cryptography, zero-knowledge proofs (zk-SNARKs), and protocol architecture of Zcash.",
+  "zcash-community":
+    "Community initiatives, grants, global ambassadors, and grassroots projects supporting Zcash.",
+  "zcash-organizations":
+    "Key organizations advancing the Zcash ecosystem including Electric Coin Company, Zcash Foundation, and Zcash Community Grants.",
+  "privacy-tools":
+    "Curated privacy-preserving tools, secure operating systems, VPNs, and communications software.",
+  "glossary-and-faqs":
+    "Comprehensive glossary of Zcash terminology, acronyms, and frequently asked questions.",
+  contribute:
+    "How to contribute to ZecHub and the Zcash ecosystem — documentation, code, translation, and governance.",
+  research:
+    "Research articles, protocol analysis, and deep dives into zero-knowledge cryptography and privacy models.",
+};
+
+export const getSectionDescription = (section: string): string => {
+  const normalized = section.toLowerCase().replace(/_/g, "-");
+  return (
+    SECTION_DESCRIPTIONS[normalized] ||
+    `Explore ${section.replace(/[-_]/g, " ")} educational resources, guides, and documentation on ZecHub.`
+  );
 };
 
 // Normalize a frontmatter date to an ISO string. A bare YYYY-MM-DD is kept as a
@@ -124,6 +216,7 @@ export const extractArticleMeta = (
   markdown: string,
   fallbackHeadline: string,
   fallbackImage?: string,
+  filePath?: string,
 ): ArticleMeta => {
   const src = markdown.replace(/^\uFEFF/, "").replace(/\r\n?/g, "\n");
 
@@ -160,25 +253,37 @@ export const extractArticleMeta = (
   headline = truncate(headline, 110);
 
   // Description: first prose paragraph after the H1 (or from the top if no H1).
+  // Keep scanning past structure and stubs rather than taking the first
+  // non-blank line — many pages open with a spec table or a link row, and the
+  // paragraph that actually describes the page comes further down.
   let description = "";
   for (let i = h1Index + 1; i < lines.length; i++) {
-    const l = lines[i];
+    // A blockquote is prose — many pages open with one — but the ">" markers
+    // are syntax, not text, and leak into the rendered description if kept.
+    const l = lines[i].replace(/^\s*(?:>\s?)+/, "");
     if (
       isBlankLine(l) ||
       isHeadingLine(l) ||
       isHtmlLine(l) ||
       isLinkOnlyLine(l) ||
-      isHrLine(l)
+      isHrLine(l) ||
+      isListOrTableLine(l)
     ) {
       continue;
     }
-    description = truncate(stripInlineMd(l), 160);
+    const text = stripInlineMd(l);
+    if (!isUsableSummary(text)) continue;
+    description = truncate(text, 160);
     break;
   }
 
+  const contentImage = extractFirstContentImage(body, filePath);
+
   const meta: ArticleMeta = {
-    headline,
-    description: description || SITE_DESCRIPTION,
+    headline: fm.title ? truncate(stripInlineMd(fm.title), 110) : headline,
+    description: fm.description
+      ? truncate(stripInlineMd(fm.description), 160)
+      : description || SITE_DESCRIPTION,
   };
 
   const dateRaw = fm.published || fm.date;
@@ -187,8 +292,10 @@ export const extractArticleMeta = (
     if (iso) meta.datePublished = iso;
   }
 
-  const imgRaw = fm.image || fm.cover || (fallbackImage || "").trim();
-  if (imgRaw) meta.image = toAbsoluteUrl(imgRaw);
+  const imgRaw = normalizeImageSrc(
+    fm.image || fm.cover || contentImage || (fallbackImage || "").trim(),
+  );
+  if (imgRaw && isUsableOgImage(imgRaw)) meta.image = toAbsoluteUrl(imgRaw);
 
   return meta;
 };
@@ -201,6 +308,7 @@ type MetadataOpts = {
   // Locale being rendered. When set, emitted as `openGraph.locale` so the OG
   // card advertises the correct language.
   locale?: string;
+  type?: "website" | "article";
   // Head-level canonical + hreflang alternates (from buildAlternates). Passed
   // through untouched when provided.
   alternates?: Metadata["alternates"];
@@ -212,33 +320,39 @@ export const genMetadata = ({
   image,
   url,
   locale,
+  type = "website",
   alternates,
-}: MetadataOpts) => {
-  const defaultImage = "/previews/default-banner.jpg";
+}: MetadataOpts): Metadata => {
+  const defaultImage = "/content-banners/bannertech.jpg";
   const defaultUrl = "https://zechub.wiki";
   const defaultTitle = "ZecHub Wiki";
   const defaultDescription = SITE_DESCRIPTION;
 
+  const resolvedTitle = title || defaultTitle;
+  const resolvedDescription = description || defaultDescription;
+  const resolvedImage = image || defaultImage;
+  const resolvedUrl = url || defaultUrl;
+
   return {
     metadataBase: new URL("https://zechub.wiki"),
-    title: title || defaultTitle,
-    description: description || defaultDescription,
+    title: resolvedTitle,
+    description: resolvedDescription,
     ...(alternates ? { alternates } : {}),
     openGraph: {
-      title: title,
-      description: description || defaultDescription,
-      images: image || defaultImage,
+      title: resolvedTitle,
+      description: resolvedDescription,
+      images: resolvedImage,
       siteName: "ZecHub Wiki",
-      type: "website",
-      url: url || defaultUrl,
+      type,
+      url: resolvedUrl,
       ...(locale ? { locale: toOgLocale(locale) } : {}),
     },
     twitter: {
-      title: title || defaultTitle,
+      title: resolvedTitle,
       card: "summary_large_image",
-      description: description || defaultDescription,
-      image: image || defaultImage,
-      url: url || defaultUrl,
+      description: resolvedDescription,
+      images: [resolvedImage],
+      site: "@ZecHub",
     },
   };
 };
@@ -261,6 +375,28 @@ export const getDynamicRoute = (slug: string[]): string => {
     : `/site${transformUri(uri)}.md`;
 };
 
+const normSlugSegment = (s: string) => s.toLowerCase().replace(/[-_ ]/g, "");
+
+/**
+ * Resolve a research article's content-repo path from a slug plus the fetched
+ * directory listing under site/Research. Shared by page.tsx (render +
+ * generateMetadata) so the fuzzy filename match and fallback stay in one place.
+ */
+export function resolveResearchArticleContentUrl(
+  slug: string[],
+  roots: string[],
+): string {
+  const lastSegment = slug[slug.length - 1];
+  const target = normSlugSegment(lastSegment);
+  const match = roots.find((r: string) => {
+    if (typeof r !== "string" || !r.endsWith(".md")) return false;
+    const base = r.split("/").pop()!.replace(/\.md$/i, "");
+    return normSlugSegment(base) === target;
+  });
+  if (match) return match;
+  return `site/Research/${slug.slice(1).join("/")}.md`;
+}
+
 /**
  * Resolve the content-repo markdown path a wiki page actually renders from, for
  * a given URL slug. This is the PURE (no next/cache, no React, no network)
@@ -269,30 +405,18 @@ export const getDynamicRoute = (slug: string[]): string => {
  * (scripts/generate-llms-txt.mjs) and API routes (src/app/api/content-md) fetch
  * exactly what the HTML page fetches.
  *
- * PARITY — keep in sync with page.tsx (its `getDynamicRoute` default plus the
- * research-series special case, ~L154-177 / ~L393-413). Research-series articles
- * live one folder deeper (site/Research/<series>/…/<article>.md) with
- * lowercase-hyphen filenames that getDynamicRoute would mangle into
- * Capitalized_Underscore paths → 404, so for those we preserve the slug's own
- * casing/hyphens. Top-level research articles (and everything else) use
- * Capitalized_Underscore filenames that getDynamicRoute already produces, so
- * they fall through to getDynamicRoute unchanged. page.tsx additionally
- * fuzzy-matches a fetched directory listing (impure); this function reproduces
- * its deterministic outcome. These two implementations are REPLICATED, not
- * shared — when either changes, update the other.
+ * PARITY — keep in sync with page.tsx (getDynamicRoute default plus
+ * resolveResearchArticleContentUrl when a directory listing is available).
+ * Nested research-series articles preserve slug casing/hyphens; top-level
+ * research articles fuzzy-match against roots in page.tsx via
+ * resolveResearchArticleContentUrl().
  */
 export const resolveContentPath = (slug: string[]): string => {
   const isResearchArticle = slug[0] === "research" && slug.length > 1;
-  const isResearchSeries =
-    slug.length === 2 &&
-    slug[0] === "research" &&
-    slug[1] === "zcash-foundations-series";
+  const isResearchSeries = isResearchSeriesSlug(slug);
 
-  // Nested research (a series article, one or more folders below /research):
-  // preserve raw casing/hyphens — mirrors page.tsx's
-  // `site/Research/${slug.slice(1).join("/")}.md` fallback.
   if (isResearchArticle && !isResearchSeries && slug.length > 2) {
-    return `site/Research/${slug.slice(1).join("/")}.md`;
+    return resolveResearchArticleContentUrl(slug, []);
   }
 
   return getDynamicRoute(slug);

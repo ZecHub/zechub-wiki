@@ -9,13 +9,49 @@
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.12);
 }
 
 .thumbnail {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
+  border: 0;
+  background: radial-gradient(120% 120% at 50% 0%, #241633 0%, #0d1117 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnailButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.thumbnailButton:hover .playIcon { transform: scale(1.08); }
+
+.playIcon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 42px;
+  margin: auto;
+  border-radius: 12px;
+  background: #f4b728;
+  color: #0d1117;
+  transition: transform .2s ease;
+  position: absolute;
+  inset: 0;
+  margin: auto;
 }
 
 .body {
@@ -37,8 +73,54 @@
   font-size: 18px;
 }
 
-.body p {
+.actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
   margin-top: 16px;
+  font-size: 13px;
+}
+
+.actions button, .actions a {
   color: var(--primary);
   font-weight: 600;
+  text-decoration: none;
+}
+
+.playLink {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(5, 7, 12, .86);
+}
+
+.modal {
+  position: relative;
+  width: 50vw;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 18px;
+  background: var(--background);
+  box-shadow: 0 24px 80px rgba(0,0,0,.5);
+}
+
+.playerFrame { aspect-ratio: 16 / 9; width: 100%; }
+.playerFrame iframe { display: block; width: 100%; height: 100%; border: 0; border-radius: 10px; }
+.modal h2 { margin: 16px 44px 4px 2px; font-size: 18px; }
+.closeButton { position: absolute; top: 4px; right: 7px; z-index: 1; width: 36px; height: 36px; border: 0; background: transparent; color: inherit; cursor: pointer; font-size: 30px; line-height: 1; }
+
+@media (max-width: 640px) {
+  .modalBackdrop { padding: 10px; }
+  .modal { width: 100%; padding: 10px; border-radius: 12px; }
+  .modal h2 { font-size: 15px; }
 }

@@ -23,7 +23,7 @@
     "Exchanges": "Exchanges",
     "Extras": "Extras",
     "Faucets": "Faucets",
-    "Financial Privacy Foundation": "Fundación para la Privacidad Financiera",
+    "Financial Privacy Foundation": "Financial Privacy Foundation",
     "Free2z Live": "Free2z Live",
     "Freelance Privacy": "Privacidad para freelancers",
     "Github": "Github",
@@ -80,7 +80,7 @@
     "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Seguridad del ecosistema de Zcash",
     "Zcash Foundation": "Zcash Foundation",
-    "Zcash Global Ambassadors": "Embajadores Globales de Zcash",
+    "Zcash Global Ambassadors": "Zcash Global Ambassadors",
     "Zcash Governance": "Gobernanza de Zcash",
     "Zcash Improvement Proposals": "Propuestas de mejora de Zcash",
     "Zcash Login": "Zcash Login",
@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "Pagar por IA"
+    "Pay for AI": "Pagar por IA",
+    "Spend Zcash": "Gastar Zcash",
+    "Places to Spend ZEC": "Lugares para gastar ZEC",
+    "Free2Z Livestreaming": "Transmisión en vivo de Free2Z",
+    "Hardened Zebrad": "Zebrad reforzado",
+    "Migration Guide Zcashd To Zebrad Zallet": "Guía de migración de Zcashd a Zebrad Zallet",
+    "My First Zcash Workbook": "Mi primer libro de ejercicios de Zcash",
+    "Verifying Zcash Releases": "Verificando los lanzamientos de Zcash",
+    "Viewing Key Transaction Export": "Exportación de transacciones de Viewing Key",
+    "Brave Wallet Guide": "Guía de Brave Wallet",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Red Akash Zcashd",
+    "CoinHolder Directed Retroactive Grants": "Subvenciones retroactivas dirigidas por CoinHolder"
   },
   "exploreMenu": {
     "Full Explore": "Exploración completa",
@@ -149,7 +163,8 @@
     "searchNoResults": "No hay páginas coincidentes",
     "searchTryDifferent": "Prueba consultas más cortas, sinónimos u otras palabras.",
     "searchSuggested": "Páginas sugeridas",
-    "searchResultsLabel": "Resultados"
+    "searchResultsLabel": "Resultados",
+    "skipToContent": "Saltar al contenido"
   },
   "navigation": {
     "wallets": "Carteras",
@@ -511,7 +526,7 @@
     },
     "dex": {
       "title": "Intercambios descentralizados",
-      "subtitle": "ZecHub no respalda ningún servicio de intercambio descentralizado en particular, por favor haz tu propia investigación.",
+      "subtitle": "ZecHub no respalda ningún servicio de exchange descentralizado en particular; por favor, investiga por tu cuenta.",
       "centralised": "Plataformas de intercambio centralizadas",
       "centralizedTitle": "Listado de plataformas de intercambio centralizado",
       "custodial": "Exchanges con custodia",
@@ -527,7 +542,8 @@
         "RocketX": "Agregador DEX híbrido que permite swaps cross-chain entre múltiples blockchains con enrutamiento óptimo y tasas competitivas.",
         "THORChain": "Exchange cross-chain descentralizado de Capa 1. Intercambia activos nativos como ZEC, BTC y ETH directamente, sin puentes, tokens envueltos ni intermediarios.",
         "Loofta": "Plataforma privada de pagos y swaps sin custodia. Envía y recibe cripto de forma privada entre cadenas, con Zcash como capa de liquidación para una mayor privacidad financiera."
-      }
+      },
+      "disclaimer": "ZecHub no respalda ningún servicio de intercambio en particular; investiga por tu cuenta."
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -581,7 +597,6 @@
           "issuance": "Emisión",
           "lockbox": "Lockbox",
           "flows": "Flujos",
-          "nodeCount": "Cantidad de nodos",
           "txSummary": "Resumen de TX",
           "privacySet": "Conjunto de privacidad",
           "shieldedStats": "Estadísticas blindadas",
@@ -1071,7 +1086,11 @@
       "tagShieldedTransactions": "Transacciones blindadas",
       "tagPrivacyModels": "Modelos de privacidad",
       "tagProtocolDesign": "Diseño del protocolo",
-      "tagZeroKnowledge": "Conocimiento cero"
+      "tagZeroKnowledge": "Conocimiento cero",
+      "formalVerificationSeriesTitle": "Serie de verificación formal de Zcash",
+      "formalVerificationSeriesCardDescription": "Qué es la verificación formal, el bug de solidez de Orchard de 2026 y cómo Ironwood lo resolvió con una prueba verificada por máquina.",
+      "formalVerificationSeriesDescription": "Una serie de tres partes que explica la verificación formal desde sus fundamentos, recorre el bug de solidez de Orchard de 2026 y muestra cómo Ironwood lo resolvió con una prueba matemática verificada por máquina.",
+      "newSeriesBadge": "Nueva serie"
     },
     "browseSidebar": "Explora los artículos usando la barra lateral de la izquierda 👈",
     "zcashGlobalAmbassadors": {

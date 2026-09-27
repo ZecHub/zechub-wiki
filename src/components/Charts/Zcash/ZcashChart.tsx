@@ -32,7 +32,6 @@ function ZcashChart(props: ZcashChartProps) {
     { value: "issuance", label: chartT?.issuance || "Issuance" },
     { value: "lockbox", label: chartT?.lockbox || "Lockbox" },
     { value: "flows", label: chartT?.flows || "Flows" },
-    { value: "node count", label: chartT?.nodeCount || "Node Count" },
     { value: "tx summary", label: chartT?.txSummary || "TX Summary" },
     { value: "privacy set", label: chartT?.privacySet || "Privacy Set" },
     { value: "shielded stats", label: chartT?.shieldedStats || "Shielded Stats" },

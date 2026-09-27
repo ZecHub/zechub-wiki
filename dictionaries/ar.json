@@ -23,7 +23,7 @@
     "Exchanges": "منصات التداول",
     "Extras": "إضافات",
     "Faucets": "صنابير",
-    "Financial Privacy Foundation": "مؤسسة الخصوصية المالية",
+    "Financial Privacy Foundation": "Financial Privacy Foundation",
     "Free2z Live": "Free2z Live",
     "Freelance Privacy": "الخصوصية للعمل الحر",
     "Github": "Github",
@@ -76,14 +76,14 @@
     "ZKAV Club": "ZKAV Club",
     "ZODL": "ZODL",
     "Zcash Community": "مجتمع Zcash",
-    "Zcash Community Grants": "منح مجتمع Zcash",
-    "Zcash Devtool": "أداة تطوير Zcash",
+    "Zcash Community Grants": "Zcash Community Grants",
+    "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "أمن منظومة Zcash",
     "Zcash Foundation": "Zcash Foundation",
-    "Zcash Global Ambassadors": "سفراء Zcash العالميون",
+    "Zcash Global Ambassadors": "Zcash Global Ambassadors",
     "Zcash Governance": "حوكمة Zcash",
     "Zcash Improvement Proposals": "مقترحات تحسين Zcash",
-    "Zcash Login": "تسجيل الدخول عبر Zcash",
+    "Zcash Login": "Zcash Login",
     "Zcash Media": "إعلام Zcash",
     "Zcash Organizations": "منظمات Zcash",
     "Zcash Podcasts": "بودكاست Zcash",
@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "الدفع مقابل الذكاء الاصطناعي"
+    "Pay for AI": "الدفع مقابل الذكاء الاصطناعي",
+    "Spend Zcash": "إنفاق Zcash",
+    "Places to Spend ZEC": "أماكن لإنفاق ZEC",
+    "Free2Z Livestreaming": "Free2Z البث المباشر",
+    "Hardened Zebrad": "Zebrad المحصّن",
+    "Migration Guide Zcashd To Zebrad Zallet": "دليل ترحيل Zcashd إلى Zebrad Zallet",
+    "My First Zcash Workbook": "دفتر العمل الأول الخاص بي لـ Zcash",
+    "Verifying Zcash Releases": "التحقق من إصدارات Zcash",
+    "Viewing Key Transaction Export": "تصدير معاملات Viewing Key",
+    "Brave Wallet Guide": "دليل محفظة Brave",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "شبكة Akash Zcashd",
+    "CoinHolder Directed Retroactive Grants": "منح بأثر رجعي موجهة من CoinHolder"
   },
   "exploreMenu": {
     "Full Explore": "استكشاف كامل",
@@ -123,7 +137,7 @@
     "Zcash Tech": "تقنيات Zcash",
     "Zcash Organizations": "منظمات Zcash",
     "Zcash Community": "مجتمع Zcash",
-    "ZKAV Club": "نادي ZKAV",
+    "ZKAV Club": "ZKAV Club",
     "Privacy Tools": "أدوات الخصوصية",
     "Research": "الأبحاث",
     "Glossary & FAQs": "مسرد المصطلحات والأسئلة الشائعة",
@@ -149,7 +163,8 @@
     "searchNoResults": "لا توجد صفحات مطابقة",
     "searchTryDifferent": "جرّب استعلامات أقصر أو مرادفات أو كلمات مختلفة.",
     "searchSuggested": "الصفحات المقترحة",
-    "searchResultsLabel": "النتائج"
+    "searchResultsLabel": "النتائج",
+    "skipToContent": "تخطي إلى المحتوى"
   },
   "navigation": {
     "wallets": "المحافظ",
@@ -511,7 +526,7 @@
     },
     "dex": {
       "title": "المنصات اللامركزية للتبادل",
-      "subtitle": "لا يؤيد ZecHub أي خدمة محددة من خدمات التبادل اللامركزي، لذا يُرجى إجراء بحثك الخاص.",
+      "subtitle": "ZecHub لا تؤيد أي خدمة بورصات لامركزية بعينها، يُرجى إجراء بحثك الخاص.",
       "centralised": "منصات المبادلة المركزية",
       "centralizedTitle": "إدراج منصة مبادلة مركزية",
       "custodial": "منصات تداول وصائية",
@@ -527,7 +542,8 @@
         "RocketX": "مجمّع DEX هجين يتيح المبادلات عبر السلاسل بين عدة شبكات بلوكتشين مع توجيه أمثل وأسعار تنافسية.",
         "THORChain": "منصة تبادل لامركزية عبر السلاسل من الطبقة الأولى. بدّل الأصول الأصلية مثل ZEC وBTC وETH مباشرة من دون جسور أو توكنات مغلّفة أو وسطاء.",
         "Loofta": "منصة خاصة وغير احتجازية للدفع والمبادلة. أرسل واستقبل العملات الرقمية بخصوصية عبر السلاسل، مع استخدام Zcash كطبقة تسوية لتعزيز الخصوصية المالية."
-      }
+      },
+      "disclaimer": "ZecHub لا يوصي بأي خدمة تبادل بعينها، يُرجى إجراء بحثك الخاص."
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -581,7 +597,6 @@
           "issuance": "الإصدار",
           "lockbox": "صندوق القفل",
           "flows": "التدفقات",
-          "nodeCount": "عدد العقد",
           "txSummary": "ملخص المعاملات",
           "privacySet": "مجموعة الخصوصية",
           "shieldedStats": "إحصاءات المحمي",
@@ -1071,7 +1086,11 @@
       "tagShieldedTransactions": "المعاملات المحمية",
       "tagPrivacyModels": "نماذج الخصوصية",
       "tagProtocolDesign": "تصميم البروتوكول",
-      "tagZeroKnowledge": "المعرفة الصفرية"
+      "tagZeroKnowledge": "المعرفة الصفرية",
+      "formalVerificationSeriesTitle": "سلسلة التحقق الرسمي من Zcash",
+      "formalVerificationSeriesCardDescription": "ما هو التحقق الرسمي، وخلل سلامة Orchard لعام 2026، وكيف عالجه Ironwood بإثبات تم التحقق منه آليًا.",
+      "formalVerificationSeriesDescription": "سلسلة من ثلاثة أجزاء تشرح التحقق الرسمي من المبادئ الأولى، وتستعرض خلل سلامة Orchard لعام 2026، وتبيّن كيف عالجه Ironwood ببرهان رياضي تم التحقق منه آليًا.",
+      "newSeriesBadge": "سلسلة جديدة"
     },
     "browseSidebar": "تصفّح المقالات باستخدام الشريط الجانبي على اليسار 👈",
     "zcashGlobalAmbassadors": {

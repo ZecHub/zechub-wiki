@@ -80,7 +80,7 @@
     "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Sicherheit des Zcash-Ökosystems",
     "Zcash Foundation": "Zcash Foundation",
-    "Zcash Global Ambassadors": "Globale Zcash-Botschafter",
+    "Zcash Global Ambassadors": "Zcash Global Ambassadors",
     "Zcash Governance": "Zcash-Governance",
     "Zcash Improvement Proposals": "Zcash Improvement Proposals",
     "Zcash Login": "Zcash Login",
@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "KI bezahlen"
+    "Pay for AI": "KI bezahlen",
+    "Spend Zcash": "Zcash ausgeben",
+    "Places to Spend ZEC": "Orte, an denen man ZEC ausgeben kann",
+    "Free2Z Livestreaming": "Free2Z-Livestreaming",
+    "Hardened Zebrad": "Gehärtetes Zebrad",
+    "Migration Guide Zcashd To Zebrad Zallet": "Migrationsleitfaden Zcashd zu Zebrad Zallet",
+    "My First Zcash Workbook": "Mein erstes Zcash-Arbeitsbuch",
+    "Verifying Zcash Releases": "Überprüfung von Zcash-Releases",
+    "Viewing Key Transaction Export": "Viewing Key-Transaktionsexport",
+    "Brave Wallet Guide": "Brave Wallet Anleitung",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Akash Network Zcashd",
+    "CoinHolder Directed Retroactive Grants": "CoinHolder-gerichtete rückwirkende Zuschüsse"
   },
   "exploreMenu": {
     "Full Explore": "Vollständig erkunden",
@@ -149,7 +163,8 @@
     "searchNoResults": "Keine passenden Seiten",
     "searchTryDifferent": "Versuche kürzere Suchanfragen, Synonyme oder andere Wörter.",
     "searchSuggested": "Vorgeschlagene Seiten",
-    "searchResultsLabel": "Ergebnisse"
+    "searchResultsLabel": "Ergebnisse",
+    "skipToContent": "Zum Inhalt springen"
   },
   "navigation": {
     "wallets": "Wallets",
@@ -511,7 +526,7 @@
     },
     "dex": {
       "title": "Dezentrale Börsen",
-      "subtitle": "ZecHub unterstützt keinen bestimmten Dienst für dezentrale Börsen; bitte recherchiere selbst.",
+      "subtitle": "ZecHub empfiehlt keinen bestimmten Dienst für dezentrale Börsen; bitte recherchieren Sie selbst.",
       "centralised": "Zentralisierte Swap-Plattformen",
       "centralizedTitle": "Listing auf zentralisierten Swap-Plattformen",
       "custodial": "Verwahrende Börsen",
@@ -527,7 +542,8 @@
         "RocketX": "Hybrider DEX-Aggregator für Cross-Chain-Swaps über mehrere Blockchains mit optimalem Routing und wettbewerbsfähigen Kursen.",
         "THORChain": "Dezentrale Layer-1-Cross-Chain-Börse. Tausche native Assets wie ZEC, BTC und ETH direkt – ohne Brücken, Wrapped Tokens oder Vermittler.",
         "Loofta": "Non-custodial Plattform für private Zahlungen und Swaps. Sende und empfange Krypto privat über verschiedene Chains hinweg, mit Zcash als Settlement-Layer für mehr finanzielle Privatsphäre."
-      }
+      },
+      "disclaimer": "ZecHub empfiehlt keinen bestimmten Exchange-Service. Bitte recherchiere selbst."
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -581,7 +597,6 @@
           "issuance": "Emission",
           "lockbox": "Lockbox",
           "flows": "Flüsse",
-          "nodeCount": "Anzahl der Nodes",
           "txSummary": "TX-Zusammenfassung",
           "privacySet": "Privacy Set",
           "shieldedStats": "Shielded-Statistiken",
@@ -1071,7 +1086,11 @@
       "tagShieldedTransactions": "Shielded Transactions",
       "tagPrivacyModels": "Datenschutzmodelle",
       "tagProtocolDesign": "Protokolldesign",
-      "tagZeroKnowledge": "Zero Knowledge"
+      "tagZeroKnowledge": "Zero Knowledge",
+      "formalVerificationSeriesTitle": "Zcash-Serie zur formalen Verifikation",
+      "formalVerificationSeriesCardDescription": "Was formale Verifikation ist, der Orchard-Soundness-Bug von 2026 und wie Ironwood ihn mit einem maschinell geprüften Beweis beantwortete.",
+      "formalVerificationSeriesDescription": "Eine dreiteilige Reihe, die formale Verifikation von Grund auf erklärt, den Orchard-Soundness-Bug von 2026 erläutert und zeigt, wie Ironwood ihn mit einem maschinell geprüften mathematischen Beweis beantwortete.",
+      "newSeriesBadge": "Neue Reihe"
     },
     "browseSidebar": "Durchsuche die Artikel über die linke Seitenleiste 👈",
     "zcashGlobalAmbassadors": {

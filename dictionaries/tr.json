@@ -73,17 +73,17 @@
     "Ywallet FROST Demo": "Ywallet FROST Demosu",
     "ZCAP": "ZCAP",
     "ZIPs & Grants": "ZIP'ler ve Hibeler",
-    "ZKAV Club": "ZKAV Kulübü",
+    "ZKAV Club": "ZKAV Club",
     "ZODL": "ZODL",
     "Zcash Community": "Zcash Topluluğu",
-    "Zcash Community Grants": "Zcash Topluluk Hibeleri",
-    "Zcash Devtool": "Zcash Geliştirici Aracı",
+    "Zcash Community Grants": "Zcash Community Grants",
+    "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Zcash Ekosistemi Güvenliği",
     "Zcash Foundation": "Zcash Foundation",
-    "Zcash Global Ambassadors": "Zcash Küresel Elçileri",
+    "Zcash Global Ambassadors": "Zcash Global Ambassadors",
     "Zcash Governance": "Zcash Yönetişimi",
     "Zcash Improvement Proposals": "Zcash İyileştirme Önerileri",
-    "Zcash Login": "Zcash Girişi",
+    "Zcash Login": "Zcash Login",
     "Zcash Media": "Zcash Medyası",
     "Zcash Organizations": "Zcash Kuruluşları",
     "Zcash Podcasts": "Zcash Podcast'leri",
@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "AI için Öde"
+    "Pay for AI": "AI için Öde",
+    "Spend Zcash": "Zcash Harca",
+    "Places to Spend ZEC": "ZEC Harcanabilecek Yerler",
+    "Free2Z Livestreaming": "Free2Z Canlı Yayın",
+    "Hardened Zebrad": "Güçlendirilmiş Zebrad",
+    "Migration Guide Zcashd To Zebrad Zallet": "Zcashd'den Zebrad Zallet'e Geçiş Kılavuzu",
+    "My First Zcash Workbook": "İlk Zcash Çalışma Kitabım",
+    "Verifying Zcash Releases": "Zcash Sürümleri Doğrulanıyor",
+    "Viewing Key Transaction Export": "Viewing Key İşlem Dışa Aktarımı",
+    "Brave Wallet Guide": "Brave Wallet Rehberi",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Akash Network Zcashd",
+    "CoinHolder Directed Retroactive Grants": "CoinHolder Yönlendirmeli Geriye Dönük Hibeler"
   },
   "exploreMenu": {
     "Full Explore": "Tam Keşfet",
@@ -149,7 +163,8 @@
     "searchNoResults": "Eşleşen sayfa yok",
     "searchTryDifferent": "Daha kısa sorgular, eş anlamlılar veya farklı kelimeler deneyin.",
     "searchSuggested": "Önerilen sayfalar",
-    "searchResultsLabel": "Sonuçlar"
+    "searchResultsLabel": "Sonuçlar",
+    "skipToContent": "İçeriğe atla"
   },
   "navigation": {
     "wallets": "Cüzdanlar",
@@ -511,7 +526,7 @@
     },
     "dex": {
       "title": "Merkeziyetsiz Borsalar",
-      "subtitle": "ZecHub herhangi bir belirli Merkeziyetsiz Borsa hizmetini desteklemez, lütfen kendi araştırmanızı yapın.",
+      "subtitle": "ZecHub belirli bir merkeziyetsiz borsa hizmetini desteklemez; lütfen kendi araştırmanızı yapın.",
       "centralised": "Merkezi Swap platformları",
       "centralizedTitle": "Merkezi Swap Platformu Listesi",
       "custodial": "Saklamalı Borsalar",
@@ -527,7 +542,8 @@
         "RocketX": "En uygun yönlendirme ve rekabetçi oranlarla birden fazla blokzincir arasında zincirler arası takaslar sağlayan hibrit DEX toplayıcısı.",
         "THORChain": "Merkeliyetsiz Katman 1 zincirler arası borsa. ZEC, BTC ve ETH gibi yerel varlıkları köprüler, sarılmış tokenlar veya aracılar olmadan doğrudan takas edin.",
         "Loofta": "Saklamasız özel ödeme ve takas platformu. Gelişmiş finansal gizlilik için Zcash'i mutabakat katmanı olarak kullanarak zincirler arasında kriptoyu özel şekilde gönderin ve alın."
-      }
+      },
+      "disclaimer": "ZecHub herhangi bir belirli borsa hizmetini desteklemez; lütfen kendi araştırmanızı yapın."
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -581,7 +597,6 @@
           "issuance": "İhraç",
           "lockbox": "Kilit kutusu",
           "flows": "Akışlar",
-          "nodeCount": "Düğüm Sayısı",
           "txSummary": "TX Özeti",
           "privacySet": "Gizlilik Kümesi",
           "shieldedStats": "Korumalı İstatistikler",
@@ -1071,7 +1086,11 @@
       "tagShieldedTransactions": "Korumalı İşlemler",
       "tagPrivacyModels": "Gizlilik Modelleri",
       "tagProtocolDesign": "Protokol Tasarımı",
-      "tagZeroKnowledge": "Sıfır Bilgi"
+      "tagZeroKnowledge": "Sıfır Bilgi",
+      "formalVerificationSeriesTitle": "Zcash Biçimsel Doğrulama Serisi",
+      "formalVerificationSeriesCardDescription": "Biçimsel doğrulamanın ne olduğu, 2026 Orchard sağlamlık hatası ve Ironwood’un makine tarafından denetlenmiş bir kanıtla buna nasıl yanıt verdiği.",
+      "formalVerificationSeriesDescription": "Biçimsel doğrulamayı ilk ilkelerden açıklayan, 2026 Orchard sağlamlık hatasını ele alan ve Ironwood’un makine tarafından denetlenmiş matematiksel bir kanıtla buna nasıl yanıt verdiğini gösteren üç bölümlük bir seri.",
+      "newSeriesBadge": "Yeni Seri"
     },
     "browseSidebar": "Makalelere soldaki kenar çubuğunu kullanarak göz atın 👈",
     "zcashGlobalAmbassadors": {

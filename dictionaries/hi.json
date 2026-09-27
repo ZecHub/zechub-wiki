@@ -23,7 +23,7 @@
     "Exchanges": "एक्सचेंज",
     "Extras": "अतिरिक्त",
     "Faucets": "फॉसेट्स",
-    "Financial Privacy Foundation": "वित्तीय गोपनीयता फाउंडेशन",
+    "Financial Privacy Foundation": "Financial Privacy Foundation",
     "Free2z Live": "Free2z Live",
     "Freelance Privacy": "फ्रीलांस गोपनीयता",
     "Github": "Github",
@@ -54,7 +54,7 @@
     "Sitemap": "साइटमैप",
     "Start Here": "यहाँ से शुरू करें",
     "Store": "स्टोर",
-    "Testnet": "टेस्टनेट",
+    "Testnet": "Testnet",
     "Tools": "टूल्स",
     "Transactions": "लेनदेन",
     "Transparent Exchange Addresses": "पारदर्शी एक्सचेंज पते",
@@ -80,10 +80,10 @@
     "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Zcash इकोसिस्टम सुरक्षा",
     "Zcash Foundation": "Zcash Foundation",
-    "Zcash Global Ambassadors": "Zcash वैश्विक राजदूत",
+    "Zcash Global Ambassadors": "Zcash Global Ambassadors",
     "Zcash Governance": "Zcash शासन",
     "Zcash Improvement Proposals": "Zcash सुधार प्रस्ताव",
-    "Zcash Login": "Zcash लॉगिन",
+    "Zcash Login": "Zcash Login",
     "Zcash Media": "Zcash मीडिया",
     "Zcash Organizations": "Zcash संगठन",
     "Zcash Podcasts": "Zcash पॉडकास्ट",
@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "AI के लिए भुगतान"
+    "Pay for AI": "AI के लिए भुगतान",
+    "Spend Zcash": "Zcash खर्च करें",
+    "Places to Spend ZEC": "ZEC खर्च करने की जगहें",
+    "Free2Z Livestreaming": "Free2Z लाइवस्ट्रीमिंग",
+    "Hardened Zebrad": "सुदृढ़ीकृत Zebrad",
+    "Migration Guide Zcashd To Zebrad Zallet": "Zcashd से Zebrad Zallet माइग्रेशन गाइड",
+    "My First Zcash Workbook": "मेरी पहली Zcash कार्यपुस्तिका",
+    "Verifying Zcash Releases": "Zcash रिलीज़ों का सत्यापन",
+    "Viewing Key Transaction Export": "Viewing Key लेनदेन निर्यात",
+    "Brave Wallet Guide": "Brave Wallet गाइड",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Akash Network Zcashd",
+    "CoinHolder Directed Retroactive Grants": "कॉइनहोल्डर द्वारा निर्देशित पूर्वव्यापी अनुदान"
   },
   "exploreMenu": {
     "Full Explore": "पूरा एक्सप्लोर करें",
@@ -149,7 +163,8 @@
     "searchNoResults": "कोई मेल खाते पृष्ठ नहीं",
     "searchTryDifferent": "छोटे प्रश्न, समानार्थी शब्द, या अलग शब्द आज़माएँ।",
     "searchSuggested": "सुझाए गए पृष्ठ",
-    "searchResultsLabel": "परिणाम"
+    "searchResultsLabel": "परिणाम",
+    "skipToContent": "सामग्री पर जाएँ"
   },
   "navigation": {
     "wallets": "Wallets",
@@ -511,7 +526,7 @@
     },
     "dex": {
       "title": "विकेंद्रीकृत एक्सचेंज",
-      "subtitle": "ZecHub किसी विशेष Decentralised Exchange सेवा का समर्थन नहीं करता, कृपया स्वयं शोध करें।",
+      "subtitle": "ZecHub किसी विशेष विकेंद्रीकृत एक्सचेंज सेवा का समर्थन नहीं करता है, कृपया स्वयं शोध करें।",
       "centralised": "केंद्रीकृत स्वैप प्लेटफ़ॉर्म",
       "centralizedTitle": "केंद्रीकृत स्वैप प्लेटफ़ॉर्म सूची",
       "custodial": "कस्टोडियल एक्सचेंज",
@@ -527,7 +542,8 @@
         "RocketX": "Hybrid DEX aggregator जो optimal routing और competitive rates के साथ multiple blockchains पर cross-chain swaps सक्षम करता है।",
         "THORChain": "Decentralized Layer 1 cross-chain exchange। ZEC, BTC और ETH जैसे native assets को सीधे swap करें, बिना bridges, wrapped tokens, या intermediaries के।",
         "Loofta": "Non-custodial private payment और swap platform। Enhanced financial privacy के लिए Zcash को settlement layer के रूप में उपयोग करते हुए, chains के बीच crypto को निजी रूप से भेजें और प्राप्त करें।"
-      }
+      },
+      "disclaimer": "ZecHub किसी विशेष एक्सचेंज सेवा का समर्थन नहीं करता है, कृपया स्वयं शोध करें।"
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -581,7 +597,6 @@
           "issuance": "जारीकरण",
           "lockbox": "लॉकबॉक्स",
           "flows": "प्रवाह",
-          "nodeCount": "नोड संख्या",
           "txSummary": "TX सारांश",
           "privacySet": "प्राइवेसी सेट",
           "shieldedStats": "शील्डेड आँकड़े",
@@ -1071,7 +1086,11 @@
       "tagShieldedTransactions": "शील्डेड ट्रांज़ैक्शन्स",
       "tagPrivacyModels": "गोपनीयता मॉडल",
       "tagProtocolDesign": "प्रोटोकॉल डिज़ाइन",
-      "tagZeroKnowledge": "ज़ीरो नॉलेज"
+      "tagZeroKnowledge": "ज़ीरो नॉलेज",
+      "formalVerificationSeriesTitle": "Zcash औपचारिक सत्यापन श्रृंखला",
+      "formalVerificationSeriesCardDescription": "औपचारिक सत्यापन क्या है, 2026 का Orchard साउंडनेस बग, और Ironwood ने मशीन-जाँचे गए प्रमाण के साथ इसका समाधान कैसे किया।",
+      "formalVerificationSeriesDescription": "तीन भागों की एक श्रृंखला जो मूल सिद्धांतों से औपचारिक सत्यापन को समझाती है, 2026 के Orchard साउंडनेस बग पर चर्चा करती है, और दिखाती है कि Ironwood ने मशीन-जाँचे गए गणितीय प्रमाण के साथ इसका समाधान कैसे किया।",
+      "newSeriesBadge": "नई श्रृंखला"
     },
     "browseSidebar": "बाईं ओर के साइडबार का उपयोग करके लेख ब्राउज़ करें 👈",
     "zcashGlobalAmbassadors": {

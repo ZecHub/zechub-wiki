@@ -73,11 +73,11 @@
     "Ywallet FROST Demo": "Демонстрация Ywallet FROST",
     "ZCAP": "ZCAP",
     "ZIPs & Grants": "ZIP и гранты",
-    "ZKAV Club": "Клуб ZKAV",
+    "ZKAV Club": "ZKAV Club",
     "ZODL": "ZODL",
     "Zcash Community": "Сообщество Zcash",
-    "Zcash Community Grants": "Гранты сообщества Zcash",
-    "Zcash Devtool": "Инструмент разработчика Zcash",
+    "Zcash Community Grants": "Zcash Community Grants",
+    "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Безопасность экосистемы Zcash",
     "Zcash Foundation": "Zcash Foundation",
     "Zcash Global Ambassadors": "Zcash Global Ambassadors",
@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "Оплата ИИ"
+    "Pay for AI": "Оплата ИИ",
+    "Spend Zcash": "Потратить Zcash",
+    "Places to Spend ZEC": "Где потратить ZEC",
+    "Free2Z Livestreaming": "Free2Z Прямые трансляции",
+    "Hardened Zebrad": "Защищённый Zebrad",
+    "Migration Guide Zcashd To Zebrad Zallet": "Руководство по миграции с Zcashd на Zebrad Zallet",
+    "My First Zcash Workbook": "Моя первая рабочая тетрадь по Zcash",
+    "Verifying Zcash Releases": "Проверка релизов Zcash",
+    "Viewing Key Transaction Export": "Экспорт транзакций Viewing Key",
+    "Brave Wallet Guide": "Руководство по Brave Wallet",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Akash Network Zcashd",
+    "CoinHolder Directed Retroactive Grants": "Ретроактивные гранты, направляемые CoinHolder"
   },
   "exploreMenu": {
     "Full Explore": "Полное исследование",
@@ -123,7 +137,7 @@
     "Zcash Tech": "Технологии Zcash",
     "Zcash Organizations": "Организации Zcash",
     "Zcash Community": "Сообщество Zcash",
-    "ZKAV Club": "Клуб ZKAV",
+    "ZKAV Club": "ZKAV Club",
     "Privacy Tools": "Инструменты конфиденциальности",
     "Research": "Исследования",
     "Glossary & FAQs": "Глоссарий и часто задаваемые вопросы",
@@ -149,7 +163,8 @@
     "searchNoResults": "Нет совпадающих страниц",
     "searchTryDifferent": "Попробуйте более короткие запросы, синонимы или другие слова.",
     "searchSuggested": "Рекомендуемые страницы",
-    "searchResultsLabel": "Результаты"
+    "searchResultsLabel": "Результаты",
+    "skipToContent": "Перейти к содержимому"
   },
   "navigation": {
     "wallets": "Кошельки",
@@ -511,7 +526,7 @@
     },
     "dex": {
       "title": "Децентрализованные биржи",
-      "subtitle": "ZecHub не поддерживает какую-либо конкретную службу децентрализованной биржи, пожалуйста, проведите собственное исследование.",
+      "subtitle": "ZecHub не поддерживает какую-либо конкретную децентрализованную биржу; пожалуйста, проведите собственное исследование.",
       "centralised": "Централизованные платформы обмена",
       "centralizedTitle": "Список централизованных платформ обмена",
       "custodial": "Кастодиальные биржи",
@@ -527,7 +542,8 @@
         "RocketX": "Гибридный агрегатор DEX, обеспечивающий кроссчейн-свопы между несколькими блокчейнами с оптимальной маршрутизацией и конкурентными курсами.",
         "THORChain": "Децентрализованная кроссчейн-биржа уровня 1. Обменивайте нативные активы, такие как ZEC, BTC и ETH, напрямую без мостов, обёрнутых токенов или посредников.",
         "Loofta": "Некостодиальная платформа для приватных платежей и свопов. Отправляйте и получайте криптовалюту конфиденциально между разными сетями, с Zcash в качестве расчётного слоя для повышенной финансовой приватности."
-      }
+      },
+      "disclaimer": "ZecHub не рекомендует какие-либо конкретные сервисы обмена; пожалуйста, проведите собственное исследование."
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -581,7 +597,6 @@
           "issuance": "Эмиссия",
           "lockbox": "Локбокс",
           "flows": "Потоки",
-          "nodeCount": "Количество узлов",
           "txSummary": "Сводка TX",
           "privacySet": "Набор приватности",
           "shieldedStats": "Статистика Shielded",
@@ -1071,7 +1086,11 @@
       "tagShieldedTransactions": "Экранированные транзакции",
       "tagPrivacyModels": "Модели приватности",
       "tagProtocolDesign": "Дизайн протокола",
-      "tagZeroKnowledge": "Нулевое разглашение"
+      "tagZeroKnowledge": "Нулевое разглашение",
+      "formalVerificationSeriesTitle": "Серия о формальной верификации Zcash",
+      "formalVerificationSeriesCardDescription": "Что такое формальная верификация, ошибка корректности Orchard 2026 года и как Ironwood решил проблему с помощью машинно проверяемого доказательства.",
+      "formalVerificationSeriesDescription": "Серия из трёх частей, объясняющая формальную верификацию с первых принципов, рассматривающая ошибку корректности Orchard 2026 года и показывающая, как Ironwood решил проблему с помощью машинно проверяемого математического доказательства.",
+      "newSeriesBadge": "Новая серия"
     },
     "browseSidebar": "Просматривайте статьи с помощью боковой панели слева 👈",
     "zcashGlobalAmbassadors": {

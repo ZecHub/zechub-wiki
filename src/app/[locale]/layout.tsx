@@ -5,6 +5,8 @@ import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavigationWrapper from "@/components/NavigationWrapper";
+import SkipToContent from "@/components/SkipToContent";
+import MotionProvider from "@/components/MotionProvider";
 import { ThemeProvider } from "next-themes";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
@@ -114,6 +116,13 @@ export default async function RootLayout({
         />
       </head>
       <body className={`px-0 ${inter.className} dark:bg-slate-900 dark:text-white`}>
+        {/* First focusable element on the page, so keyboard and screen-reader
+            users can bypass the header, menus and search (WCAG 2.4.1). Rendered
+            here rather than inside the providers so nothing precedes it in the
+            tab order. */}
+        <SkipToContent
+          label={(initialDictionary as Record<string, any>)?.common?.skipToContent}
+        />
         <NextIntlClientProvider>
           <ThemeProvider
             attribute="class"
@@ -127,9 +136,11 @@ export default async function RootLayout({
               initialDictionary={initialDictionary}
             >
               <DarkModeProvider>
-                <NavigationWrapper searchItems={searchItems}>
-                  {children}
-                </NavigationWrapper>
+                <MotionProvider>
+                  <NavigationWrapper searchItems={searchItems}>
+                    {children}
+                  </NavigationWrapper>
+                </MotionProvider>
               </DarkModeProvider>
             </LanguageProvider>
           </ThemeProvider>

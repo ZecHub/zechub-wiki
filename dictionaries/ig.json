@@ -23,7 +23,7 @@
     "Exchanges": "Mmekọrịta",
     "Extras": "Ihe ndị ọzọ",
     "Faucets": "Faucets",
-    "Financial Privacy Foundation": "Ụlọ Ọrụ Na-ahụ Maka Nzuzo Ego",
+    "Financial Privacy Foundation": "Financial Privacy Foundation",
     "Free2z Live": "Free2z Live",
     "Freelance Privacy": "Nzuzo nke onwe onye",
     "Github": "Github",
@@ -54,7 +54,7 @@
     "Sitemap": "Site map",
     "Start Here": "Malite Ebe a",
     "Store": "Ụlọ ahịa",
-    "Testnet": "Nnyocha nyocha",
+    "Testnet": "Testnet",
     "Tools": "Ngwá ọrụ",
     "Transactions": "Mmekọrịta",
     "Transparent Exchange Addresses": "Adreesị Mgbanwerịta Ọcha",
@@ -76,14 +76,14 @@
     "ZKAV Club": "ZKAV Club",
     "ZODL": "ZODL",
     "Zcash Community": "Obodo Zcash",
-    "Zcash Community Grants": "Zcash Onyinye Community",
+    "Zcash Community Grants": "Zcash Community Grants",
     "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Nchebe nke Zcash Ecosystem",
     "Zcash Foundation": "Zcash Foundation",
-    "Zcash Global Ambassadors": "Ndị nnọchi anya Zcash Global",
+    "Zcash Global Ambassadors": "Zcash Global Ambassadors",
     "Zcash Governance": "Ọchịchị Zcash",
     "Zcash Improvement Proposals": "Nkwupụta Mmezi Zcash",
-    "Zcash Login": "Zcash Nbanye",
+    "Zcash Login": "Zcash Login",
     "Zcash Media": "Zcash Mgbasa Ozi",
     "Zcash Organizations": "Nzukọ Zcash",
     "Zcash Podcasts": "Zcash Podcasts",
@@ -92,7 +92,7 @@
     "Zenith Installation": "Ntinye Zenith",
     "Zero-Knowledge vs Decoys": "Ihe Ọmụma Na-adịghị Banyere Ya na Ihe A Na-ejighị Ama Mee",
     "Zgo Payment Processor": "Zgo Nhazi Ịkwụ Ụgwọ",
-    "Zingo Labs": "Ụlọ nyocha Zingo",
+    "Zingo Labs": "Zingo Labs",
     "Zingolib and Zaino Tutorial": "Ntuziaka Zingolib na Zaino",
     "Zkool Multisig": "Zkool Multisig",
     "Custodial Exchanges": "Mgbanwe Ndị Nchebe",
@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "Ịkwụ Ụgwọ AI"
+    "Pay for AI": "Ịkwụ Ụgwọ AI",
+    "Spend Zcash": "Mefu Zcash",
+    "Places to Spend ZEC": "Ebe ị ga-emefu ZEC",
+    "Free2Z Livestreaming": "Mgbasa ndụ Free2Z",
+    "Hardened Zebrad": "Zebrad e wusiri ike",
+    "Migration Guide Zcashd To Zebrad Zallet": "Nduzi Mbugharị Zcashd gaa Zebrad Zallet",
+    "My First Zcash Workbook": "Akwụkwọ ọrụ Zcash mbụ m",
+    "Verifying Zcash Releases": "Na-enyocha mwepụta Zcash",
+    "Viewing Key Transaction Export": "Mbupụ azụmahịa Viewing Key",
+    "Brave Wallet Guide": "Nduzi Brave Wallet",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Akash Netwọk Zcashd",
+    "CoinHolder Directed Retroactive Grants": "Enyemaka n’azụ nke CoinHolder duziri"
   },
   "exploreMenu": {
     "Full Explore": "Nyochaa zuru ezu",
@@ -522,7 +536,8 @@
         "RocketX": "Ngwakọta ngwakọ DEX na-enyere aka ịgbagha agbagha n'ofe ọtụtụ blockchains na ụzọ kachasị mma na ọnụego asọmpi.",
         "THORChain": "Decentralized Layer 1 cross-chain exchange. Gbanwee ihe onwunwe dị ka ZEC, BTC, na ETH ozugbo na-enweghị àkwà mmiri, ngwugwu ngwugwu, ma ọ bụ ndị na-etiti.",
         "Loofta": "Non-custodial onwe ugwo na swap n'elu ikpo okwu. Zipu ma nata crypto na nzuzo gafee agbụ, na Zcash dị ka nhazi nhazi maka ịkwalite nzuzo ego."
-      }
+      },
+      "disclaimer": "ZecHub anaghị akwado ọrụ mgbanwe ọ bụla, biko mee nyocha nke gị."
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -576,7 +591,6 @@
           "issuance": "Mgbapụta",
           "lockbox": "Igbe mkpọchi",
           "flows": "Ọsọ ọsọ",
-          "nodeCount": "Nọmba Node",
           "txSummary": "TX Nchịkọta",
           "privacySet": "Ntọala Nzuzo",
           "shieldedStats": "Akụkọ Nchedo",
@@ -1066,7 +1080,11 @@
       "tagShieldedTransactions": "Azụmahịa Ndị E Chebere",
       "tagPrivacyModels": "Ụdị Nzuzo",
       "tagProtocolDesign": "Nhazi nke Protocol",
-      "tagZeroKnowledge": "Ọmụma efu"
+      "tagZeroKnowledge": "Ọmụma efu",
+      "formalVerificationSeriesTitle": "Usoro Nkwenye Iwu nke Zcash",
+      "formalVerificationSeriesCardDescription": "Ihe nkwenye iwu bụ, njehie nkwụsi ike Orchard nke 2026, na otú Ironwood siri jiri ihe akaebe igwe nyochara zaa ya.",
+      "formalVerificationSeriesDescription": "Usoro nwere akụkụ atọ nke na-akọwa nkwenye iwu site n'ụkpụrụ mbụ, na-agafe njehie nkwụsi ike Orchard nke 2026, ma na-egosi otú Ironwood siri jiri ihe akaebe mgbakọ na mwepụ nke igwe nyochara zaa ya.",
+      "newSeriesBadge": "Usoro ọhụrụ"
     },
     "browseSidebar": "Chọgharịa isiokwu ndị ahụ site na iji sidebar dị n'aka ekpe ",
     "zcashGlobalAmbassadors": {

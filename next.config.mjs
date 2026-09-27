@@ -26,6 +26,35 @@ const nextConfig = {
       { protocol: "https", hostname: "upload.wikimedia.org", pathname: "/**" },
     ],
   },
+  async redirects() {
+    return [
+      {
+        // The card page used to live at the collapsed slug `centralizedswaps`,
+        // which differed from the slug the [...slug] catch-all derives from
+        // site/Using_Zcash/Centralized_Swaps.md. Both URLs therefore existed:
+        // one rendering cards, one rendering the raw markdown, from the same
+        // source file.
+        //
+        // Worse, only the catch-all was locale-aware for CONTENT, so
+        // /it/using-zcash/centralizedswaps served English under every locale
+        // prefix — a 200 with real content in the wrong language, which nothing
+        // reports as an error.
+        //
+        // The route directory now matches the derived slug, so it shadows the
+        // catch-all the way using-zcash/custodial-exchanges always has. This
+        // keeps the old URL working for existing links and bookmarks.
+        source: "/using-zcash/centralizedswaps",
+        destination: "/using-zcash/centralized-swaps",
+        permanent: true,
+      },
+      {
+        // Same, with a locale prefix: /it/using-zcash/centralizedswaps.
+        source: "/:locale/using-zcash/centralizedswaps",
+        destination: "/:locale/using-zcash/centralized-swaps",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

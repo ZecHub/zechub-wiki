@@ -50,12 +50,12 @@ const projects: Project[] = [
     title: "ZecHub",
     description:
       "ZecHub is the community-driven education hub for the Zcash cryptocurrency (ZEC).",
-    link: "/downloads/brand/ZecHub.zip",
+    link: "/zecHub-visual-identity.pdf",
     imageUrl: zechubImage,
     size: 200,
     manual: {
-      url: "https://heyzine.com/flip-book/4d4f08fac9.html",
-      ctaLabel: "ZecHub Visual Brand",
+      url: "/visual-identity",
+      ctaLabel: "ZecHub Visual Identity",
     },
   },
   {

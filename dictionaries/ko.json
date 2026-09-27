@@ -54,7 +54,7 @@
     "Sitemap": "사이트맵",
     "Start Here": "여기서 시작",
     "Store": "스토어",
-    "Testnet": "테스트넷",
+    "Testnet": "Testnet",
     "Tools": "도구",
     "Transactions": "트랜잭션",
     "Transparent Exchange Addresses": "투명한 거래소 주소",
@@ -76,14 +76,14 @@
     "ZKAV Club": "ZKAV Club",
     "ZODL": "ZODL",
     "Zcash Community": "Zcash 커뮤니티",
-    "Zcash Community Grants": "Zcash 커뮤니티 Grants",
-    "Zcash Devtool": "Zcash 개발 도구",
+    "Zcash Community Grants": "Zcash Community Grants",
+    "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Zcash 생태계 보안",
     "Zcash Foundation": "Zcash Foundation",
-    "Zcash Global Ambassadors": "Zcash 글로벌 앰배서더",
+    "Zcash Global Ambassadors": "Zcash Global Ambassadors",
     "Zcash Governance": "Zcash 거버넌스",
     "Zcash Improvement Proposals": "Zcash 개선 제안",
-    "Zcash Login": "Zcash 로그인",
+    "Zcash Login": "Zcash Login",
     "Zcash Media": "Zcash 미디어",
     "Zcash Organizations": "Zcash 조직",
     "Zcash Podcasts": "Zcash 팟캐스트",
@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "AI 결제"
+    "Pay for AI": "AI 결제",
+    "Spend Zcash": "Zcash 사용",
+    "Places to Spend ZEC": "ZEC 사용처",
+    "Free2Z Livestreaming": "Free2Z 라이브 스트리밍",
+    "Hardened Zebrad": "강화된 Zebrad",
+    "My First Zcash Workbook": "나의 첫 Zcash 워크북",
+    "Verifying Zcash Releases": "Zcash 릴리스 확인 중",
+    "Viewing Key Transaction Export": "Viewing Key 거래 내보내기",
+    "Brave Wallet Guide": "Brave Wallet 가이드",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Migration Guide Zcashd To Zebrad Zallet": "Zcashd에서 Zebrad Zallet으로의 마이그레이션 가이드",
+    "Akash Network Zcashd": "Akash 네트워크 Zcashd",
+    "CoinHolder Directed Retroactive Grants": "코인 보유자 지정 소급 보조금"
   },
   "exploreMenu": {
     "Full Explore": "전체 둘러보기",
@@ -149,7 +163,8 @@
     "searchNoResults": "일치하는 페이지 없음",
     "searchTryDifferent": "더 짧은 검색어, 동의어 또는 다른 단어를 사용해 보세요.",
     "searchSuggested": "추천 페이지",
-    "searchResultsLabel": "결과"
+    "searchResultsLabel": "결과",
+    "skipToContent": "본문 바로가기"
   },
   "navigation": {
     "wallets": "지갑",
@@ -511,7 +526,7 @@
     },
     "dex": {
       "title": "탈중앙화 거래소",
-      "subtitle": "ZecHub는 특정 탈중앙화 거래소 서비스를 보증하지 않으니, 직접 조사해 주세요.",
+      "subtitle": "ZecHub는 특정 탈중앙화 거래소 서비스를 보증하지 않습니다. 직접 충분히 조사한 뒤 이용하세요.",
       "centralised": "중앙화 스왑 플랫폼",
       "centralizedTitle": "중앙화 스왑 플랫폼 목록",
       "custodial": "수탁형 거래소",
@@ -527,7 +542,8 @@
         "RocketX": "최적 경로 설정과 경쟁력 있는 환율로 여러 블록체인 전반의 크로스체인 스왑을 지원하는 하이브리드 DEX 애그리게이터.",
         "THORChain": "탈중앙화된 레이어 1 크로스체인 거래소. 브리지, 래핑된 토큰 또는 중개자 없이 ZEC, BTC, ETH 같은 네이티브 자산을 직접 스왑하세요.",
         "Loofta": "비수탁형 프라이빗 결제 및 스왑 플랫폼. 체인 간에 암호화폐를 비공개로 송수신할 수 있으며, 향상된 금융 프라이버시를 위해 Zcash를 결제 레이어로 사용합니다."
-      }
+      },
+      "disclaimer": "ZecHub는 특정 거래소 서비스를 보증하지 않습니다. 직접 조사한 뒤 이용하세요."
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -581,7 +597,6 @@
           "issuance": "발행량",
           "lockbox": "락박스",
           "flows": "흐름",
-          "nodeCount": "노드 수",
           "txSummary": "TX 요약",
           "privacySet": "프라이버시 세트",
           "shieldedStats": "실드형 통계",
@@ -1071,7 +1086,11 @@
       "tagShieldedTransactions": "차폐 트랜잭션",
       "tagPrivacyModels": "프라이버시 모델",
       "tagProtocolDesign": "프로토콜 설계",
-      "tagZeroKnowledge": "영지식"
+      "tagZeroKnowledge": "영지식",
+      "formalVerificationSeriesTitle": "Zcash 형식 검증 시리즈",
+      "formalVerificationSeriesCardDescription": "형식 검증이 무엇인지, 2026년 Orchard 건전성 버그, 그리고 Ironwood가 기계 검증 증명으로 이에 어떻게 답했는지.",
+      "formalVerificationSeriesDescription": "형식 검증을 첫 원리부터 설명하고, 2026년 Orchard 건전성 버그를 살펴보며, Ironwood가 기계 검증된 수학적 증명으로 이에 어떻게 답했는지 보여주는 3부작 시리즈.",
+      "newSeriesBadge": "새 시리즈"
     },
     "browseSidebar": "왼쪽 사이드바를 사용해 글을 둘러보세요 👈",
     "zcashGlobalAmbassadors": {

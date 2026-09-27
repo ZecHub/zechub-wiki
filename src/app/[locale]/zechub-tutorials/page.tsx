@@ -3,25 +3,41 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { getRootCached } from "@/lib/authAndFetch";
 import { getBanner, genMetadata } from "@/lib/helpers";
-import SideMenu from "@/components/SideMenu/SideMenu";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
 import ListTutorial from "./ListTutorial";
 
-export const metadata: Metadata = genMetadata({
-  title: "Zechub Tutorial",
-  url: "https://zechub.wiki/tutorials",
-});
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const localePrefix =
+    locale && locale !== routing.defaultLocale ? `/${locale}` : "";
+
+  return genMetadata({
+    title: "ZecHub Tutorials & Video Walkthroughs | ZecHub",
+    description:
+      "Hands-on tutorials, video guides, and step-by-step walkthroughs for using Zcash wallets, mining tools, node software, and privacy features.",
+    url: `https://zechub.wiki${localePrefix}/zechub-tutorials`,
+    image: getBanner("tutorials") || "/content-banners/bannertutorials.jpg",
+    locale,
+    alternates: buildAlternatesAllLocales("/zechub-tutorials", locale),
+  });
+}
 
 const ZechubTutorial = async () => {
   const slug = "tutorials";
   const urlRoot = `/site/tutorials`;
   const roots = await getRootCached(urlRoot);
   const imgUrl = getBanner(slug);
-  
+
   return (
     <main>
-      <div className="flex justify-center w-full  mb-5 bg-transparent rounded pb-4">
+      <div className="flex justify-center w-full mb-5 bg-transparent rounded pb-4">
         <Image
-          className="w-full mb-5 object-cover "
+          className="w-full mb-5 object-cover"
           alt="wiki-banner"
           width={800}
           height={50}

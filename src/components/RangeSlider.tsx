@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 
 type RangeSliderProps = {
   value: number;
@@ -19,14 +19,17 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   step = 1,
   widthClass = "w-32", // Tailwind width default
 }) => {
+  const inputId = useId();
+
   return (
     <div className="flex flex-col items-center space-y-3">
       {label && (
-        <label className="text-xs font-medium text-slate-600 dark:text-slate-300">
+        <label htmlFor={inputId} className="text-xs font-medium text-slate-600 dark:text-slate-300">
           {label} ({value})
         </label>
       )}
       <input
+        id={inputId}
         type="range"
         min={min}
         max={max}

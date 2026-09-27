@@ -1,20 +1,15 @@
 "use client";
 import ExchangeCard from "@/components/ExchangeCard/ExchangeCard";
-import exchanges from "@/constants/exchange";
-import exchangesIt from "@/constants/exchange.it";
+import ExchangeTypeNav from "@/components/ExchangeTypeNav";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { useLocale } from "next-intl";
+import type { Venue } from "@/lib/parseVenueMarkdown";
 
-const CustodialExchangesClient: React.FC = () => {
+const CustodialExchangesClient: React.FC<{ venues: Venue[] }> = ({ venues }) => {
   const { t } = useLanguage();
-  const locale = useLocale();
-  const byLocale: Record<string, typeof exchanges> = { it: exchangesIt };
-  const exchangeList = byLocale[locale] ?? exchanges;
   const title = t?.pages?.dex?.custodial ?? "Custodial Exchanges";
-  const dexLabel = t?.pages?.dex?.title ?? "DEX platforms";
+  const disclaimer = t?.pages?.dex?.disclaimer ?? "ZecHub does not endorse any particular exchange service, please do your own research.";
 
   return (
     <div className="container mx-auto py-8 px-4">
@@ -32,17 +27,14 @@ const CustodialExchangesClient: React.FC = () => {
           />
           {title}
         </h1>
-
-        <Link
-          href="/dex"
-          className="inline-flex py-2 px-4 btn-brand focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm"
-        >
-          {dexLabel}
-        </Link>
+        <ExchangeTypeNav />
+         </div>
+      <p className="dark:text-slate-300 text-gray-600 text-lg my-12">{disclaimer}</p>
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-6">
-        {exchangeList.map((exchange) => (
+        {venues.map((exchange) => (
           <ExchangeCard
             key={exchange.name}
             name={exchange.name}
@@ -50,6 +42,7 @@ const CustodialExchangesClient: React.FC = () => {
             pairs={exchange.pairs}
             support={exchange.support}
             depositTime={exchange.depositTime}
+            ironwood={exchange.ironwood}
             logo={exchange.logo}
             altText={exchange.altText}
           />

@@ -54,7 +54,7 @@
     "Sitemap": "サイトマップ",
     "Start Here": "ここから始める",
     "Store": "ストア",
-    "Testnet": "テストネット",
+    "Testnet": "Testnet",
     "Tools": "ツール",
     "Transactions": "トランザクション",
     "Transparent Exchange Addresses": "透明な取引所アドレス",
@@ -76,11 +76,11 @@
     "ZKAV Club": "ZKAV Club",
     "ZODL": "ZODL",
     "Zcash Community": "Zcashコミュニティ",
-    "Zcash Community Grants": "Zcashコミュニティ助成金",
+    "Zcash Community Grants": "Zcash Community Grants",
     "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Zcashエコシステムのセキュリティ",
     "Zcash Foundation": "Zcash Foundation",
-    "Zcash Global Ambassadors": "Zcash グローバル・アンバサダー",
+    "Zcash Global Ambassadors": "Zcash Global Ambassadors",
     "Zcash Governance": "Zcash ガバナンス",
     "Zcash Improvement Proposals": "Zcash 改善提案",
     "Zcash Login": "Zcash Login",
@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "AIの支払い"
+    "Pay for AI": "AIの支払い",
+    "Spend Zcash": "Zcashを使う",
+    "Places to Spend ZEC": "ZECを使える場所",
+    "Free2Z Livestreaming": "Free2Z ライブストリーミング",
+    "Hardened Zebrad": "強化された Zebrad",
+    "Migration Guide Zcashd To Zebrad Zallet": "ZcashdからZebrad Zalletへの移行ガイド",
+    "My First Zcash Workbook": "私の最初のZcashワークブック",
+    "Verifying Zcash Releases": "Zcashリリースを検証中",
+    "Viewing Key Transaction Export": "Viewing Key トランザクションのエクスポート",
+    "Brave Wallet Guide": "Brave Wallet ガイド",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Akash Network Zcashd",
+    "CoinHolder Directed Retroactive Grants": "CoinHolder 指定の遡及的助成金"
   },
   "exploreMenu": {
     "Full Explore": "完全ガイド",
@@ -149,7 +163,8 @@
     "searchNoResults": "一致するページがありません",
     "searchTryDifferent": "より短いクエリ、同義語、または別の単語を試してください。",
     "searchSuggested": "おすすめのページ",
-    "searchResultsLabel": "結果"
+    "searchResultsLabel": "結果",
+    "skipToContent": "コンテンツにスキップ"
   },
   "navigation": {
     "wallets": "ウォレット",
@@ -527,7 +542,8 @@
         "RocketX": "最適なルーティングと競争力のあるレートにより、複数のブロックチェーン間でクロスチェーンスワップを可能にするハイブリッドDEXアグリゲーター。",
         "THORChain": "分散型レイヤー1クロスチェーン取引所。ZEC、BTC、ETHのようなネイティブ資産を、ブリッジ、ラップドトークン、仲介者なしで直接スワップ。",
         "Loofta": "ノンカストディアルなプライベート決済およびスワッププラットフォーム。チェーンをまたいで暗号資産をプライベートに送受信でき、強化された金融プライバシーのためにZcashを決済レイヤーとして利用します。"
-      }
+      },
+      "disclaimer": "ZecHub は特定の取引サービスを推奨していません。ご自身で調査してください。"
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -581,7 +597,6 @@
           "issuance": "発行量",
           "lockbox": "ロックボックス",
           "flows": "フロー",
-          "nodeCount": "ノード数",
           "txSummary": "TXサマリー",
           "privacySet": "プライバシーセット",
           "shieldedStats": "シールド統計",
@@ -1071,7 +1086,11 @@
       "tagShieldedTransactions": "シールドトランザクション",
       "tagPrivacyModels": "プライバシーモデル",
       "tagProtocolDesign": "プロトコル設計",
-      "tagZeroKnowledge": "ゼロ知識"
+      "tagZeroKnowledge": "ゼロ知識",
+      "formalVerificationSeriesTitle": "Zcash形式検証シリーズ",
+      "formalVerificationSeriesCardDescription": "形式検証とは何か、2026年のOrchard健全性バグ、そしてIronwoodが機械検証済みの証明でどう対応したか。",
+      "formalVerificationSeriesDescription": "形式検証を基本原理から解説し、2026年のOrchard健全性バグをたどり、Ironwoodが機械検証済みの数学的証明でどう対応したかを示す全3回のシリーズ。",
+      "newSeriesBadge": "新シリーズ"
     },
     "browseSidebar": "左側のサイドバーを使って記事を閲覧してください 👈",
     "zcashGlobalAmbassadors": {

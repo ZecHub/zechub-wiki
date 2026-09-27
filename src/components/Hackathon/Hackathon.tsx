@@ -703,9 +703,9 @@ const Hackathon = ({
 
           <div className="relative flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-xl">
-              <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider ring-1 ring-white/15 backdrop-blur-sm">
-                <Sparkles className="h-3.5 w-3.5 text-amber-300" aria-hidden />
-                Build · Document · Submit
+              <p className={`mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium uppercase tracking-wider ring-1 backdrop-blur-sm ${phase === "post" ? "bg-emerald-400/15 text-emerald-200 ring-emerald-300/25" : "bg-white/10 ring-white/15"}`}>
+                {phase === "post" ? <Trophy className="h-3.5 w-3.5" aria-hidden /> : <Sparkles className="h-3.5 w-3.5 text-amber-300" aria-hidden />}
+                {phase === "post" ? "Event ended" : "Build · Document · Submit"}
               </p>
               <h1 className="mb-4 text-4xl font-black tracking-tight md:text-5xl lg:text-6xl">
                 ZecHub{" "}
@@ -714,7 +714,7 @@ const Hackathon = ({
                 </span>
               </h1>
               <p className="text-balance text-lg leading-relaxed text-slate-300 md:text-xl">
-                Build across five tracks, from infra to games, then document and
+                {phase === "post" ? "The 2026 ZecHub Hackathon has ended. Explore the submitted projects and see what the community built." : <>Build across five tracks, from infra to games, then document and
                 demo your work. Official kickoff{" "}
                 <span className="font-semibold text-white">May 25, 2026</span>{" "}
                 (UTC); submissions close{" "}
@@ -725,15 +725,20 @@ const Hackathon = ({
                 <span className="font-semibold text-white">
                   July 24, 2026 at 12:00 UTC
                 </span>
-                .
+                .</>}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link
+                {phase === "post" ? <a
+                  href="#submissions"
+                  className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
+                >
+                  View projects <ArrowUpRight className="h-4 w-4 opacity-80" />
+                </a> : <Link
                   href="/dao"
                   className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/25"
                 >
                   ZecHub DAO <ArrowUpRight className="h-4 w-4 opacity-80" />
-                </Link>
+                </Link>}
                 <a
                   href="https://discord.gg/zcash"
                   target="_blank"
@@ -966,9 +971,9 @@ const Hackathon = ({
         </section>
 
         <section className="mb-12">
-          <SectionTitle eyebrow="2026 entries">
+          <div id="submissions" className="scroll-mt-24"><SectionTitle eyebrow={phase === "post" ? "Event archive" : "2026 entries"}>
             Hackathon submissions
-          </SectionTitle>
+          </SectionTitle></div>
           <p className="-mt-2 mb-3 max-w-3xl text-slate-600 dark:text-slate-400">
             Explore all {submissions.length} projects submitted to the 2026
             ZecHub Hackathon. Select any project to reveal its description,

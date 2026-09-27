@@ -5,7 +5,17 @@ import { forwardRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
-  ({ searchInput, handleSearch, onKeyDown, id = "wiki-search-input" }, ref) => {
+  (
+    {
+      searchInput,
+      handleSearch,
+      onKeyDown,
+      id = "wiki-search-input",
+      hintId = "wiki-search-hint",
+      placeholder,
+    },
+    ref,
+  ) => {
     const { t } = useLanguage();
     const label = t.common?.search || "Search";
 
@@ -35,8 +45,8 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
             onChange={handleSearch}
             onKeyDown={onKeyDown}
             className="block w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none ring-0 transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 dark:border-slate-600 dark:bg-slate-800/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-blue-400 dark:focus:bg-slate-900 dark:focus:ring-blue-400/25"
-            placeholder={`${label}…`}
-            aria-describedby="wiki-search-hint"
+            placeholder={placeholder ?? `${label}…`}
+            aria-describedby={hintId}
           />
         </div>
       </form>

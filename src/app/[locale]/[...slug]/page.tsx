@@ -2,12 +2,12 @@ import MdxContainer from "@/components/MdxContainer";
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { Link } from "@/i18n/navigation";
+import { isKnownContentPath } from "@/lib/contentPaths";
 import {
   getFileContentCached,
   getLocalizedFileContentCached,
   getRootCached,
   getAllMarkdownRecursively,
-  getSiteFolders,
   getMenuTitlesCached,
 } from "@/lib/authAndFetch";
 import {
@@ -18,12 +18,22 @@ import {
   transformGithubFilePathToWikiLink,
   ORG_ID,
   extractArticleMeta,
+  extractFirstContentImage,
+  getSectionDescription,
   jsonLdScript,
+  resolveResearchArticleContentUrl,
 } from "@/lib/helpers";
+import { buildBreadcrumbs } from "@/lib/breadcrumbs";
 import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
 import { getDictionary } from "@/lib/getDictionary";
+import {
+  RESEARCH_SERIES,
+  getResearchSeries,
+  isResearchSeriesPath,
+  isResearchSeriesSlug,
+} from "@/constants/researchSeries";
 import { Metadata } from "next";
 import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
@@ -75,31 +85,6 @@ function rehypeStripDangerous() {
 
 const LazyMdxComponent = React.lazy(() => import("@/components/MdxRenderer"));
 
-function extractFirstContentImage(
-  content: string,
-  filePath: string,
-): string | null {
-  const matches =
-    content.match(/!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/g) ||
-    [];
-  for (const m of matches) {
-    const single = m.match(
-      /!\[[^\]]*\]\(([^)]+?)\)|<img[^>]+src=["']([^"']+)["']/,
-    );
-    if (!single) continue;
-    const src = single[1] || single[2];
-    if (src && !/shields\.io|badge|edit/i.test(src)) {
-      // Self-hosted (/content-images/…) images serve as-is. Guard against
-      // protocol-relative "//host/…" (starts with "/" but is external).
-      if (src.startsWith("http") || (src.startsWith("/") && !src.startsWith("//")))
-        return src;
-      const dir = filePath.substring(0, filePath.lastIndexOf("/"));
-      return `https://raw.githubusercontent.com/ZecHub/zechub/main/${dir}/${src}`;
-    }
-  }
-  return null;
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -109,37 +94,113 @@ export async function generateMetadata({
   // English is served unprefixed at the root; other locales carry a /<locale>
   // prefix in the canonical URL (matches localePrefix: "as-needed").
   const localePrefix = locale && locale !== "en" ? `/${locale}` : "";
+  const path = `/${slug.join("/")}`;
+  const canonicalUrl = `https://zechub.wiki${localePrefix}${path}`;
+  const availableLocales = await localesForPath(path);
+  const alternates = buildAlternates(path, locale, availableLocales);
+
   if (slug.length === 0) {
-    // The homepage of a locale (defensive — this route normally has a slug).
-    const alternates = buildAlternates("/", locale, [...routing.locales]);
     return genMetadata({
-      title: "Zechub",
+      title: "ZecHub Wiki",
       url: `https://zechub.wiki${localePrefix || ""}`,
       locale,
       alternates,
     });
   }
+
+  const isResearchIndex = slug.length === 1 && slug[0] === "research";
+  const isResearchSeries = isResearchSeriesSlug(slug);
+  const isResearchArticle = slug[0] === "research" && slug.length > 1;
+
   const folder = slug[0] || "";
-  const capitalized =
-    folder.charAt(0).toUpperCase() + folder.slice(1).replace(/[-/]/g, " ");
-  const title =
-    slug.length > 1 && slug[1]
-      ? `Zechub - ${capitalized} | ${slug[1].replace(/-/g, " ")}`
-      : `Zechub - ${capitalized}`;
-  const path = `/${slug.join("/")}`;
-  // Locale-aware canonical + reciprocal hreflang alternates, using the SAME
-  // manifest-coverage the sitemap uses (localesForPath -> keyToWikiPath over
-  // the cached menu-titles manifests). Never throws — degrades to English-only.
-  // NOTE: description is intentionally left at the site default here. A
-  // page-specific description would require fetching the page markdown inside
-  // generateMetadata (the body is fetched in the Page component, not here);
-  // that extra per-request fetch isn't worth it for the meta description. The
-  // richer, markdown-derived description already ships in the page's JSON-LD.
-  const availableLocales = await localesForPath(path);
-  const alternates = buildAlternates(path, locale, availableLocales);
+  const sectionBanner = getBanner(folder);
+
+  const dict = (await getDictionary(locale).catch(() => ({}))) as Record<string, any>;
+  const r = dict?.pages?.research ?? {};
+
+  if (isResearchIndex) {
+    return genMetadata({
+      title: r.articlesHeading
+        ? `${r.articlesHeading} | ZecHub`
+        : "Zcash Research Articles | ZecHub",
+      description:
+        r.articlesSubheading ??
+        "In-depth research articles, notes, and technical analysis on Zcash privacy technology, zero-knowledge proofs, and protocol design.",
+      url: canonicalUrl,
+      image: sectionBanner || "/content-banners/bannerResearch.jpg",
+      locale,
+      alternates,
+    });
+  }
+
+  if (isResearchSeries) {
+    const series = getResearchSeries(slug[1]);
+    return genMetadata({
+      title: series
+        ? `${r[series.i18nKeys.title] ?? series.title} | ZecHub`
+        : "Research Series | ZecHub",
+      description:
+        (series && r[series.i18nKeys.pageDescription]) ??
+        series?.pageDescription ??
+        "",
+      url: canonicalUrl,
+      image: sectionBanner || "/content-banners/bannerResearch.jpg",
+      locale,
+      alternates,
+    });
+  }
+
+  let contentUrl = getDynamicRoute(slug);
+  if (isResearchArticle && !isResearchSeries) {
+    const rootsRaw = await getRootCached(`/site/${slug[0]}`).catch(() => []);
+    const roots = Array.isArray(rootsRaw) ? rootsRaw : [];
+    contentUrl = resolveResearchArticleContentUrl(slug, roots);
+  }
+
+  const slugToTitle = (segment: string) =>
+    segment
+      .split("-")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+
+  const lastSegment = slug[slug.length - 1];
+  const fallbackHeadline = slugToTitle(lastSegment);
+
+  const md = await getLocalizedFileContentCached(contentUrl, locale).catch(
+    () => null,
+  );
+
+  if (md) {
+    const articleMeta = extractArticleMeta(
+      md,
+      fallbackHeadline,
+      sectionBanner,
+      contentUrl,
+    );
+
+    const title = articleMeta.headline.toLowerCase().includes("zechub")
+      ? articleMeta.headline
+      : `${articleMeta.headline} | ZecHub`;
+
+    return genMetadata({
+      title,
+      description: articleMeta.description,
+      image: articleMeta.image || sectionBanner,
+      url: canonicalUrl,
+      locale,
+      type: "article",
+      alternates,
+    });
+  }
+
+  const sectionTitle = slugToTitle(slug[0]);
+  const sectionDesc = getSectionDescription(slug[0]);
+
   return genMetadata({
-    title,
-    url: `https://zechub.wiki${localePrefix}/${slug.join("/")}`,
+    title: `${sectionTitle} | ZecHub`,
+    description: sectionDesc,
+    image: sectionBanner,
+    url: canonicalUrl,
     locale,
     alternates,
   });
@@ -172,15 +233,15 @@ export default async function Page(props: {
     getMenuTitlesCached(locale),
     getMenuTitlesCached("en"),
   ]);
+  // English keys are the full content-file list; a localized manifest only
+  // covers what has been translated, so it would under-report folders.
+  const manifestPaths = Object.keys(enMenuTitles ?? {});
 
   const url = getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
 
   const isResearchIndex = slug.length === 1 && slug[0] === "research";
-  const isResearchSeries =
-    slug.length === 2 &&
-    slug[0] === "research" &&
-    slug[1] === "zcash-foundations-series";
+  const isResearchSeries = isResearchSeriesSlug(slug);
   const isResearchArticle = slug[0] === "research" && slug.length > 1;
 
   // === STRICTER getHeroImage (prevents empty src/darkSrc) ===
@@ -203,16 +264,11 @@ export default async function Page(props: {
 
   try {
     if (isResearchIndex) {
-      const topLevel = await getRootCached(urlRoot).catch(() => []);
-      let seriesArticles: string[] = [];
-      try {
-        seriesArticles = await getAllMarkdownRecursively(
-          "site/Research/zcash-foundations-series",
-        );
-      } catch {}
-
+      const topLevel = await getRootCached(urlRoot);
+      // Series cards come from RESEARCH_SERIES. Their article trees are only
+      // needed on the individual series pages, not on this index.
       const nonSeriesRoots = topLevel.filter(
-        (p: string) => !p.includes("zcash-foundations-series"),
+        (p: string) => !isResearchSeriesPath(p),
       );
 
       const indexDynamicCovers: Record<string, { src: string; alt: string }> =
@@ -236,7 +292,7 @@ export default async function Page(props: {
         }),
       );
 
-      roots = [...topLevel, ...seriesArticles];
+      roots = nonSeriesRoots;
 
       const heroImage = getHeroImage(slug[0]);
 
@@ -258,49 +314,49 @@ export default async function Page(props: {
               </p>
             </div>
 
-            <div className="max-w-2xl">
-              <Link
-                href="/research/zcash-foundations-series"
-                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all active:scale-[0.985] sm:hover:border-slate-300 sm:hover:shadow-lg dark:border-slate-700 dark:sm:hover:border-slate-600"
-              >
-                <div
-                  className="relative w-full shrink-0 overflow-hidden
-                                bg-gradient-to-br from-zinc-700 to-zinc-500
-                                border-b border-zinc-700
-                                flex items-center justify-center
-                                aspect-[16/9] sm:aspect-[2.2/1] lg:aspect-[2.5/1]"
+            <div className="grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-2">
+              {RESEARCH_SERIES.map((series) => (
+                <Link
+                  key={series.id}
+                  href={series.href}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-background transition-all active:scale-[0.985] sm:hover:border-slate-300 sm:hover:shadow-lg dark:border-slate-700 dark:sm:hover:border-slate-600"
                 >
-                  <div className="text-center px-6">
-                    <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/10">
-                      <span className="text-5xl">📚</span>
+                  <div
+                    className="relative flex aspect-[16/9] w-full shrink-0 items-center justify-center overflow-hidden
+                                  border-b border-zinc-700 bg-gradient-to-br from-zinc-700 to-zinc-500
+                                  sm:aspect-[2.2/1]"
+                  >
+                    <div className="px-6 text-center">
+                      <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/10">
+                        <span className="text-5xl">{series.emoji}</span>
+                      </div>
+                      <p className="text-2xl font-semibold tracking-tight text-white">
+                        {r[series.i18nKeys.title] ?? series.title}
+                      </p>
                     </div>
-                    <p className="text-2xl font-semibold text-white tracking-tight">
-                      {r.foundationsSeriesTitle ?? "Zcash Foundations Series"}
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="mb-2">
+                      <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                        {r[series.i18nKeys.badge] ?? series.badge}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-semibold tracking-tight text-foreground">
+                      {r[series.i18nKeys.title] ?? series.title}
+                    </h3>
+
+                    <p className="mt-3 text-[15px] text-muted-foreground">
+                      {r[series.i18nKeys.cardDescription] ?? series.cardDescription}
                     </p>
+
+                    <div className="mt-auto pt-5 text-sm font-medium text-muted-foreground group-active:text-foreground transition-colors">
+                      {r.exploreSeries ?? "Explore the series →"}
+                    </div>
                   </div>
-                </div>
-
-                <div className="flex flex-1 flex-col p-6">
-                  <div className="mb-2">
-                    <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                      {r.coreSeriesBadge ?? "Core Series"}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-semibold tracking-tight text-foreground">
-                    {r.foundationsSeriesTitle ?? "Zcash Foundations Series"}
-                  </h3>
-
-                  <p className="mt-3 text-[15px] text-muted-foreground">
-                    {r.foundationsSeriesCardDescription ??
-                      "Foundational articles on shielded transactions, privacy models, and protocol design."}
-                  </p>
-
-                  <div className="mt-auto pt-5 text-sm font-medium text-muted-foreground group-active:text-foreground transition-colors">
-                    {r.exploreSeries ?? "Explore the series →"}
-                  </div>
-                </div>
-              </Link>
+                </Link>
+              ))}
             </div>
           </div>
 
@@ -320,30 +376,17 @@ export default async function Page(props: {
               roots={nonSeriesRoots}
               dynamicCovers={indexDynamicCovers}
               showHeader={false}
+              titles={menuTitles}
+              enTitles={enMenuTitles}
             />
           </div>
         </MdxContainer>
       );
     } else if (isResearchSeries) {
       const seriesName = slug[1];
+      const series = getResearchSeries(seriesName);
       const basePath = `site/Research/${seriesName}`;
-      const collectArticles = async (path: string): Promise<string[]> => {
-        try {
-          const items = await getSiteFolders(path).catch(() => []);
-          let mds: string[] = [];
-          for (const item of items) {
-            if (item.endsWith(".md")) mds.push(item);
-            else if (!item.includes(".") && !item.endsWith(".md")) {
-              const sub = await collectArticles(item);
-              mds = mds.concat(sub);
-            }
-          }
-          return mds;
-        } catch {
-          return [];
-        }
-      };
-      const articlePaths = await collectArticles(basePath);
+      const articlePaths = await getAllMarkdownRecursively(basePath);
       await Promise.all(
         articlePaths.map(async (filePath) => {
           try {
@@ -377,28 +420,24 @@ export default async function Page(props: {
           <div className="px-2 pb-8">
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-4xl">📚</span>
+                <span className="text-4xl">{series?.emoji ?? "📚"}</span>
                 <h1 className="text-2xl imd:text-4xl font-bold">
-                  {r.foundationsSeriesTitle ?? "Zcash Foundations Series"}
+                  {(series && r[series.i18nKeys.title]) ??
+                    series?.title ??
+                    "Research Series"}
                 </h1>
               </div>
               <p className="max-w-3xl text-base text-muted-foreground">
-                {r.foundationsSeriesDescription ??
-                  "A collection of foundational articles covering Zcash shielded transactions, privacy models, protocol design, and core concepts that power the network."}
+                {(series && r[series.i18nKeys.pageDescription]) ??
+                  series?.pageDescription ??
+                  ""}
               </p>
               <div className="mt-4 flex flex-wrap gap-2 text-sm">
-                <span className="rounded-full bg-muted px-3 py-1">
-                  {r.tagShieldedTransactions ?? "Shielded Transactions"}
-                </span>
-                <span className="rounded-full bg-muted px-3 py-1">
-                  {r.tagPrivacyModels ?? "Privacy Models"}
-                </span>
-                <span className="rounded-full bg-muted px-3 py-1">
-                  {r.tagProtocolDesign ?? "Protocol Design"}
-                </span>
-                <span className="rounded-full bg-muted px-3 py-1">
-                  {r.tagZeroKnowledge ?? "Zero Knowledge"}
-                </span>
+                {(series?.tags ?? []).map((tag) => (
+                  <span key={tag} className="rounded-full bg-muted px-3 py-1">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -407,6 +446,8 @@ export default async function Page(props: {
             roots={roots}
             dynamicCovers={dynamicCovers}
             showHeader={false}
+            titles={menuTitles}
+            enTitles={enMenuTitles}
           />
         </MdxContainer>
       );
@@ -414,27 +455,9 @@ export default async function Page(props: {
       const rootsRaw = await getRootCached(urlRoot).catch(() => []);
       roots = Array.isArray(rootsRaw) ? rootsRaw : [];
 
-      // PARITY: this research-series content-path resolution is replicated (as
-      // a pure, network-free function) by resolveContentPath() in
-      // src/lib/helpers.ts, used by scripts/generate-llms-txt.mjs and
-      // src/app/api/content-md. Keep the two in sync when either changes.
+      // Research article path resolution lives in resolveResearchArticleContentUrl().
       if (isResearchArticle && !isResearchSeries) {
-        const lastSegment = slug[slug.length - 1];
-        const norm = (s: string) => s.toLowerCase().replace(/[-_ ]/g, "");
-        const target = norm(lastSegment);
-
-        const match = roots.find((r: string) => {
-          if (typeof r !== "string" || !r.endsWith(".md")) return false;
-          const base = r.split("/").pop()!.replace(/\.md$/i, "");
-          return norm(base) === target;
-        });
-
-        if (match) {
-          contentUrl = match;
-        } else {
-          const subPath = slug.slice(1).join("/");
-          contentUrl = `site/Research/${subPath}.md`;
-        }
+        contentUrl = resolveResearchArticleContentUrl(slug, roots);
       }
 
       const md = await getLocalizedFileContentCached(contentUrl, locale).catch(
@@ -443,6 +466,9 @@ export default async function Page(props: {
       markdown = md;
     }
   } catch (e) {
+    // Listing failures belong to Next's default error boundary; optional
+    // thumbnail failures are handled separately above.
+    if (isResearchIndex || isResearchSeries) throw e;
     console.error("Failed to fetch and parse .md file: ", e);
     markdown = null;
     roots = [];
@@ -481,6 +507,15 @@ export default async function Page(props: {
     : "";
   const localeUrlPrefix = locale && locale !== "en" ? `/${locale}` : "";
   const canonicalWikiUrl = `https://zechub.wiki${localeUrlPrefix}/${slug.join("/")}`;
+  // One trail for both the visible breadcrumb and the BreadcrumbList below, so
+  // what a reader sees and what a crawler reads cannot drift apart. Research
+  // articles keep the trail their own layout already renders.
+  const breadcrumbTrail = buildBreadcrumbs({
+    slug,
+    titles: menuTitles,
+    enTitles: enMenuTitles,
+    menuLabels: dict?.menuLabels ?? {},
+  });
 
   if (!markdown) {
     // A null `markdown` has two very different causes. Section landing pages
@@ -490,7 +525,13 @@ export default async function Page(props: {
     // article NOR a folder to browse — `getRootCached` caught its 404 and
     // returned []. Only that second case is a real 404; return notFound() so
     // the app stops serving HTTP 200 empty placeholder pages for dead URLs.
-    if (roots.length === 0) {
+    //
+    // A dead article URL under a real section (e.g. /zcash-tech/light-wallet-
+    // node) passes the `roots` check, because `roots` lists the section rather
+    // than the article. isKnownContentPath tells the two apart from the
+    // manifest: anything naming a real file or folder keeps the behaviour it
+    // has today, and only a URL the manifest has never heard of becomes a 404.
+    if (roots.length === 0 || !isKnownContentPath(slug, manifestPaths)) {
       return notFound();
     }
     return (
@@ -501,6 +542,7 @@ export default async function Page(props: {
         }
         roots={roots}
         heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
+        breadcrumbs={breadcrumbTrail}
       >
         <div className="px-6 py-12 text-center">
           <h1 className="text-5xl font-bold mb-6 capitalize">
@@ -508,7 +550,7 @@ export default async function Page(props: {
           </h1>
           <p className="text-xl text-muted-foreground">
             {dict?.pages?.browseSidebar ??
-              "Browse the articles using the sidebar on the left 👈"}
+              "Open Navigation to browse the articles in this section."}
           </p>
         </div>
       </MdxContainer>
@@ -546,6 +588,7 @@ export default async function Page(props: {
     processedMarkdown,
     slugToTitle(slug[slug.length - 1]),
     imgUrl,
+    contentUrl,
   );
 
   // schema.org structured data for this content page, emitted as a single
@@ -553,20 +596,12 @@ export default async function Page(props: {
   // that don't merge across <script> blocks still resolve author/publisher) and
   // a BreadcrumbList derived from the slug segments. Consumed by classic search
   // and AI answer engines; rendered server-side (SSR route).
-  const breadcrumbItems = [
-    {
-      "@type": "ListItem" as const,
-      position: 1,
-      name: "Home",
-      item: `https://zechub.wiki${localeUrlPrefix}`,
-    },
-    ...slug.map((_, i) => ({
-      "@type": "ListItem" as const,
-      position: i + 2,
-      name: slugToTitle(slug[i]),
-      item: `https://zechub.wiki${localeUrlPrefix}/${slug.slice(0, i + 1).join("/")}`,
-    })),
-  ];
+  const breadcrumbItems = breadcrumbTrail.map((crumb, i) => ({
+    "@type": "ListItem" as const,
+    position: i + 1,
+    name: crumb.label,
+    item: `https://zechub.wiki${localeUrlPrefix}${crumb.href === "/" ? "" : crumb.href}`,
+  }));
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -610,6 +645,7 @@ export default async function Page(props: {
         }
         roots={roots}
         {...(heroImage ? { heroImage } : {})}
+        breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={
           isResearchArticle

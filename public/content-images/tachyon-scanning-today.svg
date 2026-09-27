@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="760" height="300" role="img" aria-label="Today a Zcash wallet downloads every shielded transaction and trial-decrypts each one to find the few that belong to it">
+  <rect width="760" height="300" rx="12" fill="#f7f8fa"/>
+  <text x="24" y="36" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#14161a">Today: the wallet tests every transaction</text>
+  <text x="24" y="58" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#5b6472">The chain cannot tell your wallet which payments are yours, so the wallet checks all of them.</text>
+  <text x="24" y="94" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#5b6472">SHIELDED TRANSACTIONS ON THE CHAIN</text>
+  <g>
+    <rect x="24"  y="106" width="52" height="42" rx="6" fill="#dfe3e8"/><rect x="84"  y="106" width="52" height="42" rx="6" fill="#dfe3e8"/>
+    <rect x="144" y="106" width="52" height="42" rx="6" fill="#2f7d5d"/><rect x="204" y="106" width="52" height="42" rx="6" fill="#dfe3e8"/>
+    <rect x="264" y="106" width="52" height="42" rx="6" fill="#dfe3e8"/><rect x="324" y="106" width="52" height="42" rx="6" fill="#dfe3e8"/>
+    <rect x="384" y="106" width="52" height="42" rx="6" fill="#dfe3e8"/><rect x="444" y="106" width="52" height="42" rx="6" fill="#2f7d5d"/>
+    <rect x="504" y="106" width="52" height="42" rx="6" fill="#dfe3e8"/><rect x="564" y="106" width="52" height="42" rx="6" fill="#dfe3e8"/>
+    <rect x="624" y="106" width="52" height="42" rx="6" fill="#dfe3e8"/><rect x="684" y="106" width="52" height="42" rx="6" fill="#dfe3e8"/>
+  </g>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#8b95a3" text-anchor="middle">
+    <text x="50" y="166">try</text><text x="110" y="166">try</text><text x="230" y="166">try</text><text x="290" y="166">try</text>
+    <text x="350" y="166">try</text><text x="410" y="166">try</text><text x="530" y="166">try</text><text x="590" y="166">try</text>
+    <text x="650" y="166">try</text><text x="710" y="166">try</text>
+  </g>
+  <text x="170" y="166" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#2f7d5d" text-anchor="middle">yours</text>
+  <text x="470" y="166" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#2f7d5d" text-anchor="middle">yours</text>
+  <rect x="24" y="196" width="712" height="76" rx="8" fill="#eceff3"/>
+  <text x="44" y="222" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#14161a">Trial decryption</text>
+  <text x="44" y="244" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#3d4552">The wallet attempts to decrypt each transaction in turn. Almost every attempt fails. Two succeed.</text>
+  <text x="44" y="264" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#3d4552">The work grows with the size of the whole chain, not with the number of payments you received.</text>
+</svg>

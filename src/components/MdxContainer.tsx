@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import ResearchArticleAside from "@/components/Research/ResearchArticleAside";
+import type { BreadcrumbItem } from "@/lib/breadcrumbs";
 
 type MdxContainerProps = {
   roots: any;
@@ -13,6 +15,11 @@ type MdxContainerProps = {
     width?: number;
     height?: number;
   };
+  /**
+   * Trail shown above the article, so a reader landing on a deep page can see
+   * where it sits. Research pages render their own inside the variant below.
+   */
+  breadcrumbs?: BreadcrumbItem[];
   /** BitMEX-style editorial layout for research article pages. */
   layoutVariant?: "default" | "research";
   researchMeta?: {
@@ -35,6 +42,7 @@ export default async function MdxContainer({
   roots = [],
   hasSideMenu = false,
   children,
+  breadcrumbs,
   layoutVariant = "default",
   researchMeta,
 }: MdxContainerProps) {
@@ -71,12 +79,14 @@ export default async function MdxContainer({
         id="content"
         className={`container m-auto flex h-auto flex-col space-y-5 px-2 pt-5 ${
           hasSideMenu && roots && roots.length > 0
-            ? "xl:flex-row xl:space-x-12"
-            : "xl:flex-col"
+            ? "lg:flex-row lg:space-x-12"
+            : "lg:flex-col"
         }`}
       >
         {hasSideMenu && (
-          <div className="relative w-auto xl:w-2/5">{sideMenu}</div>
+          <div className="relative w-full shrink-0 lg:w-72 lg:min-w-[18rem] lg:max-w-xs">
+            {sideMenu}
+          </div>
         )}
         {isResearchArticle && researchMeta ? (
           <div className="flex min-w-0 flex-1 flex-col gap-10 lg:gap-12 xl:flex-row xl:items-start">
@@ -127,11 +137,11 @@ export default async function MdxContainer({
           </div>
         ) : (
           <section
-            style={{ margin: "auto" }}
-            className={`h-auto w-full p-3 dark:border-slate-400 ${
-              hasSideMenu ? "xl:border-l" : ""
+            className={`h-auto min-w-0 w-full overflow-x-auto p-3 dark:border-slate-400 ${
+              hasSideMenu ? "lg:border-l" : ""
             }`}
           >
+            {breadcrumbs ? <Breadcrumbs items={breadcrumbs} /> : null}
             {children}
           </section>
         )}

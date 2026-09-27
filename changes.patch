@@ -1,0 +1,90 @@
+diff --git a/dictionaries/en.json b/dictionaries/en.json
+index 69d55bc..9223b80 100644
+--- a/dictionaries/en.json
++++ b/dictionaries/en.json
+@@ -281,10 +281,15 @@
+         "description": "Zcash Global Ambassadors are community leaders dedicated to promoting privacy-focused cryptocurrency adoption and education worldwide. Each ambassador project focuses on building awareness and engagement within their respective regions.",
+         "link": "Meet the Ambassadors"
+       },
+-      "newsletter": {
+-        "title": "Shielded Newsletter",
+-        "description": "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!",
+-        "link": "Subscribe"
++      "visualizer": {
++        "title": "ZecHub Visualizer",
++        "description": "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs",
++        "link": "Open the Visualizer"
++      },
++      "zecMap": {
++        "title": "ZecMap",
++        "description": "ZecMap is a community-maintained world map of merchants, services and ATMs that accept Zcash. Find somewhere to spend ZEC near you, or add a business you know to help grow real-world adoption.",
++        "link": "Visit ZecMap"
+       },
+       "free2z": {
+         "title": "Free2Z",
+diff --git a/src/components/Home/ContentSections.tsx b/src/components/Home/ContentSections.tsx
+index 7b1b14e..ea7d66e 100644
+--- a/src/components/Home/ContentSections.tsx
++++ b/src/components/Home/ContentSections.tsx
+@@ -78,22 +78,22 @@ const ContentSections = () => {
+           },
+         ]}
+       />
+-      {/* Shielded Newsletter Section */}
++      {/* ZecHub Visualizer Section */}
+       <InfoCard
+-        id="shielded-newsletter"
++        id="zechub-visualizer"
+         reverse={true}
+-        title={t.home?.sections?.newsletter?.title || "Shielded Newsletter"}
++        title={t.home?.sections?.visualizer?.title || "ZecHub Visualizer"}
+         description={
+-          t.home?.sections?.newsletter?.description ||
+-          "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!"
++          t.home?.sections?.visualizer?.description ||
++          "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs"
+         }
+-        image="/zcash_newsletter.gif"
+-        imageLight="/explore/light/shielded-newsletter.png"
+-        imageDark="/explore/dark/shielded-newsletter.png"
++        image="/explore/light/research.png"
++        imageLight="/explore/light/research.png"
++        imageDark="/explore/dark/research.png"
+         links={[
+           {
+-            href: "/newsletter",
+-            label: t.home?.sections?.newsletter?.link || "Subscribe",
++            href: "/visualizer",
++            label: t.home?.sections?.visualizer?.link || "Open the Visualizer",
+             primary: true,
+           },
+         ]}
+@@ -162,6 +162,28 @@ const ContentSections = () => {
+           },
+         ]}
+       />
++
++      {/* ZecMap Section */}
++      <InfoCard
++        id="zecmap"
++        reverse={true}
++        title={t.home?.sections?.zecMap?.title || "ZecMap"}
++        description={
++          t.home?.sections?.zecMap?.description ||
++          "ZecMap is a community-maintained world map of merchants, services and ATMs that accept Zcash. Find somewhere to spend ZEC near you, or add a business you know to help grow real-world adoption."
++        }
++        image="/explore/light/start-here.png"
++        imageLight="/explore/light/start-here.png"
++        imageDark="/explore/dark/start-here.png"
++        links={[
++          {
++            href: "https://zecmap.com",
++            label: t.home?.sections?.zecMap?.link || "Visit ZecMap",
++            primary: true,
++          },
++        ]}
++      />
++
+     </section>
+   );
+ };

@@ -126,7 +126,7 @@ export const searcher: Searcher[] = [
   {
     name: "Akash Network",
     desc: "Guide to using Zcash on the Akash decentralized cloud computing network.",
-    url: "/guides/akash-network",
+    url: "/guides/akash-network-zebra",
   },
   {
     name: "Avalanche RedBridge",
@@ -342,6 +342,31 @@ export const searcher: Searcher[] = [
     desc: "ZODL is a Zcash ecosystem organization supporting development and adoption.",
     url: "/zcash-organizations/ZODL",
   },
+  {
+    name: "Valar Group",
+    desc: "Independent engineering organization focused on scaling Zcash, private coinholder voting, and full-node software.",
+    url: "/zcash-organizations/valar-group",
+  },
+  {
+    name: "Zcash Labs",
+    desc: "Independent organization focused on Zcash implementation, integration, and adoption.",
+    url: "/zcash-organizations/zcash-labs",
+  },
+  {
+    name: "CoinHolder Directed Retroactive Grants",
+    desc: "Coinholder-directed retroactive grants program for completed Zcash ecosystem work.",
+    url: "/zcash-organizations/coinholder-directed-retroactive-grants",
+  },
+  {
+    name: "Sovright",
+    desc: "Zcash ecosystem organization.",
+    url: "/zcash-organizations/sovright",
+  },
+  {
+    name: "Obscura Labs",
+    desc: "Zcash ecosystem organization building private infrastructure.",
+    url: "/zcash-organizations/obscura-labs",
+  },
 
   // Privacy Tools
   {
@@ -401,6 +426,26 @@ export const searcher: Searcher[] = [
   },
 
   // Research
+  {
+    name: "Zcash Formal Verification Series",
+    desc: "What formal verification is, the 2026 Orchard soundness bug, and how Ironwood answered it with a machine-checked proof.",
+    url: "/research/zcash-formal-verification-series",
+  },
+  {
+    name: "What Is Formal Verification?",
+    desc: "Introduction to proving software correct instead of only testing it.",
+    url: "/research/zcash-formal-verification-series/article-0/article-0-what-is-formal-verification",
+  },
+  {
+    name: "The Orchard Bug: When a Proof System Has a Hole",
+    desc: "Case study of the 2026 under-constrained Orchard circuit.",
+    url: "/research/zcash-formal-verification-series/article-1/article-1-the-orchard-bug",
+  },
+  {
+    name: "Ironwood: Proving Money Cannot Be Faked",
+    desc: "How Zcash answered the Orchard bug with a machine-checked proof.",
+    url: "/research/zcash-formal-verification-series/article-2/article-2-ironwood-proving-money-cannot-be-faked",
+  },
   {
     name: "Dash Zcash Orchard Integration",
     desc: "Research into the integration of Zcash Orchard shielded pool technology with the Dash blockchain.",
@@ -491,19 +536,9 @@ export const searcher: Searcher[] = [
 
   // ZFAV Club
   {
-    name: "ZFAV Club Background",
-    desc: "Supported by The Zcash Foundation this ambitious grassroots project aims...",
-    url: "/zfav-club/av-club-background",
-  },
-  {
     name: "Guides for Creators",
     desc: "Guides for creators...",
     url: "/zfav-club/guides-for-creators",
-  },
-  {
-    name: "Youtube Channel",
-    desc: "Youtube Channel...",
-    url: "/zfav-club/youtube-channel",
   },
 
   // Glossary & FAQs
@@ -549,7 +584,7 @@ export const searcher: Searcher[] = [
   {
     name: "Brand",
     desc: "ZecHub brand assets, logos, and guidelines.",
-    url: "/brand",
+    url: "/zcash-organizations/brand",
   },
   { name: "Dashboard", desc: "Check the charts for ZEC", url: "/dashboard" },
   { name: "DAO", desc: "List of ZecHub DAO members", url: "/dao" },
@@ -592,7 +627,7 @@ export const searcher: Searcher[] = [
   {
     name: "Tutorials",
     desc: "How to buy ZEC in Gemini",
-    url: "/tutorials/buy-zec-in-gemini",
+    url: "/tutorials/exchanges",
   },
   {
     name: "Full Node Tutorials",
@@ -602,7 +637,7 @@ export const searcher: Searcher[] = [
   {
     name: "Shielding ZEC",
     desc: "This video was created to show users how to shield their ZEC.",
-    url: "/tutorials/shielding-zec",
+    url: "/tutorials/using-zcash",
   },
   {
     name: "Wallet Tutorials",

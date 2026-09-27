@@ -19,14 +19,14 @@ export const communityProjectsIt: CommunityProject[] = [
     description:
       "Il modo più semplice per trovare qualsiasi link, strumento o informazione di cui hai bisogno sull'ecosistema di Zcash.",
     url: "https://zlink.click",
-    thumbnailImage: "",
+    thumbnailImage: "/community-projects/zlink.png",
   },
   {
     title: "Zimppy",
     description:
       "Il metodo di pagamento Machine Payment Protocol (MPP) per Zcash, progettato per agenti IA e flussi di lavoro automatizzati da macchina a macchina. Deposita una volta on-chain, poi effettua richieste bearer istantanee e illimitate senza alcuna interazione con la blockchain per ogni richiesta. Supporta i pagamenti Zcash completamente schermati (Orchard).",
     url: "https://zimppy.xyz/",
-    thumbnailImage: "/community-projects/zimmpy.png",
+    thumbnailImage: "/community-projects/zimppy.png",
   },
   {
     title: "CipherScan",
@@ -241,7 +241,7 @@ export const communityProjectsIt: CommunityProject[] = [
     description:
       "Wallet Zcash focalizzato su Orchard, creato per Zebrad, che supporta transazioni completamente schermate e una gestione sicura delle chiavi.",
     url: "https://github.com/LEONINE-DAO/Nozy-wallet",
-    thumbnailImage: "",
+    thumbnailImage: "/community-projects/nozy.jpg",
   },
 
   // Wider Ecosystem Utilizing Zero-Knowledge Proofs
@@ -252,6 +252,7 @@ export const communityProjectsIt: CommunityProject[] = [
     url: "https://aztec.network/",
     thumbnailImage: "/community-projects/aztec.png",
   },
+
   {
     title: "Darkfi",
     description:

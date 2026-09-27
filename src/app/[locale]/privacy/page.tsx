@@ -1,10 +1,27 @@
 import { Metadata } from "next";
-import { genMetadata } from "@/lib/helpers";
+import { genMetadata, getBanner } from "@/lib/helpers";
+import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
+import { routing } from "@/i18n/routing";
 
-export const metadata: Metadata = genMetadata({
-  title: "ZecHub — Privacy",
-  url: "https://zechub.wiki/privacy",
-});
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const localePrefix =
+    locale && locale !== routing.defaultLocale ? `/${locale}` : "";
+
+  return genMetadata({
+    title: "Privacy Policy & Tracking Statement | ZecHub",
+    description:
+      "No analytics, no ad networks, no tracking cookies, no fingerprinting.",
+    url: `https://zechub.wiki${localePrefix}/privacy`,
+    image: getBanner("privacy-tools") || "/content-banners/bannerprivacy.jpg",
+    locale,
+    alternates: buildAlternatesAllLocales("/privacy", locale),
+  });
+}
 
 // English-first. Fold into the translation-sync routine for the other locales.
 // This page states the *current* observable behaviour of the site; keep it in

@@ -23,7 +23,7 @@
     "Exchanges": "Mabadilishano",
     "Extras": "Nyongeza",
     "Faucets": "Mabomba",
-    "Financial Privacy Foundation": "Msingi wa Faragha ya Kifedha",
+    "Financial Privacy Foundation": "Financial Privacy Foundation",
     "Free2z Live": "Free2z Kuishi",
     "Freelance Privacy": "Faragha ya Freelance",
     "Github": "Github",
@@ -54,7 +54,7 @@
     "Sitemap": "Ramani ya Tovuti",
     "Start Here": "Anza Hapa",
     "Store": "Hifadhi",
-    "Testnet": "Mtihani wa wavu",
+    "Testnet": "Testnet",
     "Tools": "Vifaa",
     "Transactions": "Shughuli",
     "Transparent Exchange Addresses": "Anwani za Kubadilishana za Uwazi",
@@ -73,17 +73,17 @@
     "Ywallet FROST Demo": "Ywallet FROST Demo",
     "ZCAP": "ZCAP",
     "ZIPs & Grants": "ZIPs na misaada",
-    "ZKAV Club": "Klabu ya ZKAV",
+    "ZKAV Club": "ZKAV Club",
     "ZODL": "ZODL",
     "Zcash Community": "Jumuiya ya Zcash",
-    "Zcash Community Grants": "Zcash Msaada wa Jumuiya",
+    "Zcash Community Grants": "Zcash Community Grants",
     "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Zcash Ecosystem Usalama",
     "Zcash Foundation": "Zcash Foundation",
-    "Zcash Global Ambassadors": "Zcash Global Mabalozi",
+    "Zcash Global Ambassadors": "Zcash Global Ambassadors",
     "Zcash Governance": "Utawala wa Zcash",
     "Zcash Improvement Proposals": "Mapendekezo ya Uboreshaji wa Zcash",
-    "Zcash Login": "Kuingia kwa Zcash",
+    "Zcash Login": "Zcash Login",
     "Zcash Media": "Zcash Media",
     "Zcash Organizations": "Mashirika ya Zcash",
     "Zcash Podcasts": "Zcash Podcasts",
@@ -92,7 +92,7 @@
     "Zenith Installation": "Zenith Ufungaji",
     "Zero-Knowledge vs Decoys": "Maarifa-Zero dhidi ya Decoys",
     "Zgo Payment Processor": "Zgo Malipo Processor",
-    "Zingo Labs": "Maabara ya Zingo",
+    "Zingo Labs": "Zingo Labs",
     "Zingolib and Zaino Tutorial": "Zingolib na Zaino Tutorial",
     "Zkool Multisig": "Zkool Multisig",
     "Custodial Exchanges": "Mabadilishano ya Walinzi",
@@ -112,7 +112,21 @@
     "Zallet Quick Reference Guide": "Zallet Quick Reference Guide",
     "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
     "Obscura Labs": "Obscura Labs",
-    "Pay for AI": "Lipia AI"
+    "Pay for AI": "Lipia AI",
+    "Spend Zcash": "Tumia Zcash",
+    "Places to Spend ZEC": "Maeneo ya kutumia ZEC",
+    "Free2Z Livestreaming": "Utangazaji wa moja kwa moja wa Free2Z",
+    "Hardened Zebrad": "Zebrad iliyoimarishwa",
+    "Migration Guide Zcashd To Zebrad Zallet": "Mwongozo wa Uhamishaji Zcashd kwenda Zebrad Zallet",
+    "My First Zcash Workbook": "Kitabu changu cha kwanza cha mazoezi cha Zcash",
+    "Verifying Zcash Releases": "Kuthibitisha Matoleo ya Zcash",
+    "Viewing Key Transaction Export": "Hamisha miamala ya Viewing Key",
+    "Brave Wallet Guide": "Mwongozo wa pochi ya Brave",
+    "Valar Group": "Valar Group",
+    "Zcash Labs": "Zcash Labs",
+    "ShapeShift Zcash": "ShapeShift Zcash",
+    "Akash Network Zcashd": "Mtandao wa Akash Zcashd",
+    "CoinHolder Directed Retroactive Grants": "Ruzuku za CoinHolder Zinazoelekezwa na Kutolewa Kwa Nyuma"
   },
   "exploreMenu": {
     "Full Explore": "Kuchunguza Kamili",
@@ -123,7 +137,7 @@
     "Zcash Tech": "Zcash Tech",
     "Zcash Organizations": "Mashirika ya Zcash",
     "Zcash Community": "Jumuiya ya Zcash",
-    "ZKAV Club": "Klabu ya ZKAV",
+    "ZKAV Club": "ZKAV Club",
     "Privacy Tools": "Vifaa vya Faragha",
     "Research": "Utafiti",
     "Glossary & FAQs": "Glossary & FAQs",
@@ -149,7 +163,8 @@
     "searchNoResults": "Hakuna kurasa zinazofanana",
     "searchTryDifferent": "Jaribu maswali mafupi, maneno yanayofanana, au maneno tofauti.",
     "searchSuggested": "Kurasa zilizopendekezwa",
-    "searchResultsLabel": "Matokeo"
+    "searchResultsLabel": "Matokeo",
+    "skipToContent": "Nenda kwenye maudhui"
   },
   "navigation": {
     "wallets": "Mkoba",
@@ -522,7 +537,8 @@
         "RocketX": "Hybrid DEX aggregator kuwezesha msalaba-chain swaps katika blockchains nyingi na routing bora na viwango vya ushindani.",
         "THORChain": "Decentralized Layer 1 msalaba-chain kubadilishana. Swap mali asili kama ZEC, BTC, na ETH moja kwa moja bila madaraja, wrapped ishara, au waamuzi.",
         "Loofta": "Kutuma na kupokea crypto binafsi katika minyororo, na Zcash kama safu ya makazi kwa ajili ya kuimarishwa faragha ya kifedha."
-      }
+      },
+      "disclaimer": "ZecHub haina kuidhinisha huduma yoyote ya kubadilishana, tafadhali fanya utafiti wako mwenyewe."
     },
     "usingZcash": {
       "blockchainExplorers": {
@@ -576,7 +592,6 @@
           "issuance": "Utoaji",
           "lockbox": "Kikasha cha kufuli",
           "flows": "Mito",
-          "nodeCount": "Idadi ya Node",
           "txSummary": "Muhtasari wa TX",
           "privacySet": "Faragha Seti",
           "shieldedStats": "Takwimu za Kulindwa",
@@ -1066,7 +1081,11 @@
       "tagShieldedTransactions": "Shughuli Shielded",
       "tagPrivacyModels": "Mifano ya faragha",
       "tagProtocolDesign": "Mpango wa Itifaki",
-      "tagZeroKnowledge": "Maarifa ya sifuri"
+      "tagZeroKnowledge": "Maarifa ya sifuri",
+      "formalVerificationSeriesTitle": "Zcash Mfululizo wa Uthibitishaji Rasmi",
+      "formalVerificationSeriesCardDescription": "Uthibitishaji rasmi ni nini, hitilafu ya usahihi ya Orchard ya 2026, na jinsi Ironwood ilivyoijibu kwa uthibitisho uliothibitishwa na mashine.",
+      "formalVerificationSeriesDescription": "Mfululizo wa sehemu tatu unaoeleza uthibitishaji rasmi kuanzia misingi yake, unapitia hitilafu ya usahihi ya Orchard ya 2026, na kuonyesha jinsi Ironwood ilivyoijibu kwa uthibitisho wa kihisabati uliothibitishwa na mashine.",
+      "newSeriesBadge": "Mfululizo Mpya"
     },
     "browseSidebar": "Tafuta makala kwa kutumia ubao upande wa kushoto ",
     "zcashGlobalAmbassadors": {

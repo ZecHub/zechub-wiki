@@ -10,7 +10,7 @@ export default function HomeClient() {
   const { t } = useLanguage();
   const text =
     t.home?.description ||
-    `ZecHub is the community-driven education hub for the Zcash cryptocurrency (ZEC). Zcash is a digital currency providing censorship resistant, secure & private payments. The Zcash Blockchain utilises highly advanced 'verifiable' zk-snarks that do not require Trusted Setup following the NU5 network upgrade in 2022.`;
+    `ZecHub is the community-driven education hub for Zcash (ZEC), a decentralized digital currency built for censorship-resistant, secure and private payments. Zcash uses advanced zero-knowledge cryptography to enable transactions whose validity can be verified without revealing sensitive financial information. In 2026 Zcash activated the Ironwood shielded pool, formally verified using machine-checked mathematical proofs it guarantees balance integrity. Project Tachyon is developing a proposed next-generation shielded protocol designed to dramatically improve the scalability of private payments, reduce validator state growth and advance Zcash toward fully post-quantum secure privacy.`;
 
   return <HomePage text={text} />;
 }
