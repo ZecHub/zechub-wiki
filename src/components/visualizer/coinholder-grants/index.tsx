@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useState, useEffect } from "react";
-import { PlaybackControls } from "../PlaybackControls";
+import { BadgeCentIcon } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import { CoinholderGrantsContent, slides } from "./CoinholderGrantsContent";
 
 const SLIDES = slides.map((s) => ({ id: s.id, title: s.title }));
@@ -10,7 +11,10 @@ interface CoinholderGrantsVisualizerProps {
   autoStart?: boolean;
 }
 
-export const CoinholderGrantsVisualizer = ({ onComplete, autoStart = false }: CoinholderGrantsVisualizerProps) => {
+export const CoinholderGrantsVisualizer = ({
+  onComplete,
+  autoStart = false,
+}: CoinholderGrantsVisualizerProps) => {
   const [currentStage, setCurrentStage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoStart);
 
@@ -42,47 +46,46 @@ export const CoinholderGrantsVisualizer = ({ onComplete, autoStart = false }: Co
       setCurrentStage(index);
     }
   }, []);
-  
+
   // Auto-start when autoStart prop is true
   useEffect(() => {
     if (autoStart) {
       setIsPlaying(true);
     }
   }, [autoStart]);
-  
+
   // Completion logic - triggers when on last slide and playing stops
   useEffect(() => {
     if (currentStage === SLIDES.length - 1 && !isPlaying && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
       }, 5000); // 5 seconds on last slide
-      
+
       return () => clearTimeout(timer);
     }
   }, [currentStage, isPlaying, onComplete]);
-  
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-12">
-        <CoinholderGrantsContent 
+    <VisualizerCanvas
+      title="Coinholder Directed Grants"
+      description="Funding for completed works related to Zcash"
+      currentStep={currentStage}
+      totalSteps={SLIDES.length}
+      isPlaying={isPlaying}
+      onPrevious={goToPrevious}
+      onNext={goToNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={restart}
+      iconHeader={<BadgeCentIcon className="w-10 h-10 text-yellow-400" />}
+    >
+      <div className="container mx-auto p-8 ">
+        <CoinholderGrantsContent
           currentSlide={currentStage}
           onSlideChange={handleSlideChange}
           isPlaying={isPlaying}
         />
-      </main>
-
-      <footer className="sticky bottom-0 bg-background/80 backdrop-blur-md border-t border-border/50 py-6">
-        <PlaybackControls
-          currentStage={currentStage}
-          isPlaying={isPlaying}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          onNext={goToNext}
-          onPrevious={goToPrevious}
-          onRestart={restart}
-          stages={SLIDES}
-        />
-      </footer>
-    </div>
+      </div>
+    </VisualizerCanvas>
   );
 };
