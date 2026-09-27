@@ -5,6 +5,7 @@ import { VisualizerCanvas } from "../VisualizerCanvas";
 import "./index.css";
 import { StageContent } from "./StageContent";
 import { IRONWOOD_STAGE_TYPES, STAGES } from "./types";
+import { GiPoolDive } from "react-icons/gi";
 
 const OTHER_STAGES_INTERVAL = 10000; // 10 seconds for most stages
 const IRONWOOD_STAGES_INTERVAL = 16000; // 16 seconds for Ironwood stages
@@ -95,6 +96,7 @@ export const ZcashPoolVisualizer = ({
       onPlay={() => setIsPlaying(true)}
       onPause={() => setIsPlaying(false)}
       onRestart={restart}
+      iconHeader={<GiPoolDive className="w-10 h-10 text-yellow-400" />}
     >
       <StageContent stage={stage} isAnimating={isAnimating} />
     </VisualizerCanvas>
