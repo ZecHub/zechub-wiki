@@ -2,17 +2,17 @@
 
 import { Button } from "@/components/UI/shadcn/button";
 import { useLanguage } from "@/context/LanguageContext";
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
-import { BuildShieldedTransactionVisualizer } from "./BuildShieldedTransaction";
 import {
   resolveVisualizerRoute,
   visualizerQuery,
   type QuizSection,
 } from "@/lib/visualizerRouting";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
+import { BuildShieldedTransactionVisualizer } from "./BuildShieldedTransaction";
 import { CoinholderGrantsVisualizer } from "./coinholder-grants";
 import { ConsensusVisualizer } from "./consensus-visualizer";
 import { ContributionVisualizer } from "./contribution-visualizer";
@@ -636,17 +636,6 @@ export const VisualizerHub: React.FC = () => {
 
     return (
       <div className="relative flex min-h-screen min-w-0 flex-col overflow-hidden">
-        {/* <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3 }}
-          onClick={goHome}
-          className="fixed top-[6rem] left-2 sm:left-4 imd:top-[7rem] imd:left-8 z-50 p-2 sm:p-3 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card transition-all shadow-lg"
-          aria-label="Back to Visualizer Hub"
-        >
-          <Home className="w-5 h-5 text-foreground" />
-        </motion.button> */}
-
         {isPlayingAll && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -993,7 +982,9 @@ function VisualizerCard(props: CardProps) {
           </div>
 
           <div className="text-yellow-500 text-center group-hover:text-yellow-400 transition-colors">
-            <span className="text-sm font-medium" aria-hidden="true">{t.common?.clickToExplore || "Click to explore →"}</span>
+            <span className="text-sm font-medium" aria-hidden="true">
+              {t.common?.clickToExplore || "Click to explore →"}
+            </span>
           </div>
         </div>
       </button>
