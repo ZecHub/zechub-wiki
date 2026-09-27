@@ -17,6 +17,8 @@ interface VisualizerCanvasProps {
   onRestart: () => void;
 
   children: ReactNode;
+
+  iconHeader?: ReactNode;
 }
 
 // Canvas
@@ -35,6 +37,7 @@ export function VisualizerCanvas({
   onPause,
   onRestart,
   children,
+  iconHeader,
 }: VisualizerCanvasProps) {
   return (
     <main className="relative w-full min-w-0 px-4 pt-20 pb-24 sm:px-6 md:px-8">
@@ -66,9 +69,12 @@ export function VisualizerCanvas({
             sm:py-5
           "
         >
-          <h1 className="text-xl font-bold text-foreground imd:text-2xl">
-            {title}
-          </h1>
+          <div className="flex flex-row justify-center items-center space-x-2.5">
+            {iconHeader}
+            <h1 className="text-xl font-bold text-foreground imd:text-2xl">
+              {title}
+            </h1>
+          </div>
 
           {description && (
             <p className="mt-1 text-sm text-muted-foreground">{description}</p>
