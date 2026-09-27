@@ -6,6 +6,7 @@ import { VisualizerCanvas } from "../VisualizerCanvas";
 import { StageContent } from "./StageContent";
 import "./index.css";
 import { STAGES } from "./types";
+import { Wallet } from "lucide-react";
 
 const WELCOME_STAGE_INTERVAL = 1000; // 4 seconds for welcome stage
 const OTHER_STAGES_INTERVAL = 10000; // 10 seconds for other stages
@@ -139,6 +140,7 @@ export const WalletVisualizer = ({
       onPlay={() => setIsPlaying(true)}
       onPause={() => setIsPlaying(false)}
       onRestart={restart}
+      iconHeader={<Wallet className="w-10 h-10 text-yellow-400" />}
     >
       <StageContent stage={stage} wallets={wallets} isAnimating={isAnimating} />
     </VisualizerCanvas>
