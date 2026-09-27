@@ -32,7 +32,7 @@ export const StageContent = ({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.4 }}
-        className="w-full"
+        className="w-full p-8"
       >
         {/* Stage Header */}
         {stage.type === "welcome" ? (
