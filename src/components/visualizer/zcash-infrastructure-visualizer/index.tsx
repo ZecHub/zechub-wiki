@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useState, useCallback, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { Building } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import { STAGES } from "./data";
-import { Header } from "./Header";
-import { StageInfo } from "./StageInfo";
 import { InfrastructureDiagram } from "./InfrastructureDiagram";
 import { Legend } from "./Legend";
-import { Controls } from "./Controls";
-import { Volume2, VolumeX } from "lucide-react";
-import { motion } from "framer-motion";
+import { StageInfo } from "./StageInfo";
 
 const WELCOME_STAGE_INTERVAL = 1000; // 1 second for welcome/first stage
 const OTHER_STAGES_INTERVAL = 10000; // 10 seconds for other stages
@@ -139,96 +138,62 @@ export const ZcashInfrastructureVisualizer = ({
   }
 
   return (
-    <div className="flex flex-col bg-background text-foreground dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-white relative">
-      {/* Animated background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-yellow-400/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-          className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-400/10 rounded-full blur-3xl"
-        />
-      </div>
-
-      {/* Mute button */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => setIsMuted(!isMuted)}
-        className="fixed top-2 right-2 md:top-4 md:right-4 z-50 p-2 md:p-3 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/80 transition-all shadow-lg"
-        aria-label={isMuted ? "Unmute" : "Mute"}
-      >
-        {isMuted ? (
-          <VolumeX className="w-4 h-4 md:w-5 md:h-5 text-muted-foreground" />
-        ) : (
-          <Volume2 className="w-4 h-4 md:w-5 md:h-5 text-yellow-400" />
-        )}
-      </motion.button>
-
-      {/* Header */}
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 py-6 px-4 text-center border-b border-border/50 mt-12"
-      >
-        <Header />
-      </motion.header>
-
-      {/* Main Content */}
-      <main className="flex flex-col justify-center relative z-10 container m-auto px-2 sm:px-4 py-6 sm:py-8 md:py-13 mt-6 sm:mt-8 min-h-[550px]">
-        <div className="mb-6">
-          <StageInfo stage={stage} />
+    <VisualizerCanvas
+      title="Zcash Infrastructure Stack"
+      description="Interactive guide to Zcash privacy technology"
+      currentStep={currentStage}
+      totalSteps={STAGES.length}
+      isPlaying={isPlaying}
+      onPrevious={goToPrevious}
+      onNext={goToNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={restart}
+      iconHeader={<Building className="w-10 h-10 text-emerald-400" />}
+    >
+      <div className="flex flex-col bg-background text-foreground dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-white relative">
+        {/* Animated background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            animate={{
+              x: [0, 100, 0],
+              y: [0, -50, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-yellow-400/10 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              x: [0, -100, 0],
+              y: [0, 50, 0],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2,
+            }}
+            className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-400/10 rounded-full blur-3xl"
+          />
         </div>
+      </div>
+      <main className="flex flex-col justify-center relative z-10 container m-auto px-2 sm:px-4 py-6 sm:py-8 md:py-13 mt-6 sm:mt-8 min-h-137.5 gap-12 p-8">
+        <StageInfo stage={stage} />
+
         <InfrastructureDiagram stage={stage} />
       </main>
 
-      {/* Controls Footer */}
-      <footer className="relative z-10 border-t border-border/50 bg-card/80 backdrop-blur-xl p-4">
-        <Controls
-          currentStage={currentStage}
-          isPlaying={isPlaying}
-          onPlay={() => {
-            setIsPlaying(true);
-            playTransitionSound(440);
-          }}
-          onPause={() => {
-            setIsPlaying(false);
-            playTransitionSound(330);
-          }}
-          onNext={goToNext}
-          onPrevious={goToPrevious}
-          onRestart={restart}
-        />
-        {currentStage === STAGES.length - 1 && (
-          <div className="mt-4">
-            <Legend />
-          </div>
-        )}
-      </footer>
-    </div>
+      {currentStage === STAGES.length - 1 && (
+        <div className="mt-4">
+          <Legend />
+        </div>
+      )}
+    </VisualizerCanvas>
   );
 };
