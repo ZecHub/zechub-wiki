@@ -95,9 +95,9 @@ export const ZcashKeyVisualizer = ({
       onRestart={restart}
       iconHeader={<Key className="w-10 h-10 text-emerald-400" />}
     >
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-8">
+      <div className="container mx-auto px-4 py-8 md:py-13 mt-8">
         <StageContent stage={stage} isAnimating={isAnimating} />
-      </main>
+      </div>
     </VisualizerCanvas>
   );
 };
