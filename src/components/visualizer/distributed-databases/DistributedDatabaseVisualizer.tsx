@@ -48,8 +48,8 @@ const SLIDES: Slide[] = [
 ];
 
 interface DistributedDatabaseVisualizerProps {
-  onComplete: () => void;
-  autoStart: boolean;
+  onComplete?: () => void;
+  autoStart?: boolean;
 }
 export default function DistributedDatabaseVisualizer({
   onComplete,
