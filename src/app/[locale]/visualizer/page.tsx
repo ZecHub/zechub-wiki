@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { VisualizerHub } from "@/components/visualizer/VisualizerHub";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { Metadata } from "next";
@@ -45,7 +46,11 @@ export async function generateMetadata({
 export default function VisualizerPage() {
   return (
     <div className="min-h-screen w-full">
-      <VisualizerHub />
+      {/* The hub reads its selected module from the query string, and
+          useSearchParams needs a Suspense boundary on a prerendered page. */}
+      <Suspense fallback={<div className="min-h-screen w-full" />}>
+        <VisualizerHub />
+      </Suspense>
     </div>
   );
 }
