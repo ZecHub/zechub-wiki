@@ -121,6 +121,8 @@ export const ZcashKeyVisualizer = ({ onComplete, autoStart = false }: ZcashKeyVi
         onPause={() => setIsPlaying(false)}
         onPlay={() => setIsPlaying(true)}
       />
+
+      
     </div>
   );
 };
