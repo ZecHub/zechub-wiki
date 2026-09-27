@@ -27,7 +27,7 @@ import { OpenSourceReposVisualizer } from "./open-source-repos";
 import { PayWithZcashVisualizer } from "./pay-with-zcash";
 import { PrivacyUseCasesVisualizer } from "./PrivacyUsecases";
 import { QuizCard, QuizModule, type QuizQuestion } from "./QuizModule";
-import { VisualizerNavigationContext } from "./VisualizerNavigationContext";
+import { VisualizerNavigationProvider } from "./VisualizerNavigationContext";
 import { ZcashCommunityGrantsVisualizer } from "./zcash-community-grants";
 import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
 import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
@@ -717,12 +717,12 @@ export const VisualizerHub: React.FC = () => {
           </motion.div>
         </div>
 
-        <VisualizerNavigationContext.Provider value={{ goHome }}>
+        <VisualizerNavigationProvider goHome={goHome}>
           <CurrentComponent
             onComplete={handleVisualizerComplete}
             autoStart={isPlayingAll}
           />
-        </VisualizerNavigationContext.Provider>
+        </VisualizerNavigationProvider>
       </div>
     );
   }

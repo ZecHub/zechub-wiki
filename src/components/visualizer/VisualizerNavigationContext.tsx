@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import React, { createContext, useContext } from "react";
 
 interface VisualizerNavigationContextValue {
   goHome: () => void;
@@ -8,13 +8,21 @@ export const VisualizerNavigationContext =
   createContext<VisualizerNavigationContextValue | null>(null);
 
 export function useVisualizerNavigation() {
-  const context = useContext(VisualizerNavigationContext);
+  return useContext(VisualizerNavigationContext);
+}
 
-  if (!context) {
-    throw new Error(
-      `useVisualizerNavigation must be used inside VisualizerNavigationProvider`,
-    );
-  }
+interface VisualizerNavigationProviderProps {
+  goHome: () => void;
+  children: React.ReactNode;
+}
 
-  return context;
+export function VisualizerNavigationProvider({
+  goHome,
+  children,
+}: VisualizerNavigationProviderProps) {
+  return (
+    <VisualizerNavigationContext.Provider value={{ goHome }}>
+      {children}
+    </VisualizerNavigationContext.Provider>
+  );
 }

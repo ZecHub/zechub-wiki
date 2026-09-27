@@ -42,7 +42,7 @@ export function VisualizerCanvas({
   children,
   iconHeader,
 }: VisualizerCanvasProps) {
-  const { goHome } = useVisualizerNavigation();
+  const navigation = useVisualizerNavigation();
 
   return (
     <main className="relative w-full min-w-0 px-4 pt-20 pb-24 sm:px-6 md:px-8">
@@ -75,12 +75,12 @@ export function VisualizerCanvas({
           "
         >
           <div className="flex flex-row justify-center items-center space-x-2.5">
-            {goHome && (
+            {navigation?.goHome && (
               <motion.button
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 }}
-                onClick={goHome}
+                onClick={navigation.goHome}
                 className="fixed   left-2 sm:left-4   imd:left-8 z-50 p-2 sm:p-3 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card transition-all shadow-lg hover:cursor-pointer"
                 aria-label="Back to Visualizer Hub"
               >
