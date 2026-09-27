@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useState, useEffect } from "react";
-import { PlaybackControls } from "../PlaybackControls";
+import { BriefcaseBusiness } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import { StageContent, STAGES } from "./DAOProposalContent";
 
 const STAGE_INTERVAL = 10000; // 10 seconds per stage
@@ -73,23 +74,22 @@ export const DAOProposalVisualizer = ({
   }, [isPlaying, goToNext, currentStage]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-8 flex-1">
+    <VisualizerCanvas
+      title="ZecHub DAO Proposals"
+      description="Explore the process and tools used to executing proposals"
+      currentStep={currentStage}
+      totalSteps={STAGES.length}
+      isPlaying={isPlaying}
+      onPrevious={goToPrevious}
+      onNext={goToNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={restart}
+      iconHeader={<BriefcaseBusiness className="w-10 h-10 text-yellow-400" />}
+    >
+      <div className="container mx-auto p-8 mt-24">
         <StageContent stage={stage} isAnimating={isAnimating} />
-      </main>
-
-      <footer className="sticky bottom-0 bg-background/80 backdrop-blur-md border-t border-border/50 py-6">
-        <PlaybackControls
-          stages={STAGES}
-          currentStage={currentStage}
-          isPlaying={isPlaying}
-          onRestart={restart}
-          onPrevious={goToPrevious}
-          onNext={goToNext}
-          onPause={() => setIsPlaying(false)}
-          onPlay={() => setIsPlaying(true)}
-        />
-      </footer>
-    </div>
+      </div>
+    </VisualizerCanvas>
   );
 };
