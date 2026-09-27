@@ -1,50 +1,61 @@
 "use client";
 
 import { Button } from "@/components/UI/shadcn/button";
-import { motion } from "framer-motion";
-import { Home, Pause, Play, ChevronLeft, ChevronRight } from "lucide-react";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import {
   resolveVisualizerRoute,
   visualizerQuery,
   type QuizSection,
 } from "@/lib/visualizerRouting";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
+import { BuildShieldedTransactionVisualizer } from "./BuildShieldedTransaction";
 import { CoinholderGrantsVisualizer } from "./coinholder-grants";
 import { ConsensusVisualizer } from "./consensus-visualizer";
 import { ContributionVisualizer } from "./contribution-visualizer";
+import CrosslinkProtocolVisualizer from "./CrosslinkProtocol";
+import { DAOProposalVisualizer } from "./DAOProposals";
+import DistributedDatabaseVisualize from "./distributed-databases/DistributedDatabaseVisualizer";
+import { FrostMultisigVisualizer } from "./frost-multisig";
+import { GovernanceVisualizer } from "./Governance";
 import { HashFunctionVisualizer } from "./hash-function-visualizer";
+import { MiningHaloVisualizer } from "./MiningHalo";
 import { OpenSourceReposVisualizer } from "./open-source-repos";
 import { PayWithZcashVisualizer } from "./pay-with-zcash";
+import { PrivacyUseCasesVisualizer } from "./PrivacyUsecases";
+import { QuizCard, QuizModule, type QuizQuestion } from "./QuizModule";
+import { VisualizerNavigationProvider } from "./VisualizerNavigationContext";
 import { ZcashCommunityGrantsVisualizer } from "./zcash-community-grants";
 import { ZcashDexVisualizer } from "./zcash-dex-visualizer/ZcashDexVisualizer";
 import { ZcashInfrastructureVisualizer } from "./zcash-infrastructure-visualizer";
 import { ZcashKeyVisualizer } from "./zcash-key-visualizer";
 import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
-import DistributedDatabaseVisualize  from "./distributed-databases/DistributedDatabaseVisualizer";
 import { WalletVisualizer } from "./zcash-wallet";
 import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
-import { BlockchainFoundationVisualizer } from "./blockchain-foundation";
-import { MiningHaloVisualizer } from "./MiningHalo";
-import { PrivacyUseCasesVisualizer } from "./PrivacyUsecases";
-import { GovernanceVisualizer } from "./Governance";
-import { QuizCard, QuizModule, type QuizQuestion } from "./QuizModule";
-import { DAOProposalVisualizer } from "./DAOProposals";
-import { BuildShieldedTransactionVisualizer } from "./BuildShieldedTransaction";
-import CrosslinkProtocolVisualizer from "./CrosslinkProtocol";
-import { FrostMultisigVisualizer } from "./frost-multisig";
 import { ZkavClubVisualizer } from "./zkav-club";
 
 const QUIZ_BEGINNER: QuizQuestion[] = [
   {
     question: "What do Zcash wallets provide for users?",
-    options: ["Only transparent addresses", "Shielded functionality", "Mining only", "Exchange listing"],
+    options: [
+      "Only transparent addresses",
+      "Shielded functionality",
+      "Mining only",
+      "Exchange listing",
+    ],
     correctIndex: 1,
   },
   {
     question: "How can you get ZEC in a permissionless way?",
-    options: ["Only from banks", "Through centralized exchanges only", "Using decentralized exchanges (DEX)", "ZEC cannot be bought"],
+    options: [
+      "Only from banks",
+      "Through centralized exchanges only",
+      "Using decentralized exchanges (DEX)",
+      "ZEC cannot be bought",
+    ],
     correctIndex: 2,
   },
   {
@@ -53,18 +64,34 @@ const QUIZ_BEGINNER: QuizQuestion[] = [
     correctIndex: 3,
   },
   {
-    question: "What does a zk-SNARK proof demonstrate in a shielded transaction?",
-    options: ["The transaction amount publicly", "Valid ownership without revealing details", "Only the sender address", "Mining reward"],
+    question:
+      "What does a zk-SNARK proof demonstrate in a shielded transaction?",
+    options: [
+      "The transaction amount publicly",
+      "Valid ownership without revealing details",
+      "Only the sender address",
+      "Mining reward",
+    ],
     correctIndex: 1,
   },
   {
     question: "Where can you typically use ZEC for payments?",
-    options: ["Only on one website", "Nowhere", "At merchants and services that accept ZEC", "Only in mining"],
+    options: [
+      "Only on one website",
+      "Nowhere",
+      "At merchants and services that accept ZEC",
+      "Only in mining",
+    ],
     correctIndex: 2,
   },
   {
     question: "What does Zcash infrastructure refer to?",
-    options: ["Only one server", "How nodes, wallets, and network components work together", "Only websites", "Only mining pools"],
+    options: [
+      "Only one server",
+      "How nodes, wallets, and network components work together",
+      "Only websites",
+      "Only mining pools",
+    ],
     correctIndex: 1,
   },
 ];
@@ -72,26 +99,47 @@ const QUIZ_BEGINNER: QuizQuestion[] = [
 const QUIZ_INTERMEDIATE: QuizQuestion[] = [
   {
     question: "What is Halo 2 used for in Zcash?",
-    options: ["Mining only", "Recursive zero-knowledge proofs", "Wallet storage", "Exchange trading"],
+    options: [
+      "Mining only",
+      "Recursive zero-knowledge proofs",
+      "Wallet storage",
+      "Exchange trading",
+    ],
     correctIndex: 1,
   },
   {
     question: "What are privacy use cases on Zcash?",
-    options: ["Only personal use", "Real-world applications of privacy technology", "Only for miners", "There are none"],
+    options: [
+      "Only personal use",
+      "Real-world applications of privacy technology",
+      "Only for miners",
+      "There are none",
+    ],
     correctIndex: 1,
   },
   {
     question: "How is Zcash development funded?",
-    options: ["Only by one company", "Through governance and the Dev Fund", "Only by miners", "Exchanges only"],
+    options: [
+      "Only by one company",
+      "Through governance and the Dev Fund",
+      "Only by miners",
+      "Exchanges only",
+    ],
     correctIndex: 1,
   },
   {
     question: "What role do hash functions play in Zcash?",
-    options: ["Mining rewards only", "Integrity, commitments, and binding data", "Only for addresses", "Display names"],
+    options: [
+      "Mining rewards only",
+      "Integrity, commitments, and binding data",
+      "Only for addresses",
+      "Display names",
+    ],
     correctIndex: 1,
   },
   {
-    question: "In a shielded Zcash transaction, what does the zk-SNARK proof allow a sender to demonstrate?",
+    question:
+      "In a shielded Zcash transaction, what does the zk-SNARK proof allow a sender to demonstrate?",
     options: [
       "Their full wallet balance to the recipient",
       "Valid ownership and transaction correctness without revealing private inputs",
@@ -101,12 +149,19 @@ const QUIZ_INTERMEDIATE: QuizQuestion[] = [
     correctIndex: 1,
   },
   {
-    question: "Which Zcash address pool offers the strongest privacy with no trusted setup requirement?",
-    options: ["Transparent (t-addr)", "Sapling (zs-addr)", "Orchard (u-addr)", "All pools are equally private"],
+    question:
+      "Which Zcash address pool offers the strongest privacy with no trusted setup requirement?",
+    options: [
+      "Transparent (t-addr)",
+      "Sapling (zs-addr)",
+      "Orchard (u-addr)",
+      "All pools are equally private",
+    ],
     correctIndex: 2,
   },
   {
-    question: "In a FROST t-of-n threshold signature scheme, how many participants must cooperate to produce a valid signature?",
+    question:
+      "In a FROST t-of-n threshold signature scheme, how many participants must cooperate to produce a valid signature?",
     options: [
       "All n participants every time",
       "At least t participants",
@@ -150,32 +205,62 @@ const QUIZ_INTERMEDIATE: QuizQuestion[] = [
 const QUIZ_CONTRIBUTORS: QuizQuestion[] = [
   {
     question: "How can you earn ZEC through ZecHub?",
-    options: ["Only by mining", "By completing bounties and contributing", "By buying only", "ZecHub does not offer ZEC"],
+    options: [
+      "Only by mining",
+      "By completing bounties and contributing",
+      "By buying only",
+      "ZecHub does not offer ZEC",
+    ],
     correctIndex: 1,
   },
   {
     question: "What are Zcash Community Grants for?",
-    options: ["Personal use", "Funding ecosystem projects and development", "Only for miners", "Exchange fees"],
+    options: [
+      "Personal use",
+      "Funding ecosystem projects and development",
+      "Only for miners",
+      "Exchange fees",
+    ],
     correctIndex: 1,
   },
   {
     question: "Who directs Coinholder Directed Grants?",
-    options: ["A single company", "ZEC holders (retroactive funding)", "Only developers", "Exchanges only"],
+    options: [
+      "A single company",
+      "ZEC holders (retroactive funding)",
+      "Only developers",
+      "Exchanges only",
+    ],
     correctIndex: 1,
   },
   {
     question: "How do nodes in the Zcash network agree on the chain?",
-    options: ["By voting on a leader", "Through consensus rules", "Only miners decide", "There is no agreement"],
+    options: [
+      "By voting on a leader",
+      "Through consensus rules",
+      "Only miners decide",
+      "There is no agreement",
+    ],
     correctIndex: 1,
   },
   {
     question: "What are Zcash keys used for?",
-    options: ["Only for logging in", "Sending, receiving, and proving ownership of funds", "Mining only", "Website passwords"],
+    options: [
+      "Only for logging in",
+      "Sending, receiving, and proving ownership of funds",
+      "Mining only",
+      "Website passwords",
+    ],
     correctIndex: 1,
   },
   {
     question: "How can you contribute to Zcash open source?",
-    options: ["Only by donating money", "Through code, docs, and repos listed in the visualizer", "Only by mining", "You cannot contribute"],
+    options: [
+      "Only by donating money",
+      "Through code, docs, and repos listed in the visualizer",
+      "Only by mining",
+      "You cannot contribute",
+    ],
     correctIndex: 1,
   },
   {
@@ -370,11 +455,12 @@ const CONTRIBUTOR_VISUALIZERS: VisualizerInfo[] = [
     component: ContributionVisualizer,
   },
   {
-  id: "dao-proposal",
-  title: "DAO Proposals",
-  description: "Step-by-step guide to creating a ZecHub DAO governance proposal",
-  component: DAOProposalVisualizer,
-},
+    id: "dao-proposal",
+    title: "DAO Proposals",
+    description:
+      "Step-by-step guide to creating a ZecHub DAO governance proposal",
+    component: DAOProposalVisualizer,
+  },
   {
     id: "zcash-community-grants",
     title: "Zcash Community Grants",
@@ -549,18 +635,7 @@ export const VisualizerHub: React.FC = () => {
     if (!CurrentComponent) return null;
 
     return (
-      <div className="relative min-h-screen">
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3 }}
-          onClick={goHome}
-          className="fixed top-[6rem] left-2 sm:left-4 imd:top-[7rem] imd:left-8 z-50 p-2 sm:p-3 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card transition-all shadow-lg"
-          aria-label="Back to Visualizer Hub"
-        >
-          <Home className="w-5 h-5 text-foreground" />
-        </motion.button>
-
+      <div className="relative flex min-h-screen min-w-0 flex-col overflow-hidden">
         {isPlayingAll && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -642,10 +717,12 @@ export const VisualizerHub: React.FC = () => {
           </motion.div>
         </div>
 
-        <CurrentComponent
-          onComplete={handleVisualizerComplete}
-          autoStart={isPlayingAll}
-        />
+        <VisualizerNavigationProvider goHome={goHome}>
+          <CurrentComponent
+            onComplete={handleVisualizerComplete}
+            autoStart={isPlayingAll}
+          />
+        </VisualizerNavigationProvider>
       </div>
     );
   }
@@ -694,7 +771,8 @@ export const VisualizerHub: React.FC = () => {
               {t.visualizer?.title || "Zcash Visualizers"}
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-0">
-              {t.visualizer?.description || "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs"}
+              {t.visualizer?.description ||
+                "Interactive educational tools to understand Zcash privacy technology, infrastructure, and zero-knowledge proofs"}
             </p>
           </motion.div>
 
@@ -727,7 +805,8 @@ export const VisualizerHub: React.FC = () => {
               {t.visualizer?.basic || "Basic"}
             </h2>
             <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              {t.visualizer?.basicDescription || "Foundational concepts and essential features of Zcash"}
+              {t.visualizer?.basicDescription ||
+                "Foundational concepts and essential features of Zcash"}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
@@ -769,7 +848,8 @@ export const VisualizerHub: React.FC = () => {
               {t.visualizer?.advanced || "Advanced"}
             </h2>
             <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              {t.visualizer?.advancedDescription || "Deep technical dives into cryptography, consensus, and infrastructure"}
+              {t.visualizer?.advancedDescription ||
+                "Deep technical dives into cryptography, consensus, and infrastructure"}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
@@ -811,7 +891,8 @@ export const VisualizerHub: React.FC = () => {
               {t.visualizer?.contributors || "Contributors"}
             </h2>
             <p className="text-center text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-              {t.visualizer?.contributorsDescription || "Ways to contribute to the Zcash ecosystem and earn rewards"}
+              {t.visualizer?.contributorsDescription ||
+                "Ways to contribute to the Zcash ecosystem and earn rewards"}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 imd:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto w-full">
@@ -848,7 +929,8 @@ export const VisualizerHub: React.FC = () => {
           className="text-center mt-10 sm:mt-16"
         >
           <p className="text-muted-foreground text-xs sm:text-sm px-2">
-            {t.visualizer?.autoPlayNote || "Each visualizer runs automatically. Use controls to navigate or pause."}
+            {t.visualizer?.autoPlayNote ||
+              "Each visualizer runs automatically. Use controls to navigate or pause."}
           </p>
         </motion.div>
       </div>
@@ -900,7 +982,9 @@ function VisualizerCard(props: CardProps) {
           </div>
 
           <div className="text-yellow-500 text-center group-hover:text-yellow-400 transition-colors">
-            <span className="text-sm font-medium" aria-hidden="true">{t.common?.clickToExplore || "Click to explore →"}</span>
+            <span className="text-sm font-medium" aria-hidden="true">
+              {t.common?.clickToExplore || "Click to explore →"}
+            </span>
           </div>
         </div>
       </button>

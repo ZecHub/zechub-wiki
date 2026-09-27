@@ -41,17 +41,6 @@ export default function SlideOutro(props: SlideProps) {
           an operator, a database is faster, cheaper, and friendlier. If you
           can&post;t pay for consensus.
         </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="mt-10 flex items-center justify-center gap-6 text-xs uppercase tracking-[0.3em] text-[var(--viz-mute)]"
-        >
-          <span>Space · Play / Pause</span>
-          <span>← →· Navigate</span>
-          <span>R · Restart</span>
-          <span>F · Fullscreen</span>
-        </motion.div>
       </div>
     </div>
   );

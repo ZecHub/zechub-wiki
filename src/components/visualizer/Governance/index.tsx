@@ -1,10 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useCallback, useState, useEffect } from "react";
-import { PlaybackControls } from "../PlaybackControls";
+import { Vote } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import { StageContent, STAGES } from "./GovernanceContent";
-import { Users, Vote } from "lucide-react";
 
 const STAGE_INTERVAL = 10000; // 10 seconds per stage
 
@@ -13,9 +12,9 @@ interface GovernanceVisualizerProps {
   autoStart?: boolean;
 }
 
-export const GovernanceVisualizer = ({ 
-  onComplete, 
-  autoStart = false 
+export const GovernanceVisualizer = ({
+  onComplete,
+  autoStart = false,
 }: GovernanceVisualizerProps) => {
   const [currentStage, setCurrentStage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoStart);
@@ -56,13 +55,13 @@ export const GovernanceVisualizer = ({
       setIsPlaying(true);
     }
   }, [autoStart]);
-  
+
   useEffect(() => {
     if (currentStage === STAGES.length - 1 && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
       }, STAGE_INTERVAL);
-      
+
       return () => clearTimeout(timer);
     }
   }, [currentStage, onComplete]);
@@ -78,45 +77,22 @@ export const GovernanceVisualizer = ({
   }, [isPlaying, goToNext]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="py-6 px-4 text-center border-b border-border mt-12"
-      >
-        <div className="flex items-center justify-center gap-3">
-          <Users className="w-10 h-10 text-indigo-400" />
-          <h1 className="text-2xl font-bold text-foreground">
-            Zcash Governance & Dev Fund
-          </h1>
-          <motion.div
-            animate={{ rotate: [0, 15, -15, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <Vote className="w-8 h-8 text-purple-400" />
-          </motion.div>
-        </div>
-        <p className="text-sm text-muted-foreground mt-2">
-          Community-driven development and decentralized decision making
-        </p>
-      </motion.header>
-
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-8">
+    <VisualizerCanvas
+      title="Zcash Governance & Dev Fund"
+      description="Real-world applications of zero-knowledge privacy"
+      currentStep={currentStage}
+      totalSteps={STAGES.length}
+      isPlaying={isPlaying}
+      onPrevious={goToPrevious}
+      onNext={goToNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={restart}
+      iconHeader={<Vote className="w-10 h-10 text-yellow-400" />}
+    >
+      <div className="container mx-auto p-8 mt-12">
         <StageContent stage={stage} isAnimating={isAnimating} />
-      </main>
-
-      <footer className="sticky bottom-0 bg-background/80 backdrop-blur-md border-t border-border/50 py-6">
-        <PlaybackControls
-          stages={STAGES}
-          currentStage={currentStage}
-          isPlaying={isPlaying}
-          onRestart={restart}
-          onPrevious={goToPrevious}
-          onNext={goToNext}
-          onPause={() => setIsPlaying(false)}
-          onPlay={() => setIsPlaying(true)}
-        />      
-        </footer>
-    </div>
+      </div>
+    </VisualizerCanvas>
   );
 };

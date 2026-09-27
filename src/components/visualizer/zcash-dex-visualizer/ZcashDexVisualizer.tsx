@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/UI/shadcn/button";
 import {
   Card,
   CardContent,
@@ -7,10 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/UI/shadcn/card";
-import { useEffect } from "react";
-import { Button } from "@/components/UI/shadcn/button";
-import { ExternalLink, Shield, Zap, Wallet } from "lucide-react";
 import { motion } from "framer-motion";
+import { ExternalLink, Shield, Wallet, Zap } from "lucide-react";
+import { useEffect, useState } from "react";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 
 const DEX_PLATFORMS = [
   {
@@ -55,33 +56,44 @@ export const ZcashDexVisualizer = ({
   onComplete,
   autoStart = false,
 }: ZcashDexVisualizerProps) => {
+  // useEffect(() => {
+  //   if (autoStart && onComplete) {
+  //     const timer = setTimeout(() => {
+  //       onComplete();
+  //     }, 15000); // 15 seconds
+
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [autoStart, onComplete]);
+
+  const [isPlaying, setIsPlaying] = useState(autoStart);
+
   useEffect(() => {
     if (autoStart && onComplete) {
+      setIsPlaying(true);
+
       const timer = setTimeout(() => {
         onComplete();
-      }, 15000); // 15 seconds
+      }, 15000);
 
       return () => clearTimeout(timer);
     }
   }, [autoStart, onComplete]);
-  return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-8 dark:bg-gradient-to-br dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-white">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-emerald-400 bg-clip-text text-transparent">
-            Zcash Decentralized Exchanges
-          </h1>
-          <p className="text-xl dark:text-muted-foreground max-w-3xl mx-auto">
-            Permissionless, censorship-resistant access to ZEC using
-            decentralized exchanges
-          </p>
-        </motion.div>
 
+  return (
+    <VisualizerCanvas
+      title="Zcash Decentralized Exchanges"
+      description="Permissionless, censorship-resistant access to ZEC using decentralized exchanges"
+      currentStep={0}
+      totalSteps={1}
+      isPlaying={isPlaying}
+      onPrevious={() => {}}
+      onNext={() => {}}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={() => setIsPlaying(false)}
+    >
+      <div className="w-full max-w-6xl mx-auto p-4 md:p-8">
         {/* Main Message */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -91,37 +103,41 @@ export const ZcashDexVisualizer = ({
         >
           <div className="flex items-center gap-4 mb-4">
             <Shield className="w-8 h-8 text-emerald-400" />
+
             <h2 className="text-2xl font-bold">Why Use DEXs for Zcash?</h2>
           </div>
+
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <p className="dark:text-muted-foreground mb-4">
                 While Zcash can be purchased on centralized exchanges, DEXs
-                provide
+                provide{" "}
                 <span className="font-semibold text-yellow-400">
-                  {" "}
-                  permissionless, censorship-resistant access{" "}
-                </span>
+                  permissionless, censorship-resistant access
+                </span>{" "}
                 to ZEC without intermediaries.
               </p>
+
               <p className="dark:text-muted-foreground">
-                Swap from multiple assets directly to Zcash with
+                Swap from multiple assets directly to Zcash with{" "}
                 <span className="font-semibold text-emerald-400">
-                  {" "}
-                  minimal fees{" "}
-                </span>
+                  minimal fees
+                </span>{" "}
                 using platforms that support shielded ZEC natively.
               </p>
             </div>
+
             <div>
               <div className="flex items-center gap-3 mb-3">
                 <Zap className="w-5 h-5 text-yellow-400" />
                 <span className="font-medium">Direct to shielded ZEC</span>
               </div>
+
               <div className="flex items-center gap-3 mb-3">
                 <Shield className="w-5 h-5 text-emerald-400" />
                 <span className="font-medium">Non-custodial & private</span>
               </div>
+
               <div className="flex items-center gap-3">
                 <Wallet className="w-5 h-5 text-cyan-400" />
                 <span className="font-medium">
@@ -142,6 +158,7 @@ export const ZcashDexVisualizer = ({
           <h2 className="text-3xl font-bold mb-8 text-center">
             Supported DEX Platforms
           </h2>
+
           <div className="grid md:grid-cols-3 gap-6">
             {DEX_PLATFORMS.map((dex, index) => (
               <motion.div
@@ -161,12 +178,15 @@ export const ZcashDexVisualizer = ({
                           className="w-8 h-8 object-contain"
                         />
                       </div>
+
                       {dex.name}
                     </CardTitle>
+
                     <CardDescription className="dark:text-muted-foreground">
                       {dex.description}
                     </CardDescription>
                   </CardHeader>
+
                   <CardContent>
                     <ul className="space-y-2 mb-6">
                       {dex.features.map((feature) => (
@@ -179,6 +199,7 @@ export const ZcashDexVisualizer = ({
                         </li>
                       ))}
                     </ul>
+
                     <Button
                       className="w-full bg-gradient-to-r from-yellow-400 to-emerald-400 hover:from-yellow-500 hover:to-emerald-500 text-slate-900 font-semibold"
                       onClick={() => window.open(dex.link, "_blank")}
@@ -203,6 +224,7 @@ export const ZcashDexVisualizer = ({
           <h2 className="text-2xl font-bold mb-6 text-center">
             Wallet Integrations
           </h2>
+
           <div className="flex flex-wrap justify-center gap-4">
             {WALLET_INTEGRATIONS.map((wallet) => (
               <div
@@ -213,11 +235,12 @@ export const ZcashDexVisualizer = ({
               </div>
             ))}
           </div>
+
           <p className="text-center dark:text-slate-400 mt-6">
             These wallets support direct integration with Zcash DEX platforms
           </p>
         </motion.div>
       </div>
-    </div>
+    </VisualizerCanvas>
   );
 };

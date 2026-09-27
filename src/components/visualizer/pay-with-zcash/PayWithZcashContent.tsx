@@ -176,14 +176,14 @@ export const PayWithZcashContent = ({
   }, [currentSlide]);
 
   return (
-    <div className="max-w-5xl mx-auto px-4">
+    <div className="max-w-5xl mx-auto p-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
+        <h2 className="text-2xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
           Pay with Zcash
         </h2>
         <p className="text-muted-foreground text-lg">
@@ -349,15 +349,6 @@ export const PayWithZcashContent = ({
           />
         </motion.div>
       </AnimatePresence>
-
-      {/* Progress Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="mt-12 text-center text-sm text-muted-foreground"
-      >
-        Step {currentSlide + 1} of {slides.length}
-      </motion.div>
     </div>
   );
 };

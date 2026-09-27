@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useState, useEffect } from "react";
-import { PlaybackControls } from "../PlaybackControls";
+import { useCallback, useEffect, useState } from "react";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import { PayWithZcashContent, slides } from "./PayWithZcashContent";
 
 const SLIDES = slides.map((s) => ({ id: s.id, title: s.title }));
@@ -11,10 +11,13 @@ interface PayWithZcashVisualizerProps {
   autoStart?: boolean;
 }
 
-export const PayWithZcashVisualizer = ({ onComplete, autoStart = false }: PayWithZcashVisualizerProps) => {
+export const PayWithZcashVisualizer = ({
+  onComplete,
+  autoStart = false,
+}: PayWithZcashVisualizerProps) => {
   const [currentStage, setCurrentStage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoStart);
-  
+
   const goToNext = useCallback(() => {
     setCurrentStage((prev) => (prev + 1) % SLIDES.length);
   }, []);
@@ -37,40 +40,36 @@ export const PayWithZcashVisualizer = ({ onComplete, autoStart = false }: PayWit
       setIsPlaying(true);
     }
   }, [autoStart]);
-  
+
   // Completion logic
   useEffect(() => {
     if (currentStage === SLIDES.length - 1 && isPlaying && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
       }, 5000); // 5 seconds on last slide
-      
+
       return () => clearTimeout(timer);
     }
   }, [currentStage, isPlaying, onComplete]);
-  
-  return (
-    <div className="flex flex-col min-h-screen">
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-12">
-        <PayWithZcashContent
-          currentSlide={currentStage}
-          onSlideChange={handleSlideChange}
-          isPlaying={isPlaying}
-        />
-      </main>
 
-      <footer className="sticky bottom-0 bg-background/80 backdrop-blur-md border-t border-border/50 py-6">
-        <PlaybackControls
-          currentStage={currentStage}
-          isPlaying={isPlaying}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          onNext={goToNext}
-          onPrevious={goToPrevious}
-          onRestart={restart}
-          stages={SLIDES}
-        />
-      </footer>
-    </div>
+  return (
+    <VisualizerCanvas
+      title="Pay With Zcash"
+      description="Explore how Zcash payments can be integrated into applications"
+      currentStep={currentStage}
+      totalSteps={SLIDES.length}
+      isPlaying={isPlaying}
+      onPrevious={goToPrevious}
+      onNext={goToNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={restart}
+    >
+      <PayWithZcashContent
+        currentSlide={currentStage}
+        onSlideChange={handleSlideChange}
+        isPlaying={isPlaying}
+      />
+    </VisualizerCanvas>
   );
 };

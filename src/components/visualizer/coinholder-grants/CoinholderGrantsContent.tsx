@@ -1,19 +1,18 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Coins,
-  FileCheck,
-  MessageSquare,
-  Vote,
-  Trophy,
-  ExternalLink,
+import { AnimatePresence, motion } from "framer-motion";
+import {
   ArrowRight,
   CheckCircle,
+  Coins,
+  ExternalLink,
+  FileCheck,
+  MessageSquare,
+  Trophy,
   Users,
-  Calendar
+  Vote,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const slides = [
   {
@@ -26,10 +25,10 @@ const slides = [
       "Focus on privacy, adoption, tooling, or security",
       "Demonstrated impact with transparent evidence",
       "Alignment with Zcash values (privacy, decentralization)",
-      "Open to individuals, teams, or organizations"
+      "Open to individuals, teams, or organizations",
     ],
     link: "https://zips.z.cash/zip-1016",
-    linkText: "Read ZIP 1016"
+    linkText: "Read ZIP 1016",
   },
   {
     id: "prepare",
@@ -41,10 +40,10 @@ const slides = [
       "Provide transparent evidence (code, reports, metrics)",
       "Specify requested amount (ZEC/USD equivalent)",
       "Include justification for the funding request",
-      "Add your payout address and contact information"
+      "Add your payout address and contact information",
     ],
     link: "https://forum.zcashcommunity.com/c/grants/32",
-    linkText: "Visit Grants Forum"
+    linkText: "Visit Grants Forum",
   },
   {
     id: "submit",
@@ -56,10 +55,10 @@ const slides = [
       'Title: "[Retroactive Grant] - [Project Name]"',
       "Use clear markdown format for readability",
       "Submit before quarterly deadline (announced on forum)",
-      "Late submissions go to next round or ZCG"
+      "Late submissions go to next round or ZCG",
     ],
     link: "https://forum.zcashcommunity.com/c/grants/32",
-    linkText: "Submit Proposal"
+    linkText: "Submit Proposal",
   },
   {
     id: "review",
@@ -71,10 +70,10 @@ const slides = [
       "Respond to questions in your forum thread",
       "Provide clarifications and additional evidence",
       "Summary thread often created for all proposals",
-      "Proposals compiled on GitHub for visibility"
+      "Proposals compiled on GitHub for visibility",
     ],
     link: "https://forum.zcashcommunity.com/c/grants/32",
-    linkText: "Engage with Community"
+    linkText: "Engage with Community",
   },
   {
     id: "voting",
@@ -86,10 +85,10 @@ const slides = [
       "Orchard pool holdings are eligible to vote",
       "Requires ≥420,000 ZEC quorum + simple majority",
       "Voting period: ~1-2 weeks after review",
-      "Public, transparent results with decentralized polling"
+      "Public, transparent results with decentralized polling",
     ],
     link: "https://forum.zcashcommunity.com/c/grants/32",
-    linkText: "Learn About Voting"
+    linkText: "Learn About Voting",
   },
   {
     id: "outcome",
@@ -101,11 +100,11 @@ const slides = [
       "Highest ZEC support wins among competing proposals",
       "Approved grants paid per specified terms",
       "KYC required for grants over $50,000",
-      "Quarterly cadence continues until 3rd halving (~2028)"
+      "Quarterly cadence continues until 3rd halving (~2028)",
     ],
     link: "https://forum.zcashcommunity.com/c/grants/32",
-    linkText: "View Past Results"
-  }
+    linkText: "View Past Results",
+  },
 ];
 
 export { slides };
@@ -116,10 +115,10 @@ interface CoinholderGrantsContentProps {
   isPlaying: boolean;
 }
 
-export const CoinholderGrantsContent = ({ 
-  currentSlide, 
+export const CoinholderGrantsContent = ({
+  currentSlide,
   onSlideChange,
-  isPlaying 
+  isPlaying,
 }: CoinholderGrantsContentProps) => {
   const [progress, setProgress] = useState(0);
 
@@ -150,15 +149,15 @@ export const CoinholderGrantsContent = ({
     return () => clearInterval(timer);
   }, [isPlaying]);
 
-// Handle slide change when progress reaches 100
-useEffect(() => {
-  if (progress >= 100 && isPlaying) {
-    const timer = setTimeout(() => {
-      onSlideChange(currentSlide + 1);
-    }, 0);
-    return () => clearTimeout(timer);
-  }
-}, [progress, isPlaying, currentSlide, onSlideChange]);
+  // Handle slide change when progress reaches 100
+  useEffect(() => {
+    if (progress >= 100 && isPlaying) {
+      const timer = setTimeout(() => {
+        onSlideChange(currentSlide + 1);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [progress, isPlaying, currentSlide, onSlideChange]);
 
   useEffect(() => {
     setProgress(0);
@@ -172,7 +171,7 @@ useEffect(() => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+        <h2 className="text-2xl md:text-3xl font-bold mb-3 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
           Coinholder Directed Grants
         </h2>
         <p className="text-muted-foreground text-lg">
@@ -188,11 +187,11 @@ useEffect(() => {
             onClick={() => onSlideChange(index)}
             className="relative"
           >
-            <div 
+            <div
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentSlide 
-                  ? 'bg-cyan-400 w-8' 
-                  : 'bg-slate-400/30 hover:bg-slate-400/50'
+                index === currentSlide
+                  ? "bg-cyan-400 w-8"
+                  : "bg-slate-400/30 hover:bg-slate-400/50"
               }`}
             />
             {index === currentSlide && isPlaying && (
@@ -200,7 +199,7 @@ useEffect(() => {
                 className="absolute inset-0 bg-cyan-400 rounded-full"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: progress / 100 }}
-                style={{ transformOrigin: 'left' }}
+                style={{ transformOrigin: "left" }}
               />
             )}
           </button>
@@ -222,28 +221,28 @@ useEffect(() => {
             <motion.div
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 200, 
+              transition={{
+                type: "spring",
+                stiffness: 200,
                 damping: 15,
-                delay: 0.2 
+                delay: 0.2,
               }}
               className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${slide.color} p-1 shadow-2xl`}
             >
               <div className="w-full h-full bg-background rounded-xl flex items-center justify-center">
                 <Icon className="w-12 h-12 text-foreground" />
               </div>
-              
+
               <motion.div
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${slide.color} opacity-50`}
-                animate={{ 
+                animate={{
                   scale: [1, 1.2, 1],
-                  opacity: [0.5, 0, 0.5]
+                  opacity: [0.5, 0, 0.5],
                 }}
-                transition={{ 
-                  duration: 2, 
+                transition={{
+                  duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             </motion.div>
@@ -272,10 +271,10 @@ useEffect(() => {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ 
+                  transition={{
                     delay: 0.5 + index * 0.1,
                     type: "spring",
-                    stiffness: 200
+                    stiffness: 200,
                   }}
                   className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br ${slide.color} flex items-center justify-center text-white font-bold shadow-lg`}
                 >
@@ -314,38 +313,29 @@ useEffect(() => {
           <motion.div
             animate={{
               rotate: [0, 360],
-              scale: [1, 1.2, 1]
+              scale: [1, 1.2, 1],
             }}
             transition={{
               duration: 20,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
             className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${slide.color} opacity-10 rounded-full blur-3xl pointer-events-none`}
           />
           <motion.div
             animate={{
               rotate: [360, 0],
-              scale: [1, 1.3, 1]
+              scale: [1, 1.3, 1],
             }}
             transition={{
               duration: 15,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
             className={`absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-br ${slide.color} opacity-10 rounded-full blur-3xl pointer-events-none`}
           />
         </motion.div>
       </AnimatePresence>
-
-      {/* Progress Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="mt-12 text-center text-sm text-muted-foreground"
-      >
-        Step {currentSlide + 1} of {slides.length}
-      </motion.div>
     </div>
   );
 };

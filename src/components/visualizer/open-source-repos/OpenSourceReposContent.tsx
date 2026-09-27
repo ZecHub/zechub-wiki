@@ -1,19 +1,18 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Code2,
-  Github,
-  GitPullRequest,
-  Heart,
-  GitFork,
-  MessageSquare,
-  ExternalLink,
+import { AnimatePresence, motion } from "framer-motion";
+import {
   ArrowRight,
   CheckCircle,
-  Search
+  Code2,
+  ExternalLink,
+  GitFork,
+  GitPullRequest,
+  Heart,
+  MessageSquare,
+  Search,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const slides = [
   {
@@ -26,10 +25,10 @@ const slides = [
       "Check Zebra alternative node (ZcashFoundation/zebra)",
       "Explore ZecHub Wiki and documentation",
       "Review wallet and tooling repositories",
-      "Browse open issues labeled 'good first issue'"
+      "Browse open issues labeled 'good first issue'",
     ],
     link: "https://github.com/zcash/zcash",
-    linkText: "Zcash Protocol Repo"
+    linkText: "Zcash Protocol Repo",
   },
   {
     id: "setup",
@@ -41,10 +40,10 @@ const slides = [
       "Clone your forked repository to local machine",
       "Set up development environment per README",
       "Add upstream remote to track original repo",
-      "Create a new branch for your changes"
+      "Create a new branch for your changes",
     ],
     link: "https://docs.github.com/en/get-started/quickstart/fork-a-repo",
-    linkText: "GitHub Fork Guide"
+    linkText: "GitHub Fork Guide",
   },
   {
     id: "develop",
@@ -56,10 +55,10 @@ const slides = [
       "Follow the project's coding standards",
       "Add tests for new features or bug fixes",
       "Update documentation as needed",
-      "Commit changes with clear, descriptive messages"
+      "Commit changes with clear, descriptive messages",
     ],
     link: "https://www.conventionalcommits.org/",
-    linkText: "Commit Best Practices"
+    linkText: "Commit Best Practices",
   },
   {
     id: "pr",
@@ -71,10 +70,10 @@ const slides = [
       "Open a pull request to the main repository",
       "Write a clear PR description explaining changes",
       "Link related issues using keywords (fixes #123)",
-      "Request review from project maintainers"
+      "Request review from project maintainers",
     ],
     link: "https://github.com/zcash/zcash/pulls",
-    linkText: "View Open PRs"
+    linkText: "View Open PRs",
   },
   {
     id: "review",
@@ -86,10 +85,10 @@ const slides = [
       "Make requested changes in new commits",
       "Participate in technical discussions",
       "Address CI/CD test failures if any",
-      "Be patient and professional throughout"
+      "Be patient and professional throughout",
     ],
     link: "https://github.com/zcash/zcash/blob/master/CONTRIBUTING.md",
-    linkText: "Contributing Guide"
+    linkText: "Contributing Guide",
   },
   {
     id: "merge",
@@ -101,11 +100,11 @@ const slides = [
       "Your contribution is merged to main branch",
       "You're added to the contributors list",
       "Consider ongoing contributions to the project",
-      "Share your success with the community!"
+      "Share your success with the community!",
     ],
     link: "https://github.com/zechub/zechub",
-    linkText: "Contribute to ZecHub"
-  }
+    linkText: "Contribute to ZecHub",
+  },
 ];
 
 export { slides };
@@ -116,10 +115,10 @@ interface OpenSourceReposContentProps {
   isPlaying: boolean;
 }
 
-export const OpenSourceReposContent = ({ 
-  currentSlide, 
+export const OpenSourceReposContent = ({
+  currentSlide,
   onSlideChange,
-  isPlaying 
+  isPlaying,
 }: OpenSourceReposContentProps) => {
   const [progress, setProgress] = useState(0);
 
@@ -150,15 +149,15 @@ export const OpenSourceReposContent = ({
     return () => clearInterval(timer);
   }, [isPlaying]);
 
-// Handle slide change when progress reaches 100
-useEffect(() => {
-  if (progress >= 100 && isPlaying) {
-    const timer = setTimeout(() => {
-      onSlideChange(currentSlide + 1);
-    }, 0);
-    return () => clearTimeout(timer);
-  }
-}, [progress, isPlaying, currentSlide, onSlideChange]);
+  // Handle slide change when progress reaches 100
+  useEffect(() => {
+    if (progress >= 100 && isPlaying) {
+      const timer = setTimeout(() => {
+        onSlideChange(currentSlide + 1);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [progress, isPlaying, currentSlide, onSlideChange]);
 
   useEffect(() => {
     setProgress(0);
@@ -188,11 +187,11 @@ useEffect(() => {
             onClick={() => onSlideChange(index)}
             className="relative"
           >
-            <div 
+            <div
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentSlide 
-                  ? 'bg-slate-400 w-8' 
-                  : 'bg-slate-400/30 hover:bg-slate-400/50'
+                index === currentSlide
+                  ? "bg-slate-400 w-8"
+                  : "bg-slate-400/30 hover:bg-slate-400/50"
               }`}
             />
             {index === currentSlide && isPlaying && (
@@ -200,7 +199,7 @@ useEffect(() => {
                 className="absolute inset-0 bg-slate-400 rounded-full"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: progress / 100 }}
-                style={{ transformOrigin: 'left' }}
+                style={{ transformOrigin: "left" }}
               />
             )}
           </button>
@@ -222,28 +221,28 @@ useEffect(() => {
             <motion.div
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 200, 
+              transition={{
+                type: "spring",
+                stiffness: 200,
                 damping: 15,
-                delay: 0.2 
+                delay: 0.2,
               }}
               className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${slide.color} p-1 shadow-2xl`}
             >
               <div className="w-full h-full bg-background rounded-xl flex items-center justify-center">
                 <Icon className="w-12 h-12 text-foreground" />
               </div>
-              
+
               <motion.div
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${slide.color} opacity-50`}
-                animate={{ 
+                animate={{
                   scale: [1, 1.2, 1],
-                  opacity: [0.5, 0, 0.5]
+                  opacity: [0.5, 0, 0.5],
                 }}
-                transition={{ 
-                  duration: 2, 
+                transition={{
+                  duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             </motion.div>
@@ -272,10 +271,10 @@ useEffect(() => {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  transition={{ 
+                  transition={{
                     delay: 0.5 + index * 0.1,
                     type: "spring",
-                    stiffness: 200
+                    stiffness: 200,
                   }}
                   className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br ${slide.color} flex items-center justify-center text-white font-bold shadow-lg`}
                 >
@@ -314,38 +313,29 @@ useEffect(() => {
           <motion.div
             animate={{
               rotate: [0, 360],
-              scale: [1, 1.2, 1]
+              scale: [1, 1.2, 1],
             }}
             transition={{
               duration: 20,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
             className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${slide.color} opacity-10 rounded-full blur-3xl pointer-events-none`}
           />
           <motion.div
             animate={{
               rotate: [360, 0],
-              scale: [1, 1.3, 1]
+              scale: [1, 1.3, 1],
             }}
             transition={{
               duration: 15,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
             className={`absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-br ${slide.color} opacity-10 rounded-full blur-3xl pointer-events-none`}
           />
         </motion.div>
       </AnimatePresence>
-
-      {/* Progress Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="mt-12 text-center text-sm text-muted-foreground"
-      >
-        Step {currentSlide + 1} of {slides.length}
-      </motion.div>
     </div>
   );
 };

@@ -1,10 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useCallback, useState, useEffect } from "react";
-import { PlaybackControls } from "../PlaybackControls";
+import { Pickaxe } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import { StageContent, STAGES } from "./MiningHaloContent";
-import { Pickaxe, Zap } from "lucide-react";
 
 const STAGE_INTERVAL = 10000; // 10 seconds per stage
 
@@ -13,9 +12,9 @@ interface MiningHaloVisualizerProps {
   autoStart?: boolean;
 }
 
-export const MiningHaloVisualizer = ({ 
-  onComplete, 
-  autoStart = false 
+export const MiningHaloVisualizer = ({
+  onComplete,
+  autoStart = false,
 }: MiningHaloVisualizerProps) => {
   const [currentStage, setCurrentStage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoStart);
@@ -61,14 +60,14 @@ export const MiningHaloVisualizer = ({
       setIsPlaying(true);
     }
   }, [autoStart]);
-  
+
   // Completion logic
   useEffect(() => {
     if (currentStage === STAGES.length - 1 && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
       }, STAGE_INTERVAL);
-      
+
       return () => clearTimeout(timer);
     }
   }, [currentStage, onComplete]);
@@ -85,54 +84,22 @@ export const MiningHaloVisualizer = ({
   }, [isPlaying, goToNext]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Header */}
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="py-6 px-4 text-center border-b border-border mt-12"
-      >
-        <div className="flex items-center justify-center gap-3">
-          <motion.div
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center"
-          >
-            <Pickaxe className="w-5 h-5 text-white" />
-          </motion.div>
-          <h1 className="text-2xl font-bold text-foreground">
-            Zcash Mining
-          </h1>
-          <motion.div
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Zap className="w-6 h-6 text-purple-400" />
-          </motion.div>
-        </div>
-        <p className="text-sm text-muted-foreground mt-2">
-          Understanding Zcash&apos;s mining and zero-knowledge proof technology
-        </p>
-      </motion.header>
-
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-8">
+    <VisualizerCanvas
+      title="Zcash Mining"
+      description="Understanding Zcash's mining and zero-knowledge proof technology"
+      currentStep={currentStage}
+      totalSteps={STAGES.length}
+      isPlaying={isPlaying}
+      onPrevious={goToPrevious}
+      onNext={goToNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={restart}
+      iconHeader={<Pickaxe className="w-10 h-10 text-yellow-400" />}
+    >
+      <div className="container mx-auto p-8 mt-12">
         <StageContent stage={stage} isAnimating={isAnimating} />
-      </main>
-
-      {/* Controls Footer */}
-      <footer className="sticky bottom-0 bg-background/80 backdrop-blur-md border-t border-border/50 py-6">
-        <PlaybackControls
-          stages={STAGES}
-          currentStage={currentStage}
-          isPlaying={isPlaying}
-          onRestart={restart}
-          onPrevious={goToPrevious}
-          onNext={goToNext}
-          onPause={() => setIsPlaying(false)}
-          onPlay={() => setIsPlaying(true)}
-        />      
-        </footer>
-    </div>
+      </div>
+    </VisualizerCanvas>
   );
 };
