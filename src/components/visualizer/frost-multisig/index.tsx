@@ -1,10 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Signature } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
-import { PlaybackControls } from "../PlaybackControls";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import { StageContent, STAGES } from "./FrostMultisigContent";
-import { Users, ShieldCheck } from "lucide-react";
 
 const STAGE_INTERVAL = 12000; // 12 seconds per stage (interactive stages need breathing room)
 
@@ -105,59 +104,27 @@ export const FrostMultisigVisualizer = ({
   }, [isPlaying, goToNext, currentStage]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Header */}
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="py-6 px-4 text-center border-b border-border mt-12"
-      >
-        <div className="flex items-center justify-center gap-3">
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center"
-          >
-            <Users className="w-5 h-5 text-white" />
-          </motion.div>
-          <h1 className="text-2xl font-bold text-foreground">
-            FROST Threshold Signatures
-          </h1>
-          <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ShieldCheck className="w-6 h-6 text-emerald-400" />
-          </motion.div>
-        </div>
-        <p className="text-sm text-muted-foreground mt-2">
-          Secure multisig without a single point of failure
-        </p>
-      </motion.header>
-
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 md:py-13 mt-8">
+    <VisualizerCanvas
+      title="FROST Threshold Signatures"
+      description="Secure multisig without a single point of failure"
+      currentStep={currentStage}
+      totalSteps={STAGES.length}
+      isPlaying={isPlaying}
+      onPrevious={goToPrevious}
+      onNext={goToNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={restart}
+      iconHeader={<Signature className="w-10 h-10 text-yellow-400" />}
+    >
+      <div className="container mx-auto p-8 mt-12">
         <StageContent
           stage={stage}
           isAnimating={isAnimating}
           interactive={interactive}
         />
-      </main>
-
-      {/* Controls Footer */}
-      <footer className="sticky bottom-0 bg-background/80 backdrop-blur-md border-t border-border/50 py-6">
-        <PlaybackControls
-          stages={STAGES}
-          currentStage={currentStage}
-          isPlaying={isPlaying}
-          onRestart={restart}
-          onPrevious={goToPrevious}
-          onNext={goToNext}
-          onPause={() => setIsPlaying(false)}
-          onPlay={() => setIsPlaying(true)}
-        />
-      </footer>
-    </div>
+      </div>
+    </VisualizerCanvas>
   );
 };
 
