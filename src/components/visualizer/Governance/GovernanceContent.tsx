@@ -18,6 +18,7 @@ import {
   Rocket,
   Sparkles,
   Shield,
+  Info,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -255,22 +256,22 @@ const ZIPsAnimation = () => {
 // Voting Animation
 const VotingAnimation = () => {
   const [voting, setVoting] = useState(false);
-  const [votes, setVotes] = useState({ yes: 45, no: 30, abstain: 25 });
 
   useEffect(() => {
     const interval = setInterval(() => {
       setVoting(true);
-      setTimeout(() => {
-        setVotes({
-          yes: 45 + Math.floor(Math.random() * 10),
-          no: 30 + Math.floor(Math.random() * 10),
-          abstain: 25 + Math.floor(Math.random() * 5),
-        });
-        setVoting(false);
-      }, 2000);
+      setTimeout(() => setVoting(false), 2000);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  // Fixed illustrative tally, not a real or live vote. Kept as constants so the
+  // three options always add up to exactly 100%.
+  const results = [
+    { label: "Yes", value: 45, color: "bg-green-500" },
+    { label: "No", value: 30, color: "bg-red-500" },
+    { label: "Abstain", value: 25, color: "bg-gray-500" },
+  ];
 
   return (
     <div className="space-y-6 md:space-y-8">
@@ -292,11 +293,8 @@ const VotingAnimation = () => {
 
       {/* Results */}
       <div className="space-y-3 md:space-y-4">
-        {[
-          { label: "Yes", value: votes.yes, color: "bg-green-500" },
-          { label: "No", value: votes.no, color: "bg-red-500" },
-          { label: "Abstain", value: votes.abstain, color: "bg-gray-500" },
-        ].map((option) => (
+        <h3 className="text-sm md:text-base font-semibold">Example Results</h3>
+        {results.map((option) => (
           <div key={option.label}>
             <div className="flex justify-between text-xs md:text-sm mb-2">
               <span className="font-medium">{option.label}</span>
@@ -312,6 +310,14 @@ const VotingAnimation = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="flex items-start gap-2 rounded-lg border border-border/60 bg-secondary/40 p-3">
+        <Info className="w-4 h-4 text-muted-foreground mt-0.5 flex-shrink-0" />
+        <p className="text-xs text-muted-foreground">
+          Educational visualization — the tally above is a fixed illustrative
+          example, not a real, live or historical vote result.
+        </p>
       </div>
     </div>
   );
