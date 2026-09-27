@@ -1,19 +1,13 @@
 "use client";
 
-import { Button } from "@/components/UI/shadcn/button";
 import { Card } from "@/components/UI/shadcn/card";
 import { Progress } from "@/components/UI/shadcn/progress";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Pause,
-  Play,
-  RotateCcw,
-} from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { VisualizerCanvas } from "../VisualizerCanvas";
 import type { Stage } from "./ProofStep";
 import ProofStep from "./ProofStep";
+import "./index.css";
 
 export type Step = {
   title: string;
@@ -21,7 +15,6 @@ export type Step = {
   details: string;
   stage: Stage;
 };
-import "./index.css";
 
 const steps: Step[] = [
   {
@@ -80,14 +73,14 @@ interface ZKSNARKProofVisualizerProps {
   autoStart?: boolean;
 }
 
-const ZKSNARKProofVisualizer = ({ 
-  onComplete, 
-  autoStart = false 
+const ZKSNARKProofVisualizer = ({
+  onComplete,
+  autoStart = false,
 }: ZKSNARKProofVisualizerProps) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoStart);
-  
-  // Auto-start when autoStart prop is true
+
+  // Auto-start when Play All starts this visualizer.
   useEffect(() => {
     if (autoStart) {
       setIsPlaying(true);
@@ -96,7 +89,9 @@ const ZKSNARKProofVisualizer = ({
 
   // Auto-play through steps
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying) {
+      return;
+    }
 
     const timer = setTimeout(() => {
       setCurrentStep((prev) => {
@@ -111,62 +106,62 @@ const ZKSNARKProofVisualizer = ({
     return () => clearTimeout(timer);
   }, [isPlaying, currentStep]);
 
-  // Completion logic - trigger when on last step and not playing anymore
+  /*
+   * Play All completion.
+   *
+   * Keep the existing 10-second hold on the final step.
+   */
   useEffect(() => {
     if (currentStep === steps.length - 1 && !isPlaying && onComplete) {
       const timer = setTimeout(() => {
         onComplete();
       }, 10000); // Wait 10 seconds on final step before completing
-      
+
       return () => clearTimeout(timer);
     }
   }, [currentStep, isPlaying, onComplete]);
 
-  const handleNext = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      setCurrentStep(0);
-    }
-  };
+  const handleNext = useCallback(() => {
+    setCurrentStep((prev) => {
+      if (prev >= steps.length - 1) {
+        return 0;
+      }
 
-  const handlePrevious = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
+      return prev + 1;
+    });
+  }, []);
 
-  const handleReset = () => {
+  const handlePrevious = useCallback(() => {
+    setCurrentStep((prev) => Math.max(0, prev - 1));
+  }, []);
+
+  const handleReset = useCallback(() => {
     setCurrentStep(0);
     setIsPlaying(false);
-  };
+  }, []);
 
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
+ 
 
   const progress = ((currentStep + 1) / steps.length) * 100;
+  const current = steps[currentStep];
 
   return (
-    <div className="min-h-screen py-12 px-6 rounded-sm bg-background text-foreground">
-      <div className="max-w-6xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="block">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-2">zk-SNARK Visualizer</h1>
-            <p className="text-muted-foreground">
-              Interactive demonstration of shielded transactions
-            </p>
-          </div>
-          <div className="w-24" /> {/* Spacer for alignment */}
-        </div>
-
+    <VisualizerCanvas
+      title="zk-SNARK Visualizer"
+      description="Interactive demonstration of shielded transactions"
+      currentStep={currentStep}
+      totalSteps={steps.length}
+      isPlaying={isPlaying}
+      onPrevious={handlePrevious}
+      onNext={handleNext}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      onRestart={handleReset}
+    >
+      <div className="w-full max-w-6xl mx-auto p-4 md:p-8 space-y-8">
         {/* Progress Bar */}
         <Card className="bg-card p-6 space-y-4">
           <div className="flex items-center justify-between text-sm">
-            <span className="font-medium">
-              Step {currentStep + 1} of {steps.length}
-            </span>
             <span className="text-muted-foreground">
               {Math.round(progress)}% Complete
             </span>
@@ -233,73 +228,8 @@ const ZKSNARKProofVisualizer = ({
             </motion.div>
           </Card>
         </div>
-
-        {/* Controls */}
-        <Card className="bg-card p-6">
-          <div className="grid grid-cols-2 imd:grid-cols-4 justify-center gap-4">
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={handleReset}
-              className="border-destructive/30 hover:border-destructive/50"
-            >
-              <RotateCcw className="w-4 h-4 mr-2" />
-              Reset
-            </Button>
-
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={handlePrevious}
-              disabled={currentStep === 0}
-            >
-              <ChevronLeft className="w-4 h-4 mr-2" />
-              Previous
-            </Button>
-
-            <Button
-              size="lg"
-              onClick={togglePlay}
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
-            >
-              {isPlaying ? (
-                <>
-                  <Pause className="w-4 h-4 mr-2" />
-                  Pause
-                </>
-              ) : (
-                <>
-                  <Play className="w-4 h-4 mr-2" />
-                  Play
-                </>
-              )}
-            </Button>
-
-            <Button variant="outline" size="lg" onClick={handleNext}>
-              Next
-              <ChevronRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
-
-          {/* Step Indicators */}
-          <div className="flex justify-center gap-2 mt-6">
-            {steps.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentStep(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentStep
-                    ? "bg-primary w-8"
-                    : index < currentStep
-                    ? "bg-secondary"
-                    : "bg-border"
-                }`}
-              />
-            ))}
-          </div>
-        </Card>
       </div>
-    </div>
+    </VisualizerCanvas>
   );
 };
 
