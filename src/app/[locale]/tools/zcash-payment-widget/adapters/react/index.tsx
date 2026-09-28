@@ -39,7 +39,7 @@ export function ZcashPaymentURI(props: Props) {
 
         instanceRef.current?.destroy();
 
-        instanceRef.current = window.renderZcashButton(
+        instanceRef.current = await window.renderZcashButton(
           `#${containerRef.current!.id}`,
           {
             ...props,
@@ -47,15 +47,20 @@ export function ZcashPaymentURI(props: Props) {
           },
         );
 
-        setStatus("ready");
+        if (mounted) setStatus("ready");
         logZcashPaymentWidgetEvent("zcash_payment_widget_loaded");
-      } catch (err: any) {
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
         console.error("[Zcash Payment Widget] Loading failed:", err);
 
-        logZcashPaymentWidgetEvent("zcash_payment_widget_load_failed", {
-          error: err?.message ?? String(err),
-          scriptSrc,
-        });
+        try {
+          logZcashPaymentWidgetEvent("zcash_payment_widget_load_failed", {
+            error: message,
+            scriptSrc,
+          });
+        } catch (logErr) {
+          console.error("[Zcash Payment Widget] Failed to log event:", logErr);
+        }
 
         if (mounted) setStatus("error");
       }
