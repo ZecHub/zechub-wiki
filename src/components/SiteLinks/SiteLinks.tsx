@@ -115,7 +115,7 @@ const SiteLinks: React.FC = () => {
           </h2>
           <ul className="elementor-sitemap-list elementor-sitemap-partner-list">
             <li className="elementor-sitemap-item elementor-sitemap-item-partner page_item page-item-6280">
-              <Link href="/zcash-community/arborist-calls">Aborist Calls</Link>
+              <Link href="/zcash-community/arborist-calls">Arborist Calls</Link>
             </li>
             <li className="elementor-sitemap-item elementor-sitemap-item-partner page_item page-item-6169">
               <Link href="/zcash-community/community-links">Community Links</Link>

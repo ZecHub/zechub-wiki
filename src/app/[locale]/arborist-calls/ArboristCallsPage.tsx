@@ -7,17 +7,17 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/UI/Aborist/CardList";
-import { Badge } from "@/components/UI/Aborist/BadgeList";
-import { Button } from "@/components/UI/Aborist/ButtonList";
-import { Input } from "@/components/UI/Aborist/InputList";
+} from "@/components/UI/Arborist/CardList";
+import { Badge } from "@/components/UI/Arborist/BadgeList";
+import { Button } from "@/components/UI/Arborist/ButtonList";
+import { Input } from "@/components/UI/Arborist/InputList";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/UI/Aborist/SelectList";
+} from "@/components/UI/Arborist/SelectList";
 import {
   Table,
   TableBody,
@@ -25,7 +25,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/UI/Aborist/TableList";
+} from "@/components/UI/Arborist/TableList";
 import { FileText, XIcon, Video, TreePine, Users, Search } from "lucide-react";
 import { useState } from "react";
 import { genMetadata } from "@/lib/helpers";
@@ -33,8 +33,8 @@ import { Metadata } from "next";
 import { arboristCalls } from "@/constants/arboristCalls";
 
 export const metadata: Metadata = genMetadata({
-  title: "ZecHub Aborist Calls",
-  url: "https://zechub.wiki/aborist-calls",
+  title: "ZecHub Arborist Calls",
+  url: "https://zechub.wiki/arborist-calls",
 });
 
 export default function ArboristCallsPage() {
