@@ -351,6 +351,39 @@ export function formatDate(s: string | null): string {
   return isNaN(d.getTime()) ? "N/A" : d.toLocaleDateString();
 }
 
+// Height of the first mainnet block mined in each calendar year (UTC).
+const YEAR_START_HEIGHTS: ReadonlyArray<readonly [year: number, height: number]> = [
+  [2017, 37_422],
+  [2018, 246_629],
+  [2019, 455_853],
+  [2020, 676_616],
+  [2021, 1_096_214],
+  [2022, 1_514_349],
+  [2023, 1_932_712],
+  [2024, 2_351_032],
+  [2025, 2_770_557],
+  [2026, 3_189_008],
+];
+
+// 75-second target spacing (post-Blossom) = 1,152 blocks/day.
+const BLOCKS_PER_YEAR = 1_152 * 365;
+
+/**
+ * Calendar year (UTC) in which the block at `height` was mined. Heights past
+ * the last table entry are estimated from the 75-second target, so the result
+ * keeps advancing instead of lumping every newer block into the last year.
+ */
+export function blockHeightToYear(height: number): number {
+  const [lastYear, lastStart] = YEAR_START_HEIGHTS[YEAR_START_HEIGHTS.length - 1];
+  if (height >= lastStart) {
+    return lastYear + Math.floor((height - lastStart) / BLOCKS_PER_YEAR);
+  }
+  for (let i = YEAR_START_HEIGHTS.length - 2; i >= 0; i--) {
+    if (height >= YEAR_START_HEIGHTS[i][1]) return YEAR_START_HEIGHTS[i][0];
+  }
+  return 2016;
+}
+
 export function transformSupplyData(
   d: SupplyData | null,
 ): { timestamp: string; supply: number } | null {
