@@ -137,6 +137,117 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     node.replaceChildren(svg(markup));
   }
 
+
+  // ---------- ZIP-321 request validation ----------
+  // Mirrors src/lib/zip321.ts (amount formatting, transparent/TEX memo
+  // prohibition, 512-byte UTF-8 memo limit, unpadded base64url memo
+  // encoding). Reimplemented locally because this file ships as a single
+  // dependency-free static script. Keep in sync with src/lib/zip321.ts.
+  const ZIP321_MAX_ZEC_SUPPLY = 21_000_000;
+  const ZIP321_MAX_MEMO_BYTES = 512;
+  const ZIP321_ZATOSHI_DECIMALS = 8;
+
+  function isTransparentZcashAddress(address) {
+    if (!address) return false;
+    const trimmed = String(address).trim();
+    return (
+      trimmed.startsWith("t1") ||
+      trimmed.startsWith("t3") ||
+      trimmed.startsWith("tm") ||
+      trimmed.startsWith("tex1") ||
+      trimmed.startsWith("textest1")
+    );
+  }
+
+  function formatZip321Amount(amount) {
+    if (amount === undefined || amount === null || amount === "") {
+      throw new Error("Amount is required");
+    }
+
+    let str;
+    if (typeof amount === "number") {
+      if (isNaN(amount) || !isFinite(amount)) {
+        throw new Error("Invalid amount: must be a finite number");
+      }
+      if (amount <= 0) {
+        throw new Error("Invalid amount: must be greater than zero");
+      }
+      str = amount.toFixed(8);
+    } else {
+      str = String(amount).trim();
+      if (/e/i.test(str)) {
+        const num = Number(str);
+        if (isNaN(num) || !isFinite(num) || num <= 0) {
+          throw new Error("Invalid amount: must be greater than zero");
+        }
+        str = num.toFixed(8);
+      }
+    }
+
+    if (!/^\d+(\.\d+)?$/.test(str)) {
+      throw new Error("Invalid amount format: must be a positive decimal number");
+    }
+
+    const parts = str.split(".");
+    let intPart = parts[0];
+    const fracPart = parts[1] || "";
+
+    if (fracPart.length > ZIP321_ZATOSHI_DECIMALS) {
+      throw new Error(
+        `Invalid amount: exceeds maximum ${ZIP321_ZATOSHI_DECIMALS} decimal places (zatoshi precision)`,
+      );
+    }
+
+    intPart = intPart.replace(/^0+(?=\d)/, "") || "0";
+
+    const numVal = parseFloat(`${intPart}${fracPart ? "." + fracPart : ""}`);
+    if (numVal <= 0) {
+      throw new Error("Invalid amount: must be greater than zero");
+    }
+    if (numVal > ZIP321_MAX_ZEC_SUPPLY) {
+      throw new Error(
+        `Invalid amount: exceeds maximum ZEC supply (${ZIP321_MAX_ZEC_SUPPLY})`,
+      );
+    }
+
+    if (fracPart) {
+      const trimmedFrac = fracPart.replace(/0+$/, "");
+      return trimmedFrac ? `${intPart}.${trimmedFrac}` : intPart;
+    }
+
+    return intPart;
+  }
+
+  function encodeZip321MemoLocal(memo, address) {
+    if (!memo) return "";
+
+    if (address && isTransparentZcashAddress(address)) {
+      throw new Error(
+        "Memos are not supported for transparent addresses in ZIP 321",
+      );
+    }
+
+    const bytes = new TextEncoder().encode(memo);
+    if (bytes.length > ZIP321_MAX_MEMO_BYTES) {
+      throw new Error(
+        `Memo exceeds ${ZIP321_MAX_MEMO_BYTES}-byte limit (actual: ${bytes.length} bytes)`,
+      );
+    }
+
+    let binary = "";
+    for (let i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+
+    const base64 = btoa(binary);
+    return base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+
+  function isQrCapacityError(err) {
+    return err instanceof RangeError && /data too long/i.test(err.message || "");
+  }
+  // ---------- End ZIP-321 request validation ----------
+
   async function getZecUsdRate(zecUsdRate, apiBase) {
     const url = `${apiBase}/payment-request-uri/zcash-price-feed`;
 
@@ -194,6 +305,22 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       return null;
     }
 
+    let formattedAmount;
+    try {
+      formattedAmount = formatZip321Amount(amount);
+    } catch (err) {
+      console.error("[Zcash-Payment-URI-Widget] Invalid amount:", err.message);
+      return null;
+    }
+
+    let encodedMemo;
+    try {
+      encodedMemo = encodeZip321MemoLocal(memo, address);
+    } catch (err) {
+      console.error("[Zcash-Payment-URI-Widget] Invalid memo:", err.message);
+      return null;
+    }
+
     // Create trigger button
     const btn = document.createElement("button");
     btn.className = "zwg-btn";
@@ -214,12 +341,40 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     let onFocusIn = null;
     let opener = null;
 
+    function openError(message) {
+      if (overlay) return;
+      overlay = document.createElement("div");
+      overlay.className = "zwg-overlay";
+      const cls = theme === "dark" ? "zwg-dark" : "zwg-light";
+      const closeX = el("button", "zwg-x", svg(ic.x));
+      closeX.setAttribute("aria-label", "Close");
+      overlay.append(
+        el(
+          "div",
+          `zwg-modal ${cls}`,
+          closeX,
+          el(
+            "div",
+            "zwg-head",
+            el("div", "zwg-icon", "Z"),
+            el("h2", "zwg-title", "Unable to create payment request"),
+          ),
+          el("p", "zwg-label", message),
+        ),
+      );
+      document.body.appendChild(overlay);
+      overlay.onclick = (e) => e.target === overlay && close();
+      overlay.querySelector(".zwg-x").onclick = close;
+    }
+
     function open() {
       if (overlay) return;
 
-      const uri = `zcash:${address}?amount=${amount}${
-        memo ? `&memo=${encodeURIComponent(memo)}` : ""
+      const uri = `zcash:${address}?amount=${formattedAmount}${
+        encodedMemo ? `&memo=${encodedMemo}` : ""
       }`;
+
+      try {
 
       overlay = document.createElement("div");
       overlay.className = "zwg-overlay";
@@ -457,6 +612,17 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           console.error(err);
         }
       };
+      } catch (err) {
+        overlay = null;
+        if (isQrCapacityError(err)) {
+          openError(
+            "This payment request is too large to display as a QR code. Try a shorter memo.",
+          );
+        } else {
+          console.error("[Zcash-Payment-URI-Widget] Failed to open:", err);
+          openError("Something went wrong while creating this payment request.");
+        }
+      }
     }
 
     function close() {

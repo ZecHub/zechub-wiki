@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { IBM_Plex_Sans } from "next/font/google";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   BASE_COLOR,
@@ -14,16 +13,6 @@ import { PinDetails } from "./pin-details";
 import { StatsBar } from "./stats-bar";
 import { useLanguage } from "@/context/LanguageContext";
 import "./style.css";
-
-// Self-hosted at build time by next/font (no runtime request to Google).
-const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  // IBM Plex Sans on Google Fonts tops out at 700 (the old @import requested
-  // 800, which Google silently ignored).
-  weight: ["400", "500", "700"],
-  variable: "--font-ibm-plex-sans",
-  display: "swap",
-});
 
 type ViewMode = "globe" | "map";
 
@@ -280,7 +269,7 @@ export default function GlobalAmbassadorsMap() {
 
       {/* Page wrapper */}
       <div
-        className={ibmPlexSans.variable}
+        className="ambassador-map-font"
         style={{
           display: "flex",
           flexDirection: "column",
