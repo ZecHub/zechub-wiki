@@ -3,6 +3,7 @@
 import { memo, useEffect, useRef } from "react";
 import { config } from "./config";
 import { loadZcashPaymentWidget } from "./adapters/helpers";
+import { ZcashPaymentURIInstance } from "./adapters/types";
 
 interface Props {
   config: {
@@ -22,7 +23,7 @@ function PaymentRequestWidgetPreview(props: Props) {
   const { config: cfg } = props;
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const instanceRef = useRef<any>(null);
+  const instanceRef = useRef<ZcashPaymentURIInstance | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -31,24 +32,28 @@ function PaymentRequestWidgetPreview(props: Props) {
     let mounted = true;
 
     async function init() {
-      await loadZcashPaymentWidget(
-        config.env.NEXT_PUBLIC_API_BASE_URL_EMBED_CODE,
-      );
+      try {
+        await loadZcashPaymentWidget(
+          config.env.NEXT_PUBLIC_API_BASE_URL_EMBED_CODE,
+        );
 
-      if (!mounted || !window.renderZcashButton) return;
+        if (!mounted || !window.renderZcashButton) return;
 
-      instanceRef.current?.destroy();
+        instanceRef.current?.destroy();
 
-      instanceRef.current = window.renderZcashButton(target, {
-        address: cfg.address,
-        amount: cfg.amount,
-        label: cfg.label,
-        theme: cfg.theme,
-        apiBase: cfg.apiBase,
-        disabled: cfg.disabled,
-        zecUsdRate: cfg.zecUsdRate,
-        target,
-      });
+        instanceRef.current = await window.renderZcashButton(target, {
+          address: cfg.address,
+          amount: cfg.amount,
+          label: cfg.label,
+          theme: cfg.theme as "light" | "dark",
+          apiBase: cfg.apiBase,
+          disabled: cfg.disabled,
+          zecUsdRate: cfg.zecUsdRate,
+          target,
+        });
+      } catch (err) {
+        console.error("[Zcash Payment Widget Preview] Loading failed:", err);
+      }
     }
 
     init();
