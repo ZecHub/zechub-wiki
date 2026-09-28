@@ -141,14 +141,14 @@
     "@types/react-dom": "19.2.3",
     "@types/react-icons": "^3.0.0",
     "@types/rss": "^0.0.32",
-    "@types/serviceworker": "^0.0.201",
+    "@types/serviceworker": "^0.0.202",
     "@types/web-push": "^3.6.3",
     "cross-env": "^10.1.0",
     "eslint-config-prettier": "^10.1.8",
-    "jest": "30.5.1",
-    "jest-environment-jsdom": "30.5.1",
+    "jest": "30.5.2",
+    "jest-environment-jsdom": "30.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "tsx": "^4.23.13"
+    "tsx": "^4.23.15"
   },
   "resolutions": {
     "react": "19.2.8",
