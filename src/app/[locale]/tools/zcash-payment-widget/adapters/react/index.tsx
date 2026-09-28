@@ -39,13 +39,14 @@ export function ZcashPaymentURI(props: Props) {
 
         instanceRef.current?.destroy();
 
-        instanceRef.current = await window.renderZcashButton(
-          `#${containerRef.current!.id}`,
-          {
-            ...props,
-            target: `#${containerRef.current!.id}`,
-          },
-        );
+        instanceRef.current =
+          (await window.renderZcashButton(
+            `#${containerRef.current!.id}`,
+            {
+              ...props,
+              target: `#${containerRef.current!.id}`,
+            },
+          )) ?? null;
 
         if (mounted) setStatus("ready");
         logZcashPaymentWidgetEvent("zcash_payment_widget_loaded");

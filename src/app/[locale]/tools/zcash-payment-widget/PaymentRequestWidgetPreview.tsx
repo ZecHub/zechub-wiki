@@ -41,16 +41,17 @@ function PaymentRequestWidgetPreview(props: Props) {
 
         instanceRef.current?.destroy();
 
-        instanceRef.current = await window.renderZcashButton(target, {
-          address: cfg.address,
-          amount: cfg.amount,
-          label: cfg.label,
-          theme: cfg.theme as "light" | "dark",
-          apiBase: cfg.apiBase,
-          disabled: cfg.disabled,
-          zecUsdRate: cfg.zecUsdRate,
-          target,
-        });
+        instanceRef.current =
+          (await window.renderZcashButton(target, {
+            address: cfg.address,
+            amount: cfg.amount,
+            label: cfg.label,
+            theme: cfg.theme as "light" | "dark",
+            apiBase: cfg.apiBase,
+            disabled: cfg.disabled,
+            zecUsdRate: cfg.zecUsdRate,
+            target,
+          })) ?? null;
       } catch (err) {
         console.error("[Zcash Payment Widget Preview] Loading failed:", err);
       }

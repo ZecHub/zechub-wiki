@@ -155,9 +155,8 @@ describe("zcash-payment-request-widget.embed.v2.js DOM construction", () => {
     expect(modal.querySelector<HTMLInputElement>(".zwg-fld-inp")!.value).toBe(
       `zcash:${address}?amount=1.5&memo=Thanks!`,
     );
-    expect(modal.querySelector<HTMLImageElement>(".zwg-qr img")!.getAttribute("src")).toContain(
-      "/payment-request-uri/qrcode?data=",
-    );
+    const qrSrc = modal.querySelector<HTMLImageElement>(".zwg-qr img")!.getAttribute("src") ?? "";
+    expect(qrSrc.startsWith("data:image/")).toBe(true);
     expect(modal.querySelector(".zwg-footer")!.textContent).toContain("Pay with Zcash");
 
     modal.querySelector<HTMLButtonElement>(".zwg-close")!.click();
