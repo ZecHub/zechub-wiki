@@ -1,6 +1,7 @@
 /** @jest-environment node */
 import fs from "fs";
 import path from "path";
+import { TextDecoder, TextEncoder } from "util";
 import { JSDOM } from "jsdom";
 
 /**
@@ -24,9 +25,19 @@ const EMBED_SCRIPT_PATH = path.join(
 );
 const EMBED_SOURCE = fs.readFileSync(EMBED_SCRIPT_PATH, "utf8");
 
-const ADDRESS = "zs1znewaqucqpc372x6ajmfnmkmxsafnc3fuxmg6g5kq3mkvkv8ufx9hgx9vgcrqncqm3umz56a7pd";
+const ADDRESS =
+  "zs1znewaqucqpc372x6ajmfnmkmxsafnc3fuxmg6g5kq3mkvkv8ufx9hgx9vgcrqncqm3umz56a7pd";
 
 type FetchMock = jest.Mock<Promise<{ json: () => Promise<unknown> }>>;
+
+function installEncoding(w: Window) {
+  (w as unknown as { TextEncoder: unknown }).TextEncoder = TextEncoder;
+  (w as unknown as { TextDecoder: unknown }).TextDecoder = TextDecoder;
+  if (typeof (w as unknown as { btoa?: unknown }).btoa !== "function") {
+    (w as unknown as { btoa: (data: string) => string }).btoa = (data) =>
+      Buffer.from(data, "binary").toString("base64");
+  }
+}
 
 function mountAutoMount(dataAttrs: Record<string, string>, fetchImpl?: FetchMock) {
   const attrs = Object.entries(dataAttrs)
@@ -41,7 +52,10 @@ function mountAutoMount(dataAttrs: Record<string, string>, fetchImpl?: FetchMock
     { runScripts: "dangerously", url: "https://merchant.example/" },
   );
   const w = dom.window as unknown as Window & {
-    renderZcashButton?: (selector: string, opts: Record<string, unknown>) => Promise<unknown>;
+    renderZcashButton?: (
+      selector: string,
+      opts: Record<string, unknown>,
+    ) => Promise<unknown>;
     __zcash_paymet_uri_widget_autoinstance?: unknown;
   };
 
@@ -54,9 +68,16 @@ function mountAutoMount(dataAttrs: Record<string, string>, fetchImpl?: FetchMock
   (w as unknown as { fetch: unknown }).fetch =
     fetchImpl ?? jest.fn().mockResolvedValue({ json: async () => ({}) });
 
+  installEncoding(w);
+
   const scriptEl = w.document.getElementById("w") as HTMLScriptElement;
-  const evaluated = new (w as unknown as { Function: FunctionConstructor }).Function(EMBED_SOURCE);
-  Object.defineProperty(w.document, "currentScript", { value: scriptEl, configurable: true });
+  const evaluated = new (w as unknown as { Function: FunctionConstructor }).Function(
+    EMBED_SOURCE,
+  );
+  Object.defineProperty(w.document, "currentScript", {
+    value: scriptEl,
+    configurable: true,
+  });
 
   evaluated.call(w);
 
@@ -91,12 +112,16 @@ describe("embed auto-mount: zecUsdRate reference", () => {
     });
     await flush();
 
-    const inst = (await w.__zcash_paymet_uri_widget_autoinstance) as { open: () => void };
+    const inst = (await w.__zcash_paymet_uri_widget_autoinstance) as {
+      open: () => void;
+    };
     inst.open();
 
     const amtVal = w.document.querySelector(".zwg-amt-val")!.textContent!;
     // amount 2 * rate 50 = $100.00, per the widget's own usdValue calc.
-    expect(w.document.querySelector(".zwg-amt")!.textContent).toContain("$100.00 USD");
+    expect(w.document.querySelector(".zwg-amt")!.textContent).toContain(
+      "$100.00 USD",
+    );
     expect(amtVal).toContain("2.000");
   });
 
@@ -114,9 +139,13 @@ describe("embed auto-mount: zecUsdRate reference", () => {
       expect.stringContaining("/payment-request-uri/zcash-price-feed"),
     );
 
-    const inst = (await w.__zcash_paymet_uri_widget_autoinstance) as { open: () => void };
+    const inst = (await w.__zcash_paymet_uri_widget_autoinstance) as {
+      open: () => void;
+    };
     inst.open();
-    expect(w.document.querySelector(".zwg-amt")!.textContent).toContain("$30.00 USD");
+    expect(w.document.querySelector(".zwg-amt")!.textContent).toContain(
+      "$30.00 USD",
+    );
   });
 
   it("6 & 7. manual/programmatic renderZcashButton() usage is unaffected and needs no new global", async () => {
@@ -125,23 +154,31 @@ describe("embed auto-mount: zecUsdRate reference", () => {
       url: "https://merchant.example/",
     });
     const w = dom.window as unknown as Window & {
-      renderZcashButton: (selector: string, opts: Record<string, unknown>) => Promise<unknown>;
+      renderZcashButton: (
+        selector: string,
+        opts: Record<string, unknown>,
+      ) => Promise<unknown>;
     };
-    (w as unknown as { fetch: unknown }).fetch = jest.fn().mockResolvedValue({ json: async () => ({}) });
+    (w as unknown as { fetch: unknown }).fetch = jest.fn().mockResolvedValue({
+      json: async () => ({}),
+    });
+    installEncoding(w);
     w.eval(EMBED_SOURCE);
 
     // No document.currentScript context at all here (no auto-mount path
     // involved) and no zecUsdRate global defined anywhere.
-    const inst = await w.renderZcashButton("#t", {
+    const inst = (await w.renderZcashButton("#t", {
       address: ADDRESS,
       amount: 1,
       zecUsdRate: 42,
-    }) as { open: () => void };
+    })) as { open: () => void };
 
     expect(inst).toBeTruthy();
     expect(w.document.querySelector(".zwg-btn")).not.toBeNull();
     inst.open();
-    expect(w.document.querySelector(".zwg-amt")!.textContent).toContain("$42.00 USD");
+    expect(w.document.querySelector(".zwg-amt")!.textContent).toContain(
+      "$42.00 USD",
+    );
   });
 
   it("8. normal widget behavior (address/amount/label/memo) is otherwise unchanged", async () => {
@@ -154,12 +191,16 @@ describe("embed auto-mount: zecUsdRate reference", () => {
     });
     await flush();
 
-    const inst = (await w.__zcash_paymet_uri_widget_autoinstance) as { open: () => void };
+    const inst = (await w.__zcash_paymet_uri_widget_autoinstance) as {
+      open: () => void;
+    };
     inst.open();
 
     expect(w.document.querySelector(".zwg-title")!.textContent).toBe("Coffee");
     expect(w.document.querySelector(".zwg-fld-txt")!.textContent).toBe(ADDRESS);
     const uriInput = w.document.querySelector<HTMLInputElement>(".zwg-fld-inp")!;
-    expect(uriInput.value).toContain(`zcash:${ADDRESS}?amount=1.5`);
+    expect(uriInput.value).toBe(
+      `zcash:${ADDRESS}?amount=1.5&memo=VGhhbmtzIQ`,
+    );
   });
 });
