@@ -10,6 +10,11 @@
       ? window.ZPWZ_CONFIG.apiBase
       : "";
 
+
+  const FOCUSABLE =
+    'a[href],button,input,select,textarea,[tabindex]:not([tabindex="-1"])';
+  let dialogSeq = 0;
+
   /**
  * Minified by jsDelivr using Terser v5.37.0.
  * Original file: /npm/qrcode-generator@1.4.4/qrcode.js
@@ -205,6 +210,9 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 
     // Create modal overlay (hidden initially)
     let overlay = null;
+    let onKeyDown = null;
+    let onFocusIn = null;
+    let opener = null;
 
     function open() {
       if (overlay) return;
@@ -243,6 +251,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 
       const addressCopy = el("button", "zwg-copy", svg(ic.cp));
       addressCopy.dataset.c = address;
+      addressCopy.setAttribute("aria-label", "Copy address");
 
       const uriInput = el("input", "zwg-fld-inp");
       uriInput.value = uri;
@@ -250,6 +259,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 
       const uriCopy = el("button", "zwg-copy", svg(ic.cp));
       uriCopy.dataset.c = uri;
+      uriCopy.setAttribute("aria-label", "Copy payment URI");
 
       const walletLink = el("a", "zwg-link", svg(ic.ext), " Open in Wallet");
       walletLink.href = uri;
@@ -320,6 +330,69 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       overlay.querySelector(".zwg-x").onclick = close;
       overlay.querySelector(".zwg-close").onclick = close;
 
+      const modal = overlay.querySelector(".zwg-modal");
+      modal.setAttribute("role", "dialog");
+      modal.setAttribute("aria-modal", "true");
+      modal.tabIndex = -1;
+
+      const title = overlay.querySelector(".zwg-title");
+      if (title) {
+        title.id = `zwg-title-${++dialogSeq}`;
+        modal.setAttribute("aria-labelledby", title.id);
+      } else {
+        modal.setAttribute("aria-label", "Pay with Zcash");
+      }
+
+      overlay.querySelectorAll("svg").forEach((s) => s.setAttribute("aria-hidden", "true"));
+
+      const active = document.activeElement;
+      opener =
+        active instanceof HTMLElement && active !== document.body ? active : btn;
+
+      const focusables = () =>
+        Array.from(overlay.querySelectorAll(FOCUSABLE)).filter(
+          (n) => !n.hasAttribute("disabled") && n.getAttribute("aria-hidden") !== "true",
+        );
+
+      onKeyDown = (e) => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          close();
+          return;
+        }
+        if (e.key !== "Tab") return;
+
+        const items = focusables();
+        if (items.length === 0) {
+          e.preventDefault();
+          modal.focus();
+          return;
+        }
+
+        const first = items[0];
+        const last = items[items.length - 1];
+        const current = document.activeElement;
+        const inside = overlay.contains(current);
+
+        if (e.shiftKey && (current === first || !inside || current === modal)) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && (current === last || !inside || current === modal)) {
+          e.preventDefault();
+          first.focus();
+        }
+      };
+
+      onFocusIn = (e) => {
+        if (overlay.contains(e.target)) return;
+        const items = focusables();
+        (items[0] || modal).focus();
+      };
+
+      document.addEventListener("keydown", onKeyDown);
+      document.addEventListener("focusin", onFocusIn);
+      modal.focus();
+
       overlay.querySelectorAll(".zwg-copy").forEach((b) => {
         b.onclick = async () => {
           try {
@@ -355,6 +428,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 
           const shortCopy = el("button", "zwg-copy", svg(ic.cp));
           shortCopy.dataset.c = shortUrl;
+          shortCopy.setAttribute("aria-label", "Copy short URL");
+          shortCopy.querySelectorAll("svg").forEach((s) => s.setAttribute("aria-hidden", "true"));
 
           const fld = el(
             "div",
@@ -386,8 +461,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 
     function close() {
       if (!overlay) return;
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("focusin", onFocusIn);
+      onKeyDown = null;
+      onFocusIn = null;
       overlay.remove();
       overlay = null;
+
+      const target = opener;
+      opener = null;
+      if (target && target.isConnected && typeof target.focus === "function") {
+        target.focus();
+      }
     }
 
     function destroy() {
@@ -395,6 +480,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       btn.remove();
     }
 
+    btn.setAttribute("aria-haspopup", "dialog");
+    btn.querySelectorAll("svg").forEach((s) => s.setAttribute("aria-hidden", "true"));
     btn.onclick = open;
 
     return { open, close, destroy };
