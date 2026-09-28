@@ -109,12 +109,4 @@ export const blockchainExplorers = [
     url: 'https://explorer.bitquery.io/zcash',
     thumbnailImage: '/explorer/Bitquery.png',
   },
-  {
-    title: 'Zypherscan',
-    description:
-      'Privacy-first blockchain explorer for Zcash. Explore shielded transactions by bringing your own viewing keys for a seamless, view-only explorer of private ZCash history.',
-    features: ['Shielded transactions', 'viewing keys support', 'Orchard & Sapling pools', 'network statistics'],
-    url: 'https://www.zypherscan.com/',
-    thumbnailImage: '/explorer/Zypherscan.png',
-  },
 ];
