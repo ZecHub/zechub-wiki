@@ -3,7 +3,9 @@
 import { useState } from "react";
 import MemberModal from "./member-modal";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";   // ← NEW
+import Image from "next/image";
+import { encodeZip321Memo, MAX_MEMO_BYTES } from "@/lib/zip321";
+import { openPaymentUri } from "@/lib/openPaymentUri";
 
 interface MemberCardProps {
   member: {
@@ -16,24 +18,26 @@ interface MemberCardProps {
   };
 }
 
-function base64UrlEncode(str: string) {
-  return btoa(str).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
-
 export default function MemberCard({ member }: MemberCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const [message, setMessage] = useState("");
+  const messageBytes = new TextEncoder().encode(message).length;
+  const isMessageTooLong = messageBytes > MAX_MEMO_BYTES;
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
   const handleSend = () => {
-    const encodedMemo = base64UrlEncode(message);
-    const uri = `zcash:${member.zcashAddress}?amount=0.01&memo=${encodedMemo}`;
-    window.location.href = uri;
-    handleFlip();
+    if (!message || isMessageTooLong) return;
+    try {
+      const encodedMemo = encodeZip321Memo(message, member.zcashAddress);
+      openPaymentUri(`zcash:${member.zcashAddress}?amount=0.01&memo=${encodedMemo}`);
+      handleFlip();
+    } catch {
+      // Transparent address or encode failure: do not navigate.
+    }
   };
 
   return (
@@ -48,7 +52,6 @@ export default function MemberCard({ member }: MemberCardProps) {
             transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
           }}
         >
-          {/* Front Side */}
           <div
             className="absolute w-full h-full backface-hidden"
             style={{ backfaceVisibility: "hidden" }}
@@ -56,17 +59,16 @@ export default function MemberCard({ member }: MemberCardProps) {
             <div className="bg-gradient-to-br dark:from-slate-800/40 dark:to-slate-900/40 border border-amber-500/20 rounded-xl p-6 backdrop-blur-sm hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 group h-full flex flex-col">
               <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-blue-500 dark:from-amber-400 to-blue-400 dark:to-yellow-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-t-xl origin-left"></div>
               <div className="mb-4 flex justify-center">
-		  <Image
-		    src={member.imgUrl || "/placeholder.svg"}
-		    alt={member.name}
-		    width={96}
-		    height={96}
-		    className="w-24 h-24 rounded-full border-2 border-amber-500/50 object-cover"
-		    loading="lazy"
-		    decoding="async"
-		  />
-		</div>
-			     
+                <Image
+                  src={member.imgUrl || "/placeholder.svg"}
+                  alt={member.name}
+                  width={96}
+                  height={96}
+                  className="w-24 h-24 rounded-full border-2 border-amber-500/50 object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <h3 className="text-xl font-bold dark:text-yellow-300 mb-2 text-center">
                 {member.name}
               </h3>
@@ -105,7 +107,6 @@ export default function MemberCard({ member }: MemberCardProps) {
             </div>
           </div>
 
-          {/* Back Side (unchanged) */}
           <div
             className="absolute w-full h-full backface-hidden"
             style={{
@@ -113,7 +114,6 @@ export default function MemberCard({ member }: MemberCardProps) {
               transform: "rotateY(180deg)",
             }}
           >
-            {/* ... (the back side code stays exactly the same) */}
             <div className="bg-gradient-to-br dark:from-slate-800/40 dark:to-slate-900/40 border border-amber-500/20 rounded-xl p-6 backdrop-blur-sm h-full flex flex-col justify-between">
               <div>
                 <h3 className="text-xl mb-3 font-bold text-yellow-300">
@@ -124,14 +124,19 @@ export default function MemberCard({ member }: MemberCardProps) {
                     className="w-full p-3 border border-amber-500/20 rounded-lg dark:text-white dark:bg-slate-800/40 focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 transition-all"
                     rows={6}
                     placeholder="Type your message..."
-                    maxLength={512}
+                    aria-invalid={isMessageTooLong || undefined}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                   />
                   <div className="absolute bottom-2 right-2 text-slate-400 text-sm bg-slate-800/80 px-2 py-1 rounded">
-                    {message.length}/512
+                    {messageBytes}/{MAX_MEMO_BYTES} bytes
                   </div>
                 </div>
+                {isMessageTooLong && (
+                  <p role="alert" className="mt-2 text-sm text-red-600 dark:text-red-400">
+                    Shorten your message to fit the 512-byte limit.
+                  </p>
+                )}
               </div>
 
               <div className="flex justify-end space-x-3 mt-4">
@@ -146,7 +151,8 @@ export default function MemberCard({ member }: MemberCardProps) {
                 </button>
                 <button
                   onClick={handleSend}
-                  className="cursor-pointer px-4 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 transition-all"
+                  disabled={isMessageTooLong || !message}
+                  className="cursor-pointer px-4 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 transition-all disabled:opacity-50 disabled:hover:scale-100"
                 >
                   Send
                 </button>
