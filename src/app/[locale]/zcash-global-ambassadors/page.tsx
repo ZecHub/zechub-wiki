@@ -1,8 +1,16 @@
+import { IBM_Plex_Sans } from "next/font/google";
 import { genMetadata, getBanner } from "@/lib/helpers";
 import { Metadata } from "next";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import GlobalAmbassadorsClient from "./GlobalAmbassadorsClient";
+
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-ibm-plex-sans",
+  display: "swap",
+});
 
 export async function generateMetadata({
   params,
@@ -25,5 +33,9 @@ export async function generateMetadata({
 }
 
 export default function Page() {
-  return <GlobalAmbassadorsClient />;
+  return (
+    <div className={ibmPlexSans.variable}>
+      <GlobalAmbassadorsClient />
+    </div>
+  );
 }

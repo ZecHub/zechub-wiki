@@ -1,5 +1,21 @@
 import fs from "fs";
 import path from "path";
+import { TextDecoder, TextEncoder } from "util";
+
+if (typeof globalThis.TextEncoder === "undefined") {
+  globalThis.TextEncoder = TextEncoder as typeof globalThis.TextEncoder;
+}
+if (typeof globalThis.TextDecoder === "undefined") {
+  globalThis.TextDecoder = TextDecoder as typeof globalThis.TextDecoder;
+}
+if (typeof globalThis.btoa === "undefined") {
+  globalThis.btoa = (data: string) =>
+    Buffer.from(data, "binary").toString("base64");
+}
+if (typeof globalThis.atob === "undefined") {
+  globalThis.atob = (data: string) =>
+    Buffer.from(data, "base64").toString("binary");
+}
 
 /**
  * Regression tests for HTML injection in the embeddable payment widget.
@@ -130,7 +146,8 @@ describe("zcash-payment-request-widget.embed.v2.js DOM construction", () => {
   });
 
   it("still renders and behaves normally for legitimate values", async () => {
-    const address = "t1VpMigELggqi6TBghQNehqspAcBBDYvRQC";
+    const address =
+      "zs1znewaqucqpc372x6ajmfnmkmxsafnc3fuxmg6g5kq3mkvkv8ufx9hgx9vgcrqncqm3umz56a7pd";
     const inst = await render({
       address,
       amount: 1.5,
@@ -153,7 +170,7 @@ describe("zcash-payment-request-widget.embed.v2.js DOM construction", () => {
     expect(modal.querySelector(".zwg-memo")!.textContent).toBe("Thanks!");
     expect(modal.querySelector<HTMLInputElement>(".zwg-fld-inp")!.readOnly).toBe(true);
     expect(modal.querySelector<HTMLInputElement>(".zwg-fld-inp")!.value).toBe(
-      `zcash:${address}?amount=1.5&memo=Thanks!`,
+      `zcash:${address}?amount=1.5&memo=VGhhbmtzIQ`,
     );
     const qrSrc = modal.querySelector<HTMLImageElement>(".zwg-qr img")!.getAttribute("src") ?? "";
     expect(qrSrc.startsWith("data:image/")).toBe(true);
