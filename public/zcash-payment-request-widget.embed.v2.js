@@ -104,6 +104,34 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     ext: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>`,
   };
 
+  // DOM helpers. Host-supplied values (label, address, memo, URI) and API
+  // responses are only ever inserted as text nodes or element properties,
+  // never parsed as HTML.
+  function el(tag, className, ...children) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    for (const child of children) {
+      if (child == null || child === false) continue;
+      node.append(
+        typeof child === "string" || typeof child === "number"
+          ? document.createTextNode(String(child))
+          : child,
+      );
+    }
+    return node;
+  }
+
+  // Only ever called with the constant SVG strings from `ic` above.
+  function svg(markup) {
+    const tpl = document.createElement("template");
+    tpl.innerHTML = markup;
+    return tpl.content.firstElementChild;
+  }
+
+  function setIcon(node, markup) {
+    node.replaceChildren(svg(markup));
+  }
+
   async function getZecUsdRate(zecUsdRate, apiBase) {
     const url = `${apiBase}/payment-request-uri/zcash-price-feed`;
 
@@ -164,7 +192,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     // Create trigger button
     const btn = document.createElement("button");
     btn.className = "zwg-btn";
-    btn.innerHTML = `${ic.z}<span>${label}</span>`;
+    btn.append(svg(ic.z), el("span", null, label));
     container.appendChild(btn);
 
     if (isDisabled) {
@@ -190,68 +218,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 
       const cls = theme === "dark" ? "zwg-dark" : "zwg-light";
 
-      overlay.innerHTML = `
-        <div class="zwg-modal ${cls}">
-          <button class="zwg-x" aria-label="Close">${ic.x}</button>
-          <div class="zwg-head">
-            <div class="zwg-icon">Z</div>
-            ${label ? `<h2 class="zwg-title">${label}</h2>` : "Pay with Zcash"}
-          </div>
+      const closeX = el("button", "zwg-x", svg(ic.x));
+      closeX.setAttribute("aria-label", "Close");
 
-          <div class="zwg-qr">
-             <img alt="QR Code" />
-          </div>
-
-          <div class="zwg-amt">
-            <p class="zwg-amt-lbl">Amount Due</p>
-            <p class="zwg-amt-val"><b>${Number(amount).toFixed(3)}</b><small>ZEC</small></p>${
-              usdValue
-                ? `<p style="margin-top:4px;font-size:12px;font-style:italic;color:var(--zwg-muted)">
-         ≈ $${usdValue} USD
-       </p>`
-                : ""
-            }
-          </div>
-
-          <div class="zwg-fld">
-            <span class="zwg-fld-lbl">Address</span>
-            <div class="zwg-fld-row">
-              <p class="zwg-fld-txt">${address}</p>
-              <button class="zwg-copy" data-c="${address}">${ic.cp}</button>
-            </div>
-          </div>
-
-          ${
-            memo
-              ? `<div class="zwg-fld">
-                   <span class="zwg-fld-lbl">Memo</span>
-                   <div class="zwg-memo">${memo}</div>
-                 </div>`
-              : ""
-          }
-
-          <div class="zwg-fld">
-            <span class="zwg-fld-lbl">Payment URI</span>
-            <div class="zwg-fld-row">
-              <input class="zwg-fld-inp" value="${uri}" readonly />
-              <button class="zwg-copy" data-c="${uri}">${ic.cp}</button>
-            </div>
-          </div>
-
-          <div class="zwg-acts">
-            <button class="zwg-btn2 zwg-sec zwg-close">Close</button>
-            <button class="zwg-btn2 zwg-pri zwg-short">${ic.lnk} Short URL</button>
-          </div>
-
-          <a href="${uri}" class="zwg-link">${ic.ext} Open in Wallet</a>
-          <footer class="zwg-footer"> ${new Date().getFullYear()} Pay with Zcash</footer>
-        </div>
-
-      `;
-
-      document.body.appendChild(overlay);
-
-      const qrImg = overlay.querySelector(".zwg-qr img");
+      const qrImg = el("img");
+      qrImg.alt = "QR Code";
       try {
         qrImg.src = qrDataUrl(uri);
       } catch (err) {
@@ -263,6 +234,88 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           "&size=240x240";
       }
 
+      let usdEl = null;
+      if (usdValue) {
+        usdEl = el("p", null, `≈ $${usdValue} USD`);
+        usdEl.style.cssText =
+          "margin-top:4px;font-size:12px;font-style:italic;color:var(--zwg-muted)";
+      }
+
+      const addressCopy = el("button", "zwg-copy", svg(ic.cp));
+      addressCopy.dataset.c = address;
+
+      const uriInput = el("input", "zwg-fld-inp");
+      uriInput.value = uri;
+      uriInput.readOnly = true;
+
+      const uriCopy = el("button", "zwg-copy", svg(ic.cp));
+      uriCopy.dataset.c = uri;
+
+      const walletLink = el("a", "zwg-link", svg(ic.ext), " Open in Wallet");
+      walletLink.href = uri;
+
+      overlay.append(
+        el(
+          "div",
+          `zwg-modal ${cls}`,
+          closeX,
+          el(
+            "div",
+            "zwg-head",
+            el("div", "zwg-icon", "Z"),
+            label ? el("h2", "zwg-title", label) : "Pay with Zcash",
+          ),
+          el("div", "zwg-qr", qrImg),
+          el(
+            "div",
+            "zwg-amt",
+            el("p", "zwg-amt-lbl", "Amount Due"),
+            el(
+              "p",
+              "zwg-amt-val",
+              el("b", null, Number(amount).toFixed(3)),
+              el("small", null, "ZEC"),
+            ),
+            usdEl,
+          ),
+          el(
+            "div",
+            "zwg-fld",
+            el("span", "zwg-fld-lbl", "Address"),
+            el(
+              "div",
+              "zwg-fld-row",
+              el("p", "zwg-fld-txt", address),
+              addressCopy,
+            ),
+          ),
+          memo
+            ? el(
+                "div",
+                "zwg-fld",
+                el("span", "zwg-fld-lbl", "Memo"),
+                el("div", "zwg-memo", memo),
+              )
+            : null,
+          el(
+            "div",
+            "zwg-fld",
+            el("span", "zwg-fld-lbl", "Payment URI"),
+            el("div", "zwg-fld-row", uriInput, uriCopy),
+          ),
+          el(
+            "div",
+            "zwg-acts",
+            el("button", "zwg-btn2 zwg-sec zwg-close", "Close"),
+            el("button", "zwg-btn2 zwg-pri zwg-short", svg(ic.lnk), " Short URL"),
+          ),
+          walletLink,
+          el("footer", "zwg-footer", ` ${new Date().getFullYear()} Pay with Zcash`),
+        ),
+      );
+
+      document.body.appendChild(overlay);
+
       overlay.onclick = (e) => e.target === overlay && close();
       overlay.querySelector(".zwg-x").onclick = close;
       overlay.querySelector(".zwg-close").onclick = close;
@@ -272,10 +325,10 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           try {
             await navigator.clipboard.writeText(b.dataset.c);
             b.classList.add("ok");
-            b.innerHTML = ic.ok;
+            setIcon(b, ic.ok);
             setTimeout(() => {
               b.classList.remove("ok");
-              b.innerHTML = ic.cp;
+              setIcon(b, ic.cp);
             }, 1500);
           } catch {}
         };
@@ -284,7 +337,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const shortBtn = overlay.querySelector(".zwg-short");
       shortBtn.onclick = async () => {
         shortBtn.disabled = true;
-        shortBtn.innerHTML = `<span class="zwg-spin"></span>`;
+        shortBtn.replaceChildren(el("span", "zwg-spin"));
 
         try {
           const res = await fetch(`${apiBase}/payment-request-uri/shorten`, {
@@ -294,17 +347,21 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
           });
 
           const { shortUrl } = await res.json();
-          shortBtn.innerHTML = `${ic.ok} Done`;
+          shortBtn.replaceChildren(svg(ic.ok), document.createTextNode(" Done"));
 
-          const fld = document.createElement("div");
-          fld.className = "zwg-fld";
-          fld.innerHTML = `
-            <span class="zwg-fld-lbl">Short URL</span>
-            <div class="zwg-fld-row">
-              <input class="zwg-fld-inp" value="${shortUrl}" readonly />
-              <button class="zwg-copy" data-c="${shortUrl}">${ic.cp}</button>
-            </div>
-          `;
+          const shortInput = el("input", "zwg-fld-inp");
+          shortInput.value = shortUrl;
+          shortInput.readOnly = true;
+
+          const shortCopy = el("button", "zwg-copy", svg(ic.cp));
+          shortCopy.dataset.c = shortUrl;
+
+          const fld = el(
+            "div",
+            "zwg-fld",
+            el("span", "zwg-fld-lbl", "Short URL"),
+            el("div", "zwg-fld-row", shortInput, shortCopy),
+          );
 
           overlay.querySelector(".zwg-acts").before(fld);
 
@@ -312,15 +369,15 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
             try {
               await navigator.clipboard.writeText(shortUrl);
               this.classList.add("ok");
-              this.innerHTML = ic.ok;
+              setIcon(this, ic.ok);
               setTimeout(() => {
                 this.classList.remove("ok");
-                this.innerHTML = ic.cp;
+                setIcon(this, ic.cp);
               }, 1500);
             } catch {}
           };
         } catch (err) {
-          shortBtn.innerHTML = `${ic.lnk} Retry`;
+          shortBtn.replaceChildren(svg(ic.lnk), document.createTextNode(" Retry"));
           shortBtn.disabled = false;
           console.error(err);
         }
