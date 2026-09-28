@@ -28,6 +28,7 @@ import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
 import { getDictionary } from "@/lib/getDictionary";
+import { getLiveHero } from "@/lib/liveHero";
 import {
   RESEARCH_SERIES,
   getResearchSeries,
@@ -222,6 +223,8 @@ export default async function Page(props: {
   if (slug.length === 0) return notFound();
   if (slug[0] === ".well-known") return null;
 
+  const liveHero = getLiveHero(slug[0]);
+
   // Server-side dictionary load so the research index/series chrome renders in
   // the active locale (the surrounding page is a server component).
   const dict = (await getDictionary(locale)) as Record<string, any>;
@@ -301,6 +304,7 @@ export default async function Page(props: {
           hasSideMenu={false}
           sideMenu={null}
           roots={roots}
+          liveHero={liveHero}
           {...(heroImage ? { heroImage } : {})}
         >
           {/* === Series Section (On Top) === */}
@@ -415,6 +419,7 @@ export default async function Page(props: {
           hasSideMenu={false}
           sideMenu={null}
           roots={roots}
+          liveHero={liveHero}
           {...(heroImage ? { heroImage } : {})}
         >
           <div className="px-2 pb-8">
@@ -541,6 +546,7 @@ export default async function Page(props: {
           showSideMenu ? <SideMenu folder={slug[0]} roots={roots} titles={menuTitles} enTitles={enMenuTitles} /> : null
         }
         roots={roots}
+        liveHero={liveHero}
         heroImage={{ src: imgUrl, darkSrc: imgUrlDark }}
         breadcrumbs={breadcrumbTrail}
       >
@@ -644,6 +650,7 @@ export default async function Page(props: {
           showSideMenu ? <SideMenu folder={slug[0]} roots={roots} titles={menuTitles} enTitles={enMenuTitles} /> : null
         }
         roots={roots}
+        liveHero={liveHero}
         {...(heroImage ? { heroImage } : {})}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
