@@ -77,8 +77,7 @@ function CustomTooltip({
               : entry.value}
             {entry.name.includes("%") ||
             entry.name.toLowerCase().includes("rate") ||
-            entry.name.toLowerCase().includes("turnout") ||
-            entry.name.toLowerCase().includes("power")
+            entry.name.toLowerCase().includes("turnout")
               ? "%"
               : ""}
           </span>
