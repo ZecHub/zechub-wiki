@@ -363,7 +363,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     const inst = renderZcashButton(target, {
       address: script.dataset.address,
       amount: script.dataset.amount,
-      zecUsdRate: zecUsdRate || script.dataset.zecUsdRate,
+      zecUsdRate: script.dataset.zecUsdRate,
       label: script.dataset.label,
       theme: script.dataset.theme,
       memo: script.dataset.memo,
