@@ -3,6 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
+    "check:dictionaries": "tsx scripts/check-dictionary-keys.mjs",
     "predev": "node scripts/copy-pdf-worker.mjs && node scripts/copy-zaddr-wasm.mjs",
     "dev": "node --max-old-space-size=4096 node_modules/next/dist/bin/next dev --turbo",
     "prebuild": "node scripts/copy-pdf-worker.mjs && node scripts/copy-zaddr-wasm.mjs && tsx scripts/generate-llms-txt.mjs",
