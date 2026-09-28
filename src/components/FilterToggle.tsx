@@ -44,7 +44,7 @@ const FilterToggle: React.FC<FilterToggleProps> = ({
                     }}
                   />
 
-                  <div className="w-8 h-4 bg-gray-200 dark:bg-gray-400 rounded-full peer-checked:bg-blue-500 transition-colors"></div>
+                  <div className="w-8 h-4 bg-gray-200 dark:bg-gray-400 rounded-full peer-checked:bg-blue-500 peer-focus-visible:ring-2 peer-focus-visible:ring-blue-600 peer-focus-visible:ring-offset-2 transition-colors"></div>
 
                   <div className="dot absolute left-[2px] top-[2px] w-3 h-3 bg-white rounded-full transition-transform peer-checked:translate-x-4"></div>
                 </div>

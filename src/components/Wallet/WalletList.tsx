@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import WalletItem from "@/components/Wallet/WalletItem";
 import FilterToggle from "@/components/FilterToggle";
 import { useLanguage } from "@/context/LanguageContext";
@@ -35,6 +36,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   const [error, setError] = useState<{ [key: string]: string }>({});
   const [success, setSuccess] = useState<{ [key: string]: string }>({});
   const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const filterTriggerRef = useRef<HTMLButtonElement>(null);
+  const closeFilterRef = useRef<HTMLButtonElement>(null);
 
   const { t } = useLanguage();
   const filtersLabel = t?.wallets?.filters ?? "Filters";
@@ -177,7 +180,11 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         <div className="wl-mobile-header">
           <span className="wl-mobile-title">{filtersLabel}</span>
           <button 
-            className="wl-btn" 
+            type="button"
+            ref={filterTriggerRef}
+            aria-haspopup="dialog"
+            aria-expanded={isFilterVisible}
+            className="wl-btn focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
             onClick={handleToggleFilter}
           >
             <span className="wl-btn-icon">Settings</span>
@@ -191,18 +198,21 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
         {/* Active filter chips */}
         {activeFilters.length > 0 && (
           <div className="wl-active-chips">
-            {activeFilters.map((item, i) => (
-              <span
-                key={i}
-                className="wl-chip"
-                onClick={() => {
-                  const [cat, val] = item.split(":");
-                  toggleFilter(cat, val);
+            {activeFilters.map((item) => (
+              <button
+                type="button"
+                key={item}
+                className="wl-chip focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+                onClick={(event) => {
+                  const neighbor = event.currentTarget.nextElementSibling ?? event.currentTarget.previousElementSibling;
+                  setActiveFilters((prev) => prev.filter((filter) => filter !== item));
+                  if (neighbor instanceof HTMLButtonElement) neighbor.focus();
+                  else filterTriggerRef.current?.focus();
                 }}
               >
                 {item.split(":")[1]}
-                <span className="wl-chip-x">Close</span>
-              </span>
+                <span className="wl-chip-x">{closeLabel}</span>
+              </button>
             ))}
           </div>
         )}
@@ -256,16 +266,22 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
 
         {/* Mobile drawer */}
         {isFilterVisible && (
-          <div className="wl-mobile-drawer fixed inset-0 z-50 bg-black/60 flex items-end">
-            <div 
+          <Dialog
+            open={isFilterVisible}
+            onClose={() => setIsFilterVisible(false)}
+            initialFocus={closeFilterRef}
+            className="wl-root wl-mobile-drawer fixed inset-0 z-50 bg-black/60 flex items-end"
+          >
+            <DialogPanel
               className="bg-white dark:bg-slate-900 w-full max-h-[85vh] rounded-t-3xl overflow-hidden shadow-xl"
-              onClick={(e) => e.stopPropagation()}
             >
               <div className="wl-drawer-header px-6 py-4 border-b flex items-center justify-between">
-                <span className="text-lg font-semibold">{filtersLabel}</span>
+                <DialogTitle as="span" className="text-lg font-semibold">{filtersLabel}</DialogTitle>
                 <button 
-                  className="wl-btn text-sm font-medium"
-                  onClick={handleToggleFilter}
+                  type="button"
+                  ref={closeFilterRef}
+                  className="wl-btn text-sm font-medium focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+                  onClick={() => setIsFilterVisible(false)}
                 >
                   {closeLabel}
                 </button>
@@ -279,8 +295,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                   handleToggleFilter={handleToggleFilter}
                 />
               </div>
-            </div>
-          </div>
+            </DialogPanel>
+          </Dialog>
         )}
       </div>
     </>
