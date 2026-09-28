@@ -68,8 +68,8 @@ export const ContributionVisualizer = ({
 
   return (
     <VisualizerCanvas
-      title="Zcash Mining"
-      description="Understanding Zcash's mining and zero-knowledge proof technology"
+      title="ZecHub Bounties"
+      description="Claim bounties on bounties.zechub.wiki and get paid natively in ZEC"
       currentStep={currentStage}
       totalSteps={SLIDES.length}
       isPlaying={isPlaying}
