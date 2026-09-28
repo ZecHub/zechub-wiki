@@ -17,10 +17,10 @@ export async function generateMetadata({
     title: "Zcash Arborist Calls & Protocol Dev Meetings | ZecHub",
     description:
       "Summaries, video archives, and agenda notes from bi-weekly Zcash Arborist calls with core protocol engineers and developers.",
-    url: `https://zechub.wiki${localePrefix}/aborist-calls`,
+    url: `https://zechub.wiki${localePrefix}/arborist-calls`,
     image: getBanner("zcash-tech") || "/content-banners/bannertech.jpg",
     locale,
-    alternates: buildAlternatesAllLocales("/aborist-calls", locale),
+    alternates: buildAlternatesAllLocales("/arborist-calls", locale),
   });
 }
 
