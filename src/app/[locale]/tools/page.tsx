@@ -1,4 +1,5 @@
 import ToolTabs from './ToolTabs'
+import ToolsBackdrop from './ToolsBackdrop'
 
 // Which tool is open comes from `?tool=`, so this page can't be prerendered as
 // one static document — rendering per request is what lets a shared link land
@@ -18,11 +19,8 @@ export const metadata = {
 
 export default function ToolsPage() {
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-[#111b27]">
-      <div
-        className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(244,183,40,0.04),transparent)]"
-        aria-hidden
-      />
+    <div className="relative min-h-screen">
+      <ToolsBackdrop />
 
       <div className="relative w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 sm:pt-16 sm:pb-24">
         <div className="text-center mb-8 sm:mb-10">
