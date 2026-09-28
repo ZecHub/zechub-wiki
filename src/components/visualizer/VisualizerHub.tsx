@@ -7,6 +7,7 @@ import {
   visualizerQuery,
   type QuizSection,
 } from "@/lib/visualizerRouting";
+import { visualizerCardCopy } from "./visualizerCardCopy";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { useSearchParams } from "next/navigation";
@@ -948,46 +949,39 @@ function VisualizerCard(props: CardProps) {
   const { data, goToVisualizer, startDelay = 0.3 } = props;
   const { t } = useLanguage();
 
-  return data.map((v, index) => (
-    <motion.div
-      key={v.id}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: startDelay + index * 0.1 }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      {/* A real button so the card is reachable by Tab and opens with Enter or
-          Space, which the browser gives us for free. Kept block-level and full
-          width so it lays out exactly as the div it replaces, and it still
-          carries `group` so the existing group-hover styles are unchanged.
-          The focus ring is drawn with a ring rather than an outline because
-          globals.css clears outline on every element with !important. No
-          ring-offset: the theme stores colours as hex while the config wraps
-          them in hsl(), so ring-offset-background resolves to hsl(#070a13),
-          which is invalid and silently voids the whole box-shadow. */}
-      <button
-        type="button"
-        onClick={() => goToVisualizer(v.id)}
-        className="cursor-pointer group block w-full rounded-xl focus-visible:ring-2 focus-visible:ring-yellow-500"
+  return data.map((v, index) => {
+    const copy = visualizerCardCopy(t, v);
+    return (
+      <motion.div
+        key={v.id}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: startDelay + index * 0.1 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
-          <div className="flex-1 text-center">
-            <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
-              {t?.components?.visualizer?.[v.id]?.title ?? v.title}
-            </h3>
-            <p className="text-muted-foreground group-hover:text-muted-foreground transition-colors">
-              {t?.components?.visualizer?.[v.id]?.description ?? v.description}
-            </p>
+        <button
+          type="button"
+          onClick={() => goToVisualizer(v.id)}
+          className="cursor-pointer group block w-full rounded-xl focus-visible:ring-2 focus-visible:ring-yellow-500"
+        >
+          <div className="flex flex-col min-h-[160px] imd:min-h-[200px] lg:min-h-[240px] bg-card/70 backdrop-blur-md border border-border/50 rounded-xl p-4 sm:p-6 h-full hover:bg-card/80 hover:border-border/50 transition-all duration-300">
+            <div className="flex-1 text-center">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-yellow-500 dark:group-hover:text-primary transition-colors">
+                {copy.title}
+              </h3>
+              <p className="text-muted-foreground group-hover:text-muted-foreground transition-colors">
+                {copy.description}
+              </p>
+            </div>
+            <div className="text-yellow-500 text-center group-hover:text-yellow-400 transition-colors">
+              <span className="text-sm font-medium" aria-hidden="true">
+                {t.common?.clickToExplore || "Click to explore →"}
+              </span>
+            </div>
           </div>
-
-          <div className="text-yellow-500 text-center group-hover:text-yellow-400 transition-colors">
-            <span className="text-sm font-medium" aria-hidden="true">
-              {t.common?.clickToExplore || "Click to explore →"}
-            </span>
-          </div>
-        </div>
-      </button>
-    </motion.div>
-  ));
+        </button>
+      </motion.div>
+    );
+  });
 }
