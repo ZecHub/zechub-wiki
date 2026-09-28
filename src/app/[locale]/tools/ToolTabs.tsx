@@ -6,6 +6,7 @@ import AddressDecoder from "./AddressDecoder";
 import PaymentRequestBuilder from "./PaymentRequestBuilder";
 import PaymentRequestWidget from "./zcash-payment-widget/PaymentRequestWidget";
 import Faucet from "./Faucet";
+import BlockTime from "./BlockTime";
 
 // Tab ids double as the public URL slug, e.g. /tools?tool=address-decoder.
 // Renaming one changes a shareable link, so treat them as part of the API.
@@ -14,7 +15,8 @@ type TabId =
   | "payment-request"
   | "payment-request-widget"
   | "address-decoder"
-  | "faucet";
+  | "faucet"
+  | "block-time";
 
 interface Tab {
   id: TabId;
@@ -65,6 +67,14 @@ const TABS: Tab[] = [
     badge: "Testnet",
     title: "Zcash Testnet Faucet",
     subtitle: "Request testnet ZEC and track your claim until confirmation",
+  },
+  {
+    id: "block-time",
+    label: "Block Time",
+    shortLabel: "Time",
+    badge: "CipherScan",
+    title: "Block Time",
+    subtitle: "Convert a Zcash block height or hash into your local timezone",
   },
 ];
 
@@ -159,6 +169,7 @@ export default function ToolTabs() {
           {active === "payment-request-widget" && <PaymentRequestWidget />}
           {active === "address-decoder" && <AddressDecoder />}
           {active === "faucet" && <Faucet />}
+          {active === "block-time" && <BlockTime />}
         </div>
       </div>
       </div>
