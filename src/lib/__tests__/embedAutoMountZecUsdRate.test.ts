@@ -158,6 +158,7 @@ describe("embed auto-mount: zecUsdRate reference", () => {
         selector: string,
         opts: Record<string, unknown>,
       ) => Promise<unknown>;
+      eval: (src: string) => unknown;
     };
     (w as unknown as { fetch: unknown }).fetch = jest.fn().mockResolvedValue({
       json: async () => ({}),

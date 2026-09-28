@@ -19,7 +19,9 @@ async function chooseFilter(comboboxIndex: number, option: string) {
     key: "ArrowDown",
   });
   fireEvent.click(
-    await screen.findByRole("option", { name: option, exact: true }),
+    await screen.findByRole("option", {
+      name: (accessibleName) => accessibleName === option,
+    }),
   );
 }
 

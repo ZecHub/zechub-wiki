@@ -42,6 +42,7 @@ function makeWindow() {
   });
   const w = dom.window as unknown as Window & {
     renderZcashButton: (selector: string, opts: Record<string, unknown>) => Promise<unknown>;
+    eval: (src: string) => unknown;
   };
   (w as unknown as { fetch: unknown }).fetch = jest.fn().mockResolvedValue({
     json: async () => ({}),
