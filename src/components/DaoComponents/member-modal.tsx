@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { encodeZip321Memo, MAX_MEMO_BYTES } from "@/lib/zip321";
+import { openPaymentUri } from "@/lib/openPaymentUri";
 
 interface MemberModalProps {
   member: {
@@ -15,10 +17,6 @@ interface MemberModalProps {
   onClose: () => void;
 }
 
-function base64UrlEncode(str: string) {
-  return btoa(str).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
-
 export default function MemberModal({
   member,
   isOpen,
@@ -26,17 +24,23 @@ export default function MemberModal({
 }: MemberModalProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [message, setMessage] = useState("");
+  const messageBytes = new TextEncoder().encode(message).length;
+  const isMessageTooLong = messageBytes > MAX_MEMO_BYTES;
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
   const handleSend = () => {
-    const encodedMemo = base64UrlEncode(message);
-    const uri = `zcash:${member.zcashAddress}?amount=0.01&memo=${encodedMemo}`;
-    window.location.href = uri;
-    handleFlip();
-    setMessage("");
+    if (!message || isMessageTooLong) return;
+    try {
+      const encodedMemo = encodeZip321Memo(message, member.zcashAddress);
+      openPaymentUri(`zcash:${member.zcashAddress}?amount=0.01&memo=${encodedMemo}`);
+      handleFlip();
+      setMessage("");
+    } catch {
+      // Transparent address or encode failure: do not navigate.
+    }
   };
 
   const handleClose = () => {
@@ -49,14 +53,12 @@ export default function MemberModal({
 
   return (
     <>
-      {/* Backdrop */}
       <div
         className="fixed inset-0 cursor-pointer bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
         onClick={handleClose}
         aria-hidden="true"
       />
 
-      {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div
           className="relative max-w-md w-full"
@@ -69,10 +71,8 @@ export default function MemberModal({
               transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
             }}
           >
-            {/* Front Side */}
             <div className="w-full" style={{ backfaceVisibility: "hidden" }}>
               <div className="bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 border border-amber-500/30 rounded-2xl p-8 shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-300 relative">
-                {/* Close button */}
                 <button
                   onClick={handleClose}
                   className="absolute top-4 right-4 cursor-pointer text-slate-400  hover:text-blue-600 dark:hover:text-amber-400 transition-colors"
@@ -93,7 +93,6 @@ export default function MemberModal({
                   </svg>
                 </button>
 
-                {/* Member profile */}
                 <div className="flex flex-col items-center text-center">
                   <img
                     src={member.imgUrl || "/placeholder.svg"}
@@ -107,11 +106,10 @@ export default function MemberModal({
                     {member.description}
                   </p>
                   <p className="text-yellow-400 dark:text-slate-400 text-sm mb-6 leading-relaxed">
-                    Learn more about {member.name}&apos;s contributions to
+                    Learn more about {member.name}'s contributions to
                     ZecHub DAO and their role in the community.
                   </p>
 
-                  {/* Action buttons */}
                   <div className="flex gap-3 w-full">
                     <button
                       onClick={handleClose}
@@ -130,7 +128,6 @@ export default function MemberModal({
               </div>
             </div>
 
-            {/* Back Side */}
             <div
               className="absolute top-0 left-0 w-full"
               style={{
@@ -139,7 +136,6 @@ export default function MemberModal({
               }}
             >
               <div className="bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 border border-amber-500/30 rounded-2xl p-8 shadow-2xl relative">
-                {/* Close button */}
                 <button
                   onClick={handleClose}
                   className="absolute top-4 right-4 cursor-pointer text-slate-400 hover:text-blue-600 dark:hover:text-amber-400 transition-colors"
@@ -169,14 +165,19 @@ export default function MemberModal({
                       className="w-full p-3 border border-amber-500/20 rounded-lg text-white dark:bg-slate-800/40 focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 transition-all resize-none"
                       rows={6}
                       placeholder="Type your message..."
-                      maxLength={512}
+                      aria-invalid={isMessageTooLong || undefined}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                     />
                     <div className="absolute bottom-2 right-2 text-slate-400 text-sm bg-slate-800/80 px-2 py-1 rounded">
-                      {message.length}/512
+                      {messageBytes}/{MAX_MEMO_BYTES} bytes
                     </div>
                   </div>
+                  {isMessageTooLong && (
+                    <p role="alert" className="mb-4 text-sm text-red-600 dark:text-red-400">
+                      Shorten your message to fit the 512-byte limit.
+                    </p>
+                  )}
 
                   <div className="flex justify-end space-x-3">
                     <button
@@ -190,7 +191,8 @@ export default function MemberModal({
                     </button>
                     <button
                       onClick={handleSend}
-                      className="cursor-pointer px-4 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-green-300 transition-all"
+                      disabled={isMessageTooLong || !message}
+                      className="cursor-pointer px-4 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-green-300 transition-all disabled:opacity-50 disabled:hover:scale-100"
                     >
                       Send
                     </button>
