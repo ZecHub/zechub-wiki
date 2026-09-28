@@ -89,17 +89,16 @@ export default function TransactionsSummaryChart(
     });
 
     const last = cumData[cumData.length - 1];
+    const inRange = (height: number) =>
+      height >= startHeight && height <= endHeight;
+    const isPlotted = (height: number) =>
+      inRange(height) &&
+      (height % BLOCKS_PERIOD === 0 || height === last.height);
 
     let filteredData: any[] = [];
 
     if (cumulative) {
-      filteredData = cumData.filter(
-        (d) =>
-          (d.height >= startHeight &&
-            d.height <= endHeight &&
-            d.height % BLOCKS_PERIOD === 0) ||
-          d.height === last.height,
-      );
+      filteredData = cumData.filter((d) => isPlotted(d.height));
     } else {
       saplingSum = 0;
       saplingFilterSum = 0;
@@ -107,17 +106,15 @@ export default function TransactionsSummaryChart(
       orchardFilterSum = 0;
 
       chartData.forEach((d) => {
+        // Blocks outside the selected range must not end up in any bar.
+        if (!inRange(d.height)) return;
+
         saplingSum += d.sapling;
         saplingFilterSum += d.sapling_filter;
         orchardSum += d.orchard;
         orchardFilterSum += d.orchard_filter;
 
-        if (
-          (d.height >= startHeight &&
-            d.height <= endHeight &&
-            d.height % BLOCKS_PERIOD === 0) ||
-          d.height === last.height
-        ) {
+        if (isPlotted(d.height)) {
           filteredData.push({
             height: d.height,
             sapling: saplingSum,
