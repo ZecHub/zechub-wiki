@@ -9,9 +9,17 @@ import {
   useRef,
   useState,
 } from "react";
-import { detectZcashNetwork, encodeMemo, type ZcashNetwork } from "./helper";
+import { detectZcashNetwork, type ZcashNetwork } from "./helper";
 import { useWasm } from "./hooks/useWasm";
 import WasmInitStatus from "./WasmInitStatus";
+import {
+  buildZip321Uri,
+  formatZecAmount,
+  isShieldedAddress,
+  isTransparentAddress,
+  validateZip321Payment,
+  MAX_MEMO_BYTES,
+} from "@/lib/zip321";
 
 function QRCode({ value, size = 176 }: { value: string; size?: number }) {
   return (
@@ -167,35 +175,34 @@ export default function PaymentRequestBuilder() {
 
   const allValid =
     payments.length > 0 &&
-    payments.every((p) => p.validation.status === "valid");
+    payments.every((p) => {
+      if (p.validation.status !== "valid") return false;
+      const v = validateZip321Payment({
+        address: p.address,
+        amount: p.amount || undefined,
+        memo: p.memo || undefined,
+        label: p.label || undefined,
+        message: p.message || undefined,
+      });
+      return v.valid;
+    });
 
   const uri = useMemo(() => {
     if (!allValid) return null;
 
-    const parts: string[] = [];
-
-    payments.forEach((p, i) => {
-      const idx = i === 0 ? "" : `.${i}`;
-
-      parts.push(`address${idx}=${p.address}`);
-      if (p.amount) parts.push(`amount${idx}=${p.amount}`);
-      if (p.label) parts.push(`label${idx}=${encodeURIComponent(p.label)}`);
-      if (p.message)
-        parts.push(`message${idx}=${encodeURIComponent(p.message)}`);
-
-      const isShielded =
-        p.address.startsWith("zs") ||
-        p.address.startsWith("u1") ||
-        p.address.startsWith("utest1");
-
-      if (p.memo && isShielded) {
-        const m = encodeMemo(p.memo);
-
-        if (m) parts.push(`memo${idx}=${m}`);
-      }
-    });
-
-    return `zcash:?${parts.join("&")}`;
+    try {
+      return buildZip321Uri(
+        payments.map((p) => ({
+          address: p.address,
+          amount: p.amount || undefined,
+          label: p.label || undefined,
+          message: p.message || undefined,
+          memo: p.memo || undefined,
+        })),
+      );
+    } catch {
+      return null;
+    }
   }, [payments, allValid]);
 
   const deferredURI = useDeferredValue(uri);
@@ -265,10 +272,7 @@ export default function PaymentRequestBuilder() {
           const v = p.validation;
 
           const isValid = p.validation.status === "valid";
-          const isShielded =
-            p.address.startsWith("zs") ||
-            p.address.startsWith("u1") ||
-            p.address.startsWith("utest1");
+          const isShielded = isShieldedAddress(p.address);
 
           return (
             <div
@@ -368,6 +372,18 @@ export default function PaymentRequestBuilder() {
                         step="any"
                         min="0"
                       />
+                      {p.amount && (() => {
+                        try {
+                          formatZecAmount(p.amount);
+                          return null;
+                        } catch (err) {
+                          return (
+                            <p className="mt-1 ml-1 text-[11px] text-red-500 font-medium">
+                              {err instanceof Error ? err.message : "Invalid amount"}
+                            </p>
+                          );
+                        }
+                      })()}
                     </div>
                     <div>
                       <label className={LABEL_CLASS}>Label</label>
@@ -400,9 +416,24 @@ export default function PaymentRequestBuilder() {
                   </div>
 
                   {/* Memo — shielded only */}
-                  {isShielded && (
+                  {isShielded ? (
                     <div>
-                      <label className={LABEL_CLASS}>Encrypted Memo</label>
+                      <div className="flex justify-between items-center mb-1.5 ml-1">
+                        <label className="text-[11px] font-semibold uppercase tracking-[0.1em] text-zinc-400 dark:text-[#5a6a7e]">
+                          Encrypted Memo
+                        </label>
+                        <span
+                          className={`text-[10px] font-mono ${
+                            new TextEncoder().encode(p.memo || "").length >
+                            MAX_MEMO_BYTES
+                              ? "text-red-500 font-bold"
+                              : "text-zinc-400 dark:text-[#5a6a7e]"
+                          }`}
+                        >
+                          {new TextEncoder().encode(p.memo || "").length}/
+                          {MAX_MEMO_BYTES} bytes
+                        </span>
+                      </div>
                       <textarea
                         disabled={!isValid}
                         value={p.memo}
@@ -413,11 +444,23 @@ export default function PaymentRequestBuilder() {
                         rows={3}
                         className={`${INPUT_CLASS} resize-y font-mono text-sm min-h-[72px]`}
                       />
+                      {new TextEncoder().encode(p.memo || "").length >
+                        MAX_MEMO_BYTES && (
+                        <p className="mt-1 ml-1 text-[11px] text-red-500 font-medium">
+                          Memo exceeds maximum 512-byte limit (ZIP 321).
+                        </p>
+                      )}
                       <p className="mt-1 ml-1 text-[10px] font-mono text-[#3d4e60]">
                         Encoded as base64url per ZIP-321
                       </p>
                     </div>
-                  )}
+                  ) : p.address && isTransparentAddress(p.address) && p.memo ? (
+                    <div className="mt-2 rounded-xl bg-amber-500/10 border border-amber-500/20 px-4 py-3">
+                      <p className="text-[13px] text-amber-500 font-medium">
+                        Memos are not supported for transparent addresses in ZIP 321.
+                      </p>
+                    </div>
+                  ) : null}
 
                   {payments.length > 1 && (
                     <div className="my-4">
