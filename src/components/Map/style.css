@@ -20,8 +20,97 @@
 
     --spedn-border: rgba(234, 236, 240, 0.15);
     --spedn-border-strong: rgba(234, 236, 240, 0.75);
+    --spedn-border-tertiary: rgba(234, 236, 240, 0.15);
 
     --spedn-selected-ring: rgba(31, 111, 235, 0.15);
+}
+
+/* ===== Layout primitives (static classes; media queries below) ===== */
+.spedn-root {
+    display: flex;
+    flex-direction: column;
+    /* 100dvh avoids the mobile URL-bar cropping that plain 100vh causes. */
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+.spedn-main {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.spedn-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
+
+.spedn-map {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* ===== Mobile: single column, map-first with slide-up list ===== */
+@media (max-width: 768px) {
+    .spedn-root {
+        height: 100dvh;
+    }
+
+    .spedn-main {
+        flex-direction: column;
+    }
+
+    .spedn-sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 45%;
+        border-right: none;
+        border-bottom: 0.5px solid var(--spedn-border-tertiary);
+    }
+
+    .spedn-map {
+        flex: 1 1 55%;
+        min-height: 0;
+    }
+
+    /* Header is dense so the list + map both fit on small phones. */
+    .spedn-header {
+        padding: 14px 16px 12px !important;
+    }
+    .spedn-header h1 {
+        font-size: 20px !important;
+    }
+    .spedn-header p {
+        font-size: 12.5px !important;
+    }
+
+    /* Detail panel becomes a bottom sheet on mobile. Inline styles on the
+       element (bottom:240, right:14, width:250) outrank the stylesheet without
+       !important, so the geometry overrides need it explicitly. */
+    .spedn-detail-panel {
+        left: 12px !important;
+        right: 12px !important;
+        bottom: 12px !important;
+        width: auto !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .spedn-sidebar {
+        max-height: 40%;
+    }
+    .spedn-map {
+        flex: 1 1 60%;
+    }
 }
 
 .leaflet-container {

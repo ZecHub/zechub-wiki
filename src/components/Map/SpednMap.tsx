@@ -221,16 +221,10 @@ export default function SPEDNMap() {
         />
       </Head>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100vh",
-          overflow: "hidden",
-        }}
-      >
+      <div className="spedn-root">
         {/* Header */}
         <header
+          className="spedn-header"
           style={{
             padding: "28px 28px 20px",
             borderBottom: "0.5px solid var(--spedn-border-tertiary)",
@@ -295,24 +289,11 @@ export default function SPEDNMap() {
         </header>
 
         {/* Main */}
-        <main
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            flex: 1,
-            minHeight: 0,
-            overflow: "hidden",
-          }}
-        >
+        <main className="spedn-main">
           {/* Sidebar */}
           <aside
+            className="spedn-sidebar"
             style={{
-              width: 240,
-              flexShrink: 0,
-              display: "flex",
-              flexDirection: "column",
-              height: "100%",
-              minHeight: 0,
               borderRight: "0.5px solid var(--spedn-border-tertiary)",
               background: "var(--spedn-background-primary)",
             }}
@@ -509,6 +490,7 @@ export default function SPEDNMap() {
           {/* Map */}
           <div
             id="map-container"
+            className="spedn-map"
             style={{
               flex: 1,
               minHeight: 0,
