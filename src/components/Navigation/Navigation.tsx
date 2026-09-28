@@ -1014,7 +1014,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               onMoreClose={closeMore}
             />
           </nav>
-          <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
+          <div className="flex items-center space-x-2 max-[360px]:space-x-1 md:space-x-3 shrink-0">
             <LanguageSwitcher />
             <Button
               variant="ghost"
