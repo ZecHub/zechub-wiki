@@ -1,50 +1,50 @@
 import { expect, test } from "@playwright/test";
 
-const devURL = "http://localhost:3000/";
+// Keep these UI checks independent of changing pool totals and GitHub API limits.
+const amounts = { sprout: 101, sapling: 202, orchard: 303, ironwood: 404 };
 
 test.describe("Dashboard", () => {
-  test("has export button", async ({ page }) => {
-    await page.goto(devURL);
+  test.beforeEach(async ({ page }) => {
+    for (const [pool, supply] of Object.entries(amounts)) {
+      await page.route(`**/data/zcash/${pool}_supply.json`, (route) =>
+        route.fulfill({
+          json: [
+            { close: "09/01/2026", supply: supply - 1 },
+            { close: "09/02/2026", supply },
+          ],
+        }),
+      );
+    }
+    await page.route("**/api/data-updated?*", (route) =>
+      route.fulfill({
+        json: [{ commit: { committer: { date: "2026-09-02T00:00:00Z" } } }],
+      }),
+    );
+    // These tests cover the dashboard, not the changing global navigation menu.
+    await page.goto("/dashboard");
+  });
 
-    await page.getByRole("link", { name: /dashboard/i }).click();
+  test("has export button", async ({ page }) => {
     await expect(
-      page.getByRole("button", { name: "Export (PNG)" })
+      page.getByRole("button", { name: "Export PNG", exact: true }),
     ).toBeVisible();
   });
 
-  test("has name of Sprout pool plus amount of zec", async ({ page }) => {
-    await page.goto(devURL);
-
-    await page.getByRole("link", { name: /dashboard/i }).click();
-
-    await page.getByRole("button", { name: "Sprout Pool" }).click();
-
-    await page.getByRole("button", { name: "Export (PNG)" }).click();
-
-    await expect(page.getByText(/ZEC in Sprout Pool/i)).toBeVisible();
-  });
-  
-  test("has name of Sapling pool plus amount of zec", async ({ page }) => {
-    await page.goto(devURL);
-
-    await page.getByRole("link", { name: /dashboard/i }).click();
-
-    await page.getByRole("button", { name: "Sapling Pool" }).click();
-
-    await page.getByRole("button", { name: "Export (PNG)" }).click();
-
-    await expect(page.getByText(/ZEC in Sapling Pool/i)).toBeVisible();
-  });
-
-  test("has name of Orchard pool plus amount of zec", async ({ page }) => {
-    await page.goto(devURL);
-
-    await page.getByRole("link", { name: /dashboard/i }).click();
-
-    await page.getByRole("button", { name: "Orchard Pool" }).click();
-
-    await page.getByRole("button", { name: "Export (PNG)" }).click();
-
-    await expect(page.getByText(/ZEC in Orchard Pool/i)).toBeVisible();
-  });
+  for (const pool of ["sprout", "sapling", "orchard"] as const) {
+    const label = pool.charAt(0).toUpperCase() + pool.slice(1);
+    test(`has name of ${label} pool plus amount of zec`, async ({ page }) => {
+      // The current UI uses a native pool select, separate from the year select.
+      const poolSelect = page.getByRole("combobox").filter({
+        has: page.getByRole("option", { name: "All Pools", exact: true }),
+      });
+      await poolSelect.selectOption(pool);
+      const amount = page.getByText(
+        `${label} Shielded: ${amounts[pool]} ZEC`,
+        { exact: true },
+      );
+      await expect(amount).toBeVisible();
+      await page.getByRole("button", { name: "Export PNG", exact: true }).click();
+      await expect(amount).toBeVisible();
+    });
+  }
 });
