@@ -1,8 +1,43 @@
-import { is_valid_zcash_address } from "@elemental-zcash/zaddr_wasm_parser";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { NextRequest, NextResponse } from "next/server";
 import QRCode from "qrcode";
+import * as bindings from "@elemental-zcash/zaddr_wasm_parser/zaddr_wasm_parser_bg.js";
 import { qrCodeBodySchema } from "./schema/qrcode.schema";
 import { buildZip321Uri, validateZip321Payment } from "@/lib/zip321";
+
+type ZaddrBindings = typeof bindings & {
+  __wbg_set_wasm: (exports: WebAssembly.Exports) => void;
+  is_valid_zcash_address: (address: string) => boolean;
+};
+
+const wasmBindings = bindings as ZaddrBindings;
+
+let wasmReady: Promise<ZaddrBindings> | null = null;
+
+function loadZaddrWasm(): Promise<ZaddrBindings> {
+  if (!wasmReady) {
+    wasmReady = (async () => {
+      const buf = await readFile(
+        path.join(process.cwd(), "public/wasm/zaddr_wasm_parser_bg.wasm"),
+      );
+      const { instance } = await WebAssembly.instantiate(buf, {
+        "./zaddr_wasm_parser_bg.js": wasmBindings,
+      });
+      wasmBindings.__wbg_set_wasm(instance.exports);
+      (
+        instance.exports as WebAssembly.Exports & {
+          __wbindgen_start?: () => void;
+        }
+      ).__wbindgen_start?.();
+      return wasmBindings;
+    })().catch((err) => {
+      wasmReady = null;
+      throw err;
+    });
+  }
+  return wasmReady;
+}
 
 export async function GET(req: NextRequest) {
   const data = req.nextUrl.searchParams.get("data");
@@ -53,6 +88,7 @@ export async function POST(req: NextRequest) {
 
     const { amount, address, label, message, memo } = parsed.data;
 
+    const { is_valid_zcash_address } = await loadZaddrWasm();
     if (!is_valid_zcash_address(address)) {
       return NextResponse.json(
         { error: "Invalid Zcash address!" },
