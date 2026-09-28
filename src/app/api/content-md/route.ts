@@ -9,7 +9,8 @@ import {
   getName,
   resolveContentPath,
 } from "@/lib/helpers";
-import { keyToWikiPath, toWikiUrl } from "@/lib/localeCoverage";
+import { toWikiUrl } from "@/lib/localeCoverage";
+import { resolveManifestContentPath } from "@/lib/contentPaths";
 import { routing } from "@/i18n/routing";
 
 // Raw-markdown endpoint for LLM/crawler discovery. Every content page is also
@@ -51,10 +52,7 @@ function notFound() {
 async function manifestContentPath(slugArray: string[]): Promise<string | null> {
   try {
     const titles = await getMenuTitlesCached("en");
-    const want = ("/" + slugArray.join("/")).toLowerCase();
-    for (const key of Object.keys(titles ?? {})) {
-      if (keyToWikiPath(key).toLowerCase() === want) return `/site/${key}`;
-    }
+    return resolveManifestContentPath(slugArray, Object.keys(titles ?? {}));
   } catch {
     // Manifest unavailable — fall back to slug resolution, as before.
   }
