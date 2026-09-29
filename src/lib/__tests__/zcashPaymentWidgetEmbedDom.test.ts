@@ -163,7 +163,7 @@ describe("zcash-payment-request-widget.embed.v2.js DOM construction", () => {
     const modal = overlay().querySelector(".zwg-modal")!;
     expect(modal.classList.contains("zwg-dark")).toBe(true);
     expect(modal.querySelector(".zwg-x")!.getAttribute("aria-label")).toBe("Close");
-    expect(modal.querySelector(".zwg-amt-val b")!.textContent).toBe("1.500");
+    expect(modal.querySelector(".zwg-amt-val b")!.textContent).toBe("1.5");
     expect(modal.querySelector(".zwg-amt-val small")!.textContent).toBe("ZEC");
     expect(modal.querySelector(".zwg-amt")!.textContent).toContain("≈ $3.00 USD");
     expect(modal.querySelector(".zwg-fld-txt")!.textContent).toBe(address);
@@ -186,6 +186,22 @@ describe("zcash-payment-request-widget.embed.v2.js DOM construction", () => {
 
     inst.destroy();
     expect(document.querySelector(".zwg-btn")).toBeNull();
+  });
+
+  it.each([
+    [0.0004, "0.0004"],
+    ["0.12345678", "0.12345678"],
+    ["0.0015", "0.0015"],
+    [25, "25"],
+  ])("shows amount %p as the exact %p ZEC the payment URI requests", async (amount, shown) => {
+    const address = "t1VpMigELggqi6TBghQNehqspAcBBDYvRQC";
+    const inst = await render({ address, amount });
+    inst.open();
+
+    expect(overlay().querySelector(".zwg-amt-val b")!.textContent).toBe(shown);
+    expect(overlay().querySelector<HTMLInputElement>(".zwg-fld-inp")!.value).toBe(
+      `zcash:${address}?amount=${shown}`,
+    );
   });
 
   it("omits the memo block when no memo is given", async () => {
