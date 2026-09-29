@@ -295,15 +295,48 @@ export function parseZip321Uri(uri: string): Zip321PaymentItem[] {
   const params = new URLSearchParams(queryPart || "");
   const paymentsMap = new Map<string, Partial<Zip321PaymentItem>>();
 
-  // Path address is recipient 0 if present
+  // ZIP-321: "There MUST NOT be more than one occurrence of a given parameter
+  // and paramindex." Track each (paramName, index) pair and reject repeats,
+  // rather than silently letting the last value win (which would let a URI be
+  // read differently by different wallets).
+  const seenParams = new Set<string>();
+
+  // Path address is the paymentindex-0 (no-index) recipient if present. It
+  // occupies the address slot at index 0, so a query "address" also targeting
+  // index 0 is a forbidden duplicate.
   if (pathPart) {
     paymentsMap.set("0", { address: decodeURIComponent(pathPart) });
+    seenParams.add("address\u00000");
   }
 
   for (const [key, value] of params.entries()) {
     const dotIndex = key.indexOf(".");
     const paramName = dotIndex === -1 ? key : key.slice(0, dotIndex);
-    const indexStr = dotIndex === -1 ? "0" : key.slice(dotIndex + 1);
+    let indexStr: string;
+    if (dotIndex === -1) {
+      // No paramindex: the primary (index 0) payment.
+      indexStr = "0";
+    } else {
+      // ZIP-321 grammar: paramindex = NONZERO 0*3DIGIT, i.e. 1-9999 with no
+      // leading zeros. This also rejects an explicit ".0".
+      const suffix = key.slice(dotIndex + 1);
+      if (!/^[1-9][0-9]{0,3}$/.test(suffix)) {
+        throw new Error(
+          `Invalid paramindex "${suffix}": must be an integer from 1 to 9999 with no leading zeros`,
+        );
+      }
+      indexStr = suffix;
+    }
+
+    const dupKey = `${paramName}\u0000${indexStr}`;
+    if (seenParams.has(dupKey)) {
+      throw new Error(
+        `Duplicate parameter "${paramName}"${
+          indexStr === "0" ? "" : `.${indexStr}`
+        } in ZIP-321 URI`,
+      );
+    }
+    seenParams.add(dupKey);
 
     if (!paymentsMap.has(indexStr)) {
       paymentsMap.set(indexStr, {});

@@ -283,3 +283,68 @@ describe("ZIP-321 URI Generation & Parsing (Single and Multi-recipient)", () => 
     ).toThrow(/Recipient 1: Invalid amount/i);
   });
 });
+
+describe("ZIP-321 parsing strictness (duplicates & paramindex)", () => {
+  const sapling =
+    "zs1znewaqucqpc372x6ajmfnmkmxsafnc3fuxmg6g5kq3mkvkv8ufx9hgx9vgcrqncqm3umz56a7pd";
+  const sapling2 =
+    "zs1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqp9h7z8";
+
+  // ZIP-321: "There MUST NOT be more than one occurrence of a given parameter
+  // and paramindex."
+  it("rejects a duplicate amount for the same recipient", () => {
+    expect(() =>
+      parseZip321Uri(`zcash:${sapling}?amount=1.0&amount=2.0`),
+    ).toThrow(/duplicate parameter/i);
+  });
+
+  it("rejects a query address that duplicates the path address (index 0)", () => {
+    expect(() =>
+      parseZip321Uri(`zcash:${sapling}?address=${sapling2}`),
+    ).toThrow(/duplicate parameter/i);
+  });
+
+  it("rejects a duplicated indexed parameter", () => {
+    expect(() =>
+      parseZip321Uri(
+        `zcash:?address.1=${sapling}&amount.1=1.0&amount.1=2.0`,
+      ),
+    ).toThrow(/duplicate parameter/i);
+  });
+
+  // ZIP-321 grammar: paramindex = NONZERO 0*3DIGIT (1-9999, no leading zeros).
+  it("rejects an explicit .0 paramindex", () => {
+    expect(() => parseZip321Uri(`zcash:?address.0=${sapling}`)).toThrow(
+      /paramindex/i,
+    );
+  });
+
+  it("rejects a paramindex with a leading zero", () => {
+    expect(() =>
+      parseZip321Uri(`zcash:?address.01=${sapling}`),
+    ).toThrow(/paramindex/i);
+  });
+
+  it("rejects a non-numeric paramindex", () => {
+    expect(() =>
+      parseZip321Uri(`zcash:?address.x=${sapling}`),
+    ).toThrow(/paramindex/i);
+  });
+
+  it("rejects a paramindex above 9999", () => {
+    expect(() =>
+      parseZip321Uri(`zcash:?address.10000=${sapling}`),
+    ).toThrow(/paramindex/i);
+  });
+
+  it("accepts a valid high paramindex (9999) and distinct parameters", () => {
+    const parsed = parseZip321Uri(
+      `zcash:?address=${sapling}&amount=1.0&address.9999=${sapling2}&amount.9999=2.0`,
+    );
+    expect(parsed).toHaveLength(2);
+    expect(parsed[0].address).toBe(sapling);
+    expect(parsed[0].amount).toBe("1");
+    expect(parsed[1].address).toBe(sapling2);
+    expect(parsed[1].amount).toBe("2");
+  });
+});
