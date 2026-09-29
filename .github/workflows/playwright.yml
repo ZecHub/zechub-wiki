@@ -20,6 +20,14 @@ jobs:
       SUPABASE_SERVICE_ROLE_KEY: "dummy"
       OPENAI_API_KEY: ""
       NEXT_TELEMETRY_DISABLED: "1"
+      # Serve real content pages. Without a content source every wiki route is
+      # the not-found page, so the checks below ran against it and passed
+      # without exercising the page. ZecHub/zechub is public: raw files come
+      # from the CDN. GITHUB_TOKEN (read-only) is set only on the steps that
+      # build and serve the site, to lift the contents-API rate limit.
+      OWNER: "ZecHub"
+      REPO: "zechub"
+      BRANCH: "main"
     steps:
       - uses: actions/checkout@v7
         with:
@@ -32,9 +40,13 @@ jobs:
       - name: Install Playwright Chromium
         run: yarn playwright install --with-deps chromium
       - name: Build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn build
       # playwright.config.ts starts the built app and enforces readiness.
       - name: Run all Playwright tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn playwright test
       - name: Upload Playwright report and traces
         uses: actions/upload-artifact@v7
