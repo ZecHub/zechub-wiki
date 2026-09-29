@@ -5,6 +5,14 @@ import { getZcashPrice } from "./utils/get-zec-price";
 
 const priceFeedUrl = String(process.env.BASE_URL_ZCASH_PRICE_FEED);
 
+const ZATOSHIS_PER_ZEC = 100_000_000;
+
+// A ZEC amount has at most 8 decimal places (zatoshis). The converted amount
+// is copied verbatim into the widget's data-amount attribute, and the embed's
+// ZIP 321 validation rejects anything finer, so round to the nearest zatoshi.
+const toZatoshiPrecision = (zec: number) =>
+  Math.round(zec * ZATOSHIS_PER_ZEC) / ZATOSHIS_PER_ZEC;
+
 function priceUnavailable() {
   return NextResponse.json(
     { error: "Zcash price is currently unavailable" },
@@ -51,7 +59,7 @@ export async function POST(req: NextRequest) {
 
   let convertedAmount: number;
   if (from === "usd" && to === "zec") {
-    convertedAmount = amount / price;
+    convertedAmount = toZatoshiPrecision(amount / price);
   } else if (from === "zec" && to === "usd") {
     convertedAmount = amount * price;
   } else {
