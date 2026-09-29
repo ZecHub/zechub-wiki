@@ -218,6 +218,7 @@ const iconsForMenu: IconsFor = {
     "Zcash Wallet Syncing": FaSyncAlt,
     "Zcash Mining Guide": Mining,
     "Solswap": Swap,
+    "Solana ZEC to Shielded": "/icons/solana.svg",
     "Encifher Swaps": Swap,
     "Creators and Tips": Jar,
     "Testnet": Testnet,
