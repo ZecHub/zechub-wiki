@@ -31,6 +31,7 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "eZcash":                                  "/content-images/ezcash.webp",
   "Nozy Wallet":                             "/content-images/nozy.webp",
   "Overpay.com":                             "/content-images/overpay.webp",
+  "ZcashToCash":                             "/content-images/zcashtocash.png",
   "Zafu Wallet":                             "/content-images/zafu.webp",
   "ZGo":                                     "/content-images/z-go.webp",
   "Zimppy":                                  "/content-images/zimmpy.webp",
