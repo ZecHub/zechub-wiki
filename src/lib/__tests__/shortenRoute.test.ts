@@ -32,6 +32,26 @@ describe("POST /api/payment-request-uri/shorten", () => {
     expect(data.shortUrl).toContain("/api/payment-request-uri/shorten/");
   });
 
+  it("returns an absolute short link with a single /api segment", async () => {
+    const { POST } = await import("@/app/api/payment-request-uri/shorten/route");
+    const res = await POST(postRequest(JSON.stringify({ uri: "zcash:t1abc?amount=1" })));
+    const { shortUrl } = await res.json();
+
+    // The widget runs on merchants' sites, so a relative link would point at
+    // the merchant's domain.
+    expect(shortUrl).toMatch(
+      /^http:\/\/localhost\/api\/payment-request-uri\/shorten\/[A-Za-z0-9_-]{8}$/,
+    );
+  });
+
+  it("rejects a uri that is not a zcash: payment URI as 400", async () => {
+    const { POST } = await import("@/app/api/payment-request-uri/shorten/route");
+    for (const uri of ["https://example.com/", "javascript:alert(1)", "t1abc"]) {
+      const res = await POST(postRequest(JSON.stringify({ uri })));
+      expect(res.status).toBe(400);
+    }
+  });
+
   it("rejects malformed JSON as 400", async () => {
     const { POST } = await import("@/app/api/payment-request-uri/shorten/route");
     const res = await POST(postRequest("{not json"));
@@ -96,4 +116,39 @@ describe("POST /api/payment-request-uri/shorten", () => {
     expect(urlStore.size).toBe(MAX_STORE_ENTRIES);
     expect(urlStore.has(oldestKeyBeforeOverflow as string)).toBe(false);
   }, 20000);
+});
+
+describe("GET /api/payment-request-uri/shorten/[id]", () => {
+  beforeEach(() => {
+    jest.resetModules();
+  });
+
+  const get = async (id: string) => {
+    const { GET } = await import(
+      "@/app/api/payment-request-uri/shorten/[id]/route"
+    );
+    return GET(
+      new NextRequest(`http://localhost/api/payment-request-uri/shorten/${id}`),
+      { params: Promise.resolve({ id }) },
+    );
+  };
+
+  it("redirects a short link from POST to the original payment URI", async () => {
+    const { POST } = await import("@/app/api/payment-request-uri/shorten/route");
+    const uri = "zcash:t1abc?amount=1.5&label=Coffee%20shop";
+    const { shortUrl } = await (
+      await POST(postRequest(JSON.stringify({ uri })))
+    ).json();
+
+    const res = await get(new URL(shortUrl).pathname.split("/").pop()!);
+
+    expect(res.status).toBe(307);
+    expect(res.headers.get("location")).toBe(uri);
+    expect(res.headers.get("cache-control")).toBe("no-store");
+  });
+
+  it("returns 404 for an unknown or malformed id", async () => {
+    expect((await get("AAAAAAAA")).status).toBe(404);
+    expect((await get("../route")).status).toBe(404);
+  });
 });
