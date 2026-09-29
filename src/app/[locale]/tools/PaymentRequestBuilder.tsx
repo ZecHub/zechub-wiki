@@ -16,6 +16,7 @@ import {
   buildZip321Uri,
   formatZecAmount,
   isShieldedAddress,
+  isSproutAddress,
   isTransparentAddress,
   validateZip321Payment,
   MAX_MEMO_BYTES,
@@ -119,6 +120,12 @@ export default function PaymentRequestBuilder() {
 
         if (!validateAddress(addr)) {
           return Validation.invalid("Not a valid Zcash address");
+        }
+
+        if (isSproutAddress(addr)) {
+          return Validation.invalid(
+            "Sprout addresses are not supported in payment requests (ZIP 321)",
+          );
         }
 
         return Validation.valid(

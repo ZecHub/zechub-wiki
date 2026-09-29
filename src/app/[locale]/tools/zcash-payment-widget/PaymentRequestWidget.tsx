@@ -12,7 +12,7 @@ import { GeneratedConfig } from "../ToolTabs";
 import WasmInitStatus from "../WasmInitStatus";
 import WidgetButtonTrigger from "./WidgetButtonTrigger";
 import { config } from "./config";
-import { formatZecAmount, isShieldedAddress } from "@/lib/zip321";
+import { formatZecAmount, isShieldedAddress, isSproutAddress } from "@/lib/zip321";
 
 const INPUT_CLASS = [
   "w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]",
@@ -109,6 +109,12 @@ export default function PaymentRequestWidget() {
 
         if (!validateAddress(addr)) {
           return Validation.invalid("Not a valid Zcash address");
+        }
+
+        if (isSproutAddress(addr)) {
+          return Validation.invalid(
+            "Sprout addresses are not supported in payment requests (ZIP 321)",
+          );
         }
 
         return Validation.valid(

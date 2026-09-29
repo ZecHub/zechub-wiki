@@ -139,8 +139,8 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 
 
   // ---------- ZIP-321 request validation ----------
-  // Mirrors src/lib/zip321.ts (amount formatting, transparent/TEX memo
-  // prohibition, 512-byte UTF-8 memo limit, unpadded base64url memo
+  // Mirrors src/lib/zip321.ts (amount formatting, Sprout rejection,
+  // transparent/TEX memo prohibition, 512-byte UTF-8 memo limit, unpadded base64url memo
   // encoding). Reimplemented locally because this file ships as a single
   // dependency-free static script. Keep in sync with src/lib/zip321.ts.
   const ZIP321_MAX_ZEC_SUPPLY = 21_000_000;
@@ -154,9 +154,15 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       trimmed.startsWith("t1") ||
       trimmed.startsWith("t3") ||
       trimmed.startsWith("tm") ||
+      trimmed.startsWith("t2") ||
       trimmed.startsWith("tex1") ||
       trimmed.startsWith("textest1")
     );
+  }
+
+  // ZIP 321: "Sprout addresses MUST NOT be supported in payment requests."
+  function isSproutZcashAddress(address) {
+    return /^z[ct][1-9A-HJ-NP-Za-km-z]{93}$/.test(String(address || "").trim());
   }
 
   function formatZip321Amount(amount) {
@@ -301,6 +307,13 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     if (!address || !amount) {
       console.error(
         "[Zcash-Payment-URI-Widget] Missing required fields: address or amount.",
+      );
+      return null;
+    }
+
+    if (isSproutZcashAddress(address)) {
+      console.error(
+        "[Zcash-Payment-URI-Widget] Sprout addresses are not supported in ZIP 321 payment requests.",
       );
       return null;
     }
