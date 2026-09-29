@@ -18,8 +18,11 @@ function storeUri(shortId: string, uri: string) {
   urlStore.set(shortId, uri);
 }
 
+// The widget runs on merchants' own sites, so this is called cross-origin.
+// With ACCESS_CONTROL_ALLOW_ORIGIN unset the header went out empty, which
+// every browser rejects; allow any origin unless one is configured.
 const corsHeaders = {
-  "Access-Control-Allow-Origin": `${config.env.ACCESS_CONTROL_ALLOW_ORIGIN}`,
+  "Access-Control-Allow-Origin": config.env.ACCESS_CONTROL_ALLOW_ORIGIN.trim() || "*",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "ACCESS-CONTROL-ALLOW-HEADERS": "CONTENT-TYPE",
 };
