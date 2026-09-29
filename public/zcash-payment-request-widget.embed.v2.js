@@ -384,17 +384,18 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
       const closeX = el("button", "zwg-x", svg(ic.x));
       closeX.setAttribute("aria-label", "Close");
 
-      const qrImg = el("img");
+      let qrImg = el("img");
       qrImg.alt = "QR Code";
       try {
         qrImg.src = qrDataUrl(uri);
       } catch (err) {
         console.error("[Zcash-Payment-URI-Widget] Client QR failed", err);
-        qrImg.src =
-          apiBase +
-          "/payment-request-uri/qrcode?data=" +
-          encodeURIComponent(uri) +
-          "&size=240x240";
+        // Never send the payment URI to the server; show a text fallback.
+        qrImg = el(
+          "p",
+          "zwg-qr-error",
+          "QR code unavailable. Use the Copy or Open in Wallet buttons instead.",
+        );
       }
 
       let usdEl = null;
