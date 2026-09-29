@@ -62,6 +62,15 @@ const nextConfig = {
         destination: "/zcash-evolution",
       },
       {
+        // Every page advertises https://zechub.wiki/rss.xml (<link
+        // rel="alternate">, the feed's own atom:link, the dashboard's RSS
+        // button), but the feed route lives under [locale]/ and the proxy
+        // matcher skips paths with a dot, so the unprefixed English URL never
+        // reached it and answered 404. Serve it from the English route.
+        source: "/rss.xml",
+        destination: "/en/rss.xml",
+      },
+      {
         // Raw-markdown endpoint for LLM/crawler discovery: any content page is
         // also served at its `.md` URL. `:path(.*)` greedily captures the whole
         // pre-`.md` path (locale prefix included, e.g. "es/using-zcash/x"),
