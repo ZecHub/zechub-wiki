@@ -42,6 +42,7 @@ import { headers } from "next/headers";
 import { serialize } from "next-mdx-remote/serialize";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import { rehypeJsxYouTubeFacade } from "@/lib/rehypeJsxYouTubeFacade";
 import { visit, SKIP } from "unist-util-visit";
 
 // Defense-in-depth: content markdown is rendered via rehypeRaw (raw HTML
@@ -580,6 +581,7 @@ export default async function Page(props: {
         ],
         // Runs AFTER rehypeRaw so it sees the parsed raw-HTML nodes.
         rehypeStripDangerous,
+        rehypeJsxYouTubeFacade,
       ],
     },
   });

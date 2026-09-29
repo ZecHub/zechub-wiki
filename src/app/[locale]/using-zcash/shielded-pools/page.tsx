@@ -5,6 +5,7 @@ import { genMetadata, getBanner } from "@/lib/helpers";
 import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 import { normalizeMdx } from "@/lib/normalizeMdx";
+import { rehypeJsxYouTubeFacade } from "@/lib/rehypeJsxYouTubeFacade";
 import { Metadata } from "next";
 import DynamicComponent from "next/dynamic";
 import { serialize } from "next-mdx-remote/serialize";
@@ -50,7 +51,9 @@ export default async function Page(props: {
   ]);
   const content = markdown ? markdown : "No Data or Wrong file";
 
-  const mdxSource = await serialize(normalizeMdx(String(content)), {});
+  const mdxSource = await serialize(normalizeMdx(String(content)), {
+    mdxOptions: { rehypePlugins: [rehypeJsxYouTubeFacade] },
+  });
 
   return (
     <MdxContainer
