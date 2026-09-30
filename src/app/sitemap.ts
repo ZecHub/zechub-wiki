@@ -31,7 +31,7 @@ const normalizeInternalPath = (
 // in the menu-titles manifest or SITE_LINKS.
 const GLOBAL_ROUTES = [
   "/privacy",
-  "/brand",
+  "/zcash-organizations/brand",
   "/zcash-community/community-projects",
   "/using-zcash/blockchain-explorers",
 ];
