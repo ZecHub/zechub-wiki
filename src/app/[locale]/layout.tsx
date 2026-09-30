@@ -115,7 +115,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationJsonLd) }}
         />
       </head>
-      <body className={`px-0 ${inter.className} dark:bg-slate-900 dark:text-white`}>
+      <body className={`px-0 ${inter.className} bg-white dark:bg-slate-900 dark:text-white`}>
         {/* First focusable element on the page, so keyboard and screen-reader
             users can bypass the header, menus and search (WCAG 2.4.1). Rendered
             here rather than inside the providers so nothing precedes it in the
