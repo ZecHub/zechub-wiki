@@ -25,6 +25,7 @@ import {
 } from "@/lib/helpers";
 import { buildBreadcrumbs } from "@/lib/breadcrumbs";
 import { buildAlternates, localesForPath } from "@/lib/localeCoverage";
+import { keyToWikiPath } from "@/lib/wikiPaths";
 import { routing } from "@/i18n/routing";
 import { normalizeMdx, normalizeResearchMdx } from "@/lib/normalizeMdx";
 import { getDictionary } from "@/lib/getDictionary";
@@ -638,6 +639,27 @@ export default async function Page(props: {
     ],
   };
 
+  // A locale whose manifest lacks this page renders the English source. The
+  // <html> element still carries the locale's lang (and dir="rtl" for Arabic),
+  // so screen readers voiced English with the locale's voice and Arabic pages
+  // laid English out right-to-left, with punctuation at the wrong end. Mark
+  // the article itself as English. An empty manifest means the fetch failed,
+  // so nothing is assumed then.
+  const localizedKeys = Object.keys(menuTitles ?? {});
+  const wikiPath = `/${slug.join("/")}`.toLowerCase();
+  const servesEnglishFallback =
+    locale !== "en" &&
+    localizedKeys.length > 0 &&
+    !localizedKeys.some((key) => keyToWikiPath(key) === wikiPath);
+
+  const article = (
+    <Suspense
+      fallback={<span className="text-center text-3xl">Loading...</span>}
+    >
+      <LazyMdxComponent source={serializedSource} />
+    </Suspense>
+  );
+
   return (
     <>
       <script
@@ -664,11 +686,13 @@ export default async function Page(props: {
             : undefined
         }
       >
-        <Suspense
-          fallback={<span className="text-center text-3xl">Loading...</span>}
-        >
-          <LazyMdxComponent source={serializedSource} />
-        </Suspense>
+        {servesEnglishFallback ? (
+          <div lang="en" dir="ltr">
+            {article}
+          </div>
+        ) : (
+          article
+        )}
       </MdxContainer>
     </>
   );
