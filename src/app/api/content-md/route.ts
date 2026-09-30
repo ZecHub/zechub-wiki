@@ -9,7 +9,8 @@ import {
   getName,
   resolveContentPath,
 } from "@/lib/helpers";
-import { keyToWikiPath, toWikiUrl } from "@/lib/localeCoverage";
+import { manifestContentPath } from "@/lib/contentPaths";
+import { toWikiUrl } from "@/lib/localeCoverage";
 import { routing } from "@/i18n/routing";
 
 // Raw-markdown endpoint for LLM/crawler discovery. Every content page is also
@@ -43,22 +44,19 @@ function notFound() {
 
 // Exact content-repo path for a wiki slug, read back out of the menu-titles
 // manifest. Slug -> path resolution has to guess the original casing, and for
-// irregularly-cased files it guesses wrong: `guides/coinholder_log_parser/
-// help.md` and `tutorials/shieldedNewsletter/readme.md` both 404'd here while
-// their HTML pages rendered fine. The manifest already holds the exact path,
-// so consult it first and keep the slug resolver as the fallback for anything
-// the manifest doesn't name.
-async function manifestContentPath(slugArray: string[]): Promise<string | null> {
+// irregularly-cased files it guesses wrong (`archive/...`,
+// `tutorials/shieldedNewsletter/readme.md`). The manifest already holds the
+// exact path, so consult it first and keep the slug resolver as the fallback
+// for anything the manifest doesn't name. Shared with the HTML page
+// (manifestContentPath in contentPaths.ts) so both resolve the same file.
+async function manifestPathForSlug(slugArray: string[]): Promise<string | null> {
   try {
     const titles = await getMenuTitlesCached("en");
-    const want = ("/" + slugArray.join("/")).toLowerCase();
-    for (const key of Object.keys(titles ?? {})) {
-      if (keyToWikiPath(key).toLowerCase() === want) return `/site/${key}`;
-    }
+    return manifestContentPath(slugArray, Object.keys(titles ?? {}));
   } catch {
     // Manifest unavailable — fall back to slug resolution, as before.
+    return null;
   }
-  return null;
 }
 
 // Minimal YAML scalar: double-quoted, with backslashes and quotes escaped.
@@ -127,7 +125,7 @@ export async function GET(req: NextRequest) {
   // to the same one-folder-deeper, case-preserving path the HTML page renders
   // from — otherwise their `.md` URL 404s while the page serves 200.
   const contentPath =
-    (await manifestContentPath(slugArray)) ?? resolveContentPath(slugArray);
+    (await manifestPathForSlug(slugArray)) ?? resolveContentPath(slugArray);
   const markdown = await getLocalizedFileContentCached(contentPath, locale).catch(
     () => null,
   );
