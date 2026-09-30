@@ -123,7 +123,17 @@ export const POOL_META: Record<Pool, {
     bg: "bg-emerald-500/10",
     glow: "rgba(52,211,153,0.15)",
     privacy: 100,
-    desc: "Maximum privacy via Halo2 proofs. No trusted setup.",
+    desc: "Halo2 proofs, no trusted setup. Since NU6.3 it only accepts your own funds: payments to anyone else land in Ironwood.",
+  },
+  ironwood: {
+    label: "Ironwood",
+    tag: "u-addr",
+    color: "text-cyan-400",
+    borderColor: "border-cyan-500/40",
+    bg: "bg-cyan-500/10",
+    glow: "rgba(34,211,238,0.15)",
+    privacy: 100,
+    desc: "The NU6.3 successor to Orchard: same Halo2 Actions, same addresses. Where shielded payments between users go now.",
   },
 };
 
@@ -1314,8 +1324,8 @@ export const BindingSignatureStage = () => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const BuilderStage = () => {
-  const [fromPool, setFromPool] = useState<Pool>("orchard");
-  const [toPool, setToPool] = useState<Pool>("orchard");
+  const [fromPool, setFromPool] = useState<Pool>("ironwood");
+  const [toPool, setToPool] = useState<Pool>("ironwood");
   const [amount, setAmount] = useState(1.5);
   const [memo, setMemo] = useState("Thank you for the private payment");
   const [showModal, setShowModal] = useState(false);
@@ -1340,13 +1350,18 @@ export const BuilderStage = () => {
     actions.transparent > 0 && `${actions.transparent} transparent`,
     actions.sapling > 0 && `${actions.sapling} Sapling`,
     actions.orchard > 0 && `${actions.orchard} Orchard`,
+    actions.ironwood > 0 && `${actions.ironwood} Ironwood`,
   ]
     .filter(Boolean)
     .join(" + ");
   const change = Math.max(0, amount - parseFloat(feeZEC)).toFixed(5);
   const usd = zecPrice ? (amount * zecPrice).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : null;
 
-  const pools: Pool[] = ["transparent", "sapling", "orchard"];
+  const pools: Pool[] = ["transparent", "sapling", "orchard", "ironwood"];
+  // Since NU6.3 (ZIP 229) an Orchard output may only go to an address the
+  // sender can spend from, so a payment to someone else can't target Orchard;
+  // wallets send it to Ironwood instead. Orchard stays a valid source.
+  const toPools: Pool[] = pools.filter((p) => p !== "orchard");
   const circumference = 2 * Math.PI * 44;
 
   return (
@@ -1387,7 +1402,7 @@ export const BuilderStage = () => {
             <div>
               <label className="text-[10px] font-semibold text-zinc-500 uppercase tracking-widest block mb-2">To Pool</label>
               <div className="flex gap-2">
-                {pools.map((p) => (
+                {toPools.map((p) => (
                   <motion.button key={p} onClick={() => setToPool(p)}
                     whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
                     className={`flex-1 py-2 rounded-xl text-[10px] font-semibold border transition-all ${toPool === p

@@ -26,7 +26,7 @@ export const P2PKH_STANDARD_OUTPUT_SIZE = 34;
 export const MIN_SAPLING_OUTPUTS = 2;
 export const MIN_ORCHARD_ACTIONS = 2;
 
-export type Pool = "transparent" | "sapling" | "orchard";
+export type Pool = "transparent" | "sapling" | "orchard" | "ironwood";
 
 /** Field names follow ZIP 317 so this can be read side by side with the spec. */
 export interface Zip317Transaction {
@@ -118,6 +118,13 @@ export function simpleTransfer(from: Pool, to: Pool): Zip317Transaction {
       Math.max(spendsIn("orchard"), outputsIn("orchard")),
       MIN_ORCHARD_ACTIONS,
       uses("orchard"),
+    ),
+    // Ironwood (NU6.3) reuses the Orchard Action, and its bundle is built and
+    // padded the same way.
+    nActionsIronwood: padded(
+      Math.max(spendsIn("ironwood"), outputsIn("ironwood")),
+      MIN_ORCHARD_ACTIONS,
+      uses("ironwood"),
     ),
   };
 }
