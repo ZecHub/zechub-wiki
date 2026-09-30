@@ -3,7 +3,7 @@ export const exploreMenu = {
     { icon: "🌐", label: "Full Explore", href: "/explore" },
     { icon: "🏠", label: "Start Here", href: "/start-here" },
     { icon: "🕰️", label: "Zcash Evolution", href: "/zcash-evolution" },
-    { icon: "📚", label: "Tutorials", href: "/tutorials" },
+    { icon: "📚", label: "Tutorials", href: "/zechub-tutorial" },
     { icon: "💰", label: "Using Zcash", href: "/using-zcash" },
     { icon: "📖", label: "Guides", href: "/guides" },
     { icon: "🔧", label: "Zcash Tech", href: "/zcash-tech" },

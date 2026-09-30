@@ -625,6 +625,11 @@ export const searcher: Searcher[] = [
     url: "/payment-processors",
   },
   {
+    name: "Tutorials",
+    desc: "Practical video guides for wallets, privacy, payments, development, and the wider Zcash ecosystem.",
+    url: "/zechub-tutorial",
+  },
+  {
     name: "Wallets",
     desc: "Compare and choose from the available Zcash wallets for desktop, mobile, and hardware.",
     url: "/wallets",
