@@ -98,7 +98,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
           }}
         >
           {t?.sideMenu?.explore ?? "Explore"}
-          <Icon size={"medium"} icon={Arrow} />
+          <Icon size={"medium"} icon={Arrow} className="rtl:-scale-x-100" />
         </Link>
       </div>
 
@@ -136,7 +136,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
                         </p>
                       </div>
                       <div className="inline-flex items-center text-base font-semibold ">
-                        <Icon icon={Arrow} size={16} />
+                        <Icon icon={Arrow} size={16} className="rtl:-scale-x-100" />
                       </div>
                     </div>
                   </Link>
@@ -160,7 +160,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
                       <p className="text-sm font-medium ">{chromeLabel("Wallets")}</p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold ">
-                      <Icon icon={Arrow} size={16} />
+                      <Icon icon={Arrow} size={16} className="rtl:-scale-x-100" />
                     </div>
                   </div>
                 </Link>
@@ -183,7 +183,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
                       <p className="text-sm font-medium ">{chromeLabel("Custodial Exchanges")}</p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold ">
-                      <Icon icon={Arrow} size={16} />
+                      <Icon icon={Arrow} size={16} className="rtl:-scale-x-100" />
                     </div>
                   </div>
                 </Link>
@@ -205,7 +205,7 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
                       <p className="text-sm font-medium ">{chromeLabel("Payment Processors")}</p>
                     </div>
                     <div className="inline-flex items-center text-base font-semibold ">
-                      <Icon icon={Arrow} size={16} />
+                      <Icon icon={Arrow} size={16} className="rtl:-scale-x-100" />
                     </div>
                   </div>
                 </Link>
