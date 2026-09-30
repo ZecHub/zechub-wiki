@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -7,14 +7,12 @@ import {
   Building2,
   Code,
   Coins,
-  Compass,
   Cpu,
   CreditCard,
   Eye,
   FlaskConical,
   Globe,
   GraduationCap,
-  HeartHandshake,
   Info,
   Map as MapIcon,
   Play,
@@ -42,178 +40,208 @@ type Item = {
   tag?: string;
 };
 
-type Path = {
+type Feature = {
   title: string;
   description: string;
   icon: LucideIcon;
   links: { label: string; href: string }[];
 };
 
+type Group = {
+  title: string;
+  subtitle: string;
+  items: Item[];
+};
+
 /* Brand blue kept from the current design: #1984c7 (hover #1574af). */
 
-// Three ways in. Each one is a block with a few direct links.
-const paths: Path[] = [
+/* ---------------------------------------------------------------------------
+   Page structure. Every page of the wiki is listed ONCE on this home:
+     1. FEATURED  - the essentials for someone new (top of the page).
+     2. GROUPS    - everything else, grouped by what the reader wants to do.
+   Keep it that way: if a destination is promoted to FEATURED, remove it from
+   GROUPS so the two sections never repeat each other.
+   --------------------------------------------------------------------------- */
+
+// 1. Essentials for newcomers, in the order most people need them.
+const featured: Feature[] = [
   {
     title: "Learn",
     description: "What Zcash is, how its privacy works, and where to start.",
     icon: GraduationCap,
     links: [
+      { label: "New user guide", href: "/start-here/new-user-guide" },
       { label: "What is Zcash?", href: "/start-here/what-is-zec-and-zcash" },
-      { label: "Zcash technology", href: "/zcash-tech/zk-snarks" },
-      { label: "Glossary & FAQs", href: "/glossary-and-faqs/faq" },
+      { label: "Network upgrades", href: "/start-here/network-upgrades" },
     ],
   },
   {
-    title: "Use",
-    description: "Get ZEC, pick a wallet and make private payments.",
+    title: "Pick a wallet",
+    description: "A wallet lets you receive and spend ZEC privately.",
     icon: Wallet,
     links: [
+      { label: "All wallets", href: "/wallets" },
+      { label: "Mobile wallets", href: "/mobile-wallets" },
+      { label: "Hardware wallets", href: "/hardware-wallets" },
+    ],
+  },
+  {
+    title: "Use ZEC",
+    description: "Get ZEC, send it, and find places that accept it.",
+    icon: Coins,
+    links: [
       { label: "Buying ZEC", href: "/using-zcash/buying-zec" },
-      { label: "Pick a wallet", href: "/wallets" },
       { label: "Transactions", href: "/using-zcash/transactions" },
+      {
+        label: "Places to spend ZEC",
+        href: "/using-zcash/spend-zcash/top-10-places-to-spend-zec",
+      },
     ],
   },
   {
     title: "Build",
-    description: "Run a node, explore the tools and contribute to the wiki.",
+    description: "Developer resources, tools and ways to contribute to the wiki.",
     icon: Code,
     links: [
       { label: "Developers", href: "/developers" },
-      { label: "Run a node", href: "/guides/raspberry-pi-4-full-node" },
+      { label: "Zcash Devtool", href: "/guides/zcash-devtool" },
       { label: "Contribute", href: "/contribute/help-build-zechub" },
     ],
   },
 ];
 
-// The 12 topics of the wiki (same destinations as the official site's list).
-const topics: Item[] = [
+// 2. The rest of the wiki, grouped.
+const groups: Group[] = [
   {
-    title: "Start Here",
-    description: "New user guide and the basics",
-    href: "/start-here/new-user-guide",
-    icon: Compass,
+    title: "Go Deeper",
+    subtitle: "Tutorials, guides and research for when you want more detail.",
+    items: [
+      {
+        title: "Tutorials",
+        description: "Step-by-step video tutorials",
+        href: "/zechub-tutorial",
+        icon: Play,
+      },
+      {
+        title: "Guides",
+        description: "Nodes, tools, DeFi and more",
+        href: "/guides/raspberry-pi-4-full-node",
+        icon: BookOpen,
+      },
+      {
+        title: "Zcash Tech",
+        description: "zk-SNARKs and the protocol",
+        href: "/zcash-tech/zk-snarks",
+        icon: Cpu,
+      },
+      {
+        title: "Research",
+        description: "Articles and research on Zcash",
+        href: "/research",
+        icon: FlaskConical,
+      },
+      {
+        title: "Privacy Tools",
+        description: "Tools to help protect your privacy",
+        href: "/privacy-tools/2fa-hardware-devices",
+        icon: Shield,
+      },
+      {
+        title: "Glossary & FAQs",
+        description: "Quick answers and definitions",
+        href: "/glossary-and-faqs/faq",
+        icon: Info,
+      },
+    ],
   },
   {
-    title: "Wallets",
-    description: "Receive and spend ZEC privately",
-    href: "/wallets",
-    icon: Wallet,
+    title: "Tools to Try",
+    subtitle: "Interactive tools and directories built around Zcash.",
+    items: [
+      {
+        title: "ZecHub Visualizer",
+        description: "Interactive tools to understand Zcash privacy technology.",
+        href: "/visualizer",
+        icon: Eye,
+        tag: "Tool",
+      },
+      {
+        title: "ZecMap",
+        description:
+          "Community-maintained map of merchants and ATMs that accept Zcash.",
+        href: "https://zecmap.com",
+        icon: MapIcon,
+        external: true,
+        tag: "Map",
+      },
+      {
+        title: "Pay with Zcash",
+        description: "A free directory of where you can pay with ZEC.",
+        href: "https://paywithz.cash",
+        icon: CreditCard,
+        external: true,
+        tag: "Directory",
+      },
+    ],
   },
   {
-    title: "Using Zcash",
-    description: "Buying, transactions, memos, payments",
-    href: "/using-zcash/buying-zec",
-    icon: Coins,
-  },
-  {
-    title: "Tutorials",
-    description: "Step-by-step video tutorials",
-    href: "/zechub-tutorial",
-    icon: Play,
-  },
-  {
-    title: "Guides",
-    description: "Nodes, tools, DeFi and more",
-    href: "/guides/raspberry-pi-4-full-node",
-    icon: BookOpen,
-  },
-  {
-    title: "Zcash Tech",
-    description: "zk-SNARKs and the protocol",
-    href: "/zcash-tech/zk-snarks",
-    icon: Cpu,
-  },
-  {
-    title: "Privacy Tools",
-    description: "Tools to help protect your privacy",
-    href: "/privacy-tools/2fa-hardware-devices",
-    icon: Shield,
-  },
-  {
-    title: "Research",
-    description: "Articles and research on Zcash",
-    href: "/research",
-    icon: FlaskConical,
-  },
-  {
-    title: "Organizations",
-    description: "ECC, Zcash Foundation, ZCG and others",
-    href: "/zcash-organizations/electric-coin-company",
-    icon: Building2,
-  },
-  {
-    title: "Community",
-    description: "Links, blogs, projects, ambassadors",
-    href: "/zcash-community/community-links",
-    icon: Users,
-  },
-  {
-    title: "Glossary & FAQs",
-    description: "Quick answers and definitions",
-    href: "/glossary-and-faqs/faq",
-    icon: Info,
-  },
-  {
-    title: "Contribute",
-    description: "Help build ZecHub",
-    href: "/contribute/help-build-zechub",
-    icon: HeartHandshake,
+    title: "Community & Organizations",
+    subtitle: "The people and groups behind the Zcash ecosystem.",
+    items: [
+      {
+        title: "Organizations",
+        description: "ECC, Zcash Foundation, ZCG and others",
+        href: "/zcash-organizations/electric-coin-company",
+        icon: Building2,
+      },
+      {
+        title: "Community",
+        description: "Links, blogs, projects, ambassadors",
+        href: "/zcash-community/community-links",
+        icon: Users,
+      },
+      {
+        title: "Global Ambassadors",
+        description: "Community leaders promoting Zcash education worldwide.",
+        href: "/zcash-global-ambassadors",
+        icon: Globe,
+      },
+      {
+        title: "Hackathon Archive",
+        description: "Projects submitted to the 2026 ZecHub Hackathon.",
+        href: "/hackathon",
+        icon: Trophy,
+        tag: "Archive",
+      },
+    ],
   },
 ];
 
-// Tools and community projects that used to be large image blocks.
-const featured: Item[] = [
-  {
-    title: "ZecHub Visualizer",
-    description: "Interactive tools to understand Zcash privacy technology.",
-    href: "/visualizer",
-    icon: Eye,
-    tag: "Tool",
+// Two looks for the cards, so they can be compared side by side:
+//   filled  (default)        -> tinted fill, no border
+//   outline (?cards=outline) -> thin border
+type CardStyle = {
+  base: string;
+  hover: string;
+  divider: string;
+  rowHover: string;
+};
+const cardStyles: Record<"filled" | "outline", CardStyle> = {
+  filled: {
+    base: "rounded-xl bg-slate-100 dark:bg-slate-800/60",
+    hover: "transition-colors hover:bg-slate-200/70 dark:hover:bg-slate-800",
+    divider: "border-slate-200 dark:border-slate-700",
+    rowHover: "hover:bg-black/5 dark:hover:bg-white/5",
   },
-  {
-    title: "ZecMap",
-    description:
-      "Community-maintained map of merchants and ATMs that accept Zcash.",
-    href: "https://zecmap.com",
-    icon: MapIcon,
-    external: true,
-    tag: "Map",
+  outline: {
+    base: "rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-800/30",
+    hover: "transition-colors hover:border-[#1984c7]",
+    divider: "border-slate-200 dark:border-slate-800",
+    rowHover: "hover:bg-slate-50 dark:hover:bg-slate-800/60",
   },
-  {
-    title: "Pay with Zcash",
-    description: "A free directory of where you can pay with ZEC.",
-    href: "https://paywithz.cash",
-    icon: CreditCard,
-    external: true,
-    tag: "Directory",
-  },
-  {
-    title: "Global Ambassadors",
-    description: "Community leaders promoting Zcash education worldwide.",
-    href: "/zcash-global-ambassadors",
-    icon: Globe,
-    tag: "Community",
-  },
-  {
-    title: "ZKAV Club",
-    description: "An organization in the Zcash ecosystem.",
-    href: "https://zkav.club",
-    icon: Users,
-    external: true,
-    tag: "Community",
-  },
-  {
-    title: "Hackathon Archive",
-    description: "Projects submitted to the 2026 ZecHub Hackathon.",
-    href: "/hackathon",
-    icon: Trophy,
-    tag: "Archive",
-  },
-];
+};
 
 const wrap = "mx-auto w-full max-w-6xl px-4 md:px-6";
-const card =
-  "rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-800/30";
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1984c7] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900";
 
@@ -281,13 +309,13 @@ function SectionHeader({
   );
 }
 
-function LinkCard({ item }: { item: Item }) {
+function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
   const Arrow = item.external ? ArrowUpRight : ArrowRight;
   return (
     <SmartLink
       href={item.href}
       external={item.external}
-      className={`group flex h-full flex-col gap-4 p-5 transition-colors hover:border-[#1984c7] ${card} ${focusRing}`}
+      className={`group flex h-full flex-col gap-4 p-5 ${styles.hover} ${styles.base} ${focusRing}`}
     >
       <div className="flex items-start justify-between gap-3">
         <IconBadge icon={item.icon} />
@@ -298,13 +326,13 @@ function LinkCard({ item }: { item: Item }) {
         ) : null}
       </div>
       <div>
-        <h3 className="flex items-center gap-1.5 font-semibold text-slate-900 dark:text-slate-100">
+        <h4 className="flex items-center gap-1.5 font-semibold text-slate-900 dark:text-slate-100">
           {item.title}
           <Arrow
             aria-hidden="true"
             className="h-4 w-4 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:text-[#1984c7]"
           />
-        </h3>
+        </h4>
         <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
           {item.description}
         </p>
@@ -317,15 +345,29 @@ const Home = ({ text }: HomeProps) => {
   const { t } = useLanguage();
   const [expanded, setExpanded] = useState(false);
   const [query, setQuery] = useState("");
+  const [variant, setVariant] = useState<"filled" | "outline">("filled");
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("cards") === "outline") {
+      setVariant("outline");
+    }
+  }, []);
+  const styles = cardStyles[variant];
 
-  const filteredTopics = useMemo(() => {
+  // The filter searches every group and hides the ones with no match.
+  const filteredGroups = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return topics;
-    return topics.filter(
-      (item) =>
-        item.title.toLowerCase().includes(q) ||
-        item.description.toLowerCase().includes(q),
-    );
+    return groups
+      .map((group) => ({
+        ...group,
+        items: q
+          ? group.items.filter(
+              (item) =>
+                item.title.toLowerCase().includes(q) ||
+                item.description.toLowerCase().includes(q),
+            )
+          : group.items,
+      }))
+      .filter((group) => group.items.length > 0);
   }, [query]);
 
   return (
@@ -343,6 +385,15 @@ const Home = ({ text }: HomeProps) => {
           <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-6xl">
             {t.home?.heroTitle || "Welcome to ZecHub"}
           </h1>
+          {variant === "filled" ? (
+            <p className="mt-5 text-xl text-slate-700 dark:text-slate-300">
+              Learn, use and build with{" "}
+              <span className="rounded-md bg-[#1984c7]/10 px-2 py-0.5 font-medium text-[#1984c7]">
+                private
+              </span>{" "}
+              digital money.
+            </p>
+          ) : null}
           <p
             className={`mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400 ${
               expanded ? "" : "line-clamp-3"
@@ -372,31 +423,50 @@ const Home = ({ text }: HomeProps) => {
               Pick a wallet
             </Link>
           </div>
+          {variant === "filled" ? (
+            <ul className="mt-8 flex flex-wrap gap-2">
+              {["Open source", "Community-driven", "Education hub for Zcash"].map(
+                (chip) => (
+                  <li
+                    key={chip}
+                    className="rounded-md bg-slate-100 px-3 py-1.5 text-sm text-slate-600 dark:bg-slate-800/70 dark:text-slate-300"
+                  >
+                    {chip}
+                  </li>
+                ),
+              )}
+            </ul>
+          ) : null}
         </div>
       </section>
 
-      {/* Three ways in */}
-      <section id="paths" className={`${wrap} py-16 md:py-20`}>
+      {/* 1. Essentials for newcomers */}
+      <section id="start" className={`${wrap} py-16 md:py-20`}>
         <SectionHeader
           title="Start here"
-          subtitle="Pick the path that matches what you want to do."
+          subtitle="New to Zcash? Begin with these four."
         />
-        <div className="grid gap-4 md:grid-cols-3">
-          {paths.map((path) => (
-            <div key={path.title} className={`flex flex-col p-6 ${card}`}>
-              <IconBadge icon={path.icon} />
+        <div className="grid gap-4 imd:grid-cols-2 lg:grid-cols-4">
+          {featured.map((feature) => (
+            <div
+              key={feature.title}
+              className={`flex flex-col p-6 ${styles.base}`}
+            >
+              <IconBadge icon={feature.icon} />
               <h3 className="mt-5 text-xl font-semibold text-slate-900 dark:text-slate-100">
-                {path.title}
+                {feature.title}
               </h3>
               <p className="mb-6 mt-2 text-slate-600 dark:text-slate-400">
-                {path.description}
+                {feature.description}
               </p>
-              <ul className="mt-auto space-y-1 border-t border-slate-200 pt-4 dark:border-slate-800">
-                {path.links.map((link) => (
+              <ul
+                className={`mt-auto space-y-1 border-t pt-4 ${styles.divider}`}
+              >
+                {feature.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className={`group -mx-2 flex items-center justify-between rounded-md px-2 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-[#1984c7] dark:text-slate-200 dark:hover:bg-slate-800/60 ${focusRing}`}
+                      className={`group -mx-2 flex items-center justify-between rounded-md px-2 py-2 text-sm font-medium text-slate-700 transition-colors ${styles.rowHover} hover:text-[#1984c7] dark:text-slate-200 ${focusRing}`}
                     >
                       {link.label}
                       <ArrowRight
@@ -412,15 +482,15 @@ const Home = ({ text }: HomeProps) => {
         </div>
       </section>
 
-      {/* All topics */}
+      {/* 2. Everything else, grouped */}
       <section
         id="topics"
-        className="scroll-mt-24 border-y border-slate-200 bg-slate-50 py-16 dark:border-slate-800 dark:bg-slate-950/30 md:py-20"
+        className="scroll-mt-24 border-t border-slate-200 py-16 dark:border-slate-800 md:py-20"
       >
         <div className={wrap}>
           <SectionHeader
-            title="Explore topics"
-            subtitle="Everything in the wiki, in one place."
+            title="More to explore"
+            subtitle="Guides, research, tools and the wider Zcash community."
           >
             <div className="relative w-full md:w-72">
               <label htmlFor="topic-filter" className="sr-only">
@@ -441,10 +511,35 @@ const Home = ({ text }: HomeProps) => {
             </div>
           </SectionHeader>
 
-          {filteredTopics.length > 0 ? (
-            <div className="grid grid-cols-1 gap-4 imd:grid-cols-2 lg:grid-cols-3">
-              {filteredTopics.map((item) => (
-                <LinkCard key={item.title} item={item} />
+          {filteredGroups.length > 0 ? (
+            <div className="space-y-12">
+              {filteredGroups.map((group) => (
+                <div key={group.title}>
+                  <div className="mb-4">
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                      {group.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                      {group.subtitle}
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 gap-4 imd:grid-cols-2 lg:grid-cols-3">
+                    {group.items.map((item, i) => (
+                      <div
+                        key={item.title}
+                        className={
+                          // a lone last card is centred under the row of three
+                          group.items.length % 3 === 1 &&
+                          i === group.items.length - 1
+                            ? "lg:col-start-2"
+                            : ""
+                        }
+                      >
+                        <LinkCard item={item} styles={styles} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           ) : (
@@ -455,23 +550,10 @@ const Home = ({ text }: HomeProps) => {
         </div>
       </section>
 
-      {/* Tools and community projects */}
-      <section id="more" className={`${wrap} py-16 md:py-20`}>
-        <SectionHeader
-          title="Tools & community"
-          subtitle="Projects that help you use and understand Zcash."
-        />
-        <div className="grid grid-cols-1 gap-4 imd:grid-cols-2 lg:grid-cols-3">
-          {featured.map((item) => (
-            <LinkCard key={item.title} item={item} />
-          ))}
-        </div>
-      </section>
-
       {/* Community */}
       <section id="community" className={`${wrap} pb-16`}>
         <div
-          className={`flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between ${card}`}
+          className={`flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between ${styles.base}`}
         >
           <div>
             <h2 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-2xl">
