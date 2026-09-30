@@ -386,13 +386,17 @@ const Home = ({ text }: HomeProps) => {
         />
         <div className={`${wrap} relative py-10 text-center md:py-16`}>
           <Image
-            src={dark ? "/hero-dark.png" : "/hero-white.png"}
+            src={
+              dark
+                ? "/hero-dark-transparent.png"
+                : "/hero-white-transparent.png"
+            }
             alt="ZecHub"
-            width={1920}
-            height={480}
+            width={1504}
+            height={424}
             priority
             unoptimized
-            className="mx-auto mb-8 h-auto w-full max-w-4xl rounded-2xl"
+            className="mx-auto mb-8 h-auto w-full max-w-2xl"
           />
           <h1 className="mx-auto max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-6xl">
             {t.home?.heroTitle || "Welcome to ZecHub"}

@@ -1044,15 +1044,6 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
-          <nav className="hidden xl:flex flex-1 justify-center max-w-4xl mx-8">
-            <NavLinks
-              classes="w-full justify-start"
-              closeMenu={() => setIsOpen(false)}
-              moreOpen={moreOpen}
-              onMoreToggle={() => setMoreOpen((open) => !open)}
-              onMoreClose={closeMore}
-            />
-          </nav>
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
             <LanguageSwitcher />
             <Button
@@ -1080,32 +1071,9 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                 <Moon className="h-5 w-5 md:h-6 md:w-6" />
               )}
             </Button>
-            <div
-              className="hidden xl:flex relative"
-              onMouseEnter={() => setShowShop(true)}
-              onMouseLeave={() => setShowShop(false)}
-            >
-              <DonationBtn />
-              {showShop && (
-                <div
-                  className="absolute top-8.5 left-0 w-full z-50"
-                  style={{ marginTop: "-2px" }}
-                >
-                  <Link
-                    prefetch
-                    href="https://zechub.store/"
-                    target="_blank"
-                    className="flex items-center justify-center gap-2 w-full text-center text-sm font-semibold px-4 py-2 bg-slate-100 text-slate-600 dark:bg-slate-900 rounded-md shadow-md shadow-black/20 border-t border-yellow-600/30 transition-all duration-150 hover:brightness-110 animate-[slideDown_0.12s_ease-out]"
-                    style={{ transformOrigin: "top center" }}
-                  >
-                    <ShoppingBag className="h-4 w-4" /> {t.navigation?.shop || "Shop"}
-                  </Link>
-                </div>
-              )}
-            </div>
             {mounted ? (
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger className="xl:hidden" asChild>
+                <SheetTrigger asChild>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -1122,7 +1090,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                 </SheetContent>
               </Sheet>
             ) : (
-              <div className="xl:hidden">
+              <div>
                 <Button
                   variant="ghost"
                   size="sm"
