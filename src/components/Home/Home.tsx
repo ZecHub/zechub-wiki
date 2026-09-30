@@ -329,19 +329,19 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
             src={`/explore/dark/${item.art}`}
             alt=""
             aria-hidden="true"
-            width={120}
-            height={120}
+            width={240}
+            height={240}
             unoptimized
-            className="pointer-events-none absolute -bottom-4 -right-4 hidden h-28 w-28 opacity-[0.14] transition-opacity group-hover:opacity-25 dark:block"
+            className="pointer-events-none absolute -right-6 top-1/2 hidden h-[150%] w-auto max-w-none -translate-y-1/2 opacity-30 transition-opacity [mask-image:linear-gradient(to_left,black_15%,transparent_75%)] group-hover:opacity-40 dark:block"
           />
           <Image
             src={`/explore/light/${item.art}`}
             alt=""
             aria-hidden="true"
-            width={120}
-            height={120}
+            width={240}
+            height={240}
             unoptimized
-            className="pointer-events-none absolute -bottom-4 -right-4 h-28 w-28 opacity-[0.10] transition-opacity group-hover:opacity-20 dark:hidden"
+            className="pointer-events-none absolute -right-6 top-1/2 h-[150%] w-auto max-w-none -translate-y-1/2 opacity-20 transition-opacity [mask-image:linear-gradient(to_left,black_15%,transparent_75%)] group-hover:opacity-30 dark:hidden"
           />
         </>
       ) : null}
