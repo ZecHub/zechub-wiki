@@ -1,4 +1,4 @@
-import { isKnownContentPath } from "../contentPaths";
+import { isKnownContentPath, manifestContentPath } from "../contentPaths";
 
 // A slice of the real manifest: flat section files plus the nested folders.
 const keys = [
@@ -85,5 +85,61 @@ describe("isKnownContentPath", () => {
 
   it("returns false for an empty slug", () => {
     expect(isKnownContentPath([], keys)).toBe(false);
+  });
+});
+
+describe("manifestContentPath", () => {
+  // Real manifest keys whose folders don't follow the Title_Case convention,
+  // so re-capitalising the URL can never reach them.
+  const unconventional = [
+    "archive/multisigdemo/MultiSigDemo.md",
+    "archive/coinholder_log_parser/help.md",
+    "Zcash_Community/ZFAV_Club/Guides/Github_With_IPFS.md",
+    "tutorials/shieldedNewsletter/readme.md",
+    "tutorials/zenithserver/zenithBeta.md",
+  ];
+  const all = [...keys, ...unconventional];
+
+  it("returns the real file for URLs whose folders the URL transform can't reproduce", () => {
+    expect(manifestContentPath(["archive", "multisigdemo", "multisigdemo"], all)).toBe(
+      "/site/archive/multisigdemo/MultiSigDemo.md",
+    );
+    expect(manifestContentPath(["archive", "coinholder-log-parser", "help"], all)).toBe(
+      "/site/archive/coinholder_log_parser/help.md",
+    );
+    expect(
+      manifestContentPath(["zcash-community", "zfav-club", "guides", "github-with-ipfs"], all),
+    ).toBe("/site/Zcash_Community/ZFAV_Club/Guides/Github_With_IPFS.md");
+    expect(manifestContentPath(["tutorials", "shieldednewsletter", "readme"], all)).toBe(
+      "/site/tutorials/shieldedNewsletter/readme.md",
+    );
+    expect(manifestContentPath(["tutorials", "zenithserver", "zenithbeta"], all)).toBe(
+      "/site/tutorials/zenithserver/zenithBeta.md",
+    );
+  });
+
+  it("returns the exact file for conventional pages too", () => {
+    expect(manifestContentPath(["zcash-tech", "nu5"], all)).toBe("/site/Zcash_Tech/NU5.md");
+    expect(
+      manifestContentPath(["using-zcash", "spend-zcash", "top-10-places-to-spend-zec"], all),
+    ).toBe("/site/Using_Zcash/Spend_Zcash/Top_10_Places_to_spend_ZEC.md");
+  });
+
+  it("matches URLs case-insensitively", () => {
+    expect(manifestContentPath(["Zcash-Tech", "NU5"], all)).toBe("/site/Zcash_Tech/NU5.md");
+  });
+
+  it("returns null for folders, unknown URLs and an unavailable manifest", () => {
+    expect(manifestContentPath(["guides", "frostdemo"], all)).toBeNull();
+    expect(manifestContentPath(["zcash-tech"], all)).toBeNull();
+    expect(manifestContentPath(["zcash-tech", "light-wallet-node"], all)).toBeNull();
+    expect(manifestContentPath(["archive", "multisigdemo", "multisigdemo"], [])).toBeNull();
+    expect(manifestContentPath([], all)).toBeNull();
+  });
+
+  it("tolerates keys that carry the site/ prefix", () => {
+    expect(manifestContentPath(["zcash-tech", "nu5"], ["site/Zcash_Tech/NU5.md"])).toBe(
+      "/site/Zcash_Tech/NU5.md",
+    );
   });
 });

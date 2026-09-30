@@ -1,3 +1,5 @@
+import { keyToWikiPath } from "@/lib/wikiPaths";
+
 /**
  * Does a wiki URL name anything the content manifest knows about?
  *
@@ -46,4 +48,33 @@ export function isKnownContentPath(
     }
     return false;
   });
+}
+
+/**
+ * The content-repo file an article URL names, read from the manifest.
+ *
+ * The catch-all route otherwise derives the path by re-capitalising the URL
+ * (getDynamicRoute), and the fetch only forgives a mismatch in the file name,
+ * not in its folders. So articles whose folders don't follow the Title_Case
+ * convention never load: /archive/... (the folder is `archive`), the ZFAV Club
+ * guides (`Guides`, not `guides`), /tutorials/shieldednewsletter/readme
+ * (`shieldedNewsletter`) and /tutorials/zenithserver/zenithbeta. The manifest
+ * holds every file's real path, and the sitemap and search index already turn
+ * those paths into these URLs, so matching the URL against it gives the exact
+ * file.
+ *
+ * Returns a `/site/...md` path in the same form as getDynamicRoute, or null
+ * when the manifest has no file for this URL (a section root, an unknown URL,
+ * or an unavailable manifest), in which case the caller keeps deriving it.
+ */
+export function manifestContentPath(
+  slug: readonly string[],
+  manifestKeys: readonly string[],
+): string | null {
+  if (slug.length === 0) return null;
+  const target = "/" + slug.map((s) => s.toLowerCase()).join("/");
+  const key = manifestKeys.find(
+    (k) => /\.md$/i.test(k) && keyToWikiPath(k) === target,
+  );
+  return key ? `/site/${key.replace(/^\/*(site\/)?/, "")}` : null;
 }

@@ -2,7 +2,7 @@ import MdxContainer from "@/components/MdxContainer";
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { Link } from "@/i18n/navigation";
-import { isKnownContentPath } from "@/lib/contentPaths";
+import { isKnownContentPath, manifestContentPath } from "@/lib/contentPaths";
 import {
   getFileContentCached,
   getLocalizedFileContentCached,
@@ -151,7 +151,13 @@ export async function generateMetadata({
     });
   }
 
-  let contentUrl = getDynamicRoute(slug);
+  // Same resolution as the page body, so the metadata describes the article
+  // that is actually rendered.
+  const enManifestPaths = Object.keys(
+    await getMenuTitlesCached("en").catch((): Record<string, string> => ({})),
+  );
+  const derivedUrl = getDynamicRoute(slug);
+  let contentUrl = manifestContentPath(slug, enManifestPaths) ?? derivedUrl;
   if (isResearchArticle && !isResearchSeries) {
     const rootsRaw = await getRootCached(`/site/${slug[0]}`).catch(() => []);
     const roots = Array.isArray(rootsRaw) ? rootsRaw : [];
@@ -167,9 +173,14 @@ export async function generateMetadata({
   const lastSegment = slug[slug.length - 1];
   const fallbackHeadline = slugToTitle(lastSegment);
 
-  const md = await getLocalizedFileContentCached(contentUrl, locale).catch(
+  let md = await getLocalizedFileContentCached(contentUrl, locale).catch(
     () => null,
   );
+  if (md === null && contentUrl !== derivedUrl) {
+    md = await getLocalizedFileContentCached(derivedUrl, locale).catch(
+      () => null,
+    );
+  }
 
   if (md) {
     const articleMeta = extractArticleMeta(
@@ -240,7 +251,8 @@ export default async function Page(props: {
   // covers what has been translated, so it would under-report folders.
   const manifestPaths = Object.keys(enMenuTitles ?? {});
 
-  const url = getDynamicRoute(slug);
+  const derivedUrl = getDynamicRoute(slug);
+  const url = manifestContentPath(slug, manifestPaths) ?? derivedUrl;
   const urlRoot = `/site/${slug[0]}`;
 
   const isResearchIndex = slug.length === 1 && slug[0] === "research";
@@ -465,9 +477,16 @@ export default async function Page(props: {
         contentUrl = resolveResearchArticleContentUrl(slug, roots);
       }
 
-      const md = await getLocalizedFileContentCached(contentUrl, locale).catch(
+      let md = await getLocalizedFileContentCached(contentUrl, locale).catch(
         () => null,
       );
+      // A manifest that lags a rename could name a file that is gone; the
+      // derived path is what this route used before, so try it too.
+      if (md === null && contentUrl !== derivedUrl) {
+        md = await getLocalizedFileContentCached(derivedUrl, locale).catch(
+          () => null,
+        );
+      }
       markdown = md;
     }
   } catch (e) {
