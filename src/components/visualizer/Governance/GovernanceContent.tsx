@@ -110,7 +110,7 @@ const DevFundAnimation = () => {
           }}
         >
           <Coins className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-2" />
-          <div className="text-xl md:text-2xl font-bold">3.125 ZEC</div>
+          <div className="text-xl md:text-2xl font-bold">1.5625 ZEC</div>
           <div className="text-xs md:text-sm opacity-90">Block Reward</div>
         </motion.div>
 

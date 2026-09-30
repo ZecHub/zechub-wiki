@@ -251,7 +251,7 @@ const MiningProcessAnimation = () => {
           </div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Reward:</span>
-            <span className="text-yellow-400">3.125 ZEC</span>
+            <span className="text-yellow-400">1.5625 ZEC</span>
           </div>
         </div>
       </motion.div>
@@ -452,7 +452,7 @@ const NetworkStatsAnimation = () => {
           whileHover={{ scale: 1.05 }}
         >
           <Coins className="w-6 h-6 md:w-8 md:h-8 text-yellow-400 mb-2" />
-          <div className="text-2xl md:text-3xl font-bold text-yellow-400">3.125 <span className="text-sm md:text-lg">ZEC</span></div>
+          <div className="text-2xl md:text-3xl font-bold text-yellow-400">1.5625 <span className="text-sm md:text-lg">ZEC</span></div>
           <div className="text-xs md:text-sm text-muted-foreground">Block Reward</div>
         </motion.div>
 
