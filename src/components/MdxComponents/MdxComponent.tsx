@@ -89,17 +89,17 @@ const MdxComponents = {
   h1: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(props.children).trim();
     const id = slugify(text);
-    return <h1 id={id} className="text-4xl font-bold my-6 scroll-mt-20" {...props} />;
+    return <h1 id={id} className="text-3xl md:text-4xl font-semibold tracking-tight mt-2 mb-6 scroll-mt-20" {...props} />;
   },
   h2: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(props.children).trim();
     const id = slugify(text);
-    return <h2 id={id} className="text-3xl font-bold my-6 scroll-mt-20" {...props} />;
+    return <h2 id={id} className="text-2xl md:text-3xl font-semibold tracking-tight mt-12 mb-4 scroll-mt-20" {...props} />;
   },
   h3: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(props.children).trim();
     const id = slugify(text);
-    return <h3 id={id} className="text-2xl font-bold my-5 scroll-mt-20" {...props} />;
+    return <h3 id={id} className="text-xl md:text-2xl font-semibold tracking-tight mt-8 mb-3 scroll-mt-20" {...props} />;
   },
 
   // Code blocks — your exact tan styling
@@ -188,10 +188,10 @@ const MdxComponents = {
     // <iframe> can't execute script (srcdoc is already stripped upstream).
     return <iframe {...props} sandbox="allow-same-origin allow-popups allow-forms" />;
   },
-  ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc pl-6 my-4" {...props} />,
-  ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal pl-6 my-4" {...props} />,
+  ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc pl-6 my-5 space-y-2" {...props} />,
+  ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal pl-6 my-5 space-y-2" {...props} />,
   li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props} />,
-  p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => <p className="my-4" {...props} />,
+  p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => <p className="my-5" {...props} />,
 } as MDXComponents;
 
 export default MdxComponents;

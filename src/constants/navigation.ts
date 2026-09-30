@@ -533,3 +533,125 @@ export const socialMedia = [
   { name: "DAO", link: "https://vote.zechub.xyz/" },
   { name: "Store", link: "https://zechub.store/" },
 ];
+
+// Desktop dropdown grouping. Purely presentational: the flat `links` arrays
+// above stay the single source of truth (mobile menu, search and translations
+// keep using them). Names must match `name` in `navigations`. Any link not
+// listed here is shown under a trailing "More" group, so nothing disappears
+// when a new page is added to `navigations`.
+export type MenuSection = { title: string; items: string[] };
+
+export const menuSections: Record<string, MenuSection[]> = {
+  "Using Zcash": [
+    {
+      title: "Get started",
+      items: ["Buying ZEC", "Wallets", "Exchanges", "Faucets", "Recovering Funds"],
+    },
+    {
+      title: "Spend & pay",
+      items: [
+        "Use Cases",
+        "Spend Zcash",
+        "Payment Processors",
+        "Mobile Top Ups",
+        "Payment Request URIs",
+      ],
+    },
+    {
+      title: "Understand",
+      items: [
+        "Transactions",
+        "Memos",
+        "Shielded Pools",
+        "Transparent Exchange Addresses",
+        "Blockchain Explorers",
+      ],
+    },
+    {
+      title: "Tools",
+      items: ["Tools", "Metamask Snap", "Zallet Quick Reference Guide", "Testnet"],
+    },
+  ],
+  "Zcash Community": [
+    {
+      title: "Community",
+      items: [
+        "Community Links",
+        "Community Forum",
+        "Community Blogs",
+        "Community Projects",
+        "Zcash Global Ambassadors",
+        "Cypherpunk Zero NFT",
+      ],
+    },
+    {
+      title: "Media & events",
+      items: [
+        "Zcash Media",
+        "Zcash Podcasts",
+        "Arborist Calls",
+        "Zcash Engineering Office Hours",
+        "Zcon Archive",
+        "Zcon Vozes Archive",
+      ],
+    },
+    {
+      title: "Governance & security",
+      items: ["Zcash Governance", "ZCAP", "Zcash Ecosystem Security"],
+    },
+  ],
+  Guides: [
+    {
+      title: "Run a node",
+      items: [
+        "Raspberry Pi 4 Full Node",
+        "Raspberry pi5 Zebra Lightwalletd Zingo",
+        "Raspberry pi 4 Zebra Node",
+        "Hardened Zebrad",
+        "Akash Network Zcashd",
+        "Akash Network Zebra",
+        "Migration Guide Zcashd To Zebrad Zallet",
+        "Verifying Zcash Releases",
+      ],
+    },
+    {
+      title: "Wallets & privacy",
+      items: [
+        "Using ZEC Privately",
+        "My First Zcash Workbook",
+        "Keystone Zashi",
+        "Brave Wallet Guide",
+        "Zkool Multisig",
+        "Ywallet FROST Demo",
+        "Nym VPN",
+        "Viewing Key Transaction Export",
+        "Zero-Knowledge vs Decoys",
+      ],
+    },
+    {
+      title: "Payments & apps",
+      items: [
+        "Zgo Payment Processor",
+        "BTCPayServer Zcash Plugin",
+        "Using ZEC in DeFi",
+        "Maya Protocol",
+        "Avalanche RedBridge",
+        "ShapeShift Zcash",
+        "Free2z Live",
+        "Free2Z Livestreaming",
+      ],
+    },
+    {
+      title: "Explore & build",
+      items: [
+        "Blockchain Explorers",
+        "Visualizing the Zcash Network",
+        "Visualizing Zcash Addresses",
+        "Zcash Devtool",
+        "Zcash Improvement Proposals",
+        "Zingolib and Zaino Tutorial",
+        "Zenith Installation",
+      ],
+    },
+  ],
+};

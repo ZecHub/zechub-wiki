@@ -419,7 +419,7 @@ code::-webkit-scrollbar-track {
    ============================================================ */
 
 .wl-root {
-  font-family: "DM Sans", sans-serif;
+  font-family: inherit;
   --clr-accent: #1984c7;
   --clr-accent-light: #e8f4fd;
   --clr-accent-dark: #1265a0;
@@ -470,7 +470,7 @@ code::-webkit-scrollbar-track {
 }
 
 .wl-mobile-title {
-  font-family: "Syne", sans-serif;
+  font-family: inherit;
   font-size: 1.6rem;
   font-weight: 800;
   color: var(--clr-text);
@@ -518,7 +518,7 @@ code::-webkit-scrollbar-track {
 }
 
 .wl-sidebar-title {
-  font-family: "Syne", sans-serif;
+  font-family: inherit;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -574,7 +574,7 @@ code::-webkit-scrollbar-track {
 }
 
 .wl-results-count {
-  font-family: "Syne", sans-serif;
+  font-family: inherit;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -612,7 +612,7 @@ code::-webkit-scrollbar-track {
   color: #fff;
   border: none;
   border-radius: var(--wl-radius-sm);
-  font-family: "DM Sans", sans-serif;
+  font-family: inherit;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -691,7 +691,7 @@ code::-webkit-scrollbar-track {
 }
 
 .wl-drawer-title {
-  font-family: "Syne", sans-serif;
+  font-family: inherit;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--clr-text);
@@ -706,7 +706,7 @@ code::-webkit-scrollbar-track {
   padding: 6px 14px;
   border-radius: var(--wl-radius-sm);
   cursor: pointer;
-  font-family: "DM Sans", sans-serif;
+  font-family: inherit;
   transition: background var(--wl-transition);
 }
 
@@ -885,4 +885,34 @@ h2:has(img.processor-logo) > a:hover {
   html {
     scroll-behavior: auto !important;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Reading typography for wiki content.
+
+   Inter (loaded in [locale]/layout.tsx) is the only site font. The article
+   column (.mdx-article, set in MdxContainer) gets a comfortable body size and
+   line height, and text blocks are capped to a readable line length.
+   Tables, images and code blocks are not capped, so they keep the full width.
+   --------------------------------------------------------------------------- */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.mdx-article {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.mdx-article :is(p, ul, ol, blockquote) {
+  max-width: 72ch;
+  text-wrap: pretty;
+}
+
+.mdx-article :is(h1, h2, h3, h4) {
+  max-width: 48rem;
+  line-height: 1.25;
+  text-wrap: balance;
 }

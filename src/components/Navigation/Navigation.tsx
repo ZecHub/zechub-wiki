@@ -1,6 +1,6 @@
 "use client";
 import DonationBtn from "@/components/UI/DonationBtn";
-import { navigations } from "@/constants/navigation";
+import { navigations, menuSections } from "@/constants/navigation";
 import { Link as IntlLink } from "@/i18n/navigation";
 import { useEffect, useState, useRef } from "react";
 import type { ComponentProps } from "react";
@@ -446,6 +446,61 @@ const FlyoutLinkItem = ({
     </div>
   );
 };
+// ─── Grouped links for the desktop dropdowns ────────────────────────────────
+// Renders a menu's links under small section headings (see menuSections in
+// navigation.ts). Menus without a mapping, and links missing from a mapping,
+// fall back to the previous flat rendering / a trailing "More" group.
+const GroupedLinks = ({
+  item,
+  t,
+  onLinkClick,
+}: {
+  item: (typeof navigations)[number];
+  t: any;
+  onLinkClick: () => void;
+}) => {
+  const links = item.links ?? [];
+  const sections = menuSections[item.name];
+  const renderLink = (
+    link: NonNullable<(typeof navigations)[number]["links"]>[number],
+    j: number,
+  ) => (
+    <FlyoutLinkItem
+      key={`${link.name}-${j}`}
+      link={link}
+      parentItem={item}
+      t={t}
+      onLinkClick={onLinkClick}
+    />
+  );
+  if (!sections) return <>{links.map(renderLink)}</>;
+
+  const used = new Set<string>();
+  const blocks = sections.map((section) => {
+    const sectionLinks = section.items
+      .map((name) => links.find((l) => l.name === name))
+      .filter((l): l is NonNullable<typeof l> => Boolean(l));
+    sectionLinks.forEach((l) => used.add(l.name));
+    return { title: section.title, links: sectionLinks };
+  });
+  const rest = links.filter((l) => !used.has(l.name));
+  if (rest.length > 0) blocks.push({ title: "More", links: rest });
+
+  return (
+    <>
+      {blocks
+        .filter((b) => b.links.length > 0)
+        .map((b) => (
+          <div key={b.title}>
+            <p className="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              {t.menuLabels?.[b.title] || b.title}
+            </p>
+            {b.links.map(renderLink)}
+          </div>
+        ))}
+    </>
+  );
+};
 // ─── Primary dropdown (hover) ────────────────────────────────────────────────
 const Dropdown = ({
   label,
@@ -468,7 +523,7 @@ const Dropdown = ({
         />
       </div>
       {isOpen && (
-        <div className="absolute top-full left-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[600px] mt-0 grid grid-cols-2 gap-2 p-2 transition-all duration-150">
+        <div className="absolute top-full left-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[600px] mt-0 grid grid-cols-2 items-start gap-x-2 gap-y-1 p-2 transition-all duration-150">
           {children}
         </div>
       )}
@@ -597,15 +652,7 @@ const NavLinks = ({
               label={getTranslatedLabel(item.name, item.label, t, item.label)}
               key={`${item.name}-${i}`}
             >
-              {item.links.map((link, j) => (
-                <FlyoutLinkItem
-                  key={`${link.name}-${j}`}
-                  link={link}
-                  parentItem={item}
-                  t={t}
-                  onLinkClick={handleLinkClick}
-                />
-              ))}
+              <GroupedLinks item={item} t={t} onLinkClick={handleLinkClick} />
             </Dropdown>
           ) : (
             <Link
@@ -634,15 +681,7 @@ const NavLinks = ({
             label={getTranslatedLabel(item.name, item.label, t, item.label)}
             key={`${item.name}-${i}`}
           >
-            {item.links?.map((link, j) => (
-              <FlyoutLinkItem
-                key={`${link.name}-${j}`}
-                link={link}
-                parentItem={item}
-                t={t}
-                onLinkClick={handleLinkClick}
-              />
-            ))}
+            <GroupedLinks item={item} t={t} onLinkClick={handleLinkClick} />
           </Dropdown>
         ))}
         {navigations.length > 2 && (

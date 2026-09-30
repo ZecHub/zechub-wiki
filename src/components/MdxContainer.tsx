@@ -137,7 +137,7 @@ export default async function MdxContainer({
           </div>
         ) : (
           <section
-            className={`h-auto min-w-0 w-full overflow-x-auto p-3 dark:border-slate-400 ${
+            className={`mdx-article h-auto min-w-0 w-full overflow-x-auto p-3 dark:border-slate-400 ${
               hasSideMenu ? "lg:border-l" : ""
             }`}
           >
