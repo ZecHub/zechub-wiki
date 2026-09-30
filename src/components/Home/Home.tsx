@@ -126,36 +126,42 @@ const groups: Group[] = [
         description: "Step-by-step video tutorials",
         href: "/zechub-tutorial",
         icon: Play,
+        art: "tutorials.png",
       },
       {
         title: "Guides",
         description: "Nodes, tools, DeFi and more",
         href: "/guides/raspberry-pi-4-full-node",
         icon: BookOpen,
+        art: "guides.png",
       },
       {
         title: "Zcash Tech",
         description: "zk-SNARKs and the protocol",
         href: "/zcash-tech/zk-snarks",
         icon: Cpu,
+        art: "zcash-tech.png",
       },
       {
         title: "Research",
         description: "Articles and research on Zcash",
         href: "/research",
         icon: FlaskConical,
+        art: "research.png",
       },
       {
         title: "Privacy Tools",
         description: "Tools to help protect your privacy",
         href: "/privacy-tools/2fa-hardware-devices",
         icon: Shield,
+        art: "privacy-tools.png",
       },
       {
         title: "Glossary & FAQs",
         description: "Quick answers and definitions",
         href: "/glossary-and-faqs/faq",
         icon: Info,
+        art: "glossary-faq.png",
       },
     ],
   },
@@ -168,6 +174,7 @@ const groups: Group[] = [
         description: "Interactive tools to understand Zcash privacy technology.",
         href: "/visualizer",
         icon: Eye,
+        art: "research.png",
         tag: "Tool",
       },
       {
@@ -176,6 +183,7 @@ const groups: Group[] = [
           "Community-maintained map of merchants and ATMs that accept Zcash.",
         href: "https://zecmap.com",
         icon: MapIcon,
+        art: "start-here.png",
         external: true,
         tag: "Map",
       },
@@ -184,6 +192,7 @@ const groups: Group[] = [
         description: "A free directory of where you can pay with ZEC.",
         href: "https://paywithz.cash",
         icon: CreditCard,
+        art: "pay-with-zcash.png",
         external: true,
         tag: "Directory",
       },
@@ -332,7 +341,7 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
             width={240}
             height={240}
             unoptimized
-            className="pointer-events-none absolute -right-6 top-1/2 hidden h-[150%] w-auto max-w-none -translate-y-1/2 opacity-30 transition-opacity [mask-image:linear-gradient(to_left,black_15%,transparent_75%)] group-hover:opacity-40 dark:block"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-[55%] object-contain object-right p-2 opacity-45 transition-opacity [mask-image:linear-gradient(to_left,black_35%,transparent_100%)] group-hover:opacity-60 dark:block"
           />
           <Image
             src={`/explore/light/${item.art}`}
@@ -341,7 +350,7 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
             width={240}
             height={240}
             unoptimized
-            className="pointer-events-none absolute -right-6 top-1/2 h-[150%] w-auto max-w-none -translate-y-1/2 opacity-20 transition-opacity [mask-image:linear-gradient(to_left,black_15%,transparent_75%)] group-hover:opacity-30 dark:hidden"
+            className="pointer-events-none absolute inset-y-0 right-0 h-full w-[55%] object-contain object-right p-2 opacity-30 transition-opacity [mask-image:linear-gradient(to_left,black_35%,transparent_100%)] group-hover:opacity-45 dark:hidden"
           />
         </>
       ) : null}
