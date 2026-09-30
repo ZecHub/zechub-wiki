@@ -149,7 +149,7 @@ const submissions: Submission[] = [
     track: "Zcash Login",
     description:
       "ZShield turns any Zcash address into a W3C DID and OIDC identity. Users sign a wallet challenge instead of relying on passwords, email addresses, or KYC. It supports ZIP 304 challenge-response authentication, W3C DID v1.1 identities, zero-knowledge claims, and an OIDC bridge for OAuth2-compatible applications.",
-    videoEmbedUrl: "https://www.youtube.com/embed/xqK69d5gwSA",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/xqK69d5gwSA",
     demoUrl: "https://zshield.vercel.app/",
     repoUrl: "https://github.com/EdCryptoFi/zshield",
   },
@@ -159,7 +159,7 @@ const submissions: Submission[] = [
     track: "Accounting",
     description:
       "ZPayroll is a private payroll application for distributing salaries with Zcash. It executes payroll runs as Orchard shielded transactions, supports Unified Addresses, connects to testnet through lightwalletd and zingo-cli, and derives employer wallets deterministically using browser-generated cryptographic keys and ZIP-32-compatible derivation.",
-    videoEmbedUrl: "https://www.youtube.com/embed/ss6DDuaUMkg",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/ss6DDuaUMkg",
     demoUrl: "https://zpayroll.vercel.app/",
     repoUrl: "https://github.com/MageDee/ZPayroll/",
   },
@@ -169,7 +169,7 @@ const submissions: Submission[] = [
     track: "Zcash Login",
     description:
       "ZecPass is a drop-in SDK for adding Sign in with Zcash without exposing user addresses. It uses zingolib to decrypt on-chain mainnet memos in real time and includes setup instructions and a quick start in its README.",
-    videoEmbedUrl: "https://www.youtube.com/embed/M-rnk3Q9YuA",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/M-rnk3Q9YuA",
     demoUrl: "https://zec-pass-web.vercel.app/",
     repoUrl:
       "https://github.com/devacunetixtech/zechub/tree/zecpass-hack26/zecpass-hack26",
@@ -180,7 +180,7 @@ const submissions: Submission[] = [
     track: "Accounting",
     description:
       "ZecLedger is a read-only command-line accounting tool for shielded Zcash funds. It works from a viewing key rather than a spending key and produces cost-basis reports, payment reconciliation, ZIP-321 requests, and privacy checks without being able to move funds. It has been verified on mainnet.",
-    videoEmbedUrl: "https://www.youtube.com/embed/7emZKHAH7TQ",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/7emZKHAH7TQ",
     demoUrl: "https://zecledger-web.vercel.app/",
     repoUrl: "https://github.com/vancube2/zecledger",
   },
@@ -201,7 +201,7 @@ const submissions: Submission[] = [
     track: "Infrastructure",
     description:
       "Zcash Node Launcher is a management tool for deploying, operating, and monitoring Zcash nodes. It provides automated installation and removal, node lifecycle management, and a real-time geospatial monitoring dashboard.",
-    videoEmbedUrl: "https://www.youtube.com/embed/1tkV1Qd-UdU",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/1tkV1Qd-UdU",
     demoUrl: "https://demo-zcashnodelauncher.zcashjava.com/",
     repoUrl: "https://github.com/zcashjava/ZcashNodeLauncher",
     docsUrl:
@@ -214,7 +214,7 @@ const submissions: Submission[] = [
     track: "Infrastructure",
     description:
       "Z3 Launcher is a single Go binary that supervises the official Z3 stack through Docker Compose. It manages Zebra, Zaino, and optionally Zallet, adds preflight checks and port conflict handling, supports snapshots for faster startup, and keeps services bound to localhost with no telemetry or key custody.",
-    videoEmbedUrl: "https://www.youtube.com/embed/ttgSmMy-mPg",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/ttgSmMy-mPg",
     repoUrl: "https://github.com/Jubrilabdulazeez/z3-launcher",
   },
   {
@@ -235,7 +235,7 @@ const submissions: Submission[] = [
     track: "Accounting",
     description:
       "ZEC Ledger is a lightweight accounting tool for Zcash transparent addresses. It uses real mainnet data to provide transaction history, a running balance, and CSV export.",
-    videoEmbedUrl: "https://www.youtube.com/embed/BzU474BuJ9U",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/BzU474BuJ9U",
     repoUrl: "https://github.com/mrwealthking/zec-ledger",
   },
   {
@@ -244,7 +244,7 @@ const submissions: Submission[] = [
     track: "Games",
     description:
       "Pedalshield rewards real bicycle rides with shielded ZEC while keeping route data entirely on the rider's phone. Its mainnet flow combines on-device anti-cheat checks with autonomous Orchard payouts, creating a new shielded transaction for every paid ride.",
-    videoEmbedUrl: "https://www.youtube.com/embed/yNrw9CI24zc",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/yNrw9CI24zc",
     repoUrl: "https://github.com/intelligrip/Pedalshield",
   },
   {
@@ -253,7 +253,7 @@ const submissions: Submission[] = [
     track: "Infrastructure",
     description:
       "Zaygent is a privacy-first autonomous crypto trading agent that funds, trades, and settles through Zcash shielded transactions modeled on Zashi CrossPay, with NEAR Intents used for cross-chain settlement. It reads live Zcash mainnet chain data and generates validly encoded transparent mainnet addresses.",
-    videoEmbedUrl: "https://www.youtube.com/embed/uwX-ZH7SrY8",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/uwX-ZH7SrY8",
     repoUrl:
       "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/zaygent",
   },
@@ -263,7 +263,7 @@ const submissions: Submission[] = [
     track: "FROST",
     description:
       "Steward is a threshold-custody protocol for shielded Zcash. It splits an Orchard vault's spend authority into t-of-n FROST shares for group custody, social recovery, and inheritance. Guardians co-sign a real transaction sighash on their own devices, while the relay coordinating the signing process holds no keys or shares. Steward has completed a real 2-of-3 threshold-signed shielded transaction on mainnet.",
-    videoEmbedUrl: "https://www.youtube.com/embed/JpDBunva2Ek",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/JpDBunva2Ek",
     repoUrl:
       "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/Steward",
   },
@@ -273,7 +273,7 @@ const submissions: Submission[] = [
     track: "Accounting",
     description:
       "ZBooks is a non-custodial accounting and structured batch-payout platform for Zcash teams and DAOs. Built on the Sign in with Zcash (SIWZ) authentication primitive, it supports memo-challenge, signed-message, and experimental MetaMask Snap sign-in flows. Teams can create a single multi-recipient ZIP-321 payout request, require M-of-N treasury approval, automatically reconcile payments through a treasury UFVK, and generate tagged monthly profit-and-loss reports and CSV exports. ZBooks runs on Zcash mainnet and extends the workflow from bounty creation through approval, shielded batch payment, and reconciliation.",
-    videoEmbedUrl: "https://www.youtube.com/embed/An8s-ca0ZxQ",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/An8s-ca0ZxQ",
     demoUrl: "https://zecbooks.vercel.app/",
     repoUrl: "https://github.com/AustinChris1/ZBooks-SIWZ",
   },
@@ -283,7 +283,7 @@ const submissions: Submission[] = [
     track: "Accounting",
     description:
       "Glasspane Rooms enables selective transparency for shielded Zcash payouts. A treasury can prove chosen recipients, amounts, memos, and totals without sharing a viewing key or exposing unrelated activity. Each selected payout discloses a single Out Cipher Key that reveals only that payment. The prototype has been verified on Zcash mainnet using two real Orchard payouts and rejects tampered receipts.",
-    videoEmbedUrl: "https://www.youtube.com/embed/am9CfcHKQSQ",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/am9CfcHKQSQ",
     demoUrl: "https://glasspane-iota.vercel.app",
     repoUrl: "https://github.com/dolepee/glasspane",
   },
@@ -317,7 +317,7 @@ const submissions: Submission[] = [
     track: "Infrastructure",
     description:
       "Paypunk is a multi-process, privacy-first wallet framework written in Rust. It separates key management from wallet logic so keys can remain in a dedicated daemon or on an air-gapped device, with signing requests transferred through QR codes. Its protocol abstractions currently support Zcash Orchard and Ethereum, while the same backend powers a CLI, terminal interface, WebSocket bridge, and Tauri mobile signer. Paypunk supports shielded Zcash transactions across regtest, testnet, and mainnet, encrypted wallet storage, wallet restoration, air-gapped signing, and authenticated encrypted IPC. It is alpha software and is not intended for use with real funds.",
-    videoEmbedUrl: "https://www.youtube.com/embed/BTWRUIATk10",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/BTWRUIATk10",
     repoUrl: "https://github.com/blockhackersio/paypunk",
     docsUrl: "https://blockhackersio.github.io/paypunk",
   },
@@ -327,7 +327,7 @@ const submissions: Submission[] = [
     track: "FROST",
     description:
       "CYZE, Coordinate Your Zcash Easily, is a FROST-enabled coordination tool and wallet for teams and groups. Users create a distributed key generation group, choose a signing threshold, and collectively manage an Orchard wallet. Approved participants can coordinate threshold-authorized Orchard transactions on Zcash mainnet without any single participant holding complete signing authority.",
-    videoEmbedUrl: "https://www.youtube.com/embed/yrWCumgBuNU",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/yrWCumgBuNU",
     repoUrl: "https://github.com/USCMig/Cyze",
   },
   {
@@ -336,7 +336,7 @@ const submissions: Submission[] = [
     track: "Accounting",
     description:
       "Pendrake Watch is a watch-only Zcash desktop wallet for Linux, macOS, and Windows. Users import a Unified Full Viewing Key, after which a background daemon keeps the wallet synchronized and sends desktop notifications when new transactions are detected, even when the main window is closed. It displays transaction history, memos, current balances, and a historical balance chart with USD values. Wallet files are encrypted behind a passphrase, and the application never stores spending keys.",
-    videoEmbedUrl: "https://www.youtube.com/embed/Hk5awvFrZuI",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/Hk5awvFrZuI",
     repoUrl: "https://github.com/auzum197/pendrake-watch",
   },
   {
@@ -345,7 +345,6 @@ const submissions: Submission[] = [
     track: "Zcash Login",
     description:
       "ZHAC, a recursive acronym for ZHAC Has Awesome Cryptography, is a GPG-like cryptographic toolsuite built with modern Zcash primitives. It combines authentication challenges with FROST-based functionality, providing tools for proving control of cryptographic identities and coordinating threshold-authorized operations.",
-    videoEmbedUrl: "https://www.youtube.com/embed/YjsQbOMRvsI",
     repoUrl: "https://github.com/te-mpe-st/zhac",
   },
   {
@@ -354,7 +353,7 @@ const submissions: Submission[] = [
     track: "Accounting",
     description:
       "ZBounty is a privacy-focused bounty platform for individuals and open-source communities. Users can publish tasks and reward contributors through fully shielded Zcash z-to-z transactions. The platform uses Zingo CLI and lightwalletd for real-time mainnet synchronization and includes a gamified Privacy Score that highlights how effectively each bounty flow uses Zcash privacy.",
-    videoEmbedUrl: "https://www.youtube.com/embed/E-yto4ZM668",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/E-yto4ZM668",
     demoUrl: "https://zbounty.onrender.com/",
     repoUrl:
       "https://github.com/Jay-cey/zechub/tree/hackathon-submission/Hackathon/2026/ZBounty",
@@ -365,7 +364,7 @@ const submissions: Submission[] = [
     track: "Infrastructure",
     description:
       "Gleyo is a Zcash-native quest and community growth platform. Projects can fund a community wallet in ZEC, publish quests, reward contributors directly with shielded ZEC, run community chat, and measure retention from one platform. Quest tasks can include GitHub, Discord, Telegram, YouTube, quizzes, polls, puzzles, and file uploads. Deposits, quest publishing, rewards, and shielded withdrawals are operating end-to-end using real Zcash mainnet transactions through a self-hosted Zebra node and Nozy Wallet.",
-    videoEmbedUrl: "https://www.youtube.com/embed/Har9yk9Ep04",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/Har9yk9Ep04",
     demoUrl: "https://gleyo.app/",
     repoUrl: "https://github.com/gilmorre/gleyo-Zechub-",
   },
@@ -375,7 +374,7 @@ const submissions: Submission[] = [
     track: "Zcash Login",
     description:
       "Authentication with ZcashMe provides one-time-password-based Zcash login through a fully OIDC-compatible authentication flow. It can be integrated with OIDC providers such as Clerk, Better Auth, and NextAuth, allowing applications to add Zcash-native sign-in without building a custom identity system. The ZcashMe team also plans to integrate the login flow with PGPZ.",
-    videoEmbedUrl: "https://www.youtube.com/embed/ynirewTAHeA?start=40",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/ynirewTAHeA?start=40",
     demoUrl: "https://auth.zcash.me/demo",
     repoUrl: "https://github.com/zcashme/zns-login",
   },
@@ -385,7 +384,7 @@ const submissions: Submission[] = [
     track: "FROST",
     description:
       "ZecSafe is a recorded proof of concept for FROST-authorized Zcash custody. It demonstrates a threshold-signing session and publishes artifact fingerprints that can be used to verify how a transaction was authorized. The resulting spend is validated by Zcash as a normal transaction because the blockchain does not expose a special FROST marker. ZecSafe is experimental demonstration software and should not be treated as production custody infrastructure.",
-    videoEmbedUrl: "https://www.youtube.com/embed/B16fPtEGfnY",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/B16fPtEGfnY",
     demoUrl: "https://zecsafe.vercel.app/",
     repoUrl: "https://github.com/cyberrockng/zecsafe",
   },
@@ -395,7 +394,7 @@ const submissions: Submission[] = [
     track: "FROST",
     description:
       "Konclave provides browser-based FROST threshold vaults for Zcash treasurers. Teams can coordinate quorum-approved payments and private payroll without ever reconstructing the complete signing key. Its multi-device distributed key generation and FROST signing flows run in the browser through a blind relay. Konclave has demonstrated a real 2-of-3 threshold-authorized transaction on Zcash mainnet.",
-    videoEmbedUrl: "https://www.youtube.com/embed/_UyWlLRnJms",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/_UyWlLRnJms",
     demoUrl: "https://konclave-demo.vercel.app/",
     repoUrl: "https://github.com/deegalabs/konclave",
   },
@@ -405,7 +404,7 @@ const submissions: Submission[] = [
     track: "Accounting",
     description:
       "Zink is a non-custodial, Stripe-style payment-link platform for shielded ZEC. Merchants configure a Unified Full Viewing Key rather than a spending key, and every invoice receives a fresh Orchard-only diversified address. This prevents customers from linking an invoice to the merchant's balance, payment history, or other customers while allowing the merchant to monitor incoming payments.",
-    videoEmbedUrl: "https://www.youtube.com/embed/DI69ZiJnaUA",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/DI69ZiJnaUA",
     repoUrl: "https://github.com/KaranSinghBisht/zink",
   },
   {
@@ -414,7 +413,7 @@ const submissions: Submission[] = [
     track: "FROST",
     description:
       "ZecVault is a private 2-of-3 shielded escrow protocol for Zcash. A buyer, seller, and neutral arbiter each hold one FROST share controlling a single Orchard address, and any two participants can authorize settlement. On-chain, the resulting payment appears as an ordinary shielded transaction and does not reveal the escrow arrangement, participants, policy, or dispute outcome.",
-    videoEmbedUrl: "https://www.youtube.com/embed/elSUBGYcma8",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/elSUBGYcma8",
     repoUrl: "https://github.com/Ridwannurudeen/zecvault",
   },
   {
@@ -423,7 +422,7 @@ const submissions: Submission[] = [
     track: "Games",
     description:
       "zk.poker is an end-to-end encrypted peer-to-peer poker implementation using a mental-poker shuffle and 2-of-3 FROST escrow. It supports the complete game loop, including dealing, betting, the flop, showdown, pot settlement, and repeated hands. Games can run through an encrypted blind relay so the server sees only ciphertext and players do not expose their IP addresses to one another. Player actions are signed with Ed25519 to support future automated dispute resolution.",
-    videoEmbedUrl: "https://www.youtube.com/embed/xwmEUOXYE24",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/xwmEUOXYE24",
     repoUrl: "https://github.com/rotkonetworks/zeratul/tree/master/crates",
   },
   {
@@ -432,7 +431,7 @@ const submissions: Submission[] = [
     track: "Infrastructure",
     description:
       "Turnstile is an Ironwood migration-readiness companion for Zcash users and ecosystem services. Users can paste a Unified Full Viewing Key to receive a wallet-specific breakdown of visible pool balances and a migration verdict without providing a spending key. Viewing keys are first decoded locally in WebAssembly, and pools that cannot be inspected are clearly marked as unavailable rather than incorrectly reported as zero. Turnstile also includes a live activation countdown, wallet migration guides, shielded-memo alert subscriptions, shielded-pool charts, an ecosystem readiness board, an embeddable countdown widget, and a local command-line checker.",
-    videoEmbedUrl: "https://www.youtube.com/embed/Vp7gKDIvjts",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/Vp7gKDIvjts",
     demoUrl: "https://turnstile-xi.vercel.app/",
     repoUrl:
       "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/Turnstile",
@@ -443,7 +442,7 @@ const submissions: Submission[] = [
     track: "Games",
     description:
       "Bluff Arena is a multiplayer bluffing card game built around a real ZEC staking pool on Zcash testnet. Players place cards face-down, declare a rank, and may challenge opponents by calling their bluff. The project is progressing toward requiring a ZEC stake for every game and using FROST threshold signatures so that no single participant or service controls the staking keys.",
-    videoEmbedUrl: "https://www.youtube.com/embed/eZvhazCkFfY",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/eZvhazCkFfY",
     repoUrl:
       "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/bluffgame",
   },
@@ -465,7 +464,7 @@ const submissions: Submission[] = [
     track: "FROST",
     description:
       "FrostVault is a threshold vault for shielded ZEC built with genuine distributed key generation and rerandomized threshold signing. Its Rust service uses reddsa::frost::redpallas, the same signature scheme used for Orchard spend authorization. No participant, including the backend, ever holds or reconstructs the complete private key, reducing the risk that a single lost or compromised key can permanently expose or lock the vault.",
-    videoEmbedUrl: "https://www.youtube.com/embed/puDKy7F6Y9A",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/puDKy7F6Y9A",
     repoUrl:
       "https://github.com/ZecHub/zechub/tree/main/Hackathon/2026/frostvault",
   },
@@ -487,7 +486,7 @@ const submissions: Submission[] = [
   track: "Infrastructure",
   description:
     "ZecAgent is a local MCP wallet and agent-payment approval layer funded by shielded ZEC. It supports verified agentic purchases, direct shielded ZEC transfers, managed CrossPay routing, dashboard-based payment approval, configurable spending limits, receipts, and transaction confirmation checks. ZecAgent can be connected to Codex through its npm quickstart command.",
-  videoEmbedUrl: "https://www.youtube.com/embed/cv74E_j3Who",
+  videoEmbedUrl: "https://www.youtube-nocookie.com/embed/cv74E_j3Who",
   repoUrl: "https://github.com/aliiqbal24/ZecAgent",
   docsUrl:
     "https://github.com/aliiqbal24/ZecAgent/blob/main/QUICKSTART.md",
