@@ -41,6 +41,8 @@ type Item = {
   icon: LucideIcon;
   external?: boolean;
   tag?: string;
+  // optional artwork under /public/explore/{dark,light}/, shown faintly
+  art?: string;
 };
 
 type Feature = {
@@ -208,6 +210,7 @@ const groups: Group[] = [
         description: "Community leaders promoting Zcash education worldwide.",
         href: "/zcash-global-ambassadors",
         icon: Globe,
+        art: "zga.png",
       },
       {
         title: "Hackathon Archive",
@@ -318,8 +321,30 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
     <SmartLink
       href={item.href}
       external={item.external}
-      className={`group flex h-full flex-col gap-4 p-5 ${styles.hover} ${styles.base} ${focusRing}`}
+      className={`group relative flex h-full flex-col gap-4 overflow-hidden p-5 ${styles.hover} ${styles.base} ${focusRing}`}
     >
+      {item.art ? (
+        <>
+          <Image
+            src={`/explore/dark/${item.art}`}
+            alt=""
+            aria-hidden="true"
+            width={120}
+            height={120}
+            unoptimized
+            className="pointer-events-none absolute -bottom-4 -right-4 hidden h-28 w-28 opacity-[0.14] transition-opacity group-hover:opacity-25 dark:block"
+          />
+          <Image
+            src={`/explore/light/${item.art}`}
+            alt=""
+            aria-hidden="true"
+            width={120}
+            height={120}
+            unoptimized
+            className="pointer-events-none absolute -bottom-4 -right-4 h-28 w-28 opacity-[0.10] transition-opacity group-hover:opacity-20 dark:hidden"
+          />
+        </>
+      ) : null}
       <div className="flex items-start justify-between gap-3">
         <IconBadge icon={item.icon} />
         {item.tag ? (
@@ -554,18 +579,18 @@ const Home = (_props: HomeProps) => {
               The community that governs ZecHub: its members, how decisions are
               made and open proposals.
             </p>
-            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
+            <div className="mt-5 flex flex-wrap gap-2">
               <Link
                 href="/dao"
-                className={`inline-flex items-center gap-1 rounded text-[#1984c7] hover:underline ${focusRing}`}
+                className={`rounded-lg bg-[#1984c7] px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
               >
-                Meet the DAO <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                Meet the DAO
               </Link>
               <Link
                 href="/proposals"
-                className={`inline-flex items-center gap-1 rounded text-[#1984c7] hover:underline ${focusRing}`}
+                className={`rounded-lg bg-[#1984c7] px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
               >
-                Proposals <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                Proposals
               </Link>
             </div>
           </div>
@@ -615,7 +640,7 @@ const Home = (_props: HomeProps) => {
               </Link>
               <Link
                 href="/donation"
-                className={`rounded-lg border border-slate-300 px-4 py-1.5 text-sm font-semibold text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-slate-700 dark:text-slate-200 ${focusRing}`}
+                className={`rounded-lg bg-[#1984c7] px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
               >
                 Donate
               </Link>
