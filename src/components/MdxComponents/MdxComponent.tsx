@@ -153,7 +153,7 @@ const MdxComponents = {
     <tr className="border-b border-amber-200 dark:border-amber-900 hover:bg-amber-50 dark:hover:bg-neutral-800" {...props} />
   ),
   th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
-    <th className="px-6 py-4 text-left font-semibold" {...props} />
+    <th className="px-6 py-4 text-start font-semibold" {...props} />
   ),
   td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
     <td className="px-6 py-4" {...props} />
@@ -188,8 +188,8 @@ const MdxComponents = {
     // <iframe> can't execute script (srcdoc is already stripped upstream).
     return <iframe {...props} sandbox="allow-same-origin allow-popups allow-forms" />;
   },
-  ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc pl-6 my-4" {...props} />,
-  ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal pl-6 my-4" {...props} />,
+  ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc ps-6 my-4" {...props} />,
+  ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal ps-6 my-4" {...props} />,
   li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props} />,
   p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => <p className="my-4" {...props} />,
 } as MDXComponents;
