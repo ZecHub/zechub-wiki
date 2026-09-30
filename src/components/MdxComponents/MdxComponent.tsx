@@ -116,6 +116,8 @@ const MdxComponents = {
     }
     return (
       <code
+        // Isolates inline code such as H(hA, hB) inside right-to-left prose.
+        dir="ltr"
         className="font-mono text-sm !inline-block !translate-y-[16px]"
         {...props}
       />
@@ -131,6 +133,10 @@ const MdxComponents = {
         Code-highlight
       </div>
       <pre
+        // Code reads left to right in every locale. Inheriting dir="rtl" on
+        // Arabic pages right-aligned each line and moved trailing
+        // punctuation to the front ("...hA = 559aead08264").
+        dir="ltr"
         className="bg-amber-50 dark:bg-amber-950 !bg-amber-50 dark:!bg-amber-950 text-neutral-900 dark:text-neutral-100 p-5 pt-8 rounded-2xl overflow-x-auto border border-amber-200 dark:border-amber-900 font-mono text-sm leading-relaxed shadow-xl"
         {...props}
       />
