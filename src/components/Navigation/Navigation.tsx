@@ -1034,6 +1034,12 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
     };
   }, [moreOpen]);
   const closeMore = () => setMoreOpen(false);
+  // The home page search box asks the header to open the search / AI dialog.
+  useEffect(() => {
+    const open = () => setOpenSearch(true);
+    window.addEventListener("zechub:open-search", open);
+    return () => window.removeEventListener("zechub:open-search", open);
+  }, []);
   return (
     <header
       ref={headerRef}

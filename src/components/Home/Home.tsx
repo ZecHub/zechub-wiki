@@ -14,6 +14,7 @@ import {
   Globe,
   GraduationCap,
   Info,
+  Landmark,
   Map as MapIcon,
   Play,
   Search,
@@ -343,10 +344,9 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
   );
 }
 
-const Home = ({ text }: HomeProps) => {
+const Home = (_props: HomeProps) => {
   const { t } = useLanguage();
   const { dark } = useDarkModeContext();
-  const [expanded, setExpanded] = useState(false);
   const [query, setQuery] = useState("");
   const [variant, setVariant] = useState<"filled" | "outline">("filled");
   useEffect(() => {
@@ -398,34 +398,24 @@ const Home = ({ text }: HomeProps) => {
             unoptimized
             className="mx-auto mb-8 h-auto w-full max-w-2xl"
           />
-          <h1 className="mx-auto max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-6xl">
-            {t.home?.heroTitle || "Welcome to ZecHub"}
+          <h1 className="mx-auto max-w-3xl text-balance text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-6xl">
+            Private money, made simple.
           </h1>
-          {variant === "filled" ? (
-            <p className="mt-5 text-xl text-slate-700 dark:text-slate-300">
-              Learn, use and build with{" "}
-              <span className="rounded-md bg-[#1984c7]/10 px-2 py-0.5 font-medium text-[#1984c7]">
-                private
-              </span>{" "}
-              digital money.
-            </p>
-          ) : null}
-          <p
-            className={`mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400 ${
-              expanded ? "" : "line-clamp-3"
-            }`}
-          >
-            {text}
+          <p className="mx-auto mt-5 max-w-xl text-lg text-slate-600 dark:text-slate-400 md:text-xl">
+            The community wiki for learning, using and building with{" "}
+            <span className="font-medium text-[#1984c7]">Zcash</span>.
           </p>
           <button
             type="button"
-            onClick={() => setExpanded((v) => !v)}
-            aria-expanded={expanded}
-            className={`mt-2 rounded text-sm font-medium text-[#1984c7] hover:underline ${focusRing}`}
+            onClick={() =>
+              window.dispatchEvent(new CustomEvent("zechub:open-search"))
+            }
+            className={`mx-auto mt-8 flex w-full max-w-xl items-center gap-3 rounded-xl border border-slate-300 bg-white px-4 py-3 text-left text-slate-500 transition-colors hover:border-[#1984c7] dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400 ${focusRing}`}
           >
-            {expanded ? "Show less" : "Read more"}
+            <Search aria-hidden="true" className="h-5 w-5 shrink-0" />
+            <span className="flex-1">Search the wiki or ask ZecHub AI</span>
           </button>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
             <a
               href="#topics"
               className={`rounded-lg bg-[#1984c7] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
@@ -563,6 +553,40 @@ const Home = ({ text }: HomeProps) => {
               No topics match &ldquo;{query}&rdquo;.
             </p>
           )}
+        </div>
+      </section>
+
+      {/* ZecHub DAO */}
+      <section id="dao" className={`${wrap} pb-16`}>
+        <div
+          className={`flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between ${styles.base}`}
+        >
+          <div className="flex items-start gap-4">
+            <IconBadge icon={Landmark} />
+            <div>
+              <h2 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-2xl">
+                ZecHub DAO
+              </h2>
+              <p className="mt-1 max-w-xl text-slate-600 dark:text-slate-400">
+                The community that governs ZecHub. Meet the members, see how
+                decisions are made and follow open proposals.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/dao"
+              className={`rounded-lg bg-[#1984c7] px-5 py-2.5 font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
+            >
+              Meet the DAO
+            </Link>
+            <Link
+              href="/proposals"
+              className={`rounded-lg border border-slate-300 px-5 py-2.5 font-semibold text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-slate-700 dark:text-slate-200 ${focusRing}`}
+            >
+              View proposals
+            </Link>
+          </div>
         </div>
       </section>
 
