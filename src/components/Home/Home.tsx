@@ -23,7 +23,9 @@ import {
   Wallet,
   type LucideIcon,
 } from "lucide-react";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { socialNav } from "@/constants/navigation";
 
@@ -343,6 +345,7 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
 
 const Home = ({ text }: HomeProps) => {
   const { t } = useLanguage();
+  const { dark } = useDarkModeContext();
   const [expanded, setExpanded] = useState(false);
   const [query, setQuery] = useState("");
   const [variant, setVariant] = useState<"filled" | "outline">("filled");
@@ -381,8 +384,17 @@ const Home = ({ text }: HomeProps) => {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#1984c7]/10 via-transparent to-transparent"
         />
-        <div className={`${wrap} relative py-16 md:py-24`}>
-          <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-6xl">
+        <div className={`${wrap} relative py-10 text-center md:py-16`}>
+          <Image
+            src={dark ? "/hero-dark.png" : "/hero-white.png"}
+            alt="ZecHub"
+            width={1920}
+            height={480}
+            priority
+            unoptimized
+            className="mx-auto mb-8 h-auto w-full max-w-4xl rounded-2xl"
+          />
+          <h1 className="mx-auto max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-6xl">
             {t.home?.heroTitle || "Welcome to ZecHub"}
           </h1>
           {variant === "filled" ? (
@@ -395,7 +407,7 @@ const Home = ({ text }: HomeProps) => {
             </p>
           ) : null}
           <p
-            className={`mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400 ${
+            className={`mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400 ${
               expanded ? "" : "line-clamp-3"
             }`}
           >
@@ -409,7 +421,7 @@ const Home = ({ text }: HomeProps) => {
           >
             {expanded ? "Show less" : "Read more"}
           </button>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
               href="#topics"
               className={`rounded-lg bg-[#1984c7] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
@@ -424,7 +436,7 @@ const Home = ({ text }: HomeProps) => {
             </Link>
           </div>
           {variant === "filled" ? (
-            <ul className="mt-8 flex flex-wrap gap-2">
+            <ul className="mt-8 flex flex-wrap justify-center gap-2">
               {["Open source", "Community-driven", "Education hub for Zcash"].map(
                 (chip) => (
                   <li
