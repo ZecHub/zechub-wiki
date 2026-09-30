@@ -1,238 +1,344 @@
 "use client";
-import Hero from "@/components/Hero/Hero";
-import ContentSections from "@/components/Home/ContentSections";
-import AnimationHome from "@/components/UI/AnimationHome";
-import Cards from "@/components/UI/Cards";
-import { cardsConfig } from "@/constants/cardsConfig";
+import { useMemo, useState, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
-import Explorer from "../Explorer/Explorer";
-import { FadeInAnimation } from "../UI/FadeInAnimation";
 import { useLanguage } from "@/context/LanguageContext";
-import { useState, useEffect } from "react";
 
 type HomeProps = {
   text: string;
 };
 
-const HackathonBanner = ({ onDismiss }: { onDismiss: () => void }) => {
-  const { t } = useLanguage();
-  const hp = t?.pages?.hackathon?.popup;
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 50);
-    return () => clearTimeout(t);
-  }, []);
-
-  const handleDismiss = () => {
-    setVisible(false);
-    setTimeout(onDismiss, 400);
-  };
-
-  return (
-    <>
-      {/* Backdrop */}
-      <div
-        onClick={handleDismiss}
-        className={`fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm transition-opacity duration-400 ${
-          visible
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-      />
-
-      {/* Modal */}
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="hackathon-title"
-        className={`fixed top-1/2 left-1/2 z-[9999] w-[min(560px,92vw)]
-          bg-slate-50 dark:bg-slate-950 text-card-foreground
-          border border-border
-          rounded-2xl overflow-hidden shadow-xl
-          transition-all duration-400
-          ${
-            visible
-              ? "opacity-100 pointer-events-auto -translate-x-1/2 -translate-y-1/2 scale-100"
-              : "opacity-0 pointer-events-none -translate-x-1/2 -translate-y-[48%] scale-95"
-          }`}
-      >
-        {/* Animated top stripe */}
-        <div className="h-1 bg-[var(--color-brand)] animate-shimmer bg-[length:200%_100%]" />
-
-        <style>{`
-          @keyframes hk-shimmer {
-            0% { background-position: 0% 0; }
-            100% { background-position: 200% 0; }
-          }
-          @keyframes hk-pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.5); }
-          }
-          .hk-shimmer {
-            background: linear-gradient(90deg, var(--color-brand) 0%, #64dcc0 50%, var(--color-brand) 100%);
-            background-size: 200% 100%;
-            animation: hk-shimmer 2.5s linear infinite;
-          }
-          .hk-pulse { animation: hk-pulse-dot 1.4s ease-in-out infinite; }
-        `}</style>
-
-        {/* Replace the static stripe with the animated one */}
-        <div className="h-1 hk-shimmer" />
-
-        <div className="p-8">
-          {/* Live badge */}
-          <div className="inline-flex items-center gap-1.5 bg-[var(--color-brand)]/10 border border-[var(--color-brand)]/30 rounded-full px-3 py-1 mb-5">
-            <span className="hk-pulse w-2 h-2 rounded-full bg-[var(--color-brand)] inline-block" />
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-[var(--color-brand)]">
-              {hp?.liveNow ?? "Live Now"}
-            </span>
-          </div>
-
-          {/* Heading */}
-          <h2
-            id="hackathon-title"
-            className="text-3xl font-extrabold leading-tight text-foreground mb-2"
-          >
-            ZecHub Hackathon{" "}
-            <span className="text-[var(--color-brand)]">2026</span>
-          </h2>
-
-          {/* Subtitle */}
-          <p className="text-base text-muted-foreground leading-relaxed mb-7">
-            {hp?.subtitle ??
-              "Build privacy-first applications on Zcash. Compete for prizes, earn ZEC, and shape the future of financial freedom."}
-          </p>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-3 mb-7">
-            {[
-              { label: hp?.prizePool ?? "Prize Pool", value: "25 ZEC" },
-              { label: hp?.start ?? "Start", value: "May 25" },
-              { label: hp?.end ?? "End", value: "July 15" },
-            ].map((s) => (
-              <div
-                key={s.label}
-                className="bg-muted border border-border rounded-lg p-2.5 text-center"
-              >
-                <div className="text-[16px] imd:text-lg font-bold text-foreground">
-                  {s.value}
-                </div>
-                <div className="text-[11px] text-muted-foreground mt-0.5">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Actions */}
-          <div className="flex gap-3 flex-wrap">
-            <a
-              href="/hackathon"
-              onClick={handleDismiss}
-              className="btn-brand flex-1 flex items-center justify-center rounded-lg font-bold text-[13px] imd:text-sm py-3 px-5 transition-colors"
-            >
-              {hp?.learnMore ?? "Learn More →"}
-            </a>
-            <button
-              onClick={handleDismiss}
-              className="flex-1 bg-transparent border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 font-semibold text-[13px] imd:text-sm py-3 px-5 rounded-lg transition-colors cursor-pointer"
-            >
-              {hp?.dismiss ?? "Dismiss"}
-            </button>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+type Item = {
+  title: string;
+  description: string;
+  href: string;
+  external?: boolean;
 };
+
+// Brand blue kept from the current design (#1984c7 / hover #1574af).
+const BRAND = "#1984c7";
+
+// The three main intents. Everything else on the home hangs off these.
+const paths: Item[] = [
+  {
+    title: "Learn",
+    description: "What Zcash is, how its privacy works, and where to start.",
+    href: "/start-here",
+  },
+  {
+    title: "Use",
+    description: "Buy ZEC, pick a wallet and make private payments.",
+    href: "/using-zcash/buying-zec",
+  },
+  {
+    title: "Build",
+    description: "Run a node, explore the tools and contribute.",
+    href: "/developers",
+  },
+];
+
+// The 12 topics of the wiki, one line each. Same destinations as the old
+// "Explore Zcash" list, with Wallets promoted from the old card row.
+const topics: Item[] = [
+  {
+    title: "Start Here",
+    description: "New user guide and basics",
+    href: "/start-here/new-user-guide",
+  },
+  {
+    title: "Wallets",
+    description: "Receive and spend ZEC privately",
+    href: "/wallets",
+  },
+  {
+    title: "Using Zcash",
+    description: "Buying, transactions, memos, payments",
+    href: "/using-zcash/buying-zec",
+  },
+  {
+    title: "Tutorials",
+    description: "Step-by-step video tutorials",
+    href: "/zechub-tutorial",
+  },
+  {
+    title: "Guides",
+    description: "Nodes, tools, DeFi and more",
+    href: "/guides/raspberry-pi-4-full-node",
+  },
+  {
+    title: "Zcash Tech",
+    description: "zk-SNARKs and the protocol",
+    href: "/zcash-tech/zk-snarks",
+  },
+  {
+    title: "Privacy Tools",
+    description: "Hardware 2FA, VPNs and more",
+    href: "/privacy-tools/2fa-hardware-devices",
+  },
+  {
+    title: "Research",
+    description: "Papers and technical reading",
+    href: "/research",
+  },
+  {
+    title: "Organizations",
+    description: "ECC, Zcash Foundation, ZCG and others",
+    href: "/zcash-organizations/electric-coin-company",
+  },
+  {
+    title: "Community",
+    description: "Links, blogs, projects, ambassadors",
+    href: "/zcash-community/community-links",
+  },
+  {
+    title: "Glossary & FAQs",
+    description: "Quick answers and definitions",
+    href: "/glossary-and-faqs/faq",
+  },
+  {
+    title: "Contribute",
+    description: "Help build ZecHub",
+    href: "/contribute/help-build-zechub",
+  },
+];
+
+// Secondary destinations that used to be big image blocks on the home.
+const featured: Item[] = [
+  {
+    title: "ZecHub Visualizer",
+    description: "Interactive tools for Zcash privacy tech",
+    href: "/visualizer",
+  },
+  {
+    title: "ZecMap",
+    description: "Merchants and ATMs that accept Zcash",
+    href: "https://zecmap.com",
+    external: true,
+  },
+  {
+    title: "Pay with Zcash",
+    description: "Where can I pay with ZEC?",
+    href: "https://paywithz.cash",
+    external: true,
+  },
+  {
+    title: "Global Ambassadors",
+    description: "Community leaders around the world",
+    href: "/zcash-global-ambassadors",
+  },
+  {
+    title: "ZKAV Club",
+    description: "Zero-knowledge audio and video",
+    href: "https://zkav.club",
+    external: true,
+  },
+  {
+    title: "Hackathon Archive",
+    description: "Projects from the 2026 hackathon",
+    href: "/hackathon",
+  },
+];
+
+const focusRing =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1984c7] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950";
+
+function SmartLink({
+  href,
+  external,
+  className,
+  children,
+}: {
+  href: string;
+  external?: boolean;
+  className?: string;
+  children: ReactNode;
+}) {
+  if (external) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
+}
 
 const Home = ({ text }: HomeProps) => {
   const { t } = useLanguage();
-  const [showHackathon, setShowHackathon] = useState(true);
+  const [expanded, setExpanded] = useState(false);
+  const [query, setQuery] = useState("");
+
+  const filteredTopics = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return topics;
+    return topics.filter(
+      (item) =>
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q),
+    );
+  }, [query]);
 
   return (
-    <main className="flex flex-col">
-      <section id="hero" className="bg-slate-100 my-24">
-        <FadeInAnimation>
-          <Hero />
-        </FadeInAnimation>
+    <main className="mx-auto w-full max-w-5xl px-4 sm:px-6">
+      {/* Hero: one idea, one action */}
+      <section id="hero" className="py-16 sm:py-24">
+        <p
+          className="mb-4 text-sm font-medium uppercase tracking-widest"
+          style={{ color: BRAND }}
+        >
+          ZecHub Wiki
+        </p>
+        <h1 className="max-w-2xl text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl">
+          {t.home?.heroTitle || "Welcome to ZecHub"}
+        </h1>
+
+        <p
+          className={`mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400 ${
+            expanded ? "" : "line-clamp-3"
+          }`}
+        >
+          {text}
+        </p>
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          className={`mt-2 rounded text-sm font-medium hover:underline ${focusRing}`}
+          style={{ color: BRAND }}
+        >
+          {expanded ? "Show less" : "Read more"}
+        </button>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a
+            href="#topics"
+            className={`rounded-lg bg-[#1984c7] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
+          >
+            {t.home?.exploreEcosystem || "Explore Zcash"}
+          </a>
+          <Link
+            href="/wallets"
+            className={`rounded-lg border border-slate-300 px-6 py-3 font-semibold text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-slate-700 dark:text-slate-200 ${focusRing}`}
+          >
+            Pick a wallet
+          </Link>
+        </div>
       </section>
 
-      <div className="container mx-auto">
-        <section
-          id="presentation"
-          className="px-1 bg-slate-100 dark:bg-transparent"
-        >
-          <FadeInAnimation className="flex flex-col items-center justify-center space-y-6 shadow">
-            <FadeInAnimation className="mt-12">
-              <AnimationHome />
-            </FadeInAnimation>
-            <FadeInAnimation>
-              <h1 className="text-4xl text-center font-bold mb-3">
-                {t.home?.heroTitle || "Welcome to ZecHub"}
-              </h1>
-            </FadeInAnimation>
-            <div className="flex flex-col w-[90%] items-center justify-center m-auto">
-              <FadeInAnimation>
-                <p className="text-lg leading-relaxed text-center text-gray-700 dark:text-gray-400">
-                  {text}
-                </p>
-              </FadeInAnimation>
-              <div className="w-full flex justify-center my-12">
-                <FadeInAnimation>
-                  <Link
-                    type="button"
-                    href="#explore"
-                    className="transition duration-400 border-2 border-[#1984c7] font-bold rounded-md py-4 px-10 text-white bg-[#1984c7] hover:bg-[#1574af] hover:text-white shadow-lg transform hover:scale-104"
-                  >
-                    {t.home?.exploreEcosystem || "Explore Zcash"}
-                  </Link>
-                </FadeInAnimation>
-              </div>
-            </div>
-          </FadeInAnimation>
-        </section>
+      {/* Three ways in */}
+      <section id="paths" aria-label="Start with" className="pb-16 sm:pb-24">
+        <div className="grid gap-4 md:grid-cols-3">
+          {paths.map((item) => (
+            <SmartLink
+              key={item.title}
+              href={item.href}
+              external={item.external}
+              className={`group rounded-xl border border-slate-200 p-6 transition-colors hover:border-[#1984c7] dark:border-slate-800 ${focusRing}`}
+            >
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+                {item.title}
+                <span
+                  aria-hidden="true"
+                  className="ml-2 inline-block transition-transform group-hover:translate-x-1"
+                  style={{ color: BRAND }}
+                >
+                  →
+                </span>
+              </h2>
+              <p className="mt-2 text-slate-600 dark:text-slate-400">
+                {item.description}
+              </p>
+            </SmartLink>
+          ))}
+        </div>
+      </section>
 
-        <section
-          id="cardLinks"
-          className="flex justify-center items-center px-4 my-24"
-        >
-          <div className="flex flex-col md:flex-row md:flex-wrap gap-8 justify-between items-stretch">
-            {cardsConfig &&
-              cardsConfig.map((items) => {
-                const cardKey = items.title as
-                  | "startHere"
-                  | "pickWallet"
-                  | "resources";
-                const title = t.home?.cards?.[cardKey]?.title || items.title;
-                const content =
-                  t.home?.cards?.[cardKey]?.content || items.content;
-
-                return (
-                  <Cards
-                    key={items.title}
-                    paraph={content}
-                    title={title}
-                    url={items.url}
-                    image={items.image}
-                    imageLight={items.imageLight}
-                    imageDark={items.imageDark}
-                  />
-                );
-              })}
+      {/* All topics, on one screen, with a quick filter */}
+      <section id="topics" className="scroll-mt-24 pb-16 sm:pb-24">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+            Topics
+          </h2>
+          <div className="w-full sm:w-72">
+            <label htmlFor="topic-filter" className="sr-only">
+              Filter topics
+            </label>
+            <input
+              id="topic-filter"
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Filter topics"
+              className={`w-full rounded-lg border border-slate-300 bg-transparent px-4 py-2 text-slate-900 placeholder:text-slate-400 dark:border-slate-700 dark:text-slate-100 ${focusRing}`}
+            />
           </div>
-        </section>
+        </div>
 
-        <section id="content" className="px-4 my-24">
-          <ContentSections />
-        </section>
+        {filteredTopics.length > 0 ? (
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredTopics.map((item) => (
+              <SmartLink
+                key={item.title}
+                href={item.href}
+                external={item.external}
+                className={`rounded-lg border border-slate-200 px-5 py-4 transition-colors hover:border-[#1984c7] hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-900 ${focusRing}`}
+              >
+                <span className="block font-medium text-slate-900 dark:text-slate-100">
+                  {item.title}
+                </span>
+                <span className="mt-1 block text-sm text-slate-500 dark:text-slate-400">
+                  {item.description}
+                </span>
+              </SmartLink>
+            ))}
+          </div>
+        ) : (
+          <p className="text-slate-500 dark:text-slate-400">
+            No topics match &ldquo;{query}&rdquo;.
+          </p>
+        )}
+      </section>
 
-        <section id="explore" className="px-4 my-24 scroll-mt-24">
-          <Explorer />
-        </section>
-      </div>
+      {/* Community and tools: compact rows instead of large image blocks */}
+      <section id="more" className="pb-24">
+        <h2 className="mb-6 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+          Community &amp; tools
+        </h2>
+        <ul className="divide-y divide-slate-200 border-y border-slate-200 dark:divide-slate-800 dark:border-slate-800">
+          {featured.map((item) => (
+            <li key={item.title}>
+              <SmartLink
+                href={item.href}
+                external={item.external}
+                className={`group flex items-center justify-between gap-4 py-4 ${focusRing}`}
+              >
+                <span>
+                  <span className="block font-medium text-slate-900 group-hover:text-[#1984c7] dark:text-slate-100">
+                    {item.title}
+                  </span>
+                  <span className="block text-sm text-slate-500 dark:text-slate-400">
+                    {item.description}
+                  </span>
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="shrink-0 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-[#1984c7]"
+                >
+                  {item.external ? "↗" : "→"}
+                </span>
+              </SmartLink>
+            </li>
+          ))}
+        </ul>
+      </section>
     </main>
   );
 };
