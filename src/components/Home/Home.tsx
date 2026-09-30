@@ -207,12 +207,14 @@ const groups: Group[] = [
         description: "ECC, Zcash Foundation, ZCG and others",
         href: "/zcash-organizations/electric-coin-company",
         icon: Building2,
+        art: "zcash-organizations.png",
       },
       {
         title: "Community",
         description: "Links, blogs, projects, ambassadors",
         href: "/zcash-community/community-links",
         icon: Users,
+        art: "zcash-community.png",
       },
       {
         title: "Global Ambassadors",
