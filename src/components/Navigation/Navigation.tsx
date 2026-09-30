@@ -5,6 +5,7 @@ import { Link as IntlLink } from "@/i18n/navigation";
 import { useEffect, useState, useRef } from "react";
 import type { ComponentProps } from "react";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
+import ZecPrice from "./ZecPrice";
 import SearchBar from "../SearchBar";
 import Logo from "../UI/Logo";
 import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
@@ -1051,6 +1052,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
             <Logo theme={mounted && isDark} />
           </Link>
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
+            <ZecPrice />
             <LanguageSwitcher />
             <Button
               variant="ghost"

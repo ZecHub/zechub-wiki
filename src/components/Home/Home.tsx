@@ -398,10 +398,8 @@ const Home = (_props: HomeProps) => {
             unoptimized
             className="mx-auto mb-8 h-auto w-full max-w-2xl"
           />
-          <h1 className="mx-auto max-w-3xl text-balance text-4xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-6xl">
-            Private money, made simple.
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-slate-600 dark:text-slate-400 md:text-xl">
+          <h1 className="sr-only">ZecHub</h1>
+          <p className="mx-auto max-w-xl text-lg text-slate-600 dark:text-slate-400 md:text-xl">
             The community wiki for learning, using and building with{" "}
             <span className="font-medium text-[#1984c7]">Zcash</span>.
           </p>
@@ -415,20 +413,6 @@ const Home = (_props: HomeProps) => {
             <Search aria-hidden="true" className="h-5 w-5 shrink-0" />
             <span className="flex-1">Search the wiki or ask ZecHub AI</span>
           </button>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <a
-              href="#topics"
-              className={`rounded-lg bg-[#1984c7] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
-            >
-              {t.home?.exploreEcosystem || "Explore Zcash"}
-            </a>
-            <Link
-              href="/wallets"
-              className={`rounded-lg border border-slate-300 px-6 py-3 font-semibold text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-slate-700 dark:text-slate-200 ${focusRing}`}
-            >
-              Pick a wallet
-            </Link>
-          </div>
           {variant === "filled" ? (
             <ul className="mt-8 flex flex-wrap justify-center gap-2">
               {["Open source", "Community-driven", "Education hub for Zcash"].map(
@@ -449,7 +433,7 @@ const Home = (_props: HomeProps) => {
       {/* 1. Essentials for newcomers */}
       <section id="start" className={`${wrap} py-16 md:py-20`}>
         <SectionHeader
-          title="Start here"
+          title="Start Here"
           subtitle="New to Zcash? Begin with these four."
         />
         <div className="grid gap-4 imd:grid-cols-2 lg:grid-cols-4">
@@ -495,7 +479,7 @@ const Home = (_props: HomeProps) => {
       >
         <div className={wrap}>
           <SectionHeader
-            title="More to explore"
+            title="More to Explore"
             subtitle="Guides, research, tools and the wider Zcash community."
           >
             <div className="relative w-full md:w-72">
@@ -556,96 +540,86 @@ const Home = (_props: HomeProps) => {
         </div>
       </section>
 
-      {/* ZecHub DAO */}
-      <section id="dao" className={`${wrap} pb-16`}>
+      {/* DAO, community and contribution in one band */}
+      <section id="community" className={`${wrap} pb-24`}>
         <div
-          className={`flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between ${styles.base}`}
+          className={`grid gap-8 p-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-slate-200 md:p-0 dark:md:divide-slate-700/60 ${styles.base}`}
         >
-          <div className="flex items-start gap-4">
+          <div className="flex flex-col md:p-8">
             <IconBadge icon={Landmark} />
-            <div>
-              <h2 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-2xl">
-                ZecHub DAO
-              </h2>
-              <p className="mt-1 max-w-xl text-slate-600 dark:text-slate-400">
-                The community that governs ZecHub. Meet the members, see how
-                decisions are made and follow open proposals.
-              </p>
+            <h2 className="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-50">
+              ZecHub DAO
+            </h2>
+            <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              The community that governs ZecHub: its members, how decisions are
+              made and open proposals.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
+              <Link
+                href="/dao"
+                className={`inline-flex items-center gap-1 rounded text-[#1984c7] hover:underline ${focusRing}`}
+              >
+                Meet the DAO <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/proposals"
+                className={`inline-flex items-center gap-1 rounded text-[#1984c7] hover:underline ${focusRing}`}
+              >
+                Proposals <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/dao"
-              className={`rounded-lg bg-[#1984c7] px-5 py-2.5 font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
-            >
-              Meet the DAO
-            </Link>
-            <Link
-              href="/proposals"
-              className={`rounded-lg border border-slate-300 px-5 py-2.5 font-semibold text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-slate-700 dark:text-slate-200 ${focusRing}`}
-            >
-              View proposals
-            </Link>
-          </div>
-        </div>
-      </section>
 
-      {/* Community */}
-      <section id="community" className={`${wrap} pb-16`}>
-        <div
-          className={`flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between ${styles.base}`}
-        >
-          <div>
-            <h2 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-2xl">
+          <div className="flex flex-col md:p-8">
+            <IconBadge icon={Users} />
+            <h2 className="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-50">
               Join the community
             </h2>
-            <p className="mt-1 text-slate-600 dark:text-slate-400">
+            <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
               Follow ZecHub and talk with other Zcash users.
             </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {socialNav.map((social) => {
+                const SocialIcon = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-slate-700 dark:text-slate-200 ${focusRing}`}
+                  >
+                    <SocialIcon className="h-4 w-4" aria-hidden="true" />
+                    {social.name}
+                  </a>
+                );
+              })}
+            </div>
           </div>
-          <div className="flex flex-wrap gap-3">
-            {socialNav.map((social) => {
-              const SocialIcon = social.icon;
-              return (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-slate-700 dark:text-slate-200 ${focusRing}`}
-                >
-                  <SocialIcon className="h-4 w-4" aria-hidden="true" />
-                  {social.name}
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
-      {/* Closing call to action */}
-      <section id="contribute" className={`${wrap} pb-24`}>
-        <div className="rounded-2xl bg-slate-900 p-8 text-white dark:border dark:border-slate-700 dark:bg-slate-800/60 md:p-12">
-          <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-            Help build ZecHub
-          </h2>
-          <p className="mt-3 max-w-xl text-slate-300">
-            ZecHub is community-driven. Add content, pick up a bounty or
-            support the project.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/contribute/help-build-zechub"
-              className={`rounded-lg bg-[#1984c7] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
-            >
-              Contribute
-            </Link>
-            <Link
-              href="/donation"
-              className={`rounded-lg border border-slate-500 px-6 py-3 font-semibold text-white transition-colors hover:border-white ${focusRing}`}
-            >
-              Donate
-            </Link>
+          <div className="flex flex-col md:p-8">
+            <IconBadge icon={Code} />
+            <h2 className="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-50">
+              Help build ZecHub
+            </h2>
+            <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              ZecHub is community-driven. Add content, pick up a bounty or
+              support the project.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <Link
+                href="/contribute/help-build-zechub"
+                className={`rounded-lg bg-[#1984c7] px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
+              >
+                Contribute
+              </Link>
+              <Link
+                href="/donation"
+                className={`rounded-lg border border-slate-300 px-4 py-1.5 text-sm font-semibold text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-slate-700 dark:text-slate-200 ${focusRing}`}
+              >
+                Donate
+              </Link>
+            </div>
           </div>
         </div>
       </section>
