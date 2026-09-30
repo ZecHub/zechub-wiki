@@ -48,7 +48,7 @@ const ZebraComponent = () => {
 
       {/* Full Node Tutorials Button */}
       <div>
-        <Link href="https://zechub.wiki/tutorials/full-node-tutorials#content" target="_blank" rel="noopener noreferrer">
+        <Link href="/zcash-tech/full-nodes">
           <button style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}>
             Full Node Tutorials
           </button>
