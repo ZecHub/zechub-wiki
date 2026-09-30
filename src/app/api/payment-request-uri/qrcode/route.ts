@@ -39,6 +39,23 @@ function loadZaddrWasm(): Promise<ZaddrBindings> {
   return wasmReady;
 }
 
+// A QR image is width x width RGBA, so the buffer cost grows with the square of
+// `width`. `size` is attacker-controlled, so an unbounded parseInt let a single
+// request pin ~30s of CPU (size=16000x) or throw an *asynchronous* pngjs
+// "Array buffer allocation failed" that escapes the try/catch below and crashes
+// the worker (size=50000x). Clamp both the width and the payload length.
+const MIN_QR_WIDTH = 64;
+const MAX_QR_WIDTH = 1024;
+const DEFAULT_QR_WIDTH = 240;
+const MAX_QR_DATA_LENGTH = 4096;
+
+function resolveQrWidth(dim: string | undefined): number {
+  if (!dim) return DEFAULT_QR_WIDTH;
+  const parsed = parseInt(dim, 10);
+  if (!Number.isFinite(parsed)) return DEFAULT_QR_WIDTH;
+  return Math.min(Math.max(parsed, MIN_QR_WIDTH), MAX_QR_WIDTH);
+}
+
 export async function GET(req: NextRequest) {
   const data = req.nextUrl.searchParams.get("data");
   const size = req.nextUrl.searchParams.get("size");
@@ -47,12 +64,15 @@ export async function GET(req: NextRequest) {
   if (!data || typeof data != "string") {
     return NextResponse.json({ error: "Missing data" }, { status: 400 });
   }
+  if (data.length > MAX_QR_DATA_LENGTH) {
+    return NextResponse.json({ error: "data is too long" }, { status: 413 });
+  }
 
   try {
     const qrCode = await QRCode.toDataURL(data, {
       margin: 1,
       scale: 10,
-      width: dim ? parseInt(dim) : 240,
+      width: resolveQrWidth(dim),
     });
     const base64 = qrCode.split(",")[1];
     const buffer = Buffer.from(base64, "base64");
