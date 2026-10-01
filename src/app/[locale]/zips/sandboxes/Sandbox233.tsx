@@ -14,6 +14,9 @@ import {
   SbCard,
   Slider,
   fmtZec,
+  fmtMillions,
+  ISSUED_NOW_ZEC,
+  MAX_MONEY_ZEC,
 } from "./shared";
 
 type ScenarioId = "conservative" | "active" | "eth-comparable";
@@ -47,8 +50,8 @@ const SCENARIOS: Scenario[] = [
   },
 ];
 
-const ISSUED_NOW = 16.8e6;
-const MAX_MONEY = 21_000_000;
+const ISSUED_NOW = ISSUED_NOW_ZEC;
+const MAX_MONEY = MAX_MONEY_ZEC;
 const REMAINING = MAX_MONEY - ISSUED_NOW;
 // Approximate annual issuance at post-NU6 subsidy: 1.5625 ZEC × 420,480 blocks ≈ 657k ZEC/yr
 const ANNUAL_ISSUANCE_NOW = 657_000;
@@ -79,7 +82,7 @@ export default function Sandbox233() {
         items={[
           { value: "Opt-in", caption: "voluntary mechanism" },
           { value: "~657k", caption: "ZEC issued per year (current)" },
-          { value: "~4.2M", caption: "ZEC remaining of 21M cap" },
+          { value: fmtMillions(REMAINING), caption: "ZEC remaining of 21M cap" },
           { value: "0", caption: "automatic protocol burn" },
         ]}
       />
