@@ -6,10 +6,6 @@ import { useLanguage, LANGUAGES } from '@/context/LanguageContext';
 import { useRouter, usePathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 
-// English is shown without a flag (it isn't tied to one country).
-const flagOf = (lang: { code: string; flag: string }) =>
-  lang.code === 'en' ? '' : lang.flag;
-
 export function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const { locale, setLocale } = useLanguage();
@@ -21,13 +17,13 @@ export function LanguageSwitcher() {
 
   useLayoutEffect(() => {
     const lang = LANGUAGES.find((l) => l.code === locale) ?? LANGUAGES[0];
-    const flag = flagOf(lang);
-    const text = flag ? `${flag} ${lang.nativeLabel}` : lang.nativeLabel;
+    // The closed button shows just the language name; the flags live in the list.
+    const text = lang.nativeLabel;
     if (desktopLabelRef.current) {
       desktopLabelRef.current.textContent = text;
     }
     if (mobileFlagRef.current) {
-      mobileFlagRef.current.textContent = flagOf(lang);
+      mobileFlagRef.current.textContent = lang.flag;
     }
   }, [locale]);
 
@@ -65,7 +61,7 @@ export function LanguageSwitcher() {
         type="button"
         key={locale}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-lg border border-slate-300 px-3 py-1.5 text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1984c7] dark:border-slate-700 dark:text-slate-200 cursor-pointer"
+        className="flex items-center gap-2 font-[family-name:var(--font-heading)] rounded-lg border border-slate-300 px-3 py-1.5 text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1984c7] dark:border-slate-700 dark:text-slate-200 cursor-pointer"
         aria-label="Select language"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
@@ -91,7 +87,7 @@ export function LanguageSwitcher() {
         <div
           role="listbox"
           aria-label="Language options"
-          className="absolute right-0 z-50 mt-2 max-h-80 w-56 overflow-y-auto rounded-xl border border-slate-200 bg-slate-50 p-1 shadow-xl shadow-black/10 dark:border-slate-700 dark:bg-slate-900 dark:shadow-black/40"
+          className="absolute right-0 z-50 mt-2 font-[family-name:var(--font-heading)] max-h-80 w-64 overflow-y-auto overflow-x-hidden rounded-xl border border-slate-200 bg-slate-50 p-1 shadow-xl shadow-black/10 dark:border-slate-700 dark:bg-slate-900 dark:shadow-black/40"
         >
           {LANGUAGES.map((lang) => (
             <button
@@ -106,9 +102,7 @@ export function LanguageSwitcher() {
                   : 'text-slate-700 dark:text-slate-200'
               }`}
             >
-              <span className="w-5 text-center text-base leading-none">
-                {flagOf(lang)}
-              </span>
+              <span className="text-base leading-none">{lang.flag}</span>
               <span>{lang.nativeLabel}</span>
               {lang.nativeLabel !== lang.label && (
                 <span className="ml-auto text-xs text-slate-400 dark:text-slate-500">

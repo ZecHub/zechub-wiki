@@ -42,7 +42,7 @@ export default function ZecPrice() {
   const up = (price.change ?? 0) >= 0;
   return (
     <div
-      className="hidden items-center gap-2 rounded-lg border border-slate-300 px-3 py-1.5 text-sm dark:border-slate-700 md:flex"
+      className="hidden items-center gap-2 font-[family-name:var(--font-heading)] rounded-lg border border-slate-300 px-3 py-1.5 text-sm dark:border-slate-700 md:flex"
       title="ZEC price in USD (24h change)"
     >
       <span className="font-medium text-slate-500 dark:text-slate-400">ZEC</span>
