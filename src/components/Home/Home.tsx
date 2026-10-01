@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -35,6 +35,11 @@ type HomeProps = {
   text: string;
 };
 
+// Artwork lives in /public/explore/{dark,light}/. A plain string is the same
+// file name in both folders; use {dark, light} when the names differ, and a
+// leading "/" for a full path (needed when a file sits in the other folder).
+type Art = string | { dark: string; light: string };
+
 type Item = {
   title: string;
   description: string;
@@ -43,7 +48,7 @@ type Item = {
   external?: boolean;
   tag?: string;
   // optional artwork under /public/explore/{dark,light}/, shown faintly
-  art?: string;
+  art?: Art;
 };
 
 type Feature = {
@@ -51,7 +56,7 @@ type Feature = {
   description: string;
   icon: LucideIcon;
   links: { label: string; href: string }[];
-  art?: string;
+  art?: Art;
 };
 
 type Group = {
@@ -87,6 +92,7 @@ const featured: Feature[] = [
     title: "Pick a wallet",
     description: "A wallet lets you receive and spend ZEC privately.",
     icon: Wallet,
+    art: "pick-a-wallet.png",
     links: [
       { label: "All wallets", href: "/wallets" },
       { label: "Mobile wallets", href: "/mobile-wallets" },
@@ -97,6 +103,7 @@ const featured: Feature[] = [
     title: "Use ZEC",
     description: "Get ZEC, send it, and find places that accept it.",
     icon: Coins,
+    art: "what-is-zcash.png",
     links: [
       { label: "Buying ZEC", href: "/using-zcash/buying-zec" },
       { label: "Transactions", href: "/using-zcash/transactions" },
@@ -231,6 +238,11 @@ const groups: Group[] = [
         description: "Projects submitted to the 2026 ZecHub Hackathon.",
         href: "/hackathon",
         icon: Trophy,
+        // the files are named the other way round: _w is the white art (for dark)
+        art: {
+          dark: "/explore/light/Hackathon_w.png",
+          light: "/explore/dark/Hackathon_b.png",
+        },
         tag: "Archive",
       },
     ],
@@ -335,14 +347,16 @@ function CardArt({
   art,
   place = "inset-y-0 right-0 h-full w-[55%]",
 }: {
-  art: string;
+  art: Art;
   place?: string;
 }) {
+  const dark = typeof art === "string" ? art : art.dark;
+  const light = typeof art === "string" ? art : art.light;
   const base = `pointer-events-none absolute ${place} object-contain object-right p-2 transition-opacity [mask-image:linear-gradient(to_left,black_35%,transparent_100%)]`;
   return (
     <>
       <Image
-        src={`/explore/dark/${art}`}
+        src={dark.startsWith("/") ? dark : `/explore/dark/${dark}`}
         alt=""
         aria-hidden="true"
         width={240}
@@ -351,7 +365,7 @@ function CardArt({
         className={`${base} hidden opacity-45 group-hover:opacity-60 dark:block`}
       />
       <Image
-        src={`/explore/light/${art}`}
+        src={light.startsWith("/") ? light : `/explore/light/${light}`}
         alt=""
         aria-hidden="true"
         width={240}
@@ -399,7 +413,6 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
 const Home = (_props: HomeProps) => {
   const { t } = useLanguage();
   const { dark } = useDarkModeContext();
-  const [query, setQuery] = useState("");
   const [variant, setVariant] = useState<"filled" | "outline">("filled");
   useEffect(() => {
     if (new URLSearchParams(window.location.search).get("cards") === "outline") {
@@ -407,23 +420,6 @@ const Home = (_props: HomeProps) => {
     }
   }, []);
   const styles = cardStyles[variant];
-
-  // The filter searches every group and hides the ones with no match.
-  const filteredGroups = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return groups
-      .map((group) => ({
-        ...group,
-        items: q
-          ? group.items.filter(
-              (item) =>
-                item.title.toLowerCase().includes(q) ||
-                item.description.toLowerCase().includes(q),
-            )
-          : group.items,
-      }))
-      .filter((group) => group.items.length > 0);
-  }, [query]);
 
   return (
     <main className="flex flex-col">
@@ -544,62 +540,38 @@ const Home = (_props: HomeProps) => {
           <SectionHeader
             title="More to Explore"
             subtitle="Guides, research, tools and the wider Zcash community."
-          >
-            <div className="relative w-full md:w-72">
-              <label htmlFor="topic-filter" className="sr-only">
-                Filter topics
-              </label>
-              <Search
-                aria-hidden="true"
-                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
-              />
-              <input
-                id="topic-filter"
-                type="search"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Filter topics"
-                className={`w-full rounded-lg border border-slate-300 bg-white py-2 pl-9 pr-3 text-slate-900 placeholder:text-slate-400 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 ${focusRing}`}
-              />
-            </div>
-          </SectionHeader>
+          />
 
-          {filteredGroups.length > 0 ? (
-            <div className="space-y-12">
-              {filteredGroups.map((group) => (
-                <div key={group.title}>
-                  <div className="mb-4">
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
-                      {group.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                      {group.subtitle}
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-1 gap-4 imd:grid-cols-2 lg:grid-cols-3">
-                    {group.items.map((item, i) => (
-                      <div
-                        key={item.title}
-                        className={
-                          // a lone last card is centred under the row of three
-                          group.items.length % 3 === 1 &&
-                          i === group.items.length - 1
-                            ? "lg:col-start-2"
-                            : ""
-                        }
-                      >
-                        <LinkCard item={item} styles={styles} />
-                      </div>
-                    ))}
-                  </div>
+          <div className="space-y-12">
+            {groups.map((group) => (
+              <div key={group.title}>
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                    {group.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                    {group.subtitle}
+                  </p>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-slate-500 dark:text-slate-400">
-              No topics match &ldquo;{query}&rdquo;.
-            </p>
-          )}
+                <div className="grid grid-cols-1 gap-4 imd:grid-cols-2 lg:grid-cols-3">
+                  {group.items.map((item, i) => (
+                    <div
+                      key={item.title}
+                      className={
+                        // a lone last card is centred under the row of three
+                        group.items.length % 3 === 1 &&
+                        i === group.items.length - 1
+                          ? "lg:col-start-2"
+                          : ""
+                      }
+                    >
+                      <LinkCard item={item} styles={styles} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
