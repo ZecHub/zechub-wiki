@@ -1046,7 +1046,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
       ref={headerRef}
       className="sticky top-0 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-200"
     >
-      <div className="mx-auto w-full max-w-372 px-2 md:px-4">
+      <div className="w-full px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between py-3 md:py-4">
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />

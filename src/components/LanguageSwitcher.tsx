@@ -6,6 +6,10 @@ import { useLanguage, LANGUAGES } from '@/context/LanguageContext';
 import { useRouter, usePathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 
+// English is shown without a flag (it isn't tied to one country).
+const flagOf = (lang: { code: string; flag: string }) =>
+  lang.code === 'en' ? '' : lang.flag;
+
 export function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const { locale, setLocale } = useLanguage();
@@ -17,12 +21,13 @@ export function LanguageSwitcher() {
 
   useLayoutEffect(() => {
     const lang = LANGUAGES.find((l) => l.code === locale) ?? LANGUAGES[0];
-    const text = `${lang.flag} ${lang.nativeLabel}`;
+    const flag = flagOf(lang);
+    const text = flag ? `${flag} ${lang.nativeLabel}` : lang.nativeLabel;
     if (desktopLabelRef.current) {
       desktopLabelRef.current.textContent = text;
     }
     if (mobileFlagRef.current) {
-      mobileFlagRef.current.textContent = lang.flag;
+      mobileFlagRef.current.textContent = flagOf(lang);
     }
   }, [locale]);
 
@@ -101,7 +106,9 @@ export function LanguageSwitcher() {
                   : 'text-slate-700 dark:text-slate-200'
               }`}
             >
-              <span className="text-base leading-none">{lang.flag}</span>
+              <span className="w-5 text-center text-base leading-none">
+                {flagOf(lang)}
+              </span>
               <span>{lang.nativeLabel}</span>
               {lang.nativeLabel !== lang.label && (
                 <span className="ml-auto text-xs text-slate-400 dark:text-slate-500">
