@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import ZcashStats from "./ZcashStats";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { socialNav } from "@/constants/navigation";
@@ -50,6 +51,7 @@ type Feature = {
   description: string;
   icon: LucideIcon;
   links: { label: string; href: string }[];
+  art?: string;
 };
 
 type Group = {
@@ -74,6 +76,7 @@ const featured: Feature[] = [
     title: "Learn",
     description: "What Zcash is, how its privacy works, and where to start.",
     icon: GraduationCap,
+    art: "start-here.png",
     links: [
       { label: "New user guide", href: "/start-here/new-user-guide" },
       { label: "What is Zcash?", href: "/start-here/what-is-zec-and-zcash" },
@@ -326,6 +329,40 @@ function SectionHeader({
   );
 }
 
+// Faint artwork behind a card: whole picture, right side, fading out towards
+// the text. `place` controls where it sits inside the card.
+function CardArt({
+  art,
+  place = "inset-y-0 right-0 h-full w-[55%]",
+}: {
+  art: string;
+  place?: string;
+}) {
+  const base = `pointer-events-none absolute ${place} object-contain object-right p-2 transition-opacity [mask-image:linear-gradient(to_left,black_35%,transparent_100%)]`;
+  return (
+    <>
+      <Image
+        src={`/explore/dark/${art}`}
+        alt=""
+        aria-hidden="true"
+        width={240}
+        height={240}
+        unoptimized
+        className={`${base} hidden opacity-45 group-hover:opacity-60 dark:block`}
+      />
+      <Image
+        src={`/explore/light/${art}`}
+        alt=""
+        aria-hidden="true"
+        width={240}
+        height={240}
+        unoptimized
+        className={`${base} opacity-30 group-hover:opacity-45 dark:hidden`}
+      />
+    </>
+  );
+}
+
 function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
   const Arrow = item.external ? ArrowUpRight : ArrowRight;
   return (
@@ -334,28 +371,7 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
       external={item.external}
       className={`group relative flex h-full flex-col gap-4 overflow-hidden p-5 ${styles.hover} ${styles.base} ${focusRing}`}
     >
-      {item.art ? (
-        <>
-          <Image
-            src={`/explore/dark/${item.art}`}
-            alt=""
-            aria-hidden="true"
-            width={240}
-            height={240}
-            unoptimized
-            className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-[55%] object-contain object-right p-2 opacity-45 transition-opacity [mask-image:linear-gradient(to_left,black_35%,transparent_100%)] group-hover:opacity-60 dark:block"
-          />
-          <Image
-            src={`/explore/light/${item.art}`}
-            alt=""
-            aria-hidden="true"
-            width={240}
-            height={240}
-            unoptimized
-            className="pointer-events-none absolute inset-y-0 right-0 h-full w-[55%] object-contain object-right p-2 opacity-30 transition-opacity [mask-image:linear-gradient(to_left,black_35%,transparent_100%)] group-hover:opacity-45 dark:hidden"
-          />
-        </>
-      ) : null}
+      {item.art ? <CardArt art={item.art} /> : null}
       <div className="flex items-start justify-between gap-3">
         <IconBadge icon={item.icon} />
         {item.tag ? (
@@ -466,6 +482,11 @@ const Home = (_props: HomeProps) => {
         </div>
       </section>
 
+      {/* Live chain numbers (hidden if the feed is unavailable) */}
+      <section id="stats" className={`${wrap} pt-10`}>
+        <ZcashStats className={`mb-12 ${styles.base}`} />
+      </section>
+
       {/* 1. Essentials for newcomers */}
       <section id="start" className={`${wrap} py-16 md:py-20`}>
         <SectionHeader
@@ -476,8 +497,14 @@ const Home = (_props: HomeProps) => {
           {featured.map((feature) => (
             <div
               key={feature.title}
-              className={`flex flex-col p-6 ${styles.base}`}
+              className={`group relative flex flex-col overflow-hidden p-6 ${styles.base}`}
             >
+              {feature.art ? (
+                <CardArt
+                  art={feature.art}
+                  place="right-0 top-0 h-[44%] w-[55%]"
+                />
+              ) : null}
               <IconBadge icon={feature.icon} />
               <h3 className="mt-5 text-xl font-semibold text-slate-900 dark:text-slate-100">
                 {feature.title}

@@ -916,3 +916,12 @@ body {
   line-height: 1.25;
   text-wrap: balance;
 }
+
+/* Headings: JetBrains Mono, loaded in layout.tsx as --font-heading */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading), ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
+}

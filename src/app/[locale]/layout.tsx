@@ -2,7 +2,8 @@ import { DarkModeProvider } from "@/provider/DarkModeProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { getDictionary } from "@/lib/getDictionary";
 import { Metadata } from "next";
-import { Inter } from "next/font/google";
+import AuroraBackground from "@/components/Background/AuroraBackground";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import NavigationWrapper from "@/components/NavigationWrapper";
 import SkipToContent from "@/components/SkipToContent";
@@ -19,6 +20,12 @@ import { searcher } from "@/constants/searcher";
 import { buildSearchIndex } from "@/lib/searchIndex";
 
 const inter = Inter({ subsets: ["latin"] });
+// Headings use JetBrains Mono (same choice as the Nym docs); body stays Inter.
+const headingFont = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
 
 // Organization structured data (schema.org), emitted once site-wide. `sameAs`
 // is sourced from the site's social navigation so it stays in sync with the
@@ -115,7 +122,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationJsonLd) }}
         />
       </head>
-      <body className={`px-0 ${inter.className} bg-white dark:bg-slate-900 dark:text-white`}>
+      <body className={`px-0 ${inter.className} ${headingFont.variable} bg-white dark:bg-slate-900 dark:text-white`}>
         {/* First focusable element on the page, so keyboard and screen-reader
             users can bypass the header, menus and search (WCAG 2.4.1). Rendered
             here rather than inside the providers so nothing precedes it in the
@@ -131,6 +138,7 @@ export default async function RootLayout({
             disableTransitionOnChange={true}
             enableColorScheme={true}
           >
+            <AuroraBackground />
             <LanguageProvider
               initialLocale={locale}
               initialDictionary={initialDictionary}
