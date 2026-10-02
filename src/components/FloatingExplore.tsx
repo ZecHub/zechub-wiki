@@ -106,7 +106,7 @@ export default function FloatingExplore() {
       )}
 
       <div
-        className="fixed bottom-8 right-8 z-50"
+        className="fixed bottom-8 right-8 z-50 lg:hidden"
         onMouseLeave={() => {
           if (!isMobile) {
             timeoutRef.current = setTimeout(() => setOpen(false), 150);
