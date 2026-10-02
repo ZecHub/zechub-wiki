@@ -348,6 +348,8 @@ const getTranslatedLabel = (
     searchName
   );
 };
+const ROW =
+  "rounded-md px-2.5 py-1.5 text-[13px] leading-snug text-nav-foreground transition-colors duration-150 hover:bg-[#1984c7]/10 hover:text-[#1984c7] dark:hover:bg-white/5 dark:hover:text-white";
 // ─── Flyout sub-menu item (extracted so hooks are always called at top level) ───
 const FlyoutLinkItem = ({
   link,
@@ -372,21 +374,19 @@ const FlyoutLinkItem = ({
   const label = getTranslatedLabel(parentItem.name, link.name, t, link.label);
   if (!link.links || link.links.length === 0) {
     return (
-      <div
-        className={`hover:bg-nav-hover-bg py-2 px-3 transition-colors duration-200 ${liStyle}`}
-      >
+      <div className="w-full">
         <Link
           prefetch
           href={link.path ?? "#"}
           onClick={onLinkClick}
-          className="flex items-center gap-2 text-sm w-full text-nav-foreground hover:text-nav-hover"
+          className={`flex w-full items-center gap-2.5 ${ROW}`}
           {...(link.newTab && { target: "_blank", rel: "noopener noreferrer" })}
         >
           {(link.icon || matchIcons(parentItem.name, link.name)) && (
             <Icon
               icon={link.icon ?? matchIcons(parentItem.name, link.name)}
-              size={link.name === "Wallets" ? 24 : "small"}
-              className="xl:w-6 w-4 h-4 xl:h-6"
+              size={16}
+              className="shrink-0 opacity-80"
             />
           )}
           {label}
@@ -402,22 +402,23 @@ const FlyoutLinkItem = ({
       onMouseLeave={closeFlyout}
     >
       <div
-        className={`flex items-center justify-between gap-2 text-sm w-full px-3 py-2 rounded-sm cursor-pointer text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
+        className={`flex w-full cursor-pointer items-center justify-between gap-2 ${ROW}`}
       >
-        <span className="flex items-center gap-2">
+        <span className="flex items-center gap-2.5">
           {(link.icon || matchIcons(parentItem.name, link.name)) && (
             <Icon
               icon={link.icon ?? matchIcons(parentItem.name, link.name)}
-              className="xl:w-5 w-4 h-4 xl:h-5 shrink-0"
+              size={16}
+              className="shrink-0 opacity-80"
             />
           )}
           {label}
         </span>
-        <ChevronRight className="h-3.5 w-3.5 shrink-0 opacity-60 rotate-180" />
+        <ChevronRight className="h-3.5 w-3.5 shrink-0 rotate-180 opacity-50" />
       </div>
       {flyoutOpen && (
         <div
-          className="absolute right-full top-0 z-[60] bg-slate-100 dark:bg-slate-900 shadow-xl border border-slate-200 dark:border-slate-700 min-w-[220px] p-1.5 rounded-sm"
+          className="absolute right-full top-0 z-[60] min-w-[250px] rounded-xl border border-slate-200 bg-slate-50 p-2 shadow-xl dark:border-white/10 dark:bg-slate-900"
           onMouseEnter={openFlyout}
           onMouseLeave={closeFlyout}
         >
@@ -427,7 +428,7 @@ const FlyoutLinkItem = ({
               key={`${child.name}-${idx}`}
               href={child.path ?? "#"}
               onClick={onLinkClick}
-              className={`flex items-center gap-2 text-sm w-full px-3 py-2 rounded-sm text-nav-foreground hover:text-nav-hover transition-colors duration-200 ${liStyle}`}
+              className={`flex w-full items-center gap-2.5 ${ROW}`}
               {...(child.newTab && {
                 target: "_blank",
                 rel: "noopener noreferrer",
@@ -436,7 +437,8 @@ const FlyoutLinkItem = ({
               {(child.icon || matchIcons(parentItem.name, child.name)) && (
                 <Icon
                   icon={child.icon ?? matchIcons(parentItem.name, child.name)}
-                  className="xl:w-5 w-4 h-4 xl:h-5 shrink-0"
+                  size={16}
+                  className="shrink-0 opacity-80"
                 />
               )}
               {getTranslatedLabel(parentItem.name, child.name, t, child.label)}
@@ -474,7 +476,44 @@ const GroupedLinks = ({
       onLinkClick={onLinkClick}
     />
   );
-  if (!sections) return <>{links.map(renderLink)}</>;
+  // Splits blocks into two balanced columns (heading counts as two rows).
+  const twoColumns = (blocks: { title: string; links: typeof links }[]) => {
+    const weight = (b: { links: typeof links }) => b.links.length + 2;
+    const total = blocks.reduce((sum, b) => sum + weight(b), 0);
+    const left: typeof blocks = [];
+    const right: typeof blocks = [];
+    let acc = 0;
+    blocks.forEach((b) => {
+      (acc < total / 2 ? left : right).push(b);
+      acc += weight(b);
+    });
+    return [left, right];
+  };
+  const heading = (title: string) => (
+    <p className="mb-1.5 border-b border-slate-200 px-2.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#1984c7] dark:border-white/10">
+      {t.menuLabels?.[title] || title}
+    </p>
+  );
+  const renderBlock = (b: { title: string; links: typeof links }) => (
+    <div key={b.title} className="mb-5 last:mb-0">
+      {heading(b.title)}
+      <div className="flex flex-col gap-0.5">{b.links.map(renderLink)}</div>
+    </div>
+  );
+
+  if (!sections) {
+    const half = Math.ceil(links.length / 2);
+    return (
+      <>
+        <div className="flex flex-col gap-0.5">
+          {links.slice(0, half).map(renderLink)}
+        </div>
+        <div className="flex flex-col gap-0.5">
+          {links.slice(half).map((l, k) => renderLink(l, k + half))}
+        </div>
+      </>
+    );
+  }
 
   const used = new Set<string>();
   const blocks = sections.map((section) => {
@@ -486,19 +525,27 @@ const GroupedLinks = ({
   });
   const rest = links.filter((l) => !used.has(l.name));
   if (rest.length > 0) blocks.push({ title: "More", links: rest });
+  const shown = blocks.filter((b) => b.links.length > 0);
 
+  if (shown.length === 1) {
+    const b = shown[0];
+    const half = Math.ceil(b.links.length / 2);
+    return (
+      <div className="col-span-2">
+        {heading(b.title)}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-0.5">
+          {b.links.slice(0, half).map(renderLink)}
+          {b.links.slice(half).map((l, k) => renderLink(l, k + half))}
+        </div>
+      </div>
+    );
+  }
+
+  const [left, right] = twoColumns(shown);
   return (
     <>
-      {blocks
-        .filter((b) => b.links.length > 0)
-        .map((b) => (
-          <div key={b.title}>
-            <p className="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              {t.menuLabels?.[b.title] || b.title}
-            </p>
-            {b.links.map(renderLink)}
-          </div>
-        ))}
+      <div>{left.map(renderBlock)}</div>
+      <div>{right.map(renderBlock)}</div>
     </>
   );
 };
@@ -506,14 +553,16 @@ const GroupedLinks = ({
 const Dropdown = ({
   label,
   children,
+  centered = false,
 }: {
   label: string;
   children: React.ReactNode;
+  centered?: boolean;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div
-      className="relative"
+      className={centered ? "" : "relative"}
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
@@ -524,8 +573,12 @@ const Dropdown = ({
         />
       </div>
       {isOpen && (
-        <div className="absolute top-full left-0 z-50 bg-slate-100 text-slate-700 dark:bg-slate-900 shadow-lg min-w-[600px] mt-0 grid grid-cols-2 items-start gap-x-2 gap-y-1 p-2 transition-all duration-150">
-          {children}
+        <div
+          className={`absolute top-full z-50 pt-2 ${centered ? "left-1/2 -translate-x-1/2" : "left-0"}`}
+        >
+          <div className="grid w-[min(720px,calc(100vw-2rem))] grid-cols-2 items-start gap-x-8 rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-700 shadow-2xl dark:border-white/10 dark:bg-slate-900 dark:text-slate-200">
+            {children}
+          </div>
         </div>
       )}
     </div>
@@ -1023,6 +1076,7 @@ const TopTabs = () => {
     >
       {menus.map((item) => (
         <Dropdown
+          centered
           key={item.name}
           label={getTranslatedLabel(item.name, item.label, t, item.label)}
         >
