@@ -572,6 +572,10 @@ const Home = (_props: HomeProps) => {
 
       {/* DAO, community and contribution in one band */}
       <section id="community" className={`${wrap} pb-24`}>
+        <SectionHeader
+          title="Get Involved"
+          subtitle="Join the DAO, meet the community and help build the wiki."
+        />
         <div
           className={`grid gap-8 p-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-slate-200 md:p-0 dark:md:divide-slate-700/60 ${styles.base}`}
         >
