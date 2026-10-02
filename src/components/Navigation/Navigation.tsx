@@ -476,26 +476,13 @@ const GroupedLinks = ({
       onLinkClick={onLinkClick}
     />
   );
-  // Splits blocks into two balanced columns (heading counts as two rows).
-  const twoColumns = (blocks: { title: string; links: typeof links }[]) => {
-    const weight = (b: { links: typeof links }) => b.links.length + 2;
-    const total = blocks.reduce((sum, b) => sum + weight(b), 0);
-    const left: typeof blocks = [];
-    const right: typeof blocks = [];
-    let acc = 0;
-    blocks.forEach((b) => {
-      (acc < total / 2 ? left : right).push(b);
-      acc += weight(b);
-    });
-    return [left, right];
-  };
   const heading = (title: string) => (
     <p className="mb-1.5 border-b border-slate-200 px-2.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#1984c7] dark:border-white/10">
       {t.menuLabels?.[title] || title}
     </p>
   );
   const renderBlock = (b: { title: string; links: typeof links }) => (
-    <div key={b.title} className="mb-5 last:mb-0">
+    <div key={b.title}>
       {heading(b.title)}
       <div className="flex flex-col gap-0.5">{b.links.map(renderLink)}</div>
     </div>
@@ -541,11 +528,22 @@ const GroupedLinks = ({
     );
   }
 
-  const [left, right] = twoColumns(shown);
+  // Blocks are laid out in rows of two so headings on the same row line up.
+  // The first half of the sections forms the left column, the rest the right.
+  const half = Math.ceil(shown.length / 2);
+  const rows = Array.from({ length: half }, (_, k) =>
+    [shown[k], shown[half + k]].filter(Boolean),
+  );
   return (
     <>
-      <div>{left.map(renderBlock)}</div>
-      <div>{right.map(renderBlock)}</div>
+      {rows.map((row, k) => (
+        <div
+          key={k}
+          className="col-span-2 mb-6 grid grid-cols-2 items-start gap-x-8 last:mb-0"
+        >
+          {row.map(renderBlock)}
+        </div>
+      ))}
     </>
   );
 };
