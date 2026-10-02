@@ -627,7 +627,7 @@ const Home = (_props: HomeProps) => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-200 dark:hover:border-[#1984c7]/70 dark:hover:text-white ${focusRing}`}
+                    className={`${ctaButton} gap-2 !px-3`}
                   >
                     <SocialIcon className="h-4 w-4" aria-hidden="true" />
                     {social.name}
