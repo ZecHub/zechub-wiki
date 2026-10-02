@@ -46,7 +46,7 @@
     "@supabase/supabase-js": "^2.117.2",
     "@tanstack/react-query": "^5.103.2",
     "@types/mdx": "^2.0.13",
-    "@visx/axis": "^3.12.0",
+    "@visx/axis": "^4.0.0",
     "@visx/event": "^3.3.0",
     "@visx/gradient": "^3.3.0",
     "@visx/grid": "^4.0.0",

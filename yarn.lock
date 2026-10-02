@@ -4076,19 +4076,17 @@
   resolved "https://registry.yarnpkg.com/@unrs/resolver-binding-win32-x64-msvc/-/resolver-binding-win32-x64-msvc-1.12.2.tgz#72da0da48d72b1e87831b9c0308931d3f4669027"
   integrity sha512-nAB74NfSNKknqQ1RrYj6uz8FcXEomu/MATJZxh/x+BArzN2U3JbOYC0APYzUIGhVY3m5hRxA8VPNdPBoG8txlA==
 
-"@visx/axis@^3.12.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@visx/axis/-/axis-3.12.0.tgz#3cd994cf727d7b8b60098aada344f3ebf28b8265"
-  integrity sha512-8MoWpfuaJkhm2Yg+HwyytK8nk+zDugCqTT/tRmQX7gW4LYrHYLXFUXOzbDyyBakCVaUbUaAhVFxpMASJiQKf7A==
+"@visx/axis@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@visx/axis/-/axis-4.0.0.tgz#7abab30fb929ed4eebbdafdc52beada6203bfc6b"
+  integrity sha512-cSPNO9Aic2UX49AmIeJJ9TQrrAkvUHpHOGqimUAXhbg07VI3HoHDKcXZdrjvQz+g0LhubrUkjj8Gwju2WZ3dtg==
   dependencies:
-    "@types/react" "*"
-    "@visx/group" "3.12.0"
-    "@visx/point" "3.12.0"
-    "@visx/scale" "3.12.0"
-    "@visx/shape" "3.12.0"
-    "@visx/text" "3.12.0"
+    "@visx/group" "4.0.0"
+    "@visx/point" "4.0.0"
+    "@visx/scale" "4.0.0"
+    "@visx/shape" "4.0.0"
+    "@visx/text" "4.0.0"
     classnames "^2.3.1"
-    prop-types "^15.6.0"
 
 "@visx/bounds@3.12.0":
   version "3.12.0"
@@ -4240,16 +4238,12 @@
     "@visx/vendor" "4.0.0"
     classnames "^2.3.1"
 
-"@visx/text@3.12.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@visx/text/-/text-3.12.0.tgz#2d023a6ac561557c5a7e7538bea4015d987e5238"
-  integrity sha512-0rbDYQlbuKPhBqXkkGYKFec1gQo05YxV45DORzr6hCyaizdJk1G+n9VkuKSHKBy1vVQhBA0W3u/WXd7tiODQPA==
+"@visx/text@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@visx/text/-/text-4.0.0.tgz#6c21687bf94bac0cf17618aa38ffcf6e6087c589"
+  integrity sha512-39f2goSaKy5Mqn89lRDGSJ1IMr49wplkbIFHsFI8cPnAPbguiJxYZ+ulizd7Vcsq2z/hytuGv3Lmk165zUiUYQ==
   dependencies:
-    "@types/lodash" "^4.14.172"
-    "@types/react" "*"
     classnames "^2.3.1"
-    lodash "^4.17.21"
-    prop-types "^15.7.2"
     reduce-css-calc "^1.3.0"
 
 "@visx/tooltip@^3.3.0":
@@ -9789,7 +9783,7 @@ pretty-format@^27.0.2:
     ansi-styles "^5.0.0"
     react-is "^17.0.1"
 
-prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
