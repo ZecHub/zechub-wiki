@@ -17,7 +17,6 @@ import {
   Landmark,
   Map as MapIcon,
   Play,
-  Search,
   Shield,
   Trophy,
   Users,
@@ -452,16 +451,6 @@ const Home = (_props: HomeProps) => {
             The community wiki for learning, using and building with{" "}
             <span className="font-medium text-[#1984c7]">Zcash</span>.
           </p>
-          <button
-            type="button"
-            onClick={() =>
-              window.dispatchEvent(new CustomEvent("zechub:open-search"))
-            }
-            className={`mx-auto mt-8 flex w-full max-w-xl items-center gap-3 rounded-xl border border-slate-300 bg-white px-4 py-3 text-left text-slate-500 transition-colors hover:border-[#1984c7] dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400 ${focusRing}`}
-          >
-            <Search aria-hidden="true" className="h-5 w-5 shrink-0" />
-            <span className="flex-1">Search the wiki or ask ZecHub AI</span>
-          </button>
           {variant === "filled" ? (
             <ul className="mt-8 flex flex-wrap justify-center gap-2">
               {["Open source", "Community-driven", "Education hub for Zcash"].map(
