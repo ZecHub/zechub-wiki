@@ -1019,7 +1019,7 @@ const TopTabs = () => {
   return (
     <nav
       aria-label="Main"
-      className="hidden flex-1 items-center justify-center gap-8 lg:flex"
+      className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 font-[family-name:var(--font-heading)] text-sm lg:flex"
     >
       {menus.map((item) => (
         <Dropdown
@@ -1085,7 +1085,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
       className="sticky top-0 w-full border-b border-slate-300 dark:border-slate-600 backdrop-blur supports-[backdrop-filter]:bg-nav-background/95 z-200"
     >
       <div className="w-full px-4 md:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-3 md:py-4">
+        <div className="relative flex items-center justify-between py-3 md:py-4">
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
