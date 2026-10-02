@@ -15,7 +15,7 @@
     {
       "title": "Post-Quantum Zcash with Daira-Emma Hopwood - ZconVI #zcash",
       "video_id": "T2B5f297d-Y",
-      "views": 2418
+      "views": 2419
     },
     {
       "title": "Coda Protocol: Using ZK-SNARKs for a Constant-Size Blockchain at Zcon0 (2018) by Izaak Meckler",
@@ -45,7 +45,7 @@
     {
       "title": "Zcash Sustainability and Resilience by Zooko Wilcox: Zcon4",
       "video_id": "Cy0rwBhlv10",
-      "views": 1516
+      "views": 1518
     },
     {
       "title": "Privacy is Crucial",
@@ -145,7 +145,7 @@
     {
       "title": "The State of Zcash in 2025 with Jack Gavigan - ZconVI 2025 #zcash",
       "video_id": "El59GnEA1FY",
-      "views": 953
+      "views": 955
     },
     {
       "title": "Tooling for building zkEVM: PIL and Circom - Jordi Baylina at Zcon3",
@@ -190,7 +190,7 @@
     {
       "title": "State of the Network Keynote at Zcon0 (2018) by Zooko Wilcox",
       "video_id": "IVjHDEDw_DQ",
-      "views": 808
+      "views": 809
     },
     {
       "title": "Auditing Cryptography: #Zcon2Lite",
@@ -645,7 +645,7 @@
     {
       "title": "Getting to Gilead: From Surveillance to Control by Michelle Lai: Zcon4",
       "video_id": "hdd5X2z7O3o",
-      "views": 316
+      "views": 317
     },
     {
       "title": "FROST: #Zcon2Lite",
@@ -765,7 +765,7 @@
     {
       "title": "Zebra Showcase w/ ZFND Engineering Team",
       "video_id": "WLzywPoFwsM",
-      "views": 267
+      "views": 268
     },
     {
       "title": "Zcash Arborist Call 10-30-2025",
@@ -1363,6 +1363,11 @@
       "views": 145
     },
     {
+      "title": "The Mobile Wallet Tarpit - Justin Smith",
+      "video_id": "cyGGJXvuHtQ",
+      "views": 144
+    },
+    {
       "title": "Guide to Asia Go-to-Market and Blockchain Community Formation - Joyce Yang",
       "video_id": "7SmkR6TJzyw",
       "views": 144
@@ -1371,11 +1376,6 @@
       "title": "Zcash Arborist Call 10/17/2024",
       "video_id": "7A5ttZqad5g",
       "views": 144
-    },
-    {
-      "title": "The Mobile Wallet Tarpit - Justin Smith",
-      "video_id": "cyGGJXvuHtQ",
-      "views": 143
     },
     {
       "title": "Zcash Foundation Grant Program Overview",
@@ -1778,6 +1778,11 @@
       "views": 76
     },
     {
+      "title": "Arborist Call 10-1-2026",
+      "video_id": "gJA1brRxnf4",
+      "views": 74
+    },
+    {
       "title": "Zcash Arborist Call 5/2/24",
       "video_id": "2K_hmx3obf4",
       "views": 71
@@ -1815,11 +1820,6 @@
     {
       "title": "Update on Crypto-Blockchain Policy Issues around the World with Kurt Opsahl- ZconV: Zcash Unified",
       "video_id": "50ogTrxWFIE",
-      "views": 62
-    },
-    {
-      "title": "Arborist Call 10-1-2026",
-      "video_id": "gJA1brRxnf4",
       "views": 62
     },
     {
