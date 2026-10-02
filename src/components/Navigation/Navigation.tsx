@@ -1054,14 +1054,6 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
             <ZecPrice />
             <LanguageSwitcher />
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setOpenSearch(true)}
-              className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
-            >
-              <Search className="h-5 w-5 md:h-6 md:w-6" />
-            </Button>
             <SearchBar
               openSearch={openSearch}
               setOpenSearch={setOpenSearch}
@@ -1079,36 +1071,6 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                 <Moon className="h-5 w-5 md:h-6 md:w-6" />
               )}
             </Button>
-            {mounted ? (
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
-                  >
-                    <Menu className="h-10 w-10" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent
-                  side="left"
-                  className="bg-nav-background border-nav-border min-h-screen w-[300px] sm:w-[350px] bg-slate-50 dark:bg-slate-900 z-201"
-                >
-                  <MobileNav closeMenu={() => setIsOpen(false)} />
-                </SheetContent>
-              </Sheet>
-            ) : (
-              <div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"
-                  aria-label="Open menu"
-                >
-                  <Menu className="h-10 w-10" />
-                </Button>
-              </div>
-            )}
           </div>
         </div>
         {moreOpen && (
