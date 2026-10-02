@@ -3,6 +3,11 @@
     "channelIcon": "https://yt3.ggpht.com/_i4r8T56T8HOHZk8w42FavaEagcFsK9DHohQvvMc-WbjblsFEG_yyzYeDXUEEGMgZ3B4LCdLtA=s800-c-k-c0x00ffffff-no-rj",
     "videos": [
         {
+            "title": "Um papo sobre autonomia, privacidade e o que significa ter a tecnologia realmente nas suas m\u00e3os.",
+            "video_id": "lNgRjS1FO-Y",
+            "views": 0
+        },
+        {
             "title": "Como Zakura Remove Gargalos da Sincroniza\u00e7\u00e3o",
             "video_id": "Z2f1B7bB_78",
             "views": 16
@@ -10,7 +15,7 @@
         {
             "title": "Protocol Study 9 | Hashes Curves and PRFs httpst",
             "video_id": "-3LaLTL4RFY",
-            "views": 2
+            "views": 8
         },
         {
             "title": "Conectando pa\u00edses, moedas e mercados para pagamentos com a facilidade de uma venda local.",
@@ -30,7 +35,7 @@
         {
             "title": "Como Fazer Bridge de ZEC Para Solana",
             "video_id": "78NKlajioL8",
-            "views": 102
+            "views": 104
         },
         {
             "title": "Como trocar ZEC por USDC no 0xramp (passo a passo)",
@@ -45,12 +50,12 @@
         {
             "title": "Desenvolvendo solu\u00e7\u00f5es para a liberdade financeira",
             "video_id": "gQ3w46Pwf-M",
-            "views": 174
+            "views": 175
         },
         {
             "title": "Regula\u00e7\u00e3o Cripto: Prote\u00e7\u00e3o ou Barreira de Entrada?",
             "video_id": "hghYei5wa6Q",
-            "views": 31
+            "views": 33
         },
         {
             "title": "Zcash Depois do Ironwood: Mais Seguran\u00e7a e UX Muito Melhor",
@@ -75,7 +80,7 @@
         {
             "title": "LiveZEC: doa\u00e7\u00f5es em Zcash na sua live (OBS) | Tutorial completo",
             "video_id": "NmfEKZtjQjY",
-            "views": 101
+            "views": 102
         },
         {
             "title": "Nas Trincheiras Web3",
@@ -90,7 +95,7 @@
         {
             "title": "Noir Wallet do zero: instalar, blindar e enviar ZEC",
             "video_id": "csSW8_3pBUw",
-            "views": 398
+            "views": 399
         },
         {
             "title": "IA, vigil\u00e2ncia e o case para Zcash",
@@ -140,7 +145,7 @@
         {
             "title": "Como Usar a Vizor Wallet Para Zcash",
             "video_id": "SqPIYvzsg5M",
-            "views": 297
+            "views": 298
         },
         {
             "title": "Aamandita: Sua Privacidade Financeira Deve Vir Primeiro",
@@ -645,7 +650,7 @@
         {
             "title": "O que o ex-CEO do Goldman Sachs falou sobre Zcash",
             "video_id": "AsiSVLndB-k",
-            "views": 74
+            "views": 75
         },
         {
             "title": "Zcash Protocol Walkthroug \u00a71.1\u20131.2 | Engineering #8",
@@ -705,7 +710,7 @@
         {
             "title": "Como Comprar ZEC com Fiat e Fazer Doa\u00e7\u00f5es Privadas com Cipherpay | Zec Insider",
             "video_id": "cQ5FvbijzMI",
-            "views": 27
+            "views": 28
         },
         {
             "title": "Conectando a nova gera\u00e7\u00e3o \u00e0 economia digital e ao universo Web3 com a Educar+",
@@ -3260,7 +3265,7 @@
         {
             "title": "Zcash PoW PoS H\u00edbrido",
             "video_id": "oV1PwQr5fAk",
-            "views": 15
+            "views": 16
         },
         {
             "title": "Zcash Shielded Call Vol.6 - Auditoria do Protocolo Orchard ZSA",
