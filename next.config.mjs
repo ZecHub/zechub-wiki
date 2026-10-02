@@ -14,6 +14,12 @@ const nextConfig = {
     'http://127.0.0.1:3000',
     // Add the exact origin from your error, or your LAN IP for phone testing
     // 'http://192.168.1.42:3000',
+    // Extra dev hosts (e.g. a Tailscale name) come from .env.local so they stay
+    // out of git: DEV_ORIGINS=my-mac.example.ts.net,other-host
+    ...(process.env.DEV_ORIGINS ?? "")
+      .split(",")
+      .map((o) => o.trim())
+      .filter(Boolean),
   ],
   // Images are self-hosted under /content-images/ and public/ (same-origin).
   // The only remote host kept is Wikimedia — a privacy-respecting source we

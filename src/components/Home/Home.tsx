@@ -277,6 +277,12 @@ const wrap = "mx-auto w-full max-w-6xl px-4 md:px-6";
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1984c7] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900";
 
+// Buttons in the closing "Get Involved" band: solid brand blue in light mode,
+// a tinted blue that sits quietly on the navy background in dark mode.
+const ctaButton = `inline-flex items-center justify-center rounded-lg border border-[#1984c7] bg-[#1984c7] px-4 py-2 text-center text-sm font-semibold text-white transition-colors hover:bg-[#1574af] dark:border-[#1984c7]/40 dark:bg-[#1984c7]/15 dark:text-[#9fd2f5] dark:hover:border-[#1984c7]/70 dark:hover:bg-[#1984c7]/25 dark:hover:text-white ${focusRing}`;
+const ctaRow =
+  "mt-5 grid grid-cols-[repeat(auto-fit,minmax(8.5rem,1fr))] gap-3";
+
 function SmartLink({
   href,
   external,
@@ -588,16 +594,16 @@ const Home = (_props: HomeProps) => {
               The community that governs ZecHub: its members, how decisions are
               made and open proposals.
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className={ctaRow}>
               <Link
                 href="/dao"
-                className={`rounded-lg bg-[#1984c7] px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
+                className={ctaButton}
               >
                 Meet the DAO
               </Link>
               <Link
                 href="/proposals"
-                className={`rounded-lg bg-[#1984c7] px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
+                className={ctaButton}
               >
                 Proposals
               </Link>
@@ -612,7 +618,7 @@ const Home = (_props: HomeProps) => {
             <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
               Follow ZecHub and talk with other Zcash users.
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-5 grid grid-cols-2 gap-3">
               {socialNav.map((social) => {
                 const SocialIcon = social.icon;
                 return (
@@ -621,7 +627,7 @@ const Home = (_props: HomeProps) => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-slate-700 dark:text-slate-200 ${focusRing}`}
+                    className={`inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-200 dark:hover:border-[#1984c7]/70 dark:hover:text-white ${focusRing}`}
                   >
                     <SocialIcon className="h-4 w-4" aria-hidden="true" />
                     {social.name}
@@ -640,16 +646,16 @@ const Home = (_props: HomeProps) => {
               ZecHub is community-driven. Add content, pick up a bounty or
               support the project.
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className={ctaRow}>
               <Link
                 href="/contribute/help-build-zechub"
-                className={`rounded-lg bg-[#1984c7] px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
+                className={ctaButton}
               >
                 Contribute
               </Link>
               <Link
                 href="/donation"
-                className={`rounded-lg bg-[#1984c7] px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#1574af] ${focusRing}`}
+                className={ctaButton}
               >
                 Donate
               </Link>
