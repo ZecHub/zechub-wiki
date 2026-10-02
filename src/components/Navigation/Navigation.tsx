@@ -1004,6 +1004,44 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
     <SocialIcons newTab={true} />
   </div>
 );
+// ─── Top tabs ─────────────────────────────────────────────────────────────────
+// A short row of menus for the long tail of pages. The home page already
+// highlights the main sections, so only the menus with many pages live here.
+const TAB_MENUS = ["Using Zcash", "Zcash Community", "Guides"];
+
+const TopTabs = () => {
+  const { t } = useLanguage();
+  const menus = TAB_MENUS.map((name) =>
+    navigations.find((n) => n.name === name),
+  ).filter((n): n is (typeof navigations)[number] => !!n && !!n.links);
+  const dao = navigations.find((n) => n.name === "DAO");
+  const noop = () => {};
+  return (
+    <nav
+      aria-label="Main"
+      className="hidden flex-1 items-center justify-center gap-8 lg:flex"
+    >
+      {menus.map((item) => (
+        <Dropdown
+          key={item.name}
+          label={getTranslatedLabel(item.name, item.label, t, item.label)}
+        >
+          <GroupedLinks item={item} t={t} onLinkClick={noop} />
+        </Dropdown>
+      ))}
+      {dao?.path ? (
+        <Link
+          prefetch
+          href={dao.path}
+          className="text-nav-foreground hover:text-nav-hover transition-colors duration-200 whitespace-nowrap"
+        >
+          {getTranslatedLabel(dao.name, dao.label, t, dao.label)}
+        </Link>
+      ) : null}
+    </nav>
+  );
+};
+
 const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
   const { theme, setTheme } = useTheme();
   const { t } = useLanguage();
@@ -1051,6 +1089,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
+          <TopTabs />
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
             <ZecPrice />
             <LanguageSwitcher />

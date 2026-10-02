@@ -27,6 +27,7 @@ import {
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import ZcashStats from "./ZcashStats";
+import VideoStrip from "./VideoStrip";
 import { useDarkModeContext } from "@/hooks/useDarkModeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { socialNav } from "@/constants/navigation";
@@ -529,6 +530,11 @@ const Home = (_props: HomeProps) => {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Latest videos from the ZecHub channel */}
+      <section id="videos" className={`${wrap} pb-16 md:pb-20`}>
+        <VideoStrip />
       </section>
 
       {/* 2. Everything else, grouped */}
