@@ -1157,6 +1157,14 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           </Link>
           <TopTabs />
           <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
+            <ZecPrice />
+            <LanguageSwitcher />
+            <SearchBar
+              openSearch={openSearch}
+              setOpenSearch={setOpenSearch}
+              searchItems={searchItems}
+            />
+            <div className="flex items-center gap-1">
             <button
               type="button"
               onClick={() => setOpenSearch(true)}
@@ -1169,13 +1177,6 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                 {isMac ? "⌘K" : "Ctrl K"}
               </kbd>
             </button>
-            <ZecPrice />
-            <LanguageSwitcher />
-            <SearchBar
-              openSearch={openSearch}
-              setOpenSearch={setOpenSearch}
-              searchItems={searchItems}
-            />
             <Button
               variant="ghost"
               size="sm"
@@ -1188,6 +1189,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                 <Moon className="h-5 w-5 md:h-6 md:w-6" />
               )}
             </Button>
+            </div>
           </div>
         </div>
         {moreOpen && (
