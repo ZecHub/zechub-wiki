@@ -1,43 +1,37 @@
 "use client";
 import { Link } from "@/i18n/navigation";
 import { ShopButton } from "../Shop-button/shop-button";
-import SocialIcons from "../UI/SocialIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 const Footer = () => {
   const { t } = useLanguage();
-  
+
   return (
-    <footer className=" shadow bg-[#1984c7] md:flex md:items-center md:flex-col py-3 text-white">
-      <div className="flex w-full mx-auto max-w-screen-xl justify-center items-center p-4 md:flex-col md:items-center md:justify-between my-8">
-        <ul className="flex flex-wrap items-center justify-center mt-3 text-sm font-medium sm:mt-0">
-          <li>
-            <ShopButton hasBorder={true} shopUrl="https://zechub.store" />
-          </li>
-        </ul>
-      </div>
-      <div className="flex justify-center flex-col my-3 space-y-1">
-        <span className="text-sm sm:text-center">
-          © {new Date().getFullYear()}{" "}
-          <Link
-            href="https://zechub.social/@Zechub"
-            rel="me"
-            className="hover:underline"
-          >
-            Zechub™
-          </Link>
-          . {t.footer?.allRightsReserved || "All Rights Reserved"}.
-        </span>
-        <span className="text-sm sm:text-center font-light text-slate-200">
-          <Link href={"/sitemap"} className="hover:underline">Sitemap</Link>
-          {" · "}
-          <Link href={"/privacy"} className="hover:underline">
-            {t.footer?.privacy || "Privacy"}
-          </Link>
-        </span>
-      </div>
-      <div className="w-full flex justify-center items-center my-3">
-        <SocialIcons newTab={true} />
+    <footer className="border-t border-slate-200 bg-slate-100 text-slate-600 dark:border-[#1984c7]/20 dark:bg-[#0b1626] dark:text-slate-400">
+      <div className="mx-auto flex w-full max-w-screen-xl flex-col items-center gap-6 px-4 py-8 md:flex-row md:justify-between md:px-6 lg:px-8">
+        <div className="flex flex-col items-center gap-1 text-sm md:items-start">
+          <span>
+            © {new Date().getFullYear()}{" "}
+            <Link
+              href="https://zechub.social/@Zechub"
+              rel="me"
+              className="font-medium text-slate-800 hover:underline dark:text-slate-200"
+            >
+              Zechub™
+            </Link>
+            . {t.footer?.allRightsReserved || "All Rights Reserved"}.
+          </span>
+          <span className="text-slate-500">
+            <Link href={"/sitemap"} className="hover:underline">
+              Sitemap
+            </Link>
+            {" · "}
+            <Link href={"/privacy"} className="hover:underline">
+              {t.footer?.privacy || "Privacy"}
+            </Link>
+          </span>
+        </div>
+        <ShopButton shopUrl="https://zechub.store" />
       </div>
     </footer>
   );
