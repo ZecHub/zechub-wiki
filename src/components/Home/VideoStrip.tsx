@@ -1,16 +1,28 @@
 "use client";
-import { useEffect, useState } from "react";
-import { ArrowUpRight, Play } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Play } from "lucide-react";
 
 type Video = { id: string; title: string; published?: string };
 
-// Want specific videos instead of the newest ones? List them here, e.g.
-//   { id: "REUbkLzK7J4", title: "Buy ZEC in Gemini Exchange" }
-// Leave empty to show the latest uploads from the ZecHub channel.
-const PINNED: Video[] = [];
+// Tutorials picked from the ZecHub Learning Library (zechub.wiki/zechub-tutorial).
+// Add or remove entries to change the carousel. If this list is empty the
+// component falls back to the newest uploads from the ZecHub channel.
+const PINNED: Video[] = [
+  { id: "5bx4GhQTi_8", title: "How to Try Zcash Shielded Transactions" },
+  { id: "G92zBIr-Wms", title: "Meet Zashi: A Brand New Wallet for Zcash" },
+  { id: "6IIRRZ17Q74", title: "Reviewing All Zcash Shielded Wallets" },
+  { id: "EMPiXi2zxok", title: "Shielding Your Zcash" },
+  { id: "3xyKKer1Qvk", title: "How to Buy and Use Zcash Orchard" },
+  { id: "tEfQaYPV0UE", title: "Useful Tips When Using Zcash" },
+  { id: "pMNk2A3NcKw", title: "How to Spend Your Zcash on Everyday Items" },
+  { id: "xeiaRc_QLKk", title: "Visualizing Zcash Addresses" },
+  { id: "Avweu5V9QRc", title: "Coinbase + Zashi: Buy Zcash and Shield Instantly" },
+  { id: "zu8nvr4FlXE", title: "Zenith Full Node Wallet Installation and Demo" },
+  { id: "qM0JWciwnNE", title: "How to Install Zebrad on Windows" },
+];
 
 const CHANNEL = "https://youtube.com/@zechub";
-const SHOWN = 3;
+const SHOWN = 8;
 
 const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1984c7] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900";
@@ -24,10 +36,10 @@ const fmtDate = (iso?: string) =>
       })
     : "";
 
-function VideoCard({ video }: { video: Video }) {
+function VideoCard({ video, className = "" }: { video: Video; className?: string }) {
   const [playing, setPlaying] = useState(false);
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-700/60 dark:bg-slate-800/50">
+    <div className={`overflow-hidden rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-700/60 dark:bg-slate-800/50 ${className}`}>
       <div className="relative aspect-video bg-slate-900">
         {playing ? (
           <iframe
@@ -73,10 +85,13 @@ function VideoCard({ video }: { video: Video }) {
   );
 }
 
-// "From the ZecHub channel": newest uploads (or the PINNED list). Hidden if the
-// feed can't be loaded, so the home never shows an empty box.
+// "Watch": a swipeable row of tutorials (the PINNED list, or the newest uploads
+// if it is empty). Hidden when there is nothing to show.
 export default function VideoStrip() {
   const [videos, setVideos] = useState<Video[]>(PINNED);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
 
   useEffect(() => {
     if (PINNED.length > 0) return;
@@ -94,7 +109,26 @@ export default function VideoStrip() {
     };
   }, []);
 
+  const update = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    setCanPrev(el.scrollLeft > 4);
+    setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  };
+  useEffect(() => {
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [videos.length]);
+
+  const scrollBy = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (el) el.scrollBy({ left: dir * el.clientWidth * 0.9, behavior: "smooth" });
+  };
+
   if (videos.length === 0) return null;
+
+  const arrow = `flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 text-slate-600 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-slate-300 disabled:hover:text-slate-600 dark:border-slate-700 dark:text-slate-300 ${focusRing}`;
 
   return (
     <div>
@@ -104,23 +138,61 @@ export default function VideoStrip() {
             Watch
           </h2>
           <p className="mt-2 text-slate-600 dark:text-slate-400">
-            {PINNED.length > 0 ? "Start with these videos." : "The latest from the ZecHub channel."}
+            {PINNED.length > 0
+              ? "Step-by-step video tutorials."
+              : "The latest from the ZecHub channel."}
           </p>
         </div>
-        <a
-          href={CHANNEL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`inline-flex shrink-0 items-center gap-1 rounded text-sm font-medium text-[#1984c7] hover:underline ${focusRing}`}
-        >
-          All videos <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-        </a>
+        <div className="flex shrink-0 items-center gap-3">
+          <a
+            href={CHANNEL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`hidden items-center gap-1 rounded text-sm font-medium text-[#1984c7] hover:underline imd:inline-flex ${focusRing}`}
+          >
+            All videos <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </a>
+          <button
+            type="button"
+            onClick={() => scrollBy(-1)}
+            disabled={!canPrev}
+            aria-label="Previous videos"
+            className={arrow}
+          >
+            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollBy(1)}
+            disabled={!canNext}
+            aria-label="Next videos"
+            className={arrow}
+          >
+            <ChevronRight className="h-5 w-5" aria-hidden="true" />
+          </button>
+        </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 imd:grid-cols-2 lg:grid-cols-3">
+      <div
+        ref={trackRef}
+        onScroll={update}
+        className="-mx-1 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
         {videos.map((v) => (
-          <VideoCard key={v.id} video={v} />
+          <VideoCard
+            key={v.id}
+            video={v}
+            className="w-[85%] shrink-0 snap-start imd:w-[calc(50%-0.5rem)] lg:w-[calc((100%-2rem)/3)]"
+          />
         ))}
       </div>
+      <a
+        href={CHANNEL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`mt-4 inline-flex items-center gap-1 rounded text-sm font-medium text-[#1984c7] hover:underline imd:hidden ${focusRing}`}
+      >
+        All videos <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+      </a>
     </div>
   );
 }

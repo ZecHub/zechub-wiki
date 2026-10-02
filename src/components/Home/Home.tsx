@@ -521,11 +521,6 @@ const Home = (_props: HomeProps) => {
         </div>
       </section>
 
-      {/* Latest videos from the ZecHub channel */}
-      <section id="videos" className={`${wrap} pb-16 md:pb-20`}>
-        <VideoStrip />
-      </section>
-
       {/* 2. Everything else, grouped */}
       <section
         id="topics"
@@ -568,6 +563,11 @@ const Home = (_props: HomeProps) => {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Video tutorials (carousel) */}
+      <section id="videos" className={`${wrap} pb-16 md:pb-20`}>
+        <VideoStrip />
       </section>
 
       {/* DAO, community and contribution in one band */}
