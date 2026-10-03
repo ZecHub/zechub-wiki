@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import ToolTabs from './ToolTabs'
 import ToolsBackdrop from './ToolsBackdrop'
 
@@ -9,11 +10,11 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: 'Zcash Developer Tools | ZecHub',
   description:
-    'ZEC/Zats converter, ZIP-321 payment request builder, unified address decoder, and block-time converter.',
+    'ZEC/Zats converter, ZIP-321 payment request builder, unified address decoder, block-time converter, and Crosslink testnet tools.',
   openGraph: {
     title: 'Zcash Developer Tools',
     description:
-      'Convert ZEC ↔ Zats, build ZIP-321 payment URIs, decode unified addresses, and convert block times.',
+      'Convert ZEC ↔ Zats, build ZIP-321 payment URIs, decode unified addresses, convert block times, and open Crosslink testnet tools.',
   },
 }
 
@@ -24,33 +25,29 @@ export default function ToolsPage() {
 
       <div className="relative w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 sm:pt-16 sm:pb-24">
         <div className="text-center mb-8 sm:mb-10">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-[#F4B728] to-[#d9a520] shadow-lg shadow-[#F4B728]/15 mb-4">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 2L3 7v10l9 5 9-5V7l-9-5z"
-                fill="#151e29"
-                fillOpacity="0.15"
-                stroke="#151e29"
-                strokeWidth="1.5"
-              />
-              <text
-                x="50%"
-                y="58%"
-                dominantBaseline="middle"
-                textAnchor="middle"
-                fontSize="11"
-                fontWeight="800"
-                fill="#151e29"
-              >
-                Z
-              </text>
-            </svg>
+          <div className="inline-flex items-center justify-center mb-4">
+            <Image
+              src="/ZecHubBlue.png"
+              alt="ZecHub"
+              width={72}
+              height={72}
+              priority
+              className="h-[72px] w-[72px] dark:hidden"
+            />
+            <Image
+              src="/zechubLogo-white.png"
+              alt="ZecHub"
+              width={72}
+              height={72}
+              priority
+              className="hidden h-[72px] w-[72px] dark:block"
+            />
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
             Zcash Tools
           </h1>
-          <p className="mt-2 text-sm sm:text-base text-zinc-500 dark:text-[#5a6a7e] max-w-sm mx-auto">
-            Convert, build payment requests, decode addresses, look up block times & claim testnet ZEC.
+          <p className="mt-2 text-sm sm:text-base text-zinc-500 dark:text-[#5a6a7e] max-w-lg mx-auto">
+            Convert, build payment requests, decode addresses, look up block times, claim testnet ZEC, and follow Crosslink.
           </p>
         </div>
 
