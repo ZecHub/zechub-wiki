@@ -69,8 +69,15 @@
       "activationHeight": 4134000,
       "status": "active",
       "activationDate": "Sat Jul 4 11:08:30 2026"
+    },
+    {
+      "id": "77190ad9",
+      "name": "NU7",
+      "activationHeight": 4465026,
+      "status": "pending",
+      "activationDate": "n/a"
     }
   ],
-  "lastUpdated": "2026-07-10",
+  "lastUpdated": "2026-10-03",
   "source": "getblockchaininfo"
 }
