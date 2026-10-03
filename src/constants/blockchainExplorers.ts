@@ -8,11 +8,11 @@ export const blockchainExplorers = [
     thumbnailImage: '/explorer/Blockchair.png',
   },
   {
-    title: 'Cipherscan',
+    title: 'ZecBlock',
     description:
-      'Zcash blockchain explorer that decodes the blockchain where privacy meets transparency. Features privacy metrics dashboard, shielded activity tracking, and real-time block monitoring.',
-    features: ['Privacy score metrics', 'shielded pool statistics', 'mainnet & testnet', 'live block updates', 'Orchard support'],
-    url: 'https://cipherscan.app/',
+      'Zcash blockchain explorer, formerly CipherScan. Blocks, transactions, shielded pools, mempool, and network data. Homepage cards stay in the browser. Ask ZecBlock (beta) answers from indexed public chain data. Old cipherscan.app links redirect here.',
+    features: ['Formerly CipherScan', 'shielded pool statistics', 'mainnet & testnet', 'mempool and Ironwood', 'Orchard support'],
+    url: 'https://zecblock.com/',
     thumbnailImage: '/explorer/Cipherscan.png',
   },
   {
