@@ -2,6 +2,20 @@
 
 import type { ReactNode } from "react";
 
+// ---------- Mainnet issuance snapshot ----------
+// 10.5M ZEC were issued by the first halving and 5.25M more by the second
+// (block 2,726,400); since then each block issues 1.5625 ZEC.
+export const SNAPSHOT_HEIGHT = 3_502_000; // 30 September 2026
+export const SNAPSHOT_LABEL = "30 Sep 2026";
+export const SECOND_HALVING_HEIGHT = 2_726_400;
+export const NEXT_HALVING_HEIGHT = 4_406_400;
+export const BLOCK_SUBSIDY_ZEC = 1.5625;
+export const MAX_MONEY_ZEC = 21_000_000;
+export const ISSUED_NOW_ZEC =
+  15_750_000 + (SNAPSHOT_HEIGHT - SECOND_HALVING_HEIGHT) * BLOCK_SUBSIDY_ZEC;
+export const RESERVE_NOW_ZEC = MAX_MONEY_ZEC - ISSUED_NOW_ZEC;
+export const fmtMillions = (zec: number) => `~${(zec / 1e6).toFixed(2)}M`;
+
 // ---------- Disclaimer ----------
 export function SandboxDisclaim({ children }: { children?: ReactNode }) {
   return (
