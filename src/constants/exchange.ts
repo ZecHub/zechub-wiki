@@ -109,6 +109,16 @@ const exchanges: Exchange[] = [
     logo: "/content-images/IMG-5725-7f964c1fdb.webp",
     altText: "Robinhood Logo",
   },
+  {
+    name: "SwissBorg",
+    url: "https://swissborg.com",
+    pairs: "ZEC swaps with supported fiat currencies and crypto assets",
+    // Draft: transparent-only policy is from the bounty; verify with a SwissBorg help page before merge.
+    support: "Transparent addresses only",
+    depositTime: "Not stated",
+    logo: "/content-images/swissborg-logo.png",
+    altText: "SwissBorg Logo",
+  },
 ];
 
 export default exchanges;
