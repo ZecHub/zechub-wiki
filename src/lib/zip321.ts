@@ -217,6 +217,27 @@ export function validateZip321Payment(payment: Zip321PaymentItem): {
 }
 
 /**
+ * Query-string builder for ZIP-321 URIs.
+ *
+ * ZIP 321 parameter values are RFC 3986 percent-encoded, where "+" is a
+ * literal character. URLSearchParams uses form encoding instead and turns a
+ * space into "+", so a label of "Coffee shop" reached wallets as
+ * "Coffee+shop". encodeURIComponent writes a space as "%20" and a literal
+ * "+" as "%2B", which every ZIP-321 parser decodes back to the original.
+ */
+class Zip321Query {
+  private readonly pairs: string[] = [];
+
+  append(name: string, value: string): void {
+    this.pairs.push(`${name}=${encodeURIComponent(value)}`);
+  }
+
+  toString(): string {
+    return this.pairs.join("&");
+  }
+}
+
+/**
  * Builds a ZIP-321 compliant URI from an array of payment items.
  * Supports single-recipient and multi-recipient requests.
  */
@@ -236,7 +257,7 @@ export function buildZip321Uri(payments: Zip321PaymentItem[]): string {
   // If single recipient: standard allows zcash:<address>?amount=... format or query-only format
   if (payments.length === 1) {
     const p = payments[0];
-    const params = new URLSearchParams();
+    const params = new Zip321Query();
 
     if (p.amount !== undefined && p.amount !== null && p.amount !== "") {
       params.append("amount", formatZecAmount(p.amount));
@@ -256,7 +277,7 @@ export function buildZip321Uri(payments: Zip321PaymentItem[]): string {
   }
 
   // Multi-recipient: index parameters (primary without suffix or with .0, subsequent with .1, .2, etc.)
-  const params = new URLSearchParams();
+  const params = new Zip321Query();
 
   payments.forEach((p, i) => {
     const idx = i === 0 ? "" : `.${i}`;
