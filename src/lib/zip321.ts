@@ -25,7 +25,8 @@ export interface Zip321PaymentItem {
 }
 
 /**
- * Checks if a Zcash address is transparent (t1, t3, tm) or TEX (ZIP-320).
+ * Checks if a Zcash address is transparent (P2PKH t1/tm, P2SH t3/t2) or
+ * TEX (ZIP-320).
  */
 export function isTransparentAddress(address: string): boolean {
   if (!address) return false;
@@ -34,9 +35,20 @@ export function isTransparentAddress(address: string): boolean {
     trimmed.startsWith("t1") ||
     trimmed.startsWith("t3") ||
     trimmed.startsWith("tm") ||
+    trimmed.startsWith("t2") ||
     trimmed.startsWith("tex1") ||
     trimmed.startsWith("textest1")
   );
+}
+
+/**
+ * Checks if an address is a Sprout address (Base58Check, 95 characters:
+ * "zc" on Mainnet, "zt" on Testnet). ZIP 321: "Sprout addresses MUST NOT
+ * be supported in payment requests."
+ */
+export function isSproutAddress(address: string): boolean {
+  if (!address) return false;
+  return /^z[ct][1-9A-HJ-NP-Za-km-z]{93}$/.test(address.trim());
 }
 
 /**
@@ -183,6 +195,13 @@ export function validateZip321Payment(payment: Zip321PaymentItem): {
 } {
   if (!payment.address || !payment.address.trim()) {
     return { valid: false, error: "Address is required" };
+  }
+
+  if (isSproutAddress(payment.address)) {
+    return {
+      valid: false,
+      error: "Sprout addresses are not supported in ZIP 321 payment requests",
+    };
   }
 
   if (payment.amount !== undefined && payment.amount !== null && payment.amount !== "") {
