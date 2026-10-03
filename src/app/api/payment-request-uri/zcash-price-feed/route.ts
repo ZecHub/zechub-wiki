@@ -3,7 +3,19 @@ import { NextRequest, NextResponse } from "next/server";
 import { priceFeedBodySchema } from "./schema/price-feed-body.schema";
 import { getZcashPrice } from "./utils/get-zec-price";
 
-const priceFeedUrl = String(process.env.BASE_URL_ZCASH_PRICE_FEED);
+// The upstream documented in .env.example. String(process.env.X) turned an
+// unset variable into the URL "undefined", so every lookup failed and this
+// route answered 503 on any deployment that didn't set it.
+const DEFAULT_PRICE_FEED_URL =
+  "https://api.diadata.org/v1/assetQuotation/Zcash/0x0000000000000000000000000000000000000000";
+
+function configuredUrl(value: string | undefined): string | undefined {
+  const v = value?.trim();
+  return v && v !== "undefined" && v !== "null" ? v : undefined;
+}
+
+const priceFeedUrl =
+  configuredUrl(process.env.BASE_URL_ZCASH_PRICE_FEED) ?? DEFAULT_PRICE_FEED_URL;
 
 function priceUnavailable() {
   return NextResponse.json(
