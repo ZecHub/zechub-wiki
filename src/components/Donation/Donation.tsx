@@ -16,7 +16,9 @@ const images = {
   namada: "/donation-isometric/i2_Namada_-_Isometric.png",
   ycash: "/donation-isometric/i3_Ycash_-_Isometric.png",
   penumbra: "/donation-isometric/i1_Penumbra_-_Isometric.png",
-  dash: "/donation-isometric/i5_Dash_-_Isometric.png",
+  // No isometric Dash artwork exists yet; the Dash logo stands in so the
+  // selection shows an image instead of a broken one.
+  dash: "/dash-logo.png",
 };
 
 const DonationComp = () => {
