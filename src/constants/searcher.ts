@@ -626,23 +626,8 @@ export const searcher: Searcher[] = [
   },
   {
     name: "Tutorials",
-    desc: "How to buy ZEC in Gemini",
-    url: "/tutorials/exchanges",
-  },
-  {
-    name: "Full Node Tutorials",
-    desc: "Full Nodes validate transparent and shielded transactions on the Network",
-    url: "/tutorials/full-node-tutorials",
-  },
-  {
-    name: "Shielding ZEC",
-    desc: "This video was created to show users how to shield their ZEC.",
-    url: "/tutorials/using-zcash",
-  },
-  {
-    name: "Wallet Tutorials",
-    desc: "Below are a list of wallet tutorials that can help you get started with ZEC.",
-    url: "/tutorials/wallet-tutorials",
+    desc: "Practical video guides for wallets, privacy, payments, development, and the wider Zcash ecosystem.",
+    url: "/zechub-tutorial",
   },
   {
     name: "Wallets",
