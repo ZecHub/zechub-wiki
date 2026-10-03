@@ -223,6 +223,26 @@ describe("LanguageSwitcher keyboard and pointer behavior", () => {
     await waitFor(() => expect(trigger()).toHaveFocus());
   });
 
+  it("keeps the query string when switching language", async () => {
+    // Page state such as the visualizer module (?module=) lives in the query
+    // string; usePathname() alone would drop it. The hash is not passed: the
+    // router already carries it over, and adding it again doubles it.
+    window.history.replaceState(null, "", "/dashboard?tab=charts#supply");
+    try {
+      const user = userEvent.setup();
+      renderPicker();
+      await user.click(trigger());
+
+      await user.click(option(/English/));
+
+      expect(mockReplace).toHaveBeenCalledWith("/dashboard?tab=charts", {
+        locale: "en",
+      });
+    } finally {
+      window.history.replaceState(null, "", "/");
+    }
+  });
+
   it("dismisses an outside click without stealing the clicked control's focus", async () => {
     const user = userEvent.setup();
     renderPicker();
