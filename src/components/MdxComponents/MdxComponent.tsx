@@ -55,7 +55,7 @@ const MdxComponents = {
       return (
         <a
           href={normalized}
-          className="font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 hover:underline scroll-mt-20"
+          className="font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 hover:underline scroll-mt-20 [overflow-wrap:anywhere]"
           onClick={handleClick}
           {...props}
         />
@@ -67,8 +67,10 @@ const MdxComponents = {
     // Protocol-relative URLs ("//host/...") start with "/" but are external;
     // only single-leading-slash app paths are internal.
     const isInternal = resolved.startsWith("/") && !resolved.startsWith("//");
+    // A bare URL as link text has no break opportunity, so on a phone it
+    // pushed the page wider than the screen; let it wrap when it must.
     const className =
-      "font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 underline decoration-dashed";
+      "font-medium text-blue-700 hover:text-blue-800 dark:text-blue-300 dark:hover:text-blue-200 underline decoration-dashed [overflow-wrap:anywhere]";
     // Internal links use the locale-aware next-intl Link so navigation stays
     // within the active locale (e.g. /it/...). External links open in a new tab.
     if (isInternal) {
