@@ -48,11 +48,23 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Missing data" }, { status: 400 });
   }
 
+  let width = 240;
+  if (dim) {
+    const parsedDim = parseInt(dim, 10);
+    if (isNaN(parsedDim) || parsedDim < 1 || parsedDim > 2000) {
+      return NextResponse.json(
+        { error: "Invalid size parameter" },
+        { status: 400 },
+      );
+    }
+    width = parsedDim;
+  }
+
   try {
     const qrCode = await QRCode.toDataURL(data, {
       margin: 1,
       scale: 10,
-      width: dim ? parseInt(dim) : 240,
+      width: width,
     });
     const base64 = qrCode.split(",")[1];
     const buffer = Buffer.from(base64, "base64");
