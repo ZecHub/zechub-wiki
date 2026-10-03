@@ -15,6 +15,14 @@ const nextConfig = {
     // Add the exact origin from your error, or your LAN IP for phone testing
     // 'http://192.168.1.42:3000',
   ],
+  // Next externalizes next-mdx-remote on the server by default (it is on
+  // Next's built-in serverExternalPackages list, for its RSC entry point).
+  // This app renders the client MDXRemote instead, and the externalized copy
+  // resolves node_modules/react rather than the React Next renders with, so
+  // its useState found no dispatcher and every MDX page failed server
+  // rendering ("Switched to client rendering", React error #419). Bundling it
+  // makes it use the same React.
+  transpilePackages: ["next-mdx-remote"],
   // Images are self-hosted under /content-images/ and public/ (same-origin).
   // The only remote host kept is Wikimedia — a privacy-respecting source we
   // deliberately don't vendor; a few exchange logos load it via next/image.
