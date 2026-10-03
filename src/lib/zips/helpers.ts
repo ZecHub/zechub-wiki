@@ -1,4 +1,4 @@
-import { format, parse } from "date-fns";
+import { format, isValid, parse } from "date-fns";
 import { Grant, GrantStatus } from "@/types/grants";
 import { CHART_COLORS } from "./chart-colors";
 
@@ -187,8 +187,12 @@ export function computeStats(grants: Grant[]) {
 function parseDateSafe(dateStr: string): Date | null {
   try {
     const trimmed = dateStr.trim();
-    // Try "d MMM yyyy" format
-    return parse(trimmed, "d MMM yyyy", new Date());
+    // The grants sheet contains both day-first and month-first payout dates.
+    for (const dateFormat of ["d MMM yyyy", "MMM d, yyyy"]) {
+      const date = parse(trimmed, dateFormat, new Date(2000, 0, 1));
+      if (isValid(date)) return date;
+    }
+    return null;
   } catch {
     return null;
   }
