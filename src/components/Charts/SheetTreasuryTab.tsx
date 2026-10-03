@@ -35,8 +35,9 @@ const TREASURY_ROW_DIVIDE =
 
 type FPFData = {
   Category: string[];
-  "Amount (ZEC)": number[];
-  Allocation: number[];
+  // Index-aligned with Category; a category with a blank cell is null here.
+  "Amount (ZEC)": (number | null)[];
+  Allocation: (number | null)[];
 };
 
 type PairSection = { title: string; body: Record<string, string> };
