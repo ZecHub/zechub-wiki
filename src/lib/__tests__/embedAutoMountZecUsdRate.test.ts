@@ -122,7 +122,7 @@ describe("embed auto-mount: zecUsdRate reference", () => {
     expect(w.document.querySelector(".zwg-amt")!.textContent).toContain(
       "$100.00 USD",
     );
-    expect(amtVal).toContain("2.000");
+    expect(amtVal).toBe("2ZEC");
   });
 
   it("5. falls back to the price-feed endpoint when data-zec-usd-rate is not supplied", async () => {

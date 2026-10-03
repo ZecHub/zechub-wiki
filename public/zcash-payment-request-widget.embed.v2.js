@@ -439,7 +439,11 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
             el(
               "p",
               "zwg-amt-val",
-              el("b", null, Number(amount).toFixed(3)),
+              // Show the exact amount the URI requests. Rounding for display
+              // (it used toFixed(3)) turned 0.0004 into "0.000" and
+              // 0.12345678 into "0.123", so anyone paying by hand from the
+              // copied address sent the wrong amount.
+              el("b", null, formattedAmount),
               el("small", null, "ZEC"),
             ),
             usdEl,
