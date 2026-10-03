@@ -53,6 +53,19 @@ const nextConfig = {
         destination: "/:locale/using-zcash/centralized-swaps",
         permanent: true,
       },
+      {
+        // The Arborist Calls archive was renamed from the misspelled
+        // /aborist-calls. That slug was the site's own nav link, so keep
+        // existing bookmarks and shared links working.
+        source: "/aborist-calls",
+        destination: "/arborist-calls",
+        permanent: true,
+      },
+      {
+        source: "/:locale/aborist-calls",
+        destination: "/:locale/arborist-calls",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
