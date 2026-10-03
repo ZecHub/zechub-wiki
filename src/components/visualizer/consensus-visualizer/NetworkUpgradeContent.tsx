@@ -19,14 +19,24 @@ export const NetworkUpgradeContent = () => {
       desc: "Unified addresses, new proofs",
     },
     {
-      name: "NU6 (Orchard)",
+      name: "NU6",
       year: "2024",
       desc: "Transition to a new, community-driven development funding model",
     },
     {
-      name: "NU6.1 (Orchard)",
+      name: "NU6.1",
       year: "2025",
-      desc: "Eighth major upgrade, enhancing governance, funding transparency, and technical stability and Full migration from legacy C++ node software (zcashd) to Zebrad, a Rust-based implementation.",
+      desc: "Community and coin-holder governance of development funding",
+    },
+    {
+      name: "NU6.2",
+      year: "2026",
+      desc: "Emergency fix that corrected the Orchard circuit",
+    },
+    {
+      name: "NU6.3 (Ironwood)",
+      year: "2026",
+      desc: "The Ironwood shielded pool and a public supply turnstile",
     },
   ];
 
