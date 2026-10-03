@@ -17,8 +17,7 @@ interface BlockchainInfo {
   market_cap_usd: number;
   market_price_usd: number;
   market_price_btc: number;
-  blocks: number;
-  transactions_24h: number;
+  volume_24h_usd: number;
 }
 
 const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
@@ -27,8 +26,7 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
     market_cap_usd: 0,
     market_price_usd: 0,
     market_price_btc: 0,
-    blocks: Math.floor(Math.random() * 2000000),
-    transactions_24h: 0,
+    volume_24h_usd: 0,
   });
   const [circulation, setCirculation] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
@@ -86,13 +84,14 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
         const coinInfo = data[name];
         // setCoinData(coinInfo);
 
-        // Mock blockchain data (replace with actual API calls)
+        // CoinGecko reports market data only: there is no block height or
+        // transaction count for these chains here, and usd_24h_vol is
+        // trading volume in USD.
         setBlockchainInfo({
           market_cap_usd: coinInfo?.usd_market_cap || 0,
           market_price_usd: coinInfo?.usd || 0,
           market_price_btc: coinInfo?.btc || 0,
-          blocks: Math.floor(Math.random() * 2000000),
-          transactions_24h: coinInfo?.usd_24h_vol || 0,
+          volume_24h_usd: coinInfo?.usd_24h_vol || 0,
         });
 
         setCirculation(
@@ -141,15 +140,9 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
         : "N/A",
     },
     {
-      label: "Blocks",
-      value: blockchainInfo?.blocks
-        ? blockchainInfo?.blocks.toLocaleString()
-        : "N/A",
-    },
-    {
-      label: "24h Transactions",
-      value: Number(blockchainInfo?.transactions_24h)
-        ? blockchainInfo?.transactions_24h.toLocaleString()
+      label: "24h Volume (USD)",
+      value: blockchainInfo?.volume_24h_usd
+        ? `$${blockchainInfo.volume_24h_usd.toLocaleString("en-US", { maximumFractionDigits: 0 })}`
         : "N/A",
     },
   ];
