@@ -49,6 +49,11 @@ export async function POST(req: NextRequest) {
   if (typeof uri !== "string" || uri.length === 0) {
     return jsonWithCors({ error: "Missing uri" }, 400);
   }
+  // The short link redirects to whatever is stored, so only accept payment
+  // URIs; anything else would turn it into an open redirect.
+  if (!uri.toLowerCase().startsWith("zcash:")) {
+    return jsonWithCors({ error: "uri must be a zcash: payment URI" }, 400);
+  }
   if (uri.length > MAX_URI_LENGTH) {
     return jsonWithCors(
       { error: `uri exceeds maximum length of ${MAX_URI_LENGTH} characters` },
@@ -59,8 +64,14 @@ export async function POST(req: NextRequest) {
   const shortId = nanoid(8);
   storeUri(shortId, uri);
 
-  const url = config.env.NEXT_PUBLIC_WIDGET_API_BASE_URL;
-  const shortUrl = `${url}/api/payment-request-uri/shorten/${shortId}`;
+  // The base already ends in /api (default "/api"), and the widget runs on
+  // other sites, so resolve it against this origin to hand back a link that
+  // works wherever it is pasted. [id]/route.ts serves it.
+  const base = config.env.NEXT_PUBLIC_WIDGET_API_BASE_URL.replace(/\/+$/, "");
+  const shortUrl = new URL(
+    `${base}/payment-request-uri/shorten/${shortId}`,
+    req.nextUrl.origin,
+  ).toString();
 
   return jsonWithCors({ shortUrl }, 200);
 }
