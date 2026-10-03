@@ -13,14 +13,17 @@ export function loadZcashPaymentUriWidget(src: string): Promise<void> {
   // Currently loading
   if (widgetPromise) return widgetPromise;
 
-  widgetPromise = new Promise((resolve, reject) => {
+  const attempt = new Promise<void>((resolve, reject) => {
     const existing = document.querySelector(
-      `script[src="${src}]`,
+      `script[src="${src.replace(/["\\]/g, "\\$&")}"]`,
     ) as HTMLScriptElement | null;
 
     if (existing) {
       existing.addEventListener("load", () => resolve());
-      existing.addEventListener("error", () => reject());
+      existing.addEventListener("error", () => {
+        existing.remove();
+        reject(new Error(`Failed to load ${src}`));
+      });
 
       return;
     }
@@ -30,9 +33,21 @@ export function loadZcashPaymentUriWidget(src: string): Promise<void> {
     script.async = true;
 
     script.onload = () => resolve();
-    script.onerror = reject;
+    script.onerror = () => {
+      // Drop the failed tag so the next attempt inserts a fresh one.
+      script.remove();
+      reject(new Error(`Failed to load ${src}`));
+    };
 
     document.body.appendChild(script);
+  });
+
+  // Cache only while loading or after success. Keeping a rejected promise
+  // made every later call, including the automatic retries and the Retry
+  // button, return the same failure until the page was reloaded.
+  widgetPromise = attempt.catch((err) => {
+    widgetPromise = null;
+    throw err;
   });
 
   return widgetPromise;
