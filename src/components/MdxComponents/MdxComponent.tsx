@@ -4,6 +4,7 @@ import React, { HTMLProps, JSX } from "react";
 import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import LiteYouTube from "@/components/LiteYouTube";
 import type { MDXComponents } from "mdx/types";
+import styles from "./MdxComponent.module.css";
 
 // Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
 // Requires a YouTube host first (no over-match of unrelated iframes).
@@ -89,76 +90,37 @@ const MdxComponents = {
   h1: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(props.children).trim();
     const id = slugify(text);
-    return <h1 id={id} className="text-4xl font-bold my-6 scroll-mt-20" {...props} />;
+    return <h1 id={id} className={styles.h1} {...props} />;
   },
   h2: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(props.children).trim();
     const id = slugify(text);
-    return <h2 id={id} className="text-3xl font-bold my-6 scroll-mt-20" {...props} />;
+    return <h2 id={id} className={styles.h2} {...props} />;
   },
   h3: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(props.children).trim();
     const id = slugify(text);
-    return <h3 id={id} className="text-2xl font-bold my-5 scroll-mt-20" {...props} />;
+    return <h3 id={id} className={styles.h3} {...props} />;
   },
 
-  // Code blocks — your exact tan styling
-  code: (props: HTMLProps<HTMLElement> & { className?: string }): JSX.Element => {
-    const isBlockCode = props.className?.includes("language-") ?? false;
-    if (isBlockCode) {
-      return (
-        <code
-          className={`font-mono text-sm bg-transparent !bg-transparent !p-0 !m-0 block w-full ${props.className || ""}`}
-          style={{ backgroundColor: "transparent" }}
-          {...props}
-        />
-      );
-    }
-    return (
-      <code
-        className="font-mono text-sm !inline-block !translate-y-[16px]"
-        {...props}
-      />
-    );
-  },
-
-  pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => (
-    <div className="relative group my-6">
-      <div className="absolute -top-3 left-4 z-10 px-3 py-1 
-        bg-amber-50 dark:bg-amber-950 
-        text-amber-800 dark:text-amber-300 
-        text-xs font-mono tracking-widest rounded border border-amber-200 dark:border-amber-800 shadow-sm">
-        Code-highlight
-      </div>
-      <pre
-        className="bg-amber-50 dark:bg-amber-950 !bg-amber-50 dark:!bg-amber-950 text-neutral-900 dark:text-neutral-100 p-5 pt-8 rounded-2xl overflow-x-auto border border-amber-200 dark:border-amber-900 font-mono text-sm leading-relaxed shadow-xl"
-        {...props}
-      />
+  code: ({ className, ...props }: HTMLProps<HTMLElement>): JSX.Element => (
+    <code {...props} className={[styles.code, className].filter(Boolean).join(" ")} />
+  ),
+  pre: ({ className, ...props }: HTMLProps<HTMLPreElement>): JSX.Element => (
+    <pre {...props} className={[styles.pre, className].filter(Boolean).join(" ")} />
+  ),
+  table: ({ className, ...props }: HTMLProps<HTMLTableElement>): JSX.Element => (
+    <div className={styles.tableScroll} tabIndex={0}>
+      <table {...props} className={[styles.table, className].filter(Boolean).join(" ")} />
     </div>
   ),
-
-  // === UPDATED: Beautiful amber-themed tables (matches your tan code blocks) ===
-  table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (
-    <div className="overflow-x-auto my-6">
-      <table 
-        className="min-w-full border-collapse text-sm bg-white dark:bg-neutral-900 rounded-xl overflow-hidden shadow-sm" 
-        {...props} 
-      />
-    </div>
+  thead: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => <thead {...props} />,
+  tr: (props: HTMLProps<HTMLTableRowElement>): JSX.Element => <tr {...props} />,
+  th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => <th scope="col" {...props} />,
+  td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => <td {...props} />,
+  blockquote: (props: HTMLProps<HTMLQuoteElement>): JSX.Element => (
+    <blockquote className={styles.quote} {...props} />
   ),
-  thead: (props: HTMLProps<HTMLTableSectionElement>): JSX.Element => (
-    <thead className="bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-100" {...props} />
-  ),
-  tr: (props: HTMLProps<HTMLTableRowElement>): JSX.Element => (
-    <tr className="border-b border-amber-200 dark:border-amber-900 hover:bg-amber-50 dark:hover:bg-neutral-800" {...props} />
-  ),
-  th: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
-    <th className="px-6 py-4 text-left font-semibold" {...props} />
-  ),
-  td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
-    <td className="px-6 py-4" {...props} />
-  ),
-  // =====================================================================
 
   // Everything else
   img: (props: HTMLProps<HTMLImageElement>): JSX.Element => (
@@ -188,10 +150,10 @@ const MdxComponents = {
     // <iframe> can't execute script (srcdoc is already stripped upstream).
     return <iframe {...props} sandbox="allow-same-origin allow-popups allow-forms" />;
   },
-  ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className="list-disc pl-6 my-4" {...props} />,
-  ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className="list-decimal pl-6 my-4" {...props} />,
+  ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => <ul className={styles.list} {...props} />,
+  ol: (props: React.ComponentProps<"ol">): JSX.Element => <ol className={`${styles.list} ${styles.orderedList}`} {...props} />,
   li: (props: HTMLProps<HTMLLIElement>): JSX.Element => <li {...props} />,
-  p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => <p className="my-4" {...props} />,
+  p: (props: HTMLProps<HTMLParagraphElement>): JSX.Element => <p className={styles.paragraph} {...props} />,
 } as MDXComponents;
 
 export default MdxComponents;
