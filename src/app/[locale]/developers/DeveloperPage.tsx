@@ -231,21 +231,21 @@ export default function DeveloperPage() {
     },
     {
       title:
-        t?.pages?.developers?.fundamentalsLinks?.nodesZcashd ??
-        "Nodes (zcashd)",
-      description:
-        t?.pages?.developers?.fundamentalsLinks?.nodesZcashdDesc ??
-        "Set up and manage Zcash nodes using zcashd.",
-      url: "https://zcash.github.io/zcash/",
-    },
-    {
-      title:
         t?.pages?.developers?.fundamentalsLinks?.nodesZebrad ??
         "Nodes (zebrad)",
       description:
-        t?.pages?.developers?.fundamentalsLinks?.nodesZebradDesc ??
-        "Explore Zebra, the Rust implementation of a Zcash consensus node.",
+        t?.pages?.developers?.fundamentalsLinks?.zebraNodeDesc ??
+        "Explore Zebra, the Rust Zcash consensus node that succeeded zcashd.",
       url: "https://zebra.zfnd.org/",
+    },
+    {
+      title:
+        t?.pages?.developers?.fundamentalsLinks?.zcashdEndOfLife ??
+        "zcashd end of life",
+      description:
+        t?.pages?.developers?.fundamentalsLinks?.zcashdEndOfLifeDesc ??
+        "zcashd halted at block 3,417,100 on July 18, 2026. Migration guidance for Zebra, Zakura and Zallet.",
+      url: "https://zcash.github.io/zcash/user/end-of-life.html",
     },
     {
       title:
