@@ -95,22 +95,15 @@ function formatTreasuryFieldDisplay(
   return value;
 }
 
-// NEW: Helper to scale any USD field using live price ratio (so Total USD Value, USD Reserved, etc. update live)
-function applyLivePriceToUSD(
+// Only current ZEC valuations move with its price; USD obligations stay fixed.
+function applyLiveZecPrice(
   fieldKey: string,
   value: string | number,
   multiplier: number
 ): string | number {
   if (multiplier === 1 || multiplier <= 0) return value;
 
-  // Only adjust fields that represent current USD values
-  const keyLower = fieldKey.toLowerCase();
-  if (
-    fieldKey === "Total USD Value" ||
-    fieldKey === "USD Reserved" ||
-    keyLower.includes("usd") ||
-    keyLower.includes("total usd")
-  ) {
+  if (fieldKey === "Total USD Value") {
     const n =
       typeof value === "number"
         ? value
@@ -259,7 +252,7 @@ export default function SheetTreasuryTab() {
       .then((data) => {
         if (!cancelled) {
           const price = data?.zcash?.usd;
-          if (typeof price === "number" && Number.isFinite(price)) {
+          if (typeof price === "number" && Number.isFinite(price) && price > 0) {
             setLiveZecPrice(price);
             setPriceError(null);
           } else {
@@ -286,7 +279,7 @@ export default function SheetTreasuryTab() {
   const { header, fpf, fpfNumericBlocks, pairSections, paidOut, toBePaid } =
     useMemo(() => extractSections(rows ?? []), [rows]);
 
-  // NEW: Sheet price + multiplier so ALL other $ prices scale to live ZEC price
+  // Revalue ZEC holdings from the sheet's quote to the live quote.
   const sheetZecPrice = useMemo(() => {
     if (!header) return 0;
     const p = header["Zcash Price"];
@@ -299,40 +292,35 @@ export default function SheetTreasuryTab() {
     return liveZecPrice / sheetZecPrice;
   }, [liveZecPrice, sheetZecPrice]);
 
-  // NEW: Override Zcash Price + scale every other USD field in header (Total USD Value, USD Reserved, etc.)
   const displayHeader = useMemo(() => {
     if (!header) return null;
     const adjusted: Record<string, string | number> = { ...header };
-    // live price override (exactly as before)
     if (liveZecPrice !== null) {
       adjusted["Zcash Price"] = liveZecPrice.toString();
     }
-    // scale every USD field with live multiplier
-    Object.keys(adjusted).forEach((k) => {
-      adjusted[k] = applyLivePriceToUSD(k, adjusted[k], priceMultiplier);
-    });
     return adjusted;
-  }, [header, liveZecPrice, priceMultiplier]);
+  }, [header, liveZecPrice]);
 
-  // NEW: Scale USD fields inside FPF balances & reserves blocks too
+  // The FPF balance is ZEC, but its reserved dollar obligations are fixed.
   const adjustedFpfNumericBlocks = useMemo(() => {
     if (priceMultiplier === 1) return fpfNumericBlocks;
     return fpfNumericBlocks.map((block) => {
       const adjustedBlock: Record<string, number> = { ...block };
       Object.keys(adjustedBlock).forEach((k) => {
-        adjustedBlock[k] = Number(applyLivePriceToUSD(k, adjustedBlock[k], priceMultiplier)) as number;
+        adjustedBlock[k] = Number(applyLiveZecPrice(k, adjustedBlock[k], priceMultiplier)) as number;
       });
       return adjustedBlock;
     });
   }, [fpfNumericBlocks, priceMultiplier]);
 
-  // NEW: Scale USD fields inside pair sections too
+  // UM and NAM balances retain their own sheet valuations.
   const adjustedPairSections = useMemo(() => {
     if (priceMultiplier === 1) return pairSections;
     return pairSections.map(({ title, body }) => {
+      if (!("Total ZEC Remaining" in body)) return { title, body };
       const adjustedBody: Record<string, string> = { ...body };
       Object.keys(adjustedBody).forEach((k) => {
-        adjustedBody[k] = String(applyLivePriceToUSD(k, adjustedBody[k], priceMultiplier));
+        adjustedBody[k] = String(applyLiveZecPrice(k, adjustedBody[k], priceMultiplier));
       });
       return { title, body: adjustedBody };
     });
@@ -550,7 +538,7 @@ export default function SheetTreasuryTab() {
           </CardContent>
         </Card>
       )}
-      {adjustedFpfNumericBlocks.length > 0 && (  // NEW: now uses adjusted blocks so USD fields update live
+      {adjustedFpfNumericBlocks.length > 0 && (
         <div>
           <h3 className="text-lg font-semibold mb-4">
             FPF balances &amp; reserves
@@ -576,7 +564,7 @@ export default function SheetTreasuryTab() {
           </div>
         </div>
       )}
-      {adjustedPairSections.length > 0 && (  // NEW: now uses adjusted sections so any USD fields update live
+      {adjustedPairSections.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {adjustedPairSections.map(({ title, body }) => (
             <Card key={title} className={TREASURY_CARD}>
