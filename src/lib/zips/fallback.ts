@@ -50,7 +50,8 @@ const RAW: ZipTuple[] = [
   [226, "Transfer and Burn of Zcash Shielded Assets", "Draft", ["nu7", "consensus"]],
   [227, "Issuance of Zcash Shielded Assets", "Draft", ["nu7", "consensus"]],
   [228, "Asset Swaps for Zcash Shielded Assets", "Reserved", ["consensus"]],
-  [230, "Version 6 Transaction Format", "Draft", ["nu7", "consensus"]],
+  [229, "Version 6 Transaction Format", "Draft", ["consensus"]],
+  [230, "Withdrawn Version 6 Transaction Format", "Withdrawn", ["consensus"]],
   [231, "Memo Bundles", "Draft", ["nu7", "consensus"]],
   [233, "Network Sustainability Mechanism: Removing Funds From Circulation", "Draft", ["nu7", "funding"]],
   [234, "Network Sustainability Mechanism: Issuance Smoothing", "Draft", ["nu7", "funding"]],
@@ -125,7 +126,7 @@ const RAW: ZipTuple[] = [
   [2002, "Explicit Fees", "Draft", ["nu7", "consensus"]],
   [2003, "Disallow version 4 transactions", "Draft", ["nu7", "consensus"]],
   [2004, "Remove the dependency of consensus on note encryption", "Draft", ["consensus"]],
-  [2005, "Orchard Quantum Recoverability", "Draft", ["consensus"]],
+  [2005, "Ironwood Quantum Recoverability", "Proposed", ["consensus"]],
 ];
 
 export const FALLBACK_ZIPS: Zip[] = RAW.map(([num, title, status, tags]) => ({
