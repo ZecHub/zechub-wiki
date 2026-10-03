@@ -2,7 +2,7 @@ import MdxContainer from "@/components/MdxContainer";
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { Link } from "@/i18n/navigation";
-import { isKnownContentPath } from "@/lib/contentPaths";
+import { isKnownContentPath, resolveManifestContentPath } from "@/lib/contentPaths";
 import {
   getFileContentCached,
   getLocalizedFileContentCached,
@@ -151,8 +151,10 @@ export async function generateMetadata({
     });
   }
 
-  let contentUrl = getDynamicRoute(slug);
-  if (isResearchArticle && !isResearchSeries) {
+  const enMenuTitles = await getMenuTitlesCached("en");
+  const manifestContentUrl = resolveManifestContentPath(slug, Object.keys(enMenuTitles));
+  let contentUrl = manifestContentUrl ?? getDynamicRoute(slug);
+  if (!manifestContentUrl && isResearchArticle && !isResearchSeries) {
     const rootsRaw = await getRootCached(`/site/${slug[0]}`).catch(() => []);
     const roots = Array.isArray(rootsRaw) ? rootsRaw : [];
     contentUrl = resolveResearchArticleContentUrl(slug, roots);
@@ -240,7 +242,8 @@ export default async function Page(props: {
   // covers what has been translated, so it would under-report folders.
   const manifestPaths = Object.keys(enMenuTitles ?? {});
 
-  const url = getDynamicRoute(slug);
+  const manifestContentUrl = resolveManifestContentPath(slug, manifestPaths);
+  const url = manifestContentUrl ?? getDynamicRoute(slug);
   const urlRoot = `/site/${slug[0]}`;
 
   const isResearchIndex = slug.length === 1 && slug[0] === "research";
@@ -461,7 +464,7 @@ export default async function Page(props: {
       roots = Array.isArray(rootsRaw) ? rootsRaw : [];
 
       // Research article path resolution lives in resolveResearchArticleContentUrl().
-      if (isResearchArticle && !isResearchSeries) {
+      if (!manifestContentUrl && isResearchArticle && !isResearchSeries) {
         contentUrl = resolveResearchArticleContentUrl(slug, roots);
       }
 

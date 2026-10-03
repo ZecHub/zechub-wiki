@@ -1,3 +1,17 @@
+import { keyToWikiPath } from "@/lib/wikiPaths";
+
+/** Recover exact directory and filename casing before trying slug transforms. */
+export function resolveManifestContentPath(
+  slug: readonly string[],
+  manifestKeys: readonly string[],
+): string | null {
+  const target = ("/" + slug.join("/")).toLowerCase();
+  const key = manifestKeys.find(
+    (key) => keyToWikiPath(key).toLowerCase() === target,
+  );
+  return key === undefined ? null : `/site/${key}`;
+}
+
 /**
  * Does a wiki URL name anything the content manifest knows about?
  *
@@ -7,11 +21,9 @@
  * answers HTTP 200 with an empty placeholder instead of a 404.
  *
  * The menu-titles manifest lists every content file, so a URL is known if it
- * matches a file or any folder above one. That keeps two cases on their
- * current path: real folders such as /guides/frostdemo, and articles that the
- * route already fails to render for unrelated reasons (several nested ones
- * land on the browse view today). Only URLs the manifest has never heard of
- * are treated as missing.
+ * matches a file or any folder above one. Real folders such as
+ * /guides/frostdemo remain browsable; only URLs the manifest has never heard
+ * of are treated as missing.
  */
 
 /** Manifest keys are Title_Case_With_Underscores, URLs are kebab-case. */

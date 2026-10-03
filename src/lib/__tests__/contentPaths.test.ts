@@ -48,9 +48,7 @@ describe("isKnownContentPath", () => {
   });
 
   it("recognises the article files themselves", () => {
-    // Several nested articles land on the browse view today for unrelated
-    // reasons. They are real content, so they keep that behaviour rather than
-    // becoming 404s.
+    // Real nested articles remain known even when a content read is unavailable.
     expect(isKnownContentPath(["zcash-tech", "lightwallet-nodes"], keys)).toBe(
       true,
     );
