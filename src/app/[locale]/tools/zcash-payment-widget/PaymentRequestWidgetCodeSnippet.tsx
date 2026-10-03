@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useEffect, useRef, useState } from "react";
 import { config } from "./config";
+import { absoluteUrl, buildEmbedSnippet } from "./embedSnippet";
 interface Config {
   address: string;
   amount: number;
@@ -23,17 +24,13 @@ export default function PaymentRequestWidgetCodeSnippet({ config }: Props) {
 
   const disabled = String(config.disabled);
 
-  const snippet = `<script
-  src=${API_BASE_URL_EMBED_CODE} 
-  data-address="${config.address}"
-  data-amount="${config.amount}"
-  data-zec-usd-rate="${config.zecUsdRate}"
-  data-label="${config.label}"
-  data-theme="${config.theme}"
-  data-target="${config.target}"
-  data-disabled="${disabled}"
-  data-api-base="${config.apiBase}"
-></script>`;
+  // The snippet runs on the merchant's site, so its URLs must be absolute.
+  const [origin, setOrigin] = useState("https://zechub.wiki");
+  useEffect(() => setOrigin(window.location.origin), []);
+  const scriptSrc = absoluteUrl(API_BASE_URL_EMBED_CODE, origin);
+  const apiBase = absoluteUrl(config.apiBase, origin);
+
+  const snippet = buildEmbedSnippet(config, API_BASE_URL_EMBED_CODE, origin);
 
   const handleCopy = async () => {
     try {
@@ -132,7 +129,7 @@ export default function PaymentRequestWidgetCodeSnippet({ config }: Props) {
               {"\n"}
               {"  "}
               <span className="text-zcash-gold">src</span>=
-              <span className="text-green-400">{API_BASE_URL_EMBED_CODE}</span>
+              <span className="text-green-400">"{scriptSrc}"</span>
               {"\n"}
               {"  "}
               <span className="text-zcash-gold">data-address</span>=
@@ -156,7 +153,7 @@ export default function PaymentRequestWidgetCodeSnippet({ config }: Props) {
               {"\n"} <span className="text-zcash-gold"> data-theme</span>=
               <span className="text-green-400">"{config.theme}"</span>
               {"\n"} <span className="text-zcash-gold"> data-api-base</span>=
-              <span className="text-green-400">"{config.apiBase}"</span>
+              <span className="text-green-400">"{apiBase}"</span>
               {"\n"} <span className="text-zcash-gold"> data-target</span>=
               <span className="text-green-400">"{config.target}"</span>
               {"\n"} <span className="text-zcash-gold"> data-disabled</span>=

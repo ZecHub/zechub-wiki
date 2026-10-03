@@ -1,5 +1,7 @@
-function publicEnv(name: string, fallback: string): string {
-  const value = process.env[name];
+// Takes the value, not the variable name: Next.js inlines NEXT_PUBLIC_* only
+// where the code spells out process.env.NEXT_PUBLIC_..., so looking one up
+// by a computed key is always undefined in the browser and fell back here.
+function publicEnv(value: string | undefined, fallback: string): string {
   if (!value || value === "undefined" || value === "null") {
     return fallback;
   }
@@ -14,11 +16,11 @@ export const config = {
       process.env.ACCESS_CONTROL_ALLOW_ORIGIN ?? "",
     ),
     NEXT_PUBLIC_WIDGET_API_BASE_URL: publicEnv(
-      "NEXT_PUBLIC_WIDGET_API_BASE_URL",
+      process.env.NEXT_PUBLIC_WIDGET_API_BASE_URL,
       "/api",
     ),
     NEXT_PUBLIC_API_BASE_URL_EMBED_CODE: publicEnv(
-      "NEXT_PUBLIC_API_BASE_URL_EMBED_CODE",
+      process.env.NEXT_PUBLIC_API_BASE_URL_EMBED_CODE,
       "/zcash-payment-request-widget.embed.v2.js",
     ),
   },
