@@ -35,6 +35,19 @@ export const searcher: Searcher[] = [
     ],
   },
   {
+    name: "Start Here Wizard",
+    desc: "Answer two quick questions and get a short, ordered reading path for getting started with Zcash.",
+    url: "/start-here/wizard",
+    aliases: [
+      "quick start",
+      "getting started",
+      "onboarding",
+      "beginners guide",
+      "where do I start",
+      "new here",
+    ],
+  },
+  {
     name: "Using this Wiki",
     desc: "Some of this might be overwhelming. We get it! There is a lot of information here.",
     url: "/start-here/using-this-wiki",

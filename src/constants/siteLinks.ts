@@ -87,6 +87,7 @@ export const SITE_LINKS: SiteLinkSection[] = [
       { label: "Developers", href: "/developers" },
       { label: "Brand", href: "/zcash-organizations/brand" },
       { label: "Wallets", href: "/wallets" },
+      { label: "Start Here Wizard", href: "/start-here/wizard" },
       { label: "Sitemap", href: "/sitemap/" },
       {
         label: "Tutorials",
@@ -215,6 +216,7 @@ export const SITE_LINKS: SiteLinkSection[] = [
       { label: "Buying ZEC", href: "/using-zcash/buying-zec" },
       { label: "Faucets", href: "/using-zcash/faucets" },
       { label: "Wallets", href: "/wallets" },
+      { label: "Start Here Wizard", href: "/start-here/wizard" },
       { label: "Metamask Snap", href: "/using-zcash/metamask-snap" },
       { label: "Exchanges", href: "/dex" },
       {
