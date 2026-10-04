@@ -8,9 +8,11 @@ type Video = { id: string; title: string; published?: string };
 // Add or remove entries to change the carousel. If this list is empty the
 // component falls back to the newest uploads from the ZecHub channel.
 const PINNED: Video[] = [
-  { id: "5bx4GhQTi_8", title: "How to Try Zcash Shielded Transactions" },
-  { id: "G92zBIr-Wms", title: "Meet Zashi: A Brand New Wallet for Zcash" },
+  { id: "J1Nr1VL5dGU", title: "What is Zcash? (Zcash Media)" },
+  { id: "Lb5Bvl1GkRQ", title: "ZEC Bounties Explained - Earn ZEC by Contributing" },
+  { id: "qM0JWciwnNE", title: "How to Install Zebrad on Windows" },
   { id: "6IIRRZ17Q74", title: "Reviewing All Zcash Shielded Wallets" },
+  { id: "gSeECj4ddYA", title: "How to Buy NymVPN with Zcash (ZEC)" },
   { id: "EMPiXi2zxok", title: "Shielding Your Zcash" },
   { id: "3xyKKer1Qvk", title: "How to Buy and Use Zcash Orchard" },
   { id: "tEfQaYPV0UE", title: "Useful Tips When Using Zcash" },
@@ -18,7 +20,6 @@ const PINNED: Video[] = [
   { id: "xeiaRc_QLKk", title: "Visualizing Zcash Addresses" },
   { id: "Avweu5V9QRc", title: "Coinbase + Zashi: Buy Zcash and Shield Instantly" },
   { id: "zu8nvr4FlXE", title: "Zenith Full Node Wallet Installation and Demo" },
-  { id: "qM0JWciwnNE", title: "How to Install Zebrad on Windows" },
 ];
 
 const CHANNEL = "https://youtube.com/@zechub";
@@ -76,7 +77,7 @@ function VideoCard({ video, className = "" }: { video: Video; className?: string
           {video.title}
         </h3>
         {video.published ? (
-          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+          <p className="mt-1 text-sm text-slate-700 dark:text-slate-200">
             {fmtDate(video.published)}
           </p>
         ) : null}
@@ -128,7 +129,7 @@ export default function VideoStrip() {
 
   if (videos.length === 0) return null;
 
-  const arrow = `flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 text-slate-600 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-slate-300 disabled:hover:text-slate-600 dark:border-slate-700 dark:text-slate-300 ${focusRing}`;
+  const arrow = `flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 text-slate-600 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-slate-300 disabled:hover:text-slate-600 dark:border-slate-700 dark:text-slate-200 ${focusRing}`;
 
   return (
     <div>
@@ -137,7 +138,7 @@ export default function VideoStrip() {
           <h2 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-3xl">
             Watch
           </h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-300">
+          <p className="mt-2 text-slate-700 dark:text-slate-200">
             {PINNED.length > 0
               ? "Step-by-step video tutorials."
               : "The latest from the ZecHub channel."}
