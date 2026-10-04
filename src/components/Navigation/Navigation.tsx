@@ -1058,7 +1058,7 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
 // ─── Top tabs ─────────────────────────────────────────────────────────────────
 // A short row of menus for the long tail of pages. The home page already
 // highlights the main sections, so only the menus with many pages live here.
-const TAB_MENUS = ["Using Zcash", "Zcash Community", "Guides"];
+const TAB_MENUS = ["Using Zcash", "Zcash Community", "Guides", "Data"];
 
 const TopTabs = () => {
   const { t } = useLanguage();
@@ -1070,7 +1070,7 @@ const TopTabs = () => {
   return (
     <nav
       aria-label="Main"
-      className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 font-[family-name:var(--font-heading)] text-sm lg:flex"
+      className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 font-[family-name:var(--font-heading)] text-sm lg:flex"
     >
       {menus.map((item) => (
         <Dropdown

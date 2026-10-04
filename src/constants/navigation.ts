@@ -16,7 +16,20 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench, Map, Gem, BookOpenText, KeyRound } from "lucide-react";
+import {
+  Wrench,
+  Map,
+  Gem,
+  BookOpenText,
+  KeyRound,
+  LayoutDashboard,
+  SlidersHorizontal,
+  Network,
+  Layers,
+  ShieldCheck,
+  Blocks,
+  Hash,
+} from "lucide-react";
 import { FcVoicePresentation } from "react-icons/fc";
 import { FaUserAstronaut } from "react-icons/fa";
 
@@ -455,6 +468,34 @@ export const navigations: Array<NavigationItem> = [
     ],
   },
   {
+    name: "Data",
+    label: "Data",
+    icon: LayoutDashboard,
+    links: [
+      { name: "Ecosystem Dashboard", path: "/dashboard", icon: LayoutDashboard },
+      {
+        name: "Protocol Parameters",
+        path: "/protocol-parameters",
+        icon: SlidersHorizontal,
+      },
+      { name: "All Visualizers", path: "/visualizer", icon: BsPlay },
+      {
+        name: "Network & Infrastructure",
+        path: "/zcash-infrastructure-visualizer",
+        icon: Network,
+      },
+      { name: "Value Pools", path: "/zcash-pool-visualizer", icon: Layers },
+      {
+        name: "zk-SNARK Proofs",
+        path: "/zksnark-proof-visualizer",
+        icon: ShieldCheck,
+      },
+      { name: "Consensus", path: "/visualizer/consensus", icon: Blocks },
+      { name: "Hash Function", path: "/visualizer/hash-function", icon: Hash },
+      { name: "Zcash Keys", path: "/visualizer/zcash-key", icon: KeyRound },
+    ],
+  },
+  {
     name: "Governance",
     label: "Governance",
     icon: RiGovernmentLine,
@@ -598,6 +639,24 @@ export const menuSections: Record<string, MenuSection[]> = {
     {
       title: "Governance & security",
       items: ["Zcash Governance", "ZCAP", "Zcash Ecosystem Security"],
+    },
+  ],
+  Data: [
+    {
+      title: "Dashboards",
+      items: ["Ecosystem Dashboard", "Protocol Parameters"],
+    },
+    {
+      title: "Visualizers",
+      items: ["All Visualizers", "Network & Infrastructure", "Value Pools"],
+    },
+    {
+      title: "Protocol",
+      items: ["zk-SNARK Proofs", "Consensus"],
+    },
+    {
+      title: "Cryptography",
+      items: ["Hash Function", "Zcash Keys"],
     },
   ],
   Guides: [

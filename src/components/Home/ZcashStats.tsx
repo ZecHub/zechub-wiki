@@ -103,10 +103,10 @@ export default function ZcashStats({ className = "" }: { className?: string }) {
   const shieldedPct = (stats.shielded / stats.circulation) * 100;
 
   const label =
-    "font-[family-name:var(--font-heading)] text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400";
+    "font-[family-name:var(--font-heading)] text-xs uppercase tracking-widest text-slate-600 dark:text-slate-300";
   const value =
     "mt-2 font-[family-name:var(--font-heading)] text-2xl font-semibold tabular-nums text-slate-900 dark:text-slate-50 md:text-3xl";
-  const sub = "mt-1 text-sm text-slate-600 dark:text-slate-400";
+  const sub = "mt-1 text-sm text-slate-600 dark:text-slate-300";
 
   return (
     <div
@@ -117,7 +117,7 @@ export default function ZcashStats({ className = "" }: { className?: string }) {
         <p className={label}>Circulating supply</p>
         <p className={value}>
           {fmt(circulation)}{" "}
-          <span className="text-base font-medium text-slate-500 dark:text-slate-400">
+          <span className="text-base font-medium text-slate-600 dark:text-slate-300">
             ZEC
           </span>
         </p>
@@ -138,7 +138,7 @@ export default function ZcashStats({ className = "" }: { className?: string }) {
         <p className={label}>Shielded supply</p>
         <p className={value}>
           {fmt(shielded)}{" "}
-          <span className="text-base font-medium text-slate-500 dark:text-slate-400">
+          <span className="text-base font-medium text-slate-600 dark:text-slate-300">
             ZEC
           </span>
         </p>

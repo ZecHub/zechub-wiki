@@ -337,7 +337,7 @@ function SectionHeader({
           {title}
         </h2>
         {subtitle ? (
-          <p className="mt-2 max-w-xl text-slate-600 dark:text-slate-400">
+          <p className="mt-2 max-w-xl text-slate-600 dark:text-slate-300">
             {subtitle}
           </p>
         ) : null}
@@ -395,7 +395,7 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
       <div className="flex items-start justify-between gap-3">
         <IconBadge icon={item.icon} />
         {item.tag ? (
-          <span className="rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-500 dark:border-slate-700 dark:text-slate-400">
+          <span className="rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-500 dark:border-slate-700 dark:text-slate-300">
             {item.tag}
           </span>
         ) : null}
@@ -408,7 +408,7 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
             className="h-4 w-4 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:text-[#1984c7]"
           />
         </h4>
-        <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+        <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
           {item.description}
         </p>
       </div>
@@ -453,7 +453,7 @@ const Home = (_props: HomeProps) => {
             className="mx-auto mb-8 h-auto w-full max-w-2xl"
           />
           <h1 className="sr-only">ZecHub</h1>
-          <p className="mx-auto max-w-xl text-lg text-slate-600 dark:text-slate-400 md:text-xl">
+          <p className="mx-auto max-w-xl text-lg text-slate-600 dark:text-slate-300 md:text-xl">
             The community wiki for learning, using and building with{" "}
             <span className="font-medium text-[#1984c7]">Zcash</span>.
           </p>
@@ -501,7 +501,7 @@ const Home = (_props: HomeProps) => {
               <h3 className="mt-5 text-xl font-semibold text-slate-900 dark:text-slate-100">
                 {feature.title}
               </h3>
-              <p className="mb-6 mt-2 text-slate-600 dark:text-slate-400">
+              <p className="mb-6 mt-2 text-slate-600 dark:text-slate-300">
                 {feature.description}
               </p>
               <ul
@@ -545,7 +545,7 @@ const Home = (_props: HomeProps) => {
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
                     {group.title}
                   </h3>
-                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
                     {group.subtitle}
                   </p>
                 </div>
@@ -590,7 +590,7 @@ const Home = (_props: HomeProps) => {
             <h2 className="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-50">
               ZecHub DAO
             </h2>
-            <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               The community that governs ZecHub: its members, how decisions are
               made and open proposals.
             </p>
@@ -615,7 +615,7 @@ const Home = (_props: HomeProps) => {
             <h2 className="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-50">
               Join the community
             </h2>
-            <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               Follow ZecHub and talk with other Zcash users.
             </p>
             <div className="mt-5 grid grid-cols-2 gap-3">
@@ -642,7 +642,7 @@ const Home = (_props: HomeProps) => {
             <h2 className="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-50">
               Help build ZecHub
             </h2>
-            <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            <p className="mt-1 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               ZecHub is community-driven. Add content, pick up a bounty or
               support the project.
             </p>

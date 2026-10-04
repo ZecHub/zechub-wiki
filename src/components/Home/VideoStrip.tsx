@@ -76,7 +76,7 @@ function VideoCard({ video, className = "" }: { video: Video; className?: string
           {video.title}
         </h3>
         {video.published ? (
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
             {fmtDate(video.published)}
           </p>
         ) : null}
@@ -137,7 +137,7 @@ export default function VideoStrip() {
           <h2 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50 md:text-3xl">
             Watch
           </h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">
+          <p className="mt-2 text-slate-600 dark:text-slate-300">
             {PINNED.length > 0
               ? "Step-by-step video tutorials."
               : "The latest from the ZecHub channel."}
