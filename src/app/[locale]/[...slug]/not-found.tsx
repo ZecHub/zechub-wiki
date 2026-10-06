@@ -40,7 +40,7 @@ export default async function NotFound() {
 
       <Link
         href="/"
-        className="mt-10 inline-flex items-center rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-hover"
+        className="mt-10 inline-flex items-center rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-on-brand transition-colors hover:bg-brand-hover"
       >
         ← Back to home
       </Link>

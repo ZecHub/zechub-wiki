@@ -84,6 +84,44 @@ function rehypeStripDangerous() {
   };
 }
 
+// Content HTML such as <p><a><p>…</p></a></p> nests a paragraph inside a
+// paragraph, which is invalid HTML and makes React throw a hydration error
+// ("<p> cannot be a descendant of <p>"). A <p> found inside another <p> is
+// turned into a block <span> (same spacing, valid inside a paragraph).
+function rehypeFlattenNestedParagraphs() {
+  return (tree: any) => {
+    const walk = (node: any, inParagraph: boolean) => {
+      let inside = inParagraph;
+      const isElement = node.type === "element" && node.tagName === "p";
+      const isJsx =
+        (node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement") &&
+        node.name === "p";
+      if (isElement || isJsx) {
+        if (inParagraph) {
+          if (isElement) {
+            const props = node.properties || {};
+            const cls = Array.isArray(props.className) ? props.className : [];
+            node.tagName = "span";
+            node.properties = { ...props, className: [...cls, "block", "my-5"] };
+          } else {
+            node.name = "span";
+            node.attributes = [
+              ...(node.attributes || []),
+              { type: "mdxJsxAttribute", name: "className", value: "block my-5" },
+            ];
+          }
+        } else {
+          inside = true;
+        }
+      }
+      if (Array.isArray(node.children)) {
+        for (const child of node.children) walk(child, inside);
+      }
+    };
+    walk(tree, false);
+  };
+}
+
 const LazyMdxComponent = React.lazy(() => import("@/components/MdxRenderer"));
 
 export async function generateMetadata({
@@ -594,6 +632,7 @@ export default async function Page(props: {
         ],
         // Runs AFTER rehypeRaw so it sees the parsed raw-HTML nodes.
         rehypeStripDangerous,
+        rehypeFlattenNestedParagraphs,
       ],
     },
   });

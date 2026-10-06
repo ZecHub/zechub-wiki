@@ -61,7 +61,7 @@ export function LanguageSwitcher() {
         type="button"
         key={locale}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 font-[family-name:var(--font-heading)] rounded-lg border border-slate-300 px-3 py-1.5 text-slate-700 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1984c7] dark:border-slate-700 dark:text-slate-200 cursor-pointer"
+        className="flex items-center gap-2 font-[family-name:var(--font-heading)] rounded-lg border border-slate-300 px-3 py-1.5 text-slate-700 transition-colors hover:border-brand hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand dark:border-slate-700 dark:text-slate-200 cursor-pointer"
         aria-label="Select language"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
@@ -98,7 +98,7 @@ export function LanguageSwitcher() {
               onClick={() => handleSelect(lang.code)}
               className={`flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-slate-200/70 dark:hover:bg-slate-800 ${
                 lang.code === locale
-                  ? 'font-semibold text-[#1984c7]'
+                  ? 'font-semibold text-brand'
                   : 'text-slate-700 dark:text-slate-200'
               }`}
             >

@@ -7,7 +7,7 @@ const Footer = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-slate-200 bg-slate-100 text-slate-600 dark:border-[#1984c7]/20 dark:bg-[#0b1626] dark:text-slate-200">
+    <footer className="border-t border-slate-200 bg-slate-100 text-slate-600 dark:border-brand/20 dark:bg-surface dark:text-slate-200">
       <div className="mx-auto flex w-full max-w-screen-xl flex-col items-center gap-6 px-4 py-8 md:flex-row md:justify-between md:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-1 text-sm md:items-start">
           <span>

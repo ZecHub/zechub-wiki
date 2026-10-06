@@ -9,6 +9,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // next-mdx-remote is loaded natively from node_modules during SSR, so it gets
+  // its own copy of React and crashes with "Cannot read properties of null
+  // (reading 'useState')". Bundling it with the app shares Next's React.
+  transpilePackages: ["next-mdx-remote"],
   allowedDevOrigins: [
     'http://localhost:3000',
     'http://127.0.0.1:3000',

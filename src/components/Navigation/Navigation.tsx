@@ -7,6 +7,8 @@ import type { ComponentProps } from "react";
 import DropdownMobile from "../DropdownMobile/DropdownMobile";
 import ZecPrice from "./ZecPrice";
 import SearchBar from "../SearchBar";
+import { usePathname } from "next/navigation";
+import ColorThemePicker from "../ColorThemePicker";
 import Logo from "../UI/Logo";
 import { Sheet, SheetContent, SheetTrigger } from "../UI/Sheet";
 import SocialIcons from "../UI/SocialIcons";
@@ -349,7 +351,7 @@ const getTranslatedLabel = (
   );
 };
 const ROW =
-  "rounded-md px-2.5 py-1.5 text-[13px] leading-snug text-nav-foreground transition-colors duration-150 hover:bg-[#1984c7]/10 hover:text-[#1984c7] dark:hover:bg-white/5 dark:hover:text-white";
+  "rounded-md px-2.5 py-1.5 text-[13px] leading-snug text-nav-foreground transition-colors duration-150 hover:bg-brand/10 hover:text-brand dark:hover:bg-white/5 dark:hover:text-white";
 // ─── Flyout sub-menu item (extracted so hooks are always called at top level) ───
 const FlyoutLinkItem = ({
   link,
@@ -477,7 +479,7 @@ const GroupedLinks = ({
     />
   );
   const heading = (title: string) => (
-    <p className="mb-1.5 border-b border-slate-200 px-2.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#1984c7] dark:border-white/10">
+    <p className="mb-1.5 border-b border-slate-200 px-2.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand dark:border-white/10">
       {t.menuLabels?.[title] || title}
     </p>
   );
@@ -830,7 +832,7 @@ const NavLinks = ({
           asChild
           variant="default"
           size="default"
-          className="zebra-hover bg-brand hover:bg-brand-hover text-white font-medium shadow-sm"
+          className="zebra-hover bg-brand hover:bg-brand-hover text-on-brand font-medium shadow-sm"
           onMouseMove={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -856,7 +858,7 @@ const NavLinks = ({
           asChild
           variant="default"
           size="default"
-          className="zebra-hover bg-brand hover:bg-brand-hover text-white font-medium shadow-sm"
+          className="zebra-hover bg-brand hover:bg-brand-hover text-on-brand font-medium shadow-sm"
           onMouseMove={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -1060,6 +1062,58 @@ const MobileNav = ({ closeMenu }: { closeMenu: () => void }) => (
 // highlights the main sections, so only the menus with many pages live here.
 const TAB_MENUS = ["Using Zcash", "Zcash Community", "Guides", "Data"];
 
+// Icon-only shortcut in the top bar: label tooltip, current-page state and an
+// "opens in a new tab" hint for external links.
+const IconTab = ({
+  href,
+  label,
+  external = false,
+  children,
+}: {
+  href: string;
+  label: string;
+  external?: boolean;
+  children: React.ReactNode;
+}) => {
+  const pathname = usePathname() ?? "";
+  const active = !external && pathname.split("/").includes(href.slice(1));
+  const cls =
+    "group relative flex h-9 w-9 items-center justify-center rounded-lg transition-colors duration-200 hover:bg-brand/10 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand " +
+    (active ? "bg-brand/10 text-brand" : "text-nav-foreground");
+  const tip = (
+    <span
+      role="tooltip"
+      className="pointer-events-none absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-xs font-medium text-slate-50 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100 dark:bg-slate-100 dark:text-slate-900"
+    >
+      {label}
+      {external ? " ↗" : ""}
+    </span>
+  );
+  return external ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${label} (opens in a new tab)`}
+      className={cls}
+    >
+      {children}
+      {tip}
+    </a>
+  ) : (
+    <Link
+      prefetch
+      href={href}
+      aria-label={label}
+      aria-current={active ? "page" : undefined}
+      className={cls}
+    >
+      {children}
+      {tip}
+    </Link>
+  );
+};
+
 const TopTabs = () => {
   const { t } = useLanguage();
   const menus = TAB_MENUS.map((name) =>
@@ -1070,7 +1124,7 @@ const TopTabs = () => {
   return (
     <nav
       aria-label="Main"
-      className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 font-[family-name:var(--font-heading)] text-sm lg:flex"
+      className="absolute left-24 hidden items-center gap-3 font-[family-name:var(--font-heading)] text-sm min-[1180px]:flex xl:left-1/2 xl:-translate-x-1/2 xl:gap-6"
     >
       {menus.map((item) => (
         <Dropdown
@@ -1090,6 +1144,35 @@ const TopTabs = () => {
           {getTranslatedLabel(dao.name, dao.label, t, dao.label)}
         </Link>
       ) : null}
+      <div className="flex items-center gap-1">
+        <IconTab href="/dashboard" label="Dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+            <rect x="3.5" y="3.5" width="7" height="9" rx="1.6" />
+            <rect x="13.5" y="3.5" width="7" height="5" rx="1.6" />
+            <rect x="13.5" y="11.5" width="7" height="9" rx="1.6" />
+            <rect x="3.5" y="15.5" width="7" height="5" rx="1.6" />
+          </svg>
+        </IconTab>
+        <IconTab href="/visualizer" label="Visualizer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+            <circle cx="6" cy="17" r="2.3" />
+            <circle cx="12" cy="6.5" r="2.3" />
+            <circle cx="18.5" cy="15" r="2.3" />
+            <path d="m7.2 15 3.6-6.6M14 8.2l3.4 4.9M8.3 17.3l7.9-1.9" />
+          </svg>
+        </IconTab>
+        <IconTab href="/developers" label="Builders">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+            <path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14" />
+          </svg>
+        </IconTab>
+        <IconTab href="https://bounties.zechub.wiki/" label="Bounties" external>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+            <path d="M12 3.5 5 6.2v5.6c0 4.4 2.9 7.6 7 9.2 4.1-1.6 7-4.8 7-9.2V6.2L12 3.5Z" />
+            <circle cx="12" cy="11.5" r="2.6" />
+          </svg>
+        </IconTab>
+      </div>
     </nav>
   );
 };
@@ -1167,7 +1250,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               type="button"
               onClick={() => setOpenSearch(true)}
               aria-label="Search the wiki or ask ZecHub AI"
-              className="flex items-center gap-2 rounded-lg border border-slate-300 px-2.5 py-1.5 font-[family-name:var(--font-heading)] text-xs text-slate-500 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] dark:border-white/15 dark:text-slate-400 dark:hover:text-white"
+              className="flex items-center gap-2 rounded-lg border border-slate-300 px-2.5 py-1.5 font-[family-name:var(--font-heading)] text-xs text-slate-500 transition-colors hover:border-brand hover:text-brand dark:border-white/15 dark:text-slate-400 dark:hover:text-white"
             >
               <Search aria-hidden="true" className="h-4 w-4 shrink-0" />
               <span className="hidden 2xl:inline">Search or ask AI</span>
@@ -1187,6 +1270,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
                 <Moon className="h-5 w-5 md:h-6 md:w-6" />
               )}
             </Button>
+            <ColorThemePicker />
             </div>
           </div>
         </div>

@@ -889,7 +889,7 @@ const Hackathon = ({
                     {isInternal ? (
                       <Link
                         href={tool.href}
-                        className="inline-flex items-center gap-2 rounded-lg bg-[#1984c7] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1574af]"
+                        className="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-on-brand transition hover:bg-brand-hover"
                       >
                         Open guide <ArrowUpRight className="h-4 w-4" />
                       </Link>
@@ -898,7 +898,7 @@ const Hackathon = ({
                         href={tool.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-lg bg-[#1984c7] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1574af]"
+                        className="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-on-brand transition hover:bg-brand-hover"
                       >
                         Open docs <ExternalLink className="h-4 w-4" />
                       </a>
@@ -1177,7 +1177,7 @@ const Hackathon = ({
                   href={PREVIOUS_PROJECTS_REPO}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-semibold text-[#1984c7] underline-offset-2 hover:underline"
+                  className="font-semibold text-brand underline-offset-2 hover:underline"
                 >
                   Browse Hackathon on GitHub
                 </a>
@@ -1202,7 +1202,7 @@ const Hackathon = ({
                   href={PREVIOUS_PROJECTS_REPO}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#1984c7] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1574af]"
+                  className="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-on-brand transition hover:bg-brand-hover"
                 >
                   Browse previous projects
                   <ExternalLink className="h-4 w-4" aria-hidden />
@@ -1251,7 +1251,7 @@ const Hackathon = ({
                             href={p.htmlUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-[#1984c7] transition hover:gap-2.5 hover:underline"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-brand transition hover:gap-2.5 hover:underline"
                           >
                             <Github className="h-4 w-4" aria-hidden />
                             View on GitHub
@@ -1283,7 +1283,7 @@ const Hackathon = ({
                 href="https://discord.gg/zcash"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#1984c7] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-sky-900/20 transition hover:bg-[#1574af]"
+                className="inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-on-brand shadow-md shadow-sky-900/20 transition hover:bg-brand-hover"
               >
                 Join Discord <ExternalLink className="h-4 w-4" />
               </a>

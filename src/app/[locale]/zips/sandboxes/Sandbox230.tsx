@@ -124,7 +124,7 @@ export default function Sandbox230() {
                 baseline={v5Total}
                 segments={[
                   { label: "v5 base", value: V5_BASE_BYTES, color: "fill-zinc-500/60 dark:fill-zinc-400/60" },
-                  { label: "v6 header", value: V6_HEADER_OVERHEAD, color: "fill-[#1984c7]/85 dark:fill-[#3fa3e0]/85" },
+                  { label: "v6 header", value: V6_HEADER_OVERHEAD, color: "fill-brand/85 dark:fill-[#3fa3e0]/85" },
                   { label: "memo bundle", value: memoSeg, color: "fill-amber-400/85" },
                   { label: "issuance", value: issuanceSeg, color: "fill-emerald-500/85" },
                   { label: "burn", value: burnSeg, color: "fill-rose-500/85" },
@@ -135,7 +135,7 @@ export default function Sandbox230() {
               />
               <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-[11px] text-zinc-600 dark:text-zinc-400">
                 <Swatch color="bg-zinc-500/60 dark:bg-zinc-400/60" label="v5 base" />
-                <Swatch color="bg-[#1984c7]/85 dark:bg-[#3fa3e0]/85" label="v6 header" />
+                <Swatch color="bg-brand/85 dark:bg-[#3fa3e0]/85" label="v6 header" />
                 {memoSeg > 0 && <Swatch color="bg-amber-400/85" label="memo bundle" />}
                 {issuanceSeg > 0 && <Swatch color="bg-emerald-500/85" label="issuance" />}
                 {burnSeg > 0 && <Swatch color="bg-rose-500/85" label="burn" />}

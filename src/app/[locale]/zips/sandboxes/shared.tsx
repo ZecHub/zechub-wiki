@@ -140,7 +140,7 @@ export function Slider({
             </span>
           )}
         </span>
-        <span className="font-mono text-[12.5px] font-semibold text-[#1984c7] dark:text-[#3fa3e0]">
+        <span className="font-mono text-[12.5px] font-semibold text-brand dark:text-[#3fa3e0]">
           {display}
           {unit && <span className="ml-0.5 text-zinc-500 dark:text-zinc-400 font-medium">{unit}</span>}
         </span>
@@ -156,12 +156,12 @@ export function Slider({
           [&::-webkit-slider-thumb]:appearance-none
           [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
           [&::-webkit-slider-thumb]:rounded-full
-          [&::-webkit-slider-thumb]:bg-[#1984c7] dark:[&::-webkit-slider-thumb]:bg-[#3fa3e0]
+          [&::-webkit-slider-thumb]:bg-brand dark:[&::-webkit-slider-thumb]:bg-[#3fa3e0]
           [&::-webkit-slider-thumb]:cursor-pointer
           [&::-webkit-slider-thumb]:shadow
           [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4
           [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0
-          [&::-moz-range-thumb]:bg-[#1984c7] dark:[&::-moz-range-thumb]:bg-[#3fa3e0]"
+          [&::-moz-range-thumb]:bg-brand dark:[&::-moz-range-thumb]:bg-[#3fa3e0]"
       />
       <div className="flex justify-between font-mono text-[10px] text-zinc-500 dark:text-zinc-500 mt-1">
         <span>{minLabel ?? min.toLocaleString()}</span>
@@ -202,7 +202,7 @@ export function Toggle({
         aria-checked={value}
         onClick={() => onChange(!value)}
         className={`relative w-9 h-5 rounded-full transition-colors ${
-          value ? "bg-[#1984c7] dark:bg-[#3fa3e0]" : "bg-zinc-300 dark:bg-zinc-600"
+          value ? "bg-brand dark:bg-[#3fa3e0]" : "bg-zinc-300 dark:bg-zinc-600"
         }`}
       >
         <span
@@ -239,11 +239,11 @@ export function ScenarioPicker<T extends string>({
             onClick={() => onChange(o.id)}
             className={`text-left p-3 rounded-md border transition-colors ${
               active
-                ? "border-[#1984c7] bg-[#1984c7]/5 dark:border-[#3fa3e0] dark:bg-[#3fa3e0]/10"
+                ? "border-brand bg-brand/5 dark:border-[#3fa3e0] dark:bg-[#3fa3e0]/10"
                 : "border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-white dark:bg-zinc-900/40"
             }`}
           >
-            <div className={`text-[13px] font-semibold mb-0.5 ${active ? "text-[#1984c7] dark:text-[#3fa3e0]" : "text-zinc-900 dark:text-zinc-100"}`}>
+            <div className={`text-[13px] font-semibold mb-0.5 ${active ? "text-brand dark:text-[#3fa3e0]" : "text-zinc-900 dark:text-zinc-100"}`}>
               {o.label}
             </div>
             <div className="text-[11.5px] leading-snug text-zinc-600 dark:text-zinc-400">
@@ -419,7 +419,7 @@ export function CompareBars({
         width={barW}
         height={newBarH}
         rx={3}
-        className="fill-[#1984c7]/85 dark:fill-[#3fa3e0]/85"
+        className="fill-brand/85 dark:fill-[#3fa3e0]/85"
       />
       <text
         x={x1 + barW / 2}
@@ -438,7 +438,7 @@ export function CompareBars({
         fontFamily="JetBrains Mono, monospace"
         fontSize={10}
         fontWeight={600}
-        className="fill-[#1984c7] dark:fill-[#3fa3e0]"
+        className="fill-brand dark:fill-[#3fa3e0]"
       >
         {newLabel}
       </text>
@@ -460,7 +460,7 @@ export function CompareBars({
         fontFamily="JetBrains Mono, monospace"
         fontSize={11}
         fontWeight={600}
-        className="fill-[#1984c7] dark:fill-[#3fa3e0]"
+        className="fill-brand dark:fill-[#3fa3e0]"
       >
         {fmt(newValue)}
       </text>
@@ -552,7 +552,7 @@ export function StackedCompare({
         fontFamily="JetBrains Mono, monospace"
         fontSize={10}
         fontWeight={600}
-        className="fill-[#1984c7] dark:fill-[#3fa3e0]"
+        className="fill-brand dark:fill-[#3fa3e0]"
       >
         {labels[1]}
       </text>
@@ -574,7 +574,7 @@ export function StackedCompare({
         fontFamily="JetBrains Mono, monospace"
         fontSize={11}
         fontWeight={600}
-        className="fill-[#1984c7] dark:fill-[#3fa3e0]"
+        className="fill-brand dark:fill-[#3fa3e0]"
       >
         {fmt(total)}
       </text>

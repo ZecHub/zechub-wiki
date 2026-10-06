@@ -45,7 +45,7 @@ export default function AuroraBackground() {
         className="absolute -inset-[20%] opacity-90 dark:opacity-100"
         style={{
           background:
-            "radial-gradient(ellipse 55% 45% at calc(18% + var(--scroll) * 48%) calc(8% + var(--scroll) * 36%), rgba(25,132,199,0.42), transparent 58%)," +
+            "radial-gradient(ellipse 55% 45% at calc(18% + var(--scroll) * 48%) calc(8% + var(--scroll) * 36%), color-mix(in srgb, var(--color-brand) 42%, transparent), transparent 58%)," +
             "radial-gradient(ellipse 50% 40% at calc(88% - var(--scroll) * 40%) calc(22% + var(--scroll) * 28%), rgba(14,95,143,0.38), transparent 62%)," +
             "radial-gradient(ellipse 70% 50% at calc(48% + var(--scroll) * 10%) calc(92% - var(--scroll) * 34%), rgba(21,30,41,0.18), transparent 70%)",
         }}
@@ -54,7 +54,7 @@ export default function AuroraBackground() {
         className="absolute inset-0 hidden dark:block"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at calc(30% + var(--scroll) * 35%) calc(40% + var(--scroll) * 20%), rgba(25,132,199,0.22), transparent 65%)," +
+            "radial-gradient(ellipse 60% 50% at calc(30% + var(--scroll) * 35%) calc(40% + var(--scroll) * 20%), color-mix(in srgb, var(--color-brand) 22%, transparent), transparent 65%)," +
             "linear-gradient(180deg, rgba(11,21,32,0.15) 0%, rgba(17,27,39,0.55) 100%)",
         }}
       />

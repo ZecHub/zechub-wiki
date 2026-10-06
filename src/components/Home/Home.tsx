@@ -65,7 +65,7 @@ type Group = {
   items: Item[];
 };
 
-/* Brand blue kept from the current design: #1984c7 (hover #1574af). */
+/* Brand blue kept from the current design: #147DF6 (hover #0F62C0). */
 
 /* ---------------------------------------------------------------------------
    Page structure. Every page of the wiki is listed ONCE on this home:
@@ -267,7 +267,7 @@ const cardStyles: Record<"filled" | "outline", CardStyle> = {
   },
   outline: {
     base: "rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-800/30",
-    hover: "transition-colors hover:border-[#1984c7]",
+    hover: "transition-colors hover:border-brand",
     divider: "border-slate-200 dark:border-slate-800",
     rowHover: "hover:bg-slate-50 dark:hover:bg-slate-800/60",
   },
@@ -275,11 +275,11 @@ const cardStyles: Record<"filled" | "outline", CardStyle> = {
 
 const wrap = "mx-auto w-full max-w-6xl px-4 md:px-6";
 const focusRing =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1984c7] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900";
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900";
 
 // Buttons in the closing "Get Involved" band: solid brand blue in light mode,
 // a tinted blue that sits quietly on the navy background in dark mode.
-const ctaButton = `inline-flex items-center justify-center rounded-lg border border-[#1984c7] bg-[#1984c7] px-4 py-2 text-center text-sm font-semibold text-white transition-colors hover:bg-[#1574af] dark:border-[#1984c7]/40 dark:bg-[#1984c7]/15 dark:text-[#9fd2f5] dark:hover:border-[#1984c7]/70 dark:hover:bg-[#1984c7]/25 dark:hover:text-white ${focusRing}`;
+const ctaButton = `inline-flex items-center justify-center rounded-lg border border-brand bg-brand px-4 py-2 text-center text-sm font-semibold text-on-brand transition-colors hover:bg-brand-hover dark:border-brand/40 dark:bg-brand/15 dark:text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:text-white ${focusRing}`;
 const ctaRow =
   "mt-5 grid grid-cols-[repeat(auto-fit,minmax(8.5rem,1fr))] gap-3";
 
@@ -315,7 +315,7 @@ function SmartLink({
 
 function IconBadge({ icon: Icon }: { icon: LucideIcon }) {
   return (
-    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#1984c7]/10 text-[#1984c7]">
+    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand">
       <Icon className="h-5 w-5" aria-hidden="true" />
     </span>
   );
@@ -405,7 +405,7 @@ function LinkCard({ item, styles }: { item: Item; styles: CardStyle }) {
           {item.title}
           <Arrow
             aria-hidden="true"
-            className="h-4 w-4 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:text-[#1984c7]"
+            className="h-4 w-4 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:text-brand"
           />
         </h4>
         <p className="mt-1 text-[15px] leading-relaxed text-slate-700 dark:text-slate-200">
@@ -436,7 +436,7 @@ const Home = (_props: HomeProps) => {
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#1984c7]/10 via-transparent to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand/10 via-transparent to-transparent"
         />
         <div className={`${wrap} relative py-10 text-center md:py-16`}>
           <Image
@@ -455,7 +455,7 @@ const Home = (_props: HomeProps) => {
           <h1 className="sr-only">ZecHub</h1>
           <p className="mx-auto max-w-xl text-lg text-slate-700 dark:text-slate-200 md:text-xl">
             The community wiki for learning, using and building with{" "}
-            <span className="font-medium text-[#1984c7]">Zcash</span>.
+            <span className="font-medium text-brand">Zcash</span>.
           </p>
           {variant === "filled" ? (
             <ul className="mt-8 flex flex-wrap justify-center gap-2">
@@ -511,12 +511,12 @@ const Home = (_props: HomeProps) => {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className={`group -mx-2 flex items-center justify-between rounded-md px-2 py-2 text-sm font-medium text-slate-700 transition-colors ${styles.rowHover} hover:text-[#1984c7] dark:text-slate-200 ${focusRing}`}
+                      className={`group -mx-2 flex items-center justify-between rounded-md px-2 py-2 text-sm font-medium text-slate-700 transition-colors ${styles.rowHover} hover:text-brand dark:text-slate-200 ${focusRing}`}
                     >
                       {link.label}
                       <ArrowRight
                         aria-hidden="true"
-                        className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-[#1984c7]"
+                        className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-brand"
                       />
                     </Link>
                   </li>
@@ -528,9 +528,13 @@ const Home = (_props: HomeProps) => {
       </section>
 
       {/* 2. Everything else, grouped */}
+      <div className={wrap}>
+        <hr className="border-slate-200 dark:border-slate-800" />
+      </div>
+
       <section
         id="topics"
-        className="scroll-mt-24 border-t border-slate-200 py-16 dark:border-slate-800 md:py-20"
+        className="scroll-mt-24 py-16 md:py-20"
       >
         <div className={wrap}>
           <SectionHeader
@@ -572,12 +576,20 @@ const Home = (_props: HomeProps) => {
       </section>
 
       {/* Video tutorials (carousel) */}
-      <section id="videos" className={`${wrap} pb-16 md:pb-20`}>
+      <div className={wrap}>
+        <hr className="border-slate-200 dark:border-slate-800" />
+      </div>
+
+      <section id="videos" className={`${wrap} py-16 md:py-20`}>
         <VideoStrip />
       </section>
 
       {/* DAO, community and contribution in one band */}
-      <section id="community" className={`${wrap} pb-24`}>
+      <div className={wrap}>
+        <hr className="border-slate-200 dark:border-slate-800" />
+      </div>
+
+      <section id="community" className={`${wrap} pb-24 pt-16 md:pt-20`}>
         <SectionHeader
           title="Get Involved"
           subtitle="Join the DAO, meet the community and help build the wiki."

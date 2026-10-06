@@ -91,7 +91,7 @@ const NewsLetter: React.FC = () => {
           className={`cursor-pointer md:px-6 px-4 py-2 font-semibold rounded-lg ${
             selectedCategory !== "Ecosystem News"
               ? "bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
-              : "bg-[#1984c7] text-white"
+              : "bg-brand text-on-brand"
           }`}
         >
           📰 {s.categoryEcosystem ?? "Ecosystem News"}
@@ -101,7 +101,7 @@ const NewsLetter: React.FC = () => {
           className={`cursor-pointer md:px-6 px-4 py-2 font-semibold rounded-lg ${
             selectedCategory !== "Network Stats"
               ? "bg-gray-200 dark:bg-gray-700 text-black dark:text-white"
-              : "bg-[#1984c7] text-white"
+              : "bg-brand text-on-brand"
           }`}
         >
           📊 {s.categoryStats ?? "Network Stats"}
@@ -159,20 +159,20 @@ const NewsLetter: React.FC = () => {
       {/* Information Boxes */}
       <div className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">{s.box1Title ?? "What is This Service?"}</h2>
+          <h2 className="text-xl font-bold mb-2 text-brand">{s.box1Title ?? "What is This Service?"}</h2>
           <p className="text-gray-700 dark:text-gray-300">
             {s.box1Desc ?? "Receive Zcash ecosystem news and network stats directly via the Zcash network using encrypted memos."}
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">{s.box2Title ?? "How It Works"}</h2>
+          <h2 className="text-xl font-bold mb-2 text-brand">{s.box2Title ?? "How It Works"}</h2>
           <p className="text-gray-700 dark:text-gray-300">
             {s.box2DescPre ?? "We send newsletters once per week to multiple recipients in one shielded transaction using the"}{" "}
             <strong>z_sendmany</strong> {s.box2DescPost ?? "RPC method."}
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-2 text-[#1984c7]">{s.box3Title ?? "How to Receive Updates"}</h2>
+          <h2 className="text-xl font-bold mb-2 text-brand">{s.box3Title ?? "How to Receive Updates"}</h2>
           <p className="text-gray-700 dark:text-gray-300">
             {s.box3DescPre ?? "Enter your"} <strong>{s.box3DescBold ?? "shielded Zcash address"}</strong>. {s.box3DescPost ?? "Weekly updates delivered on-chain. No email required."}
           </p>

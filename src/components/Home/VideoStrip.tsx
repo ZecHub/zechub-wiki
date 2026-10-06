@@ -8,7 +8,7 @@ type Video = { id: string; title: string; published?: string };
 // Add or remove entries to change the carousel. If this list is empty the
 // component falls back to the newest uploads from the ZecHub channel.
 const PINNED: Video[] = [
-  { id: "J1Nr1VL5dGU", title: "What is Zcash? (Zcash Media)" },
+  { id: "J1Nr1VL5dGU", title: "What is Zcash?" },
   { id: "Lb5Bvl1GkRQ", title: "ZEC Bounties Explained - Earn ZEC by Contributing" },
   { id: "qM0JWciwnNE", title: "How to Install Zebrad on Windows" },
   { id: "6IIRRZ17Q74", title: "Reviewing All Zcash Shielded Wallets" },
@@ -26,7 +26,7 @@ const CHANNEL = "https://youtube.com/@zechub";
 const SHOWN = 8;
 
 const focusRing =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1984c7] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900";
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900";
 
 const fmtDate = (iso?: string) =>
   iso
@@ -65,7 +65,7 @@ function VideoCard({ video, className = "" }: { video: Video; className?: string
               className="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
             />
             <span className="absolute inset-0 flex items-center justify-center">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1984c7] text-white shadow-lg transition-transform group-hover:scale-110">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand text-on-brand shadow-lg transition-transform group-hover:scale-110">
                 <Play className="h-5 w-5 translate-x-0.5" aria-hidden="true" />
               </span>
             </span>
@@ -129,7 +129,7 @@ export default function VideoStrip() {
 
   if (videos.length === 0) return null;
 
-  const arrow = `flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 text-slate-600 transition-colors hover:border-[#1984c7] hover:text-[#1984c7] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-slate-300 disabled:hover:text-slate-600 dark:border-slate-700 dark:text-slate-200 ${focusRing}`;
+  const arrow = `flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 text-slate-600 transition-colors hover:border-brand hover:text-brand disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-slate-300 disabled:hover:text-slate-600 dark:border-slate-700 dark:text-slate-200 ${focusRing}`;
 
   return (
     <div>
@@ -149,7 +149,7 @@ export default function VideoStrip() {
             href={CHANNEL}
             target="_blank"
             rel="noopener noreferrer"
-            className={`hidden items-center gap-1 rounded text-sm font-medium text-[#1984c7] hover:underline imd:inline-flex ${focusRing}`}
+            className={`hidden items-center gap-1 rounded text-sm font-medium text-brand hover:underline imd:inline-flex ${focusRing}`}
           >
             All videos <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
@@ -190,7 +190,7 @@ export default function VideoStrip() {
         href={CHANNEL}
         target="_blank"
         rel="noopener noreferrer"
-        className={`mt-4 inline-flex items-center gap-1 rounded text-sm font-medium text-[#1984c7] hover:underline imd:hidden ${focusRing}`}
+        className={`mt-4 inline-flex items-center gap-1 rounded text-sm font-medium text-brand hover:underline imd:hidden ${focusRing}`}
       >
         All videos <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
       </a>

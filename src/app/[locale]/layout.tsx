@@ -108,6 +108,20 @@ export default async function RootLayout({
   return (
     <html lang={locale} dir={RTL_LOCALES.has(locale) ? "rtl" : "ltr"} suppressHydrationWarning>
       <head>
+        {/* Applies the saved colour theme before first paint (no flash).
+            Only emitted on the server: React 19 logs "Encountered a script tag
+            while rendering React component" whenever a <script> is created by
+            a client render (HMR / client fallback), and the script has already
+            run by then. */}
+        {typeof window === "undefined" ? (
+          <script
+            suppressHydrationWarning
+            dangerouslySetInnerHTML={{
+              __html:
+                "try{var t=localStorage.getItem('zechub-color-theme');if(t&&t!=='default')document.documentElement.setAttribute('data-color-theme',t)}catch(e){}",
+            }}
+          />
+        ) : null}
         {/* Manual RSS link as backup for better feed detection (Brave, Feedly, etc.) */}
         <link
           rel="alternate"
@@ -122,7 +136,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: jsonLdScript(organizationJsonLd) }}
         />
       </head>
-      <body className={`px-0 ${inter.className} ${headingFont.variable} bg-white dark:bg-slate-900 dark:text-white`}>
+      <body className={`px-0 ${inter.className} ${headingFont.variable} bg-page dark:bg-surface dark:text-white`}>
         {/* First focusable element on the page, so keyboard and screen-reader
             users can bypass the header, menus and search (WCAG 2.4.1). Rendered
             here rather than inside the providers so nothing precedes it in the

@@ -166,7 +166,7 @@ export default function Sandbox234() {
                   },
                   {
                     values: smoothedSubsidies,
-                    color: "stroke-[#1984c7] dark:stroke-[#3fa3e0]",
+                    color: "stroke-brand dark:stroke-[#3fa3e0]",
                   },
                 ]}
                 xLabel={["now", `+${years} yr`]}
@@ -175,7 +175,7 @@ export default function Sandbox234() {
               <Legend
                 items={[
                   { label: "Today (halvings)", color: "stroke-zinc-500 dark:stroke-zinc-400", dashed: true },
-                  { label: "ZIP 234 (smoothed)", color: "stroke-[#1984c7] dark:stroke-[#3fa3e0]" },
+                  { label: "ZIP 234 (smoothed)", color: "stroke-brand dark:stroke-[#3fa3e0]" },
                 ]}
               />
             </ChartCard>
@@ -201,8 +201,8 @@ export default function Sandbox234() {
                   },
                   {
                     values: cumSmoothed,
-                    color: "stroke-[#1984c7] dark:stroke-[#3fa3e0]",
-                    fill: "fill-[#1984c7]/10 dark:fill-[#3fa3e0]/10",
+                    color: "stroke-brand dark:stroke-[#3fa3e0]",
+                    fill: "fill-brand/10 dark:fill-[#3fa3e0]/10",
                   },
                 ]}
                 xLabel={["now", `+${years} yr`]}
@@ -212,7 +212,7 @@ export default function Sandbox234() {
               <Legend
                 items={[
                   { label: "Today", color: "stroke-zinc-500 dark:stroke-zinc-400", dashed: true },
-                  { label: "ZIP 234 + recycled", color: "stroke-[#1984c7] dark:stroke-[#3fa3e0]" },
+                  { label: "ZIP 234 + recycled", color: "stroke-brand dark:stroke-[#3fa3e0]" },
                 ]}
               />
             </ChartCard>

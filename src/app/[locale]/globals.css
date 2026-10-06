@@ -79,8 +79,14 @@
 
   --color-white: #fff9f9;
 
-  --color-brand: #1984c7;
-  --color-brand-hover: #1574af;
+  /* Colour theme tokens (see [data-color-theme] overrides below).
+     Default = ZecHub Visual Identity: Hadfield Blue on Black Blue. */
+  --color-brand: #147DF6;
+  --color-brand-hover: #0F62C0;
+  --color-brand-soft: #7DAFEB;
+  --color-surface: #06192F;
+  --color-page: #fff9f9;
+  --color-on-brand: #ffffff;
 
   --color-zcash-gold: hsl(var(--zcash-gold));
   --color-zcash-gold-glow: hsl(var(--zcash-gold-glow));
@@ -420,9 +426,9 @@ code::-webkit-scrollbar-track {
 
 .wl-root {
   font-family: inherit;
-  --clr-accent: #1984c7;
+  --clr-accent: var(--color-brand);
   --clr-accent-light: #e8f4fd;
-  --clr-accent-dark: #1265a0;
+  --clr-accent-dark: #0F62C0;
   --clr-surface: #f7f9fc;
   --clr-border: #e2e8f0;
   --clr-text: #0f1923;
@@ -442,7 +448,7 @@ code::-webkit-scrollbar-track {
 .dark .wl-root {
   --clr-accent: #3fa3e0;
   --clr-accent-light: #1a2e40;
-  --clr-accent-dark: #5db8f0;
+  --clr-accent-dark: var(--color-brand-soft);
   --clr-surface: #111921;
   --clr-border: #1e2d3d;
   --clr-text: #e8f1f8;
@@ -924,4 +930,39 @@ h3,
 h4 {
   font-family: var(--font-heading), ui-monospace, SFMono-Regular, Menlo,
     Consolas, monospace;
+}
+
+
+/* ---------------------------------------------------------------------------
+   Colour themes (header palette picker). The attribute is set on <html> by an
+   inline script in the layout and by components/ColorThemePicker.
+   --------------------------------------------------------------------------- */
+:root[data-color-theme="ocean"] {
+  --color-brand: #0082a8;
+  --color-brand-hover: #006a88;
+  --color-brand-soft: #5cc4dd;
+  --color-surface: #02101a;
+  --color-page: #f0f8fc;
+}
+:root[data-color-theme="sunset"] {
+  --color-brand: #cc5a3a;
+  --color-brand-hover: #a8452b;
+  --color-brand-soft: #f0a58c;
+  --color-surface: #1a0e0a;
+  --color-page: #fcf6f2;
+}
+:root[data-color-theme="forest"] {
+  --color-brand: #3a7a40;
+  --color-brand-hover: #2d6032;
+  --color-brand-soft: #8ccb92;
+  --color-surface: #0a110a;
+  --color-page: #f3f8f3;
+}
+:root[data-color-theme="ledger"] {
+  --color-brand: #e8b245;
+  --color-brand-hover: #c99524;
+  --color-brand-soft: #f3cf7f;
+  --color-surface: #0e0f14;
+  --color-page: #f6f7fa;
+  --color-on-brand: #1a1a1a;
 }

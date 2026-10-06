@@ -127,7 +127,7 @@ export default function ZcashStats({ className = "" }: { className?: string }) {
           aria-label={`${supplyPct.toFixed(1)}% of the 21 million maximum supply`}
         >
           <div
-            className="h-full rounded-full bg-[#1984c7] transition-[width] duration-[1400ms] ease-out motion-reduce:transition-none"
+            className="h-full rounded-full bg-brand transition-[width] duration-[1400ms] ease-out motion-reduce:transition-none"
             style={{ width: visible ? `${supplyPct}%` : "0%" }}
           />
         </div>
