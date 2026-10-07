@@ -66,7 +66,7 @@
     "clsx": "^2.1.1",
     "cobe": "^2.0.1",
     "date-fns": "^4.1.0",
-    "entities": "^7.0.1",
+    "entities": "^8.1.0",
     "eslint": "8.48.0",
     "eslint-config-next": "^15.5.27",
     "express-session": "^1.18.0",
