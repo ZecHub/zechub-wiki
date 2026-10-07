@@ -20,6 +20,7 @@ import { SearchInput } from "./SearchInput";
 import { useLanguage } from "@/context/LanguageContext";
 import { pathSectionLabel, searchWiki } from "@/lib/wikiSearch";
 import { HighlightMatch } from "./HighlightMatch";
+import { useBodyResults } from "./useBodyResults";
 import AIAssistantPanel from "../AIAssistant";
 
 const SUGGESTED_COUNT = 8;
@@ -48,10 +49,20 @@ const SearchBar = ({
   const trimmedQuery = searchInput.trim();
   const hasQuery = trimmedQuery.length > 0;
 
-  const searchResults = useMemo(() => {
+  const titleResults = useMemo(() => {
     if (!hasQuery) return [];
     return searchWiki(searchItems, trimmedQuery);
   }, [trimmedQuery, hasQuery, searchItems]);
+
+  // Pages whose body matches but whose title does not. Appended below the
+  // existing results and never reordered into them, so no query that works
+  // today can come back different. Empty when the index is absent.
+  const bodyResults = useBodyResults(trimmedQuery, titleResults);
+
+  const searchResults = useMemo(
+    () => (bodyResults.length ? [...titleResults, ...bodyResults] : titleResults),
+    [titleResults, bodyResults],
+  );
 
   const suggested = useMemo(
     () => searchItems.slice(0, SUGGESTED_COUNT),
