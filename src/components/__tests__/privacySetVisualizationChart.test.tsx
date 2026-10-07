@@ -24,9 +24,9 @@ jest.mock("flowbite-react", () => ({ Spinner: () => null }));
 // block height. Mainnet year boundaries (first block of the year, UTC):
 // 2019 -> 455,853, 2025 -> 2,770,557, 2026 -> 3,189,008.
 const transactionSummary = [
-  { height: 440064, sapling: 100, orchard: 0 }, // Dec 2018
-  { height: 3000960, sapling: 300, orchard: 400 }, // Jul 2025
-  { height: 3400704, sapling: 500, orchard: 600 }, // Aug 2026
+  { height: 440064, sapling: 100, orchard: 0, ironwood: 0 }, // Dec 2018
+  { height: 3000960, sapling: 300, orchard: 400, ironwood: 0 }, // Jul 2025
+  { height: 3400704, sapling: 500, orchard: 600, ironwood: 2000 }, // Aug 2026
 ];
 
 describe("Shielded outputs by year", () => {
@@ -54,10 +54,10 @@ describe("Shielded outputs by year", () => {
       await screen.findByRole("button", { name: "Switch to Circular View" }),
     );
 
-    // One label per pool cluster (Sapling + Orchard).
-    expect(await screen.findAllByText("2026")).toHaveLength(2);
-    expect(screen.getAllByText("2025")).toHaveLength(2);
-    expect(screen.getAllByText("2018")).toHaveLength(2);
+    // One label per pool cluster (Sapling + Orchard + Ironwood).
+    expect(await screen.findAllByText("2026")).toHaveLength(3);
+    expect(screen.getAllByText("2025")).toHaveLength(3);
+    expect(screen.getAllByText("2018")).toHaveLength(3);
     // Late-2018 Sapling blocks are not 2019 blocks.
     expect(screen.queryByText("2019")).not.toBeInTheDocument();
 
@@ -68,6 +68,8 @@ describe("Shielded outputs by year", () => {
     expect(screen.getAllByText("400")).toHaveLength(2);
     expect(screen.getByText("900")).toBeInTheDocument();
     expect(screen.getByText("1.0k")).toBeInTheDocument();
+    // Cumulative Ironwood: 0, 0, 2000.
+    expect(screen.getByText("2.0k")).toBeInTheDocument();
   });
 
   it("labels tooltip values as transaction counts, not ZEC", async () => {
