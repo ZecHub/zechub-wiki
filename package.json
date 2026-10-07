@@ -6,7 +6,7 @@
     "check:dictionaries": "tsx scripts/check-dictionary-keys.mjs",
     "predev": "node scripts/copy-pdf-worker.mjs && node scripts/copy-zaddr-wasm.mjs",
     "dev": "node --max-old-space-size=4096 node_modules/next/dist/bin/next dev --turbo",
-    "prebuild": "node scripts/copy-pdf-worker.mjs && node scripts/copy-zaddr-wasm.mjs && tsx scripts/generate-llms-txt.mjs",
+    "prebuild": "node scripts/copy-pdf-worker.mjs && node scripts/copy-zaddr-wasm.mjs && tsx scripts/generate-llms-txt.mjs && tsx scripts/generate-search-index.mjs",
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=4096 next build",
     "start": "next start",
     "lint": "eslint .",

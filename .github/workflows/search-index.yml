@@ -1,0 +1,80 @@
+name: Search index guard
+
+# Anti-drift gate for site search: the build-time full-text index, the shared
+# tokenizer, and the ranking that reads them. It IMPORTS the real modules
+# (never regex) and fails a PR that silently degrades search — a tokenizer that
+# stops splitting CJK into bigrams, a ranking change that buries curated
+# results, an index that outgrows its size budget, or a generated shape the
+# client can no longer read. See scripts/check-search-index.mjs.
+#
+# Runs SECRETLESS by default, the same split as seo-discovery.yml: unless the
+# repo defines the CONTENT_OWNER / CONTENT_REPO / CONTENT_BRANCH repo-vars, the
+# step below passes no OWNER/REPO/BRANCH, the script skips the content-repo
+# tier, and every deterministic structural check still runs and can fail the
+# build. That keeps the gate useful on PRs from forks, which is where most
+# contributions arrive.
+#
+# To ALSO enforce the per-locale size budget against real content, set repo-vars
+# CONTENT_OWNER/CONTENT_REPO/CONTENT_BRANCH (e.g. ZecHub / zechub / main). The
+# content repo is public, so the anonymous raw fetch works and no token is
+# needed. Harmless when unset.
+
+# Least privilege: the gate only reads the tree, and does not persist the
+# checkout token where PR-controlled code could reach it.
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/generate-search-index.mjs"
+      - "scripts/check-search-index.mjs" # the gate's own logic
+      - "src/lib/search/**" # tokenizer and ranking
+      - "src/components/SearchBar/**" # where results are composed
+      - "src/lib/wikiSearch.ts" # existing title ranking the body results join
+      - "src/lib/searchIndex.ts" # the curated + manifest item list
+      - "src/constants/searcher.ts" # curated aliases the ranking preserves
+      - "src/i18n/routing.ts" # the locale list the generator walks
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/search-index.yml" # can't be weakened without re-running
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - run: yarn install --frozen-lockfile
+
+      # Unit tests first: they are fast, need nothing, and a tokenizer or
+      # ranking regression should be reported as a failing test rather than as
+      # a failing gate.
+      - name: Search unit tests
+        run: yarn test src/lib/search
+
+      # The content-repo tier only engages when the repo-vars are set. When
+      # they are, generate the indexes so the budget is measured against real
+      # content rather than asserted against a fixture.
+      - name: Generate indexes (content-repo tier only)
+        if: vars.CONTENT_OWNER != '' && vars.CONTENT_REPO != '' && vars.CONTENT_BRANCH != ''
+        env:
+          OWNER: ${{ vars.CONTENT_OWNER }}
+          REPO: ${{ vars.CONTENT_REPO }}
+          BRANCH: ${{ vars.CONTENT_BRANCH }}
+        run: npx tsx scripts/generate-llms-txt.mjs && npx tsx scripts/generate-search-index.mjs
+
+      - name: Check search index
+        env:
+          OWNER: ${{ vars.CONTENT_OWNER }}
+          REPO: ${{ vars.CONTENT_REPO }}
+          BRANCH: ${{ vars.CONTENT_BRANCH }}
+        run: npx tsx scripts/check-search-index.mjs
