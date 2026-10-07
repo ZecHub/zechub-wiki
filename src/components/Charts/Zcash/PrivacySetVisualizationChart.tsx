@@ -14,13 +14,16 @@ import {
 import ChartHeader from "../ChartHeader";
 import ChartContainer from "./ChartContainer";
 
+type PoolName = "sapling" | "orchard" | "ironwood";
+
 type TransactionSummaryDatum = {
   height: number;
   sapling: number;
   orchard: number;
+  ironwood?: number;
 };
 
-type YearlyTotals = Record<string, { sapling: number; orchard: number }>;
+type YearlyTotals = Record<string, { sapling: number; orchard: number; ironwood: number }>;
 
 type PrivacySetVisualizationChartProps = {
   chartRef: RefObject<HTMLDivElement | null>;
@@ -44,11 +47,12 @@ function PrivacySetVisualizationChart({
         const raw: TransactionSummaryDatum[] = await res.json();
 
         const totals: YearlyTotals = {};
-        for (const { height, sapling, orchard } of raw) {
+        for (const { height, sapling, orchard, ironwood } of raw) {
           const year = String(blockHeightToYear(height));
-          if (!totals[year]) totals[year] = { sapling: 0, orchard: 0 };
+          if (!totals[year]) totals[year] = { sapling: 0, orchard: 0, ironwood: 0 };
           totals[year].sapling += sapling;
           totals[year].orchard += orchard;
+          totals[year].ironwood += ironwood ?? 0;
         }
 
         setData(totals);
@@ -62,7 +66,7 @@ function PrivacySetVisualizationChart({
 
   const years = Object.keys(data).sort();
 
-  const getCumulative = (pool: "sapling" | "orchard"): [string, number][] => {
+  const getCumulative = (pool: PoolName): [string, number][] => {
     let sum = 0;
     return years.map((y) => {
       sum += data[y]?.[pool] || 0;
@@ -79,15 +83,18 @@ function PrivacySetVisualizationChart({
 
   const saplingData = getCumulative("sapling");
   const orchardData = getCumulative("orchard");
+  const ironwoodData = getCumulative("ironwood");
 
   // Prepare data for linear chart
   const linearChartData = years.map((year) => {
     const saplingCumulative = saplingData.find(([y]) => y === year)?.[1] || 0;
     const orchardCumulative = orchardData.find(([y]) => y === year)?.[1] || 0;
+    const ironwoodCumulative = ironwoodData.find(([y]) => y === year)?.[1] || 0;
     return {
       year,
       sapling: saplingCumulative,
       orchard: orchardCumulative,
+      ironwood: ironwoodCumulative,
     };
   });
 
@@ -97,9 +104,10 @@ function PrivacySetVisualizationChart({
 
   const sapStep = (maxRadius - minRadius) / Math.max(1, saplingData.length - 1);
   const orcStep = (maxRadius - minRadius) / Math.max(1, orchardData.length - 1);
+  const iwStep = (maxRadius - minRadius) / Math.max(1, ironwoodData.length - 1);
 
   const renderCluster = (
-    pool: "sapling" | "orchard",
+    pool: PoolName,
     data: [string, number][],
     cx: number,
     color: string,
@@ -252,6 +260,15 @@ function PrivacySetVisualizationChart({
               dot={{ r: 4 }}
               activeDot={{ r: 6 }}
             />
+            <Line
+              type="monotone"
+              dataKey="ironwood"
+              stroke="#c2410c"
+              strokeWidth={2}
+              name="Ironwood Pool"
+              dot={{ r: 4 }}
+              activeDot={{ r: 6 }}
+            />
           </LineChart>
         </ChartContainer>
       ) : (
@@ -272,16 +289,23 @@ function PrivacySetVisualizationChart({
                   {renderCluster(
                     "sapling",
                     saplingData,
-                    0.3 * 1000,
+                    0.2 * 1000,
                     "hsl(var(--chart-2))",
                     sapStep,
                   )}
                   {renderCluster(
                     "orchard",
                     orchardData,
-                    0.7 * 1000,
+                    0.5 * 1000,
                     "hsl(var(--chart-3))",
                     orcStep,
+                  )}
+                  {renderCluster(
+                    "ironwood",
+                    ironwoodData,
+                    0.8 * 1000,
+                    "#c2410c",
+                    iwStep,
                   )}
                 </svg>
               </div>
@@ -305,6 +329,13 @@ function PrivacySetVisualizationChart({
             style={{ background: "hsl(var(--chart-3))" }}
           />
           <p>Orchard Pool</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <span
+            className="w-3 h-3 inline-block rounded-sm"
+            style={{ background: "#c2410c" }}
+          />
+          <p>Ironwood Pool</p>
         </div>
       </div>
     </ErrorBoundary>

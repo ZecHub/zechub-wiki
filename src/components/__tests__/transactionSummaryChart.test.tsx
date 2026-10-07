@@ -29,6 +29,8 @@ const sample = (height: number, sapling: number) => ({
   sapling_filter: sapling,
   orchard: 0,
   orchard_filter: 0,
+  ironwood: 0,
+  ironwood_filter: 0,
   transactions: sapling,
   transactions_filter: sapling,
 });

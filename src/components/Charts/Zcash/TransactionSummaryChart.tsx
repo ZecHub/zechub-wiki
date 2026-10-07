@@ -23,7 +23,10 @@ import ChartContainer from "./ChartContainer";
 
 const BLOCKS_PERIOD = 8064;
 const ORCHARD_ACTIVATION = 1687104;
+const IRONWOOD_ACTIVATION = 3428143;
 const MIN_GAP_BTW_SLIDER = 100;
+const IRONWOOD_COLOR = "#c2410c";
+const IRONWOOD_FILTER_COLOR = "#fdba74";
 
 interface TransactionsSummaryChartProps {
   chartRef: RefObject<HTMLDivElement | null>;
@@ -35,7 +38,7 @@ export default function TransactionsSummaryChart(
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const [pool, setPool] = useState<"default" | "orchard" | "sapling">(
+  const [pool, setPool] = useState<"default" | "orchard" | "sapling" | "ironwood">(
     "default",
   );
   const [cumulative, setCumulative] = useState(true);
@@ -72,12 +75,16 @@ export default function TransactionsSummaryChart(
     let saplingFilterSum = 0;
     let orchardSum = 0;
     let orchardFilterSum = 0;
+    let ironwoodSum = 0;
+    let ironwoodFilterSum = 0;
 
     const cumData = chartData.map((d) => {
       saplingSum += d.sapling;
       saplingFilterSum += d.sapling_filter;
       orchardSum += d.orchard;
       orchardFilterSum += d.orchard_filter;
+      ironwoodSum += d.ironwood ?? 0;
+      ironwoodFilterSum += d.ironwood_filter ?? 0;
 
       return {
         height: d.height,
@@ -85,6 +92,8 @@ export default function TransactionsSummaryChart(
         sapling_filter: saplingFilterSum,
         orchard: orchardSum || null,
         orchard_filter: orchardFilterSum || null,
+        ironwood: ironwoodSum || null,
+        ironwood_filter: ironwoodFilterSum || null,
       };
     });
 
@@ -104,6 +113,8 @@ export default function TransactionsSummaryChart(
       saplingFilterSum = 0;
       orchardSum = 0;
       orchardFilterSum = 0;
+      ironwoodSum = 0;
+      ironwoodFilterSum = 0;
 
       chartData.forEach((d) => {
         // Blocks outside the selected range must not end up in any bar.
@@ -113,6 +124,8 @@ export default function TransactionsSummaryChart(
         saplingFilterSum += d.sapling_filter;
         orchardSum += d.orchard;
         orchardFilterSum += d.orchard_filter;
+        ironwoodSum += d.ironwood ?? 0;
+        ironwoodFilterSum += d.ironwood_filter ?? 0;
 
         if (isPlotted(d.height)) {
           filteredData.push({
@@ -122,18 +135,26 @@ export default function TransactionsSummaryChart(
             orchard: orchardSum || null,
             orchard_filter:
               orchardFilterSum > 0 ? orchardSum - orchardFilterSum : null,
+            ironwood: ironwoodSum || null,
+            ironwood_filter:
+              ironwoodFilterSum > 0 ? ironwoodSum - ironwoodFilterSum : null,
           });
 
           saplingSum = 0;
           saplingFilterSum = 0;
           orchardSum = 0;
           orchardFilterSum = 0;
+          ironwoodSum = 0;
+          ironwoodFilterSum = 0;
         }
       });
     }
 
     if (pool === "orchard") {
       filteredData = filteredData.filter((d) => d.height >= ORCHARD_ACTIVATION);
+    }
+    if (pool === "ironwood") {
+      filteredData = filteredData.filter((d) => d.height >= IRONWOOD_ACTIVATION);
     }
 
     return filteredData;
@@ -209,6 +230,22 @@ export default function TransactionsSummaryChart(
               </label>
             </div>
           </div>
+          <label className="inline-flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
+            Pool
+            <select
+              aria-label="Pool"
+              value={pool}
+              onChange={(e) =>
+                setPool(e.target.value as "default" | "sapling" | "orchard" | "ironwood")
+              }
+              className="rounded border border-slate-300 bg-white px-2 py-1 text-sm dark:border-slate-600 dark:bg-slate-800"
+            >
+              <option value="default">All pools</option>
+              <option value="sapling">Sapling</option>
+              <option value="orchard">Orchard</option>
+              <option value="ironwood">Ironwood</option>
+            </select>
+          </label>
           {/* Sliders */}
           <div className="flex justify-center items-center space-x-12">
             <RangeSlider
@@ -330,6 +367,29 @@ export default function TransactionsSummaryChart(
                 />
               </>
             )}
+
+            {(pool === "default" || pool === "ironwood") && (
+              <>
+                {filter && (
+                  <Area
+                    type="monotone"
+                    dataKey="ironwood_filter"
+                    name="Ironwood Filter"
+                    stroke="#fdba74"
+                    fill="#fdba74"
+                    fillOpacity={0.3}
+                  />
+                )}
+                <Area
+                  type="monotone"
+                  dataKey="ironwood"
+                  name="Ironwood"
+                  stroke="#c2410c"
+                  fill="#c2410c"
+                  fillOpacity={0.3}
+                />
+              </>
+            )}
           </AreaChart>
         ) : (
           <BarChart data={chartDataset}>
@@ -394,6 +454,25 @@ export default function TransactionsSummaryChart(
                   dataKey="orchard"
                   name="Orchard"
                   fill="#f43f5e"
+                  stackId="stack"
+                />
+              </>
+            )}
+
+            {(pool === "default" || pool === "ironwood") && (
+              <>
+                {filter && (
+                  <Bar
+                    dataKey="ironwood_filter"
+                    name="Ironwood Filter"
+                    fill="#fdba74"
+                    stackId="stack"
+                  />
+                )}
+                <Bar
+                  dataKey="ironwood"
+                  name="Ironwood"
+                  fill="#c2410c"
                   stackId="stack"
                 />
               </>
