@@ -15,9 +15,12 @@ import {
   Slider,
   fmtZec,
   fmtPct,
+  fmtMillions,
+  ISSUED_NOW_ZEC,
+  SNAPSHOT_LABEL,
 } from "./shared";
 
-const TOTAL_SUPPLY_ZEC = 16.8e6; // ~16.8M ZEC currently issued
+const TOTAL_SUPPLY_ZEC = ISSUED_NOW_ZEC;
 const ZATS_PER_ZEC = 1e8;
 const BURN_FRACTION = 0.6;
 
@@ -45,7 +48,7 @@ export default function Sandbox235() {
 
       <BaselineStrip
         items={[
-          { value: "~16.8M", caption: "ZEC issued (of 21M cap)" },
+          { value: fmtMillions(TOTAL_SUPPLY_ZEC), caption: "ZEC issued (of 21M cap)" },
           { value: "~8,000", caption: "tx/day (14d avg)" },
           { value: "~2", caption: "logical actions/tx (typical)" },
           { value: "5,000 zats", caption: "marginal_fee (ZIP 317)" },
@@ -132,7 +135,7 @@ export default function Sandbox235() {
 
             <ChartCard
               caption="Annualised burn vs total supply"
-              title={`% of ~16.8M ZEC removed per year`}
+              title={`% of ${fmtMillions(TOTAL_SUPPLY_ZEC)} ZEC removed per year`}
               now={fmtPct(burnPctOfSupply, 4)}
               delta={
                 burnPctOfSupply > 0.1
@@ -176,7 +179,7 @@ export default function Sandbox235() {
                   <strong>Volume is held constant in time:</strong> we don't model congestion, fee bidding, or feedback effects from the burn itself.
                 </>,
                 <>
-                  <strong>Supply baseline:</strong> ~16.8M ZEC issued (of 21M cap) as of late 2025; % comparisons use this denominator.
+                  <strong>Supply baseline:</strong> {fmtMillions(TOTAL_SUPPLY_ZEC)} ZEC issued (of 21M cap) as of {SNAPSHOT_LABEL}; % comparisons use this denominator.
                 </>,
                 <>
                   <strong>No price effects:</strong> we report ZEC, not USD. The deflationary pressure on price is not modelled.

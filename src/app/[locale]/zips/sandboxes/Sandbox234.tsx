@@ -14,20 +14,30 @@ import {
   SbCard,
   Slider,
   fmtZec,
+  fmtMillions,
+  ISSUED_NOW_ZEC,
+  MAX_MONEY_ZEC,
+  NEXT_HALVING_HEIGHT,
+  RESERVE_NOW_ZEC,
+  SNAPSHOT_HEIGHT,
+  SNAPSHOT_LABEL,
 } from "./shared";
 
 const BLOCKS_PER_YEAR = 420_480; // 75s blocks
 const HALVING_INTERVAL_BLOCKS = 1_680_000; // ~4 years
 const POST_NU6_SUBSIDY = 1.5625; // ZEC/block (post-NU6 halving)
-const MAX_MONEY = 21_000_000;
-const ISSUED_NOW = 16.8e6;
-const RESERVE_NOW = MAX_MONEY - ISSUED_NOW; // ~4.2M
+const MAX_MONEY = MAX_MONEY_ZEC;
+const ISSUED_NOW = ISSUED_NOW_ZEC;
+const RESERVE_NOW = RESERVE_NOW_ZEC;
+const BLOCKS_TO_NEXT_HALVING = NEXT_HALVING_HEIGHT - SNAPSHOT_HEIGHT;
 
-// Today's halving step-function: subsidy halves every HALVING_INTERVAL_BLOCKS
+// Today's halving step-function: the next halving is at NEXT_HALVING_HEIGHT,
+// then the subsidy halves every HALVING_INTERVAL_BLOCKS.
 function todaySubsidy(blocksFromNow: number): number {
-  // We're already mid-cycle; for projection assume the next halving is one full
-  // interval out, then halve every interval afterwards.
-  const halvingsAhead = Math.floor(blocksFromNow / HALVING_INTERVAL_BLOCKS);
+  const halvingsAhead =
+    blocksFromNow < BLOCKS_TO_NEXT_HALVING
+      ? 0
+      : 1 + Math.floor((blocksFromNow - BLOCKS_TO_NEXT_HALVING) / HALVING_INTERVAL_BLOCKS);
   return POST_NU6_SUBSIDY / Math.pow(2, halvingsAhead);
 }
 
@@ -100,8 +110,8 @@ export default function Sandbox234() {
       <BaselineStrip
         items={[
           { value: "21,000,000", caption: "MAX_MONEY (ZEC)" },
-          { value: "~16.8M", caption: "issued so far" },
-          { value: "~4.2M", caption: "in money reserve" },
+          { value: fmtMillions(ISSUED_NOW), caption: `issued by ${SNAPSHOT_LABEL}` },
+          { value: fmtMillions(RESERVE_NOW), caption: "in money reserve" },
           { value: "1.5625", caption: "ZEC/block (post-NU6)" },
           { value: "75 s", caption: "block target time" },
         ]}
@@ -220,7 +230,7 @@ export default function Sandbox234() {
             <Assumptions
               items={[
                 <>
-                  <strong>Today's curve:</strong> step-function halvings every 1,680,000 blocks (~4 years), starting from the post-NU6 subsidy of 1.5625 ZEC/block.
+                  <strong>Today's curve:</strong> the post-NU6 subsidy of 1.5625 ZEC/block halves at block 4,406,400 (about 2 years after the snapshot) and every 1,680,000 blocks (~4 years) after that.
                 </>,
                 <>
                   <strong>ZIP 234 curve:</strong> S(h) = S₀·exp(-λ·h) with λ = S₀ / (reserve + cumulative burn). This integrates to roughly the same total issuance as today's schedule — the spec's stated goal.
