@@ -2,6 +2,10 @@ import React from "react";
 import { createEvent, fireEvent, render, screen } from "@testing-library/react";
 import SearchBar from "@/components/SearchBar";
 
+jest.mock("@/components/SearchBar/useBodyResults", () => ({
+  useBodyResults: () => [],
+}));
+
 const mockPush = jest.fn();
 
 jest.mock("@/i18n/navigation", () => ({
