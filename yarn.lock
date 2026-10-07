@@ -4114,13 +4114,12 @@
   dependencies:
     "@visx/vendor" "4.0.0"
 
-"@visx/event@^3.3.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@visx/event/-/event-3.12.0.tgz#61ea741f9d4b9df75277de25a3bf4f5562add3f9"
-  integrity sha512-9Lvw6qJ0Fi+y1vsC1WspfdIKCxHTb7oy59Uql1uBdPGT8zChP0vuxW0jQNQRDbKgoefj4pCXAFi8+MF1mEtVTw==
+"@visx/event@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@visx/event/-/event-4.0.0.tgz#c5c379cf877010e1b17e28aaec5783dc155f8eea"
+  integrity sha512-sOcVVzOUxOefF8mQenRFtutoEO7P9icpTcSJM36Sv13sepQbPBuYLknX7RV+EzqyNLOze5cO5GmLIUNH82FOoA==
   dependencies:
-    "@types/react" "*"
-    "@visx/point" "3.12.0"
+    "@visx/point" "4.0.0"
 
 "@visx/gradient@^3.3.0":
   version "3.12.0"
