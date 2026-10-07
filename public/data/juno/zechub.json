@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 180,
+    "proposal_count": 181,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -7403,6 +7403,42 @@
             "yes": "10",
             "no": "2",
             "abstain": "3"
+          },
+          "allow_revoting": true
+        },
+        "source": "lcd"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "proposalModulePrefix": "A",
+        "id": 181,
+        "proposal": {
+          "title": "Zcash South Africa Operations & Development Proposal (October – December 2026)",
+          "description": "1. Introduction & Overview\n\nZcash South Africa (ZcashSA) is dedicated to driving privacy awareness, financial sovereignty, and grassroots adoption of $ZEC across the region. Building on our momentum from previous campaigns—such as our online engagement drives, community AMAs, and offline footprint expansions like the Redotsclub & Gaic Padel Day—this proposal outlines our strategic roadmap and budget for the final quarter of the year (October to December 2026).\n\nOur core focus for this period shifts toward scaling real-world impact through strategic event sponsorships, developer empowerment, and structured educational workshops.\n\n2. Meet the team members\n\nCruzura - Head of operations, team management.\nJude - Event lead, planning & Organization\nSanelisiwe - Assistant regional lead, local content/ translations.\n\nInspire - Relations, partnerships, team management.\n\n3. Previous achievements, Q4 targets & milestones (Oct - Dec 2026)\n \nSince the team's launch in late May 2026, we have achieved the following:\n\n(i) Previous Events/Campaigns\nhttps://x.com/Zcash_SA/status/2101215522071183801\nhttps://luma.com/qiqc6kpd\nhttps://x.com/Zcash_SA/status/2095546323885805811\nhttps://x.com/Zcash_SA/status/2082174260110610932\nhttps://x.com/Zcash_SA/status/2080600372821795232\nhttps://x.com/Zcash_SA/status/2074476949150310571\n\n(ii) Community\nTwitter - 280 followers\nTelegram - 77 members\n\nQ4 target:\nEvents & Sponsorships: Attend and sponsor two major crypto fest events in Johannesburg this October, continuing our offline brand presence.\nList of some  upcoming events the team plans to attend/ represent:\n\n(i)  Digital finance workshop\n    https://luma.com/1r7gtr5e\n(ii)\nhttps://itnewsafrica.com/event/event/digital_finance_africa/#register\n(iii)  https://blockchainafrica.co/\n(iv)  https://cryptofest.co.za/\n(v) https://africastablecoinsummit.io/\n(vi) https://www.africapredictionmarketssummit.com/\n(vii)  https://africatechfestival.com/\n\nWorkshops: Host two dedicated educational workshops (one online interactive session and one physical offline workshop).\n\nMedia & Outreach/campaigns:\n\n(i) Produce one major podcast feature and host a regular series of community AMAs and Twitter/X Spaces,  \n(ii) Contents and translations to Zulu & Xhosa (2 per week)\n\n(iii) Onboarding users to discord, Zechub and Zodl wallet downloads (from offline/ online events and workshops.)\n\nCommunity growth:\n \nTarget :\n\n(i) Twitter 280 -  500 followers before dec 31\n\n (ii) Telegram. 77 - 150 members before dec 31\n\n(iii) Tiktok account launch and content upload\n\n(iv) YouTube account launch and content upload.\n\n(v) Also possible collaboration with Gleyo/launch of zcashSA community on gleyo\n\nCommunity Developer Fund Launch: \n\nEstablish and roll out a dedicated monthly developer fund to back open-source, Zcash-aligned tools and utilities initiated or co-branded by ZcashSA.\n\n4. Budget Breakdown (Monthly / Cycle Allocation)\nBased on our operational requirements for this 3-month term [cite: 1]:\n\n(i) Team compensation:\n\nCruzura - 250$\nJude - 200$\nSanelisiwe - 200$\nInspire - 0$ (volunteer)\n\n(ii) Events/campaigns:\n\nOffline events/workshops - 550$\nOnline events, campaigns & rewards - 150$\n\n(iii) Content creation tools/ premium subscription plans\n\nBranded T-shirts for team members and event giveaways (5) - 60$\nX premium, capcut, canva, claude - 50$\n\n(iv) Community project developer funding - 250$\n\n(v) Miscellaneous - Operational emergencies & backup -  200$\n\nTotal : 1880 × 3months (Oct - Dec) - 5640$\n\nPrevious funding: Nil\n\n5. Conclusion\n\nZcash South Africa has made meaningful progress since its launch in May 2026,and with this foundation now in place, Q4 2026 represents an important opportunity to move from building awareness to creating deeper, measurable, and sustainable impact within the South African and broader African Zcash ecosystem.\nWe kindly employ all Zechub DAO members to go through the proposal, leave a review or suggestions if necessary.\nWe appreciate any form of support/feedback.\nThank you.\n\nlinktr.ee/ZcashSA \n\nEmail - zcashsouthafrica@gmail.com ",
+          "proposer": "juno134vfu8fhxcnq3wlnpjnnx4r5hun9yjnzeqfgnq",
+          "start_height": 42430724,
+          "min_voting_period": null,
+          "expiration": {
+            "at_time": "1791733874188277006"
+          },
+          "threshold": {
+            "threshold_quorum": {
+              "threshold": {
+                "percent": "0.67"
+              },
+              "quorum": {
+                "percent": "0.4"
+              }
+            }
+          },
+          "total_power": "23",
+          "msgs": [],
+          "status": "open",
+          "votes": {
+            "yes": "3",
+            "no": "0",
+            "abstain": "0"
           },
           "allow_revoting": true
         },
