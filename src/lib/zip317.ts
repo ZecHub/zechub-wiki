@@ -17,6 +17,15 @@ export const GRACE_ACTIONS = 2;
 export const P2PKH_STANDARD_INPUT_SIZE = 150;
 export const P2PKH_STANDARD_OUTPUT_SIZE = 34;
 
+/**
+ * Wallet builders pad shielded bundles so a lone spend or output does not
+ * stand out: Sapling to at least two outputs (sapling-crypto
+ * MIN_SHIELDED_OUTPUTS) and Orchard to at least two Actions (orchard
+ * DEFAULT_MIN_ACTIONS). The padding goes on chain, so ZIP 317 bills it.
+ */
+export const MIN_SAPLING_OUTPUTS = 2;
+export const MIN_ORCHARD_ACTIONS = 2;
+
 export type Pool = "transparent" | "sapling" | "orchard";
 
 /** Field names follow ZIP 317 so this can be read side by side with the spec. */
@@ -93,14 +102,22 @@ export function simpleTransfer(from: Pool, to: Pool): Zip317Transaction {
   const spendsIn = (pool: Pool) => (from === pool ? 1 : 0);
   // The recipient's output, plus the change output returned to the sender.
   const outputsIn = (pool: Pool) => (to === pool ? 1 : 0) + (from === pool ? 1 : 0);
+  // A pool the transfer does not touch gets no bundle, so no padding either.
+  const padded = (count: number, minimum: number, used: boolean) =>
+    used ? Math.max(count, minimum) : 0;
+  const uses = (pool: Pool) => from === pool || to === pool;
 
   return {
     txInTotalSize: p2pkhInputsSize(spendsIn("transparent")),
     txOutTotalSize: p2pkhOutputsSize(outputsIn("transparent")),
     nSpendsSapling: spendsIn("sapling"),
-    nOutputsSapling: outputsIn("sapling"),
+    nOutputsSapling: padded(outputsIn("sapling"), MIN_SAPLING_OUTPUTS, uses("sapling")),
     // An Orchard Action carries one spend and one output, so a bundle needs as
     // many Actions as the busier side, padded with dummies.
-    nActionsOrchard: Math.max(spendsIn("orchard"), outputsIn("orchard")),
+    nActionsOrchard: padded(
+      Math.max(spendsIn("orchard"), outputsIn("orchard")),
+      MIN_ORCHARD_ACTIONS,
+      uses("orchard"),
+    ),
   };
 }
