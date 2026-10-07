@@ -34,6 +34,18 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { gzipSync } from "node:zlib";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+
+function toWikiPath(url) {
+  const path = String(url).replace(/^https?:\/\/[^/]+/, "");
+  if (!path.startsWith("/") || path.startsWith("//")) return null;
+  return path;
+}
+
+function manifestKeyUrl(key) {
+  if (key.includes("..") || key.includes("\\") || key.startsWith("/")) return null;
+  return key.split("/").map(encodeURIComponent).join("/");
+}
+
 const outDir = join(root, "public", "search-index");
 const llmsFull = join(root, "public", "llms-full.txt");
 
@@ -215,13 +227,14 @@ export function buildIndex(locale, pages, curatedByUrl, tokenize, tokenSet, mark
     const id = docs.length;
     // Paths, never absolute URLs: the client compares these against the
     // existing results, which are paths, and an origin breaks every match.
-    const href = page.url.replace(/^https?:\/\/[^/]+/, "");
+    const href = toWikiPath(page.url);
+    if (!href) return;
     docs.push([page.title, href, text.slice(0, 220)]);
 
     for (const tk of tokenSet(text)) add(terms, tk, id);
     for (const tk of tokenSet(page.title)) add(titles, tk, id);
 
-    const curated = curatedByUrl.get(page.url.replace(/^https?:\/\/[^/]+/, ""));
+    const curated = curatedByUrl.get(href);
     if (curated) {
       for (const alias of [curated.desc ?? "", ...(curated.aliases ?? [])]) {
         for (const tk of tokenSet(alias)) add(aliases, tk, id);
@@ -353,10 +366,13 @@ async function main() {
     const got = await pooled(
       keyed,
       async (p) => {
+        const keyUrl = manifestKeyUrl(p.key);
+        const path = toWikiPath(p.url);
+        if (!keyUrl || !path) return null;
         const md = await fetchText(
-          `${RAW}/${OWNER}/${REPO}/${BRANCH}/translations/${locale}/site/${p.key}`,
+          `${RAW}/${OWNER}/${REPO}/${BRANCH}/translations/${locale}/site/${keyUrl}`,
         );
-        return md ? { title: p.title, url: `/${locale}${p.url.replace(/^https?:\/\/[^/]+/, "")}`, markdown: md } : null;
+        return md ? { title: p.title, url: `/${locale}${path}`, markdown: md } : null;
       },
       CONCURRENCY,
     );
