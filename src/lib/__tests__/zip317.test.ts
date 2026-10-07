@@ -106,6 +106,12 @@ describe("simpleTransfer", () => {
     ["orchard", "transparent", 3, 15_000],
     ["orchard", "sapling", 4, 20_000],
     ["orchard", "orchard", 2, 10_000],
+    // NU6.3: Ironwood Actions are priced and padded like Orchard's.
+    ["transparent", "ironwood", 3, 15_000],
+    ["ironwood", "transparent", 3, 15_000],
+    ["sapling", "ironwood", 4, 20_000],
+    ["orchard", "ironwood", 4, 20_000],
+    ["ironwood", "ironwood", 2, 10_000],
   ] as const)("prices %s to %s as %i logical actions", (from, to, total, fee) => {
     expect(logicalActions(simpleTransfer(from, to)).total).toBe(total);
     expect(conventionalFee(simpleTransfer(from, to))).toBe(fee);
@@ -142,6 +148,16 @@ describe("simpleTransfer", () => {
       nSpendsSapling: 0,
       nOutputsSapling: 0,
       nActionsOrchard: 0,
+      nActionsIronwood: 0,
+    });
+  });
+
+  it("puts an Orchard-to-Ironwood payment's change back in Orchard", () => {
+    // The sender's change may stay in Orchard (their own address); the
+    // payment itself is an Ironwood output.
+    expect(simpleTransfer("orchard", "ironwood")).toMatchObject({
+      nActionsOrchard: MIN_ORCHARD_ACTIONS,
+      nActionsIronwood: MIN_ORCHARD_ACTIONS,
     });
   });
 });
