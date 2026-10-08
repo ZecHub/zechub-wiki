@@ -13,6 +13,11 @@ export function parseMarkdown(md: string) {
     let imageUrl = '';
     let syncSpeed = '';
     let ironwood = '';
+    // `- Status: Deprecated | <reason>` moves a wallet out of the directory
+    // into the "no longer supports Zcash" section; `- Stage: Beta` is a tag.
+    let status = '';
+    let statusReason = '';
+    let stage = '';
     const devices: string[] = [];
     const pools: string[] = [];
     const features: string[] = [];
@@ -55,6 +60,19 @@ export function parseMarkdown(md: string) {
         const value = line.split(': ')[1];
         if (value) ironwood = value.trim();
       }
+      else if (line.startsWith('- Status:')) {
+        // Everything after the first ": " — a reason may itself contain ": ".
+        const at = line.indexOf(': ');
+        if (at > -1) {
+          const [value, ...reason] = line.slice(at + 2).split(' | ');
+          status = value.trim();
+          statusReason = reason.join(' | ').trim();
+        }
+      }
+      else if (line.startsWith('- Stage:')) {
+        const value = line.split(': ')[1];
+        if (value) stage = value.trim();
+      }
       else if (line.includes('![syncspeed]')) {
         const match = line.match(/!\[syncspeed\]\((.*?) /);
         if (match) syncSpeed = match[1];
@@ -73,6 +91,9 @@ export function parseMarkdown(md: string) {
       walletSupport: [...new Set(walletSupport)],
       syncSpeed,
       ironwood,
+      status,
+      statusReason,
+      stage,
     };
   });
 
