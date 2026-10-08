@@ -84,7 +84,7 @@ describe("wallet-likes vote path", () => {
     const keyFor = async (title: string) => {
       queries.length = 0;
       await vote(title);
-      return queries[index("pg_advisory_xact_lock")].values?.[0];
+      return queries[index("pg_advisory_xact_lock")].values?.[1];
     };
 
     const a1 = await keyFor("Zashi");
@@ -92,9 +92,21 @@ describe("wallet-likes vote path", () => {
     const b = await keyFor("Ywallet");
     expect(a1).toBe(a2);
     expect(a1).not.toBe(b);
-    // A signed 64-bit integer, as pg_advisory_xact_lock(bigint) takes.
+    expect(queries[index("pg_advisory_xact_lock")].values?.[0]).toBe(0x5aec1115);
+    // A signed 32-bit integer, as pg_advisory_xact_lock(int, int) takes.
     const key = BigInt(a1 as string);
-    expect(key >= BigInt("-9223372036854775808")).toBe(true);
-    expect(key <= BigInt("9223372036854775807")).toBe(true);
+    expect(key >= BigInt("-2147483648")).toBe(true);
+    expect(key <= BigInt("2147483647")).toBe(true);
+  });
+
+  it("checks the daily cap after the lock and rolls it back", async () => {
+    results["SELECT EXISTS"] = { rows: [{ exists: false }] };
+    results["SELECT votes"] = { rows: [{ votes: 5 }] };
+    const r = await vote("Zashi");
+
+    expect(r.code).toBe(429);
+    expect(index("SELECT votes")).toBeGreaterThan(index("pg_advisory_xact_lock"));
+    expect(index("ROLLBACK")).toBeGreaterThan(index("SELECT votes"));
+    expect(index("COMMIT")).toBe(-1);
   });
 });
