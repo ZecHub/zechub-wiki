@@ -40,6 +40,14 @@ export const exploreFolders = [
         url: '/zcash-tech/zk-snarks'
     },
     {
+        img: '/Tech-05.png',
+        imgLight: '/explore/light/zcash-tech.png',
+        imgDark: '/explore/dark/zcash-tech.png',
+        description: 'Zero to Zero Knowledge series and Zcash podcasts',
+        name: 'Zero to Zero Knowledge',
+        url: '/zcash-social-media'
+    },
+    {
         img: '/Organizations-08.png',
         imgLight: '/explore/light/zcash-organizations.png',
         imgDark: '/explore/dark/zcash-organizations.png',
