@@ -9,6 +9,13 @@ const hashSHA1 = (text) => {
   return crypto.createHash('sha1').update(text).digest('hex');
 };
 
+// A signed 64-bit advisory-lock key for one wallet title.
+const titleLockKey = (title) =>
+  BigInt.asIntN(
+    64,
+    BigInt('0x' + crypto.createHash('sha256').update(`wallet_likes:${title}`).digest('hex').slice(0, 16)),
+  ).toString();
+
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { title, delta } = req.body;
@@ -52,14 +59,22 @@ export default async function handler(req, res) {
       } else {
         const today = new Date().toISOString().split('T')[0];
 
-        // Check if the user has already voted for this title today
+        await client.query('BEGIN');
+
+        // Every check below reads a value and then writes based on it, so two
+        // concurrent votes for the same wallet could both pass: the daily cap was
+        // exceeded, one reviewer counted twice, and a wallet's first likes landed
+        // in separate rows. Serialize votes per title with a lock held until this
+        // transaction ends; votes for different wallets still run in parallel.
+        await client.query('SELECT pg_advisory_xact_lock($1::bigint)', [titleLockKey(title)]);
+
+        // Check if the user has already voted for this title
         const resIp = await client.query('SELECT EXISTS (SELECT 1 FROM wallet_likes_proofs WHERE hash = $1)', [hashedIpTitleKey]);
 
         if (resIp.rows[0].exists) {
+          await client.query('ROLLBACK');
           return res.status(429).json({ message: "You reviewed this in the past." });
         }
-
-        await client.query('BEGIN');
 
         // Check the vote limit
         const resLimit = await client.query('SELECT votes FROM wallet_likes_limits WHERE title = $1 AND day = $2', [title, today]);
