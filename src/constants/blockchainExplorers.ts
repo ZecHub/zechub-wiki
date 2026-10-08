@@ -18,13 +18,13 @@ export const blockchainExplorers = [
   {
     title: 'ShieldedScan',
     description:
-      'Privacy-first Zcash block explorer. Shielded activity is first-class: pool paths, what is encrypted, and what stays public. Own Zakura archive node and Postgres index, no third-party data provider. Source: https://github.com/BitFalco21/shieldedscan (AGPL-3.0).',
+      'A cypherpunk-style Zcash block explorer with in-depth data on shielded pools, cross-chain flows and network activity. Includes Zeno, an AI agent that answers questions about chain data, a free keyless API and an MCP server so any AI assistant can query it. Source: https://github.com/BitFalco21/shieldedscan (AGPL-3.0).',
     features: [
       'No tracker',
       'Mainnet and testnet',
       'Sprout, Sapling, Orchard, Ironwood',
       'Cross-chain flows',
-      'Keyless API',
+      'Free & Keyless API',
       'Self-hostable',
     ],
     url: 'https://shieldedscan.xyz/',
