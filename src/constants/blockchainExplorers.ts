@@ -16,29 +16,58 @@ export const blockchainExplorers = [
     thumbnailImage: '/explorer/Cipherscan.png',
   },
   {
-      title: 'zcashinfo.com',
-      description:
-        'Zcash blockchain explorer featuring block details, transaction lookup, address search, network statistics, value pool distribution, and mempool monitoring.',
-      features: [
-        'Block explorer',
-        'Transaction lookup',
-        'Address search',
-        'Network statistics',
-        'Value pool distribution',
-        'Mempool monitoring',
-      ],
-      url: 'https://zcashinfo.com/',
-      thumbnailImage: '/explorer/zcashinfo.png',
-    },
-    {
+    title: 'ShieldedScan',
+    description:
+      'Privacy-first Zcash block explorer. Shielded activity is first-class: pool paths, what is encrypted, and what stays public. Own Zakura archive node and Postgres index, no third-party data provider. Source: https://github.com/BitFalco21/shieldedscan (AGPL-3.0).',
+    features: [
+      'No tracker',
+      'Mainnet and testnet',
+      'Sprout, Sapling, Orchard, Ironwood',
+      'Cross-chain flows',
+      'Keyless API',
+      'Self-hostable',
+    ],
+    url: 'https://shieldedscan.xyz/',
+    thumbnailImage: '/explorer/shieldedscan.png',
+  },
+  {
+    title: 'ZEC-OS',
+    description:
+      'Browser desktop for the Zcash ecosystem with a mainnet and testnet explorer, mempool viewer, network stats, historical charts, shielded pool data, and a Unified Address decoder. Next.js front end over a Fastify, Prisma, and PostgreSQL index.',
+    features: [
+      'Mainnet and testnet explorer',
+      'Mempool viewer',
+      'Shielded pool data',
+      'Network stats and charts',
+      'Unified Address decoder',
+    ],
+    url: 'https://www.zec-os.com/explorer',
+    thumbnailImage: '/explorer/zec-os.png',
+  },
+  {
+    title: 'zcashinfo.com',
+    description:
+      'Zcash blockchain explorer featuring block details, transaction lookup, address search, network statistics, value pool distribution, and mempool monitoring.',
+    features: [
+      'Block explorer',
+      'Transaction lookup',
+      'Address search',
+      'Network statistics',
+      'Value pool distribution',
+      'Mempool monitoring',
+    ],
+    url: 'https://zcashinfo.com/',
+    thumbnailImage: '/explorer/zcashinfo.png',
+  },
+  {
     title: 'Zexplorer',
     description:
       ' A Zcash-only explorer and API that tries to be precise about what public chain data can show, what is private by design, and what a client can safely depend on',
     features: ['Block Explorer', 'Transaction Explorer', 'Search Functionality', 'Address Lookup', 'Mempool / Pending Transactions', 'Network Stats'],
     url: 'https://zexplorer.app/testnet/',
     thumbnailImage: '/explorer/zexplorer.png',
-    },
-    {
+  },
+  {
     title: 'Zecstats',
     description:
       'A blockchain analytics platform for Zcash that provides real-time network statistics, privacy analytics, market insights, and interactive data visualization.',
