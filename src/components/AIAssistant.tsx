@@ -232,6 +232,15 @@ export default function AIAssistantPanel({
   const bottomRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const processedAutoSendNonceRef = useRef<number | null>(null);
+  const requestGenerationRef = useRef(0);
+  const mountedRef = useRef(false);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -284,6 +293,9 @@ export default function AIAssistantPanel({
 
     const userMessage: Message = { role: "user", content: trimmed };
     const updatedHistory = [...messages, userMessage];
+    const generation = ++requestGenerationRef.current;
+    const isCurrentRequest = () =>
+      mountedRef.current && requestGenerationRef.current === generation;
     setMessages(updatedHistory);
     setIsLoading(true);
 
@@ -307,15 +319,17 @@ export default function AIAssistantPanel({
       }
 
       const data: { answer: string } = await res.json();
+      if (!isCurrentRequest()) return;
       setMessages((prev) => [...prev, { role: "assistant", content: data.answer }]);
       onAssistantReply?.();
     } catch (err: unknown) {
+      if (!isCurrentRequest()) return;
       const msg = err instanceof Error ? err.message : (s.somethingWrong ?? "Something went wrong.");
       setError(msg);
       setMessages((prev) => prev.slice(0, -1));
       if (!overrideText) setInput(trimmed);
     } finally {
-      setIsLoading(false);
+      if (isCurrentRequest()) setIsLoading(false);
     }
   }, [autoResize, input, isLoading, messages]);
 
@@ -342,6 +356,9 @@ export default function AIAssistantPanel({
   }
 
   function clearConversation() {
+    // The pending reply belongs to the conversation being discarded.
+    requestGenerationRef.current += 1;
+    setIsLoading(false);
     setMessages([]);
     setError(null);
     setSensitiveWarning(false);
