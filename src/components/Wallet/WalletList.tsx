@@ -190,7 +190,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     }
   };
 
-  const filteredWallets = activeWallets.filter((wallet) =>
+  const matchesFilters = (wallet: Wallet) =>
     activeFilters.every((filter) => {
       const [category, value] = filter.split(":");
       if (category === "Devices") return wallet.devices.includes(value);
@@ -200,8 +200,11 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       if (category === "Features") return wallet.features.includes(value);
       if (category === "Ironwood") return wallet.ironwood === value;
       return true;
-    }),
-  );
+    });
+  const filteredWallets = activeWallets.filter(matchesFilters);
+  // The same filters apply to the deprecated section, so a filtered view never
+  // lists deprecated wallets that don't match; the section hides when none do.
+  const filteredDeprecated = deprecatedWallets.filter(matchesFilters);
 
   // Ironwood-ready wallets first, then In Progress, Not Ready, Transparent only
   // and wallets without a status; the rating orders wallets within each group.
@@ -312,14 +315,14 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
               ))}
             </div>
 
-            {deprecatedWallets.length > 0 && (
+            {filteredDeprecated.length > 0 && (
               <details open className="wl-deprecated mt-10 rounded-2xl border border-rose-200 dark:border-rose-900/60">
                 <summary className="cursor-pointer px-5 py-4 font-semibold text-rose-700 dark:text-rose-300">
-                  {deprecatedTitle} ({deprecatedWallets.length})
+                  {deprecatedTitle} ({filteredDeprecated.length})
                 </summary>
                 <p className="px-5 text-sm text-slate-500 dark:text-slate-400">{deprecatedNote}</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
-                  {deprecatedWallets.map((wallet) => (
+                  {filteredDeprecated.map((wallet) => (
                     <WalletItem
                       key={wallet.title}
                       title={wallet.title}
