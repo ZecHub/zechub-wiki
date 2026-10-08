@@ -978,6 +978,17 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
     setMounted(true);
   }, []);
   useEffect(() => {
+    const desktopNavigation = window.matchMedia("(min-width: 1280px)");
+    const closeMobileMenuOnDesktop = () => {
+      if (desktopNavigation.matches) setIsOpen(false);
+    };
+    closeMobileMenuOnDesktop();
+    desktopNavigation.addEventListener("change", closeMobileMenuOnDesktop);
+    return () => {
+      desktopNavigation.removeEventListener("change", closeMobileMenuOnDesktop);
+    };
+  }, []);
+  useEffect(() => {
     if (!moreOpen) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMoreOpen(false);
