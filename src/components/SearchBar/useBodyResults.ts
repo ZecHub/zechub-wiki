@@ -43,20 +43,23 @@ export function useBodyResults(
   alreadyShown: readonly Searcher[],
 ): Searcher[] {
   const locale = useLocale();
-  const [index, setIndex] = useState<SearchIndex | null>(null);
-  const [requested, setRequested] = useState(false);
+  const [loadedIndex, setLoadedIndex] = useState<{
+    locale: string;
+    index: SearchIndex | null;
+  } | null>(null);
+  const hasQuery = query.length > 0;
+  const index = loadedIndex?.locale === locale ? loadedIndex.index : null;
 
   useEffect(() => {
-    if (!query || requested) return;
-    setRequested(true);
+    if (!hasQuery) return;
     let live = true;
     loadIndex(locale).then((loaded) => {
-      if (live) setIndex(loaded);
+      if (live) setLoadedIndex({ locale, index: loaded });
     });
     return () => {
       live = false;
     };
-  }, [query, requested, locale]);
+  }, [hasQuery, locale]);
 
   return useMemo(() => {
     if (!index || !query) return [];
