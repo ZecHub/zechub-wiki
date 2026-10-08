@@ -94,7 +94,14 @@ export function LanguageSwitcher() {
     // Every language ships curated content and a next-intl route, so always
     // navigate to the locale-prefixed path (English is served unprefixed at the
     // root) — the server then renders the curated page for that locale.
-    router.replace(pathname, { locale: code as (typeof routing.locales)[number] });
+    // usePathname() drops the query string, so the new locale would otherwise
+    // lose page state carried in it (the visualizer module in ?module=, the
+    // dashboard and tools tabs). Read it at click time rather than via
+    // useSearchParams, which would need a Suspense boundary around the navbar
+    // on every statically rendered page. The router keeps the hash itself.
+    router.replace(`${pathname}${window.location.search}`, {
+      locale: code as (typeof routing.locales)[number],
+    });
   };
 
   return (
