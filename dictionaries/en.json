@@ -434,6 +434,9 @@
     "filters": "Filters",
     "showNavigation": "Show Navigation",
     "close": "Close",
+    "clearAll": "Clear all",
+    "showWallets": "Show {count} wallets",
+    "showWallet": "Show 1 wallet",
     "savedReview": "We saved your review!",
     "errorGettingLikes": "Error getting likes:",
     "errorUpdatingRating": "Error updating rating:"

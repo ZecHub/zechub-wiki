@@ -454,6 +454,9 @@
     "filters": "Фильтры",
     "showNavigation": "Показать навигацию",
     "close": "Закрыть",
+    "clearAll": "Сбросить все",
+    "showWallets": "Показать кошельки: {count}",
+    "showWallet": "Показать 1 кошелёк",
     "savedReview": "Мы сохранили ваш отзыв!",
     "errorGettingLikes": "Ошибка при получении лайков:",
     "errorUpdatingRating": "Ошибка при обновлении рейтинга:"

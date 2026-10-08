@@ -454,6 +454,9 @@
     "filters": "Filter",
     "showNavigation": "Navigation anzeigen",
     "close": "Schließen",
+    "clearAll": "Alle löschen",
+    "showWallets": "{count} Wallets anzeigen",
+    "showWallet": "1 Wallet anzeigen",
     "savedReview": "Wir haben deine Bewertung gespeichert!",
     "errorGettingLikes": "Fehler beim Abrufen der Likes:",
     "errorUpdatingRating": "Fehler beim Aktualisieren der Bewertung:"

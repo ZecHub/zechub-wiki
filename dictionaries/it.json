@@ -458,6 +458,9 @@
     "filters": "Filtri",
     "showNavigation": "Mostra navigazione",
     "close": "Chiudi",
+    "clearAll": "Cancella tutto",
+    "showWallets": "Mostra {count} wallet",
+    "showWallet": "Mostra 1 wallet",
     "savedReview": "La tua recensione è stata salvata.",
     "errorGettingLikes": "Errore nel recupero dei voti:",
     "errorUpdatingRating": "Errore nell'aggiornamento del voto:"

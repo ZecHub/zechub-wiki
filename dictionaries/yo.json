@@ -447,7 +447,10 @@
     "visitWebsite": "Lọ sí ojú-ìwé",
     "filters": "Àwọn àlẹmọ",
     "showNavigation": "Fi Àwòrán Ìlọsíwájú hàn",
-    "close": "Sún mọ́ ọn",
+    "close": "Pa á dé",
+    "clearAll": "Pa gbogbo rẹ̀ rẹ́",
+    "showWallets": "Fi àwọn wàléètì {count} hàn",
+    "showWallet": "Fi wàléètì 1 hàn",
     "savedReview": "A ti pa àtúnyẹ̀wò rẹ mọ́!",
     "errorGettingLikes": "Àṣìṣe tí ó ń gba àwọn ìfẹ́:",
     "errorUpdatingRating": "Àkọsílẹ̀ àtúnṣe àṣìṣe:"

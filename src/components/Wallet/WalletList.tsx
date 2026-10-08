@@ -56,6 +56,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
   const filtersLabel = t?.wallets?.filters ?? "Filters";
   const showNavLabel = t?.wallets?.showNavigation ?? "Show Navigation";
   const closeLabel = t?.wallets?.close ?? "Close";
+  const clearAllLabel = t?.wallets?.clearAll ?? "Clear all";
   const savedReviewMsg = t?.wallets?.savedReview ?? "We saved your review!";
   const errorGettingLikesMsgPrefix =
     t?.wallets?.errorGettingLikes ?? "Error getting likes:";
@@ -69,6 +70,10 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     "Kept for reference only. Do not use these wallets for new funds.";
 
   const handleToggleFilter = () => setIsFilterVisible((v) => !v);
+  const showWalletsLabel = (count: number) =>
+    count === 1
+      ? (t?.wallets?.showWallet ?? "Show 1 wallet")
+      : (t?.wallets?.showWallets ?? "Show {count} wallets").replace("{count}", String(count));
 
   const activeWallets = allWallets.filter((w) => !isDeprecated(w));
   const deprecatedWallets = allWallets
@@ -326,28 +331,56 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
 
         {/* Mobile drawer */}
         {isFilterVisible && (
+          // z-[300]: above the site header (Navigation, z-200), which otherwise
+          // covers the top of the panel on phones. dvh, not vh: vh includes the
+          // area behind the browser's own toolbars, pushing the panel's top
+          // row off-screen.
           <Dialog
             open={isFilterVisible}
             onClose={() => setIsFilterVisible(false)}
             initialFocus={closeFilterRef}
-            className="wl-root wl-mobile-drawer fixed inset-0 z-50 bg-black/60 flex items-end"
+            className="wl-root wl-mobile-drawer fixed inset-0 z-[300] bg-black/60 flex items-end"
           >
             <DialogPanel
-              className="bg-white dark:bg-slate-900 w-full max-h-[85vh] rounded-t-3xl overflow-hidden shadow-xl"
+              className="bg-white dark:bg-slate-900 w-full max-h-[85dvh] rounded-t-3xl overflow-hidden shadow-xl flex flex-col"
             >
-              <div className="wl-drawer-header px-6 py-4 border-b flex items-center justify-between">
+              <div className="wl-drawer-header px-6 py-4 border-b flex items-center justify-between gap-3">
                 <DialogTitle as="span" className="text-lg font-semibold">{filtersLabel}</DialogTitle>
-                <button 
+                <div className="flex items-center gap-4">
+                  {activeFilters.length > 0 && (
+                    <button
+                      type="button"
+                      className="text-sm font-medium text-blue-600 dark:text-blue-400 underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-blue-600 rounded"
+                      onClick={() => setActiveFilters([])}
+                    >
+                      {clearAllLabel}
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    ref={closeFilterRef}
+                    aria-label={closeLabel}
+                    className="w-9 h-9 flex items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-blue-600"
+                    onClick={() => setIsFilterVisible(false)}
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Apply: at the top, before the filters, so it is visible without
+                  scrolling; the count follows every toggle. */}
+              <div className="px-6 pt-4 pb-2">
+                <button
                   type="button"
-                  ref={closeFilterRef}
-                  className="wl-btn text-sm font-medium focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+                  className="wl-btn-apply w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
                   onClick={() => setIsFilterVisible(false)}
                 >
-                  {closeLabel}
+                  {showWalletsLabel(sortedWallets.length)}
                 </button>
               </div>
-              
-              <div className="wl-drawer-content p-6 overflow-y-auto max-h-[calc(85vh-65px)]">
+
+              <div className="wl-drawer-content px-6 pb-6 pt-2 overflow-y-auto flex-1 min-h-0">
                 <FilterToggle
                   filters={filters}
                   activeFilters={activeFilters}

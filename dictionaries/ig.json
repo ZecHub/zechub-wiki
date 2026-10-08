@@ -448,6 +448,9 @@
     "filters": "Ihe nzacha",
     "showNavigation": "Gosi Ntugharị",
     "close": "Mechie",
+    "clearAll": "Hichapụ ihe niile",
+    "showWallets": "Gosi akpa ego {count}",
+    "showWallet": "Gosi akpa ego 1",
     "savedReview": "Anyị chebere nyocha gị!",
     "errorGettingLikes": "Njehie na-enweta mmasị:",
     "errorUpdatingRating": "Nhazi mmelite njehie:"

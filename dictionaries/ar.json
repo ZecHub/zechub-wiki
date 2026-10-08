@@ -454,6 +454,9 @@
     "filters": "عوامل التصفية",
     "showNavigation": "إظهار التنقل",
     "close": "إغلاق",
+    "clearAll": "مسح الكل",
+    "showWallets": "عرض المحافظ: {count}",
+    "showWallet": "عرض محفظة واحدة",
     "savedReview": "لقد حفظنا مراجعتك!",
     "errorGettingLikes": "خطأ في جلب الإعجابات:",
     "errorUpdatingRating": "خطأ في تحديث التقييم:"

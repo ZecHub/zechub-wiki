@@ -454,6 +454,9 @@
     "filters": "필터",
     "showNavigation": "탐색 표시",
     "close": "닫기",
+    "clearAll": "모두 지우기",
+    "showWallets": "지갑 {count}개 보기",
+    "showWallet": "지갑 1개 보기",
     "savedReview": "리뷰를 저장했습니다!",
     "errorGettingLikes": "좋아요를 가져오는 중 오류:",
     "errorUpdatingRating": "평점을 업데이트하는 중 오류:"

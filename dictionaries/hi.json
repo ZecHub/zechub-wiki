@@ -454,6 +454,9 @@
     "filters": "फ़िल्टर",
     "showNavigation": "नेविगेशन दिखाएँ",
     "close": "बंद करें",
+    "clearAll": "सभी हटाएँ",
+    "showWallets": "{count} वॉलेट दिखाएँ",
+    "showWallet": "1 वॉलेट दिखाएँ",
     "savedReview": "हमने आपकी समीक्षा सहेज ली!",
     "errorGettingLikes": "लाइक्स प्राप्त करने में त्रुटि:",
     "errorUpdatingRating": "रेटिंग अपडेट करने में त्रुटि:"

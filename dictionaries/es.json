@@ -454,6 +454,9 @@
     "filters": "Filtros",
     "showNavigation": "Mostrar navegación",
     "close": "Cerrar",
+    "clearAll": "Borrar todo",
+    "showWallets": "Mostrar {count} carteras",
+    "showWallet": "Mostrar 1 cartera",
     "savedReview": "¡Guardamos tu reseña!",
     "errorGettingLikes": "Error al obtener los me gusta:",
     "errorUpdatingRating": "Error al actualizar la valoración:"

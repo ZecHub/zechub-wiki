@@ -454,6 +454,9 @@
     "filters": "フィルター",
     "showNavigation": "ナビゲーションを表示",
     "close": "閉じる",
+    "clearAll": "すべてクリア",
+    "showWallets": "{count}件のウォレットを表示",
+    "showWallet": "1件のウォレットを表示",
     "savedReview": "レビューを保存しました！",
     "errorGettingLikes": "「いいね」の取得エラー:",
     "errorUpdatingRating": "評価の更新エラー:"

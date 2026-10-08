@@ -454,6 +454,9 @@
     "filters": "Фільтри",
     "showNavigation": "Показати навігацію",
     "close": "Закрити",
+    "clearAll": "Скинути все",
+    "showWallets": "Показати гаманці: {count}",
+    "showWallet": "Показати 1 гаманець",
     "savedReview": "Ми зберегли ваш відгук!",
     "errorGettingLikes": "Помилка отримання вподобайок:",
     "errorUpdatingRating": "Помилка оновлення рейтингу:"

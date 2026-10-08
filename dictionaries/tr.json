@@ -454,6 +454,9 @@
     "filters": "Filtreler",
     "showNavigation": "Menüyü Göster",
     "close": "Kapat",
+    "clearAll": "Tümünü temizle",
+    "showWallets": "{count} cüzdanı göster",
+    "showWallet": "1 cüzdanı göster",
     "savedReview": "İncelemenizi kaydettik!",
     "errorGettingLikes": "Hata beğeniler alınırken:",
     "errorUpdatingRating": "Hata puan güncellenirken:"

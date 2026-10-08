@@ -448,7 +448,10 @@
     "visitWebsite": "Tembelea tovuti",
     "filters": "Vichujio",
     "showNavigation": "Onyesha Navigation",
-    "close": "Karibu",
+    "close": "Funga",
+    "clearAll": "Futa yote",
+    "showWallets": "Onyesha wallets {count}",
+    "showWallet": "Onyesha wallet 1",
     "savedReview": "Tumehifadhi maoni yako!",
     "errorGettingLikes": "Kosa kupata anapenda:",
     "errorUpdatingRating": "Kosa updating rating:"

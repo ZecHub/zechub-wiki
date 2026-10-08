@@ -55,6 +55,8 @@ describe("Wallet filtering keyboard access", () => {
     await user.tab();
     expect(close).toHaveFocus();
     await user.tab();
+    expect(within(dialog).getByRole("button", { name: /^Show \d+ wallets?$/ })).toHaveFocus();
+    await user.tab();
     const desktop = within(dialog).getByRole("checkbox", { name: "Desktop" });
     expect(desktop).toHaveFocus();
     await user.keyboard(" ");
@@ -120,6 +122,27 @@ describe("Wallet filtering keyboard access", () => {
     await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
     await waitFor(() => expect(opener).toHaveFocus());
     expect(global.fetch).toHaveBeenCalledTimes(1);
+  });
+
+  it("applies filters from the Show N wallets button and resets them with Clear all", async () => {
+    const user = userEvent.setup();
+    renderMobile();
+    const opener = screen.getByRole("button", { name: /Show Navigation/ });
+    await user.click(opener);
+    let dialog = await screen.findByRole("dialog", { name: "Filters" });
+    expect(within(dialog).getByRole("button", { name: "Show 2 wallets" })).toBeInTheDocument();
+    expect(within(dialog).queryByRole("button", { name: "Clear all" })).not.toBeInTheDocument();
+    await user.click(within(dialog).getByRole("checkbox", { name: "Mobile" }));
+    await user.click(within(dialog).getByRole("button", { name: "Show 1 wallet" }));
+    await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
+    await waitFor(() => expect(opener).toHaveFocus());
+    expect(screen.getByRole("heading", { name: "Pocket wallet" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Desk wallet" })).not.toBeInTheDocument();
+    await user.click(opener);
+    dialog = await screen.findByRole("dialog", { name: "Filters" });
+    await user.click(within(dialog).getByRole("button", { name: "Clear all" }));
+    expect(within(dialog).getByRole("checkbox", { name: "Mobile" })).not.toBeChecked();
+    expect(within(dialog).getByRole("button", { name: "Show 2 wallets" })).toBeInTheDocument();
   });
 
   it("keeps the desktop checkbox filtering and result reset working", async () => {
