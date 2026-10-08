@@ -41,7 +41,7 @@ describe("WalletList", () => {
   it("lists a deprecated wallet only in the bottom section, with its reason", async () => {
     render(<WalletList allWallets={wallets} />);
 
-    expect(screen.getByText("1 wallet")).toBeInTheDocument();
+    expect(screen.getAllByText("1 wallet").length).toBeGreaterThan(0);
     const section = screen
       .getByText(/Deprecated \/ no longer supports Zcash \(1\)/)
       .closest("details") as HTMLElement;

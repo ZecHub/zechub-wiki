@@ -54,7 +54,12 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
 
   const { t } = useLanguage();
   const filtersLabel = t?.wallets?.filters ?? "Filters";
-  const showNavLabel = t?.wallets?.showNavigation ?? "Show Navigation";
+  const walletCountLabel = (count: number) =>
+    count === 1
+      ? (t?.wallets?.walletCountOne ?? "1 wallet")
+      : (t?.wallets?.walletCount ?? "{count} wallets").replace("{count}", String(count));
+  const activeCountLabel = (count: number) =>
+    (t?.wallets?.activeCount ?? "{count} active").replace("{count}", String(count));
   const closeLabel = t?.wallets?.close ?? "Close";
   const clearAllLabel = t?.wallets?.clearAll ?? "Clear all";
   const savedReviewMsg = t?.wallets?.savedReview ?? "We saved your review!";
@@ -211,8 +216,11 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       <div className="wl-root">
         {/* Mobile header */}
         <div className="wl-mobile-header">
-          <span className="wl-mobile-title">{filtersLabel}</span>
-          <button 
+          {/* The heading is the result count; the button says what it opens. */}
+          <span className="wl-mobile-title" aria-live="polite">
+            {walletCountLabel(sortedWallets.length)}
+          </span>
+          <button
             type="button"
             ref={filterTriggerRef}
             aria-haspopup="dialog"
@@ -220,10 +228,18 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
             className="wl-btn focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
             onClick={handleToggleFilter}
           >
-            <span className="wl-btn-icon">Settings</span>
-            {showNavLabel}
+            <svg className="wl-btn-icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0" />
+              <circle cx="16" cy="6" r="2" />
+              <circle cx="10" cy="12" r="2" />
+              <circle cx="18" cy="18" r="2" />
+            </svg>
+            {filtersLabel}
             {activeFilters.length > 0 && (
-              <span className="wl-active-count">{activeFilters.length}</span>
+              <>
+                <span className="wl-active-count" aria-hidden="true">{activeFilters.length}</span>
+                <span className="sr-only">, {activeCountLabel(activeFilters.length)}</span>
+              </>
             )}
           </button>
         </div>
@@ -268,7 +284,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
           <section className="wl-results">
             <div className="wl-results-meta">
               <span className="wl-results-count">
-                {sortedWallets.length} wallet{sortedWallets.length !== 1 ? "s" : ""}
+                {walletCountLabel(sortedWallets.length)}
               </span>
             </div>
 
