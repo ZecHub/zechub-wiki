@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import WalletList from "@/components/Wallet/WalletList";
+import userEvent from "@testing-library/user-event";
 import { parseMarkdown } from "@/lib/parseMarkdown";
 
 jest.mock("@/context/LanguageContext", () => ({
@@ -41,7 +42,7 @@ describe("WalletList", () => {
   it("lists a deprecated wallet only in the bottom section, with its reason", async () => {
     render(<WalletList allWallets={wallets} />);
 
-    expect(screen.getByText("1 wallet")).toBeInTheDocument();
+    expect(screen.getAllByText("1 wallet").length).toBeGreaterThan(0);
     const section = screen
       .getByText(/Deprecated \/ no longer supports Zcash \(1\)/)
       .closest("details") as HTMLElement;
@@ -50,6 +51,28 @@ describe("WalletList", () => {
     expect(within(section).getByText("End-of-life, no NU6.3 support")).toBeInTheDocument();
     expect(within(section).queryByText("Alive")).not.toBeInTheDocument();
     expect(within(section).queryByText(/^Ironwood /)).not.toBeInTheDocument();
+  });
+
+  it("applies the filters to the deprecated section too, hiding it when nothing matches", async () => {
+    const user = userEvent.setup();
+    render(<WalletList allWallets={wallets} />);
+    const sidebar = document.querySelector(".wl-sidebar") as HTMLElement;
+    const deprecatedHeading = /Deprecated \/ no longer supports Zcash/;
+
+    // Both wallets have Orchard: the deprecated one stays listed.
+    const orchard = await within(sidebar).findByRole("checkbox", { name: "Orchard" });
+    await user.click(orchard);
+    expect(screen.getByText(/Deprecated \/ no longer supports Zcash \(1\)/)).toBeInTheDocument();
+
+    // Only the active wallet is Mobile: the section disappears.
+    await user.click(within(sidebar).getByRole("checkbox", { name: "Mobile" }));
+    expect(screen.queryByText(deprecatedHeading)).not.toBeInTheDocument();
+    expect(screen.queryByText("Gone")).not.toBeInTheDocument();
+
+    // Clearing the filters brings it back.
+    await user.click(within(sidebar).getByRole("checkbox", { name: "Mobile" }));
+    await user.click(orchard);
+    expect(screen.getByText(/Deprecated \/ no longer supports Zcash \(1\)/)).toBeInTheDocument();
   });
 
   it("builds the filters from active wallets only", async () => {

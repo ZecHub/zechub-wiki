@@ -631,8 +631,7 @@ code::-webkit-scrollbar-track {
 }
 
 .wl-btn-icon {
-  font-size: 1rem;
-  line-height: 1;
+  flex-shrink: 0;
 }
 
 /* ── Done button (mobile drawer footer) ── */
@@ -747,8 +746,9 @@ code::-webkit-scrollbar-track {
   .wl-active-chips {
     display: flex;
   }
+  /* On phones the header already shows the count. */
   .wl-results-meta {
-    margin-top: 4px;
+    display: none;
   }
   .wl-drawer-overlay.open {
     display: block;

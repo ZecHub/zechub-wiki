@@ -33,7 +33,7 @@ describe("Wallet filtering keyboard access", () => {
     const user = userEvent.setup();
     renderMobile();
     await user.tab();
-    const opener = screen.getByRole("button", { name: /Show Navigation/ });
+    const opener = screen.getByRole("button", { name: /^Filters/ });
     expect(opener).toHaveFocus();
     await user.keyboard(key);
     const dialog = await screen.findByRole("dialog", { name: "Filters" });
@@ -46,7 +46,7 @@ describe("Wallet filtering keyboard access", () => {
   it("contains Tab navigation and selects a filter with Space without moving focus", async () => {
     const user = userEvent.setup();
     renderMobile();
-    await user.click(screen.getByRole("button", { name: /Show Navigation/ }));
+    await user.click(screen.getByRole("button", { name: /^Filters/ }));
     const dialog = await screen.findByRole("dialog", { name: "Filters" });
     const close = within(dialog).getByRole("button", { name: "Close" });
     await waitFor(() => expect(close).toHaveFocus());
@@ -55,6 +55,8 @@ describe("Wallet filtering keyboard access", () => {
     await user.tab();
     expect(close).toHaveFocus();
     await user.tab();
+    expect(within(dialog).getByRole("button", { name: /^Show \d+ wallets?$/ })).toHaveFocus();
+    await user.tab();
     const desktop = within(dialog).getByRole("checkbox", { name: "Desktop" });
     expect(desktop).toHaveFocus();
     await user.keyboard(" ");
@@ -62,7 +64,7 @@ describe("Wallet filtering keyboard access", () => {
     expect(desktop).toHaveFocus();
     await user.keyboard("{Escape}");
     await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
-    expect(screen.getByText("1 wallet")).toBeInTheDocument();
+    expect(screen.getAllByText("1 wallet").length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: "Desk wallet" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Pocket wallet" })).not.toBeInTheDocument();
   });
@@ -70,7 +72,7 @@ describe("Wallet filtering keyboard access", () => {
   it.each(["{Enter}", " "])("removes the final chip with %s and restores the opener", async (key) => {
     const user = userEvent.setup();
     renderMobile();
-    const opener = screen.getByRole("button", { name: /Show Navigation/ });
+    const opener = screen.getByRole("button", { name: /^Filters/ });
     await user.click(opener);
     const drawer = document.querySelector(".wl-mobile-drawer") as HTMLElement;
     await user.click(within(drawer).getByRole("checkbox", { name: "Mobile" }));
@@ -82,14 +84,14 @@ describe("Wallet filtering keyboard access", () => {
     expect(chip).toHaveFocus();
     await user.keyboard(key);
     expect(screen.queryByRole("button", { name: "Mobile Close" })).not.toBeInTheDocument();
-    expect(screen.getByText("2 wallets")).toBeInTheDocument();
+    expect(screen.getAllByText("2 wallets").length).toBeGreaterThan(0);
     expect(opener).toHaveFocus();
   });
 
   it("moves focus to the next chip, then the previous chip when removing selected filters", async () => {
     const user = userEvent.setup();
     renderMobile();
-    await user.click(screen.getByRole("button", { name: /Show Navigation/ }));
+    await user.click(screen.getByRole("button", { name: /^Filters/ }));
     const drawer = document.querySelector(".wl-mobile-drawer") as HTMLElement;
     for (const name of ["Mobile", "Orchard", "Shielded"]) {
       await user.click(within(drawer).getByRole("checkbox", { name }));
@@ -105,14 +107,14 @@ describe("Wallet filtering keyboard access", () => {
   it("preserves pointer selection across Close and backdrop dismissal without refetching ratings", async () => {
     const user = userEvent.setup();
     renderMobile();
-    const opener = screen.getByRole("button", { name: /Show Navigation/ });
+    const opener = screen.getByRole("button", { name: /^Filters/ });
     await user.click(opener);
     let dialog = await screen.findByRole("dialog", { name: "Filters" });
     await user.click(within(dialog).getByRole("checkbox", { name: "Mobile" }));
     expect(within(dialog).getByRole("checkbox", { name: "Mobile" })).toBeChecked();
     await user.click(within(dialog).getByRole("button", { name: "Close" }));
     await waitFor(() => expect(opener).toHaveFocus());
-    expect(screen.getByText("1 wallet")).toBeInTheDocument();
+    expect(screen.getAllByText("1 wallet").length).toBeGreaterThan(0);
     await user.click(opener);
     dialog = await screen.findByRole("dialog", { name: "Filters" });
     expect(within(dialog).getByRole("checkbox", { name: "Mobile" })).toBeChecked();
@@ -122,15 +124,38 @@ describe("Wallet filtering keyboard access", () => {
     expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 
+  it("applies filters from the Show N wallets button and resets them with Clear all", async () => {
+    const user = userEvent.setup();
+    renderMobile();
+    const opener = screen.getByRole("button", { name: /^Filters/ });
+    await user.click(opener);
+    let dialog = await screen.findByRole("dialog", { name: "Filters" });
+    expect(within(dialog).getByRole("button", { name: "Show 2 wallets" })).toBeInTheDocument();
+    expect(within(dialog).queryByRole("button", { name: "Clear all" })).not.toBeInTheDocument();
+    await user.click(within(dialog).getByRole("checkbox", { name: "Mobile" }));
+    await user.click(within(dialog).getByRole("button", { name: "Show 1 wallet" }));
+    await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
+    await waitFor(() => expect(opener).toHaveFocus());
+    expect(screen.getByRole("heading", { name: "Pocket wallet" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Desk wallet" })).not.toBeInTheDocument();
+    expect(opener).toHaveAccessibleName(/^Filters\s*,\s*1 active$/);
+    expect(opener).not.toHaveTextContent(/Settings|Navigation/);
+    await user.click(opener);
+    dialog = await screen.findByRole("dialog", { name: "Filters" });
+    await user.click(within(dialog).getByRole("button", { name: "Clear all" }));
+    expect(within(dialog).getByRole("checkbox", { name: "Mobile" })).not.toBeChecked();
+    expect(within(dialog).getByRole("button", { name: "Show 2 wallets" })).toBeInTheDocument();
+  });
+
   it("keeps the desktop checkbox filtering and result reset working", async () => {
     const user = userEvent.setup();
     render(<WalletList allWallets={wallets} />);
     const mobile = await screen.findByRole("checkbox", { name: "Mobile" });
     await user.click(mobile);
-    expect(screen.getByText("1 wallet")).toBeInTheDocument();
+    expect(screen.getAllByText("1 wallet").length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: "Pocket wallet" })).toBeInTheDocument();
     await user.click(mobile);
-    expect(screen.getByText("2 wallets")).toBeInTheDocument();
+    expect(screen.getAllByText("2 wallets").length).toBeGreaterThan(0);
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 });
