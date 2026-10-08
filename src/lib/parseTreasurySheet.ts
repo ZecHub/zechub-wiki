@@ -177,8 +177,11 @@ function parseTreasuryDashboard(gviz: GvizResponse): any[] {
     // --- FPF: core categories only, then numeric summary objects ---
     const fpfStart = normalizedRows.findIndex((r) => r.a === "FPF");
     const fpfCategories: string[] = [];
-    const fpfAmounts: number[] = [];
-    const fpfAllocations: number[] = [];
+    // These stay index-aligned with fpfCategories: a category with a blank
+    // amount or allocation contributes null at its position, never a shifted
+    // value. The dashboard reads all three arrays by the same index.
+    const fpfAmounts: (number | null)[] = [];
+    const fpfAllocations: (number | null)[] = [];
 
     if (fpfStart !== -1) {
         let i = fpfStart + 2; // skip "FPF" and "Category / Allocation" header
@@ -209,8 +212,10 @@ function parseTreasuryDashboard(gviz: GvizResponse): any[] {
                 allocNum = allocCell.v;
             }
             fpfCategories.push(a);
-            if (amount != null) fpfAmounts.push(roundMantissa(amount, 2));
-            if (allocNum != null) fpfAllocations.push(roundMantissa(allocNum, 2));
+            fpfAmounts.push(amount != null ? roundMantissa(amount, 2) : null);
+            fpfAllocations.push(
+                allocNum != null ? roundMantissa(allocNum, 2) : null,
+            );
             i += 1;
         }
 
