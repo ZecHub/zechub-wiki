@@ -43,7 +43,7 @@ const slides = [
       "Include justification for the funding request",
       "Add your payout address and contact information",
     ],
-    link: "https://forum.zcashcommunity.com/c/grants/32",
+    link: "https://forum.zcashcommunity.com/c/grants/33",
     linkText: "Visit Grants Forum",
   },
   {
@@ -73,7 +73,7 @@ const slides = [
       "Answer community questions during the 30-day review",
       "Check the round's Call for Proposals thread for exact dates",
     ],
-    link: "https://forum.zcashcommunity.com/c/grants/32",
+    link: "https://forum.zcashcommunity.com/c/grants/33",
     linkText: "Open Grants Forum",
   },
   {
@@ -88,7 +88,7 @@ const slides = [
       "Summary thread often created for all proposals",
       "Proposals compiled on GitHub for visibility",
     ],
-    link: "https://forum.zcashcommunity.com/c/grants/32",
+    link: "https://forum.zcashcommunity.com/c/grants/33",
     linkText: "Engage with Community",
   },
   {
@@ -103,7 +103,7 @@ const slides = [
       "Voting period: ~1-2 weeks after review",
       "Public, transparent results with decentralized polling",
     ],
-    link: "https://forum.zcashcommunity.com/c/grants/32",
+    link: "https://forum.zcashcommunity.com/c/grants/33",
     linkText: "Learn About Voting",
   },
   {
@@ -118,7 +118,7 @@ const slides = [
       "KYC required for grants over $50,000",
       "Quarterly cadence continues until 3rd halving (~2028)",
     ],
-    link: "https://forum.zcashcommunity.com/c/grants/32",
+    link: "https://forum.zcashcommunity.com/c/grants/33",
     linkText: "View Past Results",
   },
 ];
