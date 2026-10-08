@@ -223,9 +223,8 @@ export const navigations: Array<NavigationItem> = [
         path: "/zcash-community/zcash-media",
       },
       {
-        name: "Zcash Social Media",
-        path: "/zcash-social-media/zero-to-zero-knowledge",
-        icon: Twitter,
+        name: "Zero to Zero Knowledge",
+        path: "/zcash-social-media",
       },
       {
         name: "ZCAP",
