@@ -55,6 +55,7 @@ export const COMMUNITY_PROJECT_IMAGES: Record<string, string> = {
   "ZecMap":                                  "/content-images/zecmap.webp",
   "ZECping":                                 "/content-images/zecping.webp",
   "ZecStats":                                "/content-images/zecstats.webp",
+  "ZecZcash":                                "/content-images/zeczcash.webp",
   "zecprice":                                "/content-images/zecprice.webp",
   "Zlink":                                   "/content-images/zlink.webp",
   "Zecmarket":                               "/content-images/zecmarket.webp",
