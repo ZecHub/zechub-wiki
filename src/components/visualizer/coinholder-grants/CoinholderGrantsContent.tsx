@@ -39,12 +39,12 @@ const slides = [
     steps: [
       "Describe your completed work and its impact",
       "Provide transparent evidence (code, reports, metrics)",
-      "Specify requested amount (ZEC/USD equivalent)",
+      "Specify the amount requested in USD (paid in shielded ZEC)",
       "Include justification for the funding request",
-      "Add your payout address and contact information",
+      "Disclose previous funding and any conflicts of interest",
     ],
-    link: "https://forum.zcashcommunity.com/c/grants/33",
-    linkText: "Visit Grants Forum",
+    link: "https://github.com/Financial-Privacy-Foundation/ZcashCoinholderGrantsProgram/issues/new?template=grant_application.yaml",
+    linkText: "View Application Template",
   },
   {
     id: "github",
@@ -67,14 +67,14 @@ const slides = [
     icon: MessageSquare,
     color: "from-blue-500 to-cyan-600",
     steps: [
-      'Post a thread titled "[Retroactive Grant] - [Project Name]"',
+      "Start a new thread in the Retroactive Grants forum category",
+      'Use your GitHub issue title: "Retroactive Grant Application - [Project Name]"',
       "Link your GitHub application in the thread",
-      "Use clear markdown format for readability",
       "Answer community questions during the 30-day review",
       "Check the round's Call for Proposals thread for exact dates",
     ],
-    link: "https://forum.zcashcommunity.com/c/grants/33",
-    linkText: "Open Grants Forum",
+    link: "https://forum.zcashcommunity.com/c/grants/retroactive-grants/54",
+    linkText: "Open Retroactive Grants Forum",
   },
   {
     id: "review",
@@ -88,7 +88,7 @@ const slides = [
       "Summary thread often created for all proposals",
       "Proposals compiled on GitHub for visibility",
     ],
-    link: "https://forum.zcashcommunity.com/c/grants/33",
+    link: "https://forum.zcashcommunity.com/c/grants/retroactive-grants/54",
     linkText: "Engage with Community",
   },
   {
@@ -103,7 +103,7 @@ const slides = [
       "Voting period: ~1-2 weeks after review",
       "Public, transparent results with decentralized polling",
     ],
-    link: "https://forum.zcashcommunity.com/c/grants/33",
+    link: "https://forum.zcashcommunity.com/c/grants/retroactive-grants/54",
     linkText: "Learn About Voting",
   },
   {
@@ -118,7 +118,7 @@ const slides = [
       "KYC required for grants over $50,000",
       "Quarterly cadence continues until 3rd halving (~2028)",
     ],
-    link: "https://forum.zcashcommunity.com/c/grants/33",
+    link: "https://forum.zcashcommunity.com/c/grants/retroactive-grants/54",
     linkText: "View Past Results",
   },
 ];
