@@ -48,9 +48,9 @@ const projects = [
     imageUrl: "/content-images/image-2025-01-01-141008115-eec6ada37f.webp",
   },
   {
-    title: "Metamask Shielded Snap",
+    title: "MetaMask Shielded Snap",
     description:
-      "The ongoing maintenance and support of the WebZJS library, Metamask Snap and associated browser wallet (soon in production)",
+      "The ongoing maintenance and support of the WebZJS library, MetaMask Snap and associated browser wallet (soon in production)",
     link: "https://forum.zcashcommunity.com/t/webzjs-browser-library-and-browser-wallet-maintenance/49717",
     imageUrl: "/content-images/metamask-234363-555-e98aefe070.webp",
   },

@@ -215,7 +215,7 @@ export const SITE_LINKS: SiteLinkSection[] = [
       { label: "Buying ZEC", href: "/using-zcash/buying-zec" },
       { label: "Faucets", href: "/using-zcash/faucets" },
       { label: "Wallets", href: "/wallets" },
-      { label: "Metamask Snap", href: "/using-zcash/metamask-snap" },
+      { label: "MetaMask Snap", href: "/using-zcash/metamask-snap" },
       { label: "Exchanges", href: "/dex" },
       {
         label: "Block Explorers",

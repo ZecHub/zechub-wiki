@@ -112,7 +112,7 @@ const getTranslatedLabel = (
     "Buying ZEC": t.navigation?.usingZcash?.buyingZec || "Buying ZEC",
     Faucets: t.navigation?.usingZcash?.faucets || "Faucets",
     Wallets: t.navigation?.usingZcash?.wallets || "Wallets",
-    "Metamask Snap": t.navigation?.usingZcash?.metamaskSnap || "Metamask Snap",
+    "MetaMask Snap": t.navigation?.usingZcash?.metamaskSnap || "MetaMask Snap",
     Exchanges: t.navigation?.usingZcash?.exchanges || "Exchanges",
     "Block Explorers":
       t.navigation?.usingZcash?.blockExplorers || "Block Explorers",
