@@ -72,7 +72,7 @@
     "express-session": "^1.18.0",
     "flowbite": "^4.0.2",
     "flowbite-react": "^0.12.17",
-    "framer-motion": "^12.38.0",
+    "framer-motion": "^14.0.0",
     "gitlog": "^5.1.0",
     "google-map-react": "^2.2.1",
     "googleapis": "^171.4.0",
