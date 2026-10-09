@@ -113,7 +113,6 @@ export const PROTECTED_TRANSLATION_TERMS: ProtectedTranslationTerm[] = [
   { term: "Brave Wallet", category: "wallet" },
   { term: "Keystone Zashi", category: "wallet" },
   { term: "MetaMask Snap", category: "wallet" },
-  { term: "Metamask Snap", category: "wallet" },
 
   { term: "Free2Z", category: "service" },
   { term: "Free2z", category: "service" },

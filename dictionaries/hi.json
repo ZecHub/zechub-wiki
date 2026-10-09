@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
     "Memos": "मेमो",
-    "Metamask Snap": "Metamask Snap",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "मोबाइल टॉप-अप",
     "Newsletter": "न्यूज़लेटर",
     "Nym VPN": "Nym VPN",
@@ -186,7 +186,7 @@
       "buyingZec": "ZEC खरीदना",
       "faucets": "फॉसेट्स",
       "wallets": "वॉलेट्स",
-      "metamaskSnap": "Metamask Snap",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "एक्सचेंज",
       "blockExplorers": "ब्लॉक एक्सप्लोरर्स",
       "shieldedPools": "शील्डेड पूल्स",
@@ -1068,7 +1068,7 @@
         "Payment Request URIs": "भुगतान अनुरोध URIs",
         "Payment Processors": "भुगतान प्रोसेसर",
         "Recovering Funds": "फंड्स की रिकवरी",
-        "Metamask Snap": "Metamask Snap",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "समुदाय फ़ोरम",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }

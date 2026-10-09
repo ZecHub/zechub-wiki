@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
     "Memos": "备注",
-    "Metamask Snap": "Metamask Snap",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "手机充值",
     "Newsletter": "新闻简报",
     "Nym VPN": "Nym VPN",
@@ -186,7 +186,7 @@
       "buyingZec": "购买 ZEC",
       "faucets": "水龙头",
       "wallets": "钱包",
-      "metamaskSnap": "Metamask Snap",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "交易所",
       "blockExplorers": "区块浏览器",
       "shieldedPools": "屏蔽池",
@@ -1068,7 +1068,7 @@
         "Payment Request URIs": "支付请求 URI",
         "Payment Processors": "支付处理商",
         "Recovering Funds": "资金追回",
-        "Metamask Snap": "Metamask Snap",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "社区论坛",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }

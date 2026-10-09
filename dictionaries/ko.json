@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
     "Memos": "메모",
-    "Metamask Snap": "Metamask Snap",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "모바일 충전",
     "Newsletter": "뉴스레터",
     "Nym VPN": "Nym VPN",
@@ -186,7 +186,7 @@
       "buyingZec": "ZEC 구매",
       "faucets": "수도꼭지",
       "wallets": "지갑",
-      "metamaskSnap": "Metamask Snap",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "거래소",
       "blockExplorers": "블록 탐색기",
       "shieldedPools": "Shielded Pools",
@@ -1068,7 +1068,7 @@
         "Payment Request URIs": "결제 요청 URI",
         "Payment Processors": "결제 처리업체",
         "Recovering Funds": "자금 복구",
-        "Metamask Snap": "Metamask Snap",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "커뮤니티 포럼",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }

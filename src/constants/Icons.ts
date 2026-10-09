@@ -202,7 +202,7 @@ const iconsForMenu: IconsFor = {
     "Blockchain Explorers": MagnifyingGlassChart,
     Wallets: "pick-a-wallet.png",
     "Buying ZEC": CurrencyExchange,
-    "Metamask Snap": RiFunctionLine,
+    "MetaMask Snap": RiFunctionLine,
     Transactions: ArrowUp,
     "Transparent Exchange Addresses": RiSecurePaymentLine,
     "Mobile Top Ups": TbDeviceMobileShare,

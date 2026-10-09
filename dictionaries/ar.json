@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
     "Memos": "المذكرات",
-    "Metamask Snap": "Metamask Snap",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "شحن رصيد الهاتف",
     "Newsletter": "النشرة البريدية",
     "Nym VPN": "Nym VPN",
@@ -186,7 +186,7 @@
       "buyingZec": "شراء ZEC",
       "faucets": "الحنفيات",
       "wallets": "المحافظ",
-      "metamaskSnap": "Metamask Snap",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "البورصات",
       "blockExplorers": "مستكشفات الكتل",
       "shieldedPools": "المجمعات المحمية",
@@ -1068,7 +1068,7 @@
         "Payment Request URIs": "معرّفات URI لطلبات الدفع",
         "Payment Processors": "معالجو الدفع",
         "Recovering Funds": "استرداد الأموال",
-        "Metamask Snap": "Metamask Snap",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "منتدى المجتمع",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }

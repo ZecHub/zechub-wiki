@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi",
     "Maya Protocol": "Maya Protocol",
     "Memos": "Memo",
-    "Metamask Snap": "Metamask Snap",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "Vifaa vya Kuongezea Vitu Vinavyoweza Kutumiwa",
     "Newsletter": "Jarida la Habari",
     "Nym VPN": "Nym VPN",
@@ -186,7 +186,7 @@
       "buyingZec": "Kununua ZEC",
       "faucets": "Mabomba",
       "wallets": "Mkoba",
-      "metamaskSnap": "Metamask Snap",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "Mabadilishano",
       "blockExplorers": "Block Explorers",
       "shieldedPools": "Vidimbwi Vilivyolindwa",
@@ -1063,7 +1063,7 @@
         "Payment Request URIs": "Maombi ya malipo URI",
         "Payment Processors": "Processors Malipo",
         "Recovering Funds": "Kurudisha Fedha",
-        "Metamask Snap": "Metamask Snap",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "Mkutano wa Jumuiya",
         "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
       }

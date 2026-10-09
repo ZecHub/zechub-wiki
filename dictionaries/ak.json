@@ -35,7 +35,7 @@
     "Keystone Zashi": "Keystone Zashi na ɔkyerɛwee",
     "Maya Protocol": "Maya Protocol",
     "Memos": "Memos a wɔde kyerɛw nsɛm",
-    "Metamask Snap": "Metamask Snap a Wɔde Di Dwuma",
+    "MetaMask Snap": "MetaMask Snap",
     "Mobile Top Ups": "Mobile Top Ups a Wɔde Yɛ Nneɛma",
     "Newsletter": "Nsɛm ho amanneɛbɔ krataa",
     "Nym VPN": "Nym VPN na ɛwɔ hɔ",
@@ -185,7 +185,7 @@
       "buyingZec": "ZEC a wobɛtɔ",
       "faucets": "Faucets a wɔde yɛ adwuma",
       "wallets": "Sika kotoku",
-      "metamaskSnap": "Metamask Snap a Wɔde Di Dwuma",
+      "metamaskSnap": "MetaMask Snap",
       "exchanges": "Nneɛma a wɔde sesa nneɛma",
       "blockExplorers": "Block Nhwehwɛmufo",
       "shieldedPools": "Atare a Wɔabɔ ho Ban",
@@ -1062,7 +1062,7 @@
         "Payment Request URIs": "Katua Abisade URI ahorow",
         "Payment Processors": "Wɔn a Wɔyɛ Katua Ho Nsiesiei",
         "Recovering Funds": "Sika a Wɔbɛsan Agye",
-        "Metamask Snap": "Metamask Snap a Wɔde Di Dwuma",
+        "MetaMask Snap": "MetaMask Snap",
         "Community Forum": "Mpɔtam Hɔ Nhyiam",
         "Cypherpunk Zero NFT": "Cypherpunk a ɛyɛ Zero NFT na ɛwɔ hɔ"
       }

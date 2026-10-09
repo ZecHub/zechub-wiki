@@ -109,7 +109,7 @@ export const navigations: Array<NavigationItem> = [
         path: "/using-zcash/zallet-quick-reference-guide",
       },
       {
-        name: "Metamask Snap",
+        name: "MetaMask Snap",
         path: "/using-zcash/metamask-snap",
       },
       {

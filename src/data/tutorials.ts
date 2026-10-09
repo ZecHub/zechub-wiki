@@ -104,7 +104,7 @@ const tutorialData: Tutorial[] = [
   },
   {
     "id": 18,
-    "title": "How to use ZEC on Metamask",
+    "title": "How to use ZEC on MetaMask",
     "videoId": "UJh9Ilkohdw",
     "category": "General"
   },
