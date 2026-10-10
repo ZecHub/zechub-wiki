@@ -28,6 +28,15 @@ const TOOLS: CrosslinkTool[] = [
   {
     group: "Watch",
     kind: "hosted",
+    title: "Holdfast",
+    description:
+      "Hosted Crosslink explorer. No node required.",
+    note: "Independent community explorer.",
+    url: "https://holdfast.crosslink.encapsulate.xyz/",
+  },
+  {
+    group: "Watch",
+    kind: "hosted",
     title: "cTAZ",
     description:
       "Crosslink v14 mining production, finalizer roster, peers, and staking-address name claims.",
