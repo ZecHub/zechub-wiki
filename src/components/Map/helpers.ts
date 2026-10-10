@@ -1,4 +1,4 @@
-import { RawData, StoreEntry } from "./SpednMap";
+import type { RawData, StoreEntry } from "./SpednMap";
 
 export const BRAND_COLORS: Record<string, string> = {
   BancoAgricola: "#1D9E75",
@@ -19,6 +19,18 @@ export const BRAND_COLORS: Record<string, string> = {
   Sheetz: "#BA7517",
   "The Coffee Bean & Tea Leaf": "#6B3A2A",
   "Ulta Beauty": "#D4537E",
+};
+
+// Match the names already used by the legend and color palette. Splitting
+// every capital loses brand spelling/punctuation (e.g. GameStop or Kiehl's).
+const BRAND_DISPLAY_NAMES: Record<string, string> = {
+  BancoAgricola: "BancoAgricola",
+  BarnesAndNoble: "Barnes & Noble",
+  BaskinRobbins: "Baskin-Robbins",
+  CoCoBubbleTea: "CoCo Bubble Tea",
+  TheCoffeeBean: "The Coffee Bean & Tea Leaf",
+  GameStop: "GameStop",
+  Kiehls: "Kiehl's",
 };
 
 const DEFAULT_PIN_COLOR = "#888780";
@@ -45,7 +57,9 @@ export function parseStores(raw: RawData): StoreEntry[] {
 
           out.push({
             id: `store-${seq++}`,
-            brand: brand.replace(/([A-Z])/g, " $1").trim(),
+            brand: Object.hasOwn(BRAND_DISPLAY_NAMES, brand)
+              ? BRAND_DISPLAY_NAMES[brand]
+              : brand.replace(/([A-Z])/g, " $1").trim(),
             state,
             city,
             address: addr,
