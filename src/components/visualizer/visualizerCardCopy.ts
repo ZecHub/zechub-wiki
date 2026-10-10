@@ -4,6 +4,15 @@ export type VisualizerCardSource = {
   description: string;
 };
 
+type VisualizerCopyEntry = {
+  title?: string;
+  description?: string;
+};
+
+export type VisualizerCopyDictionary = {
+  visualizer?: Record<string, string | VisualizerCopyEntry | undefined>;
+};
+
 export const VISUALIZER_I18N_KEYS: Record<string, string> = {
   "zcash-wallet": "wallets",
   pool: "pools",
@@ -26,14 +35,16 @@ export const VISUALIZER_I18N_KEYS: Record<string, string> = {
 };
 
 export function visualizerCardCopy(
-  t: { visualizer?: Record<string, { title?: string; description?: string }> },
+  t: VisualizerCopyDictionary,
   v: VisualizerCardSource,
 ) {
   const section = t?.visualizer;
   const key = VISUALIZER_I18N_KEYS[v.id] ?? v.id;
   const entry = section?.[key];
+  const copy = typeof entry === "object" ? entry : undefined;
+
   return {
-    title: entry?.title ?? v.title,
-    description: entry?.description ?? v.description,
+    title: copy?.title ?? v.title,
+    description: copy?.description ?? v.description,
   };
 }
