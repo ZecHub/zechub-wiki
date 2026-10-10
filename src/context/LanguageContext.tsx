@@ -37,6 +37,7 @@ export const LANGUAGES: Language[] = [
   { code: 'ig',  label: 'Igbo',       nativeLabel: 'Igbo',       flag: '🇳🇬' },
   { code: 'ak',  label: 'Twi (Akan)', nativeLabel: 'Twi',        flag: '🇬🇭' },
   { code: 'ee',  label: 'Ewe',        nativeLabel: 'Eʋegbe',     flag: '🇬🇭' },
+  { code: 'id',  label: 'Indonesian', nativeLabel: 'Bahasa Indonesia', flag: '🇮🇩' },
 ];
 
 export type Locale = string;
