@@ -240,7 +240,7 @@
       "obscuraLabs": "Obscura Labs"
     },
     "guidesSubmenu": {
-      "zgoPaymentProcessor": "Prosesor Pembayaran Zgo",
+      "zgoPaymentProcessor": "Pemroses Pembayaran Zgo",
       "free2zLive": "Free2z Live",
       "keystoneZashi": "Keystone Zashi",
       "mayaProtocol": "Maya Protocol",
@@ -539,7 +539,7 @@
       "custodial": "Exchange Kustodial",
       "exchanges": {
         "Near-intents": "Exchange cepat dengan dukungan NEAR. Lakukan deposit, jual, swap termasuk meme populer TRUMP, MELANIA, BERA dan lainnya",
-        "Nativeswap": "Perdagangan Cross-Chain Native Tanpa Hambatan via Maya Protocol. Berdagang langsung on-chain tanpa bridge atau wrapped token - nikmati biaya terendercil di industri dan kontrol aset penuh.",
+        "Nativeswap": "Perdagangan Cross-Chain Native Tanpa Hambatan via Maya Protocol. Berdagang langsung on-chain tanpa bridge atau wrapped token - nikmati biaya terendah di industri dan kontrol aset penuh.",
         "Firo DEX": "Swap terdesentralisasi trustless menggunakan atomic swap dengan FiroDEX!.",
         "LeoDEX": "Antarmuka swapping crypto crosschain untuk Maya Protocol, Thorchain, ChainFlip, dan Rango. BTC, ETH, RUNE, DASH, LTC & lainnya",
         "Bison Wallet": "Berdagang crypto peer-to-peer. Tanpa biaya perdagangan. Tanpa KYC.",
@@ -887,7 +887,7 @@
         "spendingKeyName": "Spending Key (sk)",
         "spendingKeyDesc": "Rahasia utama untuk pengeluaran",
         "expandedSpendingKeyName": "Expanded Spending Key",
-        "expandedSpendingKeyDesc": "tanya, nsk, ovk",
+        "expandedSpendingKeyDesc": "ask, nsk, ovk",
         "fullViewingKeyName": "Full Viewing Key (fvk)",
         "fullViewingKeyDesc": "ak, nk, ovk",
         "incomingViewingKeyName": "Incoming Viewing Key (ivk)",
@@ -930,7 +930,7 @@
       }
     },
     "paymentProcessors": {
-      "title": "Prosesor Pembayaran | ZecHub",
+      "title": "Pemroses Pembayaran | ZecHub",
       "noData": "Tidak Ada Data atau File Salah",
       "bannerAlt": "wiki-banner"
     },
@@ -969,7 +969,7 @@
       "basicSetupTestnet": "Pengaturan Dasar (Testnet)",
       "run": "Jalankan",
       "installingZaino": "Menginstal Zaino",
-      "zainoInfo": "adalah indexer berbasis Rust untuk blockchain Zcash. Ini melayani both light client (dompet yang tidak menyimpan riwayat lengkap) dan full client / block explorer, menyediakan akses ke chain yang telah difinalisasi, best chain yang belum difinalisasi, dan mempool.",
+      "zainoInfo": "adalah indexer berbasis Rust untuk blockchain Zcash. Ini melayani light client (dompet yang tidak menyimpan riwayat lengkap) maupun full client / block explorer, menyediakan akses ke chain yang telah difinalisasi, best chain yang belum difinalisasi, dan mempool.",
       "buildZaino": "Build Zaino",
       "configure": "Konfigurasi",
       "runZainod": "Jalankan zainod",
@@ -1146,7 +1146,7 @@
         "Zcash Ukraine": "Komunitas dan advokasi Zcash di Ukraina",
         "Zcash Turkey": "Komunitas dan advokasi Zcash di Turki",
         "Zcash India": "Komunitas dan advokasi Zcash di India",
-        "Zcash East Africa": "Zcash East Africa berdedikasi untuk mempromosikan privasi digital, kebebasan finansial, dan inovasi blockchain melalui edukasi, acara komunitas, lokakarya teknis, dan pengembangan ekosistem. Inisiatif ini bertujuan untuk menciptakan hub regional di mana individu dapat mengeksplorasi teknologi peningkatan privasi, mempelajari zero-knowledge proofs, dan berpartisyle dalam jaringan Zcash global yang terus berkembang.",
+        "Zcash East Africa": "Zcash East Africa berdedikasi untuk mempromosikan privasi digital, kebebasan finansial, dan inovasi blockchain melalui edukasi, acara komunitas, lokakarya teknis, dan pengembangan ekosistem. Inisiatif ini bertujuan untuk menciptakan hub regional di mana individu dapat mengeksplorasi teknologi peningkatan privasi, mempelajari zero-knowledge proofs, dan berpartisipasi dalam jaringan Zcash global yang terus berkembang.",
         "Zcash South Africa": "Privasi🛡️. Kebebasan. Komunitas Zcash 🦓 untuk wilayah Afrika Selatan"
       },
       "globeTitle": "Duta Zcash Global"
