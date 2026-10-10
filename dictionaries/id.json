@@ -1,0 +1,1244 @@
+{
+  "menuLabels": {
+    "Accept Payments": "Terima Pembayaran",
+    "Akash Network Zebra": "Akash Network Zebra",
+    "Arborist Calls": "Arborist Calls",
+    "Avalanche RedBridge": "Avalanche RedBridge",
+    "BTCPayServer Zcash Plugin": "Plugin BTCPayServer Zcash",
+    "Blockchain Explorers": "Blockchain Explorer",
+    "Brand": "Brand",
+    "Brave Wallet": "Brave Wallet",
+    "Buying ZEC": "Membeli ZEC",
+    "Community Blogs": "Blog Komunitas",
+    "Community Forum": "Forum Komunitas",
+    "Community Links": "Tautan Komunitas",
+    "Community Projects": "Proyek Komunitas",
+    "Contribute": "Berkontribusi",
+    "Cypherpunk Zero NFT": "Cypherpunk Zero NFT",
+    "DAO": "DAO",
+    "Developers": "Developer",
+    "Discord": "Discord",
+    "Donations": "Donasi",
+    "Electric Coin Company": "Electric Coin Company",
+    "Exchanges": "Exchange",
+    "Extras": "Ekstra",
+    "Faucets": "Faucet",
+    "Financial Privacy Foundation": "Financial Privacy Foundation",
+    "Free2z Live": "Free2z Live",
+    "Freelance Privacy": "Privasi Freelance",
+    "Github": "Github",
+    "Governance": "Tata Kelola",
+    "Guides": "Panduan",
+    "How to Participate": "Cara Berpartisipasi",
+    "Journalist Privacy": "Privasi Jurnalis",
+    "Keeping Records": "Menyimpan Catatan",
+    "Keystone Zashi": "Keystone Zashi",
+    "Maya Protocol": "Maya Protocol",
+    "Memos": "Memo",
+    "MetaMask Snap": "MetaMask Snap",
+    "Mobile Top Ups": "Top Up Seluler",
+    "Newsletter": "Newsletter",
+    "Nym VPN": "Nym VPN",
+    "Payment Processors": "Pemroses Pembayaran",
+    "Payment Request URIs": "URI Permintaan Pembayaran",
+    "Podcast": "Podcast",
+    "Private Community Treasury": "Treasury Privat Komunitas",
+    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 Full Node",
+    "Raspberry pi 4 Zebra Node": "Raspberry pi 4 Zebra Node",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+    "Recovering Funds": "Memulihkan Dana",
+    "Research": "Riset",
+    "Send Money Privately": "Kirim Uang Secara Privat",
+    "Shielded Labs": "Shielded Labs",
+    "Shielded Pools": "Pool Terlindungi",
+    "Sitemap": "Sitemap",
+    "Start Here": "Mulai Di Sini",
+    "Store": "Toko",
+    "Testnet": "Testnet",
+    "Tools": "Alat",
+    "Transactions": "Transaksi",
+    "Transparent Exchange Addresses": "Alamat Exchange Transparan",
+    "Tutorials": "Tutorial",
+    "Twitter": "Twitter",
+    "Use Cases": "Use Cases",
+    "Using ZEC Privately": "Menggunakan ZEC Secara Privat",
+    "Using ZEC in DeFi": "Menggunakan ZEC di DeFi",
+    "Using Zcash": "Menggunakan Zcash",
+    "Visual Identity": "Identitas Visual",
+    "Visualizer": "Visualizer",
+    "Visualizing Zcash Addresses": "Visualisasi Alamat Zcash",
+    "Visualizing the Zcash Network": "Visualisasi Jaringan Zcash",
+    "Wallets": "Dompet",
+    "Youtube": "Youtube",
+    "Ywallet FROST Demo": "Demo Ywallet FROST",
+    "ZCAP": "ZCAP",
+    "ZIPs & Grants": "ZIP & Hibah",
+    "ZKAV Club": "ZKAV Club",
+    "ZODL": "ZODL",
+    "Zcash Community": "Komunitas Zcash",
+    "Zcash Community Grants": "Zcash Community Grants",
+    "Zcash Devtool": "Zcash Devtool",
+    "Zcash Ecosystem Security": "Keamanan Ekosistem Zcash",
+    "Zcash Foundation": "Zcash Foundation",
+    "Zcash Global Ambassadors": "Zcash Global Ambassadors",
+    "Zcash Governance": "Tata Kelola Zcash",
+    "Zcash Improvement Proposals": "Proposal Peningkatan Zcash",
+    "Zcash Login": "Zcash Login",
+    "Zcash Media": "Media Zcash",
+    "Zcash Organizations": "Organisasi Zcash",
+    "Zcash Podcasts": "Podcast Zcash",
+    "Zcon Archive": "Arsip Zcon",
+    "Zcon Vozes Archive": "Arsip Zcon Vozes",
+    "Zenith Installation": "Instalasi Zenith",
+    "Zero-Knowledge vs Decoys": "Zero-Knowledge vs Decoys",
+    "Zgo Payment Processor": "Pemroses Pembayaran Zgo",
+    "Zingo Labs": "Zingo Labs",
+    "Zingolib and Zaino Tutorial": "Tutorial Zingolib dan Zaino",
+    "Zkool Multisig": "Multisig Zkool",
+    "Custodial Exchanges": "Exchange Kustodial",
+    "Zcash Use Cases": "Use Cases Zcash",
+    "Zcash Tech": "Teknologi Zcash",
+    "Privacy Tools": "Tools Privasi",
+    "Zcash Social Media": "Media Sosial Zcash",
+    "Glossary & FAQ's": "Glosarium & FAQ",
+    "Pay for AI": "Bayar untuk AI",
+    "Use Zcash": "Gunakan Zcash",
+    "Zallet Quick Reference Guide": "Panduan Referensi Cepat Zallet",
+    "Spend Zcash": "Belanjakan Zcash",
+    "Places to Spend ZEC": "Tempat Membelanjakan ZEC",
+    "Block Explorers": "Block Explorer",
+    "Ecosystem": "Ekosistem",
+    "Zcash Engineering Office Hours": "Zcash Engineering Office Hours",
+    "Free2Z Livestreaming": "Siaran Langsung Free2Z",
+    "Raspberry Pi Zcashd Node": "Raspberry Pi Zcashd Node",
+    "Raspberry Pi Zebra Node": "Raspberry Pi Zebra Node",
+    "Hardened Zebrad": "Zebrad yang Diperkuat",
+    "Akash Network Zcashd": "Zcashd di Akash Network",
+    "Brave Wallet Guide": "Panduan Brave Wallet",
+    "Migration Guide Zcashd To Zebrad Zallet": "Panduan Migrasi dari Zcashd ke Zebrad dan Zallet",
+    "My First Zcash Workbook": "Buku Kerja Zcash Pertamaku",
+    "Verifying Zcash Releases": "Memverifikasi Rilis Zcash",
+    "Viewing Key Transaction Export": "Ekspor Transaksi dengan Viewing Key",
+    "Zero Knowledge vs Decoy Systems": "Zero-knowledge vs Sistem Decoy",
+    "Organizations": "Organisasi",
+    "CoinHolder Directed Retroactive Grants": "CoinHolder Directed Retroactive Grants",
+    "Obscura Labs": "Obscura Labs"
+  },
+  "exploreMenu": {
+    "Full Explore": "Jelajahi Lengkap",
+    "Start Here": "Mulai di Sini",
+    "Tutorials": "Tutorial",
+    "Using Zcash": "Menggunakan Zcash",
+    "Guides": "Panduan",
+    "Zcash Tech": "Teknologi Zcash",
+    "Zcash Organizations": "Organisasi Zcash",
+    "Zcash Community": "Komunitas Zcash",
+    "ZKAV Club": "ZKAV Club",
+    "Privacy Tools": "Tools Privasi",
+    "Research": "Riset",
+    "Glossary & FAQs": "Glosarium & FAQ",
+    "Contribute": "Berkontribusi",
+    "For Forks & Maintainers": "Untuk Fork & Pemelihara",
+    "Fork zechub-wiki": "Fork zechub-wiki",
+    "Fork zechub": "Fork zechub",
+    "Zcash Evolution": "Zcash Evolution"
+  },
+  "common": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "contact": "Kontak",
+    "language": "Bahasa",
+    "clickToExplore": "Klik untuk menjelajah →",
+    "learnMore": "Pelajari Lebih Lanjut",
+    "getStarted": "Mulai",
+    "readMore": "Baca Selengkapnya",
+    "search": "Cari",
+    "close": "Tutup",
+    "searchModalTitle": "Cari ZecHub Wiki",
+    "searchHint": "Cari berdasarkan judul halaman, topik, atau jalur. Gunakan tombol panah untuk memilih, Enter untuk membuka.",
+    "searchNoResults": "Tidak ada halaman yang cocok",
+    "searchTryDifferent": "Coba kueri yang lebih pendek, sinonim, atau kata yang berbeda.",
+    "searchSuggested": "Halaman yang disarankan",
+    "searchResultsLabel": "Hasil",
+    "skipToContent": "Lewati ke konten"
+  },
+  "navigation": {
+    "wallets": "Dompet",
+    "guides": "Panduan",
+    "tutorials": "Tutorial",
+    "governance": "Tata Kelola",
+    "visualizer": "Visualizer",
+    "dao": "DAO",
+    "newsletter": "Newsletter",
+    "donate": "Donasi",
+    "explore": "Jelajahi",
+    "developers": "Developer",
+    "community": "Komunitas",
+    "contribute": "Berkontribusi",
+    "dashboard": "Dashboard",
+    "more": "Lainnya",
+    "usingZcash": {
+      "label": "Gunakan Zcash",
+      "buyingZec": "Membeli ZEC",
+      "faucets": "Faucet",
+      "wallets": "Dompet",
+      "metamaskSnap": "MetaMask Snap",
+      "exchanges": "Exchange",
+      "blockExplorers": "Block Explorer",
+      "shieldedPools": "Pool terlindungi",
+      "transparentExchangeAddresses": "Alamat Exchange transparan",
+      "transactions": "Transaksi",
+      "memos": "Memo",
+      "mobileTopUps": "Top Up Seluler",
+      "paymentRequestUris": "URI Permintaan Pembayaran",
+      "paymentProcessors": "Pemroses Pembayaran",
+      "recoveringFunds": "Memulihkan Dana",
+      "testnet": "Testnet",
+      "tools": "Alat",
+      "useCases": "Use Cases",
+      "useCasesSubmenu": {
+        "startHere": "Mulai di Sini",
+        "acceptPayments": "Terima Pembayaran",
+        "freelancePrivacy": "Privasi Freelance",
+        "journalistPrivacy": "Privasi Jurnalis",
+        "keepingRecords": "Menyimpan Catatan",
+        "privateCommunityTreasury": "Treasury Privat Komunitas",
+        "donations": "Donasi",
+        "sendMoneyPrivately": "Kirim Uang Secara Privat"
+      }
+    },
+    "zcashCommunity": {
+      "label": "Ekosistem",
+      "arboristCalls": "Arborist Calls",
+      "communityBlogs": "Blog Komunitas",
+      "communityLinks": "Tautan Komunitas",
+      "communityForum": "Forum Komunitas",
+      "communityProjects": "Proyek Komunitas",
+      "globalAmbassadors": "Zcash Global Ambassadors",
+      "zcashMedia": "Media Zcash",
+      "zcap": "ZCAP",
+      "zcashPodcasts": "Podcast Zcash",
+      "ecosystemSecurity": "Keamanan Ekosistem Zcash",
+      "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
+      "zconArchive": "Arsip Zcon"
+    },
+    "organizations": {
+      "label": "Organisasi",
+      "electricCoinCompany": "Electric Coin Company",
+      "zcashFoundation": "Zcash Foundation",
+      "communityGrants": "Zcash Community Grants",
+      "financialPrivacyFoundation": "Financial Privacy Foundation",
+      "shieldedLabs": "Shielded Labs",
+      "zingoLabs": "Zingo Labs",
+      "brand": "Brand",
+      "zkavClub": "ZKAV Club",
+      "zodl": "ZODL",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "coinholderDirectedRetroactiveGrants": "CoinHolder Directed Retroactive Grants",
+      "sovright": "Sovright",
+      "obscuraLabs": "Obscura Labs"
+    },
+    "guidesSubmenu": {
+      "zgoPaymentProcessor": "Prosesor Pembayaran Zgo",
+      "free2zLive": "Free2z Live",
+      "keystoneZashi": "Keystone Zashi",
+      "mayaProtocol": "Maya Protocol",
+      "nymVpn": "Nym VPN",
+      "usingZecInDefi": "Menggunakan ZEC di DeFi",
+      "usingZecPrivately": "Menggunakan ZEC secara Privat",
+      "raspberryPiZcashdNode": "Raspberry Pi Zcashd Node",
+      "raspberryPi5ZebraLightwalletdZingo": "Raspberry pi5 Zebra Lightwalletd Zingo",
+      "raspberryPiZebraNode": "Raspberry Pi Zebra Node",
+      "akashNetwork": "Akash Network",
+      "avalancheRedbridge": "Avalanche RedBridge",
+      "zkoolMultisig": "Multisig Zkool",
+      "ywalletFrostDemo": "Demo Ywallet FROST",
+      "blockchainExplorers": "Blockchain Explorer",
+      "braveWallet": "Brave Wallet",
+      "btcPayServerPlugin": "Plugin BTCPayServer",
+      "visualizingZcashNetwork": "Visualisasi Jaringan Zcash",
+      "visualizingZcashAddresses": "Visualisasi Alamat Zcash",
+      "zcashDevtool": "Zcash Devtool",
+      "zcashImprovementProposals": "Proposal Peningkatan Zcash",
+      "zingolibAndZainoTutorial": "Tutorial Zingolib dan Zaino",
+      "zenithInstallation": "Instalasi Zenith",
+      "zeroKnowledgeVsDecoys": "Zero-knowledge vs Sistem Decoy"
+    },
+    "overview": "Ikhtisar",
+    "shop": "Toko"
+  },
+  "home": {
+    "heroTitle": "Selamat Datang di ZecHub",
+    "heroSubtitle": "Pusat edukasi sumber terbuka untuk Zcash",
+    "heroDescription": "Pelajari teknologi privasi Zcash, jelajahi visualizer interaktif, dan berkontribusi pada ekosistem",
+    "description": "ZecHub adalah pusat edukasi berbasis komunitas untuk Zcash (ZEC), mata uang digital terdesentralisasi yang dibangun untuk pembayaran yang aman, privat, dan tahan sensor. Zcash menggunakan kriptografi zero-knowledge canggih untuk memungkinkan transaksi yang validitasnya dapat diverifikasi tanpa mengungkapkan informasi keuangan yang sensitif. Pada tahun 2026 memperkenalkan pool terlindungi Ironwood, yang diverifikasi secara formal menggunakan machine-checked mathematical proofs untuk menjamin integritas saldo. Project Tachyon sedang mengembangkan usulan protokol shielded generasi berikutnya yang dirancang untuk meningkatkan skalabilitas pembayaran privat secara drastis, mengurangi pertumbuhan state validator, dan memajukan Zcash menuju privasi yang sepenuhnya aman pasca-kuantum.",
+    "featuredSection": "Sumber Daya Unggulan",
+    "latestUpdates": "Pembaruan Terbaru",
+    "getInvolved": "Terlibatlah",
+    "exploreEcosystem": "Jelajahi Ekosistem",
+    "exploreZcash": "Jelajahi Zcash",
+    "cards": {
+      "startHere": {
+        "title": "Mulai di Sini",
+        "content": "Cari tahu apa itu Zcash dan kegunaan ZEC"
+      },
+      "pickWallet": {
+        "title": "Pilih Dompet",
+        "content": "Dompet memungkinkan Anda menerima dan membelanjakan Zcash secara privat. Beberapa juga mendukung memo terenkripsi"
+      },
+      "resources": {
+        "title": "Sumber Daya Zcash",
+        "content": "Berikut adalah panduan yang membantu pengguna memahami Zcash Full Nodes, zk-SNARKs, dan banyak lagi"
+      }
+    },
+    "sections": {
+      "whatIsZcash": {
+        "title": "Apa itu Zcash?",
+        "description": "Ini adalah ledger blockchain sumber terbuka yang memiliki sistem proving zero-knowledge yang canggih. Zcash berspesialisasi dalam menawarkan standar privasi yang lebih tinggi melalui sistem provingnya yang menjaga kerahasiaan metadata transaksi. Pada intinya, Zcash adalah kepemilikan data privat yang ditransfer tanpa izin saat transaksi dilakukan.",
+        "mainLink": "Apa itu Zcash?",
+        "techLink": "Teknologi Zcash"
+      },
+      "zcashMe": {
+        "title": "Zcash.me",
+        "description": "Zcash.Me adalah direktori publik pengguna Zcash yang menghadirkan pesan pribadi, papan peringkat, dan pengguna terverifikasi. Terhubung, jelajahi, dan berinteraksi dengan komunitas Zcash.",
+        "link": "Kunjungi Zcash.Me"
+      },
+      "globalAmbassadors": {
+        "title": "Zcash Global Ambassadors",
+        "description": "Zcash Global Ambassadors adalah pemimpin komunitas yang berdedikasi untuk mempromosikan adopsi dan edukasi mata uang kripto yang berfokus pada privasi di seluruh dunia. Setiap proyek duta berfokus pada membangun kesadaran dan keterlibatan di wilayah masing-masing.",
+        "link": "Temui para Ambassador"
+      },
+      "visualizer": {
+        "title": "ZecHub Visualizer",
+        "description": "Alat edukasi interaktif untuk memahami teknologi privasi Zcash, infrastruktur, dan zero-knowledge proofs",
+        "link": "Buka Visualizer"
+      },
+      "zecMap": {
+        "title": "ZecMap",
+        "description": "ZecMap adalah peta dunia yang dikelola komunitas berisi merchant, layanan, dan ATM yang menerima Zcash. Temukan tempat untuk membelanjakan ZEC di dekat Anda, atau tambahkan bisnis yang Anda ketahui untuk membantu meningkatkan adopsi di dunia nyata.",
+        "link": "Kunjungi ZecMap"
+      },
+      "free2z": {
+        "title": "Free2Z",
+        "description": "Free2Z adalah platform sosial yang didukung oleh Zcash. Dengan donasi peer-to-peer, program bagi hasil, alat kreatif canggih, dan komunitas global online yang masif.",
+        "link": "Free2Z"
+      },
+      "payWithZcash": {
+        "title": "Bayar dengan Zcash",
+        "description": "Situs web ini adalah jawaban atas pertanyaan: Di mana saya bisa membayar dengan Zcash? Direktori ini gratis untuk digunakan. Item yang terdaftar hanya untuk tujuan informasi, dan bukan merupakan dukungan dalam bentuk apa pun. Selamat menikmati!",
+        "mainLink": "paywithz.cash",
+        "mapLink": "SPEDN"
+      }
+    },
+    "explore": {
+      "startHere": "Mulai_Dari_Sini",
+      "tutorials": "Tutorial",
+      "usingZcash": "Menggunakan_Zcash",
+      "guides": "Panduan",
+      "zcashTech": "Teknologi_Zcash",
+      "organizations": "Organisasi_Zcash",
+      "community": "Komunitas_Zcash",
+      "zkavClub": "ZKAV_Club",
+      "privacyTools": "Alat_Privasi",
+      "research": "Riset",
+      "glossary": "Glosarium_dan_FAQ",
+      "contribute": "Berkontribusi"
+    }
+  },
+  "footer": {
+    "description": "Hub edukasi sumber terbuka untuk Zcash",
+    "quickLinks": "Tautan_Cepat",
+    "resources": "Sumber Daya",
+    "community": "Komunitas",
+    "followUs": "Ikuti Kami",
+    "allRightsReserved": "Hak cipta dilindungi undang-undang",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsOfService": "Ketentuan Layanan"
+  },
+  "visualizer": {
+    "title": "Visualizer Zcash",
+    "description": "Alat edukasi interaktif untuk memahami teknologi privasi, infrastruktur, dan zero-knowledge proof Zcash",
+    "playAll": "Mainkan Semua Visualizer",
+    "basic": "Dasar",
+    "basicDescription": "Konsep fundamental dan fitur esensial Zcash",
+    "advanced": "Lanjutan",
+    "advancedDescription": "Pembahasan teknis mendalam tentang kriptografi, konsensus, dan infrastruktur",
+    "contributors": "Kontributor",
+    "contributorsDescription": "Cara berkontribusi ke ekosistem Zcash dan mendapatkan hadiah",
+    "beginnerQuiz": "Kuis Pemula",
+    "intermediateQuiz": "Kuis Menengah",
+    "contributorsQuiz": "Kuis Kontributor",
+    "autoPlayNote": "Setiap visualisator berjalan secara otomatis. Gunakan kontrol untuk navigasi atau menjeda.",
+    "wallets": {
+      "title": "Pengenalan Dompet Zcash",
+      "description": "Menyediakan Fungsionalitas Terlindungi"
+    },
+    "pools": {
+      "title": "Value Pool & Tipe Alamat",
+      "description": "Jelajahi pool privasi Zcash dan tipe alamat"
+    },
+    "payWith": {
+      "title": "Bayar dengan Zcash",
+      "description": "Temukan di mana dan bagaimana cara menggunakan ZEC untuk pembayaran privat"
+    },
+    "dex": {
+      "title": "Zcash Exchange (DEX)",
+      "description": "Akses tanpa izin dan tahan sensor ke ZEC menggunakan exchange terdesentralisasi"
+    },
+    "hashFunction": {
+      "title": "Fungsi Hash",
+      "description": "Apa itu Fungsi Hash?"
+    },
+    "blockchain": {
+      "title": "Dasar-dasar Blockchain Zcash",
+      "description": "Memahami Fondasi Blockchain Zcash"
+    },
+    "zkproof": {
+      "title": "zk-SNARKs",
+      "description": "Demonstrasi interaktif transaksi terlindungi"
+    },
+    "keys": {
+      "title": "Kunci Zcash",
+      "description": "Memahami Kunci Zcash"
+    },
+    "infrastructure": {
+      "title": "Infrastruktur Zcash",
+      "description": "Bagaimana komponen Zcash bekerja bersama"
+    },
+    "consensus": {
+      "title": "Konsensus",
+      "description": "Bagaimana ratusan node menyepakati status chain?"
+    },
+    "miningHalo": {
+      "title": "Penambangan Zcash",
+      "description": "Memahami penambangan Equihash dan recursive zero-knowledge proofs"
+    },
+    "privacyUseCases": {
+      "title": "Use Cases Privasi",
+      "description": "Aplikasi dunia nyata dari teknologi privasi pada Zcash"
+    },
+    "governance": {
+      "title": "Tata Kelola & Dana Dev",
+      "description": "Pengembangan berbasis komunitas dan pengambilan keputusan terdesentralisasi"
+    },
+    "bounties": {
+      "title": "ZecHub Bounties",
+      "description": "Berkontribusi ke ZecHub dan dapatkan ZEC"
+    },
+    "daoProposal": {
+      "title": "Proposal DAO",
+      "description": "Panduan langkah demi langkah untuk membuat proposal tata kelola ZecHub DAO"
+    },
+    "communityGrants": {
+      "title": "Zcash Community Grants",
+      "description": "Pendanaan untuk proyek ekosistem Zcash"
+    },
+    "coinholderGrants": {
+      "title": "Hibah Terarah Pemegang Koin",
+      "description": "Pendanaan retroaktif yang diarahkan oleh pemegang ZEC"
+    },
+    "openSource": {
+      "title": "Repositori Open Source",
+      "description": "Berkontribusi pada proyek open source Zcash"
+    }
+  },
+  "wallets": {
+    "title": "Dompet Zcash",
+    "description": "Pilih dompet yang sesuai dengan kebutuhan Anda",
+    "desktopWallets": "Dompet Desktop",
+    "mobileWallets": "Dompet Mobile",
+    "hardwareWallets": "Dompet Hardware",
+    "webWallets": "Dompet Web",
+    "features": "Fitur",
+    "download": "Unduh",
+    "visitWebsite": "Kunjungi Situs Web",
+    "filters": "Filter",
+    "close": "Tutup",
+    "clearAll": "Hapus semua",
+    "showWallets": "Tampilkan {count} dompet",
+    "showWallet": "Tampilkan 1 dompet",
+    "walletCount": "{count} dompet",
+    "walletCountOne": "1 dompet",
+    "activeCount": "{count} aktif",
+    "savedReview": "Ulasan Anda telah disimpan!",
+    "errorGettingLikes": "Kesalahan saat mengambil suka:",
+    "errorUpdatingRating": "Kesalahan saat memperbarui peringkat:"
+  },
+  "guides": {
+    "title": "Panduan",
+    "description": "Panduan langkah demi langkah untuk menggunakan Zcash",
+    "allGuides": "Semua Panduan",
+    "beginner": "Pemula",
+    "intermediate": "Menengah",
+    "advanced": "Lanjutan"
+  },
+  "tutorials": {
+    "title": "Tutorial",
+    "description": "Belajar secara langsung dengan tutorial praktis",
+    "watchVideo": "Tonton Video",
+    "readTutorial": "Baca Tutorial",
+    "duration": "Durasi"
+  },
+  "dao": {
+    "title": "ZecHub DAO",
+    "description": "Tata kelola terdesentralisasi untuk ZecHub",
+    "headerTitle": "ZecHub DAO & Tata Kelola",
+    "headerDescription": "Platform edukasi sumber terbuka di mana anggota komunitas berkolaborasi dalam membuat, memvalidasi, dan mempromosikan konten yang mendukung ekosistem Zcash",
+    "beliefs": [
+      "Privasi adalah hak asasi manusia",
+      "Edukasi harus bersifat sumber terbuka dan dapat diakses di seluruh dunia",
+      "Anggota komunitas memiliki hak untuk mendapatkan ZEC secara pribadi",
+      "Kolaborasi global mendorong inovasi"
+    ],
+    "features": [
+      {
+        "icon": "🛡️",
+        "title": "DAO Ekosistem Zcash Pertama",
+        "description": "ZecHub mempelopori tata kelola terdesentralisasi dalam komunitas Zcash, dengan dana yang disimpan terutama di dalam pool terlindungi Zcash untuk privasi maksimal."
+      },
+      {
+        "icon": "🌍",
+        "title": "Kolaborasi Global",
+        "description": "Duta Global, anggota Community Grants, dan pakar komunitas bersatu untuk memandu arah Zcash dan edukasi Teknologi Privasi."
+      },
+      {
+        "icon": "🔄",
+        "title": "Kerangka Kerja SubDAO",
+        "description": "Grup mana pun dapat membuat SubDAO untuk membentuk proyek, membuat proposal, atau mengajukan Kompensasi Retroaktif melalui modul DAO DAO."
+      }
+    ],
+    "governanceDescription": "Semua proposal DAO bersifat publik dan transparan. Siapa pun dapat membuat proposal untuk pemungutan suara. Dalam mendukung transparansi komunitas, ZecHub DAO mengunggah semua proposal tata kelola di thread ZecHub Governance pada Forum Komunitas Zcash.",
+    "membersTitle": "Anggota DAO",
+    "proposals": "Proposal",
+    "vote": "Vote",
+    "createProposal": "Buat Proposal",
+    "activeProposals": "Proposal Aktif",
+    "pastProposals": "Proposal Masa Lalu"
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "description": "Tetap perbarui dengan berita Zcash terbaru",
+    "subscribe": "Berlangganan",
+    "emailPlaceholder": "Masukkan email Anda",
+    "subscribeButton": "Berlangganan Sekarang",
+    "latestIssue": "Edisi Terbaru",
+    "archive": "Arsip"
+  },
+  "pages": {
+    "wallets": {
+      "title": "Dompet | ZecHub",
+      "noData": "Tidak Ada Data atau File Salah",
+      "bannerAlt": "wiki-banner"
+    },
+    "dex": {
+      "title": "Decentralised Exchanges",
+      "subtitle": "ZecHub tidak mendukung layanan Decentralised Exchange tertentu, harap lakukan riset Anda sendiri.",
+      "centralised": "Platform Swap Terpusat",
+      "centralizedTitle": "Listing Platform Swap Terpusat",
+      "custodial": "Exchange Kustodial",
+      "exchanges": {
+        "Near-intents": "Exchange cepat dengan dukungan NEAR. Lakukan deposit, jual, swap termasuk meme populer TRUMP, MELANIA, BERA dan lainnya",
+        "Nativeswap": "Perdagangan Cross-Chain Native Tanpa Hambatan via Maya Protocol. Berdagang langsung on-chain tanpa bridge atau wrapped token - nikmati biaya terendercil di industri dan kontrol aset penuh.",
+        "Firo DEX": "Swap terdesentralisasi trustless menggunakan atomic swap dengan FiroDEX!.",
+        "LeoDEX": "Antarmuka swapping crypto crosschain untuk Maya Protocol, Thorchain, ChainFlip, dan Rango. BTC, ETH, RUNE, DASH, LTC & lainnya",
+        "Bison Wallet": "Berdagang crypto peer-to-peer. Tanpa biaya perdagangan. Tanpa KYC.",
+        "THORSwap": "DEX cross-chain yang didukung oleh THORChain, memungkinkan swap native antara Bitcoin, Ethereum, dan aset utama lainnya tanpa wrapped token.",
+        "Router Protocol": "Lapisan transport likuiditas cross-chain yang memungkinkan transfer aset dan data secara mulus di antara berbagai blockchain.",
+        "Peer": "Exchange peer-to-peer terdesentralisasi yang memungkinkan transaksi crypto langsung dengan privasi yang ditingkatkan dan kontrol pengguna.",
+        "RocketX": "Aggregator DEX hybrid yang memungkinkan swap cross-chain di berbagai blockchain dengan routing optimal dan tarif kompetitif.",
+        "THORChain": "Exchange cross-chain Layer 1 terdesentralisasi. Swap aset native seperti ZEC, BTC, dan ETH secara langsung tanpa bridge, wrapped token, atau perantara.",
+        "Loofta": "Platform pembayaran dan swap privat non-kustodial. Kirim dan terima crypto secara privat antar chain, dengan Zcash sebagai lapisan penyelesaian untuk privasi finansial yang ditingkatkan."
+      },
+      "disclaimer": "ZecHub tidak mendukung layanan exchange tertentu, harap lakukan riset Anda sendiri."
+    },
+    "usingZcash": {
+      "blockchainExplorers": {
+        "title": "Blockchain Explorer"
+      }
+    },
+    "dashboard": {
+      "title": "Dashboard | ZecHub",
+      "charts": {
+        "headerTitle": "Dashboard(s)",
+        "headerSubtitle": "Analisis metrik dan tren jaringan Zcash",
+        "shieldedNetworks": "Jaringan Terlindungi",
+        "currentYoutubeChannel": "Saluran YouTube Saat Ini",
+        "totalVideos": "Total Video",
+        "totalViews": "Total Penayangan",
+        "mostViewed": "Paling Banyak Ditonton",
+        "viewsSuffix": "penayangan",
+        "searchPlaceholder": "Cari video...",
+        "top15ByViews": "15 Teratas berdasarkan Penayangan",
+        "latest15Videos": "15 Video Terbaru",
+        "sortByNewest": "↩ Urutkan Berdasarkan Terbaru",
+        "sortByViews": "↑ Urutkan Berdasarkan Penayangan",
+        "top15VideosByViews": "15 Video Teratas berdasarkan Penayangan",
+        "latest15VideosSortedByViews": "15 Video Terbaru (Diurutkan berdasarkan Penayangan)",
+        "zcashMetrics": {
+          "title": "Metrik Zcash",
+          "loadError": "Gagal memuat Metrik Zcash",
+          "notAvailable": "N/A",
+          "marketCap": "Kapitalisasi Pasar",
+          "circulation": "Sirkulasi",
+          "marketPriceUsd": "Harga Pasar (USD)",
+          "marketPriceBtc": "Harga Pasar (BTC)",
+          "blocks": "Blok",
+          "transactions24h": "Transaksi 24j",
+          "shieldedValue": "Nilai Terlindungi",
+          "shieldedTx24h": "Transaksi Terlindungi (24j)",
+          "saplingAbbrev": "Sap",
+          "orchardAbbrev": "Orc"
+        },
+        "zcashChart": {
+          "title": "Grafik Analitik",
+          "supplyTypeAriaLabel": "Tipe suplai",
+          "supplyOptions": {
+            "shielded": "Terlindungi",
+            "transparent": "Transparan",
+            "totalSupply": "Total Pasokan"
+          }
+        },
+        "zcashShieldedTabs": {
+          "supply": "Pasokan",
+          "difficulty": "Kesulitan",
+          "issuance": "Emisi",
+          "lockbox": "Lockbox",
+          "flows": "Aliran",
+          "txSummary": "Ringkasan TX",
+          "privacySet": "Set Privasi",
+          "shieldedStats": "Statistik Terlindungi",
+          "blockFees": "Biaya Blok",
+          "networkSolps": "Solusi Jaringan",
+          "miningPools": "Pool Penambangan",
+          "halvingMeter": "Meter Halving"
+        },
+        "miningPoolsChart": {
+          "title": "Dominasi Pool Penambangan",
+          "loadError": "Gagal memuat Pool penambangan",
+          "rangeLabel": "Rentang",
+          "rangeAriaLabel": "Pilih rentang penambangan",
+          "noData": "Tidak ada data pool penambangan yang tersedia."
+        },
+        "difficultyChart": {
+          "title": "Kesulitan Penambangan dari Waktu ke Waktu",
+          "loadError": "Gagal memuat Grafik Kesulitan",
+          "legend": "Kesulitan",
+          "seriesName": "Kesulitan"
+        },
+        "tabs": {
+          "zechubDashboard": "Dashboard ZecHub",
+          "daodaoDashboard": "Dashboard DaoDao",
+          "treasuryDashboard": "Treasury",
+          "zcgDashboard": "Dashboard ZCG",
+          "youtubeDashboard": "Dashboard YouTube"
+        }
+      }
+    },
+    "hackathon": {
+      "title": "ZecHub Hackathon",
+      "heroEyebrow": "Bangun · Dokumentasikan · Kirim",
+      "heroIntro": "Bangun di lima jalur, dari infra hingga game, lalu dokumentasikan dan demokan karya Anda. Kickoff resmi",
+      "heroKickoffSep": "(UTC); pengiriman ditutup",
+      "countdownStartsIn": "Hackathon dimulai dalam",
+      "countdownTimeUntilClose": "Waktu hingga pengiriman ditutup",
+      "countdownEnded": "Hackathon telah berakhir",
+      "days": "Hari",
+      "hours": "Jam",
+      "mins": "Menit",
+      "secs": "Detik",
+      "endedNote": "Jendela hackathon ini telah berakhir, terima kasih kepada semua yang telah berpartisipasi.",
+      "preStarts": "Dimulai",
+      "preCloseSep": "(UTC). Pengiriman ditutup",
+      "activeCloseOn": "Pengiriman ditutup pada",
+      "tracksEyebrow": "Acara 2026",
+      "tracksTitle": "Jalur",
+      "tracksIntro": "Selaraskan proyek Anda dengan sebuah track untuk kejelasan saat mengirimkan, juri dan komunitas menggunakannya untuk menelusuri entri.",
+      "tracks": {
+        "infrastructure": {
+          "name": "Infrastruktur",
+          "description": "ZSA GUI, Node Launcher, dasbor web Zallet, dll."
+        },
+        "games": {
+          "name": "Game",
+          "description": "Game Artikel Wiki yang mirip dengan catfishing.net, ZEC Poker, Battleship, dll."
+        },
+        "frost": {
+          "name": "FROST",
+          "description": "Dompet threshold signing, Escrow ZEC terlindungi, Social Recovery"
+        },
+        "zcashLogin": {
+          "name": "Zcash Login",
+          "description": "Alur autentikasi dan identitas yang menggunakan primitif Zcash untuk masuk atau akses."
+        },
+        "accounting": {
+          "name": "Akuntansi",
+          "description": "Pelaporan, alur kerja untuk tim yang menangani ZEC, sistem manajemen pembayaran."
+        }
+      },
+      "prizesEyebrow": "Hadiah",
+      "prizesTitle": "Hadiah",
+      "prizePoolTitle": "Pool hadiah 25 ZEC",
+      "prizePoolDesc": "Bangun, kirim, dan bersainglah untuk pool hadiah komunitas.",
+      "devToolsEyebrow": "Mulai di sini",
+      "devToolsTitle": "Devtools & dokumentasi",
+      "devTools": {
+        "quickStart": {
+          "title": "Mulai Cepat Developer ZecHub",
+          "description": "Temukan alat penting, referensi, dan langkah pengaturan untuk membangun di Zcash."
+        }
+      },
+      "openGuide": "Buka panduan",
+      "openDocs": "Buka dokumentasi",
+      "rulesTitle": "Aturan",
+      "rulesDesc": "Pastikan pengiriman karya adil dan mudah dinilai.",
+      "rules": {
+        "mainnet": "Proyek harus berinteraksi dengan jaringan mainnet Zcash.",
+        "oneProject": "Setiap tim hanya dapat mengirimkan satu proyek akhir per tim.",
+        "docs": "Semua pengiriman harus menyertakan dokumentasi pengaturan dan penggunaan yang jelas.",
+        "openSource": "Gunakan lisensi sumber terbuka.",
+        "respect": "Hormati privasi, keamanan, dan panduan komunitas baik dalam kode maupun konten."
+      },
+      "faqTitle": "FAQ",
+      "faqDesc": "Jawaban singkat sebelum Anda memulai.",
+      "faq": {
+        "whoCanParticipate": {
+          "question": "Siapa yang dapat berpartisipasi?",
+          "answer": "Siapa pun dapat bergabung: pengembang, desainer, dan tim multidisiplin."
+        },
+        "validSubmission": {
+          "question": "Apa yang harus disertakan dalam pengajuan yang valid?",
+          "answer": "Prototipe yang berfungsi, demo video, dokumentasi dasar, dan penjelasan tentang cara penggunaannya dengan jaringan Zcash."
+        },
+        "whereSubmit": {
+          "question": "Di mana kami mengirimkan proyek?",
+          "answer": "Bagikan demo video Anda di Discord Global Zcash dan sertakan tautan repositori atau demo yang relevan."
+        },
+        "winnersSelected": {
+          "question": "Bagaimana pemenang dipilih?",
+          "answer": "Proses komunitas publik dijalankan melalui saluran ZecHub DAO setelah pengajuan ditutup."
+        },
+        "whatTracks": {
+          "question": "Apa saja kategorinya?",
+          "answer": "Tema hackathon ini adalah Infrastruktur, Game, FROST, Zcash Login, dan Akuntansi. Pilih kategori yang paling sesuai dengan proyek Anda; Anda tetap dapat mengirimkan proyek yang tidak termasuk dalam kategori tersebut."
+        }
+      },
+      "submitEyebrow": "Partisipasi",
+      "submitTitle": "Cara mengirimkan",
+      "submitIntro": "Ikuti lima langkah ini untuk membawa proyek Anda dari ide hingga menjadi entri resmi.",
+      "steps": {
+        "build": {
+          "title": "Bangun proyek Anda",
+          "description": "Buat prototipe yang berfungsi dan berinteraksi dengan mainnet Zcash. Pilih sebuah kategori dan buat log pengembangan selama proses berlangsung."
+        },
+        "record": {
+          "title": "Rekam demo video",
+          "description": "Rekam panduan singkat yang menunjukkan proyek Anda saat dijalankan. Jelaskan dengan jelas apa fungsinya dan bagaimana cara penggunaannya dengan jaringan Zcash."
+        },
+        "document": {
+          "title": "Dokumentasikan pekerjaan Anda",
+          "description": "Tulis README berisi instruksi pengaturan, catatan penggunaan, dan lisensi open-source Anda. Push semuanya ke repo GitHub publik."
+        },
+        "upload": {
+          "title": "Unggah kode Anda",
+          "descPrefix": "Push proyek Anda ke",
+          "repoLabel": "repo Hackathon",
+          "descSuffix": "di GitHub agar komunitas dapat meninjau pekerjaan Anda."
+        },
+        "share": {
+          "title": "Bagikan di Discord",
+          "description": "Posting demo video Anda di Zcash Global Discord beserta tautan repo dan demo sebelum 15 Juli 2026 (UTC)."
+        }
+      },
+      "deadlineLabel": "Tenggat waktu:",
+      "deadlinePrefix": "Semua submisi harus diposting di Discord paling lambat",
+      "deadlineSuffix": ". Pemenang dipilih melalui voting komunitas publik di saluran ZecHub DAO segera setelah submisi ditutup.",
+      "joinTheDiscord": "Gabung ke Discord",
+      "previousEyebrow": "Edisi sebelumnya",
+      "previousTitle": "Hackathon sebelumnya",
+      "previousIntro": "Jelajahi hasil hackathon ZecHub sebelumnya berdasarkan edisi. Setiap kartu proyek menautkan langsung ke folder GitHub-nya untuk kode, catatan, dan demo jika tersedia.",
+      "browseAllProjects": "Jelajahi semua proyek",
+      "errorCouldNotLoad": "Tidak dapat memuat daftar proyek langsung",
+      "errorShowingSaved": "Menampilkan daftar proyek hackathon sebelumnya yang disimpan sebagai gantinya.",
+      "noProjects": "Tidak ada folder proyek yang dikembalikan. Buka pohon repo untuk memverifikasi struktur.",
+      "projectsArchivedOne": "{count} proyek diarsipkan dari edisi ini.",
+      "projectsArchivedMany": "{count} proyek diarsipkan dari edisi ini.",
+      "buildsCount": "{count} build",
+      "viewProject": "Lihat proyek",
+      "needHelpTitle": "Butuh bantuan?",
+      "needHelpDesc": "Zcash Global Discord adalah tempat terbaik untuk pertanyaan build, tips infra, dan obrolan hackathon.",
+      "joinDiscord": "Gabung Discord",
+      "supportDonation": "Dukung dengan donasi",
+      "popup": {
+        "liveNow": "Sedang Berlangsung",
+        "subtitle": "Bangun aplikasi yang mengutamakan privasi di Zcash. Kompetisi untuk memenangkan hadiah, dapatkan ZEC, dan bentuk masa depan kebebasan finansial.",
+        "prizePool": "Prize Pool",
+        "start": "Mulai",
+        "end": "Selesai",
+        "learnMore": "Pelajari Lebih Lanjut →",
+        "dismiss": "Tutup"
+      }
+    },
+    "developers": {
+      "title": "Sumber Daya Developer Zcash",
+      "heroImageAlt": "Sumber Daya Developer Zcash",
+      "cardSectionTitle": "Bagaimana Anda ingin memulai?",
+      "cards": {
+        "learnTitle": "Pelajari Pengembangan Zcash",
+        "learnContent": "Jelajahi dokumentasi resmi dan pelajari dasar-dasar teknologi Zcash.",
+        "learnButton": "Baca Dokumentasi",
+        "tutorialsTitle": "Belajar Melalui Tutorial",
+        "tutorialsContent": "Ikuti tutorial langkah demi langkah untuk membangun di Zcash, mulai dari membuat dompet hingga mengintegrasikan Zcash ke dalam aplikasi Anda.",
+        "tutorialsButton": "Lihat Tutorial",
+        "quickStartTitle": "Panduan Memulai Cepat",
+        "quickStartContent": "Mulai pengembangan Zcash dengan cepat. Pelajari instalasi, konfigurasi, dan operasi dasar.",
+        "quickStartButton": "Panduan Memulai Cepat"
+      },
+      "exploreDocsTitle": "Jelajahi Dokumentasi",
+      "introductionsTitle": "Pendahuluan",
+      "fundamentalsTitle": "Dasar-dasar",
+      "advancedTitle": "Lanjutan",
+      "introLinks": {
+        "introToZcash": "Pengantar Zcash",
+        "introToZcashDesc": "Pelajari tentang Zcash, sejarahnya, dan prinsip utamanya.",
+        "introToZec": "Pengantar ZEC",
+        "introToZecDesc": "Temukan kegunaan dan manfaat ZEC, mata uang kripto asli Zcash.",
+        "introToZebra": "Pengantar Zebra",
+        "introToZebraDesc": "Memahami bagaimana Zebra menggerakkan jaringan Zcash dengan implementasi berbasis Rust yang modular dan aman",
+        "introToLightwalletd": "Pengantar Lightwalletd",
+        "introToLightwalletdDesc": "Memahami proyek lightwalletd—sebuah server skalabel yang ditulis dalam Go yang secara efisien menyajikan data blockchain ringkas ke light client Zcash melalui gRPC.",
+        "zalletBook": "Buku Zallet",
+        "zalletBookDesc": "Pendahuluan Zallet, sebuah dompet Zcash full-node yang ditulis dalam Rust dan dirancang sebagai pengganti dompet zcashd.",
+        "developerResources": "Sumber Daya Developer",
+        "developerResourcesDesc": "Tautan ke Dokumentasi Teknis Zcash lebih lanjut."
+      },
+      "fundamentalsLinks": {
+        "addressEncoding": "Encoding Alamat",
+        "addressEncodingDesc": "Pelajari cara alamat dan kunci Zcash di-encode.",
+        "transactions": "Transaksi",
+        "transactionsDesc": "Pahami cara kerja transaksi di Zcash.",
+        "fees": "Biaya",
+        "feesDesc": "Pelajari tentang biaya transaksi dan cara penghitungannya.",
+        "nodesZcashd": "Node (zcashd)",
+        "nodesZcashdDesc": "Siapkan dan kelola node Zcash menggunakan zcashd.",
+        "nodesZebrad": "Node (zebrad)",
+        "nodesZebradDesc": "Jelajahi Zebra, implementasi node Zcash alternatif.",
+        "lightwalletServers": "Server Lightwallet",
+        "lightwalletServersDesc": "Pelajari tentang lightwalletd, server dompet Zcash yang ringan.",
+        "blockExplorers": "Block Explorer",
+        "blockExplorersDesc": "Jelajahi blockchain Zcash menggunakan block explorer.",
+        "shadeAgent": "Shade Agent - Notion",
+        "shadeAgentDesc": "Pelajari tentang Shade Agents—agen AI otonom pertama yang sesungguhnya di NEAR—yang didukung oleh TEE aman dan Chain Signatures terdesentralisasi untuk mengelola aset, mengakses LLM, dan mengeksekusi transaksi multichain secara mandiri."
+      },
+      "advancedLinks": {
+        "introToStack": "Pengantar Stack",
+        "introToStackDesc": "Pahami arsitektur dan komponen dari stack Zcash.",
+        "zecDev": "ZecDev",
+        "zecDevDesc": "Di sini Anda akan menemukan proyek, sumber daya, dan alat yang dibuat serta dikelola dalam konteks hibah Developer Relations Engineer (Zcash). Lihat juga",
+        "zcashCommunityWishlist": "Zcash Community Wishlist",
+        "introToZingolib": "Pengantar Zingolib",
+        "introToZingolibDesc": "Memahami repositori zingolib—sebuah API dan CLI berbasis Rust untuk berinteraksi dengan zcashd melalui Lightwalletd.",
+        "webZjs": "WebZjs",
+        "webZjsDesc": "Library JavaScript/TypeScript untuk membangun aplikasi web yang mendukung Zcash menggunakan WebAssembly.",
+        "noirWalletSdk": "Noir Wallet SDK",
+        "noirWalletSdkDesc": "SDK TypeScript dan contoh dApp untuk mengintegrasikan aplikasi Zcash dengan ekstensi browser Noir Wallet.",
+        "zcashIka": "zcash-ika",
+        "zcashIkaDesc": "Kustodial split-key untuk Zcash dan agen multi-chain melalui 2PC-MPC. Kebijakan pengeluaran on-chain, atestasi privasi, pembangun transaksi ZIP 244.",
+        "developmentGuidelines": "Panduan Pengembangan",
+        "developmentGuidelinesDesc": "Ikuti praktik terbaik untuk pengembangan di Zcash.",
+        "arboristCalls": "Halaman Arborist Calls",
+        "arboristCallsDesc": "Zcash Arborist Calls adalah pertemuan pengembangan protokol dua mingguan yang berfokus pada pelacakan logistik penerapan protokol mendatang, masalah implementasi consensus node, dan riset protokol."
+      },
+      "feedbackTitle": "Apakah halaman ini bermanfaat?",
+      "feedbackYes": "Ya",
+      "feedbackNo": "Tidak",
+      "feedbackHelpful": "Terima kasih atas masukan Anda! Buat halaman ini menjadi lebih baik dengan menjawab beberapa pertanyaan. Jika Anda membutuhkan bantuan, Anda dapat menghubungi komunitas kami di",
+      "feedbackNotHelpful": "Kami menyesal mendengarnya. Beritahu kami bagaimana kami dapat meningkatkan halaman ini. Anda dapat menghubungi komunitas kami di"
+    },
+    "zcashProjects": {
+      "title": "Proyek Zcash | ZecHub"
+    },
+    "visualizer": {
+      "title": "Visualizer Zcash",
+      "hashFunction": {
+        "title": "Visualizer Fungsi Hash"
+      },
+      "zcashKey": {
+        "title": "Visualizer Kunci Zcash"
+      },
+      "zksnark": {
+        "title": "Visualizer Proof zk-SNARK"
+      },
+      "sybil": {
+        "problemTitle": "Masalah Serangan Sybil",
+        "problemDesc": "Dalam jaringan di mana pemungutan suara menentukan kebenaran, penyerang dapat membuat jutaan identitas palsu untuk mengalahkan peserta sah.",
+        "realUsers": "3 Pengguna Asli",
+        "vs": "vs",
+        "attacker": "1 Penyerang (6 palsu)",
+        "solutionTitle": "Cara Zcash Mencegah Serangan Sybil",
+        "powTitle": "Proof of Work",
+        "powDesc": "Penambangan memerlukan sumber daya komputasi nyata. Membuat identitas palsu tidak memberikan lebih banyak kekuatan pemungutan suara — hanya kerja nyata yang bisa melakukannya.",
+        "costTitle": "Biaya Ekonomi",
+        "costDesc": "Menyerang jaringan memerlukan investasi besar dalam perangkat keras dan listrik, membuat serangan menjadi tidak rasional secara ekonomi.",
+        "insightLabel": "Wawasan Utama:",
+        "insightDesc": "Ketahanan Sybil mengaitkan kekuatan pemungutan suara dengan sumber daya langka (komputasi, stake) alih-alih identitas yang mudah dibuat."
+      },
+      "saplingKey": {
+        "spendingKeyName": "Spending Key (sk)",
+        "spendingKeyDesc": "Rahasia utama untuk pengeluaran",
+        "expandedSpendingKeyName": "Expanded Spending Key",
+        "expandedSpendingKeyDesc": "tanya, nsk, ovk",
+        "fullViewingKeyName": "Full Viewing Key (fvk)",
+        "fullViewingKeyDesc": "ak, nk, ovk",
+        "incomingViewingKeyName": "Incoming Viewing Key (ivk)",
+        "incomingViewingKeyDesc": "Lihat transaksi masuk",
+        "diversifiedAddressName": "Alamat Diversified",
+        "diversifiedAddressDesc": "zs1... (tidak terbatas per kunci)",
+        "derivationTitle": "Sapling Key Derivation",
+        "addressFormatTitle": "Format Alamat",
+        "addressFormatDesc": "78 karakter, encoding Bech32",
+        "keyFeatureTitle": "Fitur Utama",
+        "keyFeatureBold": "Alamat diversified",
+        "keyFeatureDesc": "— Hasilkan alamat unik tanpa batas dari satu kunci"
+      },
+      "blockAnatomy": {
+        "fieldVersion": "Versi",
+        "fieldPreviousHash": "Hash Sebelumnya",
+        "fieldMerkleRoot": "Akar Merkle",
+        "fieldTimestamp": "Timestamp",
+        "fieldDifficulty": "Kesulitan",
+        "fieldNonce": "Nonce",
+        "blockHeader": "Header Blok",
+        "transactionList": "Daftar Transaksi",
+        "coinbaseTx": "Tx #1 (Coinbase)",
+        "merkleTree": "Merkle Tree",
+        "merkleRoot": "Akar Merkle"
+      },
+      "difficulty": {
+        "zcashBlockTime": "75 detik",
+        "targetBlockTime": "Target waktu blok",
+        "bitcoinBlockTime": "10 menit",
+        "forComparison": "Untuk perbandingan",
+        "adjustmentTitle": "Penyesuaian Kesulitan",
+        "hashrateIncreases": "Hashrate Meningkat",
+        "difficultyUp": "Kesulitan meningkat",
+        "target": "Target: 75 detik",
+        "staysConstant": "Tetap konstan",
+        "hashrateDecreases": "Hashrate Menurun",
+        "difficultyDown": "Kesulitan menurun",
+        "summary": "Jaringan secara otomatis menyesuaikan kesulitan penambangan untuk menjaga waktu blok yang konsisten, terlepas dari berapa banyak penambang yang bersaing."
+      }
+    },
+    "paymentProcessors": {
+      "title": "Prosesor Pembayaran | ZecHub",
+      "noData": "Tidak Ada Data atau File Salah",
+      "bannerAlt": "wiki-banner"
+    },
+    "developersQuickStart": {
+      "heroBadge": "Mulai Cepat Developer",
+      "heroTitleLine1": "Zcash Dev",
+      "heroTitleLine2": "Mulai Cepat",
+      "heroSubtitle": "Mulai pengembangan Zcash Anda. Pilih stack Anda dan ikuti panduan ini.",
+      "copy": "Salin",
+      "copied": "Tersalin!",
+      "onThisPage": "Di halaman ini",
+      "tocInstallingZebrad": "Menginstal Zebrad",
+      "tocRunningZebrad": "Menjalankan zebrad",
+      "tocConnectingLightwalletd": "Menghubungkan dengan lightwalletd",
+      "installation": "Instalasi",
+      "configuration": "Konfigurasi",
+      "dependencies": "Dependensi",
+      "fromSource": "Dari Sumber",
+      "alternatively": "Alternatifnya",
+      "manualDownload": "Unduhan Manual",
+      "wslRecommended": "WSL (Direkomendasikan)",
+      "runningZebradHeading": "Menjalankan zebrad",
+      "initialSetup": "Pengaturan Awal",
+      "createConfigDir": "Buat Direktori Konfigurasi",
+      "startingZebrad": "Memulai zebrad",
+      "commandLine": "Baris Perintah",
+      "importantNotes": "Catatan Penting",
+      "noteDownloadsBlockchain": "Jalankan pertama kali akan mengunduh seluruh blockchain (~250 GB)",
+      "noteInitialSync": "Sinkronisasi awal dapat memakan waktu beberapa jam",
+      "noteKeepSecure": "Jaga agar zebrad.toml Anda tetap aman dan pribadi",
+      "connectingLightwalletdHeading": "Menghubungkan dengan lightwalletd",
+      "lightwalletdInfo": "adalah server yang menyediakan antarmuka ringan untuk blockchain Zcash, dirancang untuk dompet seluler dan desktop yang tidak perlu menjalankan full node.",
+      "prerequisites": "Prasyarat",
+      "buildLightwalletd": "Build lightwalletd",
+      "basicSetupMainnet": "Pengaturan Dasar (Mainnet)",
+      "basicSetupTestnet": "Pengaturan Dasar (Testnet)",
+      "run": "Jalankan",
+      "installingZaino": "Menginstal Zaino",
+      "zainoInfo": "adalah indexer berbasis Rust untuk blockchain Zcash. Ini melayani both light client (dompet yang tidak menyimpan riwayat lengkap) dan full client / block explorer, menyediakan akses ke chain yang telah difinalisasi, best chain yang belum difinalisasi, dan mempool.",
+      "buildZaino": "Build Zaino",
+      "configure": "Konfigurasi",
+      "runZainod": "Jalankan zainod",
+      "installingZingoCli": "Menginstal Zingo CLI",
+      "zingoCliInfo": "adalah klien command-line lightwalletd-proxy yang dibangun dengan Rust. Rilis saat ini bersifat sementara — panduan ini mencakup kompilasi dari sumbernya.",
+      "buildZingoCli": "Build Zingo CLI",
+      "running": "Menjalankan",
+      "startZingoCliDefault": "Mulai Zingo CLI (Default)",
+      "startZingoCliCustom": "Mulai Zingo CLI (Custom)",
+      "zingoSyncWarning": "⚠ Ini akan melakukan sinkronisasi penuh pada saat pertama kali dijalankan, mirip dengan lightwalletd.",
+      "nextStepsResources": "Langkah Selanjutnya & Sumber Daya",
+      "readyToBuild": "Siap untuk Build?",
+      "officialDocumentation": "Dokumentasi Resmi",
+      "zcashDiscordCommunity": "Komunitas Discord Zcash",
+      "githubRepositories": "Repositori GitHub",
+      "zcashImprovementProposals": "Zcash Improvement Proposals",
+      "needHelp": "Butuh Bantuan?",
+      "zcashCommunityForum": "Forum Komunitas Zcash",
+      "githubIssues": "GitHub Issues",
+      "troubleshootingGuide": "Panduan Pemecahan Masalah",
+      "stackOverflow": "Stack Overflow",
+      "compareTitle": "Perbandingan Node & Client",
+      "compareLead": "Stack Zcash terdiri dari beberapa alat terpisah. Gunakan tabel ini untuk menentukan mana yang dibutuhkan proyek Anda, lalu ikuti panduan yang sesuai di bawah ini.",
+      "compareColSoftware": "Perangkat Lunak",
+      "compareColRole": "Peran",
+      "compareColLanguage": "Bahasa",
+      "compareColPlatforms": "Platform",
+      "compareColStatus": "Status",
+      "compareColHardware": "Perangkat Keras",
+      "compareColRpc": "RPC / API",
+      "compareFootnote": "zcashd mencapai akhir masa pakai pada blok 3417100 pada 18 Juli 2026 — proyek baru harus dibangun di atas perangkat lunak di atas."
+    },
+    "governanceHowto": {
+      "pageTitle": "Tata Kelola ZecHub DAO",
+      "pageSubtitle": "Panduan komprehensif untuk berpartisipasi dalam tata kelola ZecHub DAO",
+      "stepOf": "Langkah {current} dari {total}",
+      "firstSteps": "Langkah Pertama",
+      "firstStepsDesc": "Siapkan diri Anda untuk berpartisipasi dalam tata kelola DAO",
+      "draftProposal": "Draf Proposal",
+      "draftProposalDesc": "Susun dan siapkan proposal Anda untuk pengajuan",
+      "submittingProposal": "Mengajukan Proposal",
+      "submittingProposalDesc": "Ajukan dan promosikan proposal Anda",
+      "installKeplr": "Instal Keplr Wallet",
+      "installKeplrDesc": "Siapkan Keplr wallet Anda untuk berinteraksi dengan DAO",
+      "keplrVideoTitle": "Panduan Pengaturan Keplr Wallet",
+      "acquireJuno": "Dapatkan JUNO",
+      "acquireJunoDesc": "Dapatkan token JUNO untuk berinteraksi dengan kontrak daodao. Hubungi anggota tim inti untuk bantuan.",
+      "viewOpenProposals": "Lihat Proposal Terbuka",
+      "viewOpenProposalsDesc": "Lihat proposal saat ini dan peluang pemungutan suara",
+      "visitVotingPortal": "Kunjungi Portal Pemungutan Suara",
+      "formatNote": "Format: Proposal dapat ditulis dalam format .Md atau .txt",
+      "recommendedStructure": "Struktur 4-Tahap yang Direkomendasikan:",
+      "stageBackground": "Latar Belakang",
+      "stageBackgroundDesc": "Berikan riwayat singkat mengenai topik/layanan umum",
+      "stageWhy": "Mengapa?",
+      "stageWhyDesc": "Sampaikan alasan utama proposal Anda. Dapat menggunakan poin-poin",
+      "stageProposal": "Proposal",
+      "stageProposalDesc": "Jelaskan detail proposal Anda secara lengkap",
+      "stageAction": "Tindakan",
+      "stageActionDesc": "Apa yang terjadi setelah pemungutan suara berhasil - dapat menyertakan lini masa tindakan",
+      "getFeedback": "Dapatkan Umpan Balik",
+      "getFeedbackDesc": "Bagikan draf Anda di saluran ZecHub #proposals di Discord untuk umpan balik awal",
+      "joinDiscord": "Gabung ke Discord",
+      "walkthroughTitle": "Video Panduan Proposal",
+      "walkthroughDesc": "Tonton panduan lengkap tentang cara menulis dan menyusun proposal",
+      "walkthroughIframeTitle": "Panduan Proposal",
+      "postInDiscord": "Posting di Discord",
+      "postInDiscordDesc": "Bagikan proposal akhir Anda di #proposals dan tandai @core-team",
+      "openDiscord": "Buka Discord",
+      "submitOnPortal": "Kirim di Portal Voting",
+      "submitOnPortalDesc": "Gunakan situs voting resmi ZecHub untuk membuat proposal Anda",
+      "submitNow": "Kirim Sekarang",
+      "loginNote": "⚠️ Anda perlu login dengan Keplr atau Keplr Mobile",
+      "previous": "Sebelumnya",
+      "next": "Berikutnya"
+    },
+    "sitemap": {
+      "heading": "Navigasi Situs",
+      "subheading": "Ikhtisar lengkap dari semua halaman dan sumber daya yang tersedia di Zechub Wiki",
+      "guidesCount": "{count} panduan",
+      "sections": {
+        "Pages": "Halaman",
+        "Organizations": "Organisasi",
+        "Guides": "Panduan",
+        "Use Zcash": "Gunakan Zcash",
+        "Ecosystem": "Ekosistem",
+        "Start Here": "Mulai di Sini",
+        "Zcash Tech": "Teknologi Zcash",
+        "Use Cases": "Use Cases",
+        "Privacy Tools": "Tools Privasi",
+        "Research": "Riset",
+        "Glossary & FAQs": "Glosarium & FAQ",
+        "Social Media": "Media Sosial",
+        "ZFAV Club": "Klub ZFAV",
+        "Tutorials": "Tutorial",
+        "Contribute": "Berkontribusi"
+      },
+      "links": {
+        "Homepage": "Beranda",
+        "Dashboard": "Dashboard",
+        "Donation": "Donasi",
+        "Contribute": "Berkontribusi",
+        "DAO": "DAO",
+        "Developers": "Developer",
+        "Brand": "Brand",
+        "Wallets": "Dompet",
+        "Sitemap": "Sitemap",
+        "Tutorials": "Tutorial",
+        "Bounties": "Bounty",
+        "Buying ZEC": "Membeli ZEC",
+        "Faucets": "Faucet",
+        "Exchanges": "Exchange",
+        "Block Explorers": "Block Explorer",
+        "Shielded Pools": "Pool terlindungi",
+        "Transparent Exchange Addresses": "Alamat Exchange Transparan",
+        "Transactions": "Transaksi",
+        "Memos": "Memo",
+        "Mobile Top Ups": "Top Up Seluler",
+        "Payment Request URIs": "URI Permintaan Pembayaran",
+        "Payment Processors": "Pemroses Pembayaran",
+        "Recovering Funds": "Memulihkan Dana",
+        "MetaMask Snap": "MetaMask Snap",
+        "Community Forum": "Forum Komunitas",
+        "Cypherpunk Zero NFT": "Cypherpunk Zero NFT"
+      }
+    },
+    "zcashCommunity": {
+      "communityProjects": {
+        "title": "Proyek Komunitas"
+      }
+    },
+    "research": {
+      "seriesHeading": "Seri",
+      "seriesSubheading": "Pembahasan mendalam tentang konsep inti Zcash",
+      "foundationsSeriesTitle": "Seri Zcash Foundation",
+      "coreSeriesBadge": "Seri Inti",
+      "foundationsSeriesCardDescription": "Artikel mendasar tentang transaksi terlindungi, model privasi, dan desain protokol.",
+      "exploreSeries": "Jelajahi seri ini →",
+      "articlesHeading": "Artikel Riset",
+      "articlesSubheading": "Artikel dan catatan dari komunitas ZecHub.",
+      "foundationsSeriesDescription": "Kumpulan artikel mendasar yang mencakup transaksi terlindungi Zcash, model privasi, desain protokol, dan konsep inti yang menggerakkan jaringan.",
+      "tagShieldedTransactions": "Transaksi Terlindungi",
+      "tagPrivacyModels": "Model Privasi",
+      "tagProtocolDesign": "Desain Protokol",
+      "tagZeroKnowledge": "Zero Knowledge",
+      "formalVerificationSeriesTitle": "Seri Verifikasi Formal Zcash",
+      "formalVerificationSeriesCardDescription": "Apa itu verifikasi formal, bug soundness Orchard 2026, dan bagaimana Ironwood menjawabnya dengan machine-checked proof.",
+      "formalVerificationSeriesDescription": "Seri tiga bagian yang menjelaskan verifikasi formal dari prinsip dasar, membahas bug soundness Orchard 2026, dan menunjukkan bagaimana Ironwood menjawabnya dengan mathematical proof yang telah diperiksa mesin.",
+      "newSeriesBadge": "Seri Baru"
+    },
+    "browseSidebar": "Navigasi Terbuka untuk menelusuri artikel di bagian ini.",
+    "zcashGlobalAmbassadors": {
+      "title": "Zcash Global Ambassadors",
+      "description": "Zcash Global Ambassadors adalah pemimpin komunitas yang berdedikasi untuk mempromosikan adopsi dan edukasi mata uang kripto yang berfokus pada privasi di seluruh dunia. Setiap proyek duta berfokus pada membangun kesadaran dan keterlibatan di wilayah masing-masing.",
+      "activeProjectsHeading": "Proyek Global Ambassador yang Aktif",
+      "projectSitesHeading": "Situs Proyek & Blog",
+      "followOnX": "Ikuti di X/BS",
+      "projectSiteLabel": "Situs Proyek",
+      "linkLabel": "Tautan",
+      "footerInfo": "Program Zcash Global Ambassadors mendukung inisiatif yang dipimpin komunitas untuk mempromosikan adopsi teknologi yang berfokus pada privasi. Setiap proyek duta beroperasi secara independen sambil berkontribusi pada ekosistem Zcash yang lebih luas.",
+      "mapTitle": "Peta Ambassador Zcash",
+      "mapSubtitle": "Advokasi Zcash yang dipimpin komunitas di {count} komunitas aktif.",
+      "globeView": "Tampilan bola dunia",
+      "mapView": "Tampilan peta",
+      "loadError": "Tidak dapat memuat data ambassador.",
+      "projects": {
+        "Zcash Korea": "Komunitas dan advokasi Zcash di Korea",
+        "Zcash Russia": "Komunitas dan advokasi Zcash di Rusia",
+        "Zcash Arabia": "Komunitas dan advokasi Zcash di wilayah berbahasa Arab",
+        "Zcash Brazil": "Komunitas dan advokasi Zcash di Brasil",
+        "Zcash Ghana": "Komunitas dan advokasi Zcash di Ghana",
+        "Zcash Español": "Komunitas dan advokasi Zcash di wilayah berbahasa Spanyol",
+        "Zcash Nigeria": "Komunitas dan advokasi Zcash di Nigeria",
+        "Zcash Ukraine": "Komunitas dan advokasi Zcash di Ukraina",
+        "Zcash Turkey": "Komunitas dan advokasi Zcash di Turki",
+        "Zcash India": "Komunitas dan advokasi Zcash di India",
+        "Zcash East Africa": "Zcash East Africa berdedikasi untuk mempromosikan privasi digital, kebebasan finansial, dan inovasi blockchain melalui edukasi, acara komunitas, lokakarya teknis, dan pengembangan ekosistem. Inisiatif ini bertujuan untuk menciptakan hub regional di mana individu dapat mengeksplorasi teknologi peningkatan privasi, mempelajari zero-knowledge proofs, dan berpartisyle dalam jaringan Zcash global yang terus berkembang.",
+        "Zcash South Africa": "Privasi🛡️. Kebebasan. Komunitas Zcash 🦓 untuk wilayah Afrika Selatan"
+      },
+      "globeTitle": "Duta Zcash Global"
+    }
+  },
+  "developers": {
+    "quickStart": {
+      "tableOfContents": "Daftar Isi",
+      "toc1": "1. Menginstal Zebrad",
+      "toc2": "2. Menjalankan zebrad",
+      "toc3": "3. Terhubung dengan lightwalletd",
+      "installingHeading": "1. Menginstal Zebrad",
+      "runningHeading": "2. Menjalankan zebrad",
+      "connectingHeading": "3. Menghubungkan dengan lightwalletd",
+      "systemRequirements": "Persyaratan Sistem",
+      "linux": "Linux",
+      "ubuntuDebian": "Ubuntu/Debian:",
+      "fromSource": "Dari Sumber:",
+      "macos": "macOS",
+      "homebrew": "Homebrew:",
+      "windows": "Windows",
+      "importantNotes": "Catatan Penting",
+      "nextSteps": "Langkah Selanjutnya",
+      "readyToBuild": "Siap untuk Membangun?",
+      "needHelp": "Butuh Bantuan?"
+    }
+  },
+  "components": {
+    "newsletter": {
+      "title": "Newsletter Terlindungi ZecHub",
+      "subtitle": "Berlangganan pembaruan dengan memasukkan Unified Address Anda.",
+      "feeLine": "Biaya langganan 0,05 ZEC satu kali",
+      "feeLineRest": "diperlukan untuk menutupi biaya transaksi.",
+      "categoryEcosystem": "Berita Ekosistem",
+      "categoryStats": "Statistik Jaringan",
+      "addressPlaceholder": "Masukkan Zcash Unified Address Anda",
+      "invalidAddressInline": "Alamat tidak valid. Harus dimulai dengan \"u\" atau \"z\".",
+      "invalidAddressAlert": "Silakan masukkan alamat Zcash terlindungi yang valid.",
+      "generating": "Menghasilkan...",
+      "subscribe": "Berlangganan",
+      "doNotEditMemo": "Jangan mengedit memo yang dihasilkan di dompet Anda.",
+      "downloadQR": "Unduh Kode QR",
+      "box1Title": "Apa Layanan Ini?",
+      "box1Desc": "Terima berita ekosistem Zcash dan statistik jaringan secara langsung melalui jaringan Zcash menggunakan memo terenkripsi.",
+      "box2Title": "Cara Kerjanya",
+      "box2DescPre": "Kami mengirimkan buletin seminggu sekali ke banyak penerima dalam satu transaksi terlindungi menggunakan",
+      "box2DescPost": "Metode RPC.",
+      "box3Title": "Cara Menerima Pembaruan",
+      "box3DescPre": "Masukkan",
+      "box3DescBold": "alamat Zcash terlindungi Anda",
+      "box3DescPost": "Pembaruan mingguan dikirimkan secara on-chain. Tidak memerlukan email.",
+      "unsubscribe": "Berhenti berlangganan",
+      "cancelUnsubscribe": "Batalkan Berhenti Berlangganan",
+      "unsubscribePlaceholder": "Masukkan Unified Address Anda untuk berhenti berlangganan",
+      "confirmUnsubscribe": "Konfirmasi Berhenti Berlangganan"
+    },
+    "aiAssistant": {
+      "copyResponse": "Salin respons",
+      "copied": "Tersalin",
+      "copy": "Salin",
+      "botName": "ZecHub AI",
+      "thinking": "ZecHub AI sedang berpikir...",
+      "privacyNotice": "Pertanyaan diproses oleh OpenAI. Jangan pernah membagikan frasa pemulihan, private key, atau alamat dompet.",
+      "clearConversation": "Bersihkan percakapan",
+      "clear": "Bersihkan",
+      "getStarted": "Mulai dengan pertanyaan:",
+      "sensitiveWarning": "Ini tampak seperti data dompet yang sensitif. Jangan pernah membagikan private key atau frasa pemulihan kepada layanan apa pun.",
+      "inputPlaceholder": "Ajukan pertanyaan... (Enter untuk mengirim, Shift+Enter untuk baris baru)",
+      "sendMessage": "Kirim pesan",
+      "enterHint": "Enter untuk mengirim, Shift+Enter untuk baris baru",
+      "messageTooLong": "Pesan terlalu panjang (maksimal {max} karakter).",
+      "unknownError": "Kesalahan tidak dikenal.",
+      "serverError": "Kesalahan server {status}",
+      "somethingWrong": "Terjadi kesalahan.",
+      "quickQuestions": [
+        "Apa itu Zcash?",
+        "Apa itu ZecHub?",
+        "Bagaimana cara kerja transaksi terlindungi?",
+        "Dompet apa saja yang mendukung Zcash?",
+        "Apa perbedaan antara z-address dan t-address?",
+        "Bagaimana cara memulai dengan ZEC?",
+        "Apa itu dana pengembangan Zcash?",
+        "Apa itu zk-SNARKs?"
+      ]
+    }
+  },
+  "sideMenu": {
+    "navigation": "Navigasi",
+    "explore": "Jelajahi"
+  },
+  "meta": {
+    "title": "Wiki ZecHub",
+    "description": "Pusat edukasi sumber terbuka untuk Zcash"
+  }
+}
