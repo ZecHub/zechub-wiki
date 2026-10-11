@@ -1,6 +1,6 @@
 "use client";
 import { ChangeEvent, useState } from "react";
-import QRCode from "qrcode.react";
+import { QRCodeSVG as QRCode } from "qrcode.react";
 import Image from "next/image";
 import zcashLogo from "../../../public/zcash-logo.png";
 import ycashLogo from "../../../public/ycash-logo.png";
