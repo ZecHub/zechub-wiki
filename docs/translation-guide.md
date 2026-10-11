@@ -265,8 +265,10 @@ touches six files:
    `CANONICAL_LOCALES` list used by the dictionary checks.
 2. **Switcher entry.** Add an `es` entry to `LANGUAGES` in
    `src/context/LanguageContext.tsx` (code, label, native label, flag). For a
-   right-to-left language also add it to `RTL_LOCALES` in
-   `src/app/[locale]/layout.tsx`.
+   right-to-left language set `dir: 'rtl'` on that entry (it sets the page
+   direction when the user switches language) and also add the code to
+   `RTL_LOCALES` in `src/app/[locale]/layout.tsx` (the direction of the first,
+   server-rendered page).
 3. **UI dictionary.** Create `dictionaries/es.json` with the same keys as
    `dictionaries/en.json`, translate the values, and register a loader in
    `src/lib/getDictionary.ts`. `src/i18n/request.ts` loads the file by name, so
@@ -276,7 +278,7 @@ touches six files:
 5. **Check the dictionary.** Run
    `node_modules/.bin/tsx scripts/check-menu-labels.mjs`. It fails if the new
    dictionary is missing a `menuLabels` or `exploreMenu` label. CI runs it on any
-   PR that touches `routing.ts` or `dictionaries/`. Then run `yarn check:dictionaries` for the remaining keys.
+   PR that touches `routing.ts` or `dictionaries/`. Then run `yarn check:dictionaries` for the remaining keys (a report only; it does not fail the build).
 
 Page titles in the side menu, breadcrumbs and sitemap come from the content
 repo (`translation/menu-titles/es.json`, step A), and the text of ordinary wiki
