@@ -1,45 +1,30 @@
 import { Suspense } from "react";
 import { VisualizerHub } from "@/components/visualizer/VisualizerHub";
-import { genMetadata, getBanner } from "@/lib/helpers";
-import { Metadata } from "next";
+import {
+  buildVisualizerMetadata,
+  type VisualizerMetadataDictionary,
+  type VisualizerSearchParams,
+} from "@/components/visualizer/visualizerMetadata";
+import type { Metadata } from "next";
 import { getDictionary } from "@/lib/getDictionary";
-import { buildAlternatesAllLocales } from "@/lib/localeCoverage";
-import { routing } from "@/i18n/routing";
-
-type VisualizerDictionary = {
-  pages?: {
-    visualizer?: {
-      title?: string;
-      description?: string;
-    };
-  };
-};
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams?: Promise<VisualizerSearchParams>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = (await getDictionary(locale).catch(() => ({}))) as VisualizerDictionary;
-  const localePrefix =
-    locale && locale !== routing.defaultLocale ? `/${locale}` : "";
+  const [dict, query] = await Promise.all([
+    getDictionary(locale).catch(() => ({})) as Promise<VisualizerMetadataDictionary>,
+    searchParams ?? Promise.resolve({}),
+  ]);
 
-  const title = dict.pages?.visualizer?.title
-    ? `${dict.pages.visualizer.title} | ZecHub`
-    : "Interactive Zcash Visualizers & Tools | ZecHub";
-
-  const description =
-    dict.pages?.visualizer?.description ??
-    "Interactive cryptographic and blockchain visualizers for Zcash: zk-SNARKs, key derivation, consensus, hash functions, and shielded pools.";
-
-  return genMetadata({
-    title,
-    description,
-    url: `https://zechub.wiki${localePrefix}/visualizer`,
-    image: getBanner("zcash-tech") || "/content-banners/bannertech.jpg",
+  return buildVisualizerMetadata({
+    dictionary: dict,
     locale,
-    alternates: buildAlternatesAllLocales("/visualizer", locale),
+    searchParams: query,
   });
 }
 

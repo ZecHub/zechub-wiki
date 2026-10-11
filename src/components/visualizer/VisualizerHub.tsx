@@ -7,6 +7,14 @@ import {
   visualizerQuery,
   type QuizSection,
 } from "@/lib/visualizerRouting";
+import {
+  ADVANCED_VISUALIZER_MODULES,
+  BASIC_VISUALIZER_MODULES,
+  CONTRIBUTOR_VISUALIZER_MODULES,
+  VISUALIZER_MODULE_IDS,
+  type VisualizerModuleId,
+  type VisualizerModuleInfo,
+} from "./visualizerModules";
 import { visualizerCardCopy } from "./visualizerCardCopy";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
@@ -39,198 +47,61 @@ import { WalletVisualizer } from "./zcash-wallet";
 import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
 import { ZkavClubVisualizer } from "./zkav-club";
 
-type VisualizerType =
-  | "welcome"
-  | "pay-with-zcash"
-  | "pool"
-  | "zkproof"
-  | "infrastructure"
-  | "zcash-wallet"
-  | "zcash-dex"
-  | "mining-halo"
-  | "privacy-use-cases"
-  | "governance"
-  | "hash-function"
-  | "consensus"
-  | "zcash-key"
-  | "blockchain-foundation"
-  | "zechub-bounties"
-  | "dao-proposal"
-  | "zcash-community-grants"
-  | "coinholder-grants"
-  | "open-source-repos"
-  | "zkav-club"
-  | "build-shielded-transaction"
-  | "CrossLink-Protocol"
-  | "frost-multisig"
-  | "distributed-database";
+type VisualizerType = "welcome" | VisualizerModuleId;
 
-interface VisualizerInfo {
-  id: VisualizerType;
-  title: string;
-  description: string;
+type VisualizerInfo = VisualizerModuleInfo & {
   component: React.ComponentType<{
     onComplete?: () => void;
     autoStart?: boolean;
   }>;
+};
+
+const VISUALIZER_COMPONENTS: Record<
+  VisualizerModuleId,
+  VisualizerInfo["component"]
+> = {
+  "zcash-wallet": WalletVisualizer,
+  pool: ZcashPoolVisualizer,
+  "pay-with-zcash": PayWithZcashVisualizer,
+  "zcash-dex": ZcashDexVisualizer,
+  "hash-function": HashFunctionVisualizer,
+  "blockchain-foundation": BlockchainFoundationVisualizer,
+  "distributed-database": DistributedDatabaseVisualize,
+  zkproof: ZKSNARKProofVisualizer,
+  "build-shielded-transaction": BuildShieldedTransactionVisualizer,
+  "CrossLink-Protocol": CrosslinkProtocolVisualizer,
+  "zcash-key": ZcashKeyVisualizer,
+  infrastructure: ZcashInfrastructureVisualizer,
+  consensus: ConsensusVisualizer,
+  "mining-halo": MiningHaloVisualizer,
+  "privacy-use-cases": PrivacyUseCasesVisualizer,
+  governance: GovernanceVisualizer,
+  "frost-multisig": FrostMultisigVisualizer,
+  "zechub-bounties": ContributionVisualizer,
+  "dao-proposal": DAOProposalVisualizer,
+  "zcash-community-grants": ZcashCommunityGrantsVisualizer,
+  "coinholder-grants": CoinholderGrantsVisualizer,
+  "open-source-repos": OpenSourceReposVisualizer,
+  "zkav-club": ZkavClubVisualizer,
+};
+
+function withComponents(
+  modules: readonly VisualizerModuleInfo[],
+): VisualizerInfo[] {
+  return modules.map((module) => ({
+    ...module,
+    component: VISUALIZER_COMPONENTS[module.id],
+  }));
 }
 
 // BASIC VISUALIZERS - Foundational concepts
-const BASIC_VISUALIZERS: VisualizerInfo[] = [
-  {
-    id: "zcash-wallet",
-    title: "Introduction to Zcash Wallets",
-    description: "Providing Shielded Functionality",
-    component: WalletVisualizer,
-  },
-  {
-    id: "pool",
-    title: "Value Pools & Address Types",
-    description:
-      "Explore Zcash privacy pools, address types and the Ironwood migration",
-    component: ZcashPoolVisualizer,
-  },
-  {
-    id: "pay-with-zcash",
-    title: "Pay with Zcash",
-    description: "Discover where and how to use ZEC for private payments",
-    component: PayWithZcashVisualizer,
-  },
-  {
-    id: "zcash-dex",
-    title: "Zcash Exchanges (DEX)",
-    description:
-      "Permissionless, censorship-resistant access to ZEC using decentralized exchanges",
-    component: ZcashDexVisualizer,
-  },
-  {
-    id: "hash-function",
-    title: "Hash Functions",
-    description: "What is a Hash Function?",
-    component: HashFunctionVisualizer,
-  },
-  {
-    id: "blockchain-foundation",
-    title: "Zcash Blockchain Fundamentals",
-    description: "Understanding Zcash Blockchain Foundation",
-    component: BlockchainFoundationVisualizer,
-  },
-  {
-    id: "distributed-database",
-    title: "Distributed Databases",
-    description: "Compare centralized databases with blockchains",
-    component: DistributedDatabaseVisualize,
-  },
-];
+const BASIC_VISUALIZERS = withComponents(BASIC_VISUALIZER_MODULES);
 
 // ADVANCED VISUALIZERS - Technical deep dives
-const ADVANCED_VISUALIZERS: VisualizerInfo[] = [
-  {
-    id: "zkproof",
-    title: "zk-SNARKs",
-    description: "Interactive demonstration of shielded transactions",
-    component: ZKSNARKProofVisualizer,
-  },
-  {
-    id: "build-shielded-transaction",
-    title: "Build a Shielded Transaction",
-    description: "Step-by-step construction of a shielded transaction",
-    component: BuildShieldedTransactionVisualizer,
-  },
-  {
-    id: "CrossLink-Protocol",
-    title: "CrossLink Protocol",
-    description: "Hybrid PoW + BFT finality: How Crosslink seals Zcash blocks",
-    component: CrosslinkProtocolVisualizer,
-  },
-  {
-    id: "zcash-key",
-    title: "Zcash Keys",
-    description: "Understanding Zcash Keys",
-    component: ZcashKeyVisualizer,
-  },
-  {
-    id: "infrastructure",
-    title: "Zcash Infrastructure",
-    description: "How Zcash components work together",
-    component: ZcashInfrastructureVisualizer,
-  },
-  {
-    id: "consensus",
-    title: "Consensus",
-    description: "How do hundreds of nodes agree on chain state?",
-    component: ConsensusVisualizer,
-  },
-  {
-    id: "mining-halo",
-    title: "Zcash Mining",
-    description:
-      "Understanding Equihash mining and recursive zero-knowledge proofs",
-    component: MiningHaloVisualizer,
-  },
-  {
-    id: "privacy-use-cases",
-    title: "Privacy Use Cases",
-    description: "Real-world applications of privacy technology on Zcash",
-    component: PrivacyUseCasesVisualizer,
-  },
-  {
-    id: "governance",
-    title: "Governance & Dev Fund",
-    description:
-      "Community-driven development and decentralized decision making",
-    component: GovernanceVisualizer,
-  },
-  {
-    id: "frost-multisig",
-    title: "FROST & Private Multi Signatures",
-    description: "Secure multisig without a single point of failure",
-    component: FrostMultisigVisualizer,
-  },
-];
+const ADVANCED_VISUALIZERS = withComponents(ADVANCED_VISUALIZER_MODULES);
 
 // CONTRIBUTOR VISUALIZERS - Community contribution pathways
-const CONTRIBUTOR_VISUALIZERS: VisualizerInfo[] = [
-  {
-    id: "zechub-bounties",
-    title: "ZecHub Bounties",
-    description:
-      "Claim bounties on bounties.zechub.wiki and get paid natively in ZEC",
-    component: ContributionVisualizer,
-  },
-  {
-    id: "dao-proposal",
-    title: "DAO Proposals",
-    description:
-      "Step-by-step guide to creating a ZecHub DAO governance proposal",
-    component: DAOProposalVisualizer,
-  },
-  {
-    id: "zcash-community-grants",
-    title: "Zcash Community Grants",
-    description: "Funding for Zcash ecosystem projects",
-    component: ZcashCommunityGrantsVisualizer,
-  },
-  {
-    id: "coinholder-grants",
-    title: "Coinholder Directed Grants",
-    description: "Retroactive funding directed by ZEC holders",
-    component: CoinholderGrantsVisualizer,
-  },
-  {
-    id: "open-source-repos",
-    title: "Open Source Repositories",
-    description: "Contribute to Zcash open source projects",
-    component: OpenSourceReposVisualizer,
-  },
-  {
-    id: "zkav-club",
-    title: "ZKAV Club Opportunities",
-    description:
-      "Privacy-first audiovisual roles and paid gigs with the Zero-knowledge Audiovisual Club",
-    component: ZkavClubVisualizer,
-  },
-];
+const CONTRIBUTOR_VISUALIZERS = withComponents(CONTRIBUTOR_VISUALIZER_MODULES);
 
 // Combined array for sequential playback
 const ALL_VISUALIZERS = [
@@ -241,7 +112,7 @@ const ALL_VISUALIZERS = [
 
 type OpenQuizSection = QuizSection | null;
 
-const ALL_VISUALIZER_IDS = ALL_VISUALIZERS.map((v) => v.id);
+const ALL_VISUALIZER_IDS = VISUALIZER_MODULE_IDS;
 
 export const VisualizerHub: React.FC = () => {
   const searchParams = useSearchParams();
