@@ -30,8 +30,8 @@ const TOOLS: CrosslinkTool[] = [
     kind: "hosted",
     title: "Holdfast",
     description:
-      "Hosted Crosslink explorer. No node required.",
-    note: "Independent community explorer.",
+      "Hosted Crosslink v14 explorer. Blocks, mining, finalizers and bonds, a live view of the BFT vote, and signed operator profiles. No node required.",
+    note: "Independent community explorer, by Encapsulate. The operator also runs a finalizer.",
     url: "https://holdfast.crosslink.encapsulate.xyz/",
   },
   {
