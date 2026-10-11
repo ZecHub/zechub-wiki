@@ -79,8 +79,10 @@ Two independent data sources feed a localized page:
 | `src/lib/getDictionary.ts` | Maps a locale → its dictionary JSON loader. |
 | `src/context/LanguageContext.tsx` | Client UI-label context (`useLanguage().t`) and `LANGUAGES` (the switcher list). The URL (`useLocale()`) is the sole locale driver — no `localStorage`, no widget gate. |
 | `dictionaries/<locale>.json` | UI-chrome strings for one locale. |
-| `src/constants/pageTitles.ts` | Locale → side-menu/sitemap page titles map. |
-| `src/constants/*.<locale>.ts` | Per-locale copies of **data-driven** page content (exchanges, explorers, etc.). |
+| `src/lib/helpers.ts` | `OG_LOCALE_MAP`: locale to OpenGraph locale (`id` to `id_ID`). Unknown codes fall back to `xx_XX`. |
+| `src/app/[locale]/layout.tsx` (`RTL_LOCALES`) | Locales rendered right to left (today only `ar`). |
+| `translation/menu-titles/<locale>.json` (content repo) | Translated side-menu, breadcrumb and sitemap page titles, read by `getMenuTitlesCached`. Untranslated titles fall back to English. |
+| `src/lib/venueListings.ts` | Exchange, DEX and centralized-swap directories, parsed from translated Markdown (`site/Using_Zcash/Custodial_Exchanges.md`, `DEX.md`, `Centralized_Swaps.md`). No per-locale data files. |
 
 ### Content fetch, fallback & orphan guard (`getLocalizedFileContentCached`)
 
@@ -245,34 +247,43 @@ changes needed).
    `translation/seed-sync-state.mjs`. Without it the blocking invariant CI fails
    and the [staleness dashboard](#keeping-translations-current-staleness--sync)
    won't track the new locale.
-4. Update `translations/TRANSLATION_STATUS.md` (or regenerate it) so progress is
+4. **Generate the menu titles.** Run `node translation/gen-menu-titles.mjs`. It
+   reads the locales from `translation/sync-state.json` and writes
+   `translation/menu-titles/es.json`, which the website uses for the side menu,
+   breadcrumbs and sitemap.
+5. Update `translations/TRANSLATION_STATUS.md` (or regenerate it) so progress is
    visible.
 
-### B. Frontend registration (developers) — this repo
+### B. Frontend registration (developers): this repo
 
-Each step is mechanical and localized to one place:
+See commit `12b68f206` ("i18n: add Indonesian") for a complete example. It
+touches six files:
 
-1. **Route the locale** — add `"es"` to `locales` in `src/i18n/routing.ts`, and
-   to `i18n.locales` in `src/i18n/config.ts` (keep the two in sync).
-2. **Switcher entry** — add an `es` entry to `LANGUAGES` in
-   `src/context/LanguageContext.tsx` (label, native label, flag; set
-   `dir: 'rtl'` for right-to-left languages). For an RTL language also add it to
-   `RTL_LOCALES` in `src/app/[locale]/layout.tsx`.
-3. **UI dictionary** — copy `dictionaries/en.json` → `dictionaries/es.json`,
-   translate the values, and register a loader in `src/lib/getDictionary.ts`.
-4. **Side-menu / sitemap titles** — create `src/constants/pageTitles.es.ts` and
-   register it under the `es` key in `src/constants/pageTitles.ts`.
-5. **Data-driven pages** — for each `src/constants/*.it.ts` (exchanges,
-   explorers, community projects, DEX listings, …), create the `*.es.ts`
-   equivalent and add it to the `byLocale` map in the matching `ClientPage.tsx`.
-6. **Translated Markdown** — ensure the content repo has `translations/es/site/…`
-   (step A).
+1. **Route the locale.** Add `"es"` to `locales` in `src/i18n/routing.ts` and to
+   `i18n.locales` in `src/i18n/config.ts`. Keep the two lists in sync.
+   `routing.ts` also drives the sitemap, hreflang alternates and the
+   `CANONICAL_LOCALES` list used by the dictionary checks.
+2. **Switcher entry.** Add an `es` entry to `LANGUAGES` in
+   `src/context/LanguageContext.tsx` (code, label, native label, flag). For a
+   right-to-left language also add it to `RTL_LOCALES` in
+   `src/app/[locale]/layout.tsx`.
+3. **UI dictionary.** Create `dictionaries/es.json` with the same keys as
+   `dictionaries/en.json`, translate the values, and register a loader in
+   `src/lib/getDictionary.ts`. `src/i18n/request.ts` loads the file by name, so
+   it needs no change.
+4. **OpenGraph locale.** Add `es: "es_ES"` to `OG_LOCALE_MAP` in
+   `src/lib/helpers.ts`.
+5. **Check the dictionary.** Run
+   `node_modules/.bin/tsx scripts/check-menu-labels.mjs`. It fails if the new
+   dictionary is missing a `menuLabels` or `exploreMenu` label. CI runs it on any
+   PR that touches `routing.ts` or `dictionaries/`. Then run `yarn check:dictionaries` for the remaining keys.
 
-Anything you forget degrades gracefully to English rather than breaking — but the
-steps above are what make Spanish a fully first-class, indexable locale.
+Page titles in the side menu, breadcrumbs and sitemap come from the content
+repo (`translation/menu-titles/es.json`, step A), and page text comes from
+`translations/es/site/`. Neither needs a code change here.
 
-> Tip: grep the codebase for `it` / `pageTitlesIt` to see every touch-point with
-> a concrete example to copy.
+A missing dictionary key, menu title or translated page falls back to English
+rather than breaking.
 
 ---
 
