@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { ExportButton } from "./ExportButton";
 import SupplyDataLastUpdated from "./LastUpdated";
-import { getCommitUrlForTab, getLastUpdatedDate } from "@/lib/chart/helpers";
+import {
+  getCommitUrlForTab,
+  getLastUpdatedDate,
+  getLatestDataDateForTab,
+} from "@/lib/chart/helpers";
 
 type ChartFooterProps = {
   lastUpdatedDate: string;
@@ -11,22 +15,33 @@ type ChartFooterProps = {
 
 const ChartFooter = (props: ChartFooterProps) => {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+
   useEffect(() => {
     const controller = new AbortController();
 
     const fetchAllData = async () => {
       try {
-        const [lastUpdated] = await Promise.all([
-          getLastUpdatedDate(
-            getCommitUrlForTab(props.lastUpdatedDate),
-            controller.signal
-          ),
-        ]);
+        // Prefer the latest date actually present in the data files for this tab.
+        // This updates whenever the local (or remote) JSON is refreshed.
+        const dataDate = await getLatestDataDateForTab(
+          props.lastUpdatedDate,
+          controller.signal,
+        );
+        if (dataDate) {
+          const d = new Date(dataDate);
+          if (!isNaN(d.getTime())) {
+            setLastUpdated(d);
+            return;
+          }
+        }
 
-        console.log("here", props.lastUpdatedDate);
-
-        if (lastUpdated) {
-          setLastUpdated(new Date(lastUpdated));
+        // Fallback: GitHub commit date of the corresponding data file
+        const commitDate = await getLastUpdatedDate(
+          getCommitUrlForTab(props.lastUpdatedDate),
+          controller.signal,
+        );
+        if (commitDate && commitDate !== "N/A") {
+          setLastUpdated(new Date(commitDate));
         }
       } catch (err) {
         console.error("Error fetching dashboard data:", err);
@@ -39,6 +54,7 @@ const ChartFooter = (props: ChartFooterProps) => {
       controller.abort();
     };
   }, [props.lastUpdatedDate]);
+
   return (
     <>
       {lastUpdated && (
