@@ -41,8 +41,8 @@ const DEX_PLATFORMS = [
   },
 ];
 
-const WALLET_INTEGRATIONS = [
-  "Zashi Wallet",
+export const WALLET_INTEGRATIONS = [
+  "ZODL Wallet",
   "Edge Wallet",
   "Unstoppable Wallet",
 ];
