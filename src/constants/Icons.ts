@@ -310,6 +310,9 @@ const iconsForMenu: IconsFor = {
 	    "NU6 1": Network,
 	    "NU6 2": Circuitry,
 	    "Ironwood": Tree,
+    "Shielded Cold Signing": Lock,
+    "Shielded Coinholder Voting": Governance,
+    "Unified Addresses": CircleKey,
 
   },
   "Zcash Organizations": {
