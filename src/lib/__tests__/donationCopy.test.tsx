@@ -9,12 +9,12 @@ jest.mock("next/image", () => ({
   __esModule: true,
   default: ({ alt }: { alt: string }) => <span role="img" aria-label={alt} />,
 }));
-jest.mock("qrcode.react", () => ({
-  __esModule: true,
-  default: ({ value }: { value: string }) => (
+jest.mock("qrcode.react", () => {
+  const QR = ({ value }: { value: string }) => (
     <div data-testid="donation-qr" data-address={value} />
-  ),
-}), { virtual: true });
+  );
+  return { __esModule: true, default: QR, QRCodeSVG: QR, QRCodeCanvas: QR };
+}, { virtual: true });
 jest.mock("react-icons/bs", () => ({ BsQrCodeScan: () => null }), { virtual: true });
 jest.mock("react-icons/md", () => ({ MdOutlineCopyAll: () => null }), { virtual: true });
 jest.mock("@/components/Penumbra/PenumbraWalletConnect", () => ({
