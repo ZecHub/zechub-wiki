@@ -1,8 +1,6 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import createMDX from "@next/mdx";
-import rehypePlugins from "rehype-prism-plus";
-import remarkGfm from "remark-gfm";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -185,17 +183,11 @@ const nextConfig = {
 const withMDX = createMDX({
   options: {
     mdxExtensions: ["mdx", "md"],
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypePlugins],
+    remarkPlugins: ["remark-gfm"],
+    rehypePlugins: ["rehype-prism-plus"],
   },
 });
 
-// removes the bad key injected by old @next/mdx
-const mdxConfig = withMDX(nextConfig);
-if (mdxConfig.experimental?.turbo) {
-  delete mdxConfig.experimental.turbo;
-}
-
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-export default withNextIntl(mdxConfig);
+export default withNextIntl(withMDX(nextConfig));
