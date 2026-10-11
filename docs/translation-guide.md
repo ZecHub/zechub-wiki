@@ -279,8 +279,11 @@ touches six files:
    PR that touches `routing.ts` or `dictionaries/`. Then run `yarn check:dictionaries` for the remaining keys.
 
 Page titles in the side menu, breadcrumbs and sitemap come from the content
-repo (`translation/menu-titles/es.json`, step A), and page text comes from
-`translations/es/site/`. Neither needs a code change here.
+repo (`translation/menu-titles/es.json`, step A), and the text of ordinary wiki
+pages comes from `translations/es/site/`. Neither needs a code change here.
+Pages with their own route under `src/app/[locale]/` (directories such as
+community projects or the block explorers) load their data in their own way:
+check each one, since some read the English file or a constant directly.
 
 A missing dictionary key, menu title or translated page falls back to English
 rather than breaking.
