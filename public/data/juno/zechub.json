@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 180,
+    "proposal_count": 182,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -7381,7 +7381,7 @@
           "title": "Zcash South Africa Operations & Development Proposal (October – December 2026)",
           "votes": {
             "no": "0",
-            "yes": "6",
+            "yes": "10",
             "abstain": "0"
           },
           "status": "open",
@@ -7406,6 +7406,76 @@
           "min_voting_period": null
         },
         "createdAt": "2026-10-02T11:07:17.968Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 182,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash Engage Server: 12-Month Funding Renewal(Nov 2026 - Oct 2027)",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1791987515551635287"
+          },
+          "description": "This proposal asks ZecHub DAO for $350 per month for 12 months, $4,200 in total, to keep the Zcash Engage Server running from **November 2026 to October 2027**. The server has delivered 2,126 tracked engagement actions on verified Zcash ecosystem posts since April, and monthly activity has more than doubled.\n\n## Background\n\nZecHub DAO approved the Engage channel under Proposal A141 in March 2026. The server went live on that same month, and I have run it as lead moderator since.\n\nThat funding was exhausted in August. The server has not been funded for September or October, and it has kept running anyway. September was its most active month so far.\n\nThe first term did not ask the DAO for reward money, and that was deliberate. We wanted members to be active because they truly want to share Zcash content, not because a payout was waiting at the end. The small rewards given from March to August came from community donations and from part of the moderator compensation\nWe currently also have volunteers who are helping to moderate the community.\n\n## Results, April to September 2026\n\nMonthly engagement actions grew from 235 in April to 502 in September, a 114% increase, with every month from June onward setting a new high.\n\n| Month | Engagement actions | Change vs prior month | Avg reactions per post | Registered members | Active participants |\n| --- | --- | --- | --- | --- | --- |\n| April | 235 | Launch month | 12 | 28 | 21 |\n| May | 231 | -1.7% | 15 | 36 | 11 |\n| June | 338 | +46.3% | 23 | 40 | 12 |\n| July | 362 | +7.1% | 24 | 45 | 12 |\n| August | 458 | +26.5% | 31 | 47 | 11 |\n| September | 502 | +9.6% | 31| 47 | 15 |\n| **Total** | **2,126** |  |  |  |  |\n\nWhat the numbers show:\n\n- **Reach per post nearly tripled.** Average reactions per post rose from 12 in April to 31 in August.\n- **Ecosystem accounts benefit directly.** Posts from ZecHub, Zcash Foundation, ZODL, Kaishi, @zcash and ZkAV Club were the ones supported. Single posts from Zcash Foundation and ZODL reached 38 and 37 reactions in August.\n- **Members stay.** The same names appear on the leaderboard month after month, and August ended in a five-way tie at the top.\n- **Members are not here for the rewards.** ZEC rewards were paused in August and September. Those were the two most active months on record.\n\nOne number needs work. Registered members grew from 28 to 47, but the active core has held at 11 to 15 since May. Growing that core is the main goal of this term. That growth will come from onboarding and campaigns, not from rewards.\n\nFull monthly reports are in the [Zcash Engage Server forum thread](https://forum.zcashcommunity.com/t/zcash-engage-server/55358).\n\n## What Engage is, and what it is not\n\nEngage is an accuracy tool. It makes sure correct information about Zcash travels further than the noise around it.\n\n**What it does**\n\n- **Spreads accurate information.** Only posts from verified ecosystem sources go into the queue. Members support those posts with likes, reposts and comments that add real insight.\n- **Onboards newcomers.** The server is a first stop for people new to Zcash. They learn the ecosystem by reading and discussing its primary sources every day.\n- **Raises awareness of ecosystem events.** Upgrades, community calls, workshops and campaigns get coordinated visibility. In July, members rallied around content for the Ironwood network upgrade. community also rallied around ensuring the truth about ZSAs and ZRC-20 was amplified.\n\n**What it is not**\n\n- **Not KOL funding.** No influencer is paid to post. The participants are community members who have shown up consistently to share the right information about Zcash.\n- **Not an inorganic engagement amplifier.** There are no bought accounts and no bot-generated engagement. The bot only tracks participation and keeps the leaderboard. Every action comes from a real community member.\n- **Not pay-to-post.** Rewards are an appreciation for work already done, not a fee for sharing content. Members know this, and they kept showing up through a first term with no DAO reward money at all.\n- **Not open to any content.** A moderator decides what enters the queue. If a post is inaccurate or off-topic, it does not get pushed.\n\n## Scope for the next 12 months\n\nThe term runs from November 2026 to October 2027. The work stays the same, with one addition: a monthly appreciation for the members who do it.\n\n- **Moderation.** Curate the daily queue of ecosystem posts, check each source, welcome and guide new members, and keep the server free of spam. In this new term, we'll be helping to amplify information and posts from vetted products, building on the zcash\n- **Bot operations.** Keep the Engage bot online to track participation, score activity and maintain the leaderboard.\n- **Member appreciation.** Thank members each month for the work they have done and keep doing. This is appreciation, not payment. Members share accurate Zcash content because they want to, and that does not change.\n- **Leaderboard Restructuring.** There are plans to restructure the leaderboard such that the reward is not received by just a set of community members\n- **Campaigns.** Continue Double Point Weekends and run focused pushes around network upgrades and major ecosystem events, and also a referral campaign. There is also a plan to organise a workshop with community members on detecting accurate Zcash information, with plans to employ the expertise of top contributors and zcashers.\n- **Reporting.** Publish a report in the forum thread every month.\n\n## Budget\n\nThe request is $350 per month, $4,800 over 12 months.\n\n| Item | Monthly | 12 months | What it covers |\n| --- | --- | --- | --- |\n| Lead moderator | $200 | $2,400 | Daily curation, source checks, onboarding, campaigns and monthly reporting |\n| Engage bot | $50 | $600 | Running costs of the bot that tracks participation and the leaderboard |\n| Member appreciation | $150 | $1,800 | A monthly thank-you to members who keep sharing accurate Zcash content |\n| **Total** | **$350** | **$4,800** |  |\n\nThe appreciation line is not a wage and not an incentive. The first term asked for no reward money so that members would take part because they want to share Zcash content. They did. This line thanks them for that work and for the work they continue to do, helping real and accurate content reach everyone who joins us.\n\nIt also ends the practice of funding member rewards from donations and from the moderator's own compensation.\n\n## Reporting and targets\n\nA report goes into the forum thread in the first week of every month, as it has since April. From this term, each report will also show posts supported, new members onboarded and rewards paid, so the DAO can see where every dollar went.\n\n| Measure | Today | Month 6 target | Month 12 target |\n| --- | --- | --- | --- |\n| Monthly engagement actions | 502 | 650 | 800 |\n| Active participants | 11 to 15 | 25 | 40 |\n| Registered members | 47 | 65 | 85 |\n| Monthly reports published | 6 of 6 | 6 of 6 | 12 of 12 |\n\nI will post a mid-term review at month 6. If the server is behind on these targets, the DAO can adjust or end the funding there.\n\n## Sources\n\n- [Zcash Engage Server, launch post and monthly reports, April to September 2026](https://forum.zcashcommunity.com/t/zcash-engage-server/55358)\n",
+          "total_power": "23",
+          "start_height": 42525987,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-10-09T14:18:35.551Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 183,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash Engage Server: 12-Month Funding Renewal(Nov 2026 - Oct 2027)",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1791987717413428437"
+          },
+          "description": "This proposal asks ZecHub DAO for $400 per month for 12 months, $4,800 in total, to keep the Zcash Engage Server running from **November 2026 to October 2027**. The server has delivered 2,126 tracked engagement actions on verified Zcash ecosystem posts since April, and monthly activity has more than doubled.\n\n## Background\n\nZecHub DAO approved the Engage channel under Proposal A141 in March 2026. The server went live on that same month, and I have run it as lead moderator since.\n\nThat funding was exhausted in August. The server has not been funded for September or October, and it has kept running anyway. September was its most active month so far.\n\nThe first term did not ask the DAO for reward money, and that was deliberate. We wanted members to be active because they truly want to share Zcash content, not because a payout was waiting at the end. The small rewards given from March to August came from community donations and from part of the moderator compensation\nWe currently also have volunteers who are helping to moderate the community.\n\n## Results, April to September 2026\n\nMonthly engagement actions grew from 235 in April to 502 in September, a 114% increase, with every month from June onward setting a new high.\n\n| Month | Engagement actions | Change vs prior month | Avg reactions per post | Registered members | Active participants |\n| --- | --- | --- | --- | --- | --- |\n| April | 235 | Launch month | 12 | 28 | 21 |\n| May | 231 | -1.7% | 15 | 36 | 11 |\n| June | 338 | +46.3% | 23 | 40 | 12 |\n| July | 362 | +7.1% | 24 | 45 | 12 |\n| August | 458 | +26.5% | 31 | 47 | 11 |\n| September | 502 | +9.6% | 31| 47 | 15 |\n| **Total** | **2,126** |  |  |  |  |\n\nWhat the numbers show:\n\n- **Reach per post nearly tripled.** Average reactions per post rose from 12 in April to 31 in August.\n- **Ecosystem accounts benefit directly.** Posts from ZecHub, Zcash Foundation, ZODL, Kaishi, @zcash and ZkAV Club were the ones supported. Single posts from Zcash Foundation and ZODL reached 38 and 37 reactions in August.\n- **Members stay.** The same names appear on the leaderboard month after month, and August ended in a five-way tie at the top.\n- **Members are not here for the rewards.** ZEC rewards were paused in August and September. Those were the two most active months on record.\n\nOne number needs work. Registered members grew from 28 to 47, but the active core has held at 11 to 15 since May. Growing that core is the main goal of this term. That growth will come from onboarding and campaigns, not from rewards.\n\nFull monthly reports are in the [Zcash Engage Server forum thread](https://forum.zcashcommunity.com/t/zcash-engage-server/55358).\n\n## What Engage is, and what it is not\n\nEngage is an accuracy tool. It makes sure correct information about Zcash travels further than the noise around it.\n\n**What it does**\n\n- **Spreads accurate information.** Only posts from verified ecosystem sources go into the queue. Members support those posts with likes, reposts and comments that add real insight.\n- **Onboards newcomers.** The server is a first stop for people new to Zcash. They learn the ecosystem by reading and discussing its primary sources every day.\n- **Raises awareness of ecosystem events.** Upgrades, community calls, workshops and campaigns get coordinated visibility. In July, members rallied around content for the Ironwood network upgrade.\n\n**What it is not**\n\n- **Not KOL funding.** No influencer is paid to post. The participants are community members who have shown up consistently to share the right information about Zcash.\n- **Not an inorganic engagement amplifier.** There are no bought accounts and no bot-generated engagement. The bot only tracks participation and keeps the leaderboard. Every action comes from a real community member.\n- **Not pay-to-post.** Rewards are an appreciation for work already done, not a fee for sharing content. Members know this, and they kept showing up through a first term with no DAO reward money at all.\n- **Not open to any content.** A moderator decides what enters the queue. If a post is inaccurate or off-topic, it does not get pushed.\n\n## Scope for the next 12 months\n\nThe term runs from November 2026 to October 2027. The work stays the same, with one addition: a monthly appreciation for the members who do it.\n\n- **Moderation.** Curate the daily queue of ecosystem posts, check each source, welcome and guide new members, and keep the server free of spam. In this new term, we'll be helping to amplify information and posts from vetted products, building on the zcash\n- **Bot operations.** Keep the Engage bot online to track participation, score activity and maintain the leaderboard.\n- **Member appreciation.** Thank members each month for the work they have done and keep doing. This is appreciation, not payment. Members share accurate Zcash content because they want to, and that does not change.\n- **Leaderboard Restructuring.** There are plans to restructure the leaderboard such that the reward is not received by just a set of community members\n- **Campaigns.** Continue Double Point Weekends and run focused pushes around network upgrades and major ecosystem events, and also a referral campaign. There is also a plan to organise a workshop with community members on detecting accurate Zcash information, with plans to employ the expertise of top contributors and zcashers.\n- **Reporting.** Publish a report in the forum thread every month.\n\n## Budget\n\nThe request is $350 per month, $4,200 over 12 months.\n\n| Item | Monthly | 12 months | What it covers |\n| --- | --- | --- | --- |\n| Lead moderator | $200 | $2,400 | Daily curation, source checks, onboarding, campaigns and monthly reporting |\n| Engage bot | $50 | $600 | Running costs of the bot that tracks participation and the leaderboard |\n| Member appreciation | $150 | $1,800 | A monthly thank-you to members who keep sharing accurate Zcash content |\n| **Total** | **$400** | **$4,800** |  |\n\nThe appreciation line is not a wage and not an incentive. The first term asked for no reward money so that members would take part because they want to share Zcash content. They did. This line thanks them for that work and for the work they continue to do, helping real and accurate content reach everyone who joins us.\n\nIt also ends the practice of funding member rewards from donations and from the moderator's own compensation.\n\n## Reporting and targets\n\nA report goes into the forum thread in the first week of every month, as it has since April. From this term, each report will also show posts supported, new members onboarded and rewards paid, so the DAO can see where every dollar went.\n\n| Measure | Today | Month 6 target | Month 12 target |\n| --- | --- | --- | --- |\n| Monthly engagement actions | 502 | 650 | 800 |\n| Active participants | 11 to 15 | 25 | 40 |\n| Registered members | 47 | 65 | 85 |\n| Monthly reports published | 6 of 6 | 6 of 6 | 12 of 12 |\n\nI will post a mid-term review at month 6. If the server is behind on these targets, the DAO can adjust or end the funding there.\n\n## Sources\n\n- [Zcash Engage Server, launch post and monthly reports, April to September 2026](https://forum.zcashcommunity.com/t/zcash-engage-server/55358)\n",
+          "total_power": "23",
+          "start_height": 42526064,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-10-09T14:21:57.413Z"
       }
     ]
   },
