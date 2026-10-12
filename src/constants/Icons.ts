@@ -45,6 +45,8 @@ import {
   FcLibrary as LibraryC,
   FcShop as Pay,
   FcAbout as Info,
+  FcLink,
+  FcPrivacy,
 } from "react-icons/fc";
 import {
   GiEgyptianSphinx as EgyptianSphinx,
@@ -266,6 +268,8 @@ const iconsForMenu: IconsFor = {
     "ShapeShift Zcash": ShapeShift,
     "Verifying Zcash Releases": CheckShield,
     "Viewing Key Transaction Export": FileKey,
+    "Crosslink Feature Net": FcLink,
+    "Mining And Staking Privacy": FcPrivacy,
   },
         "Zcash Tech": {
 
