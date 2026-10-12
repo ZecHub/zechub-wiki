@@ -269,7 +269,7 @@ const iconsForMenu: IconsFor = {
     "Verifying Zcash Releases": CheckShield,
     "Viewing Key Transaction Export": FileKey,
     "Crosslink Feature Net": FcLink,
-    "Mining And Staking Privacy": FcPrivacy,
+    "Mining and Staking Privacy": FcPrivacy,
   },
         "Zcash Tech": {
 
