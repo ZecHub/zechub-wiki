@@ -7384,7 +7384,7 @@
             "yes": "10",
             "abstain": "0"
           },
-          "status": "passed",
+          "status": "executed",
           "proposer": "juno134vfu8fhxcnq3wlnpjnnx4r5hun9yjnzeqfgnq",
           "threshold": {
             "threshold_quorum": {
@@ -7405,7 +7405,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-10-02T11:07:17.968Z"
+        "createdAt": "2026-10-02T11:07:17.968Z",
+        "completedAt": "2026-10-12T13:03:41.000Z",
+        "executedAt": "2026-10-12T13:03:41.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7417,7 +7419,7 @@
           "votes": {
             "no": "0",
             "yes": "0",
-            "abstain": "1"
+            "abstain": "2"
           },
           "status": "open",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
@@ -7450,8 +7452,8 @@
           "msgs": [],
           "title": "Zcash Engage Server: 12-Month Funding Renewal(Nov 2026 - Oct 2027)",
           "votes": {
-            "no": "3",
-            "yes": "0",
+            "no": "4",
+            "yes": "1",
             "abstain": "0"
           },
           "status": "open",
