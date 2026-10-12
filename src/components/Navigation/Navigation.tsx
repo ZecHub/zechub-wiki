@@ -1250,13 +1250,10 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               type="button"
               onClick={() => setOpenSearch(true)}
               aria-label="Search the wiki or ask ZecHub AI"
-              className="flex items-center gap-2 rounded-lg border border-slate-300 px-2.5 py-1.5 font-[family-name:var(--font-heading)] text-xs text-slate-500 transition-colors hover:border-brand hover:text-brand dark:border-white/15 dark:text-slate-400 dark:hover:text-white"
+              title={`Search (${isMac ? "⌘K" : "Ctrl K"})`}
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-nav-foreground transition-colors hover:bg-brand/10 hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
             >
-              <Search aria-hidden="true" className="h-4 w-4 shrink-0" />
-              <span className="hidden 2xl:inline">Search or ask AI</span>
-              <kbd className="hidden rounded border border-slate-300 px-1.5 py-0.5 text-[10px] leading-none dark:border-white/15 2xl:inline">
-                {isMac ? "⌘K" : "Ctrl K"}
-              </kbd>
+              <Search aria-hidden="true" className="h-4 w-4" />
             </button>
             <Button
               variant="ghost"
