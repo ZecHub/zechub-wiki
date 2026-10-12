@@ -59,9 +59,16 @@ function VideoCard({ video, className = "" }: { video: Video; className?: string
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+              src={`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`}
               alt=""
               loading="lazy"
+              // maxresdefault is a true 16:9 frame, so every thumbnail crops the
+              // same way. Fall back to hqdefault when a video has no max-res image.
+              onError={(e) => {
+                const img = e.currentTarget;
+                const fallback = `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+                if (img.src !== fallback) img.src = fallback;
+              }}
               className="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
             />
             <span className="absolute inset-0 flex items-center justify-center">
