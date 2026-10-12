@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Activity } from "lucide-react";
 import {
   LineChart,
@@ -22,6 +22,7 @@ export default function CodePulse() {
   const [selectedMetric, setSelectedMetric] = useState<
     "seeding" | "open_issues" | "merged_prs" | "stars" | "forks"
   >("seeding");
+  const [selectedRepo, setSelectedRepo] = useState<string>("all");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,6 +43,16 @@ export default function CodePulse() {
     };
     fetchData();
   }, []);
+
+  const githubRepos = useMemo(() => {
+    const names = new Set<string>();
+    githubHistory.forEach((entry: any) => {
+      (entry.projects || []).forEach((p: any) => {
+        if (p?.name) names.add(p.name);
+      });
+    });
+    return Array.from(names).sort();
+  }, [githubHistory]);
 
   if (loading) {
     return (
@@ -106,7 +117,10 @@ export default function CodePulse() {
         stars: 0,
         forks: 0,
       };
-    } else {
+    }
+
+    // GitHub
+    if (selectedRepo === "all") {
       return {
         date: entry.date,
         seeding: 0,
@@ -130,12 +144,26 @@ export default function CodePulse() {
           projects.reduce((sum: number, p: any) => sum + (p.forks || 0), 0),
       };
     }
+
+    const proj = projects.find((p: any) => p.name === selectedRepo);
+    return {
+      date: entry.date,
+      seeding: 0,
+      open_issues: proj?.open_issues ?? null,
+      merged_prs: proj?.merged_pull_requests ?? null,
+      stars: proj?.stars ?? null,
+      forks: proj?.forks ?? null,
+    };
   });
 
   const handleViewChange = (v: View) => {
     setView(v);
     setSelectedMetric(v === "radicle" ? "seeding" : "stars");
+    if (v !== "github") setSelectedRepo("all");
   };
+
+  const scopeLabel =
+    view === "github" && selectedRepo !== "all" ? ` (${selectedRepo})` : "";
 
   return (
     <div className="space-y-6">
@@ -183,27 +211,55 @@ export default function CodePulse() {
       {view === "radicle" ? (
         <RadicleView data={current} />
       ) : (
-        <GitHubView data={current} />
+        <GitHubView
+          data={current}
+          selectedRepo={selectedRepo}
+          onSelectRepo={setSelectedRepo}
+        />
       )}
 
       {/* Trends */}
       <div className="pt-6 border-t">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h3 className="text-lg font-semibold">
             Trends Over Time — {currentMetricLabel}
+            {scopeLabel}
           </h3>
-          <select
-            value={selectedMetric}
-            onChange={(e) => setSelectedMetric(e.target.value as any)}
-            className="bg-background border rounded-lg px-3 py-1 text-sm min-w-37"
-          >
-            {metricOptions.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
+          <div className="flex flex-wrap gap-2">
+            {view === "github" && (
+              <select
+                value={selectedRepo}
+                onChange={(e) => setSelectedRepo(e.target.value)}
+                className="bg-background border rounded-lg px-3 py-1 text-sm"
+                aria-label="Select repository"
+              >
+                <option value="all">All Repos</option>
+                {githubRepos.map((name) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+            )}
+            <select
+              value={selectedMetric}
+              onChange={(e) => setSelectedMetric(e.target.value as any)}
+              className="bg-background border rounded-lg px-3 py-1 text-sm min-w-37"
+              aria-label="Select metric"
+            >
+              {metricOptions.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
+        {view === "github" && selectedRepo !== "all" && (
+          <p className="text-xs text-muted-foreground mb-2">
+            Gaps indicate days the repo was not present in the snapshot.
+          </p>
+        )}
         <div className="h-80 w-full rounded-xl border bg-card p-4">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={trendData}>
@@ -211,7 +267,7 @@ export default function CodePulse() {
               <XAxis dataKey="date" />
               <YAxis />
               <Tooltip
-                content={({ active, payload, label }) => {
+                content={({ active, payload }) => {
                   if (!active || !payload?.length) return null;
 
                   const { date } = payload[0].payload;
@@ -219,16 +275,15 @@ export default function CodePulse() {
                   return (
                     <div className="rounded-md px-3 py-2 shadow-md border text-sm bg-slate-50 dark:bg-slate-800 border-slate-700 dark:text-slate-100">
                       <p className="font-semibold">{date}</p>
-
                       {payload.map((entry, idx) => (
                         <div
                           key={idx}
-                          className="flex justify-betwezen text-base gap-4"
+                          className="flex justify-between text-base gap-4"
                           style={{ color: entry.color }}
                         >
                           <span>{entry.name}:</span>
                           <span className="text-slate-800 dark:text-slate-50">
-                            {entry.value}
+                            {entry.value ?? "—"}
                           </span>
                         </div>
                       ))}
@@ -242,6 +297,7 @@ export default function CodePulse() {
                 stroke="#7c3aed"
                 strokeWidth={2.5}
                 dot={{ r: 3 }}
+                connectNulls={false}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -315,6 +371,7 @@ function RadicleView({ data }: { data: any }) {
                   <a
                     href={p.explorer_url}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="text-primary hover:underline text-sm font-medium"
                   >
                     View →
@@ -329,8 +386,15 @@ function RadicleView({ data }: { data: any }) {
   );
 }
 
-// GitHub View
-function GitHubView({ data }: { data: any }) {
+function GitHubView({
+  data,
+  selectedRepo,
+  onSelectRepo,
+}: {
+  data: any;
+  selectedRepo: string;
+  onSelectRepo: (name: string) => void;
+}) {
   const projects = data.projects || [];
   const totalStars = projects.reduce(
     (sum: number, p: any) => sum + (p.stars || 0),
@@ -385,30 +449,54 @@ function GitHubView({ data }: { data: any }) {
             </tr>
           </thead>
           <tbody className="divide-y">
-            {projects.map((p: any, i: number) => (
-              <tr key={i} className="hover:bg-muted/50 transition-colors">
-                <td className="p-4 font-medium">{p.name}</td>
-                <td className="text-center p-4 font-semibold text-yellow-600">
-                  {p.stars}
-                </td>
-                <td className="text-center p-4 text-emerald-600">{p.forks}</td>
-                <td className="text-center p-4 text-orange-600">
-                  {p.open_issues}
-                </td>
-                <td className="text-center p-4 text-purple-600">
-                  {p.merged_pull_requests}
-                </td>
-                <td className="text-right p-4">
-                  <a
-                    href={`https://github.com/ZecHub/${p.name}`}
-                    target="_blank"
-                    className="text-primary hover:underline text-sm font-medium"
-                  >
-                    View →
-                  </a>
-                </td>
-              </tr>
-            ))}
+            {projects.map((p: any, i: number) => {
+              const isSelected = selectedRepo === p.name;
+              return (
+                <tr
+                  key={i}
+                  className={`transition-colors ${
+                    isSelected
+                      ? "bg-purple-500/10"
+                      : "hover:bg-muted/50"
+                  }`}
+                >
+                  <td className="p-4 font-medium">
+                    <button
+                      type="button"
+                      onClick={() => onSelectRepo(isSelected ? "all" : p.name)}
+                      className="hover:underline text-left"
+                      title={
+                        isSelected
+                          ? "Clear selection (show all)"
+                          : "Show trend for this repo"
+                      }
+                    >
+                      {p.name}
+                    </button>
+                  </td>
+                  <td className="text-center p-4 font-semibold text-yellow-600">
+                    {p.stars}
+                  </td>
+                  <td className="text-center p-4 text-emerald-600">{p.forks}</td>
+                  <td className="text-center p-4 text-orange-600">
+                    {p.open_issues}
+                  </td>
+                  <td className="text-center p-4 text-purple-600">
+                    {p.merged_pull_requests}
+                  </td>
+                  <td className="text-right p-4">
+                    <a
+                      href={`https://github.com/ZecHub/${p.name}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline text-sm font-medium"
+                    >
+                      View →
+                    </a>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
