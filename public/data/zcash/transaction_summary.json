@@ -29544,5 +29544,27 @@
     "ironwood_filter": 3325,
     "transactions": 3513,
     "transactions_filter": 3512
+  },
+  {
+    "height": 3513600,
+    "sapling": 163,
+    "sapling_filter": 163,
+    "orchard": 73,
+    "orchard_filter": 73,
+    "ironwood": 2772,
+    "ironwood_filter": 2772,
+    "transactions": 2942,
+    "transactions_filter": 2942
+  },
+  {
+    "height": 3514752,
+    "sapling": 202,
+    "sapling_filter": 202,
+    "orchard": 54,
+    "orchard_filter": 54,
+    "ironwood": 2523,
+    "ironwood_filter": 2521,
+    "transactions": 2734,
+    "transactions_filter": 2732
   }
 ]
