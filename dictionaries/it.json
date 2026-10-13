@@ -36,21 +36,21 @@
     "Maya Protocol": "Maya Protocol",
     "Memos": "Memo",
     "MetaMask Snap": "MetaMask Snap",
-    "Mobile Top Ups": "Ricariche mobile",
+    "Mobile Top Ups": "Ricariche telefoniche",
     "Newsletter": "Newsletter",
     "Nym VPN": "Nym VPN",
     "Payment Processors": "Payment processor",
     "Payment Request URIs": "URI di richiesta pagamento",
     "Podcast": "Podcast",
-    "Private Community Treasury": "Tesoreria di comunità privata",
-    "Raspberry Pi 4 Full Node": "Raspberry Pi 4 Full Node",
-    "Raspberry pi 4 Zebra Node": "Raspberry Pi 4 Zebra Node",
-    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry Pi 5 Zebra Lightwalletd Zingo",
+    "Private Community Treasury": "Tesoreria privata della community",
+    "Raspberry Pi 4 Full Node": "Full node su Raspberry Pi 4",
+    "Raspberry pi 4 Zebra Node": "Nodo Zebra su Raspberry Pi 4",
+    "Raspberry pi5 Zebra Lightwalletd Zingo": "Raspberry Pi 5: Zebra, Lightwalletd, Zingo",
     "Recovering Funds": "Recuperare fondi",
     "Research": "Ricerca",
     "Send Money Privately": "Inviare denaro privatamente",
     "Shielded Labs": "Shielded Labs",
-    "Shielded Pools": "Shielded pool",
+    "Shielded Pools": "Pool schermate",
     "Sitemap": "Mappa del sito",
     "Start Here": "Inizia qui",
     "Store": "Negozio",
@@ -68,11 +68,11 @@
     "Visualizer": "Visualizzatore",
     "Visualizing Zcash Addresses": "Visualizzare gli indirizzi Zcash",
     "Visualizing the Zcash Network": "Visualizzare la rete Zcash",
-    "Wallets": "Wallet",
+    "Wallets": "Portafogli",
     "Youtube": "YouTube",
-    "Ywallet FROST Demo": "Ywallet FROST Demo",
+    "Ywallet FROST Demo": "Demo FROST di Ywallet",
     "ZCAP": "ZCAP",
-    "ZIPs & Grants": "ZIP e Grant",
+    "ZIPs & Grants": "ZIP e finanziamenti",
     "ZKAV Club": "ZKAV Club",
     "ZODL": "ZODL",
     "Zcash Community": "Community Zcash",
@@ -90,11 +90,11 @@
     "Zcon Archive": "Archivio Zcon",
     "Zcon Vozes Archive": "Archivio Zcon Vozes",
     "Zenith Installation": "Installazione di Zenith",
-    "Zero-Knowledge vs Decoys": "Zero-Knowledge vs sistemi decoy",
+    "Zero-Knowledge vs Decoys": "Conoscenza zero vs sistemi a depistaggio",
     "Zgo Payment Processor": "Zgo Payment Processor",
     "Zingo Labs": "Zingo Labs",
     "Zingolib and Zaino Tutorial": "Tutorial Zingolib e Zaino",
-    "Zkool Multisig": "Zkool Multisig",
+    "Zkool Multisig": "Multisig con Zkool",
     "Custodial Exchanges": "Exchange custodial",
     "Zcash Use Cases": "Casi d'uso di Zcash",
     "Zcash Tech": "Tecnologia Zcash",
@@ -167,11 +167,11 @@
     "skipToContent": "Vai al contenuto"
   },
   "navigation": {
-    "wallets": "Wallet",
+    "wallets": "Portafogli",
     "guides": "Guide",
     "tutorials": "Tutorial",
     "governance": "Governance",
-    "visualizer": "Visualizer",
+    "visualizer": "Visualizzatore",
     "dao": "DAO",
     "newsletter": "Newsletter",
     "donate": "Dona",
@@ -185,15 +185,15 @@
       "label": "Usare Zcash",
       "buyingZec": "Comprare ZEC",
       "faucets": "Faucet",
-      "wallets": "Wallet",
+      "wallets": "Portafogli",
       "metamaskSnap": "MetaMask Snap",
       "exchanges": "Exchange",
       "blockExplorers": "Block explorer",
-      "shieldedPools": "Shielded pool",
+      "shieldedPools": "Pool schermate",
       "transparentExchangeAddresses": "Indirizzi trasparenti degli exchange",
       "transactions": "Transazioni",
       "memos": "Memo",
-      "mobileTopUps": "Ricariche mobile",
+      "mobileTopUps": "Ricariche telefoniche",
       "paymentRequestUris": "URI di richiesta pagamento",
       "paymentProcessors": "Payment processor",
       "recoveringFunds": "Recuperare fondi",
@@ -205,8 +205,8 @@
         "acceptPayments": "Accetta pagamenti",
         "freelancePrivacy": "Privacy per freelance",
         "journalistPrivacy": "Privacy per giornalisti",
-        "keepingRecords": "Conservare i registri",
-        "privateCommunityTreasury": "Tesoreria di comunità privata",
+        "keepingRecords": "Tenere la contabilità",
+        "privateCommunityTreasury": "Tesoreria privata della community",
         "donations": "Donazioni",
         "sendMoneyPrivately": "Inviare denaro privatamente"
       }
@@ -221,7 +221,7 @@
       "globalAmbassadors": "Zcash Global Ambassadors",
       "zcashMedia": "Zcash Media",
       "zcap": "ZCAP",
-      "zcashPodcasts": "Podcast Zcash",
+      "zcashPodcasts": "Podcast su Zcash",
       "ecosystemSecurity": "Sicurezza dell'ecosistema Zcash",
       "cypherpunkZeroNFT": "Cypherpunk Zero NFT",
       "zconArchive": "Archivio Zcon"
@@ -235,7 +235,8 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "Brand",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "Finanziamenti retroattivi decisi dai detentori di ZEC"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo Payment Processor",
@@ -251,8 +252,8 @@
       "akashNetwork": "Akash Network",
       "avalancheRedbridge": "Avalanche RedBridge",
       "zkoolMultisig": "Multisig con Zkool",
-      "ywalletFrostDemo": "Demo FROST di YWallet",
-      "blockchainExplorers": "Blockchain Explorer",
+      "ywalletFrostDemo": "Demo FROST di Ywallet",
+      "blockchainExplorers": "Block explorer",
       "braveWallet": "Brave Wallet",
       "btcPayServerPlugin": "Plugin BTCPayServer",
       "visualizingZcashNetwork": "Visualizzare la rete Zcash",
@@ -261,7 +262,7 @@
       "zcashImprovementProposals": "Zcash Improvement Proposals",
       "zingolibAndZainoTutorial": "Tutorial Zingolib e Zaino",
       "zenithInstallation": "Installazione di Zenith",
-      "zeroKnowledgeVsDecoys": "Conoscenza zero vs sistemi a depistaggio (decoy)"
+      "zeroKnowledgeVsDecoys": "Conoscenza zero vs sistemi a depistaggio"
     },
     "overview": "Panoramica",
     "shop": "Negozio"
@@ -1222,5 +1223,43 @@
   "meta": {
     "title": "ZecHub Wiki",
     "description": "Un hub educativo open source per Zcash"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Inizia qui",
+      "sub": "Inizia il tuo percorso alla scoperta di Zcash"
+    },
+    "guides": {
+      "title": "Guide",
+      "sub": "Documentazione strutturata per capire i protocolli di Zcash"
+    },
+    "zcash-tech": {
+      "title": "Tecnologia Zcash",
+      "sub": "Dentro la tecnologia che fa funzionare Zcash"
+    },
+    "organizations": {
+      "title": "Organizzazioni",
+      "sub": "Struttura · Governance · Collaboratori"
+    },
+    "privacy-tools": {
+      "title": "Strumenti per la privacy",
+      "sub": "Soluzioni pratiche per la privacy"
+    },
+    "research": {
+      "title": "Ricerca",
+      "sub": "Esplorare conoscenza zero · privacy · crittografia"
+    },
+    "glossary": {
+      "title": "Glossario e FAQ",
+      "sub": "Definizioni, risposte, chiarezza."
+    },
+    "contribute": {
+      "title": "Contribuisci",
+      "sub": "Scrivi · Traduci · Progetta · Sviluppa"
+    },
+    "tutorials": {
+      "title": "Tutorial",
+      "sub": "Guarda e segui passo passo"
+    }
   }
 }

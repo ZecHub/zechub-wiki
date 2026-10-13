@@ -109,7 +109,7 @@ const MdxComponents = {
       <code
         // Isolates inline code such as H(hA, hB) inside right-to-left prose.
         dir="ltr"
-        className="font-mono text-sm !inline-block !translate-y-[16px]"
+        className="font-mono text-sm"
         {...props}
       />
     );

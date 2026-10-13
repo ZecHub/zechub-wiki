@@ -1,6 +1,8 @@
 import type { CSSProperties, ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import type { LiveHeroId } from "@/lib/liveHero";
+import { getLocale } from "next-intl/server";
+import { getDictionary } from "@/lib/getDictionary";
 import "./wiki-section-banner.css";
 
 type Copy = {
@@ -605,8 +607,32 @@ function renderArt(id: LiveHeroId) {
   }
 }
 
-export default function WikiSectionBanner({ id }: { id: LiveHeroId }) {
-  const copy = COPY[id];
+// Title and subtitle come from the locale dictionary (sectionBanners.<id>);
+// COPY is the English fallback and keeps the layout options (titleSize).
+function bannerText(dict: Record<string, unknown>, id: LiveHeroId) {
+  const all = dict.sectionBanners;
+  if (!all || typeof all !== "object") return {};
+  const entry = (all as Record<string, unknown>)[id];
+  if (!entry || typeof entry !== "object") return {};
+  const { title, sub } = entry as Record<string, unknown>;
+  return {
+    title: typeof title === "string" && title ? title : undefined,
+    sub: typeof sub === "string" && sub ? sub : undefined,
+  };
+}
+
+async function localisedCopy(id: LiveHeroId): Promise<Copy> {
+  const base = COPY[id];
+  try {
+    const t = bannerText(await getDictionary(await getLocale()), id);
+    return { ...base, title: t.title ?? base.title, sub: t.sub ?? base.sub };
+  } catch {
+    return base;
+  }
+}
+
+export default async function WikiSectionBanner({ id }: { id: LiveHeroId }) {
+  const copy = await localisedCopy(id);
 
   return (
     <section

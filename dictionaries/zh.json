@@ -1217,5 +1217,43 @@
   "meta": {
     "title": "ZecHub 维基",
     "description": "一个面向 Zcash 的开源教育中心"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "从这里开始",
+      "sub": "开启你的 Zcash 学习之旅"
+    },
+    "guides": {
+      "title": "指南",
+      "sub": "用于理解 Zcash 协议的结构化文档"
+    },
+    "zcash-tech": {
+      "title": "Zcash 技术",
+      "sub": "深入了解驱动 Zcash 的技术"
+    },
+    "organizations": {
+      "title": "组织",
+      "sub": "架构 · 治理 · 贡献者"
+    },
+    "privacy-tools": {
+      "title": "隐私工具",
+      "sub": "实用的隐私解决方案"
+    },
+    "research": {
+      "title": "研究",
+      "sub": "探索零知识 · 隐私 · 密码学"
+    },
+    "glossary": {
+      "title": "术语表与常见问题",
+      "sub": "定义、解答、清晰。"
+    },
+    "contribute": {
+      "title": "参与贡献",
+      "sub": "编写 · 翻译 · 设计 · 开发"
+    },
+    "tutorials": {
+      "title": "教程",
+      "sub": "观看并跟随操作"
+    }
   }
 }

@@ -34,7 +34,7 @@ const MdxComponents = {
     // Single backticks (inline)
     return (
       <code
-        className="font-mono text-sm !inline-block !translate-y-[16px]"
+        className="font-mono text-sm"
         {...props}
       />
     );
