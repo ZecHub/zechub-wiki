@@ -134,42 +134,42 @@ const WalletItem: React.FC<WalletItemProps> = ({
 
   return (
     <div className="wallet-item flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-slate-50/60 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40">
-      {/* Logo: no backing tile, the artwork adapts to the theme */}
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`${title} (opens in a new tab)`}
-        className="mx-4 mt-4 flex h-28 items-center justify-center border-b border-slate-200 pb-4 dark:border-white/10"
-      >
-        <WalletLogo src={logo} alt={`${title} Logo`} />
-      </a>
-
       <div className="flex flex-1 flex-col p-4">
-        {/* Name + Open */}
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <h2 className="m-0 text-lg font-semibold leading-tight text-slate-900 dark:text-white">
-              {title}
-              {syncSpeed && (
-                <span className="ml-2 inline-block align-middle">
-                  <Image src={syncSpeed} width={24} height={24} alt="Sync" />
-                </span>
-              )}
-            </h2>
-            {note ? (
-              <p className="m-0 mt-1 text-[13px] font-medium text-brand dark:text-brand-soft">{note}</p>
-            ) : null}
-          </div>
+        {/* Logo top-left, Open button top-right */}
+        <div className="flex min-h-[4.5rem] items-center justify-between gap-3">
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${title} (opens in a new tab)`}
+            className="flex min-w-0 items-center"
+          >
+            <WalletLogo src={logo} alt={`${title} Logo`} />
+          </a>
           <Link
             href={link}
-            className="inline-flex shrink-0 items-center whitespace-nowrap rounded-lg border border-brand/50 px-3.5 py-1.5 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white"
+            className="inline-flex shrink-0 items-center self-start whitespace-nowrap rounded-lg border border-brand/50 px-3.5 py-1.5 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white"
             target="_blank"
             rel="noopener noreferrer"
           >
             Open
             <Icon icon={OpenNew} className="ms-2 inline-block" size="small" />
           </Link>
+        </div>
+
+        {/* Name */}
+        <div className="mt-4 min-w-0">
+          <h2 className="m-0 text-lg font-semibold leading-tight text-slate-900 dark:text-white">
+            {title}
+            {syncSpeed && (
+              <span className="ml-2 inline-block align-middle">
+                <Image src={syncSpeed} width={24} height={24} alt="Sync" />
+              </span>
+            )}
+          </h2>
+          {note ? (
+            <p className="m-0 mt-1 text-[13px] font-medium text-brand dark:text-brand-soft">{note}</p>
+          ) : null}
         </div>
 
         {/* NU6.3 "Ironwood" readiness badge */}
