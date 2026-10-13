@@ -60,6 +60,11 @@ const chip =
   "rounded-full bg-slate-200 px-2.5 py-0.5 text-[13px] text-slate-700 dark:bg-white/10 dark:text-slate-200";
 
 // Short descriptors that the wallet list in the content repo does not carry yet.
+// Logos that replace the image coming from the wallet list in the content repo.
+const walletLogoOverrides: { [key: string]: string } = {
+  zallet: "/dex-logos/zebra-icon.png", // Zcash Foundation zebra
+};
+
 const walletNotes: { [key: string]: string } = {
   dizzy: "Discord wallet",
 };
@@ -144,7 +149,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
             aria-label={`${title} (opens in a new tab)`}
             className="flex min-w-0 items-center"
           >
-            <WalletLogo src={logo} alt={`${title} Logo`} />
+            <WalletLogo src={walletLogoOverrides[title.toLowerCase().replace(/[^a-z0-9]/g, "")] ?? logo} alt={`${title} Logo`} />
           </a>
           <Link
             href={link}
