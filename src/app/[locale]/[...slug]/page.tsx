@@ -202,6 +202,28 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
         }
         // Guide-style pages mark sections as "---" + a bold line: turn that into a real
         // heading (and drop the rule) so the page reads like the rest of the wiki.
+        // A paragraph/link that is just a big brand logo is decoration on guide pages: drop it.
+        // (The node can be a plain element or an MDX JSX node, so read both shapes.)
+        if (opts.sectionHeadings && ["a", "p"].includes(n.tagName || n.name || "") && !textOf(n).trim()) {
+          const tagOf2 = (x: any): string => x.tagName || x.name || "";
+          const altOf = (x: any): string => {
+            if (x.properties && x.properties.alt != null) return String(x.properties.alt);
+            const hit = (x.attributes || []).find((at: any) => at.name === "alt");
+            return hit && typeof hit.value === "string" ? hit.value : "";
+          };
+          const findImg = (x: any): any =>
+            x && typeof x === "object" && x.type !== "text"
+              ? tagOf2(x) === "img"
+                ? x
+                : (x.children || []).map(findImg).find(Boolean) || null
+              : null;
+          const im = findImg(n);
+          if (im && /logo/i.test(altOf(im))) {
+            kids.splice(i, 1);
+            i--;
+            continue;
+          }
+        }
         if (opts.sectionHeadings && n.type === "element" && n.tagName === "p") {
           const strong = onlyChild(n);
           const inner = strong && strong.type === "element" && strong.tagName === "strong" ? onlyChild(strong) : null;
