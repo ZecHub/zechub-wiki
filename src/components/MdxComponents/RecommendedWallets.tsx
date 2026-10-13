@@ -8,46 +8,51 @@ const WALLETS = [
     url: "https://zodl.com/",
     logo: "/content-images/198608b2-9059-4cb7-aeb8-9354971376fd-d67c2d46f5.webp",
     platforms: "Mobile",
+    team: "Zcash Open Development Lab",
     // Dark glyph on a transparent background: flip it in the dark theme.
     invertOnDark: true,
     description:
-      "Mobile wallet focused on simple, private ZEC payments, with shielded transactions and Ironwood support.",
+      "New name of Zashi, announced in February 2026. Built by the former Electric Coin Company team, which formed ZODL in January 2026.",
   },
   {
     name: "Vizor",
     url: "https://vizor.cash/",
     logo: "/content-images/Vizorphoto-6ade2417a5.webp",
     platforms: "Desktop · Mobile",
+    team: "Keplr team",
     description:
-      "Wallet for desktop and mobile that supports transparent and shielded (Sapling) addresses.",
+      "Self-custodial wallet from the team behind the Keplr wallet, shielding funds by default. Supports multiple accounts and hardware wallets, including Keystone and Ledger.",
   },
   {
     name: "Zingo!",
     url: "https://www.zingolabs.org/",
     logo: "/content-images/zingocard-9a2546668d.webp",
     platforms: "Mobile · Desktop",
+    team: "Zingo Labs",
     description:
-      "Wallet from Zingo Labs for mobile and desktop, built around shielded transactions and Ironwood support.",
+      "Open-source wallet from Zingo Labs, the team behind the Zingolib SDK and the Zaino indexer. Runs on Android, iOS and desktop, with a command-line version for developers.",
   },
   {
     name: "Zkool",
     url: "https://github.com/hhanh00/zkool2/",
     logo: "/content-images/zkool-1-22ab388e65.webp",
     platforms: "Mobile · Desktop",
+    team: "hhanh00",
     description:
-      "Open-source wallet for mobile and desktop, with support for multiple accounts and shielded funds.",
+      "Successor to YWallet. Adds multiple and hidden accounts, FROST multisig, Tor support and transparent address rotation. The interface is more basic than other wallets and it has no address book.",
   },
 ] as readonly {
   name: string;
   url: string;
   logo: string;
   platforms: string;
+  team: string;
   description: string;
   invertOnDark?: boolean;
 }[];
 
 const BUTTON =
-  "mt-4 flex w-full items-center justify-between rounded-lg border border-brand bg-brand px-5 py-3 text-base font-semibold !text-on-brand no-underline transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:border-brand/40 dark:bg-brand/15 dark:!text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:!text-white dark:focus-visible:ring-offset-slate-900";
+  "mt-4 inline-flex w-fit items-center gap-1.5 rounded-lg border border-brand/50 px-4 py-2 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:text-brand-soft dark:hover:text-white dark:focus-visible:ring-offset-slate-900";
 
 // Built from <span>s so it stays valid when the markdown renderer places it
 // inside a paragraph (a <div> there would be a hydration error).
@@ -75,7 +80,7 @@ export default function RecommendedWallets() {
                   {w.name}
                 </span>
                 <span className="block text-xs text-slate-500 dark:text-slate-400">
-                  {w.platforms}
+                  {w.platforms} · {w.team}
                 </span>
               </span>
             </span>
@@ -91,7 +96,7 @@ export default function RecommendedWallets() {
             className={BUTTON}
           >
             Visit website
-            <ArrowUpRight aria-hidden="true" className="h-[18px] w-[18px]" />
+            <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
           </a>
         </span>
       ))}
