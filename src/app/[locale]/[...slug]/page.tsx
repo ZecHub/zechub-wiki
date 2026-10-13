@@ -198,6 +198,40 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean } = {}) {
                 let j = i + 1;
                 while (j < kids.length && isBlank(kids[j])) j++;
                 const next = kids[j];
+                // Button directly followed by an embedded YouTube video →
+                // one exchange card (info + video side by side).
+                // The video arrives as an MDX JSX node (<div><iframe/></div>) or,
+                // after rehype-raw, as plain elements; accept both.
+                const attr = (x: any, key: string): string => {
+                  if (x.properties && x.properties[key] != null) return String(x.properties[key]);
+                  const hit = (x.attributes || []).find((at: any) => at.name === key);
+                  return hit && typeof hit.value === "string" ? hit.value : "";
+                };
+                const tagOf = (x: any): string => x.tagName || x.name || "";
+                const findIframe = (x: any): any => {
+                  if (!x || !(x.type === "element" || x.type === "mdxJsxFlowElement")) return null;
+                  if (tagOf(x) === "iframe") return x;
+                  return (x.children || []).map(findIframe).find(Boolean) || null;
+                };
+                const isBlock = next && (next.type === "element" || next.type === "mdxJsxFlowElement") && tagOf(next) === "div";
+                const frame = isBlock ? findIframe(next) : null;
+                const vid = frame
+                  ? attr(frame, "src").match(/(?:youtube(?:-nocookie)?\.com\/embed\/|youtu\.be\/)([A-Za-z0-9_-]{6,})/)
+                  : null;
+                if (opts.boldLinkButtons && frame && vid) {
+                  kids.splice(i, j - i + 1, {
+                    type: "element",
+                    tagName: "exchangevideo",
+                    properties: {
+                      exname: textOf(inner).trim(),
+                      exurl: String(inner.properties?.href || ""),
+                      exvideo: vid[1],
+                      extitle: attr(frame, "title"),
+                    },
+                    children: [],
+                  });
+                  continue;
+                }
                 if (next && next.type === "element" && next.tagName === "p" && !onlyChild(next)?.tagName?.match(/^(a|strong|img|iframe)$/)) {
                   const card = {
                     type: "element",

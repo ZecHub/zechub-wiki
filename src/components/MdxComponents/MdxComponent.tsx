@@ -7,6 +7,7 @@ import type { MDXComponents } from "mdx/types";
 import { ArrowUpRight } from "lucide-react";
 import RecommendedWallets from "./RecommendedWallets";
 import RecommendedExchanges from "./RecommendedExchanges";
+import ExchangeVideoCard from "./ExchangeVideoCard";
 
 // Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
 // Requires a YouTube host first (no over-match of unrelated iframes).
@@ -51,6 +52,7 @@ const BUTTON =
   "inline-flex items-center justify-center gap-2 rounded-lg border border-brand bg-brand px-5 py-2.5 text-center text-[15px] font-semibold !text-on-brand no-underline transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:border-brand/40 dark:bg-brand/15 dark:!text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:!text-white dark:focus-visible:ring-offset-slate-900";
 
 const MdxComponents = {
+  exchangevideo: ExchangeVideoCard,
   // TOC LINKS — underline on hover only (no dashed line)
   a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {
     let href = props.href || "";
