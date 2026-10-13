@@ -128,7 +128,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -177,7 +177,7 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean } = {}) {
           }
         }
         // Standalone video (<div><iframe/></div>) on opted-in pages → video card.
-        if (opts.boldLinkButtons && (n.type === "mdxJsxFlowElement" || n.type === "element") && (n.tagName || n.name) === "div") {
+        if ((opts.boldLinkButtons || opts.videoCards) && (n.type === "mdxJsxFlowElement" || n.type === "element") && (n.tagName || n.name) === "div") {
           const attrOf = (x: any, key: string): string => {
             if (x.properties && x.properties[key] != null) return String(x.properties[key]);
             const hit = (x.attributes || []).find((at: any) => at.name === key);
@@ -197,6 +197,20 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean } = {}) {
               properties: { exvideo: m[1], extitle: attrOf(fr, "title") },
               children: [],
             };
+            continue;
+          }
+        }
+        // Guide-style pages mark sections as "---" + a bold line: turn that into a real
+        // heading (and drop the rule) so the page reads like the rest of the wiki.
+        if (opts.sectionHeadings && n.type === "element" && n.tagName === "p") {
+          const strong = onlyChild(n);
+          const inner = strong && strong.type === "element" && strong.tagName === "strong" ? onlyChild(strong) : null;
+          let prev = i - 1;
+          while (prev >= 0 && isBlank(kids[prev])) prev--;
+          if (inner && inner.type === "text" && prev >= 0 && kids[prev].type === "element" && kids[prev].tagName === "hr") {
+            kids.splice(prev, 1);
+            i--;
+            kids[i] = { type: "element", tagName: "h2", properties: {}, children: [{ type: "text", value: inner.value.trim() }] };
             continue;
           }
         }
@@ -808,7 +822,14 @@ export default async function Page(props: {
         // Runs AFTER rehypeRaw so it sees the parsed raw-HTML nodes.
         rehypeStripDangerous,
         rehypeFlattenNestedParagraphs,
-        [rehypeWikiPatterns, { boldLinkButtons: slug[0] === "using-zcash" }],
+        [
+          rehypeWikiPatterns,
+          {
+            boldLinkButtons: slug[0] === "using-zcash",
+            videoCards: slug[0] === "using-zcash" || slug[0] === "start-here",
+            sectionHeadings: slug[0] === "start-here",
+          },
+        ],
       ],
     },
   });
