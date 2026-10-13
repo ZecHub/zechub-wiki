@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 182,
+    "proposal_count": 183,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -7418,7 +7418,7 @@
           "title": "Zcash Engage Server: 12-Month Funding Renewal(Nov 2026 - Oct 2027)",
           "votes": {
             "no": "0",
-            "yes": "0",
+            "yes": "1",
             "abstain": "2"
           },
           "status": "open",
@@ -7453,7 +7453,7 @@
           "title": "Zcash Engage Server: 12-Month Funding Renewal(Nov 2026 - Oct 2027)",
           "votes": {
             "no": "4",
-            "yes": "1",
+            "yes": "2",
             "abstain": "0"
           },
           "status": "open",
@@ -7478,6 +7478,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-10-09T14:21:57.413Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 184,
+        "proposal": {
+          "msgs": [],
+          "title": "From Awareness to Everyday ZEC Adoption—Zcash at Confluence 2.0",
+          "votes": {
+            "no": "0",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1tldl44lqjdrq6lkcdf5rzxjjddxa6v2wdxafjs",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1792274354224760567"
+          },
+          "description": "**From Awareness to Everyday ZEC Adoption—Zcash at Confluence 2.0**\n\n**Prepared by: Elzz (Zcash Global Ambassador)**\n\n\n**_1. Overview and Rationale_**\n\nBuilding awareness is important for growing Zcash, but meaningful adoption means creating opportunities for people to earn, accept, and spend ZEC. Building on Zcash's previous engagements with Blockchain LAUTECH, this proposal aims to move beyond education and wallet onboarding by connecting crypto-literate young people with local businesses that accept ZEC.\n\nThrough Confluence 2.0, we intend to introduce more students and creatives to Zcash, connect them with contribution and earning opportunities, and onboard at least three businesses in Ogbomoso where they can spend ZEC. The activation will combine merchant onboarding, privacy education, and creator engagement, with a 30-day follow-up to measure actual ZEC spending and continued merchant acceptance.\n\n**_2. About Confluence 2.0_**\n\nConfluence is Blockchain LAUTECH's annual conference, described by its organizers as Africa's largest student-led blockchain conference. Its inaugural edition in 2025 attracted over 1,000 attendees, featuring developer workshops, industry discussions, and networking opportunities.\n\nScheduled for November 5–7, 2026, Confluence 2.0 targets 3,000+ attendees across three tracks: CODE, CREATE, and CONNECT. The event brings together students, developers, creators, founders, and blockchain communities, providing Zcash with access to an audience already familiar with cryptocurrency.\n\n**_3. Proposed Activities and Deliverables_**\n\n*A. ZEC for Business — Merchant Onboarding Workshop*\n\nA dedicated two-hour practical workshop to onboard local businesses to accept ZEC payments.\n\nBlockchain LAUTECH will recruit interested merchants, while the Zcash team and Paj Cash provide payment setup and technical assistance.\n\nThe workshop will cover:\n- ZEC wallet and payment setup.\n- Receiving and verifying ZEC payments.\n- Holding ZEC or converting to naira through Paj Cash.\n- Payment security, recordkeeping, and demonstration transactions.\n\nExpected outcome: At least three businesses with functional ZEC payment acceptance and successful test transactions.\n\nOnboarded merchants will receive ZEC payment signage before the team leaves Ogbomoso. We will also assist with their registration on ZecMap, making participating businesses discoverable to Zcash users.\n\n*B. Main-Stage Presentation*\n\nA presentation on financial privacy, Zcash's approach to private transactions, practical ZEC spending, and opportunities to participate in the Zcash ecosystem.\n\n*C. Zcash Exhibition Booth*\n\nA dedicated space for financial privacy education, interactive demonstrations, wallet onboarding, Discord engagement, and information about Zcash contribution opportunities and participating merchants.\n\n*D. Creator Breakout Session*\n\nThrough the CREATE track, we will engage writers, designers, video creators, memers, and other creatives, introducing them to opportunities to contribute their skills, develop as creators, and earn ZEC within the Zcash ecosystem.\n\n*E. Zcash Creator Challenge*\n\nA creative competition encouraging participants to demonstrate what they learned about Zcash through original videos, writing, graphics, memes, or other educational content.\n\n- Prize Pool: $200, awarded in ZEC.\n- Launch: During Confluence.\n- Submission Deadline: 24 hours after the conference ends.\n- Judging: Accuracy, clarity, creativity, originality, and educational value.\n\nSelected creators will earn ZEC rewards and be introduced to further contribution opportunities.\n\n*F. Community Partnerships*\n\nBlockchain LAUTECH will facilitate introductions to other blockchain community leaders attending Confluence, creating opportunities for continued Zcash engagement and collaboration.\n\n\n**4. Team, Partners and Implementation**\n\n*Project Team*\n\n**- Elzz** — Project Lead / Zcash Global Ambassador\nResponsible for planning, partner coordination, merchandise procurement, presentations, merchant workshop facilitation, booth supervision, creator activities, budget management, and reporting.\n\n**- Omega Wolf** — Media Coverage & Documentation\nResponsible for event photography, videography, edited photographs, video content, and visual documentation.\n\n**Booth Assistant** — TBD\nResponsible for booth coordination, attendee engagement, Zcash education, and wallet onboarding.\n\n*Implementation Partners*\n\n**- Blockchain LAUTECH** — Local Implementation Partner\n\nResponsible for merchant recruitment, access to its creator and student communities, workshop and booth facilities, speaking opportunities, challenge promotion, and introductions to other blockchain community leaders.\n\n**- Paj Cash** — Payment Infrastructure Partner\n\nResponsible for ZEC-to-NGN conversion infrastructure, payment solutions for merchants with or without websites, merchant setup assistance, and technical support.\n\n\n*Implementation Timeline*\n\n*- Pre-event*: Merchant recruitment, coordination with partners, team preparation, merchandise production, and promotion\n\n*- November 5–7*: Main-stage presentation, exhibition booth, merchant workshop, creator breakout, and creator challenge launch\n\n*- 24 hours after Confluence*: Creator challenge submissions close\n\n*- Post-event*: Merchant support, ZecMap listing assistance, creator rewards, and payment activity monitoring\n\n*- 30-day follow-up*: Merchant spending activity, retention assessment, creator engagement, and reporting\n\n**5. Key Performance Indicators**\n\n**- Merchant Adoption**: At least 3 businesses with functional ZEC payment acceptance and successful test transactions.\n\n**- Merchant Visibility**: ZEC payment signage delivered to onboarded merchants, with their businesses submitted for ZecMap listing.\n\n**- Merchant Usage**: Genuine customer purchases completed using ZEC at participating businesses.\n\n**- Merchant Retention**: Number of onboarded businesses still accepting ZEC after 30 days.\n\n**- Creator Acquisition**: At least 10 creators producing quality submissions and pursuing further Zcash contribution opportunities.\n\n**- Wallet Onboarding**: At least 100 new Zodl wallet downloads.\n\n**- Community Engagement**: At least 100 new Zcash Discord joins.\n\n**- Partnership Development**: At least 3 meaningful introductions to other blockchain community leaders.\n\n\n**6. Proposed Budget and Justification**\n\n- Gold Conference Sponsorship: $2,000\n- Booth Branding & Merchandise Production: $500\n- Project Lead — Planning & Execution: $450\n- Media Coverage & Documentation: $450\n- Booth Assistant & Onboarding Support: $200\n- Merchant Payment Signage: $100\n- Demonstration Transactions: $50\n- Transportation, Logistics & Accommodation: $300\n- Creator Challenge Prize Pool (paid in ZEC): $200\n\n*TOTAL FUNDING REQUESTED: $4,250*\n\n\n*Budget Justification*\n\n- Gold Sponsorship — $2,000\nCovers the agreed conference sponsorship package, including exhibition presence, main-stage participation, workshop access, creator engagement opportunities, and associated sponsor benefits.\n\n- Booth Branding & Merchandise Production — $500\nCovers the production of branded materials and merchandise, including items such as T-shirts, wristbands, key holders, and other booth engagement materials.\n\n- Event Lead — $450\nCompensation for project-specific planning, coordination, merchandise procurement, partner communications, conference delivery, merchant activation oversight, and reporting.\n\n- Media Coverage & Documentation — $450\nCovers professional photography, videography, photo editing, video editing, and visual documentation for reporting and community communications.\n\n- Booth Assistant & Onboarding Support — $200\nCovers staffing support for visitor engagement, Zcash education, wallet onboarding, and booth coordination.\n\n- Merchant Payment Signage — $100\nCovers the production of payment acceptance signage for onboarded businesses, including printing and preparation during the activation.\n\n- Demonstration Transactions — $50\nCovers controlled payment testing during merchant onboarding, with transactions documented separately from organic merchant sales.\n\n- Transportation, Logistics & Accommodation — $300\nCovers essential travel, local movement, logistics, and accommodation associated with the activation team.\n\n- Creator Challenge Prize Pool — $200\nProvides ZEC-denominated rewards for selected original creative submissions.\n\n\nHere's a link to the Confluence 2.0 sponsorship deck for more details:\n\nhttps://drive.google.com/file/d/1jqokft5LlUDT6i-GwVvkrQ6a1xYcGnKY/view?usp=drivesdk\n\n",
+          "total_power": "23",
+          "start_height": 42637465,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-10-12T21:59:14.224Z"
       }
     ]
   },
