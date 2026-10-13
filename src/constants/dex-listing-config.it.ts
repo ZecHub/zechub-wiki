@@ -1,12 +1,4 @@
 export const dexListingConfigIt = [
-
-    {
-    title: 'LetsExchange',
-    description:
-      'Un hub di scambio crypto con oltre 4.500 criptovalute, liquidità profonda, swap cross-chain, on- & off-ramp, DEX, transazioni rapide e sicure.',
-    url: 'https://letsexchange.io/',
-    image: '/content-images/1500x500-1-9d3b008870.webp',
-  },
   {
     title: 'Near-intents',
     description:
