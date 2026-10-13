@@ -5,9 +5,7 @@ interface PrivacyMeterProps {
 }
 
 export function PrivacyMeter(props: PrivacyMeterProps) {
-  const pastAndCurrent = props.networkUpgrades.filter(
-    (u) => u.status !== "future",
-  );
+  const pastAndCurrent = props.networkUpgrades;
 
   return (
     <section
@@ -53,7 +51,7 @@ export function PrivacyMeter(props: PrivacyMeterProps) {
 
         <div className="flex justify-between mt-2 text-[10px] text-muted-foreground">
           <span>2016 - Basic Shielded</span>
-          <span>2025 - Sustainable Privacy</span>
+          <span>2026 - Sustainable Privacy</span>
         </div>
       </div>
     </section>
