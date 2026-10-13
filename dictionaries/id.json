@@ -1240,5 +1240,43 @@
   "meta": {
     "title": "Wiki ZecHub",
     "description": "Pusat edukasi sumber terbuka untuk Zcash"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Mulai di Sini",
+      "sub": "Mulai perjalanan belajar Zcash Anda"
+    },
+    "guides": {
+      "title": "Panduan",
+      "sub": "Dokumentasi terstruktur untuk memahami protokol Zcash"
+    },
+    "zcash-tech": {
+      "title": "Teknologi Zcash",
+      "sub": "Di balik teknologi yang mendukung Zcash"
+    },
+    "organizations": {
+      "title": "Organisasi",
+      "sub": "Struktur · Tata kelola · Kontributor"
+    },
+    "privacy-tools": {
+      "title": "Tools Privasi",
+      "sub": "Solusi privasi praktis"
+    },
+    "research": {
+      "title": "Riset",
+      "sub": "Menjelajahi Zero-Knowledge · Privasi · Kriptografi"
+    },
+    "glossary": {
+      "title": "Glosarium & FAQ",
+      "sub": "Definisi, jawaban, kejelasan."
+    },
+    "contribute": {
+      "title": "Berkontribusi",
+      "sub": "Tulis · Terjemahkan · Rancang · Kembangkan"
+    },
+    "tutorials": {
+      "title": "Tutorial",
+      "sub": "Tonton dan ikuti"
+    }
   }
 }

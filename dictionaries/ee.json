@@ -1211,5 +1211,43 @@
   "meta": {
     "title": "ZecHub ƒe Wiki",
     "description": "Hehenaƒe si le ʋuʋu ɖi na Zcash"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Dze Egɔme Le Afi Sia",
+      "sub": "Dze egɔme le wò Zcash srɔ̃nu mɔzɔzɔ me"
+    },
+    "guides": {
+      "title": "Mɔfialawo",
+      "sub": "Nunyala siwo woɖo ɖe ɖoɖo nu be nàse Zcash ƒe ɖoɖowo gɔme"
+    },
+    "zcash-tech": {
+      "title": "Zcash Mɔ̃ɖaŋununya",
+      "sub": "Mɔ̃ɖaŋununya si wɔna Zcash le dɔ wɔm la me"
+    },
+    "organizations": {
+      "title": "Habɔbɔwo",
+      "sub": "Ɖoɖoɖo · Dzidzimekpɔkpɔ · Amewo siwo kpena ɖe eŋu"
+    },
+    "privacy-tools": {
+      "title": "Dɔwɔnu Siwo Wozãna Ðe Ameŋunyatakakawo Ŋu",
+      "sub": "Ameŋunyatakakawo ƒe kpeɖeŋu siwo wɔa dɔ"
+    },
+    "research": {
+      "title": "Numekuku",
+      "sub": "Zero-Knowledge · Ameŋunyatakakawo · Gbesesẽŋutinunya ƒe didi"
+    },
+    "glossary": {
+      "title": "Nyagɔmeɖegbalẽ & Nyabiasewo",
+      "sub": "Gɔmesese, ŋuɖoɖo, kɔkɔe."
+    },
+    "contribute": {
+      "title": "Dzᴐ nu",
+      "sub": "Ŋlɔ · Gɔmeɖe · Ɖo nu · Wɔ dɔ"
+    },
+    "tutorials": {
+      "title": "Nufiamewo",
+      "sub": "Kpɔ eye nàwɔe ɖe eƒe mɔ nu"
+    }
   }
 }

@@ -1211,5 +1211,43 @@
   "meta": {
     "title": "ZecHub Wiki a ɛwɔ hɔ",
     "description": "Nhomasua beae a wɔabue ano ma Zcash"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Fi ase wɔ Ha",
+      "sub": "Fi wo Zcash adesua akwantu no ase"
+    },
+    "guides": {
+      "title": "Akwankyerɛfo",
+      "sub": "Nwoma a wɔahyehyɛ a ɛbɛboa wo ate Zcash nhyehyɛe ahorow ase"
+    },
+    "zcash-tech": {
+      "title": "Zcash Mfiridwuma ho nimdeɛ",
+      "sub": "Mfiridwuma a ɛma Zcash yɛ adwuma no mu"
+    },
+    "organizations": {
+      "title": "Ahyehyɛde ahorow",
+      "sub": "Nhyehyɛe · Ɔhwɛsoɔ · Nnipa a wɔboa"
+    },
+    "privacy-tools": {
+      "title": "Nnwinnade a Wɔde Siesie Kokoam Nsɛm",
+      "sub": "Ano aduru a ɛyɛ adwuma ma kokoam nsɛm"
+    },
+    "research": {
+      "title": "Hwehwɛ mu",
+      "sub": "Zero-Knowledge · Kokoamsɛm · Ahintasɛm ho adesua"
+    },
+    "glossary": {
+      "title": "Nsɛmfua Nkyerɛase & FAQs",
+      "sub": "Nkyerɛase, mmuae, ntease."
+    },
+    "contribute": {
+      "title": "Boa",
+      "sub": "Kyerɛw · Kyerɛ ase · Yɛ nhyehyɛe · Yɛ adwuma"
+    },
+    "tutorials": {
+      "title": "Nkyerɛkyerɛ a wɔde ma",
+      "sub": "Hwɛ na di akyi"
+    }
   }
 }

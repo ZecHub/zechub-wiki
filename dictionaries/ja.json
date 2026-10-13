@@ -1217,5 +1217,43 @@
   "meta": {
     "title": "ZecHub Wiki",
     "description": "Zcashのためのオープンソース教育ハブ"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "ここから始める",
+      "sub": "Zcashを学ぶ旅を始めましょう"
+    },
+    "guides": {
+      "title": "ガイド",
+      "sub": "Zcashプロトコルを理解するための体系的なドキュメント"
+    },
+    "zcash-tech": {
+      "title": "Zcash 技術",
+      "sub": "Zcashを支える技術の内部"
+    },
+    "organizations": {
+      "title": "組織",
+      "sub": "構造 · ガバナンス · 貢献者"
+    },
+    "privacy-tools": {
+      "title": "プライバシーツール",
+      "sub": "実用的なプライバシーソリューション"
+    },
+    "research": {
+      "title": "リサーチ",
+      "sub": "ゼロ知識 · プライバシー · 暗号技術を探求"
+    },
+    "glossary": {
+      "title": "用語集とFAQ",
+      "sub": "定義、回答、明確さ。"
+    },
+    "contribute": {
+      "title": "貢献する",
+      "sub": "執筆 · 翻訳 · デザイン · 開発"
+    },
+    "tutorials": {
+      "title": "チュートリアル",
+      "sub": "視聴して手順に従う"
+    }
   }
 }

@@ -1211,5 +1211,43 @@
   "meta": {
     "title": "ZecHub Wiki",
     "description": "Aarin ẹkọ orisun ṣiṣi fun Zcash"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Bẹ̀rẹ̀ Níbí",
+      "sub": "Bẹ̀rẹ̀ ìrìnàjò ìkẹ́kọ̀ọ́ Zcash rẹ"
+    },
+    "guides": {
+      "title": "Àwọn ìwé atọ́nà",
+      "sub": "Àwọn ìwé tí a ṣètò fún òye àwọn ìlànà Zcash"
+    },
+    "zcash-tech": {
+      "title": "Zcash Tech",
+      "sub": "Nínú ìmọ̀ ẹ̀rọ tó ń fún Zcash ní agbára"
+    },
+    "organizations": {
+      "title": "Àwọn àjọ",
+      "sub": "Ìṣètò · Ìṣàkóso · Àwọn olùkópa"
+    },
+    "privacy-tools": {
+      "title": "Àwọn irinṣẹ Ìpamọ́",
+      "sub": "Àwọn ojútùú ìpamọ́ tó wúlò"
+    },
+    "research": {
+      "title": "Ìwádìí",
+      "sub": "Ṣíṣe àwárí Zero-Knowledge · Ìpamọ́ · Kripítógirafi"
+    },
+    "glossary": {
+      "title": "Àkójọ ọ̀rọ̀ àti FAQs",
+      "sub": "Àwọn ìtumọ̀, ìdáhùn, ìmọ́lẹ̀."
+    },
+    "contribute": {
+      "title": "Ṣètìlẹyìn",
+      "sub": "Kọ · Túmọ̀ · Ṣe àwòṣe · Ṣàgbékalẹ̀"
+    },
+    "tutorials": {
+      "title": "Àwọn ẹ̀kọ́",
+      "sub": "Wo ó, kí o sì tẹ̀lé e"
+    }
   }
 }

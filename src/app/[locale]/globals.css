@@ -354,12 +354,22 @@ html {
   display: none;
 }
 
-code {
+/* Code blocks scroll sideways. Inline code stays in the line: a block-style
+   box (inline-block + 12px padding) made every line holding `u1` taller. */
+pre code {
   white-space: pre;
   overflow-x: auto;
   display: inline-block;
   max-width: 100%;
   padding: 12px;
+}
+
+:not(pre) > code {
+  display: inline;
+  padding: 0.1em 0.3em;
+  border-radius: 0.25rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 code::-webkit-scrollbar {
@@ -376,19 +386,19 @@ code::-webkit-scrollbar-track {
 }
 
 @media (min-width: 640px) {
-  code {
+  pre code {
     max-width: 450px;
   }
 }
 
 @media (min-width: 768px) {
-  code {
+  pre code {
     max-width: 550px;
   }
 }
 
 @media (min-width: 1024px) {
-  code {
+  pre code {
     max-width: 650px;
   }
 }

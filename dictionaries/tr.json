@@ -1217,5 +1217,43 @@
   "meta": {
     "title": "ZecHub Wiki",
     "description": "Zcash için açık kaynaklı bir eğitim merkezi"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Buradan Başlayın",
+      "sub": "Zcash öğrenme yolculuğunuza başlayın"
+    },
+    "guides": {
+      "title": "Rehberler",
+      "sub": "Zcash protokollerini anlamak için yapılandırılmış belgeler"
+    },
+    "zcash-tech": {
+      "title": "Zcash Teknolojisi",
+      "sub": "Zcash'e güç veren teknolojinin içi"
+    },
+    "organizations": {
+      "title": "Organizasyonlar",
+      "sub": "Yapı · Yönetişim · Katkıda bulunanlar"
+    },
+    "privacy-tools": {
+      "title": "Gizlilik Araçları",
+      "sub": "Pratik gizlilik çözümleri"
+    },
+    "research": {
+      "title": "Araştırma",
+      "sub": "Sıfır Bilgi · Gizlilik · Kriptografiyi keşfedin"
+    },
+    "glossary": {
+      "title": "Sözlük ve SSS",
+      "sub": "Tanımlar, yanıtlar, netlik."
+    },
+    "contribute": {
+      "title": "Katkıda Bulun",
+      "sub": "Yaz · Çevir · Tasarla · Geliştir"
+    },
+    "tutorials": {
+      "title": "Öğreticiler",
+      "sub": "İzleyin ve takip edin"
+    }
   }
 }

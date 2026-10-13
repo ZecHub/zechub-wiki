@@ -1217,5 +1217,43 @@
   "meta": {
     "title": "Wiki ZecHub",
     "description": "Um hub educacional de código aberto para Zcash"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Comece aqui",
+      "sub": "Comece sua jornada de aprendizado sobre Zcash"
+    },
+    "guides": {
+      "title": "Guias",
+      "sub": "Documentação estruturada para entender os protocolos Zcash"
+    },
+    "zcash-tech": {
+      "title": "Tecnologia Zcash",
+      "sub": "Por dentro da tecnologia que impulsiona o Zcash"
+    },
+    "organizations": {
+      "title": "Organizações",
+      "sub": "Estrutura · Governança · Colaboradores"
+    },
+    "privacy-tools": {
+      "title": "Ferramentas de privacidade",
+      "sub": "Soluções práticas de privacidade"
+    },
+    "research": {
+      "title": "Pesquisa",
+      "sub": "Explorando Zero-Knowledge · Privacidade · Criptografia"
+    },
+    "glossary": {
+      "title": "Glossário e FAQs",
+      "sub": "Definições, respostas, clareza."
+    },
+    "contribute": {
+      "title": "Contribuir",
+      "sub": "Escreva · Traduza · Crie · Desenvolva"
+    },
+    "tutorials": {
+      "title": "Tutoriais",
+      "sub": "Assista e acompanhe"
+    }
   }
 }

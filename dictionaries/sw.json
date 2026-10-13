@@ -1212,5 +1212,43 @@
   "meta": {
     "title": "ZecHub Wiki",
     "description": "chanzo wazi elimu kitovu kwa ajili ya Zcash"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Anza Hapa",
+      "sub": "Anza safari yako ya kujifunza Zcash"
+    },
+    "guides": {
+      "title": "Miongozo",
+      "sub": "Nyaraka zilizopangwa za kuelewa itifaki za Zcash"
+    },
+    "zcash-tech": {
+      "title": "Zcash Tech",
+      "sub": "Ndani ya teknolojia inayowezesha Zcash"
+    },
+    "organizations": {
+      "title": "Mashirika",
+      "sub": "Muundo · Utawala · Wachangiaji"
+    },
+    "privacy-tools": {
+      "title": "Vifaa vya Faragha",
+      "sub": "Suluhisho za vitendo za faragha"
+    },
+    "research": {
+      "title": "Utafiti",
+      "sub": "Kuchunguza Zero-Knowledge · Faragha · Kriptografia"
+    },
+    "glossary": {
+      "title": "Glossary & FAQs",
+      "sub": "Ufafanuzi, majibu, uwazi."
+    },
+    "contribute": {
+      "title": "Kuchangia",
+      "sub": "Andika · Tafsiri · Buni · Endeleza"
+    },
+    "tutorials": {
+      "title": "Mafunzo",
+      "sub": "Tazama na ufuate"
+    }
   }
 }

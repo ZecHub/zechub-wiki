@@ -1211,5 +1211,43 @@
   "meta": {
     "title": "ZecHub Wiki",
     "description": "Ebe agụmakwụkwọ mepere emepe maka Zcash"
+  },
+  "sectionBanners": {
+    "start-here": {
+      "title": "Malite Ebe a",
+      "sub": "Malite njem mmụta Zcash gị"
+    },
+    "guides": {
+      "title": "Akwụkwọ ntuziaka",
+      "sub": "Akwụkwọ e haziri ahazi maka ịghọta ụkpụrụ Zcash"
+    },
+    "zcash-tech": {
+      "title": "Zcash Tech",
+      "sub": "N'ime teknụzụ na-akwado Zcash"
+    },
+    "organizations": {
+      "title": "Nzukọ",
+      "sub": "Nhazi · Ọchịchị · Ndị ntinye aka"
+    },
+    "privacy-tools": {
+      "title": "Ngwaọrụ Nzuzo",
+      "sub": "Ngwọta nzuzo bara uru"
+    },
+    "research": {
+      "title": "Nnyocha",
+      "sub": "Ịchọpụta Zero-Knowledge · Nzuzo · Kriptografi"
+    },
+    "glossary": {
+      "title": "Glossary & Ajụjụ Ndị A Na-ajụkarị",
+      "sub": "Nkọwa, azịza, ido anya."
+    },
+    "contribute": {
+      "title": "Na-enye aka",
+      "sub": "Dee · Tụgharịa · Chepụta · Wulite"
+    },
+    "tutorials": {
+      "title": "Nkuzi",
+      "sub": "Lelee ma soro"
+    }
   }
 }
