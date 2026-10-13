@@ -292,22 +292,22 @@ export const networkUpgrades: NetworkUpgrade[] = [
     status: "current",
     eraColor: "28 90% 42%",
   },
-  {
+    {
     id: "nu7",
     name: "NU7",
     subtitle: "Faster Blocks and Network Sustainability",
     date: "Testnet Oct 4, 2026 · Mainnet targeted Nov 5, 2026",
     blockHeight: null,
     description:
-      "NU7 reduces target block spacing from 75 s to 25 s (ZIP 218) so average first-confirmation wait drops threefold while daily ZEC issuance stays unchanged. It deploys the Network Sustainability Mechanism (ZIP 235 + ZIP 237): 60 % of each block’s transaction fees are removed from circulation into a public reserve and reissued to miners on a halving-preserving schedule beginning ~February 2031. Version 4 transactions become invalid (ZIP 2003), making any remaining Sprout funds unspendable. No new transaction format is introduced. Shielded action limits and a wider difficulty averaging window (17 → 102 blocks) bound validation and light-wallet sync costs under the higher block rate.",
+      "NU7 is live on public Testnet (height 4,465,026). Mainnet activation height will be set on 20 October 2026, with a target of 5 November.\n\nKey changes:\n• 25-second blocks (ZIP 218) — first confirmations arrive ~3× faster; daily ZEC issuance unchanged.\n• Network Sustainability Mechanism (ZIP 235 + 237) — 60% of transaction fees go into a public reserve and are reissued to miners on a halving-preserving schedule starting ~February 2031.\n• Sprout retirement (ZIP 2003) — version 4 transactions become invalid, so any remaining Sprout funds become unspendable.\n• Action limits and a wider difficulty window (17 → 102 blocks) keep validation and light-wallet sync costs bounded.\n\nNo new transaction format is introduced.",
     features: [
       "25-second target block spacing (3× faster first confirmation)",
-      "Shielded action limits (global 330; per-pool caps) to protect nodes and light wallets",
-      "Difficulty averaging window widened from 17 to 102 blocks",
-      "NSM: 60 % of fees removed from circulation into reserve (ZIP 235)",
-      "Halving-preserving NSM reissuance starting ~Feb 2031 (ZIP 237)",
-      "Version 4 transactions disallowed → Sprout pool retirement (ZIP 2003)",
-      "Funding-stream period lengths adjusted for new block spacing (ZIP 207 Rev 2 / 214 Rev 3 / 2008)",
+      "Shielded action limits (global 330; per-pool caps)",
+      "Difficulty averaging window: 17 → 102 blocks",
+      "NSM: 60% of fees to reserve (ZIP 235)",
+      "Halving-preserving NSM reissuance ~Feb 2031 (ZIP 237)",
+      "Version 4 transactions disallowed → Sprout retirement (ZIP 2003)",
+      "Funding-stream periods adjusted for new block spacing",
     ],
     zips: [
       { number: 218, title: "25-second Block Target Spacing" },
@@ -320,6 +320,6 @@ export const networkUpgrades: NetworkUpgrade[] = [
     privacyLevel: 98,
     privacyLabel: "Sustainable Privacy",
     status: "future",
-    eraColor: "0 0% 45%",
+    eraColor: "195 75% 42%",
   },
 ];
