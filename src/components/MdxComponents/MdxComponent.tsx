@@ -112,6 +112,17 @@ const MdxComponents = {
   h2: ({ children, ...rest }: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(children).trim();
     const id = slugify(text);
+    if ((rest as Record<string, unknown>)["data-eyebrow"] === "true") {
+      // Summary label (e.g. "TL;DR"): small uppercase eyebrow above its callout.
+      return (
+        <h2
+          id={id}
+          className="mb-2 mt-8 scroll-mt-20 text-xs font-semibold uppercase tracking-[0.14em] text-brand dark:text-brand-soft"
+        >
+          {children}
+        </h2>
+      );
+    }
     return (
       <h2
         id={id}
@@ -245,7 +256,7 @@ const MdxComponents = {
       const accent = variant === "warn" ? "border-amber-500/70" : "border-brand";
       return (
         <ul
-          className={`my-6 list-disc space-y-2 rounded-r-lg border-l-2 ${accent} bg-slate-50 py-4 pl-10 pr-5 marker:text-slate-400 dark:bg-white/[0.03] dark:marker:text-slate-500`}
+          className={`mb-6 mt-0 max-w-3xl list-disc space-y-1.5 rounded-r-lg border-l-2 ${accent} bg-slate-50 py-3.5 pl-9 pr-5 text-[15px] leading-relaxed marker:text-slate-400 dark:bg-white/[0.03] dark:marker:text-slate-500`}
         >
           {children}
         </ul>

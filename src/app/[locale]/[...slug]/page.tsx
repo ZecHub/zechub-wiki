@@ -151,6 +151,8 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean } = {}) {
         const n = kids[i];
         if (n.type === "element" && n.tagName === "h2") {
           const variant = variantFor(textOf(n));
+          // The summary heading becomes a small label above its card.
+          if (variant === "tldr") n.properties = { ...(n.properties || {}), dataEyebrow: "true" };
           if (variant) {
             for (let j = i + 1; j < kids.length; j++) {
               const m = kids[j];
