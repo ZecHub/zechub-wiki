@@ -193,6 +193,25 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean } = {}) {
                 inner.properties = { ...(inner.properties || {}), dataButton: "true" };
                 n.children = [inner];
                 n.properties = { ...(n.properties || {}), dataButtonRow: "true" };
+                // Group the button with the description paragraph right after
+                // it into one entry card, so name + text read as a unit.
+                let j = i + 1;
+                while (j < kids.length && isBlank(kids[j])) j++;
+                const next = kids[j];
+                if (next && next.type === "element" && next.tagName === "p" && !onlyChild(next)?.tagName?.match(/^(a|strong|img|iframe)$/)) {
+                  const card = {
+                    type: "element",
+                    tagName: "div",
+                    properties: {
+                      className: [
+                        "my-5 w-fit max-w-full rounded-xl border border-slate-200 bg-slate-50/60 p-5 dark:border-white/10 dark:bg-white/[0.03] [&>p:first-child]:mt-0 [&>p:first-child]:mb-3 [&>p:last-child]:my-0 [&>p:last-child]:text-[15px] [&>p:last-child]:leading-relaxed [&>p:last-child]:text-slate-600 dark:[&>p:last-child]:text-slate-300",
+                      ],
+                    },
+                    children: [n, next],
+                  };
+                  kids.splice(i, j - i + 1, card);
+                  continue;
+                }
               } else {
                 n.children = [inner];
                 n.properties = { ...(n.properties || {}), dataLinkTitle: "true" };
