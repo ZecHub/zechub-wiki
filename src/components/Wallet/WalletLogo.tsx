@@ -97,6 +97,20 @@ function process(img: HTMLImageElement): Variants {
   if (!octx) return null;
   ctx.putImageData(data, 0, 0);
   octx.drawImage(c, box.x0, box.y0, bw, bh, 0, 0, bw, bh);
+  if (isAppIcon) {
+    // Square app icons get softly rounded corners so they sit well next to round and free-form marks.
+    const r = Math.min(bw, bh) * 0.22;
+    octx.globalCompositeOperation = "destination-in";
+    octx.beginPath();
+    octx.moveTo(r, 0);
+    octx.arcTo(bw, 0, bw, bh, r);
+    octx.arcTo(bw, bh, 0, bh, r);
+    octx.arcTo(0, bh, 0, 0, r);
+    octx.arcTo(0, 0, bw, 0, r);
+    octx.closePath();
+    octx.fill();
+    octx.globalCompositeOperation = "source-over";
+  }
   const light = out.toDataURL("image/png");
 
   let darkUrl = light;
