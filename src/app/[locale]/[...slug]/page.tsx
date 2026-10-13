@@ -152,7 +152,7 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean } = {}) {
         if (n.type === "element" && n.tagName === "h2") {
           const variant = variantFor(textOf(n));
           // The summary heading becomes a small label above its card.
-          if (variant === "tldr") n.properties = { ...(n.properties || {}), dataEyebrow: "true" };
+          if (variant === "tldr" || variant === "warn") n.properties = { ...(n.properties || {}), dataEyebrow: variant };
           if (variant) {
             for (let j = i + 1; j < kids.length; j++) {
               const m = kids[j];
