@@ -166,8 +166,16 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     }),
   );
 
+  // Featured wallets are always listed first, in this order; the rest follow by rating.
+  const featuredOrder = ["zodl", "zkool", "vizor", "zingo", "ywallet"];
+  const featuredRank = (title: string) => {
+    const i = featuredOrder.indexOf(title.toLowerCase().replace(/[^a-z0-9]/g, ""));
+    return i === -1 ? featuredOrder.length : i;
+  };
   const sortedWallets = [...filteredWallets].sort(
-    (a, b) => likes[b.title] - likes[a.title],
+    (a, b) =>
+      featuredRank(a.title) - featuredRank(b.title) ||
+      (likes[b.title] ?? 0) - (likes[a.title] ?? 0),
   );
 
   return (
