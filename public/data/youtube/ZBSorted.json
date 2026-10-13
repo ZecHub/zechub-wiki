@@ -120,7 +120,7 @@
     {
       "title": "Conheça a P2P.me: Plataforma para comprar e vender USDC de forma anônima",
       "video_id": "9C9Tnc8dEGI",
-      "views": 662
+      "views": 665
     },
     {
       "title": "Vitalik Buterin fala sobre ZKP #zcash #zkp",
@@ -260,7 +260,7 @@
     {
       "title": "Zcash na Cake Wallet - Tutorial Completo",
       "video_id": "ngzYYqcRa84",
-      "views": 353
+      "views": 354
     },
     {
       "title": "Vitalik Buterin - Privacidade  LEGENDADO",
@@ -568,6 +568,11 @@
       "views": 186
     },
     {
+      "title": "Desenvolvendo soluções para a liberdade financeira",
+      "video_id": "gQ3w46Pwf-M",
+      "views": 185
+    },
+    {
       "title": "O que é Zero Knowledge Proofs? A Zcash a primeira a aplicar ZK. #blockchain #bitcoin #crypto",
       "video_id": "IVVRZxNZSyM",
       "views": 184
@@ -575,11 +580,6 @@
     {
       "title": "Privacidade Fora do Digital",
       "video_id": "rbFNlsIcOFw",
-      "views": 184
-    },
-    {
-      "title": "Desenvolvendo soluções para a liberdade financeira",
-      "video_id": "gQ3w46Pwf-M",
       "views": 184
     },
     {
@@ -993,6 +993,11 @@
       "views": 119
     },
     {
+      "title": "LiveZEC: doações em Zcash na sua live (OBS) | Tutorial completo",
+      "video_id": "NmfEKZtjQjY",
+      "views": 118
+    },
+    {
       "title": "O que é a Implementação Zebra? - Com Conrado Gouvea",
       "video_id": "hHi2TxHY2Ww",
       "views": 117
@@ -1030,11 +1035,6 @@
     {
       "title": "Segurança no Mundo de Agentes: Como Pensar Defesa Agora",
       "video_id": "IPwLtOF9BhQ",
-      "views": 116
-    },
-    {
-      "title": "LiveZEC: doações em Zcash na sua live (OBS) | Tutorial completo",
-      "video_id": "NmfEKZtjQjY",
       "views": 116
     },
     {
@@ -1548,6 +1548,11 @@
       "views": 79
     },
     {
+      "title": "Smart Wallet, adoção sem ponto único de falha.",
+      "video_id": "dIUrPNNtGsw",
+      "views": 79
+    },
+    {
       "title": "Coisificação da Vida",
       "video_id": "X3pKLoKPn1g",
       "views": 78
@@ -1565,11 +1570,6 @@
     {
       "title": "Esclarecimento sobre o verdadeiro significado de hacker",
       "video_id": "UcAG3MQr-Rg",
-      "views": 77
-    },
-    {
-      "title": "Smart Wallet, adoção sem ponto único de falha.",
-      "video_id": "dIUrPNNtGsw",
       "views": 77
     },
     {
@@ -1728,6 +1728,11 @@
       "views": 69
     },
     {
+      "title": "Como trocar ZEC por USDC no 0xramp (passo a passo)",
+      "video_id": "26jGJP5M3Ks",
+      "views": 69
+    },
+    {
       "title": "CEX X DEX - A importância da privacidade.",
       "video_id": "DvrEVKRVKoY",
       "views": 68
@@ -1750,11 +1755,6 @@
     {
       "title": "Criptomoedas vs Bancos: Quem Oferece Mais Liberdade?",
       "video_id": "-_nhzvSpAmk",
-      "views": 68
-    },
-    {
-      "title": "Como trocar ZEC por USDC no 0xramp (passo a passo)",
-      "video_id": "26jGJP5M3Ks",
       "views": 68
     },
     {
@@ -1873,18 +1873,23 @@
       "views": 61
     },
     {
+      "title": "Zcash Protocol Walkthroug §1.1–1.2 | Engineering #8",
+      "video_id": "gLqT_0B4tSU",
+      "views": 61
+    },
+    {
       "title": "Zcash Ficou Mais Fácil: Ledger, Onboarding e Velocidade",
       "video_id": "57gsTSXFA4Y",
       "views": 61
     },
     {
-      "title": "Zcash Protocol Walkthroug §1.1–1.2 | Engineering #8",
-      "video_id": "gLqT_0B4tSU",
-      "views": 60
-    },
-    {
       "title": "Zcash Inside: Mineração, Dev Fund e Governança Híbrida.",
       "video_id": "HY2-Eoo1DhM",
+      "views": 59
+    },
+    {
+      "title": "Protocol Study 9 | Hashes Curves and PRFs httpst",
+      "video_id": "-3LaLTL4RFY",
       "views": 59
     },
     {
@@ -1910,11 +1915,6 @@
     {
       "title": "Zcash Brasil no Blockchain Rio: Comunidade, Privacidade e Presença Real",
       "video_id": "tx0WTBihM3U",
-      "views": 58
-    },
-    {
-      "title": "Protocol Study 9 | Hashes Curves and PRFs httpst",
-      "video_id": "-3LaLTL4RFY",
       "views": 58
     },
     {
@@ -3153,6 +3153,11 @@
       "views": 27
     },
     {
+      "title": "Como receber doações em Zcash na sua live (tutorial LiveZEC)",
+      "video_id": "Puw-a5Ml2Aw",
+      "views": 27
+    },
+    {
       "title": "Zooko - O Visionário por trás da #Zcash",
       "video_id": "ekCUOdqyLyg",
       "views": 26
@@ -3185,6 +3190,11 @@
     {
       "title": "Primeira Community Call da Zcash Brasil em 2026: Planos, Missão e Comunidade",
       "video_id": "TGu6fRBDfyw",
+      "views": 26
+    },
+    {
+      "title": "Protocol Study #3: Notes, commitments and nullifier | Engineering #10",
+      "video_id": "DcmdZw9yyFg",
       "views": 26
     },
     {
@@ -3288,11 +3298,6 @@
       "views": 24
     },
     {
-      "title": "Como receber doações em Zcash na sua live (tutorial LiveZEC)",
-      "video_id": "Puw-a5Ml2Aw",
-      "views": 24
-    },
-    {
       "title": "Pilares da Zcash - Segurança e Descentralização",
       "video_id": "H355v9_puGI",
       "views": 23
@@ -3325,11 +3330,6 @@
     {
       "title": "Explorando Áreas Técnicas e Privacidade na Ethereum",
       "video_id": "Nl30SzAlMyo",
-      "views": 23
-    },
-    {
-      "title": "Protocol Study #3: Notes, commitments and nullifier | Engineering #10",
-      "video_id": "DcmdZw9yyFg",
       "views": 23
     },
     {
