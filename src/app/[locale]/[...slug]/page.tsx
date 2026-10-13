@@ -128,7 +128,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns() {
+function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -181,11 +181,14 @@ function rehypeWikiPatterns() {
           } else if (only && only.type === "element" && only.tagName === "strong") {
             const inner = onlyChild(only);
             if (inner && inner.type === "element" && inner.tagName === "a") {
-              // Only action labels ("Visit …", "Download …") become buttons;
-              // a bold name such as **[Gemini](url)** stays an entry title.
-              const isAction = /^(visit|open|download|get|go to|try|read|learn|start|buy|install|launch)\b/i.test(
-                textOf(inner).trim(),
-              );
+              // Bold link on its own line = call-to-action button, but only on
+              // pages that opted in (currently the "Using Zcash" section);
+              // elsewhere it stays a plain entry title.
+              const isAction =
+                opts.boldLinkButtons === true ||
+                /^(visit|open|download|get|go to|try|read|learn|start|buy|install|launch)\b/i.test(
+                  textOf(inner).trim(),
+                );
               if (isAction) {
                 inner.properties = { ...(inner.properties || {}), dataButton: "true" };
                 n.children = [inner];
@@ -715,7 +718,7 @@ export default async function Page(props: {
         // Runs AFTER rehypeRaw so it sees the parsed raw-HTML nodes.
         rehypeStripDangerous,
         rehypeFlattenNestedParagraphs,
-        rehypeWikiPatterns,
+        [rehypeWikiPatterns, { boldLinkButtons: slug[0] === "using-zcash" }],
       ],
     },
   });

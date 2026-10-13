@@ -44,8 +44,9 @@ const getHeadingText = (children: React.ReactNode): string => {
 const LINK =
   "font-medium text-brand underline decoration-brand/40 underline-offset-[3px] transition-colors hover:decoration-brand dark:text-brand-soft dark:decoration-brand-soft/40 dark:hover:decoration-brand-soft";
 
+// Same look as the "Explore" button / home page call-to-action buttons.
 const BUTTON =
-  "inline-flex items-center gap-1.5 rounded-lg border border-brand bg-brand px-4 py-2 text-sm font-semibold !text-on-brand no-underline transition-colors hover:bg-brand-hover dark:border-brand/40 dark:bg-brand/15 dark:!text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:!text-white";
+  "inline-flex items-center justify-center gap-1.5 rounded-lg border border-brand bg-brand px-4 py-2 text-center text-sm font-semibold !text-on-brand no-underline transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:border-brand/40 dark:bg-brand/15 dark:!text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:!text-white dark:focus-visible:ring-offset-slate-900";
 
 const MdxComponents = {
   // TOC LINKS — underline on hover only (no dashed line)
@@ -106,7 +107,7 @@ const MdxComponents = {
     return (
       <h2
         id={id}
-        className="group mt-14 mb-4 scroll-mt-20 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:text-white"
+        className="group mt-14 mb-4 scroll-mt-20 border-t border-slate-200 pt-10 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:border-slate-800 dark:text-white [h1+&]:mt-8 [h1+&]:border-0 [h1+&]:pt-0 [hr+&]:mt-8 [hr+&]:border-0 [hr+&]:pt-0"
         {...rest}
       >
         {children}
@@ -265,7 +266,7 @@ const MdxComponents = {
       );
     }
     if (rec["data-button-row"] === "true") {
-      return <p className="my-5">{props.children}</p>;
+      return <p className="mt-8 mb-3">{props.children}</p>;
     }
     return <p className="my-5" {...props} />;
   },
