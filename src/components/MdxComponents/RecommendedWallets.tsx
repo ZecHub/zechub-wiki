@@ -8,6 +8,8 @@ const WALLETS = [
     url: "https://zodl.com/",
     logo: "/content-images/198608b2-9059-4cb7-aeb8-9354971376fd-d67c2d46f5.webp",
     platforms: "Mobile",
+    // Dark glyph on a transparent background: flip it in the dark theme.
+    invertOnDark: true,
     description:
       "Mobile wallet focused on simple, private ZEC payments, with shielded transactions and Ironwood support.",
   },
@@ -35,7 +37,14 @@ const WALLETS = [
     description:
       "Open-source wallet for mobile and desktop, with support for multiple accounts and shielded funds.",
   },
-] as const;
+] as readonly {
+  name: string;
+  url: string;
+  logo: string;
+  platforms: string;
+  description: string;
+  invertOnDark?: boolean;
+}[];
 
 const BUTTON =
   "mt-4 flex w-full items-center justify-between rounded-lg border border-brand bg-brand px-5 py-3 text-base font-semibold !text-on-brand no-underline transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:border-brand/40 dark:bg-brand/15 dark:!text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:!text-white dark:focus-visible:ring-offset-slate-900";
@@ -56,10 +65,10 @@ export default function RecommendedWallets() {
               <img
                 src={w.logo}
                 alt={`${w.name} logo`}
-                width={56}
-                height={56}
+                width={64}
+                height={64}
                 loading="lazy"
-                className="!my-0 h-14 w-14 shrink-0 rounded-xl border border-slate-200 bg-white object-contain p-1.5 dark:border-white/10"
+                className={`!my-0 h-16 w-16 shrink-0 rounded-xl border border-slate-200 object-cover dark:border-white/10 ${w.invertOnDark ? "dark:invert" : ""}`}
               />
               <span className="block min-w-0">
                 <span className="block text-lg font-semibold leading-tight text-slate-900 dark:text-white">
