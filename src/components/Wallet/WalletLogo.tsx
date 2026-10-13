@@ -10,7 +10,7 @@ type Variants = { light: string; dark: string } | null;
 
 const FRAME = "!my-0 h-auto max-h-16 w-auto max-w-[10rem] object-contain";
 
-function process(img: HTMLImageElement): Variants {
+function process(img: HTMLImageElement, keepColors: boolean): Variants {
   const w = img.naturalWidth;
   const h = img.naturalHeight;
   if (!w || !h || w * h > 4_000_000) return null;
@@ -114,7 +114,7 @@ function process(img: HTMLImageElement): Variants {
   const light = out.toDataURL("image/png");
 
   let darkUrl = light;
-  if (!isAppIcon && dark / Math.max(opaque, 1) > 0.02) {
+  if (!keepColors && !isAppIcon && dark / Math.max(opaque, 1) > 0.02) {
     const od = octx.getImageData(0, 0, bw, bh);
     const q = od.data;
     for (let i = 0; i < q.length; i += 4) {
@@ -133,7 +133,7 @@ function process(img: HTMLImageElement): Variants {
   return { light, dark: darkUrl };
 }
 
-export default function WalletLogo({ src, alt }: { src: string; alt: string }) {
+export default function WalletLogo({ src, alt, keepColors = false }: { src: string; alt: string; keepColors?: boolean }) {
   const [v, setV] = useState<Variants>(null);
 
   useEffect(() => {
@@ -142,7 +142,7 @@ export default function WalletLogo({ src, alt }: { src: string; alt: string }) {
     img.crossOrigin = "anonymous";
     img.onload = () => {
       try {
-        const r = process(img);
+        const r = process(img, keepColors);
         if (alive) setV(r);
       } catch {
         /* keep the original */
@@ -152,7 +152,7 @@ export default function WalletLogo({ src, alt }: { src: string; alt: string }) {
     return () => {
       alive = false;
     };
-  }, [src]);
+  }, [src, keepColors]);
 
   if (v) {
     return (

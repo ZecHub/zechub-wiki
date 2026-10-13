@@ -95,6 +95,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [featuresOpen, setFeaturesOpen] = useState(false);
+  const logoOverride = walletLogoOverrides[title.toLowerCase().replace(/[^a-z0-9]/g, "")];
   const note = walletNotes[title.toLowerCase().replace(/[^a-z0-9]/g, "")];
 
   const handleLike = () => {
@@ -149,7 +150,11 @@ const WalletItem: React.FC<WalletItemProps> = ({
             aria-label={`${title} (opens in a new tab)`}
             className="flex min-w-0 items-center"
           >
-            <WalletLogo src={walletLogoOverrides[title.toLowerCase().replace(/[^a-z0-9]/g, "")] ?? logo} alt={`${title} Logo`} />
+            <WalletLogo
+              src={logoOverride ?? logo}
+              alt={`${title} Logo`}
+              keepColors={Boolean(logoOverride)}
+            />
           </a>
           <Link
             href={link}
