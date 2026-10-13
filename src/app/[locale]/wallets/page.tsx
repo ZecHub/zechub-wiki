@@ -57,7 +57,11 @@ export default async function Page(props: {
   const content = markdown
     ? markdown
     : (dict.pages?.wallets?.noData ?? "No Data or Wrong file");
-  const walletsParsed = parseMarkdown(String(content));
+  // Wallets hidden from the directory (still present in the content repo).
+  const hiddenWallets = new Set(["ezcash", "zcashd"]);
+  const walletsParsed = parseMarkdown(String(content)).filter(
+    (w: { title: string }) => !hiddenWallets.has(w.title.toLowerCase().replace(/[^a-z0-9]/g, "")),
+  );
 
   return (
     <main>
