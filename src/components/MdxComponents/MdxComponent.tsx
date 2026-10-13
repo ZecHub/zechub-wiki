@@ -8,6 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 import RecommendedWallets from "./RecommendedWallets";
 import RecommendedExchanges from "./RecommendedExchanges";
 import ExchangeVideoCard from "./ExchangeVideoCard";
+import GuideActions from "./GuideActions";
 import ExchangeLinkCard from "./ExchangeLinkCard";
 import VideoBlock from "./VideoBlock";
 
@@ -56,6 +57,7 @@ const BUTTON =
 const MdxComponents = {
   exchangevideo: ExchangeVideoCard,
   exchangelink: ExchangeLinkCard,
+  guideactions: GuideActions,
   videoblock: VideoBlock,
   // TOC LINKS — underline on hover only (no dashed line)
   a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {

@@ -210,6 +210,8 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
           if (nx && nx.type === "element" && nx.tagName === "p") {
             nx.properties = { ...(nx.properties || {}), dataLead: "true" };
             stepCount.leadDone = true;
+            // Quick action buttons right under the introduction.
+            kids.splice(j + 1, 0, { type: "element", tagName: "guideactions", properties: {}, children: [] });
           }
         }
         // A paragraph/link that is just a big brand logo is decoration on guide pages: drop it.
@@ -941,7 +943,7 @@ export default async function Page(props: {
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.
-        hideBanner={["using-zcash"].includes(slug[0])}
+        hideBanner={["using-zcash", "start-here"].includes(slug[0])}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={
