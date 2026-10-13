@@ -15,6 +15,7 @@ const ICONS: Record<string, { icon: string; dark?: string }> = {
   trocador: { icon: `${D}/trocador-icon.png` },
   fixedfloat: { icon: `${D}/fixedfloat-icon.png`, dark: `${D}/fixedfloat-icon-dark.png` },
   changenow: { icon: `${D}/changenow-icon.png` },
+  shapeshift: { icon: `${D}/shapeshift-icon.png`, dark: `${D}/shapeshift-icon-dark.png` },
   leodex: { icon: `${D}/leodex-icon.png`, dark: `${D}/leodex-icon-dark.png` },
 };
 
