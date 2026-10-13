@@ -15,6 +15,8 @@ type MdxContainerProps = {
     width?: number;
     height?: number;
   };
+  /** Hides the decorative banner image above the article (minimal layout). */
+  hideBanner?: boolean;
   /**
    * Trail shown above the article, so a reader landing on a deep page can see
    * where it sits. Research pages render their own inside the variant below.
@@ -45,6 +47,7 @@ export default async function MdxContainer({
   breadcrumbs,
   layoutVariant = "default",
   researchMeta,
+  hideBanner = false,
 }: MdxContainerProps) {
   const lightSrc = heroImage?.src ?? defaultImgSource;
   const darkSrc = heroImage?.darkSrc ?? lightSrc;
@@ -54,7 +57,7 @@ export default async function MdxContainer({
 
   return (
     <main>
-      {!isResearchArticle ? (
+      {!isResearchArticle && !hideBanner ? (
         <div className="mb-5 flex w-full justify-center rounded bg-transparent pb-0 imd:pb-4">
           {/* Light mode image */}
           <Image
