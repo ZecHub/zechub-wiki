@@ -966,3 +966,12 @@ h4 {
   --color-page: #f6f7fa;
   --color-on-brand: #1a1a1a;
 }
+
+/* Embedded videos written as raw HTML in wiki markdown are centered with
+   mx-auto; align them with the left edge of the text column instead. */
+.mdx-article div.aspect-video.mx-auto {
+  margin-left: 0;
+  margin-right: auto;
+  box-shadow: none;
+  border: 1px solid color-mix(in srgb, var(--color-brand) 18%, transparent);
+}
