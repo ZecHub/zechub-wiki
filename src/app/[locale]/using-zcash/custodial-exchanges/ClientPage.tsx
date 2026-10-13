@@ -2,7 +2,11 @@
 import { ArrowUpRight } from "lucide-react";
 import ExchangeTypeNav from "@/components/ExchangeTypeNav";
 import { useLanguage } from "@/context/LanguageContext";
+import VenueIcon from "@/components/VenueIcon";
+import { venueIcon } from "@/lib/venueIcons";
 import type { Venue } from "@/lib/parseVenueMarkdown";
+
+const clean = (v?: string) => (v && !/^not stated\.?$/i.test(v.trim()) ? v : undefined);
 
 const CustodialExchangesClient = ({ venues }: { venues: Venue[] }) => {
   const { t } = useLanguage();
@@ -24,10 +28,10 @@ const CustodialExchangesClient = ({ venues }: { venues: Venue[] }) => {
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {venues.map((ex) => {
           const rows: [string, string | undefined][] = [
-            ["Pairs", ex.pairs],
-            ["Supports", ex.support],
-            ["Deposit time", ex.depositTime],
-            ["Ironwood", ex.ironwood],
+            ["Pairs", clean(ex.pairs)],
+            ["Supports", clean(ex.support)],
+            ["Deposit time", clean(ex.depositTime)],
+            ["Ironwood", clean(ex.ironwood)],
           ];
           return (
             <article
@@ -35,22 +39,15 @@ const CustodialExchangesClient = ({ venues }: { venues: Venue[] }) => {
               className="flex flex-col rounded-xl border border-slate-200 bg-slate-50/60 p-4 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-white/10">
-                  {ex.logo ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={ex.logo} alt={ex.altText ?? ""} loading="lazy" className="!my-0 h-full w-full object-contain p-1.5" />
-                  ) : (
-                    <span className="text-xl font-semibold text-slate-600">{ex.name.charAt(0).toUpperCase()}</span>
-                  )}
-                </span>
+                <VenueIcon name={ex.name} icon={venueIcon(ex.name).icon} iconDark={venueIcon(ex.name).dark} />
                 <h2 className="m-0 min-w-0 text-lg font-semibold leading-tight text-slate-900 dark:text-white">{ex.name}</h2>
               </div>
-              <dl className="mb-0 mt-3 flex-1 space-y-1.5 text-[14px] leading-relaxed">
+              <dl className="mb-0 mt-4 flex-1 divide-y divide-slate-200 border-t border-slate-200 text-[14px] leading-snug dark:divide-white/10 dark:border-white/10">
                 {rows.map(([label, value]) =>
                   value ? (
-                    <div key={label} className="grid grid-cols-[6.5rem_1fr] gap-2">
-                      <dt className="text-slate-500 dark:text-slate-400">{label}</dt>
-                      <dd className="m-0 text-slate-700 dark:text-slate-200">{value}</dd>
+                    <div key={label} className="py-2.5">
+                      <dt className="text-[11px] font-medium uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">{label}</dt>
+                      <dd className="m-0 mt-1 text-slate-800 dark:text-slate-100">{value}</dd>
                     </div>
                   ) : null,
                 )}
@@ -60,7 +57,7 @@ const CustodialExchangesClient = ({ venues }: { venues: Venue[] }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${cta}: ${ex.name} (opens in a new tab)`}
-                className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-lg border border-brand/50 px-4 py-2 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:text-brand-soft dark:hover:text-white dark:focus-visible:ring-offset-slate-900"
+                className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-lg border border-brand/50 px-4 py-2 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:text-brand-soft dark:hover:text-white dark:focus-visible:ring-offset-slate-900"
               >
                 {cta}
                 <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
