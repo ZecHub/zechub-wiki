@@ -122,6 +122,78 @@ function rehypeFlattenNestedParagraphs() {
   };
 }
 
+// Presentation hints for common wiki patterns, derived from the markdown
+// itself so contributors don't need to write HTML:
+//  - the list right after a "TL;DR" / "Common Mistakes" / "Related Pages"
+//    heading gets a data-variant (summary card / warning card / link cards)
+//  - a paragraph that is only **[Label](url)** becomes a call-to-action button
+//  - a paragraph that is only a [Link](url) becomes a titled entry link
+function rehypeWikiPatterns() {
+  const textOf = (n: any): string =>
+    n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
+  const variantFor = (heading: string): string | null => {
+    const h = heading.trim().toLowerCase();
+    if (/^tl;?\s?dr\b|^summary$|^key takeaways$/.test(h)) return "tldr";
+    if (/mistake|pitfall|warning|things to avoid/.test(h)) return "warn";
+    if (/^related|^see also|^next steps/.test(h)) return "related";
+    return null;
+  };
+  const isBlank = (n: any) => n.type === "text" && !n.value.trim();
+  const onlyChild = (n: any) => {
+    const kids = (n.children || []).filter((c: any) => !isBlank(c));
+    return kids.length === 1 ? kids[0] : null;
+  };
+  return (tree: any) => {
+    const walk = (node: any) => {
+      const kids = node.children;
+      if (!Array.isArray(kids)) return;
+      for (let i = 0; i < kids.length; i++) {
+        const n = kids[i];
+        if (n.type === "element" && n.tagName === "h2") {
+          const variant = variantFor(textOf(n));
+          if (variant) {
+            for (let j = i + 1; j < kids.length; j++) {
+              const m = kids[j];
+              if (isBlank(m)) continue;
+              if (m.type === "element" && m.tagName === "ul") {
+                m.properties = { ...(m.properties || {}), dataVariant: variant };
+                if (variant === "related") {
+                  // "[Wallets](/wallets) — description" → drop the dash so the
+                  // description reads as a card subtitle.
+                  for (const li of m.children || []) {
+                    if (li.type !== "element" || li.tagName !== "li") continue;
+                    const nxt = (li.children || []).find(
+                      (c: any, k: number, a: any[]) =>
+                        k > 0 && a[k - 1].type === "element" && a[k - 1].tagName === "a" && c.type === "text",
+                    );
+                    if (nxt) nxt.value = nxt.value.replace(/^\s*[—–-]\s*/, "");
+                  }
+                }
+              }
+              break;
+            }
+          }
+        }
+        if (n.type === "element" && n.tagName === "p") {
+          const only = onlyChild(n);
+          if (only && only.type === "element" && only.tagName === "a") {
+            n.properties = { ...(n.properties || {}), dataLinkTitle: "true" };
+          } else if (only && only.type === "element" && only.tagName === "strong") {
+            const inner = onlyChild(only);
+            if (inner && inner.type === "element" && inner.tagName === "a") {
+              inner.properties = { ...(inner.properties || {}), dataButton: "true" };
+              n.children = [inner];
+              n.properties = { ...(n.properties || {}), dataButtonRow: "true" };
+            }
+          }
+        }
+        walk(n);
+      }
+    };
+    walk(tree);
+  };
+}
+
 const LazyMdxComponent = React.lazy(() => import("@/components/MdxRenderer"));
 
 export async function generateMetadata({
@@ -633,6 +705,7 @@ export default async function Page(props: {
         // Runs AFTER rehypeRaw so it sees the parsed raw-HTML nodes.
         rehypeStripDangerous,
         rehypeFlattenNestedParagraphs,
+        rehypeWikiPatterns,
       ],
     },
   });
