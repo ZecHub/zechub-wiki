@@ -5,6 +5,7 @@ import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import LiteYouTube from "@/components/LiteYouTube";
 import type { MDXComponents } from "mdx/types";
 import { ArrowUpRight } from "lucide-react";
+import RecommendedWallets from "./RecommendedWallets";
 
 // Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
 // Requires a YouTube host first (no over-match of unrelated iframes).
@@ -190,7 +191,13 @@ const MdxComponents = {
   ),
 
   // Everything else
-  img: (props: HTMLProps<HTMLImageElement>): JSX.Element => (
+  img: (props: HTMLProps<HTMLImageElement>): JSX.Element => {
+    // "Obtaining Zcash" embeds a screenshot of wallet cards; show the curated
+    // native list instead (until the markdown itself is updated).
+    if (String(props.src || "").includes("8b7618f5-dec6-4e6b-9804-db75be5c1e2f")) {
+      return <RecommendedWallets />;
+    }
+    return (
     // Images are self-hosted under /content-images/ (same-origin) — serve as-is.
     <img
       src={props.src || ""}
@@ -198,7 +205,8 @@ const MdxComponents = {
       className="my-5 rounded-xl border border-slate-200 dark:border-white/10"
       loading="lazy"
     />
-  ),
+    );
+  },
   // Raw <iframe> in content markdown: route YouTube through the click-to-load
   // facade so a page doesn't contact Google on render; other iframes pass through.
   iframe: (props: HTMLProps<HTMLIFrameElement>): JSX.Element => {
