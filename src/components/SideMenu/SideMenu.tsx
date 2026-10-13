@@ -1,47 +1,14 @@
 'use client';
-import { matchIcons } from "@/constants/Icons";
 import { getName, transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import { Link } from "@/i18n/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import {
   BiRightArrowAlt as Arrow,
   BiMenu as BurgerMenuIcon,
-  BiSolidWallet as Wallet,
 } from "react-icons/bi";
-import { FaListAlt } from "react-icons/fa";
-import { FiFile as FileIcon } from "react-icons/fi";
 import { Icon } from "../UI/Icon";
-import { MdPayment } from "react-icons/md";
-
-const getIconSize = (name: string): number | "tiny" | "small" | "medium" | "large" => {
-  const sizes: Record<string, number | "tiny" | "small" | "medium" | "large"> = {
-    Wallets: 24,                    
-    Treasury: 22,                   
-    "Using Zcash": 20,
-    Guides: 20,
-    "Zcash Organizations": 20,
-    "Zcash Community": 20,
-    "Zcash Tech": 20,
-    "Privacy Tools": 20,
-    "Raspberry pi 4 Zebra Node": 28,
-    Contribute: 20,
-    "Glossary & FAQ's": 18,
-    "ZK Shielded Asset Platforms": 12,
-    //"Cbdc": 24,
-    // Add any other item name here, e.g.:
-    // "Blockchain Explorers": 26,
-    // "Shielded Pools": 18,
-  };
-  return sizes[name] ?? "small";   // default size for everything else
-};
-
-const images = [
-  "/exchangetutorials.png",
-  "/fullnodetutorials.png",
-  "/usingzcashtutorials.png",
-  "/wallettutorials.png",
-];
 
 interface MenuProps {
   folder: string;
@@ -54,7 +21,39 @@ interface MenuProps {
   enTitles?: Record<string, string>;
 }
 
+const normalize = (v: string) => decodeURIComponent(v).replace(/\/+$/, "").toLowerCase();
+
+// One sidebar entry. The current page gets an accent bar and brand colour;
+// everything else is plain text so the list stays calm to scan.
+const NavItem = ({
+  href,
+  label,
+  pathname,
+}: {
+  href: string;
+  label: string;
+  pathname: string;
+}) => {
+  const active = normalize(pathname).endsWith(normalize(href));
+  return (
+    <li>
+      <Link
+        href={`${href}#content`}
+        aria-current={active ? "page" : undefined}
+        className={`-ml-px block border-l-2 px-3 py-1.5 text-[13.5px] leading-snug transition-colors ${
+          active
+            ? "border-brand font-medium text-brand dark:text-brand-soft"
+            : "border-transparent text-slate-600 hover:border-slate-400 hover:text-slate-900 dark:text-slate-300 dark:hover:border-white/40 dark:hover:text-white"
+        }`}
+      >
+        {label}
+      </Link>
+    </li>
+  );
+};
+
 const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
+  const pathname = usePathname() ?? "";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const { t } = useLanguage();
@@ -89,131 +88,57 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
       <div className="flex justify-end lg:justify-center w-auto order-2 lg:order-3">
         <Link
           href="/explore"
-          className="flex items-center rounded-full font-bold px-4 py-2 hover:bg-brand"
-          style={{
-            background: "var(--color-brand)",
-            fontWeight: "600",
-            borderRadius: "0.4rem",
-            color: "white",
-          }}
+          className="inline-flex items-center justify-center gap-1 rounded-lg border border-brand bg-brand px-4 py-2 text-center text-sm font-semibold text-on-brand transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:border-brand/40 dark:bg-brand/15 dark:text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:text-white dark:focus-visible:ring-offset-slate-900"
         >
           {t?.sideMenu?.explore ?? "Explore"}
           <Icon size={"medium"} icon={Arrow} />
         </Link>
       </div>
 
-      <div
-        className={`flex flex-col shrink-0 top-0 py-4 lg:items-center justify-start w-full px-3 order-3 lg:order-2 ${
+      <nav
+        aria-label={chromeLabel(fold)}
+        className={`w-full shrink-0 px-3 py-4 order-3 lg:order-2 lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto ${
           isMenuOpen ? "block mt-7" : "hidden lg:block"
         }`}
       >
-        <h1 className="text-4xl font-bold mb-6"> {chromeLabel(fold)}: </h1>
-        <div>
-          <ul>
-            {root.map((item: any, i: any) => {
-              if (getName(item) === "Wallets") return null;
-              if (getName(item) === "Payment Processors") return null;
-              if (getName(item) === "Custodial Exchanges") return null;
-              return (
-                <li
-                  key={i}
-                  className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-1`}
-                >
-                  <Link
-                    href={`/${transformGithubFilePathToWikiLink(item)}#content`}
-                  >
-                    <div className={`flex items-center space-x-4`}>
-                      <div className="flex-shrink-0">
-                        <Icon
-                          icon={matchIcons(fold, getName(item)) ?? FileIcon}
-                          size={getIconSize(getName(item))}   // ← individual size!
-                          className="text-current"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium leading-snug line-clamp-2 break-words">
-                          {item ? menuLabel(item) : ""}
-                        </p>
-                      </div>
-                      <div className="inline-flex items-center text-base font-semibold ">
-                        <Icon icon={Arrow} size={16} />
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
-
-            {/* Wallets (custom PNG support + individual size) */}
-            {fold === "Using Zcash" && (
-              <li className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}>
-                <Link href="/wallets">
-                  <div className={`flex items-center space-x-4`}>
-                    <div className="flex-shrink-0">
-                      <Icon
-                        icon={matchIcons(fold, "Wallets")}
-                        size={getIconSize("Wallets")}   // ← controlled here
-                        className="text-current"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium ">{chromeLabel("Wallets")}</p>
-                    </div>
-                    <div className="inline-flex items-center text-base font-semibold ">
-                      <Icon icon={Arrow} size={16} />
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            )}
-
-            {/* Custodial Exchanges & Payment Processors (same pattern) */}
-            {fold === "Using Zcash" && (
-              <li className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}>
-                <Link href="/using-zcash/custodial-exchanges">
-                  <div className={`flex items-center space-x-4`}>
-                    <div className="flex-shrink-0">
-                      <Icon
-                        icon={matchIcons(fold, "Custodial Exchanges") ?? FaListAlt}
-                        size={getIconSize("Custodial Exchanges")}
-                        className="text-current"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium ">{chromeLabel("Custodial Exchanges")}</p>
-                    </div>
-                    <div className="inline-flex items-center text-base font-semibold ">
-                      <Icon icon={Arrow} size={16} />
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            )}
-
-            {fold === "Using Zcash" && (
-              <li className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}>
-                <Link href="/payment-processors">
-                  <div className={`flex items-center space-x-4`}>
-                    <div className="flex-shrink-0">
-                      <Icon
-                        icon={matchIcons(fold, "Payment Processors") ?? MdPayment}
-                        size={getIconSize("Payment Processors")}
-                        className="text-current"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium ">{chromeLabel("Payment Processors")}</p>
-                    </div>
-                    <div className="inline-flex items-center text-base font-semibold ">
-                      <Icon icon={Arrow} size={16} />
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            )}
-          </ul>
-        </div>
-      </div>
+        <p className="mb-3 px-3 font-[family-name:var(--font-heading)] text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+          {chromeLabel(fold)}
+        </p>
+        <ul className="space-y-0.5 border-l border-slate-200 dark:border-white/10">
+          {root.map((item: any, i: any) => {
+            const itemName = getName(item);
+            if (
+              itemName === "Wallets" ||
+              itemName === "Payment Processors" ||
+              itemName === "Custodial Exchanges"
+            )
+              return null;
+            return (
+              <NavItem
+                key={i}
+                href={`/${transformGithubFilePathToWikiLink(item)}`}
+                label={item ? menuLabel(item) : ""}
+                pathname={pathname}
+              />
+            );
+          })}
+          {fold === "Using Zcash" && (
+            <>
+              <NavItem href="/wallets" label={chromeLabel("Wallets")} pathname={pathname} />
+              <NavItem
+                href="/using-zcash/custodial-exchanges"
+                label={chromeLabel("Custodial Exchanges")}
+                pathname={pathname}
+              />
+              <NavItem
+                href="/payment-processors"
+                label={chromeLabel("Payment Processors")}
+                pathname={pathname}
+              />
+            </>
+          )}
+        </ul>
+      </nav>
     </div>
   );
 };
