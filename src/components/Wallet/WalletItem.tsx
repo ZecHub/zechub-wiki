@@ -61,8 +61,9 @@ const chip =
 
 // Short descriptors that the wallet list in the content repo does not carry yet.
 // Logos that replace the image coming from the wallet list in the content repo.
-const walletLogoOverrides: { [key: string]: string } = {
-  zallet: "/dex-logos/zebra-icon.png", // Zcash Foundation zebra
+const walletLogoOverrides: { [key: string]: { src: string; keepColors?: boolean } } = {
+  zallet: { src: "/dex-logos/zebra-icon.png", keepColors: true }, // Zcash Foundation zebra
+  noirwallet: { src: "/dex-logos/noirwallet-text.png" }, // wordmark only, no grey backdrop
 };
 
 const walletNotes: { [key: string]: string } = {
@@ -151,9 +152,9 @@ const WalletItem: React.FC<WalletItemProps> = ({
             className="flex min-w-0 items-center"
           >
             <WalletLogo
-              src={logoOverride ?? logo}
+              src={logoOverride?.src ?? logo}
               alt={`${title} Logo`}
-              keepColors={Boolean(logoOverride)}
+              keepColors={Boolean(logoOverride?.keepColors)}
             />
           </a>
           <Link
