@@ -320,6 +320,6 @@ export const networkUpgrades: NetworkUpgrade[] = [
     privacyLevel: 98,
     privacyLabel: "Sustainable Privacy",
     status: "future",
-    eraColor: "195 75% 42%",
+    eraColor: "265 70% 52%",
   },
 ];
