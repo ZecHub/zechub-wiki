@@ -29,6 +29,14 @@ const ICONS: Record<string, { icon: string; dark?: string }> = {
   coinex: { icon: `${D}/coinex-icon.png` },
   bybit: { icon: `${D}/bybit-icon.png`, dark: `${D}/bybit-icon-dark.png` },
   coinbase: { icon: `${D}/coinbase-icon.png` },
+  robinhood: { icon: `${D}/robinhood-icon.png` },
+  okx: { icon: `${D}/okx-icon.png`, dark: `${D}/okx-icon-dark.png` },
+  okex: { icon: `${D}/okx-icon.png`, dark: `${D}/okx-icon-dark.png` },
+  htx: { icon: `${D}/htx-icon.png` },
+  htxformerhuobi: { icon: `${D}/htx-icon.png` },
+  huobi: { icon: `${D}/htx-icon.png` },
+  bitfinex: { icon: `${D}/bitfinex-icon.png` },
+  backpack: { icon: `${D}/backpack-icon.png` },
   leodex: { icon: `${D}/leodex-icon.png`, dark: `${D}/leodex-icon-dark.png` },
 };
 
