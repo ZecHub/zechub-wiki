@@ -238,7 +238,7 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean } = {}) {
                     tagName: "div",
                     properties: {
                       className: [
-                        "my-5 w-full max-w-3xl rounded-xl border border-slate-200 bg-slate-50/60 p-4 dark:border-white/10 dark:bg-white/[0.03] [&>p:first-child]:mt-0 [&>p:first-child]:mb-4 [&>p:first-child>a]:flex [&>p:first-child>a]:w-full [&>p:first-child>a]:justify-between [&>p:first-child>a]:px-5 [&>p:first-child>a]:py-3.5 [&>p:first-child>a]:text-base [&>p:last-child]:my-0 [&>p:last-child]:px-1 [&>p:last-child]:text-[15px] [&>p:last-child]:leading-relaxed [&>p:last-child]:text-slate-600 dark:[&>p:last-child]:text-slate-300",
+                        "my-5 w-full max-w-3xl rounded-xl border border-slate-200 bg-slate-50/60 p-4 dark:border-white/10 dark:bg-white/[0.03] [&>p:first-child]:mt-0 [&>p:first-child]:mb-3 [&>p:first-child>a]:px-4 [&>p:first-child>a]:py-2 [&>p:first-child>a]:text-sm [&>p:last-child]:my-0 [&>p:last-child]:px-1 [&>p:last-child]:text-[15px] [&>p:last-child]:leading-relaxed [&>p:last-child]:text-slate-600 dark:[&>p:last-child]:text-slate-300",
                       ],
                     },
                     children: [n, next],
