@@ -127,28 +127,31 @@ const WalletItem: React.FC<WalletItemProps> = ({
   );
 
   return (
-    <div className="wallet-item h-full flex flex-col border rounded-2xl shadow-lg bg-white dark:bg-gray-800 overflow-hidden transition-all hover:shadow-xl">
-      {/* Logo — taller + more padding on mobile */}
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block bg-gray-100 dark:bg-gray-200 p-5 md:p-6 flex items-center justify-center h-52 md:h-48"
-      >
-        <Image
-          className="w-full h-full object-contain"
-          width={260}
-          height={180}
-          src={logo}
-          alt={`${title} Logo`}
-          priority={false}
-        />
-      </a>
+    <div className="wallet-item flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-slate-50/60 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40">
+      {/* Logo tile: fixed size, neutral white so every logo stays legible in both themes */}
+      <div className="p-4 pb-0">
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${title} (opens in a new tab)`}
+          className="flex h-36 items-center justify-center rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10"
+        >
+          <Image
+            className="!my-0 h-full w-full object-contain"
+            width={260}
+            height={180}
+            src={logo}
+            alt={`${title} Logo`}
+            priority={false}
+          />
+        </a>
+      </div>
 
-      <div className="flex-1 flex flex-col p-5 md:p-6">
+      <div className="flex flex-1 flex-col p-4 pt-4">
         {/* Title + Open button */}
         <div className="flex justify-between items-start mb-4">
-          <h5 className="text-xl md:text-2xl font-bold text-slate-700 dark:text-slate-200 flex-1 pr-3">
+          <h5 className="m-0 flex-1 pr-3 text-lg font-semibold leading-tight text-slate-900 dark:text-white">
             {title}
             {syncSpeed && (
               <span className="inline-block ml-2 align-middle">
@@ -158,7 +161,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
           </h5>
           <Link
             href={link}
-            className="px-4 py-2 border border-slate-500 dark:border-slate-400 text-slate-500 dark:text-slate-400 text-sm hover:bg-slate-500 hover:text-white rounded-lg transition whitespace-nowrap"
+            className="inline-flex items-center whitespace-nowrap rounded-lg border border-brand/50 px-3.5 py-1.5 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -301,7 +304,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
       </div>
 
       {/* Rating pinned at bottom */}
-      <div className="border-t border-slate-200 dark:border-slate-700 p-5 mt-auto flex items-center">
+      <div className="mt-auto flex items-center border-t border-slate-200 px-4 py-3 dark:border-white/10">
         <div className="flex-grow text-sm text-gray-400">Rating: {likes}</div>
         <div className="text-pink-700 dark:text-red-300 text-xs pr-2">{error}</div>
         <div className="text-green-700 dark:text-green-300 text-xs pr-2">{success}</div>
