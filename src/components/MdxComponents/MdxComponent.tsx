@@ -46,7 +46,7 @@ const LINK =
 
 // Same look as the "Explore" button / home page call-to-action buttons.
 const BUTTON =
-  "inline-flex items-center justify-center gap-1.5 rounded-lg border border-brand bg-brand px-4 py-2 text-center text-sm font-semibold !text-on-brand no-underline transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:border-brand/40 dark:bg-brand/15 dark:!text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:!text-white dark:focus-visible:ring-offset-slate-900";
+  "inline-flex items-center justify-center gap-2 rounded-lg border border-brand bg-brand px-5 py-2.5 text-center text-[15px] font-semibold !text-on-brand no-underline transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 dark:border-brand/40 dark:bg-brand/15 dark:!text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:!text-white dark:focus-visible:ring-offset-slate-900";
 
 const MdxComponents = {
   // TOC LINKS — underline on hover only (no dashed line)
@@ -90,7 +90,7 @@ const MdxComponents = {
     return (
       <a href={resolved} target="_blank" rel="noreferrer" className={className}>
         {props.children}
-        {isButton ? <ArrowUpRight aria-hidden="true" className="h-4 w-4" /> : null}
+        {isButton ? <ArrowUpRight aria-hidden="true" className="h-[18px] w-[18px]" /> : null}
       </a>
     );
   },
