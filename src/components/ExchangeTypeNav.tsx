@@ -1,29 +1,47 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 
-const btnClass =
-  "inline-flex py-2 px-4 btn-brand focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-sm";
-
+// Segmented switch between the three exchange directories. The current page is
+// highlighted; the others are quiet text links.
 export default function ExchangeTypeNav() {
   const { t } = useLanguage();
-  const dexLabel = t?.pages?.dex?.title ?? "DEX platforms";
-  const custodialLabel = t?.pages?.dex?.custodial ?? "Custodial Exchanges";
-  const centralisedLabel =
-    t?.pages?.dex?.centralised ?? "Centralised Swap platforms";
+  const pathname = usePathname() ?? "";
+  const items = [
+    { href: "/dex", label: t?.pages?.dex?.title ?? "DEX platforms" },
+    {
+      href: "/using-zcash/custodial-exchanges",
+      label: t?.pages?.dex?.custodial ?? "Custodial Exchanges",
+    },
+    {
+      href: "/using-zcash/centralized-swaps",
+      label: t?.pages?.dex?.centralised ?? "Centralised Swap platforms",
+    },
+  ];
 
   return (
-    <div className="flex gap-4 mt-0 imd:mt-4 text-center flex-col items-center imd:flex-row">
-      <Link href="/dex" className={btnClass}>
-        {dexLabel}
-      </Link>
-      <Link href="/using-zcash/custodial-exchanges" className={btnClass}>
-        {custodialLabel}
-      </Link>
-      <Link href="/using-zcash/centralized-swaps" className={btnClass}>
-        {centralisedLabel}
-      </Link>
-    </div>
+    <nav
+      aria-label="Exchange types"
+      className="inline-flex max-w-full flex-wrap gap-1 rounded-lg border border-slate-200 bg-slate-50/60 p-1 dark:border-white/10 dark:bg-white/[0.03]"
+    >
+      {items.map((item) => {
+        const active = pathname === item.href || pathname.endsWith(item.href);
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            aria-current={active ? "page" : undefined}
+            className={`rounded-md px-3.5 py-1.5 text-sm font-medium no-underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
+              active
+                ? "bg-brand/10 text-brand dark:bg-brand/20 dark:text-white"
+                : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
+            }`}
+          >
+            {item.label}
+          </Link>
+        );
+      })}
+    </nav>
   );
 }
