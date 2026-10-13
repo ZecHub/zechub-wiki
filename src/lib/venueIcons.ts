@@ -37,9 +37,17 @@ const ICONS: Record<string, { icon: string; dark?: string }> = {
   huobi: { icon: `${D}/htx-icon.png` },
   bitfinex: { icon: `${D}/bitfinex-icon.png` },
   backpack: { icon: `${D}/backpack-icon.png` },
+  nativeswap: { icon: `${D}/nativeswap-icon.png` },
+  zcashtocash: { icon: `${D}/zcashtocash-icon.png`, dark: `${D}/zcashtocash-icon-dark.png` },
   leodex: { icon: `${D}/leodex-icon.png`, dark: `${D}/leodex-icon-dark.png` },
 };
 
 export function venueIcon(name: string): { icon?: string; dark?: string } {
-  return ICONS[name.toLowerCase().replace(/[^a-z0-9]/g, "")] ?? {};
+  const key = name.toLowerCase().replace(/[^a-z0-9]/g, "");
+  if (ICONS[key]) return ICONS[key];
+  // Names such as "OKX (formerly OKEx)" or "HTX (former Huobi)": match by prefix.
+  const hit = Object.keys(ICONS)
+    .filter((k) => key.startsWith(k))
+    .sort((a, b) => b.length - a.length)[0];
+  return hit ? ICONS[hit] : {};
 }
