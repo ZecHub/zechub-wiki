@@ -136,7 +136,7 @@ const WalletItem: React.FC<WalletItemProps> = ({
     <div className="wallet-item flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-slate-50/60 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40">
       <div className="flex flex-1 flex-col p-4">
         {/* Logo top-left, Open button top-right */}
-        <div className="flex min-h-[4.5rem] items-center justify-between gap-3">
+        <div className="flex min-h-16 items-center justify-between gap-3">
           <a
             href={link}
             target="_blank"

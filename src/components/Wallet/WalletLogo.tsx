@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 // mode, and CSS then gives every logo the same visual box.
 type Variants = { light: string; dark: string } | null;
 
-const FRAME = "!my-0 h-auto max-h-[4.5rem] w-auto max-w-[12rem] object-contain";
+const FRAME = "!my-0 h-auto max-h-16 w-auto max-w-[10rem] object-contain";
 
 function process(img: HTMLImageElement): Variants {
   const w = img.naturalWidth;
