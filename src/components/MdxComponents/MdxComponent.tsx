@@ -4,19 +4,7 @@ import React, { HTMLProps, JSX } from "react";
 import { transformGithubFilePathToWikiLink } from "@/lib/helpers";
 import LiteYouTube from "@/components/LiteYouTube";
 import type { MDXComponents } from "mdx/types";
-import {
-  ArrowLeftRight,
-  ArrowUpRight,
-  BookOpen,
-  Cpu,
-  Link2,
-  ListChecks,
-  ShieldCheck,
-  TriangleAlert,
-  Wallet,
-  Zap,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 // Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
 // Requires a YouTube host first (no over-match of unrelated iframes).
@@ -55,20 +43,6 @@ const getHeadingText = (children: React.ReactNode): string => {
 // Reading-text link: brand colour, thin solid underline that firms up on hover.
 const LINK =
   "font-medium text-brand underline decoration-brand/40 underline-offset-[3px] transition-colors hover:decoration-brand dark:text-brand-soft dark:decoration-brand-soft/40 dark:hover:decoration-brand-soft";
-
-// Small icon chip shown before each H2, picked from keywords in the heading.
-const headingIcon = (text: string): LucideIcon => {
-  const t = text.toLowerCase();
-  if (/tl;?\s?dr|summary|overview|takeaway/.test(t)) return Zap;
-  if (/mistake|pitfall|warning|avoid|caution|risk/.test(t)) return TriangleAlert;
-  if (/related|see also|next steps|more/.test(t)) return Link2;
-  if (/shield|private|privacy/.test(t)) return ShieldCheck;
-  if (/exchange|swap|buy|dex|decentral|trade/.test(t)) return ArrowLeftRight;
-  if (/wallet/.test(t)) return Wallet;
-  if (/mining|miner|node|hardware/.test(t)) return Cpu;
-  if (/step|install|setup|set up|how to|guide|getting started/.test(t)) return ListChecks;
-  return BookOpen;
-};
 
 const BUTTON =
   "inline-flex items-center gap-1.5 rounded-lg border border-brand bg-brand px-4 py-2 text-sm font-semibold !text-on-brand no-underline transition-colors hover:bg-brand-hover dark:border-brand/40 dark:bg-brand/15 dark:!text-brand-soft dark:hover:border-brand/70 dark:hover:bg-brand/25 dark:hover:!text-white";
@@ -129,24 +103,17 @@ const MdxComponents = {
   h2: ({ children, ...rest }: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(children).trim();
     const id = slugify(text);
-    const Icon = headingIcon(text);
     return (
       <h2
         id={id}
-        className="group mt-12 mb-4 flex scroll-mt-20 items-center gap-3 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:text-white"
+        className="group mt-14 mb-4 scroll-mt-20 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:text-white"
         {...rest}
       >
-        <span
-          aria-hidden="true"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-brand/25 bg-brand/10 text-brand dark:text-brand-soft"
-        >
-          <Icon className="h-[18px] w-[18px]" />
-        </span>
-        <span className="min-w-0">{children}</span>
+        {children}
         <a
           href={`#${id}`}
           aria-label="Link to this section"
-          className="ml-1 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"
+          className="ml-2 text-lg font-normal text-slate-400 opacity-0 transition-opacity hover:text-brand focus-visible:opacity-100 group-hover:opacity-100"
         >
           #
         </a>
@@ -252,29 +219,22 @@ const MdxComponents = {
   ul: (props: HTMLProps<HTMLUListElement>): JSX.Element => {
     const variant = (props as Record<string, unknown>)["data-variant"];
     const { children } = props;
-    if (variant === "tldr") {
+    // Summary and warning lists: one quiet callout style, a thin accent bar
+    // and ordinary bullets (no icons, no boxes).
+    if (variant === "tldr" || variant === "warn") {
+      const accent = variant === "warn" ? "border-amber-500/70" : "border-brand";
       return (
         <ul
-          className="my-6 list-none space-y-3 rounded-xl border border-brand/30 bg-brand/5 p-5 dark:bg-brand/10 [&>li]:relative [&>li]:pl-7 [&>li]:before:absolute [&>li]:before:left-0 [&>li]:before:top-0 [&>li]:before:font-bold [&>li]:before:text-brand dark:[&>li]:before:text-brand-soft [&>li]:before:content-['✓']"
+          className={`my-6 list-disc space-y-2 rounded-r-lg border-l-2 ${accent} bg-slate-50 py-4 pl-10 pr-5 marker:text-slate-400 dark:bg-white/[0.03] dark:marker:text-slate-500`}
         >
           {children}
         </ul>
       );
     }
-    if (variant === "warn") {
-      return (
-        <ul
-          className="my-6 list-none space-y-3 rounded-xl border border-amber-500/30 bg-amber-500/5 p-5 [&>li]:relative [&>li]:pl-8 [&>li]:before:absolute [&>li]:before:left-0 [&>li]:before:top-0.5 [&>li]:before:h-5 [&>li]:before:w-5 [&>li]:before:rounded-full [&>li]:before:bg-amber-500/20 [&>li]:before:text-center [&>li]:before:text-xs [&>li]:before:font-bold [&>li]:before:leading-5 [&>li]:before:text-amber-600 dark:[&>li]:before:text-amber-300 [&>li]:before:content-['!']"
-        >
-          {children}
-        </ul>
-      );
-    }
+    // Related pages: plain two-column list of links with a muted description.
     if (variant === "related") {
       return (
-        <ul
-          className="my-6 grid list-none gap-3 pl-0 sm:grid-cols-2 [&>li]:rounded-xl [&>li]:border [&>li]:border-slate-200 [&>li]:p-4 [&>li]:text-sm [&>li]:text-slate-600 [&>li]:transition-colors hover:[&>li]:border-brand/50 dark:[&>li]:border-white/10 dark:[&>li]:text-slate-300 [&>li>a]:mb-1 [&>li>a]:block [&>li>a]:text-base [&>li>a]:font-semibold [&>li>a]:no-underline"
-        >
+        <ul className="my-6 grid list-none gap-x-8 gap-y-4 pl-0 sm:grid-cols-2 [&>li]:border-t [&>li]:border-slate-200 [&>li]:pt-3 [&>li]:text-sm [&>li]:text-slate-600 dark:[&>li]:border-white/10 dark:[&>li]:text-slate-400 [&>li>a]:block [&>li>a]:font-semibold [&>li>a]:no-underline hover:[&>li>a]:underline">
           {children}
         </ul>
       );
@@ -286,10 +246,9 @@ const MdxComponents = {
       />
     );
   },
-  // Ordered lists render as numbered steps with a brand-tinted counter.
   ol: (props: React.ComponentProps<"ol">): JSX.Element => (
     <ol
-      className="my-6 list-none space-y-4 pl-0 [counter-reset:step] [&>li]:relative [&>li]:min-h-7 [&>li]:pl-10 [&>li]:[counter-increment:step] [&>li]:before:absolute [&>li]:before:left-0 [&>li]:before:top-0 [&>li]:before:flex [&>li]:before:h-7 [&>li]:before:w-7 [&>li]:before:items-center [&>li]:before:justify-center [&>li]:before:rounded-full [&>li]:before:border [&>li]:before:border-brand/30 [&>li]:before:bg-brand/10 [&>li]:before:text-xs [&>li]:before:font-semibold [&>li]:before:text-brand dark:[&>li]:before:text-brand-soft [&>li]:before:content-[counter(step)]"
+      className="my-5 list-decimal space-y-2 pl-6 marker:font-medium marker:text-slate-500 dark:marker:text-slate-400"
       {...props}
     />
   ),
@@ -300,7 +259,7 @@ const MdxComponents = {
       // A paragraph that is only a link: treated as an entry title
       // (e.g. an exchange name) so it reads as a heading, not a stray link.
       return (
-        <p className="mt-8 mb-1 text-lg font-semibold [&>a]:no-underline [&>a]:hover:underline">
+        <p className="mt-7 mb-1 text-base font-semibold [&>a]:no-underline [&>a]:hover:underline">
           {props.children}
         </p>
       );

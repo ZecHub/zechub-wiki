@@ -181,9 +181,19 @@ function rehypeWikiPatterns() {
           } else if (only && only.type === "element" && only.tagName === "strong") {
             const inner = onlyChild(only);
             if (inner && inner.type === "element" && inner.tagName === "a") {
-              inner.properties = { ...(inner.properties || {}), dataButton: "true" };
-              n.children = [inner];
-              n.properties = { ...(n.properties || {}), dataButtonRow: "true" };
+              // Only action labels ("Visit …", "Download …") become buttons;
+              // a bold name such as **[Gemini](url)** stays an entry title.
+              const isAction = /^(visit|open|download|get|go to|try|read|learn|start|buy|install|launch)\b/i.test(
+                textOf(inner).trim(),
+              );
+              if (isAction) {
+                inner.properties = { ...(inner.properties || {}), dataButton: "true" };
+                n.children = [inner];
+                n.properties = { ...(n.properties || {}), dataButtonRow: "true" };
+              } else {
+                n.children = [inner];
+                n.properties = { ...(n.properties || {}), dataLinkTitle: "true" };
+              }
             }
           }
         }
