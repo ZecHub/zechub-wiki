@@ -6,6 +6,7 @@ import LiteYouTube from "@/components/LiteYouTube";
 import type { MDXComponents } from "mdx/types";
 import { ArrowUpRight } from "lucide-react";
 import RecommendedWallets from "./RecommendedWallets";
+import RecommendedExchanges from "./RecommendedExchanges";
 
 // Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
 // Requires a YouTube host first (no over-match of unrelated iframes).
@@ -196,6 +197,10 @@ const MdxComponents = {
     // native list instead (until the markdown itself is updated).
     if (String(props.src || "").includes("8b7618f5-dec6-4e6b-9804-db75be5c1e2f")) {
       return <RecommendedWallets />;
+    }
+    // Same for the screenshot grid of decentralized exchanges.
+    if (String(props.src || "").includes("bfe2e9cf-2def-4593-b790-152e14b23da3")) {
+      return <RecommendedExchanges />;
     }
     return (
     // Images are self-hosted under /content-images/ (same-origin) — serve as-is.
