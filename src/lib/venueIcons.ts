@@ -9,6 +9,12 @@ const ICONS: Record<string, { icon: string; dark?: string }> = {
   bisonwallet: { icon: `${D}/bison-icon.png`, dark: `${D}/bison-icon-dark.png` },
   bitcoinvn: { icon: `${D}/bitcoinvn-icon.png`, dark: `${D}/bitcoinvn-icon-dark.png` },
   firodex: { icon: `${D}/firo-icon.png` },
+  exolix: { icon: `${D}/exolix-icon.png`, dark: `${D}/exolix-icon-dark.png` },
+  xchange: { icon: `${D}/xchange-icon.png`, dark: `${D}/xchange-icon-dark.png` },
+  trocodor: { icon: `${D}/trocador-icon.png` },
+  trocador: { icon: `${D}/trocador-icon.png` },
+  fixedfloat: { icon: `${D}/fixedfloat-icon.png`, dark: `${D}/fixedfloat-icon-dark.png` },
+  changenow: { icon: `${D}/changenow-icon.png` },
   leodex: { icon: `${D}/leodex-icon.png`, dark: `${D}/leodex-icon-dark.png` },
 };
 
