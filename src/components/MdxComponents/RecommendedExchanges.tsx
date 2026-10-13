@@ -24,7 +24,7 @@ const EXCHANGES: readonly {
   {
     name: "THORChain",
     url: "https://swap.thorchain.org/",
-    logo: "/thorchain-logo.jpg",
+    logo: "/dex-logos/thorchain-icon.png",
     type: "DEX · Cross-chain",
     description:
       "Decentralized layer 1 exchange. Swap native assets such as ZEC, BTC and ETH without bridges, wrapped tokens or intermediaries.",
@@ -60,7 +60,7 @@ const EXCHANGES: readonly {
     name: "Changelly",
     url: "https://changelly.com/",
     logo: "/dex-logos/changelly-icon.png",
-    logoDark: "/dex-logos/changelly-icon.png",
+    logoDark: "/dex-logos/changelly-icon-dark.png",
     type: "Swap service",
     description:
       "Instant-execution crypto exchange covering a wide range of coins, advertising fees of up to 0.25%.",
