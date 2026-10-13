@@ -144,6 +144,7 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
     return kids.length === 1 ? kids[0] : null;
   };
   return (tree: any) => {
+    const stepCount = { n: 0, leadDone: false };
     const walk = (node: any) => {
       const kids = node.children;
       if (!Array.isArray(kids)) return;
@@ -202,6 +203,15 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
         }
         // Guide-style pages mark sections as "---" + a bold line: turn that into a real
         // heading (and drop the rule) so the page reads like the rest of the wiki.
+        if (opts.sectionHeadings && n.type === "element" && n.tagName === "hr" && !stepCount.leadDone) {
+          let j = i + 1;
+          while (j < kids.length && isBlank(kids[j])) j++;
+          const nx = kids[j];
+          if (nx && nx.type === "element" && nx.tagName === "p") {
+            nx.properties = { ...(nx.properties || {}), dataLead: "true" };
+            stepCount.leadDone = true;
+          }
+        }
         // A paragraph/link that is just a big brand logo is decoration on guide pages: drop it.
         // (The node can be a plain element or an MDX JSX node, so read both shapes.)
         if (opts.sectionHeadings && ["a", "p"].includes(n.tagName || n.name || "") && !textOf(n).trim()) {
@@ -232,7 +242,13 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
           if (inner && inner.type === "text" && prev >= 0 && kids[prev].type === "element" && kids[prev].tagName === "hr") {
             kids.splice(prev, 1);
             i--;
-            kids[i] = { type: "element", tagName: "h2", properties: {}, children: [{ type: "text", value: inner.value.trim() }] };
+            stepCount.n += 1;
+            kids[i] = {
+              type: "element",
+              tagName: "h2",
+              properties: { dataStep: String(stepCount.n) },
+              children: [{ type: "text", value: inner.value.trim() }],
+            };
             continue;
           }
         }

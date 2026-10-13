@@ -124,6 +124,24 @@ const MdxComponents = {
         </h2>
       );
     }
+    const step = (rest as Record<string, unknown>)["data-step"];
+    if (step) {
+      // Numbered step of a guide: number badge + title.
+      return (
+        <h2
+          id={id}
+          className="group mt-12 mb-4 flex scroll-mt-20 items-center gap-3 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:text-white"
+        >
+          <span
+            aria-hidden="true"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand/50 bg-brand/10 text-base font-semibold text-brand dark:text-brand-soft"
+          >
+            {String(step)}
+          </span>
+          <span>{children}</span>
+        </h2>
+      );
+    }
     return (
       <h2
         id={id}
@@ -298,6 +316,10 @@ const MdxComponents = {
     }
     if (rec["data-button-row"] === "true") {
       return <p className="mt-8 mb-3">{props.children}</p>;
+    }
+    if (rec["data-lead"] === "true") {
+      // Introductory sentence of a guide: slightly larger and muted.
+      return <p className="my-6 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-300">{props.children}</p>;
     }
     return <p className="my-5" {...props} />;
   },
