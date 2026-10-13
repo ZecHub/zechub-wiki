@@ -7418,8 +7418,8 @@
           "title": "Zcash Engage Server: 12-Month Funding Renewal(Nov 2026 - Oct 2027)",
           "votes": {
             "no": "0",
-            "yes": "1",
-            "abstain": "2"
+            "yes": "2",
+            "abstain": "3"
           },
           "status": "open",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
@@ -7454,7 +7454,7 @@
           "votes": {
             "no": "4",
             "yes": "2",
-            "abstain": "0"
+            "abstain": "1"
           },
           "status": "open",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
@@ -7488,7 +7488,7 @@
           "title": "From Awareness to Everyday ZEC Adoption—Zcash at Confluence 2.0",
           "votes": {
             "no": "0",
-            "yes": "0",
+            "yes": "1",
             "abstain": "0"
           },
           "status": "open",
