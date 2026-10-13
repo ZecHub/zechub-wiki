@@ -8,6 +8,8 @@ import { ArrowUpRight } from "lucide-react";
 import RecommendedWallets from "./RecommendedWallets";
 import RecommendedExchanges from "./RecommendedExchanges";
 import ExchangeVideoCard from "./ExchangeVideoCard";
+import ExchangeLinkCard from "./ExchangeLinkCard";
+import VideoBlock from "./VideoBlock";
 
 // Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
 // Requires a YouTube host first (no over-match of unrelated iframes).
@@ -53,6 +55,8 @@ const BUTTON =
 
 const MdxComponents = {
   exchangevideo: ExchangeVideoCard,
+  exchangelink: ExchangeLinkCard,
+  videoblock: VideoBlock,
   // TOC LINKS — underline on hover only (no dashed line)
   a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {
     let href = props.href || "";

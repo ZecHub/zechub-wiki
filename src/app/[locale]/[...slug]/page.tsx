@@ -174,6 +174,30 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean } = {}) {
             }
           }
         }
+        // Standalone video (<div><iframe/></div>) on opted-in pages → video card.
+        if (opts.boldLinkButtons && (n.type === "mdxJsxFlowElement" || n.type === "element") && (n.tagName || n.name) === "div") {
+          const attrOf = (x: any, key: string): string => {
+            if (x.properties && x.properties[key] != null) return String(x.properties[key]);
+            const hit = (x.attributes || []).find((at: any) => at.name === key);
+            return hit && typeof hit.value === "string" ? hit.value : "";
+          };
+          const findFrame = (x: any): any => {
+            if (!x || !(x.type === "element" || x.type === "mdxJsxFlowElement")) return null;
+            if ((x.tagName || x.name) === "iframe") return x;
+            return (x.children || []).map(findFrame).find(Boolean) || null;
+          };
+          const fr = findFrame(n);
+          const m = fr ? attrOf(fr, "src").match(/(?:youtube(?:-nocookie)?\.com\/embed\/|youtu\.be\/)([A-Za-z0-9_-]{6,})/) : null;
+          if (fr && m) {
+            kids[i] = {
+              type: "element",
+              tagName: "videoblock",
+              properties: { exvideo: m[1], extitle: attrOf(fr, "title") },
+              children: [],
+            };
+            continue;
+          }
+        }
         if (n.type === "element" && n.tagName === "p") {
           const only = onlyChild(n);
           if (only && only.type === "element" && only.tagName === "a") {
@@ -233,16 +257,27 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean } = {}) {
                   continue;
                 }
                 if (next && next.type === "element" && next.tagName === "p" && !onlyChild(next)?.tagName?.match(/^(a|strong|img|iframe)$/)) {
-                  const card = {
-                    type: "element",
-                    tagName: "div",
-                    properties: {
-                      className: [
-                        "my-5 w-full max-w-3xl rounded-xl border border-slate-200 bg-slate-50/60 p-4 dark:border-white/10 dark:bg-white/[0.03] [&>p:first-child]:mt-0 [&>p:first-child]:mb-3 [&>p:first-child>a]:px-4 [&>p:first-child>a]:py-2 [&>p:first-child>a]:text-sm [&>p:last-child]:my-0 [&>p:last-child]:px-1 [&>p:last-child]:text-[15px] [&>p:last-child]:leading-relaxed [&>p:last-child]:text-slate-600 dark:[&>p:last-child]:text-slate-300",
-                      ],
-                    },
-                    children: [n, next],
-                  };
+                  const card = opts.boldLinkButtons
+                    ? {
+                        type: "element",
+                        tagName: "exchangelink",
+                        properties: {
+                          exname: textOf(inner).trim(),
+                          exurl: String(inner.properties?.href || ""),
+                          extext: textOf(next).trim(),
+                        },
+                        children: [],
+                      }
+                    : {
+                        type: "element",
+                        tagName: "div",
+                        properties: {
+                          className: [
+                            "my-5 w-full max-w-3xl rounded-xl border border-slate-200 bg-slate-50/60 p-4 dark:border-white/10 dark:bg-white/[0.03] [&>p:first-child]:mt-0 [&>p:first-child]:mb-3 [&>p:first-child>a]:px-4 [&>p:first-child>a]:py-2 [&>p:first-child>a]:text-sm [&>p:last-child]:my-0 [&>p:last-child]:px-1 [&>p:last-child]:text-[15px] [&>p:last-child]:leading-relaxed [&>p:last-child]:text-slate-600 dark:[&>p:last-child]:text-slate-300",
+                          ],
+                        },
+                        children: [n, next],
+                      };
                   kids.splice(i, j - i + 1, card);
                   continue;
                 }
