@@ -234,19 +234,38 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
               n.properties.className = ["rounded-xl"];
             }
           }
-          if (n.type === "element" && n.tagName === "p") {
-            const m = textOf(n).trim().match(/^(mainnet|testnet)\s*:\s*(.+)$/i);
-            if (m) {
-              const name = m[2].trim();
-              const href = findLink(n) || `https://${/\./.test(name) ? name : name + ".com"}`;
-              kids[i] = {
-                type: "element",
-                tagName: "faucetcard",
-                properties: { network: m[1][0].toUpperCase() + m[1].slice(1).toLowerCase(), name, href },
-                children: [],
-              };
-              continue;
+          const asFaucet = (x: any): any => {
+            if (!x || x.type !== "element" || x.tagName !== "p") return null;
+            const m = textOf(x).trim().match(/^(mainnet|testnet)\s*:\s*(.+)$/i);
+            if (!m) return null;
+            const name = m[2].trim();
+            const href = findLink(x) || `https://${/\./.test(name) ? name : name + ".com"}`;
+            return {
+              type: "element",
+              tagName: "faucetcard",
+              properties: { network: m[1][0].toUpperCase() + m[1].slice(1).toLowerCase(), name, href },
+              children: [],
+            };
+          };
+          const first = asFaucet(n);
+          if (first) {
+            // Group consecutive faucet lines into one grid.
+            const cards = [first];
+            let j = i + 1;
+            while (j < kids.length) {
+              if (isBlank(kids[j])) { j++; continue; }
+              const c = asFaucet(kids[j]);
+              if (!c) break;
+              cards.push(c);
+              j++;
             }
+            kids.splice(i, j - i, { type: "element", tagName: "faucetlist", properties: {}, children: cards });
+            continue;
+          }
+          // Introduction paragraph: same lead style as the guides.
+          if (n.type === "element" && n.tagName === "p" && !stepCount.leadDone && textOf(n).trim().length > 60) {
+            n.properties = { ...(n.properties || {}), dataLead: "true" };
+            stepCount.leadDone = true;
           }
         }
         // Guide-style pages mark sections as "---" + a bold line: turn that into a real
