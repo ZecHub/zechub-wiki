@@ -9,6 +9,7 @@ import RecommendedWallets from "./RecommendedWallets";
 import RecommendedExchanges from "./RecommendedExchanges";
 import ExchangeVideoCard from "./ExchangeVideoCard";
 import GuideActions from "./GuideActions";
+import FaucetCard from "./FaucetCard";
 import ExchangeLinkCard from "./ExchangeLinkCard";
 import VideoBlock from "./VideoBlock";
 
@@ -58,6 +59,7 @@ const MdxComponents = {
   exchangevideo: ExchangeVideoCard,
   exchangelink: ExchangeLinkCard,
   guideactions: GuideActions,
+  faucetcard: FaucetCard,
   videoblock: VideoBlock,
   // TOC LINKS — underline on hover only (no dashed line)
   a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {

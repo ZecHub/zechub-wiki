@@ -128,7 +128,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -199,6 +199,54 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
               children: [],
             };
             continue;
+          }
+        }
+        // Faucets page: swap the white banner for the themed one and turn the
+        // "Mainnet: name" lines into cards.
+        if (opts.faucets) {
+          const tg = (x: any): string => x.tagName || x.name || "";
+          const setAttr = (x: any, key: string, val: string) => {
+            if (x.attributes) {
+              const hit = x.attributes.find((at: any) => at.name === key);
+              if (hit) hit.value = val;
+              else x.attributes.push({ type: "mdxJsxAttribute", name: key, value: val });
+            } else x.properties = { ...(x.properties || {}), [key]: val };
+          };
+          const findLink = (x: any): string => {
+            if (!x || typeof x !== "object") return "";
+            if (tg(x) === "a" && x.properties?.href) return String(x.properties.href);
+            for (const c of x.children || []) {
+              const r = findLink(c);
+              if (r) return r;
+            }
+            return "";
+          };
+          const altNow = (x: any): string => {
+            if (x.properties && x.properties.alt != null) return String(x.properties.alt);
+            const hit = (x.attributes || []).find((at: any) => at.name === "alt");
+            return hit && typeof hit.value === "string" ? hit.value : "";
+          };
+          if (tg(n) === "img" && /^screenshot/i.test(altNow(n))) {
+            setAttr(n, "src", "/faucets-banner.jpg");
+            setAttr(n, "alt", "zecfaucet.com - enter your Zcash address to receive 0.0005 ZEC");
+            if (n.properties) {
+              for (const k of ["srcSet", "srcset", "width", "height"]) delete n.properties[k];
+              n.properties.className = ["rounded-xl"];
+            }
+          }
+          if (n.type === "element" && n.tagName === "p") {
+            const m = textOf(n).trim().match(/^(mainnet|testnet)\s*:\s*(.+)$/i);
+            if (m) {
+              const name = m[2].trim();
+              const href = findLink(n) || `https://${/\./.test(name) ? name : name + ".com"}`;
+              kids[i] = {
+                type: "element",
+                tagName: "faucetcard",
+                properties: { network: m[1][0].toUpperCase() + m[1].slice(1).toLowerCase(), name, href },
+                children: [],
+              };
+              continue;
+            }
           }
         }
         // Guide-style pages mark sections as "---" + a bold line: turn that into a real
@@ -868,6 +916,7 @@ export default async function Page(props: {
             boldLinkButtons: slug[0] === "using-zcash",
             videoCards: slug[0] === "using-zcash" || slug[0] === "start-here",
             sectionHeadings: slug[0] === "start-here",
+            faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
           },
         ],
       ],
