@@ -1,5 +1,5 @@
 import React from "react";
-import { QRCodeSVG as QRCode } from "qrcode.react";
+import { QRCodeCanvas, QRCodeSVG } from "qrcode.react";
 
 interface QRCodeComponentProps {
   amount?: number;
@@ -8,6 +8,8 @@ interface QRCodeComponentProps {
   encrypt?: boolean;
   fec?: boolean;
   className?: string;
+  /** Request a canvas when the caller needs to export this QR as a PNG. */
+  canvasRef?: React.Ref<HTMLCanvasElement>;
 }
 
 const QRCodeComponent: React.FC<QRCodeComponentProps> = ({
@@ -16,6 +18,7 @@ const QRCodeComponent: React.FC<QRCodeComponentProps> = ({
   encrypt,
   fec,
   className,
+  canvasRef,
 }) => {
   const base64UrlEncode = (input: string): string => {
     const base64Encoded = btoa(unescape(encodeURIComponent(input)));
@@ -47,7 +50,11 @@ const QRCodeComponent: React.FC<QRCodeComponentProps> = ({
       className={`flex flex-col items-center p-4 border rounded-lg bg-white ${className}`}
       onClick={() => window.open(generateMessageLink(), "_blank")}
     >
-      <QRCode value={generateMessageLink()} size={180} />
+      {canvasRef ? (
+        <QRCodeCanvas ref={canvasRef} value={generateMessageLink()} size={180} />
+      ) : (
+        <QRCodeSVG value={generateMessageLink()} size={180} />
+      )}
       <p className="mt-2 text-sm text-gray-600">Tap QR to send payment</p>
     </div>
   );
