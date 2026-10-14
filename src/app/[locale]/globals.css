@@ -982,9 +982,14 @@ table[data-stack] td:first-child {
   font-weight: 600;
   white-space: nowrap;
 }
-table[data-stack][data-wide] td:first-child {
+table[data-stack][data-wide] {
+  table-layout: fixed;
+  width: 100%;
+}
+table[data-stack][data-wide] td:first-child,
+table[data-stack][data-wide] th:first-child {
   white-space: normal;
-  width: 42%;
+  width: 40%;
 }
 table[data-stack] td {
   color: inherit;

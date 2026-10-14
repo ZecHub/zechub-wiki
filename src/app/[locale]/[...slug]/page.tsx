@@ -128,14 +128,14 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
     const h = heading.trim().toLowerCase();
     if (/^tl;?\s?dr\b|^summary$|^key takeaways$/.test(h)) return "tldr";
     if (/mistake|pitfall|warning|things to avoid/.test(h)) return "warn";
-    if (/^related|^see also|^next steps/.test(h)) return "related";
+    if (/^related|^see also|^next steps|^resources$/.test(h)) return "related";
     return null;
   };
   const isBlank = (n: any) => n.type === "text" && !n.value.trim();
@@ -150,6 +150,42 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
       if (!Array.isArray(kids)) return;
       for (let i = 0; i < kids.length; i++) {
         const n = kids[i];
+        // Memos page: section lines become real headings; historical note becomes a callout.
+        if (opts.memos && n.type === "element") {
+          if (/^h[3-6]$/.test(n.tagName)) {
+            n.tagName = "h2";
+            n.properties = { ...(n.properties || {}) };
+            if (!stepCount.leadDone) stepCount.leadDone = false; // first paragraph after heading becomes the lead
+            stepCount.n += 1;
+          }
+          if (n.tagName === "p" && stepCount.n === 1 && !stepCount.leadDone) {
+            n.properties = { ...(n.properties || {}), dataLead: "true" };
+            stepCount.leadDone = true;
+          }
+          if (n.tagName === "p") {
+            // A paragraph that is only a link (e.g. under "Resources") becomes a button.
+            const only = onlyChild(n);
+            if (only && only.type === "element" && only.tagName === "a" && stepCount.n > 1) {
+              only.properties = { ...(only.properties || {}), dataButton: "true" };
+              n.children = [only];
+              n.properties = { ...(n.properties || {}), dataButtonRow: "true" };
+              continue;
+            }
+          }
+          if (n.tagName === "blockquote" && /^historical/i.test(textOf(n).trim())) {
+            const blocks = (n.children || []).filter((c: any) => !isBlank(c));
+            const head = blocks[0];
+            if (head && head.type === "element" && head.tagName === "p") {
+              kids[i] = {
+                type: "element",
+                tagName: "guidecallout",
+                properties: { title: textOf(head).trim() },
+                children: blocks.slice(1),
+              };
+              continue;
+            }
+          }
+        }
         if (n.type === "element" && n.tagName === "h2") {
           const variant = variantFor(textOf(n));
           // The summary heading becomes a small label above its card.
@@ -1007,6 +1043,7 @@ export default async function Page(props: {
             sectionHeadings: slug[0] === "start-here",
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
+            memos: slug[0] === "using-zcash" && slug[1] === "memos",
           },
         ],
       ],
