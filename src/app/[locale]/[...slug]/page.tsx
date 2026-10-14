@@ -128,7 +128,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -199,6 +199,76 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
               children: [],
             };
             continue;
+          }
+        }
+        // Recovery guide: subheadings, safety callout, jump buttons, readable tables.
+        if (opts.recovery) {
+          const tg = (x: any): string => x.tagName || x.name || "";
+          const SUBHEADINGS = /^(five-question decision flow|seed recovery|wallet files and standalone keys|sprout notes|before you open argos|restoring a seed from a different wallet)$/i;
+          if (n.type === "element" && n.tagName === "p") {
+            const txt = textOf(n).trim();
+            const strong = onlyChild(n);
+            const boldOnly = strong && strong.type === "element" && strong.tagName === "strong";
+            if (SUBHEADINGS.test(txt) || (boldOnly && /^why keep your recovery material\??$/i.test(txt))) {
+              kids[i] = { type: "element", tagName: boldOnly ? "h2" : "h3", properties: {}, children: [{ type: "text", value: txt }] };
+              continue;
+            }
+            // Lone link to the full field guide → button.
+            const only = onlyChild(n);
+            if (only && only.type === "element" && only.tagName === "a" && /^(read|open)\b/i.test(textOf(only).trim())) {
+              only.properties = { ...(only.properties || {}), dataButton: "true" };
+              n.children = [only];
+              n.properties = { ...(n.properties || {}), dataButtonRow: "true" };
+              continue;
+            }
+          }
+          if (n.type === "element" && /^h[1-4]$/.test(n.tagName) && /^security and responsibility/i.test(textOf(n).trim())) {
+            let j = i + 1;
+            while (j < kids.length && isBlank(kids[j])) j++;
+            const body = kids[j];
+            const nav = { type: "element", tagName: "recoverynav", properties: {}, children: [] };
+            if (body && body.type === "element" && body.tagName === "p") {
+              kids.splice(i, j - i + 1, nav, {
+                type: "element",
+                tagName: "guidecallout",
+                properties: { title: "Security and responsibility" },
+                children: body.children,
+              });
+              continue;
+            }
+          }
+          if (n.type === "element" && n.tagName === "table") {
+            const heads: string[] = [];
+            const collect = (x: any) => {
+              if (x.type === "element" && x.tagName === "th") heads.push(textOf(x).trim());
+              (x.children || []).forEach(collect);
+            };
+            collect(n);
+            n.properties = { ...(n.properties || {}), dataStack: "true" };
+            // Long first-column text (a sentence, not a label) must wrap.
+            let longest = 0;
+            const scanFirst = (x: any) => {
+              if (x.type === "element" && x.tagName === "tr") {
+                const c = (x.children || []).find((k: any) => k.type === "element" && k.tagName === "td");
+                if (c) longest = Math.max(longest, textOf(c).trim().length);
+              }
+              (x.children || []).forEach(scanFirst);
+            };
+            scanFirst(n);
+            if (longest > 40) n.properties.dataWide = "true";
+            const label = (x: any) => {
+              if (x.type === "element" && x.tagName === "tr") {
+                let c = 0;
+                for (const cell of x.children || []) {
+                  if (cell.type === "element" && cell.tagName === "td") {
+                    cell.properties = { ...(cell.properties || {}), dataLabel: heads[c] || "" };
+                    c++;
+                  }
+                }
+              }
+              (x.children || []).forEach(label);
+            };
+            label(n);
           }
         }
         // Faucets page: swap the white banner for the themed one and turn the
@@ -936,6 +1006,7 @@ export default async function Page(props: {
             videoCards: slug[0] === "using-zcash" || slug[0] === "start-here",
             sectionHeadings: slug[0] === "start-here",
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
+            recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
           },
         ],
       ],

@@ -10,6 +10,7 @@ import RecommendedExchanges from "./RecommendedExchanges";
 import ExchangeVideoCard from "./ExchangeVideoCard";
 import GuideActions from "./GuideActions";
 import FaucetCard, { FaucetList } from "./FaucetCard";
+import { RecoveryNav, GuideCallout } from "./RecoveryBlocks";
 import ExchangeLinkCard from "./ExchangeLinkCard";
 import VideoBlock from "./VideoBlock";
 
@@ -61,6 +62,8 @@ const MdxComponents = {
   guideactions: GuideActions,
   faucetcard: FaucetCard,
   faucetlist: FaucetList,
+  recoverynav: RecoveryNav,
+  guidecallout: GuideCallout,
   videoblock: VideoBlock,
   // TOC LINKS — underline on hover only (no dashed line)
   a: (props: HTMLProps<HTMLAnchorElement>): JSX.Element => {
@@ -219,7 +222,7 @@ const MdxComponents = {
     <th className="px-4 py-3 font-semibold" {...props} />
   ),
   td: (props: HTMLProps<HTMLTableCellElement>): JSX.Element => (
-    <td className="px-4 py-3 align-top" {...props} />
+    <td className="px-4 py-3 align-top leading-relaxed" {...props} />
   ),
 
   blockquote: (props: HTMLProps<HTMLQuoteElement>): JSX.Element => (

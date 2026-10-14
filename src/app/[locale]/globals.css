@@ -975,3 +975,62 @@ h4 {
   box-shadow: none;
   border: 1px solid color-mix(in srgb, var(--color-brand) 18%, transparent);
 }
+
+
+/* Tables marked data-stack (guide pages): first column as row title, rows stack on phones. */
+table[data-stack] td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+}
+table[data-stack][data-wide] td:first-child {
+  white-space: normal;
+  width: 42%;
+}
+table[data-stack] td {
+  color: inherit;
+}
+@media (max-width: 640px) {
+  table[data-stack],
+  table[data-stack] tbody,
+  table[data-stack] tr,
+  table[data-stack] td {
+    display: block;
+    width: 100%;
+  }
+  table[data-stack] thead {
+    display: none;
+  }
+  table[data-stack] tr {
+    padding: 0.75rem 1rem;
+  }
+  table[data-stack] td {
+    padding: 0.35rem 0;
+    white-space: normal !important;
+  }
+  table[data-stack] td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 0.15rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  table[data-stack] td:first-child {
+    font-size: 1rem;
+  }
+  table[data-stack] td:first-child::before {
+    display: none;
+  }
+}
+
+/* Inline code inside text: sit on the text line instead of the 12px block padding above. */
+:not(pre) > code {
+  display: inline;
+  padding: 0.1em 0.4em;
+  max-width: none;
+  overflow: visible;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
