@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 183,
+    "proposal_count": 184,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -7421,7 +7421,7 @@
             "yes": "2",
             "abstain": "5"
           },
-          "status": "open",
+          "status": "closed",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
           "threshold": {
             "threshold_quorum": {
@@ -7442,7 +7442,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-10-09T14:18:35.551Z"
+        "createdAt": "2026-10-09T14:18:35.551Z",
+        "completedAt": "2026-10-14T14:41:31.000Z",
+        "closedAt": "2026-10-14T14:41:31.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7453,10 +7455,10 @@
           "title": "Zcash Engage Server: 12-Month Funding Renewal(Nov 2026 - Oct 2027)",
           "votes": {
             "no": "4",
-            "yes": "3",
+            "yes": "4",
             "abstain": "2"
           },
-          "status": "open",
+          "status": "closed",
           "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
           "threshold": {
             "threshold_quorum": {
@@ -7477,7 +7479,9 @@
           "allow_revoting": true,
           "min_voting_period": null
         },
-        "createdAt": "2026-10-09T14:21:57.413Z"
+        "createdAt": "2026-10-09T14:21:57.413Z",
+        "completedAt": "2026-10-14T14:41:02.000Z",
+        "closedAt": "2026-10-14T14:41:02.000Z"
       },
       {
         "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
@@ -7488,7 +7492,7 @@
           "title": "From Awareness to Everyday ZEC Adoption—Zcash at Confluence 2.0",
           "votes": {
             "no": "0",
-            "yes": "3",
+            "yes": "8",
             "abstain": "0"
           },
           "status": "open",
@@ -7513,6 +7517,41 @@
           "min_voting_period": null
         },
         "createdAt": "2026-10-12T21:59:14.224Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 185,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash × BlockchainUNN: Hackathon Track Sponsorship ",
+          "votes": {
+            "no": "0",
+            "yes": "1",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1x4w9tm2txt3gtu2zl93rxpg6cwdrj2andrxcsk",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1792426964625213991"
+          },
+          "description": "## Introduction\n\nWorkshops and developer sprints have grown Zcash's builder base one cohort at a time, and each one brings new developers into the ecosystem. The results are already visible: participants from our Zcash workshops and sprints submitted three projects to the Zcash track of the Colosseum Crypto World Fair hackathon.\n\nGrowing that pipeline at scale means going where developers already gather. In Nigeria, we have seen student developer communities spend years building mainly on EVM chains. At BlockchainUNN's last hackathon, all 18 submitted projects were built on Celo and Syscoin, because those ecosystems showed up. A sponsored hackathon does what workshops alone cannot: it draws out a whole region's talent in bulk.\n\nAt BlockchainUNN Conference 5.0 (9–14 November 2026, University of Nigeria, Enugu State), we plan to make Zcash the hackathon's build target, introduce 100+ student developers to shielded payments, and pay every winning team in shielded ZEC. The sponsorship combines developer workshops, a dedicated Zcash build track and milestone-based prizes. A post-hackathon developer sprint and a two-week milestone window follow, so we can measure whether teams keep building on Zcash after the event.\n\nThe sponsorship makes Zcash the hackathon's build target. It aims to puts privacy and shielded payments in front of 100+ student developers who have so far built only on EVM chains. Half of every prize is held back until winners ship a post-hackathon milestone, so the DAO pays for continuity, not just a weekend.\n\n**Goals :**\n\n- Bring 60+ new developers in Nigeria into the Zcash ecosystem\n- Get 8+ Zcash projects submitted at the hackathon\n- Pay every winner in shielded ZEC\n- Move the strongest teams into a developer sprint and toward Zcash grants\n\n## Why BlockchainUNN?\n\n- **Scale.** 10,000+ community members, 100+ events organized and 1,500+ developers trained.\n- **Proven hackathon.** Last year's edition (November 2025) drew 60+ developers. 18 teams of five submitted 18 projects.\n- **Zero Zcash presence.** All 18 projects were built on Celo and Syscoin, the two sponsors. Zcash has had no developer or hackathon presence in South-East Nigeria.\n- **Strong past partners.** Celo, The Graph, Avalanche, Arbitrum, Lisk, Cartesi, Secret Network, Web3Bridge and Bankless Africa have sponsored or partnered before.\n- **The theme fits Zcash.** This year's theme is AI × Web3. AI agents that hold and move money need privacy, and shielded ZEC is the strongest answer in the room.\n\nStudent developers build where the visible support is perceived. In Nigeria, that has meant EVM chains. This hackathon is a chance to bring that talent to Zcash and show them what Zcash stands for and why privacy matters.\n\nProof of last year's edition: [BlockchainUNN on X](https://x.com/BlockchainUNN/status/1985455799791935583)\n\n## Team\n\n### Dre: Project lead.\n\nResponsibilities:\n\n- Deliver the Zcash workshops (online and in person)\n- Serve as the Zcash judge on the hackathon panel\n- Mentor winning teams and verify their milestones\n- Host the post-hackathon developer sprint\n- Publish the post-event and final reports\n\n### BlackAdam — Technical Support\n\nTechnical collaborator on previous Zcash workshops and developer sprints, the same program whose participants went on to submit three projects to the Colosseum Zcash track.\n\nResponsibilities:\n\n- Set up and maintain the Zebra node on the VPS for the hackathon and sprint\n- Prepare the developer environment and testnet ZEC for registered teams\n- Provide hands-on technical support during office hours and the build phase\n- Help teams debug Zcash integrations through the hackathon, sprint and milestone window\n- Support technical review of submissions and milestone verification\n\n### BlockchainUNN Organizing Team — Event Partner\n\nRuns the conference and hackathon, the call for Zcash builders, team formation, venue and promotion. The team has committed to free publicity and AMAs for local projects after the event.\n\n## Scope of Work & Execution Plan\n\n### Phase 1: Call for Builders (26 Oct – 8 Nov)\n\n- BlockchainUNN runs a dedicated call for developers to build on Zcash before team formation\n- Zcash × ZecHub branding goes live across hackathon materials and the campus roadshow\n- 2 X Spaces introduce Zcash and the track to the BlockchainUNN community\n\n### Phase 2: Hackathon (9–14 Nov)\n\n- **9–11 Nov, online (60 min):** Zcash 101 for builders. Shielded vs transparent, unified addresses, wallets and SDKs.\n- **12–13 Nov, in person (2 × 60 min):** Hands-on build sessions. Send and receive shielded ZEC in an app, live, explore the zcash protocol, Z3, value pools and products.\n- &#32;A dedicated Zcash hackathon booth during the physical hackathon phase\n- **A hosted Zebra node**** and testnet ZEC**** ****a****cc****ess** for every registered team\n- **14 Nov:** Judging, project showcase and awards. Winners receive the first half of their prize in shielded ZEC.\n\n**Suggested build directions:** Apps and exchanges utilizing shielded ZEC; checkout and invoicing tools for merchants; wallet onboarding for first-time users; payment links and creator tools using unified addresses; developer tooling for Zcash; the team will also share products built during past hackathons for the Zcash ecosystem.\n\n**Submission requirements:** shielded ZEC transactions (Orchard / unified addresses) on testnet or mainnet, a public open-source repo, a working demo with a 3-minute video, and a README explaining the Zcash integration, a milestone to be completed within  2 weeks.\n\n**Judging criteria:**\n\n| Criterion | Weight |\n| --- | --- |\n| Depth of Zcash integration (Privacy Core) | 40% |\n| Technical execution | 25% |\n| User experience | 20% |\n| Real-world usefulness | 15% |\n\n### Phase 3: Retention & Continuity (15–28 Nov)\n\n- Each winning team agrees one milestone on selection: a shielded-payment feature live on mainnet, a public beta with real users, or a scoped roadmap feature\n- Check-ins with each winning team\n- **Zcash developer sprint (proposed 21–22 Nov)** Another demo for winning teams and every other team that built on Zcash and a workshop on scaling their products beyond the hackathon in the Zcash ecosystem \n- Milestones verified by 27 Nov; the second half of each prize is released\n- Teams with solid projects get support and guides to apply for Zcash Community Grants or a ZecHub DAO grant\n\n## Expected Outcomes\n\n- A coordinated cohort of Zcash builders in Nigeria and Africa\n- Every developer onboarded to a shielded Zcash wallet\n- Open-source Zcash projects that keep building after the event\n- A repeatable model for sponsoring student hackathons across different regions.\n\n## Success Metrics\n\n| Area | Target |\n| --- | --- |\n| Developers attending a Zcash workshop | 40+ |\n| Teams building on Zcash during the hackathon | ≥ 10 |\n| Zcash projects submitted | ≥ 8 |\n| Winners paid in shielded ZEC | 100% |\n| Teams joining the developer sprint | 6+ |\n| Winning teams that hit their milestone by 28 Nov | 3 of 3 |\n| Grant applications from hackathon teams within 3 months | To be discussed with the teams |\n| Public content | Forum report, X recap thread, ZecHub newsletter feature |\n\n## Budget\n\nTotal request: **$3,950**;\n\n| Item | Cost | Justification |\n| --- | --- | --- |\n| Hackathon sponsorship (Gold) | $1,700 | Makes Zcash the hackathon's build target. Covers exclusive hackathon and Hacker House branding, 3 workshop slots, a judging seat, a hackathon booth, the campus roadshow, 2 X Spaces, 3 social posts, 1 newsletter feature and event media. Includes the $1,000 prize pool, paid to winners in shielded ZEC. |\n| Accommodation and logistics | $500 | Travel to Enugu State and accommodation for the in-person phase (12–14 Nov), where we deliver two workshops, run office hours and judge. Being on the ground is what turns hearsay into real developer relationships. |\n| Merch | $300 | Zcash-branded merch for the booth, workshops and winners. It draws builders to the Zcash booth, rewards workshop participation and keeps Zcash visible across a conference day. |\n| Team compensation | $800 | Split equally: $400 to Dre (project lead) and $400 to BlackAdam (technical support). Covers about five weeks of work: workshop preparation and delivery, mentoring, judging, weekly check-ins with winning teams, hosting the developer sprint, verifying milestones and writing both reports. |\n| VPS for a Zebra node | $100 | A hosted Zebra node gives every team a reliable Zcash endpoint during the hackathon and sprint. Developers skip node setup, which is the most common place new Zcash builders can spend time and helps them ship faster. |\n| Photo and video media coverage | $400 | A dedicated photographer and videographer for the Zcash workshops, booth, hackathon floor and awards. Produces a recap video, short clips and a photo set the DAO and ZecHub can reuse on X, the forum and the newsletter. It also gives the DAO visual proof of delivery in the reports. |\n| Special mention award | $100 | Paid in shielded ZEC to one outstanding Zcash project that did not place in the top three. The full $100 is paid once the team completes its milestone. It rewards strong work that just missed out, keeps that team motivated to continue building on Zcash, and brings one more team into the developer sprint. |\n| **Total** | **$3,900** |  |\n\n**Prize breakdown** (inside the $1,700 sponsorship)\n\n| Place | Prize | On announcement | On milestone |\n| --- | --- | --- | --- |\n| 1st | $500 | $250 | $250 |\n| 2nd | $300 | $150 | $150 |\n| 3rd | $200 | $100 | $100 |\n| **Total** | **$1,000** | **$500** | **$500** |\n\n**Funding Summary**\n\n| Tranche | Amount | Covers | Timing |\n| --- | --- | --- | --- |\n| 1. Pre-event | $2,500 | Sponsorship ($1,200: the $700 fee + first half of prizes), accommodation and logistics ($500), merch ($350), VPS ($100), photo and video coverage ($400). | Before 6 Nov 2026 |\n| 2. Post-event | $1,400 | Second half of prizes ($500, on verified milestones) + team compensation ($800) + special mention award ($100, paid in full on verified milestone) | After the final report, by 28 Nov 2026 |\n| **Total** | **$3,900** |  |  |\n\nTranche 2 is held until winners ship their milestones and the final report is published. If a team misses its milestone, its share is returned to the DAO instead of being paid out.\n\n**Payment rules:**\n\n- A team that misses its 27 Nov milestone forfeits the second half of its prize.\n- Forfeited funds are returned to the ZecHub DAO treasury.\n- Receipts for every tranche are included in the final report.\n\n## Reporting\n\n- **Post-event report (by 21 Nov 2026):** virtual and in person workshop attendance, Zcash submissions, winners, photos.\n- **Final report (by ****2****9****t****h**** ****N****o****v**** 2026):** milestone outcomes, sprint attendance, Tranche 2 receipts, funds returned and results against the success metrics.\n\nBoth reports will be posted on the Zcash Community Forum and shared with the DAO.\n\n## Community Channels\n\n- BlockchainUNN on X: [@BlockchainUNN](https://x.com/BlockchainUNN)\n- BlockchainUNN website: [blockchainunn.org](https://www.blockchainunn.org)\n- Last year's hackathon: [BlockchainUNN on X](https://x.com/BlockchainUNN/status/1985455799791935583)\n- Sponsorship deck: [BlockchainUNN Conference 5.0 sponsorship deck](https://drive.google.com/file/d/12fIfXQeKDXwlGhjrnizQhUgxn-pmxYYl/view?usp=drive_link)\n\n## Why This Matters\n\n- Privacy should be the default for the next generation of African builders, not an afterthought.\n- Student developers build where they are invited. With this, we can put Zcash in the room.\n- One sponsored hackathon can turn a region of EVM builders into Zcash builders.\n\nNigeria has one of the largest developer communities in Africa. BlockchainUNN gives Zcash a direct line into the students' side of it. With milestone-based prizes and a developer sprint behind it, this sponsorship is built to grow Zcash builders, not just banners.\n\nThank you for your consideration. We welcome feedback and suggestions from ZecHub DAO members.\n",
+          "total_power": "23",
+          "start_height": 42697229,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-10-14T16:22:44.625Z"
       }
     ]
   },
