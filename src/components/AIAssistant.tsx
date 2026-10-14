@@ -306,7 +306,8 @@ export default function AIAssistantPanel({
         body: JSON.stringify({
           message: trimmed,
           pageUrl: typeof window !== "undefined" ? window.location.href : undefined,
-          history: updatedHistory.slice(-10).map((m) => ({
+          // Earlier turns only: the server appends `message` after `history`.
+          history: messages.slice(-10).map((m) => ({
             role: m.role,
             content: m.content,
           })),
