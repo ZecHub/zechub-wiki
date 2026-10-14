@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import WalletItem from "@/components/Wallet/WalletItem";
 import FilterToggle from "@/components/FilterToggle";
 import { useLanguage } from "@/context/LanguageContext";
+import { SlidersHorizontal, X } from "lucide-react";
 
 interface Wallet {
   title: string;
@@ -183,15 +184,16 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       <div className="wl-root">
         {/* Mobile header */}
         <div className="wl-mobile-header">
-          <span className="wl-mobile-title">{filtersLabel}</span>
-          <button 
-            className="wl-btn" 
-            onClick={handleToggleFilter}
-          >
-            <span className="wl-btn-icon">Settings</span>
-            {showNavLabel}
+          <span className="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+            {sortedWallets.length} wallet{sortedWallets.length !== 1 ? "s" : ""}
+          </span>
+          <button type="button" className="inline-flex items-center gap-2 rounded-lg border border-brand/50 px-4 py-2 text-sm font-semibold text-brand transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white" onClick={handleToggleFilter}>
+            <SlidersHorizontal aria-hidden="true" className="h-4 w-4" />
+            {filtersLabel}
             {activeFilters.length > 0 && (
-              <span className="wl-active-count">{activeFilters.length}</span>
+              <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand px-1 text-xs font-bold text-white">
+                {activeFilters.length}
+              </span>
             )}
           </button>
         </div>
@@ -209,7 +211,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
                 }}
               >
                 {item.split(":")[1]}
-                <span className="wl-chip-x">Close</span>
+                <X aria-hidden="true" className="h-3.5 w-3.5 opacity-70" />
               </span>
             ))}
           </div>
@@ -271,10 +273,8 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
             >
               <div className="wl-drawer-header px-6 py-4 border-b flex items-center justify-between">
                 <span className="text-lg font-semibold">{filtersLabel}</span>
-                <button 
-                  className="wl-btn text-sm font-medium"
-                  onClick={handleToggleFilter}
-                >
+                <button type="button" className="inline-flex items-center gap-2 rounded-lg border border-brand/50 px-4 py-2 text-sm font-semibold text-brand transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white" onClick={handleToggleFilter}>
+                  <X aria-hidden="true" className="h-4 w-4" />
                   {closeLabel}
                 </button>
               </div>

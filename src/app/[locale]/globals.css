@@ -754,7 +754,7 @@ code::-webkit-scrollbar-track {
     display: flex;
   }
   .wl-results-meta {
-    margin-top: 4px;
+    display: none;
   }
   .wl-drawer-overlay.open {
     display: block;
