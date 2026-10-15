@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import MemberModal from "./member-modal";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { encodeZip321Memo, MAX_MEMO_BYTES } from "@/lib/zip321";
+import {
+  encodeZip321Memo,
+  isShieldedAddress,
+  MAX_MEMO_BYTES,
+} from "@/lib/zip321";
 import { openPaymentUri } from "@/lib/openPaymentUri";
 
 interface MemberCardProps {
@@ -24,13 +28,15 @@ export default function MemberCard({ member }: MemberCardProps) {
   const [message, setMessage] = useState("");
   const messageBytes = new TextEncoder().encode(message).length;
   const isMessageTooLong = messageBytes > MAX_MEMO_BYTES;
+  const canMessage = isShieldedAddress(member.zcashAddress);
+  const unavailableId = useId();
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
   const handleSend = () => {
-    if (!message || isMessageTooLong) return;
+    if (!canMessage || !message || isMessageTooLong) return;
     try {
       const encodedMemo = encodeZip321Memo(message, member.zcashAddress);
       openPaymentUri(`zcash:${member.zcashAddress}?amount=0.01&memo=${encodedMemo}`);
@@ -90,7 +96,15 @@ export default function MemberCard({ member }: MemberCardProps) {
                   );
                 })}
               </div>
-              <div className="flex gap-3 mt-auto">
+              {!canMessage && (
+                <p
+                  id={unavailableId}
+                  className="mt-auto mb-2 text-xs text-slate-600 dark:text-slate-400 text-center"
+                >
+                  Messaging unavailable: no shielded address listed.
+                </p>
+              )}
+              <div className={`flex gap-3 ${canMessage ? "mt-auto" : ""}`}>
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="flex-1 cursor-pointer px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg text-sm font-medium transition-all duration-300"
@@ -99,7 +113,9 @@ export default function MemberCard({ member }: MemberCardProps) {
                 </button>
                 <button
                   onClick={handleFlip}
-                  className="flex-1 cursor-pointer px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg text-sm font-medium transition-all duration-300"
+                  disabled={!canMessage}
+                  aria-describedby={canMessage ? undefined : unavailableId}
+                  className="flex-1 cursor-pointer px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg text-sm font-medium transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Message
                 </button>
@@ -151,7 +167,7 @@ export default function MemberCard({ member }: MemberCardProps) {
                 </button>
                 <button
                   onClick={handleSend}
-                  disabled={isMessageTooLong || !message}
+                  disabled={!canMessage || isMessageTooLong || !message}
                   className="cursor-pointer px-4 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 transition-all disabled:opacity-50 disabled:hover:scale-100"
                 >
                   Send
