@@ -177,6 +177,24 @@ const MdxComponents = {
   h3: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(props.children).trim();
     const id = slugify(text);
+    const step = (props as Record<string, unknown>)["data-step"];
+    if (step) {
+      // Numbered step inside a guide section: number badge + title.
+      return (
+        <h3
+          id={id}
+          className="mt-10 mb-3 flex scroll-mt-20 items-center gap-3 text-xl font-semibold tracking-tight text-slate-900 md:text-[1.35rem] dark:text-white"
+        >
+          <span
+            aria-hidden="true"
+            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-brand/50 bg-brand/10 text-sm font-semibold text-brand dark:text-brand-soft"
+          >
+            {String(step)}
+          </span>
+          <span>{props.children}</span>
+        </h3>
+      );
+    }
     if ((props as Record<string, unknown>)["data-rule"]) {
       // Subsection separated from the previous one by a hairline.
       return (
@@ -271,7 +289,7 @@ const MdxComponents = {
       alt={props.alt || "Image"}
       className={`my-5 rounded-xl border ${
         (props as Record<string, unknown>)["data-frame"]
-          ? "border-brand/50 shadow-sm shadow-brand/10"
+          ? "border-brand/60 shadow-md shadow-brand/10 ring-1 ring-brand/20"
           : "border-slate-200 dark:border-white/10"
       }`}
       loading="lazy"

@@ -146,6 +146,24 @@ function rehypeWikiPatterns(opts: { snap?: boolean; boldLinkButtons?: boolean; v
   };
   return (tree: any) => {
     const stepCount = { n: 0, leadDone: false };
+    if (opts.snap && Array.isArray(tree.children)) {
+      // Mobile top-up guide: the Coinsbee confirmation e-mail screenshot is stranded after the
+      // CardsRelay section; move it (and the rule before it) up to the end of the first guide.
+      const rows: any[] = tree.children;
+      const hasImg = (x: any, alt: RegExp): boolean =>
+        x && x.type === "element" && ((x.tagName === "img" && alt.test(String(x.properties?.alt || ""))) || (x.children || []).some((c: any) => hasImg(c, alt)));
+      const from = rows.findIndex((x) => x.type === "element" && x.tagName === "p" && hasImg(x, /^additional screenshot$/i));
+      const to = rows.findIndex((x) => x.type === "element" && x.tagName === "h2" && /without an account/i.test(textOf(x)));
+      if (from > -1 && to > -1 && from > to) {
+        const [moved] = rows.splice(from, 1);
+        let k = from - 1;
+        while (k >= 0 && (isBlank(rows[k]) || (rows[k].type === "element" && rows[k].tagName === "hr"))) {
+          if (rows[k].type === "element" && rows[k].tagName === "hr") rows.splice(k, 1);
+          k--;
+        }
+        rows.splice(to, 0, moved);
+      }
+    }
     const walk = (node: any) => {
       const kids = node.children;
       if (!Array.isArray(kids)) return;
@@ -158,6 +176,28 @@ function rehypeWikiPatterns(opts: { snap?: boolean; boldLinkButtons?: boolean; v
             if (mm) {
               n.properties = { ...(n.properties || {}), dataStep: mm[1] };
               n.children = [{ type: "text", value: mm[2] }];
+            } else {
+              const stripColon = (x: any): boolean => {
+                const ch = x.children || [];
+                for (let q = ch.length - 1; q >= 0; q--) {
+                  if (ch[q].type === "text") {
+                    if (!ch[q].value.trim()) continue;
+                    ch[q].value = ch[q].value.replace(/:\s*$/, "");
+                    return true;
+                  }
+                  if (ch[q].children && stripColon(ch[q])) return true;
+                }
+                return false;
+              };
+              stripColon(n);
+            }
+          } else if (n.tagName === "h3") {
+            const mm = /^(\d+)\.\s+(.+)$/.exec(textOf(n).trim());
+            if (mm) {
+              n.properties = { ...(n.properties || {}), dataStep: mm[1] };
+              n.children = [{ type: "text", value: mm[2] }];
+            } else {
+              n.properties = { ...(n.properties || {}), dataRule: "true" };
             }
           } else if (n.tagName === "img") {
             n.properties = { ...(n.properties || {}), dataFrame: "true" };
@@ -1158,7 +1198,7 @@ export default async function Page(props: {
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
             memos: slug[0] === "using-zcash" && slug[1] === "memos",
             tex: slug[0] === "using-zcash" && slug[1] === "transparent-exchange-addresses",
-            snap: slug[0] === "using-zcash" && slug[1] === "metamask-snap",
+            snap: slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups"),
           },
         ],
       ],
