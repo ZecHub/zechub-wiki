@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -398,6 +398,37 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           k--;
         }
         rows.splice(to, 0, moved);
+      }
+    }
+    if (opts.sol && Array.isArray(tree.children)) {
+      const rows: any[] = tree.children;
+      const el = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const h2At = (re: RegExp) => rows.findIndex((x) => el(x, "h2") && re.test(textOf(x).replace(/#$/, "").trim()));
+      // Number the main sections.
+      let num = 0;
+      for (const re of [/^what you actually hold/i, /^why move it/i, /^pick a zcash wallet/i, /^move it/i, /^shield it and check/i]) {
+        const k = h2At(re);
+        if (k > -1) {
+          num++;
+          rows[k].properties = { ...(rows[k].properties || {}), dataStep: String(num) };
+        }
+      }
+      // Warnings as highlighted notes.
+      for (let k = 0; k < rows.length; k++) {
+        if (el(rows[k], "p") && /^phantom asks you to sign/i.test(textOf(rows[k]).trim())) {
+          rows[k] = { type: "element", tagName: "guidecallout", properties: { title: "Heads up" }, children: [rows[k]] };
+        }
+      }
+      // Shortcuts above the first section.
+      const first = h2At(/^what you actually hold/i);
+      if (first > -1) {
+        const items = [
+          { label: "What you hold", hint: "A token on Solana", href: "#what-you-actually-hold" },
+          { label: "Pick a wallet", hint: "Where it will land", href: "#pick-a-zcash-wallet" },
+          { label: "Move it", hint: "Two steps, one swap", href: "#move-it" },
+          { label: "Stay safe", hint: "Before you paste", href: "#stay-safe" },
+        ];
+        rows.splice(first, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
       }
     }
     const walk = (node: any) => {
@@ -1437,7 +1468,8 @@ export default async function Page(props: {
             pools: slug[0] === "using-zcash" && slug[1] === "shielded-pools",
             prq: slug[0] === "using-zcash" && slug[1] === "payment-request-uris",
             ncex: slug[0] === "using-zcash" && slug[1] === "non-custodial-exchanges",
-            snap: slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups"),
+            snap: slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups" || slug[1] === "solana-zec-to-shielded"),
+            sol: slug[0] === "using-zcash" && slug[1] === "solana-zec-to-shielded",
           },
         ],
       ],
