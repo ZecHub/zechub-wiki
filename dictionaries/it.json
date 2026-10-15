@@ -97,7 +97,7 @@
     "Zkool Multisig": "Multisig con Zkool",
     "Custodial Exchanges": "Exchange custodial",
     "Zcash Use Cases": "Casi d'uso di Zcash",
-    "Zcash Tech": "Tecnologia Zcash",
+    "Zcash Tech": "Tecnologia di Zcash",
     "Privacy Tools": "Strumenti per la privacy",
     "Zcash Social Media": "Social media di Zcash",
     "Glossary & FAQ's": "Glossario e FAQ",
@@ -134,7 +134,7 @@
     "Tutorials": "Tutorial",
     "Using Zcash": "Usare Zcash",
     "Guides": "Guide",
-    "Zcash Tech": "Tecnologia Zcash",
+    "Zcash Tech": "Tecnologia di Zcash",
     "Zcash Organizations": "Organizzazioni Zcash",
     "Zcash Community": "Community Zcash",
     "ZKAV Club": "ZKAV Club",
@@ -301,7 +301,7 @@
         "title": "Che cos'è Zcash?",
         "description": "È un registro blockchain open-source che presenta un sofisticato sistema di prove a conoscenza zero. È specializzato nell'offrire uno standard più elevato di privacy attraverso il suo sistema di prove, preservando la riservatezza dei metadati delle transazioni. Al suo centro, Zcash è proprietà privata dei dati trasferita senza permesso quando vengono effettuate transazioni.",
         "mainLink": "Che cos'è Zcash?",
-        "techLink": "Tecnologia Zcash"
+        "techLink": "Tecnologia di Zcash"
       },
       "zcashMe": {
         "title": "Zcash.me",
@@ -330,7 +330,7 @@
         "mainLink": "Vedi i progetti"
       },
       "visualizer": {
-        "description": "Strumenti didattici interattivi per comprendere la tecnologia privacy di Zcash, l'infrastruttura e le prove a conoscenza zero",
+        "description": "Strumenti didattici interattivi per comprendere la tecnologia di privacy di Zcash, l'infrastruttura e le prove a conoscenza zero",
         "link": "Apri il Visualizzatore",
         "title": "Visualizzatore di ZecHub"
       },
@@ -345,7 +345,7 @@
       "tutorials": "Tutorial",
       "usingZcash": "Usare Zcash",
       "guides": "Guide",
-      "zcashTech": "Tecnologia Zcash",
+      "zcashTech": "Tecnologia di Zcash",
       "organizations": "Organizzazioni Zcash",
       "community": "Community Zcash",
       "zkavClub": "ZKAV Club",
@@ -675,7 +675,7 @@
       "compareColRpc": "RPC / API",
       "compareColSoftware": "Software",
       "compareColStatus": "Stato",
-      "compareFootnote": "zcashd ha raggiunto la fine del ciclo di vita al blocco 3417100 il 18 luglio 2026: i nuovi progetti dovrebbero basarsi sul software indicato sopra.",
+      "compareFootnote": "zcashd ha raggiunto la fine del ciclo di vita al blocco 3417100 il 18 luglio 2026: i nuovi progetti dovrebbero basarsi sul software indicato qui sopra.",
       "compareLead": "Lo stack di Zcash è composto da alcuni strumenti separati. Usa questa tabella per capire quale serve al tuo progetto, poi segui la guida corrispondente qui sotto.",
       "compareTitle": "Confronto tra nodi e client"
     },
@@ -884,7 +884,7 @@
         "Start Here": "Inizia qui",
         "Tutorials": "Tutorial",
         "Use Cases": "Casi d'uso",
-        "Zcash Tech": "Tecnologia Zcash",
+        "Zcash Tech": "Tecnologia di Zcash",
         "ZFAV Club": "ZFAV Club",
         "Social Media": "Social Media"
       },
@@ -904,7 +904,7 @@
         "Faucets": "Faucet",
         "Exchanges": "Exchange",
         "Block Explorers": "Block Explorer",
-        "Shielded Pools": "Pool schermati",
+        "Shielded Pools": "Pool schermate",
         "Transparent Exchange Addresses": "Indirizzi trasparenti degli exchange",
         "Transactions": "Transazioni",
         "Memos": "Memo",
@@ -1260,7 +1260,7 @@
       "sub": "Documentazione strutturata per capire i protocolli di Zcash"
     },
     "zcash-tech": {
-      "title": "Tecnologia Zcash",
+      "title": "Tecnologia di Zcash",
       "sub": "Dentro la tecnologia che fa funzionare Zcash"
     },
     "organizations": {
