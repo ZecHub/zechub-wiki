@@ -1323,6 +1323,19 @@ export const BindingSignatureStage = () => {
 // STAGE 8: Interactive Builder
 // ─────────────────────────────────────────────────────────────────────────────
 
+function limitMemoBytes(value: string): string {
+  const encoder = new TextEncoder();
+  let bytes = 0;
+  let memo = "";
+  // ZIP 302 allows 512 UTF-8 bytes; keep whole code points at the boundary.
+  for (const character of value) {
+    bytes += encoder.encode(character).length;
+    if (bytes > 512) break;
+    memo += character;
+  }
+  return memo;
+}
+
 export const BuilderStage = () => {
   const [fromPool, setFromPool] = useState<Pool>("ironwood");
   const [toPool, setToPool] = useState<Pool>("ironwood");
@@ -1449,7 +1462,7 @@ export const BuilderStage = () => {
                 )}
               </label>
               <textarea value={memo} rows={3}
-                onChange={(e) => setMemo(e.target.value.slice(0, 512))}
+                onChange={(e) => setMemo(limitMemoBytes(e.target.value))}
                 disabled={toPool === "transparent"}
                 placeholder={toPool === "transparent" ? "Not available for transparent" : "Private message…"}
                 className={`w-full rounded-xl px-4 py-2.5 text-xs font-mono resize-none outline-none transition-colors border
@@ -1457,7 +1470,7 @@ export const BuilderStage = () => {
                     ? "bg-zinc-900/60 border-zinc-700 text-zinc-300 focus:border-emerald-500/40 placeholder:text-zinc-600"
                     : "bg-zinc-950/40 border-zinc-800 text-zinc-600 cursor-not-allowed placeholder:text-zinc-700"}`} />
               {toPool !== "transparent" && (
-                <p className="text-[9px] text-zinc-700 mt-1">{memo.length}/512 chars</p>
+                <p className="text-[9px] text-zinc-700 mt-1">{new TextEncoder().encode(memo).length}/512 bytes</p>
               )}
             </div>
           </div>
