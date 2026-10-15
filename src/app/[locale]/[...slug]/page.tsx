@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { ncex?: boolean; snap?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { prq?: boolean; ncex?: boolean; snap?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -146,6 +146,70 @@ function rehypeWikiPatterns(opts: { ncex?: boolean; snap?: boolean; boldLinkButt
   };
   return (tree: any) => {
     const stepCount = { n: 0, leadDone: false };
+    if (opts.prq && Array.isArray(tree.children)) {
+      // Payment request URIs: themed buttons, shortcuts, numbered sections and hairlines between subsections.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const hrefOf = (x: any): string => {
+        if (x.properties && x.properties.href != null) return String(x.properties.href);
+        const hit = (x.attributes || []).find((at: any) => at.name === "href");
+        return hit && typeof hit.value === "string" ? hit.value : "";
+      };
+      const hasHref = (x: any, h: string): boolean =>
+        !!x && typeof x === "object" && ((["a"].includes(x.tagName || x.name) && hrefOf(x) === h) || (x.children || []).some((c: any) => hasHref(c, h)));
+
+      // 1. The two inline-styled call-to-action links become theme buttons (wherever they are nested).
+      const swapButtons = (parent: any): boolean => {
+        const ch = parent.children || [];
+        for (let q = 0; q < ch.length; q++) {
+          const c = ch[q];
+          if (c && (c.type === "element" || c.type === "mdxJsxFlowElement") && (c.tagName || c.name) === "div" && hasHref(c, "/zcash-payment-uri") && hasHref(c, "/tools")) {
+            ch[q] = {
+              type: "element",
+              tagName: "div",
+              properties: { className: ["flex", "flex-wrap", "gap-x-3"] },
+              children: [
+                { type: "element", tagName: "linkbutton", properties: { href: "/zcash-payment-uri", label: "Open payment widget" }, children: [] },
+                { type: "element", tagName: "linkbutton", properties: { href: "/tools", label: "Build a payment request" }, children: [] },
+              ],
+            };
+            return true;
+          }
+          if (c && c.children && swapButtons(c)) return true;
+        }
+        return false;
+      };
+      swapButtons(tree);
+
+      // 2. Shortcuts above "Core Explanation".
+      const ce = rows.findIndex((x) => isEl(x, "h2") && /^core explanation/i.test(textOf(x).trim()));
+      if (ce > -1) {
+        const items = [
+          { label: "What it is", hint: "A zcash: link", href: "#core-explanation" },
+          { label: "URI format", hint: "Fields and encoding", href: "#anatomy" },
+          { label: "Embed on a site", hint: "Payment widget", href: "#embed-on-a-site" },
+          { label: "Wallet rules", hint: "What gets rejected", href: "#rules-a-wallet-checks" },
+        ];
+        rows.splice(ce, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
+      }
+
+      // 3. Main sections numbered; subsections after the first get a hairline.
+      let n = 0;
+      let firstH3 = true;
+      for (const r of rows) {
+        if (isEl(r, "h2")) {
+          firstH3 = true;
+          const t = textOf(r).trim();
+          if (!/^tl;?\s?dr$|^related pages/i.test(t)) {
+            n += 1;
+            r.properties = { ...(r.properties || {}), dataStep: String(n) };
+          }
+        } else if (isEl(r, "h3")) {
+          if (!firstH3) r.properties = { ...(r.properties || {}), dataRule: "true" };
+          firstH3 = false;
+        }
+      }
+    }
     if (opts.ncex && Array.isArray(tree.children)) {
       // Non-custodial exchanges guide: tidy the top, number the comparison points, add shortcuts.
       const rows: any[] = tree.children;
@@ -1278,6 +1342,7 @@ export default async function Page(props: {
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
             memos: slug[0] === "using-zcash" && slug[1] === "memos",
             tex: slug[0] === "using-zcash" && slug[1] === "transparent-exchange-addresses",
+            prq: slug[0] === "using-zcash" && slug[1] === "payment-request-uris",
             ncex: slug[0] === "using-zcash" && slug[1] === "non-custodial-exchanges",
             snap: slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups"),
           },
