@@ -212,13 +212,13 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
             const im = findImgT(n);
             if (im) {
               if (im.attributes) {
-                for (const [k, v] of [["src", "/tex-flow.jpg"], ["alt", "How a shielded wallet pays a TEX address: shielded balance, temporary transparent address, exchange"]]) {
+                for (const [k, v] of [["src", "/tex-flow-v2.jpg"], ["alt", "How a shielded wallet pays a TEX address: shielded balance, temporary transparent address, exchange"]]) {
                   const hit = im.attributes.find((at: any) => at.name === k);
                   if (hit) hit.value = v;
                   else im.attributes.push({ type: "mdxJsxAttribute", name: k, value: v });
                 }
               } else {
-                im.properties = { ...(im.properties || {}), src: "/tex-flow.jpg", alt: "How a shielded wallet pays a TEX address: shielded balance, temporary transparent address, exchange" };
+                im.properties = { ...(im.properties || {}), src: "/tex-flow-v2.jpg", alt: "How a shielded wallet pays a TEX address: shielded balance, temporary transparent address, exchange" };
                 delete im.properties.srcSet;
                 delete im.properties.srcset;
               }
