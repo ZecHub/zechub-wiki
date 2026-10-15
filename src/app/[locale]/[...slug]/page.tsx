@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { snap?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { ncex?: boolean; snap?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -146,6 +146,86 @@ function rehypeWikiPatterns(opts: { snap?: boolean; boldLinkButtons?: boolean; v
   };
   return (tree: any) => {
     const stepCount = { n: 0, leadDone: false };
+    if (opts.ncex && Array.isArray(tree.children)) {
+      // Non-custodial exchanges guide: tidy the top, number the comparison points, add shortcuts.
+      const rows: any[] = tree.children;
+      const el = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const hasAlt = (x: any, alt: string): boolean =>
+        !!x && x.type === "element" && ((x.tagName === "img" && String(x.properties?.alt || "") === alt) || (x.children || []).some((c: any) => hasAlt(c, alt)));
+      const headIdx = (re: RegExp) => rows.findIndex((x) => el(x) && /^h[1-6]$/.test(x.tagName) && re.test(textOf(x).trim()));
+      const kidsOf = (x: any) => (x.children || []).filter((c: any) => !isBlank(c));
+
+      // 1. Drop the tiny decorative icon above the title.
+      const prune = (x: any) => {
+        if (!Array.isArray(x.children)) return;
+        for (let q = x.children.length - 1; q >= 0; q--) {
+          const c = x.children[q];
+          const isIcon =
+            (c.type === "element" && c.tagName === "img" && String(c.properties?.alt || "") === "Alt Text") ||
+            ((c.type === "mdxJsxFlowElement" || c.type === "mdxJsxTextElement") && c.name === "img" && (c.attributes || []).some((at: any) => at.name === "alt" && at.value === "Alt Text"));
+          if (isIcon) x.children.splice(q, 1);
+          else prune(c);
+        }
+      };
+      prune(tree);
+
+      // 2. Link to the exchange list becomes a button; the paragraph after it is the lead.
+      const lk = rows.findIndex((x) => el(x, "p") && /^zcash non-custodial exchanges$/i.test(textOf(x).trim()));
+      if (lk > -1) {
+        const findA = (x: any): any => (x.tagName === "a" ? x : (x.children || []).map((c: any) => (c.type === "element" ? findA(c) : null)).find(Boolean) || null);
+        const a = findA(rows[lk]);
+        const href = String(a?.properties?.href || "/dex").replace(/^https?:\/\/(www\.)?zechub\.wiki/i, "") || "/dex";
+        rows[lk] = { type: "element", tagName: "linkbutton", properties: { href, label: "Browse non-custodial exchanges" }, children: [] };
+        const lead = rows.findIndex((x, k) => k > lk && el(x, "p") && textOf(x).trim().length > 60);
+        if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      }
+
+      // 3. The seven numbered comparison points become one list.
+      const vs = headIdx(/^non custodial exchanges vs custodial exchanges$/i);
+      if (vs > -1) {
+        let end = vs + 1;
+        while (end < rows.length && !(el(rows[end]) && /^h[1-6]$/.test(rows[end].tagName))) end++;
+        const items: any[] = [];
+        for (const r of rows.slice(vs + 1, end)) {
+          if (!el(r, "p")) continue;
+          const ks = r.children || [];
+          const first = ks.findIndex((c: any) => !isBlank(c));
+          const st = first > -1 ? ks[first] : null;
+          const mm = st && el(st, "strong") ? /^#(\d+)\s+(.+)$/.exec(textOf(st).trim()) : null;
+          if (mm) {
+            const rest = ks.slice(first + 1).map((c: any) => ({ ...c }));
+            if (rest[0] && rest[0].type === "text") rest[0].value = rest[0].value.replace(/^\s*:\s*/, "");
+            items.push({ type: "element", tagName: "pointitem", properties: { n: mm[1], title: mm[2] }, children: [{ type: "element", tagName: "p", properties: {}, children: rest }] });
+          } else if (items.length) {
+            items[items.length - 1].children.push(r);
+          }
+        }
+        if (items.length) rows.splice(vs + 1, end - vs - 1, { type: "element", tagName: "pointlist", properties: {}, children: items });
+      }
+
+      // 4. Shortcuts above the first section.
+      const first = headIdx(/^understanding non custodial exchanges$/i);
+      if (first > -1) {
+        const items = [
+          { label: "How they work", hint: "Keys stay with you", href: "#understanding-non-custodial-exchanges" },
+          { label: "Versus custodial", hint: "Seven key differences", href: "#non-custodial-exchanges-vs-custodial-exchanges" },
+          { label: "Privacy limits", hint: "What Zcash protects", href: "#what-zcash-protects-and-what-it-does-not" },
+          { label: "Who is involved", hint: "The parts of a swap", href: "#who-is-involved-in-a-swap" },
+        ];
+        rows.splice(first, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
+      }
+
+      // 5. Key takeaway as a highlighted note; later sections separated by a hairline.
+      const tk = rows.findIndex((x) => el(x, "p") && /^send the zec to a wallet you control/i.test(textOf(x).trim()));
+      if (tk > -1) rows[tk] = { type: "element", tagName: "guidecallout", properties: { title: "Recommended" }, children: [rows[tk]] };
+      let seen = false;
+      for (const r of rows) {
+        if (el(r, "h3")) {
+          if (seen) r.properties = { ...(r.properties || {}), dataRule: "true" };
+          seen = true;
+        }
+      }
+    }
     if (opts.snap && Array.isArray(tree.children)) {
       // Mobile top-up guide: the Coinsbee confirmation e-mail screenshot is stranded after the
       // CardsRelay section; move it (and the rule before it) up to the end of the first guide.
@@ -1198,6 +1278,7 @@ export default async function Page(props: {
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
             memos: slug[0] === "using-zcash" && slug[1] === "memos",
             tex: slug[0] === "using-zcash" && slug[1] === "transparent-exchange-addresses",
+            ncex: slug[0] === "using-zcash" && slug[1] === "non-custodial-exchanges",
             snap: slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups"),
           },
         ],

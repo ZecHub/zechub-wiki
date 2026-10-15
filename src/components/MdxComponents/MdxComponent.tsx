@@ -11,6 +11,7 @@ import ExchangeVideoCard from "./ExchangeVideoCard";
 import GuideActions from "./GuideActions";
 import FaucetCard, { FaucetList } from "./FaucetCard";
 import { RecoveryNav, GuideCallout } from "./RecoveryBlocks";
+import { PointList, PointItem } from "./GuidePoints";
 import LinkButton from "./LinkButton";
 import JumpNav from "./JumpNav";
 import ExchangeLinkCard from "./ExchangeLinkCard";
@@ -69,6 +70,8 @@ const MdxComponents = {
   faucetlist: FaucetList,
   recoverynav: RecoveryNav,
   linkbutton: LinkButton,
+  pointlist: PointList,
+  pointitem: PointItem,
   jumpnav: JumpNav,
   guidecallout: GuideCallout,
   videoblock: VideoBlock,
