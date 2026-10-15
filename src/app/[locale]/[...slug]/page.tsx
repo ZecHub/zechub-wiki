@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -431,6 +431,101 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         rows.splice(first, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
       }
     }
+    if (opts.swap && Array.isArray(tree.children)) {
+      const rows: any[] = tree.children;
+      const el = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const h2At = (re: RegExp) => rows.findIndex((x) => el(x, "h2") && re.test(textOf(x).replace(/#$/, "").trim()));
+      // "Step N: Title" headings become numbered steps.
+      for (const r of rows) {
+        if (!el(r, "h2")) continue;
+        const mm = /^step\s+(\d+)\s*:\s*(.+?)#?$/i.exec(textOf(r).trim());
+        if (mm) {
+          r.properties = { ...(r.properties || {}), dataStep: mm[1] };
+          r.children = [{ type: "text", value: mm[2] }];
+        }
+      }
+      // Drop the watermarked cover image above the first section.
+      const hasImg = (x: any): boolean => x && x.type === "element" && (x.tagName === "img" || (x.children || []).some(hasImg));
+      for (let k = 0; k < rows.length && !el(rows[k], "h2"); k++) {
+        if (el(rows[k], "p") && hasImg(rows[k]) && !textOf(rows[k]).trim()) {
+          rows.splice(k, 1);
+          break;
+        }
+      }
+      // Drop the Step 2 screenshot: the upstream file is unavailable and was a duplicate of Step 1.
+      const hasSrc = (x: any, re: RegExp): boolean => x && x.type === "element" && ((x.tagName === "img" && re.test(String(x.properties?.src || ""))) || (x.children || []).some((c: any) => hasSrc(c, re)));
+      const brokenAt = rows.findIndex((x) => el(x, "p") && hasSrc(x, /ry4QQF-5gx/));
+      if (brokenAt > -1) rows.splice(brokenAt, 1);
+      // Lead-in and closing warning as highlighted notes.
+      for (let k = 0; k < rows.length; k++) {
+        const t = el(rows[k], "p") ? textOf(rows[k]).trim() : "";
+        if (/^already holding zec on solana/i.test(t)) rows[k] = { type: "element", tagName: "guidecallout", properties: { title: "Already hold ZEC on Solana?" }, children: [rows[k]] };
+        else if (/^a zec token bought with phantom/i.test(t)) rows[k] = { type: "element", tagName: "guidecallout", properties: { title: "Heads up" }, children: [rows[k]] };
+      }
+      // Shortcuts above the first section.
+      const first = h2At(/^native zec or a zec token/i);
+      if (first > -1) {
+        const items = [
+          { label: "Native or token", hint: "Know what you pay for", href: "#native-zec-or-a-zec-token" },
+          { label: "Swap", hint: "Steps 1 to 7", href: "#open-the-swap-interface" },
+          { label: "Withdraw", hint: "Step 8, native ZEC", href: "#withdraw-native-zec-to-your-zcash-wallet" },
+          { label: "Next steps", hint: "Keep it shielded", href: "#next-steps" },
+        ];
+        let at = first;
+        while (at > 0 && el(rows[at - 1], "hr")) at--;
+        rows.splice(at, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.tnet && Array.isArray(tree.children)) {
+      const rows: any[] = tree.children;
+      const el = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const h2At = (re: RegExp) => rows.findIndex((x) => el(x, "h2") && re.test(textOf(x).replace(/#$/, "").trim()));
+      // Subheadings (h3/h4, many numbered "1. ...") become hairline-separated titles.
+      for (let k = 0; k < rows.length; k++) {
+        const r = rows[k];
+        if (el(r, "h3") || el(r, "h4")) {
+          let nx = k + 1;
+          while (nx < rows.length && isBlank(rows[nx])) nx++;
+          const stacked = el(rows[nx], "h3") || el(rows[nx], "h4");
+          rows[k] = { type: "element", tagName: "h3", properties: { ...(r.properties || {}), ...(stacked ? {} : { dataRule: "true" }) }, children: r.children };
+        }
+      }
+      // Key note as a highlighted callout.
+      for (let k = 0; k < rows.length; k++) {
+        if (el(rows[k], "p") && /^think of taz as/i.test(textOf(rows[k]).trim())) {
+          rows[k] = { type: "element", tagName: "guidecallout", properties: { title: "Keep in mind" }, children: [rows[k]] };
+        }
+      }
+      // Number the main sections, except the closing summary; hairline between sections.
+      let num = 0;
+      for (let k = 0; k < rows.length; k++) {
+        if (!el(rows[k], "h2")) continue;
+        if (!/^quick summary/i.test(textOf(rows[k]).replace(/#$/, "").trim())) {
+          num++;
+          rows[k].properties = { ...(rows[k].properties || {}), dataStep: String(num) };
+        }
+      }
+      for (let k = 1; k < rows.length; k++) {
+        if (!el(rows[k], "h2")) continue;
+        let q = k - 1;
+        while (q >= 0 && isBlank(rows[q])) q--;
+        if (q >= 0 && !el(rows[q], "hr")) {
+          rows.splice(k, 0, { type: "element", tagName: "hr", properties: {}, children: [] });
+          k++;
+        }
+      }
+      // Shortcuts above the first section.
+      const first = h2At(/^what is the zcash testnet/i);
+      if (first > -1) {
+        const items = [
+          { label: "What it is", hint: "A parallel sandbox chain", href: "#what-is-the-zcash-testnet" },
+          { label: "Use cases", hint: "Who uses Testnet", href: "#real-testnet-use-cases" },
+          { label: "Mainnet vs Testnet", hint: "Key differences", href: "#key-differences-between-mainnet-and-testnet" },
+          { label: "TAZ and faucets", hint: "Get free test coins", href: "#what-is-taz" },
+        ];
+        rows.splice(first, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
+      }
+    }
     const walk = (node: any) => {
       const kids = node.children;
       if (!Array.isArray(kids)) return;
@@ -459,7 +554,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
               stripColon(n);
             }
           } else if (n.tagName === "h3") {
-            const mm = /^(\d+)\.\s+(.+)$/.exec(textOf(n).trim());
+            const mm = opts.sol ? null : /^(\d+)\.\s+(.+)$/.exec(textOf(n).trim());
             if (mm) {
               n.properties = { ...(n.properties || {}), dataStep: mm[1] };
               n.children = [{ type: "text", value: mm[2] }];
@@ -1468,7 +1563,9 @@ export default async function Page(props: {
             pools: slug[0] === "using-zcash" && slug[1] === "shielded-pools",
             prq: slug[0] === "using-zcash" && slug[1] === "payment-request-uris",
             ncex: slug[0] === "using-zcash" && slug[1] === "non-custodial-exchanges",
-            snap: slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups" || slug[1] === "solana-zec-to-shielded"),
+            snap: slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups" || slug[1] === "solana-zec-to-shielded" || slug[1] === "solswap"),
+            swap: slug[0] === "using-zcash" && slug[1] === "solswap",
+            tnet: slug[0] === "using-zcash" && slug[1] === "testnet",
             sol: slug[0] === "using-zcash" && slug[1] === "solana-zec-to-shielded",
           },
         ],
