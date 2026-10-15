@@ -16,13 +16,13 @@ export default function JumpNav(props: Record<string, unknown>) {
           <a
             key={r.href}
             href={r.href}
-            className="flex items-center justify-between gap-3 rounded-xl border border-yellow-500/50 px-4 py-3 text-left no-underline transition-colors hover:border-yellow-500 hover:bg-yellow-400/10"
+            className="flex items-center justify-between gap-3 rounded-xl border border-brand/40 px-4 py-3 text-left no-underline transition-colors hover:border-brand hover:bg-brand/10"
           >
             <span className="min-w-0">
-              <span className="block text-sm font-semibold text-yellow-700 dark:text-yellow-400">{r.label}</span>
+              <span className="block text-sm font-semibold text-brand dark:text-brand-soft">{r.label}</span>
               {r.hint && <span className="block text-xs text-slate-600 dark:text-slate-400">{r.hint}</span>}
             </span>
-            <ArrowDown aria-hidden="true" className="h-4 w-4 shrink-0 text-yellow-700 dark:text-yellow-400" />
+            <ArrowDown aria-hidden="true" className="h-4 w-4 shrink-0 text-brand dark:text-brand-soft" />
           </a>
         ))}
       </div>

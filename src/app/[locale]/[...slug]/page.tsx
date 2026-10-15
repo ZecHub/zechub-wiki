@@ -169,6 +169,27 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
             };
             continue;
           }
+          // Break the long Binance paragraph into short ones at sentence starts (links are kept).
+          if (n.tagName === "p" && /^binance is the reason tex addresses exist/i.test(t)) {
+            const splitAt = /(?<=\.\s)(?=ZIP 320 does not expect|TEX addresses inform a compatible|If an exchange like Binance rejects)/;
+            const paras: any[][] = [[]];
+            for (const c of n.children || []) {
+              if (c.type === "text" && splitAt.test(c.value)) {
+                const parts = c.value.split(splitAt);
+                parts.forEach((part: string, k: number) => {
+                  if (k > 0) paras.push([]);
+                  const txt = k < parts.length - 1 ? part.trimEnd() : part;
+                  if (txt) paras[paras.length - 1].push({ type: "text", value: txt });
+                });
+              } else {
+                paras[paras.length - 1].push(c);
+              }
+            }
+            if (paras.length > 1) {
+              kids.splice(i, 1, ...paras.map((ch) => ({ type: "element", tagName: "p", properties: {}, children: ch })));
+              continue;
+            }
+          }
           if (n.tagName === "h2" && /^core explanation/i.test(t)) {
             stepCount.n = 1;
             const items = [
