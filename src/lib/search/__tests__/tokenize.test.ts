@@ -81,6 +81,11 @@ describe("markdownToText", () => {
     expect(markdownToText("---\ntitle: X\n---\nbody")).toBe("body");
   });
 
+  it("drops CRLF and BOM frontmatter (most content files are CRLF)", () => {
+    expect(markdownToText("---\r\npublished: 2024-01-12 \r\n---\r\n\r\nbody")).toBe("body");
+    expect(markdownToText("\uFEFF---\npublished: 2024-01-12\n---\nbody")).toBe("body");
+  });
+
   it("drops inline code", () => {
     expect(markdownToText("run `zcashd -daemon` now")).toBe("run now");
   });
