@@ -75,7 +75,7 @@
     "ZIPs & Grants": "ZIP e finanziamenti",
     "ZKAV Club": "ZKAV Club",
     "ZODL": "ZODL",
-    "Zcash Community": "Community Zcash",
+    "Zcash Community": "Community di Zcash",
     "Zcash Community Grants": "Zcash Community Grants",
     "Zcash Devtool": "Zcash Devtool",
     "Zcash Ecosystem Security": "Sicurezza dell'ecosistema di Zcash",
@@ -85,7 +85,7 @@
     "Zcash Improvement Proposals": "Zcash Improvement Proposals",
     "Zcash Login": "Zcash Login",
     "Zcash Media": "Zcash Media",
-    "Zcash Organizations": "Organizzazioni Zcash",
+    "Zcash Organizations": "Organizzazioni di Zcash",
     "Zcash Podcasts": "Podcast su Zcash",
     "Zcon Archive": "Archivio Zcon",
     "Zcon Vozes Archive": "Archivio Zcon Vozes",
@@ -101,7 +101,7 @@
     "Privacy Tools": "Strumenti per la privacy",
     "Zcash Social Media": "Social media di Zcash",
     "Glossary & FAQ's": "Glossario e FAQ",
-    "Use Zcash": "Usa Zcash",
+    "Use Zcash": "Usare Zcash",
     "Block Explorers": "Esploratori di blocchi",
     "Ecosystem": "Ecosistema",
     "Raspberry Pi Zcashd Node": "Nodo Zcashd Raspberry Pi",
@@ -135,8 +135,8 @@
     "Using Zcash": "Usare Zcash",
     "Guides": "Guide",
     "Zcash Tech": "Tecnologia di Zcash",
-    "Zcash Organizations": "Organizzazioni Zcash",
-    "Zcash Community": "Community Zcash",
+    "Zcash Organizations": "Organizzazioni di Zcash",
+    "Zcash Community": "Community di Zcash",
     "ZKAV Club": "ZKAV Club",
     "Privacy Tools": "Strumenti per la privacy",
     "Research": "Ricerca",
@@ -275,8 +275,8 @@
   "home": {
     "heroTitle": "Benvenuto su ZecHub",
     "heroSubtitle": "Un hub educativo open source per Zcash",
-    "heroDescription": "Scopri la tecnologia di privacy di Zcash, esplora visualizer interattivi e contribuisci all'ecosistema",
-    "description": "ZecHub è l'hub educativo guidato dalla community per Zcash (ZEC), una valuta digitale decentralizzata pensata per pagamenti resistenti alla censura, sicuri e privati. Zcash usa una crittografia avanzata a conoscenza zero per consentire transazioni la cui validità può essere verificata senza rivelare informazioni finanziarie sensibili. Nel 2026 ha introdotto la pool schermata Ironwood, la cui integrità dei saldi è stata verificata formalmente con dimostrazioni matematiche controllate al computer. Project Tachyon sta sviluppando un protocollo schermato di nuova generazione, pensato per migliorare in modo radicale la scalabilità dei pagamenti privati, ridurre la crescita dello stato dei validatori e portare Zcash verso una privacy pienamente resistente ai computer quantistici.",
+    "heroDescription": "Scopri la tecnologia di privacy di Zcash, esplora i visualizzatori interattivi e contribuisci all'ecosistema",
+    "description": "ZecHub è l'hub educativo guidato dalla community per Zcash (ZEC), una valuta digitale decentralizzata pensata per pagamenti resistenti alla censura, sicuri e privati. Zcash usa una crittografia avanzata a conoscenza zero per consentire transazioni la cui validità può essere verificata senza rivelare informazioni finanziarie sensibili. Nel 2026 ha introdotto la pool schermata Ironwood, la cui integrità dei saldi è stata verificata formalmente con dimostrazioni matematiche controllate al computer. Project Tachyon sta sviluppando la proposta di un protocollo schermato di nuova generazione, pensato per migliorare in modo radicale la scalabilità dei pagamenti privati, ridurre la crescita dello stato dei validatori e portare Zcash verso una privacy pienamente resistente ai computer quantistici.",
     "featuredSection": "Risorse in evidenza",
     "latestUpdates": "Ultimi aggiornamenti",
     "getInvolved": "Partecipa",
@@ -368,7 +368,7 @@
   "visualizer": {
     "title": "Visualizzatori di Zcash",
     "description": "Strumenti educativi interattivi per capire la tecnologia di privacy, l'infrastruttura e le prove a conoscenza zero di Zcash",
-    "playAll": "Riproduci tutti i visualizer",
+    "playAll": "Riproduci tutti i visualizzatori",
     "basic": "Base",
     "basicDescription": "Concetti fondamentali e funzionalità essenziali di Zcash",
     "advanced": "Avanzato",
@@ -378,7 +378,7 @@
     "beginnerQuiz": "Quiz per principianti",
     "intermediateQuiz": "Quiz intermedio",
     "contributorsQuiz": "Quiz per contributori",
-    "autoPlayNote": "Ogni visualizer si avvia automaticamente. Usa i controlli per navigare o mettere in pausa.",
+    "autoPlayNote": "Ogni visualizzatore si avvia automaticamente. Usa i controlli per navigare o mettere in pausa.",
     "wallets": {
       "title": "Introduzione ai portafogli Zcash",
       "description": "Forniscono funzionalità schermate"
@@ -656,7 +656,7 @@
       "running": "Esecuzione",
       "startZingoCliDefault": "Avvia Zingo CLI (Predefinito)",
       "startZingoCliCustom": "Avvia Zingo CLI (Personalizzato)",
-      "zingoSyncWarning": "⚠ Al primo avvio verra eseguita una sincronizzazione completa, simile a lightwalletd.",
+      "zingoSyncWarning": "⚠ Al primo avvio verrà eseguita una sincronizzazione completa, simile a lightwalletd.",
       "nextStepsResources": "Prossimi passi e risorse",
       "readyToBuild": "Pronto a sviluppare?",
       "officialDocumentation": "Documentazione ufficiale",
@@ -853,7 +853,7 @@
       "projectsArchivedMany": "{count} progetti archiviati da questa edizione.",
       "buildsCount": "{count} build",
       "viewProject": "Vedi il progetto",
-      "needHelpTitle": "Hai bisogno di aiuto?",
+      "needHelpTitle": "Serve aiuto?",
       "needHelpDesc": "Il Discord Zcash Global e il posto migliore per domande sullo sviluppo, consigli sull'infrastruttura e chiacchiere sull'hackathon.",
       "joinDiscord": "Unisciti a Discord",
       "supportDonation": "Sostieni con una donazione",
@@ -1010,7 +1010,7 @@
       }
     },
     "paymentProcessors": {
-      "title": "Payment processor | ZecHub",
+      "title": "Processori di pagamento | ZecHub",
       "noData": "Nessun dato disponibile",
       "bannerAlt": "Banner wiki"
     },
@@ -1025,7 +1025,7 @@
       }
     },
     "wallets": {
-      "title": "Wallet | ZecHub",
+      "title": "Portafogli | ZecHub",
       "noData": "Nessun dato disponibile",
       "bannerAlt": "Banner wiki"
     },
@@ -1051,7 +1051,7 @@
         "top15VideosByViews": "Top 15 video per visualizzazioni",
         "latest15VideosSortedByViews": "Ultimi 15 video (ordinati per visualizzazioni)",
         "zcashMetrics": {
-          "title": "Metriche Zcash",
+          "title": "Metriche di Zcash",
           "loadError": "Impossibile caricare le metriche di Zcash",
           "notAvailable": "N/D",
           "marketCap": "Capitalizzazione di mercato",
@@ -1132,8 +1132,8 @@
     "browseSidebar": "Sfoglia gli articoli usando la barra laterale a sinistra 👈",
     "zcashGlobalAmbassadors": {
       "title": "Ambasciatori Globali di Zcash",
-      "description": "Gli Ambasciatori globali di Zcash sono leader della community impegnati a promuovere nel mondo l'adozione e la conoscenza delle criptovalute incentrate sulla privacy. Ogni progetto degli ambasciatori si concentra sullo sviluppo della consapevolezza e del coinvolgimento nelle rispettive aree geografiche.",
-      "activeProjectsHeading": "Progetti attivi degli Ambasciatori globali",
+      "description": "Gli Ambasciatori Globali di Zcash sono leader della community impegnati a promuovere nel mondo l'adozione e la conoscenza delle criptovalute incentrate sulla privacy. Ogni progetto degli ambasciatori si concentra sullo sviluppo della consapevolezza e del coinvolgimento nelle rispettive aree geografiche.",
+      "activeProjectsHeading": "Progetti attivi degli Ambasciatori Globali",
       "projectSitesHeading": "Siti e blog dei progetti",
       "followOnX": "Segui su X/BS",
       "projectSiteLabel": "Sito del progetto",
