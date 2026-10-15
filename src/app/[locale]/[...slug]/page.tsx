@@ -40,6 +40,7 @@ import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { serialize } from "next-mdx-remote/serialize";
+import { stripFrontmatter } from "@/lib/stripFrontmatter";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { rehypeJsxYouTubeFacade } from "@/lib/rehypeJsxYouTubeFacade";
@@ -564,7 +565,7 @@ export default async function Page(props: {
     );
   }
 
-  const serializedSource = await serialize(normalizeMdx(processedMarkdown), {
+  const serializedSource = await serialize(normalizeMdx(stripFrontmatter(processedMarkdown)), {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
