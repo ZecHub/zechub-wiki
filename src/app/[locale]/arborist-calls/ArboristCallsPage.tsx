@@ -94,7 +94,7 @@ export default function ArboristCallsPage() {
           <div className="flex items-center gap-3 mb-6">
             <h1 className="text-3xl font-bold">Zcash Arborist Calls</h1>
           </div>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             Complete archive of all Zcash community arborist calls
           </p>
         </div>
@@ -106,7 +106,7 @@ export default function ArboristCallsPage() {
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">
+                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                     Total Calls
                   </p>
                   <p className="text-2xl font-bold">{arboristCalls.length}</p>
@@ -118,7 +118,7 @@ export default function ArboristCallsPage() {
 
           {/* Filters */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Search
             </label>
             <div className="relative">
@@ -133,7 +133,7 @@ export default function ArboristCallsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Status
             </label>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
@@ -149,7 +149,7 @@ export default function ArboristCallsPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               Year
             </label>
             <Select value={yearFilter} onValueChange={setYearFilter}>
@@ -170,7 +170,7 @@ export default function ArboristCallsPage() {
 
         {/* Results count */}
         <div className="mb-4">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             Showing {filteredCalls.length} of {arboristCalls.length} calls
           </p>
         </div>
@@ -195,7 +195,7 @@ export default function ArboristCallsPage() {
                   {filteredCalls.map((call) => (
                     <TableRow
                       key={call.id}
-                      className="hover:bg-yellow-300 dark:hover:bg-yellow-500"
+                      className="group/row hover:bg-yellow-300 dark:hover:bg-yellow-500 dark:hover:text-gray-900"
                     >
                       <TableCell className="font-medium">
                         <div className="flex items-center gap-2">
@@ -205,7 +205,7 @@ export default function ArboristCallsPage() {
                           )}
                         </div>
                       </TableCell>
-                      <TableCell className="text-sm text-gray-600">
+                      <TableCell className="text-sm text-gray-600 dark:text-gray-400 dark:group-hover/row:text-gray-900">
                         {call.date}
                       </TableCell>
                       <TableCell>
@@ -222,7 +222,7 @@ export default function ArboristCallsPage() {
                             <LinkButton
                               href={call.notes}
                               icon={FileText}
-                              className="text-blue-600 hover:text-blue-800 hover:bg-blue-50"
+                              className="text-blue-600 dark:text-blue-400 dark:group-hover/row:text-blue-900 hover:text-blue-800 hover:bg-blue-50"
                             >
                               Notes
                             </LinkButton>
@@ -231,7 +231,7 @@ export default function ArboristCallsPage() {
                             <LinkButton
                               href={call.video}
                               icon={Video}
-                              className="text-red-600 hover:text-red-800 hover:bg-red-50"
+                              className="text-red-600 dark:text-red-400 dark:group-hover/row:text-red-900 hover:text-red-800 hover:bg-red-50"
                             >
                               Video
                             </LinkButton>
@@ -249,7 +249,7 @@ export default function ArboristCallsPage() {
                             <LinkButton
                               href={call.agenda}
                               icon={FileText}
-                              className="text-gray-600 hover:text-gray-800 hover:bg-gray-50"
+                              className="text-gray-600 dark:text-gray-400 dark:group-hover/row:text-gray-900 hover:text-gray-800 hover:bg-gray-50"
                             >
                               Agenda
                             </LinkButton>
@@ -265,7 +265,7 @@ export default function ArboristCallsPage() {
         </Card>
 
         {/* Footer */}
-        <div className="mt-8 text-center text-gray-500">
+        <div className="mt-8 text-center text-gray-500 dark:text-gray-400">
           <p className="flex items-center justify-center gap-2 text-sm">
             <TreePine className="h-4 w-4" />
             Zcash Community Arborist Calls Archive
