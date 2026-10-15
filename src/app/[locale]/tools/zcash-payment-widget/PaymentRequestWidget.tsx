@@ -15,7 +15,7 @@ import { config } from "./config";
 
 const INPUT_CLASS = [
   "w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]",
-  "focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/15",
+  "focus:border-brand focus:ring-2 focus:ring-brand/15",
   "rounded-xl px-4 py-3.5 text-[15px] font-medium outline-none transition-all duration-200",
   "text-zinc-900 dark:text-white placeholder-zinc-300 dark:placeholder-[#2d3e50]",
 ].join(" ");
@@ -343,7 +343,7 @@ export default function PaymentRequestWidget() {
 
           <button
             disabled={loading || !allValid}
-            className={`w-full py-3.5 px-6 text-black rounded-xl font-semibold text-widget-dark-bg bg-linear-to-r from-[#F4B728] to-[#d9a520] shadow-lg active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none ${loading ? "cursor-not-allowed" : "cursor-pointer"}`}
+            className={`w-full py-3.5 px-6 text-white rounded-xl font-semibold text-widget-dark-bg bg-linear-to-r from-brand to-brand-hover shadow-lg active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none ${loading ? "cursor-not-allowed" : "cursor-pointer"}`}
           >
             {loading ? (
               <span className="flex items-center justify-center gap-2">

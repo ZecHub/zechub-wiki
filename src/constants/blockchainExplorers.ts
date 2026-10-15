@@ -28,7 +28,7 @@ export const blockchainExplorers = [
         'Mempool monitoring',
       ],
       url: 'https://zcashinfo.com/',
-      thumbnailImage: '/explorer-logos/zcashinfo.png',
+      thumbnailImage: '/explorer-logos/zcashinfo-logo.png',
     },
     {
     title: 'Zexplorer',
@@ -52,7 +52,7 @@ export const blockchainExplorers = [
       'A lightweight static website generator designed for the Zcash ecosystem, enabling users to create, publish, and manage decentralized-friendly websites using a simple Java-based architecture.',
     features: ['Java-Based Static Website Generation', 'Zcash Community News Platform', 'Static Site Architecture', 'Pip-Boy Inspired User Interface', 'Blockchain-Focused Content Organization', 'Lightweight and Efficient Deployment', 'Customizable Website Templates', 'Privacy-Oriented Web Publishing', 'Developer-Friendly Workflow'],
     url: 'https://zecsite.org/pipboy/en/index.html',
-    thumbnailImage: '',
+    thumbnailImage: '/explorer-logos/zecsite.png',
   },
   {
     title: 'MESSARI',
@@ -76,7 +76,7 @@ export const blockchainExplorers = [
       'address and block search',
     ],
     url: 'https://3xpl.com/zcash',
-    thumbnailImage: '/explorer-logos/3xpl.png',
+    thumbnailImage: '/explorer-logos/3xpl-logo.png',
   },
   {
     title: 'BlockExplorer.one',
@@ -91,7 +91,7 @@ export const blockchainExplorers = [
     description: 'No tracker #Zcash Block Explore',
     url: 'https://mainnet.zcashexplorer.app/',
     features: ['No tracker', 'mainnet', 'testnet'],
-    thumbnailImage: '',
+    thumbnailImage: '/explorer-logos/zcashblockexplorer.png',
   },
   {
     title: 'Bitquery',
@@ -107,7 +107,7 @@ export const blockchainExplorers = [
       'Google Cloud',
     ],
     url: 'https://explorer.bitquery.io/zcash',
-    thumbnailImage: '/explorer-logos/bitquery.png',
+    thumbnailImage: '/explorer-logos/bitquery-logo.png',
   },
   {
     title: 'Zypherscan',
@@ -115,6 +115,6 @@ export const blockchainExplorers = [
       'Privacy-first blockchain explorer for Zcash. Explore shielded transactions by bringing your own viewing keys for a seamless, view-only explorer of private ZCash history.',
     features: ['Shielded transactions', 'viewing keys support', 'Orchard & Sapling pools', 'network statistics'],
     url: 'https://www.zypherscan.com/',
-    thumbnailImage: '',
+    thumbnailImage: '/explorer-logos/zypherscan.png',
   },
 ];

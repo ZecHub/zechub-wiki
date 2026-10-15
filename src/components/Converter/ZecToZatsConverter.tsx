@@ -80,7 +80,7 @@ export default function ZecToZatsConverter() {
     <div className="w-full space-y-4">
       {/* Rate badge */}
       <div className="flex justify-center mb-1">
-        <span className="text-xs font-semibold tracking-wide text-[#F4B728] bg-[#F4B728]/10 border border-[#F4B728]/15 px-3 py-1.5 rounded-full">
+        <span className="text-xs font-semibold tracking-wide text-brand dark:text-brand-soft bg-brand/10 border border-brand/15 px-3 py-1.5 rounded-full">
           1 ZEC = 100,000,000 Zats
         </span>
       </div>
@@ -98,7 +98,7 @@ export default function ZecToZatsConverter() {
             value={displayTop}
             onChange={handleTopChange}
             className="w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]
-                       focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/15
+                       focus:border-brand focus:ring-2 focus:ring-brand/15
                        rounded-xl px-5 py-4 pr-16 text-2xl sm:text-3xl font-bold outline-none
                        transition-all duration-200 text-zinc-900 dark:text-white
                        placeholder-zinc-300 dark:placeholder-[#2d3e50]"
@@ -116,7 +116,7 @@ export default function ZecToZatsConverter() {
           onClick={swap}
           aria-label="Swap units"
           className="group p-2.5 rounded-xl bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]
-                     hover:border-[#F4B728]/50 hover:bg-[#F4B728]/5 active:scale-95
+                     hover:border-brand/50 hover:bg-brand/5 active:scale-95
                      transition-all duration-200"
         >
           <svg
@@ -127,7 +127,7 @@ export default function ZecToZatsConverter() {
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="text-zinc-400 dark:text-[#4a5a6e] group-hover:text-[#F4B728] transition-colors stroke-current"
+            className="text-zinc-400 dark:text-[#4a5a6e] group-hover:text-brand transition-colors stroke-current"
           >
             <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4" />
           </svg>
@@ -147,7 +147,7 @@ export default function ZecToZatsConverter() {
             value={displayBottom}
             onChange={handleBottomChange}
             className="w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]
-                       focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/15
+                       focus:border-brand focus:ring-2 focus:ring-brand/15
                        rounded-xl px-5 py-4 pr-16 text-2xl sm:text-3xl font-bold outline-none
                        transition-all duration-200 text-zinc-900 dark:text-white
                        placeholder-zinc-300 dark:placeholder-[#2d3e50]"
@@ -171,8 +171,8 @@ export default function ZecToZatsConverter() {
             className={`flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold
                         transition-all duration-200 active:scale-[0.97] border ${
                           copied
-                            ? 'bg-[#F4B728] border-[#F4B728] text-[#0f1720]'
-                            : 'bg-zinc-50 dark:bg-[#0f1720] border-zinc-200 dark:border-[#243040] text-zinc-500 dark:text-[#5a6a7e] hover:border-[#F4B728]/50 hover:text-[#F4B728]'
+                            ? 'bg-brand border-brand text-white'
+                            : 'bg-zinc-50 dark:bg-[#0f1720] border-zinc-200 dark:border-[#243040] text-zinc-500 dark:text-[#5a6a7e] hover:border-brand/50 hover:text-brand'
                         }`}
           >
             {copied ? (

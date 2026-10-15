@@ -26,7 +26,7 @@ function QRCode({ value, size = 176 }: { value: string; size?: number }) {
 }
 const INPUT_CLASS = [
   "w-full bg-zinc-50 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040]",
-  "focus:border-[#F4B728] focus:ring-2 focus:ring-[#F4B728]/15",
+  "focus:border-brand focus:ring-2 focus:ring-brand/15",
   "rounded-xl px-4 py-3.5 text-[15px] font-medium outline-none transition-all duration-200",
   "text-zinc-900 dark:text-white placeholder-zinc-300 dark:placeholder-[#2d3e50]",
 ].join(" ");
@@ -450,13 +450,13 @@ export default function PaymentRequestBuilder() {
           <div
             className={`relative rounded-xl px-4 py-3.5 font-mono text-[13px] leading-relaxed break-all min-h-[48px] transition-all duration-300 ${
               uri
-                ? "bg-[#F4B728]/5 border border-[#F4B728]/20 text-[#F4B728]"
+                ? "bg-brand/5 border border-brand/20 text-brand dark:text-brand-soft"
                 : "border border-dashed border-zinc-200 dark:border-[#243040] text-zinc-400 dark:text-[#3d4e60]"
             }`}
           >
             {uri || "Enter an address to generate a payment URI..."}
             {uri && (
-              <span className="absolute top-1.5 right-3 text-[9px] font-bold uppercase tracking-wider bg-[#F4B728]/15 text-[#F4B728] px-2 py-0.5 rounded">
+              <span className="absolute top-1.5 right-3 text-[9px] font-bold uppercase tracking-wider bg-brand/15 text-brand dark:text-brand-soft px-2 py-0.5 rounded">
                 ZIP-321
               </span>
             )}
@@ -466,7 +466,7 @@ export default function PaymentRequestBuilder() {
         {/* QR */}
         {deferredURI && (
           <div className="flex justify-center pt-1">
-            <div className="p-4 bg-white rounded-2xl shadow-xl shadow-black/10 dark:shadow-[#F4B728]/5 border border-zinc-100 dark:border-[#243040]">
+            <div className="p-4 bg-white rounded-2xl shadow-xl shadow-black/10 dark:shadow-brand/5 border border-zinc-100 dark:border-[#243040]">
               <QRCode value={deferredURI} />
             </div>
           </div>
@@ -478,7 +478,7 @@ export default function PaymentRequestBuilder() {
           disabled={!allValid}
           className={`w-full py-3.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200 active:scale-[0.98] ${
             uri
-              ? "bg-gradient-to-r from-[#F4B728] to-[#d9a520] text-[#151e29] hover:shadow-lg hover:shadow-[#F4B728]/15 hover:-translate-y-0.5 cursor-pointer"
+              ? "bg-gradient-to-r from-brand to-brand-hover text-white hover:shadow-lg hover:shadow-brand/15 hover:-translate-y-0.5 cursor-pointer"
               : "bg-zinc-100 dark:bg-[#0f1720] border border-zinc-200 dark:border-[#243040] text-zinc-400 dark:text-[#3d4e60] cursor-not-allowed"
           }`}
         >

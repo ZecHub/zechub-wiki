@@ -29,7 +29,7 @@ export const blockchainExplorersIt = [
       'ricerca di indirizzi e blocchi',
     ],
     url: 'https://3xpl.com/zcash',
-    thumbnailImage: '/explorer-logos/3xpl.png',
+    thumbnailImage: '/explorer-logos/3xpl-logo.png',
   },
   {
     title: 'BlockExplorer.one',
@@ -44,7 +44,7 @@ export const blockchainExplorersIt = [
     description: 'Block explorer #Zcash senza tracker',
     url: 'https://mainnet.zcashexplorer.app/',
     features: ['Senza tracker', 'mainnet', 'testnet'],
-    thumbnailImage: '',
+    thumbnailImage: '/explorer-logos/zcashblockexplorer.png',
   },
   {
     title: 'Bitquery',
@@ -60,7 +60,7 @@ export const blockchainExplorersIt = [
       'Google Cloud',
     ],
     url: 'https://explorer.bitquery.io/zcash',
-    thumbnailImage: '/explorer-logos/bitquery.png',
+    thumbnailImage: '/explorer-logos/bitquery-logo.png',
   },
   {
     title: 'Cipherscan',
@@ -76,7 +76,7 @@ export const blockchainExplorersIt = [
       'Esploratore della blockchain privacy-first per Zcash. Esplora le transazioni schermate utilizzando le tue chiavi di visualizzazione per un esploratore in sola lettura e senza soluzione di continuità della cronologia privata di ZCash.',
     features: ['Transazioni schermate', 'supporto per chiavi di visualizzazione', 'pool Orchard e Sapling', 'statistiche di rete'],
     url: 'https://www.zypherscan.com/',
-    thumbnailImage: '',
+    thumbnailImage: '/explorer-logos/zypherscan.png',
   },
   {
       title: 'zcashinfo.com',
@@ -91,7 +91,7 @@ export const blockchainExplorersIt = [
         'Monitoraggio della mempool',
       ],
       url: 'https://zcashinfo.com/',
-      thumbnailImage: '/explorer-logos/zcashinfo.png',
+      thumbnailImage: '/explorer-logos/zcashinfo-logo.png',
     },
     {
     title: 'Zexplorer',

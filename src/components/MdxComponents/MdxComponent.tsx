@@ -269,7 +269,11 @@ const MdxComponents = {
     <img
       src={props.src || ""}
       alt={props.alt || "Image"}
-      className="my-5 rounded-xl border border-slate-200 dark:border-white/10"
+      className={`my-5 rounded-xl border ${
+        (props as Record<string, unknown>)["data-frame"]
+          ? "border-brand/50 shadow-sm shadow-brand/10"
+          : "border-slate-200 dark:border-white/10"
+      }`}
       loading="lazy"
     />
     );

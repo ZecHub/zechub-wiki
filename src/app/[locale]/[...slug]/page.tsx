@@ -1,4 +1,5 @@
 import MdxContainer from "@/components/MdxContainer";
+import { rewriteMetamaskSnap } from "@/lib/pageOverrides/metamaskSnap";
 import ResearchIndexGrid from "@/components/Research/ResearchIndexGrid";
 import SideMenu from "@/components/SideMenu/SideMenu";
 import { Link } from "@/i18n/navigation";
@@ -128,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { snap?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -150,6 +151,18 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
       if (!Array.isArray(kids)) return;
       for (let i = 0; i < kids.length; i++) {
         const n = kids[i];
+        // Step guides (MetaMask Snap): "1. Title" headings become numbered steps; screenshots get a frame.
+        if (opts.snap && n.type === "element") {
+          if (n.tagName === "h2") {
+            const mm = /^(\d+)\.\s+(.+)$/.exec(textOf(n).trim());
+            if (mm) {
+              n.properties = { ...(n.properties || {}), dataStep: mm[1] };
+              n.children = [{ type: "text", value: mm[2] }];
+            }
+          } else if (n.tagName === "img") {
+            n.properties = { ...(n.properties || {}), dataFrame: "true" };
+          }
+        }
         // TEX page: subheadings, lead paragraph, flow diagram and a wallets button.
         if (opts.tex && n.type === "element") {
           const t = textOf(n).trim();
@@ -1049,6 +1062,10 @@ export default async function Page(props: {
     processedMarkdown = normalizeResearchMdx(processedMarkdown);
   }
 
+  if (slug.join("/") === "using-zcash/metamask-snap" && locale === routing.defaultLocale && processedMarkdown) {
+    processedMarkdown = rewriteMetamaskSnap(processedMarkdown);
+  }
+
   const imgUrl = getBanner(slug[0]) || "";
   const imgUrlDark = getBanner(`${slug[0]}-dark`) || imgUrl;
   const showSideMenu = slug[0] !== "research" && roots.length > 0;
@@ -1141,6 +1158,7 @@ export default async function Page(props: {
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
             memos: slug[0] === "using-zcash" && slug[1] === "memos",
             tex: slug[0] === "using-zcash" && slug[1] === "transparent-exchange-addresses",
+            snap: slug[0] === "using-zcash" && slug[1] === "metamask-snap",
           },
         ],
       ],
