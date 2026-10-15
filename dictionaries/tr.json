@@ -235,7 +235,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "Marka",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "CoinHolder Yönlendirmeli Geriye Dönük Hibeler",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo Ödeme İşlemcisi",
@@ -307,11 +313,6 @@
         "description": "Zcash Küresel Elçileri, dünya çapında gizlilik odaklı kripto para benimsenmesini ve eğitimini teşvik etmeye adanmış topluluk liderleridir. Her elçi projesi, kendi bölgesinde farkındalık ve etkileşim oluşturmaya odaklanır.",
         "link": "Elçilerle Tanışın"
       },
-      "newsletter": {
-        "title": "Shielded Bülteni",
-        "description": "Cüzdanınıza doğrudan Zcash Ekosistem Güncellemeleri ve Ağ İstatistiklerine shielded erişim almak için Unified Address kullanarak abone olun!",
-        "link": "Abone olun"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z, Zcash tarafından desteklenen bir sosyal platformdur. Eşler arası bağışlar, gelir paylaşım programı, gelişmiş yaratıcı araçlar ve devasa küresel çevrimiçi topluluğuyla.",
@@ -324,9 +325,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "Hackathon'a Katılın",
-        "description": "Zcash topluluğuyla birlikte etkili fikirler geliştirin, iş birliği yapın ve hayata geçirin. Beş yenilikçi kategoride yarışın: düğümler ve indeksleyiciler için Altyapı, etkileşimli deneyimler için Oyunlar, eşik imzalama için FROST, kimlik doğrulama çözümleri için Zcash Login ve finansal iş akışları için Muhasebe. 25 Mayıs - 15 Temmuz 2026. 25 ZEC ödül havuzu sizi bekliyor.",
-        "mainLink": "Hackathon'a Katılın"
+        "title": "ZecHub Hackathon Arşivi",
+        "description": "2026 ZecHub Hackathon sona erdi. Altyapı, Oyunlar, FROST, Zcash Login ve Muhasebe kategorilerine sunulan projeleri keşfedin.",
+        "mainLink": "Projeleri görüntüle"
+      },
+      "visualizer": {
+        "description": "Zcash gizlilik teknolojisini, altyapısını ve sıfır bilgi ispatlarını anlamak için etkileşimli eğitim araçları",
+        "link": "Görselleştiriciyi Aç",
+        "title": "ZecHub Görselleştirici"
+      },
+      "zecMap": {
+        "description": "ZecMap, Zcash kabul eden satıcıların, hizmetlerin ve ATM'lerin topluluk tarafından sürdürülen dünya haritasıdır. Yakınınızda ZEC harcayacak bir yer bulun ya da gerçek dünya benimsemesinin büyümesine yardımcı olmak için bildiğiniz bir işletmeyi ekleyin.",
+        "link": "ZecMap'i Ziyaret Et",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -585,7 +596,8 @@
           "transactions24h": "24 sa İşlem",
           "shieldedTx24h": "Korumalı TX (24 sa)",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Ork"
+          "orchardAbbrev": "Ork",
+          "shieldedValue": "Korumalı Değer"
         },
         "zcashChart": {
           "title": "Analitik Grafikler",
@@ -987,7 +999,17 @@
       "zcashCommunityForum": "Zcash Topluluk Forumu",
       "githubIssues": "GitHub Sorunları",
       "troubleshootingGuide": "Sorun Giderme Kılavuzu",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "Donanım",
+      "compareColLanguage": "Dil",
+      "compareColPlatforms": "Platformlar",
+      "compareColRole": "Rol",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "Yazılım",
+      "compareColStatus": "Durum",
+      "compareFootnote": "zcashd, 18 Temmuz 2026'da 3417100 numaralı blokta kullanım ömrünü tamamladı — yeni projeler yukarıdaki yazılıma dayanmalıdır.",
+      "compareLead": "Zcash yığınını birkaç ayrı araç oluşturur. Projenizin hangisine ihtiyaç duyduğunu bu tablodan belirleyin, ardından aşağıdaki ilgili kılavuzu izleyin.",
+      "compareTitle": "Düğüm ve İstemci Karşılaştırması"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAO Yönetişimi",
@@ -1042,7 +1064,17 @@
         "Organizations": "Organizasyonlar",
         "Guides": "Rehberler",
         "Use Zcash": "Zcash kullan",
-        "Ecosystem": "Ekosistem"
+        "Ecosystem": "Ekosistem",
+        "Contribute": "Katkıda Bulun",
+        "Glossary & FAQs": "Sözlük ve SSS",
+        "Privacy Tools": "Gizlilik Araçları",
+        "Research": "Araştırma",
+        "Start Here": "Buradan Başlayın",
+        "Tutorials": "Öğreticiler",
+        "Use Cases": "Kullanım Alanları",
+        "Zcash Tech": "Zcash Teknolojisi",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "Sosyal Medya"
       },
       "links": {
         "Homepage": "Ana sayfa",

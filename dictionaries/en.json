@@ -307,6 +307,11 @@
         "description": "This website is an answer to the question: Where can I pay with Zcash? The directory is free to use. The items listed are for informational purposes only, and not endorsements of any kind. Enjoy!",
         "mainLink": "paywithz.cash",
         "mapLink": "SPEDN"
+      },
+      "hackathon": {
+        "title": "ZecHub Hackathon Archive",
+        "description": "The 2026 ZecHub Hackathon has ended. Explore the projects submitted across Infrastructure, Games, FROST, Zcash Login, and Accounting.",
+        "mainLink": "View projects"
       }
     },
     "explore": {

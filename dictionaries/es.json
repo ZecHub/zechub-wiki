@@ -235,7 +235,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "Marca",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "Subvenciones retroactivas dirigidas por CoinHolder",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Procesador de pagos Zgo",
@@ -307,11 +313,6 @@
         "description": "Los Embajadores Globales de Zcash son líderes comunitarios dedicados a promover la adopción y educación sobre criptomonedas centradas en la privacidad en todo el mundo. Cada proyecto de embajador se enfoca en crear conciencia y participación dentro de sus respectivas regiones.",
         "link": "Conoce a los embajadores"
       },
-      "newsletter": {
-        "title": "Shielded Newsletter",
-        "description": "Suscríbete usando tu Unified Address para recibir acceso blindado a actualizaciones del ecosistema de Zcash y estadísticas de la red directamente en tu cartera.",
-        "link": "Suscribirse"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z es una plataforma social impulsada por Zcash. Con donaciones entre pares, un programa de reparto de ingresos, herramientas creativas avanzadas y una gran comunidad global en línea.",
@@ -324,9 +325,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "Únete al Hackathon",
-        "description": "Construye, colabora y lanza ideas de impacto con la comunidad de Zcash. Compite en cinco categorías innovadoras: Infrastructure para nodos e indexadores, Games para experiencias interactivas, FROST para firmas de umbral, Zcash Login para soluciones de autenticación, y Accounting para flujos de trabajo financieros. 25 de mayo - 15 de julio de 2026. Te espera una bolsa de premios de 25 ZEC.",
-        "mainLink": "Únete al Hackathon"
+        "title": "Archivo del Hackathon de ZecHub",
+        "description": "El Hackathon 2026 de ZecHub ha finalizado. Explora los proyectos presentados en las categorías Infraestructura, Juegos, FROST, Zcash Login y Contabilidad.",
+        "mainLink": "Ver proyectos"
+      },
+      "visualizer": {
+        "description": "Herramientas educativas interactivas para comprender la tecnología de privacidad de Zcash, la infraestructura y las pruebas de conocimiento cero",
+        "link": "Abrir el Visualizador",
+        "title": "Visualizador de ZecHub"
+      },
+      "zecMap": {
+        "description": "ZecMap es un mapa mundial mantenido por la comunidad de comercios, servicios y cajeros automáticos que aceptan Zcash. Encuentra un lugar donde gastar ZEC cerca de ti, o añade un negocio que conozcas para ayudar a impulsar la adopción en el mundo real.",
+        "link": "Visitar ZecMap",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -585,7 +596,8 @@
           "transactions24h": "Transacciones 24h",
           "shieldedTx24h": "TX blindadas (24h)",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Orc"
+          "orchardAbbrev": "Orc",
+          "shieldedValue": "Valor blindado"
         },
         "zcashChart": {
           "title": "Gráficos analíticos",
@@ -987,7 +999,17 @@
       "zcashCommunityForum": "Foro de la comunidad de Zcash",
       "githubIssues": "Issues de GitHub",
       "troubleshootingGuide": "Guía de solución de problemas",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "Hardware",
+      "compareColLanguage": "Idioma",
+      "compareColPlatforms": "Plataformas",
+      "compareColRole": "Rol",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "Software",
+      "compareColStatus": "Estado",
+      "compareFootnote": "zcashd llegó al final de su vida útil en el bloque 3417100 el 18 de julio de 2026: los nuevos proyectos deberían construir sobre el software indicado arriba.",
+      "compareLead": "La stack de Zcash se compone de unas pocas herramientas separadas. Usa esta tabla para averiguar cuál necesita tu proyecto y luego sigue la guía correspondiente a continuación.",
+      "compareTitle": "Comparación de Nodos y Clientes"
     },
     "governanceHowto": {
       "pageTitle": "Gobernanza del DAO de ZecHub",
@@ -1042,7 +1064,17 @@
         "Organizations": "Organizaciones",
         "Guides": "Guías",
         "Use Zcash": "Usar Zcash",
-        "Ecosystem": "Ecosistema"
+        "Ecosystem": "Ecosistema",
+        "Contribute": "Contribuir",
+        "Glossary & FAQs": "Glosario y preguntas frecuentes",
+        "Privacy Tools": "Herramientas de privacidad",
+        "Research": "Investigación",
+        "Start Here": "Empieza aquí",
+        "Tutorials": "Tutoriales",
+        "Use Cases": "Casos de uso",
+        "Zcash Tech": "Tecnología de Zcash",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "Redes Sociales"
       },
       "links": {
         "Homepage": "Página de inicio",
