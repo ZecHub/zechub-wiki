@@ -128,7 +128,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -150,6 +150,72 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
       if (!Array.isArray(kids)) return;
       for (let i = 0; i < kids.length; i++) {
         const n = kids[i];
+        // TEX page: subheadings, lead paragraph, flow diagram and a wallets button.
+        if (opts.tex && n.type === "element") {
+          const t = textOf(n).trim();
+          if (
+            ["p", "h4", "h5", "h6", "h3"].includes(n.tagName) &&
+            /^(when do i need a tex address|which wallets support tex addresses\??|how a tex address is built|paying a tex address from a shielded balance|what the blockchain shows)$/i.test(t)
+          ) {
+            kids[i] = { type: "element", tagName: "h3", properties: { dataRule: "true" }, children: [{ type: "text", value: t }] };
+            continue;
+          }
+          if (["h4", "h5", "h6"].includes(n.tagName) && /^you need a tex address when/i.test(t)) {
+            kids[i] = {
+              type: "element",
+              tagName: "p",
+              properties: {},
+              children: [{ type: "element", tagName: "strong", properties: {}, children: [{ type: "text", value: t }] }],
+            };
+            continue;
+          }
+          if (n.tagName === "h2" && /^core explanation/i.test(t)) {
+            stepCount.n = 1;
+            const items = [
+              { label: "What is it?", hint: "Short explanation", href: "#core-explanation" },
+              { label: "When do I need one?", hint: "Wallets and exchanges", href: "#when-do-i-need-a-tex-address" },
+              { label: "Which wallets?", hint: "Supported wallets", href: "#which-wallets-support-tex-addresses" },
+              { label: "How does it work?", hint: "Technical deep dive", href: "#deep-dive" },
+            ];
+            kids.splice(i, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
+            i++;
+          }
+          // Swap the old flow screenshot for the current one.
+          const findImgT = (x: any): any =>
+            x && typeof x === "object" && x.type !== "text"
+              ? (x.tagName || x.name) === "img"
+                ? x
+                : (x.children || []).map(findImgT).find(Boolean) || null
+              : null;
+          if (["p", "img"].includes(n.tagName)) {
+            const im = findImgT(n);
+            if (im) {
+              if (im.attributes) {
+                for (const [k, v] of [["src", "/tex-flow.jpg"], ["alt", "How a shielded wallet pays a TEX address: shielded balance, temporary transparent address, exchange"]]) {
+                  const hit = im.attributes.find((at: any) => at.name === k);
+                  if (hit) hit.value = v;
+                  else im.attributes.push({ type: "mdxJsxAttribute", name: k, value: v });
+                }
+              } else {
+                im.properties = { ...(im.properties || {}), src: "/tex-flow.jpg", alt: "How a shielded wallet pays a TEX address: shielded balance, temporary transparent address, exchange" };
+                delete im.properties.srcSet;
+                delete im.properties.srcset;
+              }
+            }
+          }
+          if (n.tagName === "p" && stepCount.n === 1 && !stepCount.leadDone) {
+            n.properties = { ...(n.properties || {}), dataLead: "true" };
+            stepCount.leadDone = true;
+          }
+          if (n.tagName === "p" && /^you can view the most up-to-date list on our wallets page/i.test(t)) {
+            kids.splice(i + 1, 0, {
+              type: "element",
+              tagName: "linkbutton",
+              properties: { href: "/wallets", label: "Browse wallets" },
+              children: [],
+            });
+          }
+        }
         // Memos page: section lines become real headings; historical note becomes a callout.
         if (opts.memos && n.type === "element") {
           if (/^h[3-6]$/.test(n.tagName)) {
@@ -507,7 +573,16 @@ function rehypeWikiPatterns(opts: { boldLinkButtons?: boolean; videoCards?: bool
                         },
                         children: [n, next],
                       };
-                  kids.splice(i, j - i + 1, card);
+                  // Consecutive exchange cards share one grid (two columns on wide screens).
+                  let pv = i - 1;
+                  while (pv >= 0 && isBlank(kids[pv])) pv--;
+                  if (opts.boldLinkButtons && pv >= 0 && kids[pv].tagName === "exchangegrid") {
+                    kids[pv].children.push(card);
+                    kids.splice(i, j - i + 1);
+                    i--;
+                    continue;
+                  }
+                  kids.splice(i, j - i + 1, opts.boldLinkButtons ? { type: "element", tagName: "exchangegrid", properties: {}, children: [card] } : card);
                   continue;
                 }
               } else {
@@ -1044,6 +1119,7 @@ export default async function Page(props: {
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
             memos: slug[0] === "using-zcash" && slug[1] === "memos",
+            tex: slug[0] === "using-zcash" && slug[1] === "transparent-exchange-addresses",
           },
         ],
       ],

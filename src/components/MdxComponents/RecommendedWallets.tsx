@@ -12,7 +12,7 @@ const WALLETS = [
     // Dark glyph on a transparent background: flip it in the dark theme.
     invertOnDark: true,
     description:
-      "New name of Zashi, announced in February 2026. Built by the former Electric Coin Company team, which formed ZODL in January 2026.",
+      "Shielded wallet from Zcash Open Development Lab (ZODL), built by the former Electric Coin Company team, which formed ZODL in January 2026.",
   },
   {
     name: "Vizor",

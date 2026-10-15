@@ -11,6 +11,8 @@ import ExchangeVideoCard from "./ExchangeVideoCard";
 import GuideActions from "./GuideActions";
 import FaucetCard, { FaucetList } from "./FaucetCard";
 import { RecoveryNav, GuideCallout } from "./RecoveryBlocks";
+import LinkButton from "./LinkButton";
+import JumpNav from "./JumpNav";
 import ExchangeLinkCard from "./ExchangeLinkCard";
 import VideoBlock from "./VideoBlock";
 
@@ -59,10 +61,15 @@ const BUTTON =
 const MdxComponents = {
   exchangevideo: ExchangeVideoCard,
   exchangelink: ExchangeLinkCard,
+  exchangegrid: ({ children }: { children?: React.ReactNode }) => (
+    <div className="my-6 grid max-w-3xl gap-4 sm:grid-cols-2">{children}</div>
+  ),
   guideactions: GuideActions,
   faucetcard: FaucetCard,
   faucetlist: FaucetList,
   recoverynav: RecoveryNav,
+  linkbutton: LinkButton,
+  jumpnav: JumpNav,
   guidecallout: GuideCallout,
   videoblock: VideoBlock,
   // TOC LINKS — underline on hover only (no dashed line)
@@ -170,6 +177,17 @@ const MdxComponents = {
   h3: (props: HTMLProps<HTMLHeadingElement>): JSX.Element => {
     const text = getHeadingText(props.children).trim();
     const id = slugify(text);
+    if ((props as Record<string, unknown>)["data-rule"]) {
+      // Subsection separated from the previous one by a hairline.
+      return (
+        <h3
+          id={id}
+          className="mt-12 mb-3 scroll-mt-20 border-t border-slate-200 pt-8 text-xl font-semibold tracking-tight text-slate-900 md:text-[1.35rem] dark:border-white/10 dark:text-white"
+        >
+          {props.children}
+        </h3>
+      );
+    }
     return <h3 id={id} className="mt-9 mb-3 scroll-mt-20 text-xl font-semibold tracking-tight text-slate-900 md:text-[1.35rem] dark:text-white" {...props} />;
   },
 
