@@ -597,7 +597,7 @@
           "shieldedTx24h": "실드 TX (24시간)",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc",
-          "shieldedValue": "쉴드 값"
+          "shieldedValue": "실드 가치"
         },
         "zcashChart": {
           "title": "분석 차트",

@@ -13,7 +13,7 @@
     "Community Forum": "Nutoa me Takpekpe",
     "Community Links": "Nutoa Me Kadodowo",
     "Community Projects": "Nutoa me Dɔwɔnawo",
-    "Contribute": "Dzᴐ nu",
+    "Contribute": "Dzɔ nu",
     "Cypherpunk Zero NFT": "Cypherpunk Zero NFT ƒe agbalẽa",
     "DAO": "DAO ƒe ŋkɔ",
     "Developers": "Dɔwɔlawo",
@@ -141,7 +141,7 @@
     "Privacy Tools": "Dɔwɔnu Siwo Wozãna Ðe Ameŋunyatakakawo Ŋu",
     "Research": "Numekuku",
     "Glossary & FAQs": "Nyagɔmeɖegbalẽ & Nyabiasewo",
-    "Contribute": "Dzᴐ nu",
+    "Contribute": "Dzɔ nu",
     "For Forks & Maintainers": "Forks & Dzadzraɖolawo",
     "Fork zechub-wiki": "Fɔklɔ zechub-wiki",
     "Fork zechub": "Fɔklɔ zechub",
@@ -151,7 +151,7 @@
     "home": "Aƒeme",
     "about": "Ku ɖe",
     "contact": "Kadodo",
-    "language": "Gbegbᴐgblᴐ",
+    "language": "Gbegbɔgblɔ",
     "clickToExplore": "Zi edzi be nàdzro eme →",
     "learnMore": "Srɔ̃ Nu Geɖe",
     "getStarted": "Dze Egɔme",
@@ -178,7 +178,7 @@
     "explore": "Tsa le eme",
     "developers": "Dɔwɔlawo",
     "community": "Hatsotso",
-    "contribute": "Dzᴐ nu",
+    "contribute": "Dzɔ nu",
     "dashboard": "Dashboard ƒe ʋuƒo",
     "more": "Gawu",
     "usingZcash": {
@@ -352,7 +352,7 @@
       "privacyTools": "Adzamenyawo_Dɔwɔnuwo",
       "research": "Numekuku",
       "glossary": "Nyagɔmeɖegbalẽ_kple_Nyabiasewo",
-      "contribute": "Dzᴐ nu"
+      "contribute": "Dzɔ nu"
     }
   },
   "footer": {
@@ -597,7 +597,7 @@
           "shieldedTx24h": "TX si wokpɔ ta na (24h) .",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc",
-          "shieldedValue": "Asixɔxɔ si Wokpɔna"
+          "shieldedValue": "Asixɔxɔ si wokpɔ ta na"
         },
         "zcashChart": {
           "title": "Kukuɖenuŋu ƒe Nɔnɔmetatawo",
@@ -782,7 +782,7 @@
         "liveNow": "Nɔ Agbe Fifia",
         "subtitle": "Tu dɔwɔɖoɖo siwo gbãa adzamenyawo gbã ɖe Zcash dzi. Miʋli fetu ta, mikpɔ ZEC, eye miatrɔ asi le ganyawo ƒe ablɔɖe ƒe etsɔme ŋu.",
         "prizePool": "Fetu Xɔxɔ ƒe Ƒuƒoƒo",
-        "start": "Dze egᴐme",
+        "start": "Dze egɔme",
         "end": "Nuwuwu",
         "learnMore": "Srɔ̃ Nu Geɖe →",
         "dismiss": "Ɖe asi le eŋu"
@@ -1001,7 +1001,7 @@
       "troubleshootingGuide": "Kuxiwo Gbɔkpɔkpɔ ƒe Mɔfiame",
       "stackOverflow": "Stack Overflow ƒe ʋuʋu",
       "compareColHardware": "Hardware ƒe dɔwɔnuwo",
-      "compareColLanguage": "Gbegbᴐgblᴐ",
+      "compareColLanguage": "Gbegbɔgblɔ",
       "compareColPlatforms": "Nuƒolanɔƒewo",
       "compareColRole": "Wɔƒe",
       "compareColRpc": "RPC / API ƒe dɔwɔwɔ",
@@ -1052,8 +1052,8 @@
       "submitOnPortalDesc": "Zã ZecHub ƒe akɔdada ƒe nyatakakadzraɖoƒe si dziɖuɖua da asi ɖo nàtsɔ awɔ wò aɖaŋuɖoɖoa",
       "submitNow": "Miɖoe ɖa Fifia",
       "loginNote": "⚠️ Ele be nàge ɖe eme kple Keplr alo Keplr Mobile",
-      "previous": "Si do ŋgᴐ",
-      "next": "Esi kplᴐe ɖo"
+      "previous": "Si do ŋgɔ",
+      "next": "Esi kplɔe ɖo"
     },
     "sitemap": {
       "heading": "Nyatakakadzraɖoƒea Dzi Kpɔkpɔ",
@@ -1065,7 +1065,7 @@
         "Guides": "Mɔfialawo",
         "Use Zcash": "Zã Zcash",
         "Ecosystem": "Nu gbagbewo ƒe agbenɔnɔ ƒe ɖoɖo",
-        "Contribute": "Dzᴐ nu",
+        "Contribute": "Dzɔ nu",
         "Glossary & FAQs": "Nyagɔmeɖegbalẽ & Nyabiasewo",
         "Privacy Tools": "Dɔwɔnu Siwo Wozãna Ðe Ameŋunyatakakawo Ŋu",
         "Research": "Numekuku",
@@ -1080,7 +1080,7 @@
         "Homepage": "Nyatakakadzraɖoƒea",
         "Dashboard": "Dashboard ƒe ʋuƒo",
         "Donation": "Nudzɔdzɔ",
-        "Contribute": "Dzᴐ nu",
+        "Contribute": "Dzɔ nu",
         "DAO": "DAO ƒe ŋkɔ",
         "Developers": "Dɔwɔlawo",
         "Brand": "Nudzadzra ŋkɔ",
@@ -1220,7 +1220,7 @@
       "thinking": "ZecHub AI le susum be...",
       "privacyNotice": "OpenAI ye wɔa dɔ tso nyabiasewo ŋu. Mègatsɔ nuku ƒe nyagbewo, ame ŋutɔ ƒe safuiwo, alo gakotoku ƒe adrɛswo na amewo gbeɖe o.",
       "clearConversation": "Dzeɖoɖo si me kɔ",
-      "clear": "Me kᴐ",
+      "clear": "Me kɔ",
       "getStarted": "Dze egɔme kple nyabiase aɖe:",
       "sensitiveWarning": "Esia dze abe gakotoku me nyatakaka veviwo ene. Mègatsɔ ame ŋutɔ ƒe safuiwo alo nuku ƒe nyagbewo na dɔwɔƒe aɖeke gbeɖe o.",
       "inputPlaceholder": "Bia nya aɖe... (Ge ɖe eme be yeaɖoe ɖa, Shift+Enter na fli yeye)",

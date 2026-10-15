@@ -1008,7 +1008,7 @@
       "compareColSoftware": "Logiciel",
       "compareColStatus": "Statut",
       "compareFootnote": "zcashd a atteint sa fin de vie au bloc 3417100 le 18 juillet 2026 — les nouveaux projets doivent s'appuyer sur les logiciels ci-dessus.",
-      "compareLead": "La stack Zcash se compose de quelques outils distincts. Utilisez ce tableau pour déterminer lequel votre projet nécessite, puis suivez le guide correspondant ci-dessous.",
+      "compareLead": "La stack Zcash se compose de quelques outils distincts. Utilisez ce tableau pour déterminer de quel outil votre projet a besoin, puis suivez le guide correspondant ci-dessous.",
       "compareTitle": "Comparaison des nœuds et des clients"
     },
     "governanceHowto": {

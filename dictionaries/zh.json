@@ -325,14 +325,14 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "ZecHub Hackathon Archive",
-        "description": "2026 年 ZecHub Hackathon 已结束。探索在 Infrastructure、Games、FROST、Zcash Login 和 Accounting 等类别中提交的项目。",
+        "title": "ZecHub 黑客松存档",
+        "description": "2026 年 ZecHub 黑客松已结束。探索在基础设施、游戏、FROST、Zcash Login 和会计等类别中提交的项目。",
         "mainLink": "查看项目"
       },
       "visualizer": {
         "description": "用于了解 Zcash 隐私技术、基础设施与零知识证明的交互式教育工具",
-        "link": "打开 Visualizer",
-        "title": "ZecHub Visualizer"
+        "link": "打开可视化工具",
+        "title": "ZecHub 可视化工具"
       },
       "zecMap": {
         "description": "ZecMap 是一张由社区维护的世界地图，收录接受 Zcash 的商家、服务和 ATM。查找您附近可使用 ZEC 的地方，或者添加您了解的商家，帮助推动现实世界的普及。",
@@ -597,7 +597,7 @@
           "shieldedTx24h": "屏蔽交易（24 小时）",
           "saplingAbbrev": "Sap",
           "orchardAbbrev": "Orc",
-          "shieldedValue": "Shielded Value"
+          "shieldedValue": "屏蔽池价值"
         },
         "zcashChart": {
           "title": "分析图表",
@@ -1000,12 +1000,12 @@
       "githubIssues": "GitHub Issues",
       "troubleshootingGuide": "故障排查指南",
       "stackOverflow": "Stack Overflow",
-      "compareColHardware": "Hardware",
-      "compareColLanguage": "Language",
-      "compareColPlatforms": "Platforms",
-      "compareColRole": "Role",
+      "compareColHardware": "硬件",
+      "compareColLanguage": "语言",
+      "compareColPlatforms": "平台",
+      "compareColRole": "角色",
       "compareColRpc": "RPC / API",
-      "compareColSoftware": "Software",
+      "compareColSoftware": "软件",
       "compareColStatus": "状态",
       "compareFootnote": "zcashd 已于 2026 年 7 月 18 日在区块 3417100 到达生命周期终点——新项目应基于上述软件构建。",
       "compareLead": "Zcash 技术栈由几个相互独立的工具组成。使用此表确定您的项目需要哪一个，然后按照下方对应的指南操作。",

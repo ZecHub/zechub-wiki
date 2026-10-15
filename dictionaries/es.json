@@ -1007,7 +1007,7 @@
       "compareColRpc": "RPC / API",
       "compareColSoftware": "Software",
       "compareColStatus": "Estado",
-      "compareFootnote": "zcashd llegó al final de su vida útil en el bloque 3417100 el 18 de julio de 2026: los nuevos proyectos deberían construir sobre el software anterior.",
+      "compareFootnote": "zcashd llegó al final de su vida útil en el bloque 3417100 el 18 de julio de 2026: los nuevos proyectos deberían construir sobre el software indicado arriba.",
       "compareLead": "La stack de Zcash se compone de unas pocas herramientas separadas. Usa esta tabla para averiguar cuál necesita tu proyecto y luego sigue la guía correspondiente a continuación.",
       "compareTitle": "Comparación de Nodos y Clientes"
     },
