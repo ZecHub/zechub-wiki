@@ -235,7 +235,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "Marca",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "Subsídios retroativos direcionados aos detentores de moedas",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Processador de Pagamentos Zgo",
@@ -307,11 +313,6 @@
         "description": "Os Embaixadores Globais do Zcash são líderes comunitários dedicados a promover a adoção e a educação sobre criptomoedas focadas em privacidade em todo o mundo. Cada projeto de embaixador se concentra em ampliar a conscientização e o engajamento em suas respectivas regiões.",
         "link": "Conheça os Embaixadores"
       },
-      "newsletter": {
-        "title": "Newsletter Shielded",
-        "description": "Inscreva-se usando seu Unified Address para receber atualizações do ecossistema Zcash e estatísticas da rede com acesso shielded diretamente na sua carteira!",
-        "link": "Inscrever-se"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z é uma plataforma social movida por Zcash. Com doações ponto a ponto, um programa de compartilhamento de receita, ferramentas criativas avançadas e uma enorme comunidade global online.",
@@ -324,9 +325,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "Participe do Hackathon",
-        "description": "Construa, colabore e lance ideias impactantes com a comunidade Zcash. Compita em cinco trilhas inovadoras: Infrastructure para nós e indexadores, Games para experiências interativas, FROST para assinatura por limiar, Zcash Login para soluções de autenticação e Accounting para fluxos de trabalho financeiros. 25 de maio - 15 de julho de 2026. Um prêmio total de 25 ZEC espera por você.",
-        "mainLink": "Participe do Hackathon"
+        "title": "Arquivo do Hackathon do ZecHub",
+        "description": "O Hackathon do ZecHub de 2026 terminou. Explore os projetos submetidos nas categorias Infraestrutura, Jogos, FROST, Zcash Login e Contabilidade.",
+        "mainLink": "Ver projetos"
+      },
+      "visualizer": {
+        "description": "Ferramentas educacionais interativas para compreender a tecnologia de privacidade do Zcash, a infraestrutura e as provas de conhecimento zero",
+        "link": "Abrir o Visualizador",
+        "title": "Visualizador do ZecHub"
+      },
+      "zecMap": {
+        "description": "O ZecMap é um mapa mundial, mantido pela comunidade, de comerciantes, serviços e ATMs que aceitam Zcash. Encontre um local para gastar ZEC perto de si, ou adicione um negócio que conheça para ajudar a crescer a adoção no mundo real.",
+        "link": "Visitar o ZecMap",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -585,7 +596,8 @@
           "transactions24h": "Transações em 24h",
           "shieldedTx24h": "TX Shielded (24h)",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Orc"
+          "orchardAbbrev": "Orc",
+          "shieldedValue": "Valor Blindado"
         },
         "zcashChart": {
           "title": "Gráficos analíticos",
@@ -987,7 +999,17 @@
       "zcashCommunityForum": "Fórum da comunidade Zcash",
       "githubIssues": "Issues no GitHub",
       "troubleshootingGuide": "Guia de solução de problemas",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "Hardware",
+      "compareColLanguage": "Idioma",
+      "compareColPlatforms": "Plataformas",
+      "compareColRole": "Função",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "Software",
+      "compareColStatus": "Estado",
+      "compareFootnote": "O zcashd chegou ao fim de vida no bloco 3417100, a 18 de julho de 2026 — novos projetos devem basear-se no software acima.",
+      "compareLead": "A stack do Zcash é composta por algumas ferramentas separadas. Use esta tabela para determinar qual delas o seu projeto precisa e, em seguida, siga o guia correspondente abaixo.",
+      "compareTitle": "Comparação de Nós e Clientes"
     },
     "governanceHowto": {
       "pageTitle": "Governança da DAO ZecHub",
@@ -1042,7 +1064,17 @@
         "Organizations": "Organizações",
         "Guides": "Guias",
         "Use Zcash": "Use Zcash",
-        "Ecosystem": "Ecossistema"
+        "Ecosystem": "Ecossistema",
+        "Contribute": "Contribuir",
+        "Glossary & FAQs": "Glossário e FAQs",
+        "Privacy Tools": "Ferramentas de privacidade",
+        "Research": "Pesquisa",
+        "Start Here": "Comece aqui",
+        "Tutorials": "Tutoriais",
+        "Use Cases": "Casos de uso",
+        "Zcash Tech": "Tecnologia Zcash",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "Redes Sociais"
       },
       "links": {
         "Homepage": "Página inicial",

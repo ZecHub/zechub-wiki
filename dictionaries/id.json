@@ -329,6 +329,11 @@
         "description": "Situs web ini adalah jawaban atas pertanyaan: Di mana saya bisa membayar dengan Zcash? Direktori ini gratis untuk digunakan. Item yang terdaftar hanya untuk tujuan informasi, dan bukan merupakan dukungan dalam bentuk apa pun. Selamat menikmati!",
         "mainLink": "paywithz.cash",
         "mapLink": "SPEDN"
+      },
+      "hackathon": {
+        "description": "ZecHub Hackathon 2026 telah berakhir. Jelajahi proyek-proyek yang dikirimkan di kategori Infrastructure, Games, FROST, Zcash Login, dan Accounting.",
+        "mainLink": "Lihat proyek",
+        "title": "Arsip ZecHub Hackathon"
       }
     },
     "explore": {

@@ -163,7 +163,8 @@
     "searchNoResults": "Axa siwo sɔ kple wo nɔewo aɖeke meli o",
     "searchTryDifferent": "Te nyabiase kpuiwo, nya siwo sɔ kple wo nɔewo, alo nya vovovowo kpɔ.",
     "searchSuggested": "Axa siwo wodo ɖa",
-    "searchResultsLabel": "Metsonu"
+    "searchResultsLabel": "Metsonu",
+    "skipToContent": "Ti kpo yi emenyawo gbɔ"
   },
   "navigation": {
     "wallets": "Gakotokuwo",
@@ -234,7 +235,13 @@
       "shieldedLabs": "Labs Siwo Wotsɔ Akpoxɔnu Wɔe",
       "zingoLabs": "Zingo ƒe Dɔwɔƒewo",
       "brand": "Nudzadzra ŋkɔ",
-      "zkavClub": "ZKAV ƒe Habɔbɔ"
+      "zkavClub": "ZKAV ƒe Habɔbɔ",
+      "coinholderDirectedRetroactiveGrants": "Kɔingadzilawo ƒe kpekpeɖeŋu siwo wotsɔ na nu siwo va yi",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo Fexexe Ŋuti Dɔwɔƒe",
@@ -306,11 +313,6 @@
         "description": "Zcash Xexeame Katã ƒe Dutanyanyuigblɔlawo nye nutoa me kplɔla siwo tsɔ wo ɖokui na be yewoado cryptocurrency zazã kple hehenana si wotu ɖe ame ŋutɔ ƒe nyawo dzi ɖe ŋgɔ le xexeame katã. Dutadɔnunɔlawo ƒe dɔ ɖesiaɖe léa fɔ ɖe nyanyanana kple nuwɔwɔ aduadu tutuɖo le woƒe nutoawo me ŋu.",
         "link": "Do go Dutanyanyuigblɔlawo"
       },
-      "newsletter": {
-        "title": "Nyadzɔdzɔgbalẽ si Wotsɔ Akpoxɔnu Wɔe",
-        "description": "Ŋlɔ ŋkɔ to wò Unified Address zazã me be nàkpɔ mɔ si wokpɔ ta na Zcash Ecosystem Updates & Network Stats tẽe ɖe wò gakotokua me!",
-        "link": "Wɔ nudɔdɔ"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z nye hadomehabɔbɔ si ŋu Zcash le ŋusẽ ɖo. To hatiwo ƒe nudzɔdzɔwo, gakpɔkpɔ mama ƒe ɖoɖo, nutovɛdɔwɔnu deŋgɔwo kple xexeame katã ƒe habɔbɔ gã aɖe si le Internet dzi me.",
@@ -321,6 +323,21 @@
         "description": "Nyatakakadzraɖoƒe sia nye biabia sia ƒe ŋuɖoɖo: Afikae mate ŋu axe fe le kple Zcash? Woate ŋu azã agbalẽdzraɖoƒea faa. Nyatakakawo ɖeɖeko tae nusiwo woŋlɔ ɖi la nye, eye menye kpeɖodzinana ƒomevi aɖeke o. Kpɔ dzidzɔ nyuie!",
         "mainLink": "paywithz.ga si woxena",
         "mapLink": "SPEDN ƑE NUÐEÐEŊUTI"
+      },
+      "hackathon": {
+        "description": "Ƒe 2026 ƒe ZecHub Hackathon la wu enu. Dzro dɔ siwo woɖo ɖa le Dɔwɔƒewo, Fefewo, FROST, Zcash Login, kple Accounting katã me.",
+        "mainLink": "Kpɔ dɔ siwo wowɔ",
+        "title": "ZecHub Hackathon ƒe Nudzraɖoƒe"
+      },
+      "visualizer": {
+        "description": "Hehenana dɔwɔnu siwo wɔa dɔ aduadu be woase Zcash ƒe ameŋunyatakakawo ŋuti mɔ̃ɖaŋununya, xɔtuɖaŋu, kple zero-knowledge kpeɖodziwo gɔme",
+        "link": "Ʋu Visualizer la ƒe mɔ̃a",
+        "title": "ZecHub Nukpɔmɔ̃"
+      },
+      "zecMap": {
+        "description": "ZecMap nye xexeame ƒe anyigbatata si nutoa me tɔwo lé be na si me asitsala, dɔwɔƒewo kple ATM siwo xɔa Zcash le. Di teƒe aɖe si nàzã ZEC le si te ɖe ŋuwò, alo tsɔ asitsaha aɖe si nènya kpe ɖe eŋu be wòakpe ɖe ŋuwò nàdzi xexeame ŋutɔŋutɔ ƒe vixɔxɔnyi ɖe edzi.",
+        "link": "Yi ZecMap dzi",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -579,7 +596,8 @@
           "transactions24h": "24h Asitsatsa",
           "shieldedTx24h": "TX si wokpɔ ta na (24h) .",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Orc"
+          "orchardAbbrev": "Orc",
+          "shieldedValue": "Asixɔxɔ si Wokpɔna"
         },
         "zcashChart": {
           "title": "Kukuɖenuŋu ƒe Nɔnɔmetatawo",
@@ -981,7 +999,17 @@
       "zcashCommunityForum": "Zcash Nutome Takpekpe",
       "githubIssues": "GitHub Nyawo",
       "troubleshootingGuide": "Kuxiwo Gbɔkpɔkpɔ ƒe Mɔfiame",
-      "stackOverflow": "Stack Overflow ƒe ʋuʋu"
+      "stackOverflow": "Stack Overflow ƒe ʋuʋu",
+      "compareColHardware": "Hardware ƒe dɔwɔnuwo",
+      "compareColLanguage": "Gbegbᴐgblᴐ",
+      "compareColPlatforms": "Nuƒolanɔƒewo",
+      "compareColRole": "Wɔƒe",
+      "compareColRpc": "RPC / API ƒe dɔwɔwɔ",
+      "compareColSoftware": "Sɔƒtwɛ",
+      "compareColStatus": "Ɖoƒe",
+      "compareFootnote": "zcashd ɖo agbe ƒe nuwuwu le block 3417100 le July 18, 2026 — ele be dɔ yeyewo natu ɖe kɔmpiutadziɖoɖo si le etame dzi.",
+      "compareLead": "Zcash stack la nye dɔwɔnu vovovo ʋee aɖewo. Zã kplɔ̃ sia nàtsɔ awɔ dɔ tso esi wò dɔa hiã ŋu, emegbe nàwɔ ɖe mɔfiame si sɔ kple wo nɔewo si le ete dzi.",
+      "compareTitle": "Node & Asitsalawo ƒe tsɔtsɔ sɔ kple wo nɔewo"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAO Dziɖuɖu",
@@ -1036,7 +1064,17 @@
         "Organizations": "Habɔbɔwo",
         "Guides": "Mɔfialawo",
         "Use Zcash": "Zã Zcash",
-        "Ecosystem": "Nu gbagbewo ƒe agbenɔnɔ ƒe ɖoɖo"
+        "Ecosystem": "Nu gbagbewo ƒe agbenɔnɔ ƒe ɖoɖo",
+        "Contribute": "Dzᴐ nu",
+        "Glossary & FAQs": "Nyagɔmeɖegbalẽ & Nyabiasewo",
+        "Privacy Tools": "Dɔwɔnu Siwo Wozãna Ðe Ameŋunyatakakawo Ŋu",
+        "Research": "Numekuku",
+        "Start Here": "Dze Egɔme Le Afi Sia",
+        "Tutorials": "Nufiamewo",
+        "Use Cases": "Zã Nyawo",
+        "Zcash Tech": "Zcash Mɔ̃ɖaŋununya",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "Hadomegbenɔnɔ Ŋuti Nyatakakadzraɖoƒe"
       },
       "links": {
         "Homepage": "Nyatakakadzraɖoƒea",

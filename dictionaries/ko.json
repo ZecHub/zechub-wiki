@@ -235,7 +235,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "브랜드",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "코인 보유자 지정 소급 보조금",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo 결제 프로세서",
@@ -307,11 +313,6 @@
         "description": "Zcash 글로벌 앰배서더는 전 세계적으로 프라이버시 중심 암호화폐의 채택과 교육을 촉진하는 데 전념하는 커뮤니티 리더들입니다. 각 앰배서더 프로젝트는 각자의 지역에서 인지도와 참여를 구축하는 데 중점을 둡니다.",
         "link": "앰배서더 만나보기"
       },
-      "newsletter": {
-        "title": "Shielded Newsletter",
-        "description": "당신의 Unified Address를 사용해 구독하고 지갑으로 직접 전달되는 Zcash Ecosystem Updates & Network Stats에 shielded 방식으로 접근하세요!",
-        "link": "구독하기"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z는 Zcash로 구동되는 소셜 플랫폼입니다. P2P 기부, 수익 공유 프로그램, 고급 창작 도구, 그리고 방대한 온라인 글로벌 커뮤니티를 제공합니다.",
@@ -324,9 +325,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "해커톤 참가하기",
-        "description": "Zcash 커뮤니티와 함께 영향력 있는 아이디어를 만들고, 협업하고, 출시하세요. 다섯 가지 혁신 트랙에서 경쟁하세요: 노드 및 인덱서용 인프라, 인터랙티브 경험을 위한 게임, 임계값 서명을 위한 FROST, 인증 솔루션을 위한 Zcash Login, 그리고 금융 워크플로를 위한 회계. 2026년 5월 25일 - 7월 15일. 25 ZEC 상금 풀이 여러분을 기다립니다.",
-        "mainLink": "해커톤 참가하기"
+        "title": "ZecHub 해커톤 아카이브",
+        "description": "2026 ZecHub 해커톤이 종료되었습니다. 인프라, 게임, FROST, Zcash 로그인 및 회계 부문에 제출된 프로젝트를 살펴보세요.",
+        "mainLink": "프로젝트 보기"
+      },
+      "visualizer": {
+        "description": "Zcash 프라이버시 기술, 인프라 및 영지식 증명을 이해하기 위한 인터랙티브 교육 도구",
+        "link": "비주얼라이저 열기",
+        "title": "ZecHub 비주얼라이저"
+      },
+      "zecMap": {
+        "description": "ZecMap은 Zcash를 받아들이는 상점, 서비스 및 ATM을 정리한 커뮤니티 관리 세계 지도입니다. 근처에서 ZEC를 사용할 곳을 찾거나 알고 있는 업체를 추가해 실제 채택 확산에 도움을 주세요.",
+        "link": "ZecMap 방문하기",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -585,7 +596,8 @@
           "transactions24h": "24시간 거래 수",
           "shieldedTx24h": "실드 TX (24시간)",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Orc"
+          "orchardAbbrev": "Orc",
+          "shieldedValue": "쉴드 값"
         },
         "zcashChart": {
           "title": "분석 차트",
@@ -987,7 +999,17 @@
       "zcashCommunityForum": "Zcash 커뮤니티 포럼",
       "githubIssues": "GitHub 이슈",
       "troubleshootingGuide": "문제 해결 가이드",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "하드웨어",
+      "compareColLanguage": "언어",
+      "compareColPlatforms": "플랫폼",
+      "compareColRole": "역할",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "소프트웨어",
+      "compareColStatus": "상태",
+      "compareFootnote": "zcashd는 2026년 7월 18일 블록 3417100에서 수명이 종료되었습니다. 새 프로젝트는 위의 소프트웨어를 기반으로 구축해야 합니다.",
+      "compareLead": "Zcash 스택은 몇 가지 별개의 도구로 구성되어 있습니다. 이 표를 사용하여 프로젝트에 필요한 도구를 확인한 다음, 아래의 해당 가이드를 따르세요.",
+      "compareTitle": "노드 및 클라이언트 비교"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAO 거버넌스",
@@ -1042,7 +1064,17 @@
         "Organizations": "조직",
         "Guides": "가이드",
         "Use Zcash": "Zcash 사용하기",
-        "Ecosystem": "생태계"
+        "Ecosystem": "생태계",
+        "Contribute": "기여하기",
+        "Glossary & FAQs": "용어집 및 FAQ",
+        "Privacy Tools": "개인정보 보호 도구",
+        "Research": "연구",
+        "Start Here": "여기서 시작",
+        "Tutorials": "튜토리얼",
+        "Use Cases": "사용 사례",
+        "Zcash Tech": "Zcash 기술",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "소셜 미디어"
       },
       "links": {
         "Homepage": "홈페이지",

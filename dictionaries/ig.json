@@ -163,7 +163,8 @@
     "searchNoResults": "Enweghị peeji ndị kwekọrọ",
     "searchTryDifferent": "Gbalịa jiri ajụjụ ndị dị mkpirikpi, okwu ndị yiri ibe ha, ma ọ bụ okwu ndị ọzọ mee ihe.",
     "searchSuggested": "Peeji ndị a tụrụ aro",
-    "searchResultsLabel": "Nsonaazụ"
+    "searchResultsLabel": "Nsonaazụ",
+    "skipToContent": "Gaa na ọdịnaya"
   },
   "navigation": {
     "wallets": "Akpa ego",
@@ -234,7 +235,13 @@
       "shieldedLabs": "Ụlọ nyocha echedoro",
       "zingoLabs": "Ụlọ nyocha Zingo",
       "brand": "Akara",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "Enyemaka n’azụ nke CoinHolder duziri",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo Nhazi Ịkwụ Ụgwọ",
@@ -306,11 +313,6 @@
         "description": "Ndị nnọchi anya Zcash Global bụ ndị isi obodo raara onwe ha nye na-akwalite nnabata cryptocurrency na agụmakwụkwọ na-elekwasị anya na nzuzo n'ụwa niile. Onye ọ bụla na-ekwuchitere ọrụ na-etinye uche na iwulite mmata na itinye aka na mpaghara ha.",
         "link": "Zute Ndị Nnọchiteanya"
       },
-      "newsletter": {
-        "title": "Akwụkwọ Akụkọ E Chebere",
-        "description": "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!",
-        "link": "Debanye aha"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z bụ usoro mmekọrịta mmadụ na ibe ya nke Zcash kwadoro. Site na onyinye ndị ọgbọ, mmemme ịkekọrịta ego, ngwa ọrụ okike dị elu na nnukwu obodo zuru ụwa ọnụ n'ịntanetị.",
@@ -321,6 +323,21 @@
         "description": "Ebe nrụọrụ weebụ a bụ azịza nye ajụjụ: Ebee ka m nwere ike iji Zcash kwụọ ụgwọ? Ndepụta ahụ bụ n'efu iji. Ihe ndị edepụtara bụ maka ebumnuche ozi naanị, ọ bụghị nkwado nke ụdị ọ bụla. Nwee obi ụtọ!",
         "mainLink": "kwụọ ụgwọz.cash",
         "mapLink": "SPEDN"
+      },
+      "hackathon": {
+        "description": "ZecHub Hackathon nke afọ 2026 agwụla. Chọpụta ọrụ ndị e nyefere n'ofe akụrụngwa, egwuregwu, FROST, Zcash Login, na Accounting.",
+        "mainLink": "Lee ọrụ",
+        "title": "Ebe Nchekwa Hackathon ZecHub"
+      },
+      "visualizer": {
+        "description": "Ngwa agụmakwụkwọ mmekọrịta iji ghọta teknụzụ nzuzo Zcash, akụrụngwa, na ihe akaebe zero-knowledge",
+        "link": "Mepee ihe ngosi",
+        "title": "Ihe ngosi ZecHub"
+      },
+      "zecMap": {
+        "description": "ZecMap bụ maapụ ụwa nke obodo na-elekọta nke ndị ahịa, ọrụ na ATM ndị na-anabata Zcash. Chọta ebe ị ga-emefu ego na ZEC dị gị nso, ma ọ bụ tinye azụmaahịa ị maara iji nyere aka mee ka nnabata ụwa dị n'ezie bawanye.",
+        "link": "Gaa na ZecMap",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -579,7 +596,8 @@
           "transactions24h": "24h Azụmahịa",
           "shieldedTx24h": "TX a na-echebe (24h)",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Orc"
+          "orchardAbbrev": "Orc",
+          "shieldedValue": "Uru E Chebere"
         },
         "zcashChart": {
           "title": "Chaatị Nnyocha",
@@ -981,7 +999,17 @@
       "zcashCommunityForum": "Nzukọ Obodo Zcash",
       "githubIssues": "Okwu GitHub",
       "troubleshootingGuide": "Ntuziaka Nchọpụta Nsogbu",
-      "stackOverflow": "Nkọwapụta Stack"
+      "stackOverflow": "Nkọwapụta Stack",
+      "compareColHardware": "Akụrụngwa",
+      "compareColLanguage": "Asụsụ",
+      "compareColPlatforms": "Ikpo okwu",
+      "compareColRole": "Ọrụ",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "Ngwanrọ",
+      "compareColStatus": "Ọkwa",
+      "compareFootnote": "zcashd ruru njedebe ndụ ya na ngọngọ 3417100 na Julaị 18, 2026 — ọrụ ọhụrụ kwesịrị iwulite na ngwanrọ dị n'elu.",
+      "compareLead": "E ji ngwaọrụ ole na ole dị iche iche mee Zcash stack. Jiri tebụl a chọpụta nke ọrụ gị chọrọ, wee soro ntuziaka dakọtara n'okpuru.",
+      "compareTitle": "Ntụnyere Node na Ndị Ahịa"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAO Ọchịchị",
@@ -1036,7 +1064,17 @@
         "Organizations": "Ndị otu",
         "Guides": "Akwụkwọ ntuziaka",
         "Use Zcash": "Jiri Zcash",
-        "Ecosystem": "Ihe Ndị Dị n'Eluigwe"
+        "Ecosystem": "Ihe Ndị Dị n'Eluigwe",
+        "Contribute": "Na-enye aka",
+        "Glossary & FAQs": "Glossary & Ajụjụ Ndị A Na-ajụkarị",
+        "Privacy Tools": "Ngwaọrụ Nzuzo",
+        "Research": "Nnyocha",
+        "Start Here": "Malite Ebe a",
+        "Tutorials": "Nkuzi",
+        "Use Cases": "Jiri Ọnọdụ",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "Mgbasa Ozi Ọha",
+        "Zcash Tech": "Zcash Tech"
       },
       "links": {
         "Homepage": "Peeji mbụ",

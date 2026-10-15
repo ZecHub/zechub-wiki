@@ -235,7 +235,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "品牌",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "CoinHolder 定向追溯性资助",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo 支付处理器",
@@ -307,11 +313,6 @@
         "description": "Zcash 全球大使是致力于在全球推广以隐私为核心的加密货币采用与教育的社区领袖。每个大使项目都专注于在各自地区提升认知并促进参与。",
         "link": "认识这些大使"
       },
-      "newsletter": {
-        "title": "Shielded Newsletter",
-        "description": "使用你的 Unified Address 订阅，将 Zcash 生态更新和网络统计直接以屏蔽方式发送到你的钱包！",
-        "link": "订阅"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z 是一个由 Zcash 驱动的社交平台，提供点对点捐赠、收益分成计划、高级创作工具以及庞大的全球在线社区。",
@@ -324,9 +325,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "加入黑客松",
-        "description": "与 Zcash 社区一起构建、协作，并发布有影响力的创意。围绕五个创新赛道展开竞赛：面向节点和索引器的基础设施、用于交互式体验的游戏、用于门限签名的 FROST、用于身份验证解决方案的 Zcash Login，以及用于财务工作流的会计。2026 年 5 月 25 日 - 7 月 15 日。25 ZEC 奖池等你来赢取。",
-        "mainLink": "加入黑客松"
+        "title": "ZecHub Hackathon Archive",
+        "description": "2026 年 ZecHub Hackathon 已结束。探索在 Infrastructure、Games、FROST、Zcash Login 和 Accounting 等类别中提交的项目。",
+        "mainLink": "查看项目"
+      },
+      "visualizer": {
+        "description": "用于了解 Zcash 隐私技术、基础设施与零知识证明的交互式教育工具",
+        "link": "打开 Visualizer",
+        "title": "ZecHub Visualizer"
+      },
+      "zecMap": {
+        "description": "ZecMap 是一张由社区维护的世界地图，收录接受 Zcash 的商家、服务和 ATM。查找您附近可使用 ZEC 的地方，或者添加您了解的商家，帮助推动现实世界的普及。",
+        "link": "访问 ZecMap",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -585,7 +596,8 @@
           "transactions24h": "24 小时交易数",
           "shieldedTx24h": "屏蔽交易（24 小时）",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Orc"
+          "orchardAbbrev": "Orc",
+          "shieldedValue": "Shielded Value"
         },
         "zcashChart": {
           "title": "分析图表",
@@ -987,7 +999,17 @@
       "zcashCommunityForum": "Zcash 社区论坛",
       "githubIssues": "GitHub Issues",
       "troubleshootingGuide": "故障排查指南",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "Hardware",
+      "compareColLanguage": "Language",
+      "compareColPlatforms": "Platforms",
+      "compareColRole": "Role",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "Software",
+      "compareColStatus": "状态",
+      "compareFootnote": "zcashd 已于 2026 年 7 月 18 日在区块 3417100 到达生命周期终点——新项目应基于上述软件构建。",
+      "compareLead": "Zcash 技术栈由几个相互独立的工具组成。使用此表确定您的项目需要哪一个，然后按照下方对应的指南操作。",
+      "compareTitle": "节点与客户端对比"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAO 治理",
@@ -1042,7 +1064,17 @@
         "Organizations": "组织",
         "Guides": "指南",
         "Use Zcash": "使用 Zcash",
-        "Ecosystem": "生态系统"
+        "Ecosystem": "生态系统",
+        "Contribute": "参与贡献",
+        "Glossary & FAQs": "术语表与常见问题",
+        "Privacy Tools": "隐私工具",
+        "Research": "研究",
+        "Start Here": "从这里开始",
+        "Tutorials": "教程",
+        "Use Cases": "使用场景",
+        "Zcash Tech": "Zcash 技术",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "社交媒体"
       },
       "links": {
         "Homepage": "首页",

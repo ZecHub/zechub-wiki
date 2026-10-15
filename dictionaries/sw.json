@@ -235,7 +235,13 @@
       "shieldedLabs": "Maabara Shielded",
       "zingoLabs": "Maabara ya Zingo",
       "brand": "Brand",
-      "zkavClub": "Klabu ya ZKAV"
+      "zkavClub": "Klabu ya ZKAV",
+      "coinholderDirectedRetroactiveGrants": "Ruzuku za CoinHolder Zinazoelekezwa na Kutolewa Kwa Nyuma",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo Malipo Processor",
@@ -307,11 +313,6 @@
         "description": "Zcash Global Ambassadors ni viongozi wa jamii waliojitolea kukuza kupitishwa na elimu ya cryptocurrency inayolenga faragha ulimwenguni kote. Kila mradi wa balozi unazingatia kujenga ufahamu na ushiriki ndani ya mikoa yao.",
         "link": "Kutana na Mabalozi"
       },
-      "newsletter": {
-        "title": "Shielded jarida",
-        "description": "Subscribe using your Unified Address to get shielded access to Zcash Ecosystem Updates & Network Stats direct to your wallet!",
-        "link": "Jiandikishe"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z ni jukwaa la kijamii powered by Zcash. Pamoja na peer-to-peer michango, mapato ya kugawana mpango, zana za ubunifu wa juu na mkubwa online jamii ya kimataifa.",
@@ -322,6 +323,21 @@
         "description": "Tovuti hii ni jibu kwa swali: Wapi naweza kulipa na Zcash? directory ni huru kutumia. vitu waliotajwa ni kwa ajili ya habari tu, na si endorsements ya aina yoyote. kufurahia!",
         "mainLink": "kulipa na z.cash",
         "mapLink": "SPEDN"
+      },
+      "hackathon": {
+        "description": "Hackathon ZecHub ya 2026 imekwisha. Chunguza miradi iliyowasilishwa katika Miundombinu, Michezo, FROST, Kuingia kwa Zcash, na Uhasibu.",
+        "mainLink": "Tazama miradi",
+        "title": "Kumbukumbu ya ZecHub Hackathon"
+      },
+      "visualizer": {
+        "description": "Zana shirikishi za kielimu ili kuelewa teknolojia ya faragha ya Zcash, miundombinu, na uthibitisho wa zero-knowledge",
+        "link": "Fungua Kionyeshi",
+        "title": "Kionyeshi cha ZecHub"
+      },
+      "zecMap": {
+        "description": "ZecMap ni ramani ya dunia inayodumishwa na jumuiya ya wafanyabiashara, huduma na ATM zinazokubali Zcash. Tafuta mahali pa kutumia ZEC karibu nawe, au ongeza biashara unayoijua ili kusaidia kukuza matumizi ya ulimwengu halisi.",
+        "link": "Tembelea ZecMap",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -580,7 +596,8 @@
           "transactions24h": "24h shughuli",
           "shieldedTx24h": "Shielded TX (24h)",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Mnyama-mwitu"
+          "orchardAbbrev": "Mnyama-mwitu",
+          "shieldedValue": "Thamani Iliyolindwa"
         },
         "zcashChart": {
           "title": "Chati za Uchanganuzi",
@@ -982,7 +999,17 @@
       "zcashCommunityForum": "Zcash Jamii Forum",
       "githubIssues": "GitHub Matatizo",
       "troubleshootingGuide": "Troubleshooting Mwongozo",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "Vifaa",
+      "compareColLanguage": "Lugha",
+      "compareColPlatforms": "Majukwaa",
+      "compareColRole": "Jukumu",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "Programu",
+      "compareColStatus": "Hali",
+      "compareFootnote": "zcashd ilifikia mwisho wa maisha katika block 3417100 mnamo Julai 18, 2026 — miradi mipya inapaswa kujengwa kwenye programu iliyo hapo juu.",
+      "compareLead": "Rafu Zcash imeundwa na zana chache tofauti. Tumia jedwali hili kubaini ni ipi mradi wako unahitaji, kisha fuata mwongozo wa kulinganisha ulio hapa chini.",
+      "compareTitle": "Ulinganisho wa Nodi na Mteja"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAO Utawala",
@@ -1037,7 +1064,17 @@
         "Organizations": "Mashirika",
         "Guides": "Miongozo",
         "Use Zcash": "Tumia Zcash",
-        "Ecosystem": "Mfumo wa Ikolojia"
+        "Ecosystem": "Mfumo wa Ikolojia",
+        "Contribute": "Kuchangia",
+        "Privacy Tools": "Vifaa vya Faragha",
+        "Research": "Utafiti",
+        "Start Here": "Anza Hapa",
+        "Tutorials": "Mafunzo",
+        "Use Cases": "Matumizi ya kesi",
+        "ZFAV Club": "ZFAV Club",
+        "Glossary & FAQs": "Faharasa na Maswali Yanayoulizwa Mara kwa Mara",
+        "Social Media": "Mitandao ya Kijamii",
+        "Zcash Tech": "Teknolojia Zcash"
       },
       "links": {
         "Homepage": "Ukurasa wa kwanza",

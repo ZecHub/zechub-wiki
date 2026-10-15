@@ -163,7 +163,8 @@
     "searchNoResults": "Nkratafa a ɛne ne ho hyia biara nni hɔ",
     "searchTryDifferent": "Sɔ nsɛmmisa ntiantiaa, nsɛmfua a ɛne ne ho di nsɛ, anaa nsɛmfua ahorow hwɛ.",
     "searchSuggested": "Nkratafa a wɔahyɛ ho nyansa",
-    "searchResultsLabel": "Nsunsuansoɔ"
+    "searchResultsLabel": "Nsunsuansoɔ",
+    "skipToContent": "Twa kɔ emu nsɛm no so"
   },
   "navigation": {
     "wallets": "Sika kotoku",
@@ -234,7 +235,13 @@
       "shieldedLabs": "Labs a Wɔabɔ ho Ban",
       "zingoLabs": "Zingo Labs a wɔyɛ adwuma wɔ hɔ",
       "brand": "Adeban",
-      "zkavClub": "ZKAV Kuw no"
+      "zkavClub": "ZKAV Kuw no",
+      "coinholderDirectedRetroactiveGrants": "CoinHolder Mmoa a Wɔde Ma a Wɔkyerɛ Kwan a Ɛfa Bere a Atwam Ho",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo Katua Ho Nhyehyɛe",
@@ -306,11 +313,6 @@
         "description": "Zcash Global Ambassadors yɛ mpɔtam akannifoɔ a wɔatu wɔn ho ama sɛ wɔbɛhyɛ cryptocurrency a wɔde wɔn adwene si kokoamsɛm so ne nkyerɛkyerɛ ho nkuran wɔ wiase nyinaa. Ɔmanpanyin adwuma biara twe adwene si so sɛ wɔbɛma nkurɔfo ate ase na wɔde wɔn ho ahyɛ mu wɔ wɔn mantam mu.",
         "link": "Hu Aban Nnanmusini no"
       },
-      "newsletter": {
-        "title": "Nsɛm ho amanneɛbɔ krataa a wɔabɔ ho ban",
-        "description": "Fa wo Unified Address no kyerɛw wo din na woanya shielded kwan a wobɛfa so akɔ Zcash Ecosystem Updates & Network Stats so tẽẽ akɔ wo sika kotoku mu!",
-        "link": "Kyerɛw wo din"
-      },
       "free2z": {
         "title": "Free2Z na ɛyɛ",
         "description": "Free2Z yɛ social platform a Zcash na ɛma ahoɔden. Ɛnam atipɛnfoɔ ntoboa, sika a wɔkyɛ nhyehyɛeɛ, adebɔ nnwinnadeɛ a ɛkɔ anim ne wiase nyinaa nnipakuo kɛseɛ a ɛwɔ intanɛt so so.",
@@ -321,6 +323,21 @@
         "description": "Saa wɛbsaet yi yɛ asɛmmisa yi ho mmuaeɛ: Ɛhe na metumi de Zcash atua ka? Directory no yɛ nea wobetumi de adi dwuma kwa. Nneɛma a wɔabobɔ din no yɛ nsɛm a wɔde bɛma nkutoo, na ɛnyɛ nea wɔde gyina akyi biara. Di dɛ!",
         "mainLink": "paywithz.sika a wɔde tua ho ka",
         "mapLink": "SPEDN NKYERƐKYERƐMU"
+      },
+      "hackathon": {
+        "description": "2026 ZecHub Hackathon no aba awiei. Hwehwɛ nnwuma a wɔde akɔma wɔ Infrastructure, Games, FROST, Zcash Login, ne Accounting nyinaa mu.",
+        "mainLink": "Hwɛ nnwuma a wɔayɛ",
+        "title": "ZecHub Hackathon Nneɛma a Wɔakora So"
+      },
+      "visualizer": {
+        "description": "Nkitahodi nkyerɛkyerɛ nnwinnade a wɔde bɛte Zcash kokoamsɛm mfiridwuma, nhyehyɛe, ne zero-knowledge adanse ase",
+        "link": "Bue Visualizer no mu",
+        "title": "ZecHub Mfoniniyɛfo"
+      },
+      "zecMap": {
+        "description": "ZecMap yɛ wiase asase mfonini a mpɔtam hɔfo hwɛ so a ɛkyerɛ aguadifo, nnwuma ne ATM ahorow a wogye Zcash. Hwehwɛ baabi a wobɛsɛe ZEC wɔ baabi a ɛbɛn wo, anaa fa adwuma bi a wunim ka ho na aboa ma wiase ankasa mu agyede anyin.",
+        "link": "Kɔ ZecMap",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -579,7 +596,8 @@
           "transactions24h": "24h Nkitahodi",
           "shieldedTx24h": "TX a wɔabɔ ho ban (24h) .",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "Orc"
+          "orchardAbbrev": "Orc",
+          "shieldedValue": "Botae a Wɔabɔ ho Ban"
         },
         "zcashChart": {
           "title": "Analytics Charts a Wɔde Yɛ Nhwehwɛmu",
@@ -981,7 +999,17 @@
       "zcashCommunityForum": "Zcash Mpɔtam Hɔ Nhyiam",
       "githubIssues": "GitHub Nsɛmpɔw",
       "troubleshootingGuide": "Ɔhaw Ho Nsiesiei Akwankyerɛ",
-      "stackOverflow": "Stack Overflow a Ɛyɛ Fɛ"
+      "stackOverflow": "Stack Overflow a Ɛyɛ Fɛ",
+      "compareColHardware": "Hardware a wɔde yɛ nneɛma",
+      "compareColLanguage": "Kasa",
+      "compareColPlatforms": "Asɛnka agua ahorow",
+      "compareColRole": "Asodie",
+      "compareColRpc": "RPC / API na ɛyɛ adwuma",
+      "compareColSoftware": "Software",
+      "compareColStatus": "Gyinabea",
+      "compareFootnote": "zcashd duu nkwa awiei wɔ block 3417100 wɔ July 18, 2026 — ɛsɛ sɛ nnwuma foforo si softwea a ɛwɔ atifi hɔ no so.",
+      "compareLead": "Zcash stack no yɛ nnwinnade kakraa bi a ɛsono emu biara. Fa saa pon yi di dwuma de hwɛ nea wo dwumadi no hia, afei di akwankyerɛ a ɛne ne ho hyia a ɛwɔ ase ha no akyi.",
+      "compareTitle": "Node & Client Ntotoeɛ"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAO Aban a ɛwɔ hɔ",
@@ -1036,7 +1064,17 @@
         "Organizations": "Ahyehyɛde ahorow",
         "Guides": "Akwankyerɛfo",
         "Use Zcash": "Fa Zcash di dwuma",
-        "Ecosystem": "Abɔde a nkwa wom nhyehyɛe"
+        "Ecosystem": "Abɔde a nkwa wom nhyehyɛe",
+        "Contribute": "Boa",
+        "Glossary & FAQs": "Nsɛmfua Nkyerɛase & FAQs",
+        "Privacy Tools": "Nnwinnade a Wɔde Siesie Kokoam Nsɛm",
+        "Research": "Hwehwɛ mu",
+        "Start Here": "Fi ase wɔ Ha",
+        "Tutorials": "Nkyerɛkyerɛ a wɔde ma",
+        "Use Cases": "Fa Nsɛm a Wɔde Di Dwuma",
+        "Zcash Tech": "Zcash Mfiridwuma ho nimdeɛ",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "Social Media a Wɔde Di Dwuma"
       },
       "links": {
         "Homepage": "Homepage a ɛwɔ hɔ",

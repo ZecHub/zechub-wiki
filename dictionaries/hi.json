@@ -235,7 +235,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "ब्रांड",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "कॉइनहोल्डर द्वारा निर्देशित पूर्वव्यापी अनुदान",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo पेमेंट प्रोसेसर",
@@ -307,11 +313,6 @@
         "description": "Zcash Global Ambassadors ऐसे सामुदायिक नेता हैं जो दुनिया भर में गोपनीयता-केंद्रित क्रिप्टोकरेंसी के अपनाने और शिक्षा को बढ़ावा देने के लिए समर्पित हैं। प्रत्येक ambassador परियोजना अपने-अपने क्षेत्रों में जागरूकता और सहभागिता बढ़ाने पर केंद्रित है।",
         "link": "Ambassadors से मिलें"
       },
-      "newsletter": {
-        "title": "Shielded Newsletter",
-        "description": "Zcash Ecosystem Updates & Network Stats को सीधे अपने वॉलेट में shielded access के साथ पाने के लिए अपने Unified Address का उपयोग करके सदस्यता लें!",
-        "link": "सदस्यता लें"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2Z, Zcash द्वारा संचालित एक सामाजिक मंच है। इसमें peer-to-peer donations, एक revenue sharing program, उन्नत creative tools और एक विशाल वैश्विक ऑनलाइन समुदाय है।",
@@ -324,9 +325,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "Hackathon में शामिल हों",
-        "description": "Zcash समुदाय के साथ प्रभावशाली विचारों का निर्माण करें, सहयोग करें और उन्हें जारी करें। पाँच नवोन्मेषी ट्रैक्स में प्रतिस्पर्धा करें: nodes और indexers के लिए Infrastructure, इंटरैक्टिव अनुभवों के लिए Games, threshold signing के लिए FROST, authentication solutions के लिए Zcash Login, और वित्तीय workflows के लिए Accounting। 25 मई - 15 जुलाई, 2026। 25 ZEC का prize pool आपका इंतज़ार कर रहा है।",
-        "mainLink": "Hackathon में शामिल हों"
+        "title": "ZecHub हैकाथॉन संग्रह",
+        "description": "2026 ZecHub हैकाथॉन समाप्त हो चुका है। इंफ्रास्ट्रक्चर, गेम्स, FROST, Zcash Login और लेखा क्षेत्रों में प्रस्तुत की गई परियोजनाओं को देखें।",
+        "mainLink": "प्रोजेक्ट देखें"
+      },
+      "visualizer": {
+        "description": "Zcash की गोपनीयता तकनीक, इंफ्रास्ट्रक्चर और जीरो-नॉलेज प्रूफ़ को समझने के लिए इंटरैक्टिव शैक्षिक उपकरण",
+        "link": "विज़ुअलाइज़र खोलें",
+        "title": "ZecHub विज़ुअलाइज़र"
+      },
+      "zecMap": {
+        "description": "ZecMap एक समुदाय-अनुरक्षित विश्व नक्शा है जिसमें Zcash स्वीकार करने वाले व्यापारी, सेवाएँ और ATM दर्शाए गए हैं। अपने आसपास ZEC खर्च करने की कोई जगह खोजें, या किसी ऐसे व्यवसाय को जोड़ें जिसे आप जानते हैं, ताकि वास्तविक दुनिया में इसके इस्तेमाल को बढ़ाने में मदद मिले।",
+        "link": "ZecMap देखें",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -585,7 +596,8 @@
           "transactions24h": "24घं लेनदेन",
           "shieldedTx24h": "शील्डेड TX (24घं)",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "ओर्क"
+          "orchardAbbrev": "ओर्क",
+          "shieldedValue": "शील्डेड मूल्य"
         },
         "zcashChart": {
           "title": "एनालिटिक्स चार्ट्स",
@@ -987,7 +999,17 @@
       "zcashCommunityForum": "Zcash सामुदायिक फ़ोरम",
       "githubIssues": "GitHub इश्यू",
       "troubleshootingGuide": "समस्या-निवारण मार्गदर्शिका",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "हार्डवेयर",
+      "compareColLanguage": "भाषा",
+      "compareColPlatforms": "प्लेटफ़ॉर्म",
+      "compareColRole": "भूमिका",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "सॉफ़्टवेयर",
+      "compareColStatus": "स्थिति",
+      "compareFootnote": "zcashd का जीवनकाल 18 जुलाई 2026 को ब्लॉक 3417100 पर समाप्त हो गया — नए प्रोजेक्ट ऊपर दिए गए सॉफ़्टवेयर पर बने।",
+      "compareLead": "Zcash स्टैक कुछ अलग-अलग टूल से मिलकर बना है। इस तालिका से पता करें कि आपके प्रोजेक्ट को कौन-सा टूल चाहिए, फिर नीचे दी गई संबंधित गाइड का पालन करें।",
+      "compareTitle": "नोड और क्लाइंट तुलना"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAO शासन",
@@ -1042,7 +1064,17 @@
         "Organizations": "संगठन",
         "Guides": "गाइड्स",
         "Use Zcash": "Zcash का उपयोग करें",
-        "Ecosystem": "पारिस्थितिकी तंत्र"
+        "Ecosystem": "पारिस्थितिकी तंत्र",
+        "Contribute": "योगदान करें",
+        "Glossary & FAQs": "शब्दावली और FAQs",
+        "Privacy Tools": "गोपनीयता उपकरण",
+        "Research": "शोध",
+        "Start Here": "यहाँ से शुरू करें",
+        "Tutorials": "ट्यूटोरियल्स",
+        "Use Cases": "उपयोग के मामले",
+        "Zcash Tech": "Zcash टेक",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "सोशल मीडिया"
       },
       "links": {
         "Homepage": "मुखपृष्ठ",

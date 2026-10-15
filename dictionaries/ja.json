@@ -235,7 +235,13 @@
       "shieldedLabs": "Shielded Labs",
       "zingoLabs": "Zingo Labs",
       "brand": "ブランド",
-      "zkavClub": "ZKAV Club"
+      "zkavClub": "ZKAV Club",
+      "coinholderDirectedRetroactiveGrants": "CoinHolder 指定の遡及的助成金",
+      "obscuraLabs": "Obscura Labs",
+      "sovright": "Sovright",
+      "valarGroup": "Valar Group",
+      "zcashLabs": "Zcash Labs",
+      "zodl": "ZODL"
     },
     "guidesSubmenu": {
       "zgoPaymentProcessor": "Zgo Payment Processor",
@@ -307,11 +313,6 @@
         "description": "Zcash Global Ambassadorsは、プライバシー重視の暗号通貨の普及と教育を世界中で推進することに尽力するコミュニティリーダーです。各アンバサダープロジェクトは、それぞれの地域で認知向上とエンゲージメント構築に重点を置いています。",
         "link": "アンバサダーを見る"
       },
-      "newsletter": {
-        "title": "Shielded Newsletter",
-        "description": "Unified Addressを使って登録すると、ウォレットに直接届くZcash Ecosystem Updates & Network Statsへのshieldedアクセスを受け取れます！",
-        "link": "登録する"
-      },
       "free2z": {
         "title": "Free2Z",
         "description": "Free2ZはZcashによって支えられているソーシャルプラットフォームです。個人間寄付、収益分配プログラム、高度なクリエイティブツール、そして大規模なオンラインのグローバルコミュニティを備えています。",
@@ -324,9 +325,19 @@
         "mapLink": "SPEDN"
       },
       "hackathon": {
-        "title": "ハッカソンに参加する",
-        "description": "Zcashコミュニティとともに、インパクトのあるアイデアを構築し、コラボレーションし、世に送り出しましょう。5つの革新的なトラックで競い合います：ノードとインデクサ向けのInfrastructure、インタラクティブな体験のためのGames、しきい値署名のための FROST、認証ソリューションのためのZcash Login、そして財務ワークフローのためのAccounting。2026年5月25日 - 7月15日。25 ZECの賞金プールがあなたを待っています。",
-        "mainLink": "ハッカソンに参加する"
+        "title": "ZecHub ハッカソンアーカイブ",
+        "description": "2026年のZecHubハッカソンは終了しました。インフラストラクチャ、ゲーム、FROST、Zcash Login、会計の各部門に応募されたプロジェクトをご覧ください。",
+        "mainLink": "プロジェクトを見る"
+      },
+      "visualizer": {
+        "description": "Zcashのプライバシー技術、インフラストラクチャ、ゼロ知識証明を理解するためのインタラクティブな教育ツール",
+        "link": "ビジュアライザーを開く",
+        "title": "ZecHub ビジュアライザー"
+      },
+      "zecMap": {
+        "description": "ZecMapは、Zcashを受け付ける店舗、サービス、ATMをコミュニティで管理する世界地図です。お近くでZECを使える場所を見つけたり、ご存知の店舗を追加して実際の普及を支援できます。",
+        "link": "ZecMapを見る",
+        "title": "ZecMap"
       }
     },
     "explore": {
@@ -585,7 +596,8 @@
           "transactions24h": "24時間の取引数",
           "shieldedTx24h": "Shielded TX（24時間）",
           "saplingAbbrev": "Sap",
-          "orchardAbbrev": "オーク"
+          "orchardAbbrev": "オーク",
+          "shieldedValue": "シールドされた価値"
         },
         "zcashChart": {
           "title": "分析チャート",
@@ -987,7 +999,17 @@
       "zcashCommunityForum": "Zcashコミュニティフォーラム",
       "githubIssues": "GitHub Issues",
       "troubleshootingGuide": "トラブルシューティングガイド",
-      "stackOverflow": "Stack Overflow"
+      "stackOverflow": "Stack Overflow",
+      "compareColHardware": "ハードウェア",
+      "compareColLanguage": "言語",
+      "compareColPlatforms": "プラットフォーム",
+      "compareColRole": "役割",
+      "compareColRpc": "RPC / API",
+      "compareColSoftware": "ソフトウェア",
+      "compareColStatus": "ステータス",
+      "compareFootnote": "zcashd は 2026 年 7 月 18 日、ブロック 3417100 でサポートを終了しました。新規プロジェクトは上記のソフトウェアをベースに構築してください。",
+      "compareLead": "Zcash スタックはいくつかの独立したツールで構成されています。この表を使ってプロジェクトに必要なツールを確認し、下記の対応するガイドに従ってください。",
+      "compareTitle": "ノードとクライアントの比較"
     },
     "governanceHowto": {
       "pageTitle": "ZecHub DAOガバナンス",
@@ -1042,7 +1064,17 @@
         "Organizations": "組織",
         "Guides": "ガイド",
         "Use Zcash": "Zcashを使う",
-        "Ecosystem": "エコシステム"
+        "Ecosystem": "エコシステム",
+        "Contribute": "貢献する",
+        "Glossary & FAQs": "用語集とFAQ",
+        "Privacy Tools": "プライバシーツール",
+        "Research": "リサーチ",
+        "Start Here": "ここから始める",
+        "Tutorials": "チュートリアル",
+        "Use Cases": "ユースケース",
+        "Zcash Tech": "Zcash 技術",
+        "ZFAV Club": "ZFAV Club",
+        "Social Media": "ソーシャルメディア"
       },
       "links": {
         "Homepage": "ホームページ",
