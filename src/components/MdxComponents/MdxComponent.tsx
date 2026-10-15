@@ -198,6 +198,28 @@ const MdxComponents = {
         </h3>
       );
     }
+    const pill = (props as Record<string, unknown>)["data-pill"];
+    if (pill) {
+      // Pool heading with a small status pill.
+      const tone = String((props as Record<string, unknown>)["data-tone"] ?? "slate");
+      const toneCls =
+        tone === "brand"
+          ? "border-brand/50 bg-brand/10 text-brand dark:text-brand-soft"
+          : tone === "amber"
+            ? "border-amber-500/40 bg-amber-500/10 text-amber-700 dark:text-amber-400"
+            : tone === "green"
+              ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+              : "border-slate-300 bg-slate-100 text-slate-600 dark:border-white/15 dark:bg-white/5 dark:text-slate-300";
+      return (
+        <h3
+          id={id}
+          className="mt-10 mb-3 flex scroll-mt-20 flex-wrap items-center gap-3 text-xl font-semibold tracking-tight text-slate-900 md:text-[1.35rem] dark:text-white"
+        >
+          <span>{props.children}</span>
+          <span className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${toneCls}`}>{String(pill)}</span>
+        </h3>
+      );
+    }
     if ((props as Record<string, unknown>)["data-rule"]) {
       // Subsection separated from the previous one by a hairline.
       return (

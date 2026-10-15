@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { prq?: boolean; ncex?: boolean; snap?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -146,6 +146,98 @@ function rehypeWikiPatterns(opts: { prq?: boolean; ncex?: boolean; snap?: boolea
   };
   return (tree: any) => {
     const stepCount = { n: 0, leadDone: false };
+    if (opts.pools && Array.isArray(tree.children)) {
+      // Shielded pools guide: shortcuts, numbered sections, status pills, framed charts and a
+      // four-way comparison of the transfer types.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const isHead = (x: any) => isEl(x) && /^h[1-6]$/.test(x.tagName);
+      const hIdx = (re: RegExp) => rows.findIndex((x) => isHead(x) && re.test(textOf(x).trim()));
+
+      // 0. Pool sections arrive as one-item numbered lists wrapping a heading ("1. ### Ironwood Pool");
+      //    unwrap them so the headings and their text sit at the top level, and style figure captions.
+      for (let q = 0; q < rows.length; q++) {
+        const r = rows[q];
+        if (isEl(r, "ol")) {
+          const lis = (r.children || []).filter((c: any) => !isBlank(c));
+          if (lis.length === 1 && isEl(lis[0], "li")) {
+            const inner = (lis[0].children || []).filter((c: any) => !isBlank(c)).map((c: any) =>
+              c.type === "mdxJsxFlowElement" && /^h[1-6]$/.test(c.name || "")
+                ? { type: "element", tagName: c.name, properties: {}, children: c.children || [] }
+                : c,
+            );
+            if (inner.length && isHead(inner[0])) {
+              rows.splice(q, 1, ...inner);
+              q--;
+              continue;
+            }
+          }
+        }
+        if (isEl(r, "p") && /^fig \d+:/i.test(textOf(r).trim())) {
+          rows[q] = { type: "element", tagName: "div", properties: { className: ["-mt-2", "mb-6", "text-sm", "text-slate-500", "dark:text-slate-400"] }, children: r.children };
+        }
+      }
+
+      // 1. Transfer types: one card per route.
+      const tp = hIdx(/^pool transfer recommended practice/i);
+      if (tp > -1) {
+        let end = tp + 1;
+        while (end < rows.length && !isHead(rows[end])) end++;
+        const defs: [RegExp, string, string][] = [
+          [/^transaction occurring between "?z to z"?/i, "1", "z → z: fully shielded"],
+          [/^when you send zec from "?z-address"? to "?t-address/i, "2", "z → t: deshielding"],
+          [/^transferring zec from a transparent address/i, "3", "t → z: shielding"],
+          [/^sending zec from a transparent address .* to another transparent/i, "4", "t → t: public"],
+        ];
+        const items: any[] = [];
+        const intro: any[] = [];
+        for (const r of rows.slice(tp + 1, end)) {
+          if (isEl(r, "hr") || isBlank(r)) continue;
+          const t = isEl(r, "p") ? textOf(r).trim() : "";
+          const d = defs.find((x) => x[0].test(t));
+          if (d) items.push({ type: "element", tagName: "pointitem", properties: { n: d[1], title: d[2] }, children: [r] });
+          else if (items.length && isEl(r, "p")) items[items.length - 1].children.push(r);
+          else intro.push(r);
+        }
+        if (items.length === 4) rows.splice(tp + 1, end - tp - 1, ...intro, { type: "element", tagName: "pointlist", properties: {}, children: items });
+      }
+
+      // 2. Shortcuts after the TL;DR.
+      const un = hIdx(/^understanding zcash value pools/i);
+      if (un > -1) {
+        const items = [
+          { label: "The five pools", hint: "What each one is", href: "#understanding-zcash-value-pools" },
+          { label: "Ironwood", hint: "The current pool", href: "#ironwood-pool" },
+          { label: "Moving funds", hint: "z→z, shielding, public", href: "#pool-transfer-recommended-practice" },
+          { label: "Migration", hint: "Orchard to Ironwood", href: "#the-orchard-to-ironwood-migration" },
+        ];
+        rows.splice(un, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
+      }
+
+      // 3. Main sections numbered; each pool heading gets a status pill.
+      const PILLS: Record<string, [string, string]> = {
+        "ironwood pool": ["Current", "brand"],
+        "orchard pool": ["Spend-only", "amber"],
+        "sapling pool": ["Active", "green"],
+        "sprout pool": ["Retired", "slate"],
+        "transparent pool": ["Public", "slate"],
+      };
+      let n = 0;
+      for (const r of rows) {
+        if (isEl(r, "h2")) {
+          if (!/^tl;?\s?dr|^common mistakes|^related pages/i.test(textOf(r).trim())) {
+            n += 1;
+            r.properties = { ...(r.properties || {}), dataStep: String(n) };
+          }
+        } else if (isEl(r, "h3")) {
+          const pill = PILLS[textOf(r).trim().toLowerCase()];
+          if (pill) r.properties = { ...(r.properties || {}), dataPill: pill[0], dataTone: pill[1] };
+        } else if (isEl(r, "img") || (isEl(r, "p") && (r.children || []).some((c: any) => isEl(c, "img")))) {
+          const img = isEl(r, "img") ? r : (r.children || []).find((c: any) => isEl(c, "img"));
+          img.properties = { ...(img.properties || {}), dataFrame: "true" };
+        }
+      }
+    }
     if (opts.prq && Array.isArray(tree.children)) {
       // Payment request URIs: themed buttons, shortcuts, numbered sections and hairlines between subsections.
       const rows: any[] = tree.children;
@@ -1342,6 +1434,7 @@ export default async function Page(props: {
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
             memos: slug[0] === "using-zcash" && slug[1] === "memos",
             tex: slug[0] === "using-zcash" && slug[1] === "transparent-exchange-addresses",
+            pools: slug[0] === "using-zcash" && slug[1] === "shielded-pools",
             prq: slug[0] === "using-zcash" && slug[1] === "payment-request-uris",
             ncex: slug[0] === "using-zcash" && slug[1] === "non-custodial-exchanges",
             snap: slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups"),
