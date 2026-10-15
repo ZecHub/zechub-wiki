@@ -29,4 +29,10 @@ describe("stripFrontmatter", () => {
   it("keeps an empty block (two rules) untouched", () => {
     expect(stripFrontmatter("---\n\n---\nBody")).toBe("---\n\n---\nBody");
   });
+
+  it("keeps rule-delimited prose that merely looks like key: value", () => {
+    for (const md of ["---\nNote: this page moved.\n---\nBody", "---\r\nWarning: read first\r\n---\r\nBody", "---\npublished: 2026-01-01\nNote: kept\n---\nBody"]) {
+      expect(stripFrontmatter(md)).toBe(md);
+    }
+  });
 });

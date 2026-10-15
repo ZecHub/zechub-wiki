@@ -1,3 +1,4 @@
+import { stripFrontmatter } from "../stripFrontmatter";
 /**
  * The one tokenizer, shared by the build-time indexer and the browser.
  *
@@ -78,8 +79,7 @@ export function tokenSet(input: string): string[] {
  * because that is visible prose.
  */
 export function markdownToText(md: string): string {
-  return md
-    .replace(/^---\n[\s\S]*?\n---\n/, "")        // frontmatter
+  return stripFrontmatter(md)                   // frontmatter (CRLF/BOM too)
     .replace(/```[\s\S]*?```/g, " ")             // fenced code
     .replace(/`[^`\n]*`/g, " ")                  // inline code
     .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")       // images
