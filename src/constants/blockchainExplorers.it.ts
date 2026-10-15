@@ -5,7 +5,7 @@ export const blockchainExplorersIt = [
       'Blockchair è il motore di ricerca blockchain più privato. Sviluppa prodotti che rendono i dati della blockchain accessibili a individui, team di sviluppo e organizzazioni di ricerca',
     features: ['Esploratore blockchain', 'analisi', 'servizi web'],
     url: 'https://blockchair.com/zcash/',
-    thumbnailImage: '/explorer/Blockchair.png',
+    thumbnailImage: '/explorer-logos/blockchair.png',
   },
   {
     title: 'MESSARI',
@@ -17,7 +17,7 @@ export const blockchainExplorersIt = [
       'ricerca e approfondimenti',
     ],
     url: 'https://messari.io/project/zcash',
-    thumbnailImage: '/explorer/messari.io.png',
+    thumbnailImage: '/explorer-logos/messari.png',
   },
   {
     title: '3xpl',
@@ -29,7 +29,7 @@ export const blockchainExplorersIt = [
       'ricerca di indirizzi e blocchi',
     ],
     url: 'https://3xpl.com/zcash',
-    thumbnailImage: '/explorer/3xpl.png',
+    thumbnailImage: '/explorer-logos/3xpl.png',
   },
   {
     title: 'BlockExplorer.one',
@@ -37,14 +37,14 @@ export const blockchainExplorersIt = [
       'Blockexplorer.one è un browser blockchain dove puoi cercare informazioni su diverse blockchain.',
     features: ['mainnet', 'testnet', 'molteplici blockchain'],
     url: 'https://blockexplorer.one/zcash/mainnet',
-    thumbnailImage: '/explorer/BlockchExplorer.one.png',
+    thumbnailImage: '/explorer-logos/blockexplorer.png',
   },
   {
     title: 'Zcash Block Explorer',
     description: 'Block explorer #Zcash senza tracker',
     url: 'https://mainnet.zcashexplorer.app/',
     features: ['Senza tracker', 'mainnet', 'testnet'],
-    thumbnailImage: '/explorer/zcashblockexplorer.png',
+    thumbnailImage: '',
   },
   {
     title: 'Bitquery',
@@ -60,7 +60,7 @@ export const blockchainExplorersIt = [
       'Google Cloud',
     ],
     url: 'https://explorer.bitquery.io/zcash',
-    thumbnailImage: '/explorer/Bitquery.png',
+    thumbnailImage: '/explorer-logos/bitquery.png',
   },
   {
     title: 'Cipherscan',
@@ -68,7 +68,7 @@ export const blockchainExplorersIt = [
       'Esploratore della blockchain Zcash che decodifica la blockchain dove la privacy incontra la trasparenza. Offre una dashboard di metriche sulla privacy, il tracciamento dell\'attività schermata e il monitoraggio dei blocchi in tempo reale.',
     features: ['Metriche del punteggio di privacy', 'statistiche del pool schermato', 'mainnet e testnet', 'aggiornamenti dei blocchi in tempo reale', 'supporto Orchard'],
     url: 'https://cipherscan.app/',
-    thumbnailImage: '/explorer/Cipherscan.png',
+    thumbnailImage: '/explorer-logos/cipherscan.png',
   },
   {
     title: 'Zypherscan',
@@ -76,7 +76,7 @@ export const blockchainExplorersIt = [
       'Esploratore della blockchain privacy-first per Zcash. Esplora le transazioni schermate utilizzando le tue chiavi di visualizzazione per un esploratore in sola lettura e senza soluzione di continuità della cronologia privata di ZCash.',
     features: ['Transazioni schermate', 'supporto per chiavi di visualizzazione', 'pool Orchard e Sapling', 'statistiche di rete'],
     url: 'https://www.zypherscan.com/',
-    thumbnailImage: '/explorer/Zypherscan.png',
+    thumbnailImage: '',
   },
   {
       title: 'zcashinfo.com',
@@ -91,7 +91,7 @@ export const blockchainExplorersIt = [
         'Monitoraggio della mempool',
       ],
       url: 'https://zcashinfo.com/',
-      thumbnailImage: '/explorer/zcashinfo.png',
+      thumbnailImage: '/explorer-logos/zcashinfo.png',
     },
     {
     title: 'Zexplorer',
@@ -99,6 +99,6 @@ export const blockchainExplorersIt = [
       ' Un esploratore e un\'API esclusivi per Zcash che cercano di essere precisi su ciò che i dati pubblici della chain possono mostrare, ciò che è privato per progettazione e ciò su cui un client può fare affidamento in sicurezza',
     features: ['Block Explorer', 'Esploratore delle transazioni', 'Funzionalità di ricerca', 'Ricerca degli indirizzi', 'Mempool / Transazioni in sospeso', 'Statistiche di rete'],
     url: 'https://zexplorer.app/testnet/',
-    thumbnailImage: '/explorer/Zexplorer.png',
+    thumbnailImage: '/explorer-logos/zexplorer.png',
     },
 ];
