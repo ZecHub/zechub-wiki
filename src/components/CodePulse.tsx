@@ -111,25 +111,34 @@ export default function CodePulse() {
   const [view, setView] = useState<View>("radicle");
   const [radicleHistory, setRadicleHistory] = useState<HistoryEntry[]>([]);
   const [githubHistory, setGithubHistory] = useState<HistoryEntry[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState({ radicle: true, github: true });
+  const [errors, setErrors] = useState({ radicle: false, github: false });
   const [selectedMetric, setSelectedMetric] = useState<Metric>("seeding");
   const [selectedRepo, setSelectedRepo] = useState("all");
 
   useEffect(() => {
-    Promise.all([
-      fetch("/data/radicle/radicle.json"),
-      fetch("/data/github/github.json"),
-    ])
-      .then(async ([radRes, gitRes]) => {
-        const [radData, gitData] = await Promise.all([
-          radRes.json(),
-          gitRes.json(),
-        ]);
-        setRadicleHistory(Array.isArray(radData) ? radData : []);
-        setGithubHistory(Array.isArray(gitData) ? gitData : []);
-      })
-      .catch((error) => console.error("Failed to load Code Pulse data", error))
-      .finally(() => setLoading(false));
+    let active = true;
+    const loadFeed = async (
+      feed: View,
+      setHistory: typeof setRadicleHistory,
+    ) => {
+      try {
+        const response = await fetch(`/data/${feed}/${feed}.json`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const history = await response.json();
+        if (!Array.isArray(history)) throw new Error("Invalid feed");
+        if (active) setHistory(history);
+      } catch {
+        if (active) setErrors((previous) => ({ ...previous, [feed]: true }));
+      } finally {
+        if (active) setLoading((previous) => ({ ...previous, [feed]: false }));
+      }
+    };
+    void loadFeed("radicle", setRadicleHistory);
+    void loadFeed("github", setGithubHistory);
+    return () => {
+      active = false;
+    };
   }, []);
 
   const currentHistory = view === "radicle" ? radicleHistory : githubHistory;
@@ -201,23 +210,8 @@ export default function CodePulse() {
     if (nextView !== "github") setSelectedRepo("all");
   };
 
-  if (loading) {
-    return (
-      <div className="rounded-3xl border bg-card p-12 text-center text-muted-foreground">
-        Loading Code Pulse…
-      </div>
-    );
-  }
-  if (!current) {
-    return (
-      <div className="rounded-3xl border border-red-200 bg-red-50 p-8 text-center text-red-600">
-        No Code Pulse data available yet.
-      </div>
-    );
-  }
-
   const delta = percentChange(currentTotals.primary, previousTotals.primary);
-  const updatedAt = current.generated_at ? new Date(current.generated_at) : null;
+  const updatedAt = current?.generated_at ? new Date(current.generated_at) : null;
 
   return (
     <div className="space-y-7">
@@ -270,6 +264,20 @@ export default function CodePulse() {
         </div>
       </header>
 
+      {loading[view] ? (
+        <div role="status" className="rounded-3xl border bg-card p-12 text-center text-muted-foreground">
+          Loading {view === "radicle" ? "Radicle" : "GitHub"} feed…
+        </div>
+      ) : errors[view] ? (
+        <div role="alert" className="rounded-3xl border bg-card p-8 text-center text-destructive">
+          Could not load the {view === "radicle" ? "Radicle" : "GitHub"} feed.
+        </div>
+      ) : !current ? (
+        <div role="status" className="rounded-3xl border bg-card p-8 text-center text-muted-foreground">
+          No {view === "radicle" ? "Radicle" : "GitHub"} data available yet.
+        </div>
+      ) : (
+        <>
       <section
         aria-label="Current Code Pulse summary"
         className="grid grid-cols-2 gap-3 md:grid-cols-4"
@@ -491,6 +499,8 @@ export default function CodePulse() {
           ))}
         </div>
       </section>
+        </>
+      )}
     </div>
   );
 }
