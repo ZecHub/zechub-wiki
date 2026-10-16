@@ -36,7 +36,7 @@ export function PrivacyMeter(props: PrivacyMeterProps) {
               </span>
               {/* Tooltip */}
               <div
-                className={`absolute bottom-full mb-2 left-1/2 -translate-x-1/2 ${i < pastAndCurrent.length / 2 ? "max-sm:left-0 max-sm:translate-x-0" : "max-sm:left-auto max-sm:right-0 max-sm:translate-x-0"}
+                className={`absolute bottom-full mb-2 left-1/2 -translate-x-1/2 ${i < pastAndCurrent.length / 2 ? "max-md:left-0 max-md:translate-x-0" : "max-md:left-auto max-md:right-0 max-md:translate-x-0"}
               hidden group-hover:block opacity-0 group-hover:opacity-100 group-hover:visible
              transition-opacity duration-200 z-20 pointer-events-none`}
               >
