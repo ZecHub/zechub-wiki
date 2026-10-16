@@ -12,6 +12,7 @@ export interface NetworkUpgrade {
   title?: string;
   networkRollout?: NetworkRollout[];
   sources?: { title: string; href: string }[];
+  comparison?: { label: string; before: string; after: string; explanation: string };
   subtitle: string;
   date: string;
   blockHeight: number | null;
@@ -315,6 +316,13 @@ export const networkUpgrades: NetworkUpgrade[] = [
       { network: "Mainnet", state: "tentative", date: "November 5, 2026" },
     ],
     blockHeight: null,
+    comparison: {
+      label: "Target block spacing",
+      before: "75 seconds",
+      after: "25 seconds",
+      explanation:
+        "Scheduled issuance over time is preserved by lowering each block subsidy and lengthening the halving interval.",
+    },
     description:
       "The current NU7 proposal reduces target block spacing to 25 seconds, adds shielded action limits and the Network Sustainability Mechanism, removes 60% of transaction fees from circulation, and disables v4 transactions.",
     features: [

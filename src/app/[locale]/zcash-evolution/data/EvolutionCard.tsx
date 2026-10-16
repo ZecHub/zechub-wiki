@@ -180,6 +180,19 @@ export function EvolutinCard(props: EvolutinCardProps) {
               </li>
             ))}
           </ul>
+          {props.upgrade.comparison && (
+            <div className="mt-5">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                {props.upgrade.comparison.label}
+              </h4>
+              <p className="text-base font-semibold text-foreground">
+                {props.upgrade.comparison.before} → {props.upgrade.comparison.after}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground">
+                {props.upgrade.comparison.explanation}
+              </p>
+            </div>
+          )}
           {props.upgrade.sources && (
             <div className="mt-5">
               <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">

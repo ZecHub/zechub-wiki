@@ -32,6 +32,23 @@ test("NU7 exposes its proposal and linked deployment scope without nesting links
   await expect(nu7).not.toContainText(/ZIP 233|ZIP 234|Feb 2031|3× faster|No new transaction format/);
 });
 
+test("NU7 compares target spacing and explains scheduled issuance only when expanded", async ({ page }) => {
+  await page.goto("/en/zcash-evolution");
+  const nu7 = page.locator("#nu7");
+  const heading = nu7.getByRole("heading", { name: "Target block spacing", exact: true });
+  const comparison = nu7.getByText("75 seconds → 25 seconds", { exact: true });
+  const issuance = nu7.getByText("Scheduled issuance over time is preserved by lowering each block subsidy and lengthening the halving interval.", { exact: true });
+  await expect(heading).toBeHidden();
+  const toggle = nu7.getByRole("button");
+  await toggle.press("Enter");
+  await expect(heading).toBeVisible();
+  await expect(comparison).toBeVisible();
+  await expect(issuance).toBeVisible();
+  await toggle.press("Space");
+  await expect(comparison).toBeHidden();
+  await expect(issuance).toBeHidden();
+});
+
 test("NU7 deep link opens and keyboard users can toggle then reach each source", async ({ page }) => {
   await page.goto("/en/zcash-evolution#nu7");
   const nu7 = page.locator("#nu7");
@@ -64,6 +81,13 @@ for (const width of [1440, 390, 320]) {
     const nu7 = page.locator("#nu7");
     await expect(nu7.getByRole("heading", { name: "Official sources" })).toBeVisible();
     await expect(nu7.getByText("Testnet — Activated October 4, 2026 · Height 4,465,026", { exact: true })).toBeVisible();
+    const comparison = nu7.getByText("75 seconds → 25 seconds", { exact: true });
+    await expect(comparison).toBeVisible();
+    await expect(nu7.getByText("Scheduled issuance over time is preserved by lowering each block subsidy and lengthening the halving interval.", { exact: true })).toBeVisible();
+    const comparisonBounds = await comparison.boundingBox();
+    expect(comparisonBounds!.x).toBeGreaterThanOrEqual(0);
+    expect(comparisonBounds!.x + comparisonBounds!.width).toBeLessThanOrEqual(width);
+    expect(await comparison.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(false);
     const bounds = await nu7.boundingBox();
     expect(bounds!.x).toBeGreaterThanOrEqual(0);
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
@@ -76,6 +100,7 @@ for (const width of [1440, 390, 320]) {
       const card = page.locator(`#${id}`);
       await card.getByRole("button").click();
       await expect(card.getByRole("heading", { name: "Key Features" })).toBeVisible();
+      await expect(card.getByRole("heading", { name: "Target block spacing", exact: true })).toHaveCount(0);
       await card.getByRole("button").press("Space");
       await expect(card.getByRole("heading", { name: "Key Features" })).toBeHidden();
     }
@@ -86,5 +111,7 @@ for (const width of [1440, 390, 320]) {
 test("Italian navigation retains the shared NU7 content", async ({ page }) => {
   await page.goto("/it/zcash-evolution#nu7");
   await expect(page.locator("#nu7").getByRole("heading", { name: "Official sources" })).toBeVisible();
+  await expect(page.locator("#nu7").getByText("75 seconds → 25 seconds", { exact: true })).toBeVisible();
+  await expect(page.locator("#nu7").getByText("Scheduled issuance over time is preserved by lowering each block subsidy and lengthening the halving interval.", { exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Select language" })).toContainText("Italiano");
 });
