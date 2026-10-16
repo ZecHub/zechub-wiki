@@ -1,6 +1,5 @@
 import { getFiles, transformUri } from "@/lib/helpers";
 import { unstable_cache } from "next/cache";
-import { Octokit } from "octokit";
 
 const { GITHUB_TOKEN, OWNER, REPO, BRANCH } = process.env;
 
@@ -9,7 +8,16 @@ const owner = (OWNER ?? "").trim();
 const repo = (REPO ?? "").trim();
 const branch = (BRANCH ?? "main").trim();
 
-const octokit = new Octokit({ auth: authUser });
+let octokitPromise: Promise<any> | null = null;
+
+async function getOctokit() {
+  if (!octokitPromise) {
+    octokitPromise = import("octokit").then(
+      ({ Octokit }) => new Octokit({ auth: authUser }),
+    );
+  }
+  return octokitPromise;
+}
 
 /** Strip leading slashes so GitHub never sees %2Fsite/... */
 function cleanPath(path: string): string {
@@ -148,6 +156,7 @@ async function resolveContentRef(): Promise<string> {
   refInFlight = (async (): Promise<string> => {
     if (!assertRepoConfig()) return branch;
     try {
+      const octokit = await getOctokit();
       const res = await octokit.rest.repos.getCommit({
         owner,
         repo,
@@ -240,10 +249,8 @@ async function readListing(
     if (stale) return stale;
     throw failed.err;
   }
-
   const inflight = listingInFlight.get(key);
   if (inflight) return inflight;
-
   const read = ref === branch ? uncached : cached;
   const pending = read(path, ref).then(
     (value) => {
@@ -260,7 +267,6 @@ async function readListing(
   ).finally(() => {
     listingInFlight.delete(key);
   });
-
   listingInFlight.set(key, pending);
   return pending;
 }
@@ -317,7 +323,6 @@ async function fetchRawFile(
     .split("/")
     .map(encodeURIComponent)
     .join("/")}`;
-
   let res: Response;
   try {
     res = await fetch(url, {
@@ -336,7 +341,6 @@ async function fetchRawFile(
     if (err?.status) throw err;
     throw Object.assign(new Error(err?.message ?? "fetch failed"), { status: 0 });
   }
-
   if (res.status === 404) return null;
   if (!res.ok) {
     // Always throws for a non-404, including a build-phase rate limit.
@@ -438,6 +442,7 @@ async function listDirUncached(
   if (!assertRepoConfig()) return [];
   if (hasDotSegment(dir)) return [];
   try {
+    const octokit = await getOctokit();
     const res = await octokit.rest.repos.getContent({
       owner,
       repo,
@@ -508,12 +513,12 @@ const getEnglishSourceStatusAtRefCached = unstable_cache(
     // and runs once per localized page. Pulling 3,960 bodies to answer a
     // yes/no would waste the bandwidth the quota fix just saved.
     if ((await fetchRawFile(safePath, ref, "HEAD")) !== null) return "present";
-
     const folderPath = safePath.split("/").slice(0, -1).join("/");
     const wantSlug = normalize(
       safePath.split("/").pop()?.replace(/\.md$/i, "") || "",
     );
     try {
+      const octokit = await getOctokit();
       const res = await octokit.rest.repos.getContent({
         owner,
         repo,
@@ -559,7 +564,6 @@ const getEnglishSourceStatusAtRefCached = unstable_cache(
  *      consulted again once SHA resolution recovers — rather than pinning
  *      stale content for the reader's full TTL.
  */
-
 export async function getFileContentCached(path: string): Promise<string | null> {
   return degradeOnBuildRateLimit(async () =>
     readFileAtRef(path, await resolveContentRef()),
@@ -584,10 +588,8 @@ async function readFileAtRef(
   // instead. Raw is unmetered, so the only cost is extra CDN requests during
   // an outage that is already degraded.
   if (ref === branch) return readFileAtRefUncached(safePath, ref);
-
   const direct = await readFileAtRefCached(safePath, ref);
   if (direct !== null) return direct;
-
   const folderPath = safePath.split("/").slice(0, -1).join("/");
   const realFiles = await listDirAtRefCached(folderPath, ref);
   const wantSlug = normalize(
@@ -690,7 +692,6 @@ export async function getLocalizedFileContentCached(
   // skew, not the blank-page failure above, and fixing it properly means
   // threading a ref through the page components.
   const ref = await resolveContentRef();
-
   if (locale && locale !== "en") {
     const itPath = `translations/${locale}/${normalizedPath}`;
     const exact = await translationProbe(itPath, ref).catch(() => null);
@@ -719,6 +720,7 @@ const getRootAtRefCached = unstable_cache(
   async (path: string) => {
     if (!assertRepoConfig()) return [];
     try {
+      const octokit = await getOctokit();
       const res = await octokit.rest.repos.getContent({
         owner,
         repo,
@@ -764,6 +766,7 @@ async function listSiteFoldersUncached(
   ref: string,
 ): Promise<string[]> {
   try {
+    const octokit = await getOctokit();
     const res = await octokit.rest.repos.getContent({ owner, repo, path, ref });
     // A file is not a directory; getFiles itself only accepts arrays.
     return Array.isArray(res.data) ? getFiles(res.data) : [];
@@ -807,6 +810,7 @@ async function getAllMarkdownRecursivelyUncached(
     // traversal, otherwise a partial article index would be cached for an hour.
     let data;
     try {
+      const octokit = await getOctokit();
       const res = await octokit.rest.repos.getContent({ owner, repo, path, ref });
       data = res.data;
     } catch (err) {
