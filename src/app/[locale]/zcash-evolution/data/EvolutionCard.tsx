@@ -73,10 +73,9 @@ export function EvolutinCard(props: EvolutinCardProps) {
       </div>
 
       {/* Card Content */}
-      <button
-        onClick={() => setExpanded(!expanded)}
+      <div
         className={cn(
-          "flex-1 mb-6 cursor-pointer rounded-lg border border-slate-300 dark:border-inherit bg-card p-5 text-left transition-all hover:border-primary/40",
+          "flex-1 min-w-0 mb-6 rounded-lg border border-slate-300 dark:border-inherit bg-card p-5 text-left transition-all hover:border-primary/40",
           isCurrent && "glow-zcash border-primary/50",
           isFuture && "border-dashed border-muted-foreground/30 bg-card/50",
           "animate-fade-in",
@@ -85,61 +84,80 @@ export function EvolutinCard(props: EvolutinCardProps) {
           animationDelay: `${props.index * 80}ms`,
         }}
       >
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3 min-w-0">
-            {props.upgrade.logo && (
-              <Image
-                src={props.upgrade.logo}
-                alt=""
-                aria-hidden="true"
-                width={40}
-                height={40}
-                className="h-10 w-10 shrink-0 object-contain"
-              />
-            )}
-            <div className="min-w-0">
-              {isCurrent && (
-                <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-primary mb-1">
-                  ● You Are Here
-                </span>
+        <button
+          type="button"
+          onClick={() => setExpanded((value) => !value)}
+          aria-expanded={expanded}
+          aria-controls={`${props.upgrade.id}-features`}
+          aria-label={`Toggle ${props.upgrade.name} details`}
+          className="w-full text-left rounded-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+        >
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              {props.upgrade.logo && (
+                <Image
+                  src={props.upgrade.logo}
+                  alt=""
+                  aria-hidden="true"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 shrink-0 object-contain"
+                />
               )}
-              {isFuture && (
-                <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1">
-                  Coming Soon
-                </span>
-              )}
-              <h3
-                className="text-base md:text-lg font-bold"
-                style={{ color: `hsl(${props.upgrade.eraColor})` }}
-              >
-                {props.upgrade.name}
-              </h3>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                {props.upgrade.subtitle}
-              </p>
+              <div className="min-w-0">
+                {isCurrent && (
+                  <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-primary mb-1">
+                    ● You Are Here
+                  </span>
+                )}
+                {isFuture && (
+                  <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1">
+                    {props.upgrade.networkRollout ? "Mainnet upcoming" : "Coming Soon"}
+                  </span>
+                )}
+                <h3
+                  className="text-base md:text-lg font-bold"
+                  style={{ color: `hsl(${props.upgrade.eraColor})` }}
+                >
+                  {props.upgrade.title ?? props.upgrade.name}
+                </h3>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {props.upgrade.subtitle}
+                </p>
+              </div>
             </div>
+            <ChevronDown
+              className={cn(
+                "h-4 w-4 text-muted-foreground shrink-0 transition-transform mt-1",
+                expanded && "rotate-180",
+              )}
+            />
           </div>
-          <ChevronDown
-            className={cn(
-              "h-4 w-4 text-muted-foreground shrink-0 transition-transform mt-1",
-              expanded && "rotate-180",
-            )}
-          />
-        </div>
+        </button>
 
         {/* Meta Info */}
-        <div className="flex flex-wrap gap-3 mt-3 text-sm text-muted-foreground text-slate-500 dark:text-slate-400">
-          <span className="flex items-center gap-1">
-            <Calendar className="h-3 w-3" />
-            {props.upgrade.date}
-          </span>
-          {props.upgrade.blockHeight !== null && (
-            <span className="flex items-center gap-1 font-mono">
-              <Blocks className="h-3 w-3" />#
-              {props.upgrade.blockHeight.toLocaleString()}
+        {props.upgrade.networkRollout ? (
+          <ul className="mt-3 space-y-2 text-sm text-slate-500 dark:text-slate-400">
+            {props.upgrade.networkRollout.map((rollout) => (
+              <li key={rollout.network}>
+                <strong>{rollout.network}</strong> — {rollout.state === "activated" ? "Activated" : "Tentative target"} {rollout.date} · Height {rollout.activationHeight?.toLocaleString("en-US") ?? "pending"}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="flex flex-wrap gap-3 mt-3 text-sm text-muted-foreground text-slate-500 dark:text-slate-400">
+            <span className="flex items-center gap-1">
+              <Calendar className="h-3 w-3" />
+              {props.upgrade.date}
             </span>
-          )}
-        </div>
+            {props.upgrade.blockHeight !== null && (
+              <span className="flex items-center gap-1 font-mono">
+                <Blocks className="h-3 w-3" />#
+                {props.upgrade.blockHeight.toLocaleString()}
+              </span>
+            )}
+          </div>
+        )}
 
         {/* Description */}
         <p className="text-sm font-semibold text-slate-700 dark:text-slate-200 mt-3 leading-relaxed">
@@ -147,25 +165,52 @@ export function EvolutinCard(props: EvolutinCardProps) {
         </p>
 
         {/* Expanded Key Features */}
-        {expanded && (
-          <div className="mt-6">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-              Key Features
-            </h4>
-            <ul className="space-y-1.5">
-              {props.upgrade.features.map((f, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-                  <span
-                    className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0"
-                    style={{ backgroundColor: `hsl(${props.upgrade.eraColor})` }}
-                  />
-                  {f}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </button>
+        <div id={`${props.upgrade.id}-features`} hidden={!expanded} className="mt-6">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+            Key Features
+          </h4>
+          <ul className="space-y-1.5">
+            {props.upgrade.features.map((f, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-foreground">
+                <span
+                  className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0"
+                  style={{ backgroundColor: `hsl(${props.upgrade.eraColor})` }}
+                />
+                {f}
+              </li>
+            ))}
+          </ul>
+          {props.upgrade.sources && (
+            <div className="mt-5">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                Official sources
+              </h4>
+              <ul className="space-y-1 text-sm">
+                {props.upgrade.zips.map((zip) => (
+                  <li key={zip.number}>
+                    <a
+                      href={`https://zips.z.cash/zip-${String(zip.number).padStart(4, "0")}`}
+                      className="inline-flex min-h-10 items-center text-primary underline underline-offset-4 rounded-sm focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                    >
+                      ZIP {zip.number}: {zip.title}
+                    </a>
+                  </li>
+                ))}
+                {props.upgrade.sources.map((source) => (
+                  <li key={source.href}>
+                    <a
+                      href={source.href}
+                      className="inline-flex min-h-10 items-center text-primary underline underline-offset-4 rounded-sm focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                    >
+                      {source.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
