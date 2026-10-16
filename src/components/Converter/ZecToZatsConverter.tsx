@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useId, useState } from 'react';
+import useClipboardFeedback from '@/hooks/useClipboardFeedback';
 
 const ZEC_TO_ZATS = 100_000_000;
 
@@ -11,8 +12,8 @@ export default function ZecToZatsConverter() {
   const [bottomValue, setBottomValue] = useState('100000000');
   const [topUnit, setTopUnit] = useState<'ZEC' | 'Zats'>('ZEC');
   const [bottomUnit, setBottomUnit] = useState<'ZEC' | 'Zats'>('Zats');
-  const [copiedTop, setCopiedTop] = useState(false);
-  const [copiedBottom, setCopiedBottom] = useState(false);
+  const topClipboard = useClipboardFeedback(topValue);
+  const bottomClipboard = useClipboardFeedback(bottomValue);
 
   const formatZats = (value: string) => {
     const num = parseFloat(value) || 0;
@@ -56,21 +57,12 @@ export default function ZecToZatsConverter() {
   };
 
   const swap = () => {
+    topClipboard.reset();
+    bottomClipboard.reset();
     setTopValue(bottomValue);
     setBottomValue(topValue);
     setTopUnit(bottomUnit);
     setBottomUnit(topUnit);
-  };
-
-  const copyValue = async (value: string, isTop: boolean) => {
-    await navigator.clipboard.writeText(value);
-    if (isTop) {
-      setCopiedTop(true);
-      setTimeout(() => setCopiedTop(false), 2000);
-    } else {
-      setCopiedBottom(true);
-      setTimeout(() => setCopiedBottom(false), 2000);
-    }
   };
 
   const displayTop = topUnit === 'Zats' ? formatZats(topValue) : topValue;
@@ -162,32 +154,38 @@ export default function ZecToZatsConverter() {
       {/* Copy buttons */}
       <div className="grid grid-cols-2 gap-3 pt-2">
         {[
-          { copied: copiedTop, unit: topUnit, val: topValue, isTop: true },
-          { copied: copiedBottom, unit: bottomUnit, val: bottomValue, isTop: false },
-        ].map(({ copied, unit, val, isTop }) => (
-          <button
-            key={unit}
-            onClick={() => copyValue(val, isTop)}
-            className={`flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold
-                        transition-all duration-200 active:scale-[0.97] border ${
-                          copied
-                            ? 'bg-[#F4B728] border-[#F4B728] text-[#0f1720]'
-                            : 'bg-zinc-50 dark:bg-[#0f1720] border-zinc-200 dark:border-[#243040] text-zinc-500 dark:text-[#5a6a7e] hover:border-[#F4B728]/50 hover:text-[#F4B728]'
-                        }`}
-          >
-            {copied ? (
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            ) : (
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-            )}
-            {copied ? 'Copied!' : `Copy ${unit}`}
-          </button>
-        ))}
+          { clipboard: topClipboard, unit: topUnit },
+          { clipboard: bottomClipboard, unit: bottomUnit },
+        ].map(({ clipboard, unit }) => {
+          const copied = clipboard.status === 'copied';
+          return (
+            <button
+              key={unit}
+              onClick={clipboard.copy}
+              disabled={clipboard.isCopying}
+              aria-live="polite"
+              className={`flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold
+                          transition-all duration-200 active:scale-[0.97] border ${
+                            copied
+                              ? 'bg-[#F4B728] border-[#F4B728] text-[#0f1720]'
+                              : 'bg-zinc-50 dark:bg-[#0f1720] border-zinc-200 dark:border-[#243040] text-zinc-500 dark:text-[#5a6a7e] hover:border-[#F4B728]/50 hover:text-[#F4B728]'
+                          }`}
+            >
+              {copied ? (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              ) : (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+              )}
+              {copied ? 'Copied!' : clipboard.isCopying ? 'Copying…' :
+                clipboard.status === 'error' ? `Copy failed — retry ${unit}` : `Copy ${unit}`}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
