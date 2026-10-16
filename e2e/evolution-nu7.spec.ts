@@ -32,6 +32,55 @@ test("NU7 exposes its proposal and linked deployment scope without nesting links
   await expect(nu7).not.toContainText(/ZIP 233|ZIP 234|Feb 2031|3× faster|No new transaction format/);
 });
 
+for (const expanded of [false, true]) {
+test(`Sprout guidance stays visible and its links navigate independently while ${expanded ? "expanded" : "collapsed"}`, async ({ page }) => {
+  await page.goto("/en/zcash-evolution");
+  const nu7 = page.locator("#nu7");
+  const toggle = nu7.getByRole("button");
+  const notice = nu7.getByText("Sprout holders: NU7 disables v4 transactions, which current Sprout transfers require. Review migration options before Mainnet activation.", { exact: true });
+  const guide = nu7.getByRole("link", { name: "ZecHub wallet recovery guide", exact: true });
+  const source = nu7.getByRole("link", { name: "ZIP 2003 v4 transaction retirement", exact: true });
+  await expect(notice).toBeVisible();
+  await expect(nu7.getByText("Community-maintained guidance for supported wallets and recovery material; recovery is not guaranteed.", { exact: true })).toBeVisible();
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(guide).toHaveAttribute("href", "https://zechub.wiki/using-zcash/recovering-funds");
+  await expect(source).toHaveAttribute("href", "https://zips.z.cash/zip-2003");
+  await toggle.press("Enter");
+  await expect(notice).toBeVisible();
+  await toggle.press("Space");
+  await expect(notice).toBeVisible();
+  // Observe actual keyboard navigation without depending on external servers.
+  // Intercept only destination documents, leaving the rendered page seam intact.
+  let expandedWhenLeaving: string | null = null;
+  await page.exposeFunction("recordExpandedWhenLeaving", (value: string | null) => { expandedWhenLeaving = value; });
+  for (const [link, destination] of [
+    [guide, "https://zechub.wiki/using-zcash/recovering-funds"],
+    [source, "https://zips.z.cash/zip-2003"],
+  ] as const) {
+    if (expanded) await toggle.press("Enter");
+    await toggle.focus();
+    await page.keyboard.press("Tab");
+    if (link === source) await page.keyboard.press("Tab");
+    await expect(link).toBeFocused();
+    expect(await link.evaluate((element) => getComputedStyle(element).boxShadow)).not.toBe("none");
+    expandedWhenLeaving = null;
+    await page.evaluate(() => {
+      document.addEventListener("click", () => {
+        const state = document.querySelector("#nu7 button")?.getAttribute("aria-expanded") ?? null;
+        (window as Window & { recordExpandedWhenLeaving?: (value: string | null) => void }).recordExpandedWhenLeaving?.(state);
+      }, { once: true });
+    });
+    await page.route(destination, (route) => route.fulfill({ contentType: "text/html", body: "<title>Guidance destination</title>" }));
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(destination);
+    expect(expandedWhenLeaving).toBe(String(expanded));
+    await page.goBack();
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  }
+});
+
+}
+
 test("NU7 compares target spacing and explains scheduled issuance only when expanded", async ({ page }) => {
   await page.goto("/en/zcash-evolution");
   const nu7 = page.locator("#nu7");
@@ -84,6 +133,16 @@ for (const width of [1440, 390, 320]) {
     const comparison = nu7.getByText("75 seconds → 25 seconds", { exact: true });
     await expect(comparison).toBeVisible();
     await expect(nu7.getByText("Scheduled issuance over time is preserved by lowering each block subsidy and lengthening the halving interval.", { exact: true })).toBeVisible();
+    const notice = nu7.getByText("Sprout holders: NU7 disables v4 transactions, which current Sprout transfers require. Review migration options before Mainnet activation.", { exact: true });
+    await expect(notice).toBeVisible();
+    const guide = nu7.getByRole("link", { name: "ZecHub wallet recovery guide", exact: true });
+    await expect(guide).toBeVisible();
+    for (const content of [notice, guide]) {
+      const contentBounds = await content.boundingBox();
+      expect(contentBounds!.x).toBeGreaterThanOrEqual(0);
+      expect(contentBounds!.x + contentBounds!.width).toBeLessThanOrEqual(width);
+      expect(await content.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(false);
+    }
     const comparisonBounds = await comparison.boundingBox();
     expect(comparisonBounds!.x).toBeGreaterThanOrEqual(0);
     expect(comparisonBounds!.x + comparisonBounds!.width).toBeLessThanOrEqual(width);
@@ -96,11 +155,15 @@ for (const width of [1440, 390, 320]) {
     const existingPageWidth = width === 320 ? 323 : width;
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(existingPageWidth);
     expect(await nu7.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(false);
+    await nu7.getByRole("button").press("Space");
+    await expect(notice).toBeVisible();
+    await expect(guide).toBeVisible();
     for (const id of ["genesis", "sapling", "nu6_3"]) {
       const card = page.locator(`#${id}`);
       await card.getByRole("button").click();
       await expect(card.getByRole("heading", { name: "Key Features" })).toBeVisible();
       await expect(card.getByRole("heading", { name: "Target block spacing", exact: true })).toHaveCount(0);
+      await expect(card.getByRole("link", { name: "ZecHub wallet recovery guide", exact: true })).toHaveCount(0);
       await card.getByRole("button").press("Space");
       await expect(card.getByRole("heading", { name: "Key Features" })).toBeHidden();
     }
@@ -113,5 +176,8 @@ test("Italian navigation retains the shared NU7 content", async ({ page }) => {
   await expect(page.locator("#nu7").getByRole("heading", { name: "Official sources" })).toBeVisible();
   await expect(page.locator("#nu7").getByText("75 seconds → 25 seconds", { exact: true })).toBeVisible();
   await expect(page.locator("#nu7").getByText("Scheduled issuance over time is preserved by lowering each block subsidy and lengthening the halving interval.", { exact: true })).toBeVisible();
+  await expect(page.locator("#nu7").getByRole("link", { name: "ZecHub wallet recovery guide", exact: true })).toBeVisible();
+  await page.locator("#nu7").getByRole("button").press("Space");
+  await expect(page.locator("#nu7").getByRole("link", { name: "ZecHub wallet recovery guide", exact: true })).toBeVisible();
   await expect(page.getByRole("button", { name: "Select language" })).toContainText("Italiano");
 });

@@ -12,6 +12,7 @@ export interface NetworkUpgrade {
   title?: string;
   networkRollout?: NetworkRollout[];
   sources?: { title: string; href: string }[];
+  notice?: { message: string; guidance: string; links: { title: string; href: string }[] };
   comparison?: { label: string; before: string; after: string; explanation: string };
   subtitle: string;
   date: string;
@@ -306,6 +307,14 @@ export const networkUpgrades: NetworkUpgrade[] = [
   },
     {
     id: "nu7",
+    notice: {
+      message: "Sprout holders: NU7 disables v4 transactions, which current Sprout transfers require. Review migration options before Mainnet activation.",
+      guidance: "Community-maintained guidance for supported wallets and recovery material; recovery is not guaranteed.",
+      links: [
+        { title: "ZecHub wallet recovery guide", href: "https://zechub.wiki/using-zcash/recovering-funds" },
+        { title: "ZIP 2003 v4 transaction retirement", href: "https://zips.z.cash/zip-2003" },
+      ],
+    },
     name: "NU7",
     title: "NU7 — Shorter block intervals and network sustainability",
     subtitle: "Current proposal",
