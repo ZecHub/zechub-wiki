@@ -164,6 +164,25 @@ export function EvolutinCard(props: EvolutinCardProps) {
           {props.upgrade.description}
         </p>
 
+        {props.upgrade.notice && (
+          <div className="mt-4 rounded-md border border-border bg-muted/30 p-3 text-sm text-foreground">
+            <p className="font-semibold leading-relaxed">{props.upgrade.notice.message}</p>
+            <p className="mt-2 leading-relaxed">{props.upgrade.notice.guidance}</p>
+            <ul className="mt-2 space-y-2">
+              {props.upgrade.notice.links.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="inline-flex min-h-10 items-center text-primary underline underline-offset-4 rounded-sm focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                  >
+                    {link.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {/* Expanded Key Features */}
         <div id={`${props.upgrade.id}-features`} hidden={!expanded} className="mt-6">
           <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
