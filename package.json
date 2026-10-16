@@ -75,7 +75,7 @@
     "framer-motion": "^14.2.0",
     "gitlog": "^5.1.0",
     "google-map-react": "^2.2.1",
-    "googleapis": "^171.4.0",
+    "googleapis": "^185.0.0",
     "gray-matter": "^4.0.3",
     "html2canvas": "^1.4.1",
     "leaflet": "^1.9.4",
