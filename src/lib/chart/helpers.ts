@@ -16,6 +16,7 @@ import {
   MiningHistoryResponse,
   MiningPoolDominanceResponse,
   MiningPoolsResponse,
+  NodeCountData,
 } from "./types";
 
 export async function getBlockchainData(
@@ -534,4 +535,35 @@ export function formatNumberShort(num: number): string {
 
 export function ipfsToHttp(ipfsUrl: string) {
   return ipfsUrl.replace("ipfs://", "https://ipfs.daodao.zone/ipfs/");
+}
+
+/**
+ * Node count history from the census crawler (scripts/node-crawler).
+ *
+ * Rows written before the crawler carry only Date + nodecount, so the
+ * per-implementation series are optional and must not be plotted as zero for
+ * those older dates — the chart hides a series rather than dropping it to the
+ * axis, which would read as "zcashd fell to 0" instead of "not recorded".
+ */
+export async function getNodeCountData(
+  url: string,
+  signal?: AbortSignal,
+): Promise<NodeCountData[]> {
+  try {
+    const res = await fetch(url, { signal });
+    if (!res.ok) {
+      console.warn(`Fetch failed: ${res.status} ${res.statusText}`);
+      return [];
+    }
+    const rows = await res.json();
+    if (!Array.isArray(rows)) {
+      console.warn("nodecount.json: expected an array");
+      return [];
+    }
+    return rows as NodeCountData[];
+  } catch (err: any) {
+    if (err.name === "AbortError") console.warn("Fetch aborted.");
+    else console.error(err.message || err);
+    return [];
+  }
 }
