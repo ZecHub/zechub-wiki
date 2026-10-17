@@ -17,8 +17,7 @@ interface BlockchainInfo {
   market_cap_usd: number;
   market_price_usd: number;
   market_price_btc: number;
-  blocks: number;
-  transactions_24h: number;
+  volume_24h_usd: number | null;
 }
 
 const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
@@ -27,8 +26,7 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
     market_cap_usd: 0,
     market_price_usd: 0,
     market_price_btc: 0,
-    blocks: Math.floor(Math.random() * 2000000),
-    transactions_24h: 0,
+    volume_24h_usd: null,
   });
   const [circulation, setCirculation] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
@@ -86,13 +84,13 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
         const coinInfo = data[name];
         // setCoinData(coinInfo);
 
-        // Mock blockchain data (replace with actual API calls)
+        // This endpoint provides market data, not block or transaction counts.
         setBlockchainInfo({
           market_cap_usd: coinInfo?.usd_market_cap || 0,
           market_price_usd: coinInfo?.usd || 0,
           market_price_btc: coinInfo?.btc || 0,
-          blocks: Math.floor(Math.random() * 2000000),
-          transactions_24h: coinInfo?.usd_24h_vol || 0,
+          volume_24h_usd: typeof coinInfo?.usd_24h_vol === "number" && Number.isFinite(coinInfo.usd_24h_vol)
+            ? coinInfo.usd_24h_vol : null,
         });
 
         setCirculation(
@@ -142,14 +140,12 @@ const CryptoMetrics = ({ selectedCoin }: { selectedCoin: string }) => {
     },
     {
       label: "Blocks",
-      value: blockchainInfo?.blocks
-        ? blockchainInfo?.blocks.toLocaleString()
-        : "N/A",
+      value: "N/A",
     },
     {
-      label: "24h Transactions",
-      value: Number(blockchainInfo?.transactions_24h)
-        ? blockchainInfo?.transactions_24h.toLocaleString()
+      label: "24h Volume (USD)",
+      value: blockchainInfo?.volume_24h_usd != null
+        ? `$${blockchainInfo.volume_24h_usd.toLocaleString()}`
         : "N/A",
     },
   ];
