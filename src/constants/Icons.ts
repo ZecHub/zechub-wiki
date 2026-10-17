@@ -156,7 +156,7 @@ import { SlGraph as Graph } from "react-icons/sl";
 import {
   TbBinaryTree2 as BinaryTree,
   TbCurrencyDollarZimbabwean as DollarZimbabwean,
-  Tb2Fa as Fa2,
+  TbAuth2Fa as Fa2,
   TbHexagonLetterN as HexagonLetterN,
   TbHexagonLetterZ as HexagonLetterZ,
   TbCircleLetterZ,
