@@ -68,7 +68,7 @@
     "cobe": "^2.0.1",
     "date-fns": "^4.1.0",
     "entities": "^8.1.0",
-    "eslint": "^9",
+    "eslint": "^10",
     "eslint-config-next": "^16.4.2",
     "express-session": "^1.18.0",
     "flowbite": "^4.0.2",
