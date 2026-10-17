@@ -16,6 +16,7 @@ import {
   logicalActions,
   simpleTransfer,
 } from "@/lib/zip317";
+import { VisualizerModuleLink } from "../VisualizerModuleLink";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -289,6 +290,21 @@ export const BroadcastModal = ({ onClose }: { onClose: () => void }) => {
                   <p className="text-[9px] text-zinc-500 mb-1 uppercase tracking-widest">Simulated TXID</p>
                   <p className="font-mono text-[10px] text-emerald-400 break-all">a3f9c2e1d847b36f…b7d40c88</p>
                 </motion.div>
+              )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+              {phase === "confirmed" && (
+                <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+                  className="text-xs text-zinc-400 leading-relaxed">
+                  The recipient never gets a message about it: their wallet has to find this payment by scanning.{" "}
+                  <VisualizerModuleLink
+                    module="wallet-scanning"
+                    className="font-medium text-emerald-400 underline underline-offset-2 hover:text-emerald-300"
+                  >
+                    Follow it to the recipient&apos;s wallet
+                  </VisualizerModuleLink>
+                </motion.p>
               )}
             </AnimatePresence>
 
@@ -929,7 +945,13 @@ export const OutputDescriptionStage = () => {
         className="px-4 py-3 rounded-xl border border-zinc-800 bg-zinc-900/30">
         <p className="text-xs text-zinc-400 leading-relaxed">
           Both commitments <span className="text-white font-mono">cm₁</span> and <span className="text-white font-mono">cm₂</span> are appended to the global Merkle tree when the block is mined.
-          The recipient's wallet scans new blocks and trial-decrypts each output to find theirs.
+          The recipient's wallet scans new blocks and trial-decrypts each output to find theirs.{" "}
+          <VisualizerModuleLink
+            module="wallet-scanning"
+            className="text-emerald-400 underline underline-offset-2 hover:text-emerald-300"
+          >
+            See how a wallet finds its money
+          </VisualizerModuleLink>
         </p>
       </motion.div>
     </div>

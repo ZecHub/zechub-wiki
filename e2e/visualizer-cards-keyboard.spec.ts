@@ -78,7 +78,7 @@ test("Back to Visualizer Hub returns to the card grid", async ({ page }) => {
   await expect(page.getByText(HUB_MARKER).first()).toBeVisible();
   await expect(
     page.locator("button.cursor-pointer.group"),
-  ).toHaveCount(23);
+  ).toHaveCount(24);
 });
 
 test("every card is a real button, reachable and focusable", async ({
@@ -87,7 +87,7 @@ test("every card is a real button, reachable and focusable", async ({
   await openHub(page);
 
   const cards = page.locator("button.cursor-pointer.group");
-  await expect(cards).toHaveCount(23);
+  await expect(cards).toHaveCount(24);
 
   const tabs = await tabToCard(page, /Introduction to Zcash Wallets/);
   expect(tabs).toBeGreaterThan(0);
