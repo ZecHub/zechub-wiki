@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Upgrade {
   id: string;
@@ -25,8 +25,16 @@ export default function NetworkUpgradesChart() {
   const [isSwitching, setIsSwitching] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+  const requestRef = useRef<AbortController | null>(null);
 
   const fetchUpgrades = async (selectedNetwork: Network, isInitial = false) => {
+    requestRef.current?.abort();
+    const controller = new AbortController();
+    requestRef.current = controller;
+    setLoading(true);
+    // Rows and provenance belong to one network; do not relabel old data.
+    setUpgrades([]);
+    setLastUpdated(null);
     if (!isInitial) setIsSwitching(true);
     setError(null);
 
@@ -36,10 +44,11 @@ export default function NetworkUpgradesChart() {
         : "/data/zcash/network_upgrades_testnet.json";
 
     try {
-      const res = await fetch(file, { cache: "no-store" });
+      const res = await fetch(file, { cache: "no-store", signal: controller.signal });
       if (!res.ok) throw new Error(`Failed to load ${selectedNetwork} data`);
 
       const json = await res.json();
+      if (controller.signal.aborted) return;
 
       let parsedUpgrades: Upgrade[] = [];
       if (Array.isArray(json)) {
@@ -53,15 +62,18 @@ export default function NetworkUpgradesChart() {
 
       setUpgrades(parsedUpgrades);
     } catch (err: any) {
-      setError(err.message || `Failed to load ${selectedNetwork} upgrades`);
+      if (!controller.signal.aborted) setError(err.message || `Failed to load ${selectedNetwork} upgrades`);
     } finally {
-      setLoading(false);
-      setIsSwitching(false);
+      if (!controller.signal.aborted) {
+        setLoading(false);
+        setIsSwitching(false);
+      }
     }
   };
 
   useEffect(() => {
     fetchUpgrades(network, true);
+    return () => requestRef.current?.abort();
   }, []);
 
   const handleNetworkChange = (newNetwork: Network) => {
