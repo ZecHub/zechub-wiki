@@ -105,7 +105,7 @@
     "react-markdown": "^10.1.0",
     "react-pdf": "^11.0.0",
     "react-resizable-panels": "^4.14.5",
-    "react-toastify": "^10.0.4",
+    "react-toastify": "^11.1.0",
     "recharts": "^3.10.1",
     "rehype-img-size": "^1.0.1",
     "rehype-prism-plus": "^2.0.2",
