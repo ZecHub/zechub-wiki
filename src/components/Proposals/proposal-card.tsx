@@ -62,7 +62,9 @@ function getProposalOutcome(proposal: FlatProposal["proposal"]) {
     return { label: "Unknown", icon: null, color: "text-muted-foreground" };
   }
   const participation = (yes + no + abstain) / totalPower;
-  const approvalRate = (yes + no + abstain) > 0 ? yes / (yes + no + abstain) : 0;
+  // DAO DAO counts abstentions towards the quorum only: the threshold compares
+  // yes votes with yes + no (dao-proposal-single, is_passed).
+  const approvalRate = yes + no > 0 ? yes / (yes + no) : 0;
   const requiredQuorum = parseFloat(proposal.threshold?.threshold_quorum?.quorum?.percent || "0");
   const requiredThreshold = parseFloat(proposal.threshold?.threshold_quorum?.threshold?.percent || "0");
   const passedQuorum = participation >= requiredQuorum;
@@ -114,7 +116,7 @@ export function ProposalCard({ data }: { data: FlatProposal }) {
         {/* Top row: # + Title (wraps to 2 lines on mobile) */}
         <div className="flex items-start gap-2">
           <span className="mt-0.5 shrink-0 text-[9px] font-mono text-muted-foreground">
-            #{proposal.id}
+            #{data.id}
           </span>
           <h3 className="flex-1 text-sm font-medium leading-snug text-card-foreground line-clamp-2">
             {proposal.title}
