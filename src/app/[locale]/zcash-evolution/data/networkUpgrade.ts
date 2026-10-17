@@ -1,6 +1,19 @@
+export type NetworkRollout = {
+  network: "Testnet" | "Mainnet";
+  date: string;
+} & (
+  | { state: "activated"; activationHeight: number }
+  | { state: "tentative"; activationHeight?: never }
+);
+
 export interface NetworkUpgrade {
   id: string;
   name: string;
+  title?: string;
+  networkRollout?: NetworkRollout[];
+  sources?: { title: string; href: string }[];
+  notice?: { message: string; guidance: string; links: { title: string; href: string }[] };
+  comparison?: { label: string; before: string; after: string; explanation: string };
   subtitle: string;
   date: string;
   blockHeight: number | null;
@@ -294,28 +307,57 @@ export const networkUpgrades: NetworkUpgrade[] = [
   },
     {
     id: "nu7",
+    notice: {
+      message: "Sprout holders: NU7 disables v4 transactions, which current Sprout transfers require. Review migration options before Mainnet activation.",
+      guidance: "Community-maintained guidance for supported wallets and recovery material; recovery is not guaranteed.",
+      links: [
+        { title: "ZecHub wallet recovery guide", href: "https://zechub.wiki/using-zcash/recovering-funds" },
+        { title: "ZIP 2003 v4 transaction retirement", href: "https://zips.z.cash/zip-2003" },
+      ],
+    },
     name: "NU7",
-    subtitle: "Faster Blocks and Network Sustainability",
-    date: "Testnet Oct 4, 2026 · Mainnet targeted Nov 5, 2026",
+    title: "NU7 — Shorter block intervals and network sustainability",
+    subtitle: "Current proposal",
+    date: "Tentative Mainnet target November 5, 2026",
+    // Official rollout sources rechecked October 16, 2026; Mainnet height is unset.
+    networkRollout: [
+      { network: "Testnet", state: "activated", date: "October 4, 2026", activationHeight: 4465026 },
+      { network: "Mainnet", state: "tentative", date: "November 5, 2026" },
+    ],
     blockHeight: null,
+    comparison: {
+      label: "Target block spacing",
+      before: "75 seconds",
+      after: "25 seconds",
+      explanation:
+        "Scheduled issuance over time is preserved by lowering each block subsidy and lengthening the halving interval.",
+    },
     description:
-      "NU7 is live on public Testnet (height 4,465,026). Mainnet activation height will be set on 20 October 2026, with a target of 5 November.\n\nKey changes:\n• 25-second blocks (ZIP 218) — first confirmations arrive ~3× faster; daily ZEC issuance unchanged.\n• Network Sustainability Mechanism (ZIP 235 + 237) — 60% of transaction fees go into a public reserve and are reissued to miners on a halving-preserving schedule starting ~February 2031.\n• Sprout retirement (ZIP 2003) — version 4 transactions become invalid, so any remaining Sprout funds become unspendable.\n• Action limits and a wider difficulty window (17 → 102 blocks) keep validation and light-wallet sync costs bounded.\n\nNo new transaction format is introduced.",
+      "The current NU7 proposal reduces target block spacing to 25 seconds, adds shielded action limits and the Network Sustainability Mechanism, removes 60% of transaction fees from circulation, and disables v4 transactions.",
     features: [
-      "25-second target block spacing (3× faster first confirmation)",
-      "Shielded action limits (global 330; per-pool caps)",
-      "Difficulty averaging window: 17 → 102 blocks",
-      "NSM: 60% of fees to reserve (ZIP 235)",
-      "Halving-preserving NSM reissuance ~Feb 2031 (ZIP 237)",
-      "Version 4 transactions disallowed → Sprout retirement (ZIP 2003)",
-      "Funding-stream periods adjusted for new block spacing",
+      "Shielded action limits and 25-second target block spacing (ZIP 218)",
+      "Network Sustainability Mechanism (ZIP 237)",
+      "Removal of 60% of transaction fees from circulation (ZIP 235)",
+      "Disables v4 transactions; v5 and v6 remain valid (ZIP 2003)",
+      "Funding-stream recipient operational address update (ZIP 2008)",
     ],
     zips: [
-      { number: 218, title: "25-second Block Target Spacing" },
+      { number: 259, title: "Deployment of the NU7 Network Upgrade (Draft)" },
+      { number: 200, title: "Network Upgrade Mechanism" },
+      { number: 201, title: "Network Peer Management mechanisms apply" },
+      { number: 207, title: "Funding Streams (revision 2)" },
+      { number: 214, title: "Consensus Rules for a Zcash Dev Fund (revision 3)" },
+      { number: 218, title: "Consensus rules for block spacing and shielded action limits" },
       { number: 235, title: "Remove 60% of Transaction Fees From Circulation" },
-      { number: 237, title: "Network Sustainability Mechanism: Halving-Preserving Issuance" },
-      { number: 2003, title: "Disallow version 4 transactions" },
+      { number: 237, title: "Network Sustainability Mechanism" },
+      { number: 2003, title: "Deprecate v4 transactions" },
       { number: 2008, title: "Update to FS_FPF_ZCG_H3 address list" },
-      { number: 259, title: "Deployment of the NU7 Network Upgrade" },
+    ],
+    sources: [
+      {
+        title: "Zcash Foundation NU7 rollout update",
+        href: "https://forum.zcashcommunity.com/t/zf-engineering-update-21-september-5-october-2026/58059",
+      },
     ],
     privacyLevel: 98,
     privacyLabel: "Sustainable Privacy",

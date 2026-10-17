@@ -36,9 +36,9 @@ export function PrivacyMeter(props: PrivacyMeterProps) {
               </span>
               {/* Tooltip */}
               <div
-                className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 
-              opacity-0 group-hover:opacity-100 group-hover:visible
-             transition-opacity duration-200 z-20 pointer-events-none"
+                className={`absolute bottom-full mb-2 left-1/2 -translate-x-1/2 ${i < pastAndCurrent.length / 2 ? "max-md:left-0 max-md:translate-x-0" : "max-md:left-auto max-md:right-0 max-md:translate-x-0"}
+              hidden group-hover:block opacity-0 group-hover:opacity-100 group-hover:visible
+             transition-opacity duration-200 z-20 pointer-events-none`}
               >
                 <div className="bg-slate-100 dark:bg-popover border border-slate-300 dark:border-slate-600 border-border rounded-md px-3 py-2 max-w-50 text-center text-xs whitespace-nowrap shadow-lg">
                   <p className="font-semibold text-foreground">{u.name}</p>
