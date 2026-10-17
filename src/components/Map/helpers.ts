@@ -37,11 +37,19 @@ export function parseStores(raw: RawData): StoreEntry[] {
       for (const city in raw[brand][state]) {
         for (const loc of raw[brand][state][city]) {
           const addr = loc.address;
-          const country = /Mexico/i.test(addr)
-            ? "Mexico"
-            : /Dominican Republic/i.test(addr)
-              ? "Dominican Republic"
-              : "United States";
+          const countrySuffix = addr
+            .split(",")
+            .map((part) => part.trim())
+            .filter(Boolean)
+            .pop()
+            ?.toLowerCase();
+          const country = countrySuffix === "canada"
+            ? "Canada"
+            : countrySuffix === "mexico"
+              ? "Mexico"
+              : countrySuffix === "dominican republic"
+                ? "Dominican Republic"
+                : "United States";
 
           out.push({
             id: `store-${seq++}`,
