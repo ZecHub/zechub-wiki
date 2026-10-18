@@ -126,12 +126,12 @@ export default function BuildingLanding() {
         <p className="mb-6 text-zinc-600 dark:text-[#8aa0b4]">
           Pick the closest match. You can always switch paths later.
         </p>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <Link
             href="/start-here/new-user-guide"
-            className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/80"
+            className="flex items-start gap-3 rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/80 md:block"
           >
-            <WalletCards className="mb-2 h-5 w-5 text-[#1984c7]" />
+            <WalletCards className="mt-0.5 h-5 w-5 shrink-0 text-[#1984c7] md:mb-2 md:mt-0" />
             <div className="font-semibold text-zinc-900 dark:text-white">
               Use ZEC
             </div>
@@ -141,9 +141,9 @@ export default function BuildingLanding() {
           </Link>
           <Link
             href="/contribute/contributing-guide"
-            className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/80"
+            className="flex items-start gap-3 rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/80 md:block"
           >
-            <PenLine className="mb-2 h-5 w-5 text-[#1984c7]" />
+            <PenLine className="mt-0.5 h-5 w-5 shrink-0 text-[#1984c7] md:mb-2 md:mt-0" />
             <div className="font-semibold text-zinc-900 dark:text-white">
               Contribute content
             </div>
@@ -153,9 +153,9 @@ export default function BuildingLanding() {
           </Link>
           <Link
             href="/zcash-community/building/event"
-            className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/80"
+            className="flex items-start gap-3 rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/80 md:block"
           >
-            <Users className="mb-2 h-5 w-5 text-[#1984c7]" />
+            <Users className="mt-0.5 h-5 w-5 shrink-0 text-[#1984c7] md:mb-2 md:mt-0" />
             <div className="font-semibold text-zinc-900 dark:text-white">
               Organize locally
             </div>
