@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Варіанти використання Zcash",
     "Zcash Tech": "Технології Zcash",
     "Privacy Tools": "Інструменти приватності",
-    "Zcash Social Media": "Соціальні мережі Zcash",
     "Glossary & FAQ's": "Глосарій і FAQ",
     "Use Zcash": "Використовуйте Zcash",
     "Block Explorers": "Блок-експлорери",
@@ -126,7 +125,9 @@
     "Zcash Labs": "Zcash Labs",
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Мережа Akash Zcashd",
-    "CoinHolder Directed Retroactive Grants": "Ретроактивні гранти, спрямовані CoinHolder"
+    "CoinHolder Directed Retroactive Grants": "Ретроактивні гранти, спрямовані CoinHolder",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge"
   },
   "exploreMenu": {
     "Full Explore": "Повне дослідження",

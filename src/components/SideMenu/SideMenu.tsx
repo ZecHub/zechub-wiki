@@ -144,6 +144,30 @@ const SideMenu = ({ folder, roots, titles = {}, enTitles = {} }: MenuProps) => {
               );
             })}
 
+            {fold === "Zcash Community" && (
+              <li className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-1`}>
+                <Link href="/zcash-community/building">
+                  <div className={`flex items-center space-x-4`}>
+                    <div className="flex-shrink-0">
+                      <Icon
+                        icon={matchIcons(fold, "Community Building") ?? FileIcon}
+                        size={getIconSize("Community Building")}
+                        className="text-current"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium leading-snug line-clamp-2 break-words">
+                        {t?.sideMenu?.communityBuilding ?? "Community Building"}
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold ">
+                      <Icon icon={Arrow} size={16} className="rtl:-scale-x-100" />
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            )}
+
             {/* Wallets (custom PNG support + individual size) */}
             {fold === "Using Zcash" && (
               <li className={`my-3 hover:scale-110 hover:underline hover:cursor-pointer py-3`}>

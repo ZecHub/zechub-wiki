@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Octokit } from "octokit";
 
 const ALLOWED_PATHS = [
   "wallets.md",
@@ -8,6 +7,11 @@ const ALLOWED_PATHS = [
 ];
 
 export const revalidate = 300; // 5 minutes
+
+async function getOctokit(token: string) {
+  const { Octokit } = await import("octokit");
+  return new Octokit({ auth: token });
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -27,13 +31,12 @@ export async function GET(req: NextRequest) {
       {
         error: "Missing env variables!",
       },
-      { status: 5000 },
+      { status: 500 },
     );
   }
 
-  const octokit = new Octokit({ auth: GITHUB_TOKEN });
-
   try {
+    const octokit = await getOctokit(GITHUB_TOKEN);
     const res = await octokit.rest.repos.getContent({
       owner: OWNER,
       repo: REPO,
@@ -47,7 +50,7 @@ export async function GET(req: NextRequest) {
       {
         error: `Failed to fetch ${OWNER}/${REPO}`,
       },
-      { status: 5000 },
+      { status: 500 },
     );
   }
 }

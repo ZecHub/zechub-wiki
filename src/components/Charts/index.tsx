@@ -6,7 +6,6 @@ import {
   FileText,
   Shield,
   Award,
-  Youtube,
   Play,
   Eye,
   Rss,
@@ -14,6 +13,7 @@ import {
   ChevronDown,
   Check,
 } from "lucide-react";
+import { FaYoutube } from "react-icons/fa";
 import { useEffect, useState, useRef, startTransition } from "react";
 import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
@@ -250,7 +250,7 @@ const Dashboard = ({
     {
       key: "youtube" as const,
       label: t?.tabs?.youtubeDashboard || "YouTube Dashboard",
-      icon: <Youtube className="w-5 h-5" />,
+      icon: <FaYoutube className="w-5 h-5" />,
     },
     {
       key: "codepulse" as const,

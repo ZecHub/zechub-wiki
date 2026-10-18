@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Zcash Matumizi ya kesi",
     "Zcash Tech": "Zcash Tech",
     "Privacy Tools": "Vifaa vya Faragha",
-    "Zcash Social Media": "Zcash Mitandao ya Jamii",
     "Glossary & FAQ's": "Glossary & FAQ ya",
     "Use Zcash": "Tumia Zcash",
     "Block Explorers": "Vichunguzi vya Blocki",
@@ -126,7 +125,9 @@
     "Zcash Labs": "Zcash Labs",
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Mtandao wa Akash Zcashd",
-    "CoinHolder Directed Retroactive Grants": "Ruzuku za CoinHolder Zinazoelekezwa na Kutolewa Kwa Nyuma"
+    "CoinHolder Directed Retroactive Grants": "Ruzuku za CoinHolder Zinazoelekezwa na Kutolewa Kwa Nyuma",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge"
   },
   "exploreMenu": {
     "Full Explore": "Kuchunguza Kamili",

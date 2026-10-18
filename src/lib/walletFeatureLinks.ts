@@ -55,11 +55,11 @@ const featureLinks: Record<string, string> = {
   "tex address": "/using-zcash/transparent-exchange-addresses",
   "diversified address": SAPLING,
   "address rotation": SAPLING,
-  "address check": "/zcash-social-media/zcash-addresses",
+  "address check": "/zero-to-zero-knowledge/zcash-addresses",
 
   // Keys, recovery and records
   "viewing key": "/zcash-tech/viewing-keys",
-  "seed recovery": "/zcash-social-media/mnemonic-seed-phrases",
+  "seed recovery": "/zero-to-zero-knowledge/mnemonic-seed-phrases",
   "wallet recovery": "/using-zcash/recovering-funds",
   "transaction history": "/zcash-use-cases/keeping-records-with-shielded-zec",
   "transaction export": "/guides/viewing-key-transaction-export",

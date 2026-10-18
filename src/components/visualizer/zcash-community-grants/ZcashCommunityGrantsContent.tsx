@@ -5,12 +5,12 @@ import {
   ArrowRight,
   CheckCircle,
   ExternalLink,
-  Github,
   Lightbulb,
   MessageCircle,
   Target,
   Users,
 } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 const slides = [
@@ -32,7 +32,7 @@ const slides = [
   {
     id: "github",
     title: "Submit on GitHub",
-    icon: Github,
+    icon: FaGithub,
     color: "from-slate-600 to-slate-800",
     steps: [
       "Log in to GitHub and open the ZCG Grant Application template",

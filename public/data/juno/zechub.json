@@ -7492,10 +7492,10 @@
           "title": "From Awareness to Everyday ZEC Adoption—Zcash at Confluence 2.0",
           "votes": {
             "no": "0",
-            "yes": "8",
+            "yes": "11",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "passed",
           "proposer": "juno1tldl44lqjdrq6lkcdf5rzxjjddxa6v2wdxafjs",
           "threshold": {
             "threshold_quorum": {
@@ -7526,8 +7526,8 @@
           "msgs": [],
           "title": "Zcash × BlockchainUNN: Hackathon Track Sponsorship ",
           "votes": {
-            "no": "0",
-            "yes": "1",
+            "no": "2",
+            "yes": "4",
             "abstain": "0"
           },
           "status": "open",
