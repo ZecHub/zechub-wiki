@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Zcash 활용 사례",
     "Zcash Tech": "Zcash 기술",
     "Privacy Tools": "프라이버시 도구",
-    "Zcash Social Media": "Zcash 소셜 미디어",
     "Glossary & FAQ's": "용어집 및 FAQ",
     "Use Zcash": "Zcash 사용하기",
     "Block Explorers": "블록 탐색기",
@@ -126,7 +125,9 @@
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Migration Guide Zcashd To Zebrad Zallet": "Zcashd에서 Zebrad Zallet으로의 마이그레이션 가이드",
     "Akash Network Zcashd": "Akash 네트워크 Zcashd",
-    "CoinHolder Directed Retroactive Grants": "코인 보유자 지정 소급 보조금"
+    "CoinHolder Directed Retroactive Grants": "코인 보유자 지정 소급 보조금",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge"
   },
   "exploreMenu": {
     "Full Explore": "전체 둘러보기",

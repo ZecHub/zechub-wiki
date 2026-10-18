@@ -7495,7 +7495,7 @@
             "yes": "11",
             "abstain": "0"
           },
-          "status": "open",
+          "status": "passed",
           "proposer": "juno1tldl44lqjdrq6lkcdf5rzxjjddxa6v2wdxafjs",
           "threshold": {
             "threshold_quorum": {
@@ -7527,7 +7527,7 @@
           "title": "Zcash × BlockchainUNN: Hackathon Track Sponsorship ",
           "votes": {
             "no": "2",
-            "yes": "3",
+            "yes": "4",
             "abstain": "0"
           },
           "status": "open",

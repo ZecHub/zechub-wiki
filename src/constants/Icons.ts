@@ -1,7 +1,7 @@
 'use client';
 
 import { IconType } from "react-icons";
-import { KeyRound } from "lucide-react";
+import { KeyRound, Users } from "lucide-react";
 import {
   BiCheckShield as CheckShield,
   BiLock as Lock,
@@ -232,6 +232,10 @@ const iconsForMenu: IconsFor = {
     "Centralized Swaps": Swap,
     "Spend Zcash": PointOfSale,
     "Top 10 Places to spend ZEC": PointOfSale,
+    "Metamask Snap": RiFunctionLine,
+    "Non Custodial Exchanges": ExchangeFunds,
+    "Shielded Newsletter": Newspaper,
+    "Unified Addresses": CircleKey,
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
@@ -270,6 +274,8 @@ const iconsForMenu: IconsFor = {
     "Viewing Key Transaction Export": FileKey,
     "Crosslink Feature Net": FcLink,
     "Mining and Staking Privacy": FcPrivacy,
+    "Zcash Node RPC and Indexing": Network,
+    "Zero Knowledge vs Decoys": TopologyRing,
   },
         "Zcash Tech": {
 
@@ -317,7 +323,7 @@ const iconsForMenu: IconsFor = {
     "Shielded Cold Signing": Lock,
     "Shielded Coinholder Voting": Governance,
     "Unified Addresses": CircleKey,
-
+    "Indexer Benchmark Zaino vs Ztreamer": Tfi,
   },
   "Zcash Organizations": {
     "Electric Coin Company": Radar,
@@ -346,9 +352,11 @@ const iconsForMenu: IconsFor = {
     "Receive Donations Privately": Jar,
     "Send Money Without Linking Identity": ArrowUp,
     "Sign in With Zcash": KeyRound,
+    "Pay For Ai With Shielded ZEC": Circuitry,
   },
   
   "Zcash Community": {
+    "Community Building": Users,
     "Community Links": LinkSimpleBold,
     "Community Blogs": Blog,
     "Zcash Global Ambassadors": Globe,
@@ -369,7 +377,7 @@ const iconsForMenu: IconsFor = {
     "Guides for Creators": Resources,
     "Youtube Channel": Youtube,
   },
-  "Zcash Social Media": {
+  "Zero to Zero Knowledge": {
     "Cryptonote": Info,
     "Hash Functions": Info,
     "Lelantus": Info,
@@ -401,6 +409,12 @@ const iconsForMenu: IconsFor = {
     "ZK Shielded Asset Platforms": ZkAssets,
   },
   "Glossary & FAQ's": {
+    "Zcash Library": LibraryC,
+    FAQ: Faq,
+    Gallery: FcGallery,
+    "ZecHub Hackathon Builders Guide": Guide,
+  },
+  "Glossary and FAQs": {
     "Zcash Library": LibraryC,
     FAQ: Faq,
     Gallery: FcGallery,

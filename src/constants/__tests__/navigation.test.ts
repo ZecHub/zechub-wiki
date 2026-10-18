@@ -17,7 +17,7 @@ describe("navigation section entry points", () => {
     expect(findSection("Zcash Community")?.links).toContainEqual(
       expect.objectContaining({
         name: "Zero to Zero Knowledge",
-        path: "/zcash-social-media",
+        path: "/zero-to-zero-knowledge/zero-to-zero-knowledge",
       }),
     );
   });
@@ -36,7 +36,7 @@ describe("navigation section entry points", () => {
 
     expect(
       allLinks.filter(
-        (item) => item.path === "/zcash-social-media",
+        (item) => item.path === "/zero-to-zero-knowledge/zero-to-zero-knowledge",
       ),
     ).toHaveLength(1);
     expect(

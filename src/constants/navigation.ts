@@ -16,7 +16,7 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench, Map, Gem, BookOpenText, KeyRound } from "lucide-react";
+import { Wrench, Map, Gem, BookOpenText, KeyRound, GraduationCap, Users } from "lucide-react";
 import { FcVoicePresentation } from "react-icons/fc";
 import { FaUserAstronaut } from "react-icons/fa";
 
@@ -211,6 +211,11 @@ export const navigations: Array<NavigationItem> = [
         newTab: true,
       },
       {
+        name: "Community Building",
+        path: "/zcash-community/building",
+        icon: Users,
+      },
+      {
         name: "Community Projects",
         path: "/zcash-community/community-projects",
       },
@@ -224,7 +229,8 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Zero to Zero Knowledge",
-        path: "/zcash-social-media",
+        path: "/zero-to-zero-knowledge/zero-to-zero-knowledge",
+        icon: GraduationCap,
       },
       {
         name: "ZCAP",
