@@ -727,7 +727,16 @@ const ZingolibTab = () => {
           <SectionCard title={qs?.installation ?? "Installation"}>
             <SubLabel>{qs?.buildZingoCli ?? "Build Zingo CLI (v7)"}</SubLabel>
             <CodeBlock
-              code={`# cargo-make is required\ncargo install cargo-make\n\ngit clone https://github.com/zingolabs/zingolib.git\ncd zingolib\ngit checkout tags/zingolib_v7.0.0\n\n# Builds zingo-cli + nym-proxy\nmakers run-cli --build-only\n\ncp target/release/zingo-cli target/release/nym-proxy ~/.cargo/bin/`}
+              code={`cargo install cargo-make
+
+git clone https://github.com/zingolabs/zingolib.git
+cd zingolib
+git checkout tags/zingolib_v7.0.0
+
+makers run-cli --build-only
+
+cp target/release/zingo-cli ~/.cargo/bin/
+cp target/release/nym-proxy ~/.cargo/bin/`}
             />
           </SectionCard>
 
@@ -745,7 +754,15 @@ const ZingolibTab = () => {
                 {qs?.startZingoCliCustom ?? "Start Zingo CLI (online via local indexer)"}
               </SubLabel>
               <CodeBlock
-                code={`zingo-cli --chain mainnet --server http://127.0.0.1:8137 --data-dir /path/to/your/wallet/data\n\n# Or consent for this session only\nzingo-cli --online --data-dir /path/to/your/wallet/data`}
+                code={`zingo-cli --server http://127.0.0.1:8137 \\
+  --data-dir /path/to/wallet`}
+              />
+              <SubLabel className="mt-3">
+                Or consent for this session
+              </SubLabel>
+              <CodeBlock
+                code={`zingo-cli --online \\
+  --data-dir /path/to/wallet`}
               />
             </div>
             <div className="mt-[14px] p-[12px_14px] rounded-lg text-[13px] leading-relaxed bg-amber-500/[0.06] border border-amber-500/20 text-amber-600 dark:text-amber-400">
