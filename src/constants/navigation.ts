@@ -299,10 +299,12 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Nym Mixnet Wallet Setup",
         path: "/guides/nym-mixnet-wallet-setup",
+        icon: "/Logo/nym.svg",
       },
       {
-        name: "Nym Zcash Anonymity",
-        path: "/privacy-tools/nym-zcash-anonymity",
+        name: "Nym Mixnet Wallet Setup",
+        path: "/guides/nym-mixnet-wallet-setup",
+        icon: "/Logo/nym.svg",
       },
       {
         name: "Using ZEC in DeFi",
