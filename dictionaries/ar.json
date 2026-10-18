@@ -99,7 +99,6 @@
     "Zcash Use Cases": "حالات استخدام Zcash",
     "Zcash Tech": "تقنيات Zcash",
     "Privacy Tools": "أدوات الخصوصية",
-    "Zcash Social Media": "وسائل التواصل الاجتماعي الخاصة بـ Zcash",
     "Glossary & FAQ's": "مسرد المصطلحات والأسئلة الشائعة",
     "Use Zcash": "استخدم Zcash",
     "Block Explorers": "مستكشفات الكتل",
@@ -127,7 +126,8 @@
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "شبكة Akash Zcashd",
     "CoinHolder Directed Retroactive Grants": "منح بأثر رجعي موجهة من CoinHolder",
-    "Community Building": "Community Building"
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge"
   },
   "exploreMenu": {
     "Full Explore": "استكشاف كامل",

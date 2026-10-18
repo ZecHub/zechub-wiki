@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Zcash 使用场景",
     "Zcash Tech": "Zcash 技术",
     "Privacy Tools": "隐私工具",
-    "Zcash Social Media": "Zcash 社交媒体",
     "Glossary & FAQ's": "术语表与常见问题",
     "Use Zcash": "使用 Zcash",
     "Block Explorers": "区块浏览器",
@@ -127,7 +126,8 @@
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Akash Network Zcashd",
     "CoinHolder Directed Retroactive Grants": "CoinHolder 定向追溯性资助",
-    "Community Building": "Community Building"
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge"
   },
   "exploreMenu": {
     "Full Explore": "完整探索",
