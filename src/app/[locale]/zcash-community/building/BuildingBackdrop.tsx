@@ -45,7 +45,7 @@ export default function BuildingBackdrop() {
       <div className="absolute inset-0 bg-[#e8f4fb] dark:bg-[#0b1520]" />
 
       <div
-        className="absolute -inset-[20%] opacity-90 dark:opacity-100"
+        className="absolute -inset-[20%] opacity-40 sm:opacity-90 dark:opacity-50 sm:dark:opacity-100"
         style={{
           background: [
             "radial-gradient(ellipse 55% 45% at calc(18% + var(--scroll) * 48%) calc(8% + var(--scroll) * 36%), rgba(25,132,199,0.42), transparent 58%)",
