@@ -39,6 +39,7 @@ function ZcashChart(props: ZcashChartProps) {
     { value: "network solps", label: chartT?.networkSolps || "Network Solps" },
     { value: "mining pools", label: chartT?.miningPools || "Mining Pools" },
     { value: "halving meter", label: chartT?.halvingMeter || "Halving Meter" },
+    { value: "node count", label: "Node Count" },
     { value: "network upgrades", label: "Network Upgrades" },
   ];
 

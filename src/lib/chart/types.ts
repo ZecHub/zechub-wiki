@@ -57,7 +57,14 @@ export type MiningPoolDominanceResponse = {
   range: string;
   slug: string | null;
 };
-export type NodeCountData = { Date: string; nodecount: string };
+export type NodeCountData = {
+  Date: string;
+  nodecount: string;
+  /** Per-implementation breakdown. Absent on rows written before the crawler. */
+  zebra?: string;
+  zcashd?: string;
+  other?: string;
+};
 
 /**
  * Type of values from the shielded pool over time. Each datum is amount

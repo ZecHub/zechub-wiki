@@ -1,0 +1,112 @@
+name: node-census
+
+# Appends a weekly mainnet node census row to public/data/zcash/nodecount.json.
+#
+# The census only sees nodes that answer *this runner*. GitHub-hosted runners
+# have clean, widely-reachable egress, so the number from CI is materially
+# higher than from a single datacenter host — that is the point of running it
+# here rather than on a workstation.
+#
+# A run that reaches too few peers exits non-zero and does NOT open a pull
+# request. A silent bad row would put a false cliff in the chart.
+
+on:
+  schedule:
+    # Mondays 04:17 UTC. Off the hour so it does not queue behind the
+    # hourly cron jobs on shared runners.
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Row date, MM/DD/YYYY (default: today UTC)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: node-census
+  cancel-in-progress: false
+
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # `dig` is what the seeder fan-out uses. Ubuntu runners ship it, but the
+      # crawler degrades to the system resolver silently if it is missing, so
+      # assert it is there instead of wondering why the candidate pool is small.
+      - name: Ensure dig is available
+        run: |
+          command -v dig || sudo apt-get update -qq && sudo apt-get install -y -qq dnsutils
+          dig +short A dnsseed.z.cash | head -3
+
+      - name: Run the census
+        id: census
+        run: |
+          python3 scripts/node-crawler/crawler.py \
+            --out census.json \
+            --append public/data/zcash/nodecount.json \
+            --date "${{ inputs.date || '' }}" \
+            --max-peers 500 \
+            --workers 48 \
+            --timeout 10
+
+      - name: Summarise
+        if: always()
+        run: |
+          if [ -f census.json ]; then
+            python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          with open("census.json", encoding="utf-8") as handle:
+              data = json.load(handle)
+          counts = data["counts"]
+          print("## Node census")
+          print()
+          print(f"- Peers answered: **{data['total']}** of {data['seeds_probed']} probed")
+          print(f"- Zebra: {counts['zebra']} · zcashd: {counts['zcashd']} · other: {counts['other']}")
+          print(f"- Duration: {data.get('duration_seconds', '?')}s")
+          print()
+          print("This counts reachable public endpoints from the runner, not the whole network.")
+          PY
+          else
+            echo "No census document produced — the run refused to publish." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Verify the append is a clean single-row change
+        id: diff
+        run: |
+          git diff --stat -- public/data/zcash/nodecount.json
+          added=$(git diff -U0 -- public/data/zcash/nodecount.json | grep -c '^+ *"Date"')
+          echo "rows_added=$added" >> "$GITHUB_OUTPUT"
+          if [ "$added" -ne 1 ]; then
+            echo "::error::expected exactly 1 new dated row, saw $added"
+            exit 1
+          fi
+
+      - name: Open a pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(data): weekly node census ${{ github.run_id }}"
+          title: "chore(data): node count census for ${{ inputs.date || 'this week' }}"
+          branch: node-census/data
+          delete-branch: true
+          body: |
+            Weekly mainnet node census from `scripts/node-crawler/crawler.py`.
+
+            The count is reachable public endpoints that answered a handshake
+            from the runner — a floor, not the network size. See the crawler
+            README for what is excluded.
+
+            Opened automatically. The workflow refuses to publish when too few
+            peers answer, so this only appears when the census reached enough
+            nodes to be meaningful.

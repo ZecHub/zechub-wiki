@@ -15,6 +15,7 @@ import { HalvingMeter } from "@/components/HalvingMeter/halving-meter";
 import BlockFeesChart from "../BlockFeesChart";
 import NetworkSolpsChart from "../NetworkSolpsChart";
 import MiningPoolsDominanceChart from "../MiningPoolsDominanceChart";
+import NodeCountChart from "../NodeCountChart";
 
 type ZcashChartProps = {
   divChartRef: RefObject<HTMLDivElement | null>;
@@ -45,6 +46,7 @@ const CardContentShielded = (props: ZcashChartProps) => {
         {activeTab === "network solps" && <NetworkSolpsChart chartRef={props.divChartRef} />}
         {activeTab === "mining pools" && <MiningPoolsDominanceChart chartRef={props.divChartRef} />}
         {activeTab === "halving meter" && <HalvingMeter chartRef={props.divChartRef} />}
+        {activeTab === "node count" && <NodeCountChart chartRef={props.divChartRef} />}
       </div>
 
       <ChartFooter

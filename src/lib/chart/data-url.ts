@@ -9,6 +9,7 @@ export const DATA_URL = {
   netInflowsOutflowsUrl: "/data/zcash/netinflowoutflow.json",
   difficultyUrl: "/data/zcash/difficulty.json",
   lockboxUrl: "/data/zcash/lockbox.json",
+  nodecountUrl: "/data/zcash/nodecount.json",
   ironwoodUrl: "/data/zcash/ironwood_supply.json",
   shieldedTxCountUrl: "/data/zcash/shieldedtxcount.json",
   issuanceUrl: "/data/zcash/issuance.json",
