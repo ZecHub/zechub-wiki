@@ -15,6 +15,8 @@ import {
   WalletCards,
   PenLine,
   Users,
+  GraduationCap,
+  LayoutDashboard,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -88,11 +90,31 @@ const cards: {
   },
 ];
 
+const tools: {
+  href: string;
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+}[] = [
+  {
+    href: "/visualizer",
+    icon: GraduationCap,
+    title: "Learning material",
+    desc: "Interactive visualizers for Zcash concepts.",
+  },
+  {
+    href: "/dashboard",
+    icon: LayoutDashboard,
+    title: "Dashboard",
+    desc: "Bounties, metrics, and community activity at a glance.",
+  },
+];
+
 export default function BuildingLanding() {
   return (
     <BuildingShell
       title="Build local Zcash community"
-      description="A practical path for organizers."
+      description="A practical path for organizers. These pages route into existing wiki material instead of duplicating it."
       showBack={false}
     >
       <div className="mb-12 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -115,6 +137,32 @@ export default function BuildingLanding() {
           );
         })}
       </div>
+
+      <section className="mb-12">
+        <h2 className="mb-4 text-xl font-semibold text-zinc-900 dark:text-white">
+          Tools
+        </h2>
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+          {tools.map((c) => {
+            const Icon = c.icon;
+            return (
+              <Link
+                key={c.title}
+                href={c.href}
+                className="group rounded-2xl border border-zinc-200/80 bg-white/90 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#1984c7]/40 hover:shadow-md dark:border-white/10 dark:bg-[#111b27]/95 dark:hover:border-[#1984c7]/60"
+              >
+                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#1984c7]/10 text-[#1984c7] dark:bg-[#1984c7]/20 dark:text-[#5eb4e8]">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="mb-1 text-lg font-semibold text-zinc-900 dark:text-white">
+                  {c.title}
+                </h3>
+                <p className="text-sm text-zinc-600 dark:text-[#8aa0b4]">{c.desc}</p>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
 
       <section
         id="where-to-start"

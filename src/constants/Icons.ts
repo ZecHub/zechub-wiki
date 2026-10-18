@@ -1,7 +1,7 @@
 'use client';
 
 import { IconType } from "react-icons";
-import { KeyRound } from "lucide-react";
+import { KeyRound, Users } from "lucide-react";
 import {
   BiCheckShield as CheckShield,
   BiLock as Lock,
@@ -349,6 +349,7 @@ const iconsForMenu: IconsFor = {
   },
   
   "Zcash Community": {
+    "Community Building": Users,
     "Community Links": LinkSimpleBold,
     "Community Blogs": Blog,
     "Zcash Global Ambassadors": Globe,
