@@ -392,6 +392,7 @@ const iconsForMenu: IconsFor = {
     GrapheneOS: Settings,
     "Namada Protocol": "/Logo/namada.png",
     "Nym Mixnet Wallet Setup": "/Logo/nym.svg",
+    "Nym Zcash Anonymity": "/Logo/nym.svg",
     "PGP Encryption": OutlineEnchanceEncryption,
     "Penumbra": "/Logo/um.png",
     "Secure Messengers": MessengerLine,
