@@ -656,45 +656,38 @@ const ZainodTab = () => {
           <SectionCard title={qs?.installation ?? "Installation"}>
             <SubLabel>{qs?.buildZaino ?? "Build Zaino"}</SubLabel>
             <CodeBlock
-              code={`git clone https://github.com/zingolabs/zaino.git\ncd zaino\ncargo build --release\nPATH=$PATH:~/zaino/target/release/`}
+              code={`git clone https://github.com/zingolabs/zaino.git\ncd zaino\ncargo build --release\nexport PATH="$PATH:$HOME/zaino/target/release"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.configure ?? "Configure"}
             </SubLabel>
             <CodeBlock
-              code={`cd ~/zaino/zainod\nsudo nano zindexer.toml\n# Adjust port to 8232 for mainnet`}
+              code={`# Generate default configuration (~/.config/zaino/zainod.toml)\nzainod generate-config\n\n# Edit configuration for your Zebra node\nnano ~/.config/zaino/zainod.toml`}
             />
           </SectionCard>
 
           <SectionCard title={qs?.configuration ?? "Configuration"}>
-            <SubLabel>zindexer.toml</SubLabel>
+            <SubLabel>~/.config/zaino/zainod.toml</SubLabel>
             <CodeBlock
               language="toml"
-              code={`# TcpIngestor status
-tcp_active = true
+              code={`# Backend type: "rpc" connects to Zebra over JSON-RPC / gRPC
+backend = "rpc"
+network = "Mainnet" # Use "PubTestnet" for testnet
 
-# Listen port
-listen_port = 8137
+[grpc_settings]
+# gRPC listen address for light client traffic
+listen_address = "127.0.0.1:8137"
 
-# LightWalletD listen port [DEPRECATED]
-lightwalletd_port = 9067
-
-# Full node / validator listen port
-zebrad_port = 8232
-
-# Optional credentials
-node_user = "xxxxxx"
-node_password = "xxxxxx"
-
-# Worker pool settings
-max_queue_size = 1024
-max_worker_pool_size = 64
-idle_worker_pool_size = 4`}
+[validator_settings]
+# Zebra validator addresses and optional credentials
+validator_jsonrpc_listen_address = "127.0.0.1:8232" # 18232 for testnet
+# validator_user = "rpcuser"
+# validator_password = "rpcpassword"`}
             />
             <SubLabel className="mt-[14px]">
               {qs?.runZainod ?? "Run zainod"}
             </SubLabel>
-            <CodeBlock code={`zainod --config zindexer.toml`} />
+            <CodeBlock code={`zainod start`} />
           </SectionCard>
         </div>
       </section>
