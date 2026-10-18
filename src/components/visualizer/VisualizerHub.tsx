@@ -45,6 +45,7 @@ import { ZcashKeyVisualizer } from "./zcash-key-visualizer";
 import { ZcashPoolVisualizer } from "./zcash-pool-visualizer";
 import { WalletVisualizer } from "./zcash-wallet";
 import ZKSNARKProofVisualizer from "./zk-SNARK-proof/ZK-SNARKProofVisualizer";
+import { WalletScanningVisualizer } from "./wallet-scanning";
 import { ZkavClubVisualizer } from "./zkav-club";
 
 type VisualizerType = "welcome" | VisualizerModuleId;
@@ -69,6 +70,7 @@ const VISUALIZER_COMPONENTS: Record<
   "distributed-database": DistributedDatabaseVisualize,
   zkproof: ZKSNARKProofVisualizer,
   "build-shielded-transaction": BuildShieldedTransactionVisualizer,
+  "wallet-scanning": WalletScanningVisualizer,
   "CrossLink-Protocol": CrosslinkProtocolVisualizer,
   "zcash-key": ZcashKeyVisualizer,
   infrastructure: ZcashInfrastructureVisualizer,
@@ -332,7 +334,10 @@ export const VisualizerHub: React.FC = () => {
           </motion.div>
         </div>
 
-        <VisualizerNavigationProvider goHome={goHome}>
+        <VisualizerNavigationProvider
+          goHome={goHome}
+          goToModule={goToVisualizer}
+        >
           <CurrentComponent
             onComplete={handleVisualizerComplete}
             autoStart={isPlayingAll}
