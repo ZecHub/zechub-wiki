@@ -51,6 +51,26 @@ const nextConfig = {
         destination: "/:locale/using-zcash/centralized-swaps",
         permanent: true,
       },
+      {
+        source: "/zcash-social-media",
+        destination: "/zero-to-zero-knowledge",
+        permanent: true,
+      },
+      {
+        source: "/zcash-social-media/:path*",
+        destination: "/zero-to-zero-knowledge/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:locale/zcash-social-media",
+        destination: "/:locale/zero-to-zero-knowledge",
+        permanent: true,
+      },
+      {
+        source: "/:locale/zcash-social-media/:path*",
+        destination: "/:locale/zero-to-zero-knowledge/:path*",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

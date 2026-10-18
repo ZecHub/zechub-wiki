@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Zcash のユースケース",
     "Zcash Tech": "Zcash 技術",
     "Privacy Tools": "プライバシーツール",
-    "Zcash Social Media": "Zcash ソーシャルメディア",
     "Glossary & FAQ's": "用語集 & FAQ",
     "Use Zcash": "Zcashを使う",
     "Block Explorers": "ブロックエクスプローラー",
@@ -127,7 +126,8 @@
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Akash Network Zcashd",
     "CoinHolder Directed Retroactive Grants": "CoinHolder 指定の遡及的助成金",
-    "Community Building": "Community Building"
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge"
   },
   "exploreMenu": {
     "Full Explore": "完全ガイド",

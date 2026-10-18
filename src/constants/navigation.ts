@@ -1,21 +1,25 @@
 import { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
 import { BsPlay, BsDiscord as Discord } from "react-icons/bs";
+
 import { FcAbout as Info } from "react-icons/fc";
 import { MdOutlinePointOfSale as PointOfSale, MdOutlinePrivacyTip as PrivacyTip } from "react-icons/md";
 import { LuFileKey as FileKey } from "react-icons/lu";
 import { GrGroup as Group } from "react-icons/gr";
 import { FaJarWheat as Jar } from "react-icons/fa6";
 import { BsFillArrowUpRightCircleFill as ArrowUp } from "react-icons/bs";
+
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import {
   MdOutlineOndemandVideo as AudioVideo,
   MdForum as Forum,
   MdDeveloperMode,
 } from "react-icons/md";
-import { Wrench, Map, Gem, BookOpenText, KeyRound, Users } from "lucide-react";
+
+import { Wrench, Map, Gem, BookOpenText, KeyRound, GraduationCap } from "lucide-react";
 import { FcVoicePresentation } from "react-icons/fc";
 import { FaUserAstronaut } from "react-icons/fa";
+
 import {
   RiGithubFill as Github,
   RiCommunityLine,
@@ -209,7 +213,6 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Community Building",
         path: "/zcash-community/building",
-        icon: Users,
       },
       {
         name: "Community Projects",
@@ -225,7 +228,8 @@ export const navigations: Array<NavigationItem> = [
       },
       {
         name: "Zero to Zero Knowledge",
-        path: "/zcash-social-media",
+        path: "/zero-to-zero-knowledge/zero-to-zero-knowledge",
+        icon: GraduationCap,
       },
       {
         name: "ZCAP",
@@ -253,8 +257,8 @@ export const navigations: Array<NavigationItem> = [
         icon: FcVoicePresentation,
       },
       {
-        name: "Zcash Engineering Office Hours",
-        path: "/zcash-community/zcash-engineering-office-hours",
+	name: "Zcash Engineering Office Hours",
+	path: "/zcash-community/zcash-engineering-office-hours",
       },
     ],
   },

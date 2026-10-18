@@ -369,7 +369,7 @@ const iconsForMenu: IconsFor = {
     "Guides for Creators": Resources,
     "Youtube Channel": Youtube,
   },
-  "Zcash Social Media": {
+  "Zero to Zero Knowledge": {
     "Cryptonote": Info,
     "Hash Functions": Info,
     "Lelantus": Info,
