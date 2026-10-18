@@ -92,7 +92,7 @@ export default function BuildingLanding() {
   return (
     <BuildingShell
       title="Build local Zcash community"
-      description="A practical path for organizers. These pages route into existing wiki material instead of duplicating it."
+      description="A practical path for organizers."
       showBack={false}
     >
       <div className="mb-12 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
