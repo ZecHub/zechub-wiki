@@ -95,14 +95,14 @@ export default function BuildingLanding() {
       description="A practical path for organizers. These pages route into existing wiki material instead of duplicating it."
       showBack={false}
     >
-      <div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mb-12 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
         {cards.map((c) => {
           const Icon = c.icon;
           return (
             <Link
               key={c.title}
               href={c.href}
-              className="group rounded-2xl border border-zinc-200/80 bg-white/70 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#1984c7]/40 hover:shadow-md dark:border-white/10 dark:bg-[#111b27]/80 dark:hover:border-[#1984c7]/60"
+              className="group rounded-2xl border border-zinc-200/80 bg-white/90 p-5 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#1984c7]/40 hover:shadow-md dark:border-white/10 dark:bg-[#111b27]/95 dark:hover:border-[#1984c7]/60"
             >
               <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#1984c7]/10 text-[#1984c7] dark:bg-[#1984c7]/20 dark:text-[#5eb4e8]">
                 <Icon className="h-5 w-5" />
@@ -118,7 +118,7 @@ export default function BuildingLanding() {
 
       <section
         id="where-to-start"
-        className="rounded-3xl border border-zinc-200/80 bg-white/70 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-[#111b27]/80 sm:p-8"
+        className="rounded-3xl border border-zinc-200/80 bg-white/90 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-[#111b27]/95 sm:p-8"
       >
         <h2 className="mb-2 text-2xl font-bold text-zinc-900 dark:text-white">
           Where to start
@@ -126,10 +126,10 @@ export default function BuildingLanding() {
         <p className="mb-6 text-zinc-600 dark:text-[#8aa0b4]">
           Pick the closest match. You can always switch paths later.
         </p>
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           <Link
             href="/start-here/new-user-guide"
-            className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/60"
+            className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/80"
           >
             <WalletCards className="mb-2 h-5 w-5 text-[#1984c7]" />
             <div className="font-semibold text-zinc-900 dark:text-white">
@@ -141,7 +141,7 @@ export default function BuildingLanding() {
           </Link>
           <Link
             href="/contribute/contributing-guide"
-            className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/60"
+            className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/80"
           >
             <PenLine className="mb-2 h-5 w-5 text-[#1984c7]" />
             <div className="font-semibold text-zinc-900 dark:text-white">
@@ -153,7 +153,7 @@ export default function BuildingLanding() {
           </Link>
           <Link
             href="/zcash-community/building/event"
-            className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/60"
+            className="rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#1984c7]/50 dark:border-white/10 dark:bg-[#0b1520]/80"
           >
             <Users className="mb-2 h-5 w-5 text-[#1984c7]" />
             <div className="font-semibold text-zinc-900 dark:text-white">
