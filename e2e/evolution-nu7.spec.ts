@@ -171,6 +171,28 @@ for (const width of [1440, 390, 320]) {
 }
 
 
+for (const width of [1440, 390, 320]) {
+  test(`privacy meter tooltips appear on hover and fit ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto("/en/zcash-evolution");
+    const meter = page.locator("section", { has: page.getByRole("heading", { name: "Privacy Evolution" }) });
+    const segments = meter.locator("[title]");
+    const count = await segments.count();
+    expect(count).toBeGreaterThan(1);
+    for (let i = 0; i < count; i++) {
+      const segment = segments.nth(i);
+      const tooltip = segment.locator(":scope > div");
+      await expect(tooltip).toBeHidden();
+      await segment.hover();
+      await expect(tooltip).toBeVisible();
+      const bounds = await tooltip.boundingBox();
+      expect(bounds!.x).toBeGreaterThanOrEqual(0);
+      expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
+    }
+  });
+}
+
+
 test("Italian navigation retains the shared NU7 content", async ({ page }) => {
   await page.goto("/it/zcash-evolution#nu7");
   await expect(page.locator("#nu7").getByRole("heading", { name: "Official sources" })).toBeVisible();
