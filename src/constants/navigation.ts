@@ -16,7 +16,7 @@ import {
   MdDeveloperMode,
 } from "react-icons/md";
 
-import { Wrench, Map, Gem, BookOpenText, KeyRound, GraduationCap } from "lucide-react";
+import { Wrench, Map, Gem, BookOpenText, KeyRound, GraduationCap, Users } from "lucide-react";
 import { FcVoicePresentation } from "react-icons/fc";
 import { FaUserAstronaut } from "react-icons/fa";
 
@@ -213,6 +213,7 @@ export const navigations: Array<NavigationItem> = [
       {
         name: "Community Building",
         path: "/zcash-community/building",
+        icon: Users,
       },
       {
         name: "Community Projects",
