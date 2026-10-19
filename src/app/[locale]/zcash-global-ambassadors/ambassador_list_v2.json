@@ -71,7 +71,7 @@
   {
     "name": "Zcash Español",
     "flag": "🇪🇸",
-    "twitter": "https://bsky.app/profile/zcashesp.bsky.social",
+    "twitter": "https://privtr.ee/@zcashesp",
     "description": "Zcash community and advocacy in Spanish-speaking region",
     "projectSite": null,
     "image": "/zccashEspanol.jpg",
@@ -81,20 +81,6 @@
     "language": "Spanish",
     "geo_query": "Spain",
     "pin_note": "Representative pin for Spanish-speaking regions"
-  },
-  {
-    "name": "Zcash Español",
-    "flag": "🇪🇸",
-    "twitter": "https://bsky.app/profile/zcashesp.bsky.social",
-    "description": "Zcash community and advocacy in Spanish-speaking region",
-    "projectSite": null,
-    "image": "/zccashEspanol.jpg",
-    "blog": "https://privacidad.me/@zcashesp",
-    "countryCode": "🇻🇪",
-    "region": "South America",
-    "language": "Spanish",
-    "geo_query": "Venezuela",
-    "pin_note": "Representative pin for Spanish-speaking regions in Latin America"
   },
   {
     "name": "Zcash Nigeria",
@@ -143,7 +129,7 @@
     "flag": "🇮🇳",
     "twitter": "https://x.com/ZcashIND",
     "description": "Zcash community and advocacy in India",
-    "projectSite": "https://zcashindia.org",
+    "projectSite": null,
     "image": "/zcashIndia.jpg",
     "blog": "https://zcashindia.org/blog",
     "countryCode":"IN",
