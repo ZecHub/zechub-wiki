@@ -102,7 +102,8 @@
     "Glossary & FAQ's": "Glossary & FAQ's",
     "Pay for AI": "Pay for AI",
     "Community Building": "Community Building",
-    "Zero to Zero Knowledge": "Zero to Zero Knowledge"
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge",
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
   },
   "exploreMenu": {
     "Full Explore": "Full Explore",
@@ -958,12 +959,12 @@
       "configure": "Configure",
       "runZainod": "Run zainod",
       "installingZingoCli": "Installing Zingo CLI",
-      "zingoCliInfo": "is a command-line lightwalletd-proxy client built in Rust. Releases are currently provisional — this guide covers compiling from source.",
-      "buildZingoCli": "Build Zingo CLI",
+      "zingoCliInfo": "is a command-line light wallet for Zcash. v7 builds the Nym mixnet transport by default and bundles nym-proxy beside the binary. This guide covers compiling from source.",
+      "buildZingoCli": "Build Zingo CLI (v7)",
       "running": "Running",
-      "startZingoCliDefault": "Start Zingo CLI (Default)",
-      "startZingoCliCustom": "Start Zingo CLI (Custom)",
-      "zingoSyncWarning": "⚠ This will perform a full sync on first run, similar to lightwalletd.",
+      "startZingoCliDefault": "Start Zingo CLI (Default, offline)",
+      "startZingoCliCustom": "Start Zingo CLI (online via local indexer)",
+      "zingoSyncWarning": "⚠ A fresh session is offline until you grant consent (--online, --remember-online, or --server). The Nym proxy is resolved from --nym-proxy, $ZINGO_NYM_PROXY, the binary next to zingo-cli, or PATH. Sync continues after the chain tip by default. First online run performs a full sync. To build without the mixnet (offline-only): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Next Steps & Resources",
       "readyToBuild": "Ready to Build?",
       "officialDocumentation": "Official Documentation",

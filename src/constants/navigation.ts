@@ -297,6 +297,11 @@ export const navigations: Array<NavigationItem> = [
         path: "/guides/nym-vpn",
       },
       {
+        name: "Nym Mixnet Wallet Setup",
+        path: "/guides/nym-mixnet-wallet-setup",
+        icon: "/Logo/nym.svg",
+      },
+      {
         name: "Using ZEC in DeFi",
         path: "/guides/using-zec-in-defi",
       },
