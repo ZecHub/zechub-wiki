@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -524,6 +524,132 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           { label: "TAZ and faucets", hint: "Get free test coins", href: "#what-is-taz" },
         ];
         rows.splice(first, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.txn && Array.isArray(tree.children)) {
+      const rows: any[] = tree.children;
+      const el = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const clean = (x: any) => textOf(x).replace(/#$/, "").trim();
+      const h2At = (re: RegExp) => rows.findIndex((x) => el(x, "h2") && re.test(clean(x)));
+      const nextBody = (k: number) => {
+        let q = k + 1;
+        while (q < rows.length && isBlank(rows[q])) q++;
+        return q;
+      };
+      // "TL;DR" and "Note" become highlighted callouts (their heading becomes the callout title).
+      for (const [re, title] of [[/^tl;dr$/i, "TL;DR"], [/^note$/i, "Note"]] as [RegExp, string][]) {
+        const k = h2At(re);
+        if (k < 0) continue;
+        const b = nextBody(k);
+        if (b < rows.length && (el(rows[b], "ul") || el(rows[b], "p"))) {
+          rows[b] = { type: "element", tagName: "guidecallout", properties: { title }, children: [rows[b]] };
+          rows.splice(k, 1);
+        }
+      }
+      // Number the guide sections.
+      let num = 0;
+      for (const re of [/^shielded transactions$/i, /^transparent transactions$/i, /^a simple way to picture it$/i, /^zcash fees$/i, /^troubleshooting stuck transactions$/i, /^pending, expired, dropped/i, /^when not to resend$/i, /^privacy-safe checks$/i, /^what not to share publicly$/i, /^what support teams need$/i, /^common mistakes/i]) {
+        const k = h2At(re);
+        if (k > -1) {
+          num++;
+          rows[k].properties = { ...(rows[k].properties || {}), dataStep: String(num) };
+        }
+      }
+      // Hairline between sections.
+      for (let k = 1; k < rows.length; k++) {
+        if (!el(rows[k], "h2")) continue;
+        let q = k - 1;
+        while (q >= 0 && isBlank(rows[q])) q--;
+        if (q >= 0 && !el(rows[q], "hr")) {
+          rows.splice(k, 0, { type: "element", tagName: "hr", properties: {}, children: [] });
+          k++;
+        }
+      }
+      // Shortcuts above the first section.
+      const first = rows.findIndex((x) => el(x, "guidecallout") || el(x, "h2"));
+      if (first > -1) {
+        const items = [
+          { label: "Shielded vs transparent", hint: "Two kinds of transaction", href: "#shielded-transactions" },
+          { label: "Fees", hint: "How ZIP 317 works", href: "#zcash-fees" },
+          { label: "Stuck transaction?", hint: "Check before resending", href: "#troubleshooting-stuck-transactions" },
+          { label: "Stay private", hint: "What not to share", href: "#what-not-to-share-publicly" },
+        ];
+        rows.splice(first + (el(rows[first], "guidecallout") ? 1 : 0), 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.ua && Array.isArray(tree.children)) {
+      const rows: any[] = tree.children;
+      const el = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const clean = (x: any) => textOf(x).replace(/#$/, "").trim();
+      let num = 0;
+      for (const re of [/^how it works$/i, /^why it matters now$/i, /^a fresh address for every sender$/i]) {
+        const k = rows.findIndex((x) => el(x, "h2") && re.test(clean(x)));
+        if (k > -1) {
+          num++;
+          rows[k].properties = { ...(rows[k].properties || {}), dataStep: String(num) };
+        }
+      }
+      for (let k = 1; k < rows.length; k++) {
+        if (!el(rows[k], "h2")) continue;
+        let q = k - 1;
+        while (q >= 0 && isBlank(rows[q])) q--;
+        if (q >= 0 && !el(rows[q], "hr")) {
+          rows.splice(k, 0, { type: "element", tagName: "hr", properties: {}, children: [] });
+          k++;
+        }
+      }
+      const first = rows.findIndex((x) => el(x, "h2"));
+      if (first > -1) {
+        const items = [
+          { label: "How it works", hint: "One address, any pool", href: "#how-it-works" },
+          { label: "Why it matters", hint: "Ready for new pools", href: "#why-it-matters-now" },
+          { label: "Fresh addresses", hint: "One per sender", href: "#a-fresh-address-for-every-sender" },
+          { label: "Quick facts", hint: "Prefix, encoding, ZIP", href: "#quick-facts" },
+        ];
+        rows.splice(first, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.mine && Array.isArray(tree.children)) {
+      const rows: any[] = tree.children;
+      const el = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const clean = (x: any) => textOf(x).replace(/#$/, "").trim();
+      // Subheadings get a hairline; the warning becomes a callout.
+      for (let k = 0; k < rows.length; k++) {
+        const r = rows[k];
+        if (el(r, "h3") || el(r, "h4")) {
+          rows[k] = { type: "element", tagName: "h3", properties: { ...(r.properties || {}), dataRule: "true" }, children: r.children };
+        } else if (el(r, "p") && /^warning:/i.test(textOf(r).trim())) {
+          rows[k] = { type: "element", tagName: "guidecallout", properties: { title: "Warning" }, children: [r] };
+        }
+      }
+      let num = 0;
+      for (const re of [/^requirements$/i, /^step-by-step guide/i, /^sovright/i, /^mining against your own zebra node$/i, /^tips and best practices$/i]) {
+        const k = rows.findIndex((x) => el(x, "h2") && re.test(clean(x)));
+        if (k > -1) {
+          num++;
+          rows[k].properties = { ...(rows[k].properties || {}), dataStep: String(num) };
+        }
+      }
+      for (let k = 1; k < rows.length; k++) {
+        if (!el(rows[k], "h2")) continue;
+        let q = k - 1;
+        while (q >= 0 && isBlank(rows[q])) q--;
+        if (q >= 0 && !el(rows[q], "hr")) {
+          rows.splice(k, 0, { type: "element", tagName: "hr", properties: {}, children: [] });
+          k++;
+        }
+      }
+      const first = rows.findIndex((x) => el(x, "h2") && /^requirements$/i.test(clean(x)));
+      if (first > -1) {
+        const items = [
+          { label: "Requirements", hint: "Hardware and software", href: "#requirements" },
+          { label: "Join a pool", hint: "Five steps", href: "#step-by-step-guide-to-joining-a-mining-pool" },
+          { label: "Your own node", hint: "Mine against Zebra", href: "#mining-against-your-own-zebra-node" },
+          { label: "Best practices", hint: "Costs and monitoring", href: "#tips-and-best-practices" },
+        ];
+        let at = first;
+        while (at > 0 && (el(rows[at - 1], "hr") || isBlank(rows[at - 1]))) at--;
+        rows.splice(at, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
       }
     }
     const walk = (node: any) => {
@@ -1566,6 +1692,9 @@ export default async function Page(props: {
             snap: slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups" || slug[1] === "solana-zec-to-shielded" || slug[1] === "solswap"),
             swap: slug[0] === "using-zcash" && slug[1] === "solswap",
             tnet: slug[0] === "using-zcash" && slug[1] === "testnet",
+            txn: slug[0] === "using-zcash" && slug[1] === "transactions",
+            ua: slug[0] === "using-zcash" && slug[1] === "unified-addresses",
+            mine: slug[0] === "using-zcash" && slug[1] === "zcash-mining-guide",
             sol: slug[0] === "using-zcash" && slug[1] === "solana-zec-to-shielded",
           },
         ],
