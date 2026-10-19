@@ -251,8 +251,6 @@ const iconsForMenu: IconsFor = {
     "Nym VPN": MdVpnLock,
     "Nym Mixnet Wallet Setup": "/Logo/nym.svg",
     "Ledger Shielded ZEC": FileKey,
-    "Nym Mixnet Wallet Setup": "/Logo/nym.svg",
-    "Ledger Shielded ZEC": FileKey,
     "Raspberry Pi 4 Full Node": RaspBerry,
     "Raspberry pi5 Zebra Lightwalletd Zingo": RaspBerry,
     "Hardened Zebrad": CheckedShield,
