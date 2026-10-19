@@ -150,10 +150,15 @@ for (const width of [1440, 390, 320]) {
     const bounds = await nu7.boundingBox();
     expect(bounds!.x).toBeGreaterThanOrEqual(0);
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
-    // The existing site navigation extends to 323px at a 320px viewport,
-    // including with NU7 removed. Evolution must not add to that overflow.
-    const existingPageWidth = width === 320 ? 323 : width;
-    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(existingPageWidth);
+    // The site header can already overflow a 320px viewport by a few pixels,
+    // and by how much depends on the platform's fonts. Measure that overflow
+    // with the NU7 card hidden: Evolution must not add to it.
+    const pageWidth = () => page.evaluate(() => document.documentElement.scrollWidth);
+    const withCard = await pageWidth();
+    await nu7.evaluate((element) => { element.style.display = "none"; });
+    const withoutCard = await pageWidth();
+    await nu7.evaluate((element) => { element.style.display = ""; });
+    expect(withCard).toBeLessThanOrEqual(Math.max(width, withoutCard));
     expect(await nu7.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(false);
     await nu7.getByRole("button").press("Space");
     await expect(notice).toBeVisible();
