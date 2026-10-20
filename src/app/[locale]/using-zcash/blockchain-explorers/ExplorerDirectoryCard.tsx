@@ -8,6 +8,7 @@ type ExplorerDirectoryCardProps = {
   url: string;
   thumbnailImage: string;
   thumbnailImageLight?: string;
+  thumbnailImageDark?: string;
   badge?: string;
   badgeTone?: "neutral" | "warning";
   ctaLabel: string;
@@ -28,6 +29,7 @@ export default function ExplorerDirectoryCard({
   url,
   thumbnailImage,
   thumbnailImageLight,
+  thumbnailImageDark,
   badge,
   badgeTone = "neutral",
   ctaLabel,
@@ -43,19 +45,20 @@ export default function ExplorerDirectoryCard({
       <div className="flex h-full min-w-0 flex-col">
         {/* The logo carries the name, so the title is for screen readers
             only. Logo files are prepared at 2x for a 52px row with the same
-            letter height; the light file (transparent, dark text) is shown
-            on the light theme when there is one. */}
+            letter height. Each theme gets a transparent version (light text
+            on dark, dark text on light); without one, the project's own
+            dark tile is shown. */}
         <h3 className="sr-only">{title}</h3>
         <div className="flex h-[52px] items-center">
           <Image
-            src={thumbnailImage}
+            src={thumbnailImageDark ?? thumbnailImage}
             alt={`${title} logo`}
             width={0}
             height={0}
             unoptimized
-            className={`h-[52px] w-auto max-w-full rounded-lg object-contain object-left ${
-              thumbnailImageLight ? "hidden dark:block" : ""
-            }`}
+            className={`h-[52px] w-auto max-w-full object-contain object-left ${
+              thumbnailImageDark ? "" : "rounded-lg"
+            } ${thumbnailImageLight ? "hidden dark:block" : ""}`}
           />
           {thumbnailImageLight && (
             <Image

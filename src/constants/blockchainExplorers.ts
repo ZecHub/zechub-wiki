@@ -14,6 +14,7 @@ export const blockchainExplorers = [
     url: 'https://mainnet.zcashexplorer.app/',
     thumbnailImage: '/explorer/zcashexplorer-app.png',
     thumbnailImageLight: '/explorer/zcashexplorer-app-light.png',
+    thumbnailImageDark: '/explorer/zcashexplorer-app-dark.png',
   },
   {
     title: '3xpl',
@@ -29,6 +30,7 @@ export const blockchainExplorers = [
     url: 'https://3xpl.com/zcash',
     thumbnailImage: '/explorer/3xpl.png',
     thumbnailImageLight: '/explorer/3xpl-light.png',
+    thumbnailImageDark: '/explorer/3xpl-dark.png',
   },
   {
     title: 'ZecBlock',
@@ -46,6 +48,7 @@ export const blockchainExplorers = [
     url: 'https://zecblock.com/',
     thumbnailImage: '/explorer/zecblock.png',
     thumbnailImageLight: '/explorer/zecblock-light.png',
+    thumbnailImageDark: '/explorer/zecblock-dark.png',
   },
   {
     title: 'ShieldedScan',
@@ -63,6 +66,7 @@ export const blockchainExplorers = [
     url: 'https://shieldedscan.xyz/',
     thumbnailImage: '/explorer/shieldedscan-logo.png',
     thumbnailImageLight: '/explorer/shieldedscan-logo-light.png',
+    thumbnailImageDark: '/explorer/shieldedscan-logo-dark.png',
   },
   {
     title: 'BlockExplorer.one',
@@ -78,6 +82,7 @@ export const blockchainExplorers = [
     url: 'https://blockexplorer.one/zcash/mainnet',
     thumbnailImage: '/explorer/blockexplorer-one.png',
     thumbnailImageLight: '/explorer/blockexplorer-one-light.png',
+    thumbnailImageDark: '/explorer/blockexplorer-one-dark.png',
   },
   {
     title: 'zcashinfo.com',
@@ -95,6 +100,7 @@ export const blockchainExplorers = [
     url: 'https://zcashinfo.com/',
     thumbnailImage: '/explorer/zcashinfo.png',
     thumbnailImageLight: '/explorer/zcashinfo-light.png',
+    thumbnailImageDark: '/explorer/zcashinfo-dark.png',
   },
   {
     title: 'ZEC-OS',
@@ -112,6 +118,7 @@ export const blockchainExplorers = [
     url: 'https://www.zec-os.com/explorer',
     thumbnailImage: '/explorer/zec-os.png',
     thumbnailImageLight: '/explorer/zec-os-light.png',
+    thumbnailImageDark: '/explorer/zec-os-dark.png',
   },
   {
     title: 'Zexplorer',
@@ -123,6 +130,7 @@ export const blockchainExplorers = [
     url: 'https://zexplorer.app/testnet/',
     thumbnailImage: '/explorer/zexplorer.png',
     thumbnailImageLight: '/explorer/zexplorer-light.png',
+    thumbnailImageDark: '/explorer/zexplorer-dark.png',
   },
   {
     title: 'Zecstats',
@@ -134,5 +142,6 @@ export const blockchainExplorers = [
     url: 'https://zecstats.com/',
     thumbnailImage: '/explorer/zecstats.png',
     thumbnailImageLight: '/explorer/zecstats-light.png',
+    thumbnailImageDark: '/explorer/zecstats-dark.png',
   },
 ];
