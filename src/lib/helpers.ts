@@ -476,6 +476,7 @@ const lowercaseWords = [
 const specialWordsMap = {
   Non_Custodial: "Non-Custodial",
   Zero_Knowledge: "Zero-Knowledge",
+  "Zero_To_Zero-Knowledge": "Zero_to_Zero_Knowledge",
   Defi: "DeFi",
   "Glossary And FAQs": `Glossary & FAQ's`,
   Z2z: "z2z",

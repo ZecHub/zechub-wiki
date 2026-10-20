@@ -8,7 +8,6 @@ import {
   ExternalLink,
   FolderOpen,
   Gamepad2,
-  Github,
   PlayCircle,
   UserRound,
   HelpCircle,
@@ -20,6 +19,7 @@ import {
   Trophy,
   X,
 } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 import { useEffect, useMemo, useState } from "react";
 import type { HackathonGithubProject } from "@/lib/fetchHackathonGithubProjects";
 import {
@@ -566,7 +566,7 @@ function SubmissionLink({
       className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-sky-500/50 hover:bg-sky-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
     >
       {icon === "demo" ? <PlayCircle className="h-4 w-4" aria-hidden /> : null}
-      {icon === "github" ? <Github className="h-4 w-4" aria-hidden /> : null}
+      {icon === "github" ? <FaGithub className="h-4 w-4" aria-hidden /> : null}
       {label}
       <ExternalLink className="h-3.5 w-3.5 opacity-70" />
     </a>
@@ -1252,7 +1252,7 @@ const Hackathon = ({
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-sm font-semibold text-[#1984c7] transition hover:gap-2.5 hover:underline"
                           >
-                            <Github className="h-4 w-4" aria-hidden />
+                            <FaGithub className="h-4 w-4" aria-hidden />
                             View on GitHub
                             <ExternalLink className="h-3.5 w-3.5 opacity-70" />
                           </a>

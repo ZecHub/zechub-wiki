@@ -45,7 +45,7 @@ export const exploreFolders = [
         imgDark: '/explore/dark/zcash-tech.png',
         description: 'Zero to Zero Knowledge series and Zcash podcasts',
         name: 'Zero to Zero Knowledge',
-        url: '/zcash-social-media'
+        url: '/zero-to-zero-knowledge/zero-to-zero-knowledge'
     },
     {
         img: '/Organizations-08.png',

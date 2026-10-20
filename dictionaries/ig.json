@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Ọnọdụ Ojiji Zcash",
     "Zcash Tech": "Zcash Tech",
     "Privacy Tools": "Ngwaọrụ Nzuzo",
-    "Zcash Social Media": "Zcash Social Media",
     "Glossary & FAQ's": "Glossary & Ajụjụ Ndị A Na-ajụkarị",
     "Use Zcash": "Jiri Zcash",
     "Block Explorers": "Ndị Nyocha Blọk",
@@ -126,7 +125,10 @@
     "Zcash Labs": "Zcash Labs",
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Akash Netwọk Zcashd",
-    "CoinHolder Directed Retroactive Grants": "Enyemaka n’azụ nke CoinHolder duziri"
+    "CoinHolder Directed Retroactive Grants": "Enyemaka n’azụ nke CoinHolder duziri",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge",
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
   },
   "exploreMenu": {
     "Full Explore": "Nyochaa zuru ezu",

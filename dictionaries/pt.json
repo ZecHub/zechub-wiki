@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Casos de uso da Zcash",
     "Zcash Tech": "Tecnologia da Zcash",
     "Privacy Tools": "Ferramentas de privacidade",
-    "Zcash Social Media": "Redes sociais da Zcash",
     "Glossary & FAQ's": "Glossário e perguntas frequentes",
     "Use Zcash": "Usar Zcash",
     "Block Explorers": "Exploradores de blocos",
@@ -126,7 +125,10 @@
     "Zcash Labs": "Zcash Labs",
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Rede Akash Zcashd",
-    "CoinHolder Directed Retroactive Grants": "Subsídios retroativos direcionados aos detentores de moedas"
+    "CoinHolder Directed Retroactive Grants": "Subsídios retroativos direcionados aos detentores de moedas",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge",
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
   },
   "exploreMenu": {
     "Full Explore": "Exploração completa",

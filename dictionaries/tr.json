@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Zcash Kullanım Alanları",
     "Zcash Tech": "Zcash Teknolojisi",
     "Privacy Tools": "Gizlilik Araçları",
-    "Zcash Social Media": "Zcash Sosyal Medyası",
     "Glossary & FAQ's": "Sözlük ve SSS'ler",
     "Use Zcash": "Zcash kullanın",
     "Block Explorers": "Blok Gezginleri",
@@ -126,7 +125,10 @@
     "Zcash Labs": "Zcash Labs",
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Akash Network Zcashd",
-    "CoinHolder Directed Retroactive Grants": "CoinHolder Yönlendirmeli Geriye Dönük Hibeler"
+    "CoinHolder Directed Retroactive Grants": "CoinHolder Yönlendirmeli Geriye Dönük Hibeler",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge",
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
   },
   "exploreMenu": {
     "Full Explore": "Tam Keşfet",

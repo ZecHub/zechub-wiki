@@ -99,7 +99,6 @@
     "Zcash Use Cases": "Zcash उपयोग के मामले",
     "Zcash Tech": "Zcash तकनीक",
     "Privacy Tools": "गोपनीयता उपकरण",
-    "Zcash Social Media": "Zcash सोशल मीडिया",
     "Glossary & FAQ's": "शब्दावली और FAQ's",
     "Use Zcash": "Zcash का उपयोग करें",
     "Block Explorers": "ब्लॉक एक्सप्लोरर्स",
@@ -126,7 +125,10 @@
     "Zcash Labs": "Zcash Labs",
     "ShapeShift Zcash": "ShapeShift Zcash",
     "Akash Network Zcashd": "Akash Network Zcashd",
-    "CoinHolder Directed Retroactive Grants": "कॉइनहोल्डर द्वारा निर्देशित पूर्वव्यापी अनुदान"
+    "CoinHolder Directed Retroactive Grants": "कॉइनहोल्डर द्वारा निर्देशित पूर्वव्यापी अनुदान",
+    "Community Building": "Community Building",
+    "Zero to Zero Knowledge": "Zero to Zero Knowledge",
+    "Nym Mixnet Wallet Setup": "Nym Mixnet Wallet Setup"
   },
   "exploreMenu": {
     "Full Explore": "पूरा एक्सप्लोर करें",

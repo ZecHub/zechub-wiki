@@ -7,12 +7,12 @@ import {
   Coins,
   ExternalLink,
   FileCheck,
-  Github,
   MessageSquare,
   Trophy,
   Users,
   Vote,
 } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 const slides = [
@@ -49,7 +49,7 @@ const slides = [
   {
     id: "github",
     title: "Apply on GitHub",
-    icon: Github,
+    icon: FaGithub,
     color: "from-purple-500 to-pink-600",
     steps: [
       "Log in to GitHub and open the retroactive grant application template",

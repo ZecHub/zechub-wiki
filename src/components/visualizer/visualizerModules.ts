@@ -50,6 +50,11 @@ export const ADVANCED_VISUALIZER_MODULES = [
     description: "Step-by-step construction of a shielded transaction",
   },
   {
+    id: "wallet-scanning",
+    title: "How Your Zcash Wallet Finds Your Money",
+    description: "Watch a wallet scan blocks, decrypt its notes and spot its own spends",
+  },
+  {
     id: "CrossLink-Protocol",
     title: "CrossLink Protocol",
     description: "Hybrid PoW + BFT finality: How Crosslink seals Zcash blocks",

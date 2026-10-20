@@ -1,7 +1,7 @@
 'use client';
 
 import { IconType } from "react-icons";
-import { KeyRound } from "lucide-react";
+import { KeyRound, Users } from "lucide-react";
 import {
   BiCheckShield as CheckShield,
   BiLock as Lock,
@@ -156,7 +156,7 @@ import { SlGraph as Graph } from "react-icons/sl";
 import {
   TbBinaryTree2 as BinaryTree,
   TbCurrencyDollarZimbabwean as DollarZimbabwean,
-  Tb2Fa as Fa2,
+  TbAuth2Fa as Fa2,
   TbHexagonLetterN as HexagonLetterN,
   TbHexagonLetterZ as HexagonLetterZ,
   TbCircleLetterZ,
@@ -232,6 +232,10 @@ const iconsForMenu: IconsFor = {
     "Centralized Swaps": Swap,
     "Spend Zcash": PointOfSale,
     "Top 10 Places to spend ZEC": PointOfSale,
+    "Metamask Snap": RiFunctionLine,
+    "Non Custodial Exchanges": ExchangeFunds,
+    "Shielded Newsletter": Newspaper,
+    "Unified Addresses": CircleKey,
   },
   Guides: {
     "Using ZEC Privately": PrivacyTip,
@@ -245,6 +249,8 @@ const iconsForMenu: IconsFor = {
     "BTCPayServer Zcash Plugin": Pay,
     "Full Nodes": ServerSolid,
     "Nym VPN": MdVpnLock,
+    "Nym Mixnet Wallet Setup": "/Logo/nym.svg",
+    "Ledger Shielded ZEC": FileKey,
     "Raspberry Pi 4 Full Node": RaspBerry,
     "Raspberry pi5 Zebra Lightwalletd Zingo": RaspBerry,
     "Hardened Zebrad": CheckedShield,
@@ -270,6 +276,8 @@ const iconsForMenu: IconsFor = {
     "Viewing Key Transaction Export": FileKey,
     "Crosslink Feature Net": FcLink,
     "Mining and Staking Privacy": FcPrivacy,
+    "Zcash Node RPC and Indexing": Network,
+    "Zero Knowledge vs Decoys": TopologyRing,
   },
         "Zcash Tech": {
 
@@ -317,7 +325,7 @@ const iconsForMenu: IconsFor = {
     "Shielded Cold Signing": Lock,
     "Shielded Coinholder Voting": Governance,
     "Unified Addresses": CircleKey,
-
+    "Indexer Benchmark Zaino vs Ztreamer": Tfi,
   },
   "Zcash Organizations": {
     "Electric Coin Company": Radar,
@@ -346,9 +354,11 @@ const iconsForMenu: IconsFor = {
     "Receive Donations Privately": Jar,
     "Send Money Without Linking Identity": ArrowUp,
     "Sign in With Zcash": KeyRound,
+    "Pay For Ai With Shielded ZEC": Circuitry,
   },
   
   "Zcash Community": {
+    "Community Building": Users,
     "Community Links": LinkSimpleBold,
     "Community Blogs": Blog,
     "Zcash Global Ambassadors": Globe,
@@ -369,7 +379,7 @@ const iconsForMenu: IconsFor = {
     "Guides for Creators": Resources,
     "Youtube Channel": Youtube,
   },
-  "Zcash Social Media": {
+  "Zero to Zero Knowledge": {
     "Cryptonote": Info,
     "Hash Functions": Info,
     "Lelantus": Info,
@@ -384,6 +394,7 @@ const iconsForMenu: IconsFor = {
     GrapheneOS: Settings,
     "Namada Protocol": "/Logo/namada.png",
     "Nym Mixnet Wallet Setup": "/Logo/nym.svg",
+    "Nym Zcash Anonymity": "/Logo/nym.svg",
     "PGP Encryption": OutlineEnchanceEncryption,
     "Penumbra": "/Logo/um.png",
     "Secure Messengers": MessengerLine,
@@ -401,6 +412,12 @@ const iconsForMenu: IconsFor = {
     "ZK Shielded Asset Platforms": ZkAssets,
   },
   "Glossary & FAQ's": {
+    "Zcash Library": LibraryC,
+    FAQ: Faq,
+    Gallery: FcGallery,
+    "ZecHub Hackathon Builders Guide": Guide,
+  },
+  "Glossary and FAQs": {
     "Zcash Library": LibraryC,
     FAQ: Faq,
     Gallery: FcGallery,
