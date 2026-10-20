@@ -12,7 +12,7 @@ export const blockchainExplorers = [
       'Public API',
     ],
     url: 'https://zecblock.com/',
-    thumbnailImage: '/explorer/Cipherscan.png',
+    thumbnailImage: '/explorer/zecblock.png',
   },
   {
     title: 'ShieldedScan',
