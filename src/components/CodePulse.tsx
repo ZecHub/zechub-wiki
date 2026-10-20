@@ -358,7 +358,7 @@ export default function CodePulse() {
               label="Broken"
               value={linkCurrent?.totals?.broken ?? 0}
               delta={percentChange(
-                linkCurrent?.totals?.broken,
+                linkCurrent?.totals?.broken ?? 0,
                 linkPrevious?.totals?.broken,
               )}
               tone="orange"
@@ -368,7 +368,7 @@ export default function CodePulse() {
               label="Could not verify"
               value={linkCurrent?.totals?.blocked ?? 0}
               delta={percentChange(
-                linkCurrent?.totals?.blocked,
+                linkCurrent?.totals?.blocked ?? 0,
                 linkPrevious?.totals?.blocked,
               )}
               tone="blue"
@@ -378,7 +378,7 @@ export default function CodePulse() {
               label="Redirects"
               value={linkCurrent?.totals?.redirect ?? 0}
               delta={percentChange(
-                linkCurrent?.totals?.redirect,
+                linkCurrent?.totals?.redirect ?? 0,
                 linkPrevious?.totals?.redirect,
               )}
               tone="green"
