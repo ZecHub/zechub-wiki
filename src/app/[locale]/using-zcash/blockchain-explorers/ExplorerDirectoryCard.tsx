@@ -23,22 +23,21 @@ export default function ExplorerDirectoryCard({
   return (
     <article className="group h-full rounded-2xl border border-zinc-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-zinc-700 dark:bg-slate-800">
       <div className="flex h-full min-w-0 flex-col">
-        <div className="mb-5 flex items-center justify-start gap-4 text-left">
-          <div className="relative h-24 w-24 shrink-0 overflow-hidden">
-            <Image
-              src={thumbnailImage}
-              alt={title}
-              fill
-              className="object-contain"
-              sizes="96px"
-            />
-          </div>
-          <div className="min-w-0">
-            <h3 className="wrap-break-word text-xl font-bold text-zinc-900 dark:text-white">
-              {title}
-            </h3>
-          </div>
+        {/* Logo files are prepared at 2x for a 52px row with the same
+            letter height (about 14px), so they are served as-is. */}
+        <div className="mb-4 flex h-[52px] items-center">
+          <Image
+            src={thumbnailImage}
+            alt={`${title} logo`}
+            width={0}
+            height={0}
+            unoptimized
+            className="h-[52px] w-auto max-w-full rounded-lg object-contain object-left"
+          />
         </div>
+        <h3 className="mb-3 wrap-break-word text-xl font-bold text-zinc-900 dark:text-white">
+          {title}
+        </h3>
 
         <p className="mb-5 min-w-0 flex-1 wrap-break-word text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
           {description}
