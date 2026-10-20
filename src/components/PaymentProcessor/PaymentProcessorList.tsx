@@ -42,7 +42,7 @@ const PaymentProcessorList: React.FC<PaymentProcessorListProps> = ({ allProcesso
             <div className="flex flex-1 flex-col p-4">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex min-w-0 items-center gap-3">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 p-1.5 ring-1 ring-slate-200 dark:bg-white/[0.06] dark:ring-white/10">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 p-2.5 ring-1 ring-slate-200 dark:bg-white/[0.06] dark:ring-white/10">
                     {logo ? (
                       <Image
                         src={logo}

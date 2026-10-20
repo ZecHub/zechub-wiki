@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -974,7 +974,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
               n.properties = { ...(n.properties || {}), dataRule: "true" };
             }
           } else if (n.tagName === "img") {
-            n.properties = { ...(n.properties || {}), dataFrame: "true" };
+            n.properties = { ...(n.properties || {}), dataFrame: opts.compact ? "compact" : "true" };
           }
         }
         // TEX page: subheadings, lead paragraph, flow diagram and a wallets button.
@@ -1984,6 +1984,7 @@ export default async function Page(props: {
             zal: slug[0] === "using-zcash" && slug[1] === "zallet-quick-reference-guide",
             uc: slug[0] === "zcash-use-cases" && slug.length > 1,
             ucHub: slug[0] === "zcash-use-cases" && slug[1] === "about",
+            compact: slug[0] === "using-zcash" && slug[1] === "mobile-top-ups",
             sol: slug[0] === "using-zcash" && slug[1] === "solana-zec-to-shielded",
           },
         ],

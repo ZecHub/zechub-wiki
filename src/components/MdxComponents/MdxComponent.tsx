@@ -310,7 +310,9 @@ const MdxComponents = {
       alt={props.alt || "Image"}
       className={`my-5 rounded-xl border ${
         (props as Record<string, unknown>)["data-frame"]
-          ? "mx-auto h-auto w-auto max-w-full border-brand/60 shadow-md shadow-brand/10 ring-1 ring-brand/20"
+          ? `mx-auto h-auto w-auto border-brand/60 shadow-md shadow-brand/10 ring-1 ring-brand/20 ${
+              (props as Record<string, unknown>)["data-frame"] === "compact" ? "max-h-[480px] max-w-[min(100%,560px)]" : "max-w-full"
+            }`
           : "border-slate-200 dark:border-white/10"
       }`}
       loading="lazy"
