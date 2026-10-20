@@ -1,0 +1,19 @@
+[
+  {
+    "date": "2026-10-20",
+    "generatedAt": "2026-10-20T14:42:37.946Z",
+    "filesScanned": 744,
+    "serious": 143,
+    "totals": {
+      "broken": 88,
+      "dns": 15,
+      "blocked": 113,
+      "redirect": 596,
+      "route": 39,
+      "asset": 1,
+      "timeout": 5,
+      "error": 8,
+      "invalid": 0
+    }
+  }
+]
