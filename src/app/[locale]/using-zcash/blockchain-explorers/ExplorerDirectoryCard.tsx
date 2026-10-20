@@ -11,6 +11,7 @@ type ExplorerDirectoryCardProps = {
   thumbnailImageDark?: string;
   badge?: string;
   badgeTone?: "neutral" | "warning";
+  credit?: string;
   ctaLabel: string;
   features?: string[];
 };
@@ -32,6 +33,7 @@ export default function ExplorerDirectoryCard({
   thumbnailImageDark,
   badge,
   badgeTone = "neutral",
+  credit,
   ctaLabel,
   features = [],
 }: ExplorerDirectoryCardProps) {
@@ -90,6 +92,13 @@ export default function ExplorerDirectoryCard({
         <p className="mt-4 min-w-0 flex-1 wrap-break-word text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
           {description}
         </p>
+
+        {credit && (
+          <p className="mt-4 flex items-start gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs leading-relaxed text-amber-900 dark:bg-amber-400/10 dark:text-amber-200">
+            <span aria-hidden="true">♥</span>
+            <span>{credit}</span>
+          </p>
+        )}
 
         {features.length > 0 && (
           <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Features">

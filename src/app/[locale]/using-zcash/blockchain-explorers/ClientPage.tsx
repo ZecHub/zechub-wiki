@@ -37,6 +37,7 @@ const BlockchainExplorersClient = () => {
             thumbnailImageDark={itm.thumbnailImageDark}
             badge={itm.badge}
             badgeTone={itm.badgeTone}
+            credit={itm.credit}
             description={itm.description}
             title={itm.title}
             url={itm.url}

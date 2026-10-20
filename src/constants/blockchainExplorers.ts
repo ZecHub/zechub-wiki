@@ -46,6 +46,7 @@ export const blockchainExplorers = [
   },
   {
     title: 'ZecBlock',
+    credit: "Its API powers ZecHub's dashboard metrics, Halving Meter and Block Time tool.",
     badge: 'Zcash only',
     description:
       'Zcash block explorer and privacy analytics, formerly CipherScan (old cipherscan.app links redirect here). Blocks, transactions, addresses and mempool, plus shielded pool and Ironwood data, privacy analytics, developer tools and an API. Ask ZecBlock (beta) answers questions from indexed public chain data.',
@@ -106,6 +107,7 @@ export const blockchainExplorers = [
   },
   {
     title: 'zcashinfo.com',
+    credit: "Its API powers the mining charts on ZecHub's dashboard.",
     badge: 'Zcash only',
     description:
       'Zcash blockchain explorer featuring block details, transaction lookup, address search, network statistics, value pool distribution, and mempool monitoring.',
