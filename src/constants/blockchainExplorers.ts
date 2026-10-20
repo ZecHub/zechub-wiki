@@ -83,7 +83,7 @@ export const blockchainExplorers = [
       'Multiple blockchains',
     ],
     url: 'https://blockexplorer.one/zcash/mainnet',
-    thumbnailImage: '/explorer/BlockchExplorer.one.png',
+    thumbnailImage: '/explorer/blockexplorer-one.png',
   },
   {
     title: 'Zcash Block Explorer',
