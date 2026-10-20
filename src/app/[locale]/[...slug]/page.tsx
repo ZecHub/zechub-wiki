@@ -801,20 +801,28 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         const href = a ? a.properties?.href : null;
         if (href) rows.splice(b, 1, { type: "element", tagName: "linkbutton", properties: { href, label: textOf(a).trim() }, children: [] });
       }
-      // 5. Step subheadings (hairline, no badge) so they do not clash with section numbers.
+      // 5. "Step N: Title" becomes a numbered step; other subheadings get a hairline.
       for (let k = 0; k < rows.length; k++) {
         if (isH(rows[k], "h3")) {
-          rows[k] = { type: "element", tagName: "h3", properties: { dataRule: "true" }, children: [{ type: "text", value: textOf(rows[k]).trim() }] };
+          const t = textOf(rows[k]).trim();
+          const mm = /^step\s+(\d+)\s*[:.\-]\s*(.+)$/i.exec(t);
+          rows[k] = mm
+            ? { type: "element", tagName: "h3", properties: { dataStep: mm[1] }, children: [{ type: "text", value: mm[2] }] }
+            : { type: "element", tagName: "h3", properties: { dataRule: "true" }, children: [{ type: "text", value: t }] };
         }
       }
-      // 6. Number the narrative sections.
-      let num = 0;
-      for (const re of [/^who is this for/i, /^the problem/i, /^why zcash/i, /^what you need/i, /^step-by-step/i, /^result/i]) {
-        const k = rows.findIndex((x) => isH(x, "h2") && re.test(clean(x)));
-        if (k > -1 && rows[k].type === "element") {
-          num++;
-          rows[k].properties = { ...(rows[k].properties || {}), dataStep: String(num) };
+      // 6. Tips and warnings (blockquotes) as callouts; screenshots get the blue frame.
+      const frameImgs = (x: any) => {
+        if (nm(x) === "img" && x.type === "element") x.properties = { ...(x.properties || {}), dataFrame: "true" };
+        (x.children || []).forEach(frameImgs);
+      };
+      for (let k = 0; k < rows.length; k++) {
+        if (nm(rows[k]) === "blockquote") {
+          const t = textOf(rows[k]).trim();
+          const title = /^(this step protects|the swap leg is visible|important|warning)/i.test(t) ? "Heads up" : /^(send slightly|tip)/i.test(t) ? "Tip" : "Note";
+          rows[k] = { type: "element", tagName: "guidecallout", properties: { title }, children: (rows[k].children || []).filter((c: any) => !isBlank(c)) };
         }
+        frameImgs(rows[k]);
       }
       // 7. Hairline between sections.
       for (let k = 1; k < rows.length; k++) {
@@ -828,22 +836,27 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       }
       // 8. Shortcuts after the summary box.
       const cands: [RegExp, string, string][] = [
+        [/^step-by-step/i, "Step by step", "From address to order"],
+        [/^route 1/i, "Route 1", "Pay the service directly"],
+        [/^route 2/i, "Route 2", "Services without ZEC"],
+        [/^what you need/i, "What you need", "Before you start"],
+        [/^what is revealed/i, "What is revealed", "At each step"],
+        [/^common mistakes/i, "Mistakes", "What to avoid"],
         [/^the problem/i, "The problem", "What is exposed today"],
         [/^why zcash/i, "Why Zcash", "What shielding changes"],
-        [/^what you need/i, "What you need", "Before you start"],
-        [/^step-by-step/i, "Step by step", "From address to order"],
-        [/^common mistakes/i, "Mistakes", "What to avoid"],
       ];
       const items: any[] = [];
       for (const [re, label, hint] of cands) {
-        const h = rows.find((x) => isH(x, "h2") && re.test(clean(x)));
-        if (h) items.push({ label, hint, href: "#" + slugOf(clean(h)) });
+        const k = rows.findIndex((x) => isH(x, "h2") && re.test(clean(x)));
+        if (k > -1) items.push({ k, label, hint, href: "#" + slugOf(clean(rows[k])) });
       }
+      items.splice(4);
+      items.sort((x, y) => x.k - y.k);
       if (items.length >= 2) {
         const sum = rows.findIndex((x) => nm(x) === "guidecallout");
         const firstH2 = rows.findIndex((x) => isH(x, "h2"));
         const at = sum > -1 && (firstH2 < 0 || sum < firstH2) ? sum + 1 : firstH2;
-        if (at > -1) rows.splice(at, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items.slice(0, 4)) }, children: [] });
+        if (at > -1) rows.splice(at, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items.map(({ k: _k, ...r }: any) => r)) }, children: [] });
       }
     }
     const walk = (node: any) => {
