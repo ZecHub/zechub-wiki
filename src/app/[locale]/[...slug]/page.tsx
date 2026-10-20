@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -857,6 +857,62 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         const firstH2 = rows.findIndex((x) => isH(x, "h2"));
         const at = sum > -1 && (firstH2 < 0 || sum < firstH2) ? sum + 1 : firstH2;
         if (at > -1) rows.splice(at, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items.map(({ k: _k, ...r }: any) => r)) }, children: [] });
+      }
+    }
+    if (opts.ucHub && Array.isArray(tree.children)) {
+      const rows: any[] = tree.children;
+      const nm = (x: any): string => (x ? (x.type === "element" ? x.tagName : x.type === "mdxJsxFlowElement" || x.type === "mdxJsxTextElement" ? x.name : "") : "") || "";
+      const clean = (x: any) => textOf(x).replace(/#$/, "").trim();
+      const GUIDES: [RegExp, string][] = [
+        [/^receive donations/i, "receive-donations-privately"],
+        [/^send money without/i, "send-money-without-linking-identity"],
+        [/^freelancer privacy/i, "freelance-privacy-setup"],
+        [/^accept payments/i, "accept-payments-as-a-merchant"],
+        [/private community treasury/i, "private-community-treasury"],
+        [/^journalist privacy/i, "journalist-privacy-setup"],
+      ];
+      // "What You'll Learn" as a highlighted box (its heading becomes the title).
+      const wl = rows.findIndex((x) => nm(x) === "h2" && /^what you.ll learn/i.test(clean(x)));
+      if (wl > -1) {
+        let b = wl + 1;
+        while (b < rows.length && isBlank(rows[b])) b++;
+        if (nm(rows[b]) === "ul") {
+          rows[b] = { type: "element", tagName: "guidecallout", properties: { title: "What you'll learn" }, children: [rows[b]] };
+          rows.splice(wl, 1);
+        }
+      }
+      // "If you're new, start here" as a note.
+      const nw = rows.findIndex((x) => nm(x) === "p" && /^if you.re new, start here/i.test(textOf(x).trim()));
+      if (nw > -1) rows[nw] = { type: "element", tagName: "guidecallout", properties: { title: "New to Zcash?" }, children: [rows[nw]] };
+      // Recommended path: numbered list with a button per guide.
+      const rp = rows.findIndex((x) => nm(x) === "h2" && /^recommended path/i.test(clean(x)));
+      if (rp > -1) {
+        let end = rp + 1;
+        while (end < rows.length && nm(rows[end]) !== "h2") end++;
+        const items: any[] = [];
+        let cur: any = null;
+        for (const r of rows.slice(rp + 1, end)) {
+          if (isBlank(r)) continue;
+          if (nm(r) === "h3") {
+            const title = textOf(r).trim();
+            cur = { type: "element", tagName: "pointitem", properties: { n: String(items.length + 1), title }, children: [] };
+            const g = GUIDES.find(([re]) => re.test(title));
+            cur.slug = g ? g[1] : null;
+            items.push(cur);
+          } else if (cur) {
+            cur.children.push(r);
+          }
+        }
+        const lead = rows.slice(rp + 1, end).filter((x) => !isBlank(x) && nm(x) === "p" && !items.some((it) => it.children.includes(x)) && !items.length);
+        for (const it of items) {
+          if (it.slug) it.children.push({ type: "element", tagName: "div", properties: { className: ["flex"] }, children: [{ type: "element", tagName: "linkbutton", properties: { href: "/zcash-use-cases/" + it.slug, label: "Open guide" }, children: [] }] });
+          delete it.slug;
+        }
+        if (items.length) {
+          const keep = rows.slice(rp + 1, end).filter((x) => !isBlank(x) && nm(x) !== "h3" && !items.some((it) => it.children.includes(x)));
+          rows.splice(rp + 1, end - rp - 1, ...keep, { type: "element", tagName: "pointlist", properties: {}, children: items });
+          void lead;
+        }
       }
     }
     const walk = (node: any) => {
@@ -1904,6 +1960,7 @@ export default async function Page(props: {
             mine: slug[0] === "using-zcash" && slug[1] === "zcash-mining-guide",
             zal: slug[0] === "using-zcash" && slug[1] === "zallet-quick-reference-guide",
             uc: slug[0] === "zcash-use-cases" && slug.length > 1,
+            ucHub: slug[0] === "zcash-use-cases" && slug[1] === "about",
             sol: slug[0] === "using-zcash" && slug[1] === "solana-zec-to-shielded",
           },
         ],
