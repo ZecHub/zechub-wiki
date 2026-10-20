@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-20T15:20:41.393Z",
+  "generatedAt": "2026-10-20T15:59:03.282Z",
   "filesScanned": 744,
   "linksFound": 12087,
   "uniqueExternalChecked": 2403,
-  "retriedAfterNetworkFailure": 55,
+  "retriedAfterNetworkFailure": 53,
   "allowlistEntries": 5,
   "totals": {
     "dns": 15,
@@ -12,10 +12,10 @@
     "asset": 1,
     "tls": 15,
     "timeout": 5,
-    "error": 10,
+    "error": 8,
     "invalid": 0,
-    "blocked": 51,
-    "redirect": 594,
+    "blocked": 47,
+    "redirect": 602,
     "duplicate": 369,
     "revived": 0
   },
@@ -173,6 +173,15 @@
       "url": "https://www.wired.com/story/unciphered-crypto-wallet-recovery/",
       "file": "site/Using_Zcash/Recovering_Funds.md",
       "line": 194,
+      "alsoIn": 0,
+      "status": 404,
+      "detail": "HTTP 404"
+    },
+    {
+      "kind": "broken",
+      "url": "https://trezor.io/learn/supported-assets/other-cryptocurrencies/zcash-what-it-is-and-how-it-works-with-trezor",
+      "file": "site/Using_Zcash/Wallets.md",
+      "line": 256,
       "alsoIn": 0,
       "status": 404,
       "detail": "HTTP 404"
@@ -461,15 +470,6 @@
       "url": "https://cdn.discordapp.com/attachments/860525418008674327/1070395090612265000/zkvm.jpg",
       "file": "site/zechubglobal/zcashbrasil/zcashtech/zksnarks.md",
       "line": 174,
-      "alsoIn": 0,
-      "status": 404,
-      "detail": "HTTP 404"
-    },
-    {
-      "kind": "broken",
-      "url": "https://support.gemini.com/hc/en-us/articles/204732795-How-do-I-sign-up-for-Gemini-",
-      "file": "site/zechubglobal/zcashesp/blogs/privadovstransparente.md",
-      "line": 65,
       "alsoIn": 0,
       "status": 404,
       "detail": "HTTP 404"
@@ -1400,14 +1400,6 @@
     },
     {
       "kind": "error",
-      "url": "https://zechub.org/",
-      "file": "site/Research/zcash-formal-verification-series/article-0/article-0-what-is-formal-verification.md",
-      "line": 185,
-      "alsoIn": 9,
-      "detail": "ETIMEDOUT"
-    },
-    {
-      "kind": "error",
       "url": "https://tomochain.com/ecosystem/",
       "file": "site/Research/ZK_Shielded_Asset_Platforms.md",
       "line": 98,
@@ -1445,14 +1437,6 @@
       "line": 103,
       "alsoIn": 4,
       "detail": "UND_ERR_CONNECT_TIMEOUT"
-    },
-    {
-      "kind": "error",
-      "url": "https://dework.zechub.org/",
-      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly #64.md",
-      "line": 103,
-      "alsoIn": 26,
-      "detail": "ETIMEDOUT"
     },
     {
       "kind": "error",
@@ -1698,37 +1682,10 @@
     },
     {
       "kind": "blocked",
-      "url": "https://www.theblock.co/post/226502/mysten-ftx?utm_source=rss&utm_medium=rss",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly38.md",
-      "line": 77,
-      "alsoIn": 2,
-      "status": 403,
-      "detail": "HTTP 403"
-    },
-    {
-      "kind": "blocked",
-      "url": "https://www.theblock.co/post/227722/gemini-foundation",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly39.md",
-      "line": 81,
-      "alsoIn": 2,
-      "status": 403,
-      "detail": "HTTP 403"
-    },
-    {
-      "kind": "blocked",
       "url": "https://www.forbes.com/sites/digital-assets/2023/04/25/european-union-outpaces-unfocused-united-states-in-crypto-regulation-but-mica-article-68-raises-concerns/",
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly40.md",
       "line": 43,
       "alsoIn": 1,
-      "status": 403,
-      "detail": "HTTP 403"
-    },
-    {
-      "kind": "blocked",
-      "url": "https://www.theblock.co/post/230718/bitcoin-ether-price-correlation",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly42.md",
-      "line": 78,
-      "alsoIn": 2,
       "status": 403,
       "detail": "HTTP 403"
     },
@@ -1767,15 +1724,6 @@
       "alsoIn": 2,
       "status": 401,
       "detail": "HTTP 401"
-    },
-    {
-      "kind": "blocked",
-      "url": "https://www.theblock.co/post/239769/ark-invest-coinbase-sells-cathie-wood",
-      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly51.md",
-      "line": 68,
-      "alsoIn": 2,
-      "status": 403,
-      "detail": "HTTP 403"
     },
     {
       "kind": "blocked",
@@ -1833,15 +1781,6 @@
     },
     {
       "kind": "blocked",
-      "url": "https://www.theblock.co/post/267973/tether-weve-onboarded-fbi-secret-service-to-our-platform",
-      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly73.md",
-      "line": 64,
-      "alsoIn": 0,
-      "status": 403,
-      "detail": "HTTP 403"
-    },
-    {
-      "kind": "blocked",
       "url": "https://www.forbes.com/sites/digital-assets/2023/06/10/bloodbath-sudden-1-trillion-crypto-crash-sparks-fresh-coinbase-warning-and-tanks-the-price-of-bitcoin-ethereum-bnb-xrp-cardano-dogecoin-polygon-and-solana/",
       "file": "site/zechubglobal/zcashkorea/newsletters/zecweekly46.md",
       "line": 95,
@@ -1872,6 +1811,15 @@
       "url": "https://imgnai.com/",
       "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
       "line": 33,
+      "alsoIn": 0,
+      "status": 403,
+      "detail": "HTTP 403"
+    },
+    {
+      "kind": "blocked",
+      "url": "https://ideogram.ai/login",
+      "file": "site/ZFAV_Club/Guides_for_Creators/AI_tools.md",
+      "line": 38,
       "alsoIn": 0,
       "status": 403,
       "detail": "HTTP 403"
@@ -2649,6 +2597,15 @@
       "alsoIn": 0,
       "status": 301,
       "detail": "→ https://www.techtarget.com/searchcio/answer/ITPro-Today-Network-Computing-IoT-World-Today-combine-with-TechTarget"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://zechub.org/",
+      "file": "site/Research/zcash-formal-verification-series/article-0/article-0-what-is-formal-verification.md",
+      "line": 185,
+      "alsoIn": 9,
+      "status": 301,
+      "detail": "→ https://zechub.wiki"
     },
     {
       "kind": "redirect",
@@ -4731,6 +4688,15 @@
     },
     {
       "kind": "redirect",
+      "url": "https://support.gemini.com/hc/en-us/articles/204732795-How-do-I-sign-up-for-Gemini-",
+      "file": "site/zechubglobal/zcashesp/blogs/privadovstransparente.md",
+      "line": 65,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ https://support.gemini.com/hc/en-us/articles/204732795-What-type-of-account-should-I-sign-up-for"
+    },
+    {
+      "kind": "redirect",
       "url": "https://discord.gg/uvEdHsrb",
       "file": "site/zechubglobal/zcashesp/guides/fullnodes.md",
       "line": 69,
@@ -5145,6 +5111,15 @@
     },
     {
       "kind": "redirect",
+      "url": "https://dework.zechub.org/",
+      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly #64.md",
+      "line": 103,
+      "alsoIn": 26,
+      "status": 301,
+      "detail": "→ https://app.dework.xyz/zechub-2424"
+    },
+    {
+      "kind": "redirect",
       "url": "https://free2z.cash/zingolabs/zpage/zingo-a-zcash-application",
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly37.md",
       "line": 23,
@@ -5217,6 +5192,24 @@
     },
     {
       "kind": "redirect",
+      "url": "https://www.theblock.co/post/226502/mysten-ftx?utm_source=rss&utm_medium=rss",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly38.md",
+      "line": 77,
+      "alsoIn": 2,
+      "status": 301,
+      "detail": "→ /news/ecosystems/2023-04-14-mysten-ftx-226502"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://www.theblock.co/post/227722/gemini-foundation",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly39.md",
+      "line": 81,
+      "alsoIn": 2,
+      "status": 301,
+      "detail": "→ /news/business/2023-04-21-gemini-foundation-227722"
+    },
+    {
+      "kind": "redirect",
       "url": "https://www.meetup.com/zcash-san-diego-privacy-is-normal/events/292997276/",
       "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly40.md",
       "line": 65,
@@ -5277,6 +5270,15 @@
       "alsoIn": 2,
       "status": 301,
       "detail": "→ /news/business/2023-05-12-paradigm-coinbase-shares-230673"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://www.theblock.co/post/230718/bitcoin-ether-price-correlation",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly42.md",
+      "line": 78,
+      "alsoIn": 2,
+      "status": 301,
+      "detail": "→ /news/ecosystems/2023-05-13-bitcoin-ether-price-correlation-230718"
     },
     {
       "kind": "redirect",
@@ -5484,6 +5486,15 @@
       "alsoIn": 3,
       "status": 303,
       "detail": "→ https://www.youtube.com/watch?v=KNhd1KC0Bqk&feature=youtu.be"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://www.theblock.co/post/239769/ark-invest-coinbase-sells-cathie-wood",
+      "file": "site/zechubglobal/zcashfrance/newsletter/zecweekly51.md",
+      "line": 68,
+      "alsoIn": 2,
+      "status": 301,
+      "detail": "→ /news/business/2023-07-15-ark-invest-coinbase-sells-cathie-wood-239769"
     },
     {
       "kind": "redirect",
@@ -5916,6 +5927,15 @@
       "alsoIn": 0,
       "status": 302,
       "detail": "→ /markets/bitcoin-fees-20-month-high-miner-revenues-match-69k-btc-price"
+    },
+    {
+      "kind": "redirect",
+      "url": "https://www.theblock.co/post/267973/tether-weve-onboarded-fbi-secret-service-to-our-platform",
+      "file": "site/zechubglobal/zcashfrance/newsletter/ZecWeekly73.md",
+      "line": 64,
+      "alsoIn": 0,
+      "status": 301,
+      "detail": "→ /news/markets/2023-12-16-tether-weve-onboarded-fbi-secret-service-to-our-platform-267973"
     },
     {
       "kind": "redirect",

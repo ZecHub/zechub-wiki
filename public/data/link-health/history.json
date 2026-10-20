@@ -1,14 +1,31 @@
 [
   {
     "date": "2026-10-20",
-    "generatedAt": "2026-10-20T14:42:37.946Z",
+    "generatedAt": "2026-10-20T15:20:41.393Z",
     "filesScanned": 744,
-    "serious": 143,
+    "serious": 144,
     "totals": {
-      "broken": 88,
+      "broken": 89,
       "dns": 15,
-      "blocked": 113,
-      "redirect": 596,
+      "blocked": 51,
+      "redirect": 594,
+      "route": 39,
+      "asset": 1,
+      "timeout": 5,
+      "error": 10,
+      "invalid": 0
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "generatedAt": "2026-10-20T15:59:03.282Z",
+    "filesScanned": 744,
+    "serious": 144,
+    "totals": {
+      "broken": 89,
+      "dns": 15,
+      "blocked": 47,
+      "redirect": 602,
       "route": 39,
       "asset": 1,
       "timeout": 5,
