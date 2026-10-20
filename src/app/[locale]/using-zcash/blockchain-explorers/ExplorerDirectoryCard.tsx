@@ -73,7 +73,15 @@ export default function ExplorerDirectoryCard({
         </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
-          <span className="text-zinc-500 dark:text-zinc-400">{hostOf(url)}</span>
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-zinc-500 underline-offset-2 transition-colors hover:text-sky-600 hover:underline dark:text-zinc-400 dark:hover:text-sky-400"
+          >
+            {hostOf(url)}
+            <span aria-hidden="true">↗</span>
+          </a>
           {badge && (
             <span className={`rounded-full px-2 py-0.5 font-medium ${badgeClass}`}>{badge}</span>
           )}
