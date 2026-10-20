@@ -1,6 +1,5 @@
 "use client";
 
-import { formatString } from "@/lib/helpers";
 import Image from "next/image";
 
 type ExplorerDirectoryCardProps = {
@@ -9,9 +8,19 @@ type ExplorerDirectoryCardProps = {
   url: string;
   thumbnailImage: string;
   thumbnailImageLight?: string;
+  badge?: string;
+  badgeTone?: "neutral" | "warning";
   ctaLabel: string;
   features?: string[];
 };
+
+function hostOf(url: string) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
 
 export default function ExplorerDirectoryCard({
   title,
@@ -19,17 +28,25 @@ export default function ExplorerDirectoryCard({
   url,
   thumbnailImage,
   thumbnailImageLight,
+  badge,
+  badgeTone = "neutral",
   ctaLabel,
   features = [],
 }: ExplorerDirectoryCardProps) {
+  const badgeClass =
+    badgeTone === "warning"
+      ? "bg-amber-100 text-amber-800 dark:bg-amber-500/15 dark:text-amber-300"
+      : "bg-zinc-100 text-zinc-600 dark:bg-white/10 dark:text-zinc-300";
+
   return (
     <article className="group h-full rounded-2xl border border-zinc-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-zinc-700 dark:bg-slate-800">
       <div className="flex h-full min-w-0 flex-col">
-        {/* Logo files are prepared at 2x for a 52px row with the same
-            letter height (about 14px), so they are served as-is. The dark
-            tile is the project's own artwork; the light file (transparent,
-            dark text) is shown on the light theme when there is one. */}
-        <div className="mb-4 flex h-[52px] items-center">
+        {/* The logo carries the name, so the title is for screen readers
+            only. Logo files are prepared at 2x for a 52px row with the same
+            letter height; the light file (transparent, dark text) is shown
+            on the light theme when there is one. */}
+        <h3 className="sr-only">{title}</h3>
+        <div className="flex h-[52px] items-center">
           <Image
             src={thumbnailImage}
             alt={`${title} logo`}
@@ -51,32 +68,37 @@ export default function ExplorerDirectoryCard({
             />
           )}
         </div>
-        <h3 className="mb-3 wrap-break-word text-xl font-bold text-zinc-900 dark:text-white">
-          {title}
-        </h3>
 
-        <p className="mb-5 min-w-0 flex-1 wrap-break-word text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+        <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
+          <span className="text-zinc-500 dark:text-zinc-400">{hostOf(url)}</span>
+          {badge && (
+            <span className={`rounded-full px-2 py-0.5 font-medium ${badgeClass}`}>{badge}</span>
+          )}
+        </div>
+
+        <p className="mt-4 min-w-0 flex-1 wrap-break-word text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
           {description}
         </p>
 
         {features.length > 0 && (
-          <div className="mb-5">
-            <h4 className="mb-2 font-semibold text-zinc-500">Features:</h4>
-            <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-600 dark:text-zinc-400">
+          <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Features">
             {features.map((feature, index) => (
-              <li key={`${title}-${feature}-${index}`}>
-                {formatString.titleCase(feature)}
+              <li
+                key={`${title}-${feature}-${index}`}
+                className="rounded-md border border-zinc-200 px-2 py-0.5 text-xs text-zinc-600 dark:border-zinc-600 dark:text-zinc-300"
+              >
+                {feature}
               </li>
             ))}
-            </ul>
-          </div>
-         )}
+          </ul>
+        )}
 
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-brand mt-auto inline-flex w-fit items-center rounded-xl px-5 py-2.5 text-sm font-medium transition-transform duration-200 group-hover:scale-[1.01]"
+          aria-label={`${ctaLabel}: ${title}`}
+          className="btn-brand mt-6 inline-flex w-fit items-center rounded-xl px-5 py-2.5 text-sm font-medium transition-transform duration-200 group-hover:scale-[1.01]"
         >
           {ctaLabel}
         </a>

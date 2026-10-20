@@ -34,6 +34,8 @@ const BlockchainExplorersClient = () => {
           <ExplorerDirectoryCard
             thumbnailImage={itm.thumbnailImage}
             thumbnailImageLight={itm.thumbnailImageLight}
+            badge={itm.badge}
+            badgeTone={itm.badgeTone}
             description={itm.description}
             title={itm.title}
             url={itm.url}
