@@ -29,9 +29,7 @@ export default function BeliefsSection() {
             key={index}
             className="flex h-full flex-col gap-4 rounded-xl border border-slate-200 bg-slate-50/60 p-5 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-brand dark:text-brand-soft">
-              <Check aria-hidden="true" className="h-4 w-4" />
-            </span>
+            <Check aria-hidden="true" className="h-5 w-5 text-brand dark:text-brand-soft" strokeWidth={2.5} />
             <p className="m-0 text-[0.95rem] font-medium leading-snug text-slate-900 dark:text-slate-100">{belief}</p>
           </div>
         ))}
