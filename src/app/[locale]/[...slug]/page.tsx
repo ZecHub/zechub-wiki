@@ -836,7 +836,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
       }
       // 8. Shortcuts after the summary box.
       const cands: [RegExp, string, string][] = [
-        [/^step-by-step/i, "Step by step", "From address to order"],
+        [/^step-by-step/i, "Step by step", "The full procedure"],
         [/^route 1/i, "Route 1", "Pay the service directly"],
         [/^route 2/i, "Route 2", "Services without ZEC"],
         [/^what you need/i, "What you need", "Before you start"],

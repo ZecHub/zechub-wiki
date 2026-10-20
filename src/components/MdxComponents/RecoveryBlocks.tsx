@@ -1,4 +1,4 @@
-import { ArrowDown, ShieldAlert } from "lucide-react";
+import { ArrowDown, Info, ShieldAlert } from "lucide-react";
 
 const ROUTES = [
   { label: "Restore with Zkool", hint: "Seed phrase or private key", href: "#fund-recovery-with-zkool" },
@@ -33,15 +33,26 @@ export function RecoveryNav() {
 }
 
 // Amber safety callout: icon, title and short text.
+// Summaries, tips and status notes read as information (blue); everything else stays a warning (amber).
+const INFO_TITLE = /^(tl;dr|progress|what you.ll learn|note|tip|new to zcash\??|keep in mind|good to know|recommended)$/i;
+
 export function GuideCallout({ children, ...props }: Record<string, unknown> & { children?: React.ReactNode }) {
+  const title = String(props.title ?? "");
+  const info = INFO_TITLE.test(title.trim());
+  const Icon = info ? Info : ShieldAlert;
   return (
     <aside
       role="note"
-      className="not-prose my-8 flex gap-4 rounded-xl border border-amber-500/40 bg-amber-500/5 p-5 dark:bg-amber-400/10"
+      className={`not-prose my-8 flex gap-4 rounded-xl border p-5 ${
+        info ? "border-brand/40 bg-brand/5 dark:bg-brand/10" : "border-amber-500/40 bg-amber-500/5 dark:bg-amber-400/10"
+      }`}
     >
-      <ShieldAlert aria-hidden="true" className="mt-0.5 h-6 w-6 shrink-0 text-amber-600 dark:text-amber-400" />
+      <Icon
+        aria-hidden="true"
+        className={`mt-0.5 h-6 w-6 shrink-0 ${info ? "text-brand dark:text-brand-soft" : "text-amber-600 dark:text-amber-400"}`}
+      />
       <div className="min-w-0">
-        <p className="m-0 text-base font-semibold text-slate-900 dark:text-white">{String(props.title ?? "")}</p>
+        <p className="m-0 text-base font-semibold text-slate-900 dark:text-white">{title}</p>
         <div className="mt-1 text-[0.95rem] leading-relaxed text-slate-700 dark:text-slate-300">{children}</div>
       </div>
     </aside>

@@ -1,10 +1,7 @@
-'use client'; 
+"use client";
 
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-import { StarIcon } from "@heroicons/react/24/solid";
-import { Icon } from "../UI/Icon";
-import { MdOpenInNew as openNew } from "react-icons/md";
+import { ArrowUpRight } from "lucide-react";
 
 interface PaymentProcessor {
   name: string;
@@ -18,97 +15,90 @@ interface PaymentProcessorListProps {
   allProcessors: PaymentProcessor[];
 }
 
-const PaymentProcessorList: React.FC<PaymentProcessorListProps> = ({
-  allProcessors,
-}) => {
+function hostOf(url: string) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+}
+
+const PaymentProcessorList: React.FC<PaymentProcessorListProps> = ({ allProcessors }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {allProcessors.map((processor, index) => (
-        <div
-          key={index}
-          className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow bg-white dark:bg-gray-800 flex flex-col h-full relative"
-        >
-          {/* Logo with hover effect */}
-          <div className="relative mb-4">
-            <div className="flex items-center">
-              {processor.logoUrl && (
-                <div className="mr-4 flex-shrink-0 bg-gray-100 h-24 w-24 dark:bg-gray-700 p-2 rounded-lg relative overflow-hidden">
-                  <Image
-                    src={
-                      processor.logoUrl.startsWith("http") ||
-                      processor.logoUrl.startsWith("/")
-                        ? processor.logoUrl
-                        : `/images/processors/${processor.logoUrl}`
-                    }
-                    alt={`${processor.name} logo`}
-                    width={80}
-                    height={80}
-                    className="object-contain w-full h-full"
-                    loading="lazy"
-                    style={{
-                      opacity: 1,
-                      transition: "opacity 0.3s ease-in-out",
-                    }}
-                  />
+    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {allProcessors.map((processor, index) => {
+        const host = hostOf(processor.url);
+        const shielded = processor.supportType.includes("Shielded");
+        const logo = processor.logoUrl
+          ? processor.logoUrl.startsWith("http") || processor.logoUrl.startsWith("/")
+            ? processor.logoUrl
+            : `/images/processors/${processor.logoUrl}`
+          : "";
+        return (
+          <article
+            key={index}
+            className="flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-slate-50/60 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40"
+          >
+            <div className="flex flex-1 flex-col p-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex min-w-0 items-center gap-3">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 p-1.5 ring-1 ring-slate-200 dark:bg-white/[0.06] dark:ring-white/10">
+                    {logo ? (
+                      <Image
+                        src={logo}
+                        alt={`${processor.name} logo`}
+                        width={48}
+                        height={48}
+                        className="h-full w-full object-contain"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span aria-hidden="true" className="text-lg font-semibold text-brand">
+                        {processor.name.charAt(0).toUpperCase()}
+                      </span>
+                    )}
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="m-0 wrap-break-word text-lg font-semibold leading-tight text-slate-900 dark:text-white">
+                      {processor.name}
+                    </h3>
+                    {host && <p className="m-0 mt-0.5 truncate text-xs text-slate-500 dark:text-slate-400">{host}</p>}
+                  </div>
                 </div>
-              )}
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                {processor.name}
-              </h3>
+                <a
+                  href={processor.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${processor.name} (opens in a new tab)`}
+                  className="inline-flex shrink-0 items-center gap-1 self-start whitespace-nowrap rounded-lg border border-brand/50 px-3.5 py-1.5 text-sm font-semibold text-brand no-underline transition-colors hover:border-brand hover:bg-brand/10 dark:text-brand-soft dark:hover:text-white"
+                >
+                  Open
+                  <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                </a>
+              </div>
+
+              <p className="mb-0 mt-4 min-w-0 wrap-break-word text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                {processor.description}
+              </p>
             </div>
-          </div>
 
-          {/* Support Type */}
-          <div className="mb-3">
-            <span
-              className={`inline-block text-sm px-3 py-1 rounded-full ${
-                processor.supportType.includes("Shielded")
-                  ? "bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200"
-                  : "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200"
-              }`}
-            >
-              {processor.supportType}
-            </span>
-          </div>
-
-          {/* Rating */}
-
-          {/* <div className="mb-3 flex items-center">
-            <div className="flex">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <StarIcon
-                  key={star}
-                  className={`h-5 w-5 ${
-                    star <= 4
-                      ? "text-yellow-400"
-                      : "text-gray-300 dark:text-gray-600"
-                  }`}
-                />
-              ))}
+            <div className="border-t border-slate-200 px-4 py-3 dark:border-white/10">
+              <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">
+                Support
+              </p>
+              <span
+                className={`inline-block rounded-full border px-2.5 py-0.5 text-[13px] ${
+                  shielded
+                    ? "border-brand/50 bg-brand/10 text-brand dark:text-brand-soft"
+                    : "border-slate-300 bg-slate-200 text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-200"
+                }`}
+              >
+                {processor.supportType}
+              </span>
             </div>
-            <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
-              {3}
-            </span>
-          </div> */}
-
-          <p className="text-gray-600 dark:text-gray-300 mb-5 flex-grow">
-            {processor.description}
-          </p>
-
-          {/* Bottom link */}
-          <div className="mt-auto">
-            <Link
-              href={processor.url}
-              className="px-2 py-2 border border-slate-500 dark:border-slate-400 text-slate-500 dark:text-slate-400 text-xs hover:text-white hover:bg-slate-500 rounded-lg transition duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open
-              <Icon icon={openNew} className="inline-block ms-2" size="small" />
-            </Link>
-          </div>
-        </div>
-      ))}
+          </article>
+        );
+      })}
     </div>
   );
 };
