@@ -16,6 +16,7 @@ import LinkButton from "./LinkButton";
 import JumpNav from "./JumpNav";
 import ExchangeLinkCard from "./ExchangeLinkCard";
 import VideoBlock from "./VideoBlock";
+import CodeBlock from "./CodeBlock";
 
 // Pull a YouTube video id out of any embed/watch/short/v/youtu.be URL form.
 // Requires a YouTube host first (no over-match of unrelated iframes).
@@ -254,12 +255,7 @@ const MdxComponents = {
     );
   },
 
-  pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => (
-    <pre
-      className="my-6 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-5 font-mono text-sm leading-relaxed text-slate-800 dark:border-white/10 dark:bg-[#040f1d] dark:text-slate-100 [&_code]:!m-0 [&_code]:!translate-y-0 [&_code]:!border-0 [&_code]:!bg-transparent [&_code]:!p-0"
-      {...props}
-    />
-  ),
+  pre: (props: HTMLProps<HTMLPreElement>): JSX.Element => <CodeBlock {...props} />,
 
   // Tables: quiet header, hairline rows, brand-tinted hover.
   table: (props: HTMLProps<HTMLTableElement>): JSX.Element => (

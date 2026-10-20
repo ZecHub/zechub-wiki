@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -650,6 +650,200 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         let at = first;
         while (at > 0 && (el(rows[at - 1], "hr") || isBlank(rows[at - 1]))) at--;
         rows.splice(at, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items) }, children: [] });
+      }
+    }
+    if (opts.zal && Array.isArray(tree.children)) {
+      const rows: any[] = tree.children;
+      const el = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const clean = (x: any) => textOf(x).replace(/#$/, "").trim();
+      // TL;DR becomes a highlighted summary box (its heading becomes the box title).
+      const tl = rows.findIndex((x) => el(x, "h2") && /^tl;dr$/i.test(clean(x)));
+      if (tl > -1) {
+        let b = tl + 1;
+        while (b < rows.length && isBlank(rows[b])) b++;
+        if (el(rows[b], "ul")) {
+          rows[b] = { type: "element", tagName: "guidecallout", properties: { title: "TL;DR" }, children: [rows[b]] };
+          rows.splice(tl, 1);
+        }
+      }
+      // Per-command warnings as callouts.
+      for (let k = 0; k < rows.length; k++) {
+        if (el(rows[k], "blockquote") && /^\s*wallet must be unlocked/i.test(textOf(rows[k]))) {
+          rows[k] = { type: "element", tagName: "guidecallout", properties: { title: "Before you run it" }, children: (rows[k].children || []).filter((c: any) => !isBlank(c)) };
+        }
+      }
+      // "Required" column values become badges.
+      const badge = (yes: boolean, label: string) => ({
+        type: "element",
+        tagName: "span",
+        properties: {
+          className: yes
+            ? ["inline-block", "rounded-full", "border", "border-brand/50", "bg-brand/10", "px-2.5", "py-0.5", "text-xs", "font-medium", "text-brand", "dark:text-brand-soft"]
+            : ["inline-block", "rounded-full", "border", "border-slate-300", "px-2.5", "py-0.5", "text-xs", "text-slate-500", "dark:border-white/15", "dark:text-slate-400"],
+        },
+        children: [{ type: "text", value: label }],
+      });
+      const fixTables = (node: any) => {
+        for (const c of node.children || []) {
+          if (el(c, "table")) {
+            const trs: any[] = [];
+            const collect = (n: any) => {
+              for (const ch of n.children || []) {
+                if (el(ch, "tr")) trs.push(ch);
+                else if (ch.children) collect(ch);
+              }
+            };
+            collect(c);
+            const cells = (tr: any) => (tr.children || []).filter((q: any) => el(q, "th") || el(q, "td"));
+            const head = trs.length ? cells(trs[0]) : [];
+            const ri = head.findIndex((h: any) => /^required$/i.test(textOf(h).trim()));
+            if (ri > -1) {
+              for (const tr of trs.slice(1)) {
+                const td = cells(tr)[ri];
+                if (!td) continue;
+                const v = textOf(td).trim().toLowerCase();
+                if (v === "yes") td.children = [badge(true, "Required")];
+                else if (v === "no") td.children = [badge(false, "Optional")];
+              }
+            }
+          } else if (c.children) fixTables(c);
+        }
+      };
+      fixTables({ children: rows });
+      // Command index by group, before the first section.
+      const first = rows.findIndex((x) => el(x, "guidecallout") || el(x, "h2"));
+      if (first > -1) {
+        const items = [
+          { label: "Decode & verify", hint: "Transactions, scripts, messages", href: "#decoderawtransaction" },
+          { label: "Wallet status", hint: "Info, status, addresses", href: "#getwalletinfo" },
+          { label: "Accounts", hint: "Create, list, addresses", href: "#z-getaccount" },
+          { label: "Balances", hint: "Per account and total", href: "#z-getbalances" },
+          { label: "Keys & import", hint: "Export and import keys", href: "#z-exportkey" },
+          { label: "Send & shield", hint: "z_sendmany and more", href: "#z-sendmany" },
+          { label: "Operations", hint: "Check async results", href: "#z-getoperationresult" },
+          { label: "Lock & unlock", hint: "Passphrase handling", href: "#walletlock" },
+        ];
+        const at = el(rows[first], "guidecallout") ? first + 1 : first;
+        rows.splice(at, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items), title: "Command index" }, children: [] });
+      }
+    }
+    if (opts.uc && Array.isArray(tree.children)) {
+      const rows: any[] = tree.children;
+      const nm = (x: any): string => (x ? (x.type === "element" ? x.tagName : x.type === "mdxJsxFlowElement" || x.type === "mdxJsxTextElement" ? x.name : "") : "") || "";
+      const isH = (x: any, tag: string) => nm(x) === tag;
+      const clean = (x: any) => textOf(x).replace(/#$/, "").trim();
+      const slugOf = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      const stripImgs = (x: any) => {
+        if (!Array.isArray(x.children)) return;
+        x.children = x.children.filter((c: any) => nm(c) !== "img");
+        x.children.forEach(stripImgs);
+      };
+      // 1. Remove spacer <br>s and the decorative icons in headings.
+      for (let k = rows.length - 1; k >= 0; k--) {
+        if (nm(rows[k]) === "br") rows.splice(k, 1);
+        else if (isH(rows[k], "h1") || isH(rows[k], "h2") || isH(rows[k], "h3")) stripImgs(rows[k]);
+      }
+      // 2. Level/time line as a pill.
+      for (let k = 0; k < rows.length; k++) {
+        if (nm(rows[k]) === "span" && /^(beginner|intermediate|advanced)\b/i.test(textOf(rows[k]).trim())) {
+          rows[k] = {
+            type: "element",
+            tagName: "div",
+            properties: { className: ["my-4"] },
+            children: [
+              {
+                type: "element",
+                tagName: "span",
+                properties: { className: ["inline-flex", "items-center", "rounded-full", "border", "border-brand/50", "bg-brand/10", "px-3", "py-1", "text-sm", "font-medium", "text-brand", "dark:text-brand-soft"] },
+                children: [{ type: "text", value: textOf(rows[k]).trim() }],
+              },
+            ],
+          };
+          break;
+        }
+      }
+      const body = (k: number) => {
+        let q = k + 1;
+        while (q < rows.length && isBlank(rows[q])) q++;
+        return q;
+      };
+      // 3. TL;DR as a summary box; Progress as a status box.
+      for (const [re, title] of [[/^tl;dr$/i, "TL;DR"]] as [RegExp, string][]) {
+        const k = rows.findIndex((x) => isH(x, "h2") && re.test(clean(x)));
+        if (k > -1) {
+          const b = body(k);
+          if (nm(rows[b]) === "ul") {
+            rows[b] = { type: "element", tagName: "guidecallout", properties: { title }, children: [rows[b]] };
+            rows.splice(k, 1);
+          }
+        }
+      }
+      const pg = rows.findIndex((x) => isH(x, "h2") && /^progress$/i.test(clean(x)));
+      if (pg > -1) {
+        let end = pg + 1;
+        while (end < rows.length && !isH(rows[end], "h2") && nm(rows[end]) !== "hr") end++;
+        const inner = rows.slice(pg + 1, end).filter((x) => !isBlank(x));
+        if (inner.length) rows.splice(pg, end - pg, { type: "element", tagName: "guidecallout", properties: { title: "Progress" }, children: inner });
+      }
+      // 4. Next step as a button.
+      const ns = rows.findIndex((x) => isH(x, "h2") && /^next step$/i.test(clean(x)));
+      if (ns > -1) {
+        const b = body(ns);
+        const findA = (x: any): any => {
+          if (nm(x) === "a") return x;
+          for (const c of x.children || []) {
+            const r = findA(c);
+            if (r) return r;
+          }
+          return null;
+        };
+        const a = nm(rows[b]) === "ul" ? findA(rows[b]) : null;
+        const href = a ? a.properties?.href : null;
+        if (href) rows.splice(b, 1, { type: "element", tagName: "linkbutton", properties: { href, label: textOf(a).trim() }, children: [] });
+      }
+      // 5. Step subheadings (hairline, no badge) so they do not clash with section numbers.
+      for (let k = 0; k < rows.length; k++) {
+        if (isH(rows[k], "h3")) {
+          rows[k] = { type: "element", tagName: "h3", properties: { dataRule: "true" }, children: [{ type: "text", value: textOf(rows[k]).trim() }] };
+        }
+      }
+      // 6. Number the narrative sections.
+      let num = 0;
+      for (const re of [/^who is this for/i, /^the problem/i, /^why zcash/i, /^what you need/i, /^step-by-step/i, /^result/i]) {
+        const k = rows.findIndex((x) => isH(x, "h2") && re.test(clean(x)));
+        if (k > -1 && rows[k].type === "element") {
+          num++;
+          rows[k].properties = { ...(rows[k].properties || {}), dataStep: String(num) };
+        }
+      }
+      // 7. Hairline between sections.
+      for (let k = 1; k < rows.length; k++) {
+        if (!isH(rows[k], "h2")) continue;
+        let q = k - 1;
+        while (q >= 0 && isBlank(rows[q])) q--;
+        if (q >= 0 && nm(rows[q]) !== "hr") {
+          rows.splice(k, 0, { type: "element", tagName: "hr", properties: {}, children: [] });
+          k++;
+        }
+      }
+      // 8. Shortcuts after the summary box.
+      const cands: [RegExp, string, string][] = [
+        [/^the problem/i, "The problem", "What is exposed today"],
+        [/^why zcash/i, "Why Zcash", "What shielding changes"],
+        [/^what you need/i, "What you need", "Before you start"],
+        [/^step-by-step/i, "Step by step", "From address to order"],
+        [/^common mistakes/i, "Mistakes", "What to avoid"],
+      ];
+      const items: any[] = [];
+      for (const [re, label, hint] of cands) {
+        const h = rows.find((x) => isH(x, "h2") && re.test(clean(x)));
+        if (h) items.push({ label, hint, href: "#" + slugOf(clean(h)) });
+      }
+      if (items.length >= 2) {
+        const sum = rows.findIndex((x) => nm(x) === "guidecallout");
+        const firstH2 = rows.findIndex((x) => isH(x, "h2"));
+        const at = sum > -1 && (firstH2 < 0 || sum < firstH2) ? sum + 1 : firstH2;
+        if (at > -1) rows.splice(at, 0, { type: "element", tagName: "jumpnav", properties: { items: JSON.stringify(items.slice(0, 4)) }, children: [] });
       }
     }
     const walk = (node: any) => {
@@ -1695,6 +1889,8 @@ export default async function Page(props: {
             txn: slug[0] === "using-zcash" && slug[1] === "transactions",
             ua: slug[0] === "using-zcash" && slug[1] === "unified-addresses",
             mine: slug[0] === "using-zcash" && slug[1] === "zcash-mining-guide",
+            zal: slug[0] === "using-zcash" && slug[1] === "zallet-quick-reference-guide",
+            uc: slug[0] === "zcash-use-cases" && slug.length > 1,
             sol: slug[0] === "using-zcash" && slug[1] === "solana-zec-to-shielded",
           },
         ],
@@ -1771,7 +1967,7 @@ export default async function Page(props: {
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.
-        hideBanner={["using-zcash", "start-here"].includes(slug[0])}
+        hideBanner={["using-zcash", "start-here", "zcash-use-cases"].includes(slug[0])}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={

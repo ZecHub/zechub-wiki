@@ -9,7 +9,7 @@ export default function JumpNav(props: Record<string, unknown>) {
   return (
     <nav aria-label="On this page" className="not-prose my-8">
       <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
-        Quick answers
+        {String(props.title || "Quick answers")}
       </p>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((r) => (
