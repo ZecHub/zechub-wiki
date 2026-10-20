@@ -97,7 +97,7 @@ export const blockchainExplorers = [
       'Network nodes',
     ],
     url: 'https://mainnet.zcashexplorer.app/',
-    thumbnailImage: '/explorer/zcashblockexplorer.png',
+    thumbnailImage: '/explorer/zcashexplorer-app.png',
   },
   {
     title: 'Zexplorer (in development)',
