@@ -47,13 +47,7 @@ export default function ExplorerDirectoryCard({
         {features.length > 0 && (
           <div className="mb-5">
             <h4 className="mb-2 font-semibold text-zinc-500">Features:</h4>
-            <ul
-              className={
-                title === "Bitquery"
-                  ? "grid grid-cols-2 gap-x-6 gap-y-1 list-disc pl-5 text-sm text-zinc-600 dark:text-zinc-400"
-                  : "list-disc space-y-1 pl-5 text-sm text-zinc-600 dark:text-zinc-400"
-              }
-            >
+            <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-600 dark:text-zinc-400">
             {features.map((feature, index) => (
               <li key={`${title}-${feature}-${index}`}>
                 {formatString.titleCase(feature)}

@@ -1,30 +1,29 @@
 export const blockchainExplorers = [
   {
-    title: 'Blockchair',
-    description:
-      'Blockchair is the most private blockchain search engine. It develops products that make blockchain data accessible to individuals, development teams, and research organizations',
-    features: ['Blockchain explorer', 'analytics', 'web services'],
-    url: 'https://blockchair.com/zcash/',
-    thumbnailImage: '/explorer/Blockchair.png',
-  },
-  {
     title: 'ZecBlock',
     description:
-      'Zcash blockchain explorer, formerly CipherScan. Blocks, transactions, shielded pools, mempool, and network data. Homepage cards stay in the browser. Ask ZecBlock (beta) answers from indexed public chain data. Old cipherscan.app links redirect here.',
-    features: ['Formerly CipherScan', 'shielded pool statistics', 'mainnet & testnet', 'mempool and Ironwood', 'Orchard support'],
+      'Zcash block explorer and privacy analytics, formerly CipherScan (old cipherscan.app links redirect here). Blocks, transactions, addresses and mempool, plus shielded pool and Ironwood data, privacy analytics, developer tools and an API. Ask ZecBlock (beta) answers questions from indexed public chain data.',
+    features: [
+      'Formerly CipherScan',
+      'Shielded pools and Ironwood',
+      'Privacy analytics and network pulse',
+      'Decode, broadcast, decrypt memo',
+      'Mainnet, testnet and Crosslink',
+      'Public API',
+    ],
     url: 'https://zecblock.com/',
     thumbnailImage: '/explorer/Cipherscan.png',
   },
   {
     title: 'ShieldedScan',
     description:
-      'A cypherpunk-style Zcash block explorer with in-depth data on shielded pools, cross-chain flows and network activity. Includes Zeno, an AI agent that answers questions about chain data, a free keyless API and an MCP server so any AI assistant can query it. Source: https://github.com/BitFalco21/shieldedscan (AGPL-3.0).',
+      'A privacy-first Zcash block explorer where shielded activity is a first-class citizen. Tracks shielded supply across Ironwood, Orchard, Sapling and Sprout, cross-chain swaps (NEAR Intents, Maya Protocol), reorgs and network stats. Includes Zeno, an AI assistant for chain data, a free keyless API and an MCP server. Open source (AGPL-3.0).',
     features: [
       'No tracker',
       'Mainnet and testnet',
       'Sprout, Sapling, Orchard, Ironwood',
-      'Cross-chain flows',
-      'Free & Keyless API',
+      'Cross-chain swaps',
+      'Free and keyless API, MCP server',
       'Self-hostable',
     ],
     url: 'https://shieldedscan.xyz/',
@@ -33,13 +32,14 @@ export const blockchainExplorers = [
   {
     title: 'ZEC-OS',
     description:
-      'Browser desktop for the Zcash ecosystem with a mainnet and testnet explorer, mempool viewer, network stats, historical charts, shielded pool data, and a Unified Address decoder. Next.js front end over a Fastify, Prisma, and PostgreSQL index.',
+      'A Zcash explorer built for a privacy chain, inside a browser desktop: every result opens in its own window. Decodes Unified Addresses into their transparent, Sapling and Orchard receivers, shows memos on shielded transactions you can view, and names the mining pool behind each block.',
     features: [
-      'Mainnet and testnet explorer',
-      'Mempool viewer',
-      'Shielded pool data',
-      'Network stats and charts',
       'Unified Address decoder',
+      'Shielded memos (when yours to see)',
+      'Miner identity per block',
+      'Block Map and Chain Pulse visuals',
+      'Jump to landmark blocks',
+      'Mainnet and testnet, mempool viewer',
     ],
     url: 'https://www.zec-os.com/explorer',
     thumbnailImage: '/explorer/zec-os.png',
@@ -60,49 +60,14 @@ export const blockchainExplorers = [
     thumbnailImage: '/explorer/zcashinfo.png',
   },
   {
-    title: 'Zexplorer',
-    description:
-      ' A Zcash-only explorer and API that tries to be precise about what public chain data can show, what is private by design, and what a client can safely depend on',
-    features: ['Block Explorer', 'Transaction Explorer', 'Search Functionality', 'Address Lookup', 'Mempool / Pending Transactions', 'Network Stats'],
-    url: 'https://zexplorer.app/testnet/',
-    thumbnailImage: '/explorer/zexplorer.png',
-  },
-  {
-    title: 'Zecstats',
-    description:
-      'A blockchain analytics platform for Zcash that provides real-time network statistics, privacy analytics, market insights, and interactive data visualization.',
-    features: ['Real-Time Zcash Network Dashboard', 'Advanced On-Chain Analytics', 'Privacy & Shielded Pool Analytics', 'Market & Price Analysis', 'Mining & Network Security Monitoring', 'Interactive Data Visualization', 'Ecosystem & Liquidity Tracking', 'Network Comparison & Growth Analysis'],
-    url: 'https://zecstats.com/',
-    thumbnailImage: '/explorer/zecstats.jpg',
-  },
-  {
-    title: 'Zecsite',
-    description:
-      'A lightweight static website generator designed for the Zcash ecosystem, enabling users to create, publish, and manage decentralized-friendly websites using a simple Java-based architecture.',
-    features: ['Java-Based Static Website Generation', 'Zcash Community News Platform', 'Static Site Architecture', 'Pip-Boy Inspired User Interface', 'Blockchain-Focused Content Organization', 'Lightweight and Efficient Deployment', 'Customizable Website Templates', 'Privacy-Oriented Web Publishing', 'Developer-Friendly Workflow'],
-    url: 'https://zecsite.org/pipboy/en/index.html',
-    thumbnailImage: '/explorer/zecsite.png',
-  },
-  {
-    title: 'MESSARI',
-    description:
-      'Messari brings transparency to the cryptoeconomy; helping investors, regulators, and the public make sense of this revolutionary new asset class...',
-    features: [
-      'Market intelligence',
-      'asset profiles',
-      'research and insights',
-    ],
-    url: 'https://messari.io/project/zcash',
-    thumbnailImage: '/explorer/messari.io.png',
-  },
-  {
     title: '3xpl',
     description:
-      '3xpl is a super-fast, universal explorer for most popular public blockchains.',
+      'A fast multi-chain explorer with a Zcash section: blocks, transactions, addresses, balances and mempool. Built for developers and analysts too, with JSON and WebSocket APIs, downloadable data dumps and an online ClickHouse database.',
     features: [
       'Multi-chain explorer',
-      'fast transaction lookup',
-      'address and block search',
+      'Blocks, transactions, addresses',
+      'JSON and WebSocket APIs',
+      'Data dumps and ClickHouse',
     ],
     url: 'https://3xpl.com/zcash',
     thumbnailImage: '/explorer/3xpl.png',
@@ -110,32 +75,44 @@ export const blockchainExplorers = [
   {
     title: 'BlockExplorer.one',
     description:
-      'Blockexplorer.one is a blockchain browser where you can search for information on several blockchains.',
-    features: ['mainnets', 'testnets', 'multiply blockchains'],
+      'A multi-chain explorer covering about ten blockchains, including Zcash mainnet and testnet: latest blocks and transactions, fee estimates and market data. Address pages show the last 14 days of transactions; full history needs its Address History APIs.',
+    features: [
+      'Mainnet and testnet',
+      'Fee estimates',
+      'Broadcast signed transactions',
+      'Multiple blockchains',
+    ],
     url: 'https://blockexplorer.one/zcash/mainnet',
     thumbnailImage: '/explorer/BlockchExplorer.one.png',
   },
   {
     title: 'Zcash Block Explorer',
-    description: 'No tracker #Zcash Block Explore',
+    description:
+      "Nighthawk's open-source Zcash explorer, successor of zcashblockexplorer.com. Blocks, transactions and mempool, network nodes, and tools to broadcast a transaction, verify a payment disclosure and view transactions with a viewing key. No trackers.",
+    features: [
+      'No tracker',
+      'Mainnet',
+      'Viewing key and payment disclosure tools',
+      'Broadcast transaction',
+      'Network nodes',
+    ],
     url: 'https://mainnet.zcashexplorer.app/',
-    features: ['No tracker', 'mainnet', 'testnet'],
     thumbnailImage: '/explorer/zcashblockexplorer.png',
   },
   {
-    title: 'Bitquery',
+    title: 'Zexplorer (in development)',
     description:
-      'Bitquery Inc. is an API-first product company dedicated to power and solve blockchain data problems using the ground truth of on-chain data.',
-    features: [
-      'Real-time data',
-      'historical data',
-      'GraphQl APIs',
-      'SQL',
-      'WebSockets',
-      'AWS',
-      'Google Cloud',
-    ],
-    url: 'https://explorer.bitquery.io/zcash',
-    thumbnailImage: '/explorer/Bitquery.png',
+      'A Zcash-only explorer and public API (Zinder) that is precise about what public chain data can show and what is private by design. In development: testnet works, mainnet pages and API calls are not reliable yet.',
+    features: ['Testnet live, mainnet in development', 'Blocks, transactions, mempool', 'Chain reorg history', 'Public REST API with freshness data', 'ZIP-311 payment disclosure check'],
+    url: 'https://zexplorer.app/testnet/',
+    thumbnailImage: '/explorer/zexplorer.png',
+  },
+  {
+    title: 'Zecstats (analytics, not an explorer)',
+    description:
+      'A Zcash analytics dashboard (no block or transaction search) with real-time network statistics, privacy analytics, market insights, and interactive data visualization.',
+    features: ['Real-Time Zcash Network Dashboard', 'Advanced On-Chain Analytics', 'Privacy & Shielded Pool Analytics', 'Market & Price Analysis', 'Mining & Network Security Monitoring', 'Interactive Data Visualization', 'Ecosystem & Liquidity Tracking', 'Network Comparison & Growth Analysis'],
+    url: 'https://zecstats.com/',
+    thumbnailImage: '/explorer/zecstats.jpg',
   },
 ];
