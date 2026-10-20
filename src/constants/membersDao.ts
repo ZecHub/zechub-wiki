@@ -420,7 +420,7 @@ export const daoMembers = [
   //   role: "",
   // },
   {
-    imgUrl: "/content-images/vito-avatar.jpg",
+    imgUrl: "/content-images/vito-avatar.png",
     name: "vito",
     description: `Data Security Analyst & Core Team Member of ZecHub.`,
     linkName: "Twitter",
