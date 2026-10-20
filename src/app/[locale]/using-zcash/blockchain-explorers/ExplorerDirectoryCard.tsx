@@ -8,6 +8,7 @@ type ExplorerDirectoryCardProps = {
   description: string;
   url: string;
   thumbnailImage: string;
+  thumbnailImageLight?: string;
   ctaLabel: string;
   features?: string[];
 };
@@ -17,6 +18,7 @@ export default function ExplorerDirectoryCard({
   description,
   url,
   thumbnailImage,
+  thumbnailImageLight,
   ctaLabel,
   features = [],
 }: ExplorerDirectoryCardProps) {
@@ -24,7 +26,9 @@ export default function ExplorerDirectoryCard({
     <article className="group h-full rounded-2xl border border-zinc-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-zinc-700 dark:bg-slate-800">
       <div className="flex h-full min-w-0 flex-col">
         {/* Logo files are prepared at 2x for a 52px row with the same
-            letter height (about 14px), so they are served as-is. */}
+            letter height (about 14px), so they are served as-is. The dark
+            tile is the project's own artwork; the light file (transparent,
+            dark text) is shown on the light theme when there is one. */}
         <div className="mb-4 flex h-[52px] items-center">
           <Image
             src={thumbnailImage}
@@ -32,8 +36,20 @@ export default function ExplorerDirectoryCard({
             width={0}
             height={0}
             unoptimized
-            className="h-[52px] w-auto max-w-full rounded-lg object-contain object-left"
+            className={`h-[52px] w-auto max-w-full rounded-lg object-contain object-left ${
+              thumbnailImageLight ? "hidden dark:block" : ""
+            }`}
           />
+          {thumbnailImageLight && (
+            <Image
+              src={thumbnailImageLight}
+              alt={`${title} logo`}
+              width={0}
+              height={0}
+              unoptimized
+              className="h-[52px] w-auto max-w-full object-contain object-left dark:hidden"
+            />
+          )}
         </div>
         <h3 className="mb-3 wrap-break-word text-xl font-bold text-zinc-900 dark:text-white">
           {title}

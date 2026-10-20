@@ -33,6 +33,7 @@ const BlockchainExplorersClient = () => {
         {explorers.map((itm, i) => (
           <ExplorerDirectoryCard
             thumbnailImage={itm.thumbnailImage}
+            thumbnailImageLight={itm.thumbnailImageLight}
             description={itm.description}
             title={itm.title}
             url={itm.url}
