@@ -871,6 +871,29 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         [/private community treasury/i, "private-community-treasury"],
         [/^journalist privacy/i, "journalist-privacy-setup"],
       ];
+      // Sharper, more professional copy for the introduction and usage notes.
+      const setText = (x: any, t: string) => {
+        x.children = [{ type: "text", value: t }];
+      };
+      const setList = (ul: any, texts: string[]) => {
+        const lis = (ul.children || []).filter((c: any) => nm(c) === "li");
+        lis.forEach((li: any, i: number) => {
+          if (texts[i] !== undefined) setText(li, texts[i]);
+        });
+      };
+      const pAt = (re: RegExp) => rows.find((x) => nm(x) === "p" && re.test(textOf(x).trim()));
+      const p1 = pAt(/^zcash is not just about privacy/i);
+      if (p1) setText(p1, "Zcash is built for everyday use, not only for privacy in theory. These guides show how to apply it in real situations: receiving payments, paying for services and protecting your financial data.");
+      const p2 = pAt(/^this section shows you exactly how/i);
+      if (p2) setText(p2, "Each guide is a short, step-by-step playbook with practical recommendations you can follow right away.");
+      const learnUl = rows.find((x) => nm(x) === "ul" && /how to protect your financial privacy/i.test(textOf(x)));
+      if (learnUl) setList(learnUl, ["Protect your financial privacy in everyday transactions", "Avoid the common mistakes that expose your data", "Apply Zcash in real-world situations, from donations to payments"]);
+      const pEach = pAt(/^each playbook is:?$/i);
+      if (pEach) setText(pEach, "Every guide follows the same format:");
+      const fmtUl = rows.find((x) => nm(x) === "ul" && /^\s*short \(5-7 minutes\)/i.test(textOf(x)));
+      if (fmtUl) setList(fmtUl, ["Short: most take 5 to 10 minutes", "Step-by-step, with clear instructions", "Focused on real-world use, not theory"]);
+      const pPath = pAt(/^follow this step-by-step journey/i);
+      if (pPath) setText(pPath, "Follow this recommended order to build real-world Zcash skills one step at a time.");
       // "What You'll Learn" as a highlighted box (its heading becomes the title).
       const wl = rows.findIndex((x) => nm(x) === "h2" && /^what you.ll learn/i.test(clean(x)));
       if (wl > -1) {
