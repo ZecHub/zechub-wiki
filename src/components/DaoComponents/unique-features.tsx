@@ -32,23 +32,24 @@ export default function UniqueFeatures() {
     : defaultFeatures;
 
   return (
-    <section className="space-y-6">
-      <div>
-        <h2 className="text-3xl font-bold dark:text-amber-400 flex items-center gap-3 mb-8">
-          <span className="w-1 h-10 bg-gradient-to-b from-amber-400 to-yellow-300 rounded"></span>
-          {t?.dao?.featuresHeading ?? "What Makes ZecHub Unique?"}
-        </h2>
-      </div>
-      <div className="space-y-4">
+    <section className="space-y-6 border-t border-slate-200 pt-10 dark:border-white/10">
+      <h2 className="m-0 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:text-white">
+        {t?.dao?.featuresHeading ?? "What Makes ZecHub Unique?"}
+      </h2>
+      <div className="!mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
         {features.map((feature: any, index: number) => (
           <div
             key={index}
-            className="dark:bg-slate-800/40 border-l-4 border-amber-400 rounded-lg p-6 dark:hover:bg-slate-800/60 transition-all duration-300 hover:translate-x-1"
+            className="flex h-full flex-col rounded-xl border border-slate-200 bg-slate-50/60 p-5 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40"
           >
-            <h3 className="text-xl font-semibold dark:text-yellow-300 mb-2">
-              {feature.icon} {feature.title}
-            </h3>
-            <p className="dark:text-slate-300 leading-relaxed">
+            <span
+              aria-hidden="true"
+              className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-xl ring-1 ring-slate-200 dark:bg-white/[0.06] dark:ring-white/10"
+            >
+              {feature.icon}
+            </span>
+            <h3 className="m-0 text-lg font-semibold text-slate-900 dark:text-white">{feature.title}</h3>
+            <p className="m-0 mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
               {feature.description}
             </p>
           </div>

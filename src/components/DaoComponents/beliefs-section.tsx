@@ -1,5 +1,6 @@
 "use client";
 
+import { Check } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function BeliefsSection() {
@@ -18,16 +19,23 @@ export default function BeliefsSection() {
     : defaultBeliefs;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      {beliefs.map((belief, index) => (
-        <div
-          key={index}
-          className="dark:bg-slate-800/50 border border-amber-500/20 rounded-xl p-6 backdrop-blur-sm hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1"
-        >
-          <div className="text-2xl mb-3 text-amber-400">✓</div>
-          <p className="font-semibold dark:text-slate-100">{belief}</p>
-        </div>
-      ))}
-    </div>
+    <section className="space-y-6">
+      <h2 className="m-0 text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem] dark:text-white">
+        What We Believe
+      </h2>
+      <div className="!mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {beliefs.map((belief, index) => (
+          <div
+            key={index}
+            className="flex h-full flex-col gap-4 rounded-xl border border-slate-200 bg-slate-50/60 p-5 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-brand dark:text-brand-soft">
+              <Check aria-hidden="true" className="h-4 w-4" />
+            </span>
+            <p className="m-0 text-[0.95rem] font-medium leading-snug text-slate-900 dark:text-slate-100">{belief}</p>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
