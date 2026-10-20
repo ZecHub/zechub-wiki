@@ -49,7 +49,7 @@ export const blockchainExplorers = [
     credit: "ZecBlock API powers ZecHub's dashboard metrics, Halving Meter and Block Time tool.",
     badge: 'Zcash only',
     description:
-      'Zcash block explorer and privacy analytics, formerly CipherScan (old cipherscan.app links redirect here). Blocks, transactions, addresses and mempool, plus shielded pool and Ironwood data, privacy analytics, developer tools and an API. Ask ZecBlock (beta) answers questions from indexed public chain data.',
+      'Zcash block explorer and privacy analytics, formerly cipherscan.app. Blocks, transactions, addresses and mempool, plus shielded pool and Ironwood data, privacy analytics, developer tools and an API. Ask ZecBlock (beta) answers questions from indexed public chain data.',
     features: [
       'Mainnet',
       'Testnet',
