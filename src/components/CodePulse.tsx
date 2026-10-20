@@ -11,6 +11,8 @@ import {
   CircleDot,
   Radio,
   Users,
+  Link2,
+  ChevronDown,
 } from "lucide-react";
 import {
   CartesianGrid,
@@ -22,7 +24,7 @@ import {
   YAxis,
 } from "recharts";
 
-type View = "radicle" | "github";
+type View = "radicle" | "github" | "links";
 type Metric = "seeding" | "open_issues" | "merged_prs" | "stars" | "forks";
 
 interface Project {
@@ -51,6 +53,24 @@ interface HistoryEntry {
     total_open_issues?: number;
     total_merged_prs?: number;
     total_forks?: number;
+  };
+}
+
+interface LinkHealthEntry {
+  date: string;
+  generatedAt: string;
+  filesScanned: number;
+  serious: number;
+  totals: {
+    broken?: number;
+    dns?: number;
+    blocked?: number;
+    redirect?: number;
+    route?: number;
+    asset?: number;
+    timeout?: number;
+    error?: number;
+    invalid?: number;
   };
 }
 
@@ -111,22 +131,36 @@ export default function CodePulse() {
   const [view, setView] = useState<View>("radicle");
   const [radicleHistory, setRadicleHistory] = useState<HistoryEntry[]>([]);
   const [githubHistory, setGithubHistory] = useState<HistoryEntry[]>([]);
+  const [linkHistory, setLinkHistory] = useState<LinkHealthEntry[]>([]);
+  const [latest, setLatest] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [selectedMetric, setSelectedMetric] = useState<Metric>("seeding");
   const [selectedRepo, setSelectedRepo] = useState("all");
+  const [linkMetric, setLinkMetric] = useState<"serious" | "broken" | "blocked" | "redirect">("serious");
 
   useEffect(() => {
     Promise.all([
       fetch("/data/radicle/radicle.json"),
       fetch("/data/github/github.json"),
+      fetch("/data/link-health/history.json").catch(() => null),
+      fetch("/data/link-health/latest.json").catch(() => null),
     ])
-      .then(async ([radRes, gitRes]) => {
+      .then(async ([radRes, gitRes, linkRes, latestRes]) => {
         const [radData, gitData] = await Promise.all([
           radRes.json(),
           gitRes.json(),
         ]);
         setRadicleHistory(Array.isArray(radData) ? radData : []);
         setGithubHistory(Array.isArray(gitData) ? gitData : []);
+
+        if (linkRes && linkRes.ok) {
+          const linkData = await linkRes.json();
+          setLinkHistory(Array.isArray(linkData) ? linkData : []);
+        }
+        if (latestRes && latestRes.ok) {
+          const latestData = await latestRes.json();
+          setLatest(latestData);
+        }
       })
       .catch((error) => console.error("Failed to load Code Pulse data", error))
       .finally(() => setLoading(false));
@@ -137,6 +171,9 @@ export default function CodePulse() {
   const previous = currentHistory.at(-2);
   const currentTotals = getTotals(current, view);
   const previousTotals = getTotals(previous, view);
+
+  const linkCurrent = linkHistory.at(-1);
+  const linkPrevious = linkHistory.at(-2);
 
   const githubRepos = useMemo(() => {
     const names = new Set<string>();
@@ -185,6 +222,14 @@ export default function CodePulse() {
     };
   });
 
+  const linkTrendData = linkHistory.map((entry) => ({
+    date: entry.date,
+    serious: entry.serious,
+    broken: entry.totals?.broken ?? 0,
+    blocked: entry.totals?.blocked ?? 0,
+    redirect: entry.totals?.redirect ?? 0,
+  }));
+
   const projects = current?.projects || [];
   const sortedProjects = [...projects].sort(
     (a, b) => projectActivity(b, view) - projectActivity(a, view),
@@ -197,7 +242,9 @@ export default function CodePulse() {
 
   const changeView = (nextView: View) => {
     setView(nextView);
-    setSelectedMetric(nextView === "radicle" ? "seeding" : "stars");
+    if (nextView !== "links") {
+      setSelectedMetric(nextView === "radicle" ? "seeding" : "stars");
+    }
     if (nextView !== "github") setSelectedRepo("all");
   };
 
@@ -208,7 +255,8 @@ export default function CodePulse() {
       </div>
     );
   }
-  if (!current) {
+
+  if (view !== "links" && !current) {
     return (
       <div className="rounded-3xl border border-red-200 bg-red-50 p-8 text-center text-red-600">
         No Code Pulse data available yet.
@@ -216,8 +264,19 @@ export default function CodePulse() {
     );
   }
 
-  const delta = percentChange(currentTotals.primary, previousTotals.primary);
-  const updatedAt = current.generated_at ? new Date(current.generated_at) : null;
+  const delta =
+    view === "links"
+      ? percentChange(linkCurrent?.serious ?? 0, linkPrevious?.serious)
+      : percentChange(currentTotals.primary, previousTotals.primary);
+
+  const updatedAt =
+    view === "links"
+      ? linkCurrent?.generatedAt
+        ? new Date(linkCurrent.generatedAt)
+        : null
+      : current?.generated_at
+        ? new Date(current.generated_at)
+        : null;
 
   return (
     <div className="space-y-7">
@@ -238,7 +297,11 @@ export default function CodePulse() {
           </div>
           <div className="text-left text-sm text-purple-100 md:text-right">
             <p className="font-semibold text-white">
-              {view === "radicle" ? "Radicle network" : "GitHub projects"}
+              {view === "radicle"
+                ? "Radicle network"
+                : view === "github"
+                  ? "GitHub projects"
+                  : "Link health"}
             </p>
             <p>
               {updatedAt
@@ -252,7 +315,7 @@ export default function CodePulse() {
           role="tablist"
           aria-label="Code Pulse source"
         >
-          {(["radicle", "github"] as View[]).map((item) => (
+          {(["radicle", "github", "links"] as View[]).map((item) => (
             <button
               key={item}
               role="tab"
@@ -264,234 +327,564 @@ export default function CodePulse() {
                   : "text-purple-100 hover:bg-white/10"
               }`}
             >
-              {item}
+              {item === "links" ? (
+                <span className="flex items-center gap-1.5">
+                  <Link2 className="h-4 w-4" />
+                  Link Health
+                </span>
+              ) : (
+                item
+              )}
             </button>
           ))}
         </div>
       </header>
 
-      <section
-        aria-label="Current Code Pulse summary"
-        className="grid grid-cols-2 gap-3 md:grid-cols-4"
-      >
-        <SummaryCard
-          icon={<Radio />}
-          label={view === "radicle" ? "Seeding" : "Stars"}
-          value={currentTotals.primary}
-          delta={delta}
-          tone="purple"
-        />
-        <SummaryCard
-          icon={<CircleDot />}
-          label="Open issues"
-          value={currentTotals.issues}
-          delta={percentChange(currentTotals.issues, previousTotals.issues)}
-          tone="orange"
-        />
-        <SummaryCard
-          icon={<GitPullRequest />}
-          label={view === "radicle" ? "Merged patches" : "Merged PRs"}
-          value={currentTotals.prs}
-          delta={percentChange(currentTotals.prs, previousTotals.prs)}
-          tone="blue"
-        />
-        <SummaryCard
-          icon={view === "radicle" ? <Users /> : <GitBranch />}
-          label={view === "radicle" ? "Delegates" : "Forks"}
-          value={currentTotals.secondary}
-          delta={percentChange(
-            currentTotals.secondary,
-            previousTotals.secondary,
-          )}
-          tone="green"
-        />
-      </section>
-
-      <section className="grid gap-5 lg:grid-cols-[1.35fr_0.65fr]">
-        <div className="rounded-3xl border bg-card p-5 md:p-6">
-          <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
-            <div>
-              <p className="text-sm font-semibold text-muted-foreground">
-                Momentum
-              </p>
-              <h3 className="mt-1 text-xl font-bold">Activity over time</h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {view === "github" && (
-                <select
-                  value={selectedRepo}
-                  onChange={(event) => setSelectedRepo(event.target.value)}
-                  aria-label="Select repository"
-                  className="rounded-xl border bg-background px-3 py-2 text-sm"
-                >
-                  <option value="all">All repositories</option>
-                  {githubRepos.map((repo) => (
-                    <option key={repo} value={repo}>
-                      {repo}
-                    </option>
-                  ))}
-                </select>
-              )}
-              <select
-                value={selectedMetric}
-                onChange={(event) =>
-                  setSelectedMetric(event.target.value as Metric)
-                }
-                aria-label="Select trend metric"
-                className="rounded-xl border bg-background px-3 py-2 text-sm"
-              >
-                {metricOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                data={trendData}
-                margin={{ top: 8, right: 8, left: -20, bottom: 0 }}
-              >
-                <CartesianGrid
-                  strokeDasharray="4 4"
-                  vertical={false}
-                  className="stroke-slate-200 dark:stroke-slate-700"
-                />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={(date) =>
-                    new Date(String(date)).toLocaleDateString(undefined, {
-                      month: "short",
-                      day: "numeric",
-                    })
-                  }
-                  tick={{ fontSize: 11 }}
-                  tickLine={false}
-                  axisLine={false}
-                  minTickGap={32}
-                />
-                <YAxis
-                  tick={{ fontSize: 11 }}
-                  tickLine={false}
-                  axisLine={false}
-                  width={36}
-                />
-                <Tooltip
-                  labelFormatter={(date) =>
-                    new Date(String(date)).toLocaleDateString(undefined, {
-                      dateStyle: "medium",
-                    })
-                  }
-                  formatter={(value: unknown) => [
-                    formatNumber(Number(value)),
-                    metricOptions.find((item) => item.value === selectedMetric)
-                      ?.label,
-                  ]}
-                  contentStyle={{
-                    borderRadius: 14,
-                    border: "1px solid #e2e8f0",
-                    boxShadow: "0 8px 30px rgba(15,23,42,.12)",
-                  }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey={selectedMetric}
-                  stroke="#7c3aed"
-                  strokeWidth={3}
-                  dot={false}
-                  activeDot={{ r: 5 }}
-                  connectNulls={false}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-        <div className="rounded-3xl border bg-card p-5 md:p-6">
-          <div className="mb-5">
-            <p className="text-sm font-semibold text-muted-foreground">
-              Daily signal
-            </p>
-            <h3 className="mt-1 text-xl font-bold">Activity map</h3>
-          </div>
-          <div
-            className="flex flex-wrap gap-1.5"
-            aria-label={`Activity map for ${metricOptions.find((item) => item.value === selectedMetric)?.label}`}
+      {view === "links" ? (
+        <>
+          <section
+            aria-label="Current link health summary"
+            className="grid grid-cols-2 gap-3 md:grid-cols-4"
           >
-            {heatmapData.map((item, index) => {
-              const value = Number(item[selectedMetric]) || 0;
-              const intensity =
-                value === 0 ? 0 : Math.max(1, Math.ceil((value / maxHeat) * 4));
-              return (
-                <span
-                  key={`${item.date}-${index}`}
-                  title={`${item.date}: ${formatNumber(value)}`}
-                  className={`h-4 w-4 rounded-[4px] ${
-                    intensity === 0
-                      ? "bg-slate-100 dark:bg-slate-800"
-                      : intensity === 1
-                        ? "bg-purple-200"
-                        : intensity === 2
-                          ? "bg-purple-300"
-                          : intensity === 3
-                            ? "bg-purple-500"
-                            : "bg-purple-700"
-                  }`}
-                />
-              );
-            })}
-          </div>
-          <div className="mt-5 flex items-center justify-between text-xs text-muted-foreground">
-            <span>{heatmapData[0]?.date || ""}</span>
-            <span>
-              Less{" "}
-              <span className="mx-1 inline-flex gap-1 align-middle">
-                <i className="h-3 w-3 rounded-sm bg-slate-100 dark:bg-slate-800" />
-                <i className="h-3 w-3 rounded-sm bg-purple-300" />
-                <i className="h-3 w-3 rounded-sm bg-purple-700" />
-              </span>{" "}
-              More
-            </span>
-            <span>{heatmapData.at(-1)?.date || ""}</span>
-          </div>
-          <div className="mt-6 rounded-2xl bg-purple-50 p-4 dark:bg-purple-950/30">
-            <p className="text-xs font-semibold uppercase tracking-wider text-purple-700 dark:text-purple-300">
-              Quick read
-            </p>
-            <p className="mt-1 text-sm leading-5 text-purple-950 dark:text-purple-100">
-              {sortedProjects[0]?.name ? (
-                <>
-                  <strong>{sortedProjects[0].name}</strong> is the most active
-                  project in this snapshot.
-                </>
-              ) : (
-                "No project activity is available in this snapshot."
+            <SummaryCard
+              icon={<CircleDot />}
+              label="Needing attention"
+              value={linkCurrent?.serious ?? 0}
+              delta={delta}
+              tone="purple"
+            />
+            <SummaryCard
+              icon={<ExternalLink />}
+              label="Broken"
+              value={linkCurrent?.totals?.broken ?? 0}
+              delta={percentChange(
+                linkCurrent?.totals?.broken,
+                linkPrevious?.totals?.broken,
               )}
-            </p>
-          </div>
-        </div>
-      </section>
+              tone="orange"
+            />
+            <SummaryCard
+              icon={<Radio />}
+              label="Could not verify"
+              value={linkCurrent?.totals?.blocked ?? 0}
+              delta={percentChange(
+                linkCurrent?.totals?.blocked,
+                linkPrevious?.totals?.blocked,
+              )}
+              tone="blue"
+            />
+            <SummaryCard
+              icon={<ArrowUpRight />}
+              label="Redirects"
+              value={linkCurrent?.totals?.redirect ?? 0}
+              delta={percentChange(
+                linkCurrent?.totals?.redirect,
+                linkPrevious?.totals?.redirect,
+              )}
+              tone="green"
+            />
+          </section>
 
-      <section className="rounded-3xl border bg-card p-5 md:p-6">
-        <div className="mb-5 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-semibold text-muted-foreground">
-              Project health
+          <section className="rounded-3xl border bg-card p-5 md:p-6">
+            <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p className="text-sm font-semibold text-muted-foreground">
+                  Momentum
+                </p>
+                <h3 className="mt-1 text-xl font-bold">
+                  Link health over time
+                </h3>
+              </div>
+              <div className="relative">
+                <select
+                  value={linkMetric}
+                  onChange={(e) =>
+                    setLinkMetric(
+                      e.target.value as
+                        | "serious"
+                        | "broken"
+                        | "blocked"
+                        | "redirect",
+                    )
+                  }
+                  aria-label="Select link health metric"
+                  className="appearance-none rounded-xl border bg-background py-2 pl-3 pr-8 text-sm"
+                >
+                  <option value="serious">Needing attention</option>
+                  <option value="broken">Broken</option>
+                  <option value="blocked">Could not verify</option>
+                  <option value="redirect">Redirects</option>
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              </div>
+            </div>
+            <div className="h-64 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart
+                  data={linkTrendData}
+                  margin={{ top: 8, right: 8, left: -20, bottom: 0 }}
+                >
+                  <CartesianGrid
+                    strokeDasharray="4 4"
+                    vertical={false}
+                    className="stroke-slate-200 dark:stroke-slate-700"
+                  />
+                  <XAxis
+                    dataKey="date"
+                    tickFormatter={(date) =>
+                      new Date(String(date)).toLocaleDateString(undefined, {
+                        month: "short",
+                        day: "numeric",
+                      })
+                    }
+                    tick={{ fontSize: 11 }}
+                    tickLine={false}
+                    axisLine={false}
+                    minTickGap={32}
+                  />
+                  <YAxis
+                    tick={{ fontSize: 11 }}
+                    tickLine={false}
+                    axisLine={false}
+                    width={36}
+                  />
+                  <Tooltip
+                    labelFormatter={(date) =>
+                      new Date(String(date)).toLocaleDateString(undefined, {
+                        dateStyle: "medium",
+                      })
+                    }
+                    formatter={(value: unknown) => [
+                      formatNumber(Number(value)),
+                      linkMetric === "serious"
+                        ? "Needing attention"
+                        : linkMetric === "broken"
+                          ? "Broken"
+                          : linkMetric === "blocked"
+                            ? "Could not verify"
+                            : "Redirects",
+                    ]}
+                    contentStyle={{
+                      borderRadius: 14,
+                      border: "1px solid #e2e8f0",
+                      boxShadow: "0 8px 30px rgba(15,23,42,.12)",
+                    }}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey={linkMetric}
+                    stroke="#7c3aed"
+                    strokeWidth={3}
+                    dot={false}
+                    activeDot={{ r: 5 }}
+                    connectNulls={false}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </section>
+
+          <section className="rounded-3xl border bg-card p-5 md:p-6">
+            <div className="mb-2">
+              <p className="text-sm font-semibold text-muted-foreground">
+                Current scan
+              </p>
+              <h3 className="mt-1 text-xl font-bold">Link health</h3>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              {linkCurrent
+                ? `${formatNumber(linkCurrent.filesScanned)} pages scanned.`
+                : "No link health data yet."}
             </p>
-            <h3 className="mt-1 text-xl font-bold">Projects at a glance</h3>
-          </div>
-          <span className="text-sm text-muted-foreground">
-            {formatNumber(currentTotals.projects)} tracked
-          </span>
-        </div>
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {sortedProjects.map((project) => (
-            <ProjectCard key={project.name} project={project} view={view} />
-          ))}
-        </div>
-      </section>
+          </section>
+
+          {latest?.findings?.length > 0 && (
+            <FindingsSection findings={latest.findings} />
+          )}
+        </>
+      ) : (
+        <>
+          <section
+            aria-label="Current Code Pulse summary"
+            className="grid grid-cols-2 gap-3 md:grid-cols-4"
+          >
+            <SummaryCard
+              icon={<Radio />}
+              label={view === "radicle" ? "Seeding" : "Stars"}
+              value={currentTotals.primary}
+              delta={delta}
+              tone="purple"
+            />
+            <SummaryCard
+              icon={<CircleDot />}
+              label="Open issues"
+              value={currentTotals.issues}
+              delta={percentChange(currentTotals.issues, previousTotals.issues)}
+              tone="orange"
+            />
+            <SummaryCard
+              icon={<GitPullRequest />}
+              label={view === "radicle" ? "Merged patches" : "Merged PRs"}
+              value={currentTotals.prs}
+              delta={percentChange(currentTotals.prs, previousTotals.prs)}
+              tone="blue"
+            />
+            <SummaryCard
+              icon={view === "radicle" ? <Users /> : <GitBranch />}
+              label={view === "radicle" ? "Delegates" : "Forks"}
+              value={currentTotals.secondary}
+              delta={percentChange(
+                currentTotals.secondary,
+                previousTotals.secondary,
+              )}
+              tone="green"
+            />
+          </section>
+
+          <section className="grid gap-5 lg:grid-cols-[1.35fr_0.65fr]">
+            <div className="rounded-3xl border bg-card p-5 md:p-6">
+              <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p className="text-sm font-semibold text-muted-foreground">
+                    Momentum
+                  </p>
+                  <h3 className="mt-1 text-xl font-bold">Activity over time</h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {view === "github" && (
+                    <div className="relative">
+                      <select
+                        value={selectedRepo}
+                        onChange={(event) => setSelectedRepo(event.target.value)}
+                        aria-label="Select repository"
+                        className="appearance-none rounded-xl border bg-background py-2 pl-3 pr-8 text-sm"
+                      >
+                        <option value="all">All repositories</option>
+                        {githubRepos.map((repo) => (
+                          <option key={repo} value={repo}>
+                            {repo}
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    </div>
+                  )}
+                  <div className="relative">
+                    <select
+                      value={selectedMetric}
+                      onChange={(event) =>
+                        setSelectedMetric(event.target.value as Metric)
+                      }
+                      aria-label="Select trend metric"
+                      className="appearance-none rounded-xl border bg-background py-2 pl-3 pr-8 text-sm"
+                    >
+                      {metricOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  </div>
+                </div>
+              </div>
+              <div className="h-64 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart
+                    data={trendData}
+                    margin={{ top: 8, right: 8, left: -20, bottom: 0 }}
+                  >
+                    <CartesianGrid
+                      strokeDasharray="4 4"
+                      vertical={false}
+                      className="stroke-slate-200 dark:stroke-slate-700"
+                    />
+                    <XAxis
+                      dataKey="date"
+                      tickFormatter={(date) =>
+                        new Date(String(date)).toLocaleDateString(undefined, {
+                          month: "short",
+                          day: "numeric",
+                        })
+                      }
+                      tick={{ fontSize: 11 }}
+                      tickLine={false}
+                      axisLine={false}
+                      minTickGap={32}
+                    />
+                    <YAxis
+                      tick={{ fontSize: 11 }}
+                      tickLine={false}
+                      axisLine={false}
+                      width={36}
+                    />
+                    <Tooltip
+                      labelFormatter={(date) =>
+                        new Date(String(date)).toLocaleDateString(undefined, {
+                          dateStyle: "medium",
+                        })
+                      }
+                      formatter={(value: unknown) => [
+                        formatNumber(Number(value)),
+                        metricOptions.find(
+                          (item) => item.value === selectedMetric,
+                        )?.label,
+                      ]}
+                      contentStyle={{
+                        borderRadius: 14,
+                        border: "1px solid #e2e8f0",
+                        boxShadow: "0 8px 30px rgba(15,23,42,.12)",
+                      }}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey={selectedMetric}
+                      stroke="#7c3aed"
+                      strokeWidth={3}
+                      dot={false}
+                      activeDot={{ r: 5 }}
+                      connectNulls={false}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="rounded-3xl border bg-card p-5 md:p-6">
+              <div className="mb-5">
+                <p className="text-sm font-semibold text-muted-foreground">
+                  Daily signal
+                </p>
+                <h3 className="mt-1 text-xl font-bold">Activity map</h3>
+              </div>
+              <div
+                className="flex flex-wrap gap-1.5"
+                aria-label={`Activity map for ${metricOptions.find((item) => item.value === selectedMetric)?.label}`}
+              >
+                {heatmapData.map((item, index) => {
+                  const value = Number(item[selectedMetric]) || 0;
+                  const intensity =
+                    value === 0
+                      ? 0
+                      : Math.max(1, Math.ceil((value / maxHeat) * 4));
+                  return (
+                    <span
+                      key={`${item.date}-${index}`}
+                      title={`${item.date}: ${formatNumber(value)}`}
+                      className={`h-4 w-4 rounded-[4px] ${
+                        intensity === 0
+                          ? "bg-slate-100 dark:bg-slate-800"
+                          : intensity === 1
+                            ? "bg-purple-200"
+                            : intensity === 2
+                              ? "bg-purple-300"
+                              : intensity === 3
+                                ? "bg-purple-500"
+                                : "bg-purple-700"
+                      }`}
+                    />
+                  );
+                })}
+              </div>
+              <div className="mt-5 flex items-center justify-between text-xs text-muted-foreground">
+                <span>{heatmapData[0]?.date || ""}</span>
+                <span>
+                  Less{" "}
+                  <span className="mx-1 inline-flex gap-1 align-middle">
+                    <i className="h-3 w-3 rounded-sm bg-slate-100 dark:bg-slate-800" />
+                    <i className="h-3 w-3 rounded-sm bg-purple-300" />
+                    <i className="h-3 w-3 rounded-sm bg-purple-700" />
+                  </span>{" "}
+                  More
+                </span>
+                <span>{heatmapData.at(-1)?.date || ""}</span>
+              </div>
+              <div className="mt-6 rounded-2xl bg-purple-50 p-4 dark:bg-purple-950/30">
+                <p className="text-xs font-semibold uppercase tracking-wider text-purple-700 dark:text-purple-300">
+                  Quick read
+                </p>
+                <p className="mt-1 text-sm leading-5 text-purple-950 dark:text-purple-100">
+                  {sortedProjects[0]?.name ? (
+                    <>
+                      <strong>{sortedProjects[0].name}</strong> is the most
+                      active project in this snapshot.
+                    </>
+                  ) : (
+                    "No project activity is available in this snapshot."
+                  )}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-3xl border bg-card p-5 md:p-6">
+            <div className="mb-5 flex items-end justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold text-muted-foreground">
+                  Project health
+                </p>
+                <h3 className="mt-1 text-xl font-bold">Projects at a glance</h3>
+              </div>
+              <span className="text-sm text-muted-foreground">
+                {formatNumber(currentTotals.projects)} tracked
+              </span>
+            </div>
+            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              {sortedProjects.map((project) => (
+                <ProjectCard key={project.name} project={project} view={view} />
+              ))}
+            </div>
+          </section>
+        </>
+      )}
     </div>
+  );
+}
+
+
+function FindingsSection({ findings }: { findings: any[] }) {
+  const [kindFilter, setKindFilter] = useState<string>("all");
+  const [quickFilter, setQuickFilter] = useState<
+    "all" | "attention" | "broken" | "blocked"
+  >("all");
+  const [search, setSearch] = useState("");
+
+  const kinds = useMemo(() => {
+    const set = new Set<string>();
+    findings.forEach((f) => f.kind && set.add(f.kind));
+    return Array.from(set).sort();
+  }, [findings]);
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return findings.filter((f) => {
+      if (quickFilter === "attention" && !["broken", "dns", "route", "asset", "invalid"].includes(f.kind))
+        return false;
+      if (quickFilter === "broken" && f.kind !== "broken") return false;
+      if (quickFilter === "blocked" && f.kind !== "blocked") return false;
+      if (kindFilter !== "all" && f.kind !== kindFilter) return false;
+      if (q) {
+        const hay = `${f.url || ""} ${f.file || ""} ${f.detail || ""}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [findings, quickFilter, kindFilter, search]);
+
+  const shown = filtered.slice(0, 200);
+
+  return (
+    <section className="rounded-3xl border bg-card p-5 md:p-6">
+      <div className="mb-4 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="text-sm font-semibold text-muted-foreground">Details</p>
+          <h3 className="mt-1 text-xl font-bold">Findings</h3>
+        </div>
+        <span className="text-sm text-muted-foreground">
+          {formatNumber(filtered.length)} of {formatNumber(findings.length)}
+        </span>
+      </div>
+
+      <div className="mb-4 flex flex-wrap gap-2">
+        {(
+          [
+            ["all", "All"],
+            ["attention", "Needing attention"],
+            ["broken", "Broken"],
+            ["blocked", "Could not verify"],
+          ] as const
+        ).map(([value, label]) => (
+          <button
+            key={value}
+            onClick={() => setQuickFilter(value)}
+            className={`rounded-xl px-3 py-1.5 text-sm font-medium transition ${
+              quickFilter === value
+                ? "bg-purple-600 text-white"
+                : "bg-muted text-muted-foreground hover:bg-muted/80"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <div className="mb-4 flex flex-wrap gap-2">
+        <div className="relative">
+          <select
+            value={kindFilter}
+            onChange={(e) => setKindFilter(e.target.value)}
+            aria-label="Filter by kind"
+            className="appearance-none rounded-xl border bg-background py-2 pl-3 pr-8 text-sm"
+          >
+            <option value="all">All kinds</option>
+            {kinds.map((k) => (
+              <option key={k} value={k}>
+                {k}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        </div>
+        <input
+          type="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search URL or source..."
+          className="min-w-[200px] flex-1 rounded-xl border bg-background px-3 py-2 text-sm"
+        />
+      </div>
+
+      <div className="max-h-96 overflow-auto">
+        <table className="w-full text-sm">
+          <thead className="sticky top-0 bg-card text-left text-xs uppercase tracking-wide text-muted-foreground">
+            <tr>
+              <th className="pb-2 pr-4">Kind</th>
+              <th className="pb-2 pr-4">URL</th>
+              <th className="pb-2 pr-4">Source</th>
+              <th className="pb-2">Detail</th>
+            </tr>
+          </thead>
+          <tbody>
+            {shown.map((f, i) => (
+              <tr key={i} className="border-t border-border/50">
+                <td className="py-2 pr-4 align-top font-medium">{f.kind}</td>
+                <td className="py-2 pr-4 align-top break-all">
+                  {f.url ? (
+                    <a
+                      href={f.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-purple-600 hover:underline"
+                    >
+                      {f.url}
+                    </a>
+                  ) : (
+                    "—"
+                  )}
+                </td>
+                <td className="py-2 pr-4 align-top text-muted-foreground">
+                  {f.file}
+                  {f.line ? `:${f.line}` : ""}
+                </td>
+                <td className="py-2 align-top text-muted-foreground">
+                  {f.detail || f.status || ""}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {filtered.length > 200 && (
+          <p className="mt-3 text-xs text-muted-foreground">
+            Showing first 200 of {formatNumber(filtered.length)}.
+          </p>
+        )}
+        {filtered.length === 0 && (
+          <p className="py-6 text-center text-sm text-muted-foreground">
+            No findings match the current filters.
+          </p>
+        )}
+      </div>
+    </section>
   );
 }
 
