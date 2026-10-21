@@ -1,6 +1,5 @@
 "use client";
 
-import { formatString } from "@/lib/helpers";
 import Image from "next/image";
 
 type ExplorerDirectoryCardProps = {
@@ -8,66 +7,118 @@ type ExplorerDirectoryCardProps = {
   description: string;
   url: string;
   thumbnailImage: string;
+  thumbnailImageLight?: string;
+  thumbnailImageDark?: string;
+  badge?: string;
+  badgeTone?: "neutral" | "warning";
+  credit?: string;
   ctaLabel: string;
   features?: string[];
 };
+
+function hostOf(url: string) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
 
 export default function ExplorerDirectoryCard({
   title,
   description,
   url,
   thumbnailImage,
+  thumbnailImageLight,
+  thumbnailImageDark,
+  badge,
+  badgeTone = "neutral",
+  credit,
   ctaLabel,
   features = [],
 }: ExplorerDirectoryCardProps) {
+  const badgeClass =
+    badgeTone === "warning"
+      ? "bg-amber-100 text-amber-800 dark:bg-amber-500/15 dark:text-amber-300"
+      : "bg-zinc-100 text-zinc-600 dark:bg-white/10 dark:text-zinc-300";
+
   return (
     <article className="group h-full rounded-2xl border border-zinc-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:border-zinc-700 dark:bg-slate-800">
       <div className="flex h-full min-w-0 flex-col">
-        <div className="mb-5 flex items-center justify-start gap-4 text-left">
-          <div className="relative h-24 w-24 shrink-0 overflow-hidden">
+        {/* The logo carries the name, so the title is for screen readers
+            only. Logo files are prepared at 2x for a 52px row with the same
+            letter height. Each theme gets a transparent version (light text
+            on dark, dark text on light); without one, the project's own
+            dark tile is shown. */}
+        <h3 className="sr-only">{title}</h3>
+        <div className="flex h-[52px] items-center">
+          <Image
+            src={thumbnailImageDark ?? thumbnailImage}
+            alt={`${title} logo`}
+            width={0}
+            height={0}
+            unoptimized
+            className={`h-[52px] w-auto max-w-full object-contain object-left ${
+              thumbnailImageDark ? "" : "rounded-lg"
+            } ${thumbnailImageLight ? "hidden dark:block" : ""}`}
+          />
+          {thumbnailImageLight && (
             <Image
-              src={thumbnailImage}
-              alt={title}
-              fill
-              className="object-contain"
-              sizes="96px"
+              src={thumbnailImageLight}
+              alt={`${title} logo`}
+              width={0}
+              height={0}
+              unoptimized
+              className="h-[52px] w-auto max-w-full object-contain object-left dark:hidden"
             />
-          </div>
-          <div className="min-w-0">
-            <h3 className="wrap-break-word text-xl font-bold text-zinc-900 dark:text-white">
-              {title}
-            </h3>
-          </div>
+          )}
         </div>
 
-        <p className="mb-5 min-w-0 flex-1 wrap-break-word text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+        <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-zinc-500 underline-offset-2 transition-colors hover:text-sky-600 hover:underline dark:text-zinc-400 dark:hover:text-sky-400"
+          >
+            {hostOf(url)}
+            <span aria-hidden="true">↗</span>
+          </a>
+          {badge && (
+            <span className={`rounded-full px-2 py-0.5 font-medium ${badgeClass}`}>{badge}</span>
+          )}
+        </div>
+
+        <p className="mt-4 min-w-0 flex-1 wrap-break-word text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
           {description}
         </p>
 
+        {credit && (
+          <p className="mt-4 flex items-start gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs leading-relaxed text-amber-900 dark:bg-amber-400/10 dark:text-amber-200">
+            <span aria-hidden="true">♥</span>
+            <span>{credit}</span>
+          </p>
+        )}
+
         {features.length > 0 && (
-          <div className="mb-5">
-            <h4 className="mb-2 font-semibold text-zinc-500">Features:</h4>
-            <ul
-              className={
-                title === "Bitquery"
-                  ? "grid grid-cols-2 gap-x-6 gap-y-1 list-disc pl-5 text-sm text-zinc-600 dark:text-zinc-400"
-                  : "list-disc space-y-1 pl-5 text-sm text-zinc-600 dark:text-zinc-400"
-              }
-            >
+          <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Features">
             {features.map((feature, index) => (
-              <li key={`${title}-${feature}-${index}`}>
-                {formatString.titleCase(feature)}
+              <li
+                key={`${title}-${feature}-${index}`}
+                className="rounded-md border border-zinc-200 px-2 py-0.5 text-xs text-zinc-600 dark:border-zinc-600 dark:text-zinc-300"
+              >
+                {feature}
               </li>
             ))}
-            </ul>
-          </div>
-         )}
+          </ul>
+        )}
 
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-brand mt-auto inline-flex w-fit items-center rounded-xl px-5 py-2.5 text-sm font-medium transition-transform duration-200 group-hover:scale-[1.01]"
+          aria-label={`${ctaLabel}: ${title}`}
+          className="btn-brand mt-6 inline-flex w-fit items-center rounded-xl px-5 py-2.5 text-sm font-medium transition-transform duration-200 group-hover:scale-[1.01]"
         >
           {ctaLabel}
         </a>
