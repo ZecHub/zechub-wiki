@@ -4,7 +4,7 @@
     "name": "ZecHub",
     "description": "ZecHub provides an open source educational platform where community members can work together on creating, validating, and promoting content that supports the Zcash ecosystem. ZecHub believes:\n\n* Privacy is a human right\n* Education should be open-source and accessible worldwide\n* Community members have a right to earn ZEC privately",
     "member_count": 23,
-    "proposal_count": 184,
+    "proposal_count": 185,
     "config": {
       "name": "ZecHub",
       "dao_uri": null,
@@ -7556,6 +7556,41 @@
         "createdAt": "2026-10-14T16:22:44.625Z",
         "completedAt": "2026-10-20T11:25:30.000Z",
         "executedAt": "2026-10-20T11:25:30.000Z"
+      },
+      {
+        "coreAddress": "juno1nktrulhakwm0n3wlyajpwxyg54n39xx4y8hdaqlty7mymf85vweq7m6t0y",
+        "proposalModuleAddress": "juno14futcfehnc8fn4nz6gtm25svn05mzz09ju8rtj0jvven2hpxj85s0q8a55",
+        "id": 186,
+        "proposal": {
+          "msgs": [],
+          "title": "Zcash On Campus Initiative",
+          "votes": {
+            "no": "2",
+            "yes": "0",
+            "abstain": "0"
+          },
+          "status": "open",
+          "proposer": "juno1t5g84fztjgeynml5dwwg2m3uygzjfgd5fys7tf",
+          "threshold": {
+            "threshold_quorum": {
+              "quorum": {
+                "percent": "0.4"
+              },
+              "threshold": {
+                "percent": "0.67"
+              }
+            }
+          },
+          "expiration": {
+            "at_time": "1793019029579325003"
+          },
+          "description": "It is a first 3-Month Physical University Roadshow by The Mirror Hub\n\nDuration: 3 months\nFunding requested: $4,500 USD ($1,500 per month)\nFormat: Physical campus events, workshops, and community onboarding\nGeographic scope: Africa, with one university visited each month\n\n1. Project Overview\n\nThe Mirror Hub proposes Zcash Across African Campuses, a three-month university roadshow designed to introduce students across Africa to Zcash, blockchain technology, financial privacy, and open-source development.\n\nInspired by the physical engagement model of the Stellar Roadshow, the initiative will visit one university each month to deliver interactive educational events, practical demonstrations, student engagement, and community onboarding.\n\nThe program will help students understand how Zcash works, why financial privacy matters, and how they can participate in the wider Zcash ecosystem as learners, developers, educators, and community contributors.\n\nThe first three universities will be selected based on campus partnerships, student community access, local coordination, and logistical feasibility.\n\nThe First 3 Universities \n\nBayero University kano \n\nKaduna State University \n\nFederal University Dutse \n\n2. Objectives\n\n- Educate university students about Zcash, blockchain technology, and financial privacy.\n- Explain transparent and shielded transactions through accessible presentations and demonstrations.\n- Introduce students to wallet security, privacy practices, and official Zcash learning resources.\n- Identify students interested in development, research, education, and open-source contributions.\n- Build lasting relationships with campus communities and create a foundation for expanding Zcash education across Africa.\n\n3. Three-Month Roadshow Plan\n\nMonth 1: University One — Discover Zcash\n\nTheme: Understanding Blockchain and Financial Privacy\n\nActivities:\n\n- Organize a physical campus event with student communities and technology associations.\n- Deliver an introductory presentation on blockchain and Zcash.\n- Explain transparent and shielded transactions.\n- Conduct an interactive demonstration and student Q&A.\n- Distribute educational materials and onboard interested students into relevant community channels.\n\nTarget: 100-150 students reached.\n\nMonth 2: University Two — Experience Zcash\n\nTheme: Privacy in Practice and the Future of Digital Payments\n\nActivities:\n\n- Conduct a second physical campus event at a different university.\n- Deliver practical sessions on Zcash features, privacy awareness, and wallet security.\n- Introduce technical learning resources and open-source contribution opportunities.\n- Facilitate discussions with students, developers, and technology enthusiasts.\n- Publish educational content and share highlights from the event.\n\nTarget: 100-150 students reached.\n\nMonth 3: University Three — Build with Zcash\n\nTheme: Building an African Zcash Community\n\nActivities:\n\n- Organize the third physical campus roadshow.\n- Host an educational workshop and interactive technical session.\n- Discuss potential student-led projects and ecosystem contribution pathways.\n- Identify interested student volunteers and potential campus coordinators.\n- Gather feedback, assess learning outcomes, and prepare the final impact report.\n\nTarget: 100–150 students reached.\n\n4. Expected Outcomes\n\nOver three months, the initiative aims to achieve:\n\n- 3 universities engaged through physical campus events.\n- 300-450 students reached.\n- 3 major campus events delivered.\n- 12–18 educational content pieces published.\n- 100+ students participating in follow-up learning activities.\n- 50+ potential contributors or campus volunteers identified.\n- 1 consolidated impact report documenting activities, outcomes, and lessons learned.\n\nThese are proposed targets and will be measured through attendance records, participation, feedback, and follow-up engagement.\n\n5. Proposed Budget\n\nThe requested budget is $1,500 per month, covering one physical campus event and its supporting activities.\n\nBudget item| Monthly allocation\nVenue, event logistics, and equipment| $300\nTransportation and local coordination| $250\nStudent outreach and promotion| $150\nEducational materials and event branding| $150\nFacilitators and technical session support| $200\nPhotography, video, and content production| $150\nInternet and communications| $75\nMonitoring and reporting| $75\nContingency| $150\nTotal per month| $1,500\n\nThree-month funding request: $4,500 USD.\n\nThe budget is indicative and may be adjusted based on the location of each university, venue requirements, local costs, and the final scope agreed with the funding partner.\n\n6. Roles and Responsibilities\n\nThe Mirror Hub will:\n\n- Coordinate campus partnerships and student outreach.\n- Plan and deliver the three physical roadshow events.\n- Provide educational presentations and facilitate workshops.\n- Manage event promotion, community onboarding, and content production.\n- Track attendance, participation, and learning outcomes.\n- Submit monthly updates and a final impact report.\n\nThe Zcash ecosystem partner will be invited to:\n\n- Review the proposed program and educational materials.\n- Recommend official learning resources and technical speakers.\n- Provide technical guidance or demonstration support where available.\n- Consider the funding request and agree on reporting requirements.\n\n7. Responsible Education and Participant Safety\n\nThe roadshow will focus on education and ecosystem participation rather than speculative investment promotion. Students will not be required to purchase ZEC or deposit funds. No participant will be asked to reveal private keys or seed phrases. Presentations will explain Zcash's privacy features and limitations accurately and promote responsible wallet security.\n\n8. Funding Request and Conclusion\n\nThe Mirror Hub respectfully requests $4,500 USD to implement Zcash Across African Campuses over three months, with $1,500 allocated to each monthly physical campus roadshow.\n\nThrough direct student engagement, practical education, and community building, the initiative aims to make Zcash and financial privacy more accessible to African university communities while identifying future learners, builders, and ecosystem contributors.\n\nThe roadshow will begin with three universities and establish a practical model that can be expanded to additional campuses and countries based on results and available funding.\n\nThe Mirror Hub \nhttps://linktr.ee/Themirrorhub\n\nThe Mirror Hub X Stellar Roadshow\nhttps://x.com/themirrorhub/status/1972068153950703868\n\nWe had over 500+ in attendance, 50+merchants onboarded to Stellar, street onboarding in each campus\n\n\nSubmitted by: The Mirror Hub\nProgram: Zcash Across African Campuses\nDuration: 3 months\nTotal funding requested: $4,500 USD",
+          "total_power": "23",
+          "start_height": 42929165,
+          "allow_revoting": true,
+          "min_voting_period": null
+        },
+        "createdAt": "2026-10-21T12:50:29.579Z"
       }
     ]
   },
