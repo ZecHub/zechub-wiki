@@ -592,7 +592,7 @@ const NavLinks = ({
   return (
     <div className={`flex items-center ${classes}`}>
       {/* Large screens */}
-      <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
+      <div className="hidden lg:flex items-center space-x-4 xl:space-x-5">
         {navigations.slice(0, 4).map((item, i) =>
           item.links ? (
             <Dropdown
@@ -736,7 +736,7 @@ const NavLinks = ({
         )}
       </div>
       {/* CTA buttons */}
-      <div className="hidden md:flex items-center gap-3 ml-7 pl-7 border-l border-slate-400 dark:border-slate-600">
+      <div className="hidden md:flex items-center gap-3 ml-5 pl-5 border-l border-slate-400 dark:border-slate-600">
         <Button
           asChild
           variant="default"
@@ -1024,10 +1024,10 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
-          {/* max-w-5xl and mx-8 are mirrored in useNavTooWide (NAV_MAX_WIDTH, NAV_MARGINS). */}
+          {/* max-w-5xl and mx-4 are mirrored in useNavTooWide (NAV_MAX_WIDTH, NAV_MARGINS). */}
           <nav
             ref={navRef}
-            className={`hidden ${navTooWide ? "" : "min-[1280px]:flex"} flex-1 min-w-0 justify-center max-w-5xl mx-8`}
+            className={`hidden ${navTooWide ? "" : "min-[1280px]:flex"} flex-1 min-w-0 justify-center max-w-5xl mx-4`}
           >
             <NavLinks
               classes="w-full justify-start"

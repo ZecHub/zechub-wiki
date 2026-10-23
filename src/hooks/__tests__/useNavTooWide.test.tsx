@@ -31,9 +31,9 @@ function Header({ labels }: { labels: string }) {
   );
 }
 
-// Layout of a 1280px header: 100px logo, 320px of buttons, 64px nav margins.
+// Layout of a 1280px header: 100px logo, 320px of buttons, 32px nav margins.
 function layout(needed: number, row = 1248) {
-  const available = Math.min(1024, row - 100 - 320 - 64);
+  const available = Math.min(1024, row - 100 - 320 - 32);
   setWidth(screen.getByTestId("row"), "clientWidth", row);
   setWidth(screen.getByTestId("logo"), "offsetWidth", 100);
   setWidth(screen.getByTestId("right"), "offsetWidth", 320);
@@ -48,8 +48,8 @@ describe("useNavTooWide", () => {
     act(() => resize());
     expect(screen.getByRole("status")).toHaveTextContent("menu-button");
 
-    // 1440px row with the 56px menu button showing: 1440-100-376-64 = 900,
-    // plus the button and its gap (68) = 968 >= 950 + 16.
+    // 1440px row with the 56px menu button showing: 1440-100-376-32 = 932,
+    // plus the button and its gap (68) = 1000 >= 950 + 16 (without it, 932 would not be).
     layout(950, 1440);
     setWidth(screen.getByTestId("right"), "offsetWidth", 376);
     setWidth(screen.getByTestId("menu"), "offsetWidth", 56);
@@ -75,15 +75,15 @@ describe("useNavTooWide", () => {
     act(() => resize());
     expect(screen.getByRole("status")).toHaveTextContent("menu-button");
 
-    layout(950, 1300); // available 816: still too narrow
+    layout(950, 1300); // available 848: still too narrow
     act(() => resize());
     expect(screen.getByRole("status")).toHaveTextContent("menu-button");
 
-    layout(950, 1440); // available 956: fits, but within the 16px margin
+    layout(950, 1410); // available 958: fits, but within the 16px margin
     act(() => resize());
     expect(screen.getByRole("status")).toHaveTextContent("menu-button");
 
-    layout(950, 1500); // available 1016: fits
+    layout(950, 1500); // available 1024: fits
     act(() => resize());
     expect(screen.getByRole("status")).toHaveTextContent("bar");
   });

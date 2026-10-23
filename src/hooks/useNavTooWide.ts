@@ -8,7 +8,7 @@ import { useLayoutEffect, useRef, useState, type RefObject } from "react";
 // on narrower screens, instead of wrapping or overlapping. The measurement is
 // redone on every resize and whenever the labels change (language switch).
 const NAV_MAX_WIDTH = 1024; // max-w-5xl
-const NAV_MARGINS = 64; // mx-8
+const NAV_MARGINS = 32; // mx-4
 const MENU_BUTTON_GAP = 12; // md:space-x-3 between the header buttons
 // Extra room required before showing the bar again, so a width right at the
 // limit cannot flip the header back and forth.

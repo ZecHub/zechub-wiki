@@ -4,7 +4,7 @@ for (const desktopWidth of [1280, 1281, 1530]) {
   test(`mobile drawer releases the page at ${desktopWidth}px`, async ({ page }) => {
     await page.setViewportSize({ width: 1278, height: 900 });
     await page.goto("/");
-    const trigger = page.locator('header button[aria-haspopup="dialog"]');
+    const trigger = page.locator("header button[data-nav-menu-button]");
     const dialog = page.getByRole("dialog");
     const bodyStyles = await page.locator("body").evaluate((body) => ({
       pointerEvents: getComputedStyle(body).pointerEvents,
