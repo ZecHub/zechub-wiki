@@ -30,31 +30,60 @@ type Metric = "seeding" | "open_issues" | "merged_prs" | "stars" | "forks";
 
 interface Project {
   name: string;
-  seeding?: number;
-  issues_open?: number;
-  patches_merged?: number;
-  delegates?: number;
-  stars?: number;
-  forks?: number;
-  open_issues?: number;
-  merged_pull_requests?: number;
-  explorer_url?: string;
+  seeding?: number | null;
+  issues_open?: number | null;
+  patches_merged?: number | null;
+  delegates?: number | null;
+  stars?: number | null;
+  forks?: number | null;
+  open_issues?: number | null;
+  merged_pull_requests?: number | null;
+  explorer_url?: string | null;
 }
 
 interface HistoryEntry {
   date: string;
-  generated_at?: string;
+  generated_at?: string | null;
   projects?: Project[];
   summary?: {
-    total_projects?: number;
-    total_seeding?: number;
-    total_issues?: number;
-    total_patches?: number;
-    total_stars?: number;
-    total_open_issues?: number;
-    total_merged_prs?: number;
-    total_forks?: number;
+    total_projects?: number | null;
+    total_seeding?: number | null;
+    total_issues?: number | null;
+    total_patches?: number | null;
+    total_stars?: number | null;
+    total_open_issues?: number | null;
+    total_merged_prs?: number | null;
+    total_forks?: number | null;
   };
+}
+
+const projectNumberFields = [
+  "seeding",
+  "issues_open",
+  "patches_merged",
+  "delegates",
+  "stars",
+  "forks",
+  "open_issues",
+  "merged_pull_requests",
+] as const;
+const summaryNumberFields = [
+  "total_projects",
+  "total_seeding",
+  "total_issues",
+  "total_patches",
+  "total_stars",
+  "total_open_issues",
+  "total_merged_prs",
+  "total_forks",
+] as const;
+
+function isOptionalFiniteNumber(value: unknown) {
+  return (
+    value === undefined ||
+    value === null ||
+    (typeof value === "number" && Number.isFinite(value))
+  );
 }
 
 function isHistoryEntry(value: unknown): value is HistoryEntry {
@@ -62,16 +91,35 @@ function isHistoryEntry(value: unknown): value is HistoryEntry {
 
   const entry = value as Record<string, unknown>;
   if (typeof entry.date !== "string") return false;
+  if (entry.generated_at != null && typeof entry.generated_at !== "string") {
+    return false;
+  }
+
+  if (entry.summary != null) {
+    if (typeof entry.summary !== "object" || Array.isArray(entry.summary)) {
+      return false;
+    }
+    const summary = entry.summary as Record<string, unknown>;
+    if (!summaryNumberFields.every((field) => isOptionalFiniteNumber(summary[field]))) {
+      return false;
+    }
+  }
+
   if (entry.projects === undefined) return true;
   if (!Array.isArray(entry.projects)) return false;
 
-  return entry.projects.every(
-    (project) =>
-      project !== null &&
-      typeof project === "object" &&
-      !Array.isArray(project) &&
-      typeof (project as Record<string, unknown>).name === "string",
-  );
+  return entry.projects.every((project) => {
+    if (project === null || typeof project !== "object" || Array.isArray(project)) {
+      return false;
+    }
+
+    const record = project as Record<string, unknown>;
+    return (
+      typeof record.name === "string" &&
+      (record.explorer_url == null || typeof record.explorer_url === "string") &&
+      projectNumberFields.every((field) => isOptionalFiniteNumber(record[field]))
+    );
+  });
 }
 
 interface LinkHealthEntry {
@@ -1028,7 +1076,7 @@ function ProjectCard({ project, view }: { project: Project; view: View }) {
         ];
   const href =
     view === "radicle"
-      ? project.explorer_url
+      ? project.explorer_url ?? undefined
       : `https://github.com/ZecHub/${project.name}`;
   return (
     <article className="rounded-2xl border bg-background p-4 transition hover:-translate-y-0.5 hover:shadow-md">

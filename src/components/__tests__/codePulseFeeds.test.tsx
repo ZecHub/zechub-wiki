@@ -51,6 +51,8 @@ test.each([
   "null-entry",
   "invalid-projects",
   "null-project",
+  "invalid-project-metric",
+  "invalid-summary-total",
   "empty",
 ])(
   "keeps the GitHub view reachable when the Radicle feed is %s",
@@ -71,6 +73,16 @@ test.each([
       }
       if (failure === "null-project") {
         return response([{ date: "2026-10-15", projects: [null] }]);
+      }
+      if (failure === "invalid-project-metric") {
+        return response([
+          { date: "2026-10-15", projects: [{ name: "Radicle project", stars: "8" }] },
+        ]);
+      }
+      if (failure === "invalid-summary-total") {
+        return response([
+          { date: "2026-10-15", summary: { total_seeding: "4" }, projects: [] },
+        ]);
       }
       return response(failure === "shape" ? {} : []);
     });
