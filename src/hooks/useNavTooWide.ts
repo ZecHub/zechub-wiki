@@ -9,6 +9,7 @@ import { useLayoutEffect, useRef, useState, type RefObject } from "react";
 // redone on every resize and whenever the labels change (language switch).
 const NAV_MAX_WIDTH = 1024; // max-w-5xl
 const NAV_MARGINS = 64; // mx-8
+const MENU_BUTTON_GAP = 12; // md:space-x-3 between the header buttons
 // Extra room required before showing the bar again, so a width right at the
 // limit cannot flip the header back and forth.
 const HYSTERESIS = 16;
@@ -44,9 +45,13 @@ export function useNavTooWide(
       // Row layout: logo, nav, header buttons.
       const logo = row.firstElementChild as HTMLElement | null;
       const right = row.lastElementChild as HTMLElement | null;
+      // The menu button is shown only in fallback and disappears with the bar,
+      // so its width (and its gap) is room the bar would get back.
+      const menuButton = right?.querySelector<HTMLElement>("[data-nav-menu-button]");
+      const menuButtonRoom = menuButton?.offsetWidth ? menuButton.offsetWidth + MENU_BUTTON_GAP : 0;
       const available = Math.min(
         NAV_MAX_WIDTH,
-        row.clientWidth - (logo?.offsetWidth ?? 0) - (right?.offsetWidth ?? 0) - NAV_MARGINS,
+        row.clientWidth - (logo?.offsetWidth ?? 0) - (right?.offsetWidth ?? 0) + menuButtonRoom - NAV_MARGINS,
       );
       if (neededRef.current && available >= neededRef.current + HYSTERESIS) setTooWide(false);
     };

@@ -1091,6 +1091,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger className={navTooWide ? "" : "min-[1280px]:hidden"} asChild>
                   <Button
+                    data-nav-menu-button=""
                     variant="ghost"
                     size="sm"
                     className="p-2 hover:bg-nav-hover-bg cursor-pointer hover:text-black dark:hover:text-white"

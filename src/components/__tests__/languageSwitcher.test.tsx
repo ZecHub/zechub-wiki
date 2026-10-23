@@ -423,6 +423,24 @@ describe("LanguageSwitcher on a phone", () => {
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
+  it("keeps Tab and Shift+Tab inside the sheet", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+    expect(option(/Español/)).toHaveFocus();
+
+    await user.tab();
+    expect(screen.getByRole("button", { name: "Close" })).toHaveFocus();
+    await user.tab();
+    expect(search()).toHaveFocus();
+    await user.tab();
+    expect(option(/Español/)).toHaveFocus();
+    await user.tab({ shift: true });
+    expect(search()).toHaveFocus();
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expectNoSelection();
+  });
+
   it("locks the page scroll while the sheet is open", async () => {
     const user = userEvent.setup();
     renderPicker();

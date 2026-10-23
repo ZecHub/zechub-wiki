@@ -186,6 +186,20 @@ export function LanguageSwitcher() {
       }
       return;
     }
+    // The phone sheet is modal: Tab cycles inside it (close button, search
+    // field, current language) instead of leaving to the dimmed page.
+    if (event.key === 'Tab' && isPhone && panelRef.current) {
+      const stops = [
+        ...panelRef.current.querySelectorAll<HTMLElement>('button:not([tabindex="-1"]), input'),
+      ];
+      const selected = options().find((o) => o.getAttribute('aria-selected') === 'true');
+      if (selected) stops.push(selected);
+      const at = stops.indexOf(document.activeElement as HTMLElement);
+      event.preventDefault();
+      const next = at < 0 ? 0 : (at + (event.shiftKey ? -1 : 1) + stops.length) % stops.length;
+      stops[next]?.focus();
+      return;
+    }
     const list = options();
     const inSearch = document.activeElement === searchRef.current;
     if (inSearch && event.key === 'Enter') {

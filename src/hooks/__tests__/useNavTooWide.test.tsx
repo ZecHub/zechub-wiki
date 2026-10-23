@@ -24,7 +24,7 @@ function Header({ labels }: { labels: string }) {
       <div ref={rowRef} data-testid="row">
         <a data-testid="logo">logo</a>
         <nav ref={navRef} data-testid="nav"><div data-testid="inner">{labels}</div></nav>
-        <div data-testid="right">buttons</div>
+        <div data-testid="right">buttons{tooWide && <button data-nav-menu-button="" data-testid="menu">☰</button>}</div>
       </div>
       <output>{tooWide ? "menu-button" : "bar"}</output>
     </>
@@ -42,6 +42,21 @@ function layout(needed: number, row = 1248) {
 }
 
 describe("useNavTooWide", () => {
+  it("counts the menu button's width as room the bar gets back", () => {
+    render(<Header labels="long" />);
+    layout(950);
+    act(() => resize());
+    expect(screen.getByRole("status")).toHaveTextContent("menu-button");
+
+    // 1440px row with the 56px menu button showing: 1440-100-376-64 = 900,
+    // plus the button and its gap (68) = 968 >= 950 + 16.
+    layout(950, 1440);
+    setWidth(screen.getByTestId("right"), "offsetWidth", 376);
+    setWidth(screen.getByTestId("menu"), "offsetWidth", 56);
+    act(() => resize());
+    expect(screen.getByRole("status")).toHaveTextContent("bar");
+  });
+
   beforeEach(() => {
     (global as unknown as { ResizeObserver: unknown }).ResizeObserver = FakeResizeObserver;
     window.matchMedia = jest.fn().mockReturnValue({ matches: true }) as unknown as typeof window.matchMedia;
