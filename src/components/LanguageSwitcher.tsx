@@ -287,7 +287,14 @@ export function LanguageSwitcher() {
             // A press on a non-focusable spot (heading, padding, scrollbar)
             // would move focus to <body> and close the panel through onBlur;
             // only the search field takes focus from a press.
-            onMouseDown={(e) => { if (e.target !== searchRef.current) e.preventDefault(); }}
+            onMouseDown={(e) => {
+              if (e.target === searchRef.current) return;
+              // Leave presses on the list's scrollbar alone (Firefox cannot
+              // drag a scrollbar whose mousedown was cancelled); either side, for RTL.
+              const list = listRef.current;
+              if (e.target === list && list && (e.nativeEvent.offsetX >= list.clientWidth || e.nativeEvent.offsetX < 0)) return;
+              e.preventDefault();
+            }}
             className="fixed inset-x-0 bottom-0 z-[300] max-h-[85vh] rounded-t-2xl imd:absolute imd:inset-x-auto imd:bottom-auto imd:end-0 imd:mt-2 imd:w-[30rem] imd:max-h-[75vh] imd:rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 shadow-2xl flex flex-col"
           >
             {/* Phone sheet header (rendered only there, so it never adds a Tab stop on desktop). */}
@@ -361,7 +368,7 @@ export function LanguageSwitcher() {
         // Safari does not focus buttons on press: without this the search field
         // blurs (closing the panel) and the click then opens it again.
         onMouseDown={(e) => { if (isOpen) e.preventDefault(); }}
-        onClick={() => (isOpen ? close(false) : setIsOpen(true))}
+        onClick={() => (isOpen ? close(true) : setIsOpen(true))}
         className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-700 focus-visible:ring-2 focus-visible:ring-amber-500 transition-all cursor-pointer"
         aria-label="Select language"
         aria-expanded={isOpen}
