@@ -54,7 +54,7 @@ interface HistoryEntry {
     total_open_issues?: number | null;
     total_merged_prs?: number | null;
     total_forks?: number | null;
-  };
+  } | null;
 }
 
 const projectNumberFields = [
