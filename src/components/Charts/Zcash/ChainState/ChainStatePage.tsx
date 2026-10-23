@@ -25,6 +25,8 @@ type Day = {
   shielded: { sapling_spends: number; sapling_outputs: number; orchard_actions: number; ironwood_actions: number; sprout_joinsplits: number; sprout_vpub_old?: number; sprout_vpub_new?: number; sapling_value_balance?: number; orchard_value_balance?: number; ironwood_value_balance?: number };
   types: { v1: number; v2: number; v3: number; v4: number; v5: number; v6: number; other: number; coinbase: number; user: number; fully_shielded: number; mixed: number; transparent_only: number };
   addresses: { unique_receivers: number; total_receiving_outputs: number };
+  anchors?: { sapling: number; orchard: number; ironwood: number };
+  trees?: { sapling: number; orchard: number; ironwood: number; sprout: number };
   blocks: { blocks: number; total_txs: number; avg_txs_per_block: number; max_txs_per_block: number; total_tx_bytes?: number };
   locktime: { nonzero: number; zero: number; high_sequence: number };
   spends: { indexer_populated: boolean; probed: number; outpoint_hits: number; sapling_nullifier_hits: number; orchard_nullifier_hits: number; ironwood_nullifier_hits: number; sprout_nullifier_hits: number };
@@ -47,7 +49,9 @@ const CHARTS = [
   { id: "shielded", label: "Shielded actions", keys: ["sapling_spends", "sapling_outputs", "orchard", "ironwood", "sprout"], group: "shielded" },
   { id: "value", label: "Value balances", keys: ["sprout_vpub_old", "sprout_vpub_new", "sapling_vb", "orchard_vb", "ironwood_vb"], group: "shielded" },
   { id: "bytes", label: "Tx bytes", keys: ["tx_bytes"], group: "blocks" },
-  { id: "anchors", label: "Anchors cited", keys: ["sapling_anchors", "orchard_anchors", "ironwood_anchors"], group: "shielded" },
+  { id: "trees", label: "Tree size", keys: ["sapling_tree", "orchard_tree", "ironwood_tree", "sprout_tree"], group: "shielded" },
+  { id: "nullifiers", label: "Nullifier set", keys: ["sapling_nf_set", "orchard_nf_set", "ironwood_nf_set", "sprout_nf_set"], group: "shielded" },
+  { id: "unspent", label: "Unspent notes", keys: ["sapling_unspent", "orchard_unspent", "ironwood_unspent"], group: "shielded" },
   { id: "types", label: "Tx type mix", keys: ["fully_shielded", "mixed", "transparent_only"], group: "types" },
   { id: "versions", label: "Version mix", keys: ["v1", "v2", "v3", "v4", "v5", "v6", "other"], group: "types" },
   { id: "addresses", label: "Addresses", keys: ["unique_receivers", "receiving_outputs"], group: "addresses" },
@@ -121,6 +125,17 @@ const COLORS: Record<string, string> = {
   sapling_anchors: "#8b5cf6",
   orchard_anchors: "#22d3ee",
   ironwood_anchors: "#fb923c",
+  sapling_tree: "#8b5cf6",
+  orchard_tree: "#22d3ee",
+  ironwood_tree: "#fb923c",
+  sprout_tree: "#a855f7",
+  sapling_nf_set: "#8b5cf6",
+  orchard_nf_set: "#22d3ee",
+  ironwood_nf_set: "#fb923c",
+  sprout_nf_set: "#a855f7",
+  sapling_unspent: "#8b5cf6",
+  orchard_unspent: "#22d3ee",
+  ironwood_unspent: "#fb923c",
   fully_shielded: "#22c55e",
   mixed: "#eab308",
   transparent_only: "#64748b",
@@ -222,6 +237,10 @@ export default function ChainStatePage() {
     sapling_anchors: n(d.anchors?.sapling),
     orchard_anchors: n(d.anchors?.orchard),
     ironwood_anchors: n(d.anchors?.ironwood),
+    sapling_tree: n(d.trees?.sapling),
+    orchard_tree: n(d.trees?.orchard),
+    ironwood_tree: n(d.trees?.ironwood),
+    sprout_tree: n(d.trees?.sprout),
     fully_shielded: n(d.types?.fully_shielded),
     mixed: n(d.types?.mixed),
     transparent_only: n(d.types?.transparent_only),
@@ -248,8 +267,25 @@ export default function ChainStatePage() {
     ironwood_nf: n(d.spends?.ironwood_nullifier_hits),
     sprout_nf: n(d.spends?.sprout_nullifier_hits),
   }));
+  let sapNf = 0, orchNf = 0, ironNf = 0, sproutNf = 0;
+  const withSets = rawSeries.map((row, i) => {
+    sapNf += n(filtered[i]?.shielded?.sapling_spends);
+    orchNf += n(filtered[i]?.shielded?.orchard_actions);
+    ironNf += n(filtered[i]?.shielded?.ironwood_actions);
+    sproutNf += n(filtered[i]?.shielded?.sprout_joinsplits) * 2;
+    return {
+      ...row,
+      sapling_nf_set: sapNf,
+      orchard_nf_set: orchNf,
+      ironwood_nf_set: ironNf,
+      sprout_nf_set: sproutNf,
+      sapling_unspent: Math.max(0, (row.sapling_tree || 0) - sapNf),
+      orchard_unspent: Math.max(0, (row.orchard_tree || 0) - orchNf),
+      ironwood_unspent: Math.max(0, (row.ironwood_tree || 0) - ironNf),
+    };
+  });
   const series = logScale
-    ? rawSeries.map((row) => {
+    ? withSets.map((row) => {
         const out: Record<string, number> = { day: row.day };
         for (const [k, v] of Object.entries(row)) {
           if (k === "day") continue;
@@ -257,7 +293,7 @@ export default function ChainStatePage() {
         }
         return out;
       })
-    : rawSeries;
+    : withSets;
 
   const expiryEntries = Object.entries(data.expiry.delta_histogram || {})
     .map(([delta, count]) => ({ delta: Number(delta), count }))
