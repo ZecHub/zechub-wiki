@@ -478,13 +478,15 @@ describe("LanguageSwitcher on a phone", () => {
   it("sits above the on-screen keyboard with a fixed height while typing", async () => {
     const listeners: Record<string, () => void> = {};
     const vv = { height: 844, offsetTop: 0, addEventListener: (t: string, f: () => void) => { listeners[t] = f; }, removeEventListener: jest.fn() };
-    Object.defineProperty(window, "visualViewport", { value: vv, configurable: true });
-    const innerHeight = window.innerHeight;
-    Object.defineProperty(window, "innerHeight", { value: 844, configurable: true });
+    const saved = (["visualViewport", "innerHeight"] as const).map((k) => [k, Object.getOwnPropertyDescriptor(window, k)] as const);
     afterRestore = () => {
-      delete (window as { visualViewport?: unknown }).visualViewport;
-      Object.defineProperty(window, "innerHeight", { value: innerHeight, configurable: true });
+      for (const [k, d] of saved) {
+        if (d) Object.defineProperty(window, k, d);
+        else delete (window as unknown as Record<string, unknown>)[k];
+      }
     };
+    Object.defineProperty(window, "visualViewport", { value: vv, configurable: true });
+    Object.defineProperty(window, "innerHeight", { value: 844, configurable: true });
     const user = userEvent.setup();
     renderPicker();
     await user.click(trigger());
