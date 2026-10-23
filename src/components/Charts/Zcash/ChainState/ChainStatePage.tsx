@@ -157,6 +157,7 @@ export default function ChainStatePage() {
   const [data, setData] = useState<Results | null>(null);
   const [chartId, setChartId] = useState(CHARTS[0].id);
   const [infoOpen, setInfoOpen] = useState(false);
+  const [logScale, setLogScale] = useState(false);
   const [zoomStart, setZoomStart] = useState<number>(0);
   const [zoomEnd, setZoomEnd] = useState<number>(0);
   const [dragging, setDragging] = useState<"start" | "end" | "mid" | null>(null);
@@ -184,7 +185,7 @@ export default function ChainStatePage() {
 
   const filtered = days.filter((d) => d.end >= zoomStart && d.start <= zoomEnd);
 
-  const series = filtered.map((d) => ({
+  const rawSeries = filtered.map((d) => ({
     day: d.start,
     txs: d.counts.txs,
     sapling_spends: d.shielded.sapling_spends,
@@ -216,6 +217,16 @@ export default function ChainStatePage() {
     orchard_nf: d.spends.orchard_nullifier_hits,
     ironwood_nf: d.spends.ironwood_nullifier_hits,
   }));
+  const series = logScale
+    ? rawSeries.map((row) => {
+        const out: Record<string, number> = { day: row.day };
+        for (const [k, v] of Object.entries(row)) {
+          if (k === "day") continue;
+          out[k] = Math.max(v as number, 0.1);
+        }
+        return out;
+      })
+    : rawSeries;
 
   const expiryEntries = Object.entries(data.expiry.delta_histogram || {})
     .map(([delta, count]) => ({ delta: Number(delta), count }))
@@ -270,15 +281,26 @@ export default function ChainStatePage() {
             </div>
           )}
         </div>
-        <select
-          value={chartId}
-          onChange={(e) => setChartId(e.target.value)}
-          className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded px-3 py-1.5 text-sm text-slate-900 dark:text-slate-100"
-        >
-          {CHARTS.map((c) => (
-            <option key={c.id} value={c.id}>{c.label}</option>
-          ))}
-        </select>
+        <div className="flex items-center gap-3">
+          <label className="flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-300">
+            <input
+              type="checkbox"
+              checked={logScale}
+              onChange={(e) => setLogScale(e.target.checked)}
+              className="rounded"
+            />
+            Log
+          </label>
+          <select
+            value={chartId}
+            onChange={(e) => setChartId(e.target.value)}
+            className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded px-3 py-1.5 text-sm text-slate-900 dark:text-slate-100"
+          >
+            {CHARTS.map((c) => (
+              <option key={c.id} value={c.id}>{c.label}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="h-[340px] md:h-[450px] w-full mb-2">
@@ -287,7 +309,7 @@ export default function ChainStatePage() {
             <BarChart data={expiryChart}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
               <XAxis dataKey="delta" stroke="#64748b" fontSize={12} />
-              <YAxis stroke="#64748b" fontSize={12} />
+              <YAxis scale={logScale ? "log" : "auto"} domain={logScale ? [0.1, "auto"] : undefined} stroke="#64748b" fontSize={12} />
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey="count" fill="#3b82f6" />
             </BarChart>
@@ -295,7 +317,7 @@ export default function ChainStatePage() {
             <LineChart data={series}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
               <XAxis dataKey="day" stroke="#64748b" fontSize={12} angle={-45} textAnchor="end" height={60} />
-              <YAxis stroke="#64748b" fontSize={12} />
+              <YAxis scale={logScale ? "log" : "auto"} domain={logScale ? [0.1, "auto"] : undefined} stroke="#64748b" fontSize={12} />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
               {active.keys.map((k) => (
