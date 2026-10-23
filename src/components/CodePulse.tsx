@@ -57,6 +57,23 @@ interface HistoryEntry {
   };
 }
 
+function isHistoryEntry(value: unknown): value is HistoryEntry {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+
+  const entry = value as Record<string, unknown>;
+  if (typeof entry.date !== "string") return false;
+  if (entry.projects === undefined) return true;
+  if (!Array.isArray(entry.projects)) return false;
+
+  return entry.projects.every(
+    (project) =>
+      project !== null &&
+      typeof project === "object" &&
+      !Array.isArray(project) &&
+      typeof (project as Record<string, unknown>).name === "string",
+  );
+}
+
 interface LinkHealthEntry {
   date: string;
   generatedAt: string;
@@ -159,7 +176,9 @@ export default function CodePulse() {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
         const history = await response.json();
-        if (!Array.isArray(history)) throw new Error("Invalid feed");
+        if (!Array.isArray(history) || !history.every(isHistoryEntry)) {
+          throw new Error("Invalid feed");
+        }
         if (active) setHistory(history);
       } catch (error) {
         if (active) {
@@ -182,10 +201,11 @@ export default function CodePulse() {
 
         if (active && linkRes?.ok) {
           const linkData = await linkRes.json();
-          setLinkHistory(Array.isArray(linkData) ? linkData : []);
+          if (active) setLinkHistory(Array.isArray(linkData) ? linkData : []);
         }
         if (active && latestRes?.ok) {
-          setLatest(await latestRes.json());
+          const latestData = await latestRes.json();
+          if (active) setLatest(latestData);
         }
       } catch (error) {
         if (active) {
