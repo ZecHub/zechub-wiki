@@ -155,7 +155,7 @@ function Stat({ label, value, accent }: { label: string; value: string | number;
 
 export default function ChainStatePage() {
   const [data, setData] = useState<Results | null>(null);
-  const [chartId, setChartId] = useState(CHARTS[0].id);
+  const [infoOpen, setInfoOpen] = useState(false);
   const [zoomStart, setZoomStart] = useState<number>(0);
   const [zoomEnd, setZoomEnd] = useState<number>(0);
   const [dragging, setDragging] = useState<"start" | "end" | "mid" | null>(null);
@@ -253,14 +253,19 @@ export default function ChainStatePage() {
         <div className="flex items-center gap-2">
           <h2 className="text-lg font-semibold">{active.label}</h2>
           {INFO[chartId] && (
-            <div className="relative group">
-              <button className="w-5 h-5 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center">
+            <div className="relative">
+              <button
+                onClick={() => setInfoOpen((v) => !v)}
+                className="w-5 h-5 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center"
+              >
                 i
               </button>
-              <div className="absolute left-0 top-7 z-20 hidden group-hover:block w-72 p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 shadow-lg text-sm">
-                <div className="font-medium text-slate-900 dark:text-slate-200 mb-1">{INFO[chartId].title}</div>
-                <div className="text-slate-600 dark:text-slate-400">{INFO[chartId].body}</div>
-              </div>
+              {infoOpen && (
+                <div className="absolute left-0 top-7 z-20 w-72 p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 shadow-lg text-sm">
+                  <div className="font-medium text-slate-900 dark:text-slate-200 mb-1">{INFO[chartId].title}</div>
+                  <div className="text-slate-600 dark:text-slate-400">{INFO[chartId].body}</div>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -355,8 +360,8 @@ export default function ChainStatePage() {
             <span>{zoomEnd.toLocaleString()}</span>
           </div>
           <div
-            className="relative h-10 select-none"
-            onMouseMove={(e) => {
+            className="relative h-10 select-none touch-none"
+            onPointerMove={(e) => {
               if (!dragging || !dragOrigin) return;
               const rect = e.currentTarget.getBoundingClientRect();
               const dx = e.clientX - dragOrigin.x;
@@ -376,8 +381,8 @@ export default function ChainStatePage() {
                 setZoomEnd(Math.min(rangeEnd, Math.max(dragOrigin.end + delta, zoomStart + 1)));
               }
             }}
-            onMouseUp={() => { setDragging(null); setDragOrigin(null); }}
-            onMouseLeave={() => { setDragging(null); setDragOrigin(null); }}
+            onPointerUp={() => { setDragging(null); setDragOrigin(null); }}
+            onPointerLeave={() => { setDragging(null); setDragOrigin(null); }}
           >
             <div className="absolute top-1/2 -translate-y-1/2 h-1 w-full bg-slate-600 rounded" />
             <div
@@ -393,7 +398,7 @@ export default function ChainStatePage() {
                 left: `${(((zoomStart + zoomEnd) / 2 - rangeStart) / (rangeEnd - rangeStart)) * 100}%`,
                 zIndex: 10,
               }}
-              onMouseDown={(e) => {
+              onPointerDown={(e) => {
                 e.stopPropagation();
                 setDragging("mid");
                 setDragOrigin({ x: e.clientX, start: zoomStart, end: zoomEnd });
@@ -406,7 +411,7 @@ export default function ChainStatePage() {
                 <div
                   className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-blue-500 rounded-full border-2 border-white cursor-ew-resize hover:scale-110 transition-transform"
                   style={{ left: `calc(${((zoomStart - rangeStart) / (rangeEnd - rangeStart)) * 100}% - 22px)`, zIndex: 11 }}
-                  onMouseDown={(e) => {
+                  onPointerDown={(e) => {
                     e.stopPropagation();
                     setDragging("start");
                     setDragOrigin({ x: e.clientX, start: zoomStart, end: zoomEnd });
@@ -415,7 +420,7 @@ export default function ChainStatePage() {
                 <div
                   className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-blue-500 rounded-full border-2 border-white cursor-ew-resize hover:scale-110 transition-transform"
                   style={{ left: `calc(${((zoomEnd - rangeStart) / (rangeEnd - rangeStart)) * 100}% + 6px)`, zIndex: 11 }}
-                  onMouseDown={(e) => {
+                  onPointerDown={(e) => {
                     e.stopPropagation();
                     setDragging("end");
                     setDragOrigin({ x: e.clientX, start: zoomStart, end: zoomEnd });
