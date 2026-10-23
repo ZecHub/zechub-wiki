@@ -349,4 +349,73 @@ describe("LanguageSwitcher", () => {
     expect(trigger()).toHaveAttribute("aria-expanded", "false");
     expectNoSelection();
   });
+
+  it("uses start/end (not left/right) spacing so Arabic lays out right to left", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+
+    expect(option(/English/).className).toContain("text-start");
+    expect(option(/English/).className).not.toMatch(/\btext-left\b/);
+    expect(search().className).toContain("ps-9");
+  });
+});
+
+describe("LanguageSwitcher on a phone", () => {
+  // Touch screen below the 725px breakpoint: bottom sheet rendered into <body>.
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.mocked(useLanguage).mockImplementation(useMockLanguage);
+    setBrowserLanguages(["ja-JP"]);
+    window.matchMedia = jest.fn().mockImplementation((q: string) => ({
+      matches: q.includes("max-width: 724px") || q.includes("pointer: coarse"),
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+    })) as unknown as typeof window.matchMedia;
+  });
+  afterEach(() => {
+    delete (window as { matchMedia?: unknown }).matchMedia;
+  });
+
+  it("opens a sheet in <body> with focus kept on the current language, not the search field", async () => {
+    const user = userEvent.setup();
+    const { container } = renderPicker();
+    await user.click(trigger());
+
+    const dialog = screen.getByRole("dialog", { name: "Language" });
+    expect(container.contains(dialog)).toBe(false);
+    expect(document.body.contains(dialog)).toBe(true);
+    // Suggested is already filled when focus lands, so the option stays mounted.
+    expect(option(/Español/)).toHaveFocus();
+    expect(within(screen.getByRole("group", { name: "Suggested" })).getAllByRole("option").map((o) => o.getAttribute("data-code")))
+      .toEqual(["es", "ja"]);
+  });
+
+  it("selects inside the sheet and closes it with the close button", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+    await user.click(screen.getByRole("button", { name: "Close" }));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    await waitFor(() => expect(trigger()).toHaveFocus());
+
+    await user.click(trigger());
+    await user.click(option(/日本語/));
+    expect(mockSetLocale).toHaveBeenCalledWith("ja");
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("keeps the sheet open while typing in its search field", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+
+    await user.click(search());
+    await user.type(search(), "gre");
+
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(optionCodes()).toEqual(["el"]);
+    await user.keyboard("{Escape}");
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
 });

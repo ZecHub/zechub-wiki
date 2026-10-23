@@ -43,7 +43,6 @@ function CodeBadge({ code }: { code: string }) {
 export function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
-  const [suggestedCodes, setSuggestedCodes] = useState<string[]>([]);
   const { locale, setLocale, t } = useLanguage();
   const router = useRouter();
   const pathname = usePathname();
@@ -96,12 +95,12 @@ export function LanguageSwitcher() {
     }
   }, [locale]);
 
-  // Suggested = the current language, then the browser's languages. Computed
-  // on open, so it never differs between server and client render.
-  useEffect(() => {
-    if (!isOpen) return;
-    setSuggestedCodes([locale, ...browserLocales()].filter((c, i, a) => a.indexOf(c) === i));
-  }, [isOpen, locale]);
+  // Suggested = the current language, then the browser's languages. Read
+  // during render: the panel only renders after a click, never on the server,
+  // and computing it here (not in an effect) keeps the focused option mounted.
+  const suggestedCodes = isOpen
+    ? [locale, ...browserLocales()].filter((c, i, a) => a.indexOf(c) === i)
+    : [];
 
   const q = fold(query.trim());
   const sorted = useMemo(() => [...LANGUAGES].sort(byEnglishName), []);
@@ -208,7 +207,7 @@ export function LanguageSwitcher() {
       data-code={lang.code}
       aria-selected={lang.code === locale}
       onClick={() => handleSelect(lang.code)}
-      className={`w-full text-left px-3 py-2.5 flex items-center gap-3 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 focus-visible:bg-slate-200 dark:focus-visible:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-amber-500 transition-colors cursor-pointer ${
+      className={`w-full text-start px-3 py-2.5 flex items-center gap-3 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 focus-visible:bg-slate-200 dark:focus-visible:bg-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-amber-500 transition-colors cursor-pointer ${
         lang.code === locale ? 'bg-slate-200 dark:bg-slate-700' : ''
       }`}
     >
@@ -224,7 +223,7 @@ export function LanguageSwitcher() {
         )}
       </span>
       {lang.code === locale && (
-        <svg className="ml-auto w-4 h-4 text-amber-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <svg className="ms-auto w-4 h-4 text-amber-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
         </svg>
       )}
@@ -245,13 +244,13 @@ export function LanguageSwitcher() {
             ref={panelRef}
             role="dialog"
             aria-label={L.title}
-            className="fixed inset-x-0 bottom-0 z-[300] max-h-[85vh] rounded-t-2xl imd:absolute imd:inset-x-auto imd:bottom-auto imd:right-0 imd:mt-2 imd:w-[30rem] imd:max-h-[75vh] imd:rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 shadow-2xl flex flex-col"
+            className="fixed inset-x-0 bottom-0 z-[300] max-h-[85vh] rounded-t-2xl imd:absolute imd:inset-x-auto imd:bottom-auto imd:end-0 imd:mt-2 imd:w-[30rem] imd:max-h-[75vh] imd:rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 shadow-2xl flex flex-col"
           >
             {/* Phone sheet header (rendered only there, so it never adds a Tab stop on desktop). */}
             {isPhone && (
             <div className="flex items-center justify-between px-4 pt-3">
               <span className="text-base font-semibold">{L.title}</span>
-              <button type="button" onClick={() => close(true)} aria-label={L.close} className="p-2 -mr-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700">
+              <button type="button" onClick={() => close(true)} aria-label={L.close} className="p-2 -me-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -259,7 +258,7 @@ export function LanguageSwitcher() {
             <div className="p-3 border-b border-slate-200 dark:border-slate-700">
               <label className="relative block">
                 <span className="sr-only">{L.search}</span>
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" aria-hidden="true" />
+                <Search className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" aria-hidden="true" />
                 <input
                   ref={searchRef}
                   type="search"
@@ -268,7 +267,7 @@ export function LanguageSwitcher() {
                   placeholder={L.search}
                   aria-controls={listboxId}
                   autoComplete="off"
-                  className="w-full pl-9 pr-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-base imd:text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  className="w-full ps-9 pe-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-base imd:text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
                 />
               </label>
             </div>
