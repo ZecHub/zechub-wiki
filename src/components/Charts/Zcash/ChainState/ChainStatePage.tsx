@@ -155,6 +155,7 @@ function Stat({ label, value, accent }: { label: string; value: string | number;
 
 export default function ChainStatePage() {
   const [data, setData] = useState<Results | null>(null);
+  const [chartId, setChartId] = useState(CHARTS[0].id);
   const [infoOpen, setInfoOpen] = useState(false);
   const [zoomStart, setZoomStart] = useState<number>(0);
   const [zoomEnd, setZoomEnd] = useState<number>(0);
