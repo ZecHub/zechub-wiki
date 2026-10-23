@@ -25,6 +25,7 @@ import {
 } from "recharts";
 
 type View = "radicle" | "github" | "links";
+type HistoryFeed = Exclude<View, "links">;
 type Metric = "seeding" | "open_issues" | "merged_prs" | "stars" | "forks";
 
 interface Project {
@@ -133,37 +134,77 @@ export default function CodePulse() {
   const [githubHistory, setGithubHistory] = useState<HistoryEntry[]>([]);
   const [linkHistory, setLinkHistory] = useState<LinkHealthEntry[]>([]);
   const [latest, setLatest] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<Record<View, boolean>>({
+    radicle: true,
+    github: true,
+    links: true,
+  });
+  const [errors, setErrors] = useState<Record<HistoryFeed, boolean>>({
+    radicle: false,
+    github: false,
+  });
   const [selectedMetric, setSelectedMetric] = useState<Metric>("seeding");
   const [selectedRepo, setSelectedRepo] = useState("all");
   const [linkMetric, setLinkMetric] = useState<"serious" | "broken" | "blocked" | "redirect">("serious");
 
   useEffect(() => {
-    Promise.all([
-      fetch("/data/radicle/radicle.json"),
-      fetch("/data/github/github.json"),
-      fetch("/data/link-health/history.json").catch(() => null),
-      fetch("/data/link-health/latest.json").catch(() => null),
-    ])
-      .then(async ([radRes, gitRes, linkRes, latestRes]) => {
-        const [radData, gitData] = await Promise.all([
-          radRes.json(),
-          gitRes.json(),
-        ]);
-        setRadicleHistory(Array.isArray(radData) ? radData : []);
-        setGithubHistory(Array.isArray(gitData) ? gitData : []);
+    let active = true;
 
-        if (linkRes && linkRes.ok) {
+    const loadFeed = async (
+      feed: HistoryFeed,
+      setHistory: (history: HistoryEntry[]) => void,
+    ) => {
+      try {
+        const response = await fetch(`/data/${feed}/${feed}.json`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const history = await response.json();
+        if (!Array.isArray(history)) throw new Error("Invalid feed");
+        if (active) setHistory(history);
+      } catch (error) {
+        if (active) {
+          setErrors((previous) => ({ ...previous, [feed]: true }));
+          console.error(`Failed to load Code Pulse ${feed} feed`, error);
+        }
+      } finally {
+        if (active) {
+          setLoading((previous) => ({ ...previous, [feed]: false }));
+        }
+      }
+    };
+
+    const loadLinks = async () => {
+      try {
+        const [linkRes, latestRes] = await Promise.all([
+          fetch("/data/link-health/history.json").catch(() => null),
+          fetch("/data/link-health/latest.json").catch(() => null),
+        ]);
+
+        if (active && linkRes?.ok) {
           const linkData = await linkRes.json();
           setLinkHistory(Array.isArray(linkData) ? linkData : []);
         }
-        if (latestRes && latestRes.ok) {
-          const latestData = await latestRes.json();
-          setLatest(latestData);
+        if (active && latestRes?.ok) {
+          setLatest(await latestRes.json());
         }
-      })
-      .catch((error) => console.error("Failed to load Code Pulse data", error))
-      .finally(() => setLoading(false));
+      } catch (error) {
+        if (active) {
+          console.error("Failed to load Code Pulse link health data", error);
+        }
+      } finally {
+        if (active) {
+          setLoading((previous) => ({ ...previous, links: false }));
+        }
+      }
+    };
+
+    void loadFeed("radicle", setRadicleHistory);
+    void loadFeed("github", setGithubHistory);
+    void loadLinks();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const currentHistory = view === "radicle" ? radicleHistory : githubHistory;
@@ -248,22 +289,6 @@ export default function CodePulse() {
     if (nextView !== "github") setSelectedRepo("all");
   };
 
-  if (loading) {
-    return (
-      <div className="rounded-3xl border bg-card p-12 text-center text-muted-foreground">
-        Loading Code Pulse…
-      </div>
-    );
-  }
-
-  if (view !== "links" && !current) {
-    return (
-      <div className="rounded-3xl border border-red-200 bg-red-50 p-8 text-center text-red-600">
-        No Code Pulse data available yet.
-      </div>
-    );
-  }
-
   const delta =
     view === "links"
       ? percentChange(linkCurrent?.serious ?? 0, linkPrevious?.serious)
@@ -340,7 +365,34 @@ export default function CodePulse() {
         </div>
       </header>
 
-      {view === "links" ? (
+      {loading[view] ? (
+        <div
+          role="status"
+          className="rounded-3xl border bg-card p-12 text-center text-muted-foreground"
+        >
+          Loading{" "}
+          {view === "links"
+            ? "Link Health"
+            : view === "radicle"
+              ? "Radicle"
+              : "GitHub"}{" "}
+          feed…
+        </div>
+      ) : view !== "links" && errors[view] ? (
+        <div
+          role="alert"
+          className="rounded-3xl border bg-card p-8 text-center text-destructive"
+        >
+          Could not load the {view === "radicle" ? "Radicle" : "GitHub"} feed.
+        </div>
+      ) : view !== "links" && !current ? (
+        <div
+          role="status"
+          className="rounded-3xl border bg-card p-8 text-center text-muted-foreground"
+        >
+          No {view === "radicle" ? "Radicle" : "GitHub"} data available yet.
+        </div>
+      ) : view === "links" ? (
         <>
           <section
             aria-label="Current link health summary"
