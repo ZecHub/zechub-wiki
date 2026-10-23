@@ -56,13 +56,22 @@ export function LanguageSwitcher() {
   // makes it the containing block), which clipped the sheet off-screen.
   const [isPhone, setIsPhone] = useState(false);
   useEffect(() => {
-    const mq = window.matchMedia?.('(max-width: 724px)');
+    // Same boundary as Tailwind's imd (min-width: 725px), so fractional
+    // widths (zoom) can never match neither.
+    const mq = window.matchMedia?.('(min-width: 725px)');
     if (!mq) return;
-    const update = () => setIsPhone(mq.matches);
+    const update = () => setIsPhone(!mq.matches);
     update();
     mq.addEventListener?.('change', update);
     return () => mq.removeEventListener?.('change', update);
   }, []);
+  // The phone sheet is modal: the page behind it does not scroll.
+  useEffect(() => {
+    if (!isOpen || !isPhone) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previous; };
+  }, [isOpen, isPhone]);
   const inPicker = (node: Node | null) =>
     Boolean(node && (containerRef.current?.contains(node) || panelRef.current?.contains(node)));
   const restoreFocusRef = useRef(false);
@@ -181,6 +190,7 @@ export function LanguageSwitcher() {
     const inSearch = document.activeElement === searchRef.current;
     if (inSearch && event.key === 'Enter') {
       event.preventDefault();
+      if (!q) return;
       const first = list[0]?.dataset.code;
       if (first) handleSelect(first);
       return;
@@ -244,6 +254,11 @@ export function LanguageSwitcher() {
             ref={panelRef}
             role="dialog"
             aria-label={L.title}
+            aria-modal={isPhone || undefined}
+            // A press on a non-focusable spot (heading, padding, scrollbar)
+            // would move focus to <body> and close the panel through onBlur;
+            // only the search field takes focus from a press.
+            onMouseDown={(e) => { if (e.target !== searchRef.current) e.preventDefault(); }}
             className="fixed inset-x-0 bottom-0 z-[300] max-h-[85vh] rounded-t-2xl imd:absolute imd:inset-x-auto imd:bottom-auto imd:end-0 imd:mt-2 imd:w-[30rem] imd:max-h-[75vh] imd:rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 shadow-2xl flex flex-col"
           >
             {/* Phone sheet header (rendered only there, so it never adds a Tab stop on desktop). */}
@@ -271,24 +286,24 @@ export function LanguageSwitcher() {
                 />
               </label>
             </div>
-            <div ref={listRef} id={listboxId} role="listbox" aria-label="Language options" className="overflow-y-auto px-2 pb-3">
+            <div ref={listRef} id={listboxId} role="listbox" aria-label="Language options" className="overflow-y-auto overscroll-contain px-2 pb-3">
               {results ? (
                 results.length ? (
-                  <div className="grid imd:grid-cols-2 gap-0.5 pt-2">{results.map(renderOption)}</div>
+                  <div role="presentation" className="grid imd:grid-cols-2 gap-0.5 pt-2">{results.map(renderOption)}</div>
                 ) : (
-                  <p className="px-3 py-6 text-sm text-center text-slate-500">{L.none}</p>
+                  <p aria-live="polite" className="px-3 py-6 text-sm text-center text-slate-500">{L.none}</p>
                 )
               ) : (
                 <>
                   {suggested.length > 0 && (
                     <div role="group" aria-labelledby={suggestedId}>
                       {heading(suggestedId, L.suggested)}
-                      <div className="grid imd:grid-cols-2 gap-0.5">{suggested.map(renderOption)}</div>
+                      <div role="presentation" className="grid imd:grid-cols-2 gap-0.5">{suggested.map(renderOption)}</div>
                     </div>
                   )}
                   <div role="group" aria-labelledby={allId} className={suggested.length ? 'mt-1 border-t border-slate-200 dark:border-slate-700' : ''}>
                     {heading(allId, L.all)}
-                    <div className="grid imd:grid-cols-2 gap-0.5">{rest.map(renderOption)}</div>
+                    <div role="presentation" className="grid imd:grid-cols-2 gap-0.5">{rest.map(renderOption)}</div>
                   </div>
                 </>
               )}

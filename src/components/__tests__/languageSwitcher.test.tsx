@@ -262,6 +262,24 @@ describe("LanguageSwitcher", () => {
     expectNoSelection();
   });
 
+  it("ignores Enter in an empty search field", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+    await user.keyboard("{Enter}");
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    expectNoSelection();
+  });
+
+  it("stays open when a heading inside the panel is pressed", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+    await user.click(screen.getByText("All languages"));
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    expect(search()).toHaveFocus();
+  });
+
   it("clears the search when it closes", async () => {
     const user = userEvent.setup();
     renderPicker();
@@ -368,7 +386,7 @@ describe("LanguageSwitcher on a phone", () => {
     jest.mocked(useLanguage).mockImplementation(useMockLanguage);
     setBrowserLanguages(["ja-JP"]);
     window.matchMedia = jest.fn().mockImplementation((q: string) => ({
-      matches: q.includes("max-width: 724px") || q.includes("pointer: coarse"),
+      matches: q.includes("pointer: coarse"), // min-width: 725px does not match
       addEventListener: jest.fn(),
       removeEventListener: jest.fn(),
     })) as unknown as typeof window.matchMedia;
@@ -403,6 +421,16 @@ describe("LanguageSwitcher on a phone", () => {
     await user.click(option(/日本語/));
     expect(mockSetLocale).toHaveBeenCalledWith("ja");
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("locks the page scroll while the sheet is open", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+    expect(document.body.style.overflow).toBe("hidden");
+    expect(screen.getByRole("dialog")).toHaveAttribute("aria-modal", "true");
+    await user.keyboard("{Escape}");
+    expect(document.body.style.overflow).toBe("");
   });
 
   it("keeps the sheet open while typing in its search field", async () => {

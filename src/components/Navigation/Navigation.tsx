@@ -1024,6 +1024,7 @@ const Navigation = ({ searchItems }: { searchItems: readonly Searcher[] }) => {
           <Link prefetch href="/" className="shrink-0 hover:cursor-pointer">
             <Logo theme={mounted && isDark} />
           </Link>
+          {/* max-w-5xl and mx-8 are mirrored in useNavTooWide (NAV_MAX_WIDTH, NAV_MARGINS). */}
           <nav
             ref={navRef}
             className={`hidden ${navTooWide ? "" : "min-[1280px]:flex"} flex-1 min-w-0 justify-center max-w-5xl mx-8`}
