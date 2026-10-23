@@ -20,8 +20,6 @@ export function useNavTooWide(
 ) {
   const [tooWide, setTooWide] = useState(false);
   const neededRef = useRef(0);
-  const tooWideRef = useRef(false);
-  tooWideRef.current = tooWide;
 
   // New labels: show the bar again so they get measured.
   useLayoutEffect(() => {
@@ -35,7 +33,7 @@ export function useNavTooWide(
     if (!row || !nav) return;
     const check = () => {
       if (!window.matchMedia("(min-width: 1280px)").matches) return;
-      if (!tooWideRef.current) {
+      if (!tooWide) {
         const inner = nav.firstElementChild as HTMLElement | null;
         if (!inner) return;
         neededRef.current = inner.scrollWidth;

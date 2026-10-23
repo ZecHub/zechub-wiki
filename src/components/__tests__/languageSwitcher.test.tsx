@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { LANGUAGES, useLanguage } from "@/context/LanguageContext";
 import { LanguageSwitcher } from "../LanguageSwitcher";
@@ -183,7 +183,7 @@ describe("LanguageSwitcher", () => {
     await user.type(search(), "klingon");
 
     expect(screen.queryAllByRole("option")).toHaveLength(0);
-    expect(screen.getByText("No language found")).toBeInTheDocument();
+    expect(within(screen.getByRole("listbox")).getByText("No language found")).toBeInTheDocument();
   });
 
   it("selects the first match with Enter in the search field", async () => {
@@ -260,6 +260,36 @@ describe("LanguageSwitcher", () => {
     expect(trigger()).toHaveFocus();
     expect(trigger()).toHaveTextContent("Español");
     expectNoSelection();
+  });
+
+  it("leaves Enter and Escape that end an IME composition to the input method", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+    await user.type(search(), "nih");
+    fireEvent.keyDown(search(), { key: "Enter", keyCode: 229 });
+    fireEvent.keyDown(search(), { key: "Escape", isComposing: true });
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    expectNoSelection();
+  });
+
+  it("fills the two columns top to bottom, so ArrowDown moves down", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+    const grid = within(screen.getByRole("group", { name: "All languages" })).getAllByRole("option")[0].parentElement!;
+    expect(grid.className).toContain("imd:grid-flow-col");
+    expect(grid.style.getPropertyValue("--rows")).toBe("2"); // French, Greek, Japanese
+  });
+
+  it("announces when no language matches through a live region that is always present", async () => {
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+    const live = document.querySelector('[aria-live="polite"]')!;
+    expect(live).toHaveTextContent(/^$/);
+    await user.type(search(), "klingon");
+    expect(live).toHaveTextContent("No language found");
   });
 
   it("ignores Enter in an empty search field", async () => {

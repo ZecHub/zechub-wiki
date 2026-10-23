@@ -2,7 +2,7 @@
 
 import {
   useState, useRef, useEffect, useLayoutEffect, useId, useMemo,
-  type KeyboardEvent,
+  type KeyboardEvent, type CSSProperties,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { Globe, Search, X } from 'lucide-react';
@@ -171,6 +171,9 @@ export function LanguageSwitcher() {
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    // Enter and Escape that commit or cancel an IME composition (Japanese,
+    // Chinese, Korean input) belong to the input method, not to the picker.
+    if (event.nativeEvent.isComposing || event.keyCode === 229) return;
     if (isOpen && event.key === 'Escape') {
       event.preventDefault();
       event.stopPropagation();
@@ -254,6 +257,18 @@ export function LanguageSwitcher() {
     </button>
   );
 
+  // Two columns on wider screens, filled top to bottom (column-major), so
+  // ArrowDown, which follows the DOM order, also moves down on screen.
+  const grid = (langs: Language[], extra = '') => (
+    <div
+      role="presentation"
+      style={{ '--rows': Math.ceil(langs.length / 2) } as CSSProperties}
+      className={`grid imd:grid-cols-2 imd:grid-flow-col imd:[grid-template-rows:repeat(var(--rows),auto)] gap-0.5 ${extra}`}
+    >
+      {langs.map(renderOption)}
+    </div>
+  );
+
   const heading = (id: string, text: string) => (
     <div id={id} className="px-3 pt-3 pb-1 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
       {text}
@@ -300,24 +315,26 @@ export function LanguageSwitcher() {
                 />
               </label>
             </div>
+            {/* Always mounted, so screen readers announce when the text appears. */}
+            <p aria-live="polite" className="sr-only">{results && !results.length ? L.none : ''}</p>
             <div ref={listRef} id={listboxId} role="listbox" aria-label="Language options" className="overflow-y-auto overscroll-contain px-2 pb-3">
               {results ? (
                 results.length ? (
-                  <div role="presentation" className="grid imd:grid-cols-2 gap-0.5 pt-2">{results.map(renderOption)}</div>
+                  grid(results, "pt-2")
                 ) : (
-                  <p aria-live="polite" className="px-3 py-6 text-sm text-center text-slate-500">{L.none}</p>
+                  <p className="px-3 py-6 text-sm text-center text-slate-500">{L.none}</p>
                 )
               ) : (
                 <>
                   {suggested.length > 0 && (
                     <div role="group" aria-labelledby={suggestedId}>
                       {heading(suggestedId, L.suggested)}
-                      <div role="presentation" className="grid imd:grid-cols-2 gap-0.5">{suggested.map(renderOption)}</div>
+                      {grid(suggested)}
                     </div>
                   )}
                   <div role="group" aria-labelledby={allId} className={suggested.length ? 'mt-1 border-t border-slate-200 dark:border-slate-700' : ''}>
                     {heading(allId, L.all)}
-                    <div role="presentation" className="grid imd:grid-cols-2 gap-0.5">{rest.map(renderOption)}</div>
+                    {grid(rest)}
                   </div>
                 </>
               )}
@@ -341,6 +358,9 @@ export function LanguageSwitcher() {
         key={locale}
         ref={triggerRef}
         tabIndex={isOpen ? -1 : 0}
+        // Safari does not focus buttons on press: without this the search field
+        // blurs (closing the panel) and the click then opens it again.
+        onMouseDown={(e) => { if (isOpen) e.preventDefault(); }}
         onClick={() => (isOpen ? close(false) : setIsOpen(true))}
         className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-700 focus-visible:ring-2 focus-visible:ring-amber-500 transition-all cursor-pointer"
         aria-label="Select language"
