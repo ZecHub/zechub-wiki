@@ -166,7 +166,11 @@
     "searchTryDifferent": "请尝试更短的查询词、同义词或其他词语。",
     "searchSuggested": "推荐页面",
     "searchResultsLabel": "结果",
-    "skipToContent": "跳到内容"
+    "skipToContent": "跳到内容",
+    "languageSearch": "搜索语言",
+    "languageSuggested": "推荐",
+    "languageAll": "所有语言",
+    "languageNone": "未找到语言"
   },
   "navigation": {
     "wallets": "钱包",

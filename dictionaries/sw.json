@@ -159,14 +159,18 @@
     "getStarted": "Anza",
     "readMore": "Soma Zaidi",
     "search": "Tafuta",
-    "close": "Karibu",
+    "close": "Funga",
     "searchModalTitle": "Tafuta ZecHub Wiki",
     "searchHint": "Tafuta kwa jina la ukurasa, mada, au njia. Tumia funguo za mshale kuchagua, Enter kufungua.",
     "searchNoResults": "Hakuna kurasa zinazofanana",
     "searchTryDifferent": "Jaribu maswali mafupi, maneno yanayofanana, au maneno tofauti.",
     "searchSuggested": "Kurasa zilizopendekezwa",
     "searchResultsLabel": "Matokeo",
-    "skipToContent": "Nenda kwenye maudhui"
+    "skipToContent": "Nenda kwenye maudhui",
+    "languageSearch": "Tafuta lugha",
+    "languageSuggested": "Imependekezwa",
+    "languageAll": "Lugha zote",
+    "languageNone": "Hakuna lugha iliyopatikana"
   },
   "navigation": {
     "wallets": "Mkoba",
