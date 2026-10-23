@@ -25,6 +25,7 @@ type Day = {
   shielded: { sapling_spends: number; sapling_outputs: number; orchard_actions: number; ironwood_actions: number; sprout_joinsplits: number; sprout_vpub_old?: number; sprout_vpub_new?: number; sapling_value_balance?: number; orchard_value_balance?: number; ironwood_value_balance?: number };
   types: { v1: number; v2: number; v3: number; v4: number; v5: number; v6: number; other: number; coinbase: number; user: number; fully_shielded: number; mixed: number; transparent_only: number };
   addresses: { unique_receivers: number; total_receiving_outputs: number };
+  anchors?: { sapling: number; orchard: number; ironwood: number };
   blocks: { blocks: number; total_txs: number; avg_txs_per_block: number; max_txs_per_block: number; total_tx_bytes?: number };
   locktime: { nonzero: number; zero: number; high_sequence: number };
   spends: { indexer_populated: boolean; probed: number; outpoint_hits: number; sapling_nullifier_hits: number; orchard_nullifier_hits: number; ironwood_nullifier_hits: number; sprout_nullifier_hits: number };
