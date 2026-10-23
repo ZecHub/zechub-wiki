@@ -1,0 +1,498 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+
+const DATA_URL = "/data/zcash/chain-state/results.json";
+
+type Day = {
+  day: number;
+  start: number;
+  end: number;
+  expiry: { total: number; zero: number; nonzero: number; pre_overwinter: number; zero_fraction: number };
+  counts: { blocks: number; txs: number };
+  shielded: { sapling_spends: number; sapling_outputs: number; orchard_actions: number; ironwood_actions: number };
+  types: { v1: number; v2: number; v3: number; v4: number; v5: number; v6: number; other: number; coinbase: number; user: number; fully_shielded: number; mixed: number; transparent_only: number };
+  addresses: { unique_receivers: number; total_receiving_outputs: number };
+  blocks: { blocks: number; total_txs: number; avg_txs_per_block: number; max_txs_per_block: number };
+  locktime: { nonzero: number; zero: number; high_sequence: number };
+  spends: { indexer_populated: boolean; probed: number; outpoint_hits: number; sapling_nullifier_hits: number; orchard_nullifier_hits: number; ironwood_nullifier_hits: number };
+};
+
+type Results = {
+  expiry: Day["expiry"] & { delta_histogram: Record<string, number> };
+  counts: Day["counts"];
+  shielded: Day["shielded"];
+  types: Day["types"];
+  addresses: Day["addresses"];
+  blocks: Day["blocks"];
+  locktime: Day["locktime"];
+  spends: Day["spends"];
+  per_day: Day[];
+};
+
+const CHARTS = [
+  { id: "txs", label: "Transactions", keys: ["txs"], group: "counts" },
+  { id: "shielded", label: "Shielded actions", keys: ["sapling_spends", "sapling_outputs", "orchard", "ironwood"], group: "shielded" },
+  { id: "types", label: "Tx type mix", keys: ["fully_shielded", "mixed", "transparent_only"], group: "types" },
+  { id: "versions", label: "Version mix", keys: ["v1", "v2", "v3", "v4", "v5", "v6", "other"], group: "types" },
+  { id: "addresses", label: "Addresses", keys: ["unique_receivers", "receiving_outputs"], group: "addresses" },
+  { id: "blocks", label: "Block fullness", keys: ["avg_txs", "max_txs"], group: "counts" },
+  { id: "expiry", label: "Expiry", keys: ["zero_expiry", "nonzero_expiry", "pre_overwinter"], group: "expiry" },
+  { id: "expiry_delta", label: "Expiry delta (top 30 + other)", keys: [], group: "expiry" },
+  { id: "locktime", label: "Locktime / sequence", keys: ["nonzero_lock", "zero_lock", "high_seq"], group: "locktime" },
+  { id: "spends", label: "Spends (indexer)", keys: ["outpoint_hits", "sapling_nf", "orchard_nf", "ironwood_nf"], group: "spends" },
+];
+
+const INFO: Record<string, { title: string; body: string }> = {
+  txs: {
+    title: "Transactions",
+    body: "Number of transactions in each ~576-block window. Spikes usually mean a burst of activity (airdrop, exchange batch, or congestion). The baseline is normal network usage.",
+  },
+  shielded: {
+    title: "Shielded actions",
+    body: "Sapling spends/outputs, Orchard actions, and Ironwood actions per window. A rising Ironwood line after NU6.3 is expected as value moves into the new pool. Orchard should trend down as it can only be spent from.",
+  },
+  types: {
+    title: "Transaction type mix",
+    body: "Fully shielded (no transparent inputs or outputs), mixed (shielded + transparent), and transparent-only. A higher fully-shielded share means more private activity. Transparent-only is public.",
+  },
+  versions: {
+    title: "Version mix",
+    body: "Transaction format versions. v4 is Sapling-era, v5 is Orchard, v6 is Ironwood (NU6.3+). v1–v3 are legacy. “Other” is anything outside 1–6 (should be near zero after the v6 fix).",
+  },
+  addresses: {
+    title: "Addresses",
+    body: "Unique transparent receivers and total receiving outputs per window. This only sees transparent activity. Shielded recipients are not visible.",
+  },
+  blocks: {
+    title: "Block fullness",
+    body: "Average and max transactions per block in the window. Higher values mean fuller blocks. A max far above the average points to occasional congestion.",
+  },
+  expiry: {
+    title: "Expiry",
+    body: "Transactions with expiry height 0 (no expiry) vs nonzero. Expiry 0 is a fingerprint: the transaction never expires. A high zero fraction means many transactions were built without an expiry.",
+  },
+  expiry_delta: {
+    title: "Expiry delta",
+    body: "How far ahead of the block the expiry was set (expiry − height). Small deltas are short-lived transactions. The “other” bar groups the long tail. Large deltas or expiry 0 are more distinctive.",
+  },
+  locktime: {
+    title: "Locktime / sequence",
+    body: "Nonzero locktime means the transaction is not valid until a height or time. High sequence (>0) is set on most inputs; zero sequence is the unusual case. This is mostly structural metadata.",
+  },
+  spends: {
+    title: "Spends (indexer)",
+    body: "Reverse lookups of spent outpoints and nullifiers, only available if the indexer was populated when the scan ran. Hits mean the spend was found in the index. Zeros mean the indexer was off or the range had no matches.",
+  },
+};
+
+const COLORS: Record<string, string> = {
+  txs: "#3b82f6",
+  sapling_spends: "#8b5cf6",
+  sapling_outputs: "#a78bfa",
+  orchard: "#10b981",
+  ironwood: "#f97316",
+  fully_shielded: "#22c55e",
+  mixed: "#eab308",
+  transparent_only: "#64748b",
+  v1: "#94a3b8",
+  v2: "#64748b",
+  v3: "#06b6d4",
+  v4: "#3b82f6",
+  v5: "#10b981",
+  v6: "#f97316",
+  other: "#94a3b8",
+  unique_receivers: "#06b6d4",
+  receiving_outputs: "#8b5cf6",
+  avg_txs: "#10b981",
+  max_txs: "#ef4444",
+  zero_expiry: "#64748b",
+  nonzero_expiry: "#3b82f6",
+  pre_overwinter: "#94a3b8",
+  nonzero_lock: "#eab308",
+  zero_lock: "#64748b",
+  high_seq: "#f97316",
+  outpoint_hits: "#3b82f6",
+  sapling_nf: "#8b5cf6",
+  orchard_nf: "#10b981",
+  ironwood_nf: "#f97316",
+};
+
+function CustomTooltip({ active, payload, label }: any) {
+  if (!active || !payload?.length) return null;
+  return (
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-2 text-sm">
+      <div className="text-gray-900 dark:text-white font-medium mb-1">{label}</div>
+      {payload.map((entry: any, i: number) => (
+        <div key={i} style={{ color: entry.color }} className="text-sm">
+          {entry.name}: {typeof entry.value === "number" ? entry.value.toLocaleString() : entry.value}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Stat({ label, value, accent }: { label: string; value: string | number; accent: string }) {
+  return (
+    <div className="rounded-lg bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 p-3">
+      <div className="text-[11px] uppercase tracking-wide text-slate-500 dark:text-slate-400">{label}</div>
+      <div className="text-xl font-semibold mt-1" style={{ color: accent }}>{value}</div>
+    </div>
+  );
+}
+
+export default function ChainStatePage() {
+  const [data, setData] = useState<Results | null>(null);
+  const [chartId, setChartId] = useState(CHARTS[0].id);
+  const [zoomStart, setZoomStart] = useState<number>(0);
+  const [zoomEnd, setZoomEnd] = useState<number>(0);
+  const [dragging, setDragging] = useState<"start" | "end" | "mid" | null>(null);
+  const [dragOrigin, setDragOrigin] = useState<{ x: number; start: number; end: number } | null>(null);
+
+  useEffect(() => {
+    fetch(DATA_URL)
+      .then((r) => r.json())
+      .then(setData)
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    if (data?.per_day?.length) {
+      setZoomStart(data.per_day[0].start);
+      setZoomEnd(data.per_day[data.per_day.length - 1].end);
+    }
+  }, [data]);
+
+  if (!data) return <div className="p-4 text-slate-300">Loading chain stats…</div>;
+
+  const days = data.per_day || [];
+  const rangeStart = days.length ? days[0].start : 0;
+  const rangeEnd = days.length ? days[days.length - 1].end : 0;
+
+  const filtered = days.filter((d) => d.end >= zoomStart && d.start <= zoomEnd);
+
+  const series = filtered.map((d) => ({
+    day: d.start,
+    txs: d.counts.txs,
+    sapling_spends: d.shielded.sapling_spends,
+    sapling_outputs: d.shielded.sapling_outputs,
+    orchard: d.shielded.orchard_actions,
+    ironwood: d.shielded.ironwood_actions,
+    fully_shielded: d.types.fully_shielded,
+    mixed: d.types.mixed,
+    transparent_only: d.types.transparent_only,
+    v1: d.types.v1,
+    v2: d.types.v2,
+    v3: d.types.v3,
+    v4: d.types.v4,
+    v5: d.types.v5,
+    v6: d.types.v6,
+    other: d.types.other,
+    unique_receivers: d.addresses.unique_receivers,
+    receiving_outputs: d.addresses.total_receiving_outputs,
+    avg_txs: d.blocks.avg_txs_per_block,
+    max_txs: d.blocks.max_txs_per_block,
+    nonzero_lock: d.locktime.nonzero,
+    zero_lock: d.locktime.zero,
+    high_seq: d.locktime.high_sequence,
+    zero_expiry: d.expiry.zero,
+    nonzero_expiry: d.expiry.nonzero,
+    pre_overwinter: d.expiry.pre_overwinter,
+    outpoint_hits: d.spends.outpoint_hits,
+    sapling_nf: d.spends.sapling_nullifier_hits,
+    orchard_nf: d.spends.orchard_nullifier_hits,
+    ironwood_nf: d.spends.ironwood_nullifier_hits,
+  }));
+
+  const expiryEntries = Object.entries(data.expiry.delta_histogram || {})
+    .map(([delta, count]) => ({ delta: Number(delta), count }))
+    .sort((a, b) => b.count - a.count);
+  const expiryTop = expiryEntries.slice(0, 30);
+  const expiryRest = expiryEntries.slice(30).reduce((sum, e) => sum + e.count, 0);
+  const expiryChart = expiryRest > 0 ? [...expiryTop, { delta: "other", count: expiryRest }] : expiryTop;
+
+  const active = CHARTS.find((c) => c.id === chartId) || CHARTS[0];
+
+  return (
+    <div className="p-4 w-full text-slate-900 dark:text-slate-100">
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Chain State</h1>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+            Blocks {rangeStart.toLocaleString()} – {rangeEnd.toLocaleString()}
+            <span className="mx-2">·</span>
+            per ~576-block window
+          </p>
+        </div>
+        <a
+          href="https://github.com/ZecHub/zechub-wiki/blob/main/public/data/zcash/chain-state/results.json"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-400 hover:text-slate-200"
+          title="View source JSON"
+        >
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+        </a>
+      </div>
+
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <h2 className="text-lg font-semibold">{active.label}</h2>
+          {INFO[chartId] && (
+            <div className="relative group">
+              <button className="w-5 h-5 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center">
+                i
+              </button>
+              <div className="absolute left-0 top-7 z-20 hidden group-hover:block w-72 p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 shadow-lg text-sm">
+                <div className="font-medium text-slate-900 dark:text-slate-200 mb-1">{INFO[chartId].title}</div>
+                <div className="text-slate-600 dark:text-slate-400">{INFO[chartId].body}</div>
+              </div>
+            </div>
+          )}
+        </div>
+        <select
+          value={chartId}
+          onChange={(e) => setChartId(e.target.value)}
+          className="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded px-3 py-1.5 text-sm text-slate-900 dark:text-slate-100"
+        >
+          {CHARTS.map((c) => (
+            <option key={c.id} value={c.id}>{c.label}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="h-[340px] md:h-[450px] w-full mb-2">
+        <ResponsiveContainer width="100%" height="100%">
+          {chartId === "expiry_delta" ? (
+            <BarChart data={expiryChart}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
+              <XAxis dataKey="delta" stroke="#64748b" fontSize={12} />
+              <YAxis stroke="#64748b" fontSize={12} />
+              <Tooltip content={<CustomTooltip />} />
+              <Bar dataKey="count" fill="#3b82f6" />
+            </BarChart>
+          ) : (
+            <LineChart data={series}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
+              <XAxis dataKey="day" stroke="#64748b" fontSize={12} angle={-45} textAnchor="end" height={60} />
+              <YAxis stroke="#64748b" fontSize={12} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+              {active.keys.map((k) => (
+                <Line key={k} type="monotone" dataKey={k} stroke={COLORS[k] || "#3b82f6"} dot={false} strokeWidth={2} />
+              ))}
+            </LineChart>
+          )}
+        </ResponsiveContainer>
+      </div>
+
+      {chartId !== "expiry_delta" && rangeEnd > rangeStart && (
+        <div className="mb-4 px-2">
+          <div className="flex justify-between items-center text-xs text-slate-500 dark:text-slate-400 mb-1">
+            <span>{zoomStart.toLocaleString()}</span>
+            <div className="flex flex-col items-center gap-1">
+              <div className="flex gap-1">
+                {[
+                  { label: "Day", blocks: 1152 },
+                  { label: "Week", blocks: 8064 },
+                  { label: "Month", blocks: 34560 },
+                  { label: "Year", blocks: 420480 },
+                ].map((b) => (
+                  <button
+                    key={b.label}
+                    onClick={() => {
+                      const mid = Math.round((rangeStart + rangeEnd) / 2);
+                      const half = Math.floor(b.blocks / 2);
+                      setZoomStart(Math.max(rangeStart, mid - half));
+                      setZoomEnd(Math.min(rangeEnd, mid + half));
+                    }}
+                    className="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200"
+                  >
+                    {b.label}
+                  </button>
+                ))}
+                <button
+                  onClick={() => { setZoomStart(rangeStart); setZoomEnd(rangeEnd); }}
+                  className="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200"
+                >
+                  Full
+                </button>
+              </div>
+              <div className="flex gap-1">
+                {[
+                  { label: "Sprout", height: 0 },
+                  { label: "Sapling", height: 419200 },
+                  { label: "Orchard", height: 1687104 },
+                  { label: "Ironwood", height: 3428143 },
+                ].map((u) => (
+                  <button
+                    key={u.label}
+                    onClick={() => {
+                      setZoomStart(Math.max(rangeStart, u.height));
+                      setZoomEnd(rangeEnd);
+                    }}
+                    className="px-2 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300"
+                  >
+                    {u.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <span>{zoomEnd.toLocaleString()}</span>
+          </div>
+          <div
+            className="relative h-10 select-none"
+            onMouseMove={(e) => {
+              if (!dragging || !dragOrigin) return;
+              const rect = e.currentTarget.getBoundingClientRect();
+              const dx = e.clientX - dragOrigin.x;
+              const range = rangeEnd - rangeStart;
+              const delta = Math.round((dx / rect.width) * range);
+              if (dragging === "mid") {
+                const width = dragOrigin.end - dragOrigin.start;
+                let ns = dragOrigin.start + delta;
+                let ne = dragOrigin.end + delta;
+                if (ns < rangeStart) { ns = rangeStart; ne = rangeStart + width; }
+                if (ne > rangeEnd) { ne = rangeEnd; ns = rangeEnd - width; }
+                setZoomStart(ns);
+                setZoomEnd(ne);
+              } else if (dragging === "start") {
+                setZoomStart(Math.max(rangeStart, Math.min(dragOrigin.start + delta, zoomEnd - 1)));
+              } else if (dragging === "end") {
+                setZoomEnd(Math.min(rangeEnd, Math.max(dragOrigin.end + delta, zoomStart + 1)));
+              }
+            }}
+            onMouseUp={() => { setDragging(null); setDragOrigin(null); }}
+            onMouseLeave={() => { setDragging(null); setDragOrigin(null); }}
+          >
+            <div className="absolute top-1/2 -translate-y-1/2 h-1 w-full bg-slate-600 rounded" />
+            <div
+              className="absolute top-1/2 -translate-y-1/2 h-1.5 bg-blue-500 rounded"
+              style={{
+                left: `calc(${((zoomStart - rangeStart) / (rangeEnd - rangeStart)) * 100}% - 14px)`,
+                right: `calc(${100 - ((zoomEnd - rangeStart) / (rangeEnd - rangeStart)) * 100}% - 14px)`,
+              }}
+            />
+            <div
+              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-6 bg-slate-800 border-2 border-blue-400 rounded-full flex items-center justify-center cursor-grab text-sm text-blue-400 shadow"
+              style={{
+                left: `${(((zoomStart + zoomEnd) / 2 - rangeStart) / (rangeEnd - rangeStart)) * 100}%`,
+                zIndex: 10,
+              }}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+                setDragging("mid");
+                setDragOrigin({ x: e.clientX, start: zoomStart, end: zoomEnd });
+              }}
+            >
+              🛡️
+            </div>
+            {zoomEnd - zoomStart > 2000 && (
+              <>
+                <div
+                  className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-blue-500 rounded-full border-2 border-white cursor-ew-resize hover:scale-110 transition-transform"
+                  style={{ left: `calc(${((zoomStart - rangeStart) / (rangeEnd - rangeStart)) * 100}% - 22px)`, zIndex: 11 }}
+                  onMouseDown={(e) => {
+                    e.stopPropagation();
+                    setDragging("start");
+                    setDragOrigin({ x: e.clientX, start: zoomStart, end: zoomEnd });
+                  }}
+                />
+                <div
+                  className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-blue-500 rounded-full border-2 border-white cursor-ew-resize hover:scale-110 transition-transform"
+                  style={{ left: `calc(${((zoomEnd - rangeStart) / (rangeEnd - rangeStart)) * 100}% + 6px)`, zIndex: 11 }}
+                  onMouseDown={(e) => {
+                    e.stopPropagation();
+                    setDragging("end");
+                    setDragOrigin({ x: e.clientX, start: zoomStart, end: zoomEnd });
+                  }}
+                />
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      <h2 className="text-lg font-semibold mb-3 text-slate-900 dark:text-slate-100">Summary</h2>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {active.group === "counts" && (
+          <>
+            <Stat label="Blocks" value={data.counts.blocks.toLocaleString()} accent="#60a5fa" />
+            <Stat label="Txs" value={data.counts.txs.toLocaleString()} accent="#60a5fa" />
+            <Stat label="Avg txs/block" value={data.blocks.avg_txs_per_block.toFixed(2)} accent="#4ade80" />
+            <Stat label="Max txs/block" value={data.blocks.max_txs_per_block.toLocaleString()} accent="#f87171" />
+          </>
+        )}
+        {active.group === "expiry" && (
+          <>
+            <Stat label="Zero expiry" value={data.expiry.zero.toLocaleString()} accent="#94a3b8" />
+            <Stat label="Nonzero expiry" value={data.expiry.nonzero.toLocaleString()} accent="#3b82f6" />
+            <Stat label="Pre-Overwinter" value={data.expiry.pre_overwinter.toLocaleString()} accent="#64748b" />
+            <Stat label="Zero fraction" value={data.expiry.zero_fraction.toFixed(4)} accent="#94a3b8" />
+          </>
+        )}
+        {active.group === "shielded" && (
+          <>
+            <Stat label="Sapling spends" value={data.shielded.sapling_spends.toLocaleString()} accent="#a78bfa" />
+            <Stat label="Sapling outputs" value={data.shielded.sapling_outputs.toLocaleString()} accent="#c4b5fd" />
+            <Stat label="Orchard actions" value={data.shielded.orchard_actions.toLocaleString()} accent="#22d3ee" />
+            <Stat label="Ironwood actions" value={data.shielded.ironwood_actions.toLocaleString()} accent="#fb923c" />
+          </>
+        )}
+        {active.group === "types" && (
+          <>
+            <Stat label="v1" value={data.types.v1.toLocaleString()} accent="#94a3b8" />
+            <Stat label="v2" value={data.types.v2.toLocaleString()} accent="#64748b" />
+            <Stat label="v3" value={data.types.v3.toLocaleString()} accent="#06b6d4" />
+            <Stat label="v4" value={data.types.v4.toLocaleString()} accent="#60a5fa" />
+            <Stat label="v5" value={data.types.v5.toLocaleString()} accent="#34d399" />
+            <Stat label="v6" value={data.types.v6.toLocaleString()} accent="#fb923c" />
+            <Stat label="Other versions" value={data.types.other.toLocaleString()} accent="#fb923c" />
+            <Stat label="Coinbase" value={data.types.coinbase.toLocaleString()} accent="#fbbf24" />
+            <Stat label="User txs" value={data.types.user.toLocaleString()} accent="#60a5fa" />
+            <Stat label="Fully shielded" value={data.types.fully_shielded.toLocaleString()} accent="#4ade80" />
+            <Stat label="Mixed" value={data.types.mixed.toLocaleString()} accent="#facc15" />
+            <Stat label="Transparent-only" value={data.types.transparent_only.toLocaleString()} accent="#94a3b8" />
+          </>
+        )}
+        {active.group === "addresses" && (
+          <>
+            <Stat label="Unique receivers" value={data.addresses.unique_receivers.toLocaleString()} accent="#22d3ee" />
+            <Stat label="Receiving outputs" value={data.addresses.total_receiving_outputs.toLocaleString()} accent="#a78bfa" />
+          </>
+        )}
+        {active.group === "locktime" && (
+          <>
+            <Stat label="Nonzero locktime" value={data.locktime.nonzero.toLocaleString()} accent="#facc15" />
+            <Stat label="Zero locktime" value={data.locktime.zero.toLocaleString()} accent="#94a3b8" />
+            <Stat label="High sequence" value={data.locktime.high_sequence.toLocaleString()} accent="#fb923c" />
+          </>
+        )}
+        {active.group === "spends" && (
+          <>
+            <Stat label="Indexer populated" value={String(data.spends.indexer_populated)} accent={data.spends.indexer_populated ? "#4ade80" : "#f87171"} />
+            <Stat label="Probed" value={data.spends.probed.toLocaleString()} accent="#94a3b8" />
+            <Stat label="Outpoint hits" value={data.spends.outpoint_hits.toLocaleString()} accent="#60a5fa" />
+            <Stat label="Sapling nf hits" value={data.spends.sapling_nullifier_hits.toLocaleString()} accent="#a78bfa" />
+            <Stat label="Orchard nf hits" value={data.spends.orchard_nullifier_hits.toLocaleString()} accent="#22d3ee" />
+            <Stat label="Ironwood nf hits" value={data.spends.ironwood_nullifier_hits.toLocaleString()} accent="#fb923c" />
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
