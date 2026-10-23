@@ -58,7 +58,7 @@ const CHARTS = [
 const INFO: Record<string, { title: string; body: string }> = {
   txs: {
     title: "Transactions",
-    body: "Number of transactions in each ~576-block window. Spikes usually mean a burst of activity (airdrop, exchange batch, or congestion). The baseline is normal network usage.",
+    body: "Number of transactions in each day window (576 blocks pre-Blossom, 1,152 Blossom–NU7, 3,456 post-NU7). Spikes usually mean a burst of activity. The baseline is normal network usage.",
   },
   shielded: {
     title: "Shielded actions",
@@ -234,7 +234,7 @@ export default function ChainStatePage() {
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Blocks {rangeStart.toLocaleString()} – {rangeEnd.toLocaleString()}
             <span className="mx-2">·</span>
-            per ~576-block window
+            per-day windows (576 / 1,152 / 3,456 blocks)
           </p>
         </div>
         <a
