@@ -43,7 +43,16 @@ afterEach(() => {
   consoleError.mockRestore();
 });
 
-test.each(["network", "http", "json", "shape", "empty"])(
+test.each([
+  "network",
+  "http",
+  "json",
+  "shape",
+  "null-entry",
+  "invalid-projects",
+  "null-project",
+  "empty",
+])(
   "keeps the GitHub view reachable when the Radicle feed is %s",
   async (failure) => {
     fetchMock.mockImplementation(async (input: RequestInfo | URL) => {
@@ -56,6 +65,13 @@ test.each(["network", "http", "json", "shape", "empty"])(
         return { ok: true, json: async () => { throw new SyntaxError("bad JSON"); } };
       }
       if (failure === "http") return response(radicle, false);
+      if (failure === "null-entry") return response([null]);
+      if (failure === "invalid-projects") {
+        return response([{ date: "2026-10-15", projects: {} }]);
+      }
+      if (failure === "null-project") {
+        return response([{ date: "2026-10-15", projects: [null] }]);
+      }
       return response(failure === "shape" ? {} : []);
     });
 
@@ -87,6 +103,7 @@ test("a healthy feed can be opened while the other feed is still pending", async
   });
 
   render(<CodePulse />);
+  expect(screen.getByRole("status")).toHaveTextContent("Loading Radicle feed");
   expect(screen.getByRole("tab", { name: /github/i })).toBeInTheDocument();
   fireEvent.click(screen.getByRole("tab", { name: /github/i }));
   expect(
