@@ -1,7 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { encodeZip321Memo, MAX_MEMO_BYTES } from "@/lib/zip321";
+import { useId, useRef, useState } from "react";
+import { flushSync } from "react-dom";
+import * as Dialog from "@radix-ui/react-dialog";
+import {
+  encodeZip321Memo,
+  isShieldedAddress,
+  MAX_MEMO_BYTES,
+} from "@/lib/zip321";
 import { openPaymentUri } from "@/lib/openPaymentUri";
 
 interface MemberModalProps {
@@ -17,6 +23,11 @@ interface MemberModalProps {
   onClose: () => void;
 }
 
+// The site removes focus outlines globally (globals.css), so the dialog's
+// controls that have no focus style of their own draw this ring instead.
+const focusRing =
+  "focus-visible:ring-2 focus-visible:ring-white dark:focus-visible:ring-amber-300";
+
 export default function MemberModal({
   member,
   isOpen,
@@ -26,13 +37,25 @@ export default function MemberModal({
   const [message, setMessage] = useState("");
   const messageBytes = new TextEncoder().encode(message).length;
   const isMessageTooLong = messageBytes > MAX_MEMO_BYTES;
+  const canMessage = isShieldedAddress(member.zcashAddress);
+  const unavailableId = useId();
+  const openerRef = useRef<HTMLElement | null>(null);
+  const messageButtonRef = useRef<HTMLButtonElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  // The face turned away is hidden from screen readers and its controls leave
+  // the Tab order, so the dialog's focus trap cycles through the shown face.
+  const frontTabIndex = isFlipped ? -1 : undefined;
+  const backTabIndex = isFlipped ? undefined : -1;
 
+  // Turn the card over and move focus to the face that is now in front.
   const handleFlip = () => {
-    setIsFlipped(!isFlipped);
+    const showMessage = !isFlipped;
+    flushSync(() => setIsFlipped(showMessage));
+    (showMessage ? textareaRef : messageButtonRef).current?.focus();
   };
 
   const handleSend = () => {
-    if (!message || isMessageTooLong) return;
+    if (!canMessage || !message || isMessageTooLong) return;
     try {
       const encodedMemo = encodeZip321Memo(message, member.zcashAddress);
       openPaymentUri(`zcash:${member.zcashAddress}?amount=0.01&memo=${encodedMemo}`);
@@ -52,14 +75,29 @@ export default function MemberModal({
   if (!isOpen) return null;
 
   return (
-    <>
+    <Dialog.Root
+      open
+      onOpenChange={(open) => {
+        if (!open) handleClose();
+      }}
+    >
       <div
         className="fixed inset-0 cursor-pointer bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
         onClick={handleClose}
         aria-hidden="true"
       />
 
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <Dialog.Content
+        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        onOpenAutoFocus={() => {
+          openerRef.current = document.activeElement as HTMLElement | null;
+        }}
+        onCloseAutoFocus={(event) => {
+          // Give focus back to the button that opened the dialog.
+          event.preventDefault();
+          openerRef.current?.focus();
+        }}
+      >
         <div
           className="relative max-w-md w-full"
           style={{ perspective: "1000px" }}
@@ -71,11 +109,16 @@ export default function MemberModal({
               transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
             }}
           >
-            <div className="w-full" style={{ backfaceVisibility: "hidden" }}>
+            <div
+              className="w-full"
+              style={{ backfaceVisibility: "hidden" }}
+              aria-hidden={isFlipped || undefined}
+            >
               <div className="bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 border border-amber-500/30 rounded-2xl p-8 shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-300 relative">
                 <button
                   onClick={handleClose}
-                  className="absolute top-4 right-4 cursor-pointer text-slate-400  hover:text-blue-600 dark:hover:text-amber-400 transition-colors"
+                  tabIndex={frontTabIndex}
+                  className={`absolute top-4 right-4 cursor-pointer rounded-md text-slate-400  hover:text-blue-600 dark:hover:text-amber-400 transition-colors ${focusRing}`}
                   aria-label="Close modal"
                 >
                   <svg
@@ -99,12 +142,12 @@ export default function MemberModal({
                     alt={member.name}
                     className="w-32 h-32 rounded-full border-3 border-amber-500/50 object-cover mb-6"
                   />
-                  <h2 className="text-2xl font-bold text-amber-400 dark:text-yellow-300 mb-2">
+                  <Dialog.Title className="text-2xl font-bold text-amber-400 dark:text-yellow-300 mb-2">
                     {member.name}
-                  </h2>
-                  <p className="text-gray-800 dark:text-amber-400 font-semibold mb-4">
+                  </Dialog.Title>
+                  <Dialog.Description className="text-gray-800 dark:text-amber-400 font-semibold mb-4">
                     {member.description}
-                  </p>
+                  </Dialog.Description>
                   <p className="text-yellow-400 dark:text-slate-400 text-sm mb-6 leading-relaxed">
                     Learn more about {member.name}'s contributions to
                     ZecHub DAO and their role in the community.
@@ -113,17 +156,30 @@ export default function MemberModal({
                   <div className="flex gap-3 w-full">
                     <button
                       onClick={handleClose}
-                      className="flex-1 cursor-pointer px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg font-medium transition-all duration-300"
+                      tabIndex={frontTabIndex}
+                      className={`flex-1 cursor-pointer px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 hover:border-amber-500/50 rounded-lg font-medium transition-all duration-300 ${focusRing}`}
                     >
                       Close
                     </button>
                     <button
+                      ref={messageButtonRef}
                       onClick={handleFlip}
-                      className="flex-1 cursor-pointer px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 rounded-lg font-medium transition-all duration-300"
+                      tabIndex={frontTabIndex}
+                      disabled={!canMessage}
+                      aria-describedby={canMessage ? undefined : unavailableId}
+                      className={`flex-1 cursor-pointer px-4 py-2 bg-blue-500 dark:bg-amber-500/20 hover:bg-blue-600 dark:hover:bg-amber-500/30 text-white dark:text-amber-400 border border-amber-500/30 rounded-lg font-medium transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 ${focusRing}`}
                     >
                       Message
                     </button>
                   </div>
+                  {!canMessage && (
+                    <p
+                      id={unavailableId}
+                      className="mt-3 rounded-lg bg-white/90 px-3 py-1.5 text-sm text-slate-800 dark:bg-slate-900/70 dark:text-slate-300"
+                    >
+                      Messaging unavailable: no shielded address listed.
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -134,11 +190,13 @@ export default function MemberModal({
                 backfaceVisibility: "hidden",
                 transform: "rotateY(180deg)",
               }}
+              aria-hidden={!isFlipped || undefined}
             >
               <div className="bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 border border-amber-500/30 rounded-2xl p-8 shadow-2xl relative">
                 <button
                   onClick={handleClose}
-                  className="absolute top-4 right-4 cursor-pointer text-slate-400 hover:text-blue-600 dark:hover:text-amber-400 transition-colors"
+                  tabIndex={backTabIndex}
+                  className={`absolute top-4 right-4 cursor-pointer rounded-md text-slate-400 hover:text-blue-600 dark:hover:text-amber-400 transition-colors ${focusRing}`}
                   aria-label="Close modal"
                 >
                   <svg
@@ -162,6 +220,8 @@ export default function MemberModal({
                   </h3>
                   <div className="relative mb-6">
                     <textarea
+                      ref={textareaRef}
+                      tabIndex={backTabIndex}
                       className="w-full p-3 border border-amber-500/20 rounded-lg text-white dark:bg-slate-800/40 focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 transition-all resize-none"
                       rows={6}
                       placeholder="Type your message..."
@@ -185,13 +245,15 @@ export default function MemberModal({
                         handleFlip();
                         setMessage("");
                       }}
+                      tabIndex={backTabIndex}
                       className="cursor-pointer px-4 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-red-300 transition-all"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={handleSend}
-                      disabled={isMessageTooLong || !message}
+                      tabIndex={backTabIndex}
+                      disabled={!canMessage || isMessageTooLong || !message}
                       className="cursor-pointer px-4 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 hover:scale-105 focus:ring-4 focus:outline-none focus:ring-green-300 transition-all disabled:opacity-50 disabled:hover:scale-100"
                     >
                       Send
@@ -202,7 +264,7 @@ export default function MemberModal({
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </Dialog.Content>
+    </Dialog.Root>
   );
 }
