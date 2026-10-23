@@ -57,11 +57,15 @@ export default function MiningPoolsDominanceChart(
           range,
           controller.signal,
         );
-        setDominance(data);
+        // The helper returns null on abort too. A superseded request must not
+        // erase a newer result or finish the newer range's loading state.
+        if (!controller.signal.aborted) setDominance(data);
       } catch (err) {
-        console.error("Error fetching mining pools dominance:", err);
+        if (!controller.signal.aborted) {
+          console.error("Error fetching mining pools dominance:", err);
+        }
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) setLoading(false);
       }
     };
 
