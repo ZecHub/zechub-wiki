@@ -75,7 +75,9 @@ export function LanguageSwitcher() {
     if (!isOpen || !isPhone || !vv) return;
     const update = () => {
       const keyboard = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-      setSheetBox({ bottom: keyboard, height: Math.round(vv.height * 0.85) });
+      const height = Math.round(vv.height * 0.85);
+      // Same box: keep the old object, so panning does not re-render the list.
+      setSheetBox((prev) => (prev?.bottom === keyboard && prev?.height === height ? prev : { bottom: keyboard, height }));
     };
     update();
     vv.addEventListener('resize', update);

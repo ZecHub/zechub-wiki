@@ -421,8 +421,12 @@ describe("LanguageSwitcher on a phone", () => {
       removeEventListener: jest.fn(),
     })) as unknown as typeof window.matchMedia;
   });
+  // Restores what a test mocked, even when one of its assertions fails.
+  let afterRestore: (() => void) | undefined;
   afterEach(() => {
     delete (window as { matchMedia?: unknown }).matchMedia;
+    afterRestore?.();
+    afterRestore = undefined;
   });
 
   it("opens a sheet in <body> with focus kept on the current language, not the search field", async () => {
@@ -475,7 +479,12 @@ describe("LanguageSwitcher on a phone", () => {
     const listeners: Record<string, () => void> = {};
     const vv = { height: 844, offsetTop: 0, addEventListener: (t: string, f: () => void) => { listeners[t] = f; }, removeEventListener: jest.fn() };
     Object.defineProperty(window, "visualViewport", { value: vv, configurable: true });
+    const innerHeight = window.innerHeight;
     Object.defineProperty(window, "innerHeight", { value: 844, configurable: true });
+    afterRestore = () => {
+      delete (window as { visualViewport?: unknown }).visualViewport;
+      Object.defineProperty(window, "innerHeight", { value: innerHeight, configurable: true });
+    };
     const user = userEvent.setup();
     renderPicker();
     await user.click(trigger());
@@ -492,7 +501,6 @@ describe("LanguageSwitcher on a phone", () => {
     await user.type(search(), "ita");
     expect(sheet.style.bottom).toBe("444px");
     expect(sheet.style.height).toBe("340px");
-    delete (window as { visualViewport?: unknown }).visualViewport;
   });
 
   it("locks the page scroll while the sheet is open", async () => {
