@@ -166,7 +166,11 @@
     "searchTryDifferent": "جرّب استعلامات أقصر أو مرادفات أو كلمات مختلفة.",
     "searchSuggested": "الصفحات المقترحة",
     "searchResultsLabel": "النتائج",
-    "skipToContent": "تخطي إلى المحتوى"
+    "skipToContent": "تخطي إلى المحتوى",
+    "languageSearch": "البحث عن اللغات",
+    "languageSuggested": "مقترحة",
+    "languageAll": "كل اللغات",
+    "languageNone": "لم يتم العثور على لغة"
   },
   "navigation": {
     "wallets": "المحافظ",

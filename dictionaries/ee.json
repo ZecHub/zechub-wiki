@@ -166,7 +166,11 @@
     "searchTryDifferent": "Te nyabiase kpuiwo, nya siwo sɔ kple wo nɔewo, alo nya vovovowo kpɔ.",
     "searchSuggested": "Axa siwo wodo ɖa",
     "searchResultsLabel": "Metsonu",
-    "skipToContent": "Ti kpo yi emenyawo gbɔ"
+    "skipToContent": "Ti kpo yi emenyawo gbɔ",
+    "languageSearch": "Di gbegbɔgblɔwo",
+    "languageSuggested": "Wodo susua ɖa",
+    "languageAll": "Gbegbɔgblɔwo katã",
+    "languageNone": "Womekpɔ gbegbɔgblɔ aɖeke o"
   },
   "navigation": {
     "wallets": "Gakotokuwo",

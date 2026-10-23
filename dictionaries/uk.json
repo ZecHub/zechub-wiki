@@ -166,7 +166,11 @@
     "searchTryDifferent": "Спробуйте коротші запити, синоніми або інші слова.",
     "searchSuggested": "Рекомендовані сторінки",
     "searchResultsLabel": "Результати",
-    "skipToContent": "Перейти до вмісту"
+    "skipToContent": "Перейти до вмісту",
+    "languageSearch": "Пошук мов",
+    "languageSuggested": "Рекомендовані",
+    "languageAll": "Усі мови",
+    "languageNone": "Мову не знайдено"
   },
   "navigation": {
     "wallets": "Гаманці",

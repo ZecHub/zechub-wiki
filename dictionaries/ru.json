@@ -166,7 +166,11 @@
     "searchTryDifferent": "Попробуйте более короткие запросы, синонимы или другие слова.",
     "searchSuggested": "Рекомендуемые страницы",
     "searchResultsLabel": "Результаты",
-    "skipToContent": "Перейти к содержимому"
+    "skipToContent": "Перейти к содержимому",
+    "languageSearch": "Поиск языков",
+    "languageSuggested": "Рекомендуемые",
+    "languageAll": "Все языки",
+    "languageNone": "Язык не найден"
   },
   "navigation": {
     "wallets": "Кошельки",

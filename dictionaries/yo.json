@@ -159,14 +159,18 @@
     "getStarted": "Kọ́kọ́ Bẹ̀rẹ̀",
     "readMore": "Ka siwaju",
     "search": "Wíwá kiri",
-    "close": "Sún mọ́ ọn",
+    "close": "Pa dé",
     "searchModalTitle": "Wíwá nínú ZecHub Wiki",
     "searchHint": "Ṣawari nipa akọle ojúewé, àkòrí, tàbí ọ̀nà. Lo àwọn kókó ọfà láti yan, tẹ láti ṣí.",
     "searchNoResults": "Kò sí ojúewé tó bára mu",
     "searchTryDifferent": "Gbìyànjú láti lo àwọn ìbéèrè tó ṣe ṣókí, àwọn ọ̀rọ̀ tí wọ́n fi ń ṣàpèjúwe nǹkan, tàbí àwọn èdè mìíràn.",
     "searchSuggested": "Àwọn ojúewé tí a dábàá",
     "searchResultsLabel": "Àwọn Àbájáde",
-    "skipToContent": "Fo si akoonu"
+    "skipToContent": "Fo si akoonu",
+    "languageSearch": "Ṣe àwárí àwọn èdè",
+    "languageSuggested": "A dámọ̀ràn",
+    "languageAll": "Gbogbo awọn ede",
+    "languageNone": "A ko ri ede kankan"
   },
   "navigation": {
     "wallets": "Àwọn pọ́ọ̀sì",
