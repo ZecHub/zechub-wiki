@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { LANGUAGES, useLanguage } from "@/context/LanguageContext";
 import { LanguageSwitcher } from "../LanguageSwitcher";
@@ -469,6 +469,30 @@ describe("LanguageSwitcher on a phone", () => {
     expect(search()).toHaveFocus();
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     expectNoSelection();
+  });
+
+  it("sits above the on-screen keyboard with a fixed height while typing", async () => {
+    const listeners: Record<string, () => void> = {};
+    const vv = { height: 844, offsetTop: 0, addEventListener: (t: string, f: () => void) => { listeners[t] = f; }, removeEventListener: jest.fn() };
+    Object.defineProperty(window, "visualViewport", { value: vv, configurable: true });
+    Object.defineProperty(window, "innerHeight", { value: 844, configurable: true });
+    const user = userEvent.setup();
+    renderPicker();
+    await user.click(trigger());
+    const sheet = screen.getByRole("dialog");
+    expect(sheet.style.bottom).toBe("0px");
+
+    // Keyboard opens: 400px of the screen are left.
+    vv.height = 400;
+    act(() => listeners.resize());
+    expect(sheet.style.bottom).toBe("444px");
+    expect(sheet.style.height).toBe("340px");
+
+    // Filtering shrinks the list, not the sheet: the search field stays in view.
+    await user.type(search(), "ita");
+    expect(sheet.style.bottom).toBe("444px");
+    expect(sheet.style.height).toBe("340px");
+    delete (window as { visualViewport?: unknown }).visualViewport;
   });
 
   it("locks the page scroll while the sheet is open", async () => {

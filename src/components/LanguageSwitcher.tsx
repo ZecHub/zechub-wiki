@@ -65,6 +65,28 @@ export function LanguageSwitcher() {
     mq.addEventListener?.('change', update);
     return () => mq.removeEventListener?.('change', update);
   }, []);
+  // Phone sheet: fixed height, so the search field at its top stays put while
+  // results shrink, and kept above the on-screen keyboard. Mobile browsers do
+  // not shrink the layout viewport for the keyboard, so bottom: 0 would sit
+  // behind it; the visual viewport says how much of the screen is left.
+  const [sheetBox, setSheetBox] = useState<CSSProperties | undefined>();
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!isOpen || !isPhone || !vv) return;
+    const update = () => {
+      const keyboard = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+      setSheetBox({ bottom: keyboard, height: Math.round(vv.height * 0.85) });
+    };
+    update();
+    vv.addEventListener('resize', update);
+    vv.addEventListener('scroll', update);
+    return () => {
+      vv.removeEventListener('resize', update);
+      vv.removeEventListener('scroll', update);
+      setSheetBox(undefined);
+    };
+  }, [isOpen, isPhone]);
+
   // The phone sheet is modal: the page behind it does not scroll.
   useEffect(() => {
     if (!isOpen || !isPhone) return;
@@ -295,7 +317,8 @@ export function LanguageSwitcher() {
               if (e.target === list && list && (e.nativeEvent.offsetX >= list.clientWidth || e.nativeEvent.offsetX < 0)) return;
               e.preventDefault();
             }}
-            className="fixed inset-x-0 bottom-0 z-[300] max-h-[85vh] rounded-t-2xl imd:absolute imd:inset-x-auto imd:bottom-auto imd:end-0 imd:mt-2 imd:w-[30rem] imd:max-h-[75vh] imd:rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 shadow-2xl flex flex-col"
+            style={isPhone ? sheetBox : undefined}
+            className="fixed inset-x-0 bottom-0 z-[300] h-[85dvh] rounded-t-2xl imd:h-auto imd:absolute imd:inset-x-auto imd:bottom-auto imd:end-0 imd:mt-2 imd:w-[30rem] imd:max-h-[75vh] imd:rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 shadow-2xl flex flex-col"
           >
             {/* Phone sheet header (rendered only there, so it never adds a Tab stop on desktop). */}
             {isPhone && (
