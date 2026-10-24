@@ -50,6 +50,7 @@ const CHARTS = [
   { id: "value", label: "Value balances", keys: ["sprout_vpub_old", "sprout_vpub_new", "sapling_vb", "orchard_vb", "ironwood_vb"], group: "shielded" },
   { id: "bytes", label: "Tx bytes", keys: ["tx_bytes"], group: "blocks" },
   { id: "anchors", label: "Anchors cited", keys: ["sapling_anchors", "orchard_anchors", "ironwood_anchors"], group: "shielded" },
+  { id: "trees", label: "Tree size", keys: ["sapling_tree", "orchard_tree", "ironwood_tree", "sprout_tree"], group: "shielded" },
   { id: "nullifiers", label: "Nullifier set", keys: ["sapling_nf_set", "orchard_nf_set", "ironwood_nf_set", "sprout_nf_set"], group: "shielded" },
   { id: "unspent", label: "Unspent notes", keys: ["sapling_unspent", "orchard_unspent", "ironwood_unspent"], group: "shielded" },
   { id: "types", label: "Tx type mix", keys: ["fully_shielded", "mixed", "transparent_only"], group: "types" },
