@@ -237,7 +237,7 @@ export default function ChainStatePage() {
     ironwood_spends: n(d.spends?.ironwood_nullifier_hits),
     sprout_spends: n(d.spends?.sprout_nullifier_hits),
   }));
-  console.log("early orchard", fullSeries.filter(d => d.start >= 1688064 && d.start < 1700000).slice(0, 3));
+  
   let sapC = 0, orchC = 0, ironC = 0, sproutC = 0;
   const cumul = new Map<number, { sap: number; orch: number; iron: number; sprout: number }>();
   for (const d of fullSeries) {
@@ -247,8 +247,6 @@ export default function ChainStatePage() {
     sproutC += d.sprout_spends;
     cumul.set(d.start, { sap: sapC, orch: orchC, iron: ironC, sprout: sproutC });
   }
-  console.log("cumul early", [...cumul.entries()].filter(([k]) => k >= 1688064 && k < 1700000).slice(0, 3));
-  console.log("before", fullSeries.filter(d => d.start < 1688064 && d.orchard_spends > 0).slice(-3));
   const filtered = days.filter((d) => d.end >= zoomStart && d.start <= zoomEnd);
 
   const rawSeries = filtered.map((d) => ({
