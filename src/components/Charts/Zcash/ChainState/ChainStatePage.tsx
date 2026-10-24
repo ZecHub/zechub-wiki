@@ -49,17 +49,18 @@ const CHARTS = [
   { id: "shielded", label: "Shielded actions", keys: ["sapling_spends", "sapling_outputs", "orchard", "ironwood", "sprout"], group: "shielded" },
   { id: "value", label: "Value balances", keys: ["sprout_vpub_old", "sprout_vpub_new", "sapling_vb", "orchard_vb", "ironwood_vb"], group: "shielded" },
   { id: "bytes", label: "Tx bytes", keys: ["tx_bytes"], group: "blocks" },
-  { id: "trees", label: "Tree size", keys: ["sapling_tree", "orchard_tree", "ironwood_tree", "sprout_tree"], group: "shielded" },
+  { id: "anchors", label: "Anchors cited", keys: ["sapling_anchors", "orchard_anchors", "ironwood_anchors"], group: "shielded" },
   { id: "nullifiers", label: "Nullifier set", keys: ["sapling_nf_set", "orchard_nf_set", "ironwood_nf_set", "sprout_nf_set"], group: "shielded" },
   { id: "unspent", label: "Unspent notes", keys: ["sapling_unspent", "orchard_unspent", "ironwood_unspent"], group: "shielded" },
   { id: "types", label: "Tx type mix", keys: ["fully_shielded", "mixed", "transparent_only"], group: "types" },
+  { id: "coinbase", label: "Coinbase vs user", keys: ["coinbase", "user"], group: "types" },
   { id: "versions", label: "Version mix", keys: ["v1", "v2", "v3", "v4", "v5", "v6", "other"], group: "types" },
   { id: "addresses", label: "Addresses", keys: ["unique_receivers", "receiving_outputs"], group: "addresses" },
   { id: "blocks", label: "Block fullness", keys: ["avg_txs", "max_txs"], group: "counts" },
   { id: "expiry", label: "Expiry", keys: ["zero_expiry", "nonzero_expiry", "pre_overwinter"], group: "expiry" },
   { id: "expiry_delta", label: "Expiry delta (top 30 + other)", keys: [], group: "expiry" },
   { id: "locktime", label: "Locktime / sequence", keys: ["nonzero_lock", "zero_lock", "high_seq"], group: "locktime" },
-  { id: "spends", label: "Spends (indexer)", keys: ["outpoint_hits", "sapling_nf", "orchard_nf", "ironwood_nf", "sprout_nf"], group: "spends" },
+  { id: "spends", label: "Spends (indexer)", keys: ["transparent_spends", "sapling_spends_idx", "orchard_spends", "ironwood_spends", "sprout_spends"], group: "spends" },
 ];
 
 const INFO: Record<string, { title: string; body: string }> = {
@@ -73,7 +74,7 @@ const INFO: Record<string, { title: string; body: string }> = {
   },
   value: {
     title: "Value balances",
-    body: "Net value moving into or out of each shielded pool per window. Positive means value entered the pool; negative means it left. Sprout uses vpub_old (left) and vpub_new (entered).",
+    body: "Net value moving into or out of each shielded pool per window, in ZEC. Positive means value entered the pool; negative means it left. Sprout uses vpub_old (left) and vpub_new (entered).",
   },
   types: {
     title: "Transaction type mix",
@@ -107,6 +108,10 @@ const INFO: Record<string, { title: string; body: string }> = {
     title: "Spends (indexer)",
     body: "Reverse lookups of spent outpoints and nullifiers, only available if the indexer was populated when the scan ran. Hits mean the spend was found in the index. Zeros mean the indexer was off or the range had no matches.",
   },
+  anchors: {
+    title: "Anchors cited",
+    body: "How many times each pool's note commitment tree root was referenced as an anchor in a transaction. A higher count means more transactions are spending from that pool's past state.",
+  },
 };
 
 const COLORS: Record<string, string> = {
@@ -115,9 +120,9 @@ const COLORS: Record<string, string> = {
   sapling_outputs: "#a78bfa",
   orchard: "#10b981",
   ironwood: "#f97316",
-  sprout: "#a855f7",
-  sprout_vpub_old: "#a855f7",
-  sprout_vpub_new: "#d8b4fe",
+  sprout: "#ef4444",
+  sprout_vpub_old: "#ef4444",
+  sprout_vpub_new: "#f87171",
   sapling_vb: "#8b5cf6",
   orchard_vb: "#22d3ee",
   ironwood_vb: "#fb923c",
@@ -128,11 +133,11 @@ const COLORS: Record<string, string> = {
   sapling_tree: "#8b5cf6",
   orchard_tree: "#22d3ee",
   ironwood_tree: "#fb923c",
-  sprout_tree: "#a855f7",
+  sprout_tree: "#ef4444",
   sapling_nf_set: "#8b5cf6",
   orchard_nf_set: "#22d3ee",
   ironwood_nf_set: "#fb923c",
-  sprout_nf_set: "#a855f7",
+  sprout_nf_set: "#ef4444",
   sapling_unspent: "#8b5cf6",
   orchard_unspent: "#22d3ee",
   ironwood_unspent: "#fb923c",
@@ -145,7 +150,8 @@ const COLORS: Record<string, string> = {
   v4: "#3b82f6",
   v5: "#10b981",
   v6: "#f97316",
-  other: "#94a3b8",
+  coinbase: "#fbbf24",
+  user: "#60a5fa",
   unique_receivers: "#06b6d4",
   receiving_outputs: "#8b5cf6",
   avg_txs: "#10b981",
@@ -156,11 +162,11 @@ const COLORS: Record<string, string> = {
   nonzero_lock: "#eab308",
   zero_lock: "#64748b",
   high_seq: "#f97316",
-  outpoint_hits: "#3b82f6",
-  sapling_nf: "#8b5cf6",
-  orchard_nf: "#10b981",
-  ironwood_nf: "#f97316",
-  sprout_nf: "#a855f7",
+  transparent_spends: "#3b82f6",
+  sapling_spends_idx: "#8b5cf6",
+  orchard_spends: "#10b981",
+  ironwood_spends: "#f97316",
+  sprout_spends: "#ef4444",
 };
 
 function CustomTooltip({ active, payload, label }: any) {
@@ -193,6 +199,7 @@ export default function ChainStatePage() {
   const [chartId, setChartId] = useState(CHARTS[0].id);
   const [infoOpen, setInfoOpen] = useState(false);
   const [logScale, setLogScale] = useState(false);
+  const [hidden, setHidden] = useState<Set<string>>(new Set());
   const [zoomStart, setZoomStart] = useState<number>(0);
   const [zoomEnd, setZoomEnd] = useState<number>(0);
   const [dragging, setDragging] = useState<"start" | "end" | "mid" | null>(null);
@@ -218,6 +225,23 @@ export default function ChainStatePage() {
   const rangeStart = days.length ? days[0].start : 0;
   const rangeEnd = days.length ? days[days.length - 1].end : 0;
 
+  const fullSeries = (data.per_day || []).map((d) => ({
+    start: d.start,
+    sapling_spends: n(d.shielded?.sapling_spends),
+    orchard_actions: n(d.shielded?.orchard_actions),
+    ironwood_actions: n(d.shielded?.ironwood_actions),
+    sprout_joinsplits: n(d.shielded?.sprout_joinsplits),
+  }));
+  let sapC = 0, orchC = 0, ironC = 0, sproutC = 0;
+  const cumul = new Map<number, { sap: number; orch: number; iron: number; sprout: number }>();
+  for (const d of fullSeries) {
+    sapC += d.sapling_spends;
+    orchC += d.orchard_actions;
+    ironC += d.ironwood_actions;
+    sproutC += d.sprout_joinsplits * 2;
+    cumul.set(d.start, { sap: sapC, orch: orchC, iron: ironC, sprout: sproutC });
+  }
+
   const filtered = days.filter((d) => d.end >= zoomStart && d.start <= zoomEnd);
 
   const rawSeries = filtered.map((d) => ({
@@ -228,11 +252,11 @@ export default function ChainStatePage() {
     orchard: n(d.shielded?.orchard_actions),
     ironwood: n(d.shielded?.ironwood_actions),
     sprout: n(d.shielded?.sprout_joinsplits),
-    sprout_vpub_old: n(d.shielded?.sprout_vpub_old),
-    sprout_vpub_new: n(d.shielded?.sprout_vpub_new),
-    sapling_vb: n(d.shielded?.sapling_value_balance),
-    orchard_vb: n(d.shielded?.orchard_value_balance),
-    ironwood_vb: n(d.shielded?.ironwood_value_balance),
+    sprout_vpub_old: n(d.shielded?.sprout_vpub_old) / 1e8,
+    sprout_vpub_new: n(d.shielded?.sprout_vpub_new) / 1e8,
+    sapling_vb: -n(d.shielded?.sapling_value_balance) / 1e8,
+    orchard_vb: -n(d.shielded?.orchard_value_balance) / 1e8,
+    ironwood_vb: -n(d.shielded?.ironwood_value_balance) / 1e8,
     tx_bytes: n(d.blocks?.total_tx_bytes),
     sapling_anchors: n(d.anchors?.sapling),
     orchard_anchors: n(d.anchors?.orchard),
@@ -251,6 +275,8 @@ export default function ChainStatePage() {
     v5: n(d.types?.v5),
     v6: n(d.types?.v6),
     other: n(d.types?.other),
+    coinbase: n(d.types?.coinbase),
+    user: n(d.types?.user),
     unique_receivers: n(d.addresses?.unique_receivers),
     receiving_outputs: n(d.addresses?.total_receiving_outputs),
     avg_txs: n(d.blocks?.avg_txs_per_block),
@@ -261,27 +287,24 @@ export default function ChainStatePage() {
     zero_expiry: n(d.expiry?.zero),
     nonzero_expiry: n(d.expiry?.nonzero),
     pre_overwinter: n(d.expiry?.pre_overwinter),
-    outpoint_hits: n(d.spends?.outpoint_hits),
-    sapling_nf: n(d.spends?.sapling_nullifier_hits),
-    orchard_nf: n(d.spends?.orchard_nullifier_hits),
-    ironwood_nf: n(d.spends?.ironwood_nullifier_hits),
-    sprout_nf: n(d.spends?.sprout_nullifier_hits),
+    transparent_spends: n(d.spends?.outpoint_hits),
+    sapling_spends_idx: n(d.spends?.sapling_nullifier_hits),
+    orchard_spends: n(d.spends?.orchard_nullifier_hits),
+    ironwood_spends: n(d.spends?.ironwood_nullifier_hits),
+    sprout_spends: n(d.spends?.sprout_nullifier_hits),
   }));
   let sapNf = 0, orchNf = 0, ironNf = 0, sproutNf = 0;
   const withSets = rawSeries.map((row, i) => {
-    sapNf += n(filtered[i]?.shielded?.sapling_spends);
-    orchNf += n(filtered[i]?.shielded?.orchard_actions);
-    ironNf += n(filtered[i]?.shielded?.ironwood_actions);
-    sproutNf += n(filtered[i]?.shielded?.sprout_joinsplits) * 2;
+    const c = cumul.get(filtered[i]?.start) || { sap: 0, orch: 0, iron: 0, sprout: 0 };
     return {
       ...row,
-      sapling_nf_set: sapNf,
-      orchard_nf_set: orchNf,
-      ironwood_nf_set: ironNf,
-      sprout_nf_set: sproutNf,
-      sapling_unspent: Math.max(0, (row.sapling_tree || 0) - sapNf),
-      orchard_unspent: Math.max(0, (row.orchard_tree || 0) - orchNf),
-      ironwood_unspent: Math.max(0, (row.ironwood_tree || 0) - ironNf),
+      sapling_nf_set: c.sap,
+      orchard_nf_set: c.orch,
+      ironwood_nf_set: c.iron,
+      sprout_nf_set: c.sprout,
+      sapling_unspent: Math.max(0, (row.sapling_tree || 0) - c.sap),
+      orchard_unspent: Math.max(0, (row.orchard_tree || 0) - c.orch),
+      ironwood_unspent: Math.max(0, (row.ironwood_tree || 0) - c.iron),
     };
   });
   const series = logScale
@@ -386,9 +409,18 @@ export default function ChainStatePage() {
               <XAxis dataKey="day" stroke="#64748b" fontSize={12} angle={-45} textAnchor="end" height={60} />
               <YAxis scale={logScale ? "log" : "auto"} domain={logScale ? [0.1, "auto"] : undefined} stroke="#64748b" fontSize={12} />
               <Tooltip content={<CustomTooltip />} />
-              <Legend />
+              <Legend onClick={(e) => {
+                const key = e.dataKey as string;
+                setHidden((prev) => {
+                  const next = new Set(prev);
+                  if (next.has(key)) next.delete(key); else next.add(key);
+                  return next;
+                });
+              }} formatter={(value) => (
+                <span style={{ color: hidden.has(value as string) ? "#64748b" : undefined, textDecoration: hidden.has(value as string) ? "line-through" : undefined }}>{value}</span>
+              )} />
               {active.keys.map((k) => (
-                <Line key={k} type="monotone" dataKey={k} stroke={COLORS[k] || "#3b82f6"} dot={false} strokeWidth={2} />
+                <Line key={k} type="monotone" dataKey={k} stroke={COLORS[k] || "#3b82f6"} dot={false} strokeWidth={2} hide={hidden.has(k)} />
               ))}
             </LineChart>
           )}
@@ -548,11 +580,11 @@ export default function ChainStatePage() {
             <Stat label="Orchard actions" value={data.shielded.orchard_actions.toLocaleString()} accent="#22d3ee" />
             <Stat label="Ironwood actions" value={data.shielded.ironwood_actions.toLocaleString()} accent="#fb923c" />
             <Stat label="Sprout JoinSplits" value={n(data.shielded.sprout_joinsplits).toLocaleString()} accent="#c084fc" />
-            <Stat label="Sprout vpub_old" value={n(data.shielded.sprout_vpub_old).toLocaleString()} accent="#a855f7" />
-            <Stat label="Sprout vpub_new" value={n(data.shielded.sprout_vpub_new).toLocaleString()} accent="#d8b4fe" />
-            <Stat label="Sapling value balance" value={n(data.shielded.sapling_value_balance).toLocaleString()} accent="#8b5cf6" />
-            <Stat label="Orchard value balance" value={n(data.shielded.orchard_value_balance).toLocaleString()} accent="#22d3ee" />
-            <Stat label="Ironwood value balance" value={n(data.shielded.ironwood_value_balance).toLocaleString()} accent="#fb923c" />
+            <Stat label="Sprout vpub_old" value={(n(data.shielded.sprout_vpub_old) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#ef4444" />
+            <Stat label="Sprout vpub_new" value={(n(data.shielded.sprout_vpub_new) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#f87171" />
+            <Stat label="Sapling value balance" value={(-n(data.shielded.sapling_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#8b5cf6" />
+            <Stat label="Orchard value balance" value={(-n(data.shielded.orchard_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#22d3ee" />
+            <Stat label="Ironwood value balance" value={(-n(data.shielded.ironwood_value_balance) / 1e8).toLocaleString(undefined, { maximumFractionDigits: 2 })} accent="#fb923c" />
           </>
         )}
         {active.group === "types" && (
@@ -588,11 +620,11 @@ export default function ChainStatePage() {
           <>
             <Stat label="Indexer populated" value={String(data.spends.indexer_populated)} accent={data.spends.indexer_populated ? "#4ade80" : "#f87171"} />
             <Stat label="Probed" value={data.spends.probed.toLocaleString()} accent="#94a3b8" />
-            <Stat label="Outpoint hits" value={data.spends.outpoint_hits.toLocaleString()} accent="#60a5fa" />
-            <Stat label="Sapling nf hits" value={data.spends.sapling_nullifier_hits.toLocaleString()} accent="#a78bfa" />
-            <Stat label="Orchard nf hits" value={data.spends.orchard_nullifier_hits.toLocaleString()} accent="#22d3ee" />
-            <Stat label="Ironwood nf hits" value={data.spends.ironwood_nullifier_hits.toLocaleString()} accent="#fb923c" />
-            <Stat label="Sprout nf hits" value={n(data.spends.sprout_nullifier_hits).toLocaleString()} accent="#c084fc" />
+            <Stat label="Transparent spends" value={data.spends.outpoint_hits.toLocaleString()} accent="#60a5fa" />
+            <Stat label="Sapling spends" value={data.spends.sapling_nullifier_hits.toLocaleString()} accent="#8b5cf6" />
+            <Stat label="Orchard spends" value={data.spends.orchard_nullifier_hits.toLocaleString()} accent="#10b981" />
+            <Stat label="Ironwood spends" value={data.spends.ironwood_nullifier_hits.toLocaleString()} accent="#f97316" />
+            <Stat label="Sprout spends" value={n(data.spends.sprout_nullifier_hits).toLocaleString()} accent="#ef4444" />
           </>
         )}
       </div>
