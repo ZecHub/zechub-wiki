@@ -236,10 +236,10 @@ export default function ChainStatePage() {
   let sapC = 0, orchC = 0, ironC = 0, sproutC = 0;
   const cumul = new Map<number, { sap: number; orch: number; iron: number; sprout: number }>();
   for (const d of fullSeries) {
-    sapC += d.sapling_spends;
-    orchC += d.orchard_actions;
-    ironC += d.ironwood_actions;
-    sproutC += d.sprout_joinsplits * 2;
+    sapC += d.sapling_spends_idx;
+    orchC += d.orchard_spends;
+    ironC += d.ironwood_spends;
+    sproutC += d.sprout_spends;
     cumul.set(d.start, { sap: sapC, orch: orchC, iron: ironC, sprout: sproutC });
   }
 
