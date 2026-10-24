@@ -148,7 +148,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     );
   }
 
-  const handleLike = async (walletTitle: string) => {
+  const handleLike = async (walletTitle: string): Promise<boolean> => {
     setSuccess({});
     setError({});
     try {
@@ -160,6 +160,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       if (response.ok) {
         setLikes((prev) => ({ ...prev, [walletTitle]: prev[walletTitle] + 1 }));
         setSuccess({ [walletTitle]: savedReviewMsg });
+        return true;
       } else {
         const data = await response.json();
         setError({ [walletTitle]: data.message });
@@ -167,9 +168,10 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     } catch (error) {
       setError({ [walletTitle]: `${errorUpdatingRatingPrefix} ${error}` });
     }
+    return false;
   };
 
-  const handleDislike = async (walletTitle: string) => {
+  const handleDislike = async (walletTitle: string): Promise<boolean> => {
     setSuccess({});
     setError({});
     try {
@@ -181,6 +183,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
       if (response.ok) {
         setLikes((prev) => ({ ...prev, [walletTitle]: prev[walletTitle] - 1 }));
         setSuccess({ [walletTitle]: savedReviewMsg });
+        return true;
       } else {
         const data = await response.json();
         setError({ [walletTitle]: data.message });
@@ -188,6 +191,7 @@ const WalletList: React.FC<Props> = ({ allWallets }) => {
     } catch (error) {
       setError({ [walletTitle]: `${errorUpdatingRatingPrefix} ${error}` });
     }
+    return false;
   };
 
   const matchesFilters = (wallet: Wallet) =>
