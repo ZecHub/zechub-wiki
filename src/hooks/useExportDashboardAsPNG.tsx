@@ -13,27 +13,33 @@ const useExportDashboardAsPNG = () => {
   const divChartRef = useRef<HTMLDivElement>(null);
 
   const handleSaveToPng = async (label: string) => {
-    if (!divChartRef.current) {
+    const chart = divChartRef.current;
+    if (!chart) {
       console.warn("Export failed: No chart container ref found");
       alert("Could not find chart to export. Try switching tabs and try again.");
       return;
     }
+    const isCurrentChart = () => divChartRef.current === chart && chart.isConnected;
 
     // Small delay ensures Recharts SVG + custom components (Privacy Set, Halving Meter, etc.) are fully painted
     await new Promise((resolve) => setTimeout(resolve, 350));
+
+    // Tabs share this ref. Do not capture a replacement chart under the
+    // previous tab's label, or a chart removed while waiting for paint.
+    if (!isCurrentChart()) return;
 
     const isDark = document.documentElement.classList.contains("dark");
 
     try {
       console.log(`Exporting ${label} chart...`);
 
-      const canvas = await html2canvas(divChartRef.current, {
+      const canvas = await html2canvas(chart, {
         scale: 3,                    // High-resolution PNG
         useCORS: true,
         allowTaint: true,
         backgroundColor: isDark ? "#0f172a" : "#ffffff",
-        width: divChartRef.current.offsetWidth,
-        height: divChartRef.current.offsetHeight,
+        width: chart.offsetWidth,
+        height: chart.offsetHeight,
         logging: false,
 
         // 🔥 STRONG FIX for Tailwind v4 lab()/oklab() colors
@@ -69,6 +75,9 @@ const useExportDashboardAsPNG = () => {
         },
       });
 
+      // Capturing is asynchronous too; discard a result if its tab has left.
+      if (!isCurrentChart()) return;
+
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
       link.download = `${label.replace(/\s+/g, "-")}-zechub-chart.png`;
@@ -76,6 +85,7 @@ const useExportDashboardAsPNG = () => {
 
       console.log(`✅ ${label} chart exported successfully`);
     } catch (err) {
+      if (!isCurrentChart()) return;
       console.error("Error saving chart:", err);
       alert("Export failed. Check console (F12) for details.");
     }
