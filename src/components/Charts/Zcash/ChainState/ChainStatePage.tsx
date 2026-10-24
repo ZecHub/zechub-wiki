@@ -232,6 +232,10 @@ export default function ChainStatePage() {
     orchard_actions: n(d.shielded?.orchard_actions),
     ironwood_actions: n(d.shielded?.ironwood_actions),
     sprout_joinsplits: n(d.shielded?.sprout_joinsplits),
+    sapling_spends_idx: n(d.spends?.sapling_nullifier_hits),
+    orchard_spends: n(d.spends?.orchard_nullifier_hits),
+    ironwood_spends: n(d.spends?.ironwood_nullifier_hits),
+    sprout_spends: n(d.spends?.sprout_nullifier_hits),
   }));
   let sapC = 0, orchC = 0, ironC = 0, sproutC = 0;
   const cumul = new Map<number, { sap: number; orch: number; iron: number; sprout: number }>();
