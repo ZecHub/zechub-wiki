@@ -990,7 +990,7 @@
       "running": "运行",
       "startZingoCliDefault": "启动 Zingo CLI（默认，离线）",
       "startZingoCliCustom": "启动 Zingo CLI（通过本地索引器在线）",
-      "zingoSyncWarning": "⚠ 新会话默认处于离线状态，直到您授予同意（`--online`、`--remember-online` 或 `--server`）。Nym proxy 会依次从 `--nym-proxy`、`$ZINGO_NYM_PROXY`、zingo-cli 旁的二进制文件或 `PATH` 中解析。默认情况下，同步会在链尖端之后继续进行。首次在线运行将执行完整同步。如需在不使用 mixnet 的情况下构建（仅离线）：`makers run-cli --nakednet --build-only`。",
+      "zingoSyncWarning": "⚠ 新会话默认处于离线状态，直到您授予同意（--online、--remember-online 或 --server）。Nym proxy 会依次从 --nym-proxy、$ZINGO_NYM_PROXY、zingo-cli 旁的二进制文件或 PATH 中解析。默认情况下，同步会在链尖端之后继续进行。首次在线运行将执行完整同步。如需在不使用 mixnet 的情况下构建（仅离线）：makers run-cli --nakednet --build-only。",
       "nextStepsResources": "后续步骤与资源",
       "readyToBuild": "准备开始构建了吗？",
       "officialDocumentation": "官方文档",

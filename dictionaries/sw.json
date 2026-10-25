@@ -278,7 +278,7 @@
     "heroTitle": "Karibu ZecHub",
     "heroSubtitle": "chanzo wazi elimu kitovu kwa ajili ya Zcash",
     "heroDescription": "Jifunze kuhusu teknolojia ya faragha ya Zcash, chunguza vielelezo vya maingiliano, na uchangie mfumo wa ikolojia",
-    "description": "ZecHub ni kitovu cha elimu kinachoendeshwa na jamii kwa Zcash (ZEC), sarafu ya kidijitali iliyogatuliwa iliyojengwa kwa ajili ya malipo yanayostahimili udhibiti, salama na ya kibinafsi. Zcash hutumia usimbaji fiche wa hali ya juu ili kuwezesha miamala ambayo uhalali wake unaweza kuthibitishwa bila kufichua taarifa nyeti za kifedha. Mnamo 2026 ilianzisha bwawa la Ironwood lililolindwa, lililothibitishwa rasmi kwa kutumia uthibitisho wa hisabati uliokaguliwa na mashine na kuhakikisha uadilifu wa usawa. Mradi Tachyon unatengeneza itifaki iliyopendekezwa ya kizazi kijacho iliyolindwa iliyoundwa ili kuboresha kwa kiasi kikubwa uwezo wa kupanuka kwa malipo ya kibinafsi, kupunguza ukuaji wa hali ya kithibitishaji na kuendeleza Zcash kuelekea faragha salama kabisa baada ya kiasi.",
+    "description": "ZecHub ni kitovu cha elimu kinachoendeshwa na jamii kwa Zcash (ZEC), sarafu ya kidijitali iliyogatuliwa iliyojengwa kwa ajili ya malipo ya kibinafsi na salama ambayo yanapinga udhibiti. Zcash hutumia usimbaji fiche wa hali ya juu, kwa hivyo uhalali wa miamala unaweza kuthibitishwa bila kufichua taarifa nyeti za kifedha. Mnamo 2026 ilianzisha bwawa la Ironwood, ambalo limethibitishwa rasmi kwa uthibitisho wa hisabati uliokaguliwa na mashine na kuhakikisha uadilifu wa mizani. Project Tachyon inatengeneza itifaki iliyopendekezwa ya kizazi kijacho iliyolindwa iliyoundwa ili kuboresha sana uwezo wa kupanuka kwa malipo ya kibinafsi, kupunguza ukuaji wa hali ya kithibitishaji, na kusogeza Zcash kuelekea faragha ambayo iko salama kabisa dhidi ya kompyuta za quantum.",
     "featuredSection": "Rasilimali Zilizoangaziwa",
     "latestUpdates": "Mwisho Updates",
     "getInvolved": "Shiriki",
@@ -990,7 +990,7 @@
       "running": "Kukimbia",
       "startZingoCliDefault": "Anza Zingo CLI (Chaguo-msingi, nje ya mtandao)",
       "startZingoCliCustom": "Anza Zingo CLI (mtandaoni kupitia kiorodheshaji cha ndani)",
-      "zingoSyncWarning": "⚠ Kipindi kipya kiko nje ya mtandao hadi utakapotoa idhini (--online, --remember-online, au --server). Proksi ya Nym imetatuliwa kutoka --nym-proxy, $ZINGO_NYM_PROXY, jozi iliyo karibu na zingo-cli, au PATH. Usawazishaji unaendelea baada ya ncha ya mnyororo kwa chaguo-msingi. Uendeshaji wa kwanza mtandaoni hufanya usawazishaji kamili. Ili kujenga bila mchanganyiko (nje ya mtandao pekee): watengenezaji huendesha-cli --nakednet --build-only.",
+      "zingoSyncWarning": "⚠ Kipindi kipya kiko nje ya mtandao hadi utakapotoa idhini (--online, --remember-online, au --server). Proksi ya Nym imetatuliwa kutoka --nym-proxy, $ZINGO_NYM_PROXY, jozi iliyo karibu na zingo-cli, au PATH. Usawazishaji unaendelea baada ya ncha ya mnyororo kwa chaguo-msingi. Uendeshaji wa kwanza mtandaoni hufanya usawazishaji kamili. Ili kujenga bila mchanganyiko (nje ya mtandao pekee): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Hatua zifuatazo na Rasilimali",
       "readyToBuild": "Je, Uko Tayari Kujenga?",
       "officialDocumentation": "Nyaraka rasmi",
@@ -1245,7 +1245,7 @@
     }
   },
   "sideMenu": {
-    "navigation": "Usafiri",
+    "navigation": "Urambazaji",
     "explore": "Kuchunguza"
   },
   "meta": {

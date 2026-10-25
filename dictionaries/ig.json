@@ -990,7 +990,7 @@
       "running": "Ịgba ọsọ",
       "startZingoCliDefault": "Malite Zingo CLI (Ndabara, na-anọghị n'ịntanetị)",
       "startZingoCliCustom": "Malite Zingo CLI (n'ịntanetị site na ihe nlele mpaghara)",
-      "zingoSyncWarning": "⚠ Oge ọhụrụ na-anọghị n'ịntanetị ruo mgbe ị nyere nkwenye (--online, --remember-online, ma ọ bụ --server). A na-edozi proxy Nym site na --nym-proxy, $ZINGO_NYM_PROXY, binary dị n'akụkụ zingo-cli, ma ọ bụ PATH. Mmekọrịta na-aga n'ihu mgbe usoro a gasịrị na ndabara. Oge mbụ n'ịntanetị na-eme mmekọrịta zuru oke. Iji wuo na-enweghị mixnet (naanị offline): ndị na-emepụta run-cli --nakednet --build-only.",
+      "zingoSyncWarning": "⚠ Oge ọhụrụ na-anọghị n'ịntanetị ruo mgbe ị nyere nkwenye (--online, --remember-online, ma ọ bụ --server). A na-edozi proxy Nym site na --nym-proxy, $ZINGO_NYM_PROXY, binary dị n'akụkụ zingo-cli, ma ọ bụ PATH. Mmekọrịta na-aga n'ihu mgbe usoro a gasịrị na ndabara. Oge mbụ n'ịntanetị na-eme mmekọrịta zuru oke. Iji wuo na-enweghị mixnet (naanị offline): makers run-cli --nakednet --build-only.",
       "nextStepsResources": "Nzọụkwụ Ndị Ọzọ na Akụrụngwa",
       "readyToBuild": "Ì Jikerela Ịrụ Ụlọ?",
       "officialDocumentation": "Akwụkwọ Ọrụ",
@@ -1245,7 +1245,7 @@
     }
   },
   "sideMenu": {
-    "navigation": "Ụgbọ mmiri",
+    "navigation": "Ntugharị",
     "explore": "Nyochaa"
   },
   "meta": {
