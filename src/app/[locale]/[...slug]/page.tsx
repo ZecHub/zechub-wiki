@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1467,6 +1467,161 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         );
       }
     }
+    if (opts.pod && Array.isArray(tree.children)) {
+      // Podcasts: each playlist entry becomes a show header plus a rail of its latest episodes.
+      const rows: any[] = tree.children;
+      // Entries may be plain hast elements or raw-HTML (mdx jsx) nodes, so match on either name.
+      const nm = (x: any): string => (x && (x.tagName || x.name)) || "";
+      const isEl = (x: any, tag?: string) => x && (x.type === "element" || x.type === "mdxJsxFlowElement" || x.type === "mdxJsxTextElement") && (!tag || nm(x) === tag);
+      const attr = (x: any, key: string): string => {
+        if (x?.properties && x.properties[key] != null) return String(x.properties[key]);
+        const a = (x?.attributes || []).find((t: any) => t.name === key);
+        return a && typeof a.value === "string" ? a.value : "";
+      };
+      const findTag = (x: any, tag: string): any[] => {
+        const out: any[] = [];
+        const go = (n: any) => {
+          if (!n || typeof n !== "object") return;
+          if (isEl(n, tag)) out.push(n);
+          (n.children || []).forEach(go);
+        };
+        go(x);
+        return out;
+      };
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && x.type === "mdxJsxFlowElement" && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p") && textOf(x).trim().length > 40);
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      const ui = rows.findIndex((x) => isEl(x, "ul") && JSON.stringify(x).includes("list=PL"));
+      if (ui > -1) {
+        const shows = (rows[ui].children || [])
+          .filter((li: any) => isEl(li, "li"))
+          .map((li: any) => {
+            const a = findTag(li, "a")[0];
+            const list = (JSON.stringify(li).match(/list=(PL[\w-]{10,40})/) || [])[1];
+            const img = findTag(li, "img")[0];
+            const src = attr(img, "src");
+            const title = a ? textOf(a).trim() : "";
+            if (!list || !title) return null;
+            return {
+              type: "element",
+              tagName: "podcastshow",
+              properties: { title, list, logo: /_unavailable/.test(src) ? "" : src },
+              children: [],
+            };
+          })
+          .filter(Boolean);
+        if (shows.length) rows.splice(ui, 1, ...shows);
+      }
+    }
+    if (opts.zcon && Array.isArray(tree.children)) {
+      // Zcon archive: newest edition first, each as a header + description + playlist rail; chips jump between editions.
+      const rows: any[] = tree.children;
+      const nm = (x: any): string => (x && (x.tagName || x.name)) || "";
+      const isEl = (x: any, tag?: string) => x && (x.type === "element" || x.type === "mdxJsxFlowElement" || x.type === "mdxJsxTextElement") && (!tag || nm(x) === tag);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && x.type === "mdxJsxFlowElement" && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      // Intro line above the H1 goes below it, as a normal paragraph.
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const note = rows.findIndex((x, i) => i < h1 && isEl(x, "p") && /^the following is/i.test(textOf(x).trim()));
+      if (h1 > -1 && note > -1) {
+        const [n] = rows.splice(note, 1);
+        // After the lead paragraph (placed below once it is found), so the lead reads first.
+        const h1n = rows.findIndex((x) => isEl(x, "h1"));
+        const leadAt = rows.findIndex((x, i) => i > h1n && isEl(x, "p") && /annual conference/i.test(textOf(x)));
+        rows.splice(leadAt > -1 ? leadAt + 1 : h1n + 1, 0, n);
+      }
+      const h1b = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1b && isEl(x, "p") && /annual conference/i.test(textOf(x)));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+
+      const heads: number[] = [];
+      rows.forEach((x, i) => {
+        if (isEl(x, "h2") && /^zcon/i.test(textOf(x).replace(/#$/, "").trim())) heads.push(i);
+      });
+      if (heads.length) {
+        const editions = heads.map((start, k) => {
+          const end = k + 1 < heads.length ? heads[k + 1] : rows.length;
+          const section = rows.slice(start, end);
+          const head = textOf(rows[start]).replace(/#$/, "").trim();
+          const m = head.match(/^(Zcon[\w]*)\s*:\s*(.*)$/i);
+          // Zcon Vozes headings have no colon: "Zcon  Vozes Brasil" is edition 1, "Zcon Vozes 2" is edition 2.
+          const v = head.match(/^zcon\s+vozes\s*(\d+)?/i);
+          const label = v ? `Vozes ${v[1] || "1"}` : m ? m[1] : head;
+          const title = v ? head.replace(/\s+/g, " ") : m ? m[2].trim() : head;
+          const list = (JSON.stringify(section).match(/list=(PL[\w-]{10,40})/) || [])[1] || "";
+          const desc = section
+            .slice(1)
+            .filter((x) => isEl(x, "p") && textOf(x).trim() && !/playlist\s*$/i.test(textOf(x).trim()))
+            .map((x) => textOf(x).trim())
+            .join(" ");
+          return {
+            label,
+            desc,
+            node: { type: "element", tagName: "zconedition", properties: { label, title, desc, list, anchor: label.toLowerCase() }, children: [] },
+          };
+        });
+        const first = heads[0];
+        const last = rows.length;
+        const ordered = [...editions].reverse();
+        // "2019 / Split, Croatia" style subtitle read from each description.
+        const MONTHS = /^(January|February|March|April|May|June|July|August|September|October|November|December)$/;
+        const sub = (desc: string) => {
+          const year = (desc.match(/\b(20\d\d)\b/) || [])[1] || "";
+          let place = "";
+          if (/virtual|virutal/i.test(desc)) place = "Virtual";
+          else {
+            const m = desc.match(/\b(?:in|at)\s+(?:beautiful\s+)?((?:[A-Z][A-Za-z]+)(?:,?\s+[A-Z][A-Za-z]+)*)/);
+            if (m) place = m[1].split(/,?\s+/).filter((w: string) => !MONTHS.test(w)).join(" ").replace(/\s+(?=[A-Z][a-z]+$)(?<=,)/, "");
+            const c = desc.match(/\bin\s+(?:beautiful\s+)?([A-Z][A-Za-z ]+?,\s*[A-Z][A-Za-z]+)/);
+            if (c) place = c[1];
+          }
+          // Facts the wiki text does not state (Museum of Tomorrow is in Rio; Vozes 2 was announced for S\u00e3o Paulo).
+          if (!place && /museum of tomorrow/i.test(desc)) place = "Rio de Janeiro";
+          if (!place && !year && /vozes 2/i.test(desc + " ")) place = "S\u00e3o Paulo";
+          return [year, place].filter(Boolean).join(" \u00b7 ");
+        };
+        const nav = {
+          type: "element",
+          tagName: "chipnav",
+          properties: { items: JSON.stringify(ordered.map((e) => ({ label: e.label, href: `#${e.label.toLowerCase()}`, sub: sub(e.desc + (e.label === "Vozes 2" ? " vozes 2" : "")) }))) },
+          children: [],
+        };
+        const other = opts.zcon === "vozes"
+          ? { name: "Zcon", desc: "The annual conference organized by the Zcash Foundation", href: "/zcash-community/zcon-archive" }
+          : { name: "Zcon Vozes", desc: "The Brazilian edition, organized by Zcash Brasil", href: "/zcash-community/zcon-vozes" };
+        const cross = {
+          type: "element",
+          tagName: "communitygrid",
+          properties: {},
+          children: [{ type: "element", tagName: "communitycard", properties: { ...other, icon: "globe" }, children: [] }],
+        };
+        rows.splice(first, last - first, nav, ...ordered.map((e) => e.node), cross);
+      }
+    }
+    if (opts.node && Array.isArray(tree.children)) {
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p"));
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+      const firstStep = rows.findIndex((x) => isEl(x, "h2") && /^step\s+1\b/i.test(textOf(x).trim()));
+      if (firstStep > -1) {
+        const items = [
+          { label: "Prerequisites", hint: "Hardware and software", href: "#prerequisites" },
+          { label: "Zebra", hint: "Install the full node", href: "#install-and-run-zebra" },
+          { label: "Zallet", hint: "Install and configure the wallet", href: "#install-zallet" },
+          { label: "Troubleshooting", hint: "Common problems", href: "#troubleshooting" },
+        ];
+        const pre = rows.findIndex((x) => isEl(x, "h2") && /^prerequisites/i.test(textOf(x).trim()));
+        rows.splice(pre > -1 ? pre : firstStep, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
+      }
+    }
     if (opts.cz && Array.isArray(tree.children)) {
       // Cypherpunk Zero: new hero art, governance/resources as link cards, supply split as stat cards.
       const rows: any[] = tree.children;
@@ -1595,7 +1750,7 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         // Step guides (MetaMask Snap): "1. Title" headings become numbered steps; screenshots get a frame.
         if (opts.snap && n.type === "element") {
           if (n.tagName === "h2") {
-            const mm = /^(\d+)\.\s+(.+)$/.exec(textOf(n).trim());
+            const mm = /^(?:Step\s+)?(\d+)[.:]\s+(.+)$/i.exec(textOf(n).trim());
             if (mm) {
               n.properties = { ...(n.properties || {}), dataStep: mm[1] };
               n.children = [{ type: "text", value: mm[2] }];
@@ -2624,7 +2779,8 @@ export default async function Page(props: {
             pools: slug[0] === "using-zcash" && slug[1] === "shielded-pools",
             prq: slug[0] === "using-zcash" && slug[1] === "payment-request-uris",
             ncex: slug[0] === "using-zcash" && slug[1] === "non-custodial-exchanges",
-            snap: slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups" || slug[1] === "solana-zec-to-shielded" || slug[1] === "solswap"),
+            node: slug[0] === "guides" && slug[1] === "raspberry-pi-4-full-node",
+            snap: (slug[0] === "guides" && slug[1] === "raspberry-pi-4-full-node") || slug[0] === "using-zcash" && (slug[1] === "metamask-snap" || slug[1] === "mobile-top-ups" || slug[1] === "solana-zec-to-shielded" || slug[1] === "solswap"),
             swap: slug[0] === "using-zcash" && slug[1] === "solswap",
             tnet: slug[0] === "using-zcash" && slug[1] === "testnet",
             txn: slug[0] === "using-zcash" && slug[1] === "transactions",
@@ -2643,6 +2799,8 @@ export default async function Page(props: {
             eo: slug[0] === "zcash-community" && slug[1] === "zcash-engineering-office-hours",
             amb: slug[0] === "zcash-community" && slug[1] === "zcash-global-ambassadors",
             media: slug[0] === "zcash-community" && slug[1] === "zcash-media",
+            pod: slug[0] === "zcash-community" && slug[1] === "zcash-podcasts",
+            zcon: slug[0] === "zcash-community" && (slug[1] === "zcon-archive" ? "archive" : slug[1] === "zcon-vozes" ? "vozes" : false),
           },
         ],
       ],
@@ -2718,7 +2876,7 @@ export default async function Page(props: {
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.
-        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community"].includes(slug[0])}
+        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community", "guides"].includes(slug[0])}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={

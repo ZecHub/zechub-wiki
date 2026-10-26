@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 const LIST_RE = /^PL[A-Za-z0-9_-]{10,40}$/;
 const CACHE = "public, s-maxage=3600, stale-while-revalidate=86400";
 
-type Video = { id: string; title: string; length?: string; published?: string };
+type Video = { id: string; title: string; length?: string; published?: string; when?: string; ageDays?: number };
 
 const decode = (s: string) =>
   s.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'");
@@ -42,13 +42,37 @@ function fromPage(html: string): Video[] {
       const title = l.metadata?.lockupMetadataViewModel?.title?.content || "";
       if (!seen.has(l.contentId) && title) {
         seen.add(l.contentId);
-        out.push({ id: l.contentId, title });
+        const parts: string[] = [];
+        const grab = (m: any) => {
+          if (!m || typeof m !== "object") return;
+          if (typeof m.content === "string") parts.push(m.content);
+          for (const v of Object.values(m)) grab(v);
+        };
+        grab(l.metadata?.lockupMetadataViewModel?.metadata);
+        const length = JSON.stringify(l.contentImage || {}).match(/"text":"(\d{1,2}:\d{2}(?::\d{2})?)"/)?.[1];
+        const age = parts.join(" | ").match(/(\d+)\s*(mo|y|w|d|h|m|s)\s+ago/i);
+        let when: string | undefined;
+        let ageDays: number | undefined;
+        if (age) {
+          const n = Number(age[1]);
+          const u = age[2].toLowerCase();
+          const names: Record<string, [string, number]> = { s: ["second", 1 / 86400], m: ["minute", 1 / 1440], h: ["hour", 1 / 24], d: ["day", 1], w: ["week", 7], mo: ["month", 30], y: ["year", 365] };
+          const [word, days] = names[u];
+          when = `${n} ${word}${n === 1 ? "" : "s"} ago`;
+          ageDays = n * days;
+        }
+        out.push({ id: l.contentId, title, length, when, ageDays });
       }
       return;
     }
     for (const v of Object.values(n)) walk(v);
   };
   walk(data);
+  // Playlists are in arbitrary order; show the newest episodes first when YouTube gave us their age.
+  if (out.filter((v) => v.ageDays !== undefined).length >= out.length / 2) {
+    const idx = new Map(out.map((v, i) => [v.id, i]));
+    out.sort((a, b) => (a.ageDays ?? Infinity) - (b.ageDays ?? Infinity) || (idx.get(a.id) as number) - (idx.get(b.id) as number));
+  }
   return out;
 }
 

@@ -8,6 +8,8 @@ interface LiteYouTubeProps {
   /** Passed through to the placeholder button and, once clicked, the iframe. */
   className?: string;
   style?: CSSProperties;
+  /** Mount the iframe straight away (used after an explicit click on a video card). */
+  startActive?: boolean;
 }
 
 /**
@@ -24,8 +26,9 @@ export default function LiteYouTube({
   title = "YouTube video",
   className,
   style,
+  startActive = false,
 }: LiteYouTubeProps) {
-  const [activated, setActivated] = useState(false);
+  const [activated, setActivated] = useState(startActive);
 
   if (activated) {
     return (

@@ -1,6 +1,7 @@
 import { ArrowUpRight, CalendarDays, Coins, Cpu, Globe, HandCoins, Languages, Megaphone, MessageSquareText, Presentation, Scale, ShieldAlert, ShieldCheck, UserPlus, Users, Vote } from "lucide-react";
 import { SiDiscord, SiElement } from "react-icons/si";
 import { socialIcons } from "@/components/UI/SvgIcons";
+import { Link } from "@/i18n/navigation";
 
 const ICONS: Record<string, React.ReactNode> = {
   telegram: socialIcons.telegram,
@@ -73,7 +74,11 @@ export function CommunityCard(props: Record<string, unknown>) {
   );
   const cls =
     "group flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50/60 p-3.5 no-underline transition-colors dark:border-white/10 dark:bg-white/[0.03]";
-  return href ? (
+  return href && href.startsWith("/") ? (
+    <Link href={href} className={`${cls} hover:border-brand/40 dark:hover:border-brand/40`}>
+      {body}
+    </Link>
+  ) : href ? (
     <a href={href} target="_blank" rel="noopener noreferrer" className={`${cls} hover:border-brand/40 dark:hover:border-brand/40`}>
       {body}
     </a>
