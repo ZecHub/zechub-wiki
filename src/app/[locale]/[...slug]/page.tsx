@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1622,6 +1622,80 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         rows.splice(pre > -1 ? pre : firstStep, 0, { type: "element", tagName: "jumpnav", properties: { title: "Jump to", items: JSON.stringify(items) }, children: [] });
       }
     }
+    if (opts.rpi5 && Array.isArray(tree.children)) {
+      // RPi5 Zebra + lightwalletd + Zingo: numbered steps, no Edit badge, sources as a link list.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      for (let i = rows.length - 1; i >= 0; i--) {
+        const x = rows[i];
+        if (x && x.type === "mdxJsxFlowElement" && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit")) rows.splice(i, 1);
+      }
+      // Commands written as inline code (alone in a paragraph or list item) become proper code blocks.
+      const kidsOf = (x: any) => (x.children || []).filter((c: any) => !(c.type === "text" && !String(c.value).trim()) && !isEl(c, "br"));
+      const loneCode = (x: any): any => {
+        if (!isEl(x)) return null;
+        const k = kidsOf(x);
+        return k.length === 1 && isEl(k[0], "code") ? k[0] : null;
+      };
+      const block = (code: any) => ({ type: "element", tagName: "pre", properties: {}, children: [{ ...code, properties: { ...(code.properties || {}), className: ["language-bash"] } }] });
+      for (let i = 0; i < rows.length; i++) {
+        const x = rows[i];
+        if (isEl(x, "p") && loneCode(x)) rows[i] = block(loneCode(x));
+        else if (isEl(x, "ul")) {
+          const lis = kidsOf(x).filter((c: any) => isEl(c, "li"));
+          if (lis.length === 1 && loneCode(lis[0])) rows[i] = block(loneCode(lis[0]));
+        }
+      }
+      // Same inside list items (a note plus its command).
+      const nestBlocks = (x: any) => {
+        for (const c of x.children || []) {
+          if (isEl(c, "li")) {
+            c.children = (c.children || []).map((y: any) => (isEl(y, "p") && loneCode(y) ? block(loneCode(y)) : y));
+          } else if (isEl(c, "ul") || isEl(c, "ol")) nestBlocks(c);
+        }
+      };
+      rows.forEach((x) => (isEl(x, "ul") || isEl(x, "ol")) && nestBlocks(x));
+      // Merge consecutive code blocks (e.g. the two zebrad.toml settings).
+      for (let i = rows.length - 2; i >= 0; i--) {
+        let j = i + 1;
+        while (j < rows.length && rows[j].type === "text" && !String(rows[j].value).trim()) j++;
+        if (isEl(rows[i], "pre") && isEl(rows[j], "pre") && rows[i].children?.[0]?.children && rows[j].children?.[0]?.children) {
+          rows[i].children[0].children = [
+            { type: "text", value: textOf(rows[i]).replace(/\n$/, "") + "\n" + textOf(rows[j]) },
+          ];
+          rows.splice(i + 1, j - i);
+        }
+      }
+      const src = rows.findIndex((x) => (isEl(x, "h1") || isEl(x, "h2")) && /^sources$/i.test(textOf(x).trim()));
+      let n = 0;
+      let seenVideo = false;
+      rows.forEach((x, i) => {
+        if (!isEl(x, "h2") || (src > -1 && i >= src)) return;
+        const t = textOf(x).trim();
+        if (/^video tutorial/i.test(t)) { seenVideo = true; return; }
+        if (!seenVideo) return;
+        n += 1;
+        x.properties = { ...(x.properties || {}), dataStep: String(n) };
+      });
+      if (src > -1) {
+        rows[src] = { ...rows[src], tagName: "h2" };
+        const pre = rows.findIndex((x, i) => i > src && isEl(x, "pre"));
+        if (pre > -1) {
+          const urls = (textOf(rows[pre]).match(/https?:\/\/[^\s]+/g) || []).filter((u, k, a) => a.indexOf(u) === k);
+          rows[pre] = {
+            type: "element",
+            tagName: "ul",
+            properties: {},
+            children: urls.map((u) => ({
+              type: "element",
+              tagName: "li",
+              properties: {},
+              children: [{ type: "element", tagName: "a", properties: { href: u }, children: [{ type: "text", value: u.replace(/^https?:\/\//, "") }] }],
+            })),
+          };
+        }
+      }
+    }
     if (opts.cz && Array.isArray(tree.children)) {
       // Cypherpunk Zero: new hero art, governance/resources as link cards, supply split as stat cards.
       const rows: any[] = tree.children;
@@ -2770,7 +2844,8 @@ export default async function Page(props: {
           rehypeWikiPatterns,
           {
             boldLinkButtons: slug[0] === "using-zcash",
-            videoCards: slug[0] === "using-zcash" || slug[0] === "start-here",
+            videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
+            rpi5: slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo",
             sectionHeadings: slug[0] === "start-here",
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
             recovery: slug[0] === "using-zcash" && slug[1] === "recovering-funds",
