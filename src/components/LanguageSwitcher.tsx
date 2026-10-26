@@ -266,8 +266,10 @@ export function LanguageSwitcher() {
       data-code={lang.code}
       aria-selected={lang.code === locale}
       onClick={() => handleSelect(lang.code)}
-      className={`group w-full text-start px-3 py-2.5 flex items-center gap-3 rounded-lg hover:bg-[#F4B728]/10 focus-visible:bg-[#F4B728]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#F4B728] transition-colors cursor-pointer ${
-        lang.code === locale ? 'bg-[#F4B728]/20 hover:bg-[#F4B728]/25' : ''
+      className={`group w-full text-start px-3 py-2.5 flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-amber-700 dark:focus-visible:ring-[#F4B728] transition-colors cursor-pointer ${
+        lang.code === locale
+          ? 'bg-[#F4B728]/20 hover:bg-[#F4B728]/25 focus-visible:bg-[#F4B728]/25'
+          : 'hover:bg-[#F4B728]/10 focus-visible:bg-[#F4B728]/10'
       }`}
     >
       <CodeBadge code={lang.code} current={lang.code === locale} />
@@ -276,13 +278,13 @@ export function LanguageSwitcher() {
           {lang.nativeLabel}
         </span>
         {lang.nativeLabel !== lang.label && (
-          <span lang="en" className="text-xs leading-tight text-slate-500 dark:text-slate-400 truncate">
+          <span lang="en" className="text-xs leading-tight text-slate-600 dark:text-slate-300 truncate">
             {lang.label}
           </span>
         )}
       </span>
       {lang.code === locale && (
-        <svg className="ms-auto w-4 h-4 text-amber-600 dark:text-[#F4B728] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <svg className="ms-auto w-4 h-4 text-amber-700 dark:text-[#F4B728] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
         </svg>
       )}
@@ -402,7 +404,7 @@ export function LanguageSwitcher() {
         // blurs (closing the panel) and the click then opens it again.
         onMouseDown={(e) => { if (isOpen) e.preventDefault(); }}
         onClick={() => (isOpen ? close(true) : setIsOpen(true))}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:border-[#F4B728] hover:bg-[#F4B728]/10 focus-visible:ring-2 focus-visible:ring-[#F4B728] transition-all cursor-pointer"
+        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 hover:border-[#F4B728] hover:bg-[#F4B728]/10 focus-visible:ring-2 focus-visible:ring-amber-700 dark:focus-visible:ring-[#F4B728] transition-all cursor-pointer"
         aria-label="Select language"
         aria-expanded={isOpen}
         aria-haspopup="dialog"
