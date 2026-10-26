@@ -7478,10 +7478,10 @@
           },
           "total_power": "23",
           "msgs": [],
-          "status": "open",
+          "status": "rejected",
           "votes": {
             "yes": "0",
-            "no": "7",
+            "no": "10",
             "abstain": "0"
           },
           "allow_revoting": true
@@ -7517,7 +7517,7 @@
           "status": "open",
           "votes": {
             "yes": "0",
-            "no": "5",
+            "no": "9",
             "abstain": "0"
           },
           "allow_revoting": true
@@ -7552,7 +7552,7 @@
           "msgs": [],
           "status": "open",
           "votes": {
-            "yes": "4",
+            "yes": "8",
             "no": "0",
             "abstain": "0"
           },
