@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -935,6 +935,75 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           const keep = rows.slice(rp + 1, end).filter((x) => !isBlank(x) && nm(x) !== "h3" && !items.some((it) => it.children.includes(x)));
           rows.splice(rp + 1, end - rp - 1, ...keep, { type: "element", tagName: "pointlist", properties: {}, children: items });
           void lead;
+        }
+      }
+    }
+    if (opts.comm && Array.isArray(tree.children)) {
+      // Community links: platform groups as icon cards, regional hubs as link cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const nameOf = (x: any): string => x.tagName || x.name || "";
+      const dropImgs = (x: any) => {
+        if (!x || !Array.isArray(x.children)) return;
+        x.children = x.children.filter((c: any) => nameOf(c) !== "img");
+        x.children.forEach(dropImgs);
+      };
+      const findHref = (x: any): string => {
+        if (!x || typeof x !== "object") return "";
+        if (nameOf(x) === "a" && x.properties?.href) return String(x.properties.href);
+        for (const c of x.children || []) {
+          const r = findHref(c);
+          if (r) return r;
+        }
+        return "";
+      };
+      const hasTable = (x: any): boolean => nameOf(x) === "table" || (x.children || []).some(hasTable) || (x.properties?.className || []).includes?.("overflow-x-auto");
+      const iconFor = (t: string) =>
+        /telegram/i.test(t) ? "telegram" : /discord/i.test(t) ? "discord" : /mastodon/i.test(t) ? "mastodon" : /matrix/i.test(t) ? "matrix" : /forum/i.test(t) ? "forum" : /twitter|^x\b/i.test(t) ? "x" : "globe";
+      const firstP = rows.findIndex((x) => isEl(x, "p") && textOf(x).trim().length > 60);
+      if (firstP > -1) rows[firstP].properties = { ...(rows[firstP].properties || {}), dataLead: "true" };
+      rows.forEach((x) => isEl(x, "h1") && dropImgs(x));
+
+      const w = rows.findIndex((x) => isEl(x, "h2") && /where you can find/i.test(textOf(x)));
+      if (w > -1) {
+        let end = w + 1;
+        while (end < rows.length && !isEl(rows[end], "h2") && !isEl(rows[end], "hr")) end++;
+        const groups: any[] = [];
+        let cur: any = null;
+        for (const r of rows.slice(w + 1, end)) {
+          if (isBlank(r)) continue;
+          if (isEl(r, "h3")) {
+            dropImgs(r);
+            const title = textOf(r).trim().replace(/#$/, "").trim();
+            cur = { type: "element", tagName: "communitygroup", properties: { title, icon: iconFor(title), wide: "false" }, children: [] };
+            groups.push(cur);
+          } else if (cur) {
+            cur.children.push(r);
+            if (hasTable(r)) cur.properties.wide = "true";
+            if (cur.properties.icon === "forum") cur.properties.wide = "true";
+          }
+        }
+        if (groups.length) rows.splice(w + 1, end - w - 1, { type: "element", tagName: "communitygrid", properties: {}, children: groups });
+      }
+
+      const rg = rows.findIndex((x) => isEl(x, "h2") && /^regional community hubs/i.test(textOf(x).trim()));
+      if (rg > -1) {
+        let j = rg + 1;
+        while (j < rows.length && !isEl(rows[j], "ul")) j++;
+        if (j < rows.length) {
+          const cards = (rows[j].children || [])
+            .filter((li: any) => isEl(li, "li"))
+            .map((li: any) => {
+              const t = textOf(li).trim();
+              const m = t.match(/^(.*?)\s[-\u2013\u2014]\s(.+)$/);
+              return {
+                type: "element",
+                tagName: "communitycard",
+                properties: { name: (m ? m[1] : t).trim(), desc: m ? m[2].trim() : "", href: findHref(li) },
+                children: [],
+              };
+            });
+          if (cards.length) rows.splice(j, 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
         }
       }
     }
@@ -1986,6 +2055,7 @@ export default async function Page(props: {
             ucHub: slug[0] === "zcash-use-cases" && slug[1] === "about",
             compact: slug[0] === "using-zcash" && slug[1] === "mobile-top-ups",
             sol: slug[0] === "using-zcash" && slug[1] === "solana-zec-to-shielded",
+            comm: slug[0] === "zcash-community" && slug[1] === "community-links",
           },
         ],
       ],

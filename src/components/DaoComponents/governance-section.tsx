@@ -39,7 +39,7 @@ export default function GovernanceSection() {
         <p className="m-0 mt-3 max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300">{description}</p>
       </div>
 
-      <div className="!mt-6 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="!mt-6 mx-auto grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2">
         {platforms.map((p) => (
           <Link
             key={p.name}
