@@ -1,12 +1,13 @@
-import { ArrowUpRight, Globe, MessagesSquare, MessageSquareText, Network } from "lucide-react";
+import { ArrowUpRight, Globe, MessageSquareText } from "lucide-react";
+import { SiDiscord, SiElement } from "react-icons/si";
 import { socialIcons } from "@/components/UI/SvgIcons";
 
 const ICONS: Record<string, React.ReactNode> = {
   telegram: socialIcons.telegram,
   x: socialIcons.x,
   mastodon: socialIcons.mastodon,
-  discord: <MessagesSquare aria-hidden="true" className="h-6 w-6" />,
-  matrix: <Network aria-hidden="true" className="h-6 w-6" />,
+  discord: <SiDiscord aria-hidden="true" className="h-6 w-6" />,
+  matrix: <SiElement aria-hidden="true" className="h-6 w-6" />,
   forum: <MessageSquareText aria-hidden="true" className="h-6 w-6" />,
   globe: <Globe aria-hidden="true" className="h-6 w-6" />,
 };

@@ -986,6 +986,56 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         if (groups.length) rows.splice(w + 1, end - w - 1, { type: "element", tagName: "communitygrid", properties: {}, children: groups });
       }
 
+      // X accounts table: add the newer regional communities right after the Nigeria row.
+      const findAll = (x: any, tag: string, out: any[] = []): any[] => {
+        if (!x || typeof x !== "object") return out;
+        if (nameOf(x) === tag) out.push(x);
+        (x.children || []).forEach((c: any) => findAll(c, tag, out));
+        return out;
+      };
+      const extra: [string, string][] = [
+        ["ZcashEastAfrica", "Zcash East Africa community"],
+        ["Zcash_SA", "Zcash South Africa community"],
+        ["ZcashIND", "Zcash India community"],
+        ["ZcashGH", "Zcash Ghana community"],
+        ["zec_forge", "ZecForge - creator program spreading privacy-focused Zcash content"],
+      ];
+      for (const tr of findAll({ children: rows }, "tr")) {
+        if (!/^@?ZcashNigeria/i.test(textOf(tr).trim())) continue;
+        const parent = findAll({ children: rows }, "tbody").find((b: any) => (b.children || []).includes(tr));
+        if (!parent) break;
+        const have = textOf(parent).toLowerCase();
+        let at = parent.children.indexOf(tr);
+        for (const [handle, desc] of extra) {
+          if (have.includes("@" + handle.toLowerCase())) continue;
+          const row = JSON.parse(JSON.stringify(tr));
+          const tds = (row.children || []).filter((c: any) => nameOf(c) === "td");
+          if (tds.length < 2) break;
+          const a = findAll(tds[0], "a")[0];
+          if (a) {
+            a.properties = { ...(a.properties || {}), href: "https://x.com/" + handle };
+            a.children = [{ type: "text", value: "@" + handle }];
+          } else tds[0].children = [{ type: "text", value: "@" + handle }];
+          tds[1].children = [{ type: "text", value: desc }];
+          parent.children.splice(++at, 0, row);
+        }
+        break;
+      }
+
+      // CipherScan was renamed to ZecBlock.
+      for (const tr of findAll({ children: rows }, "tr")) {
+        if (!/^@?cipherscan_app/i.test(textOf(tr).trim())) continue;
+        const tds = (tr.children || []).filter((c: any) => nameOf(c) === "td");
+        if (tds.length < 2) break;
+        const a = findAll(tds[0], "a")[0];
+        if (a) {
+          a.properties = { ...(a.properties || {}), href: "https://x.com/zecblock" };
+          a.children = [{ type: "text", value: "@zecblock" }];
+        } else tds[0].children = [{ type: "text", value: "@zecblock" }];
+        tds[1].children = [{ type: "text", value: "ZecBlock (formerly CipherScan) - Zcash blockchain explorer" }];
+        break;
+      }
+
       const rg = rows.findIndex((x) => isEl(x, "h2") && /^regional community hubs/i.test(textOf(x).trim()));
       if (rg > -1) {
         let j = rg + 1;
@@ -2131,7 +2181,7 @@ export default async function Page(props: {
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.
-        hideBanner={["using-zcash", "start-here", "zcash-use-cases"].includes(slug[0])}
+        hideBanner={["using-zcash", "start-here", "zcash-use-cases"].includes(slug[0]) || (slug[0] === "zcash-community" && slug[1] === "community-links")}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={
