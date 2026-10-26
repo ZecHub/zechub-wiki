@@ -39,6 +39,8 @@ export default function ExplorerDirectoryCard({
 }: ExplorerDirectoryCardProps) {
   const host = hostOf(url);
   const light = logoTile === "light";
+  // Square profile pictures (GitHub avatars) look best filling the whole tile.
+  const fill = light && /\/(cyze|ztreamer)\./.test(thumbnailImage);
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-slate-50/60 transition-colors hover:border-brand/40 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand/40">
       <div className="flex flex-1 flex-col p-4">
@@ -47,7 +49,7 @@ export default function ExplorerDirectoryCard({
             <div
               className={
                 light
-                  ? "flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white p-2 shadow-sm ring-1 ring-slate-200 dark:ring-white/15"
+                  ? `flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-200 dark:ring-white/15 ${fill ? "" : "p-2"}`
                   : "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 p-1.5 ring-1 ring-slate-200 dark:bg-white/[0.06] dark:ring-white/10"
               }
             >
@@ -57,7 +59,7 @@ export default function ExplorerDirectoryCard({
                   alt={`${title} logo`}
                   width={56}
                   height={56}
-                  className={`h-full w-full object-contain ${thumbnailImage.includes("messari") ? "dark:invert" : ""}`}
+                  className={`h-full w-full ${fill ? "object-cover" : "object-contain"} ${thumbnailImage.includes("messari") ? "dark:invert" : ""}`}
                 />
               ) : (
                 <span

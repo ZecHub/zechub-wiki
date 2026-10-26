@@ -2199,7 +2199,7 @@ export default async function Page(props: {
         {...(heroImage ? { heroImage } : {})}
         // Minimal layout: no decorative banner on "Using Zcash" pages. Add more
         // top-level folders here as the other sections are redesigned.
-        hideBanner={["using-zcash", "start-here", "zcash-use-cases"].includes(slug[0]) || (slug[0] === "zcash-community" && slug[1] === "community-links")}
+        hideBanner={["using-zcash", "start-here", "zcash-use-cases", "zcash-community"].includes(slug[0])}
         breadcrumbs={isResearchArticle ? undefined : breadcrumbTrail}
         layoutVariant={isResearchArticle ? "research" : "default"}
         researchMeta={
