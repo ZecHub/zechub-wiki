@@ -2141,8 +2141,11 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         const cards: any[] = [];
         while (j + 1 < rows.length && isEl(rows[j], "p") && isEl(rows[j + 1], "p") && textOf(rows[j]).trim().length < 50) {
           let desc = textOf(rows[j + 1]).trim();
-          // Zksquirrel is no longer a Zcash Arborist; now part of the ZecHub core team.
-          if (/^zksquirrel/i.test(textOf(rows[j]).trim())) desc = desc.replace(/Zcash Arborist/i, "ZecHub core team member");
+          const who = textOf(rows[j]).trim();
+          // Zksquirrel: now ZecHub core team (no longer a Zcash Arborist); drop the outdated note-taker and education clauses.
+          if (/^zksquirrel/i.test(who)) desc = "ZecHub core team member.";
+          // Pacu: now working at ZODL (replaces the old ZCG grant mention).
+          if (/^pacu/i.test(who)) desc = "A longtime Zcash wallet developer, previously at ECC working on SDKs and Light Client technology, now working at ZODL.";
           cards.push({ type: "element", tagName: "communitycard", properties: { name: textOf(rows[j]).trim(), desc, icon: "users" }, children: [] });
           j += 2;
         }
