@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean; sec?: boolean; eo?: boolean; amb?: boolean; media?: boolean; pod?: boolean; zcon?: boolean | string; node?: boolean; rpi5?: boolean; rpi4z?: boolean; hz?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1804,6 +1804,52 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         rows.splice(lead + 1, 0, note);
       }
     }
+    if (opts.hz && Array.isArray(tree.children)) {
+      // Hardened Zebra guide: summary bullets as lead lines, setup sections as numbered steps.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const ul = rows.findIndex((x, i) => i > h1 && isEl(x, "ul"));
+      if (h1 > -1 && ul > -1 && ul < rows.findIndex((x) => isEl(x, "h2"))) {
+        const items = (rows[ul].children || []).filter((c: any) => isEl(c, "li"));
+        const paras = items.map((li: any) => ({
+          type: "element",
+          tagName: "p",
+          properties: { dataLead: "true" },
+          children: (li.children || []).flatMap((c: any) => (isEl(c, "p") ? c.children || [] : [c])),
+        }));
+        rows.splice(ul, 1, ...paras);
+      }
+      // Raw <pre><code> blocks arrive without a language class and render as inline code; give them one.
+      const fixPre = (x: any) => {
+        if (!x || typeof x !== "object") return;
+        if (isEl(x, "pre")) {
+          for (const c of x.children || []) {
+            if (isEl(c, "code")) {
+              const cur = Array.isArray(c.properties?.className) ? c.properties.className : [];
+              if (!cur.some((k: string) => String(k).startsWith("language-"))) c.properties = { ...(c.properties || {}), className: [...cur, "language-bash"] };
+            }
+          }
+        }
+        (x.children || []).forEach(fixPre);
+      };
+      rows.forEach(fixPre);
+      const start = rows.findIndex((x) => isEl(x, "h3") && /^1\.\s/.test(textOf(x).trim()));
+      const end = rows.findIndex((x) => isEl(x, "h2") && /^daily usage/i.test(textOf(x).trim()));
+      if (start > -1) {
+        let n = 0;
+        for (let i = start; i < (end > -1 ? end : rows.length); i++) {
+          const x = rows[i];
+          if (isEl(x, "h3") && /^1\.\s/.test(textOf(x).trim())) {
+            rows[i] = { ...x, tagName: "h2", properties: { ...(x.properties || {}), dataStep: "1" }, children: [{ type: "text", value: textOf(x).trim().replace(/^1\.\s+/, "") }] };
+            n = 1;
+          } else if (isEl(x, "h2") && n > 0) {
+            n += 1;
+            x.properties = { ...(x.properties || {}), dataStep: String(n) };
+          }
+        }
+      }
+    }
     if (opts.cz && Array.isArray(tree.children)) {
       // Cypherpunk Zero: new hero art, governance/resources as link cards, supply split as stat cards.
       const rows: any[] = tree.children;
@@ -2954,6 +3000,7 @@ export default async function Page(props: {
             boldLinkButtons: slug[0] === "using-zcash",
             videoCards: slug[0] === "using-zcash" || slug[0] === "start-here" || (slug[0] === "guides" && slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo"),
             rpi5: slug[0] === "guides" && (slug[1] === "raspberry-pi5-zebra-lightwalletd-zingo" || slug[1] === "raspberry-pi-4-zebra-node"),
+            hz: slug[0] === "guides" && slug[1] === "hardened-zebrad",
             rpi4z: slug[0] === "guides" && slug[1] === "raspberry-pi-4-zebra-node",
             sectionHeadings: slug[0] === "start-here",
             faucets: slug[0] === "using-zcash" && slug[1] === "faucets",
