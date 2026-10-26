@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1072,6 +1072,126 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
               };
             });
           if (cards.length) rows.splice(j, 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
+        }
+      }
+    }
+    if (opts.cz && Array.isArray(tree.children)) {
+      // Cypherpunk Zero: new hero art, governance/resources as link cards, supply split as stat cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const nameOf = (x: any): string => x.tagName || x.name || "";
+      const findHref = (x: any): string => {
+        if (!x || typeof x !== "object") return "";
+        if (nameOf(x) === "a" && x.properties?.href) return String(x.properties.href);
+        for (const c of x.children || []) {
+          const r = findHref(c);
+          if (r) return r;
+        }
+        return "";
+      };
+      const hasImg = (x: any): boolean => nameOf(x) === "img" || (x.children || []).some(hasImg);
+      const h2At = (re: RegExp) => rows.findIndex((x) => isEl(x, "h2") && re.test(textOf(x).replace(/#$/, "").trim()));
+      const takeParas = (from: number) => {
+        let end = from + 1;
+        while (end < rows.length && !/^h[1-6]$/.test(rows[end].tagName || "") && !isEl(rows[end], "hr")) end++;
+        return end;
+      };
+
+      // Hero art.
+      const img = rows.findIndex((x) => isEl(x, "p") && hasImg(x) && !textOf(x).trim());
+      if (img > -1) {
+        rows[img] = {
+          type: "element",
+          tagName: "p",
+          properties: { className: ["my-0"] },
+          children: [{
+            type: "element",
+            tagName: "img",
+            properties: { src: "/cypherpunk-zero-hero.webp", alt: "Cypherpunk Zero characters", className: ["mx-auto", "h-auto", "w-full", "max-w-4xl"] },
+            children: [],
+          }],
+        };
+      }
+      const lead = rows.findIndex((x) => isEl(x, "p") && textOf(x).trim().length > 120);
+      if (lead > -1) {
+        const lp = rows[lead];
+        // Loosen the dense intro: break after the 2nd and 4th sentence (inline links are kept).
+        const breaks = new Set([2, 4]);
+        const paras: any[][] = [[]];
+        let sentence = 1;
+        for (const c of lp.children || []) {
+          if (c.type === "text" && typeof c.value === "string") {
+            const parts = c.value.split(/(?<=\.)\s+(?=[A-Z])/);
+            parts.forEach((part: string, k: number) => {
+              if (k > 0) {
+                if (breaks.has(sentence)) paras.push([]);
+                sentence++;
+                paras[paras.length - 1].push({ type: "text", value: breaks.has(sentence - 1) ? part : " " + part });
+              } else {
+                paras[paras.length - 1].push({ type: "text", value: part });
+              }
+            });
+          } else {
+            paras[paras.length - 1].push(c);
+          }
+        }
+        rows.splice(lead, 1, ...paras.map((children) => ({ type: "element", tagName: "p", properties: { dataLead: "true", className: ["mb-5"] }, children })));
+      }
+
+      // Governance and Resources: one card per link.
+      const cardsFrom = (idx: number, desc: (name: string, full: string) => string) => {
+        if (idx < 0) return;
+        const end = takeParas(idx);
+        const cards: any[] = [];
+        for (const r of rows.slice(idx + 1, end)) {
+          if (!isEl(r, "p")) continue;
+          const href = findHref(r);
+          const full = textOf(r).trim();
+          if (!href || !full) continue;
+          const name = full.split(/\s[\u2014\u2013-]\s/)[0].trim();
+          cards.push({ type: "element", tagName: "communitycard", properties: { name, desc: desc(name, full), href }, children: [] });
+        }
+        if (cards.length) rows.splice(idx + 1, end - idx - 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
+      };
+      cardsFrom(h2At(/^governance$/i), (name, full) =>
+        /^snapshot/i.test(name) ? full.replace(/^snapshot\s[\u2014\u2013-]\s/i, "").replace(/;\s*this is the surviving Snapshot space\.?$/i, ". Surviving Snapshot voting space.") : "",
+      );
+      cardsFrom(h2At(/^resources$/i), () => "");
+
+      // Supply split: three stat cards.
+      const al = h2At(/^what are the token allocations/i);
+      if (al > -1) {
+        const end = takeParas(al);
+        const full = rows.slice(al + 1, end).map((x: any) => textOf(x).trim()).filter(Boolean).join(" ");
+        const m = full.match(/^(Total supply:[^.]*?Mainnet)\s+(4%[\s\S]*?)\s+(72%[\s\S]*?)\s+(24%[\s\S]*)$/);
+        if (m) {
+          const mk = (value: string, label: string, text: string) => ({ type: "element", tagName: "statcard", properties: { value, label, text }, children: [] });
+          rows.splice(al + 1, end - al - 1,
+            { type: "element", tagName: "p", properties: {}, children: [{ type: "text", value: m[1] + "." }] },
+            { type: "element", tagName: "statgrid", properties: {}, children: [
+              mk("4%", "Early supporters", m[2].replace(/^4% of supply /, "Of supply ")),
+              mk("72%", "Public release", m[3].replace(/^72% of supply /, "Of supply ")),
+              mk("24%", "Cypherpunk Reserve", m[4].replace(/^24% of supply /, "Of supply ")),
+            ] },
+          );
+        }
+      }
+
+      // ECC is shown with its new name.
+      const zodl = (x: any) => {
+        if (x.type === "text" && typeof x.value === "string") x.value = x.value.replace(/\bECC\b(?! \(ZODL\))/g, "ECC (ZODL)");
+        if (x.properties && typeof x.properties.text === "string") x.properties.text = x.properties.text.replace(/\bECC\b(?! \(ZODL\))/g, "ECC (ZODL)");
+        (x.children || []).forEach(zodl);
+      };
+      rows.forEach(zodl);
+
+      // Stray H1 ("v2 Whitelist") becomes a section heading; its note becomes a callout.
+      const v2 = rows.findIndex((x) => isEl(x, "h1") && /whitelist/i.test(textOf(x)));
+      if (v2 > -1) {
+        rows[v2] = { ...rows[v2], tagName: "h2" };
+        const nx = rows[v2 + 1];
+        if (isEl(nx, "p") && textOf(nx).trim()) {
+          rows[v2 + 1] = { type: "element", tagName: "guidecallout", properties: { title: "Heads up" }, children: [nx] };
         }
       }
     }
@@ -2124,6 +2244,7 @@ export default async function Page(props: {
             compact: slug[0] === "using-zcash" && slug[1] === "mobile-top-ups",
             sol: slug[0] === "using-zcash" && slug[1] === "solana-zec-to-shielded",
             comm: slug[0] === "zcash-community" && slug[1] === "community-links",
+            cz: slug[0] === "zcash-community" && slug[1] === "cypherpunk-zero-nft",
           },
         ],
       ],

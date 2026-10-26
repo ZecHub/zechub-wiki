@@ -67,3 +67,24 @@ export function CommunityCard(props: Record<string, unknown>) {
     <div className={cls}>{body}</div>
   );
 }
+
+// Row of key figures (e.g. NFT supply split).
+export function StatGrid({ children }: { children?: React.ReactNode }) {
+  return <div className="not-prose my-6 grid gap-4 sm:grid-cols-3">{children}</div>;
+}
+
+export function StatCard(props: Record<string, unknown>) {
+  return (
+    <div className="flex h-full flex-col gap-2 rounded-xl border border-slate-200 bg-slate-50/60 p-5 dark:border-white/10 dark:bg-white/[0.03]">
+      <span className="text-3xl font-semibold tracking-tight text-brand dark:text-brand-soft">
+        {String(props.value ?? "")}
+      </span>
+      {props.label ? (
+        <span className="text-[11px] font-medium uppercase tracking-[0.1em] text-slate-500 dark:text-slate-400">
+          {String(props.label)}
+        </span>
+      ) : null}
+      <p className="m-0 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{String(props.text ?? "")}</p>
+    </div>
+  );
+}
