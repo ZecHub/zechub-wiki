@@ -1,4 +1,4 @@
-import { ArrowUpRight, Globe, MessageSquareText } from "lucide-react";
+import { ArrowUpRight, Coins, Cpu, Globe, HandCoins, MessageSquareText, Scale, ShieldCheck, Users, Vote } from "lucide-react";
 import { SiDiscord, SiElement } from "react-icons/si";
 import { socialIcons } from "@/components/UI/SvgIcons";
 
@@ -10,14 +10,22 @@ const ICONS: Record<string, React.ReactNode> = {
   matrix: <SiElement aria-hidden="true" className="h-6 w-6" />,
   forum: <MessageSquareText aria-hidden="true" className="h-6 w-6" />,
   globe: <Globe aria-hidden="true" className="h-6 w-6" />,
+  scale: <Scale aria-hidden="true" className="h-6 w-6" />,
+  coins: <Coins aria-hidden="true" className="h-6 w-6" />,
+  cpu: <Cpu aria-hidden="true" className="h-6 w-6" />,
+  vote: <Vote aria-hidden="true" className="h-6 w-6" />,
+  grants: <HandCoins aria-hidden="true" className="h-6 w-6" />,
+  shield: <ShieldCheck aria-hidden="true" className="h-6 w-6" />,
+  users: <Users aria-hidden="true" className="h-6 w-6" />,
 };
 
 const TILE =
   "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand dark:text-brand-soft";
 
 // Two-column grid that holds the community cards.
-export function CommunityGrid({ children }: { children?: React.ReactNode }) {
-  return <div className="not-prose my-6 grid gap-4 sm:grid-cols-2">{children}</div>;
+export function CommunityGrid(props: Record<string, unknown> & { children?: React.ReactNode }) {
+  const cols = String(props.cols ?? "2") === "3" ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2";
+  return <div className={`not-prose clear-both my-6 grid gap-4 ${cols}`}>{props.children}</div>;
 }
 
 // One platform (Telegram, Discord, ...): icon tile + title, with the original content below.
@@ -45,7 +53,7 @@ export function CommunityCard(props: Record<string, unknown>) {
   const href = String(props.href ?? "");
   const body = (
     <>
-      <span className={TILE}>{ICONS.globe}</span>
+      <span className={TILE}>{ICONS[String(props.icon ?? "globe")] ?? ICONS.globe}</span>
       <span className="min-w-0 flex-1">
         <span className="block text-base font-semibold leading-tight text-slate-900 dark:text-white">
           {String(props.name ?? "")}
@@ -140,6 +148,25 @@ export function OrgCard(props: Record<string, unknown> & { children?: React.Reac
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+// A person: initials in a round tile + name.
+export function MemberCard(props: Record<string, unknown>) {
+  const name = String(props.name ?? "");
+  const initials = name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase())
+    .join("");
+  return (
+    <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50/60 p-3.5 dark:border-white/10 dark:bg-white/[0.03]">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-brand/30 bg-brand/10 text-sm font-semibold text-brand dark:text-brand-soft">
+        {initials}
+      </span>
+      <span className="min-w-0 text-base font-semibold leading-tight text-slate-900 dark:text-white">{name}</span>
     </div>
   );
 }

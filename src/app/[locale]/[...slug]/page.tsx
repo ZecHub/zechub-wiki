@@ -129,7 +129,7 @@ function rehypeFlattenNestedParagraphs() {
 //    heading gets a data-variant (summary card / warning card / link cards)
 //  - a paragraph that is only **[Label](url)** becomes a call-to-action button
 //  - a paragraph that is only a [Link](url) becomes a titled entry link
-function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean } = {}) {
+function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boolean; snap?: boolean; sol?: boolean; swap?: boolean; tnet?: boolean; txn?: boolean; ua?: boolean; mine?: boolean; zal?: boolean; uc?: boolean; ucHub?: boolean; compact?: boolean; boldLinkButtons?: boolean; videoCards?: boolean; sectionHeadings?: boolean; faucets?: boolean; recovery?: boolean; memos?: boolean; tex?: boolean; comm?: boolean; cz?: boolean; gov?: boolean; zcap?: boolean } = {}) {
   const textOf = (n: any): string =>
     n.type === "text" ? n.value : (n.children || []).map(textOf).join("");
   const variantFor = (heading: string): string | null => {
@@ -1167,6 +1167,67 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
           }
           if (cards.length) rows.splice(ri, 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
         }
+      }
+    }
+    if (opts.zcap && Array.isArray(tree.children)) {
+      // ZCAP: small mascot, votes as link cards, prominent members as initials cards.
+      const rows: any[] = tree.children;
+      const isEl = (x: any, tag?: string) => x && x.type === "element" && (!tag || x.tagName === tag);
+      const nameOf = (x: any): string => x.tagName || x.name || "";
+      const findHref = (x: any): string => {
+        if (!x || typeof x !== "object") return "";
+        if (nameOf(x) === "a" && x.properties?.href) return String(x.properties.href);
+        for (const c of x.children || []) {
+          const r = findHref(c);
+          if (r) return r;
+        }
+        return "";
+      };
+      const hasEditBadge = (x: any): boolean =>
+        nameOf(x) === "img" && /shields\.io\/badge\/edit/i.test(String(x.properties?.src || "")) || (x.children || []).some(hasEditBadge);
+      const jsxBadge = (x: any): boolean =>
+        x && x.type === "mdxJsxFlowElement" && (x.name === "a" || x.name === "img")
+          && JSON.stringify(x).toLowerCase().includes("shields.io/badge/edit");
+      for (let i = rows.length - 1; i >= 0; i--) {
+        if ((isEl(rows[i]) && hasEditBadge(rows[i]) && !textOf(rows[i]).trim()) || jsxBadge(rows[i])) rows.splice(i, 1);
+      }
+      const mascot = rows.findIndex((x) => x.type === "mdxJsxFlowElement" && x.name === "img");
+      if (mascot > -1) {
+        const attrs = (rows[mascot].attributes || []).filter((a: any) => a.name !== "className" && a.name !== "class");
+        attrs.push({ type: "mdxJsxAttribute", name: "className", value: "float-right ml-6 mb-3 mt-1 h-auto w-28 rounded-xl sm:w-36" });
+        rows[mascot].attributes = attrs;
+      }
+      const h1 = rows.findIndex((x) => isEl(x, "h1"));
+      const lead = rows.findIndex((x, i) => i > h1 && isEl(x, "p") && textOf(x).trim().length > 120);
+      if (lead > -1) rows[lead].properties = { ...(rows[lead].properties || {}), dataLead: "true" };
+
+      // Votes: paragraphs that start with a link, between the lead and the "idea behind" paragraph.
+      const endVotes = rows.findIndex((x, i) => i > lead && isEl(x, "p") && /^the idea behind zcap/i.test(textOf(x).trim()));
+      if (lead > -1 && endVotes > lead) {
+        const cards: any[] = [];
+        for (const r of rows.slice(lead + 1, endVotes)) {
+          if (!isEl(r, "p") || !textOf(r).trim()) continue;
+          const full = textOf(r).trim();
+          const href = findHref(r);
+          const m = full.match(/^(.*?)(?::\s+|,\s*which\s+)([\s\S]*)$/);
+          const name = m ? m[1].trim() : full;
+          let desc = m ? m[2].trim() : "";
+          if (desc) desc = desc[0].toUpperCase() + desc.slice(1);
+          const n = name.toLowerCase();
+          const icon = /trademark/.test(n) ? "scale" : /monetary/.test(n) ? "coins" : /asic/.test(n) ? "cpu"
+            : /minor grants/.test(n) ? "grants" : /grants committee|committee election/.test(n) ? "vote"
+            : /shielded assets/.test(n) ? "shield" : /board/.test(n) ? "users" : "globe";
+          cards.push({ type: "element", tagName: "communitycard", properties: { name, desc, href, icon }, children: [] });
+        }
+        if (cards.length) rows.splice(lead + 1, endVotes - lead - 1, { type: "element", tagName: "communitygrid", properties: {}, children: cards });
+      }
+
+      // "Prominent Members" is an unsourced list of named people (ZF publishes no such list), so it is not shown.
+      const pm = rows.findIndex((x) => isEl(x, "h2") && /prominent members/i.test(textOf(x)));
+      if (pm > -1) {
+        let ui = pm + 1;
+        while (ui < rows.length && !isEl(rows[ui], "ul") && !isEl(rows[ui], "h2")) ui++;
+        rows.splice(pm, (isEl(rows[ui], "ul") ? ui + 1 : pm + 1) - pm);
       }
     }
     if (opts.cz && Array.isArray(tree.children)) {
@@ -2340,6 +2401,7 @@ export default async function Page(props: {
             comm: slug[0] === "zcash-community" && slug[1] === "community-links",
             cz: slug[0] === "zcash-community" && slug[1] === "cypherpunk-zero-nft",
             gov: slug[0] === "zcash-community" && slug[1] === "zcash-governance",
+            zcap: slug[0] === "zcash-community" && slug[1] === "zcap",
           },
         ],
       ],
