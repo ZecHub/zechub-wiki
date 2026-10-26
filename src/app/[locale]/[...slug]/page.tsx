@@ -1022,6 +1022,24 @@ function rehypeWikiPatterns(opts: { pools?: boolean; prq?: boolean; ncex?: boole
         break;
       }
 
+      // Shielded Labs goes right after the Zcash Foundation row.
+      for (const tr of findAll({ children: rows }, "tr")) {
+        if (!/^@?ZcashFoundation/i.test(textOf(tr).trim())) continue;
+        const parent = findAll({ children: rows }, "tbody").find((b: any) => (b.children || []).includes(tr));
+        if (!parent || textOf(parent).toLowerCase().includes("@shieldedlabs")) break;
+        const row = JSON.parse(JSON.stringify(tr));
+        const tds = (row.children || []).filter((c: any) => nameOf(c) === "td");
+        if (tds.length < 2) break;
+        const a = findAll(tds[0], "a")[0];
+        if (a) {
+          a.properties = { ...(a.properties || {}), href: "https://x.com/ShieldedLabs" };
+          a.children = [{ type: "text", value: "@ShieldedLabs" }];
+        } else tds[0].children = [{ type: "text", value: "@ShieldedLabs" }];
+        tds[1].children = [{ type: "text", value: "Shielded Labs - independent, donation-funded Zcash organization" }];
+        parent.children.splice(parent.children.indexOf(tr) + 1, 0, row);
+        break;
+      }
+
       // CipherScan was renamed to ZecBlock.
       for (const tr of findAll({ children: rows }, "tr")) {
         if (!/^@?cipherscan_app/i.test(textOf(tr).trim())) continue;
